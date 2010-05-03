@@ -41,6 +41,14 @@ public class ProtoTreeEditor extends MuvitorTreeEditor {
 		ref.setDest(clazz);
 		clazz.getReferences().add(ref);
 		
+		Clazz clazz2 = ProtomodelFactory.eINSTANCE.createClazz();
+		clazz2.setName("name2");
+		Reference ref2 = ProtomodelFactory.eINSTANCE.createReference();
+		ref2.setName("theConnection");
+		ref2.setSource(clazz);
+		ref2.setDest(clazz2);
+		clazz.getReferences().add(ref2);
+		
 		return clazz;
 	}
 
