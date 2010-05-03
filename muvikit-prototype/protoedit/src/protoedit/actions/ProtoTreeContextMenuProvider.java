@@ -1,6 +1,7 @@
 package protoedit.actions;
 
 import org.eclipse.gef.EditPartViewer;
+import org.eclipse.gef.ui.actions.GEFActionConstants;
 import org.eclipse.jface.action.IMenuManager;
 
 import muvitorkit.ui.ContextMenuProviderWithActionRegistry;
@@ -15,7 +16,8 @@ public class ProtoTreeContextMenuProvider extends
 
 	@Override
 	public void buildContextMenu(IMenuManager menu) {
-		// TODO Auto-generated method stub
+		String group = GEFActionConstants.GROUP_EDIT;
+		dynamicAppendActionToGroup(menu, CreateReferenceAction.ID, group);
 
 	}
 

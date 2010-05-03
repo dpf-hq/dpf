@@ -5,6 +5,7 @@ import org.eclipse.gef.EditPartFactory;
 import org.eclipse.gef.KeyHandler;
 import org.eclipse.gef.ui.parts.TreeViewer;
 
+import protoedit.actions.CreateReferenceAction;
 import protoedit.actions.ProtoTreeContextMenuProvider;
 import protoedit.editparts.tree.ProtoTreeEditPartFactory;
 import protomodel.Clazz;
@@ -25,8 +26,7 @@ public class ProtoTreeEditor extends MuvitorTreeEditor {
 
 	@Override
 	protected void createCustomActions() {
-		// TODO Auto-generated method stub
-
+		registerAction(new CreateReferenceAction(this));
 	}
 
 	@Override

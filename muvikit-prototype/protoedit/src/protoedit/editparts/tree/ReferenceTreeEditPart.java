@@ -1,13 +1,10 @@
 package protoedit.editparts.tree;
 
-import java.util.ArrayList;
-import java.util.List;
+import muvitorkit.gef.editparts.AdapterTreeEditPart;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPolicy;
 
 import protomodel.Reference;
-import muvitorkit.gef.editparts.AdapterTreeEditPart;
 
 public class ReferenceTreeEditPart extends AdapterTreeEditPart<Reference> {
 
@@ -18,7 +15,15 @@ public class ReferenceTreeEditPart extends AdapterTreeEditPart<Reference> {
 	
 	@Override
 	protected String getText() {
-		return getCastedModel().getName() + " -> " + getCastedModel().getDest().getName();
+		System.out.println("castedModel: " + getCastedModel());
+		String name = getCastedModel().getName() + " -> ";
+		if(getCastedModel().getDest() != null) {
+			name += getCastedModel().getDest().getName();
+		} else {
+			name += "(null)";
+		}
+		
+		return name;
 	}
 	
 	@Override
