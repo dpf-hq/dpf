@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -42,7 +43,7 @@ import protomodel.Reference;
  */
 public class ClazzImpl extends EObjectImpl implements Clazz {
 	/**
-	 * The cached value of the '{@link #getReferences() <em>References</em>}' reference list.
+	 * The cached value of the '{@link #getReferences() <em>References</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getReferences()
@@ -97,7 +98,7 @@ public class ClazzImpl extends EObjectImpl implements Clazz {
 	 */
 	public EList<Reference> getReferences() {
 		if (references == null) {
-			references = new EObjectWithInverseResolvingEList<Reference>(Reference.class, this, ProtomodelPackage.CLAZZ__REFERENCES, ProtomodelPackage.REFERENCE__SOURCE);
+			references = new EObjectContainmentWithInverseEList<Reference>(Reference.class, this, ProtomodelPackage.CLAZZ__REFERENCES, ProtomodelPackage.REFERENCE__SOURCE);
 		}
 		return references;
 	}

@@ -80,7 +80,7 @@ public interface Reference extends EObject {
 	void setName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Source</b></em>' reference.
+	 * Returns the value of the '<em><b>Source</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link protomodel.Clazz#getReferences <em>References</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -88,20 +88,20 @@ public interface Reference extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Source</em>' reference.
+	 * @return the value of the '<em>Source</em>' container reference.
 	 * @see #setSource(Clazz)
 	 * @see protomodel.ProtomodelPackage#getReference_Source()
 	 * @see protomodel.Clazz#getReferences
-	 * @model opposite="references" required="true"
+	 * @model opposite="references" required="true" transient="false"
 	 * @generated
 	 */
 	Clazz getSource();
 
 	/**
-	 * Sets the value of the '{@link protomodel.Reference#getSource <em>Source</em>}' reference.
+	 * Sets the value of the '{@link protomodel.Reference#getSource <em>Source</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Source</em>' reference.
+	 * @param value the new value of the '<em>Source</em>' container reference.
 	 * @see #getSource()
 	 * @generated
 	 */

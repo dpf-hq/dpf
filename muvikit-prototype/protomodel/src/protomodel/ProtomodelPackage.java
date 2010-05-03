@@ -70,7 +70,7 @@ public interface ProtomodelPackage extends EPackage {
 	int CLAZZ = 0;
 
 	/**
-	 * The feature id for the '<em><b>References</b></em>' reference list.
+	 * The feature id for the '<em><b>References</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -125,7 +125,7 @@ public interface ProtomodelPackage extends EPackage {
 	int REFERENCE__NAME = 1;
 
 	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * The feature id for the '<em><b>Source</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -200,10 +200,10 @@ public interface ProtomodelPackage extends EPackage {
 	EClass getClazz();
 
 	/**
-	 * Returns the meta object for the reference list '{@link protomodel.Clazz#getReferences <em>References</em>}'.
+	 * Returns the meta object for the containment reference list '{@link protomodel.Clazz#getReferences <em>References</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>References</em>'.
+	 * @return the meta object for the containment reference list '<em>References</em>'.
 	 * @see protomodel.Clazz#getReferences()
 	 * @see #getClazz()
 	 * @generated
@@ -254,10 +254,10 @@ public interface ProtomodelPackage extends EPackage {
 	EAttribute getReference_Name();
 
 	/**
-	 * Returns the meta object for the reference '{@link protomodel.Reference#getSource <em>Source</em>}'.
+	 * Returns the meta object for the container reference '{@link protomodel.Reference#getSource <em>Source</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Source</em>'.
+	 * @return the meta object for the container reference '<em>Source</em>'.
 	 * @see protomodel.Reference#getSource()
 	 * @see #getReference()
 	 * @generated
@@ -340,7 +340,7 @@ public interface ProtomodelPackage extends EPackage {
 		EClass CLAZZ = eINSTANCE.getClazz();
 
 		/**
-		 * The meta object literal for the '<em><b>References</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>References</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -382,7 +382,7 @@ public interface ProtomodelPackage extends EPackage {
 		EAttribute REFERENCE__NAME = eINSTANCE.getReference_Name();
 
 		/**
-		 * The meta object literal for the '<em><b>Source</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Source</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

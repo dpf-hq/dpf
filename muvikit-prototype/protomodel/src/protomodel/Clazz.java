@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Clazz extends EObject {
 	/**
-	 * Returns the value of the '<em><b>References</b></em>' reference list.
+	 * Returns the value of the '<em><b>References</b></em>' containment reference list.
 	 * The list contents are of type {@link protomodel.Reference}.
 	 * It is bidirectional and its opposite is '{@link protomodel.Reference#getSource <em>Source</em>}'.
 	 * <!-- begin-user-doc -->
@@ -38,10 +38,10 @@ public interface Clazz extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>References</em>' reference list.
+	 * @return the value of the '<em>References</em>' containment reference list.
 	 * @see protomodel.ProtomodelPackage#getClazz_References()
 	 * @see protomodel.Reference#getSource
-	 * @model opposite="source"
+	 * @model opposite="source" containment="true"
 	 * @generated
 	 */
 	EList<Reference> getReferences();

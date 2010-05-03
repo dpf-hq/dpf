@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import protomodel.Clazz;
 import protomodel.ProtomodelPackage;
 import protomodel.Reference;
@@ -64,16 +65,6 @@ public class ReferenceImpl extends EObjectImpl implements Reference {
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSource()
-	 * @generated
-	 * @ordered
-	 */
-	protected Clazz source;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -159,24 +150,8 @@ public class ReferenceImpl extends EObjectImpl implements Reference {
 	 * @generated
 	 */
 	public Clazz getSource() {
-		if (source != null && source.eIsProxy()) {
-			InternalEObject oldSource = (InternalEObject)source;
-			source = (Clazz)eResolveProxy(oldSource);
-			if (source != oldSource) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProtomodelPackage.REFERENCE__SOURCE, oldSource, source));
-			}
-		}
-		return source;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Clazz basicGetSource() {
-		return source;
+		if (eContainerFeatureID() != ProtomodelPackage.REFERENCE__SOURCE) return null;
+		return (Clazz)eContainer();
 	}
 
 	/**
@@ -185,12 +160,7 @@ public class ReferenceImpl extends EObjectImpl implements Reference {
 	 * @generated
 	 */
 	public NotificationChain basicSetSource(Clazz newSource, NotificationChain msgs) {
-		Clazz oldSource = source;
-		source = newSource;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProtomodelPackage.REFERENCE__SOURCE, oldSource, newSource);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
+		msgs = eBasicSetContainer((InternalEObject)newSource, ProtomodelPackage.REFERENCE__SOURCE, msgs);
 		return msgs;
 	}
 
@@ -200,10 +170,12 @@ public class ReferenceImpl extends EObjectImpl implements Reference {
 	 * @generated
 	 */
 	public void setSource(Clazz newSource) {
-		if (newSource != source) {
+		if (newSource != eInternalContainer() || (eContainerFeatureID() != ProtomodelPackage.REFERENCE__SOURCE && newSource != null)) {
+			if (EcoreUtil.isAncestor(this, newSource))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (source != null)
-				msgs = ((InternalEObject)source).eInverseRemove(this, ProtomodelPackage.CLAZZ__REFERENCES, Clazz.class, msgs);
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
 			if (newSource != null)
 				msgs = ((InternalEObject)newSource).eInverseAdd(this, ProtomodelPackage.CLAZZ__REFERENCES, Clazz.class, msgs);
 			msgs = basicSetSource(newSource, msgs);
@@ -222,8 +194,8 @@ public class ReferenceImpl extends EObjectImpl implements Reference {
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case ProtomodelPackage.REFERENCE__SOURCE:
-				if (source != null)
-					msgs = ((InternalEObject)source).eInverseRemove(this, ProtomodelPackage.CLAZZ__REFERENCES, Clazz.class, msgs);
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetSource((Clazz)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -249,6 +221,20 @@ public class ReferenceImpl extends EObjectImpl implements Reference {
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case ProtomodelPackage.REFERENCE__SOURCE:
+				return eInternalContainer().eInverseRemove(this, ProtomodelPackage.CLAZZ__REFERENCES, Clazz.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case ProtomodelPackage.REFERENCE__DEST:
@@ -257,8 +243,7 @@ public class ReferenceImpl extends EObjectImpl implements Reference {
 			case ProtomodelPackage.REFERENCE__NAME:
 				return getName();
 			case ProtomodelPackage.REFERENCE__SOURCE:
-				if (resolve) return getSource();
-				return basicGetSource();
+				return getSource();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -318,7 +303,7 @@ public class ReferenceImpl extends EObjectImpl implements Reference {
 			case ProtomodelPackage.REFERENCE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ProtomodelPackage.REFERENCE__SOURCE:
-				return source != null;
+				return getSource() != null;
 		}
 		return super.eIsSet(featureID);
 	}
