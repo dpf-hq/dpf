@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_mNKrQVeOEd-YAfAIb-Rwyg" type="Ecore" measurementUnit="Pixel">
+  <children xmi:type="notation:Shape" xmi:id="_mZAu4FeOEd-YAfAIb-Rwyg" type="2001" fontName="Sans">
+    <children xmi:type="notation:DecorationNode" xmi:id="_mZDLIFeOEd-YAfAIb-Rwyg" type="5001"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_mZFAUFeOEd-YAfAIb-Rwyg" type="7001">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_mZFAUVeOEd-YAfAIb-Rwyg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_mZFAUleOEd-YAfAIb-Rwyg"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_mZFAU1eOEd-YAfAIb-Rwyg" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_mZFAVFeOEd-YAfAIb-Rwyg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_mZFAVVeOEd-YAfAIb-Rwyg"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_mZFnYFeOEd-YAfAIb-Rwyg" type="7003">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_mZFnYVeOEd-YAfAIb-Rwyg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_mZFnYleOEd-YAfAIb-Rwyg"/>
+    </children>
+    <element xmi:type="ecore:EClass" href="Protolayout.ecore#//LayoutSystem"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_mZAu4VeOEd-YAfAIb-Rwyg" x="372" y="72"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_mZFnY1eOEd-YAfAIb-Rwyg" type="2001" fontName="Sans">
+    <children xmi:type="notation:DecorationNode" xmi:id="_mZFnZVeOEd-YAfAIb-Rwyg" type="5001"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_mZGOcFeOEd-YAfAIb-Rwyg" type="7001">
+      <children xmi:type="notation:Node" xmi:id="_FFFaoFePEd-YAfAIb-Rwyg" type="3001">
+        <element xmi:type="ecore:EAttribute" href="Protolayout.ecore#//NodeLayout/x"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_FFFaoVePEd-YAfAIb-Rwyg"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_KUh7AFePEd-YAfAIb-Rwyg" type="3001">
+        <element xmi:type="ecore:EAttribute" href="Protolayout.ecore#//NodeLayout/y"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_KUh7AVePEd-YAfAIb-Rwyg"/>
+      </children>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_mZGOcVeOEd-YAfAIb-Rwyg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_mZGOcleOEd-YAfAIb-Rwyg"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_mZGOc1eOEd-YAfAIb-Rwyg" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_mZGOdFeOEd-YAfAIb-Rwyg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_mZGOdVeOEd-YAfAIb-Rwyg"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_mZGOdleOEd-YAfAIb-Rwyg" type="7003">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_mZGOd1eOEd-YAfAIb-Rwyg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_mZGOeFeOEd-YAfAIb-Rwyg"/>
+    </children>
+    <element xmi:type="ecore:EClass" href="Protolayout.ecore#//NodeLayout"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_mZFnZFeOEd-YAfAIb-Rwyg" x="384" y="216"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_mNLSUFeOEd-YAfAIb-Rwyg"/>
+  <element xmi:type="ecore:EPackage" href="Protolayout.ecore#/"/>
+</notation:Diagram>
