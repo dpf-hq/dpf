@@ -18,7 +18,7 @@ public class ProtoTreeContextMenuProvider extends
 	public void buildContextMenu(IMenuManager menu) {
 		String group = GEFActionConstants.GROUP_EDIT;
 		dynamicAppendActionToGroup(menu, CreateReferenceAction.ID, group);
-
+		dynamicAppendActionToGroup(menu, CreateClassAction.ID, group);
 	}
 
 }
