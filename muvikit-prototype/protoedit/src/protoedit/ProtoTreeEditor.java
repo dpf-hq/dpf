@@ -31,8 +31,7 @@ public class ProtoTreeEditor extends MuvitorTreeEditor {
 
 	@Override
 	protected EObject createDefaultModel() {
-		/*Diagram diagram = ProtomodelFactory.eINSTANCE.createDiagram();
-		diagram.setName("default");*/
+
 		Clazz clazz = ProtomodelFactory.eINSTANCE.createClazz();
 		clazz.setName("theclazz");
 		Reference ref = ProtomodelFactory.eINSTANCE.createReference();
@@ -49,7 +48,11 @@ public class ProtoTreeEditor extends MuvitorTreeEditor {
 		ref2.setDest(clazz2);
 		clazz.getReferences().add(ref2);
 		
-		return clazz;
+		Diagram diagram = ProtomodelFactory.eINSTANCE.createDiagram();
+		diagram.setName("default");
+		diagram.getClasses().add(clazz);
+		
+		return diagram;
 	}
 
 	@Override

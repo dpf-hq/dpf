@@ -21,7 +21,7 @@ public class ClazzTreeEditPart extends AdapterTreeEditPart<Clazz> implements IDi
 	
 	@Override
 	protected String getText() {
-		return getCastedModel().getName();
+		return "Class: " + getCastedModel().getName();
 	}
 	
 	@Override

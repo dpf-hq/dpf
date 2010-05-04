@@ -16,7 +16,7 @@ public class ReferenceTreeEditPart extends AdapterTreeEditPart<Reference> {
 	@Override
 	protected String getText() {
 		System.out.println("castedModel: " + getCastedModel());
-		String name = getCastedModel().getName() + " -> ";
+		String name = "ref: " + getCastedModel().getName() + " -> ";
 		if(getCastedModel().getDest() != null) {
 			name += getCastedModel().getDest().getName();
 		} else {
