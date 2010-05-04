@@ -12,13 +12,18 @@ import protoedit.editparts.tree.ProtoTreeEditPartFactory;
 import protomodel.Clazz;
 import protomodel.Diagram;
 import protomodel.ProtomodelFactory;
+import protomodel.ProtomodelPackage;
 import protomodel.Reference;
 
 import muvitorkit.ui.ContextMenuProviderWithActionRegistry;
 import muvitorkit.ui.MuvitorTreeEditor;
 
 public class ProtoTreeEditor extends MuvitorTreeEditor {
-
+	public static final String GRAPH_VIEW_ID = "protoedit.ui.graphs.GraphView";
+	static {
+		registerViewID(ProtomodelPackage.Literals.DIAGRAM, GRAPH_VIEW_ID);
+	}
+	
 	@Override
 	protected ContextMenuProviderWithActionRegistry createContextMenuProvider(
 			TreeViewer viewer) {

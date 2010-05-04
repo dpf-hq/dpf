@@ -17,18 +17,18 @@
          point="org.eclipse.ui.views">
        <view
              allowMultiple="true"
-             class="your subclass of MuvitorPageBookView"
+             class="protoedit.ui.graphs.GraphView"
              icon="icons/someicon16.png"
-             id="some unique id, e.g. what you put below as class"
-             name="SomeView"/>
+             id="protoedit.ui.graphs.GraphView"
+             name="GraphView"/>
    </extension>
    <extension
          point="org.eclipse.ui.perspectives">
       <perspective
-            class="your implementation of IPerspectiveFactory"
+            class="protoedit.ProtoeditPerspective"
             icon="icons/someicon16.png"
-            id="some unique id, e.g. what you put below as class"
-            name="a name for your perspective, e.g. the editor name"/>
+            id="protoedit.ProtoeditPerspective"
+            name="Proto editor"/>
    </extension>
    <extension
          point="org.eclipse.ui.newWizards">

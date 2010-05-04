@@ -6,6 +6,7 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: muvitorkit.ui.MuvitorActivator
 Require-Bundle: org.eclipse.core.runtime,
  protomodel;bundle-version="1.0.0",
- MuvitorKit;bundle-version="1.0.0"
+ MuvitorKit;bundle-version="1.0.0",
+ protolayout;bundle-version="0.1.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
