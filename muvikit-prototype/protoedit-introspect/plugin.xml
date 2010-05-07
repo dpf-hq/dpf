@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.5"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="protoedit.ProtoTreeEditor"
+            contributorClass="protoedit.actions.ProtoActionBarContributor"
+            default="true"
+            extensions="proto"
+            icon="icons/someicon16.png"
+            id="protoedit.ProtoTreeEditor"
+            name="Proto-Editor">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+       <view
+             allowMultiple="true"
+             class="protoedit.ui.graphs.GraphView"
+             icon="icons/someicon16.png"
+             id="protoedit.ui.graphs.GraphView"
+             name="GraphView"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="protoedit.ProtoeditPerspective"
+            icon="icons/someicon16.png"
+            id="protoedit.ProtoeditPerspective"
+            name="Proto editor"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            class="protoedit.ui.wizards.MuvitorFileCreationWizard"
+            hasPages="true"
+            icon="icons/someicon16.png"
+            id="protoedit.ui.wizards.MuvitorFileCreationWizard"
+            name="Proto File Creation Wizard"/>
+   </extension>
+
+</plugin>
