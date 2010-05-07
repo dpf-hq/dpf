@@ -95,7 +95,8 @@ public class ProtoTreeEditor extends MuvitorTreeEditor {
 
 		return diagram;*/
 		// Initialize the model
-		URI modelUri = URI.createFileURI("/Users/dagvl/Documents/runtime-EclipseApplication/testing/models/PROTO1.proto");
+		//URI modelUri = URI.createFileURI("/Users/dagvl/Documents/runtime-EclipseApplication/testing/models/PROTO1.proto");
+		URI modelUri = URI.createFileURI("/home/dagvl/workspaces/runtime-EclipseApplication/ProtoEMFTest/models/PROTO3.proto");
 		
 		ResourceSet resourceSet = new ResourceSetImpl();
 		Resource ecoreResource = resourceSet.getResource(modelUri, true);
@@ -106,10 +107,8 @@ public class ProtoTreeEditor extends MuvitorTreeEditor {
 		Map<String, Object> m = reg.getExtensionToFactoryMap();
 		m.put("proto", new XMIResourceFactoryImpl());
 
-		// Get the first model element and cast it to the right type, in my
-		// example everything is hierarchical included in this first node
-		EObject myWeb = ecoreResource.getContents().get(0);
-		return myWeb;
+		EObject root = ecoreResource.getContents().get(0);
+		return root;
 
 	}
 	
