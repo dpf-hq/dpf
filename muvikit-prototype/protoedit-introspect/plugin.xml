@@ -19,7 +19,7 @@
              allowMultiple="true"
              class="protoedit.ui.graphs.GraphView"
              icon="icons/someicon16.png"
-             id="protoedit.ui.graphs.GraphView"
+             id="protoedit.ui.graphs.GraphView_BEGONE"
              name="GraphView"/>
    </extension>
    <extension
