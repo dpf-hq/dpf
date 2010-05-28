@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="ASCII"?>
+<morphism:Morphism xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:morphism="morphism">
+  <nodeMappings>
+    <src href="file:/home/fma/grid/gridEditor/ws1/Reflexive/./model/Triangle.ecore#//N3"/>
+    <tar href="file:/home/fma/grid/gridEditor/ws1/Reflexive/./model/Test.ecore#//Asterix"/>
+  </nodeMappings>
+  <nodeMappings>
+    <src href="file:/home/fma/grid/gridEditor/ws1/Reflexive/./model/Triangle.ecore#//Triangle"/>
+    <tar href="file:/home/fma/grid/gridEditor/ws1/Reflexive/./model/Test.ecore#//Test"/>
+  </nodeMappings>
+  <nodeMappings>
+    <src href="file:/home/fma/grid/gridEditor/ws1/Reflexive/./model/Triangle.ecore#//N1"/>
+    <tar href="file:/home/fma/grid/gridEditor/ws1/Reflexive/./model/Test.ecore#//Alex"/>
+  </nodeMappings>
+  <nodeMappings>
+    <src href="file:/home/fma/grid/gridEditor/ws1/Reflexive/./model/Triangle.ecore#//N2"/>
+    <tar href="file:/home/fma/grid/gridEditor/ws1/Reflexive/./model/Test.ecore#//Felix"/>
+  </nodeMappings>
+  <nodeMappings>
+    <src href="file:/home/fma/grid/gridEditor/ws1/Reflexive/./model/Triangle.ecore#//E2"/>
+    <tar href="file:/home/fma/grid/gridEditor/ws1/Reflexive/./model/Test.ecore#//A"/>
+  </nodeMappings>
+  <nodeMappings>
+    <src href="file:/home/fma/grid/gridEditor/ws1/Reflexive/./model/Triangle.ecore#//E1"/>
+    <tar href="file:/home/fma/grid/gridEditor/ws1/Reflexive/./model/Test.ecore#//C"/>
+  </nodeMappings>
+  <nodeMappings>
+    <src href="file:/home/fma/grid/gridEditor/ws1/Reflexive/./model/Triangle.ecore#//E3"/>
+    <tar href="file:/home/fma/grid/gridEditor/ws1/Reflexive/./model/Test.ecore#//B"/>
+  </nodeMappings>
+  <referenceMappings>
+    <src href="file:/home/fma/grid/gridEditor/ws1/Reflexive/./model/Triangle.ecore#//Triangle/nodes_3"/>
+    <tar href="file:/home/fma/grid/gridEditor/ws1/Reflexive/./model/Test.ecore#//Test/nodes_3_1"/>
+  </referenceMappings>
+  <referenceMappings>
+    <src href="file:/home/fma/grid/gridEditor/ws1/Reflexive/./model/Triangle.ecore#//E2/src"/>
+    <tar href="file:/home/fma/grid/gridEditor/ws1/Reflexive/./model/Test.ecore#//A/src"/>
+  </referenceMappings>
+  <referenceMappings>
+    <src href="file:/home/fma/grid/gridEditor/ws1/Reflexive/./model/Triangle.ecore#//E3/tar"/>
+    <tar href="file:/home/fma/grid/gridEditor/ws1/Reflexive/./model/Test.ecore#//B/tar"/>
+  </referenceMappings>
+  <referenceMappings>
+    <src href="file:/home/fma/grid/gridEditor/ws1/Reflexive/./model/Triangle.ecore#//E3/src"/>
+    <tar href="file:/home/fma/grid/gridEditor/ws1/Reflexive/./model/Test.ecore#//B/src"/>
+  </referenceMappings>
+  <referenceMappings>
+    <src href="file:/home/fma/grid/gridEditor/ws1/Reflexive/./model/Triangle.ecore#//Triangle/nodes_1"/>
+    <tar href="file:/home/fma/grid/gridEditor/ws1/Reflexive/./model/Test.ecore#//Test/nodes_1_1"/>
+  </referenceMappings>
+  <referenceMappings>
+    <src href="file:/home/fma/grid/gridEditor/ws1/Reflexive/./model/Triangle.ecore#//E2/tar"/>
+    <tar href="file:/home/fma/grid/gridEditor/ws1/Reflexive/./model/Test.ecore#//A/tar"/>
+  </referenceMappings>
+  <referenceMappings>
+    <src href="file:/home/fma/grid/gridEditor/ws1/Reflexive/./model/Triangle.ecore#//Triangle/nodes_2"/>
+    <tar href="file:/home/fma/grid/gridEditor/ws1/Reflexive/./model/Test.ecore#//Test/nodes_2_1"/>
+  </referenceMappings>
+  <referenceMappings>
+    <src href="file:/home/fma/grid/gridEditor/ws1/Reflexive/./model/Triangle.ecore#//E1/tar"/>
+    <tar href="file:/home/fma/grid/gridEditor/ws1/Reflexive/./model/Test.ecore#//C/tar"/>
+  </referenceMappings>
+  <referenceMappings>
+    <src href="file:/home/fma/grid/gridEditor/ws1/Reflexive/./model/Triangle.ecore#//E1/src"/>
+    <tar href="file:/home/fma/grid/gridEditor/ws1/Reflexive/./model/Test.ecore#//C/src"/>
+  </referenceMappings>
+  <referenceMappings>
+    <src href="file:/home/fma/grid/gridEditor/ws1/Reflexive/./model/Triangle.ecore#//Triangle/edges_2"/>
+    <tar href="file:/home/fma/grid/gridEditor/ws1/Reflexive/./model/Test.ecore#//Test/edges_2_1"/>
+  </referenceMappings>
+  <referenceMappings>
+    <src href="file:/home/fma/grid/gridEditor/ws1/Reflexive/./model/Triangle.ecore#//Triangle/edges_3"/>
+    <tar href="file:/home/fma/grid/gridEditor/ws1/Reflexive/./model/Test.ecore#//Test/edges_3_1"/>
+  </referenceMappings>
+  <referenceMappings>
+    <src href="file:/home/fma/grid/gridEditor/ws1/Reflexive/./model/Triangle.ecore#//Triangle/edges_1"/>
+    <tar href="file:/home/fma/grid/gridEditor/ws1/Reflexive/./model/Test.ecore#//Test/edges_1_1"/>
+  </referenceMappings>
+</morphism:Morphism>

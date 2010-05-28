@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="test" nsURI="test" nsPrefix="test">
+  <eClassifiers xsi:type="ecore:EClass" name="Test">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="edges_1_1" upperBound="-1" eType="//C" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="edges_2_1" upperBound="-1" eType="//A" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="edges_3_1" upperBound="-1" eType="//B" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nodes_1_1" upperBound="-1" eType="//Alex" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nodes_2_1" upperBound="-1" eType="//Felix" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nodes_3_1" upperBound="-1" eType="//Asterix" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="C">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="src" lowerBound="1" eType="//Alex"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tar" lowerBound="1" eType="//Felix"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="A">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="src" lowerBound="1" eType="//Felix"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tar" lowerBound="1" eType="//Asterix"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="B">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="src" lowerBound="1" eType="//Asterix"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tar" lowerBound="1" eType="//Alex"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Alex">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Felix">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Asterix">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+</ecore:EPackage>

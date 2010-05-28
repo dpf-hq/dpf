@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test:Test xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:test="test">
+  <edges_1_1/>
+  <edges_2_1/>
+  <edges_3_1/>
+  <nodes_1_1/>
+  <nodes_2_1/>
+  <nodes_3_1/>
+</test:Test>

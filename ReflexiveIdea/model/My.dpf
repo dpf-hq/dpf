@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dpf:Graph xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:dpf="no.hib.dpf" xmi:id="_AP2KwF92Ed-jEO3Ady5Z_A" name="Triangle">
+  <edges name="e1" src="//@nodes.0" tar="//@nodes.1"/>
+  <edges name="e2" src="//@nodes.1" tar="//@nodes.2"/>
+  <edges name="e3" src="//@nodes.2" tar="//@nodes.0"/>
+  <nodes name="n1"/>
+  <nodes name="n2"/>
+  <nodes name="n3"/>
+</dpf:Graph>
+

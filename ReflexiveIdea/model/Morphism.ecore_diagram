@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="__ToXcGMVEd-g-ZJKOUle2A" type="Ecore" measurementUnit="Pixel">
+  <children xmi:type="notation:Shape" xmi:id="__U5iwGMVEd-g-ZJKOUle2A" type="2001" fontName="Sans Serif">
+    <children xmi:type="notation:DecorationNode" xmi:id="__U6J0GMVEd-g-ZJKOUle2A" type="5001"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="__U6J0WMVEd-g-ZJKOUle2A" type="7001">
+      <styles xmi:type="notation:SortingStyle" xmi:id="__U6J0mMVEd-g-ZJKOUle2A"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="__U6J02MVEd-g-ZJKOUle2A"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="__U6J1GMVEd-g-ZJKOUle2A" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="__U6J1WMVEd-g-ZJKOUle2A"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="__U6J1mMVEd-g-ZJKOUle2A"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="__U6J12MVEd-g-ZJKOUle2A" type="7003">
+      <styles xmi:type="notation:SortingStyle" xmi:id="__U6J2GMVEd-g-ZJKOUle2A"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="__U6J2WMVEd-g-ZJKOUle2A"/>
+    </children>
+    <element xmi:type="ecore:EClass" href="Morphism.ecore#//Morphism"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="__U5iwWMVEd-g-ZJKOUle2A" x="216" y="216"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="__U6w4GMVEd-g-ZJKOUle2A" type="2001" fontName="Sans Serif">
+    <children xmi:type="notation:DecorationNode" xmi:id="__U6w4mMVEd-g-ZJKOUle2A" type="5001"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="__U6w42MVEd-g-ZJKOUle2A" type="7001">
+      <styles xmi:type="notation:SortingStyle" xmi:id="__U6w5GMVEd-g-ZJKOUle2A"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="__U6w5WMVEd-g-ZJKOUle2A"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="__U6w5mMVEd-g-ZJKOUle2A" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="__U6w52MVEd-g-ZJKOUle2A"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="__U6w6GMVEd-g-ZJKOUle2A"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="__U6w6WMVEd-g-ZJKOUle2A" type="7003">
+      <styles xmi:type="notation:SortingStyle" xmi:id="__U6w6mMVEd-g-ZJKOUle2A"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="__U6w62MVEd-g-ZJKOUle2A"/>
+    </children>
+    <element xmi:type="ecore:EClass" href="Morphism.ecore#//NodeMapping"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="__U6w4WMVEd-g-ZJKOUle2A" x="504" y="348" width="129" height="85"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="__U7X8GMVEd-g-ZJKOUle2A" type="2001" fontName="Sans Serif">
+    <children xmi:type="notation:DecorationNode" xmi:id="__U7X8mMVEd-g-ZJKOUle2A" type="5001"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="__U7X82MVEd-g-ZJKOUle2A" type="7001">
+      <styles xmi:type="notation:SortingStyle" xmi:id="__U7X9GMVEd-g-ZJKOUle2A"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="__U7X9WMVEd-g-ZJKOUle2A"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="__U7_AGMVEd-g-ZJKOUle2A" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="__U7_AWMVEd-g-ZJKOUle2A"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="__U7_AmMVEd-g-ZJKOUle2A"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="__U7_A2MVEd-g-ZJKOUle2A" type="7003">
+      <styles xmi:type="notation:SortingStyle" xmi:id="__U7_BGMVEd-g-ZJKOUle2A"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="__U7_BWMVEd-g-ZJKOUle2A"/>
+    </children>
+    <element xmi:type="ecore:EClass" href="Morphism.ecore#//ReferenceMapping"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="__U7X8WMVEd-g-ZJKOUle2A" x="492" y="60" width="145" height="73"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="__ToXcWMVEd-g-ZJKOUle2A"/>
+  <element xmi:type="ecore:EPackage" href="Morphism.ecore#/"/>
+  <edges xmi:type="notation:Connector" xmi:id="__VIMQGMVEd-g-ZJKOUle2A" type="4003" source="__U5iwGMVEd-g-ZJKOUle2A" target="__U6w4GMVEd-g-ZJKOUle2A">
+    <children xmi:type="notation:DecorationNode" xmi:id="__VIMQ2MVEd-g-ZJKOUle2A" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="__VIzUGMVEd-g-ZJKOUle2A" y="17"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="__VIzUWMVEd-g-ZJKOUle2A" type="6004">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="__VIzUmMVEd-g-ZJKOUle2A" x="3" y="24"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="__VIMQWMVEd-g-ZJKOUle2A" fontName="Sans Serif"/>
+    <element xmi:type="ecore:EReference" href="Morphism.ecore#//Morphism/nodeMappings"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="__VIMQmMVEd-g-ZJKOUle2A" points="[0, 0, 77, 67]$[-77, -67, 0, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="__V9SsGMVEd-g-ZJKOUle2A" id="(0.3291139240506329,0.0)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="__V9SsWMVEd-g-ZJKOUle2A" id="(0.49523809523809526,1.0)"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="__VLPkGMVEd-g-ZJKOUle2A" type="4003" source="__U5iwGMVEd-g-ZJKOUle2A" target="__U7X8GMVEd-g-ZJKOUle2A">
+    <children xmi:type="notation:DecorationNode" xmi:id="__VL2oGMVEd-g-ZJKOUle2A" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="__VL2oWMVEd-g-ZJKOUle2A" x="-17" y="-24"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="__VL2omMVEd-g-ZJKOUle2A" type="6004">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="__VL2o2MVEd-g-ZJKOUle2A" x="14" y="23"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="__VLPkWMVEd-g-ZJKOUle2A" fontName="Sans Serif"/>
+    <element xmi:type="ecore:EReference" href="Morphism.ecore#//Morphism/referenceMappings"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="__VLPkmMVEd-g-ZJKOUle2A" points="[0, 0, -77, 60]$[77, -60, 0, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="__V9SsmMVEd-g-ZJKOUle2A" id="(0.6582278481012658,0.0)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="__V9Ss2MVEd-g-ZJKOUle2A" id="(0.4962962962962963,1.0)"/>
+  </edges>
+</notation:Diagram>

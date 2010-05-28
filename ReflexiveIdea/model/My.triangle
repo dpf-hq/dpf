@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<triangle:Triangle xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:triangle="triangle" name="Test">
+  <edges_1 name="c" src="//@nodes_1.0" tar="//@nodes_2.0"/>
+  <edges_2 src="//@nodes_2.0" tar="//@nodes_3.0" name="a"/>
+  <edges_3 src="//@nodes_3.0" tar="//@nodes_1.0" name="b"/>
+  <nodes_1 name="Alex"/>
+  <nodes_2 name="Felix"/>
+  <nodes_3 name="Asterix"/>
+</triangle:Triangle>

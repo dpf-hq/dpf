@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="triangle" nsURI="triangle" nsPrefix="triangle">
+  <eClassifiers xsi:type="ecore:EClass" name="Triangle">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="edges_1" upperBound="-1" eType="//E1" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="edges_2" upperBound="-1" eType="//E2" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="edges_3" upperBound="-1" eType="//E3" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nodes_1" upperBound="-1" eType="//N1" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nodes_2" upperBound="-1" eType="//N2" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nodes_3" upperBound="-1" eType="//N3" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="E1">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="src" lowerBound="1" eType="//N1"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tar" lowerBound="1" eType="//N2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="E2">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="src" lowerBound="1" eType="//N2"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tar" lowerBound="1" eType="//N3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="E3">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="src" lowerBound="1" eType="//N3"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tar" lowerBound="1" eType="//N1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="N1">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="N2">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="N3">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+</ecore:EPackage>
