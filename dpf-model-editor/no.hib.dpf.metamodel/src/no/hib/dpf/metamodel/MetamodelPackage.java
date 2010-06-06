@@ -6,6 +6,7 @@
  */
 package no.hib.dpf.metamodel;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -96,13 +97,22 @@ public interface MetamodelPackage extends EPackage {
 	int DIAGRAM__EDGES = 2;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIAGRAM__NAME = 3;
+
+	/**
 	 * The number of structural features of the '<em>Diagram</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DIAGRAM_FEATURE_COUNT = 3;
+	int DIAGRAM_FEATURE_COUNT = 4;
 
 	/**
 	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.ConstraintImpl <em>Constraint</em>}' class.
@@ -134,13 +144,22 @@ public interface MetamodelPackage extends EPackage {
 	int NODE = 2;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NODE__NAME = 0;
+
+	/**
 	 * The number of structural features of the '<em>Node</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NODE_FEATURE_COUNT = 0;
+	int NODE_FEATURE_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.EdgeImpl <em>Edge</em>}' class.
@@ -171,13 +190,22 @@ public interface MetamodelPackage extends EPackage {
 	int EDGE__DEST = 1;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDGE__NAME = 2;
+
+	/**
 	 * The number of structural features of the '<em>Edge</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EDGE_FEATURE_COUNT = 2;
+	int EDGE_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.EdgeConstraintImpl <em>Edge Constraint</em>}' class.
@@ -190,7 +218,7 @@ public interface MetamodelPackage extends EPackage {
 	int EDGE_CONSTRAINT = 4;
 
 	/**
-	 * The feature id for the '<em><b>Edges</b></em>' reference.
+	 * The feature id for the '<em><b>Edges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -271,6 +299,17 @@ public interface MetamodelPackage extends EPackage {
 	EReference getDiagram_Edges();
 
 	/**
+	 * Returns the meta object for the attribute '{@link no.hib.dpf.metamodel.Diagram#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see no.hib.dpf.metamodel.Diagram#getName()
+	 * @see #getDiagram()
+	 * @generated
+	 */
+	EAttribute getDiagram_Name();
+
+	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.metamodel.Constraint <em>Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -289,6 +328,17 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getNode();
+
+	/**
+	 * Returns the meta object for the attribute '{@link no.hib.dpf.metamodel.Node#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see no.hib.dpf.metamodel.Node#getName()
+	 * @see #getNode()
+	 * @generated
+	 */
+	EAttribute getNode_Name();
 
 	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.metamodel.Edge <em>Edge</em>}'.
@@ -323,6 +373,17 @@ public interface MetamodelPackage extends EPackage {
 	EReference getEdge_Dest();
 
 	/**
+	 * Returns the meta object for the attribute '{@link no.hib.dpf.metamodel.Edge#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see no.hib.dpf.metamodel.Edge#getName()
+	 * @see #getEdge()
+	 * @generated
+	 */
+	EAttribute getEdge_Name();
+
+	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.metamodel.EdgeConstraint <em>Edge Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -333,10 +394,10 @@ public interface MetamodelPackage extends EPackage {
 	EClass getEdgeConstraint();
 
 	/**
-	 * Returns the meta object for the reference '{@link no.hib.dpf.metamodel.EdgeConstraint#getEdges <em>Edges</em>}'.
+	 * Returns the meta object for the reference list '{@link no.hib.dpf.metamodel.EdgeConstraint#getEdges <em>Edges</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Edges</em>'.
+	 * @return the meta object for the reference list '<em>Edges</em>'.
 	 * @see no.hib.dpf.metamodel.EdgeConstraint#getEdges()
 	 * @see #getEdgeConstraint()
 	 * @generated
@@ -410,6 +471,14 @@ public interface MetamodelPackage extends EPackage {
 		EReference DIAGRAM__EDGES = eINSTANCE.getDiagram_Edges();
 
 		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DIAGRAM__NAME = eINSTANCE.getDiagram_Name();
+
+		/**
 		 * The meta object literal for the '{@link no.hib.dpf.metamodel.impl.ConstraintImpl <em>Constraint</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -428,6 +497,14 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass NODE = eINSTANCE.getNode();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NODE__NAME = eINSTANCE.getNode_Name();
 
 		/**
 		 * The meta object literal for the '{@link no.hib.dpf.metamodel.impl.EdgeImpl <em>Edge</em>}' class.
@@ -456,6 +533,14 @@ public interface MetamodelPackage extends EPackage {
 		EReference EDGE__DEST = eINSTANCE.getEdge_Dest();
 
 		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EDGE__NAME = eINSTANCE.getEdge_Name();
+
+		/**
 		 * The meta object literal for the '{@link no.hib.dpf.metamodel.impl.EdgeConstraintImpl <em>Edge Constraint</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -466,7 +551,7 @@ public interface MetamodelPackage extends EPackage {
 		EClass EDGE_CONSTRAINT = eINSTANCE.getEdgeConstraint();
 
 		/**
-		 * The meta object literal for the '<em><b>Edges</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Edges</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

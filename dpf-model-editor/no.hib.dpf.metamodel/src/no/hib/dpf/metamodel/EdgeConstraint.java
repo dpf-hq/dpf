@@ -6,6 +6,8 @@
  */
 package no.hib.dpf.metamodel;
 
+import org.eclipse.emf.common.util.EList;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -25,29 +27,19 @@ package no.hib.dpf.metamodel;
  */
 public interface EdgeConstraint extends Constraint {
 	/**
-	 * Returns the value of the '<em><b>Edges</b></em>' reference.
+	 * Returns the value of the '<em><b>Edges</b></em>' reference list.
+	 * The list contents are of type {@link no.hib.dpf.metamodel.Edge}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Edges</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Edges</em>' reference.
-	 * @see #setEdges(Edge)
+	 * @return the value of the '<em>Edges</em>' reference list.
 	 * @see no.hib.dpf.metamodel.MetamodelPackage#getEdgeConstraint_Edges()
 	 * @model
 	 * @generated
 	 */
-	Edge getEdges();
-
-	/**
-	 * Sets the value of the '{@link no.hib.dpf.metamodel.EdgeConstraint#getEdges <em>Edges</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Edges</em>' reference.
-	 * @see #getEdges()
-	 * @generated
-	 */
-	void setEdges(Edge value);
+	EList<Edge> getEdges();
 
 } // EdgeConstraint

@@ -6,16 +6,15 @@
  */
 package no.hib.dpf.metamodel.impl;
 
+import java.util.Collection;
+
 import no.hib.dpf.metamodel.Edge;
 import no.hib.dpf.metamodel.EdgeConstraint;
 import no.hib.dpf.metamodel.MetamodelPackage;
 
-import org.eclipse.emf.common.notify.Notification;
-
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,14 +31,14 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class EdgeConstraintImpl extends ConstraintImpl implements EdgeConstraint {
 	/**
-	 * The cached value of the '{@link #getEdges() <em>Edges</em>}' reference.
+	 * The cached value of the '{@link #getEdges() <em>Edges</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getEdges()
 	 * @generated
 	 * @ordered
 	 */
-	protected Edge edges;
+	protected EList<Edge> edges;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -65,37 +64,11 @@ public class EdgeConstraintImpl extends ConstraintImpl implements EdgeConstraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Edge getEdges() {
-		if (edges != null && edges.eIsProxy()) {
-			InternalEObject oldEdges = (InternalEObject)edges;
-			edges = (Edge)eResolveProxy(oldEdges);
-			if (edges != oldEdges) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.EDGE_CONSTRAINT__EDGES, oldEdges, edges));
-			}
+	public EList<Edge> getEdges() {
+		if (edges == null) {
+			edges = new EObjectResolvingEList<Edge>(Edge.class, this, MetamodelPackage.EDGE_CONSTRAINT__EDGES);
 		}
 		return edges;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Edge basicGetEdges() {
-		return edges;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setEdges(Edge newEdges) {
-		Edge oldEdges = edges;
-		edges = newEdges;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.EDGE_CONSTRAINT__EDGES, oldEdges, edges));
 	}
 
 	/**
@@ -107,8 +80,7 @@ public class EdgeConstraintImpl extends ConstraintImpl implements EdgeConstraint
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case MetamodelPackage.EDGE_CONSTRAINT__EDGES:
-				if (resolve) return getEdges();
-				return basicGetEdges();
+				return getEdges();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -118,11 +90,13 @@ public class EdgeConstraintImpl extends ConstraintImpl implements EdgeConstraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case MetamodelPackage.EDGE_CONSTRAINT__EDGES:
-				setEdges((Edge)newValue);
+				getEdges().clear();
+				getEdges().addAll((Collection<? extends Edge>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -137,7 +111,7 @@ public class EdgeConstraintImpl extends ConstraintImpl implements EdgeConstraint
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case MetamodelPackage.EDGE_CONSTRAINT__EDGES:
-				setEdges((Edge)null);
+				getEdges().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -152,7 +126,7 @@ public class EdgeConstraintImpl extends ConstraintImpl implements EdgeConstraint
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case MetamodelPackage.EDGE_CONSTRAINT__EDGES:
-				return edges != null;
+				return edges != null && !edges.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -6,9 +6,12 @@
     complianceLevel="6.0" copyrightFields="false">
   <foreignModel>Dpf.ecore</foreignModel>
   <genPackages prefix="No" disposableProviderFactory="true" ecorePackage="Dpf.ecore#/">
-    <nestedGenPackages prefix="Hib" disposableProviderFactory="true" ecorePackage="Dpf.ecore#//hib">
-      <nestedGenPackages prefix="Dpf" disposableProviderFactory="true" ecorePackage="Dpf.ecore#//hib/dpf">
-        <nestedGenPackages prefix="Metamodel" disposableProviderFactory="true" ecorePackage="Dpf.ecore#//hib/dpf/metamodel">
+    <nestedGenPackages prefix="Hib" basePackage="no" disposableProviderFactory="true"
+        ecorePackage="Dpf.ecore#//hib">
+      <nestedGenPackages prefix="Dpf" basePackage="no.hib" disposableProviderFactory="true"
+          ecorePackage="Dpf.ecore#//hib/dpf">
+        <nestedGenPackages prefix="Metamodel" basePackage="no.hib.dpf" disposableProviderFactory="true"
+            ecorePackage="Dpf.ecore#//hib/dpf/metamodel">
           <genClasses ecoreClass="Dpf.ecore#//hib/dpf/metamodel/Diagram">
             <genFeatures notify="false" createChild="false" propertySortChoices="true"
                 ecoreFeature="ecore:EReference Dpf.ecore#//hib/dpf/metamodel/Diagram/constraints"/>
@@ -16,14 +19,18 @@
                 ecoreFeature="ecore:EReference Dpf.ecore#//hib/dpf/metamodel/Diagram/nodes"/>
             <genFeatures notify="false" createChild="false" propertySortChoices="true"
                 ecoreFeature="ecore:EReference Dpf.ecore#//hib/dpf/metamodel/Diagram/edges"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dpf.ecore#//hib/dpf/metamodel/Diagram/name"/>
           </genClasses>
           <genClasses image="false" ecoreClass="Dpf.ecore#//hib/dpf/metamodel/Constraint"/>
-          <genClasses ecoreClass="Dpf.ecore#//hib/dpf/metamodel/Node"/>
+          <genClasses ecoreClass="Dpf.ecore#//hib/dpf/metamodel/Node">
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dpf.ecore#//hib/dpf/metamodel/Node/name"/>
+          </genClasses>
           <genClasses ecoreClass="Dpf.ecore#//hib/dpf/metamodel/Edge">
             <genFeatures notify="false" createChild="false" propertySortChoices="true"
                 ecoreFeature="ecore:EReference Dpf.ecore#//hib/dpf/metamodel/Edge/source"/>
             <genFeatures notify="false" createChild="false" propertySortChoices="true"
                 ecoreFeature="ecore:EReference Dpf.ecore#//hib/dpf/metamodel/Edge/dest"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dpf.ecore#//hib/dpf/metamodel/Edge/name"/>
           </genClasses>
           <genClasses ecoreClass="Dpf.ecore#//hib/dpf/metamodel/EdgeConstraint">
             <genFeatures notify="false" createChild="false" propertySortChoices="true"

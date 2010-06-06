@@ -14,10 +14,12 @@ import no.hib.dpf.metamodel.Edge;
 import no.hib.dpf.metamodel.MetamodelPackage;
 import no.hib.dpf.metamodel.Node;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
@@ -32,6 +34,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  *   <li>{@link no.hib.dpf.metamodel.impl.DiagramImpl#getConstraints <em>Constraints</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.impl.DiagramImpl#getNodes <em>Nodes</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.impl.DiagramImpl#getEdges <em>Edges</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.impl.DiagramImpl#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -67,6 +70,26 @@ public class DiagramImpl extends EObjectImpl implements Diagram {
 	 * @ordered
 	 */
 	protected EList<Edge> edges;
+
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -128,6 +151,27 @@ public class DiagramImpl extends EObjectImpl implements Diagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.DIAGRAM__NAME, oldName, name));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -137,6 +181,8 @@ public class DiagramImpl extends EObjectImpl implements Diagram {
 				return getNodes();
 			case MetamodelPackage.DIAGRAM__EDGES:
 				return getEdges();
+			case MetamodelPackage.DIAGRAM__NAME:
+				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -162,6 +208,9 @@ public class DiagramImpl extends EObjectImpl implements Diagram {
 				getEdges().clear();
 				getEdges().addAll((Collection<? extends Edge>)newValue);
 				return;
+			case MetamodelPackage.DIAGRAM__NAME:
+				setName((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -183,6 +232,9 @@ public class DiagramImpl extends EObjectImpl implements Diagram {
 			case MetamodelPackage.DIAGRAM__EDGES:
 				getEdges().clear();
 				return;
+			case MetamodelPackage.DIAGRAM__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -201,8 +253,26 @@ public class DiagramImpl extends EObjectImpl implements Diagram {
 				return nodes != null && !nodes.isEmpty();
 			case MetamodelPackage.DIAGRAM__EDGES:
 				return edges != null && !edges.isEmpty();
+			case MetamodelPackage.DIAGRAM__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (name: ");
+		result.append(name);
+		result.append(')');
+		return result.toString();
 	}
 
 } //DiagramImpl

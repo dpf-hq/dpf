@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <ul>
  *   <li>{@link no.hib.dpf.metamodel.impl.EdgeImpl#getSource <em>Source</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.impl.EdgeImpl#getDest <em>Dest</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.impl.EdgeImpl#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -52,6 +53,26 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 	 * @ordered
 	 */
 	protected Node dest;
+
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -153,6 +174,27 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.EDGE__NAME, oldName, name));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -162,6 +204,8 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 			case MetamodelPackage.EDGE__DEST:
 				if (resolve) return getDest();
 				return basicGetDest();
+			case MetamodelPackage.EDGE__NAME:
+				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -179,6 +223,9 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 				return;
 			case MetamodelPackage.EDGE__DEST:
 				setDest((Node)newValue);
+				return;
+			case MetamodelPackage.EDGE__NAME:
+				setName((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -198,6 +245,9 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 			case MetamodelPackage.EDGE__DEST:
 				setDest((Node)null);
 				return;
+			case MetamodelPackage.EDGE__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -214,8 +264,26 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 				return source != null;
 			case MetamodelPackage.EDGE__DEST:
 				return dest != null;
+			case MetamodelPackage.EDGE__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (name: ");
+		result.append(name);
+		result.append(')');
+		return result.toString();
 	}
 
 } //EdgeImpl

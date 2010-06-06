@@ -13,15 +13,20 @@
               eType="#//hib/dpf/metamodel/Node"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="edges" upperBound="-1"
               eType="#//hib/dpf/metamodel/Edge"/>
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Constraint" abstract="true"/>
-        <eClassifiers xsi:type="ecore:EClass" name="Node"/>
+        <eClassifiers xsi:type="ecore:EClass" name="Node">
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Edge">
           <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//hib/dpf/metamodel/Node"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="dest" eType="#//hib/dpf/metamodel/Node"/>
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="EdgeConstraint" eSuperTypes="#//hib/dpf/metamodel/Constraint">
-          <eStructuralFeatures xsi:type="ecore:EReference" name="edges" eType="#//hib/dpf/metamodel/Edge"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="edges" upperBound="-1"
+              eType="#//hib/dpf/metamodel/Edge"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="GlobalConstraint" eSuperTypes="#//hib/dpf/metamodel/Constraint"/>
       </eSubpackages>

@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link no.hib.dpf.metamodel.Diagram#getConstraints <em>Constraints</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Diagram#getNodes <em>Nodes</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Diagram#getEdges <em>Edges</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Diagram#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -76,5 +77,31 @@ public interface Diagram extends EObject {
 	 * @generated
 	 */
 	EList<Edge> getEdges();
+
+	/**
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #setName(String)
+	 * @see no.hib.dpf.metamodel.MetamodelPackage#getDiagram_Name()
+	 * @model
+	 * @generated
+	 */
+	String getName();
+
+	/**
+	 * Sets the value of the '{@link no.hib.dpf.metamodel.Diagram#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #getName()
+	 * @generated
+	 */
+	void setName(String value);
 
 } // Diagram

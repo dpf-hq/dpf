@@ -15,6 +15,7 @@ import no.hib.dpf.metamodel.MetamodelFactory;
 import no.hib.dpf.metamodel.MetamodelPackage;
 import no.hib.dpf.metamodel.Node;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -172,6 +173,15 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getDiagram_Name() {
+		return (EAttribute)diagramEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getConstraint() {
 		return constraintEClass;
 	}
@@ -183,6 +193,15 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 */
 	public EClass getNode() {
 		return nodeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getNode_Name() {
+		return (EAttribute)nodeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -210,6 +229,15 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 */
 	public EReference getEdge_Dest() {
 		return (EReference)edgeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEdge_Name() {
+		return (EAttribute)edgeEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -271,14 +299,17 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		createEReference(diagramEClass, DIAGRAM__CONSTRAINTS);
 		createEReference(diagramEClass, DIAGRAM__NODES);
 		createEReference(diagramEClass, DIAGRAM__EDGES);
+		createEAttribute(diagramEClass, DIAGRAM__NAME);
 
 		constraintEClass = createEClass(CONSTRAINT);
 
 		nodeEClass = createEClass(NODE);
+		createEAttribute(nodeEClass, NODE__NAME);
 
 		edgeEClass = createEClass(EDGE);
 		createEReference(edgeEClass, EDGE__SOURCE);
 		createEReference(edgeEClass, EDGE__DEST);
+		createEAttribute(edgeEClass, EDGE__NAME);
 
 		edgeConstraintEClass = createEClass(EDGE_CONSTRAINT);
 		createEReference(edgeConstraintEClass, EDGE_CONSTRAINT__EDGES);
@@ -322,17 +353,20 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		initEReference(getDiagram_Constraints(), this.getConstraint(), null, "constraints", null, 0, -1, Diagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDiagram_Nodes(), this.getNode(), null, "nodes", null, 0, -1, Diagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDiagram_Edges(), this.getEdge(), null, "edges", null, 0, -1, Diagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDiagram_Name(), ecorePackage.getEString(), "name", null, 0, 1, Diagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(constraintEClass, Constraint.class, "Constraint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(nodeEClass, Node.class, "Node", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getNode_Name(), ecorePackage.getEString(), "name", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(edgeEClass, Edge.class, "Edge", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getEdge_Source(), this.getNode(), null, "source", null, 0, 1, Edge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getEdge_Dest(), this.getNode(), null, "dest", null, 0, 1, Edge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEdge_Name(), ecorePackage.getEString(), "name", null, 0, 1, Edge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(edgeConstraintEClass, EdgeConstraint.class, "EdgeConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getEdgeConstraint_Edges(), this.getEdge(), null, "edges", null, 0, 1, EdgeConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEdgeConstraint_Edges(), this.getEdge(), null, "edges", null, 0, -1, EdgeConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(globalConstraintEClass, GlobalConstraint.class, "GlobalConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

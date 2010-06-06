@@ -3,6 +3,10 @@
   <children xmi:type="notation:Shape" xmi:id="_Y-amIHFlEd-EatOjo4NE5Q" type="2001" fontName="Liberation Sans">
     <children xmi:type="notation:DecorationNode" xmi:id="_Y-dCYHFlEd-EatOjo4NE5Q" type="5001"/>
     <children xmi:type="notation:BasicCompartment" xmi:id="_Y-eQgHFlEd-EatOjo4NE5Q" type="7001">
+      <children xmi:type="notation:Node" xmi:id="_fa-SgHFoEd-YdusKHo61Pw" type="3001">
+        <element xmi:type="ecore:EAttribute" href="Dpf.ecore#//hib/dpf/metamodel/Diagram/name"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_fa-SgXFoEd-YdusKHo61Pw"/>
+      </children>
       <styles xmi:type="notation:SortingStyle" xmi:id="_Y-eQgXFlEd-EatOjo4NE5Q"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_Y-eQgnFlEd-EatOjo4NE5Q"/>
     </children>
@@ -32,11 +36,15 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_Y-feonFlEd-EatOjo4NE5Q"/>
     </children>
     <element xmi:type="ecore:EClass" href="Dpf.ecore#//hib/dpf/metamodel/Constraint"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Y-e3k3FlEd-EatOjo4NE5Q" x="121" y="242"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Y-e3k3FlEd-EatOjo4NE5Q" x="110" y="242"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_Y-feo3FlEd-EatOjo4NE5Q" type="2001" fontName="Liberation Sans">
     <children xmi:type="notation:DecorationNode" xmi:id="_Y-fepXFlEd-EatOjo4NE5Q" type="5001"/>
     <children xmi:type="notation:BasicCompartment" xmi:id="_Y-fepnFlEd-EatOjo4NE5Q" type="7001">
+      <children xmi:type="notation:Node" xmi:id="_GbzfMHFoEd-YdusKHo61Pw" type="3001">
+        <element xmi:type="ecore:EAttribute" href="Dpf.ecore#//hib/dpf/metamodel/Node/name"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_GbzfMXFoEd-YdusKHo61Pw"/>
+      </children>
       <styles xmi:type="notation:SortingStyle" xmi:id="_Y-fep3FlEd-EatOjo4NE5Q"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_Y-feqHFlEd-EatOjo4NE5Q"/>
     </children>
@@ -49,11 +57,15 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_Y-gFsnFlEd-EatOjo4NE5Q"/>
     </children>
     <element xmi:type="ecore:EClass" href="Dpf.ecore#//hib/dpf/metamodel/Node"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Y-fepHFlEd-EatOjo4NE5Q" x="407" y="66"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Y-fepHFlEd-EatOjo4NE5Q" x="363" y="33"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_Y-gFs3FlEd-EatOjo4NE5Q" type="2001" fontName="Liberation Sans">
     <children xmi:type="notation:DecorationNode" xmi:id="_Y-gFtXFlEd-EatOjo4NE5Q" type="5001"/>
     <children xmi:type="notation:BasicCompartment" xmi:id="_Y-gFtnFlEd-EatOjo4NE5Q" type="7001">
+      <children xmi:type="notation:Node" xmi:id="_DigW0XFoEd-YdusKHo61Pw" type="3001">
+        <element xmi:type="ecore:EAttribute" href="Dpf.ecore#//hib/dpf/metamodel/Edge/name"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_DigW0nFoEd-YdusKHo61Pw"/>
+      </children>
       <styles xmi:type="notation:SortingStyle" xmi:id="_Y-gFt3FlEd-EatOjo4NE5Q"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_Y-gFuHFlEd-EatOjo4NE5Q"/>
     </children>
@@ -83,7 +95,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_Y-hT0nFlEd-EatOjo4NE5Q"/>
     </children>
     <element xmi:type="ecore:EClass" href="Dpf.ecore#//hib/dpf/metamodel/EdgeConstraint"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Y-gsxHFlEd-EatOjo4NE5Q" x="330" y="341"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Y-gsxHFlEd-EatOjo4NE5Q" x="319" y="341"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_Y-hT03FlEd-EatOjo4NE5Q" type="2001" fontName="Liberation Sans">
     <children xmi:type="notation:DecorationNode" xmi:id="_Y-hT1XFlEd-EatOjo4NE5Q" type="5001"/>
@@ -119,15 +131,15 @@
   </edges>
   <edges xmi:type="notation:Connector" xmi:id="_ZHpaoHFlEd-EatOjo4NE5Q" type="4002" source="_Y-amIHFlEd-EatOjo4NE5Q" target="_Y-feo3FlEd-EatOjo4NE5Q">
     <children xmi:type="notation:DecorationNode" xmi:id="_ZHpao3FlEd-EatOjo4NE5Q" type="6001">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_ZHpapHFlEd-EatOjo4NE5Q" x="-15" y="18"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_ZHpapHFlEd-EatOjo4NE5Q" x="-11" y="-14"/>
     </children>
     <children xmi:type="notation:DecorationNode" xmi:id="_ZHpapXFlEd-EatOjo4NE5Q" type="6003">
       <layoutConstraint xmi:type="notation:Location" xmi:id="_ZHpapnFlEd-EatOjo4NE5Q" x="1" y="-14"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_ZHpaoXFlEd-EatOjo4NE5Q" fontName="Liberation Sans"/>
     <element xmi:type="ecore:EReference" href="Dpf.ecore#//hib/dpf/metamodel/Diagram/nodes"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_ZHpaonFlEd-EatOjo4NE5Q" points="[0, 0, 22, 172]$[0, -112, 22, 60]$[-22, -172, 0, 0]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ZIknsnFlEd-EatOjo4NE5Q" id="(0.48484848484848486,0.0)"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_ZHpaonFlEd-EatOjo4NE5Q" points="[14, 0, -179, -9]$[157, 7, -36, -2]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ZIknsnFlEd-EatOjo4NE5Q" id="(0.7878787878787878,0.40384615384615385)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ZIkns3FlEd-EatOjo4NE5Q" id="(0.7346938775510204,1.0)"/>
   </edges>
   <edges xmi:type="notation:Connector" xmi:id="_ZHr24HFlEd-EatOjo4NE5Q" type="4002" source="_Y-amIHFlEd-EatOjo4NE5Q" target="_Y-gFs3FlEd-EatOjo4NE5Q">
