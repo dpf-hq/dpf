@@ -19,7 +19,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_Y-e3kXFlEd-EatOjo4NE5Q"/>
     </children>
     <element xmi:type="ecore:EClass" href="Dpf.ecore#//hib/dpf/metamodel/Diagram"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Y-amIXFlEd-EatOjo4NE5Q" x="198" y="66"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Y-amIXFlEd-EatOjo4NE5Q" x="305" y="245"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_Y-e3knFlEd-EatOjo4NE5Q" type="2001" fontName="Liberation Sans">
     <children xmi:type="notation:DecorationNode" xmi:id="_Y-e3lHFlEd-EatOjo4NE5Q" type="5001"/>
@@ -36,7 +36,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_Y-feonFlEd-EatOjo4NE5Q"/>
     </children>
     <element xmi:type="ecore:EClass" href="Dpf.ecore#//hib/dpf/metamodel/Constraint"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Y-e3k3FlEd-EatOjo4NE5Q" x="110" y="242"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Y-e3k3FlEd-EatOjo4NE5Q" x="217" y="421"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_Y-feo3FlEd-EatOjo4NE5Q" type="2001" fontName="Liberation Sans">
     <children xmi:type="notation:DecorationNode" xmi:id="_Y-fepXFlEd-EatOjo4NE5Q" type="5001"/>
@@ -57,7 +57,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_Y-gFsnFlEd-EatOjo4NE5Q"/>
     </children>
     <element xmi:type="ecore:EClass" href="Dpf.ecore#//hib/dpf/metamodel/Node"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Y-fepHFlEd-EatOjo4NE5Q" x="363" y="33"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Y-fepHFlEd-EatOjo4NE5Q" x="470" y="212"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_Y-gFs3FlEd-EatOjo4NE5Q" type="2001" fontName="Liberation Sans">
     <children xmi:type="notation:DecorationNode" xmi:id="_Y-gFtXFlEd-EatOjo4NE5Q" type="5001"/>
@@ -78,7 +78,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_Y-gswnFlEd-EatOjo4NE5Q"/>
     </children>
     <element xmi:type="ecore:EClass" href="Dpf.ecore#//hib/dpf/metamodel/Edge"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Y-gFtHFlEd-EatOjo4NE5Q" x="352" y="220"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Y-gFtHFlEd-EatOjo4NE5Q" x="459" y="399"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_Y-gsw3FlEd-EatOjo4NE5Q" type="2001" fontName="Liberation Sans">
     <children xmi:type="notation:DecorationNode" xmi:id="_Y-gsxXFlEd-EatOjo4NE5Q" type="5001"/>
@@ -95,7 +95,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_Y-hT0nFlEd-EatOjo4NE5Q"/>
     </children>
     <element xmi:type="ecore:EClass" href="Dpf.ecore#//hib/dpf/metamodel/EdgeConstraint"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Y-gsxHFlEd-EatOjo4NE5Q" x="319" y="341"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Y-gsxHFlEd-EatOjo4NE5Q" x="426" y="520"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_Y-hT03FlEd-EatOjo4NE5Q" type="2001" fontName="Liberation Sans">
     <children xmi:type="notation:DecorationNode" xmi:id="_Y-hT1XFlEd-EatOjo4NE5Q" type="5001"/>
@@ -112,7 +112,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_Y-h64nFlEd-EatOjo4NE5Q"/>
     </children>
     <element xmi:type="ecore:EClass" href="Dpf.ecore#//hib/dpf/metamodel/GlobalConstraint"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Y-hT1HFlEd-EatOjo4NE5Q" x="77" y="341"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Y-hT1HFlEd-EatOjo4NE5Q" x="90" y="520"/>
   </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_YvMeYHFlEd-EatOjo4NE5Q"/>
   <element xmi:type="ecore:EPackage" href="Dpf.ecore#//hib/dpf/metamodel"/>
