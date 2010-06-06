@@ -1,10 +1,15 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Dpf Metamodel
-Bundle-SymbolicName: no.hib.dpf.metamodel
-Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: no.hib.dpf.metamodel.Activator
-Bundle-Vendor: no.hib.dpf
-Require-Bundle: org.eclipse.core.runtime
+Bundle-Name: %pluginName
+Bundle-SymbolicName: no.hib.dpf.metamodel;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: no.hib.dpf.metamodel,
+ no.hib.dpf.metamodel.impl,
+ no.hib.dpf.metamodel.util
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport
 Bundle-ActivationPolicy: lazy

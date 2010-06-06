@@ -148,7 +148,7 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_ZHuTIXFlEd-EatOjo4NE5Q" x="-13" y="-17"/>
     </children>
     <children xmi:type="notation:DecorationNode" xmi:id="_ZHuTInFlEd-EatOjo4NE5Q" type="6003">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_ZHuTI3FlEd-EatOjo4NE5Q" x="7" y="-20"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_ZHuTI3FlEd-EatOjo4NE5Q" x="-13" y="-10"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_ZHtsEXFlEd-EatOjo4NE5Q" fontName="Liberation Sans"/>
     <element xmi:type="ecore:EReference" href="Dpf.ecore#//hib/dpf/metamodel/Edge/source"/>
