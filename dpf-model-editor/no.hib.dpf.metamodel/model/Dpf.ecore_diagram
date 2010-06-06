@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_YvL3UXFlEd-EatOjo4NE5Q" type="Ecore" measurementUnit="Pixel">
+  <children xmi:type="notation:Shape" xmi:id="_Y-amIHFlEd-EatOjo4NE5Q" type="2001" fontName="Liberation Sans">
+    <children xmi:type="notation:DecorationNode" xmi:id="_Y-dCYHFlEd-EatOjo4NE5Q" type="5001"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_Y-eQgHFlEd-EatOjo4NE5Q" type="7001">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_Y-eQgXFlEd-EatOjo4NE5Q"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_Y-eQgnFlEd-EatOjo4NE5Q"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_Y-eQg3FlEd-EatOjo4NE5Q" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_Y-eQhHFlEd-EatOjo4NE5Q"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_Y-eQhXFlEd-EatOjo4NE5Q"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_Y-eQhnFlEd-EatOjo4NE5Q" type="7003">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_Y-e3kHFlEd-EatOjo4NE5Q"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_Y-e3kXFlEd-EatOjo4NE5Q"/>
+    </children>
+    <element xmi:type="ecore:EClass" href="Dpf.ecore#//hib/dpf/metamodel/Diagram"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Y-amIXFlEd-EatOjo4NE5Q" x="198" y="66"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_Y-e3knFlEd-EatOjo4NE5Q" type="2001" fontName="Liberation Sans">
+    <children xmi:type="notation:DecorationNode" xmi:id="_Y-e3lHFlEd-EatOjo4NE5Q" type="5001"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_Y-e3lXFlEd-EatOjo4NE5Q" type="7001">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_Y-e3lnFlEd-EatOjo4NE5Q"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_Y-e3l3FlEd-EatOjo4NE5Q"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_Y-e3mHFlEd-EatOjo4NE5Q" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_Y-e3mXFlEd-EatOjo4NE5Q"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_Y-e3mnFlEd-EatOjo4NE5Q"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_Y-feoHFlEd-EatOjo4NE5Q" type="7003">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_Y-feoXFlEd-EatOjo4NE5Q"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_Y-feonFlEd-EatOjo4NE5Q"/>
+    </children>
+    <element xmi:type="ecore:EClass" href="Dpf.ecore#//hib/dpf/metamodel/Constraint"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Y-e3k3FlEd-EatOjo4NE5Q" x="121" y="242"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_Y-feo3FlEd-EatOjo4NE5Q" type="2001" fontName="Liberation Sans">
+    <children xmi:type="notation:DecorationNode" xmi:id="_Y-fepXFlEd-EatOjo4NE5Q" type="5001"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_Y-fepnFlEd-EatOjo4NE5Q" type="7001">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_Y-fep3FlEd-EatOjo4NE5Q"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_Y-feqHFlEd-EatOjo4NE5Q"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_Y-feqXFlEd-EatOjo4NE5Q" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_Y-feqnFlEd-EatOjo4NE5Q"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_Y-feq3FlEd-EatOjo4NE5Q"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_Y-gFsHFlEd-EatOjo4NE5Q" type="7003">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_Y-gFsXFlEd-EatOjo4NE5Q"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_Y-gFsnFlEd-EatOjo4NE5Q"/>
+    </children>
+    <element xmi:type="ecore:EClass" href="Dpf.ecore#//hib/dpf/metamodel/Node"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Y-fepHFlEd-EatOjo4NE5Q" x="407" y="66"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_Y-gFs3FlEd-EatOjo4NE5Q" type="2001" fontName="Liberation Sans">
+    <children xmi:type="notation:DecorationNode" xmi:id="_Y-gFtXFlEd-EatOjo4NE5Q" type="5001"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_Y-gFtnFlEd-EatOjo4NE5Q" type="7001">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_Y-gFt3FlEd-EatOjo4NE5Q"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_Y-gFuHFlEd-EatOjo4NE5Q"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_Y-gFuXFlEd-EatOjo4NE5Q" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_Y-gFunFlEd-EatOjo4NE5Q"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_Y-gFu3FlEd-EatOjo4NE5Q"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_Y-gswHFlEd-EatOjo4NE5Q" type="7003">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_Y-gswXFlEd-EatOjo4NE5Q"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_Y-gswnFlEd-EatOjo4NE5Q"/>
+    </children>
+    <element xmi:type="ecore:EClass" href="Dpf.ecore#//hib/dpf/metamodel/Edge"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Y-gFtHFlEd-EatOjo4NE5Q" x="352" y="220"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_Y-gsw3FlEd-EatOjo4NE5Q" type="2001" fontName="Liberation Sans">
+    <children xmi:type="notation:DecorationNode" xmi:id="_Y-gsxXFlEd-EatOjo4NE5Q" type="5001"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_Y-gsxnFlEd-EatOjo4NE5Q" type="7001">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_Y-gsx3FlEd-EatOjo4NE5Q"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_Y-gsyHFlEd-EatOjo4NE5Q"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_Y-gsyXFlEd-EatOjo4NE5Q" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_Y-gsynFlEd-EatOjo4NE5Q"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_Y-gsy3FlEd-EatOjo4NE5Q"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_Y-hT0HFlEd-EatOjo4NE5Q" type="7003">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_Y-hT0XFlEd-EatOjo4NE5Q"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_Y-hT0nFlEd-EatOjo4NE5Q"/>
+    </children>
+    <element xmi:type="ecore:EClass" href="Dpf.ecore#//hib/dpf/metamodel/EdgeConstraint"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Y-gsxHFlEd-EatOjo4NE5Q" x="330" y="341"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_Y-hT03FlEd-EatOjo4NE5Q" type="2001" fontName="Liberation Sans">
+    <children xmi:type="notation:DecorationNode" xmi:id="_Y-hT1XFlEd-EatOjo4NE5Q" type="5001"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_Y-hT1nFlEd-EatOjo4NE5Q" type="7001">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_Y-hT13FlEd-EatOjo4NE5Q"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_Y-hT2HFlEd-EatOjo4NE5Q"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_Y-hT2XFlEd-EatOjo4NE5Q" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_Y-hT2nFlEd-EatOjo4NE5Q"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_Y-hT23FlEd-EatOjo4NE5Q"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_Y-h64HFlEd-EatOjo4NE5Q" type="7003">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_Y-h64XFlEd-EatOjo4NE5Q"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_Y-h64nFlEd-EatOjo4NE5Q"/>
+    </children>
+    <element xmi:type="ecore:EClass" href="Dpf.ecore#//hib/dpf/metamodel/GlobalConstraint"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Y-hT1HFlEd-EatOjo4NE5Q" x="77" y="341"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_YvMeYHFlEd-EatOjo4NE5Q"/>
+  <element xmi:type="ecore:EPackage" href="Dpf.ecore#//hib/dpf/metamodel"/>
+  <edges xmi:type="notation:Connector" xmi:id="_ZHN80HFlEd-EatOjo4NE5Q" type="4002" source="_Y-amIHFlEd-EatOjo4NE5Q" target="_Y-e3knFlEd-EatOjo4NE5Q">
+    <children xmi:type="notation:DecorationNode" xmi:id="_ZHOj4HFlEd-EatOjo4NE5Q" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_ZHOj4XFlEd-EatOjo4NE5Q" x="-4" y="31"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_ZHOj4nFlEd-EatOjo4NE5Q" type="6003">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_ZHOj43FlEd-EatOjo4NE5Q" x="5" y="9"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_ZHN80XFlEd-EatOjo4NE5Q" fontName="Liberation Sans"/>
+    <element xmi:type="ecore:EReference" href="Dpf.ecore#//hib/dpf/metamodel/Diagram/constraints"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_ZHN80nFlEd-EatOjo4NE5Q" points="[0, 0, 149, 60]$[-149, -60, 0, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ZIkAoHFlEd-EatOjo4NE5Q" id="(0.15151515151515152,0.0)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ZIkAoXFlEd-EatOjo4NE5Q" id="(0.7466666666666667,1.0)"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_ZHpaoHFlEd-EatOjo4NE5Q" type="4002" source="_Y-amIHFlEd-EatOjo4NE5Q" target="_Y-feo3FlEd-EatOjo4NE5Q">
+    <children xmi:type="notation:DecorationNode" xmi:id="_ZHpao3FlEd-EatOjo4NE5Q" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_ZHpapHFlEd-EatOjo4NE5Q" x="-15" y="18"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_ZHpapXFlEd-EatOjo4NE5Q" type="6003">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_ZHpapnFlEd-EatOjo4NE5Q" x="1" y="-14"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_ZHpaoXFlEd-EatOjo4NE5Q" fontName="Liberation Sans"/>
+    <element xmi:type="ecore:EReference" href="Dpf.ecore#//hib/dpf/metamodel/Diagram/nodes"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_ZHpaonFlEd-EatOjo4NE5Q" points="[0, 0, 22, 172]$[0, -112, 22, 60]$[-22, -172, 0, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ZIknsnFlEd-EatOjo4NE5Q" id="(0.48484848484848486,0.0)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ZIkns3FlEd-EatOjo4NE5Q" id="(0.7346938775510204,1.0)"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_ZHr24HFlEd-EatOjo4NE5Q" type="4002" source="_Y-amIHFlEd-EatOjo4NE5Q" target="_Y-gFs3FlEd-EatOjo4NE5Q">
+    <children xmi:type="notation:DecorationNode" xmi:id="_ZHr243FlEd-EatOjo4NE5Q" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_ZHr25HFlEd-EatOjo4NE5Q" x="-18" y="17"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_ZHr25XFlEd-EatOjo4NE5Q" type="6003">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_ZHr25nFlEd-EatOjo4NE5Q" x="20" y="12"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_ZHr24XFlEd-EatOjo4NE5Q" fontName="Liberation Sans"/>
+    <element xmi:type="ecore:EReference" href="Dpf.ecore#//hib/dpf/metamodel/Diagram/edges"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_ZHr24nFlEd-EatOjo4NE5Q" points="[0, 0, 49, 60]$[-49, -60, 0, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ZIjZk3FlEd-EatOjo4NE5Q" id="(0.3181818181818182,0.0)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ZIjZlHFlEd-EatOjo4NE5Q" id="(0.6666666666666666,1.0)"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_ZHtsEHFlEd-EatOjo4NE5Q" type="4002" source="_Y-gFs3FlEd-EatOjo4NE5Q" target="_Y-feo3FlEd-EatOjo4NE5Q">
+    <children xmi:type="notation:DecorationNode" xmi:id="_ZHuTIHFlEd-EatOjo4NE5Q" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_ZHuTIXFlEd-EatOjo4NE5Q" x="-13" y="-17"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_ZHuTInFlEd-EatOjo4NE5Q" type="6003">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_ZHuTI3FlEd-EatOjo4NE5Q" x="7" y="-20"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_ZHtsEXFlEd-EatOjo4NE5Q" fontName="Liberation Sans"/>
+    <element xmi:type="ecore:EReference" href="Dpf.ecore#//hib/dpf/metamodel/Edge/source"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_ZHtsEnFlEd-EatOjo4NE5Q" points="[0, 0, -30, 60]$[30, -60, 0, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ZIkAonFlEd-EatOjo4NE5Q" id="(0.3333333333333333,0.0)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ZIkAo3FlEd-EatOjo4NE5Q" id="(0.24489795918367346,1.0)"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_ZHwIUHFlEd-EatOjo4NE5Q" type="4002" source="_Y-gFs3FlEd-EatOjo4NE5Q" target="_Y-feo3FlEd-EatOjo4NE5Q">
+    <children xmi:type="notation:DecorationNode" xmi:id="_ZHwIU3FlEd-EatOjo4NE5Q" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_ZHwIVHFlEd-EatOjo4NE5Q" x="-7" y="15"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_ZHwIVXFlEd-EatOjo4NE5Q" type="6003">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_ZHwvYHFlEd-EatOjo4NE5Q" x="6" y="26"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_ZHwIUXFlEd-EatOjo4NE5Q" fontName="Liberation Sans"/>
+    <element xmi:type="ecore:EReference" href="Dpf.ecore#//hib/dpf/metamodel/Edge/dest"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_ZHwIUnFlEd-EatOjo4NE5Q" points="[0, 0, -26, 60]$[26, -60, 0, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ZIkApHFlEd-EatOjo4NE5Q" id="(0.6666666666666666,0.0)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ZIkApXFlEd-EatOjo4NE5Q" id="(0.4897959183673469,1.0)"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_ZHykkHFlEd-EatOjo4NE5Q" type="4002" source="_Y-gsw3FlEd-EatOjo4NE5Q" target="_Y-gFs3FlEd-EatOjo4NE5Q">
+    <children xmi:type="notation:DecorationNode" xmi:id="_ZHykk3FlEd-EatOjo4NE5Q" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_ZHyklHFlEd-EatOjo4NE5Q" x="-14" y="22"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_ZHyklXFlEd-EatOjo4NE5Q" type="6003">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_ZHyklnFlEd-EatOjo4NE5Q" x="-2" y="12"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_ZHykkXFlEd-EatOjo4NE5Q" fontName="Liberation Sans"/>
+    <element xmi:type="ecore:EReference" href="Dpf.ecore#//hib/dpf/metamodel/EdgeConstraint/edges"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_ZHykknFlEd-EatOjo4NE5Q" points="[0, 0, -65, 60]$[65, -60, 0, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ZIiygHFlEd-EatOjo4NE5Q" id="(0.5288461538461539,0.0)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ZIjZkHFlEd-EatOjo4NE5Q" id="(0.3333333333333333,1.0)"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_ZH0ZwHFlEd-EatOjo4NE5Q" type="4004" source="_Y-gsw3FlEd-EatOjo4NE5Q" target="_Y-e3knFlEd-EatOjo4NE5Q">
+    <styles xmi:type="notation:FontStyle" xmi:id="_ZH0ZwXFlEd-EatOjo4NE5Q" fontName="Liberation Sans"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_ZH0ZwnFlEd-EatOjo4NE5Q" points="[0, 0, 0, 60]$[0, -60, 0, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ZIjZkXFlEd-EatOjo4NE5Q" id="(0.057692307692307696,0.0)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ZIjZknFlEd-EatOjo4NE5Q" id="(0.49333333333333335,1.0)"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_ZH22AHFlEd-EatOjo4NE5Q" type="4004" source="_Y-hT03FlEd-EatOjo4NE5Q" target="_Y-e3knFlEd-EatOjo4NE5Q">
+    <styles xmi:type="notation:FontStyle" xmi:id="_ZH22AXFlEd-EatOjo4NE5Q" fontName="Liberation Sans"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_ZH22AnFlEd-EatOjo4NE5Q" points="[0, 0, -103, 60]$[103, -60, 0, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ZIknsHFlEd-EatOjo4NE5Q" id="(0.4954954954954955,0.0)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ZIknsXFlEd-EatOjo4NE5Q" id="(0.24,1.0)"/>
+  </edges>
+</notation:Diagram>
