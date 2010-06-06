@@ -160,7 +160,7 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_ZHuTIXFlEd-EatOjo4NE5Q" x="-13" y="-17"/>
     </children>
     <children xmi:type="notation:DecorationNode" xmi:id="_ZHuTInFlEd-EatOjo4NE5Q" type="6003">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_ZHuTI3FlEd-EatOjo4NE5Q" x="-13" y="-10"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_ZHuTI3FlEd-EatOjo4NE5Q" x="-18" y="-24"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_ZHtsEXFlEd-EatOjo4NE5Q" fontName="Liberation Sans"/>
     <element xmi:type="ecore:EReference" href="Dpf.ecore#//hib/dpf/metamodel/Edge/source"/>
@@ -177,7 +177,7 @@
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_ZHwIUXFlEd-EatOjo4NE5Q" fontName="Liberation Sans"/>
     <element xmi:type="ecore:EReference" href="Dpf.ecore#//hib/dpf/metamodel/Edge/dest"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_ZHwIUnFlEd-EatOjo4NE5Q" points="[0, 0, -26, 60]$[26, -60, 0, 0]"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_ZHwIUnFlEd-EatOjo4NE5Q" points="[0, 0, 0, 128]$[0, -77, 0, 51]$[0, -99, 0, 29]$[0, -99, 0, 29]$[0, -128, 0, 0]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ZIkApHFlEd-EatOjo4NE5Q" id="(0.6666666666666666,0.0)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ZIkApXFlEd-EatOjo4NE5Q" id="(0.4897959183673469,1.0)"/>
   </edges>
