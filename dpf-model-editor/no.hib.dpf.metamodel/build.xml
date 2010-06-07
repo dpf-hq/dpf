@@ -109,6 +109,7 @@
 			<pathelement path="../../eclipse/plugins/org.eclipse.core.filesystem_1.2.1.R35x_v20091203-1235.jar"/>
 			<pathelement path="../../eclipse/plugins/org.eclipse.core.filesystem.linux.x86_1.3.0.R35x_v20091203-1235.jar"/>
 		</path>
+
 		<!-- compile the source code -->
 		<javac destdir="${build.result.folder}/@dot" failonerror="${javacFailOnError}" verbose="${javacVerbose}" debug="${javacDebugInfo}" includeAntRuntime="no" bootclasspath="${bundleBootClasspath}" source="${bundleJavacSource}" target="${bundleJavacTarget}"		>
 			<compilerarg line="${compilerArg}" compiler="${build.compiler}"/>
@@ -277,5 +278,10 @@
 	<target name="apitools.generation" if="generateAPIDescription">
 		<apitooling.apigeneration  projectName="${projectName}" project="${projectLocation}" binary="${binary.folders}" target="${target.folder}"		/>
 	</target>
-
+	
+	<!-- model generation -->
+	<target name="generate.models">
+	<emf.Ecore2Java model="model/Metamodel.ecore"
+					genmodel="model/Metamodel.genmodel" />
+	</target>
 </project>
