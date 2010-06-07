@@ -280,7 +280,7 @@
 	</target>
 	
 	<!-- model generation -->
-	<target name="generate.models">
+	<target name="generate.models" depends="init">
 	<emf.Ecore2Java model="model/Metamodel.ecore"
 					genmodel="model/Metamodel.genmodel" />
 	</target>
