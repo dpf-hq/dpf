@@ -26,6 +26,8 @@
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Predicate">
           <eStructuralFeatures xsi:type="ecore:EReference" name="shape" eType="#//hib/dpf/metamodel/Graph"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="semantics" eType="#//hib/dpf/metamodel/Semantics"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="visualization" eType="#//hib/dpf/metamodel/Visualization"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="GraphHomomorphism">
           <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//hib/dpf/metamodel/Graph"/>
@@ -37,6 +39,8 @@
             </eGenericType>
           </eStructuralFeatures>
         </eClassifiers>
+        <eClassifiers xsi:type="ecore:EClass" name="Semantics"/>
+        <eClassifiers xsi:type="ecore:EClass" name="Visualization"/>
       </eSubpackages>
     </eSubpackages>
   </eSubpackages>
