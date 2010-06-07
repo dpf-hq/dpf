@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="no"
+    nsURI="http://no" nsPrefix="no">
+  <eSubpackages name="hib" nsURI="http://no.hib" nsPrefix="no.hib">
+    <eSubpackages name="dpf" nsURI="http://no.hib.dpf" nsPrefix="no.hib.dpf">
+      <eSubpackages name="metamodel" nsURI="http://no.hib.dpf.metamodel" nsPrefix="no.hib.dpf.metamodel">
+        <eClassifiers xsi:type="ecore:EClass" name="Graph">
+          <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" upperBound="-1"
+              eType="#//hib/dpf/metamodel/Node" containment="true"/>
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EClass" name="Node">
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EClass" name="Edge">
+          <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//hib/dpf/metamodel/Node"
+              containment="true"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//hib/dpf/metamodel/Node"/>
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EClass" name="Signature">
+          <eStructuralFeatures xsi:type="ecore:EReference" name="predicates" upperBound="-1"
+              eType="#//hib/dpf/metamodel/Predicate" containment="true"/>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EClass" name="Predicate">
+          <eStructuralFeatures xsi:type="ecore:EReference" name="shape" eType="#//hib/dpf/metamodel/Graph"/>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EClass" name="GraphHomomorphism">
+          <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//hib/dpf/metamodel/Graph"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//hib/dpf/metamodel/Graph"/>
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="typing" transient="true">
+            <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+              <eTypeArguments/>
+              <eTypeArguments/>
+            </eGenericType>
+          </eStructuralFeatures>
+        </eClassifiers>
+      </eSubpackages>
+    </eSubpackages>
+  </eSubpackages>
+</ecore:EPackage>
