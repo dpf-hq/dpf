@@ -26,13 +26,13 @@ public interface MetamodelFactory extends EFactory {
 	MetamodelFactory eINSTANCE = no.hib.dpf.metamodel.impl.MetamodelFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Diagram</em>'.
+	 * Returns a new object of class '<em>Graph</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Diagram</em>'.
+	 * @return a new object of class '<em>Graph</em>'.
 	 * @generated
 	 */
-	Diagram createDiagram();
+	Graph createGraph();
 
 	/**
 	 * Returns a new object of class '<em>Node</em>'.
@@ -53,22 +53,49 @@ public interface MetamodelFactory extends EFactory {
 	Edge createEdge();
 
 	/**
-	 * Returns a new object of class '<em>Edge Constraint</em>'.
+	 * Returns a new object of class '<em>Signature</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Edge Constraint</em>'.
+	 * @return a new object of class '<em>Signature</em>'.
 	 * @generated
 	 */
-	EdgeConstraint createEdgeConstraint();
+	Signature createSignature();
 
 	/**
-	 * Returns a new object of class '<em>Global Constraint</em>'.
+	 * Returns a new object of class '<em>Predicate</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Global Constraint</em>'.
+	 * @return a new object of class '<em>Predicate</em>'.
 	 * @generated
 	 */
-	GlobalConstraint createGlobalConstraint();
+	Predicate createPredicate();
+
+	/**
+	 * Returns a new object of class '<em>Graph Homomorphism</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Graph Homomorphism</em>'.
+	 * @generated
+	 */
+	GraphHomomorphism createGraphHomomorphism();
+
+	/**
+	 * Returns a new object of class '<em>Semantics</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Semantics</em>'.
+	 * @generated
+	 */
+	Semantics createSemantics();
+
+	/**
+	 * Returns a new object of class '<em>Visualization</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Visualization</em>'.
+	 * @generated
+	 */
+	Visualization createVisualization();
 
 	/**
 	 * Returns the package supported by this factory.

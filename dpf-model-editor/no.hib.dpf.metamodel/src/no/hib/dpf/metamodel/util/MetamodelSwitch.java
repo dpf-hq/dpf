@@ -87,15 +87,9 @@ public class MetamodelSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case MetamodelPackage.DIAGRAM: {
-				Diagram diagram = (Diagram)theEObject;
-				T result = caseDiagram(diagram);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MetamodelPackage.CONSTRAINT: {
-				Constraint constraint = (Constraint)theEObject;
-				T result = caseConstraint(constraint);
+			case MetamodelPackage.GRAPH: {
+				Graph graph = (Graph)theEObject;
+				T result = caseGraph(graph);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -111,17 +105,33 @@ public class MetamodelSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.EDGE_CONSTRAINT: {
-				EdgeConstraint edgeConstraint = (EdgeConstraint)theEObject;
-				T result = caseEdgeConstraint(edgeConstraint);
-				if (result == null) result = caseConstraint(edgeConstraint);
+			case MetamodelPackage.SIGNATURE: {
+				Signature signature = (Signature)theEObject;
+				T result = caseSignature(signature);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.GLOBAL_CONSTRAINT: {
-				GlobalConstraint globalConstraint = (GlobalConstraint)theEObject;
-				T result = caseGlobalConstraint(globalConstraint);
-				if (result == null) result = caseConstraint(globalConstraint);
+			case MetamodelPackage.PREDICATE: {
+				Predicate predicate = (Predicate)theEObject;
+				T result = casePredicate(predicate);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MetamodelPackage.GRAPH_HOMOMORPHISM: {
+				GraphHomomorphism graphHomomorphism = (GraphHomomorphism)theEObject;
+				T result = caseGraphHomomorphism(graphHomomorphism);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MetamodelPackage.SEMANTICS: {
+				Semantics semantics = (Semantics)theEObject;
+				T result = caseSemantics(semantics);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MetamodelPackage.VISUALIZATION: {
+				Visualization visualization = (Visualization)theEObject;
+				T result = caseVisualization(visualization);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -130,32 +140,17 @@ public class MetamodelSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Diagram</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Graph</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Diagram</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Graph</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseDiagram(Diagram object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Constraint</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseConstraint(Constraint object) {
+	public T caseGraph(Graph object) {
 		return null;
 	}
 
@@ -190,32 +185,77 @@ public class MetamodelSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Edge Constraint</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Signature</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Edge Constraint</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Signature</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseEdgeConstraint(EdgeConstraint object) {
+	public T caseSignature(Signature object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Global Constraint</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Predicate</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Global Constraint</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Predicate</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseGlobalConstraint(GlobalConstraint object) {
+	public T casePredicate(Predicate object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Graph Homomorphism</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Graph Homomorphism</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseGraphHomomorphism(GraphHomomorphism object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Semantics</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Semantics</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSemantics(Semantics object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Visualization</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Visualization</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseVisualization(Visualization object) {
 		return null;
 	}
 

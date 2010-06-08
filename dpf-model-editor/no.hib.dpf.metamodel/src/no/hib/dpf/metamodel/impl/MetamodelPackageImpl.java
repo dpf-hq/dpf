@@ -6,17 +6,20 @@
  */
 package no.hib.dpf.metamodel.impl;
 
-import no.hib.dpf.metamodel.Constraint;
-import no.hib.dpf.metamodel.Diagram;
 import no.hib.dpf.metamodel.Edge;
-import no.hib.dpf.metamodel.EdgeConstraint;
-import no.hib.dpf.metamodel.GlobalConstraint;
+import no.hib.dpf.metamodel.Graph;
+import no.hib.dpf.metamodel.GraphHomomorphism;
 import no.hib.dpf.metamodel.MetamodelFactory;
 import no.hib.dpf.metamodel.MetamodelPackage;
 import no.hib.dpf.metamodel.Node;
+import no.hib.dpf.metamodel.Predicate;
+import no.hib.dpf.metamodel.Semantics;
+import no.hib.dpf.metamodel.Signature;
+import no.hib.dpf.metamodel.Visualization;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -34,14 +37,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass diagramEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass constraintEClass = null;
+	private EClass graphEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -62,14 +58,35 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass edgeConstraintEClass = null;
+	private EClass signatureEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass globalConstraintEClass = null;
+	private EClass predicateEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass graphHomomorphismEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass semanticsEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass visualizationEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -137,8 +154,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDiagram() {
-		return diagramEClass;
+	public EClass getGraph() {
+		return graphEClass;
 	}
 
 	/**
@@ -146,8 +163,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDiagram_Constraints() {
-		return (EReference)diagramEClass.getEStructuralFeatures().get(0);
+	public EReference getGraph_Nodes() {
+		return (EReference)graphEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -155,35 +172,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDiagram_Nodes() {
-		return (EReference)diagramEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getDiagram_Edges() {
-		return (EReference)diagramEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getDiagram_Name() {
-		return (EAttribute)diagramEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getConstraint() {
-		return constraintEClass;
+	public EAttribute getGraph_Name() {
+		return (EAttribute)graphEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -227,7 +217,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getEdge_Dest() {
+	public EReference getEdge_Target() {
 		return (EReference)edgeEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -245,8 +235,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getEdgeConstraint() {
-		return edgeConstraintEClass;
+	public EClass getSignature() {
+		return signatureEClass;
 	}
 
 	/**
@@ -254,8 +244,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getEdgeConstraint_Edges() {
-		return (EReference)edgeConstraintEClass.getEStructuralFeatures().get(0);
+	public EReference getSignature_Predicates() {
+		return (EReference)signatureEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -263,8 +253,89 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getGlobalConstraint() {
-		return globalConstraintEClass;
+	public EClass getPredicate() {
+		return predicateEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPredicate_Shape() {
+		return (EReference)predicateEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPredicate_Semantics() {
+		return (EReference)predicateEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPredicate_Visualization() {
+		return (EReference)predicateEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getGraphHomomorphism() {
+		return graphHomomorphismEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getGraphHomomorphism_Source() {
+		return (EReference)graphHomomorphismEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getGraphHomomorphism_Target() {
+		return (EReference)graphHomomorphismEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getGraphHomomorphism_Typing() {
+		return (EAttribute)graphHomomorphismEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getSemantics() {
+		return semanticsEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getVisualization() {
+		return visualizationEClass;
 	}
 
 	/**
@@ -295,26 +366,34 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		isCreated = true;
 
 		// Create classes and their features
-		diagramEClass = createEClass(DIAGRAM);
-		createEReference(diagramEClass, DIAGRAM__CONSTRAINTS);
-		createEReference(diagramEClass, DIAGRAM__NODES);
-		createEReference(diagramEClass, DIAGRAM__EDGES);
-		createEAttribute(diagramEClass, DIAGRAM__NAME);
-
-		constraintEClass = createEClass(CONSTRAINT);
+		graphEClass = createEClass(GRAPH);
+		createEReference(graphEClass, GRAPH__NODES);
+		createEAttribute(graphEClass, GRAPH__NAME);
 
 		nodeEClass = createEClass(NODE);
 		createEAttribute(nodeEClass, NODE__NAME);
 
 		edgeEClass = createEClass(EDGE);
 		createEReference(edgeEClass, EDGE__SOURCE);
-		createEReference(edgeEClass, EDGE__DEST);
+		createEReference(edgeEClass, EDGE__TARGET);
 		createEAttribute(edgeEClass, EDGE__NAME);
 
-		edgeConstraintEClass = createEClass(EDGE_CONSTRAINT);
-		createEReference(edgeConstraintEClass, EDGE_CONSTRAINT__EDGES);
+		signatureEClass = createEClass(SIGNATURE);
+		createEReference(signatureEClass, SIGNATURE__PREDICATES);
 
-		globalConstraintEClass = createEClass(GLOBAL_CONSTRAINT);
+		predicateEClass = createEClass(PREDICATE);
+		createEReference(predicateEClass, PREDICATE__SHAPE);
+		createEReference(predicateEClass, PREDICATE__SEMANTICS);
+		createEReference(predicateEClass, PREDICATE__VISUALIZATION);
+
+		graphHomomorphismEClass = createEClass(GRAPH_HOMOMORPHISM);
+		createEReference(graphHomomorphismEClass, GRAPH_HOMOMORPHISM__SOURCE);
+		createEReference(graphHomomorphismEClass, GRAPH_HOMOMORPHISM__TARGET);
+		createEAttribute(graphHomomorphismEClass, GRAPH_HOMOMORPHISM__TYPING);
+
+		semanticsEClass = createEClass(SEMANTICS);
+
+		visualizationEClass = createEClass(VISUALIZATION);
 	}
 
 	/**
@@ -345,30 +424,41 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		edgeConstraintEClass.getESuperTypes().add(this.getConstraint());
-		globalConstraintEClass.getESuperTypes().add(this.getConstraint());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(diagramEClass, Diagram.class, "Diagram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDiagram_Constraints(), this.getConstraint(), null, "constraints", null, 0, -1, Diagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDiagram_Nodes(), this.getNode(), null, "nodes", null, 0, -1, Diagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDiagram_Edges(), this.getEdge(), null, "edges", null, 0, -1, Diagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getDiagram_Name(), ecorePackage.getEString(), "name", null, 0, 1, Diagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(constraintEClass, Constraint.class, "Constraint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(graphEClass, Graph.class, "Graph", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getGraph_Nodes(), this.getNode(), null, "nodes", null, 0, -1, Graph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getGraph_Name(), ecorePackage.getEString(), "name", null, 0, 1, Graph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(nodeEClass, Node.class, "Node", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNode_Name(), ecorePackage.getEString(), "name", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(edgeEClass, Edge.class, "Edge", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getEdge_Source(), this.getNode(), null, "source", null, 0, 1, Edge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getEdge_Dest(), this.getNode(), null, "dest", null, 0, 1, Edge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEdge_Source(), this.getNode(), null, "source", null, 0, 1, Edge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEdge_Target(), this.getNode(), null, "target", null, 0, 1, Edge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEdge_Name(), ecorePackage.getEString(), "name", null, 0, 1, Edge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(edgeConstraintEClass, EdgeConstraint.class, "EdgeConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getEdgeConstraint_Edges(), this.getEdge(), null, "edges", null, 0, -1, EdgeConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(signatureEClass, Signature.class, "Signature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSignature_Predicates(), this.getPredicate(), null, "predicates", null, 0, -1, Signature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(globalConstraintEClass, GlobalConstraint.class, "GlobalConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(predicateEClass, Predicate.class, "Predicate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPredicate_Shape(), this.getGraph(), null, "shape", null, 0, 1, Predicate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPredicate_Semantics(), this.getSemantics(), null, "semantics", null, 0, 1, Predicate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPredicate_Visualization(), this.getVisualization(), null, "visualization", null, 0, 1, Predicate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(graphHomomorphismEClass, GraphHomomorphism.class, "GraphHomomorphism", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getGraphHomomorphism_Source(), this.getGraph(), null, "source", null, 0, 1, GraphHomomorphism.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGraphHomomorphism_Target(), this.getGraph(), null, "target", null, 0, 1, GraphHomomorphism.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		EGenericType g1 = createEGenericType(ecorePackage.getEMap());
+		EGenericType g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		initEAttribute(getGraphHomomorphism_Typing(), g1, "typing", null, 0, 1, GraphHomomorphism.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(semanticsEClass, Semantics.class, "Semantics", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(visualizationEClass, Visualization.class, "Visualization", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

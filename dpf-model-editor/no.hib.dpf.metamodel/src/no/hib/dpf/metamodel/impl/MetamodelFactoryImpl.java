@@ -60,11 +60,14 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case MetamodelPackage.DIAGRAM: return createDiagram();
+			case MetamodelPackage.GRAPH: return createGraph();
 			case MetamodelPackage.NODE: return createNode();
 			case MetamodelPackage.EDGE: return createEdge();
-			case MetamodelPackage.EDGE_CONSTRAINT: return createEdgeConstraint();
-			case MetamodelPackage.GLOBAL_CONSTRAINT: return createGlobalConstraint();
+			case MetamodelPackage.SIGNATURE: return createSignature();
+			case MetamodelPackage.PREDICATE: return createPredicate();
+			case MetamodelPackage.GRAPH_HOMOMORPHISM: return createGraphHomomorphism();
+			case MetamodelPackage.SEMANTICS: return createSemantics();
+			case MetamodelPackage.VISUALIZATION: return createVisualization();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -75,9 +78,9 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Diagram createDiagram() {
-		DiagramImpl diagram = new DiagramImpl();
-		return diagram;
+	public Graph createGraph() {
+		GraphImpl graph = new GraphImpl();
+		return graph;
 	}
 
 	/**
@@ -105,9 +108,9 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EdgeConstraint createEdgeConstraint() {
-		EdgeConstraintImpl edgeConstraint = new EdgeConstraintImpl();
-		return edgeConstraint;
+	public Signature createSignature() {
+		SignatureImpl signature = new SignatureImpl();
+		return signature;
 	}
 
 	/**
@@ -115,9 +118,39 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GlobalConstraint createGlobalConstraint() {
-		GlobalConstraintImpl globalConstraint = new GlobalConstraintImpl();
-		return globalConstraint;
+	public Predicate createPredicate() {
+		PredicateImpl predicate = new PredicateImpl();
+		return predicate;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public GraphHomomorphism createGraphHomomorphism() {
+		GraphHomomorphismImpl graphHomomorphism = new GraphHomomorphismImpl();
+		return graphHomomorphism;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Semantics createSemantics() {
+		SemanticsImpl semantics = new SemanticsImpl();
+		return semantics;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Visualization createVisualization() {
+		VisualizationImpl visualization = new VisualizationImpl();
+		return visualization;
 	}
 
 	/**

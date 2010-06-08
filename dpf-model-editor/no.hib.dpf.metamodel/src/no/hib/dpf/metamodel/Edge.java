@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link no.hib.dpf.metamodel.Edge#getSource <em>Source</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Edge#getDest <em>Dest</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Edge#getTarget <em>Target</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Edge#getName <em>Name</em>}</li>
  * </ul>
  * </p>
@@ -28,56 +28,56 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Edge extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Source</b></em>' reference.
+	 * Returns the value of the '<em><b>Source</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Source</em>' reference isn't clear,
+	 * If the meaning of the '<em>Source</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Source</em>' reference.
+	 * @return the value of the '<em>Source</em>' containment reference.
 	 * @see #setSource(Node)
 	 * @see no.hib.dpf.metamodel.MetamodelPackage#getEdge_Source()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	Node getSource();
 
 	/**
-	 * Sets the value of the '{@link no.hib.dpf.metamodel.Edge#getSource <em>Source</em>}' reference.
+	 * Sets the value of the '{@link no.hib.dpf.metamodel.Edge#getSource <em>Source</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Source</em>' reference.
+	 * @param value the new value of the '<em>Source</em>' containment reference.
 	 * @see #getSource()
 	 * @generated
 	 */
 	void setSource(Node value);
 
 	/**
-	 * Returns the value of the '<em><b>Dest</b></em>' reference.
+	 * Returns the value of the '<em><b>Target</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Dest</em>' reference isn't clear,
+	 * If the meaning of the '<em>Target</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Dest</em>' reference.
-	 * @see #setDest(Node)
-	 * @see no.hib.dpf.metamodel.MetamodelPackage#getEdge_Dest()
+	 * @return the value of the '<em>Target</em>' reference.
+	 * @see #setTarget(Node)
+	 * @see no.hib.dpf.metamodel.MetamodelPackage#getEdge_Target()
 	 * @model
 	 * @generated
 	 */
-	Node getDest();
+	Node getTarget();
 
 	/**
-	 * Sets the value of the '{@link no.hib.dpf.metamodel.Edge#getDest <em>Dest</em>}' reference.
+	 * Sets the value of the '{@link no.hib.dpf.metamodel.Edge#getTarget <em>Target</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Dest</em>' reference.
-	 * @see #getDest()
+	 * @param value the new value of the '<em>Target</em>' reference.
+	 * @see #getTarget()
 	 * @generated
 	 */
-	void setDest(Node value);
+	void setTarget(Node value);
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.

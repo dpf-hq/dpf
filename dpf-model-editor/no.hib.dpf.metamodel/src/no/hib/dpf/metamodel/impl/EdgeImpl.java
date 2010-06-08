@@ -11,6 +11,7 @@ import no.hib.dpf.metamodel.MetamodelPackage;
 import no.hib.dpf.metamodel.Node;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -26,7 +27,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link no.hib.dpf.metamodel.impl.EdgeImpl#getSource <em>Source</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.impl.EdgeImpl#getDest <em>Dest</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.impl.EdgeImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.impl.EdgeImpl#getName <em>Name</em>}</li>
  * </ul>
  * </p>
@@ -35,7 +36,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  */
 public class EdgeImpl extends EObjectImpl implements Edge {
 	/**
-	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
+	 * The cached value of the '{@link #getSource() <em>Source</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getSource()
@@ -45,14 +46,14 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 	protected Node source;
 
 	/**
-	 * The cached value of the '{@link #getDest() <em>Dest</em>}' reference.
+	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDest()
+	 * @see #getTarget()
 	 * @generated
 	 * @ordered
 	 */
-	protected Node dest;
+	protected Node target;
 
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -99,14 +100,6 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 	 * @generated
 	 */
 	public Node getSource() {
-		if (source != null && source.eIsProxy()) {
-			InternalEObject oldSource = (InternalEObject)source;
-			source = (Node)eResolveProxy(oldSource);
-			if (source != oldSource) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.EDGE__SOURCE, oldSource, source));
-			}
-		}
 		return source;
 	}
 
@@ -115,8 +108,14 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Node basicGetSource() {
-		return source;
+	public NotificationChain basicSetSource(Node newSource, NotificationChain msgs) {
+		Node oldSource = source;
+		source = newSource;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MetamodelPackage.EDGE__SOURCE, oldSource, newSource);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -125,10 +124,17 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 	 * @generated
 	 */
 	public void setSource(Node newSource) {
-		Node oldSource = source;
-		source = newSource;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.EDGE__SOURCE, oldSource, source));
+		if (newSource != source) {
+			NotificationChain msgs = null;
+			if (source != null)
+				msgs = ((InternalEObject)source).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MetamodelPackage.EDGE__SOURCE, null, msgs);
+			if (newSource != null)
+				msgs = ((InternalEObject)newSource).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MetamodelPackage.EDGE__SOURCE, null, msgs);
+			msgs = basicSetSource(newSource, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.EDGE__SOURCE, newSource, newSource));
 	}
 
 	/**
@@ -136,16 +142,16 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Node getDest() {
-		if (dest != null && dest.eIsProxy()) {
-			InternalEObject oldDest = (InternalEObject)dest;
-			dest = (Node)eResolveProxy(oldDest);
-			if (dest != oldDest) {
+	public Node getTarget() {
+		if (target != null && target.eIsProxy()) {
+			InternalEObject oldTarget = (InternalEObject)target;
+			target = (Node)eResolveProxy(oldTarget);
+			if (target != oldTarget) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.EDGE__DEST, oldDest, dest));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.EDGE__TARGET, oldTarget, target));
 			}
 		}
-		return dest;
+		return target;
 	}
 
 	/**
@@ -153,8 +159,8 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Node basicGetDest() {
-		return dest;
+	public Node basicGetTarget() {
+		return target;
 	}
 
 	/**
@@ -162,11 +168,11 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDest(Node newDest) {
-		Node oldDest = dest;
-		dest = newDest;
+	public void setTarget(Node newTarget) {
+		Node oldTarget = target;
+		target = newTarget;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.EDGE__DEST, oldDest, dest));
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.EDGE__TARGET, oldTarget, target));
 	}
 
 	/**
@@ -196,14 +202,27 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case MetamodelPackage.EDGE__SOURCE:
+				return basicSetSource(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case MetamodelPackage.EDGE__SOURCE:
-				if (resolve) return getSource();
-				return basicGetSource();
-			case MetamodelPackage.EDGE__DEST:
-				if (resolve) return getDest();
-				return basicGetDest();
+				return getSource();
+			case MetamodelPackage.EDGE__TARGET:
+				if (resolve) return getTarget();
+				return basicGetTarget();
 			case MetamodelPackage.EDGE__NAME:
 				return getName();
 		}
@@ -221,8 +240,8 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 			case MetamodelPackage.EDGE__SOURCE:
 				setSource((Node)newValue);
 				return;
-			case MetamodelPackage.EDGE__DEST:
-				setDest((Node)newValue);
+			case MetamodelPackage.EDGE__TARGET:
+				setTarget((Node)newValue);
 				return;
 			case MetamodelPackage.EDGE__NAME:
 				setName((String)newValue);
@@ -242,8 +261,8 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 			case MetamodelPackage.EDGE__SOURCE:
 				setSource((Node)null);
 				return;
-			case MetamodelPackage.EDGE__DEST:
-				setDest((Node)null);
+			case MetamodelPackage.EDGE__TARGET:
+				setTarget((Node)null);
 				return;
 			case MetamodelPackage.EDGE__NAME:
 				setName(NAME_EDEFAULT);
@@ -262,8 +281,8 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 		switch (featureID) {
 			case MetamodelPackage.EDGE__SOURCE:
 				return source != null;
-			case MetamodelPackage.EDGE__DEST:
-				return dest != null;
+			case MetamodelPackage.EDGE__TARGET:
+				return target != null;
 			case MetamodelPackage.EDGE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}

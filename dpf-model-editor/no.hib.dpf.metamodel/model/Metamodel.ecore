@@ -15,8 +15,7 @@
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Edge">
-          <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//hib/dpf/metamodel/Node"
-              containment="true"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//hib/dpf/metamodel/Node"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//hib/dpf/metamodel/Node"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         </eClassifiers>
@@ -40,7 +39,7 @@
           </eStructuralFeatures>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Semantics"/>
-        <eClassifiers xsi:type="ecore:EClass" name="Visualization"/>
+        <eClassifiers xsi:type="ecore:EClass" name="Visualization" abstract="true"/>
       </eSubpackages>
     </eSubpackages>
   </eSubpackages>

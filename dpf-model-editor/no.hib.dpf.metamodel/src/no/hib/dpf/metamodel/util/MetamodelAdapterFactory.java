@@ -72,12 +72,8 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 	protected MetamodelSwitch<Adapter> modelSwitch =
 		new MetamodelSwitch<Adapter>() {
 			@Override
-			public Adapter caseDiagram(Diagram object) {
-				return createDiagramAdapter();
-			}
-			@Override
-			public Adapter caseConstraint(Constraint object) {
-				return createConstraintAdapter();
+			public Adapter caseGraph(Graph object) {
+				return createGraphAdapter();
 			}
 			@Override
 			public Adapter caseNode(Node object) {
@@ -88,12 +84,24 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 				return createEdgeAdapter();
 			}
 			@Override
-			public Adapter caseEdgeConstraint(EdgeConstraint object) {
-				return createEdgeConstraintAdapter();
+			public Adapter caseSignature(Signature object) {
+				return createSignatureAdapter();
 			}
 			@Override
-			public Adapter caseGlobalConstraint(GlobalConstraint object) {
-				return createGlobalConstraintAdapter();
+			public Adapter casePredicate(Predicate object) {
+				return createPredicateAdapter();
+			}
+			@Override
+			public Adapter caseGraphHomomorphism(GraphHomomorphism object) {
+				return createGraphHomomorphismAdapter();
+			}
+			@Override
+			public Adapter caseSemantics(Semantics object) {
+				return createSemanticsAdapter();
+			}
+			@Override
+			public Adapter caseVisualization(Visualization object) {
+				return createVisualizationAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -116,30 +124,16 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link no.hib.dpf.metamodel.Diagram <em>Diagram</em>}'.
+	 * Creates a new adapter for an object of class '{@link no.hib.dpf.metamodel.Graph <em>Graph</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see no.hib.dpf.metamodel.Diagram
+	 * @see no.hib.dpf.metamodel.Graph
 	 * @generated
 	 */
-	public Adapter createDiagramAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link no.hib.dpf.metamodel.Constraint <em>Constraint</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see no.hib.dpf.metamodel.Constraint
-	 * @generated
-	 */
-	public Adapter createConstraintAdapter() {
+	public Adapter createGraphAdapter() {
 		return null;
 	}
 
@@ -172,30 +166,72 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link no.hib.dpf.metamodel.EdgeConstraint <em>Edge Constraint</em>}'.
+	 * Creates a new adapter for an object of class '{@link no.hib.dpf.metamodel.Signature <em>Signature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see no.hib.dpf.metamodel.EdgeConstraint
+	 * @see no.hib.dpf.metamodel.Signature
 	 * @generated
 	 */
-	public Adapter createEdgeConstraintAdapter() {
+	public Adapter createSignatureAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link no.hib.dpf.metamodel.GlobalConstraint <em>Global Constraint</em>}'.
+	 * Creates a new adapter for an object of class '{@link no.hib.dpf.metamodel.Predicate <em>Predicate</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see no.hib.dpf.metamodel.GlobalConstraint
+	 * @see no.hib.dpf.metamodel.Predicate
 	 * @generated
 	 */
-	public Adapter createGlobalConstraintAdapter() {
+	public Adapter createPredicateAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link no.hib.dpf.metamodel.GraphHomomorphism <em>Graph Homomorphism</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see no.hib.dpf.metamodel.GraphHomomorphism
+	 * @generated
+	 */
+	public Adapter createGraphHomomorphismAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link no.hib.dpf.metamodel.Semantics <em>Semantics</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see no.hib.dpf.metamodel.Semantics
+	 * @generated
+	 */
+	public Adapter createSemanticsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link no.hib.dpf.metamodel.Visualization <em>Visualization</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see no.hib.dpf.metamodel.Visualization
+	 * @generated
+	 */
+	public Adapter createVisualizationAdapter() {
 		return null;
 	}
 
