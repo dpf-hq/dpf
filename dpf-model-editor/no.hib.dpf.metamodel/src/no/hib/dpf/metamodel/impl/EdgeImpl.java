@@ -36,7 +36,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  */
 public class EdgeImpl extends EObjectImpl implements Edge {
 	/**
-	 * The cached value of the '{@link #getSource() <em>Source</em>}' containment reference.
+	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getSource()
@@ -100,6 +100,14 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 	 * @generated
 	 */
 	public Node getSource() {
+		if (source != null && source.eIsProxy()) {
+			InternalEObject oldSource = (InternalEObject)source;
+			source = (Node)eResolveProxy(oldSource);
+			if (source != oldSource) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.EDGE__SOURCE, oldSource, source));
+			}
+		}
 		return source;
 	}
 
@@ -108,14 +116,8 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetSource(Node newSource, NotificationChain msgs) {
-		Node oldSource = source;
-		source = newSource;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MetamodelPackage.EDGE__SOURCE, oldSource, newSource);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
+	public Node basicGetSource() {
+		return source;
 	}
 
 	/**
@@ -124,17 +126,10 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 	 * @generated
 	 */
 	public void setSource(Node newSource) {
-		if (newSource != source) {
-			NotificationChain msgs = null;
-			if (source != null)
-				msgs = ((InternalEObject)source).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MetamodelPackage.EDGE__SOURCE, null, msgs);
-			if (newSource != null)
-				msgs = ((InternalEObject)newSource).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MetamodelPackage.EDGE__SOURCE, null, msgs);
-			msgs = basicSetSource(newSource, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.EDGE__SOURCE, newSource, newSource));
+		Node oldSource = source;
+		source = newSource;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.EDGE__SOURCE, oldSource, source));
 	}
 
 	/**
@@ -202,24 +197,11 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case MetamodelPackage.EDGE__SOURCE:
-				return basicSetSource(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case MetamodelPackage.EDGE__SOURCE:
-				return getSource();
+				if (resolve) return getSource();
+				return basicGetSource();
 			case MetamodelPackage.EDGE__TARGET:
 				if (resolve) return getTarget();
 				return basicGetTarget();

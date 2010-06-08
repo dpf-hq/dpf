@@ -135,7 +135,7 @@ public interface MetamodelPackage extends EPackage {
 	int EDGE = 2;
 
 	/**
-	 * The feature id for the '<em><b>Source</b></em>' containment reference.
+	 * The feature id for the '<em><b>Source</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -273,7 +273,7 @@ public interface MetamodelPackage extends EPackage {
 	int GRAPH_HOMOMORPHISM__TARGET = 1;
 
 	/**
-	 * The feature id for the '<em><b>Typing</b></em>' attribute.
+	 * The feature id for the '<em><b>Typing</b></em>' map.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -327,6 +327,44 @@ public interface MetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int VISUALIZATION_FEATURE_COUNT = 0;
+
+
+	/**
+	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.NodeToNodeMapImpl <em>Node To Node Map</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.impl.NodeToNodeMapImpl
+	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getNodeToNodeMap()
+	 * @generated
+	 */
+	int NODE_TO_NODE_MAP = 8;
+
+	/**
+	 * The feature id for the '<em><b>Key</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NODE_TO_NODE_MAP__KEY = 0;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NODE_TO_NODE_MAP__VALUE = 1;
+
+	/**
+	 * The number of structural features of the '<em>Node To Node Map</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NODE_TO_NODE_MAP_FEATURE_COUNT = 2;
 
 
 	/**
@@ -393,10 +431,10 @@ public interface MetamodelPackage extends EPackage {
 	EClass getEdge();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link no.hib.dpf.metamodel.Edge#getSource <em>Source</em>}'.
+	 * Returns the meta object for the reference '{@link no.hib.dpf.metamodel.Edge#getSource <em>Source</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Source</em>'.
+	 * @return the meta object for the reference '<em>Source</em>'.
 	 * @see no.hib.dpf.metamodel.Edge#getSource()
 	 * @see #getEdge()
 	 * @generated
@@ -522,15 +560,15 @@ public interface MetamodelPackage extends EPackage {
 	EReference getGraphHomomorphism_Target();
 
 	/**
-	 * Returns the meta object for the attribute '{@link no.hib.dpf.metamodel.GraphHomomorphism#getTyping <em>Typing</em>}'.
+	 * Returns the meta object for the map '{@link no.hib.dpf.metamodel.GraphHomomorphism#getTyping <em>Typing</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Typing</em>'.
+	 * @return the meta object for the map '<em>Typing</em>'.
 	 * @see no.hib.dpf.metamodel.GraphHomomorphism#getTyping()
 	 * @see #getGraphHomomorphism()
 	 * @generated
 	 */
-	EAttribute getGraphHomomorphism_Typing();
+	EReference getGraphHomomorphism_Typing();
 
 	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.metamodel.Semantics <em>Semantics</em>}'.
@@ -551,6 +589,40 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getVisualization();
+
+	/**
+	 * Returns the meta object for class '{@link java.util.Map.Entry <em>Node To Node Map</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Node To Node Map</em>'.
+	 * @see java.util.Map.Entry
+	 * @model keyType="no.hib.dpf.metamodel.Node"
+	 *        valueType="no.hib.dpf.metamodel.Node"
+	 * @generated
+	 */
+	EClass getNodeToNodeMap();
+
+	/**
+	 * Returns the meta object for the reference '{@link java.util.Map.Entry <em>Key</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Key</em>'.
+	 * @see java.util.Map.Entry
+	 * @see #getNodeToNodeMap()
+	 * @generated
+	 */
+	EReference getNodeToNodeMap_Key();
+
+	/**
+	 * Returns the meta object for the reference '{@link java.util.Map.Entry <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Value</em>'.
+	 * @see java.util.Map.Entry
+	 * @see #getNodeToNodeMap()
+	 * @generated
+	 */
+	EReference getNodeToNodeMap_Value();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -629,7 +701,7 @@ public interface MetamodelPackage extends EPackage {
 		EClass EDGE = eINSTANCE.getEdge();
 
 		/**
-		 * The meta object literal for the '<em><b>Source</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Source</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -731,12 +803,12 @@ public interface MetamodelPackage extends EPackage {
 		EReference GRAPH_HOMOMORPHISM__TARGET = eINSTANCE.getGraphHomomorphism_Target();
 
 		/**
-		 * The meta object literal for the '<em><b>Typing</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Typing</b></em>' map feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute GRAPH_HOMOMORPHISM__TYPING = eINSTANCE.getGraphHomomorphism_Typing();
+		EReference GRAPH_HOMOMORPHISM__TYPING = eINSTANCE.getGraphHomomorphism_Typing();
 
 		/**
 		 * The meta object literal for the '{@link no.hib.dpf.metamodel.impl.SemanticsImpl <em>Semantics</em>}' class.
@@ -757,6 +829,32 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass VISUALIZATION = eINSTANCE.getVisualization();
+
+		/**
+		 * The meta object literal for the '{@link no.hib.dpf.metamodel.impl.NodeToNodeMapImpl <em>Node To Node Map</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see no.hib.dpf.metamodel.impl.NodeToNodeMapImpl
+		 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getNodeToNodeMap()
+		 * @generated
+		 */
+		EClass NODE_TO_NODE_MAP = eINSTANCE.getNodeToNodeMap();
+
+		/**
+		 * The meta object literal for the '<em><b>Key</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NODE_TO_NODE_MAP__KEY = eINSTANCE.getNodeToNodeMap_Key();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NODE_TO_NODE_MAP__VALUE = eINSTANCE.getNodeToNodeMap_Value();
 
 	}
 

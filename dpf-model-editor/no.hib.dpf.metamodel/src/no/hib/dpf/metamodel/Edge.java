@@ -28,26 +28,26 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Edge extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Source</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Source</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Source</em>' containment reference.
+	 * @return the value of the '<em>Source</em>' reference.
 	 * @see #setSource(Node)
 	 * @see no.hib.dpf.metamodel.MetamodelPackage#getEdge_Source()
-	 * @model containment="true"
+	 * @model
 	 * @generated
 	 */
 	Node getSource();
 
 	/**
-	 * Sets the value of the '{@link no.hib.dpf.metamodel.Edge#getSource <em>Source</em>}' containment reference.
+	 * Sets the value of the '{@link no.hib.dpf.metamodel.Edge#getSource <em>Source</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Source</em>' containment reference.
+	 * @param value the new value of the '<em>Source</em>' reference.
 	 * @see #getSource()
 	 * @generated
 	 */

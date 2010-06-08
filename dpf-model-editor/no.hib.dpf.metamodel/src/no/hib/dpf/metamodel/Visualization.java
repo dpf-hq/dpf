@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  *
  * @see no.hib.dpf.metamodel.MetamodelPackage#getVisualization()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface Visualization extends EObject {

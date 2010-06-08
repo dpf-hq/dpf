@@ -6,6 +6,7 @@
  */
 package no.hib.dpf.metamodel.impl;
 
+import java.util.Map;
 import no.hib.dpf.metamodel.*;
 
 import org.eclipse.emf.ecore.EClass;
@@ -67,7 +68,7 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 			case MetamodelPackage.PREDICATE: return createPredicate();
 			case MetamodelPackage.GRAPH_HOMOMORPHISM: return createGraphHomomorphism();
 			case MetamodelPackage.SEMANTICS: return createSemantics();
-			case MetamodelPackage.VISUALIZATION: return createVisualization();
+			case MetamodelPackage.NODE_TO_NODE_MAP: return (EObject)createNodeToNodeMap();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -148,9 +149,9 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Visualization createVisualization() {
-		VisualizationImpl visualization = new VisualizationImpl();
-		return visualization;
+	public Map.Entry<Node, Node> createNodeToNodeMap() {
+		NodeToNodeMapImpl nodeToNodeMap = new NodeToNodeMapImpl();
+		return nodeToNodeMap;
 	}
 
 	/**

@@ -89,15 +89,6 @@ public interface MetamodelFactory extends EFactory {
 	Semantics createSemantics();
 
 	/**
-	 * Returns a new object of class '<em>Visualization</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Visualization</em>'.
-	 * @generated
-	 */
-	Visualization createVisualization();
-
-	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

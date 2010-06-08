@@ -6,6 +6,7 @@
  */
 package no.hib.dpf.metamodel.impl;
 
+import java.util.Map;
 import no.hib.dpf.metamodel.Edge;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.GraphHomomorphism;
@@ -87,6 +88,13 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * @generated
 	 */
 	private EClass visualizationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass nodeToNodeMapEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -316,8 +324,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getGraphHomomorphism_Typing() {
-		return (EAttribute)graphHomomorphismEClass.getEStructuralFeatures().get(2);
+	public EReference getGraphHomomorphism_Typing() {
+		return (EReference)graphHomomorphismEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -336,6 +344,33 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 */
 	public EClass getVisualization() {
 		return visualizationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getNodeToNodeMap() {
+		return nodeToNodeMapEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getNodeToNodeMap_Key() {
+		return (EReference)nodeToNodeMapEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getNodeToNodeMap_Value() {
+		return (EReference)nodeToNodeMapEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -389,11 +424,15 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		graphHomomorphismEClass = createEClass(GRAPH_HOMOMORPHISM);
 		createEReference(graphHomomorphismEClass, GRAPH_HOMOMORPHISM__SOURCE);
 		createEReference(graphHomomorphismEClass, GRAPH_HOMOMORPHISM__TARGET);
-		createEAttribute(graphHomomorphismEClass, GRAPH_HOMOMORPHISM__TYPING);
+		createEReference(graphHomomorphismEClass, GRAPH_HOMOMORPHISM__TYPING);
 
 		semanticsEClass = createEClass(SEMANTICS);
 
 		visualizationEClass = createEClass(VISUALIZATION);
+
+		nodeToNodeMapEClass = createEClass(NODE_TO_NODE_MAP);
+		createEReference(nodeToNodeMapEClass, NODE_TO_NODE_MAP__KEY);
+		createEReference(nodeToNodeMapEClass, NODE_TO_NODE_MAP__VALUE);
 	}
 
 	/**
@@ -434,7 +473,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		initEAttribute(getNode_Name(), ecorePackage.getEString(), "name", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(edgeEClass, Edge.class, "Edge", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getEdge_Source(), this.getNode(), null, "source", null, 0, 1, Edge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEdge_Source(), this.getNode(), null, "source", null, 0, 1, Edge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getEdge_Target(), this.getNode(), null, "target", null, 0, 1, Edge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEdge_Name(), ecorePackage.getEString(), "name", null, 0, 1, Edge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -449,16 +488,15 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		initEClass(graphHomomorphismEClass, GraphHomomorphism.class, "GraphHomomorphism", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getGraphHomomorphism_Source(), this.getGraph(), null, "source", null, 0, 1, GraphHomomorphism.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGraphHomomorphism_Target(), this.getGraph(), null, "target", null, 0, 1, GraphHomomorphism.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		EGenericType g1 = createEGenericType(ecorePackage.getEMap());
-		EGenericType g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
-		initEAttribute(getGraphHomomorphism_Typing(), g1, "typing", null, 0, 1, GraphHomomorphism.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGraphHomomorphism_Typing(), this.getNodeToNodeMap(), null, "typing", null, 0, -1, GraphHomomorphism.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(semanticsEClass, Semantics.class, "Semantics", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(visualizationEClass, Visualization.class, "Visualization", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(visualizationEClass, Visualization.class, "Visualization", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(nodeToNodeMapEClass, Map.Entry.class, "NodeToNodeMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getNodeToNodeMap_Key(), this.getNode(), null, "key", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNodeToNodeMap_Value(), this.getNode(), null, "value", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

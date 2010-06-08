@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public class VisualizationImpl extends EObjectImpl implements Visualization {
+public abstract class VisualizationImpl extends EObjectImpl implements Visualization {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

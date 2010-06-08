@@ -12,13 +12,19 @@ import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.GraphHomomorphism;
 import no.hib.dpf.metamodel.MetamodelPackage;
 
+import no.hib.dpf.metamodel.Node;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EcoreEMap;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -57,14 +63,14 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	protected Graph target;
 
 	/**
-	 * The cached value of the '{@link #getTyping() <em>Typing</em>}' attribute.
+	 * The cached value of the '{@link #getTyping() <em>Typing</em>}' map.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getTyping()
 	 * @generated
 	 * @ordered
 	 */
-	protected Map<?, ?> typing;
+	protected EMap<Node, Node> typing;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -166,7 +172,10 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Map<?, ?> getTyping() {
+	public EMap<Node, Node> getTyping() {
+		if (typing == null) {
+			typing = new EcoreEMap<Node,Node>(MetamodelPackage.Literals.NODE_TO_NODE_MAP, NodeToNodeMapImpl.class, this, MetamodelPackage.GRAPH_HOMOMORPHISM__TYPING);
+		}
 		return typing;
 	}
 
@@ -175,11 +184,13 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTyping(Map<?, ?> newTyping) {
-		Map<?, ?> oldTyping = typing;
-		typing = newTyping;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.GRAPH_HOMOMORPHISM__TYPING, oldTyping, typing));
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case MetamodelPackage.GRAPH_HOMOMORPHISM__TYPING:
+				return ((InternalEList<?>)getTyping()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -197,7 +208,8 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 				if (resolve) return getTarget();
 				return basicGetTarget();
 			case MetamodelPackage.GRAPH_HOMOMORPHISM__TYPING:
-				return getTyping();
+				if (coreType) return getTyping();
+				else return getTyping().map();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -217,7 +229,7 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 				setTarget((Graph)newValue);
 				return;
 			case MetamodelPackage.GRAPH_HOMOMORPHISM__TYPING:
-				setTyping((Map<?, ?>)newValue);
+				((EStructuralFeature.Setting)getTyping()).set(newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -238,7 +250,7 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 				setTarget((Graph)null);
 				return;
 			case MetamodelPackage.GRAPH_HOMOMORPHISM__TYPING:
-				setTyping((Map<?, ?>)null);
+				getTyping().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -257,25 +269,9 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 			case MetamodelPackage.GRAPH_HOMOMORPHISM__TARGET:
 				return target != null;
 			case MetamodelPackage.GRAPH_HOMOMORPHISM__TYPING:
-				return typing != null;
+				return typing != null && !typing.isEmpty();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (typing: ");
-		result.append(typing);
-		result.append(')');
-		return result.toString();
 	}
 
 } //GraphHomomorphismImpl

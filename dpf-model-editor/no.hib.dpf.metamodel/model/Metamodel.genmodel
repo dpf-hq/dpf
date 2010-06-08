@@ -6,9 +6,12 @@
     complianceLevel="6.0" copyrightFields="false">
   <foreignModel>Metamodel.ecore</foreignModel>
   <genPackages prefix="No" disposableProviderFactory="true" ecorePackage="Metamodel.ecore#/">
-    <nestedGenPackages prefix="Hib" disposableProviderFactory="true" ecorePackage="Metamodel.ecore#//hib">
-      <nestedGenPackages prefix="Dpf" disposableProviderFactory="true" ecorePackage="Metamodel.ecore#//hib/dpf">
-        <nestedGenPackages prefix="Metamodel" disposableProviderFactory="true" ecorePackage="Metamodel.ecore#//hib/dpf/metamodel">
+    <nestedGenPackages prefix="Hib" basePackage="no" disposableProviderFactory="true"
+        ecorePackage="Metamodel.ecore#//hib">
+      <nestedGenPackages prefix="Dpf" basePackage="no.hib" disposableProviderFactory="true"
+          ecorePackage="Metamodel.ecore#//hib/dpf">
+        <nestedGenPackages prefix="Metamodel" basePackage="no.hib.dpf" disposableProviderFactory="true"
+            ecorePackage="Metamodel.ecore#//hib/dpf/metamodel">
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/metamodel/Graph">
             <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/Graph/nodes"/>
             <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//hib/dpf/metamodel/Graph/name"/>
@@ -38,10 +41,16 @@
                 ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/GraphHomomorphism/source"/>
             <genFeatures notify="false" createChild="false" propertySortChoices="true"
                 ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/GraphHomomorphism/target"/>
-            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//hib/dpf/metamodel/GraphHomomorphism/typing"/>
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/GraphHomomorphism/typing"/>
           </genClasses>
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/metamodel/Semantics"/>
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/metamodel/Visualization"/>
+          <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/metamodel/NodeToNodeMap">
+            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+                ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/NodeToNodeMap/key"/>
+            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+                ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/NodeToNodeMap/value"/>
+          </genClasses>
         </nestedGenPackages>
       </nestedGenPackages>
     </nestedGenPackages>

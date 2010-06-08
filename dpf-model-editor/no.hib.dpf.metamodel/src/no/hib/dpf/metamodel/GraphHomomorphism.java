@@ -6,6 +6,7 @@
  */
 package no.hib.dpf.metamodel;
 
+import org.eclipse.emf.common.util.EMap;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
@@ -82,29 +83,20 @@ public interface GraphHomomorphism extends EObject {
 	void setTarget(Graph value);
 
 	/**
-	 * Returns the value of the '<em><b>Typing</b></em>' attribute.
+	 * Returns the value of the '<em><b>Typing</b></em>' map.
+	 * The key is of type {@link no.hib.dpf.metamodel.Node},
+	 * and the value is of type {@link no.hib.dpf.metamodel.Node},
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Typing</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Typing</em>' map isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Typing</em>' attribute.
-	 * @see #setTyping(Map)
+	 * @return the value of the '<em>Typing</em>' map.
 	 * @see no.hib.dpf.metamodel.MetamodelPackage#getGraphHomomorphism_Typing()
-	 * @model transient="true"
+	 * @model mapType="no.hib.dpf.metamodel.NodeToNodeMap<no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Node>"
 	 * @generated
 	 */
-	Map<?, ?> getTyping();
-
-	/**
-	 * Sets the value of the '{@link no.hib.dpf.metamodel.GraphHomomorphism#getTyping <em>Typing</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Typing</em>' attribute.
-	 * @see #getTyping()
-	 * @generated
-	 */
-	void setTyping(Map<?, ?> value);
+	EMap<Node, Node> getTyping();
 
 } // GraphHomomorphism

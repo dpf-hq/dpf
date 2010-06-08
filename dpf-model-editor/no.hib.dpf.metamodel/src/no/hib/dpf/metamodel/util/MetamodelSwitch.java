@@ -8,6 +8,7 @@ package no.hib.dpf.metamodel.util;
 
 import java.util.List;
 
+import java.util.Map;
 import no.hib.dpf.metamodel.*;
 
 import org.eclipse.emf.ecore.EClass;
@@ -135,6 +136,12 @@ public class MetamodelSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MetamodelPackage.NODE_TO_NODE_MAP: {
+				@SuppressWarnings("unchecked") Map.Entry<Node, Node> nodeToNodeMap = (Map.Entry<Node, Node>)theEObject;
+				T result = caseNodeToNodeMap(nodeToNodeMap);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -256,6 +263,21 @@ public class MetamodelSwitch<T> {
 	 * @generated
 	 */
 	public T caseVisualization(Visualization object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Node To Node Map</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Node To Node Map</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNodeToNodeMap(Map.Entry<Node, Node> object) {
 		return null;
 	}
 

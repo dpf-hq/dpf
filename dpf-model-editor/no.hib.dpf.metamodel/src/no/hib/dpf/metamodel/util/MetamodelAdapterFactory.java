@@ -6,6 +6,7 @@
  */
 package no.hib.dpf.metamodel.util;
 
+import java.util.Map;
 import no.hib.dpf.metamodel.*;
 
 import org.eclipse.emf.common.notify.Adapter;
@@ -102,6 +103,10 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseVisualization(Visualization object) {
 				return createVisualizationAdapter();
+			}
+			@Override
+			public Adapter caseNodeToNodeMap(Map.Entry<Node, Node> object) {
+				return createNodeToNodeMapAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -232,6 +237,20 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createVisualizationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link java.util.Map.Entry <em>Node To Node Map</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see java.util.Map.Entry
+	 * @generated
+	 */
+	public Adapter createNodeToNodeMapAdapter() {
 		return null;
 	}
 
