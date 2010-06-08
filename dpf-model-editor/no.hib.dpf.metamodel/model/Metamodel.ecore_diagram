@@ -19,7 +19,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_ZZj-FXI2Ed-lwof-n5K3xw"/>
     </children>
     <element xmi:type="ecore:EClass" href="Metamodel.ecore#//hib/dpf/metamodel/Graph"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ZZiv8XI2Ed-lwof-n5K3xw" x="90" y="190"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ZZiv8XI2Ed-lwof-n5K3xw" x="245" y="335"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_by7CIHI2Ed-lwof-n5K3xw" type="2001" fontName="Lucida Grande">
     <children xmi:type="notation:DecorationNode" xmi:id="_by7pMHI2Ed-lwof-n5K3xw" type="5001"/>
@@ -40,7 +40,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_by8QQnI2Ed-lwof-n5K3xw"/>
     </children>
     <element xmi:type="ecore:EClass" href="Metamodel.ecore#//hib/dpf/metamodel/Node"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_by7CIXI2Ed-lwof-n5K3xw" x="94" y="321"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_by7CIXI2Ed-lwof-n5K3xw" x="215" y="480"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_cccgQHI2Ed-lwof-n5K3xw" type="2001" fontName="Lucida Grande">
     <children xmi:type="notation:DecorationNode" xmi:id="_ccdHUHI2Ed-lwof-n5K3xw" type="5001"/>
@@ -64,7 +64,7 @@
       <layoutConstraint xmi:type="notation:Ratio" xmi:id="_jISoIHMxEd-Tu-O-DbhEvw" value="0.2033898305084746"/>
     </children>
     <element xmi:type="ecore:EClass" href="Metamodel.ecore#//hib/dpf/metamodel/Edge"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_cccgQXI2Ed-lwof-n5K3xw" x="220" y="330"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_cccgQXI2Ed-lwof-n5K3xw" x="369" y="487"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_Gj7fYHI3Ed-lwof-n5K3xw" type="2001" fontName="Lucida Grande">
     <children xmi:type="notation:DecorationNode" xmi:id="_Gj8GcHI3Ed-lwof-n5K3xw" type="5001"/>
@@ -81,7 +81,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_Gj8tgnI3Ed-lwof-n5K3xw"/>
     </children>
     <element xmi:type="ecore:EClass" href="Metamodel.ecore#//hib/dpf/metamodel/Signature"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Gj7fYXI3Ed-lwof-n5K3xw" x="414" y="36"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Gj7fYXI3Ed-lwof-n5K3xw" x="535" y="195"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_IGdpIHI3Ed-lwof-n5K3xw" type="2001" fontName="Lucida Grande">
     <children xmi:type="notation:DecorationNode" xmi:id="_IGeQMHI3Ed-lwof-n5K3xw" type="5001"/>
@@ -98,7 +98,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_IGeQOXI3Ed-lwof-n5K3xw"/>
     </children>
     <element xmi:type="ecore:EClass" href="Metamodel.ecore#//hib/dpf/metamodel/Predicate"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_IGdpIXI3Ed-lwof-n5K3xw" x="414" y="180"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_IGdpIXI3Ed-lwof-n5K3xw" x="535" y="339"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_XWF1AHI3Ed-lwof-n5K3xw" type="2001" fontName="Lucida Grande">
     <children xmi:type="notation:DecorationNode" xmi:id="_XWGcEHI3Ed-lwof-n5K3xw" type="5001"/>
@@ -118,7 +118,7 @@
       <layoutConstraint xmi:type="notation:Ratio" xmi:id="_-GriEXI9Ed-lwof-n5K3xw" value="0.2033898305084746"/>
     </children>
     <element xmi:type="ecore:EClass" href="Metamodel.ecore#//hib/dpf/metamodel/GraphHomomorphism"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_XWF1AXI3Ed-lwof-n5K3xw" x="198" y="36"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_XWF1AXI3Ed-lwof-n5K3xw" x="10" y="340"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_SjlgkHI9Ed-lwof-n5K3xw" type="2001" fontName="Lucida Grande">
     <children xmi:type="notation:DecorationNode" xmi:id="_SjmHoHI9Ed-lwof-n5K3xw" type="5001"/>
@@ -135,7 +135,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_SjmusXI9Ed-lwof-n5K3xw"/>
     </children>
     <element xmi:type="ecore:EClass" href="Metamodel.ecore#//hib/dpf/metamodel/Semantics"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SjlgkXI9Ed-lwof-n5K3xw" x="360" y="333"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SjlgkXI9Ed-lwof-n5K3xw" x="481" y="492"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_XZ8ykHI9Ed-lwof-n5K3xw" type="2001" fontName="Lucida Grande">
     <children xmi:type="notation:DecorationNode" xmi:id="_XZ9ZoHI9Ed-lwof-n5K3xw" type="5001"/>
@@ -152,7 +152,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_XZ-AtHI9Ed-lwof-n5K3xw"/>
     </children>
     <element xmi:type="ecore:EClass" href="Metamodel.ecore#//hib/dpf/metamodel/Visualization"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_XZ8ykXI9Ed-lwof-n5K3xw" x="474" y="337"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_XZ8ykXI9Ed-lwof-n5K3xw" x="595" y="496"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_Z2fM8HMuEd-Tu-O-DbhEvw" type="2001" fontName="Segoe UI">
     <children xmi:type="notation:DecorationNode" xmi:id="_Z2f0AHMuEd-Tu-O-DbhEvw" type="5001"/>
@@ -210,28 +210,28 @@
   </edges>
   <edges xmi:type="notation:Connector" xmi:id="_vRAWAHI3Ed-lwof-n5K3xw" type="4002" source="_XWF1AHI3Ed-lwof-n5K3xw" target="_ZZiv8HI2Ed-lwof-n5K3xw">
     <children xmi:type="notation:DecorationNode" xmi:id="_vRA9EHI3Ed-lwof-n5K3xw" type="6001">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_vRA9EXI3Ed-lwof-n5K3xw" x="26" y="15"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_vRA9EXI3Ed-lwof-n5K3xw" x="2" y="-11"/>
     </children>
     <children xmi:type="notation:DecorationNode" xmi:id="_vRA9EnI3Ed-lwof-n5K3xw" type="6003">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_vRA9E3I3Ed-lwof-n5K3xw" x="10" y="15"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_vRA9E3I3Ed-lwof-n5K3xw" x="-7" y="13"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_vRAWAXI3Ed-lwof-n5K3xw" fontName="Lucida Grande"/>
     <element xmi:type="ecore:EReference" href="Metamodel.ecore#//hib/dpf/metamodel/GraphHomomorphism/source"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_vRAWAnI3Ed-lwof-n5K3xw" points="[0, 0, 112, -108]$[-105, 102, 7, -6]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_vREAYHI3Ed-lwof-n5K3xw" id="(0.30434782608695654,1.0)"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_vREAYHI3Ed-lwof-n5K3xw" id="(0.9166666666666666,0.17307692307692307)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_vREAYXI3Ed-lwof-n5K3xw" id="(0.6444444444444445,0.11538461538461539)"/>
   </edges>
   <edges xmi:type="notation:Connector" xmi:id="_wTOoAHI3Ed-lwof-n5K3xw" type="4002" source="_XWF1AHI3Ed-lwof-n5K3xw" target="_ZZiv8HI2Ed-lwof-n5K3xw">
     <children xmi:type="notation:DecorationNode" xmi:id="_wTOoA3I3Ed-lwof-n5K3xw" type="6001">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_wTPPEHI3Ed-lwof-n5K3xw" x="-15" y="-15"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_wTPPEHI3Ed-lwof-n5K3xw" x="-5" y="19"/>
     </children>
     <children xmi:type="notation:DecorationNode" xmi:id="_wTPPEXI3Ed-lwof-n5K3xw" type="6003">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_wTPPEnI3Ed-lwof-n5K3xw" x="3" y="7"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_wTPPEnI3Ed-lwof-n5K3xw" x="-6" y="9"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_wTOoAXI3Ed-lwof-n5K3xw" fontName="Lucida Grande"/>
     <element xmi:type="ecore:EReference" href="Metamodel.ecore#//hib/dpf/metamodel/GraphHomomorphism/target"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_wTOoAnI3Ed-lwof-n5K3xw" points="[0, 0, 205, -127]$[-182, 113, 23, -14]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_wTSSYHI3Ed-lwof-n5K3xw" id="(0.7217391304347827,1.0)"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_wTSSYHI3Ed-lwof-n5K3xw" id="(0.9166666666666666,0.8461538461538461)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_yxYsgHI3Ed-lwof-n5K3xw" id="(0.8,0.8269230769230769)"/>
   </edges>
   <edges xmi:type="notation:Connector" xmi:id="_wZFbkHI7Ed-lwof-n5K3xw" type="4002" source="_IGdpIHI3Ed-lwof-n5K3xw" target="_ZZiv8HI2Ed-lwof-n5K3xw">
@@ -287,28 +287,29 @@
   </edges>
   <edges xmi:type="notation:Connector" xmi:id="_uTSoUHMuEd-Tu-O-DbhEvw" type="4002" source="_Z2fM8HMuEd-Tu-O-DbhEvw" target="_by7CIHI2Ed-lwof-n5K3xw">
     <children xmi:type="notation:DecorationNode" xmi:id="_uTSoU3MuEd-Tu-O-DbhEvw" type="6001">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_uTSoVHMuEd-Tu-O-DbhEvw" x="3" y="-17"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_uTSoVHMuEd-Tu-O-DbhEvw" y="21"/>
     </children>
     <children xmi:type="notation:DecorationNode" xmi:id="_uTSoVXMuEd-Tu-O-DbhEvw" type="6003">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_uTSoVnMuEd-Tu-O-DbhEvw" x="3" y="-17"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_uTSoVnMuEd-Tu-O-DbhEvw" x="-2" y="18"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_uTSoUXMuEd-Tu-O-DbhEvw" fontName="Segoe UI"/>
     <element xmi:type="ecore:EReference" href="Metamodel.ecore#//hib/dpf/metamodel/NodeToNodeMap/key"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_uTSoUnMuEd-Tu-O-DbhEvw" points="[0, 0, 15, 151]$[-25, -146, -10, 5]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_uTVEkHMuEd-Tu-O-DbhEvw" id="(0.3826086956521739,0.0)"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_uTVEkHMuEd-Tu-O-DbhEvw" id="(0.9217391304347826,0.8653846153846154)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_uTVEkXMuEd-Tu-O-DbhEvw" id="(0.16393442622950818,0.6779661016949152)"/>
   </edges>
   <edges xmi:type="notation:Connector" xmi:id="_wCeG8HMuEd-Tu-O-DbhEvw" type="4002" source="_Z2fM8HMuEd-Tu-O-DbhEvw" target="_by7CIHI2Ed-lwof-n5K3xw">
     <children xmi:type="notation:DecorationNode" xmi:id="_wCeG83MuEd-Tu-O-DbhEvw" type="6001">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_wCeG9HMuEd-Tu-O-DbhEvw" x="2" y="18"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_wCeG9HMuEd-Tu-O-DbhEvw" x="-5" y="-15"/>
     </children>
     <children xmi:type="notation:DecorationNode" xmi:id="_wCeG9XMuEd-Tu-O-DbhEvw" type="6003">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_wCeG9nMuEd-Tu-O-DbhEvw" x="2" y="17"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_wCeG9nMuEd-Tu-O-DbhEvw" x="-4" y="-13"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_wCeG8XMuEd-Tu-O-DbhEvw" fontName="Segoe UI"/>
     <element xmi:type="ecore:EReference" href="Metamodel.ecore#//hib/dpf/metamodel/NodeToNodeMap/value"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_wCeG8nMuEd-Tu-O-DbhEvw" points="[0, 0, -5, 162]$[6, -132, 1, 30]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_wChKQHMuEd-Tu-O-DbhEvw" id="(0.5652173913043478,0.038461538461538464)"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_wChKQHMuEd-Tu-O-DbhEvw" id="(0.8782608695652174,0.3269230769230769)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_T39U0HM1Ed-Tu-O-DbhEvw" id="(0.22950819672131148,0.15254237288135594)"/>
   </edges>
   <edges xmi:type="notation:Connector" xmi:id="_1W4fgHMxEd-Tu-O-DbhEvw" type="4003" source="_XWF1AHI3Ed-lwof-n5K3xw" target="_Z2fM8HMuEd-Tu-O-DbhEvw">
     <children xmi:type="notation:DecorationNode" xmi:id="_1W4fg3MxEd-Tu-O-DbhEvw" type="6002">
@@ -319,7 +320,8 @@
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_1W4fgXMxEd-Tu-O-DbhEvw" fontName="Segoe UI"/>
     <element xmi:type="ecore:EReference" href="Metamodel.ecore#//hib/dpf/metamodel/GraphHomomorphism/typing"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_1W4fgnMxEd-Tu-O-DbhEvw" points="[-72, 0, 164, -459]$[-236, 0, 0, -459]$[-236, 458, 0, -1]"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_1W4fgnMxEd-Tu-O-DbhEvw" points="[-1, 5, 3, -129]$[-4, 133, 0, -1]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Oom7EHM1Ed-Tu-O-DbhEvw" id="(0.19444444444444445,0.9038461538461539)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_3uqPMHMxEd-Tu-O-DbhEvw" id="(0.12173913043478261,0.019230769230769232)"/>
   </edges>
 </notation:Diagram>
