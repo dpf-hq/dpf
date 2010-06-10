@@ -291,7 +291,7 @@
   </edges>
   <edges xmi:type="notation:Connector" xmi:id="_wZFbkHI7Ed-lwof-n5K3xw" type="4002" source="_IGdpIHI3Ed-lwof-n5K3xw" target="_ZZiv8HI2Ed-lwof-n5K3xw">
     <children xmi:type="notation:DecorationNode" xmi:id="_wZGCoHI7Ed-lwof-n5K3xw" type="6001">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_wZGCoXI7Ed-lwof-n5K3xw" x="-9" y="-15"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_wZGCoXI7Ed-lwof-n5K3xw" x="-45" y="-10"/>
     </children>
     <children xmi:type="notation:DecorationNode" xmi:id="_wZGConI7Ed-lwof-n5K3xw" type="6003">
       <layoutConstraint xmi:type="notation:Location" xmi:id="_wZGCo3I7Ed-lwof-n5K3xw" x="3" y="-4"/>
@@ -304,10 +304,10 @@
   </edges>
   <edges xmi:type="notation:Connector" xmi:id="_TwDTsHI9Ed-lwof-n5K3xw" type="4002" source="_IGdpIHI3Ed-lwof-n5K3xw" target="_SjlgkHI9Ed-lwof-n5K3xw">
     <children xmi:type="notation:DecorationNode" xmi:id="_TwD6wHI9Ed-lwof-n5K3xw" type="6001">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_TwD6wXI9Ed-lwof-n5K3xw" y="40"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_TwD6wXI9Ed-lwof-n5K3xw" x="5" y="-24"/>
     </children>
     <children xmi:type="notation:DecorationNode" xmi:id="_TwD6wnI9Ed-lwof-n5K3xw" type="6003">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_TwD6w3I9Ed-lwof-n5K3xw" y="60"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_TwD6w3I9Ed-lwof-n5K3xw" x="-4" y="-19"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_TwDTsXI9Ed-lwof-n5K3xw" fontName="Lucida Grande"/>
     <element xmi:type="ecore:EReference" href="Metamodel.ecore#//hib/dpf/metamodel/Predicate/semantics"/>
@@ -317,10 +317,10 @@
   </edges>
   <edges xmi:type="notation:Connector" xmi:id="_YzG94HI9Ed-lwof-n5K3xw" type="4002" source="_IGdpIHI3Ed-lwof-n5K3xw" target="_XZ8ykHI9Ed-lwof-n5K3xw">
     <children xmi:type="notation:DecorationNode" xmi:id="_YzG943I9Ed-lwof-n5K3xw" type="6001">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_YzG95HI9Ed-lwof-n5K3xw" y="40"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_YzG95HI9Ed-lwof-n5K3xw" x="32" y="24"/>
     </children>
     <children xmi:type="notation:DecorationNode" xmi:id="_YzHk8HI9Ed-lwof-n5K3xw" type="6003">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_YzHk8XI9Ed-lwof-n5K3xw" y="60"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_YzHk8XI9Ed-lwof-n5K3xw" x="20" y="17"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_YzG94XI9Ed-lwof-n5K3xw" fontName="Lucida Grande"/>
     <element xmi:type="ecore:EReference" href="Metamodel.ecore#//hib/dpf/metamodel/Predicate/visualization"/>
@@ -346,7 +346,7 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_uTSoVHMuEd-Tu-O-DbhEvw" x="-17" y="9"/>
     </children>
     <children xmi:type="notation:DecorationNode" xmi:id="_uTSoVXMuEd-Tu-O-DbhEvw" type="6003">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_uTSoVnMuEd-Tu-O-DbhEvw" y="60"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_uTSoVnMuEd-Tu-O-DbhEvw" x="-35" y="1"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_uTSoUXMuEd-Tu-O-DbhEvw" fontName="Segoe UI"/>
     <element xmi:type="ecore:EReference" href="Metamodel.ecore#//hib/dpf/metamodel/NodeToNodeMap/key"/>
@@ -356,10 +356,10 @@
   </edges>
   <edges xmi:type="notation:Connector" xmi:id="_wCeG8HMuEd-Tu-O-DbhEvw" type="4002" source="_Z2fM8HMuEd-Tu-O-DbhEvw" target="_by7CIHI2Ed-lwof-n5K3xw">
     <children xmi:type="notation:DecorationNode" xmi:id="_wCeG83MuEd-Tu-O-DbhEvw" type="6001">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_wCeG9HMuEd-Tu-O-DbhEvw" y="40"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_wCeG9HMuEd-Tu-O-DbhEvw" x="-18" y="9"/>
     </children>
     <children xmi:type="notation:DecorationNode" xmi:id="_wCeG9XMuEd-Tu-O-DbhEvw" type="6003">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_wCeG9nMuEd-Tu-O-DbhEvw" y="60"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_wCeG9nMuEd-Tu-O-DbhEvw" x="-23" y="5"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_wCeG8XMuEd-Tu-O-DbhEvw" fontName="Segoe UI"/>
     <element xmi:type="ecore:EReference" href="Metamodel.ecore#//hib/dpf/metamodel/NodeToNodeMap/value"/>
@@ -369,7 +369,7 @@
   </edges>
   <edges xmi:type="notation:Connector" xmi:id="_1W4fgHMxEd-Tu-O-DbhEvw" type="4003" source="_XWF1AHI3Ed-lwof-n5K3xw" target="_Z2fM8HMuEd-Tu-O-DbhEvw">
     <children xmi:type="notation:DecorationNode" xmi:id="_1W4fg3MxEd-Tu-O-DbhEvw" type="6002">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_1W4fhHMxEd-Tu-O-DbhEvw" x="19" y="49"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_1W4fhHMxEd-Tu-O-DbhEvw" x="49" y="39"/>
     </children>
     <children xmi:type="notation:DecorationNode" xmi:id="_1W4fhXMxEd-Tu-O-DbhEvw" type="6004">
       <layoutConstraint xmi:type="notation:Location" xmi:id="_1W4fhnMxEd-Tu-O-DbhEvw" x="14" y="25"/>
@@ -385,7 +385,7 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_1GgkYHM1Ed-Tu-O-DbhEvw" y="40"/>
     </children>
     <children xmi:type="notation:DecorationNode" xmi:id="_1GgkYXM1Ed-Tu-O-DbhEvw" type="6003">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_1GgkYnM1Ed-Tu-O-DbhEvw" y="60"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_1GgkYnM1Ed-Tu-O-DbhEvw" x="-8" y="3"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_1Gf9UXM1Ed-Tu-O-DbhEvw" fontName="Segoe UI"/>
     <element xmi:type="ecore:EReference" href="Metamodel.ecore#//hib/dpf/metamodel/Constraint/constrainedModelPart"/>
@@ -470,7 +470,7 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_WzDrVHSmEd-nifzTQBTeJA" x="-13" y="18"/>
     </children>
     <children xmi:type="notation:DecorationNode" xmi:id="_WzDrVXSmEd-nifzTQBTeJA" type="6003">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_WzESYHSmEd-nifzTQBTeJA" y="60"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_WzESYHSmEd-nifzTQBTeJA" x="55" y="4"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_WzDrUXSmEd-nifzTQBTeJA" fontName="Sans Serif"/>
     <element xmi:type="ecore:EReference" href="Metamodel.ecore#//hib/dpf/metamodel/TypingMorphism/model"/>
@@ -483,7 +483,7 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_WzGHkXSmEd-nifzTQBTeJA" x="-13" y="-16"/>
     </children>
     <children xmi:type="notation:DecorationNode" xmi:id="_WzGHknSmEd-nifzTQBTeJA" type="6003">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_WzGHk3SmEd-nifzTQBTeJA" x="-5" y="-1"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_WzGHk3SmEd-nifzTQBTeJA" x="-10" y="-1"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_WzFggXSmEd-nifzTQBTeJA" fontName="Sans Serif"/>
     <element xmi:type="ecore:EReference" href="Metamodel.ecore#//hib/dpf/metamodel/TypingMorphism/metamodel"/>
