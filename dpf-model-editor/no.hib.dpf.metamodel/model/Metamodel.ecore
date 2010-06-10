@@ -10,13 +10,16 @@
           <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" upperBound="-1"
               eType="#//hib/dpf/metamodel/Node" containment="true"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="edges" lowerBound="1"
+              eType="#//hib/dpf/metamodel/Edge" containment="true"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Node">
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Edge">
           <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//hib/dpf/metamodel/Node"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//hib/dpf/metamodel/Node"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+              eType="#//hib/dpf/metamodel/Node"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Signature">
@@ -25,14 +28,18 @@
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Predicate">
           <eStructuralFeatures xsi:type="ecore:EReference" name="shape" eType="#//hib/dpf/metamodel/Graph"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="semantics" eType="#//hib/dpf/metamodel/Semantics"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="visualization" eType="#//hib/dpf/metamodel/Visualization"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="semantics" upperBound="-1"
+              eType="#//hib/dpf/metamodel/Semantics"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="visualization" upperBound="-1"
+              eType="#//hib/dpf/metamodel/Visualization"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="GraphHomomorphism">
           <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//hib/dpf/metamodel/Graph"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//hib/dpf/metamodel/Graph"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="typing" upperBound="-1"
+          <eStructuralFeatures xsi:type="ecore:EReference" name="nodeMapping" upperBound="-1"
               eType="#//hib/dpf/metamodel/NodeToNodeMap" containment="true"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="edgeMapping" eType="#//hib/dpf/metamodel/EdgeToEdgeMap"
+              containment="true"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Semantics"/>
         <eClassifiers xsi:type="ecore:EClass" name="Visualization" abstract="true"/>
@@ -40,10 +47,21 @@
           <eStructuralFeatures xsi:type="ecore:EReference" name="key" eType="#//hib/dpf/metamodel/Node"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//hib/dpf/metamodel/Node"/>
         </eClassifiers>
-        <eClassifiers xsi:type="ecore:EClass" name="EdgeConstraint">
-          <eStructuralFeatures xsi:type="ecore:EReference" name="predicate" eType="#//hib/dpf/metamodel/Predicate"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="edges" upperBound="-1"
-              eType="#//hib/dpf/metamodel/Edge"/>
+        <eClassifiers xsi:type="ecore:EClass" name="Constraint" eSuperTypes="#//hib/dpf/metamodel/GraphHomomorphism">
+          <eStructuralFeatures xsi:type="ecore:EReference" name="constrainedModelPart"
+              lowerBound="1" eType="#//hib/dpf/metamodel/Graph"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="predicateShape" lowerBound="1"
+              eType="#//hib/dpf/metamodel/Graph"/>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EClass" name="EdgeToEdgeMap" instanceClassName="java.util.Map$Entry">
+          <eStructuralFeatures xsi:type="ecore:EReference" name="key" eType="#//hib/dpf/metamodel/Edge"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//hib/dpf/metamodel/Edge"/>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EClass" name="TypingMorphism" eSuperTypes="#//hib/dpf/metamodel/GraphHomomorphism">
+          <eStructuralFeatures xsi:type="ecore:EReference" name="theModel" lowerBound="1"
+              eType="#//hib/dpf/metamodel/Graph"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="theMetamodel" lowerBound="1"
+              eType="#//hib/dpf/metamodel/Graph"/>
         </eClassifiers>
       </eSubpackages>
     </eSubpackages>
