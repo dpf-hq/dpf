@@ -102,6 +102,8 @@ public interface GraphHomomorphism extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Edge Mapping</b></em>' map.
+	 * The key is of type {@link no.hib.dpf.metamodel.Edge},
+	 * and the value is of type {@link no.hib.dpf.metamodel.Edge},
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Edge Mapping</em>' map isn't clear,
@@ -109,21 +111,10 @@ public interface GraphHomomorphism extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Edge Mapping</em>' map.
-	 * @see #setEdgeMapping(Map.Entry)
 	 * @see no.hib.dpf.metamodel.MetamodelPackage#getGraphHomomorphism_EdgeMapping()
 	 * @model mapType="no.hib.dpf.metamodel.EdgeToEdgeMap<no.hib.dpf.metamodel.Edge, no.hib.dpf.metamodel.Edge>"
 	 * @generated
 	 */
-	Map.Entry<Edge, Edge> getEdgeMapping();
-
-	/**
-	 * Sets the value of the '{@link no.hib.dpf.metamodel.GraphHomomorphism#getEdgeMapping <em>Edge Mapping</em>}' map.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Edge Mapping</em>' map.
-	 * @see #getEdgeMapping()
-	 * @generated
-	 */
-	void setEdgeMapping(Map.Entry<Edge, Edge> value);
+	EMap<Edge, Edge> getEdgeMapping();
 
 } // GraphHomomorphism

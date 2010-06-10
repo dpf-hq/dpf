@@ -38,8 +38,8 @@
           <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//hib/dpf/metamodel/Graph"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="nodeMapping" upperBound="-1"
               eType="#//hib/dpf/metamodel/NodeToNodeMap" containment="true"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="edgeMapping" eType="#//hib/dpf/metamodel/EdgeToEdgeMap"
-              containment="true"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="edgeMapping" upperBound="-1"
+              eType="#//hib/dpf/metamodel/EdgeToEdgeMap" containment="true"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Semantics"/>
         <eClassifiers xsi:type="ecore:EClass" name="Visualization" abstract="true"/>

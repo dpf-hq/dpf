@@ -82,7 +82,7 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	 * @generated
 	 * @ordered
 	 */
-	protected Map.Entry<Edge, Edge> edgeMapping;
+	protected EMap<Edge, Edge> edgeMapping;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -196,42 +196,11 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Map.Entry<Edge, Edge> getEdgeMapping() {
+	public EMap<Edge, Edge> getEdgeMapping() {
+		if (edgeMapping == null) {
+			edgeMapping = new EcoreEMap<Edge,Edge>(MetamodelPackage.Literals.EDGE_TO_EDGE_MAP, EdgeToEdgeMapImpl.class, this, MetamodelPackage.GRAPH_HOMOMORPHISM__EDGE_MAPPING);
+		}
 		return edgeMapping;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetEdgeMapping(Map.Entry<Edge, Edge> newEdgeMapping, NotificationChain msgs) {
-		Map.Entry<Edge, Edge> oldEdgeMapping = edgeMapping;
-		edgeMapping = newEdgeMapping;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MetamodelPackage.GRAPH_HOMOMORPHISM__EDGE_MAPPING, oldEdgeMapping, newEdgeMapping);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setEdgeMapping(Map.Entry<Edge, Edge> newEdgeMapping) {
-		if (newEdgeMapping != edgeMapping) {
-			NotificationChain msgs = null;
-			if (edgeMapping != null)
-				msgs = ((InternalEObject)edgeMapping).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MetamodelPackage.GRAPH_HOMOMORPHISM__EDGE_MAPPING, null, msgs);
-			if (newEdgeMapping != null)
-				msgs = ((InternalEObject)newEdgeMapping).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MetamodelPackage.GRAPH_HOMOMORPHISM__EDGE_MAPPING, null, msgs);
-			msgs = basicSetEdgeMapping(newEdgeMapping, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.GRAPH_HOMOMORPHISM__EDGE_MAPPING, newEdgeMapping, newEdgeMapping));
 	}
 
 	/**
@@ -245,7 +214,7 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 			case MetamodelPackage.GRAPH_HOMOMORPHISM__NODE_MAPPING:
 				return ((InternalEList<?>)getNodeMapping()).basicRemove(otherEnd, msgs);
 			case MetamodelPackage.GRAPH_HOMOMORPHISM__EDGE_MAPPING:
-				return basicSetEdgeMapping(null, msgs);
+				return ((InternalEList<?>)getEdgeMapping()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -268,7 +237,8 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 				if (coreType) return getNodeMapping();
 				else return getNodeMapping().map();
 			case MetamodelPackage.GRAPH_HOMOMORPHISM__EDGE_MAPPING:
-				return getEdgeMapping();
+				if (coreType) return getEdgeMapping();
+				else return getEdgeMapping().map();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -292,7 +262,7 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 				((EStructuralFeature.Setting)getNodeMapping()).set(newValue);
 				return;
 			case MetamodelPackage.GRAPH_HOMOMORPHISM__EDGE_MAPPING:
-				setEdgeMapping((Map.Entry<Edge, Edge>)newValue);
+				((EStructuralFeature.Setting)getEdgeMapping()).set(newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -316,7 +286,7 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 				getNodeMapping().clear();
 				return;
 			case MetamodelPackage.GRAPH_HOMOMORPHISM__EDGE_MAPPING:
-				setEdgeMapping((Map.Entry<Edge, Edge>)null);
+				getEdgeMapping().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -337,7 +307,7 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 			case MetamodelPackage.GRAPH_HOMOMORPHISM__NODE_MAPPING:
 				return nodeMapping != null && !nodeMapping.isEmpty();
 			case MetamodelPackage.GRAPH_HOMOMORPHISM__EDGE_MAPPING:
-				return edgeMapping != null;
+				return edgeMapping != null && !edgeMapping.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
