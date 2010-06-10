@@ -411,7 +411,7 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_855KYXSkEd-nifzTQBTeJA" x="-24" y="15"/>
     </children>
     <children xmi:type="notation:DecorationNode" xmi:id="_855xcHSkEd-nifzTQBTeJA" type="6004">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_855xcXSkEd-nifzTQBTeJA" y="60"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_855xcXSkEd-nifzTQBTeJA" x="-23" y="11"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_854jUXSkEd-nifzTQBTeJA" fontName="Sans Serif"/>
     <element xmi:type="ecore:EReference" href="Metamodel.ecore#//hib/dpf/metamodel/Graph/edges"/>
@@ -444,7 +444,7 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_xHAVtHSlEd-nifzTQBTeJA" x="-18" y="24"/>
     </children>
     <children xmi:type="notation:DecorationNode" xmi:id="_xHAVtXSlEd-nifzTQBTeJA" type="6003">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_xHAVtnSlEd-nifzTQBTeJA" x="-14" y="20"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_xHAVtnSlEd-nifzTQBTeJA" x="-19" y="20"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_xHAVsXSlEd-nifzTQBTeJA" fontName="Sans Serif"/>
     <element xmi:type="ecore:EReference" href="Metamodel.ecore#//hib/dpf/metamodel/EdgeToEdgeMap/value"/>

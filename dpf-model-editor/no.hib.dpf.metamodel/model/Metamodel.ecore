@@ -10,7 +10,7 @@
           <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" upperBound="-1"
               eType="#//hib/dpf/metamodel/Node" containment="true"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="edges" lowerBound="1"
+          <eStructuralFeatures xsi:type="ecore:EReference" name="edges" upperBound="-1"
               eType="#//hib/dpf/metamodel/Edge" containment="true"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Node">

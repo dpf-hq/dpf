@@ -74,14 +74,14 @@ public class GraphImpl extends EObjectImpl implements Graph {
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getEdges() <em>Edges</em>}' containment reference.
+	 * The cached value of the '{@link #getEdges() <em>Edges</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getEdges()
 	 * @generated
 	 * @ordered
 	 */
-	protected Edge edges;
+	protected EList<Edge> edges;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -140,42 +140,11 @@ public class GraphImpl extends EObjectImpl implements Graph {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Edge getEdges() {
+	public EList<Edge> getEdges() {
+		if (edges == null) {
+			edges = new EObjectContainmentEList<Edge>(Edge.class, this, MetamodelPackage.GRAPH__EDGES);
+		}
 		return edges;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetEdges(Edge newEdges, NotificationChain msgs) {
-		Edge oldEdges = edges;
-		edges = newEdges;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MetamodelPackage.GRAPH__EDGES, oldEdges, newEdges);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setEdges(Edge newEdges) {
-		if (newEdges != edges) {
-			NotificationChain msgs = null;
-			if (edges != null)
-				msgs = ((InternalEObject)edges).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MetamodelPackage.GRAPH__EDGES, null, msgs);
-			if (newEdges != null)
-				msgs = ((InternalEObject)newEdges).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MetamodelPackage.GRAPH__EDGES, null, msgs);
-			msgs = basicSetEdges(newEdges, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.GRAPH__EDGES, newEdges, newEdges));
 	}
 
 	/**
@@ -189,7 +158,7 @@ public class GraphImpl extends EObjectImpl implements Graph {
 			case MetamodelPackage.GRAPH__NODES:
 				return ((InternalEList<?>)getNodes()).basicRemove(otherEnd, msgs);
 			case MetamodelPackage.GRAPH__EDGES:
-				return basicSetEdges(null, msgs);
+				return ((InternalEList<?>)getEdges()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -229,7 +198,8 @@ public class GraphImpl extends EObjectImpl implements Graph {
 				setName((String)newValue);
 				return;
 			case MetamodelPackage.GRAPH__EDGES:
-				setEdges((Edge)newValue);
+				getEdges().clear();
+				getEdges().addAll((Collection<? extends Edge>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -250,7 +220,7 @@ public class GraphImpl extends EObjectImpl implements Graph {
 				setName(NAME_EDEFAULT);
 				return;
 			case MetamodelPackage.GRAPH__EDGES:
-				setEdges((Edge)null);
+				getEdges().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -269,7 +239,7 @@ public class GraphImpl extends EObjectImpl implements Graph {
 			case MetamodelPackage.GRAPH__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case MetamodelPackage.GRAPH__EDGES:
-				return edges != null;
+				return edges != null && !edges.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

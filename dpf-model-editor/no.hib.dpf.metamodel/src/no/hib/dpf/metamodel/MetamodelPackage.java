@@ -88,7 +88,7 @@ public interface MetamodelPackage extends EPackage {
 	int GRAPH__NAME = 1;
 
 	/**
-	 * The feature id for the '<em><b>Edges</b></em>' containment reference.
+	 * The feature id for the '<em><b>Edges</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -602,10 +602,10 @@ public interface MetamodelPackage extends EPackage {
 	EAttribute getGraph_Name();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link no.hib.dpf.metamodel.Graph#getEdges <em>Edges</em>}'.
+	 * Returns the meta object for the containment reference list '{@link no.hib.dpf.metamodel.Graph#getEdges <em>Edges</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Edges</em>'.
+	 * @return the meta object for the containment reference list '<em>Edges</em>'.
 	 * @see no.hib.dpf.metamodel.Graph#getEdges()
 	 * @see #getGraph()
 	 * @generated
@@ -995,7 +995,7 @@ public interface MetamodelPackage extends EPackage {
 		EAttribute GRAPH__NAME = eINSTANCE.getGraph_Name();
 
 		/**
-		 * The meta object literal for the '<em><b>Edges</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Edges</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
