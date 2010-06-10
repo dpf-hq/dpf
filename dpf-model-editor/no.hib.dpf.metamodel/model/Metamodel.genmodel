@@ -67,9 +67,9 @@
           </genClasses>
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/metamodel/TypingMorphism">
             <genFeatures notify="false" createChild="false" propertySortChoices="true"
-                ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/TypingMorphism/theModel"/>
+                ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/TypingMorphism/model"/>
             <genFeatures notify="false" createChild="false" propertySortChoices="true"
-                ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/TypingMorphism/theMetamodel"/>
+                ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/TypingMorphism/metamodel"/>
           </genClasses>
         </nestedGenPackages>
       </nestedGenPackages>

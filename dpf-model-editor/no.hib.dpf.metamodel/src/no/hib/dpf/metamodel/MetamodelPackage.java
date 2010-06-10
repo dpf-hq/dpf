@@ -542,22 +542,22 @@ public interface MetamodelPackage extends EPackage {
 	int TYPING_MORPHISM__EDGE_MAPPING = GRAPH_HOMOMORPHISM__EDGE_MAPPING;
 
 	/**
-	 * The feature id for the '<em><b>The Model</b></em>' reference.
+	 * The feature id for the '<em><b>Model</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPING_MORPHISM__THE_MODEL = GRAPH_HOMOMORPHISM_FEATURE_COUNT + 0;
+	int TYPING_MORPHISM__MODEL = GRAPH_HOMOMORPHISM_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>The Metamodel</b></em>' reference.
+	 * The feature id for the '<em><b>Metamodel</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPING_MORPHISM__THE_METAMODEL = GRAPH_HOMOMORPHISM_FEATURE_COUNT + 1;
+	int TYPING_MORPHISM__METAMODEL = GRAPH_HOMOMORPHISM_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Typing Morphism</em>' class.
@@ -925,26 +925,26 @@ public interface MetamodelPackage extends EPackage {
 	EClass getTypingMorphism();
 
 	/**
-	 * Returns the meta object for the reference '{@link no.hib.dpf.metamodel.TypingMorphism#getTheModel <em>The Model</em>}'.
+	 * Returns the meta object for the reference '{@link no.hib.dpf.metamodel.TypingMorphism#getModel <em>Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>The Model</em>'.
-	 * @see no.hib.dpf.metamodel.TypingMorphism#getTheModel()
+	 * @return the meta object for the reference '<em>Model</em>'.
+	 * @see no.hib.dpf.metamodel.TypingMorphism#getModel()
 	 * @see #getTypingMorphism()
 	 * @generated
 	 */
-	EReference getTypingMorphism_TheModel();
+	EReference getTypingMorphism_Model();
 
 	/**
-	 * Returns the meta object for the reference '{@link no.hib.dpf.metamodel.TypingMorphism#getTheMetamodel <em>The Metamodel</em>}'.
+	 * Returns the meta object for the reference '{@link no.hib.dpf.metamodel.TypingMorphism#getMetamodel <em>Metamodel</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>The Metamodel</em>'.
-	 * @see no.hib.dpf.metamodel.TypingMorphism#getTheMetamodel()
+	 * @return the meta object for the reference '<em>Metamodel</em>'.
+	 * @see no.hib.dpf.metamodel.TypingMorphism#getMetamodel()
 	 * @see #getTypingMorphism()
 	 * @generated
 	 */
-	EReference getTypingMorphism_TheMetamodel();
+	EReference getTypingMorphism_Metamodel();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1257,20 +1257,20 @@ public interface MetamodelPackage extends EPackage {
 		EClass TYPING_MORPHISM = eINSTANCE.getTypingMorphism();
 
 		/**
-		 * The meta object literal for the '<em><b>The Model</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Model</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TYPING_MORPHISM__THE_MODEL = eINSTANCE.getTypingMorphism_TheModel();
+		EReference TYPING_MORPHISM__MODEL = eINSTANCE.getTypingMorphism_Model();
 
 		/**
-		 * The meta object literal for the '<em><b>The Metamodel</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Metamodel</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TYPING_MORPHISM__THE_METAMODEL = eINSTANCE.getTypingMorphism_TheMetamodel();
+		EReference TYPING_MORPHISM__METAMODEL = eINSTANCE.getTypingMorphism_Metamodel();
 
 	}
 

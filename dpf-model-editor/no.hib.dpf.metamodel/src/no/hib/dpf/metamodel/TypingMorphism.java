@@ -15,8 +15,8 @@ package no.hib.dpf.metamodel;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link no.hib.dpf.metamodel.TypingMorphism#getTheModel <em>The Model</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.TypingMorphism#getTheMetamodel <em>The Metamodel</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.TypingMorphism#getModel <em>Model</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.TypingMorphism#getMetamodel <em>Metamodel</em>}</li>
  * </ul>
  * </p>
  *
@@ -26,55 +26,55 @@ package no.hib.dpf.metamodel;
  */
 public interface TypingMorphism extends GraphHomomorphism {
 	/**
-	 * Returns the value of the '<em><b>The Model</b></em>' reference.
+	 * Returns the value of the '<em><b>Model</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>The Model</em>' reference isn't clear,
+	 * If the meaning of the '<em>Model</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>The Model</em>' reference.
-	 * @see #setTheModel(Graph)
-	 * @see no.hib.dpf.metamodel.MetamodelPackage#getTypingMorphism_TheModel()
+	 * @return the value of the '<em>Model</em>' reference.
+	 * @see #setModel(Graph)
+	 * @see no.hib.dpf.metamodel.MetamodelPackage#getTypingMorphism_Model()
 	 * @model required="true"
 	 * @generated
 	 */
-	Graph getTheModel();
+	Graph getModel();
 
 	/**
-	 * Sets the value of the '{@link no.hib.dpf.metamodel.TypingMorphism#getTheModel <em>The Model</em>}' reference.
+	 * Sets the value of the '{@link no.hib.dpf.metamodel.TypingMorphism#getModel <em>Model</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>The Model</em>' reference.
-	 * @see #getTheModel()
+	 * @param value the new value of the '<em>Model</em>' reference.
+	 * @see #getModel()
 	 * @generated
 	 */
-	void setTheModel(Graph value);
+	void setModel(Graph value);
 
 	/**
-	 * Returns the value of the '<em><b>The Metamodel</b></em>' reference.
+	 * Returns the value of the '<em><b>Metamodel</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>The Metamodel</em>' reference isn't clear,
+	 * If the meaning of the '<em>Metamodel</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>The Metamodel</em>' reference.
-	 * @see #setTheMetamodel(Graph)
-	 * @see no.hib.dpf.metamodel.MetamodelPackage#getTypingMorphism_TheMetamodel()
+	 * @return the value of the '<em>Metamodel</em>' reference.
+	 * @see #setMetamodel(Graph)
+	 * @see no.hib.dpf.metamodel.MetamodelPackage#getTypingMorphism_Metamodel()
 	 * @model required="true"
 	 * @generated
 	 */
-	Graph getTheMetamodel();
+	Graph getMetamodel();
 
 	/**
-	 * Sets the value of the '{@link no.hib.dpf.metamodel.TypingMorphism#getTheMetamodel <em>The Metamodel</em>}' reference.
+	 * Sets the value of the '{@link no.hib.dpf.metamodel.TypingMorphism#getMetamodel <em>Metamodel</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>The Metamodel</em>' reference.
-	 * @see #getTheMetamodel()
+	 * @param value the new value of the '<em>Metamodel</em>' reference.
+	 * @see #getMetamodel()
 	 * @generated
 	 */
-	void setTheMetamodel(Graph value);
+	void setMetamodel(Graph value);
 
 } // TypingMorphism

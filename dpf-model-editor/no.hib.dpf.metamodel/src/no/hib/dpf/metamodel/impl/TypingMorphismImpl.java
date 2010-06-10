@@ -24,8 +24,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link no.hib.dpf.metamodel.impl.TypingMorphismImpl#getTheModel <em>The Model</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.impl.TypingMorphismImpl#getTheMetamodel <em>The Metamodel</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.impl.TypingMorphismImpl#getModel <em>Model</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.impl.TypingMorphismImpl#getMetamodel <em>Metamodel</em>}</li>
  * </ul>
  * </p>
  *
@@ -33,24 +33,24 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class TypingMorphismImpl extends GraphHomomorphismImpl implements TypingMorphism {
 	/**
-	 * The cached value of the '{@link #getTheModel() <em>The Model</em>}' reference.
+	 * The cached value of the '{@link #getModel() <em>Model</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTheModel()
+	 * @see #getModel()
 	 * @generated
 	 * @ordered
 	 */
-	protected Graph theModel;
+	protected Graph model;
 
 	/**
-	 * The cached value of the '{@link #getTheMetamodel() <em>The Metamodel</em>}' reference.
+	 * The cached value of the '{@link #getMetamodel() <em>Metamodel</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTheMetamodel()
+	 * @see #getMetamodel()
 	 * @generated
 	 * @ordered
 	 */
-	protected Graph theMetamodel;
+	protected Graph metamodel;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -76,16 +76,16 @@ public class TypingMorphismImpl extends GraphHomomorphismImpl implements TypingM
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Graph getTheModel() {
-		if (theModel != null && theModel.eIsProxy()) {
-			InternalEObject oldTheModel = (InternalEObject)theModel;
-			theModel = (Graph)eResolveProxy(oldTheModel);
-			if (theModel != oldTheModel) {
+	public Graph getModel() {
+		if (model != null && model.eIsProxy()) {
+			InternalEObject oldModel = (InternalEObject)model;
+			model = (Graph)eResolveProxy(oldModel);
+			if (model != oldModel) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.TYPING_MORPHISM__THE_MODEL, oldTheModel, theModel));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.TYPING_MORPHISM__MODEL, oldModel, model));
 			}
 		}
-		return theModel;
+		return model;
 	}
 
 	/**
@@ -93,8 +93,8 @@ public class TypingMorphismImpl extends GraphHomomorphismImpl implements TypingM
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Graph basicGetTheModel() {
-		return theModel;
+	public Graph basicGetModel() {
+		return model;
 	}
 
 	/**
@@ -102,11 +102,11 @@ public class TypingMorphismImpl extends GraphHomomorphismImpl implements TypingM
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTheModel(Graph newTheModel) {
-		Graph oldTheModel = theModel;
-		theModel = newTheModel;
+	public void setModel(Graph newModel) {
+		Graph oldModel = model;
+		model = newModel;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.TYPING_MORPHISM__THE_MODEL, oldTheModel, theModel));
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.TYPING_MORPHISM__MODEL, oldModel, model));
 	}
 
 	/**
@@ -114,16 +114,16 @@ public class TypingMorphismImpl extends GraphHomomorphismImpl implements TypingM
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Graph getTheMetamodel() {
-		if (theMetamodel != null && theMetamodel.eIsProxy()) {
-			InternalEObject oldTheMetamodel = (InternalEObject)theMetamodel;
-			theMetamodel = (Graph)eResolveProxy(oldTheMetamodel);
-			if (theMetamodel != oldTheMetamodel) {
+	public Graph getMetamodel() {
+		if (metamodel != null && metamodel.eIsProxy()) {
+			InternalEObject oldMetamodel = (InternalEObject)metamodel;
+			metamodel = (Graph)eResolveProxy(oldMetamodel);
+			if (metamodel != oldMetamodel) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.TYPING_MORPHISM__THE_METAMODEL, oldTheMetamodel, theMetamodel));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.TYPING_MORPHISM__METAMODEL, oldMetamodel, metamodel));
 			}
 		}
-		return theMetamodel;
+		return metamodel;
 	}
 
 	/**
@@ -131,8 +131,8 @@ public class TypingMorphismImpl extends GraphHomomorphismImpl implements TypingM
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Graph basicGetTheMetamodel() {
-		return theMetamodel;
+	public Graph basicGetMetamodel() {
+		return metamodel;
 	}
 
 	/**
@@ -140,11 +140,11 @@ public class TypingMorphismImpl extends GraphHomomorphismImpl implements TypingM
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTheMetamodel(Graph newTheMetamodel) {
-		Graph oldTheMetamodel = theMetamodel;
-		theMetamodel = newTheMetamodel;
+	public void setMetamodel(Graph newMetamodel) {
+		Graph oldMetamodel = metamodel;
+		metamodel = newMetamodel;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.TYPING_MORPHISM__THE_METAMODEL, oldTheMetamodel, theMetamodel));
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.TYPING_MORPHISM__METAMODEL, oldMetamodel, metamodel));
 	}
 
 	/**
@@ -155,12 +155,12 @@ public class TypingMorphismImpl extends GraphHomomorphismImpl implements TypingM
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MetamodelPackage.TYPING_MORPHISM__THE_MODEL:
-				if (resolve) return getTheModel();
-				return basicGetTheModel();
-			case MetamodelPackage.TYPING_MORPHISM__THE_METAMODEL:
-				if (resolve) return getTheMetamodel();
-				return basicGetTheMetamodel();
+			case MetamodelPackage.TYPING_MORPHISM__MODEL:
+				if (resolve) return getModel();
+				return basicGetModel();
+			case MetamodelPackage.TYPING_MORPHISM__METAMODEL:
+				if (resolve) return getMetamodel();
+				return basicGetMetamodel();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -173,11 +173,11 @@ public class TypingMorphismImpl extends GraphHomomorphismImpl implements TypingM
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MetamodelPackage.TYPING_MORPHISM__THE_MODEL:
-				setTheModel((Graph)newValue);
+			case MetamodelPackage.TYPING_MORPHISM__MODEL:
+				setModel((Graph)newValue);
 				return;
-			case MetamodelPackage.TYPING_MORPHISM__THE_METAMODEL:
-				setTheMetamodel((Graph)newValue);
+			case MetamodelPackage.TYPING_MORPHISM__METAMODEL:
+				setMetamodel((Graph)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -191,11 +191,11 @@ public class TypingMorphismImpl extends GraphHomomorphismImpl implements TypingM
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.TYPING_MORPHISM__THE_MODEL:
-				setTheModel((Graph)null);
+			case MetamodelPackage.TYPING_MORPHISM__MODEL:
+				setModel((Graph)null);
 				return;
-			case MetamodelPackage.TYPING_MORPHISM__THE_METAMODEL:
-				setTheMetamodel((Graph)null);
+			case MetamodelPackage.TYPING_MORPHISM__METAMODEL:
+				setMetamodel((Graph)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -209,10 +209,10 @@ public class TypingMorphismImpl extends GraphHomomorphismImpl implements TypingM
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.TYPING_MORPHISM__THE_MODEL:
-				return theModel != null;
-			case MetamodelPackage.TYPING_MORPHISM__THE_METAMODEL:
-				return theMetamodel != null;
+			case MetamodelPackage.TYPING_MORPHISM__MODEL:
+				return model != null;
+			case MetamodelPackage.TYPING_MORPHISM__METAMODEL:
+				return metamodel != null;
 		}
 		return super.eIsSet(featureID);
 	}

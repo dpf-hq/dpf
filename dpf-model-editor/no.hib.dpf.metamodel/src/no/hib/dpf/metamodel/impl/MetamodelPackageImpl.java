@@ -482,7 +482,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTypingMorphism_TheModel() {
+	public EReference getTypingMorphism_Model() {
 		return (EReference)typingMorphismEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -491,7 +491,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTypingMorphism_TheMetamodel() {
+	public EReference getTypingMorphism_Metamodel() {
 		return (EReference)typingMorphismEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -567,8 +567,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		createEReference(edgeToEdgeMapEClass, EDGE_TO_EDGE_MAP__VALUE);
 
 		typingMorphismEClass = createEClass(TYPING_MORPHISM);
-		createEReference(typingMorphismEClass, TYPING_MORPHISM__THE_MODEL);
-		createEReference(typingMorphismEClass, TYPING_MORPHISM__THE_METAMODEL);
+		createEReference(typingMorphismEClass, TYPING_MORPHISM__MODEL);
+		createEReference(typingMorphismEClass, TYPING_MORPHISM__METAMODEL);
 	}
 
 	/**
@@ -647,8 +647,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		initEReference(getEdgeToEdgeMap_Value(), this.getEdge(), null, "value", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(typingMorphismEClass, TypingMorphism.class, "TypingMorphism", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTypingMorphism_TheModel(), this.getGraph(), null, "theModel", null, 1, 1, TypingMorphism.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTypingMorphism_TheMetamodel(), this.getGraph(), null, "theMetamodel", null, 1, 1, TypingMorphism.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTypingMorphism_Model(), this.getGraph(), null, "model", null, 1, 1, TypingMorphism.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTypingMorphism_Metamodel(), this.getGraph(), null, "metamodel", null, 1, 1, TypingMorphism.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

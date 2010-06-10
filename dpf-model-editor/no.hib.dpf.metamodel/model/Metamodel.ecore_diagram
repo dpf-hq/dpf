@@ -473,7 +473,7 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_WzESYHSmEd-nifzTQBTeJA" y="60"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_WzDrUXSmEd-nifzTQBTeJA" fontName="Sans Serif"/>
-    <element xmi:type="ecore:EReference" href="Metamodel.ecore#//hib/dpf/metamodel/TypingMorphism/theModel"/>
+    <element xmi:type="ecore:EReference" href="Metamodel.ecore#//hib/dpf/metamodel/TypingMorphism/model"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_WzDrUnSmEd-nifzTQBTeJA" points="[0, 0, 247, 171]$[139, -61, 386, 110]$[140, -112, 387, 59]$[-162, -171, 85, 0]$[-236, -171, 11, 0]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ZKVrwHSmEd-nifzTQBTeJA" id="(0.7454545454545455,0.0)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ZKVrwXSmEd-nifzTQBTeJA" id="(0.819672131147541,1.0)"/>
@@ -486,7 +486,7 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_WzGHk3SmEd-nifzTQBTeJA" x="-5" y="-1"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_WzFggXSmEd-nifzTQBTeJA" fontName="Sans Serif"/>
-    <element xmi:type="ecore:EReference" href="Metamodel.ecore#//hib/dpf/metamodel/TypingMorphism/theMetamodel"/>
+    <element xmi:type="ecore:EReference" href="Metamodel.ecore#//hib/dpf/metamodel/TypingMorphism/metamodel"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_WzFggnSmEd-nifzTQBTeJA" points="[2, 0, 231, 171]$[2, -112, 231, 59]$[-174, -155, 55, 16]$[-229, -171, 0, 0]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ZKVEsHSmEd-nifzTQBTeJA" id="(0.4909090909090909,0.0)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ZKVEsXSmEd-nifzTQBTeJA" id="(0.6557377049180327,1.0)"/>
