@@ -15,6 +15,7 @@
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/metamodel/Graph">
             <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/Graph/nodes"/>
             <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//hib/dpf/metamodel/Graph/name"/>
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/Graph/edges"/>
           </genClasses>
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/metamodel/Node">
             <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//hib/dpf/metamodel/Node/name"/>
@@ -41,7 +42,8 @@
                 ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/GraphHomomorphism/source"/>
             <genFeatures notify="false" createChild="false" propertySortChoices="true"
                 ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/GraphHomomorphism/target"/>
-            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/GraphHomomorphism/typing"/>
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/GraphHomomorphism/nodeMapping"/>
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/GraphHomomorphism/edgeMapping"/>
           </genClasses>
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/metamodel/Semantics"/>
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/metamodel/Visualization"/>
@@ -50,6 +52,24 @@
                 ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/NodeToNodeMap/key"/>
             <genFeatures notify="false" createChild="false" propertySortChoices="true"
                 ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/NodeToNodeMap/value"/>
+          </genClasses>
+          <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/metamodel/Constraint">
+            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+                ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/Constraint/constrainedModelPart"/>
+            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+                ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/Constraint/predicateShape"/>
+          </genClasses>
+          <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/metamodel/EdgeToEdgeMap">
+            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+                ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/EdgeToEdgeMap/key"/>
+            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+                ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/EdgeToEdgeMap/value"/>
+          </genClasses>
+          <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/metamodel/TypingMorphism">
+            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+                ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/TypingMorphism/theModel"/>
+            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+                ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/TypingMorphism/theMetamodel"/>
           </genClasses>
         </nestedGenPackages>
       </nestedGenPackages>

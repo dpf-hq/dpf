@@ -8,6 +8,7 @@ package no.hib.dpf.metamodel.impl;
 
 import java.util.Collection;
 
+import no.hib.dpf.metamodel.Edge;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.MetamodelPackage;
 import no.hib.dpf.metamodel.Node;
@@ -35,6 +36,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link no.hib.dpf.metamodel.impl.GraphImpl#getNodes <em>Nodes</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.impl.GraphImpl#getName <em>Name</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.impl.GraphImpl#getEdges <em>Edges</em>}</li>
  * </ul>
  * </p>
  *
@@ -70,6 +72,16 @@ public class GraphImpl extends EObjectImpl implements Graph {
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getEdges() <em>Edges</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEdges()
+	 * @generated
+	 * @ordered
+	 */
+	protected Edge edges;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -128,11 +140,56 @@ public class GraphImpl extends EObjectImpl implements Graph {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Edge getEdges() {
+		return edges;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetEdges(Edge newEdges, NotificationChain msgs) {
+		Edge oldEdges = edges;
+		edges = newEdges;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MetamodelPackage.GRAPH__EDGES, oldEdges, newEdges);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setEdges(Edge newEdges) {
+		if (newEdges != edges) {
+			NotificationChain msgs = null;
+			if (edges != null)
+				msgs = ((InternalEObject)edges).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MetamodelPackage.GRAPH__EDGES, null, msgs);
+			if (newEdges != null)
+				msgs = ((InternalEObject)newEdges).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MetamodelPackage.GRAPH__EDGES, null, msgs);
+			msgs = basicSetEdges(newEdges, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.GRAPH__EDGES, newEdges, newEdges));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case MetamodelPackage.GRAPH__NODES:
 				return ((InternalEList<?>)getNodes()).basicRemove(otherEnd, msgs);
+			case MetamodelPackage.GRAPH__EDGES:
+				return basicSetEdges(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -149,6 +206,8 @@ public class GraphImpl extends EObjectImpl implements Graph {
 				return getNodes();
 			case MetamodelPackage.GRAPH__NAME:
 				return getName();
+			case MetamodelPackage.GRAPH__EDGES:
+				return getEdges();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -169,6 +228,9 @@ public class GraphImpl extends EObjectImpl implements Graph {
 			case MetamodelPackage.GRAPH__NAME:
 				setName((String)newValue);
 				return;
+			case MetamodelPackage.GRAPH__EDGES:
+				setEdges((Edge)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -187,6 +249,9 @@ public class GraphImpl extends EObjectImpl implements Graph {
 			case MetamodelPackage.GRAPH__NAME:
 				setName(NAME_EDEFAULT);
 				return;
+			case MetamodelPackage.GRAPH__EDGES:
+				setEdges((Edge)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -203,6 +268,8 @@ public class GraphImpl extends EObjectImpl implements Graph {
 				return nodes != null && !nodes.isEmpty();
 			case MetamodelPackage.GRAPH__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case MetamodelPackage.GRAPH__EDGES:
+				return edges != null;
 		}
 		return super.eIsSet(featureID);
 	}

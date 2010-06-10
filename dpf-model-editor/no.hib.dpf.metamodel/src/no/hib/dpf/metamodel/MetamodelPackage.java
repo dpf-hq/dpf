@@ -88,13 +88,22 @@ public interface MetamodelPackage extends EPackage {
 	int GRAPH__NAME = 1;
 
 	/**
+	 * The feature id for the '<em><b>Edges</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPH__EDGES = 2;
+
+	/**
 	 * The number of structural features of the '<em>Graph</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPH_FEATURE_COUNT = 2;
+	int GRAPH_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.NodeImpl <em>Node</em>}' class.
@@ -218,7 +227,7 @@ public interface MetamodelPackage extends EPackage {
 	int PREDICATE__SHAPE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Semantics</b></em>' reference.
+	 * The feature id for the '<em><b>Semantics</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -227,7 +236,7 @@ public interface MetamodelPackage extends EPackage {
 	int PREDICATE__SEMANTICS = 1;
 
 	/**
-	 * The feature id for the '<em><b>Visualization</b></em>' reference.
+	 * The feature id for the '<em><b>Visualization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -273,13 +282,22 @@ public interface MetamodelPackage extends EPackage {
 	int GRAPH_HOMOMORPHISM__TARGET = 1;
 
 	/**
-	 * The feature id for the '<em><b>Typing</b></em>' map.
+	 * The feature id for the '<em><b>Node Mapping</b></em>' map.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPH_HOMOMORPHISM__TYPING = 2;
+	int GRAPH_HOMOMORPHISM__NODE_MAPPING = 2;
+
+	/**
+	 * The feature id for the '<em><b>Edge Mapping</b></em>' map.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPH_HOMOMORPHISM__EDGE_MAPPING = 3;
 
 	/**
 	 * The number of structural features of the '<em>Graph Homomorphism</em>' class.
@@ -288,7 +306,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPH_HOMOMORPHISM_FEATURE_COUNT = 3;
+	int GRAPH_HOMOMORPHISM_FEATURE_COUNT = 4;
 
 	/**
 	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.SemanticsImpl <em>Semantics</em>}' class.
@@ -368,6 +386,190 @@ public interface MetamodelPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.ConstraintImpl <em>Constraint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.impl.ConstraintImpl
+	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getConstraint()
+	 * @generated
+	 */
+	int CONSTRAINT = 9;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__SOURCE = GRAPH_HOMOMORPHISM__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__TARGET = GRAPH_HOMOMORPHISM__TARGET;
+
+	/**
+	 * The feature id for the '<em><b>Node Mapping</b></em>' map.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__NODE_MAPPING = GRAPH_HOMOMORPHISM__NODE_MAPPING;
+
+	/**
+	 * The feature id for the '<em><b>Edge Mapping</b></em>' map.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__EDGE_MAPPING = GRAPH_HOMOMORPHISM__EDGE_MAPPING;
+
+	/**
+	 * The feature id for the '<em><b>Constrained Model Part</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__CONSTRAINED_MODEL_PART = GRAPH_HOMOMORPHISM_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Predicate Shape</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__PREDICATE_SHAPE = GRAPH_HOMOMORPHISM_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT_FEATURE_COUNT = GRAPH_HOMOMORPHISM_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.EdgeToEdgeMapImpl <em>Edge To Edge Map</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.impl.EdgeToEdgeMapImpl
+	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getEdgeToEdgeMap()
+	 * @generated
+	 */
+	int EDGE_TO_EDGE_MAP = 10;
+
+	/**
+	 * The feature id for the '<em><b>Key</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDGE_TO_EDGE_MAP__KEY = 0;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDGE_TO_EDGE_MAP__VALUE = 1;
+
+	/**
+	 * The number of structural features of the '<em>Edge To Edge Map</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDGE_TO_EDGE_MAP_FEATURE_COUNT = 2;
+
+	/**
+	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.TypingMorphismImpl <em>Typing Morphism</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.impl.TypingMorphismImpl
+	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getTypingMorphism()
+	 * @generated
+	 */
+	int TYPING_MORPHISM = 11;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPING_MORPHISM__SOURCE = GRAPH_HOMOMORPHISM__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPING_MORPHISM__TARGET = GRAPH_HOMOMORPHISM__TARGET;
+
+	/**
+	 * The feature id for the '<em><b>Node Mapping</b></em>' map.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPING_MORPHISM__NODE_MAPPING = GRAPH_HOMOMORPHISM__NODE_MAPPING;
+
+	/**
+	 * The feature id for the '<em><b>Edge Mapping</b></em>' map.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPING_MORPHISM__EDGE_MAPPING = GRAPH_HOMOMORPHISM__EDGE_MAPPING;
+
+	/**
+	 * The feature id for the '<em><b>The Model</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPING_MORPHISM__THE_MODEL = GRAPH_HOMOMORPHISM_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>The Metamodel</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPING_MORPHISM__THE_METAMODEL = GRAPH_HOMOMORPHISM_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Typing Morphism</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPING_MORPHISM_FEATURE_COUNT = GRAPH_HOMOMORPHISM_FEATURE_COUNT + 2;
+
+
+	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.metamodel.Graph <em>Graph</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -398,6 +600,17 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getGraph_Name();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link no.hib.dpf.metamodel.Graph#getEdges <em>Edges</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Edges</em>'.
+	 * @see no.hib.dpf.metamodel.Graph#getEdges()
+	 * @see #getGraph()
+	 * @generated
+	 */
+	EReference getGraph_Edges();
 
 	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.metamodel.Node <em>Node</em>}'.
@@ -506,10 +719,10 @@ public interface MetamodelPackage extends EPackage {
 	EReference getPredicate_Shape();
 
 	/**
-	 * Returns the meta object for the reference '{@link no.hib.dpf.metamodel.Predicate#getSemantics <em>Semantics</em>}'.
+	 * Returns the meta object for the reference list '{@link no.hib.dpf.metamodel.Predicate#getSemantics <em>Semantics</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Semantics</em>'.
+	 * @return the meta object for the reference list '<em>Semantics</em>'.
 	 * @see no.hib.dpf.metamodel.Predicate#getSemantics()
 	 * @see #getPredicate()
 	 * @generated
@@ -517,10 +730,10 @@ public interface MetamodelPackage extends EPackage {
 	EReference getPredicate_Semantics();
 
 	/**
-	 * Returns the meta object for the reference '{@link no.hib.dpf.metamodel.Predicate#getVisualization <em>Visualization</em>}'.
+	 * Returns the meta object for the reference list '{@link no.hib.dpf.metamodel.Predicate#getVisualization <em>Visualization</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Visualization</em>'.
+	 * @return the meta object for the reference list '<em>Visualization</em>'.
 	 * @see no.hib.dpf.metamodel.Predicate#getVisualization()
 	 * @see #getPredicate()
 	 * @generated
@@ -560,15 +773,26 @@ public interface MetamodelPackage extends EPackage {
 	EReference getGraphHomomorphism_Target();
 
 	/**
-	 * Returns the meta object for the map '{@link no.hib.dpf.metamodel.GraphHomomorphism#getTyping <em>Typing</em>}'.
+	 * Returns the meta object for the map '{@link no.hib.dpf.metamodel.GraphHomomorphism#getNodeMapping <em>Node Mapping</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the map '<em>Typing</em>'.
-	 * @see no.hib.dpf.metamodel.GraphHomomorphism#getTyping()
+	 * @return the meta object for the map '<em>Node Mapping</em>'.
+	 * @see no.hib.dpf.metamodel.GraphHomomorphism#getNodeMapping()
 	 * @see #getGraphHomomorphism()
 	 * @generated
 	 */
-	EReference getGraphHomomorphism_Typing();
+	EReference getGraphHomomorphism_NodeMapping();
+
+	/**
+	 * Returns the meta object for the map '{@link no.hib.dpf.metamodel.GraphHomomorphism#getEdgeMapping <em>Edge Mapping</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the map '<em>Edge Mapping</em>'.
+	 * @see no.hib.dpf.metamodel.GraphHomomorphism#getEdgeMapping()
+	 * @see #getGraphHomomorphism()
+	 * @generated
+	 */
+	EReference getGraphHomomorphism_EdgeMapping();
 
 	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.metamodel.Semantics <em>Semantics</em>}'.
@@ -625,6 +849,104 @@ public interface MetamodelPackage extends EPackage {
 	EReference getNodeToNodeMap_Value();
 
 	/**
+	 * Returns the meta object for class '{@link no.hib.dpf.metamodel.Constraint <em>Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Constraint</em>'.
+	 * @see no.hib.dpf.metamodel.Constraint
+	 * @generated
+	 */
+	EClass getConstraint();
+
+	/**
+	 * Returns the meta object for the reference '{@link no.hib.dpf.metamodel.Constraint#getConstrainedModelPart <em>Constrained Model Part</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Constrained Model Part</em>'.
+	 * @see no.hib.dpf.metamodel.Constraint#getConstrainedModelPart()
+	 * @see #getConstraint()
+	 * @generated
+	 */
+	EReference getConstraint_ConstrainedModelPart();
+
+	/**
+	 * Returns the meta object for the reference '{@link no.hib.dpf.metamodel.Constraint#getPredicateShape <em>Predicate Shape</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Predicate Shape</em>'.
+	 * @see no.hib.dpf.metamodel.Constraint#getPredicateShape()
+	 * @see #getConstraint()
+	 * @generated
+	 */
+	EReference getConstraint_PredicateShape();
+
+	/**
+	 * Returns the meta object for class '{@link java.util.Map.Entry <em>Edge To Edge Map</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Edge To Edge Map</em>'.
+	 * @see java.util.Map.Entry
+	 * @model keyType="no.hib.dpf.metamodel.Edge"
+	 *        valueType="no.hib.dpf.metamodel.Edge"
+	 * @generated
+	 */
+	EClass getEdgeToEdgeMap();
+
+	/**
+	 * Returns the meta object for the reference '{@link java.util.Map.Entry <em>Key</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Key</em>'.
+	 * @see java.util.Map.Entry
+	 * @see #getEdgeToEdgeMap()
+	 * @generated
+	 */
+	EReference getEdgeToEdgeMap_Key();
+
+	/**
+	 * Returns the meta object for the reference '{@link java.util.Map.Entry <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Value</em>'.
+	 * @see java.util.Map.Entry
+	 * @see #getEdgeToEdgeMap()
+	 * @generated
+	 */
+	EReference getEdgeToEdgeMap_Value();
+
+	/**
+	 * Returns the meta object for class '{@link no.hib.dpf.metamodel.TypingMorphism <em>Typing Morphism</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Typing Morphism</em>'.
+	 * @see no.hib.dpf.metamodel.TypingMorphism
+	 * @generated
+	 */
+	EClass getTypingMorphism();
+
+	/**
+	 * Returns the meta object for the reference '{@link no.hib.dpf.metamodel.TypingMorphism#getTheModel <em>The Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>The Model</em>'.
+	 * @see no.hib.dpf.metamodel.TypingMorphism#getTheModel()
+	 * @see #getTypingMorphism()
+	 * @generated
+	 */
+	EReference getTypingMorphism_TheModel();
+
+	/**
+	 * Returns the meta object for the reference '{@link no.hib.dpf.metamodel.TypingMorphism#getTheMetamodel <em>The Metamodel</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>The Metamodel</em>'.
+	 * @see no.hib.dpf.metamodel.TypingMorphism#getTheMetamodel()
+	 * @see #getTypingMorphism()
+	 * @generated
+	 */
+	EReference getTypingMorphism_TheMetamodel();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -671,6 +993,14 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute GRAPH__NAME = eINSTANCE.getGraph_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Edges</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GRAPH__EDGES = eINSTANCE.getGraph_Edges();
 
 		/**
 		 * The meta object literal for the '{@link no.hib.dpf.metamodel.impl.NodeImpl <em>Node</em>}' class.
@@ -761,7 +1091,7 @@ public interface MetamodelPackage extends EPackage {
 		EReference PREDICATE__SHAPE = eINSTANCE.getPredicate_Shape();
 
 		/**
-		 * The meta object literal for the '<em><b>Semantics</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Semantics</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -769,7 +1099,7 @@ public interface MetamodelPackage extends EPackage {
 		EReference PREDICATE__SEMANTICS = eINSTANCE.getPredicate_Semantics();
 
 		/**
-		 * The meta object literal for the '<em><b>Visualization</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Visualization</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -803,12 +1133,20 @@ public interface MetamodelPackage extends EPackage {
 		EReference GRAPH_HOMOMORPHISM__TARGET = eINSTANCE.getGraphHomomorphism_Target();
 
 		/**
-		 * The meta object literal for the '<em><b>Typing</b></em>' map feature.
+		 * The meta object literal for the '<em><b>Node Mapping</b></em>' map feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference GRAPH_HOMOMORPHISM__TYPING = eINSTANCE.getGraphHomomorphism_Typing();
+		EReference GRAPH_HOMOMORPHISM__NODE_MAPPING = eINSTANCE.getGraphHomomorphism_NodeMapping();
+
+		/**
+		 * The meta object literal for the '<em><b>Edge Mapping</b></em>' map feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GRAPH_HOMOMORPHISM__EDGE_MAPPING = eINSTANCE.getGraphHomomorphism_EdgeMapping();
 
 		/**
 		 * The meta object literal for the '{@link no.hib.dpf.metamodel.impl.SemanticsImpl <em>Semantics</em>}' class.
@@ -855,6 +1193,84 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference NODE_TO_NODE_MAP__VALUE = eINSTANCE.getNodeToNodeMap_Value();
+
+		/**
+		 * The meta object literal for the '{@link no.hib.dpf.metamodel.impl.ConstraintImpl <em>Constraint</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see no.hib.dpf.metamodel.impl.ConstraintImpl
+		 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getConstraint()
+		 * @generated
+		 */
+		EClass CONSTRAINT = eINSTANCE.getConstraint();
+
+		/**
+		 * The meta object literal for the '<em><b>Constrained Model Part</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONSTRAINT__CONSTRAINED_MODEL_PART = eINSTANCE.getConstraint_ConstrainedModelPart();
+
+		/**
+		 * The meta object literal for the '<em><b>Predicate Shape</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONSTRAINT__PREDICATE_SHAPE = eINSTANCE.getConstraint_PredicateShape();
+
+		/**
+		 * The meta object literal for the '{@link no.hib.dpf.metamodel.impl.EdgeToEdgeMapImpl <em>Edge To Edge Map</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see no.hib.dpf.metamodel.impl.EdgeToEdgeMapImpl
+		 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getEdgeToEdgeMap()
+		 * @generated
+		 */
+		EClass EDGE_TO_EDGE_MAP = eINSTANCE.getEdgeToEdgeMap();
+
+		/**
+		 * The meta object literal for the '<em><b>Key</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EDGE_TO_EDGE_MAP__KEY = eINSTANCE.getEdgeToEdgeMap_Key();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EDGE_TO_EDGE_MAP__VALUE = eINSTANCE.getEdgeToEdgeMap_Value();
+
+		/**
+		 * The meta object literal for the '{@link no.hib.dpf.metamodel.impl.TypingMorphismImpl <em>Typing Morphism</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see no.hib.dpf.metamodel.impl.TypingMorphismImpl
+		 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getTypingMorphism()
+		 * @generated
+		 */
+		EClass TYPING_MORPHISM = eINSTANCE.getTypingMorphism();
+
+		/**
+		 * The meta object literal for the '<em><b>The Model</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TYPING_MORPHISM__THE_MODEL = eINSTANCE.getTypingMorphism_TheModel();
+
+		/**
+		 * The meta object literal for the '<em><b>The Metamodel</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TYPING_MORPHISM__THE_METAMODEL = eINSTANCE.getTypingMorphism_TheMetamodel();
 
 	}
 

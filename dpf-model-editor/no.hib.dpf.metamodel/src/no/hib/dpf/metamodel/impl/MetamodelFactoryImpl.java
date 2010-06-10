@@ -69,6 +69,9 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 			case MetamodelPackage.GRAPH_HOMOMORPHISM: return createGraphHomomorphism();
 			case MetamodelPackage.SEMANTICS: return createSemantics();
 			case MetamodelPackage.NODE_TO_NODE_MAP: return (EObject)createNodeToNodeMap();
+			case MetamodelPackage.CONSTRAINT: return createConstraint();
+			case MetamodelPackage.EDGE_TO_EDGE_MAP: return (EObject)createEdgeToEdgeMap();
+			case MetamodelPackage.TYPING_MORPHISM: return createTypingMorphism();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -152,6 +155,36 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	public Map.Entry<Node, Node> createNodeToNodeMap() {
 		NodeToNodeMapImpl nodeToNodeMap = new NodeToNodeMapImpl();
 		return nodeToNodeMap;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Constraint createConstraint() {
+		ConstraintImpl constraint = new ConstraintImpl();
+		return constraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Map.Entry<Edge, Edge> createEdgeToEdgeMap() {
+		EdgeToEdgeMapImpl edgeToEdgeMap = new EdgeToEdgeMapImpl();
+		return edgeToEdgeMap;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TypingMorphism createTypingMorphism() {
+		TypingMorphismImpl typingMorphism = new TypingMorphismImpl();
+		return typingMorphism;
 	}
 
 	/**

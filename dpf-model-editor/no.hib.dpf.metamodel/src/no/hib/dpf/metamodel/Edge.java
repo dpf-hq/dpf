@@ -64,7 +64,7 @@ public interface Edge extends EObject {
 	 * @return the value of the '<em>Target</em>' reference.
 	 * @see #setTarget(Node)
 	 * @see no.hib.dpf.metamodel.MetamodelPackage#getEdge_Target()
-	 * @model
+	 * @model required="true"
 	 * @generated
 	 */
 	Node getTarget();

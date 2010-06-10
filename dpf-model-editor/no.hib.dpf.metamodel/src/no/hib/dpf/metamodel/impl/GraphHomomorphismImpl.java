@@ -8,6 +8,7 @@ package no.hib.dpf.metamodel.impl;
 
 import java.util.Map;
 
+import no.hib.dpf.metamodel.Edge;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.GraphHomomorphism;
 import no.hib.dpf.metamodel.MetamodelPackage;
@@ -35,7 +36,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link no.hib.dpf.metamodel.impl.GraphHomomorphismImpl#getSource <em>Source</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.impl.GraphHomomorphismImpl#getTarget <em>Target</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.impl.GraphHomomorphismImpl#getTyping <em>Typing</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.impl.GraphHomomorphismImpl#getNodeMapping <em>Node Mapping</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.impl.GraphHomomorphismImpl#getEdgeMapping <em>Edge Mapping</em>}</li>
  * </ul>
  * </p>
  *
@@ -63,14 +65,24 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	protected Graph target;
 
 	/**
-	 * The cached value of the '{@link #getTyping() <em>Typing</em>}' map.
+	 * The cached value of the '{@link #getNodeMapping() <em>Node Mapping</em>}' map.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTyping()
+	 * @see #getNodeMapping()
 	 * @generated
 	 * @ordered
 	 */
-	protected EMap<Node, Node> typing;
+	protected EMap<Node, Node> nodeMapping;
+
+	/**
+	 * The cached value of the '{@link #getEdgeMapping() <em>Edge Mapping</em>}' map.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEdgeMapping()
+	 * @generated
+	 * @ordered
+	 */
+	protected Map.Entry<Edge, Edge> edgeMapping;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -172,11 +184,54 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EMap<Node, Node> getTyping() {
-		if (typing == null) {
-			typing = new EcoreEMap<Node,Node>(MetamodelPackage.Literals.NODE_TO_NODE_MAP, NodeToNodeMapImpl.class, this, MetamodelPackage.GRAPH_HOMOMORPHISM__TYPING);
+	public EMap<Node, Node> getNodeMapping() {
+		if (nodeMapping == null) {
+			nodeMapping = new EcoreEMap<Node,Node>(MetamodelPackage.Literals.NODE_TO_NODE_MAP, NodeToNodeMapImpl.class, this, MetamodelPackage.GRAPH_HOMOMORPHISM__NODE_MAPPING);
 		}
-		return typing;
+		return nodeMapping;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Map.Entry<Edge, Edge> getEdgeMapping() {
+		return edgeMapping;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetEdgeMapping(Map.Entry<Edge, Edge> newEdgeMapping, NotificationChain msgs) {
+		Map.Entry<Edge, Edge> oldEdgeMapping = edgeMapping;
+		edgeMapping = newEdgeMapping;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MetamodelPackage.GRAPH_HOMOMORPHISM__EDGE_MAPPING, oldEdgeMapping, newEdgeMapping);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setEdgeMapping(Map.Entry<Edge, Edge> newEdgeMapping) {
+		if (newEdgeMapping != edgeMapping) {
+			NotificationChain msgs = null;
+			if (edgeMapping != null)
+				msgs = ((InternalEObject)edgeMapping).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MetamodelPackage.GRAPH_HOMOMORPHISM__EDGE_MAPPING, null, msgs);
+			if (newEdgeMapping != null)
+				msgs = ((InternalEObject)newEdgeMapping).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MetamodelPackage.GRAPH_HOMOMORPHISM__EDGE_MAPPING, null, msgs);
+			msgs = basicSetEdgeMapping(newEdgeMapping, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.GRAPH_HOMOMORPHISM__EDGE_MAPPING, newEdgeMapping, newEdgeMapping));
 	}
 
 	/**
@@ -187,8 +242,10 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MetamodelPackage.GRAPH_HOMOMORPHISM__TYPING:
-				return ((InternalEList<?>)getTyping()).basicRemove(otherEnd, msgs);
+			case MetamodelPackage.GRAPH_HOMOMORPHISM__NODE_MAPPING:
+				return ((InternalEList<?>)getNodeMapping()).basicRemove(otherEnd, msgs);
+			case MetamodelPackage.GRAPH_HOMOMORPHISM__EDGE_MAPPING:
+				return basicSetEdgeMapping(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -207,9 +264,11 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 			case MetamodelPackage.GRAPH_HOMOMORPHISM__TARGET:
 				if (resolve) return getTarget();
 				return basicGetTarget();
-			case MetamodelPackage.GRAPH_HOMOMORPHISM__TYPING:
-				if (coreType) return getTyping();
-				else return getTyping().map();
+			case MetamodelPackage.GRAPH_HOMOMORPHISM__NODE_MAPPING:
+				if (coreType) return getNodeMapping();
+				else return getNodeMapping().map();
+			case MetamodelPackage.GRAPH_HOMOMORPHISM__EDGE_MAPPING:
+				return getEdgeMapping();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -219,6 +278,7 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -228,8 +288,11 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 			case MetamodelPackage.GRAPH_HOMOMORPHISM__TARGET:
 				setTarget((Graph)newValue);
 				return;
-			case MetamodelPackage.GRAPH_HOMOMORPHISM__TYPING:
-				((EStructuralFeature.Setting)getTyping()).set(newValue);
+			case MetamodelPackage.GRAPH_HOMOMORPHISM__NODE_MAPPING:
+				((EStructuralFeature.Setting)getNodeMapping()).set(newValue);
+				return;
+			case MetamodelPackage.GRAPH_HOMOMORPHISM__EDGE_MAPPING:
+				setEdgeMapping((Map.Entry<Edge, Edge>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -249,8 +312,11 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 			case MetamodelPackage.GRAPH_HOMOMORPHISM__TARGET:
 				setTarget((Graph)null);
 				return;
-			case MetamodelPackage.GRAPH_HOMOMORPHISM__TYPING:
-				getTyping().clear();
+			case MetamodelPackage.GRAPH_HOMOMORPHISM__NODE_MAPPING:
+				getNodeMapping().clear();
+				return;
+			case MetamodelPackage.GRAPH_HOMOMORPHISM__EDGE_MAPPING:
+				setEdgeMapping((Map.Entry<Edge, Edge>)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -268,8 +334,10 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 				return source != null;
 			case MetamodelPackage.GRAPH_HOMOMORPHISM__TARGET:
 				return target != null;
-			case MetamodelPackage.GRAPH_HOMOMORPHISM__TYPING:
-				return typing != null && !typing.isEmpty();
+			case MetamodelPackage.GRAPH_HOMOMORPHISM__NODE_MAPPING:
+				return nodeMapping != null && !nodeMapping.isEmpty();
+			case MetamodelPackage.GRAPH_HOMOMORPHISM__EDGE_MAPPING:
+				return edgeMapping != null;
 		}
 		return super.eIsSet(featureID);
 	}

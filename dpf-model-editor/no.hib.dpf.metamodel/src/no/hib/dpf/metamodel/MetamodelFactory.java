@@ -89,6 +89,24 @@ public interface MetamodelFactory extends EFactory {
 	Semantics createSemantics();
 
 	/**
+	 * Returns a new object of class '<em>Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Constraint</em>'.
+	 * @generated
+	 */
+	Constraint createConstraint();
+
+	/**
+	 * Returns a new object of class '<em>Typing Morphism</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Typing Morphism</em>'.
+	 * @generated
+	 */
+	TypingMorphism createTypingMorphism();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

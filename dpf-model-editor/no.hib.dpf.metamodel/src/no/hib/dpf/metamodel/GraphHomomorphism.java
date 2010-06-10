@@ -21,7 +21,8 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link no.hib.dpf.metamodel.GraphHomomorphism#getSource <em>Source</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.GraphHomomorphism#getTarget <em>Target</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.GraphHomomorphism#getTyping <em>Typing</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.GraphHomomorphism#getNodeMapping <em>Node Mapping</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.GraphHomomorphism#getEdgeMapping <em>Edge Mapping</em>}</li>
  * </ul>
  * </p>
  *
@@ -83,20 +84,46 @@ public interface GraphHomomorphism extends EObject {
 	void setTarget(Graph value);
 
 	/**
-	 * Returns the value of the '<em><b>Typing</b></em>' map.
+	 * Returns the value of the '<em><b>Node Mapping</b></em>' map.
 	 * The key is of type {@link no.hib.dpf.metamodel.Node},
 	 * and the value is of type {@link no.hib.dpf.metamodel.Node},
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Typing</em>' map isn't clear,
+	 * If the meaning of the '<em>Node Mapping</em>' map isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Typing</em>' map.
-	 * @see no.hib.dpf.metamodel.MetamodelPackage#getGraphHomomorphism_Typing()
+	 * @return the value of the '<em>Node Mapping</em>' map.
+	 * @see no.hib.dpf.metamodel.MetamodelPackage#getGraphHomomorphism_NodeMapping()
 	 * @model mapType="no.hib.dpf.metamodel.NodeToNodeMap<no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Node>"
 	 * @generated
 	 */
-	EMap<Node, Node> getTyping();
+	EMap<Node, Node> getNodeMapping();
+
+	/**
+	 * Returns the value of the '<em><b>Edge Mapping</b></em>' map.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Edge Mapping</em>' map isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Edge Mapping</em>' map.
+	 * @see #setEdgeMapping(Map.Entry)
+	 * @see no.hib.dpf.metamodel.MetamodelPackage#getGraphHomomorphism_EdgeMapping()
+	 * @model mapType="no.hib.dpf.metamodel.EdgeToEdgeMap<no.hib.dpf.metamodel.Edge, no.hib.dpf.metamodel.Edge>"
+	 * @generated
+	 */
+	Map.Entry<Edge, Edge> getEdgeMapping();
+
+	/**
+	 * Sets the value of the '{@link no.hib.dpf.metamodel.GraphHomomorphism#getEdgeMapping <em>Edge Mapping</em>}' map.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Edge Mapping</em>' map.
+	 * @see #getEdgeMapping()
+	 * @generated
+	 */
+	void setEdgeMapping(Map.Entry<Edge, Edge> value);
 
 } // GraphHomomorphism
