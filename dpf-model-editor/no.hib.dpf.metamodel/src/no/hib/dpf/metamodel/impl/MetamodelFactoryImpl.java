@@ -66,7 +66,6 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 			case MetamodelPackage.EDGE: return createEdge();
 			case MetamodelPackage.SIGNATURE: return createSignature();
 			case MetamodelPackage.PREDICATE: return createPredicate();
-			case MetamodelPackage.GRAPH_HOMOMORPHISM: return createGraphHomomorphism();
 			case MetamodelPackage.SEMANTICS: return createSemantics();
 			case MetamodelPackage.NODE_TO_NODE_MAP: return (EObject)createNodeToNodeMap();
 			case MetamodelPackage.CONSTRAINT: return createConstraint();
@@ -125,16 +124,6 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	public Predicate createPredicate() {
 		PredicateImpl predicate = new PredicateImpl();
 		return predicate;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public GraphHomomorphism createGraphHomomorphism() {
-		GraphHomomorphismImpl graphHomomorphism = new GraphHomomorphismImpl();
-		return graphHomomorphism;
 	}
 
 	/**

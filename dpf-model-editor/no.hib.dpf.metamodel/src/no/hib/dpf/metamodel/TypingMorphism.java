@@ -6,6 +6,8 @@
  */
 package no.hib.dpf.metamodel;
 
+import org.eclipse.emf.ecore.EObject;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -24,7 +26,7 @@ package no.hib.dpf.metamodel;
  * @model
  * @generated
  */
-public interface TypingMorphism extends GraphHomomorphism {
+public interface TypingMorphism extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Model</b></em>' reference.
 	 * <!-- begin-user-doc -->

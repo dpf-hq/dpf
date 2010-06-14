@@ -71,15 +71,6 @@ public interface MetamodelFactory extends EFactory {
 	Predicate createPredicate();
 
 	/**
-	 * Returns a new object of class '<em>Graph Homomorphism</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Graph Homomorphism</em>'.
-	 * @generated
-	 */
-	GraphHomomorphism createGraphHomomorphism();
-
-	/**
 	 * Returns a new object of class '<em>Semantics</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

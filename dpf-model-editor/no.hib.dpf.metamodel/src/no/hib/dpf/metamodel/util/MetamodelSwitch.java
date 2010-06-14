@@ -118,12 +118,6 @@ public class MetamodelSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.GRAPH_HOMOMORPHISM: {
-				GraphHomomorphism graphHomomorphism = (GraphHomomorphism)theEObject;
-				T result = caseGraphHomomorphism(graphHomomorphism);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case MetamodelPackage.SEMANTICS: {
 				Semantics semantics = (Semantics)theEObject;
 				T result = caseSemantics(semantics);
@@ -145,7 +139,6 @@ public class MetamodelSwitch<T> {
 			case MetamodelPackage.CONSTRAINT: {
 				Constraint constraint = (Constraint)theEObject;
 				T result = caseConstraint(constraint);
-				if (result == null) result = caseGraphHomomorphism(constraint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -158,7 +151,6 @@ public class MetamodelSwitch<T> {
 			case MetamodelPackage.TYPING_MORPHISM: {
 				TypingMorphism typingMorphism = (TypingMorphism)theEObject;
 				T result = caseTypingMorphism(typingMorphism);
-				if (result == null) result = caseGraphHomomorphism(typingMorphism);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -238,21 +230,6 @@ public class MetamodelSwitch<T> {
 	 * @generated
 	 */
 	public T casePredicate(Predicate object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Graph Homomorphism</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Graph Homomorphism</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseGraphHomomorphism(GraphHomomorphism object) {
 		return null;
 	}
 
