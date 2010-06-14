@@ -10,6 +10,7 @@ import java.util.Map;
 import no.hib.dpf.metamodel.Constraint;
 import no.hib.dpf.metamodel.Edge;
 import no.hib.dpf.metamodel.Graph;
+import no.hib.dpf.metamodel.GraphHomomorphism;
 import no.hib.dpf.metamodel.MetamodelPackage;
 
 import no.hib.dpf.metamodel.Node;
@@ -32,8 +33,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <ul>
  *   <li>{@link no.hib.dpf.metamodel.impl.ConstraintImpl#getConstrainedModel <em>Constrained Model</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.impl.ConstraintImpl#getPredicate <em>Predicate</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.impl.ConstraintImpl#getEdgeMappings <em>Edge Mappings</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.impl.ConstraintImpl#getNodeMappings <em>Node Mappings</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.impl.ConstraintImpl#getMappings <em>Mappings</em>}</li>
  * </ul>
  * </p>
  *
@@ -61,24 +61,14 @@ public class ConstraintImpl extends EObjectImpl implements Constraint {
 	protected Predicate predicate;
 
 	/**
-	 * The cached value of the '{@link #getEdgeMappings() <em>Edge Mappings</em>}' reference.
+	 * The cached value of the '{@link #getMappings() <em>Mappings</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getEdgeMappings()
+	 * @see #getMappings()
 	 * @generated
 	 * @ordered
 	 */
-	protected Map.Entry<Edge, Edge> edgeMappings;
-
-	/**
-	 * The cached value of the '{@link #getNodeMappings() <em>Node Mappings</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNodeMappings()
-	 * @generated
-	 * @ordered
-	 */
-	protected Map.Entry<Node, Node> nodeMappings;
+	protected GraphHomomorphism mappings;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -180,17 +170,16 @@ public class ConstraintImpl extends EObjectImpl implements Constraint {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
-	public Map.Entry<Edge, Edge> getEdgeMappings() {
-		if (edgeMappings != null && ((EObject)edgeMappings).eIsProxy()) {
-			InternalEObject oldEdgeMappings = (InternalEObject)edgeMappings;
-			edgeMappings = (Map.Entry<Edge, Edge>)eResolveProxy(oldEdgeMappings);
-			if (edgeMappings != oldEdgeMappings) {
+	public GraphHomomorphism getMappings() {
+		if (mappings != null && mappings.eIsProxy()) {
+			InternalEObject oldMappings = (InternalEObject)mappings;
+			mappings = (GraphHomomorphism)eResolveProxy(oldMappings);
+			if (mappings != oldMappings) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.CONSTRAINT__EDGE_MAPPINGS, oldEdgeMappings, edgeMappings));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.CONSTRAINT__MAPPINGS, oldMappings, mappings));
 			}
 		}
-		return edgeMappings;
+		return mappings;
 	}
 
 	/**
@@ -198,8 +187,8 @@ public class ConstraintImpl extends EObjectImpl implements Constraint {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Map.Entry<Edge, Edge> basicGetEdgeMappings() {
-		return edgeMappings;
+	public GraphHomomorphism basicGetMappings() {
+		return mappings;
 	}
 
 	/**
@@ -207,50 +196,11 @@ public class ConstraintImpl extends EObjectImpl implements Constraint {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setEdgeMappings(Map.Entry<Edge, Edge> newEdgeMappings) {
-		Map.Entry<Edge, Edge> oldEdgeMappings = edgeMappings;
-		edgeMappings = newEdgeMappings;
+	public void setMappings(GraphHomomorphism newMappings) {
+		GraphHomomorphism oldMappings = mappings;
+		mappings = newMappings;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.CONSTRAINT__EDGE_MAPPINGS, oldEdgeMappings, edgeMappings));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	public Map.Entry<Node, Node> getNodeMappings() {
-		if (nodeMappings != null && ((EObject)nodeMappings).eIsProxy()) {
-			InternalEObject oldNodeMappings = (InternalEObject)nodeMappings;
-			nodeMappings = (Map.Entry<Node, Node>)eResolveProxy(oldNodeMappings);
-			if (nodeMappings != oldNodeMappings) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.CONSTRAINT__NODE_MAPPINGS, oldNodeMappings, nodeMappings));
-			}
-		}
-		return nodeMappings;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Map.Entry<Node, Node> basicGetNodeMappings() {
-		return nodeMappings;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setNodeMappings(Map.Entry<Node, Node> newNodeMappings) {
-		Map.Entry<Node, Node> oldNodeMappings = nodeMappings;
-		nodeMappings = newNodeMappings;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.CONSTRAINT__NODE_MAPPINGS, oldNodeMappings, nodeMappings));
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.CONSTRAINT__MAPPINGS, oldMappings, mappings));
 	}
 
 	/**
@@ -267,12 +217,9 @@ public class ConstraintImpl extends EObjectImpl implements Constraint {
 			case MetamodelPackage.CONSTRAINT__PREDICATE:
 				if (resolve) return getPredicate();
 				return basicGetPredicate();
-			case MetamodelPackage.CONSTRAINT__EDGE_MAPPINGS:
-				if (resolve) return getEdgeMappings();
-				return basicGetEdgeMappings();
-			case MetamodelPackage.CONSTRAINT__NODE_MAPPINGS:
-				if (resolve) return getNodeMappings();
-				return basicGetNodeMappings();
+			case MetamodelPackage.CONSTRAINT__MAPPINGS:
+				if (resolve) return getMappings();
+				return basicGetMappings();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -292,11 +239,8 @@ public class ConstraintImpl extends EObjectImpl implements Constraint {
 			case MetamodelPackage.CONSTRAINT__PREDICATE:
 				setPredicate((Predicate)newValue);
 				return;
-			case MetamodelPackage.CONSTRAINT__EDGE_MAPPINGS:
-				setEdgeMappings((Map.Entry<Edge, Edge>)newValue);
-				return;
-			case MetamodelPackage.CONSTRAINT__NODE_MAPPINGS:
-				setNodeMappings((Map.Entry<Node, Node>)newValue);
+			case MetamodelPackage.CONSTRAINT__MAPPINGS:
+				setMappings((GraphHomomorphism)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -316,11 +260,8 @@ public class ConstraintImpl extends EObjectImpl implements Constraint {
 			case MetamodelPackage.CONSTRAINT__PREDICATE:
 				setPredicate((Predicate)null);
 				return;
-			case MetamodelPackage.CONSTRAINT__EDGE_MAPPINGS:
-				setEdgeMappings((Map.Entry<Edge, Edge>)null);
-				return;
-			case MetamodelPackage.CONSTRAINT__NODE_MAPPINGS:
-				setNodeMappings((Map.Entry<Node, Node>)null);
+			case MetamodelPackage.CONSTRAINT__MAPPINGS:
+				setMappings((GraphHomomorphism)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -338,10 +279,8 @@ public class ConstraintImpl extends EObjectImpl implements Constraint {
 				return constrainedModel != null;
 			case MetamodelPackage.CONSTRAINT__PREDICATE:
 				return predicate != null;
-			case MetamodelPackage.CONSTRAINT__EDGE_MAPPINGS:
-				return edgeMappings != null;
-			case MetamodelPackage.CONSTRAINT__NODE_MAPPINGS:
-				return nodeMappings != null;
+			case MetamodelPackage.CONSTRAINT__MAPPINGS:
+				return mappings != null;
 		}
 		return super.eIsSet(featureID);
 	}

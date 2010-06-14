@@ -51,9 +51,7 @@
             <genFeatures notify="false" createChild="false" propertySortChoices="true"
                 ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/Constraint/predicate"/>
             <genFeatures notify="false" createChild="false" propertySortChoices="true"
-                ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/Constraint/edgeMappings"/>
-            <genFeatures notify="false" createChild="false" propertySortChoices="true"
-                ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/Constraint/nodeMappings"/>
+                ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/Constraint/mappings"/>
           </genClasses>
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/metamodel/EdgeToEdgeMap">
             <genFeatures notify="false" createChild="false" propertySortChoices="true"
@@ -66,6 +64,14 @@
                 ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/TypingMorphism/model"/>
             <genFeatures notify="false" createChild="false" propertySortChoices="true"
                 ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/TypingMorphism/metamodel"/>
+            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+                ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/TypingMorphism/mappings"/>
+          </genClasses>
+          <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/metamodel/GraphHomomorphism">
+            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+                ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/GraphHomomorphism/nodeMapping"/>
+            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+                ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/GraphHomomorphism/edgeMapping"/>
           </genClasses>
         </nestedGenPackages>
       </nestedGenPackages>

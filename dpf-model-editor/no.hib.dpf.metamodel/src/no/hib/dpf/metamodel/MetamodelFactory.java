@@ -98,6 +98,15 @@ public interface MetamodelFactory extends EFactory {
 	TypingMorphism createTypingMorphism();
 
 	/**
+	 * Returns a new object of class '<em>Graph Homomorphism</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Graph Homomorphism</em>'.
+	 * @generated
+	 */
+	GraphHomomorphism createGraphHomomorphism();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

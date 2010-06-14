@@ -117,6 +117,10 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 				return createTypingMorphismAdapter();
 			}
 			@Override
+			public Adapter caseGraphHomomorphism(GraphHomomorphism object) {
+				return createGraphHomomorphismAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -287,6 +291,20 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTypingMorphismAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link no.hib.dpf.metamodel.GraphHomomorphism <em>Graph Homomorphism</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see no.hib.dpf.metamodel.GraphHomomorphism
+	 * @generated
+	 */
+	public Adapter createGraphHomomorphismAdapter() {
 		return null;
 	}
 

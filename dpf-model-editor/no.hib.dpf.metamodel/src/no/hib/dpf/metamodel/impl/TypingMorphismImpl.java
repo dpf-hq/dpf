@@ -7,6 +7,7 @@
 package no.hib.dpf.metamodel.impl;
 
 import no.hib.dpf.metamodel.Graph;
+import no.hib.dpf.metamodel.GraphHomomorphism;
 import no.hib.dpf.metamodel.MetamodelPackage;
 import no.hib.dpf.metamodel.TypingMorphism;
 
@@ -27,6 +28,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <ul>
  *   <li>{@link no.hib.dpf.metamodel.impl.TypingMorphismImpl#getModel <em>Model</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.impl.TypingMorphismImpl#getMetamodel <em>Metamodel</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.impl.TypingMorphismImpl#getMappings <em>Mappings</em>}</li>
  * </ul>
  * </p>
  *
@@ -52,6 +54,16 @@ public class TypingMorphismImpl extends EObjectImpl implements TypingMorphism {
 	 * @ordered
 	 */
 	protected Graph metamodel;
+
+	/**
+	 * The cached value of the '{@link #getMappings() <em>Mappings</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMappings()
+	 * @generated
+	 * @ordered
+	 */
+	protected GraphHomomorphism mappings;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -153,6 +165,44 @@ public class TypingMorphismImpl extends EObjectImpl implements TypingMorphism {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public GraphHomomorphism getMappings() {
+		if (mappings != null && mappings.eIsProxy()) {
+			InternalEObject oldMappings = (InternalEObject)mappings;
+			mappings = (GraphHomomorphism)eResolveProxy(oldMappings);
+			if (mappings != oldMappings) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.TYPING_MORPHISM__MAPPINGS, oldMappings, mappings));
+			}
+		}
+		return mappings;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public GraphHomomorphism basicGetMappings() {
+		return mappings;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMappings(GraphHomomorphism newMappings) {
+		GraphHomomorphism oldMappings = mappings;
+		mappings = newMappings;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.TYPING_MORPHISM__MAPPINGS, oldMappings, mappings));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -162,6 +212,9 @@ public class TypingMorphismImpl extends EObjectImpl implements TypingMorphism {
 			case MetamodelPackage.TYPING_MORPHISM__METAMODEL:
 				if (resolve) return getMetamodel();
 				return basicGetMetamodel();
+			case MetamodelPackage.TYPING_MORPHISM__MAPPINGS:
+				if (resolve) return getMappings();
+				return basicGetMappings();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -179,6 +232,9 @@ public class TypingMorphismImpl extends EObjectImpl implements TypingMorphism {
 				return;
 			case MetamodelPackage.TYPING_MORPHISM__METAMODEL:
 				setMetamodel((Graph)newValue);
+				return;
+			case MetamodelPackage.TYPING_MORPHISM__MAPPINGS:
+				setMappings((GraphHomomorphism)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -198,6 +254,9 @@ public class TypingMorphismImpl extends EObjectImpl implements TypingMorphism {
 			case MetamodelPackage.TYPING_MORPHISM__METAMODEL:
 				setMetamodel((Graph)null);
 				return;
+			case MetamodelPackage.TYPING_MORPHISM__MAPPINGS:
+				setMappings((GraphHomomorphism)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -214,6 +273,8 @@ public class TypingMorphismImpl extends EObjectImpl implements TypingMorphism {
 				return model != null;
 			case MetamodelPackage.TYPING_MORPHISM__METAMODEL:
 				return metamodel != null;
+			case MetamodelPackage.TYPING_MORPHISM__MAPPINGS:
+				return mappings != null;
 		}
 		return super.eIsSet(featureID);
 	}

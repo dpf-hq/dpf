@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link no.hib.dpf.metamodel.TypingMorphism#getModel <em>Model</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.TypingMorphism#getMetamodel <em>Metamodel</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.TypingMorphism#getMappings <em>Mappings</em>}</li>
  * </ul>
  * </p>
  *
@@ -78,5 +79,31 @@ public interface TypingMorphism extends EObject {
 	 * @generated
 	 */
 	void setMetamodel(Graph value);
+
+	/**
+	 * Returns the value of the '<em><b>Mappings</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Mappings</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Mappings</em>' reference.
+	 * @see #setMappings(GraphHomomorphism)
+	 * @see no.hib.dpf.metamodel.MetamodelPackage#getTypingMorphism_Mappings()
+	 * @model
+	 * @generated
+	 */
+	GraphHomomorphism getMappings();
+
+	/**
+	 * Sets the value of the '{@link no.hib.dpf.metamodel.TypingMorphism#getMappings <em>Mappings</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Mappings</em>' reference.
+	 * @see #getMappings()
+	 * @generated
+	 */
+	void setMappings(GraphHomomorphism value);
 
 } // TypingMorphism

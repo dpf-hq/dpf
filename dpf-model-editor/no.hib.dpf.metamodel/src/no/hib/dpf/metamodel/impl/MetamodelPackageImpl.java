@@ -11,6 +11,7 @@ import java.util.Map;
 import no.hib.dpf.metamodel.Constraint;
 import no.hib.dpf.metamodel.Edge;
 import no.hib.dpf.metamodel.Graph;
+import no.hib.dpf.metamodel.GraphHomomorphism;
 import no.hib.dpf.metamodel.MetamodelFactory;
 import no.hib.dpf.metamodel.MetamodelPackage;
 import no.hib.dpf.metamodel.Node;
@@ -109,6 +110,13 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * @generated
 	 */
 	private EClass typingMorphismEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass graphHomomorphismEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -392,17 +400,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConstraint_EdgeMappings() {
+	public EReference getConstraint_Mappings() {
 		return (EReference)constraintEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getConstraint_NodeMappings() {
-		return (EReference)constraintEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -457,6 +456,42 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 */
 	public EReference getTypingMorphism_Metamodel() {
 		return (EReference)typingMorphismEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTypingMorphism_Mappings() {
+		return (EReference)typingMorphismEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getGraphHomomorphism() {
+		return graphHomomorphismEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getGraphHomomorphism_NodeMapping() {
+		return (EReference)graphHomomorphismEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getGraphHomomorphism_EdgeMapping() {
+		return (EReference)graphHomomorphismEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -519,8 +554,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		constraintEClass = createEClass(CONSTRAINT);
 		createEReference(constraintEClass, CONSTRAINT__CONSTRAINED_MODEL);
 		createEReference(constraintEClass, CONSTRAINT__PREDICATE);
-		createEReference(constraintEClass, CONSTRAINT__EDGE_MAPPINGS);
-		createEReference(constraintEClass, CONSTRAINT__NODE_MAPPINGS);
+		createEReference(constraintEClass, CONSTRAINT__MAPPINGS);
 
 		edgeToEdgeMapEClass = createEClass(EDGE_TO_EDGE_MAP);
 		createEReference(edgeToEdgeMapEClass, EDGE_TO_EDGE_MAP__KEY);
@@ -529,6 +563,11 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		typingMorphismEClass = createEClass(TYPING_MORPHISM);
 		createEReference(typingMorphismEClass, TYPING_MORPHISM__MODEL);
 		createEReference(typingMorphismEClass, TYPING_MORPHISM__METAMODEL);
+		createEReference(typingMorphismEClass, TYPING_MORPHISM__MAPPINGS);
+
+		graphHomomorphismEClass = createEClass(GRAPH_HOMOMORPHISM);
+		createEReference(graphHomomorphismEClass, GRAPH_HOMOMORPHISM__NODE_MAPPING);
+		createEReference(graphHomomorphismEClass, GRAPH_HOMOMORPHISM__EDGE_MAPPING);
 	}
 
 	/**
@@ -593,8 +632,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		initEClass(constraintEClass, Constraint.class, "Constraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getConstraint_ConstrainedModel(), this.getGraph(), null, "constrainedModel", null, 1, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConstraint_Predicate(), this.getPredicate(), null, "predicate", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getConstraint_EdgeMappings(), this.getEdgeToEdgeMap(), null, "edgeMappings", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getConstraint_NodeMappings(), this.getNodeToNodeMap(), null, "nodeMappings", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getConstraint_Mappings(), this.getGraphHomomorphism(), null, "mappings", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(edgeToEdgeMapEClass, Map.Entry.class, "EdgeToEdgeMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getEdgeToEdgeMap_Key(), this.getEdge(), null, "key", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -603,6 +641,11 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		initEClass(typingMorphismEClass, TypingMorphism.class, "TypingMorphism", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTypingMorphism_Model(), this.getGraph(), null, "model", null, 1, 1, TypingMorphism.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTypingMorphism_Metamodel(), this.getGraph(), null, "metamodel", null, 1, 1, TypingMorphism.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTypingMorphism_Mappings(), this.getGraphHomomorphism(), null, "mappings", null, 0, 1, TypingMorphism.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(graphHomomorphismEClass, GraphHomomorphism.class, "GraphHomomorphism", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getGraphHomomorphism_NodeMapping(), this.getNodeToNodeMap(), null, "nodeMapping", null, 0, 1, GraphHomomorphism.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGraphHomomorphism_EdgeMapping(), this.getEdgeToEdgeMap(), null, "edgeMapping", null, 0, 1, GraphHomomorphism.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

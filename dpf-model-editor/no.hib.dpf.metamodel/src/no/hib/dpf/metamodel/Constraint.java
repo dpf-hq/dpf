@@ -20,8 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link no.hib.dpf.metamodel.Constraint#getConstrainedModel <em>Constrained Model</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Constraint#getPredicate <em>Predicate</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Constraint#getEdgeMappings <em>Edge Mappings</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Constraint#getNodeMappings <em>Node Mappings</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Constraint#getMappings <em>Mappings</em>}</li>
  * </ul>
  * </p>
  *
@@ -83,55 +82,29 @@ public interface Constraint extends EObject {
 	void setPredicate(Predicate value);
 
 	/**
-	 * Returns the value of the '<em><b>Edge Mappings</b></em>' reference.
+	 * Returns the value of the '<em><b>Mappings</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Edge Mappings</em>' reference isn't clear,
+	 * If the meaning of the '<em>Mappings</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Edge Mappings</em>' reference.
-	 * @see #setEdgeMappings(Map.Entry)
-	 * @see no.hib.dpf.metamodel.MetamodelPackage#getConstraint_EdgeMappings()
-	 * @model mapType="no.hib.dpf.metamodel.EdgeToEdgeMap<no.hib.dpf.metamodel.Edge, no.hib.dpf.metamodel.Edge>"
+	 * @return the value of the '<em>Mappings</em>' reference.
+	 * @see #setMappings(GraphHomomorphism)
+	 * @see no.hib.dpf.metamodel.MetamodelPackage#getConstraint_Mappings()
+	 * @model
 	 * @generated
 	 */
-	Map.Entry<Edge, Edge> getEdgeMappings();
+	GraphHomomorphism getMappings();
 
 	/**
-	 * Sets the value of the '{@link no.hib.dpf.metamodel.Constraint#getEdgeMappings <em>Edge Mappings</em>}' reference.
+	 * Sets the value of the '{@link no.hib.dpf.metamodel.Constraint#getMappings <em>Mappings</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Edge Mappings</em>' reference.
-	 * @see #getEdgeMappings()
+	 * @param value the new value of the '<em>Mappings</em>' reference.
+	 * @see #getMappings()
 	 * @generated
 	 */
-	void setEdgeMappings(Map.Entry<Edge, Edge> value);
-
-	/**
-	 * Returns the value of the '<em><b>Node Mappings</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Node Mappings</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Node Mappings</em>' reference.
-	 * @see #setNodeMappings(Map.Entry)
-	 * @see no.hib.dpf.metamodel.MetamodelPackage#getConstraint_NodeMappings()
-	 * @model mapType="no.hib.dpf.metamodel.NodeToNodeMap<no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Node>"
-	 * @generated
-	 */
-	Map.Entry<Node, Node> getNodeMappings();
-
-	/**
-	 * Sets the value of the '{@link no.hib.dpf.metamodel.Constraint#getNodeMappings <em>Node Mappings</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Node Mappings</em>' reference.
-	 * @see #getNodeMappings()
-	 * @generated
-	 */
-	void setNodeMappings(Map.Entry<Node, Node> value);
+	void setMappings(GraphHomomorphism value);
 
 } // Constraint
