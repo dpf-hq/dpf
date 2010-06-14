@@ -125,13 +125,22 @@ public interface MetamodelPackage extends EPackage {
 	int NODE__NAME = 0;
 
 	/**
+	 * The feature id for the '<em><b>Graph</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NODE__GRAPH = 1;
+
+	/**
 	 * The number of structural features of the '<em>Node</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NODE_FEATURE_COUNT = 1;
+	int NODE_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.EdgeImpl <em>Edge</em>}' class.
@@ -171,13 +180,22 @@ public interface MetamodelPackage extends EPackage {
 	int EDGE__NAME = 2;
 
 	/**
+	 * The feature id for the '<em><b>Graph</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDGE__GRAPH = 3;
+
+	/**
 	 * The number of structural features of the '<em>Edge</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EDGE_FEATURE_COUNT = 3;
+	int EDGE_FEATURE_COUNT = 4;
 
 	/**
 	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.SignatureImpl <em>Signature</em>}' class.
@@ -563,6 +581,17 @@ public interface MetamodelPackage extends EPackage {
 	EAttribute getNode_Name();
 
 	/**
+	 * Returns the meta object for the container reference '{@link no.hib.dpf.metamodel.Node#getGraph <em>Graph</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Graph</em>'.
+	 * @see no.hib.dpf.metamodel.Node#getGraph()
+	 * @see #getNode()
+	 * @generated
+	 */
+	EReference getNode_Graph();
+
+	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.metamodel.Edge <em>Edge</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -604,6 +633,17 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getEdge_Name();
+
+	/**
+	 * Returns the meta object for the reference '{@link no.hib.dpf.metamodel.Edge#getGraph <em>Graph</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Graph</em>'.
+	 * @see no.hib.dpf.metamodel.Edge#getGraph()
+	 * @see #getEdge()
+	 * @generated
+	 */
+	EReference getEdge_Graph();
 
 	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.metamodel.Signature <em>Signature</em>}'.
@@ -950,6 +990,14 @@ public interface MetamodelPackage extends EPackage {
 		EAttribute NODE__NAME = eINSTANCE.getNode_Name();
 
 		/**
+		 * The meta object literal for the '<em><b>Graph</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NODE__GRAPH = eINSTANCE.getNode_Graph();
+
+		/**
 		 * The meta object literal for the '{@link no.hib.dpf.metamodel.impl.EdgeImpl <em>Edge</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -982,6 +1030,14 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute EDGE__NAME = eINSTANCE.getEdge_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Graph</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EDGE__GRAPH = eINSTANCE.getEdge_Graph();
 
 		/**
 		 * The meta object literal for the '{@link no.hib.dpf.metamodel.impl.SignatureImpl <em>Signature</em>}' class.

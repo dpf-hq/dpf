@@ -7,6 +7,7 @@
 package no.hib.dpf.metamodel.impl;
 
 import no.hib.dpf.metamodel.Edge;
+import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.MetamodelPackage;
 import no.hib.dpf.metamodel.Node;
 
@@ -29,6 +30,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *   <li>{@link no.hib.dpf.metamodel.impl.EdgeImpl#getSource <em>Source</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.impl.EdgeImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.impl.EdgeImpl#getName <em>Name</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.impl.EdgeImpl#getGraph <em>Graph</em>}</li>
  * </ul>
  * </p>
  *
@@ -74,6 +76,16 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getGraph() <em>Graph</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getGraph()
+	 * @generated
+	 * @ordered
+	 */
+	protected Graph graph;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -196,6 +208,44 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Graph getGraph() {
+		if (graph != null && graph.eIsProxy()) {
+			InternalEObject oldGraph = (InternalEObject)graph;
+			graph = (Graph)eResolveProxy(oldGraph);
+			if (graph != oldGraph) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.EDGE__GRAPH, oldGraph, graph));
+			}
+		}
+		return graph;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Graph basicGetGraph() {
+		return graph;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setGraph(Graph newGraph) {
+		Graph oldGraph = graph;
+		graph = newGraph;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.EDGE__GRAPH, oldGraph, graph));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -207,6 +257,9 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 				return basicGetTarget();
 			case MetamodelPackage.EDGE__NAME:
 				return getName();
+			case MetamodelPackage.EDGE__GRAPH:
+				if (resolve) return getGraph();
+				return basicGetGraph();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -227,6 +280,9 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 				return;
 			case MetamodelPackage.EDGE__NAME:
 				setName((String)newValue);
+				return;
+			case MetamodelPackage.EDGE__GRAPH:
+				setGraph((Graph)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -249,6 +305,9 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 			case MetamodelPackage.EDGE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
+			case MetamodelPackage.EDGE__GRAPH:
+				setGraph((Graph)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -267,6 +326,8 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 				return target != null;
 			case MetamodelPackage.EDGE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case MetamodelPackage.EDGE__GRAPH:
+				return graph != null;
 		}
 		return super.eIsSet(featureID);
 	}

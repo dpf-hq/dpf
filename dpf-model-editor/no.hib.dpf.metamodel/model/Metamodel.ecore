@@ -8,19 +8,22 @@
       <eSubpackages name="metamodel" nsURI="http://no.hib.dpf.metamodel" nsPrefix="no.hib.dpf.metamodel">
         <eClassifiers xsi:type="ecore:EClass" name="Graph">
           <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" upperBound="-1"
-              eType="#//hib/dpf/metamodel/Node" containment="true"/>
+              eType="#//hib/dpf/metamodel/Node" containment="true" eOpposite="#//hib/dpf/metamodel/Node/graph"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="edges" upperBound="-1"
               eType="#//hib/dpf/metamodel/Edge" containment="true"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Node">
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="graph" eType="#//hib/dpf/metamodel/Graph"
+              eOpposite="#//hib/dpf/metamodel/Graph/nodes"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Edge">
           <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//hib/dpf/metamodel/Node"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
               eType="#//hib/dpf/metamodel/Node"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="graph" eType="#//hib/dpf/metamodel/Graph"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Signature">
           <eStructuralFeatures xsi:type="ecore:EReference" name="predicates" upperBound="-1"

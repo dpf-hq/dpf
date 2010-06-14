@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link no.hib.dpf.metamodel.Edge#getSource <em>Source</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Edge#getTarget <em>Target</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Edge#getName <em>Name</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Edge#getGraph <em>Graph</em>}</li>
  * </ul>
  * </p>
  *
@@ -104,5 +105,31 @@ public interface Edge extends EObject {
 	 * @generated
 	 */
 	void setName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Graph</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Graph</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Graph</em>' reference.
+	 * @see #setGraph(Graph)
+	 * @see no.hib.dpf.metamodel.MetamodelPackage#getEdge_Graph()
+	 * @model
+	 * @generated
+	 */
+	Graph getGraph();
+
+	/**
+	 * Sets the value of the '{@link no.hib.dpf.metamodel.Edge#getGraph <em>Graph</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Graph</em>' reference.
+	 * @see #getGraph()
+	 * @generated
+	 */
+	void setGraph(Graph value);
 
 } // Edge
