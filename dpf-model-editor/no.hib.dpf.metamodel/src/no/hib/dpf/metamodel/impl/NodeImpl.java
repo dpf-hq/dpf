@@ -56,6 +56,16 @@ public class NodeImpl extends EObjectImpl implements Node {
 	protected String name = NAME_EDEFAULT;
 
 	/**
+	 * The cached value of the '{@link #getGraph() <em>Graph</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getGraph()
+	 * @generated
+	 * @ordered
+	 */
+	protected Graph graph;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -101,8 +111,15 @@ public class NodeImpl extends EObjectImpl implements Node {
 	 * @generated
 	 */
 	public Graph getGraph() {
-		if (eContainerFeatureID() != MetamodelPackage.NODE__GRAPH) return null;
-		return (Graph)eContainer();
+		if (graph != null && graph.eIsProxy()) {
+			InternalEObject oldGraph = (InternalEObject)graph;
+			graph = (Graph)eResolveProxy(oldGraph);
+			if (graph != oldGraph) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.NODE__GRAPH, oldGraph, graph));
+			}
+		}
+		return graph;
 	}
 
 	/**
@@ -110,9 +127,8 @@ public class NodeImpl extends EObjectImpl implements Node {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetGraph(Graph newGraph, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newGraph, MetamodelPackage.NODE__GRAPH, msgs);
-		return msgs;
+	public Graph basicGetGraph() {
+		return graph;
 	}
 
 	/**
@@ -121,63 +137,10 @@ public class NodeImpl extends EObjectImpl implements Node {
 	 * @generated
 	 */
 	public void setGraph(Graph newGraph) {
-		if (newGraph != eInternalContainer() || (eContainerFeatureID() != MetamodelPackage.NODE__GRAPH && newGraph != null)) {
-			if (EcoreUtil.isAncestor(this, newGraph))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newGraph != null)
-				msgs = ((InternalEObject)newGraph).eInverseAdd(this, MetamodelPackage.GRAPH__NODES, Graph.class, msgs);
-			msgs = basicSetGraph(newGraph, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.NODE__GRAPH, newGraph, newGraph));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case MetamodelPackage.NODE__GRAPH:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetGraph((Graph)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case MetamodelPackage.NODE__GRAPH:
-				return basicSetGraph(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case MetamodelPackage.NODE__GRAPH:
-				return eInternalContainer().eInverseRemove(this, MetamodelPackage.GRAPH__NODES, Graph.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
+		Graph oldGraph = graph;
+		graph = newGraph;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.NODE__GRAPH, oldGraph, graph));
 	}
 
 	/**
@@ -191,7 +154,8 @@ public class NodeImpl extends EObjectImpl implements Node {
 			case MetamodelPackage.NODE__NAME:
 				return getName();
 			case MetamodelPackage.NODE__GRAPH:
-				return getGraph();
+				if (resolve) return getGraph();
+				return basicGetGraph();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -243,7 +207,7 @@ public class NodeImpl extends EObjectImpl implements Node {
 			case MetamodelPackage.NODE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case MetamodelPackage.NODE__GRAPH:
-				return getGraph() != null;
+				return graph != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -110,7 +110,7 @@ public class GraphImpl extends EObjectImpl implements Graph {
 	 */
 	public EList<Node> getNodes() {
 		if (nodes == null) {
-			nodes = new EObjectContainmentWithInverseEList<Node>(Node.class, this, MetamodelPackage.GRAPH__NODES, MetamodelPackage.NODE__GRAPH);
+			nodes = new EObjectContainmentEList<Node>(Node.class, this, MetamodelPackage.GRAPH__NODES);
 		}
 		return nodes;
 	}
@@ -146,21 +146,6 @@ public class GraphImpl extends EObjectImpl implements Graph {
 			edges = new EObjectContainmentEList<Edge>(Edge.class, this, MetamodelPackage.GRAPH__EDGES);
 		}
 		return edges;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case MetamodelPackage.GRAPH__NODES:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getNodes()).basicAdd(otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**

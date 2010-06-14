@@ -53,28 +53,26 @@ public interface Node extends EObject {
 	void setName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Graph</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link no.hib.dpf.metamodel.Graph#getNodes <em>Nodes</em>}'.
+	 * Returns the value of the '<em><b>Graph</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Graph</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Graph</em>' container reference.
+	 * @return the value of the '<em>Graph</em>' reference.
 	 * @see #setGraph(Graph)
 	 * @see no.hib.dpf.metamodel.MetamodelPackage#getNode_Graph()
-	 * @see no.hib.dpf.metamodel.Graph#getNodes
-	 * @model opposite="nodes" transient="false"
+	 * @model
 	 * @generated
 	 */
 	Graph getGraph();
 
 	/**
-	 * Sets the value of the '{@link no.hib.dpf.metamodel.Node#getGraph <em>Graph</em>}' container reference.
+	 * Sets the value of the '{@link no.hib.dpf.metamodel.Node#getGraph <em>Graph</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Graph</em>' container reference.
+	 * @param value the new value of the '<em>Graph</em>' reference.
 	 * @see #getGraph()
 	 * @generated
 	 */

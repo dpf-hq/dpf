@@ -32,7 +32,6 @@ public interface Graph extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Nodes</b></em>' containment reference list.
 	 * The list contents are of type {@link no.hib.dpf.metamodel.Node}.
-	 * It is bidirectional and its opposite is '{@link no.hib.dpf.metamodel.Node#getGraph <em>Graph</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Nodes</em>' containment reference list isn't clear,
@@ -41,8 +40,7 @@ public interface Graph extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Nodes</em>' containment reference list.
 	 * @see no.hib.dpf.metamodel.MetamodelPackage#getGraph_Nodes()
-	 * @see no.hib.dpf.metamodel.Node#getGraph
-	 * @model opposite="graph" containment="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<Node> getNodes();
