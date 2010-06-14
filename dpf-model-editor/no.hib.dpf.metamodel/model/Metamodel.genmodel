@@ -20,6 +20,7 @@
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/metamodel/Node">
             <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//hib/dpf/metamodel/Node/name"/>
             <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/Node/graph"/>
+            <genOperations ecoreOperation="Metamodel.ecore#//hib/dpf/metamodel/Node/getOutgoingEdges"/>
           </genClasses>
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/metamodel/Edge">
             <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/Edge/source"/>

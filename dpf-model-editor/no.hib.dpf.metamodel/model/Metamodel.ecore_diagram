@@ -32,6 +32,10 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_by7pM3I2Ed-lwof-n5K3xw"/>
     </children>
     <children xmi:type="notation:BasicCompartment" xmi:id="_by7pNHI2Ed-lwof-n5K3xw" type="7002">
+      <children xmi:type="notation:Node" xmi:id="_82-1sHfYEd-caOvkb4izMQ" type="3002">
+        <element xmi:type="ecore:EOperation" href="Metamodel.ecore#//hib/dpf/metamodel/Node/getOutgoingEdges"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_82-1sXfYEd-caOvkb4izMQ"/>
+      </children>
       <styles xmi:type="notation:SortingStyle" xmi:id="_by7pNXI2Ed-lwof-n5K3xw"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_by7pNnI2Ed-lwof-n5K3xw"/>
     </children>

@@ -6,6 +6,7 @@
  */
 package no.hib.dpf.metamodel;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -77,5 +78,13 @@ public interface Node extends EObject {
 	 * @generated
 	 */
 	void setGraph(Graph value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	EList<Edge> getOutgoingEdges();
 
 } // Node

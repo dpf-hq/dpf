@@ -14,6 +14,7 @@
               eType="#//hib/dpf/metamodel/Edge" containment="true"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Node">
+          <eOperations name="getOutgoingEdges" upperBound="-1" eType="#//hib/dpf/metamodel/Edge"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="graph" eType="#//hib/dpf/metamodel/Graph"/>
         </eClassifiers>

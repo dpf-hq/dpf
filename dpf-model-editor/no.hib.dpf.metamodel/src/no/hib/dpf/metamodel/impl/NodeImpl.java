@@ -6,12 +6,14 @@
  */
 package no.hib.dpf.metamodel.impl;
 
+import no.hib.dpf.metamodel.Edge;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.MetamodelPackage;
 import no.hib.dpf.metamodel.Node;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 
@@ -141,6 +143,17 @@ public class NodeImpl extends EObjectImpl implements Node {
 		graph = newGraph;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.NODE__GRAPH, oldGraph, graph));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Edge> getOutgoingEdges() {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**
