@@ -109,6 +109,7 @@ public class GraphTest extends TestCase {
 	public void testCreateNode__String() {
 		Node n = fixture.createNode("test");
 		assertTrue(fixture.getNodes().contains(n));
+		assertEquals("test", n.getName());
 	}
 
 	/**
