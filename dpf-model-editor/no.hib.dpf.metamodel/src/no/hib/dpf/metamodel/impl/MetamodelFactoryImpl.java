@@ -80,10 +80,11 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Graph createGraph() {
 		GraphImpl graph = new GraphImpl();
+		graph.setName("Default name");
 		return graph;
 	}
 

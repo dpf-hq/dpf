@@ -7,6 +7,13 @@
     <eSubpackages name="dpf" nsURI="http://no.hib.dpf" nsPrefix="no.hib.dpf">
       <eSubpackages name="metamodel" nsURI="http://no.hib.dpf.metamodel" nsPrefix="no.hib.dpf.metamodel">
         <eClassifiers xsi:type="ecore:EClass" name="Graph">
+          <eOperations name="createNode" eType="#//hib/dpf/metamodel/Node">
+            <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eOperations>
+          <eOperations name="createEdge" eType="#//hib/dpf/metamodel/Edge">
+            <eParameters name="source" eType="#//hib/dpf/metamodel/Node"/>
+            <eParameters name="target" eType="#//hib/dpf/metamodel/Node"/>
+          </eOperations>
           <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" upperBound="-1"
               eType="#//hib/dpf/metamodel/Node" containment="true"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

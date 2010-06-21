@@ -16,6 +16,13 @@
             <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/Graph/nodes"/>
             <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//hib/dpf/metamodel/Graph/name"/>
             <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/Graph/edges"/>
+            <genOperations ecoreOperation="Metamodel.ecore#//hib/dpf/metamodel/Graph/createNode">
+              <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/Graph/createNode/name"/>
+            </genOperations>
+            <genOperations ecoreOperation="Metamodel.ecore#//hib/dpf/metamodel/Graph/createEdge">
+              <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/Graph/createEdge/source"/>
+              <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/Graph/createEdge/target"/>
+            </genOperations>
           </genClasses>
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/metamodel/Node">
             <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//hib/dpf/metamodel/Node/name"/>

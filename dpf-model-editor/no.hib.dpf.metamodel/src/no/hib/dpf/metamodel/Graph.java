@@ -87,4 +87,20 @@ public interface Graph extends EObject {
 	 */
 	EList<Edge> getEdges();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	Node createNode(String name);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	Edge createEdge(Node source, Node target);
+
 } // Graph
