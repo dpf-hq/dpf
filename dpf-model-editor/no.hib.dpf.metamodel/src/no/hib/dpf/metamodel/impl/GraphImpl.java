@@ -156,17 +156,18 @@ public class GraphImpl extends EObjectImpl implements Graph {
 		node.setGraph(this);
 		return node;
 	}
-
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Edge createEdge(Node source, Node target) {
+	public Edge createEdge(String name, Node source, Node target) {
 		Edge edge = MetamodelFactory.eINSTANCE.createEdge();
 		edge.setSource(source);
 		edge.setTarget(target);
 		edge.setGraph(this);
+		edge.setName(name);
 		return edge;
 	}
 

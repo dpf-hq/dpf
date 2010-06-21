@@ -11,6 +11,7 @@
             <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
           </eOperations>
           <eOperations name="createEdge" eType="#//hib/dpf/metamodel/Edge">
+            <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
             <eParameters name="source" eType="#//hib/dpf/metamodel/Node"/>
             <eParameters name="target" eType="#//hib/dpf/metamodel/Node"/>
           </eOperations>

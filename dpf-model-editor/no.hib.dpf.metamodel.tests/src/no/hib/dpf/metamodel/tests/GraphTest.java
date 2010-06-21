@@ -104,7 +104,7 @@ public class GraphTest extends TestCase {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see no.hib.dpf.metamodel.Graph#createNode(java.lang.String)
-	 * @generated
+	 * @generated NOT
 	 */
 	public void testCreateNode__String() {
 		Node n = fixture.createNode("test");
@@ -117,16 +117,17 @@ public class GraphTest extends TestCase {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see no.hib.dpf.metamodel.Graph#createEdge(no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Node)
-	 * @generated
+	 * @generated NOT
 	 */
 	public void testCreateEdge__Node_Node() {
 		Node n1 = fixture.createNode("n1");
 		Node n2 = fixture.createNode("n2");
-		Edge e = fixture.createEdge(n1, n2);
+		Edge e = fixture.createEdge("test", n1, n2);
 		
 		assertTrue(fixture.getEdges().contains(e));
 		assertEquals(n1, e.getSource());
 		assertEquals(n2, e.getTarget());
+		assertEquals("test", e.getName());
 	}
 
 } //GraphTest

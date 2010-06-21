@@ -105,6 +105,6 @@ public interface Graph extends EObject {
 	 * @model
 	 * @generated
 	 */
-	Edge createEdge(Node source, Node target);
+	Edge createEdge(String name, Node source, Node target);
 
 } // Graph

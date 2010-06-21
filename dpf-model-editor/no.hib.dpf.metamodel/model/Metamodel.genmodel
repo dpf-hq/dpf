@@ -20,6 +20,7 @@
               <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/Graph/createNode/name"/>
             </genOperations>
             <genOperations ecoreOperation="Metamodel.ecore#//hib/dpf/metamodel/Graph/createEdge">
+              <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/Graph/createEdge/name"/>
               <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/Graph/createEdge/source"/>
               <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/Graph/createEdge/target"/>
             </genOperations>
