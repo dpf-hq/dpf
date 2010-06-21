@@ -489,7 +489,7 @@ public interface MetamodelPackage extends EPackage {
 	int GRAPH_HOMOMORPHISM = 11;
 
 	/**
-	 * The feature id for the '<em><b>Node Mapping</b></em>' reference.
+	 * The feature id for the '<em><b>Node Mapping</b></em>' map.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -498,7 +498,7 @@ public interface MetamodelPackage extends EPackage {
 	int GRAPH_HOMOMORPHISM__NODE_MAPPING = 0;
 
 	/**
-	 * The feature id for the '<em><b>Edge Mapping</b></em>' reference.
+	 * The feature id for the '<em><b>Edge Mapping</b></em>' map.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -894,10 +894,10 @@ public interface MetamodelPackage extends EPackage {
 	EClass getGraphHomomorphism();
 
 	/**
-	 * Returns the meta object for the reference '{@link no.hib.dpf.metamodel.GraphHomomorphism#getNodeMapping <em>Node Mapping</em>}'.
+	 * Returns the meta object for the map '{@link no.hib.dpf.metamodel.GraphHomomorphism#getNodeMapping <em>Node Mapping</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Node Mapping</em>'.
+	 * @return the meta object for the map '<em>Node Mapping</em>'.
 	 * @see no.hib.dpf.metamodel.GraphHomomorphism#getNodeMapping()
 	 * @see #getGraphHomomorphism()
 	 * @generated
@@ -905,10 +905,10 @@ public interface MetamodelPackage extends EPackage {
 	EReference getGraphHomomorphism_NodeMapping();
 
 	/**
-	 * Returns the meta object for the reference '{@link no.hib.dpf.metamodel.GraphHomomorphism#getEdgeMapping <em>Edge Mapping</em>}'.
+	 * Returns the meta object for the map '{@link no.hib.dpf.metamodel.GraphHomomorphism#getEdgeMapping <em>Edge Mapping</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Edge Mapping</em>'.
+	 * @return the meta object for the map '<em>Edge Mapping</em>'.
 	 * @see no.hib.dpf.metamodel.GraphHomomorphism#getEdgeMapping()
 	 * @see #getGraphHomomorphism()
 	 * @generated
@@ -1242,7 +1242,7 @@ public interface MetamodelPackage extends EPackage {
 		EClass GRAPH_HOMOMORPHISM = eINSTANCE.getGraphHomomorphism();
 
 		/**
-		 * The meta object literal for the '<em><b>Node Mapping</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Node Mapping</b></em>' map feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1250,7 +1250,7 @@ public interface MetamodelPackage extends EPackage {
 		EReference GRAPH_HOMOMORPHISM__NODE_MAPPING = eINSTANCE.getGraphHomomorphism_NodeMapping();
 
 		/**
-		 * The meta object literal for the '<em><b>Edge Mapping</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Edge Mapping</b></em>' map feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

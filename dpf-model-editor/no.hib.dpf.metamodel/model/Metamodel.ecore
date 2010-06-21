@@ -60,8 +60,10 @@
           <eStructuralFeatures xsi:type="ecore:EReference" name="mappings" eType="#//hib/dpf/metamodel/GraphHomomorphism"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="GraphHomomorphism">
-          <eStructuralFeatures xsi:type="ecore:EReference" name="nodeMapping" eType="#//hib/dpf/metamodel/NodeToNodeMap"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="edgeMapping" eType="#//hib/dpf/metamodel/EdgeToEdgeMap"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="nodeMapping" upperBound="-1"
+              eType="#//hib/dpf/metamodel/NodeToNodeMap" containment="true"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="edgeMapping" upperBound="-1"
+              eType="#//hib/dpf/metamodel/EdgeToEdgeMap" containment="true"/>
         </eClassifiers>
       </eSubpackages>
     </eSubpackages>
