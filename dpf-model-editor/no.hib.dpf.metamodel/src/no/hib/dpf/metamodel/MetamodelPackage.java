@@ -125,7 +125,7 @@ public interface MetamodelPackage extends EPackage {
 	int NODE__NAME = 0;
 
 	/**
-	 * The feature id for the '<em><b>Graph</b></em>' reference.
+	 * The feature id for the '<em><b>Graph</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -180,7 +180,7 @@ public interface MetamodelPackage extends EPackage {
 	int EDGE__NAME = 2;
 
 	/**
-	 * The feature id for the '<em><b>Graph</b></em>' reference.
+	 * The feature id for the '<em><b>Graph</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -581,10 +581,10 @@ public interface MetamodelPackage extends EPackage {
 	EAttribute getNode_Name();
 
 	/**
-	 * Returns the meta object for the reference '{@link no.hib.dpf.metamodel.Node#getGraph <em>Graph</em>}'.
+	 * Returns the meta object for the container reference '{@link no.hib.dpf.metamodel.Node#getGraph <em>Graph</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Graph</em>'.
+	 * @return the meta object for the container reference '<em>Graph</em>'.
 	 * @see no.hib.dpf.metamodel.Node#getGraph()
 	 * @see #getNode()
 	 * @generated
@@ -635,10 +635,10 @@ public interface MetamodelPackage extends EPackage {
 	EAttribute getEdge_Name();
 
 	/**
-	 * Returns the meta object for the reference '{@link no.hib.dpf.metamodel.Edge#getGraph <em>Graph</em>}'.
+	 * Returns the meta object for the container reference '{@link no.hib.dpf.metamodel.Edge#getGraph <em>Graph</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Graph</em>'.
+	 * @return the meta object for the container reference '<em>Graph</em>'.
 	 * @see no.hib.dpf.metamodel.Edge#getGraph()
 	 * @see #getEdge()
 	 * @generated
@@ -990,7 +990,7 @@ public interface MetamodelPackage extends EPackage {
 		EAttribute NODE__NAME = eINSTANCE.getNode_Name();
 
 		/**
-		 * The meta object literal for the '<em><b>Graph</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Graph</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1032,7 +1032,7 @@ public interface MetamodelPackage extends EPackage {
 		EAttribute EDGE__NAME = eINSTANCE.getEdge_Name();
 
 		/**
-		 * The meta object literal for the '<em><b>Graph</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Graph</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

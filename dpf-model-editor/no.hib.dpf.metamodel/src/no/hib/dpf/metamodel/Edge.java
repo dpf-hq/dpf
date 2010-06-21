@@ -107,26 +107,28 @@ public interface Edge extends EObject {
 	void setName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Graph</b></em>' reference.
+	 * Returns the value of the '<em><b>Graph</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link no.hib.dpf.metamodel.Graph#getEdges <em>Edges</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Graph</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Graph</em>' reference.
+	 * @return the value of the '<em>Graph</em>' container reference.
 	 * @see #setGraph(Graph)
 	 * @see no.hib.dpf.metamodel.MetamodelPackage#getEdge_Graph()
-	 * @model
+	 * @see no.hib.dpf.metamodel.Graph#getEdges
+	 * @model opposite="edges" transient="false"
 	 * @generated
 	 */
 	Graph getGraph();
 
 	/**
-	 * Sets the value of the '{@link no.hib.dpf.metamodel.Edge#getGraph <em>Graph</em>}' reference.
+	 * Sets the value of the '{@link no.hib.dpf.metamodel.Edge#getGraph <em>Graph</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Graph</em>' reference.
+	 * @param value the new value of the '<em>Graph</em>' container reference.
 	 * @see #getGraph()
 	 * @generated
 	 */

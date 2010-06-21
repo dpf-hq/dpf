@@ -32,6 +32,7 @@ public interface Graph extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Nodes</b></em>' containment reference list.
 	 * The list contents are of type {@link no.hib.dpf.metamodel.Node}.
+	 * It is bidirectional and its opposite is '{@link no.hib.dpf.metamodel.Node#getGraph <em>Graph</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Nodes</em>' containment reference list isn't clear,
@@ -40,7 +41,8 @@ public interface Graph extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Nodes</em>' containment reference list.
 	 * @see no.hib.dpf.metamodel.MetamodelPackage#getGraph_Nodes()
-	 * @model containment="true"
+	 * @see no.hib.dpf.metamodel.Node#getGraph
+	 * @model opposite="graph" containment="true"
 	 * @generated
 	 */
 	EList<Node> getNodes();
@@ -74,6 +76,7 @@ public interface Graph extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Edges</b></em>' containment reference list.
 	 * The list contents are of type {@link no.hib.dpf.metamodel.Edge}.
+	 * It is bidirectional and its opposite is '{@link no.hib.dpf.metamodel.Edge#getGraph <em>Graph</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Edges</em>' containment reference isn't clear,
@@ -82,7 +85,8 @@ public interface Graph extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Edges</em>' containment reference list.
 	 * @see no.hib.dpf.metamodel.MetamodelPackage#getGraph_Edges()
-	 * @model containment="true"
+	 * @see no.hib.dpf.metamodel.Edge#getGraph
+	 * @model opposite="graph" containment="true"
 	 * @generated
 	 */
 	EList<Edge> getEdges();

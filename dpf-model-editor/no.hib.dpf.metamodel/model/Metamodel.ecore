@@ -15,22 +15,24 @@
             <eParameters name="target" eType="#//hib/dpf/metamodel/Node"/>
           </eOperations>
           <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" upperBound="-1"
-              eType="#//hib/dpf/metamodel/Node" containment="true"/>
+              eType="#//hib/dpf/metamodel/Node" containment="true" eOpposite="#//hib/dpf/metamodel/Node/graph"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="edges" upperBound="-1"
-              eType="#//hib/dpf/metamodel/Edge" containment="true"/>
+              eType="#//hib/dpf/metamodel/Edge" containment="true" eOpposite="#//hib/dpf/metamodel/Edge/graph"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Node">
           <eOperations name="getOutgoingEdges" upperBound="-1" eType="#//hib/dpf/metamodel/Edge"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="graph" eType="#//hib/dpf/metamodel/Graph"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="graph" eType="#//hib/dpf/metamodel/Graph"
+              eOpposite="#//hib/dpf/metamodel/Graph/nodes"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Edge">
           <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//hib/dpf/metamodel/Node"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
               eType="#//hib/dpf/metamodel/Node"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="graph" eType="#//hib/dpf/metamodel/Graph"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="graph" eType="#//hib/dpf/metamodel/Graph"
+              eOpposite="#//hib/dpf/metamodel/Graph/edges"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Signature">
           <eStructuralFeatures xsi:type="ecore:EReference" name="predicates" upperBound="-1"

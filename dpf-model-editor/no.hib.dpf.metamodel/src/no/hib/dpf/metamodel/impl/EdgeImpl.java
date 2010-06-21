@@ -12,10 +12,12 @@ import no.hib.dpf.metamodel.MetamodelPackage;
 import no.hib.dpf.metamodel.Node;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -73,16 +75,6 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getGraph() <em>Graph</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getGraph()
-	 * @generated
-	 * @ordered
-	 */
-	protected Graph graph;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -206,15 +198,8 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 	 * @generated
 	 */
 	public Graph getGraph() {
-		if (graph != null && graph.eIsProxy()) {
-			InternalEObject oldGraph = (InternalEObject)graph;
-			graph = (Graph)eResolveProxy(oldGraph);
-			if (graph != oldGraph) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.EDGE__GRAPH, oldGraph, graph));
-			}
-		}
-		return graph;
+		if (eContainerFeatureID() != MetamodelPackage.EDGE__GRAPH) return null;
+		return (Graph)eContainer();
 	}
 
 	/**
@@ -222,8 +207,9 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Graph basicGetGraph() {
-		return graph;
+	public NotificationChain basicSetGraph(Graph newGraph, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newGraph, MetamodelPackage.EDGE__GRAPH, msgs);
+		return msgs;
 	}
 
 	/**
@@ -232,10 +218,63 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 	 * @generated
 	 */
 	public void setGraph(Graph newGraph) {
-		Graph oldGraph = graph;
-		graph = newGraph;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.EDGE__GRAPH, oldGraph, graph));
+		if (newGraph != eInternalContainer() || (eContainerFeatureID() != MetamodelPackage.EDGE__GRAPH && newGraph != null)) {
+			if (EcoreUtil.isAncestor(this, newGraph))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newGraph != null)
+				msgs = ((InternalEObject)newGraph).eInverseAdd(this, MetamodelPackage.GRAPH__EDGES, Graph.class, msgs);
+			msgs = basicSetGraph(newGraph, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.EDGE__GRAPH, newGraph, newGraph));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case MetamodelPackage.EDGE__GRAPH:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetGraph((Graph)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case MetamodelPackage.EDGE__GRAPH:
+				return basicSetGraph(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case MetamodelPackage.EDGE__GRAPH:
+				return eInternalContainer().eInverseRemove(this, MetamodelPackage.GRAPH__EDGES, Graph.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -255,8 +294,7 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 			case MetamodelPackage.EDGE__NAME:
 				return getName();
 			case MetamodelPackage.EDGE__GRAPH:
-				if (resolve) return getGraph();
-				return basicGetGraph();
+				return getGraph();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -324,7 +362,7 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 			case MetamodelPackage.EDGE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case MetamodelPackage.EDGE__GRAPH:
-				return graph != null;
+				return getGraph() != null;
 		}
 		return super.eIsSet(featureID);
 	}

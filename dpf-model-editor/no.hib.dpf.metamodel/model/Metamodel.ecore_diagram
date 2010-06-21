@@ -465,31 +465,6 @@
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_ZwxIonfSEd-caOvkb4izMQ" points="[0, 0, 296, -154]$[-238, 160, 58, 6]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Zw0zAHfSEd-caOvkb4izMQ" id="(0.5108695652173914,1.0)"/>
   </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_NMvVcHfUEd-caOvkb4izMQ" type="4002" source="_cccgQHI2Ed-lwof-n5K3xw" target="_ZZiv8HI2Ed-lwof-n5K3xw">
-    <children xmi:type="notation:DecorationNode" xmi:id="_NMv8gHfUEd-caOvkb4izMQ" type="6001">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_NMv8gXfUEd-caOvkb4izMQ" x="-10" y="-10"/>
-    </children>
-    <children xmi:type="notation:DecorationNode" xmi:id="_NMv8gnfUEd-caOvkb4izMQ" type="6003">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_NMv8g3fUEd-caOvkb4izMQ" x="-7" y="-8"/>
-    </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_NMvVcXfUEd-caOvkb4izMQ" fontName="Lucida Grande"/>
-    <element xmi:type="ecore:EReference" href="Metamodel.ecore#//hib/dpf/metamodel/Edge/graph"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_NMvVcnfUEd-caOvkb4izMQ" points="[0, 0, -75, -97]$[52, 68, -23, -29]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_NMy_0HfUEd-caOvkb4izMQ" id="(1.0,0.7288135593220338)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_O17g0HfUEd-caOvkb4izMQ" id="(0.4230769230769231,0.0847457627118644)"/>
-  </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_549swHfVEd-caOvkb4izMQ" type="4002" source="_by7CIHI2Ed-lwof-n5K3xw" target="_ZZiv8HI2Ed-lwof-n5K3xw">
-    <children xmi:type="notation:DecorationNode" xmi:id="_54-T0HfVEd-caOvkb4izMQ" type="6001">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_54-T0XfVEd-caOvkb4izMQ" x="1" y="-4"/>
-    </children>
-    <children xmi:type="notation:DecorationNode" xmi:id="_54-T0nfVEd-caOvkb4izMQ" type="6003">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_54-T03fVEd-caOvkb4izMQ" x="-5" y="-4"/>
-    </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_549swXfVEd-caOvkb4izMQ" fontName="Lucida Grande"/>
-    <element xmi:type="ecore:EReference" href="Metamodel.ecore#//hib/dpf/metamodel/Node/graph"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_549swnfVEd-caOvkb4izMQ" points="[-4, 18, 36, -201]$[-39, 190, 1, -29]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_55ClQHfVEd-caOvkb4izMQ" id="(0.5961538461538461,0.7966101694915254)"/>
-  </edges>
   <edges xmi:type="notation:Connector" xmi:id="_o9zREH1EEd-f7LXSIzk4rw" type="4003" source="_KQeqkHfSEd-caOvkb4izMQ" target="_Z2fM8HMuEd-Tu-O-DbhEvw">
     <children xmi:type="notation:DecorationNode" xmi:id="_o9zRE31EEd-f7LXSIzk4rw" type="6002">
       <layoutConstraint xmi:type="notation:Location" xmi:id="_o9z4IH1EEd-f7LXSIzk4rw" y="40"/>

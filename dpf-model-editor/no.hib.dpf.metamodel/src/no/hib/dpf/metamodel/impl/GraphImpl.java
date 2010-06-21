@@ -10,6 +10,7 @@ import java.util.Collection;
 
 import no.hib.dpf.metamodel.Edge;
 import no.hib.dpf.metamodel.Graph;
+import no.hib.dpf.metamodel.MetamodelFactory;
 import no.hib.dpf.metamodel.MetamodelPackage;
 import no.hib.dpf.metamodel.Node;
 
@@ -20,6 +21,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -105,7 +107,7 @@ public class GraphImpl extends EObjectImpl implements Graph {
 	 */
 	public EList<Node> getNodes() {
 		if (nodes == null) {
-			nodes = new EObjectContainmentEList<Node>(Node.class, this, MetamodelPackage.GRAPH__NODES);
+			nodes = new EObjectContainmentWithInverseEList<Node>(Node.class, this, MetamodelPackage.GRAPH__NODES, MetamodelPackage.NODE__GRAPH);
 		}
 		return nodes;
 	}
@@ -138,7 +140,7 @@ public class GraphImpl extends EObjectImpl implements Graph {
 	 */
 	public EList<Edge> getEdges() {
 		if (edges == null) {
-			edges = new EObjectContainmentEList<Edge>(Edge.class, this, MetamodelPackage.GRAPH__EDGES);
+			edges = new EObjectContainmentWithInverseEList<Edge>(Edge.class, this, MetamodelPackage.GRAPH__EDGES, MetamodelPackage.EDGE__GRAPH);
 		}
 		return edges;
 	}
@@ -146,12 +148,26 @@ public class GraphImpl extends EObjectImpl implements Graph {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Node createNode(String name) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		Node node = MetamodelFactory.eINSTANCE.createNode();
+		node.setName(name);
+		node.setGraph(this);
+		return node;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Edge createEdge(Node source, Node target) {
+		Edge edge = MetamodelFactory.eINSTANCE.createEdge();
+		edge.setSource(source);
+		edge.setTarget(target);
+		edge.setGraph(this);
+		return edge;
 	}
 
 	/**
@@ -159,10 +175,16 @@ public class GraphImpl extends EObjectImpl implements Graph {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Edge createEdge(Node source, Node target) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case MetamodelPackage.GRAPH__NODES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getNodes()).basicAdd(otherEnd, msgs);
+			case MetamodelPackage.GRAPH__EDGES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getEdges()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
