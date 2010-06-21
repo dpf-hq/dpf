@@ -5,7 +5,7 @@
 			  value="no.hib.dpf.feature" />
 	<property name="baseLocation" location="${eclipse.home}" />
 	<property name="base" location="${baseLocation}/.." />
-	<property name="buildDirectory" location="/tmp/eclipse.build" />
+	<property name="buildDirectory" location="build/" />
 	<property name="javacSource" value="1.6" />
 	<property name="javacTarget" value="1.6" />
 	
