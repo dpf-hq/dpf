@@ -6,10 +6,6 @@
  */
 package no.hib.dpf.metamodel.impl;
 
-import java.util.Collection;
-import java.util.Map;
-
-import java.util.Map.Entry;
 import no.hib.dpf.metamodel.Edge;
 import no.hib.dpf.metamodel.GraphHomomorphism;
 import no.hib.dpf.metamodel.MetamodelPackage;
@@ -17,16 +13,10 @@ import no.hib.dpf.metamodel.Node;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EMap;
-import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -89,7 +79,6 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	public EMap<Node, Node> getNodeMapping() {
 		if (nodeMapping == null) {
 			nodeMapping = new EcoreEMap<Node,Node>(MetamodelPackage.Literals.NODE_TO_NODE_MAP, NodeToNodeMapImpl.class, this, MetamodelPackage.GRAPH_HOMOMORPHISM__NODE_MAPPING);
@@ -102,7 +91,6 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	public EMap<Edge, Edge> getEdgeMapping() {
 		if (edgeMapping == null) {
 			edgeMapping = new EcoreEMap<Edge,Edge>(MetamodelPackage.Literals.EDGE_TO_EDGE_MAP, EdgeToEdgeMapImpl.class, this, MetamodelPackage.GRAPH_HOMOMORPHISM__EDGE_MAPPING);
@@ -149,7 +137,6 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {

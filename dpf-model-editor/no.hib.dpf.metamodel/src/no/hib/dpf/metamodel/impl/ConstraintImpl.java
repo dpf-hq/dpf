@@ -6,21 +6,15 @@
  */
 package no.hib.dpf.metamodel.impl;
 
-import java.util.Map;
 import no.hib.dpf.metamodel.Constraint;
-import no.hib.dpf.metamodel.Edge;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.GraphHomomorphism;
 import no.hib.dpf.metamodel.MetamodelPackage;
-
-import no.hib.dpf.metamodel.Node;
 import no.hib.dpf.metamodel.Predicate;
+
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
@@ -229,7 +223,6 @@ public class ConstraintImpl extends EObjectImpl implements Constraint {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {

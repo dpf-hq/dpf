@@ -171,7 +171,6 @@ public class NodeToNodeMapImpl extends EObjectImpl implements BasicEMap.Entry<No
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
