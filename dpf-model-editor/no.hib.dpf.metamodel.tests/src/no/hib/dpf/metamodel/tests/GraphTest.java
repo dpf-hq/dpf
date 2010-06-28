@@ -23,7 +23,7 @@ import no.hib.dpf.metamodel.Node;
  * The following operations are tested:
  * <ul>
  *   <li>{@link no.hib.dpf.metamodel.Graph#createNode(java.lang.String) <em>Create Node</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Graph#createEdge(no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Node) <em>Create Edge</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Graph#createEdge(java.lang.String, no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Node) <em>Create Edge</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -113,13 +113,13 @@ public class GraphTest extends TestCase {
 	}
 
 	/**
-	 * Tests the '{@link no.hib.dpf.metamodel.Graph#createEdge(no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Node) <em>Create Edge</em>}' operation.
+	 * Tests the '{@link no.hib.dpf.metamodel.Graph#createEdge(java.lang.String, no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Node) <em>Create Edge</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.Graph#createEdge(no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Node)
+	 * @see no.hib.dpf.metamodel.Graph#createEdge(java.lang.String, no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Node)
 	 * @generated NOT
 	 */
-	public void testCreateEdge__Node_Node() {
+	public void testCreateEdge__String_Node_Node() {
 		Node n1 = fixture.createNode("n1");
 		Node n2 = fixture.createNode("n2");
 		Edge e = fixture.createEdge("test", n1, n2);
@@ -129,5 +129,6 @@ public class GraphTest extends TestCase {
 		assertEquals(n2, e.getTarget());
 		assertEquals("test", e.getName());
 	}
+
 
 } //GraphTest
