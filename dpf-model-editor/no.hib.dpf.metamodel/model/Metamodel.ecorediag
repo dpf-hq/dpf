@@ -424,7 +424,7 @@
     <styles xmi:type="notation:ConnectorStyle" xmi:id="_PLn68YK_Ed-_f5Ue2p9irw" lineColor="4210752"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_PLn68oK_Ed-_f5Ue2p9irw" fontColor="4210752" fontName="Lucida Grande" fontHeight="10"/>
     <element xmi:type="ecore:EReference" href="Metamodel.ecore#//hib/dpf/metamodel/Constraint/mappings"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_PLn684K_Ed-_f5Ue2p9irw" points="[0, 0, -400, 60]$[400, -60, 0, 0]"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_PLn684K_Ed-_f5Ue2p9irw" points="[25, 36, -376, 98]$[98, 144, -303, 206]$[401, 153, 0, 215]$[401, -62, 0, 0]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_PQjeQIK_Ed-_f5Ue2p9irw" id="(0.7549019607843137,0.0)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_PQkFUIK_Ed-_f5Ue2p9irw" id="(0.3333333333333333,1.0)"/>
   </edges>
@@ -486,7 +486,7 @@
   </edges>
   <edges xmi:type="notation:Edge" xmi:id="_PLsMYIK_Ed-_f5Ue2p9irw" type="3002" source="_PLYqYIK_Ed-_f5Ue2p9irw" target="_PLZReIK_Ed-_f5Ue2p9irw">
     <children xmi:type="notation:Node" xmi:id="_PLsMZIK_Ed-_f5Ue2p9irw" type="4011">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_PLsMZYK_Ed-_f5Ue2p9irw" x="-35" y="30"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_PLsMZYK_Ed-_f5Ue2p9irw" x="-34" y="17"/>
     </children>
     <children xmi:type="notation:Node" xmi:id="_PLsMZoK_Ed-_f5Ue2p9irw" type="4012">
       <layoutConstraint xmi:type="notation:Location" xmi:id="_PLsMZ4K_Ed-_f5Ue2p9irw" x="10" y="10"/>
@@ -496,7 +496,7 @@
     <element xmi:type="ecore:EReference" href="Metamodel.ecore#//hib/dpf/metamodel/TypingMorphism/mappings"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_PLsMY4K_Ed-_f5Ue2p9irw" points="[0, 0, -175, 60]$[175, -60, 0, 0]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_PQnIoIK_Ed-_f5Ue2p9irw" id="(0.7378640776699029,0.0)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_PQnIoYK_Ed-_f5Ue2p9irw" id="(0.6666666666666666,1.0)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_PQnIoYK_Ed-_f5Ue2p9irw" id="(0.07751937984496124,0.35714285714285715)"/>
   </edges>
   <edges xmi:type="notation:Edge" xmi:id="_PLszcIK_Ed-_f5Ue2p9irw" type="3002" source="_PLZReIK_Ed-_f5Ue2p9irw" target="_PLVACIK_Ed-_f5Ue2p9irw">
     <children xmi:type="notation:Node" xmi:id="_PLszdIK_Ed-_f5Ue2p9irw" type="4011">
