@@ -40,10 +40,9 @@
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Predicate">
           <eStructuralFeatures xsi:type="ecore:EReference" name="shape" eType="#//hib/dpf/metamodel/Graph"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="semantics" upperBound="-1"
-              eType="#//hib/dpf/metamodel/Semantics"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="visualization" upperBound="-1"
-              eType="#//hib/dpf/metamodel/Visualization"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="semantics" eType="#//hib/dpf/metamodel/Semantics"
+              containment="true"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="visualization" eType="#//hib/dpf/metamodel/Visualization"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Semantics"/>
         <eClassifiers xsi:type="ecore:EClass" name="Visualization" abstract="true"/>
