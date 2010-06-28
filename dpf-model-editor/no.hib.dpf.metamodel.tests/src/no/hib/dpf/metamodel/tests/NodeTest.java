@@ -10,6 +10,8 @@ import junit.framework.TestCase;
 
 import junit.textui.TestRunner;
 
+import no.hib.dpf.metamodel.Edge;
+import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.MetamodelFactory;
 import no.hib.dpf.metamodel.Node;
 
@@ -101,12 +103,26 @@ public class NodeTest extends TestCase {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see no.hib.dpf.metamodel.Node#getOutgoingEdges()
-	 * @generated
+	 * @generated NOT
 	 */
 	public void testGetOutgoingEdges() {
-		// TODO: implement this operation test method
-		// Ensure that you remove @generated or mark it @generated NOT
-		fail();
+		Graph g = MetamodelFactory.eINSTANCE.createGraph();
+		Node n1 = g.createNode("n1");
+		Node n2 = g.createNode("n2");
+		Node n3 = g.createNode("n3");
+		
+		Edge e1 = g.createEdge("e1", n1, n2);
+		Edge e2 = g.createEdge("e2", n2, n3);
+		Edge e3 = g.createEdge("e3", n2, n1);
+		
+		assertTrue(n1.getOutgoingEdges().size() == 1 &&
+				n1.getOutgoingEdges().get(0) == e1);
+		
+		assertTrue(n2.getOutgoingEdges().size() == 2 &&
+				n2.getOutgoingEdges().contains(e2) && 
+				n2.getOutgoingEdges().contains(e3));
+		
+		assertTrue(n3.getOutgoingEdges().size() == 0);
 	}
 
 } //NodeTest

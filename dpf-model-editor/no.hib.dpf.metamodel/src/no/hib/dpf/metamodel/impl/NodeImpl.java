@@ -6,6 +6,9 @@
  */
 package no.hib.dpf.metamodel.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import no.hib.dpf.metamodel.Edge;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.MetamodelPackage;
@@ -13,6 +16,7 @@ import no.hib.dpf.metamodel.Node;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -139,12 +143,17 @@ public class NodeImpl extends EObjectImpl implements Node {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<Edge> getOutgoingEdges() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		EList<Edge> edges = new BasicEList<Edge>();
+		for(Edge e : getGraph().getEdges()) {
+			if(e.getSource() == this) {
+				edges.add(e);
+			}
+		}
+		
+		return edges;
 	}
 
 	/**

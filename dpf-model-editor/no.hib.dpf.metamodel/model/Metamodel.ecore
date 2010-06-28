@@ -29,8 +29,7 @@
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Edge">
           <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//hib/dpf/metamodel/Node"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
-              eType="#//hib/dpf/metamodel/Node"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//hib/dpf/metamodel/Node"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="graph" eType="#//hib/dpf/metamodel/Graph"
               eOpposite="#//hib/dpf/metamodel/Graph/edges"/>
