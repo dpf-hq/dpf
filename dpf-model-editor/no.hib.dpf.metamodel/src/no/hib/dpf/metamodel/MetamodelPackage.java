@@ -245,7 +245,7 @@ public interface MetamodelPackage extends EPackage {
 	int PREDICATE__SHAPE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Semantics</b></em>' reference list.
+	 * The feature id for the '<em><b>Semantics</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -254,7 +254,7 @@ public interface MetamodelPackage extends EPackage {
 	int PREDICATE__SEMANTICS = 1;
 
 	/**
-	 * The feature id for the '<em><b>Visualization</b></em>' reference list.
+	 * The feature id for the '<em><b>Visualization</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -688,10 +688,10 @@ public interface MetamodelPackage extends EPackage {
 	EReference getPredicate_Shape();
 
 	/**
-	 * Returns the meta object for the reference list '{@link no.hib.dpf.metamodel.Predicate#getSemantics <em>Semantics</em>}'.
+	 * Returns the meta object for the containment reference '{@link no.hib.dpf.metamodel.Predicate#getSemantics <em>Semantics</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Semantics</em>'.
+	 * @return the meta object for the containment reference '<em>Semantics</em>'.
 	 * @see no.hib.dpf.metamodel.Predicate#getSemantics()
 	 * @see #getPredicate()
 	 * @generated
@@ -699,10 +699,10 @@ public interface MetamodelPackage extends EPackage {
 	EReference getPredicate_Semantics();
 
 	/**
-	 * Returns the meta object for the reference list '{@link no.hib.dpf.metamodel.Predicate#getVisualization <em>Visualization</em>}'.
+	 * Returns the meta object for the reference '{@link no.hib.dpf.metamodel.Predicate#getVisualization <em>Visualization</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Visualization</em>'.
+	 * @return the meta object for the reference '<em>Visualization</em>'.
 	 * @see no.hib.dpf.metamodel.Predicate#getVisualization()
 	 * @see #getPredicate()
 	 * @generated
@@ -1076,7 +1076,7 @@ public interface MetamodelPackage extends EPackage {
 		EReference PREDICATE__SHAPE = eINSTANCE.getPredicate_Shape();
 
 		/**
-		 * The meta object literal for the '<em><b>Semantics</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Semantics</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1084,7 +1084,7 @@ public interface MetamodelPackage extends EPackage {
 		EReference PREDICATE__SEMANTICS = eINSTANCE.getPredicate_Semantics();
 
 		/**
-		 * The meta object literal for the '<em><b>Visualization</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Visualization</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

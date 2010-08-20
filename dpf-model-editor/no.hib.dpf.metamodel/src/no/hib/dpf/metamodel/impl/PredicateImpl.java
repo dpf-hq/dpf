@@ -15,6 +15,7 @@ import no.hib.dpf.metamodel.Visualization;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -50,24 +51,24 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 	protected Graph shape;
 
 	/**
-	 * The cached value of the '{@link #getSemantics() <em>Semantics</em>}' reference list.
+	 * The cached value of the '{@link #getSemantics() <em>Semantics</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getSemantics()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Semantics> semantics;
+	protected Semantics semantics;
 
 	/**
-	 * The cached value of the '{@link #getVisualization() <em>Visualization</em>}' reference list.
+	 * The cached value of the '{@link #getVisualization() <em>Visualization</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getVisualization()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Visualization> visualization;
+	protected Visualization visualization;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -131,10 +132,7 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Semantics> getSemantics() {
-		if (semantics == null) {
-			semantics = new EObjectResolvingEList<Semantics>(Semantics.class, this, MetamodelPackage.PREDICATE__SEMANTICS);
-		}
+	public Semantics getSemantics() {
 		return semantics;
 	}
 
@@ -143,11 +141,85 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Visualization> getVisualization() {
-		if (visualization == null) {
-			visualization = new EObjectResolvingEList<Visualization>(Visualization.class, this, MetamodelPackage.PREDICATE__VISUALIZATION);
+	public NotificationChain basicSetSemantics(Semantics newSemantics, NotificationChain msgs) {
+		Semantics oldSemantics = semantics;
+		semantics = newSemantics;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MetamodelPackage.PREDICATE__SEMANTICS, oldSemantics, newSemantics);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSemantics(Semantics newSemantics) {
+		if (newSemantics != semantics) {
+			NotificationChain msgs = null;
+			if (semantics != null)
+				msgs = ((InternalEObject)semantics).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MetamodelPackage.PREDICATE__SEMANTICS, null, msgs);
+			if (newSemantics != null)
+				msgs = ((InternalEObject)newSemantics).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MetamodelPackage.PREDICATE__SEMANTICS, null, msgs);
+			msgs = basicSetSemantics(newSemantics, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.PREDICATE__SEMANTICS, newSemantics, newSemantics));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Visualization getVisualization() {
+		if (visualization != null && visualization.eIsProxy()) {
+			InternalEObject oldVisualization = (InternalEObject)visualization;
+			visualization = (Visualization)eResolveProxy(oldVisualization);
+			if (visualization != oldVisualization) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.PREDICATE__VISUALIZATION, oldVisualization, visualization));
+			}
 		}
 		return visualization;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Visualization basicGetVisualization() {
+		return visualization;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setVisualization(Visualization newVisualization) {
+		Visualization oldVisualization = visualization;
+		visualization = newVisualization;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.PREDICATE__VISUALIZATION, oldVisualization, visualization));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case MetamodelPackage.PREDICATE__SEMANTICS:
+				return basicSetSemantics(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -164,7 +236,8 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 			case MetamodelPackage.PREDICATE__SEMANTICS:
 				return getSemantics();
 			case MetamodelPackage.PREDICATE__VISUALIZATION:
-				return getVisualization();
+				if (resolve) return getVisualization();
+				return basicGetVisualization();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -182,12 +255,10 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 				setShape((Graph)newValue);
 				return;
 			case MetamodelPackage.PREDICATE__SEMANTICS:
-				getSemantics().clear();
-				getSemantics().addAll((Collection<? extends Semantics>)newValue);
+				setSemantics((Semantics)newValue);
 				return;
 			case MetamodelPackage.PREDICATE__VISUALIZATION:
-				getVisualization().clear();
-				getVisualization().addAll((Collection<? extends Visualization>)newValue);
+				setVisualization((Visualization)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -205,10 +276,10 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 				setShape((Graph)null);
 				return;
 			case MetamodelPackage.PREDICATE__SEMANTICS:
-				getSemantics().clear();
+				setSemantics((Semantics)null);
 				return;
 			case MetamodelPackage.PREDICATE__VISUALIZATION:
-				getVisualization().clear();
+				setVisualization((Visualization)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -225,9 +296,9 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 			case MetamodelPackage.PREDICATE__SHAPE:
 				return shape != null;
 			case MetamodelPackage.PREDICATE__SEMANTICS:
-				return semantics != null && !semantics.isEmpty();
+				return semantics != null;
 			case MetamodelPackage.PREDICATE__VISUALIZATION:
-				return visualization != null && !visualization.isEmpty();
+				return visualization != null;
 		}
 		return super.eIsSet(featureID);
 	}

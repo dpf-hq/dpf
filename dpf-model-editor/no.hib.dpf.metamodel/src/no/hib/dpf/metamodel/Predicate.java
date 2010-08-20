@@ -55,35 +55,55 @@ public interface Predicate extends EObject {
 	void setShape(Graph value);
 
 	/**
-	 * Returns the value of the '<em><b>Semantics</b></em>' reference list.
-	 * The list contents are of type {@link no.hib.dpf.metamodel.Semantics}.
+	 * Returns the value of the '<em><b>Semantics</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Semantics</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Semantics</em>' reference list.
+	 * @return the value of the '<em>Semantics</em>' containment reference.
+	 * @see #setSemantics(Semantics)
 	 * @see no.hib.dpf.metamodel.MetamodelPackage#getPredicate_Semantics()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Semantics> getSemantics();
+	Semantics getSemantics();
 
 	/**
-	 * Returns the value of the '<em><b>Visualization</b></em>' reference list.
-	 * The list contents are of type {@link no.hib.dpf.metamodel.Visualization}.
+	 * Sets the value of the '{@link no.hib.dpf.metamodel.Predicate#getSemantics <em>Semantics</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Semantics</em>' containment reference.
+	 * @see #getSemantics()
+	 * @generated
+	 */
+	void setSemantics(Semantics value);
+
+	/**
+	 * Returns the value of the '<em><b>Visualization</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Visualization</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Visualization</em>' reference list.
+	 * @return the value of the '<em>Visualization</em>' reference.
+	 * @see #setVisualization(Visualization)
 	 * @see no.hib.dpf.metamodel.MetamodelPackage#getPredicate_Visualization()
 	 * @model
 	 * @generated
 	 */
-	EList<Visualization> getVisualization();
+	Visualization getVisualization();
+
+	/**
+	 * Sets the value of the '{@link no.hib.dpf.metamodel.Predicate#getVisualization <em>Visualization</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Visualization</em>' reference.
+	 * @see #getVisualization()
+	 * @generated
+	 */
+	void setVisualization(Visualization value);
 
 } // Predicate
