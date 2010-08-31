@@ -28,15 +28,7 @@ import no.hib.dpf.metamodel.Node;
  * </p>
  * @generated
  */
-public class GraphTest extends TestCase {
-
-	/**
-	 * The fixture for this Graph test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected Graph fixture = null;
+public class GraphTest extends IDObjectTest {
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -58,23 +50,14 @@ public class GraphTest extends TestCase {
 	}
 
 	/**
-	 * Sets the fixture for this Graph test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void setFixture(Graph fixture) {
-		this.fixture = fixture;
-	}
-
-	/**
 	 * Returns the fixture for this Graph test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected Graph getFixture() {
-		return fixture;
+		return (Graph)fixture;
 	}
 
 	/**
@@ -107,8 +90,8 @@ public class GraphTest extends TestCase {
 	 * @generated NOT
 	 */
 	public void testCreateNode__String() {
-		Node n = fixture.createNode("test");
-		assertTrue(fixture.getNodes().contains(n));
+		Node n = getFixture().createNode("test");
+		assertTrue(getFixture().getNodes().contains(n));
 		assertEquals("test", n.getName());
 	}
 
@@ -120,11 +103,11 @@ public class GraphTest extends TestCase {
 	 * @generated NOT
 	 */
 	public void testCreateEdge__String_Node_Node() {
-		Node n1 = fixture.createNode("n1");
-		Node n2 = fixture.createNode("n2");
-		Edge e = fixture.createEdge("test", n1, n2);
+		Node n1 = getFixture().createNode("n1");
+		Node n2 = getFixture().createNode("n2");
+		Edge e = getFixture().createEdge("test", n1, n2);
 		
-		assertTrue(fixture.getEdges().contains(e));
+		assertTrue(getFixture().getEdges().contains(e));
 		assertEquals(n1, e.getSource());
 		assertEquals(n2, e.getTarget());
 		assertEquals("test", e.getName());

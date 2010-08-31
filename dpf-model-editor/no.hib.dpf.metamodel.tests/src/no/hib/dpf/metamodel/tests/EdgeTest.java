@@ -19,15 +19,7 @@ import no.hib.dpf.metamodel.MetamodelFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class EdgeTest extends TestCase {
-
-	/**
-	 * The fixture for this Edge test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected Edge fixture = null;
+public class EdgeTest extends IDObjectTest {
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -49,23 +41,14 @@ public class EdgeTest extends TestCase {
 	}
 
 	/**
-	 * Sets the fixture for this Edge test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void setFixture(Edge fixture) {
-		this.fixture = fixture;
-	}
-
-	/**
 	 * Returns the fixture for this Edge test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected Edge getFixture() {
-		return fixture;
+		return (Edge)fixture;
 	}
 
 	/**
