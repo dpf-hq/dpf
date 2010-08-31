@@ -91,18 +91,21 @@ public class MetamodelSwitch<T> {
 			case MetamodelPackage.GRAPH: {
 				Graph graph = (Graph)theEObject;
 				T result = caseGraph(graph);
+				if (result == null) result = caseIDObject(graph);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case MetamodelPackage.NODE: {
 				Node node = (Node)theEObject;
 				T result = caseNode(node);
+				if (result == null) result = caseIDObject(node);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case MetamodelPackage.EDGE: {
 				Edge edge = (Edge)theEObject;
 				T result = caseEdge(edge);
+				if (result == null) result = caseIDObject(edge);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -157,6 +160,12 @@ public class MetamodelSwitch<T> {
 			case MetamodelPackage.GRAPH_HOMOMORPHISM: {
 				GraphHomomorphism graphHomomorphism = (GraphHomomorphism)theEObject;
 				T result = caseGraphHomomorphism(graphHomomorphism);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MetamodelPackage.ID_OBJECT: {
+				IDObject idObject = (IDObject)theEObject;
+				T result = caseIDObject(idObject);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -341,6 +350,21 @@ public class MetamodelSwitch<T> {
 	 * @generated
 	 */
 	public T caseGraphHomomorphism(GraphHomomorphism object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>ID Object</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>ID Object</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIDObject(IDObject object) {
 		return null;
 	}
 

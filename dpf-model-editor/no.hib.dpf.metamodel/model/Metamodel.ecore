@@ -6,7 +6,7 @@
   <eSubpackages name="hib" nsURI="http://no.hib" nsPrefix="no.hib">
     <eSubpackages name="dpf" nsURI="http://no.hib.dpf" nsPrefix="no.hib.dpf">
       <eSubpackages name="metamodel" nsURI="http://no.hib.dpf.metamodel" nsPrefix="no.hib.dpf.metamodel">
-        <eClassifiers xsi:type="ecore:EClass" name="Graph">
+        <eClassifiers xsi:type="ecore:EClass" name="Graph" eSuperTypes="#//hib/dpf/metamodel/IDObject">
           <eOperations name="createNode" eType="#//hib/dpf/metamodel/Node">
             <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
           </eOperations>
@@ -21,13 +21,13 @@
           <eStructuralFeatures xsi:type="ecore:EReference" name="edges" upperBound="-1"
               eType="#//hib/dpf/metamodel/Edge" containment="true" eOpposite="#//hib/dpf/metamodel/Edge/graph"/>
         </eClassifiers>
-        <eClassifiers xsi:type="ecore:EClass" name="Node">
+        <eClassifiers xsi:type="ecore:EClass" name="Node" eSuperTypes="#//hib/dpf/metamodel/IDObject">
           <eOperations name="getOutgoingEdges" upperBound="-1" eType="#//hib/dpf/metamodel/Edge"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="graph" eType="#//hib/dpf/metamodel/Graph"
               eOpposite="#//hib/dpf/metamodel/Graph/nodes"/>
         </eClassifiers>
-        <eClassifiers xsi:type="ecore:EClass" name="Edge">
+        <eClassifiers xsi:type="ecore:EClass" name="Edge" eSuperTypes="#//hib/dpf/metamodel/IDObject">
           <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//hib/dpf/metamodel/Node"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//hib/dpf/metamodel/Node"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -72,6 +72,10 @@
               eType="#//hib/dpf/metamodel/NodeToNodeMap" containment="true"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="edgeMapping" upperBound="-1"
               eType="#//hib/dpf/metamodel/EdgeToEdgeMap" containment="true"/>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EClass" name="IDObject">
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+              defaultValueLiteral=""/>
         </eClassifiers>
       </eSubpackages>
     </eSubpackages>

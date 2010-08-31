@@ -72,6 +72,7 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 			case MetamodelPackage.EDGE_TO_EDGE_MAP: return (EObject)createEdgeToEdgeMap();
 			case MetamodelPackage.TYPING_MORPHISM: return createTypingMorphism();
 			case MetamodelPackage.GRAPH_HOMOMORPHISM: return createGraphHomomorphism();
+			case MetamodelPackage.ID_OBJECT: return createIDObject();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -186,6 +187,16 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	public GraphHomomorphism createGraphHomomorphism() {
 		GraphHomomorphismImpl graphHomomorphism = new GraphHomomorphismImpl();
 		return graphHomomorphism;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IDObject createIDObject() {
+		IDObjectImpl idObject = new IDObjectImpl();
+		return idObject;
 	}
 
 	/**

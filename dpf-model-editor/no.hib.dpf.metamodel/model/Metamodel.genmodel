@@ -85,6 +85,9 @@
             <genFeatures notify="false" createChild="false" propertySortChoices="true"
                 ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/GraphHomomorphism/edgeMapping"/>
           </genClasses>
+          <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/metamodel/IDObject">
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//hib/dpf/metamodel/IDObject/id"/>
+          </genClasses>
         </nestedGenPackages>
       </nestedGenPackages>
     </nestedGenPackages>

@@ -70,42 +70,6 @@ public interface MetamodelPackage extends EPackage {
 	int GRAPH = 0;
 
 	/**
-	 * The feature id for the '<em><b>Nodes</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPH__NODES = 0;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPH__NAME = 1;
-
-	/**
-	 * The feature id for the '<em><b>Edges</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPH__EDGES = 2;
-
-	/**
-	 * The number of structural features of the '<em>Graph</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPH_FEATURE_COUNT = 3;
-
-	/**
 	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.NodeImpl <em>Node</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -114,33 +78,6 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	int NODE = 1;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NODE__NAME = 0;
-
-	/**
-	 * The feature id for the '<em><b>Graph</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NODE__GRAPH = 1;
-
-	/**
-	 * The number of structural features of the '<em>Node</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NODE_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.EdgeImpl <em>Edge</em>}' class.
@@ -153,51 +90,6 @@ public interface MetamodelPackage extends EPackage {
 	int EDGE = 2;
 
 	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EDGE__SOURCE = 0;
-
-	/**
-	 * The feature id for the '<em><b>Target</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EDGE__TARGET = 1;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EDGE__NAME = 2;
-
-	/**
-	 * The feature id for the '<em><b>Graph</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EDGE__GRAPH = 3;
-
-	/**
-	 * The number of structural features of the '<em>Edge</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EDGE_FEATURE_COUNT = 4;
-
-	/**
 	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.SignatureImpl <em>Signature</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -206,6 +98,249 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	int SIGNATURE = 3;
+
+	/**
+	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.PredicateImpl <em>Predicate</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.impl.PredicateImpl
+	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getPredicate()
+	 * @generated
+	 */
+	int PREDICATE = 4;
+
+	/**
+	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.SemanticsImpl <em>Semantics</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.impl.SemanticsImpl
+	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getSemantics()
+	 * @generated
+	 */
+	int SEMANTICS = 5;
+
+	/**
+	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.VisualizationImpl <em>Visualization</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.impl.VisualizationImpl
+	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getVisualization()
+	 * @generated
+	 */
+	int VISUALIZATION = 6;
+
+	/**
+	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.NodeToNodeMapImpl <em>Node To Node Map</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.impl.NodeToNodeMapImpl
+	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getNodeToNodeMap()
+	 * @generated
+	 */
+	int NODE_TO_NODE_MAP = 7;
+
+	/**
+	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.ConstraintImpl <em>Constraint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.impl.ConstraintImpl
+	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getConstraint()
+	 * @generated
+	 */
+	int CONSTRAINT = 8;
+
+	/**
+	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.EdgeToEdgeMapImpl <em>Edge To Edge Map</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.impl.EdgeToEdgeMapImpl
+	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getEdgeToEdgeMap()
+	 * @generated
+	 */
+	int EDGE_TO_EDGE_MAP = 9;
+
+	/**
+	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.TypingMorphismImpl <em>Typing Morphism</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.impl.TypingMorphismImpl
+	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getTypingMorphism()
+	 * @generated
+	 */
+	int TYPING_MORPHISM = 10;
+
+	/**
+	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.GraphHomomorphismImpl <em>Graph Homomorphism</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.impl.GraphHomomorphismImpl
+	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getGraphHomomorphism()
+	 * @generated
+	 */
+	int GRAPH_HOMOMORPHISM = 11;
+
+	/**
+	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.IDObjectImpl <em>ID Object</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.impl.IDObjectImpl
+	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getIDObject()
+	 * @generated
+	 */
+	int ID_OBJECT = 12;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ID_OBJECT__ID = 0;
+
+	/**
+	 * The number of structural features of the '<em>ID Object</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ID_OBJECT_FEATURE_COUNT = 1;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPH__ID = ID_OBJECT__ID;
+
+	/**
+	 * The feature id for the '<em><b>Nodes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPH__NODES = ID_OBJECT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPH__NAME = ID_OBJECT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Edges</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPH__EDGES = ID_OBJECT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Graph</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPH_FEATURE_COUNT = ID_OBJECT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NODE__ID = ID_OBJECT__ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NODE__NAME = ID_OBJECT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Graph</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NODE__GRAPH = ID_OBJECT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Node</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NODE_FEATURE_COUNT = ID_OBJECT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDGE__ID = ID_OBJECT__ID;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDGE__SOURCE = ID_OBJECT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDGE__TARGET = ID_OBJECT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDGE__NAME = ID_OBJECT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Graph</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDGE__GRAPH = ID_OBJECT_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of structural features of the '<em>Edge</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDGE_FEATURE_COUNT = ID_OBJECT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Predicates</b></em>' containment reference list.
@@ -224,16 +359,6 @@ public interface MetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int SIGNATURE_FEATURE_COUNT = 1;
-
-	/**
-	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.PredicateImpl <em>Predicate</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.impl.PredicateImpl
-	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getPredicate()
-	 * @generated
-	 */
-	int PREDICATE = 4;
 
 	/**
 	 * The feature id for the '<em><b>Shape</b></em>' reference.
@@ -272,16 +397,6 @@ public interface MetamodelPackage extends EPackage {
 	int PREDICATE_FEATURE_COUNT = 3;
 
 	/**
-	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.SemanticsImpl <em>Semantics</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.impl.SemanticsImpl
-	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getSemantics()
-	 * @generated
-	 */
-	int SEMANTICS = 5;
-
-	/**
 	 * The number of structural features of the '<em>Semantics</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -291,16 +406,6 @@ public interface MetamodelPackage extends EPackage {
 	int SEMANTICS_FEATURE_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.VisualizationImpl <em>Visualization</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.impl.VisualizationImpl
-	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getVisualization()
-	 * @generated
-	 */
-	int VISUALIZATION = 6;
-
-	/**
 	 * The number of structural features of the '<em>Visualization</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -308,17 +413,6 @@ public interface MetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int VISUALIZATION_FEATURE_COUNT = 0;
-
-
-	/**
-	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.NodeToNodeMapImpl <em>Node To Node Map</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.impl.NodeToNodeMapImpl
-	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getNodeToNodeMap()
-	 * @generated
-	 */
-	int NODE_TO_NODE_MAP = 7;
 
 	/**
 	 * The feature id for the '<em><b>Key</b></em>' reference.
@@ -346,17 +440,6 @@ public interface MetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int NODE_TO_NODE_MAP_FEATURE_COUNT = 2;
-
-
-	/**
-	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.ConstraintImpl <em>Constraint</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.impl.ConstraintImpl
-	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getConstraint()
-	 * @generated
-	 */
-	int CONSTRAINT = 8;
 
 	/**
 	 * The feature id for the '<em><b>Constrained Model</b></em>' reference.
@@ -395,16 +478,6 @@ public interface MetamodelPackage extends EPackage {
 	int CONSTRAINT_FEATURE_COUNT = 3;
 
 	/**
-	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.EdgeToEdgeMapImpl <em>Edge To Edge Map</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.impl.EdgeToEdgeMapImpl
-	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getEdgeToEdgeMap()
-	 * @generated
-	 */
-	int EDGE_TO_EDGE_MAP = 9;
-
-	/**
 	 * The feature id for the '<em><b>Key</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -430,16 +503,6 @@ public interface MetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int EDGE_TO_EDGE_MAP_FEATURE_COUNT = 2;
-
-	/**
-	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.TypingMorphismImpl <em>Typing Morphism</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.impl.TypingMorphismImpl
-	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getTypingMorphism()
-	 * @generated
-	 */
-	int TYPING_MORPHISM = 10;
 
 	/**
 	 * The feature id for the '<em><b>Model</b></em>' reference.
@@ -476,17 +539,6 @@ public interface MetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int TYPING_MORPHISM_FEATURE_COUNT = 3;
-
-
-	/**
-	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.GraphHomomorphismImpl <em>Graph Homomorphism</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.impl.GraphHomomorphismImpl
-	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getGraphHomomorphism()
-	 * @generated
-	 */
-	int GRAPH_HOMOMORPHISM = 11;
 
 	/**
 	 * The feature id for the '<em><b>Node Mapping</b></em>' map.
@@ -916,6 +968,27 @@ public interface MetamodelPackage extends EPackage {
 	EReference getGraphHomomorphism_EdgeMapping();
 
 	/**
+	 * Returns the meta object for class '{@link no.hib.dpf.metamodel.IDObject <em>ID Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>ID Object</em>'.
+	 * @see no.hib.dpf.metamodel.IDObject
+	 * @generated
+	 */
+	EClass getIDObject();
+
+	/**
+	 * Returns the meta object for the attribute '{@link no.hib.dpf.metamodel.IDObject#getId <em>Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Id</em>'.
+	 * @see no.hib.dpf.metamodel.IDObject#getId()
+	 * @see #getIDObject()
+	 * @generated
+	 */
+	EAttribute getIDObject_Id();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1256,6 +1329,24 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference GRAPH_HOMOMORPHISM__EDGE_MAPPING = eINSTANCE.getGraphHomomorphism_EdgeMapping();
+
+		/**
+		 * The meta object literal for the '{@link no.hib.dpf.metamodel.impl.IDObjectImpl <em>ID Object</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see no.hib.dpf.metamodel.impl.IDObjectImpl
+		 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getIDObject()
+		 * @generated
+		 */
+		EClass ID_OBJECT = eINSTANCE.getIDObject();
+
+		/**
+		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ID_OBJECT__ID = eINSTANCE.getIDObject_Id();
 
 	}
 

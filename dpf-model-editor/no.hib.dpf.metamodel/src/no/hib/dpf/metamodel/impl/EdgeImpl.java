@@ -35,7 +35,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  *
  * @generated
  */
-public class EdgeImpl extends EObjectImpl implements Edge {
+public class EdgeImpl extends IDObjectImpl implements Edge {
 	/**
 	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
 	 * <!-- begin-user-doc -->

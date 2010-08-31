@@ -107,6 +107,15 @@ public interface MetamodelFactory extends EFactory {
 	GraphHomomorphism createGraphHomomorphism();
 
 	/**
+	 * Returns a new object of class '<em>ID Object</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>ID Object</em>'.
+	 * @generated
+	 */
+	IDObject createIDObject();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
