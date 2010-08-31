@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+
+     <extension point="org.eclipse.ui.editors">
+      <editor name="GEF DPF Example"
+              extensions="dpf"
+              icon="shapes.gif"
+              default="true"
+              class="no.hib.dpf.editor.DPFEditor"
+              contributorClass="no.hib.dpf.editor.DPFEditorActionBarContributor"
+              id="GEF DPF Editor">
+      </editor>
+   </extension>
+   <extension point="org.eclipse.ui.newWizards">
+      <category name="Examples"
+                parentCategory="org.eclipse.ui.Examples"
+                id="org.eclipse.gef.examples"/>
+      <wizard name="DPF Diagram"
+              icon="shapes.gif"
+              category="org.eclipse.ui.Examples/org.eclipse.gef.examples"
+              class="no.hib.dpf.editor.DPFCreationWizard"
+              id="org.eclipse.gef.examples.shapes.ShapesCreationWizard">
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+</plugin>
