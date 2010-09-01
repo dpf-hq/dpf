@@ -89,6 +89,17 @@
             <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//hib/dpf/metamodel/IDObject/id"/>
           </genClasses>
         </nestedGenPackages>
+        <nestedGenPackages prefix="Command" basePackage="no.hib.dpf" disposableProviderFactory="true"
+            ecorePackage="Metamodel.ecore#//hib/dpf/command">
+          <genClasses image="false" ecoreClass="Metamodel.ecore#//hib/dpf/command/Command">
+            <genOperations ecoreOperation="Metamodel.ecore#//hib/dpf/command/Command/execute"/>
+            <genOperations ecoreOperation="Metamodel.ecore#//hib/dpf/command/Command/undo"/>
+          </genClasses>
+          <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/command/CreateNodeCommand"/>
+          <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/command/CreateEdgeCommand"/>
+          <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/command/DeleteNodeCommand"/>
+          <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/command/DeleteEdgeCommand"/>
+        </nestedGenPackages>
       </nestedGenPackages>
     </nestedGenPackages>
   </genPackages>

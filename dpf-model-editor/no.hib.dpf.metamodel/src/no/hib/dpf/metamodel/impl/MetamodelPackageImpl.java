@@ -8,6 +8,8 @@ package no.hib.dpf.metamodel.impl;
 
 import java.util.Map;
 
+import no.hib.dpf.command.CommandPackage;
+import no.hib.dpf.command.impl.CommandPackageImpl;
 import no.hib.dpf.metamodel.Constraint;
 import no.hib.dpf.metamodel.Edge;
 import no.hib.dpf.metamodel.Graph;
@@ -173,11 +175,16 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 		isInited = true;
 
+		// Obtain or create and register interdependencies
+		CommandPackageImpl theCommandPackage = (CommandPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CommandPackage.eNS_URI) instanceof CommandPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CommandPackage.eNS_URI) : CommandPackage.eINSTANCE);
+
 		// Create package meta-data objects
 		theMetamodelPackage.createPackageContents();
+		theCommandPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theMetamodelPackage.initializePackageContents();
+		theCommandPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theMetamodelPackage.freeze();

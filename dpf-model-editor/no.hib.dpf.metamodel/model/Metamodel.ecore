@@ -78,6 +78,16 @@
               defaultValueLiteral=""/>
         </eClassifiers>
       </eSubpackages>
+      <eSubpackages name="command" nsURI="http://no.hib.dpf.command" nsPrefix="no.hib.dpf.command">
+        <eClassifiers xsi:type="ecore:EClass" name="Command" abstract="true">
+          <eOperations name="execute"/>
+          <eOperations name="undo"/>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EClass" name="CreateNodeCommand" eSuperTypes="#//hib/dpf/command/Command"/>
+        <eClassifiers xsi:type="ecore:EClass" name="CreateEdgeCommand" eSuperTypes="#//hib/dpf/command/Command"/>
+        <eClassifiers xsi:type="ecore:EClass" name="DeleteNodeCommand" eSuperTypes="#//hib/dpf/command/Command"/>
+        <eClassifiers xsi:type="ecore:EClass" name="DeleteEdgeCommand" eSuperTypes="#//hib/dpf/command/Command"/>
+      </eSubpackages>
     </eSubpackages>
   </eSubpackages>
 </ecore:EPackage>
