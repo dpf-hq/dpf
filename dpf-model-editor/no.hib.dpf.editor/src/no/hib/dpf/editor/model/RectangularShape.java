@@ -198,4 +198,10 @@ public void setId(String value) {
 	
 }
 
+@Override
+public void setDpfGraph(Graph dpfGraph) {
+	nodeComponent = dpfGraph.createNode("Unnamed node");
+	nodeID = nodeComponent.getId();
+}
+
 }

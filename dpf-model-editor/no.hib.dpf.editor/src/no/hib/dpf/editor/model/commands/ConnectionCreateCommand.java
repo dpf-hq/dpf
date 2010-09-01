@@ -14,6 +14,7 @@ import java.util.Iterator;
 
 import no.hib.dpf.editor.model.Connection;
 import no.hib.dpf.editor.model.Shape;
+import no.hib.dpf.metamodel.Graph;
 
 import org.eclipse.gef.commands.Command;
 

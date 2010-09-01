@@ -36,6 +36,7 @@ private Shape newShape;
 private final DPFDiagram parent;
 /** The bounds of the new Shape. */
 private Rectangle bounds;
+private Graph dpfGraph;
 
 
 /**
@@ -46,10 +47,11 @@ private Rectangle bounds;
  * @throws IllegalArgumentException if any parameter is null, or the request
  * 						  does not provide a new Shape instance
  */
-public ShapeCreateCommand(Shape newShape, DPFDiagram parent, Rectangle bounds) {
+public ShapeCreateCommand(Shape newShape, DPFDiagram parent, Rectangle bounds, Graph dpfGraph) {
 	this.newShape = newShape;
 	this.parent = parent;
 	this.bounds = bounds;
+	this.dpfGraph = dpfGraph;
 	setLabel("shape creation");
 }
 
@@ -65,6 +67,7 @@ public boolean canExecute() {
  * @see org.eclipse.gef.commands.Command#execute()
  */
 public void execute() {
+	newShape.setDpfGraph(dpfGraph);
 	newShape.setLocation(bounds.getLocation());
 	Dimension size = bounds.getSize();
 	if (size.width > 0 && size.height > 0)

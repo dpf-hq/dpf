@@ -273,4 +273,6 @@ public void setSize(Dimension newSize) {
 	}
 }
 
+public abstract void setDpfGraph(Graph dpfGraph);
+
 }

@@ -13,6 +13,7 @@ package no.hib.dpf.editor.parts;
 import no.hib.dpf.editor.model.Connection;
 import no.hib.dpf.editor.model.DPFDiagram;
 import no.hib.dpf.editor.model.Shape;
+import no.hib.dpf.metamodel.Graph;
 
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartFactory;
@@ -22,7 +23,14 @@ import org.eclipse.gef.EditPartFactory;
  * Factory that maps model elements to edit parts.
  * @author Elias Volanakis
  */
-public class ShapesEditPartFactory implements EditPartFactory {
+public class EditPartFactoryImpl implements EditPartFactory {
+
+	
+private Graph dpfGraph;
+
+public EditPartFactoryImpl(Graph dpfGraph) {
+	this.dpfGraph = dpfGraph;
+}
 
 /*
  * (non-Javadoc)
@@ -42,7 +50,7 @@ public EditPart createEditPart(EditPart context, Object modelElement) {
  */
 private EditPart getPartForElement(Object modelElement) {
 	if (modelElement instanceof DPFDiagram) {
-		return new DiagramEditPart();
+		return new DiagramEditPart(dpfGraph);
 	}
 	if (modelElement instanceof Shape) {
 		return new ShapeEditPart();

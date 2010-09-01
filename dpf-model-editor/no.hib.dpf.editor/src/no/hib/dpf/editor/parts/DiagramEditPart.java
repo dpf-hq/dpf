@@ -14,13 +14,13 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.List;
 
-import no.hib.dpf.editor.DPFEditor;
 import no.hib.dpf.editor.model.DPFDiagram;
 import no.hib.dpf.editor.model.ModelElement;
 import no.hib.dpf.editor.model.RectangularShape;
 import no.hib.dpf.editor.model.Shape;
 import no.hib.dpf.editor.model.commands.ShapeCreateCommand;
 import no.hib.dpf.editor.model.commands.ShapeSetConstraintCommand;
+import no.hib.dpf.metamodel.Graph;
 
 import org.eclipse.draw2d.ConnectionLayer;
 import org.eclipse.draw2d.Figure;
@@ -40,138 +40,172 @@ import org.eclipse.gef.editpolicies.XYLayoutEditPolicy;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.CreateRequest;
 
-
 /**
  * EditPart for the a DPFDiagram instance.
- * <p>This edit part server as the main diagram container, the white area where
- * everything else is in. Also responsible for the container's layout (the
- * way the container rearanges is contents) and the container's capabilities
- * (edit policies).
+ * <p>
+ * This edit part server as the main diagram container, the white area where
+ * everything else is in. Also responsible for the container's layout (the way
+ * the container rearanges is contents) and the container's capabilities (edit
+ * policies).
  * </p>
- * <p>This edit part must implement the PropertyChangeListener interface, 
- * so it can be notified of property changes in the corresponding model element.
+ * <p>
+ * This edit part must implement the PropertyChangeListener interface, so it can
+ * be notified of property changes in the corresponding model element.
  * </p>
  * 
  * @author Elias Volanakis
  */
-class DiagramEditPart extends AbstractGraphicalEditPart 
-	implements PropertyChangeListener  {
+class DiagramEditPart extends AbstractGraphicalEditPart implements
+		PropertyChangeListener {
 
-/**
- * Upon activation, attach to the model element as a property change listener.
- */
-public void activate() {
-	if (!isActive()) {
-		super.activate();
-		((ModelElement) getModel()).addPropertyChangeListener(this);
+	private Graph dpfGraph;
+
+	public DiagramEditPart(Graph dpfGraph) {
+		this.dpfGraph = dpfGraph;
 	}
-}
 
-/* (non-Javadoc)
- * @see org.eclipse.gef.editparts.AbstractEditPart#createEditPolicies()
- */
-protected void createEditPolicies() {
-	// disallows the removal of this edit part from its parent
-	installEditPolicy(EditPolicy.COMPONENT_ROLE, new RootComponentEditPolicy());
-	// handles constraint changes (e.g. moving and/or resizing) of model elements
-	// and creation of new model elements
-	installEditPolicy(EditPolicy.LAYOUT_ROLE,  new ShapesXYLayoutEditPolicy());
-}
-
-/* (non-Javadoc)
- * @see org.eclipse.gef.editparts.AbstractGraphicalEditPart#createFigure()
- */
-protected IFigure createFigure() {
-	Figure f = new FreeformLayer();
-	f.setBorder(new MarginBorder(3));
-	f.setLayoutManager(new FreeformLayout());
-
-	// Create the static router for the connection layer
-	ConnectionLayer connLayer = (ConnectionLayer)getLayer(LayerConstants.CONNECTION_LAYER);
-	connLayer.setConnectionRouter(new ShortestPathConnectionRouter(f));
-	
-	return f;
-}
-
-/**
- * Upon deactivation, detach from the model element as a property change listener.
- */
-public void deactivate() {
-	if (isActive()) {
-		super.deactivate();
-		((ModelElement) getModel()).removePropertyChangeListener(this);
-	}
-}
-
-private DPFDiagram getCastedModel() {
-	return (DPFDiagram) getModel();
-}
-
-/* (non-Javadoc)
- * @see org.eclipse.gef.editparts.AbstractEditPart#getModelChildren()
- */
-@Override
-protected List<Shape> getModelChildren() {
-	return getCastedModel().getChildren(); // return a list of shapes
-}
-
-/* (non-Javadoc)
- * @see java.beans.PropertyChangeListener#propertyChange(PropertyChangeEvent)
- */
-public void propertyChange(PropertyChangeEvent evt) {
-	String prop = evt.getPropertyName();
-	// these properties are fired when Shapes are added into or removed from 
-	// the ShapeDiagram instance and must cause a call of refreshChildren()
-	// to update the diagram's contents.
-	if (DPFDiagram.CHILD_ADDED_PROP.equals(prop)
-			|| DPFDiagram.CHILD_REMOVED_PROP.equals(prop)) {
-		refreshChildren();
-	}
-}
-
-/**
- * EditPolicy for the Figure used by this edit part.
- * Children of XYLayoutEditPolicy can be used in Figures with XYLayout.
- * @author Elias Volanakis
- */
-private static class ShapesXYLayoutEditPolicy extends XYLayoutEditPolicy {
-	
-	/* (non-Javadoc)
-	 * @see ConstrainedLayoutEditPolicy#createChangeConstraintCommand(ChangeBoundsRequest, EditPart, Object)
+	/**
+	 * Upon activation, attach to the model element as a property change
+	 * listener.
 	 */
-	protected Command createChangeConstraintCommand(ChangeBoundsRequest request,
-			EditPart child, Object constraint) {
-		if (child instanceof ShapeEditPart && constraint instanceof Rectangle) {
-			// return a command that can move and/or resize a Shape
-			return new ShapeSetConstraintCommand(
-					(Shape) child.getModel(), request, (Rectangle) constraint);
+	public void activate() {
+		if (!isActive()) {
+			super.activate();
+			((ModelElement) getModel()).addPropertyChangeListener(this);
 		}
-		return super.createChangeConstraintCommand(request, child, constraint);
 	}
-	
-	/* (non-Javadoc)
-	 * @see ConstrainedLayoutEditPolicy#createChangeConstraintCommand(EditPart, Object)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.gef.editparts.AbstractEditPart#createEditPolicies()
 	 */
-	protected Command createChangeConstraintCommand(EditPart child,
-			Object constraint) {
-		// not used in this example
-		return null;
+	protected void createEditPolicies() {
+		// disallows the removal of this edit part from its parent
+		installEditPolicy(EditPolicy.COMPONENT_ROLE,
+				new RootComponentEditPolicy());
+		// handles constraint changes (e.g. moving and/or resizing) of model
+		// elements
+		// and creation of new model elements
+		installEditPolicy(EditPolicy.LAYOUT_ROLE,
+				new ShapesXYLayoutEditPolicy());
 	}
-	
-	/* (non-Javadoc)
-	 * @see LayoutEditPolicy#getCreateCommand(CreateRequest)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.gef.editparts.AbstractGraphicalEditPart#createFigure()
 	 */
-	protected Command getCreateCommand(CreateRequest request) {
-		Object childClass = request.getNewObjectType();
-		if (childClass == RectangularShape.class) {
-			// return a command that can add a Shape to a DPFDiagram 
-			return new ShapeCreateCommand((Shape)request.getNewObject(), 
-					(DPFDiagram)getHost().getModel(), (Rectangle)getConstraintFor(request));
+	protected IFigure createFigure() {
+		Figure f = new FreeformLayer();
+		f.setBorder(new MarginBorder(3));
+		f.setLayoutManager(new FreeformLayout());
+
+		// Create the static router for the connection layer
+		ConnectionLayer connLayer = (ConnectionLayer) getLayer(LayerConstants.CONNECTION_LAYER);
+		connLayer.setConnectionRouter(new ShortestPathConnectionRouter(f));
+
+		return f;
+	}
+
+	/**
+	 * Upon deactivation, detach from the model element as a property change
+	 * listener.
+	 */
+	public void deactivate() {
+		if (isActive()) {
+			super.deactivate();
+			((ModelElement) getModel()).removePropertyChangeListener(this);
 		}
-		//((DPFEditor)getHost()).getDPFGraph();
-		return null;
 	}
-	
-}
+
+	private DPFDiagram getCastedModel() {
+		return (DPFDiagram) getModel();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.gef.editparts.AbstractEditPart#getModelChildren()
+	 */
+	@Override
+	protected List<Shape> getModelChildren() {
+		return getCastedModel().getChildren(); // return a list of shapes
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * java.beans.PropertyChangeListener#propertyChange(PropertyChangeEvent)
+	 */
+	public void propertyChange(PropertyChangeEvent evt) {
+		String prop = evt.getPropertyName();
+		// these properties are fired when Shapes are added into or removed from
+		// the ShapeDiagram instance and must cause a call of refreshChildren()
+		// to update the diagram's contents.
+		if (DPFDiagram.CHILD_ADDED_PROP.equals(prop)
+				|| DPFDiagram.CHILD_REMOVED_PROP.equals(prop)) {
+			refreshChildren();
+		}
+	}
+
+	/**
+	 * EditPolicy for the Figure used by this edit part. Children of
+	 * XYLayoutEditPolicy can be used in Figures with XYLayout.
+	 * 
+	 * @author Elias Volanakis
+	 */
+	private class ShapesXYLayoutEditPolicy extends XYLayoutEditPolicy {
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see ConstrainedLayoutEditPolicy#createChangeConstraintCommand(
+		 * ChangeBoundsRequest, EditPart, Object)
+		 */
+		protected Command createChangeConstraintCommand(
+				ChangeBoundsRequest request, EditPart child, Object constraint) {
+			if (child instanceof ShapeEditPart
+					&& constraint instanceof Rectangle) {
+				// return a command that can move and/or resize a Shape
+				return new ShapeSetConstraintCommand((Shape) child.getModel(),
+						request, (Rectangle) constraint);
+			}
+			return super.createChangeConstraintCommand(request, child,
+					constraint);
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * ConstrainedLayoutEditPolicy#createChangeConstraintCommand(EditPart,
+		 * Object)
+		 */
+		protected Command createChangeConstraintCommand(EditPart child,
+				Object constraint) {
+			// not used in this example
+			return null;
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see LayoutEditPolicy#getCreateCommand(CreateRequest)
+		 */
+		protected Command getCreateCommand(CreateRequest request) {
+			Object childClass = request.getNewObjectType();
+			if (childClass == RectangularShape.class) {
+				// return a command that can add a Shape to a DPFDiagram
+				return new ShapeCreateCommand((Shape) request.getNewObject(),
+						(DPFDiagram) getHost().getModel(),
+						(Rectangle) getConstraintFor(request), dpfGraph);
+			}
+			// ((DPFEditor)getHost()).getDPFGraph();
+			return null;
+		}
+
+	}
 
 }
