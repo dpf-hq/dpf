@@ -66,7 +66,7 @@ public interface Node extends IDObject {
 	 * @see #setGraph(Graph)
 	 * @see no.hib.dpf.metamodel.MetamodelPackage#getNode_Graph()
 	 * @see no.hib.dpf.metamodel.Graph#getNodes
-	 * @model opposite="nodes" transient="false"
+	 * @model opposite="nodes" unsettable="true" transient="false"
 	 * @generated
 	 */
 	Graph getGraph();

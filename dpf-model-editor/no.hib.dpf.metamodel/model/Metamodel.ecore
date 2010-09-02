@@ -25,7 +25,7 @@
           <eOperations name="getOutgoingEdges" upperBound="-1" eType="#//hib/dpf/metamodel/Edge"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="graph" eType="#//hib/dpf/metamodel/Graph"
-              eOpposite="#//hib/dpf/metamodel/Graph/nodes"/>
+              unsettable="true" eOpposite="#//hib/dpf/metamodel/Graph/nodes"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Edge" eSuperTypes="#//hib/dpf/metamodel/IDObject">
           <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//hib/dpf/metamodel/Node"/>
