@@ -66,6 +66,7 @@ private static final String XPOS_PROP = "Shape.xPos";
 /** ID for the Y property value (used for by the corresponding property descriptor).  */
 private static final String YPOS_PROP = "Shape.yPos";
 
+
 /*
  * Initializes the property descriptors array.
  * @see #getPropertyDescriptors()
@@ -273,6 +274,5 @@ public void setSize(Dimension newSize) {
 	}
 }
 
-public abstract void setDpfGraph(Graph dpfGraph);
 
 }

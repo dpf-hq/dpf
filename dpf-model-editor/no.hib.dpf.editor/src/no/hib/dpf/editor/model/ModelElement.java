@@ -16,6 +16,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
 
+import no.hib.dpf.metamodel.Graph;
+
 import org.eclipse.ui.views.properties.IPropertyDescriptor;
 import org.eclipse.ui.views.properties.IPropertySource;
 
@@ -38,6 +40,9 @@ private static final IPropertyDescriptor[] EMPTY_ARRAY = new IPropertyDescriptor
 private static final long serialVersionUID = 1;
 /** Delegate used to implemenent property-change-support. */
 private transient PropertyChangeSupport pcsDelegate = new PropertyChangeSupport(this);
+
+/** Used for adding and removing a model element to and from the DPF graph*/
+protected Graph dpfGraph;
 
 /** 
  * Attach a non-null PropertyChangeListener to this object.
@@ -132,4 +137,17 @@ public void resetPropertyValue(Object id) {
 public void setPropertyValue(Object id, Object value) {
 	// do nothing
 }
+
+public void addToDpfGraph(Graph dpfGraph) {
+	this.dpfGraph = dpfGraph;
+	createDpfGraphElement();
+}
+
+/**
+ * May or may not create a new DPF Graph element
+ */
+protected void createDpfGraphElement() {}
+
+public void removeFromDpfGraph() {}
+
 }

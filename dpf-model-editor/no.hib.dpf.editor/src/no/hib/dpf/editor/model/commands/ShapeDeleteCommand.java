@@ -16,6 +16,7 @@ import java.util.List;
 import no.hib.dpf.editor.model.Connection;
 import no.hib.dpf.editor.model.DPFDiagram;
 import no.hib.dpf.editor.model.Shape;
+import no.hib.dpf.metamodel.Graph;
 
 import org.eclipse.gef.commands.Command;
 
@@ -37,6 +38,8 @@ private List<Connection> sourceConnections;
 private List<Connection> targetConnections;
 /** True, if child was removed from its parent. */
 private boolean wasRemoved;
+
+private Graph dpfGraph;
 
 /**
  * Create a command that will remove the shape from its parent.
@@ -78,14 +81,17 @@ public void execute() {
 	// store a copy of incoming & outgoing connections before proceeding 
 	sourceConnections = child.getSourceConnections();
 	targetConnections = child.getTargetConnections();
-	redo();
+	removeChildAndDisconnectConnections();
 }
 
 /* (non-Javadoc)
  * @see org.eclipse.gef.commands.Command#redo()
  */
 public void redo() {
-	// remove the child and disconnect its connections
+	removeChildAndDisconnectConnections();
+}
+
+private void removeChildAndDisconnectConnections() {
 	wasRemoved = parent.removeChild(child);
 	if (wasRemoved) {
 		removeConnections(sourceConnections);

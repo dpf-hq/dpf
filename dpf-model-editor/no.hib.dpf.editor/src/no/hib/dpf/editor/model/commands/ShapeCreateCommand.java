@@ -67,18 +67,22 @@ public boolean canExecute() {
  * @see org.eclipse.gef.commands.Command#execute()
  */
 public void execute() {
-	newShape.setDpfGraph(dpfGraph);
 	newShape.setLocation(bounds.getLocation());
 	Dimension size = bounds.getSize();
 	if (size.width > 0 && size.height > 0)
 		newShape.setSize(size);
-	redo();
+	addNewShapeToParent();
 }
 
 /* (non-Javadoc)
  * @see org.eclipse.gef.commands.Command#redo()
  */
 public void redo() {
+	addNewShapeToParent();
+}
+
+private void addNewShapeToParent() {
+	newShape.addToDpfGraph(dpfGraph);
 	parent.addChild(newShape);
 }
 
