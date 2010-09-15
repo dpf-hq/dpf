@@ -12,6 +12,7 @@ package no.hib.dpf.editor;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -33,10 +34,11 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.xml.type.impl.XMLTypeFactoryImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 import org.eclipse.gef.ContextMenuProvider;
 import org.eclipse.gef.DefaultEditDomain;
 import org.eclipse.gef.EditPartViewer;
@@ -83,6 +85,10 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 
 	/** This is the root of the editor's model. */
 	private DPFDiagram diagram;
+	
+	private static String dpfFilePath = "/tmp";
+	private static String dpfFile = "dpfcontainer.xmi";
+	
 	/** Palette component, holding the tools and shapes. */
 	private static PaletteRoot PALETTE_MODEL;
 	
@@ -91,8 +97,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 	/** Create a new DPFEditor instance. This is called by the Workspace. */
 	public DPFEditor() {
 		setEditDomain(new DefaultEditDomain(this));
-		Graph dpfGraph = MetamodelFactory.eINSTANCE.createGraph();
-		shapesEditPartFactory = new EditPartFactoryImpl(dpfGraph);
+		shapesEditPartFactory = new EditPartFactoryImpl();
 	}
 
 	/**
@@ -228,15 +233,50 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
 		}
-		saveDPF("ostepop");
+		saveDPF();
 	}
 	
-	private void saveDPF(String filename) {
+	private Graph loadDPF() {
+		ResourceSet load_resourceSet = new ResourceSetImpl();
+
+		/*
+		* Register XML Factory implementation using DEFAULT_EXTENSION
+		*/
+		load_resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", new XMLResourceFactoryImpl());
+
+		/*
+		* Add bookStoreEPackage to package registry
+		*/
+		Graph graph = MetamodelFactory.eINSTANCE.createGraph();				
+
+		load_resourceSet.getPackageRegistry().put("http://no.hib.dpf.metamodel", graph);
+
+		/*
+		* Load the resource using the URI
+		*/
+		Resource resource = load_resourceSet.getResource(URI.createFileURI(dpfFilePath + File.separator + dpfFile),true);
+
+		return (Graph)resource.getContents().get(0);
+	}
+	
+	private void saveDPF() {
+		// http://www.devx.com/Java/Article/29093/1954
+		// http://www.eclipsezone.com/eclipse/forums/t69491.html
+		// http://www.ibm.com/developerworks/library/os-eclipse-dynamicemf/
 		ResourceSet resourceSet = new ResourceSetImpl();
-		resourceSet.getResourceFactoryRegistry().getContentTypeToFactoryMap().put("xmi", new XMLTypeFactoryImpl());
-		
-		Resource resource = resourceSet.createResource(URI.createFileURI("/tmp/geller.xmi"));
-		//resource.getContents().add(e)
+//		resourceSet.getResourceFactoryRegistry().getContentTypeToFactoryMap().put("xmi", new XMLTypeFactoryImpl());
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", new  XMLResourceFactoryImpl());
+
+		Resource resource = resourceSet.createResource(URI.createFileURI(dpfFilePath + File.separator + dpfFile));
+		resource.getContents().add(diagram.getDpfGraph());
+		// serialize resource Ð you can specify also serialization
+		// options which defined on org.eclipse.emf.ecore.xmi.XMIResource
+		try {
+			resource.save(null);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	/*
@@ -356,11 +396,24 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 			diagram = (DPFDiagram) in.readObject();
 			in.close();
 			setPartName(file.getName());
+			// TODO: de-serialize dpf model, couple together with the diagram
+			
+			// HVA? Finne ut hvordan dpf-en serialiseres.
+			// Does DPF file exist?
+			File serializedDPF = new File(dpfFilePath + File.separator + dpfFile);
+			if (serializedDPF.exists()) {
+				diagram.setDpfGraph(loadDPF());
+			} else {
+				// No graph serialization available. Create a new DPF Graph.
+				diagram.setDpfGraph(MetamodelFactory.eINSTANCE.createGraph());				
+			}
+			
+			// Deretter: koble sammen
 		} catch (IOException e) {
 			handleLoadException(e);
 		} catch (CoreException e) {
 			handleLoadException(e);
-		} catch (ClassNotFoundException e) {
+		} catch (java.lang.ClassNotFoundException e) {
 			handleLoadException(e);
 		}
 	}

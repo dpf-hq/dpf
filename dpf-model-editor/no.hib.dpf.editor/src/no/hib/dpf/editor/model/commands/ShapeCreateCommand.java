@@ -36,7 +36,6 @@ private Shape newShape;
 private final DPFDiagram parent;
 /** The bounds of the new Shape. */
 private Rectangle bounds;
-private Graph dpfGraph;
 
 
 /**
@@ -47,11 +46,10 @@ private Graph dpfGraph;
  * @throws IllegalArgumentException if any parameter is null, or the request
  * 						  does not provide a new Shape instance
  */
-public ShapeCreateCommand(Shape newShape, DPFDiagram parent, Rectangle bounds, Graph dpfGraph) {
+public ShapeCreateCommand(Shape newShape, DPFDiagram parent, Rectangle bounds) {
 	this.newShape = newShape;
 	this.parent = parent;
 	this.bounds = bounds;
-	this.dpfGraph = dpfGraph;
 	setLabel("shape creation");
 }
 
@@ -82,7 +80,6 @@ public void redo() {
 }
 
 private void addNewShapeToParent() {
-	newShape.addToDpfGraph(dpfGraph);
 	parent.addChild(newShape);
 }
 

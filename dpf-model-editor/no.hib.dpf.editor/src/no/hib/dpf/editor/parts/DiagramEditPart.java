@@ -58,12 +58,6 @@ import org.eclipse.gef.requests.CreateRequest;
 class DiagramEditPart extends AbstractGraphicalEditPart implements
 		PropertyChangeListener {
 
-	private Graph dpfGraph;
-
-	public DiagramEditPart(Graph dpfGraph) {
-		this.dpfGraph = dpfGraph;
-	}
-
 	/**
 	 * Upon activation, attach to the model element as a property change
 	 * listener.
@@ -200,7 +194,7 @@ class DiagramEditPart extends AbstractGraphicalEditPart implements
 				// return a command that can add a Shape to a DPFDiagram
 				return new ShapeCreateCommand((Shape) request.getNewObject(),
 						(DPFDiagram) getHost().getModel(),
-						(Rectangle) getConstraintFor(request), dpfGraph);
+						(Rectangle) getConstraintFor(request));
 			}
 			// ((DPFEditor)getHost()).getDPFGraph();
 			return null;

@@ -13,6 +13,9 @@ package no.hib.dpf.editor.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import no.hib.dpf.metamodel.Graph;
+import no.hib.dpf.metamodel.MetamodelFactory;
+
 /**
  * A container for multiple shapes.
  * This is the "root" of the model data structure.
@@ -27,6 +30,11 @@ public static final String CHILD_REMOVED_PROP = "ShapesDiagram.ChildRemoved";
 private static final long serialVersionUID = 1;
 private List<Shape> shapes = new ArrayList<Shape>();
 
+public DPFDiagram() {
+	super();
+	this.dpfGraph = MetamodelFactory.eINSTANCE.createGraph();
+}
+
 /** 
  * Add a shape to this diagram.
  * @param s a non-null shape instance
@@ -34,6 +42,8 @@ private List<Shape> shapes = new ArrayList<Shape>();
  */
 public boolean addChild(Shape s) {
 	if (s != null && shapes.add(s)) {
+		s.setGraphExec(dpfGraph);
+		
 		firePropertyChange(CHILD_ADDED_PROP, null, s);
 		return true;
 	}
@@ -52,6 +62,8 @@ public List<Shape> getChildren() {
  */
 public boolean removeChild(Shape s) {
 	if (s != null && shapes.remove(s)) {
+		s.removeGraphExec();
+		
 		firePropertyChange(CHILD_REMOVED_PROP, null, s);
 		return true;
 	}

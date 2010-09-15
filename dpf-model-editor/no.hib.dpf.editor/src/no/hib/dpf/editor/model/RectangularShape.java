@@ -29,187 +29,188 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.swt.graphics.Image;
 
-
 /**
  * A rectangular shape.
+ * 
  * @author Elias Volanakis
  */
 public class RectangularShape extends Shape implements Node {
-	
-private transient Node nodeComponent;
-private String nodeID;
 
-public RectangularShape() {
-	super();
-	nodeComponent = MetamodelFactory.eINSTANCE.createNode();
-	nodeID = nodeComponent.getId();
-}
+	private transient Node nodeComponent;
+	private String nodeID;
 
-/** A 16x16 pictogram of a rectangular shape. */
-private static final Image RECTANGLE_ICON = createImage("icons/rectangle16.gif");
+	public RectangularShape() {
+		super();
+		nodeComponent = MetamodelFactory.eINSTANCE.createNode();
+		nodeID = nodeComponent.getId();
+	}
 
-private static final long serialVersionUID = 1;
+	/** A 16x16 pictogram of a rectangular shape. */
+	private static final Image RECTANGLE_ICON = createImage("icons/rectangle16.gif");
 
-public Image getIcon() {
-	return RECTANGLE_ICON;
-}
+	private static final long serialVersionUID = 1;
 
-public String toString() {
-	return "Rectangle " + hashCode();
-}
+	public Image getIcon() {
+		return RECTANGLE_ICON;
+	}
 
-public String getNodeID() {
-	return nodeID;
-}
+	public String toString() {
+		return "Rectangle " + hashCode();
+	}
 
-//-----------------------------------------------------------------------------------
-//Node methods:
-//-----------------------------------------------------------------------------------
+	public String getNodeID() {
+		return nodeID;
+	}
 
-@Override
-public EClass eClass() {
-	return nodeComponent.eClass();
-}
+	// -----------------------------------------------------------------------------------
+	// Node methods:
+	// -----------------------------------------------------------------------------------
 
-@Override
-public Resource eResource() {
-	return nodeComponent.eResource();
-}
+	@Override
+	public EClass eClass() {
+		return nodeComponent.eClass();
+	}
 
-@Override
-public EObject eContainer() {
-	return nodeComponent.eContainer();
-}
+	@Override
+	public Resource eResource() {
+		return nodeComponent.eResource();
+	}
 
-@Override
-public EStructuralFeature eContainingFeature() {
-	return nodeComponent.eContainingFeature();
-}
+	@Override
+	public EObject eContainer() {
+		return nodeComponent.eContainer();
+	}
 
-@Override
-public EReference eContainmentFeature() {
-	return nodeComponent.eContainmentFeature();
-}
+	@Override
+	public EStructuralFeature eContainingFeature() {
+		return nodeComponent.eContainingFeature();
+	}
 
-@Override
-public EList<EObject> eContents() {
-	return nodeComponent.eContents();
-}
+	@Override
+	public EReference eContainmentFeature() {
+		return nodeComponent.eContainmentFeature();
+	}
 
-@Override
-public TreeIterator<EObject> eAllContents() {
-	return nodeComponent.eAllContents();
-}
+	@Override
+	public EList<EObject> eContents() {
+		return nodeComponent.eContents();
+	}
 
-@Override
-public boolean eIsProxy() {
-	return nodeComponent.eIsProxy();
-}
+	@Override
+	public TreeIterator<EObject> eAllContents() {
+		return nodeComponent.eAllContents();
+	}
 
-@Override
-public EList<EObject> eCrossReferences() {
-	return nodeComponent.eCrossReferences();
-}
+	@Override
+	public boolean eIsProxy() {
+		return nodeComponent.eIsProxy();
+	}
 
-@Override
-public Object eGet(EStructuralFeature feature) {
-	return nodeComponent.eGet(feature);
-}
+	@Override
+	public EList<EObject> eCrossReferences() {
+		return nodeComponent.eCrossReferences();
+	}
 
-@Override
-public Object eGet(EStructuralFeature feature, boolean resolve) {
-	return nodeComponent.eGet(feature, resolve);
-}
+	@Override
+	public Object eGet(EStructuralFeature feature) {
+		return nodeComponent.eGet(feature);
+	}
 
-@Override
-public void eSet(EStructuralFeature feature, Object newValue) {
-	nodeComponent.eSet(feature, newValue);
-}
+	@Override
+	public Object eGet(EStructuralFeature feature, boolean resolve) {
+		return nodeComponent.eGet(feature, resolve);
+	}
 
-@Override
-public boolean eIsSet(EStructuralFeature feature) {
-	return nodeComponent.eIsSet(feature);
-}
+	@Override
+	public void eSet(EStructuralFeature feature, Object newValue) {
+		nodeComponent.eSet(feature, newValue);
+	}
 
-@Override
-public void eUnset(EStructuralFeature feature) {
-	nodeComponent.eUnset(feature);
-}
+	@Override
+	public boolean eIsSet(EStructuralFeature feature) {
+		return nodeComponent.eIsSet(feature);
+	}
 
-@Override
-public Object eInvoke(EOperation operation, EList<?> arguments)
-		throws InvocationTargetException {
-	return nodeComponent.eInvoke(operation, arguments);
-}
+	@Override
+	public void eUnset(EStructuralFeature feature) {
+		nodeComponent.eUnset(feature);
+	}
 
-@Override
-public EList<Adapter> eAdapters() {
-	return nodeComponent.eAdapters();
-}
+	@Override
+	public Object eInvoke(EOperation operation, EList<?> arguments)
+			throws InvocationTargetException {
+		return nodeComponent.eInvoke(operation, arguments);
+	}
 
-@Override
-public boolean eDeliver() {
-	return nodeComponent.eDeliver();
-}
+	@Override
+	public EList<Adapter> eAdapters() {
+		return nodeComponent.eAdapters();
+	}
 
-@Override
-public void eSetDeliver(boolean deliver) {
-	nodeComponent.eSetDeliver(deliver);
-}
+	@Override
+	public boolean eDeliver() {
+		return nodeComponent.eDeliver();
+	}
 
-@Override
-public void eNotify(Notification notification) {
-	nodeComponent.eNotify(notification);
-}
+	@Override
+	public void eSetDeliver(boolean deliver) {
+		nodeComponent.eSetDeliver(deliver);
+	}
 
-@Override
-public String getName() {
-	return nodeComponent.getName();
-}
+	@Override
+	public void eNotify(Notification notification) {
+		nodeComponent.eNotify(notification);
+	}
 
-@Override
-public void setName(String value) {
-	nodeComponent.setName(value);
-}
+	@Override
+	public String getName() {
+		return nodeComponent.getName();
+	}
 
-@Override
-public Graph getGraph() {
-	return nodeComponent.getGraph();
-}
+	@Override
+	public void setName(String value) {
+		nodeComponent.setName(value);
+	}
 
-@Override
-public void setGraph(Graph value) {
-	nodeComponent.setGraph(value);
-}
+	@Override
+	public Graph getGraph() {
+		return nodeComponent.getGraph();
+	}
 
-@Override
-public EList<Edge> getOutgoingEdges() {
-	return nodeComponent.getOutgoingEdges();
-}
+	@Override
+	public void setGraph(Graph value) {
+		nodeComponent.setGraph(value);
+	}
 
-@Override
-public String getId() {
-	return nodeComponent.getId();
-}
+	@Override
+	public EList<Edge> getOutgoingEdges() {
+		return nodeComponent.getOutgoingEdges();
+	}
 
-@Override
-public void setId(String value) {
-	// TODO Auto-generated method stub
-	
-}
+	@Override
+	public String getId() {
+		return nodeComponent.getId();
+	}
 
+	@Override
+	public void setId(String value) {
+	}
 
-@Override
-protected void createDpfGraphElement() {
-	nodeComponent = dpfGraph.createNode("Unnamed node");
-	nodeID = nodeComponent.getId();
-}
+	@Override
+	protected void createDpfGraphElement() {
+		nodeComponent = dpfGraph.createNode("Unnamed node");
+		nodeID = nodeComponent.getId();
+	}
 
-@Override
-public void removeFromDpfGraph() {
-	// TODO: make it so!
-	//dpfGraph.
-}
+	@Override
+	public void setGraphExec(Graph graph) {
+		nodeComponent.setGraph(graph);
+	}
+
+	@Override
+	public void removeGraphExec() {
+		nodeComponent.setGraph(null);
+	}
 
 
 }

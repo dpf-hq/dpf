@@ -25,12 +25,6 @@ import org.eclipse.gef.EditPartFactory;
  */
 public class EditPartFactoryImpl implements EditPartFactory {
 
-	
-private Graph dpfGraph;
-
-public EditPartFactoryImpl(Graph dpfGraph) {
-	this.dpfGraph = dpfGraph;
-}
 
 /*
  * (non-Javadoc)
@@ -50,7 +44,7 @@ public EditPart createEditPart(EditPart context, Object modelElement) {
  */
 private EditPart getPartForElement(Object modelElement) {
 	if (modelElement instanceof DPFDiagram) {
-		return new DiagramEditPart(dpfGraph);
+		return new DiagramEditPart();
 	}
 	if (modelElement instanceof Shape) {
 		return new ShapeEditPart();

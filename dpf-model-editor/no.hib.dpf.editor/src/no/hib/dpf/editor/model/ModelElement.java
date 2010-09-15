@@ -42,7 +42,7 @@ private static final long serialVersionUID = 1;
 private transient PropertyChangeSupport pcsDelegate = new PropertyChangeSupport(this);
 
 /** Used for adding and removing a model element to and from the DPF graph*/
-protected Graph dpfGraph;
+protected transient Graph dpfGraph;
 
 /** 
  * Attach a non-null PropertyChangeListener to this object.
@@ -141,6 +141,14 @@ public void setPropertyValue(Object id, Object value) {
 public void addToDpfGraph(Graph dpfGraph) {
 	this.dpfGraph = dpfGraph;
 	createDpfGraphElement();
+}
+
+public Graph getDpfGraph() {
+	return dpfGraph;
+}
+
+public void setDpfGraph(Graph dpfGraph) {
+	this.dpfGraph = dpfGraph;
 }
 
 /**
