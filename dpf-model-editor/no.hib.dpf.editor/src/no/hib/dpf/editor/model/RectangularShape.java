@@ -63,13 +63,49 @@ public class RectangularShape extends Shape implements Node {
 	public String toString() {
 		return "Rectangle " + hashCode();
 	}
+	
+	@Override
+	protected void addIncomingConnection(Connection conn) {
+		super.addIncomingConnection(conn);
+		conn.setTarget(nodeComponent);
+		setGraph(conn);
+	}
 
+	@Override
+	protected void addOutgoingConnection(Connection conn) {
+		super.addOutgoingConnection(conn);
+		conn.setSource(nodeComponent);
+		setGraph(conn);
+	}
+	
+	private void setGraph(Connection conn) {
+		conn.setGraph(dpfGraph);
+	}
+	
+	@Override
+	protected void removeIncomingConnection(Connection conn) {
+		super.removeIncomingConnection(conn);
+		conn.setTarget(null);
+		removeGraph(conn);
+	}
+
+	@Override
+	protected void removeOutgoingConnection(Connection conn) {
+		super.removeOutgoingConnection(conn);
+		conn.setSource(null);
+		removeGraph(conn);
+	}
+
+	private void removeGraph(Connection conn) {
+		conn.setGraph(null);
+	}
+		
 	@Override
 	public void setIDObject(IDObject idObject) {
 		if (idObject instanceof Node) {
 			nodeComponent = (Node)idObject;
+			nodeID = nodeComponent.getId();		
 		}
-		nodeID = nodeComponent.getId();		
 	}
 
 	// -----------------------------------------------------------------------------------
@@ -213,13 +249,14 @@ public class RectangularShape extends Shape implements Node {
 
 	@Override
 	public void setGraphExec(Graph graph) {
+		dpfGraph = graph;
 		nodeComponent.setGraph(graph);
-	}
+	}	
 
 	@Override
 	public void removeGraphExec() {
 		nodeComponent.setGraph(null);
 	}
-
+	
 
 }

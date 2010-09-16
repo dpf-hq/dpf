@@ -25,9 +25,11 @@ import no.hib.dpf.editor.editoractions.CreateEllipseAction;
 import no.hib.dpf.editor.editoractions.SrcSelectAction;
 import no.hib.dpf.editor.model.DPFDiagram;
 import no.hib.dpf.editor.model.ModelElement;
+import no.hib.dpf.editor.model.ModelSerializationException;
 import no.hib.dpf.editor.parts.EditPartFactoryImpl;
 import no.hib.dpf.editor.parts.ShapesTreeEditPartFactory;
 import no.hib.dpf.metamodel.Graph;
+import no.hib.dpf.metamodel.IDObject;
 import no.hib.dpf.metamodel.MetamodelFactory;
 
 import org.eclipse.core.resources.IFile;
@@ -411,6 +413,13 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 				// No graph serialization available. Create a new DPF Graph.
 				diagram.setDpfGraph(MetamodelFactory.eINSTANCE.createGraph());				
 			}
+			for (String id : children.keySet()) {
+				IDObject idObject = diagram.getDpfGraph().getGraphMember(id);
+				if (idObject == null) {
+					throw new ModelSerializationException("A deserialized view model object had no serialized counterpart in the dpf model");
+				}
+				children.get(id).setIDObject(idObject);
+ 			}
 			
 			
 			// Deretter: koble sammen

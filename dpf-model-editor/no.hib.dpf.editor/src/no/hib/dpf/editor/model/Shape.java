@@ -138,17 +138,25 @@ public abstract class Shape extends ModelElement implements IDObjectContainer {
 	 * @throws IllegalArgumentException
 	 *             if the connection is null or has not distinct endpoints
 	 */
-	void addConnection(Connection conn) {
+	public void addConnection(Connection conn) {
 		if (conn == null || conn.getShapeSource() == conn.getShapeTarget()) {
 			throw new IllegalArgumentException();
 		}
 		if (conn.getShapeSource() == this) {
-			sourceConnections.add(conn);
-			firePropertyChange(SOURCE_CONNECTIONS_PROP, null, conn);
+			addOutgoingConnection(conn);
 		} else if (conn.getShapeTarget() == this) {
-			targetConnections.add(conn);
-			firePropertyChange(TARGET_CONNECTIONS_PROP, null, conn);
+			addIncomingConnection(conn);
 		}
+	}
+
+	protected void addIncomingConnection(Connection conn) {
+		targetConnections.add(conn);
+		firePropertyChange(TARGET_CONNECTIONS_PROP, null, conn);
+	}
+
+	protected void addOutgoingConnection(Connection conn) {
+		sourceConnections.add(conn);
+		firePropertyChange(SOURCE_CONNECTIONS_PROP, null, conn);
 	}
 
 	/**
@@ -245,14 +253,22 @@ public abstract class Shape extends ModelElement implements IDObjectContainer {
 			throw new IllegalArgumentException();
 		}
 		if (conn.getShapeSource() == this) {
-			sourceConnections.remove(conn);
-			firePropertyChange(SOURCE_CONNECTIONS_PROP, null, conn);
+			removeOutgoingConnection(conn);
 		} else if (conn.getShapeTarget() == this) {
-			targetConnections.remove(conn);
-			firePropertyChange(TARGET_CONNECTIONS_PROP, null, conn);
+			removeIncomingConnection(conn);
 		}
 	}
 
+	protected void removeIncomingConnection(Connection conn) {
+		targetConnections.remove(conn);
+		firePropertyChange(TARGET_CONNECTIONS_PROP, null, conn);
+	}
+
+	protected void removeOutgoingConnection(Connection conn) {
+		sourceConnections.remove(conn);
+		firePropertyChange(SOURCE_CONNECTIONS_PROP, null, conn);
+	}
+	
 	/**
 	 * Set the Location of this shape.
 	 * 
@@ -314,5 +330,5 @@ public abstract class Shape extends ModelElement implements IDObjectContainer {
 	public abstract void setGraphExec(Graph graph);
 
 	public abstract void removeGraphExec();
-
+	
 }

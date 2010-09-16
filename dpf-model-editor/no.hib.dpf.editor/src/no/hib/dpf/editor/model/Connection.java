@@ -95,16 +95,17 @@ public class Connection extends ModelElement implements Edge, IDObjectContainer 
 	 * @see #setLineStyle(int)
 	 */
 	public Connection(Shape source, Shape target) {
-		reconnect(source, target);
+		// The dpf Edge object must be initialized before the connection of the shapes.
 		setIDObject(MetamodelFactory.eINSTANCE.createEdge());
+		reconnect(source, target);
 	}
 
 	@Override
 	public void setIDObject(IDObject idObject) {
 		if (idObject instanceof Edge) {
 			edgeComponent = (Edge)idObject;
+			edgeID = edgeComponent.getId();		
 		}
-		edgeID = edgeComponent.getId();		
 	}
 	
 	/**
