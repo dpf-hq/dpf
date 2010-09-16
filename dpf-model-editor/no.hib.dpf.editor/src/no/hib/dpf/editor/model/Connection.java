@@ -14,6 +14,7 @@ import java.lang.reflect.InvocationTargetException;
 
 import no.hib.dpf.metamodel.Edge;
 import no.hib.dpf.metamodel.Graph;
+import no.hib.dpf.metamodel.IDObject;
 import no.hib.dpf.metamodel.MetamodelFactory;
 import no.hib.dpf.metamodel.Node;
 
@@ -36,7 +37,7 @@ import org.eclipse.ui.views.properties.IPropertyDescriptor;
  * 
  * @author Elias Volanakis
  */
-public class Connection extends ModelElement implements Edge {
+public class Connection extends ModelElement implements Edge, IDObjectContainer {
 	/**
 	 * Used for indicating that a Connection with solid line style should be
 	 * created.
@@ -77,6 +78,11 @@ public class Connection extends ModelElement implements Edge {
 	private transient Edge edgeComponent;
 	private String edgeID;
 
+	@Override
+	public String getIDObjectID() {
+		return edgeID;
+	}	
+	
 	/**
 	 * Create a (solid) connection between two distinct shapes.
 	 * 
@@ -90,10 +96,17 @@ public class Connection extends ModelElement implements Edge {
 	 */
 	public Connection(Shape source, Shape target) {
 		reconnect(source, target);
-		edgeComponent = MetamodelFactory.eINSTANCE.createEdge();
-		edgeID = edgeComponent.getId();
+		setIDObject(MetamodelFactory.eINSTANCE.createEdge());
 	}
 
+	@Override
+	public void setIDObject(IDObject idObject) {
+		if (idObject instanceof Edge) {
+			edgeComponent = (Edge)idObject;
+		}
+		edgeID = edgeComponent.getId();		
+	}
+	
 	/**
 	 * Disconnect this connection from the shapes it is attached to.
 	 */
@@ -222,10 +235,6 @@ public class Connection extends ModelElement implements Edge {
 					: Graphics.LINE_SOLID);
 		else
 			super.setPropertyValue(id, value);
-	}
-
-	public String getEdgeID() {
-		return edgeID;
 	}
 
 	// -----------------------------------------------------------------------------------
@@ -376,5 +385,6 @@ public class Connection extends ModelElement implements Edge {
 	@Override
 	public void setId(String value) {
 	}
+
 
 }

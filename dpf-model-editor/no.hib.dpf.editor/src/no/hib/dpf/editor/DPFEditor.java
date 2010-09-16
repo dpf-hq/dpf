@@ -19,10 +19,12 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.EventObject;
+import java.util.Map;
 
 import no.hib.dpf.editor.editoractions.CreateEllipseAction;
 import no.hib.dpf.editor.editoractions.SrcSelectAction;
 import no.hib.dpf.editor.model.DPFDiagram;
+import no.hib.dpf.editor.model.ModelElement;
 import no.hib.dpf.editor.parts.EditPartFactoryImpl;
 import no.hib.dpf.editor.parts.ShapesTreeEditPartFactory;
 import no.hib.dpf.metamodel.Graph;
@@ -34,7 +36,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -398,6 +399,9 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 			setPartName(file.getName());
 			// TODO: de-serialize dpf model, couple together with the diagram
 			
+			Map<String, ModelElement> children = diagram.getChildrenWithID();
+			System.out.println(children.size());
+			
 			// HVA? Finne ut hvordan dpf-en serialiseres.
 			// Does DPF file exist?
 			File serializedDPF = new File(dpfFilePath + File.separator + dpfFile);
@@ -407,6 +411,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 				// No graph serialization available. Create a new DPF Graph.
 				diagram.setDpfGraph(MetamodelFactory.eINSTANCE.createGraph());				
 			}
+			
 			
 			// Deretter: koble sammen
 		} catch (IOException e) {

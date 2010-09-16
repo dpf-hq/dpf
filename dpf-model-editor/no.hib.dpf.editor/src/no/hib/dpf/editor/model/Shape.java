@@ -35,7 +35,7 @@ import org.eclipse.ui.views.properties.TextPropertyDescriptor;
  * @see no.hib.dpf.editor.model.EllipticalShape
  * @author Elias Volanakis
  */
-public abstract class Shape extends ModelElement {
+public abstract class Shape extends ModelElement implements IDObjectContainer {
 
 	/**
 	 * A static array of property descriptors. There is one IPropertyDescriptor

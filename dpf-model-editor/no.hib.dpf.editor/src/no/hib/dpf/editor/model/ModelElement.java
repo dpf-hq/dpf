@@ -17,6 +17,7 @@ import java.io.ObjectInputStream;
 import java.io.Serializable;
 
 import no.hib.dpf.metamodel.Graph;
+import no.hib.dpf.metamodel.IDObject;
 
 import org.eclipse.ui.views.properties.IPropertyDescriptor;
 import org.eclipse.ui.views.properties.IPropertySource;
@@ -183,5 +184,10 @@ public abstract class ModelElement implements IPropertySource, Serializable {
 	protected void createDpfGraphElement() {}
 
 	public void removeFromDpfGraph() {}
+	
+	/**
+	 * Sets a model element's reference to a dpf model element.
+	 */
+	public void setIDObject(IDObject idObject) {}
 
 }

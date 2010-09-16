@@ -11,7 +11,9 @@
 package no.hib.dpf.editor.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import no.hib.dpf.metamodel.MetamodelFactory;
 
@@ -33,6 +35,30 @@ public class DPFDiagram extends ModelElement {
 	public DPFDiagram() {
 		super();
 		this.dpfGraph = MetamodelFactory.eINSTANCE.createGraph();
+	}
+	
+	/**
+	 * Returns a map of this diagram's children, ordered by their IDObject-provided ID.
+	 */
+	public Map<String, ModelElement> getChildrenWithID() {
+		Map<String,ModelElement> retVal = new HashMap<String,ModelElement>();
+		for (Shape aShape : getChildren()) {
+			addIDObjectToMap(retVal, aShape);
+			addConnectionsToMap(aShape, retVal);				
+		}
+		return retVal;
+	}
+
+	private void addIDObjectToMap(Map<String, ModelElement> retVal, ModelElement aModelElement) {
+		if (aModelElement instanceof IDObjectContainer) {			
+			retVal.put(((IDObjectContainer)aModelElement).getIDObjectID(), aModelElement);
+		}
+	}
+	
+	private void addConnectionsToMap(Shape aShape, Map<String, ModelElement> retVal) {
+		for (Connection aConnection : aShape.getSourceConnections()) {
+			addIDObjectToMap(retVal, aConnection);
+		}
 	}
 
 	/**

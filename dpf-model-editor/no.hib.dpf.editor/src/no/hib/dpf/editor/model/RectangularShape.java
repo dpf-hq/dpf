@@ -14,6 +14,7 @@ import java.lang.reflect.InvocationTargetException;
 
 import no.hib.dpf.metamodel.Edge;
 import no.hib.dpf.metamodel.Graph;
+import no.hib.dpf.metamodel.IDObject;
 import no.hib.dpf.metamodel.MetamodelFactory;
 import no.hib.dpf.metamodel.Node;
 
@@ -36,15 +37,20 @@ import org.eclipse.swt.graphics.Image;
  */
 public class RectangularShape extends Shape implements Node {
 
+
 	private transient Node nodeComponent;
 	private String nodeID;
 
 	public RectangularShape() {
 		super();
-		nodeComponent = MetamodelFactory.eINSTANCE.createNode();
-		nodeID = nodeComponent.getId();
+		setIDObject(MetamodelFactory.eINSTANCE.createNode());
 	}
 
+	@Override
+	public String getIDObjectID() {
+		return nodeID;
+	}
+	
 	/** A 16x16 pictogram of a rectangular shape. */
 	private static final Image RECTANGLE_ICON = createImage("icons/rectangle16.gif");
 
@@ -58,8 +64,12 @@ public class RectangularShape extends Shape implements Node {
 		return "Rectangle " + hashCode();
 	}
 
-	public String getNodeID() {
-		return nodeID;
+	@Override
+	public void setIDObject(IDObject idObject) {
+		if (idObject instanceof Node) {
+			nodeComponent = (Node)idObject;
+		}
+		nodeID = nodeComponent.getId();		
 	}
 
 	// -----------------------------------------------------------------------------------
@@ -198,8 +208,7 @@ public class RectangularShape extends Shape implements Node {
 
 	@Override
 	protected void createDpfGraphElement() {
-		nodeComponent = dpfGraph.createNode("Unnamed node");
-		nodeID = nodeComponent.getId();
+		setIDObject(dpfGraph.createNode("Unnamed node"));
 	}
 
 	@Override
@@ -211,5 +220,6 @@ public class RectangularShape extends Shape implements Node {
 	public void removeGraphExec() {
 		nodeComponent.setGraph(null);
 	}
+
 
 }
