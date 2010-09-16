@@ -212,5 +212,4 @@ public class RectangularShape extends Shape implements Node {
 		nodeComponent.setGraph(null);
 	}
 
-
 }
