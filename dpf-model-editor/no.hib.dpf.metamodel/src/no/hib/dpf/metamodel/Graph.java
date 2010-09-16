@@ -8,8 +8,6 @@ package no.hib.dpf.metamodel;
 
 import org.eclipse.emf.common.util.EList;
 
-import org.eclipse.emf.ecore.EObject;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Graph</b></em>'.
@@ -106,5 +104,12 @@ public interface Graph extends IDObject {
 	 * @generated
 	 */
 	Edge createEdge(String name, Node source, Node target);
+	
+	/**
+	 * Returns any IDPointer member of the graph having the provided id value.
+	 * @model
+	 * @generated not
+	 */
+	IDObject getGraphMember(String id);
 
 } // Graph

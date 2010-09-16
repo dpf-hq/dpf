@@ -10,6 +10,7 @@ import java.util.Collection;
 
 import no.hib.dpf.metamodel.Edge;
 import no.hib.dpf.metamodel.Graph;
+import no.hib.dpf.metamodel.IDObject;
 import no.hib.dpf.metamodel.MetamodelFactory;
 import no.hib.dpf.metamodel.MetamodelPackage;
 import no.hib.dpf.metamodel.Node;
@@ -20,7 +21,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -299,5 +299,23 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 		result.append(')');
 		return result.toString();
 	}
+
+	/**
+	 * Returns any IDPointer member of the graph having the provided id value.
+	 * @model
+	 * @generated not
+	 */
+	@Override
+	public IDObject getGraphMember(String id) {
+		// TODO: base this on a hash table or similar
+		for (Edge anEdge : getEdges()) {
+			if (anEdge.getId().equals(id)) return anEdge;
+		}		
+		for (Node aNode : getNodes()) {
+			if (aNode.getId().equals(id)) return aNode;
+		}
+		return null;
+	}
+	
 
 } //GraphImpl
