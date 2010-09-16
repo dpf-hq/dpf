@@ -399,32 +399,14 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 			diagram = (DPFDiagram) in.readObject();
 			in.close();
 			setPartName(file.getName());
-			// TODO: de-serialize dpf model, couple together with the diagram
+
+			// -------------------------------------------------------------------
+			// D P F   S T U F F
+			// -------------------------------------------------------------------
+			setDpfFilePaths(file);
+			deserializeDpfModel();
+			setDpfReferencesInViewModel(diagram.getChildrenWithID());
 			
-			Map<String, ModelElement> children = diagram.getChildrenWithID();
-			System.out.println(children.size());
-			
-			// HVA? Finne ut hvordan dpf-en serialiseres.
-			// Does DPF file exist?
-			dpfFilePath = ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
-			dpfFile = file.getFullPath().toString() + ".xmi";
-			File serializedDPF = new File(dpfFilePath + File.separator + dpfFile);
-			if (serializedDPF.exists()) {
-				diagram.setDpfGraph(loadDPF());
-			} else {
-				// No graph serialization available. Create a new DPF Graph.
-				diagram.setDpfGraph(MetamodelFactory.eINSTANCE.createGraph());				
-			}
-			for (String id : children.keySet()) {
-				IDObject idObject = diagram.getDpfGraph().getGraphMember(id);
-				if (idObject == null) {
-					throw new ModelSerializationException("A deserialized view model object had no serialized counterpart in the dpf model");
-				}
-				children.get(id).setIDObject(idObject);
- 			}
-			
-			
-			// Deretter: koble sammen
 		} catch (IOException e) {
 			handleLoadException(e);
 		} catch (CoreException e) {
@@ -432,6 +414,31 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		} catch (java.lang.ClassNotFoundException e) {
 			handleLoadException(e);
 		}
+	}
+
+	private void setDpfReferencesInViewModel(Map<String, ModelElement> children) {
+		for (String id : children.keySet()) {
+			IDObject idObject = diagram.getDpfGraph().getGraphMember(id);
+			if (idObject == null) {
+				throw new ModelSerializationException("A deserialized view model object had no serialized counterpart in the dpf model");
+			}
+			children.get(id).setIDObject(idObject);
+		}
+	}
+
+	private void deserializeDpfModel() {
+		File serializedDPF = new File(dpfFilePath + File.separator + dpfFile);
+		if (serializedDPF.exists()) {
+			diagram.setDpfGraph(loadDPF());
+		} else {
+			// No graph serialization available. Create a new DPF Graph.
+			diagram.setDpfGraph(MetamodelFactory.eINSTANCE.createGraph());				
+		}
+	}
+
+	private void setDpfFilePaths(IFile file) {
+		dpfFilePath = ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
+		dpfFile = file.getFullPath().toString() + ".xmi";
 	}
 
 	/**
