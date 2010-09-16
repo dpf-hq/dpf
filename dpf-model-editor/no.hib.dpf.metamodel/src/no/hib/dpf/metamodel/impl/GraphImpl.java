@@ -172,6 +172,23 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Returns any IDPointer member of the graph having the provided id value.
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public IDObject getGraphMember(String id) {
+		// TODO: base this on a hash table or similar
+		for (Edge anEdge : getEdges()) {
+			if (anEdge.getId().equals(id)) return anEdge;
+		}		
+		for (Node aNode : getNodes()) {
+			if (aNode.getId().equals(id)) return aNode;
+		}
+		return null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -300,22 +317,5 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 		return result.toString();
 	}
 
-	/**
-	 * Returns any IDPointer member of the graph having the provided id value.
-	 * @model
-	 * @generated not
-	 */
-	@Override
-	public IDObject getGraphMember(String id) {
-		// TODO: base this on a hash table or similar
-		for (Edge anEdge : getEdges()) {
-			if (anEdge.getId().equals(id)) return anEdge;
-		}		
-		for (Node aNode : getNodes()) {
-			if (aNode.getId().equals(id)) return aNode;
-		}
-		return null;
-	}
-	
 
 } //GraphImpl

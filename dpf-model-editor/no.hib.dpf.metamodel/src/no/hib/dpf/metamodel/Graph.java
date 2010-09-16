@@ -104,12 +104,15 @@ public interface Graph extends IDObject {
 	 * @generated
 	 */
 	Edge createEdge(String name, Node source, Node target);
-	
+
 	/**
+	 * <!-- begin-user-doc -->
 	 * Returns any IDPointer member of the graph having the provided id value.
+	 * <!-- end-user-doc -->
 	 * @model
-	 * @generated not
+	 * @generated
 	 */
 	IDObject getGraphMember(String id);
+	
 
 } // Graph

@@ -24,6 +24,9 @@
               <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/Graph/createEdge/source"/>
               <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/Graph/createEdge/target"/>
             </genOperations>
+            <genOperations ecoreOperation="Metamodel.ecore#//hib/dpf/metamodel/Graph/getGraphMember">
+              <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/Graph/getGraphMember/id"/>
+            </genOperations>
           </genClasses>
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/metamodel/Node">
             <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//hib/dpf/metamodel/Node/name"/>
