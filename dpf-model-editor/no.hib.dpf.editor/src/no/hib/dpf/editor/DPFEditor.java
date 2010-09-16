@@ -406,6 +406,8 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 			
 			// HVA? Finne ut hvordan dpf-en serialiseres.
 			// Does DPF file exist?
+			dpfFilePath = ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
+			dpfFile = file.getFullPath().toString() + ".xmi";
 			File serializedDPF = new File(dpfFilePath + File.separator + dpfFile);
 			if (serializedDPF.exists()) {
 				diagram.setDpfGraph(loadDPF());
