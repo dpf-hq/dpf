@@ -257,6 +257,22 @@ public class RectangularShape extends Shape implements Node {
 	public void removeGraphExec() {
 		nodeComponent.setGraph(null);
 	}
+
+	@Override
+	public void setNameExec(String name) {
+		nodeComponent.setName(name);		
+		firePropertyChange(NAME_PROP, null, name);		
+	}
+
+	@Override
+	public String getNameExec() {
+		String retVal = nodeComponent.getName();
+		if (retVal == null) {
+			retVal = "";
+			nodeComponent.setName(retVal);
+		}
+		return retVal;
+	}
 	
 
 }

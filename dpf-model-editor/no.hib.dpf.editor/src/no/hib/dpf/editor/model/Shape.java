@@ -60,6 +60,8 @@ public abstract class Shape extends ModelElement implements IDObjectContainer {
 	public static final String SOURCE_CONNECTIONS_PROP = "Shape.SourceConn";
 	/** Property ID to use when the list of incoming connections is modified. */
 	public static final String TARGET_CONNECTIONS_PROP = "Shape.TargetConn";
+	
+	public static final String NAME_PROP = "Shape.Name";
 	/**
 	 * ID for the Width property value (used for by the corresponding property
 	 * descriptor).
@@ -88,27 +90,28 @@ public abstract class Shape extends ModelElement implements IDObjectContainer {
 	 */
 	static {
 		descriptors = new IPropertyDescriptor[] {
-				new TextPropertyDescriptor(XPOS_PROP, "X"), // id and
+				new IntegerTextPropertyDescriptor(XPOS_PROP, "X"), // id and
 															// description pair
-				new TextPropertyDescriptor(YPOS_PROP, "Y"),
-				new TextPropertyDescriptor(WIDTH_PROP, "Width"),
-				new TextPropertyDescriptor(HEIGHT_PROP, "Height"), };
-		// use a custom cell editor validator for all four array entries
-		for (int i = 0; i < descriptors.length; i++) {
-			((PropertyDescriptor) descriptors[i])
-					.setValidator(new ICellEditorValidator() {
-						public String isValid(Object value) {
-							int intValue = -1;
-							try {
-								intValue = Integer.parseInt((String) value);
-							} catch (NumberFormatException exc) {
-								return "Not a number";
-							}
-							return (intValue >= 0) ? null
-									: "Value must be >=  0";
-						}
-					});
-		}
+				new IntegerTextPropertyDescriptor(YPOS_PROP, "Y"),
+				new IntegerTextPropertyDescriptor(WIDTH_PROP, "Width"),
+				new IntegerTextPropertyDescriptor(HEIGHT_PROP, "Height"),
+				new TextPropertyDescriptor(NAME_PROP, "Name")};
+		// use a custom cell editor validator for all array entries
+//		for (int i = 0; i < descriptors.length; i++) {
+//			((PropertyDescriptor) descriptors[i])
+//					.setValidator(new ICellEditorValidator() {
+//						public String isValid(Object value) {
+//							int intValue = -1;
+//							try {
+//								intValue = Integer.parseInt((String) value);
+//							} catch (NumberFormatException exc) {
+//								return "Not a number";
+//							}
+//							return (intValue >= 0) ? null
+//									: "Value must be >=  0";
+//						}
+//					});
+//		}
 	} // static
 
 	protected static Image createImage(String name) {
@@ -214,6 +217,9 @@ public abstract class Shape extends ModelElement implements IDObjectContainer {
 		if (WIDTH_PROP.equals(propertyId)) {
 			return Integer.toString(size.width);
 		}
+		if (NAME_PROP.equals(propertyId)) {
+			return getNameExec();
+		}
 		return super.getPropertyValue(propertyId);
 	}
 
@@ -309,6 +315,8 @@ public abstract class Shape extends ModelElement implements IDObjectContainer {
 		} else if (WIDTH_PROP.equals(propertyId)) {
 			int width = Integer.parseInt((String) value);
 			setSize(new Dimension(width, size.height));
+		} else if (NAME_PROP.equals(propertyId)) {
+			setNameExec((String)value);
 		} else {
 			super.setPropertyValue(propertyId, value);
 		}
@@ -326,6 +334,13 @@ public abstract class Shape extends ModelElement implements IDObjectContainer {
 			firePropertyChange(SIZE_PROP, null, size);
 		}
 	}
+	
+	/**
+	 * Sets the name of this shape.
+	 */
+	public abstract void setNameExec(String name);
+	
+	public abstract String getNameExec();
 
 	public abstract void setGraphExec(Graph graph);
 

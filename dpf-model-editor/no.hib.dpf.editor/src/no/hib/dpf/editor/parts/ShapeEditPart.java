@@ -14,18 +14,20 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.List;
 
+import no.hib.dpf.editor.figures.BasicRectangleFigure;
+import no.hib.dpf.editor.figures.EditableLabel;
 import no.hib.dpf.editor.model.Connection;
 import no.hib.dpf.editor.model.ModelElement;
 import no.hib.dpf.editor.model.RectangularShape;
 import no.hib.dpf.editor.model.Shape;
 import no.hib.dpf.editor.model.commands.ConnectionCreateCommand;
 import no.hib.dpf.editor.model.commands.ConnectionReconnectCommand;
+import no.hib.dpf.editor.policies.ShapeDirectEditPolicy;
 
 import org.eclipse.draw2d.ChopboxAnchor;
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPolicy;
@@ -48,7 +50,7 @@ import org.eclipse.gef.requests.ReconnectRequest;
  * 
  * @author Elias Volanakis
  */
-class ShapeEditPart extends AbstractGraphicalEditPart 
+public class ShapeEditPart extends AbstractGraphicalEditPart 
 	implements PropertyChangeListener, NodeEditPart {
 	
 private ConnectionAnchor anchor;
@@ -67,6 +69,12 @@ public void activate() {
  * @see org.eclipse.gef.editparts.AbstractEditPart#createEditPolicies()
  */
 protected void createEditPolicies() {
+//	installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new TableNodeEditPolicy());
+//	installEditPolicy(EditPolicy.LAYOUT_ROLE, new TableLayoutEditPolicy());
+//	installEditPolicy(EditPolicy.CONTAINER_ROLE, new TableContainerEditPolicy());
+//	installEditPolicy(EditPolicy.COMPONENT_ROLE, new TableEditPolicy());
+	installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new ShapeDirectEditPolicy());
+	
 	// allow removal of the associated model element
 	installEditPolicy(EditPolicy.COMPONENT_ROLE, new ShapeComponentEditPolicy());
 	// allow the creation of connections and 
@@ -113,6 +121,49 @@ protected void createEditPolicies() {
 		}
 	});
 }
+
+/**
+ * @param handles
+ *            the name change during an edit
+ */
+public void handleNameChange(String value)
+{
+	BasicRectangleFigure tableFigure = (BasicRectangleFigure) getFigure();
+	EditableLabel label = tableFigure.getNameLabel();
+	label.setVisible(false);
+	refreshVisuals();
+}
+
+private Shape getShape() {
+	return (Shape)getModel();
+}
+
+/**
+ * Reverts to existing name in model when exiting from a direct edit
+ * (possibly before a commit which will result in a change in the label
+ * value)
+ */
+public void revertNameChange()
+{
+	BasicRectangleFigure tableFigure = (BasicRectangleFigure) getFigure();
+	EditableLabel label = tableFigure.getNameLabel();
+	label.setText(getShape().getNameExec());
+	label.setVisible(true);
+	refreshVisuals();
+}
+
+/**
+ * Handles change in name when committing a direct edit
+ */
+private void commitNameChange(PropertyChangeEvent evt)
+{
+	BasicRectangleFigure tableFigure = (BasicRectangleFigure) getFigure();
+	EditableLabel label = tableFigure.getNameLabel();
+	label.setText(getShape().getNameExec());
+	label.setVisible(true);
+	refreshVisuals();
+}
+
 	
 /*(non-Javadoc)
  * @see org.eclipse.gef.editparts.AbstractGraphicalEditPart#createFigure()
@@ -130,7 +181,9 @@ protected IFigure createFigure() {
  */
 private IFigure createFigureForModel() {
 	if (getModel() instanceof RectangularShape) {
-		return new RectangleFigure();
+		
+		EditableLabel label = new EditableLabel(((Shape)getModel()).getNameExec());
+		return new BasicRectangleFigure(label);
 	} else {
 		// if Shapes gets extended the conditions above must be updated
 		throw new IllegalArgumentException();
@@ -223,6 +276,8 @@ public void propertyChange(PropertyChangeEvent evt) {
 		refreshSourceConnections();
 	} else if (Shape.TARGET_CONNECTIONS_PROP.equals(prop)) {
 		refreshTargetConnections();
+	} else if (Shape.NAME_PROP.equals(prop)) {
+		commitNameChange(evt);
 	}
 }
 
