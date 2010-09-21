@@ -8,6 +8,7 @@ package no.hib.dpf.command.impl;
 
 import no.hib.dpf.command.Command;
 import no.hib.dpf.command.CommandPackage;
+import no.hib.dpf.metamodel.Graph;
 
 import org.eclipse.emf.ecore.EClass;
 
@@ -23,6 +24,8 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * @generated
  */
 public abstract class CommandImpl extends EObjectImpl implements Command {
+	
+	Graph graph;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

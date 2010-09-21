@@ -18,6 +18,12 @@
           <eOperations name="getGraphMember" eType="#//hib/dpf/metamodel/IDObject">
             <eParameters name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
           </eOperations>
+          <eOperations name="deleteNode">
+            <eParameters name="node" eType="#//hib/dpf/metamodel/Node"/>
+          </eOperations>
+          <eOperations name="deleteEdge">
+            <eParameters name="edge" eType="#//hib/dpf/metamodel/Edge"/>
+          </eOperations>
           <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" upperBound="-1"
               eType="#//hib/dpf/metamodel/Node" containment="true" eOpposite="#//hib/dpf/metamodel/Node/graph"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

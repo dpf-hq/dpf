@@ -12,13 +12,21 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_PLLPBIK_Ed-_f5Ue2p9irw"/>
     </children>
     <children xmi:type="notation:Node" xmi:id="_PLL2EIK_Ed-_f5Ue2p9irw" type="5002">
+      <children xmi:type="notation:Node" xmi:id="_PLNrQIK_Ed-_f5Ue2p9irw" type="2002">
+        <element xmi:type="ecore:EOperation" href="Metamodel.ecore#//hib/dpf/metamodel/Graph/createEdge"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_PLNrQYK_Ed-_f5Ue2p9irw"/>
+      </children>
       <children xmi:type="notation:Node" xmi:id="_PLNEMoK_Ed-_f5Ue2p9irw" type="2002">
         <element xmi:type="ecore:EOperation" href="Metamodel.ecore#//hib/dpf/metamodel/Graph/createNode"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_PLNEM4K_Ed-_f5Ue2p9irw"/>
       </children>
-      <children xmi:type="notation:Node" xmi:id="_PLNrQIK_Ed-_f5Ue2p9irw" type="2002">
-        <element xmi:type="ecore:EOperation" href="Metamodel.ecore#//hib/dpf/metamodel/Graph/createEdge"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_PLNrQYK_Ed-_f5Ue2p9irw"/>
+      <children xmi:type="notation:Node" xmi:id="_hRRr8MVeEd-ksMLOLltLiA" type="2002">
+        <element xmi:type="ecore:EOperation" href="Metamodel.ecore#//hib/dpf/metamodel/Graph/deleteNode"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_hRRr8cVeEd-ksMLOLltLiA"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_hRUvQMVeEd-ksMLOLltLiA" type="2002">
+        <element xmi:type="ecore:EOperation" href="Metamodel.ecore#//hib/dpf/metamodel/Graph/getGraphMember"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_hRUvQcVeEd-ksMLOLltLiA"/>
       </children>
       <styles xmi:type="notation:DrawerStyle" xmi:id="_PLL2EYK_Ed-_f5Ue2p9irw"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_PLL2EoK_Ed-_f5Ue2p9irw"/>

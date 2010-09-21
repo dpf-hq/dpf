@@ -27,6 +27,12 @@
             <genOperations ecoreOperation="Metamodel.ecore#//hib/dpf/metamodel/Graph/getGraphMember">
               <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/Graph/getGraphMember/id"/>
             </genOperations>
+            <genOperations ecoreOperation="Metamodel.ecore#//hib/dpf/metamodel/Graph/deleteNode">
+              <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/Graph/deleteNode/node"/>
+            </genOperations>
+            <genOperations ecoreOperation="Metamodel.ecore#//hib/dpf/metamodel/Graph/deleteEdge">
+              <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/Graph/deleteEdge/edge"/>
+            </genOperations>
           </genClasses>
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/metamodel/Node">
             <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//hib/dpf/metamodel/Node/name"/>

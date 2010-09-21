@@ -8,6 +8,8 @@ package no.hib.dpf.command.impl;
 
 import no.hib.dpf.command.CommandPackage;
 import no.hib.dpf.command.CreateNodeCommand;
+import no.hib.dpf.metamodel.Graph;
+import no.hib.dpf.metamodel.Node;
 
 import org.eclipse.emf.ecore.EClass;
 
@@ -21,6 +23,9 @@ import org.eclipse.emf.ecore.EClass;
  * @generated
  */
 public class CreateNodeCommandImpl extends CommandImpl implements CreateNodeCommand {
+	private Node node;
+	private String name;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -28,6 +33,11 @@ public class CreateNodeCommandImpl extends CommandImpl implements CreateNodeComm
 	 */
 	protected CreateNodeCommandImpl() {
 		super();
+	}
+	
+	protected CreateNodeCommandImpl(Graph graph, String name) {
+		this.name = name;
+		this.graph = graph;
 	}
 
 	/**
@@ -39,5 +49,18 @@ public class CreateNodeCommandImpl extends CommandImpl implements CreateNodeComm
 	protected EClass eStaticClass() {
 		return CommandPackage.Literals.CREATE_NODE_COMMAND;
 	}
+
+	@Override
+	public void execute() {
+		super.execute();
+		node = graph.createNode(name); //FIXME: use correct name
+	}
+
+	@Override
+	public void undo() {
+		super.undo();
+		graph.deleteNode(node);
+	}
+	
 
 } //CreateNodeCommandImpl

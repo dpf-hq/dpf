@@ -6,6 +6,10 @@
  */
 package no.hib.dpf.command;
 
+import no.hib.dpf.metamodel.Edge;
+import no.hib.dpf.metamodel.Graph;
+import no.hib.dpf.metamodel.Node;
+
 import org.eclipse.emf.ecore.EFactory;
 
 /**
@@ -33,6 +37,16 @@ public interface CommandFactory extends EFactory {
 	 * @generated
 	 */
 	CreateNodeCommand createCreateNodeCommand();
+	
+	/**
+	 * Returns a new object of class '<em>Create Node Command</em>'.
+	 * <!-- begin-user-doc -->
+	 * Set name when creating node.
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Create Node Command</em>'.
+	 * @generated NOT
+	 */
+	CreateNodeCommand createCreateNodeCommand(Graph graph, String name);
 
 	/**
 	 * Returns a new object of class '<em>Create Edge Command</em>'.
@@ -42,6 +56,15 @@ public interface CommandFactory extends EFactory {
 	 * @generated
 	 */
 	CreateEdgeCommand createCreateEdgeCommand();
+	
+	/**
+	 * Returns a new object of class '<em>Create Edge Command</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Create Edge Command</em>'.
+	 * @generated NOT
+	 */
+	CreateEdgeCommand createCreateEdgeCommand(Graph graph, String name, Node source, Node target);
 
 	/**
 	 * Returns a new object of class '<em>Delete Node Command</em>'.

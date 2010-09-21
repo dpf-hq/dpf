@@ -113,6 +113,22 @@ public interface Graph extends IDObject {
 	 * @generated
 	 */
 	IDObject getGraphMember(String id);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	void deleteNode(Node node);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	void deleteEdge(Edge edge);
 	
 
 } // Graph

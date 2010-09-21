@@ -7,6 +7,9 @@
 package no.hib.dpf.command.impl;
 
 import no.hib.dpf.command.*;
+import no.hib.dpf.metamodel.Edge;
+import no.hib.dpf.metamodel.Graph;
+import no.hib.dpf.metamodel.Node;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -78,6 +81,16 @@ public class CommandFactoryImpl extends EFactoryImpl implements CommandFactory {
 		CreateNodeCommandImpl createNodeCommand = new CreateNodeCommandImpl();
 		return createNodeCommand;
 	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public CreateNodeCommand createCreateNodeCommand(Graph graph, String name) {
+		CreateNodeCommandImpl createNodeCommand = new CreateNodeCommandImpl(graph, name);
+		return createNodeCommand;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -86,6 +99,17 @@ public class CommandFactoryImpl extends EFactoryImpl implements CommandFactory {
 	 */
 	public CreateEdgeCommand createCreateEdgeCommand() {
 		CreateEdgeCommandImpl createEdgeCommand = new CreateEdgeCommandImpl();
+		return createEdgeCommand;
+	}
+	
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public CreateEdgeCommand createCreateEdgeCommand(Graph graph, String name, Node source, Node target) {
+		CreateEdgeCommandImpl createEdgeCommand = new CreateEdgeCommandImpl(graph, name, source, target);
 		return createEdgeCommand;
 	}
 
