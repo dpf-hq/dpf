@@ -33,6 +33,7 @@ import no.hib.dpf.metamodel.IDObject;
 import no.hib.dpf.metamodel.MetamodelFactory;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
@@ -89,8 +90,8 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 	/** This is the root of the editor's model. */
 	private DPFDiagram diagram;
 	
-	private static String dpfFilePath = "/tmp";
-	private static String dpfFile = "dpfcontainer.xmi";
+	private static String dpfFilePath;
+	private static String dpfFile;
 	
 	/** Palette component, holding the tools and shapes. */
 	private static PaletteRoot PALETTE_MODEL;
@@ -404,6 +405,9 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 			// D P F   S T U F F
 			// -------------------------------------------------------------------
 			setDpfFilePaths(file);
+			
+			//FIXME: We should only refresh the project if needed
+			ResourcesPlugin.getWorkspace().getRoot().refreshLocal(IResource.DEPTH_INFINITE, null);
 			deserializeDpfModel();
 			setDpfReferencesInViewModel(diagram.getChildrenWithID());
 			
