@@ -3,7 +3,7 @@
 <plugin>
 
      <extension point="org.eclipse.ui.editors">
-      <editor name="GEF DPF Example"
+      <editor name="DPF Model Editor"
               extensions="dpf"
               icon="shapes.gif"
               default="true"
@@ -13,14 +13,14 @@
       </editor>
    </extension>
    <extension point="org.eclipse.ui.newWizards">
-      <category name="Examples"
-                parentCategory="org.eclipse.ui.Examples"
-                id="org.eclipse.gef.examples"/>
-      <wizard name="DPF Diagram"
-              icon="shapes.gif"
-              category="org.eclipse.ui.Examples/org.eclipse.gef.examples"
-              class="no.hib.dpf.editor.DPFCreationWizard"
-              id="org.eclipse.gef.examples.shapes.ShapesCreationWizard">
+      <category name="Diagram Predicate Framework"
+                id="no.hib.dpf.editor"/>
+      <wizard
+            category="no.hib.dpf.editor"
+            class="no.hib.dpf.editor.DPFCreationWizard"
+            icon="shapes.gif"
+            id="no.hib.dpf.editor.DPFCreationWizard"
+            name="DPF Model Diagram">
          <selection class="org.eclipse.core.resources.IResource"/>
       </wizard>
    </extension>
