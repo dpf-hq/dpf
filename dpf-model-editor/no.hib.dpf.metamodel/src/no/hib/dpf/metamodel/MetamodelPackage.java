@@ -244,13 +244,22 @@ public interface MetamodelPackage extends EPackage {
 	int GRAPH__EDGES = ID_OBJECT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Constraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPH__CONSTRAINTS = ID_OBJECT_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Graph</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPH_FEATURE_COUNT = ID_OBJECT_FEATURE_COUNT + 3;
+	int GRAPH_FEATURE_COUNT = ID_OBJECT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -569,6 +578,26 @@ public interface MetamodelPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.RootObjectImpl <em>Root Object</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.impl.RootObjectImpl
+	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getRootObject()
+	 * @generated
+	 */
+	int ROOT_OBJECT = 13;
+
+	/**
+	 * The number of structural features of the '<em>Root Object</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROOT_OBJECT_FEATURE_COUNT = 0;
+
+
+	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.metamodel.Graph <em>Graph</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -610,6 +639,17 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getGraph_Edges();
+
+	/**
+	 * Returns the meta object for the reference list '{@link no.hib.dpf.metamodel.Graph#getConstraints <em>Constraints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Constraints</em>'.
+	 * @see no.hib.dpf.metamodel.Graph#getConstraints()
+	 * @see #getGraph()
+	 * @generated
+	 */
+	EReference getGraph_Constraints();
 
 	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.metamodel.Node <em>Node</em>}'.
@@ -989,6 +1029,16 @@ public interface MetamodelPackage extends EPackage {
 	EAttribute getIDObject_Id();
 
 	/**
+	 * Returns the meta object for class '{@link no.hib.dpf.metamodel.RootObject <em>Root Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Root Object</em>'.
+	 * @see no.hib.dpf.metamodel.RootObject
+	 * @generated
+	 */
+	EClass getRootObject();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1043,6 +1093,14 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference GRAPH__EDGES = eINSTANCE.getGraph_Edges();
+
+		/**
+		 * The meta object literal for the '<em><b>Constraints</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GRAPH__CONSTRAINTS = eINSTANCE.getGraph_Constraints();
 
 		/**
 		 * The meta object literal for the '{@link no.hib.dpf.metamodel.impl.NodeImpl <em>Node</em>}' class.
@@ -1347,6 +1405,16 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ID_OBJECT__ID = eINSTANCE.getIDObject_Id();
+
+		/**
+		 * The meta object literal for the '{@link no.hib.dpf.metamodel.impl.RootObjectImpl <em>Root Object</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see no.hib.dpf.metamodel.impl.RootObjectImpl
+		 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getRootObject()
+		 * @generated
+		 */
+		EClass ROOT_OBJECT = eINSTANCE.getRootObject();
 
 	}
 

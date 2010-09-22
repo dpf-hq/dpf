@@ -16,16 +16,23 @@
             <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/Graph/nodes"/>
             <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//hib/dpf/metamodel/Graph/name"/>
             <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/Graph/edges"/>
+            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+                ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/Graph/constraints"/>
             <genOperations ecoreOperation="Metamodel.ecore#//hib/dpf/metamodel/Graph/createNode">
               <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/Graph/createNode/name"/>
+            </genOperations>
+            <genOperations ecoreOperation="Metamodel.ecore#//hib/dpf/metamodel/Graph/getGraphMember">
+              <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/Graph/getGraphMember/id"/>
             </genOperations>
             <genOperations ecoreOperation="Metamodel.ecore#//hib/dpf/metamodel/Graph/createEdge">
               <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/Graph/createEdge/name"/>
               <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/Graph/createEdge/source"/>
               <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/Graph/createEdge/target"/>
             </genOperations>
-            <genOperations ecoreOperation="Metamodel.ecore#//hib/dpf/metamodel/Graph/getGraphMember">
-              <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/Graph/getGraphMember/id"/>
+            <genOperations ecoreOperation="Metamodel.ecore#//hib/dpf/metamodel/Graph/applyPredicate">
+              <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/Graph/applyPredicate/predicate"/>
+              <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/Graph/applyPredicate/nodes"/>
+              <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/Graph/applyPredicate/edges"/>
             </genOperations>
             <genOperations ecoreOperation="Metamodel.ecore#//hib/dpf/metamodel/Graph/deleteNode">
               <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/Graph/deleteNode/node"/>
@@ -97,6 +104,7 @@
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/metamodel/IDObject">
             <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//hib/dpf/metamodel/IDObject/id"/>
           </genClasses>
+          <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/metamodel/RootObject"/>
         </nestedGenPackages>
         <nestedGenPackages prefix="Command" basePackage="no.hib.dpf" disposableProviderFactory="true"
             ecorePackage="Metamodel.ecore#//hib/dpf/command">

@@ -6,6 +6,7 @@
  */
 package no.hib.dpf.metamodel;
 
+import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EFactory;
 
 /**
@@ -107,6 +108,15 @@ public interface MetamodelFactory extends EFactory {
 	GraphHomomorphism createGraphHomomorphism();
 
 	/**
+	 * Returns a new object of class '<em>Graph Homomorphism</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Graph Homomorphism</em>'.
+	 * @generated NOT
+	 */
+	GraphHomomorphism createGraphHomomorphism(EMap<Node, Node> nodeMap, EMap<Edge, Edge> edgeMap);
+
+	/**
 	 * Returns a new object of class '<em>ID Object</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -114,6 +124,15 @@ public interface MetamodelFactory extends EFactory {
 	 * @generated
 	 */
 	IDObject createIDObject();
+
+	/**
+	 * Returns a new object of class '<em>Root Object</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Root Object</em>'.
+	 * @generated
+	 */
+	RootObject createRootObject();
 
 	/**
 	 * Returns the package supported by this factory.

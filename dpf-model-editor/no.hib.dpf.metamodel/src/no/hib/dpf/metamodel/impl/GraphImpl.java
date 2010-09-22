@@ -8,6 +8,7 @@ package no.hib.dpf.metamodel.impl;
 
 import java.util.Collection;
 
+import no.hib.dpf.metamodel.Constraint;
 import no.hib.dpf.metamodel.Edge;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.IDObject;
@@ -15,6 +16,7 @@ import no.hib.dpf.metamodel.MetamodelFactory;
 import no.hib.dpf.metamodel.MetamodelPackage;
 import no.hib.dpf.metamodel.Node;
 
+import no.hib.dpf.metamodel.Predicate;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -22,6 +24,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -34,6 +37,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link no.hib.dpf.metamodel.impl.GraphImpl#getNodes <em>Nodes</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.impl.GraphImpl#getName <em>Name</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.impl.GraphImpl#getEdges <em>Edges</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.impl.GraphImpl#getConstraints <em>Constraints</em>}</li>
  * </ul>
  * </p>
  *
@@ -79,6 +83,16 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	 * @ordered
 	 */
 	protected EList<Edge> edges;
+
+	/**
+	 * The cached value of the '{@link #getConstraints() <em>Constraints</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getConstraints()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Constraint> constraints;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -147,6 +161,18 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Constraint> getConstraints() {
+		if (constraints == null) {
+			constraints = new EObjectResolvingEList<Constraint>(Constraint.class, this, MetamodelPackage.GRAPH__CONSTRAINTS);
+		}
+		return constraints;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public Node createNode(String name) {
@@ -168,6 +194,33 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 		edge.setGraph(this);
 		edge.setName(name);
 		return edge;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return 
+	 * @generated NOT
+	 */
+	public Constraint applyPredicate(Predicate predicate, EList<Node> nodes, EList<Edge> edges) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+		/*
+		 *  1) Foreløpig vil ikke predikatet ha en valideringsmetode som sier om det kan
+		 *  appliseres på nodes og edges. TODO: lage slik. Vi antar at dette er OK nå.
+		 *  
+		 *  2) Opprett Constraint-objekt, som må lenkes til predikatet.
+		 *  
+		 *  3) Opprett ny GraphHomomorphism-objekt. Predikatet har en shape-referanse. Hvert
+		 *  element i shape-en må lenkes til et eksisterende element, hentet fra nodes og/eller
+		 *  edges.
+		 * 
+		 * 4) Q&D-løsning for raske resultat: første node i nodeliste -> første node i shape-en etc.
+		 * 
+		 * Returverdien skal på sikt brukes til å signalisere endringer i modellen til viewmodellen.
+		 * 
+		 */
 	}
 
 	/**
@@ -256,6 +309,8 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 				return getName();
 			case MetamodelPackage.GRAPH__EDGES:
 				return getEdges();
+			case MetamodelPackage.GRAPH__CONSTRAINTS:
+				return getConstraints();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -280,6 +335,10 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 				getEdges().clear();
 				getEdges().addAll((Collection<? extends Edge>)newValue);
 				return;
+			case MetamodelPackage.GRAPH__CONSTRAINTS:
+				getConstraints().clear();
+				getConstraints().addAll((Collection<? extends Constraint>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -301,6 +360,9 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 			case MetamodelPackage.GRAPH__EDGES:
 				getEdges().clear();
 				return;
+			case MetamodelPackage.GRAPH__CONSTRAINTS:
+				getConstraints().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -319,6 +381,8 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case MetamodelPackage.GRAPH__EDGES:
 				return edges != null && !edges.isEmpty();
+			case MetamodelPackage.GRAPH__CONSTRAINTS:
+				return constraints != null && !constraints.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -9,6 +9,7 @@ package no.hib.dpf.metamodel.impl;
 import java.util.Map;
 import no.hib.dpf.metamodel.*;
 
+import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -73,6 +74,7 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 			case MetamodelPackage.TYPING_MORPHISM: return createTypingMorphism();
 			case MetamodelPackage.GRAPH_HOMOMORPHISM: return createGraphHomomorphism();
 			case MetamodelPackage.ID_OBJECT: return createIDObject();
+			case MetamodelPackage.ROOT_OBJECT: return createRootObject();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -192,11 +194,34 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public GraphHomomorphism createGraphHomomorphism(EMap<Node, Node> nodeMap, EMap<Edge, Edge> edgeMap) {
+		GraphHomomorphism retval = createGraphHomomorphism();
+		retval.getNodeMapping().addAll(nodeMap);
+		retval.getEdgeMapping().addAll(edgeMap);
+		return retval;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public IDObject createIDObject() {
 		IDObjectImpl idObject = new IDObjectImpl();
 		return idObject;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RootObject createRootObject() {
+		RootObjectImpl rootObject = new RootObjectImpl();
+		return rootObject;
 	}
 
 	/**
@@ -218,5 +243,6 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	public static MetamodelPackage getPackage() {
 		return MetamodelPackage.eINSTANCE;
 	}
+
 
 } //MetamodelFactoryImpl

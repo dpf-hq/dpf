@@ -19,6 +19,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link no.hib.dpf.metamodel.Graph#getNodes <em>Nodes</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Graph#getName <em>Name</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Graph#getEdges <em>Edges</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Graph#getConstraints <em>Constraints</em>}</li>
  * </ul>
  * </p>
  *
@@ -90,6 +91,22 @@ public interface Graph extends IDObject {
 	EList<Edge> getEdges();
 
 	/**
+	 * Returns the value of the '<em><b>Constraints</b></em>' reference list.
+	 * The list contents are of type {@link no.hib.dpf.metamodel.Constraint}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Constraints</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Constraints</em>' reference list.
+	 * @see no.hib.dpf.metamodel.MetamodelPackage#getGraph_Constraints()
+	 * @model
+	 * @generated
+	 */
+	EList<Constraint> getConstraints();
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model
@@ -104,6 +121,14 @@ public interface Graph extends IDObject {
 	 * @generated
 	 */
 	Edge createEdge(String name, Node source, Node target);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model nodesMany="true" edgesMany="true"
+	 * @generated
+	 */
+	Constraint applyPredicate(Predicate predicate, EList<Node> nodes, EList<Edge> edges);
 
 	/**
 	 * <!-- begin-user-doc -->
