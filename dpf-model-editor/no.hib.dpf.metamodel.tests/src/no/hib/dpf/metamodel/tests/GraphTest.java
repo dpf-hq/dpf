@@ -23,7 +23,9 @@ import no.hib.dpf.metamodel.Node;
  * The following operations are tested:
  * <ul>
  *   <li>{@link no.hib.dpf.metamodel.Graph#createNode(java.lang.String) <em>Create Node</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Graph#getGraphMember(java.lang.String) <em>Get Graph Member</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Graph#createEdge(java.lang.String, no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Node) <em>Create Edge</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Graph#applyPredicate(no.hib.dpf.metamodel.Predicate, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Apply Predicate</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -111,6 +113,32 @@ public class GraphTest extends IDObjectTest {
 		assertEquals(n1, e.getSource());
 		assertEquals(n2, e.getTarget());
 		assertEquals("test", e.getName());
+	}
+
+	/**
+	 * Tests the '{@link no.hib.dpf.metamodel.Graph#applyPredicate(no.hib.dpf.metamodel.Predicate, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Apply Predicate</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.Graph#applyPredicate(no.hib.dpf.metamodel.Predicate, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
+	 * @generated
+	 */
+	public void testApplyPredicate__Predicate_EList_EList() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link no.hib.dpf.metamodel.Graph#getGraphMember(java.lang.String) <em>Get Graph Member</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.Graph#getGraphMember(java.lang.String)
+	 * @generated
+	 */
+	public void testGetGraphMember__String() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
 	}
 
 
