@@ -252,22 +252,6 @@
     <element xmi:type="ecore:EClass" href="Metamodel.ecore#//hib/dpf/metamodel/IDObject"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_xXMiW8btEd-hyfC6EAXkWQ" x="536"/>
   </children>
-  <children xmi:type="notation:Node" xmi:id="_xXNwcsbtEd-hyfC6EAXkWQ" type="1001">
-    <children xmi:type="notation:Node" xmi:id="_xXOXgMbtEd-hyfC6EAXkWQ" type="4001"/>
-    <children xmi:type="notation:Node" xmi:id="_xXOXgcbtEd-hyfC6EAXkWQ" type="5001">
-      <styles xmi:type="notation:DrawerStyle" xmi:id="_xXOXgsbtEd-hyfC6EAXkWQ"/>
-      <styles xmi:type="notation:SortingStyle" xmi:id="_xXOXg8btEd-hyfC6EAXkWQ"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_xXOXhMbtEd-hyfC6EAXkWQ"/>
-    </children>
-    <children xmi:type="notation:Node" xmi:id="_xXOXhcbtEd-hyfC6EAXkWQ" type="5002">
-      <styles xmi:type="notation:DrawerStyle" xmi:id="_xXOXhsbtEd-hyfC6EAXkWQ"/>
-      <styles xmi:type="notation:SortingStyle" xmi:id="_xXOXh8btEd-hyfC6EAXkWQ"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_xXOXiMbtEd-hyfC6EAXkWQ"/>
-    </children>
-    <styles xmi:type="notation:ShapeStyle" xmi:id="_xXNwc8btEd-hyfC6EAXkWQ" fontColor="4210752" fontName="Lucida Grande" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
-    <element xmi:type="ecore:EClass" href="Metamodel.ecore#//hib/dpf/metamodel/RootObject"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_xXNwdMbtEd-hyfC6EAXkWQ" x="981" y="63"/>
-  </children>
   <children xmi:type="notation:Shape" xmi:id="_cE1igMbuEd-hyfC6EAXkWQ" type="Note" fontName="Lucida Grande" description="The &quot;glue&quot; between model layers." fillColor="13369343" transparency="0" lineColor="6737151" lineWidth="1">
     <children xmi:type="notation:BasicDecorationNode" xmi:id="_cE4l0MbuEd-hyfC6EAXkWQ" type="DiagramName">
       <element xsi:nil="true"/>

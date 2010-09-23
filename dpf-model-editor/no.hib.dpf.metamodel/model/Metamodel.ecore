@@ -93,7 +93,6 @@
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
               defaultValueLiteral=""/>
         </eClassifiers>
-        <eClassifiers xsi:type="ecore:EClass" name="RootObject"/>
       </eSubpackages>
       <eSubpackages name="command" nsURI="http://no.hib.dpf.command" nsPrefix="no.hib.dpf.command">
         <eClassifiers xsi:type="ecore:EClass" name="Command" abstract="true">

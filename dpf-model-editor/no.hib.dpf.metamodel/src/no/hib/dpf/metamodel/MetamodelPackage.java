@@ -578,26 +578,6 @@ public interface MetamodelPackage extends EPackage {
 
 
 	/**
-	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.RootObjectImpl <em>Root Object</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.impl.RootObjectImpl
-	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getRootObject()
-	 * @generated
-	 */
-	int ROOT_OBJECT = 13;
-
-	/**
-	 * The number of structural features of the '<em>Root Object</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROOT_OBJECT_FEATURE_COUNT = 0;
-
-
-	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.metamodel.Graph <em>Graph</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1029,16 +1009,6 @@ public interface MetamodelPackage extends EPackage {
 	EAttribute getIDObject_Id();
 
 	/**
-	 * Returns the meta object for class '{@link no.hib.dpf.metamodel.RootObject <em>Root Object</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Root Object</em>'.
-	 * @see no.hib.dpf.metamodel.RootObject
-	 * @generated
-	 */
-	EClass getRootObject();
-
-	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1405,16 +1375,6 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ID_OBJECT__ID = eINSTANCE.getIDObject_Id();
-
-		/**
-		 * The meta object literal for the '{@link no.hib.dpf.metamodel.impl.RootObjectImpl <em>Root Object</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see no.hib.dpf.metamodel.impl.RootObjectImpl
-		 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getRootObject()
-		 * @generated
-		 */
-		EClass ROOT_OBJECT = eINSTANCE.getRootObject();
 
 	}
 

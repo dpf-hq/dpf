@@ -104,7 +104,6 @@
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/metamodel/IDObject">
             <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//hib/dpf/metamodel/IDObject/id"/>
           </genClasses>
-          <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/metamodel/RootObject"/>
         </nestedGenPackages>
         <nestedGenPackages prefix="Command" basePackage="no.hib.dpf" disposableProviderFactory="true"
             ecorePackage="Metamodel.ecore#//hib/dpf/command">

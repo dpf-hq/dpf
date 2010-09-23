@@ -74,7 +74,6 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 			case MetamodelPackage.TYPING_MORPHISM: return createTypingMorphism();
 			case MetamodelPackage.GRAPH_HOMOMORPHISM: return createGraphHomomorphism();
 			case MetamodelPackage.ID_OBJECT: return createIDObject();
-			case MetamodelPackage.ROOT_OBJECT: return createRootObject();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -212,16 +211,6 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	public IDObject createIDObject() {
 		IDObjectImpl idObject = new IDObjectImpl();
 		return idObject;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public RootObject createRootObject() {
-		RootObjectImpl rootObject = new RootObjectImpl();
-		return rootObject;
 	}
 
 	/**

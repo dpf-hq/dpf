@@ -126,15 +126,6 @@ public interface MetamodelFactory extends EFactory {
 	IDObject createIDObject();
 
 	/**
-	 * Returns a new object of class '<em>Root Object</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Root Object</em>'.
-	 * @generated
-	 */
-	RootObject createRootObject();
-
-	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
