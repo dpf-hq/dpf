@@ -10,17 +10,16 @@
 Ê*******************************************************************************/
 package no.hib.dpf.editor;
 
-import no.hib.dpf.editor.editoractions.CreateEllipseAction;
+import no.hib.dpf.editor.editoractions.CreateConstraintAction;
 import no.hib.dpf.editor.editoractions.SrcSelectAction;
-
-import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.action.IMenuManager;
-import org.eclipse.ui.actions.ActionFactory;
 
 import org.eclipse.gef.ContextMenuProvider;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.ui.actions.ActionRegistry;
 import org.eclipse.gef.ui.actions.GEFActionConstants;
+import org.eclipse.jface.action.IAction;
+import org.eclipse.jface.action.IMenuManager;
+import org.eclipse.ui.actions.ActionFactory;
 
 
 /**
@@ -68,7 +67,7 @@ public void buildContextMenu(IMenuManager menu) {
 			getAction(ActionFactory.DELETE.getId()));
 	
 	getActionAndAppendToMenu(menu, SrcSelectAction.ID);
-	getActionAndAppendToMenu(menu, CreateEllipseAction.ID);
+	getActionAndAppendToMenu(menu, CreateConstraintAction.ID);
 }
 
 private void getActionAndAppendToMenu(IMenuManager menu, String actionID) {

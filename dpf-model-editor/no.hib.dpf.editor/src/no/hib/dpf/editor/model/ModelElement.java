@@ -44,8 +44,7 @@ public abstract class ModelElement implements IPropertySource, Serializable {
 
 	private static final long serialVersionUID = 1;
 	/** Delegate used to implemenent property-change-support. */
-	private transient PropertyChangeSupport pcsDelegate = new PropertyChangeSupport(
-			this);
+	private transient PropertyChangeSupport pcsDelegate = new PropertyChangeSupport(this);
 
 	/** Used for adding and removing a model element to and from the DPF graph */
 	protected transient Graph dpfGraph;

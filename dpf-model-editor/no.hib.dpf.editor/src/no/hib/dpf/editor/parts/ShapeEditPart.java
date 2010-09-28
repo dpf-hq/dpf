@@ -22,7 +22,6 @@ import no.hib.dpf.editor.model.RectangularShape;
 import no.hib.dpf.editor.model.Shape;
 import no.hib.dpf.editor.model.commands.ConnectionCreateCommand;
 import no.hib.dpf.editor.model.commands.ConnectionReconnectCommand;
-import no.hib.dpf.editor.policies.ShapeDirectEditPolicy;
 
 import org.eclipse.draw2d.ChopboxAnchor;
 import org.eclipse.draw2d.ColorConstants;
@@ -73,7 +72,7 @@ protected void createEditPolicies() {
 //	installEditPolicy(EditPolicy.LAYOUT_ROLE, new TableLayoutEditPolicy());
 //	installEditPolicy(EditPolicy.CONTAINER_ROLE, new TableContainerEditPolicy());
 //	installEditPolicy(EditPolicy.COMPONENT_ROLE, new TableEditPolicy());
-	installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new ShapeDirectEditPolicy());
+//	installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new ShapeDirectEditPolicy());
 	
 	// allow removal of the associated model element
 	installEditPolicy(EditPolicy.COMPONENT_ROLE, new ShapeComponentEditPolicy());

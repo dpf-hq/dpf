@@ -11,9 +11,9 @@
 package no.hib.dpf.editor.parts;
 
 import no.hib.dpf.editor.model.Connection;
+import no.hib.dpf.editor.model.Constraint;
 import no.hib.dpf.editor.model.DPFDiagram;
 import no.hib.dpf.editor.model.Shape;
-import no.hib.dpf.metamodel.Graph;
 
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartFactory;
@@ -50,7 +50,10 @@ private EditPart getPartForElement(Object modelElement) {
 		return new ShapeEditPart();
 	}
 	if (modelElement instanceof Connection) {
-		return new ConnectionEditPart();
+		return new MyConnectionEditPart();
+	}
+	if (modelElement instanceof Constraint) {
+		return new ConstraintEditPart();
 	}
 	throw new RuntimeException(
 			"Can't create part for model element: "

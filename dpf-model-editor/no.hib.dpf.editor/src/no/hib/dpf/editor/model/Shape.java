@@ -20,10 +20,8 @@ import no.hib.dpf.metamodel.Graph;
 
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.views.properties.IPropertyDescriptor;
-import org.eclipse.ui.views.properties.PropertyDescriptor;
 import org.eclipse.ui.views.properties.TextPropertyDescriptor;
 
 /**
@@ -37,23 +35,13 @@ import org.eclipse.ui.views.properties.TextPropertyDescriptor;
  */
 public abstract class Shape extends ModelElement implements IDObjectContainer {
 
-	/**
-	 * A static array of property descriptors. There is one IPropertyDescriptor
-	 * entry per editable property.
-	 * 
-	 * @see #getPropertyDescriptors()
-	 * @see #getPropertyValue(Object)
-	 * @see #setPropertyValue(Object, Object)
-	 */
+	private static final long serialVersionUID = 7208811341274639248L;
+
 	private static IPropertyDescriptor[] descriptors;
-	/**
-	 * ID for the Height property value (used for by the corresponding property
-	 * descriptor).
-	 */
+
 	private static final String HEIGHT_PROP = "Shape.Height";
 	/** Property ID to use when the location of this shape is modified. */
 	public static final String LOCATION_PROP = "Shape.Location";
-	private static final long serialVersionUID = 1;
 	/** Property ID to use then the size of this shape is modified. */
 	public static final String SIZE_PROP = "Shape.Size";
 	/** Property ID to use when the list of outgoing connections is modified. */
@@ -61,11 +49,9 @@ public abstract class Shape extends ModelElement implements IDObjectContainer {
 	/** Property ID to use when the list of incoming connections is modified. */
 	public static final String TARGET_CONNECTIONS_PROP = "Shape.TargetConn";
 	
+	/** Property ID to use when the name is modified. */	
 	public static final String NAME_PROP = "Shape.Name";
-	/**
-	 * ID for the Width property value (used for by the corresponding property
-	 * descriptor).
-	 */
+
 	private static final String WIDTH_PROP = "Shape.Width";
 
 	/**
@@ -90,28 +76,11 @@ public abstract class Shape extends ModelElement implements IDObjectContainer {
 	 */
 	static {
 		descriptors = new IPropertyDescriptor[] {
-				new IntegerTextPropertyDescriptor(XPOS_PROP, "X"), // id and
-															// description pair
-				new IntegerTextPropertyDescriptor(YPOS_PROP, "Y"),
-				new IntegerTextPropertyDescriptor(WIDTH_PROP, "Width"),
-				new IntegerTextPropertyDescriptor(HEIGHT_PROP, "Height"),
-				new TextPropertyDescriptor(NAME_PROP, "Name")};
-		// use a custom cell editor validator for all array entries
-//		for (int i = 0; i < descriptors.length; i++) {
-//			((PropertyDescriptor) descriptors[i])
-//					.setValidator(new ICellEditorValidator() {
-//						public String isValid(Object value) {
-//							int intValue = -1;
-//							try {
-//								intValue = Integer.parseInt((String) value);
-//							} catch (NumberFormatException exc) {
-//								return "Not a number";
-//							}
-//							return (intValue >= 0) ? null
-//									: "Value must be >=  0";
-//						}
-//					});
-//		}
+			new IntegerTextPropertyDescriptor(XPOS_PROP, "X"), // id and description pair
+			new IntegerTextPropertyDescriptor(YPOS_PROP, "Y"),
+			new IntegerTextPropertyDescriptor(WIDTH_PROP, "Width"),
+			new IntegerTextPropertyDescriptor(HEIGHT_PROP, "Height"),
+			new TextPropertyDescriptor(NAME_PROP, "Name") };
 	} // static
 
 	protected static Image createImage(String name) {

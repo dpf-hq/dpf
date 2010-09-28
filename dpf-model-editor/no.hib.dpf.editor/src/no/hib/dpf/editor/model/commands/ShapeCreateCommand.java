@@ -12,11 +12,9 @@ package no.hib.dpf.editor.model.commands;
 
 import no.hib.dpf.editor.model.DPFDiagram;
 import no.hib.dpf.editor.model.Shape;
-import no.hib.dpf.metamodel.Graph;
 
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
-
 import org.eclipse.gef.commands.Command;
 
 

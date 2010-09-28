@@ -103,6 +103,7 @@ public class RectangularShape extends Shape implements Node {
 	@Override
 	public void setIDObject(IDObject idObject) {
 		if (idObject instanceof Node) {
+			// TODO: opprett lytter?
 			nodeComponent = (Node)idObject;
 			nodeID = nodeComponent.getId();		
 		}

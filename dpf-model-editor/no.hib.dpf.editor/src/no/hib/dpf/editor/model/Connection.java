@@ -11,14 +11,20 @@
 package no.hib.dpf.editor.model;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.List;
 
+import no.hib.dpf.editor.figures.BasicRectangleFigure;
+import no.hib.dpf.editor.figures.EditableLabel;
 import no.hib.dpf.metamodel.Edge;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.IDObject;
 import no.hib.dpf.metamodel.MetamodelFactory;
 import no.hib.dpf.metamodel.Node;
 
+import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Graphics;
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
@@ -61,6 +67,11 @@ public class Connection extends ModelElement implements Edge, IDObjectContainer 
 	private static final String DASHED_STR = "Dashed";
 	private static final long serialVersionUID = 1;
 
+	/** Property ID to use when the list of outgoing constraints is modified. */
+	public static final String SOURCE_CONSTRAINTS_PROP = "Connection.SourceConstraint";
+	/** Property ID to use when the list of incoming constraints is modified. */
+	public static final String TARGET_CONSTRAINTS_PROP = "Connection.TargetConstaint";
+	
 	/** True, if the connection is attached to its endpoints. */
 	private boolean isConnected;
 	/** Line drawing style for this connection. */
@@ -70,6 +81,11 @@ public class Connection extends ModelElement implements Edge, IDObjectContainer 
 	/** Connection's target endpoint. */
 	private Shape target;
 
+	/** List of outgoing Connections. */
+	private List<Constraint> sourceConstraints = new ArrayList<Constraint>();
+	/** List of incoming Connections. */
+	private List<Constraint> targetConnstraints = new ArrayList<Constraint>();
+	
 	static {
 		descriptors[0] = new ComboBoxPropertyDescriptor(LINESTYLE_PROP,
 				LINESTYLE_PROP, new String[] { SOLID_STR, DASHED_STR });
@@ -119,6 +135,9 @@ public class Connection extends ModelElement implements Edge, IDObjectContainer 
 		}
 	}
 
+	
+
+	
 	/**
 	 * Returns the line drawing style of this connection.
 	 * 
@@ -224,6 +243,7 @@ public class Connection extends ModelElement implements Edge, IDObjectContainer 
 		firePropertyChange(LINESTYLE_PROP, null, new Integer(this.lineStyle));
 	}
 
+	
 	/**
 	 * Sets the lineStyle based on the String provided by the PropertySheet
 	 * 
@@ -238,6 +258,56 @@ public class Connection extends ModelElement implements Edge, IDObjectContainer 
 			super.setPropertyValue(id, value);
 	}
 
+	public List<Constraint> getSourceConstraints() {
+		return new ArrayList<Constraint>(sourceConstraints);
+	}
+
+	public List<Constraint> getTargetConstraints() {
+		return new ArrayList<Constraint>(targetConnstraints);
+	}
+	
+	protected void addIncomingConstraint(Constraint constraint) {
+		targetConnstraints.add(constraint);
+		firePropertyChange(TARGET_CONSTRAINTS_PROP, null, constraint);
+	}
+
+	protected void addOutgoingConstraint(Constraint constraint) {
+		sourceConstraints.add(constraint);
+		firePropertyChange(SOURCE_CONSTRAINTS_PROP, null, constraint);
+	}
+	
+	public void addConstraint(Constraint constraint) {
+		if (constraint == null || constraint.getConnectionSource() == constraint.getConnectionTarget()) {
+			throw new IllegalArgumentException();
+		}
+		if (constraint.getConnectionSource() == this) {
+			addOutgoingConstraint(constraint);
+		} else if (constraint.getConnectionTarget() == this) {
+			addIncomingConstraint(constraint);
+		}
+	}
+	
+	protected void removeIncomingConstraint(Constraint constraint) {
+		targetConnstraints.remove(constraint);
+		firePropertyChange(TARGET_CONSTRAINTS_PROP, null, constraint);
+	}
+
+	protected void removeOutgoingConstraint(Constraint constraint) {
+		sourceConstraints.remove(constraint);
+		firePropertyChange(SOURCE_CONSTRAINTS_PROP, null, constraint);
+	}
+	
+	void removeConstraint(Constraint constraint) {
+		if (constraint == null) {
+			throw new IllegalArgumentException();
+		}
+		if (constraint.getConnectionSource() == this) {
+			removeOutgoingConstraint(constraint);
+		} else if (constraint.getConnectionTarget() == this) {
+			removeIncomingConstraint(constraint);
+		}
+	}
+	
 	// -----------------------------------------------------------------------------------
 	// Edge methods:
 	// -----------------------------------------------------------------------------------
