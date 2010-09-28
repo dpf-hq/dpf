@@ -13,22 +13,14 @@ package no.hib.dpf.editor.parts;
 import java.beans.PropertyChangeEvent;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 import no.hib.dpf.editor.figures.DPFConnectionFigure;
 import no.hib.dpf.editor.model.Connection;
-import no.hib.dpf.editor.model.Constraint;
 import no.hib.dpf.editor.model.commands.ConnectionDeleteCommand;
 
-import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PolygonDecoration;
-import org.eclipse.draw2d.XYAnchor;
-import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPolicy;
-import org.eclipse.gef.NodeEditPart;
-import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.ConnectionEditPolicy;
 import org.eclipse.gef.editpolicies.ConnectionEndpointEditPolicy;
@@ -42,7 +34,7 @@ import org.eclipse.gef.requests.GroupRequest;
  * </p>
  * @author Elias Volanakis
  */
-class MyConnectionEditPart extends ModelElementConnectionEditPart implements NodeEditPart {
+class MyConnectionEditPart extends ModelElementConnectionEditPart { // implements NodeEditPart {
 
 
 /* (non-Javadoc)
@@ -87,13 +79,23 @@ public void propertyChange(PropertyChangeEvent event) {
 	
 }
 
+/**
+ * Extended here to also refresh the ConnectionAnchors.
+ * 
+ * @see org.eclipse.gef.EditPart#refresh()
+ */
+@Override
+public void refresh() {
+	super.refresh();
+}
+
 /*
  * (non-Javadoc)
  * @see org.eclipse.gef.editparts.AbstractGraphicalEditPart#getModelSourceConnections()
  */
+@SuppressWarnings("rawtypes")
 @Override
 protected List getModelSourceConnections() {
-	//return super.getModelSourceConnections();
 	List retval = getCastedModel().getSourceConstraints();
 	if (retval.size() == 0) return Collections.EMPTY_LIST;
  	return retval;
@@ -103,9 +105,9 @@ protected List getModelSourceConnections() {
  * (non-Javadoc)
  * @see org.eclipse.gef.editparts.AbstractGraphicalEditPart#getModelTargetConnections()
  */
+@SuppressWarnings("rawtypes")
 @Override
 protected List getModelTargetConnections() {
-//	return super.getModelTargetConnections();
 	List retval = getCastedModel().getTargetConstraints();
 	if (retval.size() == 0) return Collections.EMPTY_LIST;
  	return retval;
@@ -116,45 +118,45 @@ private Connection getCastedModel() {
 }
 
 
-/*
- * (non-Javadoc)
- * @see org.eclipse.gef.NodeEditPart#getSourceConnectionAnchor(org.eclipse.gef.Request)
- */
-@Override
-public ConnectionAnchor getSourceConnectionAnchor(Request request) {
-	return getConnectionAnchor();
-}
-
-
-
-/*
- * (non-Javadoc)
- * @see org.eclipse.gef.NodeEditPart#getTargetConnectionAnchor(org.eclipse.gef.Request)
- */
-public ConnectionAnchor getTargetConnectionAnchor(Request request) {
-	return getConnectionAnchor();
-}
-
-private ConnectionAnchor anchor;
-
-protected ConnectionAnchor getConnectionAnchor() {
-	Random random = new Random();
-	
-	if (anchor == null) {
-		anchor = new XYAnchor(new Point(random.nextInt(400), random.nextInt(400)));
-	}
-	return anchor;
-}
-
-@Override
-public ConnectionAnchor getSourceConnectionAnchor(ConnectionEditPart connection) {
-	return getConnectionAnchor();
-}
-
-@Override
-public ConnectionAnchor getTargetConnectionAnchor(ConnectionEditPart connection) {
-	return getConnectionAnchor();
-}
+///*
+// * (non-Javadoc)
+// * @see org.eclipse.gef.NodeEditPart#getSourceConnectionAnchor(org.eclipse.gef.Request)
+// */
+//@Override
+//public ConnectionAnchor getSourceConnectionAnchor(Request request) {
+//	return getConnectionAnchor();
+//}
+//
+//
+//
+///*
+// * (non-Javadoc)
+// * @see org.eclipse.gef.NodeEditPart#getTargetConnectionAnchor(org.eclipse.gef.Request)
+// */
+//public ConnectionAnchor getTargetConnectionAnchor(Request request) {
+//	return getConnectionAnchor();
+//}
+//
+//private ConnectionAnchor anchor;
+//
+//protected ConnectionAnchor getConnectionAnchor() {
+//	
+////	Random random = new Random();
+//	if (anchor == null) {
+//		anchor = new LineConstraintAnchor(getFigure());
+//	}
+//	return anchor;
+//}
+//
+//@Override
+//public ConnectionAnchor getSourceConnectionAnchor(ConnectionEditPart connection) {
+//	return getConnectionAnchor();
+//}
+//
+//@Override
+//public ConnectionAnchor getTargetConnectionAnchor(ConnectionEditPart connection) {
+//	return getConnectionAnchor();
+//}
 
 
 

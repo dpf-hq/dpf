@@ -22,8 +22,8 @@ public class DPFConnectionFigure extends PolylineConnection {
 	@Override
 	protected void outlineShape(Graphics g) {
 		super.outlineShape(g);
-		PointList points = getPoints();
-		g.drawArc(calculateConnectionPoint(points).x, calculateConnectionPoint(points).y, 20, 20, 300, 300);
+//		PointList points = getPoints();
+//		g.drawArc(calculateConnectionPoint(points).x, calculateConnectionPoint(points).y, 20, 20, 300, 300);
 	}
 	
 	private Point calculateConnectionPoint(PointList points) {

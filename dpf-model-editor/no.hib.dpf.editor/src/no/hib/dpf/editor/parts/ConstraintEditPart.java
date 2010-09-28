@@ -11,13 +11,22 @@
 package no.hib.dpf.editor.parts;
 
 import java.beans.PropertyChangeEvent;
+import java.util.Random;
 
+import no.hib.dpf.editor.figures.LineConstraintAnchor;
+import no.hib.dpf.editor.figures.LineConstraintAnchor_2;
 import no.hib.dpf.editor.model.Connection;
 import no.hib.dpf.editor.model.Constraint;
 
+import org.eclipse.draw2d.ChopboxAnchor;
+import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PolylineConnection;
+import org.eclipse.draw2d.XYAnchor;
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.GraphicalEditPart;
+import org.eclipse.gef.NodeEditPart;
 import org.eclipse.gef.editpolicies.ConnectionEndpointEditPolicy;
 
 
@@ -67,5 +76,66 @@ private Constraint getCastedModel() {
 	return (Constraint) getModel();
 }
 
+/**
+ * Updates the source ConnectionAnchor. Subclasses should override
+ * {@link #getSourceConnectionAnchor()} if necessary, and not this method.
+ */
+@Override
+protected void refreshSourceAnchor() {
+	try {
+		getConnectionFigure().setSourceAnchor(getSourceConnectionAnchor());
+	} catch (Exception e) {
+		int stop = 23;
+	}
+}
+
+/**
+ * Returns the <code>ConnectionAnchor</code> for the <i>source</i> end of
+ * the connection. If the source is an instance of {@link NodeEditPart},
+ * that interface will be used to determine the proper ConnectionAnchor. If
+ * the source is not an instance of <code>NodeEditPart</code>, this method
+ * should be overridden to return the correct ConnectionAnchor. Failure to
+ * do this will cause a default anchor to be used so that the connection
+ * figure will be made visible to the developer.
+ * 
+ * @return ConnectionAnchor for the source end of the Connection
+ */
+@Override
+protected ConnectionAnchor getSourceConnectionAnchor() {
+	LineConstraintAnchor_2 retval = new LineConstraintAnchor_2(new Point(100, 100));
+
+	if (getSource() != null) {
+		if (getSource() instanceof MyConnectionEditPart) {
+			MyConnectionEditPart source = (MyConnectionEditPart)getSource();
+			retval.setConnectionFigure((PolylineConnection) source.getFigure());
+		}
+	}
+	
+	return retval;
+}
+
+/**
+ * Returns the <code>ConnectionAnchor</code> for the <i>target</i> end of
+ * the connection. If the target is an instance of {@link NodeEditPart},
+ * that interface will be used to determine the proper ConnectionAnchor. If
+ * the target is not an instance of <code>NodeEditPart</code>, this method
+ * should be overridden to return the correct ConnectionAnchor. Failure to
+ * do this will cause a default anchor to be used so that the connection
+ * figure will be made visible to the developer.
+ * 
+ * @return ConnectionAnchor for the target end of the Connection
+ */
+protected ConnectionAnchor getTargetConnectionAnchor() {
+	LineConstraintAnchor_2 retval = new LineConstraintAnchor_2(new Point(100, 100));
+
+	if (getTarget() != null) {
+		if (getTarget() instanceof MyConnectionEditPart) {
+			MyConnectionEditPart target = (MyConnectionEditPart)getTarget();
+			retval.setConnectionFigure((PolylineConnection) target.getFigure());
+		}
+	}
+	
+	return retval;
+}
 
 }
