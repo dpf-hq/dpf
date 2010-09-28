@@ -26,6 +26,8 @@ import no.hib.dpf.metamodel.Node;
  *   <li>{@link no.hib.dpf.metamodel.Graph#getGraphMember(java.lang.String) <em>Get Graph Member</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Graph#createEdge(java.lang.String, no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Node) <em>Create Edge</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Graph#applyPredicate(no.hib.dpf.metamodel.Predicate, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Apply Predicate</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Graph#deleteNode(no.hib.dpf.metamodel.Node) <em>Delete Node</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Graph#deleteEdge(no.hib.dpf.metamodel.Edge) <em>Delete Edge</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -123,6 +125,32 @@ public class GraphTest extends IDObjectTest {
 	 * @generated
 	 */
 	public void testApplyPredicate__Predicate_EList_EList() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link no.hib.dpf.metamodel.Graph#deleteNode(no.hib.dpf.metamodel.Node) <em>Delete Node</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.Graph#deleteNode(no.hib.dpf.metamodel.Node)
+	 * @generated
+	 */
+	public void testDeleteNode__Node() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link no.hib.dpf.metamodel.Graph#deleteEdge(no.hib.dpf.metamodel.Edge) <em>Delete Edge</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.Graph#deleteEdge(no.hib.dpf.metamodel.Edge)
+	 * @generated
+	 */
+	public void testDeleteEdge__Edge() {
 		// TODO: implement this operation test method
 		// Ensure that you remove @generated or mark it @generated NOT
 		fail();
