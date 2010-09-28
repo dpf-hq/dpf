@@ -208,7 +208,7 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 		throw new UnsupportedOperationException();
 		/*
 		 *  1) Foreløpig vil ikke predikatet ha en valideringsmetode som sier om det kan
-		 *  appliseres på nodes og edges. TODO: lage slik. Vi antar at dette er OK nå.
+		 *  appliseres på nodes og edges. TODO: lage slik. Foreløpig antar vi at dette er OK.
 		 *  
 		 *  2) Opprett Constraint-objekt, som må lenkes til predikatet.
 		 *  
