@@ -12,6 +12,7 @@ package no.hib.dpf.editor.parts;
 
 import java.beans.PropertyChangeEvent;
 
+import no.hib.dpf.editor.figures.BasicRectangleFigure;
 import no.hib.dpf.editor.figures.DPFConstraintFigure;
 import no.hib.dpf.editor.figures.LineConstraintAnchor_2;
 import no.hib.dpf.editor.model.Constraint;
@@ -50,7 +51,25 @@ protected void createEditPolicies() {
  * @see org.eclipse.gef.editparts.AbstractGraphicalEditPart#createFigure()
  */
 protected IFigure createFigure() {
-	DPFConstraintFigure connection = new DPFConstraintFigure();
+	BasicRectangleFigure basicRectangleFigure = null;
+	
+	if (getSource() != null) {	
+		if (getSource() instanceof MyConnectionEditPart) {
+			MyConnectionEditPart source = (MyConnectionEditPart)getSource();
+		
+			if (source.getSource() != null) {
+				if (source.getSource() instanceof ShapeEditPart) {
+					ShapeEditPart shapeEditPart = (ShapeEditPart)source.getSource();
+					if (shapeEditPart.getFigure() instanceof BasicRectangleFigure) {
+						basicRectangleFigure = (BasicRectangleFigure) shapeEditPart.getFigure();
+					}
+			
+				}
+			}
+		}
+	}
+	
+	DPFConstraintFigure connection = new DPFConstraintFigure(basicRectangleFigure);
 	connection.setLineStyle(getCastedModel().getLineStyle());  // line drawing style
 	return connection;
 }
@@ -103,6 +122,17 @@ protected ConnectionAnchor getSourceConnectionAnchor() {
 		if (getSource() instanceof MyConnectionEditPart) {
 			MyConnectionEditPart source = (MyConnectionEditPart)getSource();
 			retval.setConnectionFigure((PolylineConnection) source.getFigure());
+						
+			if (source.getSource() != null) {
+				if (source.getSource() instanceof ShapeEditPart) {
+					ShapeEditPart shapeEditPart = (ShapeEditPart)source.getSource();
+					if (shapeEditPart.getFigure() instanceof BasicRectangleFigure) {
+						retval.setSourceNodeFigure((BasicRectangleFigure) shapeEditPart.getFigure());
+					}
+					
+				}
+			}
+			
 		}
 	}
 	
@@ -127,6 +157,17 @@ protected ConnectionAnchor getTargetConnectionAnchor() {
 		if (getTarget() instanceof MyConnectionEditPart) {
 			MyConnectionEditPart target = (MyConnectionEditPart)getTarget();
 			retval.setConnectionFigure((PolylineConnection) target.getFigure());
+			
+			if (target.getSource() != null) {
+				if (target.getSource() instanceof ShapeEditPart) {
+					ShapeEditPart shapeEditPart = (ShapeEditPart)target.getSource();
+					if (shapeEditPart.getFigure() instanceof BasicRectangleFigure) {
+						retval.setSourceNodeFigure((BasicRectangleFigure) shapeEditPart.getFigure());
+					}
+					
+				}
+			}
+			
 		}
 	}
 	

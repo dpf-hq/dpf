@@ -19,6 +19,7 @@ public class LineConstraintAnchor_2 implements ConnectionAnchor {
 	 */
 	protected List listeners = new ArrayList(1);
 	private PolylineConnection connectionFigure;
+	private BasicRectangleFigure sourceNodeFigure;
 	
 	private Point location;
 
@@ -147,5 +148,13 @@ public class LineConstraintAnchor_2 implements ConnectionAnchor {
 		deltaY = (int)(deltaY * factor);
 		
 		return new Point(points.getFirstPoint().x + deltaX, points.getFirstPoint().y + deltaY);
+	}
+
+	public void setSourceNodeFigure(BasicRectangleFigure sourceFigure) {
+		this.sourceNodeFigure = sourceFigure;
+	}
+
+	public BasicRectangleFigure getSourceNodeFigure() {
+		return sourceNodeFigure;
 	}	
 }

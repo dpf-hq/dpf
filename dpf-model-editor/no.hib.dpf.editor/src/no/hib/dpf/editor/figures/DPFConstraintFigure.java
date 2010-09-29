@@ -14,6 +14,47 @@ public class DPFConstraintFigure extends PolylineConnection {
 
 	Rectangle firstPointBounds;
 	Rectangle lastPointBounds;
+	BasicRectangleFigure basicRectangleFigure;
+	
+	public DPFConstraintFigure(BasicRectangleFigure basicRectangleFigure) {
+		this.basicRectangleFigure = basicRectangleFigure;
+	}
+	
+	private Point[] getMidwayControlPoint(Point startPoint, Point endPoint) {
+		Point[] firstCandidate = makeMidwayControlPoint(startPoint, endPoint);
+		Point[] secondCandidate = makeMidwayControlPoint(endPoint, startPoint);
+		
+		if (basicRectangleFigure == null) {
+			return firstCandidate;
+		}
+		
+		if ((basicRectangleFigure.getLocation().getDistance(firstCandidate[0]) >=
+			(basicRectangleFigure.getLocation().getDistance(secondCandidate[0])))) {
+			return firstCandidate;
+		}
+		return secondCandidate;
+	}
+	
+	private Point[] makeMidwayControlPoint(Point startPoint, Point endPoint) {
+		int dx = endPoint.x - startPoint.x;
+		int dy = endPoint.y - startPoint.y;
+		
+		Point orthoVector = new Point(-dy, dx);
+		double length = new Point(0, 0).getDistance(orthoVector);
+		
+		double normOrthoVectorX = orthoVector.x / length;
+		double normOrthoVectorY = orthoVector.y / length;
+		Point finalVector = new Point(normOrthoVectorX * 20, normOrthoVectorY  * 20);		
+		Point midway = new Point(startPoint.x + (dx/2), startPoint.y + (dy/2));
+		
+		Point[] retval = new Point[2];
+		
+		retval[0] = new Point(midway.x + finalVector.x, midway.y + finalVector.y);
+		finalVector = new Point(normOrthoVectorX * 35, normOrthoVectorY  * 35);		
+		retval[1] = new Point(midway.x + finalVector.x, midway.y + finalVector.y);
+		
+		return retval;
+	}
 	
 	@Override
 	protected void outlineShape(Graphics g) {
@@ -24,29 +65,15 @@ public class DPFConstraintFigure extends PolylineConnection {
 		Point p1 = points.getFirstPoint();
 		Point p2 = points.getLastPoint();
 		
-		int dx = p2.x - p1.x;
-		int dy = p2.y - p1.y;
+		Point [] controlpoints = getMidwayControlPoint(p1, p2);
 		
-		Point orthoVector = new Point(-dy, dx);
-		double length = new Point(0, 0).getDistance(orthoVector);
-		
-		double normOrthoVectorX = orthoVector.x / length;
-		double normOrthoVectorY = orthoVector.y / length;
-		//Point normOrthoVector = new Point(orthoVector.x / length, orthoVector.y / length);
-		Point finalVector = new Point(normOrthoVectorX * 20, normOrthoVectorY  * 20);
-		
-		Point midway = new Point(p1.x + (dx/2), p1.y + (dy/2));
-		
-		
-		
-		Point controlpoint = new Point(midway.x + finalVector.x, midway.y + finalVector.y);
-		Bezier bezier = new Bezier(points.getFirstPoint(), points.getLastPoint(), controlpoint, controlpoint);
+		Bezier bezier = new Bezier(points.getFirstPoint(), points.getLastPoint(), controlpoints[0], controlpoints[0]);
 		bezier.outlineShape(g);
 		
 //		g.drawLine(p1, controlpoint);
 //		g.drawLine(controlpoint, p2);
 		
-		g.drawText("[label]", controlpoint);
+		g.drawText("[label]", controlpoints[1].translate(-12, 0));
 		
 		drawAnchorBlob(g, buildPointBox(points.getFirstPoint()));
 		drawAnchorBlob(g, buildPointBox(points.getLastPoint()));
