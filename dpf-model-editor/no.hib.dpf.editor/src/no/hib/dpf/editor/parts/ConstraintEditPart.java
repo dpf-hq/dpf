@@ -11,21 +11,16 @@
 package no.hib.dpf.editor.parts;
 
 import java.beans.PropertyChangeEvent;
-import java.util.Random;
 
-import no.hib.dpf.editor.figures.LineConstraintAnchor;
+import no.hib.dpf.editor.figures.DPFConstraintFigure;
 import no.hib.dpf.editor.figures.LineConstraintAnchor_2;
-import no.hib.dpf.editor.model.Connection;
 import no.hib.dpf.editor.model.Constraint;
 
-import org.eclipse.draw2d.ChopboxAnchor;
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PolylineConnection;
-import org.eclipse.draw2d.XYAnchor;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.EditPolicy;
-import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.NodeEditPart;
 import org.eclipse.gef.editpolicies.ConnectionEndpointEditPolicy;
 
@@ -55,7 +50,7 @@ protected void createEditPolicies() {
  * @see org.eclipse.gef.editparts.AbstractGraphicalEditPart#createFigure()
  */
 protected IFigure createFigure() {
-	PolylineConnection connection = new PolylineConnection();
+	DPFConstraintFigure connection = new DPFConstraintFigure();
 	connection.setLineStyle(getCastedModel().getLineStyle());  // line drawing style
 	return connection;
 }
