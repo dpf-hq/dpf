@@ -169,8 +169,6 @@ private void commitNameChange(PropertyChangeEvent evt)
  */
 protected IFigure createFigure() {
 	IFigure f = createFigureForModel();
-	f.setOpaque(true); // non-transparent figure
-	f.setBackgroundColor(ColorConstants.green);
 	return f;
 }
 
