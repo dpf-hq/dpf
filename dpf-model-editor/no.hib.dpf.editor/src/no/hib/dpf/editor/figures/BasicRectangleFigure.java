@@ -27,6 +27,7 @@ public class BasicRectangleFigure extends Figure {
 		setBackgroundColor(lightLightGreen);		
 	}
 
+	@SuppressWarnings("rawtypes")
 	public BasicRectangleFigure(EditableLabel name, List colums)
 	{
 

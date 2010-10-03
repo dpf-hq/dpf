@@ -68,8 +68,6 @@ public class CreateConstraintAction extends SelectionAction {
 	@Override
 	public void run() {
 		// this method is only called if calculate enabled() returns true
-
-		System.out.println("Start run...");
 		List<ConnectionEditPart> connectionEditParts = getSelectedConnectionEditParts();
 		List<ShapeEditPart> shapeEditParts = getSelectedShapeEditParts();
 		
@@ -83,32 +81,9 @@ public class CreateConstraintAction extends SelectionAction {
 		viewer.flush();
 		
 
-//		ConstraintCreateCommand constraintCreateCommand = new ConstraintCreateCommand((Connection)connectionEditParts.get(0).getModel(), (Connection)connectionEditParts.get(1).getModel(), Constraint.SOLID_CONNECTION);
-//		
-//		execute(constraintCreateCommand);
+		ConstraintCreateCommand constraintCreateCommand = new ConstraintCreateCommand((Connection)connectionEditParts.get(0).getModel(), (Connection)connectionEditParts.get(1).getModel(), Constraint.SOLID_CONNECTION);
 		
-		// create a new connection between source and target
-		Constraint constraint = new Constraint((Connection)connectionEditParts.get(0).getModel(), (Connection)connectionEditParts.get(1).getModel());
-		// use the supplied line style
-		constraint.setLineStyle(Constraint.SOLID_CONNECTION);
-
-		System.out.println("End run...");
-		
-		
-		// og AbstractEditPart.refreshChildren()
-// Se AbstractConnectionCreationTool		
-//		eraseSourceFeedback();
-//		Command endCommand = getCommand();
-//		setCurrentCommand(endCommand);
-//		executeCurrentCommand();
-//		return true;
-
-
-//		// Select the source edit part
-//		viewer.select(cep.getSource());
-//
-//		// If the source Edit part is off screen, this will scroll to it.
-//		viewer.reveal(cep.getSource());
+		execute(constraintCreateCommand);
 	}
 	
 	

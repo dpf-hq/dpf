@@ -8,7 +8,6 @@ import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.swt.graphics.Color;
 
 public class DPFConstraintFigure extends PolylineConnection {
 
@@ -50,7 +49,7 @@ public class DPFConstraintFigure extends PolylineConnection {
 		Point[] retval = new Point[2];
 		
 		retval[0] = new Point(midway.x + finalVector.x, midway.y + finalVector.y);
-		finalVector = new Point(normOrthoVectorX * 35, normOrthoVectorY  * 35);		
+		finalVector = new Point(normOrthoVectorX * 37, normOrthoVectorY  * 37);		
 		retval[1] = new Point(midway.x + finalVector.x, midway.y + finalVector.y);
 		
 		return retval;
@@ -70,10 +69,7 @@ public class DPFConstraintFigure extends PolylineConnection {
 		Bezier bezier = new Bezier(points.getFirstPoint(), points.getLastPoint(), controlpoints[0], controlpoints[0]);
 		bezier.outlineShape(g);
 		
-//		g.drawLine(p1, controlpoint);
-//		g.drawLine(controlpoint, p2);
-		
-		g.drawText("[label]", controlpoints[1].translate(-12, 0));
+		g.drawText("[label]", controlpoints[1].translate(-17, 0));
 		
 		drawAnchorBlob(g, buildPointBox(points.getFirstPoint()));
 		drawAnchorBlob(g, buildPointBox(points.getLastPoint()));

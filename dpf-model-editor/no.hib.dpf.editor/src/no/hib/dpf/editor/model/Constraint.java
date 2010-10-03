@@ -369,5 +369,15 @@ public class Constraint extends ModelElement implements no.hib.dpf.metamodel.Con
 		constraintComponent.setMappings(value);
 	}
 
+	@Override
+	public String getId() {
+		return constraintComponent.getId();
+	}
+
+	@Override
+	public void setId(String value) {
+		constraintComponent.setId(value);
+	}
+
 
 }
