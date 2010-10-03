@@ -451,13 +451,22 @@ public interface MetamodelPackage extends EPackage {
 	int NODE_TO_NODE_MAP_FEATURE_COUNT = 2;
 
 	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__ID = ID_OBJECT__ID;
+
+	/**
 	 * The feature id for the '<em><b>Constrained Model</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT__CONSTRAINED_MODEL = 0;
+	int CONSTRAINT__CONSTRAINED_MODEL = ID_OBJECT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Predicate</b></em>' reference.
@@ -466,7 +475,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT__PREDICATE = 1;
+	int CONSTRAINT__PREDICATE = ID_OBJECT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Mappings</b></em>' reference.
@@ -475,7 +484,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT__MAPPINGS = 2;
+	int CONSTRAINT__MAPPINGS = ID_OBJECT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Constraint</em>' class.
@@ -484,7 +493,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT_FEATURE_COUNT = 3;
+	int CONSTRAINT_FEATURE_COUNT = ID_OBJECT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Key</b></em>' reference.

@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface Constraint extends EObject {
+public interface Constraint extends IDObject {
 	/**
 	 * Returns the value of the '<em><b>Constrained Model</b></em>' reference.
 	 * <!-- begin-user-doc -->

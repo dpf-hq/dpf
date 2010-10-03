@@ -142,6 +142,7 @@ public class MetamodelSwitch<T> {
 			case MetamodelPackage.CONSTRAINT: {
 				Constraint constraint = (Constraint)theEObject;
 				T result = caseConstraint(constraint);
+				if (result == null) result = caseIDObject(constraint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

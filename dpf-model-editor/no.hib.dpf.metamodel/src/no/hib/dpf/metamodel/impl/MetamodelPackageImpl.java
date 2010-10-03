@@ -668,6 +668,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		graphEClass.getESuperTypes().add(this.getIDObject());
 		nodeEClass.getESuperTypes().add(this.getIDObject());
 		edgeEClass.getESuperTypes().add(this.getIDObject());
+		constraintEClass.getESuperTypes().add(this.getIDObject());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(graphEClass, Graph.class, "Graph", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

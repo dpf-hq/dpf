@@ -33,7 +33,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public class ConstraintImpl extends EObjectImpl implements Constraint {
+public class ConstraintImpl extends IDObjectImpl implements Constraint {
 	/**
 	 * The cached value of the '{@link #getConstrainedModel() <em>Constrained Model</em>}' reference.
 	 * <!-- begin-user-doc -->
