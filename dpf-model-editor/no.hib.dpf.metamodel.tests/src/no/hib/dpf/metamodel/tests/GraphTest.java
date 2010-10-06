@@ -6,10 +6,7 @@
  */
 package no.hib.dpf.metamodel.tests;
 
-import junit.framework.TestCase;
-
 import junit.textui.TestRunner;
-
 import no.hib.dpf.metamodel.Edge;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.MetamodelFactory;
