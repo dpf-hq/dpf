@@ -98,9 +98,7 @@ private Constraint getCastedModel() {
 protected void refreshSourceAnchor() {
 	try {
 		getConnectionFigure().setSourceAnchor(getSourceConnectionAnchor());
-	} catch (Exception e) {
-		int stop = 23;
-	}
+	} catch (Exception e) {}
 }
 
 /**

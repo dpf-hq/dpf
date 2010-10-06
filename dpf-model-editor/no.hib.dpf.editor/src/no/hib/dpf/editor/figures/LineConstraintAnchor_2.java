@@ -17,6 +17,7 @@ public class LineConstraintAnchor_2 implements ConnectionAnchor {
 	/**
 	 * The list of listeners
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List listeners = new ArrayList(1);
 	private PolylineConnection connectionFigure;
 	private BasicRectangleFigure sourceNodeFigure;
@@ -37,6 +38,7 @@ public class LineConstraintAnchor_2 implements ConnectionAnchor {
 	/**
 	 * @see org.eclipse.draw2d.ConnectionAnchor#addAnchorListener(AnchorListener)
 	 */
+	@SuppressWarnings("unchecked")
 	public void addAnchorListener(AnchorListener listener) {
 		listeners.add(listener);
 	}
@@ -55,6 +57,7 @@ public class LineConstraintAnchor_2 implements ConnectionAnchor {
 	 * 
 	 * @since 2.0
 	 */
+	@SuppressWarnings("rawtypes")
 	protected void fireAnchorMoved() {
 		Iterator iter = listeners.iterator();
 		while (iter.hasNext())

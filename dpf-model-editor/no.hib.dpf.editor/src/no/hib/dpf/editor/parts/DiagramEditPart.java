@@ -20,7 +20,6 @@ import no.hib.dpf.editor.model.RectangularShape;
 import no.hib.dpf.editor.model.Shape;
 import no.hib.dpf.editor.model.commands.ShapeCreateCommand;
 import no.hib.dpf.editor.model.commands.ShapeSetConstraintCommand;
-import no.hib.dpf.metamodel.Graph;
 
 import org.eclipse.draw2d.ConnectionLayer;
 import org.eclipse.draw2d.Figure;
