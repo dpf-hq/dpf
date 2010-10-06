@@ -6,7 +6,6 @@
  */
 package no.hib.dpf.command;
 
-import no.hib.dpf.metamodel.Edge;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.Node;
 

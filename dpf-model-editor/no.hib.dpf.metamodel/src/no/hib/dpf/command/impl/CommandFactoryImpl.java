@@ -6,17 +6,19 @@
  */
 package no.hib.dpf.command.impl;
 
-import no.hib.dpf.command.*;
-import no.hib.dpf.metamodel.Edge;
+import no.hib.dpf.command.CommandFactory;
+import no.hib.dpf.command.CommandPackage;
+import no.hib.dpf.command.CreateEdgeCommand;
+import no.hib.dpf.command.CreateNodeCommand;
+import no.hib.dpf.command.DeleteEdgeCommand;
+import no.hib.dpf.command.DeleteNodeCommand;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.Node;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**

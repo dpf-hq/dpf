@@ -6,7 +6,6 @@
  */
 package no.hib.dpf.metamodel;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
