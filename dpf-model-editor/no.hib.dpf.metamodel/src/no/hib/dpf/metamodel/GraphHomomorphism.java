@@ -6,6 +6,7 @@
  */
 package no.hib.dpf.metamodel;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EObject;
 
@@ -60,5 +61,13 @@ public interface GraphHomomorphism extends EObject {
 	 * @generated
 	 */
 	EMap<Edge, Edge> getEdgeMapping();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model nodesMany="false" edgesMany="false"
+	 * @generated
+	 */
+	boolean canCreateBijectiveGraphHomomorphism(Graph sourceGraph, EList<?> nodes, EList<?> edges);
 
 } // GraphHomomorphism

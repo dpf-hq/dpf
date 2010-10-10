@@ -133,5 +133,5 @@ public interface MetamodelFactory extends EFactory {
 	 * @generated
 	 */
 	MetamodelPackage getMetamodelPackage();
-
+	
 } //MetamodelFactory

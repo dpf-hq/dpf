@@ -84,6 +84,19 @@
           <eStructuralFeatures xsi:type="ecore:EReference" name="mappings" eType="#//hib/dpf/metamodel/GraphHomomorphism"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="GraphHomomorphism">
+          <eOperations name="canCreateBijectiveGraphHomomorphism" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+            <eParameters name="sourceGraph" eType="#//hib/dpf/metamodel/Graph"/>
+            <eParameters name="nodes">
+              <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
+                <eTypeArguments/>
+              </eGenericType>
+            </eParameters>
+            <eParameters name="edges">
+              <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
+                <eTypeArguments/>
+              </eGenericType>
+            </eParameters>
+          </eOperations>
           <eStructuralFeatures xsi:type="ecore:EReference" name="nodeMapping" upperBound="-1"
               eType="#//hib/dpf/metamodel/NodeToNodeMap" containment="true"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="edgeMapping" upperBound="-1"

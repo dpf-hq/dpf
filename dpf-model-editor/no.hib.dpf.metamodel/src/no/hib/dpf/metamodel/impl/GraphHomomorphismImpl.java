@@ -6,12 +6,17 @@
  */
 package no.hib.dpf.metamodel.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import no.hib.dpf.metamodel.Edge;
+import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.GraphHomomorphism;
 import no.hib.dpf.metamodel.MetamodelPackage;
 import no.hib.dpf.metamodel.Node;
 
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -97,6 +102,122 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 		}
 		return edgeMapping;
 	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean canCreateBijectiveGraphHomomorphism(Graph sourceGraph, EList<?> nodes, EList<?> edges) {
+		if ((sourceGraph.getEdges().size() != edges.size()) ||
+			(sourceGraph.getNodes().size() != nodes.size())) {
+			return false;
+		}
+		if (sourceGraph.getNodes().size() == 0) {
+			return true;
+		}
+		// Check that mappings from node to node and arrow to arrow preserving structure can be made:
+		
+		Node[] sourceNodes = sourceGraph.getNodes().toArray(new Node[sourceGraph.getNodes().size()]);
+		Node[] targetNodes = nodes.toArray(new Node[nodes.size()]);
+		
+		// For all permutations of the target nodes:
+		List<Node[]> targetNodePermutations = heapPermuteExec(targetNodes);
+		for (int i = 0; i < targetNodePermutations.size(); i++) {
+			EcoreEMap<Node,Node> mapping = createMapping(sourceNodes, targetNodePermutations, i);
+			if (testMapping(mapping)) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	/**
+	 * Checks a mapping to see wether it indicates a valid graph homomorphism
+	 * if the edges are mapped "one to one". TODO: explain this. Also to self.
+	 * @generated NOT
+	 */
+	private boolean testMapping(EcoreEMap<Node,Node> mapping) {
+		// Check to see wether the mapped nodes have the same number of input and output edges:
+		for (Node key : mapping.keySet()) {
+			Node value = mapping.get(key);
+			if (key.getOutgoingEdges().size() != value.getOutgoingEdges().size()) {
+				return false;
+			}
+		}
+	    // Now, check to see if we can follow every outgoing edge and end up on
+		// the same node by following the edges directly and through mappings:
+		
+		return true;
+	}
+
+	/**
+	 * Creates mappings from the source nodes to the indexed permutation of the target nodes.
+	 * 
+	 * Expects souce and target node arrays of same length.
+	 * 
+	 * @generated NOT
+	 */
+	private EcoreEMap<Node,Node> createMapping(Node [] sourceNodes, List<Node[]> targetNodePermutations, int permutationIndex) {
+		EcoreEMap<Node,Node> retval = new EcoreEMap<Node,Node>(MetamodelPackage.Literals.NODE_TO_NODE_MAP, NodeToNodeMapImpl.class, this, MetamodelPackage.GRAPH_HOMOMORPHISM__NODE_MAPPING);
+		
+		Node[] targetNodes = targetNodePermutations.get(permutationIndex);
+			
+		for (int i = 0; i < sourceNodes.length; i++) {
+			NodeToNodeMapImpl nodeToNodeMap = new NodeToNodeMapImpl();
+			nodeToNodeMap.key = sourceNodes[i];
+			nodeToNodeMap.value = targetNodes[i];
+			retval.add(nodeToNodeMap);			
+		}
+		
+		return retval;
+	}	
+	
+	/**
+	 * Makes permutations of the items in the array. This should not be
+	 * run on arrays of sizes exceeding 8...
+	 * 
+	 * @generated NOT
+	 */
+	private List<Node[]> heapPermuteExec(Node[] nodeArray) {
+		List<Node[]> targetNodePermutations = new ArrayList<Node[]>();
+		Node [] arrayWithDummyValue = new Node[nodeArray.length + 1];
+		arrayWithDummyValue[0] = null;
+		System.arraycopy(nodeArray, 0, arrayWithDummyValue, 1, nodeArray.length);
+		heapPermute(targetNodePermutations, nodeArray.length, arrayWithDummyValue);
+		return targetNodePermutations;
+	}
+	
+	/**
+	 * @generated NOT
+	 */
+	private void heapPermute(List<Node[]> permutations, int n, Node[] nodeArray) {
+		if (n == 1) {
+			Node [] retval = new Node[nodeArray.length - 1];
+			System.arraycopy(nodeArray, 1, retval, 0, nodeArray.length - 1);
+			permutations.add(retval);
+		} else {
+			for (int i = 1; i <= n; i++) {
+				heapPermute(permutations, n - 1, nodeArray);
+
+				if ((n % 2) == 1) {
+					swap(1, n, nodeArray);
+				} else {
+					swap(i, n, nodeArray);
+				}
+			}
+		}
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	private void swap(int first, int second, Node[] array) {
+		Node temp = array[first];
+		array[first] = array[second];
+		array[second] = temp;
+	}	
 
 	/**
 	 * <!-- begin-user-doc -->
