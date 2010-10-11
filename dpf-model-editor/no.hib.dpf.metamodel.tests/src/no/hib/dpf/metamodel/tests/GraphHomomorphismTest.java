@@ -112,43 +112,118 @@ public class GraphHomomorphismTest extends TestCase {
 	 * @generated NOT
 	 */
 	public void testTryToCreateGraphHomomorphism__Graph_EList_EList() {		
-		testHomomorphism(createGraphContent("", "", "", ""), true);
-		// Single nodes, no edges:
-		testHomomorphism(createGraphContent("g_node_1", "h_node_1", "", ""), true);
-		testHomomorphism(createGraphContent("g_node_1,g_node_2", "h_node_1", "", ""), false);
-		testHomomorphism(createGraphContent("g_node_1,g_node_2", "h_node_1,h_node_2", "", ""), true);
-		// Now with an edge:
-		testHomomorphism(createGraphContent("g_node_1,g_node_2", "h_node_1,h_node_2", "g_edge_1:g_node_1:g_node_2", ""), false);
-		testHomomorphism(createGraphContent("g_node_1,g_node_2", "h_node_1,h_node_2", "", "h_edge_1:h_node_1:h_node_2"), false);
-		testHomomorphism(createGraphContent("g_node_1,g_node_2", "h_node_1,h_node_2", "g_edge_1:g_node_1:g_node_2", "h_edge_1:h_node_1:h_node_2"), true);
-		// Just edges
-		testHomomorphism(createGraphContent("", "", "g_edge:null:null", "h_edge:null:null"), true);		
-		testHomomorphism(createGraphContent("", "", "g_edge:null:null", "h_edge:null:null,h_2:null:null"), false);		
-		// 3 nodes/2 edges:
-		testHomomorphism(createGraphContent("gn1,gn2,gn3", "hn1,hn2,hn3", "ge1:gn1:gn2,ge2:gn3:gn2", "he1:hn1:hn2,he2:hn3:hn2"), true);
-		// Now with the arrows going in different direction in the two graphs:
-		testHomomorphism(createGraphContent("gn1,gn2,gn3", "hn1,hn2,hn3", "ge1:gn1:gn2,ge2:gn3:gn2", "he1:hn2:hn1,he2:hn2:hn3"), false);
-		// 3 nodes, 2 edges, but the edges don't go between all 3 nodes in one graph
-		testHomomorphism(createGraphContent("gn1,gn2,gn3", "hn1,hn2,hn3", "ge1:gn1:gn2,ge2:gn1:gn3", "he1:hn1:hn2,he2:hn1:hn2"), false);
+		doTestHomomorphisms();
+		doTestHomomorphismsWithExtraGraphElements();		
 		
-		testHomomorphism(createGraphContent("gn1", "hn1", "ge1:gn1:gn2,ge2:gn1:gn3", "he1:hn1:hn2,he2:hn1:hn2"), true);
+		// Check the created mappings
+		
+		doTestReturnedMappings(createGraphs("", "", "g_edge:null:null", "h_edge:null:null"), new String[]{}, new String[] { "g_edge:h_edge" }, true);		
+		doTestReturnedMappings(createGraphs("g_node_1,g_node_2", "h_node_1,h_node_2", "", ""), new String[] { "g_node_1:h_node_1", "g_node_2:h_node_2" }, new String[]{}, true);		
+		doTestReturnedMappings(createGraphs("g_node_1", "h_node_1", "g_edge_1:g_node_1:null,g_edge_2:g_node_1:null", "h_edge_1:h_node_1:null,h_edge_2:h_node_1:null"), new String[] { "g_node_1:h_node_1" }, new String[]{ "g_edge_1:h_edge_1", "g_edge_2:h_edge_2"}, true);		
+		doTestReturnedMappings(createGraphs("gn1,gn2", "hn1,hn2", "ge:gn1:gn2", "he:hn2:hn1"), new String[] { "gn1:hn2", "gn2:hn1" }, new String[]{ "ge:he" }, true);		
+	}
+	
+	private void doTestReturnedMappings(List<Graph> graphs, String[] nodeNames, String[] edgeNames, boolean expectedResult) {
+		GraphHomomorphism graphHomomorphism = MetamodelFactory.eINSTANCE.createGraphHomomorphism();
+		boolean res = graphHomomorphism.tryToCreateGraphHomomorphism(graphs.get(0), graphs.get(1).getNodes(), graphs.get(1).getEdges());
+		assertEquals(true, res);
+		for (String nodes : nodeNames) {			
+			checkNodeMapping(graphs, nodes.split(":")[0], nodes.split(":")[1], graphHomomorphism);
+		}
+		for (String edges : edgeNames) {			
+			checkEdgeMapping(graphs, edges.split(":")[0], edges.split(":")[1], graphHomomorphism);
+		}
+	}
+	
+	/**
+	 * @generated NOT
+	 */
+	private void checkEdgeMapping(List<Graph> graphs, String sourceEdgeName, String targetEdgeName, GraphHomomorphism graphHomomorphism) {
+		Edge source = getEdgeFromGraph(graphs.get(0), sourceEdgeName); 
+		Edge target = getEdgeFromGraph(graphs.get(1), targetEdgeName);
+		assertEquals(target, graphHomomorphism.getEdgeMapping().get(source));		
+	}
+	
+	/**
+	 * @generated NOT
+	 */
+	private void checkNodeMapping(List<Graph> graphs, String sourceNodeName, String targetNodeName, GraphHomomorphism graphHomomorphism) {
+		Node source = getNodeFromGraph(graphs.get(0), sourceNodeName); 
+		Node target = getNodeFromGraph(graphs.get(1), targetNodeName);
+		assertEquals(target, graphHomomorphism.getNodeMapping().get(source));		
+	}
 
-		testHomomorphismWithExtraGraphElements(createGraphContent("gn1,gn2,gn3", "hn1,hn2,hn3", "ge1:gn1:gn2,ge2:gn3:gn2", "he1:hn1:hn2,he2:hn3:hn2"), true);		
-		testHomomorphismWithExtraGraphElements2(createGraphContent("gn1,gn2", "hn1,hn2", "ge1:gn1:gn2", "he1:hn1:null"), false);		
-		testHomomorphismWithExtraGraphElements3(createGraphContent("gn1,gn2", "hn1,hn2", "ge1:gn1:gn2", "he1:hn1:hn2"), true);		
+	/**
+	 * @generated NOT
+	 */
+	private Edge getEdgeFromGraph(Graph graph, String edgeName) {
+		for (Edge edge : graph.getEdges()) {
+			if (edge.getName().equals(edgeName)) {
+				return edge;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	private Node getNodeFromGraph(Graph graph, String nodeName) {
+		for (Node node : graph.getNodes()) {
+			if (node.getName().equals(nodeName)) {
+				return node;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Testing simple homomorphisms
+	 * @generated NOT
+	 */
+	private void doTestHomomorphisms() {
+		testTryToCreateHomomorphism(createGraphs("", "", "", ""), true);
+		// Single nodes, no edges:
+		testTryToCreateHomomorphism(createGraphs("g_node_1", "h_node_1", "", ""), true);
+		testTryToCreateHomomorphism(createGraphs("g_node_1,g_node_2", "h_node_1", "", ""), false);
+		testTryToCreateHomomorphism(createGraphs("g_node_1,g_node_2", "h_node_1,h_node_2", "", ""), true);
+		// Now with an edge:
+		testTryToCreateHomomorphism(createGraphs("g_node_1,g_node_2", "h_node_1,h_node_2", "g_edge_1:g_node_1:g_node_2", ""), false);
+		testTryToCreateHomomorphism(createGraphs("g_node_1,g_node_2", "h_node_1,h_node_2", "", "h_edge_1:h_node_1:h_node_2"), false);
+		testTryToCreateHomomorphism(createGraphs("g_node_1,g_node_2", "h_node_1,h_node_2", "g_edge_1:g_node_1:g_node_2", "h_edge_1:h_node_1:h_node_2"), true);
+		// Just edges
+		testTryToCreateHomomorphism(createGraphs("", "", "g_edge:null:null", "h_edge:null:null"), true);		
+		testTryToCreateHomomorphism(createGraphs("", "", "g_edge:null:null", "h_edge:null:null,h_2:null:null"), false);		
+		// 3 nodes/2 edges:
+		testTryToCreateHomomorphism(createGraphs("gn1,gn2,gn3", "hn1,hn2,hn3", "ge1:gn1:gn2,ge2:gn3:gn2", "he1:hn1:hn2,he2:hn3:hn2"), true);
+		// Now with the arrows going in different direction in the two graphs:
+		testTryToCreateHomomorphism(createGraphs("gn1,gn2,gn3", "hn1,hn2,hn3", "ge1:gn1:gn2,ge2:gn3:gn2", "he1:hn2:hn1,he2:hn2:hn3"), false);
+		// 3 nodes, 2 edges, but the edges don't go between all 3 nodes in one graph
+		testTryToCreateHomomorphism(createGraphs("gn1,gn2,gn3", "hn1,hn2,hn3", "ge1:gn1:gn2,ge2:gn1:gn3", "he1:hn1:hn2,he2:hn1:hn2"), false);
+		
+		testTryToCreateHomomorphism(createGraphs("gn1", "hn1", "ge1:gn1:gn2,ge2:gn1:gn3", "he1:hn1:hn2,he2:hn1:hn2"), true);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	private void doTestHomomorphismsWithExtraGraphElements() {
+		testHomomorphismWithExtraGraphElements(createGraphs("gn1,gn2,gn3", "hn1,hn2,hn3", "ge1:gn1:gn2,ge2:gn3:gn2", "he1:hn1:hn2,he2:hn3:hn2"), true);		
+		testHomomorphismWithExtraGraphElements2(createGraphs("gn1,gn2", "hn1,hn2", "ge1:gn1:gn2", "he1:hn1:null"), false);		
+		testHomomorphismWithExtraGraphElements3(createGraphs("gn1,gn2", "hn1,hn2", "ge1:gn1:gn2", "he1:hn1:hn2"), true);
 	}
 	
 	/**
 	 * @generated NOT
 	 */
-	private List<Graph> createGraphContent(String g_nodes, String h_nodes, String g_edges, String h_edges) {
-		return createGraphContent(g_nodes.split(","), h_nodes.split(","), g_edges.split(","), h_edges.split(","));
+	private List<Graph> createGraphs(String g_nodes, String h_nodes, String g_edges, String h_edges) {
+		return createGraphs(g_nodes.split(","), h_nodes.split(","), g_edges.split(","), h_edges.split(","));
 	}
 	
 	/**
 	 * @generated NOT
 	 */
-	private List<Graph> createGraphContent(String[] g_nodes, String[] h_nodes, String[] g_edges, String[] h_edges) {
+	private List<Graph> createGraphs(String[] g_nodes, String[] h_nodes, String[] g_edges, String[] h_edges) {
 		List<Graph> retval = new ArrayList<Graph>();
 		retval.add(createGraphNodes(g_nodes));
 		retval.add(createGraphNodes(h_nodes));
@@ -197,8 +272,8 @@ public class GraphHomomorphismTest extends TestCase {
 	/**
 	 * @generated NOT
 	 */
-	private void testHomomorphism(List<Graph> graphs, boolean expectedResult) {
-		testHomomorphism(graphs.get(0), graphs.get(1).getNodes(), graphs.get(1).getEdges(), expectedResult);
+	private void testTryToCreateHomomorphism(List<Graph> graphs, boolean expectedResult) {
+		testTryToCreateHomomorphism(graphs.get(0), graphs.get(1).getNodes(), graphs.get(1).getEdges(), expectedResult);
 	}
 		
 	/**
@@ -211,7 +286,7 @@ public class GraphHomomorphismTest extends TestCase {
 		EList<?> edges = new BasicEList<Edge>(graphs.get(1).getEdges());
 		Node n2 = graphs.get(1).createNode("dust");
 		graphs.get(1).createEdge("dust", n2, graphs.get(1).getNodes().get(0));
-		testHomomorphism(graphs.get(0), nodes, edges, expectedResult);
+		testTryToCreateHomomorphism(graphs.get(0), nodes, edges, expectedResult);
 	}
 
 	/**
@@ -223,7 +298,7 @@ public class GraphHomomorphismTest extends TestCase {
 		EList<?> nodes = new BasicEList<Node>(graphs.get(1).getNodes());
 		EList<?> edges = new BasicEList<Edge>(graphs.get(1).getEdges());
 		graphs.get(1).createEdge("hn1", graphs.get(1).getNodes().get(0), graphs.get(1).getNodes().get(1));
-		testHomomorphism(graphs.get(0), nodes, edges, expectedResult);
+		testTryToCreateHomomorphism(graphs.get(0), nodes, edges, expectedResult);
 	}
 	
 	/**
@@ -235,36 +310,17 @@ public class GraphHomomorphismTest extends TestCase {
 		EList<?> nodes = new BasicEList<Node>(graphs.get(1).getNodes());
 		EList<?> edges = new BasicEList<Edge>(graphs.get(1).getEdges());
 		graphs.get(1).createEdge("hn1", graphs.get(1).getNodes().get(0), null);
-		testHomomorphism(graphs.get(0), nodes, edges, expectedResult);
+		testTryToCreateHomomorphism(graphs.get(0), nodes, edges, expectedResult);
 	}
 	
 	/**
 	 * @generated NOT
 	 */
-	private void testHomomorphism(Graph sourceGraph, EList<?> nodes, EList<?> edges, boolean expectedResult) {
+	private void testTryToCreateHomomorphism(Graph sourceGraph, EList<?> nodes, EList<?> edges, boolean expectedResult) {
 		GraphHomomorphism graphHomomorphism = MetamodelFactory.eINSTANCE.createGraphHomomorphism();
 		boolean res = graphHomomorphism.tryToCreateGraphHomomorphism(sourceGraph, nodes, edges);
-		assertEquals(expectedResult, res);		
+		assertEquals(expectedResult, res);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public void testGraphHomomorphismCreation() {
-		// Creates two simple graphs, with a simple homomorphism between them
-//		Graph g = MetamodelFactory.eINSTANCE.createGraph();
-//		Graph h = MetamodelFactory.eINSTANCE.createGraph();
-//
-//		Node g_n1 = g.createNode("g_n1");
-//		Node g_n2 = g.createNode("g_n2");
-//		Edge g_e1 = g.createEdge("g_e1", g_n1, g_n2);
-//		
-//		Node h_n1 = g.createNode("h_n1");
-//		Node h_n2 = g.createNode("h_n2");
-//		Edge h_e1 = g.createEdge("h_e1", h_n1, h_n2);
-		
-	}
 
 } //GraphHomomorphismTest
