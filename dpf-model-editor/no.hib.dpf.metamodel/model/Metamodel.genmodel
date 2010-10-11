@@ -100,10 +100,10 @@
                 ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/GraphHomomorphism/nodeMapping"/>
             <genFeatures notify="false" createChild="false" propertySortChoices="true"
                 ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/GraphHomomorphism/edgeMapping"/>
-            <genOperations ecoreOperation="Metamodel.ecore#//hib/dpf/metamodel/GraphHomomorphism/canCreateBijectiveGraphHomomorphism">
-              <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/GraphHomomorphism/canCreateBijectiveGraphHomomorphism/sourceGraph"/>
-              <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/GraphHomomorphism/canCreateBijectiveGraphHomomorphism/nodes"/>
-              <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/GraphHomomorphism/canCreateBijectiveGraphHomomorphism/edges"/>
+            <genOperations ecoreOperation="Metamodel.ecore#//hib/dpf/metamodel/GraphHomomorphism/tryToCreateGraphHomomorphism">
+              <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/GraphHomomorphism/tryToCreateGraphHomomorphism/sourceGraph"/>
+              <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/GraphHomomorphism/tryToCreateGraphHomomorphism/nodes"/>
+              <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/GraphHomomorphism/tryToCreateGraphHomomorphism/edges"/>
             </genOperations>
           </genClasses>
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/metamodel/IDObject">

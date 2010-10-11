@@ -68,6 +68,6 @@ public interface GraphHomomorphism extends EObject {
 	 * @model nodesMany="false" edgesMany="false"
 	 * @generated
 	 */
-	boolean canCreateBijectiveGraphHomomorphism(Graph sourceGraph, EList<?> nodes, EList<?> edges);
+	boolean tryToCreateGraphHomomorphism(Graph sourceGraph, EList<?> nodes, EList<?> edges);
 
 } // GraphHomomorphism

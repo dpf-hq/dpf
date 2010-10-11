@@ -7,11 +7,14 @@
 package no.hib.dpf.metamodel.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import no.hib.dpf.metamodel.Edge;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.GraphHomomorphism;
+import no.hib.dpf.metamodel.MetamodelFactory;
 import no.hib.dpf.metamodel.MetamodelPackage;
 import no.hib.dpf.metamodel.Node;
 
@@ -105,32 +108,113 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Checks wether a graph can be mapped onto a set of nodes and edges. The target
+	 * set of nodes and edges presumably belong to another, possibly larger graph.
+	 * The first graph is supposed to be a predicate arity of some sort.
+	 * 
+	 * If the method succeeds, the graph homomorphism is actually created as a side
+	 * effect. TODO: evaluate this!
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public boolean canCreateBijectiveGraphHomomorphism(Graph sourceGraph, EList<?> nodes, EList<?> edges) {
+	public boolean tryToCreateGraphHomomorphism(Graph sourceGraph, EList<?> nodes, EList<?> edges) {
 		if ((sourceGraph.getEdges().size() != edges.size()) ||
 			(sourceGraph.getNodes().size() != nodes.size())) {
 			return false;
 		}
 		if (sourceGraph.getNodes().size() == 0) {
+			createSimpleEdgeMapping(sourceGraph, edges);			
 			return true;
 		}
+		
+		// This is done to avoid testing on the graph to wich nodes and edges do belong;
+		// We don't want to do this in relation to any other objects present in the target
+		// graph:
+		Graph targetGraph = createTemporaryTargetGraph(nodes, edges);
 		// Check that mappings from node to node and arrow to arrow preserving structure can be made:
 		
 		Node[] sourceNodes = sourceGraph.getNodes().toArray(new Node[sourceGraph.getNodes().size()]);
-		Node[] targetNodes = nodes.toArray(new Node[nodes.size()]);
+		Node[] targetNodes = targetGraph.getNodes().toArray(new Node[targetGraph.getNodes().size()]);
 		
 		// For all permutations of the target nodes:
 		List<Node[]> targetNodePermutations = heapPermuteExec(targetNodes);
 		for (int i = 0; i < targetNodePermutations.size(); i++) {
 			EcoreEMap<Node,Node> mapping = createMapping(sourceNodes, targetNodePermutations, i);
 			if (testMapping(mapping)) {
+				// Found a suitable node mapping. Use this and the backwards maps to create
+				// a proper homomorphism mapping for this instance.
 				return true;
 			}
 		}
 		
 		return false;
+	}
+
+	// Just map any arrow to another arrow:
+	private void createSimpleEdgeMapping(Graph sourceGraph, EList<?> edges) {
+		for (int i = 0; i < sourceGraph.getEdges().size(); i++) {
+			Edge source = sourceGraph.getEdges().get(i);
+			Edge target = (Edge)edges.get(i);				
+			this.getEdgeMapping().put(source, target);
+		}
+	}
+	
+	Map<Node, Node> backwardsNodeMap;
+	Map<Edge, Edge> backwardsEdgeMap;
+	
+	/**
+	 * Creates a new graph, containing only nodes and edges corresponding to the ones given in the argument.
+	 * Also creates a "backwards" map, keeping back references into the original graph from the
+	 * new elements.
+	 * 
+	 * @generated NOT
+	 */
+	private Graph createTemporaryTargetGraph(EList<?> nodes, EList<?> edges) {
+		Graph retval = MetamodelFactory.eINSTANCE.createGraph();
+		Map<String, Node> newNodes = new HashMap<String, Node>();
+		
+		backwardsNodeMap = new HashMap<Node, Node>();
+		backwardsEdgeMap = new HashMap<Edge, Edge>();
+		
+		createNewNodes(nodes, retval, newNodes);		
+		createNewEdges(edges, retval, newNodes);
+		
+		return retval;		
+	}
+
+	/** 
+	 * Create new nodes, putting references to them in the "newNodes" map:
+	 * @generated NOT
+	 */
+	private void createNewNodes(EList<?> nodes, Graph retval, Map<String, Node> newNodes) {
+		for (Object node : nodes) {
+			Node newNode = retval.createNode(((Node)node).getName());
+			newNodes.put(((Node)node).getName(), newNode);
+			backwardsNodeMap.put(newNode, (Node)node);
+		}
+	}
+	
+	/** 
+	 * Create new edges, using the "newNodes" map to get sources and targets:
+	 * @generated NOT
+	 */
+	private void createNewEdges(EList<?> edges, Graph retval, Map<String, Node> newNodes) {
+		for (Object edge : edges) {
+			Node sourceNode = getNodeFromMap(newNodes, ((Edge)edge).getSource());
+			Node targetNode = getNodeFromMap(newNodes, ((Edge)edge).getTarget());
+			Edge newEdge = retval.createEdge(((Edge)edge).getName(), sourceNode, targetNode);
+			backwardsEdgeMap.put(newEdge, (Edge)edge);
+		}
+	}
+
+	/** 
+	 * @generated NOT
+	 */
+	private Node getNodeFromMap(Map<String, Node> nodes, Node graphNode) {
+		if ((graphNode != null) && (nodes.containsKey(graphNode.getName()))) {
+			return nodes.get(graphNode.getName());
+		}
+		return null;
 	}
 	
 	/**
@@ -148,6 +232,29 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 		}
 	    // Now, check to see if we can follow every outgoing edge and end up on
 		// the same node by following the edges directly and through mappings:
+		
+		for (Node source : mapping.keySet()) {			
+			Node mappedSource = mapping.get(source);
+			// Follow the arrows:
+			for (Edge outgoingEdge : source.getOutgoingEdges()) {
+				Node target = outgoingEdge.getTarget();
+				Node mappedTarget = mapping.get(target);
+				boolean found = false;
+				for (Edge outgoingEdgeFromMappedSource : mappedSource.getOutgoingEdges()) {
+					if (mappedTarget == null) {
+						// null is always found
+						found = true;
+					} else if (mappedTarget.equals(outgoingEdgeFromMappedSource.getTarget())) {
+						found = true;
+					}
+				}
+				if (!found) {
+					// An edge could not be mapped to a similar edge in the other graph
+					return false;
+				}
+			}
+		}
+		
 		
 		return true;
 	}

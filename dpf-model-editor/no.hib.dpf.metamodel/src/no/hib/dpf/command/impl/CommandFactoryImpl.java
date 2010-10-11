@@ -6,6 +6,7 @@
  */
 package no.hib.dpf.command.impl;
 
+import no.hib.dpf.command.*;
 import no.hib.dpf.command.CommandFactory;
 import no.hib.dpf.command.CommandPackage;
 import no.hib.dpf.command.CreateEdgeCommand;
