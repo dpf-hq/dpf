@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import no.hib.dpf.metamodel.Edge;
 import no.hib.dpf.metamodel.Graph;
@@ -43,6 +44,17 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorphism {
+
+	/**
+	 * @generated NOT
+	 */
+	private Map<Node, Node> backwardsNodeMap;
+
+	/**
+	 * @generated NOT
+	 */
+	private Map<Edge, Edge> backwardsEdgeMap;
+	
 	/**
 	 * The cached value of the '{@link #getNodeMapping() <em>Node Mapping</em>}' map.
 	 * <!-- begin-user-doc -->
@@ -123,6 +135,7 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 			return false;
 		}
 		if (sourceGraph.getNodes().size() == 0) {
+			// SIDE EFFECT:			
 			createSimpleEdgeMapping(sourceGraph, edges);			
 			return true;
 		}
@@ -139,18 +152,56 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 		// For all permutations of the target nodes:
 		List<Node[]> targetNodePermutations = heapPermuteExec(targetNodes);
 		for (int i = 0; i < targetNodePermutations.size(); i++) {
-			EcoreEMap<Node,Node> mapping = createMapping(sourceNodes, targetNodePermutations, i);
-			if (testMapping(mapping)) {
+			EcoreEMap<Node,Node> nodeMapping = createMapping(sourceNodes, targetNodePermutations, i);
+			if (testMapping(nodeMapping)) {
+				// SIDE EFFECT:
 				// Found a suitable node mapping. Use this and the backwards maps to create
 				// a proper homomorphism mapping for this instance.
+				EcoreEMap<Edge,Edge> edgeMapping = createEdgeMapping(nodeMapping);
+				resolveBackwardMappingsAndCreateFinalMapping(nodeMapping, edgeMapping);
 				return true;
 			}
 		}
 		
 		return false;
 	}
+	
+	/**
+	 * @generated NOT
+	 */
+	private void resolveBackwardMappingsAndCreateFinalMapping(EcoreEMap<Node,Node> nodeMapping, EcoreEMap<Edge,Edge> edgeMapping) {
+		resolveBackwardsNodeMapping(nodeMapping);
+		resolveBackwardsEdgeMapping(edgeMapping);
+	}
 
-	// Just map any arrow to another arrow:
+	/**
+	 * @generated NOT
+	 */
+	private void resolveBackwardsNodeMapping(EcoreEMap<Node, Node> nodeMapping) {
+		for (Entry<Node, Node> entry : nodeMapping.entrySet()) {
+			if (backwardsNodeMap.containsKey(entry.getValue())) {
+				Node resolvedtargetNode = backwardsNodeMap.get(entry.getValue());
+				getNodeMapping().put(entry.getKey(), resolvedtargetNode);
+			}
+		}
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	private void resolveBackwardsEdgeMapping(EcoreEMap<Edge, Edge> edgeMapping) {
+		for (Entry<Edge, Edge> entry : edgeMapping.entrySet()) {
+			if (backwardsEdgeMap.containsKey(entry.getValue())) {
+				Edge resolvedTargetEdge = backwardsEdgeMap.get(entry.getValue());
+				getEdgeMapping().put(entry.getKey(), resolvedTargetEdge);
+			}
+		}
+	}
+
+	/**
+	 * Just map any arrow to another arrow:
+	 * @generated NOT
+	 */
 	private void createSimpleEdgeMapping(Graph sourceGraph, EList<?> edges) {
 		for (int i = 0; i < sourceGraph.getEdges().size(); i++) {
 			Edge source = sourceGraph.getEdges().get(i);
@@ -158,9 +209,6 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 			this.getEdgeMapping().put(source, target);
 		}
 	}
-	
-	Map<Node, Node> backwardsNodeMap;
-	Map<Edge, Edge> backwardsEdgeMap;
 	
 	/**
 	 * Creates a new graph, containing only nodes and edges corresponding to the ones given in the argument.
@@ -218,6 +266,33 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	}
 	
 	/**
+	 * Requires a valid node map.
+	 * @generated NOT
+	 */
+	private EcoreEMap<Edge, Edge> createEdgeMapping(EcoreEMap<Node,Node> mapping) {
+		EcoreEMap<Edge,Edge> retval = new EcoreEMap<Edge,Edge>(MetamodelPackage.Literals.EDGE_TO_EDGE_MAP, EdgeToEdgeMapImpl.class, this, MetamodelPackage.GRAPH_HOMOMORPHISM__EDGE_MAPPING);
+		
+		for (Node source : mapping.keySet()) {			
+			Node mappedSource = mapping.get(source);
+			// Follow the arrows:
+			for (Edge outgoingEdge : source.getOutgoingEdges()) {
+				Node target = outgoingEdge.getTarget();
+				Node mappedTarget = mapping.get(target);
+				for (Edge outgoingEdgeFromMappedSource : mappedSource.getOutgoingEdges()) {
+					if (((target == null) && (outgoingEdgeFromMappedSource.getTarget() == null)) ||
+						(mappedTarget.equals(outgoingEdgeFromMappedSource.getTarget()))) {
+						// Only unique mappings from one source edge to one target edge:
+						if ((!retval.containsKey(outgoingEdge)) && (!retval.containsValue(outgoingEdgeFromMappedSource))) { 
+							retval.put(outgoingEdge, outgoingEdgeFromMappedSource);
+						}
+					}
+				}
+			}
+		}
+		return retval;
+	}	
+	
+	/**
 	 * Checks a mapping to see wether it indicates a valid graph homomorphism
 	 * if the edges are mapped "one to one". TODO: explain this. Also to self.
 	 * @generated NOT
@@ -267,15 +342,11 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	 * @generated NOT
 	 */
 	private EcoreEMap<Node,Node> createMapping(Node [] sourceNodes, List<Node[]> targetNodePermutations, int permutationIndex) {
-		EcoreEMap<Node,Node> retval = new EcoreEMap<Node,Node>(MetamodelPackage.Literals.NODE_TO_NODE_MAP, NodeToNodeMapImpl.class, this, MetamodelPackage.GRAPH_HOMOMORPHISM__NODE_MAPPING);
-		
+		EcoreEMap<Node,Node> retval = new EcoreEMap<Node,Node>(MetamodelPackage.Literals.NODE_TO_NODE_MAP, NodeToNodeMapImpl.class, this, MetamodelPackage.GRAPH_HOMOMORPHISM__NODE_MAPPING);		
 		Node[] targetNodes = targetNodePermutations.get(permutationIndex);
 			
 		for (int i = 0; i < sourceNodes.length; i++) {
-			NodeToNodeMapImpl nodeToNodeMap = new NodeToNodeMapImpl();
-			nodeToNodeMap.key = sourceNodes[i];
-			nodeToNodeMap.value = targetNodes[i];
-			retval.add(nodeToNodeMap);			
+			retval.put(sourceNodes[i], targetNodes[i]);
 		}
 		
 		return retval;
