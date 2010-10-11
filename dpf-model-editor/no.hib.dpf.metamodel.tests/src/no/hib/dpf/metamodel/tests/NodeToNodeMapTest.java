@@ -9,12 +9,12 @@ package no.hib.dpf.metamodel.tests;
 import java.util.Map;
 
 import junit.framework.TestCase;
-
 import junit.textui.TestRunner;
-
+import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.MetamodelFactory;
 import no.hib.dpf.metamodel.MetamodelPackage;
 import no.hib.dpf.metamodel.Node;
+import no.hib.dpf.metamodel.impl.NodeToNodeMapImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -92,6 +92,28 @@ public class NodeToNodeMapTest extends TestCase {
 	@Override
 	protected void tearDown() throws Exception {
 		setFixture(null);
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void testConstruction() {
+		NodeToNodeMapImpl nodeToNodeMap = (NodeToNodeMapImpl)MetamodelFactory.eINSTANCE.create(MetamodelPackage.Literals.NODE_TO_NODE_MAP);
+		assertNotNull(nodeToNodeMap);
+		
+		Graph g = MetamodelFactory.eINSTANCE.createGraph();
+		Graph h = MetamodelFactory.eINSTANCE.createGraph();
+
+		Node g_n1 = g.createNode("g_n1");		
+		Node h_n1 = h.createNode("h_n1");
+		
+		nodeToNodeMap.setKey(h_n1);
+		nodeToNodeMap.setValue(g_n1);
+		
+		assertEquals(h_n1, nodeToNodeMap.getKey());
+		assertEquals(g_n1, nodeToNodeMap.getValue());
 	}
 
 } //NodeToNodeMapTest
