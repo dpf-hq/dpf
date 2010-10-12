@@ -265,6 +265,34 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Node getNodeByName(String name) {
+		for (Node node : getNodes()) {
+			if (node.getName().equals(name)) {
+				return node;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Edge getEdgeByName(String name) {
+		for (Edge edge : getEdges()) {
+			if (edge.getName().equals(name)) {
+				return edge;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")

@@ -29,6 +29,12 @@
           <eOperations name="deleteEdge">
             <eParameters name="edge" eType="#//hib/dpf/metamodel/Edge"/>
           </eOperations>
+          <eOperations name="getNodeByName" eType="#//hib/dpf/metamodel/Node">
+            <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eOperations>
+          <eOperations name="getEdgeByName" eType="#//hib/dpf/metamodel/Edge">
+            <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eOperations>
           <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" upperBound="-1"
               eType="#//hib/dpf/metamodel/Node" containment="true" eOpposite="#//hib/dpf/metamodel/Node/graph"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -55,6 +61,19 @@
               eType="#//hib/dpf/metamodel/Predicate" containment="true"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Predicate">
+          <eOperations name="createConstraint" eType="#//hib/dpf/metamodel/Constraint">
+            <eParameters name="nodes">
+              <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
+                <eTypeArguments/>
+              </eGenericType>
+            </eParameters>
+            <eParameters name="edges">
+              <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
+                <eTypeArguments/>
+              </eGenericType>
+            </eParameters>
+            <eParameters name="modelToBeConstrained" eType="#//hib/dpf/metamodel/Graph"/>
+          </eOperations>
           <eStructuralFeatures xsi:type="ecore:EReference" name="shape" eType="#//hib/dpf/metamodel/Graph"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="semantics" eType="#//hib/dpf/metamodel/Semantics"
               containment="true"/>

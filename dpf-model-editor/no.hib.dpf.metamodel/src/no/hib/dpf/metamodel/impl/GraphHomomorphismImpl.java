@@ -126,6 +126,8 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	 * 
 	 * If the method succeeds, the graph homomorphism is actually created as a side
 	 * effect. TODO: evaluate this!
+	 * 
+	 * TODO: refactor this!
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
@@ -141,13 +143,16 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 		}
 		
 		// This is done to avoid testing on the graph to wich nodes and edges do belong;
-		// We don't want to do this in relation to any other objects present in the target
+		// We don't want to do the following in relation to any other objects present in the target
 		// graph:
 		Graph targetGraph = createTemporaryTargetGraph(nodes, edges);
 		// Check that mappings from node to node and arrow to arrow preserving structure can be made:
 		
 		Node[] sourceNodes = sourceGraph.getNodes().toArray(new Node[sourceGraph.getNodes().size()]);
 		Node[] targetNodes = targetGraph.getNodes().toArray(new Node[targetGraph.getNodes().size()]);
+		
+		Edge[] sourceEdges = sourceGraph.getEdges().toArray(new Edge[sourceGraph.getEdges().size()]);
+		Edge[] targetEdges = targetGraph.getEdges().toArray(new Edge[targetGraph.getEdges().size()]);
 		
 		// For all permutations of the target nodes:
 		List<Node[]> targetNodePermutations = heapPermuteExec(targetNodes);
@@ -158,12 +163,40 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 				// Found a suitable node mapping. Use this and the backwards maps to create
 				// a proper homomorphism mapping for this instance.
 				EcoreEMap<Edge,Edge> edgeMapping = createEdgeMapping(nodeMapping);
-				resolveBackwardMappingsAndCreateFinalMapping(nodeMapping, edgeMapping);
-				return true;
+				fixUnmappedArrows(edgeMapping, nodeMapping, sourceEdges, targetEdges);
+				
+				// Now check that all edges are mapped
+				if (sourceEdges.length == edgeMapping.size()) {
+					resolveBackwardMappingsAndCreateFinalMapping(nodeMapping, edgeMapping);
+					return true;
+				}
 			}
 		}
 		
 		return false;
+	}
+	
+	
+	/**
+	 * TODO: make this return a boolean signalling non-mappable combinations OR use a dummy null node for each graph.
+	 * @generated NOT
+	 */
+	private void fixUnmappedArrows(EcoreEMap<Edge, Edge> edgeMapping, EcoreEMap<Node, Node> nodeMappings, Edge[] sourceEdges, Edge[] targetEdges) {
+		for (Edge sourceEdge : sourceEdges) {
+			if (sourceEdge.getSource() == null) {
+				for (Edge targetEdge : targetEdges) {
+					if (targetEdge.getSource() == null) {
+						// Edge to same target?
+						Node mappedTarget = nodeMappings.get(sourceEdge.getTarget());
+						if (targetEdge.getTarget().equals(mappedTarget)) {				
+							if ((!edgeMapping.containsKey(sourceEdge)) && (!edgeMapping.containsValue(targetEdge))) { 
+								edgeMapping.put(sourceEdge, targetEdge);
+							}
+						}
+					}
+				}				
+			}
+		}
 	}
 	
 	/**
@@ -212,19 +245,18 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	
 	/**
 	 * Creates a new graph, containing only nodes and edges corresponding to the ones given in the argument.
-	 * Also creates a "backwards" map, keeping back references into the original graph from the
+	 * Also creates "backwards" maps, keeping back references into the original graph from the
 	 * new elements.
 	 * 
 	 * @generated NOT
 	 */
 	private Graph createTemporaryTargetGraph(EList<?> nodes, EList<?> edges) {
 		Graph retval = MetamodelFactory.eINSTANCE.createGraph();
-		Map<String, Node> newNodes = new HashMap<String, Node>();
 		
 		backwardsNodeMap = new HashMap<Node, Node>();
 		backwardsEdgeMap = new HashMap<Edge, Edge>();
 		
-		createNewNodes(nodes, retval, newNodes);		
+		Map<String, Node> newNodes = createNewNodes(nodes, retval);		
 		createNewEdges(edges, retval, newNodes);
 		
 		return retval;		
@@ -234,12 +266,14 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	 * Create new nodes, putting references to them in the "newNodes" map:
 	 * @generated NOT
 	 */
-	private void createNewNodes(EList<?> nodes, Graph retval, Map<String, Node> newNodes) {
+	private Map<String, Node> createNewNodes(EList<?> nodes, Graph retval) {
+		Map<String, Node> newNodes = new HashMap<String, Node>();
 		for (Object node : nodes) {
 			Node newNode = retval.createNode(((Node)node).getName());
 			newNodes.put(((Node)node).getName(), newNode);
 			backwardsNodeMap.put(newNode, (Node)node);
 		}
+		return newNodes;
 	}
 	
 	/** 
@@ -354,7 +388,7 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	
 	/**
 	 * Makes permutations of the items in the array. This should not be
-	 * run on arrays of sizes exceeding 8...
+	 * run on arrays of sizes exceeding 8... TODO: make a check on this!
 	 * 
 	 * @generated NOT
 	 */

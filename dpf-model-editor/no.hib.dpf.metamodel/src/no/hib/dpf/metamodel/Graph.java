@@ -154,6 +154,22 @@ public interface Graph extends IDObject {
 	 * @generated
 	 */
 	void deleteEdge(Edge edge);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	Node getNodeByName(String name);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	Edge getEdgeByName(String name);
 	
 
 } // Graph

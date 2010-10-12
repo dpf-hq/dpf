@@ -6,6 +6,7 @@
  */
 package no.hib.dpf.metamodel;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -104,5 +105,13 @@ public interface Predicate extends EObject {
 	 * @generated
 	 */
 	void setVisualization(Visualization value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model nodesMany="false" edgesMany="false"
+	 * @generated
+	 */
+	Constraint createConstraint(EList<?> nodes, EList<?> edges, Graph modelToBeConstrained);
 
 } // Predicate

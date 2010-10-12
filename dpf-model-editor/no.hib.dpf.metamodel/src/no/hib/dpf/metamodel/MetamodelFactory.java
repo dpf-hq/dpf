@@ -34,6 +34,28 @@ public interface MetamodelFactory extends EFactory {
 	 * @generated
 	 */
 	Graph createGraph();
+	
+	/**
+	 * Returns a new object of class '<em>Graph</em>'.
+	 * <!-- begin-user-doc -->
+	 * This is intended as a quick way of generating Graph instances using string parameters for
+	 * nodes and edges.
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Graph</em>'.
+	 * @generated NOT
+	 */
+	Graph createGraph(String nodes, String edges);
+	
+	/**
+	 * Returns a new object of class '<em>Graph</em>'.
+	 * <!-- begin-user-doc -->
+	 * This is intended as a quick way of generating Graph instances using string parameters for
+	 * nodes and edges. String formats: "gn1,gn2", "ge1:gn1:gn2"
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Graph</em>'.
+	 * @generated NOT
+	 */
+	Graph createGraph(String name, String nodes, String edges);
 
 	/**
 	 * Returns a new object of class '<em>Node</em>'.

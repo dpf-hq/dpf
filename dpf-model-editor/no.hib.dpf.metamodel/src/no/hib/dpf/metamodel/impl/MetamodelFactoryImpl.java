@@ -89,7 +89,61 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 		graph.setName("Default name");
 		return graph;
 	}
-
+	
+	/**
+	 * Returns a new object of class '<em>Graph</em>'.
+	 * <!-- begin-user-doc -->
+	 * This is intended as a quick way of generating Graph instances using string parameters for
+	 * nodes and edges. String formats: "gn1,gn2", "ge1:gn1:gn2"
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Graph</em>'.
+	 * @generated NOT
+	 */
+	public Graph createGraph(String nodes, String edges) {
+		return createGraph("Default name", nodes, edges);
+	}
+	
+	/**
+	 * Returns a new object of class '<em>Graph</em>'.
+	 * <!-- begin-user-doc -->
+	 * This is intended as a quick way of generating Graph instances using string parameters for
+	 * nodes and edges. String formats: "gn1,gn2", "ge1:gn1:gn2"
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Graph</em>'.
+	 * @generated NOT
+	 */
+	public Graph createGraph(String name, String nodes, String edges) {
+		Graph retval = createGraphNodes(nodes.split(","));
+		addEdgesToGraph(retval, edges.split(","));		
+		retval.setName(name);
+		return retval;
+	}
+	
+	/**
+	 * @generated NOT
+	 */
+	private Graph createGraphNodes(String[] nodes) {
+		Graph g = MetamodelFactory.eINSTANCE.createGraph();
+		if (!((nodes.length == 1) && (nodes[0].equals("")))) {
+			for (String node_name : nodes) {
+				g.createNode(node_name.trim());
+			}
+		}
+		return g;
+	}
+	
+	/**
+	 * @generated NOT
+	 */
+	private void addEdgesToGraph(Graph g, String[] edges) {
+		if (!((edges.length == 1) && (edges[0].equals("")))) {
+			for (String edgeDetails : edges) {
+				String[] edgeDetailsSplit = edgeDetails.split(":");
+				g.createEdge(edgeDetailsSplit[0].trim(), g.getNodeByName(edgeDetailsSplit[1].trim()), g.getNodeByName(edgeDetailsSplit[2].trim()));
+			}
+		}
+	}	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

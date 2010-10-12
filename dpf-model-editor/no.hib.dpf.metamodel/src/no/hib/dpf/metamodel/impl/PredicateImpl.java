@@ -6,7 +6,10 @@
  */
 package no.hib.dpf.metamodel.impl;
 
+import no.hib.dpf.metamodel.Constraint;
 import no.hib.dpf.metamodel.Graph;
+import no.hib.dpf.metamodel.GraphHomomorphism;
+import no.hib.dpf.metamodel.MetamodelFactory;
 import no.hib.dpf.metamodel.MetamodelPackage;
 import no.hib.dpf.metamodel.Predicate;
 import no.hib.dpf.metamodel.Semantics;
@@ -14,6 +17,7 @@ import no.hib.dpf.metamodel.Visualization;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -201,6 +205,32 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 		visualization = newVisualization;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.PREDICATE__VISUALIZATION, oldVisualization, visualization));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Returns a newly created constraint. If the nodes and/or edges provided don't match the shape
+	 * of this predicate, null is returned.
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Constraint createConstraint(EList<?> nodes, EList<?> edges, Graph modelToBeConstrained) {
+		GraphHomomorphism graphHomomorphism = MetamodelFactory.eINSTANCE.createGraphHomomorphism();
+		if (graphHomomorphism.tryToCreateGraphHomomorphism(getShape(), nodes, edges)) {
+			return constructConstraint(modelToBeConstrained, graphHomomorphism);
+		}
+		return null;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	private Constraint constructConstraint(Graph modelToBeConstrained, GraphHomomorphism graphHomomorphism) {
+		Constraint retval = MetamodelFactory.eINSTANCE.createConstraint();
+		retval.setMappings(graphHomomorphism);
+		retval.setPredicate(this);
+		retval.setConstrainedModel(modelToBeConstrained);
+		return retval;
 	}
 
 	/**
