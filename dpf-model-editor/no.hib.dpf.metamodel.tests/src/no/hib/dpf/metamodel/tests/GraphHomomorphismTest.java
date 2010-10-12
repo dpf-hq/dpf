@@ -114,15 +114,19 @@ public class GraphHomomorphismTest extends TestCase {
 	public void testTryToCreateGraphHomomorphism__Graph_EList_EList() {		
 		doTestHomomorphisms();
 		doTestHomomorphismsWithExtraGraphElements();		
-		
-		// Check the created mappings
-		
+//		
+//		// Check the created mappings
+//		
 		doTestReturnedMappings(createGraphs("", "", "g_edge:null:null", "h_edge:null:null"), new String[]{}, new String[] { "g_edge:h_edge" }, true);		
 		doTestReturnedMappings(createGraphs("g_node_1,g_node_2", "h_node_1,h_node_2", "", ""), new String[] { "g_node_1:h_node_1", "g_node_2:h_node_2" }, new String[]{}, true);		
 		doTestReturnedMappings(createGraphs("g_node_1", "h_node_1", "g_edge_1:g_node_1:null,g_edge_2:g_node_1:null", "h_edge_1:h_node_1:null,h_edge_2:h_node_1:null"), new String[] { "g_node_1:h_node_1" }, new String[]{ "g_edge_1:h_edge_1", "g_edge_2:h_edge_2"}, true);		
 		doTestReturnedMappings(createGraphs("gn1,gn2", "hn1,hn2", "ge:gn1:gn2", "he:hn2:hn1"), new String[] { "gn1:hn2", "gn2:hn1" }, new String[]{ "ge:he" }, true);		
+		doTestReturnedMappings(createGraphs("g_node_1", "h_node_1", "g_edge_1:null:g_node_1,g_edge_2:null:g_node_1", "h_edge_1:null:h_node_1,h_edge_2:null:h_node_1"), new String[] { "g_node_1:h_node_1" }, new String[]{ "g_edge_1:h_edge_1", "g_edge_2:h_edge_2"}, true);		
 	}
 	
+	/**
+	 * @generated NOT
+	 */
 	private void doTestReturnedMappings(List<Graph> graphs, String[] nodeNames, String[] edgeNames, boolean expectedResult) {
 		GraphHomomorphism graphHomomorphism = MetamodelFactory.eINSTANCE.createGraphHomomorphism();
 		boolean res = graphHomomorphism.tryToCreateGraphHomomorphism(graphs.get(0), graphs.get(1).getNodes(), graphs.get(1).getEdges());
@@ -217,56 +221,10 @@ public class GraphHomomorphismTest extends TestCase {
 	 * @generated NOT
 	 */
 	private List<Graph> createGraphs(String g_nodes, String h_nodes, String g_edges, String h_edges) {
-		return createGraphs(g_nodes.split(","), h_nodes.split(","), g_edges.split(","), h_edges.split(","));
-	}
-	
-	/**
-	 * @generated NOT
-	 */
-	private List<Graph> createGraphs(String[] g_nodes, String[] h_nodes, String[] g_edges, String[] h_edges) {
-		List<Graph> retval = new ArrayList<Graph>();
-		retval.add(createGraphNodes(g_nodes));
-		retval.add(createGraphNodes(h_nodes));
-		addEdgesToGraph(retval.get(0), g_edges);
-		addEdgesToGraph(retval.get(1), h_edges);
+		List<Graph> retval = new ArrayList<Graph>();		
+		retval.add(MetamodelFactory.eINSTANCE.createGraph(g_nodes, g_edges));
+		retval.add(MetamodelFactory.eINSTANCE.createGraph(h_nodes, h_edges));
 		return retval;
-	}
-	
-	/**
-	 * @generated NOT
-	 */
-	private Graph createGraphNodes(String[] nodes) {
-		Graph g = MetamodelFactory.eINSTANCE.createGraph();
-		if (!((nodes.length == 1) && (nodes[0].equals("")))) {
-			for (String node_name : nodes) {
-				g.createNode(node_name.trim());
-			}
-		}
-		return g;
-	}
-	
-	/**
-	 * @generated NOT
-	 */
-	private void addEdgesToGraph(Graph g, String[] edges) {
-		if (!((edges.length == 1) && (edges[0].equals("")))) {
-			for (String edgeDetails : edges) {
-				String[] edgeDetailsSplit = edgeDetails.split(":");
-				g.createEdge(edgeDetailsSplit[0].trim(), getNodeByString(g, edgeDetailsSplit[1].trim()), getNodeByString(g, edgeDetailsSplit[2].trim()));
-			}
-		}
-	}
-	
-	/**
-	 * @generated NOT
-	 */
-	private Node getNodeByString(Graph g, String nodeName) {
-		for (Node node : g.getNodes()) {
-			if (node.getName().equals(nodeName)) {
-				return node;
-			}
-		}
-		return null;
 	}
 	
 	/**

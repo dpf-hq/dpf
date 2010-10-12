@@ -6,17 +6,30 @@
  */
 package no.hib.dpf.metamodel.tests;
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
+
 import junit.framework.TestCase;
 
 import junit.textui.TestRunner;
 
+import no.hib.dpf.metamodel.Constraint;
+import no.hib.dpf.metamodel.Edge;
+import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.MetamodelFactory;
+import no.hib.dpf.metamodel.Node;
 import no.hib.dpf.metamodel.Predicate;
 
 /**
  * <!-- begin-user-doc -->
  * A test case for the model object '<em><b>Predicate</b></em>'.
  * <!-- end-user-doc -->
+ * <p>
+ * The following operations are tested:
+ * <ul>
+ *   <li>{@link no.hib.dpf.metamodel.Predicate#createConstraint(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, no.hib.dpf.metamodel.Graph) <em>Create Constraint</em>}</li>
+ * </ul>
+ * </p>
  * @generated
  */
 public class PredicateTest extends TestCase {
@@ -88,6 +101,37 @@ public class PredicateTest extends TestCase {
 	@Override
 	protected void tearDown() throws Exception {
 		setFixture(null);
+	}
+
+	/**
+	 * Tests the '{@link no.hib.dpf.metamodel.Predicate#createConstraint(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, no.hib.dpf.metamodel.Graph) <em>Create Constraint</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.Predicate#createConstraint(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, no.hib.dpf.metamodel.Graph)
+	 * @generated NOT
+	 */
+	public void testCreateConstraint__EList_EList_Graph() {
+		Predicate testPredicate = MetamodelFactory.eINSTANCE.createPredicate();
+		Graph predicateGraph = MetamodelFactory.eINSTANCE.createGraph("n_1", "e_1:n_1:null,e_2:n_1:null");
+		testPredicate.setShape(predicateGraph);
+		
+		Graph userGraph = MetamodelFactory.eINSTANCE.createGraph("n_1,n_2,n3", "e_1:n_1:n_2,e_2:n_1:n_3");
+		
+		// Extract "user selected" elements:
+		EList<Node> nodes = new BasicEList<Node>();
+		nodes.add(userGraph.getNodeByName("n_1"));
+		
+		EList<Edge> edges = new BasicEList<Edge>();
+		edges.add(userGraph.getEdgeByName("e_1"));
+		edges.add(userGraph.getEdgeByName("e_2"));
+		
+		Constraint constraint = testPredicate.createConstraint(nodes, edges, userGraph);		
+		assertNotNull(constraint);
+		
+		nodes.add(userGraph.getNodeByName("n_2"));
+		constraint = testPredicate.createConstraint(nodes, edges, userGraph);		
+		assertNull(constraint);
+		
 	}
 
 } //PredicateTest
