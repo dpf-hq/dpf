@@ -112,7 +112,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		super.createActions(); // important else we won't get the default
 								// actions!
 		registerAction(new SrcSelectAction(this));
-		registerAction(new CreateConstraintAction(this));
+		registerAction(new CreateConstraintAction(this, diagram));
 	}
 
 	@SuppressWarnings("unchecked")
@@ -243,21 +243,12 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 	private Graph loadDPF() {
 		ResourceSet load_resourceSet = new ResourceSetImpl();
 
-		/*
-		* Register XML Factory implementation using DEFAULT_EXTENSION
-		*/
 		load_resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", new XMLResourceFactoryImpl());
 
-		/*
-		* Add bookStoreEPackage to package registry
-		*/
 		Graph graph = MetamodelFactory.eINSTANCE.createGraph();				
 
 		load_resourceSet.getPackageRegistry().put("http://no.hib.dpf.metamodel", graph);
 
-		/*
-		* Load the resource using the URI
-		*/
 		Resource resource = load_resourceSet.getResource(URI.createFileURI(dpfFilePath + File.separator + dpfFile),true);
 
 		return (Graph)resource.getContents().get(0);

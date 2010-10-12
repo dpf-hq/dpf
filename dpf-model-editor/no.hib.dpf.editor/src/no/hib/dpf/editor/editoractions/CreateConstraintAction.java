@@ -5,9 +5,17 @@ import java.util.List;
 
 import no.hib.dpf.editor.model.Connection;
 import no.hib.dpf.editor.model.Constraint;
+import no.hib.dpf.editor.model.DPFDiagram;
 import no.hib.dpf.editor.model.commands.ConstraintCreateCommand;
 import no.hib.dpf.editor.parts.ShapeEditPart;
+import no.hib.dpf.metamodel.Edge;
+import no.hib.dpf.metamodel.Graph;
+import no.hib.dpf.metamodel.MetamodelFactory;
+import no.hib.dpf.metamodel.Node;
+import no.hib.dpf.metamodel.Predicate;
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.ui.actions.SelectionAction;
@@ -15,14 +23,17 @@ import org.eclipse.ui.IWorkbenchPart;
 
 public class CreateConstraintAction extends SelectionAction {
 	
+	private Graph graph;
+	
 	// an identifier for the action
 	public static final String ID="no.hib.dpf.editor.editoractions.CreateConstraintAction";	
 
-	public CreateConstraintAction(IWorkbenchPart part) {
+	public CreateConstraintAction(IWorkbenchPart part, DPFDiagram diagram) {
 		super(part);
 		setId(ID);              // sets ID
 		setText("Create new Constraint"); // sets text displayed in the menu
 		setToolTipText("Creates a new Constraint");
+		this.graph = diagram.getDpfGraph();
 	}
 
 	private List<ConnectionEditPart> getSelectedConnectionEditParts() {
@@ -49,18 +60,29 @@ public class CreateConstraintAction extends SelectionAction {
 	protected boolean calculateEnabled() {
 		// we only want enabled if one node w/two outgoing edges are selected.
 		// TODO: Make this configurable
-
-		if (getSelectedObjects().size() != 3) {
-			return false;
-		}
-		List<ConnectionEditPart> connectionEditParts = getSelectedConnectionEditParts();
-		List<ShapeEditPart> shapeEditParts = getSelectedShapeEditParts();
 		
-		if ((connectionEditParts.size() != 2) || (shapeEditParts.size() != 1)) {
-			return false;
+		Predicate testPredicate = MetamodelFactory.eINSTANCE.createPredicate("n_1", "e_1:null:n_1,e_2:null:n_1");
+						
+		no.hib.dpf.metamodel.Constraint constraint =
+			testPredicate.createConstraint(getSelectionNodes(), getSelectionEdges(), graph);
+		return (constraint != null);
+		
+	}
+
+	private EList<Edge> getSelectionEdges() {
+		EList<Edge> edges = new BasicEList<Edge>();
+		for (ConnectionEditPart connectionEditPart : getSelectedConnectionEditParts()) {
+			edges.add((Edge)connectionEditPart.getModel());
 		}
-		return ((connectionEditParts.get(0).getSource().equals(shapeEditParts.get(0))) &&
-				(connectionEditParts.get(1).getSource().equals(shapeEditParts.get(0))));
+		return edges;
+	}
+
+	private EList<Node> getSelectionNodes() {
+		EList<Node> nodes = new BasicEList<Node>();
+		for (ShapeEditPart shapeEditPart : getSelectedShapeEditParts()) {
+			nodes.add((Node)shapeEditPart.getModel());
+		}
+		return nodes;
 	}
 
 	
