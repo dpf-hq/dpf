@@ -94,6 +94,16 @@ public interface MetamodelFactory extends EFactory {
 	Predicate createPredicate();
 
 	/**
+	 * Returns a new object of class '<em>Predicate</em>'.
+	 * <!-- begin-user-doc -->
+	 * shapeDescription is used to construct a graph. See createGraph().
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Predicate</em>'.
+	 * @generated NOT
+	 */
+	Predicate createPredicate(String nodes, String edges);
+
+	/**
 	 * Returns a new object of class '<em>Semantics</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
