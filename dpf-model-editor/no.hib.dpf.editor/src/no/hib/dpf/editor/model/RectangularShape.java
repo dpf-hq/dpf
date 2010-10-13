@@ -61,7 +61,7 @@ public class RectangularShape extends Shape implements Node {
 	}
 
 	public String toString() {
-		return "Rectangle " + hashCode();
+		return "Node " + hashCode();
 	}
 	
 	@Override

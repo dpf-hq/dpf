@@ -12,6 +12,7 @@ package no.hib.dpf.editor;
 
 import no.hib.dpf.editor.editoractions.CreateJointImageConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointlyInjectiveConstraintAction;
+import no.hib.dpf.editor.editoractions.CreateMultiplicityConstraintAction;
 import no.hib.dpf.editor.editoractions.SrcSelectAction;
 
 import org.eclipse.gef.ContextMenuProvider;
@@ -70,6 +71,7 @@ public void buildContextMenu(IMenuManager menu) {
 	getActionAndAppendToMenu(menu, SrcSelectAction.ID);
 	getActionAndAppendToMenu(menu, CreateJointlyInjectiveConstraintAction.ID);
 	getActionAndAppendToMenu(menu, CreateJointImageConstraintAction.ID);
+	getActionAndAppendToMenu(menu, CreateMultiplicityConstraintAction.ID);
 }
 
 private void getActionAndAppendToMenu(IMenuManager menu, String actionID) {

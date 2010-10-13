@@ -54,8 +54,8 @@ private static PaletteContainer createShapesDrawer() {
 //	componentsDrawer.add(component);
 
 	CombinedTemplateCreationEntry component = new CombinedTemplateCreationEntry(
-			"Rectangle",
-			"Create a rectangular shape", 
+			"Node",
+			"Create a new node", 
 			RectangularShape.class,
 			new SimpleFactory(RectangularShape.class), 
 			ImageDescriptor.createFromFile(DPFPlugin.class, "icons/rectangle16.gif"), 

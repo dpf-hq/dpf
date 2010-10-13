@@ -62,13 +62,13 @@ public class ConstraintElement extends ModelElement implements Constraint, IDObj
 	private static final long serialVersionUID = 1;
 
 	/** True, if the connection is attached to its endpoints. */
-	private boolean isConnected;
+	protected boolean isConnected;
 	/** Line drawing style for this constraint. */
-	private int lineStyle = Graphics.LINE_SOLID;
+	protected int lineStyle = Graphics.LINE_SOLID;
 	/** Constraint's source endpoint. */
-	private Connection source;
+	protected Connection source;
 	/** Constraint target endpoint. */
-	private Connection target;
+	protected Connection target;
 
 	static {
 		descriptors[0] = new ComboBoxPropertyDescriptor(LINESTYLE_PROP,
@@ -85,7 +85,8 @@ public class ConstraintElement extends ModelElement implements Constraint, IDObj
 	
 	public enum ConstraintType {
 		JointlyInjective,
-		JointImage
+		JointImage,
+		Multiplicity
 	}
 	
 	private ConstraintType constraintType;

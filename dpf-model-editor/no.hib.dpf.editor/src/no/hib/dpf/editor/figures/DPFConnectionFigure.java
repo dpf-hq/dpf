@@ -8,5 +8,5 @@ import org.eclipse.draw2d.PolylineConnection;
  *
  */
 public class DPFConnectionFigure extends PolylineConnection {
-
+	
 }

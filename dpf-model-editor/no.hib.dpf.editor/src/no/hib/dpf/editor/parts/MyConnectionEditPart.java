@@ -11,15 +11,21 @@
 package no.hib.dpf.editor.parts;
 
 import java.beans.PropertyChangeEvent;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import no.hib.dpf.editor.figures.DPFConnectionFigure;
 import no.hib.dpf.editor.model.Connection;
+import no.hib.dpf.editor.model.SingleLineConstraintElement;
 import no.hib.dpf.editor.model.commands.ConnectionDeleteCommand;
 
+import org.eclipse.draw2d.ConnectionLocator;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.PolygonDecoration;
+import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.ConnectionEditPolicy;
@@ -34,8 +40,11 @@ import org.eclipse.gef.requests.GroupRequest;
  * </p>
  * @author Elias Volanakis
  */
-class MyConnectionEditPart extends ModelElementConnectionEditPart { // implements NodeEditPart {
+class MyConnectionEditPart extends ModelElementConnectionEditPart {
 
+	private DPFConnectionFigure connection; 
+	Label connectionLabel;
+	private List<SingleLineConstraintElement> singleConstraints = new ArrayList<SingleLineConstraintElement>();
 
 /* (non-Javadoc)
  * @see org.eclipse.gef.editparts.AbstractEditPart#createEditPolicies()
@@ -50,19 +59,37 @@ protected void createEditPolicies() {
 		protected Command getDeleteCommand(GroupRequest request) {
 			return new ConnectionDeleteCommand(getCastedModel());
 		}
-	});
+	});	
 }
 
 /* (non-Javadoc)
  * @see org.eclipse.gef.editparts.AbstractGraphicalEditPart#createFigure()
  */
 protected IFigure createFigure() {
-	DPFConnectionFigure connection = new DPFConnectionFigure();
-	connection.setTargetDecoration(new PolygonDecoration()); // arrow at target endpoint
+	connection = new DPFConnectionFigure();	
+	makeNewConstraintLabel();
+	
+	PolygonDecoration arrowHead = new PolygonDecoration();
+	arrowHead.setScale(16, 6);
+	connection.setTargetDecoration(arrowHead); // arrow at target endpoint
 	connection.setLineStyle(getCastedModel().getLineStyle());  // line drawing style
 	return connection;
 }
 
+private void makeNewConstraintLabel() {
+	if (connection == null) return;
+
+	if (singleConstraints.size() > 0) {
+		if (connectionLabel != null) {
+			connection.remove(connectionLabel);
+		}
+		
+		connectionLabel = new Label();
+		connectionLabel.setText(singleConstraints.get(0).toString());
+		connection.add( connectionLabel );
+		connection.getLayoutManager().setConstraint( connectionLabel, new EndpointLocator(connection) );
+	}
+}
 
 /* (non-Javadoc)
  * @see java.beans.PropertyChangeListener#propertyChange(java.beans.PropertyChangeEvent)
@@ -75,8 +102,18 @@ public void propertyChange(PropertyChangeEvent event) {
 		refreshSourceConnections();
 	} else if (Connection.TARGET_CONSTRAINTS_PROP.equals(property)) {
 		refreshTargetConnections();
+	} else if (Connection.SINGLE_CONSTRAINTS_PROP.equals(property)) {
+		refreshSingleLineConstraints();
 	}
 	
+}
+
+private void refreshSingleLineConstraints() {
+	singleConstraints.clear();
+	for (SingleLineConstraintElement singleLineConstraintElement : getCastedModel().getSingleConstraints()) {
+		singleConstraints.add(singleLineConstraintElement);
+	}
+	makeNewConstraintLabel();
 }
 
 /**
@@ -159,5 +196,51 @@ private Connection getCastedModel() {
 //}
 
 
+
+	public class EndpointLocator extends ConnectionLocator {
+
+		public EndpointLocator(org.eclipse.draw2d.Connection c) {
+			super(c);
+		}
+
+		protected Point getReferencePoint() {
+			org.eclipse.draw2d.Connection conn = getConnection();
+//			Point p = Point.SINGLETON;
+//			Point p1 = conn.getPoints().getPoint(0);
+//			Point p2 = conn.getPoints().getPoint(1);
+//			conn.translateToAbsolute(p1);
+//			conn.translateToAbsolute(p2);
+//			p.x = (p2.x - p1.x) / 2 + p1.x;
+//			p.y = (p2.y - p1.y) / 2 + p1.y;
+//			return p;
+			return calculateConnectionPointFromTarget(conn.getPoints());
+		}
+
+		private int maxDistanceToConnectionPoint = 50; 
+		
+		private Point calculateConnectionPointFromTarget(PointList points) {
+			if (points.size() < 2) return points.getLastPoint();
+			
+			double distanceBetweenLastPoints = points.getLastPoint().getDistance(points.getPoint(points.size() - 2));
+			if (distanceBetweenLastPoints < 0.01) {
+				return points.getLastPoint();
+			}
+			double distanceToConnectionPoint = distanceBetweenLastPoints/2;
+			if (distanceToConnectionPoint > maxDistanceToConnectionPoint) {
+				distanceToConnectionPoint = maxDistanceToConnectionPoint;
+			}
+			
+			
+			int deltaX = points.getPoint(points.size() - 2).x - points.getPoint(points.size() - 1).x;
+			int deltaY = points.getPoint(points.size() - 2).y - points.getPoint(points.size() - 1).y;
+			
+			double factor = distanceToConnectionPoint/distanceBetweenLastPoints;
+			deltaX = (int)(deltaX * factor);
+			deltaY = (int)(deltaY * factor);
+			
+			return new Point(points.getLastPoint().x + deltaX, points.getLastPoint().y + deltaY - 10);
+		}		
+		
+	}
 
 }

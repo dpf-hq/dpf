@@ -58,15 +58,20 @@ public class Connection extends ModelElement implements Edge, IDObjectContainer 
 			Graphics.LINE_DASH);
 	/** Property ID to use when the line style of this connection is modified. */
 	public static final String LINESTYLE_PROP = "LineStyle";
-	private static final IPropertyDescriptor[] descriptors = new IPropertyDescriptor[1];
+	private static final IPropertyDescriptor[] descriptors = new IPropertyDescriptor[3];
 	private static final String SOLID_STR = "Solid";
 	private static final String DASHED_STR = "Dashed";
 	private static final long serialVersionUID = 1;
+
+	private static final String CONSTRAINT_1_PROP = "Connection.constraint1";
+	private static final String CONSTRAINT_2_PROP = "Connection.constraint2";
 
 	/** Property ID to use when the list of outgoing constraints is modified. */
 	public static final String SOURCE_CONSTRAINTS_PROP = "Connection.SourceConstraint";
 	/** Property ID to use when the list of incoming constraints is modified. */
 	public static final String TARGET_CONSTRAINTS_PROP = "Connection.TargetConstaint";
+	/** Property ID to use when the list of single constraints is modified. */
+	public static final String SINGLE_CONSTRAINTS_PROP = "Connection.SingleConstaint";
 	
 	/** True, if the connection is attached to its endpoints. */
 	private boolean isConnected;
@@ -81,10 +86,16 @@ public class Connection extends ModelElement implements Edge, IDObjectContainer 
 	private List<ConstraintElement> sourceConstraints = new ArrayList<ConstraintElement>();
 	/** List of incoming Connections. */
 	private List<ConstraintElement> targetConnstraints = new ArrayList<ConstraintElement>();
+	/** List of single Constraints */
+	private List<SingleLineConstraintElement> singleConstraints = new ArrayList<SingleLineConstraintElement>();
 	
 	static {
 		descriptors[0] = new ComboBoxPropertyDescriptor(LINESTYLE_PROP,
 				LINESTYLE_PROP, new String[] { SOLID_STR, DASHED_STR });
+		
+		descriptors[1] = new NegativeIntegerTextPropertyDescriptor(CONSTRAINT_1_PROP, "Constraints (1)");
+		descriptors[2] = new NegativeIntegerTextPropertyDescriptor(CONSTRAINT_2_PROP, "Constraints (2)");
+		
 	}
 
 	private transient Edge edgeComponent;
@@ -165,6 +176,16 @@ public class Connection extends ModelElement implements Edge, IDObjectContainer 
 			// Solid is the first value in the combo dropdown
 			return new Integer(0);
 		}
+		if (id.equals(CONSTRAINT_1_PROP)) {
+			if (singleConstraints.size() > 0) {
+				return Integer.toString(singleConstraints.get(0).getVal_1());
+			}
+		}
+		if (id.equals(CONSTRAINT_2_PROP)) {
+			if (singleConstraints.size() > 0) {
+				return Integer.toString(singleConstraints.get(0).getVal_2());
+			}
+		}
 		return super.getPropertyValue(id);
 	}
 
@@ -239,6 +260,19 @@ public class Connection extends ModelElement implements Edge, IDObjectContainer 
 		firePropertyChange(LINESTYLE_PROP, null, new Integer(this.lineStyle));
 	}
 
+	private void setConstraintValue1(int value) {
+		if (singleConstraints.size() > 0) {
+			singleConstraints.get(0).setVal_1(value);
+			firePropertyChange(SINGLE_CONSTRAINTS_PROP, null, 0);		
+		}
+	}
+
+	private void setConstraintValue2(int value) {
+		if (singleConstraints.size() > 0) {
+			singleConstraints.get(0).setVal_2(value);
+			firePropertyChange(SINGLE_CONSTRAINTS_PROP, null, 0);		
+		}
+	}
 	
 	/**
 	 * Sets the lineStyle based on the String provided by the PropertySheet
@@ -247,11 +281,16 @@ public class Connection extends ModelElement implements Edge, IDObjectContainer 
 	 *      java.lang.Object)
 	 */
 	public void setPropertyValue(Object id, Object value) {
-		if (id.equals(LINESTYLE_PROP))
+		if (id.equals(LINESTYLE_PROP)) {
 			setLineStyle(new Integer(1).equals(value) ? Graphics.LINE_DASH
 					: Graphics.LINE_SOLID);
-		else
+		} else if (id.equals(CONSTRAINT_1_PROP)) {
+			setConstraintValue1(Integer.parseInt((String) value));
+		} else if (id.equals(CONSTRAINT_2_PROP)) {
+			setConstraintValue2(Integer.parseInt((String) value));
+		} else {
 			super.setPropertyValue(id, value);
+		}
 	}
 
 	public List<ConstraintElement> getSourceConstraints() {
@@ -270,6 +309,11 @@ public class Connection extends ModelElement implements Edge, IDObjectContainer 
 	protected void addOutgoingConstraint(ConstraintElement constraint) {
 		sourceConstraints.add(constraint);
 		firePropertyChange(SOURCE_CONSTRAINTS_PROP, null, constraint);
+	}
+	
+	protected void addSingleConstraint(SingleLineConstraintElement constraint) {
+		singleConstraints.add(constraint);
+		firePropertyChange(SINGLE_CONSTRAINTS_PROP, null, constraint);
 	}
 	
 	public void addConstraint(ConstraintElement constraint) {
@@ -293,6 +337,11 @@ public class Connection extends ModelElement implements Edge, IDObjectContainer 
 		firePropertyChange(SOURCE_CONSTRAINTS_PROP, null, constraint);
 	}
 	
+	protected void removeSingleConstraint(SingleLineConstraintElement constraint) {
+		singleConstraints.remove(constraint);
+		firePropertyChange(SINGLE_CONSTRAINTS_PROP, null, constraint);
+	}
+	
 	void removeConstraint(ConstraintElement constraint) {
 		if (constraint == null) {
 			throw new IllegalArgumentException();
@@ -303,6 +352,10 @@ public class Connection extends ModelElement implements Edge, IDObjectContainer 
 			removeIncomingConstraint(constraint);
 		}
 	}
+	
+	public List<SingleLineConstraintElement> getSingleConstraints() {
+		return singleConstraints;
+	}	
 	
 	// -----------------------------------------------------------------------------------
 	// Edge methods:
@@ -451,7 +504,7 @@ public class Connection extends ModelElement implements Edge, IDObjectContainer 
 
 	@Override
 	public void setId(String value) {
+		edgeComponent.setId(value);
 	}
-
 
 }

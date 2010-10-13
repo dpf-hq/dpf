@@ -56,7 +56,8 @@ private EditPart getPartForElement(Object modelElement) {
 		// Edit part according to the type of constraint element:
 		switch (((ConstraintElement)modelElement).getConstraintType()) {
 			case JointImage : return new JImgConstraintEditPart();
-			case JointlyInjective : return new JInjConstraintEditPart(); 
+			case JointlyInjective : return new JInjConstraintEditPart();
+			case Multiplicity : return new MultiplicityConstraintEditPart();
 		}
 		throw new RuntimeException("The specified constraint type doesn't have an edit part association.");
 	}
