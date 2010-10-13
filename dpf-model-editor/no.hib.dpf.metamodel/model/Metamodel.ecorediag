@@ -42,7 +42,7 @@
     </children>
     <styles xmi:type="notation:ShapeStyle" xmi:id="_xW8qscbtEd-hyfC6EAXkWQ" fontColor="4210752" fontName="Lucida Grande" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
     <element xmi:type="ecore:EClass" href="Metamodel.ecore#//hib/dpf/metamodel/Graph"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_xW8qssbtEd-hyfC6EAXkWQ" x="333" y="270"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_xW8qssbtEd-hyfC6EAXkWQ" x="324" y="243"/>
   </children>
   <children xmi:type="notation:Node" xmi:id="_xXCKQMbtEd-hyfC6EAXkWQ" type="1001">
     <children xmi:type="notation:Node" xmi:id="_xXCxUMbtEd-hyfC6EAXkWQ" type="4001"/>
@@ -66,7 +66,7 @@
     </children>
     <styles xmi:type="notation:ShapeStyle" xmi:id="_xXCKQcbtEd-hyfC6EAXkWQ" fontColor="4210752" fontName="Lucida Grande" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
     <element xmi:type="ecore:EClass" href="Metamodel.ecore#//hib/dpf/metamodel/Node"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_xXCKQsbtEd-hyfC6EAXkWQ" x="747" y="90"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_xXCKQsbtEd-hyfC6EAXkWQ" x="639" y="117"/>
   </children>
   <children xmi:type="notation:Node" xmi:id="_xXD_cMbtEd-hyfC6EAXkWQ" type="1001">
     <children xmi:type="notation:Node" xmi:id="_xXD_c8btEd-hyfC6EAXkWQ" type="4001"/>
@@ -86,7 +86,7 @@
     </children>
     <styles xmi:type="notation:ShapeStyle" xmi:id="_xXD_ccbtEd-hyfC6EAXkWQ" fontColor="4210752" fontName="Lucida Grande" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
     <element xmi:type="ecore:EClass" href="Metamodel.ecore#//hib/dpf/metamodel/Edge"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_xXD_csbtEd-hyfC6EAXkWQ" x="801" y="234"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_xXD_csbtEd-hyfC6EAXkWQ" x="720" y="234"/>
   </children>
   <children xmi:type="notation:Node" xmi:id="_xXFNkMbtEd-hyfC6EAXkWQ" type="1001">
     <children xmi:type="notation:Node" xmi:id="_xXFNk8btEd-hyfC6EAXkWQ" type="4001"/>
@@ -118,7 +118,7 @@
     </children>
     <styles xmi:type="notation:ShapeStyle" xmi:id="_xXF0pcbtEd-hyfC6EAXkWQ" fontColor="4210752" fontName="Lucida Grande" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
     <element xmi:type="ecore:EClass" href="Metamodel.ecore#//hib/dpf/metamodel/Predicate"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_xXF0psbtEd-hyfC6EAXkWQ" x="63" y="378"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_xXF0psbtEd-hyfC6EAXkWQ" x="18" y="405"/>
   </children>
   <children xmi:type="notation:Node" xmi:id="_xXGbucbtEd-hyfC6EAXkWQ" type="1001">
     <children xmi:type="notation:Node" xmi:id="_xXHCwMbtEd-hyfC6EAXkWQ" type="4001"/>
@@ -166,7 +166,7 @@
     </children>
     <styles xmi:type="notation:ShapeStyle" xmi:id="_xXIQ6cbtEd-hyfC6EAXkWQ" fontColor="4210752" fontName="Lucida Grande" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
     <element xmi:type="ecore:EClass" href="Metamodel.ecore#//hib/dpf/metamodel/NodeToNodeMap"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_xXIQ6sbtEd-hyfC6EAXkWQ" x="954" y="234"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_xXIQ6sbtEd-hyfC6EAXkWQ" x="891" y="243"/>
   </children>
   <children xmi:type="notation:Node" xmi:id="_xXJfAMbtEd-hyfC6EAXkWQ" type="1001">
     <children xmi:type="notation:Node" xmi:id="_xXJfA8btEd-hyfC6EAXkWQ" type="4001"/>
@@ -182,7 +182,7 @@
     </children>
     <styles xmi:type="notation:ShapeStyle" xmi:id="_xXJfAcbtEd-hyfC6EAXkWQ" fontColor="4210752" fontName="Lucida Grande" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
     <element xmi:type="ecore:EClass" href="Metamodel.ecore#//hib/dpf/metamodel/Constraint"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_xXJfAsbtEd-hyfC6EAXkWQ" x="234" y="513"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_xXJfAsbtEd-hyfC6EAXkWQ" x="405" y="540"/>
   </children>
   <children xmi:type="notation:Node" xmi:id="_xXKGFMbtEd-hyfC6EAXkWQ" type="1001">
     <children xmi:type="notation:Node" xmi:id="_xXKtIMbtEd-hyfC6EAXkWQ" type="4001"/>

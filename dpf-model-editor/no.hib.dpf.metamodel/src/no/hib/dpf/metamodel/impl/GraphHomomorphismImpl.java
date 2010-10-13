@@ -269,8 +269,8 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	private Map<String, Node> createNewNodes(EList<?> nodes, Graph retval) {
 		Map<String, Node> newNodes = new HashMap<String, Node>();
 		for (Object node : nodes) {
-			Node newNode = retval.createNode(((Node)node).getName());
-			newNodes.put(((Node)node).getName(), newNode);
+			Node newNode = retval.createNode(((Node)node).getId());
+			newNodes.put(((Node)node).getId(), newNode);
 			backwardsNodeMap.put(newNode, (Node)node);
 		}
 		return newNodes;
@@ -284,7 +284,7 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 		for (Object edge : edges) {
 			Node sourceNode = getNodeFromMap(newNodes, ((Edge)edge).getSource());
 			Node targetNode = getNodeFromMap(newNodes, ((Edge)edge).getTarget());
-			Edge newEdge = retval.createEdge(((Edge)edge).getName(), sourceNode, targetNode);
+			Edge newEdge = retval.createEdge(((Edge)edge).getId(), sourceNode, targetNode);
 			backwardsEdgeMap.put(newEdge, (Edge)edge);
 		}
 	}
@@ -293,8 +293,8 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	 * @generated NOT
 	 */
 	private Node getNodeFromMap(Map<String, Node> nodes, Node graphNode) {
-		if ((graphNode != null) && (nodes.containsKey(graphNode.getName()))) {
-			return nodes.get(graphNode.getName());
+		if ((graphNode != null) && (nodes.containsKey(graphNode.getId()))) {
+			return nodes.get(graphNode.getId());
 		}
 		return null;
 	}
