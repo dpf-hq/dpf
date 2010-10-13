@@ -53,7 +53,12 @@ private EditPart getPartForElement(Object modelElement) {
 		return new MyConnectionEditPart();
 	}
 	if (modelElement instanceof ConstraintElement) {
-		return new ConstraintEditPart();
+		// Edit part according to the type of constraint element:
+		switch (((ConstraintElement)modelElement).getConstraintType()) {
+			case JointImage : return new JImgConstraintEditPart();
+			case JointlyInjective : return new JInjConstraintEditPart(); 
+		}
+		throw new RuntimeException("The specified constraint type doesn't have an edit part association.");
 	}
 	throw new RuntimeException(
 			"Can't create part for model element: "

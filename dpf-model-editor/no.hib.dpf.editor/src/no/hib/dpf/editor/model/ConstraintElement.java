@@ -83,6 +83,13 @@ public class ConstraintElement extends ModelElement implements Constraint, IDObj
 		return edgeID;
 	}	
 	
+	public enum ConstraintType {
+		JointlyInjective,
+		JointImage
+	}
+	
+	private ConstraintType constraintType;
+	
 	/**
 	 * Create a (solid) connection between two distinct shapes.
 	 * 
@@ -94,11 +101,12 @@ public class ConstraintElement extends ModelElement implements Constraint, IDObj
 	 *             if any of the parameters are null or source == target
 	 * @see #setLineStyle(int)
 	 */
-	public ConstraintElement(Connection source, Connection target) {
+	public ConstraintElement(Connection source, Connection target, ConstraintType constraintType) {
+		this.setConstraintType(constraintType);
 		// The dpf Edge object must be initialized before the connection of the shapes.
 		// TODO: make Constraint an IDObject.
 //		setIDObject(MetamodelFactory.eINSTANCE.createConstraint());
-		reconnect(source, target);
+		reconnect(source, target);		
 	}
 
 	@Override
@@ -238,7 +246,14 @@ public class ConstraintElement extends ModelElement implements Constraint, IDObj
 		else
 			super.setPropertyValue(id, value);
 	}
-	
+
+	public void setConstraintType(ConstraintType constraintType) {
+		this.constraintType = constraintType;
+	}
+
+	public ConstraintType getConstraintType() {
+		return constraintType;
+	}
 
 	// -----------------------------------------------------------------------------------
 	// Constraint methods:
@@ -379,6 +394,5 @@ public class ConstraintElement extends ModelElement implements Constraint, IDObj
 	public void setId(String value) {
 		constraintComponent.setId(value);
 	}
-
 
 }

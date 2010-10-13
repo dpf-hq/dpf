@@ -21,6 +21,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.EventObject;
 import java.util.Map;
 
+import no.hib.dpf.editor.editoractions.CreateJointImageConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointlyInjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.SrcSelectAction;
 import no.hib.dpf.editor.model.DPFDiagram;
@@ -113,6 +114,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 								// actions!
 		registerAction(new SrcSelectAction(this));
 		registerAction(new CreateJointlyInjectiveConstraintAction(this, diagram));
+		registerAction(new CreateJointImageConstraintAction(this, diagram));
 	}
 
 	@SuppressWarnings("unchecked")

@@ -5,7 +5,7 @@ import java.util.List;
 import no.hib.dpf.editor.model.Connection;
 import no.hib.dpf.editor.model.ConstraintElement;
 import no.hib.dpf.editor.model.DPFDiagram;
-import no.hib.dpf.editor.model.commands.JInjConstraintCreateCommand;
+import no.hib.dpf.editor.model.commands.JImgConstraintCreateCommand;
 import no.hib.dpf.editor.parts.ShapeEditPart;
 import no.hib.dpf.metamodel.MetamodelFactory;
 import no.hib.dpf.metamodel.Predicate;
@@ -14,15 +14,16 @@ import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.ui.IWorkbenchPart;
 
-public class CreateJointlyInjectiveConstraintAction extends SelectionActionForEditParts {
-		
+public class CreateJointImageConstraintAction extends SelectionActionForEditParts {
+	
+	
 	// an identifier for the action
-	public static final String ID="no.hib.dpf.editor.editoractions.CreateJointlyInjectiveConstraintAction";	
+	public static final String ID="no.hib.dpf.editor.editoractions.CreateJointImageConstraintAction";	
 
-	public CreateJointlyInjectiveConstraintAction(IWorkbenchPart part, DPFDiagram diagram) {
+	public CreateJointImageConstraintAction(IWorkbenchPart part, DPFDiagram diagram) {
 		super(part, ID, diagram);
-		setText("Create new Jointly Injective Constraint"); // sets text displayed in the menu
-		setToolTipText("Creates a new Jointly Injective Constraint");
+		setText("Create new Joint Image Constraint"); // sets text displayed in the menu
+		setToolTipText("Creates a new Joint Image Constraint");
 	}
 
 	@Override
@@ -30,7 +31,7 @@ public class CreateJointlyInjectiveConstraintAction extends SelectionActionForEd
 		// we only want enabled if one node w/two outgoing edges are selected.
 		// TODO: Make this configurable
 		
-		Predicate testPredicate = MetamodelFactory.eINSTANCE.createPredicate("n_1", "e_1:n_1:null,e_2:n_1:null");
+		Predicate testPredicate = MetamodelFactory.eINSTANCE.createPredicate("n_1", "e_1:null:n_1,e_2:null:n_1");
 						
 		no.hib.dpf.metamodel.Constraint constraint =
 			testPredicate.createConstraint(getSelectionNodes(), getSelectionEdges(), graph);
@@ -55,7 +56,7 @@ public class CreateJointlyInjectiveConstraintAction extends SelectionActionForEd
 		viewer.flush();
 		
 // TODO: make ConstraintElement dependant on a "Real" constraint...
-		JInjConstraintCreateCommand constraintCreateCommand = new JInjConstraintCreateCommand((Connection)connectionEditParts.get(0).getModel(), (Connection)connectionEditParts.get(1).getModel(), ConstraintElement.SOLID_CONNECTION);
+		JImgConstraintCreateCommand constraintCreateCommand = new JImgConstraintCreateCommand((Connection)connectionEditParts.get(0).getModel(), (Connection)connectionEditParts.get(1).getModel(), ConstraintElement.SOLID_CONNECTION);
 		
 		execute(constraintCreateCommand);
 	}

@@ -9,13 +9,13 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
 
-public class DPFConstraintFigure extends PolylineConnection {
+public class JImgConstraintFigure extends PolylineConnection {
 
 	Rectangle firstPointBounds;
 	Rectangle lastPointBounds;
 	BasicRectangleFigure basicRectangleFigure;
 	
-	public DPFConstraintFigure(BasicRectangleFigure basicRectangleFigure) {
+	public JImgConstraintFigure(BasicRectangleFigure basicRectangleFigure) {
 		this.basicRectangleFigure = basicRectangleFigure;
 	}
 	
@@ -69,7 +69,7 @@ public class DPFConstraintFigure extends PolylineConnection {
 		Bezier bezier = new Bezier(points.getFirstPoint(), points.getLastPoint(), controlpoints[0], controlpoints[0]);
 		bezier.outlineShape(g);
 		
-		g.drawText("[label]", controlpoints[1].translate(-17, 0));
+		g.drawText("[Joint Image]", controlpoints[1].translate(-17, 0));
 		
 		drawAnchorBlob(g, buildPointBox(points.getFirstPoint()));
 		drawAnchorBlob(g, buildPointBox(points.getLastPoint()));

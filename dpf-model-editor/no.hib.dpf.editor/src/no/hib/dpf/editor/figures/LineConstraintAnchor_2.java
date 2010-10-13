@@ -23,16 +23,19 @@ public class LineConstraintAnchor_2 implements ConnectionAnchor {
 	private BasicRectangleFigure sourceNodeFigure;
 	
 	private Point location;
+	private boolean useTargetEnd;
 
 	/**
 	 * Constructs an XYAnchor at the Point p.
 	 * 
 	 * @param p
 	 *            the point where this anchor will be located
+	 *           
 	 * @since 2.0
 	 */
-	public LineConstraintAnchor_2(Point p) {
+	public LineConstraintAnchor_2(Point p, boolean useTargetEnd) {
 		location = new Point(p);
+		this.useTargetEnd = useTargetEnd;
 	}
 
 	/**
@@ -113,7 +116,11 @@ public class LineConstraintAnchor_2 implements ConnectionAnchor {
 
 	private Point getLinePoint() {
 		if (this.connectionFigure != null) {
-			return calculateConnectionPoint(connectionFigure.getPoints());
+			if (useTargetEnd == false) {
+				return calculateConnectionPointFromSource(connectionFigure.getPoints());
+			} else {				
+				return calculateConnectionPointFromTarget(connectionFigure.getPoints());
+			}
 		}
 		return new Point(new Random().nextInt(500), new Random().nextInt(500));
 	}
@@ -130,7 +137,7 @@ public class LineConstraintAnchor_2 implements ConnectionAnchor {
 	// TODO: calculate this based on the connected node's properties.
 	private int maxDistanceToConnectionPoint = 75; 
 	
-	private Point calculateConnectionPoint(PointList points) {
+	private Point calculateConnectionPointFromSource(PointList points) {
 		if (points.size() < 2) return points.getFirstPoint();
 		
 		double distanceBetweenFirstPoints = points.getFirstPoint().getDistance(points.getPoint(1));
@@ -151,6 +158,29 @@ public class LineConstraintAnchor_2 implements ConnectionAnchor {
 		deltaY = (int)(deltaY * factor);
 		
 		return new Point(points.getFirstPoint().x + deltaX, points.getFirstPoint().y + deltaY);
+	}
+
+	private Point calculateConnectionPointFromTarget(PointList points) {
+		if (points.size() < 2) return points.getLastPoint();
+		
+		double distanceBetweenLastPoints = points.getLastPoint().getDistance(points.getPoint(points.size() - 2));
+		if (distanceBetweenLastPoints < 0.01) {
+			return points.getLastPoint();
+		}
+		double distanceToConnectionPoint = distanceBetweenLastPoints/2;
+		if (distanceToConnectionPoint > maxDistanceToConnectionPoint) {
+			distanceToConnectionPoint = maxDistanceToConnectionPoint;
+		}
+		
+		
+		int deltaX = points.getPoint(points.size() - 2).x - points.getPoint(points.size() - 1).x;
+		int deltaY = points.getPoint(points.size() - 2).y - points.getPoint(points.size() - 1).y;
+		
+		double factor = distanceToConnectionPoint/distanceBetweenLastPoints;
+		deltaX = (int)(deltaX * factor);
+		deltaY = (int)(deltaY * factor);
+		
+		return new Point(points.getLastPoint().x + deltaX, points.getLastPoint().y + deltaY);
 	}
 
 	public void setSourceNodeFigure(BasicRectangleFigure sourceFigure) {

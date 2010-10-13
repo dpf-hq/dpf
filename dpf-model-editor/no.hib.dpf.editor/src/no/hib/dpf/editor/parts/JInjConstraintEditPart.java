@@ -13,7 +13,7 @@ package no.hib.dpf.editor.parts;
 import java.beans.PropertyChangeEvent;
 
 import no.hib.dpf.editor.figures.BasicRectangleFigure;
-import no.hib.dpf.editor.figures.DPFConstraintFigure;
+import no.hib.dpf.editor.figures.JInjConstraintFigure;
 import no.hib.dpf.editor.figures.LineConstraintAnchor_2;
 import no.hib.dpf.editor.model.ConstraintElement;
 
@@ -29,7 +29,7 @@ import org.eclipse.gef.editpolicies.ConnectionEndpointEditPolicy;
 /**
  * Edit part for Constraint model elements.
  */
-class ConstraintEditPart extends ModelElementConnectionEditPart {
+class JInjConstraintEditPart extends ModelElementConnectionEditPart {
 
 
 /* (non-Javadoc)
@@ -69,7 +69,7 @@ protected IFigure createFigure() {
 		}
 	}
 	
-	DPFConstraintFigure connection = new DPFConstraintFigure(basicRectangleFigure);
+	JInjConstraintFigure connection = new JInjConstraintFigure(basicRectangleFigure);
 	connection.setLineStyle(getCastedModel().getLineStyle());  // line drawing style
 	return connection;
 }
@@ -114,7 +114,7 @@ protected void refreshSourceAnchor() {
  */
 @Override
 protected ConnectionAnchor getSourceConnectionAnchor() {
-	LineConstraintAnchor_2 retval = new LineConstraintAnchor_2(new Point(100, 100));
+	LineConstraintAnchor_2 retval = new LineConstraintAnchor_2(new Point(100, 100), false);
 
 	if (getSource() != null) {
 		if (getSource() instanceof MyConnectionEditPart) {
@@ -149,7 +149,7 @@ protected ConnectionAnchor getSourceConnectionAnchor() {
  * @return ConnectionAnchor for the target end of the Connection
  */
 protected ConnectionAnchor getTargetConnectionAnchor() {
-	LineConstraintAnchor_2 retval = new LineConstraintAnchor_2(new Point(100, 100));
+	LineConstraintAnchor_2 retval = new LineConstraintAnchor_2(new Point(100, 100), false);
 
 	if (getTarget() != null) {
 		if (getTarget() instanceof MyConnectionEditPart) {
