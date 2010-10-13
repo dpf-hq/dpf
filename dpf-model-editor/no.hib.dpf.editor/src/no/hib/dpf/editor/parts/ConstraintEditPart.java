@@ -15,7 +15,7 @@ import java.beans.PropertyChangeEvent;
 import no.hib.dpf.editor.figures.BasicRectangleFigure;
 import no.hib.dpf.editor.figures.DPFConstraintFigure;
 import no.hib.dpf.editor.figures.LineConstraintAnchor_2;
-import no.hib.dpf.editor.model.Constraint;
+import no.hib.dpf.editor.model.ConstraintElement;
 
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
@@ -80,14 +80,14 @@ protected IFigure createFigure() {
  */
 public void propertyChange(PropertyChangeEvent event) {
 	String property = event.getPropertyName();
-	if (Constraint.LINESTYLE_PROP.equals(property)) {
+	if (ConstraintElement.LINESTYLE_PROP.equals(property)) {
 		((PolylineConnection) getFigure()).setLineStyle(getCastedModel().getLineStyle());
 	}
 
 }
 
-private Constraint getCastedModel() {
-	return (Constraint) getModel();
+private ConstraintElement getCastedModel() {
+	return (ConstraintElement) getModel();
 }
 
 /**

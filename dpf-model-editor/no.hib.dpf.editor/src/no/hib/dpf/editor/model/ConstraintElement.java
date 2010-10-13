@@ -12,6 +12,7 @@ package no.hib.dpf.editor.model;
 
 import java.lang.reflect.InvocationTargetException;
 
+import no.hib.dpf.metamodel.Constraint;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.GraphHomomorphism;
 import no.hib.dpf.metamodel.IDObject;
@@ -36,7 +37,7 @@ import org.eclipse.ui.views.properties.IPropertyDescriptor;
  * 
  * @author Elias Volanakis
  */
-public class Constraint extends ModelElement implements no.hib.dpf.metamodel.Constraint, IDObjectContainer {
+public class ConstraintElement extends ModelElement implements Constraint, IDObjectContainer {
 	/**
 	 * Used for indicating that a Connection with solid line style should be
 	 * created.
@@ -74,7 +75,7 @@ public class Constraint extends ModelElement implements no.hib.dpf.metamodel.Con
 				LINESTYLE_PROP, new String[] { SOLID_STR, DASHED_STR });
 	}
 
-	private transient Constraint constraintComponent;
+	private transient ConstraintElement constraintComponent;
 	private String edgeID;
 
 	@Override
@@ -93,7 +94,7 @@ public class Constraint extends ModelElement implements no.hib.dpf.metamodel.Con
 	 *             if any of the parameters are null or source == target
 	 * @see #setLineStyle(int)
 	 */
-	public Constraint(Connection source, Connection target) {
+	public ConstraintElement(Connection source, Connection target) {
 		// The dpf Edge object must be initialized before the connection of the shapes.
 		// TODO: make Constraint an IDObject.
 //		setIDObject(MetamodelFactory.eINSTANCE.createConstraint());
@@ -102,7 +103,7 @@ public class Constraint extends ModelElement implements no.hib.dpf.metamodel.Con
 
 	@Override
 	public void setIDObject(IDObject idObject) {
-		if (idObject instanceof Constraint) {
+		if (idObject instanceof ConstraintElement) {
 //			edgeComponent = (Constraint)idObject;
 //			edgeID = edgeComponent.getId();		
 		}

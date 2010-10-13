@@ -11,7 +11,7 @@
 package no.hib.dpf.editor.parts;
 
 import no.hib.dpf.editor.model.Connection;
-import no.hib.dpf.editor.model.Constraint;
+import no.hib.dpf.editor.model.ConstraintElement;
 import no.hib.dpf.editor.model.DPFDiagram;
 import no.hib.dpf.editor.model.Shape;
 
@@ -52,7 +52,7 @@ private EditPart getPartForElement(Object modelElement) {
 	if (modelElement instanceof Connection) {
 		return new MyConnectionEditPart();
 	}
-	if (modelElement instanceof Constraint) {
+	if (modelElement instanceof ConstraintElement) {
 		return new ConstraintEditPart();
 	}
 	throw new RuntimeException(

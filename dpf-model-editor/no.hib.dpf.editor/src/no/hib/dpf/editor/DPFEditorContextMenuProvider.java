@@ -10,7 +10,7 @@
 Ê*******************************************************************************/
 package no.hib.dpf.editor;
 
-import no.hib.dpf.editor.editoractions.CreateConstraintAction;
+import no.hib.dpf.editor.editoractions.CreateJointlyInjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.SrcSelectAction;
 
 import org.eclipse.gef.ContextMenuProvider;
@@ -67,7 +67,7 @@ public void buildContextMenu(IMenuManager menu) {
 			getAction(ActionFactory.DELETE.getId()));
 	
 	getActionAndAppendToMenu(menu, SrcSelectAction.ID);
-	getActionAndAppendToMenu(menu, CreateConstraintAction.ID);
+	getActionAndAppendToMenu(menu, CreateJointlyInjectiveConstraintAction.ID);
 }
 
 private void getActionAndAppendToMenu(IMenuManager menu, String actionID) {

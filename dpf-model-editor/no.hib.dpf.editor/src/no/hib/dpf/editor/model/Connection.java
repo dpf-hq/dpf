@@ -78,9 +78,9 @@ public class Connection extends ModelElement implements Edge, IDObjectContainer 
 	private Shape target;
 
 	/** List of outgoing Connections. */
-	private List<Constraint> sourceConstraints = new ArrayList<Constraint>();
+	private List<ConstraintElement> sourceConstraints = new ArrayList<ConstraintElement>();
 	/** List of incoming Connections. */
-	private List<Constraint> targetConnstraints = new ArrayList<Constraint>();
+	private List<ConstraintElement> targetConnstraints = new ArrayList<ConstraintElement>();
 	
 	static {
 		descriptors[0] = new ComboBoxPropertyDescriptor(LINESTYLE_PROP,
@@ -254,25 +254,25 @@ public class Connection extends ModelElement implements Edge, IDObjectContainer 
 			super.setPropertyValue(id, value);
 	}
 
-	public List<Constraint> getSourceConstraints() {
-		return new ArrayList<Constraint>(sourceConstraints);
+	public List<ConstraintElement> getSourceConstraints() {
+		return new ArrayList<ConstraintElement>(sourceConstraints);
 	}
 
-	public List<Constraint> getTargetConstraints() {
-		return new ArrayList<Constraint>(targetConnstraints);
+	public List<ConstraintElement> getTargetConstraints() {
+		return new ArrayList<ConstraintElement>(targetConnstraints);
 	}
 	
-	protected void addIncomingConstraint(Constraint constraint) {
+	protected void addIncomingConstraint(ConstraintElement constraint) {
 		targetConnstraints.add(constraint);
 		firePropertyChange(TARGET_CONSTRAINTS_PROP, null, constraint);
 	}
 
-	protected void addOutgoingConstraint(Constraint constraint) {
+	protected void addOutgoingConstraint(ConstraintElement constraint) {
 		sourceConstraints.add(constraint);
 		firePropertyChange(SOURCE_CONSTRAINTS_PROP, null, constraint);
 	}
 	
-	public void addConstraint(Constraint constraint) {
+	public void addConstraint(ConstraintElement constraint) {
 		if (constraint == null || constraint.getConnectionSource() == constraint.getConnectionTarget()) {
 			throw new IllegalArgumentException();
 		}
@@ -283,17 +283,17 @@ public class Connection extends ModelElement implements Edge, IDObjectContainer 
 		}
 	}
 	
-	protected void removeIncomingConstraint(Constraint constraint) {
+	protected void removeIncomingConstraint(ConstraintElement constraint) {
 		targetConnstraints.remove(constraint);
 		firePropertyChange(TARGET_CONSTRAINTS_PROP, null, constraint);
 	}
 
-	protected void removeOutgoingConstraint(Constraint constraint) {
+	protected void removeOutgoingConstraint(ConstraintElement constraint) {
 		sourceConstraints.remove(constraint);
 		firePropertyChange(SOURCE_CONSTRAINTS_PROP, null, constraint);
 	}
 	
-	void removeConstraint(Constraint constraint) {
+	void removeConstraint(ConstraintElement constraint) {
 		if (constraint == null) {
 			throw new IllegalArgumentException();
 		}

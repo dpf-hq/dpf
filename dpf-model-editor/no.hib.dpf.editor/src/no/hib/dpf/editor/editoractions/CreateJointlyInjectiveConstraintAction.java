@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import no.hib.dpf.editor.model.Connection;
-import no.hib.dpf.editor.model.Constraint;
+import no.hib.dpf.editor.model.ConstraintElement;
 import no.hib.dpf.editor.model.DPFDiagram;
 import no.hib.dpf.editor.model.commands.ConstraintCreateCommand;
 import no.hib.dpf.editor.parts.ShapeEditPart;
@@ -21,18 +21,18 @@ import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.ui.actions.SelectionAction;
 import org.eclipse.ui.IWorkbenchPart;
 
-public class CreateConstraintAction extends SelectionAction {
+public class CreateJointlyInjectiveConstraintAction extends SelectionAction {
 	
 	private Graph graph;
 	
 	// an identifier for the action
-	public static final String ID="no.hib.dpf.editor.editoractions.CreateConstraintAction";	
+	public static final String ID="no.hib.dpf.editor.editoractions.CreateJointlyInjectiveConstraintAction";	
 
-	public CreateConstraintAction(IWorkbenchPart part, DPFDiagram diagram) {
+	public CreateJointlyInjectiveConstraintAction(IWorkbenchPart part, DPFDiagram diagram) {
 		super(part);
-		setId(ID);              // sets ID
-		setText("Create new Constraint"); // sets text displayed in the menu
-		setToolTipText("Creates a new Constraint");
+		setId(ID);              // sets ID = joint image
+		setText("Create new Jointly Injective Constraint"); // sets text displayed in the menu
+		setToolTipText("Creates a new Jointly Injective Constraint");
 		this.graph = diagram.getDpfGraph();
 	}
 
@@ -101,8 +101,8 @@ public class CreateConstraintAction extends SelectionAction {
 		// Flush this
 		viewer.flush();
 		
-
-		ConstraintCreateCommand constraintCreateCommand = new ConstraintCreateCommand((Connection)connectionEditParts.get(0).getModel(), (Connection)connectionEditParts.get(1).getModel(), Constraint.SOLID_CONNECTION);
+// TODO: make ConstraintElement dependant on a "Real" constraint...
+		ConstraintCreateCommand constraintCreateCommand = new ConstraintCreateCommand((Connection)connectionEditParts.get(0).getModel(), (Connection)connectionEditParts.get(1).getModel(), ConstraintElement.SOLID_CONNECTION);
 		
 		execute(constraintCreateCommand);
 	}

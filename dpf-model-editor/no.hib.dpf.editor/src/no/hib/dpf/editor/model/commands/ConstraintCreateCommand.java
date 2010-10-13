@@ -3,7 +3,7 @@ package no.hib.dpf.editor.model.commands;
 import java.util.Iterator;
 
 import no.hib.dpf.editor.model.Connection;
-import no.hib.dpf.editor.model.Constraint;
+import no.hib.dpf.editor.model.ConstraintElement;
 
 import org.eclipse.gef.commands.Command;
 
@@ -15,7 +15,7 @@ import org.eclipse.gef.commands.Command;
  */
 public class ConstraintCreateCommand extends Command {
 /** The connection instance. */
-private Constraint constraint;
+private ConstraintElement constraint;
 /** The desired line style for the connection (dashed or solid). */
 private final int lineStyle;
 
@@ -49,8 +49,8 @@ public boolean canExecute() {
 }
 
 private boolean doSourceToTargetAlreadyExist() {
-	for (Iterator<Constraint> iter = source.getSourceConstraints().iterator(); iter.hasNext();) {
-		Constraint constraint = iter.next();
+	for (Iterator<ConstraintElement> iter = source.getSourceConstraints().iterator(); iter.hasNext();) {
+		ConstraintElement constraint = iter.next();
 		if (constraint.getConnectionTarget().equals(target)) {
 			return true;
 		}
@@ -63,7 +63,7 @@ private boolean doSourceToTargetAlreadyExist() {
  */
 public void execute() {
 	// create a new connection between source and target
-	constraint = new Constraint(source, target);
+	constraint = new ConstraintElement(source, target);
 	// use the supplied line style
 	constraint.setLineStyle(lineStyle);
 }
