@@ -24,7 +24,6 @@ import java.util.Map;
 import no.hib.dpf.editor.editoractions.CreateJointImageConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointlyInjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateMultiplicityConstraintAction;
-import no.hib.dpf.editor.editoractions.SrcSelectAction;
 import no.hib.dpf.editor.model.DPFDiagram;
 import no.hib.dpf.editor.model.ModelElement;
 import no.hib.dpf.editor.model.ModelSerializationException;
