@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import no.hib.dpf.editor.model.DPFDiagram;
+import no.hib.dpf.editor.parts.ShapeConnectionEditPart;
 import no.hib.dpf.editor.parts.ShapeEditPart;
 import no.hib.dpf.metamodel.Edge;
 import no.hib.dpf.metamodel.Graph;
@@ -45,7 +46,7 @@ public abstract class SelectionActionForEditParts extends SelectionAction {
 	protected List<ConnectionEditPart> getSelectedConnectionEditParts() {
 		List<ConnectionEditPart> connectionEditParts = new ArrayList<ConnectionEditPart>();
 		for (int i = 0; i < getSelectedObjects().size(); i++) {
-			if (getSelectedObjects().get(i) instanceof ConnectionEditPart) {
+			if (getSelectedObjects().get(i) instanceof ShapeConnectionEditPart) {
 				connectionEditParts.add((ConnectionEditPart)getSelectedObjects().get(i));
 			}
 		}

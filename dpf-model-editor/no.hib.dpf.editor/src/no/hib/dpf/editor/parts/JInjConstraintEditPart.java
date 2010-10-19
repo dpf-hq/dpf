@@ -27,7 +27,7 @@ import org.eclipse.gef.editpolicies.ConnectionEndpointEditPolicy;
 
 
 /**
- * Edit part for Constraint model elements.
+ * Edit part for Constraint model elements. THIS WILL BE REFACTORED USING "THE OTHER ONE" AS A TEMPLATE!
  */
 class JInjConstraintEditPart extends ModelElementConnectionEditPart {
 
@@ -54,8 +54,8 @@ protected IFigure createFigure() {
 	BasicRectangleFigure basicRectangleFigure = null;
 	
 	if (getSource() != null) {	
-		if (getSource() instanceof MyConnectionEditPart) {
-			MyConnectionEditPart source = (MyConnectionEditPart)getSource();
+		if (getSource() instanceof ShapeConnectionEditPart) {
+			ShapeConnectionEditPart source = (ShapeConnectionEditPart)getSource();
 		
 			if (source.getSource() != null) {
 				if (source.getSource() instanceof ShapeEditPart) {
@@ -63,7 +63,6 @@ protected IFigure createFigure() {
 					if (shapeEditPart.getFigure() instanceof BasicRectangleFigure) {
 						basicRectangleFigure = (BasicRectangleFigure) shapeEditPart.getFigure();
 					}
-			
 				}
 			}
 		}
@@ -117,8 +116,8 @@ protected ConnectionAnchor getSourceConnectionAnchor() {
 	LineConstraintAnchor_2 retval = new LineConstraintAnchor_2(new Point(100, 100), false);
 
 	if (getSource() != null) {
-		if (getSource() instanceof MyConnectionEditPart) {
-			MyConnectionEditPart source = (MyConnectionEditPart)getSource();
+		if (getSource() instanceof ShapeConnectionEditPart) {
+			ShapeConnectionEditPart source = (ShapeConnectionEditPart)getSource();
 			retval.setConnectionFigure((PolylineConnection) source.getFigure());
 						
 			if (source.getSource() != null) {
@@ -152,8 +151,8 @@ protected ConnectionAnchor getTargetConnectionAnchor() {
 	LineConstraintAnchor_2 retval = new LineConstraintAnchor_2(new Point(100, 100), false);
 
 	if (getTarget() != null) {
-		if (getTarget() instanceof MyConnectionEditPart) {
-			MyConnectionEditPart target = (MyConnectionEditPart)getTarget();
+		if (getTarget() instanceof ShapeConnectionEditPart) {
+			ShapeConnectionEditPart target = (ShapeConnectionEditPart)getTarget();
 			retval.setConnectionFigure((PolylineConnection) target.getFigure());
 			
 			if (target.getSource() != null) {

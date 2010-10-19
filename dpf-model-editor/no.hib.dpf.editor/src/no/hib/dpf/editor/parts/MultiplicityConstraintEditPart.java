@@ -13,17 +13,10 @@ package no.hib.dpf.editor.parts;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-import no.hib.dpf.editor.figures.BasicRectangleFigure;
-import no.hib.dpf.editor.figures.JInjConstraintFigure;
-import no.hib.dpf.editor.figures.LineConstraintAnchor_2;
 import no.hib.dpf.editor.model.ConstraintElement;
 
-import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.PolylineConnection;
-import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.EditPolicy;
-import org.eclipse.gef.NodeEditPart;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.gef.editpolicies.ConnectionEndpointEditPolicy;
 

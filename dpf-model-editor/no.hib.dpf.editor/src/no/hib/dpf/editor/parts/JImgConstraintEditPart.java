@@ -16,18 +16,23 @@ import no.hib.dpf.editor.figures.BasicRectangleFigure;
 import no.hib.dpf.editor.figures.JImgConstraintFigure;
 import no.hib.dpf.editor.figures.LineConstraintAnchor_2;
 import no.hib.dpf.editor.model.ConstraintElement;
+import no.hib.dpf.editor.model.commands.ConstraintDeleteCommand;
 
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.NodeEditPart;
+import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.editpolicies.ConnectionEditPolicy;
 import org.eclipse.gef.editpolicies.ConnectionEndpointEditPolicy;
-
+import org.eclipse.gef.requests.GroupRequest;
 
 /**
  * Edit part for Constraint model elements.
+ * TODO: refactor this!
  */
 class JImgConstraintEditPart extends ModelElementConnectionEditPart {
 
@@ -39,12 +44,12 @@ protected void createEditPolicies() {
 	// Selection handle edit policy. 
 	// Makes the connection show a feedback, when selected by the user.
 	installEditPolicy(EditPolicy.CONNECTION_ENDPOINTS_ROLE, new ConnectionEndpointEditPolicy());
-//	// Allows the removal of the connection model element
-//	installEditPolicy(EditPolicy.CONNECTION_ROLE, new ConnectionEditPolicy() {
-//		protected Command getDeleteCommand(GroupRequest request) {
-//			return new ConnectionDeleteCommand(getCastedModel());
-//		}
-//	});
+	// Allows the removal of the connection model element
+	installEditPolicy(EditPolicy.CONNECTION_ROLE, new ConnectionEditPolicy() {
+		protected Command getDeleteCommand(GroupRequest request) {
+			return new ConstraintDeleteCommand(getCastedModel());
+		}
+	});
 }
 
 /* (non-Javadoc)
@@ -54,8 +59,8 @@ protected IFigure createFigure() {
 	BasicRectangleFigure basicRectangleFigure = null;
 	
 	if (getSource() != null) {	
-		if (getSource() instanceof MyConnectionEditPart) {
-			MyConnectionEditPart source = (MyConnectionEditPart)getSource();
+		if (getSource() instanceof ShapeConnectionEditPart) {
+			ShapeConnectionEditPart source = (ShapeConnectionEditPart)getSource();
 		
 			if (source.getSource() != null) {
 				if (source.getSource() instanceof ShapeEditPart) {
@@ -114,27 +119,7 @@ protected void refreshSourceAnchor() {
  */
 @Override
 protected ConnectionAnchor getSourceConnectionAnchor() {
-	LineConstraintAnchor_2 retval = new LineConstraintAnchor_2(new Point(100, 100), true);
-
-	if (getSource() != null) {
-		if (getSource() instanceof MyConnectionEditPart) {
-			MyConnectionEditPart source = (MyConnectionEditPart)getSource();
-			retval.setConnectionFigure((PolylineConnection) source.getFigure());
-						
-			if (source.getTarget() != null) {
-				if (source.getSource() instanceof ShapeEditPart) {
-					ShapeEditPart shapeEditPart = (ShapeEditPart)source.getTarget();
-					if (shapeEditPart.getFigure() instanceof BasicRectangleFigure) {
-						retval.setSourceNodeFigure((BasicRectangleFigure) shapeEditPart.getFigure());
-					}
-					
-				}
-			}
-			
-		}
-	}
-	
-	return retval;
+	return getConnectionAnchor(getSource(), true);
 }
 
 /**
@@ -149,27 +134,45 @@ protected ConnectionAnchor getSourceConnectionAnchor() {
  * @return ConnectionAnchor for the target end of the Connection
  */
 protected ConnectionAnchor getTargetConnectionAnchor() {
-	LineConstraintAnchor_2 retval = new LineConstraintAnchor_2(new Point(100, 100), true);
+	return getConnectionAnchor(getTarget(), false);
+}
 
-	if (getTarget() != null) {
-		if (getTarget() instanceof MyConnectionEditPart) {
-			MyConnectionEditPart target = (MyConnectionEditPart)getTarget();
-			retval.setConnectionFigure((PolylineConnection) target.getFigure());
-			
-			if (target.getTarget() != null) {
-				if (target.getSource() instanceof ShapeEditPart) {
-					ShapeEditPart shapeEditPart = (ShapeEditPart)target.getTarget();
-					if (shapeEditPart.getFigure() instanceof BasicRectangleFigure) {
-						retval.setSourceNodeFigure((BasicRectangleFigure) shapeEditPart.getFigure());
-					}
-					
-				}
-			}
-			
-		}
+/**
+ * Produces a ConnectionAnchor for either the source or target end of this
+ * connection. The source (or target) needs to be an instance of 
+ * <code>ShapeConnectionEditPart</code>,
+ * @param supplier the source or target of this edit part.
+ * @param isSource true if supplier is source, false if not.
+ * @return A new LineConstraintAnchor.
+ */
+private ConnectionAnchor getConnectionAnchor(EditPart supplier, boolean isSource) {
+	LineConstraintAnchor_2 retval = new LineConstraintAnchor_2(new Point(100, 100), true);
+	if ((supplier == null)  || (!(supplier instanceof ShapeConnectionEditPart))) {
+		return retval;
 	}
+	ShapeConnectionEditPart targetSupplier = getConnectionEditPart(supplier, isSource);
 	
+	retval.setConnectionFigure((PolylineConnection)targetSupplier.getFigure());
+	
+	if ((targetSupplier.getTarget() != null) && (targetSupplier.getSource() instanceof ShapeEditPart)) {
+		ShapeEditPart shapeEditPart = (ShapeEditPart)targetSupplier.getTarget();
+		if (shapeEditPart.getFigure() instanceof BasicRectangleFigure) {
+			retval.setSourceNodeFigure((BasicRectangleFigure) shapeEditPart.getFigure());
+		}
+	}	
 	return retval;
 }
+
+private ShapeConnectionEditPart getConnectionEditPart(EditPart supplier, boolean isSource) {
+	ShapeConnectionEditPart retVal = (ShapeConnectionEditPart)supplier;
+	if (isSource) {
+		retVal = (ShapeConnectionEditPart)getSource();		
+	} else {
+		retVal = (ShapeConnectionEditPart)getTarget();				
+	}
+	return retVal;
+}
+
+
 
 }
