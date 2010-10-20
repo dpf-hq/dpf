@@ -11,13 +11,12 @@
 package no.hib.dpf.editor.parts;
 
 import no.hib.dpf.editor.figures.BasicRectangleFigure;
-import no.hib.dpf.editor.figures.JInjConstraintFigure;
+import no.hib.dpf.editor.figures.BetweenArrowsConstraintFigure;
 
 import org.eclipse.draw2d.IFigure;
 
 /**
- * Edit part for Constraint model elements. THIS WILL BE REFACTORED USING
- * "THE OTHER ONE" AS A TEMPLATE!
+ * Edit part for Constraint model elements.
  */
 class JInjConstraintEditPart extends ConstraintEditPart {
 
@@ -25,15 +24,14 @@ class JInjConstraintEditPart extends ConstraintEditPart {
 		super(false);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/**
+	 * Returns the primary Figure representing this GraphicalEditPart, a Constraint Figure.
 	 * @see org.eclipse.gef.editparts.AbstractGraphicalEditPart#createFigure()
 	 */
 	protected IFigure createFigure() {
 		BasicRectangleFigure basicRectangleFigure = getRectangleFigureForFigure(true);
 		// TODO: make factory:
-		JInjConstraintFigure connection = new JInjConstraintFigure(basicRectangleFigure);
+		BetweenArrowsConstraintFigure connection = new BetweenArrowsConstraintFigure(basicRectangleFigure, "[Jointly Injective]");
 		connection.setLineStyle(getCastedModel().getLineStyle()); 
 		return connection;
 	}

@@ -11,12 +11,12 @@
 package no.hib.dpf.editor.parts;
 
 import no.hib.dpf.editor.figures.BasicRectangleFigure;
-import no.hib.dpf.editor.figures.JImgConstraintFigure;
+import no.hib.dpf.editor.figures.BetweenArrowsConstraintFigure;
 
 import org.eclipse.draw2d.IFigure;
 
 /**
- * Edit part for Constraint model elements. TODO: refactor this!
+ * Edit part for Constraint model elements.
  */
 class JImgConstraintEditPart extends ConstraintEditPart {
 
@@ -24,14 +24,14 @@ class JImgConstraintEditPart extends ConstraintEditPart {
 		super(true);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/**
+	 * Returns the primary Figure representing this GraphicalEditPart, a Constraint Figure.
 	 * @see org.eclipse.gef.editparts.AbstractGraphicalEditPart#createFigure()
 	 */
+	@Override
 	protected IFigure createFigure() {
 		BasicRectangleFigure basicRectangleFigure = getRectangleFigureForFigure(false);
-		JImgConstraintFigure connection = new JImgConstraintFigure(basicRectangleFigure);
+		BetweenArrowsConstraintFigure connection = new BetweenArrowsConstraintFigure(basicRectangleFigure, "[Joint Image]");
 		connection.setLineStyle(getCastedModel().getLineStyle());
 		return connection;
 	}

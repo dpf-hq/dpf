@@ -9,14 +9,20 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
 
-public class JImgConstraintFigure extends PolylineConnection {
+/**
+ * Draws a figure located between two points (on arrows).
+ * The figure is also "anchored" to a rectangle.
+ */
+public class BetweenArrowsConstraintFigure extends PolylineConnection {
 
 	Rectangle firstPointBounds;
 	Rectangle lastPointBounds;
 	BasicRectangleFigure basicRectangleFigure;
+	private String labelText;
 	
-	public JImgConstraintFigure(BasicRectangleFigure basicRectangleFigure) {
+	public BetweenArrowsConstraintFigure(BasicRectangleFigure basicRectangleFigure, String labelText) {
 		this.basicRectangleFigure = basicRectangleFigure;
+		this.labelText = labelText;
 	}
 	
 	private Point[] getMidwayControlPoint(Point startPoint, Point endPoint) {
@@ -69,7 +75,7 @@ public class JImgConstraintFigure extends PolylineConnection {
 		Bezier bezier = new Bezier(points.getFirstPoint(), points.getLastPoint(), controlpoints[0], controlpoints[0]);
 		bezier.outlineShape(g);
 		
-		g.drawText("[Joint Image]", controlpoints[1].translate(-17, 0));
+		g.drawText(labelText, controlpoints[1].translate(-17, 0));
 		
 		drawAnchorBlob(g, buildPointBox(points.getFirstPoint()));
 		drawAnchorBlob(g, buildPointBox(points.getLastPoint()));
