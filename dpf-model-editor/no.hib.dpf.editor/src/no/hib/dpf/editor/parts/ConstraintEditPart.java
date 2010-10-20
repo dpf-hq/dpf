@@ -3,7 +3,7 @@ package no.hib.dpf.editor.parts;
 import java.beans.PropertyChangeEvent;
 
 import no.hib.dpf.editor.figures.BasicRectangleFigure;
-import no.hib.dpf.editor.figures.LineConstraintAnchor_2;
+import no.hib.dpf.editor.figures.ConnectionConstraintAnchor;
 import no.hib.dpf.editor.model.ConstraintElement;
 import no.hib.dpf.editor.model.commands.ConstraintDeleteCommand;
 
@@ -12,7 +12,6 @@ import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
-import org.eclipse.gef.NodeEditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.ConnectionEditPolicy;
 import org.eclipse.gef.editpolicies.ConnectionEndpointEditPolicy;
@@ -20,8 +19,11 @@ import org.eclipse.gef.requests.GroupRequest;
 
 public abstract class ConstraintEditPart extends ModelElementConnectionEditPart {
 
-	public ConstraintEditPart() {
+	private boolean constraintFromTargetEnd;
+	
+	public ConstraintEditPart(boolean constraintFromTargetEnd) {
 		super();
+		this.constraintFromTargetEnd = constraintFromTargetEnd;
 	}
 
 	protected void createEditPolicies() {
@@ -67,16 +69,6 @@ public abstract class ConstraintEditPart extends ModelElementConnectionEditPart 
 		return (ConstraintElement) getModel();
 	}
 	
-//	/**
-//	 * Updates the source ConnectionAnchor. Subclasses should override
-//	 * {@link #getSourceConnectionAnchor()} if necessary, and not this method.
-//	 */
-//	@Override
-//	protected void refreshSourceAnchor() {
-//		try {
-//			getConnectionFigure().setSourceAnchor(getSourceConnectionAnchor());
-//		} catch (Exception e) {}
-//	}	
 	
 	/* (non-Javadoc)
 	 * @see java.beans.PropertyChangeListener#propertyChange(java.beans.PropertyChangeEvent)
@@ -120,7 +112,9 @@ public abstract class ConstraintEditPart extends ModelElementConnectionEditPart 
 	 * @return A new LineConstraintAnchor.
 	 */
 	private ConnectionAnchor getConnectionAnchor(EditPart supplier, boolean isSource) {
-		LineConstraintAnchor_2 retval = new LineConstraintAnchor_2(new Point(100, 100), true);
+		// Now, the connection constraint anchor is constructed, setting from which end of the line it
+		// should anchor itself:
+		ConnectionConstraintAnchor retval = new ConnectionConstraintAnchor(new Point(100, 100), constraintFromTargetEnd);
 		if ((supplier == null)  || (!(supplier instanceof ShapeConnectionEditPart))) {
 			return retval;
 		}
@@ -128,12 +122,12 @@ public abstract class ConstraintEditPart extends ModelElementConnectionEditPart 
 		
 		retval.setConnectionFigure((PolylineConnection)targetSupplier.getFigure());
 		
-		if ((targetSupplier.getTarget() != null) && (targetSupplier.getSource() instanceof ShapeEditPart)) {
-			ShapeEditPart shapeEditPart = (ShapeEditPart)targetSupplier.getTarget();
-			if (shapeEditPart.getFigure() instanceof BasicRectangleFigure) {
-				retval.setSourceNodeFigure((BasicRectangleFigure) shapeEditPart.getFigure());
-			}
-		}	
+//		if ((targetSupplier.getTarget() != null) && (targetSupplier.getTarget() instanceof ShapeEditPart)) {
+//			ShapeEditPart shapeEditPart = (ShapeEditPart)targetSupplier.getTarget();
+//			if (shapeEditPart.getFigure() instanceof BasicRectangleFigure) {
+//				retval.setSourceNodeFigure((BasicRectangleFigure) shapeEditPart.getFigure());
+//			}
+//		}	
 		return retval;
 	}
 

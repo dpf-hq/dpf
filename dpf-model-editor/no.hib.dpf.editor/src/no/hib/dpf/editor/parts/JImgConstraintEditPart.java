@@ -20,6 +20,10 @@ import org.eclipse.draw2d.IFigure;
  */
 class JImgConstraintEditPart extends ConstraintEditPart {
 
+	public JImgConstraintEditPart() {
+		super(true);
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 

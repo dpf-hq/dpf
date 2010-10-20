@@ -21,6 +21,10 @@ import org.eclipse.draw2d.IFigure;
  */
 class JInjConstraintEditPart extends ConstraintEditPart {
 
+	public JInjConstraintEditPart() {
+		super(false);
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
