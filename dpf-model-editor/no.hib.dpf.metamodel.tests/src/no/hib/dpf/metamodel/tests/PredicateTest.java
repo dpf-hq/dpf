@@ -28,6 +28,7 @@ import no.hib.dpf.metamodel.Predicate;
  * The following operations are tested:
  * <ul>
  *   <li>{@link no.hib.dpf.metamodel.Predicate#createConstraint(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, no.hib.dpf.metamodel.Graph) <em>Create Constraint</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Predicate#canCreateConstraint(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, no.hib.dpf.metamodel.Graph) <em>Can Create Constraint</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -127,11 +128,44 @@ public class PredicateTest extends TestCase {
 		
 		Constraint constraint = testPredicate.createConstraint(nodes, edges, userGraph);		
 		assertNotNull(constraint);
+		assertEquals(1, userGraph.getConstraints().size());
+		
 		
 		nodes.add(userGraph.getNodeByName("n_2"));
 		constraint = testPredicate.createConstraint(nodes, edges, userGraph);		
 		assertNull(constraint);
 		
+	}
+
+	/**
+	 * Tests the '{@link no.hib.dpf.metamodel.Predicate#canCreateConstraint(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, no.hib.dpf.metamodel.Graph) <em>Can Create Constraint</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.Predicate#canCreateConstraint(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, no.hib.dpf.metamodel.Graph)
+	 * @generated NOT
+	 */
+	public void testCanCreateConstraint__EList_EList_Graph() {
+		Predicate testPredicate = MetamodelFactory.eINSTANCE.createPredicate();
+		Graph predicateGraph = MetamodelFactory.eINSTANCE.createGraph("n_1", "e_1:n_1:null,e_2:n_1:null");
+		testPredicate.setShape(predicateGraph);
+		
+		Graph userGraph = MetamodelFactory.eINSTANCE.createGraph("n_1,n_2,n3", "e_1:n_1:n_2,e_2:n_1:n_3");
+		
+		// Extract "user selected" elements:
+		EList<Node> nodes = new BasicEList<Node>();
+		nodes.add(userGraph.getNodeByName("n_1"));
+		
+		EList<Edge> edges = new BasicEList<Edge>();
+		edges.add(userGraph.getEdgeByName("e_1"));
+		edges.add(userGraph.getEdgeByName("e_2"));
+		
+		boolean canCreate = testPredicate.canCreateConstraint(nodes, edges, userGraph);
+		assertTrue(canCreate);
+		assertEquals(0, userGraph.getConstraints().size());
+		
+		nodes.add(userGraph.getNodeByName("n_2"));
+		canCreate = testPredicate.canCreateConstraint(nodes, edges, userGraph);		
+		assertFalse(canCreate);
 	}
 
 } //PredicateTest
