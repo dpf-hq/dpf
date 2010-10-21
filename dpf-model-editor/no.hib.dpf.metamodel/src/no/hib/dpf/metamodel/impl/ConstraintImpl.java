@@ -13,9 +13,11 @@ import no.hib.dpf.metamodel.MetamodelPackage;
 import no.hib.dpf.metamodel.Predicate;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,7 +26,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link no.hib.dpf.metamodel.impl.ConstraintImpl#getConstrainedModel <em>Constrained Model</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.impl.ConstraintImpl#getGraph <em>Graph</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.impl.ConstraintImpl#getPredicate <em>Predicate</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.impl.ConstraintImpl#getMappings <em>Mappings</em>}</li>
  * </ul>
@@ -33,16 +35,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * @generated
  */
 public class ConstraintImpl extends IDObjectImpl implements Constraint {
-	/**
-	 * The cached value of the '{@link #getConstrainedModel() <em>Constrained Model</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getConstrainedModel()
-	 * @generated
-	 * @ordered
-	 */
-	protected Graph constrainedModel;
-
 	/**
 	 * The cached value of the '{@link #getPredicate() <em>Predicate</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -87,37 +79,40 @@ public class ConstraintImpl extends IDObjectImpl implements Constraint {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Graph getConstrainedModel() {
-		if (constrainedModel != null && constrainedModel.eIsProxy()) {
-			InternalEObject oldConstrainedModel = (InternalEObject)constrainedModel;
-			constrainedModel = (Graph)eResolveProxy(oldConstrainedModel);
-			if (constrainedModel != oldConstrainedModel) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.CONSTRAINT__CONSTRAINED_MODEL, oldConstrainedModel, constrainedModel));
-			}
+	public Graph getGraph() {
+		if (eContainerFeatureID() != MetamodelPackage.CONSTRAINT__GRAPH) return null;
+		return (Graph)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetGraph(Graph newGraph, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newGraph, MetamodelPackage.CONSTRAINT__GRAPH, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setGraph(Graph newGraph) {
+		if (newGraph != eInternalContainer() || (eContainerFeatureID() != MetamodelPackage.CONSTRAINT__GRAPH && newGraph != null)) {
+			if (EcoreUtil.isAncestor(this, newGraph))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newGraph != null)
+				msgs = ((InternalEObject)newGraph).eInverseAdd(this, MetamodelPackage.GRAPH__CONSTRAINTS, Graph.class, msgs);
+			msgs = basicSetGraph(newGraph, msgs);
+			if (msgs != null) msgs.dispatch();
 		}
-		return constrainedModel;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Graph basicGetConstrainedModel() {
-		return constrainedModel;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setConstrainedModel(Graph newConstrainedModel) {
-		Graph oldConstrainedModel = constrainedModel;
-		constrainedModel = newConstrainedModel;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.CONSTRAINT__CONSTRAINED_MODEL, oldConstrainedModel, constrainedModel));
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.CONSTRAINT__GRAPH, newGraph, newGraph));
 	}
 
 	/**
@@ -202,11 +197,54 @@ public class ConstraintImpl extends IDObjectImpl implements Constraint {
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case MetamodelPackage.CONSTRAINT__GRAPH:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetGraph((Graph)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case MetamodelPackage.CONSTRAINT__GRAPH:
+				return basicSetGraph(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case MetamodelPackage.CONSTRAINT__GRAPH:
+				return eInternalContainer().eInverseRemove(this, MetamodelPackage.GRAPH__CONSTRAINTS, Graph.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MetamodelPackage.CONSTRAINT__CONSTRAINED_MODEL:
-				if (resolve) return getConstrainedModel();
-				return basicGetConstrainedModel();
+			case MetamodelPackage.CONSTRAINT__GRAPH:
+				return getGraph();
 			case MetamodelPackage.CONSTRAINT__PREDICATE:
 				if (resolve) return getPredicate();
 				return basicGetPredicate();
@@ -225,8 +263,8 @@ public class ConstraintImpl extends IDObjectImpl implements Constraint {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MetamodelPackage.CONSTRAINT__CONSTRAINED_MODEL:
-				setConstrainedModel((Graph)newValue);
+			case MetamodelPackage.CONSTRAINT__GRAPH:
+				setGraph((Graph)newValue);
 				return;
 			case MetamodelPackage.CONSTRAINT__PREDICATE:
 				setPredicate((Predicate)newValue);
@@ -246,8 +284,8 @@ public class ConstraintImpl extends IDObjectImpl implements Constraint {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.CONSTRAINT__CONSTRAINED_MODEL:
-				setConstrainedModel((Graph)null);
+			case MetamodelPackage.CONSTRAINT__GRAPH:
+				setGraph((Graph)null);
 				return;
 			case MetamodelPackage.CONSTRAINT__PREDICATE:
 				setPredicate((Predicate)null);
@@ -267,8 +305,8 @@ public class ConstraintImpl extends IDObjectImpl implements Constraint {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.CONSTRAINT__CONSTRAINED_MODEL:
-				return constrainedModel != null;
+			case MetamodelPackage.CONSTRAINT__GRAPH:
+				return getGraph() != null;
 			case MetamodelPackage.CONSTRAINT__PREDICATE:
 				return predicate != null;
 			case MetamodelPackage.CONSTRAINT__MAPPINGS:

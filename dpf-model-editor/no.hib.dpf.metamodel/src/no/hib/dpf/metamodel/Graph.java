@@ -91,17 +91,19 @@ public interface Graph extends IDObject {
 	EList<Edge> getEdges();
 
 	/**
-	 * Returns the value of the '<em><b>Constraints</b></em>' reference list.
+	 * Returns the value of the '<em><b>Constraints</b></em>' containment reference list.
 	 * The list contents are of type {@link no.hib.dpf.metamodel.Constraint}.
+	 * It is bidirectional and its opposite is '{@link no.hib.dpf.metamodel.Constraint#getGraph <em>Graph</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Constraints</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Constraints</em>' reference list.
+	 * @return the value of the '<em>Constraints</em>' containment reference list.
 	 * @see no.hib.dpf.metamodel.MetamodelPackage#getGraph_Constraints()
-	 * @model
+	 * @see no.hib.dpf.metamodel.Constraint#getGraph
+	 * @model opposite="graph" containment="true"
 	 * @generated
 	 */
 	EList<Constraint> getConstraints();

@@ -114,4 +114,12 @@ public interface Predicate extends EObject {
 	 */
 	Constraint createConstraint(EList<?> nodes, EList<?> edges, Graph modelToBeConstrained);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model nodesMany="false" edgesMany="false"
+	 * @generated
+	 */
+	boolean canCreateConstraint(EList<?> nodes, EList<?> edges, Graph modelToBeConstrained);
+
 } // Predicate

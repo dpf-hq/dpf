@@ -15,8 +15,8 @@ import no.hib.dpf.metamodel.IDObject;
 import no.hib.dpf.metamodel.MetamodelFactory;
 import no.hib.dpf.metamodel.MetamodelPackage;
 import no.hib.dpf.metamodel.Node;
-
 import no.hib.dpf.metamodel.Predicate;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -24,7 +24,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -85,7 +84,7 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	protected EList<Edge> edges;
 
 	/**
-	 * The cached value of the '{@link #getConstraints() <em>Constraints</em>}' reference list.
+	 * The cached value of the '{@link #getConstraints() <em>Constraints</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getConstraints()
@@ -165,7 +164,7 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	 */
 	public EList<Constraint> getConstraints() {
 		if (constraints == null) {
-			constraints = new EObjectResolvingEList<Constraint>(Constraint.class, this, MetamodelPackage.GRAPH__CONSTRAINTS);
+			constraints = new EObjectContainmentWithInverseEList<Constraint>(Constraint.class, this, MetamodelPackage.GRAPH__CONSTRAINTS, MetamodelPackage.CONSTRAINT__GRAPH);
 		}
 		return constraints;
 	}
@@ -303,6 +302,8 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getNodes()).basicAdd(otherEnd, msgs);
 			case MetamodelPackage.GRAPH__EDGES:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getEdges()).basicAdd(otherEnd, msgs);
+			case MetamodelPackage.GRAPH__CONSTRAINTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getConstraints()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -319,6 +320,8 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 				return ((InternalEList<?>)getNodes()).basicRemove(otherEnd, msgs);
 			case MetamodelPackage.GRAPH__EDGES:
 				return ((InternalEList<?>)getEdges()).basicRemove(otherEnd, msgs);
+			case MetamodelPackage.GRAPH__CONSTRAINTS:
+				return ((InternalEList<?>)getConstraints()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}

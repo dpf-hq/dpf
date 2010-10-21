@@ -56,9 +56,9 @@
             <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/Edge/source"/>
             <genFeatures notify="false" createChild="false" propertySortChoices="true"
                 ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/Edge/target"/>
-            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//hib/dpf/metamodel/Edge/name"/>
             <genFeatures notify="false" createChild="false" propertySortChoices="true"
                 ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/Edge/graph"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//hib/dpf/metamodel/Edge/name"/>
           </genClasses>
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/metamodel/Signature">
             <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/Signature/predicates"/>
@@ -75,6 +75,11 @@
               <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/Predicate/createConstraint/edges"/>
               <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/Predicate/createConstraint/modelToBeConstrained"/>
             </genOperations>
+            <genOperations ecoreOperation="Metamodel.ecore#//hib/dpf/metamodel/Predicate/canCreateConstraint">
+              <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/Predicate/canCreateConstraint/nodes"/>
+              <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/Predicate/canCreateConstraint/edges"/>
+              <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/Predicate/canCreateConstraint/modelToBeConstrained"/>
+            </genOperations>
           </genClasses>
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/metamodel/Semantics"/>
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/metamodel/Visualization"/>
@@ -85,8 +90,7 @@
                 ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/NodeToNodeMap/value"/>
           </genClasses>
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/metamodel/Constraint">
-            <genFeatures notify="false" createChild="false" propertySortChoices="true"
-                ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/Constraint/constrainedModel"/>
+            <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/Constraint/graph"/>
             <genFeatures notify="false" createChild="false" propertySortChoices="true"
                 ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/Constraint/predicate"/>
             <genFeatures notify="false" createChild="false" propertySortChoices="true"

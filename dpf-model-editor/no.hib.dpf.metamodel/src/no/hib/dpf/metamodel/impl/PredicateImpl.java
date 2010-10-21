@@ -223,13 +223,23 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean canCreateConstraint(EList<?> nodes, EList<?> edges, Graph modelToBeConstrained) {
+		GraphHomomorphism graphHomomorphism = MetamodelFactory.eINSTANCE.createGraphHomomorphism();
+		return graphHomomorphism.tryToCreateGraphHomomorphism(getShape(), nodes, edges);
+	}
+
+	/**
 	 * @generated NOT
 	 */
 	private Constraint constructConstraint(Graph modelToBeConstrained, GraphHomomorphism graphHomomorphism) {
 		Constraint retval = MetamodelFactory.eINSTANCE.createConstraint();
 		retval.setMappings(graphHomomorphism);
 		retval.setPredicate(this);
-		retval.setConstrainedModel(modelToBeConstrained);
+		retval.setGraph(modelToBeConstrained);
 		return retval;
 	}
 

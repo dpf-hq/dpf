@@ -16,7 +16,7 @@ package no.hib.dpf.metamodel;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link no.hib.dpf.metamodel.Constraint#getConstrainedModel <em>Constrained Model</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Constraint#getGraph <em>Graph</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Constraint#getPredicate <em>Predicate</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Constraint#getMappings <em>Mappings</em>}</li>
  * </ul>
@@ -28,30 +28,32 @@ package no.hib.dpf.metamodel;
  */
 public interface Constraint extends IDObject {
 	/**
-	 * Returns the value of the '<em><b>Constrained Model</b></em>' reference.
+	 * Returns the value of the '<em><b>Graph</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link no.hib.dpf.metamodel.Graph#getConstraints <em>Constraints</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Constrained Model</em>' reference isn't clear,
+	 * If the meaning of the '<em>Graph</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Constrained Model</em>' reference.
-	 * @see #setConstrainedModel(Graph)
-	 * @see no.hib.dpf.metamodel.MetamodelPackage#getConstraint_ConstrainedModel()
-	 * @model required="true"
+	 * @return the value of the '<em>Graph</em>' container reference.
+	 * @see #setGraph(Graph)
+	 * @see no.hib.dpf.metamodel.MetamodelPackage#getConstraint_Graph()
+	 * @see no.hib.dpf.metamodel.Graph#getConstraints
+	 * @model opposite="constraints" transient="false"
 	 * @generated
 	 */
-	Graph getConstrainedModel();
+	Graph getGraph();
 
 	/**
-	 * Sets the value of the '{@link no.hib.dpf.metamodel.Constraint#getConstrainedModel <em>Constrained Model</em>}' reference.
+	 * Sets the value of the '{@link no.hib.dpf.metamodel.Constraint#getGraph <em>Graph</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Constrained Model</em>' reference.
-	 * @see #getConstrainedModel()
+	 * @param value the new value of the '<em>Graph</em>' container reference.
+	 * @see #getGraph()
 	 * @generated
 	 */
-	void setConstrainedModel(Graph value);
+	void setGraph(Graph value);
 
 	/**
 	 * Returns the value of the '<em><b>Predicate</b></em>' reference.

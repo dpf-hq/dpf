@@ -41,7 +41,7 @@
           <eStructuralFeatures xsi:type="ecore:EReference" name="edges" upperBound="-1"
               eType="#//hib/dpf/metamodel/Edge" containment="true" eOpposite="#//hib/dpf/metamodel/Edge/graph"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
-              eType="#//hib/dpf/metamodel/Constraint"/>
+              eType="#//hib/dpf/metamodel/Constraint" containment="true" eOpposite="#//hib/dpf/metamodel/Constraint/graph"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Node" eSuperTypes="#//hib/dpf/metamodel/IDObject">
           <eOperations name="getOutgoingEdges" upperBound="-1" eType="#//hib/dpf/metamodel/Edge"/>
@@ -74,6 +74,19 @@
             </eParameters>
             <eParameters name="modelToBeConstrained" eType="#//hib/dpf/metamodel/Graph"/>
           </eOperations>
+          <eOperations name="canCreateConstraint" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+            <eParameters name="nodes">
+              <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
+                <eTypeArguments/>
+              </eGenericType>
+            </eParameters>
+            <eParameters name="edges">
+              <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
+                <eTypeArguments/>
+              </eGenericType>
+            </eParameters>
+            <eParameters name="modelToBeConstrained" eType="#//hib/dpf/metamodel/Graph"/>
+          </eOperations>
           <eStructuralFeatures xsi:type="ecore:EReference" name="shape" eType="#//hib/dpf/metamodel/Graph"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="semantics" eType="#//hib/dpf/metamodel/Semantics"
               containment="true"/>
@@ -86,8 +99,8 @@
           <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//hib/dpf/metamodel/Node"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Constraint" eSuperTypes="#//hib/dpf/metamodel/IDObject">
-          <eStructuralFeatures xsi:type="ecore:EReference" name="constrainedModel"
-              lowerBound="1" eType="#//hib/dpf/metamodel/Graph"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="graph" eType="#//hib/dpf/metamodel/Graph"
+              eOpposite="#//hib/dpf/metamodel/Graph/constraints"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="predicate" eType="#//hib/dpf/metamodel/Predicate"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="mappings" eType="#//hib/dpf/metamodel/GraphHomomorphism"/>
         </eClassifiers>

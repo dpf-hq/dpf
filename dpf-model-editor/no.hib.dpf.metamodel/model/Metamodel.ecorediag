@@ -484,20 +484,6 @@
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_xbpkgMbtEd-hyfC6EAXkWQ" id="(0.6666666666666666,0.0)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_xbpkgcbtEd-hyfC6EAXkWQ" id="(0.8944099378881988,1.0)"/>
   </edges>
-  <edges xmi:type="notation:Edge" xmi:id="_xXZWpMbtEd-hyfC6EAXkWQ" type="3002" source="_xXJfAMbtEd-hyfC6EAXkWQ" target="_xW8qsMbtEd-hyfC6EAXkWQ">
-    <children xmi:type="notation:Node" xmi:id="_xXZ9sMbtEd-hyfC6EAXkWQ" type="4011">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_xXZ9scbtEd-hyfC6EAXkWQ" x="-10" y="-10"/>
-    </children>
-    <children xmi:type="notation:Node" xmi:id="_xXZ9ssbtEd-hyfC6EAXkWQ" type="4012">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_xXZ9s8btEd-hyfC6EAXkWQ" x="10" y="10"/>
-    </children>
-    <styles xmi:type="notation:ConnectorStyle" xmi:id="_xXZWpcbtEd-hyfC6EAXkWQ" lineColor="4210752"/>
-    <styles xmi:type="notation:FontStyle" xmi:id="_xXZWpsbtEd-hyfC6EAXkWQ" fontColor="4210752" fontName="Lucida Grande" fontHeight="10"/>
-    <element xmi:type="ecore:EReference" href="Metamodel.ecore#//hib/dpf/metamodel/Constraint/constrainedModel"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_xXZWp8btEd-hyfC6EAXkWQ" points="[0, 0, -271, 226]$[271, -226, 0, 0]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_xbw5QMbtEd-hyfC6EAXkWQ" id="(0.39215686274509803,0.0)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_xbw5QcbtEd-hyfC6EAXkWQ" id="(0.3283582089552239,0.9338235294117647)"/>
-  </edges>
   <edges xmi:type="notation:Edge" xmi:id="_xXZ9tMbtEd-hyfC6EAXkWQ" type="3002" source="_xXJfAMbtEd-hyfC6EAXkWQ" target="_xXF0pMbtEd-hyfC6EAXkWQ">
     <children xmi:type="notation:Node" xmi:id="_xXZ9uMbtEd-hyfC6EAXkWQ" type="4011">
       <layoutConstraint xmi:type="notation:Location" xmi:id="_xXakwMbtEd-hyfC6EAXkWQ" x="-10" y="-10"/>

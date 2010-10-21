@@ -27,8 +27,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <ul>
  *   <li>{@link no.hib.dpf.metamodel.impl.EdgeImpl#getSource <em>Source</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.impl.EdgeImpl#getTarget <em>Target</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.impl.EdgeImpl#getName <em>Name</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.impl.EdgeImpl#getGraph <em>Graph</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.impl.EdgeImpl#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -290,10 +290,10 @@ public class EdgeImpl extends IDObjectImpl implements Edge {
 			case MetamodelPackage.EDGE__TARGET:
 				if (resolve) return getTarget();
 				return basicGetTarget();
-			case MetamodelPackage.EDGE__NAME:
-				return getName();
 			case MetamodelPackage.EDGE__GRAPH:
 				return getGraph();
+			case MetamodelPackage.EDGE__NAME:
+				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -312,11 +312,11 @@ public class EdgeImpl extends IDObjectImpl implements Edge {
 			case MetamodelPackage.EDGE__TARGET:
 				setTarget((Node)newValue);
 				return;
-			case MetamodelPackage.EDGE__NAME:
-				setName((String)newValue);
-				return;
 			case MetamodelPackage.EDGE__GRAPH:
 				setGraph((Graph)newValue);
+				return;
+			case MetamodelPackage.EDGE__NAME:
+				setName((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -336,11 +336,11 @@ public class EdgeImpl extends IDObjectImpl implements Edge {
 			case MetamodelPackage.EDGE__TARGET:
 				setTarget((Node)null);
 				return;
-			case MetamodelPackage.EDGE__NAME:
-				setName(NAME_EDEFAULT);
-				return;
 			case MetamodelPackage.EDGE__GRAPH:
 				setGraph((Graph)null);
+				return;
+			case MetamodelPackage.EDGE__NAME:
+				setName(NAME_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -358,10 +358,10 @@ public class EdgeImpl extends IDObjectImpl implements Edge {
 				return source != null;
 			case MetamodelPackage.EDGE__TARGET:
 				return target != null;
-			case MetamodelPackage.EDGE__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case MetamodelPackage.EDGE__GRAPH:
 				return getGraph() != null;
+			case MetamodelPackage.EDGE__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);
 	}

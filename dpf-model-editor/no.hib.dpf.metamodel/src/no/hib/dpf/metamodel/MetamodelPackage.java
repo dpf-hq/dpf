@@ -244,7 +244,7 @@ public interface MetamodelPackage extends EPackage {
 	int GRAPH__EDGES = ID_OBJECT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Constraints</b></em>' reference list.
+	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -325,22 +325,22 @@ public interface MetamodelPackage extends EPackage {
 	int EDGE__TARGET = ID_OBJECT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EDGE__NAME = ID_OBJECT_FEATURE_COUNT + 2;
-
-	/**
 	 * The feature id for the '<em><b>Graph</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EDGE__GRAPH = ID_OBJECT_FEATURE_COUNT + 3;
+	int EDGE__GRAPH = ID_OBJECT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDGE__NAME = ID_OBJECT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Edge</em>' class.
@@ -460,13 +460,13 @@ public interface MetamodelPackage extends EPackage {
 	int CONSTRAINT__ID = ID_OBJECT__ID;
 
 	/**
-	 * The feature id for the '<em><b>Constrained Model</b></em>' reference.
+	 * The feature id for the '<em><b>Graph</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT__CONSTRAINED_MODEL = ID_OBJECT_FEATURE_COUNT + 0;
+	int CONSTRAINT__GRAPH = ID_OBJECT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Predicate</b></em>' reference.
@@ -630,10 +630,10 @@ public interface MetamodelPackage extends EPackage {
 	EReference getGraph_Edges();
 
 	/**
-	 * Returns the meta object for the reference list '{@link no.hib.dpf.metamodel.Graph#getConstraints <em>Constraints</em>}'.
+	 * Returns the meta object for the containment reference list '{@link no.hib.dpf.metamodel.Graph#getConstraints <em>Constraints</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Constraints</em>'.
+	 * @return the meta object for the containment reference list '<em>Constraints</em>'.
 	 * @see no.hib.dpf.metamodel.Graph#getConstraints()
 	 * @see #getGraph()
 	 * @generated
@@ -855,15 +855,15 @@ public interface MetamodelPackage extends EPackage {
 	EClass getConstraint();
 
 	/**
-	 * Returns the meta object for the reference '{@link no.hib.dpf.metamodel.Constraint#getConstrainedModel <em>Constrained Model</em>}'.
+	 * Returns the meta object for the container reference '{@link no.hib.dpf.metamodel.Constraint#getGraph <em>Graph</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Constrained Model</em>'.
-	 * @see no.hib.dpf.metamodel.Constraint#getConstrainedModel()
+	 * @return the meta object for the container reference '<em>Graph</em>'.
+	 * @see no.hib.dpf.metamodel.Constraint#getGraph()
 	 * @see #getConstraint()
 	 * @generated
 	 */
-	EReference getConstraint_ConstrainedModel();
+	EReference getConstraint_Graph();
 
 	/**
 	 * Returns the meta object for the reference '{@link no.hib.dpf.metamodel.Constraint#getPredicate <em>Predicate</em>}'.
@@ -1074,7 +1074,7 @@ public interface MetamodelPackage extends EPackage {
 		EReference GRAPH__EDGES = eINSTANCE.getGraph_Edges();
 
 		/**
-		 * The meta object literal for the '<em><b>Constraints</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Constraints</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1258,12 +1258,12 @@ public interface MetamodelPackage extends EPackage {
 		EClass CONSTRAINT = eINSTANCE.getConstraint();
 
 		/**
-		 * The meta object literal for the '<em><b>Constrained Model</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Graph</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CONSTRAINT__CONSTRAINED_MODEL = eINSTANCE.getConstraint_ConstrainedModel();
+		EReference CONSTRAINT__GRAPH = eINSTANCE.getConstraint_Graph();
 
 		/**
 		 * The meta object literal for the '<em><b>Predicate</b></em>' reference feature.
