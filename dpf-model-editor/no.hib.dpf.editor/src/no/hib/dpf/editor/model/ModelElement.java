@@ -16,7 +16,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
 
-import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.IDObject;
 
 import org.eclipse.ui.views.properties.IPropertyDescriptor;

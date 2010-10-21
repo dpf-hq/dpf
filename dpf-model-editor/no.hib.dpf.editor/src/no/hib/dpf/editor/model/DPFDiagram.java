@@ -41,11 +41,6 @@ public class DPFDiagram extends ModelElement {
 		this.dpfGraph = MetamodelFactory.eINSTANCE.createGraph();
 	}
 	
-//	public void addToDpfGraph(Graph dpfGraph) {
-//	this.dpfGraph = dpfGraph;
-//	createDpfGraphElement();
-//}
-//
 	public Graph getDpfGraph() {
 		return dpfGraph;
 	}
@@ -61,23 +56,30 @@ public class DPFDiagram extends ModelElement {
 		Map<String,ModelElement> retVal = new HashMap<String,ModelElement>();
 		for (Shape aShape : getChildren()) {
 			addIDObjectToMap(retVal, aShape);
-			addConnectionsToMap(aShape, retVal);				
+			addConnectionsToMap(retVal, aShape);				
 		}
 		return retVal;
 	}
 
+	private void addConnectionsToMap(Map<String, ModelElement> retVal, Shape aShape) {
+		for (Connection aConnection : aShape.getSourceConnections()) {
+			addIDObjectToMap(retVal, aConnection);
+			addConstraintsToMap(retVal, aConnection);
+		}
+	}
+	
+	private void addConstraintsToMap(Map<String, ModelElement> retVal, Connection aConnection) {
+		for (ConstraintElement aConstraint : aConnection.getSourceConstraints()) {
+			addIDObjectToMap(retVal, aConstraint);
+		}
+	}
+
 	private void addIDObjectToMap(Map<String, ModelElement> retVal, ModelElement aModelElement) {
-		if (aModelElement instanceof IDObjectContainer) {			
+		if (aModelElement instanceof IDObjectContainer) {
 			retVal.put(((IDObjectContainer)aModelElement).getIDObjectID(), aModelElement);
 		}
 	}
 	
-	private void addConnectionsToMap(Shape aShape, Map<String, ModelElement> retVal) {
-		for (Connection aConnection : aShape.getSourceConnections()) {
-			addIDObjectToMap(retVal, aConnection);
-		}
-	}
-
 	/**
 	 * Add a shape to this diagram.
 	 * 
