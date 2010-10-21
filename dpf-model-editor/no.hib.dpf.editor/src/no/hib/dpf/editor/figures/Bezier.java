@@ -44,7 +44,7 @@ public class Bezier extends Polyline {
 	//allow users to change the number of segments
 	static {
 		synchronized (lock) {
-			SEGMENTS = 158;
+			SEGMENTS = 58;
 			WEIGHTS1 = COMPUTE_WEIGHTS_1();
 			WEIGHTS2 = COMPUTE_WEIGHTS_2();
 		}

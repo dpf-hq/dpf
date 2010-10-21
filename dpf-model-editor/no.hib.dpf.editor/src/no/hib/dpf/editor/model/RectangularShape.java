@@ -79,7 +79,7 @@ public class RectangularShape extends Shape implements Node {
 	}
 	
 	private void setGraph(Connection conn) {
-		conn.setGraph(dpfGraph);
+		conn.setGraph(getGraph());
 	}
 	
 	@Override
@@ -245,12 +245,11 @@ public class RectangularShape extends Shape implements Node {
 
 	@Override
 	protected void createDpfGraphElement() {
-		setIDObject(dpfGraph.createNode("Unnamed node"));
+		setIDObject(nodeComponent.getGraph().createNode("Unnamed node"));
 	}
 
 	@Override
 	public void setGraphExec(Graph graph) {
-		dpfGraph = graph;
 		nodeComponent.setGraph(graph);
 	}	
 

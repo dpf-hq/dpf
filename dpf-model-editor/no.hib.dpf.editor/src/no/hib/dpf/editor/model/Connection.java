@@ -303,17 +303,22 @@ public class Connection extends ModelElement implements Edge, IDObjectContainer 
 	
 	protected void addIncomingConstraint(ConstraintElement constraint) {
 		targetConnstraints.add(constraint);
-		firePropertyChange(TARGET_CONSTRAINTS_PROP, null, constraint);
+		addedConstraint(constraint, TARGET_CONSTRAINTS_PROP);
 	}
 
 	protected void addOutgoingConstraint(ConstraintElement constraint) {
-		sourceConstraints.add(constraint);
-		firePropertyChange(SOURCE_CONSTRAINTS_PROP, null, constraint);
+		sourceConstraints.add(constraint);		
+		addedConstraint(constraint, SOURCE_CONSTRAINTS_PROP);
 	}
-	
+
 	protected void addSingleConstraint(SingleLineConstraintElement constraint) {
 		singleConstraints.add(constraint);
-		firePropertyChange(SINGLE_CONSTRAINTS_PROP, null, constraint);
+		addedConstraint(constraint, SINGLE_CONSTRAINTS_PROP);
+	}
+	
+	private void addedConstraint(ConstraintElement constraint, String property) {
+		constraint.setGraph(getGraph());		
+		firePropertyChange(property, null, constraint);
 	}
 	
 	public void addConstraint(ConstraintElement constraint) {
@@ -329,18 +334,23 @@ public class Connection extends ModelElement implements Edge, IDObjectContainer 
 	
 	protected void removeIncomingConstraint(ConstraintElement constraint) {
 		targetConnstraints.remove(constraint);
-		firePropertyChange(TARGET_CONSTRAINTS_PROP, null, constraint);
+		removedConstraint(constraint, TARGET_CONSTRAINTS_PROP);
 	}
 
 	protected void removeOutgoingConstraint(ConstraintElement constraint) {
 		sourceConstraints.remove(constraint);
-		firePropertyChange(SOURCE_CONSTRAINTS_PROP, null, constraint);
+		removedConstraint(constraint, SOURCE_CONSTRAINTS_PROP);
 	}
 	
 	protected void removeSingleConstraint(SingleLineConstraintElement constraint) {
 		singleConstraints.remove(constraint);
-		firePropertyChange(SINGLE_CONSTRAINTS_PROP, null, constraint);
+		removedConstraint(constraint, SINGLE_CONSTRAINTS_PROP);
 	}
+	
+	private void removedConstraint(ConstraintElement constraint, String property) {
+		constraint.setGraph(null);		
+		firePropertyChange(property, null, constraint);
+	}	
 	
 	void removeConstraint(ConstraintElement constraint) {
 		if (constraint == null) {

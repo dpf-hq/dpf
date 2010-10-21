@@ -16,6 +16,7 @@ import no.hib.dpf.metamodel.Constraint;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.GraphHomomorphism;
 import no.hib.dpf.metamodel.IDObject;
+import no.hib.dpf.metamodel.MetamodelFactory;
 import no.hib.dpf.metamodel.Predicate;
 
 import org.eclipse.draw2d.Graphics;
@@ -75,12 +76,12 @@ public class ConstraintElement extends ModelElement implements Constraint, IDObj
 				LINESTYLE_PROP, new String[] { SOLID_STR, DASHED_STR });
 	}
 
-	private transient ConstraintElement constraintComponent;
-	private String edgeID;
+	private transient Constraint constraintComponent;
+	private String constraintID;
 
 	@Override
 	public String getIDObjectID() {
-		return edgeID;
+		return constraintID;
 	}	
 	
 	public enum ConstraintType {
@@ -104,17 +105,16 @@ public class ConstraintElement extends ModelElement implements Constraint, IDObj
 	 */
 	public ConstraintElement(Connection source, Connection target, ConstraintType constraintType) {
 		this.setConstraintType(constraintType);
-		// The dpf Edge object must be initialized before the connection of the shapes.
-		// TODO: make Constraint an IDObject.
-//		setIDObject(MetamodelFactory.eINSTANCE.createConstraint());
+		// The dpf Constraint object must be initialized before the connection of the shapes.
+		setIDObject(MetamodelFactory.eINSTANCE.createConstraint());
 		reconnect(source, target);		
 	}
 
 	@Override
 	public void setIDObject(IDObject idObject) {
-		if (idObject instanceof ConstraintElement) {
-//			edgeComponent = (Constraint)idObject;
-//			edgeID = edgeComponent.getId();		
+		if (idObject instanceof Constraint) {
+			constraintComponent = (Constraint)idObject;
+			constraintID = constraintComponent.getId();		
 		}
 	}
 	
@@ -357,13 +357,13 @@ public class ConstraintElement extends ModelElement implements Constraint, IDObj
 	}
 
 	@Override
-	public Graph getConstrainedModel() {
-		return constraintComponent.getConstrainedModel();
+	public Graph getGraph() {
+		return constraintComponent.getGraph();
 	}
 
 	@Override
-	public void setConstrainedModel(Graph value) {
-		constraintComponent.setConstrainedModel(value);
+	public void setGraph(Graph value) {
+		constraintComponent.setGraph(value);
 	}
 
 	@Override

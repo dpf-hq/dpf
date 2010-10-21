@@ -113,9 +113,9 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		super.createActions(); // important else we won't get the default
 								// actions!
 		//registerAction(new SrcSelectAction(this));
-		registerAction(new CreateJointlyInjectiveConstraintAction(this, diagram));
-		registerAction(new CreateJointImageConstraintAction(this, diagram));
-		registerAction(new CreateMultiplicityConstraintAction(this, diagram));
+		registerAction(new CreateJointlyInjectiveConstraintAction(this, diagram.getDpfGraph()));
+		registerAction(new CreateJointImageConstraintAction(this, diagram.getDpfGraph()));
+		registerAction(new CreateMultiplicityConstraintAction(this, diagram.getDpfGraph()));
 	}
 
 	@SuppressWarnings("unchecked")

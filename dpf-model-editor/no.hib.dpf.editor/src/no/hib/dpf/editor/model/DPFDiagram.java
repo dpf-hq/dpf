@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.MetamodelFactory;
 
 /**
@@ -32,11 +33,27 @@ public class DPFDiagram extends ModelElement {
 	private static final long serialVersionUID = 1;
 	private List<Shape> shapes = new ArrayList<Shape>();
 
+	/** Used for adding and removing a model element to and from the DPF graph */
+	protected transient Graph dpfGraph;
+	
 	public DPFDiagram() {
 		super();
 		this.dpfGraph = MetamodelFactory.eINSTANCE.createGraph();
 	}
 	
+//	public void addToDpfGraph(Graph dpfGraph) {
+//	this.dpfGraph = dpfGraph;
+//	createDpfGraphElement();
+//}
+//
+	public Graph getDpfGraph() {
+		return dpfGraph;
+	}
+
+	public void setDpfGraph(Graph dpfGraph) {
+		this.dpfGraph = dpfGraph;
+	}
+
 	/**
 	 * Returns a map of this diagram's children, ordered by their IDObject-provided ID.
 	 */

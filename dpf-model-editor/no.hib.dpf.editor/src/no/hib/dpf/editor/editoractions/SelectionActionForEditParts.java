@@ -3,7 +3,6 @@ package no.hib.dpf.editor.editoractions;
 import java.util.ArrayList;
 import java.util.List;
 
-import no.hib.dpf.editor.model.DPFDiagram;
 import no.hib.dpf.editor.parts.ShapeConnectionEditPart;
 import no.hib.dpf.editor.parts.ShapeEditPart;
 import no.hib.dpf.metamodel.Edge;
@@ -20,10 +19,10 @@ public abstract class SelectionActionForEditParts extends SelectionAction {
 
 	protected Graph graph;
 
-	public SelectionActionForEditParts(IWorkbenchPart part, String ID, DPFDiagram diagram) {
+	public SelectionActionForEditParts(IWorkbenchPart part, String ID, Graph graph) {
 		super(part);
 		setId(ID);              // sets ID = joint image
-		this.graph = diagram.getDpfGraph();
+		this.graph = graph;
 	}
 	
 	protected EList<Edge> getSelectionEdges() {
