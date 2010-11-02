@@ -8,6 +8,10 @@ import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.SWTException;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.widgets.Display;
 
 /**
  * Draws a figure located between two points (on arrows).
@@ -23,6 +27,7 @@ public class BetweenArrowsConstraintFigure extends PolylineConnection {
 	public BetweenArrowsConstraintFigure(BasicRectangleFigure basicRectangleFigure, String labelText) {
 		this.basicRectangleFigure = basicRectangleFigure;
 		this.labelText = labelText;
+		setMyBackgroundColor(ColorConstants.black);
 	}
 	
 	private Point[] getMidwayControlPoint(Point startPoint, Point endPoint) {
@@ -38,6 +43,19 @@ public class BetweenArrowsConstraintFigure extends PolylineConnection {
 			return firstCandidate;
 		}
 		return secondCandidate;
+	}
+	
+	
+	/**
+	 * Returns <code>true</code> if this Figure uses local coordinates. This
+	 * means its children are placed relative to this Figure's top-left corner.
+	 * 
+	 * @return <code>true</code> if this Figure uses local coordinates
+	 * @since 2.0
+	 */
+	@Override
+	protected boolean useLocalCoordinates() {
+		return false;
 	}
 	
 	private Point[] makeMidwayControlPoint(Point startPoint, Point endPoint) {
@@ -61,40 +79,53 @@ public class BetweenArrowsConstraintFigure extends PolylineConnection {
 		return retval;
 	}
 	
+	/**
+	 * Sets the list of points to be used by this figure. Removes any previously
+	 * existing points. This figure will hold onto the given list by reference.
+	 * 
+	 * @param points
+	 *            new set of points
+	 */
+	public void setPoints(PointList points) {
+		super.setPoints(points);
+	}
+	
 	@Override
 	protected void outlineShape(Graphics g) {
 		
-		
-		//super.outlineShape(g);
 		PointList points = getPoints();
 		Point p1 = points.getFirstPoint();
 		Point p2 = points.getLastPoint();
-		
+//		System.out.println("Constraint Y-Points: " + p1.y + ", " + p2.y);
+				
 		Point [] controlpoints = getMidwayControlPoint(p1, p2);
 		
 		Bezier bezier = new Bezier(points.getFirstPoint(), points.getLastPoint(), controlpoints[0], controlpoints[0]);
 		bezier.outlineShape(g);
-		
+
 		g.drawText(labelText, controlpoints[1].translate(-17, 0));
-		
+
+		setMyBackgroundColor(ColorConstants.black);
 		drawAnchorBlob(g, buildPointBox(points.getFirstPoint()));
 		drawAnchorBlob(g, buildPointBox(points.getLastPoint()));
+		counter++;
+		System.out.println(Integer.toString(counter) + ": Outlines Constraint figure");
+//		System.out.println("Constraint Y-Points: " + p1.y + ", " + p2.y);
+		
 	}
+	
+	private static int counter = 0;
 	
 	private Rectangle buildPointBox(Point p) {
 		return new Rectangle(p.x - 3, p.y - 3, 6, 6);
 	}
  	
 	private void drawAnchorBlob(Graphics g, Rectangle r) {
-//		Color c = new Color()
-		setBackgroundColor(ColorConstants.black);
-		g.fillArc(r.x, r.y, r.width, r.height, 0, 360);
-		
+		g.fillArc(r.x, r.y, r.width, r.height, 0, 360);	
 	}
-
+	
 	@Override
 	public Rectangle getBounds() {
-		
 		if (bounds == null) {
 			super.getBounds();
 			for (int i = 0; i < getChildren().size(); i++) {
@@ -108,6 +139,29 @@ public class BetweenArrowsConstraintFigure extends PolylineConnection {
 	}
 	
 	
+	/**
+	 * SetBacgroundColor without update()
+	 * @see IFigure#setBackgroundColor(Color)
+	 */
+	@SuppressWarnings("deprecation")
+	public void setMyBackgroundColor(Color bg) {
+		// Set background color to bg unless in high contrast mode.
+		// In that case, get the color from system
+		Display display = Display.getCurrent();
+		if (display == null) {
+			display = Display.getDefault();
+		}
+		Color highContrastClr = null;
+		try {
+			if (display.getHighContrast()) {
+				highContrastClr = display
+						.getSystemColor(SWT.COLOR_WIDGET_BACKGROUND);
+			}
+		} catch (SWTException e) {
+			highContrastClr = null;
+		}
+		bgColor = highContrastClr == null ? bg : highContrastClr;
+	}
 
 
 	

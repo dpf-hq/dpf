@@ -11,6 +11,8 @@
 package no.hib.dpf.editor.parts;
 
 import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -42,10 +44,49 @@ import org.eclipse.gef.requests.GroupRequest;
  */
 public class ShapeConnectionEditPart extends ModelElementConnectionEditPart {
 
+	/** Property ID to use when the figure has signalled a redraw. */
+	public static final String CONNECTION_REDRAWN = "ShapeConnectionEditPart.Redrawn";
+
 	private DPFConnectionFigure connection; 
 	Label connectionLabel;
 	private List<SingleLineConstraintElement> singleConstraints = new ArrayList<SingleLineConstraintElement>();
 
+	
+	private transient PropertyChangeSupport pcsDelegate = new PropertyChangeSupport(this);
+
+
+	/**
+	 * Attach a non-null PropertyChangeListener to this object.
+	 * 
+	 * @param l
+	 *            a non-null PropertyChangeListener instance
+	 * @throws IllegalArgumentException
+	 *             if the parameter is null
+	 */
+	public synchronized void addPropertyChangeListener(PropertyChangeListener l) {
+		if (l == null) {
+			throw new IllegalArgumentException();
+		}
+		pcsDelegate.addPropertyChangeListener(l);
+	}
+
+	/**
+	 * Report a property change to registered listeners (for example edit
+	 * parts).
+	 * 
+	 * @param property
+	 *            the programmatic name of the property that changed
+	 * @param oldValue
+	 *            the old value of this property
+	 * @param newValue
+	 *            the new value of this property
+	 */
+	protected void firePropertyChange(String property, Object oldValue, Object newValue) {
+		if (pcsDelegate.hasListeners(property)) {
+			pcsDelegate.firePropertyChange(property, oldValue, newValue);
+		}
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -119,9 +160,24 @@ public class ShapeConnectionEditPart extends ModelElementConnectionEditPart {
 			refreshTargetConnections();
 		} else if (Connection.SINGLE_CONSTRAINTS_PROP.equals(property)) {
 			refreshSingleLineConstraints();
+		} else if (CONNECTION_REDRAWN.equals(property)) {
+			firePropertyChange(ConstraintEditPart.CONNECTION_REDRAWN, null, null);
 		}
 
 	}
+	
+	/**
+	 * The default implementation calls {@link #createFigure()} if the figure is
+	 * currently <code>null</code>.
+	 * 
+	 * @see org.eclipse.gef.GraphicalEditPart#getFigure()
+	 */
+	@Override
+	public IFigure getFigure() {
+		DPFConnectionFigure retval = (DPFConnectionFigure)super.getFigure();
+		retval.addPropertyChangeListener(this);
+		return retval;
+	}	
 
 	private void refreshSingleLineConstraints() {
 		singleConstraints.clear();

@@ -11,6 +11,7 @@ import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.EditPartListener;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.ConnectionEditPolicy;
@@ -19,6 +20,9 @@ import org.eclipse.gef.requests.GroupRequest;
 
 public abstract class ConstraintEditPart extends ModelElementConnectionEditPart {
 
+	/** Property ID to use when a connection has been redrawn. */
+	public static final String CONNECTION_REDRAWN = "ConstraintEditPart.ConnectionRedrawn";
+	
 	private boolean constraintFromTargetEnd;
 	
 	public ConstraintEditPart(boolean constraintFromTargetEnd) {
@@ -41,22 +45,21 @@ public abstract class ConstraintEditPart extends ModelElementConnectionEditPart 
 	protected BasicRectangleFigure getRectangleFigureForFigure(boolean fromSource) {
 		BasicRectangleFigure basicRectangleFigure = null;
 		
-		if (getSource() != null) {	
-			if (getSource() instanceof ShapeConnectionEditPart) {
-				ShapeConnectionEditPart source = (ShapeConnectionEditPart)getSource();
-			
-				if (source.getSource() != null) {
-					if (source.getSource() instanceof ShapeEditPart) {
-						ShapeEditPart shapeEditPart;
-						if (fromSource) {
-							shapeEditPart = (ShapeEditPart)source.getSource();
-						} else {
-							shapeEditPart = (ShapeEditPart)source.getTarget();
-							
-						}
-						if (shapeEditPart.getFigure() instanceof BasicRectangleFigure) {
-							basicRectangleFigure = (BasicRectangleFigure) shapeEditPart.getFigure();
-						}
+		if (getSource() != null) {
+			ShapeConnectionEditPart source = (ShapeConnectionEditPart) getSource();
+
+			if (source.getSource() != null) {
+				if (source.getSource() instanceof ShapeEditPart) {
+					ShapeEditPart shapeEditPart;
+					if (fromSource) {
+						shapeEditPart = (ShapeEditPart) source.getSource();
+					} else {
+						shapeEditPart = (ShapeEditPart) source.getTarget();
+
+					}
+					if (shapeEditPart.getFigure() instanceof BasicRectangleFigure) {
+						basicRectangleFigure = (BasicRectangleFigure) shapeEditPart
+								.getFigure();
 					}
 				}
 			}
@@ -77,6 +80,9 @@ public abstract class ConstraintEditPart extends ModelElementConnectionEditPart 
 		String property = event.getPropertyName();
 		if (ConstraintElement.LINESTYLE_PROP.equals(property)) {
 			((PolylineConnection) getFigure()).setLineStyle(getCastedModel().getLineStyle());
+		} else if (CONNECTION_REDRAWN.equals(property)) {
+// NO GO! TODO: Make this work!			
+//			this.getFigure().repaint();
 		}
 	}
 	
@@ -140,5 +146,33 @@ public abstract class ConstraintEditPart extends ModelElementConnectionEditPart 
 		}
 		return retVal;
 	}	
+	
+	/**
+	 * Sets the source EditPart of this connection.
+	 * 
+	 * @param editPart
+	 *            EditPart which is the source.
+	 */
+	@Override
+	public void setSource(EditPart editPart) {
+		listenToConnectionPart(editPart);
+		super.setSource(editPart);
+		
+	}
 
+	@Override
+	public void setTarget(EditPart editPart) {
+		listenToConnectionPart(editPart);
+		super.setTarget(editPart);
+	}	
+
+	private void listenToConnectionPart(EditPart editPart) {
+		if (editPart == null) {
+			return;
+		}
+		ShapeConnectionEditPart shapeEditPart = (ShapeConnectionEditPart)editPart;
+		shapeEditPart.addPropertyChangeListener(this);
+	}	
+
+	
 }

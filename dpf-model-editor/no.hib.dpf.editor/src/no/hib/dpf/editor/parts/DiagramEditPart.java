@@ -14,6 +14,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.List;
 
+import no.hib.dpf.editor.figures.DPFShortestPathConnectionRouter;
 import no.hib.dpf.editor.model.DPFDiagram;
 import no.hib.dpf.editor.model.ModelElement;
 import no.hib.dpf.editor.model.RectangularShape;
@@ -27,7 +28,6 @@ import org.eclipse.draw2d.FreeformLayer;
 import org.eclipse.draw2d.FreeformLayout;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.MarginBorder;
-import org.eclipse.draw2d.ShortestPathConnectionRouter;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -96,7 +96,7 @@ class DiagramEditPart extends AbstractGraphicalEditPart implements
 
 		// Create the static router for the connection layer
 		ConnectionLayer connLayer = (ConnectionLayer) getLayer(LayerConstants.CONNECTION_LAYER);
-		connLayer.setConnectionRouter(new ShortestPathConnectionRouter(f));
+		connLayer.setConnectionRouter(new DPFShortestPathConnectionRouter(f));
 
 		return f;
 	}
