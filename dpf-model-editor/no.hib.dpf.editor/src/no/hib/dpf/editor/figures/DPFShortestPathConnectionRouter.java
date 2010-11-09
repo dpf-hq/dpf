@@ -11,6 +11,7 @@ package no.hib.dpf.editor.figures;
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -186,50 +187,70 @@ public final class DPFShortestPathConnectionRouter extends AbstractRouter {
 			hookAll();
 		}
 
+		
+		List<Connection> nodeConnections = new ArrayList<Connection>();
+		List<Connection> constraintConnections = new ArrayList<Connection>();
 		while (iter.hasNext()) {
 			Connection conn = (Connection) iter.next();
-
-			Path path = (Path) connectionToPaths.get(conn);
-			if (path == null) {
-				path = new Path(conn);
-				connectionToPaths.put(conn, path);
-				algorithm.addPath(path);
+			if (conn instanceof BetweenArrowsConstraintFigure) {
+				constraintConnections.add(conn);
+			} else {
+				nodeConnections.add(conn);
 			}
-
-			List constraint = (List) getConstraint(conn);
-			if (constraint == null)
-				constraint = Collections.EMPTY_LIST;
-
-			Point start = conn.getSourceAnchor().getReferencePoint().getCopy();
-			Point end = conn.getTargetAnchor().getReferencePoint().getCopy();
-
-			// --------------------------------------------------------------
-			// CHANGE FROM ORIGINAL:
-			// --------------------------------------------------------------			
-			if (!(container instanceof BetweenArrowsConstraintFigure)) {
-				// --------------------------------------------------------------
-				container.translateToRelative(start);
-				container.translateToRelative(end);
-				
-			}
-			// --------------------------------------------------------------
-
-			path.setStartPoint(start);
-			path.setEndPoint(end);
-
-			if (!constraint.isEmpty()) {
-				PointList bends = new PointList(constraint.size());
-				for (int i = 0; i < constraint.size(); i++) {
-					Bendpoint bp = (Bendpoint) constraint.get(i);
-					bends.addPoint(bp.getLocation());
-				}
-				path.setBendPoints(bends);
-			} else
-				path.setBendPoints(null);
-
-			isDirty |= path.isDirty;
 		}
+		for (Connection conn : nodeConnections) {
+			processStaleConnection(conn, false);
+		}
+		for (Connection conn : constraintConnections) {
+			processStaleConnection(conn, true);
+		}
+		
+		
 		staleConnections.clear();
+	}
+
+	@SuppressWarnings("unchecked")
+	private void processStaleConnection(Connection conn, boolean isConstraintFigure) {
+
+		Path path = (Path) connectionToPaths.get(conn);
+		if (path == null) {
+			path = new Path(conn);
+			connectionToPaths.put(conn, path);
+			algorithm.addPath(path);
+		}
+
+		List constraint = (List) getConstraint(conn);
+		if (constraint == null)
+			constraint = Collections.EMPTY_LIST;
+
+		Point start = conn.getSourceAnchor().getReferencePoint().getCopy();
+		Point end = conn.getTargetAnchor().getReferencePoint().getCopy();
+
+		// --------------------------------------------------------------
+		// CHANGE FROM ORIGINAL:
+		// --------------------------------------------------------------			
+		if (!isConstraintFigure) {
+			// --------------------------------------------------------------
+			container.translateToRelative(start);
+			container.translateToRelative(end);
+			
+		}
+		// --------------------------------------------------------------
+
+		path.setStartPoint(start);
+		path.setEndPoint(end);
+
+		if (!constraint.isEmpty()) {
+			PointList bends = new PointList(constraint.size());
+			for (int i = 0; i < constraint.size(); i++) {
+				Bendpoint bp = (Bendpoint) constraint.get(i);
+				bends.addPoint(bp.getLocation());
+			}
+			path.setBendPoints(bends);
+		} else
+			path.setBendPoints(null);
+
+		isDirty |= path.isDirty;
 	}
 
 	void queueSomeRouting() {
@@ -315,8 +336,16 @@ public final class DPFShortestPathConnectionRouter extends AbstractRouter {
 				// --------------------------------------------------------------
 				points.setPoint(start, 0);
 				points.setPoint(end, points.size() - 1);
+				
+				if (current instanceof DPFConnectionFigure) {
+					((DPFConnectionFigure) current).setChanged(false);
+				}
+				
 				current.setPoints(points);
 
+				if (current instanceof DPFConnectionFigure) {
+					((DPFConnectionFigure) current).fireRouted();
+				}
 
 			}
 			ignoreInvalidate = false;

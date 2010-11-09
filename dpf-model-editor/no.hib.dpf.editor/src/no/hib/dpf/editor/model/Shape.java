@@ -49,6 +49,8 @@ public abstract class Shape extends ModelElement implements IDObjectContainer {
 	/** Property ID to use when the list of incoming connections is modified. */
 	public static final String TARGET_CONNECTIONS_PROP = "Shape.TargetConn";
 	
+	public static final String NEW_LOCATION_PROP = "Shape.NewLocation";
+	
 	/** Property ID to use when the name is modified. */	
 	public static final String NAME_PROP = "Shape.Name";
 
@@ -258,6 +260,7 @@ public abstract class Shape extends ModelElement implements IDObjectContainer {
 		}
 		location.setLocation(newLocation);
 		firePropertyChange(LOCATION_PROP, null, location);
+//		firePropertyChange(NEW_LOCATION_PROP, null, location);
 	}
 
 	/**

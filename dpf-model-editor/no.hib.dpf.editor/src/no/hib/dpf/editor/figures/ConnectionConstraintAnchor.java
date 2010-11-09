@@ -12,7 +12,6 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 
 public class ConnectionConstraintAnchor implements ConnectionAnchor {
-//		AncestorListener {
 
 	private static final int maxDistanceToConnectionPoint = 75;
 
@@ -77,6 +76,7 @@ public class ConnectionConstraintAnchor implements ConnectionAnchor {
 	 * @see ConnectionAnchor#getLocation(Point)
 	 */
 	public Point getLocation(Point reference) {
+		System.out.println("returns point: " + getLinePoint());
 		return getLinePoint();
 	}
 
@@ -94,6 +94,7 @@ public class ConnectionConstraintAnchor implements ConnectionAnchor {
 	 * @see ConnectionAnchor#getReferencePoint()
 	 */
 	public Point getReferencePoint() {
+		System.out.println("returns reference point: " + getLinePoint());
 		return getLinePoint();
 //		Point ref = getLinePoint();
 //		getOwner().translateToAbsolute(ref);

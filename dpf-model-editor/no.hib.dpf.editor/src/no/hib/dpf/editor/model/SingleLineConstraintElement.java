@@ -15,7 +15,7 @@ public class SingleLineConstraintElement extends ConstraintElement {
 	public SingleLineConstraintElement(Connection source, ConstraintType constraintType) {
 		super(source, null, constraintType);
 	}
-	
+		
 	@Override
 	public String toString() {
 		return String.format("[%s..%s]", valToString(val_1), valToString(val_2));

@@ -129,9 +129,15 @@ public abstract class ModelElement implements IPropertySource, Serializable {
 	private void readObject(ObjectInputStream in) throws IOException,
 			ClassNotFoundException {
 		in.defaultReadObject();
-		pcsDelegate = new PropertyChangeSupport(this);
+		if (pcsDelegate == null) { 
+			pcsDelegate = new PropertyChangeSupport(this);
+		}
 	}
 
+	protected void readObjectExec(ObjectInputStream in) throws IOException, ClassNotFoundException {
+		this.readObject(in);
+	}
+	
 	/**
 	 * Remove a PropertyChangeListener from this component.
 	 * 

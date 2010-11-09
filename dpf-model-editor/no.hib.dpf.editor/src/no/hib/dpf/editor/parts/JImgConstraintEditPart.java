@@ -29,7 +29,7 @@ class JImgConstraintEditPart extends ConstraintEditPart {
 	 * @see org.eclipse.gef.editparts.AbstractGraphicalEditPart#createFigure()
 	 */
 	@Override
-	protected IFigure createFigure() {
+	protected IFigure createFigureExec() {
 		BasicRectangleFigure basicRectangleFigure = getRectangleFigureForFigure(false);
 		BetweenArrowsConstraintFigure connection = new BetweenArrowsConstraintFigure(basicRectangleFigure, "[Joint Image]");
 		connection.setLineStyle(getCastedModel().getLineStyle());

@@ -422,6 +422,12 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 			}
 			children.get(id).setIDObject(idObject);
 		}
+//		for (String id : children.keySet()) {
+//			ModelElement child = children.get(id);
+//			if (child instanceof ConstraintElement) {
+//				((ConstraintElement)child).resetConstraintFigure();
+//			}
+//		}
 	}
 
 	private void deserializeDpfModel() {

@@ -28,7 +28,8 @@ class JInjConstraintEditPart extends ConstraintEditPart {
 	 * Returns the primary Figure representing this GraphicalEditPart, a Constraint Figure.
 	 * @see org.eclipse.gef.editparts.AbstractGraphicalEditPart#createFigure()
 	 */
-	protected IFigure createFigure() {
+	@Override
+	protected IFigure createFigureExec() {
 		BasicRectangleFigure basicRectangleFigure = getRectangleFigureForFigure(true);
 		// TODO: make factory:
 		BetweenArrowsConstraintFigure connection = new BetweenArrowsConstraintFigure(basicRectangleFigure, "[Jointly Injective]");

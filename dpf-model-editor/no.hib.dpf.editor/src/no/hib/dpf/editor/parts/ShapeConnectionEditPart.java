@@ -20,6 +20,7 @@ import java.util.List;
 import no.hib.dpf.editor.figures.DPFConnectionFigure;
 import no.hib.dpf.editor.model.Connection;
 import no.hib.dpf.editor.model.ConstraintElement;
+import no.hib.dpf.editor.model.Shape;
 import no.hib.dpf.editor.model.SingleLineConstraintElement;
 import no.hib.dpf.editor.model.commands.ConnectionDeleteCommand;
 
@@ -44,14 +45,9 @@ import org.eclipse.gef.requests.GroupRequest;
  */
 public class ShapeConnectionEditPart extends ModelElementConnectionEditPart {
 
-	/** Property ID to use when the figure has signalled a redraw. */
-	public static final String CONNECTION_REDRAWN = "ShapeConnectionEditPart.Redrawn";
-
 	private DPFConnectionFigure connection; 
 	Label connectionLabel;
 	private List<SingleLineConstraintElement> singleConstraints = new ArrayList<SingleLineConstraintElement>();
-
-	
 	private transient PropertyChangeSupport pcsDelegate = new PropertyChangeSupport(this);
 
 
@@ -87,6 +83,10 @@ public class ShapeConnectionEditPart extends ModelElementConnectionEditPart {
 		}
 	}
 	
+	public void updateConstraints() {
+		getCastedModel().updateConstraints();
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -119,6 +119,7 @@ public class ShapeConnectionEditPart extends ModelElementConnectionEditPart {
 		arrowHead.setScale(16, 6);
 		connection.setTargetDecoration(arrowHead); // arrow at target endpoint
 		connection.setLineStyle(getCastedModel().getLineStyle()); // line drawing style
+		connection.setEditPart(this);
 		return connection;
 	}
 
@@ -160,23 +161,20 @@ public class ShapeConnectionEditPart extends ModelElementConnectionEditPart {
 			refreshTargetConnections();
 		} else if (Connection.SINGLE_CONSTRAINTS_PROP.equals(property)) {
 			refreshSingleLineConstraints();
-		} else if (CONNECTION_REDRAWN.equals(property)) {
-			firePropertyChange(ConstraintEditPart.CONNECTION_REDRAWN, null, null);
+//		} else if (Shape.NEW_LOCATION_PROP.equals(property)) {
+//			System.out.println("gabba-connect");
+//			refresh();
+//			getFigure().revalidate();
 		}
-
 	}
 	
-	/**
-	 * The default implementation calls {@link #createFigure()} if the figure is
-	 * currently <code>null</code>.
-	 * 
-	 * @see org.eclipse.gef.GraphicalEditPart#getFigure()
-	 */
 	@Override
 	public IFigure getFigure() {
-		DPFConnectionFigure retval = (DPFConnectionFigure)super.getFigure();
-		retval.addPropertyChangeListener(this);
-		return retval;
+		if (figure == null) {
+			setFigure(createFigure());
+			figure.addPropertyChangeListener(this);
+		}
+		return figure;
 	}	
 
 	private void refreshSingleLineConstraints() {
@@ -186,16 +184,6 @@ public class ShapeConnectionEditPart extends ModelElementConnectionEditPart {
 			singleConstraints.add(singleLineConstraintElement);
 		}
 		makeNewConstraintLabel();
-	}
-
-	/**
-	 * Extended here to also refresh the ConnectionAnchors.
-	 * 
-	 * @see org.eclipse.gef.EditPart#refresh()
-	 */
-	@Override
-	public void refresh() {
-		super.refresh();
 	}
 
 	/*
