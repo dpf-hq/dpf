@@ -229,12 +229,15 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	 * @generated NOT
 	 */
 	public IDObject getGraphMember(String id) {
-		// TODO: base this on a hash table or similar
+		// TODO: FIX, goddamnit!
 		for (Edge anEdge : getEdges()) {
 			if (anEdge.getId().equals(id)) return anEdge;
 		}		
 		for (Node aNode : getNodes()) {
 			if (aNode.getId().equals(id)) return aNode;
+		}
+		for (Constraint aConstraint : getConstraints()) {
+			if (aConstraint.getId().equals(id)) return aConstraint;
 		}
 		return null;
 	}
