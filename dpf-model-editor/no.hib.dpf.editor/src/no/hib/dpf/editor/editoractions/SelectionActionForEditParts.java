@@ -34,13 +34,37 @@ public abstract class SelectionActionForEditParts extends SelectionAction {
 	}
 
 	protected EList<Node> getSelectionNodes() {
-		EList<Node> nodes = new BasicEList<Node>();
+		EList<Node> selectionNodes = new BasicEList<Node>();
 		for (ShapeEditPart shapeEditPart : getSelectedShapeEditParts()) {
-			nodes.add((Node)shapeEditPart.getModel());
+			selectionNodes.add((Node)shapeEditPart.getModel());
 		}
-		return nodes;
-	}	
+		// Add any nodes not selected, but directly connected to the selected edges
+		return selectionNodes;
+	}
 
+	protected EList<Node> addUnselectedNodesToSelection(EList<Node> selectionNodes, EList<Edge> selectionEdges) {
+		for (Edge edge : selectionEdges) {
+			addNodeToRetVal(selectionNodes, edge.getSource());			
+			addNodeToRetVal(selectionNodes, edge.getTarget());			
+		}
+		return selectionNodes;
+	}
+	
+	private void addNodeToRetVal(EList<Node> selectionNodes, Node node) {
+		if (!nodeInList(selectionNodes, node)) {
+			selectionNodes.add(node);
+		}
+	}	
+	
+	private boolean nodeInList(EList<Node> selectionNodes, Node node) {
+		for (Node listNode : selectionNodes) {
+			if (listNode.getId().equals(node.getId())) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	// TODO: make private after refactoring
 	protected List<ConnectionEditPart> getSelectedConnectionEditParts() {
 		List<ConnectionEditPart> connectionEditParts = new ArrayList<ConnectionEditPart>();

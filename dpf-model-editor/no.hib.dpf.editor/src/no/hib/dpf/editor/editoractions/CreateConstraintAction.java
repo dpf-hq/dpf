@@ -3,9 +3,12 @@ package no.hib.dpf.editor.editoractions;
 import java.util.List;
 
 import no.hib.dpf.editor.parts.ShapeEditPart;
+import no.hib.dpf.metamodel.Edge;
 import no.hib.dpf.metamodel.Graph;
+import no.hib.dpf.metamodel.Node;
 import no.hib.dpf.metamodel.Predicate;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.commands.Command;
@@ -23,7 +26,9 @@ public abstract class CreateConstraintAction extends SelectionActionForEditParts
 	
 	@Override
 	protected boolean calculateEnabled() {
-		return testPredicate.canCreateConstraint(getSelectionNodes(), getSelectionEdges(), graph);
+		EList<Edge> selectionEdges = getSelectionEdges();
+		EList<Node> selectionNodes = getSelectionNodes();
+		return testPredicate.canCreateConstraint(addUnselectedNodesToSelection(selectionNodes, selectionEdges), selectionEdges, graph);
 	}	
 
 	@Override
