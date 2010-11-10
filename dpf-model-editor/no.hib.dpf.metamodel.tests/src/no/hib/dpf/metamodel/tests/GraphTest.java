@@ -6,6 +6,10 @@
  */
 package no.hib.dpf.metamodel.tests;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 import junit.textui.TestRunner;
 import no.hib.dpf.metamodel.Edge;
 import no.hib.dpf.metamodel.Graph;
@@ -117,6 +121,16 @@ public class GraphTest extends IDObjectTest {
 	}
 
 	/**
+	 * @generated NOT
+	 */
+	public void testCreateEdge__nullpointer_throws() {
+		try {
+			MetamodelFactory.eINSTANCE.createGraph("", "g_edge:null:null");
+			fail("Expected exception when adding a dangling edge to a graph");
+		} catch(NullPointerException e) {}
+	}
+
+	/**
 	 * Tests the '{@link no.hib.dpf.metamodel.Graph#applyPredicate(no.hib.dpf.metamodel.Predicate, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Apply Predicate</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -194,5 +208,16 @@ public class GraphTest extends IDObjectTest {
 		fail();
 	}
 
+	/**
+	 * @generated NOT
+	 */
+	public static List<Graph> createGraphs(String g_nodes, String h_nodes, String g_edges, String h_edges) {
+		List<Graph> retval = new ArrayList<Graph>();		
+		retval.add(MetamodelFactory.eINSTANCE.createGraph(g_nodes, g_edges));
+		retval.add(MetamodelFactory.eINSTANCE.createGraph(h_nodes, h_edges));
+		return retval;
+	}
+
+	
 
 } //GraphTest

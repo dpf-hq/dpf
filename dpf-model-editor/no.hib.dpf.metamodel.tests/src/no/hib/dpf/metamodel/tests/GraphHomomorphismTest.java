@@ -6,11 +6,7 @@
  */
 package no.hib.dpf.metamodel.tests;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 
 import junit.framework.TestCase;
 import junit.textui.TestRunner;
@@ -19,6 +15,9 @@ import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.GraphHomomorphism;
 import no.hib.dpf.metamodel.MetamodelFactory;
 import no.hib.dpf.metamodel.Node;
+
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -117,11 +116,11 @@ public class GraphHomomorphismTest extends TestCase {
 //		
 //		// Check the created mappings
 //		
-		doTestReturnedMappings(createGraphs("", "", "g_edge:null:null", "h_edge:null:null"), new String[]{}, new String[] { "g_edge:h_edge" }, true);		
-		doTestReturnedMappings(createGraphs("g_node_1,g_node_2", "h_node_1,h_node_2", "", ""), new String[] { "g_node_1:h_node_1", "g_node_2:h_node_2" }, new String[]{}, true);		
-		doTestReturnedMappings(createGraphs("g_node_1", "h_node_1", "g_edge_1:g_node_1:null,g_edge_2:g_node_1:null", "h_edge_1:h_node_1:null,h_edge_2:h_node_1:null"), new String[] { "g_node_1:h_node_1" }, new String[]{ "g_edge_1:h_edge_1", "g_edge_2:h_edge_2"}, true);		
-		doTestReturnedMappings(createGraphs("gn1,gn2", "hn1,hn2", "ge:gn1:gn2", "he:hn2:hn1"), new String[] { "gn1:hn2", "gn2:hn1" }, new String[]{ "ge:he" }, true);		
-		doTestReturnedMappings(createGraphs("g_node_1", "h_node_1", "g_edge_1:null:g_node_1,g_edge_2:null:g_node_1", "h_edge_1:null:h_node_1,h_edge_2:null:h_node_1"), new String[] { "g_node_1:h_node_1" }, new String[]{ "g_edge_1:h_edge_1", "g_edge_2:h_edge_2"}, true);		
+		doTestReturnedMappings(GraphTest.createGraphs("g_node_1", "g_node_1", "g_edge:g_node_1:g_node_1", "h_edge:g_node_1:g_node_1"), new String[]{}, new String[] { "g_edge:h_edge" }, true);		
+		doTestReturnedMappings(GraphTest.createGraphs("g_node_1,g_node_2", "h_node_1,h_node_2", "", ""), new String[] { "g_node_1:h_node_1", "g_node_2:h_node_2" }, new String[]{}, true);		
+		doTestReturnedMappings(GraphTest.createGraphs("g_node_1,g_node_2,g_node_3", "h_node_1,h_node_2,h_node_3", "g_edge_1:g_node_1:g_node_2,g_edge_2:g_node_1:g_node_3", "h_edge_1:h_node_1:h_node_2,h_edge_2:h_node_1:h_node_3"), new String[] { "g_node_1:h_node_1" }, new String[]{ "g_edge_1:h_edge_1", "g_edge_2:h_edge_2"}, true);		
+		doTestReturnedMappings(GraphTest.createGraphs("gn1,gn2", "hn1,hn2", "ge:gn1:gn2", "he:hn2:hn1"), new String[] { "gn1:hn2", "gn2:hn1" }, new String[]{ "ge:he" }, true);		
+		doTestReturnedMappings(GraphTest.createGraphs("g_node_1,g_node_2,g_node_3", "h_node_1,h_node_2,h_node_3", "g_edge_1:g_node_2:g_node_1,g_edge_2:g_node_3:g_node_1", "h_edge_1:h_node_2:h_node_1,h_edge_2:h_node_3:h_node_1"), new String[] { "g_node_1:h_node_1" }, new String[]{ "g_edge_1:h_edge_1", "g_edge_2:h_edge_2"}, true);		
 	}
 	
 	/**
@@ -186,45 +185,33 @@ public class GraphHomomorphismTest extends TestCase {
 	 * @generated NOT
 	 */
 	private void doTestHomomorphisms() {
-		testTryToCreateHomomorphism(createGraphs("", "", "", ""), true);
+		testTryToCreateHomomorphism(GraphTest.createGraphs("", "", "", ""), true);
 		// Single nodes, no edges:
-		testTryToCreateHomomorphism(createGraphs("g_node_1", "h_node_1", "", ""), true);
-		testTryToCreateHomomorphism(createGraphs("g_node_1,g_node_2", "h_node_1", "", ""), false);
-		testTryToCreateHomomorphism(createGraphs("g_node_1,g_node_2", "h_node_1,h_node_2", "", ""), true);
+		testTryToCreateHomomorphism(GraphTest.createGraphs("g_node_1", "h_node_1", "", ""), true);
+		testTryToCreateHomomorphism(GraphTest.createGraphs("g_node_1,g_node_2", "h_node_1", "", ""), false);
+		testTryToCreateHomomorphism(GraphTest.createGraphs("g_node_1,g_node_2", "h_node_1,h_node_2", "", ""), true);
 		// Now with an edge:
-		testTryToCreateHomomorphism(createGraphs("g_node_1,g_node_2", "h_node_1,h_node_2", "g_edge_1:g_node_1:g_node_2", ""), false);
-		testTryToCreateHomomorphism(createGraphs("g_node_1,g_node_2", "h_node_1,h_node_2", "", "h_edge_1:h_node_1:h_node_2"), false);
-		testTryToCreateHomomorphism(createGraphs("g_node_1,g_node_2", "h_node_1,h_node_2", "g_edge_1:g_node_1:g_node_2", "h_edge_1:h_node_1:h_node_2"), true);
+		testTryToCreateHomomorphism(GraphTest.createGraphs("g_node_1,g_node_2", "h_node_1,h_node_2", "g_edge_1:g_node_1:g_node_2", ""), false);
+		testTryToCreateHomomorphism(GraphTest.createGraphs("g_node_1,g_node_2", "h_node_1,h_node_2", "", "h_edge_1:h_node_1:h_node_2"), false);
+		testTryToCreateHomomorphism(GraphTest.createGraphs("g_node_1,g_node_2", "h_node_1,h_node_2", "g_edge_1:g_node_1:g_node_2", "h_edge_1:h_node_1:h_node_2"), true);
 		// Just edges
-		testTryToCreateHomomorphism(createGraphs("", "", "g_edge:null:null", "h_edge:null:null"), true);		
-		testTryToCreateHomomorphism(createGraphs("", "", "g_edge:null:null", "h_edge:null:null,h_2:null:null"), false);		
+		testTryToCreateHomomorphism(GraphTest.createGraphs("null", "null", "g_edge:null:null", "h_edge:null:null"), true);		
+		testTryToCreateHomomorphism(GraphTest.createGraphs("null", "null", "g_edge:null:null", "h_edge:null:null,h_2:null:null"), false);		
 		// 3 nodes/2 edges:
-		testTryToCreateHomomorphism(createGraphs("gn1,gn2,gn3", "hn1,hn2,hn3", "ge1:gn1:gn2,ge2:gn3:gn2", "he1:hn1:hn2,he2:hn3:hn2"), true);
+		testTryToCreateHomomorphism(GraphTest.createGraphs("gn1,gn2,gn3", "hn1,hn2,hn3", "ge1:gn1:gn2,ge2:gn3:gn2", "he1:hn1:hn2,he2:hn3:hn2"), true);
 		// Now with the arrows going in different direction in the two graphs:
-		testTryToCreateHomomorphism(createGraphs("gn1,gn2,gn3", "hn1,hn2,hn3", "ge1:gn1:gn2,ge2:gn3:gn2", "he1:hn2:hn1,he2:hn2:hn3"), false);
+		testTryToCreateHomomorphism(GraphTest.createGraphs("gn1,gn2,gn3", "hn1,hn2,hn3", "ge1:gn1:gn2,ge2:gn3:gn2", "he1:hn2:hn1,he2:hn2:hn3"), false);
 		// 3 nodes, 2 edges, but the edges don't go between all 3 nodes in one graph
-		testTryToCreateHomomorphism(createGraphs("gn1,gn2,gn3", "hn1,hn2,hn3", "ge1:gn1:gn2,ge2:gn1:gn3", "he1:hn1:hn2,he2:hn1:hn2"), false);
-		
-		testTryToCreateHomomorphism(createGraphs("gn1", "hn1", "ge1:gn1:gn2,ge2:gn1:gn3", "he1:hn1:hn2,he2:hn1:hn2"), true);
+		testTryToCreateHomomorphism(GraphTest.createGraphs("gn1,gn2,gn3", "hn1,hn2,hn3", "ge1:gn1:gn2,ge2:gn1:gn3", "he1:hn1:hn2,he2:hn1:hn2"), false);
 	}
 
 	/**
 	 * @generated NOT
 	 */
 	private void doTestHomomorphismsWithExtraGraphElements() {
-		testHomomorphismWithExtraGraphElements(createGraphs("gn1,gn2,gn3", "hn1,hn2,hn3", "ge1:gn1:gn2,ge2:gn3:gn2", "he1:hn1:hn2,he2:hn3:hn2"), true);		
-		testHomomorphismWithExtraGraphElements2(createGraphs("gn1,gn2", "hn1,hn2", "ge1:gn1:gn2", "he1:hn1:null"), false);		
-		testHomomorphismWithExtraGraphElements3(createGraphs("gn1,gn2", "hn1,hn2", "ge1:gn1:gn2", "he1:hn1:hn2"), true);
-	}
-	
-	/**
-	 * @generated NOT
-	 */
-	private List<Graph> createGraphs(String g_nodes, String h_nodes, String g_edges, String h_edges) {
-		List<Graph> retval = new ArrayList<Graph>();		
-		retval.add(MetamodelFactory.eINSTANCE.createGraph(g_nodes, g_edges));
-		retval.add(MetamodelFactory.eINSTANCE.createGraph(h_nodes, h_edges));
-		return retval;
+		testHomomorphismWithExtraGraphElements(GraphTest.createGraphs("gn1,gn2,gn3", "hn1,hn2,hn3", "ge1:gn1:gn2,ge2:gn3:gn2", "he1:hn1:hn2,he2:hn3:hn2"), true);		
+		testHomomorphismWithExtraGraphElements2(GraphTest.createGraphs("gn1,gn2", "hn1,hn2,null", "ge1:gn1:gn2", "he1:hn1:null"), false);		
+		testHomomorphismWithExtraGraphElements3(GraphTest.createGraphs("gn1,gn2", "hn1,hn2", "ge1:gn1:gn2", "he1:hn1:hn2"), true);
 	}
 	
 	/**
@@ -267,7 +254,7 @@ public class GraphHomomorphismTest extends TestCase {
 	private void testHomomorphismWithExtraGraphElements3(List<Graph> graphs, boolean expectedResult) {
 		EList<?> nodes = new BasicEList<Node>(graphs.get(1).getNodes());
 		EList<?> edges = new BasicEList<Edge>(graphs.get(1).getEdges());
-		graphs.get(1).createEdge("hn1", graphs.get(1).getNodes().get(0), null);
+		graphs.get(1).createEdge("hn1", graphs.get(1).getNodes().get(0), graphs.get(1).getNodes().get(0));
 		testTryToCreateHomomorphism(graphs.get(0), nodes, edges, expectedResult);
 	}
 	
