@@ -17,7 +17,7 @@ import org.eclipse.ui.IWorkbenchPart;
 public class CreateJointImageConstraintAction extends CreateConstraintAction {
 	
 	public static final String ID="no.hib.dpf.editor.editoractions.CreateJointImageConstraintAction";	
-	private static Predicate JIPredicate = MetamodelFactory.eINSTANCE.createPredicate("n_1", "e_1:null:n_1,e_2:null:n_1");
+	private static Predicate JIPredicate = MetamodelFactory.eINSTANCE.createPredicate("n_1,n_2,n_3", "e_1:n_2:n_1,e_2:n_3:n_1");
 	
 	public CreateJointImageConstraintAction(IWorkbenchPart part, Graph graph) {
 		super(part, ID, graph, JIPredicate);

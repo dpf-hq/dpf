@@ -17,7 +17,7 @@ import org.eclipse.ui.IWorkbenchPart;
 public class CreateJointlyInjectiveConstraintAction extends CreateConstraintAction {
 		
 	public static final String ID="no.hib.dpf.editor.editoractions.CreateJointlyInjectiveConstraintAction";
-	private static Predicate JIPredicate = MetamodelFactory.eINSTANCE.createPredicate("n_1", "e_1:n_1:null,e_2:n_1:null");
+	private static Predicate JIPredicate = MetamodelFactory.eINSTANCE.createPredicate("n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3");
 
 	public CreateJointlyInjectiveConstraintAction(IWorkbenchPart part, Graph graph) {
 		super(part, ID, graph, JIPredicate);

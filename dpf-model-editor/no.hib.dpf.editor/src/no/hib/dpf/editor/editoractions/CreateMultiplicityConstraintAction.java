@@ -16,7 +16,7 @@ import org.eclipse.ui.IWorkbenchPart;
 public class CreateMultiplicityConstraintAction extends CreateConstraintAction {
 	
 	public static final String ID="no.hib.dpf.editor.editoractions.CreateMultiplicityConstraintAction";	
-	private static Predicate MPredicate = MetamodelFactory.eINSTANCE.createPredicate("", "e_1:null:null");
+	private static Predicate MPredicate = MetamodelFactory.eINSTANCE.createPredicate("n_1,n_2", "e_1:n_1:n_2");
 
 	
 	public CreateMultiplicityConstraintAction(IWorkbenchPart part, Graph graph) {
