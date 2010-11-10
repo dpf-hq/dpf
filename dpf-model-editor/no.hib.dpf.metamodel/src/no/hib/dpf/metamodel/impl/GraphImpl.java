@@ -187,6 +187,9 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	 * @generated NOT
 	 */
 	public Edge createEdge(String name, Node source, Node target) {
+		if ((source == null) || (target == null)) {
+			throw new NullPointerException("Tried to create an Edge instance with no target and/or source.");
+		}
 		Edge edge = MetamodelFactory.eINSTANCE.createEdge();
 		edge.setSource(source);
 		edge.setTarget(target);
