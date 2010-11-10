@@ -20,14 +20,8 @@ import org.eclipse.gef.requests.GroupRequest;
 
 public abstract class ConstraintEditPart extends ModelElementConnectionEditPart {
 
-	///** Property ID to use when a connection has been redrawn. */
-	//public static final String CONNECTION_REDRAWN = "ConstraintEditPart.ConnectionRedrawn";
-	
 	private boolean constraintFromTargetEnd;
-	
-	private ConnectionConstraintAnchor sourceAnchor;
-	private ConnectionConstraintAnchor targetAnchor;
-	
+		
 	public ConstraintEditPart(boolean constraintFromTargetEnd) {
 		super();
 		this.constraintFromTargetEnd = constraintFromTargetEnd;
@@ -36,32 +30,8 @@ public abstract class ConstraintEditPart extends ModelElementConnectionEditPart 
 	@Override
 	protected IFigure createFigure() {
 		IFigure retval = createFigureExec();
-//		addFigureToConstrainedPartsFigures(retval);
 		return retval;
-	}
-	
-//	/**
-//	 * Upon activation, attach to the model element as a property change listener.
-//	 */
-//	@Override
-//	public void activate() {
-//		super.activate();
-//		deactivateFigure();
-//		activateFigure();		
-//	}
-	
-
-//	private void addFigureToConstrainedPartsFigures(IFigure retval) {
-//		if (getSource() != null) {
-//			ShapeConnectionEditPart source = (ShapeConnectionEditPart) getSource();
-//			source.getFigure().add(retval);
-//		}
-//		if (getTarget() != null) {
-//			ShapeConnectionEditPart target = (ShapeConnectionEditPart) getTarget();
-//			target.getFigure().add(retval);
-//		}
-//	}
-	
+	}		
 	
 	protected abstract IFigure createFigureExec();
 
@@ -78,6 +48,9 @@ public abstract class ConstraintEditPart extends ModelElementConnectionEditPart 
 		});
 	}
 
+	public abstract BasicRectangleFigure getRectangleFigureForFigure();
+
+	
 	protected BasicRectangleFigure getRectangleFigureForFigure(boolean fromSource) {
 		BasicRectangleFigure basicRectangleFigure = null;
 		
@@ -116,14 +89,6 @@ public abstract class ConstraintEditPart extends ModelElementConnectionEditPart 
 		String property = event.getPropertyName();
 		if (ConstraintElement.LINESTYLE_PROP.equals(property)) {
 			((PolylineConnection) getFigure()).setLineStyle(getCastedModel().getLineStyle());
-		} else if (ConstraintElement.NEW_LOCATION_PROP.equals(property)) {
-			updateAnchors();
-			System.out.println("gabba-constraint");
-			refresh();
-			getFigure().revalidate();
-//		} else if (ConstraintElement.RESET_PROPERTY.equals(property)) {
-//			deactivateFigure();
-//			activateFigure();
 		}			
 	}
 	
@@ -150,11 +115,6 @@ public abstract class ConstraintEditPart extends ModelElementConnectionEditPart 
 		return getConnectionAnchor(getTarget(), false);
 	}
 	
-	private void updateAnchors() {
-		updateAnchor(sourceAnchor, getSource(), true);
-		updateAnchor(targetAnchor, getTarget(), false);
-	}
-
 	/**
 	 * Produces a ConnectionAnchor for either the source or target end of this
 	 * connection. The source (or target) needs to be an instance of 
@@ -167,11 +127,6 @@ public abstract class ConstraintEditPart extends ModelElementConnectionEditPart 
 		// Now, the connection constraint anchor is constructed, setting from which end of the line it
 		// should anchor itself:
 		ConnectionConstraintAnchor retval = new ConnectionConstraintAnchor(new Point(100, 100), constraintFromTargetEnd);
-		if (isSource) {
-			sourceAnchor = retval;
-		} else {
-			targetAnchor = retval;
-		}
 		if ((supplier == null)  || (!(supplier instanceof ShapeConnectionEditPart))) {
 			return retval;
 		}
@@ -225,47 +180,5 @@ public abstract class ConstraintEditPart extends ModelElementConnectionEditPart 
 	
 	// -----------------------------
 	
-	/**
-	 * Activates the Figure representing this, by setting up the start and end
-	 * connections, and adding the figure to the Connection Layer.
-	 * 
-	 * @see #deactivate()
-	 */
-	@Override
-	protected void activateFigure() {
-		getLayer(CONNECTION_LAYER).add(getFigure());
-	}
-
-	/**
-	 * @see org.eclipse.gef.EditPart#addNotify()
-	 */
-	@Override
-	public void addNotify() {
-//		activateFigure();
-		super.addNotify();
-	}	
-	
-	/**
-	 * Deactivates the Figure representing this, by removing it from the
-	 * connection layer, and resetting the source and target connections to
-	 * <code>null</code>.
-	 */
-	protected void deactivateFigure() {
-		getLayer(CONNECTION_LAYER).remove(getFigure());
-		getConnectionFigure().setSourceAnchor(null);
-		getConnectionFigure().setTargetAnchor(null);
-	}
-
-	/**
-	 * Extended here to remove the ConnectionEditPart's connection figure from
-	 * the connection layer.
-	 * 
-	 * @see org.eclipse.gef.EditPart#removeNotify()
-	 */
-	public void removeNotify() {
-		deactivateFigure();
-		super.removeNotify();
-	}
-
-	
+		
 }

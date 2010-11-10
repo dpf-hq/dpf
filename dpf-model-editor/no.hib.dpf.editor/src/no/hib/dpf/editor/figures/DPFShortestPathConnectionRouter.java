@@ -179,7 +179,8 @@ public final class DPFShortestPathConnectionRouter extends AbstractRouter {
 		((Connection) staleConnections.iterator().next()).revalidate();
 	}
 
-	@SuppressWarnings("unchecked")
+	// Revised for DPF:
+	// Connections are laid out before constraints
 	private void processStaleConnections() {
 		Iterator iter = staleConnections.iterator();
 		if (iter.hasNext() && connectionToPaths == null) {
@@ -337,15 +338,8 @@ public final class DPFShortestPathConnectionRouter extends AbstractRouter {
 				points.setPoint(start, 0);
 				points.setPoint(end, points.size() - 1);
 				
-				if (current instanceof DPFConnectionFigure) {
-					((DPFConnectionFigure) current).setChanged(false);
-				}
 				
 				current.setPoints(points);
-
-				if (current instanceof DPFConnectionFigure) {
-					((DPFConnectionFigure) current).fireRouted();
-				}
 
 			}
 			ignoreInvalidate = false;

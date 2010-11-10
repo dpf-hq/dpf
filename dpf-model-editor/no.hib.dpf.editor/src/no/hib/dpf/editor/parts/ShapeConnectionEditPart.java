@@ -20,7 +20,6 @@ import java.util.List;
 import no.hib.dpf.editor.figures.DPFConnectionFigure;
 import no.hib.dpf.editor.model.Connection;
 import no.hib.dpf.editor.model.ConstraintElement;
-import no.hib.dpf.editor.model.Shape;
 import no.hib.dpf.editor.model.SingleLineConstraintElement;
 import no.hib.dpf.editor.model.commands.ConnectionDeleteCommand;
 
@@ -82,11 +81,7 @@ public class ShapeConnectionEditPart extends ModelElementConnectionEditPart {
 			pcsDelegate.firePropertyChange(property, oldValue, newValue);
 		}
 	}
-	
-	public void updateConstraints() {
-		getCastedModel().updateConstraints();
-	}
-	
+		
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -119,7 +114,6 @@ public class ShapeConnectionEditPart extends ModelElementConnectionEditPart {
 		arrowHead.setScale(16, 6);
 		connection.setTargetDecoration(arrowHead); // arrow at target endpoint
 		connection.setLineStyle(getCastedModel().getLineStyle()); // line drawing style
-		connection.setEditPart(this);
 		return connection;
 	}
 
@@ -161,10 +155,6 @@ public class ShapeConnectionEditPart extends ModelElementConnectionEditPart {
 			refreshTargetConnections();
 		} else if (Connection.SINGLE_CONSTRAINTS_PROP.equals(property)) {
 			refreshSingleLineConstraints();
-//		} else if (Shape.NEW_LOCATION_PROP.equals(property)) {
-//			System.out.println("gabba-connect");
-//			refresh();
-//			getFigure().revalidate();
 		}
 	}
 	

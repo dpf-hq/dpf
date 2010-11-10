@@ -10,7 +10,6 @@
 Ê*******************************************************************************/
 package no.hib.dpf.editor.model;
 
-import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -42,7 +41,7 @@ import org.eclipse.ui.views.properties.IPropertyDescriptor;
  * 
  * @author Elias Volanakis
  */
-public class ConstraintElement extends ModelElement implements Constraint, IDObjectContainer, PropertyChangeListener {
+public class ConstraintElement extends ModelElement implements Constraint, IDObjectContainer {
 	/**
 	 * Used for indicating that a Connection with solid line style should be
 	 * created.
@@ -61,8 +60,6 @@ public class ConstraintElement extends ModelElement implements Constraint, IDObj
 			Graphics.LINE_DASH);
 	/** Property ID to use when the line style of this connection is modified. */
 	public static final String LINESTYLE_PROP = "LineStyle";
-//	/** Property ID to use when the constraint edit part should reset itself. */
-//	public static final String RESET_PROPERTY = "ConstraintElement.Resets";
 	private static final IPropertyDescriptor[] descriptors = new IPropertyDescriptor[1];
 	private static final String SOLID_STR = "Solid";
 	private static final String DASHED_STR = "Dashed";
@@ -76,18 +73,12 @@ public class ConstraintElement extends ModelElement implements Constraint, IDObj
 	protected Connection source;
 	/** Constraint target endpoint. */
 	protected Connection target;
-	
-	public static final String NEW_LOCATION_PROP = "Constraint.NewLocation";
 
 	static {
 		descriptors[0] = new ComboBoxPropertyDescriptor(LINESTYLE_PROP,
 				LINESTYLE_PROP, new String[] { SOLID_STR, DASHED_STR });
 	}
 	
-//	public void resetConstraintFigure() {
-//		firePropertyChange(RESET_PROPERTY, null, null);
-//	}
-
 	/**
 	 * Attach a non-null PropertyChangeListener to this object.
 	 * 
@@ -142,7 +133,6 @@ public class ConstraintElement extends ModelElement implements Constraint, IDObj
 	 */
 	private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
 		super.readObjectExec(in);
-//		listenToConstraintedElements();
 	}
 	
 	@Override
@@ -160,7 +150,6 @@ public class ConstraintElement extends ModelElement implements Constraint, IDObj
 		if (isConnected) {
 			source.removeConstraint(this);
 			target.removeConstraint(this);
-			stopListeningToConstrainedElements();
 			isConnected = false;
 		}
 	}
@@ -225,23 +214,8 @@ public class ConstraintElement extends ModelElement implements Constraint, IDObj
 		if (!isConnected) {
 			source.addConstraint(this);
 			target.addConstraint(this);
-			listenToConstraintedElements();
 			isConnected = true;
 		}
-	}
-
-	private void listenToConstraintedElements() {
-		source.addPropertyChangeListener(this);
-		target.addPropertyChangeListener(this);
-		addPropertyChangeListener(source);
-		addPropertyChangeListener(target);
-	}
-	
-	private void stopListeningToConstrainedElements() {
-		source.removePropertyChangeListener(this);
-		target.removePropertyChangeListener(this);
-		removePropertyChangeListener(source);
-		removePropertyChangeListener(target);
 	}
 	
 	/**
@@ -305,19 +279,6 @@ public class ConstraintElement extends ModelElement implements Constraint, IDObj
 
 	public ConstraintType getConstraintType() {
 		return constraintType;
-	}
-
-	@Override
-	public void propertyChange(PropertyChangeEvent evt) {
-//		String prop = evt.getPropertyName();
-//		if (Connection.NEW_SHAPE_PROP.equals(prop)) {
-//			// Message connections:
-//			firePropertyChange(ConstraintElement.NEW_LOCATION_PROP, null, null);
-//		}
-	}
-
-	public void connectionHasMoved() {
-		firePropertyChange(ConstraintElement.NEW_LOCATION_PROP, null, null);
 	}
 	
 	// -----------------------------------------------------------------------------------

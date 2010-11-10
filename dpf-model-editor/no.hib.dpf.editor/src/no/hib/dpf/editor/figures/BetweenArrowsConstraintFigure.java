@@ -1,6 +1,8 @@
 package no.hib.dpf.editor.figures;
 
 
+import no.hib.dpf.editor.parts.ConstraintEditPart;
+
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
@@ -21,25 +23,34 @@ public class BetweenArrowsConstraintFigure extends PolylineConnection {
 
 	Rectangle firstPointBounds;
 	Rectangle lastPointBounds;
+	
 	BasicRectangleFigure basicRectangleFigure;
+	ConstraintEditPart constraintEditPart;
 	private String labelText;
 	
-	public BetweenArrowsConstraintFigure(BasicRectangleFigure basicRectangleFigure, String labelText) {
-		this.basicRectangleFigure = basicRectangleFigure;
+	public BetweenArrowsConstraintFigure(ConstraintEditPart constraintEditPart, String labelText) {
+		this.constraintEditPart = constraintEditPart;
 		this.labelText = labelText;
 		setMyBackgroundColor(ColorConstants.black);
+	}
+	
+	private BasicRectangleFigure getBasicRectangleFigure() {
+		if (basicRectangleFigure == null) {
+			basicRectangleFigure = constraintEditPart.getRectangleFigureForFigure();
+		}
+		return basicRectangleFigure;
 	}
 	
 	private Point[] getMidwayControlPoint(Point startPoint, Point endPoint) {
 		Point[] firstCandidate = makeMidwayControlPoint(startPoint, endPoint);
 		Point[] secondCandidate = makeMidwayControlPoint(endPoint, startPoint);
 		
-		if (basicRectangleFigure == null) {
+		if (getBasicRectangleFigure() == null) {
 			return firstCandidate;
 		}
 		
-		if ((basicRectangleFigure.getLocation().getDistance(firstCandidate[0]) >=
-			(basicRectangleFigure.getLocation().getDistance(secondCandidate[0])))) {
+		if ((getBasicRectangleFigure().getLocation().getDistance(firstCandidate[0]) >=
+			(getBasicRectangleFigure().getLocation().getDistance(secondCandidate[0])))) {
 			return firstCandidate;
 		}
 		return secondCandidate;

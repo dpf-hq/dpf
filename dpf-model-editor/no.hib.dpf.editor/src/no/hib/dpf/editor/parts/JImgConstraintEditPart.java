@@ -24,14 +24,17 @@ class JImgConstraintEditPart extends ConstraintEditPart {
 		super(true);
 	}
 
+	public BasicRectangleFigure getRectangleFigureForFigure() {
+		return getRectangleFigureForFigure(false);
+	}
+	
 	/**
 	 * Returns the primary Figure representing this GraphicalEditPart, a Constraint Figure.
 	 * @see org.eclipse.gef.editparts.AbstractGraphicalEditPart#createFigure()
 	 */
 	@Override
 	protected IFigure createFigureExec() {
-		BasicRectangleFigure basicRectangleFigure = getRectangleFigureForFigure(false);
-		BetweenArrowsConstraintFigure connection = new BetweenArrowsConstraintFigure(basicRectangleFigure, "[Joint Image]");
+		BetweenArrowsConstraintFigure connection = new BetweenArrowsConstraintFigure(this, "[Joint Image]");
 		connection.setLineStyle(getCastedModel().getLineStyle());
 		return connection;
 	}

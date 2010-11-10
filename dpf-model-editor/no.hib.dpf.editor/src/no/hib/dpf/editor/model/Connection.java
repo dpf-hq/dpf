@@ -10,8 +10,6 @@
 Ê*******************************************************************************/
 package no.hib.dpf.editor.model;
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.lang.reflect.InvocationTargetException;
@@ -43,7 +41,7 @@ import org.eclipse.ui.views.properties.IPropertyDescriptor;
  * 
  * @author Elias Volanakis
  */
-public class Connection extends ModelElement implements Edge, IDObjectContainer, PropertyChangeListener {
+public class Connection extends ModelElement implements Edge, IDObjectContainer {
 	/**
 	 * Used for indicating that a Connection with solid line style should be
 	 * created.
@@ -75,9 +73,7 @@ public class Connection extends ModelElement implements Edge, IDObjectContainer,
 	public static final String TARGET_CONSTRAINTS_PROP = "Connection.TargetConstaint";
 	/** Property ID to use when the list of single constraints is modified. */
 	public static final String SINGLE_CONSTRAINTS_PROP = "Connection.SingleConstaint";
-	
-	public static final String NEW_SHAPE_PROP = "Connection.NewLocation";
-	
+		
 	/** True, if the connection is attached to its endpoints. */
 	private boolean isConnected;
 	/** Line drawing style for this connection. */
@@ -119,7 +115,6 @@ public class Connection extends ModelElement implements Edge, IDObjectContainer,
 	 */
 	private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
 		super.readObjectExec(in);
-		listenToConnectedElements();
 	}
 	
 	/**
@@ -147,17 +142,6 @@ public class Connection extends ModelElement implements Edge, IDObjectContainer,
 		}
 	}
 	
-	/**
-	 * Called when the edit part has been notfied of a new position.
-	 */
-	public void updateConstraints() {
-		for (ConstraintElement constraint : targetConnstraints) {
-			constraint.connectionHasMoved();
-		}
-		for (ConstraintElement constraint : sourceConstraints) {
-			constraint.connectionHasMoved();
-		}
-	}
 	
 	/**
 	 * Disconnect this connection from the shapes it is attached to.
@@ -166,7 +150,6 @@ public class Connection extends ModelElement implements Edge, IDObjectContainer,
 		if (isConnected) {
 			source.removeConnection(this);
 			target.removeConnection(this);
-			stopListeningToConnectedElements();
 			isConnected = false;
 		}
 	}
@@ -241,19 +224,8 @@ public class Connection extends ModelElement implements Edge, IDObjectContainer,
 		if (!isConnected) {
 			source.addConnection(this);
 			target.addConnection(this);
-			listenToConnectedElements();
 			isConnected = true;
 		}
-	}
-
-	private void listenToConnectedElements() {
-		source.addPropertyChangeListener(this);
-		target.addPropertyChangeListener(this);
-	}
-	
-	private void stopListeningToConnectedElements() {
-		source.removePropertyChangeListener(this);
-		target.removePropertyChangeListener(this);
 	}
 	
 	/**
@@ -330,17 +302,6 @@ public class Connection extends ModelElement implements Edge, IDObjectContainer,
 		}
 	}
 
-	@Override
-	public void propertyChange(PropertyChangeEvent evt) {
-//		String prop = evt.getPropertyName();
-//		if (Shape.NEW_LOCATION_PROP.equals(prop)) {
-//			firePropertyChange(Connection.NEW_LOCATION_PROP, null, null);			
-//		} else if (ConstraintElement.NEW_LOCATION_PROP.equals(prop)) {
-//			// Back message from the constraint
-//			firePropertyChange(Shape.NEW_LOCATION_PROP, null, null);			
-//		}
-	}	
-	
 	public List<ConstraintElement> getSourceConstraints() {
 		return new ArrayList<ConstraintElement>(sourceConstraints);
 	}
