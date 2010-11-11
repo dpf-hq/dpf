@@ -65,7 +65,6 @@ public abstract class SelectionActionForEditParts extends SelectionAction {
 		return false;
 	}
 	
-	// TODO: make private after refactoring
 	protected List<ConnectionEditPart> getSelectedConnectionEditParts() {
 		List<ConnectionEditPart> connectionEditParts = new ArrayList<ConnectionEditPart>();
 		for (int i = 0; i < getSelectedObjects().size(); i++) {

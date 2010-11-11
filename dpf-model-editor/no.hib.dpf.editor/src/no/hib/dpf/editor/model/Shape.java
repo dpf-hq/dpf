@@ -104,31 +104,27 @@ public abstract class Shape extends ModelElement implements IDObjectContainer {
 	/** List of incoming Connections. */
 	private List<Connection> targetConnections = new ArrayList<Connection>();
 
-	/**
-	 * Add an incoming or outgoing connection to this shape.
-	 * 
-	 * @param conn
-	 *            a non-null connection instance
-	 * @throws IllegalArgumentException
-	 *             if the connection is null or has not distinct endpoints
-	 */
-	public void addConnection(Connection conn) {
-		if (conn == null || conn.getShapeSource() == conn.getShapeTarget()) {
-			throw new IllegalArgumentException();
-		}
-		if (conn.getShapeSource() == this) {
-			addOutgoingConnection(conn);
-		} else if (conn.getShapeTarget() == this) {
-			addIncomingConnection(conn);
-		}
-	}
+//	/**
+//	 * Add an incoming or outgoing connection to this shape.
+//	 */
+//	public void addConnection(Connection conn) {
+////		if (conn == null || conn.getShapeSource() == conn.getShapeTarget()) {
+//		if (conn == null) {
+//			throw new IllegalArgumentException();
+//		}
+//		if (conn.getShapeSource() == this) {
+//			addOutgoingConnection(conn);
+//		} else if (conn.getShapeTarget() == this) {
+//			addIncomingConnection(conn);
+//		}
+//	}
 
-	protected void addIncomingConnection(Connection conn) {
+	public void addIncomingConnection(Connection conn) {
 		targetConnections.add(conn);
 		firePropertyChange(TARGET_CONNECTIONS_PROP, null, conn);
 	}
 
-	protected void addOutgoingConnection(Connection conn) {
+	public void addOutgoingConnection(Connection conn) {
 		sourceConnections.add(conn);
 		firePropertyChange(SOURCE_CONNECTIONS_PROP, null, conn);
 	}

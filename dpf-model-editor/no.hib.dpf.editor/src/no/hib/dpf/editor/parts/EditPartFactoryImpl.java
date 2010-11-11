@@ -14,6 +14,7 @@ import no.hib.dpf.editor.model.Connection;
 import no.hib.dpf.editor.model.ConstraintElement;
 import no.hib.dpf.editor.model.DPFDiagram;
 import no.hib.dpf.editor.model.Shape;
+import no.hib.dpf.editor.model.SingleNodeConnection;
 
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartFactory;
@@ -48,6 +49,9 @@ private EditPart getPartForElement(Object modelElement) {
 	}
 	if (modelElement instanceof Shape) {
 		return new ShapeEditPart();
+	}
+	if (modelElement instanceof SingleNodeConnection) {
+		return new ShapeSingleConnectionEditPart();
 	}
 	if (modelElement instanceof Connection) {
 		return new ShapeConnectionEditPart();

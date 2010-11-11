@@ -14,6 +14,7 @@ import java.util.Iterator;
 
 import no.hib.dpf.editor.model.Connection;
 import no.hib.dpf.editor.model.Shape;
+import no.hib.dpf.editor.model.SingleNodeConnection;
 
 import org.eclipse.gef.commands.Command;
 
@@ -70,9 +71,9 @@ public ConnectionCreateCommand(Shape source, int lineStyle) {
  * @see org.eclipse.gef.commands.Command#canExecute()
  */
 public boolean canExecute() {
-	if (source.equals(target)) {
-		return false;
-	}
+//	if (source.equals(target)) {
+//		return false;
+//	}
 	if (doSourceToTargetAlreadyExist()) {
 		return false;
 	}
@@ -94,7 +95,11 @@ private boolean doSourceToTargetAlreadyExist() {
  */
 public void execute() {
 	// create a new connection between source and target
-	connection = new Connection(source, target);
+	if (!source.equals(target)) {
+		connection = new Connection(source, target);
+	} else {
+		connection = new SingleNodeConnection(source);
+	}
 	// use the supplied line style
 	connection.setLineStyle(lineStyle);
 }

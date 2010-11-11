@@ -44,7 +44,7 @@ import org.eclipse.gef.requests.GroupRequest;
  */
 public class ShapeConnectionEditPart extends ModelElementConnectionEditPart {
 
-	private DPFConnectionFigure connection; 
+	protected DPFConnectionFigure connectionFigure; 
 	Label connectionLabel;
 	private List<SingleLineConstraintElement> singleConstraints = new ArrayList<SingleLineConstraintElement>();
 	private transient PropertyChangeSupport pcsDelegate = new PropertyChangeSupport(this);
@@ -106,15 +106,15 @@ public class ShapeConnectionEditPart extends ModelElementConnectionEditPart {
 	 * 
 	 * @see org.eclipse.gef.editparts.AbstractGraphicalEditPart#createFigure()
 	 */
-	protected IFigure createFigure() {
-		connection = new DPFConnectionFigure();
+	protected IFigure createFigure() {			
+		connectionFigure = new DPFConnectionFigure();
 		makeNewConstraintLabel();
 
 		PolygonDecoration arrowHead = new PolygonDecoration();
 		arrowHead.setScale(16, 6);
-		connection.setTargetDecoration(arrowHead); // arrow at target endpoint
-		connection.setLineStyle(getCastedModel().getLineStyle()); // line drawing style
-		return connection;
+		connectionFigure.setTargetDecoration(arrowHead); // arrow at target endpoint
+		connectionFigure.setLineStyle(getCastedModel().getLineStyle()); // line drawing style
+		return connectionFigure;
 	}
 
 	/**
@@ -122,19 +122,19 @@ public class ShapeConnectionEditPart extends ModelElementConnectionEditPart {
 	 * with the appropriate vizualisation.
 	 */
 	private void makeNewConstraintLabel() {
-		if (connection == null) {
+		if (connectionFigure == null) {
 			return;
 		}
 
 		if (singleConstraints.size() > 0) {
 			if (connectionLabel != null) {
-				connection.remove(connectionLabel);
+				connectionFigure.remove(connectionLabel);
 			}
 
 			connectionLabel = new Label();
 			connectionLabel.setText(singleConstraints.get(0).toString());
-			connection.add(connectionLabel);
-			connection.getLayoutManager().setConstraint(connectionLabel, new EndpointLocator(connection));
+			connectionFigure.add(connectionLabel);
+			connectionFigure.getLayoutManager().setConstraint(connectionLabel, new EndpointLocator(connectionFigure));
 		}
 	}
 

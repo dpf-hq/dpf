@@ -222,8 +222,8 @@ public class Connection extends ModelElement implements Edge, IDObjectContainer 
 	 */
 	public void reconnect() {
 		if (!isConnected) {
-			source.addConnection(this);
-			target.addConnection(this);
+			source.addOutgoingConnection(this);
+			target.addIncomingConnection(this);
 			isConnected = true;
 		}
 	}
@@ -241,7 +241,8 @@ public class Connection extends ModelElement implements Edge, IDObjectContainer 
 	 *             if any of the paramers are null or newSource == newTarget
 	 */
 	public void reconnect(Shape newSource, Shape newTarget) {
-		if (newSource == null || newTarget == null || newSource == newTarget) {
+//		if (newSource == null || newTarget == null || newSource == newTarget) {
+		if (newSource == null || newTarget == null) {
 			throw new IllegalArgumentException();
 		}
 		disconnect();

@@ -65,14 +65,14 @@ public class RectangularShape extends Shape implements Node {
 	}
 	
 	@Override
-	protected void addIncomingConnection(Connection conn) {
+	public void addIncomingConnection(Connection conn) {
 		super.addIncomingConnection(conn);
 		conn.setTarget(nodeComponent);
 		setGraph(conn);
 	}
 
 	@Override
-	protected void addOutgoingConnection(Connection conn) {
+	public void addOutgoingConnection(Connection conn) {
 		super.addOutgoingConnection(conn);
 		conn.setSource(nodeComponent);
 		setGraph(conn);
