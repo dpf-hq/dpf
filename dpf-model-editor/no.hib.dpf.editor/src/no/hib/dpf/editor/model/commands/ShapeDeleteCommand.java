@@ -10,7 +10,7 @@
 Ê*******************************************************************************/
 package no.hib.dpf.editor.model.commands;
 
-import java.util.Iterator;
+import java.util.ArrayList;
 import java.util.List;
 
 import no.hib.dpf.editor.model.Connection;
@@ -32,9 +32,9 @@ public class ShapeDeleteCommand extends Command {
 	/** ShapeDiagram to remove from. */
 	private final DPFDiagram parent;
 	/** Holds a copy of the outgoing connections of child. */
-	private List<Connection> sourceConnections;
+	private List<ConnectionDeleteCommand> sourceConnectionsDeleteCommands;
 	/** Holds a copy of the incoming connections of child. */
-	private List<Connection> targetConnections;
+	private List<ConnectionDeleteCommand> targetConnectionsDeleteCommands;
 	/** True, if child was removed from its parent. */
 	private boolean wasRemoved;
 
@@ -67,12 +67,19 @@ public class ShapeDeleteCommand extends Command {
 	 * @see org.eclipse.gef.commands.Command#execute()
 	 */
 	public void execute() {
-		// store a copy of incoming & outgoing connections before proceeding
-		sourceConnections = child.getSourceConnections();
-		targetConnections = child.getTargetConnections();
+		sourceConnectionsDeleteCommands = getDeleteCommands(child.getSourceConnections());
+		targetConnectionsDeleteCommands = getDeleteCommands(child.getTargetConnections());
 		removeChildAndDisconnectConnections();
 	}
 
+	private List<ConnectionDeleteCommand> getDeleteCommands(List<Connection> connections) {
+		List<ConnectionDeleteCommand> retval = new ArrayList<ConnectionDeleteCommand>();
+		for (Connection connection : connections) {
+			retval.add(new ConnectionDeleteCommand(connection));
+		}
+		return retval;
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * @see org.eclipse.gef.commands.Command#redo()
@@ -84,17 +91,17 @@ public class ShapeDeleteCommand extends Command {
 	private void removeChildAndDisconnectConnections() {
 		wasRemoved = parent.removeChild(child);
 		if (wasRemoved) {
-			removeConnections(sourceConnections);
-			removeConnections(targetConnections);
+			removeConnections(sourceConnectionsDeleteCommands);
+			removeConnections(targetConnectionsDeleteCommands);
 		}
 	}
 
 	/*
 	 * Disconnects a List of Connections from their endpoints.
 	 */
-	private void removeConnections(List<Connection> connections) {
-		for (Connection conn : connections) {
-			conn.disconnect();
+	private void removeConnections(List<ConnectionDeleteCommand> connections) {
+		for (ConnectionDeleteCommand conn : connections) {
+			conn.execute();
 		}
 	}
 
@@ -105,19 +112,15 @@ public class ShapeDeleteCommand extends Command {
 	public void undo() {
 		// add the child and reconnect its connections
 		if (parent.addChild(child)) {
-			addConnections(sourceConnections);
-			addConnections(targetConnections);
+			undoConnectionsRemoval(sourceConnectionsDeleteCommands);
+			undoConnectionsRemoval(targetConnectionsDeleteCommands);
 		}
 	}
 
-	/*
-	 * Reconnects a List of Connections with their previous endpoints.
-	 */
-	private void addConnections(List<Connection> connections) {
-		for (Iterator<Connection> iter = connections.iterator(); iter.hasNext();) {
-			Connection conn = (Connection) iter.next();
-			conn.reconnect();
+	private void undoConnectionsRemoval(List<ConnectionDeleteCommand> connections) {
+		for (ConnectionDeleteCommand conn : connections) {
+			conn.undo();
 		}
 	}
-
+	
 }
