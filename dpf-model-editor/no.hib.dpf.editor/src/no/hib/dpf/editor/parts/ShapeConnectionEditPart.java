@@ -210,8 +210,8 @@ public class ShapeConnectionEditPart extends ModelElementConnectionEditPart {
 		return constraints;		
 	}
 
-	private Connection getCastedModel() {
-		return (Connection) getModel();
+	protected Connection getCastedModel() {
+		return (Connection)getModel();
 	}
 
 	/**

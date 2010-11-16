@@ -10,46 +10,104 @@
 Ê*******************************************************************************/
 package no.hib.dpf.editor.model.commands;
 
+import java.util.Iterator;
+import java.util.List;
+
 import no.hib.dpf.editor.model.Connection;
+import no.hib.dpf.editor.model.ConstraintElement;
 
 import org.eclipse.gef.commands.Command;
 
-
 /**
- * A command to disconnect (remove) a connection from its endpoints.
- * The command can be undone or redone.
+ * A command to disconnect (remove) a connection from its endpoints. The command
+ * can be undone or redone.
+ * 
  * @author Elias Volanakis
  */
 public class ConnectionDeleteCommand extends Command {
 
-/** Connection instance to disconnect. */
-private final Connection connection;
+	/** Connection instance to disconnect. */
+	private final Connection connection;
 
-/** 
- * Create a command that will disconnect a connection from its endpoints.
- * @param conn the connection instance to disconnect (non-null)
- * @throws IllegalArgumentException if conn is null
- */ 
-public ConnectionDeleteCommand(Connection conn) {
-	if (conn == null) {
-		throw new IllegalArgumentException();
+	/** Holds a copy of the outgoing constraints of child. */
+	private List<ConstraintElement> sourceConstraints;
+	/** Holds a copy of the incoming constraints of child. */
+	private List<ConstraintElement> targetConstraints;
+
+	/**
+	 * Create a command that will disconnect a connection from its endpoints.
+	 * 
+	 * @param conn
+	 *            the connection instance to disconnect (non-null)
+	 * @throws IllegalArgumentException
+	 *             if conn is null
+	 */
+	public ConnectionDeleteCommand(Connection conn) {
+		if (conn == null) {
+			throw new IllegalArgumentException();
+		}
+		setLabel("connection deletion");
+		this.connection = conn;
 	}
-	setLabel("connection deletion");
-	this.connection = conn;
-}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.gef.commands.Command#execute()
+	 */
+	public void execute() {
+		sourceConstraints = connection.getSourceConstraints();
+		targetConstraints = connection.getTargetConstraints();
+		disconnectConnectionAndDisconnectConstraints();
+	}
 
-/* (non-Javadoc)
- * @see org.eclipse.gef.commands.Command#execute()
- */
-public void execute() {
-	connection.disconnect();
-}
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.gef.commands.Command#redo()
+	 */
+	public void redo() {
+		disconnectConnectionAndDisconnectConstraints();
+	}
 
-/* (non-Javadoc)
- * @see org.eclipse.gef.commands.Command#undo()
- */
-public void undo() {
-	connection.reconnect();
-}
+	private void disconnectConnectionAndDisconnectConstraints() {
+		connection.disconnect();
+		removeConstraints(sourceConstraints);
+		removeConstraints(targetConstraints);
+	}
+
+	/**
+	 * Disconnects a List of Connections from their endpoints.
+	 * 
+	 * @param connections
+	 *            a non-null List of connections
+	 */
+	private void removeConstraints(List<ConstraintElement> constraints) {
+		for (ConstraintElement constraint : constraints) {
+			constraint.disconnect();
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.gef.commands.Command#undo()
+	 */
+	public void undo() {
+		addConnections(sourceConstraints);
+		addConnections(targetConstraints);
+		connection.reconnect();
+	}
+
+	/*
+	 * Reconnects a List of constraints with their previous endpoints.
+	 */
+	private void addConnections(List<ConstraintElement> constraints) {
+		for (Iterator<ConstraintElement> iter = constraints.iterator(); iter
+				.hasNext();) {
+			ConstraintElement constraint = (ConstraintElement) iter.next();
+			constraint.reconnect();
+		}
+	}
+
 }
