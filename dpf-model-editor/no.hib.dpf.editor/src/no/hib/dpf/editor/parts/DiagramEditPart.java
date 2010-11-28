@@ -17,10 +17,11 @@ import java.util.List;
 import no.hib.dpf.editor.figures.DPFShortestPathConnectionRouter;
 import no.hib.dpf.editor.model.DPFDiagram;
 import no.hib.dpf.editor.model.ModelElement;
+import no.hib.dpf.editor.model.MovableAndSizable;
 import no.hib.dpf.editor.model.RectangularShape;
 import no.hib.dpf.editor.model.Shape;
 import no.hib.dpf.editor.model.commands.ShapeCreateCommand;
-import no.hib.dpf.editor.model.commands.ShapeSetConstraintCommand;
+import no.hib.dpf.editor.model.commands.ShapeSetSizeAndLocationCommand;
 
 import org.eclipse.draw2d.ConnectionLayer;
 import org.eclipse.draw2d.Figure;
@@ -162,7 +163,12 @@ class DiagramEditPart extends AbstractGraphicalEditPart implements
 			if (child instanceof ShapeEditPart
 					&& constraint instanceof Rectangle) {
 				// return a command that can move and/or resize a Shape
-				return new ShapeSetConstraintCommand((Shape) child.getModel(),
+				return new ShapeSetSizeAndLocationCommand((MovableAndSizable)child.getModel(),
+						request, (Rectangle) constraint);
+			}
+			if (child instanceof ShapeSingleConnectionEditPart && constraint instanceof Rectangle) {
+				// return a command that can move and/or resize a single connection
+				return new ShapeSetSizeAndLocationCommand((MovableAndSizable)child.getModel(),
 						request, (Rectangle) constraint);
 			}
 			return super.createChangeConstraintCommand(request, child,

@@ -12,7 +12,7 @@ import org.eclipse.swt.graphics.Color;
  * Figure used to represent a table in the schema
  * @author Phil Zoio
  */
-public class BasicRectangleFigure extends Figure {
+public class BasicRectangleFigure extends Figure implements RoutableFigure {
 
 	public static Color tableColor = new Color(null, 255, 255, 206);
 	public static Color lightLightGreen = new Color(null, 128, 255, 128);
@@ -20,16 +20,14 @@ public class BasicRectangleFigure extends Figure {
 //	private ColumnsFigure columnsFigure = new ColumnsFigure();
 	private EditableLabel nameLabel;
 
-	public BasicRectangleFigure(EditableLabel name)
-	{
+	public BasicRectangleFigure(EditableLabel name) {
 		this(name, null);
 		setOpaque(true); // non-transparent figure
 		setBackgroundColor(lightLightGreen);		
 	}
 
 	@SuppressWarnings("rawtypes")
-	public BasicRectangleFigure(EditableLabel name, List colums)
-	{
+	public BasicRectangleFigure(EditableLabel name, List colums) {
 
 		nameLabel = name;
 		ToolbarLayout layout = new ToolbarLayout();
@@ -47,18 +45,17 @@ public class BasicRectangleFigure extends Figure {
 
 	}
 
-	public void setSelected(boolean isSelected)
-	{
-		LineBorder lineBorder = (LineBorder) getBorder();
-		if (isSelected)
-		{
-			lineBorder.setWidth(2);
-		}
-		else
-		{
-			lineBorder.setWidth(1);
-		}
-	}
+//	public void setSelected(boolean isSelected) {
+//		LineBorder lineBorder = (LineBorder) getBorder();
+//		if (isSelected)
+//		{
+//			lineBorder.setWidth(2);
+//		}
+//		else
+//		{
+//			lineBorder.setWidth(1);
+//		}
+//	}
 
 	
 	/**
@@ -67,6 +64,11 @@ public class BasicRectangleFigure extends Figure {
 	public EditableLabel getNameLabel()
 	{
 		return nameLabel;
+	}
+
+	@Override
+	public int getRoutingPriority() {
+		return 0;
 	}
 
 //	/**

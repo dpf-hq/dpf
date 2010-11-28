@@ -16,7 +16,9 @@ import java.util.List;
 
 import no.hib.dpf.editor.figures.BasicRectangleFigure;
 import no.hib.dpf.editor.figures.EditableLabel;
+import no.hib.dpf.editor.figures.SingleNodeConnectionAnchor;
 import no.hib.dpf.editor.model.Connection;
+import no.hib.dpf.editor.model.LocationAndSize;
 import no.hib.dpf.editor.model.ModelElement;
 import no.hib.dpf.editor.model.RectangularShape;
 import no.hib.dpf.editor.model.Shape;
@@ -200,7 +202,10 @@ private Shape getCastedModel() {
 	return (Shape) getModel();
 }
 
-protected ConnectionAnchor getConnectionAnchor() {
+private ConnectionAnchor getConnectionAnchor(ConnectionEditPart connection, boolean isSourceAnchor) {
+	if (connection instanceof ShapeSingleConnectionEditPart) {
+		return new SingleNodeConnectionAnchor(getFigure(), isSourceAnchor);
+	}
 	if (anchor == null) {
 		if (getModel() instanceof RectangularShape)
 			anchor = new ChopboxAnchor(getFigure());
@@ -234,7 +239,7 @@ protected List<Connection> getModelTargetConnections() {
  * @see org.eclipse.gef.NodeEditPart#getSourceConnectionAnchor(org.eclipse.gef.ConnectionEditPart)
  */
 public ConnectionAnchor getSourceConnectionAnchor(ConnectionEditPart connection) {
-	return getConnectionAnchor();
+	return getConnectionAnchor(connection, true);
 }
 
 /*
@@ -242,7 +247,7 @@ public ConnectionAnchor getSourceConnectionAnchor(ConnectionEditPart connection)
  * @see org.eclipse.gef.NodeEditPart#getSourceConnectionAnchor(org.eclipse.gef.Request)
  */
 public ConnectionAnchor getSourceConnectionAnchor(Request request) {
-	return getConnectionAnchor();
+	return getConnectionAnchor(null, true);
 }
 
 /*
@@ -250,7 +255,7 @@ public ConnectionAnchor getSourceConnectionAnchor(Request request) {
  * @see org.eclipse.gef.NodeEditPart#getTargetConnectionAnchor(org.eclipse.gef.ConnectionEditPart)
  */
 public ConnectionAnchor getTargetConnectionAnchor(ConnectionEditPart connection) {
-	return getConnectionAnchor();
+	return getConnectionAnchor(connection, false);
 }
 
 /*
@@ -258,7 +263,7 @@ public ConnectionAnchor getTargetConnectionAnchor(ConnectionEditPart connection)
  * @see org.eclipse.gef.NodeEditPart#getTargetConnectionAnchor(org.eclipse.gef.Request)
  */
 public ConnectionAnchor getTargetConnectionAnchor(Request request) {
-	return getConnectionAnchor();
+	return getConnectionAnchor(null, false);
 }
 
 /* (non-Javadoc)
@@ -266,7 +271,7 @@ public ConnectionAnchor getTargetConnectionAnchor(Request request) {
  */
 public void propertyChange(PropertyChangeEvent evt) {
 	String prop = evt.getPropertyName();
-	if (Shape.SIZE_PROP.equals(prop) || Shape.LOCATION_PROP.equals(prop)) {
+	if (LocationAndSize.SIZE_PROP.equals(prop) || LocationAndSize.LOCATION_PROP.equals(prop)) {
 		refreshVisuals();
 	} else if (Shape.SOURCE_CONNECTIONS_PROP.equals(prop)) {
 		refreshSourceConnections();

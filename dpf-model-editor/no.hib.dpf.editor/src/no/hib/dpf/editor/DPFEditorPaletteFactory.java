@@ -24,6 +24,7 @@ import org.eclipse.gef.palette.PanningSelectionToolEntry;
 import org.eclipse.gef.palette.ToolEntry;
 import org.eclipse.gef.requests.CreationFactory;
 import org.eclipse.gef.requests.SimpleFactory;
+import org.eclipse.gef.tools.MarqueeSelectionTool;
 import org.eclipse.jface.resource.ImageDescriptor;
 
 /**
@@ -87,7 +88,9 @@ private static PaletteContainer createToolsGroup(PaletteRoot palette) {
 	palette.setDefaultEntry(tool);
 	
 	// Add a marquee tool to the group
-	toolbar.add(new MarqueeToolEntry());
+	MarqueeToolEntry mqtool = new MarqueeToolEntry();
+	mqtool.setToolProperty(MarqueeSelectionTool.PROPERTY_MARQUEE_BEHAVIOR, MarqueeSelectionTool.BEHAVIOR_NODES_AND_CONNECTIONS);
+	toolbar.add(mqtool);
 
 	// Add (solid-line) connection tool 
 	tool = new ConnectionCreationToolEntry(

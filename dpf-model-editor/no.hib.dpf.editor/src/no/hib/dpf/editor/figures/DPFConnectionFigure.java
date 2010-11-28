@@ -8,7 +8,7 @@ import org.eclipse.draw2d.PolylineConnection;
  * @author oyvind
  *
  */
-public class DPFConnectionFigure extends PolylineConnection {
+public class DPFConnectionFigure extends PolylineConnection implements RoutableFigure {
 		
 	
 	@Override
@@ -20,5 +20,10 @@ public class DPFConnectionFigure extends PolylineConnection {
 	}
 	
 	private static int counter = 0;
+
+	@Override
+	public int getRoutingPriority() {
+		return 5;
+	}
 	
 }

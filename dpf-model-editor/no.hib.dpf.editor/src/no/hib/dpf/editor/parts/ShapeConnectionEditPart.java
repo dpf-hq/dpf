@@ -29,6 +29,7 @@ import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.PolygonDecoration;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.ConnectionEditPolicy;
@@ -50,6 +51,34 @@ public class ShapeConnectionEditPart extends ModelElementConnectionEditPart {
 	private transient PropertyChangeSupport pcsDelegate = new PropertyChangeSupport(this);
 
 
+	
+	
+	/**
+	 * Sets the source EditPart of this connection.
+	 * 
+	 * @param editPart
+	 *            EditPart which is the source.
+	 */
+	public void setSource(EditPart editPart) {
+		super.setSource(editPart);
+		if (editPart != null) {
+			setParent(editPart.getParent());
+		}
+	}
+
+
+	/**
+	 * Sets the target EditPart of this connection.
+	 * 
+	 * @param editPart
+	 *            EditPart which is the target.
+	 */
+	public void setTarget(EditPart editPart) {
+		super.setTarget(editPart);
+		if (editPart != null) {
+			setParent(editPart.getParent());
+		}
+	}
 	/**
 	 * Attach a non-null PropertyChangeListener to this object.
 	 * 
@@ -87,6 +116,7 @@ public class ShapeConnectionEditPart extends ModelElementConnectionEditPart {
 	 * 
 	 * @see org.eclipse.gef.editparts.AbstractEditPart#createEditPolicies()
 	 */
+	@Override
 	protected void createEditPolicies() {
 		// Selection handle edit policy.
 		// Makes the connection show a feedback, when selected by the user.

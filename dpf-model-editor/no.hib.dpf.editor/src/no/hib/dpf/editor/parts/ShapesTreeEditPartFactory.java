@@ -11,6 +11,7 @@
 package no.hib.dpf.editor.parts;
 
 import no.hib.dpf.editor.model.DPFDiagram;
+import no.hib.dpf.editor.model.MovableAndSizable;
 import no.hib.dpf.editor.model.Shape;
 
 import org.eclipse.gef.EditPart;
@@ -30,7 +31,7 @@ public class ShapesTreeEditPartFactory implements EditPartFactory {
  */
 public EditPart createEditPart(EditPart context, Object model) {
 	if (model instanceof Shape) {
-		return new ShapeTreeEditPart((Shape) model);
+		return new ShapeTreeEditPart((MovableAndSizable) model);
 	}
 	if (model instanceof DPFDiagram) {
 		return new DiagramTreeEditPart((DPFDiagram) model);

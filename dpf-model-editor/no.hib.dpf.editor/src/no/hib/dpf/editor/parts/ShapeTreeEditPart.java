@@ -14,6 +14,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 import no.hib.dpf.editor.model.ModelElement;
+import no.hib.dpf.editor.model.MovableAndSizable;
 import no.hib.dpf.editor.model.Shape;
 
 import org.eclipse.swt.graphics.Image;
@@ -38,7 +39,7 @@ class ShapeTreeEditPart extends AbstractTreeEditPart implements
  * Create a new instance of this edit part using the given model element.
  * @param model a non-null Shapes instance
  */
-ShapeTreeEditPart(Shape model) {
+ShapeTreeEditPart(MovableAndSizable model) {
 	super(model);
 }
 

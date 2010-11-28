@@ -10,7 +10,7 @@
 Ê*******************************************************************************/
 package no.hib.dpf.editor.model.commands;
 
-import no.hib.dpf.editor.model.Shape;
+import no.hib.dpf.editor.model.MovableAndSizable;
 
 import org.eclipse.draw2d.geometry.Rectangle;
 
@@ -24,7 +24,7 @@ import org.eclipse.gef.requests.ChangeBoundsRequest;
  * The command can be undone or redone.
  * @author Elias Volanakis
  */
-public class ShapeSetConstraintCommand extends Command {
+public class ShapeSetSizeAndLocationCommand extends Command {
 /** Stores the new size and location. */
 private final Rectangle newBounds;
 /** Stores the old size and location. */
@@ -33,7 +33,7 @@ private Rectangle oldBounds;
 private final ChangeBoundsRequest request;
 
 /** Shape to manipulate. */
-private final Shape shape;
+private final MovableAndSizable shape;
 	
 /**
  * Create a command that can resize and/or move a shape. 
@@ -42,7 +42,7 @@ private final Shape shape;
  * @param newBounds the new size and location
  * @throws IllegalArgumentException if any of the parameters is null
  */
-public ShapeSetConstraintCommand(Shape shape, ChangeBoundsRequest req, 
+public ShapeSetSizeAndLocationCommand(MovableAndSizable shape, ChangeBoundsRequest req, 
 		Rectangle newBounds) {
 	if (shape == null || req == null || newBounds == null) {
 		throw new IllegalArgumentException();

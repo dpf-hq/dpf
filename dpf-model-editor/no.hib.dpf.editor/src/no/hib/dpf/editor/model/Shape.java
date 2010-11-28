@@ -33,17 +33,12 @@ import org.eclipse.ui.views.properties.TextPropertyDescriptor;
  * @see no.hib.dpf.editor.model.EllipticalShape
  * @author Elias Volanakis
  */
-public abstract class Shape extends ModelElement implements IDObjectContainer {
+public abstract class Shape extends ModelElement implements IDObjectContainer, MovableAndSizable {
 
 	private static final long serialVersionUID = 7208811341274639248L;
 
 	private static IPropertyDescriptor[] descriptors;
 
-	private static final String HEIGHT_PROP = "Shape.Height";
-	/** Property ID to use when the location of this shape is modified. */
-	public static final String LOCATION_PROP = "Shape.Location";
-	/** Property ID to use then the size of this shape is modified. */
-	public static final String SIZE_PROP = "Shape.Size";
 	/** Property ID to use when the list of outgoing connections is modified. */
 	public static final String SOURCE_CONNECTIONS_PROP = "Shape.SourceConn";
 	/** Property ID to use when the list of incoming connections is modified. */
@@ -54,18 +49,7 @@ public abstract class Shape extends ModelElement implements IDObjectContainer {
 	/** Property ID to use when the name is modified. */	
 	public static final String NAME_PROP = "Shape.Name";
 
-	private static final String WIDTH_PROP = "Shape.Width";
-
-	/**
-	 * ID for the X property value (used for by the corresponding property
-	 * descriptor).
-	 */
-	private static final String XPOS_PROP = "Shape.xPos";
-	/**
-	 * ID for the Y property value (used for by the corresponding property
-	 * descriptor).
-	 */
-	private static final String YPOS_PROP = "Shape.yPos";
+	private LocationAndSize locationAndSize;
 
 	/*
 	 * Initializes the property descriptors array.
@@ -78,10 +62,6 @@ public abstract class Shape extends ModelElement implements IDObjectContainer {
 	 */
 	static {
 		descriptors = new IPropertyDescriptor[] {
-			new IntegerTextPropertyDescriptor(XPOS_PROP, "X"), // id and description pair
-			new IntegerTextPropertyDescriptor(YPOS_PROP, "Y"),
-			new IntegerTextPropertyDescriptor(WIDTH_PROP, "Width"),
-			new IntegerTextPropertyDescriptor(HEIGHT_PROP, "Height"),
 			new TextPropertyDescriptor(NAME_PROP, "Name") };
 	} // static
 
@@ -94,30 +74,11 @@ public abstract class Shape extends ModelElement implements IDObjectContainer {
 		}
 		return image;
 	}
-
-	/** Location of this shape. */
-	private Point location = new Point(0, 0);
-	/** Size of this shape. */
-	private Dimension size = new Dimension(50, 50);
+	
 	/** List of outgoing Connections. */
 	private List<Connection> sourceConnections = new ArrayList<Connection>();
 	/** List of incoming Connections. */
 	private List<Connection> targetConnections = new ArrayList<Connection>();
-
-//	/**
-//	 * Add an incoming or outgoing connection to this shape.
-//	 */
-//	public void addConnection(Connection conn) {
-////		if (conn == null || conn.getShapeSource() == conn.getShapeTarget()) {
-//		if (conn == null) {
-//			throw new IllegalArgumentException();
-//		}
-//		if (conn.getShapeSource() == this) {
-//			addOutgoingConnection(conn);
-//		} else if (conn.getShapeTarget() == this) {
-//			addIncomingConnection(conn);
-//		}
-//	}
 
 	public void addIncomingConnection(Connection conn) {
 		targetConnections.add(conn);
@@ -138,15 +99,6 @@ public abstract class Shape extends ModelElement implements IDObjectContainer {
 	public abstract Image getIcon();
 
 	/**
-	 * Return the Location of this shape.
-	 * 
-	 * @return a non-null location instance
-	 */
-	public Point getLocation() {
-		return location.getCopy();
-	}
-
-	/**
 	 * Returns an array of IPropertyDescriptors for this shape.
 	 * <p>
 	 * The returned array is used to fill the property view, when the edit-part
@@ -158,7 +110,7 @@ public abstract class Shape extends ModelElement implements IDObjectContainer {
 	 * @see #setPropertyValue(Object, Object)
 	 */
 	public IPropertyDescriptor[] getPropertyDescriptors() {
-		return descriptors;
+		return getLocationAndSize().getPropertyDescriptors(descriptors);
 	}
 
 	/**
@@ -172,17 +124,9 @@ public abstract class Shape extends ModelElement implements IDObjectContainer {
 	 * @see #getPropertyDescriptors()
 	 */
 	public Object getPropertyValue(Object propertyId) {
-		if (XPOS_PROP.equals(propertyId)) {
-			return Integer.toString(location.x);
-		}
-		if (YPOS_PROP.equals(propertyId)) {
-			return Integer.toString(location.y);
-		}
-		if (HEIGHT_PROP.equals(propertyId)) {
-			return Integer.toString(size.height);
-		}
-		if (WIDTH_PROP.equals(propertyId)) {
-			return Integer.toString(size.width);
+		Object valueFromLocation = getLocationAndSize().getPropertyValue(propertyId);
+		if (valueFromLocation != null) {
+			return valueFromLocation;
 		}
 		if (NAME_PROP.equals(propertyId)) {
 			return getNameExec();
@@ -190,13 +134,38 @@ public abstract class Shape extends ModelElement implements IDObjectContainer {
 		return super.getPropertyValue(propertyId);
 	}
 
-	/**
-	 * Return the Size of this shape.
-	 * 
-	 * @return a non-null Dimension instance
+	/* (non-Javadoc)
+	 * @see no.hib.dpf.editor.model.MovableAndSizable#getLocation()
 	 */
+	@Override
+	public Point getLocation() {
+		return getLocationAndSize().getLocation();
+	}
+	
+	/* (non-Javadoc)
+	 * @see no.hib.dpf.editor.model.MovableAndSizable#getSize()
+	 */
+	@Override
 	public Dimension getSize() {
-		return size.getCopy();
+		return getLocationAndSize().getSize();
+	}
+	
+	/* (non-Javadoc)
+	 * @see no.hib.dpf.editor.model.MovableAndSizable#setLocation(org.eclipse.draw2d.geometry.Point)
+	 */
+	@Override
+	public void setLocation(Point newLocation) {
+		getLocationAndSize().setLocation(newLocation);
+		firePropertyChange(LocationAndSize.LOCATION_PROP, null, getLocationAndSize().getLocation());
+	}
+
+	/* (non-Javadoc)
+	 * @see no.hib.dpf.editor.model.MovableAndSizable#setSize(org.eclipse.draw2d.geometry.Dimension)
+	 */
+	@Override
+	public void setSize(Dimension newSize) {
+		getLocationAndSize().setSize(newSize);
+		firePropertyChange(LocationAndSize.SIZE_PROP, null, getLocationAndSize().getSize());
 	}
 
 	/**
@@ -221,13 +190,14 @@ public abstract class Shape extends ModelElement implements IDObjectContainer {
 	 * @throws IllegalArgumentException
 	 *             if the parameter is null
 	 */
-	void removeConnection(Connection conn) {
+	public void removeConnection(Connection conn) {
 		if (conn == null) {
 			throw new IllegalArgumentException();
 		}
 		if (conn.getShapeSource() == this) {
 			removeOutgoingConnection(conn);
-		} else if (conn.getShapeTarget() == this) {
+		}
+		if (conn.getShapeTarget() == this) {
 			removeIncomingConnection(conn);
 		}
 	}
@@ -241,24 +211,7 @@ public abstract class Shape extends ModelElement implements IDObjectContainer {
 		sourceConnections.remove(conn);
 		firePropertyChange(SOURCE_CONNECTIONS_PROP, null, conn);
 	}
-	
-	/**
-	 * Set the Location of this shape.
-	 * 
-	 * @param newLocation
-	 *            a non-null Point instance
-	 * @throws IllegalArgumentException
-	 *             if the parameter is null
-	 */
-	public void setLocation(Point newLocation) {
-		if (newLocation == null) {
-			throw new IllegalArgumentException();
-		}
-		location.setLocation(newLocation);
-		firePropertyChange(LOCATION_PROP, null, location);
-//		firePropertyChange(NEW_LOCATION_PROP, null, location);
-	}
-
+			
 	/**
 	 * Set the property value for the given property id. If no matching id is
 	 * found, the call is forwarded to the superclass.
@@ -271,38 +224,22 @@ public abstract class Shape extends ModelElement implements IDObjectContainer {
 	 * @see #getPropertyDescriptors()
 	 */
 	public void setPropertyValue(Object propertyId, Object value) {
-		if (XPOS_PROP.equals(propertyId)) {
-			int x = Integer.parseInt((String) value);
-			setLocation(new Point(x, location.y));
-		} else if (YPOS_PROP.equals(propertyId)) {
-			int y = Integer.parseInt((String) value);
-			setLocation(new Point(location.x, y));
-		} else if (HEIGHT_PROP.equals(propertyId)) {
-			int height = Integer.parseInt((String) value);
-			setSize(new Dimension(size.width, height));
-		} else if (WIDTH_PROP.equals(propertyId)) {
-			int width = Integer.parseInt((String) value);
-			setSize(new Dimension(width, size.height));
-		} else if (NAME_PROP.equals(propertyId)) {
-			setNameExec((String)value);
-		} else {
-			super.setPropertyValue(propertyId, value);
-		}
-	}
-
-	/**
-	 * Set the Size of this shape. Will not modify the size if newSize is null.
-	 * 
-	 * @param newSize
-	 *            a non-null Dimension instance or null
-	 */
-	public void setSize(Dimension newSize) {
-		if (newSize != null) {
-			size.setSize(newSize);
-			firePropertyChange(SIZE_PROP, null, size);
+		if (!getLocationAndSize().setPropertyValue(propertyId, value)) {
+			if (NAME_PROP.equals(propertyId)) {
+				setNameExec((String)value);
+			} else {
+				super.setPropertyValue(propertyId, value);
+			}
 		}
 	}
 	
+	private LocationAndSize getLocationAndSize() {
+		if (locationAndSize == null) {
+			locationAndSize = new LocationAndSize(this);
+		}
+		return locationAndSize;
+	}	
+
 	/**
 	 * Sets the name of this shape.
 	 */

@@ -19,7 +19,7 @@ import org.eclipse.swt.widgets.Display;
  * Draws a figure located between two points (on arrows).
  * The figure is also "anchored" to a rectangle.
  */
-public class BetweenArrowsConstraintFigure extends PolylineConnection {
+public class BetweenArrowsConstraintFigure extends PolylineConnection implements RoutableFigure {
 
 	Rectangle firstPointBounds;
 	Rectangle lastPointBounds;
@@ -172,6 +172,11 @@ public class BetweenArrowsConstraintFigure extends PolylineConnection {
 			highContrastClr = null;
 		}
 		bgColor = highContrastClr == null ? bg : highContrastClr;
+	}
+
+	@Override
+	public int getRoutingPriority() {
+		return 10;
 	}
 
 

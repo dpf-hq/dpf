@@ -76,7 +76,7 @@ public class ConnectionConstraintAnchor implements ConnectionAnchor {
 	 * @see ConnectionAnchor#getLocation(Point)
 	 */
 	public Point getLocation(Point reference) {
-		System.out.println("returns point: " + getLinePoint());
+//		System.out.println("returns point: " + getLinePoint());
 		return getLinePoint();
 	}
 

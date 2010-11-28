@@ -13,6 +13,7 @@ package no.hib.dpf.editor.figures;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -35,17 +36,8 @@ import org.eclipse.draw2d.graph.Path;
 import org.eclipse.draw2d.graph.ShortestPathRouter;
 
 /**
- * Routes multiple connections around the children of a given container figure.
- * This implementation is a copy of ShortestPathConnectionRouter just to get around
- * the stupid fact that translateToRelative() is a final method in Figure, and
- * that ShortestPathConnectionRouter is final.
- * 
- * The object of this exercise is to avoid calling translateToRelative() on
- * BetweenArrowsConstraintFigure.
- * 
- * @author Whitney Sorenson
- * @author Randy Hudson
- * @since 3.1
+ * This implementation is mostly a copy of ShortestPathConnectionRouter just to get around
+ * the fact that ShortestPathConnectionRouter is declared final.
  */
 @SuppressWarnings("rawtypes")
 public final class DPFShortestPathConnectionRouter extends AbstractRouter {
@@ -178,7 +170,7 @@ public final class DPFShortestPathConnectionRouter extends AbstractRouter {
 			return;
 		((Connection) staleConnections.iterator().next()).revalidate();
 	}
-
+	
 	// Revised for DPF:
 	// Connections are laid out before constraints
 	private void processStaleConnections() {
@@ -187,26 +179,28 @@ public final class DPFShortestPathConnectionRouter extends AbstractRouter {
 			connectionToPaths = new HashMap();
 			hookAll();
 		}
-
 		
-		List<Connection> nodeConnections = new ArrayList<Connection>();
-		List<Connection> constraintConnections = new ArrayList<Connection>();
+		List<RoutableFigure> routableConnectionList = new ArrayList<RoutableFigure>();
+		List<Connection> connectionList = new ArrayList<Connection>();
+		
 		while (iter.hasNext()) {
 			Connection conn = (Connection) iter.next();
-			if (conn instanceof BetweenArrowsConstraintFigure) {
-				constraintConnections.add(conn);
+			if (conn instanceof RoutableFigure) {
+				routableConnectionList.add((RoutableFigure )conn);
 			} else {
-				nodeConnections.add(conn);
+				connectionList.add(conn);
 			}
 		}
-		for (Connection conn : nodeConnections) {
+		// Sorts the connections so that constraints are routed lastly:
+		Collections.sort(routableConnectionList, new CompareRoutable());
+		
+		for (Connection conn : connectionList) {
 			processStaleConnection(conn, false);
 		}
-		for (Connection conn : constraintConnections) {
-			processStaleConnection(conn, true);
+		for (RoutableFigure routable : routableConnectionList) {
+			Connection conn = (Connection)routable;
+			processStaleConnection(conn, false);
 		}
-		
-		
 		staleConnections.clear();
 	}
 
@@ -248,8 +242,20 @@ public final class DPFShortestPathConnectionRouter extends AbstractRouter {
 				bends.addPoint(bp.getLocation());
 			}
 			path.setBendPoints(bends);
-		} else
+		} else if (conn instanceof DPFEpiConnectionFigure) {
+			PointList bends = new PointList(constraint.size());
+			// Default layout around the node:
+			// TODO: make this configurable
+			Rectangle ownerBounds = ((DPFEpiConnectionFigure) conn).getOwnerBounds();
+			bends.addPoint(new Point(path.getStartPoint().x, ownerBounds.y - 10));
+			bends.addPoint(new Point(ownerBounds.x - 40, ownerBounds.y - 10));
+			bends.addPoint(new Point(ownerBounds.x - 40, ownerBounds.getBottom().y + 40));
+			bends.addPoint(new Point(path.getEndPoint().x, ownerBounds.getBottom().y + 40));
+			path.setBendPoints(bends);
+			
+		} else {
 			path.setBendPoints(null);
+		}
 
 		isDirty |= path.isDirty;
 	}
@@ -313,7 +319,6 @@ public final class DPFShortestPathConnectionRouter extends AbstractRouter {
 			for (int i = 0; i < updated.size(); i++) {
  				Path path = (Path) updated.get(i);
 				
-
 				current = (Connection) path.data;
 				current.revalidate();
 
@@ -321,6 +326,7 @@ public final class DPFShortestPathConnectionRouter extends AbstractRouter {
 				Point ref1, ref2, start, end;
 				ref1 = new PrecisionPoint(points.getPoint(1));
 				ref2 = new PrecisionPoint(points.getPoint(points.size() - 2));
+				
 				current.translateToAbsolute(ref1);
 				current.translateToAbsolute(ref2);
 				start = current.getSourceAnchor().getLocation(ref1).getCopy();
@@ -452,4 +458,17 @@ public final class DPFShortestPathConnectionRouter extends AbstractRouter {
 		return connectionToPaths != null && connectionToPaths.containsKey(conn);
 	}
 
+	// -----------------------------------------------------------------------
+	
+	private class CompareRoutable implements Comparator<RoutableFigure> {
+		@Override
+		public int compare(RoutableFigure o1, RoutableFigure o2) {
+			int o1p = o1.getRoutingPriority();
+			int o2p = o2.getRoutingPriority();
+			
+			return (o1p < o2p ? -1 : (o1p == o2p ? 0 : 1));
+		}	
+	}
+	
+	
 }
