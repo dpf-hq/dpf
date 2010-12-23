@@ -13,23 +13,21 @@ package no.hib.dpf.editor.model.commands;
 import java.util.ArrayList;
 import java.util.List;
 
-import no.hib.dpf.editor.model.Connection;
+import no.hib.dpf.editor.model.VEdge;
 import no.hib.dpf.editor.model.DPFDiagram;
-import no.hib.dpf.editor.model.Shape;
+import no.hib.dpf.editor.model.VNode;
 
 import org.eclipse.gef.commands.Command;
 
 /**
- * A command to remove a shape from its parent. The command can be undone or
+ * A command to remove a node from its parent. The command can be undone or
  * redone.
- * 
- * @author Elias Volanakis
  */
-public class ShapeDeleteCommand extends Command {
-	/** Shape to remove. */
-	private final Shape child;
+public class VNodeDeleteCommand extends Command {
+	/** Node to remove. */
+	private final VNode child;
 
-	/** ShapeDiagram to remove from. */
+	/** Diagram to remove from. */
 	private final DPFDiagram parent;
 	/** Holds a copy of the outgoing connections of child. */
 	private List<ConnectionDeleteCommand> sourceConnectionsDeleteCommands;
@@ -39,17 +37,17 @@ public class ShapeDeleteCommand extends Command {
 	private boolean wasRemoved;
 
 	/**
-	 * Create a command that will remove the shape from its parent.
+	 * Create a command that will remove the VNode from its parent.
 	 * 
 	 * @param parent the DPFDiagram containing the child
-	 * @param child the Shape to remove
+	 * @param child the VNode to remove
 	 * @throws IllegalArgumentException if any parameter is null
 	 */
-	public ShapeDeleteCommand(DPFDiagram parent, Shape child) {
+	public VNodeDeleteCommand(DPFDiagram parent, VNode child) {
 		if (parent == null || child == null) {
 			throw new IllegalArgumentException();
 		}
-		setLabel("shape deletion");
+		setLabel("node deletion");
 		this.parent = parent;
 		this.child = child;
 	}
@@ -72,9 +70,9 @@ public class ShapeDeleteCommand extends Command {
 		removeChildAndDisconnectConnections();
 	}
 
-	private List<ConnectionDeleteCommand> getDeleteCommands(List<Connection> connections) {
+	private List<ConnectionDeleteCommand> getDeleteCommands(List<VEdge> connections) {
 		List<ConnectionDeleteCommand> retval = new ArrayList<ConnectionDeleteCommand>();
-		for (Connection connection : connections) {
+		for (VEdge connection : connections) {
 			retval.add(new ConnectionDeleteCommand(connection));
 		}
 		return retval;

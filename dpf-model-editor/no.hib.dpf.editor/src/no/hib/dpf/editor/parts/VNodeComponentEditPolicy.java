@@ -11,8 +11,8 @@
 package no.hib.dpf.editor.parts;
 
 import no.hib.dpf.editor.model.DPFDiagram;
-import no.hib.dpf.editor.model.Shape;
-import no.hib.dpf.editor.model.commands.ShapeDeleteCommand;
+import no.hib.dpf.editor.model.VNode;
+import no.hib.dpf.editor.model.commands.VNodeDeleteCommand;
 
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.ComponentEditPolicy;
@@ -20,12 +20,12 @@ import org.eclipse.gef.requests.GroupRequest;
 
 
 /**
- * This edit policy enables the removal of a Shapes instance from its container. 
- * @see ShapeEditPart#createEditPolicies()
- * @see ShapeTreeEditPart#createEditPolicies()
+ * This edit policy enables the removal of a VNode instance from its container. 
+ * @see VNodeEditPart#createEditPolicies()
+ * @see VNodeTreeEditPart#createEditPolicies()
  * @author Elias Volanakis
  */
-class ShapeComponentEditPolicy extends ComponentEditPolicy {
+class VNodeComponentEditPolicy extends ComponentEditPolicy {
 
 /* (non-Javadoc)
  * @see org.eclipse.gef.editpolicies.ComponentEditPolicy#createDeleteCommand(org.eclipse.gef.requests.GroupRequest)
@@ -33,8 +33,8 @@ class ShapeComponentEditPolicy extends ComponentEditPolicy {
 protected Command createDeleteCommand(GroupRequest deleteRequest) {
 	Object parent = getHost().getParent().getModel();
 	Object child = getHost().getModel();
-	if (parent instanceof DPFDiagram && child instanceof Shape) {
-		return new ShapeDeleteCommand((DPFDiagram) parent, (Shape) child);
+	if (parent instanceof DPFDiagram && child instanceof VNode) {
+		return new VNodeDeleteCommand((DPFDiagram) parent, (VNode) child);
 	}
 	return super.createDeleteCommand(deleteRequest);
 }

@@ -1,7 +1,7 @@
 package no.hib.dpf.editor.model.commands;
 
-import no.hib.dpf.editor.model.Connection;
-import no.hib.dpf.editor.model.ConstraintElement;
+import no.hib.dpf.editor.model.VEdge;
+import no.hib.dpf.editor.model.VConstraint;
 import no.hib.dpf.editor.model.SingleLineConstraintElement;
 
 import org.eclipse.gef.commands.Command;
@@ -12,15 +12,15 @@ import org.eclipse.gef.commands.Command;
  */
 public class MultiplicityConstraintCreateCommand extends Command {
 	/** The connection instance. */
-	private ConstraintElement constraint;
+	private VConstraint constraint;
 
-	private final Connection connection;
+	private final VEdge connection;
 
 	/**
 	 * Instantiate a command that can create a connection between two
 	 * connections.
 	 */
-	public MultiplicityConstraintCreateCommand(Connection connection) {
+	public MultiplicityConstraintCreateCommand(VEdge connection) {
 		if (connection == null) {
 			throw new IllegalArgumentException();
 		}
@@ -44,7 +44,7 @@ public class MultiplicityConstraintCreateCommand extends Command {
 	 * @see org.eclipse.gef.commands.Command#execute()
 	 */
 	public void execute() {
-		constraint = new SingleLineConstraintElement(connection, ConstraintElement.ConstraintType.Multiplicity);
+		constraint = new SingleLineConstraintElement(connection, VConstraint.ConstraintType.Multiplicity);
 	}
 
 	/*

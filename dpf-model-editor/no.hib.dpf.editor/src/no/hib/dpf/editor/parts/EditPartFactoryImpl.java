@@ -10,10 +10,10 @@
 Ê*******************************************************************************/
 package no.hib.dpf.editor.parts;
 
-import no.hib.dpf.editor.model.Connection;
-import no.hib.dpf.editor.model.ConstraintElement;
+import no.hib.dpf.editor.model.VEdge;
+import no.hib.dpf.editor.model.VConstraint;
 import no.hib.dpf.editor.model.DPFDiagram;
-import no.hib.dpf.editor.model.Shape;
+import no.hib.dpf.editor.model.VNode;
 import no.hib.dpf.editor.model.SingleNodeConnection;
 
 import org.eclipse.gef.EditPart;
@@ -47,18 +47,18 @@ private EditPart getPartForElement(Object modelElement) {
 	if (modelElement instanceof DPFDiagram) {
 		return new DiagramEditPart();
 	}
-	if (modelElement instanceof Shape) {
-		return new ShapeEditPart();
+	if (modelElement instanceof VNode) {
+		return new VNodeEditPart();
 	}
 	if (modelElement instanceof SingleNodeConnection) {
-		return new ShapeSingleConnectionEditPart();
+		return new VNodeSingleConnectionEditPart();
 	}
-	if (modelElement instanceof Connection) {
-		return new ShapeConnectionEditPart();
+	if (modelElement instanceof VEdge) {
+		return new VEdgeEditPart();
 	}
-	if (modelElement instanceof ConstraintElement) {
+	if (modelElement instanceof VConstraint) {
 		// Edit part according to the type of constraint element:
-		switch (((ConstraintElement)modelElement).getConstraintType()) {
+		switch (((VConstraint)modelElement).getConstraintType()) {
 			case JointImage : return new JImgConstraintEditPart();
 			case JointlyInjective : return new JInjConstraintEditPart();
 			//case Multiplicity : return new MultiplicityConstraintEditPart();

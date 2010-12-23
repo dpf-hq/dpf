@@ -4,7 +4,7 @@ import java.beans.PropertyChangeEvent;
 
 import no.hib.dpf.editor.figures.BasicRectangleFigure;
 import no.hib.dpf.editor.figures.ConnectionConstraintAnchor;
-import no.hib.dpf.editor.model.ConstraintElement;
+import no.hib.dpf.editor.model.VConstraint;
 import no.hib.dpf.editor.model.commands.ConstraintDeleteCommand;
 
 import org.eclipse.draw2d.ConnectionAnchor;
@@ -55,15 +55,15 @@ public abstract class ConstraintEditPart extends ModelElementConnectionEditPart 
 		BasicRectangleFigure basicRectangleFigure = null;
 		
 		if (getSource() != null) {
-			ShapeConnectionEditPart source = (ShapeConnectionEditPart) getSource();
+			VEdgeEditPart source = (VEdgeEditPart) getSource();
 
 			if (source.getSource() != null) {
-				if (source.getSource() instanceof ShapeEditPart) {
-					ShapeEditPart shapeEditPart;
+				if (source.getSource() instanceof VNodeEditPart) {
+					VNodeEditPart shapeEditPart;
 					if (fromSource) {
-						shapeEditPart = (ShapeEditPart) source.getSource();
+						shapeEditPart = (VNodeEditPart) source.getSource();
 					} else {
-						shapeEditPart = (ShapeEditPart) source.getTarget();
+						shapeEditPart = (VNodeEditPart) source.getTarget();
 
 					}
 					if (shapeEditPart.getFigure() instanceof BasicRectangleFigure) {
@@ -77,24 +77,14 @@ public abstract class ConstraintEditPart extends ModelElementConnectionEditPart 
 		
 	}
 	
-	protected ConstraintElement getCastedModel() {
-		return (ConstraintElement) getModel();
+	protected VConstraint getCastedModel() {
+		return (VConstraint) getModel();
 	}
 	
-	
-	/* (non-Javadoc)
-	 * @see java.beans.PropertyChangeListener#propertyChange(java.beans.PropertyChangeEvent)
-	 */
-	public void propertyChange(PropertyChangeEvent event) {
-		String property = event.getPropertyName();
-		if (ConstraintElement.LINESTYLE_PROP.equals(property)) {
-			((PolylineConnection) getFigure()).setLineStyle(getCastedModel().getLineStyle());
-		}			
-	}
 	
 	/**
 	 * Returns the <code>ConnectionAnchor</code> for the <i>source</i> end of
-	 * the connection. If the source is an instance of {@link ShapeConnectionEditPart},
+	 * the connection. If the source is an instance of {@link VEdgeEditPart},
 	 * that interface will be used to determine the proper ConnectionAnchor.
 	 * 
 	 * @return ConnectionAnchor for the source end of the Connection
@@ -106,7 +96,7 @@ public abstract class ConstraintEditPart extends ModelElementConnectionEditPart 
 
 	/**
 	 * Returns the <code>ConnectionAnchor</code> for the <i>target</i> end of
-	 * the connection. If the target is an instance of {@link ShapeConnectionEditPart},
+	 * the connection. If the target is an instance of {@link VEdgeEditPart},
 	 * that interface will be used to determine the proper ConnectionAnchor.
 	 * 
 	 * @return ConnectionAnchor for the target end of the Connection
@@ -127,7 +117,7 @@ public abstract class ConstraintEditPart extends ModelElementConnectionEditPart 
 		// Now, the connection constraint anchor is constructed, setting from which end of the line it
 		// should anchor itself:
 		ConnectionConstraintAnchor retval = new ConnectionConstraintAnchor(new Point(100, 100), constraintFromTargetEnd);
-		if ((supplier == null)  || (!(supplier instanceof ShapeConnectionEditPart))) {
+		if ((supplier == null)  || (!(supplier instanceof VEdgeEditPart))) {
 			return retval;
 		}
 		updateAnchor(retval, supplier, isSource);
@@ -136,16 +126,16 @@ public abstract class ConstraintEditPart extends ModelElementConnectionEditPart 
 	}
 
 	private void updateAnchor(ConnectionConstraintAnchor anchor, EditPart supplier, boolean isSource) {
-		ShapeConnectionEditPart targetSupplier = getConnectionEditPart(supplier, isSource);
+		VEdgeEditPart targetSupplier = getConnectionEditPart(supplier, isSource);
 		anchor.setConnectionFigure((PolylineConnection)targetSupplier.getFigure());
 	}
 
-	private ShapeConnectionEditPart getConnectionEditPart(EditPart supplier, boolean isSource) {
-		ShapeConnectionEditPart retVal = (ShapeConnectionEditPart)supplier;
+	private VEdgeEditPart getConnectionEditPart(EditPart supplier, boolean isSource) {
+		VEdgeEditPart retVal = (VEdgeEditPart)supplier;
 		if (isSource) {
-			retVal = (ShapeConnectionEditPart)getSource();		
+			retVal = (VEdgeEditPart)getSource();		
 		} else {
-			retVal = (ShapeConnectionEditPart)getTarget();				
+			retVal = (VEdgeEditPart)getTarget();				
 		}
 		return retVal;
 	}	
@@ -173,8 +163,14 @@ public abstract class ConstraintEditPart extends ModelElementConnectionEditPart 
 		if (editPart == null) {
 			return;
 		}
-		ShapeConnectionEditPart shapeEditPart = (ShapeConnectionEditPart)editPart;
+		VEdgeEditPart shapeEditPart = (VEdgeEditPart)editPart;
 		shapeEditPart.addPropertyChangeListener(this);
+	}
+
+	@Override
+	public void propertyChange(PropertyChangeEvent evt) {
+		// TODO Auto-generated method stub
+		
 	}	
 
 	

@@ -10,7 +10,6 @@
 Ê*******************************************************************************/
 package no.hib.dpf.editor.model;
 
-import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.lang.reflect.InvocationTargetException;
@@ -22,7 +21,6 @@ import no.hib.dpf.metamodel.IDObject;
 import no.hib.dpf.metamodel.MetamodelFactory;
 import no.hib.dpf.metamodel.Predicate;
 
-import org.eclipse.draw2d.Graphics;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
@@ -33,64 +31,19 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.ui.views.properties.ComboBoxPropertyDescriptor;
 import org.eclipse.ui.views.properties.IPropertyDescriptor;
 
-/**
- * A connection between two distinct shapes.
- * 
- * @author Elias Volanakis
- */
-public class ConstraintElement extends ModelElement implements Constraint, IDObjectContainer {
-	/**
-	 * Used for indicating that a Connection with solid line style should be
-	 * created.
-	 * 
-	 * @see no.hib.dpf.editor.parts.ShapeEditPart#createEditPolicies()
-	 */
-	public static final Integer SOLID_CONNECTION = new Integer(
-			Graphics.LINE_SOLID);
-	/**
-	 * Used for indicating that a Connection with dashed line style should be
-	 * created.
-	 * 
-	 * @see no.hib.dpf.editor.parts.ShapeEditPart#createEditPolicies()
-	 */
-	public static final Integer DASHED_CONNECTION = new Integer(
-			Graphics.LINE_DASH);
-	/** Property ID to use when the line style of this connection is modified. */
-	public static final String LINESTYLE_PROP = "LineStyle";
+public class VConstraint extends ModelElement implements Constraint, IDObjectContainer {
+
 	private static final IPropertyDescriptor[] descriptors = new IPropertyDescriptor[1];
-	private static final String SOLID_STR = "Solid";
-	private static final String DASHED_STR = "Dashed";
 	private static final long serialVersionUID = 1;
 
 	/** True, if the connection is attached to its endpoints. */
 	protected boolean isConnected;
-	/** Line drawing style for this constraint. */
-	protected int lineStyle = Graphics.LINE_SOLID;
 	/** Constraint's source endpoint. */
-	protected Connection source;
+	protected VEdge source;
 	/** Constraint target endpoint. */
-	protected Connection target;
-
-	static {
-		descriptors[0] = new ComboBoxPropertyDescriptor(LINESTYLE_PROP,
-				LINESTYLE_PROP, new String[] { SOLID_STR, DASHED_STR });
-	}
-	
-	/**
-	 * Attach a non-null PropertyChangeListener to this object.
-	 * 
-	 * @param l
-	 *            a non-null PropertyChangeListener instance
-	 * @throws IllegalArgumentException
-	 *             if the parameter is null
-	 */
-	@Override
-	public synchronized void addPropertyChangeListener(PropertyChangeListener l) {
-		super.addPropertyChangeListener(l);
-	}
+	protected VEdge target;
 	
 	private transient Constraint constraintComponent;
 	private String constraintID;
@@ -119,7 +72,7 @@ public class ConstraintElement extends ModelElement implements Constraint, IDObj
 	 *             if any of the parameters are null or source == target
 	 * @see #setLineStyle(int)
 	 */
-	public ConstraintElement(Connection source, Connection target, ConstraintType constraintType) {
+	public VConstraint(VEdge source, VEdge target, ConstraintType constraintType) {
 		this.setConstraintType(constraintType);
 		// The dpf Constraint object must be initialized before the connection of the shapes.
 		setIDObject(MetamodelFactory.eINSTANCE.createConstraint());
@@ -155,15 +108,6 @@ public class ConstraintElement extends ModelElement implements Constraint, IDObj
 	}
 
 	/**
-	 * Returns the line drawing style of this connection.
-	 * 
-	 * @return an int value (Graphics.LINE_DASH or Graphics.LINE_SOLID)
-	 */
-	public int getLineStyle() {
-		return lineStyle;
-	}
-
-	/**
 	 * Returns the descriptor for the lineStyle property
 	 * 
 	 * @see org.eclipse.ui.views.properties.IPropertySource#getPropertyDescriptors()
@@ -178,13 +122,6 @@ public class ConstraintElement extends ModelElement implements Constraint, IDObj
 	 * @see org.eclipse.ui.views.properties.IPropertySource#getPropertyValue(java.lang.Object)
 	 */
 	public Object getPropertyValue(Object id) {
-		if (id.equals(LINESTYLE_PROP)) {
-			if (getLineStyle() == Graphics.LINE_DASH)
-				// Dashed is the second value in the combo dropdown
-				return new Integer(1);
-			// Solid is the first value in the combo dropdown
-			return new Integer(0);
-		}
 		return super.getPropertyValue(id);
 	}
 
@@ -193,7 +130,7 @@ public class ConstraintElement extends ModelElement implements Constraint, IDObj
 	 * 
 	 * @return a non-null Shape instance
 	 */
-	public Connection getConnectionSource() {
+	public VEdge getConnectionSource() {
 		return source;
 	}
 
@@ -202,7 +139,7 @@ public class ConstraintElement extends ModelElement implements Constraint, IDObj
 	 * 
 	 * @return a non-null Shape instance
 	 */
-	public Connection getConnectionTarget() {
+	public VEdge getConnectionTarget() {
 		return target;
 	}
 
@@ -230,7 +167,7 @@ public class ConstraintElement extends ModelElement implements Constraint, IDObj
 	 * @throws IllegalArgumentException
 	 *             if any of the paramers are null or newSource == newTarget
 	 */
-	public void reconnect(Connection newSource, Connection newTarget) {
+	public void reconnect(VEdge newSource, VEdge newTarget) {
 		if (newSource == null || newTarget == null || newSource == newTarget) {
 			throw new IllegalArgumentException();
 		}
@@ -238,39 +175,6 @@ public class ConstraintElement extends ModelElement implements Constraint, IDObj
 		this.source = newSource;
 		this.target = newTarget;
 		reconnect();
-	}
-
-	/**
-	 * Set the line drawing style of this connection.
-	 * 
-	 * @param lineStyle
-	 *            one of following values: Graphics.LINE_DASH or
-	 *            Graphics.LINE_SOLID
-	 * @see Graphics#LINE_DASH
-	 * @see Graphics#LINE_SOLID
-	 * @throws IllegalArgumentException
-	 *             if lineStyle does not have one of the above values
-	 */
-	public void setLineStyle(int lineStyle) {
-		if (lineStyle != Graphics.LINE_DASH && lineStyle != Graphics.LINE_SOLID) {
-			throw new IllegalArgumentException();
-		}
-		this.lineStyle = lineStyle;
-		firePropertyChange(LINESTYLE_PROP, null, new Integer(this.lineStyle));
-	}
-
-	/**
-	 * Sets the lineStyle based on the String provided by the PropertySheet
-	 * 
-	 * @see org.eclipse.ui.views.properties.IPropertySource#setPropertyValue(java.lang.Object,
-	 *      java.lang.Object)
-	 */
-	public void setPropertyValue(Object id, Object value) {
-		if (id.equals(LINESTYLE_PROP))
-			setLineStyle(new Integer(1).equals(value) ? Graphics.LINE_DASH
-					: Graphics.LINE_SOLID);
-		else
-			super.setPropertyValue(id, value);
 	}
 
 	public void setConstraintType(ConstraintType constraintType) {

@@ -10,8 +10,8 @@
 Ê*******************************************************************************/
 package no.hib.dpf.editor;
 
-import no.hib.dpf.editor.model.Connection;
-import no.hib.dpf.editor.model.RectangularShape;
+import no.hib.dpf.editor.model.VEdge;
+import no.hib.dpf.editor.model.VNode;
 
 import org.eclipse.gef.palette.CombinedTemplateCreationEntry;
 import org.eclipse.gef.palette.ConnectionCreationToolEntry;
@@ -57,8 +57,8 @@ private static PaletteContainer createShapesDrawer() {
 	CombinedTemplateCreationEntry component = new CombinedTemplateCreationEntry(
 			"Node",
 			"Create a new node", 
-			RectangularShape.class,
-			new SimpleFactory(RectangularShape.class), 
+			VNode.class,
+			new SimpleFactory(VNode.class), 
 			ImageDescriptor.createFromFile(DPFPlugin.class, "icons/rectangle16.gif"), 
 			ImageDescriptor.createFromFile(DPFPlugin.class, "icons/rectangle24.gif"));
 	componentsDrawer.add(component);
@@ -100,7 +100,7 @@ private static PaletteContainer createToolsGroup(PaletteRoot palette) {
 				public Object getNewObject() { return null; }
 				// see ShapeEditPart#createEditPolicies() 
 				// this is abused to transmit the desired line style 
-				public Object getObjectType() { return Connection.SOLID_CONNECTION; }
+				public Object getObjectType() { return VEdge.SOLID_CONNECTION; }
 			},
 			ImageDescriptor.createFromFile(DPFPlugin.class, "icons/connection_s16.gif"),
 			ImageDescriptor.createFromFile(DPFPlugin.class, "icons/connection_s24.gif"));
@@ -114,7 +114,7 @@ private static PaletteContainer createToolsGroup(PaletteRoot palette) {
 				public Object getNewObject() { return null; }
 				// see ShapeEditPart#createEditPolicies()
 				// this is abused to transmit the desired line style 
-				public Object getObjectType() { return Connection.DASHED_CONNECTION; }
+				public Object getObjectType() { return VEdge.DASHED_CONNECTION; }
 			},
 			ImageDescriptor.createFromFile(DPFPlugin.class, "icons/connection_d16.gif"),
 			ImageDescriptor.createFromFile(DPFPlugin.class, "icons/connection_d24.gif"));

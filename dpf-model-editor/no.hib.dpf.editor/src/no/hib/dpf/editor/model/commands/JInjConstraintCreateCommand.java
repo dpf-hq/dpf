@@ -2,8 +2,8 @@ package no.hib.dpf.editor.model.commands;
 
 import java.util.Iterator;
 
-import no.hib.dpf.editor.model.Connection;
-import no.hib.dpf.editor.model.ConstraintElement;
+import no.hib.dpf.editor.model.VEdge;
+import no.hib.dpf.editor.model.VConstraint;
 
 import org.eclipse.gef.commands.Command;
 
@@ -13,26 +13,22 @@ import org.eclipse.gef.commands.Command;
  */
 public class JInjConstraintCreateCommand extends Command {
 	/** The connection instance. */
-	private ConstraintElement constraint;
-	/** The desired line style for the connection (dashed or solid). */
-	private final int lineStyle;
+	private VConstraint constraint;
 
-	private final Connection source;
-	private Connection target;
+	private final VEdge source;
+	private VEdge target;
 
 	/**
 	 * Instantiate a command that can create a connection between two
 	 * connections.
 	 */
-	public JInjConstraintCreateCommand(Connection source,
-			Connection target, int lineStyle) {
+	public JInjConstraintCreateCommand(VEdge source, VEdge target) {
 		if (source == null) {
 			throw new IllegalArgumentException();
 		}
 		setLabel("connection creation");
 		this.source = source;
 		this.target = target;
-		this.lineStyle = lineStyle;
 	}
 
 	/*
@@ -51,9 +47,9 @@ public class JInjConstraintCreateCommand extends Command {
 	}
 
 	private boolean doSourceToTargetAlreadyExist() {
-		for (Iterator<ConstraintElement> iter = source.getSourceConstraints()
+		for (Iterator<VConstraint> iter = source.getSourceConstraints()
 				.iterator(); iter.hasNext();) {
-			ConstraintElement constraint = iter.next();
+			VConstraint constraint = iter.next();
 			if (constraint.getConnectionTarget().equals(target)) {
 				return true;
 			}
@@ -68,9 +64,7 @@ public class JInjConstraintCreateCommand extends Command {
 	 */
 	public void execute() {
 		// create a new connection between source and target
-		constraint = new ConstraintElement(source, target, ConstraintElement.ConstraintType.JointlyInjective);
-		// use the supplied line style
-		constraint.setLineStyle(lineStyle);
+		constraint = new VConstraint(source, target, VConstraint.ConstraintType.JointlyInjective);
 	}
 
 	/*
@@ -86,7 +80,7 @@ public class JInjConstraintCreateCommand extends Command {
 	 * @param target that target endpoint (a non-null Shape instance)
 	 * @throws IllegalArgumentException if target is null
 	 */
-	public void setTarget(Connection target) {
+	public void setTarget(VEdge target) {
 		if (target == null) {
 			throw new IllegalArgumentException();
 		}

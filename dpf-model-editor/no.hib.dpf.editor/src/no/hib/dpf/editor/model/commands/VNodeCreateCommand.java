@@ -11,7 +11,7 @@
 package no.hib.dpf.editor.model.commands;
 
 import no.hib.dpf.editor.model.DPFDiagram;
-import no.hib.dpf.editor.model.Shape;
+import no.hib.dpf.editor.model.VNode;
 
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
@@ -24,28 +24,26 @@ import org.eclipse.gef.commands.Command;
  * The command can be undone or redone.
  * @author Elias Volanakis
  */
-public class ShapeCreateCommand 
-	extends Command 
-{
+public class VNodeCreateCommand extends Command {
 	
-/** The new shape. */ 
-private Shape newShape;
-/** ShapeDiagram to add to. */
+/** The new node. */ 
+private VNode newVNode;
+/** Diagram to add to. */
 private final DPFDiagram parent;
-/** The bounds of the new Shape. */
+/** The bounds of the new VNode. */
 private Rectangle bounds;
 
 
 /**
  * Create a command that will add a new Shape to a ShapesDiagram.
- * @param newShape the new Shape that is to be added
+ * @param newVNode the new VNode that is to be added
  * @param parent the ShapesDiagram that will hold the new element
  * @param bounds the bounds of the new shape; the size can be (-1, -1) if not known
  * @throws IllegalArgumentException if any parameter is null, or the request
  * 						  does not provide a new Shape instance
  */
-public ShapeCreateCommand(Shape newShape, DPFDiagram parent, Rectangle bounds) {
-	this.newShape = newShape;
+public VNodeCreateCommand(VNode newVNode, DPFDiagram parent, Rectangle bounds) {
+	this.newVNode = newVNode;
 	this.parent = parent;
 	this.bounds = bounds;
 	setLabel("shape creation");
@@ -56,17 +54,17 @@ public ShapeCreateCommand(Shape newShape, DPFDiagram parent, Rectangle bounds) {
  * @see org.eclipse.gef.commands.Command#canExecute()
  */
 public boolean canExecute() {
-	return newShape != null && parent != null && bounds != null;
+	return newVNode != null && parent != null && bounds != null;
 }
 
 /* (non-Javadoc)
  * @see org.eclipse.gef.commands.Command#execute()
  */
 public void execute() {
-	newShape.setLocation(bounds.getLocation());
+	newVNode.setLocation(bounds.getLocation());
 	Dimension size = bounds.getSize();
 	if (size.width > 0 && size.height > 0)
-		newShape.setSize(size);
+		newVNode.setSize(size);
 	addNewShapeToParent();
 }
 
@@ -78,14 +76,14 @@ public void redo() {
 }
 
 private void addNewShapeToParent() {
-	parent.addChild(newShape);
+	parent.addChild(newVNode);
 }
 
 /* (non-Javadoc)
  * @see org.eclipse.gef.commands.Command#undo()
  */
 public void undo() {
-	parent.removeChild(newShape);
+	parent.removeChild(newVNode);
 }
 	
 }

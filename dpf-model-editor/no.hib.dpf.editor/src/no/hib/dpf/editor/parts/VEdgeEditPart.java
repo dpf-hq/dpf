@@ -18,8 +18,8 @@ import java.util.Collections;
 import java.util.List;
 
 import no.hib.dpf.editor.figures.DPFConnectionFigure;
-import no.hib.dpf.editor.model.Connection;
-import no.hib.dpf.editor.model.ConstraintElement;
+import no.hib.dpf.editor.model.VEdge;
+import no.hib.dpf.editor.model.VConstraint;
 import no.hib.dpf.editor.model.SingleLineConstraintElement;
 import no.hib.dpf.editor.model.commands.ConnectionDeleteCommand;
 
@@ -38,12 +38,12 @@ import org.eclipse.gef.requests.GroupRequest;
 
 
 /**
- * Edit part for Connection model elements.
+ * Edit part for VEdge model elements.
  * <p>This edit part must implement the PropertyChangeListener interface, 
  * so it can be notified of property changes in the corresponding model element.
  * </p>
  */
-public class ShapeConnectionEditPart extends ModelElementConnectionEditPart {
+public class VEdgeEditPart extends ModelElementConnectionEditPart {
 
 	protected DPFConnectionFigure connectionFigure; 
 	Label connectionLabel;
@@ -176,14 +176,14 @@ public class ShapeConnectionEditPart extends ModelElementConnectionEditPart {
 	 */
 	public void propertyChange(PropertyChangeEvent event) {
 		String property = event.getPropertyName();
-		if (Connection.LINESTYLE_PROP.equals(property)) {
+		if (VEdge.LINESTYLE_PROP.equals(property)) {
 			((DPFConnectionFigure) getFigure()).setLineStyle(getCastedModel()
 					.getLineStyle());
-		} else if (Connection.SOURCE_CONSTRAINTS_PROP.equals(property)) {
+		} else if (VEdge.SOURCE_CONSTRAINTS_PROP.equals(property)) {
 			refreshSourceConnections();
-		} else if (Connection.TARGET_CONSTRAINTS_PROP.equals(property)) {
+		} else if (VEdge.TARGET_CONSTRAINTS_PROP.equals(property)) {
 			refreshTargetConnections();
-		} else if (Connection.SINGLE_CONSTRAINTS_PROP.equals(property)) {
+		} else if (VEdge.SINGLE_CONSTRAINTS_PROP.equals(property)) {
 			refreshSingleLineConstraints();
 		}
 	}
@@ -233,15 +233,15 @@ public class ShapeConnectionEditPart extends ModelElementConnectionEditPart {
 	}
 
 	@SuppressWarnings("rawtypes")
-	private List getModelConnections(List<ConstraintElement> constraints) {
+	private List getModelConnections(List<VConstraint> constraints) {
 		if (constraints.size() == 0) {
 			return Collections.EMPTY_LIST;
 		}
 		return constraints;		
 	}
 
-	protected Connection getCastedModel() {
-		return (Connection)getModel();
+	protected VEdge getCastedModel() {
+		return (VEdge)getModel();
 	}
 
 	/**

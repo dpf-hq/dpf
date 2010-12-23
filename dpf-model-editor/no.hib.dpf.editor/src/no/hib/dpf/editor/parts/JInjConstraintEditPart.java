@@ -34,9 +34,7 @@ class JInjConstraintEditPart extends ConstraintEditPart {
 	 */
 	@Override
 	protected IFigure createFigureExec() {
-		BetweenArrowsConstraintFigure connection = new BetweenArrowsConstraintFigure(this, "[Jointly Injective]");
-		connection.setLineStyle(getCastedModel().getLineStyle()); 
-		return connection;
+		return new BetweenArrowsConstraintFigure(this, "[Jointly Injective]");
 	}
 
 }

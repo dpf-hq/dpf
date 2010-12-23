@@ -3,8 +3,8 @@ package no.hib.dpf.editor.editoractions;
 import java.util.ArrayList;
 import java.util.List;
 
-import no.hib.dpf.editor.parts.ShapeConnectionEditPart;
-import no.hib.dpf.editor.parts.ShapeEditPart;
+import no.hib.dpf.editor.parts.VEdgeEditPart;
+import no.hib.dpf.editor.parts.VNodeEditPart;
 import no.hib.dpf.metamodel.Edge;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.Node;
@@ -35,7 +35,7 @@ public abstract class SelectionActionForEditParts extends SelectionAction {
 
 	protected EList<Node> getSelectionNodes() {
 		EList<Node> selectionNodes = new BasicEList<Node>();
-		for (ShapeEditPart shapeEditPart : getSelectedShapeEditParts()) {
+		for (VNodeEditPart shapeEditPart : getSelectedShapeEditParts()) {
 			selectionNodes.add((Node)shapeEditPart.getModel());
 		}
 		// Add any nodes not selected, but directly connected to the selected edges
@@ -68,18 +68,18 @@ public abstract class SelectionActionForEditParts extends SelectionAction {
 	protected List<ConnectionEditPart> getSelectedConnectionEditParts() {
 		List<ConnectionEditPart> connectionEditParts = new ArrayList<ConnectionEditPart>();
 		for (int i = 0; i < getSelectedObjects().size(); i++) {
-			if (getSelectedObjects().get(i) instanceof ShapeConnectionEditPart) {
+			if (getSelectedObjects().get(i) instanceof VEdgeEditPart) {
 				connectionEditParts.add((ConnectionEditPart)getSelectedObjects().get(i));
 			}
 		}
 		return connectionEditParts;
 	}
 	
-	protected List<ShapeEditPart> getSelectedShapeEditParts() {
-		List<ShapeEditPart> shapeEditParts = new ArrayList<ShapeEditPart>();
+	protected List<VNodeEditPart> getSelectedShapeEditParts() {
+		List<VNodeEditPart> shapeEditParts = new ArrayList<VNodeEditPart>();
 		for (int i = 0; i < getSelectedObjects().size(); i++) {
-			if (getSelectedObjects().get(i) instanceof ShapeEditPart) {
-				shapeEditParts.add((ShapeEditPart)getSelectedObjects().get(i));
+			if (getSelectedObjects().get(i) instanceof VNodeEditPart) {
+				shapeEditParts.add((VNodeEditPart)getSelectedObjects().get(i));
 			}
 		}
 		return shapeEditParts;

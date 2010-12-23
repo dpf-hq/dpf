@@ -8,10 +8,6 @@ import org.eclipse.draw2d.LineBorder;
 import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.swt.graphics.Color;
 
-/**
- * Figure used to represent a table in the schema
- * @author Phil Zoio
- */
 public class BasicRectangleFigure extends Figure implements RoutableFigure {
 
 	public static Color tableColor = new Color(null, 255, 255, 206);

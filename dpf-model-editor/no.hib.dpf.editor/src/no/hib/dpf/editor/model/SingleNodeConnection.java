@@ -4,13 +4,13 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.ui.views.properties.IPropertyDescriptor;
 
-public class SingleNodeConnection extends Connection implements MovableAndSizable {
+public class SingleNodeConnection extends VEdge implements MovableAndSizable {
 
 	private static final long serialVersionUID = 764028909094201787L;
 
 	private LocationAndSize locationAndSize;
 		
-	public SingleNodeConnection(Shape source) {
+	public SingleNodeConnection(VNode source) {
 		super(source, source);
 	}
 

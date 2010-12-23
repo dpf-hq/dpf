@@ -17,11 +17,10 @@ import java.util.List;
 import no.hib.dpf.editor.figures.BasicRectangleFigure;
 import no.hib.dpf.editor.figures.EditableLabel;
 import no.hib.dpf.editor.figures.SingleNodeConnectionAnchor;
-import no.hib.dpf.editor.model.Connection;
+import no.hib.dpf.editor.model.VEdge;
 import no.hib.dpf.editor.model.LocationAndSize;
 import no.hib.dpf.editor.model.ModelElement;
-import no.hib.dpf.editor.model.RectangularShape;
-import no.hib.dpf.editor.model.Shape;
+import no.hib.dpf.editor.model.VNode;
 import no.hib.dpf.editor.model.commands.ConnectionCreateCommand;
 import no.hib.dpf.editor.model.commands.ConnectionReconnectCommand;
 
@@ -42,15 +41,13 @@ import org.eclipse.gef.requests.ReconnectRequest;
 
 
 /**
- * EditPart used for Shape instances (more specific for EllipticalShape and
- * RectangularShape instances).
  * <p>This edit part must implement the PropertyChangeListener interface, 
  * so it can be notified of property changes in the corresponding model element.
  * </p>
  * 
  * @author Elias Volanakis
  */
-public class ShapeEditPart extends AbstractGraphicalEditPart 
+public class VNodeEditPart extends AbstractGraphicalEditPart 
 	implements PropertyChangeListener, NodeEditPart {
 	
 private ConnectionAnchor anchor;
@@ -76,7 +73,7 @@ protected void createEditPolicies() {
 //	installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new ShapeDirectEditPolicy());
 	
 	// allow removal of the associated model element
-	installEditPolicy(EditPolicy.COMPONENT_ROLE, new ShapeComponentEditPolicy());
+	installEditPolicy(EditPolicy.COMPONENT_ROLE, new VNodeComponentEditPolicy());
 	// allow the creation of connections and 
 	// and the reconnection of connections between Shape instances
 	installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new GraphicalNodeEditPolicy() {
@@ -86,14 +83,14 @@ protected void createEditPolicies() {
 		protected Command getConnectionCompleteCommand(CreateConnectionRequest request) {
 			ConnectionCreateCommand cmd 
 				= (ConnectionCreateCommand) request.getStartCommand();
-			cmd.setTarget((Shape) getHost().getModel());
+			cmd.setTarget((VNode) getHost().getModel());
 			return cmd;
 		}
 		/* (non-Javadoc)
 		 * @see org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy#getConnectionCreateCommand(org.eclipse.gef.requests.CreateConnectionRequest)
 		 */
 		protected Command getConnectionCreateCommand(CreateConnectionRequest request) {
-			Shape source = (Shape) getHost().getModel();
+			VNode source = (VNode) getHost().getModel();
 			int style = ((Integer) request.getNewObjectType()).intValue();
 			ConnectionCreateCommand cmd = new ConnectionCreateCommand(source, style);
 			request.setStartCommand(cmd);
@@ -103,8 +100,8 @@ protected void createEditPolicies() {
 		 * @see org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy#getReconnectSourceCommand(org.eclipse.gef.requests.ReconnectRequest)
 		 */
 		protected Command getReconnectSourceCommand(ReconnectRequest request) {
-			Connection conn = (Connection) request.getConnectionEditPart().getModel();
-			Shape newSource = (Shape) getHost().getModel();
+			VEdge conn = (VEdge) request.getConnectionEditPart().getModel();
+			VNode newSource = (VNode) getHost().getModel();
 			ConnectionReconnectCommand cmd = new ConnectionReconnectCommand(conn);
 			cmd.setNewSource(newSource);
 			return cmd;
@@ -113,8 +110,8 @@ protected void createEditPolicies() {
 		 * @see org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy#getReconnectTargetCommand(org.eclipse.gef.requests.ReconnectRequest)
 		 */
 		protected Command getReconnectTargetCommand(ReconnectRequest request) {
-			Connection conn = (Connection) request.getConnectionEditPart().getModel();
-			Shape newTarget = (Shape) getHost().getModel();
+			VEdge conn = (VEdge) request.getConnectionEditPart().getModel();
+			VNode newTarget = (VNode) getHost().getModel();
 			ConnectionReconnectCommand cmd = new ConnectionReconnectCommand(conn);
 			cmd.setNewTarget(newTarget);
 			return cmd;
@@ -134,8 +131,8 @@ public void handleNameChange(String value)
 	refreshVisuals();
 }
 
-private Shape getShape() {
-	return (Shape)getModel();
+private VNode getShape() {
+	return (VNode)getModel();
 }
 
 /**
@@ -178,9 +175,9 @@ protected IFigure createFigure() {
  * This allows this EditPart to be used for both sublasses of Shape. 
  */
 private IFigure createFigureForModel() {
-	if (getModel() instanceof RectangularShape) {
+	if (getModel() instanceof VNode) {
 		
-		EditableLabel label = new EditableLabel(((Shape)getModel()).getNameExec());
+		EditableLabel label = new EditableLabel(((VNode)getModel()).getNameExec());
 		return new BasicRectangleFigure(label);
 	} else {
 		// if Shapes gets extended the conditions above must be updated
@@ -198,16 +195,16 @@ public void deactivate() {
 	}
 }
 
-private Shape getCastedModel() {
-	return (Shape) getModel();
+private VNode getCastedModel() {
+	return (VNode)getModel();
 }
 
 private ConnectionAnchor getConnectionAnchor(ConnectionEditPart connection, boolean isSourceAnchor) {
-	if (connection instanceof ShapeSingleConnectionEditPart) {
+	if (connection instanceof VNodeSingleConnectionEditPart) {
 		return new SingleNodeConnectionAnchor(getFigure(), isSourceAnchor);
 	}
 	if (anchor == null) {
-		if (getModel() instanceof RectangularShape)
+		if (getModel() instanceof VNode)
 			anchor = new ChopboxAnchor(getFigure());
 		else
 			// if Shapes gets extended the conditions above must be updated
@@ -221,7 +218,7 @@ private ConnectionAnchor getConnectionAnchor(ConnectionEditPart connection, bool
  * @see org.eclipse.gef.editparts.AbstractGraphicalEditPart#getModelSourceConnections()
  */
 @Override
-protected List<Connection> getModelSourceConnections() {
+protected List<VEdge> getModelSourceConnections() {
 	return getCastedModel().getSourceConnections();
 }
 
@@ -230,7 +227,7 @@ protected List<Connection> getModelSourceConnections() {
  * @see org.eclipse.gef.editparts.AbstractGraphicalEditPart#getModelTargetConnections()
  */
 @Override
-protected List<Connection> getModelTargetConnections() {
+protected List<VEdge> getModelTargetConnections() {
 	return getCastedModel().getTargetConnections();
 }
 
@@ -273,11 +270,11 @@ public void propertyChange(PropertyChangeEvent evt) {
 	String prop = evt.getPropertyName();
 	if (LocationAndSize.SIZE_PROP.equals(prop) || LocationAndSize.LOCATION_PROP.equals(prop)) {
 		refreshVisuals();
-	} else if (Shape.SOURCE_CONNECTIONS_PROP.equals(prop)) {
+	} else if (VNode.SOURCE_CONNECTIONS_PROP.equals(prop)) {
 		refreshSourceConnections();
-	} else if (Shape.TARGET_CONNECTIONS_PROP.equals(prop)) {
+	} else if (VNode.TARGET_CONNECTIONS_PROP.equals(prop)) {
 		refreshTargetConnections();
-	} else if (Shape.NAME_PROP.equals(prop)) {
+	} else if (VNode.NAME_PROP.equals(prop)) {
 		commitNameChange(evt);
 	}
 }

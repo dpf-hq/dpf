@@ -36,17 +36,12 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ui.views.properties.ComboBoxPropertyDescriptor;
 import org.eclipse.ui.views.properties.IPropertyDescriptor;
 
-/**
- * A connection between two distinct shapes.
- * 
- * @author Elias Volanakis
- */
-public class Connection extends ModelElement implements Edge, IDObjectContainer {
+public class VEdge extends ModelElement implements Edge, IDObjectContainer {
 	/**
 	 * Used for indicating that a Connection with solid line style should be
 	 * created.
 	 * 
-	 * @see no.hib.dpf.editor.parts.ShapeEditPart#createEditPolicies()
+	 * @see no.hib.dpf.editor.parts.VNodeEditPart#createEditPolicies()
 	 */
 	public static final Integer SOLID_CONNECTION = new Integer(
 			Graphics.LINE_SOLID);
@@ -54,7 +49,7 @@ public class Connection extends ModelElement implements Edge, IDObjectContainer 
 	 * Used for indicating that a Connection with dashed line style should be
 	 * created.
 	 * 
-	 * @see no.hib.dpf.editor.parts.ShapeEditPart#createEditPolicies()
+	 * @see no.hib.dpf.editor.parts.VNodeEditPart#createEditPolicies()
 	 */
 	public static final Integer DASHED_CONNECTION = new Integer(
 			Graphics.LINE_DASH);
@@ -79,14 +74,14 @@ public class Connection extends ModelElement implements Edge, IDObjectContainer 
 	/** Line drawing style for this connection. */
 	private int lineStyle = Graphics.LINE_SOLID;
 	/** Connection's source endpoint. */
-	private Shape source;
+	private VNode source;
 	/** Connection's target endpoint. */
-	private Shape target;
+	private VNode target;
 
 	/** List of outgoing Constraints. */
-	private List<ConstraintElement> sourceConstraints = new ArrayList<ConstraintElement>();
+	private List<VConstraint> sourceConstraints = new ArrayList<VConstraint>();
 	/** List of incoming Constraints. */
-	private List<ConstraintElement> targetConnstraints = new ArrayList<ConstraintElement>();
+	private List<VConstraint> targetConnstraints = new ArrayList<VConstraint>();
 	/** List of single Constraints */
 	private List<SingleLineConstraintElement> singleConstraints = new ArrayList<SingleLineConstraintElement>();
 	
@@ -128,7 +123,7 @@ public class Connection extends ModelElement implements Edge, IDObjectContainer 
 	 *             if any of the parameters are null or source == target
 	 * @see #setLineStyle(int)
 	 */
-	public Connection(Shape source, Shape target) {
+	public VEdge(VNode source, VNode target) {
 		// The dpf Edge object must be initialized before the connection of the shapes.
 		setIDObject(MetamodelFactory.eINSTANCE.createEdge());
 		reconnect(source, target);
@@ -203,7 +198,7 @@ public class Connection extends ModelElement implements Edge, IDObjectContainer 
 	 * 
 	 * @return a non-null Shape instance
 	 */
-	public Shape getShapeSource() {
+	public VNode getShapeSource() {
 		return source;
 	}
 
@@ -212,7 +207,7 @@ public class Connection extends ModelElement implements Edge, IDObjectContainer 
 	 * 
 	 * @return a non-null Shape instance
 	 */
-	public Shape getShapeTarget() {
+	public VNode getShapeTarget() {
 		return target;
 	}
 
@@ -240,7 +235,7 @@ public class Connection extends ModelElement implements Edge, IDObjectContainer 
 	 * @throws IllegalArgumentException
 	 *             if any of the paramers are null or newSource == newTarget
 	 */
-	public void reconnect(Shape newSource, Shape newTarget) {
+	public void reconnect(VNode newSource, VNode newTarget) {
 //		if (newSource == null || newTarget == null || newSource == newTarget) {
 		if (newSource == null || newTarget == null) {
 			throw new IllegalArgumentException();
@@ -303,20 +298,20 @@ public class Connection extends ModelElement implements Edge, IDObjectContainer 
 		}
 	}
 
-	public List<ConstraintElement> getSourceConstraints() {
-		return new ArrayList<ConstraintElement>(sourceConstraints);
+	public List<VConstraint> getSourceConstraints() {
+		return new ArrayList<VConstraint>(sourceConstraints);
 	}
 
-	public List<ConstraintElement> getTargetConstraints() {
-		return new ArrayList<ConstraintElement>(targetConnstraints);
+	public List<VConstraint> getTargetConstraints() {
+		return new ArrayList<VConstraint>(targetConnstraints);
 	}
 	
-	protected void addIncomingConstraint(ConstraintElement constraint) {
+	protected void addIncomingConstraint(VConstraint constraint) {
 		targetConnstraints.add(constraint);
 		addedConstraint(constraint, TARGET_CONSTRAINTS_PROP);
 	}
 
-	protected void addOutgoingConstraint(ConstraintElement constraint) {
+	protected void addOutgoingConstraint(VConstraint constraint) {
 		sourceConstraints.add(constraint);		
 		addedConstraint(constraint, SOURCE_CONSTRAINTS_PROP);
 	}
@@ -326,12 +321,12 @@ public class Connection extends ModelElement implements Edge, IDObjectContainer 
 		addedConstraint(constraint, SINGLE_CONSTRAINTS_PROP);
 	}
 	
-	private void addedConstraint(ConstraintElement constraint, String property) {
+	private void addedConstraint(VConstraint constraint, String property) {
 		constraint.setGraph(getGraph());		
 		firePropertyChange(property, null, constraint);
 	}
 	
-	public void addConstraint(ConstraintElement constraint) {
+	public void addConstraint(VConstraint constraint) {
 		if (constraint == null || constraint.getConnectionSource() == constraint.getConnectionTarget()) {
 			throw new IllegalArgumentException();
 		}
@@ -342,12 +337,12 @@ public class Connection extends ModelElement implements Edge, IDObjectContainer 
 		}
 	}
 	
-	protected void removeIncomingConstraint(ConstraintElement constraint) {
+	protected void removeIncomingConstraint(VConstraint constraint) {
 		targetConnstraints.remove(constraint);
 		removedConstraint(constraint, TARGET_CONSTRAINTS_PROP);
 	}
 
-	protected void removeOutgoingConstraint(ConstraintElement constraint) {
+	protected void removeOutgoingConstraint(VConstraint constraint) {
 		sourceConstraints.remove(constraint);
 		removedConstraint(constraint, SOURCE_CONSTRAINTS_PROP);
 	}
@@ -357,12 +352,12 @@ public class Connection extends ModelElement implements Edge, IDObjectContainer 
 		removedConstraint(constraint, SINGLE_CONSTRAINTS_PROP);
 	}
 	
-	private void removedConstraint(ConstraintElement constraint, String property) {
+	private void removedConstraint(VConstraint constraint, String property) {
 		constraint.setGraph(null);		
 		firePropertyChange(property, null, constraint);
 	}	
 	
-	void removeConstraint(ConstraintElement constraint) {
+	void removeConstraint(VConstraint constraint) {
 		if (constraint == null) {
 			throw new IllegalArgumentException();
 		}

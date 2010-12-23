@@ -12,8 +12,8 @@ package no.hib.dpf.editor.model.commands;
 
 import java.util.Iterator;
 
-import no.hib.dpf.editor.model.Connection;
-import no.hib.dpf.editor.model.Shape;
+import no.hib.dpf.editor.model.VEdge;
+import no.hib.dpf.editor.model.VNode;
 
 import org.eclipse.gef.commands.Command;
 
@@ -37,7 +37,7 @@ import org.eclipse.gef.commands.Command;
  * create a new ConnectionReconnectCommand, set the new connection <i>target</i> by calling
  * the <tt>setNewTarget(Shape)</tt> method and return the command instance.</li>
  * </ol>
- * @see no.hib.dpf.editor.parts.ShapeEditPart#createEditPolicies() for an
+ * @see no.hib.dpf.editor.parts.VNodeEditPart#createEditPolicies() for an
  * 			 example of the above procedure.
  * @see org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy
  * @see #setNewSource(Shape)
@@ -47,15 +47,15 @@ import org.eclipse.gef.commands.Command;
 public class ConnectionReconnectCommand extends Command {
 
 /** The connection instance to reconnect. */
-private Connection connection;
+private VEdge connection;
 /** The new source endpoint. */
-private Shape newSource;
+private VNode newSource;
 /** The new target endpoint. */
-private Shape newTarget;
+private VNode newTarget;
 /** The original source endpoint. */
-private final Shape oldSource;
+private final VNode oldSource;
 /** The original target endpoint. */
-private final Shape oldTarget;
+private final VNode oldTarget;
 
 /**
  * Instantiate a command that can reconnect a Connection instance to a different source
@@ -63,7 +63,7 @@ private final Shape oldTarget;
  * @param conn the connection instance to reconnect (non-null)
  * @throws IllegalArgumentException if conn is null
  */
-public ConnectionReconnectCommand(Connection conn) {
+public ConnectionReconnectCommand(VEdge conn) {
 	if (conn == null) {
 		throw new IllegalArgumentException();
 	}
@@ -93,8 +93,8 @@ private boolean checkSourceReconnection() {
 		return false;
 	}
 	// return false, if the connection exists already
-	for (Iterator<Connection> iter = newSource.getSourceConnections().iterator(); iter.hasNext();) {
-		Connection conn = iter.next();
+	for (Iterator<VEdge> iter = newSource.getSourceConnections().iterator(); iter.hasNext();) {
+		VEdge conn = iter.next();
 		// return false if a newSource -> oldTarget connection exists already
 		// and it is a different instance than the connection-field
 		if (conn.getShapeTarget().equals(oldTarget) &&  !conn.equals(connection)) {
@@ -113,8 +113,8 @@ private boolean checkTargetReconnection() {
 		return false;
 	}
 	// return false, if the connection exists already
-	for (Iterator<Connection> iter = newTarget.getTargetConnections().iterator(); iter.hasNext();) {
-		Connection conn = iter.next();
+	for (Iterator<VEdge> iter = newTarget.getTargetConnections().iterator(); iter.hasNext();) {
+		VEdge conn = iter.next();
 		// return false if a oldSource -> newTarget connection exists already
 		// and it is a differenct instance that the connection-field
 		if (conn.getShapeSource().equals(oldSource) && !conn.equals(connection)) {
@@ -150,7 +150,7 @@ public void execute() {
  * @param connectionSource a non-null Shape instance, to be used as a new source endpoint
  * @throws IllegalArgumentException if connectionSource is null
  */
-public void setNewSource(Shape connectionSource) {
+public void setNewSource(VNode connectionSource) {
 	if (connectionSource == null) {
 		throw new IllegalArgumentException();
 	}
@@ -171,7 +171,7 @@ public void setNewSource(Shape connectionSource) {
  * @param connectionTarget a non-null Shape instance, to be used as a new target endpoint
  * @throws IllegalArgumentException if connectionTarget is null
  */
-public void setNewTarget(Shape connectionTarget) {
+public void setNewTarget(VNode connectionTarget) {
 	if (connectionTarget == null) {
 		throw new IllegalArgumentException();
 	}

@@ -2,7 +2,7 @@ package no.hib.dpf.editor.model;
 
 
 // TODO: TO-BIG-DO: make one more flexible constraint class.
-public class SingleLineConstraintElement extends ConstraintElement {
+public class SingleLineConstraintElement extends VConstraint {
 
 	private static final long serialVersionUID = -8335094106642818540L;
 
@@ -12,7 +12,7 @@ public class SingleLineConstraintElement extends ConstraintElement {
 	private int val_1 = 1;
 	private int val_2 = -1;
 
-	public SingleLineConstraintElement(Connection source, ConstraintType constraintType) {
+	public SingleLineConstraintElement(VEdge source, ConstraintType constraintType) {
 		super(source, null, constraintType);
 	}
 		
@@ -51,7 +51,7 @@ public class SingleLineConstraintElement extends ConstraintElement {
 	 *             if any of the paramers are null or newSource == newTarget
 	 */
 	@Override
-	public void reconnect(Connection newSource, Connection newTarget) {
+	public void reconnect(VEdge newSource, VEdge newTarget) {
 		if (newSource == null) {
 			throw new IllegalArgumentException();
 		}

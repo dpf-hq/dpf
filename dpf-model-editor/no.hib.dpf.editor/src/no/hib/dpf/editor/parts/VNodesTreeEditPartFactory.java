@@ -12,7 +12,7 @@ package no.hib.dpf.editor.parts;
 
 import no.hib.dpf.editor.model.DPFDiagram;
 import no.hib.dpf.editor.model.MovableAndSizable;
-import no.hib.dpf.editor.model.Shape;
+import no.hib.dpf.editor.model.VNode;
 
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartFactory;
@@ -24,14 +24,14 @@ import org.eclipse.gef.EditPartFactory;
  * TreeEditParts are used in the outline view of the ShapesEditor.
  * @author Elias Volanakis
  */
-public class ShapesTreeEditPartFactory implements EditPartFactory {
+public class VNodesTreeEditPartFactory implements EditPartFactory {
 
 /* (non-Javadoc)
  * @see org.eclipse.gef.EditPartFactory#createEditPart(org.eclipse.gef.EditPart, java.lang.Object)
  */
 public EditPart createEditPart(EditPart context, Object model) {
-	if (model instanceof Shape) {
-		return new ShapeTreeEditPart((MovableAndSizable) model);
+	if (model instanceof VNode) {
+		return new VNodeTreeEditPart((MovableAndSizable) model);
 	}
 	if (model instanceof DPFDiagram) {
 		return new DiagramTreeEditPart((DPFDiagram) model);

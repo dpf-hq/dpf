@@ -28,7 +28,7 @@ import no.hib.dpf.editor.model.DPFDiagram;
 import no.hib.dpf.editor.model.ModelElement;
 import no.hib.dpf.editor.model.ModelSerializationException;
 import no.hib.dpf.editor.parts.EditPartFactoryImpl;
-import no.hib.dpf.editor.parts.ShapesTreeEditPartFactory;
+import no.hib.dpf.editor.parts.VNodesTreeEditPartFactory;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.IDObject;
 import no.hib.dpf.metamodel.MetamodelFactory;
@@ -473,7 +473,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 			getViewer().createControl(parent);
 			// configure outline viewer
 			getViewer().setEditDomain(getEditDomain());
-			getViewer().setEditPartFactory(new ShapesTreeEditPartFactory());
+			getViewer().setEditPartFactory(new VNodesTreeEditPartFactory());
 			// configure & add context menu to viewer
 			ContextMenuProvider cmProvider = new DPFEditorContextMenuProvider(getViewer(), getActionRegistry());
 			getViewer().setContextMenu(cmProvider);

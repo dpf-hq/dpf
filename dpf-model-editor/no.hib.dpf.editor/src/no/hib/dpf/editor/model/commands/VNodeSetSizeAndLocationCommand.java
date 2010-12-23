@@ -20,11 +20,11 @@ import org.eclipse.gef.requests.ChangeBoundsRequest;
 
 
 /**
- * A command to resize and/or move a shape.
+ * A command to resize and/or move a VNode.
  * The command can be undone or redone.
  * @author Elias Volanakis
  */
-public class ShapeSetSizeAndLocationCommand extends Command {
+public class VNodeSetSizeAndLocationCommand extends Command {
 /** Stores the new size and location. */
 private final Rectangle newBounds;
 /** Stores the old size and location. */
@@ -32,22 +32,22 @@ private Rectangle oldBounds;
 /** A request to move/resize an edit part. */
 private final ChangeBoundsRequest request;
 
-/** Shape to manipulate. */
-private final MovableAndSizable shape;
+/** Node to manipulate. */
+private final MovableAndSizable node;
 	
 /**
  * Create a command that can resize and/or move a shape. 
- * @param shape	the shape to manipulate
+ * @param node	the shape to manipulate
  * @param req		the move and resize request
  * @param newBounds the new size and location
  * @throws IllegalArgumentException if any of the parameters is null
  */
-public ShapeSetSizeAndLocationCommand(MovableAndSizable shape, ChangeBoundsRequest req, 
+public VNodeSetSizeAndLocationCommand(MovableAndSizable node, ChangeBoundsRequest req, 
 		Rectangle newBounds) {
-	if (shape == null || req == null || newBounds == null) {
+	if (node == null || req == null || newBounds == null) {
 		throw new IllegalArgumentException();
 	}
-	this.shape = shape;
+	this.node = node;
 	this.request = req;
 	this.newBounds = newBounds.getCopy();
 	setLabel("move / resize");
@@ -69,7 +69,7 @@ public boolean canExecute() {
  * @see org.eclipse.gef.commands.Command#execute()
  */
 public void execute() {
-	oldBounds = new Rectangle(shape.getLocation(), shape.getSize());
+	oldBounds = new Rectangle(node.getLocation(), node.getSize());
 	redo();
 }
 
@@ -77,15 +77,15 @@ public void execute() {
  * @see org.eclipse.gef.commands.Command#redo()
  */
 public void redo() {
-	shape.setSize(newBounds.getSize());
-	shape.setLocation(newBounds.getLocation());
+	node.setSize(newBounds.getSize());
+	node.setLocation(newBounds.getLocation());
 }
 
 /* (non-Javadoc)
  * @see org.eclipse.gef.commands.Command#undo()
  */
 public void undo() {
-	shape.setSize(oldBounds.getSize());
-	shape.setLocation(oldBounds.getLocation());
+	node.setSize(oldBounds.getSize());
+	node.setLocation(oldBounds.getLocation());
 }
 }

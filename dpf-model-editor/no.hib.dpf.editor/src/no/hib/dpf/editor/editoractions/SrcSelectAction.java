@@ -1,6 +1,6 @@
 package no.hib.dpf.editor.editoractions;
 
-import no.hib.dpf.editor.model.Connection;
+import no.hib.dpf.editor.model.VEdge;
 
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPartViewer;
@@ -27,7 +27,7 @@ public class SrcSelectAction extends SelectionAction {
 		}
 		// and we want the model to be a Connection object.
 		ConnectionEditPart cep = (ConnectionEditPart) getSelectedObjects().get(0);
-		if (cep.getModel() instanceof Connection) {
+		if (cep.getModel() instanceof VEdge) {
 			return true;
 		}
 		return false;

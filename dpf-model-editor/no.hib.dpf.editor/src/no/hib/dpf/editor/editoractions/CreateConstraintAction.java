@@ -2,7 +2,7 @@ package no.hib.dpf.editor.editoractions;
 
 import java.util.List;
 
-import no.hib.dpf.editor.parts.ShapeEditPart;
+import no.hib.dpf.editor.parts.VNodeEditPart;
 import no.hib.dpf.metamodel.Edge;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.Node;
@@ -35,7 +35,7 @@ public abstract class CreateConstraintAction extends SelectionActionForEditParts
 	public void run() {
 		// this method is only called if calculate enabled() returns true
 		List<ConnectionEditPart> connectionEditParts = getSelectedConnectionEditParts();
-		List<ShapeEditPart> shapeEditParts = getSelectedShapeEditParts();
+		List<VNodeEditPart> shapeEditParts = getSelectedShapeEditParts();
 		
 		if (!deselectInViewer(connectionEditParts)) {
 			deselectInViewer(shapeEditParts);
@@ -57,6 +57,6 @@ public abstract class CreateConstraintAction extends SelectionActionForEditParts
 		return true;
 	}
 	
-	protected abstract Command getConstraintCreateCommand(List<ConnectionEditPart> connectionEditParts, List<ShapeEditPart> shapeEditParts);
+	protected abstract Command getConstraintCreateCommand(List<ConnectionEditPart> connectionEditParts, List<VNodeEditPart> shapeEditParts);
 	
 }

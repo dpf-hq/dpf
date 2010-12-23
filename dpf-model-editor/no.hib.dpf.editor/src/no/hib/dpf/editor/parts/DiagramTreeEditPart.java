@@ -16,7 +16,7 @@ import java.util.List;
 
 import no.hib.dpf.editor.model.DPFDiagram;
 import no.hib.dpf.editor.model.ModelElement;
-import no.hib.dpf.editor.model.Shape;
+import no.hib.dpf.editor.model.VNode;
 
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -93,7 +93,7 @@ private EditPart getEditPartForChild(Object child) {
  * @see org.eclipse.gef.editparts.AbstractEditPart#getModelChildren()
  */
 @Override
-protected List<Shape> getModelChildren() {
+protected List<VNode> getModelChildren() {
 	return getCastedModel().getChildren(); // a list of shapes
 }
 

@@ -18,10 +18,9 @@ import no.hib.dpf.editor.figures.DPFShortestPathConnectionRouter;
 import no.hib.dpf.editor.model.DPFDiagram;
 import no.hib.dpf.editor.model.ModelElement;
 import no.hib.dpf.editor.model.MovableAndSizable;
-import no.hib.dpf.editor.model.RectangularShape;
-import no.hib.dpf.editor.model.Shape;
-import no.hib.dpf.editor.model.commands.ShapeCreateCommand;
-import no.hib.dpf.editor.model.commands.ShapeSetSizeAndLocationCommand;
+import no.hib.dpf.editor.model.VNode;
+import no.hib.dpf.editor.model.commands.VNodeCreateCommand;
+import no.hib.dpf.editor.model.commands.VNodeSetSizeAndLocationCommand;
 
 import org.eclipse.draw2d.ConnectionLayer;
 import org.eclipse.draw2d.Figure;
@@ -123,7 +122,7 @@ class DiagramEditPart extends AbstractGraphicalEditPart implements
 	 * @see org.eclipse.gef.editparts.AbstractEditPart#getModelChildren()
 	 */
 	@Override
-	protected List<Shape> getModelChildren() {
+	protected List<VNode> getModelChildren() {
 		return getCastedModel().getChildren(); // return a list of shapes
 	}
 
@@ -160,15 +159,15 @@ class DiagramEditPart extends AbstractGraphicalEditPart implements
 		 */
 		protected Command createChangeConstraintCommand(
 				ChangeBoundsRequest request, EditPart child, Object constraint) {
-			if (child instanceof ShapeEditPart
+			if (child instanceof VNodeEditPart
 					&& constraint instanceof Rectangle) {
 				// return a command that can move and/or resize a Shape
-				return new ShapeSetSizeAndLocationCommand((MovableAndSizable)child.getModel(),
+				return new VNodeSetSizeAndLocationCommand((MovableAndSizable)child.getModel(),
 						request, (Rectangle) constraint);
 			}
-			if (child instanceof ShapeSingleConnectionEditPart && constraint instanceof Rectangle) {
+			if (child instanceof VNodeSingleConnectionEditPart && constraint instanceof Rectangle) {
 				// return a command that can move and/or resize a single connection
-				return new ShapeSetSizeAndLocationCommand((MovableAndSizable)child.getModel(),
+				return new VNodeSetSizeAndLocationCommand((MovableAndSizable)child.getModel(),
 						request, (Rectangle) constraint);
 			}
 			return super.createChangeConstraintCommand(request, child,
@@ -195,9 +194,9 @@ class DiagramEditPart extends AbstractGraphicalEditPart implements
 		 */
 		protected Command getCreateCommand(CreateRequest request) {
 			Object childClass = request.getNewObjectType();
-			if (childClass == RectangularShape.class) {
+			if (childClass == VNode.class) {
 				// return a command that can add a Shape to a DPFDiagram
-				return new ShapeCreateCommand((Shape) request.getNewObject(),
+				return new VNodeCreateCommand((VNode) request.getNewObject(),
 						(DPFDiagram) getHost().getModel(),
 						(Rectangle) getConstraintFor(request));
 			}

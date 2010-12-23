@@ -12,8 +12,8 @@ package no.hib.dpf.editor.model.commands;
 
 import java.util.Iterator;
 
-import no.hib.dpf.editor.model.Connection;
-import no.hib.dpf.editor.model.Shape;
+import no.hib.dpf.editor.model.VEdge;
+import no.hib.dpf.editor.model.VNode;
 import no.hib.dpf.editor.model.SingleNodeConnection;
 
 import org.eclipse.gef.commands.Command;
@@ -35,30 +35,30 @@ import org.eclipse.gef.commands.Command;
  * to obtain the Command from the ConnectionRequest, call setTarget(...) to set the
  * target endpoint of the connection and return this command instance.</li>
  * </ol>
- * @see no.hib.dpf.editor.parts.ShapeEditPart#createEditPolicies() for an
+ * @see no.hib.dpf.editor.parts.VNodeEditPart#createEditPolicies() for an
  * 			 example of the above procedure.
  * @see org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy
  * @author Elias Volanakis
  */
 public class ConnectionCreateCommand extends Command {
 /** The connection instance. */
-private Connection connection;
+private VEdge connection;
 /** The desired line style for the connection (dashed or solid). */
 private final int lineStyle;
 
 /** Start endpoint for the connection. */
-private final Shape source;
+private final VNode source;
 /** Target endpoint for the connection. */
-private Shape target;
+private VNode target;
 
 /**
  *	Instantiate a command that can create a connection between two shapes.
  * @param source the source endpoint (a non-null Shape instance)
  * @param lineStyle the desired line style. See Connection#setLineStyle(int) for details
  * @throws IllegalArgumentException if source is null
- * @see Connection#setLineStyle(int)
+ * @see VEdge#setLineStyle(int)
  */
-public ConnectionCreateCommand(Shape source, int lineStyle) {
+public ConnectionCreateCommand(VNode source, int lineStyle) {
 	if (source == null) {
 		throw new IllegalArgumentException();
 	}
@@ -74,6 +74,7 @@ public boolean canExecute() {
 //	if (source.equals(target)) {
 //		return false;
 //	}
+	// TODO: remove this
 	if (doSourceToTargetAlreadyExist()) {
 		return false;
 	}
@@ -81,8 +82,8 @@ public boolean canExecute() {
 }
 
 private boolean doSourceToTargetAlreadyExist() {
-	for (Iterator<Connection> iter = source.getSourceConnections().iterator(); iter.hasNext();) {
-		Connection conn = iter.next();
+	for (Iterator<VEdge> iter = source.getSourceConnections().iterator(); iter.hasNext();) {
+		VEdge conn = iter.next();
 		if (conn.getShapeTarget().equals(target)) {
 			return true;
 		}
@@ -96,7 +97,7 @@ private boolean doSourceToTargetAlreadyExist() {
 public void execute() {
 	// create a new connection between source and target
 	if (!source.equals(target)) {
-		connection = new Connection(source, target);
+		connection = new VEdge(source, target);
 	} else {
 		connection = new SingleNodeConnection(source);
 	}
@@ -116,7 +117,7 @@ public void redo() {
  * @param target that target endpoint (a non-null Shape instance)
  * @throws IllegalArgumentException if target is null
  */
-public void setTarget(Shape target) {
+public void setTarget(VNode target) {
 	if (target == null) {
 		throw new IllegalArgumentException();
 	}

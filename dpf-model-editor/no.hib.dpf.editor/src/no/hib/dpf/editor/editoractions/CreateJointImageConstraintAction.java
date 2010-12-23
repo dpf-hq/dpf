@@ -2,10 +2,9 @@ package no.hib.dpf.editor.editoractions;
 
 import java.util.List;
 
-import no.hib.dpf.editor.model.Connection;
-import no.hib.dpf.editor.model.ConstraintElement;
+import no.hib.dpf.editor.model.VEdge;
 import no.hib.dpf.editor.model.commands.JImgConstraintCreateCommand;
-import no.hib.dpf.editor.parts.ShapeEditPart;
+import no.hib.dpf.editor.parts.VNodeEditPart;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.MetamodelFactory;
 import no.hib.dpf.metamodel.Predicate;
@@ -26,8 +25,8 @@ public class CreateJointImageConstraintAction extends CreateConstraintAction {
 	}
 
 	@Override
-	protected Command getConstraintCreateCommand(List<ConnectionEditPart> connectionEditParts, List<ShapeEditPart> shapeEditParts) {
-		return new JImgConstraintCreateCommand((Connection)connectionEditParts.get(0).getModel(), (Connection)connectionEditParts.get(1).getModel(), ConstraintElement.SOLID_CONNECTION);
+	protected Command getConstraintCreateCommand(List<ConnectionEditPart> connectionEditParts, List<VNodeEditPart> shapeEditParts) {
+		return new JImgConstraintCreateCommand((VEdge)connectionEditParts.get(0).getModel(), (VEdge)connectionEditParts.get(1).getModel());
 	}
 	
 	

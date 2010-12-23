@@ -34,9 +34,7 @@ class JImgConstraintEditPart extends ConstraintEditPart {
 	 */
 	@Override
 	protected IFigure createFigureExec() {
-		BetweenArrowsConstraintFigure connection = new BetweenArrowsConstraintFigure(this, "[Joint Image]");
-		connection.setLineStyle(getCastedModel().getLineStyle());
-		return connection;
+		return new BetweenArrowsConstraintFigure(this, "[Joint Image]");
 	}
 
 }

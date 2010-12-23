@@ -31,7 +31,7 @@ public class DPFDiagram extends ModelElement {
 	/** Property ID to use when a child is removed from this diagram. */
 	public static final String CHILD_REMOVED_PROP = "ShapesDiagram.ChildRemoved";
 	private static final long serialVersionUID = 1;
-	private List<Shape> shapes = new ArrayList<Shape>();
+	private List<VNode> shapes = new ArrayList<VNode>();
 
 	/** Used for adding and removing a model element to and from the DPF graph */
 	protected transient Graph dpfGraph;
@@ -54,22 +54,22 @@ public class DPFDiagram extends ModelElement {
 	 */
 	public Map<String, ModelElement> getChildrenWithID() {
 		Map<String,ModelElement> retVal = new HashMap<String,ModelElement>();
-		for (Shape aShape : getChildren()) {
+		for (VNode aShape : getChildren()) {
 			addIDObjectToMap(retVal, aShape);
 			addConnectionsToMap(retVal, aShape);				
 		}
 		return retVal;
 	}
 
-	private void addConnectionsToMap(Map<String, ModelElement> retVal, Shape aShape) {
-		for (Connection aConnection : aShape.getSourceConnections()) {
+	private void addConnectionsToMap(Map<String, ModelElement> retVal, VNode aShape) {
+		for (VEdge aConnection : aShape.getSourceConnections()) {
 			addIDObjectToMap(retVal, aConnection);
 			addConstraintsToMap(retVal, aConnection);
 		}
 	}
 	
-	private void addConstraintsToMap(Map<String, ModelElement> retVal, Connection aConnection) {
-		for (ConstraintElement aConstraint : aConnection.getSourceConstraints()) {
+	private void addConstraintsToMap(Map<String, ModelElement> retVal, VEdge aConnection) {
+		for (VConstraint aConstraint : aConnection.getSourceConstraints()) {
 			addIDObjectToMap(retVal, aConstraint);
 		}
 	}
@@ -87,7 +87,7 @@ public class DPFDiagram extends ModelElement {
 	 *            a non-null shape instance
 	 * @return true, if the shape was added, false otherwise
 	 */
-	public boolean addChild(Shape s) {
+	public boolean addChild(VNode s) {
 		if (s != null && shapes.add(s)) {
 			s.setGraphExec(dpfGraph);
 
@@ -101,7 +101,7 @@ public class DPFDiagram extends ModelElement {
 	 * Return a List of Shapes in this diagram. The returned List should not be
 	 * modified.
 	 */
-	public List<Shape> getChildren() {
+	public List<VNode> getChildren() {
 		return shapes;
 	}
 
@@ -112,7 +112,7 @@ public class DPFDiagram extends ModelElement {
 	 *            a non-null shape instance;
 	 * @return true, if the shape was removed, false otherwise
 	 */
-	public boolean removeChild(Shape s) {
+	public boolean removeChild(VNode s) {
 		if (s != null && shapes.remove(s)) {
 			s.removeGraphExec();
 
