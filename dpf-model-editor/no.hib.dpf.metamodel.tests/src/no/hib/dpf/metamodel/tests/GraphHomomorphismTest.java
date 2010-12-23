@@ -120,7 +120,9 @@ public class GraphHomomorphismTest extends TestCase {
 		doTestReturnedMappings(GraphTest.createGraphs("g_node_1,g_node_2", "h_node_1,h_node_2", "", ""), new String[] { "g_node_1:h_node_1", "g_node_2:h_node_2" }, new String[]{}, true);		
 		doTestReturnedMappings(GraphTest.createGraphs("g_node_1,g_node_2,g_node_3", "h_node_1,h_node_2,h_node_3", "g_edge_1:g_node_1:g_node_2,g_edge_2:g_node_1:g_node_3", "h_edge_1:h_node_1:h_node_2,h_edge_2:h_node_1:h_node_3"), new String[] { "g_node_1:h_node_1" }, new String[]{ "g_edge_1:h_edge_1", "g_edge_2:h_edge_2"}, true);		
 		doTestReturnedMappings(GraphTest.createGraphs("gn1,gn2", "hn1,hn2", "ge:gn1:gn2", "he:hn2:hn1"), new String[] { "gn1:hn2", "gn2:hn1" }, new String[]{ "ge:he" }, true);		
-		doTestReturnedMappings(GraphTest.createGraphs("g_node_1,g_node_2,g_node_3", "h_node_1,h_node_2,h_node_3", "g_edge_1:g_node_2:g_node_1,g_edge_2:g_node_3:g_node_1", "h_edge_1:h_node_2:h_node_1,h_edge_2:h_node_3:h_node_1"), new String[] { "g_node_1:h_node_1" }, new String[]{ "g_edge_1:h_edge_1", "g_edge_2:h_edge_2"}, true);		
+		doTestReturnedMappings(GraphTest.createGraphs("g_node_1,g_node_2,g_node_3", "h_node_1,h_node_2,h_node_3", "g_edge_1:g_node_2:g_node_1,g_edge_2:g_node_3:g_node_1", "h_edge_1:h_node_2:h_node_1,h_edge_2:h_node_3:h_node_1"), new String[] { "g_node_1:h_node_1" }, new String[]{ "g_edge_1:h_edge_1", "g_edge_2:h_edge_2"}, true);
+		
+		
 	}
 	
 	/**
@@ -194,6 +196,9 @@ public class GraphHomomorphismTest extends TestCase {
 		testTryToCreateHomomorphism(GraphTest.createGraphs("g_node_1,g_node_2", "h_node_1,h_node_2", "g_edge_1:g_node_1:g_node_2", ""), false);
 		testTryToCreateHomomorphism(GraphTest.createGraphs("g_node_1,g_node_2", "h_node_1,h_node_2", "", "h_edge_1:h_node_1:h_node_2"), false);
 		testTryToCreateHomomorphism(GraphTest.createGraphs("g_node_1,g_node_2", "h_node_1,h_node_2", "g_edge_1:g_node_1:g_node_2", "h_edge_1:h_node_1:h_node_2"), true);
+		// Map to single edge on single node:
+		testTryToCreateHomomorphism(GraphTest.createGraphs("g_node_1,g_node_2", "h_node_1", "g_edge_1:g_node_1:g_node_2", "h_edge_1:h_node_1:h_node_1"), true);
+
 		// Just edges
 		testTryToCreateHomomorphism(GraphTest.createGraphs("null", "null", "g_edge:null:null", "h_edge:null:null"), true);		
 		testTryToCreateHomomorphism(GraphTest.createGraphs("null", "null", "g_edge:null:null", "h_edge:null:null,h_2:null:null"), false);		
@@ -210,7 +215,7 @@ public class GraphHomomorphismTest extends TestCase {
 	 */
 	private void doTestHomomorphismsWithExtraGraphElements() {
 		testHomomorphismWithExtraGraphElements(GraphTest.createGraphs("gn1,gn2,gn3", "hn1,hn2,hn3", "ge1:gn1:gn2,ge2:gn3:gn2", "he1:hn1:hn2,he2:hn3:hn2"), true);		
-		testHomomorphismWithExtraGraphElements2(GraphTest.createGraphs("gn1,gn2", "hn1,hn2,null", "ge1:gn1:gn2", "he1:hn1:null"), false);		
+		testHomomorphismWithExtraGraphElements2(GraphTest.createGraphs("gn1,gn2", "hn1,hn2,hn3", "ge1:gn1:gn2", "he1:hn1:hn3"), true);		
 		testHomomorphismWithExtraGraphElements3(GraphTest.createGraphs("gn1,gn2", "hn1,hn2", "ge1:gn1:gn2", "he1:hn1:hn2"), true);
 	}
 	
