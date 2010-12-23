@@ -132,7 +132,10 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	 * @generated NOT
 	 */
 	public boolean tryToCreateGraphHomomorphism(Graph sourceGraph, EList<?> nodes, EList<?> edges) {
-		if ((sourceGraph.getEdges().size() != edges.size()) ||
+		if (sourceGraph.getEdges().size() != edges.size()) {
+			return false;
+		}
+		if ((edges.size() == 0) &&
 			(sourceGraph.getNodes().size() != nodes.size())) {
 			return false;
 		}
@@ -333,12 +336,17 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	 */
 	private boolean testMapping(EcoreEMap<Node,Node> mapping) {
 		// Check to see wether the mapped nodes have the same number of input and output edges:
-		for (Node key : mapping.keySet()) {
-			Node value = mapping.get(key);
-			if (key.getOutgoingEdges().size() != value.getOutgoingEdges().size()) {
-				return false;
-			}
-		}
+		int valueNumOutputEdges = 0;
+		int keyNumOutputEdges = 0;
+		
+//		for (Node key : mapping.keySet()) {
+//			Node value = mapping.get(key);
+//			valueNumOutputEdges += value.getOutgoingEdges().size();
+//			keyNumOutputEdges += key.getOutgoingEdges().size();
+//		}
+//		if (valueNumOutputEdges != keyNumOutputEdges) {
+//			return false;
+//		}
 	    // Now, check to see if we can follow every outgoing edge and end up on
 		// the same node by following the edges directly and through mappings:
 		
@@ -380,7 +388,11 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 		Node[] targetNodes = targetNodePermutations.get(permutationIndex);
 			
 		for (int i = 0; i < sourceNodes.length; i++) {
-			retval.put(sourceNodes[i], targetNodes[i]);
+			if (targetNodes.length > i) {
+				retval.put(sourceNodes[i], targetNodes[i]);
+			} else {
+				retval.put(sourceNodes[i], targetNodes[0]);				
+			}
 		}
 		
 		return retval;
