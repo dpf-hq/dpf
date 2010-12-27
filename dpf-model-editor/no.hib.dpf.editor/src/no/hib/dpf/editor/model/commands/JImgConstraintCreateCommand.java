@@ -47,8 +47,7 @@ public class JImgConstraintCreateCommand extends Command {
 	}
 
 	private boolean doSourceToTargetAlreadyExist() {
-		for (Iterator<VConstraint> iter = source.getSourceConstraints()
-				.iterator(); iter.hasNext();) {
+		for (Iterator<VConstraint> iter = source.getSourceConstraints().iterator(); iter.hasNext();) {
 			VConstraint constraint = iter.next();
 			if (constraint.getConnectionTarget().equals(target)) {
 				return true;

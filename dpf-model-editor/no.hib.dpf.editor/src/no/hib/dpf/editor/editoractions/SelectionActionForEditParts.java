@@ -38,11 +38,11 @@ public abstract class SelectionActionForEditParts extends SelectionAction {
 		for (VNodeEditPart shapeEditPart : getSelectedShapeEditParts()) {
 			selectionNodes.add((Node)shapeEditPart.getModel());
 		}
-		// Add any nodes not selected, but directly connected to the selected edges
 		return selectionNodes;
 	}
 
 	protected EList<Node> addUnselectedNodesToSelection(EList<Node> selectionNodes, EList<Edge> selectionEdges) {
+		// Adds any nodes not selected, but directly connected to the selected edges
 		for (Edge edge : selectionEdges) {
 			addNodeToRetVal(selectionNodes, edge.getSource());			
 			addNodeToRetVal(selectionNodes, edge.getTarget());			

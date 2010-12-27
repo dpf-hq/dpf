@@ -523,4 +523,17 @@ public class VEdge extends ModelElement implements Edge, IDObjectContainer {
 	}
 
 
+	@Override
+	public Edge getTypeEdge() {
+		return edgeComponent.getTypeEdge();
+	}
+
+
+	@Override
+	public void setTypeEdge(Edge value) {
+		edgeComponent.setTypeEdge(value);
+	}
+	
+
+
 }

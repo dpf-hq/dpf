@@ -64,9 +64,6 @@ public class VNode extends ModelElement implements Node, IDObjectContainer, Mova
 	}
 
 	
-	
-	
-	
 	private static final long serialVersionUID = 7208811341274639248L;
 
 	private static IPropertyDescriptor[] descriptors;
@@ -111,16 +108,6 @@ public class VNode extends ModelElement implements Node, IDObjectContainer, Mova
 	private List<VEdge> sourceConnections = new ArrayList<VEdge>();
 	/** List of incoming Connections. */
 	private List<VEdge> targetConnections = new ArrayList<VEdge>();
-
-//	public void addIncomingConnection(VEdge conn) {
-//		targetConnections.add(conn);
-//		firePropertyChange(TARGET_CONNECTIONS_PROP, null, conn);
-//	}
-
-//	public void addOutgoingConnection(VEdge conn) {
-//		sourceConnections.add(conn);
-//		firePropertyChange(SOURCE_CONNECTIONS_PROP, null, conn);
-//	}
 
 	/**
 	 * Returns an array of IPropertyDescriptors for this shape.
@@ -225,16 +212,6 @@ public class VNode extends ModelElement implements Node, IDObjectContainer, Mova
 			removeIncomingConnection(conn);
 		}
 	}
-
-//	protected void removeIncomingConnection(VEdge conn) {
-//		targetConnections.remove(conn);
-//		firePropertyChange(TARGET_CONNECTIONS_PROP, null, conn);
-//	}
-
-//	protected void removeOutgoingConnection(VEdge conn) {
-//		sourceConnections.remove(conn);
-//		firePropertyChange(SOURCE_CONNECTIONS_PROP, null, conn);
-//	}
 			
 	/**
 	 * Set the property value for the given property id. If no matching id is
@@ -475,6 +452,31 @@ public class VNode extends ModelElement implements Node, IDObjectContainer, Mova
 	@Override
 	protected void createDpfGraphElement() {
 		setIDObject(nodeComponent.getGraph().createNode("Unnamed node"));
+	}
+
+	@Override
+	public Node getTypeNode() {
+		return nodeComponent.getTypeNode();
+	}
+
+	@Override
+	public void setTypeNode(Node value) {
+		nodeComponent.setTypeNode(value);
+	}
+
+	@Override
+	public boolean edgeCanConnectAsSource(Node intendedTarget) {
+		return nodeComponent.edgeCanConnectAsSource(intendedTarget);
+	}
+
+	@Override
+	public boolean edgeCanConnectAsTarget(Node intendedSource) {
+		return nodeComponent.edgeCanConnectAsTarget(intendedSource);
+	}
+
+	@Override
+	public boolean canReachTargetByOneEdge(Node target) {
+		return nodeComponent.canReachTargetByOneEdge(target);
 	}
 
 
