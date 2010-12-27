@@ -130,13 +130,7 @@ public class PredicateTest extends TestCase {
 		
 		Constraint constraint = testPredicate.createConstraint(nodes, edges, userGraph);		
 		assertNotNull(constraint);
-		assertEquals(1, userGraph.getConstraints().size());
-		
-		
-		nodes.add(userGraph.getNodeByName("n_2"));
-		constraint = testPredicate.createConstraint(nodes, edges, userGraph);		
-		assertNull(constraint);
-		
+		assertEquals(1, userGraph.getConstraints().size());		
 	}
 
 	/**
@@ -173,9 +167,6 @@ public class PredicateTest extends TestCase {
 		
 		assertEquals(0, userGraph.getConstraints().size());
 		
-		nodes.add(userGraph.getNodeByName("n_2"));
-		canCreate = testPredicate.canCreateConstraint(nodes, edges, userGraph);		
-		assertFalse(canCreate);
 	}
 
 } //PredicateTest

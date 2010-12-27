@@ -102,6 +102,13 @@ public class GraphHomomorphismTest extends TestCase {
 		setFixture(null);
 	}
 
+	/**
+	 * @generated NOT
+	 */
+	private void doTestGHs() {
+		testTryToCreateHomomorphism(GraphTest.createGraphs("gn1,gn2,gn3", "hn1,hn2,hn3", "ge1:gn1:gn2,ge2:gn2:gn3", "he1:hn1:hn2,he2:hn1:hn3"), false);		
+		testTryToCreateHomomorphism(GraphTest.createGraphs("gn1,gn2,gn3", "hn1,hn2,hn3", "ge1:gn1:gn2,ge2:gn1:gn3", "he1:hn1:hn2,he2:hn2:hn3"), false);		
+	}
 
 	/**
 	 * Tests the '{@link no.hib.dpf.metamodel.GraphHomomorphism#canCreateBijectiveGraphHomomorphism(no.hib.dpf.metamodel.Graph, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Can Create Bijective Graph Homomorphism</em>}' operation.
@@ -111,6 +118,7 @@ public class GraphHomomorphismTest extends TestCase {
 	 * @generated NOT
 	 */
 	public void testTryToCreateGraphHomomorphism__Graph_EList_EList() {		
+		doTestGHs();
 		doTestHomomorphisms();
 		doTestHomomorphismsWithExtraGraphElements();		
 //		
@@ -208,6 +216,11 @@ public class GraphHomomorphismTest extends TestCase {
 		testTryToCreateHomomorphism(GraphTest.createGraphs("gn1,gn2,gn3", "hn1,hn2,hn3", "ge1:gn1:gn2,ge2:gn3:gn2", "he1:hn2:hn1,he2:hn2:hn3"), false);
 		// 3 nodes, 2 edges, but the edges don't go between all 3 nodes in one graph
 		testTryToCreateHomomorphism(GraphTest.createGraphs("gn1,gn2,gn3", "hn1,hn2,hn3", "ge1:gn1:gn2,ge2:gn1:gn3", "he1:hn1:hn2,he2:hn1:hn2"), false);
+		// 3 nodes, 3 edges, different order
+		testTryToCreateHomomorphism(GraphTest.createGraphs("gn1,gn2,gn3", "hn1,hn2,hn3", "ge1:gn1:gn2,ge2:gn1:gn3,ge3:gn2:gn3", "he1:hn1:hn2,he2:hn2:hn3,he3:hn3:hn1"), false);
+
+
+
 	}
 
 	/**

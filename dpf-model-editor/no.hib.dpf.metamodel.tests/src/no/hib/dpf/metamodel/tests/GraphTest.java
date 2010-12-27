@@ -9,6 +9,9 @@ package no.hib.dpf.metamodel.tests;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
+
 
 import junit.textui.TestRunner;
 import no.hib.dpf.metamodel.Edge;
@@ -148,12 +151,19 @@ public class GraphTest extends IDObjectTest {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see no.hib.dpf.metamodel.Graph#deleteNode(no.hib.dpf.metamodel.Node)
-	 * @generated
+	 * @generated NOT
 	 */
 	public void testDeleteNode__Node() {
-		// TODO: implement this operation test method
-		// Ensure that you remove @generated or mark it @generated NOT
-		fail();
+		Node n1 = getFixture().createNode("n1");
+		getFixture().deleteNode(n1);
+		assertEquals(null, getFixture().getNodeByName("n1"));
+		
+		n1 = getFixture().createNode("n1");
+		Node n2 = getFixture().createNode("n2");
+		Edge e = getFixture().createEdge("test", n1, n2);
+		getFixture().deleteNode(n1);
+		
+		assertFalse(getFixture().getEdges().contains(e));
 	}
 
 	/**
@@ -161,12 +171,15 @@ public class GraphTest extends IDObjectTest {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see no.hib.dpf.metamodel.Graph#deleteEdge(no.hib.dpf.metamodel.Edge)
-	 * @generated
+	 * @generated NOT
 	 */
 	public void testDeleteEdge__Edge() {
-		// TODO: implement this operation test method
-		// Ensure that you remove @generated or mark it @generated NOT
-		fail();
+		Node n1 = getFixture().createNode("n1");
+		Node n2 = getFixture().createNode("n2");
+		Edge e = getFixture().createEdge("test", n1, n2);
+		getFixture().deleteEdge(e);
+		
+		assertFalse(getFixture().getEdges().contains(e));
 	}
 
 	/**
@@ -174,12 +187,15 @@ public class GraphTest extends IDObjectTest {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see no.hib.dpf.metamodel.Graph#getNodeByName(java.lang.String)
-	 * @generated
+	 * @generated NOT
 	 */
 	public void testGetNodeByName__String() {
-		// TODO: implement this operation test method
-		// Ensure that you remove @generated or mark it @generated NOT
-		fail();
+		Graph graph = MetamodelFactory.eINSTANCE.createGraph("n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3");
+		
+		Node n_1 = graph.getNodeByName("n_1");
+		Node n_2 = graph.getNodeByName("n_2");
+		assertEquals("n_1", n_1.getName());
+		assertNotSame("getNodeByName returned wrong object", n_1, n_2);
 	}
 
 	/**
@@ -187,12 +203,15 @@ public class GraphTest extends IDObjectTest {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see no.hib.dpf.metamodel.Graph#getEdgeByName(java.lang.String)
-	 * @generated
+	 * @generated NOT
 	 */
 	public void testGetEdgeByName__String() {
-		// TODO: implement this operation test method
-		// Ensure that you remove @generated or mark it @generated NOT
-		fail();
+		Graph graph = MetamodelFactory.eINSTANCE.createGraph("n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3");
+		
+		Edge e_1 = graph.getEdgeByName("e_1");
+		Node e_2 = graph.getNodeByName("e_2");
+		assertEquals("e_1", e_1.getName());
+		assertNotSame("getEdgeByName returned wrong object", e_1, e_2);
 	}
 
 	/**
@@ -218,6 +237,5 @@ public class GraphTest extends IDObjectTest {
 		return retval;
 	}
 
-	
 
 } //GraphTest

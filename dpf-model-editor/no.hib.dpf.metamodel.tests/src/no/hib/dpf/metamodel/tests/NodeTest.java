@@ -20,6 +20,9 @@ import no.hib.dpf.metamodel.Node;
  * The following operations are tested:
  * <ul>
  *   <li>{@link no.hib.dpf.metamodel.Node#getOutgoingEdges() <em>Get Outgoing Edges</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Node#edgeCanConnectAsSource(no.hib.dpf.metamodel.Node) <em>Edge Can Connect As Source</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Node#edgeCanConnectAsTarget(no.hib.dpf.metamodel.Node) <em>Edge Can Connect As Target</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Node#canReachTargetByOneEdge(no.hib.dpf.metamodel.Node) <em>Can Reach Target By One Edge</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -104,5 +107,60 @@ public class NodeTest extends IDObjectTest {
 		
 		assertTrue(n3.getOutgoingEdges().size() == 0);
 	}
+
+	/**
+	 * Tests the '{@link no.hib.dpf.metamodel.Node#edgeCanConnectAsSource(no.hib.dpf.metamodel.Node) <em>Edge Can Connect As Source</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.Node#edgeCanConnectAsSource(no.hib.dpf.metamodel.Node)
+	 * @generated NOT
+	 */
+	public void testEdgeCanConnectAsSource__Node() {
+		Graph typeGraph = MetamodelFactory.eINSTANCE.createGraph("tn_1,tn_2", "te_1:tn_1:tn_2");		
+		Node source_tn_1 = typeGraph.getNodeByName("tn_1");
+		Node target_tn_2 = typeGraph.getNodeByName("tn_2");
+		
+		Node sourceNode = MetamodelFactory.eINSTANCE.createNode(source_tn_1);
+		Node targetNode = MetamodelFactory.eINSTANCE.createNode(target_tn_2);
+		
+		assertTrue(sourceNode.edgeCanConnectAsSource(targetNode));		
+		assertFalse(sourceNode.edgeCanConnectAsSource(sourceNode));		
+	}
+
+	/**
+	 * Tests the '{@link no.hib.dpf.metamodel.Node#edgeCanConnectAsTarget(no.hib.dpf.metamodel.Node) <em>Edge Can Connect As Target</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.Node#edgeCanConnectAsTarget(no.hib.dpf.metamodel.Node)
+	 * @generated
+	 */
+	public void testEdgeCanConnectAsTarget__Node() {
+		Graph typeGraph = MetamodelFactory.eINSTANCE.createGraph("tn_1,tn_2", "te_1:tn_1:tn_2");		
+		Node source_tn_1 = typeGraph.getNodeByName("tn_1");
+		Node target_tn_2 = typeGraph.getNodeByName("tn_2");
+		
+		Node sourceNode = MetamodelFactory.eINSTANCE.createNode(source_tn_1);
+		Node targetNode = MetamodelFactory.eINSTANCE.createNode(target_tn_2);
+		
+		assertFalse(sourceNode.edgeCanConnectAsTarget(targetNode));		
+	}
+
+	/**
+	 * Tests the '{@link no.hib.dpf.metamodel.Node#canReachTargetByOneEdge(no.hib.dpf.metamodel.Node) <em>Can Reach Target By One Edge</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.Node#canReachTargetByOneEdge(no.hib.dpf.metamodel.Node)
+	 * @generated
+	 */
+	public void testCanReachTargetByOneEdge__Node() {
+		Graph typeGraph = MetamodelFactory.eINSTANCE.createGraph("n_1,n_2", "e:n_1:n_2");		
+		Node source = typeGraph.getNodeByName("n_1");
+		Node target = typeGraph.getNodeByName("n_2");
+		assertEquals(true, source.canReachTargetByOneEdge(target));
+		assertEquals(false, target.canReachTargetByOneEdge(target));
+		assertEquals(false, target.canReachTargetByOneEdge(source));
+	}
+	
+
 
 } //NodeTest
