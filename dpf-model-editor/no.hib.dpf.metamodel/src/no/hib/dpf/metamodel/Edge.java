@@ -19,6 +19,7 @@ package no.hib.dpf.metamodel;
  *   <li>{@link no.hib.dpf.metamodel.Edge#getTarget <em>Target</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Edge#getGraph <em>Graph</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Edge#getName <em>Name</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Edge#getTypeEdge <em>Type Edge</em>}</li>
  * </ul>
  * </p>
  *
@@ -104,6 +105,32 @@ public interface Edge extends IDObject {
 	 * @generated
 	 */
 	void setName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Type Edge</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Type Edge</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Type Edge</em>' reference.
+	 * @see #setTypeEdge(Edge)
+	 * @see no.hib.dpf.metamodel.MetamodelPackage#getEdge_TypeEdge()
+	 * @model
+	 * @generated
+	 */
+	Edge getTypeEdge();
+
+	/**
+	 * Sets the value of the '{@link no.hib.dpf.metamodel.Edge#getTypeEdge <em>Type Edge</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Type Edge</em>' reference.
+	 * @see #getTypeEdge()
+	 * @generated
+	 */
+	void setTypeEdge(Edge value);
 
 	/**
 	 * Returns the value of the '<em><b>Graph</b></em>' container reference.

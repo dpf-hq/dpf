@@ -153,6 +153,17 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 		NodeImpl node = new NodeImpl();
 		return node;
 	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Node createNode(Node typeNode) {
+		Node retval = createNode();
+		retval.setTypeNode(typeNode);
+		return retval;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -164,6 +175,17 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 		return edge;
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Edge createEdge(Edge typeEdge) {
+		Edge retval = createEdge();
+		retval.setTypeEdge(typeEdge);
+		return retval;
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

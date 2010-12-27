@@ -145,10 +145,16 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 			return true;
 		}
 		
+		Graph targetGraph = null;
 		// This is done to avoid testing on the graph to wich nodes and edges do belong;
 		// We don't want to do the following in relation to any other objects present in the target
 		// graph:
-		Graph targetGraph = createTemporaryTargetGraph(nodes, edges);
+		try {
+			targetGraph = createTemporaryTargetGraph(nodes, edges);
+		} catch (Exception e) {
+			// If the nodes and edges don't contain a valid graph, we return false
+			return false;
+		}
 		// Check that mappings from node to node and arrow to arrow preserving structure can be made:
 		
 		Node[] sourceNodes = sourceGraph.getNodes().toArray(new Node[sourceGraph.getNodes().size()]);
@@ -286,7 +292,7 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	private void createNewEdges(EList<?> edges, Graph retval, Map<String, Node> newNodes) {
 		for (Object edge : edges) {
 			Node sourceNode = getNodeFromMap(newNodes, ((Edge)edge).getSource());
-			Node targetNode = getNodeFromMap(newNodes, ((Edge)edge).getTarget());
+			Node targetNode = getNodeFromMap(newNodes, ((Edge)edge).getTarget());			
 			Edge newEdge = retval.createEdge(((Edge)edge).getId(), sourceNode, targetNode);
 			backwardsEdgeMap.put(newEdge, (Edge)edge);
 		}

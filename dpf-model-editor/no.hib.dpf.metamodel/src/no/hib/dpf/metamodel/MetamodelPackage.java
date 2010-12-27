@@ -289,13 +289,22 @@ public interface MetamodelPackage extends EPackage {
 	int NODE__GRAPH = ID_OBJECT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Type Node</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NODE__TYPE_NODE = ID_OBJECT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Node</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NODE_FEATURE_COUNT = ID_OBJECT_FEATURE_COUNT + 2;
+	int NODE_FEATURE_COUNT = ID_OBJECT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -343,13 +352,22 @@ public interface MetamodelPackage extends EPackage {
 	int EDGE__NAME = ID_OBJECT_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Type Edge</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDGE__TYPE_EDGE = ID_OBJECT_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Edge</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EDGE_FEATURE_COUNT = ID_OBJECT_FEATURE_COUNT + 4;
+	int EDGE_FEATURE_COUNT = ID_OBJECT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Predicates</b></em>' containment reference list.
@@ -673,6 +691,17 @@ public interface MetamodelPackage extends EPackage {
 	EReference getNode_Graph();
 
 	/**
+	 * Returns the meta object for the reference '{@link no.hib.dpf.metamodel.Node#getTypeNode <em>Type Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Type Node</em>'.
+	 * @see no.hib.dpf.metamodel.Node#getTypeNode()
+	 * @see #getNode()
+	 * @generated
+	 */
+	EReference getNode_TypeNode();
+
+	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.metamodel.Edge <em>Edge</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -714,6 +743,17 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getEdge_Name();
+
+	/**
+	 * Returns the meta object for the reference '{@link no.hib.dpf.metamodel.Edge#getTypeEdge <em>Type Edge</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Type Edge</em>'.
+	 * @see no.hib.dpf.metamodel.Edge#getTypeEdge()
+	 * @see #getEdge()
+	 * @generated
+	 */
+	EReference getEdge_TypeEdge();
 
 	/**
 	 * Returns the meta object for the container reference '{@link no.hib.dpf.metamodel.Edge#getGraph <em>Graph</em>}'.
@@ -1108,6 +1148,14 @@ public interface MetamodelPackage extends EPackage {
 		EReference NODE__GRAPH = eINSTANCE.getNode_Graph();
 
 		/**
+		 * The meta object literal for the '<em><b>Type Node</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NODE__TYPE_NODE = eINSTANCE.getNode_TypeNode();
+
+		/**
 		 * The meta object literal for the '{@link no.hib.dpf.metamodel.impl.EdgeImpl <em>Edge</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1140,6 +1188,14 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute EDGE__NAME = eINSTANCE.getEdge_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Type Edge</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EDGE__TYPE_EDGE = eINSTANCE.getEdge_TypeEdge();
 
 		/**
 		 * The meta object literal for the '<em><b>Graph</b></em>' container reference feature.

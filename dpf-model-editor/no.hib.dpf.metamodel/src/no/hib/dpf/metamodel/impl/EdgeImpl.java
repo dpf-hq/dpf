@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  *   <li>{@link no.hib.dpf.metamodel.impl.EdgeImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.impl.EdgeImpl#getGraph <em>Graph</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.impl.EdgeImpl#getName <em>Name</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.impl.EdgeImpl#getTypeEdge <em>Type Edge</em>}</li>
  * </ul>
  * </p>
  *
@@ -74,6 +75,16 @@ public class EdgeImpl extends IDObjectImpl implements Edge {
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getTypeEdge() <em>Type Edge</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTypeEdge()
+	 * @generated
+	 * @ordered
+	 */
+	protected Edge typeEdge;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -196,6 +207,44 @@ public class EdgeImpl extends IDObjectImpl implements Edge {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Edge getTypeEdge() {
+		if (typeEdge != null && typeEdge.eIsProxy()) {
+			InternalEObject oldTypeEdge = (InternalEObject)typeEdge;
+			typeEdge = (Edge)eResolveProxy(oldTypeEdge);
+			if (typeEdge != oldTypeEdge) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.EDGE__TYPE_EDGE, oldTypeEdge, typeEdge));
+			}
+		}
+		return typeEdge;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Edge basicGetTypeEdge() {
+		return typeEdge;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTypeEdge(Edge newTypeEdge) {
+		Edge oldTypeEdge = typeEdge;
+		typeEdge = newTypeEdge;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.EDGE__TYPE_EDGE, oldTypeEdge, typeEdge));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Graph getGraph() {
 		if (eContainerFeatureID() != MetamodelPackage.EDGE__GRAPH) return null;
 		return (Graph)eContainer();
@@ -294,6 +343,9 @@ public class EdgeImpl extends IDObjectImpl implements Edge {
 				return getGraph();
 			case MetamodelPackage.EDGE__NAME:
 				return getName();
+			case MetamodelPackage.EDGE__TYPE_EDGE:
+				if (resolve) return getTypeEdge();
+				return basicGetTypeEdge();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -317,6 +369,9 @@ public class EdgeImpl extends IDObjectImpl implements Edge {
 				return;
 			case MetamodelPackage.EDGE__NAME:
 				setName((String)newValue);
+				return;
+			case MetamodelPackage.EDGE__TYPE_EDGE:
+				setTypeEdge((Edge)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -342,6 +397,9 @@ public class EdgeImpl extends IDObjectImpl implements Edge {
 			case MetamodelPackage.EDGE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
+			case MetamodelPackage.EDGE__TYPE_EDGE:
+				setTypeEdge((Edge)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -362,6 +420,8 @@ public class EdgeImpl extends IDObjectImpl implements Edge {
 				return getGraph() != null;
 			case MetamodelPackage.EDGE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case MetamodelPackage.EDGE__TYPE_EDGE:
+				return typeEdge != null;
 		}
 		return super.eIsSet(featureID);
 	}

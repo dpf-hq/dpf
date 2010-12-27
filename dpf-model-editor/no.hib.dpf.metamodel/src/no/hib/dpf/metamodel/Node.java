@@ -18,6 +18,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link no.hib.dpf.metamodel.Node#getName <em>Name</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Node#getGraph <em>Graph</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Node#getTypeNode <em>Type Node</em>}</li>
  * </ul>
  * </p>
  *
@@ -81,11 +82,61 @@ public interface Node extends IDObject {
 	void setGraph(Graph value);
 
 	/**
+	 * Returns the value of the '<em><b>Type Node</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Type Node</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Type Node</em>' reference.
+	 * @see #setTypeNode(Node)
+	 * @see no.hib.dpf.metamodel.MetamodelPackage#getNode_TypeNode()
+	 * @model
+	 * @generated
+	 */
+	Node getTypeNode();
+
+	/**
+	 * Sets the value of the '{@link no.hib.dpf.metamodel.Node#getTypeNode <em>Type Node</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Type Node</em>' reference.
+	 * @see #getTypeNode()
+	 * @generated
+	 */
+	void setTypeNode(Node value);
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model kind="operation"
 	 * @generated
 	 */
 	EList<Edge> getOutgoingEdges();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	boolean edgeCanConnectAsSource(Node intendedTarget);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	boolean edgeCanConnectAsTarget(Node intendedSource);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	boolean canReachTargetByOneEdge(Node target);
 
 } // Node

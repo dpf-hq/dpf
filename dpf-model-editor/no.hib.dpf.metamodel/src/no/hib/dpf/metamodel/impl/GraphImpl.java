@@ -6,7 +6,9 @@
  */
 package no.hib.dpf.metamodel.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import no.hib.dpf.metamodel.Constraint;
 import no.hib.dpf.metamodel.Edge;
@@ -246,25 +248,48 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	}
 
 	/**
+	 * @generated NOT
+	 */
+	private List<Edge> connectedEdges(Node node) {
+		List<Edge> retval = new ArrayList<Edge>();
+		for (Edge edge : getEdges()) {
+			if ((edge.getSource() == node) || (edge.getTarget() == node)) {
+				retval.add(edge);
+			}
+		}
+		return retval;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	private void deleteConnectedEdges(Node node) {
+		for (Edge edge : connectedEdges(node)) {
+			edges.remove(edge);
+		}
+	}
+	
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void deleteNode(Node node) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		if (getNodes().contains(node)) {
+			deleteConnectedEdges(node);
+			getNodes().remove(node);
+		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void deleteEdge(Edge edge) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		if (getEdges().contains(edge)) {
+			edges.remove(edge);
+		}
 	}
 
 	/**

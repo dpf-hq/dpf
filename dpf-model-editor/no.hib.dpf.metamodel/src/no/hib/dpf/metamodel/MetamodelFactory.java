@@ -67,6 +67,15 @@ public interface MetamodelFactory extends EFactory {
 	Node createNode();
 
 	/**
+	 * Returns a new object of class '<em>Node</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Node</em>'.
+	 * @generated NOT
+	 */
+	Node createNode(Node typeNode);
+
+	/**
 	 * Returns a new object of class '<em>Edge</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -75,6 +84,13 @@ public interface MetamodelFactory extends EFactory {
 	 */
 	Edge createEdge();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	Edge createEdge(Edge typeEdge);
+	
 	/**
 	 * Returns a new object of class '<em>Signature</em>'.
 	 * <!-- begin-user-doc -->

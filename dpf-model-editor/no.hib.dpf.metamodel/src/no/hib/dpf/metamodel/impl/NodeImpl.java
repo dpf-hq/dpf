@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <ul>
  *   <li>{@link no.hib.dpf.metamodel.impl.NodeImpl#getName <em>Name</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.impl.NodeImpl#getGraph <em>Graph</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.impl.NodeImpl#getTypeNode <em>Type Node</em>}</li>
  * </ul>
  * </p>
  *
@@ -54,6 +55,16 @@ public class NodeImpl extends IDObjectImpl implements Node {
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getTypeNode() <em>Type Node</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTypeNode()
+	 * @generated
+	 * @ordered
+	 */
+	protected Node typeNode;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -139,6 +150,44 @@ public class NodeImpl extends IDObjectImpl implements Node {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Node getTypeNode() {
+		if (typeNode != null && typeNode.eIsProxy()) {
+			InternalEObject oldTypeNode = (InternalEObject)typeNode;
+			typeNode = (Node)eResolveProxy(oldTypeNode);
+			if (typeNode != oldTypeNode) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.NODE__TYPE_NODE, oldTypeNode, typeNode));
+			}
+		}
+		return typeNode;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Node basicGetTypeNode() {
+		return typeNode;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTypeNode(Node newTypeNode) {
+		Node oldTypeNode = typeNode;
+		typeNode = newTypeNode;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.NODE__TYPE_NODE, oldTypeNode, typeNode));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public EList<Edge> getOutgoingEdges() {
@@ -150,6 +199,50 @@ public class NodeImpl extends IDObjectImpl implements Node {
 		}
 		
 		return edges;
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean canReachTargetByOneEdge(Node target) {
+		for (Edge edge : getOutgoingEdges()) {
+			if (edge.getTarget().equals(target)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean edgeCanConnectAsSource(Node intendedTarget) {
+		if (typeNode == null) {
+			return true;
+		}
+		if (intendedTarget.getTypeNode() == null) {
+			return false;
+		}
+		return typeNode.canReachTargetByOneEdge(intendedTarget.getTypeNode());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean edgeCanConnectAsTarget(Node intendedSource) {
+		if (typeNode == null) {
+			return true;
+		}
+		if (intendedSource.getTypeNode() == null) {
+			return false;
+		}
+		return intendedSource.getTypeNode().canReachTargetByOneEdge(typeNode);
 	}
 
 	/**
@@ -208,6 +301,9 @@ public class NodeImpl extends IDObjectImpl implements Node {
 				return getName();
 			case MetamodelPackage.NODE__GRAPH:
 				return getGraph();
+			case MetamodelPackage.NODE__TYPE_NODE:
+				if (resolve) return getTypeNode();
+				return basicGetTypeNode();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -225,6 +321,9 @@ public class NodeImpl extends IDObjectImpl implements Node {
 				return;
 			case MetamodelPackage.NODE__GRAPH:
 				setGraph((Graph)newValue);
+				return;
+			case MetamodelPackage.NODE__TYPE_NODE:
+				setTypeNode((Node)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -244,6 +343,9 @@ public class NodeImpl extends IDObjectImpl implements Node {
 			case MetamodelPackage.NODE__GRAPH:
 				setGraph((Graph)null);
 				return;
+			case MetamodelPackage.NODE__TYPE_NODE:
+				setTypeNode((Node)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -260,6 +362,8 @@ public class NodeImpl extends IDObjectImpl implements Node {
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case MetamodelPackage.NODE__GRAPH:
 				return getGraph() != null;
+			case MetamodelPackage.NODE__TYPE_NODE:
+				return typeNode != null;
 		}
 		return super.eIsSet(featureID);
 	}

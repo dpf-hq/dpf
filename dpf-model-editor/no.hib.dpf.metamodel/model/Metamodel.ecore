@@ -45,9 +45,19 @@
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Node" eSuperTypes="#//hib/dpf/metamodel/IDObject">
           <eOperations name="getOutgoingEdges" upperBound="-1" eType="#//hib/dpf/metamodel/Edge"/>
+          <eOperations name="edgeCanConnectAsSource" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+            <eParameters name="intendedTarget" eType="#//hib/dpf/metamodel/Node"/>
+          </eOperations>
+          <eOperations name="edgeCanConnectAsTarget" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+            <eParameters name="intendedSource" eType="#//hib/dpf/metamodel/Node"/>
+          </eOperations>
+          <eOperations name="canReachTargetByOneEdge" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+            <eParameters name="target" eType="#//hib/dpf/metamodel/Node"/>
+          </eOperations>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="graph" eType="#//hib/dpf/metamodel/Graph"
               unsettable="true" eOpposite="#//hib/dpf/metamodel/Graph/nodes"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="typeNode" eType="#//hib/dpf/metamodel/Node"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Edge" eSuperTypes="#//hib/dpf/metamodel/IDObject">
           <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//hib/dpf/metamodel/Node"/>
@@ -55,6 +65,7 @@
           <eStructuralFeatures xsi:type="ecore:EReference" name="graph" eType="#//hib/dpf/metamodel/Graph"
               eOpposite="#//hib/dpf/metamodel/Graph/edges"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="typeEdge" eType="#//hib/dpf/metamodel/Edge"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Signature">
           <eStructuralFeatures xsi:type="ecore:EReference" name="predicates" upperBound="-1"
