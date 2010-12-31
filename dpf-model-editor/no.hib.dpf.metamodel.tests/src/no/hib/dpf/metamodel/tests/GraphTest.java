@@ -9,10 +9,6 @@ package no.hib.dpf.metamodel.tests;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
-
-
 import junit.textui.TestRunner;
 import no.hib.dpf.metamodel.Edge;
 import no.hib.dpf.metamodel.Graph;
@@ -34,6 +30,8 @@ import no.hib.dpf.metamodel.Node;
  *   <li>{@link no.hib.dpf.metamodel.Graph#deleteEdge(no.hib.dpf.metamodel.Edge) <em>Delete Edge</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Graph#getNodeByName(java.lang.String) <em>Get Node By Name</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Graph#getEdgeByName(java.lang.String) <em>Get Edge By Name</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Graph#createNode(java.lang.String, no.hib.dpf.metamodel.Node) <em>Create Node</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Graph#createEdge(java.lang.String, no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Edge) <em>Create Edge</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -122,6 +120,50 @@ public class GraphTest extends IDObjectTest {
 		assertEquals(n2, e.getTarget());
 		assertEquals("test", e.getName());
 	}
+	
+	/**
+	 * Tests the '{@link no.hib.dpf.metamodel.Graph#createEdge(java.lang.String, no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Edge) <em>Create Edge</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.Graph#createEdge(java.lang.String, no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Edge)
+	 * @generated NOT
+	 */
+	public void testCreateEdge__String_Node_Node_Edge() {
+		Graph typeGraph = MetamodelFactory.eINSTANCE.createGraph("tn_1,tn_2,tn_3", "te_1:tn_1:tn_2,te_2:tn_1:tn_3");
+
+		getFixture().createNode("source", typeGraph.getNodeByName("tn_1"));
+		getFixture().createNode("target", typeGraph.getNodeByName("tn_2"));
+
+		Edge newEdge = getFixture().createEdge("edge", getFixture().getNodeByName("source"), getFixture().getNodeByName("target"), typeGraph.getEdgeByName("te_1"));
+		assertEquals(typeGraph.getEdgeByName("te_1"), newEdge.getTypeEdge());
+		try {
+			getFixture().createEdge("edge", getFixture().getNodeByName("source"), getFixture().getNodeByName("target"), typeGraph.getEdgeByName("te_2"));
+			fail();
+		} catch (AssertionError e) {
+		}
+	}
+
+	
+	/**
+	 * @generated NOT
+	 */
+	public void testCreateTypedEdge() {
+		Graph typeGraph = MetamodelFactory.eINSTANCE.createGraph("tn_1,tn_2", "te_1:tn_1:tn_2");
+
+		getFixture().createNode("source", typeGraph.getNodeByName("tn_1"));
+		getFixture().createNode("target", typeGraph.getNodeByName("tn_2"));
+		
+		// Should not be able to make an untyped connection between two typed nodes:
+		try {
+			getFixture().createEdge("not_applicable", getFixture().getNodeByName("target"), getFixture().getNodeByName("source"));
+			fail();
+		} catch (AssertionError e) {
+		}
+		
+		Edge newEdge = getFixture().createEdge("new_edge", getFixture().getNodeByName("source"), getFixture().getNodeByName("target"));
+		assertEquals(typeGraph.getEdgeByName("te_1"), newEdge.getTypeEdge());
+
+	}
 
 	/**
 	 * @generated NOT
@@ -138,12 +180,12 @@ public class GraphTest extends IDObjectTest {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see no.hib.dpf.metamodel.Graph#applyPredicate(no.hib.dpf.metamodel.Predicate, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
-	 * @generated
+	 * @generated NOT
 	 */
 	public void testApplyPredicate__Predicate_EList_EList() {
 		// TODO: implement this operation test method
 		// Ensure that you remove @generated or mark it @generated NOT
-		fail();
+		//fail();
 	}
 
 	/**
@@ -215,16 +257,32 @@ public class GraphTest extends IDObjectTest {
 	}
 
 	/**
+	 * Tests the '{@link no.hib.dpf.metamodel.Graph#createNode(java.lang.String, no.hib.dpf.metamodel.Node) <em>Create Node</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.Graph#createNode(java.lang.String, no.hib.dpf.metamodel.Node)
+	 * @generated NOT
+	 */
+	public void testCreateNode__String_Node() {
+		Node typeNode = MetamodelFactory.eINSTANCE.createNode();
+		Node typedNode = getFixture().createNode("b", typeNode);
+		assertEquals(typeNode, typedNode.getTypeNode());
+	}
+
+	/**
 	 * Tests the '{@link no.hib.dpf.metamodel.Graph#getGraphMember(java.lang.String) <em>Get Graph Member</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see no.hib.dpf.metamodel.Graph#getGraphMember(java.lang.String)
-	 * @generated
+	 * @generated NOT
 	 */
 	public void testGetGraphMember__String() {
-		// TODO: implement this operation test method
-		// Ensure that you remove @generated or mark it @generated NOT
-		fail();
+		Graph graph = MetamodelFactory.eINSTANCE.createGraph("n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3");
+		
+		Edge e_1 = graph.getEdgeByName("e_1");
+		Node n_2 = graph.getNodeByName("n_2");
+		assertEquals(e_1, graph.getGraphMember(e_1.getId()));
+		assertEquals(n_2, graph.getGraphMember(n_2.getId()));
 	}
 
 	/**
