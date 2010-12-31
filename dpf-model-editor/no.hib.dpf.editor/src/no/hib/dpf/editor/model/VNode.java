@@ -465,18 +465,29 @@ public class VNode extends ModelElement implements Node, IDObjectContainer, Mova
 	}
 
 	@Override
-	public boolean edgeCanConnectAsSource(Node intendedTarget) {
-		return nodeComponent.edgeCanConnectAsSource(intendedTarget);
-	}
-
-	@Override
-	public boolean edgeCanConnectAsTarget(Node intendedSource) {
-		return nodeComponent.edgeCanConnectAsTarget(intendedSource);
-	}
-
-	@Override
 	public boolean canReachTargetByOneEdge(Node target) {
 		return nodeComponent.canReachTargetByOneEdge(target);
+	}
+
+	@Override
+	public boolean edgeCanMakeConnectionAsTarget(Node intendedTarget) {
+		return nodeComponent.edgeCanMakeConnectionAsTarget(intendedTarget);
+	}
+
+	@Override
+	public Boolean edgeCanMakeConnectionAsTarget(Node intendedTarget,
+			Edge typeEdge) {
+		return nodeComponent.edgeCanMakeConnectionAsTarget(intendedTarget, typeEdge);
+	}
+
+	@Override
+	public Boolean canReachTargetByTypeEdge(Node target, Edge typeEdge) {
+		return nodeComponent.canReachTargetByTypeEdge(target, typeEdge);
+	}
+
+	@Override
+	public Edge getEdgeto(Node target) {
+		return nodeComponent.getEdgeto(target);
 	}
 
 
