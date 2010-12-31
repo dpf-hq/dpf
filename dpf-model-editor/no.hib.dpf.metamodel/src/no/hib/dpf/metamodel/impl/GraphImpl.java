@@ -189,9 +189,38 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	 * @generated NOT
 	 */
 	public Edge createEdge(String name, Node source, Node target) {
-		if ((source == null) || (target == null)) {
-			throw new NullPointerException("Tried to create an Edge instance with no target and/or source.");
+		testSurceAndTarget(source, target);
+		
+		if (!source.edgeCanMakeConnectionAsTarget(target)) {
+			throw new AssertionError(String.format("The target node, %s, had the wrong type for an edge to be connected from the node %s.", target, source));
 		}
+						
+		Edge edge = createEdgeExec(name, source, target);
+		if ((source.getTypeNode() != null) && (target.getTypeNode() != null)) {
+			edge.setTypeEdge(source.getTypeNode().getEdgeto(target.getTypeNode()));
+		}
+		return edge;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Edge createEdge(String name, Node source, Node target, Edge typeEdge) {
+		testSurceAndTarget(source, target);
+		if (!source.edgeCanMakeConnectionAsTarget(target, typeEdge)) {
+			throw new AssertionError(String.format("The target node, %s, had the wrong type for an edge to be connected from the node %s via the type edge %s.", target, source, typeEdge));			
+		}
+		Edge edge = createEdgeExec(name, source, target);
+		edge.setTypeEdge(typeEdge);
+		return edge;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	private Edge createEdgeExec(String name, Node source, Node target) {
 		Edge edge = MetamodelFactory.eINSTANCE.createEdge();
 		edge.setSource(source);
 		edge.setTarget(target);
@@ -200,6 +229,15 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 		return edge;
 	}
 
+	/**
+	 * @generated NOT
+	 */
+	private void testSurceAndTarget(Node source, Node target) {
+		if ((source == null) || (target == null)) {
+			throw new NullPointerException("Tried to create an Edge instance with no target and/or source.");
+		}
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -318,6 +356,17 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Node createNode(String name, Node typeNode) {
+		Node retval = createNode(name);
+		retval.setTypeNode(typeNode);
+		return retval;
 	}
 
 	/**

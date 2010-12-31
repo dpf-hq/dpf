@@ -121,15 +121,7 @@ public interface Node extends IDObject {
 	 * @model
 	 * @generated
 	 */
-	boolean edgeCanConnectAsSource(Node intendedTarget);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model
-	 * @generated
-	 */
-	boolean edgeCanConnectAsTarget(Node intendedSource);
+	boolean edgeCanMakeConnectionAsTarget(Node intendedTarget);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -138,5 +130,29 @@ public interface Node extends IDObject {
 	 * @generated
 	 */
 	boolean canReachTargetByOneEdge(Node target);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	Boolean edgeCanMakeConnectionAsTarget(Node intendedTarget, Edge typeEdge);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	Boolean canReachTargetByTypeEdge(Node target, Edge typeEdge);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	Edge getEdgeto(Node target);
 
 } // Node

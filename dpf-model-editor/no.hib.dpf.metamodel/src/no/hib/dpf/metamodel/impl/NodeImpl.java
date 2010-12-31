@@ -206,25 +206,26 @@ public class NodeImpl extends IDObjectImpl implements Node {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public boolean canReachTargetByOneEdge(Node target) {
-		for (Edge edge : getOutgoingEdges()) {
-			if (edge.getTarget().equals(target)) {
-				return true;
-			}
+	public boolean edgeCanMakeConnectionAsSource(Node intendedSource) {
+		if (getTypeNode() == null) {
+			return true;
 		}
-		return false;
+		if ((intendedSource == null) || (intendedSource.getTypeNode() == null)) {
+			return false;
+		}
+		return intendedSource.getTypeNode().canReachTargetByOneEdge(this.getTypeNode());		
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
-	 */
-	public boolean edgeCanConnectAsSource(Node intendedTarget) {
-		if (typeNode == null) {
+	 */ 
+	public boolean edgeCanMakeConnectionAsTarget(Node intendedTarget) {
+		if (getTypeNode() == null) {
 			return true;
 		}
-		if (intendedTarget.getTypeNode() == null) {
+		if ((intendedTarget == null) || (intendedTarget.getTypeNode() == null)) {
 			return false;
 		}
 		return typeNode.canReachTargetByOneEdge(intendedTarget.getTypeNode());
@@ -233,16 +234,51 @@ public class NodeImpl extends IDObjectImpl implements Node {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public boolean edgeCanConnectAsTarget(Node intendedSource) {
-		if (typeNode == null) {
+	public Boolean edgeCanMakeConnectionAsTarget(Node intendedTarget, Edge typeEdge) {
+		if ((getTypeNode() == null) && (typeEdge == null)) {
 			return true;
 		}
-		if (intendedSource.getTypeNode() == null) {
+		if ((intendedTarget == null) || (intendedTarget.getTypeNode() == null)) {
 			return false;
 		}
-		return intendedSource.getTypeNode().canReachTargetByOneEdge(typeNode);
+		return typeNode.canReachTargetByTypeEdge(intendedTarget.getTypeNode(), typeEdge);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Boolean canReachTargetByTypeEdge(Node target, Edge typeEdge) {
+		if (typeEdge.getTarget().equals(target)) {
+			return (getOutgoingEdges().contains(typeEdge));
+		}
+		return false;		
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Edge getEdgeto(Node target) {
+		for (Edge edge : getOutgoingEdges()) {
+			if (edge.getTarget().equals(target)) {
+				return edge;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean canReachTargetByOneEdge(Node target) {
+		return (getEdgeto(target) != null);
 	}
 
 	/**

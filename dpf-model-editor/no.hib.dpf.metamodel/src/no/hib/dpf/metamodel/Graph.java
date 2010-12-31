@@ -172,6 +172,22 @@ public interface Graph extends IDObject {
 	 * @generated
 	 */
 	Edge getEdgeByName(String name);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	Node createNode(String name, Node typeNode);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	Edge createEdge(String name, Node source, Node target, Edge typeEdge);
 	
 
 } // Graph

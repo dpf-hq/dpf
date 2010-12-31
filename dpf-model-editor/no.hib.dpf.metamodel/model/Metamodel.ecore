@@ -35,6 +35,16 @@
           <eOperations name="getEdgeByName" eType="#//hib/dpf/metamodel/Edge">
             <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
           </eOperations>
+          <eOperations name="createNode" eType="#//hib/dpf/metamodel/Node">
+            <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+            <eParameters name="typeNode" eType="#//hib/dpf/metamodel/Node"/>
+          </eOperations>
+          <eOperations name="createEdge" eType="#//hib/dpf/metamodel/Edge">
+            <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+            <eParameters name="source" eType="#//hib/dpf/metamodel/Node"/>
+            <eParameters name="target" eType="#//hib/dpf/metamodel/Node"/>
+            <eParameters name="typeEdge" eType="#//hib/dpf/metamodel/Edge"/>
+          </eOperations>
           <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" upperBound="-1"
               eType="#//hib/dpf/metamodel/Node" containment="true" eOpposite="#//hib/dpf/metamodel/Node/graph"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -45,13 +55,21 @@
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Node" eSuperTypes="#//hib/dpf/metamodel/IDObject">
           <eOperations name="getOutgoingEdges" upperBound="-1" eType="#//hib/dpf/metamodel/Edge"/>
-          <eOperations name="edgeCanConnectAsSource" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+          <eOperations name="edgeCanMakeConnectionAsTarget" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
             <eParameters name="intendedTarget" eType="#//hib/dpf/metamodel/Node"/>
           </eOperations>
-          <eOperations name="edgeCanConnectAsTarget" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-            <eParameters name="intendedSource" eType="#//hib/dpf/metamodel/Node"/>
-          </eOperations>
           <eOperations name="canReachTargetByOneEdge" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+            <eParameters name="target" eType="#//hib/dpf/metamodel/Node"/>
+          </eOperations>
+          <eOperations name="edgeCanMakeConnectionAsTarget" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject">
+            <eParameters name="intendedTarget" eType="#//hib/dpf/metamodel/Node"/>
+            <eParameters name="typeEdge" eType="#//hib/dpf/metamodel/Edge"/>
+          </eOperations>
+          <eOperations name="canReachTargetByTypeEdge" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject">
+            <eParameters name="target" eType="#//hib/dpf/metamodel/Node"/>
+            <eParameters name="typeEdge" eType="#//hib/dpf/metamodel/Edge"/>
+          </eOperations>
+          <eOperations name="getEdgeto" eType="#//hib/dpf/metamodel/Edge">
             <eParameters name="target" eType="#//hib/dpf/metamodel/Node"/>
           </eOperations>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

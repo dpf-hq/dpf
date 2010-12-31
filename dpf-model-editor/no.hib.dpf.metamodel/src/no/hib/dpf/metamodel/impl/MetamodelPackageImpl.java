@@ -726,6 +726,16 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		op = addEOperation(graphEClass, this.getEdge(), "getEdgeByName", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "name", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		op = addEOperation(graphEClass, this.getNode(), "createNode", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "name", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getNode(), "typeNode", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(graphEClass, this.getEdge(), "createEdge", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "name", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getNode(), "source", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getNode(), "target", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getEdge(), "typeEdge", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(nodeEClass, Node.class, "Node", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNode_Name(), ecorePackage.getEString(), "name", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNode_Graph(), this.getGraph(), this.getGraph_Nodes(), "graph", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -733,13 +743,21 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 		addEOperation(nodeEClass, this.getEdge(), "getOutgoingEdges", 0, -1, IS_UNIQUE, IS_ORDERED);
 
-		op = addEOperation(nodeEClass, ecorePackage.getEBoolean(), "edgeCanConnectAsSource", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(nodeEClass, ecorePackage.getEBoolean(), "edgeCanMakeConnectionAsTarget", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getNode(), "intendedTarget", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = addEOperation(nodeEClass, ecorePackage.getEBoolean(), "edgeCanConnectAsTarget", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getNode(), "intendedSource", 0, 1, IS_UNIQUE, IS_ORDERED);
-
 		op = addEOperation(nodeEClass, ecorePackage.getEBoolean(), "canReachTargetByOneEdge", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getNode(), "target", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(nodeEClass, ecorePackage.getEBooleanObject(), "edgeCanMakeConnectionAsTarget", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getNode(), "intendedTarget", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getEdge(), "typeEdge", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(nodeEClass, ecorePackage.getEBooleanObject(), "canReachTargetByTypeEdge", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getNode(), "target", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getEdge(), "typeEdge", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(nodeEClass, this.getEdge(), "getEdgeto", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getNode(), "target", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(edgeEClass, Edge.class, "Edge", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

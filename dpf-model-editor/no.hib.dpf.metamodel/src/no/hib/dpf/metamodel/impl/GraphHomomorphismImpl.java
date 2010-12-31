@@ -342,8 +342,8 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	 */
 	private boolean testMapping(EcoreEMap<Node,Node> mapping) {
 		// Check to see wether the mapped nodes have the same number of input and output edges:
-		int valueNumOutputEdges = 0;
-		int keyNumOutputEdges = 0;
+//		int valueNumOutputEdges = 0;
+//		int keyNumOutputEdges = 0;
 		
 //		for (Node key : mapping.keySet()) {
 //			Node value = mapping.get(key);
