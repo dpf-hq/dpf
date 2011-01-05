@@ -12,6 +12,10 @@ package no.hib.dpf.editor;
 
 import no.hib.dpf.editor.model.VEdge;
 import no.hib.dpf.editor.model.VNode;
+import no.hib.dpf.editor.model.factories.VNodeFactory;
+import no.hib.dpf.metamodel.Edge;
+import no.hib.dpf.metamodel.Graph;
+import no.hib.dpf.metamodel.Node;
 
 import org.eclipse.gef.palette.CombinedTemplateCreationEntry;
 import org.eclipse.gef.palette.ConnectionCreationToolEntry;
@@ -23,109 +27,98 @@ import org.eclipse.gef.palette.PaletteToolbar;
 import org.eclipse.gef.palette.PanningSelectionToolEntry;
 import org.eclipse.gef.palette.ToolEntry;
 import org.eclipse.gef.requests.CreationFactory;
-import org.eclipse.gef.requests.SimpleFactory;
 import org.eclipse.gef.tools.MarqueeSelectionTool;
 import org.eclipse.jface.resource.ImageDescriptor;
 
 /**
  * Utility class that can create a GEF Palette.
- * @see #createPalette() 
- * @author Elias Volanakis
  */
-final class DPFEditorPaletteFactory {
-
-///** Preference ID used to persist the palette location. */
-//private static final String PALETTE_DOCK_LOCATION = "ShapesEditorPaletteFactory.Location";
-///** Preference ID used to persist the palette size. */
-//private static final String PALETTE_SIZE = "ShapesEditorPaletteFactory.Size";
-///** Preference ID used to persist the flyout palette's state. */
-//private static final String PALETTE_STATE = "ShapesEditorPaletteFactory.State";
-
-/** Create the "Shapes" drawer. */
-private static PaletteContainer createShapesDrawer() {
-	PaletteDrawer componentsDrawer = new PaletteDrawer("Shapes");
-
-//	CombinedTemplateCreationEntry component = new CombinedTemplateCreationEntry(
-//			"Ellipse", 
-//			"Create an elliptical shape", 
-//			EllipticalShape.class,
-//			new SimpleFactory(EllipticalShape.class), 
-//			ImageDescriptor.createFromFile(DPFPlugin.class, "icons/ellipse16.gif"), 
-//			ImageDescriptor.createFromFile(DPFPlugin.class, "icons/ellipse24.gif"));
-//	componentsDrawer.add(component);
-
-	CombinedTemplateCreationEntry component = new CombinedTemplateCreationEntry(
-			"Node",
-			"Create a new node", 
-			VNode.class,
-			new SimpleFactory(VNode.class), 
-			ImageDescriptor.createFromFile(DPFPlugin.class, "icons/rectangle16.gif"), 
-			ImageDescriptor.createFromFile(DPFPlugin.class, "icons/rectangle24.gif"));
-	componentsDrawer.add(component);
-
-	return componentsDrawer;
-}
+public class DPFEditorPaletteFactory {
 	
-/**
- * Creates the PaletteRoot and adds all palette elements.
- * Use this factory method to create a new palette for your graphical editor.
- * @return a new PaletteRoot
- */
-static PaletteRoot createPalette() {
-	PaletteRoot palette = new PaletteRoot();
-	palette.add(createToolsGroup(palette));
-	palette.add(createShapesDrawer());
-	return palette;
-}
+	// /** Preference ID used to persist the palette location. */
+	// private static final String PALETTE_DOCK_LOCATION =
+	// "ShapesEditorPaletteFactory.Location";
+	// /** Preference ID used to persist the palette size. */
+	// private static final String PALETTE_SIZE =
+	// "ShapesEditorPaletteFactory.Size";
+	// /** Preference ID used to persist the flyout palette's state. */
+	// private static final String PALETTE_STATE =
+	// "ShapesEditorPaletteFactory.State";
 
-/** Create the "Tools" group. */
-private static PaletteContainer createToolsGroup(PaletteRoot palette) {
-	PaletteToolbar toolbar = new PaletteToolbar("Tools");
+	/**
+	 * Creates the PaletteRoot and adds all palette elements. Use this factory
+	 * method to create a new palette for your graphical editor.
+	 * 
+	 * @return a new PaletteRoot
+	 */
+	public PaletteRoot createPalette(Graph typeGraph) {
+		PaletteRoot palette = new PaletteRoot();
+		palette.add(createToolsGroup(palette, typeGraph));
+		palette.add(createShapesDrawer(typeGraph));
+		return palette;
+	}
 
-	// Add a selection tool to the group
-	ToolEntry tool = new PanningSelectionToolEntry();
-	toolbar.add(tool);
-	palette.setDefaultEntry(tool);
-	
-	// Add a marquee tool to the group
-	MarqueeToolEntry mqtool = new MarqueeToolEntry();
-	mqtool.setToolProperty(MarqueeSelectionTool.PROPERTY_MARQUEE_BEHAVIOR, MarqueeSelectionTool.BEHAVIOR_NODES_AND_CONNECTIONS);
-	toolbar.add(mqtool);
+	/** Create the "Shapes" drawer. */
+	private PaletteContainer createShapesDrawer(Graph typeGraph) {
+		PaletteDrawer componentsDrawer = new PaletteDrawer("Shapes");
 
-	// Add (solid-line) connection tool 
-	tool = new ConnectionCreationToolEntry(
-			"Solid connection",
-			"Create a solid-line connection",
-			new CreationFactory() {
-				public Object getNewObject() { return null; }
-				// see ShapeEditPart#createEditPolicies() 
-				// this is abused to transmit the desired line style 
-				public Object getObjectType() { return VEdge.SOLID_CONNECTION; }
-			},
-			ImageDescriptor.createFromFile(DPFPlugin.class, "icons/connection_s16.gif"),
-			ImageDescriptor.createFromFile(DPFPlugin.class, "icons/connection_s24.gif"));
-	toolbar.add(tool);
-	
-	// Add (dashed-line) connection tool
-	tool = new ConnectionCreationToolEntry(
-			"Dashed connection",
-			"Create a dashed-line connection",
-			new CreationFactory() {
-				public Object getNewObject() { return null; }
-				// see ShapeEditPart#createEditPolicies()
-				// this is abused to transmit the desired line style 
-				public Object getObjectType() { return VEdge.DASHED_CONNECTION; }
-			},
-			ImageDescriptor.createFromFile(DPFPlugin.class, "icons/connection_d16.gif"),
-			ImageDescriptor.createFromFile(DPFPlugin.class, "icons/connection_d24.gif"));
-	toolbar.add(tool);
+		ImageDescriptor iconSmall = ImageDescriptor.createFromFile(DPFPlugin.class, "icons/rectangle16.gif");
+		ImageDescriptor iconLarge = ImageDescriptor.createFromFile(DPFPlugin.class, "icons/rectangle24.gif");
 
-	return toolbar;
-}
+		CombinedTemplateCreationEntry component;
+		for (Node typeNode : typeGraph.getNodes()) {
+			component = new CombinedTemplateCreationEntry(typeNode.getName(), "Create a new " + typeNode.getName(), VNode.class, new VNodeFactory(typeNode), iconSmall, iconLarge);
+			componentsDrawer.add(component);
+		}
 
-/** Utility class. */
-private DPFEditorPaletteFactory() {
-	// Utility class
-}
+		return componentsDrawer;
+	}
+
+	/** Create the "Tools" group. */
+	private PaletteContainer createToolsGroup(PaletteRoot palette, Graph typeGraph) {
+		PaletteToolbar toolbar = new PaletteToolbar("Tools");
+
+		// Add a selection tool to the group
+		ToolEntry tool = new PanningSelectionToolEntry();
+		toolbar.add(tool);
+		palette.setDefaultEntry(tool);
+
+		// Add a marquee tool to the group
+		MarqueeToolEntry mqtool = new MarqueeToolEntry();
+		mqtool.setToolProperty(MarqueeSelectionTool.PROPERTY_MARQUEE_BEHAVIOR,
+				MarqueeSelectionTool.BEHAVIOR_NODES_AND_CONNECTIONS);
+		toolbar.add(mqtool);
+
+		
+		for (Edge typeEdge : typeGraph.getEdges()) {
+			
+			// Add (solid-line) connection tool
+			tool = new ConnectionCreationToolEntry(typeEdge.getName(),
+					"Create a " + typeEdge.getName(), new CreationFactory() {
+						public Object getNewObject() {
+							return null;
+						}
+
+						// see ShapeEditPart#createEditPolicies()
+						// this is abused to transmit the desired line style
+						public Object getObjectType() {
+							return VEdge.SOLID_CONNECTION;
+						}
+					}, ImageDescriptor.createFromFile(DPFPlugin.class,
+							"icons/connection_s16.gif"),
+					ImageDescriptor.createFromFile(DPFPlugin.class,
+							"icons/connection_s24.gif"));
+			toolbar.add(tool);
+		}
+		
+
+
+		return toolbar;
+	}
+
+//	/** Utility class. */
+//	private DPFEditorPaletteFactory() {
+//		// Utility class
+//	}
 
 }

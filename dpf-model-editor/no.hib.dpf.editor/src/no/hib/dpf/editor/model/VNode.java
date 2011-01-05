@@ -254,6 +254,11 @@ public class VNode extends ModelElement implements Node, IDObjectContainer, Mova
 		setIDObject(MetamodelFactory.eINSTANCE.createNode());
 	}
 
+	public VNode(Node typeNode) {
+		super();
+		setIDObject(MetamodelFactory.eINSTANCE.createNode(typeNode));
+	}
+
 	@Override
 	public String getIDObjectID() {
 		return nodeID;

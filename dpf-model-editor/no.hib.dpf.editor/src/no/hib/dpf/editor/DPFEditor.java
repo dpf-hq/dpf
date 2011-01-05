@@ -98,9 +98,11 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 	private static PaletteRoot PALETTE_MODEL;
 	
 	private EditPartFactoryImpl shapesEditPartFactory;
+	private DPFEditorPaletteFactory paletteFactory;
 
 	/** Create a new DPFEditor instance. This is called by the Workspace. */
 	public DPFEditor() {
+		paletteFactory = new DPFEditorPaletteFactory();
 		setEditDomain(new DefaultEditDomain(this));
 		shapesEditPartFactory = new EditPartFactoryImpl();
 	}
@@ -346,9 +348,10 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 	 * org.eclipse.gef.ui.parts.GraphicalEditorWithFlyoutPalette#getPaletteRoot
 	 * ()
 	 */
+	@Override
 	protected PaletteRoot getPaletteRoot() {
 		if (PALETTE_MODEL == null)
-			PALETTE_MODEL = DPFEditorPaletteFactory.createPalette();
+			PALETTE_MODEL = paletteFactory.createPalette(MetamodelFactory.eINSTANCE.createGraph("node,node1", "edge:node:node1"));
 		return PALETTE_MODEL;
 	}
 

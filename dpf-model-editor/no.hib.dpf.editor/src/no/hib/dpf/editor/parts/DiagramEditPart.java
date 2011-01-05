@@ -54,8 +54,7 @@ import org.eclipse.gef.requests.CreateRequest;
  * 
  * @author Elias Volanakis
  */
-class DiagramEditPart extends AbstractGraphicalEditPart implements
-		PropertyChangeListener {
+class DiagramEditPart extends AbstractGraphicalEditPart implements PropertyChangeListener {
 
 	/**
 	 * Upon activation, attach to the model element as a property change
@@ -75,13 +74,11 @@ class DiagramEditPart extends AbstractGraphicalEditPart implements
 	 */
 	protected void createEditPolicies() {
 		// disallows the removal of this edit part from its parent
-		installEditPolicy(EditPolicy.COMPONENT_ROLE,
-				new RootComponentEditPolicy());
+		installEditPolicy(EditPolicy.COMPONENT_ROLE, new RootComponentEditPolicy());
 		// handles constraint changes (e.g. moving and/or resizing) of model
 		// elements
 		// and creation of new model elements
-		installEditPolicy(EditPolicy.LAYOUT_ROLE,
-				new ShapesXYLayoutEditPolicy());
+		installEditPolicy(EditPolicy.LAYOUT_ROLE, new ShapesXYLayoutEditPolicy());
 	}
 
 	/*
@@ -137,8 +134,7 @@ class DiagramEditPart extends AbstractGraphicalEditPart implements
 		// these properties are fired when Shapes are added into or removed from
 		// the ShapeDiagram instance and must cause a call of refreshChildren()
 		// to update the diagram's contents.
-		if (DPFDiagram.CHILD_ADDED_PROP.equals(prop)
-				|| DPFDiagram.CHILD_REMOVED_PROP.equals(prop)) {
+		if (DPFDiagram.CHILD_ADDED_PROP.equals(prop) || DPFDiagram.CHILD_REMOVED_PROP.equals(prop)) {
 			refreshChildren();
 		}
 	}
@@ -196,11 +192,8 @@ class DiagramEditPart extends AbstractGraphicalEditPart implements
 			Object childClass = request.getNewObjectType();
 			if (childClass == VNode.class) {
 				// return a command that can add a Shape to a DPFDiagram
-				return new VNodeCreateCommand((VNode) request.getNewObject(),
-						(DPFDiagram) getHost().getModel(),
-						(Rectangle) getConstraintFor(request));
+				return new VNodeCreateCommand((VNode) request.getNewObject(), (DPFDiagram) getHost().getModel(), (Rectangle) getConstraintFor(request));
 			}
-			// ((DPFEditor)getHost()).getDPFGraph();
 			return null;
 		}
 
