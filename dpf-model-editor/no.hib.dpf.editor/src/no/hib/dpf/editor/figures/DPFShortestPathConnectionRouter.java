@@ -247,11 +247,16 @@ public final class DPFShortestPathConnectionRouter extends AbstractRouter {
 			// Default layout around the node:
 			// TODO: make this configurable
 			Rectangle ownerBounds = ((DPFEpiConnectionFigure) conn).getOwnerBounds();
-			bends.addPoint(new Point(path.getStartPoint().x, ownerBounds.y - 10));
-			bends.addPoint(new Point(ownerBounds.x - 40, ownerBounds.y - 10));
-			bends.addPoint(new Point(ownerBounds.x - 40, ownerBounds.getBottom().y + 40));
-			bends.addPoint(new Point(path.getEndPoint().x, ownerBounds.getBottom().y + 40));
-			path.setBendPoints(bends);
+			
+			try {
+				bends.addPoint(new Point(path.getStartPoint().x, ownerBounds.y - 10));
+				bends.addPoint(new Point(ownerBounds.x - 40, ownerBounds.y - 10));
+				bends.addPoint(new Point(ownerBounds.x - 40, ownerBounds.getBottom().y + 40));
+				bends.addPoint(new Point(path.getEndPoint().x, ownerBounds.getBottom().y + 40));
+				path.setBendPoints(bends);
+			} catch (NullPointerException e) {
+				System.out.println("No source, skipping routing for now.");
+			}
 			
 		} else {
 			path.setBendPoints(null);
