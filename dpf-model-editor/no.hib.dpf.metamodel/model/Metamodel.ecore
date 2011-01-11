@@ -78,12 +78,12 @@
           <eStructuralFeatures xsi:type="ecore:EReference" name="typeNode" eType="#//hib/dpf/metamodel/Node"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Edge" eSuperTypes="#//hib/dpf/metamodel/IDObject">
-          <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//hib/dpf/metamodel/Node"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//hib/dpf/metamodel/Node"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="graph" eType="#//hib/dpf/metamodel/Graph"
               eOpposite="#//hib/dpf/metamodel/Graph/edges"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="typeEdge" eType="#//hib/dpf/metamodel/Edge"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//hib/dpf/metamodel/Node"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Signature">
           <eStructuralFeatures xsi:type="ecore:EReference" name="predicates" upperBound="-1"
@@ -120,6 +120,8 @@
           <eStructuralFeatures xsi:type="ecore:EReference" name="semantics" eType="#//hib/dpf/metamodel/Semantics"
               containment="true"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="visualization" eType="#//hib/dpf/metamodel/Visualization"/>
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="symbol" unique="false"
+              lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Semantics"/>
         <eClassifiers xsi:type="ecore:EClass" name="Visualization" abstract="true"/>

@@ -15,11 +15,11 @@ package no.hib.dpf.metamodel;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link no.hib.dpf.metamodel.Edge#getSource <em>Source</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Edge#getTarget <em>Target</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Edge#getGraph <em>Graph</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Edge#getName <em>Name</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Edge#getTypeEdge <em>Type Edge</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Edge#getSource <em>Source</em>}</li>
  * </ul>
  * </p>
  *
@@ -28,32 +28,6 @@ package no.hib.dpf.metamodel;
  * @generated
  */
 public interface Edge extends IDObject {
-	/**
-	 * Returns the value of the '<em><b>Source</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Source</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Source</em>' reference.
-	 * @see #setSource(Node)
-	 * @see no.hib.dpf.metamodel.MetamodelPackage#getEdge_Source()
-	 * @model
-	 * @generated
-	 */
-	Node getSource();
-
-	/**
-	 * Sets the value of the '{@link no.hib.dpf.metamodel.Edge#getSource <em>Source</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Source</em>' reference.
-	 * @see #getSource()
-	 * @generated
-	 */
-	void setSource(Node value);
-
 	/**
 	 * Returns the value of the '<em><b>Target</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -131,6 +105,32 @@ public interface Edge extends IDObject {
 	 * @generated
 	 */
 	void setTypeEdge(Edge value);
+
+	/**
+	 * Returns the value of the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Source</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Source</em>' reference.
+	 * @see #setSource(Node)
+	 * @see no.hib.dpf.metamodel.MetamodelPackage#getEdge_Source()
+	 * @model
+	 * @generated
+	 */
+	Node getSource();
+
+	/**
+	 * Sets the value of the '{@link no.hib.dpf.metamodel.Edge#getSource <em>Source</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Source</em>' reference.
+	 * @see #getSource()
+	 * @generated
+	 */
+	void setSource(Node value);
 
 	/**
 	 * Returns the value of the '<em><b>Graph</b></em>' container reference.

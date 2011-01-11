@@ -25,27 +25,17 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link no.hib.dpf.metamodel.impl.EdgeImpl#getSource <em>Source</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.impl.EdgeImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.impl.EdgeImpl#getGraph <em>Graph</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.impl.EdgeImpl#getName <em>Name</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.impl.EdgeImpl#getTypeEdge <em>Type Edge</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.impl.EdgeImpl#getSource <em>Source</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class EdgeImpl extends IDObjectImpl implements Edge {
-	/**
-	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSource()
-	 * @generated
-	 * @ordered
-	 */
-	protected Node source;
-
 	/**
 	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -87,6 +77,16 @@ public class EdgeImpl extends IDObjectImpl implements Edge {
 	protected Edge typeEdge;
 
 	/**
+	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSource()
+	 * @generated
+	 * @ordered
+	 */
+	protected Node source;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -103,44 +103,6 @@ public class EdgeImpl extends IDObjectImpl implements Edge {
 	@Override
 	protected EClass eStaticClass() {
 		return MetamodelPackage.Literals.EDGE;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Node getSource() {
-		if (source != null && source.eIsProxy()) {
-			InternalEObject oldSource = (InternalEObject)source;
-			source = (Node)eResolveProxy(oldSource);
-			if (source != oldSource) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.EDGE__SOURCE, oldSource, source));
-			}
-		}
-		return source;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Node basicGetSource() {
-		return source;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSource(Node newSource) {
-		Node oldSource = source;
-		source = newSource;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.EDGE__SOURCE, oldSource, source));
 	}
 
 	/**
@@ -245,6 +207,44 @@ public class EdgeImpl extends IDObjectImpl implements Edge {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Node getSource() {
+		if (source != null && source.eIsProxy()) {
+			InternalEObject oldSource = (InternalEObject)source;
+			source = (Node)eResolveProxy(oldSource);
+			if (source != oldSource) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.EDGE__SOURCE, oldSource, source));
+			}
+		}
+		return source;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Node basicGetSource() {
+		return source;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSource(Node newSource) {
+		Node oldSource = source;
+		source = newSource;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.EDGE__SOURCE, oldSource, source));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Graph getGraph() {
 		if (eContainerFeatureID() != MetamodelPackage.EDGE__GRAPH) return null;
 		return (Graph)eContainer();
@@ -333,9 +333,6 @@ public class EdgeImpl extends IDObjectImpl implements Edge {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MetamodelPackage.EDGE__SOURCE:
-				if (resolve) return getSource();
-				return basicGetSource();
 			case MetamodelPackage.EDGE__TARGET:
 				if (resolve) return getTarget();
 				return basicGetTarget();
@@ -346,6 +343,9 @@ public class EdgeImpl extends IDObjectImpl implements Edge {
 			case MetamodelPackage.EDGE__TYPE_EDGE:
 				if (resolve) return getTypeEdge();
 				return basicGetTypeEdge();
+			case MetamodelPackage.EDGE__SOURCE:
+				if (resolve) return getSource();
+				return basicGetSource();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -358,9 +358,6 @@ public class EdgeImpl extends IDObjectImpl implements Edge {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MetamodelPackage.EDGE__SOURCE:
-				setSource((Node)newValue);
-				return;
 			case MetamodelPackage.EDGE__TARGET:
 				setTarget((Node)newValue);
 				return;
@@ -372,6 +369,9 @@ public class EdgeImpl extends IDObjectImpl implements Edge {
 				return;
 			case MetamodelPackage.EDGE__TYPE_EDGE:
 				setTypeEdge((Edge)newValue);
+				return;
+			case MetamodelPackage.EDGE__SOURCE:
+				setSource((Node)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -385,9 +385,6 @@ public class EdgeImpl extends IDObjectImpl implements Edge {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.EDGE__SOURCE:
-				setSource((Node)null);
-				return;
 			case MetamodelPackage.EDGE__TARGET:
 				setTarget((Node)null);
 				return;
@@ -399,6 +396,9 @@ public class EdgeImpl extends IDObjectImpl implements Edge {
 				return;
 			case MetamodelPackage.EDGE__TYPE_EDGE:
 				setTypeEdge((Edge)null);
+				return;
+			case MetamodelPackage.EDGE__SOURCE:
+				setSource((Node)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -412,8 +412,6 @@ public class EdgeImpl extends IDObjectImpl implements Edge {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.EDGE__SOURCE:
-				return source != null;
 			case MetamodelPackage.EDGE__TARGET:
 				return target != null;
 			case MetamodelPackage.EDGE__GRAPH:
@@ -422,6 +420,8 @@ public class EdgeImpl extends IDObjectImpl implements Edge {
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case MetamodelPackage.EDGE__TYPE_EDGE:
 				return typeEdge != null;
+			case MetamodelPackage.EDGE__SOURCE:
+				return source != null;
 		}
 		return super.eIsSet(featureID);
 	}

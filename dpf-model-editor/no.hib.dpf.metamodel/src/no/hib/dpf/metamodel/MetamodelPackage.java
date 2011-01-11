@@ -316,22 +316,13 @@ public interface MetamodelPackage extends EPackage {
 	int EDGE__ID = ID_OBJECT__ID;
 
 	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EDGE__SOURCE = ID_OBJECT_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EDGE__TARGET = ID_OBJECT_FEATURE_COUNT + 1;
+	int EDGE__TARGET = ID_OBJECT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Graph</b></em>' container reference.
@@ -340,7 +331,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDGE__GRAPH = ID_OBJECT_FEATURE_COUNT + 2;
+	int EDGE__GRAPH = ID_OBJECT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -349,7 +340,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDGE__NAME = ID_OBJECT_FEATURE_COUNT + 3;
+	int EDGE__NAME = ID_OBJECT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Type Edge</b></em>' reference.
@@ -358,7 +349,16 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDGE__TYPE_EDGE = ID_OBJECT_FEATURE_COUNT + 4;
+	int EDGE__TYPE_EDGE = ID_OBJECT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDGE__SOURCE = ID_OBJECT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Edge</em>' class.
@@ -415,13 +415,22 @@ public interface MetamodelPackage extends EPackage {
 	int PREDICATE__VISUALIZATION = 2;
 
 	/**
+	 * The feature id for the '<em><b>Symbol</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDICATE__SYMBOL = 3;
+
+	/**
 	 * The number of structural features of the '<em>Predicate</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PREDICATE_FEATURE_COUNT = 3;
+	int PREDICATE_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of structural features of the '<em>Semantics</em>' class.
@@ -712,17 +721,6 @@ public interface MetamodelPackage extends EPackage {
 	EClass getEdge();
 
 	/**
-	 * Returns the meta object for the reference '{@link no.hib.dpf.metamodel.Edge#getSource <em>Source</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Source</em>'.
-	 * @see no.hib.dpf.metamodel.Edge#getSource()
-	 * @see #getEdge()
-	 * @generated
-	 */
-	EReference getEdge_Source();
-
-	/**
 	 * Returns the meta object for the reference '{@link no.hib.dpf.metamodel.Edge#getTarget <em>Target</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -754,6 +752,17 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getEdge_TypeEdge();
+
+	/**
+	 * Returns the meta object for the reference '{@link no.hib.dpf.metamodel.Edge#getSource <em>Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Source</em>'.
+	 * @see no.hib.dpf.metamodel.Edge#getSource()
+	 * @see #getEdge()
+	 * @generated
+	 */
+	EReference getEdge_Source();
 
 	/**
 	 * Returns the meta object for the container reference '{@link no.hib.dpf.metamodel.Edge#getGraph <em>Graph</em>}'.
@@ -829,6 +838,17 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getPredicate_Visualization();
+
+	/**
+	 * Returns the meta object for the attribute '{@link no.hib.dpf.metamodel.Predicate#getSymbol <em>Symbol</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Symbol</em>'.
+	 * @see no.hib.dpf.metamodel.Predicate#getSymbol()
+	 * @see #getPredicate()
+	 * @generated
+	 */
+	EAttribute getPredicate_Symbol();
 
 	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.metamodel.Semantics <em>Semantics</em>}'.
@@ -1166,14 +1186,6 @@ public interface MetamodelPackage extends EPackage {
 		EClass EDGE = eINSTANCE.getEdge();
 
 		/**
-		 * The meta object literal for the '<em><b>Source</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference EDGE__SOURCE = eINSTANCE.getEdge_Source();
-
-		/**
 		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1196,6 +1208,14 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference EDGE__TYPE_EDGE = eINSTANCE.getEdge_TypeEdge();
+
+		/**
+		 * The meta object literal for the '<em><b>Source</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EDGE__SOURCE = eINSTANCE.getEdge_Source();
 
 		/**
 		 * The meta object literal for the '<em><b>Graph</b></em>' container reference feature.
@@ -1256,6 +1276,14 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PREDICATE__VISUALIZATION = eINSTANCE.getPredicate_Visualization();
+
+		/**
+		 * The meta object literal for the '<em><b>Symbol</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDICATE__SYMBOL = eINSTANCE.getPredicate_Symbol();
 
 		/**
 		 * The meta object literal for the '{@link no.hib.dpf.metamodel.impl.SemanticsImpl <em>Semantics</em>}' class.

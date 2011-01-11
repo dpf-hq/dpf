@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *   <li>{@link no.hib.dpf.metamodel.impl.PredicateImpl#getShape <em>Shape</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.impl.PredicateImpl#getSemantics <em>Semantics</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.impl.PredicateImpl#getVisualization <em>Visualization</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.impl.PredicateImpl#getSymbol <em>Symbol</em>}</li>
  * </ul>
  * </p>
  *
@@ -68,6 +69,26 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 	 * @ordered
 	 */
 	protected Visualization visualization;
+
+	/**
+	 * The default value of the '{@link #getSymbol() <em>Symbol</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSymbol()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String SYMBOL_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getSymbol() <em>Symbol</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSymbol()
+	 * @generated
+	 * @ordered
+	 */
+	protected String symbol = SYMBOL_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -209,6 +230,27 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getSymbol() {
+		return symbol;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSymbol(String newSymbol) {
+		String oldSymbol = symbol;
+		symbol = newSymbol;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.PREDICATE__SYMBOL, oldSymbol, symbol));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * Returns a newly created constraint. If the nodes and/or edges provided don't match the shape
 	 * of this predicate, null is returned.
 	 * <!-- end-user-doc -->
@@ -273,6 +315,8 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 			case MetamodelPackage.PREDICATE__VISUALIZATION:
 				if (resolve) return getVisualization();
 				return basicGetVisualization();
+			case MetamodelPackage.PREDICATE__SYMBOL:
+				return getSymbol();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -293,6 +337,9 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 				return;
 			case MetamodelPackage.PREDICATE__VISUALIZATION:
 				setVisualization((Visualization)newValue);
+				return;
+			case MetamodelPackage.PREDICATE__SYMBOL:
+				setSymbol((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -315,6 +362,9 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 			case MetamodelPackage.PREDICATE__VISUALIZATION:
 				setVisualization((Visualization)null);
 				return;
+			case MetamodelPackage.PREDICATE__SYMBOL:
+				setSymbol(SYMBOL_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -333,8 +383,26 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 				return semantics != null;
 			case MetamodelPackage.PREDICATE__VISUALIZATION:
 				return visualization != null;
+			case MetamodelPackage.PREDICATE__SYMBOL:
+				return SYMBOL_EDEFAULT == null ? symbol != null : !SYMBOL_EDEFAULT.equals(symbol);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (symbol: ");
+		result.append(symbol);
+		result.append(')');
+		return result.toString();
 	}
 
 } //PredicateImpl
