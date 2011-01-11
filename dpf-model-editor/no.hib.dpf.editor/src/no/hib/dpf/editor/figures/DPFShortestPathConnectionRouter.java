@@ -255,7 +255,7 @@ public final class DPFShortestPathConnectionRouter extends AbstractRouter {
 				bends.addPoint(new Point(path.getEndPoint().x, ownerBounds.getBottom().y + 40));
 				path.setBendPoints(bends);
 			} catch (NullPointerException e) {
-				System.out.println("No source, skipping routing for now.");
+				//System.out.println("No source, skipping routing for now.");
 			}
 			
 		} else {
