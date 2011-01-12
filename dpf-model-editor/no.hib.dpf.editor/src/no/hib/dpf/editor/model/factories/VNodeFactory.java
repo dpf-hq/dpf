@@ -15,8 +15,7 @@ public class VNodeFactory implements CreationFactory {
 	
 	@Override
 	public Object getNewObject() {
-		VNode retval = new VNode();
-		retval.setTypeNode(typeNode);
+		VNode retval = new VNode(typeNode);
 		return retval;
 	}
 

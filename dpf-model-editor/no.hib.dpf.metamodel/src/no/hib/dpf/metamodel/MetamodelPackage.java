@@ -614,6 +614,81 @@ public interface MetamodelPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.SpecificationImpl <em>Specification</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.impl.SpecificationImpl
+	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getSpecification()
+	 * @generated
+	 */
+	int SPECIFICATION = 13;
+
+	/**
+	 * The feature id for the '<em><b>Signature</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPECIFICATION__SIGNATURE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Graph</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPECIFICATION__GRAPH = 1;
+
+	/**
+	 * The feature id for the '<em><b>Type Graph</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPECIFICATION__TYPE_GRAPH = 2;
+
+	/**
+	 * The number of structural features of the '<em>Specification</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPECIFICATION_FEATURE_COUNT = 3;
+
+	/**
+	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.ModelHierarchyImpl <em>Model Hierarchy</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.impl.ModelHierarchyImpl
+	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getModelHierarchy()
+	 * @generated
+	 */
+	int MODEL_HIERARCHY = 14;
+
+	/**
+	 * The feature id for the '<em><b>Specifications</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_HIERARCHY__SPECIFICATIONS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Model Hierarchy</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_HIERARCHY_FEATURE_COUNT = 1;
+
+
+	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.metamodel.Graph <em>Graph</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1078,6 +1153,70 @@ public interface MetamodelPackage extends EPackage {
 	EAttribute getIDObject_Id();
 
 	/**
+	 * Returns the meta object for class '{@link no.hib.dpf.metamodel.Specification <em>Specification</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Specification</em>'.
+	 * @see no.hib.dpf.metamodel.Specification
+	 * @generated
+	 */
+	EClass getSpecification();
+
+	/**
+	 * Returns the meta object for the reference '{@link no.hib.dpf.metamodel.Specification#getSignature <em>Signature</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Signature</em>'.
+	 * @see no.hib.dpf.metamodel.Specification#getSignature()
+	 * @see #getSpecification()
+	 * @generated
+	 */
+	EReference getSpecification_Signature();
+
+	/**
+	 * Returns the meta object for the reference '{@link no.hib.dpf.metamodel.Specification#getGraph <em>Graph</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Graph</em>'.
+	 * @see no.hib.dpf.metamodel.Specification#getGraph()
+	 * @see #getSpecification()
+	 * @generated
+	 */
+	EReference getSpecification_Graph();
+
+	/**
+	 * Returns the meta object for the reference '{@link no.hib.dpf.metamodel.Specification#getTypeGraph <em>Type Graph</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Type Graph</em>'.
+	 * @see no.hib.dpf.metamodel.Specification#getTypeGraph()
+	 * @see #getSpecification()
+	 * @generated
+	 */
+	EReference getSpecification_TypeGraph();
+
+	/**
+	 * Returns the meta object for class '{@link no.hib.dpf.metamodel.ModelHierarchy <em>Model Hierarchy</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Model Hierarchy</em>'.
+	 * @see no.hib.dpf.metamodel.ModelHierarchy
+	 * @generated
+	 */
+	EClass getModelHierarchy();
+
+	/**
+	 * Returns the meta object for the reference list '{@link no.hib.dpf.metamodel.ModelHierarchy#getSpecifications <em>Specifications</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Specifications</em>'.
+	 * @see no.hib.dpf.metamodel.ModelHierarchy#getSpecifications()
+	 * @see #getModelHierarchy()
+	 * @generated
+	 */
+	EReference getModelHierarchy_Specifications();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1468,6 +1607,58 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ID_OBJECT__ID = eINSTANCE.getIDObject_Id();
+
+		/**
+		 * The meta object literal for the '{@link no.hib.dpf.metamodel.impl.SpecificationImpl <em>Specification</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see no.hib.dpf.metamodel.impl.SpecificationImpl
+		 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getSpecification()
+		 * @generated
+		 */
+		EClass SPECIFICATION = eINSTANCE.getSpecification();
+
+		/**
+		 * The meta object literal for the '<em><b>Signature</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SPECIFICATION__SIGNATURE = eINSTANCE.getSpecification_Signature();
+
+		/**
+		 * The meta object literal for the '<em><b>Graph</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SPECIFICATION__GRAPH = eINSTANCE.getSpecification_Graph();
+
+		/**
+		 * The meta object literal for the '<em><b>Type Graph</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SPECIFICATION__TYPE_GRAPH = eINSTANCE.getSpecification_TypeGraph();
+
+		/**
+		 * The meta object literal for the '{@link no.hib.dpf.metamodel.impl.ModelHierarchyImpl <em>Model Hierarchy</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see no.hib.dpf.metamodel.impl.ModelHierarchyImpl
+		 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getModelHierarchy()
+		 * @generated
+		 */
+		EClass MODEL_HIERARCHY = eINSTANCE.getModelHierarchy();
+
+		/**
+		 * The meta object literal for the '<em><b>Specifications</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MODEL_HIERARCHY__SPECIFICATIONS = eINSTANCE.getModelHierarchy_Specifications();
 
 	}
 

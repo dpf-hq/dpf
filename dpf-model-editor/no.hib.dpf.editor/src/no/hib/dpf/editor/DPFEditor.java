@@ -18,7 +18,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.EventObject;
+import java.util.List;
 import java.util.Map;
 
 import no.hib.dpf.editor.editoractions.CreateJointImageConstraintAction;
@@ -90,6 +92,8 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 
 	/** This is the root of the editor's model. */
 	private DPFDiagram diagram;
+	
+	private Graph typeGraph = MetamodelFactory.eINSTANCE.createGraph("source,target", "source_to_target:source:target");
 	
 	private static String dpfFilePath;
 	private static String dpfFile;
@@ -268,7 +272,12 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", new  XMLResourceFactoryImpl());
 
 		Resource resource = resourceSet.createResource(URI.createFileURI(dpfFilePath + File.separator + dpfFile));
+
+//		graphlist.add(typeGraph);
+//		graphlist.add(diagram.getDpfGraph());
 		resource.getContents().add(diagram.getDpfGraph());
+		
+		
 		// serialize resource Ð you can specify also serialization
 		// options which defined on org.eclipse.emf.ecore.xmi.XMIResource
 		try {
@@ -351,7 +360,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 	@Override
 	protected PaletteRoot getPaletteRoot() {
 		if (PALETTE_MODEL == null)
-			PALETTE_MODEL = paletteFactory.createPalette(MetamodelFactory.eINSTANCE.createGraph("node,node1", "edge:node:node1"));
+			PALETTE_MODEL = paletteFactory.createPalette(typeGraph);
 		return PALETTE_MODEL;
 	}
 

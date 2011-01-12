@@ -23,6 +23,7 @@ import no.hib.dpf.editor.model.ModelElement;
 import no.hib.dpf.editor.model.VNode;
 import no.hib.dpf.editor.model.commands.ConnectionCreateCommand;
 import no.hib.dpf.editor.model.commands.ConnectionReconnectCommand;
+import no.hib.dpf.metamodel.Edge;
 
 import org.eclipse.draw2d.ChopboxAnchor;
 import org.eclipse.draw2d.ConnectionAnchor;
@@ -90,9 +91,12 @@ protected void createEditPolicies() {
 		 * @see org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy#getConnectionCreateCommand(org.eclipse.gef.requests.CreateConnectionRequest)
 		 */
 		protected Command getConnectionCreateCommand(CreateConnectionRequest request) {
+			
 			VNode source = (VNode) getHost().getModel();
-			int style = ((Integer) request.getNewObjectType()).intValue();
-			ConnectionCreateCommand cmd = new ConnectionCreateCommand(source, style);
+			Edge typeEdge = (Edge)request.getNewObjectType();
+			
+			
+			ConnectionCreateCommand cmd = new ConnectionCreateCommand(source, typeEdge);
 			request.setStartCommand(cmd);
 			return cmd;
 		}

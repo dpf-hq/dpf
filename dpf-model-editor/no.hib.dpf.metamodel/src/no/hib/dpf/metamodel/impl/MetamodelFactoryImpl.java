@@ -74,6 +74,8 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 			case MetamodelPackage.TYPING_MORPHISM: return createTypingMorphism();
 			case MetamodelPackage.GRAPH_HOMOMORPHISM: return createGraphHomomorphism();
 			case MetamodelPackage.ID_OBJECT: return createIDObject();
+			case MetamodelPackage.SPECIFICATION: return createSpecification();
+			case MetamodelPackage.MODEL_HIERARCHY: return createModelHierarchy();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -300,6 +302,26 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	public IDObject createIDObject() {
 		IDObjectImpl idObject = new IDObjectImpl();
 		return idObject;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Specification createSpecification() {
+		SpecificationImpl specification = new SpecificationImpl();
+		return specification;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModelHierarchy createModelHierarchy() {
+		ModelHierarchyImpl modelHierarchy = new ModelHierarchyImpl();
+		return modelHierarchy;
 	}
 
 	/**

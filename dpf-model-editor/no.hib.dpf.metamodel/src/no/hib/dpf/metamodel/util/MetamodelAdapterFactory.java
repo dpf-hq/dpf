@@ -125,6 +125,14 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 				return createIDObjectAdapter();
 			}
 			@Override
+			public Adapter caseSpecification(Specification object) {
+				return createSpecificationAdapter();
+			}
+			@Override
+			public Adapter caseModelHierarchy(ModelHierarchy object) {
+				return createModelHierarchyAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -323,6 +331,34 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createIDObjectAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link no.hib.dpf.metamodel.Specification <em>Specification</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see no.hib.dpf.metamodel.Specification
+	 * @generated
+	 */
+	public Adapter createSpecificationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link no.hib.dpf.metamodel.ModelHierarchy <em>Model Hierarchy</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see no.hib.dpf.metamodel.ModelHierarchy
+	 * @generated
+	 */
+	public Adapter createModelHierarchyAdapter() {
 		return null;
 	}
 

@@ -241,11 +241,6 @@ public class VNode extends ModelElement implements Node, IDObjectContainer, Mova
 		return locationAndSize;
 	}	
 
-	
-	
-	
-	
-
 	private transient Node nodeComponent;
 	private String nodeID;
 

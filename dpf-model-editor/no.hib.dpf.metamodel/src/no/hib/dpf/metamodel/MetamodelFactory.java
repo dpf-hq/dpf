@@ -174,6 +174,24 @@ public interface MetamodelFactory extends EFactory {
 	IDObject createIDObject();
 
 	/**
+	 * Returns a new object of class '<em>Specification</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Specification</em>'.
+	 * @generated
+	 */
+	Specification createSpecification();
+
+	/**
+	 * Returns a new object of class '<em>Model Hierarchy</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Model Hierarchy</em>'.
+	 * @generated
+	 */
+	ModelHierarchy createModelHierarchy();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

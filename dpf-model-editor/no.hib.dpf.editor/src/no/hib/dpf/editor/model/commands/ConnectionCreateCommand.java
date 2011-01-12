@@ -10,11 +10,10 @@
 Ê*******************************************************************************/
 package no.hib.dpf.editor.model.commands;
 
-import java.util.Iterator;
-
+import no.hib.dpf.editor.model.SingleNodeConnection;
 import no.hib.dpf.editor.model.VEdge;
 import no.hib.dpf.editor.model.VNode;
-import no.hib.dpf.editor.model.SingleNodeConnection;
+import no.hib.dpf.metamodel.Edge;
 
 import org.eclipse.gef.commands.Command;
 
@@ -43,8 +42,7 @@ import org.eclipse.gef.commands.Command;
 public class ConnectionCreateCommand extends Command {
 /** The connection instance. */
 private VEdge connection;
-/** The desired line style for the connection (dashed or solid). */
-private final int lineStyle;
+private Edge typeEdge;
 
 /** Start endpoint for the connection. */
 private final VNode source;
@@ -58,38 +56,37 @@ private VNode target;
  * @throws IllegalArgumentException if source is null
  * @see VEdge#setLineStyle(int)
  */
-public ConnectionCreateCommand(VNode source, int lineStyle) {
+public ConnectionCreateCommand(VNode source, Edge typeEdge) {
 	if (source == null) {
 		throw new IllegalArgumentException();
 	}
 	setLabel("connection creation");
 	this.source = source;
-	this.lineStyle = lineStyle;
+	this.typeEdge = typeEdge;
 }
 
 /* (non-Javadoc)
  * @see org.eclipse.gef.commands.Command#canExecute()
  */
 public boolean canExecute() {
-//	if (source.equals(target)) {
+//	if (doSourceToTargetAlreadyExist()) {
 //		return false;
 //	}
-	// TODO: remove this
-	if (doSourceToTargetAlreadyExist()) {
-		return false;
+	if ((target == null) || (source == null)) {
+		return true;
 	}
-	return true;
+	return source.edgeCanMakeConnectionAsTarget(target, typeEdge);
 }
 
-private boolean doSourceToTargetAlreadyExist() {
-	for (Iterator<VEdge> iter = source.getSourceConnections().iterator(); iter.hasNext();) {
-		VEdge conn = iter.next();
-		if (conn.getShapeTarget().equals(target)) {
-			return true;
-		}
-	}
-	return false;
-}
+//private boolean doSourceToTargetAlreadyExist() {
+//	for (Iterator<VEdge> iter = source.getSourceConnections().iterator(); iter.hasNext();) {
+//		VEdge conn = iter.next();
+//		if (conn.getShapeTarget().equals(target)) {
+//			return true;
+//		}
+//	}
+//	return false;
+//}
 
 /* (non-Javadoc)
  * @see org.eclipse.gef.commands.Command#execute()
@@ -101,8 +98,8 @@ public void execute() {
 	} else {
 		connection = new SingleNodeConnection(source);
 	}
-	// use the supplied line style
-	connection.setLineStyle(lineStyle);
+//	// use the supplied line style
+//	connection.setLineStyle(lineStyle);
 }
 
 /* (non-Javadoc)

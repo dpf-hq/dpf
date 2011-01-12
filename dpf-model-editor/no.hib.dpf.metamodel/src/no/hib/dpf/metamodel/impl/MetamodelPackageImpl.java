@@ -17,10 +17,12 @@ import no.hib.dpf.metamodel.GraphHomomorphism;
 import no.hib.dpf.metamodel.IDObject;
 import no.hib.dpf.metamodel.MetamodelFactory;
 import no.hib.dpf.metamodel.MetamodelPackage;
+import no.hib.dpf.metamodel.ModelHierarchy;
 import no.hib.dpf.metamodel.Node;
 import no.hib.dpf.metamodel.Predicate;
 import no.hib.dpf.metamodel.Semantics;
 import no.hib.dpf.metamodel.Signature;
+import no.hib.dpf.metamodel.Specification;
 import no.hib.dpf.metamodel.TypingMorphism;
 import no.hib.dpf.metamodel.Visualization;
 
@@ -129,6 +131,20 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * @generated
 	 */
 	private EClass idObjectEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass specificationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass modelHierarchyEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -588,6 +604,60 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getSpecification() {
+		return specificationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSpecification_Signature() {
+		return (EReference)specificationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSpecification_Graph() {
+		return (EReference)specificationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSpecification_TypeGraph() {
+		return (EReference)specificationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getModelHierarchy() {
+		return modelHierarchyEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getModelHierarchy_Specifications() {
+		return (EReference)modelHierarchyEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public MetamodelFactory getMetamodelFactory() {
 		return (MetamodelFactory)getEFactoryInstance();
 	}
@@ -666,6 +736,14 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 		idObjectEClass = createEClass(ID_OBJECT);
 		createEAttribute(idObjectEClass, ID_OBJECT__ID);
+
+		specificationEClass = createEClass(SPECIFICATION);
+		createEReference(specificationEClass, SPECIFICATION__SIGNATURE);
+		createEReference(specificationEClass, SPECIFICATION__GRAPH);
+		createEReference(specificationEClass, SPECIFICATION__TYPE_GRAPH);
+
+		modelHierarchyEClass = createEClass(MODEL_HIERARCHY);
+		createEReference(modelHierarchyEClass, MODEL_HIERARCHY__SPECIFICATIONS);
 	}
 
 	/**
@@ -847,6 +925,14 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 		initEClass(idObjectEClass, IDObject.class, "IDObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getIDObject_Id(), ecorePackage.getEString(), "id", "", 0, 1, IDObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(specificationEClass, Specification.class, "Specification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSpecification_Signature(), this.getSignature(), null, "signature", null, 1, 1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSpecification_Graph(), this.getGraph(), null, "graph", null, 1, 1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSpecification_TypeGraph(), this.getGraph(), null, "typeGraph", null, 1, 1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(modelHierarchyEClass, ModelHierarchy.class, "ModelHierarchy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getModelHierarchy_Specifications(), this.getSpecification(), null, "specifications", null, 0, -1, ModelHierarchy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

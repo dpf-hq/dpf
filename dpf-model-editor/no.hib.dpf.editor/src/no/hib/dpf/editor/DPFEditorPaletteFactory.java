@@ -10,8 +10,8 @@
 Ê*******************************************************************************/
 package no.hib.dpf.editor;
 
-import no.hib.dpf.editor.model.VEdge;
 import no.hib.dpf.editor.model.VNode;
+import no.hib.dpf.editor.model.factories.EdgeCreationFactory;
 import no.hib.dpf.editor.model.factories.VNodeFactory;
 import no.hib.dpf.metamodel.Edge;
 import no.hib.dpf.metamodel.Graph;
@@ -26,7 +26,6 @@ import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.PaletteToolbar;
 import org.eclipse.gef.palette.PanningSelectionToolEntry;
 import org.eclipse.gef.palette.ToolEntry;
-import org.eclipse.gef.requests.CreationFactory;
 import org.eclipse.gef.tools.MarqueeSelectionTool;
 import org.eclipse.jface.resource.ImageDescriptor;
 
@@ -93,25 +92,14 @@ public class DPFEditorPaletteFactory {
 		for (Edge typeEdge : typeGraph.getEdges()) {
 			
 			// Add (solid-line) connection tool
-			tool = new ConnectionCreationToolEntry(typeEdge.getName(),
-					"Create a " + typeEdge.getName(), new CreationFactory() {
-						public Object getNewObject() {
-							return null;
-						}
-
-						// see ShapeEditPart#createEditPolicies()
-						// this is abused to transmit the desired line style
-						public Object getObjectType() {
-							return VEdge.SOLID_CONNECTION;
-						}
-					}, ImageDescriptor.createFromFile(DPFPlugin.class,
-							"icons/connection_s16.gif"),
-					ImageDescriptor.createFromFile(DPFPlugin.class,
-							"icons/connection_s24.gif"));
+			tool = new ConnectionCreationToolEntry(
+					typeEdge.getName(),
+					"Create a " + typeEdge.getName(),
+					new EdgeCreationFactory(null, typeEdge),
+					ImageDescriptor.createFromFile(DPFPlugin.class, "icons/connection_s16.gif"),
+					ImageDescriptor.createFromFile(DPFPlugin.class, "icons/connection_s24.gif"));
 			toolbar.add(tool);
-		}
-		
-
+		}		
 
 		return toolbar;
 	}
