@@ -6,6 +6,8 @@
  */
 package no.hib.dpf.metamodel.tests;
 
+import org.junit.Test;
+
 import junit.framework.TestCase;
 
 import junit.textui.TestRunner;
@@ -88,6 +90,12 @@ public class SpecificationTest extends TestCase {
 	@Override
 	protected void tearDown() throws Exception {
 		setFixture(null);
+	}
+	
+	@Test
+	public void testDefaultSpecificationHasTypeAndGraphGraph() {
+		assertNotNull(getFixture().getTypeGraph());
+		assertNotNull(getFixture().getGraph());
 	}
 
 } //SpecificationTest

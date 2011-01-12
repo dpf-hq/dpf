@@ -7,6 +7,7 @@
 package no.hib.dpf.metamodel.impl;
 
 import no.hib.dpf.metamodel.Graph;
+import no.hib.dpf.metamodel.MetamodelFactory;
 import no.hib.dpf.metamodel.MetamodelPackage;
 import no.hib.dpf.metamodel.Signature;
 import no.hib.dpf.metamodel.Specification;
@@ -72,6 +73,8 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 	 */
 	protected SpecificationImpl() {
 		super();
+		setTypeGraph(MetamodelFactory.eINSTANCE.createGraph());
+		setGraph(MetamodelFactory.eINSTANCE.createGraph());
 	}
 
 	/**

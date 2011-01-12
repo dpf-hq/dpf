@@ -6,6 +6,8 @@
  */
 package no.hib.dpf.metamodel.tests;
 
+import org.junit.Test;
+
 import junit.framework.TestCase;
 
 import junit.textui.TestRunner;
@@ -88,6 +90,11 @@ public class ModelHierarchyTest extends TestCase {
 	@Override
 	protected void tearDown() throws Exception {
 		setFixture(null);
+	}
+	
+	@Test
+	public void testDefaultConstructedModelHierarchyHasOneSpecification() {
+		assertEquals(1, getFixture().getSpecifications().size());
 	}
 
 } //ModelHierarchyTest
