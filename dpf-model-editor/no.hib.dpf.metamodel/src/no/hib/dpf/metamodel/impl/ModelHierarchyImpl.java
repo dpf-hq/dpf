@@ -13,13 +13,13 @@ import no.hib.dpf.metamodel.MetamodelPackage;
 import no.hib.dpf.metamodel.ModelHierarchy;
 import no.hib.dpf.metamodel.Specification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,7 +36,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  */
 public class ModelHierarchyImpl extends EObjectImpl implements ModelHierarchy {
 	/**
-	 * The cached value of the '{@link #getSpecifications() <em>Specifications</em>}' reference list.
+	 * The cached value of the '{@link #getSpecifications() <em>Specifications</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getSpecifications()
@@ -48,7 +48,7 @@ public class ModelHierarchyImpl extends EObjectImpl implements ModelHierarchy {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected ModelHierarchyImpl() {
 		super();
@@ -72,9 +72,23 @@ public class ModelHierarchyImpl extends EObjectImpl implements ModelHierarchy {
 	 */
 	public EList<Specification> getSpecifications() {
 		if (specifications == null) {
-			specifications = new EObjectResolvingEList<Specification>(Specification.class, this, MetamodelPackage.MODEL_HIERARCHY__SPECIFICATIONS);
+			specifications = new EObjectContainmentEList<Specification>(Specification.class, this, MetamodelPackage.MODEL_HIERARCHY__SPECIFICATIONS);
 		}
 		return specifications;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case MetamodelPackage.MODEL_HIERARCHY__SPECIFICATIONS:
+				return ((InternalEList<?>)getSpecifications()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**

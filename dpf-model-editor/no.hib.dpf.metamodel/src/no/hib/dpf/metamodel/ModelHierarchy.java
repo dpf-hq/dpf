@@ -28,7 +28,7 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface ModelHierarchy extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Specifications</b></em>' reference list.
+	 * Returns the value of the '<em><b>Specifications</b></em>' containment reference list.
 	 * The list contents are of type {@link no.hib.dpf.metamodel.Specification}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -36,9 +36,9 @@ public interface ModelHierarchy extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Specifications</em>' reference list.
+	 * @return the value of the '<em>Specifications</em>' containment reference list.
 	 * @see no.hib.dpf.metamodel.MetamodelPackage#getModelHierarchy_Specifications()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<Specification> getSpecifications();

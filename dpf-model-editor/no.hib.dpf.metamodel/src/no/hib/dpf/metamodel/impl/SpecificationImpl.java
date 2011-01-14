@@ -14,6 +14,7 @@ import no.hib.dpf.metamodel.Specification;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -37,7 +38,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  */
 public class SpecificationImpl extends EObjectImpl implements Specification {
 	/**
-	 * The cached value of the '{@link #getSignature() <em>Signature</em>}' reference.
+	 * The cached value of the '{@link #getSignature() <em>Signature</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getSignature()
@@ -47,7 +48,7 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 	protected Signature signature;
 
 	/**
-	 * The cached value of the '{@link #getGraph() <em>Graph</em>}' reference.
+	 * The cached value of the '{@link #getGraph() <em>Graph</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getGraph()
@@ -57,7 +58,7 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 	protected Graph graph;
 
 	/**
-	 * The cached value of the '{@link #getTypeGraph() <em>Type Graph</em>}' reference.
+	 * The cached value of the '{@link #getTypeGraph() <em>Type Graph</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getTypeGraph()
@@ -69,7 +70,7 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected SpecificationImpl() {
 		super();
@@ -93,14 +94,6 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 	 * @generated
 	 */
 	public Signature getSignature() {
-		if (signature != null && signature.eIsProxy()) {
-			InternalEObject oldSignature = (InternalEObject)signature;
-			signature = (Signature)eResolveProxy(oldSignature);
-			if (signature != oldSignature) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.SPECIFICATION__SIGNATURE, oldSignature, signature));
-			}
-		}
 		return signature;
 	}
 
@@ -109,8 +102,14 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Signature basicGetSignature() {
-		return signature;
+	public NotificationChain basicSetSignature(Signature newSignature, NotificationChain msgs) {
+		Signature oldSignature = signature;
+		signature = newSignature;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MetamodelPackage.SPECIFICATION__SIGNATURE, oldSignature, newSignature);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -119,10 +118,17 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 	 * @generated
 	 */
 	public void setSignature(Signature newSignature) {
-		Signature oldSignature = signature;
-		signature = newSignature;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.SPECIFICATION__SIGNATURE, oldSignature, signature));
+		if (newSignature != signature) {
+			NotificationChain msgs = null;
+			if (signature != null)
+				msgs = ((InternalEObject)signature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MetamodelPackage.SPECIFICATION__SIGNATURE, null, msgs);
+			if (newSignature != null)
+				msgs = ((InternalEObject)newSignature).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MetamodelPackage.SPECIFICATION__SIGNATURE, null, msgs);
+			msgs = basicSetSignature(newSignature, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.SPECIFICATION__SIGNATURE, newSignature, newSignature));
 	}
 
 	/**
@@ -131,14 +137,6 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 	 * @generated
 	 */
 	public Graph getGraph() {
-		if (graph != null && graph.eIsProxy()) {
-			InternalEObject oldGraph = (InternalEObject)graph;
-			graph = (Graph)eResolveProxy(oldGraph);
-			if (graph != oldGraph) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.SPECIFICATION__GRAPH, oldGraph, graph));
-			}
-		}
 		return graph;
 	}
 
@@ -147,8 +145,14 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Graph basicGetGraph() {
-		return graph;
+	public NotificationChain basicSetGraph(Graph newGraph, NotificationChain msgs) {
+		Graph oldGraph = graph;
+		graph = newGraph;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MetamodelPackage.SPECIFICATION__GRAPH, oldGraph, newGraph);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -157,10 +161,17 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 	 * @generated
 	 */
 	public void setGraph(Graph newGraph) {
-		Graph oldGraph = graph;
-		graph = newGraph;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.SPECIFICATION__GRAPH, oldGraph, graph));
+		if (newGraph != graph) {
+			NotificationChain msgs = null;
+			if (graph != null)
+				msgs = ((InternalEObject)graph).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MetamodelPackage.SPECIFICATION__GRAPH, null, msgs);
+			if (newGraph != null)
+				msgs = ((InternalEObject)newGraph).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MetamodelPackage.SPECIFICATION__GRAPH, null, msgs);
+			msgs = basicSetGraph(newGraph, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.SPECIFICATION__GRAPH, newGraph, newGraph));
 	}
 
 	/**
@@ -169,14 +180,6 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 	 * @generated
 	 */
 	public Graph getTypeGraph() {
-		if (typeGraph != null && typeGraph.eIsProxy()) {
-			InternalEObject oldTypeGraph = (InternalEObject)typeGraph;
-			typeGraph = (Graph)eResolveProxy(oldTypeGraph);
-			if (typeGraph != oldTypeGraph) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.SPECIFICATION__TYPE_GRAPH, oldTypeGraph, typeGraph));
-			}
-		}
 		return typeGraph;
 	}
 
@@ -185,8 +188,14 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Graph basicGetTypeGraph() {
-		return typeGraph;
+	public NotificationChain basicSetTypeGraph(Graph newTypeGraph, NotificationChain msgs) {
+		Graph oldTypeGraph = typeGraph;
+		typeGraph = newTypeGraph;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MetamodelPackage.SPECIFICATION__TYPE_GRAPH, oldTypeGraph, newTypeGraph);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -195,10 +204,35 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 	 * @generated
 	 */
 	public void setTypeGraph(Graph newTypeGraph) {
-		Graph oldTypeGraph = typeGraph;
-		typeGraph = newTypeGraph;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.SPECIFICATION__TYPE_GRAPH, oldTypeGraph, typeGraph));
+		if (newTypeGraph != typeGraph) {
+			NotificationChain msgs = null;
+			if (typeGraph != null)
+				msgs = ((InternalEObject)typeGraph).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MetamodelPackage.SPECIFICATION__TYPE_GRAPH, null, msgs);
+			if (newTypeGraph != null)
+				msgs = ((InternalEObject)newTypeGraph).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MetamodelPackage.SPECIFICATION__TYPE_GRAPH, null, msgs);
+			msgs = basicSetTypeGraph(newTypeGraph, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.SPECIFICATION__TYPE_GRAPH, newTypeGraph, newTypeGraph));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case MetamodelPackage.SPECIFICATION__SIGNATURE:
+				return basicSetSignature(null, msgs);
+			case MetamodelPackage.SPECIFICATION__GRAPH:
+				return basicSetGraph(null, msgs);
+			case MetamodelPackage.SPECIFICATION__TYPE_GRAPH:
+				return basicSetTypeGraph(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -210,14 +244,11 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case MetamodelPackage.SPECIFICATION__SIGNATURE:
-				if (resolve) return getSignature();
-				return basicGetSignature();
+				return getSignature();
 			case MetamodelPackage.SPECIFICATION__GRAPH:
-				if (resolve) return getGraph();
-				return basicGetGraph();
+				return getGraph();
 			case MetamodelPackage.SPECIFICATION__TYPE_GRAPH:
-				if (resolve) return getTypeGraph();
-				return basicGetTypeGraph();
+				return getTypeGraph();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

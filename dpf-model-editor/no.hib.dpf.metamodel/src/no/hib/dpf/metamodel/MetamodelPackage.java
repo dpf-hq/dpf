@@ -624,7 +624,7 @@ public interface MetamodelPackage extends EPackage {
 	int SPECIFICATION = 13;
 
 	/**
-	 * The feature id for the '<em><b>Signature</b></em>' reference.
+	 * The feature id for the '<em><b>Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -633,7 +633,7 @@ public interface MetamodelPackage extends EPackage {
 	int SPECIFICATION__SIGNATURE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Graph</b></em>' reference.
+	 * The feature id for the '<em><b>Graph</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -642,7 +642,7 @@ public interface MetamodelPackage extends EPackage {
 	int SPECIFICATION__GRAPH = 1;
 
 	/**
-	 * The feature id for the '<em><b>Type Graph</b></em>' reference.
+	 * The feature id for the '<em><b>Type Graph</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -670,7 +670,7 @@ public interface MetamodelPackage extends EPackage {
 	int MODEL_HIERARCHY = 14;
 
 	/**
-	 * The feature id for the '<em><b>Specifications</b></em>' reference list.
+	 * The feature id for the '<em><b>Specifications</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1163,10 +1163,10 @@ public interface MetamodelPackage extends EPackage {
 	EClass getSpecification();
 
 	/**
-	 * Returns the meta object for the reference '{@link no.hib.dpf.metamodel.Specification#getSignature <em>Signature</em>}'.
+	 * Returns the meta object for the containment reference '{@link no.hib.dpf.metamodel.Specification#getSignature <em>Signature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Signature</em>'.
+	 * @return the meta object for the containment reference '<em>Signature</em>'.
 	 * @see no.hib.dpf.metamodel.Specification#getSignature()
 	 * @see #getSpecification()
 	 * @generated
@@ -1174,10 +1174,10 @@ public interface MetamodelPackage extends EPackage {
 	EReference getSpecification_Signature();
 
 	/**
-	 * Returns the meta object for the reference '{@link no.hib.dpf.metamodel.Specification#getGraph <em>Graph</em>}'.
+	 * Returns the meta object for the containment reference '{@link no.hib.dpf.metamodel.Specification#getGraph <em>Graph</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Graph</em>'.
+	 * @return the meta object for the containment reference '<em>Graph</em>'.
 	 * @see no.hib.dpf.metamodel.Specification#getGraph()
 	 * @see #getSpecification()
 	 * @generated
@@ -1185,10 +1185,10 @@ public interface MetamodelPackage extends EPackage {
 	EReference getSpecification_Graph();
 
 	/**
-	 * Returns the meta object for the reference '{@link no.hib.dpf.metamodel.Specification#getTypeGraph <em>Type Graph</em>}'.
+	 * Returns the meta object for the containment reference '{@link no.hib.dpf.metamodel.Specification#getTypeGraph <em>Type Graph</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Type Graph</em>'.
+	 * @return the meta object for the containment reference '<em>Type Graph</em>'.
 	 * @see no.hib.dpf.metamodel.Specification#getTypeGraph()
 	 * @see #getSpecification()
 	 * @generated
@@ -1206,10 +1206,10 @@ public interface MetamodelPackage extends EPackage {
 	EClass getModelHierarchy();
 
 	/**
-	 * Returns the meta object for the reference list '{@link no.hib.dpf.metamodel.ModelHierarchy#getSpecifications <em>Specifications</em>}'.
+	 * Returns the meta object for the containment reference list '{@link no.hib.dpf.metamodel.ModelHierarchy#getSpecifications <em>Specifications</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Specifications</em>'.
+	 * @return the meta object for the containment reference list '<em>Specifications</em>'.
 	 * @see no.hib.dpf.metamodel.ModelHierarchy#getSpecifications()
 	 * @see #getModelHierarchy()
 	 * @generated
@@ -1619,7 +1619,7 @@ public interface MetamodelPackage extends EPackage {
 		EClass SPECIFICATION = eINSTANCE.getSpecification();
 
 		/**
-		 * The meta object literal for the '<em><b>Signature</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Signature</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1627,7 +1627,7 @@ public interface MetamodelPackage extends EPackage {
 		EReference SPECIFICATION__SIGNATURE = eINSTANCE.getSpecification_Signature();
 
 		/**
-		 * The meta object literal for the '<em><b>Graph</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Graph</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1635,7 +1635,7 @@ public interface MetamodelPackage extends EPackage {
 		EReference SPECIFICATION__GRAPH = eINSTANCE.getSpecification_Graph();
 
 		/**
-		 * The meta object literal for the '<em><b>Type Graph</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Type Graph</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1653,7 +1653,7 @@ public interface MetamodelPackage extends EPackage {
 		EClass MODEL_HIERARCHY = eINSTANCE.getModelHierarchy();
 
 		/**
-		 * The meta object literal for the '<em><b>Specifications</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Specifications</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

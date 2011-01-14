@@ -171,15 +171,15 @@
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Specification">
           <eStructuralFeatures xsi:type="ecore:EReference" name="signature" lowerBound="1"
-              eType="#//hib/dpf/metamodel/Signature"/>
+              eType="#//hib/dpf/metamodel/Signature" containment="true"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="graph" lowerBound="1"
-              eType="#//hib/dpf/metamodel/Graph"/>
+              eType="#//hib/dpf/metamodel/Graph" containment="true"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="typeGraph" lowerBound="1"
-              eType="#//hib/dpf/metamodel/Graph"/>
+              eType="#//hib/dpf/metamodel/Graph" containment="true"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="ModelHierarchy">
           <eStructuralFeatures xsi:type="ecore:EReference" name="specifications" upperBound="-1"
-              eType="#//hib/dpf/metamodel/Specification"/>
+              eType="#//hib/dpf/metamodel/Specification" containment="true"/>
         </eClassifiers>
       </eSubpackages>
       <eSubpackages name="command" nsURI="http://no.hib.dpf.command" nsPrefix="no.hib.dpf.command">

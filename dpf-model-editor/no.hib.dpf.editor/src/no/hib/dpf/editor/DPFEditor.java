@@ -34,6 +34,7 @@ import no.hib.dpf.editor.parts.VNodesTreeEditPartFactory;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.IDObject;
 import no.hib.dpf.metamodel.MetamodelFactory;
+import no.hib.dpf.metamodel.ModelHierarchy;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
@@ -92,6 +93,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 
 	/** This is the root of the editor's model. */
 	private DPFDiagram diagram;
+	private ModelHierarchy modelHierarchy = MetamodelFactory.eINSTANCE.createModelHierarchy();
 	
 	private Graph typeGraph = MetamodelFactory.eINSTANCE.createGraph("source,target", "source_to_target:source:target");
 	
@@ -275,7 +277,9 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 
 //		graphlist.add(typeGraph);
 //		graphlist.add(diagram.getDpfGraph());
-		resource.getContents().add(diagram.getDpfGraph());
+		modelHierarchy.getSpecifications().get(0).setGraph(diagram.getDpfGraph());
+		modelHierarchy.getSpecifications().get(0).setTypeGraph(typeGraph);
+		resource.getContents().add(modelHierarchy);
 		
 		
 		// serialize resource Ð you can specify also serialization
@@ -367,7 +371,9 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 	private void handleLoadException(Exception e) {
 		System.err.println("** Load failed. Using default model. **");
 		e.printStackTrace();
+		modelHierarchy = MetamodelFactory.eINSTANCE.createModelHierarchy();
 		diagram = new DPFDiagram();
+		diagram.setDpfGraph(modelHierarchy.getSpecifications().get(0).getGraph());
 	}
 
 	/**
