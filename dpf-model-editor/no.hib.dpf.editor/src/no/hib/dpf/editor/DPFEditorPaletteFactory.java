@@ -10,18 +10,19 @@
 Ê*******************************************************************************/
 package no.hib.dpf.editor;
 
-import no.hib.dpf.editor.model.VNode;
+import java.util.List;
+
 import no.hib.dpf.editor.model.factories.EdgeCreationFactory;
 import no.hib.dpf.editor.model.factories.VNodeFactory;
 import no.hib.dpf.metamodel.Edge;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.Node;
 
-import org.eclipse.gef.palette.CombinedTemplateCreationEntry;
 import org.eclipse.gef.palette.ConnectionCreationToolEntry;
+import org.eclipse.gef.palette.CreationToolEntry;
 import org.eclipse.gef.palette.MarqueeToolEntry;
 import org.eclipse.gef.palette.PaletteContainer;
-import org.eclipse.gef.palette.PaletteDrawer;
+import org.eclipse.gef.palette.PaletteGroup;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.PaletteToolbar;
 import org.eclipse.gef.palette.PanningSelectionToolEntry;
@@ -33,6 +34,8 @@ import org.eclipse.jface.resource.ImageDescriptor;
  * Utility class that can create a GEF Palette.
  */
 public class DPFEditorPaletteFactory {
+	
+	public static final String NODES = "Nodes";
 	
 	// /** Preference ID used to persist the palette location. */
 	// private static final String PALETTE_DOCK_LOCATION =
@@ -53,26 +56,56 @@ public class DPFEditorPaletteFactory {
 	public PaletteRoot createPalette(Graph typeGraph) {
 		PaletteRoot palette = new PaletteRoot();
 		palette.add(createToolsGroup(palette, typeGraph));
-		palette.add(createShapesDrawer(typeGraph));
+		palette.add(createShapesDrawer(typeGraph));		
 		return palette;
 	}
-
+		
+	@SuppressWarnings("rawtypes")
+	public void updatePalette(PaletteRoot root, Graph typeGraph) {
+		List children = root.getChildren();
+		for (int i = 0; i < children.size(); i++) {
+			if (children.get(i) instanceof PaletteGroup) {
+				PaletteGroup entry = (PaletteGroup) children.get(i);
+				if (entry.getLabel().equals(DPFEditorPaletteFactory.NODES)) {
+					// This is a group we want to update
+					int size = entry.getChildren().size();
+					for (int j = 0; j < size; j++) {
+						entry.getChildren().remove(0);						
+					}
+					addNodeCreationToolsToGroup(typeGraph, entry);
+//					List plots = model.getPlots();
+//					for (int j = 0; j < plots.size(); j++) {
+//						CombinedTemplateCreationEntry component = new CombinedTemplateCreationEntry(
+//								plots.get(j).getName(), plots.get(j).getName(),
+//								Plot.class, new SimpleFactory(Plot.class),
+//								ImageDescriptor.createFromFile(
+//										ResultsEditor.class, "icons/plot.gif"),
+//								ImageDescriptor.createFromFile(
+//										ResultsEditor.class, "icons/plot.gif"));
+//						entry.add(component);
+//					}
+				}
+			}
+		}		
+	}
+	
 	/** Create the "Shapes" drawer. */
-	private PaletteContainer createShapesDrawer(Graph typeGraph) {
-		PaletteDrawer componentsDrawer = new PaletteDrawer("Shapes");
+	private PaletteGroup createShapesDrawer(Graph typeGraph) {
+		PaletteGroup nodeGroup = new PaletteGroup(NODES);
+		addNodeCreationToolsToGroup(typeGraph, nodeGroup);
+		return nodeGroup;
+	}
 
+	public void addNodeCreationToolsToGroup(Graph typeGraph, PaletteGroup nodeGroup) {
 		ImageDescriptor iconSmall = ImageDescriptor.createFromFile(DPFPlugin.class, "icons/rectangle16.gif");
 		ImageDescriptor iconLarge = ImageDescriptor.createFromFile(DPFPlugin.class, "icons/rectangle24.gif");
 
-		CombinedTemplateCreationEntry component;
 		for (Node typeNode : typeGraph.getNodes()) {
-			component = new CombinedTemplateCreationEntry(typeNode.getName(), "Create a new " + typeNode.getName(), VNode.class, new VNodeFactory(typeNode), iconSmall, iconLarge);
-			componentsDrawer.add(component);
+//			component = new CombinedTemplateCreationEntry(typeNode.getName(), "Create a new " + typeNode.getName(), VNode.class, new VNodeFactory(typeNode), iconSmall, iconLarge);
+			nodeGroup.add(new CreationToolEntry(typeNode.getName(), "Create a new " + typeNode.getName(), new VNodeFactory(typeNode), iconSmall, iconLarge));
 		}
-
-		return componentsDrawer;
 	}
-
+	
 	/** Create the "Tools" group. */
 	private PaletteContainer createToolsGroup(PaletteRoot palette, Graph typeGraph) {
 		PaletteToolbar toolbar = new PaletteToolbar("Tools");

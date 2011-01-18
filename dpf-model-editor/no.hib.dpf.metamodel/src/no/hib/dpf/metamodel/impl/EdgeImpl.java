@@ -27,9 +27,9 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <ul>
  *   <li>{@link no.hib.dpf.metamodel.impl.EdgeImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.impl.EdgeImpl#getGraph <em>Graph</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.impl.EdgeImpl#getName <em>Name</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.impl.EdgeImpl#getTypeEdge <em>Type Edge</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.impl.EdgeImpl#getSource <em>Source</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.impl.EdgeImpl#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -45,26 +45,6 @@ public class EdgeImpl extends IDObjectImpl implements Edge {
 	 * @ordered
 	 */
 	protected Node target;
-
-	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getTypeEdge() <em>Type Edge</em>}' reference.
@@ -85,6 +65,26 @@ public class EdgeImpl extends IDObjectImpl implements Edge {
 	 * @ordered
 	 */
 	protected Node source;
+
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -338,14 +338,14 @@ public class EdgeImpl extends IDObjectImpl implements Edge {
 				return basicGetTarget();
 			case MetamodelPackage.EDGE__GRAPH:
 				return getGraph();
-			case MetamodelPackage.EDGE__NAME:
-				return getName();
 			case MetamodelPackage.EDGE__TYPE_EDGE:
 				if (resolve) return getTypeEdge();
 				return basicGetTypeEdge();
 			case MetamodelPackage.EDGE__SOURCE:
 				if (resolve) return getSource();
 				return basicGetSource();
+			case MetamodelPackage.EDGE__NAME:
+				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -364,14 +364,14 @@ public class EdgeImpl extends IDObjectImpl implements Edge {
 			case MetamodelPackage.EDGE__GRAPH:
 				setGraph((Graph)newValue);
 				return;
-			case MetamodelPackage.EDGE__NAME:
-				setName((String)newValue);
-				return;
 			case MetamodelPackage.EDGE__TYPE_EDGE:
 				setTypeEdge((Edge)newValue);
 				return;
 			case MetamodelPackage.EDGE__SOURCE:
 				setSource((Node)newValue);
+				return;
+			case MetamodelPackage.EDGE__NAME:
+				setName((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -391,14 +391,14 @@ public class EdgeImpl extends IDObjectImpl implements Edge {
 			case MetamodelPackage.EDGE__GRAPH:
 				setGraph((Graph)null);
 				return;
-			case MetamodelPackage.EDGE__NAME:
-				setName(NAME_EDEFAULT);
-				return;
 			case MetamodelPackage.EDGE__TYPE_EDGE:
 				setTypeEdge((Edge)null);
 				return;
 			case MetamodelPackage.EDGE__SOURCE:
 				setSource((Node)null);
+				return;
+			case MetamodelPackage.EDGE__NAME:
+				setName(NAME_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -416,12 +416,12 @@ public class EdgeImpl extends IDObjectImpl implements Edge {
 				return target != null;
 			case MetamodelPackage.EDGE__GRAPH:
 				return getGraph() != null;
-			case MetamodelPackage.EDGE__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case MetamodelPackage.EDGE__TYPE_EDGE:
 				return typeEdge != null;
 			case MetamodelPackage.EDGE__SOURCE:
 				return source != null;
+			case MetamodelPackage.EDGE__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);
 	}

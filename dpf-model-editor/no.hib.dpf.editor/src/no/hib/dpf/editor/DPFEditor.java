@@ -18,9 +18,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 import java.util.EventObject;
-import java.util.List;
 import java.util.Map;
 
 import no.hib.dpf.editor.editoractions.CreateJointImageConstraintAction;
@@ -31,10 +29,9 @@ import no.hib.dpf.editor.model.ModelElement;
 import no.hib.dpf.editor.model.ModelSerializationException;
 import no.hib.dpf.editor.parts.EditPartFactoryImpl;
 import no.hib.dpf.editor.parts.VNodesTreeEditPartFactory;
-import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.IDObject;
 import no.hib.dpf.metamodel.MetamodelFactory;
-import no.hib.dpf.metamodel.ModelHierarchy;
+import no.hib.dpf.metamodel.Specification;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
@@ -46,17 +43,14 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 import org.eclipse.gef.ContextMenuProvider;
 import org.eclipse.gef.DefaultEditDomain;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.GraphicalViewer;
-import org.eclipse.gef.dnd.TemplateTransferDragSourceListener;
-import org.eclipse.gef.dnd.TemplateTransferDropTargetListener;
 import org.eclipse.gef.editparts.ScalableFreeformRootEditPart;
 import org.eclipse.gef.palette.PaletteRoot;
-import org.eclipse.gef.requests.CreationFactory;
-import org.eclipse.gef.requests.SimpleFactory;
 import org.eclipse.gef.ui.actions.ActionRegistry;
 import org.eclipse.gef.ui.palette.PaletteViewer;
 import org.eclipse.gef.ui.palette.PaletteViewerProvider;
@@ -66,7 +60,6 @@ import org.eclipse.gef.ui.parts.GraphicalViewerKeyHandler;
 import org.eclipse.gef.ui.parts.TreeViewer;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
-import org.eclipse.jface.util.TransferDropTargetListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
@@ -93,14 +86,12 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 
 	/** This is the root of the editor's model. */
 	private DPFDiagram diagram;
-	private ModelHierarchy modelHierarchy = MetamodelFactory.eINSTANCE.createModelHierarchy();
-	
-	private Graph typeGraph = MetamodelFactory.eINSTANCE.createGraph("source,target", "source_to_target:source:target");
-	
+	private Specification specification = MetamodelFactory.eINSTANCE.createSpecification();
+		
 	private static String dpfFilePath;
 	private static String dpfFile;
 	
-	/** Palette component, holding the tools and shapes. */
+//	/** Palette component, holding the tools and shapes. */
 	private static PaletteRoot PALETTE_MODEL;
 	
 	private EditPartFactoryImpl shapesEditPartFactory;
@@ -108,6 +99,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 
 	/** Create a new DPFEditor instance. This is called by the Workspace. */
 	public DPFEditor() {
+		specification.setTypeGraph(MetamodelFactory.eINSTANCE.createGraph("node", "arrow" + ":node:node"));
 		paletteFactory = new DPFEditorPaletteFactory();
 		setEditDomain(new DefaultEditDomain(this));
 		shapesEditPartFactory = new EditPartFactoryImpl();
@@ -194,27 +186,27 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 				// CombinatedTemplateCreationEntries
 				// from the palette into the editor
 				// @see ShapesEditor#createTransferDropTargetListener()
-				viewer.addDragSourceListener(new TemplateTransferDragSourceListener(viewer));
+//				viewer.addDragSourceListener(new TemplateTransferDragSourceListener(viewer));
 			}
 		};
 	}
 
 	
-	/**
-	 * Create a transfer drop target listener. When using a
-	 * CombinedTemplateCreationEntry tool in the palette, this will enable model
-	 * element creation by dragging from the palette.
-	 * 
-	 * @see #createPaletteViewerProvider()
-	 */
-	private TransferDropTargetListener createTransferDropTargetListener() {
-		return new TemplateTransferDropTargetListener(getGraphicalViewer()) {
-			@SuppressWarnings("rawtypes")
-			protected CreationFactory getFactory(Object template) {
-				return new SimpleFactory((Class) template);
-			}
-		};
-	}
+//	/**
+//	 * Create a transfer drop target listener. When using a
+//	 * CombinedTemplateCreationEntry tool in the palette, this will enable model
+//	 * element creation by dragging from the palette.
+//	 * 
+//	 * @see #createPaletteViewerProvider()
+//	 */
+//	private TransferDropTargetListener createTransferDropTargetListener() {
+//		return new TemplateTransferDropTargetListener(getGraphicalViewer()) {
+//			@SuppressWarnings("rawtypes")
+//			protected CreationFactory getFactory(Object template) {
+//				return new SimpleFactory((Class) template);
+//			}
+//		};
+//	}
 
 	/*
 	 * (non-Javadoc)
@@ -251,36 +243,34 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		saveDPF();
 	}
 	
-	private Graph loadDPF() {
-		ResourceSet load_resourceSet = new ResourceSetImpl();
+	private Specification loadDPF() {
+		ResourceSet resourceSet = new ResourceSetImpl();
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMLResourceFactoryImpl());
 
-		load_resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", new XMLResourceFactoryImpl());
+		resourceSet.getLoadOptions().put(XMIResource.OPTION_DEFER_IDREF_RESOLUTION, true);
+			
+		URI uri = URI.createFileURI(dpfFilePath + File.separator + dpfFile);
+		Resource resource = resourceSet.createResource(uri);
+		try {
+			resource.load(null);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-		Graph graph = MetamodelFactory.eINSTANCE.createGraph();				
-
-		load_resourceSet.getPackageRegistry().put("http://no.hib.dpf.metamodel", graph);
-
-		Resource resource = load_resourceSet.getResource(URI.createFileURI(dpfFilePath + File.separator + dpfFile),true);
-
-		return (Graph)resource.getContents().get(0);
+		return (Specification)resource.getContents().get(0);
 	}
 	
 	private void saveDPF() {
-		// http://www.devx.com/Java/Article/29093/1954
-		// http://www.eclipsezone.com/eclipse/forums/t69491.html
-		// http://www.ibm.com/developerworks/library/os-eclipse-dynamicemf/
 		ResourceSet resourceSet = new ResourceSetImpl();
-//		resourceSet.getResourceFactoryRegistry().getContentTypeToFactoryMap().put("xmi", new XMLTypeFactoryImpl());
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", new  XMLResourceFactoryImpl());
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new  XMLResourceFactoryImpl());
+		
 
 		Resource resource = resourceSet.createResource(URI.createFileURI(dpfFilePath + File.separator + dpfFile));
 
-//		graphlist.add(typeGraph);
-//		graphlist.add(diagram.getDpfGraph());
-		modelHierarchy.getSpecifications().get(0).setGraph(diagram.getDpfGraph());
-		modelHierarchy.getSpecifications().get(0).setTypeGraph(typeGraph);
-		resource.getContents().add(modelHierarchy);
-		
+		//specification.setGraph(diagram.getDpfGraph());
+		//specification.setTypeGraph(typeGraph);
+		resource.getContents().add(getSpecification());		
 		
 		// serialize resource Ð you can specify also serialization
 		// options which defined on org.eclipse.emf.ecore.xmi.XMIResource
@@ -363,17 +353,19 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 	 */
 	@Override
 	protected PaletteRoot getPaletteRoot() {
-		if (PALETTE_MODEL == null)
-			PALETTE_MODEL = paletteFactory.createPalette(typeGraph);
+		if (PALETTE_MODEL == null) {
+			PALETTE_MODEL = paletteFactory.createPalette(getSpecification().getTypeGraph());
+		}
 		return PALETTE_MODEL;
+//		return paletteFactory.createPalette(specification.getTypeGraph());
 	}
 
 	private void handleLoadException(Exception e) {
 		System.err.println("** Load failed. Using default model. **");
 		e.printStackTrace();
-		modelHierarchy = MetamodelFactory.eINSTANCE.createModelHierarchy();
+		setSpecification(MetamodelFactory.eINSTANCE.createSpecification());
 		diagram = new DPFDiagram();
-		diagram.setDpfGraph(modelHierarchy.getSpecifications().get(0).getGraph());
+		diagram.setDpfGraph(getSpecification().getGraph());
 	}
 
 	/**
@@ -386,8 +378,8 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		GraphicalViewer viewer = getGraphicalViewer();
 		viewer.setContents(getModel()); // set the contents of this editor
 
-		// listen for dropped parts
-		viewer.addDropTargetListener(createTransferDropTargetListener());
+//		// listen for dropped parts
+//		viewer.addDropTargetListener(createTransferDropTargetListener());
 	}
 
 	/*
@@ -451,16 +443,23 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 	private void deserializeDpfModel() {
 		File serializedDPF = new File(dpfFilePath + File.separator + dpfFile);
 		if (serializedDPF.exists()) {
-			diagram.setDpfGraph(loadDPF());
-		} else {
-			// No graph serialization available. Create a new DPF Graph.
-			diagram.setDpfGraph(MetamodelFactory.eINSTANCE.createGraph());				
+			setSpecification(loadDPF());
 		}
+		diagram.setDpfGraph(getSpecification().getGraph());
+		paletteFactory.updatePalette(getPaletteRoot(), getSpecification().getTypeGraph());
 	}
 
 	private void setDpfFilePaths(IFile file) {
 		dpfFilePath = ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
 		dpfFile = file.getFullPath().toString() + ".xmi";
+	}
+	
+	private void setSpecification(Specification specification) {
+		this.specification = specification;
+	}
+
+	private Specification getSpecification() {
+		return specification;
 	}
 
 	/**

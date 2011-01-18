@@ -17,9 +17,9 @@ package no.hib.dpf.metamodel;
  * <ul>
  *   <li>{@link no.hib.dpf.metamodel.Edge#getTarget <em>Target</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Edge#getGraph <em>Graph</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Edge#getName <em>Name</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Edge#getTypeEdge <em>Type Edge</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Edge#getSource <em>Source</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Edge#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *

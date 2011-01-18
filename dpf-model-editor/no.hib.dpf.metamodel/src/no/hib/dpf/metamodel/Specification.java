@@ -38,7 +38,7 @@ public interface Specification extends EObject {
 	 * @return the value of the '<em>Signature</em>' containment reference.
 	 * @see #setSignature(Signature)
 	 * @see no.hib.dpf.metamodel.MetamodelPackage#getSpecification_Signature()
-	 * @model containment="true" required="true"
+	 * @model containment="true" required="true" transient="true"
 	 * @generated
 	 */
 	Signature getSignature();
