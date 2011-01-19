@@ -1,6 +1,7 @@
 package no.hib.dpf.editor.parts;
 
 import no.hib.dpf.editor.figures.DPFEpiConnectionFigure;
+import no.hib.dpf.editor.figures.EditableLabel;
 import no.hib.dpf.editor.model.SingleNodeConnection;
 
 import org.eclipse.draw2d.IFigure;
@@ -10,7 +11,8 @@ public class VNodeSingleConnectionEditPart extends VEdgeEditPart {
 	
 	@Override
 	protected IFigure createFigure() {
-		connectionFigure = new DPFEpiConnectionFigure();
+		EditableLabel label = new EditableLabel(getEdge().getName());
+		connectionFigure = new DPFEpiConnectionFigure(label);
 		PolygonDecoration arrowHead = new PolygonDecoration();
 		arrowHead.setScale(16, 6);
 		connectionFigure.setTargetDecoration(arrowHead); // arrow at target endpoint

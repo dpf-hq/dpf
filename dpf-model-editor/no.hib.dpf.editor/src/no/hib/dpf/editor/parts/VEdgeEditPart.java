@@ -18,10 +18,12 @@ import java.util.Collections;
 import java.util.List;
 
 import no.hib.dpf.editor.figures.DPFConnectionFigure;
+import no.hib.dpf.editor.figures.EditableLabel;
 import no.hib.dpf.editor.model.VEdge;
 import no.hib.dpf.editor.model.VConstraint;
 import no.hib.dpf.editor.model.SingleLineConstraintElement;
 import no.hib.dpf.editor.model.commands.ConnectionDeleteCommand;
+import no.hib.dpf.metamodel.Edge;
 
 import org.eclipse.draw2d.ConnectionLocator;
 import org.eclipse.draw2d.IFigure;
@@ -130,14 +132,18 @@ public class VEdgeEditPart extends ModelElementConnectionEditPart {
 					}
 				});
 	}
-
+	
+	protected Edge getEdge() {
+		return (Edge) getModel();
+	}
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see org.eclipse.gef.editparts.AbstractGraphicalEditPart#createFigure()
 	 */
-	protected IFigure createFigure() {			
-		connectionFigure = new DPFConnectionFigure();
+	protected IFigure createFigure() {		
+		EditableLabel label = new EditableLabel(getEdge().getName());
+		connectionFigure = new DPFConnectionFigure(label);
 		makeNewConstraintLabel();
 
 		PolygonDecoration arrowHead = new PolygonDecoration();
@@ -185,9 +191,19 @@ public class VEdgeEditPart extends ModelElementConnectionEditPart {
 			refreshTargetConnections();
 		} else if (VEdge.SINGLE_CONSTRAINTS_PROP.equals(property)) {
 			refreshSingleLineConstraints();
+		} else if (VEdge.NAME_PROP.equals(property)) {
+			commitNameChange((String)event.getNewValue());
 		}
 	}
 	
+	private void commitNameChange(String newValue) {
+		DPFConnectionFigure figure = (DPFConnectionFigure) getFigure();
+		EditableLabel label = figure.getLabel();
+		label.setText(getEdge().getName());
+		refreshVisuals();
+	}
+
+
 	@Override
 	public IFigure getFigure() {
 		if (figure == null) {
