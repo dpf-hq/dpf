@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import no.hib.dpf.editor.DPFPlugin;
+import no.hib.dpf.editor.icons.ImageSettings;
 import no.hib.dpf.metamodel.Edge;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.IDObject;
@@ -260,8 +261,8 @@ public class VNode extends ModelElement implements Node, IDObjectContainer, Mova
 		return nodeID;
 	}
 	
-	/** A 16x16 pictogram of a rectangular shape. */
-	private static final Image RECTANGLE_ICON = createImage("icons/rectangle16.gif");
+	/** A pictogram of a rectangular shape. */
+	private static final Image RECTANGLE_ICON = createImage(ImageSettings.getImageSettings().getFilePath(ImageSettings.SMALL_RECTANGLE));
 
 	public Image getIcon() {
 		return RECTANGLE_ICON;

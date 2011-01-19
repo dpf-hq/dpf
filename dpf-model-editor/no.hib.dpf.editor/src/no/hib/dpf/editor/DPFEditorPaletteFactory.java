@@ -12,6 +12,7 @@ package no.hib.dpf.editor;
 
 import java.util.List;
 
+import no.hib.dpf.editor.icons.ImageSettings;
 import no.hib.dpf.editor.model.factories.EdgeCreationFactory;
 import no.hib.dpf.editor.model.factories.VNodeFactory;
 import no.hib.dpf.metamodel.Edge;
@@ -98,7 +99,7 @@ public class DPFEditorPaletteFactory {
 		removeEntryChildren(entry);
 		if (entryName.equals(EDGES)) {
 			addEdgeCreationToolsToGroup(typeGraph, entry);
-		} else {
+		} else if (entryName.equals(NODES)) {
 			addNodeCreationToolsToGroup(typeGraph, entry);			
 		}
 	}
@@ -111,8 +112,8 @@ public class DPFEditorPaletteFactory {
 	}
 	
 	private void addEdgeCreationToolsToGroup(Graph typeGraph, PaletteGroup edgeGroup) {
-		ImageDescriptor iconSmall = ImageDescriptor.createFromFile(DPFPlugin.class, "icons/connection_s16.gif");
-		ImageDescriptor iconLarge = ImageDescriptor.createFromFile(DPFPlugin.class, "icons/connection_s24.gif");
+		ImageDescriptor iconSmall = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.getImageSettings().getFilePath(ImageSettings.SMALL_CONNECTION));
+		ImageDescriptor iconLarge = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.getImageSettings().getFilePath(ImageSettings.LARGE_CONNECTION));
 
 		for (Edge typeEdge : typeGraph.getEdges()) {			
 			edgeGroup.add(new ConnectionCreationToolEntry(typeEdge.getName(), "Create a new " + typeEdge.getName(), new EdgeCreationFactory(null, typeEdge), iconSmall, iconLarge));
@@ -120,8 +121,8 @@ public class DPFEditorPaletteFactory {
 	}
 	
 	public void addNodeCreationToolsToGroup(Graph typeGraph, PaletteGroup nodeGroup) {
-		ImageDescriptor iconSmall = ImageDescriptor.createFromFile(DPFPlugin.class, "icons/rectangle16.gif");
-		ImageDescriptor iconLarge = ImageDescriptor.createFromFile(DPFPlugin.class, "icons/rectangle24.gif");
+		ImageDescriptor iconSmall = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.getImageSettings().getFilePath(ImageSettings.SMALL_RECTANGLE));
+		ImageDescriptor iconLarge = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.getImageSettings().getFilePath(ImageSettings.LARGE_RECTANGLE));
 
 		for (Node typeNode : typeGraph.getNodes()) {
 //			component = new CombinedTemplateCreationEntry(typeNode.getName(), "Create a new " + typeNode.getName(), VNode.class, new VNodeFactory(typeNode), iconSmall, iconLarge);
