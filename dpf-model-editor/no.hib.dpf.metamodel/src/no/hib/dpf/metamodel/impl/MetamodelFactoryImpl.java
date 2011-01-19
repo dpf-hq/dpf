@@ -174,6 +174,7 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	 */
 	public Edge createEdge() {
 		EdgeImpl edge = new EdgeImpl();
+		edge.name = "";
 		return edge;
 	}
 

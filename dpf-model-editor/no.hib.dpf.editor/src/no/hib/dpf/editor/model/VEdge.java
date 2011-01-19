@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ui.views.properties.ComboBoxPropertyDescriptor;
 import org.eclipse.ui.views.properties.IPropertyDescriptor;
+import org.eclipse.ui.views.properties.TextPropertyDescriptor;
 
 public class VEdge extends ModelElement implements Edge, IDObjectContainer {
 	/**
@@ -55,7 +56,7 @@ public class VEdge extends ModelElement implements Edge, IDObjectContainer {
 			Graphics.LINE_DASH);
 	/** Property ID to use when the line style of this connection is modified. */
 	public static final String LINESTYLE_PROP = "LineStyle";
-	private static final IPropertyDescriptor[] descriptors = new IPropertyDescriptor[3];
+	private static final IPropertyDescriptor[] descriptors;
 	private static final String SOLID_STR = "Solid";
 	private static final String DASHED_STR = "Dashed";
 	private static final long serialVersionUID = 1;
@@ -68,6 +69,8 @@ public class VEdge extends ModelElement implements Edge, IDObjectContainer {
 	public static final String TARGET_CONSTRAINTS_PROP = "Connection.TargetConstaint";
 	/** Property ID to use when the list of single constraints is modified. */
 	public static final String SINGLE_CONSTRAINTS_PROP = "Connection.SingleConstaint";
+	
+	public static final String NAME_PROP = "Connection.Name";
 		
 	/** True, if the connection is attached to its endpoints. */
 	private boolean isConnected;
@@ -86,12 +89,13 @@ public class VEdge extends ModelElement implements Edge, IDObjectContainer {
 	private List<SingleLineConstraintElement> singleConstraints = new ArrayList<SingleLineConstraintElement>();
 	
 	static {
-		descriptors[0] = new ComboBoxPropertyDescriptor(LINESTYLE_PROP,
-				LINESTYLE_PROP, new String[] { SOLID_STR, DASHED_STR });
-		
-		descriptors[1] = new NegativeIntegerTextPropertyDescriptor(CONSTRAINT_1_PROP, "Constraints (1)");
-		descriptors[2] = new NegativeIntegerTextPropertyDescriptor(CONSTRAINT_2_PROP, "Constraints (2)");
-		
+		descriptors = new IPropertyDescriptor[] {
+			new ComboBoxPropertyDescriptor(LINESTYLE_PROP,
+				LINESTYLE_PROP, new String[] { SOLID_STR, DASHED_STR }),
+			new NegativeIntegerTextPropertyDescriptor(CONSTRAINT_1_PROP, "Constraints (1)"),
+			new NegativeIntegerTextPropertyDescriptor(CONSTRAINT_2_PROP, "Constraints (2)"),
+			new TextPropertyDescriptor(NAME_PROP, "Name")
+		};
 	}
 
 	private transient Edge edgeComponent;
@@ -190,6 +194,9 @@ public class VEdge extends ModelElement implements Edge, IDObjectContainer {
 				return Integer.toString(singleConstraints.get(0).getVal_2());
 			}
 		}
+		if (id.equals(NAME_PROP)) {
+			return getName();
+		}
 		return super.getPropertyValue(id);
 	}
 
@@ -279,6 +286,7 @@ public class VEdge extends ModelElement implements Edge, IDObjectContainer {
 		}
 	}
 	
+	
 	/**
 	 * Sets the lineStyle based on the String provided by the PropertySheet
 	 * 
@@ -293,6 +301,8 @@ public class VEdge extends ModelElement implements Edge, IDObjectContainer {
 			setConstraintValue1(Integer.parseInt((String) value));
 		} else if (id.equals(CONSTRAINT_2_PROP)) {
 			setConstraintValue2(Integer.parseInt((String) value));
+		} else if (id.equals(NAME_PROP)) {
+			setNameExec((String) value);
 		} else {
 			super.setPropertyValue(id, value);
 		}
@@ -335,6 +345,12 @@ public class VEdge extends ModelElement implements Edge, IDObjectContainer {
 		} else if (constraint.getConnectionTarget() == this) {
 			addIncomingConstraint(constraint);
 		}
+	}
+	
+	private void setNameExec(String name) {
+		String oldName = edgeComponent.getName();
+		edgeComponent.setName(name);
+		firePropertyChange(NAME_PROP, oldName, name);
 	}
 	
 	protected void removeIncomingConstraint(VConstraint constraint) {
