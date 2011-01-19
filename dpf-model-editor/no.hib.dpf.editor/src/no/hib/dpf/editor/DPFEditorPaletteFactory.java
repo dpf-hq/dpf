@@ -35,7 +35,8 @@ import org.eclipse.jface.resource.ImageDescriptor;
  */
 public class DPFEditorPaletteFactory {
 	
-	public static final String NODES = "Nodes";
+	private static final String NODES = "Nodes";
+	private static final String EDGES = "Edges";
 	
 	// /** Preference ID used to persist the palette location. */
 	// private static final String PALETTE_DOCK_LOCATION =
@@ -56,7 +57,8 @@ public class DPFEditorPaletteFactory {
 	public PaletteRoot createPalette(Graph typeGraph) {
 		PaletteRoot palette = new PaletteRoot();
 		palette.add(createToolsGroup(palette, typeGraph));
-		palette.add(createShapesDrawer(typeGraph));		
+		palette.add(createEdgesGroup(typeGraph));
+		palette.add(createShapesGroup(typeGraph));		
 		return palette;
 	}
 		
@@ -66,36 +68,39 @@ public class DPFEditorPaletteFactory {
 		for (int i = 0; i < children.size(); i++) {
 			if (children.get(i) instanceof PaletteGroup) {
 				PaletteGroup entry = (PaletteGroup) children.get(i);
-				if (entry.getLabel().equals(DPFEditorPaletteFactory.NODES)) {
+				if (entry.getLabel().equals(NODES)) {
 					// This is a group we want to update
 					int size = entry.getChildren().size();
 					for (int j = 0; j < size; j++) {
 						entry.getChildren().remove(0);						
 					}
 					addNodeCreationToolsToGroup(typeGraph, entry);
-//					List plots = model.getPlots();
-//					for (int j = 0; j < plots.size(); j++) {
-//						CombinedTemplateCreationEntry component = new CombinedTemplateCreationEntry(
-//								plots.get(j).getName(), plots.get(j).getName(),
-//								Plot.class, new SimpleFactory(Plot.class),
-//								ImageDescriptor.createFromFile(
-//										ResultsEditor.class, "icons/plot.gif"),
-//								ImageDescriptor.createFromFile(
-//										ResultsEditor.class, "icons/plot.gif"));
-//						entry.add(component);
-//					}
 				}
 			}
 		}		
 	}
 	
-	/** Create the "Shapes" drawer. */
-	private PaletteGroup createShapesDrawer(Graph typeGraph) {
+	private PaletteGroup createShapesGroup(Graph typeGraph) {
 		PaletteGroup nodeGroup = new PaletteGroup(NODES);
 		addNodeCreationToolsToGroup(typeGraph, nodeGroup);
 		return nodeGroup;
 	}
 
+	private PaletteGroup createEdgesGroup(Graph typeGraph) {
+		PaletteGroup edgeGroup = new PaletteGroup(EDGES);		
+		addEdgeCreationToolsToGroup(typeGraph, edgeGroup);
+		return edgeGroup;
+	}
+
+	private void addEdgeCreationToolsToGroup(Graph typeGraph, PaletteGroup edgeGroup) {
+		ImageDescriptor iconSmall = ImageDescriptor.createFromFile(DPFPlugin.class, "icons/connection_s16.gif");
+		ImageDescriptor iconLarge = ImageDescriptor.createFromFile(DPFPlugin.class, "icons/connection_s24.gif");
+
+		for (Edge typeEdge : typeGraph.getEdges()) {			
+			edgeGroup.add(new ConnectionCreationToolEntry(typeEdge.getName(), "Create a new " + typeEdge.getName(), new EdgeCreationFactory(null, typeEdge), iconSmall, iconLarge));
+		}
+	}
+	
 	public void addNodeCreationToolsToGroup(Graph typeGraph, PaletteGroup nodeGroup) {
 		ImageDescriptor iconSmall = ImageDescriptor.createFromFile(DPFPlugin.class, "icons/rectangle16.gif");
 		ImageDescriptor iconLarge = ImageDescriptor.createFromFile(DPFPlugin.class, "icons/rectangle24.gif");
@@ -122,17 +127,17 @@ public class DPFEditorPaletteFactory {
 		toolbar.add(mqtool);
 
 		
-		for (Edge typeEdge : typeGraph.getEdges()) {
-			
-			// Add (solid-line) connection tool
-			tool = new ConnectionCreationToolEntry(
-					typeEdge.getName(),
-					"Create a " + typeEdge.getName(),
-					new EdgeCreationFactory(null, typeEdge),
-					ImageDescriptor.createFromFile(DPFPlugin.class, "icons/connection_s16.gif"),
-					ImageDescriptor.createFromFile(DPFPlugin.class, "icons/connection_s24.gif"));
-			toolbar.add(tool);
-		}		
+//		for (Edge typeEdge : typeGraph.getEdges()) {
+//			
+//			// Add (solid-line) connection tool
+//			tool = new ConnectionCreationToolEntry(
+//					typeEdge.getName(),
+//					"Create a " + typeEdge.getName(),
+//					new EdgeCreationFactory(null, typeEdge),
+//					ImageDescriptor.createFromFile(DPFPlugin.class, "icons/connection_s16.gif"),
+//					ImageDescriptor.createFromFile(DPFPlugin.class, "icons/connection_s24.gif"));
+//			toolbar.add(tool);
+//		}		
 
 		return toolbar;
 	}
