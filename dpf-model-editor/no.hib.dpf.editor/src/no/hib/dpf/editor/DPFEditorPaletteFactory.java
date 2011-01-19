@@ -10,11 +10,15 @@
 Ê*******************************************************************************/
 package no.hib.dpf.editor;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+import no.hib.dpf.editor.editoractions.CreateConstraintAction;
 import no.hib.dpf.editor.icons.ImageSettings;
 import no.hib.dpf.editor.model.factories.EdgeCreationFactory;
 import no.hib.dpf.editor.model.factories.VNodeFactory;
+import no.hib.dpf.editor.parts.VNodeEditPart;
 import no.hib.dpf.metamodel.Edge;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.Node;
@@ -25,11 +29,14 @@ import org.eclipse.gef.palette.MarqueeToolEntry;
 import org.eclipse.gef.palette.PaletteContainer;
 import org.eclipse.gef.palette.PaletteGroup;
 import org.eclipse.gef.palette.PaletteRoot;
+import org.eclipse.gef.palette.PaletteSeparator;
 import org.eclipse.gef.palette.PaletteToolbar;
 import org.eclipse.gef.palette.PanningSelectionToolEntry;
 import org.eclipse.gef.palette.ToolEntry;
 import org.eclipse.gef.tools.MarqueeSelectionTool;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.IStructuredSelection;
 
 /**
  * Utility class that can create a GEF Palette.
@@ -38,6 +45,7 @@ public class DPFEditorPaletteFactory {
 	
 	private static final String NODES = "Nodes";
 	private static final String EDGES = "Edges";
+	private static final String CONSTRAINTS = "Constaints";
 	
 	// /** Preference ID used to persist the palette location. */
 	// private static final String PALETTE_DOCK_LOCATION =
@@ -59,7 +67,10 @@ public class DPFEditorPaletteFactory {
 		PaletteRoot palette = new PaletteRoot();
 		palette.add(createToolsGroup(palette, typeGraph));
 		palette.add(createEdgesGroup(typeGraph));
-		palette.add(createShapesGroup(typeGraph));		
+		palette.add(new PaletteSeparator());
+		palette.add(createShapesGroup(typeGraph));	
+//		palette.add(new PaletteSeparator());
+//		palette.add(createConstraintGroup());
 		return palette;
 	}
 	
@@ -76,7 +87,35 @@ public class DPFEditorPaletteFactory {
 		}
 		return null;
 	}
+	
+	public void updateConstraints(List<CreateConstraintAction> constraintActions, PaletteRoot root, ISelection selection) {
 		
+		if (constraintActions == null) {
+			return;
+		}
+		
+		PaletteGroup entry = getGroup(root, CONSTRAINTS);
+		removeEntryChildren(entry);
+		
+		if (selection instanceof IStructuredSelection) {
+			for (CreateConstraintAction createConstraintAction : constraintActions) {
+				if (createConstraintAction.isEnabled()) {
+					ImageDescriptor iconSmall = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.getImageSettings().getFilePath(ImageSettings.SMALL_CONNECTION));
+					ImageDescriptor iconLarge = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.getImageSettings().getFilePath(ImageSettings.LARGE_CONNECTION));
+
+					entry.add(new ConnectionCreationToolEntry(createConstraintAction.getDescription(), "Create a new dings", new EdgeCreationFactory(null, null), iconSmall, iconLarge));
+				}
+			}
+			
+		}
+//		return Collections.EMPTY_LIST;
+//	return ((IStructuredSelection) getSelection()).toList();
+
+		
+		
+		
+	}
+	
 	public void updatePalette(PaletteRoot root, Graph typeGraph) {
 		updateEntry(root, typeGraph, EDGES);
 		updateEntry(root, typeGraph, NODES);
@@ -92,6 +131,10 @@ public class DPFEditorPaletteFactory {
 		PaletteGroup edgeGroup = new PaletteGroup(EDGES);		
 		addEdgeCreationToolsToGroup(typeGraph, edgeGroup);
 		return edgeGroup;
+	}
+	
+	private PaletteGroup createConstraintGroup() {
+		return new PaletteGroup(CONSTRAINTS);		
 	}
 	
 	private void updateEntry(PaletteRoot root, Graph typeGraph, String entryName) {

@@ -101,7 +101,6 @@ public class VNode extends ModelElement implements Node, IDObjectContainer, Mova
 		try {
 			stream.close();
 		} catch (IOException ioe) {
-			//TODO: log this?
 		}
 		return image;
 	}

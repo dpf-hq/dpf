@@ -18,9 +18,13 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.EventObject;
+import java.util.List;
 import java.util.Map;
 
+import no.hib.dpf.editor.editoractions.CreateConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointImageConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointlyInjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateMultiplicityConstraintAction;
@@ -62,6 +66,8 @@ import org.eclipse.gef.ui.parts.GraphicalViewerKeyHandler;
 import org.eclipse.gef.ui.parts.TreeViewer;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
@@ -69,6 +75,7 @@ import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IFileEditorInput;
+import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.dialogs.SaveAsDialog;
@@ -98,6 +105,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 	
 	private EditPartFactoryImpl shapesEditPartFactory;
 	private DPFEditorPaletteFactory paletteFactory;
+	private List<CreateConstraintAction> constraintActions = new ArrayList<CreateConstraintAction>();
 
 	/** Create a new DPFEditor instance. This is called by the Workspace. */
 	public DPFEditor() {
@@ -106,7 +114,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		setEditDomain(new DefaultEditDomain(this));
 		shapesEditPartFactory = new EditPartFactoryImpl();
 	}
-
+	
 	/**
 	 * Overridden to create our own actions
 	 */
@@ -115,9 +123,13 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		super.createActions(); // important else we won't get the default
 								// actions!
 		//registerAction(new SrcSelectAction(this));
-		registerAction(new CreateJointlyInjectiveConstraintAction(this, diagram.getDpfGraph()));
-		registerAction(new CreateJointImageConstraintAction(this, diagram.getDpfGraph()));
-		registerAction(new CreateMultiplicityConstraintAction(this, diagram.getDpfGraph()));
+		constraintActions.add(new CreateJointlyInjectiveConstraintAction(this, diagram.getDpfGraph()));
+		constraintActions.add(new CreateJointImageConstraintAction(this, diagram.getDpfGraph()));
+		constraintActions.add(new CreateMultiplicityConstraintAction(this, diagram.getDpfGraph()));
+		
+		for (CreateConstraintAction createConstraintAction : constraintActions) {
+			registerAction(createConstraintAction);
+		}		
 	}
 
 	@SuppressWarnings("unchecked")
@@ -398,6 +410,14 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		super.setFocus();
 		paletteFactory.updatePalette(getPaletteRoot(), getSpecification().getTypeGraph());		
 	}
+	
+	@Override
+	public void selectionChanged(IWorkbenchPart part, ISelection selection) {
+		super.selectionChanged(part, selection);
+//		if (this.equals(getSite().getPage().getActiveEditor())) {
+//			paletteFactory.updateConstraints(constraintActions, getPaletteRoot(), selection);			
+//		}
+	}	
 	
 	/*
 	 * (non-Javadoc)
