@@ -61,23 +61,24 @@ public class DPFEditorPaletteFactory {
 		palette.add(createShapesGroup(typeGraph));		
 		return palette;
 	}
-		
-	@SuppressWarnings("rawtypes")
-	public void updatePalette(PaletteRoot root, Graph typeGraph) {
+	
+	PaletteGroup getGroup(PaletteRoot root, String groupName) {
+		@SuppressWarnings("rawtypes")
 		List children = root.getChildren();
 		for (int i = 0; i < children.size(); i++) {
 			if (children.get(i) instanceof PaletteGroup) {
 				PaletteGroup entry = (PaletteGroup) children.get(i);
-				if (entry.getLabel().equals(NODES)) {
-					// This is a group we want to update
-					int size = entry.getChildren().size();
-					for (int j = 0; j < size; j++) {
-						entry.getChildren().remove(0);						
-					}
-					addNodeCreationToolsToGroup(typeGraph, entry);
+				if (entry.getLabel().equals(groupName)) {
+					return entry;
 				}
 			}
-		}		
+		}
+		return null;
+	}
+		
+	public void updatePalette(PaletteRoot root, Graph typeGraph) {
+		updateEntry(root, typeGraph, EDGES);
+		updateEntry(root, typeGraph, NODES);
 	}
 	
 	private PaletteGroup createShapesGroup(Graph typeGraph) {
@@ -91,7 +92,24 @@ public class DPFEditorPaletteFactory {
 		addEdgeCreationToolsToGroup(typeGraph, edgeGroup);
 		return edgeGroup;
 	}
+	
+	private void updateEntry(PaletteRoot root, Graph typeGraph, String entryName) {
+		PaletteGroup entry = getGroup(root, entryName);
+		removeEntryChildren(entry);
+		if (entryName.equals(EDGES)) {
+			addEdgeCreationToolsToGroup(typeGraph, entry);
+		} else {
+			addNodeCreationToolsToGroup(typeGraph, entry);			
+		}
+	}
 
+	private void removeEntryChildren(PaletteGroup entry) {
+		int size = entry.getChildren().size();
+		for (int j = 0; j < size; j++) {
+			entry.getChildren().remove(0);						
+		}
+	}
+	
 	private void addEdgeCreationToolsToGroup(Graph typeGraph, PaletteGroup edgeGroup) {
 		ImageDescriptor iconSmall = ImageDescriptor.createFromFile(DPFPlugin.class, "icons/connection_s16.gif");
 		ImageDescriptor iconLarge = ImageDescriptor.createFromFile(DPFPlugin.class, "icons/connection_s24.gif");
