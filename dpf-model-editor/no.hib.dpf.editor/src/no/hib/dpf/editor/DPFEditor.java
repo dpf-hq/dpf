@@ -50,10 +50,13 @@ import org.eclipse.gef.DefaultEditDomain;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.editparts.ScalableFreeformRootEditPart;
+import org.eclipse.gef.internal.InternalGEFPlugin;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.ui.actions.ActionRegistry;
+import org.eclipse.gef.ui.palette.FlyoutPaletteComposite;
 import org.eclipse.gef.ui.palette.PaletteViewer;
 import org.eclipse.gef.ui.palette.PaletteViewerProvider;
+import org.eclipse.gef.ui.palette.FlyoutPaletteComposite.FlyoutPreferences;
 import org.eclipse.gef.ui.parts.ContentOutlinePage;
 import org.eclipse.gef.ui.parts.GraphicalEditorWithFlyoutPalette;
 import org.eclipse.gef.ui.parts.GraphicalViewerKeyHandler;
@@ -191,6 +194,15 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		};
 	}
 
+	
+	@Override
+	protected FlyoutPreferences getPalettePreferences() {
+		FlyoutPreferences retval = super.getPalettePreferences();
+		retval.setPaletteState(FlyoutPaletteComposite.STATE_PINNED_OPEN);
+		retval.setPaletteWidth(200);
+		return retval;
+	}
+	
 	
 //	/**
 //	 * Create a transfer drop target listener. When using a
@@ -382,6 +394,12 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 //		viewer.addDropTargetListener(createTransferDropTargetListener());
 	}
 
+	@Override
+	public void setFocus() {
+		super.setFocus();
+		paletteFactory.updatePalette(getPaletteRoot(), getSpecification().getTypeGraph());		
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -446,7 +464,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 			setSpecification(loadDPF());
 		}
 		diagram.setDpfGraph(getSpecification().getGraph());
-		paletteFactory.updatePalette(getPaletteRoot(), getSpecification().getTypeGraph());
+//		paletteFactory.updatePalette(getPaletteRoot(), getSpecification().getTypeGraph());
 	}
 
 	private void setDpfFilePaths(IFile file) {
