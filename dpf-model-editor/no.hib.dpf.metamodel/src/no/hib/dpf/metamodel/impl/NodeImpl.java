@@ -69,10 +69,11 @@ public class NodeImpl extends IDObjectImpl implements Node {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected NodeImpl() {
 		super();
+		this.name = ""; //null is a stupid default.
 	}
 
 	/**

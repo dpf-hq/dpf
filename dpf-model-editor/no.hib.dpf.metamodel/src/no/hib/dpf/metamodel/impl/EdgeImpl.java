@@ -89,10 +89,11 @@ public class EdgeImpl extends IDObjectImpl implements Edge {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected EdgeImpl() {
 		super();
+		name = ""; //null is a stupid default.
 	}
 
 	/**
