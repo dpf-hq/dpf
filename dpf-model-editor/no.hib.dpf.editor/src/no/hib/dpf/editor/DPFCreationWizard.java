@@ -12,15 +12,21 @@ package no.hib.dpf.editor;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectOutputStream;
 
 import no.hib.dpf.editor.model.DPFDiagram;
+import no.hib.dpf.metamodel.MetamodelFactory;
+import no.hib.dpf.metamodel.Specification;
 
 import org.eclipse.swt.widgets.Composite;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.INewWizard;
@@ -28,6 +34,7 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
+import org.eclipse.ui.dialogs.WizardNewLinkPage;
 import org.eclipse.ui.ide.IDE;
 
 
@@ -40,6 +47,7 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 
 private static int fileCount = 1;
 private CreationPage page1;
+private WizardNewLinkPage page2;
 	
 /* (non-Javadoc)
  * @see org.eclipse.jface.wizard.IWizard#addPages()
@@ -47,6 +55,7 @@ private CreationPage page1;
 public void addPages() {
 	// add pages to this wizard
 	addPage(page1); 
+	addPage(page2);
 }
 
 /* (non-Javadoc)
@@ -55,6 +64,8 @@ public void addPages() {
 public void init(IWorkbench workbench, IStructuredSelection selection) {
 	// create pages for this wizard
 	page1 = new CreationPage(workbench, selection); 
+	page2 = new WizardNewLinkPage("Add type graph", IResource.FILE);
+	page2.setTitle("Include type graph");
 }
 
 /* (non-Javadoc)
@@ -106,6 +117,22 @@ private class CreationPage extends WizardNewFileCreationPage {
 		// create a new file, result != null if successful
 		IFile newFile = createNewFile();
 		fileCount++;
+		
+		// Gets null value when user does not check checkbox
+		String typeFileName = page2.getLinkTarget();
+		if (typeFileName != null) {
+			// TODO: move to validation (when wrong file, user must be notified)
+			Specification typeSpec = DPFEditor.loadDPF(typeFileName);
+			
+			Specification newSpec = MetamodelFactory.eINSTANCE.createSpecification();
+			newSpec.setTypeGraph(typeSpec.getGraph());
+			
+			//String newFileName = newFile.getFullPath().toString() + ".xmi";
+			String dpfFilePath = ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
+			String dpfFile = newFile.getFullPath().toString() + ".xmi";
+			
+			DPFEditor.saveDPF(dpfFilePath + File.separator + dpfFile, newSpec);
+		}
 		
 		// open newly created file in the editor
 		IWorkbenchPage page = workbench.getActiveWorkbenchWindow().getActivePage();

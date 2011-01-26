@@ -92,14 +92,11 @@ public boolean canExecute() {
  * @see org.eclipse.gef.commands.Command#execute()
  */
 public void execute() {
-	// create a new connection between source and target
 	if (!source.equals(target)) {
-		connection = new VEdge(source, target);
+		connection = new VEdge(source, target, typeEdge);
 	} else {
-		connection = new SingleNodeConnection(source);
+		connection = new SingleNodeConnection(source, typeEdge);
 	}
-//	// use the supplied line style
-//	connection.setLineStyle(lineStyle);
 }
 
 /* (non-Javadoc)

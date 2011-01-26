@@ -1,5 +1,7 @@
 package no.hib.dpf.editor.model;
 
+import no.hib.dpf.metamodel.Edge;
+
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.ui.views.properties.IPropertyDescriptor;
@@ -10,8 +12,8 @@ public class SingleNodeConnection extends VEdge implements MovableAndSizable {
 
 	private LocationAndSize locationAndSize;
 		
-	public SingleNodeConnection(VNode source) {
-		super(source, source);
+	public SingleNodeConnection(VNode source, Edge typeEdge) {
+		super(source, source, typeEdge);
 	}
 
 	public IPropertyDescriptor[] getPropertyDescriptors() {

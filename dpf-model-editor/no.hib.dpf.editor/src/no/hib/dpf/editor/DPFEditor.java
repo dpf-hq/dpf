@@ -19,7 +19,6 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.EventObject;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +27,7 @@ import no.hib.dpf.editor.editoractions.CreateConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointImageConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointlyInjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateMultiplicityConstraintAction;
+import no.hib.dpf.editor.icons.ImageSettings;
 import no.hib.dpf.editor.model.DPFDiagram;
 import no.hib.dpf.editor.model.ModelElement;
 import no.hib.dpf.editor.model.ModelSerializationException;
@@ -67,10 +67,16 @@ import org.eclipse.gef.ui.parts.TreeViewer;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.ToolBar;
+import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
@@ -114,6 +120,34 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		setEditDomain(new DefaultEditDomain(this));
 		shapesEditPartFactory = new EditPartFactoryImpl();
 	}
+	
+//	/**
+//	 * Test solution for buttons
+//	 */
+//	@Override
+//	public void createPartControl(Composite parent) {
+//		
+//		Image image = new Image(parent.getDisplay(),"/Users/oyvind/Documents/model_workspace001/no.hib.dpf.editor/src/no/hib/dpf/editor/" +  ImageSettings.getImageSettings().getFilePath(ImageSettings.SMALL_RECTANGLE));
+//		
+//		Composite c = new Composite(parent, SWT.None);
+//		c.setLayout(new GridLayout(1, true));
+//		
+//		ToolBar tb = new ToolBar(c, SWT.None);
+//		tb.setLayoutData(new org.eclipse.swt.layout.GridData(
+//				org.eclipse.swt.layout.GridData.FILL_HORIZONTAL));
+//		ToolItem ti1 = new ToolItem(tb, SWT.PUSH);
+//		ti1.setText("Tool item 1");
+//		ti1.setImage(image);
+//
+//		ToolItem ti2 = new ToolItem(tb, SWT.PUSH);
+//		ti2.setText("Tool item 2");
+//		ToolItem ti3 = new ToolItem(tb, SWT.PUSH);
+//		ti3.setText("Tool item 3");
+//		Composite composite = new Composite(c, SWT.None);
+//		composite.setLayoutData(new GridData(GridData.FILL_BOTH));
+//		composite.setLayout(new FillLayout());
+//		super.createPartControl(composite);
+//	}
 	
 	/**
 	 * Overridden to create our own actions
@@ -263,16 +297,17 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
 		}
-		saveDPF();
+		saveDPF(dpfFilePath + File.separator + dpfFile, getSpecification());
 	}
 	
-	private Specification loadDPF() {
+	// TODO, URGENT! Move to DPF-model.
+	public static Specification loadDPF(String fileName) {
 		ResourceSet resourceSet = new ResourceSetImpl();
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMLResourceFactoryImpl());
 
 		resourceSet.getLoadOptions().put(XMIResource.OPTION_DEFER_IDREF_RESOLUTION, true);
 			
-		URI uri = URI.createFileURI(dpfFilePath + File.separator + dpfFile);
+		URI uri = URI.createFileURI(fileName);
 		Resource resource = resourceSet.createResource(uri);
 		try {
 			resource.load(null);
@@ -284,16 +319,17 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		return (Specification)resource.getContents().get(0);
 	}
 	
-	private void saveDPF() {
+	// TODO: URGENT! MOVE TO DPF MODEL!
+	public static void saveDPF(String dpfFileName, Specification specification) {
 		ResourceSet resourceSet = new ResourceSetImpl();
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new  XMLResourceFactoryImpl());
 		
 
-		Resource resource = resourceSet.createResource(URI.createFileURI(dpfFilePath + File.separator + dpfFile));
+		Resource resource = resourceSet.createResource(URI.createFileURI(dpfFileName));
 
 		//specification.setGraph(diagram.getDpfGraph());
 		//specification.setTypeGraph(typeGraph);
-		resource.getContents().add(getSpecification());		
+		resource.getContents().add(specification);		
 		
 		// serialize resource Ð you can specify also serialization
 		// options which defined on org.eclipse.emf.ecore.xmi.XMIResource
@@ -480,7 +516,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 	private void deserializeDpfModel() {
 		File serializedDPF = new File(dpfFilePath + File.separator + dpfFile);
 		if (serializedDPF.exists()) {
-			setSpecification(loadDPF());
+			setSpecification(loadDPF(dpfFilePath + File.separator + dpfFile));
 		}
 		diagram.setDpfGraph(getSpecification().getGraph());
 //		paletteFactory.updatePalette(getPaletteRoot(), getSpecification().getTypeGraph());

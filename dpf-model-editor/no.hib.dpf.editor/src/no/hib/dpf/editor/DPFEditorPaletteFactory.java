@@ -10,15 +10,12 @@
 Ê*******************************************************************************/
 package no.hib.dpf.editor;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import no.hib.dpf.editor.editoractions.CreateConstraintAction;
 import no.hib.dpf.editor.icons.ImageSettings;
 import no.hib.dpf.editor.model.factories.EdgeCreationFactory;
 import no.hib.dpf.editor.model.factories.VNodeFactory;
-import no.hib.dpf.editor.parts.VNodeEditPart;
 import no.hib.dpf.metamodel.Edge;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.Node;
@@ -68,11 +65,14 @@ public class DPFEditorPaletteFactory {
 		palette.add(createToolsGroup(palette, typeGraph));
 		palette.add(createEdgesGroup(typeGraph));
 		palette.add(new PaletteSeparator());
-		palette.add(createShapesGroup(typeGraph));	
+		palette.add(createShapesGroup(typeGraph));
+		
+//		palette.add(createConstraintToolbar());
 //		palette.add(new PaletteSeparator());
 //		palette.add(createConstraintGroup());
 		return palette;
 	}
+	
 	
 	PaletteGroup getGroup(PaletteRoot root, String groupName) {
 		@SuppressWarnings("rawtypes")
@@ -131,6 +131,23 @@ public class DPFEditorPaletteFactory {
 		PaletteGroup edgeGroup = new PaletteGroup(EDGES);		
 		addEdgeCreationToolsToGroup(typeGraph, edgeGroup);
 		return edgeGroup;
+	}
+	
+	private PaletteToolbar createConstraintToolbar() {
+//		Composite c = new Composite(parent, SWT.None);
+//		c.setLayout(new GridLayout(1, true));
+		
+	
+		PaletteToolbar constraintBar = new PaletteToolbar("DING");
+		
+		
+		
+		ImageDescriptor iconSmall = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.getImageSettings().getFilePath(ImageSettings.SMALL_RECTANGLE));
+		ImageDescriptor iconLarge = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.getImageSettings().getFilePath(ImageSettings.LARGE_RECTANGLE));
+
+		constraintBar.add(new CreationToolEntry("Navn", "Create a new ", null, iconSmall, iconLarge));
+		return constraintBar;
+		
 	}
 	
 	private PaletteGroup createConstraintGroup() {

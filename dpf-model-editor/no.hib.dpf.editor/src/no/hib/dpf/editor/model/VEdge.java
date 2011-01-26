@@ -127,9 +127,9 @@ public class VEdge extends ModelElement implements Edge, IDObjectContainer {
 	 *             if any of the parameters are null or source == target
 	 * @see #setLineStyle(int)
 	 */
-	public VEdge(VNode source, VNode target) {
+	public VEdge(VNode source, VNode target, Edge typeEdge) {
 		// The dpf Edge object must be initialized before the connection of the shapes.
-		setIDObject(MetamodelFactory.eINSTANCE.createEdge());
+		setIDObject(MetamodelFactory.eINSTANCE.createEdge(typeEdge));
 		reconnect(source, target);
 	}
 
