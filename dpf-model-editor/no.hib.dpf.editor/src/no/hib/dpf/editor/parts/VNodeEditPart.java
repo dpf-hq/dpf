@@ -148,9 +148,13 @@ public void revertNameChange()
 {
 	BasicRectangleFigure tableFigure = (BasicRectangleFigure) getFigure();
 	EditableLabel label = tableFigure.getNameLabel();
-	label.setText(getShape().getNameExec());
+	label.setText(getFullName());
 	label.setVisible(true);
 	refreshVisuals();
+}
+
+private String getFullName() {
+	return getShape().getNameExec() + " : " + getShape().getTypeName();
 }
 
 /**
@@ -158,11 +162,7 @@ public void revertNameChange()
  */
 private void commitNameChange(PropertyChangeEvent evt)
 {
-	BasicRectangleFigure tableFigure = (BasicRectangleFigure) getFigure();
-	EditableLabel label = tableFigure.getNameLabel();
-	label.setText(getShape().getNameExec());
-	label.setVisible(true);
-	refreshVisuals();
+	revertNameChange();
 }
 
 	
@@ -181,7 +181,7 @@ protected IFigure createFigure() {
 private IFigure createFigureForModel() {
 	if (getModel() instanceof VNode) {
 		
-		EditableLabel label = new EditableLabel(((VNode)getModel()).getNameExec());
+		EditableLabel label = new EditableLabel(getFullName());
 		return new BasicRectangleFigure(label);
 	} else {
 		// if Shapes gets extended the conditions above must be updated

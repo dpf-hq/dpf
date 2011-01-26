@@ -142,7 +142,7 @@ public class VEdgeEditPart extends ModelElementConnectionEditPart {
 	 * @see org.eclipse.gef.editparts.AbstractGraphicalEditPart#createFigure()
 	 */
 	protected IFigure createFigure() {		
-		EditableLabel label = new EditableLabel(getEdge().getName());
+		EditableLabel label = new EditableLabel(getFullName());
 		connectionFigure = new DPFConnectionFigure(label);
 		makeNewConstraintLabel();
 
@@ -199,10 +199,13 @@ public class VEdgeEditPart extends ModelElementConnectionEditPart {
 	private void commitNameChange(String newValue) {
 		DPFConnectionFigure figure = (DPFConnectionFigure) getFigure();
 		EditableLabel label = figure.getLabel();
-		label.setText(getEdge().getName() + ":");
+		label.setText(getFullName());
 		refreshVisuals();
 	}
-
+	
+	private String getFullName() {
+		return getEdge().getName() + " : " + getEdge().getTypeName();
+	}
 
 	@Override
 	public IFigure getFigure() {
