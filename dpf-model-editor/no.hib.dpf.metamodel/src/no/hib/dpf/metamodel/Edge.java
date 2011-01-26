@@ -81,6 +81,14 @@ public interface Edge extends IDObject {
 	void setName(String value);
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 * @generated
+	 */
+	String getTypeName();
+
+	/**
 	 * Returns the value of the '<em><b>Type Edge</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>

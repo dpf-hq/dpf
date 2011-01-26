@@ -72,12 +72,14 @@
           <eOperations name="getEdgeto" eType="#//hib/dpf/metamodel/Edge">
             <eParameters name="target" eType="#//hib/dpf/metamodel/Node"/>
           </eOperations>
+          <eOperations name="getTypeName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="graph" eType="#//hib/dpf/metamodel/Graph"
               unsettable="true" eOpposite="#//hib/dpf/metamodel/Graph/nodes"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="typeNode" eType="#//hib/dpf/metamodel/Node"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Edge" eSuperTypes="#//hib/dpf/metamodel/IDObject">
+          <eOperations name="getTypeName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//hib/dpf/metamodel/Node"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="graph" eType="#//hib/dpf/metamodel/Graph"
               eOpposite="#//hib/dpf/metamodel/Graph/edges"/>

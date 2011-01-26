@@ -64,13 +64,6 @@ public class VNode extends ModelElement implements Node, IDObjectContainer, Mova
 		}
 		return retVal;
 	}
-
-	public String getTypeName() {
-		if ((nodeComponent.getTypeNode() == null) || (nodeComponent.getTypeNode().getName() == null)) {
-			return "";
-		}
-		return nodeComponent.getTypeNode().getName();
-	}
 	
 	private static final long serialVersionUID = 7208811341274639248L;
 
@@ -501,6 +494,11 @@ public class VNode extends ModelElement implements Node, IDObjectContainer, Mova
 	@Override
 	public Edge getEdgeto(Node target) {
 		return nodeComponent.getEdgeto(target);
+	}
+
+	@Override
+	public String getTypeName() {
+		return nodeComponent.getTypeName();
 	}
 
 

@@ -155,4 +155,12 @@ public interface Node extends IDObject {
 	 */
 	Edge getEdgeto(Node target);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 * @generated
+	 */
+	String getTypeName();
+
 } // Node

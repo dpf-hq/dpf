@@ -80,6 +80,7 @@
             <genOperations ecoreOperation="Metamodel.ecore#//hib/dpf/metamodel/Node/getEdgeto">
               <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/Node/getEdgeto/target"/>
             </genOperations>
+            <genOperations ecoreOperation="Metamodel.ecore#//hib/dpf/metamodel/Node/getTypeName"/>
           </genClasses>
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/metamodel/Edge">
             <genFeatures notify="false" createChild="false" propertySortChoices="true"
@@ -90,6 +91,7 @@
                 ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/Edge/typeEdge"/>
             <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/Edge/source"/>
             <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//hib/dpf/metamodel/Edge/name"/>
+            <genOperations ecoreOperation="Metamodel.ecore#//hib/dpf/metamodel/Edge/getTypeName"/>
           </genClasses>
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/metamodel/Signature">
             <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/Signature/predicates"/>

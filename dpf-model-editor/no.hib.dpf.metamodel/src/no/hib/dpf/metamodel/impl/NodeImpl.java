@@ -278,6 +278,18 @@ public class NodeImpl extends IDObjectImpl implements Node {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	public String getTypeName() {
+		if ((getTypeNode() == null) || (getTypeNode().getName() == null)) {
+			return "";
+		}
+		return getTypeNode().getName();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	public boolean canReachTargetByOneEdge(Node target) {
 		return (getEdgeto(target) != null);
 	}

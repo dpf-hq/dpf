@@ -25,6 +25,7 @@ import no.hib.dpf.metamodel.Node;
  *   <li>{@link no.hib.dpf.metamodel.Node#edgeCanMakeConnectionAsTarget(no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Edge) <em>Edge Can Make Connection As Target</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Node#canReachTargetByTypeEdge(no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Edge) <em>Can Reach Target By Type Edge</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Node#getEdgeto(no.hib.dpf.metamodel.Node) <em>Get Edgeto</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Node#getTypeName() <em>Get Type Name</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -176,6 +177,24 @@ public class NodeTest extends IDObjectTest {
 		Graph graph = MetamodelFactory.eINSTANCE.createGraph("tn_1,tn_2", "te_1:tn_1:tn_2");
 		assertEquals(graph.getEdgeByName("te_1"), graph.getNodeByName("tn_1").getEdgeto(graph.getNodeByName("tn_2")));
 		assertEquals(null, graph.getNodeByName("tn_2").getEdgeto(graph.getNodeByName("tn_1")));
+	}
+
+	/**
+	 * Tests the '{@link no.hib.dpf.metamodel.Node#getTypeName() <em>Get Type Name</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.Node#getTypeName()
+	 * @generated NOT
+	 */
+	public void testGetTypeName() {
+		Node untypedNode = MetamodelFactory.eINSTANCE.createNode();
+		String typeName = "thetype";
+		untypedNode.setName(typeName);
+		
+		assertEquals("", untypedNode.getTypeName());
+		
+		Node typedNode = MetamodelFactory.eINSTANCE.createNode(untypedNode);
+		assertEquals(typeName, typedNode.getTypeName());
 	}
 
 	/**

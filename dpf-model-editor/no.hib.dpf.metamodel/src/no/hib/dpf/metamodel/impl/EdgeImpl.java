@@ -168,6 +168,18 @@ public class EdgeImpl extends IDObjectImpl implements Edge {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public String getTypeName() {
+		if ((getTypeEdge() == null) || (getTypeEdge().getName() == null)) {
+			return "";
+		}
+		return getTypeEdge().getName();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Edge getTypeEdge() {

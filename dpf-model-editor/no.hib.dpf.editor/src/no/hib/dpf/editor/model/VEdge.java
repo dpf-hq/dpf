@@ -207,12 +207,6 @@ public class VEdge extends ModelElement implements Edge, IDObjectContainer {
 		return super.getPropertyValue(id);
 	}
 
-	private String getTypeName() {
-		if ((edgeComponent.getTypeEdge() == null) || (edgeComponent.getTypeEdge().getName() == null)) {
-			return "";
-		}
-		return edgeComponent.getTypeEdge().getName();
-	}
 	/**
 	 * Returns the source endpoint of this connection.
 	 * 
@@ -561,6 +555,12 @@ public class VEdge extends ModelElement implements Edge, IDObjectContainer {
 	@Override
 	public void setTypeEdge(Edge value) {
 		edgeComponent.setTypeEdge(value);
+	}
+
+
+	@Override
+	public String getTypeName() {
+		return edgeComponent.getTypeName();
 	}
 	
 

@@ -199,7 +199,7 @@ public class VEdgeEditPart extends ModelElementConnectionEditPart {
 	private void commitNameChange(String newValue) {
 		DPFConnectionFigure figure = (DPFConnectionFigure) getFigure();
 		EditableLabel label = figure.getLabel();
-		label.setText(getEdge().getName());
+		label.setText(getEdge().getName() + ":");
 		refreshVisuals();
 	}
 

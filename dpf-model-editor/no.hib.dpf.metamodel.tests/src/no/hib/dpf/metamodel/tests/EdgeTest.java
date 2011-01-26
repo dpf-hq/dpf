@@ -9,11 +9,18 @@ package no.hib.dpf.metamodel.tests;
 import junit.textui.TestRunner;
 import no.hib.dpf.metamodel.Edge;
 import no.hib.dpf.metamodel.MetamodelFactory;
+import no.hib.dpf.metamodel.Node;
 
 /**
  * <!-- begin-user-doc -->
  * A test case for the model object '<em><b>Edge</b></em>'.
  * <!-- end-user-doc -->
+ * <p>
+ * The following operations are tested:
+ * <ul>
+ *   <li>{@link no.hib.dpf.metamodel.Edge#getTypeName() <em>Get Type Name</em>}</li>
+ * </ul>
+ * </p>
  * @generated
  */
 public class EdgeTest extends IDObjectTest {
@@ -68,6 +75,25 @@ public class EdgeTest extends IDObjectTest {
 	@Override
 	protected void tearDown() throws Exception {
 		setFixture(null);
+	}
+
+	/**
+	 * Tests the '{@link no.hib.dpf.metamodel.Edge#getTypeName() <em>Get Type Name</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.Edge#getTypeName()
+	 * @generated NOT
+	 */
+	public void testGetTypeName() {
+		Edge untypedEdge = MetamodelFactory.eINSTANCE.createEdge();
+		String typeName = "theedge";
+		untypedEdge.setName(typeName);
+		
+		assertEquals("", untypedEdge.getTypeName());
+		
+		Edge typedEdge = MetamodelFactory.eINSTANCE.createEdge(untypedEdge);
+		assertEquals(typeName, typedEdge.getTypeName());
+
 	}
 
 } //EdgeTest
