@@ -159,7 +159,7 @@ public class NodeTest extends IDObjectTest {
 	 * @see no.hib.dpf.metamodel.Node#canReachTargetByTypeEdge(no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Edge)
 	 * @generated NOT
 	 */
-	public void testCanReachTargetByTypeArrow__Node_Edge() {
+	public void testCanReachTargetByTypeArrow__Node_Arrow() {
 		Graph typeGraph = MetamodelFactory.eINSTANCE.createGraph("tn_1,tn_2,tn_3", "te_1:tn_1:tn_2,te_2:tn_1:tn_3");
 		assertTrue(typeGraph.getNodeByName("tn_1").canReachTargetByTypeArrow(typeGraph.getNodeByName("tn_2"), typeGraph.getArrowByName("te_1")));
 		assertFalse(typeGraph.getNodeByName("tn_1").canReachTargetByTypeArrow(typeGraph.getNodeByName("tn_2"), typeGraph.getArrowByName("te_2")));
@@ -225,20 +225,4 @@ public class NodeTest extends IDObjectTest {
 		assertFalse(source.arrowCanMakeConnectionAsTarget(source, te_1));
 		assertFalse(source.arrowCanMakeConnectionAsTarget(null, te_1));		
 	}
-
-	/**
-	 * Tests the '{@link no.hib.dpf.metamodel.Node#canReachTargetByTypeArrow(no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Arrow) <em>Can Reach Target By Type Arrow</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.Node#canReachTargetByTypeArrow(no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Arrow)
-	 * @generated
-	 */
-	public void testCanReachTargetByTypeArrow__Node_Arrow() {
-		// TODO: implement this operation test method
-		// Ensure that you remove @generated or mark it @generated NOT
-		fail();
-	}
-	
-
-
 } //NodeTest
