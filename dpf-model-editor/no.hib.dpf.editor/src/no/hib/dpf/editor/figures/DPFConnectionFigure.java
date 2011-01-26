@@ -5,9 +5,6 @@ import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.ConnectionLocator;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.PolylineConnection;
-import org.eclipse.draw2d.ToolbarLayout;
-import org.eclipse.draw2d.XYLayout;
-import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.SWT;
 
 /**

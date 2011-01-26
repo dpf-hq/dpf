@@ -7,7 +7,7 @@
  *
  * Contributors:
  * Elias Volanakis - initial API and implementation
-Ê*******************************************************************************/
+ï¿½*******************************************************************************/
 package no.hib.dpf.editor;
 
 import java.io.ByteArrayInputStream;
@@ -66,13 +66,9 @@ import org.eclipse.gef.ui.parts.TreeViewer;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.FillLayout;
-import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
@@ -334,7 +330,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		//specification.setTypeGraph(typeGraph);
 		resource.getContents().add(specification);		
 		
-		// serialize resource Ð you can specify also serialization
+		// serialize resource ï¿½ you can specify also serialization
 		// options which defined on org.eclipse.emf.ecore.xmi.XMIResource
 		try {
 			resource.save(null);
