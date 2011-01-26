@@ -30,7 +30,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <ul>
  *   <li>{@link no.hib.dpf.metamodel.impl.ArrowImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.impl.ArrowImpl#getGraph <em>Graph</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.impl.ArrowImpl#getTypeEdge <em>Type Edge</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.impl.ArrowImpl#getTypeArrow <em>Type Arrow</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.impl.ArrowImpl#getSource <em>Source</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.impl.ArrowImpl#getName <em>Name</em>}</li>
  * </ul>
@@ -50,14 +50,14 @@ public class ArrowImpl extends IDObjectImpl implements Arrow {
 	protected Node target;
 
 	/**
-	 * The cached value of the '{@link #getTypeEdge() <em>Type Edge</em>}' reference.
+	 * The cached value of the '{@link #getTypeArrow() <em>Type Arrow</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTypeEdge()
+	 * @see #getTypeArrow()
 	 * @generated
 	 * @ordered
 	 */
-	protected Arrow typeEdge;
+	protected Arrow typeArrow;
 
 	/**
 	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
@@ -193,16 +193,16 @@ public class ArrowImpl extends IDObjectImpl implements Arrow {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Arrow getTypeEdge() {
-		if (typeEdge != null && typeEdge.eIsProxy()) {
-			InternalEObject oldTypeEdge = (InternalEObject)typeEdge;
-			typeEdge = (Arrow)eResolveProxy(oldTypeEdge);
-			if (typeEdge != oldTypeEdge) {
+	public Arrow getTypeArrow() {
+		if (typeArrow != null && typeArrow.eIsProxy()) {
+			InternalEObject oldTypeArrow = (InternalEObject)typeArrow;
+			typeArrow = (Arrow)eResolveProxy(oldTypeArrow);
+			if (typeArrow != oldTypeArrow) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.ARROW__TYPE_EDGE, oldTypeEdge, typeEdge));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.ARROW__TYPE_ARROW, oldTypeArrow, typeArrow));
 			}
 		}
-		return typeEdge;
+		return typeArrow;
 	}
 
 	/**
@@ -210,8 +210,8 @@ public class ArrowImpl extends IDObjectImpl implements Arrow {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Arrow basicGetTypeEdge() {
-		return typeEdge;
+	public Arrow basicGetTypeArrow() {
+		return typeArrow;
 	}
 
 	/**
@@ -219,11 +219,11 @@ public class ArrowImpl extends IDObjectImpl implements Arrow {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTypeEdge(Arrow newTypeEdge) {
-		Arrow oldTypeEdge = typeEdge;
-		typeEdge = newTypeEdge;
+	public void setTypeArrow(Arrow newTypeArrow) {
+		Arrow oldTypeArrow = typeArrow;
+		typeArrow = newTypeArrow;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.ARROW__TYPE_EDGE, oldTypeEdge, typeEdge));
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.ARROW__TYPE_ARROW, oldTypeArrow, typeArrow));
 	}
 
 	/**
@@ -291,10 +291,10 @@ public class ArrowImpl extends IDObjectImpl implements Arrow {
 	 * @generated NOT
 	 */
 	public String getTypeName() {
-		if ((getTypeEdge() == null) || (getTypeEdge().getName() == null)) {
+		if ((getTypeArrow() == null) || (getTypeArrow().getName() == null)) {
 			return "";
 		}
-		return getTypeEdge().getName();
+		return getTypeArrow().getName();
 	}
 
 	/**
@@ -354,9 +354,9 @@ public class ArrowImpl extends IDObjectImpl implements Arrow {
 				return basicGetTarget();
 			case MetamodelPackage.ARROW__GRAPH:
 				return getGraph();
-			case MetamodelPackage.ARROW__TYPE_EDGE:
-				if (resolve) return getTypeEdge();
-				return basicGetTypeEdge();
+			case MetamodelPackage.ARROW__TYPE_ARROW:
+				if (resolve) return getTypeArrow();
+				return basicGetTypeArrow();
 			case MetamodelPackage.ARROW__SOURCE:
 				if (resolve) return getSource();
 				return basicGetSource();
@@ -380,8 +380,8 @@ public class ArrowImpl extends IDObjectImpl implements Arrow {
 			case MetamodelPackage.ARROW__GRAPH:
 				setGraph((Graph)newValue);
 				return;
-			case MetamodelPackage.ARROW__TYPE_EDGE:
-				setTypeEdge((Arrow)newValue);
+			case MetamodelPackage.ARROW__TYPE_ARROW:
+				setTypeArrow((Arrow)newValue);
 				return;
 			case MetamodelPackage.ARROW__SOURCE:
 				setSource((Node)newValue);
@@ -407,8 +407,8 @@ public class ArrowImpl extends IDObjectImpl implements Arrow {
 			case MetamodelPackage.ARROW__GRAPH:
 				setGraph((Graph)null);
 				return;
-			case MetamodelPackage.ARROW__TYPE_EDGE:
-				setTypeEdge((Arrow)null);
+			case MetamodelPackage.ARROW__TYPE_ARROW:
+				setTypeArrow((Arrow)null);
 				return;
 			case MetamodelPackage.ARROW__SOURCE:
 				setSource((Node)null);
@@ -432,8 +432,8 @@ public class ArrowImpl extends IDObjectImpl implements Arrow {
 				return target != null;
 			case MetamodelPackage.ARROW__GRAPH:
 				return getGraph() != null;
-			case MetamodelPackage.ARROW__TYPE_EDGE:
-				return typeEdge != null;
+			case MetamodelPackage.ARROW__TYPE_ARROW:
+				return typeArrow != null;
 			case MetamodelPackage.ARROW__SOURCE:
 				return source != null;
 			case MetamodelPackage.ARROW__NAME:

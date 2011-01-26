@@ -87,7 +87,7 @@
                 ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/Arrow/target"/>
             <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/Arrow/graph"/>
             <genFeatures notify="false" createChild="false" propertySortChoices="true"
-                ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/Arrow/typeEdge"/>
+                ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/Arrow/typeArrow"/>
             <genFeatures notify="false" createChild="false" propertySortChoices="true"
                 ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/Arrow/source"/>
             <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//hib/dpf/metamodel/Arrow/name"/>
@@ -130,11 +130,11 @@
             <genFeatures notify="false" createChild="false" propertySortChoices="true"
                 ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/Constraint/mappings"/>
           </genClasses>
-          <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/metamodel/EdgeToEdgeMap">
+          <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/metamodel/ArrowToArrowMap">
             <genFeatures notify="false" createChild="false" propertySortChoices="true"
-                ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/EdgeToEdgeMap/key"/>
+                ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/ArrowToArrowMap/key"/>
             <genFeatures notify="false" createChild="false" propertySortChoices="true"
-                ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/EdgeToEdgeMap/value"/>
+                ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/ArrowToArrowMap/value"/>
           </genClasses>
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/metamodel/TypingMorphism">
             <genFeatures notify="false" createChild="false" propertySortChoices="true"
@@ -147,8 +147,7 @@
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/metamodel/GraphHomomorphism">
             <genFeatures notify="false" createChild="false" propertySortChoices="true"
                 ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/GraphHomomorphism/nodeMapping"/>
-            <genFeatures notify="false" createChild="false" propertySortChoices="true"
-                ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/GraphHomomorphism/edgeMapping"/>
+            <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/GraphHomomorphism/arrowMapping"/>
             <genOperations ecoreOperation="Metamodel.ecore#//hib/dpf/metamodel/GraphHomomorphism/tryToCreateGraphHomomorphism">
               <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/GraphHomomorphism/tryToCreateGraphHomomorphism/sourceGraph"/>
               <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/GraphHomomorphism/tryToCreateGraphHomomorphism/nodes"/>

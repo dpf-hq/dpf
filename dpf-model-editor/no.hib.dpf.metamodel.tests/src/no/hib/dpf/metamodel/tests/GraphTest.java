@@ -135,7 +135,7 @@ public class GraphTest extends IDObjectTest {
 		getFixture().createNode("target", typeGraph.getNodeByName("tn_2"));
 
 		Arrow newArrow = getFixture().createArrow("edge", getFixture().getNodeByName("source"), getFixture().getNodeByName("target"), typeGraph.getArrowByName("te_1"));
-		assertEquals(typeGraph.getArrowByName("te_1"), newArrow.getTypeEdge());
+		assertEquals(typeGraph.getArrowByName("te_1"), newArrow.getTypeArrow());
 		try {
 			getFixture().createArrow("edge", getFixture().getNodeByName("source"), getFixture().getNodeByName("target"), typeGraph.getArrowByName("te_2"));
 			fail();
@@ -161,7 +161,7 @@ public class GraphTest extends IDObjectTest {
 		}
 		
 		Arrow newArrow = getFixture().createArrow("new_edge", getFixture().getNodeByName("source"), getFixture().getNodeByName("target"));
-		assertEquals(typeGraph.getArrowByName("te_1"), newArrow.getTypeEdge());
+		assertEquals(typeGraph.getArrowByName("te_1"), newArrow.getTypeArrow());
 
 	}
 

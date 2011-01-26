@@ -547,14 +547,14 @@ public class VArrow extends ModelElement implements Arrow, IDObjectContainer {
 
 
 	@Override
-	public Arrow getTypeEdge() {
-		return arrowComponent.getTypeEdge();
+	public Arrow getTypeArrow() {
+		return arrowComponent.getTypeArrow();
 	}
 
 
 	@Override
-	public void setTypeEdge(Arrow value) {
-		arrowComponent.setTypeEdge(value);
+	public void setTypeArrow(Arrow value) {
+		arrowComponent.setTypeArrow(value);
 	}
 
 

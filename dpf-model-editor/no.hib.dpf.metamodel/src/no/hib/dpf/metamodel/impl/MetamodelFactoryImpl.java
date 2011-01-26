@@ -184,7 +184,7 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	 */
 	public Arrow createArrow(Arrow typeArrow) {
 		Arrow retval = createArrow();
-		retval.setTypeEdge(typeArrow);
+		retval.setTypeArrow(typeArrow);
 		return retval;
 	}
 	

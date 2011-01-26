@@ -17,7 +17,7 @@ package no.hib.dpf.metamodel;
  * <ul>
  *   <li>{@link no.hib.dpf.metamodel.Arrow#getTarget <em>Target</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Arrow#getGraph <em>Graph</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Arrow#getTypeEdge <em>Type Edge</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Arrow#getTypeArrow <em>Type Arrow</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Arrow#getSource <em>Source</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Arrow#getName <em>Name</em>}</li>
  * </ul>
@@ -83,30 +83,30 @@ public interface Arrow extends IDObject {
 	void setGraph(Graph value);
 
 	/**
-	 * Returns the value of the '<em><b>Type Edge</b></em>' reference.
+	 * Returns the value of the '<em><b>Type Arrow</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Type Edge</em>' reference isn't clear,
+	 * If the meaning of the '<em>Type Arrow</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Type Edge</em>' reference.
-	 * @see #setTypeEdge(Arrow)
-	 * @see no.hib.dpf.metamodel.MetamodelPackage#getArrow_TypeEdge()
+	 * @return the value of the '<em>Type Arrow</em>' reference.
+	 * @see #setTypeArrow(Arrow)
+	 * @see no.hib.dpf.metamodel.MetamodelPackage#getArrow_TypeArrow()
 	 * @model
 	 * @generated
 	 */
-	Arrow getTypeEdge();
+	Arrow getTypeArrow();
 
 	/**
-	 * Sets the value of the '{@link no.hib.dpf.metamodel.Arrow#getTypeEdge <em>Type Edge</em>}' reference.
+	 * Sets the value of the '{@link no.hib.dpf.metamodel.Arrow#getTypeArrow <em>Type Arrow</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type Edge</em>' reference.
-	 * @see #getTypeEdge()
+	 * @param value the new value of the '<em>Type Arrow</em>' reference.
+	 * @see #getTypeArrow()
 	 * @generated
 	 */
-	void setTypeEdge(Arrow value);
+	void setTypeArrow(Arrow value);
 
 	/**
 	 * Returns the value of the '<em><b>Source</b></em>' reference.

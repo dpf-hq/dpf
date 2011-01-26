@@ -197,7 +197,7 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 						
 		Arrow edge = createEdgeExec(name, source, target);
 		if ((source.getTypeNode() != null) && (target.getTypeNode() != null)) {
-			edge.setTypeEdge(source.getTypeNode().getArrowto(target.getTypeNode()));
+			edge.setTypeArrow(source.getTypeNode().getArrowto(target.getTypeNode()));
 		}
 		return edge;
 	}
@@ -213,7 +213,7 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 			throw new AssertionError(String.format("The target node, %s, had the wrong type for an edge to be connected from the node %s via the type edge %s.", target, source, typeArrow));			
 		}
 		Arrow edge = createEdgeExec(name, source, target);
-		edge.setTypeEdge(typeArrow);
+		edge.setTypeArrow(typeArrow);
 		return edge;
 	}
 

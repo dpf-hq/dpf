@@ -324,13 +324,13 @@ public interface MetamodelPackage extends EPackage {
 	int ARROW__GRAPH = ID_OBJECT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Type Edge</b></em>' reference.
+	 * The feature id for the '<em><b>Type Arrow</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ARROW__TYPE_EDGE = ID_OBJECT_FEATURE_COUNT + 2;
+	int ARROW__TYPE_ARROW = ID_OBJECT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
@@ -818,15 +818,15 @@ public interface MetamodelPackage extends EPackage {
 	EReference getArrow_Graph();
 
 	/**
-	 * Returns the meta object for the reference '{@link no.hib.dpf.metamodel.Arrow#getTypeEdge <em>Type Edge</em>}'.
+	 * Returns the meta object for the reference '{@link no.hib.dpf.metamodel.Arrow#getTypeArrow <em>Type Arrow</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Type Edge</em>'.
-	 * @see no.hib.dpf.metamodel.Arrow#getTypeEdge()
+	 * @return the meta object for the reference '<em>Type Arrow</em>'.
+	 * @see no.hib.dpf.metamodel.Arrow#getTypeArrow()
 	 * @see #getArrow()
 	 * @generated
 	 */
-	EReference getArrow_TypeEdge();
+	EReference getArrow_TypeArrow();
 
 	/**
 	 * Returns the meta object for the reference '{@link no.hib.dpf.metamodel.Arrow#getSource <em>Source</em>}'.
@@ -1341,12 +1341,12 @@ public interface MetamodelPackage extends EPackage {
 		EReference ARROW__GRAPH = eINSTANCE.getArrow_Graph();
 
 		/**
-		 * The meta object literal for the '<em><b>Type Edge</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Type Arrow</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ARROW__TYPE_EDGE = eINSTANCE.getArrow_TypeEdge();
+		EReference ARROW__TYPE_ARROW = eINSTANCE.getArrow_TypeArrow();
 
 		/**
 		 * The meta object literal for the '<em><b>Source</b></em>' reference feature.

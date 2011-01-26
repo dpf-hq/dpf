@@ -83,7 +83,7 @@
           <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//hib/dpf/metamodel/Node"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="graph" eType="#//hib/dpf/metamodel/Graph"
               eOpposite="#//hib/dpf/metamodel/Graph/arrows"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="typeEdge" eType="#//hib/dpf/metamodel/Arrow"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="typeArrow" eType="#//hib/dpf/metamodel/Arrow"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//hib/dpf/metamodel/Node"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         </eClassifiers>
