@@ -1,13 +1,13 @@
 /*******************************************************************************
  * Copyright (c) 2004, 2005 Elias Volanakis and others.
-Ê* All rights reserved. This program and the accompanying materials
-Ê* are made available under the terms of the Eclipse Public License v1.0
-Ê* which accompanies this distribution, and is available at
-Ê* http://www.eclipse.org/legal/epl-v10.html
-Ê*
-Ê* Contributors:
-Ê*ÊÊÊÊElias Volanakis - initial API and implementation
-Ê*******************************************************************************/
+ï¿½* All rights reserved. This program and the accompanying materials
+ï¿½* are made available under the terms of the Eclipse Public License v1.0
+ï¿½* which accompanies this distribution, and is available at
+ï¿½* http://www.eclipse.org/legal/epl-v10.html
+ï¿½*
+ï¿½* Contributors:
+ï¿½*ï¿½ï¿½ï¿½ï¿½Elias Volanakis - initial API and implementation
+ï¿½*******************************************************************************/
 package no.hib.dpf.editor.parts;
 
 import java.beans.PropertyChangeEvent;
@@ -19,11 +19,11 @@ import java.util.List;
 
 import no.hib.dpf.editor.figures.DPFConnectionFigure;
 import no.hib.dpf.editor.figures.EditableLabel;
-import no.hib.dpf.editor.model.VEdge;
-import no.hib.dpf.editor.model.VConstraint;
 import no.hib.dpf.editor.model.SingleLineConstraintElement;
+import no.hib.dpf.editor.model.VArrow;
+import no.hib.dpf.editor.model.VConstraint;
 import no.hib.dpf.editor.model.commands.ConnectionDeleteCommand;
-import no.hib.dpf.metamodel.Edge;
+import no.hib.dpf.metamodel.Arrow;
 
 import org.eclipse.draw2d.ConnectionLocator;
 import org.eclipse.draw2d.IFigure;
@@ -31,6 +31,7 @@ import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.PolygonDecoration;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
+import org.eclipse.draw2d.graph.Edge;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.commands.Command;
@@ -45,7 +46,7 @@ import org.eclipse.gef.requests.GroupRequest;
  * so it can be notified of property changes in the corresponding model element.
  * </p>
  */
-public class VEdgeEditPart extends ModelElementConnectionEditPart {
+public class VArrowEditPart extends ModelElementConnectionEditPart {
 
 	protected DPFConnectionFigure connectionFigure; 
 	Label connectionLabel;
@@ -133,8 +134,8 @@ public class VEdgeEditPart extends ModelElementConnectionEditPart {
 				});
 	}
 	
-	protected Edge getEdge() {
-		return (Edge) getModel();
+	protected Arrow getArrow() {
+		return (Arrow) getModel();
 	}
 	/*
 	 * (non-Javadoc)
@@ -182,16 +183,16 @@ public class VEdgeEditPart extends ModelElementConnectionEditPart {
 	 */
 	public void propertyChange(PropertyChangeEvent event) {
 		String property = event.getPropertyName();
-		if (VEdge.LINESTYLE_PROP.equals(property)) {
+		if (VArrow.LINESTYLE_PROP.equals(property)) {
 			((DPFConnectionFigure) getFigure()).setLineStyle(getCastedModel()
 					.getLineStyle());
-		} else if (VEdge.SOURCE_CONSTRAINTS_PROP.equals(property)) {
+		} else if (VArrow.SOURCE_CONSTRAINTS_PROP.equals(property)) {
 			refreshSourceConnections();
-		} else if (VEdge.TARGET_CONSTRAINTS_PROP.equals(property)) {
+		} else if (VArrow.TARGET_CONSTRAINTS_PROP.equals(property)) {
 			refreshTargetConnections();
-		} else if (VEdge.SINGLE_CONSTRAINTS_PROP.equals(property)) {
+		} else if (VArrow.SINGLE_CONSTRAINTS_PROP.equals(property)) {
 			refreshSingleLineConstraints();
-		} else if (VEdge.NAME_PROP.equals(property)) {
+		} else if (VArrow.NAME_PROP.equals(property)) {
 			commitNameChange((String)event.getNewValue());
 		}
 	}
@@ -204,7 +205,7 @@ public class VEdgeEditPart extends ModelElementConnectionEditPart {
 	}
 	
 	private String getFullName() {
-		return getEdge().getName() + " : " + getEdge().getTypeName();
+		return getArrow().getName() + " : " + getArrow().getTypeName();
 	}
 
 	@Override
@@ -259,8 +260,8 @@ public class VEdgeEditPart extends ModelElementConnectionEditPart {
 		return constraints;		
 	}
 
-	protected VEdge getCastedModel() {
-		return (VEdge)getModel();
+	protected VArrow getCastedModel() {
+		return (VArrow)getModel();
 	}
 
 	/**

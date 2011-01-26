@@ -6,7 +6,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *ÊÊÊÊElias Volanakis - initial API and implementation
+ *ï¿½ï¿½ï¿½ï¿½Elias Volanakis - initial API and implementation
  *******************************************************************************/
 package no.hib.dpf.editor.parts;
 
@@ -17,13 +17,13 @@ import java.util.List;
 import no.hib.dpf.editor.figures.BasicRectangleFigure;
 import no.hib.dpf.editor.figures.EditableLabel;
 import no.hib.dpf.editor.figures.SingleNodeConnectionAnchor;
-import no.hib.dpf.editor.model.VEdge;
 import no.hib.dpf.editor.model.LocationAndSize;
 import no.hib.dpf.editor.model.ModelElement;
+import no.hib.dpf.editor.model.VArrow;
 import no.hib.dpf.editor.model.VNode;
 import no.hib.dpf.editor.model.commands.ConnectionCreateCommand;
 import no.hib.dpf.editor.model.commands.ConnectionReconnectCommand;
-import no.hib.dpf.metamodel.Edge;
+import no.hib.dpf.metamodel.Arrow;
 
 import org.eclipse.draw2d.ChopboxAnchor;
 import org.eclipse.draw2d.ConnectionAnchor;
@@ -93,10 +93,10 @@ protected void createEditPolicies() {
 		protected Command getConnectionCreateCommand(CreateConnectionRequest request) {
 			
 			VNode source = (VNode) getHost().getModel();
-			Edge typeEdge = (Edge)request.getNewObjectType();
+			Arrow typeArrow = (Arrow)request.getNewObjectType();
 			
 			
-			ConnectionCreateCommand cmd = new ConnectionCreateCommand(source, typeEdge);
+			ConnectionCreateCommand cmd = new ConnectionCreateCommand(source, typeArrow);
 			request.setStartCommand(cmd);
 			return cmd;
 		}
@@ -104,7 +104,7 @@ protected void createEditPolicies() {
 		 * @see org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy#getReconnectSourceCommand(org.eclipse.gef.requests.ReconnectRequest)
 		 */
 		protected Command getReconnectSourceCommand(ReconnectRequest request) {
-			VEdge conn = (VEdge) request.getConnectionEditPart().getModel();
+			VArrow conn = (VArrow) request.getConnectionEditPart().getModel();
 			VNode newSource = (VNode) getHost().getModel();
 			ConnectionReconnectCommand cmd = new ConnectionReconnectCommand(conn);
 			cmd.setNewSource(newSource);
@@ -114,7 +114,7 @@ protected void createEditPolicies() {
 		 * @see org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy#getReconnectTargetCommand(org.eclipse.gef.requests.ReconnectRequest)
 		 */
 		protected Command getReconnectTargetCommand(ReconnectRequest request) {
-			VEdge conn = (VEdge) request.getConnectionEditPart().getModel();
+			VArrow conn = (VArrow) request.getConnectionEditPart().getModel();
 			VNode newTarget = (VNode) getHost().getModel();
 			ConnectionReconnectCommand cmd = new ConnectionReconnectCommand(conn);
 			cmd.setNewTarget(newTarget);
@@ -222,7 +222,7 @@ private ConnectionAnchor getConnectionAnchor(ConnectionEditPart connection, bool
  * @see org.eclipse.gef.editparts.AbstractGraphicalEditPart#getModelSourceConnections()
  */
 @Override
-protected List<VEdge> getModelSourceConnections() {
+protected List<VArrow> getModelSourceConnections() {
 	return getCastedModel().getSourceConnections();
 }
 
@@ -231,7 +231,7 @@ protected List<VEdge> getModelSourceConnections() {
  * @see org.eclipse.gef.editparts.AbstractGraphicalEditPart#getModelTargetConnections()
  */
 @Override
-protected List<VEdge> getModelTargetConnections() {
+protected List<VArrow> getModelTargetConnections() {
 	return getCastedModel().getTargetConnections();
 }
 

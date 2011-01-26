@@ -18,7 +18,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link no.hib.dpf.metamodel.Graph#getNodes <em>Nodes</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Graph#getName <em>Name</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Graph#getEdges <em>Edges</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Graph#getArrows <em>Arrows</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Graph#getConstraints <em>Constraints</em>}</li>
  * </ul>
  * </p>
@@ -73,22 +73,22 @@ public interface Graph extends IDObject {
 	void setName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Edges</b></em>' containment reference list.
-	 * The list contents are of type {@link no.hib.dpf.metamodel.Edge}.
-	 * It is bidirectional and its opposite is '{@link no.hib.dpf.metamodel.Edge#getGraph <em>Graph</em>}'.
+	 * Returns the value of the '<em><b>Arrows</b></em>' containment reference list.
+	 * The list contents are of type {@link no.hib.dpf.metamodel.Arrow}.
+	 * It is bidirectional and its opposite is '{@link no.hib.dpf.metamodel.Arrow#getGraph <em>Graph</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Edges</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Arrows</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Edges</em>' containment reference list.
-	 * @see no.hib.dpf.metamodel.MetamodelPackage#getGraph_Edges()
-	 * @see no.hib.dpf.metamodel.Edge#getGraph
+	 * @return the value of the '<em>Arrows</em>' containment reference list.
+	 * @see no.hib.dpf.metamodel.MetamodelPackage#getGraph_Arrows()
+	 * @see no.hib.dpf.metamodel.Arrow#getGraph
 	 * @model opposite="graph" containment="true"
 	 * @generated
 	 */
-	EList<Edge> getEdges();
+	EList<Arrow> getArrows();
 
 	/**
 	 * Returns the value of the '<em><b>Constraints</b></em>' containment reference list.
@@ -119,18 +119,10 @@ public interface Graph extends IDObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model
-	 * @generated
-	 */
-	Edge createEdge(String name, Node source, Node target);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @model nodesMany="true" edgesMany="true"
 	 * @generated
 	 */
-	Constraint applyPredicate(Predicate predicate, EList<Node> nodes, EList<Edge> edges);
+	Constraint applyPredicate(Predicate predicate, EList<Node> nodes, EList<Arrow> edges);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -147,6 +139,14 @@ public interface Graph extends IDObject {
 	 * @model
 	 * @generated
 	 */
+	Arrow createArrow(String name, Node source, Node target);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
 	void deleteNode(Node node);
 
 	/**
@@ -155,7 +155,7 @@ public interface Graph extends IDObject {
 	 * @model
 	 * @generated
 	 */
-	void deleteEdge(Edge edge);
+	void deleteArrow(Arrow edge);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -171,7 +171,7 @@ public interface Graph extends IDObject {
 	 * @model
 	 * @generated
 	 */
-	Edge getEdgeByName(String name);
+	Arrow getArrowByName(String name);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -187,7 +187,7 @@ public interface Graph extends IDObject {
 	 * @model
 	 * @generated
 	 */
-	Edge createEdge(String name, Node source, Node target, Edge typeEdge);
+	Arrow createArrow(String name, Node source, Node target, Arrow typeEdge);
 	
 
 } // Graph

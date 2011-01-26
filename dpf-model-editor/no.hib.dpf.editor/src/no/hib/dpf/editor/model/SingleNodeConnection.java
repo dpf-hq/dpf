@@ -1,19 +1,19 @@
 package no.hib.dpf.editor.model;
 
-import no.hib.dpf.metamodel.Edge;
+import no.hib.dpf.metamodel.Arrow;
 
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.ui.views.properties.IPropertyDescriptor;
 
-public class SingleNodeConnection extends VEdge implements MovableAndSizable {
+public class SingleNodeConnection extends VArrow implements MovableAndSizable {
 
 	private static final long serialVersionUID = 764028909094201787L;
 
 	private LocationAndSize locationAndSize;
 		
-	public SingleNodeConnection(VNode source, Edge typeEdge) {
-		super(source, source, typeEdge);
+	public SingleNodeConnection(VNode source, Arrow typeArrow) {
+		super(source, source, typeArrow);
 	}
 
 	public IPropertyDescriptor[] getPropertyDescriptors() {

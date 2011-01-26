@@ -7,7 +7,7 @@
 package no.hib.dpf.metamodel.tests;
 
 import junit.textui.TestRunner;
-import no.hib.dpf.metamodel.Edge;
+import no.hib.dpf.metamodel.Arrow;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.MetamodelFactory;
 import no.hib.dpf.metamodel.Node;
@@ -19,12 +19,12 @@ import no.hib.dpf.metamodel.Node;
  * <p>
  * The following operations are tested:
  * <ul>
- *   <li>{@link no.hib.dpf.metamodel.Node#getOutgoingEdges() <em>Get Outgoing Edges</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Node#edgeCanMakeConnectionAsTarget(no.hib.dpf.metamodel.Node) <em>Edge Can Make Connection As Target</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Node#canReachTargetByOneEdge(no.hib.dpf.metamodel.Node) <em>Can Reach Target By One Edge</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Node#edgeCanMakeConnectionAsTarget(no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Edge) <em>Edge Can Make Connection As Target</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Node#canReachTargetByTypeEdge(no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Edge) <em>Can Reach Target By Type Edge</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Node#getEdgeto(no.hib.dpf.metamodel.Node) <em>Get Edgeto</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Node#getOutgoingArrows() <em>Get Outgoing Arrows</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Node#arrowCanMakeConnectionAsTarget(no.hib.dpf.metamodel.Node) <em>Arrow Can Make Connection As Target</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Node#canReachTargetByOneArrow(no.hib.dpf.metamodel.Node) <em>Can Reach Target By One Arrow</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Node#arrowCanMakeConnectionAsTarget(no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Arrow) <em>Arrow Can Make Connection As Target</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Node#canReachTargetByTypeArrow(no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Arrow) <em>Can Reach Target By Type Arrow</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Node#getArrowto(no.hib.dpf.metamodel.Node) <em>Get Arrowto</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Node#getTypeName() <em>Get Type Name</em>}</li>
  * </ul>
  * </p>
@@ -91,24 +91,24 @@ public class NodeTest extends IDObjectTest {
 	 * @see no.hib.dpf.metamodel.Node#getOutgoingEdges()
 	 * @generated NOT
 	 */
-	public void testGetOutgoingEdges() {
+	public void testGetOutgoingArrows() {
 		Graph g = MetamodelFactory.eINSTANCE.createGraph();
 		Node n1 = g.createNode("n1");
 		Node n2 = g.createNode("n2");
 		Node n3 = g.createNode("n3");
 		
-		Edge e1 = g.createEdge("e1", n1, n2);
-		Edge e2 = g.createEdge("e2", n2, n3);
-		Edge e3 = g.createEdge("e3", n2, n1);
+		Arrow e1 = g.createArrow("e1", n1, n2);
+		Arrow e2 = g.createArrow("e2", n2, n3);
+		Arrow e3 = g.createArrow("e3", n2, n1);
 		
-		assertTrue(n1.getOutgoingEdges().size() == 1 &&
-				n1.getOutgoingEdges().get(0) == e1);
+		assertTrue(n1.getOutgoingArrows().size() == 1 &&
+				n1.getOutgoingArrows().get(0) == e1);
 		
-		assertTrue(n2.getOutgoingEdges().size() == 2 &&
-				n2.getOutgoingEdges().contains(e2) && 
-				n2.getOutgoingEdges().contains(e3));
+		assertTrue(n2.getOutgoingArrows().size() == 2 &&
+				n2.getOutgoingArrows().contains(e2) && 
+				n2.getOutgoingArrows().contains(e3));
 		
-		assertTrue(n3.getOutgoingEdges().size() == 0);
+		assertTrue(n3.getOutgoingArrows().size() == 0);
 	}
 
 	/**
@@ -118,7 +118,7 @@ public class NodeTest extends IDObjectTest {
 	 * @see no.hib.dpf.metamodel.Node#edgeCanMakeConnectionAsTarget(no.hib.dpf.metamodel.Node)
 	 * @generated NOT
 	 */
-	public void testEdgeCanMakeConnectionAsTarget__Node() {
+	public void testArrowCanMakeConnectionAsTarget__Node() {
 		Graph typeGraph = MetamodelFactory.eINSTANCE.createGraph("tn_1,tn_2", "te_1:tn_1:tn_2");		
 		Node source_tn_1 = typeGraph.getNodeByName("tn_1");
 		Node target_tn_2 = typeGraph.getNodeByName("tn_2");
@@ -126,16 +126,16 @@ public class NodeTest extends IDObjectTest {
 		Node source = MetamodelFactory.eINSTANCE.createNode(source_tn_1);
 		Node target = MetamodelFactory.eINSTANCE.createNode(target_tn_2);
 		
-		assertTrue(source.edgeCanMakeConnectionAsTarget(target));		
-		assertFalse(source.edgeCanMakeConnectionAsTarget(null));		
-		assertFalse(source.edgeCanMakeConnectionAsTarget(source));		
+		assertTrue(source.arrowCanMakeConnectionAsTarget(target));		
+		assertFalse(source.arrowCanMakeConnectionAsTarget(null));		
+		assertFalse(source.arrowCanMakeConnectionAsTarget(source));		
 
 		source = MetamodelFactory.eINSTANCE.createNode();
 		target = MetamodelFactory.eINSTANCE.createNode();
 		
-		assertTrue(source.edgeCanMakeConnectionAsTarget(target));		
-		assertTrue(source.edgeCanMakeConnectionAsTarget(source));
-		assertTrue(source.edgeCanMakeConnectionAsTarget(null));		
+		assertTrue(source.arrowCanMakeConnectionAsTarget(target));		
+		assertTrue(source.arrowCanMakeConnectionAsTarget(source));
+		assertTrue(source.arrowCanMakeConnectionAsTarget(null));		
 	}
 
 
@@ -146,10 +146,10 @@ public class NodeTest extends IDObjectTest {
 	 * @see no.hib.dpf.metamodel.Node#canReachTargetByOneEdge(no.hib.dpf.metamodel.Node)
 	 * @generated NOT
 	 */
-	public void testCanReachTargetByOneEdge__Node() {
+	public void testCanReachTargetByOneArrow__Node() {
 		Graph typeGraph = MetamodelFactory.eINSTANCE.createGraph("tn_1,tn_2", "te_1:tn_1:tn_2");
-		assertTrue(typeGraph.getNodeByName("tn_1").canReachTargetByOneEdge(typeGraph.getNodeByName("tn_2")));
-		assertFalse(typeGraph.getNodeByName("tn_2").canReachTargetByOneEdge(typeGraph.getNodeByName("tn_1")));
+		assertTrue(typeGraph.getNodeByName("tn_1").canReachTargetByOneArrow(typeGraph.getNodeByName("tn_2")));
+		assertFalse(typeGraph.getNodeByName("tn_2").canReachTargetByOneArrow(typeGraph.getNodeByName("tn_1")));
 	}
 
 	/**
@@ -159,10 +159,10 @@ public class NodeTest extends IDObjectTest {
 	 * @see no.hib.dpf.metamodel.Node#canReachTargetByTypeEdge(no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Edge)
 	 * @generated NOT
 	 */
-	public void testCanReachTargetByTypeEdge__Node_Edge() {
+	public void testCanReachTargetByTypeArrow__Node_Edge() {
 		Graph typeGraph = MetamodelFactory.eINSTANCE.createGraph("tn_1,tn_2,tn_3", "te_1:tn_1:tn_2,te_2:tn_1:tn_3");
-		assertTrue(typeGraph.getNodeByName("tn_1").canReachTargetByTypeEdge(typeGraph.getNodeByName("tn_2"), typeGraph.getEdgeByName("te_1")));
-		assertFalse(typeGraph.getNodeByName("tn_1").canReachTargetByTypeEdge(typeGraph.getNodeByName("tn_2"), typeGraph.getEdgeByName("te_2")));
+		assertTrue(typeGraph.getNodeByName("tn_1").canReachTargetByTypeArrow(typeGraph.getNodeByName("tn_2"), typeGraph.getArrowByName("te_1")));
+		assertFalse(typeGraph.getNodeByName("tn_1").canReachTargetByTypeArrow(typeGraph.getNodeByName("tn_2"), typeGraph.getArrowByName("te_2")));
 	}
 	
 	
@@ -173,10 +173,10 @@ public class NodeTest extends IDObjectTest {
 	 * @see no.hib.dpf.metamodel.Node#getEdgeto(no.hib.dpf.metamodel.Node)
 	 * @generated NOT
 	 */
-	public void testGetEdgeto__Node() {
+	public void testGetArrowto__Node() {
 		Graph graph = MetamodelFactory.eINSTANCE.createGraph("tn_1,tn_2", "te_1:tn_1:tn_2");
-		assertEquals(graph.getEdgeByName("te_1"), graph.getNodeByName("tn_1").getEdgeto(graph.getNodeByName("tn_2")));
-		assertEquals(null, graph.getNodeByName("tn_2").getEdgeto(graph.getNodeByName("tn_1")));
+		assertEquals(graph.getArrowByName("te_1"), graph.getNodeByName("tn_1").getArrowto(graph.getNodeByName("tn_2")));
+		assertEquals(null, graph.getNodeByName("tn_2").getArrowto(graph.getNodeByName("tn_1")));
 	}
 
 	/**
@@ -204,26 +204,39 @@ public class NodeTest extends IDObjectTest {
 	 * @see no.hib.dpf.metamodel.Node#edgeCanMakeConnectionAsTarget(no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Edge)
 	 * @generated NOT
 	 */
-	public void testEdgeCanMakeConnectionAsTarget__Node_Edge() {
+	public void testArrowCanMakeConnectionAsTarget__Node_Arrow() {
 		Graph typeGraph = MetamodelFactory.eINSTANCE.createGraph("tn_1,tn_2", "te_1:tn_1:tn_2,te_2:tn_2:tn_1");		
 		Node source_tn_1 = typeGraph.getNodeByName("tn_1");
 		Node target_tn_2 = typeGraph.getNodeByName("tn_2");
-		Edge te_1 = typeGraph.getEdgeByName("te_1");
+		Arrow te_1 = typeGraph.getArrowByName("te_1");
 		
 		Node source = MetamodelFactory.eINSTANCE.createNode(source_tn_1);
 		Node target = MetamodelFactory.eINSTANCE.createNode(target_tn_2);
 		
-		assertTrue(source.edgeCanMakeConnectionAsTarget(target, te_1));		
-		assertFalse(source.edgeCanMakeConnectionAsTarget(null, te_1));		
-		assertFalse(source.edgeCanMakeConnectionAsTarget(source, te_1));		
+		assertTrue(source.arrowCanMakeConnectionAsTarget(target, te_1));		
+		assertFalse(source.arrowCanMakeConnectionAsTarget(null, te_1));		
+		assertFalse(source.arrowCanMakeConnectionAsTarget(source, te_1));		
 
 		source = MetamodelFactory.eINSTANCE.createNode();
 		target = MetamodelFactory.eINSTANCE.createNode();
 		
-		assertTrue(source.edgeCanMakeConnectionAsTarget(target, null));		
-		assertFalse(source.edgeCanMakeConnectionAsTarget(target, te_1));		
-		assertFalse(source.edgeCanMakeConnectionAsTarget(source, te_1));
-		assertFalse(source.edgeCanMakeConnectionAsTarget(null, te_1));		
+		assertTrue(source.arrowCanMakeConnectionAsTarget(target, null));		
+		assertFalse(source.arrowCanMakeConnectionAsTarget(target, te_1));		
+		assertFalse(source.arrowCanMakeConnectionAsTarget(source, te_1));
+		assertFalse(source.arrowCanMakeConnectionAsTarget(null, te_1));		
+	}
+
+	/**
+	 * Tests the '{@link no.hib.dpf.metamodel.Node#canReachTargetByTypeArrow(no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Arrow) <em>Can Reach Target By Type Arrow</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.Node#canReachTargetByTypeArrow(no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Arrow)
+	 * @generated
+	 */
+	public void testCanReachTargetByTypeArrow__Node_Arrow() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
 	}
 	
 

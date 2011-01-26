@@ -8,10 +8,8 @@ package no.hib.dpf.metamodel.impl;
 
 import java.util.Map;
 
-import no.hib.dpf.command.CommandPackage;
-import no.hib.dpf.command.impl.CommandPackageImpl;
+import no.hib.dpf.metamodel.Arrow;
 import no.hib.dpf.metamodel.Constraint;
-import no.hib.dpf.metamodel.Edge;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.GraphHomomorphism;
 import no.hib.dpf.metamodel.IDObject;
@@ -60,7 +58,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass edgeEClass = null;
+	private EClass arrowEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -109,7 +107,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass edgeToEdgeMapEClass = null;
+	private EClass arrowToArrowMapEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -192,16 +190,11 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 		isInited = true;
 
-		// Obtain or create and register interdependencies
-		CommandPackageImpl theCommandPackage = (CommandPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CommandPackage.eNS_URI) instanceof CommandPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CommandPackage.eNS_URI) : CommandPackage.eINSTANCE);
-
 		// Create package meta-data objects
 		theMetamodelPackage.createPackageContents();
-		theCommandPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theMetamodelPackage.initializePackageContents();
-		theCommandPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theMetamodelPackage.freeze();
@@ -244,7 +237,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getGraph_Edges() {
+	public EReference getGraph_Arrows() {
 		return (EReference)graphEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -298,8 +291,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getEdge() {
-		return edgeEClass;
+	public EClass getArrow() {
+		return arrowEClass;
 	}
 
 	/**
@@ -307,8 +300,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getEdge_Target() {
-		return (EReference)edgeEClass.getEStructuralFeatures().get(0);
+	public EReference getArrow_Target() {
+		return (EReference)arrowEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -316,8 +309,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getEdge_Name() {
-		return (EAttribute)edgeEClass.getEStructuralFeatures().get(4);
+	public EReference getArrow_Graph() {
+		return (EReference)arrowEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -325,8 +318,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getEdge_TypeEdge() {
-		return (EReference)edgeEClass.getEStructuralFeatures().get(2);
+	public EReference getArrow_TypeEdge() {
+		return (EReference)arrowEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -334,8 +327,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getEdge_Source() {
-		return (EReference)edgeEClass.getEStructuralFeatures().get(3);
+	public EReference getArrow_Source() {
+		return (EReference)arrowEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -343,8 +336,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getEdge_Graph() {
-		return (EReference)edgeEClass.getEStructuralFeatures().get(1);
+	public EAttribute getArrow_Name() {
+		return (EAttribute)arrowEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -496,8 +489,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getEdgeToEdgeMap() {
-		return edgeToEdgeMapEClass;
+	public EClass getArrowToArrowMap() {
+		return arrowToArrowMapEClass;
 	}
 
 	/**
@@ -505,8 +498,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getEdgeToEdgeMap_Key() {
-		return (EReference)edgeToEdgeMapEClass.getEStructuralFeatures().get(0);
+	public EReference getArrowToArrowMap_Key() {
+		return (EReference)arrowToArrowMapEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -514,8 +507,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getEdgeToEdgeMap_Value() {
-		return (EReference)edgeToEdgeMapEClass.getEStructuralFeatures().get(1);
+	public EReference getArrowToArrowMap_Value() {
+		return (EReference)arrowToArrowMapEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -577,7 +570,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getGraphHomomorphism_EdgeMapping() {
+	public EReference getGraphHomomorphism_ArrowMapping() {
 		return (EReference)graphHomomorphismEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -684,7 +677,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		graphEClass = createEClass(GRAPH);
 		createEReference(graphEClass, GRAPH__NODES);
 		createEAttribute(graphEClass, GRAPH__NAME);
-		createEReference(graphEClass, GRAPH__EDGES);
+		createEReference(graphEClass, GRAPH__ARROWS);
 		createEReference(graphEClass, GRAPH__CONSTRAINTS);
 
 		nodeEClass = createEClass(NODE);
@@ -692,12 +685,12 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		createEReference(nodeEClass, NODE__GRAPH);
 		createEReference(nodeEClass, NODE__TYPE_NODE);
 
-		edgeEClass = createEClass(EDGE);
-		createEReference(edgeEClass, EDGE__TARGET);
-		createEReference(edgeEClass, EDGE__GRAPH);
-		createEReference(edgeEClass, EDGE__TYPE_EDGE);
-		createEReference(edgeEClass, EDGE__SOURCE);
-		createEAttribute(edgeEClass, EDGE__NAME);
+		arrowEClass = createEClass(ARROW);
+		createEReference(arrowEClass, ARROW__TARGET);
+		createEReference(arrowEClass, ARROW__GRAPH);
+		createEReference(arrowEClass, ARROW__TYPE_EDGE);
+		createEReference(arrowEClass, ARROW__SOURCE);
+		createEAttribute(arrowEClass, ARROW__NAME);
 
 		signatureEClass = createEClass(SIGNATURE);
 		createEReference(signatureEClass, SIGNATURE__PREDICATES);
@@ -721,9 +714,9 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		createEReference(constraintEClass, CONSTRAINT__PREDICATE);
 		createEReference(constraintEClass, CONSTRAINT__MAPPINGS);
 
-		edgeToEdgeMapEClass = createEClass(EDGE_TO_EDGE_MAP);
-		createEReference(edgeToEdgeMapEClass, EDGE_TO_EDGE_MAP__KEY);
-		createEReference(edgeToEdgeMapEClass, EDGE_TO_EDGE_MAP__VALUE);
+		arrowToArrowMapEClass = createEClass(ARROW_TO_ARROW_MAP);
+		createEReference(arrowToArrowMapEClass, ARROW_TO_ARROW_MAP__KEY);
+		createEReference(arrowToArrowMapEClass, ARROW_TO_ARROW_MAP__VALUE);
 
 		typingMorphismEClass = createEClass(TYPING_MORPHISM);
 		createEReference(typingMorphismEClass, TYPING_MORPHISM__MODEL);
@@ -732,7 +725,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 		graphHomomorphismEClass = createEClass(GRAPH_HOMOMORPHISM);
 		createEReference(graphHomomorphismEClass, GRAPH_HOMOMORPHISM__NODE_MAPPING);
-		createEReference(graphHomomorphismEClass, GRAPH_HOMOMORPHISM__EDGE_MAPPING);
+		createEReference(graphHomomorphismEClass, GRAPH_HOMOMORPHISM__ARROW_MAPPING);
 
 		idObjectEClass = createEClass(ID_OBJECT);
 		createEAttribute(idObjectEClass, ID_OBJECT__ID);
@@ -776,14 +769,14 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		// Add supertypes to classes
 		graphEClass.getESuperTypes().add(this.getIDObject());
 		nodeEClass.getESuperTypes().add(this.getIDObject());
-		edgeEClass.getESuperTypes().add(this.getIDObject());
+		arrowEClass.getESuperTypes().add(this.getIDObject());
 		constraintEClass.getESuperTypes().add(this.getIDObject());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(graphEClass, Graph.class, "Graph", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getGraph_Nodes(), this.getNode(), this.getNode_Graph(), "nodes", null, 0, -1, Graph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getGraph_Name(), ecorePackage.getEString(), "name", null, 0, 1, Graph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getGraph_Edges(), this.getEdge(), this.getEdge_Graph(), "edges", null, 0, -1, Graph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGraph_Arrows(), this.getArrow(), this.getArrow_Graph(), "arrows", null, 0, -1, Graph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGraph_Constraints(), this.getConstraint(), this.getConstraint_Graph(), "constraints", null, 0, -1, Graph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		EOperation op = addEOperation(graphEClass, this.getNode(), "createNode", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -792,7 +785,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		op = addEOperation(graphEClass, this.getIDObject(), "getGraphMember", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "id", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = addEOperation(graphEClass, this.getEdge(), "createEdge", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(graphEClass, this.getArrow(), "createArrow", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "name", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getNode(), "source", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getNode(), "target", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -800,64 +793,64 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		op = addEOperation(graphEClass, this.getConstraint(), "applyPredicate", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getPredicate(), "predicate", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getNode(), "nodes", 0, -1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getEdge(), "edges", 0, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getArrow(), "edges", 0, -1, IS_UNIQUE, IS_ORDERED);
 
 		op = addEOperation(graphEClass, null, "deleteNode", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getNode(), "node", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = addEOperation(graphEClass, null, "deleteEdge", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getEdge(), "edge", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(graphEClass, null, "deleteArrow", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getArrow(), "edge", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = addEOperation(graphEClass, this.getNode(), "getNodeByName", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "name", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = addEOperation(graphEClass, this.getEdge(), "getEdgeByName", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(graphEClass, this.getArrow(), "getArrowByName", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "name", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = addEOperation(graphEClass, this.getNode(), "createNode", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "name", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getNode(), "typeNode", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = addEOperation(graphEClass, this.getEdge(), "createEdge", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(graphEClass, this.getArrow(), "createArrow", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "name", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getNode(), "source", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getNode(), "target", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getEdge(), "typeEdge", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getArrow(), "typeEdge", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(nodeEClass, Node.class, "Node", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNode_Name(), ecorePackage.getEString(), "name", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNode_Graph(), this.getGraph(), this.getGraph_Nodes(), "graph", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNode_TypeNode(), this.getNode(), null, "typeNode", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		addEOperation(nodeEClass, this.getEdge(), "getOutgoingEdges", 0, -1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(nodeEClass, this.getArrow(), "getOutgoingArrows", 0, -1, IS_UNIQUE, IS_ORDERED);
 
-		op = addEOperation(nodeEClass, ecorePackage.getEBoolean(), "edgeCanMakeConnectionAsTarget", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(nodeEClass, ecorePackage.getEBoolean(), "arrowCanMakeConnectionAsTarget", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getNode(), "intendedTarget", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = addEOperation(nodeEClass, ecorePackage.getEBoolean(), "canReachTargetByOneEdge", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(nodeEClass, ecorePackage.getEBoolean(), "canReachTargetByOneArrow", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getNode(), "target", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = addEOperation(nodeEClass, ecorePackage.getEBooleanObject(), "edgeCanMakeConnectionAsTarget", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(nodeEClass, ecorePackage.getEBooleanObject(), "arrowCanMakeConnectionAsTarget", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getNode(), "intendedTarget", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getEdge(), "typeEdge", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getArrow(), "typeEdge", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = addEOperation(nodeEClass, ecorePackage.getEBooleanObject(), "canReachTargetByTypeEdge", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(nodeEClass, ecorePackage.getEBooleanObject(), "canReachTargetByTypeArrow", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getNode(), "target", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getEdge(), "typeEdge", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getArrow(), "typeEdge", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = addEOperation(nodeEClass, this.getEdge(), "getEdgeto", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(nodeEClass, this.getArrow(), "getArrowto", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getNode(), "target", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		addEOperation(nodeEClass, ecorePackage.getEString(), "getTypeName", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(edgeEClass, Edge.class, "Edge", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getEdge_Target(), this.getNode(), null, "target", null, 0, 1, Edge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getEdge_Graph(), this.getGraph(), this.getGraph_Edges(), "graph", null, 0, 1, Edge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getEdge_TypeEdge(), this.getEdge(), null, "typeEdge", null, 0, 1, Edge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getEdge_Source(), this.getNode(), null, "source", null, 0, 1, Edge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getEdge_Name(), ecorePackage.getEString(), "name", null, 0, 1, Edge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(arrowEClass, Arrow.class, "Arrow", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getArrow_Target(), this.getNode(), null, "target", null, 0, 1, Arrow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getArrow_Graph(), this.getGraph(), this.getGraph_Arrows(), "graph", null, 0, 1, Arrow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getArrow_TypeEdge(), this.getArrow(), null, "typeEdge", null, 0, 1, Arrow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getArrow_Source(), this.getNode(), null, "source", null, 0, 1, Arrow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getArrow_Name(), ecorePackage.getEString(), "name", null, 0, 1, Arrow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		addEOperation(edgeEClass, ecorePackage.getEString(), "getTypeName", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(arrowEClass, ecorePackage.getEString(), "getTypeName", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(signatureEClass, Signature.class, "Signature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSignature_Predicates(), this.getPredicate(), null, "predicates", null, 0, -1, Signature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -903,9 +896,9 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		initEReference(getConstraint_Predicate(), this.getPredicate(), null, "predicate", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConstraint_Mappings(), this.getGraphHomomorphism(), null, "mappings", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(edgeToEdgeMapEClass, Map.Entry.class, "EdgeToEdgeMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getEdgeToEdgeMap_Key(), this.getEdge(), null, "key", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getEdgeToEdgeMap_Value(), this.getEdge(), null, "value", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(arrowToArrowMapEClass, Map.Entry.class, "ArrowToArrowMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getArrowToArrowMap_Key(), this.getArrow(), null, "key", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getArrowToArrowMap_Value(), this.getArrow(), null, "value", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(typingMorphismEClass, TypingMorphism.class, "TypingMorphism", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTypingMorphism_Model(), this.getGraph(), null, "model", null, 1, 1, TypingMorphism.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -914,7 +907,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 		initEClass(graphHomomorphismEClass, GraphHomomorphism.class, "GraphHomomorphism", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getGraphHomomorphism_NodeMapping(), this.getNodeToNodeMap(), null, "nodeMapping", null, 0, -1, GraphHomomorphism.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getGraphHomomorphism_EdgeMapping(), this.getEdgeToEdgeMap(), null, "edgeMapping", null, 0, -1, GraphHomomorphism.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGraphHomomorphism_ArrowMapping(), this.getArrowToArrowMap(), null, "arrowMapping", null, 0, -1, GraphHomomorphism.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = addEOperation(graphHomomorphismEClass, ecorePackage.getEBoolean(), "tryToCreateGraphHomomorphism", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getGraph(), "sourceGraph", 0, 1, IS_UNIQUE, IS_ORDERED);

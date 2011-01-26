@@ -80,16 +80,6 @@ public interface MetamodelPackage extends EPackage {
 	int NODE = 1;
 
 	/**
-	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.EdgeImpl <em>Edge</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.impl.EdgeImpl
-	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getEdge()
-	 * @generated
-	 */
-	int EDGE = 2;
-
-	/**
 	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.SignatureImpl <em>Signature</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -148,16 +138,6 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	int CONSTRAINT = 8;
-
-	/**
-	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.EdgeToEdgeMapImpl <em>Edge To Edge Map</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.impl.EdgeToEdgeMapImpl
-	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getEdgeToEdgeMap()
-	 * @generated
-	 */
-	int EDGE_TO_EDGE_MAP = 9;
 
 	/**
 	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.TypingMorphismImpl <em>Typing Morphism</em>}' class.
@@ -235,13 +215,13 @@ public interface MetamodelPackage extends EPackage {
 	int GRAPH__NAME = ID_OBJECT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Edges</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Arrows</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPH__EDGES = ID_OBJECT_FEATURE_COUNT + 2;
+	int GRAPH__ARROWS = ID_OBJECT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
@@ -307,13 +287,23 @@ public interface MetamodelPackage extends EPackage {
 	int NODE_FEATURE_COUNT = ID_OBJECT_FEATURE_COUNT + 3;
 
 	/**
+	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.ArrowImpl <em>Arrow</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.impl.ArrowImpl
+	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getArrow()
+	 * @generated
+	 */
+	int ARROW = 2;
+
+	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EDGE__ID = ID_OBJECT__ID;
+	int ARROW__ID = ID_OBJECT__ID;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -322,7 +312,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDGE__TARGET = ID_OBJECT_FEATURE_COUNT + 0;
+	int ARROW__TARGET = ID_OBJECT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Graph</b></em>' container reference.
@@ -331,7 +321,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDGE__GRAPH = ID_OBJECT_FEATURE_COUNT + 1;
+	int ARROW__GRAPH = ID_OBJECT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Type Edge</b></em>' reference.
@@ -340,7 +330,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDGE__TYPE_EDGE = ID_OBJECT_FEATURE_COUNT + 2;
+	int ARROW__TYPE_EDGE = ID_OBJECT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
@@ -349,7 +339,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDGE__SOURCE = ID_OBJECT_FEATURE_COUNT + 3;
+	int ARROW__SOURCE = ID_OBJECT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -358,16 +348,16 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDGE__NAME = ID_OBJECT_FEATURE_COUNT + 4;
+	int ARROW__NAME = ID_OBJECT_FEATURE_COUNT + 4;
 
 	/**
-	 * The number of structural features of the '<em>Edge</em>' class.
+	 * The number of structural features of the '<em>Arrow</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EDGE_FEATURE_COUNT = ID_OBJECT_FEATURE_COUNT + 5;
+	int ARROW_FEATURE_COUNT = ID_OBJECT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Predicates</b></em>' containment reference list.
@@ -523,13 +513,23 @@ public interface MetamodelPackage extends EPackage {
 	int CONSTRAINT_FEATURE_COUNT = ID_OBJECT_FEATURE_COUNT + 3;
 
 	/**
+	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.ArrowToArrowMapImpl <em>Arrow To Arrow Map</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.impl.ArrowToArrowMapImpl
+	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getArrowToArrowMap()
+	 * @generated
+	 */
+	int ARROW_TO_ARROW_MAP = 9;
+
+	/**
 	 * The feature id for the '<em><b>Key</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EDGE_TO_EDGE_MAP__KEY = 0;
+	int ARROW_TO_ARROW_MAP__KEY = 0;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' reference.
@@ -538,16 +538,16 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDGE_TO_EDGE_MAP__VALUE = 1;
+	int ARROW_TO_ARROW_MAP__VALUE = 1;
 
 	/**
-	 * The number of structural features of the '<em>Edge To Edge Map</em>' class.
+	 * The number of structural features of the '<em>Arrow To Arrow Map</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EDGE_TO_EDGE_MAP_FEATURE_COUNT = 2;
+	int ARROW_TO_ARROW_MAP_FEATURE_COUNT = 2;
 
 	/**
 	 * The feature id for the '<em><b>Model</b></em>' reference.
@@ -595,13 +595,13 @@ public interface MetamodelPackage extends EPackage {
 	int GRAPH_HOMOMORPHISM__NODE_MAPPING = 0;
 
 	/**
-	 * The feature id for the '<em><b>Edge Mapping</b></em>' map.
+	 * The feature id for the '<em><b>Arrow Mapping</b></em>' map.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPH_HOMOMORPHISM__EDGE_MAPPING = 1;
+	int GRAPH_HOMOMORPHISM__ARROW_MAPPING = 1;
 
 	/**
 	 * The number of structural features of the '<em>Graph Homomorphism</em>' class.
@@ -721,15 +721,15 @@ public interface MetamodelPackage extends EPackage {
 	EAttribute getGraph_Name();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link no.hib.dpf.metamodel.Graph#getEdges <em>Edges</em>}'.
+	 * Returns the meta object for the containment reference list '{@link no.hib.dpf.metamodel.Graph#getArrows <em>Arrows</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Edges</em>'.
-	 * @see no.hib.dpf.metamodel.Graph#getEdges()
+	 * @return the meta object for the containment reference list '<em>Arrows</em>'.
+	 * @see no.hib.dpf.metamodel.Graph#getArrows()
 	 * @see #getGraph()
 	 * @generated
 	 */
-	EReference getGraph_Edges();
+	EReference getGraph_Arrows();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link no.hib.dpf.metamodel.Graph#getConstraints <em>Constraints</em>}'.
@@ -786,69 +786,69 @@ public interface MetamodelPackage extends EPackage {
 	EReference getNode_TypeNode();
 
 	/**
-	 * Returns the meta object for class '{@link no.hib.dpf.metamodel.Edge <em>Edge</em>}'.
+	 * Returns the meta object for class '{@link no.hib.dpf.metamodel.Arrow <em>Arrow</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Edge</em>'.
-	 * @see no.hib.dpf.metamodel.Edge
+	 * @return the meta object for class '<em>Arrow</em>'.
+	 * @see no.hib.dpf.metamodel.Arrow
 	 * @generated
 	 */
-	EClass getEdge();
+	EClass getArrow();
 
 	/**
-	 * Returns the meta object for the reference '{@link no.hib.dpf.metamodel.Edge#getTarget <em>Target</em>}'.
+	 * Returns the meta object for the reference '{@link no.hib.dpf.metamodel.Arrow#getTarget <em>Target</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Target</em>'.
-	 * @see no.hib.dpf.metamodel.Edge#getTarget()
-	 * @see #getEdge()
+	 * @see no.hib.dpf.metamodel.Arrow#getTarget()
+	 * @see #getArrow()
 	 * @generated
 	 */
-	EReference getEdge_Target();
+	EReference getArrow_Target();
 
 	/**
-	 * Returns the meta object for the attribute '{@link no.hib.dpf.metamodel.Edge#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see no.hib.dpf.metamodel.Edge#getName()
-	 * @see #getEdge()
-	 * @generated
-	 */
-	EAttribute getEdge_Name();
-
-	/**
-	 * Returns the meta object for the reference '{@link no.hib.dpf.metamodel.Edge#getTypeEdge <em>Type Edge</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Type Edge</em>'.
-	 * @see no.hib.dpf.metamodel.Edge#getTypeEdge()
-	 * @see #getEdge()
-	 * @generated
-	 */
-	EReference getEdge_TypeEdge();
-
-	/**
-	 * Returns the meta object for the reference '{@link no.hib.dpf.metamodel.Edge#getSource <em>Source</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Source</em>'.
-	 * @see no.hib.dpf.metamodel.Edge#getSource()
-	 * @see #getEdge()
-	 * @generated
-	 */
-	EReference getEdge_Source();
-
-	/**
-	 * Returns the meta object for the container reference '{@link no.hib.dpf.metamodel.Edge#getGraph <em>Graph</em>}'.
+	 * Returns the meta object for the container reference '{@link no.hib.dpf.metamodel.Arrow#getGraph <em>Graph</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the container reference '<em>Graph</em>'.
-	 * @see no.hib.dpf.metamodel.Edge#getGraph()
-	 * @see #getEdge()
+	 * @see no.hib.dpf.metamodel.Arrow#getGraph()
+	 * @see #getArrow()
 	 * @generated
 	 */
-	EReference getEdge_Graph();
+	EReference getArrow_Graph();
+
+	/**
+	 * Returns the meta object for the reference '{@link no.hib.dpf.metamodel.Arrow#getTypeEdge <em>Type Edge</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Type Edge</em>'.
+	 * @see no.hib.dpf.metamodel.Arrow#getTypeEdge()
+	 * @see #getArrow()
+	 * @generated
+	 */
+	EReference getArrow_TypeEdge();
+
+	/**
+	 * Returns the meta object for the reference '{@link no.hib.dpf.metamodel.Arrow#getSource <em>Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Source</em>'.
+	 * @see no.hib.dpf.metamodel.Arrow#getSource()
+	 * @see #getArrow()
+	 * @generated
+	 */
+	EReference getArrow_Source();
+
+	/**
+	 * Returns the meta object for the attribute '{@link no.hib.dpf.metamodel.Arrow#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see no.hib.dpf.metamodel.Arrow#getName()
+	 * @see #getArrow()
+	 * @generated
+	 */
+	EAttribute getArrow_Name();
 
 	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.metamodel.Signature <em>Signature</em>}'.
@@ -1023,16 +1023,16 @@ public interface MetamodelPackage extends EPackage {
 	EReference getConstraint_Mappings();
 
 	/**
-	 * Returns the meta object for class '{@link java.util.Map.Entry <em>Edge To Edge Map</em>}'.
+	 * Returns the meta object for class '{@link java.util.Map.Entry <em>Arrow To Arrow Map</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Edge To Edge Map</em>'.
+	 * @return the meta object for class '<em>Arrow To Arrow Map</em>'.
 	 * @see java.util.Map.Entry
-	 * @model keyType="no.hib.dpf.metamodel.Edge"
-	 *        valueType="no.hib.dpf.metamodel.Edge"
+	 * @model keyType="no.hib.dpf.metamodel.Arrow"
+	 *        valueType="no.hib.dpf.metamodel.Arrow"
 	 * @generated
 	 */
-	EClass getEdgeToEdgeMap();
+	EClass getArrowToArrowMap();
 
 	/**
 	 * Returns the meta object for the reference '{@link java.util.Map.Entry <em>Key</em>}'.
@@ -1040,10 +1040,10 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Key</em>'.
 	 * @see java.util.Map.Entry
-	 * @see #getEdgeToEdgeMap()
+	 * @see #getArrowToArrowMap()
 	 * @generated
 	 */
-	EReference getEdgeToEdgeMap_Key();
+	EReference getArrowToArrowMap_Key();
 
 	/**
 	 * Returns the meta object for the reference '{@link java.util.Map.Entry <em>Value</em>}'.
@@ -1051,10 +1051,10 @@ public interface MetamodelPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Value</em>'.
 	 * @see java.util.Map.Entry
-	 * @see #getEdgeToEdgeMap()
+	 * @see #getArrowToArrowMap()
 	 * @generated
 	 */
-	EReference getEdgeToEdgeMap_Value();
+	EReference getArrowToArrowMap_Value();
 
 	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.metamodel.TypingMorphism <em>Typing Morphism</em>}'.
@@ -1121,15 +1121,15 @@ public interface MetamodelPackage extends EPackage {
 	EReference getGraphHomomorphism_NodeMapping();
 
 	/**
-	 * Returns the meta object for the map '{@link no.hib.dpf.metamodel.GraphHomomorphism#getEdgeMapping <em>Edge Mapping</em>}'.
+	 * Returns the meta object for the map '{@link no.hib.dpf.metamodel.GraphHomomorphism#getArrowMapping <em>Arrow Mapping</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the map '<em>Edge Mapping</em>'.
-	 * @see no.hib.dpf.metamodel.GraphHomomorphism#getEdgeMapping()
+	 * @return the meta object for the map '<em>Arrow Mapping</em>'.
+	 * @see no.hib.dpf.metamodel.GraphHomomorphism#getArrowMapping()
 	 * @see #getGraphHomomorphism()
 	 * @generated
 	 */
-	EReference getGraphHomomorphism_EdgeMapping();
+	EReference getGraphHomomorphism_ArrowMapping();
 
 	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.metamodel.IDObject <em>ID Object</em>}'.
@@ -1265,12 +1265,12 @@ public interface MetamodelPackage extends EPackage {
 		EAttribute GRAPH__NAME = eINSTANCE.getGraph_Name();
 
 		/**
-		 * The meta object literal for the '<em><b>Edges</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Arrows</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference GRAPH__EDGES = eINSTANCE.getGraph_Edges();
+		EReference GRAPH__ARROWS = eINSTANCE.getGraph_Arrows();
 
 		/**
 		 * The meta object literal for the '<em><b>Constraints</b></em>' containment reference list feature.
@@ -1315,14 +1315,14 @@ public interface MetamodelPackage extends EPackage {
 		EReference NODE__TYPE_NODE = eINSTANCE.getNode_TypeNode();
 
 		/**
-		 * The meta object literal for the '{@link no.hib.dpf.metamodel.impl.EdgeImpl <em>Edge</em>}' class.
+		 * The meta object literal for the '{@link no.hib.dpf.metamodel.impl.ArrowImpl <em>Arrow</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see no.hib.dpf.metamodel.impl.EdgeImpl
-		 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getEdge()
+		 * @see no.hib.dpf.metamodel.impl.ArrowImpl
+		 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getArrow()
 		 * @generated
 		 */
-		EClass EDGE = eINSTANCE.getEdge();
+		EClass ARROW = eINSTANCE.getArrow();
 
 		/**
 		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
@@ -1330,31 +1330,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference EDGE__TARGET = eINSTANCE.getEdge_Target();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute EDGE__NAME = eINSTANCE.getEdge_Name();
-
-		/**
-		 * The meta object literal for the '<em><b>Type Edge</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference EDGE__TYPE_EDGE = eINSTANCE.getEdge_TypeEdge();
-
-		/**
-		 * The meta object literal for the '<em><b>Source</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference EDGE__SOURCE = eINSTANCE.getEdge_Source();
+		EReference ARROW__TARGET = eINSTANCE.getArrow_Target();
 
 		/**
 		 * The meta object literal for the '<em><b>Graph</b></em>' container reference feature.
@@ -1362,7 +1338,31 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference EDGE__GRAPH = eINSTANCE.getEdge_Graph();
+		EReference ARROW__GRAPH = eINSTANCE.getArrow_Graph();
+
+		/**
+		 * The meta object literal for the '<em><b>Type Edge</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ARROW__TYPE_EDGE = eINSTANCE.getArrow_TypeEdge();
+
+		/**
+		 * The meta object literal for the '<em><b>Source</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ARROW__SOURCE = eINSTANCE.getArrow_Source();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ARROW__NAME = eINSTANCE.getArrow_Name();
 
 		/**
 		 * The meta object literal for the '{@link no.hib.dpf.metamodel.impl.SignatureImpl <em>Signature</em>}' class.
@@ -1505,14 +1505,14 @@ public interface MetamodelPackage extends EPackage {
 		EReference CONSTRAINT__MAPPINGS = eINSTANCE.getConstraint_Mappings();
 
 		/**
-		 * The meta object literal for the '{@link no.hib.dpf.metamodel.impl.EdgeToEdgeMapImpl <em>Edge To Edge Map</em>}' class.
+		 * The meta object literal for the '{@link no.hib.dpf.metamodel.impl.ArrowToArrowMapImpl <em>Arrow To Arrow Map</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see no.hib.dpf.metamodel.impl.EdgeToEdgeMapImpl
-		 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getEdgeToEdgeMap()
+		 * @see no.hib.dpf.metamodel.impl.ArrowToArrowMapImpl
+		 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getArrowToArrowMap()
 		 * @generated
 		 */
-		EClass EDGE_TO_EDGE_MAP = eINSTANCE.getEdgeToEdgeMap();
+		EClass ARROW_TO_ARROW_MAP = eINSTANCE.getArrowToArrowMap();
 
 		/**
 		 * The meta object literal for the '<em><b>Key</b></em>' reference feature.
@@ -1520,7 +1520,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference EDGE_TO_EDGE_MAP__KEY = eINSTANCE.getEdgeToEdgeMap_Key();
+		EReference ARROW_TO_ARROW_MAP__KEY = eINSTANCE.getArrowToArrowMap_Key();
 
 		/**
 		 * The meta object literal for the '<em><b>Value</b></em>' reference feature.
@@ -1528,7 +1528,7 @@ public interface MetamodelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference EDGE_TO_EDGE_MAP__VALUE = eINSTANCE.getEdgeToEdgeMap_Value();
+		EReference ARROW_TO_ARROW_MAP__VALUE = eINSTANCE.getArrowToArrowMap_Value();
 
 		/**
 		 * The meta object literal for the '{@link no.hib.dpf.metamodel.impl.TypingMorphismImpl <em>Typing Morphism</em>}' class.
@@ -1583,12 +1583,12 @@ public interface MetamodelPackage extends EPackage {
 		EReference GRAPH_HOMOMORPHISM__NODE_MAPPING = eINSTANCE.getGraphHomomorphism_NodeMapping();
 
 		/**
-		 * The meta object literal for the '<em><b>Edge Mapping</b></em>' map feature.
+		 * The meta object literal for the '<em><b>Arrow Mapping</b></em>' map feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference GRAPH_HOMOMORPHISM__EDGE_MAPPING = eINSTANCE.getGraphHomomorphism_EdgeMapping();
+		EReference GRAPH_HOMOMORPHISM__ARROW_MAPPING = eINSTANCE.getGraphHomomorphism_ArrowMapping();
 
 		/**
 		 * The meta object literal for the '{@link no.hib.dpf.metamodel.impl.IDObjectImpl <em>ID Object</em>}' class.

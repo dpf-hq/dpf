@@ -1,6 +1,6 @@
 package no.hib.dpf.editor.model.commands;
 
-import no.hib.dpf.editor.model.VEdge;
+import no.hib.dpf.editor.model.VArrow;
 import no.hib.dpf.editor.model.VConstraint;
 import no.hib.dpf.editor.model.SingleLineConstraintElement;
 
@@ -14,13 +14,13 @@ public class MultiplicityConstraintCreateCommand extends Command {
 	/** The connection instance. */
 	private VConstraint constraint;
 
-	private final VEdge connection;
+	private final VArrow connection;
 
 	/**
 	 * Instantiate a command that can create a connection between two
 	 * connections.
 	 */
-	public MultiplicityConstraintCreateCommand(VEdge connection) {
+	public MultiplicityConstraintCreateCommand(VArrow connection) {
 		if (connection == null) {
 			throw new IllegalArgumentException();
 		}

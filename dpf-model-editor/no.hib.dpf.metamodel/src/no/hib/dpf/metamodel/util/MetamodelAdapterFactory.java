@@ -81,8 +81,8 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 				return createNodeAdapter();
 			}
 			@Override
-			public Adapter caseEdge(Edge object) {
-				return createEdgeAdapter();
+			public Adapter caseArrow(Arrow object) {
+				return createArrowAdapter();
 			}
 			@Override
 			public Adapter caseSignature(Signature object) {
@@ -109,8 +109,8 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 				return createConstraintAdapter();
 			}
 			@Override
-			public Adapter caseEdgeToEdgeMap(Map.Entry<Edge, Edge> object) {
-				return createEdgeToEdgeMapAdapter();
+			public Adapter caseArrowToArrowMap(Map.Entry<Arrow, Arrow> object) {
+				return createArrowToArrowMapAdapter();
 			}
 			@Override
 			public Adapter caseTypingMorphism(TypingMorphism object) {
@@ -181,16 +181,16 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link no.hib.dpf.metamodel.Edge <em>Edge</em>}'.
+	 * Creates a new adapter for an object of class '{@link no.hib.dpf.metamodel.Arrow <em>Arrow</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see no.hib.dpf.metamodel.Edge
+	 * @see no.hib.dpf.metamodel.Arrow
 	 * @generated
 	 */
-	public Adapter createEdgeAdapter() {
+	public Adapter createArrowAdapter() {
 		return null;
 	}
 
@@ -279,7 +279,7 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link java.util.Map.Entry <em>Edge To Edge Map</em>}'.
+	 * Creates a new adapter for an object of class '{@link java.util.Map.Entry <em>Arrow To Arrow Map</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -288,7 +288,7 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 	 * @see java.util.Map.Entry
 	 * @generated
 	 */
-	public Adapter createEdgeToEdgeMapAdapter() {
+	public Adapter createArrowToArrowMapAdapter() {
 		return null;
 	}
 

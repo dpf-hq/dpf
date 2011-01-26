@@ -7,10 +7,7 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: no.hib.dpf.command,
- no.hib.dpf.command.impl,
- no.hib.dpf.command.util,
- no.hib.dpf.metamodel,
+Export-Package: no.hib.dpf.metamodel,
  no.hib.dpf.metamodel.impl,
  no.hib.dpf.metamodel.util
 Require-Bundle: org.eclipse.core.runtime,

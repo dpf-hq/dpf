@@ -55,7 +55,7 @@ public abstract class ConstraintEditPart extends ModelElementConnectionEditPart 
 		BasicRectangleFigure basicRectangleFigure = null;
 		
 		if (getSource() != null) {
-			VEdgeEditPart source = (VEdgeEditPart) getSource();
+			VArrowEditPart source = (VArrowEditPart) getSource();
 
 			if (source.getSource() != null) {
 				if (source.getSource() instanceof VNodeEditPart) {
@@ -84,7 +84,7 @@ public abstract class ConstraintEditPart extends ModelElementConnectionEditPart 
 	
 	/**
 	 * Returns the <code>ConnectionAnchor</code> for the <i>source</i> end of
-	 * the connection. If the source is an instance of {@link VEdgeEditPart},
+	 * the connection. If the source is an instance of {@link VArrowEditPart},
 	 * that interface will be used to determine the proper ConnectionAnchor.
 	 * 
 	 * @return ConnectionAnchor for the source end of the Connection
@@ -96,7 +96,7 @@ public abstract class ConstraintEditPart extends ModelElementConnectionEditPart 
 
 	/**
 	 * Returns the <code>ConnectionAnchor</code> for the <i>target</i> end of
-	 * the connection. If the target is an instance of {@link VEdgeEditPart},
+	 * the connection. If the target is an instance of {@link VArrowEditPart},
 	 * that interface will be used to determine the proper ConnectionAnchor.
 	 * 
 	 * @return ConnectionAnchor for the target end of the Connection
@@ -117,7 +117,7 @@ public abstract class ConstraintEditPart extends ModelElementConnectionEditPart 
 		// Now, the connection constraint anchor is constructed, setting from which end of the line it
 		// should anchor itself:
 		ConnectionConstraintAnchor retval = new ConnectionConstraintAnchor(new Point(100, 100), constraintFromTargetEnd);
-		if ((supplier == null)  || (!(supplier instanceof VEdgeEditPart))) {
+		if ((supplier == null)  || (!(supplier instanceof VArrowEditPart))) {
 			return retval;
 		}
 		updateAnchor(retval, supplier, isSource);
@@ -126,16 +126,16 @@ public abstract class ConstraintEditPart extends ModelElementConnectionEditPart 
 	}
 
 	private void updateAnchor(ConnectionConstraintAnchor anchor, EditPart supplier, boolean isSource) {
-		VEdgeEditPart targetSupplier = getConnectionEditPart(supplier, isSource);
+		VArrowEditPart targetSupplier = getConnectionEditPart(supplier, isSource);
 		anchor.setConnectionFigure((PolylineConnection)targetSupplier.getFigure());
 	}
 
-	private VEdgeEditPart getConnectionEditPart(EditPart supplier, boolean isSource) {
-		VEdgeEditPart retVal = (VEdgeEditPart)supplier;
+	private VArrowEditPart getConnectionEditPart(EditPart supplier, boolean isSource) {
+		VArrowEditPart retVal = (VArrowEditPart)supplier;
 		if (isSource) {
-			retVal = (VEdgeEditPart)getSource();		
+			retVal = (VArrowEditPart)getSource();		
 		} else {
-			retVal = (VEdgeEditPart)getTarget();				
+			retVal = (VArrowEditPart)getTarget();				
 		}
 		return retVal;
 	}	
@@ -163,7 +163,7 @@ public abstract class ConstraintEditPart extends ModelElementConnectionEditPart 
 		if (editPart == null) {
 			return;
 		}
-		VEdgeEditPart shapeEditPart = (VEdgeEditPart)editPart;
+		VArrowEditPart shapeEditPart = (VArrowEditPart)editPart;
 		shapeEditPart.addPropertyChangeListener(this);
 	}
 

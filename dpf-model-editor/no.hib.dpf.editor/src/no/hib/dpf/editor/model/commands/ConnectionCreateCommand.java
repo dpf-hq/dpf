@@ -1,19 +1,19 @@
 /*******************************************************************************
  * Copyright (c) 2004, 2005 Elias Volanakis and others.
-Ê* All rights reserved. This program and the accompanying materials
-Ê* are made available under the terms of the Eclipse Public License v1.0
-Ê* which accompanies this distribution, and is available at
-Ê* http://www.eclipse.org/legal/epl-v10.html
-Ê*
-Ê* Contributors:
-Ê*ÊÊÊÊElias Volanakis - initial API and implementation
-Ê*******************************************************************************/
+ï¿½* All rights reserved. This program and the accompanying materials
+ï¿½* are made available under the terms of the Eclipse Public License v1.0
+ï¿½* which accompanies this distribution, and is available at
+ï¿½* http://www.eclipse.org/legal/epl-v10.html
+ï¿½*
+ï¿½* Contributors:
+ï¿½*ï¿½ï¿½ï¿½ï¿½Elias Volanakis - initial API and implementation
+ï¿½*******************************************************************************/
 package no.hib.dpf.editor.model.commands;
 
 import no.hib.dpf.editor.model.SingleNodeConnection;
-import no.hib.dpf.editor.model.VEdge;
+import no.hib.dpf.editor.model.VArrow;
 import no.hib.dpf.editor.model.VNode;
-import no.hib.dpf.metamodel.Edge;
+import no.hib.dpf.metamodel.Arrow;
 
 import org.eclipse.gef.commands.Command;
 
@@ -41,8 +41,8 @@ import org.eclipse.gef.commands.Command;
  */
 public class ConnectionCreateCommand extends Command {
 /** The connection instance. */
-private VEdge connection;
-private Edge typeEdge;
+private VArrow connection;
+private Arrow typeArrow;
 
 /** Start endpoint for the connection. */
 private final VNode source;
@@ -54,15 +54,15 @@ private VNode target;
  * @param source the source endpoint (a non-null Shape instance)
  * @param lineStyle the desired line style. See Connection#setLineStyle(int) for details
  * @throws IllegalArgumentException if source is null
- * @see VEdge#setLineStyle(int)
+ * @see VArrow#setLineStyle(int)
  */
-public ConnectionCreateCommand(VNode source, Edge typeEdge) {
+public ConnectionCreateCommand(VNode source, Arrow typeArrow) {
 	if (source == null) {
 		throw new IllegalArgumentException();
 	}
 	setLabel("connection creation");
 	this.source = source;
-	this.typeEdge = typeEdge;
+	this.typeArrow = typeArrow;
 }
 
 /* (non-Javadoc)
@@ -75,7 +75,7 @@ public boolean canExecute() {
 	if ((target == null) || (source == null)) {
 		return true;
 	}
-	return source.edgeCanMakeConnectionAsTarget(target, typeEdge);
+	return source.arrowCanMakeConnectionAsTarget(target, typeArrow);
 }
 
 //private boolean doSourceToTargetAlreadyExist() {
@@ -93,9 +93,9 @@ public boolean canExecute() {
  */
 public void execute() {
 	if (!source.equals(target)) {
-		connection = new VEdge(source, target, typeEdge);
+		connection = new VArrow(source, target, typeArrow);
 	} else {
-		connection = new SingleNodeConnection(source, typeEdge);
+		connection = new SingleNodeConnection(source, typeArrow);
 	}
 }
 

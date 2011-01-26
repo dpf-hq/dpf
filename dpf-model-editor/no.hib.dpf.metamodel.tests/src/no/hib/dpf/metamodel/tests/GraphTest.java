@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import junit.textui.TestRunner;
-import no.hib.dpf.metamodel.Edge;
+import no.hib.dpf.metamodel.Arrow;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.MetamodelFactory;
 import no.hib.dpf.metamodel.Node;
@@ -24,14 +24,14 @@ import no.hib.dpf.metamodel.Node;
  * <ul>
  *   <li>{@link no.hib.dpf.metamodel.Graph#createNode(java.lang.String) <em>Create Node</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Graph#getGraphMember(java.lang.String) <em>Get Graph Member</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Graph#createEdge(java.lang.String, no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Node) <em>Create Edge</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Graph#createArrow(java.lang.String, no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Node) <em>Create Arrow</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Graph#applyPredicate(no.hib.dpf.metamodel.Predicate, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Apply Predicate</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Graph#deleteNode(no.hib.dpf.metamodel.Node) <em>Delete Node</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Graph#deleteEdge(no.hib.dpf.metamodel.Edge) <em>Delete Edge</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Graph#deleteArrow(no.hib.dpf.metamodel.Arrow) <em>Delete Arrow</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Graph#getNodeByName(java.lang.String) <em>Get Node By Name</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Graph#getEdgeByName(java.lang.String) <em>Get Edge By Name</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Graph#getArrowByName(java.lang.String) <em>Get Arrow By Name</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Graph#createNode(java.lang.String, no.hib.dpf.metamodel.Node) <em>Create Node</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Graph#createEdge(java.lang.String, no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Edge) <em>Create Edge</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Graph#createArrow(java.lang.String, no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Arrow) <em>Create Arrow</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -104,18 +104,18 @@ public class GraphTest extends IDObjectTest {
 	}
 
 	/**
-	 * Tests the '{@link no.hib.dpf.metamodel.Graph#createEdge(java.lang.String, no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Node) <em>Create Edge</em>}' operation.
+	 * Tests the '{@link no.hib.dpf.metamodel.Graph#createArrow(java.lang.String, no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Node) <em>Create Edge</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.Graph#createEdge(java.lang.String, no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Node)
+	 * @see no.hib.dpf.metamodel.Graph#createArrow(java.lang.String, no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Node)
 	 * @generated NOT
 	 */
-	public void testCreateEdge__String_Node_Node() {
+	public void testCreateArrow__String_Node_Node() {
 		Node n1 = getFixture().createNode("n1");
 		Node n2 = getFixture().createNode("n2");
-		Edge e = getFixture().createEdge("test", n1, n2);
+		Arrow e = getFixture().createArrow("test", n1, n2);
 		
-		assertTrue(getFixture().getEdges().contains(e));
+		assertTrue(getFixture().getArrows().contains(e));
 		assertEquals(n1, e.getSource());
 		assertEquals(n2, e.getTarget());
 		assertEquals("test", e.getName());
@@ -128,16 +128,16 @@ public class GraphTest extends IDObjectTest {
 	 * @see no.hib.dpf.metamodel.Graph#createEdge(java.lang.String, no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Edge)
 	 * @generated NOT
 	 */
-	public void testCreateEdge__String_Node_Node_Edge() {
+	public void testCreateArrow__String_Node_Node_Arrow() {
 		Graph typeGraph = MetamodelFactory.eINSTANCE.createGraph("tn_1,tn_2,tn_3", "te_1:tn_1:tn_2,te_2:tn_1:tn_3");
 
 		getFixture().createNode("source", typeGraph.getNodeByName("tn_1"));
 		getFixture().createNode("target", typeGraph.getNodeByName("tn_2"));
 
-		Edge newEdge = getFixture().createEdge("edge", getFixture().getNodeByName("source"), getFixture().getNodeByName("target"), typeGraph.getEdgeByName("te_1"));
-		assertEquals(typeGraph.getEdgeByName("te_1"), newEdge.getTypeEdge());
+		Arrow newArrow = getFixture().createArrow("edge", getFixture().getNodeByName("source"), getFixture().getNodeByName("target"), typeGraph.getArrowByName("te_1"));
+		assertEquals(typeGraph.getArrowByName("te_1"), newArrow.getTypeEdge());
 		try {
-			getFixture().createEdge("edge", getFixture().getNodeByName("source"), getFixture().getNodeByName("target"), typeGraph.getEdgeByName("te_2"));
+			getFixture().createArrow("edge", getFixture().getNodeByName("source"), getFixture().getNodeByName("target"), typeGraph.getArrowByName("te_2"));
 			fail();
 		} catch (AssertionError e) {
 		}
@@ -155,13 +155,13 @@ public class GraphTest extends IDObjectTest {
 		
 		// Should not be able to make an untyped connection between two typed nodes:
 		try {
-			getFixture().createEdge("not_applicable", getFixture().getNodeByName("target"), getFixture().getNodeByName("source"));
+			getFixture().createArrow("not_applicable", getFixture().getNodeByName("target"), getFixture().getNodeByName("source"));
 			fail();
 		} catch (AssertionError e) {
 		}
 		
-		Edge newEdge = getFixture().createEdge("new_edge", getFixture().getNodeByName("source"), getFixture().getNodeByName("target"));
-		assertEquals(typeGraph.getEdgeByName("te_1"), newEdge.getTypeEdge());
+		Arrow newArrow = getFixture().createArrow("new_edge", getFixture().getNodeByName("source"), getFixture().getNodeByName("target"));
+		assertEquals(typeGraph.getArrowByName("te_1"), newArrow.getTypeEdge());
 
 	}
 
@@ -202,10 +202,10 @@ public class GraphTest extends IDObjectTest {
 		
 		n1 = getFixture().createNode("n1");
 		Node n2 = getFixture().createNode("n2");
-		Edge e = getFixture().createEdge("test", n1, n2);
+		Arrow a = getFixture().createArrow("test", n1, n2);
 		getFixture().deleteNode(n1);
 		
-		assertFalse(getFixture().getEdges().contains(e));
+		assertFalse(getFixture().getArrows().contains(a));
 	}
 
 	/**
@@ -215,13 +215,13 @@ public class GraphTest extends IDObjectTest {
 	 * @see no.hib.dpf.metamodel.Graph#deleteEdge(no.hib.dpf.metamodel.Edge)
 	 * @generated NOT
 	 */
-	public void testDeleteEdge__Edge() {
+	public void testDeleteArrow__Arrow() {
 		Node n1 = getFixture().createNode("n1");
 		Node n2 = getFixture().createNode("n2");
-		Edge e = getFixture().createEdge("test", n1, n2);
-		getFixture().deleteEdge(e);
+		Arrow a = getFixture().createArrow("test", n1, n2);
+		getFixture().deleteArrow(a);
 		
-		assertFalse(getFixture().getEdges().contains(e));
+		assertFalse(getFixture().getArrows().contains(a));
 	}
 
 	/**
@@ -247,10 +247,10 @@ public class GraphTest extends IDObjectTest {
 	 * @see no.hib.dpf.metamodel.Graph#getEdgeByName(java.lang.String)
 	 * @generated NOT
 	 */
-	public void testGetEdgeByName__String() {
+	public void testGetArrowByName__String() {
 		Graph graph = MetamodelFactory.eINSTANCE.createGraph("n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3");
 		
-		Edge e_1 = graph.getEdgeByName("e_1");
+		Arrow e_1 = graph.getArrowByName("e_1");
 		Node e_2 = graph.getNodeByName("e_2");
 		assertEquals("e_1", e_1.getName());
 		assertNotSame("getEdgeByName returned wrong object", e_1, e_2);
@@ -279,7 +279,7 @@ public class GraphTest extends IDObjectTest {
 	public void testGetGraphMember__String() {
 		Graph graph = MetamodelFactory.eINSTANCE.createGraph("n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3");
 		
-		Edge e_1 = graph.getEdgeByName("e_1");
+		Arrow e_1 = graph.getArrowByName("e_1");
 		Node n_2 = graph.getNodeByName("n_2");
 		assertEquals(e_1, graph.getGraphMember(e_1.getId()));
 		assertEquals(n_2, graph.getGraphMember(n_2.getId()));

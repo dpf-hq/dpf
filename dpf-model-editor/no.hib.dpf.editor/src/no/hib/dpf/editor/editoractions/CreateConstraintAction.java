@@ -3,7 +3,7 @@ package no.hib.dpf.editor.editoractions;
 import java.util.List;
 
 import no.hib.dpf.editor.parts.VNodeEditPart;
-import no.hib.dpf.metamodel.Edge;
+import no.hib.dpf.metamodel.Arrow;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.Node;
 import no.hib.dpf.metamodel.Predicate;
@@ -26,9 +26,9 @@ public abstract class CreateConstraintAction extends SelectionActionForEditParts
 	
 	@Override
 	protected boolean calculateEnabled() {
-		EList<Edge> selectionEdges = getSelectionEdges();
+		EList<Arrow> selectionArrows = getSelectionArrows();
 		EList<Node> selectionNodes = getSelectionNodes();
-		return testPredicate.canCreateConstraint(addUnselectedNodesToSelection(selectionNodes, selectionEdges), selectionEdges, graph);
+		return testPredicate.canCreateConstraint(addUnselectedNodesToSelection(selectionNodes, selectionArrows), selectionArrows, graph);
 	}	
 
 	@Override

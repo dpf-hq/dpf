@@ -10,7 +10,7 @@ import java.util.List;
 
 import junit.framework.TestCase;
 import junit.textui.TestRunner;
-import no.hib.dpf.metamodel.Edge;
+import no.hib.dpf.metamodel.Arrow;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.GraphHomomorphism;
 import no.hib.dpf.metamodel.MetamodelFactory;
@@ -138,7 +138,7 @@ public class GraphHomomorphismTest extends TestCase {
 	 */
 	private void doTestReturnedMappings(List<Graph> graphs, String[] nodeNames, String[] edgeNames, boolean expectedResult) {
 		GraphHomomorphism graphHomomorphism = MetamodelFactory.eINSTANCE.createGraphHomomorphism();
-		boolean res = graphHomomorphism.tryToCreateGraphHomomorphism(graphs.get(0), graphs.get(1).getNodes(), graphs.get(1).getEdges());
+		boolean res = graphHomomorphism.tryToCreateGraphHomomorphism(graphs.get(0), graphs.get(1).getNodes(), graphs.get(1).getArrows());
 		assertEquals(true, res);
 		for (String nodes : nodeNames) {			
 			checkNodeMapping(graphs, nodes.split(":")[0], nodes.split(":")[1], graphHomomorphism);
@@ -151,10 +151,10 @@ public class GraphHomomorphismTest extends TestCase {
 	/**
 	 * @generated NOT
 	 */
-	private void checkEdgeMapping(List<Graph> graphs, String sourceEdgeName, String targetEdgeName, GraphHomomorphism graphHomomorphism) {
-		Edge source = getEdgeFromGraph(graphs.get(0), sourceEdgeName); 
-		Edge target = getEdgeFromGraph(graphs.get(1), targetEdgeName);
-		assertEquals(target, graphHomomorphism.getEdgeMapping().get(source));		
+	private void checkEdgeMapping(List<Graph> graphs, String sourceArrowName, String targetArrowName, GraphHomomorphism graphHomomorphism) {
+		Arrow source = getArrowFromGraph(graphs.get(0), sourceArrowName); 
+		Arrow target = getArrowFromGraph(graphs.get(1), targetArrowName);
+		assertEquals(target, graphHomomorphism.getArrowMapping().get(source));		
 	}
 	
 	/**
@@ -169,10 +169,10 @@ public class GraphHomomorphismTest extends TestCase {
 	/**
 	 * @generated NOT
 	 */
-	private Edge getEdgeFromGraph(Graph graph, String edgeName) {
-		for (Edge edge : graph.getEdges()) {
-			if (edge.getName().equals(edgeName)) {
-				return edge;
+	private Arrow getArrowFromGraph(Graph graph, String edgeName) {
+		for (Arrow arrow : graph.getArrows()) {
+			if (arrow.getName().equals(edgeName)) {
+				return arrow;
 			}
 		}
 		return null;
@@ -236,7 +236,7 @@ public class GraphHomomorphismTest extends TestCase {
 	 * @generated NOT
 	 */
 	private void testTryToCreateHomomorphism(List<Graph> graphs, boolean expectedResult) {
-		testTryToCreateHomomorphism(graphs.get(0), graphs.get(1).getNodes(), graphs.get(1).getEdges(), expectedResult);
+		testTryToCreateHomomorphism(graphs.get(0), graphs.get(1).getNodes(), graphs.get(1).getArrows(), expectedResult);
 	}
 		
 	/**
@@ -246,9 +246,9 @@ public class GraphHomomorphismTest extends TestCase {
 	 */
 	private void testHomomorphismWithExtraGraphElements(List<Graph> graphs, boolean expectedResult) {
 		EList<?> nodes = new BasicEList<Node>(graphs.get(1).getNodes());
-		EList<?> edges = new BasicEList<Edge>(graphs.get(1).getEdges());
+		EList<?> edges = new BasicEList<Arrow>(graphs.get(1).getArrows());
 		Node n2 = graphs.get(1).createNode("dust");
-		graphs.get(1).createEdge("dust", n2, graphs.get(1).getNodes().get(0));
+		graphs.get(1).createArrow("dust", n2, graphs.get(1).getNodes().get(0));
 		testTryToCreateHomomorphism(graphs.get(0), nodes, edges, expectedResult);
 	}
 
@@ -259,8 +259,8 @@ public class GraphHomomorphismTest extends TestCase {
 	 */
 	private void testHomomorphismWithExtraGraphElements2(List<Graph> graphs, boolean expectedResult) {
 		EList<?> nodes = new BasicEList<Node>(graphs.get(1).getNodes());
-		EList<?> edges = new BasicEList<Edge>(graphs.get(1).getEdges());
-		graphs.get(1).createEdge("hn1", graphs.get(1).getNodes().get(0), graphs.get(1).getNodes().get(1));
+		EList<?> edges = new BasicEList<Arrow>(graphs.get(1).getArrows());
+		graphs.get(1).createArrow("hn1", graphs.get(1).getNodes().get(0), graphs.get(1).getNodes().get(1));
 		testTryToCreateHomomorphism(graphs.get(0), nodes, edges, expectedResult);
 	}
 	
@@ -271,8 +271,8 @@ public class GraphHomomorphismTest extends TestCase {
 	 * */
 	private void testHomomorphismWithExtraGraphElements3(List<Graph> graphs, boolean expectedResult) {
 		EList<?> nodes = new BasicEList<Node>(graphs.get(1).getNodes());
-		EList<?> edges = new BasicEList<Edge>(graphs.get(1).getEdges());
-		graphs.get(1).createEdge("hn1", graphs.get(1).getNodes().get(0), graphs.get(1).getNodes().get(0));
+		EList<?> edges = new BasicEList<Arrow>(graphs.get(1).getArrows());
+		graphs.get(1).createArrow("hn1", graphs.get(1).getNodes().get(0), graphs.get(1).getNodes().get(0));
 		testTryToCreateHomomorphism(graphs.get(0), nodes, edges, expectedResult);
 	}
 	

@@ -1,13 +1,13 @@
 /*******************************************************************************
  * Copyright (c) 2004, 2005 Elias Volanakis and others.
-Ê* All rights reserved. This program and the accompanying materials
-Ê* are made available under the terms of the Eclipse Public License v1.0
-Ê* which accompanies this distribution, and is available at
-Ê* http://www.eclipse.org/legal/epl-v10.html
-Ê*
-Ê* Contributors:
-Ê*ÊÊÊÊElias Volanakis - initial API and implementation
-Ê*******************************************************************************/
+ï¿½* All rights reserved. This program and the accompanying materials
+ï¿½* are made available under the terms of the Eclipse Public License v1.0
+ï¿½* which accompanies this distribution, and is available at
+ï¿½* http://www.eclipse.org/legal/epl-v10.html
+ï¿½*
+ï¿½* Contributors:
+ï¿½*ï¿½ï¿½ï¿½ï¿½Elias Volanakis - initial API and implementation
+ï¿½*******************************************************************************/
 package no.hib.dpf.editor.model;
 
 import java.io.IOException;
@@ -18,7 +18,7 @@ import java.util.List;
 
 import no.hib.dpf.editor.DPFPlugin;
 import no.hib.dpf.editor.icons.ImageSettings;
-import no.hib.dpf.metamodel.Edge;
+import no.hib.dpf.metamodel.Arrow;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.IDObject;
 import no.hib.dpf.metamodel.MetamodelFactory;
@@ -108,9 +108,9 @@ public class VNode extends ModelElement implements Node, IDObjectContainer, Mova
 	}
 	
 	/** List of outgoing Connections. */
-	private List<VEdge> sourceConnections = new ArrayList<VEdge>();
+	private List<VArrow> sourceConnections = new ArrayList<VArrow>();
 	/** List of incoming Connections. */
-	private List<VEdge> targetConnections = new ArrayList<VEdge>();
+	private List<VArrow> targetConnections = new ArrayList<VArrow>();
 
 	/**
 	 * Returns an array of IPropertyDescriptors for this shape.
@@ -188,15 +188,15 @@ public class VNode extends ModelElement implements Node, IDObjectContainer, Mova
 	/**
 	 * Return a List of outgoing Connections.
 	 */
-	public List<VEdge> getSourceConnections() {
-		return new ArrayList<VEdge>(sourceConnections);
+	public List<VArrow> getSourceConnections() {
+		return new ArrayList<VArrow>(sourceConnections);
 	}
 
 	/**
 	 * Return a List of incoming Connections.
 	 */
-	public List<VEdge> getTargetConnections() {
-		return new ArrayList<VEdge>(targetConnections);
+	public List<VArrow> getTargetConnections() {
+		return new ArrayList<VArrow>(targetConnections);
 	}
 
 	/**
@@ -207,7 +207,7 @@ public class VNode extends ModelElement implements Node, IDObjectContainer, Mova
 	 * @throws IllegalArgumentException
 	 *             if the parameter is null
 	 */
-	public void removeConnection(VEdge conn) {
+	public void removeConnection(VArrow conn) {
 		if (conn == null) {
 			throw new IllegalArgumentException();
 		}
@@ -276,39 +276,39 @@ public class VNode extends ModelElement implements Node, IDObjectContainer, Mova
 		return "Node " + hashCode();
 	}
 	
-	public void addIncomingConnection(VEdge conn) {
+	public void addIncomingConnection(VArrow conn) {
 		targetConnections.add(conn);
 		firePropertyChange(TARGET_CONNECTIONS_PROP, null, conn);
 		conn.setTarget(nodeComponent);
 		setGraph(conn);
 	}
 
-	public void addOutgoingConnection(VEdge conn) {
+	public void addOutgoingConnection(VArrow conn) {
 		sourceConnections.add(conn);
 		firePropertyChange(SOURCE_CONNECTIONS_PROP, null, conn);
 		conn.setSource(nodeComponent);
 		setGraph(conn);
 	}
 	
-	private void setGraph(VEdge conn) {
+	private void setGraph(VArrow conn) {
 		conn.setGraph(getGraph());
 	}
 	
-	protected void removeIncomingConnection(VEdge conn) {
+	protected void removeIncomingConnection(VArrow conn) {
 		targetConnections.remove(conn);
 		firePropertyChange(TARGET_CONNECTIONS_PROP, null, conn);
 		conn.setTarget(null);
 		removeGraph(conn);
 	}
 
-	protected void removeOutgoingConnection(VEdge conn) {
+	protected void removeOutgoingConnection(VArrow conn) {
 		sourceConnections.remove(conn);
 		firePropertyChange(SOURCE_CONNECTIONS_PROP, null, conn);
 		conn.setSource(null);
 		removeGraph(conn);
 	}
 
-	private void removeGraph(VEdge conn) {
+	private void removeGraph(VArrow conn) {
 		conn.setGraph(null);
 	}
 		
@@ -442,8 +442,8 @@ public class VNode extends ModelElement implements Node, IDObjectContainer, Mova
 	}
 
 	@Override
-	public EList<Edge> getOutgoingEdges() {
-		return nodeComponent.getOutgoingEdges();
+	public EList<Arrow> getOutgoingArrows() {
+		return nodeComponent.getOutgoingArrows();
 	}
 
 	@Override
@@ -471,29 +471,29 @@ public class VNode extends ModelElement implements Node, IDObjectContainer, Mova
 	}
 
 	@Override
-	public boolean canReachTargetByOneEdge(Node target) {
-		return nodeComponent.canReachTargetByOneEdge(target);
+	public boolean canReachTargetByOneArrow(Node target) {
+		return nodeComponent.canReachTargetByOneArrow(target);
 	}
 
 	@Override
-	public boolean edgeCanMakeConnectionAsTarget(Node intendedTarget) {
-		return nodeComponent.edgeCanMakeConnectionAsTarget(intendedTarget);
+	public boolean arrowCanMakeConnectionAsTarget(Node intendedTarget) {
+		return nodeComponent.arrowCanMakeConnectionAsTarget(intendedTarget);
 	}
 
 	@Override
-	public Boolean edgeCanMakeConnectionAsTarget(Node intendedTarget,
-			Edge typeEdge) {
-		return nodeComponent.edgeCanMakeConnectionAsTarget(intendedTarget, typeEdge);
+	public Boolean arrowCanMakeConnectionAsTarget(Node intendedTarget,
+			Arrow typeArrow) {
+		return nodeComponent.arrowCanMakeConnectionAsTarget(intendedTarget, typeArrow);
 	}
 
 	@Override
-	public Boolean canReachTargetByTypeEdge(Node target, Edge typeEdge) {
-		return nodeComponent.canReachTargetByTypeEdge(target, typeEdge);
+	public Boolean canReachTargetByTypeArrow(Node target, Arrow typeArrpw) {
+		return nodeComponent.canReachTargetByTypeArrow(target, typeArrpw);
 	}
 
 	@Override
-	public Edge getEdgeto(Node target) {
-		return nodeComponent.getEdgeto(target);
+	public Arrow getArrowto(Node target) {
+		return nodeComponent.getArrowto(target);
 	}
 
 	@Override

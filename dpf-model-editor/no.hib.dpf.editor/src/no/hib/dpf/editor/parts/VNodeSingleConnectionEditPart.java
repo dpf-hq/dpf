@@ -7,11 +7,11 @@ import no.hib.dpf.editor.model.SingleNodeConnection;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PolygonDecoration;
 
-public class VNodeSingleConnectionEditPart extends VEdgeEditPart {
+public class VNodeSingleConnectionEditPart extends VArrowEditPart {
 	
 	@Override
 	protected IFigure createFigure() {
-		EditableLabel label = new EditableLabel(getEdge().getName());
+		EditableLabel label = new EditableLabel(getArrow().getName());
 		connectionFigure = new DPFEpiConnectionFigure(label);
 		PolygonDecoration arrowHead = new PolygonDecoration();
 		arrowHead.setScale(16, 6);

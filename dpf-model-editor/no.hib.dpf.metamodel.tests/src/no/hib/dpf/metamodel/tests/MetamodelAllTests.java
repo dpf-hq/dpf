@@ -10,7 +10,6 @@ import junit.framework.Test;
 import junit.framework.TestSuite;
 
 import junit.textui.TestRunner;
-import no.hib.dpf.command.tests.CommandTests;
 
 /**
  * <!-- begin-user-doc -->
@@ -37,7 +36,6 @@ public class MetamodelAllTests extends TestSuite {
 	public static Test suite() {
 		TestSuite suite = new MetamodelAllTests("Metamodel Tests");
 		suite.addTest(MetamodelTests.suite());
-		suite.addTest(CommandTests.suite());
 		return suite;
 	}
 

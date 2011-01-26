@@ -113,7 +113,7 @@ public interface Node extends IDObject {
 	 * @model kind="operation"
 	 * @generated
 	 */
-	EList<Edge> getOutgoingEdges();
+	EList<Arrow> getOutgoingArrows();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -121,7 +121,7 @@ public interface Node extends IDObject {
 	 * @model
 	 * @generated
 	 */
-	boolean edgeCanMakeConnectionAsTarget(Node intendedTarget);
+	boolean arrowCanMakeConnectionAsTarget(Node intendedTarget);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -129,7 +129,7 @@ public interface Node extends IDObject {
 	 * @model
 	 * @generated
 	 */
-	boolean canReachTargetByOneEdge(Node target);
+	boolean canReachTargetByOneArrow(Node target);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -137,7 +137,7 @@ public interface Node extends IDObject {
 	 * @model
 	 * @generated
 	 */
-	Boolean edgeCanMakeConnectionAsTarget(Node intendedTarget, Edge typeEdge);
+	Boolean arrowCanMakeConnectionAsTarget(Node intendedTarget, Arrow typeEdge);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -145,7 +145,7 @@ public interface Node extends IDObject {
 	 * @model
 	 * @generated
 	 */
-	Boolean canReachTargetByTypeEdge(Node target, Edge typeEdge);
+	Boolean canReachTargetByTypeArrow(Node target, Arrow typeEdge);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -153,7 +153,7 @@ public interface Node extends IDObject {
 	 * @model
 	 * @generated
 	 */
-	Edge getEdgeto(Node target);
+	Arrow getArrowto(Node target);
 
 	/**
 	 * <!-- begin-user-doc -->

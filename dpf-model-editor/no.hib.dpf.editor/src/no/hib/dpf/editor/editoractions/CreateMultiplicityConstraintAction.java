@@ -2,7 +2,7 @@ package no.hib.dpf.editor.editoractions;
 
 import java.util.List;
 
-import no.hib.dpf.editor.model.VEdge;
+import no.hib.dpf.editor.model.VArrow;
 import no.hib.dpf.editor.model.commands.MultiplicityConstraintCreateCommand;
 import no.hib.dpf.editor.parts.VNodeEditPart;
 import no.hib.dpf.metamodel.Graph;
@@ -27,7 +27,7 @@ public class CreateMultiplicityConstraintAction extends CreateConstraintAction {
 	
 	@Override
 	protected Command getConstraintCreateCommand(List<ConnectionEditPart> connectionEditParts, List<VNodeEditPart> shapeEditParts) {
-		return new MultiplicityConstraintCreateCommand((VEdge)connectionEditParts.get(0).getModel());
+		return new MultiplicityConstraintCreateCommand((VArrow)connectionEditParts.get(0).getModel());
 	}
 	
 	

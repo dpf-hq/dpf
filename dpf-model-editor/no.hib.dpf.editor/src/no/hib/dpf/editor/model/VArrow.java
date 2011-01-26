@@ -1,13 +1,13 @@
 /*******************************************************************************
  * Copyright (c) 2004, 2005 Elias Volanakis and others.
-Ê* All rights reserved. This program and the accompanying materials
-Ê* are made available under the terms of the Eclipse Public License v1.0
-Ê* which accompanies this distribution, and is available at
-Ê* http://www.eclipse.org/legal/epl-v10.html
-Ê*
-Ê* Contributors:
-Ê*ÊÊÊÊElias Volanakis - initial API and implementation
-Ê*******************************************************************************/
+ï¿½* All rights reserved. This program and the accompanying materials
+ï¿½* are made available under the terms of the Eclipse Public License v1.0
+ï¿½* which accompanies this distribution, and is available at
+ï¿½* http://www.eclipse.org/legal/epl-v10.html
+ï¿½*
+ï¿½* Contributors:
+ï¿½*ï¿½ï¿½ï¿½ï¿½Elias Volanakis - initial API and implementation
+ï¿½*******************************************************************************/
 package no.hib.dpf.editor.model;
 
 import java.io.IOException;
@@ -16,7 +16,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
-import no.hib.dpf.metamodel.Edge;
+import no.hib.dpf.metamodel.Arrow;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.IDObject;
 import no.hib.dpf.metamodel.MetamodelFactory;
@@ -37,7 +37,7 @@ import org.eclipse.ui.views.properties.ComboBoxPropertyDescriptor;
 import org.eclipse.ui.views.properties.IPropertyDescriptor;
 import org.eclipse.ui.views.properties.TextPropertyDescriptor;
 
-public class VEdge extends ModelElement implements Edge, IDObjectContainer {
+public class VArrow extends ModelElement implements Arrow, IDObjectContainer {
 	/**
 	 * Used for indicating that a Connection with solid line style should be
 	 * created.
@@ -100,12 +100,12 @@ public class VEdge extends ModelElement implements Edge, IDObjectContainer {
 		};
 	}
 
-	private transient Edge edgeComponent;
-	private String edgeID;
+	private transient Arrow arrowComponent;
+	private String arrowID;
 
 	@Override
 	public String getIDObjectID() {
-		return edgeID;
+		return arrowID;
 	}	
 	
 	
@@ -129,17 +129,17 @@ public class VEdge extends ModelElement implements Edge, IDObjectContainer {
 	 *             if any of the parameters are null or source == target
 	 * @see #setLineStyle(int)
 	 */
-	public VEdge(VNode source, VNode target, Edge typeEdge) {
+	public VArrow(VNode source, VNode target, Arrow typeArrow) {
 		// The dpf Edge object must be initialized before the connection of the shapes.
-		setIDObject(MetamodelFactory.eINSTANCE.createEdge(typeEdge));
+		setIDObject(MetamodelFactory.eINSTANCE.createArrow(typeArrow));
 		reconnect(source, target);
 	}
 
 	@Override
 	public void setIDObject(IDObject idObject) {
-		if (idObject instanceof Edge) {
-			edgeComponent = (Edge)idObject;
-			edgeID = edgeComponent.getId();		
+		if (idObject instanceof Arrow) {
+			arrowComponent = (Arrow)idObject;
+			arrowID = arrowComponent.getId();		
 		}
 	}
 	
@@ -355,8 +355,8 @@ public class VEdge extends ModelElement implements Edge, IDObjectContainer {
 	}
 	
 	private void setNameExec(String name) {
-		String oldName = edgeComponent.getName();
-		edgeComponent.setName(name);
+		String oldName = arrowComponent.getName();
+		arrowComponent.setName(name);
 		firePropertyChange(NAME_PROP, oldName, name);
 	}
 	
@@ -401,166 +401,166 @@ public class VEdge extends ModelElement implements Edge, IDObjectContainer {
 
 	@Override
 	public EClass eClass() {
-		return edgeComponent.eClass();
+		return arrowComponent.eClass();
 	}
 
 	@Override
 	public Resource eResource() {
-		return edgeComponent.eResource();
+		return arrowComponent.eResource();
 	}
 
 	@Override
 	public EObject eContainer() {
-		return edgeComponent.eContainer();
+		return arrowComponent.eContainer();
 	}
 
 	@Override
 	public EStructuralFeature eContainingFeature() {
-		return edgeComponent.eContainingFeature();
+		return arrowComponent.eContainingFeature();
 	}
 
 	@Override
 	public EReference eContainmentFeature() {
-		return edgeComponent.eContainmentFeature();
+		return arrowComponent.eContainmentFeature();
 	}
 
 	@Override
 	public EList<EObject> eContents() {
-		return edgeComponent.eContents();
+		return arrowComponent.eContents();
 	}
 
 	@Override
 	public TreeIterator<EObject> eAllContents() {
-		return edgeComponent.eAllContents();
+		return arrowComponent.eAllContents();
 	}
 
 	@Override
 	public boolean eIsProxy() {
-		return edgeComponent.eIsProxy();
+		return arrowComponent.eIsProxy();
 	}
 
 	@Override
 	public EList<EObject> eCrossReferences() {
-		return edgeComponent.eCrossReferences();
+		return arrowComponent.eCrossReferences();
 	}
 
 	@Override
 	public Object eGet(EStructuralFeature feature) {
-		return edgeComponent.eGet(feature);
+		return arrowComponent.eGet(feature);
 	}
 
 	@Override
 	public Object eGet(EStructuralFeature feature, boolean resolve) {
-		return edgeComponent.eGet(feature, resolve);
+		return arrowComponent.eGet(feature, resolve);
 	}
 
 	@Override
 	public void eSet(EStructuralFeature feature, Object newValue) {
-		edgeComponent.eSet(feature, newValue);
+		arrowComponent.eSet(feature, newValue);
 	}
 
 	@Override
 	public boolean eIsSet(EStructuralFeature feature) {
-		return edgeComponent.eIsSet(feature);
+		return arrowComponent.eIsSet(feature);
 	}
 
 	@Override
 	public void eUnset(EStructuralFeature feature) {
-		edgeComponent.eUnset(feature);
+		arrowComponent.eUnset(feature);
 	}
 
 	@Override
 	public Object eInvoke(EOperation operation, EList<?> arguments)
 			throws InvocationTargetException {
-		return edgeComponent.eInvoke(operation, arguments);
+		return arrowComponent.eInvoke(operation, arguments);
 	}
 
 	@Override
 	public EList<Adapter> eAdapters() {
-		return edgeComponent.eAdapters();
+		return arrowComponent.eAdapters();
 	}
 
 	@Override
 	public boolean eDeliver() {
-		return edgeComponent.eDeliver();
+		return arrowComponent.eDeliver();
 	}
 
 	@Override
 	public void eSetDeliver(boolean deliver) {
-		edgeComponent.eSetDeliver(deliver);
+		arrowComponent.eSetDeliver(deliver);
 	}
 
 	@Override
 	public void eNotify(Notification notification) {
-		edgeComponent.eNotify(notification);
+		arrowComponent.eNotify(notification);
 	}
 
 	@Override
 	public void setSource(Node value) {
-		edgeComponent.setSource(value);
+		arrowComponent.setSource(value);
 	}
 
 	@Override
 	public void setTarget(Node value) {
-		edgeComponent.setTarget(value);
+		arrowComponent.setTarget(value);
 	}
 
 	@Override
 	public String getName() {
-		return edgeComponent.getName();
+		return arrowComponent.getName();
 	}
 
 	@Override
 	public void setName(String value) {
-		edgeComponent.setName(value);
+		arrowComponent.setName(value);
 	}
 
 	@Override
 	public Graph getGraph() {
-		return edgeComponent.getGraph();
+		return arrowComponent.getGraph();
 	}
 
 	@Override
 	public void setGraph(Graph value) {
-		edgeComponent.setGraph(value);
+		arrowComponent.setGraph(value);
 	}
 
 	@Override
 	public Node getSource() {
-		return edgeComponent.getSource();
+		return arrowComponent.getSource();
 	}
 
 	@Override
 	public Node getTarget() {
-		return edgeComponent.getTarget();
+		return arrowComponent.getTarget();
 	}
 
 	@Override
 	public String getId() {
-		return edgeComponent.getId();
+		return arrowComponent.getId();
 	}
 
 	@Override
 	public void setId(String value) {
-		edgeComponent.setId(value);
+		arrowComponent.setId(value);
 	}
 
 
 	@Override
-	public Edge getTypeEdge() {
-		return edgeComponent.getTypeEdge();
+	public Arrow getTypeEdge() {
+		return arrowComponent.getTypeEdge();
 	}
 
 
 	@Override
-	public void setTypeEdge(Edge value) {
-		edgeComponent.setTypeEdge(value);
+	public void setTypeEdge(Arrow value) {
+		arrowComponent.setTypeEdge(value);
 	}
 
 
 	@Override
 	public String getTypeName() {
-		return edgeComponent.getTypeName();
+		return arrowComponent.getTypeName();
 	}
 	
 

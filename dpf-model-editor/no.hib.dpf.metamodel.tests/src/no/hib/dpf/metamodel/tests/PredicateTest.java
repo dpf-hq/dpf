@@ -6,19 +6,17 @@
  */
 package no.hib.dpf.metamodel.tests;
 
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
-
 import junit.framework.TestCase;
-
 import junit.textui.TestRunner;
-
+import no.hib.dpf.metamodel.Arrow;
 import no.hib.dpf.metamodel.Constraint;
-import no.hib.dpf.metamodel.Edge;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.MetamodelFactory;
 import no.hib.dpf.metamodel.Node;
 import no.hib.dpf.metamodel.Predicate;
+
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -124,11 +122,11 @@ public class PredicateTest extends TestCase {
 		nodes.add(userGraph.getNodeByName("n_2"));
 		nodes.add(userGraph.getNodeByName("n_3"));
 		
-		EList<Edge> edges = new BasicEList<Edge>();
-		edges.add(userGraph.getEdgeByName("e_1"));
-		edges.add(userGraph.getEdgeByName("e_2"));
+		EList<Arrow> arrows = new BasicEList<Arrow>();
+		arrows.add(userGraph.getArrowByName("e_1"));
+		arrows.add(userGraph.getArrowByName("e_2"));
 		
-		Constraint constraint = testPredicate.createConstraint(nodes, edges, userGraph);		
+		Constraint constraint = testPredicate.createConstraint(nodes, arrows, userGraph);		
 		assertNotNull(constraint);
 		assertEquals(1, userGraph.getConstraints().size());		
 	}
@@ -151,18 +149,18 @@ public class PredicateTest extends TestCase {
 		EList<Node> nodes = new BasicEList<Node>();
 		nodes.add(userGraph.getNodeByName("n_1"));
 		
-		EList<Edge> edges = new BasicEList<Edge>();
-		edges.add(userGraph.getEdgeByName("e_1"));
-		edges.add(userGraph.getEdgeByName("e_2"));
+		EList<Arrow> arrows = new BasicEList<Arrow>();
+		arrows.add(userGraph.getArrowByName("e_1"));
+		arrows.add(userGraph.getArrowByName("e_2"));
 		
-		boolean canCreate = testPredicate.canCreateConstraint(nodes, edges, userGraph);
+		boolean canCreate = testPredicate.canCreateConstraint(nodes, arrows, userGraph);
 		assertFalse(canCreate);
 
 		
 		nodes.add(userGraph.getNodeByName("n_2"));
 		nodes.add(userGraph.getNodeByName("n_3"));
 		
-		canCreate = testPredicate.canCreateConstraint(nodes, edges, userGraph);
+		canCreate = testPredicate.canCreateConstraint(nodes, arrows, userGraph);
 		assertTrue(canCreate);
 		
 		assertEquals(0, userGraph.getConstraints().size());

@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import no.hib.dpf.metamodel.Arrow;
 import no.hib.dpf.metamodel.Constraint;
-import no.hib.dpf.metamodel.Edge;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.IDObject;
 import no.hib.dpf.metamodel.MetamodelFactory;
@@ -37,7 +37,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link no.hib.dpf.metamodel.impl.GraphImpl#getNodes <em>Nodes</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.impl.GraphImpl#getName <em>Name</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.impl.GraphImpl#getEdges <em>Edges</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.impl.GraphImpl#getArrows <em>Arrows</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.impl.GraphImpl#getConstraints <em>Constraints</em>}</li>
  * </ul>
  * </p>
@@ -76,14 +76,14 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getEdges() <em>Edges</em>}' containment reference list.
+	 * The cached value of the '{@link #getArrows() <em>Arrows</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getEdges()
+	 * @see #getArrows()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Edge> edges;
+	protected EList<Arrow> arrows;
 
 	/**
 	 * The cached value of the '{@link #getConstraints() <em>Constraints</em>}' containment reference list.
@@ -152,11 +152,11 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Edge> getEdges() {
-		if (edges == null) {
-			edges = new EObjectContainmentWithInverseEList<Edge>(Edge.class, this, MetamodelPackage.GRAPH__EDGES, MetamodelPackage.EDGE__GRAPH);
+	public EList<Arrow> getArrows() {
+		if (arrows == null) {
+			arrows = new EObjectContainmentWithInverseEList<Arrow>(Arrow.class, this, MetamodelPackage.GRAPH__ARROWS, MetamodelPackage.ARROW__GRAPH);
 		}
-		return edges;
+		return arrows;
 	}
 
 	/**
@@ -188,16 +188,16 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Edge createEdge(String name, Node source, Node target) {
+	public Arrow createArrow(String name, Node source, Node target) {
 		testSurceAndTarget(source, target);
 		
-		if (!source.edgeCanMakeConnectionAsTarget(target)) {
+		if (!source.arrowCanMakeConnectionAsTarget(target)) {
 			throw new AssertionError(String.format("The target node, %s, had the wrong type for an edge to be connected from the node %s.", target, source));
 		}
 						
-		Edge edge = createEdgeExec(name, source, target);
+		Arrow edge = createEdgeExec(name, source, target);
 		if ((source.getTypeNode() != null) && (target.getTypeNode() != null)) {
-			edge.setTypeEdge(source.getTypeNode().getEdgeto(target.getTypeNode()));
+			edge.setTypeEdge(source.getTypeNode().getArrowto(target.getTypeNode()));
 		}
 		return edge;
 	}
@@ -207,26 +207,26 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Edge createEdge(String name, Node source, Node target, Edge typeEdge) {
+	public Arrow createArrow(String name, Node source, Node target, Arrow typeArrow) {
 		testSurceAndTarget(source, target);
-		if (!source.edgeCanMakeConnectionAsTarget(target, typeEdge)) {
-			throw new AssertionError(String.format("The target node, %s, had the wrong type for an edge to be connected from the node %s via the type edge %s.", target, source, typeEdge));			
+		if (!source.arrowCanMakeConnectionAsTarget(target, typeArrow)) {
+			throw new AssertionError(String.format("The target node, %s, had the wrong type for an edge to be connected from the node %s via the type edge %s.", target, source, typeArrow));			
 		}
-		Edge edge = createEdgeExec(name, source, target);
-		edge.setTypeEdge(typeEdge);
+		Arrow edge = createEdgeExec(name, source, target);
+		edge.setTypeEdge(typeArrow);
 		return edge;
 	}
 
 	/**
 	 * @generated NOT
 	 */
-	private Edge createEdgeExec(String name, Node source, Node target) {
-		Edge edge = MetamodelFactory.eINSTANCE.createEdge();
-		edge.setSource(source);
-		edge.setTarget(target);
-		edge.setGraph(this);
-		edge.setName(name);
-		return edge;
+	private Arrow createEdgeExec(String name, Node source, Node target) {
+		Arrow arrow = MetamodelFactory.eINSTANCE.createArrow();
+		arrow.setSource(source);
+		arrow.setTarget(target);
+		arrow.setGraph(this);
+		arrow.setName(name);
+		return arrow;
 	}
 
 	/**
@@ -244,23 +244,23 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	 * @return 
 	 * @generated NOT
 	 */
-	public Constraint applyPredicate(Predicate predicate, EList<Node> nodes, EList<Edge> edges) {
+	public Constraint applyPredicate(Predicate predicate, EList<Node> nodes, EList<Arrow> arrows) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 		/*
-		 *  1) Forel¿pig vil ikke predikatet ha en valideringsmetode som sier om det kan
-		 *  appliseres pŒ nodes og edges. TODO: lage slik. Forel¿pig antar vi at dette er OK.
+		 *  1) Forelï¿½pig vil ikke predikatet ha en valideringsmetode som sier om det kan
+		 *  appliseres pï¿½ nodes og edges. TODO: lage slik. Forelï¿½pig antar vi at dette er OK.
 		 *  
-		 *  2) Opprett Constraint-objekt, som mŒ lenkes til predikatet.
+		 *  2) Opprett Constraint-objekt, som mï¿½ lenkes til predikatet.
 		 *  
 		 *  3) Opprett ny GraphHomomorphism-objekt. Predikatet har en shape-referanse. Hvert
-		 *  element i shape-en mŒ lenkes til et eksisterende element, hentet fra nodes og/eller
+		 *  element i shape-en mï¿½ lenkes til et eksisterende element, hentet fra nodes og/eller
 		 *  edges.
 		 * 
-		 * 4) Q&D-l¿sning for raske resultat: f¿rste node i nodeliste -> f¿rste node i shape-en etc.
+		 * 4) Q&D-lï¿½sning for raske resultat: fï¿½rste node i nodeliste -> fï¿½rste node i shape-en etc.
 		 * 
-		 * Returverdien skal pŒ sikt brukes til Œ signalisere endringer i modellen til viewmodellen.
+		 * Returverdien skal pï¿½ sikt brukes til ï¿½ signalisere endringer i modellen til viewmodellen.
 		 * 
 		 */
 	}
@@ -273,8 +273,8 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	 */
 	public IDObject getGraphMember(String id) {
 		// TODO: FIX, goddamnit!
-		for (Edge anEdge : getEdges()) {
-			if (anEdge.getId().equals(id)) return anEdge;
+		for (Arrow anArrow : getArrows()) {
+			if (anArrow.getId().equals(id)) return anArrow;
 		}		
 		for (Node aNode : getNodes()) {
 			if (aNode.getId().equals(id)) return aNode;
@@ -288,11 +288,11 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	/**
 	 * @generated NOT
 	 */
-	private List<Edge> connectedEdges(Node node) {
-		List<Edge> retval = new ArrayList<Edge>();
-		for (Edge edge : getEdges()) {
-			if ((edge.getSource() == node) || (edge.getTarget() == node)) {
-				retval.add(edge);
+	private List<Arrow> connectedEdges(Node node) {
+		List<Arrow> retval = new ArrayList<Arrow>();
+		for (Arrow arrow : getArrows()) {
+			if ((arrow.getSource() == node) || (arrow.getTarget() == node)) {
+				retval.add(arrow);
 			}
 		}
 		return retval;
@@ -302,8 +302,8 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	 * @generated NOT
 	 */
 	private void deleteConnectedEdges(Node node) {
-		for (Edge edge : connectedEdges(node)) {
-			edges.remove(edge);
+		for (Arrow arrow : connectedEdges(node)) {
+			arrows.remove(arrow);
 		}
 	}
 	
@@ -324,9 +324,9 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public void deleteEdge(Edge edge) {
-		if (getEdges().contains(edge)) {
-			edges.remove(edge);
+	public void deleteArrow(Arrow arrow) {
+		if (getArrows().contains(arrow)) {
+			arrows.remove(arrow);
 		}
 	}
 
@@ -349,10 +349,10 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Edge getEdgeByName(String name) {
-		for (Edge edge : getEdges()) {
-			if (edge.getName().equals(name)) {
-				return edge;
+	public Arrow getArrowByName(String name) {
+		for (Arrow arrow : getArrows()) {
+			if (arrow.getName().equals(name)) {
+				return arrow;
 			}
 		}
 		return null;
@@ -380,8 +380,8 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 		switch (featureID) {
 			case MetamodelPackage.GRAPH__NODES:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getNodes()).basicAdd(otherEnd, msgs);
-			case MetamodelPackage.GRAPH__EDGES:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getEdges()).basicAdd(otherEnd, msgs);
+			case MetamodelPackage.GRAPH__ARROWS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getArrows()).basicAdd(otherEnd, msgs);
 			case MetamodelPackage.GRAPH__CONSTRAINTS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getConstraints()).basicAdd(otherEnd, msgs);
 		}
@@ -398,8 +398,8 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 		switch (featureID) {
 			case MetamodelPackage.GRAPH__NODES:
 				return ((InternalEList<?>)getNodes()).basicRemove(otherEnd, msgs);
-			case MetamodelPackage.GRAPH__EDGES:
-				return ((InternalEList<?>)getEdges()).basicRemove(otherEnd, msgs);
+			case MetamodelPackage.GRAPH__ARROWS:
+				return ((InternalEList<?>)getArrows()).basicRemove(otherEnd, msgs);
 			case MetamodelPackage.GRAPH__CONSTRAINTS:
 				return ((InternalEList<?>)getConstraints()).basicRemove(otherEnd, msgs);
 		}
@@ -418,8 +418,8 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 				return getNodes();
 			case MetamodelPackage.GRAPH__NAME:
 				return getName();
-			case MetamodelPackage.GRAPH__EDGES:
-				return getEdges();
+			case MetamodelPackage.GRAPH__ARROWS:
+				return getArrows();
 			case MetamodelPackage.GRAPH__CONSTRAINTS:
 				return getConstraints();
 		}
@@ -442,9 +442,9 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 			case MetamodelPackage.GRAPH__NAME:
 				setName((String)newValue);
 				return;
-			case MetamodelPackage.GRAPH__EDGES:
-				getEdges().clear();
-				getEdges().addAll((Collection<? extends Edge>)newValue);
+			case MetamodelPackage.GRAPH__ARROWS:
+				getArrows().clear();
+				getArrows().addAll((Collection<? extends Arrow>)newValue);
 				return;
 			case MetamodelPackage.GRAPH__CONSTRAINTS:
 				getConstraints().clear();
@@ -468,8 +468,8 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 			case MetamodelPackage.GRAPH__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case MetamodelPackage.GRAPH__EDGES:
-				getEdges().clear();
+			case MetamodelPackage.GRAPH__ARROWS:
+				getArrows().clear();
 				return;
 			case MetamodelPackage.GRAPH__CONSTRAINTS:
 				getConstraints().clear();
@@ -490,8 +490,8 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 				return nodes != null && !nodes.isEmpty();
 			case MetamodelPackage.GRAPH__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case MetamodelPackage.GRAPH__EDGES:
-				return edges != null && !edges.isEmpty();
+			case MetamodelPackage.GRAPH__ARROWS:
+				return arrows != null && !arrows.isEmpty();
 			case MetamodelPackage.GRAPH__CONSTRAINTS:
 				return constraints != null && !constraints.isEmpty();
 		}

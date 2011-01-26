@@ -1,22 +1,22 @@
 /*******************************************************************************
  * Copyright (c) 2004, 2008 Elias Volanakis and others.
-Ê* All rights reserved. This program and the accompanying materials
-Ê* are made available under the terms of the Eclipse Public License v1.0
-Ê* which accompanies this distribution, and is available at
-Ê* http://www.eclipse.org/legal/epl-v10.html
-Ê*
-Ê* Contributors:
-Ê*ÊÊÊÊElias Volanakis - initial API and implementation
-Ê*******************************************************************************/
+ï¿½* All rights reserved. This program and the accompanying materials
+ï¿½* are made available under the terms of the Eclipse Public License v1.0
+ï¿½* which accompanies this distribution, and is available at
+ï¿½* http://www.eclipse.org/legal/epl-v10.html
+ï¿½*
+ï¿½* Contributors:
+ï¿½*ï¿½ï¿½ï¿½ï¿½Elias Volanakis - initial API and implementation
+ï¿½*******************************************************************************/
 package no.hib.dpf.editor;
 
 import java.util.List;
 
 import no.hib.dpf.editor.editoractions.CreateConstraintAction;
 import no.hib.dpf.editor.icons.ImageSettings;
-import no.hib.dpf.editor.model.factories.EdgeCreationFactory;
+import no.hib.dpf.editor.model.factories.ArrowCreationFactory;
 import no.hib.dpf.editor.model.factories.VNodeFactory;
-import no.hib.dpf.metamodel.Edge;
+import no.hib.dpf.metamodel.Arrow;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.Node;
 
@@ -41,7 +41,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 public class DPFEditorPaletteFactory {
 	
 	private static final String NODES = "Nodes";
-	private static final String EDGES = "Edges";
+	private static final String ARROWS = "Arrows";
 	private static final String CONSTRAINTS = "Constaints";
 	
 	// /** Preference ID used to persist the palette location. */
@@ -63,7 +63,7 @@ public class DPFEditorPaletteFactory {
 	public PaletteRoot createPalette(Graph typeGraph) {
 		PaletteRoot palette = new PaletteRoot();
 		palette.add(createToolsGroup(palette, typeGraph));
-		palette.add(createEdgesGroup(typeGraph));
+		palette.add(createArrowsGroup(typeGraph));
 		palette.add(new PaletteSeparator());
 		palette.add(createShapesGroup(typeGraph));
 		
@@ -103,7 +103,7 @@ public class DPFEditorPaletteFactory {
 					ImageDescriptor iconSmall = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.getImageSettings().getFilePath(ImageSettings.SMALL_CONNECTION));
 					ImageDescriptor iconLarge = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.getImageSettings().getFilePath(ImageSettings.LARGE_CONNECTION));
 
-					entry.add(new ConnectionCreationToolEntry(createConstraintAction.getDescription(), "Create a new dings", new EdgeCreationFactory(null, null), iconSmall, iconLarge));
+					entry.add(new ConnectionCreationToolEntry(createConstraintAction.getDescription(), "Create a new dings", new ArrowCreationFactory(null, null), iconSmall, iconLarge));
 				}
 			}
 			
@@ -117,7 +117,7 @@ public class DPFEditorPaletteFactory {
 	}
 	
 	public void updatePalette(PaletteRoot root, Graph typeGraph) {
-		updateEntry(root, typeGraph, EDGES);
+		updateEntry(root, typeGraph, ARROWS);
 		updateEntry(root, typeGraph, NODES);
 	}
 	
@@ -127,10 +127,10 @@ public class DPFEditorPaletteFactory {
 		return nodeGroup;
 	}
 
-	private PaletteGroup createEdgesGroup(Graph typeGraph) {
-		PaletteGroup edgeGroup = new PaletteGroup(EDGES);		
-		addEdgeCreationToolsToGroup(typeGraph, edgeGroup);
-		return edgeGroup;
+	private PaletteGroup createArrowsGroup(Graph typeGraph) {
+		PaletteGroup arrowsGroup = new PaletteGroup(ARROWS);		
+		addArrowCreationToolsToGroup(typeGraph, arrowsGroup);
+		return arrowsGroup;
 	}
 	
 	private PaletteToolbar createConstraintToolbar() {
@@ -157,8 +157,8 @@ public class DPFEditorPaletteFactory {
 	private void updateEntry(PaletteRoot root, Graph typeGraph, String entryName) {
 		PaletteGroup entry = getGroup(root, entryName);
 		removeEntryChildren(entry);
-		if (entryName.equals(EDGES)) {
-			addEdgeCreationToolsToGroup(typeGraph, entry);
+		if (entryName.equals(ARROWS)) {
+			addArrowCreationToolsToGroup(typeGraph, entry);
 		} else if (entryName.equals(NODES)) {
 			addNodeCreationToolsToGroup(typeGraph, entry);			
 		}
@@ -171,12 +171,12 @@ public class DPFEditorPaletteFactory {
 		}
 	}
 	
-	private void addEdgeCreationToolsToGroup(Graph typeGraph, PaletteGroup edgeGroup) {
+	private void addArrowCreationToolsToGroup(Graph typeGraph, PaletteGroup edgeGroup) {
 		ImageDescriptor iconSmall = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.getImageSettings().getFilePath(ImageSettings.SMALL_CONNECTION));
 		ImageDescriptor iconLarge = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.getImageSettings().getFilePath(ImageSettings.LARGE_CONNECTION));
 
-		for (Edge typeEdge : typeGraph.getEdges()) {			
-			edgeGroup.add(new ConnectionCreationToolEntry(typeEdge.getName(), "Create a new " + typeEdge.getName(), new EdgeCreationFactory(null, typeEdge), iconSmall, iconLarge));
+		for (Arrow typeArrow : typeGraph.getArrows()) {			
+			edgeGroup.add(new ConnectionCreationToolEntry(typeArrow.getName(), "Create a new " + typeArrow.getName(), new ArrowCreationFactory(null, typeArrow), iconSmall, iconLarge));
 		}
 	}
 	

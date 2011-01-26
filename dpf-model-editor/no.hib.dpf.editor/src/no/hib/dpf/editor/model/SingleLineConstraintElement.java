@@ -12,7 +12,7 @@ public class SingleLineConstraintElement extends VConstraint {
 	private int val_1 = 1;
 	private int val_2 = -1;
 
-	public SingleLineConstraintElement(VEdge source, ConstraintType constraintType) {
+	public SingleLineConstraintElement(VArrow source, ConstraintType constraintType) {
 		super(source, null, constraintType);
 	}
 		
@@ -51,7 +51,7 @@ public class SingleLineConstraintElement extends VConstraint {
 	 *             if any of the paramers are null or newSource == newTarget
 	 */
 	@Override
-	public void reconnect(VEdge newSource, VEdge newTarget) {
+	public void reconnect(VArrow newSource, VArrow newTarget) {
 		if (newSource == null) {
 			throw new IllegalArgumentException();
 		}

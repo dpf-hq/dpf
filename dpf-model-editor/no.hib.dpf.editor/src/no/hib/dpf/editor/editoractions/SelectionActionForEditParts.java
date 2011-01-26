@@ -3,9 +3,9 @@ package no.hib.dpf.editor.editoractions;
 import java.util.ArrayList;
 import java.util.List;
 
-import no.hib.dpf.editor.parts.VEdgeEditPart;
+import no.hib.dpf.editor.parts.VArrowEditPart;
 import no.hib.dpf.editor.parts.VNodeEditPart;
-import no.hib.dpf.metamodel.Edge;
+import no.hib.dpf.metamodel.Arrow;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.Node;
 
@@ -25,12 +25,12 @@ public abstract class SelectionActionForEditParts extends SelectionAction {
 		this.graph = graph;
 	}
 	
-	protected EList<Edge> getSelectionEdges() {
-		EList<Edge> edges = new BasicEList<Edge>();
+	protected EList<Arrow> getSelectionArrows() {
+		EList<Arrow> arrows = new BasicEList<Arrow>();
 		for (ConnectionEditPart connectionEditPart : getSelectedConnectionEditParts()) {
-			edges.add((Edge)connectionEditPart.getModel());
+			arrows.add((Arrow)connectionEditPart.getModel());
 		}
-		return edges;
+		return arrows;
 	}
 
 	protected EList<Node> getSelectionNodes() {
@@ -41,11 +41,11 @@ public abstract class SelectionActionForEditParts extends SelectionAction {
 		return selectionNodes;
 	}
 
-	protected EList<Node> addUnselectedNodesToSelection(EList<Node> selectionNodes, EList<Edge> selectionEdges) {
+	protected EList<Node> addUnselectedNodesToSelection(EList<Node> selectionNodes, EList<Arrow> selectionArrows) {
 		// Adds any nodes not selected, but directly connected to the selected edges
-		for (Edge edge : selectionEdges) {
-			addNodeToRetVal(selectionNodes, edge.getSource());			
-			addNodeToRetVal(selectionNodes, edge.getTarget());			
+		for (Arrow arrow : selectionArrows) {
+			addNodeToRetVal(selectionNodes, arrow.getSource());			
+			addNodeToRetVal(selectionNodes, arrow.getTarget());			
 		}
 		return selectionNodes;
 	}
@@ -68,7 +68,7 @@ public abstract class SelectionActionForEditParts extends SelectionAction {
 	protected List<ConnectionEditPart> getSelectedConnectionEditParts() {
 		List<ConnectionEditPart> connectionEditParts = new ArrayList<ConnectionEditPart>();
 		for (int i = 0; i < getSelectedObjects().size(); i++) {
-			if (getSelectedObjects().get(i) instanceof VEdgeEditPart) {
+			if (getSelectedObjects().get(i) instanceof VArrowEditPart) {
 				connectionEditParts.add((ConnectionEditPart)getSelectedObjects().get(i));
 			}
 		}

@@ -1,15 +1,15 @@
 package no.hib.dpf.editor.model.factories;
 
-import no.hib.dpf.metamodel.Edge;
+import no.hib.dpf.metamodel.Arrow;
 
 import org.eclipse.gef.requests.CreationFactory;
 
-public class EdgeCreationFactory implements CreationFactory {
+public class ArrowCreationFactory implements CreationFactory {
 
-	Edge typeEdge;
+	Arrow typeEdge;
 	
-	public EdgeCreationFactory(Object newObject, Edge typeEdge) {
-		this.typeEdge = typeEdge;
+	public ArrowCreationFactory(Object newObject, Arrow typeArrow) {
+		this.typeEdge = typeArrow;
 	}
 	
 	@Override

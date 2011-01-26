@@ -1,19 +1,19 @@
 /*******************************************************************************
  * Copyright (c) 2004, 2005 Elias Volanakis and others.
-Ê* All rights reserved. This program and the accompanying materials
-Ê* are made available under the terms of the Eclipse Public License v1.0
-Ê* which accompanies this distribution, and is available at
-Ê* http://www.eclipse.org/legal/epl-v10.html
-Ê*
-Ê* Contributors:
-Ê*ÊÊÊÊElias Volanakis - initial API and implementation
-Ê*******************************************************************************/
+ï¿½* All rights reserved. This program and the accompanying materials
+ï¿½* are made available under the terms of the Eclipse Public License v1.0
+ï¿½* which accompanies this distribution, and is available at
+ï¿½* http://www.eclipse.org/legal/epl-v10.html
+ï¿½*
+ï¿½* Contributors:
+ï¿½*ï¿½ï¿½ï¿½ï¿½Elias Volanakis - initial API and implementation
+ï¿½*******************************************************************************/
 package no.hib.dpf.editor.model.commands;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import no.hib.dpf.editor.model.VEdge;
+import no.hib.dpf.editor.model.VArrow;
 import no.hib.dpf.editor.model.DPFDiagram;
 import no.hib.dpf.editor.model.VNode;
 
@@ -70,9 +70,9 @@ public class VNodeDeleteCommand extends Command {
 		removeChildAndDisconnectConnections();
 	}
 
-	private List<ConnectionDeleteCommand> getDeleteCommands(List<VEdge> connections) {
+	private List<ConnectionDeleteCommand> getDeleteCommands(List<VArrow> connections) {
 		List<ConnectionDeleteCommand> retval = new ArrayList<ConnectionDeleteCommand>();
-		for (VEdge connection : connections) {
+		for (VArrow connection : connections) {
 			retval.add(new ConnectionDeleteCommand(connection));
 		}
 		return retval;

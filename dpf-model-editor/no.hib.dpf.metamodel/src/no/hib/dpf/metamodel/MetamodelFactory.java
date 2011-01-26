@@ -67,6 +67,15 @@ public interface MetamodelFactory extends EFactory {
 	Node createNode();
 
 	/**
+	 * Returns a new object of class '<em>Arrow</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Arrow</em>'.
+	 * @generated
+	 */
+	Arrow createArrow();
+
+	/**
 	 * Returns a new object of class '<em>Node</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -76,20 +85,11 @@ public interface MetamodelFactory extends EFactory {
 	Node createNode(Node typeNode);
 
 	/**
-	 * Returns a new object of class '<em>Edge</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Edge</em>'.
-	 * @generated
-	 */
-	Edge createEdge();
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	Edge createEdge(Edge typeEdge);
+	Arrow createArrow(Arrow typeArrow);
 	
 	/**
 	 * Returns a new object of class '<em>Signature</em>'.
@@ -162,7 +162,7 @@ public interface MetamodelFactory extends EFactory {
 	 * @return a new object of class '<em>Graph Homomorphism</em>'.
 	 * @generated NOT
 	 */
-	GraphHomomorphism createGraphHomomorphism(EMap<Node, Node> nodeMap, EMap<Edge, Edge> edgeMap);
+	GraphHomomorphism createGraphHomomorphism(EMap<Node, Node> nodeMap, EMap<Arrow, Arrow> edgeMap);
 
 	/**
 	 * Returns a new object of class '<em>ID Object</em>'.

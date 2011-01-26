@@ -102,10 +102,10 @@ public class MetamodelSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.EDGE: {
-				Edge edge = (Edge)theEObject;
-				T result = caseEdge(edge);
-				if (result == null) result = caseIDObject(edge);
+			case MetamodelPackage.ARROW: {
+				Arrow arrow = (Arrow)theEObject;
+				T result = caseArrow(arrow);
+				if (result == null) result = caseIDObject(arrow);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -146,9 +146,9 @@ public class MetamodelSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.EDGE_TO_EDGE_MAP: {
-				@SuppressWarnings("unchecked") Map.Entry<Edge, Edge> edgeToEdgeMap = (Map.Entry<Edge, Edge>)theEObject;
-				T result = caseEdgeToEdgeMap(edgeToEdgeMap);
+			case MetamodelPackage.ARROW_TO_ARROW_MAP: {
+				@SuppressWarnings("unchecked") Map.Entry<Arrow, Arrow> arrowToArrowMap = (Map.Entry<Arrow, Arrow>)theEObject;
+				T result = caseArrowToArrowMap(arrowToArrowMap);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -217,17 +217,17 @@ public class MetamodelSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Edge</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Arrow</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Edge</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Arrow</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseEdge(Edge object) {
+	public T caseArrow(Arrow object) {
 		return null;
 	}
 
@@ -322,17 +322,17 @@ public class MetamodelSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Edge To Edge Map</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Arrow To Arrow Map</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Edge To Edge Map</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Arrow To Arrow Map</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseEdgeToEdgeMap(Map.Entry<Edge, Edge> object) {
+	public T caseArrowToArrowMap(Map.Entry<Arrow, Arrow> object) {
 		return null;
 	}
 

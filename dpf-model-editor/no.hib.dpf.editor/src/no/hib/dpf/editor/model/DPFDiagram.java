@@ -1,13 +1,13 @@
 /*******************************************************************************
  * Copyright (c) 2004, 2005 Elias Volanakis and others.
-Ê* All rights reserved. This program and the accompanying materials
-Ê* are made available under the terms of the Eclipse Public License v1.0
-Ê* which accompanies this distribution, and is available at
-Ê* http://www.eclipse.org/legal/epl-v10.html
-Ê*
-Ê* Contributors:
-Ê*ÊÊÊÊElias Volanakis - initial API and implementation
-Ê*******************************************************************************/
+ï¿½* All rights reserved. This program and the accompanying materials
+ï¿½* are made available under the terms of the Eclipse Public License v1.0
+ï¿½* which accompanies this distribution, and is available at
+ï¿½* http://www.eclipse.org/legal/epl-v10.html
+ï¿½*
+ï¿½* Contributors:
+ï¿½*ï¿½ï¿½ï¿½ï¿½Elias Volanakis - initial API and implementation
+ï¿½*******************************************************************************/
 package no.hib.dpf.editor.model;
 
 import java.util.ArrayList;
@@ -62,13 +62,13 @@ public class DPFDiagram extends ModelElement {
 	}
 
 	private void addConnectionsToMap(Map<String, ModelElement> retVal, VNode aShape) {
-		for (VEdge aConnection : aShape.getSourceConnections()) {
+		for (VArrow aConnection : aShape.getSourceConnections()) {
 			addIDObjectToMap(retVal, aConnection);
 			addConstraintsToMap(retVal, aConnection);
 		}
 	}
 	
-	private void addConstraintsToMap(Map<String, ModelElement> retVal, VEdge aConnection) {
+	private void addConstraintsToMap(Map<String, ModelElement> retVal, VArrow aConnection) {
 		for (VConstraint aConstraint : aConnection.getSourceConstraints()) {
 			addIDObjectToMap(retVal, aConstraint);
 		}

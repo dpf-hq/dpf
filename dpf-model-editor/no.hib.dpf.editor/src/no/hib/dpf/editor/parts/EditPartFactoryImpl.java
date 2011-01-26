@@ -1,16 +1,16 @@
 /*******************************************************************************
  * Copyright (c) 2004, 2005 Elias Volanakis and others.
-Ê* All rights reserved. This program and the accompanying materials
-Ê* are made available under the terms of the Eclipse Public License v1.0
-Ê* which accompanies this distribution, and is available at
-Ê* http://www.eclipse.org/legal/epl-v10.html
-Ê*
-Ê* Contributors:
-Ê*ÊÊÊÊElias Volanakis - initial API and implementation
-Ê*******************************************************************************/
+ï¿½* All rights reserved. This program and the accompanying materials
+ï¿½* are made available under the terms of the Eclipse Public License v1.0
+ï¿½* which accompanies this distribution, and is available at
+ï¿½* http://www.eclipse.org/legal/epl-v10.html
+ï¿½*
+ï¿½* Contributors:
+ï¿½*ï¿½ï¿½ï¿½ï¿½Elias Volanakis - initial API and implementation
+ï¿½*******************************************************************************/
 package no.hib.dpf.editor.parts;
 
-import no.hib.dpf.editor.model.VEdge;
+import no.hib.dpf.editor.model.VArrow;
 import no.hib.dpf.editor.model.VConstraint;
 import no.hib.dpf.editor.model.DPFDiagram;
 import no.hib.dpf.editor.model.VNode;
@@ -53,8 +53,8 @@ private EditPart getPartForElement(Object modelElement) {
 	if (modelElement instanceof SingleNodeConnection) {
 		return new VNodeSingleConnectionEditPart();
 	}
-	if (modelElement instanceof VEdge) {
-		return new VEdgeEditPart();
+	if (modelElement instanceof VArrow) {
+		return new VArrowEditPart();
 	}
 	if (modelElement instanceof VConstraint) {
 		// Edit part according to the type of constraint element:

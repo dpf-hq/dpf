@@ -1,19 +1,19 @@
 /*******************************************************************************
  * Copyright (c) 2004, 2005 Elias Volanakis and others.
-Ê* All rights reserved. This program and the accompanying materials
-Ê* are made available under the terms of the Eclipse Public License v1.0
-Ê* which accompanies this distribution, and is available at
-Ê* http://www.eclipse.org/legal/epl-v10.html
-Ê*
-Ê* Contributors:
-Ê*ÊÊÊÊElias Volanakis - initial API and implementation
-Ê*******************************************************************************/
+ï¿½* All rights reserved. This program and the accompanying materials
+ï¿½* are made available under the terms of the Eclipse Public License v1.0
+ï¿½* which accompanies this distribution, and is available at
+ï¿½* http://www.eclipse.org/legal/epl-v10.html
+ï¿½*
+ï¿½* Contributors:
+ï¿½*ï¿½ï¿½ï¿½ï¿½Elias Volanakis - initial API and implementation
+ï¿½*******************************************************************************/
 package no.hib.dpf.editor.model.commands;
 
 import java.util.Iterator;
 import java.util.List;
 
-import no.hib.dpf.editor.model.VEdge;
+import no.hib.dpf.editor.model.VArrow;
 import no.hib.dpf.editor.model.VConstraint;
 
 import org.eclipse.gef.commands.Command;
@@ -27,7 +27,7 @@ import org.eclipse.gef.commands.Command;
 public class ConnectionDeleteCommand extends Command {
 
 	/** Connection instance to disconnect. */
-	private final VEdge connection;
+	private final VArrow connection;
 
 	/** Holds a copy of the outgoing constraints of child. */
 	private List<VConstraint> sourceConstraints;
@@ -42,7 +42,7 @@ public class ConnectionDeleteCommand extends Command {
 	 * @throws IllegalArgumentException
 	 *             if conn is null
 	 */
-	public ConnectionDeleteCommand(VEdge conn) {
+	public ConnectionDeleteCommand(VArrow conn) {
 		if (conn == null) {
 			throw new IllegalArgumentException();
 		}

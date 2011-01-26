@@ -37,7 +37,7 @@ public class MetamodelTests extends TestSuite {
 		TestSuite suite = new MetamodelTests("metamodel Tests");
 		suite.addTestSuite(GraphTest.class);
 		suite.addTestSuite(NodeTest.class);
-		suite.addTestSuite(EdgeTest.class);
+		suite.addTestSuite(ArrowTest.class);
 		suite.addTestSuite(PredicateTest.class);
 		suite.addTestSuite(GraphHomomorphismTest.class);
 		return suite;

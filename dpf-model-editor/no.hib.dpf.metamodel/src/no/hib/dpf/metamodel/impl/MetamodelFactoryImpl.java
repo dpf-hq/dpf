@@ -64,13 +64,13 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 		switch (eClass.getClassifierID()) {
 			case MetamodelPackage.GRAPH: return createGraph();
 			case MetamodelPackage.NODE: return createNode();
-			case MetamodelPackage.EDGE: return createEdge();
+			case MetamodelPackage.ARROW: return createArrow();
 			case MetamodelPackage.SIGNATURE: return createSignature();
 			case MetamodelPackage.PREDICATE: return createPredicate();
 			case MetamodelPackage.SEMANTICS: return createSemantics();
 			case MetamodelPackage.NODE_TO_NODE_MAP: return (EObject)createNodeToNodeMap();
 			case MetamodelPackage.CONSTRAINT: return createConstraint();
-			case MetamodelPackage.EDGE_TO_EDGE_MAP: return (EObject)createEdgeToEdgeMap();
+			case MetamodelPackage.ARROW_TO_ARROW_MAP: return (EObject)createArrowToArrowMap();
 			case MetamodelPackage.TYPING_MORPHISM: return createTypingMorphism();
 			case MetamodelPackage.GRAPH_HOMOMORPHISM: return createGraphHomomorphism();
 			case MetamodelPackage.ID_OBJECT: return createIDObject();
@@ -141,7 +141,7 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 		if (!((edges.length == 1) && (edges[0].equals("")))) {
 			for (String edgeDetails : edges) {
 				String[] edgeDetailsSplit = edgeDetails.split(":");
-				g.createEdge(edgeDetailsSplit[0].trim(), g.getNodeByName(edgeDetailsSplit[1].trim()), g.getNodeByName(edgeDetailsSplit[2].trim()));
+				g.createArrow(edgeDetailsSplit[0].trim(), g.getNodeByName(edgeDetailsSplit[1].trim()), g.getNodeByName(edgeDetailsSplit[2].trim()));
 			}
 		}
 	}	
@@ -159,6 +159,16 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Arrow createArrow() {
+		ArrowImpl arrow = new ArrowImpl();
+		return arrow;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public Node createNode(Node typeNode) {
@@ -170,21 +180,11 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Edge createEdge() {
-		EdgeImpl edge = new EdgeImpl();
-		return edge;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Edge createEdge(Edge typeEdge) {
-		Edge retval = createEdge();
-		retval.setTypeEdge(typeEdge);
+	public Arrow createArrow(Arrow typeArrow) {
+		Arrow retval = createArrow();
+		retval.setTypeEdge(typeArrow);
 		return retval;
 	}
 	
@@ -256,9 +256,9 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Map.Entry<Edge, Edge> createEdgeToEdgeMap() {
-		EdgeToEdgeMapImpl edgeToEdgeMap = new EdgeToEdgeMapImpl();
-		return edgeToEdgeMap;
+	public Map.Entry<Arrow, Arrow> createArrowToArrowMap() {
+		ArrowToArrowMapImpl arrowToArrowMap = new ArrowToArrowMapImpl();
+		return arrowToArrowMap;
 	}
 
 	/**
@@ -287,10 +287,10 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	 * @generated NOT
 	 */
 	@Override
-	public GraphHomomorphism createGraphHomomorphism(EMap<Node, Node> nodeMap, EMap<Edge, Edge> edgeMap) {
+	public GraphHomomorphism createGraphHomomorphism(EMap<Node, Node> nodeMap, EMap<Arrow, Arrow> arrowMap) {
 		GraphHomomorphism retval = createGraphHomomorphism();
 		retval.getNodeMapping().addAll(nodeMap);
-		retval.getEdgeMapping().addAll(edgeMap);
+		retval.getArrowMapping().addAll(arrowMap);
 		return retval;
 	}
 

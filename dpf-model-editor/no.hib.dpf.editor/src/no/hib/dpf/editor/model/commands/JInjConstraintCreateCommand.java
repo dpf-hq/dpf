@@ -2,7 +2,7 @@ package no.hib.dpf.editor.model.commands;
 
 import java.util.Iterator;
 
-import no.hib.dpf.editor.model.VEdge;
+import no.hib.dpf.editor.model.VArrow;
 import no.hib.dpf.editor.model.VConstraint;
 
 import org.eclipse.gef.commands.Command;
@@ -15,14 +15,14 @@ public class JInjConstraintCreateCommand extends Command {
 	/** The connection instance. */
 	private VConstraint constraint;
 
-	private final VEdge source;
-	private VEdge target;
+	private final VArrow source;
+	private VArrow target;
 
 	/**
 	 * Instantiate a command that can create a connection between two
 	 * connections.
 	 */
-	public JInjConstraintCreateCommand(VEdge source, VEdge target) {
+	public JInjConstraintCreateCommand(VArrow source, VArrow target) {
 		if (source == null) {
 			throw new IllegalArgumentException();
 		}
@@ -80,7 +80,7 @@ public class JInjConstraintCreateCommand extends Command {
 	 * @param target that target endpoint (a non-null Shape instance)
 	 * @throws IllegalArgumentException if target is null
 	 */
-	public void setTarget(VEdge target) {
+	public void setTarget(VArrow target) {
 		if (target == null) {
 			throw new IllegalArgumentException();
 		}

@@ -1,13 +1,13 @@
 /*******************************************************************************
  * Copyright (c) 2004, 2005 Elias Volanakis and others.
-Ê* All rights reserved. This program and the accompanying materials
-Ê* are made available under the terms of the Eclipse Public License v1.0
-Ê* which accompanies this distribution, and is available at
-Ê* http://www.eclipse.org/legal/epl-v10.html
-Ê*
-Ê* Contributors:
-Ê*ÊÊÊÊElias Volanakis - initial API and implementation
-Ê*******************************************************************************/
+ï¿½* All rights reserved. This program and the accompanying materials
+ï¿½* are made available under the terms of the Eclipse Public License v1.0
+ï¿½* which accompanies this distribution, and is available at
+ï¿½* http://www.eclipse.org/legal/epl-v10.html
+ï¿½*
+ï¿½* Contributors:
+ï¿½*ï¿½ï¿½ï¿½ï¿½Elias Volanakis - initial API and implementation
+ï¿½*******************************************************************************/
 package no.hib.dpf.editor.model;
 
 import java.io.IOException;
@@ -41,9 +41,9 @@ public class VConstraint extends ModelElement implements Constraint, IDObjectCon
 	/** True, if the connection is attached to its endpoints. */
 	protected boolean isConnected;
 	/** Constraint's source endpoint. */
-	protected VEdge source;
+	protected VArrow source;
 	/** Constraint target endpoint. */
-	protected VEdge target;
+	protected VArrow target;
 	
 	private transient Constraint constraintComponent;
 	private String constraintID;
@@ -72,7 +72,7 @@ public class VConstraint extends ModelElement implements Constraint, IDObjectCon
 	 *             if any of the parameters are null or source == target
 	 * @see #setLineStyle(int)
 	 */
-	public VConstraint(VEdge source, VEdge target, ConstraintType constraintType) {
+	public VConstraint(VArrow source, VArrow target, ConstraintType constraintType) {
 		this.setConstraintType(constraintType);
 		// The dpf Constraint object must be initialized before the connection of the shapes.
 		setIDObject(MetamodelFactory.eINSTANCE.createConstraint());
@@ -130,7 +130,7 @@ public class VConstraint extends ModelElement implements Constraint, IDObjectCon
 	 * 
 	 * @return a non-null Shape instance
 	 */
-	public VEdge getConnectionSource() {
+	public VArrow getConnectionSource() {
 		return source;
 	}
 
@@ -139,7 +139,7 @@ public class VConstraint extends ModelElement implements Constraint, IDObjectCon
 	 * 
 	 * @return a non-null Shape instance
 	 */
-	public VEdge getConnectionTarget() {
+	public VArrow getConnectionTarget() {
 		return target;
 	}
 
@@ -167,7 +167,7 @@ public class VConstraint extends ModelElement implements Constraint, IDObjectCon
 	 * @throws IllegalArgumentException
 	 *             if any of the paramers are null or newSource == newTarget
 	 */
-	public void reconnect(VEdge newSource, VEdge newTarget) {
+	public void reconnect(VArrow newSource, VArrow newTarget) {
 		if (newSource == null || newTarget == null || newSource == newTarget) {
 			throw new IllegalArgumentException();
 		}

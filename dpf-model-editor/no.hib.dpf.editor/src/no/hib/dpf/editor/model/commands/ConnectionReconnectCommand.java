@@ -1,18 +1,18 @@
 /*******************************************************************************
  * Copyright (c) 2004, 2005 Elias Volanakis and others.
-Ê* All rights reserved. This program and the accompanying materials
-Ê* are made available under the terms of the Eclipse Public License v1.0
-Ê* which accompanies this distribution, and is available at
-Ê* http://www.eclipse.org/legal/epl-v10.html
-Ê*
-Ê* Contributors:
-Ê*ÊÊÊÊElias Volanakis - initial API and implementation
-Ê*******************************************************************************/
+ï¿½* All rights reserved. This program and the accompanying materials
+ï¿½* are made available under the terms of the Eclipse Public License v1.0
+ï¿½* which accompanies this distribution, and is available at
+ï¿½* http://www.eclipse.org/legal/epl-v10.html
+ï¿½*
+ï¿½* Contributors:
+ï¿½*ï¿½ï¿½ï¿½ï¿½Elias Volanakis - initial API and implementation
+ï¿½*******************************************************************************/
 package no.hib.dpf.editor.model.commands;
 
 import java.util.Iterator;
 
-import no.hib.dpf.editor.model.VEdge;
+import no.hib.dpf.editor.model.VArrow;
 import no.hib.dpf.editor.model.VNode;
 
 import org.eclipse.gef.commands.Command;
@@ -47,7 +47,7 @@ import org.eclipse.gef.commands.Command;
 public class ConnectionReconnectCommand extends Command {
 
 /** The connection instance to reconnect. */
-private VEdge connection;
+private VArrow connection;
 /** The new source endpoint. */
 private VNode newSource;
 /** The new target endpoint. */
@@ -63,7 +63,7 @@ private final VNode oldTarget;
  * @param conn the connection instance to reconnect (non-null)
  * @throws IllegalArgumentException if conn is null
  */
-public ConnectionReconnectCommand(VEdge conn) {
+public ConnectionReconnectCommand(VArrow conn) {
 	if (conn == null) {
 		throw new IllegalArgumentException();
 	}
@@ -93,8 +93,8 @@ private boolean checkSourceReconnection() {
 		return false;
 	}
 	// return false, if the connection exists already
-	for (Iterator<VEdge> iter = newSource.getSourceConnections().iterator(); iter.hasNext();) {
-		VEdge conn = iter.next();
+	for (Iterator<VArrow> iter = newSource.getSourceConnections().iterator(); iter.hasNext();) {
+		VArrow conn = iter.next();
 		// return false if a newSource -> oldTarget connection exists already
 		// and it is a different instance than the connection-field
 		if (conn.getShapeTarget().equals(oldTarget) &&  !conn.equals(connection)) {
@@ -113,8 +113,8 @@ private boolean checkTargetReconnection() {
 		return false;
 	}
 	// return false, if the connection exists already
-	for (Iterator<VEdge> iter = newTarget.getTargetConnections().iterator(); iter.hasNext();) {
-		VEdge conn = iter.next();
+	for (Iterator<VArrow> iter = newTarget.getTargetConnections().iterator(); iter.hasNext();) {
+		VArrow conn = iter.next();
 		// return false if a oldSource -> newTarget connection exists already
 		// and it is a differenct instance that the connection-field
 		if (conn.getShapeSource().equals(oldSource) && !conn.equals(connection)) {

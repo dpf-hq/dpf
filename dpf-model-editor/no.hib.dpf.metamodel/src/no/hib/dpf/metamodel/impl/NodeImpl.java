@@ -6,7 +6,7 @@
  */
 package no.hib.dpf.metamodel.impl;
 
-import no.hib.dpf.metamodel.Edge;
+import no.hib.dpf.metamodel.Arrow;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.MetamodelPackage;
 import no.hib.dpf.metamodel.Node;
@@ -191,15 +191,15 @@ public class NodeImpl extends IDObjectImpl implements Node {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public EList<Edge> getOutgoingEdges() {
-		EList<Edge> edges = new BasicEList<Edge>();
-		for(Edge e : getGraph().getEdges()) {
-			if(e.getSource() == this) {
-				edges.add(e);
+	public EList<Arrow> getOutgoingArrows() {
+		EList<Arrow> arrows = new BasicEList<Arrow>();
+		for(Arrow a : getGraph().getArrows()) {
+			if(a.getSource() == this) {
+				arrows.add(a);
 			}
 		}
 		
-		return edges;
+		return arrows;
 	}
 	
 	/**
@@ -207,14 +207,14 @@ public class NodeImpl extends IDObjectImpl implements Node {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public boolean edgeCanMakeConnectionAsSource(Node intendedSource) {
+	public boolean arrowCanMakeConnectionAsSource(Node intendedSource) {
 		if (getTypeNode() == null) {
 			return true;
 		}
 		if ((intendedSource == null) || (intendedSource.getTypeNode() == null)) {
 			return false;
 		}
-		return intendedSource.getTypeNode().canReachTargetByOneEdge(this.getTypeNode());		
+		return intendedSource.getTypeNode().canReachTargetByOneArrow(this.getTypeNode());		
 	}
 
 	/**
@@ -222,14 +222,14 @@ public class NodeImpl extends IDObjectImpl implements Node {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */ 
-	public boolean edgeCanMakeConnectionAsTarget(Node intendedTarget) {
+	public boolean arrowCanMakeConnectionAsTarget(Node intendedTarget) {
 		if (getTypeNode() == null) {
 			return true;
 		}
 		if ((intendedTarget == null) || (intendedTarget.getTypeNode() == null)) {
 			return false;
 		}
-		return typeNode.canReachTargetByOneEdge(intendedTarget.getTypeNode());
+		return typeNode.canReachTargetByOneArrow(intendedTarget.getTypeNode());
 	}
 
 	/**
@@ -237,14 +237,14 @@ public class NodeImpl extends IDObjectImpl implements Node {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Boolean edgeCanMakeConnectionAsTarget(Node intendedTarget, Edge typeEdge) {
-		if ((getTypeNode() == null) && (typeEdge == null)) {
+	public Boolean arrowCanMakeConnectionAsTarget(Node intendedTarget, Arrow typeArrow) {
+		if ((getTypeNode() == null) && (typeArrow == null)) {
 			return true;
 		}
 		if ((intendedTarget == null) || (intendedTarget.getTypeNode() == null)) {
 			return false;
 		}
-		return typeNode.canReachTargetByTypeEdge(intendedTarget.getTypeNode(), typeEdge);
+		return typeNode.canReachTargetByTypeArrow(intendedTarget.getTypeNode(), typeArrow);
 	}
 
 	/**
@@ -252,9 +252,9 @@ public class NodeImpl extends IDObjectImpl implements Node {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Boolean canReachTargetByTypeEdge(Node target, Edge typeEdge) {
-		if (typeEdge.getTarget().equals(target)) {
-			return (getOutgoingEdges().contains(typeEdge));
+	public Boolean canReachTargetByTypeArrow(Node target, Arrow typeArrow) {
+		if (typeArrow.getTarget().equals(target)) {
+			return (getOutgoingArrows().contains(typeArrow));
 		}
 		return false;		
 	}
@@ -264,10 +264,10 @@ public class NodeImpl extends IDObjectImpl implements Node {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Edge getEdgeto(Node target) {
-		for (Edge edge : getOutgoingEdges()) {
-			if (edge.getTarget().equals(target)) {
-				return edge;
+	public Arrow getArrowto(Node target) {
+		for (Arrow arrow : getOutgoingArrows()) {
+			if (arrow.getTarget().equals(target)) {
+				return arrow;
 			}
 		}
 		return null;
@@ -290,8 +290,8 @@ public class NodeImpl extends IDObjectImpl implements Node {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public boolean canReachTargetByOneEdge(Node target) {
-		return (getEdgeto(target) != null);
+	public boolean canReachTargetByOneArrow(Node target) {
+		return (getArrowto(target) != null);
 	}
 
 	/**

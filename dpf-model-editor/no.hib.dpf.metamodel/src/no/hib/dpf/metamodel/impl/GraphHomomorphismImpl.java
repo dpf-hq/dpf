@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import no.hib.dpf.metamodel.Edge;
+import no.hib.dpf.metamodel.Arrow;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.GraphHomomorphism;
 import no.hib.dpf.metamodel.MetamodelFactory;
@@ -37,7 +37,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link no.hib.dpf.metamodel.impl.GraphHomomorphismImpl#getNodeMapping <em>Node Mapping</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.impl.GraphHomomorphismImpl#getEdgeMapping <em>Edge Mapping</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.impl.GraphHomomorphismImpl#getArrowMapping <em>Arrow Mapping</em>}</li>
  * </ul>
  * </p>
  *
@@ -53,7 +53,7 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	/**
 	 * @generated NOT
 	 */
-	private Map<Edge, Edge> backwardsEdgeMap;
+	private Map<Arrow, Arrow> backwardsArrowMap;
 	
 	/**
 	 * The cached value of the '{@link #getNodeMapping() <em>Node Mapping</em>}' map.
@@ -66,14 +66,14 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	protected EMap<Node, Node> nodeMapping;
 
 	/**
-	 * The cached value of the '{@link #getEdgeMapping() <em>Edge Mapping</em>}' map.
+	 * The cached value of the '{@link #getArrowMapping() <em>Arrow Mapping</em>}' map.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getEdgeMapping()
+	 * @see #getArrowMapping()
 	 * @generated
 	 * @ordered
 	 */
-	protected EMap<Edge, Edge> edgeMapping;
+	protected EMap<Arrow, Arrow> arrowMapping;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -111,11 +111,11 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EMap<Edge, Edge> getEdgeMapping() {
-		if (edgeMapping == null) {
-			edgeMapping = new EcoreEMap<Edge,Edge>(MetamodelPackage.Literals.EDGE_TO_EDGE_MAP, EdgeToEdgeMapImpl.class, this, MetamodelPackage.GRAPH_HOMOMORPHISM__EDGE_MAPPING);
+	public EMap<Arrow, Arrow> getArrowMapping() {
+		if (arrowMapping == null) {
+			arrowMapping = new EcoreEMap<Arrow,Arrow>(MetamodelPackage.Literals.ARROW_TO_ARROW_MAP, ArrowToArrowMapImpl.class, this, MetamodelPackage.GRAPH_HOMOMORPHISM__ARROW_MAPPING);
 		}
-		return edgeMapping;
+		return arrowMapping;
 	}
 
 	/**
@@ -131,17 +131,17 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public boolean tryToCreateGraphHomomorphism(Graph sourceGraph, EList<?> nodes, EList<?> edges) {
-		if (sourceGraph.getEdges().size() != edges.size()) {
+	public boolean tryToCreateGraphHomomorphism(Graph sourceGraph, EList<?> nodes, EList<?> arrows) {
+		if (sourceGraph.getArrows().size() != arrows.size()) {
 			return false;
 		}
-		if ((edges.size() == 0) &&
+		if ((arrows.size() == 0) &&
 			(sourceGraph.getNodes().size() != nodes.size())) {
 			return false;
 		}
 		if (sourceGraph.getNodes().size() == 0) {
 			// SIDE EFFECT:			
-			createSimpleEdgeMapping(sourceGraph, edges);			
+			createSimpleEdgeMapping(sourceGraph, arrows);			
 			return true;
 		}
 		
@@ -150,7 +150,7 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 		// We don't want to do the following in relation to any other objects present in the target
 		// graph:
 		try {
-			targetGraph = createTemporaryTargetGraph(nodes, edges);
+			targetGraph = createTemporaryTargetGraph(nodes, arrows);
 		} catch (Exception e) {
 			// If the nodes and edges don't contain a valid graph, we return false
 			return false;
@@ -160,8 +160,8 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 		Node[] sourceNodes = sourceGraph.getNodes().toArray(new Node[sourceGraph.getNodes().size()]);
 		Node[] targetNodes = targetGraph.getNodes().toArray(new Node[targetGraph.getNodes().size()]);
 		
-		Edge[] sourceEdges = sourceGraph.getEdges().toArray(new Edge[sourceGraph.getEdges().size()]);
-		Edge[] targetEdges = targetGraph.getEdges().toArray(new Edge[targetGraph.getEdges().size()]);
+		Arrow[] sourceArrows = sourceGraph.getArrows().toArray(new Arrow[sourceGraph.getArrows().size()]);
+		Arrow[] targetArrows = targetGraph.getArrows().toArray(new Arrow[targetGraph.getArrows().size()]);
 		
 		// For all permutations of the target nodes:
 		List<Node[]> targetNodePermutations = heapPermuteExec(targetNodes);
@@ -171,11 +171,11 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 				// SIDE EFFECT:
 				// Found a suitable node mapping. Use this and the backwards maps to create
 				// a proper homomorphism mapping for this instance.
-				EcoreEMap<Edge,Edge> edgeMapping = createEdgeMapping(nodeMapping);
-				fixUnmappedArrows(edgeMapping, nodeMapping, sourceEdges, targetEdges);
+				EcoreEMap<Arrow,Arrow> edgeMapping = createArrowMapping(nodeMapping);
+				fixUnmappedArrows(edgeMapping, nodeMapping, sourceArrows, targetArrows);
 				
 				// Now check that all edges are mapped
-				if (sourceEdges.length == edgeMapping.size()) {
+				if (sourceArrows.length == edgeMapping.size()) {
 					resolveBackwardMappingsAndCreateFinalMapping(nodeMapping, edgeMapping);
 					return true;
 				}
@@ -190,16 +190,16 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	 * TODO: make this return a boolean signalling non-mappable combinations OR use a dummy null node for each graph.
 	 * @generated NOT
 	 */
-	private void fixUnmappedArrows(EcoreEMap<Edge, Edge> edgeMapping, EcoreEMap<Node, Node> nodeMappings, Edge[] sourceEdges, Edge[] targetEdges) {
-		for (Edge sourceEdge : sourceEdges) {
-			if (sourceEdge.getSource() == null) {
-				for (Edge targetEdge : targetEdges) {
-					if (targetEdge.getSource() == null) {
+	private void fixUnmappedArrows(EcoreEMap<Arrow, Arrow> edgeMapping, EcoreEMap<Node, Node> nodeMappings, Arrow[] sourceArrows, Arrow[] targetArrows) {
+		for (Arrow sourceArrow : sourceArrows) {
+			if (sourceArrow.getSource() == null) {
+				for (Arrow targetArrow : targetArrows) {
+					if (targetArrow.getSource() == null) {
 						// Edge to same target?
-						Node mappedTarget = nodeMappings.get(sourceEdge.getTarget());
-						if (targetEdge.getTarget().equals(mappedTarget)) {				
-							if ((!edgeMapping.containsKey(sourceEdge)) && (!edgeMapping.containsValue(targetEdge))) { 
-								edgeMapping.put(sourceEdge, targetEdge);
+						Node mappedTarget = nodeMappings.get(sourceArrow.getTarget());
+						if (targetArrow.getTarget().equals(mappedTarget)) {				
+							if ((!edgeMapping.containsKey(sourceArrow)) && (!edgeMapping.containsValue(targetArrow))) { 
+								edgeMapping.put(sourceArrow, targetArrow);
 							}
 						}
 					}
@@ -211,9 +211,9 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	/**
 	 * @generated NOT
 	 */
-	private void resolveBackwardMappingsAndCreateFinalMapping(EcoreEMap<Node,Node> nodeMapping, EcoreEMap<Edge,Edge> edgeMapping) {
+	private void resolveBackwardMappingsAndCreateFinalMapping(EcoreEMap<Node,Node> nodeMapping, EcoreEMap<Arrow,Arrow> arrowMapping) {
 		resolveBackwardsNodeMapping(nodeMapping);
-		resolveBackwardsEdgeMapping(edgeMapping);
+		resolveBackwardsArrowMapping(arrowMapping);
 	}
 
 	/**
@@ -231,11 +231,11 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	/**
 	 * @generated NOT
 	 */
-	private void resolveBackwardsEdgeMapping(EcoreEMap<Edge, Edge> edgeMapping) {
-		for (Entry<Edge, Edge> entry : edgeMapping.entrySet()) {
-			if (backwardsEdgeMap.containsKey(entry.getValue())) {
-				Edge resolvedTargetEdge = backwardsEdgeMap.get(entry.getValue());
-				getEdgeMapping().put(entry.getKey(), resolvedTargetEdge);
+	private void resolveBackwardsArrowMapping(EcoreEMap<Arrow, Arrow> arrowMapping) {
+		for (Entry<Arrow, Arrow> entry : arrowMapping.entrySet()) {
+			if (backwardsArrowMap.containsKey(entry.getValue())) {
+				Arrow resolvedTargetEdge = backwardsArrowMap.get(entry.getValue());
+				getArrowMapping().put(entry.getKey(), resolvedTargetEdge);
 			}
 		}
 	}
@@ -244,11 +244,11 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	 * Just map any arrow to another arrow:
 	 * @generated NOT
 	 */
-	private void createSimpleEdgeMapping(Graph sourceGraph, EList<?> edges) {
-		for (int i = 0; i < sourceGraph.getEdges().size(); i++) {
-			Edge source = sourceGraph.getEdges().get(i);
-			Edge target = (Edge)edges.get(i);				
-			this.getEdgeMapping().put(source, target);
+	private void createSimpleEdgeMapping(Graph sourceGraph, EList<?> arrows) {
+		for (int i = 0; i < sourceGraph.getArrows().size(); i++) {
+			Arrow source = sourceGraph.getArrows().get(i);
+			Arrow target = (Arrow)arrows.get(i);				
+			this.getArrowMapping().put(source, target);
 		}
 	}
 	
@@ -259,14 +259,14 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	 * 
 	 * @generated NOT
 	 */
-	private Graph createTemporaryTargetGraph(EList<?> nodes, EList<?> edges) {
+	private Graph createTemporaryTargetGraph(EList<?> nodes, EList<?> arrows) {
 		Graph retval = MetamodelFactory.eINSTANCE.createGraph();
 		
 		backwardsNodeMap = new HashMap<Node, Node>();
-		backwardsEdgeMap = new HashMap<Edge, Edge>();
+		backwardsArrowMap = new HashMap<Arrow, Arrow>();
 		
 		Map<String, Node> newNodes = createNewNodes(nodes, retval);		
-		createNewEdges(edges, retval, newNodes);
+		createNewEdges(arrows, retval, newNodes);
 		
 		return retval;		
 	}
@@ -289,19 +289,19 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	 * Create new edges, using the "newNodes" map to get sources and targets:
 	 * @generated NOT
 	 */
-	private void createNewEdges(EList<?> edges, Graph retval, Map<String, Node> newNodes) {
-		for (Object edge : edges) {
-			Node sourceNode = getNodeFromMap(newNodes, ((Edge)edge).getSource());
-			Node targetNode = getNodeFromMap(newNodes, ((Edge)edge).getTarget());			
-			Edge newEdge = retval.createEdge(((Edge)edge).getId(), sourceNode, targetNode);
-			backwardsEdgeMap.put(newEdge, (Edge)edge);
+	private void createNewEdges(EList<?> arrows, Graph retval, Map<String, Node> newNodes) {
+		for (Object arrow : arrows) {
+			Node sourceNode = getArrowFromMap(newNodes, ((Arrow)arrow).getSource());
+			Node targetNode = getArrowFromMap(newNodes, ((Arrow)arrow).getTarget());			
+			Arrow newArrow = retval.createArrow(((Arrow)arrow).getId(), sourceNode, targetNode);
+			backwardsArrowMap.put(newArrow, (Arrow)arrow);
 		}
 	}
 
 	/** 
 	 * @generated NOT
 	 */
-	private Node getNodeFromMap(Map<String, Node> nodes, Node graphNode) {
+	private Node getArrowFromMap(Map<String, Node> nodes, Node graphNode) {
 		if ((graphNode != null) && (nodes.containsKey(graphNode.getId()))) {
 			return nodes.get(graphNode.getId());
 		}
@@ -312,21 +312,21 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	 * Requires a valid node map.
 	 * @generated NOT
 	 */
-	private EcoreEMap<Edge, Edge> createEdgeMapping(EcoreEMap<Node,Node> mapping) {
-		EcoreEMap<Edge,Edge> retval = new EcoreEMap<Edge,Edge>(MetamodelPackage.Literals.EDGE_TO_EDGE_MAP, EdgeToEdgeMapImpl.class, this, MetamodelPackage.GRAPH_HOMOMORPHISM__EDGE_MAPPING);
+	private EcoreEMap<Arrow, Arrow> createArrowMapping(EcoreEMap<Node,Node> mapping) {
+		EcoreEMap<Arrow,Arrow> retval = new EcoreEMap<Arrow, Arrow>(MetamodelPackage.Literals.ARROW_TO_ARROW_MAP, ArrowToArrowMapImpl.class, this, MetamodelPackage.GRAPH_HOMOMORPHISM__ARROW_MAPPING);
 		
 		for (Node source : mapping.keySet()) {			
 			Node mappedSource = mapping.get(source);
 			// Follow the arrows:
-			for (Edge outgoingEdge : source.getOutgoingEdges()) {
-				Node target = outgoingEdge.getTarget();
+			for (Arrow outgoingArrow : source.getOutgoingArrows()) {
+				Node target = outgoingArrow.getTarget();
 				Node mappedTarget = mapping.get(target);
-				for (Edge outgoingEdgeFromMappedSource : mappedSource.getOutgoingEdges()) {
-					if (((target == null) && (outgoingEdgeFromMappedSource.getTarget() == null)) ||
-						(mappedTarget.equals(outgoingEdgeFromMappedSource.getTarget()))) {
+				for (Arrow outgoingArrowFromMappedSource : mappedSource.getOutgoingArrows()) {
+					if (((target == null) && (outgoingArrowFromMappedSource.getTarget() == null)) ||
+						(mappedTarget.equals(outgoingArrowFromMappedSource.getTarget()))) {
 						// Only unique mappings from one source edge to one target edge:
-						if ((!retval.containsKey(outgoingEdge)) && (!retval.containsValue(outgoingEdgeFromMappedSource))) { 
-							retval.put(outgoingEdge, outgoingEdgeFromMappedSource);
+						if ((!retval.containsKey(outgoingArrow)) && (!retval.containsValue(outgoingArrowFromMappedSource))) { 
+							retval.put(outgoingArrow, outgoingArrowFromMappedSource);
 						}
 					}
 				}
@@ -359,15 +359,15 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 		for (Node source : mapping.keySet()) {			
 			Node mappedSource = mapping.get(source);
 			// Follow the arrows:
-			for (Edge outgoingEdge : source.getOutgoingEdges()) {
-				Node target = outgoingEdge.getTarget();
+			for (Arrow outgoingArrow : source.getOutgoingArrows()) {
+				Node target = outgoingArrow.getTarget();
 				Node mappedTarget = mapping.get(target);
 				boolean found = false;
-				for (Edge outgoingEdgeFromMappedSource : mappedSource.getOutgoingEdges()) {
+				for (Arrow outgoingArrowFromMappedSource : mappedSource.getOutgoingArrows()) {
 					if (mappedTarget == null) {
 						// null is always found
 						found = true;
-					} else if (mappedTarget.equals(outgoingEdgeFromMappedSource.getTarget())) {
+					} else if (mappedTarget.equals(outgoingArrowFromMappedSource.getTarget())) {
 						found = true;
 					}
 				}
@@ -459,8 +459,8 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 		switch (featureID) {
 			case MetamodelPackage.GRAPH_HOMOMORPHISM__NODE_MAPPING:
 				return ((InternalEList<?>)getNodeMapping()).basicRemove(otherEnd, msgs);
-			case MetamodelPackage.GRAPH_HOMOMORPHISM__EDGE_MAPPING:
-				return ((InternalEList<?>)getEdgeMapping()).basicRemove(otherEnd, msgs);
+			case MetamodelPackage.GRAPH_HOMOMORPHISM__ARROW_MAPPING:
+				return ((InternalEList<?>)getArrowMapping()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -476,9 +476,9 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 			case MetamodelPackage.GRAPH_HOMOMORPHISM__NODE_MAPPING:
 				if (coreType) return getNodeMapping();
 				else return getNodeMapping().map();
-			case MetamodelPackage.GRAPH_HOMOMORPHISM__EDGE_MAPPING:
-				if (coreType) return getEdgeMapping();
-				else return getEdgeMapping().map();
+			case MetamodelPackage.GRAPH_HOMOMORPHISM__ARROW_MAPPING:
+				if (coreType) return getArrowMapping();
+				else return getArrowMapping().map();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -494,8 +494,8 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 			case MetamodelPackage.GRAPH_HOMOMORPHISM__NODE_MAPPING:
 				((EStructuralFeature.Setting)getNodeMapping()).set(newValue);
 				return;
-			case MetamodelPackage.GRAPH_HOMOMORPHISM__EDGE_MAPPING:
-				((EStructuralFeature.Setting)getEdgeMapping()).set(newValue);
+			case MetamodelPackage.GRAPH_HOMOMORPHISM__ARROW_MAPPING:
+				((EStructuralFeature.Setting)getArrowMapping()).set(newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -512,8 +512,8 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 			case MetamodelPackage.GRAPH_HOMOMORPHISM__NODE_MAPPING:
 				getNodeMapping().clear();
 				return;
-			case MetamodelPackage.GRAPH_HOMOMORPHISM__EDGE_MAPPING:
-				getEdgeMapping().clear();
+			case MetamodelPackage.GRAPH_HOMOMORPHISM__ARROW_MAPPING:
+				getArrowMapping().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -529,8 +529,8 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 		switch (featureID) {
 			case MetamodelPackage.GRAPH_HOMOMORPHISM__NODE_MAPPING:
 				return nodeMapping != null && !nodeMapping.isEmpty();
-			case MetamodelPackage.GRAPH_HOMOMORPHISM__EDGE_MAPPING:
-				return edgeMapping != null && !edgeMapping.isEmpty();
+			case MetamodelPackage.GRAPH_HOMOMORPHISM__ARROW_MAPPING:
+				return arrowMapping != null && !arrowMapping.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

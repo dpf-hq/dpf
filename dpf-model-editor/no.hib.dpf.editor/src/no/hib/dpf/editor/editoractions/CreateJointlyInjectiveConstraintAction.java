@@ -2,7 +2,7 @@ package no.hib.dpf.editor.editoractions;
 
 import java.util.List;
 
-import no.hib.dpf.editor.model.VEdge;
+import no.hib.dpf.editor.model.VArrow;
 import no.hib.dpf.editor.model.commands.JInjConstraintCreateCommand;
 import no.hib.dpf.editor.parts.VNodeEditPart;
 import no.hib.dpf.metamodel.Graph;
@@ -26,7 +26,7 @@ public class CreateJointlyInjectiveConstraintAction extends CreateConstraintActi
 	
 	@Override
 	protected Command getConstraintCreateCommand(List<ConnectionEditPart> connectionEditParts, List<VNodeEditPart> shapeEditParts) {
-		return new JInjConstraintCreateCommand((VEdge)connectionEditParts.get(0).getModel(), (VEdge)connectionEditParts.get(1).getModel());
+		return new JInjConstraintCreateCommand((VArrow)connectionEditParts.get(0).getModel(), (VArrow)connectionEditParts.get(1).getModel());
 	}
 	
 	
