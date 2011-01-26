@@ -71,6 +71,7 @@ public class VEdge extends ModelElement implements Edge, IDObjectContainer {
 	public static final String SINGLE_CONSTRAINTS_PROP = "Connection.SingleConstaint";
 	
 	public static final String NAME_PROP = "Connection.Name";
+	public static final String TYPE_PROP = "Connection.Type";
 		
 	/** True, if the connection is attached to its endpoints. */
 	private boolean isConnected;
@@ -94,7 +95,8 @@ public class VEdge extends ModelElement implements Edge, IDObjectContainer {
 				LINESTYLE_PROP, new String[] { SOLID_STR, DASHED_STR }),
 			new NegativeIntegerTextPropertyDescriptor(CONSTRAINT_1_PROP, "Constraints (1)"),
 			new NegativeIntegerTextPropertyDescriptor(CONSTRAINT_2_PROP, "Constraints (2)"),
-			new TextPropertyDescriptor(NAME_PROP, "Name")
+			new TextPropertyDescriptor(NAME_PROP, "Name"),
+			new TextPropertyDescriptor(TYPE_PROP, "Type")
 		};
 	}
 
@@ -197,9 +199,20 @@ public class VEdge extends ModelElement implements Edge, IDObjectContainer {
 		if (id.equals(NAME_PROP)) {
 			return getName();
 		}
+		
+		if (id.equals(TYPE_PROP)) {
+			return getTypeName();
+		}
+
 		return super.getPropertyValue(id);
 	}
 
+	private String getTypeName() {
+		if ((edgeComponent.getTypeEdge() == null) || (edgeComponent.getTypeEdge().getName() == null)) {
+			return "";
+		}
+		return edgeComponent.getTypeEdge().getName();
+	}
 	/**
 	 * Returns the source endpoint of this connection.
 	 * 

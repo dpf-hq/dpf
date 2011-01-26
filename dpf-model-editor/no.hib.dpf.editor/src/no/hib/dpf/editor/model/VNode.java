@@ -56,6 +56,7 @@ public class VNode extends ModelElement implements Node, IDObjectContainer, Mova
 	}
 
 	public String getNameExec() {
+		// TODO: move non-null-value handling to EMF
 		String retVal = nodeComponent.getName();
 		if (retVal == null) {
 			retVal = "";
@@ -64,6 +65,12 @@ public class VNode extends ModelElement implements Node, IDObjectContainer, Mova
 		return retVal;
 	}
 
+	public String getTypeName() {
+		if ((nodeComponent.getTypeNode() == null) || (nodeComponent.getTypeNode().getName() == null)) {
+			return "";
+		}
+		return nodeComponent.getTypeNode().getName();
+	}
 	
 	private static final long serialVersionUID = 7208811341274639248L;
 
@@ -78,6 +85,7 @@ public class VNode extends ModelElement implements Node, IDObjectContainer, Mova
 	
 	/** Property ID to use when the name is modified. */	
 	public static final String NAME_PROP = "Shape.Name";
+	public static final String TYPE_PROP = "Shape.Type";
 
 	private LocationAndSize locationAndSize;
 
@@ -92,7 +100,8 @@ public class VNode extends ModelElement implements Node, IDObjectContainer, Mova
 	 */
 	static {
 		descriptors = new IPropertyDescriptor[] {
-			new TextPropertyDescriptor(NAME_PROP, "Name") };
+			new TextPropertyDescriptor(NAME_PROP, "Name"),
+			new TextPropertyDescriptor(TYPE_PROP, "Type")};
 	} // static
 
 	protected static Image createImage(String name) {
@@ -142,6 +151,9 @@ public class VNode extends ModelElement implements Node, IDObjectContainer, Mova
 		}
 		if (NAME_PROP.equals(propertyId)) {
 			return getNameExec();
+		}
+		if (TYPE_PROP.equals(propertyId)) {
+			return getTypeName();
 		}
 		return super.getPropertyValue(propertyId);
 	}
