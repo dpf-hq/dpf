@@ -11,7 +11,7 @@ import org.eclipse.swt.graphics.Color;
 public class BasicRectangleFigure extends Figure implements RoutableFigure {
 
 	public static Color tableColor = new Color(null, 255, 255, 206);
-	public static Color lightLightGreen = new Color(null, 128, 255, 128);
+	public static Color backgroundColor = new Color(null, 255, 255, 255);
 
 //	private ColumnsFigure columnsFigure = new ColumnsFigure();
 	private EditableLabel nameLabel;
@@ -19,7 +19,7 @@ public class BasicRectangleFigure extends Figure implements RoutableFigure {
 	public BasicRectangleFigure(EditableLabel name) {
 		this(name, null);
 		setOpaque(true); // non-transparent figure
-		setBackgroundColor(lightLightGreen);		
+		setBackgroundColor(backgroundColor);		
 	}
 
 	@SuppressWarnings("rawtypes")
