@@ -12,7 +12,6 @@ package no.hib.dpf.editor;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectOutputStream;
@@ -23,7 +22,6 @@ import no.hib.dpf.metamodel.Specification;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.swt.widgets.Composite;
@@ -64,6 +62,7 @@ public void init(IWorkbench workbench, IStructuredSelection selection) {
 	page1 = new CreationPage(workbench, selection); 
 	page2 = new WizardNewLinkPage("Add type graph", IResource.FILE);
 	page2.setTitle("Include type graph");
+	page2.setLinkTarget(DPFEditor.getWorkspaceDirectory());
 }
 
 /* (non-Javadoc)
@@ -125,11 +124,9 @@ private class CreationPage extends WizardNewFileCreationPage {
 			Specification newSpec = MetamodelFactory.eINSTANCE.createSpecification();
 			newSpec.setTypeGraph(typeSpec.getGraph());
 			
-			//String newFileName = newFile.getFullPath().toString() + ".xmi";
-			String dpfFilePath = ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
-			String dpfFile = newFile.getFullPath().toString() + ".xmi";
+			String dpfFile = DPFEditor.getDPFFileName(newFile.getFullPath().toString());
 			
-			DPFEditor.saveDPF(dpfFilePath + File.separator + dpfFile, newSpec);
+			DPFEditor.saveDPF(dpfFile, newSpec);
 		}
 		
 		// open newly created file in the editor

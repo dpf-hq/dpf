@@ -95,8 +95,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 	private DPFDiagram diagram;
 	private Specification specification = MetamodelFactory.eINSTANCE.createSpecification();
 		
-	private static String dpfFilePath;
-	private static String dpfFile;
+	private static String dpfFilename;
 	
 //	/** Palette component, holding the tools and shapes. */
 	private static PaletteRoot PALETTE_MODEL;
@@ -107,7 +106,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 
 	/** Create a new DPFEditor instance. This is called by the Workspace. */
 	public DPFEditor() {
-		specification.setTypeGraph(MetamodelFactory.eINSTANCE.createGraph("node", "arrow" + ":node:node"));
+		specification.setTypeGraph(MetamodelFactory.eINSTANCE.createGraph("Node", "Arrow" + ":Node:Node"));
 		paletteFactory = new DPFEditorPaletteFactory();
 		setEditDomain(new DefaultEditDomain(this));
 		shapesEditPartFactory = new EditPartFactoryImpl();
@@ -296,7 +295,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
 		}
-		saveDPF(dpfFilePath + File.separator + dpfFile, getSpecification());
+		saveDPF(dpfFilename, getSpecification());
 	}
 	
 	// TODO, URGENT! Move to DPF-model.
@@ -321,13 +320,9 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 	// TODO: URGENT! MOVE TO DPF MODEL!
 	public static void saveDPF(String dpfFileName, Specification specification) {
 		ResourceSet resourceSet = new ResourceSetImpl();
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new  XMLResourceFactoryImpl());
-		
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new  XMLResourceFactoryImpl());		
 
 		Resource resource = resourceSet.createResource(URI.createFileURI(dpfFileName));
-
-		//specification.setGraph(diagram.getDpfGraph());
-		//specification.setTypeGraph(typeGraph);
 		resource.getContents().add(specification);		
 		
 		// serialize resource � you can specify also serialization
@@ -337,7 +332,6 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	/*
@@ -513,17 +507,30 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 	}
 
 	private void deserializeDpfModel() {
-		File serializedDPF = new File(dpfFilePath + File.separator + dpfFile);
+		File serializedDPF = new File(dpfFilename);
 		if (serializedDPF.exists()) {
-			setSpecification(loadDPF(dpfFilePath + File.separator + dpfFile));
+			setSpecification(loadDPF(dpfFilename));
 		}
 		diagram.setDpfGraph(getSpecification().getGraph());
 //		paletteFactory.updatePalette(getPaletteRoot(), getSpecification().getTypeGraph());
 	}
 
+	/**
+	 * Returns the path to the workspace of this editor.
+	 */
+	public static String getWorkspaceDirectory() {
+		return ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
+	}
+
+	/**
+	 * Returns the name of the "DPF" file from a "base" file name
+	 */
+	public static String getDPFFileName(String filename) {
+		return getWorkspaceDirectory() + File.separator + filename + ".xmi";
+	}
+		
 	private void setDpfFilePaths(IFile file) {
-		dpfFilePath = ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
-		dpfFile = file.getFullPath().toString() + ".xmi";
+		dpfFilename = getDPFFileName(file.getFullPath().toString());
 	}
 	
 	private void setSpecification(Specification specification) {
