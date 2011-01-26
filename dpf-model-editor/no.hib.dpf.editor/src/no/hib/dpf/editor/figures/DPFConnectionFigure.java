@@ -33,14 +33,11 @@ public class DPFConnectionFigure extends PolylineConnection implements RoutableF
 	
 	@Override
 	protected void outlineShape(Graphics g) {
-		g.setAntialias(SWT.ON); //FIXME: this is a hack, it should really be set globally somewhere? 
-		
+		g.pushState();
+		g.setAntialias(SWT.ON); //FIXME: this is a hack, it should really be set globally somewhere? 		
 		super.outlineShape(g);
-		counter++;
-//		System.out.println(Integer.toString(counter) + ": Outlines Line figure");
+		g.popState();
 	}
-	
-	private static int counter = 0;
 
 	@Override
 	public int getRoutingPriority() {
