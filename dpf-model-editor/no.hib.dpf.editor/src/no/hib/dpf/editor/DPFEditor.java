@@ -27,7 +27,6 @@ import no.hib.dpf.editor.editoractions.CreateConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointImageConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointlyInjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateMultiplicityConstraintAction;
-import no.hib.dpf.editor.icons.ImageSettings;
 import no.hib.dpf.editor.model.DPFDiagram;
 import no.hib.dpf.editor.model.ModelElement;
 import no.hib.dpf.editor.model.ModelSerializationException;
@@ -68,15 +67,12 @@ import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.ToolBar;
-import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
@@ -121,20 +117,23 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		shapesEditPartFactory = new EditPartFactoryImpl();
 	}
 	
-//	/**
-//	 * Test solution for buttons
-//	 */
+	/**
+	 * Test solution for buttons
+	 */
 //	@Override
 //	public void createPartControl(Composite parent) {
-//		
+		
 //		Image image = new Image(parent.getDisplay(),"/Users/oyvind/Documents/model_workspace001/no.hib.dpf.editor/src/no/hib/dpf/editor/" +  ImageSettings.getImageSettings().getFilePath(ImageSettings.SMALL_RECTANGLE));
-//		
+		
 //		Composite c = new Composite(parent, SWT.None);
 //		c.setLayout(new GridLayout(1, true));
-//		
+		
 //		ToolBar tb = new ToolBar(c, SWT.None);
 //		tb.setLayoutData(new org.eclipse.swt.layout.GridData(
 //				org.eclipse.swt.layout.GridData.FILL_HORIZONTAL));
+		
+		
+//		this.getEditorSite().getActionBars().getToolBarManager().add(constraintActions.get(0));
 //		ToolItem ti1 = new ToolItem(tb, SWT.PUSH);
 //		ti1.setText("Tool item 1");
 //		ti1.setImage(image);
@@ -197,6 +196,10 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 				viewer, getActionRegistry());
 		viewer.setContextMenu(cmProvider);
 		getSite().registerContextMenu(cmProvider, viewer);
+		
+		PrintAction printAction = new PrintAction(viewer);
+		printAction.setText("Print");
+		getEditorSite().getActionBars().getToolBarManager().add(printAction);
 	}
 
 	/*
