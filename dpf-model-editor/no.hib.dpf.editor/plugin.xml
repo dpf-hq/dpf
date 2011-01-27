@@ -3,7 +3,7 @@
 <plugin>
 
      <extension point="org.eclipse.ui.editors">
-      <editor name="DPF Model Editor"
+      <editor name="DPF Specification Editor"
               extensions="dpf"
               icon="shapes.gif"
               default="true"
@@ -20,7 +20,7 @@
             class="no.hib.dpf.editor.DPFCreationWizard"
             icon="shapes.gif"
             id="no.hib.dpf.editor.DPFCreationWizard"
-            name="DPF Model Diagram">
+            name="DPF Specification Diagram">
          <selection class="org.eclipse.core.resources.IResource"/>
       </wizard>
    </extension>
