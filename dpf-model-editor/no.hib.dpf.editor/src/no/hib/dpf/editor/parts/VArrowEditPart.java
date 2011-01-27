@@ -26,9 +26,11 @@ import no.hib.dpf.editor.model.commands.ConnectionDeleteCommand;
 import no.hib.dpf.metamodel.Arrow;
 
 import org.eclipse.draw2d.ConnectionLocator;
+import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.PolygonDecoration;
+import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.gef.EditPart;
@@ -146,13 +148,34 @@ public class VArrowEditPart extends ModelElementConnectionEditPart {
 		connectionFigure = new DPFConnectionFigure(label);
 		makeNewConstraintLabel();
 
-		PolygonDecoration arrowHead = new PolygonDecoration();
-		arrowHead.setScale(16, 6);
-		connectionFigure.setTargetDecoration(arrowHead); // arrow at target endpoint
+		setArrowHead(connectionFigure);
 		connectionFigure.setLineStyle(getCastedModel().getLineStyle()); // line drawing style
 		return connectionFigure;
 	}
 
+	protected void setArrowHead(PolylineConnection connectionFigure) {
+		PolygonDecoration arrowHead = new OpenArrowDecoration();
+		arrowHead.setFill(false);
+		arrowHead.setScale(16, 6);
+		connectionFigure.setTargetDecoration(arrowHead); // arrow at target endpoint		
+	}
+	
+	private class OpenArrowDecoration extends PolygonDecoration {
+
+		public OpenArrowDecoration() {
+			TRIANGLE_TIP.removeAllPoints();
+			TRIANGLE_TIP.addPoint(-1, 1);
+			TRIANGLE_TIP.addPoint(0, 0);
+			TRIANGLE_TIP.addPoint(-1, -1);
+		}
+		
+		@Override
+		protected void outlineShape(Graphics g) {
+			g.drawPolyline(getPoints());
+		}
+
+	}
+	
 	/**
 	 * If any constraints are set on this connection, the connection is decorated
 	 * with the appropriate vizualisation.

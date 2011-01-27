@@ -13,9 +13,7 @@ public class VNodeSingleConnectionEditPart extends VArrowEditPart {
 	protected IFigure createFigure() {
 		EditableLabel label = new EditableLabel(getArrow().getName());
 		connectionFigure = new DPFEpiConnectionFigure(label);
-		PolygonDecoration arrowHead = new PolygonDecoration();
-		arrowHead.setScale(16, 6);
-		connectionFigure.setTargetDecoration(arrowHead); // arrow at target endpoint
+		setArrowHead(connectionFigure);
 		return connectionFigure;
 	}
 	

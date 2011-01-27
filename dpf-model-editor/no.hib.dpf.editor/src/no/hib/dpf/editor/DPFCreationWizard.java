@@ -32,6 +32,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 import org.eclipse.ui.dialogs.WizardNewLinkPage;
 import org.eclipse.ui.ide.IDE;
+import org.eclipse.ui.internal.ide.IDEWorkbenchMessages;
 
 
 /**
@@ -59,7 +60,9 @@ public void addPages() {
  */
 public void init(IWorkbench workbench, IStructuredSelection selection) {
 	// create pages for this wizard
-	page1 = new CreationPage(workbench, selection); 
+	page1 = new CreationPage(workbench, selection);
+	
+	IDEWorkbenchMessages.WizardNewLinkPage_linkFileButton = "Load type specification:";
 	page2 = new WizardNewLinkPage("Add type graph", IResource.FILE);
 	page2.setTitle("Include type graph");
 	page2.setLinkTarget(DPFEditor.getWorkspaceDirectory());
@@ -76,6 +79,12 @@ public boolean performFinish() {
  * This WizardPage can create an empty .shapes file for the ShapesEditor.
  */
 private class CreationPage extends WizardNewFileCreationPage {
+	
+	/**
+	 * Hides the advanced option widgets.
+	 */
+	protected void handleAdvancedButtonSelect() {}
+	
 	private static final String DEFAULT_EXTENSION = ".dpf";
 	private final IWorkbench workbench;
 	
@@ -97,7 +106,7 @@ private class CreationPage extends WizardNewFileCreationPage {
 	 */
 	public void createControl(Composite parent) {
 		super.createControl(parent);
-		setFileName("dpfExample" + fileCount + DEFAULT_EXTENSION);
+		setFileName("dpfSpecification" + fileCount + DEFAULT_EXTENSION);
 		setPageComplete(validatePage());
 	}
 	
