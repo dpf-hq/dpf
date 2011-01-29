@@ -39,6 +39,7 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.ConnectionEditPolicy;
 import org.eclipse.gef.editpolicies.ConnectionEndpointEditPolicy;
 import org.eclipse.gef.requests.GroupRequest;
+import org.eclipse.swt.SWT;
 
 
 /**
@@ -171,7 +172,10 @@ public class VArrowEditPart extends ModelElementConnectionEditPart {
 		
 		@Override
 		protected void outlineShape(Graphics g) {
+			g.pushState();
+			g.setAntialias(SWT.ON);
 			g.drawPolyline(getPoints());
+			g.popState();
 		}
 
 	}

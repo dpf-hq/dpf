@@ -16,6 +16,7 @@ import org.eclipse.draw2d.Polyline;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.swt.SWT;
 
 /**
  * Simple Bezier curve shape.
@@ -75,7 +76,10 @@ public class Bezier extends Polyline {
 	 */
 	protected void fillShape(Graphics graphics) {
 		reCompute();
+		graphics.pushState();
+		graphics.setAntialias(SWT.ON);
 		super.fillShape(graphics);
+		graphics.popState();
 	}
 
 	/* (non-Javadoc)
@@ -83,8 +87,11 @@ public class Bezier extends Polyline {
 	 */
 	protected void outlineShape(Graphics graphics) {
 		reCompute();
+		graphics.pushState();
+		graphics.setAntialias(SWT.ON);
 		graphics.setClip(new Rectangle(0,0,3000,3000));
 		graphics.drawPolyline(getPoints().toIntArray());
+		graphics.popState();
 	}
 	
 	/* (non-Javadoc)
