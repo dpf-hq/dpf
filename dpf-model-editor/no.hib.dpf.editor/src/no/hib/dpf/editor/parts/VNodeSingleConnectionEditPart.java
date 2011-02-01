@@ -5,7 +5,6 @@ import no.hib.dpf.editor.figures.EditableLabel;
 import no.hib.dpf.editor.model.SingleNodeConnection;
 
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.PolygonDecoration;
 
 public class VNodeSingleConnectionEditPart extends VArrowEditPart {
 	
