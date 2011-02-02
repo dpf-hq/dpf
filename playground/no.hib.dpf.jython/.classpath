@@ -2,7 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
-	<classpathentry kind="lib" path="/home/dagvl/jython2.5.2rc3/jython.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/no.hib.dpf.metamodel"/>
+	<classpathentry kind="lib" path="/Users/dagvl/jython2.5.2rc3/jython.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
