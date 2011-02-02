@@ -1,4 +1,4 @@
-package no.hib.dpf.editor;
+package no.hib.dpf.editor.editoractions;
 
 import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.print.PrintGraphicalViewerOperation;
