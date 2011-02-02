@@ -192,7 +192,7 @@ public final class DPFShortestPathConnectionRouter extends AbstractRouter {
 			}
 		}
 		// Sorts the connections so that constraints are routed lastly:
-		Collections.sort(routableConnectionList, new CompareRoutable());
+		Collections.sort(routableConnectionList, new RoutableComparator());
 		
 		for (Connection conn : connectionList) {
 			processStaleConnection(conn, false);
@@ -465,7 +465,7 @@ public final class DPFShortestPathConnectionRouter extends AbstractRouter {
 
 	// -----------------------------------------------------------------------
 	
-	private class CompareRoutable implements Comparator<RoutableFigure> {
+	private class RoutableComparator implements Comparator<RoutableFigure> {
 		@Override
 		public int compare(RoutableFigure o1, RoutableFigure o2) {
 			int o1p = o1.getRoutingPriority();
