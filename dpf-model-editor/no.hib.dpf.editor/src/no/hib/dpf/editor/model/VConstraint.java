@@ -10,8 +10,6 @@
 �*******************************************************************************/
 package no.hib.dpf.editor.model;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.lang.reflect.InvocationTargetException;
 
 import no.hib.dpf.metamodel.Constraint;
