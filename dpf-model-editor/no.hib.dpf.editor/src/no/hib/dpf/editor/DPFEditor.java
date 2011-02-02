@@ -317,18 +317,11 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		return (Specification)resource.getContents().get(0);
 	}
 	
-	// TODO: URGENT! MOVE TO DPF MODEL!
-	public static void saveDPF(String dpfFileName, Specification specification) {
-		ResourceSet resourceSet = new ResourceSetImpl();
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new  XMLResourceFactoryImpl());		
-
-		Resource resource = resourceSet.createResource(URI.createFileURI(dpfFileName));
-		resource.getContents().add(specification);		
-		
+	public static void saveDPF(String dpfFileName, Specification specification) {		
 		// serialize resource � you can specify also serialization
 		// options which defined on org.eclipse.emf.ecore.xmi.XMIResource
 		try {
-			resource.save(null);
+			specification.save(URI.createFileURI(dpfFileName));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

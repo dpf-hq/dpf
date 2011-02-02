@@ -19,6 +19,12 @@ import no.hib.dpf.metamodel.Specification;
  * <!-- begin-user-doc -->
  * A test case for the model object '<em><b>Specification</b></em>'.
  * <!-- end-user-doc -->
+ * <p>
+ * The following operations are tested:
+ * <ul>
+ *   <li>{@link no.hib.dpf.metamodel.Specification#save(org.eclipse.emf.common.util.URI) <em>Save</em>}</li>
+ * </ul>
+ * </p>
  * @generated
  */
 public class SpecificationTest extends TestCase {
@@ -92,6 +98,19 @@ public class SpecificationTest extends TestCase {
 		setFixture(null);
 	}
 	
+	/**
+	 * Tests the '{@link no.hib.dpf.metamodel.Specification#save(org.eclipse.emf.common.util.URI) <em>Save</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.Specification#save(org.eclipse.emf.common.util.URI)
+	 * @generated
+	 */
+	public void testSave__URI() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
 	@Test
 	public void testDefaultSpecificationHasTypeAndGraphGraph() {
 		assertNotNull(getFixture().getTypeGraph());

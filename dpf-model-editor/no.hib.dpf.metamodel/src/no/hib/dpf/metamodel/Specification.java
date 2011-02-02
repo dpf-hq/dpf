@@ -6,6 +6,8 @@
  */
 package no.hib.dpf.metamodel;
 
+import java.io.IOException;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -104,5 +106,13 @@ public interface Specification extends EObject {
 	 * @generated
 	 */
 	void setTypeGraph(Graph value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model exceptions="no.hib.dpf.metamodel.EIOException" uriDataType="no.hib.dpf.metamodel.EURI"
+	 * @generated
+	 */
+	void save(URI uri) throws IOException;
 
 } // Specification

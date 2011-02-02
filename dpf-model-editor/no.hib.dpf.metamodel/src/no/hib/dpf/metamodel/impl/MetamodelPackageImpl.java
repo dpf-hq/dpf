@@ -6,6 +6,7 @@
  */
 package no.hib.dpf.metamodel.impl;
 
+import java.io.IOException;
 import java.util.Map;
 
 import no.hib.dpf.metamodel.Arrow;
@@ -24,8 +25,10 @@ import no.hib.dpf.metamodel.Specification;
 import no.hib.dpf.metamodel.TypingMorphism;
 import no.hib.dpf.metamodel.Visualization;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
@@ -143,6 +146,20 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * @generated
 	 */
 	private EClass modelHierarchyEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType euriEDataType = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType eioExceptionEDataType = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -651,6 +668,24 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EDataType getEURI() {
+		return euriEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EDataType getEIOException() {
+		return eioExceptionEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public MetamodelFactory getMetamodelFactory() {
 		return (MetamodelFactory)getEFactoryInstance();
 	}
@@ -737,6 +772,10 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 		modelHierarchyEClass = createEClass(MODEL_HIERARCHY);
 		createEReference(modelHierarchyEClass, MODEL_HIERARCHY__SPECIFICATIONS);
+
+		// Create data types
+		euriEDataType = createEDataType(EURI);
+		eioExceptionEDataType = createEDataType(EIO_EXCEPTION);
 	}
 
 	/**
@@ -928,8 +967,16 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		initEReference(getSpecification_Graph(), this.getGraph(), null, "graph", null, 1, 1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSpecification_TypeGraph(), this.getGraph(), null, "typeGraph", null, 1, 1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		op = addEOperation(specificationEClass, null, "save", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getEURI(), "uri", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getEIOException());
+
 		initEClass(modelHierarchyEClass, ModelHierarchy.class, "ModelHierarchy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getModelHierarchy_Specifications(), this.getSpecification(), null, "specifications", null, 0, -1, ModelHierarchy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		// Initialize data types
+		initEDataType(euriEDataType, URI.class, "EURI", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(eioExceptionEDataType, IOException.class, "EIOException", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

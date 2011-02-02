@@ -172,6 +172,9 @@
               defaultValueLiteral=""/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Specification">
+          <eOperations name="save" eExceptions="#//hib/dpf/metamodel/EIOException">
+            <eParameters name="uri" eType="#//hib/dpf/metamodel/EURI"/>
+          </eOperations>
           <eStructuralFeatures xsi:type="ecore:EReference" name="signature" lowerBound="1"
               eType="#//hib/dpf/metamodel/Signature" transient="true" containment="true"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="graph" lowerBound="1"
@@ -179,10 +182,12 @@
           <eStructuralFeatures xsi:type="ecore:EReference" name="typeGraph" lowerBound="1"
               eType="#//hib/dpf/metamodel/Graph" containment="true"/>
         </eClassifiers>
+        <eClassifiers xsi:type="ecore:EDataType" name="EURI" instanceClassName="org.eclipse.emf.common.util.URI"/>
         <eClassifiers xsi:type="ecore:EClass" name="ModelHierarchy">
           <eStructuralFeatures xsi:type="ecore:EReference" name="specifications" upperBound="-1"
               eType="#//hib/dpf/metamodel/Specification" containment="true"/>
         </eClassifiers>
+        <eClassifiers xsi:type="ecore:EDataType" name="EIOException" instanceClassName="java.io.IOException"/>
       </eSubpackages>
     </eSubpackages>
   </eSubpackages>

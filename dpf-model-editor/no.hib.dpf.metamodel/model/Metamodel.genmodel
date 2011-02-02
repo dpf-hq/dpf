@@ -12,6 +12,8 @@
           ecorePackage="Metamodel.ecore#//hib/dpf">
         <nestedGenPackages prefix="Metamodel" basePackage="no.hib.dpf" disposableProviderFactory="true"
             ecorePackage="Metamodel.ecore#//hib/dpf/metamodel">
+          <genDataTypes ecoreDataType="Metamodel.ecore#//hib/dpf/metamodel/EURI"/>
+          <genDataTypes ecoreDataType="Metamodel.ecore#//hib/dpf/metamodel/EIOException"/>
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/metamodel/Graph">
             <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/Graph/nodes"/>
             <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//hib/dpf/metamodel/Graph/name"/>
@@ -164,6 +166,9 @@
                 ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/Specification/graph"/>
             <genFeatures notify="false" createChild="false" propertySortChoices="true"
                 ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/metamodel/Specification/typeGraph"/>
+            <genOperations ecoreOperation="Metamodel.ecore#//hib/dpf/metamodel/Specification/save">
+              <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/Specification/save/uri"/>
+            </genOperations>
           </genClasses>
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/metamodel/ModelHierarchy">
             <genFeatures notify="false" createChild="false" propertySortChoices="true"

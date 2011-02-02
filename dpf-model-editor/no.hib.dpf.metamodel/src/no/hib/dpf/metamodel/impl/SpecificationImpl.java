@@ -6,6 +6,7 @@
  */
 package no.hib.dpf.metamodel.impl;
 
+import java.io.IOException;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.MetamodelFactory;
 import no.hib.dpf.metamodel.MetamodelPackage;
@@ -15,11 +16,17 @@ import no.hib.dpf.metamodel.Specification;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -215,6 +222,23 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.SPECIFICATION__TYPE_GRAPH, newTypeGraph, newTypeGraph));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void save(URI uri) throws IOException {
+		ResourceSet resourceSet = new ResourceSetImpl();
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new  XMLResourceFactoryImpl());		
+
+		Resource resource = resourceSet.createResource(uri);
+		resource.getContents().add(this);		
+		
+		// serialize resource � you can specify also serialization
+		// options which defined on org.eclipse.emf.ecore.xmi.XMIResource
+		resource.save(null);
 	}
 
 	/**

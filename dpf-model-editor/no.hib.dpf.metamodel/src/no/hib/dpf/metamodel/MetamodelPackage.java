@@ -8,6 +8,7 @@ package no.hib.dpf.metamodel;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -689,6 +690,27 @@ public interface MetamodelPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '<em>EURI</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.common.util.URI
+	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getEURI()
+	 * @generated
+	 */
+	int EURI = 15;
+
+	/**
+	 * The meta object id for the '<em>EIO Exception</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see java.io.IOException
+	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getEIOException()
+	 * @generated
+	 */
+	int EIO_EXCEPTION = 16;
+
+
+	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.metamodel.Graph <em>Graph</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1217,6 +1239,28 @@ public interface MetamodelPackage extends EPackage {
 	EReference getModelHierarchy_Specifications();
 
 	/**
+	 * Returns the meta object for data type '{@link org.eclipse.emf.common.util.URI <em>EURI</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>EURI</em>'.
+	 * @see org.eclipse.emf.common.util.URI
+	 * @model instanceClass="org.eclipse.emf.common.util.URI"
+	 * @generated
+	 */
+	EDataType getEURI();
+
+	/**
+	 * Returns the meta object for data type '{@link java.io.IOException <em>EIO Exception</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>EIO Exception</em>'.
+	 * @see java.io.IOException
+	 * @model instanceClass="java.io.IOException"
+	 * @generated
+	 */
+	EDataType getEIOException();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1659,6 +1703,26 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MODEL_HIERARCHY__SPECIFICATIONS = eINSTANCE.getModelHierarchy_Specifications();
+
+		/**
+		 * The meta object literal for the '<em>EURI</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.common.util.URI
+		 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getEURI()
+		 * @generated
+		 */
+		EDataType EURI = eINSTANCE.getEURI();
+
+		/**
+		 * The meta object literal for the '<em>EIO Exception</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see java.io.IOException
+		 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getEIOException()
+		 * @generated
+		 */
+		EDataType EIO_EXCEPTION = eINSTANCE.getEIOException();
 
 	}
 

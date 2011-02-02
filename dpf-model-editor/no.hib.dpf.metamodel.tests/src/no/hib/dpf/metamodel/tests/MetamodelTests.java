@@ -40,6 +40,7 @@ public class MetamodelTests extends TestSuite {
 		suite.addTestSuite(ArrowTest.class);
 		suite.addTestSuite(PredicateTest.class);
 		suite.addTestSuite(GraphHomomorphismTest.class);
+		suite.addTestSuite(SpecificationTest.class);
 		return suite;
 	}
 

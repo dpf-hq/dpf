@@ -6,11 +6,14 @@
  */
 package no.hib.dpf.metamodel.impl;
 
+import java.io.IOException;
 import java.util.Map;
 import no.hib.dpf.metamodel.*;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -78,6 +81,40 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 			case MetamodelPackage.MODEL_HIERARCHY: return createModelHierarchy();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object createFromString(EDataType eDataType, String initialValue) {
+		switch (eDataType.getClassifierID()) {
+			case MetamodelPackage.EURI:
+				return createEURIFromString(eDataType, initialValue);
+			case MetamodelPackage.EIO_EXCEPTION:
+				return createEIOExceptionFromString(eDataType, initialValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String convertToString(EDataType eDataType, Object instanceValue) {
+		switch (eDataType.getClassifierID()) {
+			case MetamodelPackage.EURI:
+				return convertEURIToString(eDataType, instanceValue);
+			case MetamodelPackage.EIO_EXCEPTION:
+				return convertEIOExceptionToString(eDataType, instanceValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -322,6 +359,42 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	public ModelHierarchy createModelHierarchy() {
 		ModelHierarchyImpl modelHierarchy = new ModelHierarchyImpl();
 		return modelHierarchy;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public URI createEURIFromString(EDataType eDataType, String initialValue) {
+		return (URI)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertEURIToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IOException createEIOExceptionFromString(EDataType eDataType, String initialValue) {
+		return (IOException)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertEIOExceptionToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
 	}
 
 	/**
