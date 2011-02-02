@@ -294,7 +294,6 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		saveDPF(dpfFilename, getSpecification());
 	}
 	
-	// TODO, URGENT! Move to DPF-model.
 	public static Specification loadDPF(String fileName) {
 		URI uri = URI.createFileURI(fileName);
 		Specification ret = null;
