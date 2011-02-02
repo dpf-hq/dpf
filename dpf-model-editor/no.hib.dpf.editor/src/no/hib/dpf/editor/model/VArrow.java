@@ -108,16 +108,6 @@ public class VArrow extends ModelElement implements Arrow, IDObjectContainer {
 		return arrowID;
 	}	
 	
-	
-	/**
-	 * Deserialization constructor. Initializes transient fields.
-	 * 
-	 * @see java.io.Serializable
-	 */
-	private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
-		super.readObjectExec(in);
-	}
-	
 	/**
 	 * Create a (solid) connection between two distinct shapes.
 	 * 

@@ -78,15 +78,6 @@ public class VConstraint extends ModelElement implements Constraint, IDObjectCon
 		setIDObject(MetamodelFactory.eINSTANCE.createConstraint());
 		reconnect(source, target);		
 	}
-
-	/**
-	 * Deserialization constructor. Initializes transient fields.
-	 * 
-	 * @see java.io.Serializable
-	 */
-	private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
-		super.readObjectExec(in);
-	}
 	
 	@Override
 	public void setIDObject(IDObject idObject) {
