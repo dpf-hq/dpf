@@ -266,7 +266,7 @@ public class VNode extends ModelElement implements Node, IDObjectContainer, Mova
 	}
 	
 	/** A pictogram of a rectangular shape. */
-	private static final Image RECTANGLE_ICON = createImage(ImageSettings.getImageSettings().getFilePath(ImageSettings.SMALL_RECTANGLE));
+	private static final Image RECTANGLE_ICON = createImage(ImageSettings.SMALL_RECTANGLE.getFilePath());
 
 	public Image getIcon() {
 		return RECTANGLE_ICON;

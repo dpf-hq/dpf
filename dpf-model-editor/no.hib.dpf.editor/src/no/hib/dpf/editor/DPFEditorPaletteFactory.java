@@ -100,8 +100,8 @@ public class DPFEditorPaletteFactory {
 		if (selection instanceof IStructuredSelection) {
 			for (CreateConstraintAction createConstraintAction : constraintActions) {
 				if (createConstraintAction.isEnabled()) {
-					ImageDescriptor iconSmall = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.getImageSettings().getFilePath(ImageSettings.SMALL_CONNECTION));
-					ImageDescriptor iconLarge = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.getImageSettings().getFilePath(ImageSettings.LARGE_CONNECTION));
+					ImageDescriptor iconSmall = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.SMALL_CONNECTION.getFilePath());
+					ImageDescriptor iconLarge = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.LARGE_CONNECTION.getFilePath());
 
 					entry.add(new ConnectionCreationToolEntry(createConstraintAction.getDescription(), "Create a new dings", new ArrowCreationFactory(null, null), iconSmall, iconLarge));
 				}
@@ -142,8 +142,8 @@ public class DPFEditorPaletteFactory {
 		
 		
 		
-		ImageDescriptor iconSmall = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.getImageSettings().getFilePath(ImageSettings.SMALL_RECTANGLE));
-		ImageDescriptor iconLarge = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.getImageSettings().getFilePath(ImageSettings.LARGE_RECTANGLE));
+		ImageDescriptor iconSmall = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.SMALL_RECTANGLE.getFilePath());
+		ImageDescriptor iconLarge = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.LARGE_RECTANGLE.getFilePath());
 
 		constraintBar.add(new CreationToolEntry("Navn", "Create a new ", null, iconSmall, iconLarge));
 		return constraintBar;
@@ -172,8 +172,8 @@ public class DPFEditorPaletteFactory {
 	}
 	
 	private void addArrowCreationToolsToGroup(Graph typeGraph, PaletteGroup edgeGroup) {
-		ImageDescriptor iconSmall = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.getImageSettings().getFilePath(ImageSettings.SMALL_CONNECTION));
-		ImageDescriptor iconLarge = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.getImageSettings().getFilePath(ImageSettings.LARGE_CONNECTION));
+		ImageDescriptor iconSmall = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.SMALL_CONNECTION.getFilePath());
+		ImageDescriptor iconLarge = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.LARGE_CONNECTION.getFilePath());
 
 		for (Arrow typeArrow : typeGraph.getArrows()) {			
 			edgeGroup.add(new ConnectionCreationToolEntry(typeArrow.getName(), "Create a new " + typeArrow.getName(), new ArrowCreationFactory(null, typeArrow), iconSmall, iconLarge));
@@ -181,8 +181,8 @@ public class DPFEditorPaletteFactory {
 	}
 	
 	public void addNodeCreationToolsToGroup(Graph typeGraph, PaletteGroup nodeGroup) {
-		ImageDescriptor iconSmall = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.getImageSettings().getFilePath(ImageSettings.SMALL_RECTANGLE));
-		ImageDescriptor iconLarge = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.getImageSettings().getFilePath(ImageSettings.LARGE_RECTANGLE));
+		ImageDescriptor iconSmall = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.SMALL_RECTANGLE.getFilePath());
+		ImageDescriptor iconLarge = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.LARGE_RECTANGLE.getFilePath());
 
 		for (Node typeNode : typeGraph.getNodes()) {
 //			component = new CombinedTemplateCreationEntry(typeNode.getName(), "Create a new " + typeNode.getName(), VNode.class, new VNodeFactory(typeNode), iconSmall, iconLarge);
