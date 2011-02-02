@@ -300,21 +300,17 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 	
 	// TODO, URGENT! Move to DPF-model.
 	public static Specification loadDPF(String fileName) {
-		ResourceSet resourceSet = new ResourceSetImpl();
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMLResourceFactoryImpl());
-
-		resourceSet.getLoadOptions().put(XMIResource.OPTION_DEFER_IDREF_RESOLUTION, true);
-			
 		URI uri = URI.createFileURI(fileName);
-		Resource resource = resourceSet.createResource(uri);
+		Specification ret = null;
+		
 		try {
-			resource.load(null);
+			ret = MetamodelFactory.eINSTANCE.loadSpecification(uri);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		return (Specification)resource.getContents().get(0);
+		return ret;
 	}
 	
 	public static void saveDPF(String dpfFileName, Specification specification) {		

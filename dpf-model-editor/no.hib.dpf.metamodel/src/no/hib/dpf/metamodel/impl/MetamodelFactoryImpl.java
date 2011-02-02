@@ -20,6 +20,11 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -349,6 +354,24 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	public Specification createSpecification() {
 		SpecificationImpl specification = new SpecificationImpl();
 		return specification;
+	}
+	
+	
+
+	@Override
+	/**
+	 * @generated NOT
+	 */
+	public Specification loadSpecification(URI uri) throws IOException {
+		ResourceSet resourceSet = new ResourceSetImpl();
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMLResourceFactoryImpl());
+
+		resourceSet.getLoadOptions().put(XMIResource.OPTION_DEFER_IDREF_RESOLUTION, true);
+			
+		Resource resource = resourceSet.createResource(uri);
+		resource.load(null);
+
+		return (Specification)resource.getContents().get(0);
 	}
 
 	/**

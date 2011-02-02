@@ -6,7 +6,10 @@
  */
 package no.hib.dpf.metamodel;
 
+import java.io.IOException;
+
 import org.eclipse.emf.common.util.EMap;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EFactory;
 
 /**
@@ -181,6 +184,15 @@ public interface MetamodelFactory extends EFactory {
 	 * @generated
 	 */
 	Specification createSpecification();
+	
+	/**
+	 * Loads specification from URI
+	 * @param uri
+	 * @return
+	 * @throws IOException 
+	 * @generated NOT
+	 */
+	Specification loadSpecification(URI uri) throws IOException;
 
 	/**
 	 * Returns a new object of class '<em>Model Hierarchy</em>'.
