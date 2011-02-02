@@ -13,33 +13,28 @@ import org.eclipse.ui.PlatformUI;
 public class PrintAction extends Action {
 
 	private GraphicalViewer viewer;
-	
+
 	public PrintAction(GraphicalViewer viewer) {
 		this.viewer = viewer;
 	}
-	
+
 	@Override
 	public void run() {
-		int style = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell().getStyle();
+		int style = PlatformUI.getWorkbench().getActiveWorkbenchWindow()
+				.getShell().getStyle();
 
-		Shell shell = new Shell ((style & SWT.MIRRORED) != 0 ? SWT.RIGHT_TO_LEFT:SWT.NONE);
-
-		PrintDialog dialog = new PrintDialog(shell,SWT.NULL);
-
+		Shell shell = new Shell((style & SWT.MIRRORED) != 0 ? SWT.RIGHT_TO_LEFT
+				: SWT.NONE);
+		PrintDialog dialog = new PrintDialog(shell, SWT.NULL);
 		PrinterData data = dialog.open();
 
-		if(data != null)
+		if (data != null) {
+			PrintGraphicalViewerOperation operation = new PrintGraphicalViewerOperation(
+					new Printer(data), viewer);
 
-		{
-
-		PrintGraphicalViewerOperation operation = new PrintGraphicalViewerOperation(new Printer(data), viewer);
-
-		// here you can set the Print Mode
-
-		operation.setPrintMode(2);
-
-		operation.run("Printing Gef");
-
-		}		
+			// here you can set the Print Mode
+			operation.setPrintMode(2);
+			operation.run("Printing Gef");
+		}
 	}
 }
