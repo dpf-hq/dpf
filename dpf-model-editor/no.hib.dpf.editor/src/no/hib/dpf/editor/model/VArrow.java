@@ -342,7 +342,7 @@ public class VArrow extends ModelElement implements Arrow, IDObjectContainer {
 		}
 	}
 	
-	private void setNameExec(String name) {
+	public void setNameExec(String name) {
 		String oldName = arrowComponent.getName();
 		arrowComponent.setName(name);
 		firePropertyChange(NAME_PROP, oldName, name);
@@ -549,6 +549,11 @@ public class VArrow extends ModelElement implements Arrow, IDObjectContainer {
 	@Override
 	public String getTypeName() {
 		return arrowComponent.getTypeName();
+	}
+
+	@Override
+	public String generateUniqueName() {
+		return arrowComponent.generateUniqueName();
 	}
 	
 

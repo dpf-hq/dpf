@@ -26,6 +26,7 @@ import no.hib.dpf.metamodel.Node;
  *   <li>{@link no.hib.dpf.metamodel.Node#canReachTargetByTypeArrow(no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Arrow) <em>Can Reach Target By Type Arrow</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Node#getArrowto(no.hib.dpf.metamodel.Node) <em>Get Arrowto</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Node#getTypeName() <em>Get Type Name</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Node#generateUniqueName() <em>Generate Unique Name</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -195,6 +196,39 @@ public class NodeTest extends IDObjectTest {
 		
 		Node typedNode = MetamodelFactory.eINSTANCE.createNode(untypedNode);
 		assertEquals(typeName, typedNode.getTypeName());
+	}
+
+	/**
+	 * Tests the '{@link no.hib.dpf.metamodel.Node#generateUniqueName() <em>Generate Unique Name</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.Node#generateUniqueName()
+	 * @generated NOT HOT DOT!
+	 */
+	public void testGenerateUniqueName() {
+		Node n1 = MetamodelFactory.eINSTANCE.createNode();
+		Node n2 = MetamodelFactory.eINSTANCE.createNode();
+		
+		n1.setName(n1.generateUniqueName());
+		n2.setName(n2.generateUniqueName());
+		
+		assertFalse(n1.getName().equals(n2.getName()));
+	}
+	
+	public void testGenerateUniqueNameWhenInGraph() {
+		Node n1 = MetamodelFactory.eINSTANCE.createNode();
+		Node n2 = MetamodelFactory.eINSTANCE.createNode();
+		
+		Graph g = MetamodelFactory.eINSTANCE.createGraph();
+		n1.setGraph(g);
+		n2.setGraph(g);
+		
+		n1.setName(n1.generateUniqueName());
+		n2.setName(n2.generateUniqueName());
+		
+		assertFalse(n1.getName().equals(n2.getName()));
+
+		
 	}
 
 	/**

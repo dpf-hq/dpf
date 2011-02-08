@@ -163,4 +163,12 @@ public interface Node extends IDObject {
 	 */
 	String getTypeName();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	String generateUniqueName();
+
 } // Node

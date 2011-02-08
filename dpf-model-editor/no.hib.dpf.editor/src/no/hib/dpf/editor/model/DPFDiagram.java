@@ -90,6 +90,7 @@ public class DPFDiagram extends ModelElement {
 	public boolean addChild(VNode vNode) {
 		if (vNode != null && shapes.add(vNode)) {
 			vNode.setGraph(dpfGraph);
+			vNode.setNameExec(vNode.generateUniqueName());
 
 			firePropertyChange(CHILD_ADDED_PROP, null, vNode);
 			return true;

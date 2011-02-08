@@ -168,4 +168,12 @@ public interface Arrow extends IDObject {
 	 */
 	String getTypeName();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	String generateUniqueName();
+
 } // Arrow

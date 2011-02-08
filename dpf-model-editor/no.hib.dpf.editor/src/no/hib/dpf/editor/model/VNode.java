@@ -47,8 +47,9 @@ public class VNode extends ModelElement implements Node, IDObjectContainer, Mova
 	}
 
 	public void setNameExec(String name) {
+		String oldName = nodeComponent.getName();
 		nodeComponent.setName(name);		
-		firePropertyChange(NAME_PROP, null, name);		
+		firePropertyChange(NAME_PROP, oldName, name);		
 	}
 
 	public String getNameExec() {
@@ -276,18 +277,21 @@ public class VNode extends ModelElement implements Node, IDObjectContainer, Mova
 		targetConnections.add(conn);
 		firePropertyChange(TARGET_CONNECTIONS_PROP, null, conn);
 		conn.setTarget(nodeComponent);
-		setGraph(conn);
+		addConnectionToGraph(conn);
 	}
 
 	public void addOutgoingConnection(VArrow conn) {
 		sourceConnections.add(conn);
 		firePropertyChange(SOURCE_CONNECTIONS_PROP, null, conn);
 		conn.setSource(nodeComponent);
-		setGraph(conn);
+		addConnectionToGraph(conn);
 	}
 	
-	private void setGraph(VArrow conn) {
+	private void addConnectionToGraph(VArrow conn) {
 		conn.setGraph(getGraph());
+		if (conn.getName().equals("")) {
+			conn.setNameExec(conn.generateUniqueName());
+		}
 	}
 	
 	protected void removeIncomingConnection(VArrow conn) {
@@ -491,6 +495,11 @@ public class VNode extends ModelElement implements Node, IDObjectContainer, Mova
 	@Override
 	public String getTypeName() {
 		return nodeComponent.getTypeName();
+	}
+
+	@Override
+	public String generateUniqueName() {
+		return nodeComponent.generateUniqueName();
 	}
 
 
