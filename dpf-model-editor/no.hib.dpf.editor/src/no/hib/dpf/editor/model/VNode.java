@@ -42,11 +42,7 @@ import org.eclipse.ui.views.properties.TextPropertyDescriptor;
 
 public class VNode extends ModelElement implements Node, IDObjectContainer, MovableAndSizable {
 
-	public void setGraphExec(Graph graph) {
-		nodeComponent.setGraph(graph);
-	}	
-
-	public void removeGraphExec() {
+	public void removeGraph() {
 		nodeComponent.setGraph(null);
 	}
 
@@ -298,17 +294,13 @@ public class VNode extends ModelElement implements Node, IDObjectContainer, Mova
 		targetConnections.remove(conn);
 		firePropertyChange(TARGET_CONNECTIONS_PROP, null, conn);
 		conn.setTarget(null);
-		removeGraph(conn);
+		conn.setGraph(null);
 	}
 
 	protected void removeOutgoingConnection(VArrow conn) {
 		sourceConnections.remove(conn);
 		firePropertyChange(SOURCE_CONNECTIONS_PROP, null, conn);
 		conn.setSource(null);
-		removeGraph(conn);
-	}
-
-	private void removeGraph(VArrow conn) {
 		conn.setGraph(null);
 	}
 		

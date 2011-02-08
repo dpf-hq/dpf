@@ -73,6 +73,7 @@
             <eParameters name="target" eType="#//hib/dpf/metamodel/Node"/>
           </eOperations>
           <eOperations name="getTypeName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          <eOperations name="generateUniqueName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="graph" eType="#//hib/dpf/metamodel/Graph"
               unsettable="true" eOpposite="#//hib/dpf/metamodel/Graph/nodes"/>
@@ -93,29 +94,13 @@
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Predicate">
           <eOperations name="createConstraint" eType="#//hib/dpf/metamodel/Constraint">
-            <eParameters name="nodes">
-              <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
-                <eTypeArguments/>
-              </eGenericType>
-            </eParameters>
-            <eParameters name="edges">
-              <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
-                <eTypeArguments/>
-              </eGenericType>
-            </eParameters>
+            <eParameters name="nodes" upperBound="-1" eType="#//hib/dpf/metamodel/Node"/>
+            <eParameters name="arrows" upperBound="-1" eType="#//hib/dpf/metamodel/Arrow"/>
             <eParameters name="modelToBeConstrained" eType="#//hib/dpf/metamodel/Graph"/>
           </eOperations>
           <eOperations name="canCreateConstraint" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-            <eParameters name="nodes">
-              <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
-                <eTypeArguments/>
-              </eGenericType>
-            </eParameters>
-            <eParameters name="edges">
-              <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
-                <eTypeArguments/>
-              </eGenericType>
-            </eParameters>
+            <eParameters name="nodes" upperBound="-1" eType="#//hib/dpf/metamodel/Node"/>
+            <eParameters name="arrows" upperBound="-1" eType="#//hib/dpf/metamodel/Arrow"/>
             <eParameters name="modelToBeConstrained" eType="#//hib/dpf/metamodel/Graph"/>
           </eOperations>
           <eStructuralFeatures xsi:type="ecore:EReference" name="shape" eType="#//hib/dpf/metamodel/Graph"/>
@@ -151,16 +136,8 @@
         <eClassifiers xsi:type="ecore:EClass" name="GraphHomomorphism">
           <eOperations name="tryToCreateGraphHomomorphism" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
             <eParameters name="sourceGraph" eType="#//hib/dpf/metamodel/Graph"/>
-            <eParameters name="nodes">
-              <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
-                <eTypeArguments/>
-              </eGenericType>
-            </eParameters>
-            <eParameters name="edges">
-              <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
-                <eTypeArguments/>
-              </eGenericType>
-            </eParameters>
+            <eParameters name="nodes" upperBound="-1" eType="#//hib/dpf/metamodel/Node"/>
+            <eParameters name="edges" upperBound="-1" eType="#//hib/dpf/metamodel/Arrow"/>
           </eOperations>
           <eStructuralFeatures xsi:type="ecore:EReference" name="nodeMapping" upperBound="-1"
               eType="#//hib/dpf/metamodel/NodeToNodeMap" containment="true"/>

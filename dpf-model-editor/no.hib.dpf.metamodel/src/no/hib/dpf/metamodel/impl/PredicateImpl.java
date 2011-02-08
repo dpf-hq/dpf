@@ -6,11 +6,13 @@
  */
 package no.hib.dpf.metamodel.impl;
 
+import no.hib.dpf.metamodel.Arrow;
 import no.hib.dpf.metamodel.Constraint;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.GraphHomomorphism;
 import no.hib.dpf.metamodel.MetamodelFactory;
 import no.hib.dpf.metamodel.MetamodelPackage;
+import no.hib.dpf.metamodel.Node;
 import no.hib.dpf.metamodel.Predicate;
 import no.hib.dpf.metamodel.Semantics;
 import no.hib.dpf.metamodel.Visualization;
@@ -256,7 +258,7 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Constraint createConstraint(EList<?> nodes, EList<?> arrows, Graph modelToBeConstrained) {
+	public Constraint createConstraint(EList<Node> nodes, EList<Arrow> arrows, Graph modelToBeConstrained) {
 		GraphHomomorphism graphHomomorphism = MetamodelFactory.eINSTANCE.createGraphHomomorphism();
 		if (graphHomomorphism.tryToCreateGraphHomomorphism(getShape(), nodes, arrows)) {
 			return constructConstraint(modelToBeConstrained, graphHomomorphism);
@@ -269,9 +271,9 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public boolean canCreateConstraint(EList<?> nodes, EList<?> edges, Graph modelToBeConstrained) {
+	public boolean canCreateConstraint(EList<Node> nodes, EList<Arrow> arrows, Graph modelToBeConstrained) {
 		GraphHomomorphism graphHomomorphism = MetamodelFactory.eINSTANCE.createGraphHomomorphism();
-		return graphHomomorphism.tryToCreateGraphHomomorphism(getShape(), nodes, edges);
+		return graphHomomorphism.tryToCreateGraphHomomorphism(getShape(), nodes, arrows);
 	}
 
 	/**

@@ -63,7 +63,7 @@ class DiagramEditPart extends AbstractGraphicalEditPart implements PropertyChang
 	public void activate() {
 		if (!isActive()) {
 			super.activate();
-			((ModelElement) getModel()).addPropertyChangeListener(this);
+			((ModelElement)getModel()).addPropertyChangeListener(this);
 		}
 	}
 
@@ -110,7 +110,7 @@ class DiagramEditPart extends AbstractGraphicalEditPart implements PropertyChang
 	}
 
 	private DPFDiagram getCastedModel() {
-		return (DPFDiagram) getModel();
+		return (DPFDiagram)getModel();
 	}
 
 	/*
@@ -192,7 +192,7 @@ class DiagramEditPart extends AbstractGraphicalEditPart implements PropertyChang
 			Object childClass = request.getNewObjectType();
 			if (childClass == VNode.class) {
 				// return a command that can add a Shape to a DPFDiagram
-				return new VNodeCreateCommand((VNode) request.getNewObject(), (DPFDiagram) getHost().getModel(), (Rectangle) getConstraintFor(request));
+				return new VNodeCreateCommand((VNode)request.getNewObject(), (DPFDiagram)getHost().getModel(), (Rectangle) getConstraintFor(request));
 			}
 			return null;
 		}

@@ -245,8 +245,8 @@ public class GraphHomomorphismTest extends TestCase {
 	 * @generated NOT
 	 */
 	private void testHomomorphismWithExtraGraphElements(List<Graph> graphs, boolean expectedResult) {
-		EList<?> nodes = new BasicEList<Node>(graphs.get(1).getNodes());
-		EList<?> edges = new BasicEList<Arrow>(graphs.get(1).getArrows());
+		EList<Node> nodes = new BasicEList<Node>(graphs.get(1).getNodes());
+		EList<Arrow> edges = new BasicEList<Arrow>(graphs.get(1).getArrows());
 		Node n2 = graphs.get(1).createNode("dust");
 		graphs.get(1).createArrow("dust", n2, graphs.get(1).getNodes().get(0));
 		testTryToCreateHomomorphism(graphs.get(0), nodes, edges, expectedResult);
@@ -258,8 +258,8 @@ public class GraphHomomorphismTest extends TestCase {
 	 * @generated NOT
 	 */
 	private void testHomomorphismWithExtraGraphElements2(List<Graph> graphs, boolean expectedResult) {
-		EList<?> nodes = new BasicEList<Node>(graphs.get(1).getNodes());
-		EList<?> edges = new BasicEList<Arrow>(graphs.get(1).getArrows());
+		EList<Node> nodes = new BasicEList<Node>(graphs.get(1).getNodes());
+		EList<Arrow> edges = new BasicEList<Arrow>(graphs.get(1).getArrows());
 		graphs.get(1).createArrow("hn1", graphs.get(1).getNodes().get(0), graphs.get(1).getNodes().get(1));
 		testTryToCreateHomomorphism(graphs.get(0), nodes, edges, expectedResult);
 	}
@@ -270,8 +270,8 @@ public class GraphHomomorphismTest extends TestCase {
 	 * @generated NOT
 	 * */
 	private void testHomomorphismWithExtraGraphElements3(List<Graph> graphs, boolean expectedResult) {
-		EList<?> nodes = new BasicEList<Node>(graphs.get(1).getNodes());
-		EList<?> edges = new BasicEList<Arrow>(graphs.get(1).getArrows());
+		EList<Node> nodes = new BasicEList<Node>(graphs.get(1).getNodes());
+		EList<Arrow> edges = new BasicEList<Arrow>(graphs.get(1).getArrows());
 		graphs.get(1).createArrow("hn1", graphs.get(1).getNodes().get(0), graphs.get(1).getNodes().get(0));
 		testTryToCreateHomomorphism(graphs.get(0), nodes, edges, expectedResult);
 	}
@@ -279,7 +279,7 @@ public class GraphHomomorphismTest extends TestCase {
 	/**
 	 * @generated NOT
 	 */
-	private void testTryToCreateHomomorphism(Graph sourceGraph, EList<?> nodes, EList<?> edges, boolean expectedResult) {
+	private void testTryToCreateHomomorphism(Graph sourceGraph, EList<Node> nodes, EList<Arrow> edges, boolean expectedResult) {
 		GraphHomomorphism graphHomomorphism = MetamodelFactory.eINSTANCE.createGraphHomomorphism();
 		boolean res = graphHomomorphism.tryToCreateGraphHomomorphism(sourceGraph, nodes, edges);
 		assertEquals(expectedResult, res);

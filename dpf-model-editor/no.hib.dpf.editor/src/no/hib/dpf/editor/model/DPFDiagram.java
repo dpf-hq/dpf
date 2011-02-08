@@ -83,15 +83,15 @@ public class DPFDiagram extends ModelElement {
 	/**
 	 * Add a shape to this diagram.
 	 * 
-	 * @param s
+	 * @param vNode
 	 *            a non-null shape instance
 	 * @return true, if the shape was added, false otherwise
 	 */
-	public boolean addChild(VNode s) {
-		if (s != null && shapes.add(s)) {
-			s.setGraphExec(dpfGraph);
+	public boolean addChild(VNode vNode) {
+		if (vNode != null && shapes.add(vNode)) {
+			vNode.setGraph(dpfGraph);
 
-			firePropertyChange(CHILD_ADDED_PROP, null, s);
+			firePropertyChange(CHILD_ADDED_PROP, null, vNode);
 			return true;
 		}
 		return false;
@@ -114,7 +114,7 @@ public class DPFDiagram extends ModelElement {
 	 */
 	public boolean removeChild(VNode s) {
 		if (s != null && shapes.remove(s)) {
-			s.removeGraphExec();
+			s.removeGraph();
 
 			firePropertyChange(CHILD_REMOVED_PROP, null, s);
 			return true;

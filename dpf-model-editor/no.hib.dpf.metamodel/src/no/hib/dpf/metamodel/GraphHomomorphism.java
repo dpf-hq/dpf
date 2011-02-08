@@ -65,9 +65,9 @@ public interface GraphHomomorphism extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model nodesMany="false" edgesMany="false"
+	 * @model nodesMany="true" edgesMany="true"
 	 * @generated
 	 */
-	boolean tryToCreateGraphHomomorphism(Graph sourceGraph, EList<?> nodes, EList<?> edges);
+	boolean tryToCreateGraphHomomorphism(Graph sourceGraph, EList<Node> nodes, EList<Arrow> edges);
 
 } // GraphHomomorphism
