@@ -1,6 +1,6 @@
-package no.hib.dpf.editor.model.factories;
+package no.hib.dpf.editor.viewmodel.factories;
 
-import no.hib.dpf.editor.model.VNode;
+import no.hib.dpf.editor.viewmodel.VNode;
 import no.hib.dpf.metamodel.Node;
 
 import org.eclipse.gef.requests.CreationFactory;

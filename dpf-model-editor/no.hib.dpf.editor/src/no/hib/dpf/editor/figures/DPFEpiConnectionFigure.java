@@ -14,8 +14,8 @@ public class DPFEpiConnectionFigure extends DPFConnectionFigure {
 	}
 		
 	public Rectangle getOwnerBounds() {
-		if ((getSourceAnchor() != null) && (this.getSourceAnchor().getOwner() instanceof BasicRectangleFigure)) {
-			return ((BasicRectangleFigure)getSourceAnchor().getOwner()).getBounds().getCopy();
+		if ((getSourceAnchor() != null) && (this.getSourceAnchor().getOwner() instanceof RectangleFigure)) {
+			return ((RectangleFigure)getSourceAnchor().getOwner()).getBounds().getCopy();
 		}
 		return null;
 	}

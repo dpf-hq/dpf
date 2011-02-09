@@ -19,10 +19,10 @@ import java.util.List;
 
 import no.hib.dpf.editor.figures.DPFConnectionFigure;
 import no.hib.dpf.editor.figures.EditableLabel;
-import no.hib.dpf.editor.model.SingleLineConstraintElement;
-import no.hib.dpf.editor.model.VArrow;
-import no.hib.dpf.editor.model.VConstraint;
-import no.hib.dpf.editor.model.commands.ConnectionDeleteCommand;
+import no.hib.dpf.editor.viewmodel.SingleLineConstraintElement;
+import no.hib.dpf.editor.viewmodel.VArrow;
+import no.hib.dpf.editor.viewmodel.VConstraint;
+import no.hib.dpf.editor.viewmodel.commands.ConnectionDeleteCommand;
 import no.hib.dpf.metamodel.Arrow;
 
 import org.eclipse.draw2d.ConnectionLocator;

@@ -2,7 +2,7 @@ package no.hib.dpf.editor.parts;
 
 import java.beans.PropertyChangeListener;
 
-import no.hib.dpf.editor.model.ModelElement;
+import no.hib.dpf.editor.viewmodel.ModelElement;
 
 import org.eclipse.gef.editparts.AbstractConnectionEditPart;
 

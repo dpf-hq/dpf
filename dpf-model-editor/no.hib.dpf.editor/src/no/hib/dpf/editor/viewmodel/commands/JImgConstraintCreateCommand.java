@@ -1,9 +1,9 @@
-package no.hib.dpf.editor.model.commands;
+package no.hib.dpf.editor.viewmodel.commands;
 
 import java.util.Iterator;
 
-import no.hib.dpf.editor.model.VArrow;
-import no.hib.dpf.editor.model.VConstraint;
+import no.hib.dpf.editor.viewmodel.VArrow;
+import no.hib.dpf.editor.viewmodel.VConstraint;
 
 import org.eclipse.gef.commands.Command;
 
@@ -11,7 +11,7 @@ import org.eclipse.gef.commands.Command;
  * A command to create a constraint between two connections. The command can be
  * undone or redone.
  */
-public class JInjConstraintCreateCommand extends Command {
+public class JImgConstraintCreateCommand extends Command {
 	/** The connection instance. */
 	private VConstraint constraint;
 
@@ -22,7 +22,7 @@ public class JInjConstraintCreateCommand extends Command {
 	 * Instantiate a command that can create a connection between two
 	 * connections.
 	 */
-	public JInjConstraintCreateCommand(VArrow source, VArrow target) {
+	public JImgConstraintCreateCommand(VArrow source, VArrow target) {
 		if (source == null) {
 			throw new IllegalArgumentException();
 		}
@@ -47,8 +47,7 @@ public class JInjConstraintCreateCommand extends Command {
 	}
 
 	private boolean doSourceToTargetAlreadyExist() {
-		for (Iterator<VConstraint> iter = source.getSourceConstraints()
-				.iterator(); iter.hasNext();) {
+		for (Iterator<VConstraint> iter = source.getSourceConstraints().iterator(); iter.hasNext();) {
 			VConstraint constraint = iter.next();
 			if (constraint.getConnectionTarget().equals(target)) {
 				return true;
@@ -64,7 +63,7 @@ public class JInjConstraintCreateCommand extends Command {
 	 */
 	public void execute() {
 		// create a new connection between source and target
-		constraint = new VConstraint(source, target, VConstraint.ConstraintType.JointlyInjective);
+		constraint = new VConstraint(source, target, VConstraint.ConstraintType.JointImage);
 	}
 
 	/*

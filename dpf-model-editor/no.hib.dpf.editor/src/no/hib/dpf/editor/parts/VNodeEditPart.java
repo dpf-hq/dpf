@@ -14,15 +14,15 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.List;
 
-import no.hib.dpf.editor.figures.BasicRectangleFigure;
+import no.hib.dpf.editor.figures.RectangleFigure;
 import no.hib.dpf.editor.figures.EditableLabel;
 import no.hib.dpf.editor.figures.SingleNodeConnectionAnchor;
-import no.hib.dpf.editor.model.LocationAndSize;
-import no.hib.dpf.editor.model.ModelElement;
-import no.hib.dpf.editor.model.VArrow;
-import no.hib.dpf.editor.model.VNode;
-import no.hib.dpf.editor.model.commands.ConnectionCreateCommand;
-import no.hib.dpf.editor.model.commands.ConnectionReconnectCommand;
+import no.hib.dpf.editor.viewmodel.LocationAndSize;
+import no.hib.dpf.editor.viewmodel.ModelElement;
+import no.hib.dpf.editor.viewmodel.VArrow;
+import no.hib.dpf.editor.viewmodel.VNode;
+import no.hib.dpf.editor.viewmodel.commands.ConnectionCreateCommand;
+import no.hib.dpf.editor.viewmodel.commands.ConnectionReconnectCommand;
 import no.hib.dpf.metamodel.Arrow;
 
 import org.eclipse.draw2d.ChopboxAnchor;
@@ -129,7 +129,7 @@ protected void createEditPolicies() {
  */
 public void handleNameChange(String value)
 {
-	BasicRectangleFigure tableFigure = (BasicRectangleFigure) getFigure();
+	RectangleFigure tableFigure = (RectangleFigure) getFigure();
 	EditableLabel label = tableFigure.getNameLabel();
 	label.setVisible(false);
 	refreshVisuals();
@@ -146,7 +146,7 @@ private VNode getShape() {
  */
 public void revertNameChange()
 {
-	BasicRectangleFigure tableFigure = (BasicRectangleFigure) getFigure();
+	RectangleFigure tableFigure = (RectangleFigure) getFigure();
 	EditableLabel label = tableFigure.getNameLabel();
 	label.setText(getFullName());
 	label.setVisible(true);
@@ -182,7 +182,7 @@ private IFigure createFigureForModel() {
 	if (getModel() instanceof VNode) {
 		
 		EditableLabel label = new EditableLabel(getFullName());
-		return new BasicRectangleFigure(label);
+		return new RectangleFigure(label);
 	} else {
 		// if Shapes gets extended the conditions above must be updated
 		throw new IllegalArgumentException();

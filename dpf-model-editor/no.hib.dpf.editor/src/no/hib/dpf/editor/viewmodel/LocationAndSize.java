@@ -1,4 +1,4 @@
-package no.hib.dpf.editor.model;
+package no.hib.dpf.editor.viewmodel;
 
 import java.io.Serializable;
 
@@ -12,7 +12,7 @@ public class LocationAndSize implements Serializable {
 	private static final long serialVersionUID = -1181005252896429955L;
 
 	private Point location = new Point(0, 0);
-	private Dimension size = new Dimension(50, 50);
+	private Dimension size = new Dimension(90, 60);
 	
 	public static final String LOCATION_PROP = "Shape.Location";
 	public static final String SIZE_PROP = "Shape.Size";

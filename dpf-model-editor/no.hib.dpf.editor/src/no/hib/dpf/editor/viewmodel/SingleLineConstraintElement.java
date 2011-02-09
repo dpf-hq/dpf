@@ -1,4 +1,4 @@
-package no.hib.dpf.editor.model;
+package no.hib.dpf.editor.viewmodel;
 
 
 // TODO: TO-BIG-DO: make one more flexible constraint class.

@@ -8,10 +8,10 @@
  * Contributors:
  *    Elias Volanakis - initial API and implementation
  *******************************************************************************/
-package no.hib.dpf.editor.model.commands;
+package no.hib.dpf.editor.viewmodel.commands;
 
-import no.hib.dpf.editor.model.DPFDiagram;
-import no.hib.dpf.editor.model.VNode;
+import no.hib.dpf.editor.viewmodel.DPFDiagram;
+import no.hib.dpf.editor.viewmodel.VNode;
 
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;

@@ -8,9 +8,9 @@
  * Contributors:
  *    Elias Volanakis - initial API and implementation
  *******************************************************************************/
-package no.hib.dpf.editor.model.commands;
+package no.hib.dpf.editor.viewmodel.commands;
 
-import no.hib.dpf.editor.model.MovableAndSizable;
+import no.hib.dpf.editor.viewmodel.MovableAndSizable;
 
 import org.eclipse.draw2d.geometry.Rectangle;
 

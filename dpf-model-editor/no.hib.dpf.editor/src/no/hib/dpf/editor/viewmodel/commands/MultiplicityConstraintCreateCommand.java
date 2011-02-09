@@ -1,8 +1,8 @@
-package no.hib.dpf.editor.model.commands;
+package no.hib.dpf.editor.viewmodel.commands;
 
-import no.hib.dpf.editor.model.VArrow;
-import no.hib.dpf.editor.model.VConstraint;
-import no.hib.dpf.editor.model.SingleLineConstraintElement;
+import no.hib.dpf.editor.viewmodel.SingleLineConstraintElement;
+import no.hib.dpf.editor.viewmodel.VArrow;
+import no.hib.dpf.editor.viewmodel.VConstraint;
 
 import org.eclipse.gef.commands.Command;
 

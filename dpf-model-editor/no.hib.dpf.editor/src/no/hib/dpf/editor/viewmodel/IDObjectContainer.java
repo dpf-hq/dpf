@@ -1,4 +1,4 @@
-package no.hib.dpf.editor.model;
+package no.hib.dpf.editor.viewmodel;
 
 public interface IDObjectContainer {
 

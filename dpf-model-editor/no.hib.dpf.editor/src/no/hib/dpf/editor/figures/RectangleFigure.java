@@ -8,7 +8,7 @@ import org.eclipse.draw2d.LineBorder;
 import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.swt.graphics.Color;
 
-public class BasicRectangleFigure extends Figure implements RoutableFigure {
+public class RectangleFigure extends Figure implements RoutableFigure {
 
 	public static Color tableColor = new Color(null, 255, 255, 206);
 	public static Color backgroundColor = new Color(null, 255, 255, 255);
@@ -16,14 +16,14 @@ public class BasicRectangleFigure extends Figure implements RoutableFigure {
 //	private ColumnsFigure columnsFigure = new ColumnsFigure();
 	private EditableLabel nameLabel;
 
-	public BasicRectangleFigure(EditableLabel name) {
+	public RectangleFigure(EditableLabel name) {
 		this(name, null);
 		setOpaque(true); // non-transparent figure
 		setBackgroundColor(backgroundColor);		
 	}
 
 	@SuppressWarnings("rawtypes")
-	public BasicRectangleFigure(EditableLabel name, List colums) {
+	public RectangleFigure(EditableLabel name, List colums) {
 
 		nameLabel = name;
 		ToolbarLayout layout = new ToolbarLayout();

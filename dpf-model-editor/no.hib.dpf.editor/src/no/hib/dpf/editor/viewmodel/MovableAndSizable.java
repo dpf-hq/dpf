@@ -1,4 +1,4 @@
-package no.hib.dpf.editor.model;
+package no.hib.dpf.editor.viewmodel;
 
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;

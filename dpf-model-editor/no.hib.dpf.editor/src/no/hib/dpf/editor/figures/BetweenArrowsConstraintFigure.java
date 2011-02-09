@@ -24,7 +24,7 @@ public class BetweenArrowsConstraintFigure extends PolylineConnection implements
 	Rectangle firstPointBounds;
 	Rectangle lastPointBounds;
 	
-	BasicRectangleFigure basicRectangleFigure;
+	RectangleFigure basicRectangleFigure;
 	ConstraintEditPart constraintEditPart;
 	private String labelText;
 	
@@ -34,7 +34,7 @@ public class BetweenArrowsConstraintFigure extends PolylineConnection implements
 		setMyBackgroundColor(ColorConstants.black);
 	}
 	
-	private BasicRectangleFigure getBasicRectangleFigure() {
+	private RectangleFigure getBasicRectangleFigure() {
 		if (basicRectangleFigure == null) {
 			basicRectangleFigure = constraintEditPart.getRectangleFigureForFigure();
 		}

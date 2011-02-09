@@ -10,9 +10,9 @@
 Ê*******************************************************************************/
 package no.hib.dpf.editor.parts;
 
-import no.hib.dpf.editor.model.DPFDiagram;
-import no.hib.dpf.editor.model.MovableAndSizable;
-import no.hib.dpf.editor.model.VNode;
+import no.hib.dpf.editor.viewmodel.DPFDiagram;
+import no.hib.dpf.editor.viewmodel.MovableAndSizable;
+import no.hib.dpf.editor.viewmodel.VNode;
 
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartFactory;

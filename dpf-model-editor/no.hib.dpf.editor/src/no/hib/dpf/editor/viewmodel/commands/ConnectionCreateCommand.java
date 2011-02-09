@@ -8,11 +8,11 @@
 �* Contributors:
 �*����Elias Volanakis - initial API and implementation
 �*******************************************************************************/
-package no.hib.dpf.editor.model.commands;
+package no.hib.dpf.editor.viewmodel.commands;
 
-import no.hib.dpf.editor.model.SingleNodeConnection;
-import no.hib.dpf.editor.model.VArrow;
-import no.hib.dpf.editor.model.VNode;
+import no.hib.dpf.editor.viewmodel.SingleNodeConnection;
+import no.hib.dpf.editor.viewmodel.VArrow;
+import no.hib.dpf.editor.viewmodel.VNode;
 import no.hib.dpf.metamodel.Arrow;
 
 import org.eclipse.gef.commands.Command;

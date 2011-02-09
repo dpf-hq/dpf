@@ -14,9 +14,9 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.List;
 
-import no.hib.dpf.editor.model.DPFDiagram;
-import no.hib.dpf.editor.model.ModelElement;
-import no.hib.dpf.editor.model.VNode;
+import no.hib.dpf.editor.viewmodel.DPFDiagram;
+import no.hib.dpf.editor.viewmodel.ModelElement;
+import no.hib.dpf.editor.viewmodel.VNode;
 
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;

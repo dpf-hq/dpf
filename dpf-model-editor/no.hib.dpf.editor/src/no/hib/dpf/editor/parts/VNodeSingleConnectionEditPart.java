@@ -2,7 +2,7 @@ package no.hib.dpf.editor.parts;
 
 import no.hib.dpf.editor.figures.DPFEpiConnectionFigure;
 import no.hib.dpf.editor.figures.EditableLabel;
-import no.hib.dpf.editor.model.SingleNodeConnection;
+import no.hib.dpf.editor.viewmodel.SingleNodeConnection;
 
 import org.eclipse.draw2d.IFigure;
 

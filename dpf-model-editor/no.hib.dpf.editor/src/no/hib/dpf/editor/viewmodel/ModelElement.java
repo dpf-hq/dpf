@@ -8,7 +8,7 @@
  * Contributors:
  *    Elias Volanakis - initial API and implementation
  *******************************************************************************/
-package no.hib.dpf.editor.model;
+package no.hib.dpf.editor.viewmodel;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;

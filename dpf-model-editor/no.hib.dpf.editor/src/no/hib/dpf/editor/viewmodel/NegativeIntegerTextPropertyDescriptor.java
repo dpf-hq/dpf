@@ -1,16 +1,12 @@
-package no.hib.dpf.editor.model;
+package no.hib.dpf.editor.viewmodel;
+
 
 import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.ui.views.properties.TextPropertyDescriptor;
 
-/**
- * Extracted from Shape. Validates integer properties.
- * @author oyvind
- *
- */
-public class IntegerTextPropertyDescriptor extends TextPropertyDescriptor {
-	
-	public IntegerTextPropertyDescriptor(Object id, String displayName) {
+public class NegativeIntegerTextPropertyDescriptor extends TextPropertyDescriptor {
+
+	public NegativeIntegerTextPropertyDescriptor(Object id, String displayName) {
 		super(id, displayName);
 		super.setValidator(new IntegerCellEditorValidator());
 	}
@@ -19,15 +15,15 @@ public class IntegerTextPropertyDescriptor extends TextPropertyDescriptor {
 
 		@Override
 		public String isValid(Object value) {
-			int intValue = -1;
+			int intValue = -2;
 			try {
 				intValue = Integer.parseInt((String) value);
 			} catch (NumberFormatException exc) {
 				return "Not a number";
 			}
-			return (intValue >= 0) ? null : "Value must be >=  0";
+			return (intValue >= -1) ? null : "Value must be >= -1";
 		}
 		
 	}	
-}
 
+}

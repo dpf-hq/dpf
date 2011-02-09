@@ -10,7 +10,7 @@
 Ê*******************************************************************************/
 package no.hib.dpf.editor.parts;
 
-import no.hib.dpf.editor.figures.BasicRectangleFigure;
+import no.hib.dpf.editor.figures.RectangleFigure;
 import no.hib.dpf.editor.figures.BetweenArrowsConstraintFigure;
 
 import org.eclipse.draw2d.IFigure;
@@ -24,7 +24,7 @@ class JImgConstraintEditPart extends ConstraintEditPart {
 		super(true);
 	}
 
-	public BasicRectangleFigure getRectangleFigureForFigure() {
+	public RectangleFigure getRectangleFigureForFigure() {
 		return getRectangleFigureForFigure(false);
 	}
 	

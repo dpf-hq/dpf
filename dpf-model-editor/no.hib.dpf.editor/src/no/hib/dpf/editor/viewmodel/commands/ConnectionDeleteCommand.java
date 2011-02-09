@@ -8,13 +8,13 @@
 �* Contributors:
 �*����Elias Volanakis - initial API and implementation
 �*******************************************************************************/
-package no.hib.dpf.editor.model.commands;
+package no.hib.dpf.editor.viewmodel.commands;
 
 import java.util.Iterator;
 import java.util.List;
 
-import no.hib.dpf.editor.model.VArrow;
-import no.hib.dpf.editor.model.VConstraint;
+import no.hib.dpf.editor.viewmodel.VArrow;
+import no.hib.dpf.editor.viewmodel.VConstraint;
 
 import org.eclipse.gef.commands.Command;
 

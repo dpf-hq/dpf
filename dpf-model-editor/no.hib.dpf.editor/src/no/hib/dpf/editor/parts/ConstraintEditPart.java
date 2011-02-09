@@ -2,10 +2,10 @@ package no.hib.dpf.editor.parts;
 
 import java.beans.PropertyChangeEvent;
 
-import no.hib.dpf.editor.figures.BasicRectangleFigure;
+import no.hib.dpf.editor.figures.RectangleFigure;
 import no.hib.dpf.editor.figures.ConnectionConstraintAnchor;
-import no.hib.dpf.editor.model.VConstraint;
-import no.hib.dpf.editor.model.commands.ConstraintDeleteCommand;
+import no.hib.dpf.editor.viewmodel.VConstraint;
+import no.hib.dpf.editor.viewmodel.commands.ConstraintDeleteCommand;
 
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
@@ -48,11 +48,11 @@ public abstract class ConstraintEditPart extends ModelElementConnectionEditPart 
 		});
 	}
 
-	public abstract BasicRectangleFigure getRectangleFigureForFigure();
+	public abstract RectangleFigure getRectangleFigureForFigure();
 
 	
-	protected BasicRectangleFigure getRectangleFigureForFigure(boolean fromSource) {
-		BasicRectangleFigure basicRectangleFigure = null;
+	protected RectangleFigure getRectangleFigureForFigure(boolean fromSource) {
+		RectangleFigure basicRectangleFigure = null;
 		
 		if (getSource() != null) {
 			VArrowEditPart source = (VArrowEditPart) getSource();
@@ -66,8 +66,8 @@ public abstract class ConstraintEditPart extends ModelElementConnectionEditPart 
 						shapeEditPart = (VNodeEditPart) source.getTarget();
 
 					}
-					if (shapeEditPart.getFigure() instanceof BasicRectangleFigure) {
-						basicRectangleFigure = (BasicRectangleFigure) shapeEditPart
+					if (shapeEditPart.getFigure() instanceof RectangleFigure) {
+						basicRectangleFigure = (RectangleFigure) shapeEditPart
 								.getFigure();
 					}
 				}

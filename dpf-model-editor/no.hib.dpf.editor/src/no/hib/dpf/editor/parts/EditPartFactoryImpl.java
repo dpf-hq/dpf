@@ -10,11 +10,11 @@
 �*******************************************************************************/
 package no.hib.dpf.editor.parts;
 
-import no.hib.dpf.editor.model.VArrow;
-import no.hib.dpf.editor.model.VConstraint;
-import no.hib.dpf.editor.model.DPFDiagram;
-import no.hib.dpf.editor.model.VNode;
-import no.hib.dpf.editor.model.SingleNodeConnection;
+import no.hib.dpf.editor.viewmodel.DPFDiagram;
+import no.hib.dpf.editor.viewmodel.SingleNodeConnection;
+import no.hib.dpf.editor.viewmodel.VArrow;
+import no.hib.dpf.editor.viewmodel.VConstraint;
+import no.hib.dpf.editor.viewmodel.VNode;
 
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartFactory;
