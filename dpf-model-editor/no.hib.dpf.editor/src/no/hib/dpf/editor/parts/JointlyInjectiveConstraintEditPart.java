@@ -18,9 +18,9 @@ import org.eclipse.draw2d.IFigure;
 /**
  * Edit part for Constraint model elements.
  */
-class JInjConstraintEditPart extends ConstraintEditPart {
+class JointlyInjectiveConstraintEditPart extends ConstraintEditPart {
 
-	public JInjConstraintEditPart() {
+	public JointlyInjectiveConstraintEditPart() {
 		super(false);
 	}
 
@@ -34,7 +34,7 @@ class JInjConstraintEditPart extends ConstraintEditPart {
 	 */
 	@Override
 	protected IFigure createFigureExec() {
-		return new BetweenArrowsConstraintFigure(this, "[Jointly Injective]");
+		return new BetweenArrowsConstraintFigure(this, "[ji]");
 	}
 
 }

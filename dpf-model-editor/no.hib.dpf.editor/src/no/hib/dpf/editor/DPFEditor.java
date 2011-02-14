@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 import no.hib.dpf.editor.editoractions.CreateConstraintAction;
-import no.hib.dpf.editor.editoractions.CreateJointImageConstraintAction;
+import no.hib.dpf.editor.editoractions.CreateJointlySurjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointlyInjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateMultiplicityConstraintAction;
 import no.hib.dpf.editor.editoractions.PrintAction;
@@ -148,7 +148,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 								// actions!
 		//registerAction(new SrcSelectAction(this));
 		constraintActions.add(new CreateJointlyInjectiveConstraintAction(this, diagram.getDpfGraph()));
-		constraintActions.add(new CreateJointImageConstraintAction(this, diagram.getDpfGraph()));
+		constraintActions.add(new CreateJointlySurjectiveConstraintAction(this, diagram.getDpfGraph()));
 		constraintActions.add(new CreateMultiplicityConstraintAction(this, diagram.getDpfGraph()));
 		
 		for (CreateConstraintAction createConstraintAction : constraintActions) {

@@ -18,9 +18,9 @@ import org.eclipse.draw2d.IFigure;
 /**
  * Edit part for Constraint model elements.
  */
-class JImgConstraintEditPart extends ConstraintEditPart {
+class JointlySurjectiveConstraintEditPart extends ConstraintEditPart {
 
-	public JImgConstraintEditPart() {
+	public JointlySurjectiveConstraintEditPart() {
 		super(true);
 	}
 
@@ -34,7 +34,7 @@ class JImgConstraintEditPart extends ConstraintEditPart {
 	 */
 	@Override
 	protected IFigure createFigureExec() {
-		return new BetweenArrowsConstraintFigure(this, "[Joint Image]");
+		return new BetweenArrowsConstraintFigure(this, "[js]");
 	}
 
 }

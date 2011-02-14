@@ -10,7 +10,7 @@
 Ê*******************************************************************************/
 package no.hib.dpf.editor;
 
-import no.hib.dpf.editor.editoractions.CreateJointImageConstraintAction;
+import no.hib.dpf.editor.editoractions.CreateJointlySurjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointlyInjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateMultiplicityConstraintAction;
 import no.hib.dpf.editor.editoractions.SrcSelectAction;
@@ -70,7 +70,7 @@ public void buildContextMenu(IMenuManager menu) {
 	
 	getActionAndAppendToMenu(menu, SrcSelectAction.ID);
 	getActionAndAppendToMenu(menu, CreateJointlyInjectiveConstraintAction.ID);
-	getActionAndAppendToMenu(menu, CreateJointImageConstraintAction.ID);
+	getActionAndAppendToMenu(menu, CreateJointlySurjectiveConstraintAction.ID);
 	getActionAndAppendToMenu(menu, CreateMultiplicityConstraintAction.ID);
 }
 
