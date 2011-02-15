@@ -8,28 +8,26 @@ package no.hib.dpf.metamodel.impl;
 
 import java.io.IOException;
 import java.util.Collection;
+
 import no.hib.dpf.metamodel.Constraint;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.MetamodelFactory;
 import no.hib.dpf.metamodel.MetamodelPackage;
-import no.hib.dpf.metamodel.Signature;
 import no.hib.dpf.metamodel.Specification;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 
 
@@ -42,7 +40,6 @@ import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
  * <ul>
  *   <li>{@link no.hib.dpf.metamodel.impl.SpecificationImpl#getGraph <em>Graph</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.impl.SpecificationImpl#getTypeGraph <em>Type Graph</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.impl.SpecificationImpl#getConstraints <em>Constraints</em>}</li>
  * </ul>
  * </p>
  *
@@ -68,16 +65,6 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 	 * @ordered
 	 */
 	protected Graph typeGraph;
-
-	/**
-	 * The cached value of the '{@link #getConstraints() <em>Constraints</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getConstraints()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Constraint> constraints;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -189,18 +176,6 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Constraint> getConstraints() {
-		if (constraints == null) {
-			constraints = new EObjectContainmentEList<Constraint>(Constraint.class, this, MetamodelPackage.SPECIFICATION__CONSTRAINTS);
-		}
-		return constraints;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public void save(URI uri) throws IOException {
@@ -227,8 +202,6 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 				return basicSetGraph(null, msgs);
 			case MetamodelPackage.SPECIFICATION__TYPE_GRAPH:
 				return basicSetTypeGraph(null, msgs);
-			case MetamodelPackage.SPECIFICATION__CONSTRAINTS:
-				return ((InternalEList<?>)getConstraints()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -245,8 +218,6 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 				return getGraph();
 			case MetamodelPackage.SPECIFICATION__TYPE_GRAPH:
 				return getTypeGraph();
-			case MetamodelPackage.SPECIFICATION__CONSTRAINTS:
-				return getConstraints();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -266,10 +237,6 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 			case MetamodelPackage.SPECIFICATION__TYPE_GRAPH:
 				setTypeGraph((Graph)newValue);
 				return;
-			case MetamodelPackage.SPECIFICATION__CONSTRAINTS:
-				getConstraints().clear();
-				getConstraints().addAll((Collection<? extends Constraint>)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -288,9 +255,6 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 			case MetamodelPackage.SPECIFICATION__TYPE_GRAPH:
 				setTypeGraph((Graph)null);
 				return;
-			case MetamodelPackage.SPECIFICATION__CONSTRAINTS:
-				getConstraints().clear();
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -307,8 +271,6 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 				return graph != null;
 			case MetamodelPackage.SPECIFICATION__TYPE_GRAPH:
 				return typeGraph != null;
-			case MetamodelPackage.SPECIFICATION__CONSTRAINTS:
-				return constraints != null && !constraints.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

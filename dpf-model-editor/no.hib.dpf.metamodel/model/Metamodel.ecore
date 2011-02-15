@@ -157,8 +157,6 @@
               eType="#//hib/dpf/metamodel/Graph" containment="true"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="typeGraph" eType="#//hib/dpf/metamodel/Graph"
               containment="true"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
-              eType="#//hib/dpf/metamodel/Constraint" containment="true"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EDataType" name="EURI" instanceClassName="org.eclipse.emf.common.util.URI"/>
         <eClassifiers xsi:type="ecore:EClass" name="ModelHierarchy">

@@ -640,15 +640,6 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSpecification_Constraints() {
-		return (EReference)specificationEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getModelHierarchy() {
 		return modelHierarchyEClass;
 	}
@@ -767,7 +758,6 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		specificationEClass = createEClass(SPECIFICATION);
 		createEReference(specificationEClass, SPECIFICATION__GRAPH);
 		createEReference(specificationEClass, SPECIFICATION__TYPE_GRAPH);
-		createEReference(specificationEClass, SPECIFICATION__CONSTRAINTS);
 
 		modelHierarchyEClass = createEClass(MODEL_HIERARCHY);
 		createEReference(modelHierarchyEClass, MODEL_HIERARCHY__SPECIFICATIONS);
@@ -950,7 +940,6 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		initEClass(specificationEClass, Specification.class, "Specification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSpecification_Graph(), this.getGraph(), null, "graph", null, 1, 1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSpecification_TypeGraph(), this.getGraph(), null, "typeGraph", null, 0, 1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSpecification_Constraints(), this.getConstraint(), null, "constraints", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = addEOperation(specificationEClass, null, "save", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getEURI(), "uri", 0, 1, IS_UNIQUE, IS_ORDERED);

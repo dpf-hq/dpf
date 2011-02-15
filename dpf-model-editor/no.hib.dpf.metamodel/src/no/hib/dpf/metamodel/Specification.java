@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link no.hib.dpf.metamodel.Specification#getGraph <em>Graph</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Specification#getTypeGraph <em>Type Graph</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Specification#getConstraints <em>Constraints</em>}</li>
  * </ul>
  * </p>
  *
@@ -81,22 +80,6 @@ public interface Specification extends EObject {
 	 * @generated
 	 */
 	void setTypeGraph(Graph value);
-
-	/**
-	 * Returns the value of the '<em><b>Constraints</b></em>' containment reference list.
-	 * The list contents are of type {@link no.hib.dpf.metamodel.Constraint}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Constraints</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Constraints</em>' containment reference list.
-	 * @see no.hib.dpf.metamodel.MetamodelPackage#getSpecification_Constraints()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<Constraint> getConstraints();
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -643,22 +643,13 @@ public interface MetamodelPackage extends EPackage {
 	int SPECIFICATION__TYPE_GRAPH = 1;
 
 	/**
-	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SPECIFICATION__CONSTRAINTS = 2;
-
-	/**
 	 * The number of structural features of the '<em>Specification</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SPECIFICATION_FEATURE_COUNT = 3;
+	int SPECIFICATION_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.ModelHierarchyImpl <em>Model Hierarchy</em>}' class.
@@ -1207,17 +1198,6 @@ public interface MetamodelPackage extends EPackage {
 	EReference getSpecification_TypeGraph();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link no.hib.dpf.metamodel.Specification#getConstraints <em>Constraints</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Constraints</em>'.
-	 * @see no.hib.dpf.metamodel.Specification#getConstraints()
-	 * @see #getSpecification()
-	 * @generated
-	 */
-	EReference getSpecification_Constraints();
-
-	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.metamodel.ModelHierarchy <em>Model Hierarchy</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1677,14 +1657,6 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SPECIFICATION__TYPE_GRAPH = eINSTANCE.getSpecification_TypeGraph();
-
-		/**
-		 * The meta object literal for the '<em><b>Constraints</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SPECIFICATION__CONSTRAINTS = eINSTANCE.getSpecification_Constraints();
 
 		/**
 		 * The meta object literal for the '{@link no.hib.dpf.metamodel.impl.ModelHierarchyImpl <em>Model Hierarchy</em>}' class.
