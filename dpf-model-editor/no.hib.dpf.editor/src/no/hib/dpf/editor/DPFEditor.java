@@ -149,6 +149,10 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 	protected void createActions() {
 		super.createActions(); // to get the default actions
 		
+		// First step to move the predicates out of the editor:
+		// There remains to make some coupling between these predicates
+		// and the parts/figures that implement them.
+		
 		Predicate predicate = MetamodelFactory.eINSTANCE.createPredicate("n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3");
 		ConstraintProperties jointlyInjectiveProperties = new ConstraintProperties(
 				predicate, 
