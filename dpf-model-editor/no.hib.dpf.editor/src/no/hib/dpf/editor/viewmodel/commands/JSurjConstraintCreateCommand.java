@@ -11,7 +11,7 @@ import org.eclipse.gef.commands.Command;
  * A command to create a constraint between two connections. The command can be
  * undone or redone.
  */
-public class JImgConstraintCreateCommand extends Command {
+public class JSurjConstraintCreateCommand extends Command {
 	/** The connection instance. */
 	private VConstraint constraint;
 
@@ -22,7 +22,7 @@ public class JImgConstraintCreateCommand extends Command {
 	 * Instantiate a command that can create a connection between two
 	 * connections.
 	 */
-	public JImgConstraintCreateCommand(VArrow source, VArrow target) {
+	public JSurjConstraintCreateCommand(VArrow source, VArrow target) {
 		if (source == null) {
 			throw new IllegalArgumentException();
 		}

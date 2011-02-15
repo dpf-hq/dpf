@@ -4,7 +4,7 @@ import java.util.List;
 
 import no.hib.dpf.editor.parts.VNodeEditPart;
 import no.hib.dpf.editor.viewmodel.VArrow;
-import no.hib.dpf.editor.viewmodel.commands.JImgConstraintCreateCommand;
+import no.hib.dpf.editor.viewmodel.commands.JSurjConstraintCreateCommand;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.MetamodelFactory;
 import no.hib.dpf.metamodel.Predicate;
@@ -26,7 +26,7 @@ public class CreateJointlySurjectiveConstraintAction extends CreateConstraintAct
 
 	@Override
 	protected Command getConstraintCreateCommand(List<ConnectionEditPart> connectionEditParts, List<VNodeEditPart> shapeEditParts) {
-		return new JImgConstraintCreateCommand((VArrow)connectionEditParts.get(0).getModel(), (VArrow)connectionEditParts.get(1).getModel());
+		return new JSurjConstraintCreateCommand((VArrow)connectionEditParts.get(0).getModel(), (VArrow)connectionEditParts.get(1).getModel());
 	}
 	
 	
