@@ -59,8 +59,8 @@ private EditPart getPartForElement(Object modelElement) {
 	if (modelElement instanceof VConstraint) {
 		// Edit part according to the type of constraint element:
 		switch (((VConstraint)modelElement).getConstraintType()) {
-			case JointImage : return new JointlySurjectiveConstraintEditPart();
-			case JointlyInjective : return new JointlyInjectiveConstraintEditPart();
+			case JOINTLY_SURJECTIVE : return new JointlySurjectiveConstraintEditPart();
+			case JOINTLY_INJECTIVE : return new JointlyInjectiveConstraintEditPart();
 			//case Multiplicity : return new MultiplicityConstraintEditPart();
 		}
 		throw new RuntimeException("The specified constraint type doesn't have an edit part association.");

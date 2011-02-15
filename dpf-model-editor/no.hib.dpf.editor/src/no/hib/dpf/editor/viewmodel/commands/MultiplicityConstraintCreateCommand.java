@@ -44,7 +44,7 @@ public class MultiplicityConstraintCreateCommand extends Command {
 	 * @see org.eclipse.gef.commands.Command#execute()
 	 */
 	public void execute() {
-		constraint = new SingleLineConstraintElement(connection, VConstraint.ConstraintType.Multiplicity);
+		constraint = new SingleLineConstraintElement(connection, VConstraint.ConstraintType.MULTIPLICITY);
 	}
 
 	/*

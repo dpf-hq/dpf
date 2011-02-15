@@ -52,15 +52,15 @@ public class VConstraint extends ModelElement implements Constraint, IDObjectCon
 	}	
 	
 	public enum ConstraintType {
-		JointlyInjective,
-		JointImage,
-		Multiplicity
+		JOINTLY_INJECTIVE,
+		JOINTLY_SURJECTIVE,
+		MULTIPLICITY
 	}
 	
 	private ConstraintType constraintType;
 	
 	/**
-	 * Create a (solid) connection between two distinct shapes.
+	 * Create a constraint between two arrows.
 	 * 
 	 * @param source
 	 *            a source endpoint for this connection (non null)

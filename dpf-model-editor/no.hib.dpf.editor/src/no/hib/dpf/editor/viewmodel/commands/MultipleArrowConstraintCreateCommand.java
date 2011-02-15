@@ -10,25 +10,29 @@ import org.eclipse.gef.commands.Command;
 /**
  * A command to create a constraint between two connections. The command can be
  * undone or redone.
+ * TODO: generalize the class to accept more than two arrows.
  */
-public class JInjConstraintCreateCommand extends Command {
+public class MultipleArrowConstraintCreateCommand extends Command {
 	/** The connection instance. */
 	private VConstraint constraint;
 
 	private final VArrow source;
 	private VArrow target;
+	
+	private VConstraint.ConstraintType constraintType;
 
 	/**
 	 * Instantiate a command that can create a connection between two
 	 * connections.
 	 */
-	public JInjConstraintCreateCommand(VArrow source, VArrow target) {
+	public MultipleArrowConstraintCreateCommand(VArrow source, VArrow target, VConstraint.ConstraintType constraintType) {
 		if (source == null) {
 			throw new IllegalArgumentException();
 		}
-		setLabel("connection creation");
+		setLabel("constraint creation");
 		this.source = source;
 		this.target = target;
+		this.constraintType = constraintType;
 	}
 
 	/*
@@ -47,8 +51,7 @@ public class JInjConstraintCreateCommand extends Command {
 	}
 
 	private boolean doSourceToTargetAlreadyExist() {
-		for (Iterator<VConstraint> iter = source.getSourceConstraints()
-				.iterator(); iter.hasNext();) {
+		for (Iterator<VConstraint> iter = source.getSourceConstraints().iterator(); iter.hasNext();) {
 			VConstraint constraint = iter.next();
 			if (constraint.getConnectionTarget().equals(target)) {
 				return true;
@@ -64,7 +67,7 @@ public class JInjConstraintCreateCommand extends Command {
 	 */
 	public void execute() {
 		// create a new connection between source and target
-		constraint = new VConstraint(source, target, VConstraint.ConstraintType.JointlyInjective);
+		constraint = new VConstraint(source, target, constraintType);
 	}
 
 	/*
