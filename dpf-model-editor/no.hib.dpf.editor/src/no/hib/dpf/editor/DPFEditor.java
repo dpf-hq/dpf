@@ -215,7 +215,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 
 		// configure the context menu provider
 		ContextMenuProvider cmProvider = new DPFEditorContextMenuProvider(
-				viewer, getActionRegistry());
+				viewer, getActionRegistry(), null);
 		viewer.setContextMenu(cmProvider);
 		getSite().registerContextMenu(cmProvider, viewer);
 		
@@ -586,7 +586,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 			getViewer().setEditDomain(getEditDomain());
 			getViewer().setEditPartFactory(new VNodesTreeEditPartFactory());
 			// configure & add context menu to viewer
-			ContextMenuProvider cmProvider = new DPFEditorContextMenuProvider(getViewer(), getActionRegistry());
+			ContextMenuProvider cmProvider = new DPFEditorContextMenuProvider(getViewer(), getActionRegistry(), null);
 			getViewer().setContextMenu(cmProvider);
 			getSite().registerContextMenu(
 					"org.eclipse.gef.examples.shapes.outline.contextmenu",

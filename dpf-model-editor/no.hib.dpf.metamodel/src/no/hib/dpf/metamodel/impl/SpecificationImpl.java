@@ -7,6 +7,8 @@
 package no.hib.dpf.metamodel.impl;
 
 import java.io.IOException;
+import java.util.Collection;
+import no.hib.dpf.metamodel.Constraint;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.MetamodelFactory;
 import no.hib.dpf.metamodel.MetamodelPackage;
@@ -16,12 +18,15 @@ import no.hib.dpf.metamodel.Specification;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -35,25 +40,15 @@ import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link no.hib.dpf.metamodel.impl.SpecificationImpl#getSignature <em>Signature</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.impl.SpecificationImpl#getGraph <em>Graph</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.impl.SpecificationImpl#getTypeGraph <em>Type Graph</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.impl.SpecificationImpl#getConstraints <em>Constraints</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class SpecificationImpl extends EObjectImpl implements Specification {
-	/**
-	 * The cached value of the '{@link #getSignature() <em>Signature</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSignature()
-	 * @generated
-	 * @ordered
-	 */
-	protected Signature signature;
-
 	/**
 	 * The cached value of the '{@link #getGraph() <em>Graph</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -75,6 +70,16 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 	protected Graph typeGraph;
 
 	/**
+	 * The cached value of the '{@link #getConstraints() <em>Constraints</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getConstraints()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Constraint> constraints;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
@@ -93,49 +98,6 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 	@Override
 	protected EClass eStaticClass() {
 		return MetamodelPackage.Literals.SPECIFICATION;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Signature getSignature() {
-		return signature;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetSignature(Signature newSignature, NotificationChain msgs) {
-		Signature oldSignature = signature;
-		signature = newSignature;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MetamodelPackage.SPECIFICATION__SIGNATURE, oldSignature, newSignature);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSignature(Signature newSignature) {
-		if (newSignature != signature) {
-			NotificationChain msgs = null;
-			if (signature != null)
-				msgs = ((InternalEObject)signature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MetamodelPackage.SPECIFICATION__SIGNATURE, null, msgs);
-			if (newSignature != null)
-				msgs = ((InternalEObject)newSignature).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MetamodelPackage.SPECIFICATION__SIGNATURE, null, msgs);
-			msgs = basicSetSignature(newSignature, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.SPECIFICATION__SIGNATURE, newSignature, newSignature));
 	}
 
 	/**
@@ -227,6 +189,18 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Constraint> getConstraints() {
+		if (constraints == null) {
+			constraints = new EObjectContainmentEList<Constraint>(Constraint.class, this, MetamodelPackage.SPECIFICATION__CONSTRAINTS);
+		}
+		return constraints;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public void save(URI uri) throws IOException {
@@ -249,12 +223,12 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MetamodelPackage.SPECIFICATION__SIGNATURE:
-				return basicSetSignature(null, msgs);
 			case MetamodelPackage.SPECIFICATION__GRAPH:
 				return basicSetGraph(null, msgs);
 			case MetamodelPackage.SPECIFICATION__TYPE_GRAPH:
 				return basicSetTypeGraph(null, msgs);
+			case MetamodelPackage.SPECIFICATION__CONSTRAINTS:
+				return ((InternalEList<?>)getConstraints()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -267,12 +241,12 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MetamodelPackage.SPECIFICATION__SIGNATURE:
-				return getSignature();
 			case MetamodelPackage.SPECIFICATION__GRAPH:
 				return getGraph();
 			case MetamodelPackage.SPECIFICATION__TYPE_GRAPH:
 				return getTypeGraph();
+			case MetamodelPackage.SPECIFICATION__CONSTRAINTS:
+				return getConstraints();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -282,17 +256,19 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MetamodelPackage.SPECIFICATION__SIGNATURE:
-				setSignature((Signature)newValue);
-				return;
 			case MetamodelPackage.SPECIFICATION__GRAPH:
 				setGraph((Graph)newValue);
 				return;
 			case MetamodelPackage.SPECIFICATION__TYPE_GRAPH:
 				setTypeGraph((Graph)newValue);
+				return;
+			case MetamodelPackage.SPECIFICATION__CONSTRAINTS:
+				getConstraints().clear();
+				getConstraints().addAll((Collection<? extends Constraint>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -306,14 +282,14 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.SPECIFICATION__SIGNATURE:
-				setSignature((Signature)null);
-				return;
 			case MetamodelPackage.SPECIFICATION__GRAPH:
 				setGraph((Graph)null);
 				return;
 			case MetamodelPackage.SPECIFICATION__TYPE_GRAPH:
 				setTypeGraph((Graph)null);
+				return;
+			case MetamodelPackage.SPECIFICATION__CONSTRAINTS:
+				getConstraints().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -327,12 +303,12 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MetamodelPackage.SPECIFICATION__SIGNATURE:
-				return signature != null;
 			case MetamodelPackage.SPECIFICATION__GRAPH:
 				return graph != null;
 			case MetamodelPackage.SPECIFICATION__TYPE_GRAPH:
 				return typeGraph != null;
+			case MetamodelPackage.SPECIFICATION__CONSTRAINTS:
+				return constraints != null && !constraints.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

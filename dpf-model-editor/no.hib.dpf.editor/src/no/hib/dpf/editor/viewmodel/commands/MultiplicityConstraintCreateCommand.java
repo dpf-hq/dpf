@@ -4,28 +4,23 @@ import no.hib.dpf.editor.viewmodel.SingleLineConstraintElement;
 import no.hib.dpf.editor.viewmodel.VArrow;
 import no.hib.dpf.editor.viewmodel.VConstraint;
 
-import org.eclipse.gef.commands.Command;
-
 /**
- * A command to create a constraint between two connections. The command can be
+ * A command to create a constraint on a single arrow. The command can be
  * undone or redone.
  */
-public class MultiplicityConstraintCreateCommand extends Command {
-	/** The connection instance. */
-	private VConstraint constraint;
+public class MultiplicityConstraintCreateCommand extends ConstraintCreateCommand {
 
-	private final VArrow connection;
+	private final VArrow arrow;
 
 	/**
-	 * Instantiate a command that can create a connection between two
-	 * connections.
+	 * Instantiate a command that can create a constraint on a single arrow.
 	 */
-	public MultiplicityConstraintCreateCommand(VArrow connection) {
-		if (connection == null) {
+	public MultiplicityConstraintCreateCommand(VArrow arrow) {
+		if (arrow == null) {
 			throw new IllegalArgumentException();
 		}
 		setLabel("connection creation");
-		this.connection = connection;
+		this.arrow = arrow;
 	}
 
 	/*
@@ -34,7 +29,7 @@ public class MultiplicityConstraintCreateCommand extends Command {
 	 * @see org.eclipse.gef.commands.Command#canExecute()
 	 */
 	public boolean canExecute() {
-		// TODO: check for constraint already set
+		// TODO: check for some constraint already set(?)
 		return true;
 	}
 
@@ -44,23 +39,7 @@ public class MultiplicityConstraintCreateCommand extends Command {
 	 * @see org.eclipse.gef.commands.Command#execute()
 	 */
 	public void execute() {
-		constraint = new SingleLineConstraintElement(connection, VConstraint.ConstraintType.MULTIPLICITY);
+		constraint = new SingleLineConstraintElement(arrow, VConstraint.ConstraintType.MULTIPLICITY);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see org.eclipse.gef.commands.Command#redo()
-	 */
-	public void redo() {
-		constraint.reconnect();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.gef.commands.Command#undo()
-	 */
-	public void undo() {
-		constraint.disconnect();
-	}
 }

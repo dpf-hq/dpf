@@ -625,22 +625,13 @@ public interface MetamodelPackage extends EPackage {
 	int SPECIFICATION = 13;
 
 	/**
-	 * The feature id for the '<em><b>Signature</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SPECIFICATION__SIGNATURE = 0;
-
-	/**
 	 * The feature id for the '<em><b>Graph</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SPECIFICATION__GRAPH = 1;
+	int SPECIFICATION__GRAPH = 0;
 
 	/**
 	 * The feature id for the '<em><b>Type Graph</b></em>' containment reference.
@@ -649,7 +640,16 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SPECIFICATION__TYPE_GRAPH = 2;
+	int SPECIFICATION__TYPE_GRAPH = 1;
+
+	/**
+	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPECIFICATION__CONSTRAINTS = 2;
 
 	/**
 	 * The number of structural features of the '<em>Specification</em>' class.
@@ -1185,17 +1185,6 @@ public interface MetamodelPackage extends EPackage {
 	EClass getSpecification();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link no.hib.dpf.metamodel.Specification#getSignature <em>Signature</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Signature</em>'.
-	 * @see no.hib.dpf.metamodel.Specification#getSignature()
-	 * @see #getSpecification()
-	 * @generated
-	 */
-	EReference getSpecification_Signature();
-
-	/**
 	 * Returns the meta object for the containment reference '{@link no.hib.dpf.metamodel.Specification#getGraph <em>Graph</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1216,6 +1205,17 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getSpecification_TypeGraph();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link no.hib.dpf.metamodel.Specification#getConstraints <em>Constraints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Constraints</em>'.
+	 * @see no.hib.dpf.metamodel.Specification#getConstraints()
+	 * @see #getSpecification()
+	 * @generated
+	 */
+	EReference getSpecification_Constraints();
 
 	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.metamodel.ModelHierarchy <em>Model Hierarchy</em>}'.
@@ -1663,14 +1663,6 @@ public interface MetamodelPackage extends EPackage {
 		EClass SPECIFICATION = eINSTANCE.getSpecification();
 
 		/**
-		 * The meta object literal for the '<em><b>Signature</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SPECIFICATION__SIGNATURE = eINSTANCE.getSpecification_Signature();
-
-		/**
 		 * The meta object literal for the '<em><b>Graph</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1685,6 +1677,14 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SPECIFICATION__TYPE_GRAPH = eINSTANCE.getSpecification_TypeGraph();
+
+		/**
+		 * The meta object literal for the '<em><b>Constraints</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SPECIFICATION__CONSTRAINTS = eINSTANCE.getSpecification_Constraints();
 
 		/**
 		 * The meta object literal for the '{@link no.hib.dpf.metamodel.impl.ModelHierarchyImpl <em>Model Hierarchy</em>}' class.

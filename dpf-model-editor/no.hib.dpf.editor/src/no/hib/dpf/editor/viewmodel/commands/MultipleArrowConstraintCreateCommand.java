@@ -5,17 +5,13 @@ import java.util.Iterator;
 import no.hib.dpf.editor.viewmodel.VArrow;
 import no.hib.dpf.editor.viewmodel.VConstraint;
 
-import org.eclipse.gef.commands.Command;
 
 /**
  * A command to create a constraint between two connections. The command can be
  * undone or redone.
  * TODO: generalize the class to accept more than two arrows.
  */
-public class MultipleArrowConstraintCreateCommand extends Command {
-	/** The connection instance. */
-	private VConstraint constraint;
-
+public class MultipleArrowConstraintCreateCommand extends ConstraintCreateCommand {
 	private final VArrow source;
 	private VArrow target;
 	
@@ -70,32 +66,16 @@ public class MultipleArrowConstraintCreateCommand extends Command {
 		constraint = new VConstraint(source, target, constraintType);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see org.eclipse.gef.commands.Command#redo()
-	 */
-	public void redo() {
-		constraint.reconnect();
-	}
+//	/**
+//	 * Set the target endpoint for the connection.
+//	 * @param target that target endpoint (a non-null Shape instance)
+//	 * @throws IllegalArgumentException if target is null
+//	 */
+//	public void setTarget(VArrow target) {
+//		if (target == null) {
+//			throw new IllegalArgumentException();
+//		}
+//		this.target = target;
+//	}
 
-	/**
-	 * Set the target endpoint for the connection.
-	 * @param target that target endpoint (a non-null Shape instance)
-	 * @throws IllegalArgumentException if target is null
-	 */
-	public void setTarget(VArrow target) {
-		if (target == null) {
-			throw new IllegalArgumentException();
-		}
-		this.target = target;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.gef.commands.Command#undo()
-	 */
-	public void undo() {
-		constraint.disconnect();
-	}
 }

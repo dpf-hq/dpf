@@ -35,9 +35,8 @@ import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.internal.ide.IDEWorkbenchMessages;
 
 /**
- * Create new new .shape-file. Those files can be used with the ShapesEditor
- * (see plugin.xml).
- * 
+ * Create a new .dpf-file.
+ *  
  * @author Elias Volanakis
  */
 public class DPFCreationWizard extends Wizard implements INewWizard {
