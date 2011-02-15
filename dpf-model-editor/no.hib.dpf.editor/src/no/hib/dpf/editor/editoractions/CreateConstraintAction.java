@@ -19,9 +19,11 @@ public abstract class CreateConstraintAction extends SelectionActionForEditParts
 
 	private Predicate testPredicate; 
 	
-	public CreateConstraintAction(IWorkbenchPart part, String ID, Graph graph, Predicate testPredicate) {
+	public CreateConstraintAction(IWorkbenchPart part, String ID, Graph graph, ConstraintProperties constraintProperties) {
 		super(part, ID, graph);
-		this.testPredicate = testPredicate;
+		setText(constraintProperties.getText());
+		setToolTipText(constraintProperties.getTooltipText());
+		this.testPredicate = constraintProperties.getPredicate();
 	}
 	
 	@Override

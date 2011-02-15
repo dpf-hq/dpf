@@ -7,8 +7,6 @@ import no.hib.dpf.editor.viewmodel.VArrow;
 import no.hib.dpf.editor.viewmodel.VConstraint;
 import no.hib.dpf.editor.viewmodel.commands.MultipleArrowConstraintCreateCommand;
 import no.hib.dpf.metamodel.Graph;
-import no.hib.dpf.metamodel.MetamodelFactory;
-import no.hib.dpf.metamodel.Predicate;
 
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.commands.Command;
@@ -16,13 +14,10 @@ import org.eclipse.ui.IWorkbenchPart;
 
 public class CreateJointlyInjectiveConstraintAction extends CreateConstraintAction {
 		
-	public static final String ID="no.hib.dpf.editor.editoractions.CreateJointlyInjectiveConstraintAction";
-	private static Predicate JIPredicate = MetamodelFactory.eINSTANCE.createPredicate("n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3");
-
-	public CreateJointlyInjectiveConstraintAction(IWorkbenchPart part, Graph graph) {
-		super(part, ID, graph, JIPredicate);
-		setText("Create new Jointly Injective Constraint"); // sets text displayed in the menu
-		setToolTipText("Creates a new Jointly Injective Constraint");
+	public static final String ID = "no.hib.dpf.editor.editoractions.CreateJointlyInjectiveConstraintAction";
+	
+	public CreateJointlyInjectiveConstraintAction(IWorkbenchPart part, Graph graph, ConstraintProperties constraintProperties) {
+		super(part, ID, graph, constraintProperties);
 	}
 	
 	@Override

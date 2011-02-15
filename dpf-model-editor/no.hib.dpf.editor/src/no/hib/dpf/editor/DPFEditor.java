@@ -23,6 +23,7 @@ import java.util.EventObject;
 import java.util.List;
 import java.util.Map;
 
+import no.hib.dpf.editor.editoractions.ConstraintProperties;
 import no.hib.dpf.editor.editoractions.CreateConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointlySurjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointlyInjectiveConstraintAction;
@@ -33,8 +34,10 @@ import no.hib.dpf.editor.parts.VNodesTreeEditPartFactory;
 import no.hib.dpf.editor.viewmodel.DPFDiagram;
 import no.hib.dpf.editor.viewmodel.ModelElement;
 import no.hib.dpf.editor.viewmodel.ModelSerializationException;
+import no.hib.dpf.editor.viewmodel.VConstraint;
 import no.hib.dpf.metamodel.IDObject;
 import no.hib.dpf.metamodel.MetamodelFactory;
+import no.hib.dpf.metamodel.Predicate;
 import no.hib.dpf.metamodel.Specification;
 
 import org.eclipse.core.resources.IFile;
@@ -144,12 +147,36 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 	 */
 	@Override
 	protected void createActions() {
-		super.createActions(); // important else we won't get the default
-								// actions!
-		//registerAction(new SrcSelectAction(this));
-		constraintActions.add(new CreateJointlyInjectiveConstraintAction(this, diagram.getDpfGraph()));
-		constraintActions.add(new CreateJointlySurjectiveConstraintAction(this, diagram.getDpfGraph()));
-		constraintActions.add(new CreateMultiplicityConstraintAction(this, diagram.getDpfGraph()));
+		super.createActions(); // to get the default actions
+		
+		Predicate predicate = MetamodelFactory.eINSTANCE.createPredicate("n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3");
+		ConstraintProperties jointlyInjectiveProperties = new ConstraintProperties(
+				predicate, 
+				"Create new [jointly-injective] Constraint",
+				"Creates a new Jointly Injective Constraint",
+				VConstraint.ConstraintType.JOINTLY_INJECTIVE);
+		
+		constraintActions.add(new CreateJointlyInjectiveConstraintAction(this, diagram.getDpfGraph(), jointlyInjectiveProperties));
+		
+		
+		predicate = MetamodelFactory.eINSTANCE.createPredicate("n_1,n_2,n_3", "e_1:n_2:n_1,e_2:n_3:n_1");
+		ConstraintProperties jointlySurjectiveProperties = new ConstraintProperties(
+				predicate, 
+				"Create new [jointly-surjective] Constraint",
+				"Creates a new Jointly Surjective Constraint",
+				VConstraint.ConstraintType.JOINTLY_SURJECTIVE);
+		
+		constraintActions.add(new CreateJointlySurjectiveConstraintAction(this, diagram.getDpfGraph(), jointlySurjectiveProperties));
+		
+		predicate = MetamodelFactory.eINSTANCE.createPredicate("n_1,n_2", "e_1:n_1:n_2");
+		ConstraintProperties multiplicityProperties = new ConstraintProperties(
+				predicate, 
+				"Create new Multiplicity Constraint",
+				"Creates a new Multiplicity Constraint",
+				VConstraint.ConstraintType.MULTIPLICITY);
+		
+		
+		constraintActions.add(new CreateMultiplicityConstraintAction(this, diagram.getDpfGraph(), multiplicityProperties));
 		
 		for (CreateConstraintAction createConstraintAction : constraintActions) {
 			registerAction(createConstraintAction);
