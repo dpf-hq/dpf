@@ -14,7 +14,6 @@ import no.hib.dpf.editor.editoractions.CreateJointlyInjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointlySurjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateMultiplicityConstraintAction;
 import no.hib.dpf.editor.editoractions.SrcSelectAction;
-import no.hib.dpf.metamodel.Signature;
 
 import org.eclipse.gef.ContextMenuProvider;
 import org.eclipse.gef.EditPartViewer;
@@ -32,7 +31,6 @@ import org.eclipse.ui.actions.ActionFactory;
 public class DPFEditorContextMenuProvider extends ContextMenuProvider {
 
 	private ActionRegistry actionRegistry;
-	private Signature signature;
 
 	/**
 	 * Instantiate a new menu context provider for the specified EditPartViewer
@@ -48,13 +46,12 @@ public class DPFEditorContextMenuProvider extends ContextMenuProvider {
 	 *             if registry is <tt>null</tt>.
 	 */
 	public DPFEditorContextMenuProvider(EditPartViewer viewer,
-			ActionRegistry registry, Signature signature) {
+			ActionRegistry registry) {
 		super(viewer);
 		if (registry == null) {
 			throw new IllegalArgumentException();
 		}
 		this.actionRegistry = registry;
-		this.signature = signature;
 	}
 
 	/**

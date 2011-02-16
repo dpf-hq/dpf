@@ -4,7 +4,6 @@ import java.util.List;
 
 import no.hib.dpf.editor.parts.VArrowEditPart;
 import no.hib.dpf.editor.parts.VNodeEditPart;
-import no.hib.dpf.editor.viewmodel.VArrow;
 import no.hib.dpf.metamodel.Arrow;
 import no.hib.dpf.metamodel.Constraint;
 import no.hib.dpf.metamodel.Graph;
@@ -12,7 +11,6 @@ import no.hib.dpf.metamodel.Node;
 import no.hib.dpf.metamodel.Predicate;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editparts.AbstractEditPart;
@@ -36,7 +34,8 @@ public abstract class CreateConstraintAction extends SelectionActionForEditParts
 		EList<Arrow> selectionArrows = getSelectionArrows();
 		EList<Node> selectionNodes = getSelectionNodes();
 		if (testPredicate.canCreateConstraint(addUnselectedNodesToSelection(selectionNodes, selectionArrows), selectionArrows, graph)) {
-			// Keep the selection arrows and nodes from the last successfull enabled-calculation:
+			// Keep the selection arrows and nodes from the last successfull enabled-calculation.
+			// The reason for this is: as the "createIDObject" method is called, the user has already de-selected the arrows and nodes.
 			this.selectionArrows = selectionArrows;
 			this.selectionNodes = selectionNodes;
 			return true;

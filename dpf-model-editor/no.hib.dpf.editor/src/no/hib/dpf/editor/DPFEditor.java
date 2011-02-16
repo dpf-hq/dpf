@@ -37,7 +37,6 @@ import no.hib.dpf.editor.viewmodel.ModelSerializationException;
 import no.hib.dpf.editor.viewmodel.VConstraint;
 import no.hib.dpf.metamodel.IDObject;
 import no.hib.dpf.metamodel.MetamodelFactory;
-import no.hib.dpf.metamodel.Predicate;
 import no.hib.dpf.metamodel.Signature;
 import no.hib.dpf.metamodel.Specification;
 
@@ -218,7 +217,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 
 		// configure the context menu provider
 		ContextMenuProvider cmProvider = new DPFEditorContextMenuProvider(
-				viewer, getActionRegistry(), null);
+				viewer, getActionRegistry());
 		viewer.setContextMenu(cmProvider);
 		getSite().registerContextMenu(cmProvider, viewer);
 		
@@ -625,7 +624,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 			getViewer().setEditDomain(getEditDomain());
 			getViewer().setEditPartFactory(new VNodesTreeEditPartFactory());
 			// configure & add context menu to viewer
-			ContextMenuProvider cmProvider = new DPFEditorContextMenuProvider(getViewer(), getActionRegistry(), null);
+			ContextMenuProvider cmProvider = new DPFEditorContextMenuProvider(getViewer(), getActionRegistry());
 			getViewer().setContextMenu(cmProvider);
 			getSite().registerContextMenu(
 					"org.eclipse.gef.examples.shapes.outline.contextmenu",
