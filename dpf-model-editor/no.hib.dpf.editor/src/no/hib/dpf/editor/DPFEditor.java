@@ -37,7 +37,9 @@ import no.hib.dpf.editor.viewmodel.ModelSerializationException;
 import no.hib.dpf.editor.viewmodel.VConstraint;
 import no.hib.dpf.metamodel.IDObject;
 import no.hib.dpf.metamodel.MetamodelFactory;
+import no.hib.dpf.metamodel.ModelHierarchy;
 import no.hib.dpf.metamodel.Predicate;
+import no.hib.dpf.metamodel.Signature;
 import no.hib.dpf.metamodel.Specification;
 
 import org.eclipse.core.resources.IFile;
@@ -93,6 +95,8 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 	/** This is the root of the editor's model. */
 	private DPFDiagram diagram;
 	private Specification specification = MetamodelFactory.eINSTANCE.createSpecification();
+	// private ModelHierarchy modelHierarchy = MetamodelFactory.eINSTANCE.createModelHierarchy();
+	private Signature signature = MetamodelFactory.eINSTANCE.createSignature();
 		
 	private static String dpfFilename;
 	
@@ -153,7 +157,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		// There remains to make some coupling between these predicates
 		// and the parts/figures that implement them.
 		
-		Predicate predicate = MetamodelFactory.eINSTANCE.createPredicate("n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3");
+		Predicate predicate = MetamodelFactory.eINSTANCE.createPredicate("n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3");		
 		ConstraintProperties jointlyInjectiveProperties = new ConstraintProperties(
 				predicate, 
 				"Create new [jointly-injective] Constraint",
@@ -164,6 +168,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		
 		
 		predicate = MetamodelFactory.eINSTANCE.createPredicate("n_1,n_2,n_3", "e_1:n_2:n_1,e_2:n_3:n_1");
+		
 		ConstraintProperties jointlySurjectiveProperties = new ConstraintProperties(
 				predicate, 
 				"Create new [jointly-surjective] Constraint",
@@ -172,14 +177,15 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		
 		constraintActions.add(new CreateJointlySurjectiveConstraintAction(this, diagram.getDpfGraph(), jointlySurjectiveProperties));
 		
+		
 		predicate = MetamodelFactory.eINSTANCE.createPredicate("n_1,n_2", "e_1:n_1:n_2");
+
 		ConstraintProperties multiplicityProperties = new ConstraintProperties(
 				predicate, 
 				"Create new Multiplicity Constraint",
 				"Creates a new Multiplicity Constraint",
 				VConstraint.ConstraintType.MULTIPLICITY);
-		
-		
+
 		constraintActions.add(new CreateMultiplicityConstraintAction(this, diagram.getDpfGraph(), multiplicityProperties));
 		
 		for (CreateConstraintAction createConstraintAction : constraintActions) {
@@ -339,9 +345,29 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		return ret;
 	}
 	
+	private void loadSignature() {
+		if (new File(getSignatureFileName()).exists()) {
+			try {
+				signature = MetamodelFactory.eINSTANCE.loadSignature(URI.createFileURI(getSignatureFileName()));
+			} catch (IOException e) {
+				e.printStackTrace();
+			} 
+		} else {
+
+			signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3"));
+			signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("n_1,n_2,n_3", "e_1:n_2:n_1,e_2:n_3:n_1"));
+			signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("n_1,n_2", "e_1:n_1:n_2"));
+			
+			try {
+				signature.save(URI.createFileURI(getSignatureFileName()));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+	
 	public static void saveDPF(String dpfFileName, Specification specification) {		
-		// serialize resource � you can specify also serialization
-		// options which defined on org.eclipse.emf.ecore.xmi.XMIResource
 		try {
 			specification.save(URI.createFileURI(dpfFileName));
 		} catch (IOException e) {
@@ -542,6 +568,10 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 	 */
 	public static String getDPFFileName(String filename) {
 		return getWorkspaceDirectory() + File.separator + filename + ".xmi";
+	}
+	
+	private static String getSignatureFileName() {
+		return getWorkspaceDirectory() + File.separator + "signature01.xmi";
 	}
 		
 	private void setDpfFilePaths(IFile file) {

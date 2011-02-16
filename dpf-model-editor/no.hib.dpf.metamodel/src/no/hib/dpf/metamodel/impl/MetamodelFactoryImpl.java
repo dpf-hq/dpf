@@ -356,13 +356,23 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 		return specification;
 	}
 	
-	
-
 	@Override
 	/**
 	 * @generated NOT
 	 */
 	public Specification loadSpecification(URI uri) throws IOException {
+		return (Specification)createLoadResource(uri).getContents().get(0);
+	}
+
+	@Override
+	/**
+	 * @generated NOT
+	 */
+	public Signature loadSignature(URI uri) throws IOException {
+		return (Signature)createLoadResource(uri).getContents().get(0);
+	}
+
+	private Resource createLoadResource(URI uri) throws IOException {
 		ResourceSet resourceSet = new ResourceSetImpl();
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMLResourceFactoryImpl());
 
@@ -370,10 +380,9 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 			
 		Resource resource = resourceSet.createResource(uri);
 		resource.load(null);
-
-		return (Specification)resource.getContents().get(0);
+		return resource;
 	}
-
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

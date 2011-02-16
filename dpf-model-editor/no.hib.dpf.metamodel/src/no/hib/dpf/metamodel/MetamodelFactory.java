@@ -195,6 +195,15 @@ public interface MetamodelFactory extends EFactory {
 	Specification loadSpecification(URI uri) throws IOException;
 
 	/**
+	 * Loads signature from URI
+	 * @param uri
+	 * @return
+	 * @throws IOException 
+	 * @generated NOT
+	 */
+	Signature loadSignature(URI uri) throws IOException;
+
+	/**
 	 * Returns a new object of class '<em>Model Hierarchy</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

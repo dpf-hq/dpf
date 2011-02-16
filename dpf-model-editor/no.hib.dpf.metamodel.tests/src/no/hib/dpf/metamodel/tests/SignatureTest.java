@@ -17,6 +17,12 @@ import no.hib.dpf.metamodel.Signature;
  * <!-- begin-user-doc -->
  * A test case for the model object '<em><b>Signature</b></em>'.
  * <!-- end-user-doc -->
+ * <p>
+ * The following operations are tested:
+ * <ul>
+ *   <li>{@link no.hib.dpf.metamodel.Signature#save(org.eclipse.emf.common.util.URI) <em>Save</em>}</li>
+ * </ul>
+ * </p>
  * @generated
  */
 public class SignatureTest extends TestCase {
@@ -88,6 +94,19 @@ public class SignatureTest extends TestCase {
 	@Override
 	protected void tearDown() throws Exception {
 		setFixture(null);
+	}
+
+	/**
+	 * Tests the '{@link no.hib.dpf.metamodel.Signature#save(org.eclipse.emf.common.util.URI) <em>Save</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.Signature#save(org.eclipse.emf.common.util.URI)
+	 * @generated
+	 */
+	public void testSave__URI() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
 	}
 
 } //SignatureTest

@@ -7,9 +7,7 @@
 package no.hib.dpf.metamodel.impl;
 
 import java.io.IOException;
-import java.util.Collection;
 
-import no.hib.dpf.metamodel.Constraint;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.MetamodelFactory;
 import no.hib.dpf.metamodel.MetamodelPackage;
@@ -17,7 +15,6 @@ import no.hib.dpf.metamodel.Specification;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -26,8 +23,6 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 
 
@@ -185,8 +180,6 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 		Resource resource = resourceSet.createResource(uri);
 		resource.getContents().add(this);		
 		
-		// serialize resource � you can specify also serialization
-		// options which defined on org.eclipse.emf.ecore.xmi.XMIResource
 		resource.save(null);
 	}
 
@@ -227,7 +220,6 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {

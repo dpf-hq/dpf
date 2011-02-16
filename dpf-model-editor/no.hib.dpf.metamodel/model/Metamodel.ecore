@@ -90,6 +90,9 @@
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Signature">
+          <eOperations name="save" eExceptions="#//hib/dpf/metamodel/EIOException">
+            <eParameters name="uri" eType="#//hib/dpf/metamodel/EURI"/>
+          </eOperations>
           <eStructuralFeatures xsi:type="ecore:EReference" name="predicates" upperBound="-1"
               eType="#//hib/dpf/metamodel/Predicate" containment="true"/>
         </eClassifiers>
