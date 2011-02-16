@@ -107,7 +107,8 @@
             <eParameters name="arrows" upperBound="-1" eType="#//hib/dpf/metamodel/Arrow"/>
             <eParameters name="modelToBeConstrained" eType="#//hib/dpf/metamodel/Graph"/>
           </eOperations>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="shape" eType="#//hib/dpf/metamodel/Graph"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="shape" eType="#//hib/dpf/metamodel/Graph"
+              containment="true"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="semantics" eType="#//hib/dpf/metamodel/Semantics"
               containment="true"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="visualization" eType="#//hib/dpf/metamodel/Visualization"/>

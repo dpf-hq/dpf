@@ -43,7 +43,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  */
 public class PredicateImpl extends EObjectImpl implements Predicate {
 	/**
-	 * The cached value of the '{@link #getShape() <em>Shape</em>}' reference.
+	 * The cached value of the '{@link #getShape() <em>Shape</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getShape()
@@ -117,14 +117,6 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 	 * @generated
 	 */
 	public Graph getShape() {
-		if (shape != null && shape.eIsProxy()) {
-			InternalEObject oldShape = (InternalEObject)shape;
-			shape = (Graph)eResolveProxy(oldShape);
-			if (shape != oldShape) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.PREDICATE__SHAPE, oldShape, shape));
-			}
-		}
 		return shape;
 	}
 
@@ -133,8 +125,14 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Graph basicGetShape() {
-		return shape;
+	public NotificationChain basicSetShape(Graph newShape, NotificationChain msgs) {
+		Graph oldShape = shape;
+		shape = newShape;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MetamodelPackage.PREDICATE__SHAPE, oldShape, newShape);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -143,10 +141,17 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 	 * @generated
 	 */
 	public void setShape(Graph newShape) {
-		Graph oldShape = shape;
-		shape = newShape;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.PREDICATE__SHAPE, oldShape, shape));
+		if (newShape != shape) {
+			NotificationChain msgs = null;
+			if (shape != null)
+				msgs = ((InternalEObject)shape).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MetamodelPackage.PREDICATE__SHAPE, null, msgs);
+			if (newShape != null)
+				msgs = ((InternalEObject)newShape).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MetamodelPackage.PREDICATE__SHAPE, null, msgs);
+			msgs = basicSetShape(newShape, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.PREDICATE__SHAPE, newShape, newShape));
 	}
 
 	/**
@@ -295,6 +300,8 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case MetamodelPackage.PREDICATE__SHAPE:
+				return basicSetShape(null, msgs);
 			case MetamodelPackage.PREDICATE__SEMANTICS:
 				return basicSetSemantics(null, msgs);
 		}
@@ -310,8 +317,7 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case MetamodelPackage.PREDICATE__SHAPE:
-				if (resolve) return getShape();
-				return basicGetShape();
+				return getShape();
 			case MetamodelPackage.PREDICATE__SEMANTICS:
 				return getSemantics();
 			case MetamodelPackage.PREDICATE__VISUALIZATION:

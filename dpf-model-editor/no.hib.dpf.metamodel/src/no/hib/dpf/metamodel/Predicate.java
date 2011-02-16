@@ -30,26 +30,26 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Predicate extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Shape</b></em>' reference.
+	 * Returns the value of the '<em><b>Shape</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Shape</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Shape</em>' reference.
+	 * @return the value of the '<em>Shape</em>' containment reference.
 	 * @see #setShape(Graph)
 	 * @see no.hib.dpf.metamodel.MetamodelPackage#getPredicate_Shape()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	Graph getShape();
 
 	/**
-	 * Sets the value of the '{@link no.hib.dpf.metamodel.Predicate#getShape <em>Shape</em>}' reference.
+	 * Sets the value of the '{@link no.hib.dpf.metamodel.Predicate#getShape <em>Shape</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Shape</em>' reference.
+	 * @param value the new value of the '<em>Shape</em>' containment reference.
 	 * @see #getShape()
 	 * @generated
 	 */

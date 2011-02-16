@@ -25,8 +25,8 @@ import java.util.Map;
 
 import no.hib.dpf.editor.editoractions.ConstraintProperties;
 import no.hib.dpf.editor.editoractions.CreateConstraintAction;
-import no.hib.dpf.editor.editoractions.CreateJointlySurjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointlyInjectiveConstraintAction;
+import no.hib.dpf.editor.editoractions.CreateJointlySurjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateMultiplicityConstraintAction;
 import no.hib.dpf.editor.editoractions.PrintAction;
 import no.hib.dpf.editor.parts.EditPartFactoryImpl;
@@ -37,7 +37,6 @@ import no.hib.dpf.editor.viewmodel.ModelSerializationException;
 import no.hib.dpf.editor.viewmodel.VConstraint;
 import no.hib.dpf.metamodel.IDObject;
 import no.hib.dpf.metamodel.MetamodelFactory;
-import no.hib.dpf.metamodel.ModelHierarchy;
 import no.hib.dpf.metamodel.Predicate;
 import no.hib.dpf.metamodel.Signature;
 import no.hib.dpf.metamodel.Specification;
@@ -96,7 +95,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 	private DPFDiagram diagram;
 	private Specification specification = MetamodelFactory.eINSTANCE.createSpecification();
 	// private ModelHierarchy modelHierarchy = MetamodelFactory.eINSTANCE.createModelHierarchy();
-	private Signature signature = MetamodelFactory.eINSTANCE.createSignature();
+	private Signature signature;
 		
 	private static String dpfFilename;
 	
@@ -153,11 +152,16 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 	protected void createActions() {
 		super.createActions(); // to get the default actions
 		
+		// TODO: this is a makeshift solution, only to get the signature from
+		// somwhere. Make this a part of the modelling hierarchy.
+		loadOrCreateSignature();
+		
 		// First step to move the predicates out of the editor:
 		// There remains to make some coupling between these predicates
 		// and the parts/figures that implement them.
 		
-		Predicate predicate = MetamodelFactory.eINSTANCE.createPredicate("n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3");		
+		
+		Predicate predicate = signature.getPredicates().get(0);
 		ConstraintProperties jointlyInjectiveProperties = new ConstraintProperties(
 				predicate, 
 				"Create new [jointly-injective] Constraint",
@@ -167,7 +171,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		constraintActions.add(new CreateJointlyInjectiveConstraintAction(this, diagram.getDpfGraph(), jointlyInjectiveProperties));
 		
 		
-		predicate = MetamodelFactory.eINSTANCE.createPredicate("n_1,n_2,n_3", "e_1:n_2:n_1,e_2:n_3:n_1");
+		predicate = signature.getPredicates().get(1);
 		
 		ConstraintProperties jointlySurjectiveProperties = new ConstraintProperties(
 				predicate, 
@@ -178,7 +182,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		constraintActions.add(new CreateJointlySurjectiveConstraintAction(this, diagram.getDpfGraph(), jointlySurjectiveProperties));
 		
 		
-		predicate = MetamodelFactory.eINSTANCE.createPredicate("n_1,n_2", "e_1:n_1:n_2");
+		predicate = signature.getPredicates().get(2);
 
 		ConstraintProperties multiplicityProperties = new ConstraintProperties(
 				predicate, 
@@ -345,26 +349,38 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		return ret;
 	}
 	
-	private void loadSignature() {
+	private void loadOrCreateSignature() {
 		if (new File(getSignatureFileName()).exists()) {
-			try {
-				signature = MetamodelFactory.eINSTANCE.loadSignature(URI.createFileURI(getSignatureFileName()));
-			} catch (IOException e) {
-				e.printStackTrace();
-			} 
+			loadSignature(); 
 		} else {
-
-			signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3"));
-			signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("n_1,n_2,n_3", "e_1:n_2:n_1,e_2:n_3:n_1"));
-			signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("n_1,n_2", "e_1:n_1:n_2"));
-			
-			try {
-				signature.save(URI.createFileURI(getSignatureFileName()));
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			saveDefaultSignature();
 		}
+	}
 
+	private void loadSignature() {
+		try {
+			signature = MetamodelFactory.eINSTANCE.loadSignature(URI.createFileURI(getSignatureFileName()));
+		} catch (IOException e) {
+			e.printStackTrace();
+			saveDefaultSignature();
+		}
+	}
+
+	// Side effect: creates the object's default signature
+	private void saveDefaultSignature() {
+		resetSignature();
+		try {
+			signature.save(URI.createFileURI(getSignatureFileName()));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void resetSignature() {
+		signature = MetamodelFactory.eINSTANCE.createSignature();
+		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3"));
+		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("n_1,n_2,n_3", "e_1:n_2:n_1,e_2:n_3:n_1"));
+		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("n_1,n_2", "e_1:n_1:n_2"));
 	}
 	
 	public static void saveDPF(String dpfFileName, Specification specification) {		
