@@ -11,6 +11,7 @@ import junit.framework.TestCase;
 import junit.textui.TestRunner;
 
 import no.hib.dpf.metamodel.MetamodelFactory;
+import no.hib.dpf.metamodel.Predicate;
 import no.hib.dpf.metamodel.Signature;
 
 /**
@@ -21,6 +22,7 @@ import no.hib.dpf.metamodel.Signature;
  * The following operations are tested:
  * <ul>
  *   <li>{@link no.hib.dpf.metamodel.Signature#save(org.eclipse.emf.common.util.URI) <em>Save</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Signature#getPredicateBySymbol(java.lang.String) <em>Get Predicate By Symbol</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -107,6 +109,26 @@ public class SignatureTest extends TestCase {
 		// TODO: implement this operation test method
 		// Ensure that you remove @generated or mark it @generated NOT
 		fail();
+	}
+
+	/**
+	 * Tests the '{@link no.hib.dpf.metamodel.Signature#getPredicateBySymbol(java.lang.String) <em>Get Predicate By Symbol</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.Signature#getPredicateBySymbol(java.lang.String)
+	 * @generated NOT
+	 */
+	public void testGetPredicateBySymbol__String() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		Predicate p1 = MetamodelFactory.eINSTANCE.createPredicate("p1", "n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3");
+		getFixture().getPredicates().add(p1);
+		Predicate p2 = MetamodelFactory.eINSTANCE.createPredicate("p2", "n_1,n_2", "e_1:n_1:n_2");
+		getFixture().getPredicates().add(p2);
+		
+		assertEquals(p2, getFixture().getPredicateBySymbol("p2"));
+		assertEquals(p1, getFixture().getPredicateBySymbol("p1"));
+		assertEquals(null, getFixture().getPredicateBySymbol("p3"));
 	}
 
 } //SignatureTest

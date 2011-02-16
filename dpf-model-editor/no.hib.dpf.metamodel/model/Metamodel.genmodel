@@ -102,6 +102,9 @@
             <genOperations ecoreOperation="Metamodel.ecore#//hib/dpf/metamodel/Signature/save">
               <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/Signature/save/uri"/>
             </genOperations>
+            <genOperations ecoreOperation="Metamodel.ecore#//hib/dpf/metamodel/Signature/getPredicateBySymbol">
+              <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/Signature/getPredicateBySymbol/symbol"/>
+            </genOperations>
           </genClasses>
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/metamodel/Predicate">
             <genFeatures notify="false" createChild="false" propertySortChoices="true"

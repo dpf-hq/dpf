@@ -262,6 +262,20 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 		predicate.setShape(createGraph(nodes, edges));
 		return predicate;		
 	}
+	
+	/**
+	 * Returns a new object of class '<em>Predicate</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Predicate</em>'.
+	 * @generated NOT
+	 */
+	public Predicate createPredicate(String symbol, String nodes, String edges) {
+		Predicate predicate = createPredicate(nodes, edges);
+		predicate.setSymbol(symbol);
+		return predicate;		
+	}
+	 
 
 	/**
 	 * <!-- begin-user-doc -->

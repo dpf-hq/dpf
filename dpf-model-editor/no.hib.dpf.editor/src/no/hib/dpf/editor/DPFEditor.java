@@ -152,7 +152,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 	protected void createActions() {
 		super.createActions(); // to get the default actions
 		
-		// TODO: this is a makeshift solution, only to get the signature from
+		// TODO: this is a temporary solution, only to get the signature from
 		// somwhere. Make this a part of the modelling hierarchy.
 		loadOrCreateSignature();
 		
@@ -161,31 +161,24 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		// and the parts/figures that implement them.
 		
 		
-		Predicate predicate = signature.getPredicates().get(0);
 		ConstraintProperties jointlyInjectiveProperties = new ConstraintProperties(
-				predicate, 
+				signature.getPredicateBySymbol("[jointly-injective]"), 
 				"Create new [jointly-injective] Constraint",
 				"Creates a new Jointly Injective Constraint",
 				VConstraint.ConstraintType.JOINTLY_INJECTIVE);
 		
 		constraintActions.add(new CreateJointlyInjectiveConstraintAction(this, diagram.getDpfGraph(), jointlyInjectiveProperties));
-		
-		
-		predicate = signature.getPredicates().get(1);
-		
+				
 		ConstraintProperties jointlySurjectiveProperties = new ConstraintProperties(
-				predicate, 
+				signature.getPredicateBySymbol("[jointly-surjective]"), 
 				"Create new [jointly-surjective] Constraint",
 				"Creates a new Jointly Surjective Constraint",
 				VConstraint.ConstraintType.JOINTLY_SURJECTIVE);
 		
 		constraintActions.add(new CreateJointlySurjectiveConstraintAction(this, diagram.getDpfGraph(), jointlySurjectiveProperties));
 		
-		
-		predicate = signature.getPredicates().get(2);
-
 		ConstraintProperties multiplicityProperties = new ConstraintProperties(
-				predicate, 
+				signature.getPredicateBySymbol("[mult(m,n)]"), 
 				"Create new Multiplicity Constraint",
 				"Creates a new Multiplicity Constraint",
 				VConstraint.ConstraintType.MULTIPLICITY);
@@ -378,9 +371,9 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 
 	private void resetSignature() {
 		signature = MetamodelFactory.eINSTANCE.createSignature();
-		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3"));
-		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("n_1,n_2,n_3", "e_1:n_2:n_1,e_2:n_3:n_1"));
-		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("n_1,n_2", "e_1:n_1:n_2"));
+		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("[jointly-injective]", "n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3"));
+		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("[jointly-surjective]", "n_1,n_2,n_3", "e_1:n_2:n_1,e_2:n_3:n_1"));
+		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("[mult(m,n)]", "n_1,n_2", "e_1:n_1:n_2"));
 	}
 	
 	public static void saveDPF(String dpfFileName, Specification specification) {		

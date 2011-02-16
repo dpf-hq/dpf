@@ -53,4 +53,13 @@ public interface Signature extends EObject {
 	 */
 	void save(URI uri) throws IOException;
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	Predicate getPredicateBySymbol(String symbol);
+
+
 } // Signature

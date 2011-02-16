@@ -103,6 +103,20 @@ public class SignatureImpl extends EObjectImpl implements Signature {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Predicate getPredicateBySymbol(String symbol) {
+		for (Predicate predicate : getPredicates()) {
+			if (predicate.getSymbol().equals(symbol)) {
+				return predicate;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

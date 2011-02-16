@@ -123,6 +123,13 @@ public interface MetamodelFactory extends EFactory {
 	Predicate createPredicate(String nodes, String edges);
 
 	/**
+	 * Returns a new object of class '<em>Predicate</em>'.
+	 * @return a new object of class '<em>Predicate</em>'.
+	 * @generated NOT
+	 */
+	Predicate createPredicate(String symbol, String nodes, String edges);
+
+	/**
 	 * Returns a new object of class '<em>Semantics</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
