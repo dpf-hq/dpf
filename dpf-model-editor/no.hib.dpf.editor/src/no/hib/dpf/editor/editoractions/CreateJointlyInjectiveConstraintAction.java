@@ -2,13 +2,13 @@ package no.hib.dpf.editor.editoractions;
 
 import java.util.List;
 
+import no.hib.dpf.editor.parts.VArrowEditPart;
 import no.hib.dpf.editor.parts.VNodeEditPart;
 import no.hib.dpf.editor.viewmodel.VArrow;
 import no.hib.dpf.editor.viewmodel.VConstraint;
 import no.hib.dpf.editor.viewmodel.commands.MultipleArrowConstraintCreateCommand;
 import no.hib.dpf.metamodel.Graph;
 
-import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.ui.IWorkbenchPart;
 
@@ -21,8 +21,8 @@ public class CreateJointlyInjectiveConstraintAction extends CreateConstraintActi
 	}
 	
 	@Override
-	protected Command getConstraintCreateCommand(List<ConnectionEditPart> connectionEditParts, List<VNodeEditPart> shapeEditParts) {
-		return new MultipleArrowConstraintCreateCommand((VArrow)connectionEditParts.get(0).getModel(), (VArrow)connectionEditParts.get(1).getModel(), VConstraint.ConstraintType.JOINTLY_INJECTIVE);
+	protected Command getConstraintCreateCommand(List<VArrowEditPart> connectionEditParts, List<VNodeEditPart> shapeEditParts) {
+		return new MultipleArrowConstraintCreateCommand((VArrow)connectionEditParts.get(0).getModel(), (VArrow)connectionEditParts.get(1).getModel(), VConstraint.ConstraintType.JOINTLY_INJECTIVE, createIDObject());
 	}
 	
 	

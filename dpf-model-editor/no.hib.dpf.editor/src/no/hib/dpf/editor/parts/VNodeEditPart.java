@@ -24,6 +24,7 @@ import no.hib.dpf.editor.viewmodel.VNode;
 import no.hib.dpf.editor.viewmodel.commands.ConnectionCreateCommand;
 import no.hib.dpf.editor.viewmodel.commands.ConnectionReconnectCommand;
 import no.hib.dpf.metamodel.Arrow;
+import no.hib.dpf.metamodel.Node;
 
 import org.eclipse.draw2d.ChopboxAnchor;
 import org.eclipse.draw2d.ConnectionAnchor;
@@ -201,6 +202,10 @@ public void deactivate() {
 
 private VNode getCastedModel() {
 	return (VNode)getModel();
+}
+
+public Node getModelAsEMFInstance() {
+	return getCastedModel().getNodeComponent();
 }
 
 private ConnectionAnchor getConnectionAnchor(ConnectionEditPart connection, boolean isSourceAnchor) {

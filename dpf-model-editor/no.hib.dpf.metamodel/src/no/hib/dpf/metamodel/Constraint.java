@@ -82,26 +82,26 @@ public interface Constraint extends IDObject {
 	void setPredicate(Predicate value);
 
 	/**
-	 * Returns the value of the '<em><b>Mappings</b></em>' reference.
+	 * Returns the value of the '<em><b>Mappings</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Mappings</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Mappings</em>' reference.
+	 * @return the value of the '<em>Mappings</em>' containment reference.
 	 * @see #setMappings(GraphHomomorphism)
 	 * @see no.hib.dpf.metamodel.MetamodelPackage#getConstraint_Mappings()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	GraphHomomorphism getMappings();
 
 	/**
-	 * Sets the value of the '{@link no.hib.dpf.metamodel.Constraint#getMappings <em>Mappings</em>}' reference.
+	 * Sets the value of the '{@link no.hib.dpf.metamodel.Constraint#getMappings <em>Mappings</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Mappings</em>' reference.
+	 * @param value the new value of the '<em>Mappings</em>' containment reference.
 	 * @see #getMappings()
 	 * @generated
 	 */

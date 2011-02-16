@@ -128,7 +128,8 @@
           <eStructuralFeatures xsi:type="ecore:EReference" name="graph" eType="#//hib/dpf/metamodel/Graph"
               eOpposite="#//hib/dpf/metamodel/Graph/constraints"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="predicate" eType="#//hib/dpf/metamodel/Predicate"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="mappings" eType="#//hib/dpf/metamodel/GraphHomomorphism"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="mappings" eType="#//hib/dpf/metamodel/GraphHomomorphism"
+              containment="true"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="ArrowToArrowMap" instanceClassName="java.util.Map$Entry">
           <eStructuralFeatures xsi:type="ecore:EReference" name="key" eType="#//hib/dpf/metamodel/Arrow"/>

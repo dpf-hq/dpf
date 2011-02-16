@@ -1,5 +1,7 @@
 package no.hib.dpf.editor.viewmodel;
 
+import no.hib.dpf.metamodel.Constraint;
+
 
 // TODO: TO-BIG-DO: make one more flexible constraint class.
 public class SingleLineConstraintElement extends VConstraint {
@@ -12,8 +14,8 @@ public class SingleLineConstraintElement extends VConstraint {
 	private int val_1 = 1;
 	private int val_2 = -1;
 
-	public SingleLineConstraintElement(VArrow source, ConstraintType constraintType) {
-		super(source, null, constraintType);
+	public SingleLineConstraintElement(VArrow source, ConstraintType constraintType, Constraint IDObject) {
+		super(source, null, constraintType, IDObject);
 	}
 		
 	@Override

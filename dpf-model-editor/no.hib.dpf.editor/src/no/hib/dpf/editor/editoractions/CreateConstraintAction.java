@@ -2,14 +2,17 @@ package no.hib.dpf.editor.editoractions;
 
 import java.util.List;
 
+import no.hib.dpf.editor.parts.VArrowEditPart;
 import no.hib.dpf.editor.parts.VNodeEditPart;
+import no.hib.dpf.editor.viewmodel.VArrow;
 import no.hib.dpf.metamodel.Arrow;
+import no.hib.dpf.metamodel.Constraint;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.Node;
 import no.hib.dpf.metamodel.Predicate;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.gef.ConnectionEditPart;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editparts.AbstractEditPart;
@@ -17,7 +20,9 @@ import org.eclipse.ui.IWorkbenchPart;
 
 public abstract class CreateConstraintAction extends SelectionActionForEditParts {
 
-	private Predicate testPredicate; 
+	private Predicate testPredicate;
+	private EList<Arrow> selectionArrows;
+	EList<Node> selectionNodes;
 	
 	public CreateConstraintAction(IWorkbenchPart part, String ID, Graph graph, ConstraintProperties constraintProperties) {
 		super(part, ID, graph);
@@ -30,14 +35,27 @@ public abstract class CreateConstraintAction extends SelectionActionForEditParts
 	protected boolean calculateEnabled() {
 		EList<Arrow> selectionArrows = getSelectionArrows();
 		EList<Node> selectionNodes = getSelectionNodes();
-		return testPredicate.canCreateConstraint(addUnselectedNodesToSelection(selectionNodes, selectionArrows), selectionArrows, graph);
+		if (testPredicate.canCreateConstraint(addUnselectedNodesToSelection(selectionNodes, selectionArrows), selectionArrows, graph)) {
+			// Keep the selection arrows and nodes from the last successfull enabled-calculation:
+			this.selectionArrows = selectionArrows;
+			this.selectionNodes = selectionNodes;
+			return true;
+		}
+		return false;
 	}	
-
+	
+	protected Constraint createIDObject() {
+		if (testPredicate.canCreateConstraint(addUnselectedNodesToSelection(selectionNodes, selectionArrows), selectionArrows, graph)) {			
+			return testPredicate.createConstraint(addUnselectedNodesToSelection(selectionNodes, selectionArrows), selectionArrows, graph);
+		}
+		return null;
+	}
+	
 	@Override
 	public void run() {
 		// this method is only called if calculate enabled() returns true
-		List<ConnectionEditPart> connectionEditParts = getSelectedConnectionEditParts();
-		List<VNodeEditPart> shapeEditParts = getSelectedShapeEditParts();
+		List<VArrowEditPart> connectionEditParts = getSelectedConnectionEditParts();
+		List<VNodeEditPart> shapeEditParts = getSelectedVNodeEditParts();
 		
 		if (!deselectInViewer(connectionEditParts)) {
 			deselectInViewer(shapeEditParts);
@@ -59,6 +77,6 @@ public abstract class CreateConstraintAction extends SelectionActionForEditParts
 		return true;
 	}
 	
-	protected abstract Command getConstraintCreateCommand(List<ConnectionEditPart> connectionEditParts, List<VNodeEditPart> shapeEditParts);
+	protected abstract Command getConstraintCreateCommand(List<VArrowEditPart> connectionEditParts, List<VNodeEditPart> shapeEditParts);
 	
 }

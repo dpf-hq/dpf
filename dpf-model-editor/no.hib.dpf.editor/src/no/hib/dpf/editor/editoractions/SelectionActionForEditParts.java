@@ -11,7 +11,6 @@ import no.hib.dpf.metamodel.Node;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.ui.actions.SelectionAction;
 import org.eclipse.ui.IWorkbenchPart;
 
@@ -25,29 +24,36 @@ public abstract class SelectionActionForEditParts extends SelectionAction {
 		this.graph = graph;
 	}
 	
+	/**
+	 * Returns the selected arrows' contained EMF objects, NOT VArrows.
+	 */
 	protected EList<Arrow> getSelectionArrows() {
-		EList<Arrow> arrows = new BasicEList<Arrow>();
-		for (ConnectionEditPart connectionEditPart : getSelectedConnectionEditParts()) {
-			arrows.add((Arrow)connectionEditPart.getModel());
+		EList<Arrow> selectionArrows = new BasicEList<Arrow>();
+		for (VArrowEditPart vArrowEditPart : getSelectedConnectionEditParts()) {
+			selectionArrows.add(vArrowEditPart.getModelAsEMFInstance());
 		}
-		return arrows;
+		return selectionArrows;
 	}
 
+	/**
+	 * Returns the selected nodes' contained EMF objects, NOT VNodes.
+	 */
 	protected EList<Node> getSelectionNodes() {
 		EList<Node> selectionNodes = new BasicEList<Node>();
-		for (VNodeEditPart shapeEditPart : getSelectedShapeEditParts()) {
-			selectionNodes.add((Node)shapeEditPart.getModel());
+		for (VNodeEditPart vNodeEditPart : getSelectedVNodeEditParts()) {
+			selectionNodes.add(vNodeEditPart.getModelAsEMFInstance());
 		}
 		return selectionNodes;
 	}
 
 	protected EList<Node> addUnselectedNodesToSelection(EList<Node> selectionNodes, EList<Arrow> selectionArrows) {
+		EList<Node> retval = new BasicEList<Node>(selectionNodes);		
 		// Adds any nodes not selected, but directly connected to the selected edges
 		for (Arrow arrow : selectionArrows) {
-			addNodeToRetVal(selectionNodes, arrow.getSource());			
-			addNodeToRetVal(selectionNodes, arrow.getTarget());			
+			addNodeToRetVal(retval, arrow.getSource());			
+			addNodeToRetVal(retval, arrow.getTarget());			
 		}
-		return selectionNodes;
+		return retval;
 	}
 	
 	private void addNodeToRetVal(EList<Node> selectionNodes, Node node) {
@@ -65,23 +71,23 @@ public abstract class SelectionActionForEditParts extends SelectionAction {
 		return false;
 	}
 	
-	protected List<ConnectionEditPart> getSelectedConnectionEditParts() {
-		List<ConnectionEditPart> connectionEditParts = new ArrayList<ConnectionEditPart>();
+	protected List<VArrowEditPart> getSelectedConnectionEditParts() {
+		List<VArrowEditPart> vArrowEditParts = new ArrayList<VArrowEditPart>();
 		for (int i = 0; i < getSelectedObjects().size(); i++) {
 			if (getSelectedObjects().get(i) instanceof VArrowEditPart) {
-				connectionEditParts.add((ConnectionEditPart)getSelectedObjects().get(i));
+				vArrowEditParts.add((VArrowEditPart)getSelectedObjects().get(i));
 			}
 		}
-		return connectionEditParts;
+		return vArrowEditParts;
 	}
 	
-	protected List<VNodeEditPart> getSelectedShapeEditParts() {
-		List<VNodeEditPart> shapeEditParts = new ArrayList<VNodeEditPart>();
+	protected List<VNodeEditPart> getSelectedVNodeEditParts() {
+		List<VNodeEditPart> vNodeEditParts = new ArrayList<VNodeEditPart>();
 		for (int i = 0; i < getSelectedObjects().size(); i++) {
 			if (getSelectedObjects().get(i) instanceof VNodeEditPart) {
-				shapeEditParts.add((VNodeEditPart)getSelectedObjects().get(i));
+				vNodeEditParts.add((VNodeEditPart)getSelectedObjects().get(i));
 			}
 		}
-		return shapeEditParts;
+		return vNodeEditParts;
 	}	
 }

@@ -131,6 +131,9 @@ public class VArrow extends ModelElement implements Arrow, IDObjectContainer {
 		}
 	}
 	
+	public Arrow getArrowComponent() {
+		return arrowComponent;
+	}
 	
 	/**
 	 * Disconnect this connection from the shapes it is attached to.

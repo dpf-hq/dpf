@@ -496,7 +496,7 @@ public interface MetamodelPackage extends EPackage {
 	int CONSTRAINT__PREDICATE = ID_OBJECT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Mappings</b></em>' reference.
+	 * The feature id for the '<em><b>Mappings</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1025,10 +1025,10 @@ public interface MetamodelPackage extends EPackage {
 	EReference getConstraint_Predicate();
 
 	/**
-	 * Returns the meta object for the reference '{@link no.hib.dpf.metamodel.Constraint#getMappings <em>Mappings</em>}'.
+	 * Returns the meta object for the containment reference '{@link no.hib.dpf.metamodel.Constraint#getMappings <em>Mappings</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Mappings</em>'.
+	 * @return the meta object for the containment reference '<em>Mappings</em>'.
 	 * @see no.hib.dpf.metamodel.Constraint#getMappings()
 	 * @see #getConstraint()
 	 * @generated
@@ -1521,7 +1521,7 @@ public interface MetamodelPackage extends EPackage {
 		EReference CONSTRAINT__PREDICATE = eINSTANCE.getConstraint_Predicate();
 
 		/**
-		 * The meta object literal for the '<em><b>Mappings</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Mappings</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

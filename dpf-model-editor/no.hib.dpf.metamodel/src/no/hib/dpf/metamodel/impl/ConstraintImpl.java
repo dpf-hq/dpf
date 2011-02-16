@@ -46,7 +46,7 @@ public class ConstraintImpl extends IDObjectImpl implements Constraint {
 	protected Predicate predicate;
 
 	/**
-	 * The cached value of the '{@link #getMappings() <em>Mappings</em>}' reference.
+	 * The cached value of the '{@link #getMappings() <em>Mappings</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getMappings()
@@ -159,14 +159,6 @@ public class ConstraintImpl extends IDObjectImpl implements Constraint {
 	 * @generated
 	 */
 	public GraphHomomorphism getMappings() {
-		if (mappings != null && mappings.eIsProxy()) {
-			InternalEObject oldMappings = (InternalEObject)mappings;
-			mappings = (GraphHomomorphism)eResolveProxy(oldMappings);
-			if (mappings != oldMappings) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.CONSTRAINT__MAPPINGS, oldMappings, mappings));
-			}
-		}
 		return mappings;
 	}
 
@@ -175,8 +167,14 @@ public class ConstraintImpl extends IDObjectImpl implements Constraint {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GraphHomomorphism basicGetMappings() {
-		return mappings;
+	public NotificationChain basicSetMappings(GraphHomomorphism newMappings, NotificationChain msgs) {
+		GraphHomomorphism oldMappings = mappings;
+		mappings = newMappings;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MetamodelPackage.CONSTRAINT__MAPPINGS, oldMappings, newMappings);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -185,10 +183,17 @@ public class ConstraintImpl extends IDObjectImpl implements Constraint {
 	 * @generated
 	 */
 	public void setMappings(GraphHomomorphism newMappings) {
-		GraphHomomorphism oldMappings = mappings;
-		mappings = newMappings;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.CONSTRAINT__MAPPINGS, oldMappings, mappings));
+		if (newMappings != mappings) {
+			NotificationChain msgs = null;
+			if (mappings != null)
+				msgs = ((InternalEObject)mappings).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MetamodelPackage.CONSTRAINT__MAPPINGS, null, msgs);
+			if (newMappings != null)
+				msgs = ((InternalEObject)newMappings).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MetamodelPackage.CONSTRAINT__MAPPINGS, null, msgs);
+			msgs = basicSetMappings(newMappings, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.CONSTRAINT__MAPPINGS, newMappings, newMappings));
 	}
 
 	/**
@@ -217,6 +222,8 @@ public class ConstraintImpl extends IDObjectImpl implements Constraint {
 		switch (featureID) {
 			case MetamodelPackage.CONSTRAINT__GRAPH:
 				return basicSetGraph(null, msgs);
+			case MetamodelPackage.CONSTRAINT__MAPPINGS:
+				return basicSetMappings(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -249,8 +256,7 @@ public class ConstraintImpl extends IDObjectImpl implements Constraint {
 				if (resolve) return getPredicate();
 				return basicGetPredicate();
 			case MetamodelPackage.CONSTRAINT__MAPPINGS:
-				if (resolve) return getMappings();
-				return basicGetMappings();
+				return getMappings();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

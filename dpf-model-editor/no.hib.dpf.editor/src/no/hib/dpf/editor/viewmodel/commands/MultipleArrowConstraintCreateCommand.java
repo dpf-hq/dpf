@@ -4,6 +4,7 @@ import java.util.Iterator;
 
 import no.hib.dpf.editor.viewmodel.VArrow;
 import no.hib.dpf.editor.viewmodel.VConstraint;
+import no.hib.dpf.metamodel.Constraint;
 
 
 /**
@@ -21,7 +22,8 @@ public class MultipleArrowConstraintCreateCommand extends ConstraintCreateComman
 	 * Instantiate a command that can create a connection between two
 	 * connections.
 	 */
-	public MultipleArrowConstraintCreateCommand(VArrow source, VArrow target, VConstraint.ConstraintType constraintType) {
+	public MultipleArrowConstraintCreateCommand(VArrow source, VArrow target, VConstraint.ConstraintType constraintType, Constraint IDObject) {
+		super(IDObject);
 		if (source == null) {
 			throw new IllegalArgumentException();
 		}
@@ -63,7 +65,7 @@ public class MultipleArrowConstraintCreateCommand extends ConstraintCreateComman
 	 */
 	public void execute() {
 		// create a new connection between source and target
-		constraint = new VConstraint(source, target, constraintType);
+		constraint = new VConstraint(source, target, constraintType, idObject);
 	}
 
 //	/**

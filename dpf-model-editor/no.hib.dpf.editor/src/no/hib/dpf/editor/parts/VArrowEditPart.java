@@ -139,6 +139,7 @@ public class VArrowEditPart extends ModelElementConnectionEditPart {
 	protected Arrow getArrow() {
 		return (Arrow) getModel();
 	}
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -289,6 +290,10 @@ public class VArrowEditPart extends ModelElementConnectionEditPart {
 	protected VArrow getCastedModel() {
 		return (VArrow)getModel();
 	}
+	
+	public Arrow getModelAsEMFInstance() {
+		return getCastedModel().getArrowComponent();
+	}	
 
 	/**
 	 * Finds an endpoint on a connection. TODO: make readable.

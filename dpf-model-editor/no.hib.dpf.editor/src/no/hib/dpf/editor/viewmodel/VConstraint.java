@@ -16,7 +16,6 @@ import no.hib.dpf.metamodel.Constraint;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.GraphHomomorphism;
 import no.hib.dpf.metamodel.IDObject;
-import no.hib.dpf.metamodel.MetamodelFactory;
 import no.hib.dpf.metamodel.Predicate;
 
 import org.eclipse.emf.common.notify.Adapter;
@@ -70,10 +69,10 @@ public class VConstraint extends ModelElement implements Constraint, IDObjectCon
 	 *             if any of the parameters are null or source == target
 	 * @see #setLineStyle(int)
 	 */
-	public VConstraint(VArrow source, VArrow target, ConstraintType constraintType) {
+	public VConstraint(VArrow source, VArrow target, ConstraintType constraintType, Constraint idObject) {
 		this.setConstraintType(constraintType);
 		// The dpf Constraint object must be initialized before the connection of the shapes.
-		setIDObject(MetamodelFactory.eINSTANCE.createConstraint());
+		setIDObject(idObject);
 		reconnect(source, target);		
 	}
 	
