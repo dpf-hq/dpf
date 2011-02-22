@@ -119,7 +119,7 @@ public class SpecificationTest extends TestCase {
 	public void testSave__URI() {
 		// TODO: implement this operation test method
 		// Ensure that you remove @generated or mark it @generated NOT
-		//TODO: IMPLEMENT NOW, DVL!
+		fail();
 	}
 
 	/**

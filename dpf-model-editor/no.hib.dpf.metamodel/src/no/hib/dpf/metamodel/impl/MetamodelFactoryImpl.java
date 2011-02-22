@@ -75,7 +75,6 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 			case MetamodelPackage.ARROW: return createArrow();
 			case MetamodelPackage.SIGNATURE: return createSignature();
 			case MetamodelPackage.PREDICATE: return createPredicate();
-			case MetamodelPackage.SEMANTICS: return createSemantics();
 			case MetamodelPackage.NODE_TO_NODE_MAP: return (EObject)createNodeToNodeMap();
 			case MetamodelPackage.CONSTRAINT: return createConstraint();
 			case MetamodelPackage.ARROW_TO_ARROW_MAP: return (EObject)createArrowToArrowMap();
@@ -276,16 +275,6 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 		return predicate;		
 	}
 	 
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Semantics createSemantics() {
-		SemanticsImpl semantics = new SemanticsImpl();
-		return semantics;
-	}
 
 	/**
 	 * <!-- begin-user-doc -->

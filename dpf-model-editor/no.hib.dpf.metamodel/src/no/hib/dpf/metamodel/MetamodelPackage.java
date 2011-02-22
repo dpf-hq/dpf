@@ -101,10 +101,10 @@ public interface MetamodelPackage extends EPackage {
 	int PREDICATE = 4;
 
 	/**
-	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.SemanticsImpl <em>Semantics</em>}' class.
+	 * The meta object id for the '{@link no.hib.dpf.metamodel.Semantics <em>Semantics</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.impl.SemanticsImpl
+	 * @see no.hib.dpf.metamodel.Semantics
 	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getSemantics()
 	 * @generated
 	 */
@@ -1449,10 +1449,10 @@ public interface MetamodelPackage extends EPackage {
 		EAttribute PREDICATE__SYMBOL = eINSTANCE.getPredicate_Symbol();
 
 		/**
-		 * The meta object literal for the '{@link no.hib.dpf.metamodel.impl.SemanticsImpl <em>Semantics</em>}' class.
+		 * The meta object literal for the '{@link no.hib.dpf.metamodel.Semantics <em>Semantics</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see no.hib.dpf.metamodel.impl.SemanticsImpl
+		 * @see no.hib.dpf.metamodel.Semantics
 		 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getSemantics()
 		 * @generated
 		 */

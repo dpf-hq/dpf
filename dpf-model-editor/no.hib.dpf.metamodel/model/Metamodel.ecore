@@ -126,6 +126,9 @@
             <eParameters name="arrows" upperBound="-1" eType="#//hib/dpf/metamodel/Arrow"/>
             <eParameters name="modelToBeConstrained" eType="#//hib/dpf/metamodel/Graph"/>
           </eOperations>
+          <eOperations name="checkSemantics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject">
+            <eParameters name="oStar" eType="#//hib/dpf/metamodel/Graph"/>
+          </eOperations>
           <eStructuralFeatures xsi:type="ecore:EReference" name="shape" eType="#//hib/dpf/metamodel/Graph"
               containment="true"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="semantics" eType="#//hib/dpf/metamodel/Semantics"
@@ -134,7 +137,11 @@
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="symbol" unique="false"
               lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         </eClassifiers>
-        <eClassifiers xsi:type="ecore:EClass" name="Semantics"/>
+        <eClassifiers xsi:type="ecore:EClass" name="Semantics" abstract="true" interface="true">
+          <eOperations name="checkSemantics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject">
+            <eParameters name="oStar" eType="#//hib/dpf/metamodel/Graph"/>
+          </eOperations>
+        </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Visualization" abstract="true"/>
         <eClassifiers xsi:type="ecore:EClass" name="NodeToNodeMap" instanceClassName="java.util.Map$Entry">
           <eStructuralFeatures xsi:type="ecore:EReference" name="key" eType="#//hib/dpf/metamodel/Node"/>

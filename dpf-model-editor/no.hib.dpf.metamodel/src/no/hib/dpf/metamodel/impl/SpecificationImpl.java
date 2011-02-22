@@ -7,8 +7,6 @@
 package no.hib.dpf.metamodel.impl;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 import no.hib.dpf.metamodel.Arrow;
 import no.hib.dpf.metamodel.Constraint;

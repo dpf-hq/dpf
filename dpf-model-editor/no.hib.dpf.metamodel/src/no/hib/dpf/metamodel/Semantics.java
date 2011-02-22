@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  *
  * @see no.hib.dpf.metamodel.MetamodelPackage#getSemantics()
- * @model
+ * @model interface="true" abstract="true"
  * @generated
  */
 public interface Semantics extends EObject {

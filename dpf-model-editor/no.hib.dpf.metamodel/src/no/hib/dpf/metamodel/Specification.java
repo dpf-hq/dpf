@@ -7,7 +7,7 @@
 package no.hib.dpf.metamodel;
 
 import java.io.IOException;
-import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 
