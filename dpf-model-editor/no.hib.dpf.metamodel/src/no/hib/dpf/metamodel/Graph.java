@@ -196,6 +196,22 @@ public interface Graph extends IDObject {
 	 * @generated
 	 */
 	Graph extractSubgraph(EList<Node> nodes, EList<Arrow> arrows);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	EList<Node> getNodesForConstraint(Constraint constraint);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	EList<Arrow> getArrowsForConstraint(Constraint constraint);
 	
 
 } // Graph

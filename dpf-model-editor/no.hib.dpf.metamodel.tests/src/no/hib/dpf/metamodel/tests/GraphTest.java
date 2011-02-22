@@ -11,9 +11,11 @@ import java.util.List;
 
 import junit.textui.TestRunner;
 import no.hib.dpf.metamodel.Arrow;
+import no.hib.dpf.metamodel.Constraint;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.MetamodelFactory;
 import no.hib.dpf.metamodel.Node;
+import no.hib.dpf.metamodel.Predicate;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -36,6 +38,8 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link no.hib.dpf.metamodel.Graph#createNode(java.lang.String, no.hib.dpf.metamodel.Node) <em>Create Node</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Graph#createArrow(java.lang.String, no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Arrow) <em>Create Arrow</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Graph#extractSubgraph(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Extract Subgraph</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Graph#getNodesForConstraint(no.hib.dpf.metamodel.Constraint) <em>Get Nodes For Constraint</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Graph#getArrowsForConstraint(no.hib.dpf.metamodel.Constraint) <em>Get Arrows For Constraint</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -171,6 +175,75 @@ public class GraphTest extends IDObjectTest {
 		EList<Arrow> arrows = new BasicEList<Arrow>();
 		arrows.add(sourceGraph.getArrowByName("e_1"));
 		checkSubgraph(sourceGraph, nodes, arrows);		
+	}
+
+	/**
+	 * Tests the '{@link no.hib.dpf.metamodel.Graph#getNodesForConstraint(no.hib.dpf.metamodel.Constraint) <em>Get Nodes For Constraint</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.Graph#getNodesForConstraint(no.hib.dpf.metamodel.Constraint)
+	 * @generated NOT
+	 */
+	public void testGetNodesForConstraint__Constraint() {
+		Predicate pred = MetamodelFactory.eINSTANCE.createPredicate("n_1,n_2", "e_1:n_1:n_2");
+		Graph graph = MetamodelFactory.eINSTANCE.createGraph("n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3");
+		
+		BasicEList<Node> nodes = new BasicEList<Node>();
+		nodes.add(graph.getNodeByName("n_1"));
+		nodes.add(graph.getNodeByName("n_2"));
+	
+		EList<Arrow> arrows = new BasicEList<Arrow>();
+		arrows.add(graph.getArrowByName("e_1"));
+		
+		pred.createConstraint(nodes, arrows, graph);
+		Constraint constraint = graph.getConstraints().get(0);
+		
+		EList<Node> constrainedNodes = graph.getNodesForConstraint(constraint);
+		assertEquals(nodes.size(), constrainedNodes.size());
+		for(Node nodeInGraph : constrainedNodes) {
+			int count = 0;
+			for (Node nodeInConstraint : nodes) {
+				if(nodeInGraph.equals(nodeInConstraint)) {
+					count ++;
+				}
+			}
+			assertEquals("Did not find just 1 matched node", 1, count);
+		}
+		
+	}
+
+	/**
+	 * Tests the '{@link no.hib.dpf.metamodel.Graph#getArrowsForConstraint(no.hib.dpf.metamodel.Constraint) <em>Get Arrows For Constraint</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.Graph#getArrowsForConstraint(no.hib.dpf.metamodel.Constraint)
+	 * @generated NOT
+	 */
+	public void testGetArrowsForConstraint__Constraint() {
+		Predicate pred = MetamodelFactory.eINSTANCE.createPredicate("n_1,n_2", "e_1:n_1:n_2");
+		Graph graph = MetamodelFactory.eINSTANCE.createGraph("n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3");
+		
+		BasicEList<Node> nodes = new BasicEList<Node>();
+		nodes.add(graph.getNodeByName("n_1"));
+		nodes.add(graph.getNodeByName("n_2"));
+	
+		EList<Arrow> arrows = new BasicEList<Arrow>();
+		arrows.add(graph.getArrowByName("e_1"));
+		
+		pred.createConstraint(nodes, arrows, graph);
+		Constraint constraint = graph.getConstraints().get(0);
+		
+		EList<Arrow> constrainedArrows = graph.getArrowsForConstraint(constraint);
+		assertEquals(arrows.size(), constrainedArrows.size());
+		for(Arrow arrowInGraph : constrainedArrows) {
+			int count = 0;
+			for (Arrow arrowInConstraint : arrows) {
+				if(arrowInGraph.equals(arrowInConstraint)) {
+					count ++;
+				}
+			}
+			assertEquals("Did not find just 1 matched arrow", 1, count);
+		}
 	}
 
 	/**

@@ -23,6 +23,7 @@ import no.hib.dpf.metamodel.Predicate;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -240,6 +241,25 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 			}
 		}
 		return retval;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<Node> getNodesForConstraint(Constraint constraint) {
+		return new BasicEList<Node>(constraint.getMappings().getNodeMapping().values());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<Arrow> getArrowsForConstraint(Constraint constraint) {
+		return new BasicEList<Arrow>(constraint.getMappings().getArrowMapping().values());
+
 	}
 
 	/**
