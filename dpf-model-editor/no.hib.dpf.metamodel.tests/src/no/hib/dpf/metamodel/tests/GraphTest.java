@@ -7,7 +7,9 @@
 package no.hib.dpf.metamodel.tests;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import junit.textui.TestRunner;
 import no.hib.dpf.metamodel.Arrow;
@@ -40,6 +42,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link no.hib.dpf.metamodel.Graph#extractSubgraph(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Extract Subgraph</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Graph#getNodesForConstraint(no.hib.dpf.metamodel.Constraint) <em>Get Nodes For Constraint</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Graph#getArrowsForConstraint(no.hib.dpf.metamodel.Constraint) <em>Get Arrows For Constraint</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Graph#getNodes(org.eclipse.emf.common.util.EList) <em>Get Nodes</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -244,6 +247,44 @@ public class GraphTest extends IDObjectTest {
 			}
 			assertEquals("Did not find just 1 matched arrow", 1, count);
 		}
+	}
+
+	/**
+	 * Tests the '{@link no.hib.dpf.metamodel.Graph#getNodes(org.eclipse.emf.common.util.EList) <em>Get Nodes</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.Graph#getNodes(org.eclipse.emf.common.util.EList)
+	 * @generated NOT
+	 */
+	public void testGetNodes__EList() {
+		Graph typeGraph = MetamodelFactory.eINSTANCE.createGraph("n_1,n_2", "e_1:n_1:n_2");
+		
+		Map<Node, Node> nodeMap = new HashMap<Node, Node>();
+		Graph instanceGraph = MetamodelFactory.eINSTANCE.createGraph();
+		
+		for (Node node : typeGraph.getNodes()) {
+			Node newNode = instanceGraph.createNode(node.getName(), node);
+			nodeMap.put(node, newNode);
+		}
+		
+		for (Arrow arrow : typeGraph.getArrows()) {
+			instanceGraph.createArrow(arrow.getName(), nodeMap.get(arrow.getSource()), nodeMap.get(arrow.getTarget()), arrow);
+		}
+		
+		EList<Node> types = new BasicEList<Node>();
+		types.add(typeGraph.getNodeByName("n_1"));
+		
+		EList<Node> typedNodes = instanceGraph.getNodes(types);
+		assertEquals(types.size(), typedNodes.size());
+		assertEquals(types.get(0), typedNodes.get(0).getTypeNode());
+		
+		types.add(typeGraph.getNodeByName("n_2"));
+		typedNodes = instanceGraph.getNodes(types);
+		assertEquals(types.size(), typedNodes.size());
+		//FIXME: this depends on the ordering, should be independent of it.
+		assertEquals(types.get(0), typedNodes.get(0).getTypeNode());
+		assertEquals(types.get(1), typedNodes.get(1).getTypeNode()); 
+
 	}
 
 	/**

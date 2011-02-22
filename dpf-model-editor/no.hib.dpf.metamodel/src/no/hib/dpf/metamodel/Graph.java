@@ -212,6 +212,14 @@ public interface Graph extends IDObject {
 	 * @generated
 	 */
 	EList<Arrow> getArrowsForConstraint(Constraint constraint);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model typeNodesMany="true"
+	 * @generated
+	 */
+	EList<Node> getNodes(EList<Node> typeNodes);
 	
 
 } // Graph
