@@ -200,6 +200,7 @@
               eType="#//hib/dpf/metamodel/Specification" containment="true"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EDataType" name="EIOException" instanceClassName="java.io.IOException"/>
+        <eClassifiers xsi:type="ecore:EClass" name="JointlySurjectiveSemantics" eSuperTypes="#//hib/dpf/metamodel/Semantics"/>
       </eSubpackages>
     </eSubpackages>
   </eSubpackages>

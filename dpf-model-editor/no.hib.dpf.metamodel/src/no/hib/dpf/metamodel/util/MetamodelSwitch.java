@@ -182,6 +182,13 @@ public class MetamodelSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MetamodelPackage.JOINTLY_SURJECTIVE_SEMANTICS: {
+				JointlySurjectiveSemantics jointlySurjectiveSemantics = (JointlySurjectiveSemantics)theEObject;
+				T result = caseJointlySurjectiveSemantics(jointlySurjectiveSemantics);
+				if (result == null) result = caseSemantics(jointlySurjectiveSemantics);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -408,6 +415,21 @@ public class MetamodelSwitch<T> {
 	 * @generated
 	 */
 	public T caseModelHierarchy(ModelHierarchy object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Jointly Surjective Semantics</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Jointly Surjective Semantics</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseJointlySurjectiveSemantics(JointlySurjectiveSemantics object) {
 		return null;
 	}
 

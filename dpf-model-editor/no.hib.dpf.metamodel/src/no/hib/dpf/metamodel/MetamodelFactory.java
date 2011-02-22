@@ -211,6 +211,15 @@ public interface MetamodelFactory extends EFactory {
 	ModelHierarchy createModelHierarchy();
 
 	/**
+	 * Returns a new object of class '<em>Jointly Surjective Semantics</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Jointly Surjective Semantics</em>'.
+	 * @generated
+	 */
+	JointlySurjectiveSemantics createJointlySurjectiveSemantics();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -17,6 +17,12 @@ import no.hib.dpf.metamodel.Semantics;
  * <!-- begin-user-doc -->
  * A test case for the model object '<em><b>Semantics</b></em>'.
  * <!-- end-user-doc -->
+ * <p>
+ * The following operations are tested:
+ * <ul>
+ *   <li>{@link no.hib.dpf.metamodel.Semantics#checkSemantics(no.hib.dpf.metamodel.Graph) <em>Check Semantics</em>}</li>
+ * </ul>
+ * </p>
  * @generated
  */
 public abstract class SemanticsTest extends TestCase {
@@ -57,6 +63,19 @@ public abstract class SemanticsTest extends TestCase {
 	 */
 	protected Semantics getFixture() {
 		return fixture;
+	}
+
+	/**
+	 * Tests the '{@link no.hib.dpf.metamodel.Semantics#checkSemantics(no.hib.dpf.metamodel.Graph) <em>Check Semantics</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.Semantics#checkSemantics(no.hib.dpf.metamodel.Graph)
+	 * @generated
+	 */
+	public void testCheckSemantics__Graph() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
 	}
 
 } //SemanticsTest

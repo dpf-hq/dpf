@@ -1,0 +1,116 @@
+/**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
+ */
+package no.hib.dpf.metamodel.tests;
+
+import junit.framework.TestCase;
+
+import junit.textui.TestRunner;
+
+import no.hib.dpf.metamodel.Graph;
+import no.hib.dpf.metamodel.JointlySurjectiveSemantics;
+import no.hib.dpf.metamodel.MetamodelFactory;
+
+/**
+ * <!-- begin-user-doc -->
+ * A test case for the model object '<em><b>Jointly Surjective Semantics</b></em>'.
+ * <!-- end-user-doc -->
+ * <p>
+ * The following operations are tested:
+ * <ul>
+ *   <li>{@link no.hib.dpf.metamodel.Semantics#checkSemantics(no.hib.dpf.metamodel.Graph) <em>Check Semantics</em>}</li>
+ * </ul>
+ * </p>
+ * @generated
+ */
+public class JointlySurjectiveSemanticsTest extends TestCase {
+
+	/**
+	 * The fixture for this Jointly Surjective Semantics test case.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected JointlySurjectiveSemantics fixture = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static void main(String[] args) {
+		TestRunner.run(JointlySurjectiveSemanticsTest.class);
+	}
+
+	/**
+	 * Constructs a new Jointly Surjective Semantics test case with the given name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public JointlySurjectiveSemanticsTest(String name) {
+		super(name);
+	}
+
+	/**
+	 * Sets the fixture for this Jointly Surjective Semantics test case.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void setFixture(JointlySurjectiveSemantics fixture) {
+		this.fixture = fixture;
+	}
+
+	/**
+	 * Returns the fixture for this Jointly Surjective Semantics test case.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected JointlySurjectiveSemantics getFixture() {
+		return fixture;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see junit.framework.TestCase#setUp()
+	 * @generated
+	 */
+	@Override
+	protected void setUp() throws Exception {
+		setFixture(MetamodelFactory.eINSTANCE.createJointlySurjectiveSemantics());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see junit.framework.TestCase#tearDown()
+	 * @generated
+	 */
+	@Override
+	protected void tearDown() throws Exception {
+		setFixture(null);
+	}
+
+	/**
+	 * Tests the '{@link no.hib.dpf.metamodel.Semantics#checkSemantics(no.hib.dpf.metamodel.Graph) <em>Check Semantics</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.Semantics#checkSemantics(no.hib.dpf.metamodel.Graph)
+	 * @generated NOT
+	 */
+	public void testCheckSemantics__Graph() {
+		Graph graph = MetamodelFactory.eINSTANCE.createGraph("x, y, z", "f:x:y,g:z:y");		
+		assertTrue(getFixture().checkSemantics(graph));
+		graph = MetamodelFactory.eINSTANCE.createGraph("x, y, z, ¾", "f:x:y,g:z:y,Œ:¾:y");		
+		assertTrue(getFixture().checkSemantics(graph));
+		graph = MetamodelFactory.eINSTANCE.createGraph("x, y, z, ¾", "f:x:y,g:z:y,Œ:z:¾");		
+		assertFalse(getFixture().checkSemantics(graph));
+	}
+
+} //JointlySurjectiveSemanticsTest

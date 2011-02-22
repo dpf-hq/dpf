@@ -681,6 +681,25 @@ public interface MetamodelPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.JointlySurjectiveSemanticsImpl <em>Jointly Surjective Semantics</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.impl.JointlySurjectiveSemanticsImpl
+	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getJointlySurjectiveSemantics()
+	 * @generated
+	 */
+	int JOINTLY_SURJECTIVE_SEMANTICS = 15;
+
+	/**
+	 * The number of structural features of the '<em>Jointly Surjective Semantics</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JOINTLY_SURJECTIVE_SEMANTICS_FEATURE_COUNT = SEMANTICS_FEATURE_COUNT + 0;
+
+	/**
 	 * The meta object id for the '<em>EURI</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -688,7 +707,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getEURI()
 	 * @generated
 	 */
-	int EURI = 15;
+	int EURI = 16;
 
 	/**
 	 * The meta object id for the '<em>EIO Exception</em>' data type.
@@ -698,7 +717,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getEIOException()
 	 * @generated
 	 */
-	int EIO_EXCEPTION = 16;
+	int EIO_EXCEPTION = 17;
 
 
 	/**
@@ -1219,6 +1238,16 @@ public interface MetamodelPackage extends EPackage {
 	EReference getModelHierarchy_Specifications();
 
 	/**
+	 * Returns the meta object for class '{@link no.hib.dpf.metamodel.JointlySurjectiveSemantics <em>Jointly Surjective Semantics</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Jointly Surjective Semantics</em>'.
+	 * @see no.hib.dpf.metamodel.JointlySurjectiveSemantics
+	 * @generated
+	 */
+	EClass getJointlySurjectiveSemantics();
+
+	/**
 	 * Returns the meta object for data type '{@link org.eclipse.emf.common.util.URI <em>EURI</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1675,6 +1704,16 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MODEL_HIERARCHY__SPECIFICATIONS = eINSTANCE.getModelHierarchy_Specifications();
+
+		/**
+		 * The meta object literal for the '{@link no.hib.dpf.metamodel.impl.JointlySurjectiveSemanticsImpl <em>Jointly Surjective Semantics</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see no.hib.dpf.metamodel.impl.JointlySurjectiveSemanticsImpl
+		 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getJointlySurjectiveSemantics()
+		 * @generated
+		 */
+		EClass JOINTLY_SURJECTIVE_SEMANTICS = eINSTANCE.getJointlySurjectiveSemantics();
 
 		/**
 		 * The meta object literal for the '<em>EURI</em>' data type.

@@ -14,6 +14,7 @@ import no.hib.dpf.metamodel.Constraint;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.GraphHomomorphism;
 import no.hib.dpf.metamodel.IDObject;
+import no.hib.dpf.metamodel.JointlySurjectiveSemantics;
 import no.hib.dpf.metamodel.MetamodelFactory;
 import no.hib.dpf.metamodel.MetamodelPackage;
 import no.hib.dpf.metamodel.ModelHierarchy;
@@ -145,6 +146,13 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * @generated
 	 */
 	private EClass modelHierarchyEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass jointlySurjectiveSemanticsEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -658,6 +666,15 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getJointlySurjectiveSemantics() {
+		return jointlySurjectiveSemanticsEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EDataType getEURI() {
 		return euriEDataType;
 	}
@@ -762,6 +779,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		modelHierarchyEClass = createEClass(MODEL_HIERARCHY);
 		createEReference(modelHierarchyEClass, MODEL_HIERARCHY__SPECIFICATIONS);
 
+		jointlySurjectiveSemanticsEClass = createEClass(JOINTLY_SURJECTIVE_SEMANTICS);
+
 		// Create data types
 		euriEDataType = createEDataType(EURI);
 		eioExceptionEDataType = createEDataType(EIO_EXCEPTION);
@@ -799,6 +818,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		nodeEClass.getESuperTypes().add(this.getIDObject());
 		arrowEClass.getESuperTypes().add(this.getIDObject());
 		constraintEClass.getESuperTypes().add(this.getIDObject());
+		jointlySurjectiveSemanticsEClass.getESuperTypes().add(this.getSemantics());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(graphEClass, Graph.class, "Graph", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -926,7 +946,13 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		addEParameter(op, this.getArrow(), "arrows", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getGraph(), "modelToBeConstrained", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		op = addEOperation(predicateEClass, ecorePackage.getEBooleanObject(), "checkSemantics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getGraph(), "oStar", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(semanticsEClass, Semantics.class, "Semantics", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		op = addEOperation(semanticsEClass, ecorePackage.getEBooleanObject(), "checkSemantics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getGraph(), "oStar", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(visualizationEClass, Visualization.class, "Visualization", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -977,6 +1003,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 		initEClass(modelHierarchyEClass, ModelHierarchy.class, "ModelHierarchy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getModelHierarchy_Specifications(), this.getSpecification(), null, "specifications", null, 0, -1, ModelHierarchy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(jointlySurjectiveSemanticsEClass, JointlySurjectiveSemantics.class, "JointlySurjectiveSemantics", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize data types
 		initEDataType(euriEDataType, URI.class, "EURI", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);

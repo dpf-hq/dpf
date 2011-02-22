@@ -27,6 +27,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link no.hib.dpf.metamodel.Predicate#createConstraint(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, no.hib.dpf.metamodel.Graph) <em>Create Constraint</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Predicate#canCreateConstraint(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, no.hib.dpf.metamodel.Graph) <em>Can Create Constraint</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Predicate#checkSemantics(no.hib.dpf.metamodel.Graph) <em>Check Semantics</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -165,6 +166,19 @@ public class PredicateTest extends TestCase {
 		
 		assertEquals(0, userGraph.getConstraints().size());
 		
+	}
+
+	/**
+	 * Tests the '{@link no.hib.dpf.metamodel.Predicate#checkSemantics(no.hib.dpf.metamodel.Graph) <em>Check Semantics</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.Predicate#checkSemantics(no.hib.dpf.metamodel.Graph)
+	 * @generated
+	 */
+	public void testCheckSemantics__Graph() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
 	}
 
 } //PredicateTest
