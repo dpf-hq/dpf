@@ -45,6 +45,16 @@
             <eParameters name="target" eType="#//hib/dpf/metamodel/Node"/>
             <eParameters name="typeEdge" eType="#//hib/dpf/metamodel/Arrow"/>
           </eOperations>
+          <eOperations name="extractSubgraph" eType="#//hib/dpf/metamodel/Graph">
+            <eParameters name="nodes" upperBound="-1" eType="#//hib/dpf/metamodel/Node"/>
+            <eParameters name="arrows" upperBound="-1" eType="#//hib/dpf/metamodel/Arrow"/>
+          </eOperations>
+          <eOperations name="getNodesForConstraint" upperBound="-1" eType="#//hib/dpf/metamodel/Node">
+            <eParameters name="constraint" eType="#//hib/dpf/metamodel/Constraint"/>
+          </eOperations>
+          <eOperations name="getArrowsForConstraint" upperBound="-1" eType="#//hib/dpf/metamodel/Arrow">
+            <eParameters name="constraint" eType="#//hib/dpf/metamodel/Constraint"/>
+          </eOperations>
           <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" upperBound="-1"
               eType="#//hib/dpf/metamodel/Node" containment="true" eOpposite="#//hib/dpf/metamodel/Node/graph"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

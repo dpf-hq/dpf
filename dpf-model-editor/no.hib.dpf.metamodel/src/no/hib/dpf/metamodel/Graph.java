@@ -188,6 +188,14 @@ public interface Graph extends IDObject {
 	 * @generated
 	 */
 	Arrow createArrow(String name, Node source, Node target, Arrow typeEdge);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model nodesMany="true" arrowsMany="true"
+	 * @generated
+	 */
+	Graph extractSubgraph(EList<Node> nodes, EList<Arrow> arrows);
 	
 
 } // Graph

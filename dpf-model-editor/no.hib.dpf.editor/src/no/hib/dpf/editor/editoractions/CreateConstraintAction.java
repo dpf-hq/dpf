@@ -43,6 +43,9 @@ public abstract class CreateConstraintAction extends SelectionActionForEditParts
 		return false;
 	}	
 	
+	/*
+	 * Must trust that calculateEnabled has been called by GEF, and that selected arrows and nodes are kept.
+	 */
 	protected Constraint createIDObject() {
 		if (testPredicate.canCreateConstraint(addUnselectedNodesToSelection(selectionNodes, selectionArrows), selectionArrows, graph)) {			
 			return testPredicate.createConstraint(addUnselectedNodesToSelection(selectionNodes, selectionArrows), selectionArrows, graph);

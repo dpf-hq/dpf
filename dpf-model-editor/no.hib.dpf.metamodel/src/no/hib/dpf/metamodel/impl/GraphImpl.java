@@ -8,7 +8,9 @@ package no.hib.dpf.metamodel.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import no.hib.dpf.metamodel.Arrow;
 import no.hib.dpf.metamodel.Constraint;
@@ -215,6 +217,29 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 		Arrow edge = createEdgeExec(name, source, target);
 		edge.setTypeArrow(typeArrow);
 		return edge;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Graph extractSubgraph(EList<Node> nodes, EList<Arrow> arrows) {
+		Map<Node, Node> nodeMap = new HashMap<Node, Node>();
+		Graph retval = MetamodelFactory.eINSTANCE.createGraph();
+		
+		for (Node node : nodes) {
+			Node newNode = retval.createNode(node.getName(), node);
+			nodeMap.put(node, newNode);
+		}
+		for (Arrow arrow : arrows) {
+			try {
+				retval.createArrow(arrow.getName(), nodeMap.get(arrow.getSource()), nodeMap.get(arrow.getTarget()), arrow);
+			} catch (Exception e) {
+				throw new IllegalArgumentException("Could not create a subgraph from the submitted parameters.", e);
+			}
+		}
+		return retval;
 	}
 
 	/**

@@ -15,6 +15,9 @@ import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.MetamodelFactory;
 import no.hib.dpf.metamodel.Node;
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
+
 /**
  * <!-- begin-user-doc -->
  * A test case for the model object '<em><b>Graph</b></em>'.
@@ -32,6 +35,7 @@ import no.hib.dpf.metamodel.Node;
  *   <li>{@link no.hib.dpf.metamodel.Graph#getArrowByName(java.lang.String) <em>Get Arrow By Name</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Graph#createNode(java.lang.String, no.hib.dpf.metamodel.Node) <em>Create Node</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Graph#createArrow(java.lang.String, no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Arrow) <em>Create Arrow</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Graph#extractSubgraph(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Extract Subgraph</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -144,6 +148,69 @@ public class GraphTest extends IDObjectTest {
 	}
 
 	
+	/**
+	 * Tests the '{@link no.hib.dpf.metamodel.Graph#extractSubgraph(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Extract Subgraph</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.Graph#extractSubgraph(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
+	 * @generated NOT
+	 */
+	public void testExtractSubgraph__EList_EList() {
+		Graph sourceGraph = MetamodelFactory.eINSTANCE.createGraph("n_1,n_2", "e_1:n_1:n_2");
+		checkSubgraph(sourceGraph, sourceGraph.getNodes(), sourceGraph.getArrows());
+
+		sourceGraph = MetamodelFactory.eINSTANCE.createGraph("n_1,n_2", "e_1:n_1:n_2");
+		EList<Node> nodes = new BasicEList<Node>();
+		nodes.add(sourceGraph.getNodeByName("n_1"));
+		checkSubgraph(sourceGraph, nodes, new BasicEList<Arrow>());
+
+		sourceGraph = MetamodelFactory.eINSTANCE.createGraph("n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3");
+		nodes = new BasicEList<Node>();
+		nodes.add(sourceGraph.getNodeByName("n_1"));
+		nodes.add(sourceGraph.getNodeByName("n_2"));
+		EList<Arrow> arrows = new BasicEList<Arrow>();
+		arrows.add(sourceGraph.getArrowByName("e_1"));
+		checkSubgraph(sourceGraph, nodes, arrows);		
+	}
+
+	/**
+	 * Tests the '{@link no.hib.dpf.metamodel.Graph#extractSubgraph(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Extract Subgraph</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.Graph#extractSubgraph(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
+	 * @generated NOT
+	 */
+	public void testExtractSubgraph__EList_EList_throws() {
+		Graph sourceGraph = MetamodelFactory.eINSTANCE.createGraph("n_1,n_2", "e_1:n_1:n_2");
+		EList<Arrow> arrows = new BasicEList<Arrow>();
+		arrows.add(sourceGraph.getArrowByName("e_1"));
+		boolean ok = false;
+		try {
+			checkSubgraph(sourceGraph, new BasicEList<Node>(), arrows);
+		} catch (IllegalArgumentException e) {
+			ok = true;
+		} 
+		assert(ok);
+	}
+	
+	
+	private void checkSubgraph(Graph sourceGraph, EList<Node> nodes, EList<Arrow> arrows) {
+		Graph extractedGraph = sourceGraph.extractSubgraph(nodes, arrows);
+		EList<Node> extractedNodes = extractedGraph.getNodes();
+		EList<Arrow> extractedArrows = extractedGraph.getArrows();
+		
+		assertEquals(nodes.size(), extractedNodes.size());
+		assertEquals(arrows.size(), extractedArrows.size());
+		for (Node node : extractedNodes) {
+			assertEquals(node.getName(), node.getTypeNode().getName());
+		}
+		for (Arrow arrow : extractedArrows) {
+			assertEquals(arrow.getName(), arrow.getTypeArrow().getName());
+		}
+	}
+
+
+
 	/**
 	 * @generated NOT
 	 */

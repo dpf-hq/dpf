@@ -58,6 +58,10 @@
               <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/Graph/createArrow.1/target"/>
               <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/Graph/createArrow.1/typeEdge"/>
             </genOperations>
+            <genOperations ecoreOperation="Metamodel.ecore#//hib/dpf/metamodel/Graph/extractSubgraph">
+              <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/Graph/extractSubgraph/nodes"/>
+              <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/Graph/extractSubgraph/arrows"/>
+            </genOperations>
           </genClasses>
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/metamodel/Node">
             <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//hib/dpf/metamodel/Node/name"/>
