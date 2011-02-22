@@ -220,6 +220,14 @@ public interface Graph extends IDObject {
 	 * @generated
 	 */
 	EList<Node> getNodes(EList<Node> typeNodes);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model typesMany="true"
+	 * @generated
+	 */
+	EList<Arrow> getArrows(EList<Arrow> types);
 	
 
 } // Graph

@@ -43,6 +43,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link no.hib.dpf.metamodel.Graph#getNodesForConstraint(no.hib.dpf.metamodel.Constraint) <em>Get Nodes For Constraint</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Graph#getArrowsForConstraint(no.hib.dpf.metamodel.Constraint) <em>Get Arrows For Constraint</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Graph#getNodes(org.eclipse.emf.common.util.EList) <em>Get Nodes</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Graph#getArrows(org.eclipse.emf.common.util.EList) <em>Get Arrows</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -284,6 +285,44 @@ public class GraphTest extends IDObjectTest {
 		//FIXME: this depends on the ordering, should be independent of it.
 		assertEquals(types.get(0), typedNodes.get(0).getTypeNode());
 		assertEquals(types.get(1), typedNodes.get(1).getTypeNode()); 
+
+	}
+
+	/**
+	 * Tests the '{@link no.hib.dpf.metamodel.Graph#getArrows(org.eclipse.emf.common.util.EList) <em>Get Arrows</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.Graph#getArrows(org.eclipse.emf.common.util.EList)
+	 * @generated NOT
+	 */
+	public void testGetArrows__EList() {
+		Graph typeGraph = MetamodelFactory.eINSTANCE.createGraph("n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3");
+		
+		Map<Node, Node> nodeMap = new HashMap<Node, Node>();
+		Graph instanceGraph = MetamodelFactory.eINSTANCE.createGraph();
+		
+		for (Node node : typeGraph.getNodes()) {
+			Node newNode = instanceGraph.createNode(node.getName(), node);
+			nodeMap.put(node, newNode);
+		}
+		
+		for (Arrow arrow : typeGraph.getArrows()) {
+			instanceGraph.createArrow(arrow.getName(), nodeMap.get(arrow.getSource()), nodeMap.get(arrow.getTarget()), arrow);
+		}
+		
+		EList<Arrow> types = new BasicEList<Arrow>();
+		types.add(typeGraph.getArrowByName("e_1"));
+		
+		EList<Arrow> typedArrows = instanceGraph.getArrows(types);
+		assertEquals(types.size(), typedArrows.size());
+		assertEquals(types.get(0), typedArrows.get(0).getTypeArrow());
+		
+		types.add(typeGraph.getArrowByName("e_2"));
+		typedArrows = instanceGraph.getArrows(types);
+		assertEquals(types.size(), typedArrows.size());
+		//FIXME: this depends on the ordering, should be independent of it.
+		assertEquals(types.get(0), typedArrows.get(0).getTypeArrow());
+		assertEquals(types.get(1), typedArrows.get(1).getTypeArrow()); 
 
 	}
 

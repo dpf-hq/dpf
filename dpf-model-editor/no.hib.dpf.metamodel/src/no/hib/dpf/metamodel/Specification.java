@@ -89,4 +89,12 @@ public interface Specification extends EObject {
 	 */
 	void save(URI uri) throws IOException;
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	Graph createOStar(Constraint constraint);
+
 } // Specification

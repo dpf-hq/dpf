@@ -12,10 +12,12 @@ package no.hib.dpf.editor.viewmodel;
 
 import java.lang.reflect.InvocationTargetException;
 
+import no.hib.dpf.metamodel.Arrow;
 import no.hib.dpf.metamodel.Constraint;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.GraphHomomorphism;
 import no.hib.dpf.metamodel.IDObject;
+import no.hib.dpf.metamodel.Node;
 import no.hib.dpf.metamodel.Predicate;
 
 import org.eclipse.emf.common.notify.Adapter;
@@ -311,6 +313,16 @@ public class VConstraint extends ModelElement implements Constraint, IDObjectCon
 	@Override
 	public void setId(String value) {
 		constraintComponent.setId(value);
+	}
+
+	@Override
+	public EList<Node> getConstrainedNodes() {
+		return constraintComponent.getConstrainedNodes();
+	}
+
+	@Override
+	public EList<Arrow> getConstrainedArrows() {
+		return constraintComponent.getConstrainedArrows();
 	}
 
 }

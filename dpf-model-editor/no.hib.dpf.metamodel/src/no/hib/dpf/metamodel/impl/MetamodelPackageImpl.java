@@ -858,6 +858,9 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		op = addEOperation(graphEClass, this.getNode(), "getNodes", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getNode(), "typeNodes", 0, -1, IS_UNIQUE, IS_ORDERED);
 
+		op = addEOperation(graphEClass, this.getArrow(), "getArrows", 0, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getArrow(), "types", 0, -1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(nodeEClass, Node.class, "Node", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNode_Name(), ecorePackage.getEString(), "name", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNode_Graph(), this.getGraph(), this.getGraph_Nodes(), "graph", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -936,6 +939,10 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		initEReference(getConstraint_Predicate(), this.getPredicate(), null, "predicate", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConstraint_Mappings(), this.getGraphHomomorphism(), null, "mappings", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		addEOperation(constraintEClass, this.getNode(), "getConstrainedNodes", 0, -1, IS_UNIQUE, IS_ORDERED);
+
+		addEOperation(constraintEClass, this.getArrow(), "getConstrainedArrows", 0, -1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(arrowToArrowMapEClass, Map.Entry.class, "ArrowToArrowMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getArrowToArrowMap_Key(), this.getArrow(), null, "key", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getArrowToArrowMap_Value(), this.getArrow(), null, "value", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -964,6 +971,9 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		op = addEOperation(specificationEClass, null, "save", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getEURI(), "uri", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getEIOException());
+
+		op = addEOperation(specificationEClass, this.getGraph(), "createOStar", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getConstraint(), "constraint", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(modelHierarchyEClass, ModelHierarchy.class, "ModelHierarchy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getModelHierarchy_Specifications(), this.getSpecification(), null, "specifications", null, 0, -1, ModelHierarchy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

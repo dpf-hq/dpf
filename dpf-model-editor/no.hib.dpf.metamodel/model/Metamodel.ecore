@@ -58,6 +58,9 @@
           <eOperations name="getNodes" upperBound="-1" eType="#//hib/dpf/metamodel/Node">
             <eParameters name="typeNodes" upperBound="-1" eType="#//hib/dpf/metamodel/Node"/>
           </eOperations>
+          <eOperations name="getArrows" upperBound="-1" eType="#//hib/dpf/metamodel/Arrow">
+            <eParameters name="types" upperBound="-1" eType="#//hib/dpf/metamodel/Arrow"/>
+          </eOperations>
           <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" upperBound="-1"
               eType="#//hib/dpf/metamodel/Node" containment="true" eOpposite="#//hib/dpf/metamodel/Node/graph"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -138,6 +141,8 @@
           <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//hib/dpf/metamodel/Node"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Constraint" eSuperTypes="#//hib/dpf/metamodel/IDObject">
+          <eOperations name="getConstrainedNodes" upperBound="-1" eType="#//hib/dpf/metamodel/Node"/>
+          <eOperations name="getConstrainedArrows" upperBound="-1" eType="#//hib/dpf/metamodel/Arrow"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="graph" eType="#//hib/dpf/metamodel/Graph"
               eOpposite="#//hib/dpf/metamodel/Graph/constraints"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="predicate" eType="#//hib/dpf/metamodel/Predicate"/>
@@ -173,6 +178,9 @@
         <eClassifiers xsi:type="ecore:EClass" name="Specification">
           <eOperations name="save" eExceptions="#//hib/dpf/metamodel/EIOException">
             <eParameters name="uri" eType="#//hib/dpf/metamodel/EURI"/>
+          </eOperations>
+          <eOperations name="createOStar" eType="#//hib/dpf/metamodel/Graph">
+            <eParameters name="constraint" eType="#//hib/dpf/metamodel/Constraint"/>
           </eOperations>
           <eStructuralFeatures xsi:type="ecore:EReference" name="graph" lowerBound="1"
               eType="#//hib/dpf/metamodel/Graph" containment="true"/>

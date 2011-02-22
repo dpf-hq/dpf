@@ -6,14 +6,17 @@
  */
 package no.hib.dpf.metamodel.impl;
 
+import no.hib.dpf.metamodel.Arrow;
 import no.hib.dpf.metamodel.Constraint;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.GraphHomomorphism;
 import no.hib.dpf.metamodel.MetamodelPackage;
+import no.hib.dpf.metamodel.Node;
 import no.hib.dpf.metamodel.Predicate;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -194,6 +197,24 @@ public class ConstraintImpl extends IDObjectImpl implements Constraint {
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.CONSTRAINT__MAPPINGS, newMappings, newMappings));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<Node> getConstrainedNodes() {
+		return this.getGraph().getNodesForConstraint(this);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<Arrow> getConstrainedArrows() {
+		return this.getGraph().getArrowsForConstraint(this);
 	}
 
 	/**

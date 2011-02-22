@@ -6,6 +6,8 @@
  */
 package no.hib.dpf.metamodel;
 
+import org.eclipse.emf.common.util.EList;
+
 
 
 /**
@@ -106,5 +108,21 @@ public interface Constraint extends IDObject {
 	 * @generated
 	 */
 	void setMappings(GraphHomomorphism value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	EList<Node> getConstrainedNodes();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	EList<Arrow> getConstrainedArrows();
 
 } // Constraint

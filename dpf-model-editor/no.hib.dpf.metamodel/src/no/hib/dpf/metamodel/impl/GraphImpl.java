@@ -280,6 +280,23 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated COPIED
+	 */
+	public EList<Arrow> getArrows(EList<Arrow> types) {
+		EList<Arrow> retval = new BasicEList<Arrow>();
+		for (Arrow typeArrow : types) {
+			for (Arrow arrow : getArrows()) {
+				if(arrow.getTypeArrow().equals(typeArrow)) {
+					retval.add(arrow);
+				}
+			}
+		}
+		return retval;
+	}
+
+	/**
 	 * @generated NOT
 	 */
 	private Arrow createEdgeExec(String name, Node source, Node target) {

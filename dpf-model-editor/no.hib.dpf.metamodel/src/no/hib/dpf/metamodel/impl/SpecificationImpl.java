@@ -7,14 +7,20 @@
 package no.hib.dpf.metamodel.impl;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
+import no.hib.dpf.metamodel.Arrow;
+import no.hib.dpf.metamodel.Constraint;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.MetamodelFactory;
 import no.hib.dpf.metamodel.MetamodelPackage;
+import no.hib.dpf.metamodel.Node;
 import no.hib.dpf.metamodel.Specification;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -181,6 +187,22 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 		resource.getContents().add(this);		
 		
 		resource.save(null);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Graph createOStar(Constraint constraint) {
+		
+		EList<Arrow> constrainedTypeArrows = constraint.getConstrainedArrows();
+		EList<Node> constrainedTypeNodes = constraint.getConstrainedNodes();
+		
+		EList<Node> constrainedNodes = graph.getNodes(constrainedTypeNodes);
+		EList<Arrow> constrainedArrows = graph.getArrows(constrainedTypeArrows);
+		
+		return graph.extractSubgraph(constrainedNodes, constrainedArrows);
 	}
 
 	/**
