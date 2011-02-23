@@ -53,17 +53,20 @@ public class JointlySurjectiveSemanticsImpl extends EObjectImpl implements Joint
 		if (oStar.getArrows().size() != (oStar.getNodes().size() - 1)) {
 			return false;
 		}
-		int nodesWithIncomingEdgesCount = 0;
+		if (oStar.getNodes().size() == 1) {
+			return false;
+		}
+		int nodesWithIncomingArrowsCount = 0;
 		Node nodeWithOnlyIncoming = null;
 		for (Node node : oStar.getNodes()) {
 			if (node.getOutgoingArrows().size() == 0) {
-				nodesWithIncomingEdgesCount++;
+				nodesWithIncomingArrowsCount++;
 				nodeWithOnlyIncoming = node;
 			} else if (node.getOutgoingArrows().size() != 1) {
 				return false;
 			}
 		}
-		if (nodesWithIncomingEdgesCount != 1) {
+		if (nodesWithIncomingArrowsCount != 1) {
 			return false;
 		}
 		for (Node node : oStar.getNodes()) {
