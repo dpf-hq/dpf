@@ -10,16 +10,13 @@
 Ê*******************************************************************************/
 package no.hib.dpf.editor;
 
-import org.eclipse.jface.action.IContributionItem;
-import org.eclipse.jface.action.IStatusLineManager;
-import org.eclipse.jface.action.IToolBarManager;
-import org.eclipse.jface.action.StatusLineContributionItem;
-import org.eclipse.ui.actions.ActionFactory;
-
 import org.eclipse.gef.ui.actions.ActionBarContributor;
 import org.eclipse.gef.ui.actions.DeleteRetargetAction;
 import org.eclipse.gef.ui.actions.RedoRetargetAction;
 import org.eclipse.gef.ui.actions.UndoRetargetAction;
+import org.eclipse.jface.action.IStatusLineManager;
+import org.eclipse.jface.action.IToolBarManager;
+import org.eclipse.ui.actions.ActionFactory;
 
 /**
  * Contributes actions to a toolbar.
@@ -53,10 +50,6 @@ public void contributeToToolBar(IToolBarManager toolBarManager) {
 public void contributeToStatusLine(IStatusLineManager statusLineManager) {
 	super.contributeToStatusLine(statusLineManager);
 	DPFPlugin.getDefault().setStatusLineManager(statusLineManager);
-//	IContributionItem contributionItem = new StatusLineContributionItem("Hunky Dory");
-//	contributionItem.setVisible(true);
-//	statusLineManager.add(contributionItem);
-	//statusLineManager.setMessage("Oztepop");
 }
 
 /*
