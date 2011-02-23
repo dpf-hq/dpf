@@ -19,6 +19,7 @@ import java.util.List;
 
 import no.hib.dpf.editor.figures.DPFConnectionFigure;
 import no.hib.dpf.editor.figures.EditableLabel;
+import no.hib.dpf.editor.preferences.DPFEditorPreferences;
 import no.hib.dpf.editor.viewmodel.SingleLineConstraintElement;
 import no.hib.dpf.editor.viewmodel.VArrow;
 import no.hib.dpf.editor.viewmodel.VConstraint;
@@ -145,8 +146,11 @@ public class VArrowEditPart extends ModelElementConnectionEditPart {
 	 * 
 	 * @see org.eclipse.gef.editparts.AbstractGraphicalEditPart#createFigure()
 	 */
-	protected IFigure createFigure() {		
-		EditableLabel label = new EditableLabel(getFullName());
+	protected IFigure createFigure() {
+		EditableLabel label = new EditableLabel("");
+		if (DPFEditorPreferences.getDefault().getDisplayArrows()) {
+			label = new EditableLabel(getFullName());
+		}
 		connectionFigure = new DPFConnectionFigure(label);
 		makeNewConstraintLabel();
 
@@ -225,10 +229,12 @@ public class VArrowEditPart extends ModelElementConnectionEditPart {
 	}
 	
 	private void commitNameChange(String newValue) {
-		DPFConnectionFigure figure = (DPFConnectionFigure) getFigure();
-		EditableLabel label = figure.getLabel();
-		label.setText(getFullName());
-		refreshVisuals();
+		if (DPFEditorPreferences.getDefault().getDisplayArrows()) {
+			DPFConnectionFigure figure = (DPFConnectionFigure)getFigure();
+			EditableLabel label = figure.getLabel();
+			label.setText(getFullName());
+			refreshVisuals();
+		}
 	}
 	
 	private String getFullName() {
