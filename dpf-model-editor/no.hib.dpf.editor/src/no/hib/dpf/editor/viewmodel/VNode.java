@@ -277,39 +277,40 @@ public class VNode extends ModelElement implements Node, IDObjectContainer, Mova
 		return "Node " + hashCode();
 	}
 	
-	public void addIncomingConnection(VArrow conn) {
-		targetConnections.add(conn);
-		conn.setTarget(nodeComponent);
-		addConnectionToGraph(conn);
-		firePropertyChange(TARGET_CONNECTIONS_PROP, null, conn);
+	public void addIncomingConnection(VArrow arrow) {
+		targetConnections.add(arrow);
+		arrow.setTarget(nodeComponent);
+		addConnectionToGraph(arrow);
+		// This line must come after the model is in a correct state:
+		firePropertyChange(TARGET_CONNECTIONS_PROP, null, arrow);
 	}
 
-	public void addOutgoingConnection(VArrow conn) {
-		sourceConnections.add(conn);
-		firePropertyChange(SOURCE_CONNECTIONS_PROP, null, conn);
-		conn.setSource(nodeComponent);
-		addConnectionToGraph(conn);
+	public void addOutgoingConnection(VArrow arrow) {
+		sourceConnections.add(arrow);
+		arrow.setSource(nodeComponent);
+		addConnectionToGraph(arrow);
+		firePropertyChange(SOURCE_CONNECTIONS_PROP, null, arrow);
 	}
 	
-	private void addConnectionToGraph(VArrow conn) {
-		conn.setGraph(getGraph());
-		if (conn.getName().equals("")) {
-			conn.setNameExec(conn.generateUniqueName());
+	private void addConnectionToGraph(VArrow arrow) {
+		arrow.setGraph(getGraph());
+		if (arrow.getName().equals("")) {
+			arrow.setNameExec(arrow.generateUniqueName());
 		}
 	}
 	
-	protected void removeIncomingConnection(VArrow conn) {
-		targetConnections.remove(conn);
-		conn.setTarget(null);
-		conn.setGraph(null);
-		firePropertyChange(TARGET_CONNECTIONS_PROP, null, conn);
+	protected void removeIncomingConnection(VArrow arrow) {
+		targetConnections.remove(arrow);
+		arrow.setTarget(null);
+		arrow.setGraph(null);
+		firePropertyChange(TARGET_CONNECTIONS_PROP, null, arrow);
 	}
 
-	protected void removeOutgoingConnection(VArrow conn) {
-		sourceConnections.remove(conn);
-		firePropertyChange(SOURCE_CONNECTIONS_PROP, null, conn);
-		conn.setSource(null);
-		conn.setGraph(null);
+	protected void removeOutgoingConnection(VArrow arrow) {
+		sourceConnections.remove(arrow);
+		arrow.setSource(null);
+		arrow.setGraph(null);
+		firePropertyChange(SOURCE_CONNECTIONS_PROP, null, arrow);
 	}
 		
 	@Override

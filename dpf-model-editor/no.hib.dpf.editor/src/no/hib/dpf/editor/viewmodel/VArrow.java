@@ -118,7 +118,7 @@ public class VArrow extends ModelElement implements Arrow, IDObjectContainer {
 	 * @see #setLineStyle(int)
 	 */
 	public VArrow(VNode source, VNode target, Arrow typeArrow) {
-		// The dpf Edge object must be initialized before the connection of the shapes.
+		// The dpf Arrow object must be initialized before the connection of the shapes.
 		setIDObject(MetamodelFactory.eINSTANCE.createArrow(typeArrow));
 		reconnect(source, target);
 	}
@@ -387,7 +387,7 @@ public class VArrow extends ModelElement implements Arrow, IDObjectContainer {
 	}	
 	
 	// -----------------------------------------------------------------------------------
-	// Edge methods:
+	// Arrow methods:
 	// -----------------------------------------------------------------------------------
 
 	@Override

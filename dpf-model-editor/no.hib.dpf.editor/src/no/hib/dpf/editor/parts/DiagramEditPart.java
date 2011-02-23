@@ -21,8 +21,6 @@ import no.hib.dpf.editor.viewmodel.MovableAndSizable;
 import no.hib.dpf.editor.viewmodel.VNode;
 import no.hib.dpf.editor.viewmodel.commands.VNodeCreateCommand;
 import no.hib.dpf.editor.viewmodel.commands.VNodeSetSizeAndLocationCommand;
-import no.hib.dpf.metamodel.Constraint;
-import no.hib.dpf.metamodel.impl.SpecificationImpl;
 
 import org.eclipse.draw2d.ConnectionLayer;
 import org.eclipse.draw2d.Figure;
