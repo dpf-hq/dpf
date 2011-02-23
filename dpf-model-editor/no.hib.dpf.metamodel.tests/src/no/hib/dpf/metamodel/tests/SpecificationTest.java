@@ -6,11 +6,14 @@
  */
 package no.hib.dpf.metamodel.tests;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 import org.junit.Test;
 
 import junit.framework.TestCase;
@@ -117,9 +120,17 @@ public class SpecificationTest extends TestCase {
 	 * @generated
 	 */
 	public void testSave__URI() {
-		// TODO: implement this operation test method
-		// Ensure that you remove @generated or mark it @generated NOT
-		fail();
+		Specification spec = getFixture();
+		URI uri = URI.createFileURI("testing.xmi");
+		try {
+			spec.save(uri);
+		} catch (IOException e) {
+			e.printStackTrace();
+			fail();
+		} finally {
+			File temp = new File("testing.xml");
+			temp.delete();
+		}
 	}
 
 	/**
