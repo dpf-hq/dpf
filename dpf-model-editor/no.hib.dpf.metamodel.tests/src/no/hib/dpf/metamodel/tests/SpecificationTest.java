@@ -121,14 +121,15 @@ public class SpecificationTest extends TestCase {
 	 */
 	public void testSave__URI() {
 		Specification spec = getFixture();
-		URI uri = URI.createFileURI("testing.xmi");
+		final String filename = "testing.xmi";
+		URI uri = URI.createFileURI(filename);
 		try {
 			spec.save(uri);
 		} catch (IOException e) {
 			e.printStackTrace();
 			fail();
 		} finally {
-			File temp = new File("testing.xml");
+			File temp = new File(filename);
 			temp.delete();
 		}
 	}
@@ -183,7 +184,7 @@ public class SpecificationTest extends TestCase {
 		Predicate pred = MetamodelFactory.eINSTANCE.createPredicate("n_1,n_2,n_3", "a_1:n_1:n_2,a_2:n_3:n_2");
 		
 		// Creates a type graph, constrained by the predicate:
-		Graph typeGraph = MetamodelFactory.eINSTANCE.createGraph("x,y,z,¾", "f:x:y,g:z:y,Œ:z:¾");
+		Graph typeGraph = MetamodelFactory.eINSTANCE.createGraph("x,y,z,ï¿½", "f:x:y,g:z:y,ï¿½:z:ï¿½");
 		
 		BasicEList<Node> nodes = new BasicEList<Node>();
 		nodes.add(typeGraph.getNodeByName("x"));
