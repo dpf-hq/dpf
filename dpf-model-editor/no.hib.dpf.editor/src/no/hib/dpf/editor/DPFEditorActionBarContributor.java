@@ -10,7 +10,10 @@
 Ê*******************************************************************************/
 package no.hib.dpf.editor;
 
+import org.eclipse.jface.action.IContributionItem;
+import org.eclipse.jface.action.IStatusLineManager;
 import org.eclipse.jface.action.IToolBarManager;
+import org.eclipse.jface.action.StatusLineContributionItem;
 import org.eclipse.ui.actions.ActionFactory;
 
 import org.eclipse.gef.ui.actions.ActionBarContributor;
@@ -29,6 +32,7 @@ public class DPFEditorActionBarContributor extends ActionBarContributor {
  * Create actions managed by this contributor.
  * @see org.eclipse.gef.ui.actions.ActionBarContributor#buildActions()
  */
+@Override
 protected void buildActions() {
 	addRetargetAction(new DeleteRetargetAction());
 	addRetargetAction(new UndoRetargetAction());
@@ -39,9 +43,20 @@ protected void buildActions() {
  * Add actions to the given toolbar.
  * @see org.eclipse.ui.part.EditorActionBarContributor#contributeToToolBar(org.eclipse.jface.action.IToolBarManager)
  */
+@Override
 public void contributeToToolBar(IToolBarManager toolBarManager) {
 	toolBarManager.add(getAction(ActionFactory.UNDO.getId()));
 	toolBarManager.add(getAction(ActionFactory.REDO.getId()));
+}
+
+@Override
+public void contributeToStatusLine(IStatusLineManager statusLineManager) {
+	super.contributeToStatusLine(statusLineManager);
+	DPFPlugin.getDefault().setStatusLineManager(statusLineManager);
+//	IContributionItem contributionItem = new StatusLineContributionItem("Hunky Dory");
+//	contributionItem.setVisible(true);
+//	statusLineManager.add(contributionItem);
+	//statusLineManager.setMessage("Oztepop");
 }
 
 /*

@@ -10,6 +10,7 @@
 �*******************************************************************************/
 package no.hib.dpf.editor;
 
+import org.eclipse.jface.action.IStatusLineManager;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 /**
@@ -26,6 +27,8 @@ public class DPFPlugin extends AbstractUIPlugin {
 
 	/** Single plugin instance. */
 	private static DPFPlugin singleton;
+	
+	private IStatusLineManager statusLineManager;
 
 	/**
 	 * Returns the shared plugin instance.
@@ -42,5 +45,14 @@ public class DPFPlugin extends AbstractUIPlugin {
 			singleton = this;
 		}
 	}
+
+	public void setStatusLineManager(IStatusLineManager statusLineManager) {
+		this.statusLineManager = statusLineManager;
+	}
+
+	public IStatusLineManager getStatusLineManager() {
+		return statusLineManager;
+	}
+	
 
 }

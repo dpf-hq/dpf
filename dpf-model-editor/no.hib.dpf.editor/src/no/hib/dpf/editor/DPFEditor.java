@@ -70,6 +70,7 @@ import org.eclipse.gef.ui.parts.TreeViewer;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
@@ -77,7 +78,9 @@ import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IFileEditorInput;
+import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.dialogs.SaveAsDialog;
@@ -684,12 +687,28 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
-		System.err.println("VALIDATION RESULT: ");
+		//System.err.println("VALIDATION RESULT: ");
+		boolean isValid = true;
 		for (Constraint c : specification.getTypeGraph().getConstraints()) {
-			Graph oStar = specification.createOStar(c);
-			Boolean validation = c.getPredicate().validateSemantics(oStar);
-			System.err.println(validation);
+			try {
+				Graph oStar = specification.createOStar(c);
+				Boolean validation = c.getPredicate().validateSemantics(oStar);
+				isValid &= validation.booleanValue();
+			} catch (IllegalArgumentException e) {
+				isValid = false;
+			}
+			//System.err.println(validation);
 		}
+		Image icon;
+		if(isValid) {
+			icon = PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJS_INFO_TSK);
+			DPFPlugin.getDefault().getStatusLineManager().setMessage(icon, "All constraints validated.");
+		} else {
+			icon = PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJS_WARN_TSK);
+			DPFPlugin.getDefault().getStatusLineManager().setMessage(icon, "Validation failed.");
+		}
+		
+		
 	}
 
 }
