@@ -258,7 +258,7 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * Returns a newly created constraint. If the nodes and/or edges provided don't match the shape
+	 * Returns a newly created constraint. If the nodes and/or arrows provided don't match the shape
 	 * of this predicate, null is returned.
 	 * <!-- end-user-doc -->
 	 * @generated NOT

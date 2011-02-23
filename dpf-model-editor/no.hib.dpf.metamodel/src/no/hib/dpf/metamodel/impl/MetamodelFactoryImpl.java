@@ -138,27 +138,27 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	 * Returns a new object of class '<em>Graph</em>'.
 	 * <!-- begin-user-doc -->
 	 * This is intended as a quick way of generating Graph instances using string parameters for
-	 * nodes and edges. String formats: "gn1,gn2", "ge1:gn1:gn2"
+	 * nodes and arrows. String formats: "gn1,gn2", "ge1:gn1:gn2"
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Graph</em>'.
 	 * @generated NOT
 	 */
-	public Graph createGraph(String nodes, String edges) {
-		return createGraph("Default name", nodes, edges);
+	public Graph createGraph(String nodes, String arrows) {
+		return createGraph("Default name", nodes, arrows);
 	}
 	
 	/**
 	 * Returns a new object of class '<em>Graph</em>'.
 	 * <!-- begin-user-doc -->
 	 * This is intended as a quick way of generating Graph instances using string parameters for
-	 * nodes and edges. String formats: "gn1,gn2", "ge1:gn1:gn2"
+	 * nodes and arrows. String formats: "gn1,gn2", "ge1:gn1:gn2"
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Graph</em>'.
 	 * @generated NOT
 	 */
-	public Graph createGraph(String name, String nodes, String edges) {
+	public Graph createGraph(String name, String nodes, String arrows) {
 		Graph retval = createGraphNodes(nodes.split(","));
-		addEdgesToGraph(retval, edges.split(","));		
+		addArrowsToGraph(retval, arrows.split(","));		
 		retval.setName(name);
 		return retval;
 	}
@@ -179,11 +179,11 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	/**
 	 * @generated NOT
 	 */
-	private void addEdgesToGraph(Graph g, String[] edges) {
-		if (!((edges.length == 1) && (edges[0].equals("")))) {
-			for (String edgeDetails : edges) {
-				String[] edgeDetailsSplit = edgeDetails.split(":");
-				g.createArrow(edgeDetailsSplit[0].trim(), g.getNodeByName(edgeDetailsSplit[1].trim()), g.getNodeByName(edgeDetailsSplit[2].trim()));
+	private void addArrowsToGraph(Graph g, String[] arrows) {
+		if (!((arrows.length == 1) && (arrows[0].equals("")))) {
+			for (String arrowDetails : arrows) {
+				String[] arrowDetailsSplit = arrowDetails.split(":");
+				g.createArrow(arrowDetailsSplit[0].trim(), g.getNodeByName(arrowDetailsSplit[1].trim()), g.getNodeByName(arrowDetailsSplit[2].trim()));
 			}
 		}
 	}	
@@ -257,9 +257,9 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	 * @return a new object of class '<em>Predicate</em>'.
 	 * @generated NOT
 	 */
-	public Predicate createPredicate(String nodes, String edges) {
+	public Predicate createPredicate(String nodes, String arrows) {
 		Predicate predicate = createPredicate();
-		predicate.setShape(createGraph(nodes, edges));
+		predicate.setShape(createGraph(nodes, arrows));
 		return predicate;		
 	}
 	
@@ -270,8 +270,8 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	 * @return a new object of class '<em>Predicate</em>'.
 	 * @generated NOT
 	 */
-	public Predicate createPredicate(String symbol, String nodes, String edges) {
-		Predicate predicate = createPredicate(nodes, edges);
+	public Predicate createPredicate(String symbol, String nodes, String arrows) {
+		Predicate predicate = createPredicate(nodes, arrows);
 		predicate.setSymbol(symbol);
 		return predicate;		
 	}

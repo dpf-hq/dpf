@@ -195,14 +195,14 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 		testSurceAndTarget(source, target);
 		
 		if (!source.arrowCanMakeConnectionAsTarget(target)) {
-			throw new AssertionError(String.format("The target node, %s, had the wrong type for an edge to be connected from the node %s.", target, source));
+			throw new AssertionError(String.format("The target node, %s, had the wrong type for an arrow to be connected from the node %s.", target, source));
 		}
 						
-		Arrow edge = createEdgeExec(name, source, target);
+		Arrow arrow = createArrowExec(name, source, target);
 		if ((source.getTypeNode() != null) && (target.getTypeNode() != null)) {
-			edge.setTypeArrow(source.getTypeNode().getArrowto(target.getTypeNode()));
+			arrow.setTypeArrow(source.getTypeNode().getArrowto(target.getTypeNode()));
 		}
-		return edge;
+		return arrow;
 	}
 
 	/**
@@ -213,11 +213,11 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	public Arrow createArrow(String name, Node source, Node target, Arrow typeArrow) {
 		testSurceAndTarget(source, target);
 		if (!source.arrowCanMakeConnectionAsTarget(target, typeArrow)) {
-			throw new AssertionError(String.format("The target node, %s, had the wrong type for an edge to be connected from the node %s via the type edge %s.", target, source, typeArrow));			
+			throw new AssertionError(String.format("The target node, %s, had the wrong type for an arrow to be connected from the node %s via the type arrow %s.", target, source, typeArrow));			
 		}
-		Arrow edge = createEdgeExec(name, source, target);
-		edge.setTypeArrow(typeArrow);
-		return edge;
+		Arrow arrow = createArrowExec(name, source, target);
+		arrow.setTypeArrow(typeArrow);
+		return arrow;
 	}
 
 	/**
@@ -299,7 +299,7 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	/**
 	 * @generated NOT
 	 */
-	private Arrow createEdgeExec(String name, Node source, Node target) {
+	private Arrow createArrowExec(String name, Node source, Node target) {
 		Arrow arrow = MetamodelFactory.eINSTANCE.createArrow();
 		arrow.setSource(source);
 		arrow.setTarget(target);
@@ -313,7 +313,7 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	 */
 	private void testSurceAndTarget(Node source, Node target) {
 		if ((source == null) || (target == null)) {
-			throw new NullPointerException("Tried to create an Edge instance with no target and/or source.");
+			throw new NullPointerException("Tried to create an Arrow instance with no target and/or source.");
 		}
 	}
 	
@@ -329,13 +329,13 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 		throw new UnsupportedOperationException();
 		/*
 		 *  1) Forel�pig vil ikke predikatet ha en valideringsmetode som sier om det kan
-		 *  appliseres p� nodes og edges. TODO: lage slik. Forel�pig antar vi at dette er OK.
+		 *  appliseres p� nodes og arrows. TODO: lage slik. Forel�pig antar vi at dette er OK.
 		 *  
 		 *  2) Opprett Constraint-objekt, som m� lenkes til predikatet.
 		 *  
 		 *  3) Opprett ny GraphHomomorphism-objekt. Predikatet har en shape-referanse. Hvert
 		 *  element i shape-en m� lenkes til et eksisterende element, hentet fra nodes og/eller
-		 *  edges.
+		 *  arrows.
 		 * 
 		 * 4) Q&D-l�sning for raske resultat: f�rste node i nodeliste -> f�rste node i shape-en etc.
 		 * 
@@ -367,7 +367,7 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	/**
 	 * @generated NOT
 	 */
-	private List<Arrow> connectedEdges(Node node) {
+	private List<Arrow> connectedArrows(Node node) {
 		List<Arrow> retval = new ArrayList<Arrow>();
 		for (Arrow arrow : getArrows()) {
 			if ((arrow.getSource() == node) || (arrow.getTarget() == node)) {
@@ -380,8 +380,8 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	/**
 	 * @generated NOT
 	 */
-	private void deleteConnectedEdges(Node node) {
-		for (Arrow arrow : connectedEdges(node)) {
+	private void deleteConnectedArrows(Node node) {
+		for (Arrow arrow : connectedArrows(node)) {
 			arrows.remove(arrow);
 		}
 	}
@@ -393,7 +393,7 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	 */
 	public void deleteNode(Node node) {
 		if (getNodes().contains(node)) {
-			deleteConnectedEdges(node);
+			deleteConnectedArrows(node);
 			getNodes().remove(node);
 		}
 	}

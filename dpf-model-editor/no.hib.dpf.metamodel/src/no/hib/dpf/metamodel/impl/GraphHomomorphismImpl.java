@@ -120,8 +120,8 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * Checks wether a graph can be mapped onto a set of nodes and edges. The target
-	 * set of nodes and edges presumably belong to another, possibly larger graph.
+	 * Checks wether a graph can be mapped onto a set of nodes and arrows. The target
+	 * set of nodes and arrows presumably belong to another, possibly larger graph.
 	 * The first graph is supposed to be a predicate arity of some sort.
 	 * 
 	 * If the method succeeds, the graph homomorphism is actually created as a side
@@ -131,28 +131,28 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public boolean tryToCreateGraphHomomorphism(Graph sourceGraph, EList<Node> nodes, EList<Arrow> edges) {
-		if (sourceGraph.getArrows().size() != edges.size()) {
+	public boolean tryToCreateGraphHomomorphism(Graph sourceGraph, EList<Node> nodes, EList<Arrow> arrows) {
+		if (sourceGraph.getArrows().size() != arrows.size()) {
 			return false;
 		}
-		if ((edges.size() == 0) &&
+		if ((arrows.size() == 0) &&
 			(sourceGraph.getNodes().size() != nodes.size())) {
 			return false;
 		}
 		if (sourceGraph.getNodes().size() == 0) {
 			// SIDE EFFECT:			
-			createSimpleEdgeMapping(sourceGraph, edges);			
+			createSimpleArrowMapping(sourceGraph, arrows);			
 			return true;
 		}
 		
 		Graph targetGraph = null;
-		// This is done to avoid testing on the graph to wich nodes and edges do belong;
+		// This is done to avoid testing on the graph to wich nodes and arrows do belong;
 		// We don't want to do the following in relation to any other objects present in the target
 		// graph:
 		try {
-			targetGraph = createTemporaryTargetGraph(nodes, edges);
+			targetGraph = createTemporaryTargetGraph(nodes, arrows);
 		} catch (Exception e) {
-			// If the nodes and edges don't contain a valid graph, we return false
+			// If the nodes and arrows don't contain a valid graph, we return false
 			return false;
 		}
 		// Check that mappings from node to node and arrow to arrow preserving structure can be made:
@@ -171,12 +171,12 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 				// SIDE EFFECT:
 				// Found a suitable node mapping. Use this and the backwards maps to create
 				// a proper homomorphism mapping for this instance.
-				EcoreEMap<Arrow,Arrow> edgeMapping = createArrowMapping(nodeMapping);
-				fixUnmappedArrows(edgeMapping, nodeMapping, sourceArrows, targetArrows);
+				EcoreEMap<Arrow,Arrow> arrowMapping = createArrowMapping(nodeMapping);
+				fixUnmappedArrows(arrowMapping, nodeMapping, sourceArrows, targetArrows);
 				
-				// Now check that all edges are mapped
-				if (sourceArrows.length == edgeMapping.size()) {
-					resolveBackwardMappingsAndCreateFinalMapping(nodeMapping, edgeMapping);
+				// Now check that all arrows are mapped
+				if (sourceArrows.length == arrowMapping.size()) {
+					resolveBackwardMappingsAndCreateFinalMapping(nodeMapping, arrowMapping);
 					return true;
 				}
 			}
@@ -190,16 +190,16 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	 * TODO: make this return a boolean signalling non-mappable combinations OR use a dummy null node for each graph.
 	 * @generated NOT
 	 */
-	private void fixUnmappedArrows(EcoreEMap<Arrow, Arrow> edgeMapping, EcoreEMap<Node, Node> nodeMappings, Arrow[] sourceArrows, Arrow[] targetArrows) {
+	private void fixUnmappedArrows(EcoreEMap<Arrow, Arrow> arrowMapping, EcoreEMap<Node, Node> nodeMappings, Arrow[] sourceArrows, Arrow[] targetArrows) {
 		for (Arrow sourceArrow : sourceArrows) {
 			if (sourceArrow.getSource() == null) {
 				for (Arrow targetArrow : targetArrows) {
 					if (targetArrow.getSource() == null) {
-						// Edge to same target?
+						// Arrow to same target?
 						Node mappedTarget = nodeMappings.get(sourceArrow.getTarget());
 						if (targetArrow.getTarget().equals(mappedTarget)) {				
-							if ((!edgeMapping.containsKey(sourceArrow)) && (!edgeMapping.containsValue(targetArrow))) { 
-								edgeMapping.put(sourceArrow, targetArrow);
+							if ((!arrowMapping.containsKey(sourceArrow)) && (!arrowMapping.containsValue(targetArrow))) { 
+								arrowMapping.put(sourceArrow, targetArrow);
 							}
 						}
 					}
@@ -234,8 +234,8 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	private void resolveBackwardsArrowMapping(EcoreEMap<Arrow, Arrow> arrowMapping) {
 		for (Entry<Arrow, Arrow> entry : arrowMapping.entrySet()) {
 			if (backwardsArrowMap.containsKey(entry.getValue())) {
-				Arrow resolvedTargetEdge = backwardsArrowMap.get(entry.getValue());
-				getArrowMapping().put(entry.getKey(), resolvedTargetEdge);
+				Arrow resolvedTargetArrow = backwardsArrowMap.get(entry.getValue());
+				getArrowMapping().put(entry.getKey(), resolvedTargetArrow);
 			}
 		}
 	}
@@ -244,7 +244,7 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	 * Just map any arrow to another arrow:
 	 * @generated NOT
 	 */
-	private void createSimpleEdgeMapping(Graph sourceGraph, EList<?> arrows) {
+	private void createSimpleArrowMapping(Graph sourceGraph, EList<?> arrows) {
 		for (int i = 0; i < sourceGraph.getArrows().size(); i++) {
 			Arrow source = sourceGraph.getArrows().get(i);
 			Arrow target = (Arrow)arrows.get(i);				
@@ -253,7 +253,7 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	}
 	
 	/**
-	 * Creates a new graph, containing only nodes and edges corresponding to the ones given in the argument.
+	 * Creates a new graph, containing only nodes and arrows corresponding to the ones given in the argument.
 	 * Also creates "backwards" maps, keeping back references into the original graph from the
 	 * new elements.
 	 * 
@@ -266,7 +266,7 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 		backwardsArrowMap = new HashMap<Arrow, Arrow>();
 		
 		Map<String, Node> newNodes = createNewNodes(nodes, retval);		
-		createNewEdges(arrows, retval, newNodes);
+		createNewArrows(arrows, retval, newNodes);
 		
 		return retval;		
 	}
@@ -286,10 +286,10 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	}
 	
 	/** 
-	 * Create new edges, using the "newNodes" map to get sources and targets:
+	 * Create new arrows, using the "newNodes" map to get sources and targets:
 	 * @generated NOT
 	 */
-	private void createNewEdges(EList<Arrow> arrows, Graph retval, Map<String, Node> newNodes) {
+	private void createNewArrows(EList<Arrow> arrows, Graph retval, Map<String, Node> newNodes) {
 		for (Arrow arrow : arrows) {
 			Node sourceNode = getArrowFromMap(newNodes, arrow.getSource());
 			Node targetNode = getArrowFromMap(newNodes, arrow.getTarget());			
@@ -324,7 +324,7 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 				for (Arrow outgoingArrowFromMappedSource : mappedSource.getOutgoingArrows()) {
 					if (((target == null) && (outgoingArrowFromMappedSource.getTarget() == null)) ||
 						(mappedTarget.equals(outgoingArrowFromMappedSource.getTarget()))) {
-						// Only unique mappings from one source edge to one target edge:
+						// Only unique mappings from one source arrow to one target arrow:
 						if ((!retval.containsKey(outgoingArrow)) && (!retval.containsValue(outgoingArrowFromMappedSource))) { 
 							retval.put(outgoingArrow, outgoingArrowFromMappedSource);
 						}
@@ -337,11 +337,11 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	
 	/**
 	 * Checks a mapping to see wether it indicates a valid graph homomorphism
-	 * if the edges are mapped "one to one". TODO: explain this. Also to self.
+	 * if the arrows are mapped "one to one". TODO: explain this. Also to self.
 	 * @generated NOT
 	 */
 	private boolean testMapping(EcoreEMap<Node,Node> mapping) {
-		// Check to see wether the mapped nodes have the same number of input and output edges:
+		// Check to see wether the mapped nodes have the same number of input and output arrows:
 //		int valueNumOutputEdges = 0;
 //		int keyNumOutputEdges = 0;
 		
