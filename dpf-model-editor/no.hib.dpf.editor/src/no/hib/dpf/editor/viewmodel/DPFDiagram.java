@@ -41,6 +41,10 @@ public class DPFDiagram extends ModelElement {
 		this.dpfGraph = MetamodelFactory.eINSTANCE.createGraph();
 	}
 	
+	public void validateSemantics() {
+		firePropertyChange("VALIDATE_SEMANTICS", null, null);
+	}
+	
 	public Graph getDpfGraph() {
 		return dpfGraph;
 	}

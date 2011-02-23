@@ -279,9 +279,9 @@ public class VNode extends ModelElement implements Node, IDObjectContainer, Mova
 	
 	public void addIncomingConnection(VArrow conn) {
 		targetConnections.add(conn);
-		firePropertyChange(TARGET_CONNECTIONS_PROP, null, conn);
 		conn.setTarget(nodeComponent);
 		addConnectionToGraph(conn);
+		firePropertyChange(TARGET_CONNECTIONS_PROP, null, conn);
 	}
 
 	public void addOutgoingConnection(VArrow conn) {
@@ -300,9 +300,9 @@ public class VNode extends ModelElement implements Node, IDObjectContainer, Mova
 	
 	protected void removeIncomingConnection(VArrow conn) {
 		targetConnections.remove(conn);
-		firePropertyChange(TARGET_CONNECTIONS_PROP, null, conn);
 		conn.setTarget(null);
 		conn.setGraph(null);
+		firePropertyChange(TARGET_CONNECTIONS_PROP, null, conn);
 	}
 
 	protected void removeOutgoingConnection(VArrow conn) {

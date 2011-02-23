@@ -117,7 +117,7 @@ public class SpecificationTest extends TestCase {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see no.hib.dpf.metamodel.Specification#save(org.eclipse.emf.common.util.URI)
-	 * @generated
+	 * @generated NOT
 	 */
 	public void testSave__URI() {
 		Specification spec = getFixture();

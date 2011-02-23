@@ -16,7 +16,7 @@ import no.hib.dpf.metamodel.Semantics;
  * <p>
  * The following operations are tested:
  * <ul>
- *   <li>{@link no.hib.dpf.metamodel.Semantics#checkSemantics(no.hib.dpf.metamodel.Graph) <em>Check Semantics</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Semantics#validateSemantics(no.hib.dpf.metamodel.Graph) <em>Validate Semantics</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -62,13 +62,13 @@ public abstract class SemanticsTest extends TestCase {
 	}
 
 	/**
-	 * Tests the '{@link no.hib.dpf.metamodel.Semantics#checkSemantics(no.hib.dpf.metamodel.Graph) <em>Check Semantics</em>}' operation.
+	 * Tests the '{@link no.hib.dpf.metamodel.Semantics#validateSemantics(no.hib.dpf.metamodel.Graph) <em>Validate Semantics</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.Semantics#checkSemantics(no.hib.dpf.metamodel.Graph)
+	 * @see no.hib.dpf.metamodel.Semantics#validateSemantics(no.hib.dpf.metamodel.Graph)
 	 * @generated
 	 */
-	public void testCheckSemantics__Graph() {
+	public void testValidateSemantics__Graph() {
 		// TODO: implement this operation test method
 		// Ensure that you remove @generated or mark it @generated NOT
 		fail();

@@ -10,6 +10,8 @@
 �*******************************************************************************/
 package no.hib.dpf.editor;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -35,8 +37,11 @@ import no.hib.dpf.editor.viewmodel.DPFDiagram;
 import no.hib.dpf.editor.viewmodel.ModelElement;
 import no.hib.dpf.editor.viewmodel.ModelSerializationException;
 import no.hib.dpf.editor.viewmodel.VConstraint;
+import no.hib.dpf.metamodel.Constraint;
+import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.IDObject;
 import no.hib.dpf.metamodel.MetamodelFactory;
+import no.hib.dpf.metamodel.Predicate;
 import no.hib.dpf.metamodel.Signature;
 import no.hib.dpf.metamodel.Specification;
 
@@ -88,7 +93,7 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
  * 
  * @author Elias Volanakis
  */
-public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
+public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements PropertyChangeListener {
 
 	/** This is the root of the editor's model. */
 	private DPFDiagram diagram;
@@ -371,7 +376,9 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 	private void resetSignature() {
 		signature = MetamodelFactory.eINSTANCE.createSignature();
 		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("[jointly-injective]", "n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3"));
-		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("[jointly-surjective]", "n_1,n_2,n_3", "e_1:n_2:n_1,e_2:n_3:n_1"));
+		Predicate JSPredicate = MetamodelFactory.eINSTANCE.createPredicate("[jointly-surjective]", "n_1,n_2,n_3", "e_1:n_2:n_1,e_2:n_3:n_1");
+		JSPredicate.setSemantics(MetamodelFactory.eINSTANCE.createJointlySurjectiveSemantics());
+		signature.getPredicates().add(JSPredicate);
 		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("[mult(m,n)]", "n_1,n_2", "e_1:n_1:n_2"));
 	}
 	
@@ -467,6 +474,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		setSpecification(MetamodelFactory.eINSTANCE.createSpecification());
 		diagram = new DPFDiagram();
 		diagram.setDpfGraph(getSpecification().getGraph());
+		diagram.addPropertyChangeListener(this);
 	}
 
 	/**
@@ -517,6 +525,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 			IFile file = ((IFileEditorInput) input).getFile();
 			ObjectInputStream in = new ObjectInputStream(file.getContents());
 			diagram = (DPFDiagram) in.readObject();
+			diagram.addPropertyChangeListener(this);			
 			in.close();
 			setPartName(file.getName());
 
@@ -670,6 +679,16 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 			bars.setGlobalActionHandler(id, registry.getAction(id));
 			id = ActionFactory.DELETE.getId();
 			bars.setGlobalActionHandler(id, registry.getAction(id));
+		}
+	}
+
+	@Override
+	public void propertyChange(PropertyChangeEvent evt) {
+		System.err.println("VALIDATION RESULT: ");
+		for (Constraint c : specification.getTypeGraph().getConstraints()) {
+			Graph oStar = specification.createOStar(c);
+			Boolean validation = c.getPredicate().validateSemantics(oStar);
+			System.err.println(validation);
 		}
 	}
 

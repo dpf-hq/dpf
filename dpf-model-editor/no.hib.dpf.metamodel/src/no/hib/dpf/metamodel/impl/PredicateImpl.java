@@ -284,12 +284,13 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public Boolean checkSemantics(Graph oStar) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+	public Boolean validateSemantics(Graph oStar) {
+		if (getSemantics() != null) {
+			return getSemantics().validateSemantics(oStar);
+		}
+		return true;
 	}
 
 	/**

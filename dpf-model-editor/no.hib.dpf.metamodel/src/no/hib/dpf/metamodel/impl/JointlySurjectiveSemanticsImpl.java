@@ -49,7 +49,7 @@ public class JointlySurjectiveSemanticsImpl extends EObjectImpl implements Joint
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Boolean checkSemantics(Graph oStar) {
+	public Boolean validateSemantics(Graph oStar) {
 		if (oStar.getArrows().size() != (oStar.getNodes().size() - 1)) {
 			return false;
 		}
@@ -59,21 +59,22 @@ public class JointlySurjectiveSemanticsImpl extends EObjectImpl implements Joint
 			if (node.getOutgoingArrows().size() == 0) {
 				nodesWithIncomingEdgesCount++;
 				nodeWithOnlyIncoming = node;
-				} else if (node.getOutgoingArrows().size() != 1) {
-					return false;
-				}
+			} else if (node.getOutgoingArrows().size() != 1) {
+				return false;
+			}
 		}
 		if (nodesWithIncomingEdgesCount != 1) {
 			return false;
 		}
 		for (Node node : oStar.getNodes()) {
 			if (!node.equals(nodeWithOnlyIncoming)) {
-				if (node.getArrowto(nodeWithOnlyIncoming).equals(null)) {
+				if (node.getArrowto(nodeWithOnlyIncoming) == null) {
 					return false;
 				}
 			}
 		}
 		return true;
 	}
+
 
 } //JointlySurjectiveSemanticsImpl

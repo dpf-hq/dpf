@@ -155,6 +155,6 @@ public interface Predicate extends EObject {
 	 * @model
 	 * @generated
 	 */
-	Boolean checkSemantics(Graph oStar);
+	Boolean validateSemantics(Graph oStar);
 
 } // Predicate

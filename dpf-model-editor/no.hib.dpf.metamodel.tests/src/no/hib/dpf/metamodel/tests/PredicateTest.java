@@ -27,7 +27,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link no.hib.dpf.metamodel.Predicate#createConstraint(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, no.hib.dpf.metamodel.Graph) <em>Create Constraint</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Predicate#canCreateConstraint(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, no.hib.dpf.metamodel.Graph) <em>Can Create Constraint</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Predicate#checkSemantics(no.hib.dpf.metamodel.Graph) <em>Check Semantics</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Predicate#validateSemantics(no.hib.dpf.metamodel.Graph) <em>Validate Semantics</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -169,16 +169,17 @@ public class PredicateTest extends TestCase {
 	}
 
 	/**
-	 * Tests the '{@link no.hib.dpf.metamodel.Predicate#checkSemantics(no.hib.dpf.metamodel.Graph) <em>Check Semantics</em>}' operation.
+	 * Tests the '{@link no.hib.dpf.metamodel.Predicate#validateSemantics(no.hib.dpf.metamodel.Graph) <em>Validate Semantics</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.Predicate#checkSemantics(no.hib.dpf.metamodel.Graph)
-	 * @generated
+	 * @see no.hib.dpf.metamodel.Predicate#validateSemantics(no.hib.dpf.metamodel.Graph)
+	 * @generated NOT
 	 */
-	public void testCheckSemantics__Graph() {
-		// TODO: implement this operation test method
-		// Ensure that you remove @generated or mark it @generated NOT
-		fail();
+	public void testValidateSemantics__Graph() {
+		Graph graph = MetamodelFactory.eINSTANCE.createGraph("x, y, z", "f:x:y,g:y:z");		
+		assertTrue(getFixture().validateSemantics(graph));
+		getFixture().setSemantics(MetamodelFactory.eINSTANCE.createJointlySurjectiveSemantics());
+		assertFalse(getFixture().validateSemantics(graph));
 	}
 
 } //PredicateTest

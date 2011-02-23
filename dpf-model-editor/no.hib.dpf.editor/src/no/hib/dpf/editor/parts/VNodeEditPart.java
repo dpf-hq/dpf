@@ -14,9 +14,11 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.List;
 
+import no.hib.dpf.editor.DPFEditor;
 import no.hib.dpf.editor.figures.RectangleFigure;
 import no.hib.dpf.editor.figures.EditableLabel;
 import no.hib.dpf.editor.figures.SingleNodeConnectionAnchor;
+import no.hib.dpf.editor.viewmodel.DPFDiagram;
 import no.hib.dpf.editor.viewmodel.LocationAndSize;
 import no.hib.dpf.editor.viewmodel.ModelElement;
 import no.hib.dpf.editor.viewmodel.VArrow;
@@ -277,16 +279,20 @@ public ConnectionAnchor getTargetConnectionAnchor(Request request) {
  */
 public void propertyChange(PropertyChangeEvent evt) {
 	String prop = evt.getPropertyName();
+	DiagramEditPart diagram = (DiagramEditPart) getParent();
+	System.err.println("PROP " + evt.getPropertyName());
 	if (LocationAndSize.SIZE_PROP.equals(prop) || LocationAndSize.LOCATION_PROP.equals(prop)) {
 		refreshVisuals();
 	} else if (VNode.SOURCE_CONNECTIONS_PROP.equals(prop)) {
 		refreshSourceConnections();
+		//diagram.validateSemantics();
 	} else if (VNode.TARGET_CONNECTIONS_PROP.equals(prop)) {
 		refreshTargetConnections();
+		diagram.validateSemantics();
 	} else if (VNode.NAME_PROP.equals(prop)) {
 		commitNameChange(evt);
 	}
-}
+ }
 
 protected void refreshVisuals() {
 	// notify parent container of changed position & location

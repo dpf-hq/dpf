@@ -21,6 +21,8 @@ import no.hib.dpf.editor.viewmodel.MovableAndSizable;
 import no.hib.dpf.editor.viewmodel.VNode;
 import no.hib.dpf.editor.viewmodel.commands.VNodeCreateCommand;
 import no.hib.dpf.editor.viewmodel.commands.VNodeSetSizeAndLocationCommand;
+import no.hib.dpf.metamodel.Constraint;
+import no.hib.dpf.metamodel.impl.SpecificationImpl;
 
 import org.eclipse.draw2d.ConnectionLayer;
 import org.eclipse.draw2d.Figure;
@@ -136,6 +138,7 @@ class DiagramEditPart extends AbstractGraphicalEditPart implements PropertyChang
 		// to update the diagram's contents.
 		if (DPFDiagram.CHILD_ADDED_PROP.equals(prop) || DPFDiagram.CHILD_REMOVED_PROP.equals(prop)) {
 			refreshChildren();
+			validateSemantics();
 		}
 	}
 
@@ -197,6 +200,10 @@ class DiagramEditPart extends AbstractGraphicalEditPart implements PropertyChang
 			return null;
 		}
 
+	}
+
+	public void validateSemantics() {
+		getCastedModel().validateSemantics();
 	}
 
 }

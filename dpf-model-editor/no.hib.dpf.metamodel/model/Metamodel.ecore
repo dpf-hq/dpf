@@ -126,7 +126,7 @@
             <eParameters name="arrows" upperBound="-1" eType="#//hib/dpf/metamodel/Arrow"/>
             <eParameters name="modelToBeConstrained" eType="#//hib/dpf/metamodel/Graph"/>
           </eOperations>
-          <eOperations name="checkSemantics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject">
+          <eOperations name="validateSemantics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject">
             <eParameters name="oStar" eType="#//hib/dpf/metamodel/Graph"/>
           </eOperations>
           <eStructuralFeatures xsi:type="ecore:EReference" name="shape" eType="#//hib/dpf/metamodel/Graph"
@@ -138,7 +138,7 @@
               lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Semantics" abstract="true" interface="true">
-          <eOperations name="checkSemantics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject">
+          <eOperations name="validateSemantics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject">
             <eParameters name="oStar" eType="#//hib/dpf/metamodel/Graph"/>
           </eOperations>
         </eClassifiers>
