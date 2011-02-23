@@ -24,4 +24,18 @@
          <selection class="org.eclipse.core.resources.IResource"/>
       </wizard>
    </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="no.hib.dpf.editor.preferences.DPFEditorPreferencePage"
+            id="no.hib.dpf.editor.preferences.DPFEditorPreferencePage"
+            name="DPF Sketcher Preferences">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="no.hib.dpf.editor.preferences.PreferenceInitializer">
+      </initializer>
+   </extension>
 </plugin>
