@@ -46,6 +46,7 @@ import no.hib.dpf.metamodel.Signature;
 import no.hib.dpf.metamodel.Specification;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
@@ -330,12 +331,15 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 					false, // dont keep history
 					monitor); // progress monitor
 			getCommandStack().markSaveLocation();
+			saveDPF(dpfFilename, getSpecification());
+			
+			file.getProject().refreshLocal(IProject.DEPTH_INFINITE, monitor);
 		} catch (CoreException ce) {
 			ce.printStackTrace();
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
 		}
-		saveDPF(dpfFilename, getSpecification());
+		
 	}
 	
 	public static Specification loadDPF(String fileName) {
