@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import no.hib.dpf.editor.DPFPlugin;
 import no.hib.dpf.editor.figures.DPFConnectionFigure;
 import no.hib.dpf.editor.figures.EditableLabel;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;
@@ -65,7 +64,7 @@ public class VArrowEditPart extends ModelElementConnectionEditPart {
 	}
 
 	private void listenToDisplayNameProperty() {
-		DPFPlugin.getDefault().getPreferenceStore().addPropertyChangeListener(new IPropertyChangeListener() {
+		DPFEditorPreferences.getDefault().getPreferenceStore().addPropertyChangeListener(new IPropertyChangeListener() {
 			@Override
 			public void propertyChange(org.eclipse.jface.util.PropertyChangeEvent event) {
 				if (event.getProperty().equals(PreferenceConstants.P_DISPLAY_ARROWS)) {

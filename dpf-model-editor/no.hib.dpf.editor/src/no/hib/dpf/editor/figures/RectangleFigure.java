@@ -2,7 +2,6 @@ package no.hib.dpf.editor.figures;
 
 import java.util.List;
 
-import no.hib.dpf.editor.DPFPlugin;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;
 import no.hib.dpf.editor.preferences.PreferenceConstants;
 
@@ -16,9 +15,6 @@ import org.eclipse.swt.graphics.Color;
 public class RectangleFigure extends Figure implements RoutableFigure {
 
 	public static Color tableColor = new Color(null, 255, 255, 206);
-	public static Color backgroundColorr = new Color(null, 255, 255, 255);
-
-//	private ColumnsFigure columnsFigure = new ColumnsFigure();
 	private EditableLabel nameLabel;
 
 	public RectangleFigure(EditableLabel name) {
@@ -30,7 +26,7 @@ public class RectangleFigure extends Figure implements RoutableFigure {
 
 	
 	private void listenToNodeColorProperty() {
-		DPFPlugin.getDefault().getPreferenceStore().addPropertyChangeListener(new IPropertyChangeListener() {
+		DPFEditorPreferences.getDefault().getPreferenceStore().addPropertyChangeListener(new IPropertyChangeListener() {
 			@Override
 			public void propertyChange(org.eclipse.jface.util.PropertyChangeEvent event) {
 				if (event.getProperty().equals(PreferenceConstants.P_NODE_COLOR)) {

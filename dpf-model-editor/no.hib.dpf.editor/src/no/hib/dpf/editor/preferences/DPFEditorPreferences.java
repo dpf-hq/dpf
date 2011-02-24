@@ -17,15 +17,16 @@ public class DPFEditorPreferences {
 		return singleton;
 	}
 	
+    public IPreferenceStore getPreferenceStore() {
+    	return DPFPlugin.getDefault().getPreferenceStore();
+    }
+	
 	public boolean getDisplayArrows() {
-        IPreferenceStore store = DPFPlugin.getDefault().getPreferenceStore();
-        
-        return store.getBoolean(PreferenceConstants.P_DISPLAY_ARROWS);
+        return getPreferenceStore().getBoolean(PreferenceConstants.P_DISPLAY_ARROWS);
 	}
 	
 	public Color getNodeColor() {
-        IPreferenceStore store = DPFPlugin.getDefault().getPreferenceStore();
-        String colorString = store.getString(PreferenceConstants.P_NODE_COLOR);
+        String colorString = getPreferenceStore().getString(PreferenceConstants.P_NODE_COLOR);
 		
 		try {
 			return new Color(null, Integer.parseInt(colorString.split(",")[0]), Integer.parseInt(colorString.split(",")[1]), Integer.parseInt(colorString.split(",")[2]));

@@ -20,7 +20,7 @@ public class DPFEditorPreferencePage extends FieldEditorPreferencePage implement
 
 	public DPFEditorPreferencePage() {
 		super(GRID);
-		setPreferenceStore(DPFPlugin.getDefault().getPreferenceStore());
+		setPreferenceStore(DPFEditorPreferences.getDefault().getPreferenceStore());
 		setDescription("Preferences for DPF Sketcher");
 	}
 	
