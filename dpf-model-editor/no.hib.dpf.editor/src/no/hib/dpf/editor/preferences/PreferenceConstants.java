@@ -6,6 +6,9 @@ package no.hib.dpf.editor.preferences;
 public class PreferenceConstants {
 
 	public static final String P_DISPLAY_ARROWS = "displayArrowsPreference";
+	
+	public static final String P_NODE_COLOR = "nodeColorPreference";
+	
 //	public static final String P_PATH = "pathPreference";
 //
 //	public static final String P_BOOLEAN = "booleanPreference";

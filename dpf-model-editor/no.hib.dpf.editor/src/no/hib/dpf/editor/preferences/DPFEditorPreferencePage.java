@@ -34,6 +34,8 @@ public class DPFEditorPreferencePage extends FieldEditorPreferencePage implement
 //		addField(new DirectoryFieldEditor(PreferenceConstants.P_PATH, 
 //				"&Directory preference:", getFieldEditorParent()));
 		addField(new BooleanFieldEditor(PreferenceConstants.P_DISPLAY_ARROWS, "Display names on &arrows", getFieldEditorParent()));
+		
+		addField(new ColorFieldEditor(PreferenceConstants.P_NODE_COLOR, "Node fill &color", getFieldEditorParent()));
 
 //		addField(new RadioGroupFieldEditor(
 //				PreferenceConstants.P_CHOICE,

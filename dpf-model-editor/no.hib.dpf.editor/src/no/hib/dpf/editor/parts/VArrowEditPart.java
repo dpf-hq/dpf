@@ -64,7 +64,6 @@ public class VArrowEditPart extends ModelElementConnectionEditPart {
 		listenToDisplayNameProperty();
 	}
 
-
 	private void listenToDisplayNameProperty() {
 		DPFPlugin.getDefault().getPreferenceStore().addPropertyChangeListener(new IPropertyChangeListener() {
 			@Override
@@ -75,8 +74,7 @@ public class VArrowEditPart extends ModelElementConnectionEditPart {
 			}
 		});
 	}
-	
-	
+		
 	/**
 	 * Sets the source EditPart of this connection.
 	 * 

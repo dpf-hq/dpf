@@ -2,16 +2,21 @@ package no.hib.dpf.editor.figures;
 
 import java.util.List;
 
+import no.hib.dpf.editor.DPFPlugin;
+import no.hib.dpf.editor.preferences.DPFEditorPreferences;
+import no.hib.dpf.editor.preferences.PreferenceConstants;
+
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.LineBorder;
 import org.eclipse.draw2d.ToolbarLayout;
+import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.swt.graphics.Color;
 
 public class RectangleFigure extends Figure implements RoutableFigure {
 
 	public static Color tableColor = new Color(null, 255, 255, 206);
-	public static Color backgroundColor = new Color(null, 255, 255, 255);
+	public static Color backgroundColorr = new Color(null, 255, 255, 255);
 
 //	private ColumnsFigure columnsFigure = new ColumnsFigure();
 	private EditableLabel nameLabel;
@@ -19,9 +24,23 @@ public class RectangleFigure extends Figure implements RoutableFigure {
 	public RectangleFigure(EditableLabel name) {
 		this(name, null);
 		setOpaque(true); // non-transparent figure
-		setBackgroundColor(backgroundColor);		
+		setBackgroundColor(DPFEditorPreferences.getDefault().getNodeColor());
+		listenToNodeColorProperty();
 	}
 
+	
+	private void listenToNodeColorProperty() {
+		DPFPlugin.getDefault().getPreferenceStore().addPropertyChangeListener(new IPropertyChangeListener() {
+			@Override
+			public void propertyChange(org.eclipse.jface.util.PropertyChangeEvent event) {
+				if (event.getProperty().equals(PreferenceConstants.P_NODE_COLOR)) {
+					setBackgroundColor(DPFEditorPreferences.getDefault().getNodeColor());
+					repaint();
+				}
+			}
+		});
+	}
+	
 	@SuppressWarnings("rawtypes")
 	public RectangleFigure(EditableLabel name, List colums) {
 
