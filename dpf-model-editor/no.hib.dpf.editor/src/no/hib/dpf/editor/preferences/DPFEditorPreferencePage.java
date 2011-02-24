@@ -16,9 +16,7 @@ import no.hib.dpf.editor.DPFPlugin;
  * the main plug-in class. That way, preferences can be accessed directly via the preference store.
  */
 
-public class DPFEditorPreferencePage
-	extends FieldEditorPreferencePage
-	implements IWorkbenchPreferencePage {
+public class DPFEditorPreferencePage extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {
 
 	public DPFEditorPreferencePage() {
 		super(GRID);

@@ -17,9 +17,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import no.hib.dpf.editor.DPFPlugin;
 import no.hib.dpf.editor.figures.DPFConnectionFigure;
 import no.hib.dpf.editor.figures.EditableLabel;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;
+import no.hib.dpf.editor.preferences.PreferenceConstants;
 import no.hib.dpf.editor.viewmodel.SingleLineConstraintElement;
 import no.hib.dpf.editor.viewmodel.VArrow;
 import no.hib.dpf.editor.viewmodel.VConstraint;
@@ -40,6 +42,7 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.ConnectionEditPolicy;
 import org.eclipse.gef.editpolicies.ConnectionEndpointEditPolicy;
 import org.eclipse.gef.requests.GroupRequest;
+import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.swt.SWT;
 
 
@@ -57,6 +60,21 @@ public class VArrowEditPart extends ModelElementConnectionEditPart {
 	private transient PropertyChangeSupport pcsDelegate = new PropertyChangeSupport(this);
 
 
+	public VArrowEditPart() {
+		listenToDisplayNameProperty();
+	}
+
+
+	private void listenToDisplayNameProperty() {
+		DPFPlugin.getDefault().getPreferenceStore().addPropertyChangeListener(new IPropertyChangeListener() {
+			@Override
+			public void propertyChange(org.eclipse.jface.util.PropertyChangeEvent event) {
+				if (event.getProperty().equals(PreferenceConstants.P_DISPLAY_ARROWS)) {
+					commitNameChange();
+				}
+			}
+		});
+	}
 	
 	
 	/**
@@ -147,10 +165,7 @@ public class VArrowEditPart extends ModelElementConnectionEditPart {
 	 * @see org.eclipse.gef.editparts.AbstractGraphicalEditPart#createFigure()
 	 */
 	protected IFigure createFigure() {
-		EditableLabel label = new EditableLabel("");
-		if (DPFEditorPreferences.getDefault().getDisplayArrows()) {
-			label = new EditableLabel(getFullName());
-		}
+		EditableLabel label = new EditableLabel(getFullName());
 		connectionFigure = new DPFConnectionFigure(label);
 		makeNewConstraintLabel();
 
@@ -224,21 +239,23 @@ public class VArrowEditPart extends ModelElementConnectionEditPart {
 		} else if (VArrow.SINGLE_CONSTRAINTS_PROP.equals(property)) {
 			refreshSingleLineConstraints();
 		} else if (VArrow.NAME_PROP.equals(property)) {
-			commitNameChange((String)event.getNewValue());
+			commitNameChange();
 		}
 	}
 	
-	private void commitNameChange(String newValue) {
-		if (DPFEditorPreferences.getDefault().getDisplayArrows()) {
-			DPFConnectionFigure figure = (DPFConnectionFigure)getFigure();
-			EditableLabel label = figure.getLabel();
-			label.setText(getFullName());
-			refreshVisuals();
-		}
+	private void commitNameChange() {
+		DPFConnectionFigure figure = (DPFConnectionFigure)getFigure();
+		EditableLabel label = figure.getLabel();
+		label.setText(getFullName());
+		refreshVisuals();
 	}
 	
 	private String getFullName() {
-		return getArrow().getName() + " : " + getArrow().getTypeName();
+		if (DPFEditorPreferences.getDefault().getDisplayArrows()) {
+			return getArrow().getName() + " : " + getArrow().getTypeName();
+		} else {
+			return "";
+		}
 	}
 
 	@Override

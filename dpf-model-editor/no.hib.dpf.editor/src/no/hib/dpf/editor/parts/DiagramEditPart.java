@@ -64,7 +64,7 @@ class DiagramEditPart extends AbstractGraphicalEditPart implements PropertyChang
 		if (!isActive()) {
 			super.activate();
 			((ModelElement)getModel()).addPropertyChangeListener(this);
-		}
+		}		
 	}
 
 	/*
