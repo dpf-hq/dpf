@@ -20,7 +20,7 @@ public abstract class CreateConstraintAction extends SelectionActionForEditParts
 
 	private Predicate testPredicate;
 	private EList<Arrow> selectionArrows;
-	EList<Node> selectionNodes;
+	private EList<Node> selectionNodes;
 	
 	public CreateConstraintAction(IWorkbenchPart part, String ID, Graph graph, ConstraintProperties constraintProperties) {
 		super(part, ID, graph);
