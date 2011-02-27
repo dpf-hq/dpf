@@ -12,12 +12,12 @@ import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.swt.graphics.Color;
 
-public class RectangleFigure extends Figure implements RoutableFigure {
+public class NodeFigure extends Figure implements RoutableFigure {
 
 	public static Color tableColor = new Color(null, 255, 255, 206);
 	private EditableLabel nameLabel;
 
-	public RectangleFigure(EditableLabel name) {
+	public NodeFigure(EditableLabel name) {
 		this(name, null);
 		setOpaque(true); // non-transparent figure
 		setBackgroundColor(DPFEditorPreferences.getDefault().getNodeColor());
@@ -38,7 +38,7 @@ public class RectangleFigure extends Figure implements RoutableFigure {
 	}
 	
 	@SuppressWarnings("rawtypes")
-	public RectangleFigure(EditableLabel name, List colums) {
+	public NodeFigure(EditableLabel name, List colums) {
 
 		nameLabel = name;
 		ToolbarLayout layout = new ToolbarLayout();

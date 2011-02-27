@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import no.hib.dpf.editor.figures.DPFConnectionFigure;
+import no.hib.dpf.editor.figures.ArrowFigure;
 import no.hib.dpf.editor.figures.EditableLabel;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;
 import no.hib.dpf.editor.preferences.PreferenceConstants;
@@ -51,15 +51,15 @@ import org.eclipse.swt.SWT;
  * so it can be notified of property changes in the corresponding model element.
  * </p>
  */
-public class VArrowEditPart extends ModelElementConnectionEditPart {
+public class ArrowEditPart extends ModelElementConnectionEditPart {
 
-	protected DPFConnectionFigure connectionFigure; 
+	protected ArrowFigure connectionFigure; 
 	Label connectionLabel;
 	private List<SingleLineConstraintElement> singleConstraints = new ArrayList<SingleLineConstraintElement>();
 	private transient PropertyChangeSupport pcsDelegate = new PropertyChangeSupport(this);
 
 
-	public VArrowEditPart() {
+	public ArrowEditPart() {
 		listenToDisplayNameProperty();
 	}
 
@@ -163,7 +163,7 @@ public class VArrowEditPart extends ModelElementConnectionEditPart {
 	 */
 	protected IFigure createFigure() {
 		EditableLabel label = new EditableLabel(getFullName());
-		connectionFigure = new DPFConnectionFigure(label);
+		connectionFigure = new ArrowFigure(label);
 		makeNewConstraintLabel();
 
 		setArrowHead(connectionFigure);
@@ -227,7 +227,7 @@ public class VArrowEditPart extends ModelElementConnectionEditPart {
 	public void propertyChange(PropertyChangeEvent event) {
 		String property = event.getPropertyName();
 		if (VArrow.LINESTYLE_PROP.equals(property)) {
-			((DPFConnectionFigure) getFigure()).setLineStyle(getCastedModel()
+			((ArrowFigure) getFigure()).setLineStyle(getCastedModel()
 					.getLineStyle());
 		} else if (VArrow.SOURCE_CONSTRAINTS_PROP.equals(property)) {
 			refreshSourceConnections();
@@ -241,7 +241,7 @@ public class VArrowEditPart extends ModelElementConnectionEditPart {
 	}
 	
 	private void commitNameChange() {
-		DPFConnectionFigure figure = (DPFConnectionFigure)getFigure();
+		ArrowFigure figure = (ArrowFigure)getFigure();
 		EditableLabel label = figure.getLabel();
 		label.setText(getFullName());
 		refreshVisuals();

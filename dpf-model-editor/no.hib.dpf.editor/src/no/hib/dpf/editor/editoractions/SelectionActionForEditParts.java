@@ -3,8 +3,8 @@ package no.hib.dpf.editor.editoractions;
 import java.util.ArrayList;
 import java.util.List;
 
-import no.hib.dpf.editor.parts.VArrowEditPart;
-import no.hib.dpf.editor.parts.VNodeEditPart;
+import no.hib.dpf.editor.parts.ArrowEditPart;
+import no.hib.dpf.editor.parts.NodeEditPart;
 import no.hib.dpf.metamodel.Arrow;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.Node;
@@ -29,7 +29,7 @@ public abstract class SelectionActionForEditParts extends SelectionAction {
 	 */
 	protected EList<Arrow> getSelectionArrows() {
 		EList<Arrow> selectionArrows = new BasicEList<Arrow>();
-		for (VArrowEditPart vArrowEditPart : getSelectedConnectionEditParts()) {
+		for (ArrowEditPart vArrowEditPart : getSelectedConnectionEditParts()) {
 			selectionArrows.add(vArrowEditPart.getModelAsEMFInstance());
 		}
 		return selectionArrows;
@@ -40,7 +40,7 @@ public abstract class SelectionActionForEditParts extends SelectionAction {
 	 */
 	protected EList<Node> getSelectionNodes() {
 		EList<Node> selectionNodes = new BasicEList<Node>();
-		for (VNodeEditPart vNodeEditPart : getSelectedVNodeEditParts()) {
+		for (NodeEditPart vNodeEditPart : getSelectedVNodeEditParts()) {
 			selectionNodes.add(vNodeEditPart.getModelAsEMFInstance());
 		}
 		return selectionNodes;
@@ -71,21 +71,21 @@ public abstract class SelectionActionForEditParts extends SelectionAction {
 		return false;
 	}
 	
-	protected List<VArrowEditPart> getSelectedConnectionEditParts() {
-		List<VArrowEditPart> vArrowEditParts = new ArrayList<VArrowEditPart>();
+	protected List<ArrowEditPart> getSelectedConnectionEditParts() {
+		List<ArrowEditPart> vArrowEditParts = new ArrayList<ArrowEditPart>();
 		for (int i = 0; i < getSelectedObjects().size(); i++) {
-			if (getSelectedObjects().get(i) instanceof VArrowEditPart) {
-				vArrowEditParts.add((VArrowEditPart)getSelectedObjects().get(i));
+			if (getSelectedObjects().get(i) instanceof ArrowEditPart) {
+				vArrowEditParts.add((ArrowEditPart)getSelectedObjects().get(i));
 			}
 		}
 		return vArrowEditParts;
 	}
 	
-	protected List<VNodeEditPart> getSelectedVNodeEditParts() {
-		List<VNodeEditPart> vNodeEditParts = new ArrayList<VNodeEditPart>();
+	protected List<NodeEditPart> getSelectedVNodeEditParts() {
+		List<NodeEditPart> vNodeEditParts = new ArrayList<NodeEditPart>();
 		for (int i = 0; i < getSelectedObjects().size(); i++) {
-			if (getSelectedObjects().get(i) instanceof VNodeEditPart) {
-				vNodeEditParts.add((VNodeEditPart)getSelectedObjects().get(i));
+			if (getSelectedObjects().get(i) instanceof NodeEditPart) {
+				vNodeEditParts.add((NodeEditPart)getSelectedObjects().get(i));
 			}
 		}
 		return vNodeEditParts;

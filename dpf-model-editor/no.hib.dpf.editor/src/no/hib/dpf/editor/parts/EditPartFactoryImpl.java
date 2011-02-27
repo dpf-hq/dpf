@@ -48,13 +48,13 @@ private EditPart getPartForElement(Object modelElement) {
 		return new DiagramEditPart();
 	}
 	if (modelElement instanceof VNode) {
-		return new VNodeEditPart();
+		return new NodeEditPart();
 	}
 	if (modelElement instanceof SingleNodeConnection) {
-		return new VNodeSingleConnectionEditPart();
+		return new SingleArrowEditPart();
 	}
 	if (modelElement instanceof VArrow) {
-		return new VArrowEditPart();
+		return new ArrowEditPart();
 	}
 	if (modelElement instanceof VConstraint) {
 		// Edit part according to the type of constraint element:

@@ -32,7 +32,7 @@ import no.hib.dpf.editor.editoractions.CreateJointlySurjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateMultiplicityConstraintAction;
 import no.hib.dpf.editor.editoractions.PrintAction;
 import no.hib.dpf.editor.parts.EditPartFactoryImpl;
-import no.hib.dpf.editor.parts.VNodesTreeEditPartFactory;
+import no.hib.dpf.editor.parts.NodeTreeEditPartFactory;
 import no.hib.dpf.editor.viewmodel.DPFDiagram;
 import no.hib.dpf.editor.viewmodel.ModelElement;
 import no.hib.dpf.editor.viewmodel.ModelSerializationException;
@@ -641,7 +641,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 			getViewer().createControl(parent);
 			// configure outline viewer
 			getViewer().setEditDomain(getEditDomain());
-			getViewer().setEditPartFactory(new VNodesTreeEditPartFactory());
+			getViewer().setEditPartFactory(new NodeTreeEditPartFactory());
 			// configure & add context menu to viewer
 			ContextMenuProvider cmProvider = new DPFEditorContextMenuProvider(getViewer(), getActionRegistry());
 			getViewer().setContextMenu(cmProvider);

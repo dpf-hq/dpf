@@ -40,7 +40,7 @@ public class VArrow extends ModelElement implements Arrow, IDObjectContainer {
 	 * Used for indicating that a Connection with solid line style should be
 	 * created.
 	 * 
-	 * @see no.hib.dpf.editor.parts.VNodeEditPart#createEditPolicies()
+	 * @see no.hib.dpf.editor.parts.NodeEditPart#createEditPolicies()
 	 */
 	public static final Integer SOLID_CONNECTION = new Integer(
 			Graphics.LINE_SOLID);
@@ -48,7 +48,7 @@ public class VArrow extends ModelElement implements Arrow, IDObjectContainer {
 	 * Used for indicating that a Connection with dashed line style should be
 	 * created.
 	 * 
-	 * @see no.hib.dpf.editor.parts.VNodeEditPart#createEditPolicies()
+	 * @see no.hib.dpf.editor.parts.NodeEditPart#createEditPolicies()
 	 */
 	public static final Integer DASHED_CONNECTION = new Integer(
 			Graphics.LINE_DASH);

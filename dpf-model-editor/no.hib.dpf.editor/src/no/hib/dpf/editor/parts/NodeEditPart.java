@@ -15,7 +15,7 @@ import java.beans.PropertyChangeListener;
 import java.util.List;
 
 import no.hib.dpf.editor.figures.EditableLabel;
-import no.hib.dpf.editor.figures.RectangleFigure;
+import no.hib.dpf.editor.figures.NodeFigure;
 import no.hib.dpf.editor.figures.SingleNodeConnectionAnchor;
 import no.hib.dpf.editor.viewmodel.LocationAndSize;
 import no.hib.dpf.editor.viewmodel.ModelElement;
@@ -33,7 +33,6 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.GraphicalEditPart;
-import org.eclipse.gef.NodeEditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
@@ -49,8 +48,8 @@ import org.eclipse.gef.requests.ReconnectRequest;
  * 
  * @author Elias Volanakis
  */
-public class VNodeEditPart extends AbstractGraphicalEditPart 
-	implements PropertyChangeListener, NodeEditPart {
+public class NodeEditPart extends AbstractGraphicalEditPart 
+	implements PropertyChangeListener, org.eclipse.gef.NodeEditPart {
 	
 private ConnectionAnchor anchor;
 
@@ -75,7 +74,7 @@ protected void createEditPolicies() {
 //	installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new ShapeDirectEditPolicy());
 	
 	// allow removal of the associated model element
-	installEditPolicy(EditPolicy.COMPONENT_ROLE, new VNodeComponentEditPolicy());
+	installEditPolicy(EditPolicy.COMPONENT_ROLE, new NodeComponentEditPolicy());
 	// allow the creation of connections and 
 	// and the reconnection of connections between Shape instances
 	installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new GraphicalNodeEditPolicy() {
@@ -130,7 +129,7 @@ protected void createEditPolicies() {
  */
 public void handleNameChange(String value)
 {
-	RectangleFigure tableFigure = (RectangleFigure) getFigure();
+	NodeFigure tableFigure = (NodeFigure) getFigure();
 	EditableLabel label = tableFigure.getNameLabel();
 	label.setVisible(false);
 	refreshVisuals();
@@ -147,7 +146,7 @@ private VNode getShape() {
  */
 public void revertNameChange()
 {
-	RectangleFigure tableFigure = (RectangleFigure) getFigure();
+	NodeFigure tableFigure = (NodeFigure) getFigure();
 	EditableLabel label = tableFigure.getNameLabel();
 	label.setText(getFullName());
 	label.setVisible(true);
@@ -183,7 +182,7 @@ private IFigure createFigureForModel() {
 	if (getModel() instanceof VNode) {
 		
 		EditableLabel label = new EditableLabel(getFullName());
-		return new RectangleFigure(label);
+		return new NodeFigure(label);
 	} else {
 		// if Shapes gets extended the conditions above must be updated
 		throw new IllegalArgumentException();
@@ -209,7 +208,7 @@ public Node getModelAsEMFInstance() {
 }
 
 private ConnectionAnchor getConnectionAnchor(ConnectionEditPart connection, boolean isSourceAnchor) {
-	if (connection instanceof VNodeSingleConnectionEditPart) {
+	if (connection instanceof SingleArrowEditPart) {
 		return new SingleNodeConnectionAnchor(getFigure(), isSourceAnchor);
 	}
 	if (anchor == null) {

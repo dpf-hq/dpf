@@ -37,7 +37,7 @@ import org.eclipse.gef.commands.Command;
  * create a new ConnectionReconnectCommand, set the new connection <i>target</i> by calling
  * the <tt>setNewTarget(Shape)</tt> method and return the command instance.</li>
  * </ol>
- * @see no.hib.dpf.editor.parts.VNodeEditPart#createEditPolicies() for an
+ * @see no.hib.dpf.editor.parts.NodeEditPart#createEditPolicies() for an
  * 			 example of the above procedure.
  * @see org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy
  * @see #setNewSource(Shape)

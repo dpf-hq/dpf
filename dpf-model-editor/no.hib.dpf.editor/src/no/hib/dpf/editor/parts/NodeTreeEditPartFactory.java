@@ -24,14 +24,14 @@ import org.eclipse.gef.EditPartFactory;
  * TreeEditParts are used in the outline view of the ShapesEditor.
  * @author Elias Volanakis
  */
-public class VNodesTreeEditPartFactory implements EditPartFactory {
+public class NodeTreeEditPartFactory implements EditPartFactory {
 
 /* (non-Javadoc)
  * @see org.eclipse.gef.EditPartFactory#createEditPart(org.eclipse.gef.EditPart, java.lang.Object)
  */
 public EditPart createEditPart(EditPart context, Object model) {
 	if (model instanceof VNode) {
-		return new VNodeTreeEditPart((MovableAndSizable) model);
+		return new NodeTreeEditPart((MovableAndSizable) model);
 	}
 	if (model instanceof DPFDiagram) {
 		return new DiagramTreeEditPart((DPFDiagram) model);

@@ -21,11 +21,11 @@ import org.eclipse.gef.requests.GroupRequest;
 
 /**
  * This edit policy enables the removal of a VNode instance from its container. 
- * @see VNodeEditPart#createEditPolicies()
- * @see VNodeTreeEditPart#createEditPolicies()
+ * @see NodeEditPart#createEditPolicies()
+ * @see NodeTreeEditPart#createEditPolicies()
  * @author Elias Volanakis
  */
-class VNodeComponentEditPolicy extends ComponentEditPolicy {
+class NodeComponentEditPolicy extends ComponentEditPolicy {
 
 /* (non-Javadoc)
  * @see org.eclipse.gef.editpolicies.ComponentEditPolicy#createDeleteCommand(org.eclipse.gef.requests.GroupRequest)

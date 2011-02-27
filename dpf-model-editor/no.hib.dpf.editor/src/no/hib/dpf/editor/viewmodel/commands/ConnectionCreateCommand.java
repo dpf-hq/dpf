@@ -34,7 +34,7 @@ import org.eclipse.gef.commands.Command;
  * to obtain the Command from the ConnectionRequest, call setTarget(...) to set the
  * target endpoint of the connection and return this command instance.</li>
  * </ol>
- * @see no.hib.dpf.editor.parts.VNodeEditPart#createEditPolicies() for an
+ * @see no.hib.dpf.editor.parts.NodeEditPart#createEditPolicies() for an
  * 			 example of the above procedure.
  * @see org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy
  * @author Elias Volanakis

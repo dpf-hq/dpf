@@ -1,9 +1,10 @@
 package no.hib.dpf.editor.preferences;
 
-import org.eclipse.jface.preference.*;
-import org.eclipse.ui.IWorkbenchPreferencePage;
+import org.eclipse.jface.preference.BooleanFieldEditor;
+import org.eclipse.jface.preference.ColorFieldEditor;
+import org.eclipse.jface.preference.FieldEditorPreferencePage;
 import org.eclipse.ui.IWorkbench;
-import no.hib.dpf.editor.DPFPlugin;
+import org.eclipse.ui.IWorkbenchPreferencePage;
 
 /**
  * See http://www.eclipsepluginsite.com/preference-pages.html for howto on how to extend this.

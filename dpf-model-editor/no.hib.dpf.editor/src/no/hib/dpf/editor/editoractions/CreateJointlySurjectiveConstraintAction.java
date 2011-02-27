@@ -2,8 +2,8 @@ package no.hib.dpf.editor.editoractions;
 
 import java.util.List;
 
-import no.hib.dpf.editor.parts.VArrowEditPart;
-import no.hib.dpf.editor.parts.VNodeEditPart;
+import no.hib.dpf.editor.parts.ArrowEditPart;
+import no.hib.dpf.editor.parts.NodeEditPart;
 import no.hib.dpf.editor.viewmodel.VArrow;
 import no.hib.dpf.editor.viewmodel.VConstraint;
 import no.hib.dpf.editor.viewmodel.commands.MultipleArrowConstraintCreateCommand;
@@ -21,7 +21,7 @@ public class CreateJointlySurjectiveConstraintAction extends CreateConstraintAct
 	}
 
 	@Override
-	protected Command getConstraintCreateCommand(List<VArrowEditPart> connectionEditParts, List<VNodeEditPart> shapeEditParts) {
+	protected Command getConstraintCreateCommand(List<ArrowEditPart> connectionEditParts, List<NodeEditPart> shapeEditParts) {
 		return new MultipleArrowConstraintCreateCommand((VArrow)connectionEditParts.get(0).getModel(), (VArrow)connectionEditParts.get(1).getModel(), VConstraint.ConstraintType.JOINTLY_SURJECTIVE, createIDObject());
 	}
 	

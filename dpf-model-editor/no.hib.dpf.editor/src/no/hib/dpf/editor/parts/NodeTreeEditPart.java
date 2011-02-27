@@ -32,7 +32,7 @@ import org.eclipse.gef.editparts.AbstractTreeEditPart;
  * 
  * @author Elias Volanakis
  */
-class VNodeTreeEditPart extends AbstractTreeEditPart implements
+class NodeTreeEditPart extends AbstractTreeEditPart implements
 		PropertyChangeListener {
 
 	/**
@@ -41,7 +41,7 @@ class VNodeTreeEditPart extends AbstractTreeEditPart implements
 	 * @param model
 	 *            a non-null Shapes instance
 	 */
-	VNodeTreeEditPart(MovableAndSizable model) {
+	NodeTreeEditPart(MovableAndSizable model) {
 		super(model);
 	}
 
@@ -64,7 +64,7 @@ class VNodeTreeEditPart extends AbstractTreeEditPart implements
 	protected void createEditPolicies() {
 		// allow removal of the associated model element
 		installEditPolicy(EditPolicy.COMPONENT_ROLE,
-				new VNodeComponentEditPolicy());
+				new NodeComponentEditPolicy());
 	}
 
 	/**

@@ -2,8 +2,8 @@ package no.hib.dpf.editor.editoractions;
 
 import java.util.List;
 
-import no.hib.dpf.editor.parts.VArrowEditPart;
-import no.hib.dpf.editor.parts.VNodeEditPart;
+import no.hib.dpf.editor.parts.ArrowEditPart;
+import no.hib.dpf.editor.parts.NodeEditPart;
 import no.hib.dpf.metamodel.Arrow;
 import no.hib.dpf.metamodel.Constraint;
 import no.hib.dpf.metamodel.Graph;
@@ -56,8 +56,8 @@ public abstract class CreateConstraintAction extends SelectionActionForEditParts
 	@Override
 	public void run() {
 		// this method is only called if calculate enabled() returns true
-		List<VArrowEditPart> connectionEditParts = getSelectedConnectionEditParts();
-		List<VNodeEditPart> shapeEditParts = getSelectedVNodeEditParts();
+		List<ArrowEditPart> connectionEditParts = getSelectedConnectionEditParts();
+		List<NodeEditPart> shapeEditParts = getSelectedVNodeEditParts();
 		
 		if (!deselectInViewer(connectionEditParts)) {
 			deselectInViewer(shapeEditParts);
@@ -79,6 +79,6 @@ public abstract class CreateConstraintAction extends SelectionActionForEditParts
 		return true;
 	}
 	
-	protected abstract Command getConstraintCreateCommand(List<VArrowEditPart> connectionEditParts, List<VNodeEditPart> shapeEditParts);
+	protected abstract Command getConstraintCreateCommand(List<ArrowEditPart> connectionEditParts, List<NodeEditPart> shapeEditParts);
 	
 }

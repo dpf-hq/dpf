@@ -3,7 +3,7 @@ package no.hib.dpf.editor.policies;
  * Created on Jul 18, 2004
  */
 
-import no.hib.dpf.editor.parts.VNodeEditPart;
+import no.hib.dpf.editor.parts.NodeEditPart;
 import no.hib.dpf.editor.viewmodel.VNode;
 import no.hib.dpf.editor.viewmodel.commands.ChangeVNodeNameCommand;
 
@@ -39,7 +39,7 @@ public class VNodeDirectEditPolicy extends DirectEditPolicy {
 	 */
 	protected void showCurrentEditValue(DirectEditRequest request) {
 		String value = (String) request.getCellEditor().getValue();
-		VNodeEditPart vNodeEditPart = (VNodeEditPart) getHost();
+		NodeEditPart vNodeEditPart = (NodeEditPart) getHost();
 		vNodeEditPart.handleNameChange(value);
 	}
 
@@ -58,7 +58,7 @@ public class VNodeDirectEditPolicy extends DirectEditPolicy {
 	protected void revertOldEditValue(DirectEditRequest request) {
 		CellEditor cellEditor = request.getCellEditor();
 		cellEditor.setValue(oldValue);
-		VNodeEditPart vNodeEditPart = (VNodeEditPart)getHost();
+		NodeEditPart vNodeEditPart = (NodeEditPart)getHost();
 		vNodeEditPart.revertNameChange();
 	}
 }

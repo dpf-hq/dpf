@@ -156,13 +156,13 @@ class DiagramEditPart extends AbstractGraphicalEditPart implements PropertyChang
 		 */
 		protected Command createChangeConstraintCommand(
 				ChangeBoundsRequest request, EditPart child, Object constraint) {
-			if (child instanceof VNodeEditPart
+			if (child instanceof NodeEditPart
 					&& constraint instanceof Rectangle) {
 				// return a command that can move and/or resize a Shape
 				return new VNodeSetSizeAndLocationCommand((MovableAndSizable)child.getModel(),
 						request, (Rectangle) constraint);
 			}
-			if (child instanceof VNodeSingleConnectionEditPart && constraint instanceof Rectangle) {
+			if (child instanceof SingleArrowEditPart && constraint instanceof Rectangle) {
 				// return a command that can move and/or resize a single connection
 				return new VNodeSetSizeAndLocationCommand((MovableAndSizable)child.getModel(),
 						request, (Rectangle) constraint);

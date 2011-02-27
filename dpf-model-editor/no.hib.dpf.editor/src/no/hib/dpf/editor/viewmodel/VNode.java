@@ -120,6 +120,7 @@ public class VNode extends ModelElement implements Node, IDObjectContainer, Mova
 	 * @see #getPropertyValue(Object)
 	 * @see #setPropertyValue(Object, Object)
 	 */
+	@Override
 	public IPropertyDescriptor[] getPropertyDescriptors() {
 		return getLocationAndSize().getPropertyDescriptors(descriptors);
 	}

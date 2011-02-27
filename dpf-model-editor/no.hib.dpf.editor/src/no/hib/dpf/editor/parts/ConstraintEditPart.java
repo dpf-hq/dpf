@@ -2,7 +2,7 @@ package no.hib.dpf.editor.parts;
 
 import java.beans.PropertyChangeEvent;
 
-import no.hib.dpf.editor.figures.RectangleFigure;
+import no.hib.dpf.editor.figures.NodeFigure;
 import no.hib.dpf.editor.figures.ConnectionConstraintAnchor;
 import no.hib.dpf.editor.viewmodel.VConstraint;
 import no.hib.dpf.editor.viewmodel.commands.ConstraintDeleteCommand;
@@ -48,26 +48,26 @@ public abstract class ConstraintEditPart extends ModelElementConnectionEditPart 
 		});
 	}
 
-	public abstract RectangleFigure getRectangleFigureForFigure();
+	public abstract NodeFigure getRectangleFigureForFigure();
 
 	
-	protected RectangleFigure getRectangleFigureForFigure(boolean fromSource) {
-		RectangleFigure basicRectangleFigure = null;
+	protected NodeFigure getRectangleFigureForFigure(boolean fromSource) {
+		NodeFigure basicRectangleFigure = null;
 		
 		if (getSource() != null) {
-			VArrowEditPart source = (VArrowEditPart) getSource();
+			ArrowEditPart source = (ArrowEditPart) getSource();
 
 			if (source.getSource() != null) {
-				if (source.getSource() instanceof VNodeEditPart) {
-					VNodeEditPart shapeEditPart;
+				if (source.getSource() instanceof NodeEditPart) {
+					NodeEditPart shapeEditPart;
 					if (fromSource) {
-						shapeEditPart = (VNodeEditPart) source.getSource();
+						shapeEditPart = (NodeEditPart) source.getSource();
 					} else {
-						shapeEditPart = (VNodeEditPart) source.getTarget();
+						shapeEditPart = (NodeEditPart) source.getTarget();
 
 					}
-					if (shapeEditPart.getFigure() instanceof RectangleFigure) {
-						basicRectangleFigure = (RectangleFigure) shapeEditPart
+					if (shapeEditPart.getFigure() instanceof NodeFigure) {
+						basicRectangleFigure = (NodeFigure) shapeEditPart
 								.getFigure();
 					}
 				}
@@ -84,7 +84,7 @@ public abstract class ConstraintEditPart extends ModelElementConnectionEditPart 
 	
 	/**
 	 * Returns the <code>ConnectionAnchor</code> for the <i>source</i> end of
-	 * the connection. If the source is an instance of {@link VArrowEditPart},
+	 * the connection. If the source is an instance of {@link ArrowEditPart},
 	 * that interface will be used to determine the proper ConnectionAnchor.
 	 * 
 	 * @return ConnectionAnchor for the source end of the Connection
@@ -96,7 +96,7 @@ public abstract class ConstraintEditPart extends ModelElementConnectionEditPart 
 
 	/**
 	 * Returns the <code>ConnectionAnchor</code> for the <i>target</i> end of
-	 * the connection. If the target is an instance of {@link VArrowEditPart},
+	 * the connection. If the target is an instance of {@link ArrowEditPart},
 	 * that interface will be used to determine the proper ConnectionAnchor.
 	 * 
 	 * @return ConnectionAnchor for the target end of the Connection
@@ -117,7 +117,7 @@ public abstract class ConstraintEditPart extends ModelElementConnectionEditPart 
 		// Now, the connection constraint anchor is constructed, setting from which end of the line it
 		// should anchor itself:
 		ConnectionConstraintAnchor retval = new ConnectionConstraintAnchor(new Point(100, 100), constraintFromTargetEnd);
-		if ((supplier == null)  || (!(supplier instanceof VArrowEditPart))) {
+		if ((supplier == null)  || (!(supplier instanceof ArrowEditPart))) {
 			return retval;
 		}
 		updateAnchor(retval, supplier, isSource);
@@ -126,16 +126,16 @@ public abstract class ConstraintEditPart extends ModelElementConnectionEditPart 
 	}
 
 	private void updateAnchor(ConnectionConstraintAnchor anchor, EditPart supplier, boolean isSource) {
-		VArrowEditPart targetSupplier = getConnectionEditPart(supplier, isSource);
+		ArrowEditPart targetSupplier = getConnectionEditPart(supplier, isSource);
 		anchor.setConnectionFigure((PolylineConnection)targetSupplier.getFigure());
 	}
 
-	private VArrowEditPart getConnectionEditPart(EditPart supplier, boolean isSource) {
-		VArrowEditPart retVal = (VArrowEditPart)supplier;
+	private ArrowEditPart getConnectionEditPart(EditPart supplier, boolean isSource) {
+		ArrowEditPart retVal = (ArrowEditPart)supplier;
 		if (isSource) {
-			retVal = (VArrowEditPart)getSource();		
+			retVal = (ArrowEditPart)getSource();		
 		} else {
-			retVal = (VArrowEditPart)getTarget();				
+			retVal = (ArrowEditPart)getTarget();				
 		}
 		return retVal;
 	}	
@@ -163,7 +163,7 @@ public abstract class ConstraintEditPart extends ModelElementConnectionEditPart 
 		if (editPart == null) {
 			return;
 		}
-		VArrowEditPart shapeEditPart = (VArrowEditPart)editPart;
+		ArrowEditPart shapeEditPart = (ArrowEditPart)editPart;
 		shapeEditPart.addPropertyChangeListener(this);
 	}
 
