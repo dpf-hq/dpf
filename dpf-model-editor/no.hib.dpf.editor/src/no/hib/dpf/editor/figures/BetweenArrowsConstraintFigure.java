@@ -41,9 +41,9 @@ public class BetweenArrowsConstraintFigure extends PolylineConnection implements
 		return basicRectangleFigure;
 	}
 	
-	private Point[] getMidwayControlPoint(Point startPoint, Point endPoint) {
-		Point[] firstCandidate = makeMidwayControlPoint(startPoint, endPoint);
-		Point[] secondCandidate = makeMidwayControlPoint(endPoint, startPoint);
+	private Point[] getMidwayControlPoints(Point startPoint, Point endPoint) {
+		Point[] firstCandidate = makeMidwayControlPoints(startPoint, endPoint);
+		Point[] secondCandidate = makeMidwayControlPoints(endPoint, startPoint);
 		
 		if (getBasicRectangleFigure() == null) {
 			return firstCandidate;
@@ -69,7 +69,7 @@ public class BetweenArrowsConstraintFigure extends PolylineConnection implements
 		return false;
 	}
 	
-	private Point[] makeMidwayControlPoint(Point startPoint, Point endPoint) {
+	private Point[] makeMidwayControlPoints(Point startPoint, Point endPoint) {
 		int dx = endPoint.x - startPoint.x;
 		int dy = endPoint.y - startPoint.y;
 		
@@ -81,7 +81,8 @@ public class BetweenArrowsConstraintFigure extends PolylineConnection implements
 		Point finalVector = new Point(normOrthoVectorX * 20, normOrthoVectorY  * 20);		
 		Point midway = new Point(startPoint.x + (dx/2), startPoint.y + (dy/2));
 		
-		Point[] retval = new Point[2];
+		Point[] retval = new Point[3];
+		retval[2] = midway;
 		
 		retval[0] = new Point(midway.x + finalVector.x, midway.y + finalVector.y);
 		finalVector = new Point(normOrthoVectorX * 37, normOrthoVectorY  * 37);		
@@ -107,25 +108,34 @@ public class BetweenArrowsConstraintFigure extends PolylineConnection implements
 		PointList points = getPoints();
 		Point p1 = points.getFirstPoint();
 		Point p2 = points.getLastPoint();
-//		System.out.println("Constraint Y-Points: " + p1.y + ", " + p2.y);
 				
-		Point [] controlpoints = getMidwayControlPoint(p1, p2);
+		Point [] controlpoints = getMidwayControlPoints(p1, p2);
 		
-		Bezier bezier = new Bezier(points.getFirstPoint(), points.getLastPoint(), controlpoints[0], controlpoints[0]);
+// Draws the control points for your viewing pleasure		
+//		g.drawText("¥", getMidwayPoint(controlpoints[0], p1));
+//		g.drawText("¥", getMidwayPoint(controlpoints[0], p2));
+		
+		
+		Bezier bezier = new Bezier(p1, p2, getMidwayPoint(controlpoints[0], p2), getMidwayPoint(controlpoints[0], p1));
 		bezier.outlineShape(g);
-
+		
 		g.drawText(labelText, controlpoints[1].translate(-17, 0));
 
 		setMyBackgroundColor(ColorConstants.black);
 		drawAnchorBlob(g, buildPointBox(points.getFirstPoint()));
 		drawAnchorBlob(g, buildPointBox(points.getLastPoint()));
-		counter++;
-		System.out.println(Integer.toString(counter) + ": Outlines Constraint figure");
-//		System.out.println("Constraint Y-Points: " + p1.y + ", " + p2.y);
+//		counter++;
+//		System.out.println(Integer.toString(counter) + ": Outlines Constraint figure");
 		
 	}
+
+	private Point getMidwayPoint(Point p1, Point p2) {
+		int dx = p1.x - p2.x;
+		int dy = p1.y - p2.y;		
+		return new Point(p1.x + (dx/2), p1.y + (dy/2));
+	}
 	
-	private static int counter = 0;
+//	private static int counter = 0;
 	
 	private Rectangle buildPointBox(Point p) {
 		return new Rectangle(p.x - 3, p.y - 3, 6, 6);
