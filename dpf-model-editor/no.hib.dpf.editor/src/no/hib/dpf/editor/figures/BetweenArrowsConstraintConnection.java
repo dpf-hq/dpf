@@ -19,7 +19,7 @@ import org.eclipse.swt.widgets.Display;
  * Draws a figure located between two points (on arrows).
  * The figure is also "anchored" to a rectangle.
  */
-public class BetweenArrowsConstraintFigure extends PolylineConnection implements RoutableFigure {
+public class BetweenArrowsConstraintConnection extends PolylineConnection implements RoutableFigure {
 
 	Rectangle firstPointBounds;
 	Rectangle lastPointBounds;
@@ -28,7 +28,7 @@ public class BetweenArrowsConstraintFigure extends PolylineConnection implements
 	ConstraintEditPart constraintEditPart;
 	private String labelText;
 	
-	public BetweenArrowsConstraintFigure(ConstraintEditPart constraintEditPart, String labelText) {
+	public BetweenArrowsConstraintConnection(ConstraintEditPart constraintEditPart, String labelText) {
 		this.constraintEditPart = constraintEditPart;
 		this.labelText = labelText;
 		setMyBackgroundColor(ColorConstants.black);

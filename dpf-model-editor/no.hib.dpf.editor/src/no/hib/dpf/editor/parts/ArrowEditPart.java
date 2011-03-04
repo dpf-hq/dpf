@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import no.hib.dpf.editor.figures.ArrowFigure;
+import no.hib.dpf.editor.figures.ArrowConnection;
 import no.hib.dpf.editor.figures.EditableLabel;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;
 import no.hib.dpf.editor.preferences.PreferenceConstants;
@@ -53,7 +53,7 @@ import org.eclipse.swt.SWT;
  */
 public class ArrowEditPart extends ModelElementConnectionEditPart {
 
-	protected ArrowFigure connectionFigure; 
+	protected ArrowConnection connectionFigure; 
 	Label connectionLabel;
 	private List<SingleLineConstraintElement> singleConstraints = new ArrayList<SingleLineConstraintElement>();
 	private transient PropertyChangeSupport pcsDelegate = new PropertyChangeSupport(this);
@@ -163,7 +163,7 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 	 */
 	protected IFigure createFigure() {
 		EditableLabel label = new EditableLabel(getFullName());
-		connectionFigure = new ArrowFigure(label);
+		connectionFigure = new ArrowConnection(label);
 		makeNewConstraintLabel();
 
 		setArrowHead(connectionFigure);
@@ -227,7 +227,7 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 	public void propertyChange(PropertyChangeEvent event) {
 		String property = event.getPropertyName();
 		if (VArrow.LINESTYLE_PROP.equals(property)) {
-			((ArrowFigure) getFigure()).setLineStyle(getCastedModel()
+			((ArrowConnection) getFigure()).setLineStyle(getCastedModel()
 					.getLineStyle());
 		} else if (VArrow.SOURCE_CONSTRAINTS_PROP.equals(property)) {
 			refreshSourceConnections();
@@ -241,7 +241,7 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 	}
 	
 	private void commitNameChange() {
-		ArrowFigure figure = (ArrowFigure)getFigure();
+		ArrowConnection figure = (ArrowConnection)getFigure();
 		EditableLabel label = figure.getLabel();
 		label.setText(getFullName());
 		refreshVisuals();

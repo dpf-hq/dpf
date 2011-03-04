@@ -3,7 +3,7 @@ package no.hib.dpf.editor.figures;
 import org.eclipse.draw2d.geometry.Rectangle;
 
 
-public class EpiArrowFigure extends ArrowFigure {
+public class EpiArrowFigure extends ArrowConnection {
 	
 	public EpiArrowFigure(EditableLabel label) {
 		super(label);

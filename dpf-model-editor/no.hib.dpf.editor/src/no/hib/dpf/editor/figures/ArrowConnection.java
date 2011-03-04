@@ -12,7 +12,7 @@ import org.eclipse.swt.SWT;
  * @author oyvind
  *
  */
-public class ArrowFigure extends PolylineConnection implements RoutableFigure {
+public class ArrowConnection extends PolylineConnection implements RoutableFigure {
 		
 	
 	private EditableLabel label;
@@ -21,7 +21,7 @@ public class ArrowFigure extends PolylineConnection implements RoutableFigure {
 		return label;
 	}
 
-	public ArrowFigure(EditableLabel label) {
+	public ArrowConnection(EditableLabel label) {
 	
 		this.label = label;
 		label.setForegroundColor(ColorConstants.black);

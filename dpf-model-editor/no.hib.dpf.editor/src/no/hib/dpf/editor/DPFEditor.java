@@ -91,8 +91,8 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 
 /**
- * A graphical editor with flyout palette that can edit .shapes files. The
- * binding between the .shapes file extension and this editor is done in
+ * A graphical editor with flyout palette that can edit .dpf files. The
+ * binding between the .dpf file extension and this editor is done in
  * plugin.xml
  * 
  * @author Elias Volanakis

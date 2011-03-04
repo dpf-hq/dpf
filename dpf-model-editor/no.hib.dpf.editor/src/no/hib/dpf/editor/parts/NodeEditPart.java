@@ -208,6 +208,7 @@ public Node getModelAsEMFInstance() {
 }
 
 private ConnectionAnchor getConnectionAnchor(ConnectionEditPart connection, boolean isSourceAnchor) {
+	// TODO: fix this!
 	if (connection instanceof SingleArrowEditPart) {
 		return new SingleNodeConnectionAnchor(getFigure(), isSourceAnchor);
 	}
@@ -215,7 +216,7 @@ private ConnectionAnchor getConnectionAnchor(ConnectionEditPart connection, bool
 		if (getModel() instanceof VNode)
 			anchor = new ChopboxAnchor(getFigure());
 		else
-			// if Shapes gets extended the conditions above must be updated
+			// if Shapes gets extended the conditions above must be updated TODO: fix this. Make extendable w/o.
 			throw new IllegalArgumentException("unexpected model");
 	}
 	return anchor;
