@@ -13,6 +13,7 @@ package no.hib.dpf.editor.viewmodel;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 import no.hib.dpf.metamodel.Arrow;
 import no.hib.dpf.metamodel.Graph;
@@ -20,6 +21,7 @@ import no.hib.dpf.metamodel.IDObject;
 import no.hib.dpf.metamodel.MetamodelFactory;
 import no.hib.dpf.metamodel.Node;
 
+import org.eclipse.draw2d.Bendpoint;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
@@ -386,6 +388,38 @@ public class VArrow extends ModelElement implements Arrow, IDObjectContainer {
 		return singleConstraints;
 	}	
 	
+	
+	
+	// ------- * E X T R A
+	protected List bendpoints = new ArrayList();
+	
+	public void insertBendpoint(int index, Bendpoint point) {
+		getBendpoints().add(index, point);
+		firePropertyChange("bendpoint", null, null);//$NON-NLS-1$
+	}
+
+	public void removeBendpoint(int index) {
+		getBendpoints().remove(index);
+		firePropertyChange("bendpoint", null, null);//$NON-NLS-1$
+	}
+
+	public void setBendpoint(int index, Bendpoint point) {
+		getBendpoints().set(index, point);
+		firePropertyChange("bendpoint", null, null);//$NON-NLS-1$
+	}
+
+	public void setBendpoints(Vector points) {
+		bendpoints = points;
+		firePropertyChange("bendpoint", null, null);//$NON-NLS-1$
+	}
+
+	public List getBendpoints() {
+		return bendpoints;
+	}
+	
+	
+	
+	
 	// -----------------------------------------------------------------------------------
 	// Arrow methods:
 	// -----------------------------------------------------------------------------------
@@ -557,8 +591,7 @@ public class VArrow extends ModelElement implements Arrow, IDObjectContainer {
 	@Override
 	public String generateUniqueName() {
 		return arrowComponent.generateUniqueName();
-	}
-	
+	}	
 
 
 }

@@ -24,6 +24,7 @@ import no.hib.dpf.editor.preferences.PreferenceConstants;
 import no.hib.dpf.editor.viewmodel.SingleLineConstraintElement;
 import no.hib.dpf.editor.viewmodel.VArrow;
 import no.hib.dpf.editor.viewmodel.VConstraint;
+import no.hib.dpf.editor.viewmodel.WireBendpoint;
 import no.hib.dpf.editor.viewmodel.commands.ConnectionDeleteCommand;
 import no.hib.dpf.metamodel.Arrow;
 
@@ -33,16 +34,37 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.PolygonDecoration;
 import org.eclipse.draw2d.PolylineConnection;
+import org.eclipse.draw2d.RoutingAnimator;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.editpolicies.BendpointEditPolicy;
 import org.eclipse.gef.editpolicies.ConnectionEditPolicy;
 import org.eclipse.gef.editpolicies.ConnectionEndpointEditPolicy;
 import org.eclipse.gef.requests.GroupRequest;
+import org.eclipse.gef.tools.ConnectionBendpointTracker;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.swt.SWT;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.eclipse.swt.accessibility.AccessibleEvent;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.widgets.Display;
+
+import org.eclipse.draw2d.Connection;
+import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.ManhattanConnectionRouter;
+import org.eclipse.draw2d.PolylineConnection;
+import org.eclipse.draw2d.RelativeBendpoint;
+
+import org.eclipse.gef.AccessibleEditPart;
+import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.editparts.AbstractConnectionEditPart;
 
 
 /**
@@ -139,11 +161,19 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 	 */
 	@Override
 	protected void createEditPolicies() {
+		
+//		installEditPolicy(EditPolicy.CONNECTION_ENDPOINTS_ROLE, new WireEndpointEditPolicy());
+//		//Note that the Connection is already added to the diagram and knows its Router.
+		refreshBendpointEditPolicy();
+//		installEditPolicy(EditPolicy.CONNECTION_ROLE,new WireEditPolicy());
+		
+		
+		
 		// Selection handle edit policy.
 		// Makes the connection show a feedback, when selected by the user.
 		installEditPolicy(EditPolicy.CONNECTION_ENDPOINTS_ROLE,
 				new ConnectionEndpointEditPolicy());
-		// Allows the removal of the connection model element
+		// Allows the removal of the connection model element		
 		installEditPolicy(EditPolicy.CONNECTION_ROLE,
 				new ConnectionEditPolicy() {
 					protected Command getDeleteCommand(GroupRequest request) {
@@ -152,8 +182,8 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 				});
 	}
 	
-	protected Arrow getArrow() {
-		return (Arrow) getModel();
+	protected VArrow getArrow() {
+		return (VArrow) getModel();
 	}
 	
 	/*
@@ -164,11 +194,15 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 	protected IFigure createFigure() {
 		EditableLabel label = new EditableLabel(getFullName());
 		connectionFigure = new ArrowConnection(label);
+		// * A D D E D:
+		connectionFigure.addRoutingListener(RoutingAnimator.getDefault());
+
+		
 		makeNewConstraintLabel();
 
 		setArrowHead(connectionFigure);
 		connectionFigure.setLineStyle(getCastedModel().getLineStyle()); // line drawing style
-		return connectionFigure;
+		return connectionFigure;		
 	}
 
 	protected void setArrowHead(PolylineConnection connectionFigure) {
@@ -226,6 +260,22 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 	 */
 	public void propertyChange(PropertyChangeEvent event) {
 		String property = event.getPropertyName();
+		
+		// * E X T R A S :
+		
+		if (Connection.PROPERTY_CONNECTION_ROUTER.equals(property)){
+			refreshBendpoints();
+			refreshBendpointEditPolicy();
+		} else if ("value".equals(property)) {  //$NON-NLS-1$
+			refreshVisuals();
+		} else 	if ("bendpoint".equals(property)) {   //$NON-NLS-1$
+			refreshBendpoints();
+		}
+
+		
+		
+		
+		
 		if (VArrow.LINESTYLE_PROP.equals(property)) {
 			((ArrowConnection) getFigure()).setLineStyle(getCastedModel()
 					.getLineStyle());
@@ -356,5 +406,130 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 		}		
 		
 	}
+	
+	
+	
+	
+	
+	
+	// ----------------------------------------
+	// * E X T R A S *
+	
+	private AccessibleEditPart acc;
+
+	public void activateFigure(){
+		super.activateFigure();
+		/*Once the figure has been added to the ConnectionLayer, start listening for its
+		 * router to change.
+		 */
+		getFigure().addPropertyChangeListener(Connection.PROPERTY_CONNECTION_ROUTER, this);
+	}
+	
+	public void deactivateFigure(){
+		getFigure().removePropertyChangeListener(Connection.PROPERTY_CONNECTION_ROUTER, this);
+		super.deactivateFigure();
+	}
+
+	
+	/**
+	 * Updates the bendpoints, based on the model.
+	 */
+	protected void refreshBendpoints() {
+		if (getConnectionFigure().getConnectionRouter() instanceof ManhattanConnectionRouter)
+			return;
+		List modelConstraint = getArrow().getBendpoints();
+		List figureConstraint = new ArrayList();
+		for (int i=0; i<modelConstraint.size(); i++) {
+			WireBendpoint wbp = (WireBendpoint)modelConstraint.get(i);
+			RelativeBendpoint rbp = new RelativeBendpoint(getConnectionFigure());
+			rbp.setRelativeDimensions(wbp.getFirstRelativeDimension(),
+										wbp.getSecondRelativeDimension());
+			rbp.setWeight((i+1) / ((float)modelConstraint.size()+1));
+			figureConstraint.add(rbp);
+		}
+		getConnectionFigure().setRoutingConstraint(figureConstraint);
+	}
+
+	private void refreshBendpointEditPolicy(){
+		if (getConnectionFigure().getConnectionRouter() instanceof ManhattanConnectionRouter)
+			installEditPolicy(EditPolicy.CONNECTION_BENDPOINTS_ROLE, null);
+		else
+			installEditPolicy(EditPolicy.CONNECTION_BENDPOINTS_ROLE, new WireBendpointEditPolicy());
+	}
+
+	/**
+	 * Refreshes the visual aspects of this, based upon the
+	 * model (Wire). It changes the wire color depending on
+	 * the state of Wire.
+	 * 
+	 */
+	protected void refreshVisuals() {
+		refreshBendpoints();
+//		if (getWire().getValue())
+//			getWireFigure().setForegroundColor(alive);
+//		else
+//			getWireFigure().setForegroundColor(dead);
+	}		
+
+//	/**
+//	 * Adds extra EditPolicies as required. 
+//	 */
+//	protected void createEditPolicies() {
+//		installEditPolicy(EditPolicy.CONNECTION_ENDPOINTS_ROLE, new WireEndpointEditPolicy());
+//		//Note that the Connection is already added to the diagram and knows its Router.
+//		refreshBendpointEditPolicy();
+//		installEditPolicy(EditPolicy.CONNECTION_ROLE,new WireEditPolicy());
+//	}
+
+
+
+//	public AccessibleEditPart getAccessibleEditPart(){
+//		if (acc == null)
+//			acc = new AccessibleGraphicalEditPart(){
+//				public void getName(AccessibleEvent e) {
+//					e.result = LogicMessages.Wire_LabelText;
+//				}
+//			};
+//		return acc;
+//	}
+
+//	/**
+//	 * Returns the model of this represented as a Wire.
+//	 * 
+//	 * @return  Model of this as <code>Wire</code>
+//	 */
+//	protected Wire getWire() {
+//		return (Wire)getModel();
+//	}
+
+//	/**
+//	 * Returns the Figure associated with this, which draws the
+//	 * Wire.
+//	 *
+//	 * @return  Figure of this.
+//	 */
+//	protected IFigure getWireFigure() {
+//		return (PolylineConnection) getFigure();
+//	}
+
+//	/**
+//	 * Listens to changes in properties of the Wire (like the
+//	 * contents being carried), and reflects is in the visuals.
+//	 *
+//	 * @param event  Event notifying the change.
+//	 */
+//	public void propertyChange(PropertyChangeEvent event) {
+//		String property = event.getPropertyName();
+//		if (Connection.PROPERTY_CONNECTION_ROUTER.equals(property)){
+//			refreshBendpoints();
+//			refreshBendpointEditPolicy();
+//		}
+//		if ("value".equals(property))   //$NON-NLS-1$
+//			refreshVisuals();
+//		if ("bendpoint".equals(property))   //$NON-NLS-1$
+//			refreshBendpoints();       
+//	}
+
+
 
 }
