@@ -28,43 +28,27 @@ import no.hib.dpf.editor.viewmodel.WireBendpoint;
 import no.hib.dpf.editor.viewmodel.commands.ConnectionDeleteCommand;
 import no.hib.dpf.metamodel.Arrow;
 
+import org.eclipse.draw2d.Bendpoint;
+import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.ConnectionLocator;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
+import org.eclipse.draw2d.ManhattanConnectionRouter;
 import org.eclipse.draw2d.PolygonDecoration;
 import org.eclipse.draw2d.PolylineConnection;
+import org.eclipse.draw2d.RelativeBendpoint;
 import org.eclipse.draw2d.RoutingAnimator;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.editpolicies.BendpointEditPolicy;
 import org.eclipse.gef.editpolicies.ConnectionEditPolicy;
 import org.eclipse.gef.editpolicies.ConnectionEndpointEditPolicy;
 import org.eclipse.gef.requests.GroupRequest;
-import org.eclipse.gef.tools.ConnectionBendpointTracker;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.swt.SWT;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.eclipse.swt.accessibility.AccessibleEvent;
-import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.widgets.Display;
-
-import org.eclipse.draw2d.Connection;
-import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.ManhattanConnectionRouter;
-import org.eclipse.draw2d.PolylineConnection;
-import org.eclipse.draw2d.RelativeBendpoint;
-
-import org.eclipse.gef.AccessibleEditPart;
-import org.eclipse.gef.EditPolicy;
-import org.eclipse.gef.editparts.AbstractConnectionEditPart;
 
 
 /**
@@ -415,8 +399,6 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 	// ----------------------------------------
 	// * E X T R A S *
 	
-	private AccessibleEditPart acc;
-
 	public void activateFigure(){
 		super.activateFigure();
 		/*Once the figure has been added to the ConnectionLayer, start listening for its
@@ -437,8 +419,8 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 	protected void refreshBendpoints() {
 		if (getConnectionFigure().getConnectionRouter() instanceof ManhattanConnectionRouter)
 			return;
-		List modelConstraint = getArrow().getBendpoints();
-		List figureConstraint = new ArrayList();
+		List<Bendpoint> modelConstraint = getArrow().getBendpoints();
+		List<Bendpoint> figureConstraint = new ArrayList<Bendpoint>();
 		for (int i=0; i<modelConstraint.size(); i++) {
 			WireBendpoint wbp = (WireBendpoint)modelConstraint.get(i);
 			RelativeBendpoint rbp = new RelativeBendpoint(getConnectionFigure());

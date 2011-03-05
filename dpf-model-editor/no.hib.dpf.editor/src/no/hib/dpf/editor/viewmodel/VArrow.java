@@ -13,7 +13,6 @@ package no.hib.dpf.editor.viewmodel;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 
 import no.hib.dpf.metamodel.Arrow;
 import no.hib.dpf.metamodel.Graph;
@@ -391,7 +390,7 @@ public class VArrow extends ModelElement implements Arrow, IDObjectContainer {
 	
 	
 	// ------- * E X T R A
-	protected List bendpoints = new ArrayList();
+	protected List<Bendpoint> bendpoints = new ArrayList<Bendpoint>();
 	
 	public void insertBendpoint(int index, Bendpoint point) {
 		getBendpoints().add(index, point);
@@ -408,16 +407,10 @@ public class VArrow extends ModelElement implements Arrow, IDObjectContainer {
 		firePropertyChange("bendpoint", null, null);//$NON-NLS-1$
 	}
 
-	public void setBendpoints(Vector points) {
-		bendpoints = points;
-		firePropertyChange("bendpoint", null, null);//$NON-NLS-1$
-	}
-
-	public List getBendpoints() {
+	// TODO: refactor from giving away all bendpoints as list
+	public List<Bendpoint> getBendpoints() {
 		return bendpoints;
 	}
-	
-	
 	
 	
 	// -----------------------------------------------------------------------------------
