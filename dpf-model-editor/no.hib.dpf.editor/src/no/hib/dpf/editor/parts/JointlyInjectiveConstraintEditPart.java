@@ -11,7 +11,7 @@
 package no.hib.dpf.editor.parts;
 
 import no.hib.dpf.editor.figures.NodeFigure;
-import no.hib.dpf.editor.figures.BetweenArrowsConstraintConnection;
+import no.hib.dpf.editor.figures.TwoArrowsOneNodeConstraintConnection;
 
 import org.eclipse.draw2d.IFigure;
 
@@ -34,7 +34,7 @@ class JointlyInjectiveConstraintEditPart extends ConstraintEditPart {
 	 */
 	@Override
 	protected IFigure createFigureExec() {
-		return new BetweenArrowsConstraintConnection(this, "[ji]");
+		return new TwoArrowsOneNodeConstraintConnection(this, "[ji]");
 	}
 
 }

@@ -113,7 +113,7 @@ public abstract class ConstraintEditPart extends ModelElementConnectionEditPart 
 	 * @param isSource true if supplier is source, false if not.
 	 * @return A new LineConstraintAnchor.
 	 */
-	private ConnectionAnchor getConnectionAnchor(EditPart supplier, boolean isSource) {
+	protected ConnectionAnchor getConnectionAnchor(EditPart supplier, boolean isSource) {
 		// Now, the connection constraint anchor is constructed, setting from which end of the line it
 		// should anchor itself:
 		ConnectionConstraintAnchor retval = new ConnectionConstraintAnchor(new Point(100, 100), constraintFromTargetEnd);
@@ -125,7 +125,7 @@ public abstract class ConstraintEditPart extends ModelElementConnectionEditPart 
 		return retval;
 	}
 
-	private void updateAnchor(ConnectionConstraintAnchor anchor, EditPart supplier, boolean isSource) {
+	protected void updateAnchor(ConnectionConstraintAnchor anchor, EditPart supplier, boolean isSource) {
 		ArrowEditPart targetSupplier = getConnectionEditPart(supplier, isSource);
 		anchor.setConnectionFigure((PolylineConnection)targetSupplier.getFigure());
 	}

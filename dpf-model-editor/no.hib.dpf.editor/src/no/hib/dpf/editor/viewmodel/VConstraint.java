@@ -55,7 +55,8 @@ public class VConstraint extends ModelElement implements Constraint, IDObjectCon
 	public enum ConstraintType {
 		JOINTLY_INJECTIVE,
 		JOINTLY_SURJECTIVE,
-		MULTIPLICITY
+		MULTIPLICITY,
+		INVERSE
 	}
 	
 	private ConstraintType constraintType;

@@ -27,6 +27,7 @@ import java.util.Map;
 
 import no.hib.dpf.editor.editoractions.ConstraintProperties;
 import no.hib.dpf.editor.editoractions.CreateConstraintAction;
+import no.hib.dpf.editor.editoractions.CreateInverseConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointlyInjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointlySurjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateMultiplicityConstraintAction;
@@ -172,7 +173,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		ConstraintProperties jointlyInjectiveProperties = new ConstraintProperties(
 				signature.getPredicateBySymbol("[jointly-injective]"), 
 				"Create new [jointly-injective] Constraint",
-				"Creates a new Jointly Injective Constraint",
+				"Creates a new [jointly-injective] Constraint",
 				VConstraint.ConstraintType.JOINTLY_INJECTIVE);
 		
 		constraintActions.add(new CreateJointlyInjectiveConstraintAction(this, diagram.getDpfGraph(), jointlyInjectiveProperties));
@@ -180,18 +181,26 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		ConstraintProperties jointlySurjectiveProperties = new ConstraintProperties(
 				signature.getPredicateBySymbol("[jointly-surjective]"), 
 				"Create new [jointly-surjective] Constraint",
-				"Creates a new Jointly Surjective Constraint",
+				"Creates a new [jointly-surjective] Constraint",
 				VConstraint.ConstraintType.JOINTLY_SURJECTIVE);
 		
 		constraintActions.add(new CreateJointlySurjectiveConstraintAction(this, diagram.getDpfGraph(), jointlySurjectiveProperties));
 		
 		ConstraintProperties multiplicityProperties = new ConstraintProperties(
 				signature.getPredicateBySymbol("[mult(m,n)]"), 
-				"Create new Multiplicity Constraint",
-				"Creates a new Multiplicity Constraint",
+				"Create new [mult(m,n)] Constraint",
+				"Creates a new [mult(m,n)] Constraint",
 				VConstraint.ConstraintType.MULTIPLICITY);
 
 		constraintActions.add(new CreateMultiplicityConstraintAction(this, diagram.getDpfGraph(), multiplicityProperties));
+		
+		ConstraintProperties inverseProperties = new ConstraintProperties(
+				signature.getPredicateBySymbol("[inverse]"),
+				"Create new [inverse] Constraint",
+				"Creates a new [inverse] Constraint",
+				VConstraint.ConstraintType.INVERSE);
+		constraintActions.add(new CreateInverseConstraintAction(this, diagram.getDpfGraph(), inverseProperties));
+
 		
 		for (CreateConstraintAction createConstraintAction : constraintActions) {
 			registerAction(createConstraintAction);
@@ -385,11 +394,12 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 
 	private void resetSignature() {
 		signature = MetamodelFactory.eINSTANCE.createSignature();
-		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("[jointly-injective]", "n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3"));
-		Predicate JSPredicate = MetamodelFactory.eINSTANCE.createPredicate("[jointly-surjective]", "n_1,n_2,n_3", "e_1:n_2:n_1,e_2:n_3:n_1");
+		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("[jointly-injective]", "n_1,n_2,n_3", "a_1:n_1:n_2,a_2:n_1:n_3"));
+		Predicate JSPredicate = MetamodelFactory.eINSTANCE.createPredicate("[jointly-surjective]", "n_1,n_2,n_3", "a_1:n_2:n_1,a_2:n_3:n_1");
 		JSPredicate.setSemantics(MetamodelFactory.eINSTANCE.createJointlySurjectiveSemantics());
 		signature.getPredicates().add(JSPredicate);
-		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("[mult(m,n)]", "n_1,n_2", "e_1:n_1:n_2"));
+		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("[mult(m,n)]", "n_1,n_2", "a_1:n_1:n_2"));
+		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("[inverse]", "n_1,n_2", "a_1:n_1:n_2,a_2:n_2:n_1"));
 	}
 	
 	public static void saveDPF(String dpfFileName, Specification specification) {		

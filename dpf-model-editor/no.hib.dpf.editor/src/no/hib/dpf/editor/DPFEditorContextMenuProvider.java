@@ -10,6 +10,7 @@
 Ê*******************************************************************************/
 package no.hib.dpf.editor;
 
+import no.hib.dpf.editor.editoractions.CreateInverseConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointlyInjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointlySurjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateMultiplicityConstraintAction;
@@ -73,10 +74,9 @@ public class DPFEditorContextMenuProvider extends ContextMenuProvider {
 				getAction(ActionFactory.DELETE.getId()));
 
 		getActionAndAppendToMenu(menu, SrcSelectAction.ID);
-		getActionAndAppendToMenu(menu,
-				CreateJointlyInjectiveConstraintAction.ID);
-		getActionAndAppendToMenu(menu,
-				CreateJointlySurjectiveConstraintAction.ID);
+		getActionAndAppendToMenu(menu, CreateJointlyInjectiveConstraintAction.ID);
+		getActionAndAppendToMenu(menu, CreateJointlySurjectiveConstraintAction.ID);
+		getActionAndAppendToMenu(menu, CreateInverseConstraintAction.ID);
 		getActionAndAppendToMenu(menu, CreateMultiplicityConstraintAction.ID);
 	}
 

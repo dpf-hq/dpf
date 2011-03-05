@@ -96,9 +96,6 @@ public class ConnectionConstraintAnchor implements ConnectionAnchor {
 	public Point getReferencePoint() {
 		System.out.println("returns reference point: " + getLinePoint());
 		return getLinePoint();
-//		Point ref = getLinePoint();
-//		getOwner().translateToAbsolute(ref);
-//		return ref;		
 	}
 
 	private Point getLinePoint() {
@@ -151,10 +148,8 @@ public class ConnectionConstraintAnchor implements ConnectionAnchor {
 
 	private Point calculateConnectionPoint(PointList points,
 			boolean fromFirstPoint) {
-//		System.out.println("Calculates connection points");
 		Point endPoint = getEndPoint(points, fromFirstPoint);
 		if (points.size() < 2) {
-//			System.out.println("Return encdPoint");
 			return endPoint;
 		}
 
@@ -162,12 +157,10 @@ public class ConnectionConstraintAnchor implements ConnectionAnchor {
 
 		double distanceBetweenFirstPoints = endPoint.getDistance(secondPoint);
 		if (distanceBetweenFirstPoints < 0.01) {
-//			System.out.println("Return encdPoint (d9stance)");
 			return endPoint;
 		}
 
 		double distanceToConnectionPoint = findDistanceToConnectionPoint(distanceBetweenFirstPoints);
-//		System.out.println("distanceToConnectionPoint: " + distanceToConnectionPoint);
 
 		return calculateConnectionPoint(endPoint, secondPoint, distanceBetweenFirstPoints, distanceToConnectionPoint);
 	}
@@ -189,33 +182,8 @@ public class ConnectionConstraintAnchor implements ConnectionAnchor {
 		double factor = distanceToConnectionPoint / distanceBetweenFirstPoints;
 		deltaX = (int) (deltaX * factor);
 		deltaY = (int) (deltaY * factor);
-//		System.out.println("secondPoint.y: " + secondPoint.y);
-//		System.out.println("   endPoint.y: " + endPoint.y);
-//		System.out.println("       factor: " + factor);
-//		System.out.println("       deltaY: " + deltaY);
-//
-//		System.out.println("   calculated: " + (endPoint.y + deltaY));
-
 		return new Point(endPoint.x + deltaX, endPoint.y + deltaY);
 	}
 
-//	@Override
-//	public void ancestorAdded(IFigure ancestor) {
-//		int stopp = 23;
-//		stopp = 2;
-//	}
-//
-//	@Override
-//	public void ancestorMoved(IFigure ancestor) {
-//		int stopp = 23;
-//		stopp = 3;
-////		fireAnchorMoved();
-//	}
-//
-//	@Override
-//	public void ancestorRemoved(IFigure ancestor) {
-//		int stopp = 23;
-//		stopp = 4;
-//	}
 
 }
