@@ -11,12 +11,12 @@
 
 package no.hib.dpf.editor.viewmodel.commands;
 
-import no.hib.dpf.editor.viewmodel.WireBendpoint;
+import no.hib.dpf.editor.viewmodel.ArrowBendpoint;
 
 public class CreateBendpointCommand extends BendpointCommand {
 
 	public void execute() {
-		WireBendpoint wbp = new WireBendpoint();
+		ArrowBendpoint wbp = new ArrowBendpoint();
 		wbp.setRelativeDimensions(getFirstRelativeDimension(),
 				getSecondRelativeDimension());
 		getArrow().insertBendpoint(getIndex(), wbp);

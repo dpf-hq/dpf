@@ -11,7 +11,7 @@
 
 package no.hib.dpf.editor.viewmodel.commands;
 
-import no.hib.dpf.editor.viewmodel.WireBendpoint;
+import no.hib.dpf.editor.viewmodel.ArrowBendpoint;
 
 import org.eclipse.draw2d.Bendpoint;
 
@@ -20,7 +20,7 @@ public class MoveBendpointCommand extends BendpointCommand {
 	private Bendpoint oldBendpoint;
 
 	public void execute() {
-		WireBendpoint bp = new WireBendpoint();
+		ArrowBendpoint bp = new ArrowBendpoint();
 		bp.setRelativeDimensions(getFirstRelativeDimension(),
 				getSecondRelativeDimension());
 		setOldBendpoint((Bendpoint) getArrow().getBendpoints().get(getIndex()));

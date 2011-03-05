@@ -24,7 +24,7 @@ import no.hib.dpf.editor.preferences.PreferenceConstants;
 import no.hib.dpf.editor.viewmodel.SingleLineConstraintElement;
 import no.hib.dpf.editor.viewmodel.VArrow;
 import no.hib.dpf.editor.viewmodel.VConstraint;
-import no.hib.dpf.editor.viewmodel.WireBendpoint;
+import no.hib.dpf.editor.viewmodel.ArrowBendpoint;
 import no.hib.dpf.editor.viewmodel.commands.ConnectionDeleteCommand;
 import no.hib.dpf.metamodel.Arrow;
 
@@ -422,7 +422,7 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 		List<Bendpoint> modelConstraint = getArrow().getBendpoints();
 		List<Bendpoint> figureConstraint = new ArrayList<Bendpoint>();
 		for (int i=0; i<modelConstraint.size(); i++) {
-			WireBendpoint wbp = (WireBendpoint)modelConstraint.get(i);
+			ArrowBendpoint wbp = (ArrowBendpoint)modelConstraint.get(i);
 			RelativeBendpoint rbp = new RelativeBendpoint(getConnectionFigure());
 			rbp.setRelativeDimensions(wbp.getFirstRelativeDimension(),
 										wbp.getSecondRelativeDimension());
@@ -436,7 +436,7 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 		if (getConnectionFigure().getConnectionRouter() instanceof ManhattanConnectionRouter)
 			installEditPolicy(EditPolicy.CONNECTION_BENDPOINTS_ROLE, null);
 		else
-			installEditPolicy(EditPolicy.CONNECTION_BENDPOINTS_ROLE, new WireBendpointEditPolicy());
+			installEditPolicy(EditPolicy.CONNECTION_BENDPOINTS_ROLE, new ArrowBendpointEditPolicy());
 	}
 
 	/**

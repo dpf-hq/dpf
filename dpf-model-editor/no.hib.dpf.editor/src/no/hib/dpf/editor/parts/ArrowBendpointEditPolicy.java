@@ -23,7 +23,7 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.requests.BendpointRequest;
 
-public class WireBendpointEditPolicy extends
+public class ArrowBendpointEditPolicy extends
 		org.eclipse.gef.editpolicies.BendpointEditPolicy {
 
 	protected Command getCreateBendpointCommand(BendpointRequest request) {
