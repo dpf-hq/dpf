@@ -399,7 +399,9 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		JSPredicate.setSemantics(MetamodelFactory.eINSTANCE.createJointlySurjectiveSemantics());
 		signature.getPredicates().add(JSPredicate);
 		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("[mult(m,n)]", "n_1,n_2", "a_1:n_1:n_2"));
-		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("[inverse]", "n_1,n_2", "a_1:n_1:n_2,a_2:n_2:n_1"));
+		Predicate inversePredicate = MetamodelFactory.eINSTANCE.createPredicate("[inverse]", "n_1,n_2", "a_1:n_1:n_2,a_2:n_2:n_1");
+		inversePredicate.setSemantics(MetamodelFactory.eINSTANCE.createInverseSemantics());
+		signature.getPredicates().add(inversePredicate);
 	}
 	
 	public static void saveDPF(String dpfFileName, Specification specification) {		
