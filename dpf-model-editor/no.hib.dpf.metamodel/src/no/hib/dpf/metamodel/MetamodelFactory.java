@@ -220,6 +220,15 @@ public interface MetamodelFactory extends EFactory {
 	JointlySurjectiveSemantics createJointlySurjectiveSemantics();
 
 	/**
+	 * Returns a new object of class '<em>Inverse Semantics</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Inverse Semantics</em>'.
+	 * @generated
+	 */
+	InverseSemantics createInverseSemantics();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -84,6 +84,7 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 			case MetamodelPackage.SPECIFICATION: return createSpecification();
 			case MetamodelPackage.MODEL_HIERARCHY: return createModelHierarchy();
 			case MetamodelPackage.JOINTLY_SURJECTIVE_SEMANTICS: return createJointlySurjectiveSemantics();
+			case MetamodelPackage.INVERSE_SEMANTICS: return createInverseSemantics();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -405,6 +406,16 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	public JointlySurjectiveSemantics createJointlySurjectiveSemantics() {
 		JointlySurjectiveSemanticsImpl jointlySurjectiveSemantics = new JointlySurjectiveSemanticsImpl();
 		return jointlySurjectiveSemantics;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public InverseSemantics createInverseSemantics() {
+		InverseSemanticsImpl inverseSemantics = new InverseSemanticsImpl();
+		return inverseSemantics;
 	}
 
 	/**

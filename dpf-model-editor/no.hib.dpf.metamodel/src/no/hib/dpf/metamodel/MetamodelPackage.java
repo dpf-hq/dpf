@@ -700,6 +700,25 @@ public interface MetamodelPackage extends EPackage {
 	int JOINTLY_SURJECTIVE_SEMANTICS_FEATURE_COUNT = SEMANTICS_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.InverseSemanticsImpl <em>Inverse Semantics</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.impl.InverseSemanticsImpl
+	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getInverseSemantics()
+	 * @generated
+	 */
+	int INVERSE_SEMANTICS = 16;
+
+	/**
+	 * The number of structural features of the '<em>Inverse Semantics</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVERSE_SEMANTICS_FEATURE_COUNT = SEMANTICS_FEATURE_COUNT + 0;
+
+	/**
 	 * The meta object id for the '<em>EURI</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -707,7 +726,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getEURI()
 	 * @generated
 	 */
-	int EURI = 16;
+	int EURI = 17;
 
 	/**
 	 * The meta object id for the '<em>EIO Exception</em>' data type.
@@ -717,7 +736,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getEIOException()
 	 * @generated
 	 */
-	int EIO_EXCEPTION = 17;
+	int EIO_EXCEPTION = 18;
 
 
 	/**
@@ -1248,6 +1267,16 @@ public interface MetamodelPackage extends EPackage {
 	EClass getJointlySurjectiveSemantics();
 
 	/**
+	 * Returns the meta object for class '{@link no.hib.dpf.metamodel.InverseSemantics <em>Inverse Semantics</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Inverse Semantics</em>'.
+	 * @see no.hib.dpf.metamodel.InverseSemantics
+	 * @generated
+	 */
+	EClass getInverseSemantics();
+
+	/**
 	 * Returns the meta object for data type '{@link org.eclipse.emf.common.util.URI <em>EURI</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1714,6 +1743,16 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass JOINTLY_SURJECTIVE_SEMANTICS = eINSTANCE.getJointlySurjectiveSemantics();
+
+		/**
+		 * The meta object literal for the '{@link no.hib.dpf.metamodel.impl.InverseSemanticsImpl <em>Inverse Semantics</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see no.hib.dpf.metamodel.impl.InverseSemanticsImpl
+		 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getInverseSemantics()
+		 * @generated
+		 */
+		EClass INVERSE_SEMANTICS = eINSTANCE.getInverseSemantics();
 
 		/**
 		 * The meta object literal for the '<em>EURI</em>' data type.
