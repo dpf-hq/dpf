@@ -2,15 +2,14 @@ package no.hib.dpf.editor.parts;
 
 import java.beans.PropertyChangeEvent;
 
+import no.hib.dpf.editor.figures.ConstraintAnchor;
 import no.hib.dpf.editor.figures.NodeFigure;
-import no.hib.dpf.editor.figures.ConnectionConstraintAnchor;
 import no.hib.dpf.editor.viewmodel.VConstraint;
 import no.hib.dpf.editor.viewmodel.commands.ConstraintDeleteCommand;
 
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PolylineConnection;
-import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.commands.Command;
@@ -49,7 +48,6 @@ public abstract class ConstraintEditPart extends ModelElementConnectionEditPart 
 	}
 
 	public abstract NodeFigure getRectangleFigureForFigure();
-
 	
 	protected NodeFigure getRectangleFigureForFigure(boolean fromSource) {
 		NodeFigure basicRectangleFigure = null;
@@ -107,16 +105,16 @@ public abstract class ConstraintEditPart extends ModelElementConnectionEditPart 
 	
 	/**
 	 * Produces a ConnectionAnchor for either the source or target end of this
-	 * connection. The source (or target) needs to be an instance of 
-	 * <code>ShapeConnectionEditPart</code>,
+	 * constraint. The source (or target) needs to be an instance of 
+	 * <code>ArrowEditPart</code>,
 	 * @param supplier the source or target of this edit part.
 	 * @param isSource true if supplier is source, false if not.
-	 * @return A new LineConstraintAnchor.
+	 * @return A new ConnectionAnchor.
 	 */
 	protected ConnectionAnchor getConnectionAnchor(EditPart supplier, boolean isSource) {
 		// Now, the connection constraint anchor is constructed, setting from which end of the line it
 		// should anchor itself:
-		ConnectionConstraintAnchor retval = new ConnectionConstraintAnchor(new Point(100, 100), constraintFromTargetEnd);
+		ConstraintAnchor retval = new ConstraintAnchor(constraintFromTargetEnd);
 		if ((supplier == null)  || (!(supplier instanceof ArrowEditPart))) {
 			return retval;
 		}
@@ -125,7 +123,7 @@ public abstract class ConstraintEditPart extends ModelElementConnectionEditPart 
 		return retval;
 	}
 
-	protected void updateAnchor(ConnectionConstraintAnchor anchor, EditPart supplier, boolean isSource) {
+	protected void updateAnchor(ConstraintAnchor anchor, EditPart supplier, boolean isSource) {
 		ArrowEditPart targetSupplier = getConnectionEditPart(supplier, isSource);
 		anchor.setConnectionFigure((PolylineConnection)targetSupplier.getFigure());
 	}

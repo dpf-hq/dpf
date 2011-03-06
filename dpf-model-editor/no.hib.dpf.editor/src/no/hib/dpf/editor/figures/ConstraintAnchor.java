@@ -11,28 +11,25 @@ import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 
-public class ConnectionConstraintAnchor implements ConnectionAnchor {
+public class ConstraintAnchor implements ConnectionAnchor {
 
 	private static final int maxDistanceToConnectionPoint = 75;
 
 	@SuppressWarnings("rawtypes")
 	protected List listeners = new ArrayList(1);
-	private PolylineConnection connectionFigure;
-
-	private boolean useTargetEnd;
+	protected PolylineConnection connectionFigure;
+	protected boolean useTargetEnd;
 
 	/**
 	 * Constructs a ConnectionConstraintAnchor at the Point p.
 	 * 
-	 * @param p
-	 *            the point where this anchor will be located (unused)
 	 * @param useTargetEnd
 	 *            instructs the anchor to anchor from the target end of the
 	 *            connection.
 	 * 
 	 * @since 2.0
 	 */
-	public ConnectionConstraintAnchor(Point p, boolean useTargetEnd) {
+	public ConstraintAnchor(boolean useTargetEnd) {
 		this.useTargetEnd = useTargetEnd;
 	}
 
@@ -76,7 +73,6 @@ public class ConnectionConstraintAnchor implements ConnectionAnchor {
 	 * @see ConnectionAnchor#getLocation(Point)
 	 */
 	public Point getLocation(Point reference) {
-//		System.out.println("returns point: " + getLinePoint());
 		return getLinePoint();
 	}
 
@@ -98,19 +94,12 @@ public class ConnectionConstraintAnchor implements ConnectionAnchor {
 		return getLinePoint();
 	}
 
-	private Point getLinePoint() {
-		if (this.connectionFigure != null) {
-			if (useTargetEnd == false) {
-				// connectionFigure.getSourceAnchor()
-				return calculateConnectionPointFromSource(connectionFigure
-						.getPoints());
-			} else {
-				return calculateConnectionPointFromTarget(connectionFigure
-						.getPoints());
-			}
+	protected Point getLinePoint() {
+		if (useTargetEnd == false) {
+			return calculateConnectionPointFromSource(connectionFigure.getPoints());
+		} else {
+			return calculateConnectionPointFromTarget(connectionFigure.getPoints());
 		}
-		throw new RuntimeException(
-				"ConnectionConstraintAnchor: No connectionFigure set.");
 	}
 
 	public void setConnectionFigure(PolylineConnection connectionFigure) {
@@ -121,14 +110,14 @@ public class ConnectionConstraintAnchor implements ConnectionAnchor {
 		return connectionFigure;
 	}
 
-	private Point getEndPoint(PointList points, boolean fromFirstPoint) {
+	protected Point getEndPoint(PointList points, boolean fromFirstPoint) {
 		if (fromFirstPoint) {
 			return points.getFirstPoint();
 		}
 		return points.getLastPoint();
 	}
 
-	private Point getSecondPointFromEnd(PointList points, boolean fromFirstPoint) {
+	protected Point getSecondPointFromEnd(PointList points, boolean fromFirstPoint) {
 		if (points.size() < 2) {
 			return getEndPoint(points, fromFirstPoint);
 		}
@@ -138,15 +127,15 @@ public class ConnectionConstraintAnchor implements ConnectionAnchor {
 		return points.getPoint(points.size() - 2);
 	}
 
-	private Point calculateConnectionPointFromSource(PointList points) {
+	protected Point calculateConnectionPointFromSource(PointList points) {
 		return calculateConnectionPoint(points, true);
 	}
 
-	private Point calculateConnectionPointFromTarget(PointList points) {
+	protected Point calculateConnectionPointFromTarget(PointList points) {
 		return calculateConnectionPoint(points, false);
 	}
 
-	private Point calculateConnectionPoint(PointList points,
+	protected Point calculateConnectionPoint(PointList points,
 			boolean fromFirstPoint) {
 		Point endPoint = getEndPoint(points, fromFirstPoint);
 		if (points.size() < 2) {
@@ -165,7 +154,7 @@ public class ConnectionConstraintAnchor implements ConnectionAnchor {
 		return calculateConnectionPoint(endPoint, secondPoint, distanceBetweenFirstPoints, distanceToConnectionPoint);
 	}
 
-	private double findDistanceToConnectionPoint(
+	protected double findDistanceToConnectionPoint(
 			double distanceBetweenFirstPoints) {
 		double distanceToConnectionPoint = distanceBetweenFirstPoints / 2;
 		if (distanceToConnectionPoint > maxDistanceToConnectionPoint) {
@@ -174,7 +163,7 @@ public class ConnectionConstraintAnchor implements ConnectionAnchor {
 		return distanceToConnectionPoint;
 	}
 
-	private Point calculateConnectionPoint(Point endPoint, Point secondPoint,
+	protected Point calculateConnectionPoint(Point endPoint, Point secondPoint,
 			double distanceBetweenFirstPoints, double distanceToConnectionPoint) {
 		int deltaX = secondPoint.x - endPoint.x;
 		int deltaY = secondPoint.y - endPoint.y;
