@@ -11,12 +11,13 @@
 package no.hib.dpf.api.zip.internal;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
 public class ZipDirectoryItem extends ZipItem {
-	SortedMap<String, ZipItem> children = new TreeMap<String, ZipItem>();
-
+	SortedMap<String, ZipItem> children = Collections.synchronizedSortedMap(new TreeMap<String, ZipItem>());
+	
 	protected ZipDirectoryItem(String name, ZipDirectoryItem parent) {
 		super(name, parent);
 	}

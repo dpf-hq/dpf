@@ -1,8 +1,5 @@
 package no.hib.dpf.api.zip;
 
-import java.io.BufferedOutputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -22,16 +19,12 @@ import org.eclipse.core.filesystem.IFileInfo;
 import org.eclipse.core.filesystem.IFileStore;
 import org.eclipse.core.filesystem.provider.FileInfo;
 import org.eclipse.core.filesystem.provider.FileStore;
-import org.eclipse.core.internal.filesystem.Messages;
-import org.eclipse.core.internal.filesystem.Policy;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.jface.util.Util;
-import org.eclipse.osgi.util.NLS;
 
 public class ZipFileStore extends FileStore {
 	static ZipItem getRoot(URI uri) throws URISyntaxException, ZipException,
@@ -91,7 +84,6 @@ public class ZipFileStore extends FileStore {
 			this.item.setParent(null);
 			this.parent = null;
 			// Skriv zip fil på nytt og oppdater
-
 			// TODO: implementer delete i ZipFileUtils
 		} else if (this.item instanceof ZipDirectoryItem) {
 			// TODO: Dersom directory må vi traversere barn og sette parent til
@@ -104,9 +96,9 @@ public class ZipFileStore extends FileStore {
 	public String[] childNames(int options, IProgressMonitor monitor)
 			throws CoreException {
 		if (isDirectory()) {
-			Collection collection = ((ZipDirectoryItem) item).getChildren();
+			Collection<? extends ZipItem> collection = ((ZipDirectoryItem) item).getChildren();
 			String[] children = new String[collection.size()];
-			Iterator it = collection.iterator();
+			Iterator<? extends ZipItem> it = collection.iterator();
 			int i = 0;
 			while (it.hasNext()) {
 				ZipItem zip = (ZipItem) it.next();
@@ -141,8 +133,8 @@ public class ZipFileStore extends FileStore {
 		fileInfo.setAttribute(EFS.getLocalFileSystem().attributes(), true); // Ingen
 																			// ide
 																			// om
-		// dette er rett
-		// flag
+																			// dette er rett
+																			// flag
 		return fileInfo;
 	}
 
@@ -199,20 +191,15 @@ public class ZipFileStore extends FileStore {
 
 	@Override
 	public OutputStream openOutputStream(int options, IProgressMonitor monitor) {
-		System.out.println("ZipFileStore#openOutputStream");
-		// FileStore peikar ikkje på noko ZipItem-> bør kunna handtera
-		// directories(ZipDirectoryItem) i tillegg til filer (ZipFileItem)
-
-		System.out.println(parent.getBase().toString());
-		System.out.println(parent.getPath().toString());
 		ZipItem root = null;
 		try {
 			if (item == null) {
+				//TODO: Sjekk om openOutputStream vert kallt når ein opprettar ny dir
 				// Dersom item er null opprettar vi eit nytt ZipFileItem, med
 				// "models" som parent
 				root = getRoot(getBase());
 
-				ZipItem dir = ((ZipDirectoryItem) root).getItem("models");
+				ZipItem dir = ((ZipDirectoryItem) root).getItem("specifications");
 				// if (dir instanceof ZipDirectoryItem) {
 				// System.out.println("YAY!");
 				// }

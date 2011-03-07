@@ -31,13 +31,7 @@ public class ZipFileSystem extends FileSystem {
 	private static Map<URI, ZipFileStore> zipFileStoreCache = new HashMap<URI, ZipFileStore>();
 
 	public int attributes() {
-//		return EFS.ATTRIBUTE_READ_ONLY; // | EFS.ATTRIBUTE_HIDDEN | EFS.ATTRIBUTE_EXECUTABLE etc.
-//		return EFS.ATTRIBUTE_OWNER_READ | 
-//			  	EFS.ATTRIBUTE_OWNER_WRITE | 
-//			  	EFS.ATTRIBUTE_OWNER_EXECUTE |
-//			  	EFS.ATTRIBUTE_ARCHIVE;
 		return EFS.getLocalFileSystem().attributes();
-//		return EFS.OVERWRITE;
 	}
 	public static ZipItem getItem(URI uri) throws ZipException, IOException,
 			CoreException {
