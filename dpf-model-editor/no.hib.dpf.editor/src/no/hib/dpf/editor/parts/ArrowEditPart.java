@@ -21,10 +21,10 @@ import no.hib.dpf.editor.figures.ArrowConnection;
 import no.hib.dpf.editor.figures.EditableLabel;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;
 import no.hib.dpf.editor.preferences.PreferenceConstants;
+import no.hib.dpf.editor.viewmodel.ArrowBendpoint;
 import no.hib.dpf.editor.viewmodel.SingleLineConstraintElement;
 import no.hib.dpf.editor.viewmodel.VArrow;
 import no.hib.dpf.editor.viewmodel.VConstraint;
-import no.hib.dpf.editor.viewmodel.ArrowBendpoint;
 import no.hib.dpf.editor.viewmodel.commands.ConnectionDeleteCommand;
 import no.hib.dpf.metamodel.Arrow;
 
@@ -146,17 +146,11 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 	@Override
 	protected void createEditPolicies() {
 		
-//		installEditPolicy(EditPolicy.CONNECTION_ENDPOINTS_ROLE, new WireEndpointEditPolicy());
-//		//Note that the Connection is already added to the diagram and knows its Router.
 		refreshBendpointEditPolicy();
-//		installEditPolicy(EditPolicy.CONNECTION_ROLE,new WireEditPolicy());
-		
-		
 		
 		// Selection handle edit policy.
 		// Makes the connection show a feedback, when selected by the user.
-		installEditPolicy(EditPolicy.CONNECTION_ENDPOINTS_ROLE,
-				new ConnectionEndpointEditPolicy());
+		installEditPolicy(EditPolicy.CONNECTION_ENDPOINTS_ROLE, new ConnectionEndpointEditPolicy());
 		// Allows the removal of the connection model element		
 		installEditPolicy(EditPolicy.CONNECTION_ROLE,
 				new ConnectionEditPolicy() {
@@ -177,16 +171,16 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 	 */
 	protected IFigure createFigure() {
 		EditableLabel label = new EditableLabel(getFullName());
-		connectionFigure = new ArrowConnection(label);
-		// * A D D E D:
+		createConnectionFigure(label);
 		connectionFigure.addRoutingListener(RoutingAnimator.getDefault());
-
-		
 		makeNewConstraintLabel();
-
 		setArrowHead(connectionFigure);
-		connectionFigure.setLineStyle(getCastedModel().getLineStyle()); // line drawing style
+//		connectionFigure.setLineStyle(getCastedModel().getLineStyle()); // line drawing style
 		return connectionFigure;		
+	}
+
+	protected void createConnectionFigure(EditableLabel label) {
+		connectionFigure = new ArrowConnection(label);
 	}
 
 	protected void setArrowHead(PolylineConnection connectionFigure) {
@@ -254,13 +248,7 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 			refreshVisuals();
 		} else 	if ("bendpoint".equals(property)) {   //$NON-NLS-1$
 			refreshBendpoints();
-		}
-
-		
-		
-		
-		
-		if (VArrow.LINESTYLE_PROP.equals(property)) {
+		} else if (VArrow.LINESTYLE_PROP.equals(property)) {
 			((ArrowConnection) getFigure()).setLineStyle(getCastedModel()
 					.getLineStyle());
 		} else if (VArrow.SOURCE_CONSTRAINTS_PROP.equals(property)) {
@@ -391,13 +379,6 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 		
 	}
 	
-	
-	
-	
-	
-	
-	// ----------------------------------------
-	// * E X T R A S *
 	
 	public void activateFigure(){
 		super.activateFigure();
