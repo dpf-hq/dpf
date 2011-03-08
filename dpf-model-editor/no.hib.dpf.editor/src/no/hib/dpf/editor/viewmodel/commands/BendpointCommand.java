@@ -62,7 +62,7 @@ public class BendpointCommand extends Command {
 		location = p;
 	}
 
-	public void setWire(VArrow w) {
+	public void setArrow(VArrow w) {
 		arrow = w;
 	}
 

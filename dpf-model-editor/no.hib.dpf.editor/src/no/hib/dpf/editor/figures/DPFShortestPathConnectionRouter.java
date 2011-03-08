@@ -242,11 +242,11 @@ public final class DPFShortestPathConnectionRouter extends AbstractRouter {
 				bends.addPoint(bp.getLocation());
 			}
 			path.setBendPoints(bends);
-		} else if (conn instanceof EpiArrowFigure) {
+		} else if (conn instanceof EpiArrowConnection) {
 			PointList bends = new PointList(constraint.size());
 			// Default layout around the node:
-			// TODO: make this configurable
-			Rectangle ownerBounds = ((EpiArrowFigure) conn).getOwnerBounds();
+			// TODO: make this configurable and make the bendpoints editable
+			Rectangle ownerBounds = ((EpiArrowConnection) conn).getOwnerBounds();
 			
 			try {
 				bends.addPoint(new Point(path.getStartPoint().x, ownerBounds.y - 10));

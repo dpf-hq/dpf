@@ -16,7 +16,6 @@ import java.util.List;
 
 import no.hib.dpf.editor.figures.EditableLabel;
 import no.hib.dpf.editor.figures.NodeFigure;
-import no.hib.dpf.editor.figures.SingleNodeConnectionAnchor;
 import no.hib.dpf.editor.viewmodel.LocationAndSize;
 import no.hib.dpf.editor.viewmodel.ModelElement;
 import no.hib.dpf.editor.viewmodel.VArrow;
@@ -208,10 +207,6 @@ public Node getModelAsEMFInstance() {
 }
 
 private ConnectionAnchor getConnectionAnchor(ConnectionEditPart connection, boolean isSourceAnchor) {
-	// TODO: fix this!
-	if (connection instanceof SingleArrowEditPart) {
-		return new SingleNodeConnectionAnchor(getFigure(), isSourceAnchor);
-	}
 	if (anchor == null) {
 		if (getModel() instanceof VNode)
 			anchor = new ChopboxAnchor(getFigure());

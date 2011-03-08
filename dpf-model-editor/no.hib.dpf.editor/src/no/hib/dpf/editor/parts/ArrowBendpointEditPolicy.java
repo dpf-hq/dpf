@@ -41,7 +41,7 @@ public class ArrowBendpointEditPolicy extends
 		conn.translateToRelative(ref2);
 
 		com.setRelativeDimensions(p.getDifference(ref1), p.getDifference(ref2));
-		com.setWire((VArrow) request.getSource().getModel());
+		com.setArrow((VArrow) request.getSource().getModel());
 		com.setIndex(request.getIndex());
 		return com;
 	}
@@ -62,7 +62,7 @@ public class ArrowBendpointEditPolicy extends
 		conn.translateToRelative(ref2);
 
 		com.setRelativeDimensions(p.getDifference(ref1), p.getDifference(ref2));
-		com.setWire((VArrow) request.getSource().getModel());
+		com.setArrow((VArrow) request.getSource().getModel());
 		com.setIndex(request.getIndex());
 		return com;
 	}
@@ -71,7 +71,7 @@ public class ArrowBendpointEditPolicy extends
 		BendpointCommand com = new DeleteBendpointCommand();
 		Point p = request.getLocation();
 		com.setLocation(p);
-		com.setWire((VArrow) request.getSource().getModel());
+		com.setArrow((VArrow) request.getSource().getModel());
 		com.setIndex(request.getIndex());
 		return com;
 	}

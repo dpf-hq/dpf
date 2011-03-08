@@ -417,11 +417,12 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 	 * Updates the bendpoints, based on the model.
 	 */
 	protected void refreshBendpoints() {
-		if (getConnectionFigure().getConnectionRouter() instanceof ManhattanConnectionRouter)
+		if (getConnectionFigure().getConnectionRouter() instanceof ManhattanConnectionRouter) {
 			return;
+		}
 		List<Bendpoint> modelConstraint = getArrow().getBendpoints();
 		List<Bendpoint> figureConstraint = new ArrayList<Bendpoint>();
-		for (int i=0; i<modelConstraint.size(); i++) {
+		for (int i = 0; i < modelConstraint.size(); i++) {
 			ArrowBendpoint wbp = (ArrowBendpoint)modelConstraint.get(i);
 			RelativeBendpoint rbp = new RelativeBendpoint(getConnectionFigure());
 			rbp.setRelativeDimensions(wbp.getFirstRelativeDimension(),
@@ -433,10 +434,11 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 	}
 
 	private void refreshBendpointEditPolicy(){
-		if (getConnectionFigure().getConnectionRouter() instanceof ManhattanConnectionRouter)
+		if (getConnectionFigure().getConnectionRouter() instanceof ManhattanConnectionRouter) {
 			installEditPolicy(EditPolicy.CONNECTION_BENDPOINTS_ROLE, null);
-		else
+		} else {
 			installEditPolicy(EditPolicy.CONNECTION_BENDPOINTS_ROLE, new ArrowBendpointEditPolicy());
+		}
 	}
 
 	/**
@@ -445,73 +447,9 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 	 * the state of Wire.
 	 * 
 	 */
+	@Override
 	protected void refreshVisuals() {
 		refreshBendpoints();
-//		if (getWire().getValue())
-//			getWireFigure().setForegroundColor(alive);
-//		else
-//			getWireFigure().setForegroundColor(dead);
-	}		
-
-//	/**
-//	 * Adds extra EditPolicies as required. 
-//	 */
-//	protected void createEditPolicies() {
-//		installEditPolicy(EditPolicy.CONNECTION_ENDPOINTS_ROLE, new WireEndpointEditPolicy());
-//		//Note that the Connection is already added to the diagram and knows its Router.
-//		refreshBendpointEditPolicy();
-//		installEditPolicy(EditPolicy.CONNECTION_ROLE,new WireEditPolicy());
-//	}
-
-
-
-//	public AccessibleEditPart getAccessibleEditPart(){
-//		if (acc == null)
-//			acc = new AccessibleGraphicalEditPart(){
-//				public void getName(AccessibleEvent e) {
-//					e.result = LogicMessages.Wire_LabelText;
-//				}
-//			};
-//		return acc;
-//	}
-
-//	/**
-//	 * Returns the model of this represented as a Wire.
-//	 * 
-//	 * @return  Model of this as <code>Wire</code>
-//	 */
-//	protected Wire getWire() {
-//		return (Wire)getModel();
-//	}
-
-//	/**
-//	 * Returns the Figure associated with this, which draws the
-//	 * Wire.
-//	 *
-//	 * @return  Figure of this.
-//	 */
-//	protected IFigure getWireFigure() {
-//		return (PolylineConnection) getFigure();
-//	}
-
-//	/**
-//	 * Listens to changes in properties of the Wire (like the
-//	 * contents being carried), and reflects is in the visuals.
-//	 *
-//	 * @param event  Event notifying the change.
-//	 */
-//	public void propertyChange(PropertyChangeEvent event) {
-//		String property = event.getPropertyName();
-//		if (Connection.PROPERTY_CONNECTION_ROUTER.equals(property)){
-//			refreshBendpoints();
-//			refreshBendpointEditPolicy();
-//		}
-//		if ("value".equals(property))   //$NON-NLS-1$
-//			refreshVisuals();
-//		if ("bendpoint".equals(property))   //$NON-NLS-1$
-//			refreshBendpoints();       
-//	}
-
-
+	}
 
 }
