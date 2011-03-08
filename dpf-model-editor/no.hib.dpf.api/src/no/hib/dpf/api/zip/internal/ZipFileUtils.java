@@ -1,12 +1,14 @@
 package no.hib.dpf.api.zip.internal;
 
 import java.io.BufferedInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.zip.ZipEntry;
+import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
 
@@ -21,21 +23,26 @@ import org.eclipse.core.runtime.Path;
 public class ZipFileUtils {
 	private final static int BUFFER_SIZE = 8192;
 	
-	public static void writeEntries(ZipOutputStream out, ZipFile file, ZipRootItem root, ZipFileStore store) {
-		Collection<ZipItem> entries = findAndRemoveEntry(root, store.getName());
+	public static void writeEntries(ZipOutputStream out, ZipRootItem root, ZipFileStore store) {
+		Collection<ZipItem> entries;
+		if(store != null) 
+			entries = findAndRemoveEntry(root, store.getName());
+		else
+			entries = root.getChildren();
+		
 		Iterator<ZipItem> it = entries.iterator();
 
 		while (it.hasNext()) {
 			ZipItem itm = it.next();
 			String path = "";
 			if (itm instanceof ZipFileItem) {
-				writeFileToZip(out, file, path, (ZipFileItem) itm, root);
+				writeFileToZip(out, path, (ZipFileItem) itm, root);
 			} else if (itm instanceof ZipDirectoryItem) {
-				writeDirToZip(out, file, (ZipDirectoryItem) itm, root);
+				writeDirToZip(out, (ZipDirectoryItem) itm, root);
 			}
 		}
 	}
-
+	
 	private static Collection<ZipItem> findAndRemoveEntry(ZipRootItem root, String entryname) {
 		//FIXME: We need to ignore the VFS zip entry for the file to be written (if it already exists)
 		//Betre måte å gjera dette på?
@@ -49,20 +56,17 @@ public class ZipFileUtils {
 		return entries;
 	}
 
-	private static void writeFileToZip(ZipOutputStream out, ZipFile file, String path, ZipFileItem item, ZipRootItem root) {
+	private static void writeFileToZip(ZipOutputStream out, String path, ZipFileItem item, ZipRootItem root) {
 		final byte[] buf = new byte[BUFFER_SIZE];
 		try {
 
 			ZipEntry tmp = new ZipEntry(item.getEntry());
 
-			// FIXME: Ein får streamclosed når "tullefiler" vert prøvd skrivne
+			// Ein får streamclosed når "tullefiler" vert prøvd skrivne
 
 			InputStream in = root.getInputStream(tmp);
 
-			BufferedInputStream bis = new BufferedInputStream(in, BUFFER_SIZE); // <---
-																					// STREAM
-																					// CLOSED
-																					// HER
+			BufferedInputStream bis = new BufferedInputStream(in, BUFFER_SIZE); 
 			// Dersom inputfil er tom (ikkje finst) bryt, eller vi ikkje får
 			// stream på filnamn.
 			if (bis.available() == 0 || in == null)
@@ -86,19 +90,28 @@ public class ZipFileUtils {
 		}
 	}
 
-	private static void writeDirToZip(ZipOutputStream out, ZipFile file, ZipDirectoryItem item, ZipRootItem root) {
+	private static void writeDirToZip(ZipOutputStream out, ZipDirectoryItem item, ZipRootItem root) {
 		Collection<ZipItem> items = item.getChildren();
 		Iterator<ZipItem> it = items.iterator();
 		while (it.hasNext()) {
 			ZipItem itm = it.next();
 			if (itm instanceof ZipFileItem) {
-				writeFileToZip(out, file, item.getName(), (ZipFileItem) itm, root);
+				writeFileToZip(out, item.getName(), (ZipFileItem) itm, root);
 			} else if (itm instanceof ZipDirectoryItem) {
-				writeDirToZip(out, file, (ZipDirectoryItem) itm, root);
+				writeDirToZip(out, (ZipDirectoryItem) itm, root);
 			}
 		}
 	}
-	
+	public static ZipFile replaceTempfile(File file, File tempfile) throws ZipException, IOException {
+		//FIXME: Rename method
+		// Slettar fil
+		if (!file.delete())
+			System.out.println("Deletion error");
+		// Kopierer tempfile
+		if (!tempfile.renameTo(file))
+			System.out.println("Rename error");
+		return new ZipFile(file);	
+	}
 	public static void parseEntries(ZipRootItem rt, ZipFile zipFile) {
 		ZipDirectoryItem root = rt;
 		Enumeration<? extends ZipEntry> entries = zipFile.entries();
@@ -124,4 +137,5 @@ public class ZipFileUtils {
 			}
 		}
 	}
+	
 }

@@ -12,13 +12,16 @@ import java.util.zip.ZipException;
 
 import no.hib.dpf.api.zip.internal.ZipDirectoryItem;
 import no.hib.dpf.api.zip.internal.ZipFileItem;
+import no.hib.dpf.api.zip.internal.ZipFileUtils;
 import no.hib.dpf.api.zip.internal.ZipItem;
+import no.hib.dpf.api.zip.internal.ZipRootItem;
 
 import org.eclipse.core.filesystem.EFS;
 import org.eclipse.core.filesystem.IFileInfo;
 import org.eclipse.core.filesystem.IFileStore;
 import org.eclipse.core.filesystem.provider.FileInfo;
 import org.eclipse.core.filesystem.provider.FileStore;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -27,21 +30,27 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 
 public class ZipFileStore extends FileStore {
-	static ZipItem getRoot(URI uri) throws URISyntaxException, ZipException,
-			IOException, CoreException {
-		URI zipFile = new URI(uri.getQuery());
-		return ZipFileSystem.getItem(zipFile);
+	static ZipItem getRoot(URI uri) {
+		URI zipFile;
+		try {
+			zipFile = new URI(uri.getQuery());
+			return ZipFileSystem.getItem(zipFile);
+		} catch (ZipException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (CoreException e) {
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	private String name;
 	private ZipFileStore parent;
 	private URI uri;
 	private ZipItem item;
-
-	// Slik det er no, er FileStores ei reversert lenka liste med peikar til
-	// forelder og element
-	// Kanskje laga ei liste med barn?
-	// Korleis skrive til zip fil utan at ein får traversert lista?
 
 	private ZipFileStore(String name, ZipFileStore parent) {
 		this.name = name;
@@ -71,25 +80,39 @@ public class ZipFileStore extends FileStore {
 		System.out.println("ZipFileStore#mkdir returns null");
 		return null;
 	}
+	public void deleteDirectory(ZipDirectoryItem dir) {
+		Collection<ZipItem> children = dir.getChildren();
+		for(ZipItem item : children) {
+			if(item instanceof ZipFileItem) {
+				deleteFile((ZipFileItem) item);
+			} else if(item instanceof ZipDirectoryItem) {
+				deleteDirectory((ZipDirectoryItem) item);
+			}
+		}
+	}
+	private void deleteFile(ZipFileItem fileitem) {
+		// Removes ZipFileItem from Directory tree
+		((ZipDirectoryItem) fileitem.getParent()).removeChild(fileitem);
+		// Sets the ZipFileItems parent to null
+		fileitem.setParent(null);
+		this.parent = null;
+		// Skriv zip fil på nytt og oppdater
+		
+	}
 
 	@Override
 	public void delete(int options, IProgressMonitor monitor)
 			throws CoreException {
 		// FIXME: MÅ IMPLEMENTERAST FOR AT FILOPERASJONAR SKAL FUNGERA
 		System.out.println("ZipFileStore#delete");
+		ZipRootItem root = (ZipRootItem) getRoot(getBase());
 		if (this.item instanceof ZipFileItem) {
-			// Removes ZipFileItem from Directory tree
-			((ZipDirectoryItem) this.parent.item).removeChild(this.item);
-			// Sets the ZipFileItems parent to null
-			this.item.setParent(null);
-			this.parent = null;
-			// Skriv zip fil på nytt og oppdater
-			// TODO: implementer delete i ZipFileUtils
+			deleteFile((ZipFileItem) this.item);
 		} else if (this.item instanceof ZipDirectoryItem) {
-			// TODO: Dersom directory må vi traversere barn og sette parent til
-			// dir høgare opp i hierarkiet
-			// Eller slette alle?
+			//Skal ein ha lov til å slette rot?
+			deleteDirectory((ZipDirectoryItem) this.item);
 		}
+		root.writeToZip();
 	}
 
 	@Override
@@ -130,11 +153,7 @@ public class ZipFileStore extends FileStore {
 		}
 
 		fileInfo.setExists(true);
-		fileInfo.setAttribute(EFS.getLocalFileSystem().attributes(), true); // Ingen
-																			// ide
-																			// om
-																			// dette er rett
-																			// flag
+		fileInfo.setAttribute(EFS.getLocalFileSystem().attributes(), true); 
 		return fileInfo;
 	}
 
@@ -182,7 +201,7 @@ public class ZipFileStore extends FileStore {
 				return ((ZipFileItem) item).openInputStream();
 			} catch (IOException e) {
 				throw new CoreException(new Status(IStatus.ERROR,
-						"org.example.efs.zip", "Failed to open file", e));
+						ResourcesPlugin.getPlugin().getBundle().getSymbolicName(), "Failed to open file", e));
 			}
 		} else {
 			return null;
@@ -196,7 +215,7 @@ public class ZipFileStore extends FileStore {
 			if (item == null) {
 				//TODO: Sjekk om openOutputStream vert kallt når ein opprettar ny dir
 				// Dersom item er null opprettar vi eit nytt ZipFileItem, med
-				// "models" som parent
+				// "specifi." som parent
 				root = getRoot(getBase());
 
 				ZipItem dir = ((ZipDirectoryItem) root).getItem("specifications");
@@ -207,13 +226,7 @@ public class ZipFileStore extends FileStore {
 						new ZipEntry(name));
 			}
 			return ((ZipFileItem) item).openOutputStream(this);
-		} catch (ZipException e) {
-			e.printStackTrace();
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
 		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (CoreException e) {
 			e.printStackTrace();
 		}
 		return null;

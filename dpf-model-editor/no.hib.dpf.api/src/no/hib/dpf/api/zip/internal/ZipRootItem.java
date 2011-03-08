@@ -63,27 +63,16 @@ public class ZipRootItem extends ZipDirectoryItem {
 				@Override
 				public void close() {
 					try {
-						// Vi må ha ein måte som kopierer tmp fil vanleg fil,
-						// for så å oppdatere lenka ressurs/workspace
 						super.close();
-						// Handle til fil
-						File tmp = new File(file.getName());
-						// Slettar fil
-						if (!tmp.delete())
-							System.out.println("Deletion error");
-						// Kopierer tempfile
-						if (!tempfile.renameTo(tmp))
-							System.out.println("Rename error");
-						file = new ZipFile(tmp);
+						file = ZipFileUtils.replaceTempfile(new File(file.getName()), tempfile);
 						parseEntries(file);
-						System.out.println();
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
 				}
 			};
 		
-			ZipFileUtils.writeEntries(zos, file, this, store);
+			ZipFileUtils.writeEntries(zos, this, store);
 
 			// Lag ny entry til fil som skal skrivast via EFS-> EFS tek hand om
 			// lukking av stream
@@ -98,8 +87,23 @@ public class ZipRootItem extends ZipDirectoryItem {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} 
-		System.out.println("getOutputStream:feil");
 		return null;
+	}
+	public void writeToZip() {
+		try {
+			FileOutputStream fos = new FileOutputStream(tempfile);
+			ZipOutputStream zo = new ZipOutputStream(new BufferedOutputStream(fos));
+			ZipFileUtils.writeEntries(zo, this, null);
+			zo.close();
+			ZipFileUtils.replaceTempfile(new File(file.getName()), tempfile);
+		} catch (ZipException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	public File getTempFile() {
+		return tempfile;
 	}
 	/**
 	 * Given a ZipFile, return a SortedMap of Maps and FileInfos
@@ -111,4 +115,5 @@ public class ZipRootItem extends ZipDirectoryItem {
 	private void parseEntries(ZipFile zipFile) {
 		ZipFileUtils.parseEntries(this, file);
 	}
+	
 }
