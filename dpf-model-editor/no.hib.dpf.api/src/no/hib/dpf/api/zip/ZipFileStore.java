@@ -218,11 +218,11 @@ public class ZipFileStore extends FileStore {
 				// "specifi." som parent
 				root = getRoot(getBase());
 
-				ZipItem dir = ((ZipDirectoryItem) root).getItem("specifications");
+//				ZipItem dir = ((ZipDirectoryItem) root).getItem("specifications");
 				// if (dir instanceof ZipDirectoryItem) {
 				// System.out.println("YAY!");
 				// }
-				item = new ZipFileItem(name, (ZipDirectoryItem) dir,
+				item = new ZipFileItem(name, (ZipDirectoryItem) root,
 						new ZipEntry(name));
 			}
 			return ((ZipFileItem) item).openOutputStream(this);
