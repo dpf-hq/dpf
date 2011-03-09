@@ -15,12 +15,12 @@ import java.beans.PropertyChangeListener;
 import java.util.List;
 
 import no.hib.dpf.editor.figures.DPFShortestPathConnectionRouter;
-import no.hib.dpf.editor.viewmodel.DPFDiagram;
-import no.hib.dpf.editor.viewmodel.ModelElement;
-import no.hib.dpf.editor.viewmodel.MovableAndSizable;
-import no.hib.dpf.editor.viewmodel.VNode;
-import no.hib.dpf.editor.viewmodel.commands.VNodeCreateCommand;
-import no.hib.dpf.editor.viewmodel.commands.VNodeSetSizeAndLocationCommand;
+import no.hib.dpf.editor.model.DPFDiagram;
+import no.hib.dpf.editor.model.ModelElement;
+import no.hib.dpf.editor.model.MovableAndSizable;
+import no.hib.dpf.editor.model.VNode;
+import no.hib.dpf.editor.model.commands.VNodeCreateCommand;
+import no.hib.dpf.editor.model.commands.VNodeSetSizeAndLocationCommand;
 
 import org.eclipse.draw2d.ConnectionLayer;
 import org.eclipse.draw2d.Figure;

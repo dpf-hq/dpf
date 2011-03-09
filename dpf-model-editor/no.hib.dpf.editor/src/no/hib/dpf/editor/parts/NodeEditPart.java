@@ -16,12 +16,12 @@ import java.util.List;
 
 import no.hib.dpf.editor.figures.EditableLabel;
 import no.hib.dpf.editor.figures.NodeFigure;
-import no.hib.dpf.editor.viewmodel.LocationAndSize;
-import no.hib.dpf.editor.viewmodel.ModelElement;
-import no.hib.dpf.editor.viewmodel.VArrow;
-import no.hib.dpf.editor.viewmodel.VNode;
-import no.hib.dpf.editor.viewmodel.commands.ConnectionCreateCommand;
-import no.hib.dpf.editor.viewmodel.commands.ConnectionReconnectCommand;
+import no.hib.dpf.editor.model.LocationAndSize;
+import no.hib.dpf.editor.model.ModelElement;
+import no.hib.dpf.editor.model.VArrow;
+import no.hib.dpf.editor.model.VNode;
+import no.hib.dpf.editor.model.commands.ConnectionCreateCommand;
+import no.hib.dpf.editor.model.commands.ConnectionReconnectCommand;
 import no.hib.dpf.metamodel.Arrow;
 import no.hib.dpf.metamodel.Node;
 

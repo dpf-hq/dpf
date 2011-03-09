@@ -14,8 +14,8 @@ import java.util.List;
 
 import no.hib.dpf.editor.editoractions.CreateConstraintAction;
 import no.hib.dpf.editor.icons.ImageSettings;
-import no.hib.dpf.editor.viewmodel.factories.ArrowCreationFactory;
-import no.hib.dpf.editor.viewmodel.factories.VNodeFactory;
+import no.hib.dpf.editor.model.factories.ArrowCreationFactory;
+import no.hib.dpf.editor.model.factories.VNodeFactory;
 import no.hib.dpf.metamodel.Arrow;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.Node;

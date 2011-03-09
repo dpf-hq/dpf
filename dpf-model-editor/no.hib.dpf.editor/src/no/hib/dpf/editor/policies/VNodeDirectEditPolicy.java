@@ -3,9 +3,9 @@ package no.hib.dpf.editor.policies;
  * Created on Jul 18, 2004
  */
 
+import no.hib.dpf.editor.model.VNode;
+import no.hib.dpf.editor.model.commands.ChangeVNodeNameCommand;
 import no.hib.dpf.editor.parts.NodeEditPart;
-import no.hib.dpf.editor.viewmodel.VNode;
-import no.hib.dpf.editor.viewmodel.commands.ChangeVNodeNameCommand;
 
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.DirectEditPolicy;

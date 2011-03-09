@@ -1,6 +1,6 @@
 package no.hib.dpf.editor.editoractions;
 
-import no.hib.dpf.editor.viewmodel.VArrow;
+import no.hib.dpf.editor.model.VArrow;
 
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPartViewer;

@@ -1,6 +1,6 @@
 package no.hib.dpf.editor.editoractions;
 
-import no.hib.dpf.editor.viewmodel.VConstraint;
+import no.hib.dpf.editor.model.VConstraint;
 import no.hib.dpf.metamodel.Predicate;
 
 /**

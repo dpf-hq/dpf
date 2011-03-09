@@ -2,11 +2,11 @@ package no.hib.dpf.editor.editoractions;
 
 import java.util.List;
 
+import no.hib.dpf.editor.model.VArrow;
+import no.hib.dpf.editor.model.VConstraint;
+import no.hib.dpf.editor.model.commands.MultipleArrowConstraintCreateCommand;
 import no.hib.dpf.editor.parts.ArrowEditPart;
 import no.hib.dpf.editor.parts.NodeEditPart;
-import no.hib.dpf.editor.viewmodel.VArrow;
-import no.hib.dpf.editor.viewmodel.VConstraint;
-import no.hib.dpf.editor.viewmodel.commands.MultipleArrowConstraintCreateCommand;
 import no.hib.dpf.metamodel.Graph;
 
 import org.eclipse.gef.commands.Command;
