@@ -231,7 +231,7 @@ private ConnectionAnchor getConnectionAnchor(ConnectionEditPart connection, bool
 		previousAnchorList.add(new ChopboxAnchor(getFigure()));		
 		
 	} else {
-		previousAnchorList.add(new AnchorOHoy(getFigure(), connection, previousAnchor));		
+		previousAnchorList.add(new MultipleArrowsChopboxAnchor(getFigure(), connection, previousAnchor));		
 	}
 	return previousAnchorList.get(previousAnchorList.size() - 1);
 }

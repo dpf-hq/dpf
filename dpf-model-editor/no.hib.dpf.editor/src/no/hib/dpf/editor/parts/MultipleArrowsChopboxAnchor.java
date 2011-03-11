@@ -28,7 +28,7 @@ import org.eclipse.gef.ConnectionEditPart;
  * should have knowledge of each other. Then, they should agree on a common anchorage
  * where the arrows are spaced out in the orthogonal dimension to the arrows themselves.
  */
-public class AnchorOHoy extends ChopboxAnchor {
+public class MultipleArrowsChopboxAnchor extends ChopboxAnchor {
 
 	private ConnectionEditPart connectionEditPart;
 	private ConnectionAnchor previousAnchor;
@@ -42,15 +42,15 @@ public class AnchorOHoy extends ChopboxAnchor {
 	 * @param connectionEditPart The connection edit part owning the figure. Used for determining if a connection is active
 	 * @param previousAnchor The previous anchor added to the node at one end of the connection
 	 */
-	public AnchorOHoy(IFigure owner, ConnectionEditPart connectionEditPart, ConnectionAnchor previousAnchor) {
+	public MultipleArrowsChopboxAnchor(IFigure owner, ConnectionEditPart connectionEditPart, ConnectionAnchor previousAnchor) {
 		super(owner);
 		if (previousAnchor != null) {
-			((AnchorOHoy)previousAnchor).coupleAnchors(this);
+			((MultipleArrowsChopboxAnchor)previousAnchor).coupleAnchors(this);
 		}
 		this.connectionEditPart = connectionEditPart;
 	}
 	
-	protected void coupleAnchors(AnchorOHoy next) {
+	protected void coupleAnchors(MultipleArrowsChopboxAnchor next) {
 		next.previousAnchor = this;
 		nextAnchor = next;
 	}
@@ -58,10 +58,10 @@ public class AnchorOHoy extends ChopboxAnchor {
 	protected int totalActiveAnchors() {
 		int count = 1; // this connection is actie if we are here
 		if (nextAnchor != null) {
-			count += ((AnchorOHoy)nextAnchor).numNextActiveConnections();			
+			count += ((MultipleArrowsChopboxAnchor)nextAnchor).numNextActiveConnections();			
 		}
 		if (previousAnchor != null) {
-			count += ((AnchorOHoy)previousAnchor).numPreviousActiveConnections();
+			count += ((MultipleArrowsChopboxAnchor)previousAnchor).numPreviousActiveConnections();
 		}
 		
 		return count;
@@ -79,7 +79,7 @@ public class AnchorOHoy extends ChopboxAnchor {
 			return activeConnection();
 		}
 		
-		return activeConnection() + ((AnchorOHoy)nextAnchor).numNextActiveConnections();
+		return activeConnection() + ((MultipleArrowsChopboxAnchor)nextAnchor).numNextActiveConnections();
 	}
 
 	protected int numPreviousActiveConnections() {
@@ -87,7 +87,7 @@ public class AnchorOHoy extends ChopboxAnchor {
 			return activeConnection();
 		}
 		
-		return activeConnection() + ((AnchorOHoy)previousAnchor).numPreviousActiveConnections();
+		return activeConnection() + ((MultipleArrowsChopboxAnchor)previousAnchor).numPreviousActiveConnections();
 	}
 
 	private int getOrthogonalOffset(int availableOrthogonalSpace) {
@@ -131,50 +131,88 @@ public class AnchorOHoy extends ChopboxAnchor {
 		//System.out.println("getLocation called with reference " + reference + ", my ID is " + this);
 		
 		// The "space" available for arrows on the rectangle in an orthogonal direction to the arrows (todo: calculate from actual)
-		int availableOrthogonalSpace = 40;
 				
+		Rectangle r = getTranslatedBoxRectangle();
+		float centerX = r.x + 0.5f * r.width;
+		float centerY = r.y + 0.5f * r.height;
+
+		float dx = reference.x - centerX;
+		float dy = reference.y - centerY;
+		
+		int availableOrthogonalSpace = findAvalableOrthogonalSpace(r, centerX, centerY, dx, dy);
+		
+		
+		boolean leftmostOrHighest = isAnchorLeftmostOrHighest(reference, centerX, centerY);
+		Point finalVector = getOrthogonalVector(dx, dy, getOrthogonalOffset(availableOrthogonalSpace), leftmostOrHighest);
+
+		Point movedReference = new Point(reference.x + finalVector.x, reference.y + finalVector.y);
+
+		centerX = centerX + finalVector.x;
+		centerY = centerY + finalVector.y;
+
+		Straight lineStraight = new Straight(new PrecisionPoint(centerX, centerY), new PrecisionPoint(movedReference.x, movedReference.y));
+
+		PrecisionPoint bestCandidate = findRectangleIntersection(r, centerX, centerY, movedReference, lineStraight);
+		if (bestCandidate != null) {
+			return new Point(bestCandidate.x, bestCandidate.y);
+		}
+
+		return super.getLocation(reference);
+	}
+
+	private int findAvalableOrthogonalSpace(Rectangle r, float centerX,
+			float centerY, float dx, float dy) {
+		Point orthoVector = new Point(-dy, dx);
+		double length = new Point(0, 0).getDistance(orthoVector);
+		
+		int availableOrthogonalSpace = 40;
+		double normOrthoVectorX = orthoVector.x / length;
+		double normOrthoVectorY = orthoVector.y / length;
+		Point finalVector1 = new Point(normOrthoVectorX * 1000, normOrthoVectorY  * 100000);
+		finalVector1.translate(new Point(centerX, centerY));
+		Point finalVector2 = new Point(normOrthoVectorX * -1000, normOrthoVectorY  * -100000);
+		finalVector2.translate(new Point(centerX, centerY));
+		
+		
+		Point intersect1 = findRectangleIntersection(r, centerX, centerY, new Point(centerX + finalVector1.x, centerY + finalVector1.y), new Straight(new PrecisionPoint(centerX, centerY), new PrecisionPoint(centerX + finalVector1.x, centerY + finalVector1.y)));
+		Point intersect2 = findRectangleIntersection(r, centerX, centerY, new Point(centerX + finalVector2.x, centerY + finalVector2.y), new Straight(new PrecisionPoint(centerX, centerY), new PrecisionPoint(centerX + finalVector2.x, centerY + finalVector2.y)));
+		
+		if ((intersect1 != null) && (intersect2 != null)) {
+			availableOrthogonalSpace = (int) intersect1.getDistance(intersect2);
+		}
+		if (availableOrthogonalSpace > 150) {
+			availableOrthogonalSpace = 150;
+		}
+		return availableOrthogonalSpace;
+	}
+
+	private Rectangle getTranslatedBoxRectangle() {
 		Rectangle r = Rectangle.SINGLETON;
 		r.setBounds(getBox());
 		r.translate(-1, -1);
 		r.resize(1, 1);
-
 		getOwner().translateToAbsolute(r);
-		float centerX = r.x + 0.5f * r.width;
-		float centerY = r.y + 0.5f * r.height;
+		return r;
+	}
 
-		
-		// Translate reference?
-		float dx = reference.x - centerX;
-		float dy = reference.y - centerY;
-		
-		
-			boolean leftmostOrHighest = false;
-			if (reference.x < (int)centerX) {
-				leftmostOrHighest = true;
-			} else if (reference.x == (int)centerX) {
-				leftmostOrHighest = reference.y < (int)centerY;
-			}
-			
-			Point finalVector = getOrthogonalVector(dx, dy, getOrthogonalOffset(availableOrthogonalSpace), leftmostOrHighest);
+	private PrecisionPoint findRectangleIntersection(Rectangle r,
+			float centerX, float centerY, Point movedReference,
+			Straight lineStraight) {
+		Vector[] candidates = getIntersectionCandidates(centerX, centerY, movedReference, r, lineStraight);
+		PrecisionPoint newCenter = new PrecisionPoint(centerX, centerY);
+		PrecisionPoint bestCandidate = getBestIntersectionCandidate(candidates, newCenter);
+		return bestCandidate;
+	}
 
-			//System.out.println("ref: " + reference);
-			Point movedReference =  new Point(reference.x + finalVector.x, reference.y + finalVector.y);
-			//System.out.println("mref: " + movedReference);
-			centerX = centerX + finalVector.x;
-			centerY = centerY + finalVector.y;			
-									
-			Straight lineStraight = new Straight(new PrecisionPoint(centerX, centerY), new PrecisionPoint(movedReference.x, movedReference.y));
-			
-			Vector[] candidates = getIntersectionCandidates(centerX, centerY, movedReference, r, lineStraight);
-			PrecisionPoint newCenter = new PrecisionPoint(centerX, centerY);
-			PrecisionPoint bestCandidate = getBestIntersectionCandidate(candidates, newCenter);
-			if (bestCandidate != null) {
-				return new Point(bestCandidate.x, bestCandidate.y);
-			}
-			
-
-		
-		return super.getLocation(reference);
+	private boolean isAnchorLeftmostOrHighest(Point reference, float centerX,
+			float centerY) {
+		boolean leftmostOrHighest = false;
+		if (reference.x < (int) centerX) {
+			leftmostOrHighest = true;
+		} else if (reference.x == (int) centerX) {
+			leftmostOrHighest = reference.y < (int) centerY;
+		}
+		return leftmostOrHighest;
 	}
 
 	private Vector[] getIntersectionCandidates(float centerX, float centerY,
@@ -267,8 +305,8 @@ public class AnchorOHoy extends ChopboxAnchor {
 	 * @return <code>true</code> if equal
 	 */
 	public boolean equals(Object obj) {
-		if (obj instanceof AnchorOHoy) {
-			AnchorOHoy other = (AnchorOHoy) obj;
+		if (obj instanceof MultipleArrowsChopboxAnchor) {
+			MultipleArrowsChopboxAnchor other = (MultipleArrowsChopboxAnchor) obj;
 			return other.getOwner() == getOwner()
 					&& other.getBox().equals(getBox());
 		}
