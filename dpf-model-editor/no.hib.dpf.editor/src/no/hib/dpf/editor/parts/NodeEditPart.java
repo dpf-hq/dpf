@@ -12,7 +12,10 @@ package no.hib.dpf.editor.parts;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import no.hib.dpf.editor.figures.EditableLabel;
 import no.hib.dpf.editor.figures.NodeFigure;
@@ -50,7 +53,7 @@ import org.eclipse.gef.requests.ReconnectRequest;
 public class NodeEditPart extends AbstractGraphicalEditPart 
 	implements PropertyChangeListener, org.eclipse.gef.NodeEditPart {
 	
-private ConnectionAnchor anchor;
+private Map<NodeEditPart, List<ConnectionAnchor>> anchors = new HashMap<NodeEditPart, List<ConnectionAnchor>>();
 
 /**
  * Upon activation, attach to the model element as a property change listener.
@@ -61,6 +64,8 @@ public void activate() {
 		((ModelElement) getModel()).addPropertyChangeListener(this);
 	}
 }
+
+
 
 /* (non-Javadoc)
  * @see org.eclipse.gef.editparts.AbstractEditPart#createEditPolicies()
@@ -207,14 +212,37 @@ public Node getModelAsEMFInstance() {
 }
 
 private ConnectionAnchor getConnectionAnchor(ConnectionEditPart connection, boolean isSourceAnchor) {
-	if (anchor == null) {
-		if (getModel() instanceof VNode)
-			anchor = new ChopboxAnchor(getFigure());
-		else
-			// if Shapes gets extended the conditions above must be updated TODO: fix this. Make extendable w/o.
-			throw new IllegalArgumentException("unexpected model");
+	NodeEditPart oppositeEnd = getOppositeEnd(connection, isSourceAnchor);
+	List<ConnectionAnchor> previousAnchorList;
+	ConnectionAnchor previousAnchor;
+	if (anchors.containsKey(oppositeEnd)) {
+		if (oppositeEnd == null) {
+			return anchors.get(null).get(0);
+		}
+		previousAnchorList = anchors.get(oppositeEnd);
+		previousAnchor = previousAnchorList.get(previousAnchorList.size() - 1);
+	} else {
+		previousAnchorList = new ArrayList<ConnectionAnchor>();
+		anchors.put(oppositeEnd, previousAnchorList);
+		previousAnchor = null;
 	}
-	return anchor;
+	
+	if ((connection == null) || (connection.getSource().equals(connection.getTarget()))) {
+		previousAnchorList.add(new ChopboxAnchor(getFigure()));		
+		
+	} else {
+		previousAnchorList.add(new AnchorOHoy(getFigure(), connection, previousAnchor));		
+	}
+	return previousAnchorList.get(previousAnchorList.size() - 1);
+}
+
+private NodeEditPart getOppositeEnd(ConnectionEditPart connection, boolean isSourceAnchor) {
+	if (connection == null) {
+		return null;
+	} else if (isSourceAnchor) {
+		return (NodeEditPart)connection.getTarget();
+	}
+	return (NodeEditPart)connection.getSource();
 }
 
 /*
@@ -277,7 +305,6 @@ public void propertyChange(PropertyChangeEvent evt) {
 		refreshVisuals();
 	} else if (VNode.SOURCE_CONNECTIONS_PROP.equals(prop)) {
 		refreshSourceConnections();
-		//diagram.validateSemantics();
 	} else if (VNode.TARGET_CONNECTIONS_PROP.equals(prop)) {
 		refreshTargetConnections();
 		diagram.validateSemantics();
