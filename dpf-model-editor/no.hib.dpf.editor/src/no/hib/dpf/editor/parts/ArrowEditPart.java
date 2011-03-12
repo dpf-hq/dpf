@@ -223,7 +223,8 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 			}
 
 			connectionLabel = new Label();
-			connectionLabel.setText(singleConstraints.get(0).toString());
+			connectionLabel.setText(singleConstraints.get(0).toString());			
+			connectionLabel.setOpaque(true);
 			connectionFigure.add(connectionLabel);
 			connectionFigure.getLayoutManager().setConstraint(connectionLabel, new EndpointLocator(connectionFigure));
 		}

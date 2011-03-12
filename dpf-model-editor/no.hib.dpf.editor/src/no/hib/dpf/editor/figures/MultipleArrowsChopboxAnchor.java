@@ -168,9 +168,9 @@ public class MultipleArrowsChopboxAnchor extends ChopboxAnchor {
 		int availableOrthogonalSpace = 40;
 		double normOrthoVectorX = orthoVector.x / length;
 		double normOrthoVectorY = orthoVector.y / length;
-		Point finalVector1 = new Point(normOrthoVectorX * 1000, normOrthoVectorY  * 100000);
+		Point finalVector1 = new Point(normOrthoVectorX * 100000, normOrthoVectorY  * 100000);
 		finalVector1.translate(new Point(centerX, centerY));
-		Point finalVector2 = new Point(normOrthoVectorX * -1000, normOrthoVectorY  * -100000);
+		Point finalVector2 = new Point(normOrthoVectorX * -100000, normOrthoVectorY  * -100000);
 		finalVector2.translate(new Point(centerX, centerY));
 		
 		
