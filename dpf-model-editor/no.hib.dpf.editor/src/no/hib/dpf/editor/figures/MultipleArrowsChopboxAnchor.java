@@ -8,7 +8,7 @@
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
-package no.hib.dpf.editor.parts;
+package no.hib.dpf.editor.figures;
 
 
 import org.eclipse.draw2d.ChopboxAnchor;
@@ -130,7 +130,7 @@ public class MultipleArrowsChopboxAnchor extends ChopboxAnchor {
 	public Point getLocation(Point reference) {
 		//System.out.println("getLocation called with reference " + reference + ", my ID is " + this);
 		
-		// The "space" available for arrows on the rectangle in an orthogonal direction to the arrows (todo: calculate from actual)
+		// The "space" available for arrows on the rectangle in an orthogonal direction to the arrows
 				
 		Rectangle r = getTranslatedBoxRectangle();
 		float centerX = r.x + 0.5f * r.width;

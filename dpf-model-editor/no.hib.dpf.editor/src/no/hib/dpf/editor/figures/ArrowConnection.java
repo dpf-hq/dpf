@@ -18,13 +18,14 @@ public class ArrowConnection extends PolylineConnection implements RoutableFigur
 	private EditableLabel label;
 
 	public EditableLabel getLabel() {
-		return label;
+		return label;		
 	}
 
 	public ArrowConnection(EditableLabel label) {
 	
 		this.label = label;
 		label.setForegroundColor(ColorConstants.black);
+		label.setOpaque(true);
 		add(label, new ConnectionLocator(this, ConnectionLocator.MIDDLE));
 	}
 	

@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 import no.hib.dpf.editor.figures.EditableLabel;
+import no.hib.dpf.editor.figures.MultipleArrowsChopboxAnchor;
 import no.hib.dpf.editor.figures.NodeFigure;
 import no.hib.dpf.editor.model.LocationAndSize;
 import no.hib.dpf.editor.model.ModelElement;

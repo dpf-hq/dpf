@@ -145,7 +145,6 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 	 */
 	@Override
 	protected void createEditPolicies() {
-		
 		refreshBendpointEditPolicy();
 		
 		// Selection handle edit policy.
