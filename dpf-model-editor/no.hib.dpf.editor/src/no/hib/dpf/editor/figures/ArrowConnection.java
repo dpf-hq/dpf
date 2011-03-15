@@ -1,8 +1,6 @@
 package no.hib.dpf.editor.figures;
 
 
-import org.eclipse.draw2d.ColorConstants;
-import org.eclipse.draw2d.ConnectionLocator;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.swt.SWT;
@@ -13,21 +11,6 @@ import org.eclipse.swt.SWT;
  *
  */
 public class ArrowConnection extends PolylineConnection implements RoutableFigure {
-		
-	
-	private EditableLabel label;
-
-	public EditableLabel getLabel() {
-		return label;		
-	}
-
-	public ArrowConnection(EditableLabel label) {
-	
-		this.label = label;
-		label.setForegroundColor(ColorConstants.black);
-		label.setOpaque(true);
-		add(label, new ConnectionLocator(this, ConnectionLocator.MIDDLE));
-	}
 	
 	@Override
 	protected void outlineShape(Graphics g) {

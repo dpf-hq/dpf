@@ -18,14 +18,11 @@ import java.util.Collections;
 import java.util.List;
 
 import no.hib.dpf.editor.figures.ArrowConnection;
-import no.hib.dpf.editor.figures.EditableLabel;
 import no.hib.dpf.editor.model.ArrowBendpoint;
 import no.hib.dpf.editor.model.SingleLineConstraintElement;
 import no.hib.dpf.editor.model.VArrow;
 import no.hib.dpf.editor.model.VConstraint;
 import no.hib.dpf.editor.model.commands.ConnectionDeleteCommand;
-import no.hib.dpf.editor.preferences.DPFEditorPreferences;
-import no.hib.dpf.editor.preferences.PreferenceConstants;
 import no.hib.dpf.metamodel.Arrow;
 
 import org.eclipse.draw2d.Bendpoint;
@@ -47,7 +44,6 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.ConnectionEditPolicy;
 import org.eclipse.gef.editpolicies.ConnectionEndpointEditPolicy;
 import org.eclipse.gef.requests.GroupRequest;
-import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.swt.SWT;
 
 
@@ -60,25 +56,9 @@ import org.eclipse.swt.SWT;
 public class ArrowEditPart extends ModelElementConnectionEditPart {
 
 	protected ArrowConnection connectionFigure; 
-	Label connectionLabel;
+	Label connectionLabel;	
 	private List<SingleLineConstraintElement> singleConstraints = new ArrayList<SingleLineConstraintElement>();
 	private transient PropertyChangeSupport pcsDelegate = new PropertyChangeSupport(this);
-
-
-	public ArrowEditPart() {
-		listenToDisplayNameProperty();
-	}
-
-	private void listenToDisplayNameProperty() {
-		DPFEditorPreferences.getDefault().getPreferenceStore().addPropertyChangeListener(new IPropertyChangeListener() {
-			@Override
-			public void propertyChange(org.eclipse.jface.util.PropertyChangeEvent event) {
-				if (event.getProperty().equals(PreferenceConstants.P_DISPLAY_ARROWS)) {
-					commitNameChange();
-				}
-			}
-		});
-	}
 		
 	/**
 	 * Sets the source EditPart of this connection.
@@ -146,7 +126,7 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 	@Override
 	protected void createEditPolicies() {
 		refreshBendpointEditPolicy();
-		
+				
 		// Selection handle edit policy.
 		// Makes the connection show a feedback, when selected by the user.
 		installEditPolicy(EditPolicy.CONNECTION_ENDPOINTS_ROLE, new ConnectionEndpointEditPolicy());
@@ -159,7 +139,7 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 				});
 	}
 	
-	protected VArrow getArrow() {
+	public VArrow getArrow() {
 		return (VArrow) getModel();
 	}
 	
@@ -169,8 +149,8 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 	 * @see org.eclipse.gef.editparts.AbstractGraphicalEditPart#createFigure()
 	 */
 	protected IFigure createFigure() {
-		EditableLabel label = new EditableLabel(getFullName());
-		createConnectionFigure(label);
+		//EditableLabel label = new EditableLabel(getFullName());
+		createConnectionFigure(); //label);
 		connectionFigure.addRoutingListener(RoutingAnimator.getDefault());
 		makeNewConstraintLabel();
 		setArrowHead(connectionFigure);
@@ -178,8 +158,8 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 		return connectionFigure;		
 	}
 
-	protected void createConnectionFigure(EditableLabel label) {
-		connectionFigure = new ArrowConnection(label);
+	protected void createConnectionFigure() { //EditableLabel label) {
+		connectionFigure = new ArrowConnection(); //label);
 	}
 
 	protected void setArrowHead(PolylineConnection connectionFigure) {
@@ -238,7 +218,7 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 	 */
 	public void propertyChange(PropertyChangeEvent event) {
 		String property = event.getPropertyName();
-		
+				
 		// * E X T R A S :
 		
 		if (Connection.PROPERTY_CONNECTION_ROUTER.equals(property)){
@@ -257,26 +237,9 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 			refreshTargetConnections();
 		} else if (VArrow.SINGLE_CONSTRAINTS_PROP.equals(property)) {
 			refreshSingleLineConstraints();
-		} else if (VArrow.NAME_PROP.equals(property)) {
-			commitNameChange();
-		}
+		} 
 	}
 	
-	private void commitNameChange() {
-		ArrowConnection figure = (ArrowConnection)getFigure();
-		EditableLabel label = figure.getLabel();
-		label.setText(getFullName());
-		refreshVisuals();
-	}
-	
-	private String getFullName() {
-		if (DPFEditorPreferences.getDefault().getDisplayArrows()) {
-			return getArrow().getName() + " : " + getArrow().getTypeName();
-		} else {
-			return "";
-		}
-	}
-
 	@Override
 	public IFigure getFigure() {
 		if (figure == null) {
@@ -422,15 +385,16 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 		}
 	}
 
-	/**
-	 * Refreshes the visual aspects of this, based upon the
-	 * model (Wire). It changes the wire color depending on
-	 * the state of Wire.
-	 * 
-	 */
 	@Override
 	protected void refreshVisuals() {
 		refreshBendpoints();
 	}
+	
+	@SuppressWarnings("rawtypes")
+	@Override
+	protected List getModelChildren() {
+		VArrow model = getCastedModel();
+		return model.getLabels();
+	}	
 
 }

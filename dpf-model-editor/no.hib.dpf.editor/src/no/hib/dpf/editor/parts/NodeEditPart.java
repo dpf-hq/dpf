@@ -228,7 +228,7 @@ private ConnectionAnchor getConnectionAnchor(ConnectionEditPart connection, bool
 		previousAnchor = null;
 	}
 	
-	if ((connection == null) || (connection.getSource().equals(connection.getTarget()))) {
+	if ((connection == null) || (connection.getSource() == null) || (connection.getSource().equals(connection.getTarget()))) {
 		previousAnchorList.add(new ChopboxAnchor(getFigure()));		
 		
 	} else {

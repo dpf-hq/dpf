@@ -13,6 +13,7 @@ package no.hib.dpf.editor.model;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 import no.hib.dpf.metamodel.Arrow;
 import no.hib.dpf.metamodel.Graph;
@@ -88,6 +89,9 @@ public class VArrow extends ModelElement implements Arrow, IDObjectContainer {
 	/** List of single Constraints */
 	private List<SingleLineConstraintElement> singleConstraints = new ArrayList<SingleLineConstraintElement>();
 	
+	@SuppressWarnings("rawtypes")
+	private Vector labels = new Vector();
+	
 	static {
 		descriptors = new IPropertyDescriptor[] {
 			new ComboBoxPropertyDescriptor(LINESTYLE_PROP,
@@ -121,6 +125,7 @@ public class VArrow extends ModelElement implements Arrow, IDObjectContainer {
 	public VArrow(VNode source, VNode target, Arrow typeArrow) {
 		// The dpf Arrow object must be initialized before the connection of the shapes.
 		setIDObject(MetamodelFactory.eINSTANCE.createArrow(typeArrow));
+		addLabel("ref");
 		reconnect(source, target);
 	}
 
@@ -349,6 +354,7 @@ public class VArrow extends ModelElement implements Arrow, IDObjectContainer {
 	public void setNameExec(String name) {
 		String oldName = arrowComponent.getName();
 		arrowComponent.setName(name);
+		((ConnectionLabel)labels.get(0)).setLabelText(name);
 		firePropertyChange(NAME_PROP, oldName, name);
 	}
 	
@@ -412,6 +418,15 @@ public class VArrow extends ModelElement implements Arrow, IDObjectContainer {
 		return bendpoints;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public void addLabel(String text) {
+		labels.addElement(new ConnectionLabel(text));
+	}
+
+	@SuppressWarnings("rawtypes")
+	public Vector getLabels() {
+		return labels;
+	}
 	
 	// -----------------------------------------------------------------------------------
 	// Arrow methods:

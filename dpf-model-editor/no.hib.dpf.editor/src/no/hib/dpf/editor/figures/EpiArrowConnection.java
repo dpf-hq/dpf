@@ -5,9 +5,9 @@ import org.eclipse.draw2d.geometry.Rectangle;
 
 public class EpiArrowConnection extends ArrowConnection {
 	
-	public EpiArrowConnection(EditableLabel label) {
-		super(label);
-	}
+//	public EpiArrowConnection(EditableLabel label) {
+//		super(label);
+//	}
 	
 	@Override
 	public int getRoutingPriority() {
