@@ -10,7 +10,7 @@
 �*******************************************************************************/
 package no.hib.dpf.editor.parts;
 
-import no.hib.dpf.editor.model.ConnectionLabel;
+import no.hib.dpf.editor.model.ArrowLabel;
 import no.hib.dpf.editor.model.DPFDiagram;
 import no.hib.dpf.editor.model.SingleNodeConnection;
 import no.hib.dpf.editor.model.VArrow;
@@ -57,8 +57,8 @@ private EditPart getPartForElement(Object modelElement) {
 	if (modelElement instanceof VArrow) {
 		return new ArrowEditPart();
 	}
-	if (modelElement instanceof ConnectionLabel) {
-		return new ConnLabelEditPart();
+	if (modelElement instanceof ArrowLabel) {
+		return new ArrowLabelEditPart();
 	}
 	if (modelElement instanceof VConstraint) {
 		// Edit part according to the type of constraint element:

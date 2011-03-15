@@ -23,12 +23,12 @@ package no.hib.dpf.editor.parts;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-import no.hib.dpf.editor.model.ConnectionLabel;
-import no.hib.dpf.editor.policies.ConnTextEditPolicy;
-import no.hib.dpf.editor.policies.ConnTextMovePolicy;
+import no.hib.dpf.editor.model.ArrowLabel;
+import no.hib.dpf.editor.policies.ArrowTextEditPolicy;
+import no.hib.dpf.editor.policies.ArrowTextMovePolicy;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;
 import no.hib.dpf.editor.preferences.PreferenceConstants;
-import no.hib.dpf.editor.tracker.ConnTextTracker;
+import no.hib.dpf.editor.tracker.ArrowTextTracker;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
@@ -42,12 +42,12 @@ import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.viewers.TextCellEditor;
 
-public class ConnLabelEditPart extends AbstractGraphicalEditPart implements
+public class ArrowLabelEditPart extends AbstractGraphicalEditPart implements
 		PropertyChangeListener {
 
 	TextEditManager manager = null;
 
-	public ConnLabelEditPart() {
+	public ArrowLabelEditPart() {
 		listenToDisplayNameProperty();
 	}
 	
@@ -69,14 +69,14 @@ public class ConnLabelEditPart extends AbstractGraphicalEditPart implements
 	public void activate() {
 		if (isActive() == false) {
 			super.activate();
-			((ConnectionLabel) getModel()).addPropertyChangeListener(this);
+			((ArrowLabel) getModel()).addPropertyChangeListener(this);
 		}
 	}
 
 	public void deactivate() {
 		if (isActive()) {
 			super.deactivate();
-			((ConnectionLabel) getModel()).removePropertyChangeListener(this);
+			((ArrowLabel) getModel()).removePropertyChangeListener(this);
 		}
 	}
 
@@ -89,18 +89,17 @@ public class ConnLabelEditPart extends AbstractGraphicalEditPart implements
 
 	public void propertyChange(PropertyChangeEvent evt) {
 		String request = evt.getPropertyName();
-		if (request.equals(ConnectionLabel.POSITION_PROP) || request.equals(ConnectionLabel.NAME_PROP))
+		if (request.equals(ArrowLabel.POSITION_PROP) || request.equals(ArrowLabel.NAME_PROP))
 			refreshVisuals();
 	}
 
 	public void createEditPolicies() {
-		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE,
-				new ConnTextMovePolicy());
-		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new ConnTextEditPolicy());
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new ArrowTextMovePolicy());
+		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new ArrowTextEditPolicy());
 	}
 
 	public DragTracker getDragTracker(Request request) {
-		return new ConnTextTracker(this, (ArrowEditPart) getParent());
+		return new ArrowTextTracker(this, (ArrowEditPart)getParent());
 	}
 
 	private Label getCastedFigure() {
@@ -115,12 +114,12 @@ public class ConnLabelEditPart extends AbstractGraphicalEditPart implements
 		figure.setVisible(DPFEditorPreferences.getDefault().getDisplayArrows());
 		ArrowEditPart parent = (ArrowEditPart) getParent();
 		PolylineConnection connFigure = (PolylineConnection)parent.getFigure();
-		ConnLabelConstraint constraint = new ConnLabelConstraint(arrowName, offset, connFigure);
+		ArrowLabelConstraint constraint = new ArrowLabelConstraint(arrowName, offset, connFigure);
 		parent.setLayoutConstraint(this, getFigure(), constraint);
 	}
 
-	public ConnectionLabel getConnectionModel() {
-		return (ConnectionLabel) getModel();
+	public ArrowLabel getConnectionModel() {
+		return (ArrowLabel) getModel();
 	}
 
 	public void performRequest(Request request) {

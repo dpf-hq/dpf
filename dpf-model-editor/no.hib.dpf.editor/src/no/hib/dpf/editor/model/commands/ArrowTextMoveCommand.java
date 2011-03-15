@@ -1,4 +1,4 @@
-package no.hib.dpf.editor.policies;
+package no.hib.dpf.editor.model.commands;
 
 /**
  * Original code taken from now-defunct site qvtp.org.
@@ -20,27 +20,40 @@ package no.hib.dpf.editor.policies;
  OF SUCH DAMAGE. 
  */
 
-import no.hib.dpf.editor.model.ConnectionLabel;
-import no.hib.dpf.editor.model.commands.MoveConnTextCommand;
-import no.hib.dpf.editor.parts.ArrowEditPart;
+import no.hib.dpf.editor.model.ArrowLabel;
 
 import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
-import org.eclipse.gef.requests.ChangeBoundsRequest;
 
-public class ConnTextMovePolicy extends NonResizableEditPolicy {
+public class ArrowTextMoveCommand extends Command {
 
-	public Command getMoveCommand(ChangeBoundsRequest request) {
-		ConnectionLabel model = (ConnectionLabel) getHost().getModel();
-		Point delta = request.getMoveDelta();
-		MoveConnTextCommand command = new MoveConnTextCommand(model, getParentFigure(), delta);
-		return command;
+	ArrowLabel label = null;
+	Point location = null;
+	Figure parent = null;
+	Point oldOffset = new Point();
+
+	public ArrowTextMoveCommand(ArrowLabel label, Figure parent,
+			Point location) {
+		this.label = label;
+		this.parent = parent;
+		this.location = location;
 	}
 
-	public Figure getParentFigure() {
-		ArrowEditPart arrow = (ArrowEditPart) getHost().getParent();
-		return (Figure) arrow.getFigure();
+	public void execute() {
+		oldOffset = label.getOffset();
+		Point newOffset = label.getOffset().getCopy();
+		parent.translateToAbsolute(newOffset);
+		newOffset.translate(location);
+		parent.translateToRelative(newOffset);
+		label.setOffset(newOffset);
+	}
+
+	public void redo() {
+		execute();
+	}
+
+	public void undo() {
+		label.setOffset(oldOffset);
 	}
 }

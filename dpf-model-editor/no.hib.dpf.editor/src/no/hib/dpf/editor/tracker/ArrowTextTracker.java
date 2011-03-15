@@ -1,4 +1,4 @@
-package no.hib.dpf.editor.model.commands;
+package no.hib.dpf.editor.tracker;
 
 /**
  * Original code taken from now-defunct site qvtp.org.
@@ -20,33 +20,21 @@ STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
 OF SUCH DAMAGE. 
  */
 
-import org.eclipse.gef.commands.Command;
-import no.hib.dpf.editor.model.ConnectionLabel;
+import no.hib.dpf.editor.parts.ArrowEditPart;
 
-public class EdgeTextChangeCommand extends Command {
+import org.eclipse.gef.EditPart;
+import org.eclipse.gef.tools.DragEditPartsTracker;
 
-  private String newName;
-  private String oldName;
-  private ConnectionLabel label;
+public class ArrowTextTracker extends DragEditPartsTracker {
 
-  public EdgeTextChangeCommand(ConnectionLabel label, String string) {
-    this.label = label;
-	if (string != null)
-	  newName = string;
-	else
-	  newName = "";
+  ArrowEditPart arrow;
+
+  public ArrowTextTracker(EditPart source, ArrowEditPart arrow)  {
+  	super(source);
+  	this.arrow = arrow;
   }
 
-  public void execute() {
-    oldName = label.getLabelText();
-	label.setLabelText(newName);
-  }
-  
-  public void redo() {
-    execute();
-  }
-
-  public void undo() {
-    label.setLabelText(oldName);
-  }
+  protected EditPart getTargetEditPart(){
+	return arrow;
+  }	
 }

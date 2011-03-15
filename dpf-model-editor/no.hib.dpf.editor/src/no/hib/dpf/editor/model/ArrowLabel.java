@@ -22,7 +22,7 @@ package no.hib.dpf.editor.model;
 
 import org.eclipse.draw2d.geometry.Point;
 
-public class ConnectionLabel extends ModelElement {
+public class ArrowLabel extends ModelElement {
 
 	public static final String NAME_PROP = "ConnectionLabel.Name";
 	public static final String POSITION_PROP = "ConnectionLabel.Position";
@@ -30,7 +30,7 @@ public class ConnectionLabel extends ModelElement {
 	private String labelText = "";
 	private Point offset = new Point();
 
-	public ConnectionLabel(String labelText) { //, String position) {
+	public ArrowLabel(String labelText) { //, String position) {
 		this.labelText = labelText;
 	}
 

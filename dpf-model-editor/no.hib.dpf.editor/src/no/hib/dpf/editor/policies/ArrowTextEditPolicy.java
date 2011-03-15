@@ -1,4 +1,4 @@
-package no.hib.dpf.editor.parts;
+package no.hib.dpf.editor.policies;
 
 /**
  * Original code taken from now-defunct site qvtp.org.
@@ -20,33 +20,25 @@ package no.hib.dpf.editor.parts;
  OF SUCH DAMAGE. 
  */
 
-import org.eclipse.draw2d.FigureUtilities;
-import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.Locator;
-import org.eclipse.draw2d.PolylineConnection;
-import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.draw2d.geometry.Point;
+import no.hib.dpf.editor.model.ArrowLabel;
+import no.hib.dpf.editor.model.commands.ArrowTextChangeCommand;
+import no.hib.dpf.editor.parts.ArrowLabelEditPart;
 
-class ConnLabelConstraint implements Locator {
+import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.editpolicies.DirectEditPolicy;
+import org.eclipse.gef.requests.DirectEditRequest;
 
-	String text;
-	Point offset;
-	PolylineConnection connFigure;
+public class ArrowTextEditPolicy extends DirectEditPolicy {
 
-	public ConnLabelConstraint(String text, Point offset,
-			PolylineConnection connFigure) {
-		this.text = text;
-		this.offset = offset;
-		this.connFigure = connFigure;
+	protected Command getDirectEditCommand(DirectEditRequest edit) {
+		String labelText = (String) edit.getCellEditor().getValue();
+		ArrowLabelEditPart label = (ArrowLabelEditPart) getHost();
+		ArrowTextChangeCommand command = new ArrowTextChangeCommand(
+				(ArrowLabel) label.getModel(), labelText);
+		return command;
 	}
 
-	public void relocate(IFigure figure) {
-		Dimension minimum = FigureUtilities.getTextExtents(text, figure.getFont());
-		figure.setSize(minimum);
-		Point location;
-		location = connFigure.getPoints().getMidpoint();
-		Point offsetCopy = offset.getCopy();
-		offsetCopy.translate(location);
-		figure.setLocation(offsetCopy);
+	protected void showCurrentEditValue(DirectEditRequest request) {
 	}
+
 }

@@ -1,4 +1,4 @@
-package no.hib.dpf.editor.model.commands;
+package no.hib.dpf.editor.parts;
 
 /**
  * Original code taken from now-defunct site qvtp.org.
@@ -20,40 +20,33 @@ package no.hib.dpf.editor.model.commands;
  OF SUCH DAMAGE. 
  */
 
-import no.hib.dpf.editor.model.ConnectionLabel;
-
-import org.eclipse.draw2d.Figure;
+import org.eclipse.draw2d.FigureUtilities;
+import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.Locator;
+import org.eclipse.draw2d.PolylineConnection;
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.gef.commands.Command;
 
-public class MoveConnTextCommand extends Command {
+class ArrowLabelConstraint implements Locator {
 
-	ConnectionLabel label = null;
-	Point location = null;
-	Figure parent = null;
-	Point oldOffset = new Point();
+	String text;
+	Point offset;
+	PolylineConnection connFigure;
 
-	public MoveConnTextCommand(ConnectionLabel label, Figure parent,
-			Point location) {
-		this.label = label;
-		this.parent = parent;
-		this.location = location;
+	public ArrowLabelConstraint(String text, Point offset,
+			PolylineConnection connFigure) {
+		this.text = text;
+		this.offset = offset;
+		this.connFigure = connFigure;
 	}
 
-	public void execute() {
-		oldOffset = label.getOffset();
-		Point newOffset = label.getOffset().getCopy();
-		parent.translateToAbsolute(newOffset);
-		newOffset.translate(location);
-		parent.translateToRelative(newOffset);
-		label.setOffset(newOffset);
-	}
-
-	public void redo() {
-		execute();
-	}
-
-	public void undo() {
-		label.setOffset(oldOffset);
+	public void relocate(IFigure figure) {
+		Dimension minimum = FigureUtilities.getTextExtents(text, figure.getFont());
+		figure.setSize(minimum);
+		Point location;
+		location = connFigure.getPoints().getMidpoint();
+		Point offsetCopy = offset.getCopy();
+		offsetCopy.translate(location);
+		figure.setLocation(offsetCopy);
 	}
 }

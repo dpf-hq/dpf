@@ -20,25 +20,27 @@ package no.hib.dpf.editor.policies;
  OF SUCH DAMAGE. 
  */
 
-import no.hib.dpf.editor.model.ConnectionLabel;
-import no.hib.dpf.editor.model.commands.EdgeTextChangeCommand;
-import no.hib.dpf.editor.parts.ConnLabelEditPart;
+import no.hib.dpf.editor.model.ArrowLabel;
+import no.hib.dpf.editor.model.commands.ArrowTextMoveCommand;
+import no.hib.dpf.editor.parts.ArrowEditPart;
 
+import org.eclipse.draw2d.Figure;
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.editpolicies.DirectEditPolicy;
-import org.eclipse.gef.requests.DirectEditRequest;
+import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
+import org.eclipse.gef.requests.ChangeBoundsRequest;
 
-public class ConnTextEditPolicy extends DirectEditPolicy {
+public class ArrowTextMovePolicy extends NonResizableEditPolicy {
 
-	protected Command getDirectEditCommand(DirectEditRequest edit) {
-		String labelText = (String) edit.getCellEditor().getValue();
-		ConnLabelEditPart label = (ConnLabelEditPart) getHost();
-		EdgeTextChangeCommand command = new EdgeTextChangeCommand(
-				(ConnectionLabel) label.getModel(), labelText);
+	public Command getMoveCommand(ChangeBoundsRequest request) {
+		ArrowLabel model = (ArrowLabel) getHost().getModel();
+		Point delta = request.getMoveDelta();
+		ArrowTextMoveCommand command = new ArrowTextMoveCommand(model, getParentFigure(), delta);
 		return command;
 	}
 
-	protected void showCurrentEditValue(DirectEditRequest request) {
+	public Figure getParentFigure() {
+		ArrowEditPart arrow = (ArrowEditPart) getHost().getParent();
+		return (Figure) arrow.getFigure();
 	}
-
 }

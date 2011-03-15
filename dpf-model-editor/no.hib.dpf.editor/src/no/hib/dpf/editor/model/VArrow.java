@@ -354,7 +354,7 @@ public class VArrow extends ModelElement implements Arrow, IDObjectContainer {
 	public void setNameExec(String name) {
 		String oldName = arrowComponent.getName();
 		arrowComponent.setName(name);
-		((ConnectionLabel)labels.get(0)).setLabelText(name);
+		((ArrowLabel)labels.get(0)).setLabelText(name);
 		firePropertyChange(NAME_PROP, oldName, name);
 	}
 	
@@ -420,7 +420,7 @@ public class VArrow extends ModelElement implements Arrow, IDObjectContainer {
 	
 	@SuppressWarnings("unchecked")
 	public void addLabel(String text) {
-		labels.addElement(new ConnectionLabel(text));
+		labels.addElement(new ArrowLabel(text));
 	}
 
 	@SuppressWarnings("rawtypes")
