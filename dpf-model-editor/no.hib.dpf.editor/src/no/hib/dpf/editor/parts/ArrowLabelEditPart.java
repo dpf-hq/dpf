@@ -55,7 +55,8 @@ public class ArrowLabelEditPart extends AbstractGraphicalEditPart implements
 		DPFEditorPreferences.getDefault().getPreferenceStore().addPropertyChangeListener(new IPropertyChangeListener() {
 			@Override
 			public void propertyChange(org.eclipse.jface.util.PropertyChangeEvent event) {
-				if (event.getProperty().equals(PreferenceConstants.P_DISPLAY_ARROWS)) {
+				if ((event.getProperty().equals(PreferenceConstants.P_DISPLAY_ARROWS)) ||
+					(event.getProperty().equals(PreferenceConstants.P_DISPLAY_TYPES))) {
 					refreshVisuals();
 				}
 			}
@@ -63,7 +64,11 @@ public class ArrowLabelEditPart extends AbstractGraphicalEditPart implements
 	}
 	
 	private String getFullName(String name) {
-		return name + " : " + ((ArrowEditPart) getParent()).getArrow().getTypeName();
+		if (DPFEditorPreferences.getDefault().getDisplayTypeNames()) {
+			return name + " : " + ((ArrowEditPart) getParent()).getArrow().getTypeName();
+		} else {
+			return name;
+		}
 	}
 	
 	public void activate() {

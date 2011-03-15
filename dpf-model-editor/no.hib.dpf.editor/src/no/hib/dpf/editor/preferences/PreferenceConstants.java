@@ -7,6 +7,8 @@ public class PreferenceConstants {
 
 	public static final String P_DISPLAY_ARROWS = "displayArrowsPreference";
 	
+	public static final String P_DISPLAY_TYPES = "displayTypesPreference";
+
 	public static final String P_NODE_COLOR = "nodeColorPreference";
 	
 //	public static final String P_PATH = "pathPreference";

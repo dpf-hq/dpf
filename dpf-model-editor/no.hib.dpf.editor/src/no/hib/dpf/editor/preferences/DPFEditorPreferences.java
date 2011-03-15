@@ -25,6 +25,10 @@ public class DPFEditorPreferences {
         return getPreferenceStore().getBoolean(PreferenceConstants.P_DISPLAY_ARROWS);
 	}
 	
+	public boolean getDisplayTypeNames() {
+		return getPreferenceStore().getBoolean(PreferenceConstants.P_DISPLAY_TYPES);
+	}
+	
 	public Color getNodeColor() {
         String colorString = getPreferenceStore().getString(PreferenceConstants.P_NODE_COLOR);
 		

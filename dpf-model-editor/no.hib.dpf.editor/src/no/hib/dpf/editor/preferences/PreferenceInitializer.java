@@ -8,14 +8,10 @@ import org.eclipse.jface.preference.IPreferenceStore;
  */
 public class PreferenceInitializer extends AbstractPreferenceInitializer {
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer#initializeDefaultPreferences()
-	 */
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = DPFEditorPreferences.getDefault().getPreferenceStore();
 		store.setDefault(PreferenceConstants.P_DISPLAY_ARROWS, true);
+		store.setDefault(PreferenceConstants.P_DISPLAY_TYPES, true);
 		store.setDefault(PreferenceConstants.P_NODE_COLOR, "255,255,255");
 	}
 
