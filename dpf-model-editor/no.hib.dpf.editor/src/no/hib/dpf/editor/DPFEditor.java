@@ -275,11 +275,8 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		getSite().registerContextMenu(cmProvider, viewer);
 		
 		PrintAction printAction = new PrintAction(viewer);
-		printAction.setText("Print");
-		getEditorSite().getActionBars().getToolBarManager().add(printAction);
-		
-		
-		
+		getActionRegistry().registerAction(printAction);
+				
 		IAction snapAction = new ToggleSnapToGeometryAction(getGraphicalViewer());
 		getActionRegistry().registerAction(snapAction);
 
@@ -287,7 +284,6 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		getActionRegistry().registerAction(showGrid);
 		
 		loadProperties(viewer);
-		
 
 	}
 

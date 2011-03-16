@@ -1,6 +1,7 @@
 package no.hib.dpf.editor.editoractions;
 
 import org.eclipse.gef.GraphicalViewer;
+import org.eclipse.gef.internal.GEFMessages;
 import org.eclipse.gef.print.PrintGraphicalViewerOperation;
 import org.eclipse.jface.action.Action;
 import org.eclipse.swt.SWT;
@@ -9,13 +10,19 @@ import org.eclipse.swt.printing.Printer;
 import org.eclipse.swt.printing.PrinterData;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.actions.ActionFactory;
 
+@SuppressWarnings("restriction")
 public class PrintAction extends Action {
 
 	private GraphicalViewer viewer;
 
 	public PrintAction(GraphicalViewer viewer) {
+		super(GEFMessages.PrintAction_Label, AS_PUSH_BUTTON);
 		this.viewer = viewer;
+		setToolTipText(GEFMessages.PrintAction_Tooltip);
+		setId(ActionFactory.PRINT.getId());
+		setActionDefinitionId(ActionFactory.PRINT.getId());
 	}
 
 	@Override

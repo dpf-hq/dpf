@@ -57,7 +57,11 @@ protected void buildActions() {
 
 	addRetargetAction(new RetargetAction(GEFActionConstants.TOGGLE_GRID_VISIBILITY, 
 			GEFMessages.ToggleGrid_Label, IAction.AS_CHECK_BOX));
+	
+	addRetargetAction(new RetargetAction(ActionFactory.PRINT.getId(),
+			GEFMessages.PrintAction_Label, IAction.AS_PUSH_BUTTON));
 
+//	addGlobalActionKey(ActionFactory.PRINT.getId());
 }
 
 /**
@@ -69,9 +73,10 @@ public void contributeToMenu(IMenuManager menubar) {
 	viewMenu.add(getAction(GEFActionConstants.ZOOM_IN));
 	viewMenu.add(getAction(GEFActionConstants.ZOOM_OUT));
 	viewMenu.add(new Separator());
-//	viewMenu.add(getAction(GEFActionConstants.TOGGLE_RULER_VISIBILITY));
 	viewMenu.add(getAction(GEFActionConstants.TOGGLE_GRID_VISIBILITY));
 	viewMenu.add(getAction(GEFActionConstants.TOGGLE_SNAP_TO_GEOMETRY));
+	viewMenu.add(new Separator());
+	viewMenu.add(getAction(ActionFactory.PRINT.getId()));
 //	viewMenu.add(new Separator());
 //	viewMenu.add(getAction(GEFActionConstants.MATCH_WIDTH));
 //	viewMenu.add(getAction(GEFActionConstants.MATCH_HEIGHT));
@@ -87,9 +92,12 @@ public void contributeToToolBar(IToolBarManager toolBarManager) {
 	toolBarManager.add(getAction(ActionFactory.UNDO.getId()));
 	toolBarManager.add(getAction(ActionFactory.REDO.getId()));
 	
-//	tbm.add(new Separator());
-//	tbm.add(getAction(IncrementDecrementAction.DECREMENT));
-//	tbm.add(getAction(IncrementDecrementAction.INCREMENT));
+	toolBarManager.add(new Separator());
+	toolBarManager.add(getAction(ActionFactory.PRINT.getId()));
+	
+//	toolBarManager.add(new Separator());
+//	toolBarManager.add(getAction(IncrementDecrementAction.DECREMENT));
+//	toolBarManager.add(getAction(IncrementDecrementAction.INCREMENT));
 	
 //	toolBarManager.add(new Separator());
 //	toolBarManager.add(getAction(GEFActionConstants.ALIGN_LEFT));
