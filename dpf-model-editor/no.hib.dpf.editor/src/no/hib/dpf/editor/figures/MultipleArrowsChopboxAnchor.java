@@ -130,32 +130,39 @@ public class MultipleArrowsChopboxAnchor extends ChopboxAnchor {
 	public Point getLocation(Point reference) {
 		//System.out.println("getLocation called with reference " + reference + ", my ID is " + this);
 		
-		// The "space" available for arrows on the rectangle in an orthogonal direction to the arrows
-				
-		Rectangle r = getTranslatedBoxRectangle();
-		float centerX = r.x + 0.5f * r.width;
-		float centerY = r.y + 0.5f * r.height;
-
-		float dx = reference.x - centerX;
-		float dy = reference.y - centerY;
+		// The "space" available for arrows on the rectangle in an orthogonal
+		// direction to the arrows
 		
-		int availableOrthogonalSpace = findAvalableOrthogonalSpace(r, centerX, centerY, dx, dy);
-		
-		
-		boolean leftmostOrHighest = isAnchorLeftmostOrHighest(reference, centerX, centerY);
-		Point finalVector = getOrthogonalVector(dx, dy, getOrthogonalOffset(availableOrthogonalSpace), leftmostOrHighest);
+		// TODO: find out why this sometimes chrashes when user draws a new arrow:
+		try {
+			Rectangle r = getTranslatedBoxRectangle();
+			float centerX = r.x + 0.5f * r.width;
+			float centerY = r.y + 0.5f * r.height;
 
-		Point movedReference = new Point(reference.x + finalVector.x, reference.y + finalVector.y);
+			float dx = reference.x - centerX;
+			float dy = reference.y - centerY;
 
-		centerX = centerX + finalVector.x;
-		centerY = centerY + finalVector.y;
+			int availableOrthogonalSpace = findAvalableOrthogonalSpace(r, centerX, centerY, dx, dy);
 
-		Straight lineStraight = new Straight(new PrecisionPoint(centerX, centerY), new PrecisionPoint(movedReference.x, movedReference.y));
+			boolean leftmostOrHighest = isAnchorLeftmostOrHighest(reference, centerX, centerY);
+			Point finalVector = getOrthogonalVector(dx, dy,
+					getOrthogonalOffset(availableOrthogonalSpace),
+					leftmostOrHighest);
 
-		PrecisionPoint bestCandidate = findRectangleIntersection(r, centerX, centerY, movedReference, lineStraight);
-		if (bestCandidate != null) {
-			return new Point(bestCandidate.x, bestCandidate.y);
-		}
+			Point movedReference = new Point(reference.x + finalVector.x, reference.y + finalVector.y);
+
+			centerX = centerX + finalVector.x;
+			centerY = centerY + finalVector.y;
+
+			Straight lineStraight = new Straight(new PrecisionPoint(centerX,
+					centerY), new PrecisionPoint(movedReference.x,
+					movedReference.y));
+
+			PrecisionPoint bestCandidate = findRectangleIntersection(r,	centerX, centerY, movedReference, lineStraight);
+			if (bestCandidate != null) {
+				return new Point(bestCandidate.x, bestCandidate.y);
+			}
+		} catch (Exception e) {}
 
 		return super.getLocation(reference);
 	}
