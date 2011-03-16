@@ -207,10 +207,11 @@ public class MultipleArrowsChopboxAnchor extends ChopboxAnchor {
 	private boolean isAnchorLeftmostOrHighest(Point reference, float centerX,
 			float centerY) {
 		boolean leftmostOrHighest = false;
-		if (reference.x < (int) centerX) {
+				
+		if (reference.x < Math.round(centerX)) {
 			leftmostOrHighest = true;
-		} else if (reference.x == (int) centerX) {
-			leftmostOrHighest = reference.y < (int) centerY;
+		} else if (reference.x == Math.round(centerX)) {
+			leftmostOrHighest = reference.y < Math.round(centerY);
 		}
 		return leftmostOrHighest;
 	}
