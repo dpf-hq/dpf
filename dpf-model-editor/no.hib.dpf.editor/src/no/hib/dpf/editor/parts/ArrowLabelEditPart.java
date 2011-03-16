@@ -89,6 +89,7 @@ public class ArrowLabelEditPart extends AbstractGraphicalEditPart implements
 		String text = getConnectionModel().getLabelText();
 		Label label = new Label();
 		label.setText(text);
+		label.setOpaque(true);
 		return label;
 	}
 
