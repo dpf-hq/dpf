@@ -33,6 +33,10 @@ public class DPFDiagram extends ModelElement {
 	private static final long serialVersionUID = 1;
 	private List<VNode> shapes = new ArrayList<VNode>();
 
+	private boolean snapToGeometry = false;
+	private boolean gridEnabled = false;
+	private double zoom = 1.0;
+	
 	/** Used for adding and removing a model element to and from the DPF graph */
 	protected transient Graph dpfGraph;
 	
@@ -41,6 +45,30 @@ public class DPFDiagram extends ModelElement {
 		this.dpfGraph = MetamodelFactory.eINSTANCE.createGraph();
 	}
 	
+	public boolean isGridEnabled() {
+		return gridEnabled;
+	}
+
+	public boolean isSnapToGeometryEnabled() {
+		return snapToGeometry;
+	}
+
+	public double getZoom() {
+		return zoom;
+	}
+
+	public void setGridEnabled(boolean isEnabled) {
+		gridEnabled = isEnabled;
+	}
+
+	public void setSnapToGeometry(boolean isEnabled) {
+		snapToGeometry = isEnabled;
+	}
+
+	public void setZoom(double zoom) {
+		this.zoom = zoom;
+	}
+
 	public void validateSemantics() {
 		firePropertyChange("VALIDATE_SEMANTICS", null, null);
 	}

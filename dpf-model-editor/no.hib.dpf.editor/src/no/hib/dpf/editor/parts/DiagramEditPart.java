@@ -12,6 +12,7 @@ package no.hib.dpf.editor.parts;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import no.hib.dpf.editor.figures.DPFShortestPathConnectionRouter;
@@ -29,15 +30,22 @@ import org.eclipse.draw2d.FreeformLayout;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.MarginBorder;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.gef.CompoundSnapToHelper;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.LayerConstants;
+import org.eclipse.gef.SnapToGeometry;
+import org.eclipse.gef.SnapToGrid;
+import org.eclipse.gef.SnapToGuides;
+import org.eclipse.gef.SnapToHelper;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.gef.editpolicies.RootComponentEditPolicy;
+import org.eclipse.gef.editpolicies.SnapFeedbackPolicy;
 import org.eclipse.gef.editpolicies.XYLayoutEditPolicy;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.CreateRequest;
+import org.eclipse.gef.rulers.RulerProvider;
 
 /**
  * EditPart for the a DPFDiagram instance.
@@ -79,6 +87,39 @@ class DiagramEditPart extends AbstractGraphicalEditPart implements PropertyChang
 		// elements
 		// and creation of new model elements
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new ShapesXYLayoutEditPolicy());
+		
+		installEditPolicy("Snap Feedback", new SnapFeedbackPolicy()); //$NON-NLS-1$
+	}
+	
+
+	/**
+	 * @see org.eclipse.core.runtime.IAdaptable#getAdapter(java.lang.Class)
+	 */
+	@SuppressWarnings("rawtypes")
+	public Object getAdapter(Class adapter) {
+		if (adapter == SnapToHelper.class) {
+			List<SnapToHelper> snapStrategies = new ArrayList<SnapToHelper>();
+			Boolean val = (Boolean)getViewer().getProperty(RulerProvider.PROPERTY_RULER_VISIBILITY);
+			if (val != null && val.booleanValue())
+				snapStrategies.add(new SnapToGuides(this));
+			val = (Boolean)getViewer().getProperty(SnapToGeometry.PROPERTY_SNAP_ENABLED);
+			if (val != null && val.booleanValue())
+				snapStrategies.add(new SnapToGeometry(this));
+			val = (Boolean)getViewer().getProperty(SnapToGrid.PROPERTY_GRID_ENABLED);
+			if (val != null && val.booleanValue())
+				snapStrategies.add(new SnapToGrid(this));
+			
+			if (snapStrategies.size() == 0)
+				return null;
+			if (snapStrategies.size() == 1)
+				return snapStrategies.get(0);
+
+			SnapToHelper ss[] = new SnapToHelper[snapStrategies.size()];
+			for (int i = 0; i < snapStrategies.size(); i++)
+				ss[i] = (SnapToHelper)snapStrategies.get(i);
+			return new CompoundSnapToHelper(ss);
+		}
+		return super.getAdapter(adapter);
 	}
 
 	/*

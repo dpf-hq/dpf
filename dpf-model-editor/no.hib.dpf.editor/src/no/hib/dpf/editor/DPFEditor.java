@@ -58,9 +58,16 @@ import org.eclipse.gef.ContextMenuProvider;
 import org.eclipse.gef.DefaultEditDomain;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.GraphicalViewer;
+import org.eclipse.gef.SnapToGeometry;
+import org.eclipse.gef.SnapToGrid;
 import org.eclipse.gef.editparts.ScalableFreeformRootEditPart;
+import org.eclipse.gef.editparts.ZoomManager;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.ui.actions.ActionRegistry;
+import org.eclipse.gef.ui.actions.ToggleGridAction;
+import org.eclipse.gef.ui.actions.ToggleSnapToGeometryAction;
+import org.eclipse.gef.ui.actions.ZoomInAction;
+import org.eclipse.gef.ui.actions.ZoomOutAction;
 import org.eclipse.gef.ui.palette.FlyoutPaletteComposite;
 import org.eclipse.gef.ui.palette.FlyoutPaletteComposite.FlyoutPreferences;
 import org.eclipse.gef.ui.palette.PaletteViewer;
@@ -101,7 +108,8 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements PropertyChangeListener {
 
 	/** This is the root of the editor's model. */
-	private DPFDiagram diagram;
+	private DPFDiagram digram;
+
 	private Specification specification = MetamodelFactory.eINSTANCE.createSpecification();
 	// private ModelHierarchy modelHierarchy = MetamodelFactory.eINSTANCE.createModelHierarchy();
 	private Signature signature;
@@ -121,6 +129,14 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		paletteFactory = new DPFEditorPaletteFactory();
 		setEditDomain(new DefaultEditDomain(this));
 		shapesEditPartFactory = new EditPartFactoryImpl();
+	}
+		
+	private DPFDiagram getDPFDiagram() {
+		return digram;
+	}
+
+	private void setDPFDiagram(DPFDiagram dPFDiagram) {
+		this.digram = dPFDiagram;
 	}
 	
 	/**
@@ -176,7 +192,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 				"Creates a new [jointly-injective] Constraint",
 				VConstraint.ConstraintType.JOINTLY_INJECTIVE);
 		
-		constraintActions.add(new CreateJointlyInjectiveConstraintAction(this, diagram.getDpfGraph(), jointlyInjectiveProperties));
+		constraintActions.add(new CreateJointlyInjectiveConstraintAction(this, getDPFDiagram().getDpfGraph(), jointlyInjectiveProperties));
 				
 		ConstraintProperties jointlySurjectiveProperties = new ConstraintProperties(
 				signature.getPredicateBySymbol("[jointly-surjective]"), 
@@ -184,7 +200,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 				"Creates a new [jointly-surjective] Constraint",
 				VConstraint.ConstraintType.JOINTLY_SURJECTIVE);
 		
-		constraintActions.add(new CreateJointlySurjectiveConstraintAction(this, diagram.getDpfGraph(), jointlySurjectiveProperties));
+		constraintActions.add(new CreateJointlySurjectiveConstraintAction(this, getDPFDiagram().getDpfGraph(), jointlySurjectiveProperties));
 		
 		ConstraintProperties multiplicityProperties = new ConstraintProperties(
 				signature.getPredicateBySymbol("[mult(m,n)]"), 
@@ -192,14 +208,14 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 				"Creates a new [mult(m,n)] Constraint",
 				VConstraint.ConstraintType.MULTIPLICITY);
 
-		constraintActions.add(new CreateMultiplicityConstraintAction(this, diagram.getDpfGraph(), multiplicityProperties));
+		constraintActions.add(new CreateMultiplicityConstraintAction(this, getDPFDiagram().getDpfGraph(), multiplicityProperties));
 		
 		ConstraintProperties inverseProperties = new ConstraintProperties(
 				signature.getPredicateBySymbol("[inverse]"),
 				"Create new [inverse] Constraint",
 				"Creates a new [inverse] Constraint",
 				VConstraint.ConstraintType.INVERSE);
-		constraintActions.add(new CreateInverseConstraintAction(this, diagram.getDpfGraph(), inverseProperties));
+		constraintActions.add(new CreateInverseConstraintAction(this, getDPFDiagram().getDpfGraph(), inverseProperties));
 
 		
 		for (CreateConstraintAction createConstraintAction : constraintActions) {
@@ -230,11 +246,27 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 
 		GraphicalViewer viewer = getGraphicalViewer();
 		viewer.setEditPartFactory(shapesEditPartFactory);
-		viewer.setRootEditPart(new ScalableFreeformRootEditPart());
+		
+		// -------------------------------------------------
+		ScalableFreeformRootEditPart root = new ScalableFreeformRootEditPart();
+
+		List<String> zoomLevels = new ArrayList<String>(3);
+		zoomLevels.add(ZoomManager.FIT_ALL);
+		zoomLevels.add(ZoomManager.FIT_WIDTH);
+		zoomLevels.add(ZoomManager.FIT_HEIGHT);
+		root.getZoomManager().setZoomLevelContributions(zoomLevels);
+
+		IAction zoomIn = new ZoomInAction(root.getZoomManager());
+		IAction zoomOut = new ZoomOutAction(root.getZoomManager());
+		getActionRegistry().registerAction(zoomIn);
+		getActionRegistry().registerAction(zoomOut);
+//		getSite().getKeyBindingService().registerAction(zoomIn);
+//		getSite().getKeyBindingService().registerAction(zoomOut);
+		
+		viewer.setRootEditPart(root);
+		// -------------------------------------------------
 		viewer.setKeyHandler(new GraphicalViewerKeyHandler(viewer));
 		
-//		viewer.setProperty(SnapToGrid.PROPERTY_GRID_ENABLED, true);
-//		viewer.setProperty(SnapToGrid.PROPERTY_GRID_VISIBLE, true);
 
 		// configure the context menu provider
 		ContextMenuProvider cmProvider = new DPFEditorContextMenuProvider(
@@ -245,8 +277,49 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		PrintAction printAction = new PrintAction(viewer);
 		printAction.setText("Print");
 		getEditorSite().getActionBars().getToolBarManager().add(printAction);
+		
+		
+		
+		IAction snapAction = new ToggleSnapToGeometryAction(getGraphicalViewer());
+		getActionRegistry().registerAction(snapAction);
+
+		IAction showGrid = new ToggleGridAction(getGraphicalViewer());
+		getActionRegistry().registerAction(showGrid);
+		
+		loadProperties(viewer);
+		
+
 	}
 
+	
+	protected void loadProperties(GraphicalViewer viewer) {
+		// Snap to Geometry property
+		viewer.setProperty(SnapToGeometry.PROPERTY_SNAP_ENABLED, new Boolean(getDPFDiagram().isSnapToGeometryEnabled()));		
+		// Grid properties
+		viewer.setProperty(SnapToGrid.PROPERTY_GRID_ENABLED, new Boolean(getDPFDiagram().isGridEnabled()));
+		// We keep grid visibility and enablement in sync
+		viewer.setProperty(SnapToGrid.PROPERTY_GRID_VISIBLE, new Boolean(getDPFDiagram().isGridEnabled()));
+		// Zoom
+		ZoomManager manager = (ZoomManager)getGraphicalViewer().getProperty(ZoomManager.class.toString());
+		if (manager != null) {
+			manager.setZoom(getDPFDiagram().getZoom());
+		}
+//		// Scroll-wheel Zoom
+//		getGraphicalViewer().setProperty(MouseWheelHandler.KeyGenerator.getKey(SWT.MOD1), 
+//				MouseWheelZoomHandler.SINGLETON);
+
+	}	
+	
+	protected void saveViewerPropertiesToDiagram() {
+		getDPFDiagram().setGridEnabled(((Boolean)getGraphicalViewer().getProperty(SnapToGrid.PROPERTY_GRID_ENABLED)).booleanValue());
+		getDPFDiagram().setSnapToGeometry(((Boolean)getGraphicalViewer().getProperty(SnapToGeometry.PROPERTY_SNAP_ENABLED)).booleanValue());
+		
+		ZoomManager manager = (ZoomManager)getGraphicalViewer().getProperty(ZoomManager.class.toString());
+		if (manager != null) {
+			getDPFDiagram().setZoom(manager.getZoom());
+		}
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -261,7 +334,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 
 	private void createOutputStream(OutputStream os) throws IOException {
 		ObjectOutputStream oos = new ObjectOutputStream(os);
-		oos.writeObject(getModel());
+		oos.writeObject(getDPFDiagram());
 		oos.close();
 	}
 
@@ -321,6 +394,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 	 * )
 	 */
 	public void doSave(IProgressMonitor monitor) {
+		saveViewerPropertiesToDiagram();
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		try {
 			createOutputStream(out);
@@ -435,6 +509,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 						new WorkspaceModifyOperation() { // run this operation
 							public void execute(final IProgressMonitor monitor) {
 								try {
+									saveViewerPropertiesToDiagram();
 									ByteArrayOutputStream out = new ByteArrayOutputStream();
 									createOutputStream(out);
 									file.create(
@@ -465,13 +540,13 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 
 	@SuppressWarnings("rawtypes")
 	public Object getAdapter(Class type) {
-		if (type == IContentOutlinePage.class)
+		if (type == IContentOutlinePage.class) {
 			return new ShapesOutlinePage(new TreeViewer());
-		return super.getAdapter(type);
-	}
+		} else if (type == ZoomManager.class) {
+			return getGraphicalViewer().getProperty(ZoomManager.class.toString());
+		}
 
-	DPFDiagram getModel() {
-		return diagram;
+		return super.getAdapter(type);		
 	}
 
 	/*
@@ -494,9 +569,9 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		System.err.println("** Load failed. Using default model. **");
 		e.printStackTrace();
 		setSpecification(MetamodelFactory.eINSTANCE.createSpecification());
-		diagram = new DPFDiagram();
-		diagram.setDpfGraph(getSpecification().getGraph());
-		diagram.addPropertyChangeListener(this);
+		setDPFDiagram(new DPFDiagram());
+		getDPFDiagram().setDpfGraph(getSpecification().getGraph());
+		getDPFDiagram().addPropertyChangeListener(this);
 	}
 
 	/**
@@ -507,7 +582,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 	protected void initializeGraphicalViewer() {
 		super.initializeGraphicalViewer();
 		GraphicalViewer viewer = getGraphicalViewer();
-		viewer.setContents(getModel()); // set the contents of this editor
+		viewer.setContents(getDPFDiagram()); // set the contents of this editor
 
 //		// listen for dropped parts
 //		viewer.addDropTargetListener(createTransferDropTargetListener());
@@ -546,8 +621,8 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		try {
 			IFile file = ((IFileEditorInput) input).getFile();
 			ObjectInputStream in = new ObjectInputStream(file.getContents());
-			diagram = (DPFDiagram) in.readObject();
-			diagram.addPropertyChangeListener(this);			
+			setDPFDiagram((DPFDiagram) in.readObject());
+			getDPFDiagram().addPropertyChangeListener(this);			
 			in.close();
 			setPartName(file.getName());
 
@@ -559,7 +634,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 			//FIXME: We should only refresh the project if needed
 			ResourcesPlugin.getWorkspace().getRoot().refreshLocal(IResource.DEPTH_INFINITE, null);
 			deserializeDpfModel();
-			setDpfReferencesInViewModel(diagram.getChildrenWithID());
+			setDpfReferencesInViewModel(getDPFDiagram().getChildrenWithID());
 			
 		} catch (IOException e) {
 			handleLoadException(e);
@@ -567,12 +642,12 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 			handleLoadException(e);
 		} catch (java.lang.ClassNotFoundException e) {
 			handleLoadException(e);
-		}
+		}		
 	}
 
 	private void setDpfReferencesInViewModel(Map<String, ModelElement> children) {
 		for (String id : children.keySet()) {
-			IDObject idObject = diagram.getDpfGraph().getGraphMember(id);
+			IDObject idObject = getDPFDiagram().getDpfGraph().getGraphMember(id);
 			if (idObject == null) {
 				throw new ModelSerializationException("A deserialized view model object had no serialized counterpart in the dpf model");
 			}
@@ -591,7 +666,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		if (serializedDPF.exists()) {
 			setSpecification(loadDPF(dpfFilename));
 		}
-		diagram.setDpfGraph(getSpecification().getGraph());
+		getDPFDiagram().setDpfGraph(getSpecification().getGraph());
 //		paletteFactory.updatePalette(getPaletteRoot(), getSpecification().getTypeGraph());
 	}
 
@@ -663,7 +738,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 			// hook outline viewer
 			getSelectionSynchronizer().addViewer(getViewer());
 			// initialize outline viewer with model
-			getViewer().setContents(getModel());
+			getViewer().setContents(getDPFDiagram());
 			// show outline viewer
 		}
 

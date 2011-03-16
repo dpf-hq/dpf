@@ -39,6 +39,7 @@ import org.eclipse.ui.internal.ide.IDEWorkbenchMessages;
  *  
  * @author Elias Volanakis
  */
+@SuppressWarnings("restriction")
 public class DPFCreationWizard extends Wizard implements INewWizard {
 
 	private static int fileCount = 1;
@@ -62,7 +63,6 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 	 * @see org.eclipse.ui.IWorkbenchWizard#init(org.eclipse.ui.IWorkbench,
 	 * org.eclipse.jface.viewers.IStructuredSelection)
 	 */
-	@SuppressWarnings("restriction")
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		// create pages for this wizard
 		page1 = new CreationPage(workbench, selection);

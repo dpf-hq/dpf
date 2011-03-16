@@ -10,19 +10,32 @@
 Ê*******************************************************************************/
 package no.hib.dpf.editor;
 
+import org.eclipse.gef.editparts.ZoomManager;
+import org.eclipse.gef.internal.GEFMessages;
 import org.eclipse.gef.ui.actions.ActionBarContributor;
 import org.eclipse.gef.ui.actions.DeleteRetargetAction;
+import org.eclipse.gef.ui.actions.GEFActionConstants;
 import org.eclipse.gef.ui.actions.RedoRetargetAction;
 import org.eclipse.gef.ui.actions.UndoRetargetAction;
+import org.eclipse.gef.ui.actions.ZoomComboContributionItem;
+import org.eclipse.gef.ui.actions.ZoomInRetargetAction;
+import org.eclipse.gef.ui.actions.ZoomOutRetargetAction;
+import org.eclipse.jface.action.IAction;
+import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IStatusLineManager;
 import org.eclipse.jface.action.IToolBarManager;
+import org.eclipse.jface.action.MenuManager;
+import org.eclipse.jface.action.Separator;
+import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.actions.ActionFactory;
+import org.eclipse.ui.actions.RetargetAction;
 
 /**
  * Contributes actions to a toolbar.
  * This class is tied to the editor in the definition of editor-extension (see plugin.xml).
  * @author Elias Volanakis
  */
+@SuppressWarnings("restriction")
 public class DPFEditorActionBarContributor extends ActionBarContributor {
 
 /**
@@ -34,6 +47,35 @@ protected void buildActions() {
 	addRetargetAction(new DeleteRetargetAction());
 	addRetargetAction(new UndoRetargetAction());
 	addRetargetAction(new RedoRetargetAction());
+	
+	addRetargetAction(new ZoomInRetargetAction());
+	addRetargetAction(new ZoomOutRetargetAction());
+
+	addRetargetAction(new RetargetAction(
+			GEFActionConstants.TOGGLE_SNAP_TO_GEOMETRY, 
+			GEFMessages.ToggleSnapToGeometry_Label, IAction.AS_CHECK_BOX));
+
+	addRetargetAction(new RetargetAction(GEFActionConstants.TOGGLE_GRID_VISIBILITY, 
+			GEFMessages.ToggleGrid_Label, IAction.AS_CHECK_BOX));
+
+}
+
+/**
+ * @see org.eclipse.ui.part.EditorActionBarContributor#contributeToMenu(IMenuManager)
+ */
+public void contributeToMenu(IMenuManager menubar) {
+	super.contributeToMenu(menubar);
+	MenuManager viewMenu = new MenuManager("DPF Diagram");
+	viewMenu.add(getAction(GEFActionConstants.ZOOM_IN));
+	viewMenu.add(getAction(GEFActionConstants.ZOOM_OUT));
+	viewMenu.add(new Separator());
+//	viewMenu.add(getAction(GEFActionConstants.TOGGLE_RULER_VISIBILITY));
+	viewMenu.add(getAction(GEFActionConstants.TOGGLE_GRID_VISIBILITY));
+	viewMenu.add(getAction(GEFActionConstants.TOGGLE_SNAP_TO_GEOMETRY));
+//	viewMenu.add(new Separator());
+//	viewMenu.add(getAction(GEFActionConstants.MATCH_WIDTH));
+//	viewMenu.add(getAction(GEFActionConstants.MATCH_HEIGHT));
+	menubar.insertAfter(IWorkbenchActionConstants.M_EDIT, viewMenu);
 }
 
 /**
@@ -44,6 +86,29 @@ protected void buildActions() {
 public void contributeToToolBar(IToolBarManager toolBarManager) {
 	toolBarManager.add(getAction(ActionFactory.UNDO.getId()));
 	toolBarManager.add(getAction(ActionFactory.REDO.getId()));
+	
+//	tbm.add(new Separator());
+//	tbm.add(getAction(IncrementDecrementAction.DECREMENT));
+//	tbm.add(getAction(IncrementDecrementAction.INCREMENT));
+	
+//	toolBarManager.add(new Separator());
+//	toolBarManager.add(getAction(GEFActionConstants.ALIGN_LEFT));
+//	toolBarManager.add(getAction(GEFActionConstants.ALIGN_CENTER));
+//	toolBarManager.add(getAction(GEFActionConstants.ALIGN_RIGHT));
+//	toolBarManager.add(new Separator());
+//	toolBarManager.add(getAction(GEFActionConstants.ALIGN_TOP));
+//	toolBarManager.add(getAction(GEFActionConstants.ALIGN_MIDDLE));
+//	toolBarManager.add(getAction(GEFActionConstants.ALIGN_BOTTOM));
+//	
+//	toolBarManager.add(new Separator());	
+//	toolBarManager.add(getAction(GEFActionConstants.MATCH_WIDTH));
+//	toolBarManager.add(getAction(GEFActionConstants.MATCH_HEIGHT));
+//	
+	toolBarManager.add(new Separator());	
+	String[] zoomStrings = new String[] {	ZoomManager.FIT_ALL, 
+											ZoomManager.FIT_HEIGHT, 
+											ZoomManager.FIT_WIDTH	};
+	toolBarManager.add(new ZoomComboContributionItem(getPage(), zoomStrings));	
 }
 
 @Override
