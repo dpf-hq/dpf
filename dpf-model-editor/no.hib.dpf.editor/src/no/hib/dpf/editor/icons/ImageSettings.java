@@ -10,7 +10,12 @@ public enum ImageSettings {
 	MULTIPLICITY("mult_36.png"),
 	INVERSE("inv_36.png"),
 	JOINTLY_INJECTIVE("ji_36.png"),
-	JOINTLY_SURJECTIVE("js_36.png");
+	JOINTLY_SURJECTIVE("js_36.png"),
+	IMAGE_INCLUSION("img_incl_36.png"),
+	COMPOSITION("ji_36.png"),
+	INJECTIVE("ji_36.png"),
+	IRREFLEXIVE("ji_36.png"),
+	SURJECTIVE("ji_36.png");
 	
 	private String filePath;
 	

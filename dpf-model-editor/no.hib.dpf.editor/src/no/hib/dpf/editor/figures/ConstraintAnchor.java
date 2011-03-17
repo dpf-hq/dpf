@@ -153,8 +153,7 @@ public class ConstraintAnchor implements ConnectionAnchor {
 		return calculateConnectionPoint(endPoint, secondPoint, distanceBetweenFirstPoints, distanceToConnectionPoint);
 	}
 
-	protected double findDistanceToConnectionPoint(
-			double distanceBetweenFirstPoints) {
+	protected double findDistanceToConnectionPoint(double distanceBetweenFirstPoints) {
 		double distanceToConnectionPoint = distanceBetweenFirstPoints / 2;
 		if (distanceToConnectionPoint > maxDistanceToConnectionPoint) {
 			distanceToConnectionPoint = maxDistanceToConnectionPoint;

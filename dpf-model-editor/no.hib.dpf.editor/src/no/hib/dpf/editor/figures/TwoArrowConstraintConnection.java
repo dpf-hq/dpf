@@ -21,7 +21,7 @@ public abstract class TwoArrowConstraintConnection extends PolylineConnection im
 	protected String labelText;
 	protected ConstraintEditPart constraintEditPart;
 	private NodeFigure basicRectangleFigure;
-	private int [] controlPointsOffsets;
+	protected int [] controlPointsOffsets;
 
 	public TwoArrowConstraintConnection(ConstraintEditPart constraintEditPart, String labelText, int [] controlPointsOffsets) {
 		super();
@@ -44,10 +44,10 @@ public abstract class TwoArrowConstraintConnection extends PolylineConnection im
 //		drawAnchorBlob(g, buildPointBox(getMidwayPoint(controlpoints[0], p2)));
 		
 		
-		Bezier bezier = new Bezier(p1, p2, getMidwayPoint(controlpoints[0], p1), getMidwayPoint(controlpoints[0], p2));
+		Bezier bezier = new Bezier(p1, p2, getMidwayPoint(controlpoints[1], p1), getMidwayPoint(controlpoints[1], p2));
 		bezier.outlineShape(g);
 		
-		drawCenteredText(g, labelText, controlpoints[1]);
+		drawCenteredText(g, labelText, controlpoints[0]);
 		drawEndpointBlobs(g, p1, p2);
 
 	}

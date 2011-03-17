@@ -34,6 +34,27 @@ public class ConstraintRetargetAction extends LabelRetargetAction {
 				setId(CreateMultiplicityConstraintAction.ID);
 				setImageDescriptor(getImageDescriptor(ImageSettings.MULTIPLICITY));
 				break;
+			case IMAGE_INCLUSION:
+				setId(CreateImageInclusionConstraintAction.ID);
+				setImageDescriptor(getImageDescriptor(ImageSettings.IMAGE_INCLUSION));
+				break;
+			case COMPOSITION:
+				setId(CreateCompositionConstraintAction.ID);
+				setImageDescriptor(getImageDescriptor(ImageSettings.COMPOSITION));
+				break;
+			case INJECTIVE:
+				setId(CreateInjectiveConstraintAction.ID);
+				setImageDescriptor(getImageDescriptor(ImageSettings.INJECTIVE));
+				break;
+			case SURJECTIVE:
+				setId(CreateSurjectiveConstraintAction.ID);
+				setImageDescriptor(getImageDescriptor(ImageSettings.SURJECTIVE));
+				break;
+			case IRREFLEXIVE:
+				setId(CreateIrreflexiveConstraintAction.ID);
+				setImageDescriptor(getImageDescriptor(ImageSettings.IRREFLEXIVE));
+				break;
+			
 		}
 		// TODO Auto-generated constructor stub
 	}

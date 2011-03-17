@@ -56,7 +56,12 @@ public class VConstraint extends ModelElement implements Constraint, IDObjectCon
 		JOINTLY_INJECTIVE,
 		JOINTLY_SURJECTIVE,
 		MULTIPLICITY,
-		INVERSE
+		INVERSE,
+		IMAGE_INCLUSION,
+		COMPOSITION,
+		INJECTIVE,
+		IRREFLEXIVE,
+		SURJECTIVE
 	}
 	
 	private ConstraintType constraintType;

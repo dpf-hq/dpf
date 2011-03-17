@@ -33,11 +33,6 @@ public class MultipleArrowConstraintCreateCommand extends ConstraintCreateComman
 		this.constraintType = constraintType;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.gef.commands.Command#canExecute()
-	 */
 	public boolean canExecute() {
 		if (source.equals(target)) {
 			return false;
@@ -58,26 +53,9 @@ public class MultipleArrowConstraintCreateCommand extends ConstraintCreateComman
 		return false;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.gef.commands.Command#execute()
-	 */
 	public void execute() {
 		// create a new connection between source and target
 		constraint = new VConstraint(source, target, constraintType, idObject);
 	}
-
-//	/**
-//	 * Set the target endpoint for the connection.
-//	 * @param target that target endpoint (a non-null Shape instance)
-//	 * @throws IllegalArgumentException if target is null
-//	 */
-//	public void setTarget(VArrow target) {
-//		if (target == null) {
-//			throw new IllegalArgumentException();
-//		}
-//		this.target = target;
-//	}
 
 }

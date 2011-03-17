@@ -9,7 +9,7 @@ public class OppositeArrowsConstraintAnchor extends ConstraintAnchor {
 	}
 
 	protected double findDistanceToConnectionPoint(double distanceBetweenFirstPoints) {
-		double distanceToConnectionPoint = distanceBetweenFirstPoints*5/6;
+		double distanceToConnectionPoint = distanceBetweenFirstPoints*4/6;
 		if (distanceToConnectionPoint > maxDistanceToConnectionPoint) {
 			distanceToConnectionPoint = maxDistanceToConnectionPoint;
 		}

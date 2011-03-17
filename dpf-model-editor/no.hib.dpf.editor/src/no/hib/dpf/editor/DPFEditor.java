@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.Map;
 
 import no.hib.dpf.editor.editoractions.ConstraintProperties;
+import no.hib.dpf.editor.editoractions.CreateImageInclusionConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateInverseConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointlyInjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointlySurjectiveConstraintAction;
@@ -182,6 +183,14 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 				"Creates a new [inverse] Constraint",
 				VConstraint.ConstraintType.INVERSE);
 		registerAction(new CreateInverseConstraintAction(this, getDPFDiagram().getDpfGraph(), inverseProperties));
+
+		ConstraintProperties imageInclusionProperties = new ConstraintProperties(
+				signature.getPredicateBySymbol("[image-inclusion]"),
+				"Create new [image-inclusion] Constraint",
+				"Creates a new [image-inclusion] Constraint",
+				VConstraint.ConstraintType.IMAGE_INCLUSION);
+		registerAction(new CreateImageInclusionConstraintAction(this, getDPFDiagram().getDpfGraph(), imageInclusionProperties));
+		
 
 		registerAction(new AlignmentAction((IWorkbenchPart)this, PositionConstants.LEFT));
 		registerAction(new AlignmentAction((IWorkbenchPart)this, PositionConstants.RIGHT));
@@ -430,6 +439,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		Predicate inversePredicate = MetamodelFactory.eINSTANCE.createPredicate("[inverse]", "n_1,n_2", "a_1:n_1:n_2,a_2:n_2:n_1");
 		inversePredicate.setSemantics(MetamodelFactory.eINSTANCE.createInverseSemantics());
 		signature.getPredicates().add(inversePredicate);
+		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("[image-inclusion]", "n_1,n_2", "a_1:n_1:n_2,a_2:n_1:n_2"));
 	}
 	
 	public static void saveDPF(String dpfFileName, Specification specification) {		
