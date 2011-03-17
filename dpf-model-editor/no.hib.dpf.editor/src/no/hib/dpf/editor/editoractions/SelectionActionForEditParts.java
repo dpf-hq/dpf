@@ -20,7 +20,7 @@ public abstract class SelectionActionForEditParts extends SelectionAction {
 
 	public SelectionActionForEditParts(IWorkbenchPart part, String ID, Graph graph) {
 		super(part);
-		setId(ID);              // sets ID = joint image
+		setId(ID);
 		this.graph = graph;
 	}
 	

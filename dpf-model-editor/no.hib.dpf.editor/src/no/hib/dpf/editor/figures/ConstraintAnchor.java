@@ -90,7 +90,6 @@ public class ConstraintAnchor implements ConnectionAnchor {
 	 * @see ConnectionAnchor#getReferencePoint()
 	 */
 	public Point getReferencePoint() {
-		System.out.println("returns reference point: " + getLinePoint());
 		return getLinePoint();
 	}
 

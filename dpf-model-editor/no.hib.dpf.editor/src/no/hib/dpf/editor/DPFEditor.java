@@ -26,7 +26,6 @@ import java.util.List;
 import java.util.Map;
 
 import no.hib.dpf.editor.editoractions.ConstraintProperties;
-import no.hib.dpf.editor.editoractions.CreateConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateInverseConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointlyInjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointlySurjectiveConstraintAction;
@@ -53,6 +52,7 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.gef.ContextMenuProvider;
 import org.eclipse.gef.DefaultEditDomain;
@@ -64,6 +64,7 @@ import org.eclipse.gef.editparts.ScalableFreeformRootEditPart;
 import org.eclipse.gef.editparts.ZoomManager;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.ui.actions.ActionRegistry;
+import org.eclipse.gef.ui.actions.AlignmentAction;
 import org.eclipse.gef.ui.actions.ToggleGridAction;
 import org.eclipse.gef.ui.actions.ToggleSnapToGeometryAction;
 import org.eclipse.gef.ui.actions.ZoomInAction;
@@ -78,7 +79,6 @@ import org.eclipse.gef.ui.parts.GraphicalViewerKeyHandler;
 import org.eclipse.gef.ui.parts.TreeViewer;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
-import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -121,7 +121,6 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 	
 	private EditPartFactoryImpl shapesEditPartFactory;
 	private DPFEditorPaletteFactory paletteFactory;
-	private List<CreateConstraintAction> constraintActions = new ArrayList<CreateConstraintAction>();
 
 	/** Create a new DPFEditor instance. This is called by the Workspace. */
 	public DPFEditor() {
@@ -140,37 +139,6 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 	}
 	
 	/**
-	 * Test solution for buttons
-	 */
-//	@Override
-//	public void createPartControl(Composite parent) {
-		
-//		Image image = new Image(parent.getDisplay(),"/Users/oyvind/Documents/model_workspace001/no.hib.dpf.editor/src/no/hib/dpf/editor/" +  ImageSettings.getImageSettings().getFilePath(ImageSettings.SMALL_RECTANGLE));
-		
-//		Composite c = new Composite(parent, SWT.None);
-//		c.setLayout(new GridLayout(1, true));
-		
-//		ToolBar tb = new ToolBar(c, SWT.None);
-//		tb.setLayoutData(new org.eclipse.swt.layout.GridData(
-//				org.eclipse.swt.layout.GridData.FILL_HORIZONTAL));
-		
-		
-//		this.getEditorSite().getActionBars().getToolBarManager().add(constraintActions.get(0));
-//		ToolItem ti1 = new ToolItem(tb, SWT.PUSH);
-//		ti1.setText("Tool item 1");
-//		ti1.setImage(image);
-//
-//		ToolItem ti2 = new ToolItem(tb, SWT.PUSH);
-//		ti2.setText("Tool item 2");
-//		ToolItem ti3 = new ToolItem(tb, SWT.PUSH);
-//		ti3.setText("Tool item 3");
-//		Composite composite = new Composite(c, SWT.None);
-//		composite.setLayoutData(new GridData(GridData.FILL_BOTH));
-//		composite.setLayout(new FillLayout());
-//		super.createPartControl(composite);
-//	}
-	
-	/**
 	 * Overridden to create our own actions
 	 */
 	@Override
@@ -184,15 +152,13 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		// First step to move the predicates out of the editor:
 		// There remains to make some coupling between these predicates
 		// and the parts/figures that implement them.
-		
-		
 		ConstraintProperties jointlyInjectiveProperties = new ConstraintProperties(
 				signature.getPredicateBySymbol("[jointly-injective]"), 
 				"Create new [jointly-injective] Constraint",
 				"Creates a new [jointly-injective] Constraint",
 				VConstraint.ConstraintType.JOINTLY_INJECTIVE);
 		
-		constraintActions.add(new CreateJointlyInjectiveConstraintAction(this, getDPFDiagram().getDpfGraph(), jointlyInjectiveProperties));
+		registerAction(new CreateJointlyInjectiveConstraintAction(this, getDPFDiagram().getDpfGraph(), jointlyInjectiveProperties));
 				
 		ConstraintProperties jointlySurjectiveProperties = new ConstraintProperties(
 				signature.getPredicateBySymbol("[jointly-surjective]"), 
@@ -200,7 +166,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 				"Creates a new [jointly-surjective] Constraint",
 				VConstraint.ConstraintType.JOINTLY_SURJECTIVE);
 		
-		constraintActions.add(new CreateJointlySurjectiveConstraintAction(this, getDPFDiagram().getDpfGraph(), jointlySurjectiveProperties));
+		registerAction(new CreateJointlySurjectiveConstraintAction(this, getDPFDiagram().getDpfGraph(), jointlySurjectiveProperties));
 		
 		ConstraintProperties multiplicityProperties = new ConstraintProperties(
 				signature.getPredicateBySymbol("[mult(m,n)]"), 
@@ -208,19 +174,21 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 				"Creates a new [mult(m,n)] Constraint",
 				VConstraint.ConstraintType.MULTIPLICITY);
 
-		constraintActions.add(new CreateMultiplicityConstraintAction(this, getDPFDiagram().getDpfGraph(), multiplicityProperties));
+		registerAction(new CreateMultiplicityConstraintAction(this, getDPFDiagram().getDpfGraph(), multiplicityProperties));
 		
 		ConstraintProperties inverseProperties = new ConstraintProperties(
 				signature.getPredicateBySymbol("[inverse]"),
 				"Create new [inverse] Constraint",
 				"Creates a new [inverse] Constraint",
 				VConstraint.ConstraintType.INVERSE);
-		constraintActions.add(new CreateInverseConstraintAction(this, getDPFDiagram().getDpfGraph(), inverseProperties));
+		registerAction(new CreateInverseConstraintAction(this, getDPFDiagram().getDpfGraph(), inverseProperties));
 
-		
-		for (CreateConstraintAction createConstraintAction : constraintActions) {
-			registerAction(createConstraintAction);
-		}		
+		registerAction(new AlignmentAction((IWorkbenchPart)this, PositionConstants.LEFT));
+		registerAction(new AlignmentAction((IWorkbenchPart)this, PositionConstants.RIGHT));
+		registerAction(new AlignmentAction((IWorkbenchPart)this, PositionConstants.TOP));
+		registerAction(new AlignmentAction((IWorkbenchPart)this, PositionConstants.BOTTOM));
+		registerAction(new AlignmentAction((IWorkbenchPart)this, PositionConstants.CENTER));
+		registerAction(new AlignmentAction((IWorkbenchPart)this, PositionConstants.MIDDLE));
 	}
 
 	@SuppressWarnings("unchecked")
@@ -260,33 +228,25 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		IAction zoomOut = new ZoomOutAction(root.getZoomManager());
 		getActionRegistry().registerAction(zoomIn);
 		getActionRegistry().registerAction(zoomOut);
-//		getSite().getKeyBindingService().registerAction(zoomIn);
-//		getSite().getKeyBindingService().registerAction(zoomOut);
 		
 		viewer.setRootEditPart(root);
 		// -------------------------------------------------
-		viewer.setKeyHandler(new GraphicalViewerKeyHandler(viewer));
 		
+		registerAction(new PrintAction(viewer));		
+
+		registerAction(new ToggleSnapToGeometryAction(viewer));
+
+		registerAction(new ToggleGridAction(viewer));
+		
+		viewer.setKeyHandler(new GraphicalViewerKeyHandler(viewer));
 
 		// configure the context menu provider
-		ContextMenuProvider cmProvider = new DPFEditorContextMenuProvider(
-				viewer, getActionRegistry());
+		ContextMenuProvider cmProvider = new DPFEditorContextMenuProvider(viewer, getActionRegistry());
 		viewer.setContextMenu(cmProvider);
 		getSite().registerContextMenu(cmProvider, viewer);
-		
-		PrintAction printAction = new PrintAction(viewer);
-		getActionRegistry().registerAction(printAction);
-				
-		IAction snapAction = new ToggleSnapToGeometryAction(getGraphicalViewer());
-		getActionRegistry().registerAction(snapAction);
-
-		IAction showGrid = new ToggleGridAction(getGraphicalViewer());
-		getActionRegistry().registerAction(showGrid);
-		
+						
 		loadProperties(viewer);
-
 	}
-
 	
 	protected void loadProperties(GraphicalViewer viewer) {
 		// Snap to Geometry property
@@ -300,20 +260,18 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		if (manager != null) {
 			manager.setZoom(getDPFDiagram().getZoom());
 		}
-//		// Scroll-wheel Zoom
-//		getGraphicalViewer().setProperty(MouseWheelHandler.KeyGenerator.getKey(SWT.MOD1), 
-//				MouseWheelZoomHandler.SINGLETON);
-
 	}	
 	
 	protected void saveViewerPropertiesToDiagram() {
-		getDPFDiagram().setGridEnabled(((Boolean)getGraphicalViewer().getProperty(SnapToGrid.PROPERTY_GRID_ENABLED)).booleanValue());
-		getDPFDiagram().setSnapToGeometry(((Boolean)getGraphicalViewer().getProperty(SnapToGeometry.PROPERTY_SNAP_ENABLED)).booleanValue());
+		try {
+			getDPFDiagram().setGridEnabled(((Boolean)getGraphicalViewer().getProperty(SnapToGrid.PROPERTY_GRID_ENABLED)).booleanValue());
+			getDPFDiagram().setSnapToGeometry(((Boolean)getGraphicalViewer().getProperty(SnapToGeometry.PROPERTY_SNAP_ENABLED)).booleanValue());
 		
-		ZoomManager manager = (ZoomManager)getGraphicalViewer().getProperty(ZoomManager.class.toString());
-		if (manager != null) {
-			getDPFDiagram().setZoom(manager.getZoom());
-		}
+			ZoomManager manager = (ZoomManager)getGraphicalViewer().getProperty(ZoomManager.class.toString());
+			if (manager != null) {
+				getDPFDiagram().setZoom(manager.getZoom());
+			}
+		} catch (Exception e) {}
 	}
 	
 	/*
@@ -589,15 +547,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		super.setFocus();
 		paletteFactory.updatePalette(getPaletteRoot(), getSpecification().getTypeGraph());		
 	}
-	
-	@Override
-	public void selectionChanged(IWorkbenchPart part, ISelection selection) {
-		super.selectionChanged(part, selection);
-//		if (this.equals(getSite().getPage().getActiveEditor())) {
-//			paletteFactory.updateConstraints(constraintActions, getPaletteRoot(), selection);			
-//		}
-	}	
-	
+		
 	/*
 	 * (non-Javadoc)
 	 * 

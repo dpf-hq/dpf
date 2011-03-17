@@ -14,7 +14,6 @@ import no.hib.dpf.editor.editoractions.CreateInverseConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointlyInjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointlySurjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateMultiplicityConstraintAction;
-import no.hib.dpf.editor.editoractions.SrcSelectAction;
 
 import org.eclipse.gef.ContextMenuProvider;
 import org.eclipse.gef.EditPartViewer;
@@ -73,7 +72,6 @@ public class DPFEditorContextMenuProvider extends ContextMenuProvider {
 		menu.appendToGroup(GEFActionConstants.GROUP_EDIT,
 				getAction(ActionFactory.DELETE.getId()));
 
-		getActionAndAppendToMenu(menu, SrcSelectAction.ID);
 		getActionAndAppendToMenu(menu, CreateJointlyInjectiveConstraintAction.ID);
 		getActionAndAppendToMenu(menu, CreateJointlySurjectiveConstraintAction.ID);
 		getActionAndAppendToMenu(menu, CreateInverseConstraintAction.ID);

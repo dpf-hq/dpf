@@ -33,7 +33,7 @@ public class DPFDiagram extends ModelElement {
 	private static final long serialVersionUID = 1;
 	private List<VNode> shapes = new ArrayList<VNode>();
 
-	private boolean snapToGeometry = false;
+	private boolean snapToGeometry = true;
 	private boolean gridEnabled = false;
 	private double zoom = 1.0;
 	

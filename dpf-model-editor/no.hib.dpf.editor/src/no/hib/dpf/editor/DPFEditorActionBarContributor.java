@@ -10,9 +10,18 @@
 Ê*******************************************************************************/
 package no.hib.dpf.editor;
 
+import no.hib.dpf.editor.editoractions.ConstraintRetargetAction;
+import no.hib.dpf.editor.editoractions.CreateInverseConstraintAction;
+import no.hib.dpf.editor.editoractions.CreateJointlyInjectiveConstraintAction;
+import no.hib.dpf.editor.editoractions.CreateJointlySurjectiveConstraintAction;
+import no.hib.dpf.editor.editoractions.CreateMultiplicityConstraintAction;
+import no.hib.dpf.editor.model.VConstraint;
+
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.gef.editparts.ZoomManager;
 import org.eclipse.gef.internal.GEFMessages;
 import org.eclipse.gef.ui.actions.ActionBarContributor;
+import org.eclipse.gef.ui.actions.AlignmentRetargetAction;
 import org.eclipse.gef.ui.actions.DeleteRetargetAction;
 import org.eclipse.gef.ui.actions.GEFActionConstants;
 import org.eclipse.gef.ui.actions.RedoRetargetAction;
@@ -60,8 +69,21 @@ protected void buildActions() {
 	
 	addRetargetAction(new RetargetAction(ActionFactory.PRINT.getId(),
 			GEFMessages.PrintAction_Label, IAction.AS_PUSH_BUTTON));
-
-//	addGlobalActionKey(ActionFactory.PRINT.getId());
+	
+	
+	addRetargetAction(new AlignmentRetargetAction(PositionConstants.LEFT));
+	addRetargetAction(new AlignmentRetargetAction(PositionConstants.CENTER));
+	addRetargetAction(new AlignmentRetargetAction(PositionConstants.RIGHT));
+	addRetargetAction(new AlignmentRetargetAction(PositionConstants.TOP));
+	addRetargetAction(new AlignmentRetargetAction(PositionConstants.MIDDLE));
+	addRetargetAction(new AlignmentRetargetAction(PositionConstants.BOTTOM));
+	
+	
+	addRetargetAction(new ConstraintRetargetAction(VConstraint.ConstraintType.INVERSE));
+	addRetargetAction(new ConstraintRetargetAction(VConstraint.ConstraintType.JOINTLY_INJECTIVE));
+	addRetargetAction(new ConstraintRetargetAction(VConstraint.ConstraintType.JOINTLY_SURJECTIVE));
+	addRetargetAction(new ConstraintRetargetAction(VConstraint.ConstraintType.MULTIPLICITY));
+	
 }
 
 /**
@@ -75,11 +97,6 @@ public void contributeToMenu(IMenuManager menubar) {
 	viewMenu.add(new Separator());
 	viewMenu.add(getAction(GEFActionConstants.TOGGLE_GRID_VISIBILITY));
 	viewMenu.add(getAction(GEFActionConstants.TOGGLE_SNAP_TO_GEOMETRY));
-	viewMenu.add(new Separator());
-	viewMenu.add(getAction(ActionFactory.PRINT.getId()));
-//	viewMenu.add(new Separator());
-//	viewMenu.add(getAction(GEFActionConstants.MATCH_WIDTH));
-//	viewMenu.add(getAction(GEFActionConstants.MATCH_HEIGHT));
 	menubar.insertAfter(IWorkbenchActionConstants.M_EDIT, viewMenu);
 }
 
@@ -92,31 +109,28 @@ public void contributeToToolBar(IToolBarManager toolBarManager) {
 	toolBarManager.add(getAction(ActionFactory.UNDO.getId()));
 	toolBarManager.add(getAction(ActionFactory.REDO.getId()));
 	
+	
 	toolBarManager.add(new Separator());
-	toolBarManager.add(getAction(ActionFactory.PRINT.getId()));
-	
-//	toolBarManager.add(new Separator());
-//	toolBarManager.add(getAction(IncrementDecrementAction.DECREMENT));
-//	toolBarManager.add(getAction(IncrementDecrementAction.INCREMENT));
-	
-//	toolBarManager.add(new Separator());
-//	toolBarManager.add(getAction(GEFActionConstants.ALIGN_LEFT));
-//	toolBarManager.add(getAction(GEFActionConstants.ALIGN_CENTER));
-//	toolBarManager.add(getAction(GEFActionConstants.ALIGN_RIGHT));
-//	toolBarManager.add(new Separator());
-//	toolBarManager.add(getAction(GEFActionConstants.ALIGN_TOP));
-//	toolBarManager.add(getAction(GEFActionConstants.ALIGN_MIDDLE));
-//	toolBarManager.add(getAction(GEFActionConstants.ALIGN_BOTTOM));
-//	
-//	toolBarManager.add(new Separator());	
-//	toolBarManager.add(getAction(GEFActionConstants.MATCH_WIDTH));
-//	toolBarManager.add(getAction(GEFActionConstants.MATCH_HEIGHT));
+	toolBarManager.add(getAction(GEFActionConstants.ALIGN_LEFT));
+	toolBarManager.add(getAction(GEFActionConstants.ALIGN_CENTER));
+	toolBarManager.add(getAction(GEFActionConstants.ALIGN_RIGHT));
+	toolBarManager.add(new Separator());
+	toolBarManager.add(getAction(GEFActionConstants.ALIGN_TOP));
+	toolBarManager.add(getAction(GEFActionConstants.ALIGN_MIDDLE));
+	toolBarManager.add(getAction(GEFActionConstants.ALIGN_BOTTOM));
 //	
 	toolBarManager.add(new Separator());	
 	String[] zoomStrings = new String[] {	ZoomManager.FIT_ALL, 
 											ZoomManager.FIT_HEIGHT, 
 											ZoomManager.FIT_WIDTH	};
-	toolBarManager.add(new ZoomComboContributionItem(getPage(), zoomStrings));	
+	toolBarManager.add(new ZoomComboContributionItem(getPage(), zoomStrings));
+	
+	toolBarManager.add(new Separator());	
+	
+	toolBarManager.add(getAction(CreateJointlyInjectiveConstraintAction.ID));
+	toolBarManager.add(getAction(CreateJointlySurjectiveConstraintAction.ID));
+	toolBarManager.add(getAction(CreateInverseConstraintAction.ID));
+	toolBarManager.add(getAction(CreateMultiplicityConstraintAction.ID));
 }
 
 @Override
