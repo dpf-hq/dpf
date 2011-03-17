@@ -9,6 +9,7 @@ import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.LineBorder;
 import org.eclipse.draw2d.ToolbarLayout;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.swt.graphics.Color;
 
@@ -24,6 +25,29 @@ public class NodeFigure extends Figure implements RoutableFigure {
 		listenToNodeColorProperty();
 	}
 
+	
+	/**
+	 * Returns the leftmost figure of two, calculated from the centre.
+	 * If both figure's centres are equal, the lowest figure is returned.
+	 */
+	public NodeFigure getLeftmostOrLowest(NodeFigure nodeFigure) {
+		
+		Rectangle myRect = getBounds();
+		Rectangle otherRect = nodeFigure.getBounds();
+		
+		float myCenterX = myRect.x + 0.5f * myRect.width;
+		float myCenterY = myRect.y + 0.5f * myRect.height;
+
+		float otherCenterX = otherRect.x + 0.5f * otherRect.width;
+		float other2CenterY = otherRect.y + 0.5f * otherRect.height;
+		
+		if ((myCenterX < otherCenterX) ||
+			((myCenterX == otherCenterX) && (myCenterY < other2CenterY))) {
+			return this;
+		}
+		
+		return nodeFigure;
+	}
 	
 	private void listenToNodeColorProperty() {
 		DPFEditorPreferences.getDefault().getPreferenceStore().addPropertyChangeListener(new IPropertyChangeListener() {

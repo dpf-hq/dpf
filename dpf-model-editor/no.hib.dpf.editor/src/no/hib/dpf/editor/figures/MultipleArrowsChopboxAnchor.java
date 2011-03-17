@@ -11,6 +11,8 @@
 package no.hib.dpf.editor.figures;
 
 
+import no.hib.dpf.editor.parts.NodeEditPart;
+
 import org.eclipse.draw2d.ChopboxAnchor;
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
@@ -128,8 +130,6 @@ public class MultipleArrowsChopboxAnchor extends ChopboxAnchor {
 	 * @return The anchor location
 	 */
 	public Point getLocation(Point reference) {
-		//System.out.println("getLocation called with reference " + reference + ", my ID is " + this);
-		
 		// The "space" available for arrows on the rectangle in an orthogonal
 		// direction to the arrows
 		
@@ -144,10 +144,7 @@ public class MultipleArrowsChopboxAnchor extends ChopboxAnchor {
 
 			int availableOrthogonalSpace = findAvalableOrthogonalSpace(r, centerX, centerY, dx, dy);
 
-			boolean leftmostOrHighest = isAnchorLeftmostOrHighest(reference, centerX, centerY);
-			Point finalVector = getOrthogonalVector(dx, dy,
-					getOrthogonalOffset(availableOrthogonalSpace),
-					leftmostOrHighest);
+			Point finalVector = getOrthogonalVector(dx, dy, getOrthogonalOffset(availableOrthogonalSpace));
 
 			Point movedReference = new Point(reference.x + finalVector.x, reference.y + finalVector.y);
 
@@ -211,16 +208,11 @@ public class MultipleArrowsChopboxAnchor extends ChopboxAnchor {
 		return bestCandidate;
 	}
 
-	private boolean isAnchorLeftmostOrHighest(Point reference, float centerX,
-			float centerY) {
-		boolean leftmostOrHighest = false;
-				
-		if (reference.x < Math.round(centerX)) {
-			leftmostOrHighest = true;
-		} else if (reference.x == Math.round(centerX)) {
-			leftmostOrHighest = reference.y < Math.round(centerY);
-		}
-		return leftmostOrHighest;
+	private boolean isAnchorLeftmostOrHighest() {
+		NodeFigure figure1 = (NodeFigure)((NodeEditPart)connectionEditPart.getSource()).getFigure();
+		NodeFigure figure2 = (NodeFigure)((NodeEditPart)connectionEditPart.getTarget()).getFigure();
+		
+		return getOwner().equals(figure1.getLeftmostOrLowest(figure2));
 	}
 
 	private Vector[] getIntersectionCandidates(float centerX, float centerY,
@@ -266,7 +258,7 @@ public class MultipleArrowsChopboxAnchor extends ChopboxAnchor {
 		return null;
 	}
 
-	private Point getOrthogonalVector(float dx, float dy, int offset, boolean leftmostOrHighest) {
+	private Point getOrthogonalVector(float dx, float dy, int offset) {
 		// Move points orthogonally to line:
 		Point orthoVector = new Point(-dy, dx);
 		double length = new Point(0, 0).getDistance(orthoVector);
@@ -274,7 +266,7 @@ public class MultipleArrowsChopboxAnchor extends ChopboxAnchor {
 		double normOrthoVectorX = orthoVector.x / length;
 		double normOrthoVectorY = orthoVector.y / length;
 		Point finalVector = new Point(normOrthoVectorX * offset, normOrthoVectorY  * offset);
-		if (leftmostOrHighest) {
+		if (isAnchorLeftmostOrHighest()) {
 			finalVector = new Point(normOrthoVectorX * -offset, normOrthoVectorY  * -offset);
 		}
 		return finalVector;
