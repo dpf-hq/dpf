@@ -18,21 +18,21 @@ public class ConstraintRetargetAction extends LabelRetargetAction {
 		switch (constraintType) {
 			case INVERSE: 
 				setId(CreateInverseConstraintAction.ID);
-				setImageDescriptor(getImageDescriptor(ImageSettings.SMALL_CONNECTION));
+				setImageDescriptor(getImageDescriptor(ImageSettings.INVERSE));
 //			setImageDescriptor(InternalImages.DESC_VERT_ALIGN_BOTTOM);
 //			setDisabledImageDescriptor(InternalImages.DESC_VERT_ALIGN_BOTTOM_DIS);
 				break;
 			case JOINTLY_INJECTIVE:
 				setId(CreateJointlyInjectiveConstraintAction.ID);
-				setImageDescriptor(getImageDescriptor(ImageSettings.SMALL_CONNECTION));
+				setImageDescriptor(getImageDescriptor(ImageSettings.JOINTLY_INJECTIVE));
 				break;
 			case JOINTLY_SURJECTIVE:
 				setId(CreateJointlySurjectiveConstraintAction.ID);
-				setImageDescriptor(getImageDescriptor(ImageSettings.SMALL_CONNECTION));
+				setImageDescriptor(getImageDescriptor(ImageSettings.JOINTLY_SURJECTIVE));
 				break;
 			case MULTIPLICITY:
 				setId(CreateMultiplicityConstraintAction.ID);
-				setImageDescriptor(getImageDescriptor(ImageSettings.SMALL_CONNECTION));
+				setImageDescriptor(getImageDescriptor(ImageSettings.MULTIPLICITY));
 				break;
 		}
 		// TODO Auto-generated constructor stub

@@ -6,7 +6,11 @@ public enum ImageSettings {
 	SMALL_RECTANGLE("rectangle32.png"),
 	LARGE_RECTANGLE("rectangle48.png"),
 	SMALL_CONNECTION("connection_s16.gif"),
-	LARGE_CONNECTION("connection_s24.gif");
+	LARGE_CONNECTION("connection_s24.gif"),
+	MULTIPLICITY("mult_36.png"),
+	INVERSE("inv_36.png"),
+	JOINTLY_INJECTIVE("ji_36.png"),
+	JOINTLY_SURJECTIVE("js_36.png");
 	
 	private String filePath;
 	
