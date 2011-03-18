@@ -339,7 +339,7 @@ public final class DPFShortestPathConnectionRouter extends AbstractRouter {
 				// --------------------------------------------------------------
 				// CHANGE FROM ORIGINAL:
 				// --------------------------------------------------------------			
-				if ((!(current instanceof TwoArrowsOneNodeConstraintConnection)) && (!(current instanceof OppositeArrowsConstraintConnection))) {
+				if (!(current instanceof TwoArrowConstraintConnection)) {
 					// --------------------------------------------------------------
 
 					current.translateToRelative(start);

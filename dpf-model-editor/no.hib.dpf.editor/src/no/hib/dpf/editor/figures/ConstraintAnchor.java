@@ -150,6 +150,7 @@ public class ConstraintAnchor implements ConnectionAnchor {
 
 		double distanceToConnectionPoint = findDistanceToConnectionPoint(distanceBetweenFirstPoints);
 
+		
 		return calculateConnectionPoint(endPoint, secondPoint, distanceBetweenFirstPoints, distanceToConnectionPoint);
 	}
 
