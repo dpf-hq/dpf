@@ -135,6 +135,7 @@ class DiagramEditPart extends AbstractGraphicalEditPart implements PropertyChang
 		// Create the static router for the connection layer
 		ConnectionLayer connLayer = (ConnectionLayer) getLayer(LayerConstants.CONNECTION_LAYER);
 		connLayer.setConnectionRouter(new DPFShortestPathConnectionRouter(f));
+		//connLayer.setConnectionRouter(new ManhattanConnectionRouter());
 
 		return f;
 	}

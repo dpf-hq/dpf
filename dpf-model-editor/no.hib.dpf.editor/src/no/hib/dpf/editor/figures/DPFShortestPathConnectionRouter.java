@@ -340,8 +340,9 @@ public final class DPFShortestPathConnectionRouter extends AbstractRouter {
 				// CHANGE FROM ORIGINAL:
 				// --------------------------------------------------------------			
 				if (!(current instanceof TwoArrowConstraintConnection)) {
+					// Arrows are already translated. Translating constraint 
+					// anchors (on arrows) will make constraints dislocated
 					// --------------------------------------------------------------
-
 					current.translateToRelative(start);
 					current.translateToRelative(end);
 				}

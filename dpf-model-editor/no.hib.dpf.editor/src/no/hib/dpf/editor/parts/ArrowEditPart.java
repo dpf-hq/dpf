@@ -18,6 +18,7 @@ import java.util.Collections;
 import java.util.List;
 
 import no.hib.dpf.editor.figures.ArrowConnection;
+import no.hib.dpf.editor.figures.OpenArrowDecoration;
 import no.hib.dpf.editor.model.ArrowBendpoint;
 import no.hib.dpf.editor.model.SingleLineConstraintElement;
 import no.hib.dpf.editor.model.VArrow;
@@ -28,7 +29,6 @@ import no.hib.dpf.metamodel.Arrow;
 import org.eclipse.draw2d.Bendpoint;
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.ConnectionLocator;
-import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.ManhattanConnectionRouter;
@@ -44,7 +44,6 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.ConnectionEditPolicy;
 import org.eclipse.gef.editpolicies.ConnectionEndpointEditPolicy;
 import org.eclipse.gef.requests.GroupRequest;
-import org.eclipse.swt.SWT;
 
 
 /**
@@ -168,26 +167,7 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 		arrowHead.setScale(16, 6);
 		connectionFigure.setTargetDecoration(arrowHead); // arrow at target endpoint		
 	}
-	
-	private class OpenArrowDecoration extends PolygonDecoration {
-
-		public OpenArrowDecoration() {
-			TRIANGLE_TIP.removeAllPoints();
-			TRIANGLE_TIP.addPoint(-1, 1);
-			TRIANGLE_TIP.addPoint(0, 0);
-			TRIANGLE_TIP.addPoint(-1, -1);
-		}
 		
-		@Override
-		protected void outlineShape(Graphics g) {
-			g.pushState();
-			g.setAntialias(SWT.ON);
-			g.drawPolyline(getPoints());
-			g.popState();
-		}
-
-	}
-	
 	/**
 	 * If any constraints are set on this connection, the connection is decorated
 	 * with the appropriate vizualisation.
