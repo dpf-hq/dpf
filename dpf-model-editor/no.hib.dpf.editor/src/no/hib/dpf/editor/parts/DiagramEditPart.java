@@ -87,7 +87,7 @@ class DiagramEditPart extends AbstractGraphicalEditPart implements PropertyChang
 		// elements
 		// and creation of new model elements
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new ShapesXYLayoutEditPolicy());
-		
+		// Shows a snap line when nodes align:
 		installEditPolicy("Snap Feedback", new SnapFeedbackPolicy()); //$NON-NLS-1$
 	}
 	

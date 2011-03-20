@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.Map;
 
 import no.hib.dpf.editor.editoractions.ConstraintProperties;
+import no.hib.dpf.editor.editoractions.CreateCompositionConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateImageInclusionConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateInverseConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointlyInjectiveConstraintAction;
@@ -35,6 +36,8 @@ import no.hib.dpf.editor.editoractions.PrintAction;
 import no.hib.dpf.editor.model.DPFDiagram;
 import no.hib.dpf.editor.model.ModelElement;
 import no.hib.dpf.editor.model.ModelSerializationException;
+import no.hib.dpf.editor.model.SingleLineConstraintElement;
+import no.hib.dpf.editor.model.VArrow;
 import no.hib.dpf.editor.model.VConstraint;
 import no.hib.dpf.editor.parts.EditPartFactoryImpl;
 import no.hib.dpf.editor.parts.NodeTreeEditPartFactory;
@@ -125,7 +128,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 
 	/** Create a new DPFEditor instance. This is called by the Workspace. */
 	public DPFEditor() {
-		specification.setTypeGraph(MetamodelFactory.eINSTANCE.createGraph("Node", "Arrow" + ":Node:Node"));
+		specification.setTypeGraph(MetamodelFactory.eINSTANCE.createGraph("Node", "Arrow:Node:Node"));
 		paletteFactory = new DPFEditorPaletteFactory();
 		setEditDomain(new DefaultEditDomain(this));
 		shapesEditPartFactory = new EditPartFactoryImpl();
@@ -191,6 +194,12 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 				VConstraint.ConstraintType.IMAGE_INCLUSION);
 		registerAction(new CreateImageInclusionConstraintAction(this, getDPFDiagram().getDpfGraph(), imageInclusionProperties));
 		
+		ConstraintProperties compositionProperties = new ConstraintProperties(
+				signature.getPredicateBySymbol("[composition]"),
+				"Create new [composition] Constraint",
+				"Creates a new [composition] Constraint",
+				VConstraint.ConstraintType.COMPOSITION);
+		registerAction(new CreateCompositionConstraintAction(this, getDPFDiagram().getDpfGraph(), compositionProperties));
 
 		registerAction(new AlignmentAction((IWorkbenchPart)this, PositionConstants.LEFT));
 		registerAction(new AlignmentAction((IWorkbenchPart)this, PositionConstants.RIGHT));
@@ -439,7 +448,9 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		Predicate inversePredicate = MetamodelFactory.eINSTANCE.createPredicate("[inverse]", "n_1,n_2", "a_1:n_1:n_2,a_2:n_2:n_1");
 		inversePredicate.setSemantics(MetamodelFactory.eINSTANCE.createInverseSemantics());
 		signature.getPredicates().add(inversePredicate);
-		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("[image-inclusion]", "n_1,n_2", "a_1:n_1:n_2,a_2:n_1:n_2"));
+		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("[image-inclusion]", "n_1,n_2", "a_1:n_1:n_2,a_2:n_1:n_2"));		
+		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("[composition]", "n_1,n_2,n_3", "a_1:n_1:n_2,a_2:n_2:n_3,a_3:n_1:n_3"));
+		
 	}
 	
 	public static void saveDPF(String dpfFileName, Specification specification) {		
@@ -608,13 +619,24 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 				throw new ModelSerializationException("A deserialized view model object had no serialized counterpart in the dpf model");
 			}
 			children.get(id).setIDObject(idObject);
+			
 		}
-//		for (String id : children.keySet()) {
-//			ModelElement child = children.get(id);
-//			if (child instanceof ConstraintElement) {
-//				((ConstraintElement)child).resetConstraintFigure();
-//			}
-//		}
+		for (ModelElement modelElement : children.values()) {
+			if (modelElement instanceof VArrow) {
+				// Q&D fix to get single constraints out of this. TODO: refactor all
+				// constraints into "connection" constraints and "connected" constraints
+				VArrow arrow = (VArrow)modelElement;
+				for (SingleLineConstraintElement singleLineConstraintElement : arrow.getSingleConstraints()) {
+				
+					IDObject idObject2 = getDPFDiagram().getDpfGraph().getGraphMember(singleLineConstraintElement.getIDObjectID());
+					if (idObject2 == null) {
+						throw new ModelSerializationException("A deserialized view model object had no serialized counterpart in the dpf model");
+					}
+					singleLineConstraintElement.setIDObject(idObject2);
+					singleLineConstraintElement.reconnect();
+				}
+			}			
+		}
 	}
 
 	private void deserializeDpfModel() {

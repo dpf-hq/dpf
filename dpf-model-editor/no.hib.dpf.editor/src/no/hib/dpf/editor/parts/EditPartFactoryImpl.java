@@ -67,7 +67,7 @@ private EditPart getPartForElement(Object modelElement) {
 			case JOINTLY_INJECTIVE : return new JointlyInjectiveConstraintEditPart();
 			case INVERSE : return new InverseConstraintEditPart();
 			case IMAGE_INCLUSION : return new ImageInclusionConstraintEditPart();
-			
+			//case COMPOSITION : return new CompositionConstraintEditPart();
 			//case Multiplicity : return new MultiplicityConstraintEditPart();
 		}
 		throw new RuntimeException("The specified constraint type doesn't have an edit part association.");

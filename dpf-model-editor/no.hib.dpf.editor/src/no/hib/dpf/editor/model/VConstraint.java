@@ -11,6 +11,9 @@
 package no.hib.dpf.editor.model;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import no.hib.dpf.metamodel.Arrow;
 import no.hib.dpf.metamodel.Constraint;
@@ -42,7 +45,7 @@ public class VConstraint extends ModelElement implements Constraint, IDObjectCon
 	/** Constraint's source endpoint. */
 	protected VArrow source;
 	/** Constraint target endpoint. */
-	protected VArrow target;
+	protected List<VArrow> targets = new ArrayList<VArrow>();
 	
 	private transient Constraint constraintComponent;
 	private String constraintID;
@@ -77,13 +80,29 @@ public class VConstraint extends ModelElement implements Constraint, IDObjectCon
 	 *             if any of the parameters are null or source == target
 	 * @see #setLineStyle(int)
 	 */
-	public VConstraint(VArrow source, VArrow target, ConstraintType constraintType, Constraint idObject) {
+	public VConstraint(VArrow source, VArrow target, ConstraintType constraintType, Constraint idObject) {		
+		this(source, new ArrayList<VArrow>(Arrays.asList(target)), constraintType, idObject);
+	}
+	
+	
+	/**
+	 * Create a constraint on one or more arrows.
+	 * 
+	 * @param source
+	 *            a source endpoint for this connection (non null)
+	 * @param targets
+	 *            a target endpoint for this connection (can be empty)
+	 * @throws IllegalArgumentException
+	 *             if any of the parameters are null or source == target
+	 * @see #setLineStyle(int)
+	 */
+	public VConstraint(VArrow source, List<VArrow> targets, ConstraintType constraintType, Constraint idObject) {
 		this.setConstraintType(constraintType);
 		// The dpf Constraint object must be initialized before the connection of the shapes.
 		setIDObject(idObject);
-		reconnect(source, target);		
+		reconnect(source, targets);
 	}
-	
+
 	@Override
 	public void setIDObject(IDObject idObject) {
 		if (idObject instanceof Constraint) {
@@ -98,7 +117,9 @@ public class VConstraint extends ModelElement implements Constraint, IDObjectCon
 	public void disconnect() {
 		if (isConnected) {
 			source.removeConstraint(this);
-			target.removeConstraint(this);
+			for (VArrow target : targets) {
+				target.removeConstraint(this);
+			}
 			isConnected = false;
 		}
 	}
@@ -136,19 +157,10 @@ public class VConstraint extends ModelElement implements Constraint, IDObjectCon
 	 * @return a non-null Shape instance
 	 */
 	public VArrow getConnectionTarget() {
-		return target;
-	}
-
-	/**
-	 * Reconnect this connection. The connection will reconnect with the shapes
-	 * it was previously attached to.
-	 */
-	public void reconnect() {
-		if (!isConnected) {
-			source.addConstraint(this);
-			target.addConstraint(this);
-			isConnected = true;
+		if (targets.size() == 0) {
+			return null;
 		}
+		return targets.get(0);
 	}
 	
 	/**
@@ -163,16 +175,32 @@ public class VConstraint extends ModelElement implements Constraint, IDObjectCon
 	 * @throws IllegalArgumentException
 	 *             if any of the paramers are null or newSource == newTarget
 	 */
-	public void reconnect(VArrow newSource, VArrow newTarget) {
-		if (newSource == null || newTarget == null || newSource == newTarget) {
-			throw new IllegalArgumentException();
-		}
+	protected void reconnect(VArrow newSource, List<VArrow> newTargets) {
+//		if (newSource == null || newTarget == null || newSource == newTarget) {
+//			throw new IllegalArgumentException();
+//		}
 		disconnect();
-		this.source = newSource;
-		this.target = newTarget;
+		source = newSource;
+		targets = newTargets;
+//		targets.clear();
+//		targets.add(newTarget);
 		reconnect();
 	}
 
+	/**
+	 * Reconnect this connection. The connection will reconnect with the shapes
+	 * it was previously attached to.
+	 */
+	public void reconnect() {
+		if (!isConnected) {
+			source.addConstraint(this);
+			for (VArrow target : targets) {
+				target.addConstraint(this);
+			}
+			isConnected = true;
+		}
+	}
+	
 	public void setConstraintType(ConstraintType constraintType) {
 		this.constraintType = constraintType;
 	}

@@ -1,5 +1,8 @@
 package no.hib.dpf.editor.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import no.hib.dpf.metamodel.Constraint;
 
 
@@ -15,7 +18,7 @@ public class SingleLineConstraintElement extends VConstraint {
 	private int val_2 = -1;
 
 	public SingleLineConstraintElement(VArrow source, ConstraintType constraintType, Constraint IDObject) {
-		super(source, null, constraintType, IDObject);
+		super(source, new ArrayList<VArrow>(), constraintType, IDObject);
 	}
 		
 	@Override
@@ -53,7 +56,7 @@ public class SingleLineConstraintElement extends VConstraint {
 	 *             if any of the paramers are null or newSource == newTarget
 	 */
 	@Override
-	public void reconnect(VArrow newSource, VArrow newTarget) {
+	protected void reconnect(VArrow newSource, List<VArrow> newTargets) {
 		if (newSource == null) {
 			throw new IllegalArgumentException();
 		}

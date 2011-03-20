@@ -299,8 +299,7 @@ public class VArrow extends ModelElement implements Arrow, IDObjectContainer {
 	 */
 	public void setPropertyValue(Object id, Object value) {
 		if (id.equals(LINESTYLE_PROP)) {
-			setLineStyle(new Integer(1).equals(value) ? Graphics.LINE_DASH
-					: Graphics.LINE_SOLID);
+			setLineStyle(new Integer(1).equals(value) ? Graphics.LINE_DASH : Graphics.LINE_SOLID);
 		} else if (id.equals(CONSTRAINT_1_PROP)) {
 			setConstraintValue1(Integer.parseInt((String) value));
 		} else if (id.equals(CONSTRAINT_2_PROP)) {
