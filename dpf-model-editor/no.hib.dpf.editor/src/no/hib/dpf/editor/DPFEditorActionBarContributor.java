@@ -13,13 +13,10 @@ package no.hib.dpf.editor;
 import no.hib.dpf.editor.editoractions.ConstraintRetargetAction;
 import no.hib.dpf.editor.editoractions.CreateCompositionConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateImageInclusionConstraintAction;
-import no.hib.dpf.editor.editoractions.CreateInjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateInverseConstraintAction;
-import no.hib.dpf.editor.editoractions.CreateIrreflexiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointlyInjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointlySurjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateMultiplicityConstraintAction;
-import no.hib.dpf.editor.editoractions.CreateSurjectiveConstraintAction;
 import no.hib.dpf.editor.model.VConstraint;
 
 import org.eclipse.draw2d.PositionConstants;

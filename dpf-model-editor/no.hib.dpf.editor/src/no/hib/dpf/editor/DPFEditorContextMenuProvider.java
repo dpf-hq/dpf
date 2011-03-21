@@ -12,13 +12,10 @@ package no.hib.dpf.editor;
 
 import no.hib.dpf.editor.editoractions.CreateCompositionConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateImageInclusionConstraintAction;
-import no.hib.dpf.editor.editoractions.CreateInjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateInverseConstraintAction;
-import no.hib.dpf.editor.editoractions.CreateIrreflexiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointlyInjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointlySurjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateMultiplicityConstraintAction;
-import no.hib.dpf.editor.editoractions.CreateSurjectiveConstraintAction;
 
 import org.eclipse.gef.ContextMenuProvider;
 import org.eclipse.gef.EditPartViewer;
@@ -83,7 +80,7 @@ public class DPFEditorContextMenuProvider extends ContextMenuProvider {
 		getActionAndAppendToMenu(menu, CreateMultiplicityConstraintAction.ID);
 
 		getActionAndAppendToMenu(menu, CreateImageInclusionConstraintAction.ID);
-//		getActionAndAppendToMenu(menu, CreateCompositionConstraintAction.ID);
+		getActionAndAppendToMenu(menu, CreateCompositionConstraintAction.ID);
 //		getActionAndAppendToMenu(menu, CreateInjectiveConstraintAction.ID);
 //		getActionAndAppendToMenu(menu, CreateSurjectiveConstraintAction.ID);
 //		getActionAndAppendToMenu(menu, CreateIrreflexiveConstraintAction.ID);
