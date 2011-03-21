@@ -1,6 +1,6 @@
 package no.hib.dpf.editor.model.commands;
 
-import no.hib.dpf.editor.model.SingleLineConstraintElement;
+import no.hib.dpf.editor.model.SingleArrowConstraintElement;
 import no.hib.dpf.editor.model.VArrow;
 import no.hib.dpf.editor.model.VConstraint;
 import no.hib.dpf.metamodel.Constraint;
@@ -41,7 +41,7 @@ public class MultiplicityConstraintCreateCommand extends ConstraintCreateCommand
 	 * @see org.eclipse.gef.commands.Command#execute()
 	 */
 	public void execute() {
-		constraint = new SingleLineConstraintElement(arrow, VConstraint.ConstraintType.MULTIPLICITY, idObject);
+		constraint = new SingleArrowConstraintElement(arrow, VConstraint.ConstraintType.MULTIPLICITY, idObject);
 	}
 
 }

@@ -36,7 +36,7 @@ import no.hib.dpf.editor.editoractions.PrintAction;
 import no.hib.dpf.editor.model.DPFDiagram;
 import no.hib.dpf.editor.model.ModelElement;
 import no.hib.dpf.editor.model.ModelSerializationException;
-import no.hib.dpf.editor.model.SingleLineConstraintElement;
+import no.hib.dpf.editor.model.SingleArrowConstraintElement;
 import no.hib.dpf.editor.model.VArrow;
 import no.hib.dpf.editor.model.VConstraint;
 import no.hib.dpf.editor.parts.EditPartFactoryImpl;
@@ -626,14 +626,14 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 				// Q&D fix to get single constraints out of this. TODO: refactor all
 				// constraints into "connection" constraints and "connected" constraints
 				VArrow arrow = (VArrow)modelElement;
-				for (SingleLineConstraintElement singleLineConstraintElement : arrow.getSingleConstraints()) {
+				for (SingleArrowConstraintElement singleLineConstraintElement : arrow.getSingleConstraints()) {
 				
 					IDObject idObject2 = getDPFDiagram().getDpfGraph().getGraphMember(singleLineConstraintElement.getIDObjectID());
 					if (idObject2 == null) {
 						throw new ModelSerializationException("A deserialized view model object had no serialized counterpart in the dpf model");
 					}
 					singleLineConstraintElement.setIDObject(idObject2);
-					singleLineConstraintElement.reconnect();
+					singleLineConstraintElement.refreshSource();
 				}
 			}			
 		}

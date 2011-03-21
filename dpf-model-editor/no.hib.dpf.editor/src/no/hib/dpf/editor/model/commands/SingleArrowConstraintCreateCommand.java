@@ -1,6 +1,6 @@
 package no.hib.dpf.editor.model.commands;
 
-import no.hib.dpf.editor.model.SingleLineConstraintElement;
+import no.hib.dpf.editor.model.SingleArrowConstraintElement;
 import no.hib.dpf.editor.model.VArrow;
 import no.hib.dpf.editor.model.VConstraint;
 import no.hib.dpf.metamodel.Constraint;
@@ -30,7 +30,7 @@ public class SingleArrowConstraintCreateCommand extends ConstraintCreateCommand 
 
 	public void execute() {
 		// create a new connection between source and target
-		constraint = new SingleLineConstraintElement(arrow, constraintType, idObject);
+		constraint = new SingleArrowConstraintElement(arrow, constraintType, idObject);
 	}
 
 }

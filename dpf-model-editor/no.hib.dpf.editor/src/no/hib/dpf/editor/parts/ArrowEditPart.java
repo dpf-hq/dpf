@@ -20,7 +20,7 @@ import java.util.List;
 import no.hib.dpf.editor.figures.ArrowConnection;
 import no.hib.dpf.editor.figures.OpenArrowDecoration;
 import no.hib.dpf.editor.model.ArrowBendpoint;
-import no.hib.dpf.editor.model.SingleLineConstraintElement;
+import no.hib.dpf.editor.model.SingleArrowConstraintElement;
 import no.hib.dpf.editor.model.VArrow;
 import no.hib.dpf.editor.model.VConstraint;
 import no.hib.dpf.editor.model.commands.ConnectionDeleteCommand;
@@ -56,7 +56,7 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 
 	protected ArrowConnection connectionFigure; 
 	Label connectionLabel;	
-	private List<SingleLineConstraintElement> singleConstraints = new ArrayList<SingleLineConstraintElement>();
+	private List<SingleArrowConstraintElement> singleConstraints = new ArrayList<SingleArrowConstraintElement>();
 	private transient PropertyChangeSupport pcsDelegate = new PropertyChangeSupport(this);
 		
 	/**
@@ -151,7 +151,7 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 		//EditableLabel label = new EditableLabel(getFullName());
 		createConnectionFigure(); //label);
 		connectionFigure.addRoutingListener(RoutingAnimator.getDefault());
-		makeNewConstraintLabel();
+		refreshSingleLineConstraints();
 		setArrowHead(connectionFigure);
 //		connectionFigure.setLineStyle(getCastedModel().getLineStyle()); // line drawing style
 		return connectionFigure;		
@@ -231,7 +231,7 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 
 	private void refreshSingleLineConstraints() {
 		singleConstraints.clear();
-		for (SingleLineConstraintElement singleLineConstraintElement : getCastedModel()
+		for (SingleArrowConstraintElement singleLineConstraintElement : getCastedModel()
 				.getSingleConstraints()) {
 			singleConstraints.add(singleLineConstraintElement);
 		}

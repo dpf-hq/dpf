@@ -87,7 +87,7 @@ public class VArrow extends ModelElement implements Arrow, IDObjectContainer {
 	/** List of incoming Constraints. */
 	private List<VConstraint> targetConnstraints = new ArrayList<VConstraint>();
 	/** List of single Constraints */
-	private List<SingleLineConstraintElement> singleConstraints = new ArrayList<SingleLineConstraintElement>();
+	private List<SingleArrowConstraintElement> singleConstraints = new ArrayList<SingleArrowConstraintElement>();
 	
 	@SuppressWarnings("rawtypes")
 	private Vector labels = new Vector();
@@ -275,19 +275,23 @@ public class VArrow extends ModelElement implements Arrow, IDObjectContainer {
 		this.lineStyle = lineStyle;
 		firePropertyChange(LINESTYLE_PROP, null, new Integer(this.lineStyle));
 	}
-
+	
 	private void setConstraintValue1(int value) {
 		if (singleConstraints.size() > 0) {
 			singleConstraints.get(0).setVal_1(value);
 			firePropertyChange(SINGLE_CONSTRAINTS_PROP, null, 0);		
 		}
-	}
+	}	
 
 	private void setConstraintValue2(int value) {
 		if (singleConstraints.size() > 0) {
 			singleConstraints.get(0).setVal_2(value);
 			firePropertyChange(SINGLE_CONSTRAINTS_PROP, null, 0);		
 		}
+	}
+	
+	public void refreshSingleConstraints() {
+		firePropertyChange(SINGLE_CONSTRAINTS_PROP, null, 0);		
 	}
 	
 	
@@ -329,7 +333,7 @@ public class VArrow extends ModelElement implements Arrow, IDObjectContainer {
 		addedConstraint(constraint, SOURCE_CONSTRAINTS_PROP);
 	}
 
-	protected void addSingleConstraint(SingleLineConstraintElement constraint) {
+	protected void addSingleConstraint(SingleArrowConstraintElement constraint) {
 		singleConstraints.add(constraint);
 		addedConstraint(constraint, SINGLE_CONSTRAINTS_PROP);
 	}
@@ -367,7 +371,7 @@ public class VArrow extends ModelElement implements Arrow, IDObjectContainer {
 		removedConstraint(constraint, SOURCE_CONSTRAINTS_PROP);
 	}
 	
-	protected void removeSingleConstraint(SingleLineConstraintElement constraint) {
+	protected void removeSingleConstraint(SingleArrowConstraintElement constraint) {
 		singleConstraints.remove(constraint);
 		removedConstraint(constraint, SINGLE_CONSTRAINTS_PROP);
 	}
@@ -388,7 +392,7 @@ public class VArrow extends ModelElement implements Arrow, IDObjectContainer {
 		}
 	}
 	
-	public List<SingleLineConstraintElement> getSingleConstraints() {
+	public List<SingleArrowConstraintElement> getSingleConstraints() {
 		return singleConstraints;
 	}	
 	

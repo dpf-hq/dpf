@@ -7,7 +7,7 @@ import no.hib.dpf.metamodel.Constraint;
 
 
 // TODO: TO-BIG-DO: make one more flexible constraint class.
-public class SingleLineConstraintElement extends VConstraint {
+public class SingleArrowConstraintElement extends VConstraint {
 
 	private static final long serialVersionUID = -8335094106642818540L;
 
@@ -17,13 +17,17 @@ public class SingleLineConstraintElement extends VConstraint {
 	private int val_1 = 1;
 	private int val_2 = -1;
 
-	public SingleLineConstraintElement(VArrow source, ConstraintType constraintType, Constraint IDObject) {
+	public SingleArrowConstraintElement(VArrow source, ConstraintType constraintType, Constraint IDObject) {
 		super(source, new ArrayList<VArrow>(), constraintType, IDObject);
 	}
 		
 	@Override
 	public String toString() {
-		return String.format("[%s..%s]", valToString(val_1), valToString(val_2));
+		if (constraintType == ConstraintType.COMPOSITION) {
+			return "[comp]";			
+		} else {
+			return String.format("[%s..%s]", valToString(val_1), valToString(val_2));
+		}
 	}
 	
 	private String valToString(int val) {
@@ -40,6 +44,12 @@ public class SingleLineConstraintElement extends VConstraint {
 		if (!isConnected) {
 			source.addSingleConstraint(this);
 			isConnected = true;
+		}
+	}
+	
+	public void refreshSource() {
+		if (isConnected) {
+			source.refreshSingleConstraints();
 		}
 	}
 

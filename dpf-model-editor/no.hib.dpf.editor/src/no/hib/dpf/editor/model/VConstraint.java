@@ -67,7 +67,7 @@ public class VConstraint extends ModelElement implements Constraint, IDObjectCon
 		SURJECTIVE
 	}
 	
-	private ConstraintType constraintType;
+	protected ConstraintType constraintType;
 	
 	/**
 	 * Create a constraint between two arrows.
