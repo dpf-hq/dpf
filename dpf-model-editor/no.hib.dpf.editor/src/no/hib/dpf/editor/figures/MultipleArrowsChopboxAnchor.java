@@ -161,8 +161,6 @@ public class MultipleArrowsChopboxAnchor extends ChopboxAnchor {
 
 			PrecisionPoint bestCandidate = findRectangleIntersection(r,	centerX, centerY, movedReference, lineStraight);
 			if (bestCandidate != null) {
-				System.out.println("tjo: " + bestCandidate.x + ", " +  bestCandidate.y);
-
 				return new Point(bestCandidate.x, bestCandidate.y);
 			}
 		} catch (Exception e) {}
