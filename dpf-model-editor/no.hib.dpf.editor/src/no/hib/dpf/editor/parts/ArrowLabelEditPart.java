@@ -46,9 +46,11 @@ public class ArrowLabelEditPart extends AbstractGraphicalEditPart implements
 		PropertyChangeListener {
 
 	TextEditManager manager = null;
+	private boolean isConstraintLabelEditPart;
 
-	public ArrowLabelEditPart() {
+	public ArrowLabelEditPart(boolean isConstraintLabelEditPart) {
 		listenToDisplayNameProperty();
+		this.isConstraintLabelEditPart = isConstraintLabelEditPart;
 	}
 	
 	private void listenToDisplayNameProperty() {
@@ -117,10 +119,14 @@ public class ArrowLabelEditPart extends AbstractGraphicalEditPart implements
 		Point offset = getConnectionModel().getOffset();
 		Label figure = getCastedFigure();
 		figure.setText(arrowName);
-		figure.setVisible(DPFEditorPreferences.getDefault().getDisplayArrows());
+		if (!isConstraintLabelEditPart) {
+			figure.setVisible(DPFEditorPreferences.getDefault().getDisplayArrows());
+		} else {
+			figure.setVisible(true);
+		}
 		ArrowEditPart parent = (ArrowEditPart) getParent();
 		PolylineConnection connFigure = (PolylineConnection)parent.getFigure();
-		ArrowLabelConstraint constraint = new ArrowLabelConstraint(arrowName, offset, connFigure);
+		ArrowLabelConstraint constraint = new ArrowLabelConstraint(arrowName, offset, connFigure, isConstraintLabelEditPart);
 		parent.setLayoutConstraint(this, getFigure(), constraint);
 	}
 

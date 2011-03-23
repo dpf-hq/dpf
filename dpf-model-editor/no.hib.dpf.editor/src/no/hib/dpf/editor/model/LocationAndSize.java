@@ -12,7 +12,7 @@ public class LocationAndSize implements Serializable {
 	private static final long serialVersionUID = -1181005252896429955L;
 
 	private Point location = new Point(0, 0);
-	private Dimension size = new Dimension(90, 60);
+	private Dimension size = new Dimension(121, 49);
 	
 	public static final String LOCATION_PROP = "Shape.Location";
 	public static final String SIZE_PROP = "Shape.Size";

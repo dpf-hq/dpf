@@ -29,9 +29,11 @@ public class ArrowLabel extends ModelElement {
 	private static final long serialVersionUID = -3733055120855210860L;
 	private String labelText = "";
 	private Point offset = new Point();
+	private boolean isConstraintLabel = false;
 
-	public ArrowLabel(String labelText) { //, String position) {
+	public ArrowLabel(String labelText, boolean isConstraintLabel) {
 		this.labelText = labelText;
+		this.isConstraintLabel = isConstraintLabel;
 	}
 
 	public void setOffset(Point offset) {
@@ -50,6 +52,10 @@ public class ArrowLabel extends ModelElement {
 
 	public String getLabelText() {
 		return labelText;
+	}
+
+	public boolean isConstraintLabel() {
+		return isConstraintLabel;
 	}
 
 }

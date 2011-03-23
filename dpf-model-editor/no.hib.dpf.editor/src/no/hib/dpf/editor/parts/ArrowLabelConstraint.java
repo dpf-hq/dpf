@@ -29,22 +29,29 @@ import org.eclipse.draw2d.geometry.Point;
 
 class ArrowLabelConstraint implements Locator {
 
-	String text;
-	Point offset;
-	PolylineConnection connFigure;
+	private String text;
+	private Point offset;
+	private PolylineConnection connFigure;
+	private boolean hasConstraintLabel = false;
 
-	public ArrowLabelConstraint(String text, Point offset,
-			PolylineConnection connFigure) {
+	public ArrowLabelConstraint(String text, Point offset, PolylineConnection connFigure, boolean hasConstraintLabel) {
 		this.text = text;
 		this.offset = offset;
 		this.connFigure = connFigure;
+		this.hasConstraintLabel = hasConstraintLabel;
 	}
 
 	public void relocate(IFigure figure) {
 		Dimension minimum = FigureUtilities.getTextExtents(text, figure.getFont());
 		figure.setSize(minimum);
 		Point location;
-		location = connFigure.getPoints().getMidpoint();
+		if (hasConstraintLabel) {
+			location = connFigure.getEnd();
+		} else {
+			location = connFigure.getPoints().getMidpoint();
+		}
+		location = location.getTranslated(-minimum.width / 2, -minimum.height / 2);
+		
 		Point offsetCopy = offset.getCopy();
 		offsetCopy.translate(location);
 		figure.setLocation(offsetCopy);

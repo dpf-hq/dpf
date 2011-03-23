@@ -230,9 +230,24 @@ public class NodeEditPart extends AbstractGraphicalEditPart implements
 			previousAnchorList.add(new ChopboxAnchor(getFigure()));
 
 		} else {
-			previousAnchorList.add(new MultipleArrowsChopboxAnchor(getFigure(), connection, previousAnchor));
+			// Check if this connection already has got an anchor:
+			if (!anchorListContainsConnection(previousAnchorList, connection)) {
+				previousAnchorList.add(new MultipleArrowsChopboxAnchor(getFigure(), connection, previousAnchor));
+			}
 		}
 		return previousAnchorList.get(previousAnchorList.size() - 1);
+	}
+	
+	private boolean anchorListContainsConnection(List<ConnectionAnchor> previousAnchorList, ConnectionEditPart connection) {
+		for (ConnectionAnchor connectionAnchor : previousAnchorList) {
+			if (connectionAnchor instanceof MultipleArrowsChopboxAnchor) {
+				MultipleArrowsChopboxAnchor multipleArrowsChopboxAnchor = (MultipleArrowsChopboxAnchor)connectionAnchor;
+				if (multipleArrowsChopboxAnchor.getConnectionEditPart().equals(connection)) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	private NodeEditPart getOppositeEnd(ConnectionEditPart connection,

@@ -27,6 +27,17 @@ public class SingleArrowConstraintCreateCommand extends ConstraintCreateCommand 
 		this.arrow = arrow;
 		this.constraintType = constraintType;
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.gef.commands.Command#canExecute()
+	 */
+	@Override
+	public boolean canExecute() {
+		// TODO: check for some constraint already set(?)
+		return super.canExecute();
+	}	
 
 	public void execute() {
 		// create a new connection between source and target

@@ -52,6 +52,10 @@ public class MultipleArrowsChopboxAnchor extends ChopboxAnchor {
 		this.connectionEditPart = connectionEditPart;
 	}
 	
+	public ConnectionEditPart getConnectionEditPart() {
+		return connectionEditPart;
+	}	
+	
 	protected void coupleAnchors(MultipleArrowsChopboxAnchor next) {
 		next.previousAnchor = this;
 		nextAnchor = next;
@@ -157,6 +161,8 @@ public class MultipleArrowsChopboxAnchor extends ChopboxAnchor {
 
 			PrecisionPoint bestCandidate = findRectangleIntersection(r,	centerX, centerY, movedReference, lineStraight);
 			if (bestCandidate != null) {
+				System.out.println("tjo: " + bestCandidate.x + ", " +  bestCandidate.y);
+
 				return new Point(bestCandidate.x, bestCandidate.y);
 			}
 		} catch (Exception e) {}

@@ -275,7 +275,8 @@ public class VArrow extends ModelElement implements Arrow, IDObjectContainer {
 		this.lineStyle = lineStyle;
 		firePropertyChange(LINESTYLE_PROP, null, new Integer(this.lineStyle));
 	}
-	
+
+	// TODO: REMOVE!
 	private void setConstraintValue1(int value) {
 		if (singleConstraints.size() > 0) {
 			singleConstraints.get(0).setVal_1(value);
@@ -304,6 +305,7 @@ public class VArrow extends ModelElement implements Arrow, IDObjectContainer {
 	public void setPropertyValue(Object id, Object value) {
 		if (id.equals(LINESTYLE_PROP)) {
 			setLineStyle(new Integer(1).equals(value) ? Graphics.LINE_DASH : Graphics.LINE_SOLID);
+			// TODO: REMOVE:
 		} else if (id.equals(CONSTRAINT_1_PROP)) {
 			setConstraintValue1(Integer.parseInt((String) value));
 		} else if (id.equals(CONSTRAINT_2_PROP)) {
@@ -335,6 +337,7 @@ public class VArrow extends ModelElement implements Arrow, IDObjectContainer {
 
 	protected void addSingleConstraint(SingleArrowConstraintElement constraint) {
 		singleConstraints.add(constraint);
+		//addSingleConstraintLabel(constraint.toString());
 		addedConstraint(constraint, SINGLE_CONSTRAINTS_PROP);
 	}
 	
@@ -357,8 +360,12 @@ public class VArrow extends ModelElement implements Arrow, IDObjectContainer {
 	public void setNameExec(String name) {
 		String oldName = arrowComponent.getName();
 		arrowComponent.setName(name);
-		((ArrowLabel)labels.get(0)).setLabelText(name);
+		setMainLabelText(name);
 		firePropertyChange(NAME_PROP, oldName, name);
+	}
+
+	private void setMainLabelText(String name) {
+		((ArrowLabel)getLabels().get(0)).setLabelText(name);
 	}
 	
 	protected void removeIncomingConstraint(VConstraint constraint) {
@@ -423,7 +430,12 @@ public class VArrow extends ModelElement implements Arrow, IDObjectContainer {
 	
 	@SuppressWarnings("unchecked")
 	public void addLabel(String text) {
-		labels.addElement(new ArrowLabel(text));
+		labels.addElement(new ArrowLabel(text, false));
+	}
+	
+	@SuppressWarnings("unchecked")
+	private void addSingleConstraintLabel(String text) {
+		labels.addElement(new ArrowLabel(text, true));
 	}
 
 	@SuppressWarnings("rawtypes")

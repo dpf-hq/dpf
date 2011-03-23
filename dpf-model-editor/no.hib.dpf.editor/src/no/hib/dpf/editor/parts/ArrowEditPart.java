@@ -56,7 +56,7 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 
 	protected ArrowConnection connectionFigure; 
 	Label connectionLabel;	
-	private List<SingleArrowConstraintElement> singleConstraints = new ArrayList<SingleArrowConstraintElement>();
+	//private List<SingleArrowConstraintElement> singleConstraints = new ArrayList<SingleArrowConstraintElement>();
 	private transient PropertyChangeSupport pcsDelegate = new PropertyChangeSupport(this);
 		
 	/**
@@ -148,17 +148,15 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 	 * @see org.eclipse.gef.editparts.AbstractGraphicalEditPart#createFigure()
 	 */
 	protected IFigure createFigure() {
-		//EditableLabel label = new EditableLabel(getFullName());
-		createConnectionFigure(); //label);
+		createConnectionFigure();
 		connectionFigure.addRoutingListener(RoutingAnimator.getDefault());
-		refreshSingleLineConstraints();
+		refreshConstraintLabel();
 		setArrowHead(connectionFigure);
-//		connectionFigure.setLineStyle(getCastedModel().getLineStyle()); // line drawing style
 		return connectionFigure;		
 	}
 
-	protected void createConnectionFigure() { //EditableLabel label) {
-		connectionFigure = new ArrowConnection(); //label);
+	protected void createConnectionFigure() {
+		connectionFigure = new ArrowConnection();
 	}
 
 	protected void setArrowHead(PolylineConnection connectionFigure) {
@@ -172,18 +170,18 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 	 * If any constraints are set on this connection, the connection is decorated
 	 * with the appropriate vizualisation.
 	 */
-	private void makeNewConstraintLabel() {
+	private void refreshConstraintLabel() {
 		if (connectionFigure == null) {
 			return;
 		}
 
-		if (singleConstraints.size() > 0) {
+		if (getCastedModel().getSingleConstraints().size() > 0) {
 			if (connectionLabel != null) {
 				connectionFigure.remove(connectionLabel);
 			}
 
 			connectionLabel = new Label();
-			connectionLabel.setText(singleConstraints.get(0).toString());			
+			connectionLabel.setText(getCastedModel().getSingleConstraints().get(0).toString());			
 			connectionLabel.setOpaque(true);
 			connectionFigure.add(connectionLabel);
 			connectionFigure.getLayoutManager().setConstraint(connectionLabel, new EndpointLocator(connectionFigure));
@@ -216,7 +214,9 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 		} else if (VArrow.TARGET_CONSTRAINTS_PROP.equals(property)) {
 			refreshTargetConnections();
 		} else if (VArrow.SINGLE_CONSTRAINTS_PROP.equals(property)) {
-			refreshSingleLineConstraints();
+			// Commented out before the labeling scheme is complete:
+			//refresh();
+			refreshConstraintLabel();
 		} 
 	}
 	
@@ -228,15 +228,6 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 		}
 		return figure;
 	}	
-
-	private void refreshSingleLineConstraints() {
-		singleConstraints.clear();
-		for (SingleArrowConstraintElement singleLineConstraintElement : getCastedModel()
-				.getSingleConstraints()) {
-			singleConstraints.add(singleLineConstraintElement);
-		}
-		makeNewConstraintLabel();
-	}
 
 	/*
 	 * (non-Javadoc)

@@ -58,7 +58,7 @@ private EditPart getPartForElement(Object modelElement) {
 		return new ArrowEditPart();
 	}
 	if (modelElement instanceof ArrowLabel) {
-		return new ArrowLabelEditPart();
+		return new ArrowLabelEditPart(((ArrowLabel)modelElement).isConstraintLabel());
 	}
 	if (modelElement instanceof VConstraint) {
 		// Edit part according to the type of constraint element:
