@@ -288,6 +288,20 @@ public class NodeImpl extends IDObjectImpl implements Node {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	private String getNameTemplate() {
+		String typeName = getTypeName();
+		if (typeName.equals("")) {
+			return "Node ";
+		} else {
+			return typeName + " ";
+		}
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated ZOT!
 	 */
 	public String generateUniqueName() {
@@ -296,10 +310,10 @@ public class NodeImpl extends IDObjectImpl implements Node {
 			name = getId();
 		} else {
 			int count = getGraph().getNodes().size();
-			name = "Node " + count;
+			name = getNameTemplate() + count;
 			while(nameIsUsed(name)) {
 				count++;
-				name = "Node " + count;
+				name = getNameTemplate() + count;
 			}
 		}
 		

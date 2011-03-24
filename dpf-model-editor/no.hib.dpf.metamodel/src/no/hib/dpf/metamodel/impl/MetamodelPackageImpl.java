@@ -15,6 +15,7 @@ import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.GraphHomomorphism;
 import no.hib.dpf.metamodel.IDObject;
 import no.hib.dpf.metamodel.InverseSemantics;
+import no.hib.dpf.metamodel.IrreflexiveSemantics;
 import no.hib.dpf.metamodel.JointlySurjectiveSemantics;
 import no.hib.dpf.metamodel.MetamodelFactory;
 import no.hib.dpf.metamodel.MetamodelPackage;
@@ -161,6 +162,13 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * @generated
 	 */
 	private EClass inverseSemanticsEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass irreflexiveSemanticsEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -692,6 +700,15 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getIrreflexiveSemantics() {
+		return irreflexiveSemanticsEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EDataType getEURI() {
 		return euriEDataType;
 	}
@@ -800,6 +817,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 		inverseSemanticsEClass = createEClass(INVERSE_SEMANTICS);
 
+		irreflexiveSemanticsEClass = createEClass(IRREFLEXIVE_SEMANTICS);
+
 		// Create data types
 		euriEDataType = createEDataType(EURI);
 		eioExceptionEDataType = createEDataType(EIO_EXCEPTION);
@@ -839,6 +858,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		constraintEClass.getESuperTypes().add(this.getIDObject());
 		jointlySurjectiveSemanticsEClass.getESuperTypes().add(this.getSemantics());
 		inverseSemanticsEClass.getESuperTypes().add(this.getSemantics());
+		irreflexiveSemanticsEClass.getESuperTypes().add(this.getSemantics());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(graphEClass, Graph.class, "Graph", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1027,6 +1047,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		initEClass(jointlySurjectiveSemanticsEClass, JointlySurjectiveSemantics.class, "JointlySurjectiveSemantics", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(inverseSemanticsEClass, InverseSemantics.class, "InverseSemantics", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(irreflexiveSemanticsEClass, IrreflexiveSemantics.class, "IrreflexiveSemantics", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize data types
 		initEDataType(euriEDataType, URI.class, "EURI", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);

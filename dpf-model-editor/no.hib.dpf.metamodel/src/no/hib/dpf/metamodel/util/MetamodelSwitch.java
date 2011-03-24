@@ -196,6 +196,13 @@ public class MetamodelSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MetamodelPackage.IRREFLEXIVE_SEMANTICS: {
+				IrreflexiveSemantics irreflexiveSemantics = (IrreflexiveSemantics)theEObject;
+				T result = caseIrreflexiveSemantics(irreflexiveSemantics);
+				if (result == null) result = caseSemantics(irreflexiveSemantics);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -452,6 +459,21 @@ public class MetamodelSwitch<T> {
 	 * @generated
 	 */
 	public T caseInverseSemantics(InverseSemantics object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Irreflexive Semantics</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Irreflexive Semantics</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIrreflexiveSemantics(IrreflexiveSemantics object) {
 		return null;
 	}
 

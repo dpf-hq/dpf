@@ -202,6 +202,7 @@
         <eClassifiers xsi:type="ecore:EDataType" name="EIOException" instanceClassName="java.io.IOException"/>
         <eClassifiers xsi:type="ecore:EClass" name="JointlySurjectiveSemantics" eSuperTypes="#//hib/dpf/metamodel/Semantics"/>
         <eClassifiers xsi:type="ecore:EClass" name="InverseSemantics" eSuperTypes="#//hib/dpf/metamodel/Semantics"/>
+        <eClassifiers xsi:type="ecore:EClass" name="IrreflexiveSemantics" eSuperTypes="#//hib/dpf/metamodel/Semantics"/>
       </eSubpackages>
     </eSubpackages>
   </eSubpackages>

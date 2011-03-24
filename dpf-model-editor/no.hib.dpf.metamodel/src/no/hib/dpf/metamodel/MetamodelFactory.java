@@ -229,6 +229,15 @@ public interface MetamodelFactory extends EFactory {
 	InverseSemantics createInverseSemantics();
 
 	/**
+	 * Returns a new object of class '<em>Irreflexive Semantics</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Irreflexive Semantics</em>'.
+	 * @generated
+	 */
+	IrreflexiveSemantics createIrreflexiveSemantics();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

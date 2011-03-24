@@ -302,16 +302,30 @@ public class ArrowImpl extends IDObjectImpl implements Arrow {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	private String getNameTemplate() {
+		String typeName = getTypeName();
+		if (typeName.equals("")) {
+			return "Arrow ";
+		} else {
+			return typeName + " ";
+		}
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	public String generateUniqueName() {
 		String name;
 		if(getGraph() == null) {
 			name = getId();
 		} else {
 			int count = getGraph().getArrows().size();
-			name = "Arrow " + count;
+			name = getNameTemplate() + count;
 			while(nameIsUsed(name)) {
 				count++;
-				name = "Arrow " + count;
+				name = getNameTemplate() + count;
 			}
 		}
 		

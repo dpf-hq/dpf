@@ -719,6 +719,25 @@ public interface MetamodelPackage extends EPackage {
 	int INVERSE_SEMANTICS_FEATURE_COUNT = SEMANTICS_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.IrreflexiveSemanticsImpl <em>Irreflexive Semantics</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.impl.IrreflexiveSemanticsImpl
+	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getIrreflexiveSemantics()
+	 * @generated
+	 */
+	int IRREFLEXIVE_SEMANTICS = 17;
+
+	/**
+	 * The number of structural features of the '<em>Irreflexive Semantics</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IRREFLEXIVE_SEMANTICS_FEATURE_COUNT = SEMANTICS_FEATURE_COUNT + 0;
+
+	/**
 	 * The meta object id for the '<em>EURI</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -726,7 +745,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getEURI()
 	 * @generated
 	 */
-	int EURI = 17;
+	int EURI = 18;
 
 	/**
 	 * The meta object id for the '<em>EIO Exception</em>' data type.
@@ -736,7 +755,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getEIOException()
 	 * @generated
 	 */
-	int EIO_EXCEPTION = 18;
+	int EIO_EXCEPTION = 19;
 
 
 	/**
@@ -1277,6 +1296,16 @@ public interface MetamodelPackage extends EPackage {
 	EClass getInverseSemantics();
 
 	/**
+	 * Returns the meta object for class '{@link no.hib.dpf.metamodel.IrreflexiveSemantics <em>Irreflexive Semantics</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Irreflexive Semantics</em>'.
+	 * @see no.hib.dpf.metamodel.IrreflexiveSemantics
+	 * @generated
+	 */
+	EClass getIrreflexiveSemantics();
+
+	/**
 	 * Returns the meta object for data type '{@link org.eclipse.emf.common.util.URI <em>EURI</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1753,6 +1782,16 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass INVERSE_SEMANTICS = eINSTANCE.getInverseSemantics();
+
+		/**
+		 * The meta object literal for the '{@link no.hib.dpf.metamodel.impl.IrreflexiveSemanticsImpl <em>Irreflexive Semantics</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see no.hib.dpf.metamodel.impl.IrreflexiveSemanticsImpl
+		 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getIrreflexiveSemantics()
+		 * @generated
+		 */
+		EClass IRREFLEXIVE_SEMANTICS = eINSTANCE.getIrreflexiveSemantics();
 
 		/**
 		 * The meta object literal for the '<em>EURI</em>' data type.
