@@ -42,15 +42,13 @@ import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.viewers.TextCellEditor;
 
-public class ArrowLabelEditPart extends AbstractGraphicalEditPart implements
+public abstract class ArrowLabelEditPart extends AbstractGraphicalEditPart implements
 		PropertyChangeListener {
 
 	TextEditManager manager = null;
-	private boolean isConstraintLabelEditPart;
 
-	public ArrowLabelEditPart(boolean isConstraintLabelEditPart) {
+	public ArrowLabelEditPart() {
 		listenToDisplayNameProperty();
-		this.isConstraintLabelEditPart = isConstraintLabelEditPart;
 	}
 	
 	private void listenToDisplayNameProperty() {
@@ -64,15 +62,7 @@ public class ArrowLabelEditPart extends AbstractGraphicalEditPart implements
 			}
 		});
 	}
-	
-	private String getFullName(String name) {
-		if (DPFEditorPreferences.getDefault().getDisplayTypeNames()) {
-			return name + " : " + ((ArrowEditPart) getParent()).getArrow().getTypeName();
-		} else {
-			return name;
-		}
-	}
-	
+		
 	public void activate() {
 		if (isActive() == false) {
 			super.activate();
@@ -114,19 +104,22 @@ public class ArrowLabelEditPart extends AbstractGraphicalEditPart implements
 		return (Label)getFigure();
 	}
 	
+	protected abstract boolean getVisible();
+	
+	protected abstract boolean placeLabelAtEnd();
+	
+	protected abstract String getFullName();
+	
+	@Override
 	protected void refreshVisuals() {
-		String arrowName = getFullName(getConnectionModel().getLabelText());
+		String arrowName = getFullName();
 		Point offset = getConnectionModel().getOffset();
 		Label figure = getCastedFigure();
 		figure.setText(arrowName);
-		if (!isConstraintLabelEditPart) {
-			figure.setVisible(DPFEditorPreferences.getDefault().getDisplayArrows());
-		} else {
-			figure.setVisible(true);
-		}
+		figure.setVisible(getVisible());
 		ArrowEditPart parent = (ArrowEditPart) getParent();
 		PolylineConnection connFigure = (PolylineConnection)parent.getFigure();
-		ArrowLabelConstraint constraint = new ArrowLabelConstraint(arrowName, offset, connFigure, isConstraintLabelEditPart);
+		ArrowLabelConstraint constraint = new ArrowLabelConstraint(arrowName, offset, connFigure, placeLabelAtEnd());
 		parent.setLayoutConstraint(this, getFigure(), constraint);
 	}
 

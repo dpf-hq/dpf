@@ -32,20 +32,20 @@ class ArrowLabelConstraint implements Locator {
 	private String text;
 	private Point offset;
 	private PolylineConnection connFigure;
-	private boolean hasConstraintLabel = false;
+	private boolean placeLabelAtEnd = false;
 
-	public ArrowLabelConstraint(String text, Point offset, PolylineConnection connFigure, boolean hasConstraintLabel) {
+	public ArrowLabelConstraint(String text, Point offset, PolylineConnection connFigure, boolean placeLabelAtEnd) {
 		this.text = text;
 		this.offset = offset;
 		this.connFigure = connFigure;
-		this.hasConstraintLabel = hasConstraintLabel;
+		this.placeLabelAtEnd = placeLabelAtEnd;
 	}
 
 	public void relocate(IFigure figure) {
 		Dimension minimum = FigureUtilities.getTextExtents(text, figure.getFont());
 		figure.setSize(minimum);
 		Point location;
-		if (hasConstraintLabel) {
+		if (placeLabelAtEnd) {
 			location = connFigure.getEnd();
 		} else {
 			location = connFigure.getPoints().getMidpoint();

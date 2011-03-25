@@ -89,8 +89,7 @@ public class VArrow extends ModelElement implements Arrow, IDObjectContainer {
 	/** List of single Constraints */
 	private List<SingleArrowConstraintElement> singleConstraints = new ArrayList<SingleArrowConstraintElement>();
 	
-	@SuppressWarnings("rawtypes")
-	private Vector labels = new Vector();
+	private ArrowLabel mainLabel;	
 	
 	static {
 		descriptors = new IPropertyDescriptor[] {
@@ -279,14 +278,14 @@ public class VArrow extends ModelElement implements Arrow, IDObjectContainer {
 	// TODO: REMOVE!
 	private void setConstraintValue1(int value) {
 		if (singleConstraints.size() > 0) {
-			singleConstraints.get(0).setVal_1(value);
+			singleConstraints.get(0).setPropertyValue(SingleArrowConstraintElement.MULTIPLICITY_1_PROP, new Integer(value));
 			firePropertyChange(SINGLE_CONSTRAINTS_PROP, null, 0);		
 		}
 	}	
 
 	private void setConstraintValue2(int value) {
 		if (singleConstraints.size() > 0) {
-			singleConstraints.get(0).setVal_2(value);
+			singleConstraints.get(0).setPropertyValue(SingleArrowConstraintElement.MULTIPLICITY_2_PROP, new Integer(value));
 			firePropertyChange(SINGLE_CONSTRAINTS_PROP, null, 0);		
 		}
 	}
@@ -337,7 +336,6 @@ public class VArrow extends ModelElement implements Arrow, IDObjectContainer {
 
 	protected void addSingleConstraint(SingleArrowConstraintElement constraint) {
 		singleConstraints.add(constraint);
-		//addSingleConstraintLabel(constraint.toString());
 		addedConstraint(constraint, SINGLE_CONSTRAINTS_PROP);
 	}
 	
@@ -428,19 +426,19 @@ public class VArrow extends ModelElement implements Arrow, IDObjectContainer {
 		return bendpoints;
 	}
 	
-	@SuppressWarnings("unchecked")
 	public void addLabel(String text) {
-		labels.addElement(new ArrowLabel(text, false));
+		mainLabel = new ArrowLabel(text, false);
 	}
 	
-	@SuppressWarnings("unchecked")
-	private void addSingleConstraintLabel(String text) {
-		labels.addElement(new ArrowLabel(text, true));
-	}
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public Vector getLabels() {
-		return labels;
+		Vector retVal = new Vector();
+		retVal.add(mainLabel);
+		for (SingleArrowConstraintElement constraintElement : singleConstraints) {
+			retVal.add(constraintElement.getConstraintLabel());
+		}
+		return retVal;
 	}
 	
 	// -----------------------------------------------------------------------------------

@@ -69,6 +69,8 @@ public class VConstraint extends ModelElement implements Constraint, IDObjectCon
 	
 	protected ConstraintType constraintType;
 	
+	protected VConstraint() {}
+	
 	/**
 	 * Create a constraint between two arrows.
 	 * 
@@ -176,14 +178,12 @@ public class VConstraint extends ModelElement implements Constraint, IDObjectCon
 	 *             if any of the paramers are null or newSource == newTarget
 	 */
 	protected void reconnect(VArrow newSource, List<VArrow> newTargets) {
-//		if (newSource == null || newTarget == null || newSource == newTarget) {
-//			throw new IllegalArgumentException();
-//		}
+		if (newSource == null) {
+			throw new IllegalArgumentException();
+		}
 		disconnect();
 		source = newSource;
 		targets = newTargets;
-//		targets.clear();
-//		targets.add(newTarget);
 		reconnect();
 	}
 

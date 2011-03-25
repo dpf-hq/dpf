@@ -29,6 +29,7 @@ import no.hib.dpf.editor.editoractions.ConstraintProperties;
 import no.hib.dpf.editor.editoractions.CreateCompositionConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateImageInclusionConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateInverseConstraintAction;
+import no.hib.dpf.editor.editoractions.CreateIrreflexiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointlyInjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointlySurjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateMultiplicityConstraintAction;
@@ -201,6 +202,14 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 				VConstraint.ConstraintType.COMPOSITION);
 		registerAction(new CreateCompositionConstraintAction(this, getDPFDiagram().getDpfGraph(), compositionProperties));
 
+
+		ConstraintProperties irreflexiveProperties = new ConstraintProperties(
+				signature.getPredicateBySymbol("[irreflexive]"),
+				"Create new [irreflexive] Constraint",
+				"Creates a new [irreflexive] Constraint",
+				VConstraint.ConstraintType.IRREFLEXIVE);
+		registerAction(new CreateIrreflexiveConstraintAction(this, getDPFDiagram().getDpfGraph(), irreflexiveProperties));
+		
 		registerAction(new AlignmentAction((IWorkbenchPart)this, PositionConstants.LEFT));
 		registerAction(new AlignmentAction((IWorkbenchPart)this, PositionConstants.RIGHT));
 		registerAction(new AlignmentAction((IWorkbenchPart)this, PositionConstants.TOP));
@@ -441,15 +450,21 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 	private void resetSignature() {
 		signature = MetamodelFactory.eINSTANCE.createSignature();
 		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("[jointly-injective]", "n_1,n_2,n_3", "a_1:n_1:n_2,a_2:n_1:n_3"));
-		Predicate JSPredicate = MetamodelFactory.eINSTANCE.createPredicate("[jointly-surjective]", "n_1,n_2,n_3", "a_1:n_2:n_1,a_2:n_3:n_1");
-		JSPredicate.setSemantics(MetamodelFactory.eINSTANCE.createJointlySurjectiveSemantics());
-		signature.getPredicates().add(JSPredicate);
 		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("[mult(m,n)]", "n_1,n_2", "a_1:n_1:n_2"));
+		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("[image-inclusion]", "n_1,n_2", "a_1:n_1:n_2,a_2:n_1:n_2"));		
+		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("[composition]", "n_1,n_2,n_3", "a_1:n_1:n_2,a_2:n_2:n_3,a_3:n_1:n_3"));
+
+		Predicate jSPredicate = MetamodelFactory.eINSTANCE.createPredicate("[jointly-surjective]", "n_1,n_2,n_3", "a_1:n_2:n_1,a_2:n_3:n_1");
+		jSPredicate.setSemantics(MetamodelFactory.eINSTANCE.createJointlySurjectiveSemantics());
+		signature.getPredicates().add(jSPredicate);
+
 		Predicate inversePredicate = MetamodelFactory.eINSTANCE.createPredicate("[inverse]", "n_1,n_2", "a_1:n_1:n_2,a_2:n_2:n_1");
 		inversePredicate.setSemantics(MetamodelFactory.eINSTANCE.createInverseSemantics());
 		signature.getPredicates().add(inversePredicate);
-		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("[image-inclusion]", "n_1,n_2", "a_1:n_1:n_2,a_2:n_1:n_2"));		
-		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("[composition]", "n_1,n_2,n_3", "a_1:n_1:n_2,a_2:n_2:n_3,a_3:n_1:n_3"));
+
+		Predicate irreflexivePredicate = MetamodelFactory.eINSTANCE.createPredicate("[irreflexive]", "n_1", "a_1:n_1:n_1");
+		irreflexivePredicate.setSemantics(MetamodelFactory.eINSTANCE.createIrreflexiveSemantics());
+		signature.getPredicates().add(irreflexivePredicate);
 		
 	}
 	

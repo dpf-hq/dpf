@@ -313,13 +313,18 @@ public class NodeEditPart extends AbstractGraphicalEditPart implements
 	}
 
 	protected void refreshVisuals() {
-		refreshLabel();
-		// notify parent container of changed position & location
-		// if this line is removed, the XYLayoutManager used by the parent
-		// container (the Figure of the DPFDiagramEditPart), will not know the bounds of
-		// this figure and will not draw it correctly.
-		Rectangle bounds = new Rectangle(getCastedModel().getLocation(), getCastedModel().getSize());
-		((GraphicalEditPart) getParent()).setLayoutConstraint(this, getFigure(), bounds);
+		try {
+			refreshLabel();
+			// notify parent container of changed position & location
+			// if this line is removed, the XYLayoutManager used by the parent
+			// container (the Figure of the DPFDiagramEditPart), will not know the bounds of
+			// this figure and will not draw it correctly.
+			Rectangle bounds = new Rectangle(getCastedModel().getLocation(), getCastedModel().getSize());
+			((GraphicalEditPart) getParent()).setLayoutConstraint(this, getFigure(), bounds);
+		} catch (Exception e) {
+			
+			
+		}
 	}
 
 	private void refreshLabel() {

@@ -14,7 +14,7 @@ public enum ImageSettings {
 	IMAGE_INCLUSION("img_incl_36.png"),
 	COMPOSITION("comp_36.png"),
 	INJECTIVE(""),
-	IRREFLEXIVE(""),
+	IRREFLEXIVE("irr_36.png"),
 	SURJECTIVE("");
 	
 	private String filePath;

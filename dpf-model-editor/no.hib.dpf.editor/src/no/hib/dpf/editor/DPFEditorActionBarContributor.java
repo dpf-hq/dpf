@@ -14,6 +14,7 @@ import no.hib.dpf.editor.editoractions.ConstraintRetargetAction;
 import no.hib.dpf.editor.editoractions.CreateCompositionConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateImageInclusionConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateInverseConstraintAction;
+import no.hib.dpf.editor.editoractions.CreateIrreflexiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointlyInjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointlySurjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateMultiplicityConstraintAction;
@@ -90,7 +91,7 @@ protected void buildActions() {
 	addRetargetAction(new ConstraintRetargetAction(VConstraint.ConstraintType.COMPOSITION));
 //	addRetargetAction(new ConstraintRetargetAction(VConstraint.ConstraintType.INJECTIVE));
 //	addRetargetAction(new ConstraintRetargetAction(VConstraint.ConstraintType.SURJECTIVE));
-//	addRetargetAction(new ConstraintRetargetAction(VConstraint.ConstraintType.IRREFLEXIVE));	
+	addRetargetAction(new ConstraintRetargetAction(VConstraint.ConstraintType.IRREFLEXIVE));	
 }
 
 /**
@@ -142,7 +143,7 @@ public void contributeToToolBar(IToolBarManager toolBarManager) {
 	toolBarManager.add(getAction(CreateCompositionConstraintAction.ID));
 //	toolBarManager.add(getAction(CreateInjectiveConstraintAction.ID));
 //	toolBarManager.add(getAction(CreateSurjectiveConstraintAction.ID));
-//	toolBarManager.add(getAction(CreateIrreflexiveConstraintAction.ID));
+	toolBarManager.add(getAction(CreateIrreflexiveConstraintAction.ID));
 }
 
 @Override

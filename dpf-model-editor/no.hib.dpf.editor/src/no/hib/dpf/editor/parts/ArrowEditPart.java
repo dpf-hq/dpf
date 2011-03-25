@@ -20,7 +20,6 @@ import java.util.List;
 import no.hib.dpf.editor.figures.ArrowConnection;
 import no.hib.dpf.editor.figures.OpenArrowDecoration;
 import no.hib.dpf.editor.model.ArrowBendpoint;
-import no.hib.dpf.editor.model.SingleArrowConstraintElement;
 import no.hib.dpf.editor.model.VArrow;
 import no.hib.dpf.editor.model.VConstraint;
 import no.hib.dpf.editor.model.commands.ConnectionDeleteCommand;
@@ -28,7 +27,6 @@ import no.hib.dpf.metamodel.Arrow;
 
 import org.eclipse.draw2d.Bendpoint;
 import org.eclipse.draw2d.Connection;
-import org.eclipse.draw2d.ConnectionLocator;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.ManhattanConnectionRouter;
@@ -36,8 +34,6 @@ import org.eclipse.draw2d.PolygonDecoration;
 import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.draw2d.RelativeBendpoint;
 import org.eclipse.draw2d.RoutingAnimator;
-import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.commands.Command;
@@ -150,7 +146,6 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 	protected IFigure createFigure() {
 		createConnectionFigure();
 		connectionFigure.addRoutingListener(RoutingAnimator.getDefault());
-		refreshConstraintLabel();
 		setArrowHead(connectionFigure);
 		return connectionFigure;		
 	}
@@ -166,27 +161,6 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 		connectionFigure.setTargetDecoration(arrowHead); // arrow at target endpoint		
 	}
 		
-	/**
-	 * If any constraints are set on this connection, the connection is decorated
-	 * with the appropriate vizualisation.
-	 */
-	private void refreshConstraintLabel() {
-		if (connectionFigure == null) {
-			return;
-		}
-
-		if (getCastedModel().getSingleConstraints().size() > 0) {
-			if (connectionLabel != null) {
-				connectionFigure.remove(connectionLabel);
-			}
-
-			connectionLabel = new Label();
-			connectionLabel.setText(getCastedModel().getSingleConstraints().get(0).toString());			
-			connectionLabel.setOpaque(true);
-			connectionFigure.add(connectionLabel);
-			connectionFigure.getLayoutManager().setConstraint(connectionLabel, new EndpointLocator(connectionFigure));
-		}
-	}
 
 	/*
 	 * (non-Javadoc)
@@ -202,9 +176,9 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 		if (Connection.PROPERTY_CONNECTION_ROUTER.equals(property)){
 			refreshBendpoints();
 			refreshBendpointEditPolicy();
-		} else if ("value".equals(property)) {  //$NON-NLS-1$
+		} else if ("value".equals(property)) {
 			refreshVisuals();
-		} else 	if ("bendpoint".equals(property)) {   //$NON-NLS-1$
+		} else 	if ("bendpoint".equals(property)) {
 			refreshBendpoints();
 		} else if (VArrow.LINESTYLE_PROP.equals(property)) {
 			((ArrowConnection) getFigure()).setLineStyle(getCastedModel()
@@ -214,9 +188,7 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 		} else if (VArrow.TARGET_CONSTRAINTS_PROP.equals(property)) {
 			refreshTargetConnections();
 		} else if (VArrow.SINGLE_CONSTRAINTS_PROP.equals(property)) {
-			// Commented out before the labeling scheme is complete:
-			//refresh();
-			refreshConstraintLabel();
+			refresh();
 		} 
 	}
 	
@@ -271,47 +243,47 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 		return getCastedModel().getArrowComponent();
 	}	
 
-	/**
-	 * Finds an endpoint on a connection. TODO: make readable.
-	 */
-	public class EndpointLocator extends ConnectionLocator {
-
-		public EndpointLocator(org.eclipse.draw2d.Connection c) {
-			super(c);
-		}
-
-		protected Point getReferencePoint() {
-			org.eclipse.draw2d.Connection conn = getConnection();
-			return calculateConnectionPoint(conn.getPoints());
-		}
-
-		private int maxDistanceToConnectionPoint = 50; 
-		
-		private Point calculateConnectionPoint(PointList points) {
-			if (points.size() < 2) return points.getLastPoint();
-			
-			double distanceBetweenLastPoints = points.getLastPoint().getDistance(points.getPoint(points.size() - 2));
-			if (distanceBetweenLastPoints < 0.01) {
-				return points.getLastPoint();
-			}
-
-			double distanceToConnectionPoint = distanceBetweenLastPoints/2;
-			if (distanceToConnectionPoint > maxDistanceToConnectionPoint) {
-				distanceToConnectionPoint = maxDistanceToConnectionPoint;
-			}
-			
-			double factor = distanceToConnectionPoint/distanceBetweenLastPoints;
-
-			int deltaX = points.getPoint(points.size() - 2).x - points.getPoint(points.size() - 1).x;
-			int deltaY = points.getPoint(points.size() - 2).y - points.getPoint(points.size() - 1).y;
-			
-			deltaX = (int)(deltaX * factor);
-			deltaY = (int)(deltaY * factor);
-			
-			return new Point(points.getLastPoint().x + deltaX, points.getLastPoint().y + deltaY - 10);
-		}		
-		
-	}
+//	/**
+//	 * Finds an endpoint on a connection. TODO: make readable.
+//	 */
+//	public class EndpointLocator extends ConnectionLocator {
+//
+//		public EndpointLocator(org.eclipse.draw2d.Connection c) {
+//			super(c);
+//		}
+//
+//		protected Point getReferencePoint() {
+//			org.eclipse.draw2d.Connection conn = getConnection();
+//			return calculateConnectionPoint(conn.getPoints());
+//		}
+//
+//		private int maxDistanceToConnectionPoint = 50; 
+//		
+//		private Point calculateConnectionPoint(PointList points) {
+//			if (points.size() < 2) return points.getLastPoint();
+//			
+//			double distanceBetweenLastPoints = points.getLastPoint().getDistance(points.getPoint(points.size() - 2));
+//			if (distanceBetweenLastPoints < 0.01) {
+//				return points.getLastPoint();
+//			}
+//
+//			double distanceToConnectionPoint = distanceBetweenLastPoints/2;
+//			if (distanceToConnectionPoint > maxDistanceToConnectionPoint) {
+//				distanceToConnectionPoint = maxDistanceToConnectionPoint;
+//			}
+//			
+//			double factor = distanceToConnectionPoint/distanceBetweenLastPoints;
+//
+//			int deltaX = points.getPoint(points.size() - 2).x - points.getPoint(points.size() - 1).x;
+//			int deltaY = points.getPoint(points.size() - 2).y - points.getPoint(points.size() - 1).y;
+//			
+//			deltaX = (int)(deltaX * factor);
+//			deltaY = (int)(deltaY * factor);
+//			
+//			return new Point(points.getLastPoint().x + deltaX, points.getLastPoint().y + deltaY - 10);
+//		}		
+//		
+//	}
 	
 	
 	public void activateFigure(){
