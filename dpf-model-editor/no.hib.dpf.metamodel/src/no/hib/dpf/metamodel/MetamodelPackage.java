@@ -505,13 +505,22 @@ public interface MetamodelPackage extends EPackage {
 	int CONSTRAINT__MAPPINGS = ID_OBJECT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Parameters</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__PARAMETERS = ID_OBJECT_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT_FEATURE_COUNT = ID_OBJECT_FEATURE_COUNT + 3;
+	int CONSTRAINT_FEATURE_COUNT = ID_OBJECT_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.ArrowToArrowMapImpl <em>Arrow To Arrow Map</em>}' class.
@@ -1093,6 +1102,17 @@ public interface MetamodelPackage extends EPackage {
 	EReference getConstraint_Mappings();
 
 	/**
+	 * Returns the meta object for the attribute '{@link no.hib.dpf.metamodel.Constraint#getParameters <em>Parameters</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Parameters</em>'.
+	 * @see no.hib.dpf.metamodel.Constraint#getParameters()
+	 * @see #getConstraint()
+	 * @generated
+	 */
+	EAttribute getConstraint_Parameters();
+
+	/**
 	 * Returns the meta object for class '{@link java.util.Map.Entry <em>Arrow To Arrow Map</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1614,6 +1634,14 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CONSTRAINT__MAPPINGS = eINSTANCE.getConstraint_Mappings();
+
+		/**
+		 * The meta object literal for the '<em><b>Parameters</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONSTRAINT__PARAMETERS = eINSTANCE.getConstraint_Parameters();
 
 		/**
 		 * The meta object literal for the '{@link no.hib.dpf.metamodel.impl.ArrowToArrowMapImpl <em>Arrow To Arrow Map</em>}' class.

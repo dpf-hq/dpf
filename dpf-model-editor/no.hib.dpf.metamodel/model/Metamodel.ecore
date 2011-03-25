@@ -155,6 +155,7 @@
           <eStructuralFeatures xsi:type="ecore:EReference" name="predicate" eType="#//hib/dpf/metamodel/Predicate"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="mappings" eType="#//hib/dpf/metamodel/GraphHomomorphism"
               containment="true"/>
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="parameters" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="ArrowToArrowMap" instanceClassName="java.util.Map$Entry">
           <eStructuralFeatures xsi:type="ecore:EReference" name="key" eType="#//hib/dpf/metamodel/Arrow"/>

@@ -1,6 +1,7 @@
 package no.hib.dpf.editor.model;
 
 import no.hib.dpf.metamodel.Constraint;
+import no.hib.dpf.metamodel.IDObject;
 
 
 public class SingleArrowConstraintElement extends VConstraint {
@@ -12,9 +13,6 @@ public class SingleArrowConstraintElement extends VConstraint {
 	
 	private ArrowLabel constraintLabel;
 	
-	private int val_1 = 1;
-	private int val_2 = -1;
-
 	public SingleArrowConstraintElement(VArrow source, ConstraintType constraintType, Constraint IDObject) {
 		this.setConstraintType(constraintType);
 		// The dpf Constraint object must be initialized before the connection of the shapes.
@@ -30,7 +28,7 @@ public class SingleArrowConstraintElement extends VConstraint {
 		} else if (constraintType == ConstraintType.IRREFLEXIVE) {
 			return "[irr]";
 		} else {
-			return String.format("[%s..%s]", valToString(val_1), valToString(val_2));
+			return String.format("[%s..%s]", valToString(getVal_1()), valToString(getVal_2()));
 		}
 	}
 	
@@ -67,6 +65,12 @@ public class SingleArrowConstraintElement extends VConstraint {
 			isConnected = false;
 		}
 	}
+	
+	@Override
+	public void setIDObject(IDObject idObject) {
+		super.setIDObject(idObject);
+		getConstraintLabel().setLabelText(toString());
+	}	
 
 	/**
 	 * Sets the lineStyle based on the String provided by the PropertySheet
@@ -86,21 +90,34 @@ public class SingleArrowConstraintElement extends VConstraint {
 			super.setPropertyValue(id, value);
 		}
 	}
+	
+	private int [] getValuesFromParameter() {
+		try {
+			int [] retval =  new int[2];
+			retval[0] = Integer.parseInt(getParameters().split(",")[0]);
+			retval[1] = Integer.parseInt(getParameters().split(",")[1]);
+			return retval;
+		} catch (Exception e) {
+			return new int[]{1, -1};
+		}
+	}
 
 	private void setVal_1(Integer val_1) {
-		this.val_1 = val_1.intValue();
+		String params = val_1.toString() + "," + new Integer(getVal_2()).toString();
+		setParameters(params);
 	}
 
 	public int getVal_1() {
-		return val_1;
+		return getValuesFromParameter()[0];
 	}
 
 	private void setVal_2(Integer val_2) {
-		this.val_2 = val_2.intValue();
+		String params = new Integer(getVal_1()).toString() + "," + val_2.toString();
+		setParameters(params);
 	}
 
 	public int getVal_2() {
-		return val_2;
+		return getValuesFromParameter()[1];
 	}
 
 	public ArrowLabel getConstraintLabel() {

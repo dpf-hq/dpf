@@ -529,6 +529,15 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getConstraint_Parameters() {
+		return (EAttribute)constraintEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getArrowToArrowMap() {
 		return arrowToArrowMapEClass;
 	}
@@ -789,6 +798,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		createEReference(constraintEClass, CONSTRAINT__GRAPH);
 		createEReference(constraintEClass, CONSTRAINT__PREDICATE);
 		createEReference(constraintEClass, CONSTRAINT__MAPPINGS);
+		createEAttribute(constraintEClass, CONSTRAINT__PARAMETERS);
 
 		arrowToArrowMapEClass = createEClass(ARROW_TO_ARROW_MAP);
 		createEReference(arrowToArrowMapEClass, ARROW_TO_ARROW_MAP__KEY);
@@ -1004,6 +1014,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		initEReference(getConstraint_Graph(), this.getGraph(), this.getGraph_Constraints(), "graph", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConstraint_Predicate(), this.getPredicate(), null, "predicate", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConstraint_Mappings(), this.getGraphHomomorphism(), null, "mappings", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getConstraint_Parameters(), ecorePackage.getEString(), "parameters", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		addEOperation(constraintEClass, this.getNode(), "getConstrainedNodes", 0, -1, IS_UNIQUE, IS_ORDERED);
 

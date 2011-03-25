@@ -21,6 +21,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link no.hib.dpf.metamodel.Constraint#getGraph <em>Graph</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Constraint#getPredicate <em>Predicate</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Constraint#getMappings <em>Mappings</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Constraint#getParameters <em>Parameters</em>}</li>
  * </ul>
  * </p>
  *
@@ -102,12 +103,38 @@ public interface Constraint extends IDObject {
 	/**
 	 * Sets the value of the '{@link no.hib.dpf.metamodel.Constraint#getMappings <em>Mappings</em>}' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This is where the predicate's attribute values (if any) can be set.
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Mappings</em>' containment reference.
 	 * @see #getMappings()
 	 * @generated
 	 */
 	void setMappings(GraphHomomorphism value);
+
+	/**
+	 * Returns the value of the '<em><b>Parameters</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * This is where the predicate's attribute values (if any) can be get.
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Parameters</em>' attribute.
+	 * @see #setParameters(String)
+	 * @see no.hib.dpf.metamodel.MetamodelPackage#getConstraint_Parameters()
+	 * @model
+	 * @generated
+	 */
+	String getParameters();
+
+	/**
+	 * Sets the value of the '{@link no.hib.dpf.metamodel.Constraint#getParameters <em>Parameters</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Parameters</em>' attribute.
+	 * @see #getParameters()
+	 * @generated
+	 */
+	void setParameters(String value);
 
 	/**
 	 * <!-- begin-user-doc -->

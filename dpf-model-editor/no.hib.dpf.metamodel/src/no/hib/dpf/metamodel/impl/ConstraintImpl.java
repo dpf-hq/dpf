@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  *   <li>{@link no.hib.dpf.metamodel.impl.ConstraintImpl#getGraph <em>Graph</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.impl.ConstraintImpl#getPredicate <em>Predicate</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.impl.ConstraintImpl#getMappings <em>Mappings</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.impl.ConstraintImpl#getParameters <em>Parameters</em>}</li>
  * </ul>
  * </p>
  *
@@ -57,6 +58,26 @@ public class ConstraintImpl extends IDObjectImpl implements Constraint {
 	 * @ordered
 	 */
 	protected GraphHomomorphism mappings;
+
+	/**
+	 * The default value of the '{@link #getParameters() <em>Parameters</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getParameters()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String PARAMETERS_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getParameters() <em>Parameters</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getParameters()
+	 * @generated
+	 * @ordered
+	 */
+	protected String parameters = PARAMETERS_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -202,6 +223,27 @@ public class ConstraintImpl extends IDObjectImpl implements Constraint {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getParameters() {
+		return parameters;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setParameters(String newParameters) {
+		String oldParameters = parameters;
+		parameters = newParameters;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.CONSTRAINT__PARAMETERS, oldParameters, parameters));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public EList<Node> getConstrainedNodes() {
@@ -278,6 +320,8 @@ public class ConstraintImpl extends IDObjectImpl implements Constraint {
 				return basicGetPredicate();
 			case MetamodelPackage.CONSTRAINT__MAPPINGS:
 				return getMappings();
+			case MetamodelPackage.CONSTRAINT__PARAMETERS:
+				return getParameters();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -298,6 +342,9 @@ public class ConstraintImpl extends IDObjectImpl implements Constraint {
 				return;
 			case MetamodelPackage.CONSTRAINT__MAPPINGS:
 				setMappings((GraphHomomorphism)newValue);
+				return;
+			case MetamodelPackage.CONSTRAINT__PARAMETERS:
+				setParameters((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -320,6 +367,9 @@ public class ConstraintImpl extends IDObjectImpl implements Constraint {
 			case MetamodelPackage.CONSTRAINT__MAPPINGS:
 				setMappings((GraphHomomorphism)null);
 				return;
+			case MetamodelPackage.CONSTRAINT__PARAMETERS:
+				setParameters(PARAMETERS_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -338,8 +388,26 @@ public class ConstraintImpl extends IDObjectImpl implements Constraint {
 				return predicate != null;
 			case MetamodelPackage.CONSTRAINT__MAPPINGS:
 				return mappings != null;
+			case MetamodelPackage.CONSTRAINT__PARAMETERS:
+				return PARAMETERS_EDEFAULT == null ? parameters != null : !PARAMETERS_EDEFAULT.equals(parameters);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (parameters: ");
+		result.append(parameters);
+		result.append(')');
+		return result.toString();
 	}
 
 } //ConstraintImpl

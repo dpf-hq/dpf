@@ -359,4 +359,14 @@ public class VConstraint extends ModelElement implements Constraint, IDObjectCon
 		return constraintComponent.getConstrainedArrows();
 	}
 
+	@Override
+	public String getParameters() {
+		return constraintComponent.getParameters();
+	}
+
+	@Override
+	public void setParameters(String value) {
+		constraintComponent.setParameters(value);
+	}
+
 }
