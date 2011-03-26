@@ -552,7 +552,6 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 			PALETTE_MODEL = paletteFactory.createPalette(getSpecification().getTypeGraph());
 		}
 		return PALETTE_MODEL;
-//		return paletteFactory.createPalette(specification.getTypeGraph());
 	}
 
 	private void handleLoadException(Exception e) {
@@ -573,9 +572,6 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		super.initializeGraphicalViewer();
 		GraphicalViewer viewer = getGraphicalViewer();
 		viewer.setContents(getDPFDiagram()); // set the contents of this editor
-
-//		// listen for dropped parts
-//		viewer.addDropTargetListener(createTransferDropTargetListener());
 	}
 
 	@Override

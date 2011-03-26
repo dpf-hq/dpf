@@ -12,7 +12,7 @@ import no.hib.dpf.metamodel.Constraint;
  * undone or redone.
  * TODO: generalize the class to accept more than two arrows.
  */
-public class MultipleArrowConstraintCreateCommand extends ConstraintCreateCommand {
+public class MultipleArrowConstraintCreateCommand extends VConstraintCreateCommand {
 	private final VArrow source;
 	private VArrow target;
 	

@@ -10,7 +10,7 @@ import no.hib.dpf.metamodel.Constraint;
  * A command to create a constraint on one arrow. The command can be
  * undone or redone.
  */
-public class SingleArrowConstraintCreateCommand extends ConstraintCreateCommand {
+public class SingleArrowConstraintCreateCommand extends VConstraintCreateCommand {
 	private final VArrow arrow;	
 	private VConstraint.ConstraintType constraintType;
 

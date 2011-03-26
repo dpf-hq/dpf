@@ -12,10 +12,10 @@ package no.hib.dpf.editor;
 
 import java.util.List;
 
-import no.hib.dpf.editor.editoractions.CreateConstraintAction;
 import no.hib.dpf.editor.icons.ImageSettings;
 import no.hib.dpf.editor.model.factories.ArrowCreationFactory;
 import no.hib.dpf.editor.model.factories.VNodeFactory;
+import no.hib.dpf.editor.preferences.DPFEditorPreferences;
 import no.hib.dpf.metamodel.Arrow;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.Node;
@@ -32,8 +32,6 @@ import org.eclipse.gef.palette.PanningSelectionToolEntry;
 import org.eclipse.gef.palette.ToolEntry;
 import org.eclipse.gef.tools.MarqueeSelectionTool;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.IStructuredSelection;
 
 /**
  * Utility class that can create a GEF Palette.
@@ -42,17 +40,7 @@ public class DPFEditorPaletteFactory {
 	
 	private static final String NODES = "Nodes";
 	private static final String ARROWS = "Arrows";
-	private static final String CONSTRAINTS = "Constaints";
 	
-	// /** Preference ID used to persist the palette location. */
-	// private static final String PALETTE_DOCK_LOCATION =
-	// "ShapesEditorPaletteFactory.Location";
-	// /** Preference ID used to persist the palette size. */
-	// private static final String PALETTE_SIZE =
-	// "ShapesEditorPaletteFactory.Size";
-	// /** Preference ID used to persist the flyout palette's state. */
-	// private static final String PALETTE_STATE =
-	// "ShapesEditorPaletteFactory.State";
 
 	/**
 	 * Creates the PaletteRoot and adds all palette elements. Use this factory
@@ -66,10 +54,6 @@ public class DPFEditorPaletteFactory {
 		palette.add(createArrowsGroup(typeGraph));
 		palette.add(new PaletteSeparator());
 		palette.add(createShapesGroup(typeGraph));
-		
-//		palette.add(createConstraintToolbar());
-//		palette.add(new PaletteSeparator());
-//		palette.add(createConstraintGroup());
 		return palette;
 	}
 	
@@ -87,35 +71,7 @@ public class DPFEditorPaletteFactory {
 		}
 		return null;
 	}
-	
-	public void updateConstraints(List<CreateConstraintAction> constraintActions, PaletteRoot root, ISelection selection) {
 		
-		if (constraintActions == null) {
-			return;
-		}
-		
-		PaletteGroup entry = getGroup(root, CONSTRAINTS);
-		removeEntryChildren(entry);
-		
-		if (selection instanceof IStructuredSelection) {
-			for (CreateConstraintAction createConstraintAction : constraintActions) {
-				if (createConstraintAction.isEnabled()) {
-					ImageDescriptor iconSmall = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.SMALL_CONNECTION.getFilePath());
-					ImageDescriptor iconLarge = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.LARGE_CONNECTION.getFilePath());
-
-					entry.add(new ConnectionCreationToolEntry(createConstraintAction.getDescription(), "Create a new dings", new ArrowCreationFactory(null, null), iconSmall, iconLarge));
-				}
-			}
-			
-		}
-//		return Collections.EMPTY_LIST;
-//	return ((IStructuredSelection) getSelection()).toList();
-
-		
-		
-		
-	}
-	
 	public void updatePalette(PaletteRoot root, Graph typeGraph) {
 		updateEntry(root, typeGraph, ARROWS);
 		updateEntry(root, typeGraph, NODES);
@@ -132,28 +88,7 @@ public class DPFEditorPaletteFactory {
 		addArrowCreationToolsToGroup(typeGraph, arrowsGroup);
 		return arrowsGroup;
 	}
-	
-	private PaletteToolbar createConstraintToolbar() {
-//		Composite c = new Composite(parent, SWT.None);
-//		c.setLayout(new GridLayout(1, true));
 		
-	
-		PaletteToolbar constraintBar = new PaletteToolbar("DING");
-		
-		
-		
-		ImageDescriptor iconSmall = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.SMALL_RECTANGLE.getFilePath());
-		ImageDescriptor iconLarge = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.LARGE_RECTANGLE.getFilePath());
-
-		constraintBar.add(new CreationToolEntry("Navn", "Create a new ", null, iconSmall, iconLarge));
-		return constraintBar;
-		
-	}
-	
-	private PaletteGroup createConstraintGroup() {
-		return new PaletteGroup(CONSTRAINTS);		
-	}
-	
 	private void updateEntry(PaletteRoot root, Graph typeGraph, String entryName) {
 		PaletteGroup entry = getGroup(root, entryName);
 		removeEntryChildren(entry);
@@ -175,6 +110,10 @@ public class DPFEditorPaletteFactory {
 		ImageDescriptor iconSmall = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.SMALL_CONNECTION.getFilePath());
 		ImageDescriptor iconLarge = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.LARGE_CONNECTION.getFilePath());
 
+		if ((typeGraph.getArrows().size() > 1) && (DPFEditorPreferences.getDefault().getDisplayDynamicallyTypedArrows())) {
+			edgeGroup.add(new ConnectionCreationToolEntry("Arrow (dynamically typed)", "Create a new dynamically typed arrow", new ArrowCreationFactory(null, null), iconSmall, iconLarge));
+		}
+		
 		for (Arrow typeArrow : typeGraph.getArrows()) {			
 			edgeGroup.add(new ConnectionCreationToolEntry(typeArrow.getName(), "Create a new " + typeArrow.getName(), new ArrowCreationFactory(null, typeArrow), iconSmall, iconLarge));
 		}
@@ -185,7 +124,6 @@ public class DPFEditorPaletteFactory {
 		ImageDescriptor iconLarge = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.LARGE_RECTANGLE.getFilePath());
 
 		for (Node typeNode : typeGraph.getNodes()) {
-//			component = new CombinedTemplateCreationEntry(typeNode.getName(), "Create a new " + typeNode.getName(), VNode.class, new VNodeFactory(typeNode), iconSmall, iconLarge);
 			nodeGroup.add(new CreationToolEntry(typeNode.getName(), "Create a new " + typeNode.getName(), new VNodeFactory(typeNode), iconSmall, iconLarge));
 		}
 	}
@@ -205,25 +143,7 @@ public class DPFEditorPaletteFactory {
 				MarqueeSelectionTool.BEHAVIOR_NODES_AND_CONNECTIONS);
 		toolbar.add(mqtool);
 
-		
-//		for (Edge typeEdge : typeGraph.getEdges()) {
-//			
-//			// Add (solid-line) connection tool
-//			tool = new ConnectionCreationToolEntry(
-//					typeEdge.getName(),
-//					"Create a " + typeEdge.getName(),
-//					new EdgeCreationFactory(null, typeEdge),
-//					ImageDescriptor.createFromFile(DPFPlugin.class, "icons/connection_s16.gif"),
-//					ImageDescriptor.createFromFile(DPFPlugin.class, "icons/connection_s24.gif"));
-//			toolbar.add(tool);
-//		}		
-
 		return toolbar;
 	}
-
-//	/** Utility class. */
-//	private DPFEditorPaletteFactory() {
-//		// Utility class
-//	}
 
 }

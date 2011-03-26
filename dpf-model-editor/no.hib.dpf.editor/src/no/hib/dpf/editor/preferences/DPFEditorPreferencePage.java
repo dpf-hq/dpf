@@ -40,6 +40,8 @@ public class DPFEditorPreferencePage extends FieldEditorPreferencePage implement
 		
 		addField(new ColorFieldEditor(PreferenceConstants.P_NODE_COLOR, "Node fill &color", getFieldEditorParent()));
 
+		addField(new BooleanFieldEditor(PreferenceConstants.P_DISPLAY_DYNTYPED_ARROWS, "Display tool to create &dynamically typed arrows", getFieldEditorParent()));
+		
 //		addField(new RadioGroupFieldEditor(
 //				PreferenceConstants.P_CHOICE,
 //			"An example of a multiple-choice preference",

@@ -5,18 +5,18 @@ import no.hib.dpf.metamodel.Constraint;
 
 import org.eclipse.gef.commands.Command;
 
-public abstract class ConstraintCreateCommand extends Command {
+public abstract class VConstraintCreateCommand extends Command {
 
 	protected VConstraint constraint;
 	
 	protected Constraint idObject;
 
-	public ConstraintCreateCommand(Constraint idObject) {
+	public VConstraintCreateCommand(Constraint idObject) {
 		super();
 		this.idObject = idObject;
 	}
 
-	public ConstraintCreateCommand(String label) {
+	public VConstraintCreateCommand(String label) {
 		super(label);
 	}
 

@@ -24,7 +24,7 @@ import no.hib.dpf.editor.model.LocationAndSize;
 import no.hib.dpf.editor.model.ModelElement;
 import no.hib.dpf.editor.model.VArrow;
 import no.hib.dpf.editor.model.VNode;
-import no.hib.dpf.editor.model.commands.ConnectionCreateCommand;
+import no.hib.dpf.editor.model.commands.VArrowCreateCommand;
 import no.hib.dpf.editor.model.commands.ConnectionReconnectCommand;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;
 import no.hib.dpf.editor.preferences.PreferenceConstants;
@@ -102,7 +102,7 @@ public class NodeEditPart extends AbstractGraphicalEditPart implements
 
 					protected Command getConnectionCompleteCommand(
 							CreateConnectionRequest request) {
-						ConnectionCreateCommand cmd = (ConnectionCreateCommand) request
+						VArrowCreateCommand cmd = (VArrowCreateCommand) request
 								.getStartCommand();
 						cmd.setTarget((VNode) getHost().getModel());
 						return cmd;
@@ -112,9 +112,12 @@ public class NodeEditPart extends AbstractGraphicalEditPart implements
 							CreateConnectionRequest request) {
 
 						VNode source = (VNode) getHost().getModel();
-						Arrow typeArrow = (Arrow) request.getNewObjectType();
-
-						ConnectionCreateCommand cmd = new ConnectionCreateCommand(
+						Object objectType = request.getNewObjectType();
+						Arrow typeArrow = null;
+						if (objectType instanceof Arrow) {
+							typeArrow = (Arrow)objectType;
+						}
+						VArrowCreateCommand cmd = new VArrowCreateCommand(
 								source, typeArrow);
 						request.setStartCommand(cmd);
 						return cmd;

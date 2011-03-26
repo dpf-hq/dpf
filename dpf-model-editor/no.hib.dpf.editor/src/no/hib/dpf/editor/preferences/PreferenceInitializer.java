@@ -13,6 +13,7 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 		store.setDefault(PreferenceConstants.P_DISPLAY_ARROWS, true);
 		store.setDefault(PreferenceConstants.P_DISPLAY_TYPES, true);
 		store.setDefault(PreferenceConstants.P_NODE_COLOR, "255,255,255");
+		store.setDefault(PreferenceConstants.P_DISPLAY_DYNTYPED_ARROWS, false);
 	}
 
 }
