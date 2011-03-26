@@ -33,6 +33,10 @@ public class DPFEditorPreferences {
 		return getPreferenceStore().getBoolean(PreferenceConstants.P_DISPLAY_DYNTYPED_ARROWS);
 	}
 	
+	public boolean getDisplayStaticallyTypedArrows() {
+		return getPreferenceStore().getBoolean(PreferenceConstants.P_DISPLAY_TYPED_ARROWS);
+	}
+
 	public Color getNodeColor() {
         String colorString = getPreferenceStore().getString(PreferenceConstants.P_NODE_COLOR);
 		

@@ -12,6 +12,8 @@ public class PreferenceConstants {
 	public static final String P_NODE_COLOR = "nodeColorPreference";
 
 	public static final String P_DISPLAY_DYNTYPED_ARROWS = "displayDynTypedArrowsPreference";
+		
+	public static final String P_DISPLAY_TYPED_ARROWS = "displayTypedArrowsPreference";
 	
 //	public static final String P_PATH = "pathPreference";
 //

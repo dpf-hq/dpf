@@ -3,6 +3,8 @@ package no.hib.dpf.editor.preferences;
 import org.eclipse.jface.preference.BooleanFieldEditor;
 import org.eclipse.jface.preference.ColorFieldEditor;
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
+import org.eclipse.jface.util.PropertyChangeEvent;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
@@ -18,6 +20,10 @@ import org.eclipse.ui.IWorkbenchPreferencePage;
  */
 
 public class DPFEditorPreferencePage extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {
+	
+	private Composite fieldEditorParent;
+	private BooleanFieldEditor displayDynTypedArrowTools;
+	private BooleanFieldEditor displayTypedArrowTools;
 
 	public DPFEditorPreferencePage() {
 		super(GRID);
@@ -40,7 +46,15 @@ public class DPFEditorPreferencePage extends FieldEditorPreferencePage implement
 		
 		addField(new ColorFieldEditor(PreferenceConstants.P_NODE_COLOR, "Node fill &color", getFieldEditorParent()));
 
-		addField(new BooleanFieldEditor(PreferenceConstants.P_DISPLAY_DYNTYPED_ARROWS, "Display tool to create &dynamically typed arrows", getFieldEditorParent()));
+		displayDynTypedArrowTools = new BooleanFieldEditor(PreferenceConstants.P_DISPLAY_DYNTYPED_ARROWS, "Display create tool for &dynamically typed arrows", getFieldEditorParent()); 
+		addField(displayDynTypedArrowTools); 
+
+		fieldEditorParent = getFieldEditorParent();
+		displayTypedArrowTools = new BooleanFieldEditor(PreferenceConstants.P_DISPLAY_TYPED_ARROWS, "Display create tool for &statically typed arrows", fieldEditorParent);
+		addField(displayTypedArrowTools);
+		
+		displayTypedArrowTools.setEnabled(DPFEditorPreferences.getDefault().getDisplayDynamicallyTypedArrows(), fieldEditorParent);
+		
 		
 //		addField(new RadioGroupFieldEditor(
 //				PreferenceConstants.P_CHOICE,
@@ -51,6 +65,12 @@ public class DPFEditorPreferencePage extends FieldEditorPreferencePage implement
 //		}, getFieldEditorParent()));
 //		addField(
 //			new StringFieldEditor(PreferenceConstants.P_STRING, "A &text preference:", getFieldEditorParent()));
+	}
+
+	@Override
+	public void propertyChange(PropertyChangeEvent event) {
+		super.propertyChange(event);
+		displayTypedArrowTools.setEnabled(displayDynTypedArrowTools.getBooleanValue(), fieldEditorParent);
 	}
 
 	/* (non-Javadoc)

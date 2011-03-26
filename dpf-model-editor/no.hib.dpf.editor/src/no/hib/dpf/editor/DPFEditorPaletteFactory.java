@@ -110,12 +110,15 @@ public class DPFEditorPaletteFactory {
 		ImageDescriptor iconSmall = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.SMALL_CONNECTION.getFilePath());
 		ImageDescriptor iconLarge = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.LARGE_CONNECTION.getFilePath());
 
-		if ((typeGraph.getArrows().size() > 1) && (DPFEditorPreferences.getDefault().getDisplayDynamicallyTypedArrows())) {
+		boolean displayDyntypeArrow = ((typeGraph.getArrows().size() > 1) && (DPFEditorPreferences.getDefault().getDisplayDynamicallyTypedArrows())); 
+		if (displayDyntypeArrow) {
 			edgeGroup.add(new ConnectionCreationToolEntry("Arrow (dynamically typed)", "Create a new dynamically typed arrow", new ArrowCreationFactory(null, null), iconSmall, iconLarge));
 		}
 		
-		for (Arrow typeArrow : typeGraph.getArrows()) {			
-			edgeGroup.add(new ConnectionCreationToolEntry(typeArrow.getName(), "Create a new " + typeArrow.getName(), new ArrowCreationFactory(null, typeArrow), iconSmall, iconLarge));
+		if ((!displayDyntypeArrow) || (DPFEditorPreferences.getDefault().getDisplayStaticallyTypedArrows())) {
+			for (Arrow typeArrow : typeGraph.getArrows()) {			
+				edgeGroup.add(new ConnectionCreationToolEntry(typeArrow.getName(), "Create a new " + typeArrow.getName(), new ArrowCreationFactory(null, typeArrow), iconSmall, iconLarge));
+			}
 		}
 	}
 	

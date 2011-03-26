@@ -42,6 +42,8 @@ import no.hib.dpf.editor.model.VArrow;
 import no.hib.dpf.editor.model.VConstraint;
 import no.hib.dpf.editor.parts.EditPartFactoryImpl;
 import no.hib.dpf.editor.parts.NodeTreeEditPartFactory;
+import no.hib.dpf.editor.preferences.DPFEditorPreferences;
+import no.hib.dpf.editor.preferences.PreferenceConstants;
 import no.hib.dpf.metamodel.Constraint;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.IDObject;
@@ -84,6 +86,7 @@ import org.eclipse.gef.ui.parts.GraphicalViewerKeyHandler;
 import org.eclipse.gef.ui.parts.TreeViewer;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
+import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -133,8 +136,21 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		paletteFactory = new DPFEditorPaletteFactory();
 		setEditDomain(new DefaultEditDomain(this));
 		shapesEditPartFactory = new EditPartFactoryImpl();
+		listenToDisplayDyntTypedArrowsProperty();
 	}
-		
+	
+	private void listenToDisplayDyntTypedArrowsProperty() {
+		DPFEditorPreferences.getDefault().getPreferenceStore().addPropertyChangeListener(new IPropertyChangeListener() {
+			@Override
+			public void propertyChange(org.eclipse.jface.util.PropertyChangeEvent event) {
+				if ((event.getProperty().equals(PreferenceConstants.P_DISPLAY_DYNTYPED_ARROWS)) ||
+					(event.getProperty().equals(PreferenceConstants.P_DISPLAY_TYPED_ARROWS))) {
+					paletteFactory.updatePalette(getPaletteRoot(), getSpecification().getTypeGraph());
+				}
+			}
+		});
+	}	
+	
 	private DPFDiagram getDPFDiagram() {
 		return digram;
 	}
@@ -577,7 +593,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 	@Override
 	public void setFocus() {
 		super.setFocus();
-		paletteFactory.updatePalette(getPaletteRoot(), getSpecification().getTypeGraph());		
+		paletteFactory.updatePalette(getPaletteRoot(), getSpecification().getTypeGraph());
 	}
 		
 	/*
