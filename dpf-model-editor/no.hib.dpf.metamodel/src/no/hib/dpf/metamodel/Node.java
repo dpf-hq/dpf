@@ -177,7 +177,7 @@ public interface Node extends IDObject {
 	 * @model
 	 * @generated
 	 */
-	boolean possibleToCreateDynamicallyTypedArrow(Node intendedTarget);
+	boolean canCreateTypedArrow(Node intendedTarget);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -185,6 +185,6 @@ public interface Node extends IDObject {
 	 * @model
 	 * @generated
 	 */
-	Arrow createDynamicallyTypedArrow(Node intendedTarget);
+	Arrow getTypeArrow(Node intendedTarget);
 
 } // Node

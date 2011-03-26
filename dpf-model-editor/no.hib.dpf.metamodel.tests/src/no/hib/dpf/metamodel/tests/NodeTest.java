@@ -27,8 +27,8 @@ import no.hib.dpf.metamodel.Node;
  *   <li>{@link no.hib.dpf.metamodel.Node#getArrowto(no.hib.dpf.metamodel.Node) <em>Get Arrowto</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Node#getTypeName() <em>Get Type Name</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Node#generateUniqueName() <em>Generate Unique Name</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Node#possibleToCreateDynamicallyTypedArrow(no.hib.dpf.metamodel.Node) <em>Possible To Create Dynamically Typed Arrow</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Node#createDynamicallyTypedArrow(no.hib.dpf.metamodel.Node) <em>Create Dynamically Typed Arrow</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Node#canCreateTypedArrow(no.hib.dpf.metamodel.Node) <em>Can Create Typed Arrow</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Node#getTypeArrow(no.hib.dpf.metamodel.Node) <em>Get Type Arrow</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -218,13 +218,13 @@ public class NodeTest extends IDObjectTest {
 	}
 	
 	/**
-	 * Tests the '{@link no.hib.dpf.metamodel.Node#possibleToCreateDynamicallyTypedArrow(no.hib.dpf.metamodel.Node) <em>Possible To Create Dynamically Typed Arrow</em>}' operation.
+	 * Tests the '{@link no.hib.dpf.metamodel.Node#canCreateTypedArrow(no.hib.dpf.metamodel.Node) <em>Can Create Typed Arrow</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.Node#possibleToCreateDynamicallyTypedArrow(no.hib.dpf.metamodel.Node)
+	 * @see no.hib.dpf.metamodel.Node#canCreateTypedArrow(no.hib.dpf.metamodel.Node)
 	 * @generated NOT
 	 */
-	public void testPossibleToCreateDynamicallyTypedArrow__Node() {
+	public void testCanCreateTypedArrow__Node() {
 		Graph typeGraph = MetamodelFactory.eINSTANCE.createGraph("tn_1,tn_2,tn_3", "ta_1:tn_1:tn_2,ta_2:tn_2:tn_1,t1_3:tn_3:tn_1,ta_4:tn_1:tn_1:ta_5:tn_1:tn_2");		
 		Node tn_1 = typeGraph.getNodeByName("tn_1");
 		Node tn_2 = typeGraph.getNodeByName("tn_2");
@@ -233,36 +233,36 @@ public class NodeTest extends IDObjectTest {
 		Node source = MetamodelFactory.eINSTANCE.createNode();
 		Node target = MetamodelFactory.eINSTANCE.createNode();
 
-		assertFalse(source.possibleToCreateDynamicallyTypedArrow(null));		
-		assertFalse(source.possibleToCreateDynamicallyTypedArrow(target));		
-		assertFalse(target.possibleToCreateDynamicallyTypedArrow(source));				
-		assertFalse(source.possibleToCreateDynamicallyTypedArrow(source));		
+		assertFalse(source.canCreateTypedArrow(null));		
+		assertFalse(source.canCreateTypedArrow(target));		
+		assertFalse(target.canCreateTypedArrow(source));				
+		assertFalse(source.canCreateTypedArrow(source));		
 		target = MetamodelFactory.eINSTANCE.createNode(tn_2);
-		assertFalse(source.possibleToCreateDynamicallyTypedArrow(target));		
+		assertFalse(source.canCreateTypedArrow(target));		
 		
 		source = MetamodelFactory.eINSTANCE.createNode(tn_1);
 		
-		assertFalse(source.possibleToCreateDynamicallyTypedArrow(null));
-		assertTrue(source.possibleToCreateDynamicallyTypedArrow(target));
-		assertTrue(source.possibleToCreateDynamicallyTypedArrow(source));		
+		assertFalse(source.canCreateTypedArrow(null));
+		assertTrue(source.canCreateTypedArrow(target));
+		assertTrue(source.canCreateTypedArrow(source));		
 		
 		target = MetamodelFactory.eINSTANCE.createNode(tn_3);
-		assertFalse(source.possibleToCreateDynamicallyTypedArrow(target));
+		assertFalse(source.canCreateTypedArrow(target));
 
 		source = MetamodelFactory.eINSTANCE.createNode(tn_3);
 		target = MetamodelFactory.eINSTANCE.createNode(tn_2);
-		assertFalse(source.possibleToCreateDynamicallyTypedArrow(target));
-		assertFalse(source.possibleToCreateDynamicallyTypedArrow(source));		
+		assertFalse(source.canCreateTypedArrow(target));
+		assertFalse(source.canCreateTypedArrow(source));	
 	}
 
 	/**
-	 * Tests the '{@link no.hib.dpf.metamodel.Node#createDynamicallyTypedArrow(no.hib.dpf.metamodel.Node) <em>Create Dynamically Typed Arrow</em>}' operation.
+	 * Tests the '{@link no.hib.dpf.metamodel.Node#getTypeArrow(no.hib.dpf.metamodel.Node) <em>Get Type Arrow</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.Node#createDynamicallyTypedArrow(no.hib.dpf.metamodel.Node)
+	 * @see no.hib.dpf.metamodel.Node#getTypeArrow(no.hib.dpf.metamodel.Node)
 	 * @generated NOT
 	 */
-	public void testCreateDynamicallyTypedArrow__Node() {
+	public void testGetTypeArrow__Node() {
 		Graph typeGraph = MetamodelFactory.eINSTANCE.createGraph("tn_1,tn_2,tn_3", "ta_1:tn_1:tn_2,ta_2:tn_2:tn_1,t1_3:tn_3:tn_1,ta_4:tn_1:tn_1");		
 		Node tn_1 = typeGraph.getNodeByName("tn_1");
 		Node tn_2 = typeGraph.getNodeByName("tn_2");
@@ -270,15 +270,15 @@ public class NodeTest extends IDObjectTest {
 		Node source = MetamodelFactory.eINSTANCE.createNode();
 		Node target = MetamodelFactory.eINSTANCE.createNode();
 		
-		assertEquals(null, source.createDynamicallyTypedArrow(target));
+		assertEquals(null, source.getTypeArrow(target));
 		
 		
 		source = MetamodelFactory.eINSTANCE.createNode(tn_1);
 		target = MetamodelFactory.eINSTANCE.createNode(tn_2);
-		Arrow typedArrow = source.createDynamicallyTypedArrow(target);
-		assertEquals(typeGraph.getArrowByName("ta_1"), typedArrow.getTypeArrow());
-		typedArrow = source.createDynamicallyTypedArrow(source);
-		assertEquals(typeGraph.getArrowByName("ta_4"), typedArrow.getTypeArrow());	
+		Arrow typeArrow = source.getTypeArrow(target);
+		assertEquals(typeGraph.getArrowByName("ta_1"), typeArrow);
+		typeArrow = source.getTypeArrow(source);
+		assertEquals(typeGraph.getArrowByName("ta_4"), typeArrow);	
 	}
 
 	public void testGenerateUniqueNameWhenInGraph() {

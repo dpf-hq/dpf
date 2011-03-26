@@ -8,7 +8,6 @@ package no.hib.dpf.metamodel.impl;
 
 import no.hib.dpf.metamodel.Arrow;
 import no.hib.dpf.metamodel.Graph;
-import no.hib.dpf.metamodel.MetamodelFactory;
 import no.hib.dpf.metamodel.MetamodelPackage;
 import no.hib.dpf.metamodel.Node;
 
@@ -325,7 +324,7 @@ public class NodeImpl extends IDObjectImpl implements Node {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public boolean possibleToCreateDynamicallyTypedArrow(Node intendedTarget) {
+	public boolean canCreateTypedArrow(Node intendedTarget) {
 		if (intendedTarget == null) {
 			return false;
 		}
@@ -333,13 +332,7 @@ public class NodeImpl extends IDObjectImpl implements Node {
 		if ((getTypeNode() == null) || (intendedTarget.getTypeNode() == null)) {
 			return false;
 		}
-		Node intendedTargetsTypeNode = intendedTarget.getTypeNode();
-		for (Arrow arrow : getTypeNode().getOutgoingArrows()) {
-			if (arrow.getTarget().equals(intendedTargetsTypeNode)) {
-				return true;
-			}
-		}
-		return false;
+		return (getTypeArrow(intendedTarget) != null);
 	}
 
 	/**
@@ -347,12 +340,12 @@ public class NodeImpl extends IDObjectImpl implements Node {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Arrow createDynamicallyTypedArrow(Node intendedTarget) {
+	public Arrow getTypeArrow(Node intendedTarget) {
 		try {
 			Node intendedTargetsTypeNode = intendedTarget.getTypeNode();
 			for (Arrow arrow : getTypeNode().getOutgoingArrows()) {
 				if (arrow.getTarget().equals(intendedTargetsTypeNode)) {
-					return MetamodelFactory.eINSTANCE.createArrow(arrow);
+					return arrow;
 				}
 			}			
 		} catch (Exception e) {}
