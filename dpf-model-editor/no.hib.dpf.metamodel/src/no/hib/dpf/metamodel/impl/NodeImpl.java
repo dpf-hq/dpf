@@ -8,6 +8,7 @@ package no.hib.dpf.metamodel.impl;
 
 import no.hib.dpf.metamodel.Arrow;
 import no.hib.dpf.metamodel.Graph;
+import no.hib.dpf.metamodel.MetamodelFactory;
 import no.hib.dpf.metamodel.MetamodelPackage;
 import no.hib.dpf.metamodel.Node;
 
@@ -319,6 +320,45 @@ public class NodeImpl extends IDObjectImpl implements Node {
 		
 		return name;
 	}
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean possibleToCreateDynamicallyTypedArrow(Node intendedTarget) {
+		if (intendedTarget == null) {
+			return false;
+		}
+		// By convention, we say that a connection can't be made between typed and untyped nodes:
+		if ((getTypeNode() == null) || (intendedTarget.getTypeNode() == null)) {
+			return false;
+		}
+		Node intendedTargetsTypeNode = intendedTarget.getTypeNode();
+		for (Arrow arrow : getTypeNode().getOutgoingArrows()) {
+			if (arrow.getTarget().equals(intendedTargetsTypeNode)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Arrow createDynamicallyTypedArrow(Node intendedTarget) {
+		try {
+			Node intendedTargetsTypeNode = intendedTarget.getTypeNode();
+			for (Arrow arrow : getTypeNode().getOutgoingArrows()) {
+				if (arrow.getTarget().equals(intendedTargetsTypeNode)) {
+					return MetamodelFactory.eINSTANCE.createArrow(arrow);
+				}
+			}			
+		} catch (Exception e) {}
+		return null;
+	}
+
 	/**
 	 * 
 	 * @param name

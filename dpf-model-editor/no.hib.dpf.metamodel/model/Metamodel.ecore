@@ -90,6 +90,12 @@
           </eOperations>
           <eOperations name="getTypeName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
           <eOperations name="generateUniqueName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          <eOperations name="possibleToCreateDynamicallyTypedArrow" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+            <eParameters name="intendedTarget" eType="#//hib/dpf/metamodel/Node"/>
+          </eOperations>
+          <eOperations name="createDynamicallyTypedArrow" eType="#//hib/dpf/metamodel/Arrow">
+            <eParameters name="intendedTarget" eType="#//hib/dpf/metamodel/Node"/>
+          </eOperations>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="graph" eType="#//hib/dpf/metamodel/Graph"
               unsettable="true" eOpposite="#//hib/dpf/metamodel/Graph/nodes"/>

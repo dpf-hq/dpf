@@ -171,4 +171,20 @@ public interface Node extends IDObject {
 	 */
 	String generateUniqueName();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	boolean possibleToCreateDynamicallyTypedArrow(Node intendedTarget);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	Arrow createDynamicallyTypedArrow(Node intendedTarget);
+
 } // Node
