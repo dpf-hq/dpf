@@ -69,7 +69,9 @@ public class SingleArrowConstraintElement extends VConstraint {
 	@Override
 	public void setIDObject(IDObject idObject) {
 		super.setIDObject(idObject);
-		getConstraintLabel().setLabelText(toString());
+		if (getConstraintLabel() != null) {
+			getConstraintLabel().setLabelText(toString());
+		}
 	}	
 
 	/**
