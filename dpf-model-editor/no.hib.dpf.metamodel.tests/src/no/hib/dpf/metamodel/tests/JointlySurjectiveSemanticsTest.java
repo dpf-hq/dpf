@@ -21,7 +21,7 @@ import no.hib.dpf.metamodel.MetamodelFactory;
  * <p>
  * The following operations are tested:
  * <ul>
- *   <li>{@link no.hib.dpf.metamodel.Semantics#validateSemantics(no.hib.dpf.metamodel.Graph) <em>Validate Semantics</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Semantics#validateSemantics(no.hib.dpf.metamodel.Graph, java.lang.String) <em>Validate Semantics</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -98,19 +98,19 @@ public class JointlySurjectiveSemanticsTest extends TestCase {
 	}
 
 	/**
-	 * Tests the '{@link no.hib.dpf.metamodel.Semantics#validateSemantics(no.hib.dpf.metamodel.Graph) <em>Validate Semantics</em>}' operation.
+	 * Tests the '{@link no.hib.dpf.metamodel.Semantics#validateSemantics(no.hib.dpf.metamodel.Graph, java.lang.String) <em>Validate Semantics</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.Semantics#validateSemantics(no.hib.dpf.metamodel.Graph)
+	 * @see no.hib.dpf.metamodel.Semantics#validateSemantics(no.hib.dpf.metamodel.Graph, java.lang.String)
 	 * @generated NOT
 	 */
-	public void testValidateSemantics__Graph() {
+	public void testValidateSemantics__Graph_String() {
 		Graph graph = MetamodelFactory.eINSTANCE.createGraph("x, y, z", "f:x:y,g:z:y");		
-		assertTrue(getFixture().validateSemantics(graph));
+		assertTrue(getFixture().validateSemantics(graph, ""));
 		graph = MetamodelFactory.eINSTANCE.createGraph("x, y, z, ¾", "f:x:y,g:z:y,Œ:¾:y");		
-		assertTrue(getFixture().validateSemantics(graph));
+		assertTrue(getFixture().validateSemantics(graph, ""));
 		graph = MetamodelFactory.eINSTANCE.createGraph("x, y, z, ¾", "f:x:y,g:z:y,Œ:z:¾");		
-		assertFalse(getFixture().validateSemantics(graph));
+		assertFalse(getFixture().validateSemantics(graph, ""));
 	}
 
 

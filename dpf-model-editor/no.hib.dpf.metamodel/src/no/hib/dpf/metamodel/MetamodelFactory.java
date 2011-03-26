@@ -238,6 +238,15 @@ public interface MetamodelFactory extends EFactory {
 	IrreflexiveSemantics createIrreflexiveSemantics();
 
 	/**
+	 * Returns a new object of class '<em>Multiplicity Semantics</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Multiplicity Semantics</em>'.
+	 * @generated
+	 */
+	MultiplicitySemantics createMultiplicitySemantics();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

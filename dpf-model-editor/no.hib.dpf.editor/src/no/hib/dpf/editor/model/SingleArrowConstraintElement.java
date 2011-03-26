@@ -17,7 +17,6 @@ public class SingleArrowConstraintElement extends VConstraint {
 		this.setConstraintType(constraintType);
 		// The dpf Constraint object must be initialized before the connection of the shapes.
 		setIDObject(IDObject);
-		constraintLabel = new ArrowLabel(toString(), true);
 		reconnect(source, targets);
 	}
 		
@@ -71,6 +70,8 @@ public class SingleArrowConstraintElement extends VConstraint {
 		super.setIDObject(idObject);
 		if (getConstraintLabel() != null) {
 			getConstraintLabel().setLabelText(toString());
+		} else {
+			constraintLabel = new ArrowLabel(toString(), true);
 		}
 	}	
 

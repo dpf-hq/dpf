@@ -747,6 +747,25 @@ public interface MetamodelPackage extends EPackage {
 	int IRREFLEXIVE_SEMANTICS_FEATURE_COUNT = SEMANTICS_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.MultiplicitySemanticsImpl <em>Multiplicity Semantics</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.impl.MultiplicitySemanticsImpl
+	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getMultiplicitySemantics()
+	 * @generated
+	 */
+	int MULTIPLICITY_SEMANTICS = 18;
+
+	/**
+	 * The number of structural features of the '<em>Multiplicity Semantics</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLICITY_SEMANTICS_FEATURE_COUNT = SEMANTICS_FEATURE_COUNT + 0;
+
+	/**
 	 * The meta object id for the '<em>EURI</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -754,7 +773,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getEURI()
 	 * @generated
 	 */
-	int EURI = 18;
+	int EURI = 19;
 
 	/**
 	 * The meta object id for the '<em>EIO Exception</em>' data type.
@@ -764,7 +783,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getEIOException()
 	 * @generated
 	 */
-	int EIO_EXCEPTION = 19;
+	int EIO_EXCEPTION = 20;
 
 
 	/**
@@ -1326,6 +1345,16 @@ public interface MetamodelPackage extends EPackage {
 	EClass getIrreflexiveSemantics();
 
 	/**
+	 * Returns the meta object for class '{@link no.hib.dpf.metamodel.MultiplicitySemantics <em>Multiplicity Semantics</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Multiplicity Semantics</em>'.
+	 * @see no.hib.dpf.metamodel.MultiplicitySemantics
+	 * @generated
+	 */
+	EClass getMultiplicitySemantics();
+
+	/**
 	 * Returns the meta object for data type '{@link org.eclipse.emf.common.util.URI <em>EURI</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1820,6 +1849,16 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass IRREFLEXIVE_SEMANTICS = eINSTANCE.getIrreflexiveSemantics();
+
+		/**
+		 * The meta object literal for the '{@link no.hib.dpf.metamodel.impl.MultiplicitySemanticsImpl <em>Multiplicity Semantics</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see no.hib.dpf.metamodel.impl.MultiplicitySemanticsImpl
+		 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getMultiplicitySemantics()
+		 * @generated
+		 */
+		EClass MULTIPLICITY_SEMANTICS = eINSTANCE.getMultiplicitySemantics();
 
 		/**
 		 * The meta object literal for the '<em>EURI</em>' data type.

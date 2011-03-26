@@ -20,6 +20,7 @@ import no.hib.dpf.metamodel.JointlySurjectiveSemantics;
 import no.hib.dpf.metamodel.MetamodelFactory;
 import no.hib.dpf.metamodel.MetamodelPackage;
 import no.hib.dpf.metamodel.ModelHierarchy;
+import no.hib.dpf.metamodel.MultiplicitySemantics;
 import no.hib.dpf.metamodel.Node;
 import no.hib.dpf.metamodel.Predicate;
 import no.hib.dpf.metamodel.Semantics;
@@ -169,6 +170,13 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * @generated
 	 */
 	private EClass irreflexiveSemanticsEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass multiplicitySemanticsEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -718,6 +726,15 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getMultiplicitySemantics() {
+		return multiplicitySemanticsEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EDataType getEURI() {
 		return euriEDataType;
 	}
@@ -829,6 +846,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 		irreflexiveSemanticsEClass = createEClass(IRREFLEXIVE_SEMANTICS);
 
+		multiplicitySemanticsEClass = createEClass(MULTIPLICITY_SEMANTICS);
+
 		// Create data types
 		euriEDataType = createEDataType(EURI);
 		eioExceptionEDataType = createEDataType(EIO_EXCEPTION);
@@ -869,6 +888,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		jointlySurjectiveSemanticsEClass.getESuperTypes().add(this.getSemantics());
 		inverseSemanticsEClass.getESuperTypes().add(this.getSemantics());
 		irreflexiveSemanticsEClass.getESuperTypes().add(this.getSemantics());
+		multiplicitySemanticsEClass.getESuperTypes().add(this.getSemantics());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(graphEClass, Graph.class, "Graph", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1004,11 +1024,13 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 		op = addEOperation(predicateEClass, ecorePackage.getEBooleanObject(), "validateSemantics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getGraph(), "oStar", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "constraintParameters", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(semanticsEClass, Semantics.class, "Semantics", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		op = addEOperation(semanticsEClass, ecorePackage.getEBooleanObject(), "validateSemantics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getGraph(), "oStar", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "constraintParameters", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(visualizationEClass, Visualization.class, "Visualization", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1066,6 +1088,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		initEClass(inverseSemanticsEClass, InverseSemantics.class, "InverseSemantics", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(irreflexiveSemanticsEClass, IrreflexiveSemantics.class, "IrreflexiveSemantics", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(multiplicitySemanticsEClass, MultiplicitySemantics.class, "MultiplicitySemantics", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize data types
 		initEDataType(euriEDataType, URI.class, "EURI", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);

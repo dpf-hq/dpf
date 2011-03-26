@@ -223,10 +223,13 @@ public class ConstraintImpl extends IDObjectImpl implements Constraint {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public String getParameters() {
-		return parameters;
+		if (parameters != null) {
+			return parameters;
+		}
+		return "";
 	}
 
 	/**

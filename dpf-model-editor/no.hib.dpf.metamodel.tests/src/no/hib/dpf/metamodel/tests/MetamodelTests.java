@@ -46,6 +46,7 @@ public class MetamodelTests extends TestSuite {
 		suite.addTestSuite(JointlySurjectiveSemanticsTest.class);
 		suite.addTestSuite(InverseSemanticsTest.class);
 		suite.addTestSuite(IrreflexiveSemanticsTest.class);
+		suite.addTestSuite(MultiplicitySemanticsTest.class);
 		return suite;
 	}
 

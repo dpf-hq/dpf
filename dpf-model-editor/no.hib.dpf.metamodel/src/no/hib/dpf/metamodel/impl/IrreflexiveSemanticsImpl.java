@@ -49,7 +49,7 @@ public class IrreflexiveSemanticsImpl extends EObjectImpl implements Irreflexive
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Boolean validateSemantics(Graph oStar) {
+	public Boolean validateSemantics(Graph oStar, String constraintParameters) {
 		for (Arrow arrow : oStar.getArrows()) {
 			if (arrow.getSource().equals(arrow.getTarget())) {
 				return false;

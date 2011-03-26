@@ -26,5 +26,5 @@ public interface Semantics extends EObject {
 	 * @model
 	 * @generated
 	 */
-	Boolean validateSemantics(Graph oStar);
+	Boolean validateSemantics(Graph oStar, String constraintParameters);
 } // Semantics

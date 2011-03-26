@@ -134,6 +134,7 @@
           </eOperations>
           <eOperations name="validateSemantics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject">
             <eParameters name="oStar" eType="#//hib/dpf/metamodel/Graph"/>
+            <eParameters name="constraintParameters" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
           </eOperations>
           <eStructuralFeatures xsi:type="ecore:EReference" name="shape" eType="#//hib/dpf/metamodel/Graph"
               containment="true"/>
@@ -146,6 +147,7 @@
         <eClassifiers xsi:type="ecore:EClass" name="Semantics" abstract="true" interface="true">
           <eOperations name="validateSemantics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject">
             <eParameters name="oStar" eType="#//hib/dpf/metamodel/Graph"/>
+            <eParameters name="constraintParameters" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
           </eOperations>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Visualization" abstract="true"/>
@@ -210,6 +212,7 @@
         <eClassifiers xsi:type="ecore:EClass" name="JointlySurjectiveSemantics" eSuperTypes="#//hib/dpf/metamodel/Semantics"/>
         <eClassifiers xsi:type="ecore:EClass" name="InverseSemantics" eSuperTypes="#//hib/dpf/metamodel/Semantics"/>
         <eClassifiers xsi:type="ecore:EClass" name="IrreflexiveSemantics" eSuperTypes="#//hib/dpf/metamodel/Semantics"/>
+        <eClassifiers xsi:type="ecore:EClass" name="MultiplicitySemantics" eSuperTypes="#//hib/dpf/metamodel/Semantics"/>
       </eSubpackages>
     </eSubpackages>
   </eSubpackages>

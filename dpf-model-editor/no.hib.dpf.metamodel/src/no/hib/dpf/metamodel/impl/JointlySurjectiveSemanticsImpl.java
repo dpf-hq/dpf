@@ -49,7 +49,7 @@ public class JointlySurjectiveSemanticsImpl extends EObjectImpl implements Joint
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Boolean validateSemantics(Graph oStar) {
+	public Boolean validateSemantics(Graph oStar, String constraintParameters) {
 		if (oStar.getArrows().size() != (oStar.getNodes().size() - 1)) {
 			return false;
 		}

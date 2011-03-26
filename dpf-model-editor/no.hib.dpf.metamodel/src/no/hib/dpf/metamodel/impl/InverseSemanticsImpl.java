@@ -46,6 +46,20 @@ public class InverseSemanticsImpl extends EObjectImpl implements InverseSemantic
 	}
 	
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Boolean validateSemantics(Graph oStar, String constraintParameters) {
+		for (Node aNode : oStar.getNodes()) {
+			if (!canReturn(aNode)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/**
 	 *  @generated NOT
 	 */
 	private boolean canReturn(Node aNode) {
@@ -57,20 +71,6 @@ public class InverseSemanticsImpl extends EObjectImpl implements InverseSemantic
 				}
 			}
 			if (!gotBack) {
-				return false;
-			}
-		}
-		return true;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated  NOT
-	 */
-	public Boolean validateSemantics(Graph oStar) {
-		for (Node aNode : oStar.getNodes()) {
-			if (!canReturn(aNode)) {
 				return false;
 			}
 		}

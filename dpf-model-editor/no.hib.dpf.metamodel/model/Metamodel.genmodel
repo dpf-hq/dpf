@@ -148,11 +148,13 @@
             </genOperations>
             <genOperations ecoreOperation="Metamodel.ecore#//hib/dpf/metamodel/Predicate/validateSemantics">
               <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/Predicate/validateSemantics/oStar"/>
+              <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/Predicate/validateSemantics/constraintParameters"/>
             </genOperations>
           </genClasses>
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/metamodel/Semantics">
             <genOperations ecoreOperation="Metamodel.ecore#//hib/dpf/metamodel/Semantics/validateSemantics">
               <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/Semantics/validateSemantics/oStar"/>
+              <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/Semantics/validateSemantics/constraintParameters"/>
             </genOperations>
           </genClasses>
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/metamodel/Visualization"/>
@@ -218,6 +220,7 @@
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/metamodel/JointlySurjectiveSemantics"/>
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/metamodel/InverseSemantics"/>
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/metamodel/IrreflexiveSemantics"/>
+          <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/metamodel/MultiplicitySemantics"/>
         </nestedGenPackages>
       </nestedGenPackages>
     </nestedGenPackages>

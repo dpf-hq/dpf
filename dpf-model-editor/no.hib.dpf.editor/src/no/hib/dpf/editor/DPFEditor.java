@@ -466,7 +466,6 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 	private void resetSignature() {
 		signature = MetamodelFactory.eINSTANCE.createSignature();
 		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("[jointly-injective]", "n_1,n_2,n_3", "a_1:n_1:n_2,a_2:n_1:n_3"));
-		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("[mult(m,n)]", "n_1,n_2", "a_1:n_1:n_2"));
 		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("[image-inclusion]", "n_1,n_2", "a_1:n_1:n_2,a_2:n_1:n_2"));		
 		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("[composition]", "n_1,n_2,n_3", "a_1:n_1:n_2,a_2:n_2:n_3,a_3:n_1:n_3"));
 
@@ -481,6 +480,10 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		Predicate irreflexivePredicate = MetamodelFactory.eINSTANCE.createPredicate("[irreflexive]", "n_1", "a_1:n_1:n_1");
 		irreflexivePredicate.setSemantics(MetamodelFactory.eINSTANCE.createIrreflexiveSemantics());
 		signature.getPredicates().add(irreflexivePredicate);
+
+		Predicate multiplicityPredicate = MetamodelFactory.eINSTANCE.createPredicate("[mult(m,n)]", "n_1,n_2", "a_1:n_1:n_2");
+		multiplicityPredicate.setSemantics(MetamodelFactory.eINSTANCE.createMultiplicitySemantics());
+		signature.getPredicates().add(multiplicityPredicate);
 		
 	}
 	
@@ -791,7 +794,8 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		for (Constraint c : specification.getTypeGraph().getConstraints()) {
 			try {
 				Graph oStar = specification.createOStar(c);
-				Boolean validation = c.getPredicate().validateSemantics(oStar);
+				// Transfer the constraint's parameters to the predicate validator:
+				Boolean validation = c.getPredicate().validateSemantics(oStar, c.getParameters());
 				isValid &= validation.booleanValue();
 			} catch (IllegalArgumentException e) {
 				isValid = false;
