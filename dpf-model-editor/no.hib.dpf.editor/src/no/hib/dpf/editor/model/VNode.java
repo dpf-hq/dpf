@@ -508,6 +508,16 @@ public class VNode extends ModelElement implements Node, IDObjectContainer, Mova
 		return nodeComponent.generateUniqueName();
 	}
 
+	@Override
+	public boolean canCreateTypedArrow(Node intendedTarget) {
+		return nodeComponent.canCreateTypedArrow(intendedTarget);
+	}
+
+	@Override
+	public Arrow getTypeArrow(Node intendedTarget) {
+		return nodeComponent.getTypeArrow(intendedTarget);
+	}
+
 
 
 }
