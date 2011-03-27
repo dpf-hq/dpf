@@ -15,6 +15,7 @@ import no.hib.dpf.metamodel.MetamodelPackage;
 import no.hib.dpf.metamodel.MultiplicitySemantics;
 import no.hib.dpf.metamodel.Node;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
@@ -76,26 +77,36 @@ public class MultiplicitySemanticsImpl extends EObjectImpl implements Multiplici
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Boolean validateSemantics(Graph oStar, String constraintParameters) {
+	public Boolean validateSemantics(Graph oStar, String constraintParameters, EList<Node> typeNodes, EList<Arrow> typeArrows) {
 		
+		if ((typeArrows.size() != 1) || (typeNodes.size() < 1)) {
+			return true;
+		}
+		
+		Node typeSourceNode = typeArrows.get(0).getSource();
+				
 		int [] maxMinValues = getValuesFromParameters(constraintParameters);
 		
-		List<Node> targetNodes = new ArrayList<Node>();
-		for (Arrow arrow : oStar.getArrows()) {
-			if (!targetNodes.contains(arrow.getTarget())) {
-				targetNodes.add(arrow.getTarget());
+		
+		
+		List<Node> sourceNodes = new ArrayList<Node>();		
+		for (Node node : oStar.getNodes()) {
+			if (node.getTypeNode().equals(typeSourceNode)) {
+				sourceNodes.add(node);
+			} else if ((node.getTypeNode().getTypeNode() != null) && (node.getTypeNode().getTypeNode().equals(typeSourceNode))) {
+				sourceNodes.add(node);				
 			}
 		}
-		for (Node sourceNode : oStar.getNodes()) {
+		
+				
+		for (Node sourceNode : sourceNodes) {
 			int outgoingArrowCount = sourceNode.getOutgoingArrows().size();
 			if (outgoingArrowCount > convertValue(maxMinValues[1])) {
 				// Too many connections
 				return false;
 			} else if (outgoingArrowCount < convertValue(maxMinValues[0])) {
-				// Target node?
-				if (!targetNodes.contains(sourceNode)) {
-					return false;
-				}
+				// Too few connections
+				return false;
 			}
 		}
 		

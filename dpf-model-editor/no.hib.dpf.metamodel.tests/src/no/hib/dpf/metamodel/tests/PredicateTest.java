@@ -27,7 +27,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link no.hib.dpf.metamodel.Predicate#createConstraint(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, no.hib.dpf.metamodel.Graph) <em>Create Constraint</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Predicate#canCreateConstraint(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, no.hib.dpf.metamodel.Graph) <em>Can Create Constraint</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Predicate#validateSemantics(no.hib.dpf.metamodel.Graph, java.lang.String) <em>Validate Semantics</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Predicate#validateSemantics(no.hib.dpf.metamodel.Graph, java.lang.String, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Validate Semantics</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -169,17 +169,17 @@ public class PredicateTest extends TestCase {
 	}
 
 	/**
-	 * Tests the '{@link no.hib.dpf.metamodel.Predicate#validateSemantics(no.hib.dpf.metamodel.Graph, java.lang.String) <em>Validate Semantics</em>}' operation.
+	 * Tests the '{@link no.hib.dpf.metamodel.Predicate#validateSemantics(no.hib.dpf.metamodel.Graph, java.lang.String, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Validate Semantics</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.Predicate#validateSemantics(no.hib.dpf.metamodel.Graph, java.lang.String)
+	 * @see no.hib.dpf.metamodel.Predicate#validateSemantics(no.hib.dpf.metamodel.Graph, java.lang.String, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
 	 * @generated NOT
 	 */
-	public void testValidateSemantics__Graph_String() {
+	public void testValidateSemantics__Graph_String_EList_EList() {
 		Graph graph = MetamodelFactory.eINSTANCE.createGraph("x, y, z", "f:x:y,g:y:z");		
-		assertTrue(getFixture().validateSemantics(graph, ""));
+		assertTrue(getFixture().validateSemantics(graph, "", null, null));
 		getFixture().setSemantics(MetamodelFactory.eINSTANCE.createJointlySurjectiveSemantics());
-		assertFalse(getFixture().validateSemantics(graph, ""));
+		assertFalse(getFixture().validateSemantics(graph, "", null, null));
 	}
 
 } //PredicateTest

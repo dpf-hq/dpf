@@ -11,6 +11,8 @@ import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.IrreflexiveSemantics;
 import no.hib.dpf.metamodel.MetamodelPackage;
 
+import no.hib.dpf.metamodel.Node;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.EObjectImpl;
@@ -49,7 +51,7 @@ public class IrreflexiveSemanticsImpl extends EObjectImpl implements Irreflexive
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Boolean validateSemantics(Graph oStar, String constraintParameters) {
+	public Boolean validateSemantics(Graph oStar, String constraintParameters, EList<Node> typeNodes, EList<Arrow> typeArrows) {
 		for (Arrow arrow : oStar.getArrows()) {
 			if (arrow.getSource().equals(arrow.getTarget())) {
 				return false;

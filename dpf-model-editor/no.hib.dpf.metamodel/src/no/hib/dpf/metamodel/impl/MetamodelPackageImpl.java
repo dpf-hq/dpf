@@ -1025,12 +1025,16 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		op = addEOperation(predicateEClass, ecorePackage.getEBooleanObject(), "validateSemantics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getGraph(), "oStar", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "constraintParameters", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getNode(), "typeNodes", 0, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getArrow(), "typeArrows", 0, -1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(semanticsEClass, Semantics.class, "Semantics", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		op = addEOperation(semanticsEClass, ecorePackage.getEBooleanObject(), "validateSemantics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getGraph(), "oStar", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "constraintParameters", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getNode(), "typeNodes", 0, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getArrow(), "typeArrows", 0, -1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(visualizationEClass, Visualization.class, "Visualization", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

@@ -149,12 +149,16 @@
             <genOperations ecoreOperation="Metamodel.ecore#//hib/dpf/metamodel/Predicate/validateSemantics">
               <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/Predicate/validateSemantics/oStar"/>
               <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/Predicate/validateSemantics/constraintParameters"/>
+              <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/Predicate/validateSemantics/typeNodes"/>
+              <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/Predicate/validateSemantics/typeArrows"/>
             </genOperations>
           </genClasses>
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/metamodel/Semantics">
             <genOperations ecoreOperation="Metamodel.ecore#//hib/dpf/metamodel/Semantics/validateSemantics">
               <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/Semantics/validateSemantics/oStar"/>
               <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/Semantics/validateSemantics/constraintParameters"/>
+              <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/Semantics/validateSemantics/typeNodes"/>
+              <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/metamodel/Semantics/validateSemantics/typeArrows"/>
             </genOperations>
           </genClasses>
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/metamodel/Visualization"/>

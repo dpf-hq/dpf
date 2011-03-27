@@ -152,9 +152,9 @@ public interface Predicate extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model
+	 * @model typeNodesMany="true" typeArrowsMany="true"
 	 * @generated
 	 */
-	Boolean validateSemantics(Graph oStar, String constraintParameters);
+	Boolean validateSemantics(Graph oStar, String constraintParameters, EList<Node> typeNodes, EList<Arrow> typeArrows);
 
 } // Predicate

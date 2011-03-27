@@ -21,7 +21,7 @@ import no.hib.dpf.metamodel.MetamodelFactory;
  * <p>
  * The following operations are tested:
  * <ul>
- *   <li>{@link no.hib.dpf.metamodel.Semantics#validateSemantics(no.hib.dpf.metamodel.Graph, java.lang.String) <em>Validate Semantics</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Semantics#validateSemantics(no.hib.dpf.metamodel.Graph, java.lang.String, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Validate Semantics</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -98,19 +98,19 @@ public class IrreflexiveSemanticsTest extends TestCase {
 	}
 
 	/**
-	 * Tests the '{@link no.hib.dpf.metamodel.Semantics#validateSemantics(no.hib.dpf.metamodel.Graph, java.lang.String) <em>Validate Semantics</em>}' operation.
+	 * Tests the '{@link no.hib.dpf.metamodel.Semantics#validateSemantics(no.hib.dpf.metamodel.Graph, java.lang.String, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Validate Semantics</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.Semantics#validateSemantics(no.hib.dpf.metamodel.Graph, java.lang.String)
+	 * @see no.hib.dpf.metamodel.Semantics#validateSemantics(no.hib.dpf.metamodel.Graph, java.lang.String, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
 	 * @generated NOT
 	 */
-	public void testValidateSemantics__Graph_String() {
+	public void testValidateSemantics__Graph_String_EList_EList() {
 		Graph graph = MetamodelFactory.eINSTANCE.createGraph("x, y", "f:x:y,g:y:x");		
-		assertTrue(getFixture().validateSemantics(graph, ""));
+		assertTrue(getFixture().validateSemantics(graph, "", null, null));
 		graph = MetamodelFactory.eINSTANCE.createGraph("x, y", "f:x:y,g:x:y");		
-		assertTrue(getFixture().validateSemantics(graph, ""));
+		assertTrue(getFixture().validateSemantics(graph, "", null, null));
 		graph = MetamodelFactory.eINSTANCE.createGraph("y", "g:y:y");		
-		assertFalse(getFixture().validateSemantics(graph, ""));
+		assertFalse(getFixture().validateSemantics(graph, "", null, null));
 	}
 
 } //IrreflexiveSemanticsTest

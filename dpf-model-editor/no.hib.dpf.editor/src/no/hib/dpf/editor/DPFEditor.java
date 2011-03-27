@@ -795,7 +795,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 			try {
 				Graph oStar = specification.createOStar(c);
 				// Transfer the constraint's parameters to the predicate validator:
-				Boolean validation = c.getPredicate().validateSemantics(oStar, c.getParameters());
+				Boolean validation = c.getPredicate().validateSemantics(oStar, c.getParameters(), c.getConstrainedNodes(), c.getConstrainedArrows());
 				isValid &= validation.booleanValue();
 			} catch (IllegalArgumentException e) {
 				isValid = false;

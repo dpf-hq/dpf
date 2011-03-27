@@ -21,7 +21,7 @@ import no.hib.dpf.metamodel.MultiplicitySemantics;
  * <p>
  * The following operations are tested:
  * <ul>
- *   <li>{@link no.hib.dpf.metamodel.Semantics#validateSemantics(no.hib.dpf.metamodel.Graph, java.lang.String) <em>Validate Semantics</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Semantics#validateSemantics(no.hib.dpf.metamodel.Graph, java.lang.String, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Validate Semantics</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -98,25 +98,53 @@ public class MultiplicitySemanticsTest extends TestCase {
 	}
 
 	/**
-	 * Tests the '{@link no.hib.dpf.metamodel.Semantics#validateSemantics(no.hib.dpf.metamodel.Graph, java.lang.String) <em>Validate Semantics</em>}' operation.
+	 * Tests the '{@link no.hib.dpf.metamodel.Semantics#validateSemantics(no.hib.dpf.metamodel.Graph, java.lang.String, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Validate Semantics</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.Semantics#validateSemantics(no.hib.dpf.metamodel.Graph, java.lang.String)
+	 * @see no.hib.dpf.metamodel.Semantics#validateSemantics(no.hib.dpf.metamodel.Graph, java.lang.String, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
 	 * @generated NOT
 	 */
-	public void testValidateSemantics__Graph_String() {
-		Graph graph = MetamodelFactory.eINSTANCE.createGraph("x, y", "f:x:y");
-		assertTrue(getFixture().validateSemantics(graph, "0,-1"));
-		assertTrue(getFixture().validateSemantics(graph, "1,-1"));
-		assertFalse(getFixture().validateSemantics(graph, "2,-1"));
-		graph = MetamodelFactory.eINSTANCE.createGraph("x, y", "f:x:y,g:x:y");
-		assertTrue(getFixture().validateSemantics(graph, "2,-1"));
-		graph = MetamodelFactory.eINSTANCE.createGraph("x", "");
-		assertFalse(getFixture().validateSemantics(graph, "2,-1"));
-		assertTrue(getFixture().validateSemantics(graph, "0,-1"));
-		graph = MetamodelFactory.eINSTANCE.createGraph("x, y", "f:x:y,g:x:y");
-		assertFalse(getFixture().validateSemantics(graph, "0,1"));
+	public void testValidateSemantics__Graph_String_EList_EList() {
+		Graph typeGraph = MetamodelFactory.eINSTANCE.createGraph("x_type,y_type", "f_type:x_type:y_type");
+		Graph graph = MetamodelFactory.eINSTANCE.createGraph("x", "");
+		graph.getNodeByName("x").setTypeNode(typeGraph.getNodeByName("x_type"));
 		
+		assertTrue(getFixture().validateSemantics(graph, "0,1", typeGraph.getNodes(), typeGraph.getArrows()));
+
+		graph = MetamodelFactory.eINSTANCE.createGraph("x", "");
+		graph.getNodeByName("x").setTypeNode(typeGraph.getNodeByName("x_type"));
+
+		assertFalse(getFixture().validateSemantics(graph, "1,1", typeGraph.getNodes(), typeGraph.getArrows()));
+		assertTrue(getFixture().validateSemantics(graph, "0,1", typeGraph.getNodes(), typeGraph.getArrows()));
+		
+		graph = MetamodelFactory.eINSTANCE.createGraph("x", "");
+		graph.getNodeByName("x").setTypeNode(typeGraph.getNodeByName("y_type"));
+
+		assertTrue(getFixture().validateSemantics(graph, "1,1", typeGraph.getNodes(), typeGraph.getArrows()));
+		assertTrue(getFixture().validateSemantics(graph, "4,-1", typeGraph.getNodes(), typeGraph.getArrows()));
+		
+		
+		typeGraph = MetamodelFactory.eINSTANCE.createGraph("x_type", "f_type:x_type:x_type");
+		graph = MetamodelFactory.eINSTANCE.createGraph("x", "");
+		graph.getNodeByName("x").setTypeNode(typeGraph.getNodeByName("x_type"));
+		
+		assertFalse(getFixture().validateSemantics(graph, "1,1", typeGraph.getNodes(), typeGraph.getArrows()));
+		
+		typeGraph = MetamodelFactory.eINSTANCE.createGraph("x_type,y_type", "f_type:x_type:y_type");
+		graph = MetamodelFactory.eINSTANCE.createGraph("x,y", "f:x:y");
+		graph.getNodeByName("x").setTypeNode(typeGraph.getNodeByName("x_type"));
+		graph.getNodeByName("y").setTypeNode(typeGraph.getNodeByName("y_type"));
+		
+		
+		assertTrue(getFixture().validateSemantics(graph, "0,-1", typeGraph.getNodes(), typeGraph.getArrows()));
+		assertTrue(getFixture().validateSemantics(graph, "1,-1", typeGraph.getNodes(), typeGraph.getArrows()));
+		assertFalse(getFixture().validateSemantics(graph, "2,-1", typeGraph.getNodes(), typeGraph.getArrows()));
+
+		graph = MetamodelFactory.eINSTANCE.createGraph("x,y", "f:x:y,g:x:y");
+		graph.getNodeByName("x").setTypeNode(typeGraph.getNodeByName("x_type"));
+		graph.getNodeByName("y").setTypeNode(typeGraph.getNodeByName("y_type"));
+		
+		assertTrue(getFixture().validateSemantics(graph, "2,-1", typeGraph.getNodes(), typeGraph.getArrows()));
 	}
 
 } //MultiplicitySemanticsTest

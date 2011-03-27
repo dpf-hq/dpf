@@ -286,9 +286,9 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Boolean validateSemantics(Graph oStar, String constraintParameters) {
+	public Boolean validateSemantics(Graph oStar, String constraintParameters, EList<Node> typeNodes, EList<Arrow> typeArrows) {
 		if (getSemantics() != null) {
-			return getSemantics().validateSemantics(oStar, constraintParameters);
+			return getSemantics().validateSemantics(oStar, constraintParameters, typeNodes, typeArrows);
 		}
 		return true;
 	}

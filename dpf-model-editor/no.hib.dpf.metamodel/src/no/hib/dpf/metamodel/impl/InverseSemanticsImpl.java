@@ -12,6 +12,7 @@ import no.hib.dpf.metamodel.InverseSemantics;
 import no.hib.dpf.metamodel.MetamodelPackage;
 import no.hib.dpf.metamodel.Node;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.EObjectImpl;
@@ -50,7 +51,7 @@ public class InverseSemanticsImpl extends EObjectImpl implements InverseSemantic
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Boolean validateSemantics(Graph oStar, String constraintParameters) {
+	public Boolean validateSemantics(Graph oStar, String constraintParameters, EList<Node> typeNodes, EList<Arrow> typeArrows) {
 		for (Node aNode : oStar.getNodes()) {
 			if (!canReturn(aNode)) {
 				return false;

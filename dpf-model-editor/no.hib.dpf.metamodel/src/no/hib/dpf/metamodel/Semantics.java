@@ -6,6 +6,7 @@
  */
 package no.hib.dpf.metamodel;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -23,8 +24,8 @@ public interface Semantics extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model
+	 * @model typeNodesMany="true" typeArrowsMany="true"
 	 * @generated
 	 */
-	Boolean validateSemantics(Graph oStar, String constraintParameters);
+	Boolean validateSemantics(Graph oStar, String constraintParameters, EList<Node> typeNodes, EList<Arrow> typeArrows);
 } // Semantics

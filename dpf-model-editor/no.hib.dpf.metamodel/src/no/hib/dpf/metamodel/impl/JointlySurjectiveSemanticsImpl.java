@@ -6,11 +6,13 @@
  */
 package no.hib.dpf.metamodel.impl;
 
+import no.hib.dpf.metamodel.Arrow;
 import no.hib.dpf.metamodel.Graph;
 import no.hib.dpf.metamodel.JointlySurjectiveSemantics;
 import no.hib.dpf.metamodel.MetamodelPackage;
 import no.hib.dpf.metamodel.Node;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.EObjectImpl;
@@ -49,7 +51,7 @@ public class JointlySurjectiveSemanticsImpl extends EObjectImpl implements Joint
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Boolean validateSemantics(Graph oStar, String constraintParameters) {
+	public Boolean validateSemantics(Graph oStar, String constraintParameters, EList<Node> typeNodes, EList<Arrow> typeArrows) {
 		if (oStar.getArrows().size() != (oStar.getNodes().size() - 1)) {
 			return false;
 		}
