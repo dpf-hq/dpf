@@ -33,6 +33,7 @@ import no.hib.dpf.editor.editoractions.CreateIrreflexiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointlyInjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointlySurjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateMultiplicityConstraintAction;
+import no.hib.dpf.editor.editoractions.CreateXORConstraintAction;
 import no.hib.dpf.editor.editoractions.PrintAction;
 import no.hib.dpf.editor.model.DPFDiagram;
 import no.hib.dpf.editor.model.ModelElement;
@@ -173,6 +174,14 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		// First step to move the predicates out of the editor:
 		// There remains to make some coupling between these predicates
 		// and the parts/figures that implement them.
+		ConstraintProperties xorProperties = new ConstraintProperties(
+				signature.getPredicateBySymbol("[xor]"), 
+				"Create new [xor] Constraint",
+				"Creates a new [xor] Constraint",
+				VConstraint.ConstraintType.XOR);
+		
+		registerAction(new CreateXORConstraintAction(this, getDPFDiagram().getDpfGraph(), xorProperties));
+
 		ConstraintProperties jointlyInjectiveProperties = new ConstraintProperties(
 				signature.getPredicateBySymbol("[jointly-injective]"), 
 				"Create new [jointly-injective] Constraint",
@@ -465,9 +474,12 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 
 	private void resetSignature() {
 		signature = MetamodelFactory.eINSTANCE.createSignature();
+		
 		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("[jointly-injective]", "n_1,n_2,n_3", "a_1:n_1:n_2,a_2:n_1:n_3"));
 		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("[image-inclusion]", "n_1,n_2", "a_1:n_1:n_2,a_2:n_1:n_2"));		
 		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("[composition]", "n_1,n_2,n_3", "a_1:n_1:n_2,a_2:n_2:n_3,a_3:n_1:n_3"));
+
+		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("[xor]", "n_1,n_2,n_3", "a_1:n_1:n_2,a_2:n_1:n_3"));
 
 		Predicate jSPredicate = MetamodelFactory.eINSTANCE.createPredicate("[jointly-surjective]", "n_1,n_2,n_3", "a_1:n_2:n_1,a_2:n_3:n_1");
 		jSPredicate.setSemantics(MetamodelFactory.eINSTANCE.createJointlySurjectiveSemantics());

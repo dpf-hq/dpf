@@ -17,6 +17,7 @@ import no.hib.dpf.editor.editoractions.CreateIrreflexiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointlyInjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointlySurjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateMultiplicityConstraintAction;
+import no.hib.dpf.editor.editoractions.CreateXORConstraintAction;
 
 import org.eclipse.gef.ContextMenuProvider;
 import org.eclipse.gef.EditPartViewer;
@@ -85,6 +86,7 @@ public class DPFEditorContextMenuProvider extends ContextMenuProvider {
 //		getActionAndAppendToMenu(menu, CreateInjectiveConstraintAction.ID);
 //		getActionAndAppendToMenu(menu, CreateSurjectiveConstraintAction.ID);
 		getActionAndAppendToMenu(menu, CreateIrreflexiveConstraintAction.ID);
+		getActionAndAppendToMenu(menu, CreateXORConstraintAction.ID);
 	}
 
 	private void getActionAndAppendToMenu(IMenuManager menu, String actionID) {

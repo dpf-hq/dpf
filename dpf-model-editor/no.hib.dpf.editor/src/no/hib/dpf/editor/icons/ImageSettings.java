@@ -15,7 +15,8 @@ public enum ImageSettings {
 	COMPOSITION("comp_36.png"),
 	INJECTIVE(""),
 	IRREFLEXIVE("irr_36.png"),
-	SURJECTIVE("");
+	SURJECTIVE(""),
+	XOR("xor_36.png");
 	
 	private String filePath;
 	

@@ -54,6 +54,11 @@ public class ConstraintRetargetAction extends LabelRetargetAction {
 				setId(CreateIrreflexiveConstraintAction.ID);
 				setImageDescriptor(getImageDescriptor(ImageSettings.IRREFLEXIVE));
 				break;
+			case XOR:
+				setId(CreateXORConstraintAction.ID);
+				setImageDescriptor(getImageDescriptor(ImageSettings.XOR));
+				break;
+			
 			
 		}
 		// TODO Auto-generated constructor stub

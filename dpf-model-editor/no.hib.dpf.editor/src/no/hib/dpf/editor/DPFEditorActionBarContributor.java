@@ -18,6 +18,7 @@ import no.hib.dpf.editor.editoractions.CreateIrreflexiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointlyInjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointlySurjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateMultiplicityConstraintAction;
+import no.hib.dpf.editor.editoractions.CreateXORConstraintAction;
 import no.hib.dpf.editor.model.VConstraint;
 
 import org.eclipse.draw2d.PositionConstants;
@@ -91,7 +92,8 @@ protected void buildActions() {
 	addRetargetAction(new ConstraintRetargetAction(VConstraint.ConstraintType.COMPOSITION));
 //	addRetargetAction(new ConstraintRetargetAction(VConstraint.ConstraintType.INJECTIVE));
 //	addRetargetAction(new ConstraintRetargetAction(VConstraint.ConstraintType.SURJECTIVE));
-	addRetargetAction(new ConstraintRetargetAction(VConstraint.ConstraintType.IRREFLEXIVE));	
+	addRetargetAction(new ConstraintRetargetAction(VConstraint.ConstraintType.IRREFLEXIVE));
+	addRetargetAction(new ConstraintRetargetAction(VConstraint.ConstraintType.XOR));	
 }
 
 /**
@@ -144,6 +146,7 @@ public void contributeToToolBar(IToolBarManager toolBarManager) {
 //	toolBarManager.add(getAction(CreateInjectiveConstraintAction.ID));
 //	toolBarManager.add(getAction(CreateSurjectiveConstraintAction.ID));
 	toolBarManager.add(getAction(CreateIrreflexiveConstraintAction.ID));
+	toolBarManager.add(getAction(CreateXORConstraintAction.ID));
 }
 
 @Override
