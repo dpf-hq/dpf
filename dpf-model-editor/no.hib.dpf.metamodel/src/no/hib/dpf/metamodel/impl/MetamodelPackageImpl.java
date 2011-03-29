@@ -29,6 +29,7 @@ import no.hib.dpf.metamodel.Specification;
 import no.hib.dpf.metamodel.TypingMorphism;
 import no.hib.dpf.metamodel.Visualization;
 
+import no.hib.dpf.metamodel.XORSemantics;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -177,6 +178,13 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * @generated
 	 */
 	private EClass multiplicitySemanticsEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass xorSemanticsEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -735,6 +743,15 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getXORSemantics() {
+		return xorSemanticsEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EDataType getEURI() {
 		return euriEDataType;
 	}
@@ -848,6 +865,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 		multiplicitySemanticsEClass = createEClass(MULTIPLICITY_SEMANTICS);
 
+		xorSemanticsEClass = createEClass(XOR_SEMANTICS);
+
 		// Create data types
 		euriEDataType = createEDataType(EURI);
 		eioExceptionEDataType = createEDataType(EIO_EXCEPTION);
@@ -889,6 +908,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		inverseSemanticsEClass.getESuperTypes().add(this.getSemantics());
 		irreflexiveSemanticsEClass.getESuperTypes().add(this.getSemantics());
 		multiplicitySemanticsEClass.getESuperTypes().add(this.getSemantics());
+		xorSemanticsEClass.getESuperTypes().add(this.getSemantics());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(graphEClass, Graph.class, "Graph", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1094,6 +1114,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		initEClass(irreflexiveSemanticsEClass, IrreflexiveSemantics.class, "IrreflexiveSemantics", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(multiplicitySemanticsEClass, MultiplicitySemantics.class, "MultiplicitySemantics", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(xorSemanticsEClass, XORSemantics.class, "XORSemantics", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize data types
 		initEDataType(euriEDataType, URI.class, "EURI", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);

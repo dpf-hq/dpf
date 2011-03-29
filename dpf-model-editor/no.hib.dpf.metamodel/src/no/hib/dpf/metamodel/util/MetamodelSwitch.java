@@ -210,6 +210,13 @@ public class MetamodelSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MetamodelPackage.XOR_SEMANTICS: {
+				XORSemantics xorSemantics = (XORSemantics)theEObject;
+				T result = caseXORSemantics(xorSemantics);
+				if (result == null) result = caseSemantics(xorSemantics);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -496,6 +503,21 @@ public class MetamodelSwitch<T> {
 	 * @generated
 	 */
 	public T caseMultiplicitySemantics(MultiplicitySemantics object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>XOR Semantics</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>XOR Semantics</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseXORSemantics(XORSemantics object) {
 		return null;
 	}
 

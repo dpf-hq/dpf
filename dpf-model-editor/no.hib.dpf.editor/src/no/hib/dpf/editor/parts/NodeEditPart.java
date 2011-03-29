@@ -217,6 +217,8 @@ public class NodeEditPart extends AbstractGraphicalEditPart implements
 		NodeEditPart oppositeEnd = getOppositeEnd(connection, isSourceAnchor);
 		List<ConnectionAnchor> previousAnchorList;
 		ConnectionAnchor previousAnchor;
+		
+		// Get any previous anchors:
 		if (anchors.containsKey(oppositeEnd)) {
 			if (oppositeEnd == null) {
 				return anchors.get(null).get(0);
@@ -229,28 +231,37 @@ public class NodeEditPart extends AbstractGraphicalEditPart implements
 			previousAnchor = null;
 		}
 
+		// Get an anchor for the connection:
 		if ((connection == null) || (connection.getSource() == null) || (connection.getSource().equals(connection.getTarget()))) {
 			previousAnchorList.add(new ChopboxAnchor(getFigure()));
+			return previousAnchorList.get(previousAnchorList.size() - 1);
 
 		} else {
 			// Check if this connection already has got an anchor:
 			if (!anchorListContainsConnection(previousAnchorList, connection)) {
 				previousAnchorList.add(new MultipleArrowsChopboxAnchor(getFigure(), connection, previousAnchor));
+				return previousAnchorList.get(previousAnchorList.size() - 1);
+			} else {
+				// Return that anchor:
+				return getConnectionsAnchor(previousAnchorList, connection);
 			}
 		}
-		return previousAnchorList.get(previousAnchorList.size() - 1);
 	}
 	
 	private boolean anchorListContainsConnection(List<ConnectionAnchor> previousAnchorList, ConnectionEditPart connection) {
+		return (getConnectionsAnchor(previousAnchorList, connection) != null);
+	}
+	
+	private ConnectionAnchor getConnectionsAnchor(List<ConnectionAnchor> previousAnchorList, ConnectionEditPart connection) {
 		for (ConnectionAnchor connectionAnchor : previousAnchorList) {
 			if (connectionAnchor instanceof MultipleArrowsChopboxAnchor) {
 				MultipleArrowsChopboxAnchor multipleArrowsChopboxAnchor = (MultipleArrowsChopboxAnchor)connectionAnchor;
 				if (multipleArrowsChopboxAnchor.getConnectionEditPart().equals(connection)) {
-					return true;
+					return multipleArrowsChopboxAnchor;
 				}
 			}
 		}
-		return false;
+		return null;		
 	}
 
 	private NodeEditPart getOppositeEnd(ConnectionEditPart connection,

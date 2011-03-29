@@ -87,6 +87,7 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 			case MetamodelPackage.INVERSE_SEMANTICS: return createInverseSemantics();
 			case MetamodelPackage.IRREFLEXIVE_SEMANTICS: return createIrreflexiveSemantics();
 			case MetamodelPackage.MULTIPLICITY_SEMANTICS: return createMultiplicitySemantics();
+			case MetamodelPackage.XOR_SEMANTICS: return createXORSemantics();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -438,6 +439,16 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	public MultiplicitySemantics createMultiplicitySemantics() {
 		MultiplicitySemanticsImpl multiplicitySemantics = new MultiplicitySemanticsImpl();
 		return multiplicitySemantics;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public XORSemantics createXORSemantics() {
+		XORSemanticsImpl xorSemantics = new XORSemanticsImpl();
+		return xorSemantics;
 	}
 
 	/**

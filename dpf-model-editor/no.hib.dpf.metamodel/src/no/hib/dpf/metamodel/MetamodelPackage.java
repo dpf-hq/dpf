@@ -766,6 +766,25 @@ public interface MetamodelPackage extends EPackage {
 	int MULTIPLICITY_SEMANTICS_FEATURE_COUNT = SEMANTICS_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.XORSemanticsImpl <em>XOR Semantics</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.impl.XORSemanticsImpl
+	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getXORSemantics()
+	 * @generated
+	 */
+	int XOR_SEMANTICS = 19;
+
+	/**
+	 * The number of structural features of the '<em>XOR Semantics</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XOR_SEMANTICS_FEATURE_COUNT = SEMANTICS_FEATURE_COUNT + 0;
+
+	/**
 	 * The meta object id for the '<em>EURI</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -773,7 +792,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getEURI()
 	 * @generated
 	 */
-	int EURI = 19;
+	int EURI = 20;
 
 	/**
 	 * The meta object id for the '<em>EIO Exception</em>' data type.
@@ -783,7 +802,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getEIOException()
 	 * @generated
 	 */
-	int EIO_EXCEPTION = 20;
+	int EIO_EXCEPTION = 21;
 
 
 	/**
@@ -1355,6 +1374,16 @@ public interface MetamodelPackage extends EPackage {
 	EClass getMultiplicitySemantics();
 
 	/**
+	 * Returns the meta object for class '{@link no.hib.dpf.metamodel.XORSemantics <em>XOR Semantics</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>XOR Semantics</em>'.
+	 * @see no.hib.dpf.metamodel.XORSemantics
+	 * @generated
+	 */
+	EClass getXORSemantics();
+
+	/**
 	 * Returns the meta object for data type '{@link org.eclipse.emf.common.util.URI <em>EURI</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1859,6 +1888,16 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass MULTIPLICITY_SEMANTICS = eINSTANCE.getMultiplicitySemantics();
+
+		/**
+		 * The meta object literal for the '{@link no.hib.dpf.metamodel.impl.XORSemanticsImpl <em>XOR Semantics</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see no.hib.dpf.metamodel.impl.XORSemanticsImpl
+		 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getXORSemantics()
+		 * @generated
+		 */
+		EClass XOR_SEMANTICS = eINSTANCE.getXORSemantics();
 
 		/**
 		 * The meta object literal for the '<em>EURI</em>' data type.

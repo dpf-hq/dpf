@@ -230,12 +230,12 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 		Graph retval = MetamodelFactory.eINSTANCE.createGraph();
 		
 		for (Node node : nodes) {
-			Node newNode = retval.createNode(node.getName(), node);
+			Node newNode = retval.createNode(node.getName(), node.getTypeNode());
 			nodeMap.put(node, newNode);
 		}
 		for (Arrow arrow : arrows) {
 			try {
-				retval.createArrow(arrow.getName(), nodeMap.get(arrow.getSource()), nodeMap.get(arrow.getTarget()), arrow);
+				retval.createArrow(arrow.getName(), nodeMap.get(arrow.getSource()), nodeMap.get(arrow.getTarget()), arrow.getTypeArrow());
 			} catch (Exception e) {
 				throw new IllegalArgumentException("Could not create a subgraph from the submitted parameters.", e);
 			}

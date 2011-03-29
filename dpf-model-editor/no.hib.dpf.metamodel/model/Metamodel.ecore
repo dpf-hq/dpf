@@ -217,6 +217,7 @@
         <eClassifiers xsi:type="ecore:EClass" name="InverseSemantics" eSuperTypes="#//hib/dpf/metamodel/Semantics"/>
         <eClassifiers xsi:type="ecore:EClass" name="IrreflexiveSemantics" eSuperTypes="#//hib/dpf/metamodel/Semantics"/>
         <eClassifiers xsi:type="ecore:EClass" name="MultiplicitySemantics" eSuperTypes="#//hib/dpf/metamodel/Semantics"/>
+        <eClassifiers xsi:type="ecore:EClass" name="XORSemantics" eSuperTypes="#//hib/dpf/metamodel/Semantics"/>
       </eSubpackages>
     </eSubpackages>
   </eSubpackages>

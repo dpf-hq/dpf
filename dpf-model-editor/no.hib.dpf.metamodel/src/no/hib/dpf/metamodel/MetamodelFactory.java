@@ -247,6 +247,15 @@ public interface MetamodelFactory extends EFactory {
 	MultiplicitySemantics createMultiplicitySemantics();
 
 	/**
+	 * Returns a new object of class '<em>XOR Semantics</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>XOR Semantics</em>'.
+	 * @generated
+	 */
+	XORSemantics createXORSemantics();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

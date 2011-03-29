@@ -355,10 +355,10 @@ public class GraphTest extends IDObjectTest {
 		assertEquals(nodes.size(), extractedNodes.size());
 		assertEquals(arrows.size(), extractedArrows.size());
 		for (Node node : extractedNodes) {
-			assertEquals(node.getName(), node.getTypeNode().getName());
+			assertEquals(node.getTypeNode(), sourceGraph.getNodeByName(node.getTypeName()));
 		}
 		for (Arrow arrow : extractedArrows) {
-			assertEquals(arrow.getName(), arrow.getTypeArrow().getName());
+			assertEquals(arrow.getTypeArrow(), sourceGraph.getArrowByName(arrow.getTypeName()));
 		}
 	}
 
