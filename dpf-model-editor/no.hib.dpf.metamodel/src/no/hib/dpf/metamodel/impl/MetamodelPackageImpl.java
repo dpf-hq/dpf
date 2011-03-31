@@ -26,6 +26,7 @@ import no.hib.dpf.metamodel.Predicate;
 import no.hib.dpf.metamodel.Semantics;
 import no.hib.dpf.metamodel.Signature;
 import no.hib.dpf.metamodel.Specification;
+import no.hib.dpf.metamodel.TransitiveIrreflexiveSemantics;
 import no.hib.dpf.metamodel.TypingMorphism;
 import no.hib.dpf.metamodel.Visualization;
 
@@ -185,6 +186,13 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * @generated
 	 */
 	private EClass xorSemanticsEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass transitiveIrreflexiveSemanticsEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -752,6 +760,15 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getTransitiveIrreflexiveSemantics() {
+		return transitiveIrreflexiveSemanticsEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EDataType getEURI() {
 		return euriEDataType;
 	}
@@ -867,6 +884,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 		xorSemanticsEClass = createEClass(XOR_SEMANTICS);
 
+		transitiveIrreflexiveSemanticsEClass = createEClass(TRANSITIVE_IRREFLEXIVE_SEMANTICS);
+
 		// Create data types
 		euriEDataType = createEDataType(EURI);
 		eioExceptionEDataType = createEDataType(EIO_EXCEPTION);
@@ -909,6 +928,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		irreflexiveSemanticsEClass.getESuperTypes().add(this.getSemantics());
 		multiplicitySemanticsEClass.getESuperTypes().add(this.getSemantics());
 		xorSemanticsEClass.getESuperTypes().add(this.getSemantics());
+		transitiveIrreflexiveSemanticsEClass.getESuperTypes().add(this.getSemantics());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(graphEClass, Graph.class, "Graph", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -971,6 +991,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		op = addEOperation(graphEClass, this.getArrow(), "getArrows", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getArrow(), "types", 0, -1, IS_UNIQUE, IS_ORDERED);
 
+		addEOperation(graphEClass, this.getGraph(), "getCopy", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(nodeEClass, Node.class, "Node", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNode_Name(), ecorePackage.getEString(), "name", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNode_Graph(), this.getGraph(), this.getGraph_Nodes(), "graph", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1004,6 +1026,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 		op = addEOperation(nodeEClass, this.getArrow(), "getTypeArrow", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getNode(), "intendedTarget", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		addEOperation(nodeEClass, this.getArrow(), "getIncomingArrows", 0, -1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(arrowEClass, Arrow.class, "Arrow", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getArrow_Target(), this.getNode(), null, "target", null, 0, 1, Arrow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1116,6 +1140,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		initEClass(multiplicitySemanticsEClass, MultiplicitySemantics.class, "MultiplicitySemantics", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(xorSemanticsEClass, XORSemantics.class, "XORSemantics", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(transitiveIrreflexiveSemanticsEClass, TransitiveIrreflexiveSemantics.class, "TransitiveIrreflexiveSemantics", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize data types
 		initEDataType(euriEDataType, URI.class, "EURI", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);

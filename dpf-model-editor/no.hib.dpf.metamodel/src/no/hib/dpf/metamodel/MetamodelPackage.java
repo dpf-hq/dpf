@@ -785,6 +785,25 @@ public interface MetamodelPackage extends EPackage {
 	int XOR_SEMANTICS_FEATURE_COUNT = SEMANTICS_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.TransitiveIrreflexiveSemanticsImpl <em>Transitive Irreflexive Semantics</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.impl.TransitiveIrreflexiveSemanticsImpl
+	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getTransitiveIrreflexiveSemantics()
+	 * @generated
+	 */
+	int TRANSITIVE_IRREFLEXIVE_SEMANTICS = 20;
+
+	/**
+	 * The number of structural features of the '<em>Transitive Irreflexive Semantics</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSITIVE_IRREFLEXIVE_SEMANTICS_FEATURE_COUNT = SEMANTICS_FEATURE_COUNT + 0;
+
+	/**
 	 * The meta object id for the '<em>EURI</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -792,7 +811,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getEURI()
 	 * @generated
 	 */
-	int EURI = 20;
+	int EURI = 21;
 
 	/**
 	 * The meta object id for the '<em>EIO Exception</em>' data type.
@@ -802,7 +821,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getEIOException()
 	 * @generated
 	 */
-	int EIO_EXCEPTION = 21;
+	int EIO_EXCEPTION = 22;
 
 
 	/**
@@ -1384,6 +1403,16 @@ public interface MetamodelPackage extends EPackage {
 	EClass getXORSemantics();
 
 	/**
+	 * Returns the meta object for class '{@link no.hib.dpf.metamodel.TransitiveIrreflexiveSemantics <em>Transitive Irreflexive Semantics</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Transitive Irreflexive Semantics</em>'.
+	 * @see no.hib.dpf.metamodel.TransitiveIrreflexiveSemantics
+	 * @generated
+	 */
+	EClass getTransitiveIrreflexiveSemantics();
+
+	/**
 	 * Returns the meta object for data type '{@link org.eclipse.emf.common.util.URI <em>EURI</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1898,6 +1927,16 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass XOR_SEMANTICS = eINSTANCE.getXORSemantics();
+
+		/**
+		 * The meta object literal for the '{@link no.hib.dpf.metamodel.impl.TransitiveIrreflexiveSemanticsImpl <em>Transitive Irreflexive Semantics</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see no.hib.dpf.metamodel.impl.TransitiveIrreflexiveSemanticsImpl
+		 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getTransitiveIrreflexiveSemantics()
+		 * @generated
+		 */
+		EClass TRANSITIVE_IRREFLEXIVE_SEMANTICS = eINSTANCE.getTransitiveIrreflexiveSemantics();
 
 		/**
 		 * The meta object literal for the '<em>EURI</em>' data type.

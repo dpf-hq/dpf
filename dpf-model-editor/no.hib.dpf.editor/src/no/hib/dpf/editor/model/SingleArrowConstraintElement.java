@@ -26,6 +26,8 @@ public class SingleArrowConstraintElement extends VConstraint {
 			return "[comp]";
 		} else if (constraintType == ConstraintType.IRREFLEXIVE) {
 			return "[irr]";
+		} else if (constraintType == ConstraintType.TRANSITIVE_IRREFLEXIVE) {
+			return "[t-irr]";
 		} else {
 			return String.format("[%s..%s]", valToString(getVal_1()), valToString(getVal_2()));
 		}

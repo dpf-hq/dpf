@@ -187,4 +187,12 @@ public interface Node extends IDObject {
 	 */
 	Arrow getTypeArrow(Node intendedTarget);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	EList<Arrow> getIncomingArrows();
+
 } // Node

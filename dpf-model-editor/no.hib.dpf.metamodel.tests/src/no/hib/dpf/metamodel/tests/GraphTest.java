@@ -44,6 +44,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link no.hib.dpf.metamodel.Graph#getArrowsForConstraint(no.hib.dpf.metamodel.Constraint) <em>Get Arrows For Constraint</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Graph#getNodes(org.eclipse.emf.common.util.EList) <em>Get Nodes</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Graph#getArrows(org.eclipse.emf.common.util.EList) <em>Get Arrows</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Graph#getCopy() <em>Get Copy</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -324,6 +325,21 @@ public class GraphTest extends IDObjectTest {
 		assertEquals(types.get(0), typedArrows.get(0).getTypeArrow());
 		assertEquals(types.get(1), typedArrows.get(1).getTypeArrow()); 
 
+	}
+
+	/**
+	 * Tests the '{@link no.hib.dpf.metamodel.Graph#getCopy() <em>Get Copy</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.Graph#getCopy()
+	 * @generated NOT
+	 */
+	public void testGetCopy() {
+		Graph sourceGraph = MetamodelFactory.eINSTANCE.createGraph("n_1,n_2", "e_1:n_1:n_2");
+		Graph copy = sourceGraph.getCopy();
+		assertEquals(sourceGraph.getNodes().size(), copy.getNodes().size());
+		assertEquals(sourceGraph.getArrows().size(), copy.getArrows().size());
+		assertNotSame(sourceGraph.getNodeByName("n_1"), copy.getNodeByName("n_1"));
 	}
 
 	/**

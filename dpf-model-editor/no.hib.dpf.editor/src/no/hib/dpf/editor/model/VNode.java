@@ -518,6 +518,11 @@ public class VNode extends ModelElement implements Node, IDObjectContainer, Mova
 		return nodeComponent.getTypeArrow(intendedTarget);
 	}
 
+	@Override
+	public EList<Arrow> getIncomingArrows() {
+		return nodeComponent.getIncomingArrows();
+	}
+
 
 
 }

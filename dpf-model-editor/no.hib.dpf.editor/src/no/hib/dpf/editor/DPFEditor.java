@@ -33,6 +33,7 @@ import no.hib.dpf.editor.editoractions.CreateIrreflexiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointlyInjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointlySurjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateMultiplicityConstraintAction;
+import no.hib.dpf.editor.editoractions.CreateTransitiveIrreflexiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateXORConstraintAction;
 import no.hib.dpf.editor.editoractions.PrintAction;
 import no.hib.dpf.editor.model.DPFDiagram;
@@ -234,6 +235,14 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 				"Creates a new [irreflexive] Constraint",
 				VConstraint.ConstraintType.IRREFLEXIVE);
 		registerAction(new CreateIrreflexiveConstraintAction(this, getDPFDiagram().getDpfGraph(), irreflexiveProperties));
+		
+		ConstraintProperties transitiveIrreflexiveProperties = new ConstraintProperties(
+				signature.getPredicateBySymbol("[transitive-irreflexive]"),
+				"Create new [transitive-irreflexive] Constraint",
+				"Creates a new [transitive-irreflexive] Constraint",
+				VConstraint.ConstraintType.TRANSITIVE_IRREFLEXIVE);
+		
+		registerAction(new CreateTransitiveIrreflexiveConstraintAction(this, getDPFDiagram().getDpfGraph(), transitiveIrreflexiveProperties));
 		
 		registerAction(new AlignmentAction((IWorkbenchPart)this, PositionConstants.LEFT));
 		registerAction(new AlignmentAction((IWorkbenchPart)this, PositionConstants.RIGHT));
@@ -495,6 +504,10 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		irreflexivePredicate.setSemantics(MetamodelFactory.eINSTANCE.createIrreflexiveSemantics());
 		signature.getPredicates().add(irreflexivePredicate);
 
+		Predicate transitiveIrreflexivePredicate = MetamodelFactory.eINSTANCE.createPredicate("[transitive-irreflexive]", "n_1", "a_1:n_1:n_1");
+		transitiveIrreflexivePredicate.setSemantics(MetamodelFactory.eINSTANCE.createTransitiveIrreflexiveSemantics());
+		signature.getPredicates().add(transitiveIrreflexivePredicate);
+		
 		Predicate multiplicityPredicate = MetamodelFactory.eINSTANCE.createPredicate("[mult(m,n)]", "n_1,n_2", "a_1:n_1:n_2");
 		multiplicityPredicate.setSemantics(MetamodelFactory.eINSTANCE.createMultiplicitySemantics());
 		signature.getPredicates().add(multiplicityPredicate);

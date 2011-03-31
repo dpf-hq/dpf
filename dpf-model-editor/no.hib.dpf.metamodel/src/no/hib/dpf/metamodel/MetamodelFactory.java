@@ -256,6 +256,15 @@ public interface MetamodelFactory extends EFactory {
 	XORSemantics createXORSemantics();
 
 	/**
+	 * Returns a new object of class '<em>Transitive Irreflexive Semantics</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Transitive Irreflexive Semantics</em>'.
+	 * @generated
+	 */
+	TransitiveIrreflexiveSemantics createTransitiveIrreflexiveSemantics();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -29,6 +29,7 @@ import no.hib.dpf.metamodel.Node;
  *   <li>{@link no.hib.dpf.metamodel.Node#generateUniqueName() <em>Generate Unique Name</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Node#canCreateTypedArrow(no.hib.dpf.metamodel.Node) <em>Can Create Typed Arrow</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Node#getTypeArrow(no.hib.dpf.metamodel.Node) <em>Get Type Arrow</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Node#getIncomingArrows() <em>Get Incoming Arrows</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -279,6 +280,41 @@ public class NodeTest extends IDObjectTest {
 		assertEquals(typeGraph.getArrowByName("ta_1"), typeArrow);
 		typeArrow = source.getTypeArrow(source);
 		assertEquals(typeGraph.getArrowByName("ta_4"), typeArrow);	
+	}
+
+	/**
+	 * Tests the '{@link no.hib.dpf.metamodel.Node#getIncomingArrows() <em>Get Incoming Arrows</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.Node#getIncomingArrows()
+	 * @generated NOT
+	 */
+	public void testGetIncomingArrows() {
+		Graph g = MetamodelFactory.eINSTANCE.createGraph();
+		Node n1 = g.createNode("n1");
+		Node n2 = g.createNode("n2");
+		Node n3 = g.createNode("n3");
+		Node n4 = g.createNode("n4");
+		
+		Arrow e1 = g.createArrow("e1", n1, n2);
+		Arrow e4 = g.createArrow("e4", n3, n2);
+		Arrow e2 = g.createArrow("e2", n2, n3);
+		Arrow e3 = g.createArrow("e3", n2, n1);
+		
+		assertTrue(n4.getIncomingArrows().size() == 0);
+
+		assertTrue(n1.getIncomingArrows().size() == 1 &&
+				n1.getIncomingArrows().get(0) == e3);
+		
+		assertTrue(n2.getIncomingArrows().size() == 2 &&
+				n2.getIncomingArrows().contains(e1) && 
+				n2.getIncomingArrows().contains(e4));
+		
+		assertTrue(n3.getIncomingArrows().size() == 1 &&
+				n3.getIncomingArrows().get(0) == e2);
+		
+		g.deleteArrow(e2);
+		assertTrue(n3.getIncomingArrows().size() == 0);
 	}
 
 	public void testGenerateUniqueNameWhenInGraph() {

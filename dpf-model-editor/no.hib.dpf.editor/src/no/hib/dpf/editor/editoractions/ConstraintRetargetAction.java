@@ -54,6 +54,10 @@ public class ConstraintRetargetAction extends LabelRetargetAction {
 				setId(CreateIrreflexiveConstraintAction.ID);
 				setImageDescriptor(getImageDescriptor(ImageSettings.IRREFLEXIVE));
 				break;
+			case TRANSITIVE_IRREFLEXIVE:
+				setId(CreateTransitiveIrreflexiveConstraintAction.ID);
+				setImageDescriptor(getImageDescriptor(ImageSettings.TRANSITIVE_IRREFLEXIVE));
+				break;
 			case XOR:
 				setId(CreateXORConstraintAction.ID);
 				setImageDescriptor(getImageDescriptor(ImageSettings.XOR));

@@ -64,6 +64,7 @@ public class VConstraint extends ModelElement implements Constraint, IDObjectCon
 		COMPOSITION,
 		INJECTIVE,
 		IRREFLEXIVE,
+		TRANSITIVE_IRREFLEXIVE,
 		SURJECTIVE,
 		XOR
 	}

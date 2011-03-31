@@ -217,6 +217,13 @@ public class MetamodelSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MetamodelPackage.TRANSITIVE_IRREFLEXIVE_SEMANTICS: {
+				TransitiveIrreflexiveSemantics transitiveIrreflexiveSemantics = (TransitiveIrreflexiveSemantics)theEObject;
+				T result = caseTransitiveIrreflexiveSemantics(transitiveIrreflexiveSemantics);
+				if (result == null) result = caseSemantics(transitiveIrreflexiveSemantics);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -518,6 +525,21 @@ public class MetamodelSwitch<T> {
 	 * @generated
 	 */
 	public T caseXORSemantics(XORSemantics object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Transitive Irreflexive Semantics</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Transitive Irreflexive Semantics</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTransitiveIrreflexiveSemantics(TransitiveIrreflexiveSemantics object) {
 		return null;
 	}
 

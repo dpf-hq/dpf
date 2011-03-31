@@ -353,6 +353,22 @@ public class NodeImpl extends IDObjectImpl implements Node {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<Arrow> getIncomingArrows() {
+		EList<Arrow> arrows = new BasicEList<Arrow>();
+		for(Arrow a : getGraph().getArrows()) {
+			if(a.getTarget() == this) {
+				arrows.add(a);
+			}
+		}
+		
+		return arrows;		
+	}
+
+	/**
 	 * 
 	 * @param name
 	 * @return

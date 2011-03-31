@@ -297,6 +297,22 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Graph getCopy() {
+		Graph retval = MetamodelFactory.eINSTANCE.createGraph();
+		for (Node node : getNodes()) {
+			retval.createNode(node.getName());
+		}
+		for (Arrow arrow : getArrows()) {
+			retval.createArrow(arrow.getName(), retval.getNodeByName(arrow.getSource().getName()), retval.getNodeByName(arrow.getTarget().getName()));
+		}
+		return retval;
+	}
+
+	/**
 	 * @generated NOT
 	 */
 	private Arrow createArrowExec(String name, Node source, Node target) {

@@ -228,6 +228,14 @@ public interface Graph extends IDObject {
 	 * @generated
 	 */
 	EList<Arrow> getArrows(EList<Arrow> types);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	Graph getCopy();
 	
 
 } // Graph

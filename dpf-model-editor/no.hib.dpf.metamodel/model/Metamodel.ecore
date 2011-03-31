@@ -61,6 +61,7 @@
           <eOperations name="getArrows" upperBound="-1" eType="#//hib/dpf/metamodel/Arrow">
             <eParameters name="types" upperBound="-1" eType="#//hib/dpf/metamodel/Arrow"/>
           </eOperations>
+          <eOperations name="getCopy" eType="#//hib/dpf/metamodel/Graph"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" upperBound="-1"
               eType="#//hib/dpf/metamodel/Node" containment="true" eOpposite="#//hib/dpf/metamodel/Node/graph"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -96,6 +97,7 @@
           <eOperations name="getTypeArrow" eType="#//hib/dpf/metamodel/Arrow">
             <eParameters name="intendedTarget" eType="#//hib/dpf/metamodel/Node"/>
           </eOperations>
+          <eOperations name="getIncomingArrows" upperBound="-1" eType="#//hib/dpf/metamodel/Arrow"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="graph" eType="#//hib/dpf/metamodel/Graph"
               unsettable="true" eOpposite="#//hib/dpf/metamodel/Graph/nodes"/>
@@ -218,6 +220,8 @@
         <eClassifiers xsi:type="ecore:EClass" name="IrreflexiveSemantics" eSuperTypes="#//hib/dpf/metamodel/Semantics"/>
         <eClassifiers xsi:type="ecore:EClass" name="MultiplicitySemantics" eSuperTypes="#//hib/dpf/metamodel/Semantics"/>
         <eClassifiers xsi:type="ecore:EClass" name="XORSemantics" eSuperTypes="#//hib/dpf/metamodel/Semantics"/>
+        <eClassifiers xsi:type="ecore:EClass" name="TransitiveIrreflexiveSemantics"
+            eSuperTypes="#//hib/dpf/metamodel/Semantics"/>
       </eSubpackages>
     </eSubpackages>
   </eSubpackages>

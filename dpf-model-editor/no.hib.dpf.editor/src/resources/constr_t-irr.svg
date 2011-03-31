@@ -14,10 +14,10 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.0 r9654"
-   inkscape:export-filename="/Users/oyvind/Desktop/cosntr_1_36.png"
+   inkscape:export-filename="/Users/oyvind/Documents/model_workspace001/no.hib.dpf.editor/src/no/hib/dpf/editor/icons/t-irr_36.png"
    inkscape:export-xdpi="30"
    inkscape:export-ydpi="30"
-   sodipodi:docname="constr_irr.svg">
+   sodipodi:docname="constr_t-irr.svg">
   <defs
      id="defs4">
     <marker
@@ -101,7 +101,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.8"
-     inkscape:cx="104.32592"
+     inkscape:cx="59.504491"
      inkscape:cy="988.36088"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -134,7 +134,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -168,7 +168,7 @@
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
-       x="60.184795"
+       x="48.578098"
        y="133.17407"
        id="text3029"
        sodipodi:linespacing="125%"
@@ -176,7 +176,20 @@
        inkscape:export-ydpi="29.700001"><tspan
          sodipodi:role="line"
          id="tspan3031"
-         x="60.184795"
-         y="133.17407">[irr]</tspan></text>
+         x="48.578098"
+         y="133.17407"
+         style="letter-spacing:-0.80000001px"
+         dx="0 -1.0714285 0 0 0 0 -1.0714285">[t-irr]</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="64.285713"
+       y="68.790756"
+       id="text3028"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3030"
+         x="64.285713"
+         y="68.790756" /></text>
   </g>
 </svg>
