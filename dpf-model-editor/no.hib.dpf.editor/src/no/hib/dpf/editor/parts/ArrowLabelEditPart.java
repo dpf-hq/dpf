@@ -23,7 +23,7 @@ package no.hib.dpf.editor.parts;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-import no.hib.dpf.editor.model.ArrowLabel;
+import no.hib.dpf.editor.displaymodel.ArrowLabel;
 import no.hib.dpf.editor.policies.ArrowTextEditPolicy;
 import no.hib.dpf.editor.policies.ArrowTextMovePolicy;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;

@@ -20,8 +20,8 @@ package no.hib.dpf.editor.policies;
  OF SUCH DAMAGE. 
  */
 
-import no.hib.dpf.editor.model.ArrowLabel;
-import no.hib.dpf.editor.model.commands.ArrowTextMoveCommand;
+import no.hib.dpf.editor.displaymodel.ArrowLabel;
+import no.hib.dpf.editor.displaymodel.commands.ArrowTextMoveCommand;
 import no.hib.dpf.editor.parts.ArrowEditPart;
 
 import org.eclipse.draw2d.Figure;

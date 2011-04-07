@@ -10,12 +10,12 @@
 �*******************************************************************************/
 package no.hib.dpf.editor.parts;
 
-import no.hib.dpf.editor.model.ArrowLabel;
-import no.hib.dpf.editor.model.DPFDiagram;
-import no.hib.dpf.editor.model.SingleNodeConnection;
-import no.hib.dpf.editor.model.DArrow;
-import no.hib.dpf.editor.model.DConstraint;
-import no.hib.dpf.editor.model.DNode;
+import no.hib.dpf.editor.displaymodel.ArrowLabel;
+import no.hib.dpf.editor.displaymodel.DArrow;
+import no.hib.dpf.editor.displaymodel.DConstraint;
+import no.hib.dpf.editor.displaymodel.DNode;
+import no.hib.dpf.editor.displaymodel.DPFDiagram;
+import no.hib.dpf.editor.displaymodel.SingleNodeConnection;
 
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartFactory;

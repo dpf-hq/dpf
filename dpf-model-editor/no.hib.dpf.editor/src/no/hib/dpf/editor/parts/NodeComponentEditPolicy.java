@@ -10,9 +10,9 @@
 Ê*******************************************************************************/
 package no.hib.dpf.editor.parts;
 
-import no.hib.dpf.editor.model.DPFDiagram;
-import no.hib.dpf.editor.model.DNode;
-import no.hib.dpf.editor.model.commands.VNodeDeleteCommand;
+import no.hib.dpf.editor.displaymodel.DNode;
+import no.hib.dpf.editor.displaymodel.DPFDiagram;
+import no.hib.dpf.editor.displaymodel.commands.VNodeDeleteCommand;
 
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.ComponentEditPolicy;

@@ -11,11 +11,11 @@ package no.hib.dpf.editor.parts;
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
 
-import no.hib.dpf.editor.model.DArrow;
-import no.hib.dpf.editor.model.commands.BendpointCommand;
-import no.hib.dpf.editor.model.commands.CreateBendpointCommand;
-import no.hib.dpf.editor.model.commands.DeleteBendpointCommand;
-import no.hib.dpf.editor.model.commands.MoveBendpointCommand;
+import no.hib.dpf.editor.displaymodel.DArrow;
+import no.hib.dpf.editor.displaymodel.commands.BendpointCommand;
+import no.hib.dpf.editor.displaymodel.commands.CreateBendpointCommand;
+import no.hib.dpf.editor.displaymodel.commands.DeleteBendpointCommand;
+import no.hib.dpf.editor.displaymodel.commands.MoveBendpointCommand;
 
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.geometry.Point;

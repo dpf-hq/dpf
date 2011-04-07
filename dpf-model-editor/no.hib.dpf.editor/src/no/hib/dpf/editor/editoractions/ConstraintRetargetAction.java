@@ -1,8 +1,8 @@
 package no.hib.dpf.editor.editoractions;
 
 import no.hib.dpf.editor.DPFPlugin;
+import no.hib.dpf.editor.displaymodel.DConstraint;
 import no.hib.dpf.editor.icons.ImageSettings;
-import no.hib.dpf.editor.model.DConstraint;
 
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.actions.LabelRetargetAction;

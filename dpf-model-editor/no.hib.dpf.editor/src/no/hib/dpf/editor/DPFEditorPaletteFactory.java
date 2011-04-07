@@ -12,9 +12,9 @@ package no.hib.dpf.editor;
 
 import java.util.List;
 
+import no.hib.dpf.editor.displaymodel.factories.ArrowCreationFactory;
+import no.hib.dpf.editor.displaymodel.factories.VNodeFactory;
 import no.hib.dpf.editor.icons.ImageSettings;
-import no.hib.dpf.editor.model.factories.ArrowCreationFactory;
-import no.hib.dpf.editor.model.factories.VNodeFactory;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;
 import no.hib.dpf.metamodel.Arrow;
 import no.hib.dpf.metamodel.Graph;

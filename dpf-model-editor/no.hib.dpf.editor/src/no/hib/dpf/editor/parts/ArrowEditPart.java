@@ -17,12 +17,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import no.hib.dpf.editor.displaymodel.ArrowBendpoint;
+import no.hib.dpf.editor.displaymodel.DArrow;
+import no.hib.dpf.editor.displaymodel.DConstraint;
+import no.hib.dpf.editor.displaymodel.commands.ConnectionDeleteCommand;
 import no.hib.dpf.editor.figures.ArrowConnection;
 import no.hib.dpf.editor.figures.OpenArrowDecoration;
-import no.hib.dpf.editor.model.ArrowBendpoint;
-import no.hib.dpf.editor.model.DArrow;
-import no.hib.dpf.editor.model.DConstraint;
-import no.hib.dpf.editor.model.commands.ConnectionDeleteCommand;
 import no.hib.dpf.metamodel.Arrow;
 
 import org.eclipse.draw2d.Bendpoint;

@@ -1,6 +1,6 @@
 package no.hib.dpf.editor.editoractions;
 
-import no.hib.dpf.editor.model.DConstraint;
+import no.hib.dpf.editor.displaymodel.DConstraint;
 import no.hib.dpf.metamodel.Predicate;
 
 /**

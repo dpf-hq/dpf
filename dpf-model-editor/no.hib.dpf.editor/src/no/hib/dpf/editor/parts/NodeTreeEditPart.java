@@ -13,9 +13,9 @@ package no.hib.dpf.editor.parts;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-import no.hib.dpf.editor.model.ModelElement;
-import no.hib.dpf.editor.model.MovableAndSizable;
-import no.hib.dpf.editor.model.DNode;
+import no.hib.dpf.editor.displaymodel.DNode;
+import no.hib.dpf.editor.displaymodel.ModelElement;
+import no.hib.dpf.editor.displaymodel.MovableAndSizable;
 
 import org.eclipse.swt.graphics.Image;
 

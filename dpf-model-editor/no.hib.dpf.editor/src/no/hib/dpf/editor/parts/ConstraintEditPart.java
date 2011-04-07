@@ -2,10 +2,10 @@ package no.hib.dpf.editor.parts;
 
 import java.beans.PropertyChangeEvent;
 
+import no.hib.dpf.editor.displaymodel.DConstraint;
+import no.hib.dpf.editor.displaymodel.commands.ConstraintDeleteCommand;
 import no.hib.dpf.editor.figures.ConstraintAnchor;
 import no.hib.dpf.editor.figures.NodeFigure;
-import no.hib.dpf.editor.model.DConstraint;
-import no.hib.dpf.editor.model.commands.ConstraintDeleteCommand;
 
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;

@@ -10,6 +10,7 @@
 Ê*******************************************************************************/
 package no.hib.dpf.editor;
 
+import no.hib.dpf.editor.displaymodel.DConstraint;
 import no.hib.dpf.editor.editoractions.ConstraintRetargetAction;
 import no.hib.dpf.editor.editoractions.CreateCompositionConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateImageInclusionConstraintAction;
@@ -20,7 +21,6 @@ import no.hib.dpf.editor.editoractions.CreateJointlySurjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateMultiplicityConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateTransitiveIrreflexiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateXORConstraintAction;
-import no.hib.dpf.editor.model.DConstraint;
 
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.gef.editparts.ZoomManager;

@@ -20,8 +20,8 @@ package no.hib.dpf.editor.policies;
  OF SUCH DAMAGE. 
  */
 
-import no.hib.dpf.editor.model.ArrowLabel;
-import no.hib.dpf.editor.model.commands.ArrowTextChangeCommand;
+import no.hib.dpf.editor.displaymodel.ArrowLabel;
+import no.hib.dpf.editor.displaymodel.commands.ArrowTextChangeCommand;
 import no.hib.dpf.editor.parts.ArrowLabelEditPart;
 
 import org.eclipse.gef.commands.Command;
