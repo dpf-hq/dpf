@@ -15,7 +15,7 @@ import java.beans.PropertyChangeListener;
 
 import no.hib.dpf.editor.model.ModelElement;
 import no.hib.dpf.editor.model.MovableAndSizable;
-import no.hib.dpf.editor.model.VNode;
+import no.hib.dpf.editor.model.DNode;
 
 import org.eclipse.swt.graphics.Image;
 
@@ -78,8 +78,8 @@ class NodeTreeEditPart extends AbstractTreeEditPart implements
 		}
 	}
 
-	private VNode getCastedModel() {
-		return (VNode) getModel();
+	private DNode getCastedModel() {
+		return (DNode) getModel();
 	}
 
 	/*

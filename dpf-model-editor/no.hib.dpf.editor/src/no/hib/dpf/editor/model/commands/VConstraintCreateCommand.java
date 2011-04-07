@@ -1,13 +1,13 @@
 package no.hib.dpf.editor.model.commands;
 
-import no.hib.dpf.editor.model.VConstraint;
+import no.hib.dpf.editor.model.DConstraint;
 import no.hib.dpf.metamodel.Constraint;
 
 import org.eclipse.gef.commands.Command;
 
 public abstract class VConstraintCreateCommand extends Command {
 
-	protected VConstraint constraint;
+	protected DConstraint constraint;
 	
 	protected Constraint idObject;
 

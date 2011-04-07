@@ -2,7 +2,7 @@ package no.hib.dpf.editor.editoractions;
 
 import no.hib.dpf.editor.DPFPlugin;
 import no.hib.dpf.editor.icons.ImageSettings;
-import no.hib.dpf.editor.model.VConstraint;
+import no.hib.dpf.editor.model.DConstraint;
 
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.actions.LabelRetargetAction;
@@ -13,7 +13,7 @@ public class ConstraintRetargetAction extends LabelRetargetAction {
 		return ImageDescriptor.createFromFile(DPFPlugin.class, imageSettings.getFilePath());
 	}
 
-	public ConstraintRetargetAction(VConstraint.ConstraintType constraintType) {
+	public ConstraintRetargetAction(DConstraint.ConstraintType constraintType) {
 		super(null, null);
 		switch (constraintType) {
 			case INVERSE: 

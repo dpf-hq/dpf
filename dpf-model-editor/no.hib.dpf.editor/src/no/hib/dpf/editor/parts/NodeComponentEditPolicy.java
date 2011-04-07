@@ -11,7 +11,7 @@
 package no.hib.dpf.editor.parts;
 
 import no.hib.dpf.editor.model.DPFDiagram;
-import no.hib.dpf.editor.model.VNode;
+import no.hib.dpf.editor.model.DNode;
 import no.hib.dpf.editor.model.commands.VNodeDeleteCommand;
 
 import org.eclipse.gef.commands.Command;
@@ -33,8 +33,8 @@ class NodeComponentEditPolicy extends ComponentEditPolicy {
 protected Command createDeleteCommand(GroupRequest deleteRequest) {
 	Object parent = getHost().getParent().getModel();
 	Object child = getHost().getModel();
-	if (parent instanceof DPFDiagram && child instanceof VNode) {
-		return new VNodeDeleteCommand((DPFDiagram) parent, (VNode) child);
+	if (parent instanceof DPFDiagram && child instanceof DNode) {
+		return new VNodeDeleteCommand((DPFDiagram) parent, (DNode) child);
 	}
 	return super.createDeleteCommand(deleteRequest);
 }

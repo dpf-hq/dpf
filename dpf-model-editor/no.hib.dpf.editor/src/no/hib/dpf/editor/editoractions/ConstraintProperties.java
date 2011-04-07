@@ -1,6 +1,6 @@
 package no.hib.dpf.editor.editoractions;
 
-import no.hib.dpf.editor.model.VConstraint;
+import no.hib.dpf.editor.model.DConstraint;
 import no.hib.dpf.metamodel.Predicate;
 
 /**
@@ -13,9 +13,9 @@ public class ConstraintProperties {
 	private Predicate predicate;
 	private String text;
 	private String tooltipText;
-	private VConstraint.ConstraintType constraintType;
+	private DConstraint.ConstraintType constraintType;
 	
-	public ConstraintProperties(Predicate predicate, String text, String tooltipText, VConstraint.ConstraintType constraintType) {
+	public ConstraintProperties(Predicate predicate, String text, String tooltipText, DConstraint.ConstraintType constraintType) {
 		this.predicate = predicate;
 		this.text = text;
 		this.tooltipText = tooltipText;
@@ -34,7 +34,7 @@ public class ConstraintProperties {
 		return tooltipText;
 	}
 
-	public VConstraint.ConstraintType getConstraintType() {
+	public DConstraint.ConstraintType getConstraintType() {
 		return constraintType;
 	}
 

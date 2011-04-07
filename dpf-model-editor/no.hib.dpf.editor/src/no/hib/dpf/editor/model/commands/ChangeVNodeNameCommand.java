@@ -1,7 +1,7 @@
 package no.hib.dpf.editor.model.commands;
 
 
-import no.hib.dpf.editor.model.VNode;
+import no.hib.dpf.editor.model.DNode;
 
 import org.eclipse.gef.commands.Command;
 
@@ -14,7 +14,7 @@ import org.eclipse.gef.commands.Command;
 public class ChangeVNodeNameCommand extends Command
 {
 
-	private VNode shape;
+	private DNode shape;
 	private String name, oldName;
 
 	/**
@@ -63,7 +63,7 @@ public class ChangeVNodeNameCommand extends Command
 		oldName = string;
 	}
 
-	public void setShape(VNode shape)
+	public void setShape(DNode shape)
 	{
 		this.shape = shape;
 	}

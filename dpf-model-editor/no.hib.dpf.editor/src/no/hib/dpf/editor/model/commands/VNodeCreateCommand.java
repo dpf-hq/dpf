@@ -11,7 +11,7 @@
 package no.hib.dpf.editor.model.commands;
 
 import no.hib.dpf.editor.model.DPFDiagram;
-import no.hib.dpf.editor.model.VNode;
+import no.hib.dpf.editor.model.DNode;
 
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
@@ -27,7 +27,7 @@ import org.eclipse.gef.commands.Command;
 public class VNodeCreateCommand extends Command {
 	
 /** The new node. */ 
-private VNode newVNode;
+private DNode newVNode;
 /** Diagram to add to. */
 private final DPFDiagram parent;
 /** The bounds of the new VNode. */
@@ -42,7 +42,7 @@ private Rectangle bounds;
  * @throws IllegalArgumentException if any parameter is null, or the request
  * 						  does not provide a new Shape instance
  */
-public VNodeCreateCommand(VNode newVNode, DPFDiagram parent, Rectangle bounds) {
+public VNodeCreateCommand(DNode newVNode, DPFDiagram parent, Rectangle bounds) {
 	this.newVNode = newVNode;
 	this.parent = parent;
 	this.bounds = bounds;

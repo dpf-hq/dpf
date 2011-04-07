@@ -3,7 +3,7 @@ package no.hib.dpf.editor.policies;
  * Created on Jul 18, 2004
  */
 
-import no.hib.dpf.editor.model.VNode;
+import no.hib.dpf.editor.model.DNode;
 import no.hib.dpf.editor.model.commands.ChangeVNodeNameCommand;
 import no.hib.dpf.editor.parts.NodeEditPart;
 
@@ -26,7 +26,7 @@ public class VNodeDirectEditPolicy extends DirectEditPolicy {
 	 */
 	protected Command getDirectEditCommand(DirectEditRequest request) {
 		ChangeVNodeNameCommand cmd = new ChangeVNodeNameCommand();
-		VNode vNode = (VNode) getHost().getModel();
+		DNode vNode = (DNode) getHost().getModel();
 		cmd.setShape(vNode);
 		cmd.setOldName(vNode.getNameExec());
 		CellEditor cellEditor = request.getCellEditor();

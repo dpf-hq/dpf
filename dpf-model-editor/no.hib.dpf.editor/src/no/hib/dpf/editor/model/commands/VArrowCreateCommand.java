@@ -11,8 +11,8 @@
 package no.hib.dpf.editor.model.commands;
 
 import no.hib.dpf.editor.model.SingleNodeConnection;
-import no.hib.dpf.editor.model.VArrow;
-import no.hib.dpf.editor.model.VNode;
+import no.hib.dpf.editor.model.DArrow;
+import no.hib.dpf.editor.model.DNode;
 import no.hib.dpf.metamodel.Arrow;
 
 import org.eclipse.gef.commands.Command;
@@ -40,15 +40,15 @@ import org.eclipse.gef.commands.Command;
  */
 public class VArrowCreateCommand extends Command {
 	/** The connection instance. */
-	private VArrow arrow;
+	private DArrow arrow;
 	private Arrow typeArrow;
 
 	/** Start endpoint for the connection. */
-	private final VNode source;
+	private final DNode source;
 	/** Target endpoint for the connection. */
-	private VNode target;
+	private DNode target;
 
-	public VArrowCreateCommand(VNode source, Arrow typeArrow) {
+	public VArrowCreateCommand(DNode source, Arrow typeArrow) {
 		if (source == null) {
 			throw new IllegalArgumentException();
 		}
@@ -83,7 +83,7 @@ public class VArrowCreateCommand extends Command {
 		}
 		
 		if (!source.equals(target)) {
-			arrow = new VArrow(source, target, typeArrow);
+			arrow = new DArrow(source, target, typeArrow);
 		} else {
 			arrow = new SingleNodeConnection(source, typeArrow);
 		}
@@ -106,7 +106,7 @@ public class VArrowCreateCommand extends Command {
 	 * @throws IllegalArgumentException
 	 *             if target is null
 	 */
-	public void setTarget(VNode target) {
+	public void setTarget(DNode target) {
 		if (target == null) {
 			throw new IllegalArgumentException();
 		}

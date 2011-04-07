@@ -11,7 +11,7 @@
 
 package no.hib.dpf.editor.model.commands;
 
-import no.hib.dpf.editor.model.VArrow;
+import no.hib.dpf.editor.model.DArrow;
 
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
@@ -22,7 +22,7 @@ public class BendpointCommand extends Command {
 
 	protected int index;
 	protected Point location;
-	protected VArrow arrow;
+	protected DArrow arrow;
 	private Dimension d1, d2;
 
 	protected Dimension getFirstRelativeDimension() {
@@ -41,7 +41,7 @@ public class BendpointCommand extends Command {
 		return location;
 	}
 
-	protected VArrow getArrow() {
+	protected DArrow getArrow() {
 		return arrow;
 	}
 
@@ -62,7 +62,7 @@ public class BendpointCommand extends Command {
 		location = p;
 	}
 
-	public void setArrow(VArrow w) {
+	public void setArrow(DArrow w) {
 		arrow = w;
 	}
 

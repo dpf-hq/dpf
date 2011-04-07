@@ -11,7 +11,7 @@ package no.hib.dpf.editor.parts;
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
 
-import no.hib.dpf.editor.model.VArrow;
+import no.hib.dpf.editor.model.DArrow;
 import no.hib.dpf.editor.model.commands.BendpointCommand;
 import no.hib.dpf.editor.model.commands.CreateBendpointCommand;
 import no.hib.dpf.editor.model.commands.DeleteBendpointCommand;
@@ -41,7 +41,7 @@ public class ArrowBendpointEditPolicy extends
 		conn.translateToRelative(ref2);
 
 		com.setRelativeDimensions(p.getDifference(ref1), p.getDifference(ref2));
-		com.setArrow((VArrow) request.getSource().getModel());
+		com.setArrow((DArrow) request.getSource().getModel());
 		com.setIndex(request.getIndex());
 		return com;
 	}
@@ -62,7 +62,7 @@ public class ArrowBendpointEditPolicy extends
 		conn.translateToRelative(ref2);
 
 		com.setRelativeDimensions(p.getDifference(ref1), p.getDifference(ref2));
-		com.setArrow((VArrow) request.getSource().getModel());
+		com.setArrow((DArrow) request.getSource().getModel());
 		com.setIndex(request.getIndex());
 		return com;
 	}
@@ -71,7 +71,7 @@ public class ArrowBendpointEditPolicy extends
 		BendpointCommand com = new DeleteBendpointCommand();
 		Point p = request.getLocation();
 		com.setLocation(p);
-		com.setArrow((VArrow) request.getSource().getModel());
+		com.setArrow((DArrow) request.getSource().getModel());
 		com.setIndex(request.getIndex());
 		return com;
 	}

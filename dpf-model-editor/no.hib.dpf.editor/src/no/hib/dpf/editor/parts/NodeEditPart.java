@@ -22,8 +22,8 @@ import no.hib.dpf.editor.figures.MultipleArrowsChopboxAnchor;
 import no.hib.dpf.editor.figures.NodeFigure;
 import no.hib.dpf.editor.model.LocationAndSize;
 import no.hib.dpf.editor.model.ModelElement;
-import no.hib.dpf.editor.model.VArrow;
-import no.hib.dpf.editor.model.VNode;
+import no.hib.dpf.editor.model.DArrow;
+import no.hib.dpf.editor.model.DNode;
 import no.hib.dpf.editor.model.commands.VArrowCreateCommand;
 import no.hib.dpf.editor.model.commands.ConnectionReconnectCommand;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;
@@ -104,14 +104,14 @@ public class NodeEditPart extends AbstractGraphicalEditPart implements
 							CreateConnectionRequest request) {
 						VArrowCreateCommand cmd = (VArrowCreateCommand) request
 								.getStartCommand();
-						cmd.setTarget((VNode) getHost().getModel());
+						cmd.setTarget((DNode) getHost().getModel());
 						return cmd;
 					}
 
 					protected Command getConnectionCreateCommand(
 							CreateConnectionRequest request) {
 
-						VNode source = (VNode) getHost().getModel();
+						DNode source = (DNode) getHost().getModel();
 						Object objectType = request.getNewObjectType();
 						Arrow typeArrow = null;
 						if (objectType instanceof Arrow) {
@@ -125,9 +125,9 @@ public class NodeEditPart extends AbstractGraphicalEditPart implements
 
 					protected Command getReconnectSourceCommand(
 							ReconnectRequest request) {
-						VArrow conn = (VArrow) request.getConnectionEditPart()
+						DArrow conn = (DArrow) request.getConnectionEditPart()
 								.getModel();
-						VNode newSource = (VNode) getHost().getModel();
+						DNode newSource = (DNode) getHost().getModel();
 						ConnectionReconnectCommand cmd = new ConnectionReconnectCommand(
 								conn);
 						cmd.setNewSource(newSource);
@@ -136,9 +136,9 @@ public class NodeEditPart extends AbstractGraphicalEditPart implements
 
 					protected Command getReconnectTargetCommand(
 							ReconnectRequest request) {
-						VArrow conn = (VArrow) request.getConnectionEditPart()
+						DArrow conn = (DArrow) request.getConnectionEditPart()
 								.getModel();
-						VNode newTarget = (VNode) getHost().getModel();
+						DNode newTarget = (DNode) getHost().getModel();
 						ConnectionReconnectCommand cmd = new ConnectionReconnectCommand(
 								conn);
 						cmd.setNewTarget(newTarget);
@@ -159,8 +159,8 @@ public class NodeEditPart extends AbstractGraphicalEditPart implements
 		refreshVisuals();
 	}
 	
-	private VNode getShape() {
-		return (VNode) getModel();
+	private DNode getShape() {
+		return (DNode) getModel();
 	}
 
 	/**
@@ -204,8 +204,8 @@ public class NodeEditPart extends AbstractGraphicalEditPart implements
 		}
 	}
 
-	private VNode getCastedModel() {
-		return (VNode) getModel();
+	private DNode getCastedModel() {
+		return (DNode) getModel();
 	}
 
 	public Node getModelAsEMFInstance() {
@@ -275,12 +275,12 @@ public class NodeEditPart extends AbstractGraphicalEditPart implements
 	}
 
 	@Override
-	protected List<VArrow> getModelSourceConnections() {
+	protected List<DArrow> getModelSourceConnections() {
 		return getCastedModel().getSourceConnections();
 	}
 
 	@Override
-	protected List<VArrow> getModelTargetConnections() {
+	protected List<DArrow> getModelTargetConnections() {
 		return getCastedModel().getTargetConnections();
 	}
 
@@ -316,12 +316,12 @@ public class NodeEditPart extends AbstractGraphicalEditPart implements
 		if (LocationAndSize.SIZE_PROP.equals(prop)
 				|| LocationAndSize.LOCATION_PROP.equals(prop)) {
 			refreshVisuals();
-		} else if (VNode.SOURCE_CONNECTIONS_PROP.equals(prop)) {
+		} else if (DNode.SOURCE_CONNECTIONS_PROP.equals(prop)) {
 			refreshSourceConnections();
-		} else if (VNode.TARGET_CONNECTIONS_PROP.equals(prop)) {
+		} else if (DNode.TARGET_CONNECTIONS_PROP.equals(prop)) {
 			refreshTargetConnections();
 			diagram.validateSemantics();
-		} else if (VNode.NAME_PROP.equals(prop)) {
+		} else if (DNode.NAME_PROP.equals(prop)) {
 			commitNameChange(evt);
 		}
 	}

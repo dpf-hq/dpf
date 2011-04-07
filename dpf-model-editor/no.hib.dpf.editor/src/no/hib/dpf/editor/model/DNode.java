@@ -40,7 +40,7 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.views.properties.IPropertyDescriptor;
 import org.eclipse.ui.views.properties.TextPropertyDescriptor;
 
-public class VNode extends ModelElement implements Node, IDObjectContainer, MovableAndSizable {
+public class DNode extends ModelElement implements Node, IDObjectContainer, MovableAndSizable {
 
 	public void removeGraph() {
 		nodeComponent.setGraph(null);
@@ -105,9 +105,9 @@ public class VNode extends ModelElement implements Node, IDObjectContainer, Mova
 	}
 	
 	/** List of outgoing Connections. */
-	private List<VArrow> sourceConnections = new ArrayList<VArrow>();
+	private List<DArrow> sourceConnections = new ArrayList<DArrow>();
 	/** List of incoming Connections. */
-	private List<VArrow> targetConnections = new ArrayList<VArrow>();
+	private List<DArrow> targetConnections = new ArrayList<DArrow>();
 
 	/**
 	 * Returns an array of IPropertyDescriptors for this shape.
@@ -186,15 +186,15 @@ public class VNode extends ModelElement implements Node, IDObjectContainer, Mova
 	/**
 	 * Return a List of outgoing Connections.
 	 */
-	public List<VArrow> getSourceConnections() {
-		return new ArrayList<VArrow>(sourceConnections);
+	public List<DArrow> getSourceConnections() {
+		return new ArrayList<DArrow>(sourceConnections);
 	}
 
 	/**
 	 * Return a List of incoming Connections.
 	 */
-	public List<VArrow> getTargetConnections() {
-		return new ArrayList<VArrow>(targetConnections);
+	public List<DArrow> getTargetConnections() {
+		return new ArrayList<DArrow>(targetConnections);
 	}
 
 	/**
@@ -205,7 +205,7 @@ public class VNode extends ModelElement implements Node, IDObjectContainer, Mova
 	 * @throws IllegalArgumentException
 	 *             if the parameter is null
 	 */
-	public void removeConnection(VArrow conn) {
+	public void removeConnection(DArrow conn) {
 		if (conn == null) {
 			throw new IllegalArgumentException();
 		}
@@ -248,12 +248,12 @@ public class VNode extends ModelElement implements Node, IDObjectContainer, Mova
 	private transient Node nodeComponent;
 	private String nodeID;
 
-	public VNode() {
+	public DNode() {
 		super();
 		setIDObject(MetamodelFactory.eINSTANCE.createNode());
 	}
 
-	public VNode(Node typeNode) {
+	public DNode(Node typeNode) {
 		super();
 		setIDObject(MetamodelFactory.eINSTANCE.createNode(typeNode));
 	}
@@ -278,7 +278,7 @@ public class VNode extends ModelElement implements Node, IDObjectContainer, Mova
 		return "Node " + hashCode();
 	}
 	
-	public void addIncomingConnection(VArrow arrow) {
+	public void addIncomingConnection(DArrow arrow) {
 		targetConnections.add(arrow);
 		arrow.setTarget(nodeComponent);
 		addConnectionToGraph(arrow);
@@ -286,28 +286,28 @@ public class VNode extends ModelElement implements Node, IDObjectContainer, Mova
 		firePropertyChange(TARGET_CONNECTIONS_PROP, null, arrow);
 	}
 
-	public void addOutgoingConnection(VArrow arrow) {
+	public void addOutgoingConnection(DArrow arrow) {
 		sourceConnections.add(arrow);
 		arrow.setSource(nodeComponent);
 		addConnectionToGraph(arrow);
 		firePropertyChange(SOURCE_CONNECTIONS_PROP, null, arrow);
 	}
 	
-	private void addConnectionToGraph(VArrow arrow) {
+	private void addConnectionToGraph(DArrow arrow) {
 		arrow.setGraph(getGraph());
 		if (arrow.getName().equals("")) {
 			arrow.setNameExec(arrow.generateUniqueName());
 		}
 	}
 	
-	protected void removeIncomingConnection(VArrow arrow) {
+	protected void removeIncomingConnection(DArrow arrow) {
 		targetConnections.remove(arrow);
 		arrow.setTarget(null);
 		arrow.setGraph(null);
 		firePropertyChange(TARGET_CONNECTIONS_PROP, null, arrow);
 	}
 
-	protected void removeOutgoingConnection(VArrow arrow) {
+	protected void removeOutgoingConnection(DArrow arrow) {
 		sourceConnections.remove(arrow);
 		arrow.setSource(null);
 		arrow.setGraph(null);

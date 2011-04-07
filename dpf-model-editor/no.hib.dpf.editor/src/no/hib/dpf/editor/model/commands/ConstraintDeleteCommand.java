@@ -1,6 +1,6 @@
 package no.hib.dpf.editor.model.commands;
 
-import no.hib.dpf.editor.model.VConstraint;
+import no.hib.dpf.editor.model.DConstraint;
 
 import org.eclipse.gef.commands.Command;
 
@@ -11,7 +11,7 @@ import org.eclipse.gef.commands.Command;
 public class ConstraintDeleteCommand extends Command {
 
 	/** Connection instance to disconnect. */
-	private final VConstraint constraint;
+	private final DConstraint constraint;
 
 	/**
 	 * Create a command that will disconnect a connection from its endpoints.
@@ -21,7 +21,7 @@ public class ConstraintDeleteCommand extends Command {
 	 * @throws IllegalArgumentException
 	 *             if conn is null
 	 */
-	public ConstraintDeleteCommand(VConstraint constraint) {
+	public ConstraintDeleteCommand(DConstraint constraint) {
 		if (constraint == null) {
 			throw new IllegalArgumentException();
 		}

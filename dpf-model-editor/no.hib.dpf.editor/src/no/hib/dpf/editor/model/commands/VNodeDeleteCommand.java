@@ -14,8 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import no.hib.dpf.editor.model.DPFDiagram;
-import no.hib.dpf.editor.model.VArrow;
-import no.hib.dpf.editor.model.VNode;
+import no.hib.dpf.editor.model.DArrow;
+import no.hib.dpf.editor.model.DNode;
 
 import org.eclipse.gef.commands.Command;
 
@@ -25,7 +25,7 @@ import org.eclipse.gef.commands.Command;
  */
 public class VNodeDeleteCommand extends Command {
 	/** Node to remove. */
-	private final VNode child;
+	private final DNode child;
 
 	/** Diagram to remove from. */
 	private final DPFDiagram parent;
@@ -43,7 +43,7 @@ public class VNodeDeleteCommand extends Command {
 	 * @param child the VNode to remove
 	 * @throws IllegalArgumentException if any parameter is null
 	 */
-	public VNodeDeleteCommand(DPFDiagram parent, VNode child) {
+	public VNodeDeleteCommand(DPFDiagram parent, DNode child) {
 		if (parent == null || child == null) {
 			throw new IllegalArgumentException();
 		}
@@ -70,9 +70,9 @@ public class VNodeDeleteCommand extends Command {
 		removeChildAndDisconnectConnections();
 	}
 
-	private List<ConnectionDeleteCommand> getDeleteCommands(List<VArrow> connections) {
+	private List<ConnectionDeleteCommand> getDeleteCommands(List<DArrow> connections) {
 		List<ConnectionDeleteCommand> retval = new ArrayList<ConnectionDeleteCommand>();
-		for (VArrow connection : connections) {
+		for (DArrow connection : connections) {
 			retval.add(new ConnectionDeleteCommand(connection));
 		}
 		return retval;

@@ -4,7 +4,7 @@ import java.beans.PropertyChangeEvent;
 
 import no.hib.dpf.editor.figures.ConstraintAnchor;
 import no.hib.dpf.editor.figures.NodeFigure;
-import no.hib.dpf.editor.model.VConstraint;
+import no.hib.dpf.editor.model.DConstraint;
 import no.hib.dpf.editor.model.commands.ConstraintDeleteCommand;
 
 import org.eclipse.draw2d.ConnectionAnchor;
@@ -75,8 +75,8 @@ public abstract class ConstraintEditPart extends ModelElementConnectionEditPart 
 		
 	}
 	
-	protected VConstraint getCastedModel() {
-		return (VConstraint) getModel();
+	protected DConstraint getCastedModel() {
+		return (DConstraint) getModel();
 	}
 	
 	

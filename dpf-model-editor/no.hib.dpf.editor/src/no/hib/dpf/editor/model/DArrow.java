@@ -37,7 +37,7 @@ import org.eclipse.ui.views.properties.ComboBoxPropertyDescriptor;
 import org.eclipse.ui.views.properties.IPropertyDescriptor;
 import org.eclipse.ui.views.properties.TextPropertyDescriptor;
 
-public class VArrow extends ModelElement implements Arrow, IDObjectContainer {
+public class DArrow extends ModelElement implements Arrow, IDObjectContainer {
 	/**
 	 * Used for indicating that a Connection with solid line style should be
 	 * created.
@@ -78,14 +78,14 @@ public class VArrow extends ModelElement implements Arrow, IDObjectContainer {
 	/** Line drawing style for this connection. */
 	private int lineStyle = Graphics.LINE_SOLID;
 	/** Connection's source endpoint. */
-	private VNode source;
+	private DNode source;
 	/** Connection's target endpoint. */
-	private VNode target;
+	private DNode target;
 
 	/** List of outgoing Constraints. */
-	private List<VConstraint> sourceConstraints = new ArrayList<VConstraint>();
+	private List<DConstraint> sourceConstraints = new ArrayList<DConstraint>();
 	/** List of incoming Constraints. */
-	private List<VConstraint> targetConnstraints = new ArrayList<VConstraint>();
+	private List<DConstraint> targetConnstraints = new ArrayList<DConstraint>();
 	/** List of single Constraints */
 	private List<SingleArrowConstraintElement> singleConstraints = new ArrayList<SingleArrowConstraintElement>();
 	
@@ -121,7 +121,7 @@ public class VArrow extends ModelElement implements Arrow, IDObjectContainer {
 	 *             if any of the parameters are null or source == target
 	 * @see #setLineStyle(int)
 	 */
-	public VArrow(VNode source, VNode target, Arrow typeArrow) {
+	public DArrow(DNode source, DNode target, Arrow typeArrow) {
 		// The dpf Arrow object must be initialized before the connection of the shapes.
 		setIDObject(MetamodelFactory.eINSTANCE.createArrow(typeArrow));
 		addLabel("ref");
@@ -208,7 +208,7 @@ public class VArrow extends ModelElement implements Arrow, IDObjectContainer {
 	 * 
 	 * @return a non-null Shape instance
 	 */
-	public VNode getShapeSource() {
+	public DNode getShapeSource() {
 		return source;
 	}
 
@@ -217,7 +217,7 @@ public class VArrow extends ModelElement implements Arrow, IDObjectContainer {
 	 * 
 	 * @return a non-null Shape instance
 	 */
-	public VNode getShapeTarget() {
+	public DNode getShapeTarget() {
 		return target;
 	}
 
@@ -245,7 +245,7 @@ public class VArrow extends ModelElement implements Arrow, IDObjectContainer {
 	 * @throws IllegalArgumentException
 	 *             if any of the paramers are null or newSource == newTarget
 	 */
-	public void reconnect(VNode newSource, VNode newTarget) {
+	public void reconnect(DNode newSource, DNode newTarget) {
 //		if (newSource == null || newTarget == null || newSource == newTarget) {
 		if (newSource == null || newTarget == null) {
 			throw new IllegalArgumentException();
@@ -316,20 +316,20 @@ public class VArrow extends ModelElement implements Arrow, IDObjectContainer {
 		}
 	}
 
-	public List<VConstraint> getSourceConstraints() {
-		return new ArrayList<VConstraint>(sourceConstraints);
+	public List<DConstraint> getSourceConstraints() {
+		return new ArrayList<DConstraint>(sourceConstraints);
 	}
 
-	public List<VConstraint> getTargetConstraints() {
-		return new ArrayList<VConstraint>(targetConnstraints);
+	public List<DConstraint> getTargetConstraints() {
+		return new ArrayList<DConstraint>(targetConnstraints);
 	}
 	
-	protected void addIncomingConstraint(VConstraint constraint) {
+	protected void addIncomingConstraint(DConstraint constraint) {
 		targetConnstraints.add(constraint);
 		addedConstraint(constraint, TARGET_CONSTRAINTS_PROP);
 	}
 
-	protected void addOutgoingConstraint(VConstraint constraint) {
+	protected void addOutgoingConstraint(DConstraint constraint) {
 		sourceConstraints.add(constraint);		
 		addedConstraint(constraint, SOURCE_CONSTRAINTS_PROP);
 	}
@@ -339,12 +339,12 @@ public class VArrow extends ModelElement implements Arrow, IDObjectContainer {
 		addedConstraint(constraint, SINGLE_CONSTRAINTS_PROP);
 	}
 	
-	private void addedConstraint(VConstraint constraint, String property) {
+	private void addedConstraint(DConstraint constraint, String property) {
 		constraint.setGraph(getGraph());		
 		firePropertyChange(property, null, constraint);
 	}
 	
-	public void addConstraint(VConstraint constraint) {
+	public void addConstraint(DConstraint constraint) {
 		if (constraint == null || constraint.getConnectionSource() == constraint.getConnectionTarget()) {
 			throw new IllegalArgumentException();
 		}
@@ -366,12 +366,12 @@ public class VArrow extends ModelElement implements Arrow, IDObjectContainer {
 		((ArrowLabel)getLabels().get(0)).setLabelText(name);
 	}
 	
-	protected void removeIncomingConstraint(VConstraint constraint) {
+	protected void removeIncomingConstraint(DConstraint constraint) {
 		targetConnstraints.remove(constraint);
 		removedConstraint(constraint, TARGET_CONSTRAINTS_PROP);
 	}
 
-	protected void removeOutgoingConstraint(VConstraint constraint) {
+	protected void removeOutgoingConstraint(DConstraint constraint) {
 		sourceConstraints.remove(constraint);
 		removedConstraint(constraint, SOURCE_CONSTRAINTS_PROP);
 	}
@@ -381,12 +381,12 @@ public class VArrow extends ModelElement implements Arrow, IDObjectContainer {
 		removedConstraint(constraint, SINGLE_CONSTRAINTS_PROP);
 	}
 	
-	private void removedConstraint(VConstraint constraint, String property) {
+	private void removedConstraint(DConstraint constraint, String property) {
 		constraint.setGraph(null);		
 		firePropertyChange(property, null, constraint);
 	}	
 	
-	void removeConstraint(VConstraint constraint) {
+	void removeConstraint(DConstraint constraint) {
 		if (constraint == null) {
 			throw new IllegalArgumentException();
 		}

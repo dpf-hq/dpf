@@ -20,8 +20,8 @@ import java.util.List;
 import no.hib.dpf.editor.figures.ArrowConnection;
 import no.hib.dpf.editor.figures.OpenArrowDecoration;
 import no.hib.dpf.editor.model.ArrowBendpoint;
-import no.hib.dpf.editor.model.VArrow;
-import no.hib.dpf.editor.model.VConstraint;
+import no.hib.dpf.editor.model.DArrow;
+import no.hib.dpf.editor.model.DConstraint;
 import no.hib.dpf.editor.model.commands.ConnectionDeleteCommand;
 import no.hib.dpf.metamodel.Arrow;
 
@@ -134,8 +134,8 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 				});
 	}
 	
-	public VArrow getArrow() {
-		return (VArrow) getModel();
+	public DArrow getArrow() {
+		return (DArrow) getModel();
 	}
 	
 	/*
@@ -180,14 +180,14 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 			refreshVisuals();
 		} else 	if ("bendpoint".equals(property)) {
 			refreshBendpoints();
-		} else if (VArrow.LINESTYLE_PROP.equals(property)) {
+		} else if (DArrow.LINESTYLE_PROP.equals(property)) {
 			((ArrowConnection) getFigure()).setLineStyle(getCastedModel()
 					.getLineStyle());
-		} else if (VArrow.SOURCE_CONSTRAINTS_PROP.equals(property)) {
+		} else if (DArrow.SOURCE_CONSTRAINTS_PROP.equals(property)) {
 			refreshSourceConnections();
-		} else if (VArrow.TARGET_CONSTRAINTS_PROP.equals(property)) {
+		} else if (DArrow.TARGET_CONSTRAINTS_PROP.equals(property)) {
 			refreshTargetConnections();
-		} else if (VArrow.SINGLE_CONSTRAINTS_PROP.equals(property)) {
+		} else if (DArrow.SINGLE_CONSTRAINTS_PROP.equals(property)) {
 			refresh();
 		} 
 	}
@@ -228,15 +228,15 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 	}
 
 	@SuppressWarnings("rawtypes")
-	private List getModelConnections(List<VConstraint> constraints) {
+	private List getModelConnections(List<DConstraint> constraints) {
 		if (constraints.size() == 0) {
 			return Collections.EMPTY_LIST;
 		}
 		return constraints;		
 	}
 
-	protected VArrow getCastedModel() {
-		return (VArrow)getModel();
+	protected DArrow getCastedModel() {
+		return (DArrow)getModel();
 	}
 	
 	public Arrow getModelAsEMFInstance() {
@@ -336,7 +336,7 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 	@SuppressWarnings("rawtypes")
 	@Override
 	protected List getModelChildren() {
-		VArrow model = getCastedModel();
+		DArrow model = getCastedModel();
 		return model.getLabels();
 	}	
 

@@ -13,9 +13,9 @@ package no.hib.dpf.editor.parts;
 import no.hib.dpf.editor.model.ArrowLabel;
 import no.hib.dpf.editor.model.DPFDiagram;
 import no.hib.dpf.editor.model.SingleNodeConnection;
-import no.hib.dpf.editor.model.VArrow;
-import no.hib.dpf.editor.model.VConstraint;
-import no.hib.dpf.editor.model.VNode;
+import no.hib.dpf.editor.model.DArrow;
+import no.hib.dpf.editor.model.DConstraint;
+import no.hib.dpf.editor.model.DNode;
 
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartFactory;
@@ -48,13 +48,13 @@ private EditPart getPartForElement(Object modelElement) {
 	if (modelElement instanceof DPFDiagram) {
 		return new DiagramEditPart();
 	}
-	if (modelElement instanceof VNode) {
+	if (modelElement instanceof DNode) {
 		return new NodeEditPart();
 	}
 	if (modelElement instanceof SingleNodeConnection) {
 		return new SingleArrowEditPart();
 	}
-	if (modelElement instanceof VArrow) {
+	if (modelElement instanceof DArrow) {
 		return new ArrowEditPart();
 	}
 	if (modelElement instanceof ArrowLabel) {
@@ -64,9 +64,9 @@ private EditPart getPartForElement(Object modelElement) {
 			return new ArrowNameLabelEditPart();
 		}
 	}
-	if (modelElement instanceof VConstraint) {
+	if (modelElement instanceof DConstraint) {
 		// Edit part according to the type of constraint element:
-		switch (((VConstraint)modelElement).getConstraintType()) {
+		switch (((DConstraint)modelElement).getConstraintType()) {
 			case JOINTLY_SURJECTIVE : return new JointlySurjectiveConstraintEditPart();
 			case JOINTLY_INJECTIVE : return new JointlyInjectiveConstraintEditPart();
 			case INVERSE : return new InverseConstraintEditPart();

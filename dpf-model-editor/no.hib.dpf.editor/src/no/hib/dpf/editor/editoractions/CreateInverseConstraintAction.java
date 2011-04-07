@@ -2,8 +2,8 @@ package no.hib.dpf.editor.editoractions;
 
 import java.util.List;
 
-import no.hib.dpf.editor.model.VArrow;
-import no.hib.dpf.editor.model.VConstraint;
+import no.hib.dpf.editor.model.DArrow;
+import no.hib.dpf.editor.model.DConstraint;
 import no.hib.dpf.editor.model.commands.MultipleArrowConstraintCreateCommand;
 import no.hib.dpf.editor.parts.ArrowEditPart;
 import no.hib.dpf.editor.parts.NodeEditPart;
@@ -21,7 +21,7 @@ public class CreateInverseConstraintAction extends CreateConstraintAction {
 	
 	@Override
 	protected Command getConstraintCreateCommand(List<ArrowEditPart> connectionEditParts, List<NodeEditPart> shapeEditParts) {
-		return new MultipleArrowConstraintCreateCommand((VArrow)connectionEditParts.get(0).getModel(), (VArrow)connectionEditParts.get(1).getModel(), VConstraint.ConstraintType.INVERSE, createIDObject());
+		return new MultipleArrowConstraintCreateCommand((DArrow)connectionEditParts.get(0).getModel(), (DArrow)connectionEditParts.get(1).getModel(), DConstraint.ConstraintType.INVERSE, createIDObject());
 	}
 
 }

@@ -35,7 +35,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ui.views.properties.IPropertyDescriptor;
 
-public class VConstraint extends ModelElement implements Constraint, IDObjectContainer {
+public class DConstraint extends ModelElement implements Constraint, IDObjectContainer {
 
 	private static final IPropertyDescriptor[] descriptors = new IPropertyDescriptor[1];
 	private static final long serialVersionUID = 1;
@@ -43,9 +43,9 @@ public class VConstraint extends ModelElement implements Constraint, IDObjectCon
 	/** True, if the connection is attached to its endpoints. */
 	protected boolean isConnected;
 	/** Constraint's source endpoint. */
-	protected VArrow source;
+	protected DArrow source;
 	/** Constraint target endpoint. */
-	protected List<VArrow> targets = new ArrayList<VArrow>();
+	protected List<DArrow> targets = new ArrayList<DArrow>();
 	
 	private transient Constraint constraintComponent;
 	private String constraintID;
@@ -71,7 +71,7 @@ public class VConstraint extends ModelElement implements Constraint, IDObjectCon
 	
 	protected ConstraintType constraintType;
 	
-	protected VConstraint() {}
+	protected DConstraint() {}
 	
 	/**
 	 * Create a constraint between two arrows.
@@ -84,8 +84,8 @@ public class VConstraint extends ModelElement implements Constraint, IDObjectCon
 	 *             if any of the parameters are null or source == target
 	 * @see #setLineStyle(int)
 	 */
-	public VConstraint(VArrow source, VArrow target, ConstraintType constraintType, Constraint idObject) {		
-		this(source, new ArrayList<VArrow>(Arrays.asList(target)), constraintType, idObject);
+	public DConstraint(DArrow source, DArrow target, ConstraintType constraintType, Constraint idObject) {		
+		this(source, new ArrayList<DArrow>(Arrays.asList(target)), constraintType, idObject);
 	}
 	
 	
@@ -100,7 +100,7 @@ public class VConstraint extends ModelElement implements Constraint, IDObjectCon
 	 *             if any of the parameters are null or source == target
 	 * @see #setLineStyle(int)
 	 */
-	public VConstraint(VArrow source, List<VArrow> targets, ConstraintType constraintType, Constraint idObject) {
+	public DConstraint(DArrow source, List<DArrow> targets, ConstraintType constraintType, Constraint idObject) {
 		this.setConstraintType(constraintType);
 		// The dpf Constraint object must be initialized before the connection of the shapes.
 		setIDObject(idObject);
@@ -121,7 +121,7 @@ public class VConstraint extends ModelElement implements Constraint, IDObjectCon
 	public void disconnect() {
 		if (isConnected) {
 			source.removeConstraint(this);
-			for (VArrow target : targets) {
+			for (DArrow target : targets) {
 				target.removeConstraint(this);
 			}
 			isConnected = false;
@@ -151,7 +151,7 @@ public class VConstraint extends ModelElement implements Constraint, IDObjectCon
 	 * 
 	 * @return a non-null Shape instance
 	 */
-	public VArrow getConnectionSource() {
+	public DArrow getConnectionSource() {
 		return source;
 	}
 
@@ -160,7 +160,7 @@ public class VConstraint extends ModelElement implements Constraint, IDObjectCon
 	 * 
 	 * @return a non-null Shape instance
 	 */
-	public VArrow getConnectionTarget() {
+	public DArrow getConnectionTarget() {
 		if (targets.size() == 0) {
 			return null;
 		}
@@ -179,7 +179,7 @@ public class VConstraint extends ModelElement implements Constraint, IDObjectCon
 	 * @throws IllegalArgumentException
 	 *             if any of the paramers are null or newSource == newTarget
 	 */
-	protected void reconnect(VArrow newSource, List<VArrow> newTargets) {
+	protected void reconnect(DArrow newSource, List<DArrow> newTargets) {
 		if (newSource == null) {
 			throw new IllegalArgumentException();
 		}
@@ -196,7 +196,7 @@ public class VConstraint extends ModelElement implements Constraint, IDObjectCon
 	public void reconnect() {
 		if (!isConnected) {
 			source.addConstraint(this);
-			for (VArrow target : targets) {
+			for (DArrow target : targets) {
 				target.addConstraint(this);
 			}
 			isConnected = true;

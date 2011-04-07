@@ -2,8 +2,8 @@ package no.hib.dpf.editor.editoractions;
 
 import java.util.List;
 
-import no.hib.dpf.editor.model.VArrow;
-import no.hib.dpf.editor.model.VConstraint;
+import no.hib.dpf.editor.model.DArrow;
+import no.hib.dpf.editor.model.DConstraint;
 import no.hib.dpf.editor.model.commands.SingleArrowConstraintCreateCommand;
 import no.hib.dpf.editor.parts.ArrowEditPart;
 import no.hib.dpf.editor.parts.NodeEditPart;
@@ -21,7 +21,7 @@ public class CreateCompositionConstraintAction extends CreateConstraintAction {
 	
 	@Override
 	protected Command getConstraintCreateCommand(List<ArrowEditPart> connectionEditParts, List<NodeEditPart> shapeEditParts) {
-		return new SingleArrowConstraintCreateCommand((VArrow)connectionEditParts.get(2).getModel(), VConstraint.ConstraintType.COMPOSITION, createIDObject());
+		return new SingleArrowConstraintCreateCommand((DArrow)connectionEditParts.get(2).getModel(), DConstraint.ConstraintType.COMPOSITION, createIDObject());
 	}
 	
 }

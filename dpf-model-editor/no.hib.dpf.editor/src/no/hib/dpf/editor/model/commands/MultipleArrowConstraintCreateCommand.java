@@ -2,8 +2,8 @@ package no.hib.dpf.editor.model.commands;
 
 import java.util.Iterator;
 
-import no.hib.dpf.editor.model.VArrow;
-import no.hib.dpf.editor.model.VConstraint;
+import no.hib.dpf.editor.model.DArrow;
+import no.hib.dpf.editor.model.DConstraint;
 import no.hib.dpf.metamodel.Constraint;
 
 
@@ -13,16 +13,16 @@ import no.hib.dpf.metamodel.Constraint;
  * TODO: generalize the class to accept more than two arrows.
  */
 public class MultipleArrowConstraintCreateCommand extends VConstraintCreateCommand {
-	private final VArrow source;
-	private VArrow target;
+	private final DArrow source;
+	private DArrow target;
 	
-	private VConstraint.ConstraintType constraintType;
+	private DConstraint.ConstraintType constraintType;
 
 	/**
 	 * Instantiate a command that can create a connection between two
 	 * connections.
 	 */
-	public MultipleArrowConstraintCreateCommand(VArrow source, VArrow target, VConstraint.ConstraintType constraintType, Constraint IDObject) {
+	public MultipleArrowConstraintCreateCommand(DArrow source, DArrow target, DConstraint.ConstraintType constraintType, Constraint IDObject) {
 		super(IDObject);
 		if (source == null) {
 			throw new IllegalArgumentException();
@@ -44,8 +44,8 @@ public class MultipleArrowConstraintCreateCommand extends VConstraintCreateComma
 	}
 
 	private boolean doSourceToTargetAlreadyExist() {
-		for (Iterator<VConstraint> iter = source.getSourceConstraints().iterator(); iter.hasNext();) {
-			VConstraint constraint = iter.next();
+		for (Iterator<DConstraint> iter = source.getSourceConstraints().iterator(); iter.hasNext();) {
+			DConstraint constraint = iter.next();
 			if (constraint.getConnectionTarget().equals(target)) {
 				return true;
 			}
@@ -55,7 +55,7 @@ public class MultipleArrowConstraintCreateCommand extends VConstraintCreateComma
 
 	public void execute() {
 		// create a new connection between source and target
-		constraint = new VConstraint(source, target, constraintType, idObject);
+		constraint = new DConstraint(source, target, constraintType, idObject);
 	}
 
 }

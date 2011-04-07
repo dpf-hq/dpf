@@ -1,8 +1,8 @@
 package no.hib.dpf.editor.model.commands;
 
 import no.hib.dpf.editor.model.SingleArrowConstraintElement;
-import no.hib.dpf.editor.model.VArrow;
-import no.hib.dpf.editor.model.VConstraint;
+import no.hib.dpf.editor.model.DArrow;
+import no.hib.dpf.editor.model.DConstraint;
 import no.hib.dpf.metamodel.Constraint;
 
 
@@ -11,14 +11,14 @@ import no.hib.dpf.metamodel.Constraint;
  * undone or redone.
  */
 public class SingleArrowConstraintCreateCommand extends VConstraintCreateCommand {
-	private final VArrow arrow;	
-	private VConstraint.ConstraintType constraintType;
+	private final DArrow arrow;	
+	private DConstraint.ConstraintType constraintType;
 
 	/**
 	 * Instantiate a command that can create a connection between two
 	 * connections.
 	 */
-	public SingleArrowConstraintCreateCommand(VArrow arrow, VConstraint.ConstraintType constraintType, Constraint IDObject) {
+	public SingleArrowConstraintCreateCommand(DArrow arrow, DConstraint.ConstraintType constraintType, Constraint IDObject) {
 		super(IDObject);
 		if (arrow == null) {
 			throw new IllegalArgumentException();

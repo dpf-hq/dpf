@@ -20,7 +20,7 @@ import no.hib.dpf.editor.editoractions.CreateJointlySurjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateMultiplicityConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateTransitiveIrreflexiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateXORConstraintAction;
-import no.hib.dpf.editor.model.VConstraint;
+import no.hib.dpf.editor.model.DConstraint;
 
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.gef.editparts.ZoomManager;
@@ -84,18 +84,18 @@ protected void buildActions() {
 	addRetargetAction(new AlignmentRetargetAction(PositionConstants.BOTTOM));
 	
 	
-	addRetargetAction(new ConstraintRetargetAction(VConstraint.ConstraintType.INVERSE));
-	addRetargetAction(new ConstraintRetargetAction(VConstraint.ConstraintType.JOINTLY_INJECTIVE));
-	addRetargetAction(new ConstraintRetargetAction(VConstraint.ConstraintType.JOINTLY_SURJECTIVE));
-	addRetargetAction(new ConstraintRetargetAction(VConstraint.ConstraintType.MULTIPLICITY));
+	addRetargetAction(new ConstraintRetargetAction(DConstraint.ConstraintType.INVERSE));
+	addRetargetAction(new ConstraintRetargetAction(DConstraint.ConstraintType.JOINTLY_INJECTIVE));
+	addRetargetAction(new ConstraintRetargetAction(DConstraint.ConstraintType.JOINTLY_SURJECTIVE));
+	addRetargetAction(new ConstraintRetargetAction(DConstraint.ConstraintType.MULTIPLICITY));
 	
-	addRetargetAction(new ConstraintRetargetAction(VConstraint.ConstraintType.IMAGE_INCLUSION));
-	addRetargetAction(new ConstraintRetargetAction(VConstraint.ConstraintType.COMPOSITION));
+	addRetargetAction(new ConstraintRetargetAction(DConstraint.ConstraintType.IMAGE_INCLUSION));
+	addRetargetAction(new ConstraintRetargetAction(DConstraint.ConstraintType.COMPOSITION));
 //	addRetargetAction(new ConstraintRetargetAction(VConstraint.ConstraintType.INJECTIVE));
 //	addRetargetAction(new ConstraintRetargetAction(VConstraint.ConstraintType.SURJECTIVE));
-	addRetargetAction(new ConstraintRetargetAction(VConstraint.ConstraintType.IRREFLEXIVE));
-	addRetargetAction(new ConstraintRetargetAction(VConstraint.ConstraintType.TRANSITIVE_IRREFLEXIVE));	
-	addRetargetAction(new ConstraintRetargetAction(VConstraint.ConstraintType.XOR));	
+	addRetargetAction(new ConstraintRetargetAction(DConstraint.ConstraintType.IRREFLEXIVE));
+	addRetargetAction(new ConstraintRetargetAction(DConstraint.ConstraintType.TRANSITIVE_IRREFLEXIVE));	
+	addRetargetAction(new ConstraintRetargetAction(DConstraint.ConstraintType.XOR));	
 }
 
 /**

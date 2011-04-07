@@ -12,8 +12,8 @@ package no.hib.dpf.editor.model.commands;
 
 import java.util.Iterator;
 
-import no.hib.dpf.editor.model.VArrow;
-import no.hib.dpf.editor.model.VNode;
+import no.hib.dpf.editor.model.DArrow;
+import no.hib.dpf.editor.model.DNode;
 
 import org.eclipse.gef.commands.Command;
 
@@ -47,15 +47,15 @@ import org.eclipse.gef.commands.Command;
 public class ConnectionReconnectCommand extends Command {
 
 /** The connection instance to reconnect. */
-private VArrow connection;
+private DArrow connection;
 /** The new source endpoint. */
-private VNode newSource;
+private DNode newSource;
 /** The new target endpoint. */
-private VNode newTarget;
+private DNode newTarget;
 /** The original source endpoint. */
-private final VNode oldSource;
+private final DNode oldSource;
 /** The original target endpoint. */
-private final VNode oldTarget;
+private final DNode oldTarget;
 
 /**
  * Instantiate a command that can reconnect a Connection instance to a different source
@@ -63,7 +63,7 @@ private final VNode oldTarget;
  * @param conn the connection instance to reconnect (non-null)
  * @throws IllegalArgumentException if conn is null
  */
-public ConnectionReconnectCommand(VArrow conn) {
+public ConnectionReconnectCommand(DArrow conn) {
 	if (conn == null) {
 		throw new IllegalArgumentException();
 	}
@@ -93,8 +93,8 @@ private boolean checkSourceReconnection() {
 		return false;
 	}
 	// return false, if the connection exists already
-	for (Iterator<VArrow> iter = newSource.getSourceConnections().iterator(); iter.hasNext();) {
-		VArrow conn = iter.next();
+	for (Iterator<DArrow> iter = newSource.getSourceConnections().iterator(); iter.hasNext();) {
+		DArrow conn = iter.next();
 		// return false if a newSource -> oldTarget connection exists already
 		// and it is a different instance than the connection-field
 		if (conn.getShapeTarget().equals(oldTarget) &&  !conn.equals(connection)) {
@@ -113,8 +113,8 @@ private boolean checkTargetReconnection() {
 		return false;
 	}
 	// return false, if the connection exists already
-	for (Iterator<VArrow> iter = newTarget.getTargetConnections().iterator(); iter.hasNext();) {
-		VArrow conn = iter.next();
+	for (Iterator<DArrow> iter = newTarget.getTargetConnections().iterator(); iter.hasNext();) {
+		DArrow conn = iter.next();
 		// return false if a oldSource -> newTarget connection exists already
 		// and it is a differenct instance that the connection-field
 		if (conn.getShapeSource().equals(oldSource) && !conn.equals(connection)) {
@@ -150,7 +150,7 @@ public void execute() {
  * @param connectionSource a non-null Shape instance, to be used as a new source endpoint
  * @throws IllegalArgumentException if connectionSource is null
  */
-public void setNewSource(VNode connectionSource) {
+public void setNewSource(DNode connectionSource) {
 	if (connectionSource == null) {
 		throw new IllegalArgumentException();
 	}
@@ -171,7 +171,7 @@ public void setNewSource(VNode connectionSource) {
  * @param connectionTarget a non-null Shape instance, to be used as a new target endpoint
  * @throws IllegalArgumentException if connectionTarget is null
  */
-public void setNewTarget(VNode connectionTarget) {
+public void setNewTarget(DNode connectionTarget) {
 	if (connectionTarget == null) {
 		throw new IllegalArgumentException();
 	}

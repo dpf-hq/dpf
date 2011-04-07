@@ -40,8 +40,8 @@ import no.hib.dpf.editor.model.DPFDiagram;
 import no.hib.dpf.editor.model.ModelElement;
 import no.hib.dpf.editor.model.ModelSerializationException;
 import no.hib.dpf.editor.model.SingleArrowConstraintElement;
-import no.hib.dpf.editor.model.VArrow;
-import no.hib.dpf.editor.model.VConstraint;
+import no.hib.dpf.editor.model.DArrow;
+import no.hib.dpf.editor.model.DConstraint;
 import no.hib.dpf.editor.parts.EditPartFactoryImpl;
 import no.hib.dpf.editor.parts.NodeTreeEditPartFactory;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;
@@ -179,7 +179,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 				signature.getPredicateBySymbol("[xor]"), 
 				"Create new [xor] Constraint",
 				"Creates a new [xor] Constraint",
-				VConstraint.ConstraintType.XOR);
+				DConstraint.ConstraintType.XOR);
 		
 		registerAction(new CreateXORConstraintAction(this, getDPFDiagram().getDpfGraph(), xorProperties));
 
@@ -187,7 +187,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 				signature.getPredicateBySymbol("[jointly-injective]"), 
 				"Create new [jointly-injective] Constraint",
 				"Creates a new [jointly-injective] Constraint",
-				VConstraint.ConstraintType.JOINTLY_INJECTIVE);
+				DConstraint.ConstraintType.JOINTLY_INJECTIVE);
 		
 		registerAction(new CreateJointlyInjectiveConstraintAction(this, getDPFDiagram().getDpfGraph(), jointlyInjectiveProperties));
 				
@@ -195,7 +195,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 				signature.getPredicateBySymbol("[jointly-surjective]"), 
 				"Create new [jointly-surjective] Constraint",
 				"Creates a new [jointly-surjective] Constraint",
-				VConstraint.ConstraintType.JOINTLY_SURJECTIVE);
+				DConstraint.ConstraintType.JOINTLY_SURJECTIVE);
 		
 		registerAction(new CreateJointlySurjectiveConstraintAction(this, getDPFDiagram().getDpfGraph(), jointlySurjectiveProperties));
 		
@@ -203,7 +203,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 				signature.getPredicateBySymbol("[mult(m,n)]"), 
 				"Create new [mult(m,n)] Constraint",
 				"Creates a new [mult(m,n)] Constraint",
-				VConstraint.ConstraintType.MULTIPLICITY);
+				DConstraint.ConstraintType.MULTIPLICITY);
 
 		registerAction(new CreateMultiplicityConstraintAction(this, getDPFDiagram().getDpfGraph(), multiplicityProperties));
 		
@@ -211,21 +211,21 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 				signature.getPredicateBySymbol("[inverse]"),
 				"Create new [inverse] Constraint",
 				"Creates a new [inverse] Constraint",
-				VConstraint.ConstraintType.INVERSE);
+				DConstraint.ConstraintType.INVERSE);
 		registerAction(new CreateInverseConstraintAction(this, getDPFDiagram().getDpfGraph(), inverseProperties));
 
 		ConstraintProperties imageInclusionProperties = new ConstraintProperties(
 				signature.getPredicateBySymbol("[image-inclusion]"),
 				"Create new [image-inclusion] Constraint",
 				"Creates a new [image-inclusion] Constraint",
-				VConstraint.ConstraintType.IMAGE_INCLUSION);
+				DConstraint.ConstraintType.IMAGE_INCLUSION);
 		registerAction(new CreateImageInclusionConstraintAction(this, getDPFDiagram().getDpfGraph(), imageInclusionProperties));
 		
 		ConstraintProperties compositionProperties = new ConstraintProperties(
 				signature.getPredicateBySymbol("[composition]"),
 				"Create new [composition] Constraint",
 				"Creates a new [composition] Constraint",
-				VConstraint.ConstraintType.COMPOSITION);
+				DConstraint.ConstraintType.COMPOSITION);
 		registerAction(new CreateCompositionConstraintAction(this, getDPFDiagram().getDpfGraph(), compositionProperties));
 
 
@@ -233,14 +233,14 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 				signature.getPredicateBySymbol("[irreflexive]"),
 				"Create new [irreflexive] Constraint",
 				"Creates a new [irreflexive] Constraint",
-				VConstraint.ConstraintType.IRREFLEXIVE);
+				DConstraint.ConstraintType.IRREFLEXIVE);
 		registerAction(new CreateIrreflexiveConstraintAction(this, getDPFDiagram().getDpfGraph(), irreflexiveProperties));
 		
 		ConstraintProperties transitiveIrreflexiveProperties = new ConstraintProperties(
 				signature.getPredicateBySymbol("[transitive-irreflexive]"),
 				"Create new [transitive-irreflexive] Constraint",
 				"Creates a new [transitive-irreflexive] Constraint",
-				VConstraint.ConstraintType.TRANSITIVE_IRREFLEXIVE);
+				DConstraint.ConstraintType.TRANSITIVE_IRREFLEXIVE);
 		
 		registerAction(new CreateTransitiveIrreflexiveConstraintAction(this, getDPFDiagram().getDpfGraph(), transitiveIrreflexiveProperties));
 		
@@ -679,10 +679,10 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 			
 		}
 		for (ModelElement modelElement : children.values()) {
-			if (modelElement instanceof VArrow) {
+			if (modelElement instanceof DArrow) {
 				// Q&D fix to get single constraints out of this. TODO: refactor all
 				// constraints into "connection" constraints and "connected" constraints
-				VArrow arrow = (VArrow)modelElement;
+				DArrow arrow = (DArrow)modelElement;
 				for (SingleArrowConstraintElement singleLineConstraintElement : arrow.getSingleConstraints()) {
 				
 					IDObject idObject2 = getDPFDiagram().getDpfGraph().getGraphMember(singleLineConstraintElement.getIDObjectID());

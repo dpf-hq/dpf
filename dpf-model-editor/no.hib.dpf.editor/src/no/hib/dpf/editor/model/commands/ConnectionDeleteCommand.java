@@ -13,8 +13,8 @@ package no.hib.dpf.editor.model.commands;
 import java.util.Iterator;
 import java.util.List;
 
-import no.hib.dpf.editor.model.VArrow;
-import no.hib.dpf.editor.model.VConstraint;
+import no.hib.dpf.editor.model.DArrow;
+import no.hib.dpf.editor.model.DConstraint;
 
 import org.eclipse.gef.commands.Command;
 
@@ -27,12 +27,12 @@ import org.eclipse.gef.commands.Command;
 public class ConnectionDeleteCommand extends Command {
 
 	/** Connection instance to disconnect. */
-	private final VArrow connection;
+	private final DArrow connection;
 
 	/** Holds a copy of the outgoing constraints of child. */
-	private List<VConstraint> sourceConstraints;
+	private List<DConstraint> sourceConstraints;
 	/** Holds a copy of the incoming constraints of child. */
-	private List<VConstraint> targetConstraints;
+	private List<DConstraint> targetConstraints;
 
 	/**
 	 * Create a command that will disconnect a connection from its endpoints.
@@ -42,7 +42,7 @@ public class ConnectionDeleteCommand extends Command {
 	 * @throws IllegalArgumentException
 	 *             if conn is null
 	 */
-	public ConnectionDeleteCommand(VArrow conn) {
+	public ConnectionDeleteCommand(DArrow conn) {
 		if (conn == null) {
 			throw new IllegalArgumentException();
 		}
@@ -82,8 +82,8 @@ public class ConnectionDeleteCommand extends Command {
 	 * @param connections
 	 *            a non-null List of connections
 	 */
-	private void removeConstraints(List<VConstraint> constraints) {
-		for (VConstraint constraint : constraints) {
+	private void removeConstraints(List<DConstraint> constraints) {
+		for (DConstraint constraint : constraints) {
 			constraint.disconnect();
 		}
 	}
@@ -102,10 +102,10 @@ public class ConnectionDeleteCommand extends Command {
 	/*
 	 * Reconnects a List of constraints with their previous endpoints.
 	 */
-	private void addConnections(List<VConstraint> constraints) {
-		for (Iterator<VConstraint> iter = constraints.iterator(); iter
+	private void addConnections(List<DConstraint> constraints) {
+		for (Iterator<DConstraint> iter = constraints.iterator(); iter
 				.hasNext();) {
-			VConstraint constraint = (VConstraint) iter.next();
+			DConstraint constraint = (DConstraint) iter.next();
 			constraint.reconnect();
 		}
 	}

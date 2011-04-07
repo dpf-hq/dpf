@@ -1,6 +1,6 @@
 package no.hib.dpf.editor.model.factories;
 
-import no.hib.dpf.editor.model.VNode;
+import no.hib.dpf.editor.model.DNode;
 import no.hib.dpf.metamodel.Node;
 
 import org.eclipse.gef.requests.CreationFactory;
@@ -15,13 +15,13 @@ public class VNodeFactory implements CreationFactory {
 	
 	@Override
 	public Object getNewObject() {
-		VNode retval = new VNode(typeNode);
+		DNode retval = new DNode(typeNode);
 		return retval;
 	}
 
 	@Override
 	public Object getObjectType() {
-		return VNode.class;
+		return DNode.class;
 	}
 
 }

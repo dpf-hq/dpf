@@ -6,13 +6,13 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.ui.views.properties.IPropertyDescriptor;
 
-public class SingleNodeConnection extends VArrow implements MovableAndSizable {
+public class SingleNodeConnection extends DArrow implements MovableAndSizable {
 
 	private static final long serialVersionUID = 764028909094201787L;
 
 	private LocationAndSize locationAndSize;
 		
-	public SingleNodeConnection(VNode source, Arrow typeArrow) {
+	public SingleNodeConnection(DNode source, Arrow typeArrow) {
 		super(source, source, typeArrow);
 	}
 

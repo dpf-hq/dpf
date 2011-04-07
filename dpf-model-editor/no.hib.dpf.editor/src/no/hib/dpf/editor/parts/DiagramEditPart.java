@@ -19,7 +19,7 @@ import no.hib.dpf.editor.figures.DPFShortestPathConnectionRouter;
 import no.hib.dpf.editor.model.DPFDiagram;
 import no.hib.dpf.editor.model.ModelElement;
 import no.hib.dpf.editor.model.MovableAndSizable;
-import no.hib.dpf.editor.model.VNode;
+import no.hib.dpf.editor.model.DNode;
 import no.hib.dpf.editor.model.commands.VNodeCreateCommand;
 import no.hib.dpf.editor.model.commands.VNodeSetSizeAndLocationCommand;
 
@@ -161,7 +161,7 @@ class DiagramEditPart extends AbstractGraphicalEditPart implements PropertyChang
 	 * @see org.eclipse.gef.editparts.AbstractEditPart#getModelChildren()
 	 */
 	@Override
-	protected List<VNode> getModelChildren() {
+	protected List<DNode> getModelChildren() {
 		return getCastedModel().getChildren(); // return a list of shapes
 	}
 
@@ -227,9 +227,9 @@ class DiagramEditPart extends AbstractGraphicalEditPart implements PropertyChang
 		 */
 		protected Command getCreateCommand(CreateRequest request) {
 			Object childClass = request.getNewObjectType();
-			if (childClass == VNode.class) {
+			if (childClass == DNode.class) {
 				// return a command that can add a Shape to a DPFDiagram
-				return new VNodeCreateCommand((VNode)request.getNewObject(), (DPFDiagram)getHost().getModel(), (Rectangle) getConstraintFor(request));
+				return new VNodeCreateCommand((DNode)request.getNewObject(), (DPFDiagram)getHost().getModel(), (Rectangle) getConstraintFor(request));
 			}
 			return null;
 		}

@@ -12,7 +12,7 @@ package no.hib.dpf.editor.parts;
 
 import no.hib.dpf.editor.model.DPFDiagram;
 import no.hib.dpf.editor.model.MovableAndSizable;
-import no.hib.dpf.editor.model.VNode;
+import no.hib.dpf.editor.model.DNode;
 
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartFactory;
@@ -30,7 +30,7 @@ public class NodeTreeEditPartFactory implements EditPartFactory {
  * @see org.eclipse.gef.EditPartFactory#createEditPart(org.eclipse.gef.EditPart, java.lang.Object)
  */
 public EditPart createEditPart(EditPart context, Object model) {
-	if (model instanceof VNode) {
+	if (model instanceof DNode) {
 		return new NodeTreeEditPart((MovableAndSizable) model);
 	}
 	if (model instanceof DPFDiagram) {

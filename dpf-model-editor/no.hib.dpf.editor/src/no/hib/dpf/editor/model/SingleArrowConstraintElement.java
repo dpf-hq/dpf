@@ -4,7 +4,7 @@ import no.hib.dpf.metamodel.Constraint;
 import no.hib.dpf.metamodel.IDObject;
 
 
-public class SingleArrowConstraintElement extends VConstraint {
+public class SingleArrowConstraintElement extends DConstraint {
 
 	private static final long serialVersionUID = -8335094106642818540L;
 
@@ -13,7 +13,7 @@ public class SingleArrowConstraintElement extends VConstraint {
 	
 	private ArrowLabel constraintLabel;
 	
-	public SingleArrowConstraintElement(VArrow source, ConstraintType constraintType, Constraint IDObject) {
+	public SingleArrowConstraintElement(DArrow source, ConstraintType constraintType, Constraint IDObject) {
 		this.setConstraintType(constraintType);
 		// The dpf Constraint object must be initialized before the connection of the shapes.
 		setIDObject(IDObject);
