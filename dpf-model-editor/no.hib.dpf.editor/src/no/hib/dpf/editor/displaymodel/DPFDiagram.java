@@ -36,6 +36,7 @@ public class DPFDiagram extends ModelElement {
 	private boolean snapToGeometry = true;
 	private boolean gridEnabled = false;
 	private double zoom = 1.0;
+	private String filename = "";
 	
 	/** Used for adding and removing a model element to and from the DPF graph */
 	protected transient Graph dpfGraph;
@@ -57,6 +58,10 @@ public class DPFDiagram extends ModelElement {
 		return zoom;
 	}
 
+	public String getFilename() {		
+		return filename;
+	}
+	
 	public void setGridEnabled(boolean isEnabled) {
 		gridEnabled = isEnabled;
 	}
@@ -68,6 +73,10 @@ public class DPFDiagram extends ModelElement {
 	public void setZoom(double zoom) {
 		this.zoom = zoom;
 	}
+	
+	public void setFilename(String filename) {		
+		this.filename = filename;
+	}	
 
 	public void validateSemantics() {
 		firePropertyChange("VALIDATE_SEMANTICS", null, null);

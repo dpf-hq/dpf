@@ -124,8 +124,6 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 	// private ModelHierarchy modelHierarchy = MetamodelFactory.eINSTANCE.createModelHierarchy();
 	private Signature signature;
 		
-	private static String dpfFilename;
-	
 //	/** Palette component, holding the tools and shapes. */
 	private static PaletteRoot PALETTE_MODEL;
 	
@@ -429,7 +427,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 					false, // dont keep history
 					monitor); // progress monitor
 			getCommandStack().markSaveLocation();
-			saveDPF(dpfFilename, getSpecification());
+			saveDPF(getDPFDiagram().getFilename(), getSpecification());
 			
 			file.getProject().refreshLocal(IProject.DEPTH_INFINITE, monitor);
 		} catch (CoreException ce) {
@@ -653,7 +651,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 			// -------------------------------------------------------------------
 			// D P F   S T U F F
 			// -------------------------------------------------------------------
-			setDpfFilePaths(file);
+			getDPFDiagram().setFilename(getDPFFileName(file.getFullPath().toString()));
 			
 			//FIXME: We should only refresh the project if needed
 			ResourcesPlugin.getWorkspace().getRoot().refreshLocal(IResource.DEPTH_INFINITE, null);
@@ -697,9 +695,9 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 	}
 
 	private void deserializeDpfModel() {
-		File serializedDPF = new File(dpfFilename);
+		File serializedDPF = new File(getDPFDiagram().getFilename());
 		if (serializedDPF.exists()) {
-			setSpecification(loadDPF(dpfFilename));
+			setSpecification(loadDPF(getDPFDiagram().getFilename()));
 		}
 		getDPFDiagram().setDpfGraph(getSpecification().getGraph());
 //		paletteFactory.updatePalette(getPaletteRoot(), getSpecification().getTypeGraph());
@@ -723,10 +721,6 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		return getWorkspaceDirectory() + File.separator + "signature01.xmi";
 	}
 		
-	private void setDpfFilePaths(IFile file) {
-		dpfFilename = getDPFFileName(file.getFullPath().toString());
-	}
-	
 	private void setSpecification(Specification specification) {
 		this.specification = specification;
 	}
