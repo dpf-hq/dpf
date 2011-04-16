@@ -23,14 +23,14 @@ import no.hib.dpf.metamodel.ModelHierarchy;
 import no.hib.dpf.metamodel.MultiplicitySemantics;
 import no.hib.dpf.metamodel.Node;
 import no.hib.dpf.metamodel.Predicate;
-import no.hib.dpf.metamodel.Semantics;
+import no.hib.dpf.metamodel.SemanticsValidator;
 import no.hib.dpf.metamodel.Signature;
 import no.hib.dpf.metamodel.Specification;
 import no.hib.dpf.metamodel.TransitiveIrreflexiveSemantics;
 import no.hib.dpf.metamodel.TypingMorphism;
 import no.hib.dpf.metamodel.Visualization;
-
 import no.hib.dpf.metamodel.XORSemantics;
+
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -87,7 +87,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass semanticsEClass = null;
+	private EClass semanticsValidatorEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -445,7 +445,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPredicate_Semantics() {
+	public EReference getPredicate_SemanticsValidator() {
 		return (EReference)predicateEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -472,8 +472,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getSemantics() {
-		return semanticsEClass;
+	public EClass getSemanticsValidator() {
+		return semanticsValidatorEClass;
 	}
 
 	/**
@@ -833,11 +833,11 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 		predicateEClass = createEClass(PREDICATE);
 		createEReference(predicateEClass, PREDICATE__SHAPE);
-		createEReference(predicateEClass, PREDICATE__SEMANTICS);
+		createEReference(predicateEClass, PREDICATE__SEMANTICS_VALIDATOR);
 		createEReference(predicateEClass, PREDICATE__VISUALIZATION);
 		createEAttribute(predicateEClass, PREDICATE__SYMBOL);
 
-		semanticsEClass = createEClass(SEMANTICS);
+		semanticsValidatorEClass = createEClass(SEMANTICS_VALIDATOR);
 
 		visualizationEClass = createEClass(VISUALIZATION);
 
@@ -923,12 +923,12 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		nodeEClass.getESuperTypes().add(this.getIDObject());
 		arrowEClass.getESuperTypes().add(this.getIDObject());
 		constraintEClass.getESuperTypes().add(this.getIDObject());
-		jointlySurjectiveSemanticsEClass.getESuperTypes().add(this.getSemantics());
-		inverseSemanticsEClass.getESuperTypes().add(this.getSemantics());
-		irreflexiveSemanticsEClass.getESuperTypes().add(this.getSemantics());
-		multiplicitySemanticsEClass.getESuperTypes().add(this.getSemantics());
-		xorSemanticsEClass.getESuperTypes().add(this.getSemantics());
-		transitiveIrreflexiveSemanticsEClass.getESuperTypes().add(this.getSemantics());
+		jointlySurjectiveSemanticsEClass.getESuperTypes().add(this.getSemanticsValidator());
+		inverseSemanticsEClass.getESuperTypes().add(this.getSemanticsValidator());
+		irreflexiveSemanticsEClass.getESuperTypes().add(this.getSemanticsValidator());
+		multiplicitySemanticsEClass.getESuperTypes().add(this.getSemanticsValidator());
+		xorSemanticsEClass.getESuperTypes().add(this.getSemanticsValidator());
+		transitiveIrreflexiveSemanticsEClass.getESuperTypes().add(this.getSemanticsValidator());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(graphEClass, Graph.class, "Graph", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1052,7 +1052,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 		initEClass(predicateEClass, Predicate.class, "Predicate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPredicate_Shape(), this.getGraph(), null, "shape", null, 0, 1, Predicate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPredicate_Semantics(), this.getSemantics(), null, "semantics", null, 0, 1, Predicate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPredicate_SemanticsValidator(), this.getSemanticsValidator(), null, "semanticsValidator", null, 0, 1, Predicate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPredicate_Visualization(), this.getVisualization(), null, "visualization", null, 0, 1, Predicate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPredicate_Symbol(), ecorePackage.getEString(), "symbol", null, 1, 1, Predicate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1072,9 +1072,9 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		addEParameter(op, this.getNode(), "typeNodes", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getArrow(), "typeArrows", 0, -1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(semanticsEClass, Semantics.class, "Semantics", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(semanticsValidatorEClass, SemanticsValidator.class, "SemanticsValidator", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		op = addEOperation(semanticsEClass, ecorePackage.getEBooleanObject(), "validateSemantics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(semanticsValidatorEClass, ecorePackage.getEBooleanObject(), "validateSemantics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getGraph(), "oStar", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "constraintParameters", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getNode(), "typeNodes", 0, -1, IS_UNIQUE, IS_ORDERED);

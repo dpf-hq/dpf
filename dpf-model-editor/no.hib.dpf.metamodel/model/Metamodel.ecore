@@ -142,13 +142,14 @@
           </eOperations>
           <eStructuralFeatures xsi:type="ecore:EReference" name="shape" eType="#//hib/dpf/metamodel/Graph"
               containment="true"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="semantics" eType="#//hib/dpf/metamodel/Semantics"
-              containment="true"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="semanticsValidator"
+              eType="#//hib/dpf/metamodel/SemanticsValidator" containment="true"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="visualization" eType="#//hib/dpf/metamodel/Visualization"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="symbol" unique="false"
               lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         </eClassifiers>
-        <eClassifiers xsi:type="ecore:EClass" name="Semantics" abstract="true" interface="true">
+        <eClassifiers xsi:type="ecore:EClass" name="SemanticsValidator" abstract="true"
+            interface="true">
           <eOperations name="validateSemantics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject">
             <eParameters name="oStar" eType="#//hib/dpf/metamodel/Graph"/>
             <eParameters name="constraintParameters" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -215,13 +216,13 @@
               eType="#//hib/dpf/metamodel/Specification" containment="true"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EDataType" name="EIOException" instanceClassName="java.io.IOException"/>
-        <eClassifiers xsi:type="ecore:EClass" name="JointlySurjectiveSemantics" eSuperTypes="#//hib/dpf/metamodel/Semantics"/>
-        <eClassifiers xsi:type="ecore:EClass" name="InverseSemantics" eSuperTypes="#//hib/dpf/metamodel/Semantics"/>
-        <eClassifiers xsi:type="ecore:EClass" name="IrreflexiveSemantics" eSuperTypes="#//hib/dpf/metamodel/Semantics"/>
-        <eClassifiers xsi:type="ecore:EClass" name="MultiplicitySemantics" eSuperTypes="#//hib/dpf/metamodel/Semantics"/>
-        <eClassifiers xsi:type="ecore:EClass" name="XORSemantics" eSuperTypes="#//hib/dpf/metamodel/Semantics"/>
+        <eClassifiers xsi:type="ecore:EClass" name="JointlySurjectiveSemantics" eSuperTypes="#//hib/dpf/metamodel/SemanticsValidator"/>
+        <eClassifiers xsi:type="ecore:EClass" name="InverseSemantics" eSuperTypes="#//hib/dpf/metamodel/SemanticsValidator"/>
+        <eClassifiers xsi:type="ecore:EClass" name="IrreflexiveSemantics" eSuperTypes="#//hib/dpf/metamodel/SemanticsValidator"/>
+        <eClassifiers xsi:type="ecore:EClass" name="MultiplicitySemantics" eSuperTypes="#//hib/dpf/metamodel/SemanticsValidator"/>
+        <eClassifiers xsi:type="ecore:EClass" name="XORSemantics" eSuperTypes="#//hib/dpf/metamodel/SemanticsValidator"/>
         <eClassifiers xsi:type="ecore:EClass" name="TransitiveIrreflexiveSemantics"
-            eSuperTypes="#//hib/dpf/metamodel/Semantics"/>
+            eSuperTypes="#//hib/dpf/metamodel/SemanticsValidator"/>
       </eSubpackages>
     </eSubpackages>
   </eSubpackages>

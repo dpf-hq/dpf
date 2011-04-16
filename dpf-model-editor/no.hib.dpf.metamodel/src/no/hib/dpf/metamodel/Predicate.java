@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link no.hib.dpf.metamodel.Predicate#getShape <em>Shape</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Predicate#getSemantics <em>Semantics</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.Predicate#getSemanticsValidator <em>Semantics Validator</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Predicate#getVisualization <em>Visualization</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.Predicate#getSymbol <em>Symbol</em>}</li>
  * </ul>
@@ -56,30 +56,30 @@ public interface Predicate extends EObject {
 	void setShape(Graph value);
 
 	/**
-	 * Returns the value of the '<em><b>Semantics</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Semantics Validator</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Semantics</em>' reference isn't clear,
+	 * If the meaning of the '<em>Semantics Validator</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Semantics</em>' containment reference.
-	 * @see #setSemantics(Semantics)
-	 * @see no.hib.dpf.metamodel.MetamodelPackage#getPredicate_Semantics()
+	 * @return the value of the '<em>Semantics Validator</em>' containment reference.
+	 * @see #setSemanticsValidator(SemanticsValidator)
+	 * @see no.hib.dpf.metamodel.MetamodelPackage#getPredicate_SemanticsValidator()
 	 * @model containment="true"
 	 * @generated
 	 */
-	Semantics getSemantics();
+	SemanticsValidator getSemanticsValidator();
 
 	/**
-	 * Sets the value of the '{@link no.hib.dpf.metamodel.Predicate#getSemantics <em>Semantics</em>}' containment reference.
+	 * Sets the value of the '{@link no.hib.dpf.metamodel.Predicate#getSemanticsValidator <em>Semantics Validator</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Semantics</em>' containment reference.
-	 * @see #getSemantics()
+	 * @param value the new value of the '<em>Semantics Validator</em>' containment reference.
+	 * @see #getSemanticsValidator()
 	 * @generated
 	 */
-	void setSemantics(Semantics value);
+	void setSemanticsValidator(SemanticsValidator value);
 
 	/**
 	 * Returns the value of the '<em><b>Visualization</b></em>' reference.

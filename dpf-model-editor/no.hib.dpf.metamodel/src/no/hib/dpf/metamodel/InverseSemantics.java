@@ -17,5 +17,5 @@ package no.hib.dpf.metamodel;
  * @model
  * @generated
  */
-public interface InverseSemantics extends Semantics {
+public interface InverseSemantics extends SemanticsValidator {
 } // InverseSemantics

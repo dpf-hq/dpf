@@ -487,27 +487,27 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("[composition]", "n_1,n_2,n_3", "a_1:n_1:n_2,a_2:n_2:n_3,a_3:n_1:n_3"));
 
 		Predicate xorPredicate = MetamodelFactory.eINSTANCE.createPredicate("[xor]", "n_1,n_2,n_3", "a_1:n_1:n_2,a_2:n_1:n_3");
-		xorPredicate.setSemantics(MetamodelFactory.eINSTANCE.createXORSemantics());
+		xorPredicate.setSemanticsValidator(MetamodelFactory.eINSTANCE.createXORSemantics());
 		signature.getPredicates().add(xorPredicate);
 
 		Predicate jSPredicate = MetamodelFactory.eINSTANCE.createPredicate("[jointly-surjective]", "n_1,n_2,n_3", "a_1:n_2:n_1,a_2:n_3:n_1");
-		jSPredicate.setSemantics(MetamodelFactory.eINSTANCE.createJointlySurjectiveSemantics());
+		jSPredicate.setSemanticsValidator(MetamodelFactory.eINSTANCE.createJointlySurjectiveSemantics());
 		signature.getPredicates().add(jSPredicate);
 
 		Predicate inversePredicate = MetamodelFactory.eINSTANCE.createPredicate("[inverse]", "n_1,n_2", "a_1:n_1:n_2,a_2:n_2:n_1");
-		inversePredicate.setSemantics(MetamodelFactory.eINSTANCE.createInverseSemantics());
+		inversePredicate.setSemanticsValidator(MetamodelFactory.eINSTANCE.createInverseSemantics());
 		signature.getPredicates().add(inversePredicate);
 
 		Predicate irreflexivePredicate = MetamodelFactory.eINSTANCE.createPredicate("[irreflexive]", "n_1", "a_1:n_1:n_1");
-		irreflexivePredicate.setSemantics(MetamodelFactory.eINSTANCE.createIrreflexiveSemantics());
+		irreflexivePredicate.setSemanticsValidator(MetamodelFactory.eINSTANCE.createIrreflexiveSemantics());
 		signature.getPredicates().add(irreflexivePredicate);
 
 		Predicate transitiveIrreflexivePredicate = MetamodelFactory.eINSTANCE.createPredicate("[transitive-irreflexive]", "n_1", "a_1:n_1:n_1");
-		transitiveIrreflexivePredicate.setSemantics(MetamodelFactory.eINSTANCE.createTransitiveIrreflexiveSemantics());
+		transitiveIrreflexivePredicate.setSemanticsValidator(MetamodelFactory.eINSTANCE.createTransitiveIrreflexiveSemantics());
 		signature.getPredicates().add(transitiveIrreflexivePredicate);
 		
 		Predicate multiplicityPredicate = MetamodelFactory.eINSTANCE.createPredicate("[mult(m,n)]", "n_1,n_2", "a_1:n_1:n_2");
-		multiplicityPredicate.setSemantics(MetamodelFactory.eINSTANCE.createMultiplicitySemantics());
+		multiplicityPredicate.setSemanticsValidator(MetamodelFactory.eINSTANCE.createMultiplicitySemantics());
 		signature.getPredicates().add(multiplicityPredicate);
 		
 	}

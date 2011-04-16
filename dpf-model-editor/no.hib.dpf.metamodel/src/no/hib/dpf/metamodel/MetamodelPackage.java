@@ -101,16 +101,6 @@ public interface MetamodelPackage extends EPackage {
 	int PREDICATE = 4;
 
 	/**
-	 * The meta object id for the '{@link no.hib.dpf.metamodel.Semantics <em>Semantics</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.Semantics
-	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getSemantics()
-	 * @generated
-	 */
-	int SEMANTICS = 5;
-
-	/**
 	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.VisualizationImpl <em>Visualization</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -388,13 +378,13 @@ public interface MetamodelPackage extends EPackage {
 	int PREDICATE__SHAPE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Semantics</b></em>' containment reference.
+	 * The feature id for the '<em><b>Semantics Validator</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PREDICATE__SEMANTICS = 1;
+	int PREDICATE__SEMANTICS_VALIDATOR = 1;
 
 	/**
 	 * The feature id for the '<em><b>Visualization</b></em>' reference.
@@ -424,13 +414,23 @@ public interface MetamodelPackage extends EPackage {
 	int PREDICATE_FEATURE_COUNT = 4;
 
 	/**
-	 * The number of structural features of the '<em>Semantics</em>' class.
+	 * The meta object id for the '{@link no.hib.dpf.metamodel.SemanticsValidator <em>Semantics Validator</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.SemanticsValidator
+	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getSemanticsValidator()
+	 * @generated
+	 */
+	int SEMANTICS_VALIDATOR = 5;
+
+	/**
+	 * The number of structural features of the '<em>Semantics Validator</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SEMANTICS_FEATURE_COUNT = 0;
+	int SEMANTICS_VALIDATOR_FEATURE_COUNT = 0;
 
 	/**
 	 * The number of structural features of the '<em>Visualization</em>' class.
@@ -706,7 +706,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int JOINTLY_SURJECTIVE_SEMANTICS_FEATURE_COUNT = SEMANTICS_FEATURE_COUNT + 0;
+	int JOINTLY_SURJECTIVE_SEMANTICS_FEATURE_COUNT = SEMANTICS_VALIDATOR_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.InverseSemanticsImpl <em>Inverse Semantics</em>}' class.
@@ -725,7 +725,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INVERSE_SEMANTICS_FEATURE_COUNT = SEMANTICS_FEATURE_COUNT + 0;
+	int INVERSE_SEMANTICS_FEATURE_COUNT = SEMANTICS_VALIDATOR_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.IrreflexiveSemanticsImpl <em>Irreflexive Semantics</em>}' class.
@@ -744,7 +744,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IRREFLEXIVE_SEMANTICS_FEATURE_COUNT = SEMANTICS_FEATURE_COUNT + 0;
+	int IRREFLEXIVE_SEMANTICS_FEATURE_COUNT = SEMANTICS_VALIDATOR_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.MultiplicitySemanticsImpl <em>Multiplicity Semantics</em>}' class.
@@ -763,7 +763,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MULTIPLICITY_SEMANTICS_FEATURE_COUNT = SEMANTICS_FEATURE_COUNT + 0;
+	int MULTIPLICITY_SEMANTICS_FEATURE_COUNT = SEMANTICS_VALIDATOR_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.XORSemanticsImpl <em>XOR Semantics</em>}' class.
@@ -782,7 +782,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int XOR_SEMANTICS_FEATURE_COUNT = SEMANTICS_FEATURE_COUNT + 0;
+	int XOR_SEMANTICS_FEATURE_COUNT = SEMANTICS_VALIDATOR_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.TransitiveIrreflexiveSemanticsImpl <em>Transitive Irreflexive Semantics</em>}' class.
@@ -801,7 +801,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITIVE_IRREFLEXIVE_SEMANTICS_FEATURE_COUNT = SEMANTICS_FEATURE_COUNT + 0;
+	int TRANSITIVE_IRREFLEXIVE_SEMANTICS_FEATURE_COUNT = SEMANTICS_VALIDATOR_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '<em>EURI</em>' data type.
@@ -1029,15 +1029,15 @@ public interface MetamodelPackage extends EPackage {
 	EReference getPredicate_Shape();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link no.hib.dpf.metamodel.Predicate#getSemantics <em>Semantics</em>}'.
+	 * Returns the meta object for the containment reference '{@link no.hib.dpf.metamodel.Predicate#getSemanticsValidator <em>Semantics Validator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Semantics</em>'.
-	 * @see no.hib.dpf.metamodel.Predicate#getSemantics()
+	 * @return the meta object for the containment reference '<em>Semantics Validator</em>'.
+	 * @see no.hib.dpf.metamodel.Predicate#getSemanticsValidator()
 	 * @see #getPredicate()
 	 * @generated
 	 */
-	EReference getPredicate_Semantics();
+	EReference getPredicate_SemanticsValidator();
 
 	/**
 	 * Returns the meta object for the reference '{@link no.hib.dpf.metamodel.Predicate#getVisualization <em>Visualization</em>}'.
@@ -1062,14 +1062,14 @@ public interface MetamodelPackage extends EPackage {
 	EAttribute getPredicate_Symbol();
 
 	/**
-	 * Returns the meta object for class '{@link no.hib.dpf.metamodel.Semantics <em>Semantics</em>}'.
+	 * Returns the meta object for class '{@link no.hib.dpf.metamodel.SemanticsValidator <em>Semantics Validator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Semantics</em>'.
-	 * @see no.hib.dpf.metamodel.Semantics
+	 * @return the meta object for class '<em>Semantics Validator</em>'.
+	 * @see no.hib.dpf.metamodel.SemanticsValidator
 	 * @generated
 	 */
-	EClass getSemantics();
+	EClass getSemanticsValidator();
 
 	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.metamodel.Visualization <em>Visualization</em>}'.
@@ -1619,12 +1619,12 @@ public interface MetamodelPackage extends EPackage {
 		EReference PREDICATE__SHAPE = eINSTANCE.getPredicate_Shape();
 
 		/**
-		 * The meta object literal for the '<em><b>Semantics</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Semantics Validator</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PREDICATE__SEMANTICS = eINSTANCE.getPredicate_Semantics();
+		EReference PREDICATE__SEMANTICS_VALIDATOR = eINSTANCE.getPredicate_SemanticsValidator();
 
 		/**
 		 * The meta object literal for the '<em><b>Visualization</b></em>' reference feature.
@@ -1643,14 +1643,14 @@ public interface MetamodelPackage extends EPackage {
 		EAttribute PREDICATE__SYMBOL = eINSTANCE.getPredicate_Symbol();
 
 		/**
-		 * The meta object literal for the '{@link no.hib.dpf.metamodel.Semantics <em>Semantics</em>}' class.
+		 * The meta object literal for the '{@link no.hib.dpf.metamodel.SemanticsValidator <em>Semantics Validator</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see no.hib.dpf.metamodel.Semantics
-		 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getSemantics()
+		 * @see no.hib.dpf.metamodel.SemanticsValidator
+		 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getSemanticsValidator()
 		 * @generated
 		 */
-		EClass SEMANTICS = eINSTANCE.getSemantics();
+		EClass SEMANTICS_VALIDATOR = eINSTANCE.getSemanticsValidator();
 
 		/**
 		 * The meta object literal for the '{@link no.hib.dpf.metamodel.impl.VisualizationImpl <em>Visualization</em>}' class.

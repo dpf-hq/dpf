@@ -17,5 +17,5 @@ package no.hib.dpf.metamodel;
  * @model
  * @generated
  */
-public interface JointlySurjectiveSemantics extends Semantics {
+public interface JointlySurjectiveSemantics extends SemanticsValidator {
 } // JointlySurjectiveSemantics

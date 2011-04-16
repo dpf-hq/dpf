@@ -17,5 +17,5 @@ package no.hib.dpf.metamodel;
  * @model
  * @generated
  */
-public interface XORSemantics extends Semantics {
+public interface XORSemantics extends SemanticsValidator {
 } // XORSemantics

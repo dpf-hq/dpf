@@ -14,7 +14,7 @@ import no.hib.dpf.metamodel.MetamodelFactory;
 import no.hib.dpf.metamodel.MetamodelPackage;
 import no.hib.dpf.metamodel.Node;
 import no.hib.dpf.metamodel.Predicate;
-import no.hib.dpf.metamodel.Semantics;
+import no.hib.dpf.metamodel.SemanticsValidator;
 import no.hib.dpf.metamodel.Visualization;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -33,7 +33,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link no.hib.dpf.metamodel.impl.PredicateImpl#getShape <em>Shape</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.impl.PredicateImpl#getSemantics <em>Semantics</em>}</li>
+ *   <li>{@link no.hib.dpf.metamodel.impl.PredicateImpl#getSemanticsValidator <em>Semantics Validator</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.impl.PredicateImpl#getVisualization <em>Visualization</em>}</li>
  *   <li>{@link no.hib.dpf.metamodel.impl.PredicateImpl#getSymbol <em>Symbol</em>}</li>
  * </ul>
@@ -53,14 +53,14 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 	protected Graph shape;
 
 	/**
-	 * The cached value of the '{@link #getSemantics() <em>Semantics</em>}' containment reference.
+	 * The cached value of the '{@link #getSemanticsValidator() <em>Semantics Validator</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSemantics()
+	 * @see #getSemanticsValidator()
 	 * @generated
 	 * @ordered
 	 */
-	protected Semantics semantics;
+	protected SemanticsValidator semanticsValidator;
 
 	/**
 	 * The cached value of the '{@link #getVisualization() <em>Visualization</em>}' reference.
@@ -159,8 +159,8 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Semantics getSemantics() {
-		return semantics;
+	public SemanticsValidator getSemanticsValidator() {
+		return semanticsValidator;
 	}
 
 	/**
@@ -168,11 +168,11 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetSemantics(Semantics newSemantics, NotificationChain msgs) {
-		Semantics oldSemantics = semantics;
-		semantics = newSemantics;
+	public NotificationChain basicSetSemanticsValidator(SemanticsValidator newSemanticsValidator, NotificationChain msgs) {
+		SemanticsValidator oldSemanticsValidator = semanticsValidator;
+		semanticsValidator = newSemanticsValidator;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MetamodelPackage.PREDICATE__SEMANTICS, oldSemantics, newSemantics);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MetamodelPackage.PREDICATE__SEMANTICS_VALIDATOR, oldSemanticsValidator, newSemanticsValidator);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -183,18 +183,18 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSemantics(Semantics newSemantics) {
-		if (newSemantics != semantics) {
+	public void setSemanticsValidator(SemanticsValidator newSemanticsValidator) {
+		if (newSemanticsValidator != semanticsValidator) {
 			NotificationChain msgs = null;
-			if (semantics != null)
-				msgs = ((InternalEObject)semantics).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MetamodelPackage.PREDICATE__SEMANTICS, null, msgs);
-			if (newSemantics != null)
-				msgs = ((InternalEObject)newSemantics).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MetamodelPackage.PREDICATE__SEMANTICS, null, msgs);
-			msgs = basicSetSemantics(newSemantics, msgs);
+			if (semanticsValidator != null)
+				msgs = ((InternalEObject)semanticsValidator).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MetamodelPackage.PREDICATE__SEMANTICS_VALIDATOR, null, msgs);
+			if (newSemanticsValidator != null)
+				msgs = ((InternalEObject)newSemanticsValidator).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MetamodelPackage.PREDICATE__SEMANTICS_VALIDATOR, null, msgs);
+			msgs = basicSetSemanticsValidator(newSemanticsValidator, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.PREDICATE__SEMANTICS, newSemantics, newSemantics));
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.PREDICATE__SEMANTICS_VALIDATOR, newSemanticsValidator, newSemanticsValidator));
 	}
 
 	/**
@@ -287,8 +287,8 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 	 * @generated NOT
 	 */
 	public Boolean validateSemantics(Graph oStar, String constraintParameters, EList<Node> typeNodes, EList<Arrow> typeArrows) {
-		if (getSemantics() != null) {
-			return getSemantics().validateSemantics(oStar, constraintParameters, typeNodes, typeArrows);
+		if (getSemanticsValidator() != null) {
+			return getSemanticsValidator().validateSemantics(oStar, constraintParameters, typeNodes, typeArrows);
 		}
 		return true;
 	}
@@ -314,8 +314,8 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 		switch (featureID) {
 			case MetamodelPackage.PREDICATE__SHAPE:
 				return basicSetShape(null, msgs);
-			case MetamodelPackage.PREDICATE__SEMANTICS:
-				return basicSetSemantics(null, msgs);
+			case MetamodelPackage.PREDICATE__SEMANTICS_VALIDATOR:
+				return basicSetSemanticsValidator(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -330,8 +330,8 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 		switch (featureID) {
 			case MetamodelPackage.PREDICATE__SHAPE:
 				return getShape();
-			case MetamodelPackage.PREDICATE__SEMANTICS:
-				return getSemantics();
+			case MetamodelPackage.PREDICATE__SEMANTICS_VALIDATOR:
+				return getSemanticsValidator();
 			case MetamodelPackage.PREDICATE__VISUALIZATION:
 				if (resolve) return getVisualization();
 				return basicGetVisualization();
@@ -352,8 +352,8 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 			case MetamodelPackage.PREDICATE__SHAPE:
 				setShape((Graph)newValue);
 				return;
-			case MetamodelPackage.PREDICATE__SEMANTICS:
-				setSemantics((Semantics)newValue);
+			case MetamodelPackage.PREDICATE__SEMANTICS_VALIDATOR:
+				setSemanticsValidator((SemanticsValidator)newValue);
 				return;
 			case MetamodelPackage.PREDICATE__VISUALIZATION:
 				setVisualization((Visualization)newValue);
@@ -376,8 +376,8 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 			case MetamodelPackage.PREDICATE__SHAPE:
 				setShape((Graph)null);
 				return;
-			case MetamodelPackage.PREDICATE__SEMANTICS:
-				setSemantics((Semantics)null);
+			case MetamodelPackage.PREDICATE__SEMANTICS_VALIDATOR:
+				setSemanticsValidator((SemanticsValidator)null);
 				return;
 			case MetamodelPackage.PREDICATE__VISUALIZATION:
 				setVisualization((Visualization)null);
@@ -399,8 +399,8 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 		switch (featureID) {
 			case MetamodelPackage.PREDICATE__SHAPE:
 				return shape != null;
-			case MetamodelPackage.PREDICATE__SEMANTICS:
-				return semantics != null;
+			case MetamodelPackage.PREDICATE__SEMANTICS_VALIDATOR:
+				return semanticsValidator != null;
 			case MetamodelPackage.PREDICATE__VISUALIZATION:
 				return visualization != null;
 			case MetamodelPackage.PREDICATE__SYMBOL:

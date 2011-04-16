@@ -178,7 +178,7 @@ public class PredicateTest extends TestCase {
 	public void testValidateSemantics__Graph_String_EList_EList() {
 		Graph graph = MetamodelFactory.eINSTANCE.createGraph("x, y, z", "f:x:y,g:y:z");		
 		assertTrue(getFixture().validateSemantics(graph, "", null, null));
-		getFixture().setSemantics(MetamodelFactory.eINSTANCE.createJointlySurjectiveSemantics());
+		getFixture().setSemanticsValidator(MetamodelFactory.eINSTANCE.createJointlySurjectiveSemantics());
 		assertFalse(getFixture().validateSemantics(graph, "", null, null));
 	}
 

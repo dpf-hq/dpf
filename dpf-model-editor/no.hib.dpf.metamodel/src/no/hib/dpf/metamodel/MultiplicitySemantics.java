@@ -17,6 +17,6 @@ package no.hib.dpf.metamodel;
  * @model
  * @generated
  */
-public interface MultiplicitySemantics extends Semantics {
+public interface MultiplicitySemantics extends SemanticsValidator {
 
 } // MultiplicitySemantics

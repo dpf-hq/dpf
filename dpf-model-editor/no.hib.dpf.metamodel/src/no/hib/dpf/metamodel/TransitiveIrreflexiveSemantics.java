@@ -17,5 +17,5 @@ package no.hib.dpf.metamodel;
  * @model
  * @generated
  */
-public interface TransitiveIrreflexiveSemantics extends Semantics {
+public interface TransitiveIrreflexiveSemantics extends SemanticsValidator {
 } // TransitiveIrreflexiveSemantics

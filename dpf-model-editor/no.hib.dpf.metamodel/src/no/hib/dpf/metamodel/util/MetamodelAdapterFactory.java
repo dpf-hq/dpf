@@ -93,8 +93,8 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 				return createPredicateAdapter();
 			}
 			@Override
-			public Adapter caseSemantics(Semantics object) {
-				return createSemanticsAdapter();
+			public Adapter caseSemanticsValidator(SemanticsValidator object) {
+				return createSemanticsValidatorAdapter();
 			}
 			@Override
 			public Adapter caseVisualization(Visualization object) {
@@ -247,16 +247,16 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link no.hib.dpf.metamodel.Semantics <em>Semantics</em>}'.
+	 * Creates a new adapter for an object of class '{@link no.hib.dpf.metamodel.SemanticsValidator <em>Semantics Validator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see no.hib.dpf.metamodel.Semantics
+	 * @see no.hib.dpf.metamodel.SemanticsValidator
 	 * @generated
 	 */
-	public Adapter createSemanticsAdapter() {
+	public Adapter createSemanticsValidatorAdapter() {
 		return null;
 	}
 

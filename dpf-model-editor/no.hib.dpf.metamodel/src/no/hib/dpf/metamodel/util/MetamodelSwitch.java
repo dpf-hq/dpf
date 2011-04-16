@@ -121,9 +121,9 @@ public class MetamodelSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetamodelPackage.SEMANTICS: {
-				Semantics semantics = (Semantics)theEObject;
-				T result = caseSemantics(semantics);
+			case MetamodelPackage.SEMANTICS_VALIDATOR: {
+				SemanticsValidator semanticsValidator = (SemanticsValidator)theEObject;
+				T result = caseSemanticsValidator(semanticsValidator);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -185,42 +185,42 @@ public class MetamodelSwitch<T> {
 			case MetamodelPackage.JOINTLY_SURJECTIVE_SEMANTICS: {
 				JointlySurjectiveSemantics jointlySurjectiveSemantics = (JointlySurjectiveSemantics)theEObject;
 				T result = caseJointlySurjectiveSemantics(jointlySurjectiveSemantics);
-				if (result == null) result = caseSemantics(jointlySurjectiveSemantics);
+				if (result == null) result = caseSemanticsValidator(jointlySurjectiveSemantics);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case MetamodelPackage.INVERSE_SEMANTICS: {
 				InverseSemantics inverseSemantics = (InverseSemantics)theEObject;
 				T result = caseInverseSemantics(inverseSemantics);
-				if (result == null) result = caseSemantics(inverseSemantics);
+				if (result == null) result = caseSemanticsValidator(inverseSemantics);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case MetamodelPackage.IRREFLEXIVE_SEMANTICS: {
 				IrreflexiveSemantics irreflexiveSemantics = (IrreflexiveSemantics)theEObject;
 				T result = caseIrreflexiveSemantics(irreflexiveSemantics);
-				if (result == null) result = caseSemantics(irreflexiveSemantics);
+				if (result == null) result = caseSemanticsValidator(irreflexiveSemantics);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case MetamodelPackage.MULTIPLICITY_SEMANTICS: {
 				MultiplicitySemantics multiplicitySemantics = (MultiplicitySemantics)theEObject;
 				T result = caseMultiplicitySemantics(multiplicitySemantics);
-				if (result == null) result = caseSemantics(multiplicitySemantics);
+				if (result == null) result = caseSemanticsValidator(multiplicitySemantics);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case MetamodelPackage.XOR_SEMANTICS: {
 				XORSemantics xorSemantics = (XORSemantics)theEObject;
 				T result = caseXORSemantics(xorSemantics);
-				if (result == null) result = caseSemantics(xorSemantics);
+				if (result == null) result = caseSemanticsValidator(xorSemantics);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case MetamodelPackage.TRANSITIVE_IRREFLEXIVE_SEMANTICS: {
 				TransitiveIrreflexiveSemantics transitiveIrreflexiveSemantics = (TransitiveIrreflexiveSemantics)theEObject;
 				T result = caseTransitiveIrreflexiveSemantics(transitiveIrreflexiveSemantics);
-				if (result == null) result = caseSemantics(transitiveIrreflexiveSemantics);
+				if (result == null) result = caseSemanticsValidator(transitiveIrreflexiveSemantics);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -304,17 +304,17 @@ public class MetamodelSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Semantics</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Semantics Validator</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Semantics</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Semantics Validator</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSemantics(Semantics object) {
+	public T caseSemanticsValidator(SemanticsValidator object) {
 		return null;
 	}
 
