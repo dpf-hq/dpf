@@ -13,10 +13,10 @@ public enum ImageSettings {
 	JOINTLY_SURJECTIVE("js_36.png"),
 	IMAGE_INCLUSION("img_incl_36.png"),
 	COMPOSITION("comp_36.png"),
-	INJECTIVE(""),
+	INJECTIVE("inj_36.png"),
 	IRREFLEXIVE("irr_36.png"),
 	TRANSITIVE_IRREFLEXIVE("t-irr_36.png"),
-	SURJECTIVE(""),
+	SURJECTIVE("surj_36.png"),
 	XOR("xor_36.png");
 	
 	private String filePath;
