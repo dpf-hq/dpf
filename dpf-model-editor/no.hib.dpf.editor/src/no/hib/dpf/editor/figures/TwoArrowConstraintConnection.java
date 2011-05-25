@@ -44,7 +44,7 @@ public abstract class TwoArrowConstraintConnection extends PolylineConnection im
 //		drawAnchorBlob(g, buildPointBox(getMidwayPoint(controlpoints[0], p2)));
 		
 		
-		Bezier bezier = new Bezier(p1, p2, getMidwayPoint(controlpoints[1], p1), getMidwayPoint(controlpoints[1], p2));
+		Bezier bezier = new Bezier(p1, p2, getMidwayPoint(controlpoints[0], p1), getMidwayPoint(controlpoints[0], p2));
 		bezier.outlineShape(g);
 		
 		drawCenteredText(g, labelText, controlpoints[0]);

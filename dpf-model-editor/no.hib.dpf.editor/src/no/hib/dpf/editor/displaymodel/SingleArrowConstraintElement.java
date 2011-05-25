@@ -28,6 +28,10 @@ public class SingleArrowConstraintElement extends DConstraint {
 			return "[irr]";
 		} else if (constraintType == ConstraintType.TRANSITIVE_IRREFLEXIVE) {
 			return "[t-irr]";
+		} else if (constraintType == ConstraintType.INJECTIVE) {
+			return "[inj]";
+		} else if (constraintType == ConstraintType.SURJECTIVE) {
+			return "[surj]";
 		} else {
 			return String.format("[%s..%s]", valToString(getVal_1()), valToString(getVal_2()));
 		}

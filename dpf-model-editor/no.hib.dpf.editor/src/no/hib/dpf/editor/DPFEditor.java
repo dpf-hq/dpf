@@ -34,11 +34,13 @@ import no.hib.dpf.editor.displaymodel.SingleArrowConstraintElement;
 import no.hib.dpf.editor.editoractions.ConstraintProperties;
 import no.hib.dpf.editor.editoractions.CreateCompositionConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateImageInclusionConstraintAction;
+import no.hib.dpf.editor.editoractions.CreateInjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateInverseConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateIrreflexiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointlyInjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointlySurjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateMultiplicityConstraintAction;
+import no.hib.dpf.editor.editoractions.CreateSurjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateTransitiveIrreflexiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateXORConstraintAction;
 import no.hib.dpf.editor.editoractions.PrintAction;
@@ -181,6 +183,22 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		
 		registerAction(new CreateXORConstraintAction(this, getDPFDiagram().getDpfGraph(), xorProperties));
 
+		ConstraintProperties injectiveProperties = new ConstraintProperties(
+				signature.getPredicateBySymbol("[injective]"), 
+				"Create new [injective] Constraint",
+				"Creates a new [injective] Constraint",
+				DConstraint.ConstraintType.INJECTIVE);
+		
+		registerAction(new CreateInjectiveConstraintAction(this, getDPFDiagram().getDpfGraph(), injectiveProperties));
+		ConstraintProperties surjectiveProperties = new ConstraintProperties(
+				signature.getPredicateBySymbol("[surjective]"), 
+				"Create new [surjective] Constraint",
+				"Creates a new [surjective] Constraint",
+				DConstraint.ConstraintType.SURJECTIVE);
+		
+		registerAction(new CreateSurjectiveConstraintAction(this, getDPFDiagram().getDpfGraph(), surjectiveProperties));
+
+		
 		ConstraintProperties jointlyInjectiveProperties = new ConstraintProperties(
 				signature.getPredicateBySymbol("[jointly-injective]"), 
 				"Create new [jointly-injective] Constraint",
@@ -485,6 +503,9 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("[jointly-injective]", "n_1,n_2,n_3", "a_1:n_1:n_2,a_2:n_1:n_3"));
 		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("[image-inclusion]", "n_1,n_2", "a_1:n_1:n_2,a_2:n_1:n_2"));		
 		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("[composition]", "n_1,n_2,n_3", "a_1:n_1:n_2,a_2:n_2:n_3,a_3:n_1:n_3"));
+		
+		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("[surjective]", "n_1,n_2", "a_1:n_1:n_2"));
+		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("[injective]", "n_1,n_2", "a_1:n_1:n_2"));
 
 		Predicate xorPredicate = MetamodelFactory.eINSTANCE.createPredicate("[xor]", "n_1,n_2,n_3", "a_1:n_1:n_2,a_2:n_1:n_3");
 		xorPredicate.setSemanticsValidator(MetamodelFactory.eINSTANCE.createXORSemantics());
