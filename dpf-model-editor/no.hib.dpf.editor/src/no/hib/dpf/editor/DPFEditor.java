@@ -503,9 +503,11 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("[jointly-injective]", "n_1,n_2,n_3", "a_1:n_1:n_2,a_2:n_1:n_3"));
 		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("[image-inclusion]", "n_1,n_2", "a_1:n_1:n_2,a_2:n_1:n_2"));		
 		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("[composition]", "n_1,n_2,n_3", "a_1:n_1:n_2,a_2:n_2:n_3,a_3:n_1:n_3"));
-		
-		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("[surjective]", "n_1,n_2", "a_1:n_1:n_2"));
 		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("[injective]", "n_1,n_2", "a_1:n_1:n_2"));
+		
+		Predicate surjectivePredicate = MetamodelFactory.eINSTANCE.createPredicate("[surjective]", "n_1,n_2", "a_1:n_1:n_2");
+		surjectivePredicate.setSemanticsValidator(MetamodelFactory.eINSTANCE.createSurjectiveSemantics());
+		signature.getPredicates().add(surjectivePredicate);		
 
 		Predicate xorPredicate = MetamodelFactory.eINSTANCE.createPredicate("[xor]", "n_1,n_2,n_3", "a_1:n_1:n_2,a_2:n_1:n_3");
 		xorPredicate.setSemanticsValidator(MetamodelFactory.eINSTANCE.createXORSemantics());
