@@ -804,6 +804,25 @@ public interface MetamodelPackage extends EPackage {
 	int TRANSITIVE_IRREFLEXIVE_SEMANTICS_FEATURE_COUNT = SEMANTICS_VALIDATOR_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link no.hib.dpf.metamodel.impl.SurjectiveSemanticsImpl <em>Surjective Semantics</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.metamodel.impl.SurjectiveSemanticsImpl
+	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getSurjectiveSemantics()
+	 * @generated
+	 */
+	int SURJECTIVE_SEMANTICS = 21;
+
+	/**
+	 * The number of structural features of the '<em>Surjective Semantics</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SURJECTIVE_SEMANTICS_FEATURE_COUNT = SEMANTICS_VALIDATOR_FEATURE_COUNT + 0;
+
+	/**
 	 * The meta object id for the '<em>EURI</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -811,7 +830,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getEURI()
 	 * @generated
 	 */
-	int EURI = 21;
+	int EURI = 22;
 
 	/**
 	 * The meta object id for the '<em>EIO Exception</em>' data type.
@@ -821,7 +840,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getEIOException()
 	 * @generated
 	 */
-	int EIO_EXCEPTION = 22;
+	int EIO_EXCEPTION = 23;
 
 
 	/**
@@ -1413,6 +1432,16 @@ public interface MetamodelPackage extends EPackage {
 	EClass getTransitiveIrreflexiveSemantics();
 
 	/**
+	 * Returns the meta object for class '{@link no.hib.dpf.metamodel.SurjectiveSemantics <em>Surjective Semantics</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Surjective Semantics</em>'.
+	 * @see no.hib.dpf.metamodel.SurjectiveSemantics
+	 * @generated
+	 */
+	EClass getSurjectiveSemantics();
+
+	/**
 	 * Returns the meta object for data type '{@link org.eclipse.emf.common.util.URI <em>EURI</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1937,6 +1966,16 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass TRANSITIVE_IRREFLEXIVE_SEMANTICS = eINSTANCE.getTransitiveIrreflexiveSemantics();
+
+		/**
+		 * The meta object literal for the '{@link no.hib.dpf.metamodel.impl.SurjectiveSemanticsImpl <em>Surjective Semantics</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see no.hib.dpf.metamodel.impl.SurjectiveSemanticsImpl
+		 * @see no.hib.dpf.metamodel.impl.MetamodelPackageImpl#getSurjectiveSemantics()
+		 * @generated
+		 */
+		EClass SURJECTIVE_SEMANTICS = eINSTANCE.getSurjectiveSemantics();
 
 		/**
 		 * The meta object literal for the '<em>EURI</em>' data type.

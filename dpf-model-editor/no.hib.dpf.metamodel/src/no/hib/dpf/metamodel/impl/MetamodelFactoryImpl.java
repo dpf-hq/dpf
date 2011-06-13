@@ -89,6 +89,7 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 			case MetamodelPackage.MULTIPLICITY_SEMANTICS: return createMultiplicitySemantics();
 			case MetamodelPackage.XOR_SEMANTICS: return createXORSemantics();
 			case MetamodelPackage.TRANSITIVE_IRREFLEXIVE_SEMANTICS: return createTransitiveIrreflexiveSemantics();
+			case MetamodelPackage.SURJECTIVE_SEMANTICS: return createSurjectiveSemantics();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -460,6 +461,16 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	public TransitiveIrreflexiveSemantics createTransitiveIrreflexiveSemantics() {
 		TransitiveIrreflexiveSemanticsImpl transitiveIrreflexiveSemantics = new TransitiveIrreflexiveSemanticsImpl();
 		return transitiveIrreflexiveSemantics;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SurjectiveSemantics createSurjectiveSemantics() {
+		SurjectiveSemanticsImpl surjectiveSemantics = new SurjectiveSemanticsImpl();
+		return surjectiveSemantics;
 	}
 
 	/**

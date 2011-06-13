@@ -223,6 +223,7 @@
         <eClassifiers xsi:type="ecore:EClass" name="XORSemantics" eSuperTypes="#//hib/dpf/metamodel/SemanticsValidator"/>
         <eClassifiers xsi:type="ecore:EClass" name="TransitiveIrreflexiveSemantics"
             eSuperTypes="#//hib/dpf/metamodel/SemanticsValidator"/>
+        <eClassifiers xsi:type="ecore:EClass" name="SurjectiveSemantics" eSuperTypes="#//hib/dpf/metamodel/SemanticsValidator"/>
       </eSubpackages>
     </eSubpackages>
   </eSubpackages>

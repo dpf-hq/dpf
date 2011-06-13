@@ -26,6 +26,7 @@ import no.hib.dpf.metamodel.Predicate;
 import no.hib.dpf.metamodel.SemanticsValidator;
 import no.hib.dpf.metamodel.Signature;
 import no.hib.dpf.metamodel.Specification;
+import no.hib.dpf.metamodel.SurjectiveSemantics;
 import no.hib.dpf.metamodel.TransitiveIrreflexiveSemantics;
 import no.hib.dpf.metamodel.TypingMorphism;
 import no.hib.dpf.metamodel.Visualization;
@@ -193,6 +194,13 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * @generated
 	 */
 	private EClass transitiveIrreflexiveSemanticsEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass surjectiveSemanticsEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -769,6 +777,15 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getSurjectiveSemantics() {
+		return surjectiveSemanticsEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EDataType getEURI() {
 		return euriEDataType;
 	}
@@ -886,6 +903,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 
 		transitiveIrreflexiveSemanticsEClass = createEClass(TRANSITIVE_IRREFLEXIVE_SEMANTICS);
 
+		surjectiveSemanticsEClass = createEClass(SURJECTIVE_SEMANTICS);
+
 		// Create data types
 		euriEDataType = createEDataType(EURI);
 		eioExceptionEDataType = createEDataType(EIO_EXCEPTION);
@@ -929,6 +948,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		multiplicitySemanticsEClass.getESuperTypes().add(this.getSemanticsValidator());
 		xorSemanticsEClass.getESuperTypes().add(this.getSemanticsValidator());
 		transitiveIrreflexiveSemanticsEClass.getESuperTypes().add(this.getSemanticsValidator());
+		surjectiveSemanticsEClass.getESuperTypes().add(this.getSemanticsValidator());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(graphEClass, Graph.class, "Graph", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1142,6 +1162,8 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		initEClass(xorSemanticsEClass, XORSemantics.class, "XORSemantics", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(transitiveIrreflexiveSemanticsEClass, TransitiveIrreflexiveSemantics.class, "TransitiveIrreflexiveSemantics", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(surjectiveSemanticsEClass, SurjectiveSemantics.class, "SurjectiveSemantics", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize data types
 		initEDataType(euriEDataType, URI.class, "EURI", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);

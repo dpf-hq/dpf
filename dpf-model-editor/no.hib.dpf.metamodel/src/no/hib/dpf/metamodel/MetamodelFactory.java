@@ -265,6 +265,15 @@ public interface MetamodelFactory extends EFactory {
 	TransitiveIrreflexiveSemantics createTransitiveIrreflexiveSemantics();
 
 	/**
+	 * Returns a new object of class '<em>Surjective Semantics</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Surjective Semantics</em>'.
+	 * @generated
+	 */
+	SurjectiveSemantics createSurjectiveSemantics();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

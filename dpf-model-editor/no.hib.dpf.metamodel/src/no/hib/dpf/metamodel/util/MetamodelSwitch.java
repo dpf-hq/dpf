@@ -224,6 +224,13 @@ public class MetamodelSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MetamodelPackage.SURJECTIVE_SEMANTICS: {
+				SurjectiveSemantics surjectiveSemantics = (SurjectiveSemantics)theEObject;
+				T result = caseSurjectiveSemantics(surjectiveSemantics);
+				if (result == null) result = caseSemanticsValidator(surjectiveSemantics);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -540,6 +547,21 @@ public class MetamodelSwitch<T> {
 	 * @generated
 	 */
 	public T caseTransitiveIrreflexiveSemantics(TransitiveIrreflexiveSemantics object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Surjective Semantics</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Surjective Semantics</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSurjectiveSemantics(SurjectiveSemantics object) {
 		return null;
 	}
 
