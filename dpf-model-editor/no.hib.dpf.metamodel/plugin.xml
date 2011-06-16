@@ -13,7 +13,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://no.hib.dpf.metamodel"
-            class="no.hib.dpf.metamodel.MetamodelPackage"
+            class="no.hib.dpf.core.MetamodelPackage"
             genModel="model/Dpf.genmodel"/>
    </extension>
 

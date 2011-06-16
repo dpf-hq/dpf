@@ -5,225 +5,225 @@
     nsURI="http://no" nsPrefix="no">
   <eSubpackages name="hib" nsURI="http://no.hib" nsPrefix="no.hib">
     <eSubpackages name="dpf" nsURI="http://no.hib.dpf" nsPrefix="no.hib.dpf">
-      <eSubpackages name="metamodel" nsURI="http://no.hib.dpf.metamodel" nsPrefix="no.hib.dpf.metamodel">
-        <eClassifiers xsi:type="ecore:EClass" name="Graph" eSuperTypes="#//hib/dpf/metamodel/IDObject">
-          <eOperations name="createNode" eType="#//hib/dpf/metamodel/Node">
+      <eSubpackages name="core" nsURI="http://no.hib.dpf.core" nsPrefix="no.hib.dpf.core">
+        <eClassifiers xsi:type="ecore:EClass" name="Graph" eSuperTypes="#//hib/dpf/core/IDObject">
+          <eOperations name="createNode" eType="#//hib/dpf/core/Node">
             <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
           </eOperations>
-          <eOperations name="getGraphMember" eType="#//hib/dpf/metamodel/IDObject">
+          <eOperations name="getGraphMember" eType="#//hib/dpf/core/IDObject">
             <eParameters name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
           </eOperations>
-          <eOperations name="createArrow" eType="#//hib/dpf/metamodel/Arrow">
+          <eOperations name="createArrow" eType="#//hib/dpf/core/Arrow">
             <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-            <eParameters name="source" eType="#//hib/dpf/metamodel/Node"/>
-            <eParameters name="target" eType="#//hib/dpf/metamodel/Node"/>
+            <eParameters name="source" eType="#//hib/dpf/core/Node"/>
+            <eParameters name="target" eType="#//hib/dpf/core/Node"/>
           </eOperations>
-          <eOperations name="applyPredicate" eType="#//hib/dpf/metamodel/Constraint">
-            <eParameters name="predicate" eType="#//hib/dpf/metamodel/Predicate"/>
-            <eParameters name="nodes" upperBound="-1" eType="#//hib/dpf/metamodel/Node"/>
-            <eParameters name="edges" upperBound="-1" eType="#//hib/dpf/metamodel/Arrow"/>
+          <eOperations name="applyPredicate" eType="#//hib/dpf/core/Constraint">
+            <eParameters name="predicate" eType="#//hib/dpf/core/Predicate"/>
+            <eParameters name="nodes" upperBound="-1" eType="#//hib/dpf/core/Node"/>
+            <eParameters name="edges" upperBound="-1" eType="#//hib/dpf/core/Arrow"/>
           </eOperations>
           <eOperations name="deleteNode">
-            <eParameters name="node" eType="#//hib/dpf/metamodel/Node"/>
+            <eParameters name="node" eType="#//hib/dpf/core/Node"/>
           </eOperations>
           <eOperations name="deleteArrow">
-            <eParameters name="edge" eType="#//hib/dpf/metamodel/Arrow"/>
+            <eParameters name="edge" eType="#//hib/dpf/core/Arrow"/>
           </eOperations>
-          <eOperations name="getNodeByName" eType="#//hib/dpf/metamodel/Node">
+          <eOperations name="getNodeByName" eType="#//hib/dpf/core/Node">
             <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
           </eOperations>
-          <eOperations name="getArrowByName" eType="#//hib/dpf/metamodel/Arrow">
+          <eOperations name="getArrowByName" eType="#//hib/dpf/core/Arrow">
             <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
           </eOperations>
-          <eOperations name="createNode" eType="#//hib/dpf/metamodel/Node">
+          <eOperations name="createNode" eType="#//hib/dpf/core/Node">
             <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-            <eParameters name="typeNode" eType="#//hib/dpf/metamodel/Node"/>
+            <eParameters name="typeNode" eType="#//hib/dpf/core/Node"/>
           </eOperations>
-          <eOperations name="createArrow" eType="#//hib/dpf/metamodel/Arrow">
+          <eOperations name="createArrow" eType="#//hib/dpf/core/Arrow">
             <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-            <eParameters name="source" eType="#//hib/dpf/metamodel/Node"/>
-            <eParameters name="target" eType="#//hib/dpf/metamodel/Node"/>
-            <eParameters name="typeEdge" eType="#//hib/dpf/metamodel/Arrow"/>
+            <eParameters name="source" eType="#//hib/dpf/core/Node"/>
+            <eParameters name="target" eType="#//hib/dpf/core/Node"/>
+            <eParameters name="typeEdge" eType="#//hib/dpf/core/Arrow"/>
           </eOperations>
-          <eOperations name="extractSubgraph" eType="#//hib/dpf/metamodel/Graph">
-            <eParameters name="nodes" upperBound="-1" eType="#//hib/dpf/metamodel/Node"/>
-            <eParameters name="arrows" upperBound="-1" eType="#//hib/dpf/metamodel/Arrow"/>
+          <eOperations name="extractSubgraph" eType="#//hib/dpf/core/Graph">
+            <eParameters name="nodes" upperBound="-1" eType="#//hib/dpf/core/Node"/>
+            <eParameters name="arrows" upperBound="-1" eType="#//hib/dpf/core/Arrow"/>
           </eOperations>
-          <eOperations name="getNodesForConstraint" upperBound="-1" eType="#//hib/dpf/metamodel/Node">
-            <eParameters name="constraint" eType="#//hib/dpf/metamodel/Constraint"/>
+          <eOperations name="getNodesForConstraint" upperBound="-1" eType="#//hib/dpf/core/Node">
+            <eParameters name="constraint" eType="#//hib/dpf/core/Constraint"/>
           </eOperations>
-          <eOperations name="getArrowsForConstraint" upperBound="-1" eType="#//hib/dpf/metamodel/Arrow">
-            <eParameters name="constraint" eType="#//hib/dpf/metamodel/Constraint"/>
+          <eOperations name="getArrowsForConstraint" upperBound="-1" eType="#//hib/dpf/core/Arrow">
+            <eParameters name="constraint" eType="#//hib/dpf/core/Constraint"/>
           </eOperations>
-          <eOperations name="getNodes" upperBound="-1" eType="#//hib/dpf/metamodel/Node">
-            <eParameters name="typeNodes" upperBound="-1" eType="#//hib/dpf/metamodel/Node"/>
+          <eOperations name="getNodes" upperBound="-1" eType="#//hib/dpf/core/Node">
+            <eParameters name="typeNodes" upperBound="-1" eType="#//hib/dpf/core/Node"/>
           </eOperations>
-          <eOperations name="getArrows" upperBound="-1" eType="#//hib/dpf/metamodel/Arrow">
-            <eParameters name="types" upperBound="-1" eType="#//hib/dpf/metamodel/Arrow"/>
+          <eOperations name="getArrows" upperBound="-1" eType="#//hib/dpf/core/Arrow">
+            <eParameters name="types" upperBound="-1" eType="#//hib/dpf/core/Arrow"/>
           </eOperations>
-          <eOperations name="getCopy" eType="#//hib/dpf/metamodel/Graph"/>
+          <eOperations name="getCopy" eType="#//hib/dpf/core/Graph"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" upperBound="-1"
-              eType="#//hib/dpf/metamodel/Node" containment="true" eOpposite="#//hib/dpf/metamodel/Node/graph"/>
+              eType="#//hib/dpf/core/Node" containment="true" eOpposite="#//hib/dpf/core/Node/graph"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="arrows" upperBound="-1"
-              eType="#//hib/dpf/metamodel/Arrow" containment="true" eOpposite="#//hib/dpf/metamodel/Arrow/graph"/>
+              eType="#//hib/dpf/core/Arrow" containment="true" eOpposite="#//hib/dpf/core/Arrow/graph"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
-              eType="#//hib/dpf/metamodel/Constraint" containment="true" eOpposite="#//hib/dpf/metamodel/Constraint/graph"/>
+              eType="#//hib/dpf/core/Constraint" containment="true" eOpposite="#//hib/dpf/core/Constraint/graph"/>
         </eClassifiers>
-        <eClassifiers xsi:type="ecore:EClass" name="Node" eSuperTypes="#//hib/dpf/metamodel/IDObject">
-          <eOperations name="getOutgoingArrows" upperBound="-1" eType="#//hib/dpf/metamodel/Arrow"/>
+        <eClassifiers xsi:type="ecore:EClass" name="Node" eSuperTypes="#//hib/dpf/core/IDObject">
+          <eOperations name="getOutgoingArrows" upperBound="-1" eType="#//hib/dpf/core/Arrow"/>
           <eOperations name="arrowCanMakeConnectionAsTarget" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-            <eParameters name="intendedTarget" eType="#//hib/dpf/metamodel/Node"/>
+            <eParameters name="intendedTarget" eType="#//hib/dpf/core/Node"/>
           </eOperations>
           <eOperations name="canReachTargetByOneArrow" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-            <eParameters name="target" eType="#//hib/dpf/metamodel/Node"/>
+            <eParameters name="target" eType="#//hib/dpf/core/Node"/>
           </eOperations>
           <eOperations name="arrowCanMakeConnectionAsTarget" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject">
-            <eParameters name="intendedTarget" eType="#//hib/dpf/metamodel/Node"/>
-            <eParameters name="typeEdge" eType="#//hib/dpf/metamodel/Arrow"/>
+            <eParameters name="intendedTarget" eType="#//hib/dpf/core/Node"/>
+            <eParameters name="typeEdge" eType="#//hib/dpf/core/Arrow"/>
           </eOperations>
           <eOperations name="canReachTargetByTypeArrow" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject">
-            <eParameters name="target" eType="#//hib/dpf/metamodel/Node"/>
-            <eParameters name="typeEdge" eType="#//hib/dpf/metamodel/Arrow"/>
+            <eParameters name="target" eType="#//hib/dpf/core/Node"/>
+            <eParameters name="typeEdge" eType="#//hib/dpf/core/Arrow"/>
           </eOperations>
-          <eOperations name="getArrowto" eType="#//hib/dpf/metamodel/Arrow">
-            <eParameters name="target" eType="#//hib/dpf/metamodel/Node"/>
+          <eOperations name="getArrowto" eType="#//hib/dpf/core/Arrow">
+            <eParameters name="target" eType="#//hib/dpf/core/Node"/>
           </eOperations>
           <eOperations name="getTypeName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
           <eOperations name="generateUniqueName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
           <eOperations name="canCreateTypedArrow" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-            <eParameters name="intendedTarget" eType="#//hib/dpf/metamodel/Node"/>
+            <eParameters name="intendedTarget" eType="#//hib/dpf/core/Node"/>
           </eOperations>
-          <eOperations name="getTypeArrow" eType="#//hib/dpf/metamodel/Arrow">
-            <eParameters name="intendedTarget" eType="#//hib/dpf/metamodel/Node"/>
+          <eOperations name="getTypeArrow" eType="#//hib/dpf/core/Arrow">
+            <eParameters name="intendedTarget" eType="#//hib/dpf/core/Node"/>
           </eOperations>
-          <eOperations name="getIncomingArrows" upperBound="-1" eType="#//hib/dpf/metamodel/Arrow"/>
+          <eOperations name="getIncomingArrows" upperBound="-1" eType="#//hib/dpf/core/Arrow"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="graph" eType="#//hib/dpf/metamodel/Graph"
-              unsettable="true" eOpposite="#//hib/dpf/metamodel/Graph/nodes"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="typeNode" eType="#//hib/dpf/metamodel/Node"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="graph" eType="#//hib/dpf/core/Graph"
+              unsettable="true" eOpposite="#//hib/dpf/core/Graph/nodes"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="typeNode" eType="#//hib/dpf/core/Node"/>
         </eClassifiers>
-        <eClassifiers xsi:type="ecore:EClass" name="Arrow" eSuperTypes="#//hib/dpf/metamodel/IDObject">
+        <eClassifiers xsi:type="ecore:EClass" name="Arrow" eSuperTypes="#//hib/dpf/core/IDObject">
           <eOperations name="getTypeName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
           <eOperations name="generateUniqueName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//hib/dpf/metamodel/Node"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="graph" eType="#//hib/dpf/metamodel/Graph"
-              eOpposite="#//hib/dpf/metamodel/Graph/arrows"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="typeArrow" eType="#//hib/dpf/metamodel/Arrow"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//hib/dpf/metamodel/Node"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//hib/dpf/core/Node"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="graph" eType="#//hib/dpf/core/Graph"
+              eOpposite="#//hib/dpf/core/Graph/arrows"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="typeArrow" eType="#//hib/dpf/core/Arrow"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//hib/dpf/core/Node"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Signature">
-          <eOperations name="save" eExceptions="#//hib/dpf/metamodel/EIOException">
-            <eParameters name="uri" eType="#//hib/dpf/metamodel/EURI"/>
+          <eOperations name="save" eExceptions="#//hib/dpf/core/EIOException">
+            <eParameters name="uri" eType="#//hib/dpf/core/EURI"/>
           </eOperations>
-          <eOperations name="getPredicateBySymbol" eType="#//hib/dpf/metamodel/Predicate">
+          <eOperations name="getPredicateBySymbol" eType="#//hib/dpf/core/Predicate">
             <eParameters name="symbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
           </eOperations>
           <eStructuralFeatures xsi:type="ecore:EReference" name="predicates" upperBound="-1"
-              eType="#//hib/dpf/metamodel/Predicate" containment="true"/>
+              eType="#//hib/dpf/core/Predicate" containment="true"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Predicate">
-          <eOperations name="createConstraint" eType="#//hib/dpf/metamodel/Constraint">
-            <eParameters name="nodes" upperBound="-1" eType="#//hib/dpf/metamodel/Node"/>
-            <eParameters name="arrows" upperBound="-1" eType="#//hib/dpf/metamodel/Arrow"/>
-            <eParameters name="modelToBeConstrained" eType="#//hib/dpf/metamodel/Graph"/>
+          <eOperations name="createConstraint" eType="#//hib/dpf/core/Constraint">
+            <eParameters name="nodes" upperBound="-1" eType="#//hib/dpf/core/Node"/>
+            <eParameters name="arrows" upperBound="-1" eType="#//hib/dpf/core/Arrow"/>
+            <eParameters name="modelToBeConstrained" eType="#//hib/dpf/core/Graph"/>
           </eOperations>
           <eOperations name="canCreateConstraint" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-            <eParameters name="nodes" upperBound="-1" eType="#//hib/dpf/metamodel/Node"/>
-            <eParameters name="arrows" upperBound="-1" eType="#//hib/dpf/metamodel/Arrow"/>
-            <eParameters name="modelToBeConstrained" eType="#//hib/dpf/metamodel/Graph"/>
+            <eParameters name="nodes" upperBound="-1" eType="#//hib/dpf/core/Node"/>
+            <eParameters name="arrows" upperBound="-1" eType="#//hib/dpf/core/Arrow"/>
+            <eParameters name="modelToBeConstrained" eType="#//hib/dpf/core/Graph"/>
           </eOperations>
           <eOperations name="validateSemantics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject">
-            <eParameters name="oStar" eType="#//hib/dpf/metamodel/Graph"/>
+            <eParameters name="oStar" eType="#//hib/dpf/core/Graph"/>
             <eParameters name="constraintParameters" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-            <eParameters name="typeNodes" upperBound="-1" eType="#//hib/dpf/metamodel/Node"/>
-            <eParameters name="typeArrows" upperBound="-1" eType="#//hib/dpf/metamodel/Arrow"/>
+            <eParameters name="typeNodes" upperBound="-1" eType="#//hib/dpf/core/Node"/>
+            <eParameters name="typeArrows" upperBound="-1" eType="#//hib/dpf/core/Arrow"/>
           </eOperations>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="shape" eType="#//hib/dpf/metamodel/Graph"
+          <eStructuralFeatures xsi:type="ecore:EReference" name="shape" eType="#//hib/dpf/core/Graph"
               containment="true"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="semanticsValidator"
-              eType="#//hib/dpf/metamodel/SemanticsValidator" containment="true"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="visualization" eType="#//hib/dpf/metamodel/Visualization"/>
+              eType="#//hib/dpf/core/SemanticsValidator" containment="true"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="visualization" eType="#//hib/dpf/core/Visualization"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="symbol" unique="false"
               lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="SemanticsValidator" abstract="true"
             interface="true">
           <eOperations name="validateSemantics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject">
-            <eParameters name="oStar" eType="#//hib/dpf/metamodel/Graph"/>
+            <eParameters name="oStar" eType="#//hib/dpf/core/Graph"/>
             <eParameters name="constraintParameters" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-            <eParameters name="typeNodes" upperBound="-1" eType="#//hib/dpf/metamodel/Node"/>
-            <eParameters name="typeArrows" upperBound="-1" eType="#//hib/dpf/metamodel/Arrow"/>
+            <eParameters name="typeNodes" upperBound="-1" eType="#//hib/dpf/core/Node"/>
+            <eParameters name="typeArrows" upperBound="-1" eType="#//hib/dpf/core/Arrow"/>
           </eOperations>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Visualization" abstract="true"/>
         <eClassifiers xsi:type="ecore:EClass" name="NodeToNodeMap" instanceClassName="java.util.Map$Entry">
-          <eStructuralFeatures xsi:type="ecore:EReference" name="key" eType="#//hib/dpf/metamodel/Node"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//hib/dpf/metamodel/Node"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="key" eType="#//hib/dpf/core/Node"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//hib/dpf/core/Node"/>
         </eClassifiers>
-        <eClassifiers xsi:type="ecore:EClass" name="Constraint" eSuperTypes="#//hib/dpf/metamodel/IDObject">
-          <eOperations name="getConstrainedNodes" upperBound="-1" eType="#//hib/dpf/metamodel/Node"/>
-          <eOperations name="getConstrainedArrows" upperBound="-1" eType="#//hib/dpf/metamodel/Arrow"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="graph" eType="#//hib/dpf/metamodel/Graph"
-              eOpposite="#//hib/dpf/metamodel/Graph/constraints"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="predicate" eType="#//hib/dpf/metamodel/Predicate"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="mappings" eType="#//hib/dpf/metamodel/GraphHomomorphism"
+        <eClassifiers xsi:type="ecore:EClass" name="Constraint" eSuperTypes="#//hib/dpf/core/IDObject">
+          <eOperations name="getConstrainedNodes" upperBound="-1" eType="#//hib/dpf/core/Node"/>
+          <eOperations name="getConstrainedArrows" upperBound="-1" eType="#//hib/dpf/core/Arrow"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="graph" eType="#//hib/dpf/core/Graph"
+              eOpposite="#//hib/dpf/core/Graph/constraints"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="predicate" eType="#//hib/dpf/core/Predicate"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="mappings" eType="#//hib/dpf/core/GraphHomomorphism"
               containment="true"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="parameters" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="ArrowToArrowMap" instanceClassName="java.util.Map$Entry">
-          <eStructuralFeatures xsi:type="ecore:EReference" name="key" eType="#//hib/dpf/metamodel/Arrow"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//hib/dpf/metamodel/Arrow"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="key" eType="#//hib/dpf/core/Arrow"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//hib/dpf/core/Arrow"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="TypingMorphism">
           <eStructuralFeatures xsi:type="ecore:EReference" name="model" lowerBound="1"
-              eType="#//hib/dpf/metamodel/Graph"/>
+              eType="#//hib/dpf/core/Graph"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="metamodel" lowerBound="1"
-              eType="#//hib/dpf/metamodel/Graph"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="mappings" eType="#//hib/dpf/metamodel/GraphHomomorphism"/>
+              eType="#//hib/dpf/core/Graph"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="mappings" eType="#//hib/dpf/core/GraphHomomorphism"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="GraphHomomorphism">
           <eOperations name="tryToCreateGraphHomomorphism" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-            <eParameters name="sourceGraph" eType="#//hib/dpf/metamodel/Graph"/>
-            <eParameters name="nodes" upperBound="-1" eType="#//hib/dpf/metamodel/Node"/>
-            <eParameters name="edges" upperBound="-1" eType="#//hib/dpf/metamodel/Arrow"/>
+            <eParameters name="sourceGraph" eType="#//hib/dpf/core/Graph"/>
+            <eParameters name="nodes" upperBound="-1" eType="#//hib/dpf/core/Node"/>
+            <eParameters name="edges" upperBound="-1" eType="#//hib/dpf/core/Arrow"/>
           </eOperations>
           <eStructuralFeatures xsi:type="ecore:EReference" name="nodeMapping" upperBound="-1"
-              eType="#//hib/dpf/metamodel/NodeToNodeMap" containment="true"/>
+              eType="#//hib/dpf/core/NodeToNodeMap" containment="true"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="arrowMapping" upperBound="-1"
-              eType="#//hib/dpf/metamodel/ArrowToArrowMap" containment="true"/>
+              eType="#//hib/dpf/core/ArrowToArrowMap" containment="true"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="IDObject">
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
               defaultValueLiteral=""/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Specification">
-          <eOperations name="save" eExceptions="#//hib/dpf/metamodel/EIOException">
-            <eParameters name="uri" eType="#//hib/dpf/metamodel/EURI"/>
+          <eOperations name="save" eExceptions="#//hib/dpf/core/EIOException">
+            <eParameters name="uri" eType="#//hib/dpf/core/EURI"/>
           </eOperations>
-          <eOperations name="createOStar" eType="#//hib/dpf/metamodel/Graph">
-            <eParameters name="constraint" eType="#//hib/dpf/metamodel/Constraint"/>
+          <eOperations name="createOStar" eType="#//hib/dpf/core/Graph">
+            <eParameters name="constraint" eType="#//hib/dpf/core/Constraint"/>
           </eOperations>
           <eStructuralFeatures xsi:type="ecore:EReference" name="graph" lowerBound="1"
-              eType="#//hib/dpf/metamodel/Graph" containment="true"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="typeGraph" eType="#//hib/dpf/metamodel/Graph"
+              eType="#//hib/dpf/core/Graph" containment="true"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="typeGraph" eType="#//hib/dpf/core/Graph"
               containment="true"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EDataType" name="EURI" instanceClassName="org.eclipse.emf.common.util.URI"/>
         <eClassifiers xsi:type="ecore:EClass" name="ModelHierarchy">
           <eStructuralFeatures xsi:type="ecore:EReference" name="specifications" upperBound="-1"
-              eType="#//hib/dpf/metamodel/Specification" containment="true"/>
+              eType="#//hib/dpf/core/Specification" containment="true"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EDataType" name="EIOException" instanceClassName="java.io.IOException"/>
-        <eClassifiers xsi:type="ecore:EClass" name="JointlySurjectiveSemantics" eSuperTypes="#//hib/dpf/metamodel/SemanticsValidator"/>
-        <eClassifiers xsi:type="ecore:EClass" name="InverseSemantics" eSuperTypes="#//hib/dpf/metamodel/SemanticsValidator"/>
-        <eClassifiers xsi:type="ecore:EClass" name="IrreflexiveSemantics" eSuperTypes="#//hib/dpf/metamodel/SemanticsValidator"/>
-        <eClassifiers xsi:type="ecore:EClass" name="MultiplicitySemantics" eSuperTypes="#//hib/dpf/metamodel/SemanticsValidator"/>
-        <eClassifiers xsi:type="ecore:EClass" name="XORSemantics" eSuperTypes="#//hib/dpf/metamodel/SemanticsValidator"/>
+        <eClassifiers xsi:type="ecore:EClass" name="JointlySurjectiveSemantics" eSuperTypes="#//hib/dpf/core/SemanticsValidator"/>
+        <eClassifiers xsi:type="ecore:EClass" name="InverseSemantics" eSuperTypes="#//hib/dpf/core/SemanticsValidator"/>
+        <eClassifiers xsi:type="ecore:EClass" name="IrreflexiveSemantics" eSuperTypes="#//hib/dpf/core/SemanticsValidator"/>
+        <eClassifiers xsi:type="ecore:EClass" name="MultiplicitySemantics" eSuperTypes="#//hib/dpf/core/SemanticsValidator"/>
+        <eClassifiers xsi:type="ecore:EClass" name="XORSemantics" eSuperTypes="#//hib/dpf/core/SemanticsValidator"/>
         <eClassifiers xsi:type="ecore:EClass" name="TransitiveIrreflexiveSemantics"
-            eSuperTypes="#//hib/dpf/metamodel/SemanticsValidator"/>
-        <eClassifiers xsi:type="ecore:EClass" name="SurjectiveSemantics" eSuperTypes="#//hib/dpf/metamodel/SemanticsValidator"/>
+            eSuperTypes="#//hib/dpf/core/SemanticsValidator"/>
+        <eClassifiers xsi:type="ecore:EClass" name="SurjectiveSemantics" eSuperTypes="#//hib/dpf/core/SemanticsValidator"/>
       </eSubpackages>
     </eSubpackages>
   </eSubpackages>

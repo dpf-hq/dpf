@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="no.hib.dpf.metamodel" default="build.jars" basedir=".">
+<project name="no.hib.dpf.core" default="build.jars" basedir=".">
 
 	<property name="p2.build.repo" value="file:${buildDirectory}/buildRepo"/>
 	<property name="basews" value="${ws}"/>
 	<property name="baseos" value="${os}"/>
 	<property name="basearch" value="${arch}"/>
 	<property name="basenl" value="${nl}"/>
-	<property name="bundleId" value="no.hib.dpf.metamodel"/>
+	<property name="bundleId" value="no.hib.dpf.core"/>
 	<property name="bundleVersion" value="1.0.0"/>
 	<property name="p2.publishonerror" value="false"/>
 
@@ -69,7 +69,7 @@
 
 	</target>
 
-	<target name="build.update.jar" depends="init" description="Build the plug-in: no.hib.dpf.metamodel for an update site.">
+	<target name="build.update.jar" depends="init" description="Build the plug-in: no.hib.dpf.core for an update site.">
 		<delete dir="${temp.folder}"/>
 		<mkdir dir="${temp.folder}"/>
 		<antcall target="build.jars"/>
@@ -80,7 +80,7 @@
 		<delete dir="${temp.folder}"/>
 	</target>
 
-	<target name="@dot" depends="init" unless="@dot" description="Create jar: no.hib.dpf.metamodel @dot.">
+	<target name="@dot" depends="init" unless="@dot" description="Create jar: no.hib.dpf.core @dot.">
 		<delete dir="${build.result.folder}/@dot"/>
 		<mkdir dir="${build.result.folder}/@dot"/>
 		<path id="@dot.classpath">
@@ -147,14 +147,14 @@
 		</copy>
 	</target>
 
-	<target name="build.jars" depends="init" description="Compile classes and build nested jars for the plug-in: no.hib.dpf.metamodel.">
+	<target name="build.jars" depends="init" description="Compile classes and build nested jars for the plug-in: no.hib.dpf.core.">
 		<delete file="${compilation.problem.marker}" quiet="true"/>
 		<available property="@dot" file="${build.result.folder}/@dot"/>
 		<antcall target="@dot"/>
 	</target>
 
 	<target name="checkCompilationResults" if="compilation.error.occured">
-		<echo file="${compilation.problem.marker}" message="no.hib.dpf.metamodel : compilation.error.occured=${compilation.error.occured}"/>
+		<echo file="${compilation.problem.marker}" message="no.hib.dpf.core : compilation.error.occured=${compilation.error.occured}"/>
 	</target>
 
 	<target name="build.sources" depends="init">
@@ -241,7 +241,7 @@
 		</copy>
 	</target>
 
-	<target name="clean" depends="init" description="Clean the plug-in: no.hib.dpf.metamodel of all the zips, jars and logs created.">
+	<target name="clean" depends="init" description="Clean the plug-in: no.hib.dpf.core of all the zips, jars and logs created.">
 		<delete dir="${build.result.folder}/@dot"/>
 		<delete file="${build.result.folder}/src.zip"/>
 		<delete file="${plugin.destination}/no.hib.dpf.metamodel_1.0.0.jar"/>
@@ -251,11 +251,11 @@
 	</target>
 
 	<target name="refresh" depends="init" if="eclipse.running" description="Refresh this folder.">
-		<eclipse.convertPath fileSystemPath="/home/dagvl/workspace-skole/no.hib.dpf.metamodel" property="resourcePath"/>
+		<eclipse.convertPath fileSystemPath="/home/dagvl/workspace-skole/no.hib.dpf.core" property="resourcePath"/>
 		<eclipse.refreshLocal resource="${resourcePath}" depth="infinite"/>
 	</target>
 
-	<target name="zip.plugin" depends="init" description="Create a zip containing all the elements for the plug-in: no.hib.dpf.metamodel.">
+	<target name="zip.plugin" depends="init" description="Create a zip containing all the elements for the plug-in: no.hib.dpf.core.">
 		<delete dir="${temp.folder}"/>
 		<mkdir dir="${temp.folder}"/>
 		<antcall target="build.jars"/>

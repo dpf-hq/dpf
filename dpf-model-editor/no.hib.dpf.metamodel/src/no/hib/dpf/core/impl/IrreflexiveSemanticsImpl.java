@@ -1,0 +1,64 @@
+/**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
+ */
+package no.hib.dpf.core.impl;
+
+import no.hib.dpf.core.Arrow;
+import no.hib.dpf.core.CorePackage;
+import no.hib.dpf.core.Graph;
+import no.hib.dpf.core.IrreflexiveSemantics;
+import no.hib.dpf.core.MetamodelPackage;
+import no.hib.dpf.core.Node;
+
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+
+/**
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Irreflexive Semantics</b></em>'.
+ * <!-- end-user-doc -->
+ * <p>
+ * </p>
+ *
+ * @generated
+ */
+public class IrreflexiveSemanticsImpl extends EObjectImpl implements IrreflexiveSemantics {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected IrreflexiveSemanticsImpl() {
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return CorePackage.Literals.IRREFLEXIVE_SEMANTICS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Boolean validateSemantics(Graph oStar, String constraintParameters, EList<Node> typeNodes, EList<Arrow> typeArrows) {
+		for (Arrow arrow : oStar.getArrows()) {
+			if (arrow.getSource().equals(arrow.getTarget())) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+} //IrreflexiveSemanticsImpl
