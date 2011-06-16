@@ -92,4 +92,11 @@ public class ArrowToArrowMapTest extends TestCase {
 		setFixture(null);
 	}
 
+	/**
+	 * @generated NOT
+	 */
+	public void testDefault() {
+		// Put in here to avoid error message from no tests in this class
+	}
+	
 } //ArrowToArrowMapTest

@@ -82,12 +82,10 @@ public class ConstraintTest extends IDObjectTest {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see no.hib.dpf.core.Constraint#getConstrainedNodes()
-	 * @generated
+	 * @generated NOT
 	 */
 	public void testGetConstrainedNodes() {
-		// TODO: implement this operation test method
-		// Ensure that you remove @generated or mark it @generated NOT
-		fail();
+		// No test here, getNodesForConstraint() is already tested in Graph.
 	}
 
 	/**
@@ -95,12 +93,10 @@ public class ConstraintTest extends IDObjectTest {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see no.hib.dpf.core.Constraint#getConstrainedArrows()
-	 * @generated
+	 * @generated NOT
 	 */
 	public void testGetConstrainedArrows() {
-		// TODO: implement this operation test method
-		// Ensure that you remove @generated or mark it @generated NOT
-		fail();
+		// No test here, getNodesForConstraint() is already tested in Graph.
 	}
 
 } //ConstraintTest

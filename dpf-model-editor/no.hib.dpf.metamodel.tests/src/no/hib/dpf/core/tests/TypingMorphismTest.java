@@ -87,5 +87,12 @@ public class TypingMorphismTest extends TestCase {
 	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
+	
+	/**
+	 * @generated NOT
+	 */
+	public void testDefault() {
+		// Put in here to avoid error message from no tests in this class
+	}	
 
 } //TypingMorphismTest
