@@ -10,10 +10,9 @@ import java.io.IOException;
 
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
+import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.core.Graph;
-import no.hib.dpf.core.MetamodelFactory;
-import no.hib.dpf.core.MetamodelPackage;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Specification;
 
@@ -73,8 +72,8 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 	 */
 	protected SpecificationImpl() {
 		super();
-		setTypeGraph(MetamodelFactory.eINSTANCE.createGraph());
-		setGraph(MetamodelFactory.eINSTANCE.createGraph());
+		setTypeGraph(CoreFactory.eINSTANCE.createGraph());
+		setGraph(CoreFactory.eINSTANCE.createGraph());
 	}
 
 	/**

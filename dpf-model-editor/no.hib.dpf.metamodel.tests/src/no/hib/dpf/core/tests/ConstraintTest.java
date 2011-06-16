@@ -9,7 +9,6 @@ package no.hib.dpf.core.tests;
 import junit.textui.TestRunner;
 import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.CoreFactory;
-import no.hib.dpf.core.MetamodelFactory;
 
 /**
  * <!-- begin-user-doc -->

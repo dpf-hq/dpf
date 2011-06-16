@@ -9,14 +9,10 @@ package no.hib.dpf.core.tests;
 import java.util.Map;
 
 import junit.framework.TestCase;
-
 import junit.textui.TestRunner;
-
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.CorePackage;
-import no.hib.dpf.core.MetamodelFactory;
-import no.hib.dpf.core.MetamodelPackage;
 
 /**
  * <!-- begin-user-doc -->

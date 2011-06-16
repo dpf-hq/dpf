@@ -12,7 +12,6 @@ import junit.textui.TestRunner;
 
 import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Graph;
-import no.hib.dpf.core.MetamodelFactory;
 import no.hib.dpf.core.TransitiveIrreflexiveSemantics;
 
 /**
@@ -106,21 +105,21 @@ public class TransitiveIrreflexiveSemanticsTest extends TestCase {
 	 * @generated NOT
 	 */
 	public void testValidateSemantics__Graph_String_EList_EList() {
-		Graph graph = MetamodelFactory.eINSTANCE.createGraph("x, y", "f:x:y,g:y:x");		
+		Graph graph = CoreFactory.eINSTANCE.createGraph("x, y", "f:x:y,g:y:x");		
 		assertFalse(getFixture().validateSemantics(graph, "", null, null));
-		graph = MetamodelFactory.eINSTANCE.createGraph("x, y", "f:x:y,g:x:y");		
+		graph = CoreFactory.eINSTANCE.createGraph("x, y", "f:x:y,g:x:y");		
 		assertTrue(getFixture().validateSemantics(graph, "", null, null));
-		graph = MetamodelFactory.eINSTANCE.createGraph("y", "g:y:y");		
+		graph = CoreFactory.eINSTANCE.createGraph("y", "g:y:y");		
 		assertFalse(getFixture().validateSemantics(graph, "", null, null));
-		graph = MetamodelFactory.eINSTANCE.createGraph("x, y", "f:x:y,g:y:x");		
+		graph = CoreFactory.eINSTANCE.createGraph("x, y", "f:x:y,g:y:x");		
 		assertFalse(getFixture().validateSemantics(graph, "", null, null));
-		graph = MetamodelFactory.eINSTANCE.createGraph("x,y,z", "f:x:y,g:y:z");		
+		graph = CoreFactory.eINSTANCE.createGraph("x,y,z", "f:x:y,g:y:z");		
 		assertTrue(getFixture().validateSemantics(graph, "", null, null));
-		graph = MetamodelFactory.eINSTANCE.createGraph("x,y,z", "f:x:y,g:y:z,h:z:x");		
+		graph = CoreFactory.eINSTANCE.createGraph("x,y,z", "f:x:y,g:y:z,h:z:x");		
 		assertFalse(getFixture().validateSemantics(graph, "", null, null));
-		graph = MetamodelFactory.eINSTANCE.createGraph("a,b,c,x,y,z,¾,¿,Œ", "a:a:x,x:x:¾,b:b:y,y:y:¿,c:c:z,z:z:Œ,¾:¾:¿,¿:¿:Œ,xx:x:z");		
+		graph = CoreFactory.eINSTANCE.createGraph("a,b,c,x,y,z,¾,¿,Œ", "a:a:x,x:x:¾,b:b:y,y:y:¿,c:c:z,z:z:Œ,¾:¾:¿,¿:¿:Œ,xx:x:z");		
 		assertTrue(getFixture().validateSemantics(graph, "", null, null));
-		graph = MetamodelFactory.eINSTANCE.createGraph("a,b,c,x,y,z,¾,¿,Œ", "a:a:x,x:x:¾,b:b:y,y:y:¿,c:c:z,z:z:Œ,¾:¾:¿,¿:¿:Œ,xx:x:z,b:Œ:c");		
+		graph = CoreFactory.eINSTANCE.createGraph("a,b,c,x,y,z,¾,¿,Œ", "a:a:x,x:x:¾,b:b:y,y:y:¿,c:c:z,z:z:Œ,¾:¾:¿,¿:¿:Œ,xx:x:z,b:Œ:c");		
 		assertFalse(getFixture().validateSemantics(graph, "", null, null));
 	}
 

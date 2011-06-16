@@ -13,11 +13,10 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import no.hib.dpf.core.Arrow;
+import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.GraphHomomorphism;
-import no.hib.dpf.core.MetamodelFactory;
-import no.hib.dpf.core.MetamodelPackage;
 import no.hib.dpf.core.Node;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -261,7 +260,7 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	 * @generated NOT
 	 */
 	private Graph createTemporaryTargetGraph(EList<Node> nodes, EList<Arrow> arrows) {
-		Graph retval = MetamodelFactory.eINSTANCE.createGraph();
+		Graph retval = CoreFactory.eINSTANCE.createGraph();
 		
 		backwardsNodeMap = new HashMap<Node, Node>();
 		backwardsArrowMap = new HashMap<Arrow, Arrow>();
@@ -314,7 +313,7 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	 * @generated NOT
 	 */
 	private EcoreEMap<Arrow, Arrow> createArrowMapping(EcoreEMap<Node,Node> mapping) {
-		EcoreEMap<Arrow,Arrow> retval = new EcoreEMap<Arrow, Arrow>(MetamodelPackage.Literals.ARROW_TO_ARROW_MAP, ArrowToArrowMapImpl.class, this, MetamodelPackage.GRAPH_HOMOMORPHISM__ARROW_MAPPING);
+		EcoreEMap<Arrow,Arrow> retval = new EcoreEMap<Arrow, Arrow>(CorePackage.Literals.ARROW_TO_ARROW_MAP, ArrowToArrowMapImpl.class, this, CorePackage.GRAPH_HOMOMORPHISM__ARROW_MAPPING);
 		
 		for (Node source : mapping.keySet()) {			
 			Node mappedSource = mapping.get(source);
@@ -391,7 +390,7 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	 * @generated NOT
 	 */
 	private EcoreEMap<Node,Node> createMapping(Node [] sourceNodes, List<Node[]> targetNodePermutations, int permutationIndex) {
-		EcoreEMap<Node,Node> retval = new EcoreEMap<Node,Node>(MetamodelPackage.Literals.NODE_TO_NODE_MAP, NodeToNodeMapImpl.class, this, MetamodelPackage.GRAPH_HOMOMORPHISM__NODE_MAPPING);		
+		EcoreEMap<Node,Node> retval = new EcoreEMap<Node,Node>(CorePackage.Literals.NODE_TO_NODE_MAP, NodeToNodeMapImpl.class, this, CorePackage.GRAPH_HOMOMORPHISM__NODE_MAPPING);		
 		Node[] targetNodes = targetNodePermutations.get(permutationIndex);
 			
 		for (int i = 0; i < sourceNodes.length; i++) {

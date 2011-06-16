@@ -16,7 +16,6 @@ import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.Graph;
-import no.hib.dpf.core.MetamodelFactory;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Predicate;
 
@@ -143,7 +142,7 @@ public class GraphTest extends IDObjectTest {
 	 * @generated NOT
 	 */
 	public void testCreateArrow__String_Node_Node_Arrow() {
-		Graph typeGraph = MetamodelFactory.eINSTANCE.createGraph("tn_1,tn_2,tn_3", "te_1:tn_1:tn_2,te_2:tn_1:tn_3");
+		Graph typeGraph = CoreFactory.eINSTANCE.createGraph("tn_1,tn_2,tn_3", "te_1:tn_1:tn_2,te_2:tn_1:tn_3");
 
 		getFixture().createNode("source", typeGraph.getNodeByName("tn_1"));
 		getFixture().createNode("target", typeGraph.getNodeByName("tn_2"));
@@ -166,15 +165,15 @@ public class GraphTest extends IDObjectTest {
 	 * @generated NOT
 	 */
 	public void testExtractSubgraph__EList_EList() {
-		Graph sourceGraph = MetamodelFactory.eINSTANCE.createGraph("n_1,n_2", "e_1:n_1:n_2");
+		Graph sourceGraph = CoreFactory.eINSTANCE.createGraph("n_1,n_2", "e_1:n_1:n_2");
 		checkSubgraph(sourceGraph, sourceGraph.getNodes(), sourceGraph.getArrows());
 
-		sourceGraph = MetamodelFactory.eINSTANCE.createGraph("n_1,n_2", "e_1:n_1:n_2");
+		sourceGraph = CoreFactory.eINSTANCE.createGraph("n_1,n_2", "e_1:n_1:n_2");
 		EList<Node> nodes = new BasicEList<Node>();
 		nodes.add(sourceGraph.getNodeByName("n_1"));
 		checkSubgraph(sourceGraph, nodes, new BasicEList<Arrow>());
 
-		sourceGraph = MetamodelFactory.eINSTANCE.createGraph("n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3");
+		sourceGraph = CoreFactory.eINSTANCE.createGraph("n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3");
 		nodes = new BasicEList<Node>();
 		nodes.add(sourceGraph.getNodeByName("n_1"));
 		nodes.add(sourceGraph.getNodeByName("n_2"));
@@ -191,8 +190,8 @@ public class GraphTest extends IDObjectTest {
 	 * @generated NOT
 	 */
 	public void testGetNodesForConstraint__Constraint() {
-		Predicate pred = MetamodelFactory.eINSTANCE.createPredicate("n_1,n_2", "e_1:n_1:n_2");
-		Graph graph = MetamodelFactory.eINSTANCE.createGraph("n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3");
+		Predicate pred = CoreFactory.eINSTANCE.createPredicate("n_1,n_2", "e_1:n_1:n_2");
+		Graph graph = CoreFactory.eINSTANCE.createGraph("n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3");
 		
 		BasicEList<Node> nodes = new BasicEList<Node>();
 		nodes.add(graph.getNodeByName("n_1"));
@@ -226,8 +225,8 @@ public class GraphTest extends IDObjectTest {
 	 * @generated NOT
 	 */
 	public void testGetArrowsForConstraint__Constraint() {
-		Predicate pred = MetamodelFactory.eINSTANCE.createPredicate("n_1,n_2", "e_1:n_1:n_2");
-		Graph graph = MetamodelFactory.eINSTANCE.createGraph("n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3");
+		Predicate pred = CoreFactory.eINSTANCE.createPredicate("n_1,n_2", "e_1:n_1:n_2");
+		Graph graph = CoreFactory.eINSTANCE.createGraph("n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3");
 		
 		BasicEList<Node> nodes = new BasicEList<Node>();
 		nodes.add(graph.getNodeByName("n_1"));
@@ -260,10 +259,10 @@ public class GraphTest extends IDObjectTest {
 	 * @generated NOT
 	 */
 	public void testGetNodes__EList() {
-		Graph typeGraph = MetamodelFactory.eINSTANCE.createGraph("n_1,n_2", "e_1:n_1:n_2");
+		Graph typeGraph = CoreFactory.eINSTANCE.createGraph("n_1,n_2", "e_1:n_1:n_2");
 		
 		Map<Node, Node> nodeMap = new HashMap<Node, Node>();
-		Graph instanceGraph = MetamodelFactory.eINSTANCE.createGraph();
+		Graph instanceGraph = CoreFactory.eINSTANCE.createGraph();
 		
 		for (Node node : typeGraph.getNodes()) {
 			Node newNode = instanceGraph.createNode(node.getName(), node);
@@ -298,10 +297,10 @@ public class GraphTest extends IDObjectTest {
 	 * @generated NOT
 	 */
 	public void testGetArrows__EList() {
-		Graph typeGraph = MetamodelFactory.eINSTANCE.createGraph("n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3");
+		Graph typeGraph = CoreFactory.eINSTANCE.createGraph("n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3");
 		
 		Map<Node, Node> nodeMap = new HashMap<Node, Node>();
-		Graph instanceGraph = MetamodelFactory.eINSTANCE.createGraph();
+		Graph instanceGraph = CoreFactory.eINSTANCE.createGraph();
 		
 		for (Node node : typeGraph.getNodes()) {
 			Node newNode = instanceGraph.createNode(node.getName(), node);
@@ -336,7 +335,7 @@ public class GraphTest extends IDObjectTest {
 	 * @generated NOT
 	 */
 	public void testGetCopy() {
-		Graph sourceGraph = MetamodelFactory.eINSTANCE.createGraph("n_1,n_2", "e_1:n_1:n_2");
+		Graph sourceGraph = CoreFactory.eINSTANCE.createGraph("n_1,n_2", "e_1:n_1:n_2");
 		Graph copy = sourceGraph.getCopy();
 		assertEquals(sourceGraph.getNodes().size(), copy.getNodes().size());
 		assertEquals(sourceGraph.getArrows().size(), copy.getArrows().size());
@@ -351,7 +350,7 @@ public class GraphTest extends IDObjectTest {
 	 * @generated NOT
 	 */
 	public void testExtractSubgraph__EList_EList_throws() {
-		Graph sourceGraph = MetamodelFactory.eINSTANCE.createGraph("n_1,n_2", "e_1:n_1:n_2");
+		Graph sourceGraph = CoreFactory.eINSTANCE.createGraph("n_1,n_2", "e_1:n_1:n_2");
 		EList<Arrow> arrows = new BasicEList<Arrow>();
 		arrows.add(sourceGraph.getArrowByName("e_1"));
 		boolean ok = false;
@@ -385,7 +384,7 @@ public class GraphTest extends IDObjectTest {
 	 * @generated NOT
 	 */
 	public void testCreateTypedEdge() {
-		Graph typeGraph = MetamodelFactory.eINSTANCE.createGraph("tn_1,tn_2", "te_1:tn_1:tn_2");
+		Graph typeGraph = CoreFactory.eINSTANCE.createGraph("tn_1,tn_2", "te_1:tn_1:tn_2");
 
 		getFixture().createNode("source", typeGraph.getNodeByName("tn_1"));
 		getFixture().createNode("target", typeGraph.getNodeByName("tn_2"));
@@ -407,7 +406,7 @@ public class GraphTest extends IDObjectTest {
 	 */
 	public void testCreateEdge__nullpointer_throws() {
 		try {
-			MetamodelFactory.eINSTANCE.createGraph("", "g_edge:null:null");
+			CoreFactory.eINSTANCE.createGraph("", "g_edge:null:null");
 			fail("Expected exception when adding a dangling edge to a graph");
 		} catch(NullPointerException e) {}
 	}
@@ -469,7 +468,7 @@ public class GraphTest extends IDObjectTest {
 	 * @generated NOT
 	 */
 	public void testGetNodeByName__String() {
-		Graph graph = MetamodelFactory.eINSTANCE.createGraph("n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3");
+		Graph graph = CoreFactory.eINSTANCE.createGraph("n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3");
 		
 		Node n_1 = graph.getNodeByName("n_1");
 		Node n_2 = graph.getNodeByName("n_2");
@@ -485,7 +484,7 @@ public class GraphTest extends IDObjectTest {
 	 * @generated NOT
 	 */
 	public void testGetArrowByName__String() {
-		Graph graph = MetamodelFactory.eINSTANCE.createGraph("n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3");
+		Graph graph = CoreFactory.eINSTANCE.createGraph("n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3");
 		
 		Arrow e_1 = graph.getArrowByName("e_1");
 		Node e_2 = graph.getNodeByName("e_2");
@@ -501,7 +500,7 @@ public class GraphTest extends IDObjectTest {
 	 * @generated NOT
 	 */
 	public void testCreateNode__String_Node() {
-		Node typeNode = MetamodelFactory.eINSTANCE.createNode();
+		Node typeNode = CoreFactory.eINSTANCE.createNode();
 		Node typedNode = getFixture().createNode("b", typeNode);
 		assertEquals(typeNode, typedNode.getTypeNode());
 	}
@@ -514,7 +513,7 @@ public class GraphTest extends IDObjectTest {
 	 * @generated NOT
 	 */
 	public void testGetGraphMember__String() {
-		Graph graph = MetamodelFactory.eINSTANCE.createGraph("n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3");
+		Graph graph = CoreFactory.eINSTANCE.createGraph("n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3");
 		
 		Arrow e_1 = graph.getArrowByName("e_1");
 		Node n_2 = graph.getNodeByName("n_2");
@@ -527,8 +526,8 @@ public class GraphTest extends IDObjectTest {
 	 */
 	public static List<Graph> createGraphs(String g_nodes, String h_nodes, String g_edges, String h_edges) {
 		List<Graph> retval = new ArrayList<Graph>();		
-		retval.add(MetamodelFactory.eINSTANCE.createGraph(g_nodes, g_edges));
-		retval.add(MetamodelFactory.eINSTANCE.createGraph(h_nodes, h_edges));
+		retval.add(CoreFactory.eINSTANCE.createGraph(g_nodes, g_edges));
+		retval.add(CoreFactory.eINSTANCE.createGraph(h_nodes, h_edges));
 		return retval;
 	}
 

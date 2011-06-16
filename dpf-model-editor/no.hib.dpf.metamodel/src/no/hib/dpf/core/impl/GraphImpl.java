@@ -14,11 +14,10 @@ import java.util.Map;
 
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
+import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.IDObject;
-import no.hib.dpf.core.MetamodelFactory;
-import no.hib.dpf.core.MetamodelPackage;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Predicate;
 
@@ -181,7 +180,7 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	 * @generated NOT
 	 */
 	public Node createNode(String name) {
-		Node node = MetamodelFactory.eINSTANCE.createNode();
+		Node node = CoreFactory.eINSTANCE.createNode();
 		node.setName(name);
 		node.setGraph(this);
 		return node;
@@ -228,7 +227,7 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	 */
 	public Graph extractSubgraph(EList<Node> nodes, EList<Arrow> arrows) {
 		Map<Node, Node> nodeMap = new HashMap<Node, Node>();
-		Graph retval = MetamodelFactory.eINSTANCE.createGraph();
+		Graph retval = CoreFactory.eINSTANCE.createGraph();
 		
 		for (Node node : nodes) {
 			Node newNode = retval.createNode(node.getName(), node.getTypeNode());
@@ -303,7 +302,7 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	 * @generated NOT
 	 */
 	public Graph getCopy() {
-		Graph retval = MetamodelFactory.eINSTANCE.createGraph();
+		Graph retval = CoreFactory.eINSTANCE.createGraph();
 		for (Node node : getNodes()) {
 			retval.createNode(node.getName());
 		}
@@ -317,7 +316,7 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	 * @generated NOT
 	 */
 	private Arrow createArrowExec(String name, Node source, Node target) {
-		Arrow arrow = MetamodelFactory.eINSTANCE.createArrow();
+		Arrow arrow = CoreFactory.eINSTANCE.createArrow();
 		arrow.setSource(source);
 		arrow.setTarget(target);
 		arrow.setGraph(this);

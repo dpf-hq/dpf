@@ -12,7 +12,6 @@ import junit.textui.TestRunner;
 
 import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Graph;
-import no.hib.dpf.core.MetamodelFactory;
 import no.hib.dpf.core.XORSemantics;
 
 /**
@@ -106,8 +105,8 @@ public class XORSemanticsTest extends TestCase {
 	 * @generated NOT
 	 */
 	public void testValidateSemantics__Graph_String_EList_EList() {
-		Graph typeGraph = MetamodelFactory.eINSTANCE.createGraph("x_type,y_type,z_type", "f_type:x_type:y_type,g_type:x_type:z_type");
-		Graph graph = MetamodelFactory.eINSTANCE.createGraph("x", "");
+		Graph typeGraph = CoreFactory.eINSTANCE.createGraph("x_type,y_type,z_type", "f_type:x_type:y_type,g_type:x_type:z_type");
+		Graph graph = CoreFactory.eINSTANCE.createGraph("x", "");
 		
 		graph.getNodeByName("x").setTypeNode(typeGraph.getNodeByName("y_type"));
 		assertTrue(getFixture().validateSemantics(graph, "", typeGraph.getNodes(), typeGraph.getArrows()));
@@ -115,18 +114,18 @@ public class XORSemanticsTest extends TestCase {
 		graph.getNodeByName("x").setTypeNode(typeGraph.getNodeByName("x_type"));		
 		assertFalse(getFixture().validateSemantics(graph, "", typeGraph.getNodes(), typeGraph.getArrows()));
 
-		graph = MetamodelFactory.eINSTANCE.createGraph("x,y", "f:x:y");
+		graph = CoreFactory.eINSTANCE.createGraph("x,y", "f:x:y");
 		graph.getNodeByName("x").setTypeNode(typeGraph.getNodeByName("x_type"));		
 		graph.getNodeByName("y").setTypeNode(typeGraph.getNodeByName("y_type"));
 		
 		assertTrue(getFixture().validateSemantics(graph, "", typeGraph.getNodes(), typeGraph.getArrows()));
 
-		graph = MetamodelFactory.eINSTANCE.createGraph("x,y", "f:x:y,g:x:y");
+		graph = CoreFactory.eINSTANCE.createGraph("x,y", "f:x:y,g:x:y");
 		graph.getNodeByName("x").setTypeNode(typeGraph.getNodeByName("x_type"));		
 		graph.getNodeByName("y").setTypeNode(typeGraph.getNodeByName("y_type"));
 		assertFalse(getFixture().validateSemantics(graph, "", typeGraph.getNodes(), typeGraph.getArrows()));
 		
-		graph = MetamodelFactory.eINSTANCE.createGraph("x,y,z", "f:x:y,g:x:z");
+		graph = CoreFactory.eINSTANCE.createGraph("x,y,z", "f:x:y,g:x:z");
 		graph.getNodeByName("x").setTypeNode(typeGraph.getNodeByName("x_type"));		
 		graph.getNodeByName("y").setTypeNode(typeGraph.getNodeByName("y_type"));
 		graph.getNodeByName("z").setTypeNode(typeGraph.getNodeByName("z_type"));

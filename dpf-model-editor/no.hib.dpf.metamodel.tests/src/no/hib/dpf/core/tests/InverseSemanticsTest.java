@@ -13,7 +13,6 @@ import junit.textui.TestRunner;
 import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.InverseSemantics;
-import no.hib.dpf.core.MetamodelFactory;
 
 /**
  * <!-- begin-user-doc -->
@@ -106,15 +105,15 @@ public class InverseSemanticsTest extends TestCase {
 	 * @generated NOT
 	 */
 	public void testValidateSemantics__Graph_String_EList_EList() {
-		Graph graph = MetamodelFactory.eINSTANCE.createGraph("x, y", "f:x:y,g:y:x");		
+		Graph graph = CoreFactory.eINSTANCE.createGraph("x, y", "f:x:y,g:y:x");		
 		assertTrue(getFixture().validateSemantics(graph, "", null, null));
-		graph = MetamodelFactory.eINSTANCE.createGraph("x, y", "f:x:y,g:x:y");		
+		graph = CoreFactory.eINSTANCE.createGraph("x, y", "f:x:y,g:x:y");		
 		assertFalse(getFixture().validateSemantics(graph, "", null, null));
-		graph = MetamodelFactory.eINSTANCE.createGraph("x, y, z", "f:x:y,g:y:x,h:y:z,i:z:y");		
+		graph = CoreFactory.eINSTANCE.createGraph("x, y, z", "f:x:y,g:y:x,h:y:z,i:z:y");		
 		assertTrue(getFixture().validateSemantics(graph, "", null, null));
-		graph = MetamodelFactory.eINSTANCE.createGraph("x, y, z, ¾", "f:x:y,g:y:x,h:¾:z");		
+		graph = CoreFactory.eINSTANCE.createGraph("x, y, z, ¾", "f:x:y,g:y:x,h:¾:z");		
 		assertFalse(getFixture().validateSemantics(graph, "", null, null));
-		graph = MetamodelFactory.eINSTANCE.createGraph("x, y, z, ¾", "f:x:y,g:y:x,h:¾:z,i:z:¾");		
+		graph = CoreFactory.eINSTANCE.createGraph("x, y, z, ¾", "f:x:y,g:y:x,h:¾:z,i:z:¾");		
 		assertTrue(getFixture().validateSemantics(graph, "", null, null));
 	}
 

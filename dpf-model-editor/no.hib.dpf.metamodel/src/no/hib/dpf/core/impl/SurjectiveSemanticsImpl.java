@@ -9,14 +9,11 @@ package no.hib.dpf.core.impl;
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.core.Graph;
-import no.hib.dpf.core.MetamodelPackage;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.core.SurjectiveSemantics;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 /**

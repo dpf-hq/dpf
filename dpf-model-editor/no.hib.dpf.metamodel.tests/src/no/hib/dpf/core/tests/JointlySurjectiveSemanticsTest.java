@@ -13,7 +13,6 @@ import junit.textui.TestRunner;
 import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.JointlySurjectiveSemantics;
-import no.hib.dpf.core.MetamodelFactory;
 
 /**
  * <!-- begin-user-doc -->
@@ -106,11 +105,11 @@ public class JointlySurjectiveSemanticsTest extends TestCase {
 	 * @generated NOT
 	 */
 	public void testValidateSemantics__Graph_String_EList_EList() {
-		Graph graph = MetamodelFactory.eINSTANCE.createGraph("x, y, z", "f:x:y,g:z:y");		
+		Graph graph = CoreFactory.eINSTANCE.createGraph("x, y, z", "f:x:y,g:z:y");		
 		assertTrue(getFixture().validateSemantics(graph, "", null, null));
-		graph = MetamodelFactory.eINSTANCE.createGraph("x, y, z, ¾", "f:x:y,g:z:y,Œ:¾:y");		
+		graph = CoreFactory.eINSTANCE.createGraph("x, y, z, ¾", "f:x:y,g:z:y,Œ:¾:y");		
 		assertTrue(getFixture().validateSemantics(graph, "", null, null));
-		graph = MetamodelFactory.eINSTANCE.createGraph("x, y, z, ¾", "f:x:y,g:z:y,Œ:z:¾");		
+		graph = CoreFactory.eINSTANCE.createGraph("x, y, z, ¾", "f:x:y,g:z:y,Œ:z:¾");		
 		assertFalse(getFixture().validateSemantics(graph, "", null, null));
 	}
 

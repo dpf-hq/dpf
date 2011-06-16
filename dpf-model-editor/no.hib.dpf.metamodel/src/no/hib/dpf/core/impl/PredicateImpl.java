@@ -8,11 +8,10 @@ package no.hib.dpf.core.impl;
 
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
+import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.GraphHomomorphism;
-import no.hib.dpf.core.MetamodelFactory;
-import no.hib.dpf.core.MetamodelPackage;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Predicate;
 import no.hib.dpf.core.SemanticsValidator;
@@ -265,7 +264,7 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 	 * @generated NOT
 	 */
 	public Constraint createConstraint(EList<Node> nodes, EList<Arrow> arrows, Graph modelToBeConstrained) {
-		GraphHomomorphism graphHomomorphism = MetamodelFactory.eINSTANCE.createGraphHomomorphism();
+		GraphHomomorphism graphHomomorphism = CoreFactory.eINSTANCE.createGraphHomomorphism();
 		if (graphHomomorphism.tryToCreateGraphHomomorphism(getShape(), nodes, arrows)) {
 			return constructConstraint(modelToBeConstrained, graphHomomorphism);
 		}
@@ -278,7 +277,7 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 	 * @generated NOT
 	 */
 	public boolean canCreateConstraint(EList<Node> nodes, EList<Arrow> arrows, Graph modelToBeConstrained) {
-		GraphHomomorphism graphHomomorphism = MetamodelFactory.eINSTANCE.createGraphHomomorphism();
+		GraphHomomorphism graphHomomorphism = CoreFactory.eINSTANCE.createGraphHomomorphism();
 		return graphHomomorphism.tryToCreateGraphHomomorphism(getShape(), nodes, arrows);
 	}
 
@@ -298,7 +297,7 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 	 * @generated NOT
 	 */
 	private Constraint constructConstraint(Graph modelToBeConstrained, GraphHomomorphism graphHomomorphism) {
-		Constraint retval = MetamodelFactory.eINSTANCE.createConstraint();
+		Constraint retval = CoreFactory.eINSTANCE.createConstraint();
 		retval.setMappings(graphHomomorphism);
 		retval.setPredicate(this);
 		retval.setGraph(modelToBeConstrained);

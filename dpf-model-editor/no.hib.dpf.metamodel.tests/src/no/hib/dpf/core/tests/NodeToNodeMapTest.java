@@ -13,8 +13,6 @@ import junit.textui.TestRunner;
 import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.core.Graph;
-import no.hib.dpf.core.MetamodelFactory;
-import no.hib.dpf.core.MetamodelPackage;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.core.impl.NodeToNodeMapImpl;
 
@@ -102,11 +100,11 @@ public class NodeToNodeMapTest extends TestCase {
 	 * @generated NOT
 	 */
 	public void testConstruction() {
-		NodeToNodeMapImpl nodeToNodeMap = (NodeToNodeMapImpl)MetamodelFactory.eINSTANCE.create(MetamodelPackage.Literals.NODE_TO_NODE_MAP);
+		NodeToNodeMapImpl nodeToNodeMap = (NodeToNodeMapImpl)CoreFactory.eINSTANCE.create(CorePackage.Literals.NODE_TO_NODE_MAP);
 		assertNotNull(nodeToNodeMap);
 		
-		Graph g = MetamodelFactory.eINSTANCE.createGraph();
-		Graph h = MetamodelFactory.eINSTANCE.createGraph();
+		Graph g = CoreFactory.eINSTANCE.createGraph();
+		Graph h = CoreFactory.eINSTANCE.createGraph();
 
 		Node g_n1 = g.createNode("g_n1");		
 		Node h_n1 = h.createNode("h_n1");

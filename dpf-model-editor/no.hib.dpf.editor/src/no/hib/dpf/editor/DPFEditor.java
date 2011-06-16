@@ -26,9 +26,9 @@ import java.util.List;
 import java.util.Map;
 
 import no.hib.dpf.core.Constraint;
+import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.IDObject;
-import no.hib.dpf.core.MetamodelFactory;
 import no.hib.dpf.core.Predicate;
 import no.hib.dpf.core.Signature;
 import no.hib.dpf.core.Specification;
@@ -122,8 +122,8 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 	/** This is the root of the editor's model. */
 	private DPFDiagram digram;
 
-	private Specification specification = MetamodelFactory.eINSTANCE.createSpecification();
-	// private ModelHierarchy modelHierarchy = MetamodelFactory.eINSTANCE.createModelHierarchy();
+	private Specification specification = CoreFactory.eINSTANCE.createSpecification();
+	// private ModelHierarchy modelHierarchy = CoreFactory.eINSTANCE.createModelHierarchy();
 	private Signature signature;
 		
 //	/** Palette component, holding the tools and shapes. */
@@ -134,7 +134,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 
 	/** Create a new DPFEditor instance. This is called by the Workspace. */
 	public DPFEditor() {
-		specification.setTypeGraph(MetamodelFactory.eINSTANCE.createGraph("Node", "Arrow:Node:Node"));
+		specification.setTypeGraph(CoreFactory.eINSTANCE.createGraph("Node", "Arrow:Node:Node"));
 		paletteFactory = new DPFEditorPaletteFactory();
 		setEditDomain(new DefaultEditDomain(this));
 		shapesEditPartFactory = new EditPartFactoryImpl();
@@ -461,7 +461,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		Specification ret = null;
 		
 		try {
-			ret = MetamodelFactory.eINSTANCE.loadSpecification(uri);
+			ret = CoreFactory.eINSTANCE.loadSpecification(uri);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -485,7 +485,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 	@SuppressWarnings("unused")
 	private void loadSignature() {
 		try {
-			signature = MetamodelFactory.eINSTANCE.loadSignature(URI.createFileURI(getSignatureFileName()));
+			signature = CoreFactory.eINSTANCE.loadSignature(URI.createFileURI(getSignatureFileName()));
 		} catch (IOException e) {
 			e.printStackTrace();
 			saveDefaultSignature();
@@ -503,39 +503,39 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 	}
 
 	private void resetSignature() {
-		signature = MetamodelFactory.eINSTANCE.createSignature();
+		signature = CoreFactory.eINSTANCE.createSignature();
 		
-		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("[jointly-injective]", "n_1,n_2,n_3", "a_1:n_1:n_2,a_2:n_1:n_3"));
-		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("[image-inclusion]", "n_1,n_2", "a_1:n_1:n_2,a_2:n_1:n_2"));		
-		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("[composition]", "n_1,n_2,n_3", "a_1:n_1:n_2,a_2:n_2:n_3,a_3:n_1:n_3"));
-		signature.getPredicates().add(MetamodelFactory.eINSTANCE.createPredicate("[injective]", "n_1,n_2", "a_1:n_1:n_2"));
+		signature.getPredicates().add(CoreFactory.eINSTANCE.createPredicate("[jointly-injective]", "n_1,n_2,n_3", "a_1:n_1:n_2,a_2:n_1:n_3"));
+		signature.getPredicates().add(CoreFactory.eINSTANCE.createPredicate("[image-inclusion]", "n_1,n_2", "a_1:n_1:n_2,a_2:n_1:n_2"));		
+		signature.getPredicates().add(CoreFactory.eINSTANCE.createPredicate("[composition]", "n_1,n_2,n_3", "a_1:n_1:n_2,a_2:n_2:n_3,a_3:n_1:n_3"));
+		signature.getPredicates().add(CoreFactory.eINSTANCE.createPredicate("[injective]", "n_1,n_2", "a_1:n_1:n_2"));
 		
-		Predicate surjectivePredicate = MetamodelFactory.eINSTANCE.createPredicate("[surjective]", "n_1,n_2", "a_1:n_1:n_2");
-		surjectivePredicate.setSemanticsValidator(MetamodelFactory.eINSTANCE.createSurjectiveSemantics());
+		Predicate surjectivePredicate = CoreFactory.eINSTANCE.createPredicate("[surjective]", "n_1,n_2", "a_1:n_1:n_2");
+		surjectivePredicate.setSemanticsValidator(CoreFactory.eINSTANCE.createSurjectiveSemantics());
 		signature.getPredicates().add(surjectivePredicate);		
 
-		Predicate xorPredicate = MetamodelFactory.eINSTANCE.createPredicate("[xor]", "n_1,n_2,n_3", "a_1:n_1:n_2,a_2:n_1:n_3");
-		xorPredicate.setSemanticsValidator(MetamodelFactory.eINSTANCE.createXORSemantics());
+		Predicate xorPredicate = CoreFactory.eINSTANCE.createPredicate("[xor]", "n_1,n_2,n_3", "a_1:n_1:n_2,a_2:n_1:n_3");
+		xorPredicate.setSemanticsValidator(CoreFactory.eINSTANCE.createXORSemantics());
 		signature.getPredicates().add(xorPredicate);
 
-		Predicate jSPredicate = MetamodelFactory.eINSTANCE.createPredicate("[jointly-surjective]", "n_1,n_2,n_3", "a_1:n_2:n_1,a_2:n_3:n_1");
-		jSPredicate.setSemanticsValidator(MetamodelFactory.eINSTANCE.createJointlySurjectiveSemantics());
+		Predicate jSPredicate = CoreFactory.eINSTANCE.createPredicate("[jointly-surjective]", "n_1,n_2,n_3", "a_1:n_2:n_1,a_2:n_3:n_1");
+		jSPredicate.setSemanticsValidator(CoreFactory.eINSTANCE.createJointlySurjectiveSemantics());
 		signature.getPredicates().add(jSPredicate);
 
-		Predicate inversePredicate = MetamodelFactory.eINSTANCE.createPredicate("[inverse]", "n_1,n_2", "a_1:n_1:n_2,a_2:n_2:n_1");
-		inversePredicate.setSemanticsValidator(MetamodelFactory.eINSTANCE.createInverseSemantics());
+		Predicate inversePredicate = CoreFactory.eINSTANCE.createPredicate("[inverse]", "n_1,n_2", "a_1:n_1:n_2,a_2:n_2:n_1");
+		inversePredicate.setSemanticsValidator(CoreFactory.eINSTANCE.createInverseSemantics());
 		signature.getPredicates().add(inversePredicate);
 
-		Predicate irreflexivePredicate = MetamodelFactory.eINSTANCE.createPredicate("[irreflexive]", "n_1", "a_1:n_1:n_1");
-		irreflexivePredicate.setSemanticsValidator(MetamodelFactory.eINSTANCE.createIrreflexiveSemantics());
+		Predicate irreflexivePredicate = CoreFactory.eINSTANCE.createPredicate("[irreflexive]", "n_1", "a_1:n_1:n_1");
+		irreflexivePredicate.setSemanticsValidator(CoreFactory.eINSTANCE.createIrreflexiveSemantics());
 		signature.getPredicates().add(irreflexivePredicate);
 
-		Predicate transitiveIrreflexivePredicate = MetamodelFactory.eINSTANCE.createPredicate("[transitive-irreflexive]", "n_1", "a_1:n_1:n_1");
-		transitiveIrreflexivePredicate.setSemanticsValidator(MetamodelFactory.eINSTANCE.createTransitiveIrreflexiveSemantics());
+		Predicate transitiveIrreflexivePredicate = CoreFactory.eINSTANCE.createPredicate("[transitive-irreflexive]", "n_1", "a_1:n_1:n_1");
+		transitiveIrreflexivePredicate.setSemanticsValidator(CoreFactory.eINSTANCE.createTransitiveIrreflexiveSemantics());
 		signature.getPredicates().add(transitiveIrreflexivePredicate);
 		
-		Predicate multiplicityPredicate = MetamodelFactory.eINSTANCE.createPredicate("[mult(m,n)]", "n_1,n_2", "a_1:n_1:n_2");
-		multiplicityPredicate.setSemanticsValidator(MetamodelFactory.eINSTANCE.createMultiplicitySemantics());
+		Predicate multiplicityPredicate = CoreFactory.eINSTANCE.createPredicate("[mult(m,n)]", "n_1,n_2", "a_1:n_1:n_2");
+		multiplicityPredicate.setSemanticsValidator(CoreFactory.eINSTANCE.createMultiplicitySemantics());
 		signature.getPredicates().add(multiplicityPredicate);
 		
 	}
@@ -629,7 +629,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 	private void handleLoadException(Exception e) {
 		System.err.println("** Load failed. Using default model. **");
 		e.printStackTrace();
-		setSpecification(MetamodelFactory.eINSTANCE.createSpecification());
+		setSpecification(CoreFactory.eINSTANCE.createSpecification());
 		setDPFDiagram(new DPFDiagram());
 		getDPFDiagram().setDpfGraph(getSpecification().getGraph());
 		getDPFDiagram().addPropertyChangeListener(this);

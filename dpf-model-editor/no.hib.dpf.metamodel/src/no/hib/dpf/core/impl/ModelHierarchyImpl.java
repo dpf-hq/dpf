@@ -9,8 +9,7 @@ package no.hib.dpf.core.impl;
 import java.util.Collection;
 
 import no.hib.dpf.core.CorePackage;
-import no.hib.dpf.core.MetamodelFactory;
-import no.hib.dpf.core.MetamodelPackage;
+import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.ModelHierarchy;
 import no.hib.dpf.core.Specification;
 
@@ -53,7 +52,7 @@ public class ModelHierarchyImpl extends EObjectImpl implements ModelHierarchy {
 	 */
 	protected ModelHierarchyImpl() {
 		super();
-		getSpecifications().add(MetamodelFactory.eINSTANCE.createSpecification());
+		getSpecifications().add(CoreFactory.eINSTANCE.createSpecification());
 	}
 
 	/**

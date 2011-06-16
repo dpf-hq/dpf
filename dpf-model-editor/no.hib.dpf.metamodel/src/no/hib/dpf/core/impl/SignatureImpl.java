@@ -10,20 +10,15 @@ import java.io.IOException;
 import java.util.Collection;
 
 import no.hib.dpf.core.CorePackage;
-import no.hib.dpf.core.MetamodelPackage;
 import no.hib.dpf.core.Predicate;
 import no.hib.dpf.core.Signature;
 
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;

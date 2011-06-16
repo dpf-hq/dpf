@@ -501,4 +501,4 @@ public class CoreAdapterFactory extends AdapterFactoryImpl {
 		return null;
 	}
 
-} //CoreAdapterFactory
+} //MetamodelAdapterFactory

@@ -10,11 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import no.hib.dpf.core.Arrow;
+import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.IrreflexiveSemantics;
-import no.hib.dpf.core.MetamodelFactory;
-import no.hib.dpf.core.MetamodelPackage;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.core.TransitiveIrreflexiveSemantics;
 
@@ -70,7 +69,7 @@ public class TransitiveIrreflexiveSemanticsImpl extends EObjectImpl implements T
 	 * @generated NOT
 	 */
 	public Boolean validateSemantics(Graph oStar, String constraintParameters, EList<Node> typeNodes, EList<Arrow> typeArrows) {
-		IrreflexiveSemantics irreflexiveSemantics = MetamodelFactory.eINSTANCE.createIrreflexiveSemantics();
+		IrreflexiveSemantics irreflexiveSemantics = CoreFactory.eINSTANCE.createIrreflexiveSemantics();
 		if (irreflexiveSemantics.validateSemantics(oStar, constraintParameters, typeNodes, typeArrows) == false) {
 			return false;
 		}

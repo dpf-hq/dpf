@@ -9,7 +9,6 @@ package no.hib.dpf.core.impl;
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.core.Graph;
-import no.hib.dpf.core.MetamodelPackage;
 import no.hib.dpf.core.Node;
 
 import org.eclipse.emf.common.notify.Notification;

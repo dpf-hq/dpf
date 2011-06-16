@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectOutputStream;
 
-import no.hib.dpf.core.MetamodelFactory;
+import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Specification;
 import no.hib.dpf.editor.displaymodel.DPFDiagram;
 
@@ -147,7 +147,7 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 				// notified)
 				Specification typeSpec = DPFEditor.loadDPF(typeFileName);
 
-				Specification newSpec = MetamodelFactory.eINSTANCE
+				Specification newSpec = CoreFactory.eINSTANCE
 						.createSpecification();
 				newSpec.setTypeGraph(typeSpec.getGraph());
 

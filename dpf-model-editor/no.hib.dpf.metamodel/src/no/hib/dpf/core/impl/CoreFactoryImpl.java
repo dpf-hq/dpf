@@ -7,13 +7,12 @@
 package no.hib.dpf.core.impl;
 
 import java.io.IOException;
-
 import java.util.Map;
 
 import no.hib.dpf.core.*;
 
 import org.eclipse.emf.common.util.URI;
-
+import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
@@ -22,6 +21,11 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -129,13 +133,68 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Graph createGraph() {
 		GraphImpl graph = new GraphImpl();
+		graph.setName("Default name");
 		return graph;
 	}
-
+	
+	/**
+	 * Returns a new object of class '<em>Graph</em>'.
+	 * <!-- begin-user-doc -->
+	 * This is intended as a quick way of generating Graph instances using string parameters for
+	 * nodes and arrows. String formats: "gn1,gn2", "ge1:gn1:gn2"
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Graph</em>'.
+	 * @generated NOT
+	 */
+	public Graph createGraph(String nodes, String arrows) {
+		return createGraph("Default name", nodes, arrows);
+	}
+	
+	/**
+	 * Returns a new object of class '<em>Graph</em>'.
+	 * <!-- begin-user-doc -->
+	 * This is intended as a quick way of generating Graph instances using string parameters for
+	 * nodes and arrows. String formats: "gn1,gn2", "ge1:gn1:gn2"
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Graph</em>'.
+	 * @generated NOT
+	 */
+	public Graph createGraph(String name, String nodes, String arrows) {
+		Graph retval = createGraphNodes(nodes.split(","));
+		addArrowsToGraph(retval, arrows.split(","));		
+		retval.setName(name);
+		return retval;
+	}
+	
+	/**
+	 * @generated NOT
+	 */
+	private Graph createGraphNodes(String[] nodes) {
+		Graph g = CoreFactory.eINSTANCE.createGraph();
+		if (!((nodes.length == 1) && (nodes[0].equals("")))) {
+			for (String node_name : nodes) {
+				g.createNode(node_name.trim());
+			}
+		}
+		return g;
+	}
+	
+	/**
+	 * @generated NOT
+	 */
+	private void addArrowsToGraph(Graph g, String[] arrows) {
+		if (!((arrows.length == 1) && (arrows[0].equals("")))) {
+			for (String arrowDetails : arrows) {
+				String[] arrowDetailsSplit = arrowDetails.split(":");
+				g.createArrow(arrowDetailsSplit[0].trim(), g.getNodeByName(arrowDetailsSplit[1].trim()), g.getNodeByName(arrowDetailsSplit[2].trim()));
+			}
+		}
+	}	
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -145,7 +204,7 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 		NodeImpl node = new NodeImpl();
 		return node;
 	}
-
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -156,6 +215,28 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 		return arrow;
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Node createNode(Node typeNode) {
+		Node retval = createNode();
+		retval.setTypeNode(typeNode);
+		return retval;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Arrow createArrow(Arrow typeArrow) {
+		Arrow retval = createArrow();
+		retval.setTypeArrow(typeArrow);
+		return retval;
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -175,6 +256,33 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 		PredicateImpl predicate = new PredicateImpl();
 		return predicate;
 	}
+	
+	/**
+	 * Returns a new object of class '<em>Predicate</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Predicate</em>'.
+	 * @generated NOT
+	 */
+	public Predicate createPredicate(String nodes, String arrows) {
+		Predicate predicate = createPredicate();
+		predicate.setShape(createGraph(nodes, arrows));
+		return predicate;		
+	}
+	
+	/**
+	 * Returns a new object of class '<em>Predicate</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Predicate</em>'.
+	 * @generated NOT
+	 */
+	public Predicate createPredicate(String symbol, String nodes, String arrows) {
+		Predicate predicate = createPredicate(nodes, arrows);
+		predicate.setSymbol(symbol);
+		return predicate;		
+	}
+	 
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -229,6 +337,19 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public GraphHomomorphism createGraphHomomorphism(EMap<Node, Node> nodeMap, EMap<Arrow, Arrow> arrowMap) {
+		GraphHomomorphism retval = createGraphHomomorphism();
+		retval.getNodeMapping().addAll(nodeMap);
+		retval.getArrowMapping().addAll(arrowMap);
+		return retval;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public IDObject createIDObject() {
@@ -245,7 +366,34 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 		SpecificationImpl specification = new SpecificationImpl();
 		return specification;
 	}
+	
+	@Override
+	/**
+	 * @generated NOT
+	 */
+	public Specification loadSpecification(URI uri) throws IOException {
+		return (Specification)createLoadResource(uri).getContents().get(0);
+	}
 
+	@Override
+	/**
+	 * @generated NOT
+	 */
+	public Signature loadSignature(URI uri) throws IOException {
+		return (Signature)createLoadResource(uri).getContents().get(0);
+	}
+
+	private Resource createLoadResource(URI uri) throws IOException {
+		ResourceSet resourceSet = new ResourceSetImpl();
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMLResourceFactoryImpl());
+
+		resourceSet.getLoadOptions().put(XMIResource.OPTION_DEFER_IDREF_RESOLUTION, true);
+			
+		Resource resource = resourceSet.createResource(uri);
+		resource.load(null);
+		return resource;
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -382,4 +530,5 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 		return CorePackage.eINSTANCE;
 	}
 
-} //CoreFactoryImpl
+
+} //MetamodelFactoryImpl

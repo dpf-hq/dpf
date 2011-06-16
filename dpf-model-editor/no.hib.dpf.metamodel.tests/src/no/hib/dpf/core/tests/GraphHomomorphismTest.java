@@ -14,7 +14,6 @@ import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.GraphHomomorphism;
-import no.hib.dpf.core.MetamodelFactory;
 import no.hib.dpf.core.Node;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -138,7 +137,7 @@ public class GraphHomomorphismTest extends TestCase {
 	 * @generated NOT
 	 */
 	private void doTestReturnedMappings(List<Graph> graphs, String[] nodeNames, String[] edgeNames, boolean expectedResult) {
-		GraphHomomorphism graphHomomorphism = MetamodelFactory.eINSTANCE.createGraphHomomorphism();
+		GraphHomomorphism graphHomomorphism = CoreFactory.eINSTANCE.createGraphHomomorphism();
 		boolean res = graphHomomorphism.tryToCreateGraphHomomorphism(graphs.get(0), graphs.get(1).getNodes(), graphs.get(1).getArrows());
 		assertEquals(true, res);
 		for (String nodes : nodeNames) {			
@@ -281,7 +280,7 @@ public class GraphHomomorphismTest extends TestCase {
 	 * @generated NOT
 	 */
 	private void testTryToCreateHomomorphism(Graph sourceGraph, EList<Node> nodes, EList<Arrow> edges, boolean expectedResult) {
-		GraphHomomorphism graphHomomorphism = MetamodelFactory.eINSTANCE.createGraphHomomorphism();
+		GraphHomomorphism graphHomomorphism = CoreFactory.eINSTANCE.createGraphHomomorphism();
 		boolean res = graphHomomorphism.tryToCreateGraphHomomorphism(sourceGraph, nodes, edges);
 		assertEquals(expectedResult, res);
 	}

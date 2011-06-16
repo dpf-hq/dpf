@@ -10,7 +10,6 @@ import junit.textui.TestRunner;
 import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Graph;
-import no.hib.dpf.core.MetamodelFactory;
 import no.hib.dpf.core.Node;
 
 /**
@@ -97,7 +96,7 @@ public class NodeTest extends IDObjectTest {
 	 * @generated NOT
 	 */
 	public void testGetOutgoingArrows() {
-		Graph g = MetamodelFactory.eINSTANCE.createGraph();
+		Graph g = CoreFactory.eINSTANCE.createGraph();
 		Node n1 = g.createNode("n1");
 		Node n2 = g.createNode("n2");
 		Node n3 = g.createNode("n3");
@@ -124,19 +123,19 @@ public class NodeTest extends IDObjectTest {
 	 * @generated NOT
 	 */
 	public void testArrowCanMakeConnectionAsTarget__Node() {
-		Graph typeGraph = MetamodelFactory.eINSTANCE.createGraph("tn_1,tn_2", "te_1:tn_1:tn_2");		
+		Graph typeGraph = CoreFactory.eINSTANCE.createGraph("tn_1,tn_2", "te_1:tn_1:tn_2");		
 		Node source_tn_1 = typeGraph.getNodeByName("tn_1");
 		Node target_tn_2 = typeGraph.getNodeByName("tn_2");
 		
-		Node source = MetamodelFactory.eINSTANCE.createNode(source_tn_1);
-		Node target = MetamodelFactory.eINSTANCE.createNode(target_tn_2);
+		Node source = CoreFactory.eINSTANCE.createNode(source_tn_1);
+		Node target = CoreFactory.eINSTANCE.createNode(target_tn_2);
 		
 		assertTrue(source.arrowCanMakeConnectionAsTarget(target));		
 		assertFalse(source.arrowCanMakeConnectionAsTarget(null));		
 		assertFalse(source.arrowCanMakeConnectionAsTarget(source));		
 
-		source = MetamodelFactory.eINSTANCE.createNode();
-		target = MetamodelFactory.eINSTANCE.createNode();
+		source = CoreFactory.eINSTANCE.createNode();
+		target = CoreFactory.eINSTANCE.createNode();
 		
 		assertTrue(source.arrowCanMakeConnectionAsTarget(target));		
 		assertTrue(source.arrowCanMakeConnectionAsTarget(source));
@@ -152,7 +151,7 @@ public class NodeTest extends IDObjectTest {
 	 * @generated NOT
 	 */
 	public void testCanReachTargetByOneArrow__Node() {
-		Graph typeGraph = MetamodelFactory.eINSTANCE.createGraph("tn_1,tn_2", "te_1:tn_1:tn_2");
+		Graph typeGraph = CoreFactory.eINSTANCE.createGraph("tn_1,tn_2", "te_1:tn_1:tn_2");
 		assertTrue(typeGraph.getNodeByName("tn_1").canReachTargetByOneArrow(typeGraph.getNodeByName("tn_2")));
 		assertFalse(typeGraph.getNodeByName("tn_2").canReachTargetByOneArrow(typeGraph.getNodeByName("tn_1")));
 	}
@@ -165,7 +164,7 @@ public class NodeTest extends IDObjectTest {
 	 * @generated NOT
 	 */
 	public void testCanReachTargetByTypeArrow__Node_Arrow() {
-		Graph typeGraph = MetamodelFactory.eINSTANCE.createGraph("tn_1,tn_2,tn_3", "te_1:tn_1:tn_2,te_2:tn_1:tn_3");
+		Graph typeGraph = CoreFactory.eINSTANCE.createGraph("tn_1,tn_2,tn_3", "te_1:tn_1:tn_2,te_2:tn_1:tn_3");
 		assertTrue(typeGraph.getNodeByName("tn_1").canReachTargetByTypeArrow(typeGraph.getNodeByName("tn_2"), typeGraph.getArrowByName("te_1")));
 		assertFalse(typeGraph.getNodeByName("tn_1").canReachTargetByTypeArrow(typeGraph.getNodeByName("tn_2"), typeGraph.getArrowByName("te_2")));
 	}
@@ -179,7 +178,7 @@ public class NodeTest extends IDObjectTest {
 	 * @generated NOT
 	 */
 	public void testGetArrowto__Node() {
-		Graph graph = MetamodelFactory.eINSTANCE.createGraph("tn_1,tn_2", "te_1:tn_1:tn_2");
+		Graph graph = CoreFactory.eINSTANCE.createGraph("tn_1,tn_2", "te_1:tn_1:tn_2");
 		assertEquals(graph.getArrowByName("te_1"), graph.getNodeByName("tn_1").getArrowto(graph.getNodeByName("tn_2")));
 		assertEquals(null, graph.getNodeByName("tn_2").getArrowto(graph.getNodeByName("tn_1")));
 	}
@@ -192,13 +191,13 @@ public class NodeTest extends IDObjectTest {
 	 * @generated NOT
 	 */
 	public void testGetTypeName() {
-		Node untypedNode = MetamodelFactory.eINSTANCE.createNode();
+		Node untypedNode = CoreFactory.eINSTANCE.createNode();
 		String typeName = "thetype";
 		untypedNode.setName(typeName);
 		
 		assertEquals("", untypedNode.getTypeName());
 		
-		Node typedNode = MetamodelFactory.eINSTANCE.createNode(untypedNode);
+		Node typedNode = CoreFactory.eINSTANCE.createNode(untypedNode);
 		assertEquals(typeName, typedNode.getTypeName());
 	}
 
@@ -210,8 +209,8 @@ public class NodeTest extends IDObjectTest {
 	 * @generated NOT HOT DOT!
 	 */
 	public void testGenerateUniqueName() {
-		Node n1 = MetamodelFactory.eINSTANCE.createNode();
-		Node n2 = MetamodelFactory.eINSTANCE.createNode();
+		Node n1 = CoreFactory.eINSTANCE.createNode();
+		Node n2 = CoreFactory.eINSTANCE.createNode();
 		
 		n1.setName(n1.generateUniqueName());
 		n2.setName(n2.generateUniqueName());
@@ -227,32 +226,32 @@ public class NodeTest extends IDObjectTest {
 	 * @generated NOT
 	 */
 	public void testCanCreateTypedArrow__Node() {
-		Graph typeGraph = MetamodelFactory.eINSTANCE.createGraph("tn_1,tn_2,tn_3", "ta_1:tn_1:tn_2,ta_2:tn_2:tn_1,t1_3:tn_3:tn_1,ta_4:tn_1:tn_1:ta_5:tn_1:tn_2");		
+		Graph typeGraph = CoreFactory.eINSTANCE.createGraph("tn_1,tn_2,tn_3", "ta_1:tn_1:tn_2,ta_2:tn_2:tn_1,t1_3:tn_3:tn_1,ta_4:tn_1:tn_1:ta_5:tn_1:tn_2");		
 		Node tn_1 = typeGraph.getNodeByName("tn_1");
 		Node tn_2 = typeGraph.getNodeByName("tn_2");
 		Node tn_3 = typeGraph.getNodeByName("tn_3");		
 		
-		Node source = MetamodelFactory.eINSTANCE.createNode();
-		Node target = MetamodelFactory.eINSTANCE.createNode();
+		Node source = CoreFactory.eINSTANCE.createNode();
+		Node target = CoreFactory.eINSTANCE.createNode();
 
 		assertFalse(source.canCreateTypedArrow(null));		
 		assertFalse(source.canCreateTypedArrow(target));		
 		assertFalse(target.canCreateTypedArrow(source));				
 		assertFalse(source.canCreateTypedArrow(source));		
-		target = MetamodelFactory.eINSTANCE.createNode(tn_2);
+		target = CoreFactory.eINSTANCE.createNode(tn_2);
 		assertFalse(source.canCreateTypedArrow(target));		
 		
-		source = MetamodelFactory.eINSTANCE.createNode(tn_1);
+		source = CoreFactory.eINSTANCE.createNode(tn_1);
 		
 		assertFalse(source.canCreateTypedArrow(null));
 		assertTrue(source.canCreateTypedArrow(target));
 		assertTrue(source.canCreateTypedArrow(source));		
 		
-		target = MetamodelFactory.eINSTANCE.createNode(tn_3);
+		target = CoreFactory.eINSTANCE.createNode(tn_3);
 		assertFalse(source.canCreateTypedArrow(target));
 
-		source = MetamodelFactory.eINSTANCE.createNode(tn_3);
-		target = MetamodelFactory.eINSTANCE.createNode(tn_2);
+		source = CoreFactory.eINSTANCE.createNode(tn_3);
+		target = CoreFactory.eINSTANCE.createNode(tn_2);
 		assertFalse(source.canCreateTypedArrow(target));
 		assertFalse(source.canCreateTypedArrow(source));	
 	}
@@ -265,18 +264,18 @@ public class NodeTest extends IDObjectTest {
 	 * @generated NOT
 	 */
 	public void testGetTypeArrow__Node() {
-		Graph typeGraph = MetamodelFactory.eINSTANCE.createGraph("tn_1,tn_2,tn_3", "ta_1:tn_1:tn_2,ta_2:tn_2:tn_1,t1_3:tn_3:tn_1,ta_4:tn_1:tn_1");		
+		Graph typeGraph = CoreFactory.eINSTANCE.createGraph("tn_1,tn_2,tn_3", "ta_1:tn_1:tn_2,ta_2:tn_2:tn_1,t1_3:tn_3:tn_1,ta_4:tn_1:tn_1");		
 		Node tn_1 = typeGraph.getNodeByName("tn_1");
 		Node tn_2 = typeGraph.getNodeByName("tn_2");
 		
-		Node source = MetamodelFactory.eINSTANCE.createNode();
-		Node target = MetamodelFactory.eINSTANCE.createNode();
+		Node source = CoreFactory.eINSTANCE.createNode();
+		Node target = CoreFactory.eINSTANCE.createNode();
 		
 		assertEquals(null, source.getTypeArrow(target));
 		
 		
-		source = MetamodelFactory.eINSTANCE.createNode(tn_1);
-		target = MetamodelFactory.eINSTANCE.createNode(tn_2);
+		source = CoreFactory.eINSTANCE.createNode(tn_1);
+		target = CoreFactory.eINSTANCE.createNode(tn_2);
 		Arrow typeArrow = source.getTypeArrow(target);
 		assertEquals(typeGraph.getArrowByName("ta_1"), typeArrow);
 		typeArrow = source.getTypeArrow(source);
@@ -291,7 +290,7 @@ public class NodeTest extends IDObjectTest {
 	 * @generated NOT
 	 */
 	public void testGetIncomingArrows() {
-		Graph g = MetamodelFactory.eINSTANCE.createGraph();
+		Graph g = CoreFactory.eINSTANCE.createGraph();
 		Node n1 = g.createNode("n1");
 		Node n2 = g.createNode("n2");
 		Node n3 = g.createNode("n3");
@@ -319,10 +318,10 @@ public class NodeTest extends IDObjectTest {
 	}
 
 	public void testGenerateUniqueNameWhenInGraph() {
-		Node n1 = MetamodelFactory.eINSTANCE.createNode();
-		Node n2 = MetamodelFactory.eINSTANCE.createNode();
+		Node n1 = CoreFactory.eINSTANCE.createNode();
+		Node n2 = CoreFactory.eINSTANCE.createNode();
 		
-		Graph g = MetamodelFactory.eINSTANCE.createGraph();
+		Graph g = CoreFactory.eINSTANCE.createGraph();
 		n1.setGraph(g);
 		n2.setGraph(g);
 		
@@ -340,20 +339,20 @@ public class NodeTest extends IDObjectTest {
 	 * @generated NOT
 	 */
 	public void testArrowCanMakeConnectionAsTarget__Node_Arrow() {
-		Graph typeGraph = MetamodelFactory.eINSTANCE.createGraph("tn_1,tn_2", "te_1:tn_1:tn_2,te_2:tn_2:tn_1");		
+		Graph typeGraph = CoreFactory.eINSTANCE.createGraph("tn_1,tn_2", "te_1:tn_1:tn_2,te_2:tn_2:tn_1");		
 		Node source_tn_1 = typeGraph.getNodeByName("tn_1");
 		Node target_tn_2 = typeGraph.getNodeByName("tn_2");
 		Arrow te_1 = typeGraph.getArrowByName("te_1");
 		
-		Node source = MetamodelFactory.eINSTANCE.createNode(source_tn_1);
-		Node target = MetamodelFactory.eINSTANCE.createNode(target_tn_2);
+		Node source = CoreFactory.eINSTANCE.createNode(source_tn_1);
+		Node target = CoreFactory.eINSTANCE.createNode(target_tn_2);
 		
 		assertTrue(source.arrowCanMakeConnectionAsTarget(target, te_1));		
 		assertFalse(source.arrowCanMakeConnectionAsTarget(null, te_1));		
 		assertFalse(source.arrowCanMakeConnectionAsTarget(source, te_1));		
 
-		source = MetamodelFactory.eINSTANCE.createNode();
-		target = MetamodelFactory.eINSTANCE.createNode();
+		source = CoreFactory.eINSTANCE.createNode();
+		target = CoreFactory.eINSTANCE.createNode();
 		
 		assertTrue(source.arrowCanMakeConnectionAsTarget(target, null));		
 		assertFalse(source.arrowCanMakeConnectionAsTarget(target, te_1));		

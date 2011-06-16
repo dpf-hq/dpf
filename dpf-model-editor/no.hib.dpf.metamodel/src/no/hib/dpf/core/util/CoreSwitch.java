@@ -7,6 +7,7 @@
 package no.hib.dpf.core.util;
 
 import java.util.List;
+
 import java.util.Map;
 
 import no.hib.dpf.core.*;
@@ -580,4 +581,4 @@ public class CoreSwitch<T> {
 		return null;
 	}
 
-} //CoreSwitch
+} //MetamodelSwitch

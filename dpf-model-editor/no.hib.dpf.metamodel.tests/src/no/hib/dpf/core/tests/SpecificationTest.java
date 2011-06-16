@@ -24,7 +24,6 @@ import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.Graph;
-import no.hib.dpf.core.MetamodelFactory;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Predicate;
 import no.hib.dpf.core.Specification;
@@ -144,10 +143,10 @@ public class SpecificationTest extends TestCase {
 	 */
 	public void testCreateOStar__Constraint() {
 		// Predicates:
-		Predicate pred = MetamodelFactory.eINSTANCE.createPredicate("n_1,n_2", "e_1:n_1:n_2");
+		Predicate pred = CoreFactory.eINSTANCE.createPredicate("n_1,n_2", "e_1:n_1:n_2");
 		
 		// Creates a type graph, constrained by the predicate:
-		Graph typeGraph = MetamodelFactory.eINSTANCE.createGraph("n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3");
+		Graph typeGraph = CoreFactory.eINSTANCE.createGraph("n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3");
 		BasicEList<Node> nodes = new BasicEList<Node>();
 		nodes.add(typeGraph.getNodeByName("n_1"));
 		nodes.add(typeGraph.getNodeByName("n_2"));
@@ -160,7 +159,7 @@ public class SpecificationTest extends TestCase {
 		Graph instanceGraph = createDefaultInstanceGraph(typeGraph);
 		
 		
-		Specification specification = MetamodelFactory.eINSTANCE.createSpecification();
+		Specification specification = CoreFactory.eINSTANCE.createSpecification();
 		specification.setGraph(instanceGraph);
 		specification.setTypeGraph(typeGraph);
 		
@@ -182,10 +181,10 @@ public class SpecificationTest extends TestCase {
 	 */
 	public void testCreateOStar__Constraint__2() {
 		// Predicates:
-		Predicate pred = MetamodelFactory.eINSTANCE.createPredicate("n_1,n_2,n_3", "a_1:n_1:n_2,a_2:n_3:n_2");
+		Predicate pred = CoreFactory.eINSTANCE.createPredicate("n_1,n_2,n_3", "a_1:n_1:n_2,a_2:n_3:n_2");
 		
 		// Creates a type graph, constrained by the predicate:
-		Graph typeGraph = MetamodelFactory.eINSTANCE.createGraph("x,y,z,�", "f:x:y,g:z:y,�:z:�");
+		Graph typeGraph = CoreFactory.eINSTANCE.createGraph("x,y,z,�", "f:x:y,g:z:y,�:z:�");
 		
 		BasicEList<Node> nodes = new BasicEList<Node>();
 		nodes.add(typeGraph.getNodeByName("x"));
@@ -204,7 +203,7 @@ public class SpecificationTest extends TestCase {
 		instanceGraph.createArrow("g2", instanceGraph.getNodeByName("z"), y2);
 		
 		// graph: x -> y <- z -> y2
-		Specification specification = MetamodelFactory.eINSTANCE.createSpecification();
+		Specification specification = CoreFactory.eINSTANCE.createSpecification();
 		specification.setGraph(instanceGraph);
 		specification.setTypeGraph(typeGraph);
 		
@@ -235,7 +234,7 @@ public class SpecificationTest extends TestCase {
 		// Creates an instance graph:
 		Map<Node, Node> nodeMap = new HashMap<Node, Node>();
 		
-		Graph instanceGraph = MetamodelFactory.eINSTANCE.createGraph();
+		Graph instanceGraph = CoreFactory.eINSTANCE.createGraph();
 		
 		for (Node node : typeGraph.getNodes()) {
 			Node newNode = instanceGraph.createNode(node.getName(), node);

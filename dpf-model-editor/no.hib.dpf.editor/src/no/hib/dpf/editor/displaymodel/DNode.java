@@ -17,9 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import no.hib.dpf.core.Arrow;
+import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.IDObject;
-import no.hib.dpf.core.MetamodelFactory;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.editor.DPFPlugin;
 import no.hib.dpf.editor.icons.ImageSettings;
@@ -250,12 +250,12 @@ public class DNode extends ModelElement implements Node, IDObjectContainer, Mova
 
 	public DNode() {
 		super();
-		setIDObject(MetamodelFactory.eINSTANCE.createNode());
+		setIDObject(CoreFactory.eINSTANCE.createNode());
 	}
 
 	public DNode(Node typeNode) {
 		super();
-		setIDObject(MetamodelFactory.eINSTANCE.createNode(typeNode));
+		setIDObject(CoreFactory.eINSTANCE.createNode(typeNode));
 	}
 	
 	public Node getNodeComponent() {

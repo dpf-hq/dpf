@@ -12,7 +12,6 @@ import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.Graph;
-import no.hib.dpf.core.MetamodelFactory;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Predicate;
 
@@ -112,11 +111,11 @@ public class PredicateTest extends TestCase {
 	 * @generated NOT
 	 */
 	public void testCreateConstraint__EList_EList_Graph() {
-		Predicate testPredicate = MetamodelFactory.eINSTANCE.createPredicate();
-		Graph predicateGraph = MetamodelFactory.eINSTANCE.createGraph("n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3");
+		Predicate testPredicate = CoreFactory.eINSTANCE.createPredicate();
+		Graph predicateGraph = CoreFactory.eINSTANCE.createGraph("n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3");
 		testPredicate.setShape(predicateGraph);
 		
-		Graph userGraph = MetamodelFactory.eINSTANCE.createGraph("n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3");
+		Graph userGraph = CoreFactory.eINSTANCE.createGraph("n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3");
 		
 		// Extract "user selected" elements:
 		EList<Node> nodes = new BasicEList<Node>();
@@ -141,11 +140,11 @@ public class PredicateTest extends TestCase {
 	 * @generated NOT
 	 */
 	public void testCanCreateConstraint__EList_EList_Graph() {
-		Predicate testPredicate = MetamodelFactory.eINSTANCE.createPredicate();
-		Graph predicateGraph = MetamodelFactory.eINSTANCE.createGraph("n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3");
+		Predicate testPredicate = CoreFactory.eINSTANCE.createPredicate();
+		Graph predicateGraph = CoreFactory.eINSTANCE.createGraph("n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3");
 		testPredicate.setShape(predicateGraph);
 		
-		Graph userGraph = MetamodelFactory.eINSTANCE.createGraph("n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3");
+		Graph userGraph = CoreFactory.eINSTANCE.createGraph("n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3");
 		
 		// Extract "user selected" elements:
 		EList<Node> nodes = new BasicEList<Node>();
@@ -177,9 +176,9 @@ public class PredicateTest extends TestCase {
 	 * @generated NOT
 	 */
 	public void testValidateSemantics__Graph_String_EList_EList() {
-		Graph graph = MetamodelFactory.eINSTANCE.createGraph("x, y, z", "f:x:y,g:y:z");		
+		Graph graph = CoreFactory.eINSTANCE.createGraph("x, y, z", "f:x:y,g:y:z");		
 		assertTrue(getFixture().validateSemantics(graph, "", null, null));
-		getFixture().setSemanticsValidator(MetamodelFactory.eINSTANCE.createJointlySurjectiveSemantics());
+		getFixture().setSemanticsValidator(CoreFactory.eINSTANCE.createJointlySurjectiveSemantics());
 		assertFalse(getFixture().validateSemantics(graph, "", null, null));
 	}
 

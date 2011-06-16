@@ -8,15 +8,12 @@ package no.hib.dpf.core.tests;
 
 import java.util.UUID;
 
-import org.junit.Test;
-
 import junit.framework.TestCase;
-
 import junit.textui.TestRunner;
-
 import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.IDObject;
-import no.hib.dpf.core.MetamodelFactory;
+
+import org.junit.Test;
 
 /**
  * <!-- begin-user-doc -->

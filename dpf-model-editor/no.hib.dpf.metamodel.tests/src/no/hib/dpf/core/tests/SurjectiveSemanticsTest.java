@@ -10,7 +10,6 @@ import junit.framework.TestCase;
 import junit.textui.TestRunner;
 import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Graph;
-import no.hib.dpf.core.MetamodelFactory;
 import no.hib.dpf.core.SurjectiveSemantics;
 
 /**
@@ -104,13 +103,13 @@ public class SurjectiveSemanticsTest extends TestCase {
 	 * @generated NOT
 	 */
 	public void testValidateSemantics__Graph_String_EList_EList() {
-		Graph typeGraph = MetamodelFactory.eINSTANCE.createGraph("x_type,y_type", "f_type:x_type:y_type");
-		Graph graph = MetamodelFactory.eINSTANCE.createGraph("y", "");
+		Graph typeGraph = CoreFactory.eINSTANCE.createGraph("x_type,y_type", "f_type:x_type:y_type");
+		Graph graph = CoreFactory.eINSTANCE.createGraph("y", "");
 		graph.getNodeByName("y").setTypeNode(typeGraph.getNodeByName("y_type"));
 		assertFalse(getFixture().validateSemantics(graph, "", typeGraph.getNodes(), typeGraph.getArrows()));
 		graph.getNodeByName("y").setTypeNode(typeGraph.getNodeByName("x_type"));
 		assertTrue(getFixture().validateSemantics(graph, "", typeGraph.getNodes(), typeGraph.getArrows()));
-		graph = MetamodelFactory.eINSTANCE.createGraph("x,y,z", "f:x:y,g:y:z");
+		graph = CoreFactory.eINSTANCE.createGraph("x,y,z", "f:x:y,g:y:z");
 		graph.getNodeByName("x").setTypeNode(typeGraph.getNodeByName("x_type"));
 		graph.getNodeByName("y").setTypeNode(typeGraph.getNodeByName("y_type"));
 		graph.getNodeByName("z").setTypeNode(typeGraph.getNodeByName("y_type"));

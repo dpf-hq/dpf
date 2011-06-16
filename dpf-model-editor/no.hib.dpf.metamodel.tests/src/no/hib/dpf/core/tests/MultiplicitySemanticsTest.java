@@ -12,7 +12,6 @@ import junit.textui.TestRunner;
 
 import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Graph;
-import no.hib.dpf.core.MetamodelFactory;
 import no.hib.dpf.core.MultiplicitySemantics;
 
 /**
@@ -106,33 +105,33 @@ public class MultiplicitySemanticsTest extends TestCase {
 	 * @generated NOT
 	 */
 	public void testValidateSemantics__Graph_String_EList_EList() {
-		Graph typeGraph = MetamodelFactory.eINSTANCE.createGraph("x_type,y_type", "f_type:x_type:y_type");
-		Graph graph = MetamodelFactory.eINSTANCE.createGraph("x", "");
+		Graph typeGraph = CoreFactory.eINSTANCE.createGraph("x_type,y_type", "f_type:x_type:y_type");
+		Graph graph = CoreFactory.eINSTANCE.createGraph("x", "");
 		graph.getNodeByName("x").setTypeNode(typeGraph.getNodeByName("x_type"));
 		
 		assertTrue(getFixture().validateSemantics(graph, "0,1", typeGraph.getNodes(), typeGraph.getArrows()));
 
-		graph = MetamodelFactory.eINSTANCE.createGraph("x", "");
+		graph = CoreFactory.eINSTANCE.createGraph("x", "");
 		graph.getNodeByName("x").setTypeNode(typeGraph.getNodeByName("x_type"));
 
 		assertFalse(getFixture().validateSemantics(graph, "1,1", typeGraph.getNodes(), typeGraph.getArrows()));
 		assertTrue(getFixture().validateSemantics(graph, "0,1", typeGraph.getNodes(), typeGraph.getArrows()));
 		
-		graph = MetamodelFactory.eINSTANCE.createGraph("x", "");
+		graph = CoreFactory.eINSTANCE.createGraph("x", "");
 		graph.getNodeByName("x").setTypeNode(typeGraph.getNodeByName("y_type"));
 
 		assertTrue(getFixture().validateSemantics(graph, "1,1", typeGraph.getNodes(), typeGraph.getArrows()));
 		assertTrue(getFixture().validateSemantics(graph, "4,-1", typeGraph.getNodes(), typeGraph.getArrows()));
 		
 		
-		typeGraph = MetamodelFactory.eINSTANCE.createGraph("x_type", "f_type:x_type:x_type");
-		graph = MetamodelFactory.eINSTANCE.createGraph("x", "");
+		typeGraph = CoreFactory.eINSTANCE.createGraph("x_type", "f_type:x_type:x_type");
+		graph = CoreFactory.eINSTANCE.createGraph("x", "");
 		graph.getNodeByName("x").setTypeNode(typeGraph.getNodeByName("x_type"));
 		
 		assertFalse(getFixture().validateSemantics(graph, "1,1", typeGraph.getNodes(), typeGraph.getArrows()));
 		
-		typeGraph = MetamodelFactory.eINSTANCE.createGraph("x_type,y_type", "f_type:x_type:y_type");
-		graph = MetamodelFactory.eINSTANCE.createGraph("x,y", "f:x:y");
+		typeGraph = CoreFactory.eINSTANCE.createGraph("x_type,y_type", "f_type:x_type:y_type");
+		graph = CoreFactory.eINSTANCE.createGraph("x,y", "f:x:y");
 		graph.getNodeByName("x").setTypeNode(typeGraph.getNodeByName("x_type"));
 		graph.getNodeByName("y").setTypeNode(typeGraph.getNodeByName("y_type"));
 		
@@ -141,7 +140,7 @@ public class MultiplicitySemanticsTest extends TestCase {
 		assertTrue(getFixture().validateSemantics(graph, "1,-1", typeGraph.getNodes(), typeGraph.getArrows()));
 		assertFalse(getFixture().validateSemantics(graph, "2,-1", typeGraph.getNodes(), typeGraph.getArrows()));
 
-		graph = MetamodelFactory.eINSTANCE.createGraph("x,y", "f:x:y,g:x:y");
+		graph = CoreFactory.eINSTANCE.createGraph("x,y", "f:x:y,g:x:y");
 		graph.getNodeByName("x").setTypeNode(typeGraph.getNodeByName("x_type"));
 		graph.getNodeByName("y").setTypeNode(typeGraph.getNodeByName("y_type"));
 		

@@ -16,9 +16,9 @@ import java.util.List;
 import java.util.Vector;
 
 import no.hib.dpf.core.Arrow;
+import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.IDObject;
-import no.hib.dpf.core.MetamodelFactory;
 import no.hib.dpf.core.Node;
 
 import org.eclipse.draw2d.Bendpoint;
@@ -123,7 +123,7 @@ public class DArrow extends ModelElement implements Arrow, IDObjectContainer {
 	 */
 	public DArrow(DNode source, DNode target, Arrow typeArrow) {
 		// The dpf Arrow object must be initialized before the connection of the shapes.
-		setIDObject(MetamodelFactory.eINSTANCE.createArrow(typeArrow));
+		setIDObject(CoreFactory.eINSTANCE.createArrow(typeArrow));
 		addLabel("ref");
 		reconnect(source, target);
 	}

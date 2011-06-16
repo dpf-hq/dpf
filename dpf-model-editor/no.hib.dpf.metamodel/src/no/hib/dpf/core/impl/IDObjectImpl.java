@@ -6,15 +6,13 @@
  */
 package no.hib.dpf.core.impl;
 
-import no.hib.dpf.core.CorePackage;
 import java.util.UUID;
 
+import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.core.IDObject;
-import no.hib.dpf.core.MetamodelPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 

@@ -13,7 +13,6 @@ import junit.textui.TestRunner;
 import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.IrreflexiveSemantics;
-import no.hib.dpf.core.MetamodelFactory;
 
 /**
  * <!-- begin-user-doc -->
@@ -106,11 +105,11 @@ public class IrreflexiveSemanticsTest extends TestCase {
 	 * @generated NOT
 	 */
 	public void testValidateSemantics__Graph_String_EList_EList() {
-		Graph graph = MetamodelFactory.eINSTANCE.createGraph("x, y", "f:x:y,g:y:x");		
+		Graph graph = CoreFactory.eINSTANCE.createGraph("x, y", "f:x:y,g:y:x");		
 		assertTrue(getFixture().validateSemantics(graph, "", null, null));
-		graph = MetamodelFactory.eINSTANCE.createGraph("x, y", "f:x:y,g:x:y");		
+		graph = CoreFactory.eINSTANCE.createGraph("x, y", "f:x:y,g:x:y");		
 		assertTrue(getFixture().validateSemantics(graph, "", null, null));
-		graph = MetamodelFactory.eINSTANCE.createGraph("y", "g:y:y");		
+		graph = CoreFactory.eINSTANCE.createGraph("y", "g:y:y");		
 		assertFalse(getFixture().validateSemantics(graph, "", null, null));
 	}
 

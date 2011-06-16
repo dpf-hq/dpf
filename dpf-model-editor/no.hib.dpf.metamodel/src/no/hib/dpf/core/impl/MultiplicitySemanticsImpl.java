@@ -12,7 +12,6 @@ import java.util.List;
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.core.Graph;
-import no.hib.dpf.core.MetamodelPackage;
 import no.hib.dpf.core.MultiplicitySemantics;
 import no.hib.dpf.core.Node;
 

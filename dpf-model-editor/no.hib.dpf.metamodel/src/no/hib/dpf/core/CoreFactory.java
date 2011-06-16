@@ -6,6 +6,10 @@
  */
 package no.hib.dpf.core;
 
+import java.io.IOException;
+
+import org.eclipse.emf.common.util.EMap;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EFactory;
 
 /**
@@ -35,6 +39,28 @@ public interface CoreFactory extends EFactory {
 	Graph createGraph();
 
 	/**
+	 * Returns a new object of class '<em>Graph</em>'.
+	 * <!-- begin-user-doc -->
+	 * This is intended as a quick way of generating Graph instances using string parameters for
+	 * nodes and edges.
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Graph</em>'.
+	 * @generated NOT
+	 */
+	Graph createGraph(String nodes, String edges);
+	
+	/**
+	 * Returns a new object of class '<em>Graph</em>'.
+	 * <!-- begin-user-doc -->
+	 * This is intended as a quick way of generating Graph instances using string parameters for
+	 * nodes and edges. String formats: "gn1,gn2", "ge1:gn1:gn2"
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Graph</em>'.
+	 * @generated NOT
+	 */
+	Graph createGraph(String name, String nodes, String edges);
+	
+	/**
 	 * Returns a new object of class '<em>Node</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -53,6 +79,22 @@ public interface CoreFactory extends EFactory {
 	Arrow createArrow();
 
 	/**
+	 * Returns a new object of class '<em>Node</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Node</em>'.
+	 * @generated NOT
+	 */
+	Node createNode(Node typeNode);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	Arrow createArrow(Arrow typeArrow);
+	
+	/**
 	 * Returns a new object of class '<em>Signature</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,6 +112,23 @@ public interface CoreFactory extends EFactory {
 	 */
 	Predicate createPredicate();
 
+	/**
+	 * Returns a new object of class '<em>Predicate</em>'.
+	 * <!-- begin-user-doc -->
+	 * shapeDescription is used to construct a graph. See createGraph().
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Predicate</em>'.
+	 * @generated NOT
+	 */
+	Predicate createPredicate(String nodes, String edges);
+
+	/**
+	 * Returns a new object of class '<em>Predicate</em>'.
+	 * @return a new object of class '<em>Predicate</em>'.
+	 * @generated NOT
+	 */
+	Predicate createPredicate(String symbol, String nodes, String edges);
+	
 	/**
 	 * Returns a new object of class '<em>Constraint</em>'.
 	 * <!-- begin-user-doc -->
@@ -98,6 +157,15 @@ public interface CoreFactory extends EFactory {
 	GraphHomomorphism createGraphHomomorphism();
 
 	/**
+	 * Returns a new object of class '<em>Graph Homomorphism</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Graph Homomorphism</em>'.
+	 * @generated NOT
+	 */
+	GraphHomomorphism createGraphHomomorphism(EMap<Node, Node> nodeMap, EMap<Arrow, Arrow> edgeMap);
+	
+	/**
 	 * Returns a new object of class '<em>ID Object</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -124,6 +192,24 @@ public interface CoreFactory extends EFactory {
 	 */
 	ModelHierarchy createModelHierarchy();
 
+	/**
+	 * Loads specification from URI
+	 * @param uri
+	 * @return
+	 * @throws IOException 
+	 * @generated NOT
+	 */
+	Specification loadSpecification(URI uri) throws IOException;
+
+	/**
+	 * Loads signature from URI
+	 * @param uri
+	 * @return
+	 * @throws IOException 
+	 * @generated NOT
+	 */
+	Signature loadSignature(URI uri) throws IOException;
+	
 	/**
 	 * Returns a new object of class '<em>Jointly Surjective Semantics</em>'.
 	 * <!-- begin-user-doc -->

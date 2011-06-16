@@ -7,7 +7,6 @@
 package no.hib.dpf.core.impl;
 
 import java.io.IOException;
-
 import java.util.Map;
 
 import no.hib.dpf.core.Arrow;
@@ -34,14 +33,12 @@ import no.hib.dpf.core.Visualization;
 import no.hib.dpf.core.XORSemantics;
 
 import org.eclipse.emf.common.util.URI;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
@@ -1176,4 +1173,4 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 		createResource(eNS_URI);
 	}
 
-} //CorePackageImpl
+} //MetamodelPackageImpl

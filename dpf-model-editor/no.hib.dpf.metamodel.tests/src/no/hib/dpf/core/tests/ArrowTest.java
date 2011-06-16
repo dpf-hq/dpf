@@ -10,7 +10,6 @@ import junit.textui.TestRunner;
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Graph;
-import no.hib.dpf.core.MetamodelFactory;
 import no.hib.dpf.core.Node;
 
 /**
@@ -88,13 +87,13 @@ public class ArrowTest extends IDObjectTest {
 	 * @generated NOT
 	 */
 	public void testGetTypeName() {
-		Arrow untypedArrow = MetamodelFactory.eINSTANCE.createArrow();
+		Arrow untypedArrow = CoreFactory.eINSTANCE.createArrow();
 		String typeName = "thearrow";
 		untypedArrow.setName(typeName);
 		
 		assertEquals("", untypedArrow.getTypeName());
 		
-		Arrow typedArrow = MetamodelFactory.eINSTANCE.createArrow(untypedArrow);
+		Arrow typedArrow = CoreFactory.eINSTANCE.createArrow(untypedArrow);
 		assertEquals(typeName, typedArrow.getTypeName());
 	}
 
@@ -106,8 +105,8 @@ public class ArrowTest extends IDObjectTest {
 	 * @generated NOT NOT NOT!!!
 	 */
 	public void testGenerateUniqueName() {
-		Arrow a1 = MetamodelFactory.eINSTANCE.createArrow();
-		Arrow a2 = MetamodelFactory.eINSTANCE.createArrow();
+		Arrow a1 = CoreFactory.eINSTANCE.createArrow();
+		Arrow a2 = CoreFactory.eINSTANCE.createArrow();
 		
 		a1.setName(a1.generateUniqueName());
 		a2.setName(a2.generateUniqueName());
@@ -116,12 +115,12 @@ public class ArrowTest extends IDObjectTest {
 	}
 	
 	public void testGenerateUniqueNameWhenInGraph() {
-		Arrow a1 = MetamodelFactory.eINSTANCE.createArrow();
-		Arrow a2 = MetamodelFactory.eINSTANCE.createArrow();
+		Arrow a1 = CoreFactory.eINSTANCE.createArrow();
+		Arrow a2 = CoreFactory.eINSTANCE.createArrow();
 		
-		Graph g = MetamodelFactory.eINSTANCE.createGraph();
+		Graph g = CoreFactory.eINSTANCE.createGraph();
 		
-		Node n1 = MetamodelFactory.eINSTANCE.createNode();
+		Node n1 = CoreFactory.eINSTANCE.createNode();
 		n1.setGraph(g);
 		
 		a1.setSource(n1);

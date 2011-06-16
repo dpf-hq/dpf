@@ -11,7 +11,6 @@ import junit.framework.TestCase;
 import junit.textui.TestRunner;
 
 import no.hib.dpf.core.CoreFactory;
-import no.hib.dpf.core.MetamodelFactory;
 import no.hib.dpf.core.Predicate;
 import no.hib.dpf.core.Signature;
 
@@ -122,9 +121,9 @@ public class SignatureTest extends TestCase {
 	public void testGetPredicateBySymbol__String() {
 		// TODO: implement this operation test method
 		// Ensure that you remove @generated or mark it @generated NOT
-		Predicate p1 = MetamodelFactory.eINSTANCE.createPredicate("p1", "n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3");
+		Predicate p1 = CoreFactory.eINSTANCE.createPredicate("p1", "n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3");
 		getFixture().getPredicates().add(p1);
-		Predicate p2 = MetamodelFactory.eINSTANCE.createPredicate("p2", "n_1,n_2", "e_1:n_1:n_2");
+		Predicate p2 = CoreFactory.eINSTANCE.createPredicate("p2", "n_1,n_2", "e_1:n_1:n_2");
 		getFixture().getPredicates().add(p2);
 		
 		assertEquals(p2, getFixture().getPredicateBySymbol("p2"));

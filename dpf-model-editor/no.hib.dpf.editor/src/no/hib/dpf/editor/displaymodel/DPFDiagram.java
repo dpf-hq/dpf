@@ -15,8 +15,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Graph;
-import no.hib.dpf.core.MetamodelFactory;
 
 /**
  * A container for multiple shapes. This is the "root" of the model data
@@ -43,7 +43,7 @@ public class DPFDiagram extends ModelElement {
 	
 	public DPFDiagram() {
 		super();
-		this.dpfGraph = MetamodelFactory.eINSTANCE.createGraph();
+		this.dpfGraph = CoreFactory.eINSTANCE.createGraph();
 	}
 	
 	public boolean isGridEnabled() {
