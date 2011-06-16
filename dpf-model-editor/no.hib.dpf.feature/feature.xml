@@ -22,7 +22,7 @@
    </requires>
 
    <plugin
-         id="no.hib.dpf.metamodel"
+         id="no.hib.dpf.core"
          download-size="0"
          install-size="0"
          version="0.0.0"
