@@ -471,13 +471,18 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 	}
 	
 	private void loadOrCreateSignature() {
-		if (new File(getSignatureFileName()).exists()) {
-			loadSignature(); 
-		} else {
+		// Temporary commented out: the file is re-generated every time.
+		// TODO: make signature editor, fix all this, and make the user select a signature at some point.
+//		if (new File(getSignatureFileName()).exists()) {
+//			loadSignature(); 
+//		} else {
 			saveDefaultSignature();
-		}
+//		}
 	}
 
+	// Temporary unused: the file is re-generated every time.
+	// TODO: make signature editor, fix all this, and make the user select a signature at some point.
+	@SuppressWarnings("unused")
 	private void loadSignature() {
 		try {
 			signature = MetamodelFactory.eINSTANCE.loadSignature(URI.createFileURI(getSignatureFileName()));
