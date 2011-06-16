@@ -15,13 +15,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import no.hib.dpf.metamodel.Arrow;
-import no.hib.dpf.metamodel.Constraint;
-import no.hib.dpf.metamodel.Graph;
-import no.hib.dpf.metamodel.GraphHomomorphism;
-import no.hib.dpf.metamodel.IDObject;
-import no.hib.dpf.metamodel.Node;
-import no.hib.dpf.metamodel.Predicate;
+import no.hib.dpf.core.Arrow;
+import no.hib.dpf.core.Constraint;
+import no.hib.dpf.core.Graph;
+import no.hib.dpf.core.GraphHomomorphism;
+import no.hib.dpf.core.IDObject;
+import no.hib.dpf.core.Node;
+import no.hib.dpf.core.Predicate;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;

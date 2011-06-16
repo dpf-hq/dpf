@@ -4,13 +4,14 @@
  *
  * $Id$
  */
-package no.hib.dpf.metamodel.tests;
+package no.hib.dpf.core.tests;
 
 import junit.textui.TestRunner;
-import no.hib.dpf.metamodel.Arrow;
-import no.hib.dpf.metamodel.Graph;
-import no.hib.dpf.metamodel.MetamodelFactory;
-import no.hib.dpf.metamodel.Node;
+import no.hib.dpf.core.CoreFactory;
+import no.hib.dpf.core.Arrow;
+import no.hib.dpf.core.Graph;
+import no.hib.dpf.core.MetamodelFactory;
+import no.hib.dpf.core.Node;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,17 +20,17 @@ import no.hib.dpf.metamodel.Node;
  * <p>
  * The following operations are tested:
  * <ul>
- *   <li>{@link no.hib.dpf.metamodel.Node#getOutgoingArrows() <em>Get Outgoing Arrows</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Node#arrowCanMakeConnectionAsTarget(no.hib.dpf.metamodel.Node) <em>Arrow Can Make Connection As Target</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Node#canReachTargetByOneArrow(no.hib.dpf.metamodel.Node) <em>Can Reach Target By One Arrow</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Node#arrowCanMakeConnectionAsTarget(no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Arrow) <em>Arrow Can Make Connection As Target</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Node#canReachTargetByTypeArrow(no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Arrow) <em>Can Reach Target By Type Arrow</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Node#getArrowto(no.hib.dpf.metamodel.Node) <em>Get Arrowto</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Node#getTypeName() <em>Get Type Name</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Node#generateUniqueName() <em>Generate Unique Name</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Node#canCreateTypedArrow(no.hib.dpf.metamodel.Node) <em>Can Create Typed Arrow</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Node#getTypeArrow(no.hib.dpf.metamodel.Node) <em>Get Type Arrow</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Node#getIncomingArrows() <em>Get Incoming Arrows</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Node#getOutgoingArrows() <em>Get Outgoing Arrows</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Node#arrowCanMakeConnectionAsTarget(no.hib.dpf.core.Node) <em>Arrow Can Make Connection As Target</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Node#canReachTargetByOneArrow(no.hib.dpf.core.Node) <em>Can Reach Target By One Arrow</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Node#arrowCanMakeConnectionAsTarget(no.hib.dpf.core.Node, no.hib.dpf.core.Arrow) <em>Arrow Can Make Connection As Target</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Node#canReachTargetByTypeArrow(no.hib.dpf.core.Node, no.hib.dpf.core.Arrow) <em>Can Reach Target By Type Arrow</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Node#getArrowto(no.hib.dpf.core.Node) <em>Get Arrowto</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Node#getTypeName() <em>Get Type Name</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Node#generateUniqueName() <em>Generate Unique Name</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Node#canCreateTypedArrow(no.hib.dpf.core.Node) <em>Can Create Typed Arrow</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Node#getTypeArrow(no.hib.dpf.core.Node) <em>Get Type Arrow</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Node#getIncomingArrows() <em>Get Incoming Arrows</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -74,7 +75,7 @@ public class NodeTest extends IDObjectTest {
 	 */
 	@Override
 	protected void setUp() throws Exception {
-		setFixture(MetamodelFactory.eINSTANCE.createNode());
+		setFixture(CoreFactory.eINSTANCE.createNode());
 	}
 
 	/**
@@ -89,10 +90,10 @@ public class NodeTest extends IDObjectTest {
 	}
 
 	/**
-	 * Tests the '{@link no.hib.dpf.metamodel.Node#getOutgoingEdges() <em>Get Outgoing Edges</em>}' operation.
+	 * Tests the '{@link no.hib.dpf.core.Node#getOutgoingEdges() <em>Get Outgoing Edges</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.Node#getOutgoingEdges()
+	 * @see no.hib.dpf.core.Node#getOutgoingEdges()
 	 * @generated NOT
 	 */
 	public void testGetOutgoingArrows() {
@@ -116,10 +117,10 @@ public class NodeTest extends IDObjectTest {
 	}
 
 	/**
-	 * Tests the '{@link no.hib.dpf.metamodel.Node#edgeCanMakeConnectionAsTarget(no.hib.dpf.metamodel.Node) <em>Edge Can Make Connection As Target</em>}' operation.
+	 * Tests the '{@link no.hib.dpf.core.Node#edgeCanMakeConnectionAsTarget(no.hib.dpf.core.Node) <em>Edge Can Make Connection As Target</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.Node#edgeCanMakeConnectionAsTarget(no.hib.dpf.metamodel.Node)
+	 * @see no.hib.dpf.core.Node#edgeCanMakeConnectionAsTarget(no.hib.dpf.core.Node)
 	 * @generated NOT
 	 */
 	public void testArrowCanMakeConnectionAsTarget__Node() {
@@ -144,10 +145,10 @@ public class NodeTest extends IDObjectTest {
 
 
 	/**
-	 * Tests the '{@link no.hib.dpf.metamodel.Node#canReachTargetByOneEdge(no.hib.dpf.metamodel.Node) <em>Can Reach Target By One Edge</em>}' operation.
+	 * Tests the '{@link no.hib.dpf.core.Node#canReachTargetByOneEdge(no.hib.dpf.core.Node) <em>Can Reach Target By One Edge</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.Node#canReachTargetByOneEdge(no.hib.dpf.metamodel.Node)
+	 * @see no.hib.dpf.core.Node#canReachTargetByOneEdge(no.hib.dpf.core.Node)
 	 * @generated NOT
 	 */
 	public void testCanReachTargetByOneArrow__Node() {
@@ -157,10 +158,10 @@ public class NodeTest extends IDObjectTest {
 	}
 
 	/**
-	 * Tests the '{@link no.hib.dpf.metamodel.Node#canReachTargetByTypeEdge(no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Edge) <em>Can Reach Target By Type Edge</em>}' operation.
+	 * Tests the '{@link no.hib.dpf.core.Node#canReachTargetByTypeEdge(no.hib.dpf.core.Node, no.hib.dpf.core.Edge) <em>Can Reach Target By Type Edge</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.Node#canReachTargetByTypeEdge(no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Edge)
+	 * @see no.hib.dpf.core.Node#canReachTargetByTypeEdge(no.hib.dpf.core.Node, no.hib.dpf.core.Edge)
 	 * @generated NOT
 	 */
 	public void testCanReachTargetByTypeArrow__Node_Arrow() {
@@ -171,10 +172,10 @@ public class NodeTest extends IDObjectTest {
 	
 	
 	/**
-	 * Tests the '{@link no.hib.dpf.metamodel.Node#getEdgeto(no.hib.dpf.metamodel.Node) <em>Get Edgeto</em>}' operation.
+	 * Tests the '{@link no.hib.dpf.core.Node#getEdgeto(no.hib.dpf.core.Node) <em>Get Edgeto</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.Node#getEdgeto(no.hib.dpf.metamodel.Node)
+	 * @see no.hib.dpf.core.Node#getEdgeto(no.hib.dpf.core.Node)
 	 * @generated NOT
 	 */
 	public void testGetArrowto__Node() {
@@ -184,10 +185,10 @@ public class NodeTest extends IDObjectTest {
 	}
 
 	/**
-	 * Tests the '{@link no.hib.dpf.metamodel.Node#getTypeName() <em>Get Type Name</em>}' operation.
+	 * Tests the '{@link no.hib.dpf.core.Node#getTypeName() <em>Get Type Name</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.Node#getTypeName()
+	 * @see no.hib.dpf.core.Node#getTypeName()
 	 * @generated NOT
 	 */
 	public void testGetTypeName() {
@@ -202,10 +203,10 @@ public class NodeTest extends IDObjectTest {
 	}
 
 	/**
-	 * Tests the '{@link no.hib.dpf.metamodel.Node#generateUniqueName() <em>Generate Unique Name</em>}' operation.
+	 * Tests the '{@link no.hib.dpf.core.Node#generateUniqueName() <em>Generate Unique Name</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.Node#generateUniqueName()
+	 * @see no.hib.dpf.core.Node#generateUniqueName()
 	 * @generated NOT HOT DOT!
 	 */
 	public void testGenerateUniqueName() {
@@ -219,10 +220,10 @@ public class NodeTest extends IDObjectTest {
 	}
 	
 	/**
-	 * Tests the '{@link no.hib.dpf.metamodel.Node#canCreateTypedArrow(no.hib.dpf.metamodel.Node) <em>Can Create Typed Arrow</em>}' operation.
+	 * Tests the '{@link no.hib.dpf.core.Node#canCreateTypedArrow(no.hib.dpf.core.Node) <em>Can Create Typed Arrow</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.Node#canCreateTypedArrow(no.hib.dpf.metamodel.Node)
+	 * @see no.hib.dpf.core.Node#canCreateTypedArrow(no.hib.dpf.core.Node)
 	 * @generated NOT
 	 */
 	public void testCanCreateTypedArrow__Node() {
@@ -257,10 +258,10 @@ public class NodeTest extends IDObjectTest {
 	}
 
 	/**
-	 * Tests the '{@link no.hib.dpf.metamodel.Node#getTypeArrow(no.hib.dpf.metamodel.Node) <em>Get Type Arrow</em>}' operation.
+	 * Tests the '{@link no.hib.dpf.core.Node#getTypeArrow(no.hib.dpf.core.Node) <em>Get Type Arrow</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.Node#getTypeArrow(no.hib.dpf.metamodel.Node)
+	 * @see no.hib.dpf.core.Node#getTypeArrow(no.hib.dpf.core.Node)
 	 * @generated NOT
 	 */
 	public void testGetTypeArrow__Node() {
@@ -283,10 +284,10 @@ public class NodeTest extends IDObjectTest {
 	}
 
 	/**
-	 * Tests the '{@link no.hib.dpf.metamodel.Node#getIncomingArrows() <em>Get Incoming Arrows</em>}' operation.
+	 * Tests the '{@link no.hib.dpf.core.Node#getIncomingArrows() <em>Get Incoming Arrows</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.Node#getIncomingArrows()
+	 * @see no.hib.dpf.core.Node#getIncomingArrows()
 	 * @generated NOT
 	 */
 	public void testGetIncomingArrows() {
@@ -332,10 +333,10 @@ public class NodeTest extends IDObjectTest {
 	}
 
 	/**
-	 * Tests the '{@link no.hib.dpf.metamodel.Node#edgeCanMakeConnectionAsTarget(no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Edge) <em>Edge Can Make Connection As Target</em>}' operation.
+	 * Tests the '{@link no.hib.dpf.core.Node#edgeCanMakeConnectionAsTarget(no.hib.dpf.core.Node, no.hib.dpf.core.Edge) <em>Edge Can Make Connection As Target</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.Node#edgeCanMakeConnectionAsTarget(no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Edge)
+	 * @see no.hib.dpf.core.Node#edgeCanMakeConnectionAsTarget(no.hib.dpf.core.Node, no.hib.dpf.core.Edge)
 	 * @generated NOT
 	 */
 	public void testArrowCanMakeConnectionAsTarget__Node_Arrow() {

@@ -16,13 +16,13 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
+import no.hib.dpf.core.Arrow;
+import no.hib.dpf.core.Graph;
+import no.hib.dpf.core.IDObject;
+import no.hib.dpf.core.MetamodelFactory;
+import no.hib.dpf.core.Node;
 import no.hib.dpf.editor.DPFPlugin;
 import no.hib.dpf.editor.icons.ImageSettings;
-import no.hib.dpf.metamodel.Arrow;
-import no.hib.dpf.metamodel.Graph;
-import no.hib.dpf.metamodel.IDObject;
-import no.hib.dpf.metamodel.MetamodelFactory;
-import no.hib.dpf.metamodel.Node;
 
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;

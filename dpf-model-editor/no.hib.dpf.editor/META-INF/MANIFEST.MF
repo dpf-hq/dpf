@@ -14,7 +14,7 @@ Require-Bundle: org.eclipse.gef;bundle-version="[3.5.0,4.0.0)",
  org.eclipse.ui.workbench;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.ui.ide;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.jface;bundle-version="[3.2.0,4.0.0)",
- no.hib.dpf.metamodel,
+ no.hib.dpf.core,
  org.eclipse.emf.ecore.xmi,
  no.hib.dpf.api;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy

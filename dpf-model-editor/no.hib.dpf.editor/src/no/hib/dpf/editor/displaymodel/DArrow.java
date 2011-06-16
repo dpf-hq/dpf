@@ -15,11 +15,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
-import no.hib.dpf.metamodel.Arrow;
-import no.hib.dpf.metamodel.Graph;
-import no.hib.dpf.metamodel.IDObject;
-import no.hib.dpf.metamodel.MetamodelFactory;
-import no.hib.dpf.metamodel.Node;
+import no.hib.dpf.core.Arrow;
+import no.hib.dpf.core.Graph;
+import no.hib.dpf.core.IDObject;
+import no.hib.dpf.core.MetamodelFactory;
+import no.hib.dpf.core.Node;
 
 import org.eclipse.draw2d.Bendpoint;
 import org.eclipse.draw2d.Graphics;

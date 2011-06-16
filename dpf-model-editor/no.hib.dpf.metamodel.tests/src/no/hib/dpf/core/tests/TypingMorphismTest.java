@@ -4,14 +4,15 @@
  *
  * $Id$
  */
-package no.hib.dpf.metamodel.tests;
+package no.hib.dpf.core.tests;
 
 import junit.framework.TestCase;
 
 import junit.textui.TestRunner;
 
-import no.hib.dpf.metamodel.MetamodelFactory;
-import no.hib.dpf.metamodel.TypingMorphism;
+import no.hib.dpf.core.CoreFactory;
+import no.hib.dpf.core.MetamodelFactory;
+import no.hib.dpf.core.TypingMorphism;
 
 /**
  * <!-- begin-user-doc -->
@@ -76,7 +77,7 @@ public class TypingMorphismTest extends TestCase {
 	 */
 	@Override
 	protected void setUp() throws Exception {
-		setFixture(MetamodelFactory.eINSTANCE.createTypingMorphism());
+		setFixture(CoreFactory.eINSTANCE.createTypingMorphism());
 	}
 
 	/**

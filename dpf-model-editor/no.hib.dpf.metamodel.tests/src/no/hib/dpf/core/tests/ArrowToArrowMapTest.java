@@ -4,32 +4,35 @@
  *
  * $Id$
  */
-package no.hib.dpf.metamodel.tests;
+package no.hib.dpf.core.tests;
 
-import org.junit.Test;
+import java.util.Map;
 
 import junit.framework.TestCase;
 
 import junit.textui.TestRunner;
 
-import no.hib.dpf.metamodel.MetamodelFactory;
-import no.hib.dpf.metamodel.ModelHierarchy;
+import no.hib.dpf.core.Arrow;
+import no.hib.dpf.core.CoreFactory;
+import no.hib.dpf.core.CorePackage;
+import no.hib.dpf.core.MetamodelFactory;
+import no.hib.dpf.core.MetamodelPackage;
 
 /**
  * <!-- begin-user-doc -->
- * A test case for the model object '<em><b>Model Hierarchy</b></em>'.
+ * A test case for the model object '<em><b>Arrow To Arrow Map</b></em>'.
  * <!-- end-user-doc -->
  * @generated
  */
-public class ModelHierarchyTest extends TestCase {
+public class ArrowToArrowMapTest extends TestCase {
 
 	/**
-	 * The fixture for this Model Hierarchy test case.
+	 * The fixture for this Arrow To Arrow Map test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ModelHierarchy fixture = null;
+	protected Map.Entry<Arrow, Arrow> fixture = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -37,36 +40,36 @@ public class ModelHierarchyTest extends TestCase {
 	 * @generated
 	 */
 	public static void main(String[] args) {
-		TestRunner.run(ModelHierarchyTest.class);
+		TestRunner.run(ArrowToArrowMapTest.class);
 	}
 
 	/**
-	 * Constructs a new Model Hierarchy test case with the given name.
+	 * Constructs a new Arrow To Arrow Map test case with the given name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelHierarchyTest(String name) {
+	public ArrowToArrowMapTest(String name) {
 		super(name);
 	}
 
 	/**
-	 * Sets the fixture for this Model Hierarchy test case.
+	 * Sets the fixture for this Arrow To Arrow Map test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void setFixture(ModelHierarchy fixture) {
+	protected void setFixture(Map.Entry<Arrow, Arrow> fixture) {
 		this.fixture = fixture;
 	}
 
 	/**
-	 * Returns the fixture for this Model Hierarchy test case.
+	 * Returns the fixture for this Arrow To Arrow Map test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ModelHierarchy getFixture() {
+	protected Map.Entry<Arrow, Arrow> getFixture() {
 		return fixture;
 	}
 
@@ -77,8 +80,9 @@ public class ModelHierarchyTest extends TestCase {
 	 * @generated
 	 */
 	@Override
+	@SuppressWarnings("unchecked")
 	protected void setUp() throws Exception {
-		setFixture(MetamodelFactory.eINSTANCE.createModelHierarchy());
+		setFixture((Map.Entry<Arrow, Arrow>)CoreFactory.eINSTANCE.create(CorePackage.Literals.ARROW_TO_ARROW_MAP));
 	}
 
 	/**
@@ -91,10 +95,5 @@ public class ModelHierarchyTest extends TestCase {
 	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
-	
-	@Test
-	public void testDefaultConstructedModelHierarchyHasOneSpecification() {
-		assertEquals(1, getFixture().getSpecifications().size());
-	}
 
-} //ModelHierarchyTest
+} //ArrowToArrowMapTest

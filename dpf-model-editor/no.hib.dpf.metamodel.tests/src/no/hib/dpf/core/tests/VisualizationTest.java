@@ -4,11 +4,11 @@
  *
  * $Id$
  */
-package no.hib.dpf.metamodel.tests;
+package no.hib.dpf.core.tests;
 
 import junit.framework.TestCase;
 
-import no.hib.dpf.metamodel.Visualization;
+import no.hib.dpf.core.Visualization;
 
 /**
  * <!-- begin-user-doc -->

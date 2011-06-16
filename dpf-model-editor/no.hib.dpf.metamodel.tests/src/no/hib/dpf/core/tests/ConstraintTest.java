@@ -4,11 +4,12 @@
  *
  * $Id$
  */
-package no.hib.dpf.metamodel.tests;
+package no.hib.dpf.core.tests;
 
 import junit.textui.TestRunner;
-import no.hib.dpf.metamodel.Constraint;
-import no.hib.dpf.metamodel.MetamodelFactory;
+import no.hib.dpf.core.Constraint;
+import no.hib.dpf.core.CoreFactory;
+import no.hib.dpf.core.MetamodelFactory;
 
 /**
  * <!-- begin-user-doc -->
@@ -17,8 +18,8 @@ import no.hib.dpf.metamodel.MetamodelFactory;
  * <p>
  * The following operations are tested:
  * <ul>
- *   <li>{@link no.hib.dpf.metamodel.Constraint#getConstrainedNodes() <em>Get Constrained Nodes</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Constraint#getConstrainedArrows() <em>Get Constrained Arrows</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Constraint#getConstrainedNodes() <em>Get Constrained Nodes</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Constraint#getConstrainedArrows() <em>Get Constrained Arrows</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -63,7 +64,7 @@ public class ConstraintTest extends IDObjectTest {
 	 */
 	@Override
 	protected void setUp() throws Exception {
-		setFixture(MetamodelFactory.eINSTANCE.createConstraint());
+		setFixture(CoreFactory.eINSTANCE.createConstraint());
 	}
 
 	/**
@@ -78,10 +79,10 @@ public class ConstraintTest extends IDObjectTest {
 	}
 
 	/**
-	 * Tests the '{@link no.hib.dpf.metamodel.Constraint#getConstrainedNodes() <em>Get Constrained Nodes</em>}' operation.
+	 * Tests the '{@link no.hib.dpf.core.Constraint#getConstrainedNodes() <em>Get Constrained Nodes</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.Constraint#getConstrainedNodes()
+	 * @see no.hib.dpf.core.Constraint#getConstrainedNodes()
 	 * @generated
 	 */
 	public void testGetConstrainedNodes() {
@@ -91,10 +92,10 @@ public class ConstraintTest extends IDObjectTest {
 	}
 
 	/**
-	 * Tests the '{@link no.hib.dpf.metamodel.Constraint#getConstrainedArrows() <em>Get Constrained Arrows</em>}' operation.
+	 * Tests the '{@link no.hib.dpf.core.Constraint#getConstrainedArrows() <em>Get Constrained Arrows</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.Constraint#getConstrainedArrows()
+	 * @see no.hib.dpf.core.Constraint#getConstrainedArrows()
 	 * @generated
 	 */
 	public void testGetConstrainedArrows() {

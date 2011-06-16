@@ -1,6 +1,6 @@
 package no.hib.dpf.editor.displaymodel.factories;
 
-import no.hib.dpf.metamodel.Arrow;
+import no.hib.dpf.core.Arrow;
 
 import org.eclipse.gef.requests.CreationFactory;
 

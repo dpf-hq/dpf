@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package no.hib.dpf.metamodel.tests;
+package no.hib.dpf.core.tests;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,13 +20,14 @@ import junit.framework.TestCase;
 
 import junit.textui.TestRunner;
 
-import no.hib.dpf.metamodel.Arrow;
-import no.hib.dpf.metamodel.Constraint;
-import no.hib.dpf.metamodel.Graph;
-import no.hib.dpf.metamodel.MetamodelFactory;
-import no.hib.dpf.metamodel.Node;
-import no.hib.dpf.metamodel.Predicate;
-import no.hib.dpf.metamodel.Specification;
+import no.hib.dpf.core.CoreFactory;
+import no.hib.dpf.core.Arrow;
+import no.hib.dpf.core.Constraint;
+import no.hib.dpf.core.Graph;
+import no.hib.dpf.core.MetamodelFactory;
+import no.hib.dpf.core.Node;
+import no.hib.dpf.core.Predicate;
+import no.hib.dpf.core.Specification;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,8 +36,8 @@ import no.hib.dpf.metamodel.Specification;
  * <p>
  * The following operations are tested:
  * <ul>
- *   <li>{@link no.hib.dpf.metamodel.Specification#save(org.eclipse.emf.common.util.URI) <em>Save</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Specification#createOStar(no.hib.dpf.metamodel.Constraint) <em>Create OStar</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Specification#save(org.eclipse.emf.common.util.URI) <em>Save</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Specification#createOStar(no.hib.dpf.core.Constraint) <em>Create OStar</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -98,7 +99,7 @@ public class SpecificationTest extends TestCase {
 	 */
 	@Override
 	protected void setUp() throws Exception {
-		setFixture(MetamodelFactory.eINSTANCE.createSpecification());
+		setFixture(CoreFactory.eINSTANCE.createSpecification());
 	}
 
 	/**
@@ -113,10 +114,10 @@ public class SpecificationTest extends TestCase {
 	}
 	
 	/**
-	 * Tests the '{@link no.hib.dpf.metamodel.Specification#save(org.eclipse.emf.common.util.URI) <em>Save</em>}' operation.
+	 * Tests the '{@link no.hib.dpf.core.Specification#save(org.eclipse.emf.common.util.URI) <em>Save</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.Specification#save(org.eclipse.emf.common.util.URI)
+	 * @see no.hib.dpf.core.Specification#save(org.eclipse.emf.common.util.URI)
 	 * @generated NOT
 	 */
 	public void testSave__URI() {
@@ -135,10 +136,10 @@ public class SpecificationTest extends TestCase {
 	}
 
 	/**
-	 * Tests the '{@link no.hib.dpf.metamodel.Specification#createOStar(no.hib.dpf.metamodel.Constraint) <em>Create OStar</em>}' operation.
+	 * Tests the '{@link no.hib.dpf.core.Specification#createOStar(no.hib.dpf.core.Constraint) <em>Create OStar</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.Specification#createOStar(no.hib.dpf.metamodel.Constraint)
+	 * @see no.hib.dpf.core.Specification#createOStar(no.hib.dpf.core.Constraint)
 	 * @generated NOT
 	 */
 	public void testCreateOStar__Constraint() {

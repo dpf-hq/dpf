@@ -3,11 +3,11 @@ package no.hib.dpf.editor.editoractions;
 import java.util.ArrayList;
 import java.util.List;
 
+import no.hib.dpf.core.Arrow;
+import no.hib.dpf.core.Graph;
+import no.hib.dpf.core.Node;
 import no.hib.dpf.editor.parts.ArrowEditPart;
 import no.hib.dpf.editor.parts.NodeEditPart;
-import no.hib.dpf.metamodel.Arrow;
-import no.hib.dpf.metamodel.Graph;
-import no.hib.dpf.metamodel.Node;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;

@@ -16,9 +16,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectOutputStream;
 
+import no.hib.dpf.core.MetamodelFactory;
+import no.hib.dpf.core.Specification;
 import no.hib.dpf.editor.displaymodel.DPFDiagram;
-import no.hib.dpf.metamodel.MetamodelFactory;
-import no.hib.dpf.metamodel.Specification;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;

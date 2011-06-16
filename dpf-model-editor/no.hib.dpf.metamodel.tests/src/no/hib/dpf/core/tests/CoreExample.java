@@ -4,14 +4,14 @@
  *
  * $Id$
  */
-package no.hib.dpf.metamodel.tests;
+package no.hib.dpf.core.tests;
 
 import java.io.File;
 import java.io.IOException;
 
-import no.hib.dpf.metamodel.Graph;
-import no.hib.dpf.metamodel.MetamodelFactory;
-import no.hib.dpf.metamodel.MetamodelPackage;
+import no.hib.dpf.core.CoreFactory;
+import no.hib.dpf.core.CorePackage;
+import no.hib.dpf.core.Graph;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
@@ -29,11 +29,11 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 /**
  * <!-- begin-user-doc -->
- * A sample utility for the '<em><b>metamodel</b></em>' package.
+ * A sample utility for the '<em><b>core</b></em>' package.
  * <!-- end-user-doc -->
  * @generated
  */
-public class MetamodelExample {
+public class CoreExample {
 	/**
 	 * <!-- begin-user-doc -->
 	 * Load all the argument file paths or URIs as instances of the model.
@@ -55,16 +55,16 @@ public class MetamodelExample {
 		// Register the package to ensure it is available during loading.
 		//
 		resourceSet.getPackageRegistry().put
-			(MetamodelPackage.eNS_URI, 
-			 MetamodelPackage.eINSTANCE);
+			(CorePackage.eNS_URI, 
+			 CorePackage.eINSTANCE);
         
 		// If there are no arguments, emit an appropriate usage message.
 		//
 		if (args.length == 0) {
 			System.out.println("Enter a list of file paths or URIs that have content like this:");
 			try {
-				Resource resource = resourceSet.createResource(URI.createURI("http:///My.metamodel"));
-				Graph root = MetamodelFactory.eINSTANCE.createGraph();
+				Resource resource = resourceSet.createResource(URI.createURI("http:///My.core"));
+				Graph root = CoreFactory.eINSTANCE.createGraph();
 				resource.getContents().add(root);
 				resource.save(System.out, null);
 			}
@@ -122,4 +122,4 @@ public class MetamodelExample {
 		}
 	}
 
-} //MetamodelExample
+} //CoreExample

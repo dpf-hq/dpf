@@ -4,33 +4,35 @@
  *
  * $Id$
  */
-package no.hib.dpf.metamodel.tests;
+package no.hib.dpf.core.tests;
 
-import java.util.Map;
+import java.util.UUID;
+
+import org.junit.Test;
 
 import junit.framework.TestCase;
 
 import junit.textui.TestRunner;
 
-import no.hib.dpf.metamodel.Arrow;
-import no.hib.dpf.metamodel.MetamodelFactory;
-import no.hib.dpf.metamodel.MetamodelPackage;
+import no.hib.dpf.core.CoreFactory;
+import no.hib.dpf.core.IDObject;
+import no.hib.dpf.core.MetamodelFactory;
 
 /**
  * <!-- begin-user-doc -->
- * A test case for the model object '<em><b>Arrow To Arrow Map</b></em>'.
+ * A test case for the model object '<em><b>ID Object</b></em>'.
  * <!-- end-user-doc -->
  * @generated
  */
-public class ArrowToArrowMapTest extends TestCase {
+public class IDObjectTest extends TestCase {
 
 	/**
-	 * The fixture for this Arrow To Arrow Map test case.
+	 * The fixture for this ID Object test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Map.Entry<Arrow, Arrow> fixture = null;
+	protected IDObject fixture = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -38,36 +40,36 @@ public class ArrowToArrowMapTest extends TestCase {
 	 * @generated
 	 */
 	public static void main(String[] args) {
-		TestRunner.run(ArrowToArrowMapTest.class);
+		TestRunner.run(IDObjectTest.class);
 	}
 
 	/**
-	 * Constructs a new Arrow To Arrow Map test case with the given name.
+	 * Constructs a new ID Object test case with the given name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ArrowToArrowMapTest(String name) {
+	public IDObjectTest(String name) {
 		super(name);
 	}
 
 	/**
-	 * Sets the fixture for this Arrow To Arrow Map test case.
+	 * Sets the fixture for this ID Object test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void setFixture(Map.Entry<Arrow, Arrow> fixture) {
+	protected void setFixture(IDObject fixture) {
 		this.fixture = fixture;
 	}
 
 	/**
-	 * Returns the fixture for this Arrow To Arrow Map test case.
+	 * Returns the fixture for this ID Object test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Map.Entry<Arrow, Arrow> getFixture() {
+	protected IDObject getFixture() {
 		return fixture;
 	}
 
@@ -78,9 +80,8 @@ public class ArrowToArrowMapTest extends TestCase {
 	 * @generated
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	protected void setUp() throws Exception {
-		setFixture((Map.Entry<Arrow, Arrow>)MetamodelFactory.eINSTANCE.create(MetamodelPackage.Literals.ARROW_TO_ARROW_MAP));
+		setFixture(CoreFactory.eINSTANCE.createIDObject());
 	}
 
 	/**
@@ -93,5 +94,15 @@ public class ArrowToArrowMapTest extends TestCase {
 	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
+	
+	@Test
+	public void testConstructor() {
+		String id = getFixture().getId();
+		try {
+			UUID.fromString(id);
+		} catch (Exception e) {
+			fail("Illegal id string from IDObject");
+		}
+	}
 
-} //ArrowToArrowMapTest
+} //IDObjectTest

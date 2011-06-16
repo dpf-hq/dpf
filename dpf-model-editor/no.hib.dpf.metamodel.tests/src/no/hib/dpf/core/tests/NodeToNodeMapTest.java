@@ -4,17 +4,19 @@
  *
  * $Id$
  */
-package no.hib.dpf.metamodel.tests;
+package no.hib.dpf.core.tests;
 
 import java.util.Map;
 
 import junit.framework.TestCase;
 import junit.textui.TestRunner;
-import no.hib.dpf.metamodel.Graph;
-import no.hib.dpf.metamodel.MetamodelFactory;
-import no.hib.dpf.metamodel.MetamodelPackage;
-import no.hib.dpf.metamodel.Node;
-import no.hib.dpf.metamodel.impl.NodeToNodeMapImpl;
+import no.hib.dpf.core.CoreFactory;
+import no.hib.dpf.core.CorePackage;
+import no.hib.dpf.core.Graph;
+import no.hib.dpf.core.MetamodelFactory;
+import no.hib.dpf.core.MetamodelPackage;
+import no.hib.dpf.core.Node;
+import no.hib.dpf.core.impl.NodeToNodeMapImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -80,7 +82,7 @@ public class NodeToNodeMapTest extends TestCase {
 	@Override
 	@SuppressWarnings("unchecked")
 	protected void setUp() throws Exception {
-		setFixture((Map.Entry<Node, Node>)MetamodelFactory.eINSTANCE.create(MetamodelPackage.Literals.NODE_TO_NODE_MAP));
+		setFixture((Map.Entry<Node, Node>)CoreFactory.eINSTANCE.create(CorePackage.Literals.NODE_TO_NODE_MAP));
 	}
 
 	/**

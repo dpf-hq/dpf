@@ -15,8 +15,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import no.hib.dpf.metamodel.Graph;
-import no.hib.dpf.metamodel.MetamodelFactory;
+import no.hib.dpf.core.Graph;
+import no.hib.dpf.core.MetamodelFactory;
 
 /**
  * A container for multiple shapes. This is the "root" of the model data

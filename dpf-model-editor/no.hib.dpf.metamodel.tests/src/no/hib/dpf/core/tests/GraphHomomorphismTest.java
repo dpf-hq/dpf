@@ -4,17 +4,18 @@
  *
  * $Id$
  */
-package no.hib.dpf.metamodel.tests;
+package no.hib.dpf.core.tests;
 
 import java.util.List;
 
 import junit.framework.TestCase;
 import junit.textui.TestRunner;
-import no.hib.dpf.metamodel.Arrow;
-import no.hib.dpf.metamodel.Graph;
-import no.hib.dpf.metamodel.GraphHomomorphism;
-import no.hib.dpf.metamodel.MetamodelFactory;
-import no.hib.dpf.metamodel.Node;
+import no.hib.dpf.core.CoreFactory;
+import no.hib.dpf.core.Arrow;
+import no.hib.dpf.core.Graph;
+import no.hib.dpf.core.GraphHomomorphism;
+import no.hib.dpf.core.MetamodelFactory;
+import no.hib.dpf.core.Node;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -26,7 +27,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following operations are tested:
  * <ul>
- *   <li>{@link no.hib.dpf.metamodel.GraphHomomorphism#tryToCreateGraphHomomorphism(no.hib.dpf.metamodel.Graph, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Try To Create Graph Homomorphism</em>}</li>
+ *   <li>{@link no.hib.dpf.core.GraphHomomorphism#tryToCreateGraphHomomorphism(no.hib.dpf.core.Graph, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Try To Create Graph Homomorphism</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -88,7 +89,7 @@ public class GraphHomomorphismTest extends TestCase {
 	 */
 	@Override
 	protected void setUp() throws Exception {
-		setFixture(MetamodelFactory.eINSTANCE.createGraphHomomorphism());
+		setFixture(CoreFactory.eINSTANCE.createGraphHomomorphism());
 	}
 
 	/**
@@ -111,10 +112,10 @@ public class GraphHomomorphismTest extends TestCase {
 	}
 
 	/**
-	 * Tests the '{@link no.hib.dpf.metamodel.GraphHomomorphism#canCreateBijectiveGraphHomomorphism(no.hib.dpf.metamodel.Graph, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Can Create Bijective Graph Homomorphism</em>}' operation.
+	 * Tests the '{@link no.hib.dpf.core.GraphHomomorphism#canCreateBijectiveGraphHomomorphism(no.hib.dpf.core.Graph, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Can Create Bijective Graph Homomorphism</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.GraphHomomorphism#canCreateBijectiveGraphHomomorphism(no.hib.dpf.metamodel.Graph, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
+	 * @see no.hib.dpf.core.GraphHomomorphism#canCreateBijectiveGraphHomomorphism(no.hib.dpf.core.Graph, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
 	 * @generated NOT
 	 */
 	public void testTryToCreateGraphHomomorphism__Graph_EList_EList() {		

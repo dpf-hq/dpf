@@ -10,10 +10,10 @@
 �*******************************************************************************/
 package no.hib.dpf.editor.displaymodel.commands;
 
+import no.hib.dpf.core.Arrow;
 import no.hib.dpf.editor.displaymodel.DArrow;
 import no.hib.dpf.editor.displaymodel.DNode;
 import no.hib.dpf.editor.displaymodel.SingleNodeConnection;
-import no.hib.dpf.metamodel.Arrow;
 
 import org.eclipse.gef.commands.Command;
 

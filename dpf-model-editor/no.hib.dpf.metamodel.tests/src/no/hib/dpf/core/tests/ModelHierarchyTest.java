@@ -4,9 +4,7 @@
  *
  * $Id$
  */
-package no.hib.dpf.metamodel.tests;
-
-import java.util.UUID;
+package no.hib.dpf.core.tests;
 
 import org.junit.Test;
 
@@ -14,24 +12,25 @@ import junit.framework.TestCase;
 
 import junit.textui.TestRunner;
 
-import no.hib.dpf.metamodel.IDObject;
-import no.hib.dpf.metamodel.MetamodelFactory;
+import no.hib.dpf.core.CoreFactory;
+import no.hib.dpf.core.MetamodelFactory;
+import no.hib.dpf.core.ModelHierarchy;
 
 /**
  * <!-- begin-user-doc -->
- * A test case for the model object '<em><b>ID Object</b></em>'.
+ * A test case for the model object '<em><b>Model Hierarchy</b></em>'.
  * <!-- end-user-doc -->
  * @generated
  */
-public class IDObjectTest extends TestCase {
+public class ModelHierarchyTest extends TestCase {
 
 	/**
-	 * The fixture for this ID Object test case.
+	 * The fixture for this Model Hierarchy test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected IDObject fixture = null;
+	protected ModelHierarchy fixture = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -39,36 +38,36 @@ public class IDObjectTest extends TestCase {
 	 * @generated
 	 */
 	public static void main(String[] args) {
-		TestRunner.run(IDObjectTest.class);
+		TestRunner.run(ModelHierarchyTest.class);
 	}
 
 	/**
-	 * Constructs a new ID Object test case with the given name.
+	 * Constructs a new Model Hierarchy test case with the given name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IDObjectTest(String name) {
+	public ModelHierarchyTest(String name) {
 		super(name);
 	}
 
 	/**
-	 * Sets the fixture for this ID Object test case.
+	 * Sets the fixture for this Model Hierarchy test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void setFixture(IDObject fixture) {
+	protected void setFixture(ModelHierarchy fixture) {
 		this.fixture = fixture;
 	}
 
 	/**
-	 * Returns the fixture for this ID Object test case.
+	 * Returns the fixture for this Model Hierarchy test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected IDObject getFixture() {
+	protected ModelHierarchy getFixture() {
 		return fixture;
 	}
 
@@ -80,7 +79,7 @@ public class IDObjectTest extends TestCase {
 	 */
 	@Override
 	protected void setUp() throws Exception {
-		setFixture(MetamodelFactory.eINSTANCE.createIDObject());
+		setFixture(CoreFactory.eINSTANCE.createModelHierarchy());
 	}
 
 	/**
@@ -95,13 +94,8 @@ public class IDObjectTest extends TestCase {
 	}
 	
 	@Test
-	public void testConstructor() {
-		String id = getFixture().getId();
-		try {
-			UUID.fromString(id);
-		} catch (Exception e) {
-			fail("Illegal id string from IDObject");
-		}
+	public void testDefaultConstructedModelHierarchyHasOneSpecification() {
+		assertEquals(1, getFixture().getSpecifications().size());
 	}
 
-} //IDObjectTest
+} //ModelHierarchyTest

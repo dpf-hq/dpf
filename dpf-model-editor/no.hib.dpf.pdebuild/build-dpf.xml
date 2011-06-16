@@ -34,10 +34,10 @@
 			<checkout url="${baseSvnPath}/no.hib.dpf.feature" revision="HEAD" 
 			          destPath="${buildDirectory}/features/no.hib.dpf.feature" />
 			          
-			<checkout url="${baseSvnPath}/no.hib.dpf.metamodel" revision="HEAD" 
-			        destPath="${buildDirectory}/plugins/no.hib.dpf.metamodel" />
-			<checkout url="${baseSvnPath}/no.hib.dpf.metamodel.tests" revision="HEAD" 
-					destPath="${buildDirectory}/plugins/no.hib.dpf.metamodel.tests" /> 
+			<checkout url="${baseSvnPath}/no.hib.dpf.core" revision="HEAD" 
+			        destPath="${buildDirectory}/plugins/no.hib.dpf.core" />
+			<checkout url="${baseSvnPath}/no.hib.dpf.core.tests" revision="HEAD" 
+					destPath="${buildDirectory}/plugins/no.hib.dpf.core.tests" /> 
 			<checkout url="${baseSvnPath}/no.hib.dpf.editor" revision="HEAD" 
 					destPath="${buildDirectory}/plugins/no.hib.dpf.editor" /> 
 			

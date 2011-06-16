@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package no.hib.dpf.metamodel.tests;
+package no.hib.dpf.core.tests;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
@@ -13,11 +13,11 @@ import junit.textui.TestRunner;
 
 /**
  * <!-- begin-user-doc -->
- * A test suite for the '<em><b>metamodel</b></em>' package.
+ * A test suite for the '<em><b>core</b></em>' package.
  * <!-- end-user-doc -->
  * @generated
  */
-public class MetamodelTests extends TestSuite {
+public class CoreTests extends TestSuite {
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -34,7 +34,7 @@ public class MetamodelTests extends TestSuite {
 	 * @generated
 	 */
 	public static Test suite() {
-		TestSuite suite = new MetamodelTests("metamodel Tests");
+		TestSuite suite = new CoreTests("core Tests");
 		suite.addTestSuite(GraphTest.class);
 		suite.addTestSuite(NodeTest.class);
 		suite.addTestSuite(ArrowTest.class);
@@ -58,8 +58,8 @@ public class MetamodelTests extends TestSuite {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MetamodelTests(String name) {
+	public CoreTests(String name) {
 		super(name);
 	}
 
-} //MetamodelTests
+} //CoreTests

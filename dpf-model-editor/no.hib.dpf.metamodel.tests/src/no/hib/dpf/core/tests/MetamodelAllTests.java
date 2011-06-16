@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package no.hib.dpf.metamodel.tests;
+package no.hib.dpf.core.tests;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
@@ -35,7 +35,7 @@ public class MetamodelAllTests extends TestSuite {
 	 */
 	public static Test suite() {
 		TestSuite suite = new MetamodelAllTests("Metamodel Tests");
-		suite.addTest(MetamodelTests.suite());
+		suite.addTest(CoreTests.suite());
 		return suite;
 	}
 

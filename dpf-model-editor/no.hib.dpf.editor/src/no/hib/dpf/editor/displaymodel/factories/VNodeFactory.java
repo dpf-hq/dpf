@@ -1,7 +1,7 @@
 package no.hib.dpf.editor.displaymodel.factories;
 
+import no.hib.dpf.core.Node;
 import no.hib.dpf.editor.displaymodel.DNode;
-import no.hib.dpf.metamodel.Node;
 
 import org.eclipse.gef.requests.CreationFactory;
 

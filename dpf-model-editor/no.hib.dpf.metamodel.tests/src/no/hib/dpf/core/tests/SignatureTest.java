@@ -4,15 +4,16 @@
  *
  * $Id$
  */
-package no.hib.dpf.metamodel.tests;
+package no.hib.dpf.core.tests;
 
 import junit.framework.TestCase;
 
 import junit.textui.TestRunner;
 
-import no.hib.dpf.metamodel.MetamodelFactory;
-import no.hib.dpf.metamodel.Predicate;
-import no.hib.dpf.metamodel.Signature;
+import no.hib.dpf.core.CoreFactory;
+import no.hib.dpf.core.MetamodelFactory;
+import no.hib.dpf.core.Predicate;
+import no.hib.dpf.core.Signature;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,8 +22,8 @@ import no.hib.dpf.metamodel.Signature;
  * <p>
  * The following operations are tested:
  * <ul>
- *   <li>{@link no.hib.dpf.metamodel.Signature#save(org.eclipse.emf.common.util.URI) <em>Save</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Signature#getPredicateBySymbol(java.lang.String) <em>Get Predicate By Symbol</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Signature#save(org.eclipse.emf.common.util.URI) <em>Save</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Signature#getPredicateBySymbol(java.lang.String) <em>Get Predicate By Symbol</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -84,7 +85,7 @@ public class SignatureTest extends TestCase {
 	 */
 	@Override
 	protected void setUp() throws Exception {
-		setFixture(MetamodelFactory.eINSTANCE.createSignature());
+		setFixture(CoreFactory.eINSTANCE.createSignature());
 	}
 
 	/**
@@ -99,10 +100,10 @@ public class SignatureTest extends TestCase {
 	}
 
 	/**
-	 * Tests the '{@link no.hib.dpf.metamodel.Signature#save(org.eclipse.emf.common.util.URI) <em>Save</em>}' operation.
+	 * Tests the '{@link no.hib.dpf.core.Signature#save(org.eclipse.emf.common.util.URI) <em>Save</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.Signature#save(org.eclipse.emf.common.util.URI)
+	 * @see no.hib.dpf.core.Signature#save(org.eclipse.emf.common.util.URI)
 	 * @generated
 	 */
 	public void testSave__URI() {
@@ -112,10 +113,10 @@ public class SignatureTest extends TestCase {
 	}
 
 	/**
-	 * Tests the '{@link no.hib.dpf.metamodel.Signature#getPredicateBySymbol(java.lang.String) <em>Get Predicate By Symbol</em>}' operation.
+	 * Tests the '{@link no.hib.dpf.core.Signature#getPredicateBySymbol(java.lang.String) <em>Get Predicate By Symbol</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.Signature#getPredicateBySymbol(java.lang.String)
+	 * @see no.hib.dpf.core.Signature#getPredicateBySymbol(java.lang.String)
 	 * @generated NOT
 	 */
 	public void testGetPredicateBySymbol__String() {

@@ -12,13 +12,13 @@ package no.hib.dpf.editor;
 
 import java.util.List;
 
+import no.hib.dpf.core.Arrow;
+import no.hib.dpf.core.Graph;
+import no.hib.dpf.core.Node;
 import no.hib.dpf.editor.displaymodel.factories.ArrowCreationFactory;
 import no.hib.dpf.editor.displaymodel.factories.VNodeFactory;
 import no.hib.dpf.editor.icons.ImageSettings;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;
-import no.hib.dpf.metamodel.Arrow;
-import no.hib.dpf.metamodel.Graph;
-import no.hib.dpf.metamodel.Node;
 
 import org.eclipse.gef.palette.ConnectionCreationToolEntry;
 import org.eclipse.gef.palette.CreationToolEntry;

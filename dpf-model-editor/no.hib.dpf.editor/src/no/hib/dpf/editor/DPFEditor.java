@@ -25,6 +25,13 @@ import java.util.EventObject;
 import java.util.List;
 import java.util.Map;
 
+import no.hib.dpf.core.Constraint;
+import no.hib.dpf.core.Graph;
+import no.hib.dpf.core.IDObject;
+import no.hib.dpf.core.MetamodelFactory;
+import no.hib.dpf.core.Predicate;
+import no.hib.dpf.core.Signature;
+import no.hib.dpf.core.Specification;
 import no.hib.dpf.editor.displaymodel.DArrow;
 import no.hib.dpf.editor.displaymodel.DConstraint;
 import no.hib.dpf.editor.displaymodel.DPFDiagram;
@@ -48,13 +55,6 @@ import no.hib.dpf.editor.parts.EditPartFactoryImpl;
 import no.hib.dpf.editor.parts.NodeTreeEditPartFactory;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;
 import no.hib.dpf.editor.preferences.PreferenceConstants;
-import no.hib.dpf.metamodel.Constraint;
-import no.hib.dpf.metamodel.Graph;
-import no.hib.dpf.metamodel.IDObject;
-import no.hib.dpf.metamodel.MetamodelFactory;
-import no.hib.dpf.metamodel.Predicate;
-import no.hib.dpf.metamodel.Signature;
-import no.hib.dpf.metamodel.Specification;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;

@@ -4,13 +4,14 @@
  *
  * $Id$
  */
-package no.hib.dpf.metamodel.tests;
+package no.hib.dpf.core.tests;
 
 import junit.textui.TestRunner;
-import no.hib.dpf.metamodel.Arrow;
-import no.hib.dpf.metamodel.Graph;
-import no.hib.dpf.metamodel.MetamodelFactory;
-import no.hib.dpf.metamodel.Node;
+import no.hib.dpf.core.Arrow;
+import no.hib.dpf.core.CoreFactory;
+import no.hib.dpf.core.Graph;
+import no.hib.dpf.core.MetamodelFactory;
+import no.hib.dpf.core.Node;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,8 +20,8 @@ import no.hib.dpf.metamodel.Node;
  * <p>
  * The following operations are tested:
  * <ul>
- *   <li>{@link no.hib.dpf.metamodel.Arrow#getTypeName() <em>Get Type Name</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Arrow#generateUniqueName() <em>Generate Unique Name</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Arrow#getTypeName() <em>Get Type Name</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Arrow#generateUniqueName() <em>Generate Unique Name</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -65,7 +66,7 @@ public class ArrowTest extends IDObjectTest {
 	 */
 	@Override
 	protected void setUp() throws Exception {
-		setFixture(MetamodelFactory.eINSTANCE.createArrow());
+		setFixture(CoreFactory.eINSTANCE.createArrow());
 	}
 
 	/**
@@ -80,10 +81,10 @@ public class ArrowTest extends IDObjectTest {
 	}
 
 	/**
-	 * Tests the '{@link no.hib.dpf.metamodel.Arrow#getTypeName() <em>Get Type Name</em>}' operation.
+	 * Tests the '{@link no.hib.dpf.core.Arrow#getTypeName() <em>Get Type Name</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.Arrow#getTypeName()
+	 * @see no.hib.dpf.core.Arrow#getTypeName()
 	 * @generated NOT
 	 */
 	public void testGetTypeName() {
@@ -98,10 +99,10 @@ public class ArrowTest extends IDObjectTest {
 	}
 
 	/**
-	 * Tests the '{@link no.hib.dpf.metamodel.Arrow#generateUniqueName() <em>Generate Unique Name</em>}' operation.
+	 * Tests the '{@link no.hib.dpf.core.Arrow#generateUniqueName() <em>Generate Unique Name</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.Arrow#generateUniqueName()
+	 * @see no.hib.dpf.core.Arrow#generateUniqueName()
 	 * @generated NOT NOT NOT!!!
 	 */
 	public void testGenerateUniqueName() {

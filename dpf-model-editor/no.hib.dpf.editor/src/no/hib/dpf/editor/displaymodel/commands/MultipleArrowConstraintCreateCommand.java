@@ -2,9 +2,9 @@ package no.hib.dpf.editor.displaymodel.commands;
 
 import java.util.Iterator;
 
+import no.hib.dpf.core.Constraint;
 import no.hib.dpf.editor.displaymodel.DArrow;
 import no.hib.dpf.editor.displaymodel.DConstraint;
-import no.hib.dpf.metamodel.Constraint;
 
 
 /**

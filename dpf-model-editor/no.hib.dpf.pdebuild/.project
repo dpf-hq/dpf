@@ -4,8 +4,8 @@
 	<comment></comment>
 	<projects>
 		<project>no.hib.dpf.feature</project>
-		<project>no.hib.dpf.metamodel</project>
-		<project>no.hib.dpf.metamodel.tests</project>
+		<project>no.hib.dpf.core</project>
+		<project>no.hib.dpf.core.tests</project>
 	</projects>
 	<buildSpec>
 	</buildSpec>

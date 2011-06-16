@@ -1,7 +1,7 @@
 package no.hib.dpf.editor.displaymodel;
 
-import no.hib.dpf.metamodel.Constraint;
-import no.hib.dpf.metamodel.IDObject;
+import no.hib.dpf.core.Constraint;
+import no.hib.dpf.core.IDObject;
 
 
 public class SingleArrowConstraintElement extends DConstraint {

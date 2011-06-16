@@ -1,6 +1,6 @@
 package no.hib.dpf.editor.displaymodel;
 
-import no.hib.dpf.metamodel.Arrow;
+import no.hib.dpf.core.Arrow;
 
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;

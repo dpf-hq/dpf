@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package no.hib.dpf.metamodel.tests;
+package no.hib.dpf.core.tests;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,12 +12,13 @@ import java.util.List;
 import java.util.Map;
 
 import junit.textui.TestRunner;
-import no.hib.dpf.metamodel.Arrow;
-import no.hib.dpf.metamodel.Constraint;
-import no.hib.dpf.metamodel.Graph;
-import no.hib.dpf.metamodel.MetamodelFactory;
-import no.hib.dpf.metamodel.Node;
-import no.hib.dpf.metamodel.Predicate;
+import no.hib.dpf.core.CoreFactory;
+import no.hib.dpf.core.Arrow;
+import no.hib.dpf.core.Constraint;
+import no.hib.dpf.core.Graph;
+import no.hib.dpf.core.MetamodelFactory;
+import no.hib.dpf.core.Node;
+import no.hib.dpf.core.Predicate;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -29,22 +30,22 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following operations are tested:
  * <ul>
- *   <li>{@link no.hib.dpf.metamodel.Graph#createNode(java.lang.String) <em>Create Node</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Graph#getGraphMember(java.lang.String) <em>Get Graph Member</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Graph#createArrow(java.lang.String, no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Node) <em>Create Arrow</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Graph#applyPredicate(no.hib.dpf.metamodel.Predicate, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Apply Predicate</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Graph#deleteNode(no.hib.dpf.metamodel.Node) <em>Delete Node</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Graph#deleteArrow(no.hib.dpf.metamodel.Arrow) <em>Delete Arrow</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Graph#getNodeByName(java.lang.String) <em>Get Node By Name</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Graph#getArrowByName(java.lang.String) <em>Get Arrow By Name</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Graph#createNode(java.lang.String, no.hib.dpf.metamodel.Node) <em>Create Node</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Graph#createArrow(java.lang.String, no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Arrow) <em>Create Arrow</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Graph#extractSubgraph(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Extract Subgraph</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Graph#getNodesForConstraint(no.hib.dpf.metamodel.Constraint) <em>Get Nodes For Constraint</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Graph#getArrowsForConstraint(no.hib.dpf.metamodel.Constraint) <em>Get Arrows For Constraint</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Graph#getNodes(org.eclipse.emf.common.util.EList) <em>Get Nodes</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Graph#getArrows(org.eclipse.emf.common.util.EList) <em>Get Arrows</em>}</li>
- *   <li>{@link no.hib.dpf.metamodel.Graph#getCopy() <em>Get Copy</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Graph#createNode(java.lang.String) <em>Create Node</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Graph#getGraphMember(java.lang.String) <em>Get Graph Member</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Graph#createArrow(java.lang.String, no.hib.dpf.core.Node, no.hib.dpf.core.Node) <em>Create Arrow</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Graph#applyPredicate(no.hib.dpf.core.Predicate, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Apply Predicate</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Graph#deleteNode(no.hib.dpf.core.Node) <em>Delete Node</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Graph#deleteArrow(no.hib.dpf.core.Arrow) <em>Delete Arrow</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Graph#getNodeByName(java.lang.String) <em>Get Node By Name</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Graph#getArrowByName(java.lang.String) <em>Get Arrow By Name</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Graph#createNode(java.lang.String, no.hib.dpf.core.Node) <em>Create Node</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Graph#createArrow(java.lang.String, no.hib.dpf.core.Node, no.hib.dpf.core.Node, no.hib.dpf.core.Arrow) <em>Create Arrow</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Graph#extractSubgraph(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Extract Subgraph</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Graph#getNodesForConstraint(no.hib.dpf.core.Constraint) <em>Get Nodes For Constraint</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Graph#getArrowsForConstraint(no.hib.dpf.core.Constraint) <em>Get Arrows For Constraint</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Graph#getNodes(org.eclipse.emf.common.util.EList) <em>Get Nodes</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Graph#getArrows(org.eclipse.emf.common.util.EList) <em>Get Arrows</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Graph#getCopy() <em>Get Copy</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -89,7 +90,7 @@ public class GraphTest extends IDObjectTest {
 	 */
 	@Override
 	protected void setUp() throws Exception {
-		setFixture(MetamodelFactory.eINSTANCE.createGraph());
+		setFixture(CoreFactory.eINSTANCE.createGraph());
 	}
 
 	/**
@@ -104,10 +105,10 @@ public class GraphTest extends IDObjectTest {
 	}
 
 	/**
-	 * Tests the '{@link no.hib.dpf.metamodel.Graph#createNode(java.lang.String) <em>Create Node</em>}' operation.
+	 * Tests the '{@link no.hib.dpf.core.Graph#createNode(java.lang.String) <em>Create Node</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.Graph#createNode(java.lang.String)
+	 * @see no.hib.dpf.core.Graph#createNode(java.lang.String)
 	 * @generated NOT
 	 */
 	public void testCreateNode__String() {
@@ -117,10 +118,10 @@ public class GraphTest extends IDObjectTest {
 	}
 
 	/**
-	 * Tests the '{@link no.hib.dpf.metamodel.Graph#createArrow(java.lang.String, no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Node) <em>Create Edge</em>}' operation.
+	 * Tests the '{@link no.hib.dpf.core.Graph#createArrow(java.lang.String, no.hib.dpf.core.Node, no.hib.dpf.core.Node) <em>Create Edge</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.Graph#createArrow(java.lang.String, no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Node)
+	 * @see no.hib.dpf.core.Graph#createArrow(java.lang.String, no.hib.dpf.core.Node, no.hib.dpf.core.Node)
 	 * @generated NOT
 	 */
 	public void testCreateArrow__String_Node_Node() {
@@ -135,10 +136,10 @@ public class GraphTest extends IDObjectTest {
 	}
 	
 	/**
-	 * Tests the '{@link no.hib.dpf.metamodel.Graph#createEdge(java.lang.String, no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Edge) <em>Create Edge</em>}' operation.
+	 * Tests the '{@link no.hib.dpf.core.Graph#createEdge(java.lang.String, no.hib.dpf.core.Node, no.hib.dpf.core.Node, no.hib.dpf.core.Edge) <em>Create Edge</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.Graph#createEdge(java.lang.String, no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Node, no.hib.dpf.metamodel.Edge)
+	 * @see no.hib.dpf.core.Graph#createEdge(java.lang.String, no.hib.dpf.core.Node, no.hib.dpf.core.Node, no.hib.dpf.core.Edge)
 	 * @generated NOT
 	 */
 	public void testCreateArrow__String_Node_Node_Arrow() {
@@ -158,10 +159,10 @@ public class GraphTest extends IDObjectTest {
 
 	
 	/**
-	 * Tests the '{@link no.hib.dpf.metamodel.Graph#extractSubgraph(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Extract Subgraph</em>}' operation.
+	 * Tests the '{@link no.hib.dpf.core.Graph#extractSubgraph(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Extract Subgraph</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.Graph#extractSubgraph(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
+	 * @see no.hib.dpf.core.Graph#extractSubgraph(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
 	 * @generated NOT
 	 */
 	public void testExtractSubgraph__EList_EList() {
@@ -183,10 +184,10 @@ public class GraphTest extends IDObjectTest {
 	}
 
 	/**
-	 * Tests the '{@link no.hib.dpf.metamodel.Graph#getNodesForConstraint(no.hib.dpf.metamodel.Constraint) <em>Get Nodes For Constraint</em>}' operation.
+	 * Tests the '{@link no.hib.dpf.core.Graph#getNodesForConstraint(no.hib.dpf.core.Constraint) <em>Get Nodes For Constraint</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.Graph#getNodesForConstraint(no.hib.dpf.metamodel.Constraint)
+	 * @see no.hib.dpf.core.Graph#getNodesForConstraint(no.hib.dpf.core.Constraint)
 	 * @generated NOT
 	 */
 	public void testGetNodesForConstraint__Constraint() {
@@ -218,10 +219,10 @@ public class GraphTest extends IDObjectTest {
 	}
 
 	/**
-	 * Tests the '{@link no.hib.dpf.metamodel.Graph#getArrowsForConstraint(no.hib.dpf.metamodel.Constraint) <em>Get Arrows For Constraint</em>}' operation.
+	 * Tests the '{@link no.hib.dpf.core.Graph#getArrowsForConstraint(no.hib.dpf.core.Constraint) <em>Get Arrows For Constraint</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.Graph#getArrowsForConstraint(no.hib.dpf.metamodel.Constraint)
+	 * @see no.hib.dpf.core.Graph#getArrowsForConstraint(no.hib.dpf.core.Constraint)
 	 * @generated NOT
 	 */
 	public void testGetArrowsForConstraint__Constraint() {
@@ -252,10 +253,10 @@ public class GraphTest extends IDObjectTest {
 	}
 
 	/**
-	 * Tests the '{@link no.hib.dpf.metamodel.Graph#getNodes(org.eclipse.emf.common.util.EList) <em>Get Nodes</em>}' operation.
+	 * Tests the '{@link no.hib.dpf.core.Graph#getNodes(org.eclipse.emf.common.util.EList) <em>Get Nodes</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.Graph#getNodes(org.eclipse.emf.common.util.EList)
+	 * @see no.hib.dpf.core.Graph#getNodes(org.eclipse.emf.common.util.EList)
 	 * @generated NOT
 	 */
 	public void testGetNodes__EList() {
@@ -290,10 +291,10 @@ public class GraphTest extends IDObjectTest {
 	}
 
 	/**
-	 * Tests the '{@link no.hib.dpf.metamodel.Graph#getArrows(org.eclipse.emf.common.util.EList) <em>Get Arrows</em>}' operation.
+	 * Tests the '{@link no.hib.dpf.core.Graph#getArrows(org.eclipse.emf.common.util.EList) <em>Get Arrows</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.Graph#getArrows(org.eclipse.emf.common.util.EList)
+	 * @see no.hib.dpf.core.Graph#getArrows(org.eclipse.emf.common.util.EList)
 	 * @generated NOT
 	 */
 	public void testGetArrows__EList() {
@@ -328,10 +329,10 @@ public class GraphTest extends IDObjectTest {
 	}
 
 	/**
-	 * Tests the '{@link no.hib.dpf.metamodel.Graph#getCopy() <em>Get Copy</em>}' operation.
+	 * Tests the '{@link no.hib.dpf.core.Graph#getCopy() <em>Get Copy</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.Graph#getCopy()
+	 * @see no.hib.dpf.core.Graph#getCopy()
 	 * @generated NOT
 	 */
 	public void testGetCopy() {
@@ -343,10 +344,10 @@ public class GraphTest extends IDObjectTest {
 	}
 
 	/**
-	 * Tests the '{@link no.hib.dpf.metamodel.Graph#extractSubgraph(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Extract Subgraph</em>}' operation.
+	 * Tests the '{@link no.hib.dpf.core.Graph#extractSubgraph(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Extract Subgraph</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.Graph#extractSubgraph(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
+	 * @see no.hib.dpf.core.Graph#extractSubgraph(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
 	 * @generated NOT
 	 */
 	public void testExtractSubgraph__EList_EList_throws() {
@@ -412,10 +413,10 @@ public class GraphTest extends IDObjectTest {
 	}
 
 	/**
-	 * Tests the '{@link no.hib.dpf.metamodel.Graph#applyPredicate(no.hib.dpf.metamodel.Predicate, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Apply Predicate</em>}' operation.
+	 * Tests the '{@link no.hib.dpf.core.Graph#applyPredicate(no.hib.dpf.core.Predicate, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Apply Predicate</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.Graph#applyPredicate(no.hib.dpf.metamodel.Predicate, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
+	 * @see no.hib.dpf.core.Graph#applyPredicate(no.hib.dpf.core.Predicate, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
 	 * @generated NOT
 	 */
 	public void testApplyPredicate__Predicate_EList_EList() {
@@ -425,10 +426,10 @@ public class GraphTest extends IDObjectTest {
 	}
 
 	/**
-	 * Tests the '{@link no.hib.dpf.metamodel.Graph#deleteNode(no.hib.dpf.metamodel.Node) <em>Delete Node</em>}' operation.
+	 * Tests the '{@link no.hib.dpf.core.Graph#deleteNode(no.hib.dpf.core.Node) <em>Delete Node</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.Graph#deleteNode(no.hib.dpf.metamodel.Node)
+	 * @see no.hib.dpf.core.Graph#deleteNode(no.hib.dpf.core.Node)
 	 * @generated NOT
 	 */
 	public void testDeleteNode__Node() {
@@ -445,10 +446,10 @@ public class GraphTest extends IDObjectTest {
 	}
 
 	/**
-	 * Tests the '{@link no.hib.dpf.metamodel.Graph#deleteEdge(no.hib.dpf.metamodel.Edge) <em>Delete Edge</em>}' operation.
+	 * Tests the '{@link no.hib.dpf.core.Graph#deleteEdge(no.hib.dpf.core.Edge) <em>Delete Edge</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.Graph#deleteEdge(no.hib.dpf.metamodel.Edge)
+	 * @see no.hib.dpf.core.Graph#deleteEdge(no.hib.dpf.core.Edge)
 	 * @generated NOT
 	 */
 	public void testDeleteArrow__Arrow() {
@@ -461,10 +462,10 @@ public class GraphTest extends IDObjectTest {
 	}
 
 	/**
-	 * Tests the '{@link no.hib.dpf.metamodel.Graph#getNodeByName(java.lang.String) <em>Get Node By Name</em>}' operation.
+	 * Tests the '{@link no.hib.dpf.core.Graph#getNodeByName(java.lang.String) <em>Get Node By Name</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.Graph#getNodeByName(java.lang.String)
+	 * @see no.hib.dpf.core.Graph#getNodeByName(java.lang.String)
 	 * @generated NOT
 	 */
 	public void testGetNodeByName__String() {
@@ -477,10 +478,10 @@ public class GraphTest extends IDObjectTest {
 	}
 
 	/**
-	 * Tests the '{@link no.hib.dpf.metamodel.Graph#getEdgeByName(java.lang.String) <em>Get Edge By Name</em>}' operation.
+	 * Tests the '{@link no.hib.dpf.core.Graph#getEdgeByName(java.lang.String) <em>Get Edge By Name</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.Graph#getEdgeByName(java.lang.String)
+	 * @see no.hib.dpf.core.Graph#getEdgeByName(java.lang.String)
 	 * @generated NOT
 	 */
 	public void testGetArrowByName__String() {
@@ -493,10 +494,10 @@ public class GraphTest extends IDObjectTest {
 	}
 
 	/**
-	 * Tests the '{@link no.hib.dpf.metamodel.Graph#createNode(java.lang.String, no.hib.dpf.metamodel.Node) <em>Create Node</em>}' operation.
+	 * Tests the '{@link no.hib.dpf.core.Graph#createNode(java.lang.String, no.hib.dpf.core.Node) <em>Create Node</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.Graph#createNode(java.lang.String, no.hib.dpf.metamodel.Node)
+	 * @see no.hib.dpf.core.Graph#createNode(java.lang.String, no.hib.dpf.core.Node)
 	 * @generated NOT
 	 */
 	public void testCreateNode__String_Node() {
@@ -506,10 +507,10 @@ public class GraphTest extends IDObjectTest {
 	}
 
 	/**
-	 * Tests the '{@link no.hib.dpf.metamodel.Graph#getGraphMember(java.lang.String) <em>Get Graph Member</em>}' operation.
+	 * Tests the '{@link no.hib.dpf.core.Graph#getGraphMember(java.lang.String) <em>Get Graph Member</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.metamodel.Graph#getGraphMember(java.lang.String)
+	 * @see no.hib.dpf.core.Graph#getGraphMember(java.lang.String)
 	 * @generated NOT
 	 */
 	public void testGetGraphMember__String() {
