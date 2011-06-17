@@ -40,6 +40,8 @@
 					destPath="${buildDirectory}/plugins/no.hib.dpf.core.tests" /> 
 			<checkout url="${baseSvnPath}/no.hib.dpf.editor" revision="HEAD" 
 					destPath="${buildDirectory}/plugins/no.hib.dpf.editor" /> 
+			<checkout url="${baseSvnPath}/no.hib.dpf.api" revision="HEAD" 
+					destPath="${buildDirectory}/plugins/no.hib.dpf.api" /> 
 			
 		</svn>
 	</target>
