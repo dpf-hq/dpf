@@ -1,7 +1,8 @@
-package no.hib.dpf.editor.figures;
-
 /*******************************************************************************
  * Copyright (c) 2000, 2010 IBM Corporation and others.
+ * 
+ * Portions of the code Copyright (c) 2011 H¿yskolen i Bergen
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,7 +10,10 @@ package no.hib.dpf.editor.figures;
  *
  * Contributors:
  *     IBM Corporation - initial API and implementation
+ *     
+ *     ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
  *******************************************************************************/
+package no.hib.dpf.editor.figures;
 
 import java.util.ArrayList;
 import java.util.Collections;

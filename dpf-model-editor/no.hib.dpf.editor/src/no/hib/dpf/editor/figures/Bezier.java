@@ -1,5 +1,3 @@
-package no.hib.dpf.editor.figures;
-
 /*******************************************************************************
  * Copyright 2005-2006, CHISEL Group, University of Victoria, Victoria, BC, Canada.
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +8,7 @@ package no.hib.dpf.editor.figures;
  * Contributors:
  *     The Chisel Group, University of Victoria
  *******************************************************************************/
+package no.hib.dpf.editor.figures;
 
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.Polyline;

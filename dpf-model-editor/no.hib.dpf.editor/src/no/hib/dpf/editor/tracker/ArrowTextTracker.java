@@ -1,5 +1,3 @@
-package no.hib.dpf.editor.tracker;
-
 /**
  * Original code taken from now-defunct site qvtp.org.
  * 
@@ -19,6 +17,7 @@ GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWE
 STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
 OF SUCH DAMAGE. 
  */
+package no.hib.dpf.editor.tracker;
 
 import no.hib.dpf.editor.parts.ArrowEditPart;
 
