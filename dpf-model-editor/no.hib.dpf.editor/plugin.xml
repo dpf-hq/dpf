@@ -29,7 +29,7 @@
       <page
             class="no.hib.dpf.editor.preferences.DPFEditorPreferencePage"
             id="no.hib.dpf.editor.preferences.DPFEditorPreferencePage"
-            name="DPF Sketcher Preferences">
+            name="DPF Editor Preferences">
       </page>
    </extension>
    <extension

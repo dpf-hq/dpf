@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="no.hib.dpf.feature"
-      label="Feature"
-      version="1.0.0.qualifier">
+      label="DPF Feature"
+      version="0.1.1.qualifier"
+      provider-name="Høyskolen i Bergen">
 
    <description url="http://www.example.com/description">
       [Enter Feature Description here.]
