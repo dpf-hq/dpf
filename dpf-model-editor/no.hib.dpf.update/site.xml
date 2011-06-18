@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <description name="DPF Editor Update Site" url="http://dpf.hib.no/update">
+      Download site for DPF Editor. See dpf.hib.no for details.
+   </description>
+   <feature url="features/no.hib.dpf.feature_0.1.1.qualifier.jar" id="no.hib.dpf.feature" version="0.1.1.qualifier">
+      <category name="dpf_tools"/>
+   </feature>
+   <category-def name="dpf_tools" label="DPF Tools"/>
+</site>
