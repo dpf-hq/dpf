@@ -1,6 +1,6 @@
 /**
  * <copyright>
- * Copyright (c) 2011 H¿yskolen i Bergen
+ * Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,12 +8,15 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * Adrian Rutle, ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * Adrian Rutle, ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
  * </copyright>
  *
  * $Id$
  */
 package no.hib.dpf.core.impl;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.CorePackage;
@@ -31,7 +34,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * </p>
- *
+ * Surjective: All nodes of a specific type needs to be the target of an arrow with a specifc type 
  * @generated
  */
 public class SurjectiveSemanticsImpl extends EObjectImpl implements SurjectiveSemantics {
@@ -60,16 +63,34 @@ public class SurjectiveSemanticsImpl extends EObjectImpl implements SurjectiveSe
 	 * @generated NOT
 	 */
 	public Boolean validateSemantics(Graph oStar, String constraintParameters, EList<Node> typeNodes, EList<Arrow> typeArrows) {
+		
+		//Invariant:
 		if ((typeNodes.size() != 2) || (typeArrows.size() != 1)) {
+			System.out.println(typeNodes + "break surjective constraint");
 			return false;
 		}
+		final Node targetTypeNode = typeNodes.get(1);
+		System.out.println("TargettypeNode:" + typeNodes.get(1));
+		final Arrow typeArrow = typeArrows.get(0);
+		final List<Node> targetNodes = new ArrayList<Node>();
+		
+		//Save all nodes that are target of arrows that have the correct type:
+		for (Arrow arrow : oStar.getArrows()) {
+			if(arrow.getTypeArrow().equals(typeArrow)){
+				targetNodes.add(arrow.getTarget());
+			}	
+		}
+		
+		//If there is a node that is not in the targetNodeList there is an error:
 		for (Node node : oStar.getNodes()) {
-			if (node.getIncomingArrows().size() == 0) {
-				if (node.getTypeNode().equals(typeArrows.get(0).getTarget())) {
+			if (node.getTypeNode().equals(targetTypeNode)) {
+				if (!targetNodes.contains(node)) {
+					System.out.println(node + "break surjective constraint: " + node);
 					return false;
 				}
 			}
 		}
+		
 		return true;	
 	}
 

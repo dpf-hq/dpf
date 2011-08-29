@@ -1,6 +1,6 @@
 /**
  * <copyright>
- * Copyright (c) 2011 H¿yskolen i Bergen
+ * Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,15 +8,15 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * Adrian Rutle, ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * Adrian Rutle, ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
  * </copyright>
  *
  * $Id$
  */
 package no.hib.dpf.core.impl;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.CorePackage;
@@ -29,10 +29,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>XOR Semantics</b></em>'.
- * <!-- end-user-doc -->
  * <p>
+ * XOR: Semantics: Allow only arrows of one type!
  * </p>
  *
  * @generated
@@ -63,28 +61,34 @@ public class XORSemanticsImpl extends EObjectImpl implements XORSemantics {
 	 * @generated NOT
 	 */
 	public Boolean validateSemantics(Graph oStar, String constraintParameters, EList<Node> typeNodes, EList<Arrow> typeArrows) {
+		
+		//Check invairant constraint:
 		if ((typeArrows.size() != 2) || (typeNodes.size() < 1)) {
+			System.out.println("breaks XOR");
 			return true;
 		}
 		
-		Node typeSourceNode = typeArrows.get(0).getSource();
+		//Check XOR:
+		final Node typeSourceNode = typeArrows.get(0).getSource();
 		
-		List<Node> sourceNodes = new ArrayList<Node>();		
-		for (Node node : oStar.getNodes()) {
-			if (node.getTypeNode().equals(typeSourceNode)) {
-				sourceNodes.add(node);
+		//HashMap for saving arrowType for each source node:
+		final Map<Node,Arrow> connectedArrows = new HashMap<Node,Arrow>();  
+		for (Arrow arrow : oStar.getArrows()) {
+			//If arrow start with node of start type:
+			if(arrow.getSource().getTypeNode().equals(typeSourceNode)){
+				//Is already to this start node a type connected:
+				if(connectedArrows.containsKey(arrow.getSource())){
+					//The arrow need to have the same type as the already connected one: 
+					if(!connectedArrows.get(arrow.getSource()).equals(arrow.getTypeArrow())){
+						System.out.println("breaks XOR:" + arrow.getName());
+						return false;
+					}
+				}else{
+					//Save the arrow type to the node:
+					connectedArrows.put(arrow.getSource(),arrow.getTypeArrow());
+				}
 			}
 		}
-		
-				
-		for (Node sourceNode : sourceNodes) {
-			int outgoingArrowCount = sourceNode.getOutgoingArrows().size();
-			if (outgoingArrowCount != 1) {
-				// Too many or few connections
-				return false;
-			}
-		}
-		
 		return true;	
 	}
 
