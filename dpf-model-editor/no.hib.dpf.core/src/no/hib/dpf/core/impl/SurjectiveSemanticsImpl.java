@@ -1,3 +1,5 @@
+//TODO The validator is only called when a node is added but not when the arrow is added!
+
 /**
  * <copyright>
  * Copyright (c) 2011 H�yskolen i Bergen
@@ -29,12 +31,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Surjective Semantics</b></em>'.
- * <!-- end-user-doc -->
  * <p>
+ * An implementation of the model object '<em><b>Surjective Semantics</b></em>'.
  * </p>
- * Surjective: All nodes of a specific type needs to be the target of an arrow with a specifc type 
+ *
  * @generated
  */
 public class SurjectiveSemanticsImpl extends EObjectImpl implements SurjectiveSemantics {
@@ -69,8 +69,9 @@ public class SurjectiveSemanticsImpl extends EObjectImpl implements SurjectiveSe
 			System.out.println(typeNodes + "break surjective constraint");
 			return false;
 		}
-		final Node targetTypeNode = typeNodes.get(1);
-		System.out.println("TargettypeNode:" + typeNodes.get(1));
+
+//TODO Why is the target typenode ***NODE 0***????
+		final Node targetTypeNode = typeNodes.get(0);
 		final Arrow typeArrow = typeArrows.get(0);
 		final List<Node> targetNodes = new ArrayList<Node>();
 		
