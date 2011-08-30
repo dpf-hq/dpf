@@ -30,7 +30,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 /**
  * <p>
- * XOR: Semantics: Allow only arrows of one type!
+ * XOR: Semantics: Allow only arrows of one type! But at least one arrow have to be present.
  * </p>
  *
  * @generated
@@ -80,7 +80,7 @@ public class XORSemanticsImpl extends EObjectImpl implements XORSemantics {
 				if(connectedArrows.containsKey(arrow.getSource())){
 					//The arrow need to have the same type as the already connected one: 
 					if(!connectedArrows.get(arrow.getSource()).equals(arrow.getTypeArrow())){
-						System.out.println("breaks XOR:" + arrow.getName());
+						System.out.println("breaks XOR: Arrow=" + arrow.getName());
 						return false;
 					}
 				}else{
@@ -89,6 +89,18 @@ public class XORSemanticsImpl extends EObjectImpl implements XORSemantics {
 				}
 			}
 		}
+		
+		//Also check if there is at least one instance of one arrow type:
+		for(Node n:oStar.getNodes()){
+			if(n.getTypeNode().equals(typeSourceNode)){
+				if(!connectedArrows.containsKey(n)){
+					System.out.println("breaks XOR: Node=" + n.getName());
+					return false;
+				}
+			}
+		}
+		
+		
 		return true;	
 	}
 
