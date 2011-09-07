@@ -1,7 +1,7 @@
 /*******************************************************************************
  * Copyright (c) 2004, 2005 Elias Volanakis and others.
  * 
- * Portions of the code Copyright (c) 2011 H¿yskolen i Bergen
+ * Portions of the code Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,7 +11,7 @@
  * Contributors:
  * Elias Volanakis - initial API and implementation
  * 
- * ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
 *******************************************************************************/
 package no.hib.dpf.editor.displaymodel;
 
@@ -20,8 +20,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Graph;
+import no.hib.dpf.core.Node;
 
 /**
  * A container for multiple shapes. This is the "root" of the model data
@@ -45,12 +47,26 @@ public class DPFDiagram extends ModelElement {
 	
 	/** Used for adding and removing a model element to and from the DPF graph */
 	protected transient Graph dpfGraph;
+	private DPFDiagram parent = null;
 	
+	public DPFDiagram getParent() {
+		return parent;
+	}
+
+	public void setParent(DPFDiagram parent) {
+		this.parent = parent;
+	}
+
 	public DPFDiagram() {
 		super();
 		this.dpfGraph = CoreFactory.eINSTANCE.createGraph();
 	}
 	
+	public DPFDiagram(DPFDiagram diagram) {
+		super();
+		parent = diagram;
+		
+	}
 	public boolean isGridEnabled() {
 		return gridEnabled;
 	}
@@ -136,7 +152,8 @@ public class DPFDiagram extends ModelElement {
 	public boolean addChild(DNode vNode) {
 		if (vNode != null && shapes.add(vNode)) {
 			vNode.setGraph(dpfGraph);
-			vNode.setNameExec(vNode.generateUniqueName());
+			if(vNode.getName() == null)
+				vNode.setNameExec(vNode.generateUniqueName());
 
 			firePropertyChange(CHILD_ADDED_PROP, null, vNode);
 			return true;
@@ -167,5 +184,23 @@ public class DPFDiagram extends ModelElement {
 			return true;
 		}
 		return false;
+	}
+
+	public DNode findDNode(Node type) {
+		for(DNode node : shapes){
+			if(node.getIDObjectID().equals(type.getId()))
+				return node;
+		}
+		return null;
+	}
+
+	public DArrow findDArrow(Arrow type) {
+		DNode dnode = findDNode(type.getSource());
+		if(dnode != null){
+			for(DArrow connection : dnode.getSourceConnections())
+				if(connection.getIDObjectID().equals(type.getId()))
+					return connection;
+		}
+		return null;
 	}
 }

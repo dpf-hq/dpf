@@ -1,7 +1,7 @@
 /*******************************************************************************
  * Copyright (c) 2004, 2005 Elias Volanakis and others.
  * 
- * Portions of the code Copyright (c) 2011 H¿yskolen i Bergen
+ * Portions of the code Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,7 +11,7 @@
  * Contributors:
  * Elias Volanakis - initial API and implementation
  * 
- * ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
 *******************************************************************************/
 package no.hib.dpf.editor.displaymodel;
 
@@ -25,6 +25,9 @@ import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.IDObject;
 import no.hib.dpf.core.Node;
+import no.hib.dpf.editor.DPFPlugin;
+import no.hib.dpf.editor.extension_points.FigureConfigureManager;
+import no.hib.dpf.editor.icons.ImageSettings;
 
 import org.eclipse.draw2d.Bendpoint;
 import org.eclipse.draw2d.Graphics;
@@ -38,6 +41,8 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.swt.SWT;
 import org.eclipse.ui.views.properties.ComboBoxPropertyDescriptor;
 import org.eclipse.ui.views.properties.IPropertyDescriptor;
 import org.eclipse.ui.views.properties.TextPropertyDescriptor;
@@ -61,9 +66,8 @@ public class DArrow extends ModelElement implements Arrow, IDObjectContainer {
 			Graphics.LINE_DASH);
 	/** Property ID to use when the line style of this connection is modified. */
 	public static final String LINESTYLE_PROP = "LineStyle";
-	private static final IPropertyDescriptor[] descriptors;
-	private static final String SOLID_STR = "Solid";
-	private static final String DASHED_STR = "Dashed";
+
+	private static final String[] LINE_STRS = new String[]{"LINE_SOLID", "LINE_DASH"};//, "LINE_DOT", "LINE_DASHDOT", "LINE_DASHDOTDOT"};
 	private static final long serialVersionUID = 1;
 	private static final String CONSTRAINT_1_PROP = "Connection.constraint1";
 	private static final String CONSTRAINT_2_PROP = "Connection.constraint2";
@@ -82,6 +86,7 @@ public class DArrow extends ModelElement implements Arrow, IDObjectContainer {
 	private boolean isConnected;
 	/** Line drawing style for this connection. */
 	private int lineStyle = Graphics.LINE_SOLID;
+	public transient int parentLineSytle = Graphics.LINE_SOLID;
 	/** Connection's source endpoint. */
 	private DNode source;
 	/** Connection's target endpoint. */
@@ -95,20 +100,27 @@ public class DArrow extends ModelElement implements Arrow, IDObjectContainer {
 	private List<SingleArrowConstraintElement> singleConstraints = new ArrayList<SingleArrowConstraintElement>();
 	
 	private ArrowLabel mainLabel;	
-	
-	static {
+	private static final IPropertyDescriptor[] descriptors;
+
+	private static final String[] configureLabels = FigureConfigureManager.getInstance().getArrowNames();
+	protected final String[] getConfigureLabels(){ return configureLabels;}
+	static{
 		descriptors = new IPropertyDescriptor[] {
-			new ComboBoxPropertyDescriptor(LINESTYLE_PROP,
-				LINESTYLE_PROP, new String[] { SOLID_STR, DASHED_STR }),
-			new NegativeIntegerTextPropertyDescriptor(CONSTRAINT_1_PROP, "Constraints (1)"),
-			new NegativeIntegerTextPropertyDescriptor(CONSTRAINT_2_PROP, "Constraints (2)"),
-			new TextPropertyDescriptor(NAME_PROP, "Name"),
-			new TextPropertyDescriptor(TYPE_PROP, "Type")
+				new ComboBoxPropertyDescriptor(LINESTYLE_PROP, LINESTYLE_PROP, LINE_STRS),
+				new NegativeIntegerTextPropertyDescriptor(CONSTRAINT_1_PROP, "Constraints (1)"),
+				new NegativeIntegerTextPropertyDescriptor(CONSTRAINT_2_PROP, "Constraints (2)"),
+				new TextPropertyDescriptor(NAME_PROP, "Name"),
+				new TextPropertyDescriptor(TYPE_PROP, "Type"),
+				new ComboBoxPropertyDescriptor(PROP_CONFIGURE, "Configure", configureLabels)
 		};
 	}
 
 	private transient Arrow arrowComponent;
 	private String arrowID;
+
+
+	public final static ImageDescriptor SMALLARROW = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.SMALL_CONNECTION.getFilePath());
+	public final static ImageDescriptor LARGEARROW = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.LARGE_CONNECTION.getFilePath());
 
 	@Override
 	public String getIDObjectID() {
@@ -131,6 +143,15 @@ public class DArrow extends ModelElement implements Arrow, IDObjectContainer {
 		setIDObject(CoreFactory.eINSTANCE.createArrow(typeArrow));
 		addLabel("ref");
 		reconnect(source, target);
+	}
+
+	public DArrow(DNode source, DNode target, Arrow typeArrow, DArrow typeDArrow) {
+		setIDObject(CoreFactory.eINSTANCE.createArrow(typeArrow));
+		addLabel("ref");
+		if(typeDArrow != null){
+			configure = typeDArrow.getConfigure();
+			configurationName = FigureConfigureManager.getName(configure);
+		}
 	}
 
 	@Override
@@ -181,11 +202,7 @@ public class DArrow extends ModelElement implements Arrow, IDObjectContainer {
 	 */
 	public Object getPropertyValue(Object id) {
 		if (id.equals(LINESTYLE_PROP)) {
-			if (getLineStyle() == Graphics.LINE_DASH)
-				// Dashed is the second value in the combo dropdown
-				return new Integer(1);
-			// Solid is the first value in the combo dropdown
-			return new Integer(0);
+			return new Integer(getLineStyle() - SWT.LINE_SOLID);
 		}
 		if (id.equals(CONSTRAINT_1_PROP)) {
 			if (singleConstraints.size() > 0) {
@@ -273,11 +290,7 @@ public class DArrow extends ModelElement implements Arrow, IDObjectContainer {
 	 *             if lineStyle does not have one of the above values
 	 */
 	public void setLineStyle(int lineStyle) {
-		if (lineStyle != Graphics.LINE_DASH && lineStyle != Graphics.LINE_SOLID) {
-			throw new IllegalArgumentException();
-		}
 		this.lineStyle = lineStyle;
-		firePropertyChange(LINESTYLE_PROP, null, new Integer(this.lineStyle));
 	}
 
 	// TODO: REMOVE!
@@ -308,8 +321,8 @@ public class DArrow extends ModelElement implements Arrow, IDObjectContainer {
 	 */
 	public void setPropertyValue(Object id, Object value) {
 		if (id.equals(LINESTYLE_PROP)) {
-			setLineStyle(new Integer(1).equals(value) ? Graphics.LINE_DASH : Graphics.LINE_SOLID);
-			// TODO: REMOVE:
+			if(((Integer)value).intValue() != getLineStyle() - SWT.LINE_SOLID)
+				setLineStyle(((Integer)value).intValue() + SWT.LINE_SOLID);
 		} else if (id.equals(CONSTRAINT_1_PROP)) {
 			setConstraintValue1(Integer.parseInt((String) value));
 		} else if (id.equals(CONSTRAINT_2_PROP)) {

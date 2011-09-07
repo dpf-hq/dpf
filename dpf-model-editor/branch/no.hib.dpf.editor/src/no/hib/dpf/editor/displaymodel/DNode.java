@@ -1,7 +1,7 @@
 /*******************************************************************************
  * Copyright (c) 2004, 2005 Elias Volanakis and others.
  * 
- * Portions of the code Copyright (c) 2011 H¿yskolen i Bergen
+ * Portions of the code Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,7 +11,7 @@
  * Contributors:
  * Elias Volanakis - initial API and implementation
  * 
- * ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
 *******************************************************************************/
 package no.hib.dpf.editor.displaymodel;
 
@@ -27,6 +27,7 @@ import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.IDObject;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.editor.DPFPlugin;
+import no.hib.dpf.editor.extension_points.FigureConfigureManager;
 import no.hib.dpf.editor.icons.ImageSettings;
 
 import org.eclipse.draw2d.geometry.Dimension;
@@ -41,7 +42,9 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.ui.views.properties.ComboBoxPropertyDescriptor;
 import org.eclipse.ui.views.properties.IPropertyDescriptor;
 import org.eclipse.ui.views.properties.TextPropertyDescriptor;
 
@@ -84,6 +87,13 @@ public class DNode extends ModelElement implements Node, IDObjectContainer, Mova
 
 	private LocationAndSize locationAndSize;
 
+	
+
+	public static final ImageDescriptor SMALLICON = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.SMALL_RECTANGLE.getFilePath());
+	public static final ImageDescriptor LARGEICON = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.LARGE_RECTANGLE.getFilePath());
+
+	private static final String[] configureLabels = FigureConfigureManager.getInstance().getNodeNames();
+	protected final String[] getConfigureLabels(){ return configureLabels;}
 	/*
 	 * Initializes the property descriptors array.
 	 * 
@@ -95,8 +105,10 @@ public class DNode extends ModelElement implements Node, IDObjectContainer, Mova
 	 */
 	static {
 		descriptors = new IPropertyDescriptor[] {
-			new TextPropertyDescriptor(NAME_PROP, "Name"),
-			new TextPropertyDescriptor(TYPE_PROP, "Type")};
+				new TextPropertyDescriptor(NAME_PROP, "Name"),
+				new TextPropertyDescriptor(TYPE_PROP, "Type"),
+				new ComboBoxPropertyDescriptor(PROP_CONFIGURE, "Configure", configureLabels)
+		};
 	} // static
 
 	protected static Image createImage(String name) {
@@ -262,7 +274,15 @@ public class DNode extends ModelElement implements Node, IDObjectContainer, Mova
 		super();
 		setIDObject(CoreFactory.eINSTANCE.createNode(typeNode));
 	}
-	
+
+	public DNode(Node typeNode, DNode typeDNode) {
+		this(typeNode);
+		if(typeDNode != null){
+			configure = typeDNode.getConfigure();
+			configurationName = FigureConfigureManager.getName(configure);
+		}
+	}
+
 	public Node getNodeComponent() {
 		return nodeComponent;
 	}

@@ -1,7 +1,7 @@
 /*******************************************************************************
  * Copyright (c) 2004, 2005 Elias Volanakis and others.
  * 
- * Portions of the code Copyright (c) 2011 H¿yskolen i Bergen
+ * Portions of the code Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,7 +11,7 @@
  * Contributors:
  * Elias Volanakis - initial API and implementation
  * 
- * ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
 *******************************************************************************/
 package no.hib.dpf.editor.parts;
 
@@ -27,9 +27,13 @@ import no.hib.dpf.editor.displaymodel.ArrowBendpoint;
 import no.hib.dpf.editor.displaymodel.DArrow;
 import no.hib.dpf.editor.displaymodel.DConstraint;
 import no.hib.dpf.editor.displaymodel.commands.ConnectionDeleteCommand;
+import no.hib.dpf.editor.extension_points.IArrowPainting;
+import no.hib.dpf.editor.extension_points.FigureConfigureManager;
 import no.hib.dpf.editor.figures.ArrowConnection;
 import no.hib.dpf.editor.figures.OpenArrowDecoration;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.draw2d.Bendpoint;
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.IFigure;
@@ -45,6 +49,7 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.ConnectionEditPolicy;
 import org.eclipse.gef.editpolicies.ConnectionEndpointEditPolicy;
 import org.eclipse.gef.requests.GroupRequest;
+import org.eclipse.swt.SWT;
 
 
 /**
@@ -55,11 +60,31 @@ import org.eclipse.gef.requests.GroupRequest;
  */
 public class ArrowEditPart extends ModelElementConnectionEditPart {
 
-	protected ArrowConnection connectionFigure; 
+	protected PolylineConnection connectionFigure; 
 	Label connectionLabel;	
 	//private List<SingleArrowConstraintElement> singleConstraints = new ArrayList<SingleArrowConstraintElement>();
 	private transient PropertyChangeSupport pcsDelegate = new PropertyChangeSupport(this);
 		
+	protected IConfigurationElement configure = null;
+	public IConfigurationElement getConfigure() {
+		return configure;
+	}
+
+
+	public void setConfigure(IConfigurationElement configure) {
+		this.configure = configure;
+	}
+
+
+	public ArrowEditPart(IConfigurationElement figure) {
+		configure = figure;
+	}
+
+
+	public ArrowEditPart() {
+	}
+
+
 	/**
 	 * Sets the source EditPart of this connection.
 	 * 
@@ -149,14 +174,35 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 	 * @see org.eclipse.gef.editparts.AbstractGraphicalEditPart#createFigure()
 	 */
 	protected IFigure createFigure() {
-		createConnectionFigure();
+		if(configure != null)
+			getArrowPaint();
+		if(arrowPaint != null)
+			connectionFigure = arrowPaint.createConnectionFigure();
+		else
+			createConnectionFigure();
 		connectionFigure.addRoutingListener(RoutingAnimator.getDefault());
-		setArrowHead(connectionFigure);
+		if(arrowPaint != null)
+			connectionFigure.setTargetDecoration(arrowPaint.createTargetDecoration());
+		else
+			setArrowHead(connectionFigure);
 		return connectionFigure;		
 	}
 
+	private IArrowPainting getArrowPaint(){
+		if(arrowPaint == null)
+			try {
+				arrowPaint = (IArrowPainting) configure.createExecutableExtension(FigureConfigureManager.PAINT_ATT);
+			} catch (CoreException e) {
+				e.printStackTrace();
+			}
+		return arrowPaint;
+	}
+
+	private IArrowPainting arrowPaint;
+
 	protected void createConnectionFigure() {
 		connectionFigure = new ArrowConnection();
+		connectionFigure.setLineStyle(getCastedModel().parentLineSytle == 0 ? SWT.LINE_SOLID : getCastedModel().parentLineSytle);
 	}
 
 	protected void setArrowHead(PolylineConnection connectionFigure) {
@@ -185,10 +231,7 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 			refreshVisuals();
 		} else 	if ("bendpoint".equals(property)) {
 			refreshBendpoints();
-		} else if (DArrow.LINESTYLE_PROP.equals(property)) {
-			((ArrowConnection) getFigure()).setLineStyle(getCastedModel()
-					.getLineStyle());
-		} else if (DArrow.SOURCE_CONSTRAINTS_PROP.equals(property)) {
+		}  else if (DArrow.SOURCE_CONSTRAINTS_PROP.equals(property)) {
 			refreshSourceConnections();
 		} else if (DArrow.TARGET_CONSTRAINTS_PROP.equals(property)) {
 			refreshTargetConnections();

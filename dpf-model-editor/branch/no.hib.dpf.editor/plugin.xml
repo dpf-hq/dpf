@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.0"?>
 <plugin>
+   <extension-point id="FigureConfigure" name="Figure Configure" schema="schema/FigureConfigure.exsd"/>
 
      <extension point="org.eclipse.ui.editors">
       <editor name="DPF Specification Editor"
@@ -37,5 +38,36 @@
       <initializer
             class="no.hib.dpf.editor.preferences.PreferenceInitializer">
       </initializer>
+   </extension>
+   <extension
+         point="no.hib.dpf.editor.FigureConfigure">
+      <NodeConfigure
+            name="no.hib.dpf.editor.ChoiceConfigure"
+            paint="no.hib.dpf.editor.figures.ChoicePainting"
+            smallicon="d.jpg">
+      </NodeConfigure>
+      <NodeConfigure
+            name="no.hib.dpf.editor.CircleFigure"
+            paint="no.hib.dpf.editor.figures.CirclePainting"
+            smallicon="circle.png">
+      </NodeConfigure>
+      <NodeConfigure
+            name="no.hib.dpf.editor.EllipseConfigure"
+            paint="no.hib.dpf.editor.figures.EllipsePainting"
+            smallicon="ellipse.png">
+      </NodeConfigure>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <viewerContribution
+            id="no.hib.dpf.editor.viewerContribution1"
+            targetID="GEF DPF Editor">
+         <action
+               class="no.hib.dpf.editor.actions.ExportImageAction"
+               id="no.hib.dpf.editor.action1"
+               label="Export"
+               menubarPath="additions">
+         </action>
+      </viewerContribution>
    </extension>
 </plugin>

@@ -1,7 +1,7 @@
 /*******************************************************************************
  * Copyright (c) 2004, 2005 Elias Volanakis and others.
  * 
- * Portions of the code Copyright (c) 2011 H¿yskolen i Bergen
+ * Portions of the code Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,7 +11,7 @@
  * Contributors:
  * Elias Volanakis - initial API and implementation
  * 
- * ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
 *******************************************************************************/
 package no.hib.dpf.editor;
 
@@ -22,14 +22,17 @@ import java.io.InputStream;
 import java.io.ObjectOutputStream;
 
 import no.hib.dpf.core.CoreFactory;
+import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.Specification;
 import no.hib.dpf.editor.displaymodel.DPFDiagram;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
@@ -96,7 +99,7 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 		protected void handleAdvancedButtonSelect() {
 		}
 
-		private static final String DEFAULT_EXTENSION = ".dpf";
+
 		private final IWorkbench workbench;
 
 		/**
@@ -133,39 +136,51 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 			return new DPFDiagram();
 		}
 
+		private static final String DEFAULT_EXTENSION = ".dpf";
+		
 		/**
 		 * This method will be invoked, when the "Finish" button is pressed.
 		 * 
 		 * @see DPFCreationWizard#performFinish()
 		 */
 		boolean finish() {
-			// create a new file, result != null if successful
-			IFile newFile = createNewFile();
+			// create a new diagram file, result != null if successful
+			IFile newDiagramFile = createNewFile();
 			fileCount++;
-
+			String diagramFileName = newDiagramFile.getLocation().toOSString();
+			String modelFileName = DPFEditor.getModelFromDiagram(diagramFileName);
+			
+			//Initialize model file and diagram file
+			Specification newSpec = CoreFactory.eINSTANCE.createSpecification();
+			DPFDiagram newDiagram = new DPFDiagram();
+			
 			// Gets null value when user does not check checkbox
-			String typeFileName = page2.getLinkTarget();
-			if (typeFileName != null) {
-				// TODO: move to validation (when wrong file, user must be
-				// notified)
-				Specification typeSpec = DPFEditor.loadDPF(typeFileName);
-
-				Specification newSpec = CoreFactory.eINSTANCE
-						.createSpecification();
+			String typeModelFileName = page2.getLinkTarget();
+			if (typeModelFileName != null) {
+				// TODO: move to validation (when wrong file, user must be notified)
+				Specification typeSpec = DPFEditor.loadDPFModel(typeModelFileName);
+				DPFDiagram typeDiagram = DPFEditor.loadDPFDiagram(DPFEditor.getDiagramFromModel(typeModelFileName));
 				newSpec.setTypeGraph(typeSpec.getGraph());
+				newDiagram.setParent(typeDiagram);
+			}else
+				newSpec.setTypeGraph(Graph.REFLEXIVE_TYPE_GRAPH);
+			
+			newDiagram.setDpfGraph(newSpec.getGraph());
+			DPFEditor.saveDPFModel(modelFileName, newSpec);
+			DPFEditor.saveDPFDiagram(diagramFileName, newDiagram);
 
-				String dpfFile = DPFEditor.getDPFFileName(newFile.getFullPath()
-						.toString());
-
-				DPFEditor.saveDPF(dpfFile, newSpec);
+			try {
+				newDiagramFile.refreshLocal(IResource.DEPTH_ONE, null);
+			} catch (CoreException e1) {
+				e1.printStackTrace();
 			}
-
 			// open newly created file in the editor
-			IWorkbenchPage page = workbench.getActiveWorkbenchWindow()
-					.getActivePage();
-			if (newFile != null && page != null) {
+			IWorkbenchPage page = workbench.getActiveWorkbenchWindow().getActivePage();
+			if (newDiagramFile != null && page != null) {
 				try {
-					IDE.openEditor(page, newFile, true);
+					IEditorPart editorPart = IDE.openEditor(page, newDiagramFile, true);
+					if(editorPart != null)
+						editorPart.setFocus();
 				} catch (PartInitException e) {
 					e.printStackTrace();
 					return false;

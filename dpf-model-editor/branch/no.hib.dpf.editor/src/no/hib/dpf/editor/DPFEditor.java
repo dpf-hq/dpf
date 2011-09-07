@@ -1,7 +1,7 @@
 /*******************************************************************************
  * Copyright (c) 2004, 2005 Elias Volanakis and others.
  * 
- * Portions of the code Copyright (c) 2011 H¿yskolen i Bergen
+ * Portions of the code Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,20 +11,20 @@
  * Contributors:
  * Elias Volanakis - initial API and implementation
  * 
- * ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
 *******************************************************************************/
 package no.hib.dpf.editor;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.OutputStream;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.EventObject;
 import java.util.List;
@@ -62,12 +62,12 @@ import no.hib.dpf.editor.preferences.DPFEditorPreferences;
 import no.hib.dpf.editor.preferences.PreferenceConstants;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.gef.ContextMenuProvider;
@@ -132,17 +132,15 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 	private Signature signature;
 		
 //	/** Palette component, holding the tools and shapes. */
-	private static PaletteRoot PALETTE_MODEL;
+	private PaletteRoot paletteRoot;
 	
 	private EditPartFactoryImpl shapesEditPartFactory;
 	private DPFEditorPaletteFactory paletteFactory;
 
 	/** Create a new DPFEditor instance. This is called by the Workspace. */
 	public DPFEditor() {
-		specification.setTypeGraph(CoreFactory.eINSTANCE.createGraph("Node", "Arrow:Node:Node"));
 		paletteFactory = new DPFEditorPaletteFactory();
 		setEditDomain(new DefaultEditDomain(this));
-		shapesEditPartFactory = new EditPartFactoryImpl();
 		listenToDisplayDyntTypedArrowsProperty();
 	}
 	
@@ -152,7 +150,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 			public void propertyChange(org.eclipse.jface.util.PropertyChangeEvent event) {
 				if ((event.getProperty().equals(PreferenceConstants.P_DISPLAY_DYNTYPED_ARROWS)) ||
 					(event.getProperty().equals(PreferenceConstants.P_DISPLAY_TYPED_ARROWS))) {
-					paletteFactory.updatePalette(getPaletteRoot(), getSpecification().getTypeGraph());
+					//paletteFactory.updatePalette(getPaletteRoot(), getSpecification().getTypeGraph());
 				}
 			}
 		});
@@ -368,11 +366,11 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		super.commandStackChanged(event);
 	}
 
-	private void createOutputStream(OutputStream os) throws IOException {
+	/*private void createOutputStream(OutputStream os) throws IOException {
 		ObjectOutputStream oos = new ObjectOutputStream(os);
 		oos.writeObject(getDPFDiagram());
 		oos.close();
-	}
+	}*/
 
 	/*
 	 * (non-Javadoc)
@@ -391,7 +389,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 				// CombinatedTemplateCreationEntries
 				// from the palette into the editor
 				// @see ShapesEditor#createTransferDropTargetListener()
-//				viewer.addDragSourceListener(new TemplateTransferDragSourceListener(viewer));
+				//				viewer.addDragSourceListener(new TemplateTransferDragSourceListener(viewer));
 			}
 		};
 	}
@@ -422,46 +420,19 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 //		};
 //	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.ui.ISaveablePart#doSave(org.eclipse.core.runtime.IProgressMonitor
-	 * )
-	 */
-	public void doSave(IProgressMonitor monitor) {
-		saveViewerPropertiesToDiagram();
-		ByteArrayOutputStream out = new ByteArrayOutputStream();
-		try {
-			createOutputStream(out);
-			IFile file = ((IFileEditorInput) getEditorInput()).getFile();
-			file.setContents(new ByteArrayInputStream(out.toByteArray()), true, // keep
-																				// saving,
-																				// even
-																				// if
-																				// IFile
-																				// is
-																				// out
-																				// of
-																				// sync
-																				// with
-																				// the
-																				// Workspace
-					false, // dont keep history
-					monitor); // progress monitor
-			getCommandStack().markSaveLocation();
-			saveDPF(getDPFDiagram().getFilename(), getSpecification());
-			
-			file.getProject().refreshLocal(IProject.DEPTH_INFINITE, monitor);
-		} catch (CoreException ce) {
-			ce.printStackTrace();
-		} catch (IOException ioe) {
-			ioe.printStackTrace();
-		}
-		
+	private static final String DEFAULT_MODEL_EXTENSION = ".xmi";
+
+	//dpf name to xmi name
+	public static String getModelFromDiagram(String diagram){
+		return diagram + DEFAULT_MODEL_EXTENSION;
 	}
-	
-	public static Specification loadDPF(String fileName) {
+	//xmi name to dpf name
+	public static String getDiagramFromModel(String model){
+		return model.substring(0, model.indexOf(DEFAULT_MODEL_EXTENSION));
+	}
+
+
+	public static Specification loadDPFModel(String fileName) {
 		URI uri = URI.createFileURI(fileName);
 		Specification ret = null;
 		
@@ -544,12 +515,51 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		signature.getPredicates().add(multiplicityPredicate);
 		
 	}
-	
-	public static void saveDPF(String dpfFileName, Specification specification) {		
+
+	public static void saveDPFModel(String dpfFileName, Specification specification) {		
 		try {
 			specification.save(URI.createFileURI(dpfFileName));
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.ui.ISaveablePart#doSave(org.eclipse.core.runtime.IProgressMonitor
+	 * )
+	 */
+	public void doSave(IProgressMonitor monitor) {
+
+		final String modelFileName = getDPFDiagram().getFilename();
+
+		final String  diagramFileName  = getDiagramFromModel(modelFileName);
+		WorkspaceModifyOperation operation = new WorkspaceModifyOperation() {
+			@Override
+			public void execute(IProgressMonitor monitor) {
+				// Save the resources to the file system.
+				saveDPFModel(modelFileName, getSpecification());
+				saveViewerPropertiesToDiagram();
+				saveDPFDiagram(diagramFileName, getDPFDiagram());
+			}
+		};
+
+		try {
+			// This runs the options, and shows progress.
+			new ProgressMonitorDialog(getSite().getShell()).run(true, false, operation);
+
+			// Refresh the necessary state.
+			getCommandStack().markSaveLocation();
+
+			IFile file = ((IFileEditorInput)getEditorInput()).getFile();
+			file.getParent().refreshLocal(IResource.DEPTH_INFINITE, monitor);
+			
+			updateStatusBar();
+		}
+		catch (Exception exception) {
+			exception.printStackTrace();
 		}
 	}
 
@@ -565,42 +575,15 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		dialog.setOriginalFile(((IFileEditorInput) getEditorInput()).getFile());
 		dialog.open();
 
-		IPath path = dialog.getResult();
+		final IPath path = dialog.getResult();
 		if (path != null) {
-			// try to save the editor's contents under a different file name
-			final IFile file = ResourcesPlugin.getWorkspace().getRoot()
-					.getFile(path);
-			try {
-				new ProgressMonitorDialog(shell).run(false, // don't fork
-						false, // not cancelable
-						new WorkspaceModifyOperation() { // run this operation
-							public void execute(final IProgressMonitor monitor) {
-								try {
-									saveViewerPropertiesToDiagram();
-									ByteArrayOutputStream out = new ByteArrayOutputStream();
-									createOutputStream(out);
-									file.create(
-											new ByteArrayInputStream(out
-													.toByteArray()), // contents
-											true, // keep saving, even if IFile
-													// is out of sync with the
-													// Workspace
-											monitor); // progress monitor
-								} catch (CoreException ce) {
-									ce.printStackTrace();
-								} catch (IOException ioe) {
-									ioe.printStackTrace();
-								}
-							}
-						});
-				// set input to the new file
-				setInput(new FileEditorInput(file));
-				getCommandStack().markSaveLocation();
-			} catch (InterruptedException ie) {
-				// should not happen, since the monitor dialog is not cancelable
-				ie.printStackTrace();
-			} catch (InvocationTargetException ite) {
-				ite.printStackTrace();
+			IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(path);
+			if (file != null) {
+				IFileEditorInput newInput = new FileEditorInput(file);
+				setInputWithNotify(newInput);
+				setPartName(newInput.getName());
+				getDPFDiagram().setFilename(getModelFromDiagram(file.getLocation().toOSString()));
+				doSave(new NullProgressMonitor());
 			}
 		}
 	}
@@ -625,10 +608,10 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 	 */
 	@Override
 	protected PaletteRoot getPaletteRoot() {
-		if (PALETTE_MODEL == null) {
-			PALETTE_MODEL = paletteFactory.createPalette(getSpecification().getTypeGraph());
+		if (paletteRoot == null) {
+			paletteRoot = paletteFactory.createPalette();
 		}
-		return PALETTE_MODEL;
+		return paletteRoot;
 	}
 
 	private void handleLoadException(Exception e) {
@@ -651,12 +634,12 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		viewer.setContents(getDPFDiagram()); // set the contents of this editor
 	}
 
-	@Override
+	/*@Override
 	public void setFocus() {
 		super.setFocus();
 		paletteFactory.updatePalette(getPaletteRoot(), getSpecification().getTypeGraph());
-	}
-		
+	}*/
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -675,10 +658,8 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		super.setInput(input);
 		try {
 			IFile file = ((IFileEditorInput) input).getFile();
-			ObjectInputStream in = new ObjectInputStream(file.getContents());
-			setDPFDiagram((DPFDiagram) in.readObject());
-			getDPFDiagram().addPropertyChangeListener(this);			
-			in.close();
+			setDPFDiagram(loadDPFDiagram(file.getContents()));
+			getDPFDiagram().addPropertyChangeListener(this);
 			setPartName(file.getName());
 
 			// -------------------------------------------------------------------
@@ -689,15 +670,13 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 			//FIXME: We should only refresh the project if needed
 			ResourcesPlugin.getWorkspace().getRoot().refreshLocal(IResource.DEPTH_INFINITE, null);
 			deserializeDpfModel();
+			paletteFactory.updatePalette(getPaletteRoot(), getDPFDiagram().getParent(), specification.getTypeGraph());
+			shapesEditPartFactory = new EditPartFactoryImpl(getDPFDiagram().getParent());
 			setDpfReferencesInViewModel(getDPFDiagram().getChildrenWithID());
-			
-		} catch (IOException e) {
-			handleLoadException(e);
+
 		} catch (CoreException e) {
 			handleLoadException(e);
-		} catch (java.lang.ClassNotFoundException e) {
-			handleLoadException(e);
-		}		
+		} 	
 	}
 
 	private void setDpfReferencesInViewModel(Map<String, ModelElement> children) {
@@ -730,7 +709,8 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 	private void deserializeDpfModel() {
 		File serializedDPF = new File(getDPFDiagram().getFilename());
 		if (serializedDPF.exists()) {
-			setSpecification(loadDPF(getDPFDiagram().getFilename()));
+			setSpecification(loadDPFModel(getDPFDiagram().getFilename()));
+			verifyConstraint();
 		}
 		getDPFDiagram().setDpfGraph(getSpecification().getGraph());
 //		paletteFactory.updatePalette(getPaletteRoot(), getSpecification().getTypeGraph());
@@ -838,13 +818,22 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 			bars.setGlobalActionHandler(id, registry.getAction(id));
 			id = ActionFactory.DELETE.getId();
 			bars.setGlobalActionHandler(id, registry.getAction(id));
+			id = ActionFactory.COPY.getId();
+			bars.setGlobalActionHandler(id, registry.getAction(id));
 		}
 	}
 
+	private static Image Valid_Constarint_Icon = PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJS_INFO_TSK);
+	private static Image InValid_Constarint_Icon = PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJS_INFO_TSK);
+	boolean isValid = true;
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
 		//System.err.println("VALIDATION RESULT: ");
-		boolean isValid = true;
+		verifyConstraint();
+	}
+
+	private void verifyConstraint(){
+		isValid = true;
 		for (Constraint c : specification.getTypeGraph().getConstraints()) {
 			try {
 				Graph oStar = specification.createOStar(c);
@@ -856,16 +845,57 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 			}
 			//System.err.println(validation);
 		}
-		Image icon;
-		if(isValid) {
-			icon = PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJS_INFO_TSK);
-			DPFPlugin.getDefault().getStatusLineManager().setMessage(icon, "All constraints validated.");
-		} else {
-			icon = PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJS_WARN_TSK);
-			DPFPlugin.getDefault().getStatusLineManager().setMessage(icon, "Validation failed.");
-		}
-		
-		
+		updateStatusBar();
+	}
+	private void updateStatusBar(){
+		DPFPlugin.getDefault().getStatusLineManager().setMessage(isValid ? Valid_Constarint_Icon : InValid_Constarint_Icon, 
+				isValid ? "All constraints validated." : "Validation failed.");
 	}
 
+	public static DPFDiagram loadDPFDiagram(InputStream stream){
+		DPFDiagram diagram = null;
+		try {
+			ObjectInputStream ois = new ObjectInputStream(stream);
+			diagram = (DPFDiagram) ois.readObject();
+			ois.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		DPFDiagram current = diagram;
+		while(current != null){
+			for(ModelElement element : current.getChildrenWithID().values())
+				element.loadConfigure();
+					current = current.getParent();
+		}
+
+		return diagram;
+	}
+
+
+
+	public static void saveDPFDiagram(String diagramFile, DPFDiagram newDiagram) {
+		try {
+			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(diagramFile));
+			oos.writeObject(newDiagram);
+			oos.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static DPFDiagram loadDPFDiagram(String diagramFromModel) {
+		try {
+			return loadDPFDiagram(new FileInputStream(diagramFromModel));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public void setFocus() {
+		super.setFocus();
+		updateStatusBar();
+	}
 }

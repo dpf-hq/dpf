@@ -16,7 +16,9 @@
 package no.hib.dpf.core.impl;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.CorePackage;
@@ -70,38 +72,44 @@ public class XORSemanticsImpl extends EObjectImpl implements XORSemantics {
 		
 		//Check XOR:
 		final Node typeSourceNode = typeArrows.get(0).getSource();
-		
 		//HashMap for saving arrowType for each source node:
-		final Map<Node,Arrow> connectedArrows = new HashMap<Node,Arrow>();  
-		for (Arrow arrow : oStar.getArrows()) {
-			//If arrow start with node of start type:
-			if(arrow.getSource().getTypeNode().equals(typeSourceNode)){
-				//Is already to this start node a type connected:
-				if(connectedArrows.containsKey(arrow.getSource())){
-					//The arrow need to have the same type as the already connected one: 
-					if(!connectedArrows.get(arrow.getSource()).equals(arrow.getTypeArrow())){
-						System.out.println("breaks XOR: Arrow=" + arrow.getName());
-						return false;
-					}
-				}else{
-					//Save the arrow type to the node:
-					connectedArrows.put(arrow.getSource(),arrow.getTypeArrow());
-				}
+		Map<Node, List<Arrow>> violateArrows = new HashMap<Node, List<Arrow>>();
+		for(Node node : oStar.getNodes())
+			if(node.getTypeNode() == typeSourceNode){
+				boolean xor = true;
+				EList<Arrow> outgoing = node.getOutgoingArrows();
+				if(outgoing.size() > 0){
+					Arrow type = outgoing.get(0).getTypeArrow();
+					for(Arrow arrow : node.getOutgoingArrows())
+						if(arrow.getTypeArrow() != type){
+							xor = false;
+							break;
+						}
+				}else
+					xor = false;
+				if(!xor)
+					violateArrows.put(node, outgoing);
+
 			}
-		}
-		
-		//Also check if there is at least one instance of one arrow type:
-		for(Node n:oStar.getNodes()){
-			if(n.getTypeNode().equals(typeSourceNode)){
-				if(!connectedArrows.containsKey(n)){
-					System.out.println("breaks XOR: Node=" + n.getName());
-					return false;
-				}
+				
+		if(!violateArrows.isEmpty()){
+			System.out.println("Followings violate XOR Constraint: ");
+			Arrow typeArrow0 = typeArrows.get(0);
+			Arrow typeArrow1 = typeArrows.get(1);
+			String xor0 = typeArrow0.getName() + ": " + typeArrow0.getSource().getName() + "->" + typeArrow0.getTarget().getName();
+			String xor1 = typeArrow1.getName() + ": " + typeArrow1.getSource().getName() + "->" + typeArrow1.getTarget().getName();
+			for(Entry<Node, List<Arrow>> entry : violateArrows.entrySet()){
+				if(entry.getValue().isEmpty())
+					System.out.println("\t" + entry.getKey().getName() + " should at least have one arrow typed of " + xor0 + " or " + xor1 + " going out");
+			    else{
+			    	System.out.println("\tArrows following from " + entry.getKey().getName() + " break XOR constraint on " + xor0 + " and " + xor1);
+			    	for(Arrow arrow : entry.getValue())
+			    		System.out.println("\t\t" + arrow.getSource().getName() + "->" + arrow.getTarget().getName());
+			    }
 			}
+			System.out.println();  	
 		}
-		
-		
-		return true;	
+		return violateArrows.isEmpty();	
 	}
 
 } //XORSemanticsImpl

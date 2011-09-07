@@ -41,6 +41,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 import no.hib.dpf.editor.displaymodel.ArrowLabel;
+import no.hib.dpf.editor.displaymodel.DArrow;
 import no.hib.dpf.editor.policies.ArrowTextEditPolicy;
 import no.hib.dpf.editor.policies.ArrowTextMovePolicy;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;
@@ -104,7 +105,7 @@ public abstract class ArrowLabelEditPart extends AbstractGraphicalEditPart imple
 
 	public void propertyChange(PropertyChangeEvent evt) {
 		String request = evt.getPropertyName();
-		if (request.equals(ArrowLabel.POSITION_PROP) || request.equals(ArrowLabel.NAME_PROP))
+		if (request.equals(ArrowLabel.POSITION_PROP) || request.equals(ArrowLabel.NAME_PROP) || request.equals(DArrow.PROP_CONFIGURE))
 			refreshVisuals();
 	}
 

@@ -70,29 +70,32 @@ public class SurjectiveSemanticsImpl extends EObjectImpl implements SurjectiveSe
 			return false;
 		}
 
-//TODO Why is the target typenode ***NODE 0***????
-		final Node targetTypeNode = typeNodes.get(0);
 		final Arrow typeArrow = typeArrows.get(0);
-		final List<Node> targetNodes = new ArrayList<Node>();
-		
-		//Save all nodes that are target of arrows that have the correct type:
-		for (Arrow arrow : oStar.getArrows()) {
-			if(arrow.getTypeArrow().equals(typeArrow)){
-				targetNodes.add(arrow.getTarget());
-			}	
-		}
-		
-		//If there is a node that is not in the targetNodeList there is an error:
-		for (Node node : oStar.getNodes()) {
-			if (node.getTypeNode().equals(targetTypeNode)) {
-				if (!targetNodes.contains(node)) {
-					System.out.println(node + "break surjective constraint: " + node);
-					return false;
-				}
+		final Node targetTypeNode = typeArrow.getTarget();
+		final Node sourceTypeNode = typeArrow.getSource();
+		final List<Node> violateNodes = new ArrayList<Node>();
+		for(Node node : oStar.getNodes()){
+			if(node.getTypeNode() == targetTypeNode){
+				boolean exist = false;
+				for(Arrow arrow : node.getIncomingArrows())
+					if(arrow.getSource() != null && arrow.getSource().getTypeNode() == sourceTypeNode){
+						exist = true;
+						break;
+					}
+				if(!exist)
+					violateNodes.add(node);
+						
 			}
 		}
-		
-		return true;	
+		if(!violateNodes.isEmpty()){
+			System.out.println("Following Nodes violates Surjective constrait:");
+			for(Node node : violateNodes)
+				System.out.println("\t" + node.getName());
+			System.out.println("They don't have any arrow typed by " + typeArrow.getName() + " coming from a node typed by " + sourceTypeNode.getName());
+			System.out.println();
+			return false;
+		}
+		return true;
 	}
 
 } //SurjectiveSemanticsImpl

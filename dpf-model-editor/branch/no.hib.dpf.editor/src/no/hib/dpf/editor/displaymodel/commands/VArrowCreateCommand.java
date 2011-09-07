@@ -1,7 +1,7 @@
 /*******************************************************************************
  * Copyright (c) 2004, 2005 Elias Volanakis and others.
  * 
- * Portions of the code Copyright (c) 2011 H¿yskolen i Bergen
+ * Portions of the code Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,7 +11,7 @@
  * Contributors:
  * Elias Volanakis - initial API and implementation
  * 
- * ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
 *******************************************************************************/
 package no.hib.dpf.editor.displaymodel.commands;
 
@@ -60,6 +60,14 @@ public class VArrowCreateCommand extends Command {
 		setLabel("connection creation");
 		this.source = source;
 		this.typeArrow = typeArrow;
+	}
+
+	public VArrowCreateCommand(DArrow darrow, DNode source2) {
+		if(source2 == null) throw new IllegalArgumentException();
+		setLabel("connection creation");
+		source = source2;
+		arrow = darrow;
+		typeArrow = darrow.getTypeArrow();
 	}
 
 	/*
