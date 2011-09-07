@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %Plugin.name
+Bundle-SymbolicName: no.hib.dpf.core;singleton:=true
+Bundle-Version: 0.1.1.qualifier
+Bundle-ClassPath: .
+Bundle-Vendor: %Plugin.providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: no.hib.dpf.core,
+ no.hib.dpf.core.impl,
+ no.hib.dpf.core.util
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport
+Bundle-ActivationPolicy: lazy
+Import-Package: org.eclipse.emf.ecore.xmi,
+ org.eclipse.emf.ecore.xmi.impl

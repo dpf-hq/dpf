@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+
+     <extension point="org.eclipse.ui.editors">
+      <editor name="DPF Specification Editor"
+              extensions="dpf"
+              icon="shapes.gif"
+              default="true"
+              class="no.hib.dpf.editor.DPFEditor"
+              contributorClass="no.hib.dpf.editor.DPFEditorActionBarContributor"
+              id="GEF DPF Editor">
+      </editor>
+   </extension>
+   <extension point="org.eclipse.ui.newWizards">
+      <category name="Diagram Predicate Framework"
+                id="no.hib.dpf.editor"/>
+      <wizard
+            category="no.hib.dpf.api.wizards.dpfprojectcategory"
+            class="no.hib.dpf.editor.DPFCreationWizard"
+            icon="shapes.gif"
+            id="no.hib.dpf.editor.DPFCreationWizard"
+            name="DPF Specification Diagram">
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="no.hib.dpf.editor.preferences.DPFEditorPreferencePage"
+            id="no.hib.dpf.editor.preferences.DPFEditorPreferencePage"
+            name="DPF Editor Preferences">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="no.hib.dpf.editor.preferences.PreferenceInitializer">
+      </initializer>
+   </extension>
+</plugin>
