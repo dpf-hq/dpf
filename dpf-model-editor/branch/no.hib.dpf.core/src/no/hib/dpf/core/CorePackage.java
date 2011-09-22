@@ -1,6 +1,6 @@
 /**
  * <copyright>
- * Copyright (c) 2011 H¿yskolen i Bergen
+ * Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * Adrian Rutle, ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * Adrian Rutle, ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
  * </copyright>
  *
  * $Id$
@@ -830,6 +830,25 @@ public interface CorePackage extends EPackage {
 	int SURJECTIVE_SEMANTICS_FEATURE_COUNT = SEMANTICS_VALIDATOR_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link no.hib.dpf.core.impl.NANDSemanticsImpl <em>NAND Semantics</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.core.impl.NANDSemanticsImpl
+	 * @see no.hib.dpf.core.impl.CorePackageImpl#getNANDSemantics()
+	 * @generated
+	 */
+	int NAND_SEMANTICS = 22;
+
+	/**
+	 * The number of structural features of the '<em>NAND Semantics</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAND_SEMANTICS_FEATURE_COUNT = SEMANTICS_VALIDATOR_FEATURE_COUNT + 0;
+
+	/**
 	 * The meta object id for the '<em>EURI</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -837,7 +856,7 @@ public interface CorePackage extends EPackage {
 	 * @see no.hib.dpf.core.impl.CorePackageImpl#getEURI()
 	 * @generated
 	 */
-	int EURI = 22;
+	int EURI = 23;
 
 	/**
 	 * The meta object id for the '<em>EIO Exception</em>' data type.
@@ -847,7 +866,7 @@ public interface CorePackage extends EPackage {
 	 * @see no.hib.dpf.core.impl.CorePackageImpl#getEIOException()
 	 * @generated
 	 */
-	int EIO_EXCEPTION = 23;
+	int EIO_EXCEPTION = 24;
 
 
 	/**
@@ -1449,6 +1468,16 @@ public interface CorePackage extends EPackage {
 	EClass getSurjectiveSemantics();
 
 	/**
+	 * Returns the meta object for class '{@link no.hib.dpf.core.NANDSemantics <em>NAND Semantics</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>NAND Semantics</em>'.
+	 * @see no.hib.dpf.core.NANDSemantics
+	 * @generated
+	 */
+	EClass getNANDSemantics();
+
+	/**
 	 * Returns the meta object for data type '{@link org.eclipse.emf.common.util.URI <em>EURI</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1983,6 +2012,16 @@ public interface CorePackage extends EPackage {
 		 * @generated
 		 */
 		EClass SURJECTIVE_SEMANTICS = eINSTANCE.getSurjectiveSemantics();
+
+		/**
+		 * The meta object literal for the '{@link no.hib.dpf.core.impl.NANDSemanticsImpl <em>NAND Semantics</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see no.hib.dpf.core.impl.NANDSemanticsImpl
+		 * @see no.hib.dpf.core.impl.CorePackageImpl#getNANDSemantics()
+		 * @generated
+		 */
+		EClass NAND_SEMANTICS = eINSTANCE.getNANDSemantics();
 
 		/**
 		 * The meta object literal for the '<em>EURI</em>' data type.

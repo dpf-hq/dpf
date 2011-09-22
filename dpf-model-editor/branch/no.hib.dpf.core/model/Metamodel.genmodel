@@ -222,6 +222,7 @@
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/core/XORSemantics"/>
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/core/TransitiveIrreflexiveSemantics"/>
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/core/SurjectiveSemantics"/>
+          <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/core/NANDSemantics"/>
         </nestedGenPackages>
       </nestedGenPackages>
     </nestedGenPackages>

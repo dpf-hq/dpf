@@ -224,6 +224,7 @@
         <eClassifiers xsi:type="ecore:EClass" name="TransitiveIrreflexiveSemantics"
             eSuperTypes="#//hib/dpf/core/SemanticsValidator"/>
         <eClassifiers xsi:type="ecore:EClass" name="SurjectiveSemantics" eSuperTypes="#//hib/dpf/core/SemanticsValidator"/>
+        <eClassifiers xsi:type="ecore:EClass" name="NANDSemantics" eSuperTypes="#//hib/dpf/core/SemanticsValidator"/>
       </eSubpackages>
     </eSubpackages>
   </eSubpackages>

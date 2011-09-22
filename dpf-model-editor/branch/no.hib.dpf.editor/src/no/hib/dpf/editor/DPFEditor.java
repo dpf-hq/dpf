@@ -52,6 +52,7 @@ import no.hib.dpf.editor.editoractions.CreateIrreflexiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointlyInjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointlySurjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateMultiplicityConstraintAction;
+import no.hib.dpf.editor.editoractions.CreateNANDConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateSurjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateTransitiveIrreflexiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateXORConstraintAction;
@@ -185,6 +186,14 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 				DConstraint.ConstraintType.XOR);
 		
 		registerAction(new CreateXORConstraintAction(this, getDPFDiagram().getDpfGraph(), xorProperties));
+		
+		ConstraintProperties nandProperties = new ConstraintProperties(
+				signature.getPredicateBySymbol("[nand]"), 
+				"Create new [nand] Constraint",
+				"Creates a new [nand] Constraint",
+				DConstraint.ConstraintType.NAND);
+		
+		registerAction(new CreateNANDConstraintAction(this, getDPFDiagram().getDpfGraph(), nandProperties));
 
 		ConstraintProperties injectiveProperties = new ConstraintProperties(
 				signature.getPredicateBySymbol("[injective]"), 
@@ -493,6 +502,10 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		Predicate xorPredicate = CoreFactory.eINSTANCE.createPredicate("[xor]", "n_1,n_2,n_3", "a_1:n_1:n_2,a_2:n_1:n_3");
 		xorPredicate.setSemanticsValidator(CoreFactory.eINSTANCE.createXORSemantics());
 		signature.getPredicates().add(xorPredicate);
+		
+		Predicate nandPredicate = CoreFactory.eINSTANCE.createPredicate("[nand]", "n_1,n_2,n_3", "a_1:n_1:n_2,a_2:n_1:n_3");
+		nandPredicate.setSemanticsValidator(CoreFactory.eINSTANCE.createNANDSemantics());
+		signature.getPredicates().add(nandPredicate);
 
 		Predicate jSPredicate = CoreFactory.eINSTANCE.createPredicate("[jointly-surjective]", "n_1,n_2,n_3", "a_1:n_2:n_1,a_2:n_3:n_1");
 		jSPredicate.setSemanticsValidator(CoreFactory.eINSTANCE.createJointlySurjectiveSemantics());

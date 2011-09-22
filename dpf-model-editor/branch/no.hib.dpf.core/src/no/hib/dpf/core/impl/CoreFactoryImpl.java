@@ -1,6 +1,6 @@
 /**
  * <copyright>
- * Copyright (c) 2011 H¿yskolen i Bergen
+ * Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * Adrian Rutle, ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * Adrian Rutle, ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
  * </copyright>
  *
  * $Id$
@@ -100,6 +100,7 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 			case CorePackage.XOR_SEMANTICS: return createXORSemantics();
 			case CorePackage.TRANSITIVE_IRREFLEXIVE_SEMANTICS: return createTransitiveIrreflexiveSemantics();
 			case CorePackage.SURJECTIVE_SEMANTICS: return createSurjectiveSemantics();
+			case CorePackage.NAND_SEMANTICS: return createNANDSemantics();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -481,6 +482,16 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 	public SurjectiveSemantics createSurjectiveSemantics() {
 		SurjectiveSemanticsImpl surjectiveSemantics = new SurjectiveSemanticsImpl();
 		return surjectiveSemantics;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NANDSemantics createNANDSemantics() {
+		NANDSemanticsImpl nandSemantics = new NANDSemanticsImpl();
+		return nandSemantics;
 	}
 
 	/**

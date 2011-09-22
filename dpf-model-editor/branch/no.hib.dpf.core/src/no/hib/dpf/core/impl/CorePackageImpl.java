@@ -1,6 +1,6 @@
 /**
  * <copyright>
- * Copyright (c) 2011 H¿yskolen i Bergen
+ * Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * Adrian Rutle, ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * Adrian Rutle, ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
  * </copyright>
  *
  * $Id$
@@ -30,6 +30,7 @@ import no.hib.dpf.core.IrreflexiveSemantics;
 import no.hib.dpf.core.JointlySurjectiveSemantics;
 import no.hib.dpf.core.ModelHierarchy;
 import no.hib.dpf.core.MultiplicitySemantics;
+import no.hib.dpf.core.NANDSemantics;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Predicate;
 import no.hib.dpf.core.SemanticsValidator;
@@ -210,6 +211,13 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 	 * @generated
 	 */
 	private EClass surjectiveSemanticsEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass nandSemanticsEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -795,6 +803,15 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getNANDSemantics() {
+		return nandSemanticsEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EDataType getEURI() {
 		return euriEDataType;
 	}
@@ -914,6 +931,8 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 
 		surjectiveSemanticsEClass = createEClass(SURJECTIVE_SEMANTICS);
 
+		nandSemanticsEClass = createEClass(NAND_SEMANTICS);
+
 		// Create data types
 		euriEDataType = createEDataType(EURI);
 		eioExceptionEDataType = createEDataType(EIO_EXCEPTION);
@@ -958,6 +977,7 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 		xorSemanticsEClass.getESuperTypes().add(this.getSemanticsValidator());
 		transitiveIrreflexiveSemanticsEClass.getESuperTypes().add(this.getSemanticsValidator());
 		surjectiveSemanticsEClass.getESuperTypes().add(this.getSemanticsValidator());
+		nandSemanticsEClass.getESuperTypes().add(this.getSemanticsValidator());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(graphEClass, Graph.class, "Graph", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1173,6 +1193,8 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 		initEClass(transitiveIrreflexiveSemanticsEClass, TransitiveIrreflexiveSemantics.class, "TransitiveIrreflexiveSemantics", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(surjectiveSemanticsEClass, SurjectiveSemantics.class, "SurjectiveSemantics", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(nandSemanticsEClass, NANDSemantics.class, "NANDSemantics", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize data types
 		initEDataType(euriEDataType, URI.class, "EURI", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);

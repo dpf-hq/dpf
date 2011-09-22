@@ -1,7 +1,7 @@
 /*******************************************************************************
  * Copyright (c) 2004, 2005 Elias Volanakis and others.
  * 
- * Portions of the code Copyright (c) 2011 H¿yskolen i Bergen
+ * Portions of the code Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,7 +11,7 @@
  * Contributors:
  * Elias Volanakis - initial API and implementation
  * 
- * ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
 *******************************************************************************/
 package no.hib.dpf.editor;
 
@@ -25,6 +25,7 @@ import no.hib.dpf.editor.editoractions.CreateIrreflexiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointlyInjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointlySurjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateMultiplicityConstraintAction;
+import no.hib.dpf.editor.editoractions.CreateNANDConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateSurjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateTransitiveIrreflexiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateXORConstraintAction;
@@ -103,6 +104,7 @@ protected void buildActions() {
 	addRetargetAction(new ConstraintRetargetAction(DConstraint.ConstraintType.IRREFLEXIVE));
 	addRetargetAction(new ConstraintRetargetAction(DConstraint.ConstraintType.TRANSITIVE_IRREFLEXIVE));	
 	addRetargetAction(new ConstraintRetargetAction(DConstraint.ConstraintType.XOR));	
+	addRetargetAction(new ConstraintRetargetAction(DConstraint.ConstraintType.NAND));	
 }
 
 /**
@@ -159,6 +161,7 @@ public void contributeToToolBar(IToolBarManager toolBarManager) {
 	toolBarManager.add(getAction(CreateIrreflexiveConstraintAction.ID));
 	toolBarManager.add(getAction(CreateTransitiveIrreflexiveConstraintAction.ID));
 	toolBarManager.add(getAction(CreateXORConstraintAction.ID));
+	toolBarManager.add(getAction(CreateNANDConstraintAction.ID));
 }
 
 @Override

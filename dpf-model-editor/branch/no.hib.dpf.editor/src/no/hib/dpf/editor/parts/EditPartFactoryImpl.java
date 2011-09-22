@@ -124,6 +124,7 @@ private EditPart getPartForElement(Object modelElement) {
 			case INVERSE : return new InverseConstraintEditPart();
 			case IMAGE_INCLUSION : return new ImageInclusionConstraintEditPart();
 			case XOR : return new XORConstraintEditPart();
+			case NAND : return new NANDConstraintEditPart();
 		}
 		throw new RuntimeException("The specified constraint type doesn't have an edit part association.");
 	}
