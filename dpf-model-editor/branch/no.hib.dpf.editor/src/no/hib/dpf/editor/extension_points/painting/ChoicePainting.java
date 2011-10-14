@@ -1,59 +1,42 @@
-package no.hib.dpf.editor.figures;
+package no.hib.dpf.editor.extension_points.painting;
 
 import java.util.List;
 
-import org.eclipse.draw2d.AbstractBorder;
 import org.eclipse.draw2d.ChopboxAnchor;
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.ToolbarLayout;
-import org.eclipse.draw2d.geometry.Insets;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
 
 import no.hib.dpf.editor.extension_points.INodePainting;
-import no.hib.dpf.editor.preferences.DPFEditorPreferences;
+import no.hib.dpf.editor.extension_points.border.BasicBorder;
+import no.hib.dpf.editor.extension_points.border.BasicNodeFigure;
+import no.hib.dpf.editor.figures.EditableLabel;
 
 public class ChoicePainting implements INodePainting {
 
-	private class ChoiceFigure extends NodeFigure{
+	private class ChoiceFigure extends BasicNodeFigure{
 		public ChoiceFigure(EditableLabel name) {
 			this(name, null);
-			setBackgroundColor(DPFEditorPreferences.getDefault().getNodeColor());
-			listenToNodeColorProperty();
 		}
 		@SuppressWarnings("rawtypes")
 		public ChoiceFigure(EditableLabel name, List colums) {
-			ToolbarLayout layout = new ToolbarLayout();
-			layout.setMinorAlignment(ToolbarLayout.ALIGN_CENTER);
-			layout.setStretchMinorAxis(false);
-			layout.setSpacing(2);
-			setLayoutManager(layout);
+			super(name, colums);
 			setBorder(new ChoiceBorder());
-			setOpaque(true);
-			add(name);
-			nameLabel = name;
-		}
-		public void paint(Graphics graphics){
-			super.paint(graphics);
 		}
 	}
-	private class ChoiceBorder extends AbstractBorder {
-		public Insets getInsets(IFigure figure) {
-			return new Insets(1);
-		}
-		public void paint(IFigure figure, Graphics graphics, Insets insets) {
-			int width = graphics.getLineWidth();
-			if(width == 0)
-				width = 1;
-			getPaintRectangle(figure, insets);
-			tempRect.shrink(width, width);
-			graphics.drawLine(tempRect.getLeft(), tempRect.getBottom());
-			graphics.drawLine(tempRect.getLeft(), tempRect.getTop());
-			graphics.drawLine(tempRect.getTop(), tempRect.getRight());
-			graphics.drawLine(tempRect.getBottom(), tempRect.getRight());
+	private class ChoiceBorder extends BasicBorder {
+		@Override
+		public void draw(Graphics graphics) {
+			PointList points = new PointList();
+			points.addPoint(tempRect.getLeft());
+			points.addPoint(tempRect.getBottom());
+			points.addPoint(tempRect.getRight());
+			points.addPoint(tempRect.getTop());
+			graphics.drawPolygon(points);
 		}
 	}
 	@Override
@@ -63,7 +46,7 @@ public class ChoicePainting implements INodePainting {
 	ConnectionAnchor inAnchor = null;
 	ConnectionAnchor[] outAnchors = null;
 
-	private class ChoiceAnchor extends ChopboxAnchor{
+	public class ChoiceAnchor extends ChopboxAnchor{
 		public ChoiceAnchor(IFigure figure) {
 			super(figure);
 		}

@@ -1,4 +1,4 @@
-package no.hib.dpf.editor.figures;
+package no.hib.dpf.editor.extension_points.painting;
 
 import java.util.List;
 
@@ -15,11 +15,13 @@ import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.Rectangle;
 
 import no.hib.dpf.editor.extension_points.INodePainting;
+import no.hib.dpf.editor.figures.EditableLabel;
+import no.hib.dpf.editor.figures.NodeFigure;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;
 
 public class CirclePainting implements INodePainting {
 
-	private class CircleFigure extends NodeFigure{
+	public class CircleFigure extends NodeFigure{
 		public CircleFigure(EditableLabel name) {
 			this(name, null);
 			setOpaque(true);
@@ -39,7 +41,7 @@ public class CirclePainting implements INodePainting {
 			nameLabel = name;
 		}
 	}
-	private class CircleBorder extends AbstractBorder {
+	public class CircleBorder extends AbstractBorder {
 		public Insets getInsets(IFigure figure) {
 			return new Insets(10);
 		}

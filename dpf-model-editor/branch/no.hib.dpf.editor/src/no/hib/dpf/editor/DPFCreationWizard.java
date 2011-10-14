@@ -76,7 +76,15 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 		IDEWorkbenchMessages.WizardNewLinkPage_linkFileButton = "Load type specification:";
 		page2 = new WizardNewLinkPage("Add type graph", IResource.FILE);
 		page2.setTitle("Include type graph");
-		page2.setLinkTarget(DPFEditor.getWorkspaceDirectory());
+		String filename = null;
+		if(selection.getFirstElement() instanceof IResource){
+			filename = ((IResource)selection.getFirstElement()).getLocation().toOSString();
+			if(filename.endsWith(".dpf"))
+				filename = DPFEditor.getModelFromDiagram(filename);
+		}
+		else
+			filename = DPFEditor.getWorkspaceDirectory();
+		page2.setLinkTarget(filename);
 	}
 
 	/*

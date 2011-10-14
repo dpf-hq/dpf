@@ -429,7 +429,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 //		};
 //	}
 
-	private static final String DEFAULT_MODEL_EXTENSION = ".xmi";
+	public static final String DEFAULT_MODEL_EXTENSION = ".xmi";
 
 	//dpf name to xmi name
 	public static String getModelFromDiagram(String diagram){
@@ -733,7 +733,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 	 * Returns the path to the workspace of this editor.
 	 */
 	public static String getWorkspaceDirectory() {
-		return ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
+		return ResourcesPlugin.getWorkspace().getRoot().getLocation().toOSString();
 	}
 
 	/**

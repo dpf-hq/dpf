@@ -42,20 +42,64 @@
    <extension
          point="no.hib.dpf.editor.FigureConfigure">
       <NodeConfigure
-            name="no.hib.dpf.editor.ChoiceConfigure"
-            paint="no.hib.dpf.editor.figures.ChoicePainting"
-            smallicon="d.jpg">
+            name="Choice"
+            paint="no.hib.dpf.editor.extension_points.painting.ChoicePainting"
+            smallicon="icons/d.jpg">
       </NodeConfigure>
       <NodeConfigure
-            name="no.hib.dpf.editor.CircleFigure"
-            paint="no.hib.dpf.editor.figures.CirclePainting"
-            smallicon="circle.png">
+            name="Circle"
+            paint="no.hib.dpf.editor.extension_points.painting.CirclePainting"
+            smallicon="icons/circle.png">
       </NodeConfigure>
       <NodeConfigure
-            name="no.hib.dpf.editor.EllipseConfigure"
-            paint="no.hib.dpf.editor.figures.EllipsePainting"
-            smallicon="ellipse.png">
+            name="Ellipse"
+            paint="no.hib.dpf.editor.extension_points.painting.EllipsePainting"
+            smallicon="icons/ellipse.png">
       </NodeConfigure>
+      <NodeConfigure
+            name="Entity"
+            paint="no.hib.dpf.editor.extension_points.painting.EntityPainting">
+      </NodeConfigure>
+      <NodeConfigure
+            name="WeakEntity"
+            paint="no.hib.dpf.editor.extension_points.painting.WeakEntityPainting">
+      </NodeConfigure>
+      <NodeConfigure
+            name="Relationship"
+            paint="no.hib.dpf.editor.extension_points.painting.RelationshipPainting">
+      </NodeConfigure>
+      <NodeConfigure
+            name="IndentifyingRelation"
+            paint="no.hib.dpf.editor.extension_points.painting.IRelationshipPainting">
+      </NodeConfigure>
+      <NodeConfigure
+            name="KeyAttribute"
+            paint="no.hib.dpf.editor.extension_points.painting.KeyAttributePainting"
+            smallicon="icons/ellipse.png">
+      </NodeConfigure>
+      <NodeConfigure
+            name="Attribute"
+            paint="no.hib.dpf.editor.extension_points.painting.AttributePainting"
+            smallicon="icons/ellipse.png">
+      </NodeConfigure>
+      <NodeConfigure
+            name="MultivaluedAttribute"
+            paint="no.hib.dpf.editor.extension_points.painting.MultivaluedAttributePainting"
+            smallicon="icons/ellipse.png">
+      </NodeConfigure>
+      <NodeConfigure
+            name="DerivedAttribute"
+            paint="no.hib.dpf.editor.extension_points.painting.DerivedAttributePainting"
+            smallicon="icons/ellipse.png">
+      </NodeConfigure>
+      <ArrowConfigure
+            name="ParticipationConfigure"
+            paint="no.hib.dpf.editor.extension_points.painting.ParticipationPainting">
+      </ArrowConfigure>
+      <ArrowConfigure
+            name="TotalParticipationConfigure"
+            paint="no.hib.dpf.editor.extension_points.painting.TotalParticipationPainting">
+      </ArrowConfigure>
    </extension>
    <extension
          point="org.eclipse.ui.popupMenus">
