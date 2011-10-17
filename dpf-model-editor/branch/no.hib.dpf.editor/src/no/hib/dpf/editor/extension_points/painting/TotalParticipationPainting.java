@@ -1,7 +1,6 @@
 package no.hib.dpf.editor.extension_points.painting;
 
 import org.eclipse.draw2d.AnchorListener;
-import org.eclipse.draw2d.Bendpoint;
 import org.eclipse.draw2d.ChopboxAnchor;
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.Graphics;
@@ -9,7 +8,6 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.draw2d.RotatableDecoration;
 import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
 
 import no.hib.dpf.editor.extension_points.IArrowPainting;
@@ -85,7 +83,13 @@ public class TotalParticipationPainting implements IArrowPainting {
 				this.add(down);
 			}
 		}
+		public void setRoutingConstraint(Object cons) {
+			super.setRoutingConstraint(cons);
+			up.setRoutingConstraint(cons);
+			down.setRoutingConstraint(cons);
+		}
 		public void setSourceAnchor(final ConnectionAnchor anchor) {
+			
 			if(anchor == null){
 				super.setSourceAnchor(null);
 				return;

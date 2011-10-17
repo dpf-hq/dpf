@@ -57,48 +57,64 @@
             smallicon="icons/ellipse.png">
       </NodeConfigure>
       <NodeConfigure
+            largeicon="icons/entity_32.png"
             name="Entity"
-            paint="no.hib.dpf.editor.extension_points.painting.EntityPainting">
+            paint="no.hib.dpf.editor.extension_points.painting.EntityPainting"
+            smallicon="icons/entity_16.png">
       </NodeConfigure>
       <NodeConfigure
+            largeicon="icons/weakentity_32.png"
             name="WeakEntity"
-            paint="no.hib.dpf.editor.extension_points.painting.WeakEntityPainting">
+            paint="no.hib.dpf.editor.extension_points.painting.WeakEntityPainting"
+            smallicon="icons/weakentity_16.png">
       </NodeConfigure>
       <NodeConfigure
+            largeicon="icons/relationship_32.png"
             name="Relationship"
-            paint="no.hib.dpf.editor.extension_points.painting.RelationshipPainting">
+            paint="no.hib.dpf.editor.extension_points.painting.RelationshipPainting"
+            smallicon="icons/relationship_16.png">
       </NodeConfigure>
       <NodeConfigure
+            largeicon="icons/ir_32.png"
             name="IndentifyingRelation"
-            paint="no.hib.dpf.editor.extension_points.painting.IRelationshipPainting">
+            paint="no.hib.dpf.editor.extension_points.painting.IRelationshipPainting"
+            smallicon="icons/ir_16.png">
       </NodeConfigure>
       <NodeConfigure
+            largeicon="icons/keya_32.png"
             name="KeyAttribute"
             paint="no.hib.dpf.editor.extension_points.painting.KeyAttributePainting"
-            smallicon="icons/ellipse.png">
+            smallicon="icons/keya_16.png">
       </NodeConfigure>
       <NodeConfigure
+            largeicon="icons/a_32.png"
             name="Attribute"
             paint="no.hib.dpf.editor.extension_points.painting.AttributePainting"
-            smallicon="icons/ellipse.png">
+            smallicon="icons/a_16.png">
       </NodeConfigure>
       <NodeConfigure
+            largeicon="icons/ma_32.png"
             name="MultivaluedAttribute"
             paint="no.hib.dpf.editor.extension_points.painting.MultivaluedAttributePainting"
-            smallicon="icons/ellipse.png">
+            smallicon="icons/ma_16.png">
       </NodeConfigure>
       <NodeConfigure
+            largeicon="icons/da_32.png"
             name="DerivedAttribute"
             paint="no.hib.dpf.editor.extension_points.painting.DerivedAttributePainting"
-            smallicon="icons/ellipse.png">
+            smallicon="icons/da_16.png">
       </NodeConfigure>
       <ArrowConfigure
+            largeicon="icons/p_32.png"
             name="ParticipationConfigure"
-            paint="no.hib.dpf.editor.extension_points.painting.ParticipationPainting">
+            paint="no.hib.dpf.editor.extension_points.painting.ParticipationPainting"
+            smallicon="icons/p_16.png">
       </ArrowConfigure>
       <ArrowConfigure
+            largeicon="icons/tp_32.png"
             name="TotalParticipationConfigure"
-            paint="no.hib.dpf.editor.extension_points.painting.TotalParticipationPainting">
+            paint="no.hib.dpf.editor.extension_points.painting.TotalParticipationPainting"
+            smallicon="icons/tp_16.png">
       </ArrowConfigure>
    </extension>
    <extension
