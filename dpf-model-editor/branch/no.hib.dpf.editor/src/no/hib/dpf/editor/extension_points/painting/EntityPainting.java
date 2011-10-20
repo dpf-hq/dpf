@@ -29,11 +29,9 @@ public class EntityPainting implements INodePainting {
 	public class EntityBorder extends BasicBorder {
 		@Override
 		public void draw(Graphics graphics) {
-			double ration = ((double)tempRect.height) / ((double)tempRect.width);
-			graphics.drawRectangle(tempRect);
-			tempRect.shrink(getWidth(), Math.max(getWidth(), (int) (getWidth() * ration)));
 			graphics.setBackgroundColor(bgColor);
 			graphics.fillRectangle(tempRect);
+			graphics.drawRectangle(tempRect);
 		}
 	}
 	@Override

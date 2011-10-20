@@ -116,6 +116,12 @@
             paint="no.hib.dpf.editor.extension_points.painting.TotalParticipationPainting"
             smallicon="icons/tp_16.png">
       </ArrowConfigure>
+      <ArrowConfigure
+            largeicon="icons/p_32.png"
+            name="EntityAttributeConfigure"
+            paint="no.hib.dpf.editor.extension_points.painting.ParticipationPainting"
+            smallicon="icons/p_16.png">
+      </ArrowConfigure>
    </extension>
    <extension
          point="org.eclipse.ui.popupMenus">
