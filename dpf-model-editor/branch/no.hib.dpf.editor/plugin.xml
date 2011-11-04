@@ -6,7 +6,7 @@
      <extension point="org.eclipse.ui.editors">
       <editor name="DPF Specification Editor"
               extensions="dpf"
-              icon="shapes.gif"
+              icon="icons/shapes.gif"
               default="true"
               class="no.hib.dpf.editor.DPFEditor"
               contributorClass="no.hib.dpf.editor.DPFEditorActionBarContributor"
@@ -19,7 +19,7 @@
       <wizard
             category="no.hib.dpf.api.wizards.dpfprojectcategory"
             class="no.hib.dpf.editor.DPFCreationWizard"
-            icon="shapes.gif"
+            icon="icons/shapes.gif"
             id="no.hib.dpf.editor.DPFCreationWizard"
             name="DPF Specification Diagram">
          <selection class="org.eclipse.core.resources.IResource"/>

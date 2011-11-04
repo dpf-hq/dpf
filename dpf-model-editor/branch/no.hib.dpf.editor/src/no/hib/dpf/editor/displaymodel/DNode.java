@@ -15,8 +15,6 @@
 *******************************************************************************/
 package no.hib.dpf.editor.displaymodel;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +24,6 @@ import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.IDObject;
 import no.hib.dpf.core.Node;
-import no.hib.dpf.editor.DPFPlugin;
 import no.hib.dpf.editor.extension_points.FigureConfigureManager;
 import no.hib.dpf.editor.icons.ImageSettings;
 
@@ -89,8 +86,8 @@ public class DNode extends ModelElement implements Node, IDObjectContainer, Mova
 
 	
 
-	public static final ImageDescriptor SMALLICON = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.SMALL_RECTANGLE.getFilePath());
-	public static final ImageDescriptor LARGEICON = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.LARGE_RECTANGLE.getFilePath());
+	public static final ImageDescriptor SMALLICON = ImageSettings.SMALL_RECTANGLE.getImageDescriptor();
+	public static final ImageDescriptor LARGEICON = ImageSettings.LARGE_RECTANGLE.getImageDescriptor();
 
 	private static final String[] configureLabels = FigureConfigureManager.getInstance().getNodeNames();
 	protected final String[] getConfigureLabels(){ return configureLabels;}
@@ -111,16 +108,6 @@ public class DNode extends ModelElement implements Node, IDObjectContainer, Mova
 		};
 	} // static
 
-	protected static Image createImage(String name) {
-		InputStream stream = DPFPlugin.class.getResourceAsStream(name);
-		Image image = new Image(null, stream);
-		try {
-			stream.close();
-		} catch (IOException ioe) {
-		}
-		return image;
-	}
-	
 	/** List of outgoing Connections. */
 	private List<DArrow> sourceConnections = new ArrayList<DArrow>();
 	/** List of incoming Connections. */
@@ -293,7 +280,7 @@ public class DNode extends ModelElement implements Node, IDObjectContainer, Mova
 	}
 	
 	/** A pictogram of a rectangular shape. */
-	private static final Image RECTANGLE_ICON = createImage(ImageSettings.SMALL_RECTANGLE.getFilePath());
+	private static final Image RECTANGLE_ICON = ImageSettings.SMALL_RECTANGLE.getImage();
 
 	public Image getIcon() {
 		return RECTANGLE_ICON;

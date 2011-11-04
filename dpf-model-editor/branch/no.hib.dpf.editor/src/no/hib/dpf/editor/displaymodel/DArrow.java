@@ -25,7 +25,6 @@ import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.IDObject;
 import no.hib.dpf.core.Node;
-import no.hib.dpf.editor.DPFPlugin;
 import no.hib.dpf.editor.extension_points.FigureConfigureManager;
 import no.hib.dpf.editor.icons.ImageSettings;
 
@@ -119,8 +118,8 @@ public class DArrow extends ModelElement implements Arrow, IDObjectContainer {
 	private String arrowID;
 
 
-	public final static ImageDescriptor SMALLARROW = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.SMALL_CONNECTION.getFilePath());
-	public final static ImageDescriptor LARGEARROW = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.LARGE_CONNECTION.getFilePath());
+	public final static ImageDescriptor SMALLARROW = ImageSettings.SMALL_CONNECTION.getImageDescriptor();
+	public final static ImageDescriptor LARGEARROW = ImageSettings.LARGE_CONNECTION.getImageDescriptor();
 
 	@Override
 	public String getIDObjectID() {
