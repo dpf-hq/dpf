@@ -1,0 +1,42 @@
+«IMPORT no::hib::dpf::core»
+
+«EXTENSION org::eclipse::xtend::util::stdlib::io»
+«EXTENSION no::hib::dpf::codegen::generator::extensions::play::TemplateUtil»
+
+«DEFINE main FOR core::Specification»
+	«EXPAND graph FOR this.graph»
+	«printConstraints(graph.constraints)»
+	«bleh()»
+«ENDDEFINE»
+
+«DEFINE graph FOR core::Graph»
+	«EXPAND DomainClass FOREACH getDomainClasses()»
+«ENDDEFINE»
+
+«DEFINE DomainClass FOR core::Node»
+		«FILE name.toFirstUpper() + ".java"»
+			package «getPackages().first().name»;
+			
+			«printArrayImport(this.getOutgoingArrows())»
+			«EXPAND imports FOREACH this.getOutgoingArrows()»
+			
+			import play.db.jpa.Model;
+			
+			public class «this.name» extends Model {
+				«getDomainClassAttributes(this.getOutgoingArrows())»
+				
+				«IF this.getOutgoingArrows().size > 0»
+					public «this.name»(«paramList(this.getOutgoingArrows())») {
+						«constructorSetAttributes(this.getOutgoingArrows())»	
+					}
+				«ENDIF»
+			}
+		«ENDFILE»
+«ENDDEFINE»
+
+«DEFINE imports FOR core::Arrow»
+	«IF this.name == "Date"»
+		import java.util.Date;
+	«ENDIF»
+«ENDDEFINE»
+

@@ -1,0 +1,8 @@
+«IMPORT no::hib::dpf::core»
+«EXTENSION no::hib::dpf::codegen::generator::extensions::play::InitPlay»
+
+«DEFINE init FOR core::Specification»
+	«initializeTemplates(this.graph)»
+	«EXPAND PlayModel::main FOR this»
+	«EXPAND PlayController::main FOR this»
+«ENDDEFINE»

@@ -1,0 +1,18 @@
+«IMPORT no::hib::dpf::core»
+«EXTENSION no::hib::dpf::codegen::generator::extensions::play::TemplateUtil»
+
+«DEFINE main FOR core::Specification»
+	«EXPAND controllers FOREACH getDomainClasses()»
+«ENDDEFINE»
+
+«DEFINE controllers FOR core::Node»
+	«FILE name.toFirstUpper() + "s.java"»
+		package «getPackages().last().name»;
+	
+		import play.mvc.Controller;
+		
+		public class «name.toFirstUpper()+"s"» extends Controller {
+			
+		} 
+	«ENDFILE»
+«ENDDEFINE»
