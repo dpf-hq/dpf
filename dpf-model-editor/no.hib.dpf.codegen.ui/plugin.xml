@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="no.hib.dpf.codegen.ui.wizards.category"
+            name="DPF Play!">
+      </category>
+      <wizard
+            category="no.hib.dpf.codegen.ui.wizards.category"
+            class="no.hib.dpf.codegen.ui.wizards.NewDPFPlayWizard"
+            icon="icons/web_small.gif"
+            id="no.hib.dpf.codegen.ui.wizards.NewWebDPFWizard"
+            name="New DPF Play Model">
+      </wizard>
+   </extension>
+   <extension
+         point="org.eclipse.ui.propertyPages">
+      <page
+            class="no.hib.dpf.codegen.ui.properties.DPFPropertyPage"
+            icon="icons/web_small.gif"
+            id="no.hib.dpf.codegen.ui.properties.DPFPropertyPage"
+            name="DPF Code Generation Properties">
+         <enabledWhen>
+            <adapt
+                  type="org.eclipse.core.resources.IProject">
+            </adapt>
+         </enabledWhen>
+      </page>
+   </extension>
+   <extension
+         id="no.hib.dpf.codegen.ui.nature.codegennature"
+         name="Code Generation for DPF nature"
+         point="org.eclipse.core.resources.natures">
+      <runtime>
+         <run
+               class="no.hib.dpf.codegen.ui.nature.CodegenNature">
+         </run>
+      </runtime>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="no.hib.dpf.codegen.ui.handlers.GenerateCodeHandler"
+            commandId="no.hib.dpf.codegen.ui.commands.codegen">
+         <activeWhen>
+            <count
+                  value="1">
+            </count>
+         </activeWhen>
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.ui.popup.any">
+         <command
+               commandId="no.hib.dpf.codegen.ui.commands.codegen"
+               icon="icons/web_small.gif"
+               label="Generate Code from XMI"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <iterate
+                     ifEmpty="false"
+                     operator="and">
+                  <test
+                        property="org.eclipse.core.resources.projectNature"
+                        value="no.hib.dpf.codegen.ui.nature.codegennature">
+                  </test>
+                  <adapt
+                        type="org.eclipse.core.resources.IResource">
+                     <test
+                           property="org.eclipse.core.resources.name"
+                           value="*.dpf.xmi">
+                     </test>
+                  </adapt>
+               </iterate>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         id="no.hib.dpf.codegen.ui.commands"
+         name="Generate Code"
+         point="org.eclipse.ui.commands">
+      <command
+            id="no.hib.dpf.codegen.ui.commands.codegen"
+            name="Generate Code From XMI">
+      </command>
+   </extension>
+
+</plugin>
