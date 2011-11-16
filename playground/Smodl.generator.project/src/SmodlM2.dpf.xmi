@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="ASCII"?>
+<no.hib.dpf.core:Specification xmlns:no.hib.dpf.core="http://no.hib.dpf.core">
+  <graph id="c5510b15-9082-45a3-b916-1b54aee8347f" name="Default name">
+    <nodes id="142f4eb4-7ddf-466c-b669-6d021fc4113f" name="Service" typeNode="//@typeGraph/@nodes.0"/>
+    <nodes id="4aed0c10-1f56-49dc-a562-28b64914583c" name="Doc" typeNode="//@typeGraph/@nodes.0"/>
+    <nodes id="a85e248e-5f82-4869-b466-573a22c63551" name="Method" typeNode="//@typeGraph/@nodes.0"/>
+    <nodes id="d2587ede-3a43-4be5-8193-909e571a659a" name="Struct" typeNode="//@typeGraph/@nodes.0"/>
+    <nodes id="6ef85315-9953-46c9-a3cf-47b7d6551b5b" name="Arg" typeNode="//@typeGraph/@nodes.0"/>
+    <nodes id="363019b0-80a1-474b-b3f3-1d9dc808c6ee" name="Type" typeNode="//@typeGraph/@nodes.0"/>
+    <nodes id="764d05e1-89aa-407a-bce1-592084a12a0d" name="string" typeNode="//@typeGraph/@nodes.1"/>
+    <arrows id="728a5dbb-c25d-4b50-846b-cd05f3ef7bfc" target="//@graph/@nodes.1" typeArrow="//@typeGraph/@arrows.1" source="//@graph/@nodes.0" name="docRef"/>
+    <arrows id="6069c567-9ec4-4372-8dd2-89266b46b519" target="//@graph/@nodes.2" typeArrow="//@typeGraph/@arrows.1" source="//@graph/@nodes.0" name="methodRef"/>
+    <arrows id="3821a629-e7e1-4790-a3e0-84e8ebad7719" target="//@graph/@nodes.3" typeArrow="//@typeGraph/@arrows.1" source="//@graph/@nodes.0" name="structRef"/>
+    <arrows id="493393d5-3ef8-4e29-b0ae-40f07176e624" target="//@graph/@nodes.5" typeArrow="//@typeGraph/@arrows.1" source="//@graph/@nodes.2" name="resultRef"/>
+    <arrows id="7d980d4b-8f73-45c7-a428-c934036657ce" target="//@graph/@nodes.4" typeArrow="//@typeGraph/@arrows.1" source="//@graph/@nodes.2" name="argRef"/>
+    <arrows id="af380fb9-bb9c-4e41-ba2a-8ec9045b6737" target="//@graph/@nodes.5" typeArrow="//@typeGraph/@arrows.1" source="//@graph/@nodes.3" name="fieldRef"/>
+    <arrows id="78f24630-8428-4fb7-b6f4-92c668cefec9" target="//@graph/@nodes.3" typeArrow="//@typeGraph/@arrows.1" source="//@graph/@nodes.3" name="extends"/>
+    <arrows id="f62c5e83-6f9b-4ac4-afb3-f7e83793c7d2" target="//@graph/@nodes.1" typeArrow="//@typeGraph/@arrows.1" source="//@graph/@nodes.3" name="structdocRef"/>
+    <arrows id="d9411458-97e7-4436-aa06-028cc0274233" target="//@graph/@nodes.1" typeArrow="//@typeGraph/@arrows.1" source="//@graph/@nodes.2" name="methoddocRef"/>
+    <arrows id="5b8eba33-6c7f-4713-aa2b-3e48c6d2dfd0" target="//@graph/@nodes.6" typeArrow="//@typeGraph/@arrows.0" source="//@graph/@nodes.0" name="targetNameSpace"/>
+    <arrows id="43692d22-10ab-44ba-9686-099e48458ebe" target="//@graph/@nodes.4" typeArrow="//@typeGraph/@arrows.1" source="//@graph/@nodes.4" name="nextArg"/>
+    <arrows id="4b1ebef0-7fd7-46c8-8411-06b61962bf09" target="//@graph/@nodes.5" typeArrow="//@typeGraph/@arrows.1" source="//@graph/@nodes.4" name="typeRef"/>
+    <constraints id="3b13df81-7e0d-40fb-b887-7bc780e72401">
+      <predicate href="../../signature01.xmi#//@predicates.9"/>
+      <mappings>
+        <nodeMapping value="//@graph/@nodes.0">
+          <key href="../../signature01.xmi#//@predicates.9/@shape/@nodes.0"/>
+        </nodeMapping>
+        <arrowMapping>
+          <key href="../../signature01.xmi#//@predicates.9/@shape/@arrows.0"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+    <constraints id="4e1e67f8-4666-491b-9c80-ad9ba54c39eb">
+      <predicate href="../../signature01.xmi#//@predicates.9"/>
+      <mappings>
+        <nodeMapping value="//@graph/@nodes.3">
+          <key href="../../signature01.xmi#//@predicates.9/@shape/@nodes.0"/>
+        </nodeMapping>
+        <arrowMapping value="//@graph/@arrows.6">
+          <key href="../../signature01.xmi#//@predicates.9/@shape/@arrows.0"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+    <constraints id="d9a16c0b-ec4e-4a1b-ad8e-b32a1dbf9de2">
+      <predicate href="../../signature01.xmi#//@predicates.11"/>
+      <mappings>
+        <nodeMapping value="//@graph/@nodes.3">
+          <key href="../../signature01.xmi#//@predicates.11/@shape/@nodes.0"/>
+        </nodeMapping>
+        <nodeMapping value="//@graph/@nodes.5">
+          <key href="../../signature01.xmi#//@predicates.11/@shape/@nodes.1"/>
+        </nodeMapping>
+        <arrowMapping value="//@graph/@arrows.5">
+          <key href="../../signature01.xmi#//@predicates.11/@shape/@arrows.0"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+    <constraints id="3b25afdd-3b3f-46dc-ab63-8c2e81d8fdd2">
+      <predicate href="../../signature01.xmi#//@predicates.11"/>
+      <mappings>
+        <nodeMapping value="//@graph/@nodes.3">
+          <key href="../../signature01.xmi#//@predicates.11/@shape/@nodes.0"/>
+        </nodeMapping>
+        <nodeMapping value="//@graph/@nodes.1">
+          <key href="../../signature01.xmi#//@predicates.11/@shape/@nodes.1"/>
+        </nodeMapping>
+        <arrowMapping value="//@graph/@arrows.7">
+          <key href="../../signature01.xmi#//@predicates.11/@shape/@arrows.0"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+    <constraints id="195d1d92-a2d0-4589-a568-1c50d64473bd">
+      <predicate href="../../signature01.xmi#//@predicates.11"/>
+      <mappings>
+        <nodeMapping value="//@graph/@nodes.0">
+          <key href="../../signature01.xmi#//@predicates.11/@shape/@nodes.0"/>
+        </nodeMapping>
+        <nodeMapping value="//@graph/@nodes.1">
+          <key href="../../signature01.xmi#//@predicates.11/@shape/@nodes.1"/>
+        </nodeMapping>
+        <arrowMapping value="//@graph/@arrows.0">
+          <key href="../../signature01.xmi#//@predicates.11/@shape/@arrows.0"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+    <constraints id="30a29eb0-6434-4a6c-9c05-e835f2c394c2">
+      <predicate href="../../signature01.xmi#//@predicates.11"/>
+      <mappings>
+        <nodeMapping value="//@graph/@nodes.0">
+          <key href="../../signature01.xmi#//@predicates.11/@shape/@nodes.0"/>
+        </nodeMapping>
+        <nodeMapping value="//@graph/@nodes.2">
+          <key href="../../signature01.xmi#//@predicates.11/@shape/@nodes.1"/>
+        </nodeMapping>
+        <arrowMapping value="//@graph/@arrows.1">
+          <key href="../../signature01.xmi#//@predicates.11/@shape/@arrows.0"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+    <constraints id="720209b2-4b53-4a7d-9cfa-a4a207fcd93d">
+      <predicate href="../../signature01.xmi#//@predicates.11"/>
+      <mappings>
+        <nodeMapping value="//@graph/@nodes.2">
+          <key href="../../signature01.xmi#//@predicates.11/@shape/@nodes.0"/>
+        </nodeMapping>
+        <nodeMapping value="//@graph/@nodes.1">
+          <key href="../../signature01.xmi#//@predicates.11/@shape/@nodes.1"/>
+        </nodeMapping>
+        <arrowMapping value="//@graph/@arrows.8">
+          <key href="../../signature01.xmi#//@predicates.11/@shape/@arrows.0"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+    <constraints id="406d5dcf-1ece-42c8-b337-95c7f8060fb7">
+      <predicate href="../../signature01.xmi#//@predicates.11"/>
+      <mappings>
+        <nodeMapping value="//@graph/@nodes.2">
+          <key href="../../signature01.xmi#//@predicates.11/@shape/@nodes.0"/>
+        </nodeMapping>
+        <nodeMapping value="//@graph/@nodes.4">
+          <key href="../../signature01.xmi#//@predicates.11/@shape/@nodes.1"/>
+        </nodeMapping>
+        <arrowMapping value="//@graph/@arrows.4">
+          <key href="../../signature01.xmi#//@predicates.11/@shape/@arrows.0"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+    <constraints id="69fe9cb6-02c4-4031-a206-2cefdd8d5efa">
+      <predicate href="../../signature01.xmi#//@predicates.11"/>
+      <mappings>
+        <nodeMapping value="//@graph/@nodes.4">
+          <key href="../../signature01.xmi#//@predicates.11/@shape/@nodes.0"/>
+        </nodeMapping>
+        <nodeMapping value="//@graph/@nodes.4">
+          <key href="../../signature01.xmi#//@predicates.11/@shape/@nodes.1"/>
+        </nodeMapping>
+        <arrowMapping value="//@graph/@arrows.10">
+          <key href="../../signature01.xmi#//@predicates.11/@shape/@arrows.0"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+    <constraints id="8cfe93fe-85d1-4f12-a36e-7571257b0575">
+      <predicate href="../../signature01.xmi#//@predicates.11"/>
+      <mappings>
+        <nodeMapping value="//@graph/@nodes.2">
+          <key href="../../signature01.xmi#//@predicates.11/@shape/@nodes.0"/>
+        </nodeMapping>
+        <nodeMapping value="//@graph/@nodes.5">
+          <key href="../../signature01.xmi#//@predicates.11/@shape/@nodes.1"/>
+        </nodeMapping>
+        <arrowMapping value="//@graph/@arrows.3">
+          <key href="../../signature01.xmi#//@predicates.11/@shape/@arrows.0"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+    <constraints id="748c2251-1e8a-44b8-80e7-b7509b1510cd">
+      <predicate href="../../signature01.xmi#//@predicates.11"/>
+      <mappings>
+        <nodeMapping value="//@graph/@nodes.4">
+          <key href="../../signature01.xmi#//@predicates.11/@shape/@nodes.0"/>
+        </nodeMapping>
+        <nodeMapping value="//@graph/@nodes.5">
+          <key href="../../signature01.xmi#//@predicates.11/@shape/@nodes.1"/>
+        </nodeMapping>
+        <arrowMapping value="//@graph/@arrows.11">
+          <key href="../../signature01.xmi#//@predicates.11/@shape/@arrows.0"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+  </graph>
+  <typeGraph id="0a4a2ddb-393c-4faf-b962-f8193e0eb778" name="Default name">
+    <nodes id="d3773599-3e55-4601-aaf5-13433fe4a137" name="Class">
+      <typeNode href="SmodlM3.dpf.xmi#//@typeGraph/@nodes.0"/>
+    </nodes>
+    <nodes id="6364f7d4-58f8-4923-8bc2-dd16f1a61155" name="DataType">
+      <typeNode href="SmodlM3.dpf.xmi#//@typeGraph/@nodes.0"/>
+    </nodes>
+    <arrows id="1bdb6e5f-c428-400a-9198-0dfd8098c84f" target="//@typeGraph/@nodes.1" source="//@typeGraph/@nodes.0" name="Attribute">
+      <typeArrow href="SmodlM3.dpf.xmi#//@typeGraph/@arrows.0"/>
+    </arrows>
+    <arrows id="1bac18b4-6128-453e-9821-fd6011e20671" target="//@typeGraph/@nodes.0" source="//@typeGraph/@nodes.0" name="Reference">
+      <typeArrow href="SmodlM3.dpf.xmi#//@typeGraph/@arrows.0"/>
+    </arrows>
+  </typeGraph>
+</no.hib.dpf.core:Specification>

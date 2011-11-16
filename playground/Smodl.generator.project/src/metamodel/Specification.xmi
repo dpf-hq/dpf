@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ASCII"?>
+<no.hib.dpf.core:Specification xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:no.hib.dpf.core="http://no.hib.dpf.core">
+  <graph id="237e3577-15f5-4507-9d3e-2dbc7782ede0" name="Default name">
+    <nodes id="e8dfcad9-5e8b-4387-80aa-9cead4b6a025" name="class" typeNode="//@graph/@nodes.0"/>
+  </graph>
+  <typeGraph id="e7ead858-b6b9-4cbd-8f30-08ae6bd59bf3" name="Default name">
+    <nodes id="439ef448-a54b-4789-be48-b56052a59ddf" name="DataType" typeNode="//@graph/@nodes.0"/>
+  </typeGraph>
+</no.hib.dpf.core:Specification>
