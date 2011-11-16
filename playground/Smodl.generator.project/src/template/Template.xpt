@@ -1,15 +1,15 @@
-«IMPORT Metamodel»
-«DEFINE main FOR core::Specification»
-«EXPAND graph FOR this.graph»
-«ENDDEFINE»
-«DEFINE graph FOR core::Graph»
-	«EXPAND node FOREACH nodes»
-«ENDDEFINE»
+Â«IMPORT MetamodelÂ»
+Â«DEFINE main FOR core::SpecificationÂ»
+Â«EXPAND graph FOR this.graphÂ»
+Â«ENDDEFINEÂ»
+Â«DEFINE graph FOR core::GraphÂ»
+	Â«EXPAND node FOREACH nodesÂ»
+Â«ENDDEFINEÂ»
 
-«DEFINE node FOR core::Node»
-	«FILE this.name + ".java"»
-	    public interface «this.name» {
+Â«DEFINE node FOR core::NodeÂ»
+	Â«FILE this.name + ".java"Â»
+	    public interface Â«this.nameÂ» {
 	      
 	    }
-	«ENDFILE»
-«ENDDEFINE»
+	Â«ENDFILEÂ»
+Â«ENDDEFINEÂ»
