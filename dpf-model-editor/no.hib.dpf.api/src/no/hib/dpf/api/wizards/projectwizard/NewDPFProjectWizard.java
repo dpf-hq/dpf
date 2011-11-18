@@ -4,10 +4,6 @@ import java.net.URI;
 
 import no.hib.dpf.api.wizards.projectwizard.projects.DPFProjectSupport;
 
-import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IWorkspace;
-import org.eclipse.core.resources.IWorkspaceRoot;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExecutableExtension;
@@ -54,8 +50,6 @@ public class NewDPFProjectWizard extends Wizard implements INewWizard, IExecutab
 			location = pageone.getLocationURI();
 			System.err.println("Location: " + location.toString());
 		}
-		IWorkspaceRoot ws = ResourcesPlugin.getWorkspace().getRoot();
-		IProject p = ws.getProject(pageone.getProjectName());
 
 		DPFProjectSupport.createProject(name, location);
 		BasicNewProjectResourceWizard.updatePerspective(configurationElement);

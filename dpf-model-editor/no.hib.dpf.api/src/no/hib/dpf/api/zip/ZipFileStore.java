@@ -12,7 +12,6 @@ import java.util.zip.ZipException;
 
 import no.hib.dpf.api.zip.internal.ZipDirectoryItem;
 import no.hib.dpf.api.zip.internal.ZipFileItem;
-import no.hib.dpf.api.zip.internal.ZipFileUtils;
 import no.hib.dpf.api.zip.internal.ZipItem;
 import no.hib.dpf.api.zip.internal.ZipRootItem;
 
