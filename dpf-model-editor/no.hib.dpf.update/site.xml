@@ -3,7 +3,7 @@
    <description name="DPF Editor Update Site" url="http://dpf.hib.no/update">
       Download site for DPF Editor. See dpf.hib.no for details.
    </description>
-   <feature url="features/no.hib.dpf.feature_0.1.1.qualifier.jar" id="no.hib.dpf.feature" version="0.1.1.qualifier">
+   <feature url="features/no.hib.dpf.feature_0.1.1.201109201241.jar" id="no.hib.dpf.feature" version="0.1.1.201109201241">
       <category name="dpf_tools"/>
    </feature>
    <category-def name="dpf_tools" label="DPF Tools"/>
