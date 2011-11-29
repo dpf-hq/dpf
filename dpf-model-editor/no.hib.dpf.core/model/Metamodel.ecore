@@ -102,8 +102,6 @@
           <eStructuralFeatures xsi:type="ecore:EReference" name="graph" eType="#//hib/dpf/core/Graph"
               unsettable="true" eOpposite="#//hib/dpf/core/Graph/nodes"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="typeNode" eType="#//hib/dpf/core/Node"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
-              eType="#//hib/dpf/core/Constraint"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Arrow" eSuperTypes="#//hib/dpf/core/IDObject">
           <eOperations name="getTypeName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -114,8 +112,6 @@
           <eStructuralFeatures xsi:type="ecore:EReference" name="typeArrow" eType="#//hib/dpf/core/Arrow"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//hib/dpf/core/Node"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
-              eType="#//hib/dpf/core/Constraint" containment="true"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Signature">
           <eOperations name="save" eExceptions="#//hib/dpf/core/EIOException">
