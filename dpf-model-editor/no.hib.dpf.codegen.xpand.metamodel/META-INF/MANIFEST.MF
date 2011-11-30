@@ -4,13 +4,12 @@ Bundle-Name: Metamodel
 Bundle-SymbolicName: no.hib.dpf.codegen.xpand.metamodel
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Require-Bundle: org.eclipse.xpand;bundle-version="1.1.0",
- org.eclipse.xtend.typesystem.emf;bundle-version="1.0.1",
- no.hib.dpf.core;bundle-version="0.1.1",
- org.eclipse.xtend.typesystem.xsd;bundle-version="1.0.1"
 Import-Package: org.eclipse.internal.xtend.type.baseimpl,
  org.eclipse.xtend.expression,
  org.eclipse.xtend.type.impl.java,
  org.eclipse.xtend.type.impl.java.beans,
  org.eclipse.xtend.typesystem
 Export-Package: no.hib.dpf.codegen.xpand.metamodel
+Require-Bundle: org.eclipse.xpand;bundle-version="1.0.1",
+ no.hib.dpf.core;bundle-version="0.1.1",
+ org.eclipse.xtend.typesystem.emf;bundle-version="1.0.1"
