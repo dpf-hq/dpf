@@ -20,4 +20,6 @@ Require-Bundle: org.eclipse.gef;bundle-version="[3.5.0,4.0.0)",
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Import-Package: org.eclipse.emf.ecore.xmi
+Export-Package: no.hib.dpf.editor,
+ no.hib.dpf.editor.displaymodel
 
