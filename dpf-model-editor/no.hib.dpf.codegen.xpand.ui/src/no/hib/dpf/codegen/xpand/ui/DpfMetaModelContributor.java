@@ -24,7 +24,7 @@ import org.eclipse.xtend.shared.ui.MetamodelContainer;
 import org.eclipse.xtend.shared.ui.MetamodelContributor2;
 import org.eclipse.xtend.typesystem.MetaModel;
 
-public class DPFMetaModelContributor implements MetamodelContributor2 {
+public class DpfMetaModelContributor implements MetamodelContributor2 {
 
 		private static Map<IJavaProject,MetamodelContainer> metamodels = new HashMap<IJavaProject,MetamodelContainer>();
 
@@ -57,7 +57,7 @@ public class DPFMetaModelContributor implements MetamodelContributor2 {
 				Map<IResource, Specification> models = DpfMetaModelUIPlugin.getFileModels();
 				if (!models.isEmpty()) {
 					
-					Set<IJavaProject> jps = new HashSet<IJavaProject>();
+//					Set<IJavaProject> jps = new HashSet<IJavaProject>();
 					for (Iterator<IResource> iter = models.keySet().iterator(); iter.hasNext();) {
 						IFile f = (IFile) iter.next();
 //						if (project.isOnClasspath(f) || isOnProjectsClasspath(f,jps)) {
@@ -72,7 +72,7 @@ public class DPFMetaModelContributor implements MetamodelContributor2 {
 				ResourcesPlugin.getWorkspace().addResourceChangeListener(container);
 				metamodels.put(project, container);
 			}
-			Set<MetaModel> dbg = container.getMetaModels();
+//			Set<MetaModel> dbg = container.getMetaModels();
 	        return container.getMetaModels().toArray(new MetaModel[container.getMetaModels().size()]);
 		}
 		
@@ -81,15 +81,15 @@ public class DPFMetaModelContributor implements MetamodelContributor2 {
 			return metamodels.get(p).getMetaModels().toArray(new MetaModel[metamodels.get(p).getMetaModels().size()]);
 		}
 		
-		private boolean isOnProjectsClasspath(IFile f, Set<IJavaProject> jps) {
-			for (Iterator<IJavaProject> iter = jps.iterator(); iter.hasNext();) {
-				IJavaProject element = iter.next();
-				if (element.isOnClasspath(f)) {
-					return true;
-				}
-			}
-			return false;
-		}
+//		private boolean isOnProjectsClasspath(IFile f, Set<IJavaProject> jps) {
+//			for (Iterator<IJavaProject> iter = jps.iterator(); iter.hasNext();) {
+//				IJavaProject element = iter.next();
+//				if (element.isOnClasspath(f)) {
+//					return true;
+//				}
+//			}
+//			return false;
+//		}
 
 		@Override
 		public IStorage getUnderlyingStorage(IJavaProject project,

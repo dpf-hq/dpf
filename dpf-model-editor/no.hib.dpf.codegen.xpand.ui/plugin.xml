@@ -4,8 +4,8 @@
    <extension
          point="org.eclipse.xtend.shared.ui.metamodelContributor">
       <metamodelContributor
-            class="no.hib.dpf.codegen.xpand.ui.DPFMetaModelContributor"
-            name="DPF Metamodel">
+            class="no.hib.dpf.codegen.xpand.ui.DpfMetaModelContributor"
+            name="Diagram Predicate Framework Metamodel">
       </metamodelContributor>
    </extension>
 
