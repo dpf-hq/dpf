@@ -1,7 +1,6 @@
 package no.hib.dpf.codegen.xpand.metamodel;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -17,7 +16,6 @@ import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.core.Graph;
-import no.hib.dpf.core.IDObject;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Predicate;
 import no.hib.dpf.core.Specification;
@@ -131,18 +129,20 @@ public class DpfMetamodel implements MetaModel {
 			}
 
 			//returnerer antakeligvis null dersom namespace
-			System.out.println("#########################getTypeForName#createNew: returned null");	
+			System.out.println("getTypeForName#createNew: returned null");	
 			return null;
 		}
 
 	};
 	
-	public DpfMetamodel() {
-//		System.out.println("DpfMetamodel#constructor");
-////		getKnownTypes();
-	}
+	public DpfMetamodel() {}
 	
 	public DpfMetamodel(Specification dsm) {
+		this.dsmModel = dsm;
+		getKnownTypes();
+	}
+	
+	public void setDsm(Specification dsm) {
 		this.dsmModel = dsm;
 		getKnownTypes();
 	}
