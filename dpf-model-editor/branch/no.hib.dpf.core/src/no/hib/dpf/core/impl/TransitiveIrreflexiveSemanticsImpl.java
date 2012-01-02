@@ -26,8 +26,11 @@ import no.hib.dpf.core.IrreflexiveSemantics;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.core.TransitiveIrreflexiveSemantics;
 
+import no.hib.dpf.core.ValidatorType;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 /**
@@ -39,7 +42,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public class TransitiveIrreflexiveSemanticsImpl extends EObjectImpl implements TransitiveIrreflexiveSemantics {
+public class TransitiveIrreflexiveSemanticsImpl extends SemanticsValidatorImpl implements TransitiveIrreflexiveSemantics {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link no.hib.dpf.core.Predicate#getSemanticsValidator <em>Semantics Validator</em>}</li>
  *   <li>{@link no.hib.dpf.core.Predicate#getVisualization <em>Visualization</em>}</li>
  *   <li>{@link no.hib.dpf.core.Predicate#getSymbol <em>Symbol</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Predicate#getIcon <em>Icon</em>}</li>
  * </ul>
  * </p>
  *
@@ -141,6 +142,32 @@ public interface Predicate extends EObject {
 	 * @generated
 	 */
 	void setSymbol(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Icon</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Icon</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Icon</em>' attribute.
+	 * @see #setIcon(String)
+	 * @see no.hib.dpf.core.CorePackage#getPredicate_Icon()
+	 * @model
+	 * @generated
+	 */
+	String getIcon();
+
+	/**
+	 * Sets the value of the '{@link no.hib.dpf.core.Predicate#getIcon <em>Icon</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Icon</em>' attribute.
+	 * @see #getIcon()
+	 * @generated
+	 */
+	void setIcon(String value);
 
 	/**
 	 * <!-- begin-user-doc -->

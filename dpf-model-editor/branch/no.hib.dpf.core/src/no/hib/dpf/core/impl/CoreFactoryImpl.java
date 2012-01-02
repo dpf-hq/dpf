@@ -85,6 +85,7 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 			case CorePackage.ARROW: return createArrow();
 			case CorePackage.SIGNATURE: return createSignature();
 			case CorePackage.PREDICATE: return createPredicate();
+			case CorePackage.SEMANTICS_VALIDATOR: return createSemanticsValidator();
 			case CorePackage.NODE_TO_NODE_MAP: return (EObject)createNodeToNodeMap();
 			case CorePackage.CONSTRAINT: return createConstraint();
 			case CorePackage.ARROW_TO_ARROW_MAP: return (EObject)createArrowToArrowMap();
@@ -114,6 +115,10 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
+			case CorePackage.VALIDATOR_TYPE:
+				return createValidatorTypeFromString(eDataType, initialValue);
+			case CorePackage.VISUALIZATION_TYPE:
+				return createVisualizationTypeFromString(eDataType, initialValue);
 			case CorePackage.EURI:
 				return createEURIFromString(eDataType, initialValue);
 			case CorePackage.EIO_EXCEPTION:
@@ -131,6 +136,10 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
+			case CorePackage.VALIDATOR_TYPE:
+				return convertValidatorTypeToString(eDataType, instanceValue);
+			case CorePackage.VISUALIZATION_TYPE:
+				return convertVisualizationTypeToString(eDataType, instanceValue);
 			case CorePackage.EURI:
 				return convertEURIToString(eDataType, instanceValue);
 			case CorePackage.EIO_EXCEPTION:
@@ -260,13 +269,26 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Predicate createPredicate() {
 		PredicateImpl predicate = new PredicateImpl();
+		predicate.setShape(createGraph());
 		return predicate;
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public SemanticsValidator createSemanticsValidator() {
+		SemanticsValidatorImpl semanticsValidator = new SemanticsValidatorImpl();
+		semanticsValidator.setType(ValidatorType.JAVA);
+		semanticsValidator.setValidator("");
+		return semanticsValidator;
+	}
+
 	/**
 	 * Returns a new object of class '<em>Predicate</em>'.
 	 * <!-- begin-user-doc -->
@@ -492,6 +514,46 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 	public NANDSemantics createNANDSemantics() {
 		NANDSemanticsImpl nandSemantics = new NANDSemanticsImpl();
 		return nandSemantics;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ValidatorType createValidatorTypeFromString(EDataType eDataType, String initialValue) {
+		ValidatorType result = ValidatorType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertValidatorTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public VisualizationType createVisualizationTypeFromString(EDataType eDataType, String initialValue) {
+		VisualizationType result = VisualizationType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertVisualizationTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

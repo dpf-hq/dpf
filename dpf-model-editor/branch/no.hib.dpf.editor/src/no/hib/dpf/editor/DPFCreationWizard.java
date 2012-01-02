@@ -22,7 +22,6 @@ import java.io.InputStream;
 import java.io.ObjectOutputStream;
 
 import no.hib.dpf.core.CoreFactory;
-import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.Specification;
 import no.hib.dpf.editor.displaymodel.DPFDiagram;
 
@@ -42,6 +41,7 @@ import org.eclipse.ui.dialogs.WizardNewLinkPage;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.internal.ide.IDEWorkbenchMessages;
 
+import no.hib.dpf.constant.*;
 /**
  * Create a new .dpf-file.
  */
@@ -171,7 +171,7 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 				newSpec.setTypeGraph(typeSpec.getGraph());
 				newDiagram.setParent(typeDiagram);
 			}else
-				newSpec.setTypeGraph(Graph.REFLEXIVE_TYPE_GRAPH);
+				newSpec.setTypeGraph(DPFConstants.REFLEXIVE_TYPE_GRAPH);
 			
 			newDiagram.setDpfGraph(newSpec.getGraph());
 			DPFEditor.saveDPFModel(modelFileName, newSpec);

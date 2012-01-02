@@ -57,14 +57,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class GraphImpl extends IDObjectImpl implements Graph {
-	//Initialze Reflexive Graph, include "Node" and "Arrow"
-	static{
-		initializeReflexiveTypeGraph();
-	}
-	private static void initializeReflexiveTypeGraph(){
-		Node node = REFLEXIVE_TYPE_GRAPH.createNode("Node");
-		REFLEXIVE_TYPE_GRAPH.createArrow("Arrow", node, node);
-	}
 	/**
 	 * The cached value of the '{@link #getNodes() <em>Nodes</em>}' containment reference list.
 	 * <!-- begin-user-doc -->

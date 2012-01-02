@@ -24,12 +24,74 @@ import org.eclipse.emf.ecore.EObject;
  * A representation of the model object '<em><b>Semantics Validator</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <p>
+ * The following features are supported:
+ * <ul>
+ *   <li>{@link no.hib.dpf.core.SemanticsValidator#getType <em>Type</em>}</li>
+ *   <li>{@link no.hib.dpf.core.SemanticsValidator#getValidator <em>Validator</em>}</li>
+ * </ul>
+ * </p>
  *
  * @see no.hib.dpf.core.CorePackage#getSemanticsValidator()
- * @model interface="true" abstract="true"
+ * @model
  * @generated
  */
 public interface SemanticsValidator extends EObject {
+	/**
+	 * Returns the value of the '<em><b>Type</b></em>' attribute.
+	 * The literals are from the enumeration {@link no.hib.dpf.core.ValidatorType}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Type</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Type</em>' attribute.
+	 * @see no.hib.dpf.core.ValidatorType
+	 * @see #setType(ValidatorType)
+	 * @see no.hib.dpf.core.CorePackage#getSemanticsValidator_Type()
+	 * @model
+	 * @generated
+	 */
+	ValidatorType getType();
+
+	/**
+	 * Sets the value of the '{@link no.hib.dpf.core.SemanticsValidator#getType <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Type</em>' attribute.
+	 * @see no.hib.dpf.core.ValidatorType
+	 * @see #getType()
+	 * @generated
+	 */
+	void setType(ValidatorType value);
+
+	/**
+	 * Returns the value of the '<em><b>Validator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Validator</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Validator</em>' attribute.
+	 * @see #setValidator(String)
+	 * @see no.hib.dpf.core.CorePackage#getSemanticsValidator_Validator()
+	 * @model
+	 * @generated
+	 */
+	String getValidator();
+
+	/**
+	 * Sets the value of the '{@link no.hib.dpf.core.SemanticsValidator#getValidator <em>Validator</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Validator</em>' attribute.
+	 * @see #getValidator()
+	 * @generated
+	 */
+	void setValidator(String value);
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

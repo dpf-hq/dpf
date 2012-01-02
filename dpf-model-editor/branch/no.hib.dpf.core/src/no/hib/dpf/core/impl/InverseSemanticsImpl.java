@@ -21,8 +21,11 @@ import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.InverseSemantics;
 import no.hib.dpf.core.Node;
 
+import no.hib.dpf.core.ValidatorType;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 /**
@@ -34,7 +37,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public class InverseSemanticsImpl extends EObjectImpl implements InverseSemantics {
+public class InverseSemanticsImpl extends SemanticsValidatorImpl implements InverseSemantics {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

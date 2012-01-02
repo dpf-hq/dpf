@@ -18,6 +18,7 @@ package no.hib.dpf.editor;
 import java.util.ArrayList;
 import java.util.List;
 
+import no.hib.dpf.constant.DPFConstants;
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.Node;
@@ -74,8 +75,8 @@ public class DPFEditorPaletteFactory {
 	
 	public void updatePalette(PaletteRoot root, DPFDiagram parent, Graph typeGraph) {
 		if(parent == null){
-			nodeGroup.add(new CreationToolEntry("Node", "Create a new node", new VNodeFactory(Graph.REFLEXIVE_TYPE_GRAPH.getNodes().get(0)), DNode.SMALLICON, DNode.LARGEICON));
-			arrowGroup.add(new ConnectionCreationToolEntry("Arrow", "Create a new arrow", new ArrowCreationFactory(null, Graph.REFLEXIVE_TYPE_GRAPH.getArrows().get(0)), DArrow.SMALLARROW, DArrow.LARGEARROW));
+			nodeGroup.add(new CreationToolEntry("Node", "Create a new node", new VNodeFactory(DPFConstants.REFLEXIVE_TYPE_GRAPH.getNodes().get(0)), DNode.SMALLICON, DNode.LARGEICON));
+			arrowGroup.add(new ConnectionCreationToolEntry("Arrow", "Create a new arrow", new ArrowCreationFactory(null, DPFConstants.REFLEXIVE_TYPE_GRAPH.getArrows().get(0)), DArrow.SMALLARROW, DArrow.LARGEARROW));
 			return;
 		}
 		List<DArrow> hash = new ArrayList<DArrow>();

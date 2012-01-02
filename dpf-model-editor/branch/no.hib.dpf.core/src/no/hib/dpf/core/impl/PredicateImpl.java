@@ -45,6 +45,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *   <li>{@link no.hib.dpf.core.impl.PredicateImpl#getSemanticsValidator <em>Semantics Validator</em>}</li>
  *   <li>{@link no.hib.dpf.core.impl.PredicateImpl#getVisualization <em>Visualization</em>}</li>
  *   <li>{@link no.hib.dpf.core.impl.PredicateImpl#getSymbol <em>Symbol</em>}</li>
+ *   <li>{@link no.hib.dpf.core.impl.PredicateImpl#getIcon <em>Icon</em>}</li>
  * </ul>
  * </p>
  *
@@ -100,6 +101,26 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 	 * @ordered
 	 */
 	protected String symbol = SYMBOL_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getIcon() <em>Icon</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIcon()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String ICON_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getIcon() <em>Icon</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIcon()
+	 * @generated
+	 * @ordered
+	 */
+	protected String icon = ICON_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -166,9 +187,11 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public SemanticsValidator getSemanticsValidator() {
+		if(semanticsValidator == null)
+			semanticsValidator = CoreFactory.eINSTANCE.createSemanticsValidator();
 		return semanticsValidator;
 	}
 
@@ -267,6 +290,27 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getIcon() {
+		return icon;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIcon(String newIcon) {
+		String oldIcon = icon;
+		icon = newIcon;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.PREDICATE__ICON, oldIcon, icon));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * Returns a newly created constraint. If the nodes and/or arrows provided don't match the shape
 	 * of this predicate, null is returned.
 	 * <!-- end-user-doc -->
@@ -346,6 +390,8 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 				return basicGetVisualization();
 			case CorePackage.PREDICATE__SYMBOL:
 				return getSymbol();
+			case CorePackage.PREDICATE__ICON:
+				return getIcon();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -369,6 +415,9 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 				return;
 			case CorePackage.PREDICATE__SYMBOL:
 				setSymbol((String)newValue);
+				return;
+			case CorePackage.PREDICATE__ICON:
+				setIcon((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -394,6 +443,9 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 			case CorePackage.PREDICATE__SYMBOL:
 				setSymbol(SYMBOL_EDEFAULT);
 				return;
+			case CorePackage.PREDICATE__ICON:
+				setIcon(ICON_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -414,6 +466,8 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 				return visualization != null;
 			case CorePackage.PREDICATE__SYMBOL:
 				return SYMBOL_EDEFAULT == null ? symbol != null : !SYMBOL_EDEFAULT.equals(symbol);
+			case CorePackage.PREDICATE__ICON:
+				return ICON_EDEFAULT == null ? icon != null : !ICON_EDEFAULT.equals(icon);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -430,6 +484,8 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (symbol: ");
 		result.append(symbol);
+		result.append(", icon: ");
+		result.append(icon);
 		result.append(')');
 		return result.toString();
 	}

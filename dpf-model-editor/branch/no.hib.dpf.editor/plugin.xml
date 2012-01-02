@@ -12,6 +12,13 @@
               contributorClass="no.hib.dpf.editor.DPFEditorActionBarContributor"
               id="GEF DPF Editor">
       </editor>
+      <editor
+            class="no.hib.dpf.signature.SignatureEditor"
+            default="false"
+            extensions="sig"
+            id="no.hib.dpf.signature.editor"
+            name="Signature Editor">
+      </editor>
    </extension>
    <extension point="org.eclipse.ui.newWizards">
       <category name="Diagram Predicate Framework"
@@ -23,6 +30,11 @@
             id="no.hib.dpf.editor.DPFCreationWizard"
             name="DPF Specification Diagram">
          <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+      <wizard
+            class="no.hib.dpf.signature.SignatureWizard"
+            id="no.hib.dpf.editor.signatureWizard"
+            name="Signature Wizard">
       </wizard>
    </extension>
    <extension

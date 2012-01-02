@@ -37,9 +37,6 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface Graph extends IDObject {
-	//Refexive Graph of DPF
-	public static Graph REFLEXIVE_TYPE_GRAPH = CoreFactory.eINSTANCE.createGraph();
-	
 	
 	/**
 	 * Returns the value of the '<em><b>Nodes</b></em>' containment reference list.
