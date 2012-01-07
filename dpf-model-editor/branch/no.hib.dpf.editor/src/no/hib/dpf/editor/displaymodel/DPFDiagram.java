@@ -49,6 +49,8 @@ public class DPFDiagram extends ModelElement {
 	protected transient Graph dpfGraph;
 	private DPFDiagram parent = null;
 	
+	private String graphID = "";
+	
 	public DPFDiagram getParent() {
 		return parent;
 	}
@@ -109,6 +111,8 @@ public class DPFDiagram extends ModelElement {
 
 	public void setDpfGraph(Graph dpfGraph) {
 		this.dpfGraph = dpfGraph;
+		if(dpfGraph != null)
+			graphID = dpfGraph.getId();
 	}
 
 	/**
@@ -202,5 +206,9 @@ public class DPFDiagram extends ModelElement {
 					return connection;
 		}
 		return null;
+	}
+
+	public String getGraphID() {
+		return graphID;
 	}
 }

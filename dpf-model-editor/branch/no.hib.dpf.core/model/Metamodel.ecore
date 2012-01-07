@@ -145,7 +145,10 @@
               containment="true"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="semanticsValidator"
               eType="#//hib/dpf/core/SemanticsValidator" containment="true"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="visualization" eType="#//hib/dpf/core/Visualization"/>
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="parameters" upperBound="-1"
+              eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="visualization" eType="#//hib/dpf/core/Visualization"
+              containment="true"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="symbol" unique="false"
               lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="icon" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -164,7 +167,7 @@
           <eLiterals name="OCL"/>
           <eLiterals name="JAVA" value="1"/>
         </eClassifiers>
-        <eClassifiers xsi:type="ecore:EClass" name="Visualization" abstract="true">
+        <eClassifiers xsi:type="ecore:EClass" name="Visualization">
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//hib/dpf/core/VisualizationType"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//hib/dpf/core/IDObject"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//hib/dpf/core/IDObject"/>
@@ -242,16 +245,6 @@
           <eLiterals name="NodeToArrow"/>
           <eLiterals name="ArrowToNode"/>
           <eLiterals name="ArrowToArrow"/>
-        </eClassifiers>
-      </eSubpackages>
-      <eSubpackages name="diagram" nsURI="http://no.hib.dpf.diagram" nsPrefix="no.hib.dpf.diagram">
-        <eClassifiers xsi:type="ecore:EClass" name="DSignature">
-          <eStructuralFeatures xsi:type="ecore:EReference" name="signature" eType="#//hib/dpf/core/Signature"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="dPredicates" upperBound="-1"
-              eType="#//hib/dpf/diagram/DPredicate"/>
-        </eClassifiers>
-        <eClassifiers xsi:type="ecore:EClass" name="DPredicate">
-          <eStructuralFeatures xsi:type="ecore:EReference" name="predicate" eType="#//hib/dpf/core/Predicate"/>
         </eClassifiers>
       </eSubpackages>
     </eSubpackages>

@@ -178,10 +178,10 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 			DPFEditor.saveDPFDiagram(diagramFileName, newDiagram);
 
 			try {
-				newDiagramFile.refreshLocal(IResource.DEPTH_ONE, null);
+				newDiagramFile.getParent().refreshLocal(IResource.DEPTH_ONE, null);
 			} catch (CoreException e1) {
-				e1.printStackTrace();
-			}
+				DPFErrorReport.logError("Error happens when store new create DPF Specification", e1);
+			} 
 			// open newly created file in the editor
 			IWorkbenchPage page = workbench.getActiveWorkbenchWindow().getActivePage();
 			if (newDiagramFile != null && page != null) {
@@ -190,7 +190,7 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 					if(editorPart != null)
 						editorPart.setFocus();
 				} catch (PartInitException e) {
-					e.printStackTrace();
+					DPFErrorReport.logError("Error happens when Open DPF Editor", e);
 					return false;
 				}
 			}

@@ -144,6 +144,7 @@
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/core/Predicate">
             <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/core/Predicate/shape"/>
             <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/core/Predicate/semanticsValidator"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//hib/dpf/core/Predicate/parameters"/>
             <genFeatures notify="false" createChild="false" propertySortChoices="true"
                 ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/core/Predicate/visualization"/>
             <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//hib/dpf/core/Predicate/symbol"/>
@@ -244,19 +245,6 @@
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/core/TransitiveIrreflexiveSemantics"/>
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/core/SurjectiveSemantics"/>
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/core/NANDSemantics"/>
-        </nestedGenPackages>
-        <nestedGenPackages prefix="Diagram" basePackage="no.hib.dpf" disposableProviderFactory="true"
-            ecorePackage="Metamodel.ecore#//hib/dpf/diagram">
-          <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/diagram/DSignature">
-            <genFeatures notify="false" createChild="false" propertySortChoices="true"
-                ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/diagram/DSignature/signature"/>
-            <genFeatures notify="false" createChild="false" propertySortChoices="true"
-                ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/diagram/DSignature/dPredicates"/>
-          </genClasses>
-          <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/diagram/DPredicate">
-            <genFeatures notify="false" createChild="false" propertySortChoices="true"
-                ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/diagram/DPredicate/predicate"/>
-          </genClasses>
         </nestedGenPackages>
       </nestedGenPackages>
     </nestedGenPackages>

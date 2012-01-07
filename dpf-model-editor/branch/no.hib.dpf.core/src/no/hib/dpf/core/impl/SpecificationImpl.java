@@ -17,6 +17,7 @@ package no.hib.dpf.core.impl;
 
 import java.io.IOException;
 
+import no.hib.dpf.constant.DPFConstants;
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.CoreFactory;
@@ -191,6 +192,8 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new  XMLResourceFactoryImpl());		
 
 		Resource resource = resourceSet.createResource(uri);
+		Resource graph = resourceSet.createResource(DPFConstants.DefaultGraph);
+		graph.getContents().add(DPFConstants.REFLEXIVE_TYPE_GRAPH);
 		resource.getContents().add(this);		
 		
 		resource.save(null);

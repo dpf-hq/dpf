@@ -18,6 +18,7 @@ package no.hib.dpf.core.impl;
 import java.io.IOException;
 import java.util.Collection;
 
+import no.hib.dpf.constant.DPFConstants;
 import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.core.Predicate;
 import no.hib.dpf.core.Signature;
@@ -141,7 +142,8 @@ public class SignatureImpl extends EObjectImpl implements Signature {
 	public void save(URI uri) throws IOException {
 		ResourceSet resourceSet = new ResourceSetImpl();
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new  XMLResourceFactoryImpl());		
-
+		Resource graph = resourceSet.createResource(DPFConstants.DefaultGraph);
+		graph.getContents().add(DPFConstants.REFLEXIVE_TYPE_GRAPH);
 		Resource resource = resourceSet.createResource(uri);
 		resource.getContents().add(this);		
 		

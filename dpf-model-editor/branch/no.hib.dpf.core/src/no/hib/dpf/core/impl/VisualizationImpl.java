@@ -41,7 +41,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public abstract class VisualizationImpl extends EObjectImpl implements Visualization {
+public class VisualizationImpl extends EObjectImpl implements Visualization {
 	/**
 	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->

@@ -131,6 +131,15 @@ public interface CoreFactory extends EFactory {
 	SemanticsValidator createSemanticsValidator();
 
 	/**
+	 * Returns a new object of class '<em>Visualization</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Visualization</em>'.
+	 * @generated
+	 */
+	Visualization createVisualization();
+
+	/**
 	 * Returns a new object of class '<em>Predicate</em>'.
 	 * <!-- begin-user-doc -->
 	 * shapeDescription is used to construct a graph. See createGraph().

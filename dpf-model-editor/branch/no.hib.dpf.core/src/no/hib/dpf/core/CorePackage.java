@@ -356,13 +356,22 @@ public interface CorePackage extends EPackage {
 	int PREDICATE__SEMANTICS_VALIDATOR = 1;
 
 	/**
-	 * The feature id for the '<em><b>Visualization</b></em>' reference.
+	 * The feature id for the '<em><b>Parameters</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PREDICATE__VISUALIZATION = 2;
+	int PREDICATE__PARAMETERS = 2;
+
+	/**
+	 * The feature id for the '<em><b>Visualization</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDICATE__VISUALIZATION = 3;
 
 	/**
 	 * The feature id for the '<em><b>Symbol</b></em>' attribute.
@@ -371,7 +380,7 @@ public interface CorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PREDICATE__SYMBOL = 3;
+	int PREDICATE__SYMBOL = 4;
 
 	/**
 	 * The feature id for the '<em><b>Icon</b></em>' attribute.
@@ -380,7 +389,7 @@ public interface CorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PREDICATE__ICON = 4;
+	int PREDICATE__ICON = 5;
 
 	/**
 	 * The number of structural features of the '<em>Predicate</em>' class.
@@ -389,7 +398,7 @@ public interface CorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PREDICATE_FEATURE_COUNT = 5;
+	int PREDICATE_FEATURE_COUNT = 6;
 
 	/**
 	 * The meta object id for the '{@link no.hib.dpf.core.impl.SemanticsValidatorImpl <em>Semantics Validator</em>}' class.
@@ -1324,10 +1333,21 @@ public interface CorePackage extends EPackage {
 	EReference getPredicate_SemanticsValidator();
 
 	/**
-	 * Returns the meta object for the reference '{@link no.hib.dpf.core.Predicate#getVisualization <em>Visualization</em>}'.
+	 * Returns the meta object for the attribute list '{@link no.hib.dpf.core.Predicate#getParameters <em>Parameters</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Visualization</em>'.
+	 * @return the meta object for the attribute list '<em>Parameters</em>'.
+	 * @see no.hib.dpf.core.Predicate#getParameters()
+	 * @see #getPredicate()
+	 * @generated
+	 */
+	EAttribute getPredicate_Parameters();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link no.hib.dpf.core.Predicate#getVisualization <em>Visualization</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Visualization</em>'.
 	 * @see no.hib.dpf.core.Predicate#getVisualization()
 	 * @see #getPredicate()
 	 * @generated
@@ -2025,7 +2045,15 @@ public interface CorePackage extends EPackage {
 		EReference PREDICATE__SEMANTICS_VALIDATOR = eINSTANCE.getPredicate_SemanticsValidator();
 
 		/**
-		 * The meta object literal for the '<em><b>Visualization</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Parameters</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDICATE__PARAMETERS = eINSTANCE.getPredicate_Parameters();
+
+		/**
+		 * The meta object literal for the '<em><b>Visualization</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

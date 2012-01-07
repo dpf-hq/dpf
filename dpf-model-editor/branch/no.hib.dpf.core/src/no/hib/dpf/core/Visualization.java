@@ -32,7 +32,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see no.hib.dpf.core.CorePackage#getVisualization()
- * @model abstract="true"
+ * @model
  * @generated
  */
 public interface Visualization extends EObject {

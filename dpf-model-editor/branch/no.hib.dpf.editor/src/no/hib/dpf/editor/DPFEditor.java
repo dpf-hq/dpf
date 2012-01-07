@@ -448,7 +448,6 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		try {
 			ret = CoreFactory.eINSTANCE.loadSpecification(uri);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

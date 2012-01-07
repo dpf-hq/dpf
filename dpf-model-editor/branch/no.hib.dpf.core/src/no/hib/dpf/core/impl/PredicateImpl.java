@@ -15,6 +15,7 @@
  */
 package no.hib.dpf.core.impl;
 
+import java.util.Collection;
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.CoreFactory;
@@ -33,6 +34,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -43,6 +45,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <ul>
  *   <li>{@link no.hib.dpf.core.impl.PredicateImpl#getShape <em>Shape</em>}</li>
  *   <li>{@link no.hib.dpf.core.impl.PredicateImpl#getSemanticsValidator <em>Semantics Validator</em>}</li>
+ *   <li>{@link no.hib.dpf.core.impl.PredicateImpl#getParameters <em>Parameters</em>}</li>
  *   <li>{@link no.hib.dpf.core.impl.PredicateImpl#getVisualization <em>Visualization</em>}</li>
  *   <li>{@link no.hib.dpf.core.impl.PredicateImpl#getSymbol <em>Symbol</em>}</li>
  *   <li>{@link no.hib.dpf.core.impl.PredicateImpl#getIcon <em>Icon</em>}</li>
@@ -73,7 +76,17 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 	protected SemanticsValidator semanticsValidator;
 
 	/**
-	 * The cached value of the '{@link #getVisualization() <em>Visualization</em>}' reference.
+	 * The cached value of the '{@link #getParameters() <em>Parameters</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getParameters()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<String> parameters;
+
+	/**
+	 * The cached value of the '{@link #getVisualization() <em>Visualization</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getVisualization()
@@ -234,15 +247,19 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Visualization getVisualization() {
-		if (visualization != null && visualization.eIsProxy()) {
-			InternalEObject oldVisualization = (InternalEObject)visualization;
-			visualization = (Visualization)eResolveProxy(oldVisualization);
-			if (visualization != oldVisualization) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CorePackage.PREDICATE__VISUALIZATION, oldVisualization, visualization));
-			}
+	public EList<String> getParameters() {
+		if (parameters == null) {
+			parameters = new EDataTypeUniqueEList<String>(String.class, this, CorePackage.PREDICATE__PARAMETERS);
 		}
+		return parameters;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Visualization getVisualization() {
 		return visualization;
 	}
 
@@ -251,8 +268,14 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Visualization basicGetVisualization() {
-		return visualization;
+	public NotificationChain basicSetVisualization(Visualization newVisualization, NotificationChain msgs) {
+		Visualization oldVisualization = visualization;
+		visualization = newVisualization;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CorePackage.PREDICATE__VISUALIZATION, oldVisualization, newVisualization);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -261,10 +284,17 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 	 * @generated
 	 */
 	public void setVisualization(Visualization newVisualization) {
-		Visualization oldVisualization = visualization;
-		visualization = newVisualization;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.PREDICATE__VISUALIZATION, oldVisualization, visualization));
+		if (newVisualization != visualization) {
+			NotificationChain msgs = null;
+			if (visualization != null)
+				msgs = ((InternalEObject)visualization).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CorePackage.PREDICATE__VISUALIZATION, null, msgs);
+			if (newVisualization != null)
+				msgs = ((InternalEObject)newVisualization).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CorePackage.PREDICATE__VISUALIZATION, null, msgs);
+			msgs = basicSetVisualization(newVisualization, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.PREDICATE__VISUALIZATION, newVisualization, newVisualization));
 	}
 
 	/**
@@ -369,6 +399,8 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 				return basicSetShape(null, msgs);
 			case CorePackage.PREDICATE__SEMANTICS_VALIDATOR:
 				return basicSetSemanticsValidator(null, msgs);
+			case CorePackage.PREDICATE__VISUALIZATION:
+				return basicSetVisualization(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -385,9 +417,10 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 				return getShape();
 			case CorePackage.PREDICATE__SEMANTICS_VALIDATOR:
 				return getSemanticsValidator();
+			case CorePackage.PREDICATE__PARAMETERS:
+				return getParameters();
 			case CorePackage.PREDICATE__VISUALIZATION:
-				if (resolve) return getVisualization();
-				return basicGetVisualization();
+				return getVisualization();
 			case CorePackage.PREDICATE__SYMBOL:
 				return getSymbol();
 			case CorePackage.PREDICATE__ICON:
@@ -401,6 +434,7 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -409,6 +443,10 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 				return;
 			case CorePackage.PREDICATE__SEMANTICS_VALIDATOR:
 				setSemanticsValidator((SemanticsValidator)newValue);
+				return;
+			case CorePackage.PREDICATE__PARAMETERS:
+				getParameters().clear();
+				getParameters().addAll((Collection<? extends String>)newValue);
 				return;
 			case CorePackage.PREDICATE__VISUALIZATION:
 				setVisualization((Visualization)newValue);
@@ -437,6 +475,9 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 			case CorePackage.PREDICATE__SEMANTICS_VALIDATOR:
 				setSemanticsValidator((SemanticsValidator)null);
 				return;
+			case CorePackage.PREDICATE__PARAMETERS:
+				getParameters().clear();
+				return;
 			case CorePackage.PREDICATE__VISUALIZATION:
 				setVisualization((Visualization)null);
 				return;
@@ -462,6 +503,8 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 				return shape != null;
 			case CorePackage.PREDICATE__SEMANTICS_VALIDATOR:
 				return semanticsValidator != null;
+			case CorePackage.PREDICATE__PARAMETERS:
+				return parameters != null && !parameters.isEmpty();
 			case CorePackage.PREDICATE__VISUALIZATION:
 				return visualization != null;
 			case CorePackage.PREDICATE__SYMBOL:
@@ -482,7 +525,9 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (symbol: ");
+		result.append(" (parameters: ");
+		result.append(parameters);
+		result.append(", symbol: ");
 		result.append(symbol);
 		result.append(", icon: ");
 		result.append(icon);

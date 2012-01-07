@@ -14,7 +14,8 @@
       </editor>
       <editor
             class="no.hib.dpf.signature.SignatureEditor"
-            default="false"
+            contributorClass="no.hib.dpf.signature.SignatureEditorActionBarContributor"
+            default="true"
             extensions="sig"
             id="no.hib.dpf.signature.editor"
             name="Signature Editor">
@@ -32,9 +33,10 @@
          <selection class="org.eclipse.core.resources.IResource"/>
       </wizard>
       <wizard
+            category="no.hib.dpf.api.wizards.dpfprojectcategory"
             class="no.hib.dpf.signature.SignatureWizard"
-            id="no.hib.dpf.editor.signatureWizard"
-            name="Signature Wizard">
+            id="no.hib.dpf.signature.wizard"
+            name="Signature">
       </wizard>
    </extension>
    <extension

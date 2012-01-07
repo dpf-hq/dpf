@@ -18,6 +18,7 @@ package no.hib.dpf.core.impl;
 import java.io.IOException;
 import java.util.Map;
 
+import no.hib.dpf.constant.DPFConstants;
 import no.hib.dpf.core.*;
 
 import org.eclipse.emf.common.util.URI;
@@ -86,6 +87,7 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 			case CorePackage.SIGNATURE: return createSignature();
 			case CorePackage.PREDICATE: return createPredicate();
 			case CorePackage.SEMANTICS_VALIDATOR: return createSemanticsValidator();
+			case CorePackage.VISUALIZATION: return createVisualization();
 			case CorePackage.NODE_TO_NODE_MAP: return (EObject)createNodeToNodeMap();
 			case CorePackage.CONSTRAINT: return createConstraint();
 			case CorePackage.ARROW_TO_ARROW_MAP: return (EObject)createArrowToArrowMap();
@@ -274,6 +276,8 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 	public Predicate createPredicate() {
 		PredicateImpl predicate = new PredicateImpl();
 		predicate.setShape(createGraph());
+		predicate.setSemanticsValidator(createSemanticsValidator());
+		predicate.setVisualization(createVisualization());
 		return predicate;
 	}
 	
@@ -287,6 +291,17 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 		semanticsValidator.setType(ValidatorType.JAVA);
 		semanticsValidator.setValidator("");
 		return semanticsValidator;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Visualization createVisualization() {
+		VisualizationImpl visualization = new VisualizationImpl();
+		visualization.setType(VisualizationType.ARROW_LABEL);
+		return visualization;
 	}
 
 	/**
@@ -420,7 +435,8 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMLResourceFactoryImpl());
 
 		resourceSet.getLoadOptions().put(XMIResource.OPTION_DEFER_IDREF_RESOLUTION, true);
-			
+		Resource graph = resourceSet.createResource(DPFConstants.DefaultGraph);
+		graph.getContents().add(DPFConstants.REFLEXIVE_TYPE_GRAPH);
 		Resource resource = resourceSet.createResource(uri);
 		resource.load(null);
 		return resource;
