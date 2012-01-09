@@ -444,7 +444,7 @@ public class DArrow extends ModelElement implements Arrow, IDObjectContainer {
 	}
 	
 	public void addLabel(String text) {
-		mainLabel = new ArrowLabel(text, false);
+		mainLabel = new ArrowLabel(this, text, false);
 	}
 	
 

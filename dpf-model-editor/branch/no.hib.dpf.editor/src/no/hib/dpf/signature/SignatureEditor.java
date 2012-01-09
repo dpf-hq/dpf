@@ -171,10 +171,10 @@ public class SignatureEditor extends FormEditor implements CommandStackListener,
 		getCommandStack().addCommandStackListener(this);
 		initializeActionRegistry();
 		getSite().getWorkbenchWindow().getSelectionService().addSelectionListener(this);
-		signatureFile = ((IFileEditorInput)input).getFile().getLocation().toOSString();
+		IFile file = ((IFileEditorInput)input).getFile();
+		signatureFile = file.getLocation().toOSString();
+		setPartName(file.getName());
 		loadSignature(signatureFile);
-		
-		
 	}
 
 	protected CommandStack getCommandStack() {

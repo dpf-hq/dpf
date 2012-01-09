@@ -47,8 +47,10 @@ public class ArrowLabel extends ModelElement {
 	private String labelText = "";
 	private Point offset = new Point();
 	private boolean isConstraintLabel = false;
+	private ModelElement parent;
 
-	public ArrowLabel(String labelText, boolean isConstraintLabel) {
+	public ArrowLabel(ModelElement dArrow, String labelText, boolean isConstraintLabel) {
+		this.parent = dArrow;
 		this.labelText = labelText;
 		this.isConstraintLabel = isConstraintLabel;
 	}
@@ -62,6 +64,9 @@ public class ArrowLabel extends ModelElement {
 		return offset;
 	}
 
+	public ModelElement getParent(){
+		return parent;
+	}
 	public void setLabelText(String string) {
 		labelText = string;
 		firePropertyChange(NAME_PROP, null, null);		

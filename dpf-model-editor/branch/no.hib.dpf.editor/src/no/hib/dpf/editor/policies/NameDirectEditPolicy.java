@@ -18,8 +18,10 @@ package no.hib.dpf.editor.policies;
  * Created on Jul 18, 2004
  */
 
+import no.hib.dpf.editor.displaymodel.ArrowLabel;
 import no.hib.dpf.editor.displaymodel.DArrow;
 import no.hib.dpf.editor.displaymodel.DNode;
+import no.hib.dpf.editor.displaymodel.ModelElement;
 import no.hib.dpf.editor.displaymodel.commands.ChangeNameCommand;
 import no.hib.dpf.editor.figures.NodeFigure;
 import no.hib.dpf.editor.parts.ArrowLabelEditPart;
@@ -51,9 +53,12 @@ public class NameDirectEditPolicy extends DirectEditPolicy {
 		}
 		if(getHost() instanceof ArrowLabelEditPart)
 		{
-			String oldValue = ((DArrow) host.getModel()).getName();
-			String newValue = (String) request.getCellEditor().getValue();
-			return oldValue.equals(newValue) ? null : new ChangeNameCommand((DArrow) host.getModel(), newValue);
+			ModelElement parent = ((ArrowLabel) host.getModel()).getParent();
+			if(parent instanceof DArrow){
+				String oldValue = ((DArrow)parent).getName();
+				String newValue = (String) request.getCellEditor().getValue();
+				return oldValue.equals(newValue) ? null : new ChangeNameCommand((DArrow) parent, newValue);
+			}
 		}
 		return super.getCommand(request);
 	}

@@ -88,7 +88,7 @@ public class SingleArrowConstraintElement extends DConstraint {
 		if (getConstraintLabel() != null) {
 			getConstraintLabel().setLabelText(toString());
 		} else {
-			constraintLabel = new ArrowLabel(toString(), true);
+			constraintLabel = new ArrowLabel(this, toString(), true);
 		}
 	}	
 

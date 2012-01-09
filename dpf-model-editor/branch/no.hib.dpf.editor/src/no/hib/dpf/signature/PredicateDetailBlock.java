@@ -285,12 +285,14 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 		GridData gridData = null;
 		gridData = new GridData(GridData.BEGINNING, GridData.FILL, false, false);
 		gridData.horizontalSpan = 2;
+		gridData.minimumWidth = 20;
 		name.setLayoutData(gridData);
 
 		new Label(root, SWT.NONE).setText("Icon:");
 		icon = new Text(root, SWT.SINGLE | SWT.BORDER);
 		icon.setEditable(false);
 		gridData = new GridData(GridData.BEGINNING, GridData.FILL, false, false);
+		gridData.minimumWidth = 20;
 		icon.setLayoutData(gridData);
 		iconChooser = new Button(root, SWT.PUSH);
 		iconChooser.setText("Choose");
@@ -301,11 +303,15 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 		visulationLabel.setText("Visualtion:");
 		gridData = new GridData(GridData.BEGINNING, GridData.FILL, false, false);
 		gridData.verticalSpan = 3;
+		gridData.minimumWidth = 20;
 		visulationLabel.setLayoutData(gridData);
 		visulationCombo = new EnumeratorCombo(root, SWT.NONE);
 		visulationCombo.setInput(VisualizationType.values());
 
 		Composite source = new Composite(root, SWT.NONE);
+		gridData = new GridData(GridData.FILL, GridData.FILL, true, false);
+		gridData.horizontalSpan = 2;
+		source.setLayoutData(gridData);
 		RowLayout rowLayout = new RowLayout();
 		rowLayout.wrap = false;
 		source.setLayout(rowLayout);
@@ -336,13 +342,13 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 		};
 		sourceCombo.setContentProvider(contentProvider);
 		sourceCombo.setLabelProvider(labelProvider);
-		gridData = new GridData(GridData.FILL, GridData.CENTER, false, false);
+		gridData = new GridData(GridData.FILL, GridData.CENTER, true, false);
 		gridData.horizontalSpan = 2;
-		gridData.minimumWidth = 20;
+		gridData.minimumWidth = 50;
 		source.setLayoutData(gridData);
 		Composite target = new Composite(root, SWT.NONE);
 		target.setLayout(rowLayout);
-		gridData = new GridData(GridData.FILL, GridData.CENTER, false, false);
+		gridData = new GridData(GridData.FILL, GridData.CENTER, true, false);
 		gridData.horizontalSpan = 2;
 		gridData.minimumWidth = 20;
 		target.setLayoutData(gridData);
