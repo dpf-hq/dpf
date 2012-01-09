@@ -20,7 +20,7 @@ import no.hib.dpf.core.Predicate;
 import no.hib.dpf.editor.DPFEditorPaletteFactory;
 import no.hib.dpf.editor.parts.EditPartFactoryImpl;
 
-import org.eclipse.gef.DefaultEditDomain;
+import org.eclipse.gef.ContextMenuProvider;
 import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.editparts.ScalableFreeformRootEditPart;
 import org.eclipse.gef.palette.PaletteRoot;
@@ -50,14 +50,10 @@ public abstract class PredicateEditor extends GraphicalEditorWithFlyoutPalette{
 
 	protected PropertySheetPage propertySheetPage;
 
-	/** Create a new DPFEditor instance. This is called by the Workspace. */
-	public PredicateEditor() {
+
+	public PredicateEditor(){
 		paletteFactory = new DPFEditorPaletteFactory();
-		setEditDomain(new DefaultEditDomain(this));
-//		listenToDisplayDyntTypedArrowsProperty();
 	}
-
-
 	/**
 	 * Configure the graphical viewer before it receives contents.
 	 * <p>
@@ -77,8 +73,11 @@ public abstract class PredicateEditor extends GraphicalEditorWithFlyoutPalette{
 		shapesEditPartFactory = new EditPartFactoryImpl(null);
 		viewer.setEditPartFactory(shapesEditPartFactory);
 		viewer.setRootEditPart(new ScalableFreeformRootEditPart());
+		ContextMenuProvider cmProvider = new SignatureEditorContextMenuProvider(viewer, getActionRegistry());
+		viewer.setContextMenu(cmProvider);
 	}
 
+	
 
 	@Override
 	protected FlyoutPreferences getPalettePreferences() {

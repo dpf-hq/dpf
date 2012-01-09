@@ -2,17 +2,21 @@ package no.hib.dpf.signature;
 
 import java.util.EventObject;
 
+import no.hib.dpf.core.Arrow;
+import no.hib.dpf.core.IDObject;
+import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Predicate;
 import no.hib.dpf.core.ValidatorType;
 import no.hib.dpf.core.VisualizationType;
 import no.hib.dpf.editor.displaymodel.DPFDiagram;
 
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.Enumerator;
-import org.eclipse.emf.ecore.util.EContentAdapter;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.gef.ui.actions.ActionRegistry;
 import org.eclipse.jface.viewers.ComboViewer;
+import org.eclipse.jface.viewers.IContentProvider;
+import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
@@ -31,9 +35,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
@@ -47,64 +49,36 @@ import org.eclipse.ui.forms.widgets.Section;
 
 public class PredicateDetailBlock extends PredicateEditor implements IDetailsPage {
 
-	
+
 	private IManagedForm form;
-	private FormPage page;
-	
+
 	private Text name;
 	private Text icon;
-//	private Canvas graph;
 	private Button iconChooser;
 	private Text validator;
 	private ComboViewer validatorCombo;
-	private Combo targetCombo;
-	private Combo sourceCombo;
-	private Combo visulationCombo;
+	private ComboViewer targetCombo;
+	private ComboViewer sourceCombo;
+	private ComboViewer visulationCombo;
 	private Section infoSection;
-	static private final String[] VALIDATOR_TYPES = getEnumeratorStrings(ValidatorType.values());;//{"OCL", "Java"};;
-	static private final String[] VISULATION_TYPES = getEnumeratorStrings(VisualizationType.values());;
 	private SignatureMasterBlock master;
-	
-	public PredicateDetailBlock(FormPage page, SignatureMasterBlock signatureMasterBlock) {
+
+	public PredicateDetailBlock(SignatureMasterBlock signatureMasterBlock) {
 		super();
 		this.master = signatureMasterBlock;
-		this.page = page;
+		setEditDomain(master.getMultiEditor().getEditDomain());
 	}
 
-	private static String[] getEnumeratorStrings(Enumerator[] values){
-		String[] result = new String[values.length];
-		for(int i = 0; i < values.length; ++i)
-			result[i] = values[i].getName();
-		return result;
+	private FormPage getEditor(){
+		return master.getEditor();
 	}
-//	private static String[] getVisulationTypes() {
-//		return getEnumeratorStrings(VisualizationType.values());
-////		VisualizationType[] values = VisualizationType.values();
-////		String[] result = new String[values.length];
-////		for(int i = 0; i < values.length; ++i)
-////			result[i] = values[i].getName();
-////		return result;
-//	}
-//
-//	private static String[] getValidatorTypes() {
-//		ValidatorType[] values = ValidatorType.values();
-//		String[] result = new String[values.length];
-//		for(int i = 0; i < values.length; ++i)
-//			result[i] = values[i].getName();
-//		return result;
-//	}
-
+	
+	public IWorkbenchPartSite getSite(){
+		return getEditor().getSite();
+	}
 	@Override
 	public void initialize(IManagedForm form) {
 		this.form = form;
-	}
-
-	@Override
-	public void dispose() {
-		if(predicate != null){
-			if(predicate.eAdapters().contains(adpater))
-				predicate.eAdapters().remove(adpater);
-		}
 	}
 
 	@Override
@@ -123,44 +97,68 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 
 	@Override
 	public void setFocus() {
-		
+
 	}
 
 	@Override
 	public boolean isStale() {
 		return false;
 	}
-
+	
+	protected void initializeGraphicalViewer(){
+		super.initializeGraphicalViewer();
+		getSite().setSelectionProvider(getGraphicalViewer());
+	}
+	
 	public void commandStackChanged(EventObject event){
 		super.commandStackChanged(event);
-		master.getEditor().setDirty(true);
+		refresh();
+		master.getMultiEditor().setDirty(true);
 	}
-	private EContentAdapter adpater = new EContentAdapter(){
-		public void notifyChanged(Notification notification) {
-			super.notifyChanged(notification);
-			master.getEditor().setDirty(true);
-		}
-	};
-	
+	private DPFDiagram dGraph;
+	private Label sourceLabel;
+	private Label targetLabel;
+
+	protected ActionRegistry getActionRegistry() {
+		return master.getMultiEditor().getActionRegistry();
+	}
 	@Override
 	public void refresh() {
-		DPFDiagram diagram = new DPFDiagram();
-		diagram.setDpfGraph(predicate.getShape());
-		predicate.getShape().eAdapters().add(adpater);
-		getGraphicalViewer().setContents(diagram);
-		name.setText(getNNullString(predicate.getSymbol()));
-		infoSection.setText(getNNullString(predicate.getSymbol()));
-		icon.setText(getNNullString(predicate.getIcon()));
-		int selection = getSelectionIndex(predicate.getSemanticsValidator().getType());
-		validatorCombo.setSelection(new StructuredSelection(predicate.getSemanticsValidator().getType()));
-		validator.setText(getNNullString(predicate.getSemanticsValidator().getValidator()));
+
+		if(predicate != null){
+			getGraphicalViewer().setContents(dGraph);
+			name.setText(getNNullString(predicate.getSymbol()));
+			infoSection.setText(getNNullString(predicate.getSymbol()));
+			icon.setText(getNNullString(predicate.getIcon()));
+			validatorCombo.setSelection(new StructuredSelection(predicate.getSemanticsValidator().getType()));
+			validator.setText(getNNullString(predicate.getSemanticsValidator().getValidator()));
+			visulationCombo.setSelection(new StructuredSelection(predicate.getVisualization().getType()));
+			switch(predicate.getVisualization().getType()){
+			case ARROW_LABEL: 
+				targetCombo.getControl().setVisible(false);
+				targetLabel.setVisible(false);
+				sourceCombo.setInput(getArrows());
+				IDObject source = predicate.getVisualization().getSource();
+				sourceCombo.setSelection(source == null ? null : new StructuredSelection(predicate.getVisualization().getSource()));
+				break;
+			case NODE_TO_NODE:
+				updateVisualization(getNodes(), getNodes());
+				break;
+			case NODE_TO_ARROW:
+				updateVisualization(getNodes(), getArrows());
+				break;
+			case ARROW_TO_ARROW:
+				updateVisualization(getArrows(), getArrows());
+				break;
+			case ARROW_TO_NODE:
+				updateVisualization(getArrows(), getNodes());
+				break;
+			}
+		}
 	}
 
 	private String getNNullString(String value){
 		return value == null ? "" : value;
-	}
-	private int getSelectionIndex(ValidatorType validatorType) {
-		return validatorType == null ? ValidatorType.JAVA_VALUE : validatorType.getValue();
 	}
 
 	@Override
@@ -169,63 +167,88 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 		Object selected = null;
 		if(ssel.size() == 1) selected = ssel.getFirstElement();
 		if(selected instanceof Predicate){
-			if(predicate != null){
-				if(predicate.eAdapters().contains(adpater))
-					predicate.eAdapters().remove(adpater);
-			}
 			predicate = (Predicate) selected;
+			dGraph = master.getMultiEditor().findDGraph(predicate.getShape());
+			Assert.isNotNull(dGraph);
 			refresh();
 		}
 	}
 
-	@Override
-	public void createContents(Composite parent) {
 
-		GridLayout gridLayout1 = new GridLayout();
-		
-		parent.setLayout(gridLayout1);
+	private void updateVisualization(Object[] sources, Object[] targets){
+		sourceCombo.setInput(sources);
+		IDObject source1 = predicate.getVisualization().getSource();
+		sourceCombo.setSelection(source1 == null ? null : new StructuredSelection(source1));
+		targetCombo.setInput(targets);
+		IDObject target = predicate.getVisualization().getTarget();
+		targetCombo.setSelection(target == null ? null : new StructuredSelection(target));
+		sourceCombo.refresh();
+		targetCombo.getControl().setVisible(true);
+		targetLabel.setVisible(true);
+	}
 
-		FormToolkit toolkit = form.getToolkit();
-		infoSection = toolkit.createSection(parent, Section.TWISTIE
-				| Section.TITLE_BAR | Section.DESCRIPTION | Section.EXPANDED);
-		infoSection.marginWidth = 10;
-		infoSection.setText("Predicate Details"); //$NON-NLS-1$
-		
-		GridData gridData = new GridData(GridData.FILL, GridData.FILL, true, false);
-		infoSection.setLayoutData(gridData);
-		Composite root = toolkit.createComposite(infoSection);
-		GridLayout gridLayout = new GridLayout();
-		gridLayout.numColumns = 3;
-		gridLayout.marginHeight = 0;
-		gridLayout.marginWidth = 0;
-		root.setLayout(gridLayout);
+	protected void addListners(){
+		visulationCombo.addSelectionChangedListener(new ISelectionChangedListener() {
 
-		new Label(root, SWT.NONE).setText("Name:");
-		name = new Text(root, SWT.SINGLE | SWT.BORDER);
-		gridData = new GridData(GridData.FILL, GridData.CENTER, true, false);
-		gridData.horizontalSpan = 2;
-		name.setLayoutData(gridData);
+			@Override
+			public void selectionChanged(SelectionChangedEvent event) {
+				VisualizationType type = VisualizationType.get(0);
+				if (!event.getSelection().isEmpty())
+					type = (VisualizationType)((IStructuredSelection)event.getSelection()).getFirstElement();
+				if(type == predicate.getVisualization().getType())
+					return;
+				predicate.getVisualization().setType(type);
+				master.getMultiEditor().setDirty(true);
+				refresh();
+			}
+		});
+		sourceCombo.addSelectionChangedListener(new ISelectionChangedListener(){
+
+			@Override
+			public void selectionChanged(SelectionChangedEvent event) {
+				changeVisualizationSource((IDObject)((IStructuredSelection)event.getSelection()).getFirstElement());
+			}
+
+		});
+		targetCombo.addSelectionChangedListener(new ISelectionChangedListener(){
+
+			@Override
+			public void selectionChanged(SelectionChangedEvent event) {
+				changeVisualizationTarget((IDObject)((IStructuredSelection)event.getSelection()).getFirstElement());
+			}
+
+		});
+		validatorCombo.addSelectionChangedListener(new ISelectionChangedListener() {
+
+			@Override
+			public void selectionChanged(SelectionChangedEvent event) {
+				ValidatorType type = ValidatorType.get(0);
+				if (!event.getSelection().isEmpty())
+					type = (ValidatorType)((IStructuredSelection)event.getSelection()).getFirstElement();
+				changePredicateValidator(type);
+			}
+		});
+		validator.addFocusListener(new FocusListener() {
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				changePredicateValidator(validator.getText());
+			}
+
+			@Override
+			public void focusGained(FocusEvent e) { }
+		});
 		name.addFocusListener(new FocusListener() {
-			
+
 			@Override
 			public void focusLost(FocusEvent e) {
 				if(!name.getText().equals(predicate.getSymbol()))
 					changePredicateName(name.getText());
 			}
-			
+
 			@Override
 			public void focusGained(FocusEvent e) { }
 		});
-
-		new Label(root, SWT.NONE).setText("Icon:");
-		icon = new Text(root, SWT.SINGLE | SWT.BORDER);
-		icon.setEditable(false);
-		gridData = new GridData(GridData.FILL, GridData.CENTER, true, false);
-		icon.setLayoutData(gridData);
-
-		iconChooser = new Button(root, SWT.PUSH);
-		iconChooser.setText("Choose");
-		iconChooser.setLayoutData(new GridData(GridData.BEGINNING, GridData.CENTER, false, false));
 		iconChooser.addSelectionListener(new SelectionListener() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -235,174 +258,196 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 					icon.setText(fileName);
 				}
 			}
-			
+
 			@Override
 			public void widgetDefaultSelected(SelectionEvent e) { }
 		});
+	}
+	@Override
+	public void createContents(Composite parent) {
+		parent.setLayout(new GridLayout());
 
-		//Validator
-		Label validateLabel = new Label(root, SWT.NONE);
-		validateLabel.setText("Validator:");
-		gridData = new GridData(GridData.BEGINNING, GridData.BEGINNING, false, true);
-		gridData.verticalSpan = 3;
-		validateLabel.setLayoutData(gridData);
-		validatorCombo = new ComboViewer(root, SWT.NONE);
-//		validatorCombo = new Combo(root, SWT.NONE);
-		gridData = new GridData(GridData.FILL, GridData.FILL, true, false);
+		FormToolkit toolkit = form.getToolkit();
+		infoSection = toolkit.createSection(parent, Section.TWISTIE| Section.TITLE_BAR);
+		infoSection.marginWidth = 10;
+		infoSection.setExpanded(true);
+		infoSection.setLayoutData(new GridData(GridData.FILL, GridData.FILL, true, false));
+		Composite root = toolkit.createComposite(infoSection);
+		GridLayout gridLayout = new GridLayout();
+		gridLayout.numColumns = 3;
+		gridLayout.marginHeight = 0;
+		gridLayout.marginWidth = 0;
+		root.setLayout(gridLayout);
+
+		new Label(root, SWT.NONE).setText("Name:");
+		name = new Text(root, SWT.SINGLE | SWT.BORDER);
+		GridData gridData = null;
+		gridData = new GridData(GridData.BEGINNING, GridData.FILL, false, false);
 		gridData.horizontalSpan = 2;
-		validatorCombo.getControl().setLayoutData(gridData);
-		validatorCombo.setContentProvider(new IStructuredContentProvider() {
-			
-			@Override
-			public void inputChanged(Viewer viewer, Object oldInput, Object newInput) { }
-			
-			@Override
-			public void dispose() { }
-			
-			@Override
-			public Object[] getElements(Object inputElement) {
-				assert(inputElement instanceof Enumerator[]);
-				return (Enumerator[])inputElement;
-			}
-		});
-		validatorCombo.setLabelProvider(new LabelProvider(){
-			public String getText(Object element) {
-				assert(element instanceof Enumerator);
-				return ((Enumerator)element).getLiteral();
-//				return element == null ? "" : element.toString();//$NON-NLS-1$
-			}
-		});
-		validatorCombo.setInput(ValidatorType.values());
-//		validatorCombo.setLayoutData(gridData);
-//		validatorCombo.setItems(VALIDATOR_TYPES);
-		validatorCombo.addSelectionChangedListener(new ISelectionChangedListener() {
-			
-			@Override
-			public void selectionChanged(SelectionChangedEvent event) {
-				ValidatorType type = ValidatorType.get(0);
-				if (!event.getSelection().isEmpty())
-					type = (ValidatorType)((IStructuredSelection)event.getSelection()).getFirstElement();
-				changePredicateValidator(type);
-			}
-		});
-//		validatorCombo.addSelectionListener(new SelectionListener() {
-//			
-//			@Override
-//			public void widgetSelected(SelectionEvent e) {
-//				int selected = (Integer) e.data;
-//				changePredicateValidator(ValidatorType.get(selected));
-//			}
-//			
-//			@Override
-//			public void widgetDefaultSelected(SelectionEvent e) { }
-//		});
-		validator = new Text(root, SWT.BORDER | SWT.MULTI);
-		gridData = new GridData(GridData.FILL, GridData.FILL, true, true);
-		gridData.horizontalSpan = 2;
-		gridData.verticalSpan = 2;
-		validator.setLayoutData(gridData);
-		validator.addFocusListener(new FocusListener() {
-			
-			@Override
-			public void focusLost(FocusEvent e) {
-				changePredicateValidator(validator.getText());
-			}
-			
-			@Override
-			public void focusGained(FocusEvent e) { }
-		});
+		name.setLayoutData(gridData);
+
+		new Label(root, SWT.NONE).setText("Icon:");
+		icon = new Text(root, SWT.SINGLE | SWT.BORDER);
+		icon.setEditable(false);
+		gridData = new GridData(GridData.BEGINNING, GridData.FILL, false, false);
+		icon.setLayoutData(gridData);
+		iconChooser = new Button(root, SWT.PUSH);
+		iconChooser.setText("Choose");
+		iconChooser.setLayoutData(new GridData(GridData.BEGINNING, GridData.FILL, false, false));
 
 		//Visulation
 		Label visulationLabel = new Label(root, SWT.NONE);
-		visulationLabel.setText("Visulation:");
-		gridData = new GridData(GridData.BEGINNING, GridData.BEGINNING, false, false);
+		visulationLabel.setText("Visualtion:");
+		gridData = new GridData(GridData.BEGINNING, GridData.FILL, false, false);
 		gridData.verticalSpan = 3;
 		visulationLabel.setLayoutData(gridData);
-		visulationCombo = new Combo(root, SWT.NONE);
-		gridData = new GridData(GridData.FILL, GridData.CENTER, false, false);
-		gridData.horizontalSpan = 2;
-		visulationCombo.setLayoutData(gridData);
-		visulationCombo.setItems(VISULATION_TYPES);
-		visulationCombo.addSelectionListener(new SelectionListener() {
-			
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				int selected = (Integer) e.data;
-//				ValidatorType type = VisualizationType.get(selected);
-				switch(selected){
-				case VisualizationType.ARROW_LABEL_VALUE:
-					targetCombo.setVisible(false);
-//					sourceCombo.setI
-					break;
-				}
-			}
-			
-			@Override
-			public void widgetDefaultSelected(SelectionEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
-		
+		visulationCombo = new EnumeratorCombo(root, SWT.NONE);
+		visulationCombo.setInput(VisualizationType.values());
+
 		Composite source = new Composite(root, SWT.NONE);
 		RowLayout rowLayout = new RowLayout();
 		rowLayout.wrap = false;
 		source.setLayout(rowLayout);
-		new Label(source, SWT.NONE).setText("Source:");
-		sourceCombo = new Combo(source, SWT.NONE);
+		sourceLabel = new Label(source, SWT.NONE);
+		sourceLabel.setText("Source:");
+		sourceCombo = new ComboViewer(source, SWT.NONE);
+		final IContentProvider contentProvider = new IStructuredContentProvider() {
+
+			@Override
+			public void inputChanged(Viewer viewer, Object oldInput, Object newInput) { }
+
+			@Override
+			public void dispose() { }
+
+			@Override
+			public Object[] getElements(Object inputElement) {
+				Assert.isTrue(inputElement instanceof Object[]);
+				return (Object[])inputElement;
+			}
+		};
+		final ILabelProvider labelProvider = new LabelProvider(){
+			public String getText(Object element) {
+				Assert.isTrue(element instanceof IDObject);
+				if(element instanceof Node)
+					return "Node " + ((Node)element).getName();
+				return "Arrow " + ((Arrow)element).getName();
+			}
+		};
+		sourceCombo.setContentProvider(contentProvider);
+		sourceCombo.setLabelProvider(labelProvider);
 		gridData = new GridData(GridData.FILL, GridData.CENTER, false, false);
 		gridData.horizontalSpan = 2;
+		gridData.minimumWidth = 20;
 		source.setLayoutData(gridData);
 		Composite target = new Composite(root, SWT.NONE);
 		target.setLayout(rowLayout);
 		gridData = new GridData(GridData.FILL, GridData.CENTER, false, false);
 		gridData.horizontalSpan = 2;
+		gridData.minimumWidth = 20;
 		target.setLayoutData(gridData);
-		new Label(target, SWT.NONE).setText("Target:");
-		targetCombo = new Combo(target, SWT.NONE);
-		
-		Section s2 = toolkit.createSection(parent, Section.TWISTIE | Section.TITLE_BAR | Section.DESCRIPTION | Section.EXPANDED);
+		targetLabel = new Label(target, SWT.NONE);
+		targetLabel.setText("Target:");
+		targetCombo = new ComboViewer(target, SWT.NONE);
+		targetCombo.setContentProvider(contentProvider);
+		targetCombo.setLabelProvider(labelProvider);
+
+		//Validator
+		Section validSection = toolkit.createSection(parent, Section.TWISTIE| Section.TITLE_BAR);
+		validSection.setExpanded(true);
+		validSection.marginWidth = 10;
+		validSection.setText("Validator");
+		gridData = new GridData(GridData.FILL, GridData.FILL, true, true);
+		validSection.setLayoutData(gridData);
+		Composite root1 = toolkit.createComposite(validSection);
+		root1.setLayout(new GridLayout());
+
+		validatorCombo = new EnumeratorCombo(root1, SWT.NONE);
+		gridData = new GridData(GridData.BEGINNING, GridData.FILL, false, false);
+		validatorCombo.getControl().setLayoutData(gridData);
+		validatorCombo.setInput(ValidatorType.values());
+		validator = new Text(root1, SWT.MULTI | SWT.BORDER);
+		gridData = new GridData(GridData.FILL, GridData.FILL, true, true);
+		validator.setLayoutData(gridData);
+
+
+		Section s2 = toolkit.createSection(parent, Section.TWISTIE| Section.TITLE_BAR);
+		s2.setExpanded(true);
 		s2.marginWidth = 10;
 		s2.setText("Graph Details"); //$NON-NLS-1$
 		gridData = new GridData(GridData.FILL, GridData.FILL, true, true);
 		s2.setLayoutData(gridData);
 		Composite root2 = new Composite(s2, SWT.BORDER);//toolkit.createComposite(s2);
-		
+
 		root2.setLayout(new FillLayout());
 		createPartControl(root2);
 		toolkit.paintBordersFor(infoSection);
 		toolkit.paintBordersFor(s2);
 		infoSection.setClient(root);
 		s2.setClient(root2);
-	}
-	
-	protected void changePredicateValidator(String data) {
-		predicate.getSemanticsValidator().setValidator(data);
-		master.getEditor().setDirty(true);
+		validSection.setClient(root1);
+		refresh();
+		addListners();
 	}
 
+
+	protected Object[] getArrows() {
+		return toArray(predicate.getShape().getArrows());
+	}
+
+	protected Object[] getNodes() {
+		return toArray(predicate.getShape().getNodes());
+	}
+
+	private Object[] toArray(EList<?> lists){
+		return lists.toArray(new Object[lists.size()]);
+	}
+
+	protected void changeVisualizationSource(IDObject firstElement) {
+		if(firstElement == predicate.getVisualization().getSource())
+			return;
+		predicate.getVisualization().setSource(firstElement);
+		master.getMultiEditor().setDirty(true);
+	}
+
+	protected void changeVisualizationTarget(IDObject firstElement) {
+		if(firstElement == predicate.getVisualization().getTarget())
+			return;
+		predicate.getVisualization().setTarget(firstElement);
+		master.getMultiEditor().setDirty(true);
+	}
+
+	protected void changePredicateValidator(String data) {
+		if(data.equals(predicate.getSemanticsValidator().getValidator()))
+			return;
+		predicate.getSemanticsValidator().setValidator(data);
+		master.getMultiEditor().setDirty(true);
+	}
+
+
 	protected void changePredicateValidator(ValidatorType validatorType) {
+		if(validatorType == predicate.getSemanticsValidator().getType())
+			return;
 		predicate.getSemanticsValidator().setType(validatorType);
-		master.getEditor().setDirty(true);
+		master.getMultiEditor().setDirty(true);
 	}
 
 	protected void changePredicateIcon(String fileName) {
+		if(fileName.equals(predicate.getIcon()))
+			return;
 		predicate.setIcon(fileName);
-		master.getEditor().setDirty(true);
+		master.getMultiEditor().setDirty(true);
 	}
 
 	protected void changePredicateName(String newText) {
+		if(newText.equals(predicate.getSymbol()))
+			return;
 		predicate.setSymbol(newText);
 		master.refresh(predicate);
-		master.getEditor().setDirty(true);
+		master.getMultiEditor().setDirty(true);
 	}
-
-	public IWorkbenchPartSite getSite() {
-        return page.getEditor().getSite();
-    }
 
 	@Override
 	public void doSave(IProgressMonitor monitor) {
-		page.getEditor().doSave(monitor);
+		master.getMultiEditor().doSave(monitor);
 	}
 }

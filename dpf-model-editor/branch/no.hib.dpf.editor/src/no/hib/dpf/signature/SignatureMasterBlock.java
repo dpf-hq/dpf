@@ -1,8 +1,23 @@
 package no.hib.dpf.signature;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import no.hib.dpf.core.CoreFactory;
+import no.hib.dpf.core.CorePackage;
+import no.hib.dpf.core.Predicate;
+import no.hib.dpf.core.Signature;
+import no.hib.dpf.core.impl.PredicateImpl;
+import no.hib.dpf.editor.displaymodel.DPFDiagram;
+
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.gef.DefaultEditDomain;
+import org.eclipse.gef.commands.Command;
+import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
@@ -26,15 +41,11 @@ import org.eclipse.ui.forms.editor.FormPage;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Section;
 
-import no.hib.dpf.core.*;
-import no.hib.dpf.core.impl.PredicateImpl;
-
 public class SignatureMasterBlock extends MasterDetailsBlock {
 
 	private FormPage page;
 	private Signature signature;
 	private TableViewer viewer;
-	private SignatureEditor editor;
 	
 	class SignatureContentProvider implements IStructuredContentProvider {
 		public Object[] getElements(Object inputElement) {
@@ -60,19 +71,33 @@ public class SignatureMasterBlock extends MasterDetailsBlock {
 			return null;
 		}
 	}
-	public SignatureMasterBlock(FormPage signatureFormPage, SignatureEditor editor) {
+	
+	public SignatureMasterBlock(FormPage signatureFormPage) {
 		page = signatureFormPage;
-		this.editor = editor;
-		this.signature = editor.getSignature();
+		signature = getMultiEditor().getSignature();
+		
+		signature.eAdapters().add(new no.hib.dpf.editor.parts.UIAdapter() {
+
+			@Override
+			protected void safeNotifyChanged(Notification msg) {
+				if(msg.getNotifier() == signature){
+					switch(msg.getFeatureID(Signature.class)){
+					case CorePackage.SIGNATURE__PREDICATES:
+						refresh();
+						break;
+					}
+				}
+			}
+		});
 	}
 
 	@Override
 	protected void createMasterPart(final IManagedForm managedForm, Composite parent) {
 		//final ScrolledForm form = managedForm.getForm();
 		FormToolkit toolkit = managedForm.getToolkit();
-		Section section = toolkit.createSection(parent, Section.DESCRIPTION | Section.TITLE_BAR);
-		section.setText("Predicates"); //$NON-NLS-1$
-		section.setDescription("Predicates"); //$NON-NLS-1$
+		Section section = toolkit.createSection(parent, Section.TWISTIE| Section.TITLE_BAR);
+		section.setText("Predicates"); 
+		section.setExpanded(true);
 		section.marginWidth = 10;
 		section.marginHeight = 5;
 		Composite client = toolkit.createComposite(section, SWT.WRAP);
@@ -85,11 +110,11 @@ public class SignatureMasterBlock extends MasterDetailsBlock {
 		GridData gridData = new GridData(GridData.FILL_BOTH);
 		gridData.heightHint = 20;
 		gridData.widthHint = 100;
+		gridData.verticalSpan = 2;
 		table.setLayoutData(gridData);
 		toolkit.paintBordersFor(client);
 		Button addBt = toolkit.createButton(client, "Add", SWT.PUSH); //$NON-NLS-1$
-		gridData = new GridData(GridData.VERTICAL_ALIGN_BEGINNING);
-		addBt.setLayoutData(gridData);
+		addBt.setLayoutData(new GridData(GridData.FILL, GridData.END, false, false));
 		addBt.addSelectionListener(new SelectionListener() {
 			
 			@Override
@@ -102,6 +127,22 @@ public class SignatureMasterBlock extends MasterDetailsBlock {
 				
 			}
 		});
+		
+		final Button deBtn = toolkit.createButton(client, "REMOVE", SWT.PUSH); //$NON-NLS-1$
+		deBtn.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, false, false));
+		deBtn.addSelectionListener(new SelectionListener() {
+			
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				removePredicate(getSelection(viewer.getSelection()));
+			}
+			
+			@Override
+			public void widgetDefaultSelected(SelectionEvent e) {
+				
+			}
+		});
+		
 		section.setClient(client);
 		final SectionPart spart = new SectionPart(section);
 		managedForm.addPart(spart);
@@ -109,19 +150,75 @@ public class SignatureMasterBlock extends MasterDetailsBlock {
 		viewer.addSelectionChangedListener(new ISelectionChangedListener() {
 			public void selectionChanged(SelectionChangedEvent event) {
 				managedForm.fireSelectionChanged(spart, event.getSelection());
+				deBtn.setVisible(!event.getSelection().isEmpty());
 			}
 		});
 		viewer.setContentProvider(new SignatureContentProvider());
 		viewer.setLabelProvider(new SignatureLabelProvider());
 		viewer.setInput(getPredicates());
+		viewer.setSelection(null);
 	}
-	
+
+	protected void removePredicate(final List<? extends Predicate> selected) {
+		final SignatureEditor editor = getMultiEditor();
+		DefaultEditDomain domain = editor .getEditDomain();
+		final List<DPFDiagram> graphs = editor.findDGraph(selected);
+		domain.getCommandStack().execute(new Command("Add Predicate" + (selected.size() > 1 ? "s" : "")){
+			public boolean canExecute() {
+				return signature != null && editor != null;
+			}
+
+			public boolean canUndo() {
+				return canExecute();
+			}
+			public void execute() {
+				if(signature.getPredicates().containsAll(selected))
+					signature.getPredicates().removeAll(selected);
+				editor.removeDGraph(graphs);
+			}
+			public void undo() {
+				editor.addDGraph(graphs);
+				if(!signature.getPredicates().containsAll(selected))
+					signature.getPredicates().addAll(selected);
+			}
+		});
+	}
+
+	@SuppressWarnings("unchecked")
+	private List<? extends Predicate> getSelection(ISelection selection){
+		if(selection instanceof IStructuredSelection){
+			return ((IStructuredSelection) selection).toList();
+		}
+		return new ArrayList<Predicate>(0);
+	}
 
 	protected void addPredicate() {
-		Predicate created = getNewPrediate();
-		signature.getPredicates().add(created);
-		refresh(created);
-		editor.setDirty(true);
+		final SignatureEditor editor = getMultiEditor();
+		DefaultEditDomain domain = editor.getEditDomain();
+		final Predicate created = getNewPrediate();
+		DPFDiagram dGraph = new DPFDiagram(null);//.eINSTANCE.createDGraph();
+		dGraph.setDpfGraph(created.getShape());
+		final List<DPFDiagram> dGraphs = new ArrayList<DPFDiagram>(1);
+		dGraphs.add(dGraph);
+		domain.getCommandStack().execute(new Command("Add Predicate") {
+			public boolean canExecute() {
+				return signature != null && editor != null && created != null;
+			}
+
+			public boolean canUndo() {
+				return canExecute();
+			}
+			public void execute() {
+				editor.addDGraph(dGraphs);
+				if(!signature.getPredicates().contains(created))
+					signature.getPredicates().add(created);
+			}
+			public void undo() {
+				if(signature.getPredicates().contains(created))
+					signature.getPredicates().remove(created);
+				editor.removeDGraph(dGraphs);
+			}
+		});
 	}
 	
 	private Predicate getNewPrediate(){
@@ -137,19 +234,17 @@ public class SignatureMasterBlock extends MasterDetailsBlock {
 		return result;
 	}
 
-	private Object getPredicates() {
-		SignatureEditor editor = (SignatureEditor) page.getEditor();
-		Signature signature = editor.getSignature();
+	private Predicate[] getPredicates() {
 		if(signature != null){
 			EList<Predicate> predicates = signature.getPredicates();
 			return predicates.toArray(new Predicate[predicates.size()]);
 		}
-		return new Object[0];
+		return new Predicate[0];
 	}
 
 	@Override
 	protected void registerPages(DetailsPart detailsPart) {
-		detailsPart.registerPage(PredicateImpl.class, new PredicateDetailBlock(page, this));
+		detailsPart.registerPage(PredicateImpl.class, new PredicateDetailBlock(this));
 	}
 
 	@Override
@@ -160,7 +255,20 @@ public class SignatureMasterBlock extends MasterDetailsBlock {
 		viewer.setSelection(new StructuredSelection(predicate));
 	}
 
-	public SignatureEditor getEditor() {
-		return editor;
+	public void refresh() {
+		Predicate[] predicates = getPredicates();
+		viewer.setInput(getPredicates());
+		if(predicates.length > 0)
+			viewer.setSelection(new StructuredSelection(predicates[predicates.length - 1]));
+		else
+			viewer.setSelection(null);
+	}
+	
+	public SignatureEditor getMultiEditor() {
+		return (SignatureEditor) page.getEditor();
+	}
+
+	public FormPage getEditor() {
+		return page;
 	};
 }

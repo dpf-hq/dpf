@@ -11,12 +11,15 @@ public class SignatureFormPage extends FormPage {
 
 	public SignatureFormPage(FormEditor editor) {
 		super(editor, "signature", "Signature"); //$NON-NLS-1$ //$NON-NLS-2$
-		block = new SignatureMasterBlock(this, (SignatureEditor)editor);
+		block = new SignatureMasterBlock(this);
 	}
 	
 	protected void createFormContent(final IManagedForm managedForm) {
 		final ScrolledForm form = managedForm.getForm();
 		form.setText("Signature Predicates"); //$NON-NLS-1$
 		block.createContent(managedForm);
+	}
+	public boolean isEditor() {
+		return true;
 	}
 }

@@ -1,12 +1,27 @@
 package no.hib.dpf.signature;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.LinkedHashMap;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.EventObject;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import no.hib.dpf.core.CoreFactory;
+import no.hib.dpf.core.Graph;
+import no.hib.dpf.core.IDObject;
+import no.hib.dpf.core.Predicate;
 import no.hib.dpf.core.Signature;
 import no.hib.dpf.editor.DPFErrorReport;
+import no.hib.dpf.editor.displaymodel.DArrow;
+import no.hib.dpf.editor.displaymodel.DPFDiagram;
+import no.hib.dpf.editor.displaymodel.ModelElement;
+import no.hib.dpf.editor.displaymodel.ModelSerializationException;
+import no.hib.dpf.editor.displaymodel.SingleArrowConstraintElement;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
@@ -14,22 +29,27 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.emf.common.util.BasicDiagnostic;
-import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.xmi.XMIResource;
-import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
-import org.eclipse.emf.edit.ui.util.EditUIUtil;
+import org.eclipse.gef.DefaultEditDomain;
+import org.eclipse.gef.commands.CommandStack;
+import org.eclipse.gef.commands.CommandStackListener;
+import org.eclipse.gef.ui.actions.ActionRegistry;
+import org.eclipse.gef.ui.actions.DeleteAction;
+import org.eclipse.gef.ui.actions.RedoAction;
+import org.eclipse.gef.ui.actions.SelectAllAction;
+import org.eclipse.gef.ui.actions.UndoAction;
+import org.eclipse.gef.ui.actions.UpdateAction;
+import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
+import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IFileEditorInput;
+import org.eclipse.ui.ISelectionListener;
+import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.dialogs.SaveAsDialog;
@@ -37,19 +57,29 @@ import org.eclipse.ui.forms.editor.FormEditor;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.part.FileEditorInput;
 
-public class SignatureEditor extends FormEditor{
+public class SignatureEditor extends FormEditor implements CommandStackListener, ISelectionListener{
 
 	Signature signature = null;
-	private URI uri = null;
 	private boolean isSignatureChanged = false;
-
+	private DefaultEditDomain editDomain;
+	
+	List<DPFDiagram> diagrams = new ArrayList<DPFDiagram>();
+	private String signatureFile;
+	public DefaultEditDomain getEditDomain() {
+		return editDomain;
+	}
+	public void setEditDomain(DefaultEditDomain editDomain) {
+		this.editDomain = editDomain;
+	}
 	protected FormToolkit createToolkit(Display display){
 		return new FormToolkit(display);
 	}
 	@Override
 	protected void addPages() {
 		try{
-			addPage(new SignatureFormPage(this));
+			SignatureFormPage editor = new SignatureFormPage(this);
+			int index = addPage(editor, getEditorInput());
+			setPageText(index, editor.getTitle());
 		}catch(PartInitException e){
 			DPFErrorReport.logError(e);
 		}
@@ -61,12 +91,7 @@ public class SignatureEditor extends FormEditor{
 		WorkspaceModifyOperation operation = new WorkspaceModifyOperation() {
 			@Override
 			public void execute(IProgressMonitor monitor) {
-				for(Resource resource : resourceSet.getResources())
-					try {
-						resource.save(null);
-					} catch (IOException e) {
-						DPFErrorReport.logError(e);
-					}
+					saveSignature();
 			}
 		};
 
@@ -74,19 +99,33 @@ public class SignatureEditor extends FormEditor{
 			new ProgressMonitorDialog(getSite().getShell()).run(true, false, operation);
 			IFile file = ((IFileEditorInput)getEditorInput()).getFile();
 			file.getParent().refreshLocal(IResource.DEPTH_INFINITE, monitor);
+			getCommandStack().markSaveLocation();
 			setDirty(false);
 		}
 		catch (Exception exception) {
-			exception.printStackTrace();
+			DPFErrorReport.logError(exception);
 		}
 	}
 
+	private void saveSignature() {
+		try {
+			signature.save(URI.createFileURI(signatureFile));
+			if(diagrams.size() == 0)
+				return;
+			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(signatureFile + ".graph"));
+			for(DPFDiagram diagram : diagrams)
+				oos.writeObject(diagram);
+			oos.writeObject(null);
+			oos.close();
+		} catch (IOException e) {
+			DPFErrorReport.logError(e);
+		}
+	}
 	public boolean isDirty() {
-		return isSignatureChanged || super.isDirty();
+		return isSignatureChanged || super.isDirty() || getCommandStack().isDirty();
 	}
 	@Override
 	public void doSaveAs() {
-		super.isDirty();
 		// Show a SaveAs dialog
 		Shell shell = getSite().getWorkbenchWindow().getShell();
 		SaveAsDialog dialog = new SaveAsDialog(shell);
@@ -97,14 +136,10 @@ public class SignatureEditor extends FormEditor{
 		if (path != null) {
 			IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(path);
 			if (file != null) {
-				Resource oldResource = resourceSet.getResource(uri, false);
-				resourceSet.getResources().remove(oldResource);
 				IFileEditorInput newInput = new FileEditorInput(file);
 				setInputWithNotify(newInput);
 				setPartName(newInput.getName());
-				uri = EditUIUtil.getURI(newInput);
-				Resource newResource = resourceSet.getResource(uri, true);
-				newResource.getContents().add(signature);
+				signatureFile = file.getLocation().toOSString();
 				doSave(new NullProgressMonitor());
 			}
 		}
@@ -118,127 +153,205 @@ public class SignatureEditor extends FormEditor{
 	
 	protected void setInput(IEditorInput input) {
 		super.setInput(input);
-		uri = EditUIUtil.getURI(input);
-		getResourceSet();
-		loadSignature();
+		setEditDomain(new DefaultEditDomain(this));
+		getCommandStack().addCommandStackListener(this);
+		initializeActionRegistry();
+		getSite().getWorkbenchWindow().getSelectionService().addSelectionListener(this);
+		signatureFile = ((IFileEditorInput)input).getFile().getLocation().toOSString();
+		loadSignature(signatureFile);
+		
+		
 	}
 
-	private void loadSignature() {
-		Resource resource = null;
-		resource = getResource(resourceSet, uri, resourceToDiagnosticMap);
-		if(resource != null){
-			try {
-				resource.load(null);
-			} catch (IOException exception) {
-				DPFErrorReport.logError(exception);
-				signature = getDefaultSignature(resource);
-				setDirty(true);
+	protected CommandStack getCommandStack() {
+		return getEditDomain().getCommandStack();
+	}
+	private void setDpfReferencesInViewModel(DPFDiagram diagram) {
+		Map<String, ModelElement> children = diagram.getChildrenWithID();
+		for (String id : children.keySet()) {
+			IDObject idObject = diagram.getDpfGraph().getGraphMember(id);
+			if (idObject == null) {
+				throw new ModelSerializationException("A deserialized view model object had no serialized counterpart in the dpf model");
 			}
-			if(resource.getContents().size() > 0)
-				signature = (Signature) resource.getContents().get(0);
-			else{
-				signature = getDefaultSignature(resource);
-				setDirty(true);
-			}
+			children.get(id).setIDObject(idObject);
+			
 		}
-
+		for (ModelElement modelElement : children.values()) {
+			if (modelElement instanceof DArrow) {
+				// Q&D fix to get single constraints out of this. TODO: refactor all
+				// constraints into "connection" constraints and "connected" constraints
+				DArrow arrow = (DArrow)modelElement;
+				for (SingleArrowConstraintElement singleLineConstraintElement : arrow.getSingleConstraints()) {
+				
+					IDObject idObject2 = diagram.getDpfGraph().getGraphMember(singleLineConstraintElement.getIDObjectID());
+					if (idObject2 == null) {
+						throw new ModelSerializationException("A deserialized view model object had no serialized counterpart in the dpf model");
+					}
+					singleLineConstraintElement.setIDObject(idObject2);
+					singleLineConstraintElement.refreshSource();
+				}
+			}			
+		}
+	}
+	private void loadSignature(String file){
+		
+		try {
+			URI uri = URI.createFileURI(file);
+			signature = CoreFactory.eINSTANCE.loadSignature(uri);
+			if(ResourcesPlugin.getWorkspace().getRoot().getFileForLocation(new Path(file + ".graph")) == null)
+				return;
+			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file + ".graph"));
+			while(true){
+				Object object = ois.readObject();
+				if(object instanceof DPFDiagram){
+					DPFDiagram diagram = (DPFDiagram)object;
+					diagram.setDpfGraph(getGraph(signature, diagram.getGraphID()));
+					diagrams.add(diagram);
+					setDpfReferencesInViewModel(diagram);
+				}else
+					break;
+			}
+			ois.close();
+		} catch (IOException e) {
+			DPFErrorReport.logError(e);
+		} catch (ClassNotFoundException e) {
+			DPFErrorReport.logError(e);
+		}
 	}
 
+	private Graph getGraph(Signature signature2, String graphID) {
+		for(Predicate predicate : signature2.getPredicates())
+			if(predicate.getShape().getId().equals(graphID))
+				return predicate.getShape();
+		return null;
+	}
 	public void setDirty(boolean isDirty){
 		isSignatureChanged = isDirty;
 		firePropertyChange(IEditorPart.PROP_DIRTY);
 	}
-	private Signature getDefaultSignature(Resource resource) {
-		Signature result = CoreFactory.eINSTANCE.createSignature();
-		result.setName("Default_Signature");
-		resource.getContents().clear();
-		resource.getContents().add(result);
-		try {
-			resource.save(null);
-		} catch (IOException e) {
-			DPFErrorReport.logError(e);
-		}
-		return result;
-	}
-
-	public void getResourceSet(){
-		if(resourceSet == null){
-			resourceSet = new ResourceSetImpl();
-			resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("sig", new XMLResourceFactoryImpl());
-			resourceSet.getLoadOptions().put(XMIResource.OPTION_DEFER_IDREF_RESOLUTION, true);
-		}
-	}
-	private ResourceSet resourceSet = null;
-	private Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
-
-	public static Resource getResource(ResourceSet resourceSet, URI resourceURI, Map<Resource, Diagnostic> resourceToDiagnosticMap){
-		assert(resourceSet != null);
-		assert(resourceToDiagnosticMap != null);
-		Resource resource = null;
-		try{
-			resource = getResource(resourceSet, resourceURI);
-		}
-		catch(Exception exception){
-			analyzeResourceProblems(resource, exception, resourceToDiagnosticMap);
-		}
-		return resource;
-	}
-
-	@SuppressWarnings("finally")
-	public static Resource getResource(ResourceSet resourceSet, URI resourceURI){
-		Resource resource = null;
-		try {
-			// Load the resource through the editing domain.
-			//
-			resource = resourceSet.getResource(resourceURI, true);
-		}
-		catch (Exception e) {
-			resource = resourceSet.getResource(resourceURI, false);
-			throw e;
-		}
-		finally{
-			return resource;
-		}
-	}
-
-	public static  void analyzeResourceProblems(Resource resource, Exception exception, Map<Resource, Diagnostic> resourceToDiagnosticMap) {
-		Diagnostic diagnostic = analyzeResourceProblems(resource, exception);
-		if (diagnostic.getSeverity() != Diagnostic.OK) {
-			resourceToDiagnosticMap.put(resource,  analyzeResourceProblems(resource, exception));
-		}
-	}
-	public static  Diagnostic analyzeResourceProblems(Resource resource, Exception exception) {
-		if (!resource.getErrors().isEmpty() || !resource.getWarnings().isEmpty()) {
-			BasicDiagnostic basicDiagnostic =
-					new BasicDiagnostic
-					(Diagnostic.ERROR,
-							"no.hib.dpf.editor",
-							0,
-							fileError(resource.getURI()),
-							new Object [] { exception == null ? (Object)resource : exception });
-			basicDiagnostic.merge(EcoreUtil.computeDiagnostic(resource, true));
-			return basicDiagnostic;
-		}
-		else if (exception != null) {
-			return
-					new BasicDiagnostic
-					(Diagnostic.ERROR,
-							"no.hib.dpf.editor",
-							0,
-							fileError(resource.getURI()),
-							new Object[] { exception });
-		}
-		else {
-			return Diagnostic.OK_INSTANCE;
-		}
-	}
-
-	private static String fileError(URI uri) {
-		return "Problems encountered in file " + uri.toString();
-	}
 
 	public Signature getSignature() {
 		return signature;
+	}
+	public void addDGraph(List<DPFDiagram> dGraphs) {
+		if(!diagrams.containsAll(dGraphs))
+			diagrams.addAll(dGraphs);
+	}
+	
+	public void removeDGraph(List<DPFDiagram> dGraphs) {
+		if(diagrams.containsAll(dGraphs))
+			diagrams.removeAll(dGraphs);
+	}
+	public DPFDiagram findDGraph(Graph shape) {
+		for(DPFDiagram diagram : diagrams)
+			if(diagram.getDpfGraph() == shape)
+				return diagram;
+		return null;
+	}
+	
+	private List<String> stackActions = new ArrayList<String>();
+	private List<String> selectionActions = new ArrayList<String>();
+	private ActionRegistry actionRegistry;
+	@Override
+	public void commandStackChanged(EventObject event) {
+		updateActions(stackActions);
+		setDirty(true);
+	}
+	
+	protected void updateActions(List<String> actionIds) {
+		ActionRegistry registry = getActionRegistry();
+		Iterator<String> iter = actionIds.iterator();
+		while (iter.hasNext()) {
+			IAction action = registry.getAction(iter.next());
+			if (action instanceof UpdateAction)
+				((UpdateAction) action).update();
+		}
+	}
+	
+	protected ActionRegistry getActionRegistry() {
+		if (actionRegistry == null)
+			actionRegistry = new ActionRegistry();
+		return actionRegistry;
+	}
+	
+	protected List<String> getStackActions() {
+		return stackActions;
+	}
+	
+	protected void createActions() {
+		ActionRegistry registry = getActionRegistry();
+		IAction action;
+
+		action = new UndoAction(this);
+		registry.registerAction(action);
+		getStackActions().add(action.getId());
+
+		action = new RedoAction(this);
+		registry.registerAction(action);
+		getStackActions().add(action.getId());
+
+		action = new SelectAllAction(this);
+		registry.registerAction(action);
+
+		action = new DeleteAction((IWorkbenchPart) this);
+		registry.registerAction(action);
+		getSelectionActions().add(action.getId());
+
+//		action = new SaveAction(this);
+//		registry.registerAction(action);
+//		getPropertyActions().add(action.getId());
+
+//		registry.registerAction(new PrintAction(this));
+	}
+	
+	protected void initializeActionRegistry() {
+		createActions();
+		updateActions(stackActions);
+	}
+	
+	public void selectionChanged(IWorkbenchPart part, ISelection selection) {
+		// If not the active editor, ignore selection changed.
+		if (this.equals(getSite().getPage().getActiveEditor()))
+			updateActions(selectionActions);
+	}
+	
+	public void dispose() {
+		getCommandStack().removeCommandStackListener(this);
+		getSite().getWorkbenchWindow().getSelectionService().removeSelectionListener(this);
+		getEditDomain().setActiveTool(null);
+		getActionRegistry().dispose();
+		super.dispose();
+	}
+	
+	protected List<String> getSelectionActions() {
+		return selectionActions;
+	}
+	
+	@SuppressWarnings("rawtypes")
+	public Object getAdapter(Class type) {
+		if (type == CommandStack.class)
+			return getCommandStack();
+		if (type == ActionRegistry.class)
+			return getActionRegistry();
+		return super.getAdapter(type);
+	}
+	
+	public List<DPFDiagram> findDGraph(List<?> selected) {
+		List<DPFDiagram> result = new ArrayList<DPFDiagram>();
+		for(Object predicate : selected)
+			if(predicate instanceof Predicate)
+				result.add(findDGraph(((Predicate)predicate).getShape()));
+			else
+				return result;
+		return result;
+	}
+	
+	public static void saveSignature(String osString, Signature signature2) {
+		try {
+			signature2.save(URI.createFileURI(osString));
+		} catch (IOException e) {
+			DPFErrorReport.logError(e);
+		}
 	}
 
 }
