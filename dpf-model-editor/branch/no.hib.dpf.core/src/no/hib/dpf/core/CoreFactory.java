@@ -15,10 +15,7 @@
  */
 package no.hib.dpf.core;
 
-import java.io.IOException;
-
 import org.eclipse.emf.common.util.EMap;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EFactory;
 
 /**
@@ -219,24 +216,6 @@ public interface CoreFactory extends EFactory {
 	 */
 	ModelHierarchy createModelHierarchy();
 
-	/**
-	 * Loads specification from URI
-	 * @param uri
-	 * @return
-	 * @throws IOException 
-	 * @generated NOT
-	 */
-	Specification loadSpecification(URI uri) throws IOException;
-
-	/**
-	 * Loads signature from URI
-	 * @param uri
-	 * @return
-	 * @throws IOException 
-	 * @generated NOT
-	 */
-	Signature loadSignature(URI uri) throws IOException;
-	
 	/**
 	 * Returns a new object of class '<em>Jointly Surjective Semantics</em>'.
 	 * <!-- begin-user-doc -->

@@ -42,8 +42,9 @@ import java.beans.PropertyChangeListener;
 
 import no.hib.dpf.editor.displaymodel.ArrowLabel;
 import no.hib.dpf.editor.displaymodel.DArrow;
-import no.hib.dpf.editor.policies.ArrowTextEditPolicy;
 import no.hib.dpf.editor.policies.ArrowTextMovePolicy;
+import no.hib.dpf.editor.policies.NameDirectEditPolicy;
+import no.hib.dpf.editor.policies.TextDirectEditManager;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;
 import no.hib.dpf.editor.preferences.PreferenceConstants;
 import no.hib.dpf.editor.tracker.ArrowTextTracker;
@@ -57,13 +58,14 @@ import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
+import org.eclipse.gef.tools.DirectEditManager;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.viewers.TextCellEditor;
 
 public abstract class ArrowLabelEditPart extends AbstractGraphicalEditPart implements
 		PropertyChangeListener {
 
-	TextEditManager manager = null;
+	DirectEditManager manager = null;
 
 	public ArrowLabelEditPart() {
 		listenToDisplayNameProperty();
@@ -111,7 +113,7 @@ public abstract class ArrowLabelEditPart extends AbstractGraphicalEditPart imple
 
 	public void createEditPolicies() {
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new ArrowTextMovePolicy());
-		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new ArrowTextEditPolicy());
+		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new NameDirectEditPolicy());
 	}
 
 	public DragTracker getDragTracker(Request request) {
@@ -140,21 +142,17 @@ public abstract class ArrowLabelEditPart extends AbstractGraphicalEditPart imple
 		ArrowLabelConstraint constraint = new ArrowLabelConstraint(arrowName, offset, connFigure, placeLabelAtEnd());
 		parent.setLayoutConstraint(this, getFigure(), constraint);
 	}
+	
+	public void performRequest(Request request) {
+		if (request.getType() == RequestConstants.REQ_DIRECT_EDIT) {
+			if (manager == null) {
+				manager = new TextDirectEditManager(this, TextCellEditor.class, new TextCellEditorLocator((Label) getFigure()));
+			}
+			manager.show();
+		}
+	}
 
 	public ArrowLabel getConnectionModel() {
 		return (ArrowLabel) getModel();
-	}
-
-	public void performRequest(Request request) {
-		if (request.getType() == RequestConstants.REQ_DIRECT_EDIT) {
-			performDirectEdit();
-		}
-	}
-
-	private void performDirectEdit() {
-		if (manager == null) {
-			manager = new TextEditManager(this, TextCellEditor.class, new TextCellEditorLocator((Label) getFigure()));
-		}
-		manager.show();
 	}
 }

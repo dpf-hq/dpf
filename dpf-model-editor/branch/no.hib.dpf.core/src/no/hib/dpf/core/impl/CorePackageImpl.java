@@ -15,7 +15,6 @@
  */
 package no.hib.dpf.core.impl;
 
-import java.io.IOException;
 import java.util.Map;
 
 import no.hib.dpf.core.Arrow;
@@ -44,10 +43,8 @@ import no.hib.dpf.core.Visualization;
 import no.hib.dpf.core.VisualizationType;
 import no.hib.dpf.core.XORSemantics;
 
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
@@ -235,20 +232,6 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 	 * @generated
 	 */
 	private EEnum visualizationTypeEEnum = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EDataType euriEDataType = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EDataType eioExceptionEDataType = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -919,24 +902,6 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EDataType getEURI() {
-		return euriEDataType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EDataType getEIOException() {
-		return eioExceptionEDataType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public CoreFactory getCoreFactory() {
 		return (CoreFactory)getEFactoryInstance();
 	}
@@ -1051,10 +1016,6 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 		// Create enums
 		validatorTypeEEnum = createEEnum(VALIDATOR_TYPE);
 		visualizationTypeEEnum = createEEnum(VISUALIZATION_TYPE);
-
-		// Create data types
-		euriEDataType = createEDataType(EURI);
-		eioExceptionEDataType = createEDataType(EIO_EXCEPTION);
 	}
 
 	/**
@@ -1212,10 +1173,6 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 		initEReference(getSignature_Predicates(), this.getPredicate(), null, "predicates", null, 0, -1, Signature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSignature_Name(), ecorePackage.getEString(), "name", null, 0, 1, Signature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = addEOperation(signatureEClass, null, "save", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getEURI(), "uri", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, this.getEIOException());
-
 		op = addEOperation(signatureEClass, this.getPredicate(), "getPredicateBySymbol", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "symbol", 0, 1, IS_UNIQUE, IS_ORDERED);
 
@@ -1297,10 +1254,6 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 		initEReference(getSpecification_Graph(), this.getGraph(), null, "graph", null, 1, 1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSpecification_TypeGraph(), this.getGraph(), null, "typeGraph", null, 0, 1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = addEOperation(specificationEClass, null, "save", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getEURI(), "uri", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, this.getEIOException());
-
 		op = addEOperation(specificationEClass, this.getGraph(), "createOStar", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getConstraint(), "constraint", 0, 1, IS_UNIQUE, IS_ORDERED);
 
@@ -1334,10 +1287,6 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 		addEEnumLiteral(visualizationTypeEEnum, VisualizationType.NODE_TO_ARROW);
 		addEEnumLiteral(visualizationTypeEEnum, VisualizationType.ARROW_TO_NODE);
 		addEEnumLiteral(visualizationTypeEEnum, VisualizationType.ARROW_TO_ARROW);
-
-		// Initialize data types
-		initEDataType(euriEDataType, URI.class, "EURI", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
-		initEDataType(eioExceptionEDataType, IOException.class, "EIOException", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

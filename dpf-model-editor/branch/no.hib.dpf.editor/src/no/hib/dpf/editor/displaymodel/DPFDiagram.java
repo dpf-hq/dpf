@@ -23,6 +23,7 @@ import java.util.Map;
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Graph;
+import no.hib.dpf.core.IDObject;
 import no.hib.dpf.core.Node;
 
 /**
@@ -43,7 +44,7 @@ public class DPFDiagram extends ModelElement {
 	private boolean snapToGeometry = true;
 	private boolean gridEnabled = false;
 	private double zoom = 1.0;
-	private String filename = "";
+	private transient String filename = "";
 	
 	/** Used for adding and removing a model element to and from the DPF graph */
 	protected transient Graph dpfGraph;
@@ -210,5 +211,35 @@ public class DPFDiagram extends ModelElement {
 
 	public String getGraphID() {
 		return graphID;
+	}
+	
+	public void setDpfReferencesInViewModel(){
+		if(getDpfGraph() == null)
+			return;
+		Map<String, ModelElement> children = getChildrenWithID();
+		for (String id : children.keySet()) {
+			IDObject idObject = getDpfGraph().getGraphMember(id);
+			if (idObject == null) {
+				throw new ModelSerializationException("A deserialized view model object had no serialized counterpart in the dpf model");
+			}
+			children.get(id).setIDObject(idObject);
+			
+		}
+		for (ModelElement modelElement : children.values()) {
+			if (modelElement instanceof DArrow) {
+				// Q&D fix to get single constraints out of this. TODO: refactor all
+				// constraints into "connection" constraints and "connected" constraints
+				DArrow arrow = (DArrow)modelElement;
+				for (SingleArrowConstraintElement singleLineConstraintElement : arrow.getSingleConstraints()) {
+				
+					IDObject idObject2 = getDpfGraph().getGraphMember(singleLineConstraintElement.getIDObjectID());
+					if (idObject2 == null) {
+						throw new ModelSerializationException("A deserialized view model object had no serialized counterpart in the dpf model");
+					}
+					singleLineConstraintElement.setIDObject(idObject2);
+					singleLineConstraintElement.refreshSource();
+				}
+			}			
+		}
 	}
 }

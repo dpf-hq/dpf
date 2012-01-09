@@ -15,27 +15,41 @@
  */
 package no.hib.dpf.core.impl;
 
-import java.io.IOException;
 import java.util.Map;
 
-import no.hib.dpf.constant.DPFConstants;
-import no.hib.dpf.core.*;
+import no.hib.dpf.core.Arrow;
+import no.hib.dpf.core.Constraint;
+import no.hib.dpf.core.CoreFactory;
+import no.hib.dpf.core.CorePackage;
+import no.hib.dpf.core.Graph;
+import no.hib.dpf.core.GraphHomomorphism;
+import no.hib.dpf.core.IDObject;
+import no.hib.dpf.core.InverseSemantics;
+import no.hib.dpf.core.IrreflexiveSemantics;
+import no.hib.dpf.core.JointlySurjectiveSemantics;
+import no.hib.dpf.core.ModelHierarchy;
+import no.hib.dpf.core.MultiplicitySemantics;
+import no.hib.dpf.core.NANDSemantics;
+import no.hib.dpf.core.Node;
+import no.hib.dpf.core.Predicate;
+import no.hib.dpf.core.SemanticsValidator;
+import no.hib.dpf.core.Signature;
+import no.hib.dpf.core.Specification;
+import no.hib.dpf.core.SurjectiveSemantics;
+import no.hib.dpf.core.TransitiveIrreflexiveSemantics;
+import no.hib.dpf.core.TypingMorphism;
+import no.hib.dpf.core.ValidatorType;
+import no.hib.dpf.core.Visualization;
+import no.hib.dpf.core.VisualizationType;
+import no.hib.dpf.core.XORSemantics;
 
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.xmi.XMIResource;
-import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -121,10 +135,6 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 				return createValidatorTypeFromString(eDataType, initialValue);
 			case CorePackage.VISUALIZATION_TYPE:
 				return createVisualizationTypeFromString(eDataType, initialValue);
-			case CorePackage.EURI:
-				return createEURIFromString(eDataType, initialValue);
-			case CorePackage.EIO_EXCEPTION:
-				return createEIOExceptionFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -142,10 +152,6 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 				return convertValidatorTypeToString(eDataType, instanceValue);
 			case CorePackage.VISUALIZATION_TYPE:
 				return convertVisualizationTypeToString(eDataType, instanceValue);
-			case CorePackage.EURI:
-				return convertEURIToString(eDataType, instanceValue);
-			case CorePackage.EIO_EXCEPTION:
-				return convertEIOExceptionToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -414,34 +420,6 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 		return specification;
 	}
 	
-	@Override
-	/**
-	 * @generated NOT
-	 */
-	public Specification loadSpecification(URI uri) throws IOException {
-		return (Specification)createLoadResource(uri).getContents().get(0);
-	}
-
-	@Override
-	/**
-	 * @generated NOT
-	 */
-	public Signature loadSignature(URI uri) throws IOException {
-		return (Signature)createLoadResource(uri).getContents().get(0);
-	}
-
-	private Resource createLoadResource(URI uri) throws IOException {
-		ResourceSet resourceSet = new ResourceSetImpl();
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMLResourceFactoryImpl());
-
-		resourceSet.getLoadOptions().put(XMIResource.OPTION_DEFER_IDREF_RESOLUTION, true);
-		Resource graph = resourceSet.createResource(DPFConstants.DefaultGraph);
-		graph.getContents().add(DPFConstants.REFLEXIVE_TYPE_GRAPH);
-		Resource resource = resourceSet.createResource(uri);
-		resource.load(null);
-		return resource;
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -570,42 +548,6 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 	 */
 	public String convertVisualizationTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public URI createEURIFromString(EDataType eDataType, String initialValue) {
-		return (URI)super.createFromString(eDataType, initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertEURIToString(EDataType eDataType, Object instanceValue) {
-		return super.convertToString(eDataType, instanceValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public IOException createEIOExceptionFromString(EDataType eDataType, String initialValue) {
-		return (IOException)super.createFromString(eDataType, initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertEIOExceptionToString(EDataType eDataType, Object instanceValue) {
-		return super.convertToString(eDataType, instanceValue);
 	}
 
 	/**

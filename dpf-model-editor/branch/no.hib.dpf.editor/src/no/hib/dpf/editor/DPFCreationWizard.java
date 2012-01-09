@@ -20,6 +20,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectOutputStream;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Specification;
@@ -28,6 +30,9 @@ import no.hib.dpf.editor.displaymodel.DPFDiagram;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.swt.widgets.Composite;
@@ -40,6 +45,7 @@ import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 import org.eclipse.ui.dialogs.WizardNewLinkPage;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.internal.ide.IDEWorkbenchMessages;
+import org.eclipse.emf.ecore.resource.Resource;
 
 import no.hib.dpf.constant.*;
 /**
@@ -155,8 +161,8 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 			// create a new diagram file, result != null if successful
 			IFile newDiagramFile = createNewFile();
 			fileCount++;
+			
 			String diagramFileName = newDiagramFile.getLocation().toOSString();
-			String modelFileName = DPFEditor.getModelFromDiagram(diagramFileName);
 			
 			//Initialize model file and diagram file
 			Specification newSpec = CoreFactory.eINSTANCE.createSpecification();
@@ -164,9 +170,11 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 			
 			// Gets null value when user does not check checkbox
 			String typeModelFileName = page2.getLinkTarget();
+			ResourceSet resourceSet = null;
+			Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
 			if (typeModelFileName != null) {
 				// TODO: move to validation (when wrong file, user must be notified)
-				Specification typeSpec = DPFEditor.loadDPFModel(typeModelFileName);
+				Specification typeSpec = DPFEditor.loadDPFModel(resourceSet, URI.createFileURI(typeModelFileName), resourceToDiagnosticMap);
 				DPFDiagram typeDiagram = DPFEditor.loadDPFDiagram(DPFEditor.getDiagramFromModel(typeModelFileName));
 				newSpec.setTypeGraph(typeSpec.getGraph());
 				newDiagram.setParent(typeDiagram);
@@ -174,7 +182,7 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 				newSpec.setTypeGraph(DPFConstants.REFLEXIVE_TYPE_GRAPH);
 			
 			newDiagram.setDpfGraph(newSpec.getGraph());
-			DPFEditor.saveDPFModel(modelFileName, newSpec);
+			DPFEditor.saveDPFModel(resourceSet, URI.createFileURI(DPFEditor.getModelFromDiagram(diagramFileName)), newSpec, resourceToDiagnosticMap);
 			DPFEditor.saveDPFDiagram(diagramFileName, newDiagram);
 
 			try {

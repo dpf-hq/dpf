@@ -15,13 +15,31 @@
  */
 package no.hib.dpf.core.util;
 
-import java.util.List;
-
 import java.util.Map;
 
-import no.hib.dpf.core.*;
+import no.hib.dpf.core.Arrow;
+import no.hib.dpf.core.Constraint;
+import no.hib.dpf.core.CorePackage;
+import no.hib.dpf.core.Graph;
+import no.hib.dpf.core.GraphHomomorphism;
+import no.hib.dpf.core.IDObject;
+import no.hib.dpf.core.InverseSemantics;
+import no.hib.dpf.core.IrreflexiveSemantics;
+import no.hib.dpf.core.JointlySurjectiveSemantics;
+import no.hib.dpf.core.ModelHierarchy;
+import no.hib.dpf.core.MultiplicitySemantics;
+import no.hib.dpf.core.NANDSemantics;
+import no.hib.dpf.core.Node;
+import no.hib.dpf.core.Predicate;
+import no.hib.dpf.core.SemanticsValidator;
+import no.hib.dpf.core.Signature;
+import no.hib.dpf.core.Specification;
+import no.hib.dpf.core.SurjectiveSemantics;
+import no.hib.dpf.core.TransitiveIrreflexiveSemantics;
+import no.hib.dpf.core.TypingMorphism;
+import no.hib.dpf.core.Visualization;
+import no.hib.dpf.core.XORSemantics;
 
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;

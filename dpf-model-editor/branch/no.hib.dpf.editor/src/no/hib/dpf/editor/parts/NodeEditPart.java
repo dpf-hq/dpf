@@ -34,6 +34,9 @@ import no.hib.dpf.editor.extension_points.INodePainting;
 import no.hib.dpf.editor.figures.EditableLabel;
 import no.hib.dpf.editor.figures.MultipleArrowsChopboxAnchor;
 import no.hib.dpf.editor.figures.NodeFigure;
+import no.hib.dpf.editor.parts.TextCellEditorLocator;
+import no.hib.dpf.editor.policies.NameDirectEditPolicy;
+import no.hib.dpf.editor.policies.TextDirectEditManager;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;
 import no.hib.dpf.editor.preferences.PreferenceConstants;
 
@@ -47,13 +50,14 @@ import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
+import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy;
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.jface.util.IPropertyChangeListener;
-
+import org.eclipse.jface.viewers.TextCellEditor;
 
 /**
  * <p>This edit part must implement the PropertyChangeListener interface, 
@@ -68,6 +72,7 @@ public class NodeEditPart extends AbstractGraphicalEditPart implements
 	private Map<NodeEditPart, List<ConnectionAnchor>> anchors = new HashMap<NodeEditPart, List<ConnectionAnchor>>();
 
 	protected IConfigurationElement configure = null;
+
 	public IConfigurationElement getConfigure() {
 		return configure;
 	}
@@ -109,6 +114,16 @@ public class NodeEditPart extends AbstractGraphicalEditPart implements
 		});
 	}
 
+	 @Override
+     public void performRequest(Request req) {
+           if (req.getType().equals(RequestConstants.REQ_DIRECT_EDIT)) {
+        	   TextDirectEditManager manager = new TextDirectEditManager(this, TextCellEditor.class, new TextCellEditorLocator(((NodeFigure)getFigure()).getNameLabel()));
+        	   manager.show();
+        	   return;
+           }
+           super.performRequest(req);
+     }
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -116,8 +131,8 @@ public class NodeEditPart extends AbstractGraphicalEditPart implements
 	 */
 	protected void createEditPolicies() {
 		// allow removal of the associated model element
-		installEditPolicy(EditPolicy.COMPONENT_ROLE,
-				new NodeComponentEditPolicy());
+		installEditPolicy(EditPolicy.COMPONENT_ROLE, new NodeComponentEditPolicy());
+		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new NameDirectEditPolicy());
 		// allow the creation of connections and
 		// and the reconnection of connections between Shape instances
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE,
@@ -196,7 +211,6 @@ public class NodeEditPart extends AbstractGraphicalEditPart implements
 	}
 
 	private String getFullName() {
-		
 		if (DPFEditorPreferences.getDefault().getDisplayTypeNames()) {
 			return getShape().getNameExec() + " : " + getShape().getTypeName();
 		} else {

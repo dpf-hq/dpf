@@ -23,8 +23,6 @@
             <genEnumLiterals ecoreEnumLiteral="Metamodel.ecore#//hib/dpf/core/VisualizationType/ArrowToNode"/>
             <genEnumLiterals ecoreEnumLiteral="Metamodel.ecore#//hib/dpf/core/VisualizationType/ArrowToArrow"/>
           </genEnums>
-          <genDataTypes ecoreDataType="Metamodel.ecore#//hib/dpf/core/EURI"/>
-          <genDataTypes ecoreDataType="Metamodel.ecore#//hib/dpf/core/EIOException"/>
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/core/Graph">
             <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/core/Graph/nodes"/>
             <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//hib/dpf/core/Graph/name"/>
@@ -134,9 +132,6 @@
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/core/Signature">
             <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/core/Signature/predicates"/>
             <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//hib/dpf/core/Signature/name"/>
-            <genOperations ecoreOperation="Metamodel.ecore#//hib/dpf/core/Signature/save">
-              <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/core/Signature/save/uri"/>
-            </genOperations>
             <genOperations ecoreOperation="Metamodel.ecore#//hib/dpf/core/Signature/getPredicateBySymbol">
               <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/core/Signature/getPredicateBySymbol/symbol"/>
             </genOperations>
@@ -227,9 +222,6 @@
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/core/Specification">
             <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/core/Specification/graph"/>
             <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/core/Specification/typeGraph"/>
-            <genOperations ecoreOperation="Metamodel.ecore#//hib/dpf/core/Specification/save">
-              <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/core/Specification/save/uri"/>
-            </genOperations>
             <genOperations ecoreOperation="Metamodel.ecore#//hib/dpf/core/Specification/createOStar">
               <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/core/Specification/createOStar/constraint"/>
             </genOperations>

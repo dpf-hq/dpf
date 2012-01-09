@@ -108,6 +108,7 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 	protected void initializeGraphicalViewer(){
 		super.initializeGraphicalViewer();
 		getSite().setSelectionProvider(getGraphicalViewer());
+		master.getMultiEditor().loadProperties(getGraphicalViewer());
 	}
 	
 	public void commandStackChanged(EventObject event){

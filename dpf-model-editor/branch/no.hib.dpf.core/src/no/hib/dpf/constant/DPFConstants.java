@@ -12,5 +12,6 @@ public class DPFConstants {
 		Node node = REFLEXIVE_TYPE_GRAPH.createNode("Node");
 		REFLEXIVE_TYPE_GRAPH.createArrow("Arrow", node, node);
 	}
+	public static final URI DefaultSignature = URI.createPlatformResourceURI("DefaultSignature", false);
 	public static final URI DefaultGraph = URI.createPlatformResourceURI("DefaultGraph.xmi", false);
 }

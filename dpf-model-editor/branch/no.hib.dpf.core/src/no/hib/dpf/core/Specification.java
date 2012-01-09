@@ -15,9 +15,6 @@
  */
 package no.hib.dpf.core;
 
-import java.io.IOException;
-
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -89,14 +86,6 @@ public interface Specification extends EObject {
 	 * @generated
 	 */
 	void setTypeGraph(Graph value);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model exceptions="no.hib.dpf.core.EIOException" uriDataType="no.hib.dpf.core.EURI"
-	 * @generated
-	 */
-	void save(URI uri) throws IOException;
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -23,6 +23,8 @@ public class DPFCoreUtil {
 		catch(Exception exception){
 			analyzeResourceProblems(resource, exception, resourceToDiagnosticMap);
 		}
+		if(resource == null)
+			resource = resourceSet.createResource(resourceURI);
 		return resource;
 	}
 
@@ -68,7 +70,7 @@ public class DPFCoreUtil {
 	public static final URI DefaultDSignature = URI.createPlatformResourceURI("DefaultDSignature.xmi", false);
 	
 	@SuppressWarnings("finally")
-	public static Resource getResource(ResourceSet resourceSet, URI resourceURI){
+	private static Resource getResource(ResourceSet resourceSet, URI resourceURI){
 		Resource resource = null;
 		try {
 			// Load the resource through the editing domain.

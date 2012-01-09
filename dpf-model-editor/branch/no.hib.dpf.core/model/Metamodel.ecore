@@ -114,9 +114,6 @@
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Signature">
-          <eOperations name="save" eExceptions="#//hib/dpf/core/EIOException">
-            <eParameters name="uri" eType="#//hib/dpf/core/EURI"/>
-          </eOperations>
           <eOperations name="getPredicateBySymbol" eType="#//hib/dpf/core/Predicate">
             <eParameters name="symbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
           </eOperations>
@@ -213,9 +210,6 @@
               defaultValueLiteral=""/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Specification">
-          <eOperations name="save" eExceptions="#//hib/dpf/core/EIOException">
-            <eParameters name="uri" eType="#//hib/dpf/core/EURI"/>
-          </eOperations>
           <eOperations name="createOStar" eType="#//hib/dpf/core/Graph">
             <eParameters name="constraint" eType="#//hib/dpf/core/Constraint"/>
           </eOperations>
@@ -224,12 +218,10 @@
           <eStructuralFeatures xsi:type="ecore:EReference" name="typeGraph" eType="#//hib/dpf/core/Graph"
               containment="true"/>
         </eClassifiers>
-        <eClassifiers xsi:type="ecore:EDataType" name="EURI" instanceClassName="org.eclipse.emf.common.util.URI"/>
         <eClassifiers xsi:type="ecore:EClass" name="ModelHierarchy">
           <eStructuralFeatures xsi:type="ecore:EReference" name="specifications" upperBound="-1"
               eType="#//hib/dpf/core/Specification" containment="true"/>
         </eClassifiers>
-        <eClassifiers xsi:type="ecore:EDataType" name="EIOException" instanceClassName="java.io.IOException"/>
         <eClassifiers xsi:type="ecore:EClass" name="JointlySurjectiveSemantics" eSuperTypes="#//hib/dpf/core/SemanticsValidator"/>
         <eClassifiers xsi:type="ecore:EClass" name="InverseSemantics" eSuperTypes="#//hib/dpf/core/SemanticsValidator"/>
         <eClassifiers xsi:type="ecore:EClass" name="IrreflexiveSemantics" eSuperTypes="#//hib/dpf/core/SemanticsValidator"/>
