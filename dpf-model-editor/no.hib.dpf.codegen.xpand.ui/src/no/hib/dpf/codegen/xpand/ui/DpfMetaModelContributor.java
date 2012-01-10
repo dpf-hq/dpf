@@ -29,7 +29,7 @@ public class DpfMetaModelContributor implements MetamodelContributor2 {
 		private static Map<IJavaProject,MetamodelContainer> metamodels = new HashMap<IJavaProject,MetamodelContainer>();
 
 		public MetaModel[] getMetamodels(IJavaProject project, TypeSystem builtin) {
-	        MetamodelContainer container = metamodels.get(project); //Kvart prosjekt i workspace har fleire metamodeller assosiert
+	        MetamodelContainer container = metamodels.get(project); //Kvart prosjekt i workspace har(kan ha) fleire metamodeller assosiert
 			if (container == null || container.hasChanged()) {
 				if (container!=null) {
 					metamodels.remove(project);

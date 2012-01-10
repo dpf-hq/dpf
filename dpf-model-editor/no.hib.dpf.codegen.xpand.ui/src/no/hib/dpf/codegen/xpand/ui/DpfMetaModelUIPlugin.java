@@ -11,20 +11,20 @@
  *******************************************************************************/
 package no.hib.dpf.codegen.xpand.ui;
 
-import no.hib.dpf.codegen.xpand.metamodel.DpfMetamodel;
+import no.hib.dpf.codegen.xpand.ui.properties.DpfMetaModelProperties;
 import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Specification;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
-import java.io.IOException;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceChangeEvent;
 import org.eclipse.core.resources.IResourceChangeListener;
@@ -34,13 +34,12 @@ import org.eclipse.core.resources.IResourceVisitor;
 import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jface.resource.ImageDescriptor;
 
 public class DpfMetaModelUIPlugin extends AbstractUIPlugin {
@@ -165,7 +164,11 @@ public class DpfMetaModelUIPlugin extends AbstractUIPlugin {
 	public static String getId() {
 		return getDefault().getBundle().getSymbolicName();
 	}
-
+	
+	/**
+	 * Scans the project for files that are valid according to  
+	 * hasValidDsm. 
+	 */
 	static class DpfResourceDeltaVisitor implements IResourceDeltaVisitor,
 			IResourceVisitor {
 		public boolean visit(IResourceDelta delta) {
@@ -185,36 +188,72 @@ public class DpfMetaModelUIPlugin extends AbstractUIPlugin {
 		}
 
 		public boolean visit(IResource resource) throws CoreException {
-			if (resource instanceof IFile) {
-				IFile f = (IFile) resource;
-				if (isValidDsm(f)) {
-//					if (JavaCore.create(f.getParent()) != null) { //dafuq
+			if (resource instanceof IProject) {
+				IProject f = (IProject) resource;
+				String path = hasValidDsm(f);
+				if (path != null) {
 						try {
-							URI uri = URI.createURI(f.getFullPath().toString());
-//							DpfMetamodel p = loadDsm(uri);
+							URI uri = URI.createURI(path);
 							Specification spectmp = CoreFactory.eINSTANCE.loadSpecification(uri);
-//							if (p != null) {
-//								fileModels.put(f, p);
-//							}
+							System.out.println("FOUND AND SUCCESSFULLY LOADED VALID DSM: " + path);
 							if(spectmp != null) {
-								fileModels.put(f, spectmp);
+								fileModels.put(f.getFile(new Path(path)), spectmp);
 							}
 						} catch (Exception e) {
-							System.out.println();
+							e.printStackTrace();
 						}
-//					}
 				}
 			}
 			return true;
 		}
-
-		private boolean isValidDsm(IFile f) {
-			return !f.isDerived()
-					&& f.isAccessible()
-					&& !f.isLinked()
-					&& (f.getName().endsWith("dsm.xmi") && f.exists());
+		
+		private String hasValidDsm(IProject f) {
+			try {
+				if(f.isAccessible()) {
+					String path = f.getPersistentProperty(DpfMetaModelProperties.DSM_PATH_PROPERTY);
+					if(path != null) {
+						//TODO: Properly handle input. file is needed to make the URI stuff work
+						return "file:/" + path;
+					}
+				}
+			} catch (CoreException e) {
+				e.printStackTrace();
+			}
+			return null;
 		}
-
+		
+		//Returns every IFile which matches isValidDsm
+//		public boolean visit(IResource resource) throws CoreException {
+//			if (resource instanceof IFile) {
+//				IFile f = (IFile) resource;
+//				if (isValidDsm(f)) {
+////					if (JavaCore.create(f.getParent()) != null) { //dafuq
+//						try {
+//							URI uri = URI.createURI(f.getFullPath().toString());
+////							DpfMetamodel p = loadDsm(uri);
+//							Specification spectmp = CoreFactory.eINSTANCE.loadSpecification(uri);
+////							if (p != null) {
+////								fileModels.put(f, p);
+////							}
+//							if(spectmp != null) {
+//								fileModels.put(f, spectmp);
+//							}
+//						} catch (Exception e) {
+//							System.out.println();
+//						}
+////					}
+//				}
+//			}
+//			return true;
+//		}
+		
+//		private boolean isValidDsm(IFile f) {
+//		return !f.isDerived()
+//				&& f.isAccessible()
+//				&& !f.isLinked()
+//				&& (f.getName().endsWith("dsm.xmi") && f.exists());
+//	}
+		
 //		public synchronized final static DpfMetamodel loadDsm(URI uri) {
 //			Resource r = dpfResourceSet.getResource(uri, false);
 //			if (r == null) {
