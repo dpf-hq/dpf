@@ -1,9 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: formsg.xtext.xformsdsl.generator
-Bundle-Vendor: My Company
+Bundle-Name: no.dpf.text
 Bundle-Version: 1.0.0
-Bundle-SymbolicName: formsg.xtext.xformsdsl.generator;singleton:=true
+Bundle-SymbolicName: no.dpf.text;singleton:=true
 Eclipse-RegisterBuddy: org.eclipse.xtext.log4j
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.jface.text,
