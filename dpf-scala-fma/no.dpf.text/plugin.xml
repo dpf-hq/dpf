@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            id="no.dpf.text.plugin.contribution1"
+            objectClass="org.eclipse.core.resources.IFile">
+         <action
+               class="no.dpf.text.plugin.RunParser"
+               enablesFor="1"
+               id="no.dpf.text.plugin.RunParser"
+               label="Run DPF-Parser">
+         </action>
+      </objectContribution>
+   </extension>
+</plugin>

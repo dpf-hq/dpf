@@ -1,0 +1,162 @@
+1. Predicate Check hinzufügen: Darf ein Predicat an den Graph teil anliegen:
+   Implimentierung: Zwei Adjoeszenzmatrizen erzeugen und auf equal testen 
+   (kann einfach mit doppelschleife gemacht werden dann welches der erste knoten etc ist schon vorgegeben ist)
+   Nutze Arrow Parser mit nummern als Namen... ids einfach n und id <-(eq zu ungedtypt)
+   Nein: Vergleiche einfach zwei Listen. Ersetze IDS in listen gegen zahlen lasse "_" vom modeler von anfang an für typen zu
+   
+
+2. Nutze OCLTheorem Prufer:
+   Die semantic muss nur einmal für einen Beispiel constraint überprüft werden und 
+   einmal für jede Kombination die im Modell vorkommt. Achtung: Eine mögliche Komintation muss
+   unter umständen doppelt geprüft werden, da die shapes machmal in zwei richtungen auf ein pattern gelegt werden 
+   können.
+   
+   Verknüpfe OCLs mit UND
+   kann noch um ODER erweitert werden  (<--Vll später, oder macht nur sinn, wenn die auf gleichen Schabe liegen liegen)
+
+
+3. Graphtransformationsreglen: AGG
+   Syntax   
+   
+   r:=Rule<MM>{
+   LHS(G)-M1-RHS(G),
+   LHS(G)-M2-RHS(G),
+   LHS(G)-M3-NAC(G),
+   LHS(G)-M4-PAC(G),
+   NAC(G)-M5-NAC(G),
+   NAC(G)-M6-PAC(G),
+   PAC(G)-M7-NAC(G),
+   //Macht eigentlich keienn Sinn: 	 
+   PAC(G)-M8-PAC(G), 	   
+   }
+ 
+ Benutze AGG: aber erstmal Operation Implementieren: Operation ist eine Regel die nur hinzufügt: d.h. besteht aus LHS(G),Plus(G)  
+   
+
+4. Containment: Graph transformationrule  
+5. Inhertance: Graph transformationrule  
+   
+6. Pushouts und Pullpacks hinzufÃ¼gen:
+   Dafuer Maps verwenden:
+   Einen Model in DPF könnte man mit Maps[id->Set(id)] abbilden. Das Brauchen wir aber gar nicht!!!!
+   Wir brauchen nur die Morphismen zwischen den Modellen als Maps um Pullbacks und Pushouts zu bilden.
+   Deshalb: braucht man zwei Funktionen die die Morphismen jeweils zu Maps machen, eine Für die Horizontale Richtung, 
+   Über Typing und eine über das Vertikale. Regelmapping  
+    
+ 
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/*
+Match-Finding: Parallele Breitensuche
+
+-> Reduzieren der Suchdomain heisst hier reduzieren der in and out hashmaps (erstmal nicht, macht denke ich auch nur bei sehr grossen Regeln und Graphen Sinn)
+-> Das seltenste Modelelement auswählen was auch in der Regel vorkommt. (Ist kein element nicht von vornherein bestimmt)
+-> eine liste dieser Elemente ermitteln und abarbeiten
+-> Diese liste muss abgearbeitet werden. Element festsetzen und dann match testen. 
+-> Wenn ein match gefunden dann alle anderen Abbrechen (Actor-libary verwenden).
+-> zuvor ermittle die elemente die am wenigsten da sind im graphen.
+-> Erzeuge für jedes dieser elemente einen Actor aber (max. 100), wenn einer fertig wird, erzeugt er einen neuen.
+-> Beim Einfügen counter für jede elementart speichern nur in mutable graph
+-> count(type) gibt die anzahl zurück
+-> bevor match gesucht wird checken ob es überhaupt einen match geben kann
+*/
+
+
+/*
+- jeder Arrow und jeder Node muss eine id haben die einfach z.B ein Long value ist
+- equals kann einfach diese ID checken
+- dies muss gemacht werden aus drei gründen:
+    - man kann keine zwei gleichen elemente zwischen den gleichen knoten haben
+    - man kann kann nicht verfolgen wohin ein arrow moved
+    - man kann nicht zwischen einem neunen und einem wieder neu angelegent knoten unterscheiden
+- mutable graph braucht eine generatorfuntion ()->ID(Int)
+- beim parsen kann man ID in klammern an den namen angeben z.B. a:test(id), gibt man sie nicht 
+  an dann wird die erst beste genommen (dann kommt es nicht derauf an)
+- Ferner damit wir einen Categoriengraph haben:
+  	- Jedes mal wenn ein Knoten eingefügt wird auch eines selfreferenz einfügen (id)-Arrow (NEIN: UWE)
+  	- Ein Typ von einem Arrow muss auch kombinierbar sein aus typ von zusammenliegenden Pfeilen: 
+  	  Parsen: (a:[t1(id),t2(id)]) (NEIN: UWE)
+- Das man ein knoten nicht zwei gleiche Attribute haben kann ist ein ganz normalerer constraint
+- muss man in der sprache irgendwo angeben das man den testen møchte  	  
+- im dpf metamodel kann der erste pfeil gleich id sein? JA: UWE  
+
+- Uwe: Nein: Man braucht keine ID-Arrows, da wir nur graphen benutzen (keine Category)
+       Nein: Man hat immer nur einen Typen keinen der aus zwei besteht (komposition)
+       Im DPF metamodel erster Arrow ist ID
+       !!!!
+       
+       -Name zu Id       
+       -manche namen bekommen noch IdVal
+       -dort auch methode überschreiben, das nur IdVal geprüft wird
+       -Primitive datentypen bekommen negative werde im IdVal
+       -IdVal.v: Int
+       -Node arrow gleich wenn id gleich
+       
+       Graph bekommt eine Methode ()->IdVal
+
+
+- Hmm, gespeichert werden können die Nodes and Arrows eigentlich nur mit pointers IDs. Wenn man was umbennent, will man ja nicht die Klassen umbennen.
+- Sind singelton Objecte eine Lösung(?) man kann dann keine Case-Klassen nehmen sondern braucht vars...
+- Vielleicht Ähnliche Datenstructur nur mit Ids. Plus Maps ID -> Arrow  ID - >Edge
+- Ganz einfach: ID speichert nur ID und es es gibt immer eine map zum namen, dann besteht ID aus ID element und ID container.
+- Contianer ID wird über eine Zentrale Factory aufgelöst
+
+*/
+
+/*
+ Constraints in Graphen merken ähnlich wie in NICHT Nodes und EDGES verändern
+ 
+*/
+
+
+
+
+
+//
+//An arrow of one level provides a multi-valued function on the next level:
+//
+
+
+/*      
+        //
+        //Hmm für mergend nodes muss viel geänder werden.
+        //
+        private val mergedId = mutable.HashMap[Id,mutable.Set[Id]]()
+
+        def merge(id1: Id, id2: Id): Unit = {
+          def inv(_id1: Id, _id2: Id): Boolean = {
+            nodes.contains(_id1) && //Exist 
+              nodes.contains(_id2) && //Exist
+              nodes(_id1).t == nodes(id2).t //type compatible
+          }
+          //Save merge information:
+          if (inv(id1, id2)) {
+    
+            var s: mutable.Set[Id] = null;
+            val id1_exist = mergedId.contains(id1);
+            val id2_exist = mergedId.contains(id2);
+    
+            if (id1_exist && id2_exist) {
+              s = mergedId(id1) union mergedId(id2)
+            } else {
+              if (id1_exist) {
+                s = mergedId(id1)
+                s.add(id2)
+              } else {
+                if (id2_exist) {
+                  s = mergedId(id2)
+                  s.add(id1)
+                } else {
+                  s = mutable.Set(id1, id2)
+                }
+              }
+            }
+            mergedId.put(id1, s)
+            mergedId.put(id2, s)
+          } else {
+            error("Ids " + id1 + " and " + id2 + " cannot be merged!")
+          }
+        }
+*/  
+
