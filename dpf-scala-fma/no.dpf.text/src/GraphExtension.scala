@@ -36,8 +36,7 @@ sealed trait Morphism{
 
   def domainArrows():Set[Id]
   def codomainArrows():Set[Id]
-  
-  
+   
   private def test(error:(Int)=>Boolean):Boolean={
 	def testSet(codomain:Set[Id],domain:(Id)=>Set[Id], error:(Int)=>Boolean):Boolean={
 	  for(e<-codomain){
@@ -53,7 +52,17 @@ sealed trait Morphism{
   def isMono():Boolean=test(_ > 1)
   def isEpi():Boolean=test(_ < 1)
   def isIso():Boolean=test(_ != 1)
-//validate()  
+  def validate():Boolean={
+	def validateSet(domain:Set[Id],codomain:(Id)=>Id):Boolean={
+	  for(e<-domain){
+	    if(null == codomain(e)){
+	      return false
+	    }
+	  }
+	  true;
+	}
+	return validateSet(domainNodes,codomainNode) && validateSet(domainArrows,codomainArrow) 
+  }  
 }
 
 case class Span(m1:Morphism,m2:Morphism){
