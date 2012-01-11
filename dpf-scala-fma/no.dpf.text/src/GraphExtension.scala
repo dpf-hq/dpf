@@ -9,7 +9,7 @@ sealed trait Morphism{
    * input: id of codomain
    * output: all ids of domain mapped to this id 
    */
-  def domainNode(id:Id):Set[Id]
+  def domainNodes(id:Id):Set[Id]
   /**
    * input: id of domain
    * output: id of codomain mapped to this id 
@@ -20,7 +20,7 @@ sealed trait Morphism{
    * input: id of codomain
    * output: all ids of domain mapped to this id 
    */
-  def domainArrow(id:Id):Set[Id]
+  def domainArrows(id:Id):Set[Id]
 
   /**
    * input: id of codomain
@@ -37,9 +37,22 @@ sealed trait Morphism{
   def domainArrows():Set[Id]
   def codomainArrows():Set[Id]
   
-//isMono()
-//isEpi()
-//isIso()
+  
+  private def test(error:(Int)=>Boolean):Boolean={
+	def testSet(codomain:Set[Id],domain:(Id)=>Set[Id], error:(Int)=>Boolean):Boolean={
+	  for(e<-codomain){
+	    if(error(domain(e).size)){
+	      return false
+	    }
+	  }
+	  true;
+	}
+	return testSet(codomainNodes,domainNodes,error) && testSet(codomainArrows,domainArrows,error) 
+  } 	
+ 
+  def isMono():Boolean=test(_ > 1)
+  def isEpi():Boolean=test(_ < 1)
+  def isIso():Boolean=test(_ != 1)
 //validate()  
 }
 
