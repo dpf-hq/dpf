@@ -81,15 +81,15 @@ sealed trait Morphism{
   }  
 }
 
-case class Span(m1:Morphism,m2:Morphism){
+case class Span(left:Morphism,right:Morphism){
   def getPushOut():Cospan = null
   //validate()  
-  //isPullback() calculate on sets use private function taking function-parameter    
+  //getPullback() calculate on sets use private function taking function-parameter    
 }
-case class Cospan(m1:Morphism,m2:Morphism){
+case class Cospan(left:Morphism,right:Morphism){
   def getPullback():Span = null
   //validate()  
-  //isPushout()  
+  //getPushout()  
 }
 case class Composition(m1:Morphism,m2:Morphism){
   def getCompositeMorphism():Morphism = null
@@ -166,6 +166,15 @@ case class TypingMorphism(input:AbstractGraph) extends Morphism{
   }
   
 } 
+
+sealed trait CommutingSquare{
+  //isPullback()
+  //isPushout()
+}
+
+case class CommutingSquareBF(span:Span,cospan:Cospan)
+case class CommutingSquareLR(left:Composition,cospan:Composition)
+
 
 //case class InclusionMorphism extends Morphism 
 
