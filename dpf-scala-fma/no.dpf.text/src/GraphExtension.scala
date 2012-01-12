@@ -104,9 +104,9 @@ case class ArbitraryMorphism(inputNodes:Set[(Option[Node],Node)],inputArrows:Set
    * input: id of codomain
    * output: all ids of domain mapped to this id 
    */
-  def domainNodes(id:Id):Set[Id]=null//{
-//    Set(for{Some(t)<-inputNodes.filter(_ match {case Some(_) => true;case _ => false})yield {t._1.id}) toSeq: _ *)
-//  }
+  def domainNodes(id:Id):Set[Id]={
+    Set((for{(Some(t),_)<-inputNodes.filter(_ match {case (None,_) => false;case _ => true})} yield {t.id}) toSeq: _ *)
+  }
   /**
    * input: id of domain
    * output: id of codomain mapped to this id 
