@@ -141,8 +141,7 @@ case class ArbitraryMorphism(inputNodes:Set[(Option[Node],Node)],inputArrows:Set
    * output: all ids of domain mapped to this id 
    */
   def domainNodes(id:Id):Set[Id]={
-    //Filter erweitern //TODO
-    Set((for{(Some(n),_)<-inputNodes.filter(_ match {case (None,_) => false;case _ => true})} yield {n.id}) toSeq: _ *)
+    Set((for{(Some(n),_)<-inputNodes.filter(_ match {case (None,_) => false;case (Some(_),n) => n.id == id})} yield {n.id}) toSeq: _ *)
   }
   /**
    * input: id of domain
@@ -154,8 +153,7 @@ case class ArbitraryMorphism(inputNodes:Set[(Option[Node],Node)],inputArrows:Set
    * output: all ids of domain mapped to this id 
    */
   def domainArrows(id:Id):Set[Id]={
-    //Filter erweitern //TODO   
-    Set((for{(Some(a),_)<-inputArrows.filter(_ match {case (None,_) => false;case _ => true})} yield {a.id}) toSeq: _ *)
+    Set((for{(Some(a),_)<-inputArrows.filter(_ match {case (None,_) => false;case (Some(_),a) => a.id == id})} yield {a.id}) toSeq: _ *)
   }
   /**
    * input: id of codomain
