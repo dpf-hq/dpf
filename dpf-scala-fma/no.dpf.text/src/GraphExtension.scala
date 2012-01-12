@@ -54,7 +54,9 @@ sealed trait Morphism{
   def isMono():Boolean=test(_ > 1)
   def isEpi():Boolean=test(_ < 1)
   def isIso():Boolean=test(_ != 1)
+  
   def validate():Boolean={
+    //Check if all nodes and arrows in the domain are mapped:
 	def validateSet(domain:Set[Id],codomain:(Id)=>Id):Boolean={
 	  for(e<-domain){
 	    if(null == codomain(e)){
@@ -63,8 +65,19 @@ sealed trait Morphism{
 	  }
 	  true;
 	}
-	return validateSet(domainNodes,codomainNode) && validateSet(domainArrows,codomainArrow) 
-	//Check GraphHomo
+    //Check if the graph homomorphism property is statisfied:
+	def validateGraphHomo():Boolean={
+	  for(a<-domainArrows()){
+	    if(!(
+	       codomainNode(domainArrowSr(a)) == codomainArrowSr(codomainArrow(a)) &&
+	       codomainNode(domainArrowTg(a)) == codomainArrowTg(codomainArrow(a))
+	    )){
+	      return false
+	    }
+	  }
+	  true;
+	}
+	return validateSet(domainNodes,codomainNode) && validateSet(domainArrows,codomainArrow) && validateGraphHomo() 
   }  
 }
 
