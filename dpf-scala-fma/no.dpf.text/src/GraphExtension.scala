@@ -167,6 +167,77 @@ case class TypingMorphism(input:AbstractGraph) extends Morphism{
   
 } 
 
+
+case class InclusionMorphism(inputSub:AbstractGraph, input:AbstractGraph) extends Morphism{
+  
+  /**
+   * input: id of codomain
+   * output: all ids of domain mapped to this id 
+   */
+  def domainNodes(id:Id):Set[Id]={
+    inputSub.getNode(id) match{
+      case None => Set()
+      case _ => Set(id)
+    }
+  }
+  /**
+   * input: id of domain
+   * output: id of codomain mapped to this id 
+   */
+  def codomainNode(id:Id):Id=id
+ 
+  /**
+   * input: id of codomain
+   * output: all ids of domain mapped to this id 
+   */
+  def domainArrows(id:Id):Set[Id]={
+     inputSub.getArrow(id) match{
+      case None => Set()
+      case _ => Set(id)
+    }
+  }
+
+  /**
+   * input: id of codomain
+   * output: all ids of domain mapped to this id 
+   */
+  def codomainArrow(id:Id):Id=id
+  
+  def domainArrowSr(id:Id):Id={
+    inputSub.arrows(id).sr.id
+  }
+  
+  def domainArrowTg(id:Id):Id={
+    inputSub.arrows(id).tg.id
+  }
+  
+  def codomainArrowSr(id:Id):Id={
+    input.mmGraph.arrows(id).sr.id
+  }
+  
+  def codomainArrowTg(id:Id):Id={
+    input.mmGraph.arrows(id).tg.id
+  }
+
+  def domainNodes():Set[Id]={
+    Set((for{n<-inputSub.nodes.values} yield {n.id}) toSeq: _ *)
+  }
+  
+  def codomainNodes():Set[Id]={
+    Set((for{n<-input.mmGraph.nodes.values} yield {n.id}) toSeq: _ *)
+  }
+
+  def domainArrows():Set[Id]={
+    Set((for{a<-inputSub.arrows.values} yield {a.id}) toSeq: _ *)
+  }
+  
+  def codomainArrows():Set[Id]={
+    Set((for{n<-input.mmGraph.arrows.values} yield {n.id}) toSeq: _ *)
+  }
+  
+} 
+
+
 sealed trait CommutingSquare{
   //isPullback()
   //isPushout()
@@ -174,9 +245,6 @@ sealed trait CommutingSquare{
 
 case class CommutingSquareBF(span:Span,cospan:Cospan)
 case class CommutingSquareLR(left:Composition,cospan:Composition)
-
-
-//case class InclusionMorphism extends Morphism 
 
 
 //If Category needed than Category extends AbstractGraph. Constructor of Category takes Graph and completes Graph to Category :)
