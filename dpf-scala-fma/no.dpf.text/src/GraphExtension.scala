@@ -105,6 +105,8 @@ case class ArbitraryMorphism(inputNodes:Set[(Option[Node],Node)],inputArrows:Set
   //Mapped Nodes and arrows:
   private val nodes = MMap[Id,Id]()	
   private val arrows = MMap[Id,Id]()	
+  private val domainArrowsMap = MMap[Id,Arrow]()	
+  private val codomainArrowsMap = MMap[Id,Arrow]()	
   
   for((domainO,codomain)<-inputNodes){
     domainO match{
@@ -117,17 +119,20 @@ case class ArbitraryMorphism(inputNodes:Set[(Option[Node],Node)],inputArrows:Set
       case Some(domain) =>
         	arrows.get(domain.id) match{
         	  case None 	=>  arrows+=domain.id->codomain.id
-        	  case Some(ex) =>  if(ex != codomain) sys.error("Arrow" + domain + " mapped twice: " + codomain + ", " + ex)
-        	  					input(domain.sr,codomain.sr);input(domain.tg,codomain.tg)
+        	  case Some(ex) =>  if(ex != codomain){sys.error("Arrow " + domain + " mapped twice: " + codomain + ", " + ex)}
+        	  					input(domain.sr,codomain.sr);
+        	  					input(domain.tg,codomain.tg)
         	}
+        	domainArrowsMap+=domain.id->domain
       case _ => /*ignore*/
     }
+    codomainArrowsMap+=codomain.id->codomain
   }
 
   private def input(domain:Node,codomain:Node){
   	nodes.get(domain.id) match{
 	  case None 	=>  nodes+=domain.id->codomain.id
-	  case Some(ex) =>  if(ex != codomain) sys.error("Node" + domain + " mapped twice: " +codomain + ", " + ex)
+	  case Some(ex) =>  if(ex != codomain) sys.error("Node " + domain + " mapped twice: " +codomain + ", " + ex)
 	}
   }
   
@@ -136,41 +141,47 @@ case class ArbitraryMorphism(inputNodes:Set[(Option[Node],Node)],inputArrows:Set
    * output: all ids of domain mapped to this id 
    */
   def domainNodes(id:Id):Set[Id]={
+    //Filter erweitern //TODO
     Set((for{(Some(n),_)<-inputNodes.filter(_ match {case (None,_) => false;case _ => true})} yield {n.id}) toSeq: _ *)
   }
   /**
    * input: id of domain
    * output: id of codomain mapped to this id 
    */
-  def codomainNode(id:Id):Id=null
+  def codomainNode(id:Id):Id=null //TODO
   /**
    * input: id of codomain
    * output: all ids of domain mapped to this id 
    */
   def domainArrows(id:Id):Set[Id]={
+    //Filter erweitern //TODO   
     Set((for{(Some(a),_)<-inputArrows.filter(_ match {case (None,_) => false;case _ => true})} yield {a.id}) toSeq: _ *)
   }
   /**
    * input: id of codomain
    * output: all ids of domain mapped to this id 
    */
-  def codomainArrow(id:Id):Id=null
+  def codomainArrow(id:Id):Id=null //TODO
   
-  def domainArrowSr(id:Id):Id=null
+  def domainArrowSr(id:Id):Id=domainArrowsMap(id).sr.id
   
-  def domainArrowTg(id:Id):Id=null
+  def domainArrowTg(id:Id):Id=domainArrowsMap(id).tg.id
   
-  def codomainArrowSr(id:Id):Id=null
+  def codomainArrowSr(id:Id):Id=codomainArrowsMap(id).sr.id
   
-  def codomainArrowTg(id:Id):Id=null
+  def codomainArrowTg(id:Id):Id=codomainArrowsMap(id).tg.id
 
-  def domainNodes():Set[Id]=null
+  def domainNodes():Set[Id]={
+    Set((for{(Some(n),_)<-inputNodes.filter(_ match {case (None,_) => false;case _ => true})} yield {n.id}) toSeq: _ *)    
+  }
   
-  def codomainNodes():Set[Id]=null
-
-  def domainArrows():Set[Id]=null
+  def codomainNodes():Set[Id]=Set((for{(_,n)<-inputNodes} yield {n.id}) toSeq: _ *)
   
-  def codomainArrows():Set[Id]=null
+  def domainArrows():Set[Id]={
+    Set((for{(Some(a),_)<-inputArrows.filter(_ match {case (None,_) => false;case _ => true})} yield {a.id}) toSeq: _ *)
+  }
+  
+  def codomainArrows():Set[Id]=Set((for{(_,a)<-inputArrows} yield {a.id}) toSeq: _ *)
 
 } 
 
