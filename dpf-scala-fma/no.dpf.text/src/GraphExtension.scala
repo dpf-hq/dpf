@@ -98,7 +98,52 @@ case class Composition(m1:Morphism,m2:Morphism){
 }
 
 
-//case class ArbitraryMorphism extends Morphism 
+case class ArbitraryMorphism(inputNodes:Set[(Option[Node],Node)],inputArrows:Set[(Option[Arrow],Arrow)]) extends Morphism{
+  
+  /**
+   * input: id of codomain
+   * output: all ids of domain mapped to this id 
+   */
+  def domainNodes(id:Id):Set[Id]=null//{
+//    Set(for{Some(t)<-inputNodes.filter(_ match {case Some(_) => true;case _ => false})yield {t._1.id}) toSeq: _ *)
+//  }
+  /**
+   * input: id of domain
+   * output: id of codomain mapped to this id 
+   */
+  def codomainNode(id:Id):Id=null
+
+  /**
+   * input: id of codomain
+   * output: all ids of domain mapped to this id 
+   */
+  def domainArrows(id:Id):Set[Id]=null
+
+  /**
+   * input: id of codomain
+   * output: all ids of domain mapped to this id 
+   */
+  def codomainArrow(id:Id):Id=null
+  
+  def domainArrowSr(id:Id):Id=null
+  
+  def domainArrowTg(id:Id):Id=null
+  
+  def codomainArrowSr(id:Id):Id=null
+  
+  def codomainArrowTg(id:Id):Id=null
+
+  def domainNodes():Set[Id]=null
+  
+  def codomainNodes():Set[Id]=null
+
+  def domainArrows():Set[Id]=null
+  
+  def codomainArrows():Set[Id]=null
+  
+  //Additionally chech if inputArrow and Nodes do not map a input twice to a different target
+  
+} 
 
 case class TypingMorphism(input:AbstractGraph) extends Morphism{
   
@@ -234,6 +279,10 @@ case class InclusionMorphism(inputSub:AbstractGraph, input:AbstractGraph) extend
   def codomainArrows():Set[Id]={
     Set((for{n<-input.mmGraph.arrows.values} yield {n.id}) toSeq: _ *)
   }
+  
+  override def validate():Boolean={
+	return Set(inputSub.nodes).subsetOf(Set(input.nodes)) && Set(inputSub.arrows).subsetOf(Set(input.arrows)) 
+  }  
   
 } 
 
