@@ -99,6 +99,9 @@ case class Composition(m1:Morphism,m2:Morphism){
   //validate()  
 }
 
+case class SetMorphism(map:Map[Id,Id], codomain:Set[Id])
+case class ArrowSrTg(sr:Map[Id,Id],tg:Map[Id,Id])
+case class ArbitraryIdMorphism(nodes:SetMorphism,arrows:(SetMorphism,ArrowSrTg,ArrowSrTg)) //extends Morphism{
 
 case class ArbitraryMorphism(inputNodes:Set[(Option[Node],Node)],inputArrows:Set[(Option[Arrow],Arrow)]) extends Morphism{
   
