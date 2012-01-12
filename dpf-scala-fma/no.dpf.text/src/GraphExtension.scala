@@ -105,6 +105,8 @@ case class ArbitraryIdMorphism(nodes:SetMorphism,arrows:(SetMorphism,ArrowSrTg,A
 
 case class ArbitraryMorphism(inputNodes:Set[(Option[Node],Node)],inputArrows:Set[(Option[Arrow],Arrow)]) extends Morphism{
   
+  //Mapped Nodes arrows must have same type
+  
   //Mapped Nodes and arrows:
   private val nodes = MMap[Id,Id]()	
   private val arrows = MMap[Id,Id]()	
