@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 import no.hib.dpf.core.Node;
+import no.hib.dpf.editor.DPFErrorReport;
 import no.hib.dpf.editor.displaymodel.DArrow;
 import no.hib.dpf.editor.displaymodel.DNode;
 import no.hib.dpf.editor.displaymodel.LocationAndSize;
@@ -408,8 +409,7 @@ public class NodeEditPart extends AbstractGraphicalEditPart implements
 			Rectangle bounds = new Rectangle(getCastedModel().getLocation(), getCastedModel().getSize());
 			((GraphicalEditPart) getParent()).setLayoutConstraint(this, getFigure(), bounds);
 		} catch (Exception e) {
-			
-			
+			DPFErrorReport.logError(e);
 		}
 	}
 

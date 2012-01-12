@@ -732,13 +732,31 @@ public interface CorePackage extends EPackage {
 	int SPECIFICATION__TYPE_GRAPH = 1;
 
 	/**
+	 * The feature id for the '<em><b>Signature</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPECIFICATION__SIGNATURE = 2;
+
+	/**
+	 * The feature id for the '<em><b>Signature File</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPECIFICATION__SIGNATURE_FILE = 3;
+
+	/**
 	 * The number of structural features of the '<em>Specification</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SPECIFICATION_FEATURE_COUNT = 2;
+	int SPECIFICATION_FEATURE_COUNT = 4;
 
 	/**
 	 * The meta object id for the '{@link no.hib.dpf.core.impl.ModelHierarchyImpl <em>Model Hierarchy</em>}' class.
@@ -1680,6 +1698,28 @@ public interface CorePackage extends EPackage {
 	EReference getSpecification_TypeGraph();
 
 	/**
+	 * Returns the meta object for the reference '{@link no.hib.dpf.core.Specification#getSignature <em>Signature</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Signature</em>'.
+	 * @see no.hib.dpf.core.Specification#getSignature()
+	 * @see #getSpecification()
+	 * @generated
+	 */
+	EReference getSpecification_Signature();
+
+	/**
+	 * Returns the meta object for the attribute '{@link no.hib.dpf.core.Specification#getSignatureFile <em>Signature File</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Signature File</em>'.
+	 * @see no.hib.dpf.core.Specification#getSignatureFile()
+	 * @see #getSpecification()
+	 * @generated
+	 */
+	EAttribute getSpecification_SignatureFile();
+
+	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.core.ModelHierarchy <em>Model Hierarchy</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2289,6 +2329,22 @@ public interface CorePackage extends EPackage {
 		 * @generated
 		 */
 		EReference SPECIFICATION__TYPE_GRAPH = eINSTANCE.getSpecification_TypeGraph();
+
+		/**
+		 * The meta object literal for the '<em><b>Signature</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SPECIFICATION__SIGNATURE = eINSTANCE.getSpecification_Signature();
+
+		/**
+		 * The meta object literal for the '<em><b>Signature File</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SPECIFICATION__SIGNATURE_FILE = eINSTANCE.getSpecification_SignatureFile();
 
 		/**
 		 * The meta object literal for the '{@link no.hib.dpf.core.impl.ModelHierarchyImpl <em>Model Hierarchy</em>}' class.

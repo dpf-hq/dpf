@@ -24,15 +24,16 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import no.hib.dpf.core.CoreFactory;
+import no.hib.dpf.core.Signature;
 import no.hib.dpf.core.Specification;
 import no.hib.dpf.editor.displaymodel.DPFDiagram;
+import no.hib.dpf.signature.SignatureEditor;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.swt.widgets.Composite;
@@ -46,6 +47,7 @@ import org.eclipse.ui.dialogs.WizardNewLinkPage;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.internal.ide.IDEWorkbenchMessages;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
 import no.hib.dpf.constant.*;
 /**
@@ -55,8 +57,9 @@ import no.hib.dpf.constant.*;
 public class DPFCreationWizard extends Wizard implements INewWizard {
 
 	private static int fileCount = 1;
-	private CreationPage page1;
-	private WizardNewLinkPage page2;
+	private CreationPage createPage;
+	private WizardNewLinkPage metaLinkPage;
+	private WizardNewLinkPage signatureLinkPage;
 
 	/*
 	 * (non-Javadoc)
@@ -65,8 +68,9 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 	 */
 	public void addPages() {
 		// add pages to this wizard
-		addPage(page1);
-		addPage(page2);
+		addPage(createPage);
+		addPage(metaLinkPage);
+		addPage(signatureLinkPage);
 	}
 
 	/*
@@ -77,11 +81,11 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 	 */
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		// create pages for this wizard
-		page1 = new CreationPage(workbench, selection);
+		createPage = new CreationPage(workbench, selection);
 
-		IDEWorkbenchMessages.WizardNewLinkPage_linkFileButton = "Load type specification:";
-		page2 = new WizardNewLinkPage("Add type graph", IResource.FILE);
-		page2.setTitle("Include type graph");
+		IDEWorkbenchMessages.WizardNewLinkPage_linkFileButton = "Load File:";
+		metaLinkPage = new WizardNewLinkPage("Add type graph", IResource.FILE);
+		metaLinkPage.setTitle("Include type graph");
 		String filename = null;
 		if(selection.getFirstElement() instanceof IResource){
 			filename = ((IResource)selection.getFirstElement()).getLocation().toOSString();
@@ -89,8 +93,13 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 				filename = DPFEditor.getModelFromDiagram(filename);
 		}
 		else
-			filename = DPFEditor.getWorkspaceDirectory();
-		page2.setLinkTarget(filename);
+				filename = DPFEditor.getWorkspaceDirectory();
+				
+		metaLinkPage.setLinkTarget(filename);
+		
+		signatureLinkPage = new WizardNewLinkPage("Add Signature", IResource.FILE);
+		signatureLinkPage.setTitle("Include Signature");
+		signatureLinkPage.setLinkTarget(filename);
 	}
 
 	/*
@@ -99,7 +108,7 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 	 * @see org.eclipse.jface.wizard.IWizard#performFinish()
 	 */
 	public boolean performFinish() {
-		return page1.finish();
+		return createPage.finish();
 	}
 
 	/**
@@ -169,8 +178,8 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 			DPFDiagram newDiagram = new DPFDiagram();
 			
 			// Gets null value when user does not check checkbox
-			String typeModelFileName = page2.getLinkTarget();
-			ResourceSet resourceSet = null;
+			String typeModelFileName = metaLinkPage.getLinkTarget();
+			ResourceSetImpl resourceSet = null;
 			Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
 			if (typeModelFileName != null) {
 				// TODO: move to validation (when wrong file, user must be notified)
@@ -180,6 +189,14 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 				newDiagram.setParent(typeDiagram);
 			}else
 				newSpec.setTypeGraph(DPFConstants.REFLEXIVE_TYPE_GRAPH);
+			
+			String signatureFileName = signatureLinkPage.getLinkTarget();
+			if(signatureFileName != null){
+				Signature signature = SignatureEditor.loadSignature(resourceSet, URI.createFileURI(signatureFileName), resourceToDiagnosticMap);
+				newSpec.setSignature(signature);
+				if(signature != null)
+					newSpec.setSignatureFile(signatureFileName);
+			}
 			
 			newDiagram.setDpfGraph(newSpec.getGraph());
 			DPFEditor.saveDPFModel(resourceSet, URI.createFileURI(DPFEditor.getModelFromDiagram(diagramFileName)), newSpec, resourceToDiagnosticMap);

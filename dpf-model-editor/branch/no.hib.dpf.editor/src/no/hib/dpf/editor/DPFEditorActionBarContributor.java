@@ -83,7 +83,7 @@ protected void buildActions() {
 	addRetargetAction(new RetargetAction(ActionFactory.PRINT.getId(),
 			GEFMessages.PrintAction_Label, IAction.AS_PUSH_BUTTON));
 	
-	
+	//TODO should remove following lines in the future
 	addRetargetAction(new AlignmentRetargetAction(PositionConstants.LEFT));
 	addRetargetAction(new AlignmentRetargetAction(PositionConstants.CENTER));
 	addRetargetAction(new AlignmentRetargetAction(PositionConstants.RIGHT));
@@ -148,6 +148,7 @@ public void contributeToToolBar(IToolBarManager toolBarManager) {
 	
 	toolBarManager.add(new Separator());	
 	
+	//TODO should remove following lines in the future
 	toolBarManager.add(getAction(CreateMultiplicityConstraintAction.ID));
 	toolBarManager.add(getAction(CreateInjectiveConstraintAction.ID));
 	toolBarManager.add(getAction(CreateJointlyInjectiveConstraintAction.ID));

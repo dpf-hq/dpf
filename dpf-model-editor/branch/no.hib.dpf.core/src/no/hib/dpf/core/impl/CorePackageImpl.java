@@ -794,6 +794,24 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getSpecification_Signature() {
+		return (EReference)specificationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSpecification_SignatureFile() {
+		return (EAttribute)specificationEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getModelHierarchy() {
 		return modelHierarchyEClass;
 	}
@@ -993,6 +1011,8 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 		specificationEClass = createEClass(SPECIFICATION);
 		createEReference(specificationEClass, SPECIFICATION__GRAPH);
 		createEReference(specificationEClass, SPECIFICATION__TYPE_GRAPH);
+		createEReference(specificationEClass, SPECIFICATION__SIGNATURE);
+		createEAttribute(specificationEClass, SPECIFICATION__SIGNATURE_FILE);
 
 		modelHierarchyEClass = createEClass(MODEL_HIERARCHY);
 		createEReference(modelHierarchyEClass, MODEL_HIERARCHY__SPECIFICATIONS);
@@ -1200,6 +1220,10 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 		addEParameter(op, this.getNode(), "typeNodes", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getArrow(), "typeArrows", 0, -1, IS_UNIQUE, IS_ORDERED);
 
+		op = addEOperation(predicateEClass, ecorePackage.getEBoolean(), "validateSemantics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getGraphHomomorphism(), "mapping", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getGraph(), "graph", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(semanticsValidatorEClass, SemanticsValidator.class, "SemanticsValidator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSemanticsValidator_Type(), this.getValidatorType(), "type", null, 0, 1, SemanticsValidator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSemanticsValidator_Validator(), ecorePackage.getEString(), "validator", null, 0, 1, SemanticsValidator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1253,6 +1277,8 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 		initEClass(specificationEClass, Specification.class, "Specification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSpecification_Graph(), this.getGraph(), null, "graph", null, 1, 1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSpecification_TypeGraph(), this.getGraph(), null, "typeGraph", null, 0, 1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSpecification_Signature(), this.getSignature(), null, "signature", null, 0, 1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSpecification_SignatureFile(), ecorePackage.getEString(), "signatureFile", null, 0, 1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = addEOperation(specificationEClass, this.getGraph(), "createOStar", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getConstraint(), "constraint", 0, 1, IS_UNIQUE, IS_ORDERED);

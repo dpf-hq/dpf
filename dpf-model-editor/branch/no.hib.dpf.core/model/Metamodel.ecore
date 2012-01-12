@@ -138,6 +138,10 @@
             <eParameters name="typeNodes" upperBound="-1" eType="#//hib/dpf/core/Node"/>
             <eParameters name="typeArrows" upperBound="-1" eType="#//hib/dpf/core/Arrow"/>
           </eOperations>
+          <eOperations name="validateSemantics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+            <eParameters name="mapping" eType="#//hib/dpf/core/GraphHomomorphism"/>
+            <eParameters name="graph" eType="#//hib/dpf/core/Graph"/>
+          </eOperations>
           <eStructuralFeatures xsi:type="ecore:EReference" name="shape" eType="#//hib/dpf/core/Graph"
               containment="true"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="semanticsValidator"
@@ -217,6 +221,8 @@
               eType="#//hib/dpf/core/Graph" containment="true"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="typeGraph" eType="#//hib/dpf/core/Graph"
               containment="true"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="signature" eType="#//hib/dpf/core/Signature"/>
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="signatureFile" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="ModelHierarchy">
           <eStructuralFeatures xsi:type="ecore:EReference" name="specifications" upperBound="-1"

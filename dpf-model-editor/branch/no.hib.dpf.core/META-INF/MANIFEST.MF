@@ -3,7 +3,8 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %Plugin.name
 Bundle-SymbolicName: no.hib.dpf.core;singleton:=true
 Bundle-Version: 0.1.1.qualifier
-Bundle-ClassPath: .
+Bundle-ClassPath: .,
+ janino.jar
 Bundle-Vendor: %Plugin.providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

@@ -273,42 +273,43 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 		infoSection.marginWidth = 10;
 		infoSection.setExpanded(true);
 		infoSection.setLayoutData(new GridData(GridData.FILL, GridData.FILL, true, false));
-		Composite root = toolkit.createComposite(infoSection);
+		Composite infoComposite = toolkit.createComposite(infoSection);
 		GridLayout gridLayout = new GridLayout();
 		gridLayout.numColumns = 3;
 		gridLayout.marginHeight = 0;
 		gridLayout.marginWidth = 0;
-		root.setLayout(gridLayout);
+		infoComposite.setLayout(gridLayout);
 
-		new Label(root, SWT.NONE).setText("Name:");
-		name = new Text(root, SWT.SINGLE | SWT.BORDER);
+		new Label(infoComposite, SWT.NONE).setText("Name:");
+		name = new Text(infoComposite, SWT.SINGLE | SWT.BORDER);
 		GridData gridData = null;
-		gridData = new GridData(GridData.BEGINNING, GridData.FILL, false, false);
+		gridData = new GridData(GridData.FILL, GridData.FILL, true, false);
 		gridData.horizontalSpan = 2;
 		gridData.minimumWidth = 20;
 		name.setLayoutData(gridData);
 
-		new Label(root, SWT.NONE).setText("Icon:");
-		icon = new Text(root, SWT.SINGLE | SWT.BORDER);
+		new Label(infoComposite, SWT.NONE).setText("Icon:");
+		icon = new Text(infoComposite, SWT.SINGLE | SWT.BORDER);
 		icon.setEditable(false);
-		gridData = new GridData(GridData.BEGINNING, GridData.FILL, false, false);
+		gridData = new GridData(GridData.FILL, GridData.FILL, true, false);
 		gridData.minimumWidth = 20;
 		icon.setLayoutData(gridData);
-		iconChooser = new Button(root, SWT.PUSH);
+		iconChooser = new Button(infoComposite, SWT.PUSH);
 		iconChooser.setText("Choose");
 		iconChooser.setLayoutData(new GridData(GridData.BEGINNING, GridData.FILL, false, false));
 
 		//Visulation
-		Label visulationLabel = new Label(root, SWT.NONE);
+		Label visulationLabel = new Label(infoComposite, SWT.NONE);
 		visulationLabel.setText("Visualtion:");
 		gridData = new GridData(GridData.BEGINNING, GridData.FILL, false, false);
 		gridData.verticalSpan = 3;
 		gridData.minimumWidth = 20;
 		visulationLabel.setLayoutData(gridData);
-		visulationCombo = new EnumeratorCombo(root, SWT.NONE);
+		visulationCombo = new EnumeratorCombo(infoComposite, SWT.NONE);
 		visulationCombo.setInput(VisualizationType.values());
+		visulationCombo.getControl().setLayoutData(new GridData(GridData.FILL, GridData.FILL, true, false));
 
-		Composite source = new Composite(root, SWT.NONE);
+		Composite source = new Composite(infoComposite, SWT.NONE);
 		gridData = new GridData(GridData.FILL, GridData.FILL, true, false);
 		gridData.horizontalSpan = 2;
 		source.setLayoutData(gridData);
@@ -346,7 +347,7 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 		gridData.horizontalSpan = 2;
 		gridData.minimumWidth = 50;
 		source.setLayoutData(gridData);
-		Composite target = new Composite(root, SWT.NONE);
+		Composite target = new Composite(infoComposite, SWT.NONE);
 		target.setLayout(rowLayout);
 		gridData = new GridData(GridData.FILL, GridData.CENTER, true, false);
 		gridData.horizontalSpan = 2;
@@ -365,33 +366,35 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 		validSection.setText("Validator");
 		gridData = new GridData(GridData.FILL, GridData.FILL, true, true);
 		validSection.setLayoutData(gridData);
-		Composite root1 = toolkit.createComposite(validSection);
-		root1.setLayout(new GridLayout());
+		Composite validComposite = toolkit.createComposite(validSection);
+		validComposite.setLayout(new GridLayout());
 
-		validatorCombo = new EnumeratorCombo(root1, SWT.NONE);
+		validatorCombo = new EnumeratorCombo(validComposite, SWT.NONE);
 		gridData = new GridData(GridData.BEGINNING, GridData.FILL, false, false);
 		validatorCombo.getControl().setLayoutData(gridData);
 		validatorCombo.setInput(ValidatorType.values());
-		validator = new Text(root1, SWT.MULTI | SWT.BORDER);
+		validator = new Text(validComposite, SWT.MULTI | SWT.BORDER);
 		gridData = new GridData(GridData.FILL, GridData.FILL, true, true);
 		validator.setLayoutData(gridData);
 
 
-		Section s2 = toolkit.createSection(parent, Section.TWISTIE| Section.TITLE_BAR);
-		s2.setExpanded(true);
-		s2.marginWidth = 10;
-		s2.setText("Graph Details"); //$NON-NLS-1$
+		Section graphSection = toolkit.createSection(parent, Section.TWISTIE| Section.TITLE_BAR);
+		graphSection.setExpanded(true);
+		graphSection.marginWidth = 10;
+		graphSection.setText("Graph Details"); //$NON-NLS-1$
 		gridData = new GridData(GridData.FILL, GridData.FILL, true, true);
-		s2.setLayoutData(gridData);
-		Composite root2 = new Composite(s2, SWT.BORDER);//toolkit.createComposite(s2);
+		graphSection.setLayoutData(gridData);
+		Composite graphComposite = new Composite(graphSection, SWT.BORDER);//toolkit.createComposite(s2);
 
-		root2.setLayout(new FillLayout());
-		createPartControl(root2);
+		graphComposite.setLayout(new FillLayout());
+		createPartControl(graphComposite);
+		
 		toolkit.paintBordersFor(infoSection);
-		toolkit.paintBordersFor(s2);
-		infoSection.setClient(root);
-		s2.setClient(root2);
-		validSection.setClient(root1);
+		toolkit.paintBordersFor(graphSection);
+		toolkit.paintBordersFor(validSection);
+		infoSection.setClient(infoComposite);
+		graphSection.setClient(graphComposite);
+		validSection.setClient(validComposite);
 		refresh();
 		addListners();
 	}

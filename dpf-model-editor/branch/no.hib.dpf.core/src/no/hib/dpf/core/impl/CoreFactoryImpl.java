@@ -17,31 +17,8 @@ package no.hib.dpf.core.impl;
 
 import java.util.Map;
 
-import no.hib.dpf.core.Arrow;
-import no.hib.dpf.core.Constraint;
-import no.hib.dpf.core.CoreFactory;
-import no.hib.dpf.core.CorePackage;
-import no.hib.dpf.core.Graph;
-import no.hib.dpf.core.GraphHomomorphism;
-import no.hib.dpf.core.IDObject;
-import no.hib.dpf.core.InverseSemantics;
-import no.hib.dpf.core.IrreflexiveSemantics;
-import no.hib.dpf.core.JointlySurjectiveSemantics;
-import no.hib.dpf.core.ModelHierarchy;
-import no.hib.dpf.core.MultiplicitySemantics;
-import no.hib.dpf.core.NANDSemantics;
-import no.hib.dpf.core.Node;
-import no.hib.dpf.core.Predicate;
-import no.hib.dpf.core.SemanticsValidator;
-import no.hib.dpf.core.Signature;
-import no.hib.dpf.core.Specification;
-import no.hib.dpf.core.SurjectiveSemantics;
-import no.hib.dpf.core.TransitiveIrreflexiveSemantics;
-import no.hib.dpf.core.TypingMorphism;
-import no.hib.dpf.core.ValidatorType;
-import no.hib.dpf.core.Visualization;
-import no.hib.dpf.core.VisualizationType;
-import no.hib.dpf.core.XORSemantics;
+import no.hib.dpf.constant.DPFConstants;
+import no.hib.dpf.core.*;
 
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EClass;
@@ -295,7 +272,7 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 	public SemanticsValidator createSemanticsValidator() {
 		SemanticsValidatorImpl semanticsValidator = new SemanticsValidatorImpl();
 		semanticsValidator.setType(ValidatorType.JAVA);
-		semanticsValidator.setValidator("");
+		semanticsValidator.setValidator(DPFConstants.DefaultChecker);
 		return semanticsValidator;
 	}
 

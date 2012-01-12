@@ -385,5 +385,26 @@ public class SignatureEditor extends FormEditor implements CommandStackListener,
 //		if (manager != null) {
 //			manager.setZoom(diagram.getZoom());
 //		}
+	}
+	public static Signature loadSignature(ResourceSetImpl resourceSet2,
+			URI createFileURI,
+			Map<Resource, Diagnostic> resourceToDiagnosticMap2) {
+		if(resourceSet2 == null)
+			resourceSet2 = getResourceSet();
+		resourceSet2.getResourceFactoryRegistry().getExtensionToFactoryMap().put("sig", new XMLResourceFactoryImpl());
+		Resource graph = DPFCoreUtil.getResource(resourceSet2, DPFConstants.DefaultGraph, resourceToDiagnosticMap2);
+		if(graph == null){
+			graph = resourceSet2.createResource(DPFConstants.DefaultGraph);
+			graph.getContents().add(DPFConstants.REFLEXIVE_TYPE_GRAPH);
+			resourceSet2.getURIResourceMap().put(DPFConstants.DefaultGraph, graph);
+		}
+		Resource signature = resourceSet2.createResource(createFileURI);
+		try {
+			signature.load(null);
+		} catch (IOException e) {
+			DPFErrorReport.logError(e);
+		}
+		int size = signature.getContents().size();
+		return size == 1 ? (Signature) signature.getContents().get(0) : null;
 	}	
 }

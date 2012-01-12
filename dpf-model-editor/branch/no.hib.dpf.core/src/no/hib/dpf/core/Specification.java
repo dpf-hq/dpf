@@ -1,6 +1,6 @@
 /**
  * <copyright>
- * Copyright (c) 2011 H¿yskolen i Bergen
+ * Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * Adrian Rutle, ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * Adrian Rutle, ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
  * </copyright>
  *
  * $Id$
@@ -27,6 +27,8 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link no.hib.dpf.core.Specification#getGraph <em>Graph</em>}</li>
  *   <li>{@link no.hib.dpf.core.Specification#getTypeGraph <em>Type Graph</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Specification#getSignature <em>Signature</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Specification#getSignatureFile <em>Signature File</em>}</li>
  * </ul>
  * </p>
  *
@@ -86,6 +88,58 @@ public interface Specification extends EObject {
 	 * @generated
 	 */
 	void setTypeGraph(Graph value);
+
+	/**
+	 * Returns the value of the '<em><b>Signature</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Signature</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Signature</em>' reference.
+	 * @see #setSignature(Signature)
+	 * @see no.hib.dpf.core.CorePackage#getSpecification_Signature()
+	 * @model
+	 * @generated
+	 */
+	Signature getSignature();
+
+	/**
+	 * Sets the value of the '{@link no.hib.dpf.core.Specification#getSignature <em>Signature</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Signature</em>' reference.
+	 * @see #getSignature()
+	 * @generated
+	 */
+	void setSignature(Signature value);
+
+	/**
+	 * Returns the value of the '<em><b>Signature File</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Signature File</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Signature File</em>' attribute.
+	 * @see #setSignatureFile(String)
+	 * @see no.hib.dpf.core.CorePackage#getSpecification_SignatureFile()
+	 * @model
+	 * @generated
+	 */
+	String getSignatureFile();
+
+	/**
+	 * Sets the value of the '{@link no.hib.dpf.core.Specification#getSignatureFile <em>Signature File</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Signature File</em>' attribute.
+	 * @see #getSignatureFile()
+	 * @generated
+	 */
+	void setSignatureFile(String value);
 
 	/**
 	 * <!-- begin-user-doc -->

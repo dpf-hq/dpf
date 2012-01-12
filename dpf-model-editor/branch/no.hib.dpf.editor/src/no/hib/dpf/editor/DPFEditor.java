@@ -34,14 +34,18 @@ import no.hib.dpf.constant.DPFConstants;
 import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Graph;
+import no.hib.dpf.core.GraphHomomorphism;
 import no.hib.dpf.core.Predicate;
 import no.hib.dpf.core.Signature;
 import no.hib.dpf.core.Specification;
+import no.hib.dpf.editor.displaymodel.DArrow;
 import no.hib.dpf.editor.displaymodel.DConstraint;
 import no.hib.dpf.editor.displaymodel.DPFDiagram;
 import no.hib.dpf.editor.displaymodel.ModelElement;
+import no.hib.dpf.editor.displaymodel.commands.SingleArrowConstraintCreateCommand;
 import no.hib.dpf.editor.editoractions.ConstraintProperties;
 import no.hib.dpf.editor.editoractions.CreateCompositionConstraintAction;
+import no.hib.dpf.editor.editoractions.CreateConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateImageInclusionConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateInjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateInverseConstraintAction;
@@ -54,10 +58,13 @@ import no.hib.dpf.editor.editoractions.CreateSurjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateTransitiveIrreflexiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateXORConstraintAction;
 import no.hib.dpf.editor.editoractions.PrintAction;
+import no.hib.dpf.editor.parts.ArrowEditPart;
 import no.hib.dpf.editor.parts.EditPartFactoryImpl;
+import no.hib.dpf.editor.parts.NodeEditPart;
 import no.hib.dpf.editor.parts.NodeTreeEditPartFactory;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;
 import no.hib.dpf.editor.preferences.PreferenceConstants;
+import no.hib.dpf.signature.SignatureEditor;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
@@ -80,6 +87,7 @@ import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.SnapToGeometry;
 import org.eclipse.gef.SnapToGrid;
+import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editparts.ScalableFreeformRootEditPart;
 import org.eclipse.gef.editparts.ZoomManager;
 import org.eclipse.gef.palette.PaletteRoot;
@@ -98,6 +106,7 @@ import org.eclipse.gef.ui.parts.GraphicalEditorWithFlyoutPalette;
 import org.eclipse.gef.ui.parts.GraphicalViewerKeyHandler;
 import org.eclipse.gef.ui.parts.TreeViewer;
 import org.eclipse.jface.action.IAction;
+import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.swt.graphics.Image;
@@ -107,9 +116,12 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IFileEditorInput;
+import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
@@ -132,7 +144,6 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 	private DPFDiagram diagram;
 
 	private Specification specification = CoreFactory.eINSTANCE.createSpecification();
-	private Signature signature;
 		
 //	/** Palette component, holding the tools and shapes. */
 	private PaletteRoot paletteRoot;
@@ -169,12 +180,17 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		// TODO: this is a temporary solution, only to get the signature from
 		// somwhere. Make this a part of the modelling hierarchy.
 		
-		
+		if(specification.getSignatureFile() != null){
+			for(Predicate predicate : specification.getSignature().getPredicates())
+				addActionForPredicate(predicate);
+			return;
+		}
 		// First step to move the predicates out of the editor:
 		// There remains to make some coupling between these predicates
 		// and the parts/figures that implement them.
+		Signature defaultSignature = specification.getSignature();
 		ConstraintProperties xorProperties = new ConstraintProperties(
-				signature.getPredicateBySymbol("[xor]"), 
+				defaultSignature.getPredicateBySymbol("[xor]"), 
 				"Create new [xor] Constraint",
 				"Creates a new [xor] Constraint",
 				DConstraint.ConstraintType.XOR);
@@ -182,7 +198,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		registerAction(new CreateXORConstraintAction(this, diagram.getDpfGraph(), xorProperties));
 		
 		ConstraintProperties nandProperties = new ConstraintProperties(
-				signature.getPredicateBySymbol("[nand]"), 
+				defaultSignature.getPredicateBySymbol("[nand]"), 
 				"Create new [nand] Constraint",
 				"Creates a new [nand] Constraint",
 				DConstraint.ConstraintType.NAND);
@@ -190,14 +206,14 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		registerAction(new CreateNANDConstraintAction(this, diagram.getDpfGraph(), nandProperties));
 
 		ConstraintProperties injectiveProperties = new ConstraintProperties(
-				signature.getPredicateBySymbol("[injective]"), 
+				defaultSignature.getPredicateBySymbol("[injective]"), 
 				"Create new [injective] Constraint",
 				"Creates a new [injective] Constraint",
 				DConstraint.ConstraintType.INJECTIVE);
 		
 		registerAction(new CreateInjectiveConstraintAction(this, diagram.getDpfGraph(), injectiveProperties));
 		ConstraintProperties surjectiveProperties = new ConstraintProperties(
-				signature.getPredicateBySymbol("[surjective]"), 
+				defaultSignature.getPredicateBySymbol("[surjective]"), 
 				"Create new [surjective] Constraint",
 				"Creates a new [surjective] Constraint",
 				DConstraint.ConstraintType.SURJECTIVE);
@@ -206,7 +222,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 
 		
 		ConstraintProperties jointlyInjectiveProperties = new ConstraintProperties(
-				signature.getPredicateBySymbol("[jointly-injective]"), 
+				defaultSignature.getPredicateBySymbol("[jointly-injective]"), 
 				"Create new [jointly-injective] Constraint",
 				"Creates a new [jointly-injective] Constraint",
 				DConstraint.ConstraintType.JOINTLY_INJECTIVE);
@@ -214,7 +230,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		registerAction(new CreateJointlyInjectiveConstraintAction(this, diagram.getDpfGraph(), jointlyInjectiveProperties));
 				
 		ConstraintProperties jointlySurjectiveProperties = new ConstraintProperties(
-				signature.getPredicateBySymbol("[jointly-surjective]"), 
+				defaultSignature.getPredicateBySymbol("[jointly-surjective]"), 
 				"Create new [jointly-surjective] Constraint",
 				"Creates a new [jointly-surjective] Constraint",
 				DConstraint.ConstraintType.JOINTLY_SURJECTIVE);
@@ -222,7 +238,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		registerAction(new CreateJointlySurjectiveConstraintAction(this, diagram.getDpfGraph(), jointlySurjectiveProperties));
 		
 		ConstraintProperties multiplicityProperties = new ConstraintProperties(
-				signature.getPredicateBySymbol("[mult(m,n)]"), 
+				defaultSignature.getPredicateBySymbol("[mult(m,n)]"), 
 				"Create new [mult(m,n)] Constraint",
 				"Creates a new [mult(m,n)] Constraint",
 				DConstraint.ConstraintType.MULTIPLICITY);
@@ -230,21 +246,21 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		registerAction(new CreateMultiplicityConstraintAction(this, diagram.getDpfGraph(), multiplicityProperties));
 		
 		ConstraintProperties inverseProperties = new ConstraintProperties(
-				signature.getPredicateBySymbol("[inverse]"),
+				defaultSignature.getPredicateBySymbol("[inverse]"),
 				"Create new [inverse] Constraint",
 				"Creates a new [inverse] Constraint",
 				DConstraint.ConstraintType.INVERSE);
 		registerAction(new CreateInverseConstraintAction(this, diagram.getDpfGraph(), inverseProperties));
 
 		ConstraintProperties imageInclusionProperties = new ConstraintProperties(
-				signature.getPredicateBySymbol("[image-inclusion]"),
+				defaultSignature.getPredicateBySymbol("[image-inclusion]"),
 				"Create new [image-inclusion] Constraint",
 				"Creates a new [image-inclusion] Constraint",
 				DConstraint.ConstraintType.IMAGE_INCLUSION);
 		registerAction(new CreateImageInclusionConstraintAction(this, diagram.getDpfGraph(), imageInclusionProperties));
 		
 		ConstraintProperties compositionProperties = new ConstraintProperties(
-				signature.getPredicateBySymbol("[composition]"),
+				defaultSignature.getPredicateBySymbol("[composition]"),
 				"Create new [composition] Constraint",
 				"Creates a new [composition] Constraint",
 				DConstraint.ConstraintType.COMPOSITION);
@@ -252,14 +268,14 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 
 
 		ConstraintProperties irreflexiveProperties = new ConstraintProperties(
-				signature.getPredicateBySymbol("[irreflexive]"),
+				defaultSignature.getPredicateBySymbol("[irreflexive]"),
 				"Create new [irreflexive] Constraint",
 				"Creates a new [irreflexive] Constraint",
 				DConstraint.ConstraintType.IRREFLEXIVE);
 		registerAction(new CreateIrreflexiveConstraintAction(this, diagram.getDpfGraph(), irreflexiveProperties));
 		
 		ConstraintProperties transitiveIrreflexiveProperties = new ConstraintProperties(
-				signature.getPredicateBySymbol("[transitive-irreflexive]"),
+				defaultSignature.getPredicateBySymbol("[transitive-irreflexive]"),
 				"Create new [transitive-irreflexive] Constraint",
 				"Creates a new [transitive-irreflexive] Constraint",
 				DConstraint.ConstraintType.TRANSITIVE_IRREFLEXIVE);
@@ -272,6 +288,28 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		registerAction(new AlignmentAction((IWorkbenchPart)this, PositionConstants.BOTTOM));
 		registerAction(new AlignmentAction((IWorkbenchPart)this, PositionConstants.CENTER));
 		registerAction(new AlignmentAction((IWorkbenchPart)this, PositionConstants.MIDDLE));
+	}
+
+	private void addActionForPredicate(final Predicate predicate) {
+		String tip = "Create a new [" + predicate.getSymbol() +"] Constraint";
+		String id = "no.hib.dpf.editor.editoractions." + predicate.getSymbol();
+		ConstraintProperties xorProperties = new ConstraintProperties(predicate, tip, tip, null);
+		CreateConstraintAction action = new CreateConstraintAction(this, id, diagram.getDpfGraph(), xorProperties){
+
+			@Override
+			protected Command getConstraintCreateCommand(
+					List<ArrowEditPart> connectionEditParts,
+					List<NodeEditPart> shapeEditParts) {
+				switch(predicate.getVisualization().getType()){
+				case ARROW_LABEL:
+					return new SingleArrowConstraintCreateCommand((DArrow)connectionEditParts.get(0).getModel(), DConstraint.ConstraintType.SURJECTIVE, createIDObject());
+				}
+				return null;
+			}
+			
+		};
+		registerAction(action);
+		constraintActions.add(action);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -354,7 +392,9 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 			if (manager != null) {
 				diagram.setZoom(manager.getZoom());
 			}
-		} catch (Exception e) {}
+		} catch (Exception e) {
+			DPFErrorReport.logError(e);
+		}
 	}
 	
 	/*
@@ -434,55 +474,59 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 	private void loadSignature() {
 		if(resourceSet == null)
 			resourceSet = getResourceSet();
-		Resource resource = DPFCoreUtil.getResource(resourceSet, DPFConstants.DefaultSignature, resourceToDiagnosticMap);
-		resourceSet.getURIResourceMap().put(DPFConstants.DefaultSignature, resource);
-		resetSignature();
-		Assert.isNotNull(signature);
-		resource.getContents().add(signature);
+		if(specification.getSignatureFile() != null)
+			specification.setSignature(SignatureEditor.loadSignature(resourceSet, URI.createFileURI(specification.getSignatureFile()), resourceToDiagnosticMap));
+		else{
+			Resource resource = DPFCoreUtil.getResource(resourceSet, DPFConstants.DefaultSignature, resourceToDiagnosticMap);
+			resourceSet.getURIResourceMap().put(DPFConstants.DefaultSignature, resource);
+			Signature defaultSignature = getDefaultSignature();
+			Assert.isNotNull(defaultSignature);
+			resource.getContents().add(defaultSignature);
+			specification.setSignature(defaultSignature);
+		}
 	}
 
-	private void resetSignature() {
-		if(signature != null)
-			return;
-		signature = CoreFactory.eINSTANCE.createSignature();
+	private Signature getDefaultSignature() {
 		
-		signature.getPredicates().add(CoreFactory.eINSTANCE.createPredicate("[jointly-injective]", "n_1,n_2,n_3", "a_1:n_1:n_2,a_2:n_1:n_3"));
-		signature.getPredicates().add(CoreFactory.eINSTANCE.createPredicate("[image-inclusion]", "n_1,n_2", "a_1:n_1:n_2,a_2:n_1:n_2"));		
-		signature.getPredicates().add(CoreFactory.eINSTANCE.createPredicate("[composition]", "n_1,n_2,n_3", "a_1:n_1:n_2,a_2:n_2:n_3,a_3:n_1:n_3"));
-		signature.getPredicates().add(CoreFactory.eINSTANCE.createPredicate("[injective]", "n_1,n_2", "a_1:n_1:n_2"));
+		Signature defaultSignature = CoreFactory.eINSTANCE.createSignature();
+		
+		defaultSignature.getPredicates().add(CoreFactory.eINSTANCE.createPredicate("[jointly-injective]", "n_1,n_2,n_3", "a_1:n_1:n_2,a_2:n_1:n_3"));
+		defaultSignature.getPredicates().add(CoreFactory.eINSTANCE.createPredicate("[image-inclusion]", "n_1,n_2", "a_1:n_1:n_2,a_2:n_1:n_2"));		
+		defaultSignature.getPredicates().add(CoreFactory.eINSTANCE.createPredicate("[composition]", "n_1,n_2,n_3", "a_1:n_1:n_2,a_2:n_2:n_3,a_3:n_1:n_3"));
+		defaultSignature.getPredicates().add(CoreFactory.eINSTANCE.createPredicate("[injective]", "n_1,n_2", "a_1:n_1:n_2"));
 		
 		Predicate surjectivePredicate = CoreFactory.eINSTANCE.createPredicate("[surjective]", "n_1,n_2", "a_1:n_1:n_2");
 		surjectivePredicate.setSemanticsValidator(CoreFactory.eINSTANCE.createSurjectiveSemantics());
-		signature.getPredicates().add(surjectivePredicate);		
+		defaultSignature.getPredicates().add(surjectivePredicate);		
 
 		Predicate xorPredicate = CoreFactory.eINSTANCE.createPredicate("[xor]", "n_1,n_2,n_3", "a_1:n_1:n_2,a_2:n_1:n_3");
 		xorPredicate.setSemanticsValidator(CoreFactory.eINSTANCE.createXORSemantics());
-		signature.getPredicates().add(xorPredicate);
+		defaultSignature.getPredicates().add(xorPredicate);
 		
 		Predicate nandPredicate = CoreFactory.eINSTANCE.createPredicate("[nand]", "n_1,n_2,n_3", "a_1:n_1:n_2,a_2:n_1:n_3");
 		nandPredicate.setSemanticsValidator(CoreFactory.eINSTANCE.createNANDSemantics());
-		signature.getPredicates().add(nandPredicate);
+		defaultSignature.getPredicates().add(nandPredicate);
 
 		Predicate jSPredicate = CoreFactory.eINSTANCE.createPredicate("[jointly-surjective]", "n_1,n_2,n_3", "a_1:n_2:n_1,a_2:n_3:n_1");
 		jSPredicate.setSemanticsValidator(CoreFactory.eINSTANCE.createJointlySurjectiveSemantics());
-		signature.getPredicates().add(jSPredicate);
+		defaultSignature.getPredicates().add(jSPredicate);
 
 		Predicate inversePredicate = CoreFactory.eINSTANCE.createPredicate("[inverse]", "n_1,n_2", "a_1:n_1:n_2,a_2:n_2:n_1");
 		inversePredicate.setSemanticsValidator(CoreFactory.eINSTANCE.createInverseSemantics());
-		signature.getPredicates().add(inversePredicate);
+		defaultSignature.getPredicates().add(inversePredicate);
 
 		Predicate irreflexivePredicate = CoreFactory.eINSTANCE.createPredicate("[irreflexive]", "n_1", "a_1:n_1:n_1");
 		irreflexivePredicate.setSemanticsValidator(CoreFactory.eINSTANCE.createIrreflexiveSemantics());
-		signature.getPredicates().add(irreflexivePredicate);
+		defaultSignature.getPredicates().add(irreflexivePredicate);
 
 		Predicate transitiveIrreflexivePredicate = CoreFactory.eINSTANCE.createPredicate("[transitive-irreflexive]", "n_1", "a_1:n_1:n_1");
 		transitiveIrreflexivePredicate.setSemanticsValidator(CoreFactory.eINSTANCE.createTransitiveIrreflexiveSemantics());
-		signature.getPredicates().add(transitiveIrreflexivePredicate);
+		defaultSignature.getPredicates().add(transitiveIrreflexivePredicate);
 		
 		Predicate multiplicityPredicate = CoreFactory.eINSTANCE.createPredicate("[mult(m,n)]", "n_1,n_2", "a_1:n_1:n_2");
 		multiplicityPredicate.setSemanticsValidator(CoreFactory.eINSTANCE.createMultiplicitySemantics());
-		signature.getPredicates().add(multiplicityPredicate);
-		
+		defaultSignature.getPredicates().add(multiplicityPredicate);
+		return defaultSignature;
 	}
 
 	/*
@@ -740,9 +784,12 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		isValid = true;
 		for (Constraint c : specification.getTypeGraph().getConstraints()) {
 			try {
-				Graph oStar = specification.createOStar(c);
-				// Transfer the constraint's parameters to the predicate validator:
-				Boolean validation = c.getPredicate().validateSemantics(oStar, c.getParameters(), c.getConstrainedNodes(), c.getConstrainedArrows());
+				GraphHomomorphism mappings = c.getMappings();
+				Graph graph = specification.getGraph();
+				Boolean validation = c.getPredicate().validateSemantics(mappings, graph);
+//				Graph oStar = specification.createOStar(c);
+//				// Transfer the constraint's parameters to the predicate validator:
+//				Boolean validation = c.getPredicate().validateSemantics(oStar, c.getParameters(), c.getConstrainedNodes(), c.getConstrainedArrows());
 				isValid &= validation.booleanValue();
 			} catch (IllegalArgumentException e) {
 				isValid = false;
@@ -849,5 +896,48 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		
 	}
 	
+	public void init(IEditorSite site, IEditorInput input) throws PartInitException {
+		super.init(site, input);
+		getSite().getPage().addPartListener(partListener);
+	}
+
+	List<IAction> constraintActions = new ArrayList<IAction>();
 	
+	protected IPartListener partListener =
+			new IPartListener() {
+		public void partActivated(IWorkbenchPart p) { 
+			DPFEditor editor = DPFEditor.this;
+			if(p != editor)
+				return;
+			IActionBars actionBars = editor.getEditorSite().getActionBars();
+			IToolBarManager toolbar = actionBars.getToolBarManager();
+			for(IAction action : constraintActions)
+				toolbar.add(action);
+			toolbar.update(true);
+			actionBars.updateActionBars();
+		}
+		public void partBroughtToTop(IWorkbenchPart p) { }
+		public void partClosed(IWorkbenchPart p) { }
+		public void partDeactivated(IWorkbenchPart p) {
+			DPFEditor editor = DPFEditor.this;
+			if(p != editor)
+				return;
+			IActionBars actionBars = editor.getEditorSite().getActionBars();
+			IToolBarManager toolbar = actionBars.getToolBarManager();
+			for(IAction action : constraintActions)
+				toolbar.remove(action.getId());
+			toolbar.update(true);
+			actionBars.updateActionBars();
+		}
+		public void partOpened(IWorkbenchPart p) {
+//			if (p instanceof PropertySheet) {
+//				if (((PropertySheet)p).getCurrentPage() == propertySheetPage) {
+//					UndoablePropertySheetEntry root = new UndoablePropertySheetEntry(getCommandStack());
+//					root.setPropertySourceProvider(sourceProvider);
+//					propertySheetPage.setRootEntry(root);
+//					propertySheetPage.setPropertySourceProvider(sourceProvider);
+//				}
+//			}
+		}
+	};
 }
