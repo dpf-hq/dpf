@@ -1,4 +1,6 @@
 package no.dpf.text.graph;
+import scala.collection.mutable.{Map=>MMap}
+
 
 /**
  * Graph Morphism (Graph not in name because it is already in the package name)
@@ -100,6 +102,35 @@ case class Composition(m1:Morphism,m2:Morphism){
 
 case class ArbitraryMorphism(inputNodes:Set[(Option[Node],Node)],inputArrows:Set[(Option[Arrow],Arrow)]) extends Morphism{
   
+  //Mapped Nodes and arrows:
+  private val nodes = MMap[Id,Id]()	
+  private val arrows = MMap[Id,Id]()	
+  
+  for((domainO,codomain)<-inputNodes){
+    domainO match{
+      case Some(domain) =>	input(domain,codomain)
+      case _ 			=> /*ignore*/
+    }
+  }
+  for((domainO,codomain)<-inputArrows){
+    domainO match{
+      case Some(domain) =>
+        	arrows.get(domain.id) match{
+        	  case None 	=>  arrows+=domain.id->codomain.id
+        	  case Some(ex) =>  if(ex != codomain) sys.error("Arrow" + domain + " mapped twice: " + codomain + ", " + ex)
+        	  					input(domain.sr,codomain.sr);input(domain.tg,codomain.tg)
+        	}
+      case _ => /*ignore*/
+    }
+  }
+
+  private def input(domain:Node,codomain:Node){
+  	nodes.get(domain.id) match{
+	  case None 	=>  nodes+=domain.id->codomain.id
+	  case Some(ex) =>  if(ex != codomain) sys.error("Node" + domain + " mapped twice: " +codomain + ", " + ex)
+	}
+  }
+  
   /**
    * input: id of codomain
    * output: all ids of domain mapped to this id 
@@ -140,9 +171,7 @@ case class ArbitraryMorphism(inputNodes:Set[(Option[Node],Node)],inputArrows:Set
   def domainArrows():Set[Id]=null
   
   def codomainArrows():Set[Id]=null
-  
-  //Additionally chech if inputArrow and Nodes do not map a input twice to a different target
-  
+
 } 
 
 case class TypingMorphism(input:AbstractGraph) extends Morphism{
@@ -211,7 +240,6 @@ case class TypingMorphism(input:AbstractGraph) extends Morphism{
   }
   
 } 
-
 
 case class InclusionMorphism(inputSub:AbstractGraph, input:AbstractGraph) extends Morphism{
   
