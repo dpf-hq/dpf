@@ -147,7 +147,8 @@ case class ArbitraryMorphism(inputNodes:Set[(Option[Node],Node)],inputArrows:Set
    * input: id of domain
    * output: id of codomain mapped to this id 
    */
-  def codomainNode(id:Id):Id=null //TODO
+  def codomainNode(id:Id):Id=(inputNodes find {t => (t match {case (Some(n),_) => n.id==id; case _ => false})}).get._2.id
+
   /**
    * input: id of codomain
    * output: all ids of domain mapped to this id 
@@ -159,7 +160,7 @@ case class ArbitraryMorphism(inputNodes:Set[(Option[Node],Node)],inputArrows:Set
    * input: id of codomain
    * output: all ids of domain mapped to this id 
    */
-  def codomainArrow(id:Id):Id=null //TODO
+  def codomainArrow(id:Id):Id=(inputArrows find {t => (t match {case (Some(a),_) => a.id==id; case _ => false})}).get._2.id
   
   def domainArrowSr(id:Id):Id=domainArrowsMap(id).sr.id
   
