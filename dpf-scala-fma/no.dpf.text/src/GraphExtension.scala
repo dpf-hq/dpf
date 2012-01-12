@@ -28,8 +28,10 @@ sealed trait Morphism{
    */
   def codomainArrow(id:Id):Id
   
-  def arrowSc(id:Id):Id
-  def arrowTg(id:Id):Id
+  def domainArrowSr(id:Id):Id
+  def domainArrowTg(id:Id):Id
+  def codomainArrowSr(id:Id):Id
+  def codomainArrowTg(id:Id):Id
   
   def domainNodes():Set[Id]
   def codomainNodes():Set[Id]
@@ -62,6 +64,7 @@ sealed trait Morphism{
 	  true;
 	}
 	return validateSet(domainNodes,codomainNode) && validateSet(domainArrows,codomainArrow) 
+	//Check GraphHomo
   }  
 }
 
@@ -84,7 +87,72 @@ case class Composition(m1:Morphism,m2:Morphism){
 
 //case class ArbitraryMorphism extends Morphism 
 
-//case class TypingMorphism extends Morphism 
+case class TypingMorphism(input:AbstractGraph) extends Morphism{
+  
+  /**
+   * input: id of codomain
+   * output: all ids of domain mapped to this id 
+   */
+  def domainNodes(id:Id):Set[Id]={
+    Set((for{n<-input.nodes.values.filter(_.t.id == id)} yield {n.id}) toSeq: _ *)
+  }
+  /**
+   * input: id of domain
+   * output: id of codomain mapped to this id 
+   */
+  def codomainNode(id:Id):Id={
+    input.nodes(id).t.id
+  }
+
+  /**
+   * input: id of codomain
+   * output: all ids of domain mapped to this id 
+   */
+  def domainArrows(id:Id):Set[Id]={
+    Set((for{a<-input.arrows.values.filter(_.t.id == id)} yield {a.id}) toSeq: _ *)
+  }
+
+  /**
+   * input: id of codomain
+   * output: all ids of domain mapped to this id 
+   */
+  def codomainArrow(id:Id):Id={
+    input.arrows(id).t.id
+  }
+  
+  def domainArrowSr(id:Id):Id={
+    input.arrows(id).sr.id
+  }
+  
+  def domainArrowTg(id:Id):Id={
+    input.arrows(id).tg.id
+  }
+  
+  def codomainArrowSr(id:Id):Id={
+    input.mmGraph.arrows(id).sr.id
+  }
+  
+  def codomainArrowTg(id:Id):Id={
+    input.mmGraph.arrows(id).tg.id
+  }
+
+  def domainNodes():Set[Id]={
+    Set((for{n<-input.nodes.values} yield {n.id}) toSeq: _ *)
+  }
+  
+  def codomainNodes():Set[Id]={
+    Set((for{n<-input.mmGraph.nodes.values} yield {n.id}) toSeq: _ *)
+  }
+
+  def domainArrows():Set[Id]={
+    Set((for{a<-input.arrows.values} yield {a.id}) toSeq: _ *)
+  }
+  
+  def codomainArrows():Set[Id]={
+    Set((for{n<-input.mmGraph.arrows.values} yield {n.id}) toSeq: _ *)
+  }
+  
+} 
 
 //case class InclusionMorphism extends Morphism 
 
