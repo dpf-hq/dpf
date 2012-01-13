@@ -99,13 +99,74 @@ case class Composition(m1:Morphism,m2:Morphism){
   //validate()  
 }
 
+
+
+sealed trait CommutingSquare{
+  //isPullback()
+  //isPushout()
+}
+
+case class CommutingSquareBF(span:Span,cospan:Cospan)
+case class CommutingSquareLR(left:Composition,cospan:Composition)
+
+
+//
+//If Category needed: Category extends AbstractGraph. Constructor of Category takes Graph and completes Graph to Category :)
+//
+
+/*-------------------------- c o n c r e t e --- g r a p h - m o r p h i s m --- e a s y --- to --- c r e a t e: ------------------------*/  
+
+/**
+ * Arbitrary morphism with ids
+ */
 case class SetMorphism(map:Map[Id,Id], codomain:Set[Id])
 case class ArrowSrTg(sr:Map[Id,Id],tg:Map[Id,Id])
-case class ArbitraryIdMorphism(nodes:SetMorphism,arrows:(SetMorphism,ArrowSrTg,ArrowSrTg)) //extends Morphism{
-
-case class ArbitraryMorphism(inputNodes:Set[(Option[Node],Node)],inputArrows:Set[(Option[Arrow],Arrow)]) extends Morphism{
+case class ArbitraryMorphismWithIds(inputNodes:SetMorphism,inputArrows:(SetMorphism,ArrowSrTg,ArrowSrTg)) extends Morphism{
   
-  //Mapped Nodes arrows must have same type this is only sometimes true seperate create check method for this
+  /**
+   * input: id of codomain
+   * output: all ids of domain mapped to this id 
+   */
+  def domainNodes(id:Id):Set[Id]=Set((for{e<-inputNodes.map.filter(x=>id == x._2)} yield {e._1}) toSeq: _ *)
+  /**
+   * input: id of domain
+   * output: id of codomain mapped to this id 
+   */
+  def codomainNode(id:Id):Id=inputNodes.map(id)
+  /**
+   * input: id of codomain
+   * output: all ids of domain mapped to this id 
+   */
+  def domainArrows(id:Id):Set[Id]=Set((for{e<-inputArrows._1.map.filter(x=>id == x._2)} yield {e._1}) toSeq: _ *)
+  
+  /**
+   * input: id of codomain
+   * output: all ids of domain mapped to this id 
+   */
+  def codomainArrow(id:Id):Id=inputArrows._1.map(id)
+  
+  def domainArrowSr(id:Id):Id=inputArrows._2.sr(id)
+  
+  def domainArrowTg(id:Id):Id=inputArrows._2.tg(id)
+  
+  def codomainArrowSr(id:Id):Id=inputArrows._3.sr(id)
+  
+  def codomainArrowTg(id:Id):Id=inputArrows._3.tg(id)
+
+  def domainNodes():Set[Id]=inputNodes.map.keySet
+  
+  def codomainNodes():Set[Id]=inputNodes.codomain ++ Set(inputNodes.map.values toSeq: _ *) ++ Set(inputArrows._3.sr.values toSeq: _ *) ++ Set(inputArrows._3.tg.values toSeq: _ *)
+  
+  def domainArrows():Set[Id]=inputArrows._1.map.keySet
+  
+  def codomainArrows():Set[Id]=inputArrows._1.codomain++Set(inputArrows._1.map.values toSeq: _ *)
+  
+}
+
+/**
+ * Arbitrary morphism With nodes and arrows 
+ */
+case class ArbitraryMorphism(inputNodes:Set[(Option[Node],Node)],inputArrows:Set[(Option[Arrow],Arrow)]) extends Morphism{
   
   //Mapped Nodes and arrows:
   private val nodes = MMap[Id,Id]()	
@@ -139,6 +200,15 @@ case class ArbitraryMorphism(inputNodes:Set[(Option[Node],Node)],inputArrows:Set
 	  case None 	=>  nodes+=domain.id->codomain.id
 	  case Some(ex) =>  if(ex != codomain) sys.error("Node " + domain + " mapped twice: " +codomain + ", " + ex)
 	}
+  }
+  
+  def haveMappedElementsSameType()={
+	  for(e<-inputNodes++inputArrows){
+		  e match {
+		    case (Some(domain),codomain) => if(domain.t != codomain.t) println(domain + " and " +codomain + " does not habe same type!");false;
+		  }
+	  }
+	  true  
   }
   
   /**
@@ -189,6 +259,9 @@ case class ArbitraryMorphism(inputNodes:Set[(Option[Node],Node)],inputArrows:Set
 
 } 
 
+/**
+ * Typing Morphism  
+ */
 case class TypingMorphism(input:AbstractGraph) extends Morphism{
   
   /**
@@ -256,6 +329,9 @@ case class TypingMorphism(input:AbstractGraph) extends Morphism{
   
 } 
 
+/**
+ * Inclusion Morphism  
+ */
 case class InclusionMorphism(inputSub:AbstractGraph, input:AbstractGraph) extends Morphism{
   
   /**
@@ -327,16 +403,4 @@ case class InclusionMorphism(inputSub:AbstractGraph, input:AbstractGraph) extend
 	return Set(inputSub.nodes).subsetOf(Set(input.nodes)) && Set(inputSub.arrows).subsetOf(Set(input.arrows)) 
   }  
   
-} 
-
-
-sealed trait CommutingSquare{
-  //isPullback()
-  //isPushout()
 }
-
-case class CommutingSquareBF(span:Span,cospan:Cospan)
-case class CommutingSquareLR(left:Composition,cospan:Composition)
-
-
-//If Category needed than Category extends AbstractGraph. Constructor of Category takes Graph and completes Graph to Category :)
