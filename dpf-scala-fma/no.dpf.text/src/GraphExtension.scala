@@ -115,7 +115,7 @@ case class Span(left:Morphism,right:Morphism){
   def validate()=left.domainNodes().equals(right.domainNodes()) && left.domainArrows().equals(right.domainArrows())
 }
 case class Cospan(left:Morphism,right:Morphism){
-  def getPullback():Span = null
+  def getPullback():Span = null  //http://ncatlab.org/nlab/show/pullback
   def validate()=left.codomainNodes().equals(right.codomainNodes()) && left.codomainArrows().equals(right.codomainArrows())
   //getPushout()  
 }
