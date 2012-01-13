@@ -1,5 +1,6 @@
 package no.dpf.text.graph;
 import scala.collection.mutable.{Map=>MMap}
+import scala.collection.mutable.{Set=>MSet}
 
 
 /**
@@ -84,19 +85,44 @@ sealed trait Morphism{
 }
 
 case class Span(left:Morphism,right:Morphism){
-  def getPushOut():Cospan = null
-  //validate()  
-  //getPullback() calculate on sets use private function taking function-parameter    
+  def getPushOut():Cospan = {
+    def getPushOutSet(domain:Set[Id],codomainDiffLeft:Set[Id],codomainDiffRight:Set[Id],l:Id=>Id,r:Id=>Id){
+      val m = MSet[Id]()
+      val left2 = MMap[Id,Id]()
+      val right2 = MMap[Id,Id]()
+      for(d<-domain){
+        val lV = l(d)
+        val rV = r(d)
+        val poe=TId((Some(lV),Some(rV)))
+        left2+=lV->poe
+        right2+=rV->poe
+        m+=poe
+      }
+      for(c<-codomainDiffLeft){
+        val poe = TId((Some(c),None))
+    	m+= poe
+        left2+=c->poe
+      }
+      for(c<-codomainDiffRight){
+        val poe = TId((None,Some(c)))
+        m+=poe
+        right2+=c->poe
+      }
+      (m.toSet,left2.toMap,right2.toMap)
+    }
+    null
+  }
+  def validate()=left.domainNodes().equals(right.domainNodes()) && left.domainArrows().equals(right.domainArrows())
 }
 case class Cospan(left:Morphism,right:Morphism){
   def getPullback():Span = null
-  //validate()  
+  def validate()=left.codomainNodes().equals(right.codomainNodes()) && left.codomainArrows().equals(right.codomainArrows())
   //getPushout()  
 }
 case class Composition(m1:Morphism,m2:Morphism){
   def getCompositeMorphism():Morphism = null
   def getFPullbackComplement():Composition = null
-  //validate()  
+  def validate()=m1.codomainNodes().equals(m2.domainNodes()) && m1.codomainArrows().equals(m2.domainArrows())
 }
 
 

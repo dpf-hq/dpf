@@ -429,6 +429,13 @@ case class SId(v:Long) extends Id{
   override def toString="SID"+v;
 }
 
+//----------------------------------------------------------------------
+//Tupel Id (required for pushouts and pullbacks)
+case class TId(v:(Option[Id],Option[Id])) extends Id{
+  override def toString="TID"+v;
+}
+//----------------------------------------------------------------------
+
 //Virtual ID: (temporal in use for some comparisons):
 case class VId(v:Long) extends Id{
   override def toString="VID"+v;
