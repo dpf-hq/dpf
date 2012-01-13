@@ -206,6 +206,7 @@ case class ArbitraryMorphism(inputNodes:Set[(Option[Node],Node)],inputArrows:Set
 	  for(e<-inputNodes++inputArrows){
 		  e match {
 		    case (Some(domain),codomain) => if(domain.t != codomain.t) println(domain + " and " +codomain + " does not habe same type!");false;
+		    case _ => /*do nothing*/
 		  }
 	  }
 	  true  
