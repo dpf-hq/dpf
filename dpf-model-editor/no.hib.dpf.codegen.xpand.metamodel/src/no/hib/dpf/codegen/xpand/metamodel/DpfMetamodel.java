@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Set;
 
 import no.hib.dpf.codegen.xpand.metamodel.typesystem.Cache;
+import no.hib.dpf.codegen.xpand.metamodel.typesystem.OperationImpl;
+import no.hib.dpf.codegen.xpand.metamodel.typesystem.PropertyImpl;
 import no.hib.dpf.codegen.xpand.metamodel.typesystem.types.ArrowType;
 import no.hib.dpf.codegen.xpand.metamodel.typesystem.types.ConstraintType;
 import no.hib.dpf.codegen.xpand.metamodel.typesystem.types.GraphType;
@@ -38,6 +40,23 @@ import org.eclipse.xtend.typesystem.MetaModel;
 import org.eclipse.xtend.typesystem.Type;
 import org.eclipse.xtend.typesystem.emf.EmfListType;
 /**
+ * 
+ * This class represents a Xpand meta model. It's purpose is to map our custom types to
+ * types which Xpand can understand. Types contained in the DPF Specification object are
+ * mapped to their corresponding Xpand type, ie. an instance of Node (called DomainClass),
+ * are mapped to {@link NodeType} with name "DomainClass". This happens through getKnownTypes and
+ * dsmCache upon DpfMetamodel instantiation.
+ * 
+ * When a template is called with the instance model of the DPF meta model as argument, 
+ * the Xpand generator will first try to match the Specification object and see if it
+ * exists in the meta model. Next it will match the type definitions in the template 
+ * against the Specification object provided, through typeForNameCache, ie. getTypeForName
+ * will be called with "dpf::Type" as argument.
+ * 
+ * Each custom Xpand type will also map EOperations and EAttributes from the DPF ecore, so 
+ * that we have all the operations defined + custom ones, specified as {@link OperationImpl}
+ * and {@link PropertyImpl} 
+ *  
  * @author Anders Sandven <anders.sandven@gmail.com>
  */
 public class DpfMetamodel implements MetaModel, DpfMMConstants {
@@ -212,7 +231,7 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 				if(o instanceof Constraint) {
 					return o;
 				}
-			} else if(k.equals("Predicate")) {
+			} else if(k.equals(PREDICATE)) {
 				if(o instanceof Predicate) {
 					return o;
 				}
@@ -307,9 +326,14 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 		
 		Type t = null;
 		EClassifier classifier = typedElement.getEType();
+		
+		// TODO: These should return metametamodel types (dpf ecore), right now returns dsm types.
 		if(classifier.getName().equals(GRAPH)) {
-			//TODO: Types are stored with ns prefix
 			t = getTypeForName(NS_PREFIX + "::" + GRAPH);
+		} else if(classifier.getName().equals(NODE)) {
+			t = getTypeForName(NS_PREFIX + "::" + NODE);
+		} else if(classifier.getName().equals(ARROW)) {
+			t = getTypeForName(NS_PREFIX + "::" + ARROW);
 		} else if(classifier instanceof EDataType) {
 			//This resolves an "external" datatype used in the DPF ecore. This means other classes than the EClasses provided by ecore.
 			
