@@ -85,8 +85,8 @@ sealed trait Morphism{
 }
 
 case class Span(left:Morphism,right:Morphism){
-  def getPushOut():Cospan = {
-    def getPushOutSet(domain:Set[Id],codomainDiffLeft:Set[Id],codomainDiffRight:Set[Id],l:Id=>Id,r:Id=>Id){
+  def pushout():Cospan = {
+    def pushoutSet(domain:Set[Id],codomainDiffLeft:Set[Id],codomainDiffRight:Set[Id],l:Id=>Id,r:Id=>Id){
       val m = MSet[Id]()
       val left2 = MMap[Id,Id]()
       val right2 = MMap[Id,Id]()
@@ -115,13 +115,14 @@ case class Span(left:Morphism,right:Morphism){
   def validate()=left.domainNodes().equals(right.domainNodes()) && left.domainArrows().equals(right.domainArrows())
 }
 case class Cospan(left:Morphism,right:Morphism){
-  def getPullback():Span = null  //http://ncatlab.org/nlab/show/pullback
+  def pullback():Span = null  //http://ncatlab.org/nlab/show/pullback
   def validate()=left.codomainNodes().equals(right.codomainNodes()) && left.codomainArrows().equals(right.codomainArrows())
-  //getPushout()  
+  //pushout()  
 }
 case class Composition(m1:Morphism,m2:Morphism){
-  def getCompositeMorphism():Morphism = null
-  def getFPullbackComplement():Composition = null
+  def compositeMorphism():Morphism = null
+  def fPullbackComplement():Composition = null
+  def pushoutComplement():Composition = null
   def validate()=m1.codomainNodes().equals(m2.domainNodes()) && m1.codomainArrows().equals(m2.domainArrows())
 }
 
