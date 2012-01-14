@@ -1,0 +1,17 @@
+«IMPORT dpf»
+
+«EXTENSION org::eclipse::xtend::util::stdlib::io»
+
+«DEFINE main FOR dpf::Specification»
+	«EXPAND graph FOR this.graph»
+«ENDDEFINE»
+
+«DEFINE graph FOR dpf::Graph»
+	«EXPAND domainclasses FOREACH this.getDomainClasses()»
+«ENDDEFINE»
+
+«DEFINE domainclasses FOR dpf::DomainClass»
+	«FILE this.name + ".java"»
+	«ENDFILE»
+	«syserr(this.name)»
+«ENDDEFINE»
