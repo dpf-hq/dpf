@@ -154,10 +154,12 @@ case class Cospan(left:Morphism,right:Morphism){
     //Pullback Nodes:
     {
     val p = pullbackSet(left.codomainNodes(),left.domainNodes,right.domainNodes)
+    //TODO		
     }
     //Pullback Arrows:
     {
     val p = pullbackSet(left.codomainArrows(),left.domainArrows,right.domainArrows)
+    //TODO		
     }
     null;
   }
