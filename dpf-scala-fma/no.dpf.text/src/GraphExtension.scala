@@ -110,6 +110,22 @@ case class Span(left:Morphism,right:Morphism){
       }
       (m.toSet,left2.toMap,right2.toMap)
     }
+    //Pushout Nodes:
+    {
+    val domain = left.domainNodes() // == right.domainNodes()
+    val codomainDiffLeft = left.codomainNodes().filter(left.domainNodes(_).isEmpty)
+    val codomainDiffRight = right.codomainNodes().filter(right.domainNodes(_).isEmpty)
+    val p = pushoutSet(domain,codomainDiffLeft,codomainDiffRight,left.codomainNode,right.codomainNode)
+    //TODO
+    }
+    //Pushout Arrows:
+    {
+    val domain = left.domainArrows() // == right.domainNodes()
+    val codomainDiffLeft = left.codomainArrows().filter(left.domainArrows(_).isEmpty)
+    val codomainDiffRight = right.codomainArrows().filter(right.domainArrows(_).isEmpty)
+    val p = pushoutSet(domain,codomainDiffLeft,codomainDiffRight,left.codomainArrow,right.codomainArrow)
+    //TODO
+    }
     null
   }
   def validate()=left.domainNodes().equals(right.domainNodes()) && left.domainArrows().equals(right.domainArrows())
