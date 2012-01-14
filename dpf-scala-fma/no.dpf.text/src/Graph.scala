@@ -471,6 +471,3 @@ case class VLong(override val v:Long) extends AValue
 case class VFloat(override val v:Float) extends AValue 
 case class VDouble(override val v:Double) extends AValue 
 case class VString(override val v:String) extends AValue 
-
-//Id for merged nodes:
-//private case class MId(ids:Set[Id]) extends Id
