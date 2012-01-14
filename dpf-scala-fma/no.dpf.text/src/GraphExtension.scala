@@ -116,10 +116,24 @@ case class Span(left:Morphism,right:Morphism){
 }
 case class Cospan(left:Morphism,right:Morphism){
   def pullback():Span = {
-    def pullbackSet(){
+    def pullbackSet(codomain2:Set[Id],l2:Id=>Set[Id],r2:Id=>Set[Id]){
+      
       val m = MSet[Id]()
       val left1 = MMap[Id,Id]()
       val right1 = MMap[Id,Id]()
+      
+      for(x<-codomain2){
+        val lDomain2 = l2(x)
+        val rDomain2 = r2(x)
+        //Build cartesian product:
+        for(l<-lDomain2;r<-rDomain2){
+          val pbe =(TId((Some(l),Some(r))))
+          left1+=pbe->l
+          right1+=pbe->r
+          m+= pbe
+        }
+      }
+      (m.toSet,left1.toMap,right1.toMap)
     }
     null
   }
