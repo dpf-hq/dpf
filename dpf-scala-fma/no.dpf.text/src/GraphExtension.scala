@@ -115,9 +115,15 @@ case class Span(left:Morphism,right:Morphism){
   def validate()=left.domainNodes().equals(right.domainNodes()) && left.domainArrows().equals(right.domainArrows())
 }
 case class Cospan(left:Morphism,right:Morphism){
-  def pullback():Span = null  //http://ncatlab.org/nlab/show/pullback
+  def pullback():Span = {
+    def pullbackSet(){
+      val m = MSet[Id]()
+      val left1 = MMap[Id,Id]()
+      val right1 = MMap[Id,Id]()
+    }
+    null
+  }
   def validate()=left.codomainNodes().equals(right.codomainNodes()) && left.codomainArrows().equals(right.codomainArrows())
-  //pushout()  
 }
 case class Composition(m1:Morphism,m2:Morphism){
   def compositeMorphism():Morphism = null
