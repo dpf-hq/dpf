@@ -10,9 +10,14 @@ package no.hib.dpf.codegen.xpand.ui.wizards;
  * Contributors:
  *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +32,7 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExecutableExtension;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
@@ -41,6 +47,7 @@ import org.eclipse.xtend.shared.ui.core.metamodel.Contributor;
 import org.eclipse.xtend.shared.ui.core.metamodel.MetamodelContributorRegistry;
 import org.eclipse.xtend.shared.ui.core.preferences.PreferenceConstants;
 import org.eclipse.xtend.shared.ui.wizards.EclipseHelper;
+import org.osgi.framework.Bundle;
 
 public class NewDpfGeneratorWizard extends Wizard implements INewWizard,
 		IExecutableExtension {
@@ -50,6 +57,8 @@ public class NewDpfGeneratorWizard extends Wizard implements INewWizard,
 	private DpfMetaModelProperties props;
 	
 	private IConfigurationElement configElement;
+	
+	private String metaModelLocation;
 
 	public NewDpfGeneratorWizard() {
 		super();
@@ -104,6 +113,11 @@ public class NewDpfGeneratorWizard extends Wizard implements INewWizard,
 		refs.add("org.apache.commons.logging");
 		refs.add("org.apache.log4j;resolution:=optional");
 		refs.add("org.eclipse.xtend.profiler;resolution:=optional");
+		//Xpand project with DPF specific includes
+		refs.add("no.hib.dpf.codegen.xpand.metamodel;bundle-version=\"1.0.0\"");
+		refs.add("no.hib.dpf.core;bundle-version=\"0.1.1\"");
+		refs.add("no.hib.dpf.codegen.xpand.ui;bundle-version=\"1.0.0\"");
+		
 		final IProject p = EclipseHelper.createExtXptProject(projectName,
 				srcfolders, Collections.<IProject> emptyList(), refs, null,
 				new SubProgressMonitor(monitor, 3), getShell());
@@ -128,6 +142,10 @@ public class NewDpfGeneratorWizard extends Wizard implements INewWizard,
 		
 		monitor.worked(1);
 		
+		EclipseHelper.createFile("src/workflow/workflow.mwe", p, getContents("template.mwe"), monitor);
+		
+		monitor.worked(1);
+		
 		//Cant access stuff outside of ui thread without this
 		Display.getDefault().syncExec(new Runnable() {
 			@Override
@@ -135,13 +153,21 @@ public class NewDpfGeneratorWizard extends Wizard implements INewWizard,
 				props = new DpfMetaModelProperties(p);
 				try {
 					props.setNature(true);
-					props.setDsmPaths(page.getDsmLocation());
+					//We use .settings file instead
+//					props.setDsmPaths(page.getMetaModelLocation());
+					metaModelLocation = page.getMetaModelLocation();
 				} catch (CoreException e) {
 					System.err.println("Problem loading dsmlocation from wizard.");
 					e.printStackTrace();
 				}
 			}
 		});
+		EclipseHelper.createFile(".settings/no.hib.dpf.codegen.xpand.ui.prefs", 
+				p, 
+				"eclipse.preferences.version=1\n"
+				+ "metamodel.location=" + metaModelLocation, 
+				new NullProgressMonitor());
+		monitor.worked(1);
 	}
 
 	private Contributor getMetamodelContributor() {
@@ -158,6 +184,46 @@ public class NewDpfGeneratorWizard extends Wizard implements INewWizard,
 		return null;
 	}
 
+	@SuppressWarnings("unchecked")
+	private String getContents(final String resource) {
+		Bundle b = Platform.getBundle("no.hib.dpf.codegen.xpand.ui");
+		Enumeration<URL> ee = b.findEntries("resources", resource, false);
+		
+		URL fileURL = null;
+		
+		if(ee.hasMoreElements()) {
+			fileURL = ee.nextElement();
+		}
+		
+		try {
+			final InputStream inputStream = fileURL.openStream();
+
+			final byte[] buffer = new byte[4096];
+			final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+
+			while (true) {
+				int read;
+				read = inputStream.read(buffer);
+
+				if (read == -1) {
+					break;
+				}
+
+				outputStream.write(buffer, 0, read);
+			}
+
+			outputStream.close();
+			inputStream.close();
+
+			return outputStream.toString("iso-8859-1");
+		}
+		catch (final IOException e) {
+			e.printStackTrace();
+			return "";
+		}
+	}
+	
+	
 	/**
 	 * We will accept the selection in the workbench to see if we can initialize
 	 * from it.

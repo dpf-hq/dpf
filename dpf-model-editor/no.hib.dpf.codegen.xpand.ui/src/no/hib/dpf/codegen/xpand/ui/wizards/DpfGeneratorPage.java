@@ -10,8 +10,8 @@ import org.eclipse.swt.widgets.Text;
 
 public class DpfGeneratorPage extends WizardPage {
 
-	private Text projectName, dsmLocation;
-	private Label pname, dsml;
+	private Text projectName, metaModelLocation;
+	private Label pname, mml;
 	
 	protected DpfGeneratorPage() {
 		super("New DPF Generator");
@@ -34,11 +34,11 @@ public class DpfGeneratorPage extends WizardPage {
 		projectName = new Text(comp, SWT.SINGLE);
 		projectName.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		
-		dsml = new Label(comp, SWT.RIGHT);
-		dsml.setText("DSM location:");
+		mml = new Label(comp, SWT.RIGHT);
+		mml.setText("Meta model location:");
 		
-		dsmLocation = new Text(comp, SWT.SINGLE);
-		dsmLocation.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		metaModelLocation = new Text(comp, SWT.SINGLE);
+		metaModelLocation.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		
 		setControl(comp);
 		setPageComplete(true);
@@ -48,7 +48,7 @@ public class DpfGeneratorPage extends WizardPage {
 		return projectName.getText();
 	}
 	
-	public String getDsmLocation() {
-		return dsmLocation.getText();
+	public String getMetaModelLocation() {
+		return metaModelLocation.getText();
 	}
 }
