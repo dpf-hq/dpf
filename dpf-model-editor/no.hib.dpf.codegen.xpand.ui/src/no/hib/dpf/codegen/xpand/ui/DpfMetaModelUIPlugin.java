@@ -11,11 +11,11 @@
  *******************************************************************************/
 package no.hib.dpf.codegen.xpand.ui;
 
-import no.hib.dpf.codegen.xpand.ui.properties.DpfMetaModelProperties;
 import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Specification;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.ui.preferences.ScopedPreferenceStore;
 import org.osgi.framework.BundleContext;
 
 import java.util.Collections;
@@ -32,9 +32,12 @@ import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.core.resources.IResourceDeltaVisitor;
 import org.eclipse.core.resources.IResourceVisitor;
 import org.eclipse.core.resources.IWorkspace;
+import org.eclipse.core.resources.ProjectScope;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.preferences.IScopeContext;
+import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -208,20 +211,24 @@ public class DpfMetaModelUIPlugin extends AbstractUIPlugin {
 		}
 		
 		private String hasValidDsm(IProject f) {
-			try {
-				if(f.isAccessible()) {
-					String path = f.getPersistentProperty(DpfMetaModelProperties.DSM_PATH_PROPERTY);
-					if(path != null) {
-						//TODO: Properly handle input. file is needed to make the URI stuff work
-						return "file:/" + path;
-					}
+			if(f.isAccessible()) {
+				String path = getDpfMetaModelPath(f);
+				if(!path.equals("") || path != null) {
+					//TODO: Properly handle input. file is needed to make the URI stuff work
+					return path;
 				}
-			} catch (CoreException e) {
-				e.printStackTrace();
 			}
 			return null;
 		}
 		
+		private String getDpfMetaModelPath(IProject project) {
+			ScopedPreferenceStore store = new ScopedPreferenceStore(new InstanceScope(), PLUGIN_ID);
+			IScopeContext[] context = {new ProjectScope(project), new InstanceScope()};
+			
+			store.setSearchContexts(context);
+			
+			return store.getString("metamodel.location");
+		}
 		//Returns every IFile which matches isValidDsm
 //		public boolean visit(IResource resource) throws CoreException {
 //			if (resource instanceof IFile) {
