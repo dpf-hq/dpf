@@ -151,7 +151,15 @@ case class Cospan(left:Morphism,right:Morphism){
       }
       (m.toSet,left1.toMap,right1.toMap)
     }
-    null
+    //Pullback Nodes:
+    {
+    val p = pullbackSet(left.codomainNodes(),left.domainNodes,right.domainNodes)
+    }
+    //Pullback Arrows:
+    {
+    val p = pullbackSet(left.codomainArrows(),left.domainArrows,right.domainArrows)
+    }
+    null;
   }
   def validate()=left.codomainNodes().equals(right.codomainNodes()) && left.codomainArrows().equals(right.codomainArrows())
 }
