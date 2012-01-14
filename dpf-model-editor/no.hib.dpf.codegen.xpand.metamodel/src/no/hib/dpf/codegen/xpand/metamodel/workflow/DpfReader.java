@@ -4,33 +4,37 @@ import java.io.IOException;
 
 import no.hib.dpf.codegen.xpand.metamodel.DpfMetamodel;
 import no.hib.dpf.core.CoreFactory;
-import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.core.Specification;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.lib.WorkflowComponentWithModelSlot;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 
+/**
+ * This class represents the DpfReader component used in MWE workflow files.
+ * It provides xml attributes for setting a DPF meta model as well as model.
+ * 
+ * In it's current state it only supports one DPF meta model.
+ * 
+ * See example project for usage.
+ * 
+ * @author Anders Sandven <anders.sandven@gmail.com>
+ */
+
 public class DpfReader extends WorkflowComponentWithModelSlot {
 
 	private static final String COMPONENT_NAME = "DPF Reader";
-	private Specification dsm, instanceModel;
+	private Specification dpfMetaModel, dpfModel;
 	private DpfMetamodel metaModel;
-
-	static {
-		EPackage.Registry.INSTANCE.put(CorePackage.eNS_URI, CorePackage.eINSTANCE);
-	}
 	
 	@Override
 	public void checkConfiguration(Issues issues) {
-		System.out.println("checkconfig called");
-		if(dsm == null) {
-			issues.addError(this, "DSM is null");
-		} else if(instanceModel == null) {
-			issues.addError(this, "Instance model is null");
+		if(dpfMetaModel == null) {
+			issues.addError(this, "DPF meta model is null");
+		} else if(dpfModel == null) {
+			issues.addError(this, "DPF model is null");
 		}
 		super.checkConfiguration(issues);
 	}
@@ -38,30 +42,30 @@ public class DpfReader extends WorkflowComponentWithModelSlot {
 	@Override
 	protected void invokeInternal(WorkflowContext ctx, ProgressMonitor monitor,
 			Issues issues) {
-		metaModel.setDsm(dsm);
-		ctx.set(getModelSlot(), instanceModel); //For use in the expand statement
+		metaModel.setDsm(dpfMetaModel);
+		ctx.set(getModelSlot(), dpfModel); //For use in the expand statement
 	}
 
-	public Specification getDsm() {
-		return dsm;
+	public Specification getDpfMetaModel() {
+		return dpfMetaModel;
 	}
 
-	public void setDsm(String path) {
+	public void setDpfMetaModel(String path) {
 		try {
-			this.dsm = CoreFactory.eINSTANCE.loadSpecification(URI.createURI(path));
+			this.dpfMetaModel = CoreFactory.eINSTANCE.loadSpecification(URI.createURI(path));
 		} catch (IOException e) {
 			//do nothing, checkConfiguration should pick this up
 			e.printStackTrace();
 		}
 	}
 
-	public Specification getInstanceModel() {
-		return instanceModel;
+	public Specification getDpfModel() {
+		return dpfModel;
 	}
 
-	public void setInstanceModel(String path) {
+	public void setDpfModel(String path) {
 		try {
-			this.instanceModel = CoreFactory.eINSTANCE.loadSpecification(URI.createURI(path));
+			this.dpfModel = CoreFactory.eINSTANCE.loadSpecification(URI.createURI(path));
 		} catch (IOException e) {
 			//do nothing, checkConfiguration should pick this up
 			e.printStackTrace();
@@ -69,12 +73,10 @@ public class DpfReader extends WorkflowComponentWithModelSlot {
 	}
 	
 	public DpfMetamodel getMetaModel() {
-		System.out.println("###############getMetamodel");
 		return metaModel;
 	}
 
 	public void setMetaModel(DpfMetamodel metamodel) {
-		System.out.println("#################setMetamodel");
 		this.metaModel = metamodel;
 	}
 	
