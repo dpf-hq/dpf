@@ -33,11 +33,11 @@ sealed trait Morphism{
   
   def domainArrowSr(id:Id):Id
   def domainArrowTg(id:Id):Id
-  def domainArrowsSrTg:ArrowSrTg = null //TODO
+  lazy val domainArrowsSrTg:ArrowSrTg = createArrowSrTg(domainArrows,domainArrowSr,domainArrowTg)
 
   def codomainArrowSr(id:Id):Id
   def codomainArrowTg(id:Id):Id
-  def codomainArrowsSrTg:ArrowSrTg = null //TODO
+  lazy val codomainArrowsSrTg:ArrowSrTg = createArrowSrTg(codomainArrows,codomainArrowSr,codomainArrowTg)
   
   def domainNodes():Set[Id]
   def codomainNodes():Set[Id]
@@ -55,6 +55,17 @@ sealed trait Morphism{
 	  true;
 	}
 	return testSet(codomainNodes,domainNodes,error) && testSet(codomainArrows,domainArrows,error) 
+  } 	
+ 
+ private def createArrowSrTg(as:Set[Id], sr:Id=>Id, tg:Id=>Id):ArrowSrTg={
+   def create(as:Set[Id],f:Id=>Id):Map[Id,Id]={
+     val rs = MMap[Id,Id]();
+     for(a<-as){
+       rs+=a->f(a)
+     }
+     rs.toMap
+   }
+   ArrowSrTg(create(as,sr),create(as,tg))
   } 	
  
   def isMono():Boolean=test(_ > 1)
