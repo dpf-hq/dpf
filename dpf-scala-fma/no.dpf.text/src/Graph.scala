@@ -6,13 +6,13 @@ sealed trait Element{
 	val id: Id
 	val t:  Type
 }
-case class Node(override val id:Id, implicit override val t:TypeNode) extends Element with TypeNode{
+case class Node(override val id:Id, override val t:TypeNode) extends Element with TypeNode{
 	override def equals(o: Any) = o match { 
 		case n:Node => n.id == id 
 		case _ => false 
 	} 
 }
-case class Arrow(override val id:Id, sr:Node, tg:Node, implicit override val t:TypeArrow) extends Element with TypeArrow{
+case class Arrow(override val id:Id, sr:Node, tg:Node, override val t:TypeArrow) extends Element with TypeArrow{
 	override def equals(o: Any) = o match { 
 		case n:Arrow => n.id == id 
 		case _ => false 
