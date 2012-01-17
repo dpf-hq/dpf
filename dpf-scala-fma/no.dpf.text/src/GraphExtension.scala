@@ -132,7 +132,7 @@ case class Span(left:Morphism,right:Morphism){
 }
 case class Cospan(left:Morphism,right:Morphism){
   def pullback():Span = {
-    def pullbackSet(codomain2:Set[Id],l2:Id=>Set[Id],r2:Id=>Set[Id]){
+    def pullbackSet(codomain2:Set[Id],l2:Id=>Set[Id],r2:Id=>Set[Id])={
       
       val m = MSet[Id]()
       val left1 = MMap[Id,Id]()
@@ -152,16 +152,20 @@ case class Cospan(left:Morphism,right:Morphism){
       (m.toSet,left1.toMap,right1.toMap)
     }
     //Pullback Nodes:
-    {
-    val p = pullbackSet(left.codomainNodes(),left.domainNodes,right.domainNodes)
-    //TODO		
-    }
+    val pNodes = pullbackSet(left.codomainNodes(),left.domainNodes,right.domainNodes);
+    val rsLeftNodes = SetMorphism(pNodes._2,pNodes._2.values.toSet)		
+    val rsRightNodes = SetMorphism(pNodes._3,pNodes._3.values.toSet)
+
     //Pullback Arrows:
-    {
-    val p = pullbackSet(left.codomainArrows(),left.domainArrows,right.domainArrows)
-    //TODO		
-    }
-    null;
+    val pArrows = pullbackSet(left.codomainArrows(),left.domainArrows,right.domainArrows)
+    val rsLeftArrows = SetMorphism(pArrows._2,pArrows._2.values.toSet)		
+    val rsRightArrows = SetMorphism(pArrows._3,pArrows._3.values.toSet)	
+    
+//ArbitraryMorphismWithIds(inputNodes:SetMorphism,inputArrows:(SetMorphism,ArrowSrTg,ArrowSrTg)) extends Morphism{
+    val leftRs = ArbitraryMorphismWithIds(rsLeftNodes,(rsLeftArrows,null,null))
+    val rightRs = ArbitraryMorphismWithIds(rsRightNodes,(rsRightArrows,null,null))
+
+    Span(leftRs,rightRs);
   }
   def validate()=left.codomainNodes().equals(right.codomainNodes()) && left.codomainArrows().equals(right.codomainArrows())
 }
@@ -228,11 +232,11 @@ case class ArbitraryMorphismWithIds(inputNodes:SetMorphism,inputArrows:(SetMorph
 
   def domainNodes():Set[Id]=inputNodes.map.keySet
   
-  def codomainNodes():Set[Id]=inputNodes.codomain ++ Set(inputNodes.map.values toSeq: _ *) ++ Set(inputArrows._3.sr.values toSeq: _ *) ++ Set(inputArrows._3.tg.values toSeq: _ *)
+  def codomainNodes():Set[Id]=inputNodes.codomain ++ inputNodes.map.values.toSet ++ inputArrows._3.sr.values.toSet ++ inputArrows._3.tg.values.toSet
   
   def domainArrows():Set[Id]=inputArrows._1.map.keySet
   
-  def codomainArrows():Set[Id]=inputArrows._1.codomain++Set(inputArrows._1.map.values toSeq: _ *)
+  def codomainArrows():Set[Id]=inputArrows._1.codomain++inputArrows._1.map.values.toSet
   
 }
 
