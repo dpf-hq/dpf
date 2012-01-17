@@ -151,6 +151,11 @@ case class Cospan(left:Morphism,right:Morphism){
       }
       (m.toSet,left1.toMap,right1.toMap)
     }
+    
+    def createSrTgMaps()={
+      
+    }
+    
     //Pullback Nodes:
     val pNodes = pullbackSet(left.codomainNodes(),left.domainNodes,right.domainNodes);
     val rsLeftNodes = SetMorphism(pNodes._2,pNodes._2.values.toSet)		
@@ -161,9 +166,12 @@ case class Cospan(left:Morphism,right:Morphism){
     val rsLeftArrows = SetMorphism(pArrows._2,pArrows._2.values.toSet)		
     val rsRightArrows = SetMorphism(pArrows._3,pArrows._3.values.toSet)	
     
-//ArbitraryMorphismWithIds(inputNodes:SetMorphism,inputArrows:(SetMorphism,ArrowSrTg,ArrowSrTg)) extends Morphism{
-    val leftRs = ArbitraryMorphismWithIds(rsLeftNodes,(rsLeftArrows,null,null))
-    val rightRs = ArbitraryMorphismWithIds(rsRightNodes,(rsRightArrows,null,null))
+    //Build Result:
+    val domainArrowSrTg = null // ArrowSrTg() 
+    val codomainArrowSrTgLeft = null //ArrowSrTg() //create and copy maps   //method in morphism class
+    val codomainArrowSrTgRight = null //ArrowSrTg() //create and copy maps 
+    val leftRs = ArbitraryMorphismWithIds(rsLeftNodes,(rsLeftArrows,domainArrowSrTg,codomainArrowSrTgLeft))
+    val rightRs = ArbitraryMorphismWithIds(rsRightNodes,(rsRightArrows,domainArrowSrTg,codomainArrowSrTgRight))
 
     Span(leftRs,rightRs);
   }
