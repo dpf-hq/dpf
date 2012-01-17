@@ -33,11 +33,11 @@ sealed trait Morphism{
   
   def domainArrowSr(id:Id):Id
   def domainArrowTg(id:Id):Id
-  lazy val domainArrowsSrTg:ArrowSrTg = createArrowSrTg(domainArrows,domainArrowSr,domainArrowTg)
+  lazy val domainArrowsSrTg:ArrowSrTg = createArrowSrTg(domainArrows,domainArrowSr,domainArrowTg) /*If really a new map is required*/
 
   def codomainArrowSr(id:Id):Id
   def codomainArrowTg(id:Id):Id
-  lazy val codomainArrowsSrTg:ArrowSrTg = createArrowSrTg(codomainArrows,codomainArrowSr,codomainArrowTg)
+  lazy val codomainArrowsSrTg:ArrowSrTg = createArrowSrTg(codomainArrows,codomainArrowSr,codomainArrowTg) /*If really a new map is required*/
   
   def domainNodes():Set[Id]
   def codomainNodes():Set[Id]
