@@ -3,9 +3,9 @@ package no.hib.dpf.signature;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import no.hib.dpf.api.ui.DPFErrorReport;
 import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Signature;
-import no.hib.dpf.editor.DPFErrorReport;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;

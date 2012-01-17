@@ -16,16 +16,22 @@
 package no.hib.dpf.core.impl;
 
 
-import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.net.JarURLConnection;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.jar.JarFile;
 
+import no.hib.dpf.api.ui.*;
 import no.hib.dpf.constant.DPFConstants;
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
@@ -38,20 +44,21 @@ import no.hib.dpf.core.Predicate;
 import no.hib.dpf.core.SemanticsValidator;
 import no.hib.dpf.core.Visualization;
 
-import org.codehaus.janino.DebuggingInformation;
-import org.codehaus.janino.JavaSourceClassLoader;
-import org.codehaus.janino.SimpleCompiler;
-import org.codehaus.janino.util.resource.MapResourceFinder;
+import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.BasicEMap;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -395,67 +402,64 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 		return true;
 	}
 
+	private URL getClassLocation (final Class<?> clazz)
+	{
+		Bundle bundle = FrameworkUtil.getBundle(clazz);
+		URL url = bundle.getResource("");
+		try {
+			url = FileLocator.resolve(url);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return url;
+	}
+
+	private String getFileLocation(final URL url){
+		if(url.getProtocol().equals("jar")){
+			JarURLConnection conn;
+			try {
+				conn = (JarURLConnection)url.openConnection();
+				JarFile jarfile = conn.getJarFile();
+				return jarfile.getName();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		if(url.getProtocol().equals("file")){
+			try {
+				File file = new File(url.toURI());
+				return file.getAbsolutePath();
+			} catch (URISyntaxException e) {
+				e.printStackTrace();
+			}
+
+		}
+		return url.getPath();
+	}
+	public static final String PATH_SEPARATOR = System.getProperty("path.separator");
 	private Checker getChecker(){
-//		if(checker == null){
-//			ClassLoader loader = Thread.currentThread().getContextClassLoader();//Node.class.getClassLoader();
-//			CharSequenceCompiler<Checker> compiler = new CharSequenceCompiler<Checker>(loader, null);
-//			try {
-//				System.out.println(DPFConstants.DefaultChecker);
-//				Class<Checker> clazz = compiler.compile(DPFConstants.DefaultCheckerClass, DPFConstants.DefaultChecker, null, Checker.class);
-//				checker = clazz.newInstance();
-//			} catch (ClassCastException e) {
-////				e.printStackTrace();
-//			} catch (CharSequenceCompilerException e) {
-////				e.printStackTrace();
-//			} catch (InstantiationException e) {
-////				e.printStackTrace();
-//			} catch (IllegalAccessException e) {
-////				e.printStackTrace();
-//			} 
-//		}
 		if(checker == null){
-			final Map<String,byte[]> map = new HashMap<String,byte[]>();
-			map.put(DPFConstants.DefaultCheckerClass, getSemanticsValidator().getValidator().getBytes());
-			MapResourceFinder mrf = null;
-			ClassLoader classLoader = null;
+			String[] opts = new String[]{"-cp", getFileLocation(getClassLocation(Node.class)) + PATH_SEPARATOR + getFileLocation(getClassLocation(EObject.class))+ PATH_SEPARATOR + getFileLocation(getClassLocation(Notifier.class))};
+			CharSequenceCompiler<Checker> compiler = new CharSequenceCompiler<Checker>(Thread.currentThread().getContextClassLoader(),  Arrays.asList(opts));
 			try {
-				//Init class loader:
-				mrf = new MapResourceFinder(map);
-
-				//Compile:		
-				SimpleCompiler scompiler = new SimpleCompiler();
-				scompiler.setParentClassLoader(Node.class.getClassLoader());
-				scompiler.cook(new ByteArrayInputStream(map.get(DPFConstants.DefaultCheckerClass)));
-				classLoader = scompiler.getClassLoader();
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			String encoding = null;
-			Thread.currentThread().getContextClassLoader();
-			ClassLoader cl = new JavaSourceClassLoader(classLoader, mrf, encoding, DebuggingInformation.ALL);
-			try {
-				Class<?> clazz = cl.loadClass(DPFConstants.DefaultCheckerClass);
-				checker = ((Checker)clazz.newInstance());
-			} catch (IllegalArgumentException e) {
-				e.printStackTrace();
-			} catch (SecurityException e) {
-				e.printStackTrace();
-			} 
-			catch (IllegalAccessException e) {
-				e.printStackTrace();
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
+				Class<Checker> clazz = compiler.compile(DPFConstants.DefaultCheckerClass, getSemanticsValidator().getValidator(), null, Checker.class);
+				checker = clazz.newInstance();
+			} catch (ClassCastException e) {
+				DPFErrorReport.logError(e);
+			} catch (CharSequenceCompilerException e) {
+				DPFErrorReport.logError(e);
 			} catch (InstantiationException e) {
-				e.printStackTrace();
-			}
+				DPFErrorReport.logError(e);
+			} catch (IllegalAccessException e) {
+				DPFErrorReport.logError(e);
+			} 
 		}
 		return checker;
 	}
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateSemantics(GraphHomomorphism mapping, Graph graph) {
 		if(graph.getNodes().size() == 0)
@@ -463,11 +467,13 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 		Map<Node, List<Node>> nodeMap = new LinkedHashMap<Node, List<Node>>();
 		Map<Arrow, List<Arrow>> arrowMap = new LinkedHashMap<Arrow, List<Arrow>>();
 		intialize(mapping, graph, nodeMap, arrowMap);
-		
-		return getChecker().check(getShape(), nodeMap, arrowMap);
+		Checker checker = getChecker();
+		if(checker != null)
+			return checker.check(getShape(), nodeMap, arrowMap);
+		return true;
 	}
 
-	
+
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private EMap changeKeyAndValue(EMap map){
 		//map must be bijective

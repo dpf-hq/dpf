@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2011 H¿yskolen i Bergen
+ * Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
 *******************************************************************************/
 package no.hib.dpf.editor.figures;
 
@@ -21,6 +21,7 @@ import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
+import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.SWTException;
@@ -97,13 +98,13 @@ public abstract class TwoArrowConstraintConnection extends PolylineConnection im
 		
 		double normOrthoVectorX = orthoVector.x / length;
 		double normOrthoVectorY = orthoVector.y / length;
-		Point finalVector = new Point(normOrthoVectorX * offset1, normOrthoVectorY  * offset1);		
+		Point finalVector = new PrecisionPoint(normOrthoVectorX * offset1, normOrthoVectorY  * offset1);		
 		Point midway = new Point(startPoint.x + (dx/2), startPoint.y + (dy/2));
 		
 		Point[] retval = new Point[2];
 		
 		retval[0] = new Point(midway.x + finalVector.x, midway.y + finalVector.y);
-		finalVector = new Point(normOrthoVectorX * offset2, normOrthoVectorY  * offset2);		
+		finalVector = new PrecisionPoint(normOrthoVectorX * offset2, normOrthoVectorY  * offset2);		
 		retval[1] = new Point(midway.x + finalVector.x, midway.y + finalVector.y);
 		
 		return retval;

@@ -283,9 +283,9 @@ public class TotalParticipationPainting implements IArrowPainting {
 		protected void outlineShape(Graphics g) {
 		}
 
-		public Point getTurnScalePointAccordingToSecond(Point a, Point b, double angle, double scale){
-			return getTranslateBack(turn(getTranslate(a, b), angle, scale), b);
-		}
+//		public Point getTurnScalePointAccordingToSecond(Point a, Point b, double angle, double scale){
+//			return getTranslateBack(turn(getTranslate(a, b), angle, scale), b);
+//		}
 		Point getTranslate(Point a, Point b){
 			return new Point(a.x - b.x, a.y - b.y);
 		}
@@ -301,16 +301,16 @@ public class TotalParticipationPainting implements IArrowPainting {
 			return Math.sqrt(a.x * a.x + a.y * a.y);
 		}
 
-		double getSlope(Point a, Point b){
-			return (b.y - a.y)/(b.x - a.x);
-		}
-		Point getCrossPoint(Point a, Point b, Point c, Point d){
-			double ka = getSlope(a, b);
-			double kc = getSlope(c, d);
-			double x = (c.y - a.y + (ka * a.x - kc * c.x))/(ka - kc);
-			double y = a.y + ka * (x - a.x);
-			return new Point((int)x, (int)y);
-		}
+//		double getSlope(Point a, Point b){
+//			return (b.y - a.y)/(b.x - a.x);
+//		}
+//		Point getCrossPoint(Point a, Point b, Point c, Point d){
+//			double ka = getSlope(a, b);
+//			double kc = getSlope(c, d);
+//			double x = (c.y - a.y + (ka * a.x - kc * c.x))/(ka - kc);
+//			double y = a.y + ka * (x - a.x);
+//			return new Point((int)x, (int)y);
+//		}
 	}
 
 

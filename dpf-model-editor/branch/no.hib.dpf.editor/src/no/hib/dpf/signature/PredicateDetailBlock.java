@@ -253,7 +253,9 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 		iconChooser.addSelectionListener(new SelectionListener() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				String fileName = new FileDialog(e.display.getActiveShell()).open();
+				FileDialog dialog = new FileDialog(e.display.getActiveShell());
+				dialog.setFileName(master.getMultiEditor().getSignatureFile());
+				String fileName = dialog.open();
 				if (fileName != null) {
 					changePredicateIcon(fileName);
 					icon.setText(fileName);

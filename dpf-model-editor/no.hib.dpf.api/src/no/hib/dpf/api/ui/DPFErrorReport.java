@@ -1,4 +1,6 @@
-package no.hib.dpf.editor;
+package no.hib.dpf.api.ui;
+
+import no.hib.dpf.api.DPFUtilPlugin;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -21,10 +23,10 @@ public class DPFErrorReport {
 	}
 	public static IStatus createStatus(int severity, int code,
 			String message, Throwable exception) {
-		return new Status(severity, DPFPlugin.PLUGIN_ID, code,
+		return new Status(severity, DPFUtilPlugin.PLUGIN_ID, code,
 				message, exception);
 	}
 	public static void log(IStatus status) {
-		DPFPlugin.getDefault().getLog().log(status);
+		DPFUtilPlugin.getDefault().getLog().log(status);
 	}
 }

@@ -22,8 +22,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import no.hib.dpf.api.ui.DPFErrorReport;
 import no.hib.dpf.core.Node;
-import no.hib.dpf.editor.DPFErrorReport;
 import no.hib.dpf.editor.displaymodel.DArrow;
 import no.hib.dpf.editor.displaymodel.DNode;
 import no.hib.dpf.editor.displaymodel.LocationAndSize;

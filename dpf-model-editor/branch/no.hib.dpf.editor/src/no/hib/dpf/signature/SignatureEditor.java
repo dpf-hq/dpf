@@ -12,12 +12,12 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import no.hib.dpf.api.ui.DPFErrorReport;
 import no.hib.dpf.constant.DPFConstants;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.Predicate;
 import no.hib.dpf.core.Signature;
 import no.hib.dpf.editor.DPFCoreUtil;
-import no.hib.dpf.editor.DPFErrorReport;
 import no.hib.dpf.editor.displaymodel.DPFDiagram;
 
 import org.eclipse.core.resources.IFile;
@@ -71,6 +71,9 @@ public class SignatureEditor extends FormEditor implements CommandStackListener,
 	
 	List<DPFDiagram> diagrams = new ArrayList<DPFDiagram>();
 	private String signatureFile;
+	public String getSignatureFile() {
+		return signatureFile;
+	}
 	public DefaultEditDomain getEditDomain() {
 		return editDomain;
 	}

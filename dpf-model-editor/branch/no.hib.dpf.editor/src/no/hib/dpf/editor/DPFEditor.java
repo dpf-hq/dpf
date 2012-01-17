@@ -12,11 +12,12 @@
  * Elias Volanakis - initial API and implementation
  * 
  * �yvind Bech and Dag Viggo Lok�en - DPF Editor
-*******************************************************************************/
+ *******************************************************************************/
 package no.hib.dpf.editor;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -24,12 +25,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.EventObject;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import no.hib.dpf.api.ui.DPFErrorReport;
 import no.hib.dpf.constant.DPFConstants;
 import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.CoreFactory;
@@ -42,6 +45,7 @@ import no.hib.dpf.editor.displaymodel.DArrow;
 import no.hib.dpf.editor.displaymodel.DConstraint;
 import no.hib.dpf.editor.displaymodel.DPFDiagram;
 import no.hib.dpf.editor.displaymodel.ModelElement;
+import no.hib.dpf.editor.displaymodel.commands.MultipleArrowConstraintCreateCommand;
 import no.hib.dpf.editor.displaymodel.commands.SingleArrowConstraintCreateCommand;
 import no.hib.dpf.editor.editoractions.ConstraintProperties;
 import no.hib.dpf.editor.editoractions.CreateCompositionConstraintAction;
@@ -108,6 +112,7 @@ import org.eclipse.gef.ui.parts.TreeViewer;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
@@ -183,105 +188,105 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		if(specification.getSignatureFile() != null){
 			for(Predicate predicate : specification.getSignature().getPredicates())
 				addActionForPredicate(predicate);
-			return;
+
+		}else{
+			// First step to move the predicates out of the editor:
+			// There remains to make some coupling between these predicates
+			// and the parts/figures that implement them.
+			Signature defaultSignature = specification.getSignature();
+			ConstraintProperties xorProperties = new ConstraintProperties(
+					defaultSignature.getPredicateBySymbol("[xor]"), 
+					"Create new [xor] Constraint",
+					"Creates a new [xor] Constraint",
+					DConstraint.ConstraintType.XOR);
+
+			registerConstraintAction(new CreateXORConstraintAction(this, diagram.getDpfGraph(), xorProperties));
+
+			ConstraintProperties nandProperties = new ConstraintProperties(
+					defaultSignature.getPredicateBySymbol("[nand]"), 
+					"Create new [nand] Constraint",
+					"Creates a new [nand] Constraint",
+					DConstraint.ConstraintType.NAND);
+
+			registerConstraintAction(new CreateNANDConstraintAction(this, diagram.getDpfGraph(), nandProperties));
+
+			ConstraintProperties injectiveProperties = new ConstraintProperties(
+					defaultSignature.getPredicateBySymbol("[injective]"), 
+					"Create new [injective] Constraint",
+					"Creates a new [injective] Constraint",
+					DConstraint.ConstraintType.INJECTIVE);
+
+			registerConstraintAction(new CreateInjectiveConstraintAction(this, diagram.getDpfGraph(), injectiveProperties));
+			ConstraintProperties surjectiveProperties = new ConstraintProperties(
+					defaultSignature.getPredicateBySymbol("[surjective]"), 
+					"Create new [surjective] Constraint",
+					"Creates a new [surjective] Constraint",
+					DConstraint.ConstraintType.SURJECTIVE);
+
+			registerConstraintAction(new CreateSurjectiveConstraintAction(this, diagram.getDpfGraph(), surjectiveProperties));
+
+
+			ConstraintProperties jointlyInjectiveProperties = new ConstraintProperties(
+					defaultSignature.getPredicateBySymbol("[jointly-injective]"), 
+					"Create new [jointly-injective] Constraint",
+					"Creates a new [jointly-injective] Constraint",
+					DConstraint.ConstraintType.JOINTLY_INJECTIVE);
+
+			registerConstraintAction(new CreateJointlyInjectiveConstraintAction(this, diagram.getDpfGraph(), jointlyInjectiveProperties));
+
+			ConstraintProperties jointlySurjectiveProperties = new ConstraintProperties(
+					defaultSignature.getPredicateBySymbol("[jointly-surjective]"), 
+					"Create new [jointly-surjective] Constraint",
+					"Creates a new [jointly-surjective] Constraint",
+					DConstraint.ConstraintType.JOINTLY_SURJECTIVE);
+
+			registerConstraintAction(new CreateJointlySurjectiveConstraintAction(this, diagram.getDpfGraph(), jointlySurjectiveProperties));
+
+			ConstraintProperties multiplicityProperties = new ConstraintProperties(
+					defaultSignature.getPredicateBySymbol("[mult(m,n)]"), 
+					"Create new [mult(m,n)] Constraint",
+					"Creates a new [mult(m,n)] Constraint",
+					DConstraint.ConstraintType.MULTIPLICITY);
+
+			registerConstraintAction(new CreateMultiplicityConstraintAction(this, diagram.getDpfGraph(), multiplicityProperties));
+
+			ConstraintProperties inverseProperties = new ConstraintProperties(
+					defaultSignature.getPredicateBySymbol("[inverse]"),
+					"Create new [inverse] Constraint",
+					"Creates a new [inverse] Constraint",
+					DConstraint.ConstraintType.INVERSE);
+			registerConstraintAction(new CreateInverseConstraintAction(this, diagram.getDpfGraph(), inverseProperties));
+
+			ConstraintProperties imageInclusionProperties = new ConstraintProperties(
+					defaultSignature.getPredicateBySymbol("[image-inclusion]"),
+					"Create new [image-inclusion] Constraint",
+					"Creates a new [image-inclusion] Constraint",
+					DConstraint.ConstraintType.IMAGE_INCLUSION);
+			registerConstraintAction(new CreateImageInclusionConstraintAction(this, diagram.getDpfGraph(), imageInclusionProperties));
+
+			ConstraintProperties compositionProperties = new ConstraintProperties(
+					defaultSignature.getPredicateBySymbol("[composition]"),
+					"Create new [composition] Constraint",
+					"Creates a new [composition] Constraint",
+					DConstraint.ConstraintType.COMPOSITION);
+			registerConstraintAction(new CreateCompositionConstraintAction(this, diagram.getDpfGraph(), compositionProperties));
+
+
+			ConstraintProperties irreflexiveProperties = new ConstraintProperties(
+					defaultSignature.getPredicateBySymbol("[irreflexive]"),
+					"Create new [irreflexive] Constraint",
+					"Creates a new [irreflexive] Constraint",
+					DConstraint.ConstraintType.IRREFLEXIVE);
+			registerConstraintAction(new CreateIrreflexiveConstraintAction(this, diagram.getDpfGraph(), irreflexiveProperties));
+
+			ConstraintProperties transitiveIrreflexiveProperties = new ConstraintProperties(
+					defaultSignature.getPredicateBySymbol("[transitive-irreflexive]"),
+					"Create new [transitive-irreflexive] Constraint",
+					"Creates a new [transitive-irreflexive] Constraint",
+					DConstraint.ConstraintType.TRANSITIVE_IRREFLEXIVE);
+
+			registerConstraintAction(new CreateTransitiveIrreflexiveConstraintAction(this, diagram.getDpfGraph(), transitiveIrreflexiveProperties));
 		}
-		// First step to move the predicates out of the editor:
-		// There remains to make some coupling between these predicates
-		// and the parts/figures that implement them.
-		Signature defaultSignature = specification.getSignature();
-		ConstraintProperties xorProperties = new ConstraintProperties(
-				defaultSignature.getPredicateBySymbol("[xor]"), 
-				"Create new [xor] Constraint",
-				"Creates a new [xor] Constraint",
-				DConstraint.ConstraintType.XOR);
-		
-		registerAction(new CreateXORConstraintAction(this, diagram.getDpfGraph(), xorProperties));
-		
-		ConstraintProperties nandProperties = new ConstraintProperties(
-				defaultSignature.getPredicateBySymbol("[nand]"), 
-				"Create new [nand] Constraint",
-				"Creates a new [nand] Constraint",
-				DConstraint.ConstraintType.NAND);
-		
-		registerAction(new CreateNANDConstraintAction(this, diagram.getDpfGraph(), nandProperties));
-
-		ConstraintProperties injectiveProperties = new ConstraintProperties(
-				defaultSignature.getPredicateBySymbol("[injective]"), 
-				"Create new [injective] Constraint",
-				"Creates a new [injective] Constraint",
-				DConstraint.ConstraintType.INJECTIVE);
-		
-		registerAction(new CreateInjectiveConstraintAction(this, diagram.getDpfGraph(), injectiveProperties));
-		ConstraintProperties surjectiveProperties = new ConstraintProperties(
-				defaultSignature.getPredicateBySymbol("[surjective]"), 
-				"Create new [surjective] Constraint",
-				"Creates a new [surjective] Constraint",
-				DConstraint.ConstraintType.SURJECTIVE);
-		
-		registerAction(new CreateSurjectiveConstraintAction(this, diagram.getDpfGraph(), surjectiveProperties));
-
-		
-		ConstraintProperties jointlyInjectiveProperties = new ConstraintProperties(
-				defaultSignature.getPredicateBySymbol("[jointly-injective]"), 
-				"Create new [jointly-injective] Constraint",
-				"Creates a new [jointly-injective] Constraint",
-				DConstraint.ConstraintType.JOINTLY_INJECTIVE);
-		
-		registerAction(new CreateJointlyInjectiveConstraintAction(this, diagram.getDpfGraph(), jointlyInjectiveProperties));
-				
-		ConstraintProperties jointlySurjectiveProperties = new ConstraintProperties(
-				defaultSignature.getPredicateBySymbol("[jointly-surjective]"), 
-				"Create new [jointly-surjective] Constraint",
-				"Creates a new [jointly-surjective] Constraint",
-				DConstraint.ConstraintType.JOINTLY_SURJECTIVE);
-		
-		registerAction(new CreateJointlySurjectiveConstraintAction(this, diagram.getDpfGraph(), jointlySurjectiveProperties));
-		
-		ConstraintProperties multiplicityProperties = new ConstraintProperties(
-				defaultSignature.getPredicateBySymbol("[mult(m,n)]"), 
-				"Create new [mult(m,n)] Constraint",
-				"Creates a new [mult(m,n)] Constraint",
-				DConstraint.ConstraintType.MULTIPLICITY);
-
-		registerAction(new CreateMultiplicityConstraintAction(this, diagram.getDpfGraph(), multiplicityProperties));
-		
-		ConstraintProperties inverseProperties = new ConstraintProperties(
-				defaultSignature.getPredicateBySymbol("[inverse]"),
-				"Create new [inverse] Constraint",
-				"Creates a new [inverse] Constraint",
-				DConstraint.ConstraintType.INVERSE);
-		registerAction(new CreateInverseConstraintAction(this, diagram.getDpfGraph(), inverseProperties));
-
-		ConstraintProperties imageInclusionProperties = new ConstraintProperties(
-				defaultSignature.getPredicateBySymbol("[image-inclusion]"),
-				"Create new [image-inclusion] Constraint",
-				"Creates a new [image-inclusion] Constraint",
-				DConstraint.ConstraintType.IMAGE_INCLUSION);
-		registerAction(new CreateImageInclusionConstraintAction(this, diagram.getDpfGraph(), imageInclusionProperties));
-		
-		ConstraintProperties compositionProperties = new ConstraintProperties(
-				defaultSignature.getPredicateBySymbol("[composition]"),
-				"Create new [composition] Constraint",
-				"Creates a new [composition] Constraint",
-				DConstraint.ConstraintType.COMPOSITION);
-		registerAction(new CreateCompositionConstraintAction(this, diagram.getDpfGraph(), compositionProperties));
-
-
-		ConstraintProperties irreflexiveProperties = new ConstraintProperties(
-				defaultSignature.getPredicateBySymbol("[irreflexive]"),
-				"Create new [irreflexive] Constraint",
-				"Creates a new [irreflexive] Constraint",
-				DConstraint.ConstraintType.IRREFLEXIVE);
-		registerAction(new CreateIrreflexiveConstraintAction(this, diagram.getDpfGraph(), irreflexiveProperties));
-		
-		ConstraintProperties transitiveIrreflexiveProperties = new ConstraintProperties(
-				defaultSignature.getPredicateBySymbol("[transitive-irreflexive]"),
-				"Create new [transitive-irreflexive] Constraint",
-				"Creates a new [transitive-irreflexive] Constraint",
-				DConstraint.ConstraintType.TRANSITIVE_IRREFLEXIVE);
-		
-		registerAction(new CreateTransitiveIrreflexiveConstraintAction(this, diagram.getDpfGraph(), transitiveIrreflexiveProperties));
-		
 		registerAction(new AlignmentAction((IWorkbenchPart)this, PositionConstants.LEFT));
 		registerAction(new AlignmentAction((IWorkbenchPart)this, PositionConstants.RIGHT));
 		registerAction(new AlignmentAction((IWorkbenchPart)this, PositionConstants.TOP));
@@ -303,11 +308,23 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 				switch(predicate.getVisualization().getType()){
 				case ARROW_LABEL:
 					return new SingleArrowConstraintCreateCommand((DArrow)connectionEditParts.get(0).getModel(), DConstraint.ConstraintType.SURJECTIVE, createIDObject());
+				case ARROW_TO_ARROW:
+					return new MultipleArrowConstraintCreateCommand((DArrow)connectionEditParts.get(0).getModel(), (DArrow)connectionEditParts.get(1).getModel(), DConstraint.ConstraintType.XOR, createIDObject());
 				}
 				return null;
 			}
 			
 		};
+		try {
+			File file = new File(predicate.getIcon());
+			action.setImageDescriptor(ImageDescriptor.createFromURL(file.toURI().toURL()));
+		} catch (MalformedURLException e) {
+			DPFErrorReport.logError(e);
+		}
+		registerConstraintAction(action);
+	}
+
+	private void registerConstraintAction(IAction action){
 		registerAction(action);
 		constraintActions.add(action);
 	}
@@ -851,7 +868,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		}
 		return null;
 	}
-	
+
 	public static ResourceSetImpl getResourceSet(){
 		ResourceSetImpl resourceSet = new ResourceSetImpl();
 		resourceSet.setURIResourceMap(new LinkedHashMap<URI, Resource>());
@@ -895,7 +912,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		}
 		
 	}
-	
+
 	public void init(IEditorSite site, IEditorInput input) throws PartInitException {
 		super.init(site, input);
 		getSite().getPage().addPartListener(partListener);
@@ -930,14 +947,14 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 			actionBars.updateActionBars();
 		}
 		public void partOpened(IWorkbenchPart p) {
-//			if (p instanceof PropertySheet) {
-//				if (((PropertySheet)p).getCurrentPage() == propertySheetPage) {
-//					UndoablePropertySheetEntry root = new UndoablePropertySheetEntry(getCommandStack());
-//					root.setPropertySourceProvider(sourceProvider);
-//					propertySheetPage.setRootEntry(root);
-//					propertySheetPage.setPropertySourceProvider(sourceProvider);
-//				}
-//			}
+			//			if (p instanceof PropertySheet) {
+			//				if (((PropertySheet)p).getCurrentPage() == propertySheetPage) {
+			//					UndoablePropertySheetEntry root = new UndoablePropertySheetEntry(getCommandStack());
+			//					root.setPropertySourceProvider(sourceProvider);
+			//					propertySheetPage.setRootEntry(root);
+			//					propertySheetPage.setPropertySourceProvider(sourceProvider);
+			//				}
+			//			}
 		}
 	};
 }

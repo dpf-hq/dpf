@@ -1,7 +1,7 @@
 /*******************************************************************************
  * Copyright (c) 2000, 2010 IBM Corporation and others.
  * 
- * Portions of the code Copyright (c) 2011 H¿yskolen i Bergen
+ * Portions of the code Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,7 +11,7 @@
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *     
- *     ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ *     ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
  *******************************************************************************/
 package no.hib.dpf.editor.figures;
 
@@ -175,20 +175,20 @@ public class MultipleArrowsChopboxAnchor extends ChopboxAnchor {
 
 	private int findAvalableOrthogonalSpace(Rectangle r, float centerX,
 			float centerY, float dx, float dy) {
-		Point orthoVector = new Point(-dy, dx);
+		Point orthoVector = new PrecisionPoint(-dy, dx);
 		double length = new Point(0, 0).getDistance(orthoVector);
 		
 		int availableOrthogonalSpace = 40;
 		double normOrthoVectorX = orthoVector.x / length;
 		double normOrthoVectorY = orthoVector.y / length;
-		Point finalVector1 = new Point(normOrthoVectorX * 100000, normOrthoVectorY  * 100000);
-		finalVector1.translate(new Point(centerX, centerY));
-		Point finalVector2 = new Point(normOrthoVectorX * -100000, normOrthoVectorY  * -100000);
-		finalVector2.translate(new Point(centerX, centerY));
+		Point finalVector1 = new PrecisionPoint(normOrthoVectorX * 100000, normOrthoVectorY  * 100000);
+		finalVector1.translate(new PrecisionPoint(centerX, centerY));
+		Point finalVector2 = new PrecisionPoint(normOrthoVectorX * -100000, normOrthoVectorY  * -100000);
+		finalVector2.translate(new PrecisionPoint(centerX, centerY));
 		
 		
-		Point intersect1 = findRectangleIntersection(r, centerX, centerY, new Point(centerX + finalVector1.x, centerY + finalVector1.y), new Straight(new PrecisionPoint(centerX, centerY), new PrecisionPoint(centerX + finalVector1.x, centerY + finalVector1.y)));
-		Point intersect2 = findRectangleIntersection(r, centerX, centerY, new Point(centerX + finalVector2.x, centerY + finalVector2.y), new Straight(new PrecisionPoint(centerX, centerY), new PrecisionPoint(centerX + finalVector2.x, centerY + finalVector2.y)));
+		Point intersect1 = findRectangleIntersection(r, centerX, centerY, new PrecisionPoint(centerX + finalVector1.x, centerY + finalVector1.y), new Straight(new PrecisionPoint(centerX, centerY), new PrecisionPoint(centerX + finalVector1.x, centerY + finalVector1.y)));
+		Point intersect2 = findRectangleIntersection(r, centerX, centerY, new PrecisionPoint(centerX + finalVector2.x, centerY + finalVector2.y), new Straight(new PrecisionPoint(centerX, centerY), new PrecisionPoint(centerX + finalVector2.x, centerY + finalVector2.y)));
 		
 		if ((intersect1 != null) && (intersect2 != null)) {
 			availableOrthogonalSpace = (int) intersect1.getDistance(intersect2);
@@ -269,14 +269,14 @@ public class MultipleArrowsChopboxAnchor extends ChopboxAnchor {
 
 	private Point getOrthogonalVector(float dx, float dy, int offset) {
 		// Move points orthogonally to line:
-		Point orthoVector = new Point(-dy, dx);
+		Point orthoVector = new PrecisionPoint(-dy, dx);
 		double length = new Point(0, 0).getDistance(orthoVector);
 
 		double normOrthoVectorX = orthoVector.x / length;
 		double normOrthoVectorY = orthoVector.y / length;
-		Point finalVector = new Point(normOrthoVectorX * offset, normOrthoVectorY  * offset);
+		Point finalVector = new PrecisionPoint(normOrthoVectorX * offset, normOrthoVectorY  * offset);
 		if (isAnchorLeftmostOrHighest()) {
-			finalVector = new Point(normOrthoVectorX * -offset, normOrthoVectorY  * -offset);
+			finalVector = new PrecisionPoint(normOrthoVectorX * -offset, normOrthoVectorY  * -offset);
 		}
 		return finalVector;
 	}
