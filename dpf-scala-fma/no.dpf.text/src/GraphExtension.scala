@@ -547,9 +547,24 @@ case class InclusionMorphism(inputSub:AbstractGraph, input:AbstractGraph) extend
 }
 
 object Test {
-  
+
+  	//Ids:
+	private var i = 0; 
+	def gen()= {i+=1;
+		RId(1000 + i);
+	}
+
 	def main(args: Array[String]) {
-		println("Test")
+	  import mutable.{Graph => MGraph};
+	  
+	  //Test Pullback (left2,right2,top):
+	  val left2 = new MGraph(GraphDpf,gen);
+	  val right2 = new MGraph(GraphDpf,gen);
+	  val top = new MGraph(GraphDpf,gen);
+	  
+	  
+
+	  //Test Pushout:
 	}
 	
 }
