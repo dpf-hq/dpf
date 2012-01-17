@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ASCII"?>
+<no.hib.dpf.core:Specification xmlns:no.hib.dpf.core="http://no.hib.dpf.core" signatureFile="/media/Data/DPF/runtime-EclipseApplication/dpf/signature/Default.sig">
+  <graph id="9fa63d94-54bc-45e6-9e9b-f310eaf4bc9c" name="Default name">
+    <nodes id="00f31f24-955e-4836-847e-4f582913d522" name="SBXA">
+      <typeNode href="platform:/resource/DefaultGraph.xmi#//@nodes.0"/>
+    </nodes>
+    <nodes id="0f7ea6d8-2b6f-4c7f-ad53-26a00d9edac0" name="XC">
+      <typeNode href="platform:/resource/DefaultGraph.xmi#//@nodes.0"/>
+    </nodes>
+    <nodes id="27bfe34d-1c96-47f2-bdae-5617cada22ef" name="XB">
+      <typeNode href="platform:/resource/DefaultGraph.xmi#//@nodes.0"/>
+    </nodes>
+    <nodes id="55709ac7-4726-4561-aeed-1d24d0803dac" name="SA">
+      <typeNode href="platform:/resource/DefaultGraph.xmi#//@nodes.0"/>
+    </nodes>
+    <arrows id="efeebc71-2cd3-4eb6-9e44-06ed24cec282" target="//@graph/@nodes.0" source="//@graph/@nodes.3" name="SASB">
+      <typeArrow href="platform:/resource/DefaultGraph.xmi#//@arrows.0"/>
+    </arrows>
+    <arrows id="8dd598a6-1c50-45c6-9982-85704f1aee48" target="//@graph/@nodes.1" source="//@graph/@nodes.0" name="XAXC">
+      <typeArrow href="platform:/resource/DefaultGraph.xmi#//@arrows.0"/>
+    </arrows>
+    <arrows id="3d47a869-2a12-4bfe-8290-292fe6073cbc" target="//@graph/@nodes.1" source="//@graph/@nodes.2" name="XBXC">
+      <typeArrow href="platform:/resource/DefaultGraph.xmi#//@arrows.0"/>
+    </arrows>
+    <constraints id="deca6324-462d-49d4-b392-d34cbe21e5e4">
+      <predicate href="../Default.sig#//@predicates.0"/>
+      <mappings>
+        <nodeMapping value="//@graph/@nodes.0">
+          <key href="../Default.sig#//@predicates.0/@shape/@nodes.1"/>
+        </nodeMapping>
+        <nodeMapping value="//@graph/@nodes.3">
+          <key href="../Default.sig#//@predicates.0/@shape/@nodes.0"/>
+        </nodeMapping>
+        <arrowMapping value="//@graph/@arrows.0">
+          <key href="../Default.sig#//@predicates.0/@shape/@arrows.0"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+    <constraints id="cf15307a-00ba-4370-9db1-d47136660a85">
+      <predicate href="../Default.sig#//@predicates.1"/>
+      <mappings>
+        <nodeMapping value="//@graph/@nodes.2">
+          <key href="../Default.sig#//@predicates.1/@shape/@nodes.0"/>
+        </nodeMapping>
+        <nodeMapping value="//@graph/@nodes.0">
+          <key href="../Default.sig#//@predicates.1/@shape/@nodes.1"/>
+        </nodeMapping>
+        <nodeMapping value="//@graph/@nodes.1">
+          <key href="../Default.sig#//@predicates.1/@shape/@nodes.2"/>
+        </nodeMapping>
+        <arrowMapping value="//@graph/@arrows.2">
+          <key href="../Default.sig#//@predicates.1/@shape/@arrows.0"/>
+        </arrowMapping>
+        <arrowMapping value="//@graph/@arrows.1">
+          <key href="../Default.sig#//@predicates.1/@shape/@arrows.1"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+    <constraints id="bd74c32c-8a78-49ad-bfcb-c62556d6cc1f">
+      <predicate href="../Default.sig#//@predicates.0"/>
+      <mappings>
+        <nodeMapping value="//@graph/@nodes.1">
+          <key href="../Default.sig#//@predicates.0/@shape/@nodes.1"/>
+        </nodeMapping>
+        <nodeMapping value="//@graph/@nodes.0">
+          <key href="../Default.sig#//@predicates.0/@shape/@nodes.0"/>
+        </nodeMapping>
+        <arrowMapping value="//@graph/@arrows.1">
+          <key href="../Default.sig#//@predicates.0/@shape/@arrows.0"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+  </graph>
+  <typeGraph id="98cbee0a-a67a-4074-b024-10c685c2ce6d" name="Default name"/>
+  <signature href="../Default.sig#/"/>
+</no.hib.dpf.core:Specification>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ASCII"?>
+<no.hib.dpf.core:Specification xmlns:no.hib.dpf.core="http://no.hib.dpf.core">
+  <graph id="58dedb42-2af7-4593-a61a-2a87c1a742b9" name="Default name">
+    <nodes id="43b08fe1-f210-4938-aa73-d28b839e44f1" name="Node">
+      <typeNode href="m3_dpf.dpf.xmi#//@typeGraph/@nodes.0"/>
+    </nodes>
+    <arrows id="5504fc38-0a8e-4ed9-abb6-f8a66e200160" target="//@graph/@nodes.0" source="//@graph/@nodes.0" name="Arrow">
+      <typeArrow href="m3_dpf.dpf.xmi#//@typeGraph/@arrows.0"/>
+    </arrows>
+  </graph>
+  <typeGraph id="d1718d0e-bef6-47d5-9264-1f847e279c52" name="Default name">
+    <nodes id="73afb0fd-38f2-4ef6-a6dd-04ea953ab55e" name="Node"/>
+    <arrows id="f826153b-335e-42a5-91c4-4562b9bb61d9" target="//@typeGraph/@nodes.0" source="//@typeGraph/@nodes.0" name="Arrow"/>
+  </typeGraph>
+</no.hib.dpf.core:Specification>
