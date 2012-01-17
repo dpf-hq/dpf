@@ -100,8 +100,8 @@ sealed trait Morphism{
 
 trait DMorphism{
   protected def createArrowSrTg(as:Set[Id],
-		  						srL:Id=>Id,srR:Id=>Id,
-		  						tgL:Id=>Id,tgR:Id=>Id):ArrowSrTg={
+		  						srL:Id=>Id, tgL:Id=>Id,
+		  						srR:Id=>Id,	tgR:Id=>Id):ArrowSrTg={
     var srMap = MMap[Id,Id]()
     var tgMap = MMap[Id,Id]()
     
@@ -207,7 +207,10 @@ case class Cospan(left:Morphism,right:Morphism) extends DMorphism{
     val rsRightArrows = SetMorphism(pArrows._3,pArrows._3.values.toSet)	
     
     //Build Result:
-    val domainArrowSrTg = null // ArrowSrTg() 
+    val domainArrowSrTg = createArrowSrTg(pArrows._1,
+    									  left.domainArrowSr,left.domainArrowTg,
+    									  right.domainArrowSr,right.domainArrowTg
+    									  )
     val codomainArrowSrTgLeft = left.domainArrowsSrTg
     val codomainArrowSrTgRight = right.domainArrowsSrTg
     val leftRs = ArbitraryMorphismWithIds(rsLeftNodes,(rsLeftArrows,domainArrowSrTg,codomainArrowSrTgLeft))
