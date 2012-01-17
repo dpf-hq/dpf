@@ -33,8 +33,11 @@ sealed trait Morphism{
   
   def domainArrowSr(id:Id):Id
   def domainArrowTg(id:Id):Id
+  def domainArrowsSrTg:ArrowSrTg = null //TODO
+
   def codomainArrowSr(id:Id):Id
   def codomainArrowTg(id:Id):Id
+  def codomainArrowsSrTg:ArrowSrTg = null //TODO
   
   def domainNodes():Set[Id]
   def codomainNodes():Set[Id]
