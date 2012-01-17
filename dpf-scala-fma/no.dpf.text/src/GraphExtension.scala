@@ -99,7 +99,28 @@ sealed trait Morphism{
 }
 
 trait DMorphism{
-  
+  protected def createArrowSrTg(as:Set[Id],
+		  						srL:Id=>Id,srR:Id=>Id,
+		  						tgL:Id=>Id,tgR:Id=>Id):ArrowSrTg={
+    var srMap = MMap[Id,Id]()
+    var tgMap = MMap[Id,Id]()
+    
+    for(a<-as){
+      a match{
+        case x@TId((Some(id1),Some(id2))) =>
+          		srMap+=x->TId((Some(srL(id1)),Some(srR(id2))))	
+          		tgMap+=x->TId((Some(tgL(id1)),Some(tgR(id2))))	
+        case x@TId((Some(id1),None)) =>
+          		srMap+=x->TId((Some(srL(id1)),None))	
+          		tgMap+=x->TId((Some(tgL(id1)),None))	
+        case x@TId((None,Some(id2))) =>
+          		srMap+=x->TId((None,Some(srR(id2))))	
+          		tgMap+=x->TId((None,Some(tgR(id2))))	
+        case _ => sys.error("Programming error") 
+      } 
+    }
+    ArrowSrTg(srMap.toMap,tgMap.toMap)
+  }
 }
 
 case class Span(left:Morphism,right:Morphism) extends DMorphism{
