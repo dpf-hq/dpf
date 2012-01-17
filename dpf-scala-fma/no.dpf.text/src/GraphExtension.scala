@@ -125,7 +125,7 @@ trait DMorphism{
 
 case class Span(left:Morphism,right:Morphism) extends DMorphism{
   def pushout():Cospan = {
-    def pushoutSet(domain:Set[Id],codomainDiffLeft:Set[Id],codomainDiffRight:Set[Id],l:Id=>Id,r:Id=>Id){
+    def pushoutSet(domain:Set[Id],codomainDiffLeft:Set[Id],codomainDiffRight:Set[Id],l:Id=>Id,r:Id=>Id)={
       val m = MSet[Id]()
       val left2 = MMap[Id,Id]()
       val right2 = MMap[Id,Id]()
@@ -150,22 +150,34 @@ case class Span(left:Morphism,right:Morphism) extends DMorphism{
       (m.toSet,left2.toMap,right2.toMap)
     }
     //Pushout Nodes:
-    {
-    val domain = left.domainNodes() // == right.domainNodes()
-    val codomainDiffLeft = left.codomainNodes().filter(left.domainNodes(_).isEmpty)
-    val codomainDiffRight = right.codomainNodes().filter(right.domainNodes(_).isEmpty)
-    val p = pushoutSet(domain,codomainDiffLeft,codomainDiffRight,left.codomainNode,right.codomainNode)
-    //TODO
-    }
+    val domainNodes = left.domainNodes() // == right.domainNodes()
+    val codomainDiffLeftNodes = left.codomainNodes().filter(left.domainNodes(_).isEmpty)
+    val codomainDiffRightNodes = right.codomainNodes().filter(right.domainNodes(_).isEmpty)
+    val pNodes = pushoutSet(domainNodes,codomainDiffLeftNodes,codomainDiffRightNodes,left.codomainNode,right.codomainNode)
+    val rsLeftNodes = SetMorphism(pNodes._2,pNodes._1)		
+    val rsRightNodes = SetMorphism(pNodes._3,pNodes._1)  
+    
+
     //Pushout Arrows:
-    {
-    val domain = left.domainArrows() // == right.domainNodes()
-    val codomainDiffLeft = left.codomainArrows().filter(left.domainArrows(_).isEmpty)
-    val codomainDiffRight = right.codomainArrows().filter(right.domainArrows(_).isEmpty)
-    val p = pushoutSet(domain,codomainDiffLeft,codomainDiffRight,left.codomainArrow,right.codomainArrow)
-    //TODO
-    }
-    null
+    val domainArrows = left.domainArrows()
+    val codomainDiffLeftArrows = left.codomainArrows().filter(left.domainArrows(_).isEmpty)
+    val codomainDiffRightArrows = right.codomainArrows().filter(right.domainArrows(_).isEmpty)
+    val pArrows = pushoutSet(domainArrows,codomainDiffLeftArrows,codomainDiffRightArrows,left.codomainArrow,right.codomainArrow)
+    val rsLeftArrows = SetMorphism(pArrows._2,pArrows._1)		
+    val rsRightArrows = SetMorphism(pArrows._3,pArrows._1)	
+    
+    //Build Result:
+    val codomainArrowSrTg = createArrowSrTg(pArrows._1,
+    									  left.codomainArrowSr,left.codomainArrowTg,
+    									  right.codomainArrowSr,right.codomainArrowTg
+    									  )
+    val domainArrowSrTgLeft = left.codomainArrowsSrTg
+    val domainArrowSrTgRight = right.codomainArrowsSrTg
+    val leftRs = ArbitraryMorphismWithIds(rsLeftNodes,(rsLeftArrows,domainArrowSrTgLeft,codomainArrowSrTg))
+    val rightRs = ArbitraryMorphismWithIds(rsRightNodes,(rsRightArrows,domainArrowSrTgRight,codomainArrowSrTg))
+
+    Cospan(leftRs,rightRs);
+    
   }
   def validate()=left.domainNodes().equals(right.domainNodes()) && left.domainArrows().equals(right.domainArrows())
 }
