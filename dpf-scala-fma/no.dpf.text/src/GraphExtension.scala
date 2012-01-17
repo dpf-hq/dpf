@@ -98,7 +98,11 @@ sealed trait Morphism{
   }  
 }
 
-case class Span(left:Morphism,right:Morphism){
+trait DMorphism{
+  
+}
+
+case class Span(left:Morphism,right:Morphism) extends DMorphism{
   def pushout():Cospan = {
     def pushoutSet(domain:Set[Id],codomainDiffLeft:Set[Id],codomainDiffRight:Set[Id],l:Id=>Id,r:Id=>Id){
       val m = MSet[Id]()
@@ -144,7 +148,8 @@ case class Span(left:Morphism,right:Morphism){
   }
   def validate()=left.domainNodes().equals(right.domainNodes()) && left.domainArrows().equals(right.domainArrows())
 }
-case class Cospan(left:Morphism,right:Morphism){
+
+case class Cospan(left:Morphism,right:Morphism) extends DMorphism{
   def pullback():Span = {
     def pullbackSet(codomain2:Set[Id],l2:Id=>Set[Id],r2:Id=>Set[Id])={
       
@@ -182,8 +187,8 @@ case class Cospan(left:Morphism,right:Morphism){
     
     //Build Result:
     val domainArrowSrTg = null // ArrowSrTg() 
-    val codomainArrowSrTgLeft = null //ArrowSrTg() //create and copy maps   //method in morphism class
-    val codomainArrowSrTgRight = null //ArrowSrTg() //create and copy maps 
+    val codomainArrowSrTgLeft = left.domainArrowsSrTg
+    val codomainArrowSrTgRight = right.domainArrowsSrTg
     val leftRs = ArbitraryMorphismWithIds(rsLeftNodes,(rsLeftArrows,domainArrowSrTg,codomainArrowSrTgLeft))
     val rightRs = ArbitraryMorphismWithIds(rsRightNodes,(rsRightArrows,domainArrowSrTg,codomainArrowSrTgRight))
 
