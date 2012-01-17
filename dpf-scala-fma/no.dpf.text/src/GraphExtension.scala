@@ -553,14 +553,24 @@ object Test {
 	def gen()= {i+=1;
 		RId(1000 + i);
 	}
+	
+	def node(i:Long):Node = Node(RId(i),GraphDpf.node);
+	
+	def arrow(i:Long,n1:Long,n2:Long):Arrow = Arrow(RId(i),Node(RId(n1),GraphDpf.node),Node(RId(n2),GraphDpf.node),GraphDpf.arrow)
 
 	def main(args: Array[String]) {
-	  import mutable.{Graph => MGraph};
+//	  import mutable.{Graph => MGraph};
+//	  
+	  println("TEST")
+//	  
+//	  //Test Pullback (left2,right2,top):
+//	  val left2 = new MGraph(GraphDpf,gen);
+//	  val right2 = new MGraph(GraphDpf,gen);
+//	  val top = new MGraph(GraphDpf,gen);
 	  
-	  //Test Pullback (left2,right2,top):
-	  val left2 = new MGraph(GraphDpf,gen);
-	  val right2 = new MGraph(GraphDpf,gen);
-	  val top = new MGraph(GraphDpf,gen);
+	  val n1 = node(1)
+	  val n2 = node(2);
+//	  val a1 = Arrow(RId(1),n1,n2)
 	  
 	  
 
