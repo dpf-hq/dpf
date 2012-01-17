@@ -545,3 +545,11 @@ case class InclusionMorphism(inputSub:AbstractGraph, input:AbstractGraph) extend
   }  
   
 }
+
+object Test {
+  
+	def main(args: Array[String]) {
+		println("Test")
+	}
+	
+}

@@ -1,8 +1,11 @@
 object Test {
 def main(args: Array[String]) {
 
-no.dpf.text.graph.parser.Main.main(Array())
-  
+// no.dpf.text.graph.parser.Main.main(Array())
+
+no.dpf.text.graph.Test.main(Array())
+
+
 //  val x = List(1,2,3,10,11,12,9);
 //  for(e<-x.groupBy(_/3)){
 //    println(e._1)
