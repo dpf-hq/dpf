@@ -42,7 +42,7 @@ import org.eclipse.ui.views.properties.IPropertyDescriptor;
 
 public class DConstraint extends ModelElement implements Constraint, IDObjectContainer {
 
-	private static final IPropertyDescriptor[] descriptors = new IPropertyDescriptor[1];
+	private static final IPropertyDescriptor[] descriptors = new IPropertyDescriptor[0];
 	private static final long serialVersionUID = 1;
 
 	/** True, if the connection is attached to its endpoints. */
