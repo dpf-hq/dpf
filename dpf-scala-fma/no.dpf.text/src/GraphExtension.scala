@@ -598,44 +598,81 @@ object Test {
 	def arrow(i:Long,n1:Long,n2:Long):Arrow = Arrow(RId(i),Node(RId(n1),GraphDpf.node),Node(RId(n2),GraphDpf.node),GraphDpf.arrow)
 
 	def main(args: Array[String]) {
+	 
+	  //
+	  //Test Pushout (Fudamentals of Algebraic Graph Transformation, page. 31 )
+	  //
+	  {
+		  //G_A
+		  val a10 = arrow(10,1,2)
+		  val a11 = arrow(11,1,3)
+	    
+		  //G_B
+		  val a12 = arrow(12,4,5)
+		  val a13 = arrow(13,6,7)
+	    
+		  //G_C
+		  val a14 = arrow(14,8,8)
+		  val a15 = arrow(15,8,9)
+		  
+		  val x = ArbitraryMorphism(Set(),Set(
+				  					(Some(a10),a12),
+				  					(Some(a11),a12)
+				  					));
+		  
+		  val y = ArbitraryMorphism(Set(),Set(
+				  					(Some(a10),a15),
+				  					(Some(a11),a14)
+				  					));
+		  
+		  val span = Span(x,y)
 
-	  //Test Pullback (page. 35)
+		  val pushout:Cospan = span.pushout()
+		  
+		  println(pushout.left);
+		  println(pushout.right);
+		  
+	  }	
+	  
+	  
+	  //
+	  //Test Pullback (Fudamentals of Algebraic Graph Transformation, page. 35 )
+	  //
+	  {
+	
+		  //G_C
+		  val a10 = arrow(10,1,2)
+		  val a11 = arrow(11,2,3)
+	
+		  //G_B
+		  val a12 = arrow(12,4,5)
+		  val a13 = arrow(13,4,6)
+		  
+		  //G_B
+		  val a14 = arrow(14,7,8)
+		  val a15 = arrow(15,7,9)
+		  val a16 = arrow(16,8,9)
+		  
+		  
+		  val x = ArbitraryMorphism(Set(),Set(
+				  					(Some(a12),a14),
+				  					(Some(a13),a15)
+				  					));
+		  
+		  val y = ArbitraryMorphism(Set(),Set(
+				  					(Some(a10),a14),
+				  					(Some(a11),a16)
+				  					));
+		  
+		  val cospan = Cospan(x,y)
+		  
+		  val pullback:Span = cospan.pullback()
+		  
+//		  println(pullback.left);
+//		  println(pullback.right);
+		  
+	  }
 
-	  //G_C
-	  val a10 = arrow(10,1,2)
-	  val a11 = arrow(11,2,3);
-
-	  //G_B
-	  val a12 = arrow(12,4,5)
-	  val a13 = arrow(13,4,6);
-	  
-	  //G_B
-	  val a14 = arrow(14,7,8)
-	  val a15 = arrow(15,7,9);
-	  val a16 = arrow(16,8,9);
-	  
-	  
-	  val x = ArbitraryMorphism(Set(),Set(
-			  					(Some(a12),a14),
-			  					(Some(a13),a15)
-			  					));
-	  
-	  val y = ArbitraryMorphism(Set(),Set(
-			  					(Some(a10),a14),
-			  					(Some(a11),a16)
-			  					));
-	  
-	  val cospan = Cospan(x,y)
-	  
-	  val pullback = cospan.pullback()
-	  
-	  println(pullback.left);
-	  println(pullback.right);
-	  
-	  
-	  
-
-	  //Test Pushout:
 	}
 	
 }
