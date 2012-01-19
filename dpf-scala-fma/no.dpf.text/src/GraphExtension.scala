@@ -325,9 +325,9 @@ case class ArbitraryMorphism(inputNodes:Set[(Option[Node],Node)],inputArrows:Set
       case Some(domain) =>
         	arrows.get(domain.id) match{
         	  case None 	=>  arrows+=domain.id->codomain.id
-        	  case Some(ex) =>  if(ex != codomain){sys.error("Arrow " + domain + " mapped twice: " + codomain + ", " + ex)}
         	  					input(domain.sr,codomain.sr);
         	  					input(domain.tg,codomain.tg)
+        	  case Some(ex) =>  if(ex != codomain.id){sys.error(domain + " mapped twice: " + codomain + ", " + ex)}
         	}
         	domainArrowsMap+=domain.id->domain
       case _ => /*ignore*/
@@ -338,7 +338,7 @@ case class ArbitraryMorphism(inputNodes:Set[(Option[Node],Node)],inputArrows:Set
   private def input(domain:Node,codomain:Node){
   	nodes.get(domain.id) match{
 	  case None 	=>  nodes+=domain.id->codomain.id
-	  case Some(ex) =>  if(ex != codomain) sys.error("Node " + domain + " mapped twice: " +codomain + ", " + ex)
+	  case Some(ex) =>  if(ex != codomain.id) sys.error(domain + " mapped twice: " +codomain + ", " + ex)
 	}
   }
   
@@ -559,18 +559,39 @@ object Test {
 	def arrow(i:Long,n1:Long,n2:Long):Arrow = Arrow(RId(i),Node(RId(n1),GraphDpf.node),Node(RId(n2),GraphDpf.node),GraphDpf.arrow)
 
 	def main(args: Array[String]) {
-//	  import mutable.{Graph => MGraph};
-//	  
-	  println("TEST")
-//	  
-//	  //Test Pullback (left2,right2,top):
-//	  val left2 = new MGraph(GraphDpf,gen);
-//	  val right2 = new MGraph(GraphDpf,gen);
-//	  val top = new MGraph(GraphDpf,gen);
+
+	  //Test Pullback (page. 35)
+
+	  //G_C
+	  val a10 = arrow(10,1,2)
+	  val a11 = arrow(11,2,3);
+
+	  //G_B
+	  val a12 = arrow(12,4,5)
+	  val a13 = arrow(13,4,6);
 	  
-	  val n1 = node(1)
-	  val n2 = node(2);
-//	  val a1 = Arrow(RId(1),n1,n2)
+	  //G_B
+	  val a14 = arrow(14,7,8)
+	  val a15 = arrow(15,7,9);
+	  val a16 = arrow(16,8,9);
+	  
+	  
+	  val x = ArbitraryMorphism(Set(),Set(
+			  					(Some(a12),a14),
+			  					(Some(a13),a15)
+			  					));
+	  
+	  val y = ArbitraryMorphism(Set(),Set(
+			  					(Some(a10),a14),
+			  					(Some(a11),a16)
+			  					));
+	  
+	  val cospan = Cospan(x,y)
+	  
+	  val pullback = cospan.pullback()
+	  
+	  println(pullback);
+	  
 	  
 	  
 
