@@ -416,23 +416,23 @@ sealed trait Id
 
 //RegularId:
 case class RId(v:Long) extends Id{
-  override def toString="ID"+v;
+  override lazy val toString="ID"+v;
 }
 
 //AttributeTypeId:
 case class AId(v:String) extends Id{
-  override def toString=v;
+  override lazy val toString=v;
 }
 
 //Special Id: (Dummy) (for some predefined nodes and arrows)
 case class SId(v:Long) extends Id{
-  override def toString="SID"+v;
+  override lazy val toString="SID"+v;
 }
 
 //----------------------------------------------------------------------
 //Tupel Id (required for pushouts and pullbacks)
 case class TId(v:(Option[Id],Option[Id])) extends Id{
-  val ids = getIds(this) 
+  lazy val ids = getIds(this) 
   private def getIds(t:Id):Set[Id]={
     val rs = MSet[Id]()
     t match {
@@ -449,13 +449,13 @@ case class TId(v:(Option[Id],Option[Id])) extends Id{
     case x@TId((_,_)) => this.ids.equals(x.ids)  //Two TIds are equal if they consist of the them NON-TIds
     case _ 	   		  => false
   }
-  override def toString="TID"+v;
+  override lazy val toString="TID"+ids.toString;
 }
 //----------------------------------------------------------------------
 
 //Virtual ID: (temporal in use for some comparisons):
 case class VId(v:Long) extends Id{
-  override def toString="VID"+v;
+  override lazy val toString="VID"+v;
 }
 
 //Attribute ValueId:

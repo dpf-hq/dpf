@@ -249,15 +249,9 @@ case class Cospan(left:Morphism,right:Morphism) extends TwoMorphism{
     }
     
     //Pullback Nodes:
-    println("Flo1" + left.domainNodes)
-    println("Flo2" + right.domainNodes)
-    
     val pNodes = pullbackSet(left.codomainNodes(),left.domainNodes,right.domainNodes);
     val rsLeftNodes = SetMorphism(pNodes._2,pNodes._2.values.toSet)		
     val rsRightNodes = SetMorphism(pNodes._3,pNodes._3.values.toSet)
-
-    println("Flo3" + rsLeftNodes)
-    println("Flo4" + rsRightNodes)
     
     //Pullback Arrows:
     val pArrows = pullbackSet(left.codomainArrows(),left.domainArrows,right.domainArrows)
@@ -356,6 +350,7 @@ case class ArbitraryMorphism(inputNodes:Set[(Option[Node],Node)],inputArrows:Set
   
   //Mapped Nodes and arrows:
   private val nodes = MMap[Id,Id]()	
+  private val codomainNodesSet = MSet[Id]()	
   private val arrows = MMap[Id,Id]()	
   private val domainArrowsMap = MMap[Id,Arrow]()	
   private val codomainArrowsMap = MMap[Id,Arrow]()	
@@ -379,6 +374,8 @@ case class ArbitraryMorphism(inputNodes:Set[(Option[Node],Node)],inputArrows:Set
       case _ => /*ignore*/
     }
     codomainArrowsMap+=codomain.id->codomain
+    codomainNodesSet+=codomain.sr.id
+    codomainNodesSet+=codomain.tg.id
   }
 
   private def input(domain:Node,codomain:Node){
@@ -434,9 +431,9 @@ case class ArbitraryMorphism(inputNodes:Set[(Option[Node],Node)],inputArrows:Set
 
   def domainNodes():Set[Id]=nodes.keySet.toSet
   
-  def codomainNodes():Set[Id]=Set((for{(_,n)<-inputNodes} yield {n.id}) toSeq: _ *)
+  lazy val codomainNodes:Set[Id]=codomainNodesSet.toSet
   
-  def domainArrows():Set[Id]=arrows.keySet.toSet
+  lazy val domainArrows:Set[Id]=arrows.keySet.toSet
   
   def codomainArrows():Set[Id]=Set((for{(_,a)<-inputArrows} yield {a.id}) toSeq: _ *)
 
