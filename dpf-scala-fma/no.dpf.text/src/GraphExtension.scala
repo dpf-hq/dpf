@@ -8,6 +8,11 @@ import scala.collection.mutable.{Set=>MSet}
  */
 sealed trait Morphism{
   
+  //
+  //Change lazy values were possible
+  //
+  
+  
   /**
    * input: id of codomain
    * output: all ids of domain mapped to this id 
@@ -96,9 +101,44 @@ sealed trait Morphism{
 	}
 	return validateSet(domainNodes,codomainNode) && validateSet(domainArrows,codomainArrow) && validateGraphHomo() 
   }  
+  
+  override lazy val toString={
+    var rrs:List[String] = Nil
+    
+    rrs="\n\nNodes-Mapping:\n"::rrs;
+    for(n<-domainNodes()){
+    	rrs=n + "  =>  " + codomainNode(n) +  "\n"::rrs
+    }  
+    
+    rrs="\n\nAdditional Nodes in Codomain:"::rrs;
+    for(n<-codomainNodes()){
+    	if(domainNodes(n).isEmpty){	
+    	rrs=n.toString::rrs
+    	}
+    }  
+
+    rrs="\n\nArrows-Mapping: \n"::rrs;
+    for(a1<-domainArrows()){
+    	val a2 = codomainArrow(a1)
+    	val s_a1 = domainArrowSr(a1) + "---" +  a1 + "--->" + domainArrowTg(a1)
+    	val s_a2 = codomainArrowSr(a2) + "---" +  a2 + "--->" + codomainArrowTg(a2)
+    	rrs= s_a1 + "  =>  " + s_a2 +  "\n"::rrs
+    }  
+
+    rrs="\n\nAdditional Arrows in Codomain:"::rrs;
+    for(a2<-codomainArrows()){
+    	if(domainArrows(a2).isEmpty){
+	    	val s_a2 = codomainArrowSr(a2) + "---" +  a2 + "--->" + codomainArrowTg(a2)
+	    	rrs= s_a2 +  "\n"::rrs
+    	}
+    }  
+      
+    rrs.reverse.mkString
+  }
+  
 }
 
-trait DMorphism{
+trait TwoMorphism{
   protected def createArrowSrTg(as:Set[Id],
 		  						srL:Id=>Id, tgL:Id=>Id,
 		  						srR:Id=>Id,	tgR:Id=>Id):ArrowSrTg={
@@ -123,7 +163,7 @@ trait DMorphism{
   }
 }
 
-case class Span(left:Morphism,right:Morphism) extends DMorphism{
+case class Span(left:Morphism,right:Morphism) extends TwoMorphism{
   def pushout():Cospan = {
     def pushoutSet(domain:Set[Id],codomainDiffLeft:Set[Id],codomainDiffRight:Set[Id],l:Id=>Id,r:Id=>Id)={
       val m = MSet[Id]()
@@ -182,7 +222,7 @@ case class Span(left:Morphism,right:Morphism) extends DMorphism{
   def validate()=left.domainNodes().equals(right.domainNodes()) && left.domainArrows().equals(right.domainArrows())
 }
 
-case class Cospan(left:Morphism,right:Morphism) extends DMorphism{
+case class Cospan(left:Morphism,right:Morphism) extends TwoMorphism{
   def pullback():Span = {
     def pullbackSet(codomain2:Set[Id],l2:Id=>Set[Id],r2:Id=>Set[Id])={
       
@@ -590,7 +630,8 @@ object Test {
 	  
 	  val pullback = cospan.pullback()
 	  
-	  println(pullback);
+	  println(pullback.left);
+	  println(pullback.right);
 	  
 	  
 	  
