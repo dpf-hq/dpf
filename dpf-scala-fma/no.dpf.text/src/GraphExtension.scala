@@ -110,14 +110,14 @@ sealed trait Morphism{
     	rrs=n + "  =>  " + codomainNode(n) +  "\n"::rrs
     }  
     
-    rrs="\n\nAdditional Nodes in Codomain:"::rrs;
+    rrs="\n\nAdditional Nodes in Codomain:\n"::rrs;
     for(n<-codomainNodes()){
     	if(domainNodes(n).isEmpty){	
-    	rrs=n.toString::rrs
+    	rrs=n + "\n"::rrs
     	}
     }  
 
-    rrs="\n\nArrows-Mapping: \n"::rrs;
+    rrs="\n\nArrows-Mapping:\n"::rrs;
     for(a1<-domainArrows()){
     	val a2 = codomainArrow(a1)
     	val s_a1 = domainArrowSr(a1) + "---" +  a1 + "--->" + domainArrowTg(a1)
@@ -125,7 +125,7 @@ sealed trait Morphism{
     	rrs= s_a1 + "  =>  " + s_a2 +  "\n"::rrs
     }  
 
-    rrs="\n\nAdditional Arrows in Codomain:"::rrs;
+    rrs="\n\nAdditional Arrows in Codomain:\n"::rrs;
     for(a2<-codomainArrows()){
     	if(domainArrows(a2).isEmpty){
 	    	val s_a2 = codomainArrowSr(a2) + "---" +  a2 + "--->" + codomainArrowTg(a2)
@@ -249,10 +249,16 @@ case class Cospan(left:Morphism,right:Morphism) extends TwoMorphism{
     }
     
     //Pullback Nodes:
+    println("Flo1" + left.domainNodes)
+    println("Flo2" + right.domainNodes)
+    
     val pNodes = pullbackSet(left.codomainNodes(),left.domainNodes,right.domainNodes);
     val rsLeftNodes = SetMorphism(pNodes._2,pNodes._2.values.toSet)		
     val rsRightNodes = SetMorphism(pNodes._3,pNodes._3.values.toSet)
 
+    println("Flo3" + rsLeftNodes)
+    println("Flo4" + rsRightNodes)
+    
     //Pullback Arrows:
     val pArrows = pullbackSet(left.codomainArrows(),left.domainArrows,right.domainArrows)
     val rsLeftArrows = SetMorphism(pArrows._2,pArrows._2.values.toSet)		
@@ -426,15 +432,11 @@ case class ArbitraryMorphism(inputNodes:Set[(Option[Node],Node)],inputArrows:Set
   
   def codomainArrowTg(id:Id):Id=codomainArrowsMap(id).tg.id
 
-  def domainNodes():Set[Id]={
-    Set((for{(Some(n),_)<-inputNodes.filter(_ match {case (None,_) => false;case _ => true})} yield {n.id}) toSeq: _ *)    
-  }
+  def domainNodes():Set[Id]=nodes.keySet.toSet
   
   def codomainNodes():Set[Id]=Set((for{(_,n)<-inputNodes} yield {n.id}) toSeq: _ *)
   
-  def domainArrows():Set[Id]={
-    Set((for{(Some(a),_)<-inputArrows.filter(_ match {case (None,_) => false;case _ => true})} yield {a.id}) toSeq: _ *)
-  }
+  def domainArrows():Set[Id]=arrows.keySet.toSet
   
   def codomainArrows():Set[Id]=Set((for{(_,a)<-inputArrows} yield {a.id}) toSeq: _ *)
 
