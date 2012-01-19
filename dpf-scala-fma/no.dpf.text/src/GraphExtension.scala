@@ -403,26 +403,26 @@ case class ArbitraryMorphism(inputNodes:Set[(Option[Node],Node)],inputArrows:Set
    * output: all ids of domain mapped to this id 
    */
   def domainNodes(id:Id):Set[Id]={
-    Set((for{(Some(n),_)<-inputNodes.filter(_ match {case (None,_) => false;case (Some(_),n) => n.id == id})} yield {n.id}) toSeq: _ *)
+    Set((for{i<-nodes.filter(_ match {case x => x._2 == id})} yield {i._1}) toSeq: _ *)
   }
   /**
    * input: id of domain
    * output: id of codomain mapped to this id 
    */
-  def codomainNode(id:Id):Id=(inputNodes find {t => (t match {case (Some(n),_) => n.id==id; case _ => false})}).get._2.id
+  def codomainNode(id:Id):Id=nodes(id)
 
   /**
    * input: id of codomain
    * output: all ids of domain mapped to this id 
    */
   def domainArrows(id:Id):Set[Id]={
-    Set((for{(Some(a),_)<-inputArrows.filter(_ match {case (None,_) => false;case (Some(_),a) => a.id == id})} yield {a.id}) toSeq: _ *)
+    Set((for{i<-arrows.filter(_ match {case x => x._2 == id})} yield {i._1}) toSeq: _ *)
   }
   /**
-   * input: id of codomain
-   * output: all ids of domain mapped to this id 
+   * input: id of domain
+   * output: id of codomain mapped to this id 
    */
-  def codomainArrow(id:Id):Id=(inputArrows find {t => (t match {case (Some(a),_) => a.id==id; case _ => false})}).get._2.id
+  def codomainArrow(id:Id):Id=arrows(id)
   
   def domainArrowSr(id:Id):Id=domainArrowsMap(id).sr.id
   
