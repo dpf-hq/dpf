@@ -147,6 +147,9 @@ trait TwoMorphism{
     
     for(a<-as){
       a match{
+//        case x@SetId(s) =>
+//          		srMap+=x->SetId()		TId((Some(srL(id1)),Some(srR(id2))))	
+//          		tgMap+=x->TId((Some(tgL(id1)),Some(tgR(id2))))	
         case x@TId((Some(id1),Some(id2))) =>
           		srMap+=x->TId((Some(srL(id1)),Some(srR(id2))))	
           		tgMap+=x->TId((Some(tgL(id1)),Some(tgR(id2))))	
@@ -169,14 +172,27 @@ case class Span(left:Morphism,right:Morphism) extends TwoMorphism{
       val m = MSet[Id]()
       val left2 = MMap[Id,Id]()
       val right2 = MMap[Id,Id]()
+
+      //Use mutable Sets for aquivalenz relation:
+      val m_tmp 	 = MSet[MSet[Id]]()
+      val left2_tmp  = MMap[Id,MSet[Id]]()
+      val right2_tmp = MMap[Id,MSet[Id]]()
       for(d<-domain){
-        val lV = l(d)
+        val lV = l(d)  
         val rV = r(d)
-        val poe=TId((Some(lV),Some(rV)))
-        left2+=lV->poe
-        right2+=rV->poe
-        m+=poe
+        val poe = (m_tmp find (x => (x.contains(lV) || x.contains(rV)))) match {
+          		case None 	 => MSet(lV,rV)
+          		case Some(s) => s+=lV;s+=rV;s
+        	} 
+        left2_tmp+=lV->poe
+        right2_tmp+=rV->poe
+        m_tmp+=poe
       }
+      //Add to real result:
+      for(s<-m_tmp)m+=SetId(s)
+      for(kv<-left2_tmp)left2+=kv._1->SetId(kv._2)
+      for(kv<-right2_tmp)right2+=kv._1->SetId(kv._2)
+
       for(c<-codomainDiffLeft){
         val poe = TId((Some(c),None))
     	m+= poe
@@ -602,6 +618,7 @@ object Test {
 	  //
 	  //Test Pushout (Fudamentals of Algebraic Graph Transformation, page. 31 )
 	  //
+	  //TODO Fixbug
 	  {
 		  //G_A
 		  val a10 = arrow(10,1,2)
@@ -627,10 +644,10 @@ object Test {
 		  
 		  val span = Span(x,y)
 
-		  val pushout:Cospan = span.pushout()
+//		  val pushout:Cospan = span.pushout()
 		  
-		  println(pushout.left);
-		  println(pushout.right);
+//		  println(pushout.left);
+//		  println(pushout.right);
 		  
 	  }	
 	  
@@ -668,8 +685,8 @@ object Test {
 		  
 		  val pullback:Span = cospan.pullback()
 		  
-//		  println(pullback.left);
-//		  println(pullback.right);
+		  println(pullback.left);
+		  println(pullback.right);
 		  
 	  }
 

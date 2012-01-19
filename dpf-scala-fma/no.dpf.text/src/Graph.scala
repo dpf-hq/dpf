@@ -454,6 +454,7 @@ case class TId(v:(Option[Id],Option[Id])) extends Id{
 }
 //Set Id (required for pushouts and pullbacks)
 case class SetId(v:Set[Id]) extends Id{
+  //TODO changeTo SetId(v:Set[(Id,String,Int)])   (Id, Left || Right, SequenceNumner)  //TId raus! 
   override lazy val toString="SetID"+v.toString;	
 }
 //----------------------------------------------------------------------
