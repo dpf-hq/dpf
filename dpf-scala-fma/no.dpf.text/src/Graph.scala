@@ -440,6 +440,7 @@ case class TId(v:(Option[Id],Option[Id])) extends Id{
       case TId((Some(i1),None)) 	=> rs++=getIds(i1);
       case TId((None,Some(i2)))		=> rs++=getIds(i2);
       case TId((None,None))			=> sys.error("Not possible Id: "+this)
+      case SetId(s)					=> rs++=s;
       case x@_						=> rs+=x
     }
     rs.toSet
@@ -450,6 +451,10 @@ case class TId(v:(Option[Id],Option[Id])) extends Id{
     case _ 	   		  => false
   }
   override lazy val toString="TID"+ids.toString;
+}
+//Set Id (required for pushouts and pullbacks)
+case class SetId(v:Set[Id]) extends Id{
+  override lazy val toString="SetID"+v.toString;	
 }
 //----------------------------------------------------------------------
 
