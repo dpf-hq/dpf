@@ -71,7 +71,7 @@ object Validation extends Helper{
 		      case Some(f) => new File(f.getLocation().toFile(),nameI)      		
 		      case None => new File(nameI); 
 		    }
-		    println("File:" + file.getPath())
+		    println("File:" + file.getPath() + " " + e._1)
 			val writer = new PrintWriter(new BufferedWriter(new FileWriter(file)));
 			try{
 				writer.println("""<?xml version="1.0" encoding="UTF-8"?>""");
