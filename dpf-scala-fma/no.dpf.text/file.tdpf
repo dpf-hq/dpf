@@ -1,5 +1,12 @@
 //Hello World
 
+/*
+- Additionally: Attributes
+- Multiple arrows, nodes (also types) with the same name
+- Output in Ecore
+*/
+
+
 mm:=TGraph<DPF>{
     z:n-e0:id->b:n,
     a:n-e1:id->b:n-e2:id->c:n-t:*->String,
@@ -7,8 +14,8 @@ mm:=TGraph<DPF>{
 
 
 m:=TGraph<mm>{
-   b:c-y1:t->["Hallo"],
-   b:c-y2:t->["Test"],
+   b:c-y@1:t->["Hallo"],
+   b:c-y@2:t->["Test"],
    f:a-l:e1->o:b,
 }
 
@@ -30,6 +37,6 @@ min{a:_-b:_->c:_,}=$context #n0# inv: out#a0#s->size() > 1$
 
 }
 
-ecore(mm)
+//ecore(mm)
 
-emf(m)
+//emf(m)
