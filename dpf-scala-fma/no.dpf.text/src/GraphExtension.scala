@@ -178,13 +178,13 @@ case class Span(left:Morphism,right:Morphism) extends TwoMorphism{
       val left2 = MMap[Id,Id]()
       val right2 = MMap[Id,Id]()
 
-      //Use mutable Sets for aquivalenz relation:
-      val m_tmp 	 = MSet[MSet[Id]]()
-      val left2_tmp  = MMap[Id,MSet[Id]]()
-      val right2_tmp = MMap[Id,MSet[Id]]()
+      //Use mutable Sets for equivalenz relation:
+      val m_tmp 	 = MSet[MSet[(Id,Int,String)]]()
+      val left2_tmp  = MMap[(Id,Int,String),MSet[(Id,Int,String)]]()
+      val right2_tmp = MMap[(Id,Int,String),MSet[(Id,Int,String)]]()
       for(d<-domain){
-        val lV = l(d)  
-        val rV = r(d)
+        val lV = (l(d),1,"L")  
+        val rV = (r(d),1,"R")
         val poe = (m_tmp find (x => (x.contains(lV) || x.contains(rV)))) match {
           		case None 	 => MSet(lV,rV)
           		case Some(s) => s+=lV;s+=rV;s
@@ -194,9 +194,9 @@ case class Span(left:Morphism,right:Morphism) extends TwoMorphism{
         m_tmp+=poe
       }
       //Add to real result:
-      for(s<-m_tmp)m+=SetId(s)
-      for(kv<-left2_tmp)left2+=kv._1->SetId(kv._2)
-      for(kv<-right2_tmp)right2+=kv._1->SetId(kv._2)
+      for(s<-m_tmp)m+=TSetId(s.toSet)
+      for(kv<-left2_tmp)left2+=kv._1._1->TSetId(kv._2.toSet)
+      for(kv<-right2_tmp)right2+=kv._1._1->TSetId(kv._2.toSet)
 
       for(c<-codomainDiffLeft){
         val poe = TSetId(Set((c,1,"L")))
@@ -649,10 +649,10 @@ object Test {
 		  
 		  val span = Span(x,y)
 
-//		  val pushout:Cospan = span.pushout()
+		  val pushout:Cospan = span.pushout()
 		  
-//		  println(pushout.left);
-//		  println(pushout.right);
+		  println(pushout.left);
+		  println(pushout.right);
 		  
 	  }	
 	  
@@ -688,10 +688,10 @@ object Test {
 		  
 		  val cospan = Cospan(x,y)
 		  
-		  val pullback:Span = cospan.pullback()
-		  
-		  println(pullback.left);
-		  println(pullback.right);
+//		  val pullback:Span = cospan.pullback()
+//		  
+//		  println(pullback.left);
+//		  println(pullback.right);
 		  
 	  }
 
