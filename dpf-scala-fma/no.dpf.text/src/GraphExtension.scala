@@ -147,18 +147,23 @@ trait TwoMorphism{
     
     for(a<-as){
       a match{
-//        case x@SetId(s) =>
-//          		srMap+=x->SetId()		TId((Some(srL(id1)),Some(srR(id2))))	
-//          		tgMap+=x->TId((Some(tgL(id1)),Some(tgR(id2))))	
-        case x@TId((Some(id1),Some(id2))) =>
-          		srMap+=x->TId((Some(srL(id1)),Some(srR(id2))))	
-          		tgMap+=x->TId((Some(tgL(id1)),Some(tgR(id2))))	
-        case x@TId((Some(id1),None)) =>
-          		srMap+=x->TId((Some(srL(id1)),None))	
-          		tgMap+=x->TId((Some(tgL(id1)),None))	
-        case x@TId((None,Some(id2))) =>
-          		srMap+=x->TId((None,Some(srR(id2))))	
-          		tgMap+=x->TId((None,Some(tgR(id2))))	
+        case x@TSetId(s) => if(s.isEmpty){
+        						sys.error("Programming error") 
+        					}
+        					val srSet= MSet[(Id,Int,String)]()
+        					val tgSet= MSet[(Id,Int,String)]()
+          					for(i <- s){
+        					  if(i._3=="L"){
+        					    srSet+=((srL(i._1),i._2,i._3))
+        					    tgSet+=((tgL(i._1),i._2,i._3))
+        					  }
+        					  if(i._3=="R"){
+        					    srSet+=((srR(i._1),i._2,i._3))
+        					    tgSet+=((tgR(i._1),i._2,i._3))
+        					  }
+        					}
+       					    srMap+=x->TSetId(srSet.toSet)	
+        					tgMap+=x->TSetId(tgSet.toSet)	
         case _ => sys.error("Programming error") 
       } 
     }
@@ -194,12 +199,12 @@ case class Span(left:Morphism,right:Morphism) extends TwoMorphism{
       for(kv<-right2_tmp)right2+=kv._1->SetId(kv._2)
 
       for(c<-codomainDiffLeft){
-        val poe = TId((Some(c),None))
+        val poe = TSetId(Set((c,1,"L")))
     	m+= poe
         left2+=c->poe
       }
       for(c<-codomainDiffRight){
-        val poe = TId((None,Some(c)))
+        val poe = TSetId(Set((c,1,"R")))
         m+=poe
         right2+=c->poe
       }
@@ -251,7 +256,7 @@ case class Cospan(left:Morphism,right:Morphism) extends TwoMorphism{
         val rDomain2 = r2(x)
         //Build cartesian product:
         for(l<-lDomain2;r<-rDomain2){
-          val pbe =(TId((Some(l),Some(r))))
+          val pbe = TSetId(Set((l,1,"L"),(r,1,"R"))) 
           left1+=pbe->l
           right1+=pbe->r
           m+= pbe

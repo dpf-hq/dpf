@@ -430,29 +430,11 @@ case class SId(v:Long) extends Id{
 }
 
 //----------------------------------------------------------------------
-//Tupel Id (required for pushouts and pullbacks)
-case class TId(v:(Option[Id],Option[Id])) extends Id{
-  lazy val ids = getIds(this) 
-  private def getIds(t:Id):Set[Id]={
-    val rs = MSet[Id]()
-    t match {
-      case TId((Some(i1),Some(i2))) => rs++=getIds(i1);rs++=getIds(i2);
-      case TId((Some(i1),None)) 	=> rs++=getIds(i1);
-      case TId((None,Some(i2)))		=> rs++=getIds(i2);
-      case TId((None,None))			=> sys.error("Not possible Id: "+this)
-      case SetId(s)					=> rs++=s;
-      case x@_						=> rs+=x
-    }
-    rs.toSet
-  }
-  override def hashCode = ids.hashCode()
-  override def equals(e:Any) = e match {
-    case x@TId((_,_)) => this.ids.equals(x.ids)  //Two TIds are equal if they consist of the them NON-TIds
-    case _ 	   		  => false
-  }
-  override lazy val toString="TID"+ids.toString;
+//SetId (required for pushouts and pullbacks)
+case class TSetId(v:Set[(Id,Int,String)]) extends Id{
+  //TODO changeTo SetId(v:Set[(Id,String,Int)])   (Id, Left || Right, SequenceNumner)  //TId raus! 
+  override lazy val toString="SetID"+v.toString;	
 }
-//Set Id (required for pushouts and pullbacks)
 case class SetId(v:Set[Id]) extends Id{
   //TODO changeTo SetId(v:Set[(Id,String,Int)])   (Id, Left || Right, SequenceNumner)  //TId raus! 
   override lazy val toString="SetID"+v.toString;	
