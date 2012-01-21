@@ -147,7 +147,7 @@ trait TwoMorphism{
     
     for(a<-as){
       a match{
-        case x@TSetId(s) => if(s.isEmpty){
+        case x@SetId(s) => if(s.isEmpty){
         						sys.error("Programming error") 
         					}
         					val srSet= MSet[(Id,Int,String)]()
@@ -162,8 +162,8 @@ trait TwoMorphism{
         					    tgSet+=((tgR(i._1),i._2,i._3))
         					  }
         					}
-       					    srMap+=x->TSetId(srSet.toSet)	
-        					tgMap+=x->TSetId(tgSet.toSet)	
+       					    srMap+=x->SetId(srSet.toSet)	
+        					tgMap+=x->SetId(tgSet.toSet)	
         case _ => sys.error("Programming error") 
       } 
     }
@@ -205,17 +205,17 @@ case class Span(left:Morphism,right:Morphism) extends TwoMorphism{
       while(merge())
       
       //Add to real result:
-      for(s<-left2_tmp.values)m+=TSetId(s.toSet)
-      for(kv<-left2_tmp)left2+=kv._1._1->TSetId(kv._2.toSet)
-      for(kv<-right2_tmp)right2+=kv._1._1->TSetId(kv._2.toSet)
+      for(s<-left2_tmp.values)m+=SetId(s.toSet)
+      for(kv<-left2_tmp)left2+=kv._1._1->SetId(kv._2.toSet)
+      for(kv<-right2_tmp)right2+=kv._1._1->SetId(kv._2.toSet)
 
       for(c<-codomainDiffLeft){
-        val poe = TSetId(Set((c,1,"L")))
+        val poe = SetId(Set((c,1,"L")))
     	m+= poe
         left2+=c->poe
       }
       for(c<-codomainDiffRight){
-        val poe = TSetId(Set((c,1,"R")))
+        val poe = SetId(Set((c,1,"R")))
         m+=poe
         right2+=c->poe
       }
@@ -267,7 +267,7 @@ case class Cospan(left:Morphism,right:Morphism) extends TwoMorphism{
         val rDomain2 = r2(x)
         //Build cartesian product:
         for(l<-lDomain2;r<-rDomain2){
-          val pbe = TSetId(Set((l,1,"L"),(r,1,"R"))) 
+          val pbe = SetId(Set((l,1,"L"),(r,1,"R"))) 
           left1+=pbe->l
           right1+=pbe->r
           m+= pbe

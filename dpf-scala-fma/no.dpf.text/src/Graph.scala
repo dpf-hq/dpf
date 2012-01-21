@@ -431,7 +431,7 @@ case class SId(v:Long) extends Id{
 
 //----------------------------------------------------------------------
 //SetId (required for pushouts and pullbacks)
-case class TSetId(v:Set[(Id,Int,String)]) extends Id{ // SetId(v:Set[(Id,Int,String)])   (Id, Set-Identifier,L(eft) || R(right))  
+case class SetId(v:Set[(Id,Int,String)]) extends Id{ // SetId(v:Set[(Id,Int,String)])   (Id, Set-Identifier,L(eft) || R(right))  
   override lazy val toString="SetID"+v.toString;	
 }
 //----------------------------------------------------------------------
