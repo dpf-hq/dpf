@@ -39,11 +39,11 @@ sealed trait Morphism{
   
   def domainArrowSr(id:Id):Id
   def domainArrowTg(id:Id):Id
-  lazy val domainArrowsSrTg:ArrowSrTg = createArrowSrTg(domainArrows,domainArrowSr,domainArrowTg) /*If really a new map is required*/
+  lazy val domainArrowSrTg:ArrowSrTg = createArrowSrTg(domainArrows,domainArrowSr,domainArrowTg) /*If really a new map is required*/
 
   def codomainArrowSr(id:Id):Id
   def codomainArrowTg(id:Id):Id
-  lazy val codomainArrowsSrTg:ArrowSrTg = createArrowSrTg(codomainArrows,codomainArrowSr,codomainArrowTg) /*If really a new map is required*/
+  lazy val codomainArrowSrTg:ArrowSrTg = createArrowSrTg(codomainArrows,codomainArrowSr,codomainArrowTg) /*If really a new map is required*/
   
   def domainNodes():Set[Id]
   def codomainNodes():Set[Id]
@@ -244,8 +244,8 @@ case class Span(left:Morphism,right:Morphism) extends TwoMorphism{
     									  left.codomainArrowSr,left.codomainArrowTg,
     									  right.codomainArrowSr,right.codomainArrowTg
     									  )
-    val domainArrowSrTgLeft = left.codomainArrowsSrTg
-    val domainArrowSrTgRight = right.codomainArrowsSrTg
+    val domainArrowSrTgLeft = left.codomainArrowSrTg
+    val domainArrowSrTgRight = right.codomainArrowSrTg
     val leftRs = ArbitraryMorphismWithIds(rsLeftNodes,(rsLeftArrows,domainArrowSrTgLeft,codomainArrowSrTg))
     val rightRs = ArbitraryMorphismWithIds(rsRightNodes,(rsRightArrows,domainArrowSrTgRight,codomainArrowSrTg))
 
@@ -296,8 +296,8 @@ case class Cospan(left:Morphism,right:Morphism) extends TwoMorphism{
     									  left.domainArrowSr,left.domainArrowTg,
     									  right.domainArrowSr,right.domainArrowTg
     									  )
-    val codomainArrowSrTgLeft = left.domainArrowsSrTg
-    val codomainArrowSrTgRight = right.domainArrowsSrTg
+    val codomainArrowSrTgLeft = left.domainArrowSrTg
+    val codomainArrowSrTgRight = right.domainArrowSrTg
     val leftRs = ArbitraryMorphismWithIds(rsLeftNodes,(rsLeftArrows,domainArrowSrTg,codomainArrowSrTgLeft))
     val rightRs = ArbitraryMorphismWithIds(rsRightNodes,(rsRightArrows,domainArrowSrTg,codomainArrowSrTgRight))
 
@@ -356,8 +356,8 @@ case class Composition(m1:Morphism,m2:Morphism){
       }
     }
     val arrowsSrTg_D = ArrowSrTg(arrowSr.toMap,arrowTg.toMap);
-    val m1B = ArbitraryMorphismWithIds(ns1,(as1,m1.domainArrowsSrTg,arrowsSrTg_D))
-    val m2B = ArbitraryMorphismWithIds(ns2,(as2,arrowsSrTg_D,m2.codomainArrowsSrTg))
+    val m1B = ArbitraryMorphismWithIds(ns1,(as1,m1.domainArrowSrTg,arrowsSrTg_D))
+    val m2B = ArbitraryMorphismWithIds(ns2,(as2,arrowsSrTg_D,m2.codomainArrowSrTg))
 
     Composition(m1,m2);
   }
