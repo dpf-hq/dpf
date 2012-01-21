@@ -9,6 +9,7 @@ import no.hib.dpf.codegen.xpand.metamodel.DpfMetamodel;
 import no.hib.dpf.codegen.xpand.metamodel.typesystem.FeatureImpl;
 import no.hib.dpf.codegen.xpand.metamodel.typesystem.OperationImpl;
 import no.hib.dpf.codegen.xpand.metamodel.typesystem.TypeHelper;
+import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.Node;
 
@@ -42,14 +43,51 @@ public class GraphType extends AbstractTypeImpl {
 		
 		res.addAll(TypeHelper.getEClassFeatures(model, graph.eClass(), this));
 		
-		createGettersForDsmTypes(res);
+		createGettersForMetaModelNodeTypes(res);
+		createGettersForMetaModelArrowTypes(res);
 		
 		return res.toArray(new Feature[res.size()]);
 	}
 	
-	private void createGettersForDsmTypes(Set<FeatureImpl> res) {
-		//DSM specific getters
-		//Finds the types specified in the dsm
+	private void createGettersForMetaModelArrowTypes(Set<FeatureImpl> res) {
+		// Meta model specific getters
+
+		List<String> arrowtypes = new ArrayList<String>();
+		for (Arrow a : graph.getArrows()) {
+			boolean hasArrow = false;
+			for (String name : arrowtypes) {
+				if (name.equals(a.getName())) {
+					hasArrow = true;
+				}
+			}
+			if (!hasArrow)
+				arrowtypes.add(a.getName());
+			else
+				hasArrow = false;
+		}
+
+		// create a getter for each meta model type which returns all instances
+		// as a list
+		for (final String name : arrowtypes) {
+			res.add(new OperationImpl(this, TypeHelper.pluralize("get" + name),
+					new ListTypeImpl(model.getTypeForName(name), model
+							.getTypeSystem(), "List")) {
+				@Override
+				protected Object evaluateInternal(Object target, Object[] params) {
+					List<Arrow> tmp = new ArrayList<Arrow>();
+					for (Object o : model.getModelCollections(name)) {
+						if (o instanceof Arrow) {
+							tmp.add(((Arrow) o));
+						}
+					}
+					return tmp;
+				}
+			});
+		}
+	}
+
+	private void createGettersForMetaModelNodeTypes(Set<FeatureImpl> res) {
+		//Meta model specific getters
 		
 		List<String> nodetypes = new ArrayList<String>();
 		for(Node n : graph.getNodes()) {
@@ -64,14 +102,14 @@ public class GraphType extends AbstractTypeImpl {
 			else hasNode = false;
 		}
 		
-		//create a getter for each dsm type which returns all instances as a list
+		//create a getter for each meta model type which returns all instances as a list
 		for(final String name : nodetypes) {
 			res.add(new OperationImpl(this, TypeHelper.pluralize("get" + name), 
 					new ListTypeImpl(model.getTypeForName(name), model.getTypeSystem(), "List")) {
 				@Override
 				protected Object evaluateInternal(Object target, Object[] params) {
 					List<Node> tmp = new ArrayList<Node>();
-					for(Object o : model.getInstanceModelCollections().get(name)) {
+					for(Object o : model.getModelCollections(name)) {
 						if(o instanceof Node) {
 							tmp.add(((Node)o));
 						}

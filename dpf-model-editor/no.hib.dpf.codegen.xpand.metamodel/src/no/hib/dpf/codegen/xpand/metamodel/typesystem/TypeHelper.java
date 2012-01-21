@@ -24,11 +24,12 @@ import org.eclipse.xtend.typesystem.Type;
 
 public class TypeHelper {
 	private static Log log = LogFactory.getLog(GraphType.class);
+	static char[] letters = {'a', 'e', 'i', 'n', 'm', 'o', 'r', 'u', 'y'}; 
 	
 	public static String pluralize(String arg) {
-		if(arg.endsWith("e") || arg.endsWith("a") || arg.endsWith("i") 
-				|| arg.endsWith("o") || arg.endsWith("u") || arg.endsWith("y")) {
-			return arg + "s";
+		for(char c : letters) {
+			if(arg.endsWith(""+c)) 
+				return arg + "s";
 		}
 		return arg + "es";
 	}

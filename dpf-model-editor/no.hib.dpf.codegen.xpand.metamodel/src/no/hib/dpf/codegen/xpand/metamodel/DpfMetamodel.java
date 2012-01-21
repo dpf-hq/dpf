@@ -1,6 +1,8 @@
 package no.hib.dpf.codegen.xpand.metamodel;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -68,232 +70,40 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 	
 	private static Log log = LogFactory.getLog(DpfMetamodel.class);
 	
-	private HashSet<EClassifier> stringTypes;
-
-	private HashSet<EClassifier> intTypes;
-
-	private HashSet<EClassifier> realTypes;
-
-	private HashSet<EClassifier> booleanTypes;
-
-	private HashSet<EClassifier> objectTypes;
-
-	private HashSet<EClassifier> listTypes;
+	/** Contains ecore specific code for use with Xpand types */
+	private InternalEcoreHelper ecoreHelper = new InternalEcoreHelper();
 	
-	/** The DPF instance which contains the DSM */
-	private Specification dsmModel = null;
+	/** Represents the domain-specfic modeling language (the meta model) */
+	private InternalMetaModel dpfMetaModel = new InternalMetaModel();
 	
-	/** The DPF instance which contains the instance of the DSM */
-	private Specification instanceModel = null;
+	/** Represents the model instance of the DPF meta model */
+	private InternalModel dpfModel = new InternalModel();
 	
+	/** Xpand base type system */
 	private TypeSystem ts;
 	
-	/** The metamodel's jbmm that handles java types */
+	/** Java Beans Meta Model which handles java types (found in ecore) */
 	private JavaBeansMetaModel jbmm = new JavaBeansMetaModel();
 	
-	/** A collection that holds all instances of a DSM type */
-	private Cache<String, List<Object>> instanceCollections = new Cache<String, List<Object>>() {
-
-		@Override
-		protected List<Object> createNew(String typeName) {
-			//Dersom vi finn ein korresponderande type i DSM'en, lagar vi ein collection med alle instansar av den typen
-			log.debug("Creating type collection: " + typeName);
-//			Type t = typeForNameCache.get(typeName);
-//			if(t != null) {
-				List<Object> res = new ArrayList<Object>();
-				//FIXME: Only creates collections for nodes.
-				for(Node n : instanceModel.getGraph().getNodes()) {
-					if(n.getTypeName().equals(typeName)) {
-						res.add(n);
-					}
-				}
-				return res;
-//			}
-//			return null;
-		}
-	};
-	
-	/** Contains a DPF core type to Xpand type mapping. */
-	private Cache<Object, Type> dsmCache = new Cache<Object, Type>() {
-		
-		@Override
-		protected Type createNew(Object obj) {
-			log.debug("cache#createNew: " + obj);
-			if(obj instanceof Specification) {
-				return new SpecificationType(DpfMetamodel.this, NS_PREFIX + "::" + SPECIFICATION , (Specification)obj);
-			} else if(obj instanceof Graph) {
-				return new GraphType(DpfMetamodel.this, NS_PREFIX + "::" + GRAPH, (Graph)obj);
-			} else if(obj instanceof Node) {
-				return new NodeType(DpfMetamodel.this, NS_PREFIX + "::" + ((Node)obj).getName(), (Node)obj);
-			} else if(obj instanceof Arrow) {
-				return new ArrowType(DpfMetamodel.this, NS_PREFIX + "::" + ((Arrow)obj).getName(), (Arrow)obj);
-			} else if(obj instanceof Constraint) {
-				return new ConstraintType(DpfMetamodel.this, NS_PREFIX + "::" + CONSTRAINT, (Constraint)obj);
-			} else if(obj instanceof Predicate) {
-				return new PredicateType(DpfMetamodel.this, NS_PREFIX + "::" + PREDICATE , (Predicate)obj);
-			}
-			return null;
-		}
-	};
-	
-	/** Contains a string to Xpand Type mapping */
-	private Cache<String, Type> typeForNameCache = new Cache<String, Type>() {
-		
-		@Override
-		protected Type createNew(String str) {
-			//Finn namnet på typen, må strippa vekk namespace
-			int i = str.indexOf("::");
-			String typeDefinition = str;
-			if(i != -1) {
-				typeDefinition = str.substring(i+2);
-			}
-			log.debug("typeForNameCache#createNew: " + typeDefinition);
-				
-			if(instanceModel == null) log.debug("typeForNameCache: spec is null");
-				
-			Object key = getCacheKeyForTypeName(typeDefinition);
-				
-			//If we already have registered the type
-			if(key != null) {
-				return dsmCache.get(key);
-			} else {
-				//We need to register the proper type
-				//Should only return a valid dsm type.
-				key = getGraphElementForName(typeDefinition);
-				//FIXME: Workaround: The ecore specific code needs to get nodenames/nodes from dsm. When building the collections
-				//we need to return a typenode. Hence we create a new method.
-				if(!dsmCache.exists(key) || key == null) {
-					key = getDsmTypeForInstanceName(typeDefinition);
-				}
-				if(key != null) 
-					return dsmCache.get(key);
-			}
-
-			//returnerer antakeligvis null dersom namespace
-			log.debug("getTypeForName#createNew: returned null");	
-			return null;
-		}
-
-	};
-	
 	public DpfMetamodel() {
-//		System.out.println(System.getProperty(LogFactory.FACTORY_DEFAULT));
-		initializeKnownETypes();
 	}
 	
-	public DpfMetamodel(Specification dsm) {
-		this.dsmModel = dsm;
-		getKnownTypes();
-		initializeKnownETypes();
+	public DpfMetamodel(Specification metaModel) {
+		dpfMetaModel.addMetaModel(NS_PREFIX, metaModel);
 	}
 	
 	/**
-	 * Sets the Domain Specific Model, and initializes the metamodel.
+	 * Sets the Domain Specific Modeling Language (meta model), and initializes the internal metamodel.
 	 * 
-	 * @param dsm
-	 *            Specification object which represents the Domain Specific Model
+	 * @param dpfMetaModel
+	 *            Specification object which represents the Domain Specific Modeling Language
 	 */
-	public void setDsm(Specification dsm) {
-		this.dsmModel = dsm;
-		getKnownTypes();
+	public void addDpfMetaModel(Specification metaModel) {
+		dpfMetaModel.addMetaModel(NS_PREFIX, metaModel);
 	}
 	
-	//FIXME: Horrible code. Vi sjekkar jo berre base types... det er useless.
-	//Used to find the first object with proper type to associate a type string with the proper Xpand Type in typeForNameCache
-	/**
-	 * Gets the DPF core instance object that is the key for dsmCache.
-	 * We need this in getTypeForNameCache to identify that a DPF object, ie. Node is of type node, 
-	 * which in it's turn is associated with the correct Xpand type.
-	 * 
-	 * @param dsm
-	 *            Specification object which represents the Domain Specific Model
-	 * @return Object Returns the Object key (DPF core instance object) from dsmCache
-	 */
-	private Object getCacheKeyForTypeName(String k) {
-		for(Object o : dsmCache.getKeys()) {
-			if(k.equals(SPECIFICATION)) {
-				if(o instanceof Specification) {
-					return o;
-				}
-			} else if(k.equals(GRAPH)) {
-				if(o instanceof Graph) {
-					return o;
-				}
-			} else if(k.equals(NODE)) {
-				if(o instanceof Node) {
-					return o;
-				}
-			} else if(k.equals(ARROW)) {
-				if(o instanceof Arrow) {
-					return o;
-				}
-			} else if(k.equals(CONSTRAINT)) {
-				if(o instanceof Constraint) {
-					return o;
-				}
-			} else if(k.equals(PREDICATE)) {
-				if(o instanceof Predicate) {
-					return o;
-				}
-			}
-		}
-		return null;
-	}
-	
-	private Object getDsmTypeForInstanceName(String name) {
-		log.debug("getDsmTypeForInstanceName: trying to find Graph element with name: " + name);
-		//This method should map a instance type to a type specified in the DSM
-		//TODO: Also there should be some validation that the type is actually in the DSM, and not just extract the type node of the instance like now.
-		if(instanceModel != null) {
-			if(name.equals(SPECIFICATION)) {
-				log.debug("createNewTypeForName: Specification called. This makes stuff fucky");
-				return instanceModel;
-			} else {
-				if(name.equals(GRAPH)) {
-					return instanceModel.getGraph();
-				} else {
-					for(Node n : instanceModel.getGraph().getNodes()) {
-						if(name.equals(n.getName())) { 
-							return n.getTypeNode(); //We return an object which is in the DSM.
-						}
-					}
-					for(Arrow a : instanceModel.getGraph().getArrows()) {
-						if(name.equals(a.getName())) { 
-							return a.getTypeArrow();
-						}
-					}
-				}
-			}
-		}
-		return null;
-	}
-	private Object getGraphElementForName(String name) {
-		//This method is fugly and is used to retrieve a valid dpf object, which is identifying the proper 
-		//object to do a lookup on in dsmCache.
-		log.debug("getGraphElementForName: trying to find Graph element with name: " + name);
-		
-		if(dsmModel != null) {
-			if(name.equals(SPECIFICATION)) {
-				log.debug("createNewTypeForName: Specification called. This makes stuff fucky");
-				return dsmModel;
-			} else {
-				if(name.equals(GRAPH)) {
-					return dsmModel.getGraph();
-				} else {
-					for(Node n : dsmModel.getGraph().getNodes()) {
-						if(name.equals(n.getName())) { 
-							return n; //We return an object which is in the DSM.
-						}
-					}
-					for(Arrow a : dsmModel.getGraph().getArrows()) {
-						if(name.equals(a.getName())) { 
-							return a;
-						}
-					}
-				}
-			}
-		}
-		return null;
+	public Type getTypeForETypedElement(ETypedElement typedElement) {
+		return ecoreHelper.getTypeForETypedElement(typedElement);
 	}
 	
 	@Override
@@ -307,109 +117,15 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 	public void setTypeSystem(final TypeSystem typeSystem) {
 		this.ts = typeSystem;
 		this.jbmm.setTypeSystem(typeSystem);
-		log.debug("DPFMM2#setTypeSystem called");
+		log.debug("setTypeSystem called");
 	}
 
 	@Override
 	public Type getTypeForName(String typeName) {
-		log.debug("------> getTypeForname: " + typeName);
-		return typeForNameCache.get(typeName);
+		log.debug("getTypeForname: " + typeName);
+		return dpfModel.getTypeForName(typeName);
 	}
 
-	public Type getTypeForETypedElement(ETypedElement typedElement) {
-		//We need to map the pre-defined EStructuralFeatures (the ones specified in the DPF ecore metamodel.
-		//This is an attempt on making things as generic as possible. Allthough it will probably break if names change in the metamodel
-		log.debug("getTypeForETypedElement:");
-		if(typedElement.getEType() == null) {
-			return ts.getVoidType();
-		}
-		
-		Type t = null;
-		EClassifier classifier = typedElement.getEType();
-		
-		// TODO: These should return metametamodel types (dpf ecore), right now returns dsm types.
-		if(classifier.getName().equals(GRAPH)) {
-			t = getTypeForName(NS_PREFIX + "::" + GRAPH);
-		} else if(classifier.getName().equals(NODE)) {
-			t = getTypeForName(NS_PREFIX + "::" + NODE);
-		} else if(classifier.getName().equals(ARROW)) {
-			t = getTypeForName(NS_PREFIX + "::" + ARROW);
-		} else if(classifier instanceof EDataType) {
-			//This resolves an "external" datatype used in the DPF ecore. This means other classes than the EClasses provided by ecore.
-			
-			//Java "primitive" datatypes which are resolved from the dpf ecore, will be retrieved using
-			//javabeans metamodel, but should be handled by the Xpand typesystem.
-			if (ts != null) {
-				if (stringTypes.contains(classifier)) {
-					return ts.getStringType();
-				}
-				else if (booleanTypes.contains(classifier)) {
-					return ts.getBooleanType();
-				}
-				else if (intTypes.contains(classifier)) {
-					return ts.getIntegerType();
-				}
-				else if (realTypes.contains(classifier)) {
-					return ts.getRealType();
-				}
-				else if (objectTypes.contains(classifier)) {
-					return ts.getObjectType();
-				}
-				else if (listTypes.contains(classifier)) {
-					return new EmfListType(ts.getObjectType(), ts, BuiltinMetaModel.LIST);
-				}
-			}
-			EDataType dt = (EDataType)classifier;	
-			if(dt.getInstanceClassName() != null) {
-				//if the EDataType has a class name (which is with a full identifier) we use the JavaBeansMetaModel to resolve it's features (attributes and operations)
-				t = jbmm.getTypeForName(dt.getInstanceClassName().replace(".", "::"));
-				if(t == null) {
-					t = ts.getTypeForName(dt.getInstanceClassName().replace(".", "::"));
-				}
-			} else return ts.getObjectType();
-		} else {
-			if(typedElement.getEGenericType() != null) {
-				log.debug("------------> EGenericType: " + typedElement.getEGenericType());
-					//Linje 359-373 EmfRegistryMM... sjekk på om baseType har verdi eller om det er gyldig listetype
-				t = getTypeForEClassifier(typedElement.getEGenericType()); //Void type?
-			} else {
-				t = getTypeSystem().getTypeForName(typedElement.getEType().getName());
-				//TODO: See getFullyQualifiedName()
-			}
-		}
-		if(t == null) log.debug("------------> getTypeForETypedElement failed: " + typedElement.getEType());
-		
-		if(typedElement.isMany())
-			return new ListTypeImpl(t, ts, "List");
-		else return t;
-	}
-	
-	public Type getTypeForEClassifier(final EGenericType element) {
-		EClassifier baseType = null;
-		if (element.getEClassifier() != null) {
-			baseType = element.getEClassifier();
-		} else {
-			baseType = element.getERawType();
-		}
-		
-		//sjekkar at vi ikkje har ei liste
-		if (baseType == null || !(baseType instanceof EList<?>)) {
-			return getTypeForEClassifier(baseType);
-		}
-		if (element.getETypeArguments().size() != 1)
-			throw new RuntimeException("Unexpected number of type arguments " + element.getETypeArguments().toString());
-
-		return dsmCache.get(element);
-	}
-	
-	public Type getTypeForEClassifier(final EClassifier element) {
-		if (element == null) {
-			return getTypeSystem().getVoidType();
-		}
-		log.debug("getTypeForEClassifier#name: " + element.getName());
-		return getTypeForName(NS_PREFIX + "::" + element.getName());
-	}
-	
 	/**
 	 * This method is the starting point when an expand statement is called.
 	 * In this metamodels case , the instance model's {@link Specification} is the first thing that
@@ -426,24 +142,12 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 		log.debug("getType: " + obj.toString());
 		
 		//Requires the input to start with a Specification object.
-		if(obj instanceof Specification && instanceModel != dsmModel) {
-			instanceModel = (Specification)obj;
-			
-			for(Node dsmNode : dsmModel.getGraph().getNodes()) {
-				instanceCollections.get(dsmNode.getName());
-			}
-		} 
-		//dekkar alle(?) ønska typar. Test.
-		//Sidan vi kallar getKnownTypes i spesialkonstruktør, har vi registrert alt vi treng FØR getType vert kalla
-		//mao. vi kan anta at dsm aldri går igjen getType.
-//		if(obj instanceof Specification
-//				|| obj instanceof IDObject
-//				|| obj instanceof Predicate
-//				|| obj instanceof Constraint) {
-//			return dsmCache.get(obj);
-//		}
+//		if(obj instanceof Specification && instanceModel != dpfMetaModel.getMetaModelSpec()) {
+//			instanceModel = (Specification)obj;
+//		} 
 		
 		if(obj instanceof Specification) {
+			dpfModel.setDpfModel((Specification)obj);
 			return getTypeForName(SPECIFICATION);
 		} else if(obj instanceof Graph) {
 			return getTypeForName(GRAPH);
@@ -469,14 +173,14 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 	 * 
 	 * @return Cache object with a dsm type name as key, and a list of DPF instance types (ie. Node) as value
 	 */
-	public Cache<String, List<Object>> getInstanceModelCollections() {
-		return instanceCollections;
+	public List<Object> getModelCollections(String typeName) {
+		return dpfModel.getMetaModelTypeCollections(typeName);
 	}
 	
 	/**
 	 * This method returns all known types that Xpand should know of.
 	 * We call getKnownTypes in {@link DpfMetamodel#DpfMetamodel(Specification)} as well as in
-	 * {@link DpfMetamodel#setDsm(Specification)} to initalize the meta models dsmCache with the proper types.
+	 * {@link DpfMetamodel#addDpfMetaModel(Specification)} to initalize the meta models dsmCache with the proper types.
 	 * 
 	 * @return set of all known types
 	 */
@@ -489,25 +193,9 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 		//I emfrmm hentar den alle entitetar i modellen (allPackages()), legg alle til i ei liste, for så
 		//å sjekke kva type som er assosiert med kvar entitet; sjekkar mao. Eclassifiers mot getTypeForEclassifier
 		
-		//TODO: Pull out the initalizing to own method.
-		
 		Set<Type> res = new HashSet<Type>();
-		if(dsmCache.isEmpty()) {
-			res.add(dsmCache.get(dsmModel));
-			res.add(dsmCache.get(dsmModel.getGraph()));
-			for(Node n : dsmModel.getGraph().getNodes()) {
-				res.add(dsmCache.get(n));
-			}
-			for(Arrow a : dsmModel.getGraph().getArrows()) {
-				res.add(dsmCache.get(a));
-			}
-			for(Constraint c : dsmModel.getGraph().getConstraints()) {
-				res.add(dsmCache.get(c));
-			}
-		} else {
-			for(Type t : dsmCache.getValues()) {
-				res.add(t);
-			}
+		for(Type t : dpfMetaModel.getXpandTypes()) {
+			res.add(t);
 		}
 		log.debug("MetaModel#getKnownTypes called");
 		return res;
@@ -533,42 +221,406 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 		return res;
 	}
 	
-	/**
-	 * Contains a lists over the different Ecore types we want the Xpand typesystem to handle.
-	 * If this isnt checked, the Java Beans MetaModel is called, and we will only get plain Java functionality.
-	 */
-	private void initializeKnownETypes() {
-		stringTypes = new HashSet<EClassifier>();
-		stringTypes.add(EcorePackage.eINSTANCE.getEString());
-		stringTypes.add(EcorePackage.eINSTANCE.getEChar());
-		stringTypes.add(EcorePackage.eINSTANCE.getECharacterObject());
+	private class InternalMetaModel {
+		/**Namespace for use when creating new Xpand Types*/
+		private String ns = null;
+		
+		/** Contains specifications */
+		private HashMap<String, Specification> specifications = new HashMap<String, Specification>();
+		
+		/** Contains a DPF core type to Xpand type mapping. */
+		private Cache<Object, Type> metaModelCache = new Cache<Object, Type>() {
+			
+			@Override
+			protected Type createNew(Object obj) {
+				log.debug("cache#createNew: " + obj);
+				if(obj instanceof Specification) {
+					return new SpecificationType(DpfMetamodel.this, ns + "::" + SPECIFICATION , (Specification)obj);
+				} else if(obj instanceof Graph) {
+					return new GraphType(DpfMetamodel.this, ns + "::" + GRAPH, (Graph)obj);
+				} else if(obj instanceof Node) {
+					return new NodeType(DpfMetamodel.this, ns + "::" + ((Node)obj).getName(), (Node)obj);
+				} else if(obj instanceof Arrow) {
+					return new ArrowType(DpfMetamodel.this, ns + "::" + ((Arrow)obj).getName(), (Arrow)obj);
+				} else if(obj instanceof Constraint) {
+					return new ConstraintType(DpfMetamodel.this, ns + "::" + CONSTRAINT, (Constraint)obj);
+				} else if(obj instanceof Predicate) {
+					return new PredicateType(DpfMetamodel.this, ns + "::" + PREDICATE , (Predicate)obj);
+				}
+				return null;
+			}
+		};
+		
+		public void addMetaModel(String namespace, Specification spec) {
+			ns = namespace;
+			
+			//FIXME: The meta model should provide getArrows/Nodes, but we need the DPF Node/Arrow types for this.
+			// Unfortunately one cant traverse the meta levels, and thus won't be able to retrieve the actual objects for Node and Arrow
+			// It is possible to hardcode a method in ArrowType to retrieve all arrows, but I suspect a dummy type is needed for this to work
+			// Instead I provide a getter for each typed arrow because of time constraints.
+		
+			metaModelCache.get(spec);
+			metaModelCache.get(spec.getGraph());
+			for(Node n : spec.getGraph().getNodes()) {
+				metaModelCache.get(n);
+			}
+			for(Arrow a : spec.getGraph().getArrows()) {
+				metaModelCache.get(a);
+			}
+			for(Constraint c : spec.getGraph().getConstraints()) {
+				metaModelCache.get(c);
+			}
+			
+			specifications.put(namespace, spec);
+			
+			ns = null;
+		}
+		
+		public Specification getMetaModelSpec() {
+			//Needs to be properly implemented to support multiple namespaces.
+			return specifications.get(NS_PREFIX);
+		}
+		
+		public Type getXpandTypeForDpfType(Object key) {
+			return metaModelCache.get(key);
+		}
+		
+		public Collection<Type> getXpandTypes() {
+			return metaModelCache.getValues();
+		}
+		
+		public Collection<Object> getDpfTypes() {
+			return metaModelCache.getKeys();
+		}
+		
+		public boolean dpfTypeExists(Object obj) {
+			return metaModelCache.exists(obj);
+		}
+	}
+	private class InternalModel {
+		
+		Specification model;
+		
+		/** Contains a string to Xpand Type mapping */
+		private Cache<String, Type> typeForNameCache = new Cache<String, Type>() {
+			
+			@Override
+			protected Type createNew(String str) {
+				//Finn namnet på typen, må strippa vekk namespace
+				int i = str.indexOf("::");
+				String typeDefinition = str;
+				if(i != -1) {
+					typeDefinition = str.substring(i+2);
+				}
+				log.debug("typeForNameCache#createNew: " + typeDefinition);
+					
+				if(model == null) log.debug("typeForNameCache: spec is null");
+					
+				Object key = getDpfMetaModelTypeForTypeName(typeDefinition);
+					
+				//If we already have registered the type
+				if(key != null) {
+					return dpfMetaModel.getXpandTypeForDpfType(key);
+				} else {
+					//We need to register the proper type
+					//Should only return a valid dsm type.
+					key = getGraphElementForName(typeDefinition);
+					//FIXME: Workaround: The ecore specific code needs to get nodenames/nodes from dsm. When building the collections
+					//we need to return a typenode. Hence we create a new method.
+					if(!dpfMetaModel.dpfTypeExists(key) || key == null) {
+						key = getMetaModelTypeForModelName(typeDefinition);
+					}
+					if(key != null) 
+						return dpfMetaModel.getXpandTypeForDpfType(key);
+				}
 
-		booleanTypes = new HashSet<EClassifier>();
-		booleanTypes.add(EcorePackage.eINSTANCE.getEBoolean());
-		booleanTypes.add(EcorePackage.eINSTANCE.getEBooleanObject());
+				//returnerer antakeligvis null dersom namespace
+				log.debug("getTypeForName#createNew: returned null");	
+				return null;
+			}
+		};
+		
+		/** A collection that holds all instances of a meta model type */
+		private Cache<String, List<Object>> metaModelTypeCollections = new Cache<String, List<Object>>() {
 
-		intTypes = new HashSet<EClassifier>();
-		intTypes.add(EcorePackage.eINSTANCE.getEInt());
-		intTypes.add(EcorePackage.eINSTANCE.getEIntegerObject());
-		intTypes.add(EcorePackage.eINSTANCE.getELong());
-		intTypes.add(EcorePackage.eINSTANCE.getELongObject());
-		intTypes.add(EcorePackage.eINSTANCE.getEShort());
-		intTypes.add(EcorePackage.eINSTANCE.getEShortObject());
-		intTypes.add(EcorePackage.eINSTANCE.getEByte());
-		intTypes.add(EcorePackage.eINSTANCE.getEByteObject());
-		intTypes.add(EcorePackage.eINSTANCE.getEBigInteger());
+			@Override
+			protected List<Object> createNew(String typeName) {
+				//Dersom vi finn ein korresponderande type i DSM'en, lagar vi ein collection med alle instansar av den typen
+				log.debug("Creating type collection: " + typeName);
+				List<Object> res = new ArrayList<Object>();
+				//FIXME: Only creates collections for nodes.
+				for(Node n : model.getGraph().getNodes()) {
+					if(n.getTypeName().equals(typeName)) {
+						res.add(n);
+					}
+				}
+				return res;
+			}
+		};
+		
+		private Object getMetaModelTypeForModelName(String name) {
+			log.debug("getDsmTypeForInstanceName: trying to find Graph element with name: " + name);
+			//This method should map a instance type to a type specified in the DSM
+			//TODO: Also there should be some validation that the type is actually in the DSM, and not just extract the type node of the instance like now.
+			if(model != null) {
+				if(name.equals(SPECIFICATION)) {
+					log.debug("createNewTypeForName: Specification called. This makes stuff fucky");
+					return model;
+				} else {
+					if(name.equals(GRAPH)) {
+						return model.getGraph();
+					} else {
+						for(Node n : model.getGraph().getNodes()) {
+							if(name.equals(n.getName())) { 
+								return n.getTypeNode(); //We return an object which is in the DSM.
+							}
+						}
+						for(Arrow a : model.getGraph().getArrows()) {
+							if(name.equals(a.getName())) { 
+								return a.getTypeArrow();
+							}
+						}
+					}
+				}
+			}
+			return null;
+		}
+		
+		//FIXME: Horrible code. Vi sjekkar jo berre base types... det er useless.
+		//Used to find the first object with proper type to associate a type string with the proper Xpand Type in typeForNameCache
+		/**
+		 * Gets the DPF core instance object that is the key for {@link InternalMetaModel#metaModelCache}.
+		 * We need this in getTypeForNameCache to identify that a DPF object, ie. Node is of type node, 
+		 * which in it's turn is associated with the correct Xpand type.
+		 * 
+		 * @param k
+		 *            String that contains name of base dpf type
+		 * @return Object Returns the Object key (DPF core instance object) from dsmCache
+		 */
+		private Object getDpfMetaModelTypeForTypeName(String k) {
+			for(Object o : dpfMetaModel.getDpfTypes()) {
+				if(k.equals(SPECIFICATION)) {
+					if(o instanceof Specification) {
+						return o;
+					}
+				} else if(k.equals(GRAPH)) {
+					if(o instanceof Graph) {
+						return o;
+					}
+				} else if(k.equals(NODE)) {
+					if(o instanceof Node) {
+						return o;
+					}
+				} else if(k.equals(ARROW)) {
+					if(o instanceof Arrow) {
+						return o;
+					}
+				} else if(k.equals(CONSTRAINT)) {
+					if(o instanceof Constraint) {
+						return o;
+					}
+				} else if(k.equals(PREDICATE)) {
+					if(o instanceof Predicate) {
+						return o;
+					}
+				}
+			}
+			return null;
+		}
+		
+		private Object getGraphElementForName(String name) {
+			//This method is fugly and is used to retrieve a valid dpf object, which is identifying the proper 
+			//object to do a lookup on in InternalMetaModel#metaModelCache.
+			log.debug("getGraphElementForName: trying to find Graph element with name: " + name);
+			
+			Specification mm = dpfMetaModel.getMetaModelSpec();
+			
+			if(mm != null) {
+				if(name.equals(SPECIFICATION)) {
+					log.debug("createNewTypeForName: Specification called. This makes stuff fucky");
+					return mm;
+				} else {
+					if(name.equals(GRAPH)) {
+						return mm.getGraph();
+					} else {
+						for(Node n : mm.getGraph().getNodes()) {
+							if(name.equals(n.getName())) { 
+								return n;
+							}
+						}
+						for(Arrow a : mm.getGraph().getArrows()) {
+							if(name.equals(a.getName())) { 
+								return a;
+							}
+						}
+					}
+				}
+			}
+			return null;
+		}
+		
+		public InternalModel() {
+			
+		}
+		
+		public void setDpfModel(Specification model) {
+			this.model = model;
+		}
+		
+		public Type getTypeForName(String name) {
+			return typeForNameCache.get(name);
+		}
+		
+		public List<Object> getMetaModelTypeCollections(String typeName) {
+			return metaModelTypeCollections.get(typeName);
+		}
+	}
+	
+	private class InternalEcoreHelper {
+		private HashSet<EClassifier> stringTypes;
 
-		realTypes = new HashSet<EClassifier>();
-		realTypes.add(EcorePackage.eINSTANCE.getEFloat());
-		realTypes.add(EcorePackage.eINSTANCE.getEFloatObject());
-		realTypes.add(EcorePackage.eINSTANCE.getEDouble());
-		realTypes.add(EcorePackage.eINSTANCE.getEDoubleObject());
-		realTypes.add(EcorePackage.eINSTANCE.getEBigDecimal());
+		private HashSet<EClassifier> intTypes;
 
-		objectTypes = new HashSet<EClassifier>();
-		objectTypes.add(EcorePackage.eINSTANCE.getEJavaObject());
+		private HashSet<EClassifier> realTypes;
 
-		listTypes = new HashSet<EClassifier>();
-		listTypes.add(EcorePackage.eINSTANCE.getEEList());
+		private HashSet<EClassifier> booleanTypes;
+
+		private HashSet<EClassifier> objectTypes;
+
+		private HashSet<EClassifier> listTypes;
+		
+		public InternalEcoreHelper() {
+			initializeKnownETypes();
+		}
+
+		
+		public Type getTypeForETypedElement(ETypedElement typedElement) {
+			//We need to map the pre-defined EStructuralFeatures (the ones specified in the DPF ecore metamodel.
+			//This is an attempt on making things as generic as possible. Allthough it will probably break if names change in the metamodel
+			log.debug("getTypeForETypedElement:");
+			if(typedElement.getEType() == null) {
+				return ts.getVoidType();
+			}
+			
+			Type t = null;
+			EClassifier classifier = typedElement.getEType();
+			
+			// TODO: These should return metametamodel types (dpf ecore), right now returns dsm types.
+			if(classifier.getName().equals(GRAPH)) {
+				t = getTypeForName(NS_PREFIX + "::" + GRAPH);
+			}  else if(classifier instanceof EDataType) {
+				//This resolves an "external" datatype used in the DPF ecore. This means other classes than the EClasses provided by ecore.
+				
+				//Java "primitive" datatypes which are resolved from the dpf ecore, will be retrieved using
+				//javabeans metamodel, but should be handled by the Xpand typesystem.
+				if (ts != null) {
+					if (stringTypes.contains(classifier)) {
+						return ts.getStringType();
+					}
+					else if (booleanTypes.contains(classifier)) {
+						return ts.getBooleanType();
+					}
+					else if (intTypes.contains(classifier)) {
+						return ts.getIntegerType();
+					}
+					else if (realTypes.contains(classifier)) {
+						return ts.getRealType();
+					}
+					else if (objectTypes.contains(classifier)) {
+						return ts.getObjectType();
+					}
+					else if (listTypes.contains(classifier)) {
+						return new EmfListType(ts.getObjectType(), ts, BuiltinMetaModel.LIST);
+					}
+				}
+				EDataType dt = (EDataType)classifier;	
+				if(dt.getInstanceClassName() != null) {
+					//if the EDataType has a class name (which is with a full identifier) we use the JavaBeansMetaModel to resolve it's features (attributes and operations)
+					t = jbmm.getTypeForName(dt.getInstanceClassName().replace(".", "::"));
+					if(t == null) {
+						t = ts.getTypeForName(dt.getInstanceClassName().replace(".", "::"));
+					}
+				} else return ts.getObjectType();
+			} else {
+				if(typedElement.getEGenericType() != null) {
+					log.debug("EGenericType: " + typedElement.getEGenericType());
+						//Linje 359-373 EmfRegistryMM... sjekk på om baseType har verdi eller om det er gyldig listetype
+					t = getTypeForEClassifier(typedElement.getEGenericType()); //Void type?
+				} else {
+					t = getTypeSystem().getTypeForName(typedElement.getEType().getName());
+					//TODO: See getFullyQualifiedName()
+				}
+			}
+			if(t == null) log.debug("getTypeForETypedElement failed: " + typedElement.getEType());
+			
+			if(typedElement.isMany())
+				return new ListTypeImpl(t, ts, "List");
+			else return t;
+		}
+		
+		public Type getTypeForEClassifier(final EGenericType element) {
+			EClassifier baseType = null;
+			if (element.getEClassifier() != null) {
+				baseType = element.getEClassifier();
+			} else {
+				baseType = element.getERawType();
+			}
+			
+			//sjekkar at vi ikkje har ei liste
+			if (baseType == null || !(baseType instanceof EList<?>)) {
+				return getTypeForEClassifier(baseType);
+			}
+			if (element.getETypeArguments().size() != 1)
+				throw new RuntimeException("Unexpected number of type arguments " + element.getETypeArguments().toString());
+
+			return dpfMetaModel.getXpandTypeForDpfType(element);
+		}
+		
+		public Type getTypeForEClassifier(final EClassifier element) {
+			if (element == null) {
+				return getTypeSystem().getVoidType();
+			}
+			log.debug("getTypeForEClassifier#name: " + element.getName());
+			return getTypeForName(NS_PREFIX + "::" + element.getName());
+		}
+		
+		/**
+		 * Contains a lists over the different Ecore types we want the Xpand typesystem to handle.
+		 * If this isnt checked, the Java Beans MetaModel is called, and we will only get plain Java functionality.
+		 */
+		private void initializeKnownETypes() {
+			stringTypes = new HashSet<EClassifier>();
+			stringTypes.add(EcorePackage.eINSTANCE.getEString());
+			stringTypes.add(EcorePackage.eINSTANCE.getEChar());
+			stringTypes.add(EcorePackage.eINSTANCE.getECharacterObject());
+
+			booleanTypes = new HashSet<EClassifier>();
+			booleanTypes.add(EcorePackage.eINSTANCE.getEBoolean());
+			booleanTypes.add(EcorePackage.eINSTANCE.getEBooleanObject());
+
+			intTypes = new HashSet<EClassifier>();
+			intTypes.add(EcorePackage.eINSTANCE.getEInt());
+			intTypes.add(EcorePackage.eINSTANCE.getEIntegerObject());
+			intTypes.add(EcorePackage.eINSTANCE.getELong());
+			intTypes.add(EcorePackage.eINSTANCE.getELongObject());
+			intTypes.add(EcorePackage.eINSTANCE.getEShort());
+			intTypes.add(EcorePackage.eINSTANCE.getEShortObject());
+			intTypes.add(EcorePackage.eINSTANCE.getEByte());
+			intTypes.add(EcorePackage.eINSTANCE.getEByteObject());
+			intTypes.add(EcorePackage.eINSTANCE.getEBigInteger());
+
+			realTypes = new HashSet<EClassifier>();
+			realTypes.add(EcorePackage.eINSTANCE.getEFloat());
+			realTypes.add(EcorePackage.eINSTANCE.getEFloatObject());
+			realTypes.add(EcorePackage.eINSTANCE.getEDouble());
+			realTypes.add(EcorePackage.eINSTANCE.getEDoubleObject());
+			realTypes.add(EcorePackage.eINSTANCE.getEBigDecimal());
+
+			objectTypes = new HashSet<EClassifier>();
+			objectTypes.add(EcorePackage.eINSTANCE.getEJavaObject());
+
+			listTypes = new HashSet<EClassifier>();
+			listTypes.add(EcorePackage.eINSTANCE.getEEList());
+		}
 	}
 }
