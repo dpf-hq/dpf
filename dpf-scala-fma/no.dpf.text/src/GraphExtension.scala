@@ -309,14 +309,57 @@ case class Composition(m1:Morphism,m2:Morphism){
   def compositeMorphism():Morphism = null
   def fPullbackComplement():Composition = null
   def pushoutComplement():Composition = {
-	//Graph transformation book p. 46
+	
+    //Graph transformation book p. 46
     def pushoutComplementSet(G:Set[Id],L:Set[Id],K:Set[Id],l:Id=>Id,m:Id=>Id) ={
-      val m_L = for(x<-L)yield{m(x)} 
-      val m_l_K = for(x<-K)yield{m(l(x))}
+      
+      //Morphism on the other side:
+      val m1B = MMap[Id,Id]();
+      val m2B = MMap[Id,Id]();
+      
+      val m_L = for(x<-L)	yield{val y = SetId(Set((m(x),1,"K")));	   m2B+=y->x ;y} 
+      val m_l_K = for(x<-K)	yield{val y = SetId(Set((m(l(x)),1,"G"))); m1B+=x->y ;y}
 	  val D = (G--m_L) ++ m_l_K
+	  
+	  (D,m1B.toMap,m2B.toMap)
 	}
-    pushoutComplementSet(m2.codomainNodes(),m2.domainNodes(),m1.domainNodes(),m1.codomainNode,m2.codomainNode) 
-	null;	  
+    
+    //Nodes:
+    val pcNodes = pushoutComplementSet(m2.codomainNodes(),m2.domainNodes(),m1.domainNodes(),m1.codomainNode,m2.codomainNode) 
+    val ns1 = SetMorphism(pcNodes._2, pcNodes._1)
+    val ns2 = SetMorphism(pcNodes._3, m2.codomainNodes())
+       
+    //Arrows:
+    val pcArrows = pushoutComplementSet(m2.codomainArrows(),m2.domainArrows(),m1.domainArrows(),m1.codomainArrow,m2.codomainArrow)
+    val as1 = SetMorphism(pcArrows._2, pcArrows._1)
+    val as2 = SetMorphism(pcArrows._3, m2.codomainArrows())
+    
+    //Fix arrows:
+    val arrowSr = MMap[Id,Id]();
+    val arrowTg = MMap[Id,Id]();
+    
+    for(a<-pcArrows._1){
+      a match{
+        case id@SetId(s) => if(1 != s.size){
+        		 			   sys.error("Programming error");
+        				    }
+        				 for(i<-s){
+        				   i._3 match{
+        				     case "K" => arrowSr+=id->SetId(Set((m1.domainArrowSr(i._1),1,"K")));
+        				     			 arrowTg+=id->SetId(Set((m1.domainArrowTg(i._1),1,"K")));
+        				     case "G" => arrowSr+=id->SetId(Set((m2.codomainArrowSr(i._1),1,"G")));
+        				     			 arrowTg+=id->SetId(Set((m2.codomainArrowTg(i._1),1,"G"))); 
+        				     case _ => sys.error("Programming error"); 
+        				   }
+        				 }	
+        case _		  => sys.error("Programming error");  
+      }
+    }
+    val arrowsSrTg_D = ArrowSrTg(arrowSr.toMap,arrowTg.toMap);
+    val m1B = ArbitraryMorphismWithIds(ns1,(as1,m1.domainArrowsSrTg,arrowsSrTg_D))
+    val m2B = ArbitraryMorphismWithIds(ns2,(as2,arrowsSrTg_D,m2.codomainArrowsSrTg))
+
+    Composition(m1,m2);
   }
   def validate()=m1.codomainNodes().equals(m2.domainNodes()) && m1.codomainArrows().equals(m2.domainArrows())
 }
