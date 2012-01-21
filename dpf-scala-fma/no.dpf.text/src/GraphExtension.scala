@@ -174,27 +174,38 @@ trait TwoMorphism{
 case class Span(left:Morphism,right:Morphism) extends TwoMorphism{
   def pushout():Cospan = {
     def pushoutSet(domain:Set[Id],codomainDiffLeft:Set[Id],codomainDiffRight:Set[Id],l:Id=>Id,r:Id=>Id)={
+      
+      //For Result:
       val m = MSet[Id]()
       val left2 = MMap[Id,Id]()
       val right2 = MMap[Id,Id]()
 
-      //Use mutable Sets for equivalenz relation:
-      val m_tmp 	 = MSet[MSet[(Id,Int,String)]]()
+      //Use mutable Maps for Equivalenz classes:
       val left2_tmp  = MMap[(Id,Int,String),MSet[(Id,Int,String)]]()
       val right2_tmp = MMap[(Id,Int,String),MSet[(Id,Int,String)]]()
       for(d<-domain){
         val lV = (l(d),1,"L")  
         val rV = (r(d),1,"R")
-        val poe = (m_tmp find (x => (x.contains(lV) || x.contains(rV)))) match {
-          		case None 	 => MSet(lV,rV)
-          		case Some(s) => s+=lV;s+=rV;s
-        	} 
+        val poe = MSet(lV,rV)
         left2_tmp+=lV->poe
         right2_tmp+=rV->poe
-        m_tmp+=poe
       }
+      //Compute equivalenz classes:
+      def merge():Boolean={
+        var merged = false;
+        for(kvL <- left2_tmp; kvR <- right2_tmp){
+      	  if(kvL._2 != kvR._2 && !(kvL._2 intersect kvR._2).isEmpty){
+	        kvL._2++=kvR._2;
+	        right2_tmp+=kvR._1->kvL._2;
+	       	merged = true;
+	      }
+        }
+        merged
+      }
+      while(merge())
+      
       //Add to real result:
-      for(s<-m_tmp)m+=TSetId(s.toSet)
+      for(s<-left2_tmp.values)m+=TSetId(s.toSet)
       for(kv<-left2_tmp)left2+=kv._1._1->TSetId(kv._2.toSet)
       for(kv<-right2_tmp)right2+=kv._1._1->TSetId(kv._2.toSet)
 
@@ -623,7 +634,6 @@ object Test {
 	  //
 	  //Test Pushout (Fudamentals of Algebraic Graph Transformation, page. 31 )
 	  //
-	  //TODO Fixbug
 	  {
 		  //G_A
 		  val a10 = arrow(10,1,2)
@@ -639,7 +649,8 @@ object Test {
 		  
 		  val x = ArbitraryMorphism(Set(),Set(
 				  					(Some(a10),a12),
-				  					(Some(a11),a12)
+				  					(Some(a11),a12),
+				  					(None,a13)
 				  					));
 		  
 		  val y = ArbitraryMorphism(Set(),Set(
