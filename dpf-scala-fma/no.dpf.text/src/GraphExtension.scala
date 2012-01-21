@@ -322,7 +322,7 @@ case class Composition(m1:Morphism,m2:Morphism){
       val m_l_K = for(x<-K)	yield{val y = SetId(Set((m(l(x)),1,"K"))); m1B+=x->y ;y}
 	  val D:Set[Id] = (xG--m_L) ++ m_l_K
 	  
-	  (Set[Id]()/*D*/,m1B.toMap,m2B.toMap)
+	  (D,m1B.toMap,m2B.toMap)
       
 	}
     
