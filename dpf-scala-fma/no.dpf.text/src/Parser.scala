@@ -649,6 +649,7 @@ object Main extends Parser(GraphDpf, "DPF")
 	//readFile("file1.txt")
 	if(0<args.length)inFile = args(0)
 	if(1<args.length)outDir = args(1)
+	println("Parse File: " + inFile)
 	val parseR = parseAll(definitions,readFile(inFile)).get
 	//		println(parseR)
 	
