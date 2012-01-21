@@ -46,7 +46,6 @@ object Validation extends Helper{
     //Vars:
     private val ocl:OCL[_,EClassifier,_,_,_,_,_,_,_,Constraint,EClass,EObject]=OCL.newInstance(EcoreEnvironmentFactory.INSTANCE);
     private val oclHelper=ocl.createOCLHelper();
-    private val resourceSet:ResourceSet = new ResourceSetImpl();
     
     //Init:
     private val init1 = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("xmi",new XMIResourceFactoryImpl());
@@ -147,7 +146,7 @@ object Validation extends Helper{
  	private def loadModel(fname:String)={
  		import java.io.File;
 		val modelUri = URI.createFileURI(new File(fname).getAbsolutePath());
-		resourceSet.getResource(modelUri, true);
+		val resourceSet:ResourceSet = new ResourceSetImpl();
 		val resourceModel:Resource = resourceSet.getResource(modelUri, true);
 		resourceModel
 		//resourceModel.getContents().get(0).asInstanceOf[EPackage];
@@ -162,7 +161,9 @@ object Validation extends Helper{
 		 * instance models location.
 		 */
 		val instanceUri = URI.createFileURI(new File(fname).getAbsolutePath());
+		val resourceSet:ResourceSet = new ResourceSetImpl();
 		val resourceInstance:Resource = resourceSet.getResource(instanceUri, true);
+
 		resourceInstance.getContents().get(0).asInstanceOf[EObject];
 	}
  	
