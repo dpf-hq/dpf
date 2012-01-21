@@ -660,10 +660,10 @@ object Test {
 		  
 		  val span = Span(x,y)
 
-		  val pushout:Cospan = span.pushout()
+//		  val pushout:Cospan = span.pushout()
 		  
-		  println(pushout.left);
-		  println(pushout.right);
+//		  println(pushout.left);
+//		  println(pushout.right);
 		  
 	  }	
 	  
@@ -699,10 +699,10 @@ object Test {
 		  
 		  val cospan = Cospan(x,y)
 		  
-//		  val pullback:Span = cospan.pullback()
+		  val pullback:Span = cospan.pullback()
 //		  
-//		  println(pullback.left);
-//		  println(pullback.right);
+		  println(pullback.left);
+		  println(pullback.right);
 		  
 	  }
 
