@@ -10,6 +10,7 @@ sealed trait Morphism{
   
   //
   //Change lazy values were possible
+  //use the group numbers where required
   //
   
   
@@ -307,7 +308,16 @@ case class Cospan(left:Morphism,right:Morphism) extends TwoMorphism{
 case class Composition(m1:Morphism,m2:Morphism){
   def compositeMorphism():Morphism = null
   def fPullbackComplement():Composition = null
-  def pushoutComplement():Composition = null
+  def pushoutComplement():Composition = {
+	//Graph transformation book p. 46
+    def pushoutComplementSet(G:Set[Id],L:Set[Id],K:Set[Id],l:Id=>Id,m:Id=>Id) ={
+      val m_L = for(x<-L)yield{m(x)} 
+      val m_l_K = for(x<-K)yield{m(l(x))}
+	  val D = (G--m_L) ++ m_l_K
+	}
+    pushoutComplementSet(m2.codomainNodes(),m2.domainNodes(),m1.domainNodes(),m1.codomainNode,m2.codomainNode) 
+	null;	  
+  }
   def validate()=m1.codomainNodes().equals(m2.domainNodes()) && m1.codomainArrows().equals(m2.domainArrows())
 }
 
@@ -699,10 +709,10 @@ object Test {
 		  
 		  val cospan = Cospan(x,y)
 		  
-		  val pullback:Span = cospan.pullback()
+//		  val pullback:Span = cospan.pullback()
 //		  
-		  println(pullback.left);
-		  println(pullback.right);
+//		  println(pullback.left);
+//		  println(pullback.right);
 		  
 	  }
 
