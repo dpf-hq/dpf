@@ -317,11 +317,13 @@ case class Composition(m1:Morphism,m2:Morphism){
       val m1B = MMap[Id,Id]();
       val m2B = MMap[Id,Id]();
       
-      val m_L = for(x<-L)	yield{val y = SetId(Set((m(x),1,"K")));	   m2B+=y->x ;y} 
-      val m_l_K = for(x<-K)	yield{val y = SetId(Set((m(l(x)),1,"G"))); m1B+=x->y ;y}
-	  val D = (G--m_L) ++ m_l_K
+      val xG = for(x<-G)	yield{val y = SetId(Set((x,1,"G"))); 	   m2B+=y->x ;y}
+      val m_L = for(x<-L)	yield{val y = SetId(Set((m(x),1,"G")));	   m2B-=y 	 ;y} 
+      val m_l_K = for(x<-K)	yield{val y = SetId(Set((m(l(x)),1,"K"))); m1B+=x->y ;y}
+	  val D:Set[Id] = (xG--m_L) ++ m_l_K
 	  
-	  (D,m1B.toMap,m2B.toMap)
+	  (Set[Id]()/*D*/,m1B.toMap,m2B.toMap)
+      
 	}
     
     //Nodes:
@@ -720,6 +722,43 @@ object Test {
 		  
 	  }	
 	  
+
+	  //
+	  //Test Pushout Complement (Fudamentals of Algebraic Graph Transformation, page. 31 )
+	  //
+	  {
+		  //G_A
+		  val a20 = arrow(20,1,2)
+		  val a21 = arrow(21,1,3)
+	    
+		  //G_B
+		  val a22 = arrow(22,4,5)
+		  val a23 = arrow(23,6,7)
+	    
+		  //G_C
+		  val a24 = arrow(24,8,8)
+		  val a25 = arrow(25,9,10)
+		  
+		  val x = ArbitraryMorphism(Set(),Set(
+				  					(Some(a20),a22),
+				  					(Some(a21),a22),
+				  					(None,a23)
+				  					));
+		  
+		  val y = ArbitraryMorphism(Set(),Set(
+				  					(Some(a22),a24),
+				  					(Some(a23),a25)
+				  					));
+		  
+		  val comp = Composition(x,y)
+
+		  val pushoutComplement:Composition = comp.pushoutComplement()
+		  
+		  println(pushoutComplement.m1);
+		  println(pushoutComplement.m2);
+		  
+	  }	
+	  
 	  
 	  //
 	  //Test Pullback (Fudamentals of Algebraic Graph Transformation, page. 35 )
@@ -758,6 +797,7 @@ object Test {
 //		  println(pullback.right);
 		  
 	  }
+
 
 	}
 	
