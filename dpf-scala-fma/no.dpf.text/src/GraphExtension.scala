@@ -319,7 +319,7 @@ case class Composition(m1:Morphism,m2:Morphism){
       
       val xG = for(x<-G)	yield{val y = SetId(Set((x,1,"G"))); 	   m2B+=y->x ;y}
       val m_L = for(x<-L)	yield{val y = SetId(Set((m(x),1,"G")));	   m2B-=y 	 ;y} 
-      val m_l_K = for(x<-K)	yield{val y = SetId(Set((m(l(x)),1,"K"))); m1B+=x->y ;y}
+      val m_l_K = for(x<-K)	yield{val y = SetId(Set((m(l(x)),1,"G"))); m1B+=x->y ;y}
 	  val D:Set[Id] = (xG--m_L) ++ m_l_K
 	  
 	  (D,m1B.toMap,m2B.toMap)
@@ -347,8 +347,6 @@ case class Composition(m1:Morphism,m2:Morphism){
         				    }
         				 for(i<-s){
         				   i._3 match{
-        				     case "K" => arrowSr+=id->SetId(Set((m1.domainArrowSr(i._1),1,"K")));
-        				     			 arrowTg+=id->SetId(Set((m1.domainArrowTg(i._1),1,"K")));
         				     case "G" => arrowSr+=id->SetId(Set((m2.codomainArrowSr(i._1),1,"G")));
         				     			 arrowTg+=id->SetId(Set((m2.codomainArrowTg(i._1),1,"G"))); 
         				     case _ => sys.error("Programming error"); 
@@ -361,7 +359,7 @@ case class Composition(m1:Morphism,m2:Morphism){
     val m1B = ArbitraryMorphismWithIds(ns1,(as1,m1.domainArrowSrTg,arrowsSrTg_D))
     val m2B = ArbitraryMorphismWithIds(ns2,(as2,arrowsSrTg_D,m2.codomainArrowSrTg))
 
-    Composition(m1,m2);
+    Composition(m1B,m2B);
   }
   def validate()=m1.codomainNodes().equals(m2.domainNodes()) && m1.codomainArrows().equals(m2.domainArrows())
 }
