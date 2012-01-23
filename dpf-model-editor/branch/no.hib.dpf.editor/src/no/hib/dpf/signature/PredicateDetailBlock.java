@@ -1,7 +1,5 @@
 package no.hib.dpf.signature;
 
-import java.util.EventObject;
-
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.IDObject;
 import no.hib.dpf.core.Node;
@@ -9,9 +7,11 @@ import no.hib.dpf.core.Predicate;
 import no.hib.dpf.core.ValidatorType;
 import no.hib.dpf.core.VisualizationType;
 import no.hib.dpf.editor.displaymodel.DPFDiagram;
+import no.hib.dpf.editor.parts.UIAdapter;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.gef.ui.actions.ActionRegistry;
 import org.eclipse.jface.viewers.ComboViewer;
@@ -72,7 +72,7 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 	private FormPage getEditor(){
 		return master.getEditor();
 	}
-	
+
 	public IWorkbenchPartSite getSite(){
 		return getEditor().getSite();
 	}
@@ -104,18 +104,13 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 	public boolean isStale() {
 		return false;
 	}
-	
+
 	protected void initializeGraphicalViewer(){
 		super.initializeGraphicalViewer();
 		getSite().setSelectionProvider(getGraphicalViewer());
 		master.getMultiEditor().loadProperties(getGraphicalViewer());
 	}
-	
-	public void commandStackChanged(EventObject event){
-		super.commandStackChanged(event);
-		refresh();
-		master.getMultiEditor().setDirty(true);
-	}
+
 	private DPFDiagram dGraph;
 	private Label sourceLabel;
 	private Label targetLabel;
@@ -125,7 +120,6 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 	}
 	@Override
 	public void refresh() {
-
 		if(predicate != null){
 			getGraphicalViewer().setContents(dGraph);
 			name.setText(getNNullString(predicate.getSymbol()));
@@ -134,27 +128,31 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 			validatorCombo.setSelection(new StructuredSelection(predicate.getSemanticsValidator().getType()));
 			validator.setText(getNNullString(predicate.getSemanticsValidator().getValidator()));
 			visulationCombo.setSelection(new StructuredSelection(predicate.getVisualization().getType()));
-			switch(predicate.getVisualization().getType()){
-			case ARROW_LABEL: 
-				targetCombo.getControl().setVisible(false);
-				targetLabel.setVisible(false);
-				sourceCombo.setInput(getArrows());
-				IDObject source = predicate.getVisualization().getSource();
-				sourceCombo.setSelection(source == null ? null : new StructuredSelection(predicate.getVisualization().getSource()));
-				break;
-			case NODE_TO_NODE:
-				updateVisualization(getNodes(), getNodes());
-				break;
-			case NODE_TO_ARROW:
-				updateVisualization(getNodes(), getArrows());
-				break;
-			case ARROW_TO_ARROW:
-				updateVisualization(getArrows(), getArrows());
-				break;
-			case ARROW_TO_NODE:
-				updateVisualization(getArrows(), getNodes());
-				break;
-			}
+			refreshVisualization();
+		}
+	}
+	
+	private void refreshVisualization(){
+		switch(predicate.getVisualization().getType()){
+		case ARROW_LABEL: 
+			targetCombo.getControl().setVisible(false);
+			targetLabel.setVisible(false);
+			sourceCombo.setInput(getArrows());
+			IDObject source = predicate.getVisualization().getSource();
+			sourceCombo.setSelection(source == null ? null : new StructuredSelection(predicate.getVisualization().getSource()));
+			break;
+		case NODE_TO_NODE:
+			updateVisualization(getNodes(), getNodes());
+			break;
+		case NODE_TO_ARROW:
+			updateVisualization(getNodes(), getArrows());
+			break;
+		case ARROW_TO_ARROW:
+			updateVisualization(getArrows(), getArrows());
+			break;
+		case ARROW_TO_NODE:
+			updateVisualization(getArrows(), getNodes());
+			break;
 		}
 	}
 
@@ -162,15 +160,28 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 		return value == null ? "" : value;
 	}
 
+	private UIAdapter adapter = new UIAdapter() {
+
+		@Override
+		protected void safeNotifyChanged(Notification msg) {
+			refreshVisualization();
+		}
+	};
 	@Override
 	public void selectionChanged(IFormPart part, ISelection selection) {
 		IStructuredSelection ssel = (IStructuredSelection)selection;
 		Object selected = null;
 		if(ssel.size() == 1) selected = ssel.getFirstElement();
+		if(predicate != null){
+			if(predicate.getShape().eAdapters().contains(adapter))
+				predicate.getShape().eAdapters().remove(adapter);
+		}
 		if(selected instanceof Predicate){
 			predicate = (Predicate) selected;
 			dGraph = master.getMultiEditor().findDGraph(predicate.getShape());
 			Assert.isNotNull(dGraph);
+			if(!predicate.getShape().eAdapters().contains(adapter))
+				predicate.getShape().eAdapters().add(adapter);
 			refresh();
 		}
 	}
@@ -302,7 +313,7 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 
 		//Visulation
 		Label visulationLabel = new Label(infoComposite, SWT.NONE);
-		visulationLabel.setText("Visualtion:");
+		visulationLabel.setText("Visualization:");
 		gridData = new GridData(GridData.BEGINNING, GridData.FILL, false, false);
 		gridData.verticalSpan = 3;
 		gridData.minimumWidth = 20;
@@ -390,7 +401,7 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 
 		graphComposite.setLayout(new FillLayout());
 		createPartControl(graphComposite);
-		
+
 		toolkit.paintBordersFor(infoSection);
 		toolkit.paintBordersFor(graphSection);
 		toolkit.paintBordersFor(validSection);
