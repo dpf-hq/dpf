@@ -317,10 +317,23 @@ case class Composition(m1:Morphism,m2:Morphism){
       val m1B = MMap[Id,Id]();
       val m2B = MMap[Id,Id]();
       
-      val xG = for(x<-G)	yield{val y = SetId(Set((x,1,"G"))); 	   m2B+=y->x ;y}
-      val m_L = for(x<-L)	yield{val y = SetId(Set((m(x),1,"G")));	   m2B-=y 	 ;y} 
-      val m_l_K = for(x<-K)	yield{val y = SetId(Set((m(l(x)),1,"G"))); m1B+=x->y ;y}
-	  val D:Set[Id] = (xG--m_L) ++ m_l_K
+      val xG = for(x<-G)	yield{
+        val y = SetId(Set((x,1,"G"))); 	   
+        m2B+=y->x ;y
+      }
+      val m_L = for(x<-L)	yield{
+        val y = SetId(Set((m(x),1,"G")));
+        m2B-=y 	 
+        ;y
+      } 
+      val m_l_K = for(x<-K)	yield{
+        val g = m(l(x))
+        val y = SetId(Set((g,1,"G")));
+        m1B+=x->y; 
+        m2B+=y->g ;y
+      }
+	  
+      val D:Set[Id] = (xG--m_L) ++ m_l_K
 	  
 	  (D,m1B.toMap,m2B.toMap)
       
@@ -453,7 +466,7 @@ case class ArbitraryMorphism(inputNodes:Set[(Option[Node],Node)],inputArrows:Set
         	  case None 	=>  arrows+=domain.id->codomain.id
         	  					input(domain.sr,codomain.sr);
         	  					input(domain.tg,codomain.tg)
-        	  case Some(ex) =>  if(ex != codomain.id){sys.error(domain + " mapped twice: " + codomain + ", " + ex)}
+        	  case Some(ex) =>  if(ex != codomain.id){sys.error("Arrow " + domain.id + " mapped twice: " + codomain.id + ", " + ex)}
         	}
         	domainArrowsMap+=domain.id->domain
       case _ => /*ignore*/
@@ -466,7 +479,7 @@ case class ArbitraryMorphism(inputNodes:Set[(Option[Node],Node)],inputArrows:Set
   private def input(domain:Node,codomain:Node){
   	nodes.get(domain.id) match{
 	  case None 	=>  nodes+=domain.id->codomain.id
-	  case Some(ex) =>  if(ex != codomain.id) sys.error(domain + " mapped twice: " +codomain + ", " + ex)
+	  case Some(ex) =>  if(ex != codomain.id) sys.error("Node " + domain.id + " mapped twice: " + codomain.id + ", " + ex)
 	}
   }
   
@@ -722,33 +735,60 @@ object Test {
 	  
 
 	  //
-	  //Test Pushout Complement (Fudamentals of Algebraic Graph Transformation, page. 31 )
+	  //Test Pushout Complement (Fudamentals of Algebraic Graph Transformation, page. 13 )
 	  //
 	  {
-		  //G_A
-		  val a20 = arrow(20,1,2)
-		  val a21 = arrow(21,1,3)
+		  //G_L
+		  val a100 = arrow(100,1,2)
+		  val a101 = arrow(101,1,3)
+		  val a102 = arrow(102,2,3)
 	    
-		  //G_B
-		  val a22 = arrow(22,4,5)
-		  val a23 = arrow(23,6,7)
+		  //G_K
+		  val n21 = node(21)
+		  val n22 = node(22)
 	    
-		  //G_C
-		  val a24 = arrow(24,8,8)
-		  val a25 = arrow(25,9,10)
+		  //G_R
+		  val a300 = arrow(300,31,34)
+		  val a301 = arrow(301,34,32)
+		  val a302 = arrow(302,31,35)
+		  val a303 = arrow(303,35,32)
 		  
-		  val x = ArbitraryMorphism(Set(),Set(
-				  					(Some(a20),a22),
-				  					(Some(a21),a22),
-				  					(None,a23)
+		  //G_G
+		  val a400 = arrow(400,41,42)
+		  val a401 = arrow(401,41,43)
+		  val a402 = arrow(402,42,43)
+		  val a403 = arrow(403,41,46)
+		  val a404 = arrow(404,46,47)
+		  val a405 = arrow(405,42,47)
+		  
+		  
+		  val l = ArbitraryMorphism(Set((Some(n21),node(1)),
+				  						(Some(n22),node(2))
+				  					),Set((None,a100),
+				  					      (None,a101),
+				  					      (None,a102)
+				  					));
+
+		  val r = ArbitraryMorphism(Set((Some(n21),node(31)),
+				  						(Some(n22),node(32))
+				  					),Set((None,a300),
+				  					      (None,a301),
+				  					      (None,a302),
+				  					      (None,a303)
+				  					));
+
+		  
+		  
+		  val m = ArbitraryMorphism(Set(),Set(
+				  					(Some(a100),a400),
+				  					(Some(a101),a401),
+				  					(Some(a102),a402),
+				  					(None,a403),
+				  					(None,a404),
+				  					(None,a405)
 				  					));
 		  
-		  val y = ArbitraryMorphism(Set(),Set(
-				  					(Some(a22),a24),
-				  					(Some(a23),a25)
-				  					));
-		  
-		  val comp = Composition(x,y)
+		  val comp = Composition(l,m)
 
 		  val pushoutComplement:Composition = comp.pushoutComplement()
 		  
