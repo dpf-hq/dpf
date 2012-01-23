@@ -792,8 +792,16 @@ object Test {
 
 		  val pushoutComplement:Composition = comp.pushoutComplement()
 		  
-		  println(pushoutComplement.m1);
-		  println(pushoutComplement.m2);
+		  //println(pushoutComplement.m1);
+		  //println(pushoutComplement.m2);
+		  
+		  val span = Span(pushoutComplement.m1,r)
+		  
+		  val pushout:Cospan = span.pushout()
+		  
+		  println(pushout.left);
+		  println(pushout.right);
+		  
 		  
 	  }	
 	  
