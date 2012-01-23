@@ -337,8 +337,22 @@ case class Cospan(left:Morphism,right:Morphism) extends TwoMorphism{
   def validate()=left.codomainNodes().equals(right.codomainNodes()) && left.codomainArrows().equals(right.codomainArrows())
 }
 case class Composition(m1:Morphism,m2:Morphism){
+  
   def compositeMorphism():Morphism = null
-  def fPullbackComplement():Composition = null
+  
+  /**
+   * Final-Pullback-Complement for Monic matches
+   */
+  def fmPullbackComplement():Composition = {
+	//Sesqui-pushout rewriting (Corradini et. al) 
+    //Construction 6
+    
+    
+    null;
+  }
+  
+  
+  
   def pushoutComplement():Composition = {
 	
     //Graph transformation book p. 46
