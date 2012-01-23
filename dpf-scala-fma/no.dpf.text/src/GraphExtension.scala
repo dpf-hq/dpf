@@ -830,8 +830,8 @@ object Test {
 		  
 		  val pushout:Cospan = span.pushout()
 		  
-		  //println(pushout.left);
-		  //println(pushout.right);
+		  println(pushout.left);
+		  println(pushout.right);
 		  
 		  
 	  }	
@@ -866,12 +866,12 @@ object Test {
 				  					(Some(a11),a16)
 				  					));
 		  
-		  val cospan = Cospan(x,y)
-		  
-		  val pullback:Span = cospan.pullback()
-		  
-		  println(pullback.left);
-		  println(pullback.right);
+//		  val cospan = Cospan(x,y)
+//		  
+//		  val pullback:Span = cospan.pullback()
+//		  
+//		  println(pullback.left);
+//		  println(pullback.right);
 		  
 	  }
 
