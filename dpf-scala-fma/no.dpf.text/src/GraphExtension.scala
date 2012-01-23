@@ -313,13 +313,13 @@ case class Cospan(left:Morphism,right:Morphism) extends TwoMorphism{
     
     //Pullback Nodes:
     val pNodes = pullbackSet(left.codomainNodes(),left.domainNodes,right.domainNodes);
-    val rsLeftNodes = SetMorphism(pNodes._2,pNodes._2.values.toSet)		
-    val rsRightNodes = SetMorphism(pNodes._3,pNodes._3.values.toSet)
+    val rsLeftNodes = SetMorphism(pNodes._2,left.domainNodes)		
+    val rsRightNodes = SetMorphism(pNodes._3,right.domainNodes)
     
     //Pullback Arrows:
     val pArrows = pullbackSet(left.codomainArrows(),left.domainArrows,right.domainArrows)
-    val rsLeftArrows = SetMorphism(pArrows._2,pArrows._2.values.toSet)		
-    val rsRightArrows = SetMorphism(pArrows._3,pArrows._3.values.toSet)	
+    val rsLeftArrows = SetMorphism(pArrows._2,left.domainArrows)
+    val rsRightArrows = SetMorphism(pArrows._3,right.domainArrows)	
     
     //Build Result:
     val domainArrowSrTg = createArrowSrTg(pArrows._1, pNodes._1,
@@ -755,12 +755,12 @@ object Test {
 				  					(Some(a11),a14)
 				  					));
 		  
-		  val span = Span(x,y)
+//		  val span = Span(x,y)
 
-		  val pushout:Cospan = span.pushout()
+//		  val pushout:Cospan = span.pushout()
 		  
-		  println(pushout.left);
-		  println(pushout.right);
+//		  println(pushout.left);
+//		  println(pushout.right);
 		  
 	  }	
 	  
@@ -868,10 +868,10 @@ object Test {
 		  
 		  val cospan = Cospan(x,y)
 		  
-//		  val pullback:Span = cospan.pullback()
-//		  
-//		  println(pullback.left);
-//		  println(pullback.right);
+		  val pullback:Span = cospan.pullback()
+		  
+		  println(pullback.left);
+		  println(pullback.right);
 		  
 	  }
 
