@@ -140,7 +140,7 @@ sealed trait Morphism{
 }
 
 trait TwoMorphism{
-  protected def createArrowSrTg(as:Set[Id],
+  protected def createArrowSrTg(as:Set[Id],ns:Set[Id],
 		  						srL:Id=>Id, tgL:Id=>Id,
 		  						srR:Id=>Id,	tgR:Id=>Id):ArrowSrTg={
     var srMap = MMap[Id,Id]()
@@ -168,6 +168,40 @@ trait TwoMorphism{
         case _ => sys.error("Programming error") 
       } 
     }
+
+    //Import if nodes have been merged to equivalenz classes
+    def checkNodes(m:MMap[Id,Id]){
+      for(kv<-m){
+        //Is sr or target tg node a valid one:
+        if(!(ns contains kv._2)){
+          //No:
+          var fixed = false
+          //Try do find the correct one:
+          for(n<-ns){
+            n match {
+              case y@SetId(_) => 
+		            kv._2 match {
+		              case x@SetId(_) =>
+		              //Fix:
+		              if(x.v subsetOf y.v){
+		            	  m+=kv._1->y
+		            	  fixed = true
+		              }
+		              case _ => 
+		            }
+              case _ => 
+            }
+          }
+          if(!fixed){
+        	  sys.error("Node does not exist: " + kv._2)            
+          }
+        }
+      }
+    }
+    
+    checkNodes(srMap)
+    checkNodes(tgMap)
+    
     ArrowSrTg(srMap.toMap,tgMap.toMap)
   }
 }
@@ -203,7 +237,7 @@ case class Span(left:Morphism,right:Morphism) extends TwoMorphism{
         }
         merged
       }
-      while(merge())
+      while(merge()){/*do nothing*/}
       
       //Add to real result:
       for(s<-left2_tmp.values)m+=SetId(s.toSet)
@@ -240,7 +274,7 @@ case class Span(left:Morphism,right:Morphism) extends TwoMorphism{
     val rsRightArrows = SetMorphism(pArrows._3,pArrows._1)	
     
     //Build Result:
-    val codomainArrowSrTg = createArrowSrTg(pArrows._1,
+    val codomainArrowSrTg = createArrowSrTg(pArrows._1, pNodes._1,
     									  left.codomainArrowSr,left.codomainArrowTg,
     									  right.codomainArrowSr,right.codomainArrowTg
     									  )
@@ -277,10 +311,6 @@ case class Cospan(left:Morphism,right:Morphism) extends TwoMorphism{
       (m.toSet,left1.toMap,right1.toMap)
     }
     
-    def createSrTgMaps()={
-      
-    }
-    
     //Pullback Nodes:
     val pNodes = pullbackSet(left.codomainNodes(),left.domainNodes,right.domainNodes);
     val rsLeftNodes = SetMorphism(pNodes._2,pNodes._2.values.toSet)		
@@ -292,12 +322,13 @@ case class Cospan(left:Morphism,right:Morphism) extends TwoMorphism{
     val rsRightArrows = SetMorphism(pArrows._3,pArrows._3.values.toSet)	
     
     //Build Result:
-    val domainArrowSrTg = createArrowSrTg(pArrows._1,
+    val domainArrowSrTg = createArrowSrTg(pArrows._1, pNodes._1,
     									  left.domainArrowSr,left.domainArrowTg,
     									  right.domainArrowSr,right.domainArrowTg
     									  )
     val codomainArrowSrTgLeft = left.domainArrowSrTg
     val codomainArrowSrTgRight = right.domainArrowSrTg
+    
     val leftRs = ArbitraryMorphismWithIds(rsLeftNodes,(rsLeftArrows,domainArrowSrTg,codomainArrowSrTgLeft))
     val rightRs = ArbitraryMorphismWithIds(rsRightNodes,(rsRightArrows,domainArrowSrTg,codomainArrowSrTgRight))
 
@@ -726,10 +757,10 @@ object Test {
 		  
 		  val span = Span(x,y)
 
-//		  val pushout:Cospan = span.pushout()
+		  val pushout:Cospan = span.pushout()
 		  
-//		  println(pushout.left);
-//		  println(pushout.right);
+		  println(pushout.left);
+		  println(pushout.right);
 		  
 	  }	
 	  
@@ -799,8 +830,8 @@ object Test {
 		  
 		  val pushout:Cospan = span.pushout()
 		  
-		  println(pushout.left);
-		  println(pushout.right);
+		  //println(pushout.left);
+		  //println(pushout.right);
 		  
 		  
 	  }	
