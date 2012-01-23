@@ -727,7 +727,9 @@ object Test {
 	def arrow(i:Long,n1:Long,n2:Long):Arrow = Arrow(RId(i),Node(RId(n1),GraphDpf.node),Node(RId(n2),GraphDpf.node),GraphDpf.arrow)
 
 	def main(args: Array[String]) {
-	 
+	
+	  var start = System.currentTimeMillis
+	  
 	  //
 	  //Test Pushout (Fudamentals of Algebraic Graph Transformation, page. 31 )
 	  //
@@ -755,9 +757,9 @@ object Test {
 				  					(Some(a11),a14)
 				  					));
 		  
-//		  val span = Span(x,y)
+		  val span = Span(x,y)
 
-//		  val pushout:Cospan = span.pushout()
+		  val pushout:Cospan = span.pushout()
 		  
 //		  println(pushout.left);
 //		  println(pushout.right);
@@ -823,15 +825,15 @@ object Test {
 
 		  val pushoutComplement:Composition = comp.pushoutComplement()
 		  
-		  //println(pushoutComplement.m1);
-		  //println(pushoutComplement.m2);
+//		  println(pushoutComplement.m1);
+//		  println(pushoutComplement.m2);
 		  
 		  val span = Span(pushoutComplement.m1,r)
 		  
 		  val pushout:Cospan = span.pushout()
 		  
-		  println(pushout.left);
-		  println(pushout.right);
+//		  println(pushout.left);
+//		  println(pushout.right);
 		  
 		  
 	  }	
@@ -866,16 +868,17 @@ object Test {
 				  					(Some(a11),a16)
 				  					));
 		  
-//		  val cospan = Cospan(x,y)
-//		  
-//		  val pullback:Span = cospan.pullback()
-//		  
+		  val cospan = Cospan(x,y)
+		  
+		  val pullback:Span = cospan.pullback()
+		  
 //		  println(pullback.left);
 //		  println(pullback.right);
 		  
 	  }
 
-
+	  println("Time spent:" + (System.currentTimeMillis - start))
+	  
 	}
 	
 }
