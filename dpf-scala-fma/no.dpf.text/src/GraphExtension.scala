@@ -432,7 +432,7 @@ case class Composition(m1:Morphism,m2:Morphism){
      if(3 == e_set.size){
        
        val e_A = e_set.find(x => "A" == x._3).get
-       y_E+=e->SetId(Set(e_A))
+       y_E+=e->e_A._1
        
        val e_uD = e_set.find(x => "uD" == x._3).get
        src_D+=e->e_uD._1 
