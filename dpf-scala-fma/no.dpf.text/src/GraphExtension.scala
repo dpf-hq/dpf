@@ -380,7 +380,7 @@ case class Composition(m1:Morphism,m2:Morphism){
       V_D+=SetId(Set((v,gid,"K")))
     }
     
-    //Compute V_D and y_v:
+    //Compute y_v:
     val a_v = m1.codomainNode(_);
     val y_v = MMap[Id,Id]();
     for(v<-V_D){
@@ -392,7 +392,20 @@ case class Composition(m1:Morphism,m2:Morphism){
       }
     }
     
-    
+    //Compute E_D
+    val E_A = m2.codomainArrows();
+    val E_D = MSet[SetId]();
+    val m_e_image = m2.domainArrows(_:Id)
+    val src_A = m2.codomainArrowSr(_)
+    val tgt_A = m2.codomainArrowTg(_)
+    for(e <- E_A){
+      if(m_e_image(e).isEmpty){
+        for(u <- V_D;
+            v <- V_D){
+          
+        }
+      }
+    }
     
     null;
   }
