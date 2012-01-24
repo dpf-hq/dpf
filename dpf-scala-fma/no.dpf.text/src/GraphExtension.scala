@@ -1026,6 +1026,44 @@ object Test {
 		  
 	  }
 
+	  //
+	  //Test Final Pullback Complement for Monic Matches: Sesqui-pushout rewriting (Andrea Corradini et. al.) Fig 3. Left-Part
+	  
+	  //
+	  {
+	  
+	  //L:
+	  val n1 = node(1)   
+
+	  //K:
+	  val n2 = node(2)   
+	  val n3 = node(3)   
+
+	  //A:
+	  val a11 = arrow(11,4,5);
+	  val a12 = arrow(12,4,6);
+	  val a13 = arrow(13,4,6);
+	  
+	  val alpha = ArbitraryMorphism(Set(
+			  						(Some(n2),n1),
+			  						(Some(n3),n1)
+			  						),Set());
+		  
+	  val m = ArbitraryMorphism(Set(
+			  						(Some(n1),node(4))
+			  					),Set(
+			  					(None,a11),
+			  					(None,a12),
+			  					(None,a13)));
+	  
+	  val comp = Composition(alpha,m)
+
+	  val pullbackComplement:Composition = comp.fPullbackComplementMono();
+	  
+	  println(pullbackComplement.m1);
+	  println(pullbackComplement.m2);
+	  
+	  } 	  
 	  println("Time spent:" + (System.currentTimeMillis - start))
 	  
 	}
