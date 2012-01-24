@@ -367,9 +367,10 @@ case class Composition(m1:Morphism,m2:Morphism){
     val V_L = m2.domainNodes();
     val V_K = m1.domainNodes();
     val m_V = m2.codomainNode(_);
+    val i_V = MMap[Id,Id]();
     val V_D = MSet[SetId]();
    
-    //Compute V_D:
+    //Compute V_D and i_V:
     for(v<-V_A){
       V_D+=SetId(Set((v,gid,"A")))
     }
@@ -377,7 +378,9 @@ case class Composition(m1:Morphism,m2:Morphism){
       V_D-=SetId(Set((m_V(v),gid,"A")))
     }
     for(v<-V_K){
-      V_D+=SetId(Set((v,gid,"K")))
+      val n = SetId(Set((v,gid,"K"))) 
+      V_D+=n;
+      i_V+=v->n;
     }
     
     //Compute y_v:
@@ -392,12 +395,13 @@ case class Composition(m1:Morphism,m2:Morphism){
       }
     }
     
-    //Compute E_D
+    //Compute E_D and i_E
     val E_A = m2.codomainArrows();
     val m_E_image = m2.domainArrows(_:Id);
     val src_A = m2.codomainArrowSr(_);
     val tgt_A = m2.codomainArrowTg(_);
     val E_K = m1.domainArrows();
+    val i_E = MMap[Id,Id]();
     val E_D = MSet[SetId]();
     for(e <- E_A){
       if(m_E_image(e).isEmpty){
@@ -410,7 +414,9 @@ case class Composition(m1:Morphism,m2:Morphism){
       }
     }
     for(e<-E_K){
-   	  E_D+=SetId(Set((e,gid,"K")))
+      val a = SetId(Set((e,gid,"K"))); 
+   	  E_D+=a;
+   	  i_E+=e->a;
     }
     
    //Compute y_E and src_D(e) and tgt_D(e):
