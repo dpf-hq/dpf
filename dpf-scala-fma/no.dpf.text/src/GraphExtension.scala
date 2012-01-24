@@ -4,11 +4,15 @@ import scala.collection.mutable.{Set=>MSet}
 import no.dpf.text.graph.mutable.{Graph=>MGraph}
 
 /**
+//TODO lots of defs can be improved as lazy values 
+*/
+
+/**
  * Graph Morphism (Graph not in name because it is already in the package name)
  */
 sealed trait Morphism{
   
-  val immutable:Boolean = true	
+  lazy val immutable:Boolean = true	
   
   /**
    * input: id of codomain
@@ -36,32 +40,14 @@ sealed trait Morphism{
   def domainArrowSr(id:Id):Id
   def domainArrowTg(id:Id):Id
   
-  private lazy val domainarrowsrtg:ArrowSrTg = immutable match {
-    	case true => createArrowSrTg(domainArrows,domainArrowSr,domainArrowTg) 
-    	case _ => null
-  }
-  def domainArrowSrTg():ArrowSrTg = {
-    if(immutable){
-      return domainarrowsrtg
-    }else{
-      return createArrowSrTg(domainArrows,domainArrowSr,domainArrowTg) /*If really a new map is required*/
-    }
-  }
+  private lazy val domainarrowsrtg:ArrowSrTg = createArrowSrTg(domainArrows,domainArrowSr,domainArrowTg)
+  def domainArrowSrTg():ArrowSrTg = immutable match {case true => domainarrowsrtg; case _ => createArrowSrTg(domainArrows,domainArrowSr,domainArrowTg)}
 
   def codomainArrowSr(id:Id):Id
   def codomainArrowTg(id:Id):Id
   
-  private lazy val codomainarrowsrtg:ArrowSrTg = immutable match {
-    	case true => createArrowSrTg(codomainArrows,codomainArrowSr,codomainArrowTg) 
-    	case _ => null
-  }
-  def codomainArrowSrTg():ArrowSrTg = {
-    if(immutable){
-      return codomainarrowsrtg
-    }else{
-      return createArrowSrTg(codomainArrows,codomainArrowSr,codomainArrowTg) /*If really a new map is required*/
-    }
-  }
+  private lazy val codomainarrowsrtg:ArrowSrTg = createArrowSrTg(codomainArrows,codomainArrowSr,codomainArrowTg)
+  def codomainArrowSrTg():ArrowSrTg = immutable match {case true => codomainarrowsrtg; case _ => createArrowSrTg(codomainArrows,codomainArrowSr,codomainArrowTg)}
   
   def domainNodes():Set[Id]
   def codomainNodes():Set[Id]
@@ -121,14 +107,8 @@ sealed trait Morphism{
 	return validateSet(domainNodes,codomainNode) && validateSet(domainArrows,codomainArrow) && validateGraphHomo() 
   }  
   
-  private lazy val tostring = immutable match {case true => mkToString() case _ => ""}
-  override def toString():String={
-    if(immutable){
-      return tostring 
-    }else{
-      return mkToString()
-    }
-  }
+  private lazy val tostring = mkToString()
+  override def toString():String = immutable match {case true => tostring; case _ => mkToString()} 
 
   private def mkToString():String={
     
@@ -615,7 +595,7 @@ case class ArbitraryMorphism(inputNodes:Set[(Option[Node],Node)],inputArrows:Set
  */
 case class TypingMorphism(input:AbstractGraph) extends Morphism{
   
-  override val immutable:Boolean = !input.isInstanceOf[MGraph] 	
+  override lazy val immutable:Boolean = !input.isInstanceOf[MGraph] 	
   
   /**
    * input: id of codomain
@@ -664,19 +644,27 @@ case class TypingMorphism(input:AbstractGraph) extends Morphism{
     input.mmGraph.arrows(id).tg.id
   }
 
-  def domainNodes():Set[Id]={
+  private lazy val domainnodes:Set[Id] = mkDomainNodes()    
+  def domainNodes():Set[Id]= immutable match {case true => domainnodes; case _ => mkDomainNodes()}
+  private def mkDomainNodes():Set[Id]={
     Set((for{n<-input.nodes.values} yield {n.id}) toSeq: _ *)
   }
   
-  def codomainNodes():Set[Id]={
+  private lazy val codomainnodes:Set[Id] = mkCodomainNodes()    
+  def codomainNodes():Set[Id]= immutable match {case true => codomainnodes; case _ => mkCodomainNodes()}
+  private def mkCodomainNodes():Set[Id]={
     Set((for{n<-input.mmGraph.nodes.values} yield {n.id}) toSeq: _ *)
   }
 
-  def domainArrows():Set[Id]={
+  private lazy val domainarrows:Set[Id]= mkDomainArrows() 
+  def domainArrows():Set[Id]= immutable match {case true => domainarrows; case _ => mkDomainArrows()}
+  private def mkDomainArrows():Set[Id]={
     Set((for{a<-input.arrows.values} yield {a.id}) toSeq: _ *)
   }
   
-  def codomainArrows():Set[Id]={
+  private lazy val codomainarrows:Set[Id]=mkCodomainArrows()
+  def codomainArrows():Set[Id]= immutable match {case true => codomainarrows; case _ => mkCodomainArrows()}
+  private def mkCodomainArrows():Set[Id]={
     Set((for{n<-input.mmGraph.arrows.values} yield {n.id}) toSeq: _ *)
   }
   
@@ -687,7 +675,7 @@ case class TypingMorphism(input:AbstractGraph) extends Morphism{
  */
 case class InclusionMorphism(inputSub:AbstractGraph, input:AbstractGraph) extends Morphism{
 
-  override val immutable:Boolean = !inputSub.isInstanceOf[MGraph] && !input.isInstanceOf[MGraph]	
+  override lazy val immutable:Boolean = !inputSub.isInstanceOf[MGraph] && !input.isInstanceOf[MGraph]	
   
   /**
    * input: id of codomain
@@ -738,19 +726,27 @@ case class InclusionMorphism(inputSub:AbstractGraph, input:AbstractGraph) extend
     input.mmGraph.arrows(id).tg.id
   }
 
-  def domainNodes():Set[Id]={
+  private lazy val domainnodes:Set[Id] = mkDomainNodes()    
+  def domainNodes():Set[Id]= immutable match {case true => domainnodes; case _ => mkDomainNodes()}
+  private def mkDomainNodes():Set[Id]={
     Set((for{n<-inputSub.nodes.values} yield {n.id}) toSeq: _ *)
   }
   
-  def codomainNodes():Set[Id]={
+  private lazy val codomainnodes:Set[Id] = mkCodomainNodes()    
+  def codomainNodes():Set[Id]= immutable match {case true => codomainnodes; case _ => mkCodomainNodes()}
+  private def mkCodomainNodes():Set[Id]={
     Set((for{n<-input.mmGraph.nodes.values} yield {n.id}) toSeq: _ *)
   }
 
-  def domainArrows():Set[Id]={
+  private lazy val domainarrows:Set[Id]= mkDomainArrows() 
+  def domainArrows():Set[Id]= immutable match {case true => domainarrows; case _ => mkDomainArrows()}
+  private def mkDomainArrows():Set[Id]={
     Set((for{a<-inputSub.arrows.values} yield {a.id}) toSeq: _ *)
   }
   
-  def codomainArrows():Set[Id]={
+  private lazy val codomainarrows:Set[Id]=mkCodomainArrows()
+  def codomainArrows():Set[Id]= immutable match {case true => codomainarrows; case _ => mkCodomainArrows()}
+  private def mkCodomainArrows():Set[Id]={
     Set((for{n<-input.mmGraph.arrows.values} yield {n.id}) toSeq: _ *)
   }
   
