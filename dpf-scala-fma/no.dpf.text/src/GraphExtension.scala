@@ -359,9 +359,39 @@ case class Composition(m1:Morphism,m2:Morphism){
   /**
    * Final-Pullback-Complement for Monic matches
    */
-  def fPullbackComplementMono():Composition = {
+  def fPullbackComplementMono(gid:Int=GroupIdGen.gen()):Composition = {
 	//Sesqui-pushout rewriting (Corradini et. al) 
+
     //Construction 6
+    val V_A = m2.codomainNodes();
+    val V_L = m2.domainNodes();
+    val V_K = m1.domainNodes();
+    val m_v = m2.codomainNode(_);
+    val V_D = MSet[SetId]();
+   
+    //Compute V_D:
+    for(v<-V_A){
+      V_D+=SetId(Set((v,gid,"A")))
+    }
+    for(v<-V_L){
+      V_D-=SetId(Set((m_v(v),gid,"A")))
+    }
+    for(v<-V_K){
+      V_D+=SetId(Set((v,gid,"K")))
+    }
+    
+    //Compute V_D and y_v:
+    val a_v = m1.codomainNode(_);
+    val y_v = MMap[Id,Id]();
+    for(v<-V_D){
+      val u = v.v.head
+      u._3 match{ 
+        case "K" => y_v+=v->m_v(a_v(u._1)) 
+        case "A" => y_v+=v->u._1
+        case _ => sys.error("Programming error")
+      }
+    }
+    
     
     
     null;
@@ -882,8 +912,8 @@ object Test {
 		  
 		  val pushout:Cospan = span.pushout()
 		  
-		  println(pushout.left);
-		  println(pushout.right);
+//		  println(pushout.left);
+//		  println(pushout.right);
 		  
 		  
 	  }	
