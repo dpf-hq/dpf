@@ -147,6 +147,14 @@ sealed trait Morphism{
   
 }
 
+
+//Ids:
+object GroupIdGen{
+	private var i = 100; 
+	def gen():Int = {i+=1;i;}
+}
+
+
 trait TwoMorphism{
   protected def createArrowSrTg(as:Set[Id],ns:Set[Id],
 		  						srL:Id=>Id, tgL:Id=>Id,
@@ -215,7 +223,7 @@ trait TwoMorphism{
 }
 
 case class Span(left:Morphism,right:Morphism) extends TwoMorphism{
-  def pushout():Cospan = {
+  def pushout(gid:Int=GroupIdGen.gen()):Cospan = {
     def pushoutSet(domain:Set[Id],codomainDiffLeft:Set[Id],codomainDiffRight:Set[Id],l:Id=>Id,r:Id=>Id)={
       
       //For Result:
@@ -227,8 +235,8 @@ case class Span(left:Morphism,right:Morphism) extends TwoMorphism{
       val left2_tmp  = MMap[(Id,Int,String),MSet[(Id,Int,String)]]()
       val right2_tmp = MMap[(Id,Int,String),MSet[(Id,Int,String)]]()
       for(d<-domain){
-        val lV = (l(d),1,"L")  
-        val rV = (r(d),1,"R")
+        val lV = (l(d),gid,"L")  
+        val rV = (r(d),gid,"R")
         val poe = MSet(lV,rV)
         left2_tmp+=lV->poe
         right2_tmp+=rV->poe
@@ -253,12 +261,12 @@ case class Span(left:Morphism,right:Morphism) extends TwoMorphism{
       for(kv<-right2_tmp)right2+=kv._1._1->SetId(kv._2.toSet)
 
       for(c<-codomainDiffLeft){
-        val poe = SetId(Set((c,1,"L")))
+        val poe = SetId(Set((c,gid,"L")))
     	m+= poe
         left2+=c->poe
       }
       for(c<-codomainDiffRight){
-        val poe = SetId(Set((c,1,"R")))
+        val poe = SetId(Set((c,gid,"R")))
         m+=poe
         right2+=c->poe
       }
@@ -298,7 +306,7 @@ case class Span(left:Morphism,right:Morphism) extends TwoMorphism{
 }
 
 case class Cospan(left:Morphism,right:Morphism) extends TwoMorphism{
-  def pullback():Span = {
+  def pullback(gid:Int=GroupIdGen.gen()):Span = {
     def pullbackSet(codomain2:Set[Id],l2:Id=>Set[Id],r2:Id=>Set[Id])={
       
       val m = MSet[Id]()
@@ -310,7 +318,7 @@ case class Cospan(left:Morphism,right:Morphism) extends TwoMorphism{
         val rDomain2 = r2(x)
         //Build cartesian product:
         for(l<-lDomain2;r<-rDomain2){
-          val pbe = SetId(Set((l,1,"L"),(r,1,"R"))) 
+          val pbe = SetId(Set((l,gid,"L"),(r,gid,"R"))) 
           left1+=pbe->l
           right1+=pbe->r
           m+= pbe
@@ -351,7 +359,7 @@ case class Composition(m1:Morphism,m2:Morphism){
   /**
    * Final-Pullback-Complement for Monic matches
    */
-  def fmPullbackComplement():Composition = {
+  def fPullbackComplementMono():Composition = {
 	//Sesqui-pushout rewriting (Corradini et. al) 
     //Construction 6
     
@@ -361,7 +369,7 @@ case class Composition(m1:Morphism,m2:Morphism){
   
   
   
-  def pushoutComplement():Composition = {
+  def pushoutComplement(gid:Int=GroupIdGen.gen()):Composition = {
 	
     //Graph transformation book p. 46
     def pushoutComplementSet(G:Set[Id],L:Set[Id],K:Set[Id],l:Id=>Id,m:Id=>Id) ={
@@ -371,17 +379,17 @@ case class Composition(m1:Morphism,m2:Morphism){
       val m2B = MMap[Id,Id]();
       
       val xG = for(x<-G)	yield{
-        val y = SetId(Set((x,1,"G"))); 	   
+        val y = SetId(Set((x,gid,"G"))); 	   
         m2B+=y->x ;y
       }
       val m_L = for(x<-L)	yield{
-        val y = SetId(Set((m(x),1,"G")));
+        val y = SetId(Set((m(x),gid,"G")));
         m2B-=y 	 
         ;y
       } 
       val m_l_K = for(x<-K)	yield{
         val g = m(l(x))
-        val y = SetId(Set((g,1,"G")));
+        val y = SetId(Set((g,gid,"G")));
         m1B+=x->y; 
         m2B+=y->g ;y
       }
@@ -413,8 +421,8 @@ case class Composition(m1:Morphism,m2:Morphism){
         				    }
         				 for(i<-s){
         				   i._3 match{
-        				     case "G" => arrowSr+=id->SetId(Set((m2.codomainArrowSr(i._1),1,"G")));
-        				     			 arrowTg+=id->SetId(Set((m2.codomainArrowTg(i._1),1,"G"))); 
+        				     case "G" => arrowSr+=id->SetId(Set((m2.codomainArrowSr(i._1),gid,"G")));
+        				     			 arrowTg+=id->SetId(Set((m2.codomainArrowTg(i._1),gid,"G"))); 
         				     case _ => sys.error("Programming error"); 
         				   }
         				 }	
@@ -874,8 +882,8 @@ object Test {
 		  
 		  val pushout:Cospan = span.pushout()
 		  
-//		  println(pushout.left);
-//		  println(pushout.right);
+		  println(pushout.left);
+		  println(pushout.right);
 		  
 		  
 	  }	
