@@ -1,18 +1,14 @@
 package no.dpf.text.graph;
 import scala.collection.mutable.{Map=>MMap}
 import scala.collection.mutable.{Set=>MSet}
-
+import no.dpf.text.graph.mutable.{Graph=>MGraph}
 
 /**
  * Graph Morphism (Graph not in name because it is already in the package name)
  */
 sealed trait Morphism{
   
-  //
-  //Change lazy values were possible
-  //use the group numbers where required
-  //
-  
+  val immutable:Boolean = true	
   
   /**
    * input: id of codomain
@@ -39,11 +35,33 @@ sealed trait Morphism{
   
   def domainArrowSr(id:Id):Id
   def domainArrowTg(id:Id):Id
-  lazy val domainArrowSrTg:ArrowSrTg = createArrowSrTg(domainArrows,domainArrowSr,domainArrowTg) /*If really a new map is required*/
+  
+  private lazy val domainarrowsrtg:ArrowSrTg = immutable match {
+    	case true => createArrowSrTg(domainArrows,domainArrowSr,domainArrowTg) 
+    	case _ => null
+  }
+  def domainArrowSrTg():ArrowSrTg = {
+    if(immutable){
+      return domainarrowsrtg
+    }else{
+      return createArrowSrTg(domainArrows,domainArrowSr,domainArrowTg) /*If really a new map is required*/
+    }
+  }
 
   def codomainArrowSr(id:Id):Id
   def codomainArrowTg(id:Id):Id
-  lazy val codomainArrowSrTg:ArrowSrTg = createArrowSrTg(codomainArrows,codomainArrowSr,codomainArrowTg) /*If really a new map is required*/
+  
+  private lazy val codomainarrowsrtg:ArrowSrTg = immutable match {
+    	case true => createArrowSrTg(codomainArrows,codomainArrowSr,codomainArrowTg) 
+    	case _ => null
+  }
+  def codomainArrowSrTg():ArrowSrTg = {
+    if(immutable){
+      return codomainarrowsrtg
+    }else{
+      return createArrowSrTg(codomainArrows,codomainArrowSr,codomainArrowTg) /*If really a new map is required*/
+    }
+  }
   
   def domainNodes():Set[Id]
   def codomainNodes():Set[Id]
@@ -103,7 +121,17 @@ sealed trait Morphism{
 	return validateSet(domainNodes,codomainNode) && validateSet(domainArrows,codomainArrow) && validateGraphHomo() 
   }  
   
-  override lazy val toString={
+  private lazy val tostring = immutable match {case true => mkToString() case _ => ""}
+  override def toString():String={
+    if(immutable){
+      return tostring 
+    }else{
+      return mkToString()
+    }
+  }
+
+  private def mkToString():String={
+    
     var rrs:List[String] = Nil
     
     rrs="\n\nNodes-Mapping:\n"::rrs;
@@ -476,14 +504,14 @@ case class ArbitraryMorphismWithIds(inputNodes:SetMorphism,inputArrows:(SetMorph
   
   def codomainArrowTg(id:Id):Id=inputArrows._3.tg(id)
 
-  def domainNodes():Set[Id]=inputNodes.map.keySet
+  lazy val domainNodes:Set[Id]=inputNodes.map.keySet
   
-  def codomainNodes():Set[Id]=inputNodes.codomain ++ inputNodes.map.values.toSet ++ inputArrows._3.sr.values.toSet ++ inputArrows._3.tg.values.toSet
+  lazy val codomainNodes:Set[Id]=inputNodes.codomain ++ inputNodes.map.values.toSet ++ inputArrows._3.sr.values.toSet ++ inputArrows._3.tg.values.toSet
   
-  def domainArrows():Set[Id]=inputArrows._1.map.keySet
+  lazy val domainArrows:Set[Id]=inputArrows._1.map.keySet
   
-  def codomainArrows():Set[Id]=inputArrows._1.codomain++inputArrows._1.map.values.toSet
-  
+  lazy val codomainArrows:Set[Id]=inputArrows._1.codomain++inputArrows._1.map.values.toSet
+ 
 }
 
 /**
@@ -572,13 +600,13 @@ case class ArbitraryMorphism(inputNodes:Set[(Option[Node],Node)],inputArrows:Set
   
   def codomainArrowTg(id:Id):Id=codomainArrowsMap(id).tg.id
 
-  def domainNodes():Set[Id]=nodes.keySet.toSet
+  lazy val domainNodes:Set[Id]=nodes.keySet.toSet
   
   lazy val codomainNodes:Set[Id]=codomainNodesSet.toSet
   
   lazy val domainArrows:Set[Id]=arrows.keySet.toSet
   
-  def codomainArrows():Set[Id]=Set((for{(_,a)<-inputArrows} yield {a.id}) toSeq: _ *)
+  lazy val codomainArrows:Set[Id]=Set((for{(_,a)<-inputArrows} yield {a.id}) toSeq: _ *)
 
 } 
 
@@ -586,6 +614,8 @@ case class ArbitraryMorphism(inputNodes:Set[(Option[Node],Node)],inputArrows:Set
  * Typing Morphism  
  */
 case class TypingMorphism(input:AbstractGraph) extends Morphism{
+  
+  override val immutable:Boolean = !input.isInstanceOf[MGraph] 	
   
   /**
    * input: id of codomain
@@ -656,6 +686,8 @@ case class TypingMorphism(input:AbstractGraph) extends Morphism{
  * Inclusion Morphism  
  */
 case class InclusionMorphism(inputSub:AbstractGraph, input:AbstractGraph) extends Morphism{
+
+  override val immutable:Boolean = !inputSub.isInstanceOf[MGraph] && !input.isInstanceOf[MGraph]	
   
   /**
    * input: id of codomain
@@ -846,8 +878,8 @@ object Test {
 		  
 		  val pushout:Cospan = span.pushout()
 		  
-//		  println(pushout.left);
-//		  println(pushout.right);
+		  println(pushout.left);
+		  println(pushout.right);
 		  
 		  
 	  }	
