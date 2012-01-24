@@ -453,7 +453,17 @@ case class Composition(m1:Morphism,m2:Morphism){
      }		 
    }
     
-    null;
+   val ns1 = SetMorphism(i_V.toMap,V_D.toSet)
+   val ns2 = SetMorphism(y_V.toMap,V_A)
+
+   val as1 = SetMorphism(i_E.toMap,E_D.toSet)
+   val as2 = SetMorphism(y_E.toMap,E_A)
+   
+   val arrowsSrTg_D = ArrowSrTg(src_D.toMap,tgt_D.toMap);
+   val m1B = ArbitraryMorphismWithIds(ns1,(as1,m1.domainArrowSrTg,arrowsSrTg_D))
+   val m2B = ArbitraryMorphismWithIds(ns2,(as2,arrowsSrTg_D,m2.codomainArrowSrTg))
+   
+   Composition(m1B,m2B);
   }
   
   
