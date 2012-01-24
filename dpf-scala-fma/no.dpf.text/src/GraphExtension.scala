@@ -360,7 +360,7 @@ case class Composition(m1:Morphism,m2:Morphism){
    * Final-Pullback-Complement for Monic matches
    */
   def fPullbackComplementMono(gid:Int=GroupIdGen.gen()):Composition = {
-	//Sesqui-pushout rewriting (Corradini et. al) 
+	//From: Sesqui-pushout rewriting (Corradini et. al) 
 
     //Construction 6
     val V_A = m2.codomainNodes();
@@ -404,7 +404,7 @@ case class Composition(m1:Morphism,m2:Morphism){
         for(u <- V_D;
             v <- V_D){
           if(src_A(e) == y_V(u) && tgt_A(e) == y_V(v)){
-        	  E_D+=SetId(Set((e,gid,"A"),(u,gid,"D"),(v,gid,"D")))
+        	  E_D+=SetId(Set((e,gid,"A"),(u,gid,"uD"),(v,gid,"vD")))
           }
         }
       }
@@ -413,21 +413,37 @@ case class Composition(m1:Morphism,m2:Morphism){
    	  E_D+=SetId(Set((e,gid,"K")))
     }
     
-   //Compute y_E:
+   //Compute y_E and src_D(e) and tgt_D(e):
    val m_E = m2.codomainArrow(_);
    val a_E = m1.codomainArrow(_);
+   var src_K = m1.domainArrowSr(_);
+   var tgt_K = m1.domainArrowTg(_);
    val y_E = MMap[Id,Id]();
+   val src_D = MMap[Id,Id]();
+   val tgt_D = MMap[Id,Id]();
    for(e<-E_D){
      val e_set = e.v
      if(3 == e_set.size){
-       val e_sem = e_set.find(x => "A" == x._3).get
-       y_E+=e->SetId(Set(e_sem))
+       
+       val e_A = e_set.find(x => "A" == x._3).get
+       y_E+=e->SetId(Set(e_A))
+       
+       val e_uD = e_set.find(x => "uD" == x._3).get
+       src_D+=e->e_uD._1 
+
+       val e_vD = e_set.find(x => "vD" == x._3).get
+       tgt_D+=e->e_vD._1
+       
      }else{
        val e2 = e_set.head
        if("K" != e2._3){
          sys.error("Programming error")
        }
        y_E+=e->SetId(Set((m_E(a_E(e2._1)),gid,e2._3)))
+
+       src_D+=e->src_K(e2._1)
+       
+       tgt_D+=e->tgt_K(e2._1) 
      }		 
    }
     
