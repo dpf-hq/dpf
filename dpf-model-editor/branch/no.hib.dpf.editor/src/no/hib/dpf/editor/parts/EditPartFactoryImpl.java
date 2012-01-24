@@ -111,9 +111,9 @@ private EditPart getPartForElement(Object modelElement) {
 	}
 	if (modelElement instanceof ArrowLabel) {
 		if (((ArrowLabel)modelElement).isConstraintLabel()) {
-			return new ArrowConstraintLabelEditPart();
+			return new ConstraintLabelEditPart();
 		} else {
-			return new ArrowNameLabelEditPart();
+			return new ArrowLabelEditPart();
 		}
 	}
 	if (modelElement instanceof DConstraint) {

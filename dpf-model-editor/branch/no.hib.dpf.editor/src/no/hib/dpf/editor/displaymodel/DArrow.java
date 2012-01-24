@@ -68,8 +68,8 @@ public class DArrow extends ModelElement implements Arrow, IDObjectContainer {
 
 	private static final String[] LINE_STRS = new String[]{"LINE_SOLID", "LINE_DASH"};//, "LINE_DOT", "LINE_DASHDOT", "LINE_DASHDOTDOT"};
 	private static final long serialVersionUID = 1;
-	private static final String CONSTRAINT_1_PROP = "Connection.constraint1";
-	private static final String CONSTRAINT_2_PROP = "Connection.constraint2";
+//	private static final String CONSTRAINT_1_PROP = "Connection.constraint1";
+//	private static final String CONSTRAINT_2_PROP = "Connection.constraint2";
 
 	/** Property ID to use when the list of outgoing constraints is modified. */
 	public static final String SOURCE_CONSTRAINTS_PROP = "Connection.SourceConstraint";
@@ -106,8 +106,8 @@ public class DArrow extends ModelElement implements Arrow, IDObjectContainer {
 	static{
 		descriptors = new IPropertyDescriptor[] {
 				new ComboBoxPropertyDescriptor(LINESTYLE_PROP, LINESTYLE_PROP, LINE_STRS),
-				new NegativeIntegerTextPropertyDescriptor(CONSTRAINT_1_PROP, "Constraints (1)"),
-				new NegativeIntegerTextPropertyDescriptor(CONSTRAINT_2_PROP, "Constraints (2)"),
+//				new NegativeIntegerTextPropertyDescriptor(CONSTRAINT_1_PROP, "Constraints (1)"),
+//				new NegativeIntegerTextPropertyDescriptor(CONSTRAINT_2_PROP, "Constraints (2)"),
 				new TextPropertyDescriptor(NAME_PROP, "Name"),
 				new TextPropertyDescriptor(TYPE_PROP, "Type"),
 				new ComboBoxPropertyDescriptor(PROP_CONFIGURE, "Configure", configureLabels)
@@ -140,13 +140,13 @@ public class DArrow extends ModelElement implements Arrow, IDObjectContainer {
 	public DArrow(DNode source, DNode target, Arrow typeArrow) {
 		// The dpf Arrow object must be initialized before the connection of the shapes.
 		setIDObject(CoreFactory.eINSTANCE.createArrow(typeArrow));
-		addLabel("ref");
+		addLabel();
 		reconnect(source, target);
 	}
 
 	public DArrow(DNode source, DNode target, Arrow typeArrow, DArrow typeDArrow) {
 		setIDObject(CoreFactory.eINSTANCE.createArrow(typeArrow));
-		addLabel("ref");
+		addLabel();
 		if(typeDArrow != null){
 			configure = typeDArrow.getConfigure();
 			configurationName = FigureConfigureManager.getName(configure);
@@ -203,16 +203,16 @@ public class DArrow extends ModelElement implements Arrow, IDObjectContainer {
 		if (id.equals(LINESTYLE_PROP)) {
 			return new Integer(getLineStyle() - SWT.LINE_SOLID);
 		}
-		if (id.equals(CONSTRAINT_1_PROP)) {
-			if (singleConstraints.size() > 0) {
-				return Integer.toString(singleConstraints.get(0).getVal_1());
-			}
-		}
-		if (id.equals(CONSTRAINT_2_PROP)) {
-			if (singleConstraints.size() > 0) {
-				return Integer.toString(singleConstraints.get(0).getVal_2());
-			}
-		}
+//		if (id.equals(CONSTRAINT_1_PROP)) {
+//			if (singleConstraints.size() > 0) {
+//				return Integer.toString(singleConstraints.get(0).getVal_1());
+//			}
+//		}
+//		if (id.equals(CONSTRAINT_2_PROP)) {
+//			if (singleConstraints.size() > 0) {
+//				return Integer.toString(singleConstraints.get(0).getVal_2());
+//			}
+//		}
 		if (id.equals(NAME_PROP)) {
 			return getName();
 		}
@@ -293,19 +293,19 @@ public class DArrow extends ModelElement implements Arrow, IDObjectContainer {
 	}
 
 	// TODO: REMOVE!
-	private void setConstraintValue1(int value) {
-		if (singleConstraints.size() > 0) {
-			singleConstraints.get(0).setPropertyValue(SingleArrowConstraintElement.MULTIPLICITY_1_PROP, new Integer(value));
-			firePropertyChange(SINGLE_CONSTRAINTS_PROP, null, 0);		
-		}
-	}	
+//	private void setConstraintValue1(int value) {
+//		if (singleConstraints.size() > 0) {
+//			singleConstraints.get(0).setPropertyValue(SingleArrowConstraintElement.MULTIPLICITY_1_PROP, new Integer(value));
+//			firePropertyChange(SINGLE_CONSTRAINTS_PROP, null, 0);		
+//		}
+//	}	
 
-	private void setConstraintValue2(int value) {
-		if (singleConstraints.size() > 0) {
-			singleConstraints.get(0).setPropertyValue(SingleArrowConstraintElement.MULTIPLICITY_2_PROP, new Integer(value));
-			firePropertyChange(SINGLE_CONSTRAINTS_PROP, null, 0);		
-		}
-	}
+//	private void setConstraintValue2(int value) {
+//		if (singleConstraints.size() > 0) {
+//			singleConstraints.get(0).setPropertyValue(SingleArrowConstraintElement.MULTIPLICITY_2_PROP, new Integer(value));
+//			firePropertyChange(SINGLE_CONSTRAINTS_PROP, null, 0);		
+//		}
+//	}
 	
 	public void refreshSingleConstraints() {
 		firePropertyChange(SINGLE_CONSTRAINTS_PROP, null, 0);		
@@ -322,15 +322,16 @@ public class DArrow extends ModelElement implements Arrow, IDObjectContainer {
 		if (id.equals(LINESTYLE_PROP)) {
 			if(((Integer)value).intValue() != getLineStyle() - SWT.LINE_SOLID)
 				setLineStyle(((Integer)value).intValue() + SWT.LINE_SOLID);
-		} else if (id.equals(CONSTRAINT_1_PROP)) {
-			setConstraintValue1(Integer.parseInt((String) value));
-		} else if (id.equals(CONSTRAINT_2_PROP)) {
-			setConstraintValue2(Integer.parseInt((String) value));
-		} else if (id.equals(NAME_PROP)) {
+		} 
+//		else if (id.equals(CONSTRAINT_1_PROP)) {
+//			setConstraintValue1(Integer.parseInt((String) value));
+//		} else if (id.equals(CONSTRAINT_2_PROP)) {
+//			setConstraintValue2(Integer.parseInt((String) value));
+//		}
+		else if (id.equals(NAME_PROP)) 
 			setNameExec((String) value);
-		} else {
+		else 
 			super.setPropertyValue(id, value);
-		}
 	}
 
 	public List<DConstraint> getSourceConstraints() {
@@ -375,14 +376,9 @@ public class DArrow extends ModelElement implements Arrow, IDObjectContainer {
 	public void setNameExec(String name) {
 		String oldName = arrowComponent.getName();
 		arrowComponent.setName(name);
-		setMainLabelText(name);
 		firePropertyChange(NAME_PROP, oldName, name);
 	}
 
-	private void setMainLabelText(String name) {
-		((ArrowLabel)getLabels().get(0)).setLabelText(name);
-	}
-	
 	protected void removeIncomingConstraint(DConstraint constraint) {
 		targetConnstraints.remove(constraint);
 		removedConstraint(constraint, TARGET_CONSTRAINTS_PROP);
@@ -443,8 +439,8 @@ public class DArrow extends ModelElement implements Arrow, IDObjectContainer {
 		return bendpoints;
 	}
 	
-	public void addLabel(String text) {
-		mainLabel = new ArrowLabel(this, text, false);
+	public void addLabel() {
+		mainLabel = new ArrowLabel(this, false);
 	}
 	
 

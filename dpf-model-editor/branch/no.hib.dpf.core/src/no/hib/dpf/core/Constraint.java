@@ -1,6 +1,6 @@
 /**
  * <copyright>
- * Copyright (c) 2011 H¿yskolen i Bergen
+ * Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * Adrian Rutle, ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * Adrian Rutle, ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
  * </copyright>
  *
  * $Id$

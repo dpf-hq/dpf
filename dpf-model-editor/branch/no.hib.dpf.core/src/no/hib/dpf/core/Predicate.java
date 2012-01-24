@@ -93,20 +93,30 @@ public interface Predicate extends EObject  {
 	void setSemanticsValidator(SemanticsValidator value);
 
 	/**
-	 * Returns the value of the '<em><b>Parameters</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.String}.
+	 * Returns the value of the '<em><b>Parameters</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Parameters</em>' attribute list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Parameters</em>' attribute list.
+	 * @return the value of the '<em>Parameters</em>' attribute.
+	 * @see #setParameters(String)
 	 * @see no.hib.dpf.core.CorePackage#getPredicate_Parameters()
 	 * @model
 	 * @generated
 	 */
-	EList<String> getParameters();
+	String getParameters();
+
+	/**
+	 * Sets the value of the '{@link no.hib.dpf.core.Predicate#getParameters <em>Parameters</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Parameters</em>' attribute.
+	 * @see #getParameters()
+	 * @generated
+	 */
+	void setParameters(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Visualization</b></em>' containment reference.
@@ -216,6 +226,6 @@ public interface Predicate extends EObject  {
 	 * @model
 	 * @generated
 	 */
-	boolean validateSemantics(GraphHomomorphism mapping, Graph graph);
+	boolean validateSemantics(String parameters, GraphHomomorphism mapping, Graph graph);
 
 } // Predicate

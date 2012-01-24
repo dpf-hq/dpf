@@ -803,7 +803,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 			try {
 				GraphHomomorphism mappings = c.getMappings();
 				Graph graph = specification.getGraph();
-				Boolean validation = c.getPredicate().validateSemantics(mappings, graph);
+				Boolean validation = c.getPredicate().validateSemantics(c.getParameters(), mappings, graph);
 //				Graph oStar = specification.createOStar(c);
 //				// Transfer the constraint's parameters to the predicate validator:
 //				Boolean validation = c.getPredicate().validateSemantics(oStar, c.getParameters(), c.getConstrainedNodes(), c.getConstrainedArrows());

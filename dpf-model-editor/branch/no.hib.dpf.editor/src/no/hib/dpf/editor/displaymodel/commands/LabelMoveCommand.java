@@ -43,14 +43,14 @@ import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.commands.Command;
 
-public class ArrowTextMoveCommand extends Command {
+public class LabelMoveCommand extends Command {
 
 	ArrowLabel label = null;
 	Point location = null;
 	Figure parent = null;
 	Point oldOffset = new Point();
 
-	public ArrowTextMoveCommand(ArrowLabel label, Figure parent,
+	public LabelMoveCommand(ArrowLabel label, Figure parent,
 			Point location) {
 		this.label = label;
 		this.parent = parent;

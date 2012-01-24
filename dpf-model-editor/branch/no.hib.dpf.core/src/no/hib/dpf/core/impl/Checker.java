@@ -8,5 +8,5 @@ import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.Node;
 
 public interface Checker {
-	boolean check(Graph graph, Map<Node, List<Node>> nodeMap, Map<Arrow, List<Arrow>> arrowMap);
+	boolean check(Map<String, String> paras, Graph graph, Map<Node, List<Node>> nodeMap, Map<Arrow, List<Arrow>> arrowMap);
 }

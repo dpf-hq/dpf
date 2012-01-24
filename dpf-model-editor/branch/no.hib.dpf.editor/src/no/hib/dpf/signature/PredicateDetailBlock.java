@@ -1,5 +1,6 @@
 package no.hib.dpf.signature;
 
+
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.IDObject;
 import no.hib.dpf.core.Node;
@@ -128,6 +129,7 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 			validatorCombo.setSelection(new StructuredSelection(predicate.getSemanticsValidator().getType()));
 			validator.setText(getNNullString(predicate.getSemanticsValidator().getValidator()));
 			visulationCombo.setSelection(new StructuredSelection(predicate.getVisualization().getType()));
+			parameters.setText(getNNullString(predicate.getParameters()));
 			refreshVisualization();
 		}
 	}
@@ -167,6 +169,8 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 			refreshVisualization();
 		}
 	};
+
+	private Text parameters;
 	@Override
 	public void selectionChanged(IFormPart part, ISelection selection) {
 		IStructuredSelection ssel = (IStructuredSelection)selection;
@@ -261,13 +265,24 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 			@Override
 			public void focusGained(FocusEvent e) { }
 		});
+		parameters.addFocusListener(new FocusListener() {
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				if(!parameters.getText().equals(predicate.getParameters()))
+					changeParameters(parameters.getText());
+			}
+
+			@Override
+			public void focusGained(FocusEvent e) { }
+		});
 		iconChooser.addSelectionListener(new SelectionListener() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				FileDialog dialog = new FileDialog(e.display.getActiveShell());
 				dialog.setFileName(master.getMultiEditor().getSignatureFile());
 				String fileName = dialog.open();
-				if (fileName != null) {
+				if (fileName != null && !fileName.equals(predicate.getIcon())) {
 					changePredicateIcon(fileName);
 					icon.setText(fileName);
 				}
@@ -277,6 +292,8 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 			public void widgetDefaultSelected(SelectionEvent e) { }
 		});
 	}
+	
+
 	@Override
 	public void createContents(Composite parent) {
 		parent.setLayout(new GridLayout());
@@ -300,9 +317,17 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 		gridData.horizontalSpan = 2;
 		gridData.minimumWidth = 20;
 		name.setLayoutData(gridData);
-
+		
+		new Label(infoComposite, SWT.NONE).setText("Parameters:");
+		parameters = new Text(infoComposite, SWT.SINGLE | SWT.BORDER);
+		gridData = new GridData(GridData.FILL, GridData.FILL, true, false);
+		gridData.horizontalSpan = 2;
+		gridData.minimumWidth = 20;
+		parameters.setLayoutData(gridData);
+		parameters.setToolTipText("parameter1:defaultValue1;parameter2:defaultValue2;...");
+		
 		new Label(infoComposite, SWT.NONE).setText("Icon:");
-		icon = new Text(infoComposite, SWT.SINGLE | SWT.BORDER);
+		icon = new Text(infoComposite, SWT.SINGLE | SWT.BORDER | SWT.READ_ONLY);
 		icon.setEditable(false);
 		gridData = new GridData(GridData.FILL, GridData.FILL, true, false);
 		gridData.minimumWidth = 20;
@@ -446,7 +471,6 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 		master.getMultiEditor().setDirty(true);
 	}
 
-
 	protected void changePredicateValidator(ValidatorType validatorType) {
 		if(validatorType == predicate.getSemanticsValidator().getType())
 			return;
@@ -455,16 +479,37 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 	}
 
 	protected void changePredicateIcon(String fileName) {
-		if(fileName.equals(predicate.getIcon()))
-			return;
 		predicate.setIcon(fileName);
 		master.getMultiEditor().setDirty(true);
 	}
 
 	protected void changePredicateName(String newText) {
-		if(newText.equals(predicate.getSymbol()))
-			return;
 		predicate.setSymbol(newText);
+		master.refresh(predicate);
+		master.getMultiEditor().setDirty(true);
+	}
+	protected void changeParameters(String text) {
+		predicate.setParameters(text);
+		master.getMultiEditor().setDirty(true);
+	}
+//	private String getParameterString(EList<String> paras){
+//		String result = "";
+//		for(int index = 0; index < paras.size(); ++ index){
+//			result += paras.get(index);
+//			if(index != paras.size() - 1)
+//				result += ";";
+//		}
+//		return result;
+//	}
+//	
+//	private EList<String> getParameterStringList(String paras){
+//		return new BasicEList<String>(Arrays.asList(paras.split(";")));
+//	}
+	
+	protected void changePredicateParameter(String newText) {
+		if(newText.equals(predicate.getParameters()))
+			return;
+		predicate.setParameters(newText);
 		master.refresh(predicate);
 		master.getMultiEditor().setDirty(true);
 	}

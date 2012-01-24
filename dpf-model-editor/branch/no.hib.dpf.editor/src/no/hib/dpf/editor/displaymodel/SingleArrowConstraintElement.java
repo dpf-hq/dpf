@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2011 H¿yskolen i Bergen
+ * Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
 *******************************************************************************/
 package no.hib.dpf.editor.displaymodel;
 
@@ -19,8 +19,8 @@ public class SingleArrowConstraintElement extends DConstraint {
 
 	private static final long serialVersionUID = -8335094106642818540L;
 
-	public static final String MULTIPLICITY_1_PROP = "Multiplicity1";
-	public static final String MULTIPLICITY_2_PROP = "Multiplicity2";
+//	public static final String MULTIPLICITY_1_PROP = "Multiplicity1";
+//	public static final String MULTIPLICITY_2_PROP = "Multiplicity2";
 	
 	private ArrowLabel constraintLabel;
 	
@@ -31,28 +31,6 @@ public class SingleArrowConstraintElement extends DConstraint {
 		reconnect(source, targets);
 	}
 		
-	@Override
-	public String toString() {
-		if (constraintType == ConstraintType.COMPOSITION) {
-			return "[comp]";
-		} else if (constraintType == ConstraintType.IRREFLEXIVE) {
-			return "[irr]";
-		} else if (constraintType == ConstraintType.TRANSITIVE_IRREFLEXIVE) {
-			return "[t-irr]";
-		} else if (constraintType == ConstraintType.INJECTIVE) {
-			return "[inj]";
-		} else if (constraintType == ConstraintType.SURJECTIVE) {
-			return "[surj]";
-		} else {
-			return String.format("[%s..%s]", valToString(getVal_1()), valToString(getVal_2()));
-		}
-	}
-	
-	private String valToString(int val) {
-		if (val == -1) return "*";
-		return Integer.toString(val);
-	}
-	
 	/**
 	 * Reconnect this connection. The connection will reconnect with the shape
 	 * it was previously attached to.
@@ -85,60 +63,9 @@ public class SingleArrowConstraintElement extends DConstraint {
 	@Override
 	public void setIDObject(IDObject idObject) {
 		super.setIDObject(idObject);
-		if (getConstraintLabel() != null) {
-			getConstraintLabel().setLabelText(toString());
-		} else {
-			constraintLabel = new ArrowLabel(this, toString(), true);
-		}
+		if (getConstraintLabel() == null) 
+			constraintLabel = new ArrowLabel(this, true);
 	}	
-
-	/**
-	 * Sets the lineStyle based on the String provided by the PropertySheet
-	 * 
-	 * @see org.eclipse.ui.views.properties.IPropertySource#setPropertyValue(java.lang.Object,
-	 *      java.lang.Object)
-	 */
-	@Override
-	public void setPropertyValue(Object id, Object value) {
-		if (id.equals(MULTIPLICITY_1_PROP)) {
-			setVal_1((Integer) value);
-			getConstraintLabel().setLabelText(toString());
-		} else if (id.equals(MULTIPLICITY_2_PROP)) {
-			setVal_2((Integer) value);
-			getConstraintLabel().setLabelText(toString());
-		} else {
-			super.setPropertyValue(id, value);
-		}
-	}
-	
-	private int [] getValuesFromParameter() {
-		try {
-			int [] retval =  new int[2];
-			retval[0] = Integer.parseInt(getParameters().split(",")[0]);
-			retval[1] = Integer.parseInt(getParameters().split(",")[1]);
-			return retval;
-		} catch (Exception e) {
-			return new int[]{1, -1};
-		}
-	}
-
-	private void setVal_1(Integer val_1) {
-		String params = val_1.toString() + "," + new Integer(getVal_2()).toString();
-		setParameters(params);
-	}
-
-	public int getVal_1() {
-		return getValuesFromParameter()[0];
-	}
-
-	private void setVal_2(Integer val_2) {
-		String params = new Integer(getVal_1()).toString() + "," + val_2.toString();
-		setParameters(params);
-	}
-
-	public int getVal_2() {
-		return getValuesFromParameter()[1];
-	}
 
 	public ArrowLabel getConstraintLabel() {
 		return constraintLabel;

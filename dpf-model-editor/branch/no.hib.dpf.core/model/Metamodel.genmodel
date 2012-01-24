@@ -161,6 +161,7 @@
               <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/core/Predicate/validateSemantics/typeArrows"/>
             </genOperations>
             <genOperations ecoreOperation="Metamodel.ecore#//hib/dpf/core/Predicate/validateSemantics.1">
+              <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/core/Predicate/validateSemantics.1/parameters"/>
               <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/core/Predicate/validateSemantics.1/mapping"/>
               <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/core/Predicate/validateSemantics.1/graph"/>
             </genOperations>

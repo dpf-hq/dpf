@@ -139,6 +139,7 @@
             <eParameters name="typeArrows" upperBound="-1" eType="#//hib/dpf/core/Arrow"/>
           </eOperations>
           <eOperations name="validateSemantics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+            <eParameters name="parameters" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
             <eParameters name="mapping" eType="#//hib/dpf/core/GraphHomomorphism"/>
             <eParameters name="graph" eType="#//hib/dpf/core/Graph"/>
           </eOperations>
@@ -146,8 +147,7 @@
               containment="true"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="semanticsValidator"
               eType="#//hib/dpf/core/SemanticsValidator" containment="true"/>
-          <eStructuralFeatures xsi:type="ecore:EAttribute" name="parameters" upperBound="-1"
-              eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="parameters" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="visualization" eType="#//hib/dpf/core/Visualization"
               containment="true"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="symbol" unique="false"

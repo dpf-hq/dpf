@@ -17,7 +17,7 @@ GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWE
 STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
 OF SUCH DAMAGE. 
  */
-package no.hib.dpf.editor.parts;
+package no.hib.dpf.editor.policies;
 /**
  * 
  * Copyright (c) 2004, QVT-Partners.
@@ -37,40 +37,27 @@ package no.hib.dpf.editor.parts;
  OF SUCH DAMAGE. 
  */
 
-import org.eclipse.draw2d.FigureUtilities;
-import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.Locator;
-import org.eclipse.draw2d.PolylineConnection;
-import org.eclipse.draw2d.geometry.Dimension;
+import no.hib.dpf.editor.displaymodel.ArrowLabel;
+import no.hib.dpf.editor.displaymodel.commands.LabelMoveCommand;
+import no.hib.dpf.editor.parts.ArrowEditPart;
+
+import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
+import org.eclipse.gef.requests.ChangeBoundsRequest;
 
-class ArrowLabelConstraint implements Locator {
+public class LabelMovePolicy extends NonResizableEditPolicy {
 
-	private String text;
-	private Point offset;
-	private PolylineConnection connFigure;
-	private boolean placeLabelAtEnd = false;
-
-	public ArrowLabelConstraint(String text, Point offset, PolylineConnection connFigure, boolean placeLabelAtEnd) {
-		this.text = text;
-		this.offset = offset;
-		this.connFigure = connFigure;
-		this.placeLabelAtEnd = placeLabelAtEnd;
+	public Command getMoveCommand(ChangeBoundsRequest request) {
+		ArrowLabel model = (ArrowLabel) getHost().getModel();
+		Point delta = request.getMoveDelta();
+		LabelMoveCommand command = new LabelMoveCommand(model, getParentFigure(), delta);
+		return command;
 	}
 
-	public void relocate(IFigure figure) {
-		Dimension minimum = FigureUtilities.getTextExtents(text, figure.getFont());
-		figure.setSize(minimum);
-		Point location;
-		if (placeLabelAtEnd) {
-			location = connFigure.getEnd();
-		} else {
-			location = connFigure.getPoints().getMidpoint();
-		}
-		location = location.getTranslated(-minimum.width / 2, -minimum.height / 2);
-		
-		Point offsetCopy = offset.getCopy();
-		offsetCopy.translate(location);
-		figure.setLocation(offsetCopy);
+	public Figure getParentFigure() {
+		ArrowEditPart arrow = (ArrowEditPart) getHost().getParent();
+		return (Figure) arrow.getFigure();
 	}
 }

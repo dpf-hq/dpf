@@ -27,5 +27,4 @@ public class TextDirectEditManager extends DirectEditManager {
         	name = ((DArrow)object).getName();
         text.setText(name);
 	}
-
 }

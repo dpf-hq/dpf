@@ -46,7 +46,7 @@ import org.eclipse.ui.views.properties.IPropertySource;
  */
 public abstract class ModelElement implements IPropertySource, Serializable {
 	/** An empty property descriptor. */
-	private static final IPropertyDescriptor[] EMPTY_ARRAY = new IPropertyDescriptor[0];
+	public static final IPropertyDescriptor[] EMPTY_ARRAY = new IPropertyDescriptor[0];
 
 	private static final long serialVersionUID = 1;
 	/** Delegate used to implemenent property-change-support. */

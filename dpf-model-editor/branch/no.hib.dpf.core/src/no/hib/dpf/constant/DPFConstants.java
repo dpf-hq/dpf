@@ -20,11 +20,10 @@ public class DPFConstants {
 			"import no.hib.dpf.core.Arrow;\n" +
 			"import no.hib.dpf.core.Graph;\n" +
 			"import no.hib.dpf.core.Node;\n" +
-			"import no.hib.dpf.core.Graph;\n" +
 			"import no.hib.dpf.core.impl.Checker;\n" +
 			"public class CheckInstance implements Checker{\n" +
 			"	//@Override\n" +
-			"	public boolean check(Graph graph, Map<Node, List<Node>> nodeMap,\n" +
+			"	public boolean check(Map<String, String> paras, Graph graph, Map<Node, List<Node>> nodeMap,\n" +
 			"			Map<Arrow, List<Arrow>> arrowMap) {\n" +
 			"		return true;\n" +
 			"	}\n" +

@@ -23,7 +23,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -56,7 +56,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
 
@@ -100,14 +99,24 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 	protected SemanticsValidator semanticsValidator;
 
 	/**
-	 * The cached value of the '{@link #getParameters() <em>Parameters</em>}' attribute list.
+	 * The default value of the '{@link #getParameters() <em>Parameters</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getParameters()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<String> parameters;
+	protected static final String PARAMETERS_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getParameters() <em>Parameters</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getParameters()
+	 * @generated
+	 * @ordered
+	 */
+	protected String parameters = PARAMETERS_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getVisualization() <em>Visualization</em>}' containment reference.
@@ -273,11 +282,20 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<String> getParameters() {
-		if (parameters == null) {
-			parameters = new EDataTypeUniqueEList<String>(String.class, this, CorePackage.PREDICATE__PARAMETERS);
-		}
+	public String getParameters() {
 		return parameters;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setParameters(String newParameters) {
+		String oldParameters = parameters;
+		parameters = newParameters;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.PREDICATE__PARAMETERS, oldParameters, parameters));
 	}
 
 	/**
@@ -402,6 +420,38 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 		return true;
 	}
 
+	private Map<String, String> getParameterMap(String parString){
+		Map<String, String> result = new HashMap<String, String>();
+		if(parString == null || parString.isEmpty())
+			return null;
+		String[] paras = parString.split(";");
+		for (int i = 0; i < paras.length; i++) {
+			String string = paras[i];
+			String[] keyValue = string.split(":");
+			if(keyValue.length != 2)
+				return null;
+			result.put(keyValue[0], keyValue[1]);
+		}
+		return result;
+	}
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean validateSemantics(String parameters, GraphHomomorphism mapping, Graph graph) {
+		if(graph.getNodes().size() == 0)
+			return true;
+		Map<Node, List<Node>> nodeMap = new LinkedHashMap<Node, List<Node>>();
+		Map<Arrow, List<Arrow>> arrowMap = new LinkedHashMap<Arrow, List<Arrow>>();
+		intialize(mapping, graph, nodeMap, arrowMap);
+		Map<String, String> paraMap = getParameterMap(parameters);
+		Checker checker = getChecker();
+		if(checker != null)
+			return checker.check(paraMap, getShape(), nodeMap, arrowMap);
+		return true;
+	}
+
 	private URL getClassLocation (final Class<?> clazz)
 	{
 		Bundle bundle = FrameworkUtil.getBundle(clazz);
@@ -456,23 +506,6 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 		}
 		return checker;
 	}
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public boolean validateSemantics(GraphHomomorphism mapping, Graph graph) {
-		if(graph.getNodes().size() == 0)
-			return true;
-		Map<Node, List<Node>> nodeMap = new LinkedHashMap<Node, List<Node>>();
-		Map<Arrow, List<Arrow>> arrowMap = new LinkedHashMap<Arrow, List<Arrow>>();
-		intialize(mapping, graph, nodeMap, arrowMap);
-		Checker checker = getChecker();
-		if(checker != null)
-			return checker.check(getShape(), nodeMap, arrowMap);
-		return true;
-	}
-
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private EMap changeKeyAndValue(EMap map){
@@ -521,6 +554,7 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 		Constraint retval = CoreFactory.eINSTANCE.createConstraint();
 		retval.setMappings(graphHomomorphism);
 		retval.setPredicate(this);
+		retval.setParameters(getParameters());
 		retval.setGraph(modelToBeConstrained);
 		return retval;
 	}
@@ -533,12 +567,12 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case CorePackage.PREDICATE__SHAPE:
-			return basicSetShape(null, msgs);
-		case CorePackage.PREDICATE__SEMANTICS_VALIDATOR:
-			return basicSetSemanticsValidator(null, msgs);
-		case CorePackage.PREDICATE__VISUALIZATION:
-			return basicSetVisualization(null, msgs);
+			case CorePackage.PREDICATE__SHAPE:
+				return basicSetShape(null, msgs);
+			case CorePackage.PREDICATE__SEMANTICS_VALIDATOR:
+				return basicSetSemanticsValidator(null, msgs);
+			case CorePackage.PREDICATE__VISUALIZATION:
+				return basicSetVisualization(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -551,18 +585,18 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case CorePackage.PREDICATE__SHAPE:
-			return getShape();
-		case CorePackage.PREDICATE__SEMANTICS_VALIDATOR:
-			return getSemanticsValidator();
-		case CorePackage.PREDICATE__PARAMETERS:
-			return getParameters();
-		case CorePackage.PREDICATE__VISUALIZATION:
-			return getVisualization();
-		case CorePackage.PREDICATE__SYMBOL:
-			return getSymbol();
-		case CorePackage.PREDICATE__ICON:
-			return getIcon();
+			case CorePackage.PREDICATE__SHAPE:
+				return getShape();
+			case CorePackage.PREDICATE__SEMANTICS_VALIDATOR:
+				return getSemanticsValidator();
+			case CorePackage.PREDICATE__PARAMETERS:
+				return getParameters();
+			case CorePackage.PREDICATE__VISUALIZATION:
+				return getVisualization();
+			case CorePackage.PREDICATE__SYMBOL:
+				return getSymbol();
+			case CorePackage.PREDICATE__ICON:
+				return getIcon();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -572,29 +606,27 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case CorePackage.PREDICATE__SHAPE:
-			setShape((Graph)newValue);
-			return;
-		case CorePackage.PREDICATE__SEMANTICS_VALIDATOR:
-			setSemanticsValidator((SemanticsValidator)newValue);
-			return;
-		case CorePackage.PREDICATE__PARAMETERS:
-			getParameters().clear();
-			getParameters().addAll((Collection<? extends String>)newValue);
-			return;
-		case CorePackage.PREDICATE__VISUALIZATION:
-			setVisualization((Visualization)newValue);
-			return;
-		case CorePackage.PREDICATE__SYMBOL:
-			setSymbol((String)newValue);
-			return;
-		case CorePackage.PREDICATE__ICON:
-			setIcon((String)newValue);
-			return;
+			case CorePackage.PREDICATE__SHAPE:
+				setShape((Graph)newValue);
+				return;
+			case CorePackage.PREDICATE__SEMANTICS_VALIDATOR:
+				setSemanticsValidator((SemanticsValidator)newValue);
+				return;
+			case CorePackage.PREDICATE__PARAMETERS:
+				setParameters((String)newValue);
+				return;
+			case CorePackage.PREDICATE__VISUALIZATION:
+				setVisualization((Visualization)newValue);
+				return;
+			case CorePackage.PREDICATE__SYMBOL:
+				setSymbol((String)newValue);
+				return;
+			case CorePackage.PREDICATE__ICON:
+				setIcon((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -607,24 +639,24 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case CorePackage.PREDICATE__SHAPE:
-			setShape((Graph)null);
-			return;
-		case CorePackage.PREDICATE__SEMANTICS_VALIDATOR:
-			setSemanticsValidator((SemanticsValidator)null);
-			return;
-		case CorePackage.PREDICATE__PARAMETERS:
-			getParameters().clear();
-			return;
-		case CorePackage.PREDICATE__VISUALIZATION:
-			setVisualization((Visualization)null);
-			return;
-		case CorePackage.PREDICATE__SYMBOL:
-			setSymbol(SYMBOL_EDEFAULT);
-			return;
-		case CorePackage.PREDICATE__ICON:
-			setIcon(ICON_EDEFAULT);
-			return;
+			case CorePackage.PREDICATE__SHAPE:
+				setShape((Graph)null);
+				return;
+			case CorePackage.PREDICATE__SEMANTICS_VALIDATOR:
+				setSemanticsValidator((SemanticsValidator)null);
+				return;
+			case CorePackage.PREDICATE__PARAMETERS:
+				setParameters(PARAMETERS_EDEFAULT);
+				return;
+			case CorePackage.PREDICATE__VISUALIZATION:
+				setVisualization((Visualization)null);
+				return;
+			case CorePackage.PREDICATE__SYMBOL:
+				setSymbol(SYMBOL_EDEFAULT);
+				return;
+			case CorePackage.PREDICATE__ICON:
+				setIcon(ICON_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -637,18 +669,18 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case CorePackage.PREDICATE__SHAPE:
-			return shape != null;
-		case CorePackage.PREDICATE__SEMANTICS_VALIDATOR:
-			return semanticsValidator != null;
-		case CorePackage.PREDICATE__PARAMETERS:
-			return parameters != null && !parameters.isEmpty();
-		case CorePackage.PREDICATE__VISUALIZATION:
-			return visualization != null;
-		case CorePackage.PREDICATE__SYMBOL:
-			return SYMBOL_EDEFAULT == null ? symbol != null : !SYMBOL_EDEFAULT.equals(symbol);
-		case CorePackage.PREDICATE__ICON:
-			return ICON_EDEFAULT == null ? icon != null : !ICON_EDEFAULT.equals(icon);
+			case CorePackage.PREDICATE__SHAPE:
+				return shape != null;
+			case CorePackage.PREDICATE__SEMANTICS_VALIDATOR:
+				return semanticsValidator != null;
+			case CorePackage.PREDICATE__PARAMETERS:
+				return PARAMETERS_EDEFAULT == null ? parameters != null : !PARAMETERS_EDEFAULT.equals(parameters);
+			case CorePackage.PREDICATE__VISUALIZATION:
+				return visualization != null;
+			case CorePackage.PREDICATE__SYMBOL:
+				return SYMBOL_EDEFAULT == null ? symbol != null : !SYMBOL_EDEFAULT.equals(symbol);
+			case CorePackage.PREDICATE__ICON:
+				return ICON_EDEFAULT == null ? icon != null : !ICON_EDEFAULT.equals(icon);
 		}
 		return super.eIsSet(featureID);
 	}

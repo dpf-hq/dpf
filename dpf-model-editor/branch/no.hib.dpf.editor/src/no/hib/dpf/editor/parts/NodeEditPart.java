@@ -217,7 +217,6 @@ public class NodeEditPart extends AbstractGraphicalEditPart implements
 		} else {
 			return getShape().getNameExec();
 		}
-		
 	}
 
 	/**

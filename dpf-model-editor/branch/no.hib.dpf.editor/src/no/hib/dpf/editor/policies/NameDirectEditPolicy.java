@@ -24,7 +24,7 @@ import no.hib.dpf.editor.displaymodel.DNode;
 import no.hib.dpf.editor.displaymodel.ModelElement;
 import no.hib.dpf.editor.displaymodel.commands.ChangeNameCommand;
 import no.hib.dpf.editor.figures.NodeFigure;
-import no.hib.dpf.editor.parts.ArrowLabelEditPart;
+import no.hib.dpf.editor.parts.LabelEditPart;
 import no.hib.dpf.editor.parts.NodeEditPart;
 
 import org.eclipse.draw2d.Label;
@@ -51,7 +51,7 @@ public class NameDirectEditPolicy extends DirectEditPolicy {
 			String newValue = (String) request.getCellEditor().getValue();
 			return oldValue.equals(newValue) ? null : new ChangeNameCommand((DNode) getHost().getModel(), newValue);
 		}
-		if(getHost() instanceof ArrowLabelEditPart)
+		if(getHost() instanceof LabelEditPart)
 		{
 			ModelElement parent = ((ArrowLabel) host.getModel()).getParent();
 			if(parent instanceof DArrow){
@@ -60,7 +60,7 @@ public class NameDirectEditPolicy extends DirectEditPolicy {
 				return oldValue.equals(newValue) ? null : new ChangeNameCommand((DArrow) parent, newValue);
 			}
 		}
-		return super.getCommand(request);
+		return null;
 	}
 
 	/**

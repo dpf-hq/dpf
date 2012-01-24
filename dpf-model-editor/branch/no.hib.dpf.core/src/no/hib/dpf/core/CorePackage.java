@@ -355,7 +355,7 @@ public interface CorePackage extends EPackage {
 	int PREDICATE__SEMANTICS_VALIDATOR = 1;
 
 	/**
-	 * The feature id for the '<em><b>Parameters</b></em>' attribute list.
+	 * The feature id for the '<em><b>Parameters</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1329,10 +1329,10 @@ public interface CorePackage extends EPackage {
 	EReference getPredicate_SemanticsValidator();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link no.hib.dpf.core.Predicate#getParameters <em>Parameters</em>}'.
+	 * Returns the meta object for the attribute '{@link no.hib.dpf.core.Predicate#getParameters <em>Parameters</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Parameters</em>'.
+	 * @return the meta object for the attribute '<em>Parameters</em>'.
 	 * @see no.hib.dpf.core.Predicate#getParameters()
 	 * @see #getPredicate()
 	 * @generated
@@ -2041,7 +2041,7 @@ public interface CorePackage extends EPackage {
 		EReference PREDICATE__SEMANTICS_VALIDATOR = eINSTANCE.getPredicate_SemanticsValidator();
 
 		/**
-		 * The meta object literal for the '<em><b>Parameters</b></em>' attribute list feature.
+		 * The meta object literal for the '<em><b>Parameters</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

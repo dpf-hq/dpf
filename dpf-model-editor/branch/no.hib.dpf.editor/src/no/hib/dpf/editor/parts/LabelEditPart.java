@@ -17,7 +17,7 @@ GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWE
 STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
 OF SUCH DAMAGE. 
  */
-package no.hib.dpf.editor.displaymodel;
+package no.hib.dpf.editor.parts;
 /**
  * 
  * Copyright (c) 2004, QVT-Partners.
@@ -37,47 +37,96 @@ package no.hib.dpf.editor.displaymodel;
  OF SUCH DAMAGE. 
  */
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+import no.hib.dpf.editor.displaymodel.ArrowLabel;
+import no.hib.dpf.editor.policies.LabelMovePolicy;
+import no.hib.dpf.editor.tracker.ArrowTextTracker;
+
+import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.Label;
+import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.ui.views.properties.IPropertyDescriptor;
+import org.eclipse.gef.DragTracker;
+import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.Request;
+import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
+import org.eclipse.gef.tools.DirectEditManager;
 
-public class ArrowLabel extends ModelElement {
+public abstract class LabelEditPart extends AbstractGraphicalEditPart implements
+		PropertyChangeListener {
 
-	public static final String POSITION_PROP = "ConnectionLabel.Position";
-	private static final long serialVersionUID = -3733055120855210860L;
-	private Point offset = new Point();
-	private boolean isConstraintLabel = false;
-	private ModelElement parent;
+	protected DirectEditManager manager = null;
 
-	public ArrowLabel(ModelElement dArrow, boolean isConstraintLabel) {
-		this.parent = dArrow;
-		this.isConstraintLabel = isConstraintLabel;
+	public LabelEditPart() {
+		listenToDisplayNameProperty();
+	}
+	
+	protected void listenToDisplayNameProperty() { }
+		
+	public void activate() {
+		if (isActive() == false) {
+			super.activate();
+			((ArrowLabel) getModel()).addPropertyChangeListener(this);
+			((ArrowLabel) getModel()).getParent().addPropertyChangeListener(this);
+		}
 	}
 
-	public void setOffset(Point offset) {
-		Point old = this.offset;
-		this.offset = offset;
-		firePropertyChange(POSITION_PROP, old, offset);
+	public void deactivate() {
+		if (isActive()) {
+			super.deactivate();
+			((ArrowLabel) getModel()).removePropertyChangeListener(this);
+			((ArrowLabel) getModel()).getParent().removePropertyChangeListener(this);
+		}
 	}
 
-	public Point getOffset() {
-		return offset;
+	public IFigure createFigure() {
+		Label label = new Label(getFullName());
+		label.setOpaque(true);
+		return label;
 	}
 
-	public ModelElement getParent(){
-		return parent;
+	public void propertyChange(PropertyChangeEvent evt) { 
+		String request = evt.getPropertyName();
+		if (request.equals(ArrowLabel.POSITION_PROP))
+			refreshVisuals();
 	}
 
-	public boolean isConstraintLabel() {
-		return isConstraintLabel;
-	}
-	public IPropertyDescriptor[] getPropertyDescriptors() {
-		return parent.getPropertyDescriptors();
-	}
-	public Object getPropertyValue(Object id){
-		return parent.getPropertyValue(id);
-	}
-	public void setPropertyValue(Object id, Object value){
-		parent.setPropertyValue(id, value);
+	public void createEditPolicies() {
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new LabelMovePolicy());
 	}
 
+	public DragTracker getDragTracker(Request request) {
+		return new ArrowTextTracker(this, (ArrowEditPart)getParent());
+	}
+
+	private Label getCastedFigure() {
+		return (Label)getFigure();
+	}
+	
+	protected abstract boolean getVisible();
+	
+	protected abstract boolean placeLabelAtEnd();
+	
+	protected abstract String getFullName();
+	
+	protected abstract Object getModelParent();
+	
+	@Override
+	protected void refreshVisuals() {
+		String arrowName = getFullName();
+		Point offset = getConnectionModel().getOffset();
+		Label figure = getCastedFigure();
+		figure.setText(arrowName);
+		figure.setVisible(getVisible());
+		ArrowEditPart parent = (ArrowEditPart) getParent();
+		PolylineConnection connFigure = (PolylineConnection)parent.getFigure();
+		LabelLocator constraint = new LabelLocator(arrowName, offset, connFigure, placeLabelAtEnd());
+		parent.setLayoutConstraint(this, getFigure(), constraint);
+	}
+	
+	public ArrowLabel getConnectionModel() {
+		return (ArrowLabel) getModel();
+	}
 }

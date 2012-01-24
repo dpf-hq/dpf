@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import no.hib.dpf.api.ui.DPFErrorReport;
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.editor.displaymodel.ArrowBendpoint;
 import no.hib.dpf.editor.displaymodel.DArrow;
@@ -193,7 +194,7 @@ public class ArrowEditPart extends ModelElementConnectionEditPart {
 			try {
 				arrowPaint = (IArrowPainting) configure.createExecutableExtension(FigureConfigureManager.PAINT_ATT);
 			} catch (CoreException e) {
-				e.printStackTrace();
+				DPFErrorReport.logError(e);
 			}
 		return arrowPaint;
 	}
