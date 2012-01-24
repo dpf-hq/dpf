@@ -394,17 +394,23 @@ case class Composition(m1:Morphism,m2:Morphism){
     
     //Compute E_D
     val E_A = m2.codomainArrows();
+    val m_e_image = m2.domainArrows(_:Id);
+    val src_A = m2.codomainArrowSr(_);
+    val tgt_A = m2.codomainArrowTg(_);
+    val E_K = m1.domainArrows();
     val E_D = MSet[SetId]();
-    val m_e_image = m2.domainArrows(_:Id)
-    val src_A = m2.codomainArrowSr(_)
-    val tgt_A = m2.codomainArrowTg(_)
     for(e <- E_A){
       if(m_e_image(e).isEmpty){
         for(u <- V_D;
             v <- V_D){
-          
+          if(src_A(e) == y_v(u) && tgt_A(e) == y_v(v)){
+        	  E_D+=SetId(Set((e,gid,"A"),(u,gid,"D"),(v,gid,"D")))
+          }
         }
       }
+    }
+    for(e<-E_K){
+   	  E_D+=SetId(Set((e,gid,"K")))
     }
     
     null;
