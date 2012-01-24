@@ -874,8 +874,8 @@ object Test {
 		  
 		  val pushout:Cospan = span.pushout()
 		  
-		  println(pushout.left);
-		  println(pushout.right);
+//		  println(pushout.left);
+//		  println(pushout.right);
 		  
 		  
 	  }	
