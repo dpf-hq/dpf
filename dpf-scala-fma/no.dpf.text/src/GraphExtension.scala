@@ -366,7 +366,7 @@ case class Composition(m1:Morphism,m2:Morphism){
     val V_A = m2.codomainNodes();
     val V_L = m2.domainNodes();
     val V_K = m1.domainNodes();
-    val m_v = m2.codomainNode(_);
+    val m_V = m2.codomainNode(_);
     val V_D = MSet[SetId]();
    
     //Compute V_D:
@@ -374,36 +374,36 @@ case class Composition(m1:Morphism,m2:Morphism){
       V_D+=SetId(Set((v,gid,"A")))
     }
     for(v<-V_L){
-      V_D-=SetId(Set((m_v(v),gid,"A")))
+      V_D-=SetId(Set((m_V(v),gid,"A")))
     }
     for(v<-V_K){
       V_D+=SetId(Set((v,gid,"K")))
     }
     
     //Compute y_v:
-    val a_v = m1.codomainNode(_);
-    val y_v = MMap[Id,Id]();
+    val a_V = m1.codomainNode(_);
+    val y_V = MMap[Id,Id]();
     for(v<-V_D){
       val u = v.v.head
       u._3 match{ 
-        case "K" => y_v+=v->m_v(a_v(u._1)) 
-        case "A" => y_v+=v->u._1
+        case "K" => y_V+=v->m_V(a_V(u._1)) 
+        case "A" => y_V+=v->u._1
         case _ => sys.error("Programming error")
       }
     }
     
     //Compute E_D
     val E_A = m2.codomainArrows();
-    val m_e_image = m2.domainArrows(_:Id);
+    val m_E_image = m2.domainArrows(_:Id);
     val src_A = m2.codomainArrowSr(_);
     val tgt_A = m2.codomainArrowTg(_);
     val E_K = m1.domainArrows();
     val E_D = MSet[SetId]();
     for(e <- E_A){
-      if(m_e_image(e).isEmpty){
+      if(m_E_image(e).isEmpty){
         for(u <- V_D;
             v <- V_D){
-          if(src_A(e) == y_v(u) && tgt_A(e) == y_v(v)){
+          if(src_A(e) == y_V(u) && tgt_A(e) == y_V(v)){
         	  E_D+=SetId(Set((e,gid,"A"),(u,gid,"D"),(v,gid,"D")))
           }
         }
@@ -412,6 +412,24 @@ case class Composition(m1:Morphism,m2:Morphism){
     for(e<-E_K){
    	  E_D+=SetId(Set((e,gid,"K")))
     }
+    
+   //Compute y_E:
+   val m_E = m2.codomainArrow(_);
+   val a_E = m1.codomainArrow(_);
+   val y_E = MMap[Id,Id]();
+   for(e<-E_D){
+     val e_set = e.v
+     if(3 == e_set.size){
+       val e_sem = e_set.find(x => "A" == x._3).get
+       y_E+=e->SetId(Set(e_sem))
+     }else{
+       val e2 = e_set.head
+       if("K" != e2._3){
+         sys.error("Programming error")
+       }
+       y_E+=e->SetId(Set((m_E(a_E(e2._1)),gid,e2._3)))
+     }		 
+   }
     
     null;
   }
