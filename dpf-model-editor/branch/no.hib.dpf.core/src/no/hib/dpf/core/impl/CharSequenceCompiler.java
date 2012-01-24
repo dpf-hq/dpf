@@ -237,7 +237,6 @@ public class CharSequenceCompiler<T> {
    @SuppressWarnings("unchecked")
    public Class<T> loadClass(final String qualifiedClassName)
          throws ClassNotFoundException {
-	   System.out.println("Load Class " + qualifiedClassName);
       return (Class<T>) classLoader.loadClass(qualifiedClassName);
    }
 
