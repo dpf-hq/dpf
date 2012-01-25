@@ -219,7 +219,7 @@ package mutable{
 	 /**
 	  * Graph
 	  */
-	class Graph(override val mmGraph: AbstractGraph, idGen:(()=>RId)) extends AbstractGraph() with Converter{
+	class Graph(override val mmGraph: AbstractGraph, val idGen:(()=>RId)) extends AbstractGraph() with Converter{
 		
 		override val nodes = mutable.HashMap[Id,Node]()
 		override val arrows = mutable.HashMap[Id,Arrow]()
@@ -283,7 +283,7 @@ package mutable{
 			val a=Arrow(id,sr,tg,t)
 			addArrow(a,name,inv)
 		}
-		private def addArrow(a:Arrow,name:String,inv:Arrow=>Boolean):Option[Arrow]={
+		protected def addArrow(a:Arrow,name:String,inv:Arrow=>Boolean):Option[Arrow]={
 			if(inv(a)){
 				//Add Arrow:
 				names+= a.id -> name
@@ -336,7 +336,64 @@ package mutable{
 	 /**
 	  * Subgraph
 	  */
-   	 class SubGraph(val parent:AbstractGraph) extends Graph(parent.mmGraph, ()=>sys.error("New Ids are not supported!")){
+   	 class SubGraph(val parent:AbstractGraph) extends Graph(parent.mmGraph, ()=>RId(-1)){
+		
+   		 override def addNode(name: String,t:TypeNode,id:Id=idGen()):Option[Node] = {
+			def inv(_n:Node):Boolean = { 
+						  (null != _n.id &&          //Id exist
+						  (mmGraph contains _n.t));  //Node has a valid type 
+			}
+			//New:
+			val n = Node(id,t)
+			if(inv(n)){
+				names+= n.id -> name
+				nodes+= n.id -> n;
+				Some(n);
+			}else None;
+		}
+		override def addVNode(id:Id, t:TypeNode):Option[Node] = {
+			def inv(_n:Node):Boolean={
+				//Check if node type and id:
+			    _n.id != null
+		    }
+			val n = Node(id,t)
+			if(inv(n)){
+				nodes+= n.id->n;
+				Some(n);
+			}else{
+				None;
+			}
+		}			
+		override def addArrow(name: String, sr:Node,tg:Node,t:Arrow,id:Id=idGen()):Option[Arrow]= {
+			//Invariant:	
+			def inv(_a:Arrow):Boolean={
+				_a.id != null &&			   //Arrow needs id
+				_a.sr.t == _a.t.sr && 		   //Check source node type compatible 
+				_a.tg.t == _a.t.tg && 		   //Check target node type compatible
+				(mmGraph contains _a.t) && 	   //Check if arrow exist in metamodel
+				(this contains _a.sr) &&       //Check if src node exist in graph 
+				(this contains _a.tg)          //Check if tg  node exist in graph
+			}
+			//New:
+			val a=Arrow(id,sr,tg,t)
+			addArrow(a,name,inv)
+		}
+		override def addAArrow(name: String, sr:Node,tg:Node,t:TypeArrow.TAttribute,id:Id=idGen()):Option[Arrow] = {
+			//Invariant:	
+			def inv(_a:Arrow):Boolean={
+			   //Check Type of tg node:  
+			   def check={
+			    _a.tg match{ case Node(_ ,t:TypeNode.TAttribute) => true  
+							 case _				   	     	     => false	
+				          }
+			   }			   
+			   null != _a.id && //Check if id exist
+				     check && (this contains _a.sr) //Check if sr node exist in graph 								 						    	
+			}
+			//New:
+			val a=Arrow(id,sr,tg,t)
+			addArrow(a,name,inv)
+		}
    		 
 	 }
 

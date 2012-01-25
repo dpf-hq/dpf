@@ -139,9 +139,7 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 	def constraintName: Parser[SignatureConstraint] = ID~dpfId~"("~repsep(CPARAM,",")~")" ^^ {case n~dpfid~"("~ps~")" => createSConstraint(dpfid,n,ps)}
 
 	//Typed subgraphs:
-	def tsubgraph : Parser[MGraph] = ID~":="~"TSubGraph<"~tnamesub~">"~subgraph ^^ {case n~":="~"TSubGraph<"~t~">"~g => saveTGraph(n,g)} //Save map in buffer
-	
-	def subgraph : Parser[MGraph] = ("{"~repsep(expr,"")~"}" ^^ {case "{"~elements~"}" => fillCurSubGraph(elements.flatten)})
+	def tsubgraph : Parser[MGraph] = ID~":="~"TSubGraph<"~tnamesub~">"~graph ^^ {case n~":="~"TSubGraph<"~t~">"~g => saveTGraph(n,g)} //Save map in buffer
 	
 	def tnamesub : Parser[String] = ID ^^ {case i => createSubGraph(i)}
 
@@ -529,15 +527,6 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 	  curMGraph
 	}
 
-	private def fillCurSubGraph(rElems:List[RElement]):MGraph={
-	  rElems foreach(x => x match {
-	    	case rn@RNode(_,_,_) 		=> println(rn) 
-	    	case ra@RArrow(_,_,_,_,_,_) => println(ra)
-	      	case _ => sys.error("Programming sys.error")
-	  	  }
-	  )
-	  curMGraph
-	}
 	
 	def writeFile(fname:String, contents:Any)={
 		import java.io._
