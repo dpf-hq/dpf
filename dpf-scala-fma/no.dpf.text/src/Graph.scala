@@ -389,7 +389,7 @@ package mutable{
 			    			    case RId(-1) => idGenNew()
 			    			    case _		 => id
 			    			  }
-			    			  addArrow(name,sr,tg,t,idNew);			  				    
+			    			  super.addArrow(name,sr,tg,t,idNew);			  				    
 			  		  
 			}
 		}
