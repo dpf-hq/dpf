@@ -340,61 +340,71 @@ package mutable{
 		
    		 override def addNode(name: String,t:TypeNode,id:Id=idGen()):Option[Node] = {
 			//Find Node:
-			var n:Node = null
-			id match{
-			  case RId(-1) => //find and add node via name
-			  case id@_    => //find and add node via id
+			val nO = id match{
+			  case RId(-1) => //find node via name:
+			    			  parent.findNode(name)	
+			  case id@_    => //find node via id
+			    			  parent.nodes.get(id)	
 			}
 			//New:
-			if(null != n){
-				names+= n.id -> name
-				nodes+= n.id -> n;
-				Some(n);
-			}else None;
+			nO match {
+			  case Some(n) => if(n.t==t){
+					  			  names+= n.id -> name
+						  		  nodes+= n.id -> n;
+						  		  nO;
+			  				  }else{
+			  				    None
+			  				  }
+			  case None    => None			  		  
+			}
 		}
 		override def addVNode(id:Id, t:TypeNode):Option[Node] = {
-			def inv(_n:Node):Boolean={
-				//Check if node _n exist in parrent
-				true	
-		    }
-			val n = Node(id,t)
-			if(inv(n)){
-				nodes+= n.id->n;
-				Some(n);
-			}else{
-				None;
+			val nO = parent.nodes.get(id)
+			//New:
+			nO match {
+			  case Some(n) => if(n.t==t){
+						  		  nodes+= n.id -> n;
+						  		  nO;
+			  				  }else{
+			  				    None
+			  				  }
+			  case None    => None			  		  
 			}
 		}			
 		override def addArrow(name: String, sr:Node,tg:Node,t:Arrow,id:Id=idGen()):Option[Arrow]= {
-
-   			//Find Arrow:
-			var a:Arrow = null
-			id match{
-			  case RId(-1) => //find and add arrow via name
-			  case id@_    => //find and add arrow via id
+			//Find Arrow:
+			val aO = id match{
+			  case RId(-1) => //find arrow via name:
+			    			  parent.findArrow(name,sr,tg)	
+			  case id@_    => //find arrow via id
+			    			  parent.arrows.get(id)	
 			}
-			
-			//For Subgraph sr and tg nodes have to be added to the structure:
-			if(null !=a){
-			  super.addArrow(name,a.sr,a.tg,a.t,a.id);
-			}else{
-			  None;
+			aO match {
+			  case Some(a) => if(a.t==t){
+				  				//For Subgraph sr and tg nodes have to be added to the structure:
+				  				super.addArrow(name,a.sr,a.tg,a.t,a.id);
+			  				  }else{
+			  				    None
+			  				  }
+			  case None    => None			  		  
 			}
-			
 		}
 		override def addAArrow(name: String, sr:Node,tg:Node,t:TypeArrow.TAttribute,id:Id=idGen()):Option[Arrow] = {
-   			//Find Arrow:
-			var a:Arrow = null
-			id match{
-			  case RId(-1) => //find and add arrow via name
-			  case id@_    => //find and add arrow via id
+			//Find Arrow:
+			val aO = id match{
+			  case RId(-1) => //find arrow via name:
+			    			  parent.findArrow(name,sr,tg)	
+			  case id@_    => //find arrow via id
+			    			  parent.arrows.get(id)	
 			}
-			
-			//For Subgraph sr and tg nodes have to be added to the structure:
-			if(null !=a){
-			  super.addAArrow(name,a.sr,a.tg,t,a.id);
-			}else{
-			  None;
+			aO match {
+			  case Some(a) => if(a.t==t){
+				  				//For Subgraph sr and tg nodes have to be added to the structure:
+				  				super.addAArrow(name,a.sr,a.tg,t,a.id);
+			  				  }else{
+			  				    None
+			  				  }
+			  case None    => None			  		  
 			}
 		}
    		 
