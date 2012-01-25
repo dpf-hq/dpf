@@ -66,6 +66,13 @@ trait AbstractCoevolution{
   
   private lazy val po_right_top = Span(tr,tk).pushout(2);
   
+  def print()={
+    println("------------------------ Metamodel (tm')---------------------\n\n")
+    println(tm2)
+    println("------------------------ Model (m')---------------------\n\n")
+    println(m2)
+  }
+  
 }
 
 /**

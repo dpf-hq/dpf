@@ -4,6 +4,7 @@ import scala.util.parsing.combinator._
 import no.dpf.text.graph._
 import no.dpf.text.graph.mutable.{Graph=>MGraph}
 import scala.collection.mutable.{Map=>MMap}
+import no.dpf.text.coevolution._
 
 class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with Converter{
 	   
@@ -112,11 +113,13 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 	//"Program":
 	def definitions: Parser[List[Any]] = repsep(definition,"") ^^ {case defs => defs}
 	
-	def definition: Parser[Any] = ispec | spec | tgraph | emf | ecore ^^ {case d => d}
+	def definition: Parser[Any] = ispec | spec | tgraph | emf | ecore | simpleEvo ^^ {case d => d}
 	
 	def emf: Parser[Any] = "emf("~ID~")" ^^ { case "emf("~i~")" => printEmf(i)}
 	
 	def ecore: Parser[Any] = "ecore("~ID~")" ^^ { case "ecore("~i~")" => printEcore(i)}
+	
+	def simpleEvo: Parser[Any] = "simpleEvolution("~ID~"<-"~ID~"->"~ID~","~ID~")" ^^ { case "simpleEvolution("~tl~"<-"~tk~"->"~tr~","~g~")" => SimpleCoevolution(tGraphs(tl),tGraphs(tk),tGraphs(tr),tGraphs(g)).print()}
 
 	//Specification instance:
 	def ispec : Parser[IS] = ID~":="~"ISpec<"~chosenSpec~","~chosenSpec~">"~"{"~repsep(constraintSem,",")~"}" ^^ {case n~":="~"ISpec<"~mS~","~mmS~">"~"{"~sem~"}" => IS(mS,mmS,sem.map{e=>(e.id,e)}.toMap)}
