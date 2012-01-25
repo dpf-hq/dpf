@@ -25,12 +25,18 @@ G:=TGraph<TG>{
 
 
 //Rule Graphs:
-/*
-TG:=TGraph<DPF>{
-    Transition:n-inArr:id->Place:n,
+TL:=ExtSubTGraph<TG>{
     Transition:n-outArr:id->Place:n,
-    Transition:n-name:*->String,
-    Place:n-name:*->String,
-    Place:n-token:id->Token:n,
 }
-*/
+
+TK:=ExtSubTGraph<TG>{
+    Transition:n-outArr:id->Place:n,
+}
+
+TR:=ExtSubTGraph<TG>{
+    OutArr:n-src:id->Transition:n,
+    OutArr:n-trg:id->Place:n,
+}
+
+//Perform Evolution:
+simpleEvolution(TL<-TK->TR,G)
