@@ -221,8 +221,9 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 
 	private def createSubGraph(mmName:String)={
 		//Init Graph:
-		curTGraph=tGraphs(mmName);
-		curMGraph=new MSubGraph(curTGraph);
+	    val parent=tGraphs(mmName); 
+		curTGraph=parent.mmGraph;
+		curMGraph=new MSubGraph(parent);
 		mmName	
 	}
 	
