@@ -58,5 +58,22 @@ trait AbstractCoevolution{
   
 }
 
+/**
+ * Common Coevolution
+ */
 case class Coevolution(override val mmRule:Span, override val tm:Morphism, override val tG:Morphism) extends AbstractCoevolution
 
+/**
+ * Simplified Coevolution
+ */
+case class SimpleCoevolution(TL:AbstractGraph,TK:AbstractGraph,TR:AbstractGraph,G:AbstractGraph) extends AbstractCoevolution{
+  
+  private val TG = G.mmGraph;
+  
+  override val mmRule:Span = Span(InclusionMorphism(TK,TL),InclusionMorphism(TK,TR));
+  
+  override val tm:Morphism = InclusionMorphism(TL,TG);
+  
+  override val tG:Morphism = TypingMorphism(G);
+  
+}
