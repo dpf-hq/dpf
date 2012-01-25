@@ -281,7 +281,14 @@ package mutable{
 			}
 			//New:
 			val a=Arrow(id,sr,tg,t)
-			addArrow(a,name,inv)
+			val o = addArrow(a,name,inv)
+			o match {
+			  case Some(_) => val n = a.tg /*Save Attributes types like "String" also if they occure*/
+			    			  nodes+= n.id -> n; 
+			  				  names+= n.id -> n.id.v.toString
+			  case _ => /* do nothing */
+			}
+			o;
 		}
 		protected def addArrow(a:Arrow,name:String,inv:Arrow=>Boolean):Option[Arrow]={
 			if(inv(a)){
@@ -506,7 +513,9 @@ object TypeP{
 	}
 }	
 
-sealed trait Id
+sealed trait Id{
+  val v:Any
+}
 
 //RegularId:
 case class RId(v:Long) extends Id{
@@ -536,9 +545,7 @@ case class VId(v:Long) extends Id{
 }
 
 //Attribute ValueId:
-sealed trait AValue extends Id{
-	val v:Any
-}
+sealed trait AValue extends Id
 case class VBoolean(override val v:Boolean) extends AValue 
 case class VChar(override val v:Char) extends AValue 
 case class VByte(override val v:Byte) extends AValue 
