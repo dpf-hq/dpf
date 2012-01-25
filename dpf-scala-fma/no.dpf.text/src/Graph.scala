@@ -219,7 +219,7 @@ package mutable{
 	 /**
 	  * Graph
 	  */
-	class Graph(override val mmGraph: AbstractGraph, val idGen:(()=>RId)) extends AbstractGraph() with Converter{
+	class Graph(override val mmGraph: AbstractGraph, val idGen:()=>RId) extends AbstractGraph() with Converter{
 		
 		override val nodes = mutable.HashMap[Id,Node]()
 		override val arrows = mutable.HashMap[Id,Arrow]()
@@ -334,9 +334,9 @@ package mutable{
 	  }
 	
 	 /**
-	  * Subgraph
+	  * Extended Subgraph (subgraph of a parent with additional nodes and arrows)
 	  */
-   	 class SubGraph(val parent:AbstractGraph) extends Graph(parent.mmGraph, ()=>RId(-1)){
+   	 class ExtSubGraph(val parent:AbstractGraph,val idGenNew:()=>RId) extends Graph(parent.mmGraph, ()=>RId(-1)){
 		
    		 override def addNode(name: String,t:TypeNode,id:Id=idGen()):Option[Node] = {
 			//Find Node:
@@ -353,24 +353,19 @@ package mutable{
 						  		  nodes+= n.id -> n;
 						  		  nO;
 			  				  }else{
-			  				    None
+			  				    id match {
+				    			    case RId(-1) => super.addNode(name,t,idGenNew())
+				    			    case _		 => None /*Id has to be unique*/
+			  				    }
 			  				  }
-			  case None    => None			  		  
+			  case None    => //Fix id:
+			    			  val idNew	= id match {
+			    			    case RId(-1) => idGenNew()
+			    			    case _		 => id
+			    			  }
+			  				  super.addNode(name,t,idNew)
 			}
 		}
-		override def addVNode(id:Id, t:TypeNode):Option[Node] = {
-			val nO = parent.nodes.get(id)
-			//New:
-			nO match {
-			  case Some(n) => if(n.t==t){
-						  		  nodes+= n.id -> n;
-						  		  nO;
-			  				  }else{
-			  				    None
-			  				  }
-			  case None    => None			  		  
-			}
-		}			
 		override def addArrow(name: String, sr:Node,tg:Node,t:Arrow,id:Id=idGen()):Option[Arrow]= {
 			//Find Arrow:
 			val aO = id match{
@@ -384,9 +379,18 @@ package mutable{
 				  				//For Subgraph sr and tg nodes have to be added to the structure:
 				  				super.addArrow(name,a.sr,a.tg,a.t,a.id);
 			  				  }else{
-			  				    None
+			  				    id match {
+				    			    case RId(-1) => super.addArrow(name,sr,tg,t,idGenNew())
+				    			    case _		 => None /*Id has to be unique*/
+			  				    }
 			  				  }
-			  case None    => None			  		  
+			  case None    => //Fix id:
+			    			  val idNew	= id match {
+			    			    case RId(-1) => idGenNew()
+			    			    case _		 => id
+			    			  }
+			    			  addArrow(name,sr,tg,t,idNew);			  				    
+			  		  
 			}
 		}
 		override def addAArrow(name: String, sr:Node,tg:Node,t:TypeArrow.TAttribute,id:Id=idGen()):Option[Arrow] = {
@@ -402,9 +406,17 @@ package mutable{
 				  				//For Subgraph sr and tg nodes have to be added to the structure:
 				  				super.addAArrow(name,a.sr,a.tg,t,a.id);
 			  				  }else{
-			  				    None
+			  				    id match {
+				    			    case RId(-1) => super.addAArrow(name,sr,tg,t,idGenNew())
+				    			    case _		 => None /*Id has to be unique*/
+			  				    }
 			  				  }
-			  case None    => None			  		  
+			  case None    => //Fix id:
+			    			  val idNew	= id match {
+			    			    case RId(-1) => idGenNew()
+			    			    case _		 => id
+			    			  }
+			  				  super.addAArrow(name,sr,tg,t,idNew)
 			}
 		}
    		 

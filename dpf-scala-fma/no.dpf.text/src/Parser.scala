@@ -3,7 +3,7 @@ package no.dpf.text.graph.parser;
 import scala.util.parsing.combinator._
 import no.dpf.text.graph._
 import no.dpf.text.graph.mutable.{Graph=>MGraph}
-import no.dpf.text.graph.mutable.{SubGraph=>MSubGraph}
+import no.dpf.text.graph.mutable.{ExtSubGraph=>MExtSubGraph}
 import scala.collection.mutable.{Map=>MMap}
 import no.dpf.text.coevolution._
 
@@ -114,7 +114,7 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 	//"Program":
 	def definitions: Parser[List[Any]] = repsep(definition,"") ^^ {case defs => defs}
 	
-	def definition: Parser[Any] = ispec | spec | tgraph | tsubgraph | emf | ecore | simpleEvo ^^ {case d => d}
+	def definition: Parser[Any] = ispec | spec | tgraph | extsubtgraph | emf | ecore | simpleEvo ^^ {case d => d}
 	
 	def emf: Parser[Any] = "emf("~ID~")" ^^ { case "emf("~i~")" => printEmf(i)}
 	
@@ -139,9 +139,9 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 	def constraintName: Parser[SignatureConstraint] = ID~dpfId~"("~repsep(CPARAM,",")~")" ^^ {case n~dpfid~"("~ps~")" => createSConstraint(dpfid,n,ps)}
 
 	//Typed subgraphs:
-	def tsubgraph : Parser[MGraph] = ID~":="~"TSubGraph<"~tnamesub~">"~graph ^^ {case n~":="~"TSubGraph<"~t~">"~g => saveTGraph(n,g)} //Save map in buffer
+	def extsubtgraph : Parser[MGraph] = ID~":="~"ExtSubTGraph<"~tnameextsub~">"~graph ^^ {case n~":="~"ExtSubTGraph<"~t~">"~g => saveTGraph(n,g)} //Save map in buffer
 	
-	def tnamesub : Parser[String] = ID ^^ {case i => createSubGraph(i)}
+	def tnameextsub : Parser[String] = ID ^^ {case i => createExtSubGraph(i)}
 
 	//Typed graphs:
 	def tgraph : Parser[MGraph] = ID~":="~"TGraph<"~tname~">"~graph ^^ {case n~":="~"TGraph<"~t~">"~g => saveTGraph(n,g)} //Save map in buffer
@@ -217,11 +217,11 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 		mmName	
 	}
 
-	private def createSubGraph(mmName:String)={
+	private def createExtSubGraph(mmName:String)={
 		//Init Graph:
 	    val parent=tGraphs(mmName); 
 		curTGraph=parent.mmGraph;
-		curMGraph=new MSubGraph(parent);
+		curMGraph=new MExtSubGraph(parent,GCtx.gen);
 		mmName	
 	}
 	
