@@ -42,7 +42,7 @@ trait Converter{
 	}	
 }
 //Nodes and Arrows, In and Out
-abstract class AbstractGraph(){
+trait AbstractGraph{
 	
 	//Nodes and Arrows:
 	//For each node all incoming/outgoing arrows of specific type:

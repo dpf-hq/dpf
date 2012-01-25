@@ -2,7 +2,23 @@ package no.dpf.text.coevolution;
 
 import no.dpf.text.graph._;
 
-case class Coevolution(tl:Morphism,tr:Morphism,tm:Morphism,tG:Morphism){
+trait AbstractCoevolution{
+  
+  /**
+   * Need to be specified
+   */
+  
+  val mmRule:Span;
+  
+  val tm:Morphism;
+  
+  val tG:Morphism;
+  
+  //---------------------------------
+  
+  lazy val tl = mmRule.left
+
+  lazy val tr = mmRule.right
   
   lazy val tk = poc_left_top.m1
   
@@ -41,3 +57,6 @@ case class Coevolution(tl:Morphism,tr:Morphism,tm:Morphism,tG:Morphism){
   private lazy val po_right_bottom = Span(r,k).pushout();
   
 }
+
+case class Coevolution(override val mmRule:Span, override val tm:Morphism, override val tG:Morphism) extends AbstractCoevolution
+
