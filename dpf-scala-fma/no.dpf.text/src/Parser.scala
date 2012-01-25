@@ -114,7 +114,7 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 	//"Program":
 	def definitions: Parser[List[Any]] = repsep(definition,"") ^^ {case defs => defs}
 	
-	def definition: Parser[Any] = ispec | spec | tgraph /*| tsubgraph*/ | emf | ecore | simpleEvo ^^ {case d => d}
+	def definition: Parser[Any] = ispec | spec | tgraph | tsubgraph | emf | ecore | simpleEvo ^^ {case d => d}
 	
 	def emf: Parser[Any] = "emf("~ID~")" ^^ { case "emf("~i~")" => printEmf(i)}
 	
@@ -139,11 +139,11 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 	def constraintName: Parser[SignatureConstraint] = ID~dpfId~"("~repsep(CPARAM,",")~")" ^^ {case n~dpfid~"("~ps~")" => createSConstraint(dpfid,n,ps)}
 
 	//Typed subgraphs:
-//TODO	def tsubgraph : Parser[MGraph] = ID~":="~"TSubGraph<"~tnamesub~">"~subgraph ^^ {case n~":="~"TSubGraph<"~t~">"~g => saveTGraph(n,g)} //Save map in buffer
+	def tsubgraph : Parser[MGraph] = ID~":="~"TSubGraph<"~tnamesub~">"~subgraph ^^ {case n~":="~"TSubGraph<"~t~">"~g => saveTGraph(n,g)} //Save map in buffer
 	
-//TODO	def subgraph : Parser[MGraph] = ("{"~repsep(expr,"")~"}" ^^ {case "{"~elements~"}" => fillCurSubGraph(elements.flatten)})
+	def subgraph : Parser[MGraph] = ("{"~repsep(expr,"")~"}" ^^ {case "{"~elements~"}" => fillCurSubGraph(elements.flatten)})
 	
-//TODO	def tnamesub : Parser[String] = ID ^^ {case i => createSubGraph(i)}
+	def tnamesub : Parser[String] = ID ^^ {case i => createSubGraph(i)}
 
 	//Typed graphs:
 	def tgraph : Parser[MGraph] = ID~":="~"TGraph<"~tname~">"~graph ^^ {case n~":="~"TGraph<"~t~">"~g => saveTGraph(n,g)} //Save map in buffer
@@ -523,6 +523,16 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 	  rElems foreach(x => x match {
 	    	case rn@RNode(_,_,_) 		=> createNode(rn) 
 	    	case ra@RArrow(_,_,_,_,_,_) => createArrow(ra)
+	      	case _ => sys.error("Programming sys.error")
+	  	  }
+	  )
+	  curMGraph
+	}
+
+	private def fillCurSubGraph(rElems:List[RElement]):MGraph={
+	  rElems foreach(x => x match {
+	    	case rn@RNode(_,_,_) 		=> println(rn) 
+	    	case ra@RArrow(_,_,_,_,_,_) => println(ra)
 	      	case _ => sys.error("Programming sys.error")
 	  	  }
 	  )
