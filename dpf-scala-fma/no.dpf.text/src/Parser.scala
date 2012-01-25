@@ -3,6 +3,7 @@ package no.dpf.text.graph.parser;
 import scala.util.parsing.combinator._
 import no.dpf.text.graph._
 import no.dpf.text.graph.mutable.{Graph=>MGraph}
+import no.dpf.text.graph.mutable.{SubGraph=>MSubGraph}
 import scala.collection.mutable.{Map=>MMap}
 import no.dpf.text.coevolution._
 
@@ -215,6 +216,13 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 		//Init Graph:
 		curTGraph=tGraphs(mmName);
 		curMGraph=new MGraph(curTGraph,GCtx.gen);
+		mmName	
+	}
+
+	private def createSubGraph(mmName:String)={
+		//Init Graph:
+		curTGraph=tGraphs(mmName);
+		curMGraph=new MSubGraph(curTGraph);
 		mmName	
 	}
 	

@@ -702,7 +702,7 @@ case class ArbitraryMorphism(inputNodes:Set[(Option[Node],Node)],inputArrows:Set
  */
 case class TypingMorphism(input:AbstractGraph) extends Morphism{
   
-  override lazy val immutable:Boolean = !input.isInstanceOf[MGraph] 	
+  override lazy val immutable:Boolean = !input.getClass().getPackage().getName().endsWith("mutable") 	
   
   /**
    * input: id of codomain
@@ -782,7 +782,8 @@ case class TypingMorphism(input:AbstractGraph) extends Morphism{
  */
 case class InclusionMorphism(inputSub:AbstractGraph, input:AbstractGraph) extends Morphism{
 
-  override lazy val immutable:Boolean = !inputSub.isInstanceOf[MGraph] && !input.isInstanceOf[MGraph]	
+  override lazy val immutable:Boolean = !inputSub.getClass().getPackage().getName().endsWith("mutable") && 
+		  								!input.getClass().getPackage().getName().endsWith("mutable")	
   
   /**
    * input: id of codomain
