@@ -44,6 +44,14 @@ trait AbstractCoevolution{
   
   lazy val h = po_right_bottom.right
  
+  lazy val tm2 = po_right_top.left
+  
+  lazy val th = po_right_top.right
+  
+  //
+  //Calculations:
+  //
+  
   private lazy val poc_left_top = Composition(tl,tm).pushoutComplement();
   
   private lazy val pb_left = Cospan(tG,tm).pullback();
@@ -54,7 +62,9 @@ trait AbstractCoevolution{
 
   private lazy val poc_left_bottom = Composition(l,m).pushoutComplement();
   
-  private lazy val po_right_bottom = Span(r,k).pushout();
+  private lazy val po_right_bottom = Span(r,k).pushout(1);
+  
+  private lazy val po_right_top = Span(tr,tk).pushout(2);
   
 }
 
