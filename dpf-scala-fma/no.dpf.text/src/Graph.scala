@@ -216,6 +216,9 @@ case object GraphDpf extends AbstractGraph(){
 package mutable{
 	import scala.collection._;
   
+	 /**
+	  * Graph
+	  */
 	class Graph(override val mmGraph: AbstractGraph, idGen:(()=>RId)) extends AbstractGraph() with Converter{
 		
 		override val nodes = mutable.HashMap[Id,Node]()
@@ -329,6 +332,15 @@ package mutable{
 		  names.put(id,newName)
 		} 
 	  }
+	
+	 /**
+	  * Subgraph
+	  */
+   	 class SubGraph(val parent:AbstractGraph) extends Graph(parent.mmGraph, ()=>sys.error("New Ids are not supported!")){
+   		 
+	 }
+
+		
 }
 
 trait Type extends Element
