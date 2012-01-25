@@ -66,13 +66,6 @@ trait AbstractCoevolution{
   
   private lazy val po_right_top = Span(tr,tk).pushout(2);
   
-  def print()={
-    println("------------------------ Metamodel (tm')---------------------\n\n")
-    println(tm2)
-    println("------------------------ Model (m')---------------------\n\n")
-    println(m2)
-  }
-  
 }
 
 /**
@@ -92,5 +85,37 @@ case class SimpleCoevolution(TL:AbstractGraph,TK:AbstractGraph,TR:AbstractGraph,
   override val tm:Morphism = InclusionMorphism(TL,TG);
   
   override val tG:Morphism = TypingMorphism(G);
+
+  def print()={
+	println("\n\nTL" + TL)
+    println("\n\nTK" + TK)
+    println("\n\nTR" + TR)
+    println("\n\nTG" + TG)
+    println("\n\nG" + G)
+
+    println("\n\ntl" + tl)
+    println("\n\ntm" + tm)
+    println("\n\ntk" + tk)
+    println("\n\ntg" + tg)
+
+////    println("\n\nm" + m)
+////    println("\n\ntL" + tL)
+////    println("\n\nl" + l)
+////    println("\n\ntK" + tK)
+////    println("\n\nr" + r)
+////    println("\n\ntC" + tC)
+////    println("\n\nk" + k)
+////    println("\n\ng" + g)
+////    println("\n\nm2" + m2)
+////    println("\n\nh" + h)
+    println("\n\ntm2" + tm2)
+    println("\n\nth" + th)
+////    
+////
+//    println("------------------------ Metamodel (tm')---------------------\n\n")
+//    println(tm2)
+//    println("------------------------ Model (m')---------------------\n\n")
+//    println(m2)
+  }
   
 }
