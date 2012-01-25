@@ -827,11 +827,11 @@ case class InclusionMorphism(inputSub:AbstractGraph, input:AbstractGraph) extend
   }
   
   def codomainArrowSr(id:Id):Id={
-    input.mmGraph.arrows(id).sr.id
+    input.arrows(id).sr.id
   }
   
   def codomainArrowTg(id:Id):Id={
-    input.mmGraph.arrows(id).tg.id
+    input.arrows(id).tg.id
   }
 
   private lazy val domainnodes:Set[Id] = mkDomainNodes()    
@@ -843,7 +843,7 @@ case class InclusionMorphism(inputSub:AbstractGraph, input:AbstractGraph) extend
   private lazy val codomainnodes:Set[Id] = mkCodomainNodes()    
   def codomainNodes():Set[Id]= immutable match {case true => codomainnodes; case _ => mkCodomainNodes()}
   private def mkCodomainNodes():Set[Id]={
-    Set((for{n<-input.mmGraph.nodes.values} yield {n.id}) toSeq: _ *)
+    Set((for{n<-input.nodes.values} yield {n.id}) toSeq: _ *)
   }
 
   private lazy val domainarrows:Set[Id]= mkDomainArrows() 
@@ -855,7 +855,7 @@ case class InclusionMorphism(inputSub:AbstractGraph, input:AbstractGraph) extend
   private lazy val codomainarrows:Set[Id]=mkCodomainArrows()
   def codomainArrows():Set[Id]= immutable match {case true => codomainarrows; case _ => mkCodomainArrows()}
   private def mkCodomainArrows():Set[Id]={
-    Set((for{n<-input.mmGraph.arrows.values} yield {n.id}) toSeq: _ *)
+    Set((for{n<-input.arrows.values} yield {n.id}) toSeq: _ *)
   }
   
   override def validate():Boolean={
