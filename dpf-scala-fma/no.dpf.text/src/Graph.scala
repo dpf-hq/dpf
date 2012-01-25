@@ -339,13 +339,14 @@ package mutable{
    	 class SubGraph(val parent:AbstractGraph) extends Graph(parent.mmGraph, ()=>RId(-1)){
 		
    		 override def addNode(name: String,t:TypeNode,id:Id=idGen()):Option[Node] = {
-			def inv(_n:Node):Boolean = { 
-						  (null != _n.id &&          //Id exist
-						  (mmGraph contains _n.t));  //Node has a valid type 
+			//Find Node:
+			var n:Node = null
+			id match{
+			  case RId(-1) => //find and add node via name
+			  case id@_    => //find and add node via id
 			}
 			//New:
-			val n = Node(id,t)
-			if(inv(n)){
+			if(null != n){
 				names+= n.id -> name
 				nodes+= n.id -> n;
 				Some(n);
@@ -353,8 +354,8 @@ package mutable{
 		}
 		override def addVNode(id:Id, t:TypeNode):Option[Node] = {
 			def inv(_n:Node):Boolean={
-				//Check if node type and id:
-			    _n.id != null
+				//Check if node _n exist in parrent
+				true	
 		    }
 			val n = Node(id,t)
 			if(inv(n)){
@@ -365,34 +366,36 @@ package mutable{
 			}
 		}			
 		override def addArrow(name: String, sr:Node,tg:Node,t:Arrow,id:Id=idGen()):Option[Arrow]= {
-			//Invariant:	
-			def inv(_a:Arrow):Boolean={
-				_a.id != null &&			   //Arrow needs id
-				_a.sr.t == _a.t.sr && 		   //Check source node type compatible 
-				_a.tg.t == _a.t.tg && 		   //Check target node type compatible
-				(mmGraph contains _a.t) && 	   //Check if arrow exist in metamodel
-				(this contains _a.sr) &&       //Check if src node exist in graph 
-				(this contains _a.tg)          //Check if tg  node exist in graph
+
+   			//Find Arrow:
+			var a:Arrow = null
+			id match{
+			  case RId(-1) => //find and add arrow via name
+			  case id@_    => //find and add arrow via id
 			}
-			//New:
-			val a=Arrow(id,sr,tg,t)
-			addArrow(a,name,inv)
+			
+			//For Subgraph sr and tg nodes have to be added to the structure:
+			if(null !=a){
+			  super.addArrow(name,a.sr,a.tg,a.t,a.id);
+			}else{
+			  None;
+			}
+			
 		}
 		override def addAArrow(name: String, sr:Node,tg:Node,t:TypeArrow.TAttribute,id:Id=idGen()):Option[Arrow] = {
-			//Invariant:	
-			def inv(_a:Arrow):Boolean={
-			   //Check Type of tg node:  
-			   def check={
-			    _a.tg match{ case Node(_ ,t:TypeNode.TAttribute) => true  
-							 case _				   	     	     => false	
-				          }
-			   }			   
-			   null != _a.id && //Check if id exist
-				     check && (this contains _a.sr) //Check if sr node exist in graph 								 						    	
+   			//Find Arrow:
+			var a:Arrow = null
+			id match{
+			  case RId(-1) => //find and add arrow via name
+			  case id@_    => //find and add arrow via id
 			}
-			//New:
-			val a=Arrow(id,sr,tg,t)
-			addArrow(a,name,inv)
+			
+			//For Subgraph sr and tg nodes have to be added to the structure:
+			if(null !=a){
+			  super.addAArrow(name,a.sr,a.tg,t,a.id);
+			}else{
+			  None;
+			}
 		}
    		 
 	 }
