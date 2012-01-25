@@ -29,11 +29,11 @@ TL:=ExtSubTGraph<TG>{
     Transition:n-outArr:id->Place:n,
 }
 
-TK:=ExtSubTGraph<TG>{
+TK:=ExtSubTGraph<TL>{
     Transition:n-outArr:id->Place:n,
 }
 
-TR:=ExtSubTGraph<TG>{
+TR:=ExtSubTGraph<TK>{
     OutArr:n-src:id->Transition:n,
     OutArr:n-trg:id->Place:n,
 }
