@@ -30,7 +30,7 @@ TL:=ExtSubTGraph<TG>{
 }
 
 TK:=ExtSubTGraph<TL>{
-    Transition:n-outArr:id->Place:n,
+    Transition:n,Place:n,
 }
 
 TR:=ExtSubTGraph<TK>{
