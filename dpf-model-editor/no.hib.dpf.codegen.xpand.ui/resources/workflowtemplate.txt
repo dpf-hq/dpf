@@ -6,6 +6,11 @@
 	
 	<property name="src-gen" value="src-gen" />
 	
+	<!-- set up EMF, only needed when using URI's -->	
+	<bean class="org.eclipse.emf.mwe.utils.StandaloneSetup" >
+		<platformUri value=".."/>
+	</bean>
+	
 	<!-- instantiate metamodel-->
 	<bean id="mm_dpf" class="no.hib.dpf.codegen.xpand.metamodel.DpfMetamodel"/>
 	
