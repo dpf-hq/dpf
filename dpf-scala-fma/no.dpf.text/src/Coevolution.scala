@@ -1,6 +1,7 @@
 package no.dpf.text.coevolution;
 
 import no.dpf.text.graph._;
+import no.dpf.text.graph.mutable.{ExtSubGraph=>MExtSubGraph}
 
 trait AbstractCoevolution{
   
@@ -65,6 +66,40 @@ trait AbstractCoevolution{
   private lazy val po_right_bottom = Span(r,k).pushout(1);
   
   private lazy val po_right_top = Span(tr,tk).pushout(2);
+  
+/*  
+  private def toGraph(parent:Graph,
+		  			  nodes:()=>Set[Id],
+		  			  arrows:()=>Set[Id],
+		  			  sr:(Id)=>Id,
+		  			  tg:(Id)=>Id,
+		  			  idGen:()=>RId):AbstractGraph = {
+    val rs = new MExtSubGraph(parent.mmGraph,idGen)
+    //Add nodes:
+    for(n<-nodes()){
+      n match {
+        case sid@SetId(_) => 
+          //Build SetId with concat name:
+          if(sid.ids.size > 1){
+            //TODO
+          }else{
+            //Just copy id
+            val id = sid.ids.head
+            if(id.isInstanceOf[AValue]){
+              rs.addVNode(id,)
+            }else{
+              rs.addNode()
+            }
+           }
+        case n@_		  => 
+          	//Just copy id 
+          	//TODO
+      }
+    }
+    rs
+  }
+*/  
+  
   
 }
 

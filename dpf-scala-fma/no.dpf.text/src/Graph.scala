@@ -536,7 +536,7 @@ case class SId(v:Long) extends Id{
 //SetId (required for pushouts and pullbacks)
 case class SetId(v:Set[(Id,Int,String)]) extends Id{ // SetId(v:Set[(Id,Int,String)])   (Id, Set-Identifier,L(eft) || R(right))
   
-  lazy val toIds:Set[Id] = toNonSetIds(this)
+  lazy val ids:Set[Id] = toNonSetIds(this)
   
   private def toNonSetIds(s:SetId):Set[Id] = {
     val rs = MSet[Id]()
