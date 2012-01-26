@@ -492,7 +492,6 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 		public InternalEcoreHelper() {
 			initializeKnownETypes();
 		}
-
 		
 		public Type getTypeForETypedElement(ETypedElement typedElement) {
 			//We need to map the pre-defined EStructuralFeatures (the ones specified in the DPF ecore metamodel.
