@@ -94,6 +94,7 @@ trait AbstractCoevolution{
         	    case Some(n) => if(n.t == TypeNode.TAttribute()){
         	    				  rs.addVNode(n.id,n.t)
         	    				}else{
+        	    				  if(None == name)println("FLO1" + n)
         	    				  rs.addNode(name.get,n.t,n.id)
         	    				}
         	    case None	 => sys.error("Programming error")
@@ -120,8 +121,10 @@ trait AbstractCoevolution{
         	  }
         	  arrowOption match {
         	    case Some(a) =>	if(a.t == TypeArrow.TAttribute()){
-        	      				  rs.addAArrow(name.get,a.sr,a.tg,TypeArrow.TAttribute(),a.id)
+        	    				  if(None == name)println("FLO2" + a)
+        	    				  rs.addAArrow(name.get,a.sr,a.tg,TypeArrow.TAttribute(),a.id)
         	    				}else{
+        	    				  if(None == name)println("FLO3" + a)
         	    				  rs.addArrow(name.get,a.sr,a.tg,a.t,a.id)
         	    				}
         	    case None	 => sys.error("Programming error")
@@ -187,11 +190,12 @@ case class SimpleCoevolution(TL:AbstractGraph,TK:AbstractGraph,TR:AbstractGraph,
     println("------------------------ Model (m')---------------------\n\n")
 //    println(m2)  
     val C = toGraph(G,G,TC,k.codomainNodes(),k.codomainArrows())
-    val L = toGraph(G,G,TL,m.domainNodes(),m.domainArrows())
-    val K = toGraph(L,C,TK,l.domainNodes(),l.domainArrows())    
-    val R = toGraph(K,K,TR,r.codomainNodes(),r.codomainArrows())    
-    val H = toGraph(C,R,TH,tm2.codomainNodes(),tm2.codomainArrows())
-    println(H)
+    println(C)
+//    val L = toGraph(G,G,TL,m.domainNodes(),m.domainArrows())
+//    val K = toGraph(L,C,TK,l.domainNodes(),l.domainArrows())    
+//    val R = toGraph(K,K,TR,r.codomainNodes(),r.codomainArrows())    
+//    val H = toGraph(C,R,TH,tm2.codomainNodes(),tm2.codomainArrows())
+    
     
   }
 
