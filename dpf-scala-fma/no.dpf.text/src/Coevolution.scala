@@ -158,7 +158,7 @@ trait AbstractCoevolution{
 
     def getType(e:Element):String={
       e.t.id match{
-        case SId(_) => e.toString()
+        case SId(_) => e.t.toString()
         case _ => g.mmGraph.names(e.t.id);
       }
     }
