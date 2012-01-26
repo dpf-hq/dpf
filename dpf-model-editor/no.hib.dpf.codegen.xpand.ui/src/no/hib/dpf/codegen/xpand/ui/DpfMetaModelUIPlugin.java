@@ -11,17 +11,22 @@
  *******************************************************************************/
 package no.hib.dpf.codegen.xpand.ui;
 
+import no.hib.dpf.codegen.xpand.ui.wizards.WorkflowParser;
 import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Specification;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.ui.preferences.ScopedPreferenceStore;
 import org.osgi.framework.BundleContext;
+import org.xml.sax.SAXException;
 
+import java.io.IOException;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -124,7 +129,7 @@ public class DpfMetaModelUIPlugin extends AbstractUIPlugin {
 			workspace.getRoot().accept(
 					new DpfMetaModelUIPlugin.DpfResourceDeltaVisitor());
 		} catch (CoreException e) {
-			System.out.println();
+			e.printStackTrace();
 		}
 	}
 
@@ -181,54 +186,86 @@ public class DpfMetaModelUIPlugin extends AbstractUIPlugin {
 				return true;
 			} else {
 				IResource resource = delta.getResource();
-				try {
-					return visit(resource);
-				} catch (CoreException e) {
-					System.out.println();
-					return true;
-				}
+				return visit(resource);
 			}
 		}
 
-		public boolean visit(IResource resource) throws CoreException {
-			if (resource instanceof IProject) {
-				IProject f = (IProject) resource;
-				String path = hasValidDsm(f);
-				if (path != null) {
-						try {
-							URI uri = URI.createURI(path);
-							Specification spectmp = CoreFactory.eINSTANCE.loadSpecification(uri);
-							System.out.println("FOUND AND SUCCESSFULLY LOADED VALID DSM: " + path);
-							if(spectmp != null) {
-								fileModels.put(f.getFile(new Path(path)), spectmp);
-							}
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
+		public boolean visit(IResource resource) {
+			String path = "";
+			if(resource instanceof IFile) {
+				if(resource.isAccessible() && resource.getName().endsWith(".mwe")) {
+					path = retrievePathFromWorkflow((IFile)resource);
 				}
+			} else if(resource instanceof IProject) {
+				if(resource.isAccessible()) {
+					path = retrievePathFromPersistentProperties(resource.getProject());
+					return true;
+				} else return false; //We do not expand projects which isnt relevant
 			}
+
+			if(!path.equals("")) {
+				createAndStoreSpecification(resource.getProject(), path);
+			}
+
 			return true;
 		}
 		
-		private String hasValidDsm(IProject f) {
-			if(f.isAccessible()) {
-				String path = getDpfMetaModelPath(f);
-				if(!path.equals("") || path != null) {
-					//TODO: Properly handle input. file is needed to make the URI stuff work
-					return path;
+		private void createAndStoreSpecification(IProject project, String path) {
+			try {
+				URI uri = URI.createURI(path);
+				if(!path.equals("")) {
+					if(!fileModels.containsKey(project.getFile(new Path(path)))) {
+						Specification spectmp = CoreFactory.eINSTANCE.loadSpecification(uri);
+						System.out.println("FOUND AND SUCCESSFULLY LOADED VALID DSM: " + path);
+						if(spectmp != null) {
+							fileModels.put(project.getFile(new Path(path)), spectmp);
+						}
+					}
 				}
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
-			return null;
 		}
 		
-		private String getDpfMetaModelPath(IProject project) {
-			ScopedPreferenceStore store = new ScopedPreferenceStore(new InstanceScope(), PLUGIN_ID);
-			IScopeContext[] context = {new ProjectScope(project), new InstanceScope()};
-			
-			store.setSearchContexts(context);
-			
-			return store.getString("metamodel.location");
+		private String retrievePathFromWorkflow(IFile f) {
+			String res = null;
+			try {
+				WorkflowParser parse = new WorkflowParser(f.getContents());
+				res = parse.getProperty("dpf_metamodel");
+
+				//Update .settings file if workflow contains different value
+				//					String tmp = retrievePathFromPersistentProperties(f.getProject());
+				//					if(!res.equals(tmp)) {
+				//						ScopedPreferenceStore store = new ScopedPreferenceStore(InstanceScope.INSTANCE, PLUGIN_ID);
+				//						IScopeContext[] context = {new ProjectScope(f.getProject()), InstanceScope.INSTANCE};
+				//						store.setSearchContexts(context);
+				//						store.setValue("metamodel.location", res);
+				//					}
+
+			} catch (ParserConfigurationException e) {
+				e.printStackTrace();
+			} catch (SAXException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (CoreException e) {
+				e.printStackTrace();
+			}	
+			return res;
 		}
+		
+		private String retrievePathFromPersistentProperties(IProject f) {
+			if(f.findMember(".settings/no.hib.dpf.codegen.xpand.ui.prefs") != null) {
+				ScopedPreferenceStore store = new ScopedPreferenceStore(InstanceScope.INSTANCE, PLUGIN_ID);
+				IScopeContext[] context = {new ProjectScope(f), InstanceScope.INSTANCE};
+
+				store.setSearchContexts(context);
+
+				return store.getString("metamodel.location");
+			}
+			return "";		
+		}
+		
 		//Returns every IFile which matches isValidDsm
 //		public boolean visit(IResource resource) throws CoreException {
 //			if (resource instanceof IFile) {
