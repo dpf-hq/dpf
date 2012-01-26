@@ -83,18 +83,22 @@ trait AbstractCoevolution{
             sys.error("Not implemented jet")
           }else{
         	  val id = sid.ids.head
-        	  var name:Option[String] = null; 
+        	  var nameOption:Option[String] = null; 
         	  val nodeOption = parent1.getNode(id) match {
-        	    case oN@Some(_) => name=parent1.names.get(id); 
+        	    case oN@Some(_) => nameOption=parent1.names.get(id); 
         	    				   oN
-        	    case None	 =>    name=parent2.names.get(id);
+        	    case None	 =>    nameOption=parent2.names.get(id);
         	    				   parent2.getNode(id)
         	  }
         	  nodeOption match {
         	    case Some(n) => if(n.t == TypeNode.TAttribute()){
         	    				  rs.addVNode(n.id,n.t)
         	    				}else{
-        	    				  rs.addNode(n.id.v.toString,n.t,n.id)
+        	    				  nameOption match{
+        	    				    case Some(name) => rs.addNode(name,n.t,n.id)
+        	    				    case None => rs.addNode(n.id.v.toString,n.t,n.id)
+        	    				  }
+        	    				  
         	    				}
         	    case None	 => sys.error("Programming error")
         	  }
@@ -111,18 +115,18 @@ trait AbstractCoevolution{
             sys.error("Not implemented jet")
           }else{
         	  val id = sid.ids.head
-        	  var name:Option[String] = null; 
+        	  var nameOption:Option[String] = null; 
         	  val arrowOption = parent1.getArrow(id) match {
-        	    case oN@Some(_) => name=parent1.names.get(id); 
+        	    case oN@Some(_) => nameOption=parent1.names.get(id); 
         	    				   oN
-        	    case None	 =>    name=parent2.names.get(id);
+        	    case None	 =>    nameOption=parent2.names.get(id);
         	    				   parent2.getArrow(id)
         	  }
         	  arrowOption match {
         	    case Some(a) =>	if(a.t == TypeArrow.TAttribute()){
-        	    				  rs.addAArrow(name.get,a.sr,a.tg,TypeArrow.TAttribute(),a.id)
+        	    				  rs.addAArrow(nameOption.get,a.sr,a.tg,TypeArrow.TAttribute(),a.id)
         	    				}else{
-        	    				  rs.addArrow(name.get,a.sr,a.tg,a.t,a.id)
+        	    				  rs.addArrow(nameOption.get,a.sr,a.tg,a.t,a.id)
         	    				}
         	    case None	 => sys.error("Programming error")
         	  }
@@ -133,6 +137,57 @@ trait AbstractCoevolution{
     rs
   }
   
+  protected def printGraph(g:AbstractGraph,name:String):String={
+    
+    def formatNode(l:List[String],n:Node):List[String]={
+    	var rs=l
+    	rs="\""::rs
+    	rs=getName(n)::rs
+    	rs=":"::rs
+    	rs=getType(n)::rs
+    	rs="\""::rs
+    	rs
+    }		  
+    
+    def getName(e:Element):String={
+      e.id match{
+        case SId(_) => e.toString()
+        case _ => g.names(e.id)
+      }
+    }
+
+    def getType(e:Element):String={
+      e.t.id match{
+        case SId(_) => e.toString()
+        case _ => g.mmGraph.names(e.t.id);
+      }
+    }
+    
+    var rs:List[String] = Nil
+    rs="digraph "::rs
+    rs=name::rs
+    rs="\n{\n"::rs
+    rs="graph [nodesep=\"0.7\"];\n"::rs
+    rs="node [label=\"\\N\", shape=box];\n"::rs
+    for(n:Node<-g.nodes.values.toSet){
+      rs=formatNode(rs,n)
+   	  rs=";\n"::rs  
+    }
+    for(a:Arrow<-g.arrows.values.toSet){
+      rs=formatNode(rs,a.sr)
+   	  rs="->"::rs  
+      rs=formatNode(rs,a.tg)
+   	  rs=" [label=;"::rs
+   	  rs="\""::rs  
+   	  rs=getName(a)::rs
+      rs=":"::rs
+      rs=getType(a)::rs
+   	  rs="\"]"::rs 
+   	  rs=";\n"::rs     	    
+    }
+    rs="}\n"::rs
+    rs.reverse.mkString
+  }
   
 }
 
@@ -182,12 +237,12 @@ case class SimpleCoevolution(TL:AbstractGraph,TK:AbstractGraph,TR:AbstractGraph,
 //    println(tm2)
     val TC = toGraph(TG,TG,TG.mmGraph,tk.codomainNodes(),tk.codomainArrows());
     val TH = toGraph(TC,TR,TG.mmGraph,tm2.codomainNodes(),tm2.codomainArrows());
-    println(TH)
+    println(printGraph(TH,"TH"))
     
     println("------------------------ Model (m')---------------------\n\n")
 //    println(m2)  
     val C = toGraph(G,G,TC,k.codomainNodes(),k.codomainArrows())
-    println(C)
+    println(printGraph(C,"C"))
 //    val L = toGraph(G,G,TL,m.domainNodes(),m.domainArrows())
 //    val K = toGraph(L,C,TK,l.domainNodes(),l.domainArrows())    
 //    val R = toGraph(K,K,TR,r.codomainNodes(),r.codomainArrows())    
