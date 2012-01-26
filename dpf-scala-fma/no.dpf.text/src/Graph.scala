@@ -283,9 +283,17 @@ package mutable{
 			val a=Arrow(id,sr,tg,t)
 			val o = addArrow(a,name,inv)
 			o match {
-			  case Some(_) => val n = a.tg /*Save Attributes types like "String" also if they occure*/
-			    			  nodes+= n.id -> n; 
-			  				  names+= n.id -> n.id.v.toString
+			  case Some(_) => /*Save Attributes types like "String" also if they occure*/
+			    			  val n = a.tg
+			    			  val isAttr = n match{
+			    			    case Node(_,TypeNode.TAttribute()) => true
+			    			    case Node(sid@SetId(_),_) => sid.containsAId
+			    			    case _ => false
+			    			  }
+			    			  if(isAttr){	
+				    			  nodes+= n.id -> n; 
+				  				  names+= n.id -> n.id.v.toString
+			    			  }
 			  case _ => /* do nothing */
 			}
 			o;
@@ -548,6 +556,12 @@ case class SetId(v:Set[(Id,Int,String)]) extends Id{ // SetId(v:Set[(Id,Int,Stri
     }
     if(rs.isEmpty)sys.error("Programming error in SetId:" + this)
     rs.toSet;
+  }
+  
+  lazy val containsAId = {
+  	if(1 == v.size){
+  	  ids.head.isInstanceOf[AId]
+  	}else false
   }
   
   override lazy val toString="SetID"+v.toString;	

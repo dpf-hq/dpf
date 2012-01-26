@@ -67,38 +67,75 @@ trait AbstractCoevolution{
   
   private lazy val po_right_top = Span(tr,tk).pushout(2);
   
-/*  
-  private def toGraph(parent:Graph,
+/*
+  private def toGraph(parent1:Graph,
+		  			  parent2:Graph,
 		  			  nodes:()=>Set[Id],
 		  			  arrows:()=>Set[Id],
 		  			  sr:(Id)=>Id,
-		  			  tg:(Id)=>Id,
-		  			  idGen:()=>RId):AbstractGraph = {
-    val rs = new MExtSubGraph(parent.mmGraph,idGen)
+		  			  tg:(Id)=>Id):AbstractGraph = {
     //Add nodes:
+    val rs = new MExtSubGraph(parent1.mmGraph,()=>sys.error("Programming error"))
     for(n<-nodes()){
       n match {
         case sid@SetId(_) => 
-          //Build SetId with concat name:
+          //Build SetId with concat name (names vorher in set tun und dann sort list):
           if(sid.ids.size > 1){
             //TODO
           }else{
-            //Just copy id
-            val id = sid.ids.head
-            if(id.isInstanceOf[AValue]){
-              rs.addVNode(id,)
-            }else{
-              rs.addNode()
-            }
-           }
-        case n@_		  => 
-          	//Just copy id 
-          	//TODO
+        	  val id = sid.ids.head
+        	  var name:Option[String] = null; 
+        	  val nodeOption = parent1.getNode(id) match {
+        	    case oN@Some(_) => name=parent1.names.get(id); 
+        	    				   oN
+        	    case None	 =>    name=parent2.names.get(id);
+        	    				   parent2.getNode(id)
+        	  }
+        	  nodeOption match {
+        	    case Some(n) => if(n.id.isInstanceOf[AValue]){
+        	    				  rs.addVNode(n.id,n.t)
+        	    				}else{
+        	    				  rs.addNode(name.get,n.t,n.id)
+        	    				}
+        	    case None	 => sys.error("Programming error")
+        	  }
+          }
+        case n@_		  => sys.error("Programming error")
       }
     }
+    for(a<-arrows()){
+      a match {
+        case sid@SetId(_) => 
+          //Build SetId with concat name (names vorher in set tun und dann sort list):
+          if(sid.ids.size > 1){
+            //TODO
+          }else{
+        	  val id = sid.ids.head
+        	  var name:Option[String] = null; 
+        	  val arrowOption = parent1.getArrow(id) match {
+        	    case oN@Some(_) => name=parent1.names.get(id); 
+        	    				   oN
+        	    case None	 =>    name=parent2.names.get(id);
+        	    				   parent2.getArrow(id)
+        	  }
+        	  arrowOption match {
+        	    case Some(a) => rs.addArrow()
+        	    				rs.addAArrow()
+        	      				if(a.isInstanceOf[AValue]){
+        	    				  rs.addVNode(n.id,n.t)
+        	    				}else{
+        	    				  rs.addNode(name.get,n.t,n.id)
+        	    				}
+        	    case None	 => sys.error("Programming error")
+        	  }
+          }
+        case n@_		  => sys.error("Programming error")
+      }
+    }
+
     rs
   }
-*/  
+*/
   
   
 }
