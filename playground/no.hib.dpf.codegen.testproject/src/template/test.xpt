@@ -8,6 +8,11 @@
 
 «DEFINE graph FOR dpf::Graph»
 	«EXPAND domainclasses FOREACH this.getDomainClasses()»
+	«EXPAND arrows FOREACH this.getAttributes()»
+«ENDDEFINE»
+
+«DEFINE arrows FOR dpf::Attribute»
+
 «ENDDEFINE»
 
 «DEFINE domainclasses FOR dpf::DomainClass»

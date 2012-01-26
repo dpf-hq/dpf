@@ -50,7 +50,7 @@ public class Test {
 	    	Specification metaModel = CoreFactory.eINSTANCE.loadSpecification(
 	    			URI.createURI(metaModelPath));
 	  	    
-	    	dpfMetaModel.setDsm(metaModel);
+	    	dpfMetaModel.addDpfMetaModel(metaModel);
 	    	
 	  	    execCtx.registerMetaModel(dpfMetaModel);
 	  	    
@@ -67,8 +67,8 @@ public class Test {
 	public static void main(String[] args) {
 		workflowEngineExecution();
 		programmaticExecution(
-				"/home/anders/Master/Code/main/runtime-EclipseApplication/no.hib.dpf.codegen.testproject/src-gen",
-				"/home/anders/Master/Code/main/runtime-EclipseApplication/no.hib.dpf.codegen.testproject/metamodel/test.dpf.xmi", 
-				"/home/anders/Master/Code/main/runtime-EclipseApplication/no.hib.dpf.codegen.testproject/model/model.dpf.xmi");
+				"/home/anders/Master/Code/main/generator-branch/no.hib.dpf.codegen.testproject/src-gen",
+				"/home/anders/Master/Code/main/generator-branch/no.hib.dpf.codegen.testproject/metamodel/test.dpf.xmi", 
+				"/home/anders/Master/Code/main/generator-branch/no.hib.dpf.codegen.testproject/model/model.dpf.xmi");
 	}
 }
