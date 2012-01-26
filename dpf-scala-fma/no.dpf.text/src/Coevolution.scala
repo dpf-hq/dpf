@@ -152,7 +152,7 @@ trait AbstractCoevolution{
     def getName(e:Element):String={
       e.id match{
         case SId(_) => e.toString()
-        case _ => g.names(e.id)
+        case _ => g.names(e.id).replaceAll("\"","")
       }
     }
 
@@ -177,7 +177,7 @@ trait AbstractCoevolution{
       rs=formatNode(rs,a.sr)
    	  rs="->"::rs  
       rs=formatNode(rs,a.tg)
-   	  rs=" [label=;"::rs
+   	  rs=" [label="::rs
    	  rs="\""::rs  
    	  rs=getName(a)::rs
       rs=":"::rs
