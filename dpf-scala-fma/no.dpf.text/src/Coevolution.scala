@@ -80,7 +80,7 @@ trait AbstractCoevolution{
           //Build SetId with concat name (names vorher in set tun und dann sort list):
           if(sid.ids.size > 1){
             //TODO
-            sys.error("Not implemented jet")
+            sys.error("1. Not implemented jet: " + sid.ids)
           }else{
         	  val id = sid.ids.head
         	  var nameOption:Option[String] = null; 
@@ -112,7 +112,7 @@ trait AbstractCoevolution{
           //Build SetId with concat name (names vorher in set tun und dann sort list):
           if(sid.ids.size > 1){
             //TODO
-            sys.error("Not implemented jet")
+            sys.error("2. Not implemented jet: " + sid.ids)
           }else{
         	  val id = sid.ids.head
         	  var nameOption:Option[String] = null; 
