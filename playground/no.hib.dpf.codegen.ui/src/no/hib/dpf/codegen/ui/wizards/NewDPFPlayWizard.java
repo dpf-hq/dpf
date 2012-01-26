@@ -24,12 +24,14 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Enumeration;
 
+import no.hib.dpf.codegen.xpand.ui.properties.DpfMetaModelProperties;
 import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Specification;
 import no.hib.dpf.editor.DPFEditor;
 import no.hib.dpf.editor.displaymodel.DPFDiagram;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -133,13 +135,12 @@ public class NewDPFPlayWizard extends Wizard implements INewWizard {
 		 * 
 		 * @see NewDPFPlayWizard#performFinish()
 		 */
-		@SuppressWarnings("unchecked")
-		boolean finish() {
+		private boolean finish() {
 			// create a new file, result != null if successful
 			IFile newFile = createNewFile();
 			fileCount++;
 			
-			Bundle bb = Platform.getBundle("no.hib.dpf.codegen.ui");
+			Bundle bb = Platform.getBundle("no.hib.dpf.codegen.generator");
 			Enumeration<URL> ce = bb.findEntries("metamodel", "m3.dpf.xmi", false);
 			// Gets null value when user does not check checkbox
 			URL typeFileURL = null;
@@ -155,10 +156,6 @@ public class NewDPFPlayWizard extends Wizard implements INewWizard {
 			} catch (URISyntaxException e1) {
 				e1.printStackTrace();
 			}
-			//TODO: Remove
-			System.out.println(specificationURI.toString() + " " + specificationURI.toFileString());
-			
-			
 			
 			if (typeFileURL != null) {
 				// TODO: move to validation (when wrong file, user must be
@@ -182,12 +179,21 @@ public class NewDPFPlayWizard extends Wizard implements INewWizard {
 			// open newly created file in the editor
 			IWorkbenchPage page = workbench.getActiveWorkbenchWindow()
 					.getActivePage();
+			DpfMetaModelProperties properties;
 			if (newFile != null && page != null) {
 				try {
+					properties = new DpfMetaModelProperties(newFile.getProject());
+					properties.setNature(true);
+					properties.setDsmPaths(typeFileURL.toURI().toString());
+					
 					IDE.openEditor(page, newFile, true);
 				} catch (PartInitException e) {
 					e.printStackTrace();
 					return false;
+				} catch (CoreException e) {
+					e.printStackTrace();
+				} catch (URISyntaxException e) {
+					e.printStackTrace();
 				}
 			}
 			return true;
