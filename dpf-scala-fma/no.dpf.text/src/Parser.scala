@@ -120,7 +120,7 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 	
 	def ecore: Parser[Any] = "ecore("~ID~")" ^^ { case "ecore("~i~")" => printEcore(i)}
 	
-	def simpleEvo: Parser[Any] = "simpleEvolution("~ID~"<-"~ID~"->"~ID~","~ID~")" ^^ { case "simpleEvolution("~tl~"<-"~tk~"->"~tr~","~g~")" => SimpleCoevolution(tGraphs(tl),tGraphs(tk),tGraphs(tr),tGraphs(g)).print()}
+	def simpleEvo: Parser[Any] = "simpleEvolution("~ID~"<-"~ID~"->"~ID~","~ID~")" ^^ { case "simpleEvolution("~tl~"<-"~tk~"->"~tr~","~g~")" => SimpleCoevolution(tGraphs(tl),tGraphs(tk),tGraphs(tr),tGraphs(g)).print(outDir)}
 
 	//Specification instance:
 	def ispec : Parser[IS] = ID~":="~"ISpec<"~chosenSpec~","~chosenSpec~">"~"{"~repsep(constraintSem,",")~"}" ^^ {case n~":="~"ISpec<"~mS~","~mmS~">"~"{"~sem~"}" => IS(mS,mmS,sem.map{e=>(e.id,e)}.toMap)}
