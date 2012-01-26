@@ -1,7 +1,7 @@
 package no.dpf.text.coevolution;
 
 import no.dpf.text.graph._;
-import no.dpf.text.graph.mutable.{ExtSubGraph=>MExtSubGraph}
+import no.dpf.text.graph.mutable.{Graph=>MGraph}
 
 trait AbstractCoevolution{
   
@@ -67,18 +67,20 @@ trait AbstractCoevolution{
   
   private lazy val po_right_top = Span(tr,tk).pushout(2);
   
-  private def toGraph(parent1:Graph,
-		  			  parent2:Graph,
-		  			  nodes:()=>Set[Id],
-		  			  arrows:()=>Set[Id]):AbstractGraph = {
+  protected def toGraph(parent1:AbstractGraph,
+		  			    parent2:AbstractGraph,
+		  			    typeGraph:AbstractGraph,
+		  			    nodes:Set[Id],
+		  			    arrows:Set[Id]):AbstractGraph = {
     //Add nodes:
-    val rs = new MExtSubGraph(parent1.mmGraph,()=>sys.error("Programming error"))
-    for(n<-nodes()){
+    val rs = new MGraph(typeGraph,()=>sys.error("Programming error"))
+    for(n<-nodes){
       n match {
         case sid@SetId(_) => 
           //Build SetId with concat name (names vorher in set tun und dann sort list):
           if(sid.ids.size > 1){
             //TODO
+            sys.error("Not implemented jet")
           }else{
         	  val id = sid.ids.head
         	  var name:Option[String] = null; 
@@ -100,12 +102,13 @@ trait AbstractCoevolution{
         case n@_		  => sys.error("Programming error")
       }
     }
-    for(a<-arrows()){
+    for(a<-arrows){
       a match {
         case sid@SetId(_) => 
           //Build SetId with concat name (names vorher in set tun und dann sort list):
           if(sid.ids.size > 1){
             //TODO
+            sys.error("Not implemented jet")
           }else{
         	  val id = sid.ids.head
         	  var name:Option[String] = null; 
@@ -176,9 +179,20 @@ case class SimpleCoevolution(TL:AbstractGraph,TK:AbstractGraph,TR:AbstractGraph,
 ////    
 ////
     println("------------------------ Metamodel (tm')---------------------\n\n")
-    println(tm2)
+//    println(tm2)
+    val TC = toGraph(TG,TG,TG.mmGraph,tk.codomainNodes(),tk.codomainArrows());
+    val TH = toGraph(TC,TR,TG.mmGraph,tm2.codomainNodes(),tm2.codomainArrows());
+    println(TH)
+    
     println("------------------------ Model (m')---------------------\n\n")
-    println(m2)
+//    println(m2)  
+    val C = toGraph(G,G,TC,k.codomainNodes(),k.codomainArrows())
+    val L = toGraph(G,G,TL,m.domainNodes(),m.domainArrows())
+    val K = toGraph(L,C,TK,l.domainNodes(),l.domainArrows())    
+    val R = toGraph(K,K,TR,r.codomainNodes(),r.codomainArrows())    
+    val H = toGraph(C,R,TH,tm2.codomainNodes(),tm2.codomainArrows())
+    println(H)
+    
   }
 
   //TODO lazy val = toIds:Set[Id] //Implement //Morphism Domain.tograph() CoDomain.toGraph() .. Graph().toDot()
