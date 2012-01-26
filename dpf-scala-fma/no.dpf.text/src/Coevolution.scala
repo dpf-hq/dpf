@@ -67,13 +67,10 @@ trait AbstractCoevolution{
   
   private lazy val po_right_top = Span(tr,tk).pushout(2);
   
-/*
   private def toGraph(parent1:Graph,
 		  			  parent2:Graph,
 		  			  nodes:()=>Set[Id],
-		  			  arrows:()=>Set[Id],
-		  			  sr:(Id)=>Id,
-		  			  tg:(Id)=>Id):AbstractGraph = {
+		  			  arrows:()=>Set[Id]):AbstractGraph = {
     //Add nodes:
     val rs = new MExtSubGraph(parent1.mmGraph,()=>sys.error("Programming error"))
     for(n<-nodes()){
@@ -92,7 +89,7 @@ trait AbstractCoevolution{
         	    				   parent2.getNode(id)
         	  }
         	  nodeOption match {
-        	    case Some(n) => if(n.id.isInstanceOf[AValue]){
+        	    case Some(n) => if(n.t == TypeNode.TAttribute()){
         	    				  rs.addVNode(n.id,n.t)
         	    				}else{
         	    				  rs.addNode(name.get,n.t,n.id)
@@ -119,12 +116,10 @@ trait AbstractCoevolution{
         	    				   parent2.getArrow(id)
         	  }
         	  arrowOption match {
-        	    case Some(a) => rs.addArrow()
-        	    				rs.addAArrow()
-        	      				if(a.isInstanceOf[AValue]){
-        	    				  rs.addVNode(n.id,n.t)
+        	    case Some(a) =>	if(a.t == TypeArrow.TAttribute()){
+        	      				  rs.addAArrow(name.get,a.sr,a.tg,TypeArrow.TAttribute(),a.id)
         	    				}else{
-        	    				  rs.addNode(name.get,n.t,n.id)
+        	    				  rs.addArrow(name.get,a.sr,a.tg,a.t,a.id)
         	    				}
         	    case None	 => sys.error("Programming error")
         	  }
@@ -132,10 +127,8 @@ trait AbstractCoevolution{
         case n@_		  => sys.error("Programming error")
       }
     }
-
     rs
   }
-*/
   
   
 }

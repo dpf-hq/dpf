@@ -253,7 +253,7 @@ package mutable{
 				None;
 			}
 		}			
-		def addArrow(name: String, sr:Node,tg:Node,t:Arrow,id:Id=idGen()):Option[Arrow]= {
+		def addArrow(name: String, sr:Node,tg:Node,t:TypeArrow,id:Id=idGen()):Option[Arrow]= {
 			//Invariant:	
 			def inv(_a:Arrow):Boolean={
 				_a.id != null &&			   //Arrow needs id
@@ -381,7 +381,7 @@ package mutable{
 			  				  super.addNode(name,t,idNew)
 			}
 		}
-		override def addArrow(name: String, sr:Node,tg:Node,t:Arrow,id:Id=idGen()):Option[Arrow]= {
+		override def addArrow(name: String, sr:Node,tg:Node,t:TypeArrow,id:Id=idGen()):Option[Arrow]= {
 			//Find Arrow:
 			val aO = id match{
 			  case RId(-1) => //find arrow via name:
