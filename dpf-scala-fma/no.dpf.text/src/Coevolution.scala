@@ -115,5 +115,8 @@ case class SimpleCoevolution(TL:AbstractGraph,TK:AbstractGraph,TR:AbstractGraph,
     println("------------------------ Model (m')---------------------\n\n")
     println(m2)
   }
+
+  //TODO lazy val = toIds:Set[Id] //Implement //Morphism Domain.tograph() CoDomain.toGraph() .. Graph().toDot()
+  
   
 }

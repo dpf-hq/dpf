@@ -536,7 +536,19 @@ case class SId(v:Long) extends Id{
 //SetId (required for pushouts and pullbacks)
 case class SetId(v:Set[(Id,Int,String)]) extends Id{ // SetId(v:Set[(Id,Int,String)])   (Id, Set-Identifier,L(eft) || R(right))
   
-  //TODO lazy val = toIds:Set[Id] //Implement //Morphism Domain.tograph() CoDomain.toGraph() .. Graph().toDot()
+  lazy val toIds:Set[Id] = toNonSetIds(this)
+  
+  private def toNonSetIds(s:SetId):Set[Id] = {
+    val rs = MSet[Id]()
+    for(e<-s.v){
+      e._1 match {
+	  	case s2@SetId(_) => rs++=toNonSetIds(s2)
+ 	  	case nonSetId@_	 => rs.add(e._1)
+	  }
+    }
+    if(rs.isEmpty)sys.error("Programming error in SetId:" + this)
+    rs.toSet;
+  }
   
   override lazy val toString="SetID"+v.toString;	
 }

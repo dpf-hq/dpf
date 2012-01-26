@@ -145,6 +145,12 @@ sealed trait Morphism{
     rrs.reverse.mkString
   }
   
+  private def toGraph(parent:Graph,
+		  			  nodes:()=>Set[Id],
+		  			  arrows:()=>Set[Id]):Graph = {
+    null
+  }
+  
 }
 
 
