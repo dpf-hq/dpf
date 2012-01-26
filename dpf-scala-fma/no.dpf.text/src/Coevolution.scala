@@ -94,8 +94,7 @@ trait AbstractCoevolution{
         	    case Some(n) => if(n.t == TypeNode.TAttribute()){
         	    				  rs.addVNode(n.id,n.t)
         	    				}else{
-        	    				  if(None == name)println("FLO1" + n)
-        	    				  rs.addNode(name.get,n.t,n.id)
+        	    				  rs.addNode(n.id.v.toString,n.t,n.id)
         	    				}
         	    case None	 => sys.error("Programming error")
         	  }
@@ -121,10 +120,8 @@ trait AbstractCoevolution{
         	  }
         	  arrowOption match {
         	    case Some(a) =>	if(a.t == TypeArrow.TAttribute()){
-        	    				  if(None == name)println("FLO2" + a)
         	    				  rs.addAArrow(name.get,a.sr,a.tg,TypeArrow.TAttribute(),a.id)
         	    				}else{
-        	    				  if(None == name)println("FLO3" + a)
         	    				  rs.addArrow(name.get,a.sr,a.tg,a.t,a.id)
         	    				}
         	    case None	 => sys.error("Programming error")
