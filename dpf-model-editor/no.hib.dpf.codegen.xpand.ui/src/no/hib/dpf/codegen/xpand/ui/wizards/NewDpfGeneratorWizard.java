@@ -23,6 +23,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
+
 import no.hib.dpf.codegen.xpand.ui.properties.DpfMetaModelProperties;
 
 import org.eclipse.core.resources.IProject;
@@ -48,6 +51,7 @@ import org.eclipse.xtend.shared.ui.core.metamodel.MetamodelContributorRegistry;
 import org.eclipse.xtend.shared.ui.core.preferences.PreferenceConstants;
 import org.eclipse.xtend.shared.ui.wizards.EclipseHelper;
 import org.osgi.framework.Bundle;
+import org.xml.sax.SAXException;
 
 public class NewDpfGeneratorWizard extends Wizard implements INewWizard,
 		IExecutableExtension {
@@ -60,6 +64,8 @@ public class NewDpfGeneratorWizard extends Wizard implements INewWizard,
 	
 	private String metaModelLocation;
 
+	private String workflowContent;
+	
 	public NewDpfGeneratorWizard() {
 		super();
 		super.setWindowTitle("New DPF Xpand Generator Project");
@@ -106,6 +112,7 @@ public class NewDpfGeneratorWizard extends Wizard implements INewWizard,
 
 		final Set<String> refs = new HashSet<String>();
 		final List<String> srcfolders = new ArrayList<String>();
+		
 		srcfolders.add("src");
 		srcfolders.add("src-gen");
 
@@ -142,10 +149,6 @@ public class NewDpfGeneratorWizard extends Wizard implements INewWizard,
 		
 		monitor.worked(1);
 		
-		EclipseHelper.createFile("src/workflow/workflow.mwe", p, getContents("template.mwe"), monitor);
-		
-		monitor.worked(1);
-		
 		//Cant access stuff outside of ui thread without this
 		Display.getDefault().syncExec(new Runnable() {
 			@Override
@@ -160,8 +163,35 @@ public class NewDpfGeneratorWizard extends Wizard implements INewWizard,
 					System.err.println("Problem loading dsmlocation from wizard.");
 					e.printStackTrace();
 				}
+				
+				try {
+					WorkflowParser parse = new WorkflowParser(getContentStream("workflowtemplate.txt"));
+					parse.setProperty("dpf_metamodel", metaModelLocation);
+					parse.setXpandEntryPoint("template::templ::main FOR dpf");
+					workflowContent = parse.getXml();
+				} catch (ParserConfigurationException e) {
+					e.printStackTrace();
+				} catch (SAXException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				} catch (TransformerException e) {
+					e.printStackTrace();
+				}
+				
+			
 			}
 		});
+		
+		
+		EclipseHelper.createFile("src/workflow/workflow.mwe", p, workflowContent, monitor);
+		
+		monitor.worked(1);
+		
+		EclipseHelper.createFile("src/template/templ.xpt", p, getContents("xpttemplate.txt"), monitor);
+		
+		monitor.worked(1);
+		
 		EclipseHelper.createFile(".settings/no.hib.dpf.codegen.xpand.ui.prefs", 
 				p, 
 				"eclipse.preferences.version=1\n"
@@ -184,7 +214,23 @@ public class NewDpfGeneratorWizard extends Wizard implements INewWizard,
 		return null;
 	}
 
-	@SuppressWarnings("unchecked")
+	private InputStream getContentStream(final String resource) {
+		Bundle b = Platform.getBundle("no.hib.dpf.codegen.xpand.ui");
+		Enumeration<URL> ee = b.findEntries("resources", resource, false);
+		
+		URL fileURL = null;
+		
+		if(ee.hasMoreElements()) {
+			fileURL = ee.nextElement();
+		}
+		try {
+			return fileURL.openStream();
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	private String getContents(final String resource) {
 		Bundle b = Platform.getBundle("no.hib.dpf.codegen.xpand.ui");
 		Enumeration<URL> ee = b.findEntries("resources", resource, false);
@@ -215,7 +261,7 @@ public class NewDpfGeneratorWizard extends Wizard implements INewWizard,
 			outputStream.close();
 			inputStream.close();
 
-			return outputStream.toString("iso-8859-1");
+			return outputStream.toString("UTF-8");
 		}
 		catch (final IOException e) {
 			e.printStackTrace();
