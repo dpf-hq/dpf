@@ -348,10 +348,16 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 				//Dersom vi finn ein korresponderande type i DSM'en, lagar vi ein collection med alle instansar av den typen
 				log.debug("Creating type collection: " + typeName);
 				List<Object> res = new ArrayList<Object>();
-				//FIXME: Only creates collections for nodes.
+				
+				//Assuming names on nodes and arrow are unique.
 				for(Node n : model.getGraph().getNodes()) {
 					if(n.getTypeName().equals(typeName)) {
 						res.add(n);
+					}
+				}
+				for(Arrow a : model.getGraph().getArrows()) {
+					if(a.getTypeName().equals(typeName)) {
+						res.add(a);
 					}
 				}
 				return res;

@@ -24,7 +24,7 @@ import org.eclipse.xtend.typesystem.Type;
 
 public class TypeHelper {
 	private static Log log = LogFactory.getLog(GraphType.class);
-	static char[] letters = {'a', 'e', 'i', 'n', 'm', 'o', 'r', 'u', 'y'}; 
+	static char[] letters = {'a', 'd', 'e', 'i', 'n', 'm', 'o', 'r', 'u', 'y'}; 
 	
 	public static String pluralize(String arg) {
 		for(char c : letters) {
@@ -32,6 +32,10 @@ public class TypeHelper {
 				return arg + "s";
 		}
 		return arg + "es";
+	}
+	
+	public static String toFirstUpper(String s) {
+		return new String(Character.toUpperCase(s.charAt(0)) + s.substring(1));
 	}
 	
 	public static Set<FeatureImpl> getEClassFeatures(DpfMetamodel model, EClass features, Type ownerType) {
