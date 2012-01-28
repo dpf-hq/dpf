@@ -88,12 +88,12 @@ case class SimpleCoevolutionSpan(TL:AbstractGraph,TK:AbstractGraph,TR:AbstractGr
   override val tG:Morphism = TypingMorphism(G);
 
   lazy val TC = toGraph(TG,TG,TG.mmGraph,tk.codomainNodes(),tk.codomainArrows());
-  lazy val TH = toGraph(TC,TR,TG.mmGraph,tm2.codomainNodes(),tm2.codomainArrows());
+  lazy val TH = toGraph(TR,TC,TG.mmGraph,tm2.codomainNodes(),tm2.codomainArrows());
   lazy val C = toGraph(G,G,TC,k.codomainNodes(),k.codomainArrows())
   lazy val L = toGraph(G,G,TL,m.domainNodes(),m.domainArrows())
   lazy val K = toGraph(L,C,TK,l.domainNodes(),l.domainArrows())    
   lazy val R = toGraph(K,K,TR,r.codomainNodes(),r.codomainArrows())    
-  lazy val H = toGraph(C,R,TH,tm2.codomainNodes(),tm2.codomainArrows())
+  lazy val H = toGraph(R,C,TH,tm2.codomainNodes(),tm2.codomainArrows())
   
   def print(path:String)={
 
