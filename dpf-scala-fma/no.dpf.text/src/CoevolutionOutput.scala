@@ -77,7 +77,7 @@ trait Output{
     rs
   }
   
-  protected def printGraph(g:AbstractGraph,name:String,path:String)={
+  protected def printGraph(g:AbstractGraph,name:String,path:String,printNames:Boolean=true)={
     
     def formatNode(l:List[String],n:Node):List[String]={
     	var rs=l
@@ -90,10 +90,12 @@ trait Output{
     }		  
     
     def getName(e:Element):String={
-      e.id match{
-        case SId(_) => e.toString()
-        case _ => g.names(e.id).replaceAll("\"","")
-      }
+      if(printNames){
+	      e.id match{
+	        case SId(_) => e.toString()
+	        case _ => g.names(e.id).replaceAll("\"","")
+	      }
+      } else ""    
     }
 
     def getType(e:Element):String={
