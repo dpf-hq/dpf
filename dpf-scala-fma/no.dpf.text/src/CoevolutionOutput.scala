@@ -3,32 +3,72 @@ package no.dpf.text.coevolution.output;
 import no.dpf.text.graph._;
 import no.dpf.text.graph.mutable.{Graph=>MGraph}
 import no.dpf.text.coevolution._;
-
+import scala.collection.mutable.{Set=>MSet}
 
 trait Output{
   
-  protected def toGraph(parent1:AbstractGraph,
-		  			    parent2:AbstractGraph,
+  protected def toGraph(parentLeft:AbstractGraph,
+		  			    parentRight:AbstractGraph,
 		  			    typeGraph:AbstractGraph,
 		  			    nodes:Set[Id],
 		  			    arrows:Set[Id]):AbstractGraph = {
     //Add nodes:
     val rs = new MGraph(typeGraph,()=>sys.error("Programming error"))
-    for(n<-nodes){
-      n match {
+    for(nId<-nodes){
+      nId match {
         case sid@SetId(_) => 
-          //Build SetId with concat name (names vorher in set tun und dann sort list):
           if(sid.ids.size > 1){
-            //TODO
-            sys.error("1. Not implemented jet: " + sid.ids)
+            val typeSet = MSet[Id]() 
+            val names = MSet[Option[String]]();
+            for(e<-sid.v){
+            	val pt = e._3 match{
+            	  case "L" => names+=parentLeft.names.get(e._1);parentLeft.nodes(e._1).t.id
+            	  case "R" => names+=parentRight.names.get(e._1);parentRight.nodes(e._1).t.id
+              	  case _ =>  sys.error("1. Not implemented jet: " + sid)
+            	} 
+            	typeSet+=pt
+            	val t = typeSet.size match {
+            	  case 0 => sys.error("Programming error")
+            	  case 1 => typeSet.head
+            	  case _ => val parentSetIdTriple = typeGraph.nodes.head._2.id match {
+            	    					 case s@SetId(_) => s.v.head
+            	    					 case _ => sys.error("Programming error")
+            	  					   }
+            	    var setIdSet = MSet[(Id,Int,String)]() 
+            	    for(et<-typeSet){
+            	      val triple = (et, parentSetIdTriple._2, parentSetIdTriple._3)
+            	      setIdSet+= triple
+            	    }
+            	    SetId(setIdSet)
+            	}
+            	typeGraph.nodes.get(t) match {
+            	  case None => sys.error("Type with id=" + t + " does not exist!")
+            	  case Some(nt) => 
+            	    	var newName = "";
+            	    	for(o<-names){
+            	    	  o match{
+            	    	    case None => /*do nothing*/
+            	    	    case Some(oldN) => newName+=oldN           
+            	    	  }
+             	    	}    
+            	    	if(nt == TypeNode.TAttribute()){
+		    			  rs.addVNode(nId,nt)
+		    			}else{
+		    			  newName match{
+		    				    case "" => println("FLO1");rs.addNode(nId.v.toString,nt,nId);println("FLO2");
+		    				    case _ =>  println("FLO3");rs.addNode(newName,nt,nId);println("FLO4");
+		    			  }
+        	    		}
+            	}
+            }
           }else{
         	  val id = sid.ids.head
         	  var nameOption:Option[String] = null; 
-        	  val nodeOption = parent1.getNode(id) match {
-        	    case oN@Some(_) => nameOption=parent1.names.get(id); 
+        	  val nodeOption = parentLeft.getNode(id) match {
+        	    case oN@Some(_) => nameOption=parentLeft.names.get(id); 
         	    				   oN
-        	    case None	 =>    nameOption=parent2.names.get(id);
-        	    				   parent2.getNode(id)
+        	    case None	 =>    nameOption=parentRight.names.get(id);
+        	    				   parentRight.getNode(id)       	    				   
         	  }
         	  nodeOption match {
         	    case Some(n) => if(n.t == TypeNode.TAttribute()){
@@ -56,11 +96,11 @@ trait Output{
           }else{
         	  val id = sid.ids.head
         	  var nameOption:Option[String] = null; 
-        	  val arrowOption = parent1.getArrow(id) match {
-        	    case oN@Some(_) => nameOption=parent1.names.get(id); 
+        	  val arrowOption = parentLeft.getArrow(id) match {
+        	    case oN@Some(_) => nameOption=parentLeft.names.get(id); 
         	    				   oN
-        	    case None	 =>    nameOption=parent2.names.get(id);
-        	    				   parent2.getArrow(id)
+        	    case None	 =>    nameOption=parentRight.names.get(id);
+        	    				   parentRight.getArrow(id)
         	  }
         	  arrowOption match {
         	    case Some(a) =>	if(a.t == TypeArrow.TAttribute()){

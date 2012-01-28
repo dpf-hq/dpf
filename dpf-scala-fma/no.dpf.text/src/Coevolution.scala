@@ -108,14 +108,12 @@ case class SimpleCoevolutionSpan(TL:AbstractGraph,TK:AbstractGraph,TR:AbstractGr
      printGraph(TC,"TC",path)
      printGraph(TG,"TG",path)
      printGraph(TH,"TH",path)
-     
      printGraph(L,"L",path,false)
      printGraph(K,"K",path,false)
      printGraph(R,"R",path,false)
      printGraph(C,"C",path)
      printGraph(G,"G",path)
      printGraph(H,"H",path)
-     
      
   }
   
