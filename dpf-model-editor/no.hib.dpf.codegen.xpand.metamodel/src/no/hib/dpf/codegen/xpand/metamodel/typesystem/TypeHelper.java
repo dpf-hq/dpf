@@ -24,7 +24,7 @@ import org.eclipse.xtend.typesystem.Type;
 
 public class TypeHelper {
 	private static Log log = LogFactory.getLog(GraphType.class);
-	static char[] letters = {'a', 'd', 'e', 'i', 'n', 'm', 'o', 'r', 'u', 'y'}; 
+	static char[] letters = {'a', 'd', 'e', 'f', 'g', 'h', 'i', 'n', 'm', 'o', 'r', 'u', 'y'}; 
 	
 	public static String pluralize(String arg) {
 		for(char c : letters) {

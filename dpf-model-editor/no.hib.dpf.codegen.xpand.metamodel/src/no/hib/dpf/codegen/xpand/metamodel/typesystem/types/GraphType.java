@@ -43,7 +43,7 @@ public class GraphType extends AbstractTypeImpl {
 		res.addAll(TypeHelper.getEClassFeatures(model, graph.eClass(), this));
 		
 		createGettersForMetaModelNodeTypes(res);
-		createGetterForAllArrowsInGraph(res);
+		//createGetterForAllArrowsInGraph(res);
 		
 		return res.toArray(new Feature[res.size()]);
 	}
