@@ -51,6 +51,7 @@ trait Output{
             	} 
             	typeSet+=pt
             }
+            println(typeSet)
         	val t = typeSet.size match {
         	  case 0 => sys.error("Programming error")
         	  case 1 => convertId(typeSet.head)
