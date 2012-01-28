@@ -12,24 +12,47 @@ trait Output{
 		  			    typeGraph:AbstractGraph,
 		  			    nodes:Set[Id],
 		  			    arrows:Set[Id]):AbstractGraph = {
+    
+    //Remove SetId from Attribute Types
+    def convertId(id:Id):Id={
+ 		id match{ 
+			case s@SetId(_) => 
+		  		if(1 == s.v.size){
+		  		  s.ids.head match{
+		  		    case AId(_) => s.ids.head
+		  		  	case _ => id            	  				  		   
+		  		  }
+		  		}else id          	  				 
+			case _ => id
+		}          	  
+    }
+    
     //Add nodes:
     val rs = new MGraph(typeGraph,()=>sys.error("Programming error"))
     for(nId<-nodes){
       nId match {
         case sid@SetId(_) => 
-          if(sid.ids.size > 1){
+//          if(sid.ids.size > 1){
             val typeSet = MSet[Id]() 
             val names = MSet[Option[String]]();
             for(e<-sid.v){
+            	val id = convertId(e._1);
             	val pt = e._3 match{
-            	  case "L" => names+=parentLeft.names.get(e._1);parentLeft.nodes(e._1).t.id
-            	  case "R" => names+=parentRight.names.get(e._1);parentRight.nodes(e._1).t.id
-              	  case _ =>  sys.error("1. Not implemented jet: " + sid)
+            	  case "L" => names+=parentLeft.names.get(id);
+            	  			   parentLeft.nodes(id).t.id
+            	  case "R" => names+=parentRight.names.get(id);
+            	  			   parentRight.nodes(id).t.id
+              	  case _ =>  if(parentLeft==parentRight) {
+              		  			names+=parentLeft.names.get(id);
+              		  			parentLeft.nodes(id).t.id
+              	  			 }else{
+              	  			    sys.error("Programming error:" + e)
+              	  			 } 
             	} 
             	typeSet+=pt
             	val t = typeSet.size match {
             	  case 0 => sys.error("Programming error")
-            	  case 1 => typeSet.head
+            	  case 1 => convertId(typeSet.head)
             	  case _ => val parentSetIdTriple = typeGraph.nodes.head._2.id match {
             	    					 case s@SetId(_) => s.v.head
             	    					 case _ => sys.error("Programming error")
@@ -39,53 +62,58 @@ trait Output{
             	      val triple = (et, parentSetIdTriple._2, parentSetIdTriple._3)
             	      setIdSet+= triple
             	    }
-            	    SetId(setIdSet)
+            	    convertId(SetId(setIdSet))
             	}
-            	typeGraph.nodes.get(t) match {
-            	  case None => sys.error("Type with id=" + t + " does not exist!")
-            	  case Some(nt) => 
-            	    	var newName = "";
-            	    	for(o<-names){
-            	    	  o match{
-            	    	    case None => /*do nothing*/
-            	    	    case Some(oldN) => newName+=oldN           
-            	    	  }
-             	    	}    
-            	    	if(nt == TypeNode.TAttribute()){
-		    			  rs.addVNode(nId,nt)
-		    			}else{
-		    			  newName match{
-		    				    case "" => println("FLO1");rs.addNode(nId.v.toString,nt,nId);println("FLO2");
-		    				    case _ =>  println("FLO3");rs.addNode(newName,nt,nId);println("FLO4");
-		    			  }
-        	    		}
-            	}
+            	if(t == TypeNode.TAttribute().id){
+            		//Automatically added with arrow
+            	}else{
+	            	typeGraph.nodes.get(t) match {
+	            	  case None => sys.error("Type with id=" + t + " does not exist!")
+	            	  case Some(nt) => 
+	            	    	if(nt.t == TypeNode.TAttribute()){
+        	    				  rs.addVNode(nId,nt) //may add concat value
+        	    			}else{
+		            	    	var newName = "";
+		            	    	for(o<-names){
+		            	    	  o match{
+		            	    	    case None => /*do nothing*/
+		            	    	    case Some(oldN) => newName+=oldN           
+		            	    	  }
+		             	    	}    
+			    			    newName match{
+			    				    case "" => sys.error("No Name defined!")
+			    				    case _ =>  rs.addNode(newName,nt,nId);
+			    			    }
+        	    			}
+	            	}
+            	}            	
             }
-          }else{
-        	  val id = sid.ids.head
-        	  var nameOption:Option[String] = null; 
-        	  val nodeOption = parentLeft.getNode(id) match {
-        	    case oN@Some(_) => nameOption=parentLeft.names.get(id); 
-        	    				   oN
-        	    case None	 =>    nameOption=parentRight.names.get(id);
-        	    				   parentRight.getNode(id)       	    				   
-        	  }
-        	  nodeOption match {
-        	    case Some(n) => if(n.t == TypeNode.TAttribute()){
-        	    				  rs.addVNode(n.id,n.t)
-        	    				}else{
-        	    				  nameOption match{
-        	    				    case Some(name) => rs.addNode(name,n.t,n.id)
-        	    				    case None => rs.addNode(n.id.v.toString,n.t,n.id)
-        	    				  }
-        	    				  
-        	    				}
-        	    case None	 => sys.error("Programming error")
-        	  }
-          }
+//          }else{
+//        	  val id = sid.ids.head
+//        	  var nameOption:Option[String] = null; 
+//        	  val nodeOption = parentLeft.getNode(id) match {
+//        	    case oN@Some(_) => nameOption=parentLeft.names.get(id); 
+//        	    				   oN
+//        	    case None	 =>    nameOption=parentRight.names.get(id);
+//        	    				   parentRight.getNode(id)       	    				   
+//        	  }
+//        	  nodeOption match {
+//        	    case Some(n) => if(n.t == TypeNode.TAttribute()){
+//        	    				  rs.addVNode(n.id,n.t)
+//        	    				}else{
+//        	    				  nameOption match{
+//        	    				    case Some(name) => rs.addNode(name,n.t,n.id)
+//        	    				    case None => rs.addNode(n.id.v.toString,n.t,n.id)
+//        	    				  }
+//        	    				  
+//        	    				}
+//        	    case None	 => sys.error("Programming error")
+//        	  }
+//          }
         case n@_		  => sys.error("Programming error")
       }
     }
+/*    
     for(a<-arrows){
       a match {
         case sid@SetId(_) => 
@@ -114,6 +142,7 @@ trait Output{
         case n@_		  => sys.error("Programming error")
       }
     }
+*/    
     rs
   }
   
