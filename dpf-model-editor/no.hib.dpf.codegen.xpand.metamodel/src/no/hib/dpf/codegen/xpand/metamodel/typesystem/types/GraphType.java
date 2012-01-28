@@ -43,14 +43,13 @@ public class GraphType extends AbstractTypeImpl {
 		res.addAll(TypeHelper.getEClassFeatures(model, graph.eClass(), this));
 		
 		createGettersForMetaModelNodeTypes(res);
-		//createGetterForAllArrowsInGraph(res);
+//		createGetterForAllArrowsInGraph(res);
 		
 		return res.toArray(new Feature[res.size()]);
 	}
 	
 	private void createGetterForAllArrowsInGraph(Set<FeatureImpl> res) {
-		// create a getter for each meta model type which returns all instances
-		// as a list
+		//Does not work, implement dummy arrow type?
 		res.add(new OperationImpl(this, "getAllArrows",
 				new ListTypeImpl(model.getTypeForName("dpf::Arrow"), model
 						.getTypeSystem(), "List")) {

@@ -273,7 +273,7 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 			
 			specifications.put(namespace, spec);
 			
-			ns = null;
+//			ns = null;
 		}
 		
 		public Specification getMetaModelSpec() {
@@ -299,7 +299,7 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 	}
 	private class InternalModel {
 		
-		Specification model;
+		private Specification model = null;
 		
 		/** Contains a string to Xpand Type mapping */
 		private Cache<String, Type> typeForNameCache = new Cache<String, Type>() {
@@ -350,6 +350,7 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 				List<Object> res = new ArrayList<Object>();
 				
 				//Assuming names on nodes and arrow are unique.
+				//FIXME: Big problem -> when this is called, the instance is not loaded and will thus raise a NPE
 				for(Node n : model.getGraph().getNodes()) {
 					if(n.getTypeName().equals(typeName)) {
 						res.add(n);
@@ -471,6 +472,9 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 		
 		public void setDpfModel(Specification model) {
 			this.model = model;
+			for(Type t : getKnownTypes()) {
+				metaModelTypeCollections.get(t.getName());
+			}
 		}
 		
 		public Type getTypeForName(String name) {

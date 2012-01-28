@@ -62,20 +62,11 @@ public class NodeType extends AbstractTypeImpl {
 	private void createGettersForAllOutgoingArrowsInNode(Set<FeatureImpl> res) {
 		// Meta model specific getters
 
-		List<String> arrowtypes = new ArrayList<String>();
-		for (Arrow a : node.getGraph().getArrows()) {
-			boolean hasArrow = false;
-			for (String name : arrowtypes) {
-				if (name.equals(a.getName()) && node.getOutgoingArrows().contains(a)) {
-					hasArrow = true;
-				}
-			}
-			if (!hasArrow)
-				arrowtypes.add(a.getName());
-			else
-				hasArrow = false;
+		Set<String> arrowtypes = new HashSet<String>();
+		for(Arrow a : node.getOutgoingArrows()) {
+			arrowtypes.add(a.getName());
 		}
-
+		
 		//We prefix arrow getters with A to denote arrow
 		for (final String name : arrowtypes) {
 			res.add(new OperationImpl(this, TypeHelper.pluralize("getA" + TypeHelper.toFirstUpper(name)),
@@ -83,12 +74,24 @@ public class NodeType extends AbstractTypeImpl {
 							.getTypeSystem(), "List")) {
 				@Override
 				protected Object evaluateInternal(Object target, Object[] params) {
-					List<Arrow> tmp = new ArrayList<Arrow>();
-					for (Object o : model.getModelCollections(name)) {
-						if (o instanceof Arrow) {
-							tmp.add(((Arrow) o));
+					final List<Arrow> tmp = new ArrayList<Arrow>();
+					List<Object> arrows = model.getModelCollections(name); //instance level
+					if(arrows != null) {
+						for (Object o : arrows) {
+//							System.out.println("Matching: " + NodeType.this.getName()
+//									+ " with: " + ((Arrow)o).getName());
+							//We make sure that the typeNode has the typeArrow. To make sure the our arrow is allowed on the particular node
+							if (node.getOutgoingArrows().contains(((Arrow)o).getTypeArrow())) {
+								//Instance level: We check that the model arrow has the callee node as source
+								if(((Arrow)o).getSource().equals(target)) {
+//									System.out.println("Matched!");
+									tmp.add(((Arrow) o));
+							
+								}
+							}
 						}
 					}
+					System.out.println(tmp);
 					return tmp;
 				}
 			});
