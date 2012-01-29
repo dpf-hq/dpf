@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ASCII"?>
+<no.hib.dpf.core:Specification xmlns:no.hib.dpf.core="http://no.hib.dpf.core">
+  <graph id="4dc3703b-d620-48f7-809c-f17f372ed359" name="Default name">
+    <nodes id="f6882576-bccd-41d4-afa4-660eabd62154" name="Class">
+      <typeNode href="SmodlM3.dpf.xmi#//@typeGraph/@nodes.0"/>
+    </nodes>
+    <nodes id="9c52c54b-966d-40a6-a131-37ad65d30f76" name="DataType">
+      <typeNode href="SmodlM3.dpf.xmi#//@typeGraph/@nodes.0"/>
+    </nodes>
+    <arrows id="adfc1b58-f04c-4b97-ac52-85375e9acd00" target="//@graph/@nodes.1" source="//@graph/@nodes.0" name="Attribute">
+      <typeArrow href="SmodlM3.dpf.xmi#//@typeGraph/@arrows.0"/>
+    </arrows>
+    <arrows id="2fcd650f-5a2c-461f-baaf-b3ccea7ff72b" target="//@graph/@nodes.0" source="//@graph/@nodes.0" name="Reference">
+      <typeArrow href="SmodlM3.dpf.xmi#//@typeGraph/@arrows.0"/>
+    </arrows>
+  </graph>
+  <typeGraph id="54d7b3c0-fdf1-4926-9ae1-204b44544bb7" name="Default name">
+    <nodes id="b2f2095e-a4df-48d6-9e95-e6f203d6297f" name="Node"/>
+    <arrows id="e0d0a7a4-c26d-4c21-ab95-62aeec8f306b" target="//@typeGraph/@nodes.0" source="//@typeGraph/@nodes.0" name="Arrow"/>
+  </typeGraph>
+</no.hib.dpf.core:Specification>
