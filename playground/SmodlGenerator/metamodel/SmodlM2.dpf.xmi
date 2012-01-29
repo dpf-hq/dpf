@@ -34,7 +34,7 @@
         </arrowMapping>
       </mappings>
     </constraints>
-    <constraints id="3510016f-4976-474f-a67e-8d77e7ee9fd5">
+    <constraints id="3510016f-4976-474f-a67e-8d77e7ee9fd5" parameters="0,1">
       <predicate href="../../signature01.xmi#//@predicates.11"/>
       <mappings>
         <nodeMapping value="//@graph/@nodes.3">
