@@ -87,13 +87,16 @@ case class SimpleCoevolutionSpan(TL:AbstractGraph,TK:AbstractGraph,TR:AbstractGr
   
   override val tG:Morphism = TypingMorphism(G);
 
-  lazy val TC = toGraph(TG,TG,TG.mmGraph,tk.codomainNodes(),tk.codomainArrows());
-  lazy val TH = toGraph(TR,TC,TG.mmGraph,tm2.codomainNodes(),tm2.codomainArrows());
-  lazy val C = toGraph(G,G,TC,k.codomainNodes(),k.codomainArrows())
-  lazy val L = toGraph(G,G,TL,m.domainNodes(),m.domainArrows())
-  lazy val K = toGraph(L,C,TK,l.domainNodes(),l.domainArrows())    
-  lazy val R = toGraph(K,K,TR,r.codomainNodes(),r.codomainArrows())    
-  lazy val H = toGraph(R,C,TH,tm2.codomainNodes(),tm2.codomainArrows())
+  //
+  //With domain., codomain. Much nicer method calls /*improve*/ //TODO
+  //
+  lazy val TC = toGraph(TG,TG,TG.mmGraph,tk.codomainNodes(),tk.codomainArrows(),tk.codomainArrowSr,tk.codomainArrowTg);
+  lazy val TH = toGraph(TR,TC,TG.mmGraph,tm2.codomainNodes(),tm2.codomainArrows(),tm2.codomainArrowSr,tm2.codomainArrowTg);
+  lazy val C = toGraph(G,G,TC,k.codomainNodes(),k.codomainArrows(),k.codomainArrowSr,k.codomainArrowTg)
+  lazy val L = toGraph(G,G,TL,m.domainNodes(),m.domainArrows(),m.domainArrowSr,m.domainArrowTg)
+  lazy val K = toGraph(L,C,TK,l.domainNodes(),l.domainArrows(),l.domainArrowSr,l.domainArrowTg)    
+  lazy val R = toGraph(K,K,TR,r.codomainNodes(),r.codomainArrows(),r.codomainArrowSr,r.codomainArrowTg)    
+  lazy val H = toGraph(R,C,TH,tm2.codomainNodes(),tm2.codomainArrows(),tm2.codomainArrowSr,tm2.codomainArrowTg)
   
   def print(path:String)={
 

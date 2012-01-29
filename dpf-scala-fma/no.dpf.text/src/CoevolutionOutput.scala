@@ -11,7 +11,9 @@ trait Output{
 		  			    parentRight:AbstractGraph,
 		  			    typeGraph:AbstractGraph,
 		  			    nodes:Set[Id],
-		  			    arrows:Set[Id]):AbstractGraph = {
+		  			    arrows:Set[Id],
+		  			    sr:Id=>Id,
+		  			    tg:Id=>Id):AbstractGraph = {
     
     //Remove SetId from Attribute Types
     def convertId(id:Id):Id={
@@ -60,7 +62,7 @@ trait Output{
 	        	  case _ => val parentSetIdTriple = typeGraph.nodes.head._2.id match {
 	    					 case s@SetId(_) => s.v.head
 	    					 case _ => sys.error("Programming error 4" + typeSet)
-	    	  				}
+	    	  				} //TODO nehme einen wert der set id hat 
 	        	    var setIdSet = MSet[(Id,Int,String)]() 
 	        	    for(et<-typeSet){
 	        	      val triple = (et, parentSetIdTriple._2, parentSetIdTriple._3)
@@ -115,34 +117,104 @@ trait Output{
     }
     println("Florian100")
 
-    for(a<-arrows){
-      a match {
+//    for(a<-arrows){
+//      a match {
+//        case sid@SetId(_) => 
+//          //Build SetId with concat name (names vorher in set tun und dann sort list):
+//          if(sid.ids.size > 1){
+//            //TODO
+//            sys.error("2. Not implemented jet: " + sid.ids)
+//          }else{
+//        	  val id = sid.ids.head
+//        	  var nameOption:Option[String] = null; 
+//        	  val arrowOption = parentLeft.getArrow(id) match {
+//        	    case oN@Some(_) => nameOption=parentLeft.names.get(id); 
+//        	    				   oN
+//        	    case None	 =>    nameOption=parentRight.names.get(id);
+//        	    				   parentRight.getArrow(id)
+//        	  }
+//        	  arrowOption match {
+//        	    case Some(a) =>	if(a.t == TypeArrow.TAttribute()){
+//        	    				  rs.addAArrow(nameOption.get,a.sr,a.tg,TypeArrow.TAttribute(),a.id)
+//        	    				}else{
+//        	    				  rs.addArrow(nameOption.get,a.sr,a.tg,a.t,a.id)
+//        	    				}
+//        	    case None	 => sys.error("Programming error 6" + id)
+//        	  }
+//          }
+//        case n@_		  => sys.error("Programming error 7")
+//      }
+//    } 
+    //Add Arrows:
+    for(aId<-arrows){
+      aId match {
         case sid@SetId(_) => 
-          //Build SetId with concat name (names vorher in set tun und dann sort list):
-          if(sid.ids.size > 1){
-            //TODO
-            sys.error("2. Not implemented jet: " + sid.ids)
-          }else{
-        	  val id = sid.ids.head
-        	  var nameOption:Option[String] = null; 
-        	  val arrowOption = parentLeft.getArrow(id) match {
-        	    case oN@Some(_) => nameOption=parentLeft.names.get(id); 
-        	    				   oN
-        	    case None	 =>    nameOption=parentRight.names.get(id);
-        	    				   parentRight.getArrow(id)
-        	  }
-        	  arrowOption match {
-        	    case Some(a) =>	if(a.t == TypeArrow.TAttribute()){
-        	    				  rs.addAArrow(nameOption.get,a.sr,a.tg,TypeArrow.TAttribute(),a.id)
-        	    				}else{
-        	    				  rs.addArrow(nameOption.get,a.sr,a.tg,a.t,a.id)
-        	    				}
-        	    case None	 => sys.error("Programming error 6" + id)
-        	  }
-          }
-        case n@_		  => sys.error("Programming error 7")
+            val typeSet = MSet[Id]() 
+            val names = MSet[Option[String]]();
+            for(e<-sid.v){
+            	val id = e._1//convertId(e._1);
+            	id match{
+            	  case a@AId(_) => sys.error("TEST " + a)
+            	  case _=> 	  val pt = e._3 match{
+			            	  case "L" => names+=parentLeft.names.get(id);
+			            	  			  parentLeft.arrows(id).t.id;
+			            	  case "R" => names+=parentRight.names.get(id);
+			            	  			  parentRight.arrows(id).t.id;
+			              	  case _ =>  if(parentLeft==parentRight) {
+			              		  			names+=parentLeft.names.get(id);
+			              		  			parentLeft.arrows(id).t.id;
+			              	  			 }else{
+			              	  			    sys.error("Programming error 2:" + e)
+			              	  			 } 
+			            	} 
+			            	typeSet+=pt
+             	}
+            }
+//            if(!typeSet.isEmpty){ //If typeSet Empty it contains only attribute types
+        	val t = typeSet.size match {
+        	  case 0 => sys.error("Programming error 6" + typeSet)
+        	  case 1 => typeSet.head //convertId(typeSet.head)
+        	  case _ => val parentSetIdTriple = typeGraph.nodes.head._2.id match {
+    					 case s@SetId(_) => s.v.head
+    					 case _ => sys.error("Programming error 7" + typeSet)
+    	  				}
+        	    var setIdSet = MSet[(Id,Int,String)]() 
+        	    for(et<-typeSet){
+        	      val triple = (et, parentSetIdTriple._2, parentSetIdTriple._3)
+        	      setIdSet+= triple
+        	    }
+        	    //convertId(
+        	        SetId(setIdSet)
+        	    //)
+        	}
+        	typeGraph.arrows.get(t) match {
+        	  case None => sys.error("Type with id=" + t + " does not exist!")
+        	  case Some(at) => 
+        	    	var newName = "";
+        	    	for(o<-names){
+        	    	  o match{
+        	    	    case None => /*do nothing*/
+        	    	    case Some(oldN) => newName+=oldN           
+        	    	  }
+         	    	}    
+        	    	if(at == TypeArrow.TAttribute()){
+					    newName match{
+						    case "" => sys.error("No Name defined!")
+						    case _ =>  rs.addAArrow(newName,rs.nodes(sr(aId)),rs.nodes(tg(aId)),TypeArrow.TAttribute(),aId)
+					    }
+	    			}else{
+					    newName match{
+						    case "" => sys.error("No Name defined!")
+						    case _ =>  rs.addArrow(newName,rs.nodes(sr(aId)),rs.nodes(tg(aId)),at,aId)
+					    }
+	    			}
+           	}
+//     	}	    	
+        
+        case n@_		  => sys.error("Programming error 8" + n)
+        
       }
-    } 
+    }
     rs
   }
   
