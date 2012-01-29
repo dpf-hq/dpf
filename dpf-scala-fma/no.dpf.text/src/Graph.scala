@@ -32,12 +32,12 @@ case class Graph(override val nodes: Map[Id,Node],  //Set
 trait Converter{
 	implicit def typeNode2node(i:TypeNode):Node = i match { 
 		case n: Node => n
-		case _ => 	sys.error("Not matched:" + i)
+		case _ => 	sys.error("TypeNode not matched: " + i)
 					throw new ClassCastException
 	}	
 	implicit def typeArrow2arrow(i:TypeArrow):Arrow = i match { 
 		case a: Arrow => a
-		case _ => 	sys.error("Not matched:" + i)
+		case _ => 	sys.error("TypeArrow not matched: " + i)
 					throw new ClassCastException
 	}	
 }
