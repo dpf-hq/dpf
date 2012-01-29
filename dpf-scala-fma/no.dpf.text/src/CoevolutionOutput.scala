@@ -114,34 +114,34 @@ trait Output{
         case n@_		  => sys.error("Programming error")
       }
     }
-//    for(a<-arrows){
-//      a match {
-//        case sid@SetId(_) => 
-//          //Build SetId with concat name (names vorher in set tun und dann sort list):
-//          if(sid.ids.size > 1){
-//            //TODO
-//            sys.error("2. Not implemented jet: " + sid.ids)
-//          }else{
-//        	  val id = sid.ids.head
-//        	  var nameOption:Option[String] = null; 
-//        	  val arrowOption = parentLeft.getArrow(id) match {
-//        	    case oN@Some(_) => nameOption=parentLeft.names.get(id); 
-//        	    				   oN
-//        	    case None	 =>    nameOption=parentRight.names.get(id);
-//        	    				   parentRight.getArrow(id)
-//        	  }
-//        	  arrowOption match {
-//        	    case Some(a) =>	if(a.t == TypeArrow.TAttribute()){
-//        	    				  rs.addAArrow(nameOption.get,a.sr,a.tg,TypeArrow.TAttribute(),a.id)
-//        	    				}else{
-//        	    				  rs.addArrow(nameOption.get,a.sr,a.tg,a.t,a.id)
-//        	    				}
-//        	    case None	 => sys.error("Programming error")
-//        	  }
-//          }
-//        case n@_		  => sys.error("Programming error")
-//      }
-//    } 
+    for(a<-arrows){
+      a match {
+        case sid@SetId(_) => 
+          //Build SetId with concat name (names vorher in set tun und dann sort list):
+          if(sid.ids.size > 1){
+            //TODO
+            sys.error("2. Not implemented jet: " + sid.ids)
+          }else{
+        	  val id = sid.ids.head
+        	  var nameOption:Option[String] = null; 
+        	  val arrowOption = parentLeft.getArrow(id) match {
+        	    case oN@Some(_) => nameOption=parentLeft.names.get(id); 
+        	    				   oN
+        	    case None	 =>    nameOption=parentRight.names.get(id);
+        	    				   parentRight.getArrow(id)
+        	  }
+        	  arrowOption match {
+        	    case Some(a) =>	if(a.t == TypeArrow.TAttribute()){
+        	    				  rs.addAArrow(nameOption.get,a.sr,a.tg,TypeArrow.TAttribute(),a.id)
+        	    				}else{
+        	    				  rs.addArrow(nameOption.get,a.sr,a.tg,a.t,a.id)
+        	    				}
+        	    case None	 => sys.error("Programming error")
+        	  }
+          }
+        case n@_		  => sys.error("Programming error")
+      }
+    } 
     rs
   }
   
