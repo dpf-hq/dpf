@@ -28,52 +28,52 @@ trait Output{
     }
     
     //Add nodes:
-    val rs = new MGraph(typeGraph,()=>sys.error("Programming error"))
+    val rs = new MGraph(typeGraph,()=>sys.error("Programming error 1"))
     for(nId<-nodes){
       nId match {
         case sid@SetId(_) => 
-//          if(sid.ids.size > 1){
             val typeSet = MSet[Id]() 
             val names = MSet[Option[String]]();
             for(e<-sid.v){
             	val id = convertId(e._1);
-            	val pt = e._3 match{
-            	  case "L" => names+=parentLeft.names.get(id);
-            	  			   parentLeft.nodes(id).t.id
-            	  case "R" => names+=parentRight.names.get(id);
-            	  			   parentRight.nodes(id).t.id
-              	  case _ =>  if(parentLeft==parentRight) {
-              		  			names+=parentLeft.names.get(id);
-              		  			parentLeft.nodes(id).t.id
-              	  			 }else{
-              	  			    sys.error("Programming error:" + e)
-              	  			 } 
-            	} 
-            	typeSet+=pt
+            	id match{
+            	  case AId(_) => /*do nothing */
+            	  case _=> 	  val pt = e._3 match{
+			            	  case "L" => names+=parentLeft.names.get(id);
+			            	  			  parentLeft.nodes(id).t.id;
+			            	  case "R" => names+=parentRight.names.get(id);
+			            	  			  parentRight.nodes(id).t.id;
+			              	  case _ =>  if(parentLeft==parentRight) {
+			              		  			names+=parentLeft.names.get(id);
+			              		  			parentLeft.nodes(id).t.id;
+			              	  			 }else{
+			              	  			    sys.error("Programming error 2:" + e)
+			              	  			 } 
+			            	} 
+			            	typeSet+=pt
+             	}
             }
             println(typeSet)
-        	val t = typeSet.size match {
-        	  case 0 => sys.error("Programming error")
-        	  case 1 => convertId(typeSet.head)
-        	  case _ => val parentSetIdTriple = typeGraph.nodes.head._2.id match {
-        	    					 case s@SetId(_) => s.v.head
-        	    					 case _ => sys.error("Programming error")
-        	  					   }
-        	    var setIdSet = MSet[(Id,Int,String)]() 
-        	    for(et<-typeSet){
-        	      val triple = (et, parentSetIdTriple._2, parentSetIdTriple._3)
-        	      setIdSet+= triple
-        	    }
-        	    convertId(SetId(setIdSet))
-        	}
-        	if(t == TypeNode.TAttribute().id){
-        		//Automatically added with arrow
-        	}else{
+            if(!typeSet.isEmpty){ //If typeSet Empty it contains only attribute types
+	        	val t = typeSet.size match {
+	        	  case 0 => sys.error("Programming error 3" + typeSet)
+	        	  case 1 => convertId(typeSet.head)
+	        	  case _ => val parentSetIdTriple = typeGraph.nodes.head._2.id match {
+	    					 case s@SetId(_) => s.v.head
+	    					 case _ => sys.error("Programming error 4" + typeSet)
+	    	  				}
+	        	    var setIdSet = MSet[(Id,Int,String)]() 
+	        	    for(et<-typeSet){
+	        	      val triple = (et, parentSetIdTriple._2, parentSetIdTriple._3)
+	        	      setIdSet+= triple
+	        	    }
+	        	    convertId(SetId(setIdSet))
+	        	}
             	typeGraph.nodes.get(t) match {
             	  case None => sys.error("Type with id=" + t + " does not exist!")
             	  case Some(nt) => 
             	    	if(nt.t == TypeNode.TAttribute()){
-    	    				  rs.addVNode(nId,nt) //may add concat value
+            	    	  rs.addVNode(nId,nt) //may add concat value
     	    			}else{
 	            	    	var newName = "";
 	            	    	for(o<-names){
@@ -88,7 +88,7 @@ trait Output{
 		    			    }
     	    			}
             	}
-            }            	
+            }
 //          }else{
 //        	  val id = sid.ids.head
 //        	  var nameOption:Option[String] = null; 
@@ -111,9 +111,11 @@ trait Output{
 //        	    case None	 => sys.error("Programming error")
 //        	  }
 //          }
-        case n@_		  => sys.error("Programming error")
+        case n@_		  => sys.error("Programming error 5" + n)
       }
     }
+    println("Florian100")
+
     for(a<-arrows){
       a match {
         case sid@SetId(_) => 
@@ -136,10 +138,10 @@ trait Output{
         	    				}else{
         	    				  rs.addArrow(nameOption.get,a.sr,a.tg,a.t,a.id)
         	    				}
-        	    case None	 => sys.error("Programming error")
+        	    case None	 => sys.error("Programming error 6" + id)
         	  }
           }
-        case n@_		  => sys.error("Programming error")
+        case n@_		  => sys.error("Programming error 7")
       }
     } 
     rs
