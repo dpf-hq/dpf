@@ -53,7 +53,6 @@ trait Output{
 			            	typeSet+=pt
              	}
             }
-            println(typeSet)
             if(!typeSet.isEmpty){ //If typeSet Empty it contains only attribute types
 	        	val t = typeSet.size match {
 	        	  case 0 => sys.error("Programming error 3" + typeSet)
