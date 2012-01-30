@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2011 H¿yskolen i Bergen
+ * Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
 *******************************************************************************/
 package no.hib.dpf.editor.editoractions;
 
@@ -21,7 +21,8 @@ import org.eclipse.ui.actions.LabelRetargetAction;
 public class ConstraintRetargetAction extends LabelRetargetAction {
 	
 	private ImageDescriptor getImageDescriptor(ImageSettings imageSettings) {
-		return ImageDescriptor.createFromFile(DPFPlugin.class, imageSettings.getFilePath());
+		return imageSettings.getImageDescriptor();
+//		return ImageDescriptor.createFromFile(DPFPlugin.class, imageSettings.getFilePath());
 	}
 
 	public ConstraintRetargetAction(DConstraint.ConstraintType constraintType) {

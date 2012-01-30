@@ -1,7 +1,7 @@
 /*******************************************************************************
  * Copyright (c) 2004, 2005 Elias Volanakis and others.
  * 
- * Portions of the code Copyright (c) 2011 H¿yskolen i Bergen
+ * Portions of the code Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,7 +11,7 @@
  * Contributors:
  * Elias Volanakis - initial API and implementation
  * 
- * ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
 *******************************************************************************/
 package no.hib.dpf.editor;
 
@@ -112,9 +112,9 @@ public class DPFEditorPaletteFactory {
 	}
 	
 	private void addArrowCreationToolsToGroup(Graph typeGraph, PaletteGroup edgeGroup) {
-		ImageDescriptor iconSmall = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.SMALL_CONNECTION.getFilePath());
-		ImageDescriptor iconLarge = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.LARGE_CONNECTION.getFilePath());
 
+		ImageDescriptor iconSmall =  ImageSettings.SMALL_CONNECTION.getImageDescriptor();
+		ImageDescriptor iconLarge = ImageSettings.LARGE_CONNECTION.getImageDescriptor();
 		boolean displayDyntypeArrow = ((typeGraph.getArrows().size() > 1) && (DPFEditorPreferences.getDefault().getDisplayDynamicallyTypedArrows())); 
 		if (displayDyntypeArrow) {
 			edgeGroup.add(new ConnectionCreationToolEntry("Arrow (dynamically typed)", "Create a new dynamically typed arrow", new ArrowCreationFactory(null, null), iconSmall, iconLarge));
@@ -128,8 +128,9 @@ public class DPFEditorPaletteFactory {
 	}
 	
 	public void addNodeCreationToolsToGroup(Graph typeGraph, PaletteGroup nodeGroup) {
-		ImageDescriptor iconSmall = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.SMALL_RECTANGLE.getFilePath());
-		ImageDescriptor iconLarge = ImageDescriptor.createFromFile(DPFPlugin.class, ImageSettings.LARGE_RECTANGLE.getFilePath());
+		ImageDescriptor iconSmall =  ImageSettings.SMALL_RECTANGLE.getImageDescriptor();
+		ImageDescriptor iconLarge = ImageSettings.LARGE_RECTANGLE.getImageDescriptor();
+
 
 		for (Node typeNode : typeGraph.getNodes()) {
 			nodeGroup.add(new CreationToolEntry(typeNode.getName(), "Create a new " + typeNode.getName(), new VNodeFactory(typeNode), iconSmall, iconLarge));
