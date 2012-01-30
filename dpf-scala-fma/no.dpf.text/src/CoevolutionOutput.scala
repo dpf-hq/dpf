@@ -21,8 +21,9 @@ trait Output{
 			case s@SetId(_) => 
 		  		if(1 == s.v.size){
 		  		  s.ids.head match{
-		  		    case AId(_) => s.ids.head
-		  		  	case _ => id            	  				  		   
+		  		    case AId(_) => s.ids.head  //Attribute Node
+		  		    case SId(_) => s.ids.head  
+ 				    case _ => id            	  				  		   
 		  		  }
 		  		}else id          	  				 
 			case _ => id
@@ -152,9 +153,9 @@ trait Output{
             val typeSet = MSet[Id]() 
             val names = MSet[Option[String]]();
             for(e<-sid.v){
-            	val id = e._1//convertId(e._1);
+            	val id = convertId(e._1);
             	id match{
-            	  case a@AId(_) => sys.error("TEST " + a)
+            	  case a@SId(2) => sys.error("TEST " + a)
             	  case _=> 	  val pt = e._3 match{
 			            	  case "L" => names+=parentLeft.names.get(id);
 			            	  			  parentLeft.arrows(id).t.id;
@@ -174,7 +175,7 @@ trait Output{
         	val t = typeSet.size match {
         	  case 0 => sys.error("Programming error 6" + typeSet)
         	  case 1 => typeSet.head //convertId(typeSet.head)
-        	  case _ => val parentSetIdTriple = typeGraph.nodes.head._2.id match {
+        	  case _ => val parentSetIdTriple = typeGraph.arrows.head._2.id match {
     					 case s@SetId(_) => s.v.head
     					 case _ => sys.error("Programming error 7" + typeSet)
     	  				}
@@ -183,32 +184,37 @@ trait Output{
         	      val triple = (et, parentSetIdTriple._2, parentSetIdTriple._3)
         	      setIdSet+= triple
         	    }
-        	    //convertId(
+        	    convertId(
         	        SetId(setIdSet)
-        	    //)
+        	    )
         	}
-        	typeGraph.arrows.get(t) match {
-        	  case None => sys.error("Type with id=" + t + " does not exist!")
-        	  case Some(at) => 
-        	    	var newName = "";
-        	    	for(o<-names){
-        	    	  o match{
-        	    	    case None => /*do nothing*/
-        	    	    case Some(oldN) => newName+=oldN           
-        	    	  }
-         	    	}    
-        	    	if(at == TypeArrow.TAttribute()){
-					    newName match{
-						    case "" => sys.error("No Name defined!")
-						    case _ =>  rs.addAArrow(newName,rs.nodes(sr(aId)),rs.nodes(tg(aId)),TypeArrow.TAttribute(),aId)
-					    }
-	    			}else{
-					    newName match{
-						    case "" => sys.error("No Name defined!")
-						    case _ =>  rs.addArrow(newName,rs.nodes(sr(aId)),rs.nodes(tg(aId)),at,aId)
-					    }
-	    			}
-           	}
+        	println(typeSet)
+        	
+        	//Build Name:
+	    	var newName = "";
+	    	for(o<-names){
+	    	  o match{
+	    	    case None => /*do nothing*/
+	    	    case Some(oldN) => newName+=oldN           
+	    	  }
+ 	    	}    
+
+	    	if(t  == TypeArrow.TAttribute().id){
+			    newName match{
+				    case "" => sys.error("No Name defined!")
+				    case _ =>  ;println("F1");rs.addAArrow(newName,rs.nodes(sr(aId)),Node(convertId(tg(aId)),TypeNode.TAttribute()),TypeArrow.TAttribute(),aId);println("F2");
+			    }
+        	}else{
+	        	typeGraph.arrows.get(t) match {
+	        	  case None => sys.error("Type with id=" + t + " does not exist!")
+	        	  case Some(at) => 
+				    newName match{
+					    case "" => sys.error("No Name defined!")
+					    case _ =>  println("F3");rs.addArrow(newName,rs.nodes(sr(aId)),rs.nodes(tg(aId)),at,aId);println("F4");
+				    }
+	           	}
+        	}
+	    	
 //     	}	    	
         
         case n@_		  => sys.error("Programming error 8" + n)
