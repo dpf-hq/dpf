@@ -1,6 +1,6 @@
 /**
  * <copyright>
- * Copyright (c) 2011 H¿yskolen i Bergen
+ * Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * Adrian Rutle, ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * Adrian Rutle, ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
  * </copyright>
  *
  * $Id$
@@ -58,30 +58,13 @@ public class JointlySurjectiveSemanticsImpl extends EObjectImpl implements Joint
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
+	 * typeNodes.get(2) is target of both arrows
 	 */
 	public Boolean validateSemantics(Graph oStar, String constraintParameters, EList<Node> typeNodes, EList<Arrow> typeArrows) {
-		if (oStar.getArrows().size() != (oStar.getNodes().size() - 1)) {
-			return false;
-		}
-		if (oStar.getNodes().size() == 1) {
-			return false;
-		}
-		int nodesWithIncomingArrowsCount = 0;
-		Node nodeWithOnlyIncoming = null;
-		for (Node node : oStar.getNodes()) {
-			if (node.getOutgoingArrows().size() == 0) {
-				nodesWithIncomingArrowsCount++;
-				nodeWithOnlyIncoming = node;
-			} else if (node.getOutgoingArrows().size() != 1) {
-				return false;
-			}
-		}
-		if (nodesWithIncomingArrowsCount != 1) {
-			return false;
-		}
-		for (Node node : oStar.getNodes()) {
-			if (!node.equals(nodeWithOnlyIncoming)) {
-				if (node.getArrowto(nodeWithOnlyIncoming) == null) {
+		Node tgNode = typeNodes.get(2);
+		for(Node n:oStar.getNodes()){
+			if(n.getTypeNode().equals(tgNode)){
+				if(n.getIncomingArrows().size()<1){
 					return false;
 				}
 			}
