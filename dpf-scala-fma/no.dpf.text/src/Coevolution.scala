@@ -36,7 +36,7 @@ trait AbstractCoevolutionSpan{
 
   lazy val r = pbc_right_back.m1
 
-  lazy val tC = pbc_right_back.m2
+  lazy val tR = pbc_right_back.m2
 
   lazy val k = poc_left_bottom.m1
 

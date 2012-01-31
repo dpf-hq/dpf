@@ -7,6 +7,9 @@ import scala.collection.mutable.{Set=>MSet}
 
 trait Output{
   
+  /**
+   * do some magic
+   */
   protected def toGraph(parent1:AbstractGraph,
 		  			    parent2:AbstractGraph,
 		  			    typeGraph:AbstractGraph,
@@ -56,8 +59,14 @@ trait Output{
              	}
             }
             if(!attributeFound && typeSet.isEmpty){
-                println(parent1.nodes + "\n\n\n" + parent2.nodes) //104 from type graph?
-            	sys.error("Programming error 1b " + nId)
+              if(1 == sid.v.size){
+            	  sid.v.head._3 match{
+            	    case "A" => typeSet+=sid.v.head._1  //Value from Pullback complement
+            	    case _ => sys.error("Programming error 1b " + sid) 
+            	  }
+              }	else{	
+            	  sys.error("Programming error 1c " + sid)
+              }
             }
             if(!typeSet.isEmpty){
 	        	val t = typeSet.size match {
@@ -106,7 +115,7 @@ trait Output{
 	            	    	  }
 	             	    	}    
 		    			    newName match{
-		    				    case "" => sys.error("No Name defined!")
+		    				    case "" => rs.addNode("newName",nt,nId);
 		    				    case _ =>  rs.addNode(newName,nt,nId);
 		    			    }
     	    			}
@@ -139,7 +148,7 @@ trait Output{
              	}
             }
         	val t = typeSet.size match {
-        	case 0 => sys.error("Programming error 6" + typeSet)
+        	case 0 => sys.error("Programming error 6" + sid)
        	    case _ => 
 	        	    val group = typeGraph.arrows.values.find(n => n.id match{
 	        	      				case SetId(_) => true
