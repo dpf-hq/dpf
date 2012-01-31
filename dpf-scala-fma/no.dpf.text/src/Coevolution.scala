@@ -53,15 +53,15 @@ trait AbstractCoevolutionSpan{
   //
   //Calculations:
   //  
-  private lazy val poc_left_top = Composition(tl,tm).pushoutComplement();
+  private lazy val poc_left_top = Composition(tl,tm).pushoutComplement(10);
   
-  private lazy val pb_left = Cospan(tG,tm).pullback();
+  private lazy val pb_left = Cospan(tG,tm).pullback(11);
 
-  private lazy val pb_left_back = Cospan(tL,tl).pullback();
+  private lazy val pb_left_back = Cospan(tL,tl).pullback(12);
 
-  private lazy val pbc_right_back = Composition(tK,tr).fPullbackComplementMono();
+  private lazy val pbc_right_back = Composition(tK,tr).fPullbackComplementMono(13);
 
-  private lazy val poc_left_bottom = Composition(l,m).pushoutComplement();
+  private lazy val poc_left_bottom = Composition(l,m).pushoutComplement(14);
   
   private lazy val po_right_bottom = Span(r,k).pushout(1);
   
@@ -112,6 +112,8 @@ case class SimpleCoevolutionSpan(TL:AbstractGraph,TK:AbstractGraph,TR:AbstractGr
 	 printGraph(TH,"TH",path)
 	 printGraph(L,"L",path,false)
 	 printGraph(K,"K",path,false)
+	 
+	 
 	 printGraph(R,"R",path,false)
 	 printGraph(C,"C",path)
 	 printGraph(G,"G",path)
