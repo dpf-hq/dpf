@@ -119,7 +119,7 @@ trait Output{
 	            	    	    case None => /*do nothing*/
 	            	    	    case Some(oldN) => newName+=oldN           
 	            	    	  }
-	             	    	}    
+	             	    	}
 		    			    newName match{
 		    				    case "" => rs.addNode("newName",nt,nId);
 		    				    case _ =>  rs.addNode(newName,nt,nId);
@@ -268,7 +268,10 @@ trait Output{
       if(printNames){
 	      e.id match{
 	        case SId(_) => e.toString()
-	        case _ => g.names(e.id).replaceAll("\"","")
+	        case _ => g.names.get(e.id) match{
+	          			case Some(n) => n
+	          			case _		 => e.id.toString.replaceAll("\"","")
+	        		  }
 	      }
       } else ""    
     }
