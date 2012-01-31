@@ -93,7 +93,7 @@ trait Output{
 					        	    }
 	    					   		SetId(setIdSet)
 	    					 case _ => if(1 == typeSet.size){
-	    						 			convertId(typeSet.head)
+	    						 		 convertId(typeSet.head)
 	    					 		   }else{
 	    					 		     sys.error("Programming error 4" + typeSet)
 	    					 		   }
@@ -212,11 +212,15 @@ trait Output{
 	    	    case None => /*do nothing*/
 	    	    case Some(oldN) => newName+=oldN           
 	    	  }
- 	    	}    
-	    	if(t  == TypeArrow.TAttribute().id){
+ 	    	}   
+//	    	println(t)
+	    	if(t == TypeArrow.TAttribute().id){
 			    newName match{
 				    case "" => sys.error("No Name defined!")
-				    case _ =>  rs.addAArrow(newName,rs.nodes(sr(aId)),Node(convertId(tg(aId)),TypeNode.TAttribute()),TypeArrow.TAttribute(),aId);
+				    case _ => 
+				      println("1");  
+				      rs.addAArrow(newName,rs.nodes(sr(aId)),Node(convertId(tg(aId)),TypeNode.TAttribute()),TypeArrow.TAttribute(),aId);
+				      println("2");
 			    }
         	}else{
 	        	typeGraph.arrows.get(t) match {
@@ -224,11 +228,19 @@ trait Output{
 	        	  case Some(at) => 
 				    newName match{
 					    case "" => sys.error("No Name defined!")
-					    case _ =>  rs.addArrow(newName,rs.nodes(sr(aId)),rs.nodes(tg(aId)),at,aId);
+					    case _ =>  
+	  				      if(at.t == TypeArrow.TAttribute()){
+	  				    	  println("31" + at);
+	  				    	  rs.addAArrow(newName,rs.nodes(sr(aId)),Node(convertId(tg(aId)),TypeNode.TAttribute()),TypeArrow.TAttribute(),aId);
+	  				    	  println("32" + at);
+	  				      }else{
+	  				    	  println("33" + at);
+	  				    	  rs.addArrow(newName,rs.nodes(sr(aId)),rs.nodes(tg(aId)),at,aId);
+	  				    	  println("34" + at);
+	  				      }
 				    }
 	           	}
         	}
-	    	
 //     	}	    	
         
         case n@_		  => sys.error("Programming error 8" + n)
