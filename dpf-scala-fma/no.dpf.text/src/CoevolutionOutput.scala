@@ -37,42 +37,63 @@ trait Output{
         case sid@SetId(_) => 
             val typeSet = MSet[Id]() 
             val names = MSet[Option[String]]();
+            var attributeFound = false;
             for(e<-sid.v){
             	val id = convertId(e._1);
             	id match{
-            	  case AId(_) => /*do nothing */
-            	  case _=> 	  val pt = e._3 match{
-			            	  case "L" => names+=parentLeft.names.get(id);
-			            	  			  parentLeft.nodes(id).t.id;
-			            	  case "R" => names+=parentRight.names.get(id);
-			            	  			  parentRight.nodes(id).t.id;
-			              	  case _ =>  if(parentLeft==parentRight) {
-			              		  			names+=parentLeft.names.get(id);
-			              		  			parentLeft.nodes(id).t.id;
-			              	  			 }else{
-			              	  			    sys.error("Programming error 2:" + e)
-			              	  			 } 
-			            	} 
-			            	typeSet+=pt
+            	  case AId(_) =>  attributeFound = true/*do nothing */
+            	  case _=> 	  val pt = parentLeft.nodes.get(id) match{
+            	  			  	case Some(n) =>	names+=parentLeft.names.get(id); Some(n.t.id); 
+            	  			  	case None 	 => parentRight.nodes.get(id) match{
+            	  			  	  					case Some(n) => names+=parentRight.names.get(id); Some(n.t.id);
+            	  			  	  					case None => 	None /* its a type id */	
+            	  			  					}
+            	  			  }	
+            	  			  pt match {
+            	  			    case Some(nt) => typeSet+=nt
+            	  			    case None	  => /*do nothing*/
+            	  			  }	
              	}
             }
-            if(!typeSet.isEmpty){ //If typeSet Empty it contains only attribute types
+            if(!attributeFound && typeSet.isEmpty){
+            	sys.error("Programming error 1b")
+            }
+            if(!typeSet.isEmpty){
 	        	val t = typeSet.size match {
-	        	  case 0 => sys.error("Programming error 3" + typeSet)
-	        	  case 1 => convertId(typeSet.head)
-	        	  case _ => val parentSetIdTriple = typeGraph.nodes.head._2.id match {
-	    					 case s@SetId(_) => s.v.head
-	    					 case _ => sys.error("Programming error 4" + typeSet)
-	    	  				} //TODO nehme einen wert der set id hat 
-	        	    var setIdSet = MSet[(Id,Int,String)]() 
-	        	    for(et<-typeSet){
-	        	      val triple = (et, parentSetIdTriple._2, parentSetIdTriple._3)
-	        	      setIdSet+= triple
-	        	    }
-	        	    convertId(SetId(setIdSet))
+	        	  case 0 => sys.error("Programming error 3" + sid)
+//	        	  case 1 => convertId(typeSet.head)
+	        	  case _ => 
+	        	    val group = typeGraph.nodes.values.find(n => n.id match{
+	        	      				case SetId(_) => true
+	        	      				case _ => false
+        	    				}
+       	    			)
+	        	    group match {
+	    					 case Some(Node(SetId(v),_)) => 
+	    					   		val parentSetIdTriple = v.head
+					        	    var setIdSet = MSet[(Id,Int,String)]() 
+					        	    for(et<-typeSet){
+					        	      val triple = (et, parentSetIdTriple._2, parentSetIdTriple._3)
+					        	      setIdSet+= triple
+					        	    }
+	    					   		SetId(setIdSet)
+	    					 case _ => if(1 == typeSet.size){
+	    						 			convertId(typeSet.head)
+	    					 		   }else{
+	    					 		     sys.error("Programming error 4" + typeSet)
+	    					 		   }
+	    	  		}  
 	        	}
-            	typeGraph.nodes.get(t) match {
-            	  case None => sys.error("Type with id=" + t + " does not exist!")
+	        	val tConverted = t match{
+	        	  case s@SetId(_) => if(1 == s.v.size && s.containsAId){
+	        		  					s.ids.head
+	        	  					 }else{
+	        	  					   t
+	        	  					 }
+	        	  case _ =>			 t
+	        	} 
+            	typeGraph.nodes.get(tConverted) match {
+            	  case None => sys.error("Node type with id=" + tConverted + " does not exist! " + typeGraph.nodes)
             	  case Some(nt) => 
             	    	if(nt.t == TypeNode.TAttribute()){
             	    	  rs.addVNode(nId,nt) //may add concat value
@@ -156,37 +177,44 @@ trait Output{
             	val id = convertId(e._1);
             	id match{
             	  case a@SId(2) => sys.error("TEST " + a)
-            	  case _=> 	  val pt = e._3 match{
-			            	  case "L" => names+=parentLeft.names.get(id);
-			            	  			  parentLeft.arrows(id).t.id;
-			            	  case "R" => names+=parentRight.names.get(id);
-			            	  			  parentRight.arrows(id).t.id;
-			              	  case _ =>  if(parentLeft==parentRight) {
-			              		  			names+=parentLeft.names.get(id);
-			              		  			parentLeft.arrows(id).t.id;
-			              	  			 }else{
-			              	  			    sys.error("Programming error 2:" + e)
-			              	  			 } 
-			            	} 
-			            	typeSet+=pt
+            	  case _=> 	  val pt = parentLeft.arrows.get(id) match{
+            	  			  	case Some(a) =>	names+=parentLeft.names.get(id); Some(a.t.id); 
+            	  			  	case None 	 => parentRight.arrows.get(id) match{
+            	  			  	  					case Some(a) => names+=parentRight.names.get(id); Some(a.t.id);
+            	  			  	  					case None => None /* its a type id */
+            	  			  					}
+            	  			  }	
+            	  			  pt match{
+            	  			    case Some(at) => typeSet+=at
+            	  			    case None 	  => /*do nothing */
+            	  			  }
              	}
             }
 //            if(!typeSet.isEmpty){ //If typeSet Empty it contains only attribute types
         	val t = typeSet.size match {
-        	  case 0 => sys.error("Programming error 6" + typeSet)
-        	  case 1 => typeSet.head //convertId(typeSet.head)
-        	  case _ => val parentSetIdTriple = typeGraph.arrows.head._2.id match {
-    					 case s@SetId(_) => s.v.head
-    					 case _ => sys.error("Programming error 7" + typeSet)
-    	  				}
-        	    var setIdSet = MSet[(Id,Int,String)]() 
-        	    for(et<-typeSet){
-        	      val triple = (et, parentSetIdTriple._2, parentSetIdTriple._3)
-        	      setIdSet+= triple
-        	    }
-        	    convertId(
-        	        SetId(setIdSet)
-        	    )
+        	case 0 => sys.error("Programming error 6" + typeSet)
+//        	  case 1 => typeSet.head //convertId(typeSet.head)
+        	  case _ => 
+	        	    val group = typeGraph.arrows.values.find(n => n.id match{
+	        	      				case SetId(_) => true
+	        	      				case _ => false
+        	    				}
+       	    			)
+	        	    group match {
+	    					 case Some(Arrow(SetId(v),_,_,_)) => 
+	    					   		val parentSetIdTriple = v.head
+					        	    var setIdSet = MSet[(Id,Int,String)]() 
+					        	    for(et<-typeSet){
+					        	      val triple = (et, parentSetIdTriple._2, parentSetIdTriple._3)
+					        	      setIdSet+= triple
+					        	    }
+	    					   		SetId(setIdSet)
+	    					 case _ => if(1 == typeSet.size){
+	    						 			convertId(typeSet.head)
+	    					 		   }else{
+	    					 		     sys.error("Programming error 7" + typeSet)
+	    					 		   }
+	        	    }
         	}
         	println(typeSet)
         	
@@ -206,7 +234,7 @@ trait Output{
 			    }
         	}else{
 	        	typeGraph.arrows.get(t) match {
-	        	  case None => sys.error("Type with id=" + t + " does not exist!")
+	        	  case None => sys.error("Arrow type with id=" + t + " does not exist! " + typeGraph.arrows)
 	        	  case Some(at) => 
 				    newName match{
 					    case "" => sys.error("No Name defined!")
