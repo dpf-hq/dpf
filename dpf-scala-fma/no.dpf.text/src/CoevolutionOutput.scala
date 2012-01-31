@@ -61,7 +61,13 @@ trait Output{
             if(!attributeFound && typeSet.isEmpty){
               if(1 == sid.v.size){
             	  sid.v.head._3 match{
-            	    case "A" => typeSet+=sid.v.head._1  //Value from Pullback complement
+            	    case "A" => //Value from Pullback complement
+            	      			sid.v.head._1 match{
+            	      			  	case s@SetId(_) => if(!s.containsAId){
+            	      			  							typeSet+=sid.v.head._1
+            	      			  					   } 
+            	      				case _ => typeSet+=sid.v.head._1
+            	      			}
             	    case _ => sys.error("Programming error 1b " + sid) 
             	  }
               }	else{	
@@ -147,9 +153,37 @@ trait Output{
             	  			  }
              	}
             }
-        	val t = typeSet.size match {
-        	case 0 => sys.error("Programming error 6" + sid)
-       	    case _ => 
+            if(0 == typeSet.size && 3 == sid.v.size){
+                  //Value from Pullback complement
+                  var found_A = false;
+                  var found_uD = false;
+                  var found_vD = false;
+                  for(e<-sid.v){
+	            	  e._3 match{
+	            	    case "A" => found_A=true;
+	            	    			typeSet+=sid.v.head._1  
+	            	    case "uD" => found_uD=true;
+	            	    			 val convertedId = convertId(e._1) 	
+	            	    			 rs.names.get(convertedId) match {
+	            	    			   case no@Some(_) => names+=no;	
+	            	    			   case None => names+=Some(convertedId.toString()); 	
+	            	    			 }
+	            	    case "vD" => found_vD=true;
+	            	    			 val convertedId = convertId(e._1) 	
+	            	    			 rs.names.get(convertedId) match {
+	            	    			   case no@Some(_) => names+=no;	
+	            	    			   case None => names+=Some(convertedId.toString()); 	
+	            	    			 }
+	            	    case _ => sys.error("Programming error 1e " + sid) 
+	            	  }
+                  }
+                  if(!(found_A && found_uD && found_vD)){
+                	  sys.error("Programming error 1f " + sid)
+                  }
+            }	
+            val t = typeSet.size match {
+        		case 0 => sys.error("Programming error 7" + typeSet)
+        	    case _ => 
 	        	    val group = typeGraph.arrows.values.find(n => n.id match{
 	        	      				case SetId(_) => true
 	        	      				case _ => false
@@ -179,7 +213,6 @@ trait Output{
 	    	    case Some(oldN) => newName+=oldN           
 	    	  }
  	    	}    
-
 	    	if(t  == TypeArrow.TAttribute().id){
 			    newName match{
 				    case "" => sys.error("No Name defined!")
