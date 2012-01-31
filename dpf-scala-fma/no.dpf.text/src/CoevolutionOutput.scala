@@ -6,6 +6,10 @@ import no.dpf.text.coevolution._;
 import scala.collection.mutable.{Set=>MSet}
 
 trait Output{
+
+//parent1 => left 
+//parent2 => rigt 
+//typeset left and right und dann trible richtig bilden  
   
   /**
    * do some magic
