@@ -68,7 +68,9 @@ trait Output{
             	      			  					   } 
             	      				case _ => typeSet+=sid.v.head._1
             	      			}
-            	    case _ => sys.error("Programming error 1b " + sid) 
+            	    case _ =>   println(parent1.nodes)
+            	      			println(parent2.nodes)
+            	      			sys.error("Programming error 1b " + sid) 
             	  }
               }	else{	
             	  sys.error("Programming error 1c " + sid)
@@ -252,7 +254,7 @@ trait Output{
   
   protected def printGraph(g:AbstractGraph,name:String,path:String,printNames:Boolean=true)={
     
-    println("\n\n" + name + " " + g)
+    //println("\n\n" + name + " " + g)
     
     def formatNode(l:List[String],n:Node):List[String]={
     	var rs=l
@@ -270,7 +272,7 @@ trait Output{
 	        case SId(_) => e.toString()
 	        case _ => g.names.get(e.id) match{
 	          			case Some(n) => n
-	          			case _		 => e.id.toString.replaceAll("\"","")
+	          			case _		 => e.id.v.toString.replaceAll("\"","")
 	        		  }
 	      }
       } else ""    

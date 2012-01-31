@@ -96,7 +96,7 @@ case class SimpleCoevolutionSpan(TL:AbstractGraph,TK:AbstractGraph,TR:AbstractGr
   lazy val L = toGraph(G,G,TL,m.domainNodes(),m.domainArrows(),m.domainArrowSr,m.domainArrowTg)
   lazy val K = toGraph(L,C,TK,l.domainNodes(),l.domainArrows(),l.domainArrowSr,l.domainArrowTg)    
   lazy val R = toGraph(K,K,TR,r.codomainNodes(),r.codomainArrows(),r.codomainArrowSr,r.codomainArrowTg)    
-  lazy val H = toGraph(R,C,TH,tm2.codomainNodes(),tm2.codomainArrows(),tm2.codomainArrowSr,tm2.codomainArrowTg)
+  lazy val H = toGraph(R,C,TH,m2.codomainNodes(),m2.codomainArrows(),m2.codomainArrowSr,m2.codomainArrowTg)
   
   def print(path:String)={
 
