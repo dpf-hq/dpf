@@ -7,10 +7,6 @@ import scala.collection.mutable.{Set=>MSet}
 
 trait Output{
 
-//parent1 => left 
-//parent2 => rigt 
-//typeset left and right und dann trible richtig bilden  
-  
   /**
    * do some magic
    */
@@ -107,35 +103,39 @@ trait Output{
 	        	  case s@SetId(_) => if(1 == s.v.size && s.containsAId){
 	        		  					s.ids.head
 	        	  					 }else{
-	        	  					   t
+	        	  					   convertId(t)
 	        	  					 }
 	        	  case _ =>			 t
 	        	} 
-            	typeGraph.nodes.get(tConverted) match {
-            	  case None => 
-            	    println(tConverted)
-            	    println(typeGraph.nodes)
-            	    println(sid)
-            	    println(typeSet)
-            	    println("t=" + t)
-            	    sys.error("Node type with id=" + tConverted + " does not exist! ")
-            	  case Some(nt) => 
-            	    	if(nt.t == TypeNode.TAttribute()){
-            	    	  rs.addVNode(nId,nt) //may add concat value
-    	    			}else{
-	            	    	var newName = "";
-	            	    	for(o<-names){
-	            	    	  o match{
-	            	    	    case None => /*do nothing*/
-	            	    	    case Some(oldN) => newName+=oldN           
-	            	    	  }
-	             	    	}
-		    			    newName match{
-		    				    case "" => rs.addNode("newName",nt,nId);
-		    				    case _ =>  rs.addNode(newName,nt,nId);
-		    			    }
-    	    			}
-            	}
+    	    	if(tConverted == TypeNode.TAttribute().id){
+    	    	  /*do nothing*/
+    			}else{
+		        	typeGraph.nodes.get(tConverted) match {
+	            	  case None => 
+	            	    println(tConverted)
+	            	    println(typeGraph.nodes)
+	            	    println(sid)
+	            	    println(typeSet)
+	            	    println("t=" + t)
+	            	    sys.error("Node type with id=" + tConverted + " does not exist! ")
+	            	  case Some(nt) => 
+	            	    	if(nt.t == TypeNode.TAttribute()){
+	            	    	  rs.addVNode(nId,nt) //may add concat value
+	    	    			}else{
+		            	    	var newName = "";
+		            	    	for(o<-names){
+		            	    	  o match{
+		            	    	    case None => /*do nothing*/
+		            	    	    case Some(oldN) => newName+=oldN           
+		            	    	  }
+		             	    	}
+			    			    newName match{
+			    				    case "" => rs.addNode("newName",nt,nId);
+			    				    case _ =>  rs.addNode(newName,nt,nId);
+			    			    }
+	    	    			}
+	            	}
+    			}
             }
         case n@_		  => sys.error("Programming error 5" + n)
       }
