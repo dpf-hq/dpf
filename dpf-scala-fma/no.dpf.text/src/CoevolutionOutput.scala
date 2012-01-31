@@ -68,9 +68,7 @@ trait Output{
             	      			  					   } 
             	      				case _ => typeSet+=sid.v.head._1
             	      			}
-            	    case _ =>   println(parent1.nodes)
-            	      			println(parent2.nodes)
-            	      			sys.error("Programming error 1b " + sid) 
+            	    case _ =>   sys.error("Programming error 1b " + sid) 
             	  }
               }	else{	
             	  sys.error("Programming error 1c " + sid)
@@ -110,7 +108,13 @@ trait Output{
 	        	  case _ =>			 t
 	        	} 
             	typeGraph.nodes.get(tConverted) match {
-            	  case None => sys.error("Node type with id=" + tConverted + " does not exist! " + typeGraph.nodes)
+            	  case None => 
+            	    println(tConverted)
+            	    println(typeGraph.nodes)
+            	    println(sid)
+            	    println(typeSet)
+            	    println("t=" + t)
+            	    sys.error("Node type with id=" + tConverted + " does not exist! ")
             	  case Some(nt) => 
             	    	if(nt.t == TypeNode.TAttribute()){
             	    	  rs.addVNode(nId,nt) //may add concat value
