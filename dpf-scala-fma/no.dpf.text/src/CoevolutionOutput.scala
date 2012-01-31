@@ -9,7 +9,9 @@ trait Output{
 
   /*
    * 
-   * Solution wirklich linkes und rechtes typset "L" "R" , "A", "K" "G" 
+   * Solution wirklich linkes und rechtes typset 
+   * Parent 1 und Parent 2 buchstabe ermitteln und dann mit zwei typesets arbeiten
+   *  
    * 
    */
   
