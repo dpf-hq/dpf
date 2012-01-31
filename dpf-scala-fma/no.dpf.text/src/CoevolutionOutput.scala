@@ -7,6 +7,14 @@ import scala.collection.mutable.{Set=>MSet}
 
 trait Output{
 
+  /*
+   * 
+   * Solution wirklich linkes und rechtes typset "L" "R" , "A", "K" "G" 
+   * 
+   */
+  
+  
+  
   /**
    * do some magic
    */
@@ -171,7 +179,7 @@ trait Output{
                   for(e<-sid.v){
 	            	  e._3 match{
 	            	    case "A" => found_A=true;
-	            	    			typeSet+=sid.v.head._1  
+	            	    			typeSet+=e._1  
 	            	    case "uD" => found_uD=true;
 	            	    			 val convertedId = convertId(e._1) 	
 	            	    			 rs.names.get(convertedId) match {
