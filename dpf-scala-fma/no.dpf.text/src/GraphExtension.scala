@@ -235,8 +235,8 @@ case class Span(left:Morphism,right:Morphism) extends TwoMorphism{
       val left2_tmp  = MMap[(Id,Int,String),MSet[(Id,Int,String)]]()
       val right2_tmp = MMap[(Id,Int,String),MSet[(Id,Int,String)]]()
       for(d<-domain){
-        val lV = (l(d),gid,"PO")  
-        val rV = (r(d),gid,"PO")
+        val lV = (l(d),gid,"L")  
+        val rV = (r(d),gid,"R")
         val poe = MSet(lV,rV)
         left2_tmp+=lV->poe
         right2_tmp+=rV->poe
@@ -261,12 +261,12 @@ case class Span(left:Morphism,right:Morphism) extends TwoMorphism{
       for(kv<-right2_tmp)right2+=kv._1._1->SetId(kv._2.toSet)
 
       for(c<-codomainDiffLeft){
-        val poe = SetId(Set((c,gid,"PO")))
+        val poe = SetId(Set((c,gid,"L")))
     	m+= poe
         left2+=c->poe
       }
       for(c<-codomainDiffRight){
-        val poe = SetId(Set((c,gid,"PO")))
+        val poe = SetId(Set((c,gid,"R")))
         m+=poe
         right2+=c->poe
       }
@@ -318,7 +318,7 @@ case class Cospan(left:Morphism,right:Morphism) extends TwoMorphism{
         val rDomain2 = r2(x)
         //Build cartesian product:
         for(l<-lDomain2;r<-rDomain2){
-          val pbe = SetId(Set((l,gid,"PB"),(r,gid,"PB"))) 
+          val pbe = SetId(Set((l,gid,"L"),(r,gid,"R"))) 
           left1+=pbe->l
           right1+=pbe->r
           m+= pbe
@@ -911,8 +911,8 @@ object Test {
 
 		  val pushout:Cospan = span.pushout()
 		  
-//		  println(pushout.left);
-//		  println(pushout.right);
+		  println(pushout.left);
+		  println(pushout.right);
 		  
 	  }	
 	  
@@ -1061,8 +1061,8 @@ object Test {
 
 	  val pullbackComplement:Composition = comp.fPullbackComplementMono();
 	  
-	  println(pullbackComplement.m1);
-	  println(pullbackComplement.m2);
+//	  println(pullbackComplement.m1);
+//	  println(pullbackComplement.m2);
 	  
 	  } 	  
 	  println("Time spent:" + (System.currentTimeMillis - start))

@@ -100,7 +100,7 @@ trait Output{
 	    	  		}  
 	        	}
 	        	val tConverted = t match{
-	        	  case s@SetId(_) => if(1 == s.v.size && s.containsAId){
+	        	  case s@SetId(_) => if(s.containsAId){
 	        		  					s.ids.head
 	        	  					 }else{
 	        	  					   convertId(t)
@@ -234,7 +234,11 @@ trait Output{
 			    }
         	}else{
 	        	typeGraph.arrows.get(t) match {
-	        	  case None => sys.error("Arrow type with id=" + t + " does not exist! " + typeGraph.arrows)
+	        	  case None => 
+	        	    println(t)
+	        	    println(typeGraph.arrows)
+	        	     println(typeGraph.nodes)
+	        	    sys.error("Arrow type with id=" + t + " does not exist! ")
 	        	  case Some(at) => 
 				    newName match{
 					    case "" => sys.error("No Name defined!")
@@ -262,7 +266,7 @@ trait Output{
   
   protected def printGraph(g:AbstractGraph,name:String,path:String,printNames:Boolean=true)={
     
-    //println("\n\n" + name + " " + g)
+    println("\n\n" + name + " " + g)
     
     def formatNode(l:List[String],n:Node):List[String]={
     	var rs=l
