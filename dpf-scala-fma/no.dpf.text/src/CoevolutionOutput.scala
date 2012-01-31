@@ -56,7 +56,8 @@ trait Output{
              	}
             }
             if(!attributeFound && typeSet.isEmpty){
-            	sys.error("Programming error 1b")
+                println(parentLeft.nodes + "\n\n\n" + parentRight.nodes) //104 from type graph?
+            	sys.error("Programming error 1b" + sid)
             }
             if(!typeSet.isEmpty){
 	        	val t = typeSet.size match {
