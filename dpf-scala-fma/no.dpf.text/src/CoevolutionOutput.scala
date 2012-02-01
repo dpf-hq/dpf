@@ -7,20 +7,13 @@ import scala.collection.mutable.{Set=>MSet}
 
 trait Output{
 
-//parent1 => left 
-//parent2 => rigt 
-//typeset left and right und dann trible richtig bilden  
-  
   /**
    * do some magic
    */
   protected def toGraph(parent1:AbstractGraph,
 		  			    parent2:AbstractGraph,
 		  			    typeGraph:AbstractGraph,
-		  			    nodes:Set[Id],
-		  			    arrows:Set[Id],
-		  			    sr:Id=>Id,
-		  			    tg:Id=>Id):AbstractGraph = {
+		  			    typing:Morphism):AbstractGraph = {
     
     /**
      *Remove SetId from Attribute Types and Special Ids 
@@ -38,147 +31,41 @@ trait Output{
 			case _ => id
 		}          	  
     }
-
-    /**
-     *Get groupId from SetId 
-     */   
-    def getGroupId(g:AbstractGraph):Option[Int]={
-	    val group = g.nodes.values.find(n => n.id match{
-	      				case SetId(_) => true
-	      				case _ => false
-    				})
-	    group match {
-				 case Some(Node(SetId(v),_)) => Some(v.head._2);
-				 case _ => None;
-  		}  
-    }
-    
-    //Group Ids:
-    val groupIds = Map(parent1->getGroupId(parent1),
-    				   parent2->getGroupId(parent2),
-    				   parent1.mmGraph->getGroupId(parent1.mmGraph),
-    				   parent2.mmGraph->getGroupId(parent2.mmGraph),
-    				   typeGraph->getGroupId(typeGraph)
-    				  )
-    
-    //Graph Ids Image    				  
-    val groupIdsImg = Map(groupIds(parent1)->parent1,
-    				   	  groupIds(parent2)->parent2,
-    				   	  groupIds(parent1.mmGraph)->parent1.mmGraph,
-    				   	  groupIds(parent2.mmGraph)->parent2.mmGraph,
-    				   	  groupIds(typeGraph)->typeGraph
-    				  )
-    
-    def getFromIdNode(t:(Id,Option[Int])):String = {
-      t._2 match{
-         case None => sys.error("Programming error 0")
-         case Some(i) => groupIdsImg(t._2).nodes(t._1).id match {
-           					case s@SetId(_) => s.v.head._3
-           					case _ => sys.error("Programming error 0b")  
-         				 } 
-      }
-    } 				  
-
-    def getFromIdArrow(t:(Id,Option[Int])):String = {
-      t._2 match{
-         case None => sys.error("Programming error 0c")
-         case Some(i) => groupIdsImg(t._2).arrows(t._1).id match {
-           					case s@SetId(_) => s.v.head._3
-           					case _ => sys.error("Programming error 0d")  
-         				 } 
-      }
-    } 				  
-    
     
     //Add nodes:
-    val rs = new MGraph(typeGraph,()=>sys.error("Programming error 1"))
-    for(nId<-nodes){
+    val rs = new MGraph(typeGraph,()=>sys.error("Programming error!"))
+    for(nId<-typing.domainNodes()){
       nId match {
         case sid@SetId(_) => 
-            val typeSet = MSet[(Id,Option[Int])]() 
             val names = MSet[Option[String]]();
             var attributeFound = false;
-            for(e<-sid.v){
-            	val id = convertId(e._1);
-            	id match{
-            	  case AId(_) =>  attributeFound = true/*do nothing */
-            	  case _=> 	  val pt = parent1.nodes.get(id) match{
-            	  			  	case Some(n) =>	names+=parent1.names.get(id); Some((n.t.id,groupIds(parent1.mmGraph))); 
-            	  			  	case None 	 => parent2.nodes.get(id) match{
-            	  			  	  					case Some(n) => names+=parent2.names.get(id); Some((n.t.id,groupIds(parent2.mmGraph)));;
-            	  			  	  					case None => 	None /* its a type id */	
-            	  			  					}
-            	  			  }	
-            	  			  pt match {
-            	  			    case Some(nt) => typeSet+=nt
-            	  			    case None	  => /*do nothing*/
-            	  			  }	
-             	}
+            if(sid.containsAId){
+              attributeFound = true;
+            }else{
+	            for(e<-sid.v){
+	            	val id = e._1;
+	            	
+	            	//Build Name:
+	            	parent1.nodes.get(id) match{
+		  			  	case Some(n) =>	names+=parent1.names.get(id); 
+		  			  	case None 	 => parent2.nodes.get(id) match{
+		  			  	  					case Some(n) => names+=parent2.names.get(id); 
+		  			  	  					case None => /* its a type id */
+		  			  					}		  
+					}
+	            }
             }
-            if(!attributeFound && typeSet.isEmpty){
-              if(1 == sid.v.size){
-            	  sid.v.head._3 match{
-            	    //Value from Pullback complement
-            	    case "A" => 
-    	      			sid.v.head._1 match{
-    	      			  	case s@SetId(_) => if(!s.containsAId){
-    	      			  							val temp = (sid.v.head._1,groupIds(typeGraph))	
-    	      			  							typeSet+=temp
-    	      			  					   } 
-    	      			  	case _ =>		   val temp = (sid.v.head._1,groupIds(typeGraph))	
-    	      			  					   typeSet+=temp
-
-    	      			}
-        	    case _ =>   sys.error("Programming error 1b " + sid) 
-            	  }
-              }	else{	
-            	  sys.error("Programming error 1c " + sid)
-              }
-            }
-            if(!typeSet.isEmpty){
-	        	val t = typeSet.size match {
-	        	  case 0 => sys.error("Programming error 3" + sid)
-	        	  case _ => 
-	        	    if(1 == typeSet.size){
-	        	    		 if(typeSet.head._2 == None){ 
-	        	    			 convertId(typeSet.head._1)
-	        	    		 }else{
-	        	    			 sys.error("Programming error 4" + typeSet)	        	    		   
-	        	    		 }
-			 		   }else{
-			 			    var setIdSet = MSet[(Id,Int,String)]() 
-		 			   		for(et<-typeSet){
-			        	      val triple = (et._1, et._2.get, getFromIdNode(et)) 
-			        	      setIdSet+=triple
-			        	    }
-   					   		SetId(setIdSet)				 		     
-			 		   }
-	        	}
-	        	val tConverted = t match{
-	        	  case s@SetId(_) => if(s.containsAId){
-	        		  					s.ids.head
-	        	  					 }else{
-	        	  					   convertId(t)
-	        	  					 }
-	        	  case _ =>			 t
-	        	} 
-    	    	if(tConverted == TypeNode.TAttribute().id){
-    	    	  /*do nothing*/
-    			}else{
-		        	typeGraph.nodes.get(tConverted) match {
+            //Add node:
+            if(!attributeFound){
+		        	typeGraph.nodes.get(typing.codomainNode(nId)) match {
 	            	  case None => 
-	            	    println(tConverted)
-	            	    println(typeGraph.nodes)
-	            	    println(sid)
-	            	    println(typeSet)
-	            	    println("t=" + t)
-	            	    sys.error("Node type with id=" + tConverted + " does not exist! ")
+	            	    sys.error("Node type with id=" + nId + " does not exist! ")
 	            	  case Some(nt) => 
 	            	    	if(nt.t == TypeNode.TAttribute()){
-	            	    	  rs.addVNode(nId,nt) //may add concat value
+	            	    	  rs.addVNode(nId,nt) 
 	    	    			}else{
 		            	    	var newName = "";
-		            	    	for(o<-names){
+		            	    	for(o<-names.toList.sorted){
 		            	    	  o match{
 		            	    	    case None => /*do nothing*/
 		            	    	    case Some(oldN) => newName+=oldN           
@@ -190,131 +77,71 @@ trait Output{
 			    			    }
 	    	    			}
 	            	}
-    			}
             }
-        case n@_		  => sys.error("Programming error 5" + n)
+        case n@_		  => sys.error(" node " + n)
       }
     }
     //Add Arrows:
-    for(aId<-arrows){
+    for(aId<-typing.domainArrows()){
       aId match {
-        case sid@SetId(_) => 
-            val typeSet = MSet[(Id,Option[Int])]() 
+        case sid@SetId(_) =>
+          	println(sid)
             val names = MSet[Option[String]]();
-            for(e<-sid.v){
-            	val id = convertId(e._1);
-            	id match{
-            	  case a@SId(2) => sys.error("TEST " + a)
-            	  case _=> 	  val pt = parent1.arrows.get(id) match{
-            	  			  	case Some(a) =>	names+=parent1.names.get(id); Some((a.t.id,groupIds(parent1.mmGraph)));
-            	  			  	case None 	 => parent2.arrows.get(id) match{
-            	  			  	  					case Some(a) => names+=parent2.names.get(id); Some((a.t.id,groupIds(parent2.mmGraph)));
-            	  			  	  					case None => None /* its a type id */
-            	  			  					}
-            	  			  }	
-            	  			  pt match{
-            	  			    case Some(at) => typeSet+=at
-            	  			    case None 	  => /*do nothing */
-            	  			  }            	  			  
-             	}
+            if(3 != sid.v.size){
+	            for(e<-sid.v){
+	            	val id = e._1;
+	            	
+	            	//Build Name:
+	            	parent1.nodes.get(id) match{
+		  			  	case Some(n) =>	names+=parent1.names.get(id); 
+		  			  	case None 	 => parent2.nodes.get(id) match{
+		  			  	  					case Some(n) => names+=parent2.names.get(id); 
+		  			  	  					case None => /* its a type id */
+		  			  					}		  
+					}
+	            }
+            }else{
+			      for(e<-sid.v){
+			    	  e._3 match{
+			    	    case "uD" => rs.names.get(e._1) match {
+			    	    			   case no@Some(_) => names+=no;	
+			    	    			   case None => names+=Some(e._1.toString); 	
+			    	    			 }
+			    	    case "vD" => rs.names.get(e._1) match {
+			    	    			   case no@Some(_) => names+=no;	
+			    	    			   case None => names+=Some(e._1.toString); 	
+			    	    			 }
+			    	    case _	  => /*do nothing*/	
+			    	  }
+			      }
             }
-            if(0 == typeSet.size && 3 == sid.v.size){
-                  //Value from Pullback complement
-                  var found_A = false;
-                  var found_uD = false;
-                  var found_vD = false;
-                  for(e<-sid.v){
-	            	  e._3 match{
-	            	    case "A" => found_A=true;
-	            	    			val temp = (e._1,groupIds(typeGraph))
-	            	    			typeSet+=temp 
-	            	    case "uD" => found_uD=true;
-	            	    			 val convertedId = convertId(e._1) 	
-	            	    			 rs.names.get(convertedId) match {
-	            	    			   case no@Some(_) => names+=no;	
-	            	    			   case None => names+=Some(convertedId.toString()); 	
-	            	    			 }
-	            	    case "vD" => found_vD=true;
-	            	    			 val convertedId = convertId(e._1) 	
-	            	    			 rs.names.get(convertedId) match {
-	            	    			   case no@Some(_) => names+=no;	
-	            	    			   case None => names+=Some(convertedId.toString()); 	
-	            	    			 }
-	            	    case _ => sys.error("Programming error 1e " + sid) 
-	            	  }
-                  }
-                  if(!(found_A && found_uD && found_vD)){
-                	  sys.error("Programming error 1f " + sid)
-                  }
-            }	
-            val t = typeSet.size match {
-        		case 0 => sys.error("Programming error 7" + typeSet)
-        	    case _ => 
-	        	    val group = typeGraph.arrows.values.find(n => n.id match{
-	        	      				case SetId(_) => true
-	        	      				case _ => false
-        	    				}
-       	    			)
-	        	    group match {
-	    					 case Some(Arrow(SetId(v),_,_,_)) => 
-	    					 		var setIdSet = MSet[(Id,Int,String)]() 
-					        	    for(et<-typeSet){
-					        	      val triple = (et._1, et._2.get, getFromIdArrow(et))
-					        	      setIdSet+= triple
-					        	    }
-	    					   		SetId(setIdSet)
-	    					 case _ => 
-		    					  if(typeSet.head._2 == None){ 
-		        	    			 convertId(typeSet.head._1)
-		    					  }else{
-		        	    			 sys.error("Programming error 4" + typeSet)	        	    		   
-		    					  }
-	        	    }
-        	}
-        	//Build Name:
-	    	var newName = "";
-	    	for(o<-names){
-	    	  o match{
-	    	    case None => /*do nothing*/
-	    	    case Some(oldN) => newName+=oldN           
-	    	  }
- 	    	}   
-//	    	println(t)
-	    	if(t == TypeArrow.TAttribute().id){
-			    newName match{
-				    case "" => sys.error("No Name defined!")
-				    case _ => 
-				      println("1");  
-				      rs.addAArrow(newName,rs.nodes(sr(aId)),Node(convertId(tg(aId)),TypeNode.TAttribute()),TypeArrow.TAttribute(),aId);
-				      println("2");
-			    }
-        	}else{
-	        	typeGraph.arrows.get(t) match {
-	        	  case None => 
-	        	    println(t)
-	        	    println(typeGraph.arrows)
-	        	     println(typeGraph.nodes)
-	        	    sys.error("Arrow type with id=" + t + " does not exist! ")
-	        	  case Some(at) => 
+            
+        	typeGraph.arrows.get(typing.codomainArrow(aId)) match {
+        	  case None => 
+        	    sys.error("Node type with id=" + sid + " does not exist! ")
+        	  case Some(a) =>  
+        	    
+        	    //Build Name:
+    	    	var newName = "";
+    	    	for(o<-names.toList.sorted){
+    	    	  o match{
+    	    	    case None => /*do nothing*/
+    	    	    case Some(oldN) => newName+=oldN           
+    	    	  }
+     	    	}
+        	    
+        	    //Add arrow:
+		    	if(a.id == TypeArrow.TAttribute().id){
 				    newName match{
 					    case "" => sys.error("No Name defined!")
-					    case _ =>  
-	  				      if(at.t == TypeArrow.TAttribute()){
-	  				    	  println("31" + at);
-	  				    	  rs.addAArrow(newName,rs.nodes(sr(aId)),Node(convertId(tg(aId)),TypeNode.TAttribute()),TypeArrow.TAttribute(),aId);
-	  				    	  println("32" + at);
-	  				      }else{
-	  				    	  println("33" + at);
-	  				    	  rs.addArrow(newName,rs.nodes(sr(aId)),rs.nodes(tg(aId)),at,aId);
-	  				    	  println("34" + at);
-	  				      }
+					    case _ => 
+					      rs.addAArrow(newName,rs.nodes(typing.domainArrowSr(aId)),rs.nodes(typing.domainArrowTg(aId)),TypeArrow.TAttribute(),aId);
 				    }
-	           	}
+	        	}else{
+  				    	  rs.addArrow(newName,rs.nodes(typing.domainArrowSr(aId)),rs.nodes(typing.domainArrowTg(aId)),a,aId);
+	        	}
         	}
-//     	}	    	
-        
-        case n@_		  => sys.error("Programming error 8" + n)
-        
+        case a@_		  => sys.error("Programming error: arrow " + a)
       }
     }
     rs
@@ -324,18 +151,27 @@ trait Output{
     
     //println("\n\n" + name + " " + g)
     
-    def formatNode(l:List[String],n:Node):List[String]={
+    def formatNode(l:List[String],n:Node,nl:Boolean):List[String]={
     	var rs=l
     	rs="\""::rs
-    	rs=getName(n)::rs
+    	rs=getName(n,true)::rs
     	rs=":"::rs
     	rs=getType(n)::rs
     	rs="\""::rs
+    	//With Node lable:
+    	if(nl){
+	    	rs=" [label="::rs
+	   	  	rs="\""::rs  
+	   	  	rs=getName(n)::rs
+	   	  	rs=":"::rs
+	   	  	rs=getType(n)::rs
+	   	  	rs="\"]"::rs 
+    	}
     	rs
     }		  
     
-    def getName(e:Element):String={
-      if(printNames){
+    def getName(e:Element,p:Boolean=printNames):String={
+      if(p){
 	      e.id match{
 	        case SId(_) => e.toString()
 	        case _ => g.names.get(e.id) match{
@@ -360,13 +196,13 @@ trait Output{
     rs="graph [nodesep=\"0.7\"];\n"::rs
     rs="node [label=\"\\N\", shape=box];\n"::rs
     for(n:Node<-g.nodes.values.toSet){
-      rs=formatNode(rs,n)
+      rs=formatNode(rs,n,true)
    	  rs=";\n"::rs  
     }
     for(a:Arrow<-g.arrows.values.toSet){
-      rs=formatNode(rs,a.sr)
+      rs=formatNode(rs,a.sr,false)
    	  rs="->"::rs  
-      rs=formatNode(rs,a.tg)
+      rs=formatNode(rs,a.tg,false)
    	  rs=" [label="::rs
    	  rs="\""::rs  
    	  rs=getName(a)::rs
@@ -393,7 +229,7 @@ trait Output{
 	}	
 	println("File created: " + fname)
 	try {
-	    val cmd = "dot -Tpng "+ fname +" -o " + path + name + ".png"
+	    val cmd = "dot -Teps "+ fname +" -o " + path + name + ".eps"
 		Runtime.getRuntime().exec(cmd)
 	}catch{
 	  case ex => ex.printStackTrace()
