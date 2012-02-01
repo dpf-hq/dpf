@@ -85,20 +85,18 @@ trait Output{
     for(aId<-typing.domainArrows()){
       aId match {
         case sid@SetId(_) =>
-          	println(sid)
             val names = MSet[Option[String]]();
             if(3 != sid.v.size){
 	            for(e<-sid.v){
-	            	val id = e._1;
-	            	
-	            	//Build Name:
-	            	parent1.nodes.get(id) match{
-		  			  	case Some(n) =>	names+=parent1.names.get(id); 
-		  			  	case None 	 => parent2.nodes.get(id) match{
-		  			  	  					case Some(n) => names+=parent2.names.get(id); 
-		  			  	  					case None => /* its a type id */
-		  			  					}		  
-					}
+	            	  val id = e._1;
+	            	  parent1.nodes.get(id) match{
+			  			  	case Some(n) =>	names+=parent1.names.get(id); 
+			  			  	case None 	 => parent2.nodes.get(id) match{
+			  			  	  					case Some(n) => names+=parent2.names.get(id); 
+			  			  	  					case None => /* its a type id */
+			  			  	  					  println("No name for:" + id)
+			  			  					}		  
+	            	  }
 	            }
             }else{
 			      for(e<-sid.v){
@@ -116,30 +114,29 @@ trait Output{
 			      }
             }
             
-        	typeGraph.arrows.get(typing.codomainArrow(aId)) match {
-        	  case None => 
-        	    sys.error("Arrow type with id=" + aId + " does not exist! ")
-        	  case Some(a) =>  
-        	    
-        	    //Build Name:
-    	    	var newName = "";
-    	    	for(o<-names.toList.sorted){
-    	    	  o match{
-    	    	    case None => /*do nothing*/
-    	    	    case Some(oldN) => newName+=oldN           
-    	    	  }
-     	    	}
-        	    
-        	    //Add arrow:
-		    	if(a.id == TypeArrow.TAttribute().id){
-				    newName match{
-					    case "" => sys.error("No Name defined!")
-					    case _ => 
-					      rs.addAArrow(newName,rs.nodes(typing.domainArrowSr(aId)),rs.nodes(typing.domainArrowTg(aId)),TypeArrow.TAttribute(),aId);
-				    }
-	        	}else{
-  				    	  rs.addArrow(newName,rs.nodes(typing.domainArrowSr(aId)),rs.nodes(typing.domainArrowTg(aId)),a,aId);
-	        	}
+    	    //Build Name:
+	    	var newName = "";
+	    	for(o<-names.toList.sorted){
+	    	  o match{
+	    	    case None => /*do nothing*/
+	    	    case Some(oldN) => newName+=oldN           
+	    	  }
+ 	    	}
+	    	val atId = typing.codomainArrow(aId)
+	    	if(atId == TypeArrow.TAttribute().id){
+			    newName match{
+				    case "" => 
+				      sys.error("No Name defined!")
+				    case _ =>  rs.addAArrow(newName,rs.nodes(typing.domainArrowSr(aId)),rs.nodes(typing.domainArrowTg(aId)),TypeArrow.TAttribute(),aId);
+			    }
+        	}else{
+	            typeGraph.arrows.get(typing.codomainArrow(aId)) match {
+	        	  case None => 
+	        	    sys.error("Arrow type with id=" + aId + " does not exist! ")
+	        	  case Some(a) =>  
+	        	    //Add arrow:
+		    	    rs.addArrow(newName,rs.nodes(typing.domainArrowSr(aId)),rs.nodes(typing.domainArrowTg(aId)),a,aId);
+	            }	
         	}
         case a@_		  => sys.error("Programming error: arrow " + a)
       }

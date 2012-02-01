@@ -801,7 +801,7 @@ case class TypingMorphism(input:AbstractGraph) extends Morphism{
   private lazy val codomainarrows:Set[Id]=mkCodomainArrows()
   def codomainArrows():Set[Id]= immutable match {case true => codomainarrows; case _ => mkCodomainArrows()}
   private def mkCodomainArrows():Set[Id]={						/* do not use mmGraph here since SIds not includes*/
-    Set((for{n<-input.arrows.values} yield {n.t.id}) toSeq: _ *)
+    Set((for{a<-input.arrows.values} yield {a.t.id}) toSeq: _ *)
   }
   
 } 
