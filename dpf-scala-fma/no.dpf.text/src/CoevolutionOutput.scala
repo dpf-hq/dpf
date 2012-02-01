@@ -128,7 +128,16 @@ trait Output{
 			    newName match{
 				    case "" => 
 				      sys.error("No Name defined!")
-				    case _ =>  rs.addAArrow(newName,rs.nodes(typing.domainArrowSr(aId)),rs.nodes(typing.domainArrowTg(aId)),TypeArrow.TAttribute(),aId);
+				    case _ =>  
+				      val tgNode = typing.domainArrowTg(aId) match{
+				        case snId@SetId(_) => if(snId.containsAId){
+				        						Node(snId.ids.head,TypeNode.TAttribute())	
+				        					  }else{
+				        					    rs.nodes(snId)
+				        					  }   
+				        case nId@_ => rs.nodes(nId)
+				      }
+				      rs.addAArrow(newName,rs.nodes(typing.domainArrowSr(aId)),tgNode,TypeArrow.TAttribute(),aId);
 			    }
         	}else{
 	            typeGraph.arrows.get(typing.codomainArrow(aId)) match {
