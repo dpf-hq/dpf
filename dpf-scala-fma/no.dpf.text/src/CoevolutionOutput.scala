@@ -7,15 +7,9 @@ import scala.collection.mutable.{Set=>MSet}
 
 trait Output{
 
-  /*
-   * 
-   * Solution wirklich linkes und rechtes typset 
-   * Parent 1 und Parent 2 buchstabe ermitteln und dann mit zwei typesets arbeiten
-   *  
-   * 
-   */
-  
-  
+//parent1 => left 
+//parent2 => rigt 
+//typeset left and right und dann trible richtig bilden  
   
   /**
    * do some magic
@@ -28,7 +22,9 @@ trait Output{
 		  			    sr:Id=>Id,
 		  			    tg:Id=>Id):AbstractGraph = {
     
-    //Remove SetId from Attribute Types
+    /**
+     *Remove SetId from Attribute Types and Special Ids 
+     */
     def convertId(id:Id):Id={
  		id match{ 
 			case s@SetId(_) => 
@@ -42,13 +38,64 @@ trait Output{
 			case _ => id
 		}          	  
     }
+
+    /**
+     *Get groupId from SetId 
+     */   
+    def getGroupId(g:AbstractGraph):Option[Int]={
+	    val group = g.nodes.values.find(n => n.id match{
+	      				case SetId(_) => true
+	      				case _ => false
+    				})
+	    group match {
+				 case Some(Node(SetId(v),_)) => Some(v.head._2);
+				 case _ => None;
+  		}  
+    }
+    
+    //Group Ids:
+    val groupIds = Map(parent1->getGroupId(parent1),
+    				   parent2->getGroupId(parent2),
+    				   parent1.mmGraph->getGroupId(parent1.mmGraph),
+    				   parent2.mmGraph->getGroupId(parent2.mmGraph),
+    				   typeGraph->getGroupId(typeGraph)
+    				  )
+    
+    //Graph Ids Image    				  
+    val groupIdsImg = Map(groupIds(parent1)->parent1,
+    				   	  groupIds(parent2)->parent2,
+    				   	  groupIds(parent1.mmGraph)->parent1.mmGraph,
+    				   	  groupIds(parent2.mmGraph)->parent2.mmGraph,
+    				   	  groupIds(typeGraph)->typeGraph
+    				  )
+    
+    def getFromIdNode(t:(Id,Option[Int])):String = {
+      t._2 match{
+         case None => sys.error("Programming error 0")
+         case Some(i) => groupIdsImg(t._2).nodes(t._1).id match {
+           					case s@SetId(_) => s.v.head._3
+           					case _ => sys.error("Programming error 0b")  
+         				 } 
+      }
+    } 				  
+
+    def getFromIdArrow(t:(Id,Option[Int])):String = {
+      t._2 match{
+         case None => sys.error("Programming error 0c")
+         case Some(i) => groupIdsImg(t._2).arrows(t._1).id match {
+           					case s@SetId(_) => s.v.head._3
+           					case _ => sys.error("Programming error 0d")  
+         				 } 
+      }
+    } 				  
+    
     
     //Add nodes:
     val rs = new MGraph(typeGraph,()=>sys.error("Programming error 1"))
     for(nId<-nodes){
       nId match {
         case sid@SetId(_) => 
-            val typeSet = MSet[Id]() 
+            val typeSet = MSet[(Id,Option[Int])]() 
             val names = MSet[Option[String]]();
             var attributeFound = false;
             for(e<-sid.v){
@@ -56,9 +103,9 @@ trait Output{
             	id match{
             	  case AId(_) =>  attributeFound = true/*do nothing */
             	  case _=> 	  val pt = parent1.nodes.get(id) match{
-            	  			  	case Some(n) =>	names+=parent1.names.get(id); Some(n.t.id); 
+            	  			  	case Some(n) =>	names+=parent1.names.get(id); Some((n.t.id,groupIds(parent1.mmGraph))); 
             	  			  	case None 	 => parent2.nodes.get(id) match{
-            	  			  	  					case Some(n) => names+=parent2.names.get(id); Some(n.t.id);
+            	  			  	  					case Some(n) => names+=parent2.names.get(id); Some((n.t.id,groupIds(parent2.mmGraph)));;
             	  			  	  					case None => 	None /* its a type id */	
             	  			  					}
             	  			  }	
@@ -71,14 +118,18 @@ trait Output{
             if(!attributeFound && typeSet.isEmpty){
               if(1 == sid.v.size){
             	  sid.v.head._3 match{
-            	    case "A" => //Value from Pullback complement
-            	      			sid.v.head._1 match{
-            	      			  	case s@SetId(_) => if(!s.containsAId){
-            	      			  							typeSet+=sid.v.head._1
-            	      			  					   } 
-            	      				case _ => typeSet+=sid.v.head._1
-            	      			}
-            	    case _ =>   sys.error("Programming error 1b " + sid) 
+            	    //Value from Pullback complement
+            	    case "A" => 
+    	      			sid.v.head._1 match{
+    	      			  	case s@SetId(_) => if(!s.containsAId){
+    	      			  							val temp = (sid.v.head._1,groupIds(typeGraph))	
+    	      			  							typeSet+=temp
+    	      			  					   } 
+    	      			  	case _ =>		   val temp = (sid.v.head._1,groupIds(typeGraph))	
+    	      			  					   typeSet+=temp
+
+    	      			}
+        	    case _ =>   sys.error("Programming error 1b " + sid) 
             	  }
               }	else{	
             	  sys.error("Programming error 1c " + sid)
@@ -88,26 +139,20 @@ trait Output{
 	        	val t = typeSet.size match {
 	        	  case 0 => sys.error("Programming error 3" + sid)
 	        	  case _ => 
-	        	    val group = typeGraph.nodes.values.find(n => n.id match{
-	        	      				case SetId(_) => true
-	        	      				case _ => false
-        	    				}
-       	    			)
-	        	    group match {
-	    					 case Some(Node(SetId(v),_)) => 
-	    					   		val parentSetIdTriple = v.head
-					        	    var setIdSet = MSet[(Id,Int,String)]() 
-					        	    for(et<-typeSet){
-					        	      val triple = (et, parentSetIdTriple._2, parentSetIdTriple._3)
-					        	      setIdSet+= triple
-					        	    }
-	    					   		SetId(setIdSet)
-	    					 case _ => if(1 == typeSet.size){
-	    						 		 convertId(typeSet.head)
-	    					 		   }else{
-	    					 		     sys.error("Programming error 4" + typeSet)
-	    					 		   }
-	    	  		}  
+	        	    if(1 == typeSet.size){
+	        	    		 if(typeSet.head._2 == None){ 
+	        	    			 convertId(typeSet.head._1)
+	        	    		 }else{
+	        	    			 sys.error("Programming error 4" + typeSet)	        	    		   
+	        	    		 }
+			 		   }else{
+			 			    var setIdSet = MSet[(Id,Int,String)]() 
+		 			   		for(et<-typeSet){
+			        	      val triple = (et._1, et._2.get, getFromIdNode(et)) 
+			        	      setIdSet+=triple
+			        	    }
+   					   		SetId(setIdSet)				 		     
+			 		   }
 	        	}
 	        	val tConverted = t match{
 	        	  case s@SetId(_) => if(s.containsAId){
@@ -154,23 +199,23 @@ trait Output{
     for(aId<-arrows){
       aId match {
         case sid@SetId(_) => 
-            val typeSet = MSet[Id]() 
+            val typeSet = MSet[(Id,Option[Int])]() 
             val names = MSet[Option[String]]();
             for(e<-sid.v){
             	val id = convertId(e._1);
             	id match{
             	  case a@SId(2) => sys.error("TEST " + a)
             	  case _=> 	  val pt = parent1.arrows.get(id) match{
-            	  			  	case Some(a) =>	names+=parent1.names.get(id); Some(a.t.id); 
+            	  			  	case Some(a) =>	names+=parent1.names.get(id); Some((a.t.id,groupIds(parent1.mmGraph)));
             	  			  	case None 	 => parent2.arrows.get(id) match{
-            	  			  	  					case Some(a) => names+=parent2.names.get(id); Some(a.t.id);
+            	  			  	  					case Some(a) => names+=parent2.names.get(id); Some((a.t.id,groupIds(parent2.mmGraph)));
             	  			  	  					case None => None /* its a type id */
             	  			  					}
             	  			  }	
             	  			  pt match{
             	  			    case Some(at) => typeSet+=at
             	  			    case None 	  => /*do nothing */
-            	  			  }
+            	  			  }            	  			  
              	}
             }
             if(0 == typeSet.size && 3 == sid.v.size){
@@ -181,7 +226,8 @@ trait Output{
                   for(e<-sid.v){
 	            	  e._3 match{
 	            	    case "A" => found_A=true;
-	            	    			typeSet+=e._1  
+	            	    			val temp = (e._1,groupIds(typeGraph))
+	            	    			typeSet+=temp 
 	            	    case "uD" => found_uD=true;
 	            	    			 val convertedId = convertId(e._1) 	
 	            	    			 rs.names.get(convertedId) match {
@@ -211,18 +257,18 @@ trait Output{
        	    			)
 	        	    group match {
 	    					 case Some(Arrow(SetId(v),_,_,_)) => 
-	    					   		val parentSetIdTriple = v.head
-					        	    var setIdSet = MSet[(Id,Int,String)]() 
+	    					 		var setIdSet = MSet[(Id,Int,String)]() 
 					        	    for(et<-typeSet){
-					        	      val triple = (et, parentSetIdTriple._2, parentSetIdTriple._3)
+					        	      val triple = (et._1, et._2.get, getFromIdArrow(et))
 					        	      setIdSet+= triple
 					        	    }
 	    					   		SetId(setIdSet)
-	    					 case _ => if(1 == typeSet.size){
-	    						 			convertId(typeSet.head)
-	    					 		   }else{
-	    					 		     sys.error("Programming error 7" + typeSet)
-	    					 		   }
+	    					 case _ => 
+		    					  if(typeSet.head._2 == None){ 
+		        	    			 convertId(typeSet.head._1)
+		    					  }else{
+		        	    			 sys.error("Programming error 4" + typeSet)	        	    		   
+		    					  }
 	        	    }
         	}
         	//Build Name:
@@ -276,7 +322,7 @@ trait Output{
   
   protected def printGraph(g:AbstractGraph,name:String,path:String,printNames:Boolean=true)={
     
-    println("\n\n" + name + " " + g)
+    //println("\n\n" + name + " " + g)
     
     def formatNode(l:List[String],n:Node):List[String]={
     	var rs=l
