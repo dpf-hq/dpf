@@ -46,13 +46,14 @@ trait Output{
 	            	val id = e._1;
 	            	
 	            	//Build Name:
-	            	parent1.nodes.get(id) match{
-		  			  	case Some(n) =>	names+=parent1.names.get(id); 
-		  			  	case None 	 => parent2.nodes.get(id) match{
-		  			  	  					case Some(n) => names+=parent2.names.get(id); 
-		  			  	  					case None => /* its a type id */
-		  			  					}		  
-					}
+            	    parent1.names.get(id) match{
+			  			  	case name1@Some(n) =>names+=name1; 
+			  			  	case None 	 => parent2.names.get(id) match{
+			  			  	  					case name2@Some(n) => names+=name2; 
+			  			  	  					case None => /* its a type id */
+			  			  	  					  println("No name for: " + id)
+			  			  					}		  
+	            	}
 	            }
             }
             //Add node:
@@ -89,12 +90,12 @@ trait Output{
             if(3 != sid.v.size){
 	            for(e<-sid.v){
 	            	  val id = e._1;
-	            	  parent1.nodes.get(id) match{
-			  			  	case Some(n) =>	names+=parent1.names.get(id); 
-			  			  	case None 	 => parent2.nodes.get(id) match{
-			  			  	  					case Some(n) => names+=parent2.names.get(id); 
+	            	  parent1.names.get(id) match{
+			  			  	case name1@Some(n) =>names+=name1; 
+			  			  	case None 	 => parent2.names.get(id) match{
+			  			  	  					case name2@Some(n) => names+=name2; 
 			  			  	  					case None => /* its a type id */
-			  			  	  					  println("No name for:" + id)
+			  			  	  					  println("No name for: " + id)
 			  			  					}		  
 	            	  }
 	            }
