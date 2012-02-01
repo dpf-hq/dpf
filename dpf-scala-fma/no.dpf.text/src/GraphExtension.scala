@@ -777,7 +777,7 @@ case class TypingMorphism(input:AbstractGraph) extends Morphism{
   private lazy val codomainnodes:Set[Id] = mkCodomainNodes()    
   def codomainNodes():Set[Id]= immutable match {case true => codomainnodes; case _ => mkCodomainNodes()}
   private def mkCodomainNodes():Set[Id]={
-    Set((for{n<-input.mmGraph.nodes.values} yield {n.id}) toSeq: _ *)
+    Set((for{n<-input.nodes.values} yield {n.t.id}) toSeq: _ *) /* do not use mmGraph here since SIds not includes*/
   }
 
   private lazy val domainarrows:Set[Id]= mkDomainArrows() 
@@ -788,8 +788,8 @@ case class TypingMorphism(input:AbstractGraph) extends Morphism{
   
   private lazy val codomainarrows:Set[Id]=mkCodomainArrows()
   def codomainArrows():Set[Id]= immutable match {case true => codomainarrows; case _ => mkCodomainArrows()}
-  private def mkCodomainArrows():Set[Id]={
-    Set((for{n<-input.mmGraph.arrows.values} yield {n.id}) toSeq: _ *)
+  private def mkCodomainArrows():Set[Id]={						/* do not use mmGraph here since SIds not includes*/
+    Set((for{n<-input.arrows.values} yield {n.t.id}) toSeq: _ *)
   }
   
 } 
