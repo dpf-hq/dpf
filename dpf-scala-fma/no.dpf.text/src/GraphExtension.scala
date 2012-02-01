@@ -761,10 +761,22 @@ case class TypingMorphism(input:AbstractGraph) extends Morphism{
   }
   
   def codomainArrowSr(id:Id):Id={
+    //
+    //Because of Attributes coevolution works only with two level
+    //
+    if(id == TypeArrow.TAttribute().id){
+      return GraphDpf.node.id
+    }
     input.mmGraph.arrows(id).sr.id
   }
   
   def codomainArrowTg(id:Id):Id={
+    //
+    //Because of Attributes coevolution works only with two level
+    //
+    if(id == TypeArrow.TAttribute().id){
+      return TypeNode.TAttribute().id
+    }
     input.mmGraph.arrows(id).tg.id
   }
 
