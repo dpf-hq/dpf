@@ -354,7 +354,24 @@ case class Cospan(left:Morphism,right:Morphism) extends TwoMorphism{
 }
 case class Composition(m1:Morphism,m2:Morphism){
   
-  def compositeMorphism():Morphism = null
+  lazy val compositeMorphism:Morphism = {
+	  
+	  val nodes = MMap[Id,Id]()
+	  val arrows = MMap[Id,Id]()
+	  
+	  for(n<-m1.domainNodes()){
+	    nodes+=n->m2.codomainNode(m1.codomainNode(n))
+	  }
+	  
+	  for(a<-m1.domainArrows()){
+	    arrows+=a->m2.codomainArrow(m1.codomainArrow(a))
+	  }
+	  
+	  val nodesSetM = SetMorphism(nodes.toMap,m2.codomainNodes())
+	  val arrowsSetM = SetMorphism(nodes.toMap,m2.codomainNodes())
+
+	  ArbitraryMorphismWithIds(nodesSetM,(arrowsSetM,m1.domainArrowSrTg,m2.codomainArrowSrTg))
+  }
   
   /**
    * Final-Pullback-Complement for Monic matches
