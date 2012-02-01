@@ -368,7 +368,7 @@ case class Composition(m1:Morphism,m2:Morphism){
 	  }
 	  
 	  val nodesSetM = SetMorphism(nodes.toMap,m2.codomainNodes())
-	  val arrowsSetM = SetMorphism(nodes.toMap,m2.codomainNodes())
+	  val arrowsSetM = SetMorphism(arrows.toMap,m2.codomainArrows())
 
 	  ArbitraryMorphismWithIds(nodesSetM,(arrowsSetM,m1.domainArrowSrTg,m2.codomainArrowSrTg))
   }

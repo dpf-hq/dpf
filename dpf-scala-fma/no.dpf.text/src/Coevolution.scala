@@ -87,15 +87,21 @@ case class SimpleCoevolutionSpan(TL:AbstractGraph,TK:AbstractGraph,TR:AbstractGr
   
   override val tG:Morphism = TypingMorphism(G);
 
+  
+  
+  lazy val tTG = TypingMorphism(TG);
+
+  lazy val tTC = Composition(tg,tTG).compositeMorphism;
+
+  lazy val TC = toGraph(TG,TG,TG.mmGraph,tTC);;
+  
   //
   //With domain., codomain. Much nicer method calls /*improve*/ //TODO
   //
-//  lazy val TC = toGraph(TG,TG,TG.mmGraph,); //DpFTypingMorphism required
 //  lazy val TH = toGraph(TR,TC,TG.mmGraph,tm2.codomainNodes(),tm2.codomainArrows(),tm2.codomainArrowSr,tm2.codomainArrowTg);
 //  lazy val C = toGraph(G,G,TC,k.codomainNodes(),k.codomainArrows(),k.codomainArrowSr,k.codomainArrowTg)
   lazy val L = toGraph(G,G,TL,tL);
 //  lazy val R = toGraph(K,K,TR,tR);    
-//  lazy val K = toGraph(L,R,TK,tK);    
 //  lazy val H = toGraph(R,C,TH,m2.codomainNodes(),m2.codomainArrows(),m2.codomainArrowSr,m2.codomainArrowTg)
   
   def print(path:String)={
@@ -107,14 +113,14 @@ case class SimpleCoevolutionSpan(TL:AbstractGraph,TK:AbstractGraph,TR:AbstractGr
 	 printGraph(TL,"TL",path,false)
 	 printGraph(TK,"TK",path,false)
 	 printGraph(TR,"TR",path,false)
-//	 printGraph(TC,"TC",path)
-//	 printGraph(TG,"TG",path)
+	 printGraph(TC,"TC",path)
+	 printGraph(TG,"TG",path)
 //	 printGraph(TH,"TH",path)
 	 printGraph(L,"L",path,false)
 //	 printGraph(K,"K",path,false)
 //	 printGraph(R,"R",path,false)
 //	 printGraph(C,"C",path)
-//	 printGraph(G,"G",path)
+	 printGraph(G,"G",path)
 //	 printGraph(H,"H",path)
      
   }

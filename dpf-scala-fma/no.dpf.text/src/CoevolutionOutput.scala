@@ -118,7 +118,7 @@ trait Output{
             
         	typeGraph.arrows.get(typing.codomainArrow(aId)) match {
         	  case None => 
-        	    sys.error("Node type with id=" + sid + " does not exist! ")
+        	    sys.error("Arrow type with id=" + aId + " does not exist! ")
         	  case Some(a) =>  
         	    
         	    //Build Name:
