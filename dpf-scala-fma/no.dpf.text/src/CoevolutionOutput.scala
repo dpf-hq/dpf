@@ -39,9 +39,21 @@ trait Output{
 	            	}
 	            }
             }
+            
             //Add node:
             if(!attributeFound){
-		        	typeGraph.nodes.get(typing.codomainNode(nId)) match {
+              
+            		//Type node may be wrapped into setId:
+            		val nt = typing.codomainNode(nId) match {
+            		  case setId@SetId(_) => if(setId.containsAId){
+            			  						setId.ids.head
+            		  						 }else{
+            		  						    setId
+            		  						 }
+            		  case nId@_		  => nId 				
+            		}
+            		
+		        	typeGraph.nodes.get(nt) match {
 	            	  case None => 
 	            	    sys.error("Node type with id=" + nId + " does not exist! ")
 	            	  case Some(nt) => 
