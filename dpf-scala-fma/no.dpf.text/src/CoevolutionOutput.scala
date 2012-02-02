@@ -15,23 +15,6 @@ trait Output{
 		  			    typeGraph:AbstractGraph,
 		  			    typing:Morphism):AbstractGraph = {
     
-    /**
-     *Remove SetId from Attribute Types and Special Ids 
-     */
-    def convertId(id:Id):Id={
- 		id match{ 
-			case s@SetId(_) => 
-		  		if(1 == s.v.size){
-		  		  s.ids.head match{
-		  		    case AId(_) => s.ids.head  //Attribute Node
-		  		    case SId(_) => s.ids.head  
- 				    case _ => id            	  				  		   
-		  		  }
-		  		}else id          	  				 
-			case _ => id
-		}          	  
-    }
-    
     //Add nodes:
     val rs = new MGraph(typeGraph,()=>sys.error("Programming error!"))
     for(nId<-typing.domainNodes()){
@@ -137,16 +120,40 @@ trait Output{
 				        					  }   
 				        case nId@_ => rs.nodes(nId)
 				      }
+				      println("1")
 				      rs.addAArrow(newName,rs.nodes(typing.domainArrowSr(aId)),tgNode,TypeArrow.TAttribute(),aId);
+				      println("2")
 			    }
         	}else{
+ 	        	println("5")
 	            typeGraph.arrows.get(typing.codomainArrow(aId)) match {
 	        	  case None => 
 	        	    sys.error("Arrow type with id=" + aId + " does not exist! ")
 	        	  case Some(a) =>  
-	        	    //Add arrow:
-		    	    rs.addArrow(newName,rs.nodes(typing.domainArrowSr(aId)),rs.nodes(typing.domainArrowTg(aId)),a,aId);
+			        //Attribute Id can be wrapped into a SetId:
+	        	    if(a.t == TypeArrow.TAttribute()){
+	        	    println("11")
+				      val tgNode = typing.domainArrowTg(aId) match{
+				        case snId@SetId(_) => if(snId.containsAId){
+				        						Node(snId.ids.head,TypeNode.TAttribute())	
+				        					  }else{
+				        					    rs.nodes(snId)
+				        					  }   
+				        case nId@_ => rs.nodes(nId)
+				      }
+			          rs.addAArrow(newName,rs.nodes(typing.domainArrowSr(aId)),tgNode,TypeArrow.TAttribute(),aId);
+			         println("21")
+ 	        		}else{
+					    println("31")
+
+ 	        			//Add arrow:
+ 	        			rs.addArrow(newName,rs.nodes(typing.domainArrowSr(aId)),rs.nodes(typing.domainArrowTg(aId)),a,aId);
+
+					    println("32")
+ 	        		  
+ 	        		}
 	            }	
+ 	        	println("6")
         	}
         case a@_		  => sys.error("Programming error: arrow " + a)
       }
