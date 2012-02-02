@@ -316,7 +316,8 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 			
 		};
 		try {
-			File file = new File(predicate.getIcon());
+			URI base = URI.createFileURI(specification.getSignature().eResource().getURI().toFileString());
+			File file = new File(URI.createFileURI(predicate.getIcon()).resolve(base).toFileString());
 			action.setImageDescriptor(ImageDescriptor.createFromURL(file.toURI().toURL()));
 		} catch (MalformedURLException e) {
 			DPFErrorReport.logError(e);
@@ -491,9 +492,11 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 	private void loadSignature() {
 		if(resourceSet == null)
 			resourceSet = getResourceSet();
-		if(specification.getSignatureFile() != null)
-			specification.setSignature(SignatureEditor.loadSignature(resourceSet, URI.createFileURI(specification.getSignatureFile()), resourceToDiagnosticMap));
-		else{
+		
+		if(specification.getSignatureFile() != null){
+			URI base = URI.createFileURI(((IFileEditorInput)getEditorInput()).getFile().getLocation().toOSString());
+			specification.setSignature(SignatureEditor.loadSignature(resourceSet, URI.createFileURI(specification.getSignatureFile()).resolve(base), resourceToDiagnosticMap));
+		}else{
 			Resource resource = DPFCoreUtil.getResource(resourceSet, DPFConstants.DefaultSignature, resourceToDiagnosticMap);
 			resourceSet.getURIResourceMap().put(DPFConstants.DefaultSignature, resource);
 			Signature defaultSignature = getDefaultSignature();

@@ -401,7 +401,7 @@ public class SignatureEditor extends FormEditor implements CommandStackListener,
 			graph.getContents().add(DPFConstants.REFLEXIVE_TYPE_GRAPH);
 			resourceSet2.getURIResourceMap().put(DPFConstants.DefaultGraph, graph);
 		}
-		Resource signature = resourceSet2.createResource(createFileURI);
+		Resource signature = DPFCoreUtil.getResource(resourceSet2, createFileURI, resourceToDiagnosticMap2);//resourceSet2.createResource(createFileURI);
 		try {
 			signature.load(null);
 		} catch (IOException e) {

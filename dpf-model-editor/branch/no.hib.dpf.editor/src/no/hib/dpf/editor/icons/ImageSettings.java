@@ -17,6 +17,7 @@ import java.util.Map;
 
 import no.hib.dpf.editor.DPFPlugin;
 
+import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
 
@@ -60,8 +61,12 @@ public enum ImageSettings {
 	public ImageDescriptor getImageDescriptor() {
 		ImageDescriptor result = maps.get(fileName);
 		if(result == null){
-			result = ImageDescriptor.createFromURL(DPFPlugin.getDefault().getBundle().getResource(fileName));
-			maps.put(fileName, result);
+			try {
+				result = ImageDescriptor.createFromURL(FileLocator.resolve(DPFPlugin.getDefault().getBundle().getResource(fileName)));
+				maps.put(fileName, result);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 		return result;
 	}

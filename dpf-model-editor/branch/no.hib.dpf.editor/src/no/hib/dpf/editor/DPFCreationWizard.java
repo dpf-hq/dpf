@@ -173,7 +173,7 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 			fileCount++;
 			
 			String diagramFileName = newDiagramFile.getLocation().toOSString();
-			
+			URI base = URI.createFileURI(diagramFileName);
 			//Initialize model file and diagram file
 			Specification newSpec = CoreFactory.eINSTANCE.createSpecification();
 			DPFDiagram newDiagram = new DPFDiagram();
@@ -193,10 +193,11 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 			
 			String signatureFileName = signatureLinkPage.getLinkTarget();
 			if(signatureFileName != null){
-				Signature signature = SignatureEditor.loadSignature(resourceSet, URI.createFileURI(signatureFileName), resourceToDiagnosticMap);
+				URI relative = URI.createFileURI(signatureFileName).deresolve(base);
+				Signature signature = SignatureEditor.loadSignature(resourceSet, relative, resourceToDiagnosticMap);
 				newSpec.setSignature(signature);
 				if(signature != null)
-					newSpec.setSignatureFile(signatureFileName);
+					newSpec.setSignatureFile(relative.toFileString());
 			}
 			
 			newDiagram.setDpfGraph(newSpec.getGraph());

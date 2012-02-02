@@ -14,6 +14,7 @@ import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.gef.ui.actions.ActionRegistry;
 import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.IContentProvider;
@@ -282,6 +283,9 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 				FileDialog dialog = new FileDialog(e.display.getActiveShell());
 				dialog.setFileName(master.getMultiEditor().getSignatureFile());
 				String fileName = dialog.open();
+				URI base = predicate.eResource().getURI();
+				URI relative = URI.createFileURI(fileName);
+				fileName = relative.deresolve(base).toFileString();
 				if (fileName != null && !fileName.equals(predicate.getIcon())) {
 					changePredicateIcon(fileName);
 					icon.setText(fileName);
