@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<no.hib.dpf.core:Specification xmlns:no.hib.dpf.core="http://no.hib.dpf.core" signatureFile="/media/Data/DPF/runtime-EclipseApplication/dpf/signature/Default.sig">
+<no.hib.dpf.core:Specification xmlns:no.hib.dpf.core="http://no.hib.dpf.core" signatureFile="../Default.sig">
   <graph id="68b29fbe-c32d-442b-a093-9cd6ae9d3025" name="Default name">
     <nodes id="0402ba44-8b02-431a-8496-faf7699b9299" name="SX">
       <typeNode href="platform:/resource/DefaultGraph.xmi#//@nodes.0"/>

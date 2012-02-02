@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<no.hib.dpf.core:Specification xmlns:no.hib.dpf.core="http://no.hib.dpf.core" signatureFile="/media/Data/DPF/runtime-EclipseApplication/dpf/signature/Default.sig">
+<no.hib.dpf.core:Specification xmlns:no.hib.dpf.core="http://no.hib.dpf.core" signatureFile="../Default.sig">
   <graph id="ffdfb146-583f-449d-aef0-c64bcac9dc62" name="Default name">
     <nodes id="a2669a00-febb-4a96-b718-c4f3257181fb" name="SYXB 1" typeNode="//@typeGraph/@nodes.1"/>
     <nodes id="84937993-f109-48e3-a9c0-fc5a2799ab03" name="SX 2" typeNode="//@typeGraph/@nodes.0"/>
