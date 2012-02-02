@@ -152,15 +152,12 @@ trait Output{
 				      println("2")
 			    }
         	}else{
- 	        	println("5")
 	            typeGraph.arrows.get(typing.codomainArrow(aId)) match {
 	        	  case None => 
 	        	    sys.error("Arrow type with id=" + aId + " does not exist! ")
 	        	  case Some(at) =>  
-	        	    println("A")
 			        //Attribute Id can be wrapped into a SetId:
 	        	    if(at == TypeArrow.TAttribute()){
-	        	    println("11" + at)
 				      val tgNode = typing.domainArrowTg(aId) match{
 				        case snId@SetId(_) => if(snId.containsAId){
 				        						Node(snId.ids.head,TypeNode.TAttribute())	
@@ -172,21 +169,56 @@ trait Output{
 			          rs.addAArrow(newName,rs.nodes(typing.domainArrowSr(aId)),tgNode,TypeArrow.TAttribute(),aId);
 			        //Add value: 
  	        		}else if(at.t == TypeArrow.TAttribute()){
- 	        		    println("B  " + rs.nodes)
  	        			rs.addArrow(newName,rs.nodes(typing.domainArrowSr(aId)),rs.nodes(filterValues(typing.domainArrowTg(aId))),at,aId);
 					//Add arrow:
  	        		}else{
- 	        		    println("C")
  	        			rs.addArrow(newName,rs.nodes(typing.domainArrowSr(aId)),rs.nodes(typing.domainArrowTg(aId)),at,aId);
  	        		}
 	            }	
- 	        	println("6")
         	}
         case a@_		  => sys.error("Programming error: arrow " + a)
       }
     }
     rs
   }
+  
+  
+  /**
+   * do some magic
+   */
+  protected def typingMFromPushout(
+		  				pushout:Cospan,
+		  			    typeGraph:AbstractGraph):Morphism = {
+		  //Add Parent left
+		  //Add Parent Right
+    
+    //
+    //
+    //
+    //Anders machen Unten drei TGraph, Open Cospan für dpfgraph einen mit zwei id morphism 
+    
+		  val groupId:Option[Int] = None
+    
+		  for(n<-pushout.left.codomainNodes()){
+		    n match{
+		      case setId@SetId(v) => 
+		        		for(idT<-v){
+		        		  idT._3 match{
+		        		    case "L" => 
+		        		    case "R" =>
+		        		    case _ 	=>  sys.error("Programming error")
+		        		  }
+		        		}
+		      case _=> sys.error("Programming error")		      
+		    }
+		  }
+
+		  for(a<-pushout.left.codomainArrows()){
+		    println(a)
+		  }
+		  
+    null;
+  }  
   
   protected def printGraph(g:AbstractGraph,name:String,path:String,printNames:Boolean=true)={
     
