@@ -74,7 +74,7 @@ trait Output{
 	            	    sys.error("Node type with id=" + nId + " does not exist! ")
 	            	  case Some(nt) => 
 	            	    	if(nt.t == TypeNode.TAttribute()){
-	            	    	  rs.addVNode(nId,nt) 
+	            	    	  rs.addVNode(filterValues(nId),nt) 
 	    	    			}else{
 		            	    	var newName = "";
 		            	    	for(o<-names.toList.sorted){
@@ -157,10 +157,10 @@ trait Output{
 	            typeGraph.arrows.get(typing.codomainArrow(aId)) match {
 	        	  case None => 
 	        	    sys.error("Arrow type with id=" + aId + " does not exist! ")
-	        	  case Some(a) =>  
+	        	  case Some(at) =>  
 			        //Attribute Id can be wrapped into a SetId:
-	        	    if(a.t == TypeArrow.TAttribute()){
-	        	    println("11")
+	        	    if(at == TypeArrow.TAttribute()){
+	        	    println("11" + at)
 				      val tgNode = typing.domainArrowTg(aId) match{
 				        case snId@SetId(_) => if(snId.containsAId){
 				        						Node(snId.ids.head,TypeNode.TAttribute())	
@@ -170,15 +170,17 @@ trait Output{
 				        case nId@_ => rs.nodes(nId)
 				      }
 			          rs.addAArrow(newName,rs.nodes(typing.domainArrowSr(aId)),tgNode,TypeArrow.TAttribute(),aId);
-			         println("21")
- 	        		}else{
-					    println("31")
-
- 	        			//Add arrow:
- 	        			rs.addArrow(newName,rs.nodes(typing.domainArrowSr(aId)),rs.nodes(typing.domainArrowTg(aId)),a,aId);
-
-					    println("32")
- 	        		  
+			        //Add value: 
+ 	        		}else if(at.t == TypeArrow.TAttribute()){
+ 	        			//Add default = null if required
+ 	        		    //If empty filtervalues have to add default value:
+ 	        		    //Value must alread inserted in upper section
+ 	        			print("type is" + at.t) 
+ 	        		    val v = filterValues(typing.domainArrowTg(aId))
+ 	        			rs.addArrow(newName,rs.nodes(typing.domainArrowSr(aId)),rs.nodes(v),at,aId);
+					//Add arrow:
+ 	        		}else{    	
+ 	        			rs.addArrow(newName,rs.nodes(typing.domainArrowSr(aId)),rs.nodes(typing.domainArrowTg(aId)),at,aId);
  	        		}
 	            }	
  	        	println("6")
