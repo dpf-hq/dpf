@@ -14,6 +14,22 @@ trait Output{
 		  			    parent2:AbstractGraph,
 		  			    typeGraph:AbstractGraph,
 		  			    typing:Morphism):AbstractGraph = {
+ 
+    //Retrieve values from id
+    def filterValues(s:Id):Id={
+    	if(s.isInstanceOf[AValue]){
+    	  return s
+    	}
+    	s match{
+    	  case setId@SetId(_) => val f = setId.ids.filter(_.isInstanceOf[AValue]).asInstanceOf[Set[AValue]]
+    			  				 f.size match {
+    			  				 	case 0 => sys.error("Programming error! No value:" + s)
+    			  				 	case 1 => f.head
+    			  				 	case _ => VSetId(f)
+    	  						 } 
+    	  case _ => sys.error("Programming error!") 
+    	}
+    }
     
     //Add nodes:
     val rs = new MGraph(typeGraph,()=>sys.error("Programming error!"))
@@ -130,7 +146,7 @@ trait Output{
 				        					  }else{
 				        					    rs.nodes(snId)
 				        					  }   
-				        case nId@_ => rs.nodes(nId)
+				        case nId@_ => Node(nId,TypeNode.TAttribute())
 				      }
 				      println("1")
 				      rs.addAArrow(newName,rs.nodes(typing.domainArrowSr(aId)),tgNode,TypeArrow.TAttribute(),aId);

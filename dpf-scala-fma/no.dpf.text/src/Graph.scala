@@ -449,12 +449,12 @@ sealed trait TypeArrow extends Type{
 	}
 	case class TAttribute() extends TypeArrow{
 	    override val id = SId(2)
-	    override val t = this
+	    override val t = TSelf()
 		override def toString="TAttrArrow";
 	}
 	case class TJoker() extends TypeArrow{
 	    override val id = SId(3)
-	    override val t = this
+	    override val t = TSelf()
 		override def toString="_";
 	}
 }
@@ -472,12 +472,12 @@ sealed trait TypeNode extends Type{
 	}
 	case class TAttribute() extends TypeNode{
 	    override val id = SId(10)
-	    override val t = this
+	    override val t = TSelf()
 		override def toString="TAttrNode";
 	}
 	case class TJoker() extends TypeNode{
 	    override val id = SId(20)
-	    override val t = this
+	    override val t = TSelf()
 		override def toString="_";
 	}
 }
@@ -528,6 +528,11 @@ sealed trait Id{
 //RegularId:
 case class RId(v:Long) extends Id{
   override lazy val toString="ID"+v;
+}
+
+//For keeping multiple values:
+case class VSetId(v:Set[AValue]) extends Id{
+  override lazy val toString=v.toString;
 }
 
 //AttributeTypeId:
