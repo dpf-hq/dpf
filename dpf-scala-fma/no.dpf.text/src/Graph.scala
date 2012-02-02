@@ -492,31 +492,31 @@ sealed trait TypeP extends TypeNode{
 	protected def convert(s:String):AValue
 }
 object TypeP{
-	val TBoolean = new Node(AId("TBoolean"),TypeNode.TAttribute()) with TypeP{
+	val TBoolean = new Node(AId("TBoolean",VBoolean(true)),TypeNode.TAttribute()) with TypeP{
 		override def convert(s:String)=VBoolean(s.toBoolean);
 	}
-	val TChar = new Node(AId("TChar"),TypeNode.TAttribute()) with TypeP{
+	val TChar = new Node(AId("TChar",VChar(' ')),TypeNode.TAttribute()) with TypeP{
 		override def convert(s:String)=VChar(s.toCharArray()(0));
 	}
-	val TByte = new Node(AId("TByte"),TypeNode.TAttribute()) with TypeP{
+	val TByte = new Node(AId("TByte",VByte(0)),TypeNode.TAttribute()) with TypeP{
 		override def convert(s:String)=VByte(s.toByte);
 	}
-	val TShort = new Node(AId("TShort"),TypeNode.TAttribute()) with TypeP{
+	val TShort = new Node(AId("TShort",VShort(0)),TypeNode.TAttribute()) with TypeP{
 		override def convert(s:String)=VShort(s.toShort);
 	}
-	val TInt = new Node(AId("TInt"),TypeNode.TAttribute()) with TypeP{
+	val TInt = new Node(AId("TInt",VInt(0)),TypeNode.TAttribute()) with TypeP{
 		override def convert(s:String)=VInt(s.toInt);
 	}
-	val TLong = new Node(AId("TLong"),TypeNode.TAttribute()) with TypeP{
+	val TLong = new Node(AId("TLong",VLong(0)),TypeNode.TAttribute()) with TypeP{
 		override def convert(s:String)=VLong(s.toLong);
 	}
-	val TFloat = new Node(AId("TFloat"),TypeNode.TAttribute()) with TypeP{
+	val TFloat = new Node(AId("TFloat",VFloat(0)),TypeNode.TAttribute()) with TypeP{
 		override def convert(s:String)=VFloat(s.toFloat);
 	}
-	val TDouble = new Node(AId("TDouble"),TypeNode.TAttribute()) with TypeP{
+	val TDouble = new Node(AId("TDouble",VDouble(0)),TypeNode.TAttribute()) with TypeP{
 		override def convert(s:String)=VDouble(s.toDouble);
 	}
-	val TString = new Node(AId("TString"),TypeNode.TAttribute()) with TypeP{
+	val TString = new Node(AId("TString",VString("")),TypeNode.TAttribute()) with TypeP{
 		override def convert(s:String)=VString(s);
 	}
 }	
@@ -536,7 +536,7 @@ case class VSetId(v:Set[AValue]) extends Id{
 }
 
 //AttributeTypeId:
-case class AId(v:String) extends Id{
+case class AId(v:String,default:AValue) extends Id{
   override lazy val toString=v;
 }
 

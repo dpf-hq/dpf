@@ -23,7 +23,13 @@ trait Output{
     	s match{
     	  case setId@SetId(_) => val f = setId.ids.filter(_.isInstanceOf[AValue]).asInstanceOf[Set[AValue]]
     			  				 f.size match {
-    			  				 	case 0 => sys.error("Programming error! No value:" + s)
+    			  				 	case 0 => 
+    			  				 	  //Add default: 
+    			  				 	  if(setId.containsAId){
+    			  				 	    setId.ids.head.asInstanceOf[AId].default
+    			  				 	  }else{
+    			  				 	    sys.error("Programming error! " + s)
+    			  				 	  }	
     			  				 	case 1 => f.head
     			  				 	case _ => VSetId(f)
     	  						 } 
@@ -37,59 +43,52 @@ trait Output{
       nId match {
         case sid@SetId(_) => 
             val names = MSet[Option[String]]();
-            var attributeFound = false;
-            if(sid.containsAId){
-              attributeFound = true;
-            }else{
-	            for(e<-sid.v){
-	            	val id = e._1;
-	            	
-	            	//Build Name:
-            	    parent1.names.get(id) match{
-			  			  	case name1@Some(n) =>names+=name1; 
-			  			  	case None 	 => parent2.names.get(id) match{
-			  			  	  					case name2@Some(n) => names+=name2; 
-			  			  	  					case None => /* its a type id */
-			  			  	  					  println("No name for: " + id)
-			  			  					}		  
-	            	}
-	            }
+            for(e<-sid.v){
+            	val id = e._1;
+            	
+            	//Build Name:
+        	    parent1.names.get(id) match{
+		  			  	case name1@Some(n) =>names+=name1; 
+		  			  	case None 	 => parent2.names.get(id) match{
+		  			  	  					case name2@Some(n) => names+=name2; 
+		  			  	  					case None => /* its a type id */
+		  			  	  					  println("No name for: " + id)
+		  			  					}		  
+            	}
             }
-            
-            //Add node:
-            if(!attributeFound){
-              
-            		//Type node may be wrapped into setId:
-            		val nt = typing.codomainNode(nId) match {
-            		  case setId@SetId(_) => if(setId.containsAId){
-            			  						setId.ids.head
-            		  						 }else{
-            		  						    setId
-            		  						 }
-            		  case nId@_		  => nId 				
-            		}
-            		
-		        	typeGraph.nodes.get(nt) match {
-	            	  case None => 
-	            	    sys.error("Node type with id=" + nId + " does not exist! ")
-	            	  case Some(nt) => 
-	            	    	if(nt.t == TypeNode.TAttribute()){
-	            	    	  rs.addVNode(filterValues(nId),nt) 
-	    	    			}else{
-		            	    	var newName = "";
-		            	    	for(o<-names.toList.sorted){
-		            	    	  o match{
-		            	    	    case None => /*do nothing*/
-		            	    	    case Some(oldN) => newName+=oldN           
-		            	    	  }
-		             	    	}
-			    			    newName match{
-			    				    case "" => rs.addNode("newName",nt,nId);
-			    				    case _ =>  rs.addNode(newName,nt,nId);
-			    			    }
-	    	    			}
-	            	}
-            }
+    		//Type node may be wrapped into setId:
+    		val nt = typing.codomainNode(nId) match {
+    		  case setId@SetId(_) => if(setId.containsAId){
+    			  						setId.ids.head
+    		  						 }else{
+    		  						    setId
+    		  						 }
+    		  case nId@_		  => nId 				
+    		}
+    		
+        	typeGraph.nodes.get(nt) match {
+        	  case None => 
+        	    //Only an attribute type:
+        	    if(!sid.containsAId){
+        	    	sys.error("Node type with id=" + nId + " does not exist! ")
+        	    }
+        	  case Some(nt) => 
+        	    	if(nt.t == TypeNode.TAttribute()){
+        	    	  rs.addVNode(filterValues(nId),nt) 
+	    			}else{
+            	    	var newName = "";
+            	    	for(o<-names.toList.sorted){
+            	    	  o match{
+            	    	    case None => /*do nothing*/
+            	    	    case Some(oldN) => newName+=oldN           
+            	    	  }
+             	    	}
+	    			    newName match{
+	    				    case "" => rs.addNode("newName",nt,nId);
+	    				    case _ =>  rs.addNode(newName,nt,nId);
+	    			    }
+	    			}
+        	}
         case n@_		  => sys.error(" node " + n)
       }
     }
@@ -158,6 +157,7 @@ trait Output{
 	        	  case None => 
 	        	    sys.error("Arrow type with id=" + aId + " does not exist! ")
 	        	  case Some(at) =>  
+	        	    println("A")
 			        //Attribute Id can be wrapped into a SetId:
 	        	    if(at == TypeArrow.TAttribute()){
 	        	    println("11" + at)
@@ -172,14 +172,11 @@ trait Output{
 			          rs.addAArrow(newName,rs.nodes(typing.domainArrowSr(aId)),tgNode,TypeArrow.TAttribute(),aId);
 			        //Add value: 
  	        		}else if(at.t == TypeArrow.TAttribute()){
- 	        			//Add default = null if required
- 	        		    //If empty filtervalues have to add default value:
- 	        		    //Value must alread inserted in upper section
- 	        			print("type is" + at.t) 
- 	        		    val v = filterValues(typing.domainArrowTg(aId))
- 	        			rs.addArrow(newName,rs.nodes(typing.domainArrowSr(aId)),rs.nodes(v),at,aId);
+ 	        		    println("B  " + rs.nodes)
+ 	        			rs.addArrow(newName,rs.nodes(typing.domainArrowSr(aId)),rs.nodes(filterValues(typing.domainArrowTg(aId))),at,aId);
 					//Add arrow:
- 	        		}else{    	
+ 	        		}else{
+ 	        		    println("C")
  	        			rs.addArrow(newName,rs.nodes(typing.domainArrowSr(aId)),rs.nodes(typing.domainArrowTg(aId)),at,aId);
  	        		}
 	            }	
