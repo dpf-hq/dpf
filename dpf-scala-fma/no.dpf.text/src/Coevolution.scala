@@ -96,7 +96,9 @@ trait AbstractCoevolutionSpan extends Output{
   
   protected lazy val po_right_top = Span(tr,tk).pushout(2);
 
-  protected lazy val id_typTypGraph = IdMorphismGraph(TG)
+  protected lazy val id_typTypGraph = IdMorphismGraph(TG);
+  
+  protected lazy val id_cospan_typTypGraph = Cospan(id_typTypGraph,id_typTypGraph)	
 }
 
 /**
