@@ -77,9 +77,9 @@ trait AbstractCoevolutionSpan extends Output{
 
   lazy val C = toGraph(G,G,TC,tC);
   
-  lazy val tTH =  typingMFromPushout(po_right_top, id_cospan_typTypGraph,tTR,tTC)
+  lazy val tTH = typingMFromPushout(po_right_top, id_cospan_typTypGraph,tTR,tTC)
 
-  lazy val tH =  typingMFromPushout(po_right_bottom, po_right_top,tR,tC)
+  lazy val tH = typingMFromPushout(po_right_bottom, po_right_top,tR,tC)
   
   lazy val TH = toGraph(TC,TR,TC.mmGraph,tTH);
 
@@ -98,7 +98,9 @@ trait AbstractCoevolutionSpan extends Output{
 
   protected lazy val poc_left_bottom = Composition(l,m).pushoutComplement(14);
   
-  protected lazy val pb_left_front = Cospan(tG,tg).pullback(15);
+  protected lazy val pb_left_front = Cospan(tG,tg).pullback(14); 
+  //Same number as before since C is created twice
+  //Also a merge opertion is required that replaces the String in the id according to the one created former
 
   protected lazy val po_right_bottom = Span(r,k).pushout(1);
   
@@ -137,7 +139,23 @@ case class SimpleCoevolutionSpan(TL:AbstractGraph,TK:AbstractGraph,TR:AbstractGr
 	 printGraph(G,"G",path)
 	 printGraph(TH,"TH",path)
 	 
+//	 println(m2.codomainNodes())
+//	 println("---")
+	 println(m2.domainNodes())
+	 println("---")
+//	 println(h.codomainNodes())
+//	 println("---")
+	 println(h.domainNodes())
+	 println("---")
+	 println("-F-L-O-1")
+
+	 println(tR)
+	 println("-F-L-O-2")
+	 println(tC)
+	 println("-F-L-O-3")
+	 
 	 println(tH)
+
 	 
 //	 printGraph(H,"H",path)
      

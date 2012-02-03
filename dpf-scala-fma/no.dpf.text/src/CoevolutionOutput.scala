@@ -194,7 +194,7 @@ trait Output{
 		  def getTypeSet(
 				  elementIds:Set[Id], 
 				  typLeft: Id => Id,
-				  rightLeft: Id => Id,
+				  typRight: Id => Id,
 				  leftTop: Id => Id,
 				  rightTop: Id => Id
 		  )={
@@ -205,8 +205,27 @@ trait Output{
 			        	//Use "L" and "R" instead of trying domain functions:
 			      		val triple = v.head
 			      		val t = triple._3 match {
-			      		  case "L" => leftTop(typLeft(triple._1)) 
-			      		  case "R" => rightTop(rightLeft(triple._1))
+			      		  case "L" => 
+			      		    try{
+			      		    leftTop(typLeft(triple._1)) 
+			      		    }catch{
+			      		      case ex =>
+			      		        println("TEST1" + setId)
+			      		        println(typLeft(triple._1))
+			      		        sys.error("1")
+			      		    }
+			      		  case "R" => 
+			      		    try{			      		    
+			      		    rightTop(typRight(triple._1))
+			      		    }catch{
+			      		      case ex =>
+			      		        println("TEST2" + setId)
+			      		        println(leftTyping)
+			      		        println("-------------")
+			      		        println(rightTyping)
+			      		        println(typRight(triple._1))
+			      		        sys.error("2")
+			      		    }
 			      		  case _=> sys.error("Programming error")		      
 			      		}
 			      		typing+=e->t
