@@ -147,9 +147,7 @@ trait Output{
 				        					  }   
 				        case nId@_ => Node(nId,TypeNode.TAttribute())
 				      }
-				      println("1")
 				      rs.addAArrow(newName,rs.nodes(typing.domainArrowSr(aId)),tgNode,TypeArrow.TAttribute(),aId);
-				      println("2")
 			    }
         	}else{
 	            typeGraph.arrows.get(typing.codomainArrow(aId)) match {
