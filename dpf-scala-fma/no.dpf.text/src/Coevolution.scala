@@ -94,6 +94,8 @@ case class SimpleCoevolutionSpan(TL:AbstractGraph,TK:AbstractGraph,TR:AbstractGr
   
   lazy val tTG = TypingMorphism(TG);
 
+  lazy val tTR = TypingMorphism(TR);
+
   lazy val tTC = Composition(tg,tTG).compositeMorphism;
 
   lazy val tC = pb_left_front.right
@@ -126,7 +128,7 @@ case class SimpleCoevolutionSpan(TL:AbstractGraph,TK:AbstractGraph,TR:AbstractGr
 	 printGraph(C,"C",path)
 	 printGraph(G,"G",path)
 	 
-	 typingMFromPushout(po_right_top,TR.mmGraph)
+//	 typingMFromPushout(po_right_top,TR.mmGraph)
 	 
 //	 printGraph(TH,"TH",path)
 //	 printGraph(H,"H",path)

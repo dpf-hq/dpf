@@ -893,6 +893,80 @@ case class InclusionMorphism(inputSub:AbstractGraph, input:AbstractGraph) extend
   
 }
 
+/**
+ * Arbitrary id Morphims:
+ */
+case class IdMorphismGraph(input:AbstractGraph) extends Morphism{
+  
+  override lazy val immutable:Boolean = !input.getClass().getPackage().getName().endsWith("mutable") 	
+  
+  /**
+   * input: id of codomain
+   * output: all ids of domain mapped to this id 
+   */
+  def domainNodes(id:Id):Set[Id]={
+    input.getNode(id) match{
+      case None => Set()
+      case _ => Set(id)
+    }
+  }
+  /**
+   * input: id of domain
+   * output: id of codomain mapped to this id 
+   */
+  def codomainNode(id:Id):Id=id
+ 
+  /**
+   * input: id of codomain
+   * output: all ids of domain mapped to this id 
+   */
+  def domainArrows(id:Id):Set[Id]={
+     input.getArrow(id) match{
+      case None => Set()
+      case _ => Set(id)
+    }
+  }
+
+  /**
+   * input: id of codomain
+   * output: all ids of domain mapped to this id 
+   */
+  def codomainArrow(id:Id):Id=id
+  
+  def domainArrowSr(id:Id):Id={
+    input.arrows(id).sr.id
+  }
+  
+  def domainArrowTg(id:Id):Id={
+    input.arrows(id).tg.id
+  }
+  
+  def codomainArrowSr(id:Id):Id=domainArrowSr(id)
+  
+  def codomainArrowTg(id:Id):Id=domainArrowTg(id)
+
+  private lazy val domainnodes:Set[Id] = mkDomainNodes()    
+  def domainNodes():Set[Id]= immutable match {case true => domainnodes; case _ => mkDomainNodes()}
+  private def mkDomainNodes():Set[Id]={
+    Set((for{n<-input.nodes.values} yield {n.id}) toSeq: _ *)
+  }
+  
+  def codomainNodes():Set[Id]= domainNodes()
+
+  private lazy val domainarrows:Set[Id]= mkDomainArrows() 
+  def domainArrows():Set[Id]= immutable match {case true => domainarrows; case _ => mkDomainArrows()}
+  private def mkDomainArrows():Set[Id]={
+    Set((for{a<-input.arrows.values} yield {a.id}) toSeq: _ *)
+  }
+  
+  def codomainArrows():Set[Id]=domainArrows() 
+  
+  override def validate():Boolean={
+	return true 
+  }  
+  
+}
+
 object Test {
 
   	//Ids:

@@ -187,8 +187,10 @@ trait Output{
    * do some magic
    */
   protected def typingMFromPushout(
-		  				pushout:Cospan,
-		  			    typeGraph:AbstractGraph):Morphism = {
+		  				top:Cospan,
+		  				bottom:Cospan,
+		  			    leftTyping:Morphism,
+		  			    rightTyping:Morphism):Morphism = {
 		  //Add Parent left
 		  //Add Parent Right
     
@@ -196,7 +198,7 @@ trait Output{
     //
     //
     //Anders machen Unten drei TGraph, Open Cospan für dpfgraph einen mit zwei id morphism 
-    
+/*    
 		  val groupId:Option[Int] = None
     
 		  for(n<-pushout.left.codomainNodes()){
@@ -216,7 +218,7 @@ trait Output{
 		  for(a<-pushout.left.codomainArrows()){
 		    println(a)
 		  }
-		  
+*/		  
     null;
   }  
   
