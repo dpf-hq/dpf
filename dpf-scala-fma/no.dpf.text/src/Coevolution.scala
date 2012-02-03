@@ -127,7 +127,7 @@ case class SimpleCoevolutionSpan(TL:AbstractGraph,TK:AbstractGraph,TR:AbstractGr
 	 printGraph(C,"C",path)
 	 printGraph(G,"G",path)
 	 
-//	 typingMFromPushout(po_right_top,TR.mmGraph)
+	 typingMFromPushout(po_right_top, id_cospan_typTypGraph, tTC, tTR)
 	 
 //	 printGraph(TH,"TH",path)
 //	 printGraph(H,"H",path)
