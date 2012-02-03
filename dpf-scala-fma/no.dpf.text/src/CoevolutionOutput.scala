@@ -4,6 +4,7 @@ import no.dpf.text.graph._;
 import no.dpf.text.graph.mutable.{Graph=>MGraph}
 import no.dpf.text.coevolution._;
 import scala.collection.mutable.{Set=>MSet}
+import scala.collection.mutable.{Map=>MMap}
 
 trait Output{
 
@@ -189,35 +190,54 @@ trait Output{
 		  				top:Cospan,
 		  			    leftTyping:Morphism,
 		  			    rightTyping:Morphism):Morphism = {
-		  //Add Parent left
-		  //Add Parent Right
-    
-    //
-    //
-    //
-    //Anders machen Unten drei TGraph, Open Cospan für dpfgraph einen mit zwei id morphism 
-/*    
-		  val groupId:Option[Int] = None
-    
-		  for(n<-pushout.left.codomainNodes()){
-		    n match{
-		      case setId@SetId(v) => 
-		        		for(idT<-v){
-		        		  idT._3 match{
-		        		    case "L" => 
-		        		    case "R" =>
-		        		    case _ 	=>  sys.error("Programming error")
-		        		  }
-		        		}
-		      case _=> sys.error("Programming error")		      
-		    }
+		  //Get Typ:
+		  def getTypeSet(
+				  elementIds:Set[Id], 
+				  typLeft: Id => Id,
+				  rightLeft: Id => Id,
+				  leftTop: Id => Id,
+				  rightTop: Id => Id
+		  )={
+			  val typing = MMap[Id,Id]();
+			  for(e<-elementIds){
+			    e match{
+			      case setId@SetId(v) => 
+			        	//Use "L" and "R" instead of trying domain functions:
+			      		val triple = v.head
+			      		val t = triple._3 match {
+			      		  case "L" => leftTop(typLeft(triple._1)) 
+			      		  case "R" => rightTop(rightLeft(triple._1))
+			      		  case _=> sys.error("Programming error")		      
+			      		}
+			      		typing+=e->t
+			      case _=> sys.error("Programming error")		      
+			    }
+			  }
+			  typing.toMap; 
 		  }
 
-		  for(a<-pushout.left.codomainArrows()){
-		    println(a)
-		  }
-*/		  
-    null;
+		  //Get Type for nodes:
+		  val nodeTypes = getTypeSet(
+				  			bottom.left.codomainNodes,
+				  			leftTyping.codomainNode,
+				  			rightTyping.codomainNode,
+				  			top.left.codomainNode,
+				  			top.right.codomainNode
+		  				  );	
+
+		  //Get Type for nodes:
+		  val arrowTypes = getTypeSet(
+				  			bottom.left.codomainArrows,
+				  			leftTyping.codomainArrow,
+				  			rightTyping.codomainArrow,
+				  			top.left.codomainArrow,
+				  			top.right.codomainArrow
+		  				  );	
+		  
+		  val nodes = SetMorphism(nodeTypes,top.left.codomainNodes())		
+		  val arrows = SetMorphism(arrowTypes,top.left.codomainArrows())		
+    
+		  ArbitraryMorphismWithIds(nodes,(arrows,bottom.left.codomainArrowSrTg(),top.left.codomainArrowSrTg()))
   }  
   
   protected def printGraph(g:AbstractGraph,name:String,path:String,printNames:Boolean=true)={
