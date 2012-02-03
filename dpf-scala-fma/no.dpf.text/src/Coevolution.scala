@@ -77,6 +77,14 @@ trait AbstractCoevolutionSpan extends Output{
 
   lazy val C = toGraph(G,G,TC,tC);
   
+  lazy val tTH =  typingMFromPushout(po_right_top, id_cospan_typTypGraph,tTR,tTC)
+
+  lazy val tH =  typingMFromPushout(po_right_bottom, po_right_top,tR,tC)
+  
+  lazy val TH = toGraph(TC,TR,TC.mmGraph,tTH);
+
+//  lazy val H = toGraph(C,R,TH,tH);
+  
   //
   //Calculations:
   //  
@@ -116,7 +124,8 @@ case class SimpleCoevolutionSpan(TL:AbstractGraph,TK:AbstractGraph,TR:AbstractGr
     println(tm2)
     println("------------------------ Model (m')---------------------\n\n")
     println(m2)  
-	 printGraph(TL,"TL",path,false)
+
+     printGraph(TL,"TL",path,false)
 	 printGraph(TK,"TK",path,false)
 	 printGraph(TR,"TR",path,false)
 	 printGraph(TG,"TG",path)
@@ -126,10 +135,10 @@ case class SimpleCoevolutionSpan(TL:AbstractGraph,TK:AbstractGraph,TR:AbstractGr
 	 printGraph(R,"R",path,false)
 	 printGraph(C,"C",path)
 	 printGraph(G,"G",path)
+	 printGraph(TH,"TH",path)
 	 
-	 typingMFromPushout(po_right_top, id_cospan_typTypGraph,tTR,tTC)
+	 println(tH)
 	 
-//	 printGraph(TH,"TH",path)
 //	 printGraph(H,"H",path)
      
   }
