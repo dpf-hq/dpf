@@ -185,8 +185,8 @@ trait Output{
    * do some magic
    */
   protected def typingMFromPushout(
-		  				top:Cospan,
 		  				bottom:Cospan,
+		  				top:Cospan,
 		  			    leftTyping:Morphism,
 		  			    rightTyping:Morphism):Morphism = {
 		  //Add Parent left
