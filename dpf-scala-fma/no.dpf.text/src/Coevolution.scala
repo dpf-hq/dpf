@@ -4,19 +4,28 @@ import no.dpf.text.graph._;
 import no.dpf.text.graph.mutable.{Graph=>MGraph}
 import no.dpf.text.coevolution.output._;
 
-trait AbstractCoevolutionSpan{
+trait AbstractCoevolutionSpan extends Output{
   
   /**
    * Need to be specified
    */
+  val TL:AbstractGraph;
   
+  val TK:AbstractGraph;
+  
+  val TR:AbstractGraph;
+
   val mmRule:Span;
   
   val tm:Morphism;
-  
-  val tG:Morphism;
+
+  val G:AbstractGraph;
   
   //---------------------------------
+
+  lazy val TG = G.mmGraph;
+  
+  lazy val tG = TypingMorphism(G);
   
   lazy val tl = mmRule.left
 
@@ -49,6 +58,24 @@ trait AbstractCoevolutionSpan{
   lazy val tm2 = po_right_top.left
   
   lazy val th = po_right_top.right
+
+  lazy val tTG = TypingMorphism(TG);
+
+  lazy val tTR = TypingMorphism(TR);
+
+  lazy val tTC = Composition(tg,tTG).compositeMorphism;
+
+  lazy val tC = pb_left_front.right
+  
+  lazy val TC = toGraph(TG,TG,TG.mmGraph,tTC);
+
+  lazy val L = toGraph(G,G,TL,tL);
+
+  lazy val K = toGraph(L,L,TK,tK);
+
+  lazy val R = toGraph(K,K,TR,tR);
+
+  lazy val C = toGraph(G,G,TC,tC);
   
   //
   //Calculations:
@@ -69,47 +96,17 @@ trait AbstractCoevolutionSpan{
   
   protected lazy val po_right_top = Span(tr,tk).pushout(2);
 
- 
+  protected lazy val id_typTypGraph = IdMorphismGraph(TG)
 }
-
-/**
- * Common Coevolution
- */
-case class CoevolutionSpan(override val mmRule:Span, override val tm:Morphism, override val tG:Morphism) extends AbstractCoevolutionSpan 
 
 /**
  * Simplified Coevolution
  */
-case class SimpleCoevolutionSpan(TL:AbstractGraph,TK:AbstractGraph,TR:AbstractGraph,G:AbstractGraph) extends AbstractCoevolutionSpan with Output{
-  
-  private val TG = G.mmGraph;
-  
-  override val mmRule:Span = Span(InclusionMorphism(TK,TL),InclusionMorphism(TK,TR));
+case class SimpleCoevolutionSpan(TL:AbstractGraph,TK:AbstractGraph,TR:AbstractGraph, G:AbstractGraph) extends AbstractCoevolutionSpan{
   
   override val tm:Morphism = InclusionMorphism(TL,TG);
-  
-  override val tG:Morphism = TypingMorphism(G);
 
-  
-  
-  lazy val tTG = TypingMorphism(TG);
-
-  lazy val tTR = TypingMorphism(TR);
-
-  lazy val tTC = Composition(tg,tTG).compositeMorphism;
-
-  lazy val tC = pb_left_front.right
-  
-  lazy val TC = toGraph(TG,TG,TG.mmGraph,tTC);
-
-  lazy val L = toGraph(G,G,TL,tL);
-
-  lazy val K = toGraph(L,L,TK,tK);
-
-  lazy val R = toGraph(K,K,TR,tR);
-
-  lazy val C = toGraph(G,G,TC,tC);
-  
+  override val mmRule = Span(InclusionMorphism(TK,TL),InclusionMorphism(TK,TR));
 
   def print(path:String)={
 
