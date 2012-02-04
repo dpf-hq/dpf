@@ -1,0 +1,49 @@
+% \iffalse
+%<!COPYRIGHT>
+% \fi
+%    \begin{macrocode}
+\ProvidesFile{adjdvips.def}[%
+%<!DATE>
+%<!VERSION>
+%<*DRIVER>
+    2099/01/01 develop
+%</DRIVER>
+    adjustbox clip driver for dvips]
+%    \end{macrocode}
+%
+%
+% \begin{macro}{\@cliptoboxdim}[1]{box register to clip}
+% Clips to official box dimension.
+%
+% The following clipping code was suggested by
+% Joseph Wright (LaTeX3 project), but slightly modified
+% for this package.
+%    \begin{macrocode}
+\def\@cliptoboxdim#1{%
+    \setbox#1=\hbox{%
+        \adjsetlength\@tempdima{\ht#1+\dp#1}%
+        \edef\TOTALHEIGHT{-\strip@pt\@tempdima\space}%
+        \edef\DEPTH{\strip@pt\dp#1\space}%
+        \edef\WIDTH{\strip@pt\wd#1\space}%
+        \special{%
+            ps:
+              /mtrxc matrix currentmatrix def 
+              currentpoint gsave
+              translate
+              Resolution 72 div VResolution 72 div
+              scale
+              newpath
+              0 \DEPTH \WIDTH \TOTALHEIGHT rectclip
+              newpath
+              mtrxc setmatrix 
+        }%
+        \box#1%
+        \special{ps: grestore }%
+    }%
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \iffalse
+% vim: ft=tex
+% \fi
