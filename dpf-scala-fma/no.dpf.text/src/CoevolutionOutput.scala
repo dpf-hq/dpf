@@ -110,7 +110,9 @@ trait Output{
 			  			  					}		  
 	            	  }
 	            }
-            }else{
+            }
+            /*
+            else{
 			      for(e<-sid.v){
 			    	  e._3 match{
 			    	    case "uD" => rs.names.get(e._1) match {
@@ -125,6 +127,7 @@ trait Output{
 			    	  }
 			      }
             }
+            */
             
     	    //Build Name:
 	    	var newName = "";
@@ -134,6 +137,10 @@ trait Output{
 	    	    case Some(oldN) => newName+=oldN           
 	    	  }
  	    	}
+	    	if("" == newName){
+	    	  newName = "newName"
+	    	}
+	    	
 	    	val atId = typing.codomainArrow(aId)
 	    	if(atId == TypeArrow.TAttribute().id){
 			    newName match{
