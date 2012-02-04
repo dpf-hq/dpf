@@ -206,26 +206,9 @@ trait Output{
 			      		val triple = v.head
 			      		val t = triple._3 match {
 			      		  case "L" => 
-			      		    try{
 			      		    leftTop(typLeft(triple._1)) 
-			      		    }catch{
-			      		      case ex =>
-			      		        println("TEST1" + setId)
-			      		        println(typLeft(triple._1))
-			      		        sys.error("1")
-			      		    }
 			      		  case "R" => 
-			      		    try{			      		    
 			      		    rightTop(typRight(triple._1))
-			      		    }catch{
-			      		      case ex =>
-			      		        println("TEST2" + setId)
-			      		        println(leftTyping)
-			      		        println("-------------")
-			      		        println(rightTyping)
-			      		        println(typRight(triple._1))
-			      		        sys.error("2")
-			      		    }
 			      		  case _=> sys.error("Programming error")		      
 			      		}
 			      		typing+=e->t
@@ -258,6 +241,75 @@ trait Output{
     
 		  ArbitraryMorphismWithIds(nodes,(arrows,bottom.left.codomainArrowSrTg(),top.left.codomainArrowSrTg()))
   }  
+  
+  
+  /**
+   * do some magic
+   */
+  protected def typingMFromPushout(
+		  				bottom:Composition,
+		  				top:Composition,
+		  			    typingDomain:Morphism,
+		  			    typingCodomain:Morphism):Morphism = {
+		  //Get Typ:
+		  def getTypeSet(
+				  elementIds:Set[Id], 
+				  //First way
+				  bottomM2: Id => Id,
+				  topM2_reverse: Id => Set[Id],
+				  tCodomain: Id => Id,
+				  //Way when other way did not give unique result
+				  bottomM1_reverse: Id => Set[Id],
+				  topM1: Id => Id,				  
+				  tDomain: Id => Id
+		  )={
+			  val typing = MMap[Id,Id]();
+			  for(e<-elementIds){
+				  val types = topM2_reverse(tCodomain(bottomM2(e)))
+				  
+				  val t = types.size match{
+				    case 1 => types.head;
+				    case _ => 
+				      //go over other combination:
+				      val dSubset = bottomM1_reverse(e)
+				      if(1 != dSubset.size){
+				        sys.error("Programming error")
+				      }
+				      topM1(tDomain(dSubset.head))
+				  }
+			      typing+=e->t
+			  }
+			  typing.toMap; 
+		  }
+
+		  //Get Type for nodes:
+		  val nodeTypes = getTypeSet(
+				  			bottom.m1.codomainNodes,				  			
+				  			bottom.m2.codomainNode,
+				  			top.m2.domainNodes,
+				  			typingCodomain.codomainNode,			  			
+				  			bottom.m1.domainNodes,
+				  			top.m1.codomainNode,
+				  			typingDomain.codomainNode
+		  				  );	
+
+		  //Get Type for nodes:
+		  val arrowTypes = getTypeSet(
+				  			bottom.m1.codomainArrows,				  			
+				  			bottom.m2.codomainArrow,
+				  			top.m2.domainArrows,
+				  			typingCodomain.codomainArrow,			  			
+				  			bottom.m1.domainArrows,
+				  			top.m1.codomainArrow,
+				  			typingDomain.codomainArrow
+		  				  );	
+		  
+		  val nodes = SetMorphism(nodeTypes,top.m1.codomainNodes())		
+		  val arrows = SetMorphism(arrowTypes,top.m1.codomainArrows())		
+    
+		  ArbitraryMorphismWithIds(nodes,(arrows,bottom.m1.codomainArrowSrTg(),top.m1.codomainArrowSrTg()))
+  }  
+
   
   protected def printGraph(g:AbstractGraph,name:String,path:String,printNames:Boolean=true)={
     

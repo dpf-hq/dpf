@@ -65,7 +65,8 @@ trait AbstractCoevolutionSpan extends Output{
 
   lazy val tTC = Composition(tg,tTG).compositeMorphism;
 
-  lazy val tC = pb_left_front.right
+  //Since tg can be non-injective a section to composition(g,tG),tg is not enough:
+  lazy val tC = typingMFromPushout(poc_left_bottom, poc_left_top,tK,tG) 
   
   lazy val TC = toGraph(TG,TG,TG.mmGraph,tTC);
 
@@ -83,11 +84,14 @@ trait AbstractCoevolutionSpan extends Output{
   
   lazy val TH = toGraph(TC,TR,TC.mmGraph,tTH);
 
-//  lazy val H = toGraph(C,R,TH,tH);
+  lazy val H = toGraph(C,R,TH,tH);
   
   //
   //Calculations:
   //  
+  //
+  //Attention: No graph should be computed twice, or we need a isomorphi check
+  //
   protected lazy val poc_left_top = Composition(tl,tm).pushoutComplement(10);
   
   protected lazy val pb_left = Cospan(tG,tm).pullback(11);
@@ -98,10 +102,6 @@ trait AbstractCoevolutionSpan extends Output{
 
   protected lazy val poc_left_bottom = Composition(l,m).pushoutComplement(14);
   
-  protected lazy val pb_left_front = Cospan(tG,tg).pullback(14); 
-  //Same number as before since C is created twice
-  //Also a merge opertion is required that replaces the String in the id according to the one created former
-
   protected lazy val po_right_bottom = Span(r,k).pushout(1);
   
   protected lazy val po_right_top = Span(tr,tk).pushout(2);
@@ -109,6 +109,7 @@ trait AbstractCoevolutionSpan extends Output{
   protected lazy val id_typTypGraph = IdMorphismGraph(TG);
   
   protected lazy val id_cospan_typTypGraph = Cospan(id_typTypGraph,id_typTypGraph)	
+  
 }
 
 /**
@@ -138,26 +139,7 @@ case class SimpleCoevolutionSpan(TL:AbstractGraph,TK:AbstractGraph,TR:AbstractGr
 	 printGraph(C,"C",path)
 	 printGraph(G,"G",path)
 	 printGraph(TH,"TH",path)
-	 
-//	 println(m2.codomainNodes())
-//	 println("---")
-	 println(m2.domainNodes())
-	 println("---")
-//	 println(h.codomainNodes())
-//	 println("---")
-	 println(h.domainNodes())
-	 println("---")
-	 println("-F-L-O-1")
-
-	 println(tR)
-	 println("-F-L-O-2")
-	 println(tC)
-	 println("-F-L-O-3")
-	 
-	 println(tH)
-
-	 
-//	 printGraph(H,"H",path)
+	 printGraph(H,"H",path)
      
   }
   

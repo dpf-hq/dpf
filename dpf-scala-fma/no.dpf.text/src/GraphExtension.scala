@@ -351,6 +351,11 @@ case class Cospan(left:Morphism,right:Morphism) extends TwoMorphism{
     Span(leftRs,rightRs);
   }
   def validate()=left.codomainNodes().equals(right.codomainNodes()) && left.codomainArrows().equals(right.codomainArrows())
+  
+  def hasSection()={
+    
+  }
+  
 }
 case class Composition(m1:Morphism,m2:Morphism){
   
