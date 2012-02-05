@@ -122,7 +122,7 @@ case class SimpleCoevolutionSpan(TL:AbstractGraph,TK:AbstractGraph,TR:AbstractGr
   override val mmRule = Span(InclusionMorphism(TK,TL),InclusionMorphism(TK,TR));
 
   def print(path:String)={
-
+	val start = System.currentTimeMillis()  
     println("------------------------ Metamodel (tm')---------------------\n\n")
     println(tm2)
     println("------------------------ Model (m')---------------------\n\n")
@@ -141,6 +141,7 @@ case class SimpleCoevolutionSpan(TL:AbstractGraph,TK:AbstractGraph,TR:AbstractGr
 	 printGraph(TH,"TH",path)
 	 printGraph(H,"H",path)
      
+	 println("Coevolution last (msec): " + (System.currentTimeMillis() - start))
   }
   
 }
