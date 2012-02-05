@@ -580,7 +580,7 @@ case class SetId(v:Set[(Id,String)],gId:Int) extends Id{ // SetId(v:Set[(Id,Stri
     gId + v.hashCode()
   }
   
-  override lazy val toString="SetID"+v.toString;	
+  override lazy val toString="SetID"+v.toString + " gId="+gId;	
 }
 //----------------------------------------------------------------------
 
