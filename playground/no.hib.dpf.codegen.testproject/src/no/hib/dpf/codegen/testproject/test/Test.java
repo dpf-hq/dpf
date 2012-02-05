@@ -66,9 +66,9 @@ public class Test {
 	
 	public static void main(String[] args) {
 		workflowEngineExecution();
-		programmaticExecution(
-				"/home/anders/Master/Code/main/generator-branch/no.hib.dpf.codegen.testproject/src-gen",
-				"/home/anders/Master/Code/main/generator-branch/no.hib.dpf.codegen.testproject/metamodel/test.dpf.xmi", 
-				"/home/anders/Master/Code/main/generator-branch/no.hib.dpf.codegen.testproject/model/model.dpf.xmi");
+//		programmaticExecution(
+//				"/home/anders/Master/Code/main/generator-branch/no.hib.dpf.codegen.testproject/src-gen",
+//				"/home/anders/Master/Code/main/generator-branch/no.hib.dpf.codegen.testproject/metamodel/test.dpf.xmi", 
+//				"/home/anders/Master/Code/main/generator-branch/no.hib.dpf.codegen.testproject/model/model.dpf.xmi");
 	}
 }
