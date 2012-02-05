@@ -1,18 +1,20 @@
-«IMPORT no::hib::dpf::core»
+«IMPORT dpf»
 «EXTENSION no::hib::dpf::codegen::generator::extensions::play::TemplateUtil»
-
-«DEFINE main FOR core::Specification»
-	«EXPAND controllers FOREACH getDomainClasses()»
+«EXTENSION org::eclipse::xtend::util::stdlib::io»
+«DEFINE main FOR dpf::Specification»
+	«syserr("ENTRY")»
+	«EXPAND controllers FOREACH graph.getControllers()»
 «ENDDEFINE»
 
-«DEFINE controllers FOR core::Node»
+«DEFINE controllers FOR dpf::Controller»
+	«syserr("CONTROLLER")»
 	«FILE name.toFirstUpper() + "s.java"»
-		package «getPackages().last().name»;
+		package ;
 	
 		import play.mvc.Controller;
 		
 		public class «name.toFirstUpper()+"s"» extends Controller {
 			
-		} 
+		}
 	«ENDFILE»
 «ENDDEFINE»
