@@ -24,7 +24,7 @@ import org.eclipse.xtend.typesystem.Type;
 
 public class TypeHelper {
 	private static Log log = LogFactory.getLog(GraphType.class);
-	private static char[] letters = {'a', 'd', 'e', 'f', 'g', 'h', 'i', 'n', 'm', 'o', 'r', 'u', 'y'}; 
+	private static char[] letters = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'n', 'm', 'o', 'r', 't', 'u', 'y'}; 
 	private static String[] ignoredEFeatures = {"target", "source"}; 
 	
 	public static String pluralize(String arg) {

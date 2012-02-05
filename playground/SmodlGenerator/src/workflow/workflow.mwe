@@ -3,7 +3,7 @@
 	<!-- workflow properties -->
 
 	
-	<property name="dpf_model" value="platform:/resource/SmodlGenerator/model/SmodlM1.dpf.xmi" /> -->
+	<property name="dpf_model" value="platform:/resource/SmodlGenerator/model/SmodlModel.dpf.xmi" /> -->
 	<property name="dpf_metamodel" value="platform:/resource/SmodlGenerator/metamodel/SmodlM2.dpf.xmi" /> -->
 	
 	<property name="src-gen" value="src-gen" />
@@ -29,7 +29,7 @@
 	<component class="org.eclipse.xpand2.Generator">
 		<metaModel idRef="mm_dpf"/>
 		<expand
-			value="template::Smodl::main FOR dpf" />
+			value="template::test::main FOR dpf" />
 		<outlet path="${src-gen}" >
 			<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" />
 		</outlet>
