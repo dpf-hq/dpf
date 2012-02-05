@@ -333,7 +333,7 @@ trait Output{
     	if(nl){
 	    	rs=" [label="::rs
 	   	  	rs="\""::rs  
-	   	  	rs=getName(n)::rs
+	   	  	rs=format(n,getName(n))::rs
 	   	  	rs=":"::rs
 	   	  	rs=getType(n)::rs
 	   	  	rs="\"]"::rs 
@@ -350,7 +350,16 @@ trait Output{
 	          			case _		 => e.id.v.toString.replaceAll("\"","")
 	        		  }
 	      }
-      } else ""    
+      } else ""
+    }
+    
+    def format(e:Element,s:String):String={
+      //Format String and Char with "" resp. ''  
+      e.id match{
+        case VString(_) => "\\\"" + s + "\\\""
+        case VChar(_) 	=> "\\\'" + s + "\\\'"
+        case _			=> s  
+      }
     }
 
     def getType(e:Element):String={
