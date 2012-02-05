@@ -10,16 +10,16 @@ TG:=TGraph<DPF>{
 }
 
 G:=TGraph<TG>{
-    
-    ToBob:Transition-a:outArr->Bob:Place,
-    ToBob:Transition-b:inArr->Alice:Place,
-    ToAlice:Transition-c:outArr->Alice:Place,
-    ToAlice:Transition-d:inArr->Bob:Place,
-    Bob:Place-e:token->t:Token,
-    ToBob:Transition-f:name->["To Bob"],
-    ToAlice:Transition-g:name->["To Alice"],
-    Bob:Place-h:name->["Bob"],
-    Alice:Place-i:name->["Alice"],
+	
+	ToBob:Transition-a:outArr->Bob:Place,
+	ToBob:Transition-b:inArr->Alice:Place,
+	ToAlice:Transition-c:outArr->Alice:Place,
+	ToAlice:Transition-d:inArr->Bob:Place,
+	Bob:Place-e:token->t:Token,
+	ToBob:Transition-f:name->["To Bob"],
+	ToAlice:Transition-g:name->["To Alice"],
+	Bob:Place-h:name->["Bob"],
+	Alice:Place-i:name->["Alice"],
 
 }
 
