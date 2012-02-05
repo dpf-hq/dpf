@@ -287,7 +287,9 @@ package mutable{
 			    			  val n = a.tg
 			    			  val isAttr = n match{
 			    			    case Node(_,TypeNode.TAttribute()) => true
-			    			    case Node(sid@SetId(_,_),_) => sid.containsAId;sys.error("Wird gebraucht")
+			    			    case Node(sid@SetId(_,_),_) => 
+			    			      			/*sid.containsAId;*/
+			    			      			sys.error("Node is not an attribute node!")
 			    			    case _ => false
 			    			  }
 			    			  if(isAttr){	
@@ -527,22 +529,22 @@ sealed trait Id{
 
 //RegularId:
 case class RId(v:Long) extends Id{
-  override lazy val toString="ID"+v;
+  override def toString="ID"+v;
 }
 
 //For keeping multiple values:
 case class VSetId(v:Set[AValue]) extends Id{
-  override lazy val toString=v.toString;
+  override def toString=v.toString;
 }
 
 //AttributeTypeId:
 case class AId(v:String,default:AValue) extends Id{
-  override lazy val toString=v;
+  override def toString=v;
 }
 
 //Special Id: (Dummy) (for some predefined nodes and arrows)
 case class SId(v:Long) extends Id{
-  override lazy val toString="SID"+v;
+  override def toString="SID"+v;
 }
 
 //----------------------------------------------------------------------
