@@ -122,15 +122,10 @@ sealed trait Morphism{
 
     rrs="\n\nArrows-Mapping:\n"::rrs;
     for(a1<-domain.arrows()){
-    	println("test2-B")
     	val a2 = codomain.arrow(a1)
-    	println("1")
-    	val s_a1 = domain.arrowSr(a1) + "---" +  a1 + "--->" + domain.arrowTg(a1)
-    	println("2")
-    	val s_a2 = codomain.arrowSr(a2) + "---" +  a2 + "--->" + codomain.arrowTg(a2)
-    	println("3")
+     	val s_a1 = domain.arrowSr(a1) + "---" +  a1 + "--->" + domain.arrowTg(a1)
+     	val s_a2 = codomain.arrowSr(a2) + "---" +  a2 + "--->" + codomain.arrowTg(a2)
     	rrs= s_a1 + "  =>  " + s_a2 +  "\n"::rrs
-    	println("test2-E")
     }  
 
     rrs="\n\nAdditional Arrows in Codomain:\n"::rrs;
@@ -473,12 +468,28 @@ case class Composition(m1:Morphism,m2:Morphism){
        tgt_D+=e->tgt_K(e2._1) 
      }		 
    }
-    
+   
+   //
+   //Remove SetIds from domain i_E (exist only because of construction of set ids)
+   //
+   val y_E_cleared = MMap[Id,Id]();   
+   for(e<-y_E){
+     e._2 match{
+       case s@SetId(_,_) => 
+         if(s.ids.size != 1){
+        	 sys.error("Programming error!" + s)
+         }else{
+        	 y_E_cleared+=e._1->s.ids.head
+         }
+       case _ => y_E_cleared+=e._1->e._2
+     }
+   }
+   
    val ns1 = SetMorphism(i_V.toMap,V_D.toSet)
    val ns2 = SetMorphism(y_V.toMap,V_A)
 
    val as1 = SetMorphism(i_E.toMap,E_D.toSet)
-   val as2 = SetMorphism(y_E.toMap,E_A)
+   val as2 = SetMorphism(y_E_cleared.toMap,E_A)
    
    val arrowsSrTg_D = ArrowSrTg(src_D.toMap,tgt_D.toMap);
    val m1B = ArbitraryMorphismWithIds(ns1,(as1,m1.domain.arrowSrTg,arrowsSrTg_D))
