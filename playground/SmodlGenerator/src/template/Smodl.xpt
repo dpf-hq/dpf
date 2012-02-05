@@ -1,5 +1,8 @@
 «IMPORT dpf»
+
 «EXTENSION org::eclipse::xtend::util::stdlib::io»
+
+
 
 «DEFINE main FOR dpf::Specification»
 	«EXPAND graph FOR this.graph»
@@ -8,21 +11,24 @@
 
 «DEFINE graph FOR dpf::Graph»
 	
-	«EXPAND service FOREACH this.getServices()»
-	«EXPAND methods FOREACH this.getMethods()»
+	«EXPAND service FOREACH  this.getServices()»
+	
 «ENDDEFINE»
 
 «DEFINE service FOR dpf::Service»
-	«syserr("Service: " + this.name)»
+	«FILE this.name+".java"»
+		public interface «this.name»{
+		
+		«EXPAND methodref FOREACH  this.getAMethodRefs()»
+		«this.getAMethodRefs().first().name»
+		
+		}
+	«ENDFILE»
+	«syserr(this.name)-»
 «ENDDEFINE»
 
-«DEFINE methods FOR dpf::Method»
-	«syserr("Method: " + this.name)»
-	«EXPAND resultref FOREACH  this.getAResultRefs()»
-«ENDDEFINE»
-
-«DEFINE resultref FOR dpf::resultRef»
-	«syserr("AResultRef: " + this.name + " AResultRef target: " + this.target.name)»
+«DEFINE methodref FOR dpf::methodRef»
+	«REM»«EXPAND methodArgs FOREACH this.target.getAFirstArges()»«ENDREM»
 «ENDDEFINE»
 
 

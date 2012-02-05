@@ -95,6 +95,7 @@ public class NodeType extends AbstractTypeImpl {
 								if(((Arrow)o).getSource().equals(target)) {
 //									System.out.println("Matched!");
 									tmp.add(((Arrow) o));
+							
 								}
 							}
 						}
