@@ -19,13 +19,19 @@ public class GraphType extends AbstractTypeImpl {
 
 	private DpfMetamodel model;
 	private Graph graph;
-	
+//	private Graph typeGraph;
 	public GraphType(DpfMetamodel model, String name, Graph graph) {
 		super(model.getTypeSystem(), name);
 		this.model = model;
 		this.graph = graph;
 	}
-
+	
+//	public GraphType(DpfMetamodel model, String name, Graph graph, Graph typeGraph) {
+//		super(model.getTypeSystem(), name);
+//		this.model = model;
+//		this.graph = graph;
+//		this.typeGraph = typeGraph;
+//	}
 	@Override
 	public boolean isInstance(Object o) {
 		return o instanceof Graph;
@@ -43,7 +49,7 @@ public class GraphType extends AbstractTypeImpl {
 		res.addAll(TypeHelper.getEClassFeatures(model, graph.eClass(), this));
 		
 		createGettersForMetaModelNodeTypes(res);
-//		createGetterForAllArrowsInGraph(res);
+		createGetterForAllArrowsInGraph(res);
 		
 		return res.toArray(new Feature[res.size()]);
 	}

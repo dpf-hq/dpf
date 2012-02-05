@@ -43,6 +43,7 @@ public class DpfReader extends WorkflowComponentWithModelSlot {
 	protected void invokeInternal(WorkflowContext ctx, ProgressMonitor monitor,
 			Issues issues) {
 		metaModel.addDpfMetaModel(dpfMetaModel);
+		metaModel.setDpfModel(dpfModel);
 		ctx.set(getModelSlot(), dpfModel); //For use in the expand statement
 	}
 

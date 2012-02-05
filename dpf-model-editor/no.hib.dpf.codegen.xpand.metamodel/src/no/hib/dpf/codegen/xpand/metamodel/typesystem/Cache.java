@@ -26,6 +26,10 @@ public abstract class Cache<K, V> {
 		return internal.values();
 	}
 
+	public void put(K key, V value) {
+		internal.put(key, value);
+	}
+	
 	public Collection<K> getKeys() {
 		return internal.keySet();
 	}

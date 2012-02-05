@@ -7,6 +7,7 @@ public interface DpfMMConstants {
 	public static final String GRAPH = "Graph";
 	public static final String CONSTRAINT = "Constraint";
 	public static final String PREDICATE = "Predicate";
+	public static final String IDOBJECT = "IDObject";
 	public static final String NS_PREFIX = "dpf";
 	
 }

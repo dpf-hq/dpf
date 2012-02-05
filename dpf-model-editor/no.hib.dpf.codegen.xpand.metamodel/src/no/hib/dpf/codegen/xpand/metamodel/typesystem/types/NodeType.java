@@ -14,11 +14,13 @@ import no.hib.dpf.core.Node;
 
 import org.eclipse.xtend.typesystem.AbstractTypeImpl;
 import org.eclipse.xtend.typesystem.Feature;
+import org.eclipse.xtend.typesystem.Type;
 
 public class NodeType extends AbstractTypeImpl {
 	
 	private DpfMetamodel model;
 	private Node node;
+	private Type metaType = null;
 	
 	public NodeType(DpfMetamodel model, String name, Node node) {
 		super(model.getTypeSystem(), name);
@@ -26,6 +28,13 @@ public class NodeType extends AbstractTypeImpl {
 		this.node = node;
 	}
 
+	public NodeType(DpfMetamodel model, String name, Node node, Type superType) {
+		super(model.getTypeSystem(), name);
+		this.model = model;
+		this.node = node;
+		this.metaType = superType;
+	}
+	
 	@Override
 	public boolean isInstance(Object o) {
 		return o instanceof Node;
@@ -96,5 +105,12 @@ public class NodeType extends AbstractTypeImpl {
 				}
 			});
 		}
+	}
+	@Override
+	public Set<? extends Type> getSuperTypes() {
+		HashSet<Type> res = new HashSet<Type>();
+		if(metaType != null) res.add(metaType);
+		res.add(model.getTypeSystem().getObjectType());
+		return res;
 	}
 }

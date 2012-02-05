@@ -24,7 +24,8 @@ import org.eclipse.xtend.typesystem.Type;
 
 public class TypeHelper {
 	private static Log log = LogFactory.getLog(GraphType.class);
-	static char[] letters = {'a', 'd', 'e', 'f', 'g', 'h', 'i', 'n', 'm', 'o', 'r', 't', 'u', 'y'}; 
+	private static char[] letters = {'a', 'd', 'e', 'f', 'g', 'h', 'i', 'n', 'm', 'o', 'r', 'u', 'y'}; 
+	private static String[] ignoredEFeatures = {"target", "source"}; 
 	
 	public static String pluralize(String arg) {
 		for(char c : letters) {
@@ -38,86 +39,96 @@ public class TypeHelper {
 		return new String(Character.toUpperCase(s.charAt(0)) + s.substring(1));
 	}
 	
+	private static boolean isIgnoredFeature(String name) {
+		for(String n : ignoredEFeatures) {
+			if(n.equals(name)) 
+				return true;
+		}
+		return false;
+	}
+	
 	public static Set<FeatureImpl> getEClassFeatures(DpfMetamodel model, EClass features, Type ownerType) {
 		Set<FeatureImpl> res = new HashSet<FeatureImpl>();
 		
 		for(final EStructuralFeature ef : features.getEStructuralFeatures()) {
-			Type t = model.getTypeForETypedElement(ef); 
-			log.debug("Type#getContributedFeatures Type resolve name: " + ef.getName());
-			if(t == null) {
-				log.debug("Type#getContributedFeatures Type resolve failed for: " + ef.getName());
-			} else {
-				res.add(new PropertyImpl(ownerType, ef.getName(), t) {
-					//Creates getters and setters for a specified property. This means you can access ie. the graph 
-					//object like so: spec.graph
-					public Object get(final Object target) {
-						return ((EObject) target).eGet(ef);
-					}
-
-					@Override
-					public void set(final Object target, Object newValue) {
-						if (ef.isChangeable() && !ef.isUnsettable() && !ef.isDerived()) {
-							if (ef.getEType() instanceof EDataType && !(ef.getEType() instanceof EEnum)) {
-								final EDataType dt = (EDataType) ef.getEType();
-								newValue = getReturnType().convert(newValue, dt.getInstanceClass());
-							}
-							((EObject) target).eSet(ef, newValue);
+			if(!isIgnoredFeature(ef.getName())) {
+				log.debug("Type#getContributedFeatures Type resolve name: " + ef.getName());
+				Type t = model.getTypeForETypedElement(ef); 
+				if(t == null) {
+					log.debug("Type#getContributedFeatures Type resolve failed for: " + ef.getName());
+				} else {
+					res.add(new PropertyImpl(ownerType, ef.getName(), t) {
+						//Creates getters and setters for a specified property. This means you can access ie. the graph 
+						//object like so: spec.graph
+						public Object get(final Object target) {
+							return ((EObject) target).eGet(ef);
 						}
-						else
-							throw new UnsupportedOperationException("setting property '" + ef.getName()
-									+ "' is not allowed!");
-					}
-				});
-				// setter
-				if (ef.isChangeable() && !ef.isMany()){ //  && !feature.isDerived()  { !feature.isUnsettable()
-					// &&
-					res.add(new OperationImpl(ownerType, "set" + ef.getName(), ownerType,
-							new Type[] { t }) {
-
+	
 						@Override
-						protected Object evaluateInternal(final Object target, final Object[] params) {
-							Object newValue = params[0];
-							if (newValue != null && ef.getEType() instanceof EDataType
-									&& !(ef.getEType() instanceof EEnum)) {
-								final EDataType dt = (EDataType) ef.getEType();
-								newValue = getParameterTypes().get(0).convert(newValue, dt.getInstanceClass());
+						public void set(final Object target, Object newValue) {
+							if (ef.isChangeable() && !ef.isUnsettable() && !ef.isDerived()) {
+								if (ef.getEType() instanceof EDataType && !(ef.getEType() instanceof EEnum)) {
+									final EDataType dt = (EDataType) ef.getEType();
+									newValue = getReturnType().convert(newValue, dt.getInstanceClass());
+								}
+								((EObject) target).eSet(ef, newValue);
 							}
-							((EObject) target).eSet(ef, newValue);
-							return target;
+							else
+								throw new UnsupportedOperationException("setting property '" + ef.getName()
+										+ "' is not allowed!");
 						}
-
 					});
-				}
-				else if (ef.isMany()) {
-					res.add(new OperationImpl(ownerType, "set" + ef.getName(), ownerType, new Type[] { t }) {
-						@SuppressWarnings("unchecked")
-						@Override
-						protected Object evaluateInternal(Object target, Object[] params) {
-							if (params != null) {
+					// setter
+					if (ef.isChangeable() && !ef.isMany()){ //  && !feature.isDerived()  { !feature.isUnsettable()
+						// &&
+						res.add(new OperationImpl(ownerType, "set" + ef.getName(), ownerType,
+								new Type[] { t }) {
+	
+							@Override
+							protected Object evaluateInternal(final Object target, final Object[] params) {
 								Object newValue = params[0];
-
 								if (newValue != null && ef.getEType() instanceof EDataType
 										&& !(ef.getEType() instanceof EEnum)) {
 									final EDataType dt = (EDataType) ef.getEType();
 									newValue = getParameterTypes().get(0).convert(newValue, dt.getInstanceClass());
 								}
-
-								EList<Object> newColl = new BasicEList<Object>((List<?>)newValue);
-
-								EObject targetObject = ((EObject) target);
-								EClass targetClass = targetObject.eClass();
-								EStructuralFeature eStructuralFeature = targetClass.getEStructuralFeature(ef.getName());
-
-								EList<Object> coll = (EList<Object>) targetObject.eGet(eStructuralFeature);
-
-								ECollections.setEList(coll, newColl);
+								((EObject) target).eSet(ef, newValue);
 								return target;
 							}
-							return null;
-						}
-					});
+	
+						});
+					}
+					else if (ef.isMany()) {
+						res.add(new OperationImpl(ownerType, "set" + ef.getName(), ownerType, new Type[] { t }) {
+							@SuppressWarnings("unchecked")
+							@Override
+							protected Object evaluateInternal(Object target, Object[] params) {
+								if (params != null) {
+									Object newValue = params[0];
+	
+									if (newValue != null && ef.getEType() instanceof EDataType
+											&& !(ef.getEType() instanceof EEnum)) {
+										final EDataType dt = (EDataType) ef.getEType();
+										newValue = getParameterTypes().get(0).convert(newValue, dt.getInstanceClass());
+									}
+	
+									EList<Object> newColl = new BasicEList<Object>((List<?>)newValue);
+	
+									EObject targetObject = ((EObject) target);
+									EClass targetClass = targetObject.eClass();
+									EStructuralFeature eStructuralFeature = targetClass.getEStructuralFeature(ef.getName());
+	
+									EList<Object> coll = (EList<Object>) targetObject.eGet(eStructuralFeature);
+	
+									ECollections.setEList(coll, newColl);
+									return target;
+								}
+								return null;
+							}
+						});
+					}
+					
 				}
-				
 			}
 		}
 		// Operations
