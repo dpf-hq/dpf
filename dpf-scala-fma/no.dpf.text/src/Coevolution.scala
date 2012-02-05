@@ -289,6 +289,8 @@ case class SimpleCoevolutionCospan(TL:AbstractGraph,TI:AbstractGraph,TR:Abstract
     println("FLO" + 6)
     println(tR)  
     println("FLO" + 7)
+    println(Span(l,m).validate())
+    println("FLOb, Pushout impl checken" + 7)
     println(po_left_bottom.validate())
     println(i)  
     println("FLO" + 8)
