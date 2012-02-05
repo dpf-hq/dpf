@@ -8,14 +8,16 @@ import java.util.Set;
 import no.hib.dpf.codegen.xpand.metamodel.DpfMetamodel;
 import no.hib.dpf.codegen.xpand.metamodel.typesystem.types.*;
 import no.hib.dpf.core.CoreFactory;
+import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Specification;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.xtend.typesystem.Type;
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
-import org.hamcrest.core.Is;
 import org.junit.*;
 
 public class MetaModelTest {
@@ -33,12 +35,13 @@ public class MetaModelTest {
 			e.printStackTrace();
 		}
 		mm = new DpfMetamodel();
+		mm.addDpfMetaModel(metamodel);
+		mm.setDpfModel(model);
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Test
 	public void metaModelLoaded() {
-		mm.addDpfMetaModel(metamodel);
 		Set<Type> res = mm.getKnownTypes();
 		//These types should be inside the metamodel.
 		assertThat(res, matchTypeName("dpf::DomainClass"));
@@ -53,23 +56,21 @@ public class MetaModelTest {
 		assertThat(res, matchTypeName("dpf::controllerBelongsTo"));
 		assertThat(res, matchTypeName("dpf::Action"));
 		assertThat(res, matchTypeName("dpf::hasAction"));
-		//Last two are Node and Arrow
-		assertTrue("Expected 14, got " + res.size(), res.size() == 14);
+		//Last two are dummy nodes for node and arrow
+		assertTrue("Expected 16, got " + res.size(), res.size() == 16);
 	}
 	
-	//Internal types should not be exported, and this creates a problem when 
+	//Internal types is (and should) not be exported, and this creates a problem when 
 	//running tests in a separate classloader.
 	@Test
 	public void modelLoaded() {
-		//BROKEN TEST -> somehow it returns null::Specification
-		Type tt = mm.getType(model);
 		Type t = mm.getTypeForName("posts");
-		assertTrue("Expected proper type with name dpf::Reference, got " + t.getName(),
-				t instanceof Type && t.getName().equals("dpf::Reference"));
+		assertTrue("Expected proper type with name dpf::posts, got " + t.getName(),
+				t instanceof Type && t.getName().equals("dpf::posts"));
 		t = null;
 		t = mm.getTypeForName("Tag");
-		assertTrue("Expected proper type with name dpf::DomainClass, got " + t.getName(),
-				t instanceof Type && t.getName().equals("dpf::Reference"));
+		assertTrue("Expected proper type with name dpf::Tag, got " + t.getName(),
+				t instanceof Type && t.getName().equals("dpf::Tag"));
 	}
 	
 	@Test
@@ -77,6 +78,39 @@ public class MetaModelTest {
 		Type t = mm.getTypeForName("dpf::DomainClass");
 		assertTrue("Expected proper type with name dpf::DomainClass, got " + t.getName(),
 				 t instanceof Type && t.getName().equals("dpf::DomainClass"));
+	}
+	
+	@Test
+	public void modelTypeResolvesToProperMetaModelType() {
+		Type t = mm.getTypeForName("posts");
+		assertTrue("Expected that arrow posts has dpf::Reference super type, it did not.", t.getSuperTypes().contains(mm.getTypeForName("dpf::Reference")));
+	}
+	
+	
+//	@Test
+//	public void getTypeForETypedElementReturnsCorrectType() {
+//		//This test addresses bug where the ecore specific code in the xpand metamodel will return 
+//		//a Node type (the first occurence) even though it is an instance of Node and thus have a type
+//		Node fromNode = null, toNode = null;
+//		//We retrieve a node which is not first in the list.
+//		for(Node nn : metamodel.getGraph().getNodes()) {
+//			if(nn.getName().equals("DomainClass")) {
+//				fromNode = nn;
+//			}
+//			if(nn.getName().equals("Package")) {
+//				toNode = nn;
+//			}
+//		}
+//		//Xpand types
+//		Type expected = mm.getTypeForName("dpf::Package");
+//		Type actual = mm.getTypeForETypedElement(fromNode.getArrowto(toNode).eClass().getEStructuralFeature("target"));
+//		assertEquals("Expected: " + expected.getName() + " got: " + actual.getName(), 
+//				expected, actual);		
+//	}
+	
+	@Test
+	public void getArrowCollectionFromNode() {
+		
 	}
 	
 	@SuppressWarnings("rawtypes")
