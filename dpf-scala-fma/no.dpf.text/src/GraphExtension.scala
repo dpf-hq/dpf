@@ -108,7 +108,9 @@ sealed trait Morphism{
     
     rrs="\n\nNodes-Mapping:\n"::rrs;
     for(n<-domain.nodes()){
+    	println("test1-B")
     	rrs=n + "  =>  " + codomain.node(n) +  "\n"::rrs
+    	println("test1-E")
     }  
     
     rrs="\n\nAdditional Nodes in Codomain:\n"::rrs;
@@ -120,10 +122,15 @@ sealed trait Morphism{
 
     rrs="\n\nArrows-Mapping:\n"::rrs;
     for(a1<-domain.arrows()){
+    	println("test2-B")
     	val a2 = codomain.arrow(a1)
+    	println("1")
     	val s_a1 = domain.arrowSr(a1) + "---" +  a1 + "--->" + domain.arrowTg(a1)
+    	println("2")
     	val s_a2 = codomain.arrowSr(a2) + "---" +  a2 + "--->" + codomain.arrowTg(a2)
+    	println("3")
     	rrs= s_a1 + "  =>  " + s_a2 +  "\n"::rrs
+    	println("test2-E")
     }  
 
     rrs="\n\nAdditional Arrows in Codomain:\n"::rrs;
