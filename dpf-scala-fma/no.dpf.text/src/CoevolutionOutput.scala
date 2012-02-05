@@ -40,7 +40,7 @@ trait Output{
     
     //Add nodes:
     val rs = new MGraph(typeGraph,()=>sys.error("Programming error!"))
-    for(nId<-typing.domainNodes()){
+    for(nId<-typing.domain.nodes()){
       nId match {
         case sid@SetId(_,_) => 
             val names = MSet[Option[String]]();
@@ -58,7 +58,7 @@ trait Output{
             	}
             }
     		//Type node may be wrapped into setId:
-    		val nt = typing.codomainNode(nId) match {
+    		val nt = typing.codomain.node(nId) match {
     		  case setId@SetId(_,_) => if(setId.containsAId){
     			  						setId.ids.head
     		  						   }else{
@@ -94,7 +94,7 @@ trait Output{
       }
     }
     //Add Arrows:
-    for(aId<-typing.domainArrows()){
+    for(aId<-typing.domain.arrows()){
       aId match {
         case sid@SetId(_,_) =>
             val names = MSet[Option[String]]();
@@ -141,13 +141,13 @@ trait Output{
 	    	  newName = "newName"
 	    	}
 	    	
-	    	val atId = typing.codomainArrow(aId)
+	    	val atId = typing.codomain.arrow(aId)
 	    	if(atId == TypeArrow.TAttribute().id){
 			    newName match{
 				    case "" => 
 				      sys.error("No Name defined!")
 				    case _ =>  
-				      val tgNode = typing.domainArrowTg(aId) match{
+				      val tgNode = typing.domain.arrowTg(aId) match{
 				        case snId@SetId(_,_) => if(snId.containsAId){
 				        						 Node(snId.ids.head,TypeNode.TAttribute())	
 				        					    }else{
@@ -155,16 +155,16 @@ trait Output{
 				        					    }   
 				        case nId@_ => Node(nId,TypeNode.TAttribute())
 				      }
-				      rs.addAArrow(newName,rs.nodes(typing.domainArrowSr(aId)),tgNode,TypeArrow.TAttribute(),aId);
+				      rs.addAArrow(newName,rs.nodes(typing.domain.arrowSr(aId)),tgNode,TypeArrow.TAttribute(),aId);
 			    }
         	}else{
-	            typeGraph.arrows.get(typing.codomainArrow(aId)) match {
+	            typeGraph.arrows.get(typing.codomain.arrow(aId)) match {
 	        	  case None => 
 	        	    sys.error("Arrow type with id=" + aId + " does not exist! ")
 	        	  case Some(at) =>  
 			        //Attribute Id can be wrapped into a SetId:
 	        	    if(at == TypeArrow.TAttribute()){
-				      val tgNode = typing.domainArrowTg(aId) match{
+				      val tgNode = typing.domain.arrowTg(aId) match{
 				        case snId@SetId(_,_) => if(snId.containsAId){
 				        						 Node(snId.ids.head,TypeNode.TAttribute())	
 				        					    }else{
@@ -172,13 +172,13 @@ trait Output{
 				        					    }   
 				        case nId@_ => rs.nodes(nId)
 				      }
-			          rs.addAArrow(newName,rs.nodes(typing.domainArrowSr(aId)),tgNode,TypeArrow.TAttribute(),aId);
+			          rs.addAArrow(newName,rs.nodes(typing.domain.arrowSr(aId)),tgNode,TypeArrow.TAttribute(),aId);
 			        //Add value: 
  	        		}else if(at.t == TypeArrow.TAttribute()){
- 	        			rs.addArrow(newName,rs.nodes(typing.domainArrowSr(aId)),rs.nodes(filterValues(typing.domainArrowTg(aId))),at,aId);
+ 	        			rs.addArrow(newName,rs.nodes(typing.domain.arrowSr(aId)),rs.nodes(filterValues(typing.domain.arrowTg(aId))),at,aId);
 					//Add arrow:
  	        		}else{
- 	        			rs.addArrow(newName,rs.nodes(typing.domainArrowSr(aId)),rs.nodes(typing.domainArrowTg(aId)),at,aId);
+ 	        			rs.addArrow(newName,rs.nodes(typing.domain.arrowSr(aId)),rs.nodes(typing.domain.arrowTg(aId)),at,aId);
  	        		}
 	            }	
         	}
@@ -227,26 +227,26 @@ trait Output{
 
 		  //Get Type for nodes:
 		  val nodeTypes = getTypeSet(
-				  			bottom.left.codomainNodes,
-				  			leftTyping.codomainNode,
-				  			rightTyping.codomainNode,
-				  			top.left.codomainNode,
-				  			top.right.codomainNode
+				  			bottom.left.codomain.nodes,
+				  			leftTyping.codomain.node,
+				  			rightTyping.codomain.node,
+				  			top.left.codomain.node,
+				  			top.right.codomain.node
 		  				  );	
 
 		  //Get Type for nodes:
 		  val arrowTypes = getTypeSet(
-				  			bottom.left.codomainArrows,
-				  			leftTyping.codomainArrow,
-				  			rightTyping.codomainArrow,
-				  			top.left.codomainArrow,
-				  			top.right.codomainArrow
+				  			bottom.left.codomain.arrows,
+				  			leftTyping.codomain.arrow,
+				  			rightTyping.codomain.arrow,
+				  			top.left.codomain.arrow,
+				  			top.right.codomain.arrow
 		  				  );	
 		  
-		  val nodes = SetMorphism(nodeTypes,top.left.codomainNodes())		
-		  val arrows = SetMorphism(arrowTypes,top.left.codomainArrows())		
+		  val nodes = SetMorphism(nodeTypes,top.left.codomain.nodes())		
+		  val arrows = SetMorphism(arrowTypes,top.left.codomain.arrows())		
     
-		  ArbitraryMorphismWithIds(nodes,(arrows,bottom.left.codomainArrowSrTg(),top.left.codomainArrowSrTg()))
+		  ArbitraryMorphismWithIds(nodes,(arrows,bottom.left.codomain.arrowSrTg(),top.left.codomain.arrowSrTg()))
   }  
   
   
@@ -291,30 +291,30 @@ trait Output{
 
 		  //Get Type for nodes:
 		  val nodeTypes = getTypeSet(
-				  			bottom.m1.codomainNodes,				  			
-				  			bottom.m2.codomainNode,
-				  			top.m2.domainNodes,
-				  			typingCodomain.codomainNode,			  			
-				  			bottom.m1.domainNodes,
-				  			top.m1.codomainNode,
-				  			typingDomain.codomainNode
+				  			bottom.m1.codomain.nodes,				  			
+				  			bottom.m2.codomain.node,
+				  			top.m2.domain.nodes,
+				  			typingCodomain.codomain.node,			  			
+				  			bottom.m1.domain.nodes,
+				  			top.m1.codomain.node,
+				  			typingDomain.codomain.node
 		  				  );	
 
 		  //Get Type for nodes:
 		  val arrowTypes = getTypeSet(
-				  			bottom.m1.codomainArrows,				  			
-				  			bottom.m2.codomainArrow,
-				  			top.m2.domainArrows,
-				  			typingCodomain.codomainArrow,			  			
-				  			bottom.m1.domainArrows,
-				  			top.m1.codomainArrow,
-				  			typingDomain.codomainArrow
+				  			bottom.m1.codomain.arrows,				  			
+				  			bottom.m2.codomain.arrow,
+				  			top.m2.domain.arrows,
+				  			typingCodomain.codomain.arrow,			  			
+				  			bottom.m1.domain.arrows,
+				  			top.m1.codomain.arrow,
+				  			typingDomain.codomain.arrow
 		  				  );	
 		  
-		  val nodes = SetMorphism(nodeTypes,top.m1.codomainNodes())		
-		  val arrows = SetMorphism(arrowTypes,top.m1.codomainArrows())		
+		  val nodes = SetMorphism(nodeTypes,top.m1.codomain.nodes())		
+		  val arrows = SetMorphism(arrowTypes,top.m1.codomain.arrows())		
     
-		  ArbitraryMorphismWithIds(nodes,(arrows,bottom.m1.codomainArrowSrTg(),top.m1.codomainArrowSrTg()))
+		  ArbitraryMorphismWithIds(nodes,(arrows,bottom.m1.codomain.arrowSrTg(),top.m1.codomain.arrowSrTg()))
   }  
 
   

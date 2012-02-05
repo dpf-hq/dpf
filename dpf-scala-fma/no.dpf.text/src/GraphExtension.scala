@@ -11,49 +11,51 @@ import no.dpf.text.graph.mutable.{Graph=>MGraph}
  * Graph Morphism (Graph not in name because it is already in the package name)
  */
 sealed trait Morphism{
-  
+
   lazy val immutable:Boolean = true	
   
   /**
-   * input: id of codomain
-   * output: all ids of domain mapped to this id 
+   * Untyped Graph
    */
-  def domainNodes(id:Id):Set[Id]
-  /**
-   * input: id of domain
-   * output: id of codomain mapped to this id 
-   */
-  def codomainNode(id:Id):Id
+  trait UGraph{
+   import no.dpf.text.graph.Id;
+   
+   def arrowSr(id:Id):Id
+   def arrowTg(id:Id):Id
+   def nodes():Set[Id]
+   def arrows():Set[Id]
 
-  /**
-   * input: id of codomain
-   * output: all ids of domain mapped to this id 
-   */
-  def domainArrows(id:Id):Set[Id]
-
-  /**
-   * input: id of codomain
-   * output: all ids of domain mapped to this id 
-   */
-  def codomainArrow(id:Id):Id
+	 private def createArrowSrTg(as:Set[Id], sr:Id=>Id, tg:Id=>Id):ArrowSrTg={
+	   def create(as:Set[Id],f:Id=>Id):Map[Id,Id]={
+	     val rs = MMap[Id,Id]();
+	     for(a<-as){
+	       rs+=a->f(a)
+	     }
+	     rs.toMap
+	   }
+	   ArrowSrTg(create(as,sr),create(as,tg))
+	  } 	
+   
+   private lazy val arrowsrtg:ArrowSrTg = createArrowSrTg(arrows,arrowSr,arrowTg)
+   def arrowSrTg():ArrowSrTg = immutable match {case true => arrowsrtg; case _ => createArrowSrTg(arrows,arrowSr,arrowTg)}
+   
+  }
   
-  def domainArrowSr(id:Id):Id
-  def domainArrowTg(id:Id):Id
+  trait Domain extends UGraph{
+     //Add navigation to codomain
+	 def nodes(id:Id):Set[Id]
+	 def arrows(id:Id):Set[Id]   
+  }
   
-  private lazy val domainarrowsrtg:ArrowSrTg = createArrowSrTg(domainArrows,domainArrowSr,domainArrowTg)
-  def domainArrowSrTg():ArrowSrTg = immutable match {case true => domainarrowsrtg; case _ => createArrowSrTg(domainArrows,domainArrowSr,domainArrowTg)}
-
-  def codomainArrowSr(id:Id):Id
-  def codomainArrowTg(id:Id):Id
+  trait Codomain extends UGraph{
+    //Add navigation to domain
+    def node(id:Id):Id
+    def arrow(id:Id):Id
+  }
   
-  private lazy val codomainarrowsrtg:ArrowSrTg = createArrowSrTg(codomainArrows,codomainArrowSr,codomainArrowTg)
-  def codomainArrowSrTg():ArrowSrTg = immutable match {case true => codomainarrowsrtg; case _ => createArrowSrTg(codomainArrows,codomainArrowSr,codomainArrowTg)}
+  val domain:Domain;
+  val codomain:Codomain;
   
-  def domainNodes():Set[Id]
-  def codomainNodes():Set[Id]
-
-  def domainArrows():Set[Id]
-  def codomainArrows():Set[Id]
    
   private def test(error:(Int)=>Boolean):Boolean={
 	def testSet(codomain:Set[Id],domain:(Id)=>Set[Id], error:(Int)=>Boolean):Boolean={
@@ -64,19 +66,9 @@ sealed trait Morphism{
 	  }
 	  true;
 	}
-	return testSet(codomainNodes,domainNodes,error) && testSet(codomainArrows,domainArrows,error) 
+	return testSet(codomain.nodes,domain.nodes,error) && testSet(codomain.arrows,domain.arrows,error) 
   } 	
  
- private def createArrowSrTg(as:Set[Id], sr:Id=>Id, tg:Id=>Id):ArrowSrTg={
-   def create(as:Set[Id],f:Id=>Id):Map[Id,Id]={
-     val rs = MMap[Id,Id]();
-     for(a<-as){
-       rs+=a->f(a)
-     }
-     rs.toMap
-   }
-   ArrowSrTg(create(as,sr),create(as,tg))
-  } 	
  
   def isMono():Boolean=test(_ > 1)
   def isEpi():Boolean=test(_ < 1)
@@ -94,17 +86,17 @@ sealed trait Morphism{
 	}
     //Check if the graph homomorphism property is statisfied:
 	def validateGraphHomo():Boolean={
-	  for(a<-domainArrows()){
+	  for(a<-domain.arrows()){
 	    if(!(
-	       codomainNode(domainArrowSr(a)) == codomainArrowSr(codomainArrow(a)) &&
-	       codomainNode(domainArrowTg(a)) == codomainArrowTg(codomainArrow(a))
+	       codomain.node(domain.arrowSr(a)) == codomain.arrowSr(codomain.arrow(a)) &&
+	       codomain.node(domain.arrowTg(a)) == codomain.arrowTg(codomain.arrow(a))
 	    )){
 	      return false
 	    }
 	  }
 	  true;
 	}
-	return validateSet(domainNodes,codomainNode) && validateSet(domainArrows,codomainArrow) && validateGraphHomo() 
+	return validateSet(domain.nodes,codomain.node) && validateSet(domain.arrows,codomain.arrow) && validateGraphHomo() 
   }  
   
   private lazy val tostring = mkToString()
@@ -115,29 +107,29 @@ sealed trait Morphism{
     var rrs:List[String] = Nil
     
     rrs="\n\nNodes-Mapping:\n"::rrs;
-    for(n<-domainNodes()){
-    	rrs=n + "  =>  " + codomainNode(n) +  "\n"::rrs
+    for(n<-domain.nodes()){
+    	rrs=n + "  =>  " + codomain.node(n) +  "\n"::rrs
     }  
     
     rrs="\n\nAdditional Nodes in Codomain:\n"::rrs;
-    for(n<-codomainNodes()){
-    	if(domainNodes(n).isEmpty){	
+    for(n<-codomain.nodes()){
+    	if(domain.nodes(n).isEmpty){	
     	rrs=n + "\n"::rrs
     	}
     }  
 
     rrs="\n\nArrows-Mapping:\n"::rrs;
-    for(a1<-domainArrows()){
-    	val a2 = codomainArrow(a1)
-    	val s_a1 = domainArrowSr(a1) + "---" +  a1 + "--->" + domainArrowTg(a1)
-    	val s_a2 = codomainArrowSr(a2) + "---" +  a2 + "--->" + codomainArrowTg(a2)
+    for(a1<-domain.arrows()){
+    	val a2 = codomain.arrow(a1)
+    	val s_a1 = domain.arrowSr(a1) + "---" +  a1 + "--->" + domain.arrowTg(a1)
+    	val s_a2 = codomain.arrowSr(a2) + "---" +  a2 + "--->" + codomain.arrowTg(a2)
     	rrs= s_a1 + "  =>  " + s_a2 +  "\n"::rrs
     }  
 
     rrs="\n\nAdditional Arrows in Codomain:\n"::rrs;
-    for(a2<-codomainArrows()){
-    	if(domainArrows(a2).isEmpty){
-	    	val s_a2 = codomainArrowSr(a2) + "---" +  a2 + "--->" + codomainArrowTg(a2)
+    for(a2<-codomain.arrows()){
+    	if(domain.arrows(a2).isEmpty){
+	    	val s_a2 = codomain.arrowSr(a2) + "---" +  a2 + "--->" + codomain.arrowTg(a2)
 	    	rrs= s_a2 +  "\n"::rrs
     	}
     }  
@@ -273,36 +265,36 @@ case class Span(left:Morphism,right:Morphism) extends TwoMorphism{
       (m.toSet,left2.toMap,right2.toMap)
     }
     //Pushout Nodes:
-    val domainNodes = left.domainNodes() // == right.domainNodes()
-    val codomainDiffLeftNodes = left.codomainNodes().filter(left.domainNodes(_).isEmpty)
-    val codomainDiffRightNodes = right.codomainNodes().filter(right.domainNodes(_).isEmpty)
-    val pNodes = pushoutSet(domainNodes,codomainDiffLeftNodes,codomainDiffRightNodes,left.codomainNode,right.codomainNode)
+    val domainNodes = left.domain.nodes() // == right.domainNodes()
+    val codomainDiffLeftNodes = left.codomain.nodes().filter(left.domain.nodes(_).isEmpty)
+    val codomainDiffRightNodes = right.codomain.nodes().filter(right.domain.nodes(_).isEmpty)
+    val pNodes = pushoutSet(domainNodes,codomainDiffLeftNodes,codomainDiffRightNodes,left.codomain.node,right.codomain.node)
     val rsLeftNodes = SetMorphism(pNodes._2,pNodes._1)		
     val rsRightNodes = SetMorphism(pNodes._3,pNodes._1)  
     
 
     //Pushout Arrows:
-    val domainArrows = left.domainArrows()
-    val codomainDiffLeftArrows = left.codomainArrows().filter(left.domainArrows(_).isEmpty)
-    val codomainDiffRightArrows = right.codomainArrows().filter(right.domainArrows(_).isEmpty)
-    val pArrows = pushoutSet(domainArrows,codomainDiffLeftArrows,codomainDiffRightArrows,left.codomainArrow,right.codomainArrow)
+    val domainArrows = left.domain.arrows()
+    val codomainDiffLeftArrows = left.codomain.arrows().filter(left.domain.arrows(_).isEmpty)
+    val codomainDiffRightArrows = right.codomain.arrows().filter(right.domain.arrows(_).isEmpty)
+    val pArrows = pushoutSet(domainArrows,codomainDiffLeftArrows,codomainDiffRightArrows,left.codomain.arrow,right.codomain.arrow)
     val rsLeftArrows = SetMorphism(pArrows._2,pArrows._1)		
     val rsRightArrows = SetMorphism(pArrows._3,pArrows._1)	
     
     //Build Result:
     val codomainArrowSrTg = createArrowSrTg(pArrows._1, pNodes._1,
-    									  left.codomainArrowSr,left.codomainArrowTg,
-    									  right.codomainArrowSr,right.codomainArrowTg
+    									  left.codomain.arrowSr,left.codomain.arrowTg,
+    									  right.codomain.arrowSr,right.codomain.arrowTg
     									  )
-    val domainArrowSrTgLeft = left.codomainArrowSrTg
-    val domainArrowSrTgRight = right.codomainArrowSrTg
+    val domainArrowSrTgLeft = left.codomain.arrowSrTg
+    val domainArrowSrTgRight = right.codomain.arrowSrTg
     val leftRs = ArbitraryMorphismWithIds(rsLeftNodes,(rsLeftArrows,domainArrowSrTgLeft,codomainArrowSrTg))
     val rightRs = ArbitraryMorphismWithIds(rsRightNodes,(rsRightArrows,domainArrowSrTgRight,codomainArrowSrTg))
 
     Cospan(leftRs,rightRs);
     
   }
-  def validate()=left.domainNodes().equals(right.domainNodes()) && left.domainArrows().equals(right.domainArrows())
+  def validate()=left.domain.nodes().equals(right.domain.nodes()) && left.domain.arrows().equals(right.domain.arrows())
 }
 
 case class Cospan(left:Morphism,right:Morphism) extends TwoMorphism{
@@ -328,29 +320,29 @@ case class Cospan(left:Morphism,right:Morphism) extends TwoMorphism{
     }
     
     //Pullback Nodes:
-    val pNodes = pullbackSet(left.codomainNodes(),left.domainNodes,right.domainNodes);
-    val rsLeftNodes = SetMorphism(pNodes._2,left.domainNodes)		
-    val rsRightNodes = SetMorphism(pNodes._3,right.domainNodes)
+    val pNodes = pullbackSet(left.codomain.nodes(),left.domain.nodes,right.domain.nodes);
+    val rsLeftNodes = SetMorphism(pNodes._2,left.domain.nodes)		
+    val rsRightNodes = SetMorphism(pNodes._3,right.domain.nodes)
     
     //Pullback Arrows:
-    val pArrows = pullbackSet(left.codomainArrows(),left.domainArrows,right.domainArrows)
-    val rsLeftArrows = SetMorphism(pArrows._2,left.domainArrows)
-    val rsRightArrows = SetMorphism(pArrows._3,right.domainArrows)	
+    val pArrows = pullbackSet(left.codomain.arrows(),left.domain.arrows,right.domain.arrows)
+    val rsLeftArrows = SetMorphism(pArrows._2,left.domain.arrows)
+    val rsRightArrows = SetMorphism(pArrows._3,right.domain.arrows)	
     
     //Build Result:
     val domainArrowSrTg = createArrowSrTg(pArrows._1, pNodes._1,
-    									  left.domainArrowSr,left.domainArrowTg,
-    									  right.domainArrowSr,right.domainArrowTg
+    									  left.domain.arrowSr,left.domain.arrowTg,
+    									  right.domain.arrowSr,right.domain.arrowTg
     									  )
-    val codomainArrowSrTgLeft = left.domainArrowSrTg
-    val codomainArrowSrTgRight = right.domainArrowSrTg
+    val codomainArrowSrTgLeft = left.domain.arrowSrTg
+    val codomainArrowSrTgRight = right.domain.arrowSrTg
     
     val leftRs = ArbitraryMorphismWithIds(rsLeftNodes,(rsLeftArrows,domainArrowSrTg,codomainArrowSrTgLeft))
     val rightRs = ArbitraryMorphismWithIds(rsRightNodes,(rsRightArrows,domainArrowSrTg,codomainArrowSrTgRight))
 
     Span(leftRs,rightRs);
   }
-  def validate()=left.codomainNodes().equals(right.codomainNodes()) && left.codomainArrows().equals(right.codomainArrows())
+  def validate()=left.codomain.nodes().equals(right.codomain.nodes()) && left.codomain.arrows().equals(right.codomain.arrows())
   
   def hasSection()={
     
@@ -364,18 +356,18 @@ case class Composition(m1:Morphism,m2:Morphism){
 	  val nodes = MMap[Id,Id]()
 	  val arrows = MMap[Id,Id]()
 	  
-	  for(n<-m1.domainNodes()){
-	    nodes+=n->m2.codomainNode(m1.codomainNode(n))
+	  for(n<-m1.domain.nodes()){
+	    nodes+=n->m2.codomain.node(m1.codomain.node(n))
 	  }
 	  
-	  for(a<-m1.domainArrows()){
-	    arrows+=a->m2.codomainArrow(m1.codomainArrow(a))
+	  for(a<-m1.domain.arrows()){
+	    arrows+=a->m2.codomain.arrow(m1.codomain.arrow(a))
 	  }
 	  
-	  val nodesSetM = SetMorphism(nodes.toMap,m2.codomainNodes())
-	  val arrowsSetM = SetMorphism(arrows.toMap,m2.codomainArrows())
+	  val nodesSetM = SetMorphism(nodes.toMap,m2.codomain.nodes())
+	  val arrowsSetM = SetMorphism(arrows.toMap,m2.codomain.arrows())
 
-	  ArbitraryMorphismWithIds(nodesSetM,(arrowsSetM,m1.domainArrowSrTg,m2.codomainArrowSrTg))
+	  ArbitraryMorphismWithIds(nodesSetM,(arrowsSetM,m1.domain.arrowSrTg,m2.codomain.arrowSrTg))
   }
   
   /**
@@ -385,10 +377,10 @@ case class Composition(m1:Morphism,m2:Morphism){
 	//From: Sesqui-pushout rewriting (Corradini et. al) 
 
     //Construction 6
-    val V_A = m2.codomainNodes();
-    val V_L = m2.domainNodes();
-    val V_K = m1.domainNodes();
-    val m_V = m2.codomainNode(_);
+    val V_A = m2.codomain.nodes();
+    val V_L = m2.domain.nodes();
+    val V_K = m1.domain.nodes();
+    val m_V = m2.codomain.node(_);
     val i_V = MMap[Id,Id]();
     val V_D = MSet[SetId]();
    
@@ -406,7 +398,7 @@ case class Composition(m1:Morphism,m2:Morphism){
     }
     
     //Compute y_v:
-    val a_V = m1.codomainNode(_);
+    val a_V = m1.codomain.node(_);
     val y_V = MMap[Id,Id]();
     for(v<-V_D){
       val u = v.v.head
@@ -418,11 +410,11 @@ case class Composition(m1:Morphism,m2:Morphism){
     }
     
     //Compute E_D and i_E
-    val E_A = m2.codomainArrows();
-    val m_E_image = m2.domainArrows(_:Id);
-    val src_A = m2.codomainArrowSr(_);
-    val tgt_A = m2.codomainArrowTg(_);
-    val E_K = m1.domainArrows();
+    val E_A = m2.codomain.arrows();
+    val m_E_image = m2.domain.arrows(_:Id);
+    val src_A = m2.codomain.arrowSr(_);
+    val tgt_A = m2.codomain.arrowTg(_);
+    val E_K = m1.domain.arrows();
     val i_E = MMap[Id,Id]();
     val E_D = MSet[SetId]();
     for(e <- E_A){
@@ -442,10 +434,10 @@ case class Composition(m1:Morphism,m2:Morphism){
     }
     
    //Compute y_E and src_D(e) and tgt_D(e):
-   val m_E = m2.codomainArrow(_);
-   val a_E = m1.codomainArrow(_);
-   var src_K = m1.domainArrowSr(_);
-   var tgt_K = m1.domainArrowTg(_);
+   val m_E = m2.codomain.arrow(_);
+   val a_E = m1.codomain.arrow(_);
+   var src_K = m1.domain.arrowSr(_);
+   var tgt_K = m1.domain.arrowTg(_);
    val y_E = MMap[Id,Id]();
    val src_D = MMap[Id,Id]();
    val tgt_D = MMap[Id,Id]();
@@ -482,8 +474,8 @@ case class Composition(m1:Morphism,m2:Morphism){
    val as2 = SetMorphism(y_E.toMap,E_A)
    
    val arrowsSrTg_D = ArrowSrTg(src_D.toMap,tgt_D.toMap);
-   val m1B = ArbitraryMorphismWithIds(ns1,(as1,m1.domainArrowSrTg,arrowsSrTg_D))
-   val m2B = ArbitraryMorphismWithIds(ns2,(as2,arrowsSrTg_D,m2.codomainArrowSrTg))
+   val m1B = ArbitraryMorphismWithIds(ns1,(as1,m1.domain.arrowSrTg,arrowsSrTg_D))
+   val m2B = ArbitraryMorphismWithIds(ns2,(as2,arrowsSrTg_D,m2.codomain.arrowSrTg))
    
    Composition(m1B,m2B);
   }
@@ -522,14 +514,14 @@ case class Composition(m1:Morphism,m2:Morphism){
 	}
     
     //Nodes:
-    val pcNodes = pushoutComplementSet(m2.codomainNodes(),m2.domainNodes(),m1.domainNodes(),m1.codomainNode,m2.codomainNode) 
+    val pcNodes = pushoutComplementSet(m2.codomain.nodes(),m2.domain.nodes(),m1.domain.nodes(),m1.codomain.node,m2.codomain.node) 
     val ns1 = SetMorphism(pcNodes._2, pcNodes._1)
-    val ns2 = SetMorphism(pcNodes._3, m2.codomainNodes())
+    val ns2 = SetMorphism(pcNodes._3, m2.codomain.nodes())
        
     //Arrows:
-    val pcArrows = pushoutComplementSet(m2.codomainArrows(),m2.domainArrows(),m1.domainArrows(),m1.codomainArrow,m2.codomainArrow)
+    val pcArrows = pushoutComplementSet(m2.codomain.arrows(),m2.domain.arrows(),m1.domain.arrows(),m1.codomain.arrow,m2.codomain.arrow)
     val as1 = SetMorphism(pcArrows._2, pcArrows._1)
-    val as2 = SetMorphism(pcArrows._3, m2.codomainArrows())
+    val as2 = SetMorphism(pcArrows._3, m2.codomain.arrows())
     
     //Fix arrows:
     val arrowSr = MMap[Id,Id]();
@@ -542,8 +534,8 @@ case class Composition(m1:Morphism,m2:Morphism){
         				    }
         				 for(i<-s){
         				   i._2 match{
-        				     case "G" => arrowSr+=id->SetId(Set((m2.codomainArrowSr(i._1),"G")),gid);
-        				     			 arrowTg+=id->SetId(Set((m2.codomainArrowTg(i._1),"G")),gid); 
+        				     case "G" => arrowSr+=id->SetId(Set((m2.codomain.arrowSr(i._1),"G")),gid);
+        				     			 arrowTg+=id->SetId(Set((m2.codomain.arrowTg(i._1),"G")),gid); 
         				     case _ => sys.error("Programming error"); 
         				   }
         				 }	
@@ -551,12 +543,12 @@ case class Composition(m1:Morphism,m2:Morphism){
       }
     }
     val arrowsSrTg_D = ArrowSrTg(arrowSr.toMap,arrowTg.toMap);
-    val m1B = ArbitraryMorphismWithIds(ns1,(as1,m1.domainArrowSrTg,arrowsSrTg_D))
-    val m2B = ArbitraryMorphismWithIds(ns2,(as2,arrowsSrTg_D,m2.codomainArrowSrTg))
+    val m1B = ArbitraryMorphismWithIds(ns1,(as1,m1.domain.arrowSrTg,arrowsSrTg_D))
+    val m2B = ArbitraryMorphismWithIds(ns2,(as2,arrowsSrTg_D,m2.codomain.arrowSrTg))
 
     Composition(m1B,m2B);
   }
-  def validate()=m1.codomainNodes().equals(m2.domainNodes()) && m1.codomainArrows().equals(m2.domainArrows())
+  def validate()=m1.codomain.nodes().equals(m2.domain.nodes()) && m1.codomain.arrows().equals(m2.domain.arrows())
 }
 
 
@@ -583,44 +575,24 @@ case class SetMorphism(map:Map[Id,Id], codomain:Set[Id])
 case class ArrowSrTg(sr:Map[Id,Id],tg:Map[Id,Id])
 case class ArbitraryMorphismWithIds(inputNodes:SetMorphism,inputArrows:(SetMorphism,ArrowSrTg,ArrowSrTg)) extends Morphism{
   
-  /**
-   * input: id of codomain
-   * output: all ids of domain mapped to this id 
-   */
-  def domainNodes(id:Id):Set[Id]=Set((for{e<-inputNodes.map.filter(x=>id == x._2)} yield {e._1}) toSeq: _ *)
-  /**
-   * input: id of domain
-   * output: id of codomain mapped to this id 
-   */
-  def codomainNode(id:Id):Id=inputNodes.map(id)
-  /**
-   * input: id of codomain
-   * output: all ids of domain mapped to this id 
-   */
-  def domainArrows(id:Id):Set[Id]=Set((for{e<-inputArrows._1.map.filter(x=>id == x._2)} yield {e._1}) toSeq: _ *)
-  
-  /**
-   * input: id of codomain
-   * output: all ids of domain mapped to this id 
-   */
-  def codomainArrow(id:Id):Id=inputArrows._1.map(id)
-  
-  def domainArrowSr(id:Id):Id=inputArrows._2.sr(id)
-  
-  def domainArrowTg(id:Id):Id=inputArrows._2.tg(id)
-  
-  def codomainArrowSr(id:Id):Id=inputArrows._3.sr(id)
-  
-  def codomainArrowTg(id:Id):Id=inputArrows._3.tg(id)
+  val domain = new Domain{
+	  override def nodes(id:Id):Set[Id]=Set((for{e<-inputNodes.map.filter(x=>id == x._2)} yield {e._1}) toSeq: _ *)
+	  override def arrows(id:Id):Set[Id]=Set((for{e<-inputArrows._1.map.filter(x=>id == x._2)} yield {e._1}) toSeq: _ *)
+	  override def arrowSr(id:Id):Id=inputArrows._2.sr(id)
+	  override def arrowTg(id:Id):Id=inputArrows._2.tg(id)
+	  override lazy val nodes:Set[Id]=inputNodes.map.keySet
+	  override lazy val arrows:Set[Id]=inputArrows._1.map.keySet
+  }
 
-  lazy val domainNodes:Set[Id]=inputNodes.map.keySet
+  val codomain = new Codomain{
+	  override def node(id:Id):Id=inputNodes.map(id)
+	  override def arrow(id:Id):Id=inputArrows._1.map(id)
+	  override def arrowSr(id:Id):Id=inputArrows._3.sr(id)
+	  override def arrowTg(id:Id):Id=inputArrows._3.tg(id)
+	  override lazy val nodes:Set[Id]=inputNodes.codomain ++ inputNodes.map.values.toSet ++ inputArrows._3.sr.values.toSet ++ inputArrows._3.tg.values.toSet
+	  override lazy val arrows:Set[Id]=inputArrows._1.codomain++inputArrows._1.map.values.toSet
+ }
   
-  lazy val codomainNodes:Set[Id]=inputNodes.codomain ++ inputNodes.map.values.toSet ++ inputArrows._3.sr.values.toSet ++ inputArrows._3.tg.values.toSet
-  
-  lazy val domainArrows:Set[Id]=inputArrows._1.map.keySet
-  
-  lazy val codomainArrows:Set[Id]=inputArrows._1.codomain++inputArrows._1.map.values.toSet
- 
 }
 
 /**
@@ -629,11 +601,11 @@ case class ArbitraryMorphismWithIds(inputNodes:SetMorphism,inputArrows:(SetMorph
 case class ArbitraryMorphism(inputNodes:Set[(Option[Node],Node)],inputArrows:Set[(Option[Arrow],Arrow)]) extends Morphism{
   
   //Mapped Nodes and arrows:
-  private val nodes = MMap[Id,Id]()	
-  private val codomainNodesSet = MSet[Id]()	
-  private val arrows = MMap[Id,Id]()	
-  private val domainArrowsMap = MMap[Id,Arrow]()	
-  private val codomainArrowsMap = MMap[Id,Arrow]()	
+  private val hNodes = MMap[Id,Id]()	
+  private val hCodomainNodesSet = MSet[Id]()	
+  private val hArrows = MMap[Id,Id]()	
+  private val hDomainArrowsMap = MMap[Id,Arrow]()	
+  private val hCodomainArrowsMap = MMap[Id,Arrow]()	
   
   for((domainO,codomain)<-inputNodes){
     domainO match{
@@ -644,23 +616,23 @@ case class ArbitraryMorphism(inputNodes:Set[(Option[Node],Node)],inputArrows:Set
   for((domainO,codomain)<-inputArrows){
     domainO match{
       case Some(domain) =>
-        	arrows.get(domain.id) match{
-        	  case None 	=>  arrows+=domain.id->codomain.id
+        	hArrows.get(domain.id) match{
+        	  case None 	=>  hArrows+=domain.id->codomain.id
         	  					input(domain.sr,codomain.sr);
         	  					input(domain.tg,codomain.tg)
         	  case Some(ex) =>  if(ex != codomain.id){sys.error("Arrow " + domain.id + " mapped twice: " + codomain.id + ", " + ex)}
         	}
-        	domainArrowsMap+=domain.id->domain
+        	hDomainArrowsMap+=domain.id->domain
       case _ => /*ignore*/
     }
-    codomainArrowsMap+=codomain.id->codomain
-    codomainNodesSet+=codomain.sr.id
-    codomainNodesSet+=codomain.tg.id
+    hCodomainArrowsMap+=codomain.id->codomain
+    hCodomainNodesSet+=codomain.sr.id
+    hCodomainNodesSet+=codomain.tg.id
   }
 
   private def input(domain:Node,codomain:Node){
-  	nodes.get(domain.id) match{
-	  case None 	=>  nodes+=domain.id->codomain.id
+  	hNodes.get(domain.id) match{
+	  case None 	=>  hNodes+=domain.id->codomain.id
 	  case Some(ex) =>  if(ex != codomain.id) sys.error("Node " + domain.id + " mapped twice: " + codomain.id + ", " + ex)
 	}
   }
@@ -675,47 +647,23 @@ case class ArbitraryMorphism(inputNodes:Set[(Option[Node],Node)],inputArrows:Set
 	  true  
   }
   
-  /**
-   * input: id of codomain
-   * output: all ids of domain mapped to this id 
-   */
-  def domainNodes(id:Id):Set[Id]={
-    Set((for{i<-nodes.filter(_ match {case x => x._2 == id})} yield {i._1}) toSeq: _ *)
+  val domain = new Domain{
+	  override def nodes(id:Id):Set[Id]=Set((for{i<-hNodes.filter(_ match {case x => x._2 == id})} yield {i._1}) toSeq: _ *)
+	  override def arrows(id:Id):Set[Id]=Set((for{i<-hArrows.filter(_ match {case x => x._2 == id})} yield {i._1}) toSeq: _ *)
+	  override def arrowSr(id:Id):Id=hDomainArrowsMap(id).sr.id  
+	  override def arrowTg(id:Id):Id=hDomainArrowsMap(id).tg.id
+	  override lazy val nodes:Set[Id]=hNodes.keySet.toSet
+	  override lazy val arrows:Set[Id]=hArrows.keySet.toSet
   }
-  /**
-   * input: id of domain
-   * output: id of codomain mapped to this id 
-   */
-  def codomainNode(id:Id):Id=nodes(id)
 
-  /**
-   * input: id of codomain
-   * output: all ids of domain mapped to this id 
-   */
-  def domainArrows(id:Id):Set[Id]={
-    Set((for{i<-arrows.filter(_ match {case x => x._2 == id})} yield {i._1}) toSeq: _ *)
+  val codomain = new Codomain{
+	  override def node(id:Id):Id=hNodes(id)
+	  override def arrow(id:Id):Id=hArrows(id)
+	  override def arrowSr(id:Id):Id=hCodomainArrowsMap(id).sr.id
+	  override def arrowTg(id:Id):Id=hCodomainArrowsMap(id).tg.id
+	  override lazy val nodes:Set[Id]=hCodomainNodesSet.toSet
+	  override lazy val arrows:Set[Id]=Set((for{(_,a)<-inputArrows} yield {a.id}) toSeq: _ *)
   }
-  /**
-   * input: id of domain
-   * output: id of codomain mapped to this id 
-   */
-  def codomainArrow(id:Id):Id=arrows(id)
-  
-  def domainArrowSr(id:Id):Id=domainArrowsMap(id).sr.id
-  
-  def domainArrowTg(id:Id):Id=domainArrowsMap(id).tg.id
-  
-  def codomainArrowSr(id:Id):Id=codomainArrowsMap(id).sr.id
-  
-  def codomainArrowTg(id:Id):Id=codomainArrowsMap(id).tg.id
-
-  lazy val domainNodes:Set[Id]=nodes.keySet.toSet
-  
-  lazy val codomainNodes:Set[Id]=codomainNodesSet.toSet
-  
-  lazy val domainArrows:Set[Id]=arrows.keySet.toSet
-  
-  lazy val codomainArrows:Set[Id]=Set((for{(_,a)<-inputArrows} yield {a.id}) toSeq: _ *)
 
 } 
 
@@ -726,88 +674,49 @@ case class TypingMorphism(input:AbstractGraph) extends Morphism{
   
   override lazy val immutable:Boolean = !input.getClass().getPackage().getName().endsWith("mutable") 	
   
-  /**
-   * input: id of codomain
-   * output: all ids of domain mapped to this id 
-   */
-  def domainNodes(id:Id):Set[Id]={
-    Set((for{n<-input.nodes.values.filter(_.t.id == id)} yield {n.id}) toSeq: _ *)
-  }
-  /**
-   * input: id of domain
-   * output: id of codomain mapped to this id 
-   */
-  def codomainNode(id:Id):Id={
-    input.nodes(id).t.id
-  }
-
-  /**
-   * input: id of codomain
-   * output: all ids of domain mapped to this id 
-   */
-  def domainArrows(id:Id):Set[Id]={
-    Set((for{a<-input.arrows.values.filter(_.t.id == id)} yield {a.id}) toSeq: _ *)
+  val domain = new Domain{
+	  override def nodes(id:Id):Set[Id]=Set((for{n<-input.nodes.values.filter(_.t.id == id)} yield {n.id}) toSeq: _ *)
+	  override def arrows(id:Id):Set[Id]=Set((for{a<-input.arrows.values.filter(_.t.id == id)} yield {a.id}) toSeq: _ *)
+	  override def arrowSr(id:Id):Id=input.arrows(id).sr.id	  
+	  override def arrowTg(id:Id):Id=input.arrows(id).tg.id
+	  
+	  private lazy val domainnodes:Set[Id] = mkDomainNodes()    
+	  override def nodes():Set[Id]= immutable match {case true => domainnodes; case _ => mkDomainNodes()}
+	  private def mkDomainNodes():Set[Id]=Set((for{n<-input.nodes.values} yield {n.id}) toSeq: _ *)
+	
+	  private lazy val domainarrows:Set[Id]= mkDomainArrows() 
+	  override def arrows():Set[Id]= immutable match {case true => domainarrows; case _ => mkDomainArrows()}
+	  private def mkDomainArrows():Set[Id]=Set((for{a<-input.arrows.values} yield {a.id}) toSeq: _ *)  
   }
 
-  /**
-   * input: id of codomain
-   * output: all ids of domain mapped to this id 
-   */
-  def codomainArrow(id:Id):Id={
-    input.arrows(id).t.id
-  }
-  
-  def domainArrowSr(id:Id):Id={
-    input.arrows(id).sr.id
-  }
-  
-  def domainArrowTg(id:Id):Id={
-    input.arrows(id).tg.id
-  }
-  
-  def codomainArrowSr(id:Id):Id={
-    //
-    //Because of Attributes coevolution works only with two level
-    //
-    if(id == TypeArrow.TAttribute().id){
-      return GraphDpf.node.id
-    }
-    input.mmGraph.arrows(id).sr.id
-  }
-  
-  def codomainArrowTg(id:Id):Id={
-    //
-    //Because of Attributes coevolution works only with two level
-    //
-    if(id == TypeArrow.TAttribute().id){
-      return TypeNode.TAttribute().id
-    }
-    input.mmGraph.arrows(id).tg.id
-  }
-
-  private lazy val domainnodes:Set[Id] = mkDomainNodes()    
-  def domainNodes():Set[Id]= immutable match {case true => domainnodes; case _ => mkDomainNodes()}
-  private def mkDomainNodes():Set[Id]={
-    Set((for{n<-input.nodes.values} yield {n.id}) toSeq: _ *)
-  }
-  
-  private lazy val codomainnodes:Set[Id] = mkCodomainNodes()    
-  def codomainNodes():Set[Id]= immutable match {case true => codomainnodes; case _ => mkCodomainNodes()}
-  private def mkCodomainNodes():Set[Id]={
-    Set((for{n<-input.nodes.values} yield {n.t.id}) toSeq: _ *) /* do not use mmGraph here since SIds not includes*/
-  }
-
-  private lazy val domainarrows:Set[Id]= mkDomainArrows() 
-  def domainArrows():Set[Id]= immutable match {case true => domainarrows; case _ => mkDomainArrows()}
-  private def mkDomainArrows():Set[Id]={
-    Set((for{a<-input.arrows.values} yield {a.id}) toSeq: _ *)
-  }
-  
-  private lazy val codomainarrows:Set[Id]=mkCodomainArrows()
-  def codomainArrows():Set[Id]= immutable match {case true => codomainarrows; case _ => mkCodomainArrows()}
-  private def mkCodomainArrows():Set[Id]={						/* do not use mmGraph here since SIds not includes*/
-    Set((for{a<-input.arrows.values} yield {a.t.id}) toSeq: _ *)
-  }
+  val codomain = new Codomain{
+	  override def node(id:Id):Id=input.nodes(id).t.id
+	  override def arrow(id:Id):Id=input.arrows(id).t.id
+	  override def arrowSr(id:Id):Id={
+	    //
+	    //Because of Attributes coevolution works only with two level
+	    //
+	    if(id == TypeArrow.TAttribute().id){
+	      return GraphDpf.node.id
+	    }
+	    input.mmGraph.arrows(id).sr.id
+	  }	  
+	  override def arrowTg(id:Id):Id={
+	    //
+	    //Because of Attributes coevolution works only with two level
+	    //
+	    if(id == TypeArrow.TAttribute().id){
+	      return TypeNode.TAttribute().id
+	    }
+	    input.mmGraph.arrows(id).tg.id
+	  }
+	  private lazy val codomainnodes:Set[Id] = mkCodomainNodes()    
+	  override def nodes():Set[Id]= immutable match {case true => codomainnodes; case _ => mkCodomainNodes()}
+	  private def mkCodomainNodes():Set[Id]=Set((for{n<-input.nodes.values} yield {n.t.id}) toSeq: _ *) /* do not use mmGraph here since SIds not includes*/
+	  private lazy val codomainarrows:Set[Id]=mkCodomainArrows()
+	  override def arrows():Set[Id]= immutable match {case true => codomainarrows; case _ => mkCodomainArrows()}
+	  private def mkCodomainArrows():Set[Id]= Set((for{a<-input.arrows.values} yield {a.t.id}) toSeq: _ *) /* do not use mmGraph here since SIds not includes*/
+  }  
   
 } 
 
@@ -819,79 +728,56 @@ case class InclusionMorphism(inputSub:AbstractGraph, input:AbstractGraph) extend
   override lazy val immutable:Boolean = !inputSub.getClass().getPackage().getName().endsWith("mutable") && 
 		  								!input.getClass().getPackage().getName().endsWith("mutable")	
   
-  /**
-   * input: id of codomain
-   * output: all ids of domain mapped to this id 
-   */
-  def domainNodes(id:Id):Set[Id]={
-    inputSub.getNode(id) match{
-      case None => Set()
-      case _ => Set(id)
-    }
-  }
-  /**
-   * input: id of domain
-   * output: id of codomain mapped to this id 
-   */
-  def codomainNode(id:Id):Id=id
- 
-  /**
-   * input: id of codomain
-   * output: all ids of domain mapped to this id 
-   */
-  def domainArrows(id:Id):Set[Id]={
-     inputSub.getArrow(id) match{
-      case None => Set()
-      case _ => Set(id)
-    }
+
+  val domain = new Domain{	  
+      override def nodes(id:Id):Set[Id]={
+	    inputSub.getNode(id) match{
+	      case None => Set()
+	      case _ => Set(id)
+	    }
+	  }
+	  override def arrows(id:Id):Set[Id]={
+	     inputSub.getArrow(id) match{
+	      case None => Set()
+	      case _ => Set(id)
+	    }
+	  }
+	  override def arrowSr(id:Id):Id={
+	    inputSub.arrows(id).sr.id
+	  }	  
+	  override def arrowTg(id:Id):Id={
+	    inputSub.arrows(id).tg.id
+	  }
+	  private lazy val domainnodes:Set[Id] = mkDomainNodes()    
+	  override def nodes():Set[Id]= immutable match {case true => domainnodes; case _ => mkDomainNodes()}
+	  private def mkDomainNodes():Set[Id]={
+	    Set((for{n<-inputSub.nodes.values} yield {n.id}) toSeq: _ *)
+	  }
+	
+	  private lazy val domainarrows:Set[Id]= mkDomainArrows() 
+	  override def arrows():Set[Id]= immutable match {case true => domainarrows; case _ => mkDomainArrows()}
+	  private def mkDomainArrows():Set[Id]={
+	    Set((for{a<-inputSub.arrows.values} yield {a.id}) toSeq: _ *)
+	  }
   }
 
-  /**
-   * input: id of codomain
-   * output: all ids of domain mapped to this id 
-   */
-  def codomainArrow(id:Id):Id=id
-  
-  def domainArrowSr(id:Id):Id={
-    inputSub.arrows(id).sr.id
-  }
-  
-  def domainArrowTg(id:Id):Id={
-    inputSub.arrows(id).tg.id
-  }
-  
-  def codomainArrowSr(id:Id):Id={
-    input.arrows(id).sr.id
-  }
-  
-  def codomainArrowTg(id:Id):Id={
-    input.arrows(id).tg.id
+  val codomain = new Codomain{
+	  override def node(id:Id):Id=id
+	  override def arrow(id:Id):Id=id 
+	  override def arrowSr(id:Id):Id=input.arrows(id).sr.id
+	  override def arrowTg(id:Id):Id=input.arrows(id).tg.id
+	  private lazy val codomainnodes:Set[Id] = mkCodomainNodes()    
+	  override def nodes():Set[Id]= immutable match {case true => codomainnodes; case _ => mkCodomainNodes()}
+	  private def mkCodomainNodes():Set[Id]={
+	    Set((for{n<-input.nodes.values} yield {n.id}) toSeq: _ *)
+	  }	  
+	  private lazy val codomainarrows:Set[Id]=mkCodomainArrows()
+	  override def arrows():Set[Id]= immutable match {case true => codomainarrows; case _ => mkCodomainArrows()}
+	  private def mkCodomainArrows():Set[Id]={
+	    Set((for{n<-input.arrows.values} yield {n.id}) toSeq: _ *)
+	  }
   }
 
-  private lazy val domainnodes:Set[Id] = mkDomainNodes()    
-  def domainNodes():Set[Id]= immutable match {case true => domainnodes; case _ => mkDomainNodes()}
-  private def mkDomainNodes():Set[Id]={
-    Set((for{n<-inputSub.nodes.values} yield {n.id}) toSeq: _ *)
-  }
-  
-  private lazy val codomainnodes:Set[Id] = mkCodomainNodes()    
-  def codomainNodes():Set[Id]= immutable match {case true => codomainnodes; case _ => mkCodomainNodes()}
-  private def mkCodomainNodes():Set[Id]={
-    Set((for{n<-input.nodes.values} yield {n.id}) toSeq: _ *)
-  }
-
-  private lazy val domainarrows:Set[Id]= mkDomainArrows() 
-  def domainArrows():Set[Id]= immutable match {case true => domainarrows; case _ => mkDomainArrows()}
-  private def mkDomainArrows():Set[Id]={
-    Set((for{a<-inputSub.arrows.values} yield {a.id}) toSeq: _ *)
-  }
-  
-  private lazy val codomainarrows:Set[Id]=mkCodomainArrows()
-  def codomainArrows():Set[Id]= immutable match {case true => codomainarrows; case _ => mkCodomainArrows()}
-  private def mkCodomainArrows():Set[Id]={
-    Set((for{n<-input.arrows.values} yield {n.id}) toSeq: _ *)
-  }
-  
   override def validate():Boolean={
 	return Set(inputSub.nodes).subsetOf(Set(input.nodes)) && Set(inputSub.arrows).subsetOf(Set(input.arrows)) 
   }  
@@ -904,67 +790,42 @@ case class InclusionMorphism(inputSub:AbstractGraph, input:AbstractGraph) extend
 case class IdMorphismGraph(input:AbstractGraph) extends Morphism{
   
   override lazy val immutable:Boolean = !input.getClass().getPackage().getName().endsWith("mutable") 	
-  
-  /**
-   * input: id of codomain
-   * output: all ids of domain mapped to this id 
-   */
-  def domainNodes(id:Id):Set[Id]={
-    input.getNode(id) match{
-      case None => Set()
-      case _ => Set(id)
-    }
-  }
-  /**
-   * input: id of domain
-   * output: id of codomain mapped to this id 
-   */
-  def codomainNode(id:Id):Id=id
- 
-  /**
-   * input: id of codomain
-   * output: all ids of domain mapped to this id 
-   */
-  def domainArrows(id:Id):Set[Id]={
-     input.getArrow(id) match{
-      case None => Set()
-      case _ => Set(id)
-    }
+
+  val domain = new Domain{
+	  override def nodes(id:Id):Set[Id]={
+	    input.getNode(id) match{
+	      case None => Set()
+	      case _ => Set(id)
+	    }
+	  }
+	  override def arrows(id:Id):Set[Id]={
+	     input.getArrow(id) match{
+	      case None => Set()
+	      case _ => Set(id)
+	    }
+	  }
+	  override def arrowSr(id:Id):Id=input.arrows(id).sr.id
+	  override def arrowTg(id:Id):Id=input.arrows(id).tg.id
+	  private lazy val domainnodes:Set[Id] = mkDomainNodes()    
+	  override def nodes():Set[Id]= immutable match {case true => domainnodes; case _ => mkDomainNodes()}
+	  private def mkDomainNodes():Set[Id]={
+	    Set((for{n<-input.nodes.values} yield {n.id}) toSeq: _ *)
+	  }
+	  private lazy val domainarrows:Set[Id]= mkDomainArrows() 
+	  override def arrows():Set[Id]= immutable match {case true => domainarrows; case _ => mkDomainArrows()}
+	  private def mkDomainArrows():Set[Id]={
+	    Set((for{a<-input.arrows.values} yield {a.id}) toSeq: _ *)
+	  }	  
   }
 
-  /**
-   * input: id of codomain
-   * output: all ids of domain mapped to this id 
-   */
-  def codomainArrow(id:Id):Id=id
-  
-  def domainArrowSr(id:Id):Id={
-    input.arrows(id).sr.id
+  val codomain = new Codomain{
+	  override def node(id:Id):Id=id
+	  override def arrow(id:Id):Id=id
+	  override def arrowSr(id:Id):Id=domain.arrowSr(id)
+	  override def arrowTg(id:Id):Id=domain.arrowTg(id)
+	  override def nodes():Set[Id]= domain.nodes()
+	  override def arrows():Set[Id]=domain.arrows() 
   }
-  
-  def domainArrowTg(id:Id):Id={
-    input.arrows(id).tg.id
-  }
-  
-  def codomainArrowSr(id:Id):Id=domainArrowSr(id)
-  
-  def codomainArrowTg(id:Id):Id=domainArrowTg(id)
-
-  private lazy val domainnodes:Set[Id] = mkDomainNodes()    
-  def domainNodes():Set[Id]= immutable match {case true => domainnodes; case _ => mkDomainNodes()}
-  private def mkDomainNodes():Set[Id]={
-    Set((for{n<-input.nodes.values} yield {n.id}) toSeq: _ *)
-  }
-  
-  def codomainNodes():Set[Id]= domainNodes()
-
-  private lazy val domainarrows:Set[Id]= mkDomainArrows() 
-  def domainArrows():Set[Id]= immutable match {case true => domainarrows; case _ => mkDomainArrows()}
-  private def mkDomainArrows():Set[Id]={
-    Set((for{a<-input.arrows.values} yield {a.id}) toSeq: _ *)
-  }
-  
-  def codomainArrows():Set[Id]=domainArrows() 
   
   override def validate():Boolean={
 	return true 
