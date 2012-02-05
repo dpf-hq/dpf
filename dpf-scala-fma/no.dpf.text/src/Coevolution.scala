@@ -113,7 +113,7 @@ trait AbstractCoevolutionSpan extends Output{
 }
 
 /**
- * Simplified Coevolution
+ * Simplified Coevolution with Span
  */
 case class SimpleCoevolutionSpan(TL:AbstractGraph,TK:AbstractGraph,TR:AbstractGraph, G:AbstractGraph) extends AbstractCoevolutionSpan{
   
@@ -137,6 +137,154 @@ case class SimpleCoevolutionSpan(TL:AbstractGraph,TK:AbstractGraph,TR:AbstractGr
 	 printGraph(K,"K",path,false)
 	 printGraph(R,"R",path,false)
 	 printGraph(C,"C",path)
+	 printGraph(G,"G",path)
+	 printGraph(TH,"TH",path)
+	 printGraph(H,"H",path)
+     
+	 println("Coevolution last (msec): " + (System.currentTimeMillis() - start))
+  }
+
+}  
+//----------------------------------------------------------------------------------------------------------------------------------
+  
+trait AbstractCoevolutionCospan extends Output{
+  
+  /**
+   * Need to be specified
+   */
+  val TL:AbstractGraph;
+  
+  val TI:AbstractGraph;
+  
+  val TR:AbstractGraph;
+
+  val mmRule:Cospan;
+  
+  val tm:Morphism;
+
+  val G:AbstractGraph;
+  
+  //---------------------------------
+
+  lazy val TG = G.mmGraph;
+  
+  lazy val tG = TypingMorphism(G);
+  
+  lazy val tl = mmRule.left
+
+  lazy val tr = mmRule.right
+
+  lazy val tg = po_left_top.right 
+
+  lazy val ti = po_left_top.left
+
+  lazy val tm2 = poc_right_top.m1
+  
+  lazy val th = poc_right_top.m2
+  
+  lazy val m = pb_left.left
+  
+  lazy val tL = pb_left.right
+
+  lazy val l = pbc_left_back.m1
+  
+  lazy val tI = pbc_left_back.m2
+
+  lazy val r = pb_right_back.left
+  
+  lazy val tR = pb_right_back.right
+    
+  lazy val i = po_left_bottom.left
+    
+  lazy val g = po_left_bottom.right
+
+  lazy val m2 =  poc_right_bottom.m1
+  
+  lazy val h =  poc_right_bottom.m2
+
+  lazy val tTL = TypingMorphism(TR);
+  
+  lazy val tTG = TypingMorphism(TG);
+  
+  lazy val tTR = TypingMorphism(TR);
+
+  lazy val tTI = TypingMorphism(TI);
+  
+  lazy val tTU = typingMFromPushout(po_left_top,id_cospan_typTypGraph,tTI,tTG); 
+
+  lazy val TU = toGraph(TI,TG,TG.mmGraph,tTU);
+
+  lazy val tTH = typingMFromPushout(poc_right_top,id_composition_typTypGraph,tTR,tTU);
+  
+  lazy val L = toGraph(G,G,TL,tL);
+
+  lazy val I = toGraph(L,L,TI,tI);
+
+  lazy val R = toGraph(I,I,TR,tR);
+  
+  lazy val TH = toGraph(TU,TR,TG.mmGraph,tTH);
+
+  lazy val tH = typingMFromPushout(poc_right_bottom, poc_right_top,tR,tU)
+
+  lazy val H = toGraph(U,R,TH,tH);
+
+  lazy val tU = typingMFromPushout(po_left_bottom,po_left_top,tI,tG); 
+  
+  lazy val U = toGraph(I,G,TU,tU);
+  
+  //
+  //Calculations:
+  //  
+  //
+  //Attention: No graph should be computed twice, or we need a isomorphi check
+  //
+  protected lazy val po_left_top = Span(tl,tm).pushout(10);
+
+  protected lazy val poc_right_top = Composition(tr,ti).pushoutComplement(2);
+  
+  protected lazy val pb_left = Cospan(tG,tm).pullback(12);
+
+  protected lazy val pbc_left_back = Composition(tL,tl).fPullbackComplementMono(13);
+  
+  protected lazy val pb_right_back = Cospan(tI,tr).pullback(14);
+  
+  protected lazy val po_left_bottom = Span(l,m).pushout(15)
+  
+  protected lazy val poc_right_bottom = Composition(r,i).pushoutComplement(1);
+  
+  protected lazy val id_typTypGraph = IdMorphismGraph(TG);
+  
+  protected lazy val id_cospan_typTypGraph = Cospan(id_typTypGraph,id_typTypGraph)	
+
+  protected lazy val id_composition_typTypGraph = Composition(id_typTypGraph,id_typTypGraph)	
+  
+}
+
+/**
+ * Simplified Coevolution with Span
+ */
+case class SimpleCoevolutionCospan(TL:AbstractGraph,TI:AbstractGraph,TR:AbstractGraph, G:AbstractGraph) extends AbstractCoevolutionCospan{
+  
+  override val tm:Morphism = InclusionMorphism(TL,TG);
+
+  override val mmRule = Cospan(InclusionMorphism(TL,TI),InclusionMorphism(TR,TI));
+
+  def print(path:String)={
+	val start = System.currentTimeMillis()  
+    println("------------------------ Metamodel (tm')---------------------\n\n")
+    println(tm2)
+    println("------------------------ Model (m')---------------------\n\n")
+    println(m2)  
+
+     printGraph(TL,"TL",path,false)
+	 printGraph(TI,"TI",path,false)
+	 printGraph(TR,"TR",path,false)
+	 printGraph(TG,"TG",path)
+	 printGraph(TU,"TC",path)
+	 printGraph(L,"L",path,false)
+	 printGraph(I,"K",path,false)
+	 printGraph(R,"R",path,false)
+	 printGraph(U,"U",path)
 	 printGraph(G,"G",path)
 	 printGraph(TH,"TH",path)
 	 printGraph(H,"H",path)
