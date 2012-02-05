@@ -122,7 +122,7 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 	
 	def simpleEvoSpan: Parser[Any] = "simpleEvolution("~ID~"<-"~ID~"->"~ID~","~ID~")" ^^ { case "simpleEvolution("~tl~"<-"~tk~"->"~tr~","~g~")" => SimpleCoevolutionSpan(tGraphs(tl),tGraphs(tk),tGraphs(tr),tGraphs(g)).print(outDir)}
 
-	def simpleEvoCospan: Parser[Any] = "simpleEvolution("~ID~"->"~ID~"<-"~ID~","~ID~")" ^^ { case "simpleEvolution("~tl~"<-"~ti~"->"~tr~","~g~")" => SimpleCoevolutionCospan(tGraphs(tl),tGraphs(ti),tGraphs(tr),tGraphs(g)).print(outDir)}
+	def simpleEvoCospan: Parser[Any] = "simpleEvolution("~ID~"->"~ID~"<-"~ID~","~ID~")" ^^ { case "simpleEvolution("~tl~"->"~ti~"<-"~tr~","~g~")" => SimpleCoevolutionCospan(tGraphs(tl),tGraphs(ti),tGraphs(tr),tGraphs(g)).print(outDir)}
 
 	//Specification instance:
 	def ispec : Parser[IS] = ID~":="~"ISpec<"~chosenSpec~","~chosenSpec~">"~"{"~repsep(constraintSem,",")~"}" ^^ {case n~":="~"ISpec<"~mS~","~mmS~">"~"{"~sem~"}" => IS(mS,mmS,sem.map{e=>(e.id,e)}.toMap)}
