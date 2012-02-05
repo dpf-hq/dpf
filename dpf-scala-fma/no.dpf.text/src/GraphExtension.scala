@@ -164,23 +164,23 @@ trait TwoMorphism{
     
     for(a<-as){
       a match{
-        case x@SetId(s) => if(s.isEmpty){
+        case x@SetId(s,gId) => if(s.isEmpty){
         						sys.error("Programming error") 
         					}
-        					val srSet= MSet[(Id,Int,String)]()
-        					val tgSet= MSet[(Id,Int,String)]()
+        					val srSet= MSet[(Id,String)]()
+        					val tgSet= MSet[(Id,String)]()
           					for(i <- s){
-        					  if(i._3=="L"){
-        					    srSet+=((srL(i._1),i._2,i._3))
-        					    tgSet+=((tgL(i._1),i._2,i._3))
+        					  if(i._2=="L"){
+        					    srSet+=((srL(i._1),i._2))
+        					    tgSet+=((tgL(i._1),i._2))
         					  }
-        					  if(i._3=="R"){
-        					    srSet+=((srR(i._1),i._2,i._3))
-        					    tgSet+=((tgR(i._1),i._2,i._3))
+        					  if(i._2=="R"){
+        					    srSet+=((srR(i._1),i._2))
+        					    tgSet+=((tgR(i._1),i._2))
         					  }
         					}
-       					    srMap+=x->SetId(srSet.toSet)	
-        					tgMap+=x->SetId(tgSet.toSet)	
+       					    srMap+=x->SetId(srSet.toSet,gId)	
+        					tgMap+=x->SetId(tgSet.toSet,gId)	
         case _ => sys.error("Programming error") 
       } 
     }
@@ -195,11 +195,11 @@ trait TwoMorphism{
           //Try do find the correct one:
           for(n<-ns){
             n match {
-              case y@SetId(_) => 
+              case y@SetId(_,_) => 
 		            kv._2 match {
-		              case x@SetId(_) =>
+		              case x@SetId(_,_) =>
 		              //Fix:
-		              if(x.v subsetOf y.v){
+		              if(x.gId == y.gId && (x.v subsetOf y.v)){
 		            	  m+=kv._1->y
 		            	  fixed = true
 		              }
@@ -232,11 +232,11 @@ case class Span(left:Morphism,right:Morphism) extends TwoMorphism{
       val right2 = MMap[Id,Id]()
 
       //Use mutable Maps for Equivalenz classes:
-      val left2_tmp  = MMap[(Id,Int,String),MSet[(Id,Int,String)]]()
-      val right2_tmp = MMap[(Id,Int,String),MSet[(Id,Int,String)]]()
+      val left2_tmp  = MMap[(Id,String),MSet[(Id,String)]]()
+      val right2_tmp = MMap[(Id,String),MSet[(Id,String)]]()
       for(d<-domain){
-        val lV = (l(d),gid,"L")  
-        val rV = (r(d),gid,"R")
+        val lV = (l(d),"L")  
+        val rV = (r(d),"R")
         val poe = MSet(lV,rV)
         left2_tmp+=lV->poe
         right2_tmp+=rV->poe
@@ -256,17 +256,17 @@ case class Span(left:Morphism,right:Morphism) extends TwoMorphism{
       while(merge()){/*do nothing*/}
       
       //Add to real result:
-      for(s<-left2_tmp.values)m+=SetId(s.toSet)
-      for(kv<-left2_tmp)left2+=kv._1._1->SetId(kv._2.toSet)
-      for(kv<-right2_tmp)right2+=kv._1._1->SetId(kv._2.toSet)
+      for(s<-left2_tmp.values)m+=SetId(s.toSet,gid)
+      for(kv<-left2_tmp)left2+=kv._1._1->SetId(kv._2.toSet,gid)
+      for(kv<-right2_tmp)right2+=kv._1._1->SetId(kv._2.toSet,gid)
 
       for(c<-codomainDiffLeft){
-        val poe = SetId(Set((c,gid,"L")))
+        val poe = SetId(Set((c,"L")),gid)
     	m+= poe
         left2+=c->poe
       }
       for(c<-codomainDiffRight){
-        val poe = SetId(Set((c,gid,"R")))
+        val poe = SetId(Set((c,"R")),gid)
         m+=poe
         right2+=c->poe
       }
@@ -318,7 +318,7 @@ case class Cospan(left:Morphism,right:Morphism) extends TwoMorphism{
         val rDomain2 = r2(x)
         //Build cartesian product:
         for(l<-lDomain2;r<-rDomain2){
-          val pbe = SetId(Set((l,gid,"L"),(r,gid,"R"))) 
+          val pbe = SetId(Set((l,"L"),(r,"R")),gid) 
           left1+=pbe->l
           right1+=pbe->r
           m+= pbe
@@ -394,13 +394,13 @@ case class Composition(m1:Morphism,m2:Morphism){
    
     //Compute V_D and i_V:
     for(v<-V_A){
-      V_D+=SetId(Set((v,gid,"A")))
+      V_D+=SetId(Set((v,"A")),gid)
     }
     for(v<-V_L){
-      V_D-=SetId(Set((m_V(v),gid,"A")))
+      V_D-=SetId(Set((m_V(v),"A")),gid)
     }
     for(v<-V_K){
-      val n = SetId(Set((v,gid,"K"))) 
+      val n = SetId(Set((v,"K")),gid) 
       V_D+=n;
       i_V+=v->n;
     }
@@ -410,7 +410,7 @@ case class Composition(m1:Morphism,m2:Morphism){
     val y_V = MMap[Id,Id]();
     for(v<-V_D){
       val u = v.v.head
-      u._3 match{ 
+      u._2 match{ 
         case "K" => y_V+=v->m_V(a_V(u._1)) 
         case "A" => y_V+=v->u._1
         case _ => sys.error("Programming error")
@@ -430,13 +430,13 @@ case class Composition(m1:Morphism,m2:Morphism){
         for(u <- V_D;
             v <- V_D){
           if(src_A(e) == y_V(u) && tgt_A(e) == y_V(v)){
-        	  E_D+=SetId(Set((e,gid,"A"),(u,gid,"uD"),(v,gid,"vD")))
+        	  E_D+=SetId(Set((e,"A"),(u,"uD"),(v,"vD")),gid)
           }
         }
       }
     }
     for(e<-E_K){
-      val a = SetId(Set((e,gid,"K"))); 
+      val a = SetId(Set((e,"K")),gid); 
    	  E_D+=a;
    	  i_E+=e->a;
     }
@@ -453,21 +453,21 @@ case class Composition(m1:Morphism,m2:Morphism){
      val e_set = e.v
      if(3 == e_set.size){
        
-       val e_A = e_set.find(x => "A" == x._3).get
+       val e_A = e_set.find(x => "A" == x._2).get
        y_E+=e->e_A._1
        
-       val e_uD = e_set.find(x => "uD" == x._3).get
+       val e_uD = e_set.find(x => "uD" == x._2).get
        src_D+=e->e_uD._1 
 
-       val e_vD = e_set.find(x => "vD" == x._3).get
+       val e_vD = e_set.find(x => "vD" == x._2).get
        tgt_D+=e->e_vD._1
        
      }else{
        val e2 = e_set.head
-       if("K" != e2._3){
+       if("K" != e2._2){
          sys.error("Programming error")
        }
-       y_E+=e->SetId(Set((m_E(a_E(e2._1)),gid,e2._3)))
+       y_E+=e->SetId(Set((m_E(a_E(e2._1)),e2._2)),gid)
 
        src_D+=e->src_K(e2._1)
        
@@ -500,17 +500,17 @@ case class Composition(m1:Morphism,m2:Morphism){
       val m2B = MMap[Id,Id]();
       
       val xG = for(x<-G)	yield{
-        val y = SetId(Set((x,gid,"G"))); 	   
+        val y = SetId(Set((x,"G")),gid); 	   
         m2B+=y->x ;y
       }
       val m_L = for(x<-L)	yield{
-        val y = SetId(Set((m(x),gid,"G")));
+        val y = SetId(Set((m(x),"G")),gid);
         m2B-=y 	 
         ;y
       } 
       val m_l_K = for(x<-K)	yield{
         val g = m(l(x))
-        val y = SetId(Set((g,gid,"G")));
+        val y = SetId(Set((g,"G")),gid);
         m1B+=x->y; 
         m2B+=y->g ;y
       }
@@ -537,13 +537,13 @@ case class Composition(m1:Morphism,m2:Morphism){
     
     for(a<-pcArrows._1){
       a match{
-        case id@SetId(s) => if(1 != s.size){
+        case id@SetId(s,_) => if(1 != s.size){
         		 			   sys.error("Programming error");
         				    }
         				 for(i<-s){
-        				   i._3 match{
-        				     case "G" => arrowSr+=id->SetId(Set((m2.codomainArrowSr(i._1),gid,"G")));
-        				     			 arrowTg+=id->SetId(Set((m2.codomainArrowTg(i._1),gid,"G"))); 
+        				   i._2 match{
+        				     case "G" => arrowSr+=id->SetId(Set((m2.codomainArrowSr(i._1),"G")),gid);
+        				     			 arrowTg+=id->SetId(Set((m2.codomainArrowTg(i._1),"G")),gid); 
         				     case _ => sys.error("Programming error"); 
         				   }
         				 }	

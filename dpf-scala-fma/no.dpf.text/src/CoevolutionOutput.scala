@@ -22,7 +22,7 @@ trait Output{
     	  return s
     	}
     	s match{
-    	  case setId@SetId(_) => val f = setId.ids.filter(_.isInstanceOf[AValue]).asInstanceOf[Set[AValue]]
+    	  case setId@SetId(_,_) => val f = setId.ids.filter(_.isInstanceOf[AValue]).asInstanceOf[Set[AValue]]
     			  				 f.size match {
     			  				 	case 0 => 
     			  				 	  //Add default: 
@@ -42,7 +42,7 @@ trait Output{
     val rs = new MGraph(typeGraph,()=>sys.error("Programming error!"))
     for(nId<-typing.domainNodes()){
       nId match {
-        case sid@SetId(_) => 
+        case sid@SetId(_,_) => 
             val names = MSet[Option[String]]();
             for(e<-sid.v){
             	val id = e._1;
@@ -59,11 +59,11 @@ trait Output{
             }
     		//Type node may be wrapped into setId:
     		val nt = typing.codomainNode(nId) match {
-    		  case setId@SetId(_) => if(setId.containsAId){
+    		  case setId@SetId(_,_) => if(setId.containsAId){
     			  						setId.ids.head
-    		  						 }else{
+    		  						   }else{
     		  						    setId
-    		  						 }
+    		  						   }
     		  case nId@_		  => nId 				
     		}
     		
@@ -96,7 +96,7 @@ trait Output{
     //Add Arrows:
     for(aId<-typing.domainArrows()){
       aId match {
-        case sid@SetId(_) =>
+        case sid@SetId(_,_) =>
             val names = MSet[Option[String]]();
             if(3 != sid.v.size){
 	            for(e<-sid.v){
@@ -148,11 +148,11 @@ trait Output{
 				      sys.error("No Name defined!")
 				    case _ =>  
 				      val tgNode = typing.domainArrowTg(aId) match{
-				        case snId@SetId(_) => if(snId.containsAId){
-				        						Node(snId.ids.head,TypeNode.TAttribute())	
-				        					  }else{
-				        					    rs.nodes(snId)
-				        					  }   
+				        case snId@SetId(_,_) => if(snId.containsAId){
+				        						 Node(snId.ids.head,TypeNode.TAttribute())	
+				        					    }else{
+				        					     rs.nodes(snId)
+				        					    }   
 				        case nId@_ => Node(nId,TypeNode.TAttribute())
 				      }
 				      rs.addAArrow(newName,rs.nodes(typing.domainArrowSr(aId)),tgNode,TypeArrow.TAttribute(),aId);
@@ -165,11 +165,11 @@ trait Output{
 			        //Attribute Id can be wrapped into a SetId:
 	        	    if(at == TypeArrow.TAttribute()){
 				      val tgNode = typing.domainArrowTg(aId) match{
-				        case snId@SetId(_) => if(snId.containsAId){
-				        						Node(snId.ids.head,TypeNode.TAttribute())	
-				        					  }else{
-				        					    rs.nodes(snId)
-				        					  }   
+				        case snId@SetId(_,_) => if(snId.containsAId){
+				        						 Node(snId.ids.head,TypeNode.TAttribute())	
+				        					    }else{
+				        					     rs.nodes(snId)
+				        					    }   
 				        case nId@_ => rs.nodes(nId)
 				      }
 			          rs.addAArrow(newName,rs.nodes(typing.domainArrowSr(aId)),tgNode,TypeArrow.TAttribute(),aId);
@@ -208,10 +208,10 @@ trait Output{
 			  val typing = MMap[Id,Id]();
 			  for(e<-elementIds){
 			    e match{
-			      case setId@SetId(v) => 
+			      case setId@SetId(v,_) => 
 			        	//Use "L" and "R" instead of trying domain functions:
 			      		val triple = v.head
-			      		val t = triple._3 match {
+			      		val t = triple._2 match {
 			      		  case "L" => 
 			      		    leftTop(typLeft(triple._1)) 
 			      		  case "R" => 

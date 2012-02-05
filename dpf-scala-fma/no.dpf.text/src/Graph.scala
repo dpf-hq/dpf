@@ -287,7 +287,7 @@ package mutable{
 			    			  val n = a.tg
 			    			  val isAttr = n match{
 			    			    case Node(_,TypeNode.TAttribute()) => true
-			    			    case Node(sid@SetId(_),_) => sid.containsAId
+			    			    case Node(sid@SetId(_,_),_) => sid.containsAId;sys.error("Wird gebraucht")
 			    			    case _ => false
 			    			  }
 			    			  if(isAttr){	
@@ -547,7 +547,7 @@ case class SId(v:Long) extends Id{
 
 //----------------------------------------------------------------------
 //SetId (required for pushouts and pullbacks)
-case class SetId(v:Set[(Id,Int,String)]) extends Id{ // SetId(v:Set[(Id,Int,String)])   (Id, Set-Identifier,L(eft) || R(right))
+case class SetId(v:Set[(Id,String)],gId:Int) extends Id{ // SetId(v:Set[(Id,String)])   (Id, L(eft) || R(right))
   
   lazy val ids:Set[Id] = toNonSetIds(this)
   
@@ -555,8 +555,8 @@ case class SetId(v:Set[(Id,Int,String)]) extends Id{ // SetId(v:Set[(Id,Int,Stri
     val rs = MSet[Id]()
     for(e<-s.v){
       e._1 match {
-	  	case s2@SetId(_) => rs++=toNonSetIds(s2)
- 	  	case nonSetId@_	 => rs.add(e._1)
+	  	case s2@SetId(_,_) => rs++=toNonSetIds(s2)
+ 	  	case nonSetId@_	   => rs.add(e._1)
 	  }
     }
     if(rs.isEmpty)sys.error("Programming error in SetId:" + this)
@@ -567,6 +567,15 @@ case class SetId(v:Set[(Id,Int,String)]) extends Id{ // SetId(v:Set[(Id,Int,Stri
   	if(1 == v.size){
   	  ids.head.isInstanceOf[AId]
   	}else false
+  }
+
+  override def equals(that: Any) = that match { 
+	case other: SetId => other.getClass == getClass && other.gId == gId && other.v == v 
+	case _ => false 
+  }
+ 
+  override def hashCode(): Int = {
+    gId + v.hashCode()
   }
   
   override lazy val toString="SetID"+v.toString;	
