@@ -2,76 +2,36 @@
 
 «EXTENSION org::eclipse::xtend::util::stdlib::io»
 
-
-
 «DEFINE main FOR dpf::Specification»
 	«EXPAND graph FOR this.graph»
 «ENDDEFINE»
 
-
 «DEFINE graph FOR dpf::Graph»
-	
-	«EXPAND service FOREACH  this.getServices()»
+
+	«EXPAND service FOREACH this.getServices()»
 	
 «ENDDEFINE»
+
 
 «DEFINE service FOR dpf::Service»
-	«FILE this.name+".java"»
-		public interface «this.name»{
-		
-		«EXPAND methodref FOREACH  this.getAMethodRefs()»
-		«this.getAMethodRefs().first().name»
-		
-		}
+	«FILE "test.java"»
+	public interface test{
+
+	«REM»«EXPAND methodref FOR this.getAMethodRefs()»«ENDREM»
+	}
 	«ENDFILE»
-	«syserr(this.name)-»
+	«syserr(this.name)»
 «ENDDEFINE»
-
-«DEFINE methodref FOR dpf::methodRef»
-	«REM»«EXPAND methodArgs FOREACH this.target.getAFirstArges()»«ENDREM»
-«ENDDEFINE»
-
-
 
 «REM»
-«DEFINE methodArgs FOR dpf::firstArg»
-	«EXPAND nextArg FOREACH  this.target.getANextArges()»
+«DEFINE methodref FOR dpf::methodRef»
+	«EXPAND firstargref FOR this.target.getAFirstArgs()»
+«ENDDEFINE»
+
+«DEFINE firstargref FOR dpf::firstArg»
+	«EXPAND nextArg FOR this.target.getANextArgs()»
 «ENDDEFINE»
 «DEFINE nextArg FOR dpf::nextArg»
+	«this.target.getANextArgs().name»
 «ENDDEFINE»
-«ENDREM»
-
-
-
-«REM»«DEFINE graph FOR dpf::Graph»
-
-	«FILE this.getServices().get(0).name+".smodl"»
-public interface «this.getServices().first().name +"{" -» 
-		«EXPAND method FOREACH this.getMethods()-»
-		}
-	«ENDFILE-»
-	«syserr(this.name)-»
-«ENDDEFINE»
-
-«DEFINE method FOR dpf::Method-»
-	«FOREACH this.getOutgoingArrows() AS methodArg-»
-		«IF methodArg.target.getTypeName() == "Type"-»
-			public «methodArg.target.name-» «this.name +"("-»
-		«ENDIF-»
-		«IF methodArg.target.getTypeName() == "Arg" -»
-			«FOREACH methodArg.target.getOutgoingArrows() AS nextArg -»
-				«IF nextArg.target.getTypeName() == "Type"-»
-					« nextArg.target.name»«" "+methodArg.target.name-»
-				«ELSEIF nextArg.target.getTypeName()=="Arg"-»
-					«","+nextArg.target.getOutgoingArrows().first().target.name»  «nextArg.target.name +")" -»
-				«ENDIF-»
-				
-			«ENDFOREACH-»
-		«ENDIF-»
-		
-	«ENDFOREACH-»
-	
-	
-«ENDDEFINE»
-
 «ENDREM»

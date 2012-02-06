@@ -3,8 +3,8 @@
 	<!-- workflow properties -->
 
 	
-	<property name="dpf_model" value="platform:/resource/SmodlGenerator/model/SmodlM1.dpf.xmi" /> -->
-	<property name="dpf_metamodel" value="platform:/resource/SmodlGenerator/metamodel/SmodlM2.dpf.xmi" /> -->
+	<property name="dpf_model" value="platform:/resource/SmodlGenerator/model/smodlModel.dpf.xmi" /> -->
+	<property name="dpf_metamodel" value="platform:/resource/SmodlGenerator/metamodel/smodlMetaModel.dpf.xmi" /> -->
 	
 	<property name="src-gen" value="src-gen" />
 	
