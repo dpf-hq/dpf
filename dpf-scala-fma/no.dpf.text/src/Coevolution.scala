@@ -247,7 +247,7 @@ trait AbstractCoevolutionCospan extends Output{
   protected lazy val pbc_left_back = Composition(tL,tl).fPullbackComplementMono(13);
   
   protected lazy val pb_right_back = Cospan(tI,tr).pullback(14);
-  
+    
   protected lazy val po_left_bottom = Span(l,m).pushout(15)
   
   protected lazy val poc_right_bottom = Composition(r,i).pushoutComplement(1);
@@ -274,45 +274,21 @@ case class SimpleCoevolutionCospan(TL:AbstractGraph,TI:AbstractGraph,TR:Abstract
     println("------------------------ Metamodel (tm')---------------------\n\n")
     println(tm2)
     println("------------------------ Model (m')---------------------\n\n")
-
-    println(tG)  
-    println("FLO" + 1)
-    println(m)  
-    println("FLO" + 2)
-    println(tL)  
-    println("FLO" + 3)
-    println(l)  
-    println("FLO" + 4)
-    println(tI)  
-    println("FLO" + 5)
-    println(r)  
-    println("FLO" + 6)
-    println(tR)  
-    println("FLO" + 7)
-    println(Span(l,m).validate())
-    println("FLOb, Pushout impl checken" + 7)
-    println(po_left_bottom.validate())
-    println(i)  
-    println("FLO" + 8)
-    println(g)  
-    println("FLO" + 9)
     println(m2)  
-    println("FLO" + 10)
 
-//    println(m2)  
-
-//     printGraph(TL,"TL",path,false)
-//	 printGraph(TI,"TI",path,false)
-//	 printGraph(TR,"TR",path,false)
-//	 printGraph(TG,"TG",path)
-//	 printGraph(TU,"TC",path)
-//	 printGraph(G,"G",path)
-//	 printGraph(L,"L",path,false)
-//	 printGraph(I,"I",path,false)
-//	 printGraph(R,"R",path,false)
-//	 printGraph(U,"U",path)
-//	 printGraph(TH,"TH",path)
-//	 printGraph(H,"H",path)
+     printGraph(TL,"TL",path,false)
+	 printGraph(TI,"TI",path,false)
+	 printGraph(TR,"TR",path,false)
+	 printGraph(TG,"TG",path)
+	 printGraph(TU,"TC",path)
+	 printGraph(G,"G",path)
+	 printGraph(L,"L",path,false)
+	 printGraph(I,"I",path,false)
+	 //Hier:
+	 printGraph(R,"R",path,false)
+	 printGraph(U,"U",path)
+	 printGraph(TH,"TH",path)
+	 printGraph(H,"H",path)
      
 	 println("Coevolution last (msec): " + (System.currentTimeMillis() - start))
   }

@@ -461,11 +461,11 @@ case class Composition(m1:Morphism,m2:Morphism){
        if("K" != e2._2){
          sys.error("Programming error")
        }
-       y_E+=e->SetId(Set((m_E(a_E(e2._1)),e2._2)),gid)
+       y_E+=e->m_E(a_E(e2._1))
 
-       src_D+=e->src_K(e2._1)
+       src_D+=e->SetId(Set((src_K(e2._1),e2._2)),gid)
        
-       tgt_D+=e->tgt_K(e2._1) 
+       tgt_D+=e->SetId(Set((tgt_K(e2._1),e2._2)),gid)
      }		 
    }
    
