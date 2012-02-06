@@ -108,9 +108,7 @@ sealed trait Morphism{
     
     rrs="\n\nNodes-Mapping:\n"::rrs;
     for(n<-domain.nodes()){
-    	println("test1-B")
     	rrs=n + "  =>  " + codomain.node(n) +  "\n"::rrs
-    	println("test1-E")
     }  
     
     rrs="\n\nAdditional Nodes in Codomain:\n"::rrs;
@@ -814,8 +812,10 @@ case class IdMorphismGraph(input:AbstractGraph) extends Morphism{
 	    input.getNode(id) match{
 	      case None => 
 	        if(id == TypeNode.TAttribute().id){
-	        	  Set(id)
-	        }else println("TEST1" + input ); Set()
+        	  Set(id)
+	        }else{
+	          Set()
+	        }
 	      case _ => Set(id)
 	    }
 	  }
@@ -823,8 +823,10 @@ case class IdMorphismGraph(input:AbstractGraph) extends Morphism{
 	     input.getArrow(id) match{
 	      case None => 
 	        if(id == TypeArrow.TAttribute().id){
-	        	  Set(id)
-	        }else println("TEST2" + input ); Set()	        
+        	  Set(id)
+	        }else{
+	          Set()	        
+	        }
 	      case _ => Set(id)
 	    }
 	  }
@@ -834,7 +836,7 @@ case class IdMorphismGraph(input:AbstractGraph) extends Morphism{
 	    //
 	    if(id == TypeArrow.TAttribute().id){
 	      return GraphDpf.node.id
-	    }	    
+	    }	
 	    input.arrows(id).sr.id
 	  }  
 	  override def arrowTg(id:Id):Id={
