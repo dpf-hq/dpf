@@ -53,7 +53,7 @@ trait Output{
 		  			  	case None 	 => parent2.names.get(id) match{
 		  			  	  					case name2@Some(n) => names+=name2; 
 		  			  	  					case None => /* its a type id */
-		  			  	  					  println("No name for: " + id)
+		  			  	  					  //println("No name for: " + id)
 		  			  					}		  
             	}
             }
@@ -106,7 +106,7 @@ trait Output{
 			  			  	case None 	 => parent2.names.get(id) match{
 			  			  	  					case name2@Some(n) => names+=name2; 
 			  			  	  					case None => /* its a type id */
-			  			  	  					  println("No name for: " + id)
+			  			  	  					  //println("No name for: " + id)
 			  			  					}		  
 	            	  }
 	            }
@@ -245,7 +245,7 @@ trait Output{
 		  
 		  val nodes = SetMorphism(nodeTypes,top.left.codomain.nodes())		
 		  val arrows = SetMorphism(arrowTypes,top.left.codomain.arrows())		
-    
+
 		  ArbitraryMorphismWithIds(nodes,(arrows,bottom.left.codomain.arrowSrTg(),top.left.codomain.arrowSrTg()))
   }  
   
@@ -258,6 +258,7 @@ trait Output{
 		  				top:Composition,
 		  			    typingDomain:Morphism,
 		  			    typingCodomain:Morphism):Morphism = {
+    
 		  //Get Typ:
 		  def getTypeSet(
 				  elementIds:Set[Id], 
@@ -272,12 +273,7 @@ trait Output{
 		  )={
 			  val typing = MMap[Id,Id]();
 			  for(e<-elementIds){
-			      
-				  val test = tCodomain(bottomM2(e))
-			      println("FLORIAN  " + test)
-			      
-				  val types = topM2_reverse(test)
-				  
+				  val types = topM2_reverse(tCodomain(bottomM2(e)))
 				  val t = types.size match{
 				    case 1 => types.head;
 				    case _ => 
@@ -317,7 +313,7 @@ trait Output{
 		  
 		  val nodes = SetMorphism(nodeTypes,top.m1.codomain.nodes())		
 		  val arrows = SetMorphism(arrowTypes,top.m1.codomain.arrows())		
-    
+
 		  ArbitraryMorphismWithIds(nodes,(arrows,bottom.m1.codomain.arrowSrTg(),top.m1.codomain.arrowSrTg()))
   }  
 

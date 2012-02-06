@@ -106,7 +106,7 @@ trait AbstractCoevolutionSpan extends Output{
   
   protected lazy val po_right_top = Span(tr,tk).pushout(2);
 
-  protected lazy val id_typTypGraph = IdMorphismGraph(TG);
+  protected lazy val id_typTypGraph = IdMorphismGraph(TG.mmGraph);
   
   protected lazy val id_cospan_typTypGraph = Cospan(id_typTypGraph,id_typTypGraph)	
   
@@ -141,7 +141,7 @@ case class SimpleCoevolutionSpan(TL:AbstractGraph,TK:AbstractGraph,TR:AbstractGr
 	 printGraph(TH,"TH",path)
 	 printGraph(H,"H",path)
      
-	 println("Coevolution last (msec): " + (System.currentTimeMillis() - start))
+	 println("Span Coevolution last (msec): " + (System.currentTimeMillis() - start))
   }
 
 }  
@@ -252,7 +252,7 @@ trait AbstractCoevolutionCospan extends Output{
   
   protected lazy val poc_right_bottom = Composition(r,i).pushoutComplement(1);
   
-  protected lazy val id_typTypGraph = IdMorphismGraph(TG);
+  protected lazy val id_typTypGraph = IdMorphismGraph(TG.mmGraph);
   
   protected lazy val id_cospan_typTypGraph = Cospan(id_typTypGraph,id_typTypGraph)	
 
@@ -289,7 +289,7 @@ case class SimpleCoevolutionCospan(TL:AbstractGraph,TI:AbstractGraph,TR:Abstract
 	 printGraph(TH,"TH",path)
 	 printGraph(H,"H",path)
      
-	 println("Coevolution last (msec): " + (System.currentTimeMillis() - start))
+	 println("Cospan Coevolution last (msec): " + (System.currentTimeMillis() - start))
   }
   
 }
