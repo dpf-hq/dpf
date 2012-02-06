@@ -29,17 +29,17 @@ trait Output{
     			  				 	  if(setId.containsAId){
     			  				 	    setId.ids.head.asInstanceOf[AId].default
     			  				 	  }else{
-    			  				 	    sys.error("Programming error! Hier " + s)
+    			  				 	    sys.error("Programming error 1!" + s)
     			  				 	  }	
     			  				 	case 1 => f.head
     			  				 	case _ => VSetId(f)
     	  						 } 
-    	  case _ => sys.error("Programming error!") 
+    	  case _ => sys.error("Programming error 2!") 
     	}
     }
     
     //Add nodes:
-    val rs = new MGraph(typeGraph,()=>sys.error("Programming error!"))
+    val rs = new MGraph(typeGraph,()=>sys.error("Programming error 3!"))
     for(nId<-typing.domain.nodes()){
       nId match {
         case sid@SetId(_,_) => 
@@ -182,7 +182,7 @@ trait Output{
  	        		}
 	            }	
         	}
-        case a@_		  => sys.error("Programming error: arrow " + a)
+        case a@_		  => sys.error("Programming error 4: arrow " + a)
       }
     }
     rs
@@ -216,10 +216,10 @@ trait Output{
 			      		    leftTop(typLeft(triple._1)) 
 			      		  case "R" => 
 			      		    rightTop(typRight(triple._1))
-			      		  case _=> sys.error("Programming error")		      
+			      		  case _=> sys.error("Programming error 5")		      
 			      		}
 			      		typing+=e->t
-			      case _=> sys.error("Programming error")		      
+			      case _=> sys.error("Programming error 6")		      
 			    }
 			  }
 			  typing.toMap; 
@@ -272,7 +272,11 @@ trait Output{
 		  )={
 			  val typing = MMap[Id,Id]();
 			  for(e<-elementIds){
-				  val types = topM2_reverse(tCodomain(bottomM2(e)))
+			      
+				  val test = tCodomain(bottomM2(e))
+			      println("FLORIAN  " + test)
+			      
+				  val types = topM2_reverse(test)
 				  
 				  val t = types.size match{
 				    case 1 => types.head;
@@ -280,7 +284,7 @@ trait Output{
 				      //go over other combination:
 				      val dSubset = bottomM1_reverse(e)
 				      if(1 != dSubset.size){
-				        sys.error("Programming error")
+				        sys.error("Programming error 7 " + dSubset + " " + types)
 				      }
 				      topM1(tDomain(dSubset.head))
 				  }

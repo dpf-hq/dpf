@@ -812,18 +812,40 @@ case class IdMorphismGraph(input:AbstractGraph) extends Morphism{
   val domain = new Domain{
 	  override def nodes(id:Id):Set[Id]={
 	    input.getNode(id) match{
-	      case None => Set()
+	      case None => 
+	        if(id == TypeNode.TAttribute().id){
+	        	  Set(id)
+	        }else println("TEST1" + input ); Set()
 	      case _ => Set(id)
 	    }
 	  }
 	  override def arrows(id:Id):Set[Id]={
 	     input.getArrow(id) match{
-	      case None => Set()
+	      case None => 
+	        if(id == TypeArrow.TAttribute().id){
+	        	  Set(id)
+	        }else println("TEST2" + input ); Set()	        
 	      case _ => Set(id)
 	    }
 	  }
-	  override def arrowSr(id:Id):Id=input.arrows(id).sr.id
-	  override def arrowTg(id:Id):Id=input.arrows(id).tg.id
+	  override def arrowSr(id:Id):Id={
+	    //
+	    //Because of Attributes coevolution works only with two level
+	    //
+	    if(id == TypeArrow.TAttribute().id){
+	      return GraphDpf.node.id
+	    }	    
+	    input.arrows(id).sr.id
+	  }  
+	  override def arrowTg(id:Id):Id={
+	    //
+	    //Because of Attributes coevolution works only with two level
+	    //
+	    if(id == TypeArrow.TAttribute().id){
+	      return TypeNode.TAttribute().id
+	    }
+	    input.arrows(id).tg.id
+	  }  
 	  private lazy val domainnodes:Set[Id] = mkDomainNodes()    
 	  override def nodes():Set[Id]= immutable match {case true => domainnodes; case _ => mkDomainNodes()}
 	  private def mkDomainNodes():Set[Id]={
@@ -837,12 +859,12 @@ case class IdMorphismGraph(input:AbstractGraph) extends Morphism{
   }
 
   val codomain = new Codomain{
-	  override def node(id:Id):Id=id
-	  override def arrow(id:Id):Id=id
+	  override def node(id:Id):Id=domain.nodes(id).head
+	  override def arrow(id:Id):Id=domain.arrows(id).head
 	  override def arrowSr(id:Id):Id=domain.arrowSr(id)
 	  override def arrowTg(id:Id):Id=domain.arrowTg(id)
-	  override def nodes():Set[Id]= domain.nodes()
-	  override def arrows():Set[Id]=domain.arrows() 
+	  override def nodes():Set[Id]= domain.nodes() //Fix if graph = DPF graph SIDs missing
+	  override def arrows():Set[Id]=domain.arrows()//Fix if graph = DPF graph SIDs missing 
   }
   
   override def validate():Boolean={
