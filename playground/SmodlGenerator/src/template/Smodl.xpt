@@ -14,16 +14,14 @@
 
 
 «DEFINE service FOR dpf::Service»
-	«FILE "test.java"»
 	public interface test{
 
-	«REM»«EXPAND methodref FOR this.getAMethodRefs()»«ENDREM»
+	«EXPAND methodref FOR this.getAMethodRefs()»
 	}
-	«ENDFILE»
 	«syserr(this.name)»
 «ENDDEFINE»
 
-«REM»
+
 «DEFINE methodref FOR dpf::methodRef»
 	«EXPAND firstargref FOR this.target.getAFirstArgs()»
 «ENDDEFINE»
@@ -34,4 +32,3 @@
 «DEFINE nextArg FOR dpf::nextArg»
 	«this.target.getANextArgs().name»
 «ENDDEFINE»
-«ENDREM»
