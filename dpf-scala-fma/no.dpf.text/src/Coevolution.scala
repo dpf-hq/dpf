@@ -290,6 +290,8 @@ case class SimpleCoevolutionCospan(TL:AbstractGraph,TI:AbstractGraph,TR:Abstract
 	 printGraph(H,"H",path)
      
 	 println("Cospan Coevolution last (msec): " + (System.currentTimeMillis() - start))
+	 
+	 
   }
   
 }
