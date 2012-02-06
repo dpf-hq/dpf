@@ -29,7 +29,7 @@ trait Output{
     			  				 	  if(setId.containsAId){
     			  				 	    setId.ids.head.asInstanceOf[AId].default
     			  				 	  }else{
-    			  				 	    sys.error("Programming error! " + s)
+    			  				 	    sys.error("Programming error! Hier " + s)
     			  				 	  }	
     			  				 	case 1 => f.head
     			  				 	case _ => VSetId(f)

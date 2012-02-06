@@ -284,9 +284,9 @@ case class SimpleCoevolutionCospan(TL:AbstractGraph,TI:AbstractGraph,TR:Abstract
 	 printGraph(G,"G",path)
 	 printGraph(L,"L",path,false)
 	 printGraph(I,"I",path,false)
-	 //Hier:
 	 printGraph(R,"R",path,false)
 	 printGraph(U,"U",path)
+	 //Hier:
 	 printGraph(TH,"TH",path)
 	 printGraph(H,"H",path)
      

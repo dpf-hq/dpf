@@ -566,7 +566,7 @@ case class SetId(v:Set[(Id,String)],gId:Int) extends Id{ // SetId(v:Set[(Id,Stri
   }
   
   lazy val containsAId = {
-  	if(1 == v.size){
+  	if(1 == ids.size){
   	  ids.head.isInstanceOf[AId]
   	}else false
   }
