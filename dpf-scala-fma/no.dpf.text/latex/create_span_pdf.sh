@@ -1,5 +1,5 @@
 #!/bin/bash
-cd $CO_EVOLUTION_DIR
+cd $1
 latex ResultSpan.tex
 dvips ResultSpan.dvi
 ps2pdf ResultSpan.ps

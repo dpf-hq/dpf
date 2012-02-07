@@ -145,13 +145,9 @@ case class SimpleCoevolutionSpan(TL:AbstractGraph,TK:AbstractGraph,TR:AbstractGr
 
 	//Generate PDF:
 	try {
-	    val cmd1 = path + "export.sh " + path 
-	    println("Run: " + cmd1)
-	    val runtime = Runtime.getRuntime()
-	    runtime.exec(cmd1)
-	    val cmd2 = path + "create_span_pdf.sh"
-	    println("Run: " + cmd2)
-	    runtime.exec(cmd2)
+	    val cmd = path + "create_span_pdf.sh " + path
+	    println("Run: " + cmd)
+	    Runtime.getRuntime().exec(cmd)
 	}catch{
 	  case ex => ex.printStackTrace()
 	}
@@ -304,16 +300,12 @@ case class SimpleCoevolutionCospan(TL:AbstractGraph,TI:AbstractGraph,TR:Abstract
      
 	 println("Cospan Coevolution last (msec): " + (System.currentTimeMillis() - start))
 	 
-	//Generate PDF:
+	
 	//Generate PDF:
 	try {
-	    val cmd1 = path + "export.sh " + path 
-	    println("Run: " + cmd1)
-	    val runtime = Runtime.getRuntime()
-	    runtime.exec(cmd1)
-	    val cmd2 = path + "create_cospan_pdf.sh"
-	    println("Run: " + cmd2)
-	    runtime.exec(cmd2)
+	    val cmd = path + "create_cospan_pdf.sh " + path
+	    println("Run: " + cmd)
+	    Runtime.getRuntime().exec(cmd)
 	}catch{
 	  case ex => ex.printStackTrace()
 	}
