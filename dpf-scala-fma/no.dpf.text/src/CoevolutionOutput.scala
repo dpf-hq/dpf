@@ -396,24 +396,6 @@ trait Output{
     
 	import java.io._
 	val fname = path + name + ".dot"
-	
-	//Cleanup
-	try {
-	    val cmd = "rm " + fname
-	    println("1. Run: " + cmd)
-		Runtime.getRuntime().exec(cmd)
-	}catch{
-	  case ex => ex.printStackTrace()
-	}
-	try {
-	    val cmd = "rm " + path + name + ".eps"
-	    println("2. Run: " + cmd)
-		Runtime.getRuntime().exec(cmd)
-	}catch{
-	  case ex => ex.printStackTrace()
-	}
-	
-	
 	val writer = new java.io.PrintWriter(fname)
 	val mm = new ByteArrayOutputStream()
 	try {
