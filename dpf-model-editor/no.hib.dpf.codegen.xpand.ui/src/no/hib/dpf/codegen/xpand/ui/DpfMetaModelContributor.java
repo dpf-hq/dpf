@@ -56,15 +56,13 @@ public class DpfMetaModelContributor implements MetamodelContributor2 {
 				Set<IResource> resources = new HashSet<IResource>();
 				Map<IResource, Specification> models = DpfMetaModelUIPlugin.getFileModels();
 				if (!models.isEmpty()) {
-					
-//					Set<IJavaProject> jps = new HashSet<IJavaProject>();
-					for (Iterator<IResource> iter = models.keySet().iterator(); iter.hasNext();) {
-						IFile f = (IFile) iter.next();
-//						if (project.isOnClasspath(f) || isOnProjectsClasspath(f,jps)) {
+					for (IResource r : models.keySet()) {
+						IFile f = (IFile) r;
+						if (f.getProject().equals(project.getProject())) {
 							Specification model = models.get(f);
 							result.put(model, new DpfMetamodel(model));
 							resources.add(f);
-//						}
+						}
 					}
 				}
 	            container = new MetamodelContainer(projects, resources, new HashSet<MetaModel>(result.values()));
@@ -72,7 +70,6 @@ public class DpfMetaModelContributor implements MetamodelContributor2 {
 				ResourcesPlugin.getWorkspace().addResourceChangeListener(container);
 				metamodels.put(project, container);
 			}
-//			Set<MetaModel> dbg = container.getMetaModels();
 	        return container.getMetaModels().toArray(new MetaModel[container.getMetaModels().size()]);
 		}
 		
