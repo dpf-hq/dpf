@@ -464,15 +464,15 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 		}   
    }
    
-   private def findNode(rn: RNode):Node={
+   private def findNode(rn: RNode, searchGraph:AbstractGraph=curSGraph):Node={
 		rn match {
 		  case RNode(_,Some(nId),ty) =>
-		  	curSGraph.getNode(nId) match{
+		  	searchGraph.getNode(nId) match{
 		  	  	case Some(n) => n
 		  	  	case None    => sys.error("Node not found:" + rn)
 		  	}
 		  case RNode(Some(name),None,ty) =>
-		    curSGraph.findNode(name) match {
+		    searchGraph.findNode(name) match {
 				case Some(x) =>  x 
 				case None    =>  sys.error("Node not found:" + rn)
 			}
@@ -480,21 +480,21 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 		}
     }
     
-    private def findArrow(ra: RArrow):Arrow={
+    private def findArrow(ra: RArrow, searchGraph:AbstractGraph=curSGraph):Arrow={
 		ra match {
 		 //Usual arrow:
 	     case RArrow(name,None,rn1,Some(rn2),None,ty) =>	 	
 		    val n1 = findNode(rn1)
 		    val n2 = findNode(rn2)
-			curSGraph.findArrow(name,n1,n2) match {
+			searchGraph.findArrow(name,n1,n2) match {
 				case Some(x) =>  x
 				case None 	 =>  sys.error("Arrow could not be found:" + name + " " + n1 + "->" + n2 + ":" + ty)
 			}
 	     case RArrow(name,Some(id),rn1,Some(rn2),None,ty) =>	
 		    val n1 = findNode(rn1)
 		    val n2 = findNode(rn2)
-			curSGraph.getArrow(id) match {
-				case Some(x) =>  if(x.sr != n1 || x.tg != n2 || x.t != ty || curMGraph.names(id) != name){
+			searchGraph.getArrow(id) match {
+				case Some(x) =>  if(x.sr != n1 || x.tg != n2 || x.t != ty || searchGraph.names(id) != name){
 									sys.error("Arrow with id" + id + " must have a unique definition!")
 								 };x
 				case None 	 =>  sys.error("Arrow could not be found:" + name + " " + n1 + "->" + n2 + ":" + ty)
@@ -502,14 +502,14 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 		  //Attribute Type:		  
 		  case RArrow(name,None,rn1,None,Some(at),TypeArrow.TAttribute()) =>
 		  	val n1 = findNode(rn1)
-			curSGraph.findArrow(name,n1,at) match {
+			searchGraph.findArrow(name,n1,at) match {
 					case Some(x) =>  x 
 					case None 	 =>  sys.error("Attribute-Arrow could not be found:" + name + " " + n1 + "->" + at + ":" + TypeArrow.TAttribute())
 			}	  	
 		  case RArrow(name,Some(id),rn1,None,Some(at),TypeArrow.TAttribute()) =>		  	
 		  	val n1 = findNode(rn1)
-			curSGraph.getArrow(id) match {
-					case Some(x) =>  if(x.sr != n1 || x.tg != at || x.t != TypeArrow.TAttribute() || curMGraph.names(id) != name){
+			searchGraph.getArrow(id) match {
+					case Some(x) =>  if(x.sr != n1 || x.tg != at || x.t != TypeArrow.TAttribute() || searchGraph.names(id) != name){
 										sys.error("Arrow with id" + id + " must have a unique definition!")
 									 };x 
 					case None 	 => sys.error("Attribute-Arrow could not be found:" + name + " " + n1 + "->" + at + ":" + TypeArrow.TAttribute())
