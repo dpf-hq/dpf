@@ -226,6 +226,8 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 	}	
 	
 	private def saveMorphism(n:String,m:List[(Element,Element)]):Morphism={
+	  //TODO
+	  //Create node set and arrow set mapping together with using current domain and codomain
 	  null;
 	}	
 	
