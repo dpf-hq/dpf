@@ -28,11 +28,14 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 	
 	//Graph vars:
 	private var tGraphs:MMap[String,AbstractGraph]	= null
+	private var gMorphisms:MMap[String,Morphism]	= null
 	private var curTGraph:AbstractGraph = null 	  //current type graph
 	private var curMGraph:MGraph = null           //current model graph
 	private var curSGraph:AbstractGraph = null    //current specification graph
 	private var curTS:S = null					  //current specification type graph
 	private var curSignatureConstraints:MMap[(String,List[String]),SignatureConstraint] = null  //ids of constraints of current specification
+	private var curDomain:AbstractGraph = null	  //current domain type graph (for creating morphism on one model level)
+	private var curCodomain:AbstractGraph = null  //current codomain type graph (for creating morphism on one model level)
 	
 	protected def initParser()={
 	  
@@ -40,7 +43,8 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 	  specs = MMap[String,S]()	
 	
 	  //Graph vars:
-	  tGraphs = MMap(mmName->mmGraph)	
+	  tGraphs = MMap(mmName->mmGraph)
+	  gMorphisms = MMap();
 	  curTGraph = mmGraph	   //current type graph
 	  curMGraph = null         //current model graph
 	  curSGraph = null  	   //current specification graph
@@ -115,7 +119,7 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 	//"Program":
 	def definitions: Parser[List[Any]] = repsep(definition,"") ^^ {case defs => defs}
 	
-	def definition: Parser[Any] = ispec | spec | tgraph | extsubtgraph | emf | ecore | image | simpleEvoSpan | simpleEvoCospan ^^ {case d => d}
+	def definition: Parser[Any] = ispec | spec | tgraph | extsubtgraph | emf | ecore | image | simpleEvoSpan | simpleEvoCospan | gmorphism ^^ {case d => d}
 	
 	def emf: Parser[Any] = "emf("~ID~")" ^^ { case "emf("~i~")" => printEmf(i)}
 	
@@ -143,6 +147,22 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 		
 	def constraintName: Parser[SignatureConstraint] = ID~dpfId~"("~repsep(CPARAM,",")~")" ^^ {case n~dpfid~"("~ps~")" => createSConstraint(dpfid,n,ps)}
 
+	//Graph morphism:
+	def gmorphism : Parser[Morphism] = ID~":="~"Morphism<"~domain~","~codomain~">"~mappings ^^ {case n~":="~"Morphism<"~d~","~c~">"~mapping => TypingMorphism(GraphDpf)} //Save map in buffer
+
+	def domain : Parser[String] = ID ^^ {case i => curDomain=tGraphs(i);i}
+	
+	def codomain : Parser[String] = ID ^^ {case i => curCodomain=tGraphs(i);i}	
+	
+	def mappings : Parser[List[(Element,Element)]] = "{"~repsep(mapping,",")~"}"  ^^ {case "{"~l~"}" => l}
+	
+	def mapping : Parser[(Element,Element)] = mapping_node | mapping_arrow ^^ {case i => i}
+	
+	def mapping_node : Parser[(Element,Element)] = node~"=>"~node ^^ {case n1~"=>"~n2 => (null,null)}
+	
+	def mapping_arrow : Parser[(Element,Element)] = arrow~"=>"~arrow ^^ {case a1~"=>"~a2 => (null,null)}
+	
+	
 	//Typed subgraphs:
 	def extsubtgraph : Parser[MGraph] = ID~":="~"ExtSubTGraph<"~tnameextsub~">"~graph ^^ {case n~":="~"ExtSubTGraph<"~t~">"~g => saveTGraph(n,g)} //Save map in buffer
 	
