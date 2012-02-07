@@ -452,7 +452,7 @@ sealed trait TypeArrow extends Type{
 	case class TAttribute() extends TypeArrow{
 	    override val id = SId(2)
 	    override val t = TSelf()
-		override def toString="TAttrArrow";
+		override def toString="Attribute";
 	}
 	case class TJoker() extends TypeArrow{
 	    override val id = SId(3)
@@ -475,7 +475,7 @@ sealed trait TypeNode extends Type{
 	case class TAttribute() extends TypeNode{
 	    override val id = SId(10)
 	    override val t = TSelf()
-		override def toString="TAttrNode";
+		override def toString="Datatype";
 	}
 	case class TJoker() extends TypeNode{
 	    override val id = SId(20)
