@@ -158,9 +158,9 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 	
 	def mapping : Parser[(Element,Element)] = mapping_node | mapping_arrow ^^ {case i => i}
 	
-	def mapping_node : Parser[(Element,Element)] = node~"=>"~node ^^ {case n1~"=>"~n2 => (null,null)}
+	def mapping_node : Parser[(Element,Element)] = node~"=>"~node ^^ {case n1~"=>"~n2 => (findNode(n1,curDomain),findNode(n2,curCodomain))}
 	
-	def mapping_arrow : Parser[(Element,Element)] = arrow~"=>"~arrow ^^ {case a1~"=>"~a2 => (null,null)}
+	def mapping_arrow : Parser[(Element,Element)] = arrow~"=>"~arrow ^^ {case a1~"=>"~a2 => (findArrow(a1,curDomain),findArrow(a2,curCodomain))}
 	
 	
 	//Typed subgraphs:
