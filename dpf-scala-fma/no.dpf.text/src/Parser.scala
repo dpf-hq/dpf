@@ -148,7 +148,7 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 	def constraintName: Parser[SignatureConstraint] = ID~dpfId~"("~repsep(CPARAM,",")~")" ^^ {case n~dpfid~"("~ps~")" => createSConstraint(dpfid,n,ps)}
 
 	//Graph morphism:
-	def gmorphism : Parser[Morphism] = ID~":="~"Morphism<"~domain~","~codomain~">"~mappings ^^ {case n~":="~"Morphism<"~d~","~c~">"~mapping => TypingMorphism(GraphDpf)} //Save map in buffer
+	def gmorphism : Parser[Morphism] = ID~":="~"Morphism<"~domain~","~codomain~">"~mappings ^^ {case n~":="~"Morphism<"~d~","~c~">"~m => saveMorphism(n,m)} //Save map in buffer
 
 	def domain : Parser[String] = ID ^^ {case i => curDomain=tGraphs(i);i}
 	
@@ -223,6 +223,10 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 	  specs+=n->S(g,Set())
 	  
 	  g
+	}	
+	
+	private def saveMorphism(n:String,m:List[(Element,Element)]):Morphism={
+	  null;
 	}	
 	
 	private def initSpec(i:String)={
