@@ -1,4 +1,4 @@
-package no.dpf.text.coevolution.output;
+package no.dpf.text.coevolution;
 
 import no.dpf.text.graph._;
 import no.dpf.text.graph.mutable.{Graph=>MGraph}
@@ -6,7 +6,7 @@ import no.dpf.text.coevolution._;
 import scala.collection.mutable.{Set=>MSet}
 import scala.collection.mutable.{Map=>MMap}
 
-trait Output{
+trait AbstractCoevolution{
 
   /**
    * do some magic
@@ -317,6 +317,9 @@ trait Output{
 		  ArbitraryMorphismWithIds(nodes,(arrows,bottom.m1.codomain.arrowSrTg(),top.m1.codomain.arrowSrTg()))
   }  
 
+}
+
+trait Output{ 
   
   protected def printGraph(g:AbstractGraph,name:String,path:String,printNames:Boolean=true)={
     

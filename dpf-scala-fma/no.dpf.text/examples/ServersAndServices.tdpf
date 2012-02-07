@@ -35,3 +35,7 @@ MIS:=ISpec<M,MMS>{
 
 
 //ecore(MM)
+
+image(MM)
+
+image(M)

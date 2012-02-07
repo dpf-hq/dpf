@@ -27,7 +27,7 @@ class RunParser extends IObjectActionDelegate {
 
 	//Redirect output:
     val bout = new ByteArrayOutputStream();
-//    System.setOut(new PrintStream(bout));
+    System.setOut(new PrintStream(bout));
 	
 	/**
 	 * @see IObjectActionDelegate#setActivePart(IAction, IWorkbenchPart)

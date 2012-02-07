@@ -6,8 +6,9 @@ import no.dpf.text.graph.mutable.{Graph=>MGraph}
 import no.dpf.text.graph.mutable.{ExtSubGraph=>MExtSubGraph}
 import scala.collection.mutable.{Map=>MMap}
 import no.dpf.text.coevolution._
+import no.dpf.text.coevolution.Output
 
-class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with Converter{
+class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with Converter with Output{
 	   
 	//Ids:
 	object GCtx{
@@ -114,11 +115,13 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 	//"Program":
 	def definitions: Parser[List[Any]] = repsep(definition,"") ^^ {case defs => defs}
 	
-	def definition: Parser[Any] = ispec | spec | tgraph | extsubtgraph | emf | ecore | simpleEvoSpan | simpleEvoCospan ^^ {case d => d}
+	def definition: Parser[Any] = ispec | spec | tgraph | extsubtgraph | emf | ecore | image | simpleEvoSpan | simpleEvoCospan ^^ {case d => d}
 	
 	def emf: Parser[Any] = "emf("~ID~")" ^^ { case "emf("~i~")" => printEmf(i)}
 	
 	def ecore: Parser[Any] = "ecore("~ID~")" ^^ { case "ecore("~i~")" => printEcore(i)}
+	
+	def image: Parser[Any] = "image("~ID~")" ^^ { case "image("~i~")" => createEps(i)}
 	
 	def simpleEvoSpan: Parser[Any] = "simpleEvolution("~ID~"<-"~ID~"->"~ID~","~ID~")" ^^ { case "simpleEvolution("~tl~"<-"~tk~"->"~tr~","~g~")" => SimpleCoevolutionSpan(tGraphs(tl),tGraphs(tk),tGraphs(tr),tGraphs(g)).print(outDir)}
 
@@ -563,6 +566,10 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 		} 		
 		writeFile(outDir + n + ".xmi",EcoreGenerator.graph2EcoreI(tGraphs(n),ecoreName))
 		writeFile(outDir + n + "_simple.xmi",EcoreGenerator.graph2EcoreI_simple(tGraphs(n),ecoreName + "_simple"))
+	}
+		
+	def createEps(n:String)={
+	   printGraph(tGraphs(n),n,outDir)
 	}
 	
 	//Handle Escaped Strings and comments:
