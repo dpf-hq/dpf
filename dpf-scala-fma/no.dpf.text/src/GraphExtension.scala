@@ -707,21 +707,9 @@ case class TypingMorphism(input:AbstractGraph) extends Morphism{
 	  override def node(id:Id):Id=input.nodes(id).t.id
 	  override def arrow(id:Id):Id=input.arrows(id).t.id
 	  override def arrowSr(id:Id):Id={
-	    //
-	    //Because of Attributes coevolution works only with two level
-	    //
-	    if(id == TypeArrow.TAttribute().id){
-	      return GraphDpf.node.id
-	    }
 	    input.mmGraph.arrows(id).sr.id
 	  }	  
 	  override def arrowTg(id:Id):Id={
-	    //
-	    //Because of Attributes coevolution works only with two level
-	    //
-	    if(id == TypeArrow.TAttribute().id){
-	      return TypeNode.TAttribute().id
-	    }
 	    input.mmGraph.arrows(id).tg.id
 	  }
 	  private lazy val codomainnodes:Set[Id] = mkCodomainNodes()    
@@ -828,52 +816,14 @@ case class IdMorphismGraph(input:AbstractGraph) extends Morphism{
 	      case _ => Set(id)
 	    }
 	  }
-	  override def arrowSr(id:Id):Id={
-	    //
-	    //Because of Attributes coevolution works only with two level
-	    //
-	    if(id == TypeArrow.TAttribute().id){
-	      return GraphDpf.node.id
-	    }else{	
-	      return input.arrows(id).sr.id
-	    }
-	  }  
-	  override def arrowTg(id:Id):Id={
-	    //
-	    //Because of Attributes coevolution works only with two level
-	    //
-	    if(id == TypeArrow.TAttribute().id){
-	      return TypeNode.TAttribute().id
-	    }else{
-	      input.arrows(id).tg.id
-	    }  
-	  }  
+	  override def arrowSr(id:Id):Id=input.arrows(id).sr.id
+	  override def arrowTg(id:Id):Id=input.arrows(id).tg.id
 	  private lazy val domainnodes:Set[Id] = mkDomainNodes()    
 	  override def nodes():Set[Id]= immutable match {case true => domainnodes; case _ => mkDomainNodes()}
-	  private def mkDomainNodes():Set[Id]={
-	    //
-	    //Fix this in GraphDPF:
-	    //
-	    val x = Set((for{n<-input.nodes.values} yield {n.id}) toSeq: _ *)
-	    if(input == GraphDpf){
-	      x + TypeNode.TAttribute().id
-	    }else{
-	      x
-	    }
-	  }
+	  private def mkDomainNodes():Set[Id]=Set((for{n<-input.nodes.values} yield {n.id}) toSeq: _ *)
 	  private lazy val domainarrows:Set[Id]= mkDomainArrows() 
 	  override def arrows():Set[Id]= immutable match {case true => domainarrows; case _ => mkDomainArrows()}
-	  private def mkDomainArrows():Set[Id]={
-	    //
-	    //Fix this in GraphDPF:
-	    //
-	    val x = Set((for{a<-input.arrows.values} yield {a.id}) toSeq: _ *)
-	    if(input == GraphDpf){
-	      x + TypeArrow.TAttribute().id
-	    }else{
-	      x
-	    }
-	  }	  
+	  private def mkDomainArrows():Set[Id]=Set((for{a<-input.arrows.values} yield {a.id}) toSeq: _ *)
   }
 
   val codomain = new Codomain{
@@ -881,8 +831,8 @@ case class IdMorphismGraph(input:AbstractGraph) extends Morphism{
 	  override def arrow(id:Id):Id=domain.arrows(id).head
 	  override def arrowSr(id:Id):Id=domain.arrowSr(id)
 	  override def arrowTg(id:Id):Id=domain.arrowTg(id)
-	  override def nodes():Set[Id]= domain.nodes() //Fix if graph = DPF graph SIDs missing
-	  override def arrows():Set[Id]=domain.arrows()//Fix if graph = DPF graph SIDs missing 
+	  override def nodes():Set[Id]= domain.nodes() 
+	  override def arrows():Set[Id]=domain.arrows()
   }
   
   override def validate():Boolean={
