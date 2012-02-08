@@ -25,8 +25,6 @@ case class Graph(override val nodes: Map[Id,Node],  //Set
 				 override val in: Map[Node,Map[TypeArrow,Set[Arrow]]],
 				 override val out: Map[Node,Map[TypeArrow,Set[Arrow]]],
 				 override val names: Map[Id,String]) extends AbstractGraph(){
-	override def arrowsIn(n: Node, t: TypeArrow):Set[Arrow] = if(in contains n)in(n)(t) else Set[Arrow]();  
-	override def arrowsOut(n: Node, t: TypeArrow):Set[Arrow] = if(out contains n)out(n)(t) else Set[Arrow](); 
 	override val toString = super.toString
 }; 
 trait Converter{
@@ -69,10 +67,10 @@ trait AbstractGraph{
 	def iteratorNodes():Iterator[Node] = nodes.values.iterator	
 	def iteratorArrows():Iterator[Arrow] = arrows.values.iterator
 	
-	def arrowsIn(n: Node, t: TypeArrow):Set[Arrow]
 	def arrowsIn(n: Node):Set[Arrow] = if(in contains n)Set((in(n) map {_._2}).flatten toSeq: _ *) else Set[Arrow]();  
-	def arrowsOut(n: Node, t: TypeArrow):Set[Arrow]
 	def arrowsOut(n: Node):Set[Arrow] = if(out contains n)Set((out(n) map {_._2}).flatten toSeq: _ *) else Set[Arrow](); 
+	def arrowsIn(n: Node, t: TypeArrow):Set[Arrow] = if(in contains n)in(n)(t) else Set[Arrow]();  
+	def arrowsOut(n: Node, t: TypeArrow):Set[Arrow] = if(out contains n)out(n)(t) else Set[Arrow](); 
 	
 	override def toString="Graph(\n\t"+ nodesToString +",\n\t"+arrowsToString +"\n)";
 	
@@ -200,16 +198,14 @@ case class OclPn(v:Int) extends OclToken{
 
 case object GraphDpf extends AbstractGraph(){
 		val node = Node(RId(0), TypeNode.TSelf())
+		val datatype = Node(TypeNode.TAttribute().id, TypeNode.TSelf())
 		val arrow = Arrow(RId(1),node,node,TypeArrow.TSelf())
-		override val nodes = Map[Id,Node](node.id->node)
-		override val arrows = Map[Id,Arrow](arrow.id->arrow)
-		override val names = Map[Id,String](RId(0)->"n",RId(1)->"id")
-		override val in = Map[Node,Map[TypeArrow,Set[Arrow]]](node->Map(arrow->Set(arrow)))
-		override val out = in
-		override def arrowsIn(n: Node, t: TypeArrow):Set[Arrow]=Set(arrow)
-		override def arrowsIn(n: Node):Set[Arrow]=Set(arrow)
-		override def arrowsOut(n: Node, t: TypeArrow):Set[Arrow]=Set(arrow) 
-		override def arrowsOut(n: Node):Set[Arrow]=Set(arrow) 
+		val attribute = Arrow(TypeArrow.TAttribute().id,node,datatype,TypeArrow.TSelf())
+		override val nodes = Map[Id,Node](node.id->node,datatype.id->datatype)
+		override val arrows = Map[Id,Arrow](arrow.id->arrow,attribute.id->attribute)
+		override val names = Map[Id,String](node.id->"n",arrow.id->"id",datatype.id->datatype.toString,attribute.id->attribute.toString)
+		override val in = Map[Node,Map[TypeArrow,Set[Arrow]]](node->Map(arrow->Set(arrow)),datatype->Map(attribute->Set(attribute)))
+		override val out = Map[Node,Map[TypeArrow,Set[Arrow]]](node->Map(arrow->Set(arrow),attribute->Set(attribute)))
 		override val toString = super.toString
 }
 
