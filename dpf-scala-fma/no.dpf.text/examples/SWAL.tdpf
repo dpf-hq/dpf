@@ -1,12 +1,14 @@
 //Type Graph as Metamodel
-MM:=TGraph<DPF>{
+MM_org:=TGraph<DPF>{
 
+/*
 	//Swaldata:
 	Reference:Node-inherit:Arrow->Feature:Node,
 	Attribute:Node-inherit:Arrow->Feature:Node,
 	Entity:Node-features:Arrow->Feature:Node,
 	DataModel:Node-entities:Arrow->Entity:Node,
 	Reference:Node-type:Arrow->Entity:Node,
+*/
 
 	//Swalht:
 	HypertextModel:Node-entities:Arrow->Entity:Node,
@@ -23,4 +25,127 @@ MM:=TGraph<DPF>{
 
 }
 
-image(MM)
+//
+//Before MM-Evolution
+//
+MM_beforeRef:=TGraph<DPF>{
+
+/*
+	//Swaldata:
+	Reference:Node-inherit:Arrow->Feature:Node,
+	Attribute:Node-inherit:Arrow->Feature:Node,
+	Entity:Node-features:Arrow->Feature:Node,
+	DataModel:Node-entities:Arrow->Entity:Node,
+	Reference:Node-type:Arrow->Entity:Node,
+*/
+
+	//Swalht:
+	HypertextModel:Node-entities:Arrow->Entity:Node,
+	HypertextModel:Node-pages:Arrow->Page:Node,
+	HypertextModel:Node-pages:Arrow->Page:Node,
+	Page:Node-links:Arrow->Page:Node,
+	HypertextModel:Node-startPage:Arrow->StaticPage:Node,
+	DynamicPage:Node-inherit:Arrow->Page:Node,
+	StaticPage:Node-inherit:Arrow->Page:Node,
+	IndexPage:Node-inherit:Arrow->DynamicPage:Node,
+	DetailsPage:Node-inherit:Arrow->DynamicPage:Node,
+	IndexPage:Node-entity:Arrow->Entity:Node,
+	DetailsPage:Node-entity:Arrow->Entity:Node,
+
+}
+
+//
+//Merge Dynamic and Static-Page
+//
+MM_step1:=TGraph<DPF>{
+
+/*
+	//Swaldata:
+	Reference:Node-inherit:Arrow->Feature:Node,
+	Attribute:Node-inherit:Arrow->Feature:Node,
+	Entity:Node-features:Arrow->Feature:Node,
+	DataModel:Node-entities:Arrow->Entity:Node,
+	Reference:Node-type:Arrow->Entity:Node,
+*/
+
+	//Swalht:
+	HypertextModel:Node-entities:Arrow->Entity:Node,
+	HypertextModel:Node-pages:Arrow->Page:Node,
+	HypertextModel:Node-pages:Arrow->Page:Node,
+	Page:Node-links:Arrow->Page:Node,
+	HypertextModel:Node-startPage:Arrow->DynamicPage:Node,
+	DynamicPage:Node-inherit@1:Arrow->Page:Node,
+	DynamicPage:Node-inherit@2:Arrow->Page:Node,
+	IndexPage:Node-inherit:Arrow->DynamicPage:Node,
+	DetailsPage:Node-inherit:Arrow->DynamicPage:Node,
+	IndexPage:Node-entity:Arrow->Entity:Node,
+	DetailsPage:Node-entity:Arrow->Entity:Node,
+
+}
+
+//
+//Replace Link
+//
+MM_step2:=TGraph<DPF>{
+
+/*
+	//Swaldata:
+	Reference:Node-inherit:Arrow->Feature:Node,
+	Attribute:Node-inherit:Arrow->Feature:Node,
+	Entity:Node-features:Arrow->Feature:Node,
+	DataModel:Node-entities:Arrow->Entity:Node,
+	Reference:Node-type:Arrow->Entity:Node,
+*/
+
+	//Swalht:
+	HypertextModel:Node-entities:Arrow->Entity:Node,
+	HypertextModel:Node-pages:Arrow->Page:Node,
+	HypertextModel:Node-pages:Arrow->Page:Node,
+	Page:Node-links:Arrow->Link:Node,
+	Link:Node-target:Arrow->Page:Node,
+	HypertextModel:Node-startPage:Arrow->DynamicPage:Node,
+	DynamicPage:Node-inherit@1:Arrow->Page:Node,
+	DynamicPage:Node-inherit@2:Arrow->Page:Node,
+	IndexPage:Node-inherit:Arrow->DynamicPage:Node,
+	DetailsPage:Node-inherit:Arrow->DynamicPage:Node,
+	IndexPage:Node-entity:Arrow->Entity:Node,
+	DetailsPage:Node-entity:Arrow->Entity:Node,
+
+}
+
+
+//
+//Pullup Reference:
+//
+MM_step3:=TGraph<DPF>{
+
+/*
+	//Swaldata:
+	Reference:Node-inherit:Arrow->Feature:Node,
+	Attribute:Node-inherit:Arrow->Feature:Node,
+	Entity:Node-features:Arrow->Feature:Node,
+	DataModel:Node-entities:Arrow->Entity:Node,
+	Reference:Node-type:Arrow->Entity:Node,
+*/
+
+	//Swalht:
+	HypertextModel:Node-entities:Arrow->Entity:Node,
+	HypertextModel:Node-pages:Arrow->Page:Node,
+	HypertextModel:Node-pages:Arrow->Page:Node,
+	Page:Node-links:Arrow->Link:Node,
+	Link:Node-target:Arrow->Page:Node,
+	HypertextModel:Node-startPage:Arrow->DynamicPage:Node,
+	DynamicPage:Node-inherit@1:Arrow->Page:Node,
+	DynamicPage:Node-inherit@2:Arrow->Page:Node,
+	IndexPage:Node-inherit:Arrow->DynamicPage:Node,
+	DetailsPage:Node-inherit:Arrow->DynamicPage:Node,
+	DynamicPage:Node-entity@3:Arrow->Entity:Node,
+	DynamicPage:Node-entity@4:Arrow->Entity:Node,
+
+}
+
+image(MM_org)
+image(MM_beforeRef)
+image(MM_step1)
+image(MM_step2)
+image(MM_step3)
