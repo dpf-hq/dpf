@@ -198,9 +198,9 @@ case class OclPn(v:Int) extends OclToken{
 
 case object GraphDpf extends AbstractGraph(){
 		val node = Node(RId(0), TypeNode.TSelf())
-		val datatype = Node(TypeNode.TAttribute().id, TypeNode.TSelf())
 		val arrow = Arrow(RId(1),node,node,TypeArrow.TSelf())
-		val attribute = Arrow(TypeArrow.TAttribute().id,node,datatype,TypeArrow.TSelf())
+		val datatype = TypeNode.TAttribute()
+		val attribute = TypeArrow.TAttribute()
 		override val nodes = Map[Id,Node](node.id->node,datatype.id->datatype)
 		override val arrows = Map[Id,Arrow](arrow.id->arrow,attribute.id->attribute)
 		override val names = Map[Id,String](node.id->"Node",arrow.id->"Arrow",datatype.id->datatype.toString,attribute.id->attribute.toString)
@@ -445,9 +445,7 @@ sealed trait TypeArrow extends Type{
 	    override val t = this
 		override def toString="Self";
 	}
-	case class TAttribute() extends TypeArrow{
-	    override val id = SId(2)
-	    override val t = TSelf()
+	case class TAttribute() extends Arrow(SId(2),GraphDpf.node,GraphDpf.datatype,TSelf()) with TypeArrow{
 		override def toString="Attribute";
 	}
 	case class TJoker() extends TypeArrow{
@@ -468,9 +466,7 @@ sealed trait TypeNode extends Type{
 	    override val t = this
 		override def toString="Self";
 	}
-	case class TAttribute() extends TypeNode{
-	    override val id = SId(10)
-	    override val t = TSelf()
+	case class TAttribute() extends Node(SId(10),TSelf()) with TypeNode{
 		override def toString="Datatype";
 	}
 	case class TJoker() extends TypeNode{
