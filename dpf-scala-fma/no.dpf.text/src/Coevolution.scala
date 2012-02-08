@@ -154,6 +154,14 @@ case class SimpleCoevolutionSpan(TL:AbstractGraph,TK:AbstractGraph,TR:AbstractGr
   }
 
 }  
+
+case class CoevolutionSpan(override val TL:AbstractGraph,override val TK:AbstractGraph,override val TR:AbstractGraph, 
+                           override val G:AbstractGraph, private val ll:Morphism, private val rr:Morphism) extends SimpleCoevolutionSpan(TL,TK,TR,G){
+
+  override val mmRule = Span(ll,rr);
+
+}
+
 //----------------------------------------------------------------------------------------------------------------------------------
   
 trait AbstractCoevolutionCospan extends AbstractCoevolution{
@@ -312,3 +320,11 @@ case class SimpleCoevolutionCospan(TL:AbstractGraph,TI:AbstractGraph,TR:Abstract
   }
   
 }
+
+case class CoevolutionCospan(override val TL:AbstractGraph,override val TI:AbstractGraph,override val TR:AbstractGraph, 
+                           override val G:AbstractGraph, private val ll:Morphism, private val rr:Morphism) extends SimpleCoevolutionCospan(TL,TI,TR,G){
+
+  override val mmRule = Cospan(ll,rr);
+
+}
+
