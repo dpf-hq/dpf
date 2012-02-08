@@ -196,44 +196,44 @@ private[ecore] trait ModelHelper{
   
   val simpleDataTypeReferences:xml.Elem=
     <simpleDataTypeReferences>
-   		<eStructuralFeatures xsi:type="ecore:EReference" name="tBooleans" upperBound="-1"  eType="#//TBoolean" containment="true"/>
-   		<eStructuralFeatures xsi:type="ecore:EReference" name="tChars"    upperBound="-1"  eType="#//TChar"    containment="true"/>
-   		<eStructuralFeatures xsi:type="ecore:EReference" name="tBytes"    upperBound="-1"  eType="#//TByte"    containment="true"/>
-   		<eStructuralFeatures xsi:type="ecore:EReference" name="tShorts"   upperBound="-1"  eType="#//TShort"   containment="true"/>
-   		<eStructuralFeatures xsi:type="ecore:EReference" name="tInts"     upperBound="-1"  eType="#//TInt"     containment="true"/>
-   		<eStructuralFeatures xsi:type="ecore:EReference" name="tLongs"    upperBound="-1"  eType="#//TLong"    containment="true"/>
-   		<eStructuralFeatures xsi:type="ecore:EReference" name="tFloats"   upperBound="-1"  eType="#//TFloat"   containment="true"/>
-   		<eStructuralFeatures xsi:type="ecore:EReference" name="tDoubles"  upperBound="-1"  eType="#//TDouble"  containment="true"/>
-   		<eStructuralFeatures xsi:type="ecore:EReference" name="tStrings"  upperBound="-1"  eType="#//TString"  containment="true"/>
+   		<eStructuralFeatures xsi:type="ecore:EReference" name="tBooleans" upperBound="-1"  eType="#//Boolean" containment="true"/>
+   		<eStructuralFeatures xsi:type="ecore:EReference" name="tChars"    upperBound="-1"  eType="#//Char"    containment="true"/>
+   		<eStructuralFeatures xsi:type="ecore:EReference" name="tBytes"    upperBound="-1"  eType="#//Byte"    containment="true"/>
+   		<eStructuralFeatures xsi:type="ecore:EReference" name="tShorts"   upperBound="-1"  eType="#//Short"   containment="true"/>
+   		<eStructuralFeatures xsi:type="ecore:EReference" name="tInts"     upperBound="-1"  eType="#//Int"     containment="true"/>
+   		<eStructuralFeatures xsi:type="ecore:EReference" name="tLongs"    upperBound="-1"  eType="#//Long"    containment="true"/>
+   		<eStructuralFeatures xsi:type="ecore:EReference" name="tFloats"   upperBound="-1"  eType="#//Float"   containment="true"/>
+   		<eStructuralFeatures xsi:type="ecore:EReference" name="tDoubles"  upperBound="-1"  eType="#//Double"  containment="true"/>
+   		<eStructuralFeatures xsi:type="ecore:EReference" name="tStrings"  upperBound="-1"  eType="#//String"  containment="true"/>
     </simpleDataTypeReferences>
 
   val simpleDataTypes:xml.Elem=
     <simpleDataTypes>
-   		<eClassifiers xsi:type="ecore:EClass" name="TBoolean">
+   		<eClassifiers xsi:type="ecore:EClass" name="Boolean">
    			<eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
    		</eClassifiers>
-   		<eClassifiers xsi:type="ecore:EClass" name="TChar">
+   		<eClassifiers xsi:type="ecore:EClass" name="Char">
    			<eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EChar"/>
    		</eClassifiers>
-   		<eClassifiers xsi:type="ecore:EClass" name="TByte">
+   		<eClassifiers xsi:type="ecore:EClass" name="Byte">
    			<eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByte"/>
    		</eClassifiers>
-   		<eClassifiers xsi:type="ecore:EClass" name="TShort">
+   		<eClassifiers xsi:type="ecore:EClass" name="Short">
    			<eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EShort"/>
    		</eClassifiers>
-   		<eClassifiers xsi:type="ecore:EClass" name="TInt">
+   		<eClassifiers xsi:type="ecore:EClass" name="Int">
    			<eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
    		</eClassifiers>
-   		<eClassifiers xsi:type="ecore:EClass" name="TLong">
+   		<eClassifiers xsi:type="ecore:EClass" name="Long">
    			<eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
    		</eClassifiers>
-   		<eClassifiers xsi:type="ecore:EClass" name="TFloat">
+   		<eClassifiers xsi:type="ecore:EClass" name="Float">
    			<eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
    		</eClassifiers>
-   		<eClassifiers xsi:type="ecore:EClass" name="TDouble">
+   		<eClassifiers xsi:type="ecore:EClass" name="Double">
    			<eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
    		</eClassifiers>
-   		<eClassifiers xsi:type="ecore:EClass" name="TString">
+   		<eClassifiers xsi:type="ecore:EClass" name="String">
    			<eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
    		</eClassifiers>
     </simpleDataTypes>
