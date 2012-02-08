@@ -1,0 +1,46 @@
+«IMPORT dpf»
+
+«EXTENSION org::eclipse::xtend::util::stdlib::io»
+
+	
+«DEFINE main FOR dpf::Specification»
+	«EXPAND graph FOR this.graph»
+«ENDDEFINE»
+
+«DEFINE graph FOR dpf::Graph»
+	«EXPAND service FOREACH this.getServices()»
+«ENDDEFINE»
+
+
+«DEFINE service FOR dpf::Service»
+	«FILE this.name+".txt"»
+	
+	«EXPAND methodref FOREACH this.getAMethodRefs()»
+	«EXPAND struct FOREACH  this.getAStructRefs()»
+	
+	«ENDFILE»
+	«syserr(this.name)»
+«ENDDEFINE»
+
+
+«DEFINE methodref FOR dpf::methodRef»
+	<method name=«this.target.name»>
+	«EXPAND firstargref FOREACH  this.target.getAArgRefs()»
+	 </method>
+«ENDDEFINE»
+
+«DEFINE firstargref FOR dpf::argRef»
+	<arg name=«this.target.name»	type=«this.target.getAArgTypes().first().target.name»/>
+	
+«ENDDEFINE»
+
+
+«DEFINE struct FOR dpf::structRef»
+	<struct name=«this.target.name»>
+	«EXPAND field FOREACH this.target.getAFieldRefs()»
+	</struct>
+«ENDDEFINE»
+
+«DEFINE field FOR dpf::fieldRef»
+	<field name=«this.name» type=«this.target.name»/>
+«ENDDEFINE»
