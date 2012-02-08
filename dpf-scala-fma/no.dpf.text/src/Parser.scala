@@ -5,6 +5,7 @@ import no.dpf.text.graph._
 import no.dpf.text.graph.mutable.{Graph=>MGraph}
 import no.dpf.text.graph.mutable.{ExtSubGraph=>MExtSubGraph}
 import scala.collection.mutable.{Map=>MMap}
+import scala.collection.mutable.{Set=>MSet}
 import no.dpf.text.coevolution._
 import no.dpf.text.coevolution.Output
 
@@ -226,9 +227,64 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 	}	
 	
 	private def saveMorphism(n:String,m:List[(Element,Element)]):Morphism={
-	  //TODO
-	  //Create node set and arrow set mapping together with using current domain and codomain
-	  null;
+	  
+	  val domainNodes = MSet[Node]();
+	  val codomainNodes = MSet[Node]();
+	  val domainArrows = MSet[Arrow]();
+	  val codomainArrows = MSet[Arrow]();
+	  
+	  val nodes = MSet[(Option[Node],Node)]();
+	  val arrows = MSet[(Option[Arrow],Arrow)]();
+	  
+	  for(e<-m){
+	    e match{
+	      case (n1@Node(_,_),n2@Node(_,_)) =>
+	        	
+	        	domainNodes+=n1;
+	        	codomainNodes+=n2;
+	        	
+	        	//Add to Set:
+	        	val tuple=(Some(n1),n2)
+	        	nodes+=tuple
+	        	
+	      case (a1@Arrow(_,_,_,_),a2@Arrow(_,_,_,_)) => 
+	        	domainArrows+=a1;
+	        	codomainArrows+=a2;
+	        	domainNodes+=a1.sr;
+	        	domainNodes+=a1.tg;
+	        	codomainNodes+=a2.sr;
+	        	codomainNodes+=a2.tg;
+
+	        	//Add to Set:
+	        	val tuple=(Some(a1),a2)
+	        	arrows+=tuple
+	        
+	      case _ => sys.error("Programming error! " +  e)  
+	    }	    
+	  }	  
+	  
+	  //Check if all arrows and nodes are mapped:
+	  val c1 = curDomain.nodes.values.toSet--domainNodes;
+	  if(!c1.isEmpty){
+	    sys.error("Not all nodes mapped: " + c1.mkString)
+	  }
+	  val c2 = curDomain.arrows.values.toSet--domainArrows;
+	  if(!c2.isEmpty){
+	    sys.error("Not all arrows mapped: " + c2.mkString)
+	  }
+
+	  //Add unmapped codomain arrows and nodes:
+	  for(n<-(curCodomain.nodes.values.toSet--codomainNodes)){
+	    val tuple = (None,n)
+	    nodes+=tuple
+	  }
+	  for(a<-(curCodomain.arrows.values.toSet--codomainArrows)){
+	    val tuple = (None,a)
+	    arrows+=tuple
+	  }
+	  
+	  new ArbitraryMorphism(nodes.toSet,arrows.toSet)
+	  
 	}	
 	
 	private def initSpec(i:String)={
