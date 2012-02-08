@@ -13,7 +13,6 @@ MM_org:=TGraph<DPF>{
 	//Swalht:
 	HypertextModel:Node-entities:Arrow->Entity:Node,
 	HypertextModel:Node-pages:Arrow->Page:Node,
-	HypertextModel:Node-pages:Arrow->Page:Node,
 	Page:Node-links:Arrow->Link:Node,
 	Link:Node-target:Arrow->Page:Node,
 	DynamicPage:Node-entity:Arrow->Entity:Node,
@@ -42,7 +41,6 @@ MM_beforeRef:=TGraph<DPF>{
 	//Swalht:
 	HypertextModel:Node-entities:Arrow->Entity:Node,
 	HypertextModel:Node-pages:Arrow->Page:Node,
-	HypertextModel:Node-pages:Arrow->Page:Node,
 	Page:Node-links:Arrow->Page:Node,
 	HypertextModel:Node-startPage:Arrow->StaticPage:Node,
 	DynamicPage:Node-inherit:Arrow->Page:Node,
@@ -53,6 +51,76 @@ MM_beforeRef:=TGraph<DPF>{
 	DetailsPage:Node-entity:Arrow->Entity:Node,
 
 }
+
+MM_beforeRef_flatten:=TGraph<DPF>{
+
+	//Swalht:
+	HypertextModel:Node-entities:Arrow->Entity:Node,
+
+	HypertextModel:Node-pages:Arrow->Page:Node,
+	HypertextModel:Node-pages:Arrow->DynamicPage:Node,
+	HypertextModel:Node-pages:Arrow->StaticPage:Node,
+	HypertextModel:Node-pages:Arrow->IndexPage:Node,
+	HypertextModel:Node-pages:Arrow->DetailsPage:Node,
+
+	Page:Node-links@21:Arrow->Page:Node,
+	Page:Node-links@22:Arrow->DynamicPage:Node,
+	Page:Node-links@23:Arrow->StaticPage:Node,
+	Page:Node-links@24:Arrow->IndexPage:Node,
+	Page:Node-links@25:Arrow->DetailsPage:Node,
+
+	DynamicPage:Node-links:Arrow->Page:Node,
+	DynamicPage:Node-links:Arrow->DynamicPage:Node,
+	DynamicPage:Node-links:Arrow->StaticPage:Node,
+	DynamicPage:Node-links:Arrow->IndexPage:Node,
+	DynamicPage:Node-links:Arrow->DetailsPage:Node,
+
+	StaticPage:Node-links:Arrow->Page:Node,
+	StaticPage:Node-links:Arrow->DynamicPage:Node,
+	StaticPage:Node-links:Arrow->StaticPage:Node,
+	StaticPage:Node-links:Arrow->IndexPage:Node,
+	StaticPage:Node-links:Arrow->DetailsPage:Node,
+
+	IndexPage:Node-links:Arrow->Page:Node,
+	IndexPage:Node-links:Arrow->DynamicPage:Node,
+	IndexPage:Node-links:Arrow->StaticPage:Node,
+	IndexPage:Node-links:Arrow->IndexPage:Node,
+	IndexPage:Node-links:Arrow->DetailsPage:Node,
+
+	DetailsPage:Node-links:Arrow->Page:Node,
+	DetailsPage:Node-links:Arrow->DynamicPage:Node,
+	DetailsPage:Node-links:Arrow->StaticPage:Node,
+	DetailsPage:Node-links:Arrow->IndexPage:Node,
+	DetailsPage:Node-links:Arrow->DetailsPage:Node,
+
+	HypertextModel:Node-startPage:Arrow->StaticPage:Node,
+
+	DynamicPage:Node-entity:Arrow->Entity:Node,
+	IndexPage:Node-entity:Arrow->Entity:Node,
+	DetailsPage:Node-entity:Arrow->Entity:Node,
+
+}
+
+//
+//Before MM-Evolution
+//
+M_beforeRef:=TGraph<MM_beforeRef_flatten>{
+
+Adressbook:HypertextModel-start:startPage->SearchAdress:StaticPage,
+SearchAdress:StaticPage-result:links->AdressList:IndexPage,
+AdressList:IndexPage-address:links->CompleteAdress:DynamicPage,
+CompleteAdress:DynamicPage-back:links->AdressList:IndexPage,
+CompleteAdress:DynamicPage-notes:links->ContactNotes:DetailsPage,
+ContactNotes:DetailsPage-back:links->CompleteAdress:DynamicPage,
+AdressList:IndexPage-data:entity->SearchResult:Entity,
+CompleteAdress:DynamicPage-data:entity->SearchResult:Entity,
+ContactNotes:DetailsPage-data:entity->SearchResult:Entity,
+AdressList:IndexPage-newSearch:links->SearchAdress:StaticPage,
+CompleteAdress:DynamicPage-newSearch:links->SearchAdress:StaticPage,
+
+}
+
+
 
 //
 //Merge Dynamic and Static-Page
@@ -71,13 +139,61 @@ MM_step1:=TGraph<DPF>{
 	//Swalht:
 	HypertextModel:Node-entities:Arrow->Entity:Node,
 	HypertextModel:Node-pages:Arrow->Page:Node,
-	HypertextModel:Node-pages:Arrow->Page:Node,
 	Page:Node-links:Arrow->Page:Node,
 	HypertextModel:Node-startPage:Arrow->DynamicPage:Node,
 	DynamicPage:Node-inherit@1:Arrow->Page:Node,
 	DynamicPage:Node-inherit@2:Arrow->Page:Node,
 	IndexPage:Node-inherit:Arrow->DynamicPage:Node,
 	DetailsPage:Node-inherit:Arrow->DynamicPage:Node,
+	IndexPage:Node-entity:Arrow->Entity:Node,
+	DetailsPage:Node-entity:Arrow->Entity:Node,
+
+}
+
+MM_step1_flatten:=TGraph<DPF>{
+
+	//Swalht:
+	HypertextModel:Node-entities:Arrow->Entity:Node,
+
+	HypertextModel:Node-pages:Arrow->Page:Node,
+	HypertextModel:Node-pages:Arrow->DynamicPage:Node,
+	HypertextModel:Node-pages:Arrow->DynamicPage:Node,
+	HypertextModel:Node-pages:Arrow->IndexPage:Node,
+	HypertextModel:Node-pages:Arrow->DetailsPage:Node,
+
+	Page:Node-links@21:Arrow->Page:Node,
+	Page:Node-links@22:Arrow->DynamicPage:Node,
+	Page:Node-links@23:Arrow->DynamicPage:Node,
+	Page:Node-links@24:Arrow->IndexPage:Node,
+	Page:Node-links@25:Arrow->DetailsPage:Node,
+
+	DynamicPage:Node-links@1:Arrow->Page:Node,
+	DynamicPage:Node-links@2:Arrow->DynamicPage:Node,
+	DynamicPage:Node-links@3:Arrow->DynamicPage:Node,
+	DynamicPage:Node-links@4:Arrow->IndexPage:Node,
+	DynamicPage:Node-links@5:Arrow->DetailsPage:Node,
+
+	DynamicPage:Node-links@6:Arrow->Page:Node,
+	DynamicPage:Node-links@7:Arrow->DynamicPage:Node,
+	DynamicPage:Node-links@8:Arrow->DynamicPage:Node,
+	DynamicPage:Node-links@9:Arrow->IndexPage:Node,
+	DynamicPage:Node-links@10:Arrow->DetailsPage:Node,
+
+	IndexPage:Node-links@11:Arrow->Page:Node,
+	IndexPage:Node-links@12:Arrow->DynamicPage:Node,
+	IndexPage:Node-links@13:Arrow->DynamicPage:Node,
+	IndexPage:Node-links@14:Arrow->IndexPage:Node,
+	IndexPage:Node-links@15:Arrow->DetailsPage:Node,
+
+	DetailsPage:Node-links@16:Arrow->Page:Node,
+	DetailsPage:Node-links@17:Arrow->DynamicPage:Node,
+	DetailsPage:Node-links@18:Arrow->DynamicPage:Node,
+	DetailsPage:Node-links@19:Arrow->IndexPage:Node,
+	DetailsPage:Node-links@20:Arrow->DetailsPage:Node,
+
+	HypertextModel:Node-startPage:Arrow->DynamicPage:Node,
+
+	DynamicPage:Node-entity:Arrow->Entity:Node,
 	IndexPage:Node-entity:Arrow->Entity:Node,
 	DetailsPage:Node-entity:Arrow->Entity:Node,
 
@@ -98,8 +214,7 @@ MM_step2:=TGraph<DPF>{
 */
 
 	//Swalht:
-	HypertextModel:Node-entities:Arrow->Entity:Node,
-	HypertextModel:Node-pages:Arrow->Page:Node,
+//	HypertextModel:Node-entities:Arrow->Entity:Node,
 	HypertextModel:Node-pages:Arrow->Page:Node,
 	Page:Node-links:Arrow->Link:Node,
 	Link:Node-target:Arrow->Page:Node,
@@ -131,7 +246,6 @@ MM_step3:=TGraph<DPF>{
 	//Swalht:
 	HypertextModel:Node-entities:Arrow->Entity:Node,
 	HypertextModel:Node-pages:Arrow->Page:Node,
-	HypertextModel:Node-pages:Arrow->Page:Node,
 	Page:Node-links:Arrow->Link:Node,
 	Link:Node-target:Arrow->Page:Node,
 	HypertextModel:Node-startPage:Arrow->DynamicPage:Node,
@@ -144,8 +258,13 @@ MM_step3:=TGraph<DPF>{
 
 }
 
+
+
 image(MM_org)
 image(MM_beforeRef)
+image(MM_beforeRef_flatten)
 image(MM_step1)
+image(MM_step1_flatten)
 image(MM_step2)
 image(MM_step3)
+image(M_beforeRef)
