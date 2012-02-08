@@ -1,0 +1,26 @@
+//Type Graph as Metamodel
+MM:=TGraph<DPF>{
+
+	//Swaldata:
+	Reference:Node-inherit:Arrow->Feature:Node,
+	Attribute:Node-inherit:Arrow->Feature:Node,
+	Entity:Node-features:Arrow->Feature:Node,
+	DataModel:Node-entities:Arrow->Entity:Node,
+	Reference:Node-type:Arrow->Entity:Node,
+
+	//Swalht:
+	HypertextModel:Node-entities:Arrow->Entity:Node,
+	HypertextModel:Node-pages:Arrow->Page:Node,
+	HypertextModel:Node-pages:Arrow->Page:Node,
+	Page:Node-links:Arrow->Link:Node,
+	Link:Node-target:Arrow->Page:Node,
+	DynamicPage:Node-entity:Arrow->Entity:Node,
+	HypertextModel:Node-startPage:Arrow->StaticPage:Node,
+	DynamicPage:Node-inherit:Arrow->Page:Node,
+	StaticPage:Node-inherit:Arrow->Page:Node,
+	IndexPage:Node-inherit:Arrow->DynamicPage:Node,
+	DetailsPage:Node-inherit:Arrow->DynamicPage:Node,
+
+}
+
+image(MM)
