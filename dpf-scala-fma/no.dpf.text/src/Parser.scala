@@ -30,6 +30,7 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 	//Graph vars:
 	private var tGraphs:MMap[String,AbstractGraph]	= null
 	private var gMorphisms:MMap[String,Morphism]	= null
+	private var gMorphismsCoDomain:MMap[String,(String,String)]	= null
 	private var curTGraph:AbstractGraph = null 	  //current type graph
 	private var curMGraph:MGraph = null           //current model graph
 	private var curSGraph:AbstractGraph = null    //current specification graph
@@ -46,6 +47,8 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 	  //Graph vars:
 	  tGraphs = MMap(mmName->mmGraph)
 	  gMorphisms = MMap();
+	  gMorphismsCoDomain = MMap();
+	  
 	  curTGraph = mmGraph	   //current type graph
 	  curMGraph = null         //current model graph
 	  curSGraph = null  	   //current specification graph
@@ -120,7 +123,7 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 	//"Program":
 	def definitions: Parser[List[Any]] = repsep(definition,"") ^^ {case defs => defs}
 	
-	def definition: Parser[Any] = ispec | spec | tgraph | extsubtgraph | emf | ecore | image | simpleEvoSpan | simpleEvoCospan | gmorphism ^^ {case d => d}
+	def definition: Parser[Any] = ispec | spec | tgraph | extsubtgraph | emf | ecore | image | simpleEvoSpan | simpleEvoCospan | gmorphism | evoSpan | evoCospan ^^ {case d => d}
 	
 	def emf: Parser[Any] = "emf("~ID~")" ^^ { case "emf("~i~")" => printEmf(i)}
 	
@@ -131,6 +134,18 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 	def simpleEvoSpan: Parser[Any] = "simpleEvolution("~ID~"<-"~ID~"->"~ID~","~ID~")" ^^ { case "simpleEvolution("~tl~"<-"~tk~"->"~tr~","~g~")" => SimpleCoevolutionSpan(tGraphs(tl),tGraphs(tk),tGraphs(tr),tGraphs(g)).print(outDir)}
 
 	def simpleEvoCospan: Parser[Any] = "simpleEvolution("~ID~"->"~ID~"<-"~ID~","~ID~")" ^^ { case "simpleEvolution("~tl~"->"~ti~"<-"~tr~","~g~")" => SimpleCoevolutionCospan(tGraphs(tl),tGraphs(ti),tGraphs(tr),tGraphs(g)).print(outDir)}
+
+	def evoSpan: Parser[Any] = "evolution("~ID~"<->"~ID~","~ID~")" ^^ { case "evolution("~l~"<->"~r~","~g~")" => 
+	  	val codo1 = gMorphismsCoDomain(l)
+	  	val codo2 = gMorphismsCoDomain(r)
+	  	CoevolutionSpan(tGraphs(codo1._2),tGraphs(codo1._1),tGraphs(codo2._2),tGraphs(g),gMorphisms(l),gMorphisms(r)).print(outDir)
+	}
+	
+	def evoCospan: Parser[Any] = "evolution("~ID~"-><-"~ID~","~ID~")" ^^ { case "evolution("~l~"<->"~r~","~g~")" => 
+	  	val codo1 = gMorphismsCoDomain(l)
+	  	val codo2 = gMorphismsCoDomain(r)
+	  	CoevolutionCospan(tGraphs(codo1._1),tGraphs(codo1._2),tGraphs(codo2._1),tGraphs(g),gMorphisms(l),gMorphisms(r)).print(outDir)
+	}
 
 	//Specification instance:
 	def ispec : Parser[IS] = ID~":="~"ISpec<"~chosenSpec~","~chosenSpec~">"~"{"~repsep(constraintSem,",")~"}" ^^ {case n~":="~"ISpec<"~mS~","~mmS~">"~"{"~sem~"}" => IS(mS,mmS,sem.map{e=>(e.id,e)}.toMap)}
@@ -149,7 +164,7 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 	def constraintName: Parser[SignatureConstraint] = ID~dpfId~"("~repsep(CPARAM,",")~")" ^^ {case n~dpfid~"("~ps~")" => createSConstraint(dpfid,n,ps)}
 
 	//Graph morphism:
-	def gmorphism : Parser[Morphism] = ID~":="~"Morphism<"~domain~","~codomain~">"~mappings ^^ {case n~":="~"Morphism<"~d~","~c~">"~m => saveMorphism(n,m)} //Save map in buffer
+	def gmorphism : Parser[Morphism] = ID~":="~"Morphism<"~domain~","~codomain~">"~mappings ^^ {case n~":="~"Morphism<"~d~","~c~">"~m => saveMorphism(n,m,d,c)} //Save map in buffer
 
 	def domain : Parser[String] = ID ^^ {case i => curDomain=tGraphs(i);i}
 	
@@ -226,7 +241,7 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 	  g
 	}	
 	
-	private def saveMorphism(n:String,m:List[(Element,Element)]):Morphism={
+	private def saveMorphism(n:String,m:List[(Element,Element)],domain:String,codomain:String):Morphism={
 	  
 	  val domainNodes = MSet[Node]();
 	  val codomainNodes = MSet[Node]();
@@ -283,8 +298,10 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 	    arrows+=tuple
 	  }
 	  
-	  new ArbitraryMorphism(nodes.toSet,arrows.toSet)
-	  
+	  gMorphisms+=n->ArbitraryMorphism(nodes.toSet,arrows.toSet)
+	  val tuple = (domain,codomain)
+	  gMorphismsCoDomain+=n->tuple
+	  gMorphisms(n)
 	}	
 	
 	private def initSpec(i:String)={
