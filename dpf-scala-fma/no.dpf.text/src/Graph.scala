@@ -203,7 +203,7 @@ case object GraphDpf extends AbstractGraph(){
 		val attribute = Arrow(TypeArrow.TAttribute().id,node,datatype,TypeArrow.TSelf())
 		override val nodes = Map[Id,Node](node.id->node,datatype.id->datatype)
 		override val arrows = Map[Id,Arrow](arrow.id->arrow,attribute.id->attribute)
-		override val names = Map[Id,String](node.id->"n",arrow.id->"id",datatype.id->datatype.toString,attribute.id->attribute.toString)
+		override val names = Map[Id,String](node.id->"Node",arrow.id->"Arrow",datatype.id->datatype.toString,attribute.id->attribute.toString)
 		override val in = Map[Node,Map[TypeArrow,Set[Arrow]]](node->Map(arrow->Set(arrow)),datatype->Map(attribute->Set(attribute)))
 		override val out = Map[Node,Map[TypeArrow,Set[Arrow]]](node->Map(arrow->Set(arrow),attribute->Set(attribute)))
 		override val toString = super.toString
