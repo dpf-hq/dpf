@@ -1,0 +1,42 @@
+//Hello World
+
+/*
+- Additionally: Attributes
+- Multiple arrows, nodes (also types) with the same name
+- Output in Ecore
+*/
+
+
+mm:=TGraph<DPF>{
+    z:Node-e0:Arrow->b:Node,
+    a:Node-e1:Arrow->b:Node-e2:Arrow->c:Node-t:*->String,
+}
+
+
+m:=TGraph<mm>{
+   b:c-y@1:t->["Hallo"],
+   b:c-y@2:t->["Test"],
+   f:a-l:e1->o:b,
+}
+
+mmS:=Spec<mm>{
+    max(1){c:Node-t:*->String,}, 
+    min(){c:Node-t:*->String,},
+    min(){a:Node-e1:Arrow->b:Node,}  
+}
+
+mIS:=ISpec<m,mmS>{
+
+//Dresden OCL 2.2 and Eclipse OCL:
+max{a:_-b:_->c:_,}=$context #n0# inv: out#a0#s->size() <= #p0#$,
+min{a:_-b:_->c:_,}=$context #n0# inv: out#a0#s->size() > 1$
+
+//Alternative Eclipse OCL 3:
+//max{a:_-b:_->c:_,}=$#n0#.allInstances()->select(out#a0#s->size()<=#p0#)->size() > 0$,
+//min{c:n-t:*->String,}=$#n0#.allInstances()->select(out#a0#s->size()>1)->size() >0$
+
+}
+
+//ecore(mm)
+
+//emf(m)
