@@ -27,7 +27,7 @@ public class MetaModelTemplateTest {
 				"resources/smodlModel/nameTest/model/testModel.dpf.xmi",
 				"resources::smodlModel::nameTest::templ::main");
 		System.out.println(sysErr.toString());
-		assertEquals(!sysErr.toString().equals(""), !sysErr.toString().isEmpty());
+		assertEquals("Expected no output, got " + sysErr.toString(), "", sysErr.toString());
 	}
 	
 	@After
@@ -36,3 +36,4 @@ public class MetaModelTemplateTest {
 		System.setErr(null);
 	}
 }
+
