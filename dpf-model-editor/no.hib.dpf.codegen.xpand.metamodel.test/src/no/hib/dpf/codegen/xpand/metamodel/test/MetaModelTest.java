@@ -3,6 +3,7 @@ package no.hib.dpf.codegen.xpand.metamodel.test;
 import static org.junit.Assert.*;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Set;
 
 import no.hib.dpf.codegen.xpand.metamodel.DpfMetamodel;
@@ -21,8 +22,8 @@ import org.hamcrest.Matcher;
 import org.junit.*;
 
 public class MetaModelTest {
-	String modelPath = "resources/model.dpf.xmi";
-	String metaModelPath = "resources/test.dpf.xmi";
+	String modelPath = "resources/domainModel/model.dpf.xmi";
+	String metaModelPath = "resources/domainModel/test.dpf.xmi";
 	Specification model, metamodel;
 	DpfMetamodel mm;
 	
@@ -82,10 +83,18 @@ public class MetaModelTest {
 	
 	@Test
 	public void modelTypeResolvesToProperMetaModelType() {
+		//This test should ideally work directly on modelCache, so that we know a model type resolves to a meta model type.
 		Type t = mm.getTypeForName("posts");
 		assertTrue("Expected that arrow posts has dpf::Reference super type, it did not.", t.getSuperTypes().contains(mm.getTypeForName("dpf::Reference")));
 	}
 	
+	@Test
+	public void modelCollectionsReturnsProperly() {
+		Node id = metamodel.getGraph().getNodeByName("DomainClass");
+		Node expected = model.getGraph().getNodeByName("Post");
+		Collection<Object> types = mm.getModelCollections(id.getId());
+		assertTrue(types.contains(expected));
+	}
 	
 //	@Test
 //	public void getTypeForETypedElementReturnsCorrectType() {
