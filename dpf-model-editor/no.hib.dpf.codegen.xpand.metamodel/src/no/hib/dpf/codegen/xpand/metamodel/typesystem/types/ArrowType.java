@@ -76,4 +76,8 @@ public class ArrowType extends AbstractTypeImpl{
 		res.add(model.getTypeSystem().getObjectType());
 		return res;
 	}
+	
+	public Arrow getDpfArrow() {
+		return arrow;
+	}
 }

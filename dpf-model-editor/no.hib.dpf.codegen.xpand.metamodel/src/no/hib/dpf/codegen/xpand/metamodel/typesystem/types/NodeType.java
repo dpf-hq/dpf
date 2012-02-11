@@ -77,14 +77,15 @@ public class NodeType extends AbstractTypeImpl {
 		}
 		
 		//We prefix arrow getters with A to denote arrow
-		for (final String name : arrowtypes) {
-			res.add(new OperationImpl(this, TypeHelper.pluralize("getA" + TypeHelper.toFirstUpper(name)),
-					new ListTypeImpl(model.getTypeForName(name), model
+		for (final Arrow a : node.getOutgoingArrows()) {
+			res.add(new OperationImpl(this, TypeHelper.pluralize("getA" + TypeHelper.toFirstUpper(a.getName())),
+					new ListTypeImpl(model.getTypeForName(a.getName()), model
 							.getTypeSystem(), "List")) {
 				@Override
 				protected Object evaluateInternal(Object target, Object[] params) {
 					final List<Arrow> tmp = new ArrayList<Arrow>();
-					List<Object> arrows = model.getModelCollections(name); //instance level
+					System.out.println("callee: " + node.getName() + " collection for: " + a.getName() + " " + a);
+					List<Object> arrows = model.getModelCollections(a.getId()); //instance level
 					if(arrows != null) {
 						for (Object o : arrows) {
 //							System.out.println("Matching: " + NodeType.this.getName()
@@ -100,7 +101,7 @@ public class NodeType extends AbstractTypeImpl {
 							}
 						}
 					}
-					System.out.println(tmp);
+					System.out.println("Result for " + a.getName()  + ": " +tmp);
 					return tmp;
 				}
 			});
@@ -112,5 +113,9 @@ public class NodeType extends AbstractTypeImpl {
 		if(metaType != null) res.add(metaType);
 		res.add(model.getTypeSystem().getObjectType());
 		return res;
+	}
+	
+	public Node getDpfNode() {
+		return node;
 	}
 }

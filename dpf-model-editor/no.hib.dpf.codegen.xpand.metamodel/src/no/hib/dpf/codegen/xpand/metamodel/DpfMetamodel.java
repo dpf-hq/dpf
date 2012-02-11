@@ -127,7 +127,6 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 
 	@Override
 	public Type getTypeForName(String typeName) {
-		log.debug("getTypeForname: " + typeName);
 		return dpfModel.getTypeForName(typeName);
 	}
 
@@ -147,12 +146,29 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 		} else if(obj instanceof Graph) {
 			return getTypeForName(GRAPH);
 		} else if(obj instanceof Node) {
-			return getTypeForName(((Node)obj).getName());
+			//Vi får inn objekt fieldRef med namn userName. Ein kallar så getTypeForName og får igjen NodeType som er feil feil type.
+			Type t = getTypeForName(((Node)obj).getName());
+			try {
+				NodeType ret = (NodeType)t;
+				return ret;
+			} catch(ClassCastException e) {
+				System.out.println("ClassCastException: " + t.getName() + " is not of NodeType. Trying typeNode: " + ((Node)obj).getTypeNode().getName());
+				Type tmp = dpfMetaModel.getXpandTypeForDpfType(((Node)obj).getTypeNode());
+				return tmp;
+			}
 		} else if(obj instanceof Arrow) {
-			return getTypeForName(((Arrow)obj).getName());
+			Type t = getTypeForName(((Arrow)obj).getName());
+			try {
+				ArrowType ret = (ArrowType)t;
+				return ret;
+			} catch(ClassCastException e) {
+				System.out.println("ClassCastException: " + t.getName() + " is not of ArrowType. Trying typeArrow: " + ((Arrow)obj).getTypeArrow().getName());
+				Type tmp = dpfMetaModel.getXpandTypeForDpfType(((Arrow)obj).getTypeArrow());
+				return tmp;
+			}
 		} else if(obj instanceof Constraint) {
 			return getTypeForName(CONSTRAINT);
-		}
+		} 
 		// Should return null if it's not a relevant type. If not, we create a lot of useless objects in cache, and denies the other xpand metamodels from matching the type.
 		return null;
 	}
@@ -291,9 +307,9 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 			return metaModelCache.getValues();
 		}
 		
-		public Collection<Object> getDpfTypes() {
-			return metaModelCache.getKeys();
-		}
+//		public Collection<Object> getDpfTypes() {
+//			return metaModelCache.getKeys();
+//		}
 		
 		public boolean dpfTypeExists(Object obj) {
 			return metaModelCache.exists(obj);
@@ -451,20 +467,18 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 		private Cache<String, List<Object>> metaModelTypeCollections = new Cache<String, List<Object>>() {
 
 			@Override
-			protected List<Object> createNew(String typeName) {
+			protected List<Object> createNew(String typeId) {
 				//Dersom vi finn ein korresponderande type i DSM'en, lagar vi ein collection med alle instansar av den typen
-				log.debug("Creating type collection: " + typeName);
+				log.debug("Creating type collection: " + typeId);
 				List<Object> res = new ArrayList<Object>();
 				
-				//Assuming names on nodes and arrow are unique.
-				//FIXME: Big problem -> when this is called, the instance is not loaded and will thus raise a NPE
 				for(Node n : model.getGraph().getNodes()) {
-					if(n.getTypeName().equals(typeName)) {
+					if(n.getTypeNode().getId().equals(typeId)) {
 						res.add(n);
 					}
 				}
 				for(Arrow a : model.getGraph().getArrows()) {
-					if(a.getTypeName().equals(typeName)) {
+					if(a.getTypeArrow().getId().equals(typeId)) {
 						res.add(a);
 					}
 				}
@@ -577,12 +591,24 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 			
 		}
 		
+//		public Type getModelType(Object key) {
+//			return modelCache.get(key);
+//		}
+		
 		public void setDpfModel(String namespace, Specification model) {
 			this.model = model;
 			ns = namespace;
-			for(Type t : getKnownTypes()) {
-				metaModelTypeCollections.get(t.getName());
+
+			//Collections of model types conforming to metamodel type
+			for(Node n : dpfMetaModel.getMetaModelSpec().getGraph().getNodes()) {
+				metaModelTypeCollections.get(n.getId());
 			}
+			
+			for(Arrow a : dpfMetaModel.getMetaModelSpec().getGraph().getArrows()) {
+				metaModelTypeCollections.get(a.getId());
+			}
+			
+			//Model mappings
 			typeForNameCache.put(ns + "::" + SPECIFICATION, dpfMetaModel.getXpandTypeForDpfType(model));
 			typeForNameCache.put(ns + "::" + GRAPH, dpfMetaModel.getXpandTypeForDpfType(dpfMetaModel.getMetaModelSpec().getGraph()));
 			
@@ -611,8 +637,8 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 //			return ret2;
 		}
 		
-		public List<Object> getMetaModelTypeCollections(String typeName) {
-			return metaModelTypeCollections.get(typeName);
+		public List<Object> getMetaModelTypeCollections(String typeId) {
+			return metaModelTypeCollections.get(typeId);
 		}
 	}
 	

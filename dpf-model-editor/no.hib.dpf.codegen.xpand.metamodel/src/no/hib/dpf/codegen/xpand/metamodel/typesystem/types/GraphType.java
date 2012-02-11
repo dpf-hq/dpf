@@ -69,27 +69,28 @@ public class GraphType extends AbstractTypeImpl {
 	private void createGettersForMetaModelNodeTypes(Set<FeatureImpl> res) {
 		//Meta model specific getters
 		
-		List<String> nodetypes = new ArrayList<String>();
+		List<Node> nodetypes = new ArrayList<Node>();
 		for(Node n : graph.getNodes()) {
 			boolean hasNode = false;
-			for(String name : nodetypes) {
+			for(Node nn : nodetypes) {
+				String name = nn.getName();
 				if(name.equals(n.getName())) {
 					hasNode = true;
 				}
 			}
 			if(!hasNode)
-				nodetypes.add(n.getName());
+				nodetypes.add(n);
 			else hasNode = false;
 		}
 		
 		//create a getter for each meta model type which returns all instances as a list
-		for(final String name : nodetypes) {
-			res.add(new OperationImpl(this, TypeHelper.pluralize("get" + name), 
-					new ListTypeImpl(model.getTypeForName(name), model.getTypeSystem(), "List")) {
+		for(final Node n : nodetypes) {
+			res.add(new OperationImpl(this, TypeHelper.pluralize("get" + n.getName()), 
+					new ListTypeImpl(model.getTypeForName(n.getName()), model.getTypeSystem(), "List")) {
 				@Override
 				protected Object evaluateInternal(Object target, Object[] params) {
 					List<Node> tmp = new ArrayList<Node>();
-					for(Object o : model.getModelCollections(name)) {
+					for(Object o : model.getModelCollections(n.getId())) {
 						if(o instanceof Node) {
 							tmp.add(((Node)o));
 						}
@@ -98,5 +99,9 @@ public class GraphType extends AbstractTypeImpl {
 				}
 			});
 		}
+	}
+	
+	public Graph getDpfGraph() {
+		return graph;
 	}
 }
