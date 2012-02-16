@@ -16,9 +16,10 @@
 package no.hib.dpf.signature;
 
 
-import no.hib.dpf.core.Predicate;
+import no.hib.dpf.diagram.DPredicate;
 import no.hib.dpf.editor.DPFEditorPaletteFactory;
-import no.hib.dpf.editor.parts.EditPartFactoryImpl;
+import no.hib.dpf.editor.parts.DPFEditPartFactory;
+import no.hib.dpf.utils.DPFConstants;
 
 import org.eclipse.gef.ContextMenuProvider;
 import org.eclipse.gef.GraphicalViewer;
@@ -40,12 +41,12 @@ public abstract class PredicateEditor extends GraphicalEditorWithFlyoutPalette{
 
 	/** This is the root of the editor's model. */
 
-	protected Predicate predicate;
+	protected DPredicate dPredicate;
 
 	//	/** Palette component, holding the tools and shapes. */
 	private PaletteRoot paletteRoot;
 
-	private EditPartFactoryImpl shapesEditPartFactory;
+	private DPFEditPartFactory shapesEditPartFactory;
 	private DPFEditorPaletteFactory paletteFactory;
 
 	protected PropertySheetPage propertySheetPage;
@@ -69,8 +70,8 @@ public abstract class PredicateEditor extends GraphicalEditorWithFlyoutPalette{
 	protected void configureGraphicalViewer() {
 		super.configureGraphicalViewer();
 		GraphicalViewer viewer = getGraphicalViewer();
-		paletteFactory.updatePalette(getPaletteRoot(), null, null);
-		shapesEditPartFactory = new EditPartFactoryImpl(null);
+		paletteFactory.updatePalette(getPaletteRoot(), DPFConstants.REFLEXIVE_TYPE_DGRAPH);
+		shapesEditPartFactory = new DPFEditPartFactory();
 		viewer.setEditPartFactory(shapesEditPartFactory);
 		viewer.setRootEditPart(new ScalableFreeformRootEditPart());
 		ContextMenuProvider cmProvider = new SignatureEditorContextMenuProvider(viewer, getActionRegistry());

@@ -83,6 +83,10 @@ public class CoreAdapterFactory extends AdapterFactoryImpl {
 	protected CoreSwitch<Adapter> modelSwitch =
 		new CoreSwitch<Adapter>() {
 			@Override
+			public Adapter caseSpecification(Specification object) {
+				return createSpecificationAdapter();
+			}
+			@Override
 			public Adapter caseGraph(Graph object) {
 				return createGraphAdapter();
 			}
@@ -103,76 +107,28 @@ public class CoreAdapterFactory extends AdapterFactoryImpl {
 				return createPredicateAdapter();
 			}
 			@Override
-			public Adapter caseSemanticsValidator(SemanticsValidator object) {
-				return createSemanticsValidatorAdapter();
-			}
-			@Override
-			public Adapter caseVisualization(Visualization object) {
-				return createVisualizationAdapter();
-			}
-			@Override
-			public Adapter caseNodeToNodeMap(Map.Entry<Node, Node> object) {
-				return createNodeToNodeMapAdapter();
+			public Adapter caseSemanticValidator(SemanticValidator object) {
+				return createSemanticValidatorAdapter();
 			}
 			@Override
 			public Adapter caseConstraint(Constraint object) {
 				return createConstraintAdapter();
 			}
 			@Override
-			public Adapter caseArrowToArrowMap(Map.Entry<Arrow, Arrow> object) {
-				return createArrowToArrowMapAdapter();
-			}
-			@Override
-			public Adapter caseTypingMorphism(TypingMorphism object) {
-				return createTypingMorphismAdapter();
-			}
-			@Override
 			public Adapter caseGraphHomomorphism(GraphHomomorphism object) {
 				return createGraphHomomorphismAdapter();
 			}
 			@Override
+			public Adapter caseNodeToNodeMap(Map.Entry<Node, Node> object) {
+				return createNodeToNodeMapAdapter();
+			}
+			@Override
+			public Adapter caseArrowToArrowMap(Map.Entry<Arrow, Arrow> object) {
+				return createArrowToArrowMapAdapter();
+			}
+			@Override
 			public Adapter caseIDObject(IDObject object) {
 				return createIDObjectAdapter();
-			}
-			@Override
-			public Adapter caseSpecification(Specification object) {
-				return createSpecificationAdapter();
-			}
-			@Override
-			public Adapter caseModelHierarchy(ModelHierarchy object) {
-				return createModelHierarchyAdapter();
-			}
-			@Override
-			public Adapter caseJointlySurjectiveSemantics(JointlySurjectiveSemantics object) {
-				return createJointlySurjectiveSemanticsAdapter();
-			}
-			@Override
-			public Adapter caseInverseSemantics(InverseSemantics object) {
-				return createInverseSemanticsAdapter();
-			}
-			@Override
-			public Adapter caseIrreflexiveSemantics(IrreflexiveSemantics object) {
-				return createIrreflexiveSemanticsAdapter();
-			}
-			@Override
-			public Adapter caseMultiplicitySemantics(MultiplicitySemantics object) {
-				return createMultiplicitySemanticsAdapter();
-			}
-			@Override
-			public Adapter caseXORSemantics(XORSemantics object) {
-				return createXORSemanticsAdapter();
-			}
-			@Override
-			public Adapter caseTransitiveIrreflexiveSemantics(TransitiveIrreflexiveSemantics object) {
-				return createTransitiveIrreflexiveSemanticsAdapter();
-			}
-			@Override
-			public Adapter caseSurjectiveSemantics(SurjectiveSemantics object) {
-				return createSurjectiveSemanticsAdapter();
-			}
-			@Override
-			public Adapter caseNANDSemantics(NANDSemantics object) {
-				return createNANDSemanticsAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -265,30 +221,16 @@ public class CoreAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link no.hib.dpf.core.SemanticsValidator <em>Semantics Validator</em>}'.
+	 * Creates a new adapter for an object of class '{@link no.hib.dpf.core.SemanticValidator <em>Semantic Validator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see no.hib.dpf.core.SemanticsValidator
+	 * @see no.hib.dpf.core.SemanticValidator
 	 * @generated
 	 */
-	public Adapter createSemanticsValidatorAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link no.hib.dpf.core.Visualization <em>Visualization</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see no.hib.dpf.core.Visualization
-	 * @generated
-	 */
-	public Adapter createVisualizationAdapter() {
+	public Adapter createSemanticValidatorAdapter() {
 		return null;
 	}
 
@@ -335,20 +277,6 @@ public class CoreAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link no.hib.dpf.core.TypingMorphism <em>Typing Morphism</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see no.hib.dpf.core.TypingMorphism
-	 * @generated
-	 */
-	public Adapter createTypingMorphismAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link no.hib.dpf.core.GraphHomomorphism <em>Graph Homomorphism</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -387,132 +315,6 @@ public class CoreAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSpecificationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link no.hib.dpf.core.ModelHierarchy <em>Model Hierarchy</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see no.hib.dpf.core.ModelHierarchy
-	 * @generated
-	 */
-	public Adapter createModelHierarchyAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link no.hib.dpf.core.JointlySurjectiveSemantics <em>Jointly Surjective Semantics</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see no.hib.dpf.core.JointlySurjectiveSemantics
-	 * @generated
-	 */
-	public Adapter createJointlySurjectiveSemanticsAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link no.hib.dpf.core.InverseSemantics <em>Inverse Semantics</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see no.hib.dpf.core.InverseSemantics
-	 * @generated
-	 */
-	public Adapter createInverseSemanticsAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link no.hib.dpf.core.IrreflexiveSemantics <em>Irreflexive Semantics</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see no.hib.dpf.core.IrreflexiveSemantics
-	 * @generated
-	 */
-	public Adapter createIrreflexiveSemanticsAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link no.hib.dpf.core.MultiplicitySemantics <em>Multiplicity Semantics</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see no.hib.dpf.core.MultiplicitySemantics
-	 * @generated
-	 */
-	public Adapter createMultiplicitySemanticsAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link no.hib.dpf.core.XORSemantics <em>XOR Semantics</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see no.hib.dpf.core.XORSemantics
-	 * @generated
-	 */
-	public Adapter createXORSemanticsAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link no.hib.dpf.core.TransitiveIrreflexiveSemantics <em>Transitive Irreflexive Semantics</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see no.hib.dpf.core.TransitiveIrreflexiveSemantics
-	 * @generated
-	 */
-	public Adapter createTransitiveIrreflexiveSemanticsAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link no.hib.dpf.core.SurjectiveSemantics <em>Surjective Semantics</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see no.hib.dpf.core.SurjectiveSemantics
-	 * @generated
-	 */
-	public Adapter createSurjectiveSemanticsAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link no.hib.dpf.core.NANDSemantics <em>NAND Semantics</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see no.hib.dpf.core.NANDSemantics
-	 * @generated
-	 */
-	public Adapter createNANDSemanticsAdapter() {
 		return null;
 	}
 

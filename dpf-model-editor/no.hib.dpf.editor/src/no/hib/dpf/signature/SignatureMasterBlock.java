@@ -3,12 +3,13 @@ package no.hib.dpf.signature;
 import java.util.ArrayList;
 import java.util.List;
 
-import no.hib.dpf.core.CoreFactory;
-import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.core.Predicate;
-import no.hib.dpf.core.Signature;
-import no.hib.dpf.core.impl.PredicateImpl;
-import no.hib.dpf.editor.displaymodel.DPFDiagram;
+import no.hib.dpf.diagram.DPredicate;
+import no.hib.dpf.diagram.DSignature;
+import no.hib.dpf.diagram.DiagramFactory;
+import no.hib.dpf.diagram.DiagramPackage;
+import no.hib.dpf.diagram.impl.DPredicateImpl;
+import no.hib.dpf.editor.parts.listeners.UIAdapter;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
@@ -44,13 +45,13 @@ import org.eclipse.ui.forms.widgets.Section;
 public class SignatureMasterBlock extends MasterDetailsBlock {
 
 	private FormPage page;
-	private Signature signature;
+	private DSignature dSignature;
 	private TableViewer viewer;
 	
-	class SignatureContentProvider implements IStructuredContentProvider {
+	class DSignatureContentProvider implements IStructuredContentProvider {
 		public Object[] getElements(Object inputElement) {
-			if (inputElement instanceof Predicate[]){
-				return (Predicate[])(inputElement);
+			if (inputElement instanceof DPredicate[]){
+				return (DPredicate[])(inputElement);
 			}
 			return new Object[0];
 		}
@@ -62,8 +63,8 @@ public class SignatureMasterBlock extends MasterDetailsBlock {
 	
 	class SignatureLabelProvider extends LabelProvider implements ITableLabelProvider {
 		public String getColumnText(Object obj, int index) {
-			if(obj instanceof Predicate){
-				return ((Predicate)obj).getSymbol();
+			if(obj instanceof DPredicate){
+				return ((DPredicate)obj).getPredicate().getSymbol();
 			}
 			return null;
 		}
@@ -74,15 +75,15 @@ public class SignatureMasterBlock extends MasterDetailsBlock {
 	
 	public SignatureMasterBlock(FormPage signatureFormPage) {
 		page = signatureFormPage;
-		signature = getMultiEditor().getSignature();
+		dSignature = getMultiEditor().getSignature();
 		
-		signature.eAdapters().add(new no.hib.dpf.editor.parts.UIAdapter() {
+		dSignature.eAdapters().add(new UIAdapter() {
 
 			@Override
 			protected void safeNotifyChanged(Notification msg) {
-				if(msg.getNotifier() == signature){
-					switch(msg.getFeatureID(Signature.class)){
-					case CorePackage.SIGNATURE__PREDICATES:
+				if(msg.getNotifier() == dSignature){
+					switch(msg.getFeatureID(DSignature.class)){
+					case DiagramPackage.DSIGNATURE__DPREDICATES:
 						refresh();
 						break;
 					}
@@ -119,7 +120,7 @@ public class SignatureMasterBlock extends MasterDetailsBlock {
 			
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				addPredicate();
+				addDPredicate();
 			}
 			
 			@Override
@@ -153,111 +154,100 @@ public class SignatureMasterBlock extends MasterDetailsBlock {
 				deBtn.setVisible(!event.getSelection().isEmpty());
 			}
 		});
-		viewer.setContentProvider(new SignatureContentProvider());
+		viewer.setContentProvider(new DSignatureContentProvider());
 		viewer.setLabelProvider(new SignatureLabelProvider());
-		viewer.setInput(getPredicates());
+		viewer.setInput(getDPredicates());
 		viewer.setSelection(null);
 	}
 
-	protected void removePredicate(final List<? extends Predicate> selected) {
+	protected void removePredicate(final List<? extends DPredicate> selected) {
 		final SignatureEditor editor = getMultiEditor();
-		DefaultEditDomain domain = editor .getEditDomain();
-		final List<DPFDiagram> graphs = editor.findDGraph(selected);
+		DefaultEditDomain domain = editor.getEditDomain();
 		domain.getCommandStack().execute(new Command("Add Predicate" + (selected.size() > 1 ? "s" : "")){
 			public boolean canExecute() {
-				return signature != null && editor != null;
+				return dSignature != null && editor != null;
 			}
 
 			public boolean canUndo() {
 				return canExecute();
 			}
 			public void execute() {
-				if(signature.getPredicates().containsAll(selected))
-					signature.getPredicates().removeAll(selected);
-				editor.removeDGraph(graphs);
+				for(DPredicate dPredicate : selected)
+					dSignature.removeDPredicate(dPredicate);
 			}
 			public void undo() {
-				editor.addDGraph(graphs);
-				if(!signature.getPredicates().containsAll(selected))
-					signature.getPredicates().addAll(selected);
+				for(DPredicate dPredicate : selected)
+					dSignature.addDPredicate(dPredicate);
 			}
 		});
 	}
 
 	@SuppressWarnings("unchecked")
-	private List<? extends Predicate> getSelection(ISelection selection){
+	private List<? extends DPredicate> getSelection(ISelection selection){
 		if(selection instanceof IStructuredSelection){
 			return ((IStructuredSelection) selection).toList();
 		}
-		return new ArrayList<Predicate>(0);
+		return new ArrayList<DPredicate>(0);
 	}
 
-	protected void addPredicate() {
+	protected void addDPredicate() {
 		final SignatureEditor editor = getMultiEditor();
 		DefaultEditDomain domain = editor.getEditDomain();
-		final Predicate created = getNewPrediate();
-		DPFDiagram dGraph = new DPFDiagram(null);//.eINSTANCE.createDGraph();
-		dGraph.setDpfGraph(created.getShape());
-		final List<DPFDiagram> dGraphs = new ArrayList<DPFDiagram>(1);
-		dGraphs.add(dGraph);
+		final DPredicate created = getNewDPrediate();
 		domain.getCommandStack().execute(new Command("Add Predicate") {
 			public boolean canExecute() {
-				return signature != null && editor != null && created != null;
+				return dSignature != null && editor != null && created != null;
 			}
 
 			public boolean canUndo() {
 				return canExecute();
 			}
 			public void execute() {
-				editor.addDGraph(dGraphs);
-				if(!signature.getPredicates().contains(created))
-					signature.getPredicates().add(created);
+				dSignature.addDPredicate(created);
 			}
 			public void undo() {
-				if(signature.getPredicates().contains(created))
-					signature.getPredicates().remove(created);
-				editor.removeDGraph(dGraphs);
+				dSignature.removeDPredicate(created);
 			}
 		});
 	}
 	
-	private Predicate getNewPrediate(){
-		Predicate result = CoreFactory.eINSTANCE.createPredicate();
+	private DPredicate getNewDPrediate(){
+		DPredicate result = DiagramFactory.eINSTANCE.createDPredicate();
 		int i = 0;
 		Predicate search = null;
-		for(; i < signature.getPredicates().size(); ++i){
-			search = signature.getPredicateBySymbol("predicate" + i);
+		for(; i < dSignature.getDPredicates().size(); ++i){
+			search = dSignature.getSignature().getPredicateBySymbol("predicate" + i);
 			if(search == null)
 				break;
 		}
-		result.setSymbol("predicate" + i);
+		result.getPredicate().setSymbol("predicate" + i);
 		return result;
 	}
 
-	private Predicate[] getPredicates() {
-		if(signature != null){
-			EList<Predicate> predicates = signature.getPredicates();
-			return predicates.toArray(new Predicate[predicates.size()]);
+	private DPredicate[] getDPredicates() {
+		if(dSignature != null){
+			EList<DPredicate> predicates = dSignature.getDPredicates();
+			return predicates.toArray(new DPredicate[predicates.size()]);
 		}
-		return new Predicate[0];
+		return new DPredicate[0];
 	}
 
 	@Override
 	protected void registerPages(DetailsPart detailsPart) {
-		detailsPart.registerPage(PredicateImpl.class, new PredicateDetailBlock(this));
+		detailsPart.registerPage(DPredicateImpl.class, new PredicateDetailBlock(this));
 	}
 
 	@Override
 	protected void createToolBarActions(IManagedForm managedForm) { }
 
-	public void refresh(Predicate predicate) {
-		viewer.setInput(getPredicates());
+	public void refresh(DPredicate predicate) {
+		viewer.setInput(getDPredicates());
 		viewer.setSelection(new StructuredSelection(predicate));
 	}
 
 	public void refresh() {
-		Predicate[] predicates = getPredicates();
-		viewer.setInput(getPredicates());
+		DPredicate[] predicates = getDPredicates();
+		viewer.setInput(getDPredicates());
 		if(predicates.length > 0)
 			viewer.setSelection(new StructuredSelection(predicates[predicates.length - 1]));
 		else

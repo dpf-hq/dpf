@@ -15,6 +15,7 @@
 *******************************************************************************/
 package no.hib.dpf.editor;
 
+
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.gef.editparts.ZoomManager;
 import org.eclipse.gef.internal.GEFMessages;
@@ -58,38 +59,17 @@ protected void buildActions() {
 	addRetargetAction(new ZoomInRetargetAction());
 	addRetargetAction(new ZoomOutRetargetAction());
 
-	addRetargetAction(new RetargetAction(
-			GEFActionConstants.TOGGLE_SNAP_TO_GEOMETRY, 
-			GEFMessages.ToggleSnapToGeometry_Label, IAction.AS_CHECK_BOX));
-
-	addRetargetAction(new RetargetAction(GEFActionConstants.TOGGLE_GRID_VISIBILITY, 
-			GEFMessages.ToggleGrid_Label, IAction.AS_CHECK_BOX));
+	addRetargetAction(new RetargetAction(GEFActionConstants.TOGGLE_SNAP_TO_GEOMETRY, GEFMessages.ToggleSnapToGeometry_Label, IAction.AS_CHECK_BOX));
+	addRetargetAction(new RetargetAction(GEFActionConstants.TOGGLE_GRID_VISIBILITY, GEFMessages.ToggleGrid_Label, IAction.AS_CHECK_BOX));
+	addRetargetAction(new RetargetAction(ActionFactory.PRINT.getId(), GEFMessages.PrintAction_Label, IAction.AS_PUSH_BUTTON));
 	
-	addRetargetAction(new RetargetAction(ActionFactory.PRINT.getId(),
-			GEFMessages.PrintAction_Label, IAction.AS_PUSH_BUTTON));
 	
-	//TODO should remove following lines in the future
 	addRetargetAction(new AlignmentRetargetAction(PositionConstants.LEFT));
 	addRetargetAction(new AlignmentRetargetAction(PositionConstants.CENTER));
 	addRetargetAction(new AlignmentRetargetAction(PositionConstants.RIGHT));
 	addRetargetAction(new AlignmentRetargetAction(PositionConstants.TOP));
 	addRetargetAction(new AlignmentRetargetAction(PositionConstants.MIDDLE));
 	addRetargetAction(new AlignmentRetargetAction(PositionConstants.BOTTOM));
-//	
-//	
-//	addRetargetAction(new ConstraintRetargetAction(DConstraint.ConstraintType.MULTIPLICITY));
-//	addRetargetAction(new ConstraintRetargetAction(DConstraint.ConstraintType.INJECTIVE));
-//	addRetargetAction(new ConstraintRetargetAction(DConstraint.ConstraintType.JOINTLY_INJECTIVE));
-//	addRetargetAction(new ConstraintRetargetAction(DConstraint.ConstraintType.JOINTLY_SURJECTIVE));
-//	
-//	addRetargetAction(new ConstraintRetargetAction(DConstraint.ConstraintType.IMAGE_INCLUSION));
-//	addRetargetAction(new ConstraintRetargetAction(DConstraint.ConstraintType.COMPOSITION));
-//	addRetargetAction(new ConstraintRetargetAction(DConstraint.ConstraintType.SURJECTIVE));
-//	addRetargetAction(new ConstraintRetargetAction(DConstraint.ConstraintType.INVERSE));
-//	addRetargetAction(new ConstraintRetargetAction(DConstraint.ConstraintType.IRREFLEXIVE));
-//	addRetargetAction(new ConstraintRetargetAction(DConstraint.ConstraintType.TRANSITIVE_IRREFLEXIVE));	
-//	addRetargetAction(new ConstraintRetargetAction(DConstraint.ConstraintType.XOR));	
-//	addRetargetAction(new ConstraintRetargetAction(DConstraint.ConstraintType.NAND));	
 }
 
 /**
@@ -112,8 +92,10 @@ public void contributeToMenu(IMenuManager menubar) {
  */
 @Override
 public void contributeToToolBar(IToolBarManager toolBarManager) {
+	super.contributeToToolBar(toolBarManager);
 	toolBarManager.add(getAction(ActionFactory.UNDO.getId()));
 	toolBarManager.add(getAction(ActionFactory.REDO.getId()));
+	toolBarManager.add(getAction(ActionFactory.DELETE.getId()));
 	
 	
 	toolBarManager.add(new Separator());
@@ -126,28 +108,13 @@ public void contributeToToolBar(IToolBarManager toolBarManager) {
 	toolBarManager.add(getAction(GEFActionConstants.ALIGN_BOTTOM));
 //	
 	toolBarManager.add(new Separator());	
-	String[] zoomStrings = new String[] {	ZoomManager.FIT_ALL, 
-											ZoomManager.FIT_HEIGHT, 
-											ZoomManager.FIT_WIDTH	};
+	String[] zoomStrings = new String[] {	ZoomManager.FIT_ALL, ZoomManager.FIT_HEIGHT, ZoomManager.FIT_WIDTH	};
 	toolBarManager.add(new ZoomComboContributionItem(getPage(), zoomStrings));
+	toolBarManager.add(getAction(GEFActionConstants.TOGGLE_GRID_VISIBILITY));
+    toolBarManager.add(getAction(GEFActionConstants.TOGGLE_SNAP_TO_GEOMETRY));
 	
 	toolBarManager.add(new Separator());	
 	
-	//TODO should remove following lines in the future
-//	toolBarManager.add(getAction(CreateMultiplicityConstraintAction.ID));
-//	toolBarManager.add(getAction(CreateInjectiveConstraintAction.ID));
-//	toolBarManager.add(getAction(CreateJointlyInjectiveConstraintAction.ID));
-//	toolBarManager.add(getAction(CreateSurjectiveConstraintAction.ID));
-//	toolBarManager.add(getAction(CreateInverseConstraintAction.ID));
-//
-//	
-//	toolBarManager.add(getAction(CreateJointlySurjectiveConstraintAction.ID));
-//	toolBarManager.add(getAction(CreateImageInclusionConstraintAction.ID));
-//	toolBarManager.add(getAction(CreateCompositionConstraintAction.ID));
-//	toolBarManager.add(getAction(CreateIrreflexiveConstraintAction.ID));
-//	toolBarManager.add(getAction(CreateTransitiveIrreflexiveConstraintAction.ID));
-//	toolBarManager.add(getAction(CreateXORConstraintAction.ID));
-//	toolBarManager.add(getAction(CreateNANDConstraintAction.ID));
 }
 
 @Override

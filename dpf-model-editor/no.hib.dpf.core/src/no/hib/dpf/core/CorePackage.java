@@ -17,6 +17,7 @@ package no.hib.dpf.core;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -77,7 +78,170 @@ public interface CorePackage extends EPackage {
 	 * @see no.hib.dpf.core.impl.CorePackageImpl#getIDObject()
 	 * @generated
 	 */
-	int ID_OBJECT = 12;
+	int ID_OBJECT = 11;
+
+	/**
+	 * The meta object id for the '{@link no.hib.dpf.core.impl.GraphImpl <em>Graph</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.core.impl.GraphImpl
+	 * @see no.hib.dpf.core.impl.CorePackageImpl#getGraph()
+	 * @generated
+	 */
+	int GRAPH = 1;
+
+	/**
+	 * The meta object id for the '{@link no.hib.dpf.core.impl.NodeImpl <em>Node</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.core.impl.NodeImpl
+	 * @see no.hib.dpf.core.impl.CorePackageImpl#getNode()
+	 * @generated
+	 */
+	int NODE = 2;
+
+	/**
+	 * The meta object id for the '{@link no.hib.dpf.core.impl.ArrowImpl <em>Arrow</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.core.impl.ArrowImpl
+	 * @see no.hib.dpf.core.impl.CorePackageImpl#getArrow()
+	 * @generated
+	 */
+	int ARROW = 3;
+
+	/**
+	 * The meta object id for the '{@link no.hib.dpf.core.impl.SignatureImpl <em>Signature</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.core.impl.SignatureImpl
+	 * @see no.hib.dpf.core.impl.CorePackageImpl#getSignature()
+	 * @generated
+	 */
+	int SIGNATURE = 4;
+
+	/**
+	 * The meta object id for the '{@link no.hib.dpf.core.impl.PredicateImpl <em>Predicate</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.core.impl.PredicateImpl
+	 * @see no.hib.dpf.core.impl.CorePackageImpl#getPredicate()
+	 * @generated
+	 */
+	int PREDICATE = 5;
+
+	/**
+	 * The meta object id for the '{@link no.hib.dpf.core.impl.NodeToNodeMapImpl <em>Node To Node Map</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.core.impl.NodeToNodeMapImpl
+	 * @see no.hib.dpf.core.impl.CorePackageImpl#getNodeToNodeMap()
+	 * @generated
+	 */
+	int NODE_TO_NODE_MAP = 9;
+
+	/**
+	 * The meta object id for the '{@link no.hib.dpf.core.impl.ConstraintImpl <em>Constraint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.core.impl.ConstraintImpl
+	 * @see no.hib.dpf.core.impl.CorePackageImpl#getConstraint()
+	 * @generated
+	 */
+	int CONSTRAINT = 7;
+
+	/**
+	 * The meta object id for the '{@link no.hib.dpf.core.impl.ArrowToArrowMapImpl <em>Arrow To Arrow Map</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.core.impl.ArrowToArrowMapImpl
+	 * @see no.hib.dpf.core.impl.CorePackageImpl#getArrowToArrowMap()
+	 * @generated
+	 */
+	int ARROW_TO_ARROW_MAP = 10;
+
+	/**
+	 * The meta object id for the '{@link no.hib.dpf.core.impl.GraphHomomorphismImpl <em>Graph Homomorphism</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.core.impl.GraphHomomorphismImpl
+	 * @see no.hib.dpf.core.impl.CorePackageImpl#getGraphHomomorphism()
+	 * @generated
+	 */
+	int GRAPH_HOMOMORPHISM = 8;
+
+	/**
+	 * The meta object id for the '{@link no.hib.dpf.core.impl.SpecificationImpl <em>Specification</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.core.impl.SpecificationImpl
+	 * @see no.hib.dpf.core.impl.CorePackageImpl#getSpecification()
+	 * @generated
+	 */
+	int SPECIFICATION = 0;
+
+	/**
+	 * The feature id for the '<em><b>Graph</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPECIFICATION__GRAPH = 0;
+
+	/**
+	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPECIFICATION__CONSTRAINTS = 1;
+
+	/**
+	 * The feature id for the '<em><b>Meta File</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPECIFICATION__META_FILE = 2;
+
+	/**
+	 * The feature id for the '<em><b>Signature File</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPECIFICATION__SIGNATURE_FILE = 3;
+
+	/**
+	 * The feature id for the '<em><b>Signature</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPECIFICATION__SIGNATURE = 4;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPECIFICATION__TYPE = 5;
+
+	/**
+	 * The number of structural features of the '<em>Specification</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPECIFICATION_FEATURE_COUNT = 6;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -98,16 +262,6 @@ public interface CorePackage extends EPackage {
 	int ID_OBJECT_FEATURE_COUNT = 1;
 
 	/**
-	 * The meta object id for the '{@link no.hib.dpf.core.impl.GraphImpl <em>Graph</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.core.impl.GraphImpl
-	 * @see no.hib.dpf.core.impl.CorePackageImpl#getGraph()
-	 * @generated
-	 */
-	int GRAPH = 0;
-
-	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -117,22 +271,22 @@ public interface CorePackage extends EPackage {
 	int GRAPH__ID = ID_OBJECT__ID;
 
 	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPH__TYPE = ID_OBJECT_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Nodes</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPH__NODES = ID_OBJECT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPH__NAME = ID_OBJECT_FEATURE_COUNT + 1;
+	int GRAPH__NODES = ID_OBJECT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Arrows</b></em>' containment reference list.
@@ -144,32 +298,13 @@ public interface CorePackage extends EPackage {
 	int GRAPH__ARROWS = ID_OBJECT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAPH__CONSTRAINTS = ID_OBJECT_FEATURE_COUNT + 3;
-
-	/**
 	 * The number of structural features of the '<em>Graph</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPH_FEATURE_COUNT = ID_OBJECT_FEATURE_COUNT + 4;
-
-	/**
-	 * The meta object id for the '{@link no.hib.dpf.core.impl.NodeImpl <em>Node</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.core.impl.NodeImpl
-	 * @see no.hib.dpf.core.impl.CorePackageImpl#getNode()
-	 * @generated
-	 */
-	int NODE = 1;
+	int GRAPH_FEATURE_COUNT = ID_OBJECT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -208,23 +343,40 @@ public interface CorePackage extends EPackage {
 	int NODE__TYPE_NODE = ID_OBJECT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Outgoings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NODE__OUTGOINGS = ID_OBJECT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Incomings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NODE__INCOMINGS = ID_OBJECT_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Constraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NODE__CONSTRAINTS = ID_OBJECT_FEATURE_COUNT + 5;
+
+	/**
 	 * The number of structural features of the '<em>Node</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NODE_FEATURE_COUNT = ID_OBJECT_FEATURE_COUNT + 3;
-
-	/**
-	 * The meta object id for the '{@link no.hib.dpf.core.impl.ArrowImpl <em>Arrow</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.core.impl.ArrowImpl
-	 * @see no.hib.dpf.core.impl.CorePackageImpl#getArrow()
-	 * @generated
-	 */
-	int ARROW = 2;
+	int NODE_FEATURE_COUNT = ID_OBJECT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -236,31 +388,13 @@ public interface CorePackage extends EPackage {
 	int ARROW__ID = ID_OBJECT__ID;
 
 	/**
-	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ARROW__TARGET = ID_OBJECT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Graph</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ARROW__GRAPH = ID_OBJECT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Type Arrow</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ARROW__TYPE_ARROW = ID_OBJECT_FEATURE_COUNT + 2;
+	int ARROW__NAME = ID_OBJECT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
@@ -269,16 +403,43 @@ public interface CorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ARROW__SOURCE = ID_OBJECT_FEATURE_COUNT + 3;
+	int ARROW__SOURCE = ID_OBJECT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Target</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ARROW__NAME = ID_OBJECT_FEATURE_COUNT + 4;
+	int ARROW__TARGET = ID_OBJECT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Graph</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARROW__GRAPH = ID_OBJECT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Type Arrow</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARROW__TYPE_ARROW = ID_OBJECT_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Constraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARROW__CONSTRAINTS = ID_OBJECT_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Arrow</em>' class.
@@ -287,17 +448,7 @@ public interface CorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ARROW_FEATURE_COUNT = ID_OBJECT_FEATURE_COUNT + 5;
-
-	/**
-	 * The meta object id for the '{@link no.hib.dpf.core.impl.SignatureImpl <em>Signature</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.core.impl.SignatureImpl
-	 * @see no.hib.dpf.core.impl.CorePackageImpl#getSignature()
-	 * @generated
-	 */
-	int SIGNATURE = 3;
+	int ARROW_FEATURE_COUNT = ID_OBJECT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Predicates</b></em>' containment reference list.
@@ -327,14 +478,13 @@ public interface CorePackage extends EPackage {
 	int SIGNATURE_FEATURE_COUNT = 2;
 
 	/**
-	 * The meta object id for the '{@link no.hib.dpf.core.impl.PredicateImpl <em>Predicate</em>}' class.
+	 * The feature id for the '<em><b>Symbol</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.core.impl.PredicateImpl
-	 * @see no.hib.dpf.core.impl.CorePackageImpl#getPredicate()
 	 * @generated
+	 * @ordered
 	 */
-	int PREDICATE = 4;
+	int PREDICATE__SYMBOL = 0;
 
 	/**
 	 * The feature id for the '<em><b>Shape</b></em>' containment reference.
@@ -343,16 +493,7 @@ public interface CorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PREDICATE__SHAPE = 0;
-
-	/**
-	 * The feature id for the '<em><b>Semantics Validator</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PREDICATE__SEMANTICS_VALIDATOR = 1;
+	int PREDICATE__SHAPE = 1;
 
 	/**
 	 * The feature id for the '<em><b>Parameters</b></em>' attribute.
@@ -364,31 +505,13 @@ public interface CorePackage extends EPackage {
 	int PREDICATE__PARAMETERS = 2;
 
 	/**
-	 * The feature id for the '<em><b>Visualization</b></em>' containment reference.
+	 * The feature id for the '<em><b>Validator</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PREDICATE__VISUALIZATION = 3;
-
-	/**
-	 * The feature id for the '<em><b>Symbol</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PREDICATE__SYMBOL = 4;
-
-	/**
-	 * The feature id for the '<em><b>Icon</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PREDICATE__ICON = 5;
+	int PREDICATE__VALIDATOR = 3;
 
 	/**
 	 * The number of structural features of the '<em>Predicate</em>' class.
@@ -397,17 +520,17 @@ public interface CorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PREDICATE_FEATURE_COUNT = 6;
+	int PREDICATE_FEATURE_COUNT = 4;
 
 	/**
-	 * The meta object id for the '{@link no.hib.dpf.core.impl.SemanticsValidatorImpl <em>Semantics Validator</em>}' class.
+	 * The meta object id for the '{@link no.hib.dpf.core.impl.SemanticValidatorImpl <em>Semantic Validator</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.core.impl.SemanticsValidatorImpl
-	 * @see no.hib.dpf.core.impl.CorePackageImpl#getSemanticsValidator()
+	 * @see no.hib.dpf.core.impl.SemanticValidatorImpl
+	 * @see no.hib.dpf.core.impl.CorePackageImpl#getSemanticValidator()
 	 * @generated
 	 */
-	int SEMANTICS_VALIDATOR = 5;
+	int SEMANTIC_VALIDATOR = 6;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -416,7 +539,7 @@ public interface CorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SEMANTICS_VALIDATOR__TYPE = 0;
+	int SEMANTIC_VALIDATOR__TYPE = 0;
 
 	/**
 	 * The feature id for the '<em><b>Validator</b></em>' attribute.
@@ -425,109 +548,16 @@ public interface CorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SEMANTICS_VALIDATOR__VALIDATOR = 1;
+	int SEMANTIC_VALIDATOR__VALIDATOR = 1;
 
 	/**
-	 * The number of structural features of the '<em>Semantics Validator</em>' class.
+	 * The number of structural features of the '<em>Semantic Validator</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SEMANTICS_VALIDATOR_FEATURE_COUNT = 2;
-
-	/**
-	 * The meta object id for the '{@link no.hib.dpf.core.impl.VisualizationImpl <em>Visualization</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.core.impl.VisualizationImpl
-	 * @see no.hib.dpf.core.impl.CorePackageImpl#getVisualization()
-	 * @generated
-	 */
-	int VISUALIZATION = 6;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VISUALIZATION__TYPE = 0;
-
-	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VISUALIZATION__SOURCE = 1;
-
-	/**
-	 * The feature id for the '<em><b>Target</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VISUALIZATION__TARGET = 2;
-
-	/**
-	 * The number of structural features of the '<em>Visualization</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VISUALIZATION_FEATURE_COUNT = 3;
-
-	/**
-	 * The meta object id for the '{@link no.hib.dpf.core.impl.NodeToNodeMapImpl <em>Node To Node Map</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.core.impl.NodeToNodeMapImpl
-	 * @see no.hib.dpf.core.impl.CorePackageImpl#getNodeToNodeMap()
-	 * @generated
-	 */
-	int NODE_TO_NODE_MAP = 7;
-
-	/**
-	 * The feature id for the '<em><b>Key</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NODE_TO_NODE_MAP__KEY = 0;
-
-	/**
-	 * The feature id for the '<em><b>Value</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NODE_TO_NODE_MAP__VALUE = 1;
-
-	/**
-	 * The number of structural features of the '<em>Node To Node Map</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NODE_TO_NODE_MAP_FEATURE_COUNT = 2;
-
-	/**
-	 * The meta object id for the '{@link no.hib.dpf.core.impl.ConstraintImpl <em>Constraint</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.core.impl.ConstraintImpl
-	 * @see no.hib.dpf.core.impl.CorePackageImpl#getConstraint()
-	 * @generated
-	 */
-	int CONSTRAINT = 8;
+	int SEMANTIC_VALIDATOR_FEATURE_COUNT = 2;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -539,13 +569,22 @@ public interface CorePackage extends EPackage {
 	int CONSTRAINT__ID = ID_OBJECT__ID;
 
 	/**
-	 * The feature id for the '<em><b>Graph</b></em>' container reference.
+	 * The feature id for the '<em><b>Nodes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT__GRAPH = ID_OBJECT_FEATURE_COUNT + 0;
+	int CONSTRAINT__NODES = ID_OBJECT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Arrows</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__ARROWS = ID_OBJECT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Predicate</b></em>' reference.
@@ -554,7 +593,7 @@ public interface CorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT__PREDICATE = ID_OBJECT_FEATURE_COUNT + 1;
+	int CONSTRAINT__PREDICATE = ID_OBJECT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Mappings</b></em>' containment reference.
@@ -563,7 +602,7 @@ public interface CorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT__MAPPINGS = ID_OBJECT_FEATURE_COUNT + 2;
+	int CONSTRAINT__MAPPINGS = ID_OBJECT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Parameters</b></em>' attribute.
@@ -572,7 +611,7 @@ public interface CorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT__PARAMETERS = ID_OBJECT_FEATURE_COUNT + 3;
+	int CONSTRAINT__PARAMETERS = ID_OBJECT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Constraint</em>' class.
@@ -581,100 +620,7 @@ public interface CorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT_FEATURE_COUNT = ID_OBJECT_FEATURE_COUNT + 4;
-
-	/**
-	 * The meta object id for the '{@link no.hib.dpf.core.impl.ArrowToArrowMapImpl <em>Arrow To Arrow Map</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.core.impl.ArrowToArrowMapImpl
-	 * @see no.hib.dpf.core.impl.CorePackageImpl#getArrowToArrowMap()
-	 * @generated
-	 */
-	int ARROW_TO_ARROW_MAP = 9;
-
-	/**
-	 * The feature id for the '<em><b>Key</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ARROW_TO_ARROW_MAP__KEY = 0;
-
-	/**
-	 * The feature id for the '<em><b>Value</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ARROW_TO_ARROW_MAP__VALUE = 1;
-
-	/**
-	 * The number of structural features of the '<em>Arrow To Arrow Map</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ARROW_TO_ARROW_MAP_FEATURE_COUNT = 2;
-
-	/**
-	 * The meta object id for the '{@link no.hib.dpf.core.impl.TypingMorphismImpl <em>Typing Morphism</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.core.impl.TypingMorphismImpl
-	 * @see no.hib.dpf.core.impl.CorePackageImpl#getTypingMorphism()
-	 * @generated
-	 */
-	int TYPING_MORPHISM = 10;
-
-	/**
-	 * The feature id for the '<em><b>Model</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPING_MORPHISM__MODEL = 0;
-
-	/**
-	 * The feature id for the '<em><b>Metamodel</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPING_MORPHISM__METAMODEL = 1;
-
-	/**
-	 * The feature id for the '<em><b>Mappings</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPING_MORPHISM__MAPPINGS = 2;
-
-	/**
-	 * The number of structural features of the '<em>Typing Morphism</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPING_MORPHISM_FEATURE_COUNT = 3;
-
-	/**
-	 * The meta object id for the '{@link no.hib.dpf.core.impl.GraphHomomorphismImpl <em>Graph Homomorphism</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.core.impl.GraphHomomorphismImpl
-	 * @see no.hib.dpf.core.impl.CorePackageImpl#getGraphHomomorphism()
-	 * @generated
-	 */
-	int GRAPH_HOMOMORPHISM = 11;
+	int CONSTRAINT_FEATURE_COUNT = ID_OBJECT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Node Mapping</b></em>' map.
@@ -704,383 +650,58 @@ public interface CorePackage extends EPackage {
 	int GRAPH_HOMOMORPHISM_FEATURE_COUNT = 2;
 
 	/**
-	 * The meta object id for the '{@link no.hib.dpf.core.impl.SpecificationImpl <em>Specification</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.core.impl.SpecificationImpl
-	 * @see no.hib.dpf.core.impl.CorePackageImpl#getSpecification()
-	 * @generated
-	 */
-	int SPECIFICATION = 13;
-
-	/**
-	 * The feature id for the '<em><b>Graph</b></em>' containment reference.
+	 * The feature id for the '<em><b>Key</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SPECIFICATION__GRAPH = 0;
+	int NODE_TO_NODE_MAP__KEY = 0;
 
 	/**
-	 * The feature id for the '<em><b>Type Graph</b></em>' containment reference.
+	 * The feature id for the '<em><b>Value</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SPECIFICATION__TYPE_GRAPH = 1;
+	int NODE_TO_NODE_MAP__VALUE = 1;
 
 	/**
-	 * The feature id for the '<em><b>Signature</b></em>' reference.
+	 * The number of structural features of the '<em>Node To Node Map</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SPECIFICATION__SIGNATURE = 2;
+	int NODE_TO_NODE_MAP_FEATURE_COUNT = 2;
 
 	/**
-	 * The feature id for the '<em><b>Signature File</b></em>' attribute.
+	 * The feature id for the '<em><b>Key</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SPECIFICATION__SIGNATURE_FILE = 3;
+	int ARROW_TO_ARROW_MAP__KEY = 0;
 
 	/**
-	 * The number of structural features of the '<em>Specification</em>' class.
+	 * The feature id for the '<em><b>Value</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SPECIFICATION_FEATURE_COUNT = 4;
+	int ARROW_TO_ARROW_MAP__VALUE = 1;
 
 	/**
-	 * The meta object id for the '{@link no.hib.dpf.core.impl.ModelHierarchyImpl <em>Model Hierarchy</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.core.impl.ModelHierarchyImpl
-	 * @see no.hib.dpf.core.impl.CorePackageImpl#getModelHierarchy()
-	 * @generated
-	 */
-	int MODEL_HIERARCHY = 14;
-
-	/**
-	 * The feature id for the '<em><b>Specifications</b></em>' containment reference list.
+	 * The number of structural features of the '<em>Arrow To Arrow Map</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_HIERARCHY__SPECIFICATIONS = 0;
-
-	/**
-	 * The number of structural features of the '<em>Model Hierarchy</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_HIERARCHY_FEATURE_COUNT = 1;
-
-	/**
-	 * The meta object id for the '{@link no.hib.dpf.core.impl.JointlySurjectiveSemanticsImpl <em>Jointly Surjective Semantics</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.core.impl.JointlySurjectiveSemanticsImpl
-	 * @see no.hib.dpf.core.impl.CorePackageImpl#getJointlySurjectiveSemantics()
-	 * @generated
-	 */
-	int JOINTLY_SURJECTIVE_SEMANTICS = 15;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JOINTLY_SURJECTIVE_SEMANTICS__TYPE = SEMANTICS_VALIDATOR__TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Validator</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JOINTLY_SURJECTIVE_SEMANTICS__VALIDATOR = SEMANTICS_VALIDATOR__VALIDATOR;
-
-	/**
-	 * The number of structural features of the '<em>Jointly Surjective Semantics</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JOINTLY_SURJECTIVE_SEMANTICS_FEATURE_COUNT = SEMANTICS_VALIDATOR_FEATURE_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link no.hib.dpf.core.impl.InverseSemanticsImpl <em>Inverse Semantics</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.core.impl.InverseSemanticsImpl
-	 * @see no.hib.dpf.core.impl.CorePackageImpl#getInverseSemantics()
-	 * @generated
-	 */
-	int INVERSE_SEMANTICS = 16;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVERSE_SEMANTICS__TYPE = SEMANTICS_VALIDATOR__TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Validator</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVERSE_SEMANTICS__VALIDATOR = SEMANTICS_VALIDATOR__VALIDATOR;
-
-	/**
-	 * The number of structural features of the '<em>Inverse Semantics</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVERSE_SEMANTICS_FEATURE_COUNT = SEMANTICS_VALIDATOR_FEATURE_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link no.hib.dpf.core.impl.IrreflexiveSemanticsImpl <em>Irreflexive Semantics</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.core.impl.IrreflexiveSemanticsImpl
-	 * @see no.hib.dpf.core.impl.CorePackageImpl#getIrreflexiveSemantics()
-	 * @generated
-	 */
-	int IRREFLEXIVE_SEMANTICS = 17;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IRREFLEXIVE_SEMANTICS__TYPE = SEMANTICS_VALIDATOR__TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Validator</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IRREFLEXIVE_SEMANTICS__VALIDATOR = SEMANTICS_VALIDATOR__VALIDATOR;
-
-	/**
-	 * The number of structural features of the '<em>Irreflexive Semantics</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IRREFLEXIVE_SEMANTICS_FEATURE_COUNT = SEMANTICS_VALIDATOR_FEATURE_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link no.hib.dpf.core.impl.MultiplicitySemanticsImpl <em>Multiplicity Semantics</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.core.impl.MultiplicitySemanticsImpl
-	 * @see no.hib.dpf.core.impl.CorePackageImpl#getMultiplicitySemantics()
-	 * @generated
-	 */
-	int MULTIPLICITY_SEMANTICS = 18;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MULTIPLICITY_SEMANTICS__TYPE = SEMANTICS_VALIDATOR__TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Validator</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MULTIPLICITY_SEMANTICS__VALIDATOR = SEMANTICS_VALIDATOR__VALIDATOR;
-
-	/**
-	 * The number of structural features of the '<em>Multiplicity Semantics</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MULTIPLICITY_SEMANTICS_FEATURE_COUNT = SEMANTICS_VALIDATOR_FEATURE_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link no.hib.dpf.core.impl.XORSemanticsImpl <em>XOR Semantics</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.core.impl.XORSemanticsImpl
-	 * @see no.hib.dpf.core.impl.CorePackageImpl#getXORSemantics()
-	 * @generated
-	 */
-	int XOR_SEMANTICS = 19;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int XOR_SEMANTICS__TYPE = SEMANTICS_VALIDATOR__TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Validator</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int XOR_SEMANTICS__VALIDATOR = SEMANTICS_VALIDATOR__VALIDATOR;
-
-	/**
-	 * The number of structural features of the '<em>XOR Semantics</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int XOR_SEMANTICS_FEATURE_COUNT = SEMANTICS_VALIDATOR_FEATURE_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link no.hib.dpf.core.impl.TransitiveIrreflexiveSemanticsImpl <em>Transitive Irreflexive Semantics</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.core.impl.TransitiveIrreflexiveSemanticsImpl
-	 * @see no.hib.dpf.core.impl.CorePackageImpl#getTransitiveIrreflexiveSemantics()
-	 * @generated
-	 */
-	int TRANSITIVE_IRREFLEXIVE_SEMANTICS = 20;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSITIVE_IRREFLEXIVE_SEMANTICS__TYPE = SEMANTICS_VALIDATOR__TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Validator</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSITIVE_IRREFLEXIVE_SEMANTICS__VALIDATOR = SEMANTICS_VALIDATOR__VALIDATOR;
-
-	/**
-	 * The number of structural features of the '<em>Transitive Irreflexive Semantics</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSITIVE_IRREFLEXIVE_SEMANTICS_FEATURE_COUNT = SEMANTICS_VALIDATOR_FEATURE_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link no.hib.dpf.core.impl.SurjectiveSemanticsImpl <em>Surjective Semantics</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.core.impl.SurjectiveSemanticsImpl
-	 * @see no.hib.dpf.core.impl.CorePackageImpl#getSurjectiveSemantics()
-	 * @generated
-	 */
-	int SURJECTIVE_SEMANTICS = 21;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SURJECTIVE_SEMANTICS__TYPE = SEMANTICS_VALIDATOR__TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Validator</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SURJECTIVE_SEMANTICS__VALIDATOR = SEMANTICS_VALIDATOR__VALIDATOR;
-
-	/**
-	 * The number of structural features of the '<em>Surjective Semantics</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SURJECTIVE_SEMANTICS_FEATURE_COUNT = SEMANTICS_VALIDATOR_FEATURE_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link no.hib.dpf.core.impl.NANDSemanticsImpl <em>NAND Semantics</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.core.impl.NANDSemanticsImpl
-	 * @see no.hib.dpf.core.impl.CorePackageImpl#getNANDSemantics()
-	 * @generated
-	 */
-	int NAND_SEMANTICS = 22;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAND_SEMANTICS__TYPE = SEMANTICS_VALIDATOR__TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Validator</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAND_SEMANTICS__VALIDATOR = SEMANTICS_VALIDATOR__VALIDATOR;
-
-	/**
-	 * The number of structural features of the '<em>NAND Semantics</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAND_SEMANTICS_FEATURE_COUNT = SEMANTICS_VALIDATOR_FEATURE_COUNT + 0;
+	int ARROW_TO_ARROW_MAP_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link no.hib.dpf.core.ValidatorType <em>Validator Type</em>}' enum.
@@ -1090,17 +711,18 @@ public interface CorePackage extends EPackage {
 	 * @see no.hib.dpf.core.impl.CorePackageImpl#getValidatorType()
 	 * @generated
 	 */
-	int VALIDATOR_TYPE = 23;
+	int VALIDATOR_TYPE = 12;
 
 	/**
-	 * The meta object id for the '{@link no.hib.dpf.core.VisualizationType <em>Visualization Type</em>}' enum.
+	 * The meta object id for the '<em>EResource Set</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.core.VisualizationType
-	 * @see no.hib.dpf.core.impl.CorePackageImpl#getVisualizationType()
+	 * @see org.eclipse.emf.ecore.resource.ResourceSet
+	 * @see no.hib.dpf.core.impl.CorePackageImpl#getEResourceSet()
 	 * @generated
 	 */
-	int VISUALIZATION_TYPE = 24;
+	int ERESOURCE_SET = 13;
+
 
 	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.core.Graph <em>Graph</em>}'.
@@ -1124,15 +746,15 @@ public interface CorePackage extends EPackage {
 	EReference getGraph_Nodes();
 
 	/**
-	 * Returns the meta object for the attribute '{@link no.hib.dpf.core.Graph#getName <em>Name</em>}'.
+	 * Returns the meta object for the reference '{@link no.hib.dpf.core.Graph#getType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see no.hib.dpf.core.Graph#getName()
+	 * @return the meta object for the reference '<em>Type</em>'.
+	 * @see no.hib.dpf.core.Graph#getType()
 	 * @see #getGraph()
 	 * @generated
 	 */
-	EAttribute getGraph_Name();
+	EReference getGraph_Type();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link no.hib.dpf.core.Graph#getArrows <em>Arrows</em>}'.
@@ -1144,17 +766,6 @@ public interface CorePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getGraph_Arrows();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link no.hib.dpf.core.Graph#getConstraints <em>Constraints</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Constraints</em>'.
-	 * @see no.hib.dpf.core.Graph#getConstraints()
-	 * @see #getGraph()
-	 * @generated
-	 */
-	EReference getGraph_Constraints();
 
 	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.core.Node <em>Node</em>}'.
@@ -1200,6 +811,39 @@ public interface CorePackage extends EPackage {
 	EReference getNode_TypeNode();
 
 	/**
+	 * Returns the meta object for the reference list '{@link no.hib.dpf.core.Node#getOutgoings <em>Outgoings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Outgoings</em>'.
+	 * @see no.hib.dpf.core.Node#getOutgoings()
+	 * @see #getNode()
+	 * @generated
+	 */
+	EReference getNode_Outgoings();
+
+	/**
+	 * Returns the meta object for the reference list '{@link no.hib.dpf.core.Node#getIncomings <em>Incomings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Incomings</em>'.
+	 * @see no.hib.dpf.core.Node#getIncomings()
+	 * @see #getNode()
+	 * @generated
+	 */
+	EReference getNode_Incomings();
+
+	/**
+	 * Returns the meta object for the reference list '{@link no.hib.dpf.core.Node#getConstraints <em>Constraints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Constraints</em>'.
+	 * @see no.hib.dpf.core.Node#getConstraints()
+	 * @see #getNode()
+	 * @generated
+	 */
+	EReference getNode_Constraints();
+
+	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.core.Arrow <em>Arrow</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1241,6 +885,17 @@ public interface CorePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getArrow_TypeArrow();
+
+	/**
+	 * Returns the meta object for the reference list '{@link no.hib.dpf.core.Arrow#getConstraints <em>Constraints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Constraints</em>'.
+	 * @see no.hib.dpf.core.Arrow#getConstraints()
+	 * @see #getArrow()
+	 * @generated
+	 */
+	EReference getArrow_Constraints();
 
 	/**
 	 * Returns the meta object for the reference '{@link no.hib.dpf.core.Arrow#getSource <em>Source</em>}'.
@@ -1307,6 +962,17 @@ public interface CorePackage extends EPackage {
 	EClass getPredicate();
 
 	/**
+	 * Returns the meta object for the attribute '{@link no.hib.dpf.core.Predicate#getSymbol <em>Symbol</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Symbol</em>'.
+	 * @see no.hib.dpf.core.Predicate#getSymbol()
+	 * @see #getPredicate()
+	 * @generated
+	 */
+	EAttribute getPredicate_Symbol();
+
+	/**
 	 * Returns the meta object for the containment reference '{@link no.hib.dpf.core.Predicate#getShape <em>Shape</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1316,17 +982,6 @@ public interface CorePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getPredicate_Shape();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link no.hib.dpf.core.Predicate#getSemanticsValidator <em>Semantics Validator</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Semantics Validator</em>'.
-	 * @see no.hib.dpf.core.Predicate#getSemanticsValidator()
-	 * @see #getPredicate()
-	 * @generated
-	 */
-	EReference getPredicate_SemanticsValidator();
 
 	/**
 	 * Returns the meta object for the attribute '{@link no.hib.dpf.core.Predicate#getParameters <em>Parameters</em>}'.
@@ -1340,112 +995,47 @@ public interface CorePackage extends EPackage {
 	EAttribute getPredicate_Parameters();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link no.hib.dpf.core.Predicate#getVisualization <em>Visualization</em>}'.
+	 * Returns the meta object for the containment reference '{@link no.hib.dpf.core.Predicate#getValidator <em>Validator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Visualization</em>'.
-	 * @see no.hib.dpf.core.Predicate#getVisualization()
+	 * @return the meta object for the containment reference '<em>Validator</em>'.
+	 * @see no.hib.dpf.core.Predicate#getValidator()
 	 * @see #getPredicate()
 	 * @generated
 	 */
-	EReference getPredicate_Visualization();
+	EReference getPredicate_Validator();
 
 	/**
-	 * Returns the meta object for the attribute '{@link no.hib.dpf.core.Predicate#getSymbol <em>Symbol</em>}'.
+	 * Returns the meta object for class '{@link no.hib.dpf.core.SemanticValidator <em>Semantic Validator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Symbol</em>'.
-	 * @see no.hib.dpf.core.Predicate#getSymbol()
-	 * @see #getPredicate()
+	 * @return the meta object for class '<em>Semantic Validator</em>'.
+	 * @see no.hib.dpf.core.SemanticValidator
 	 * @generated
 	 */
-	EAttribute getPredicate_Symbol();
+	EClass getSemanticValidator();
 
 	/**
-	 * Returns the meta object for the attribute '{@link no.hib.dpf.core.Predicate#getIcon <em>Icon</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Icon</em>'.
-	 * @see no.hib.dpf.core.Predicate#getIcon()
-	 * @see #getPredicate()
-	 * @generated
-	 */
-	EAttribute getPredicate_Icon();
-
-	/**
-	 * Returns the meta object for class '{@link no.hib.dpf.core.SemanticsValidator <em>Semantics Validator</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Semantics Validator</em>'.
-	 * @see no.hib.dpf.core.SemanticsValidator
-	 * @generated
-	 */
-	EClass getSemanticsValidator();
-
-	/**
-	 * Returns the meta object for the attribute '{@link no.hib.dpf.core.SemanticsValidator#getType <em>Type</em>}'.
+	 * Returns the meta object for the attribute '{@link no.hib.dpf.core.SemanticValidator#getType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Type</em>'.
-	 * @see no.hib.dpf.core.SemanticsValidator#getType()
-	 * @see #getSemanticsValidator()
+	 * @see no.hib.dpf.core.SemanticValidator#getType()
+	 * @see #getSemanticValidator()
 	 * @generated
 	 */
-	EAttribute getSemanticsValidator_Type();
+	EAttribute getSemanticValidator_Type();
 
 	/**
-	 * Returns the meta object for the attribute '{@link no.hib.dpf.core.SemanticsValidator#getValidator <em>Validator</em>}'.
+	 * Returns the meta object for the attribute '{@link no.hib.dpf.core.SemanticValidator#getValidator <em>Validator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Validator</em>'.
-	 * @see no.hib.dpf.core.SemanticsValidator#getValidator()
-	 * @see #getSemanticsValidator()
+	 * @see no.hib.dpf.core.SemanticValidator#getValidator()
+	 * @see #getSemanticValidator()
 	 * @generated
 	 */
-	EAttribute getSemanticsValidator_Validator();
-
-	/**
-	 * Returns the meta object for class '{@link no.hib.dpf.core.Visualization <em>Visualization</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Visualization</em>'.
-	 * @see no.hib.dpf.core.Visualization
-	 * @generated
-	 */
-	EClass getVisualization();
-
-	/**
-	 * Returns the meta object for the attribute '{@link no.hib.dpf.core.Visualization#getType <em>Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Type</em>'.
-	 * @see no.hib.dpf.core.Visualization#getType()
-	 * @see #getVisualization()
-	 * @generated
-	 */
-	EAttribute getVisualization_Type();
-
-	/**
-	 * Returns the meta object for the reference '{@link no.hib.dpf.core.Visualization#getSource <em>Source</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Source</em>'.
-	 * @see no.hib.dpf.core.Visualization#getSource()
-	 * @see #getVisualization()
-	 * @generated
-	 */
-	EReference getVisualization_Source();
-
-	/**
-	 * Returns the meta object for the reference '{@link no.hib.dpf.core.Visualization#getTarget <em>Target</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Target</em>'.
-	 * @see no.hib.dpf.core.Visualization#getTarget()
-	 * @see #getVisualization()
-	 * @generated
-	 */
-	EReference getVisualization_Target();
+	EAttribute getSemanticValidator_Validator();
 
 	/**
 	 * Returns the meta object for class '{@link java.util.Map.Entry <em>Node To Node Map</em>}'.
@@ -1492,15 +1082,26 @@ public interface CorePackage extends EPackage {
 	EClass getConstraint();
 
 	/**
-	 * Returns the meta object for the container reference '{@link no.hib.dpf.core.Constraint#getGraph <em>Graph</em>}'.
+	 * Returns the meta object for the reference list '{@link no.hib.dpf.core.Constraint#getNodes <em>Nodes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Graph</em>'.
-	 * @see no.hib.dpf.core.Constraint#getGraph()
+	 * @return the meta object for the reference list '<em>Nodes</em>'.
+	 * @see no.hib.dpf.core.Constraint#getNodes()
 	 * @see #getConstraint()
 	 * @generated
 	 */
-	EReference getConstraint_Graph();
+	EReference getConstraint_Nodes();
+
+	/**
+	 * Returns the meta object for the reference list '{@link no.hib.dpf.core.Constraint#getArrows <em>Arrows</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Arrows</em>'.
+	 * @see no.hib.dpf.core.Constraint#getArrows()
+	 * @see #getConstraint()
+	 * @generated
+	 */
+	EReference getConstraint_Arrows();
 
 	/**
 	 * Returns the meta object for the reference '{@link no.hib.dpf.core.Constraint#getPredicate <em>Predicate</em>}'.
@@ -1570,49 +1171,6 @@ public interface CorePackage extends EPackage {
 	EReference getArrowToArrowMap_Value();
 
 	/**
-	 * Returns the meta object for class '{@link no.hib.dpf.core.TypingMorphism <em>Typing Morphism</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Typing Morphism</em>'.
-	 * @see no.hib.dpf.core.TypingMorphism
-	 * @generated
-	 */
-	EClass getTypingMorphism();
-
-	/**
-	 * Returns the meta object for the reference '{@link no.hib.dpf.core.TypingMorphism#getModel <em>Model</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Model</em>'.
-	 * @see no.hib.dpf.core.TypingMorphism#getModel()
-	 * @see #getTypingMorphism()
-	 * @generated
-	 */
-	EReference getTypingMorphism_Model();
-
-	/**
-	 * Returns the meta object for the reference '{@link no.hib.dpf.core.TypingMorphism#getMetamodel <em>Metamodel</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Metamodel</em>'.
-	 * @see no.hib.dpf.core.TypingMorphism#getMetamodel()
-	 * @see #getTypingMorphism()
-	 * @generated
-	 */
-	EReference getTypingMorphism_Metamodel();
-
-	/**
-	 * Returns the meta object for the reference '{@link no.hib.dpf.core.TypingMorphism#getMappings <em>Mappings</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Mappings</em>'.
-	 * @see no.hib.dpf.core.TypingMorphism#getMappings()
-	 * @see #getTypingMorphism()
-	 * @generated
-	 */
-	EReference getTypingMorphism_Mappings();
-
-	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.core.GraphHomomorphism <em>Graph Homomorphism</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1666,6 +1224,16 @@ public interface CorePackage extends EPackage {
 	EAttribute getIDObject_Id();
 
 	/**
+	 * Returns the meta object for enum '{@link no.hib.dpf.core.ValidatorType <em>Validator Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Validator Type</em>'.
+	 * @see no.hib.dpf.core.ValidatorType
+	 * @generated
+	 */
+	EEnum getValidatorType();
+
+	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.core.Specification <em>Specification</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1687,26 +1255,26 @@ public interface CorePackage extends EPackage {
 	EReference getSpecification_Graph();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link no.hib.dpf.core.Specification#getTypeGraph <em>Type Graph</em>}'.
+	 * Returns the meta object for the containment reference list '{@link no.hib.dpf.core.Specification#getConstraints <em>Constraints</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Type Graph</em>'.
-	 * @see no.hib.dpf.core.Specification#getTypeGraph()
+	 * @return the meta object for the containment reference list '<em>Constraints</em>'.
+	 * @see no.hib.dpf.core.Specification#getConstraints()
 	 * @see #getSpecification()
 	 * @generated
 	 */
-	EReference getSpecification_TypeGraph();
+	EReference getSpecification_Constraints();
 
 	/**
-	 * Returns the meta object for the reference '{@link no.hib.dpf.core.Specification#getSignature <em>Signature</em>}'.
+	 * Returns the meta object for the attribute '{@link no.hib.dpf.core.Specification#getMetaFile <em>Meta File</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Signature</em>'.
-	 * @see no.hib.dpf.core.Specification#getSignature()
+	 * @return the meta object for the attribute '<em>Meta File</em>'.
+	 * @see no.hib.dpf.core.Specification#getMetaFile()
 	 * @see #getSpecification()
 	 * @generated
 	 */
-	EReference getSpecification_Signature();
+	EAttribute getSpecification_MetaFile();
 
 	/**
 	 * Returns the meta object for the attribute '{@link no.hib.dpf.core.Specification#getSignatureFile <em>Signature File</em>}'.
@@ -1720,125 +1288,37 @@ public interface CorePackage extends EPackage {
 	EAttribute getSpecification_SignatureFile();
 
 	/**
-	 * Returns the meta object for class '{@link no.hib.dpf.core.ModelHierarchy <em>Model Hierarchy</em>}'.
+	 * Returns the meta object for the reference '{@link no.hib.dpf.core.Specification#getSignature <em>Signature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Model Hierarchy</em>'.
-	 * @see no.hib.dpf.core.ModelHierarchy
+	 * @return the meta object for the reference '<em>Signature</em>'.
+	 * @see no.hib.dpf.core.Specification#getSignature()
+	 * @see #getSpecification()
 	 * @generated
 	 */
-	EClass getModelHierarchy();
+	EReference getSpecification_Signature();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link no.hib.dpf.core.ModelHierarchy#getSpecifications <em>Specifications</em>}'.
+	 * Returns the meta object for the reference '{@link no.hib.dpf.core.Specification#getType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Specifications</em>'.
-	 * @see no.hib.dpf.core.ModelHierarchy#getSpecifications()
-	 * @see #getModelHierarchy()
+	 * @return the meta object for the reference '<em>Type</em>'.
+	 * @see no.hib.dpf.core.Specification#getType()
+	 * @see #getSpecification()
 	 * @generated
 	 */
-	EReference getModelHierarchy_Specifications();
+	EReference getSpecification_Type();
 
 	/**
-	 * Returns the meta object for class '{@link no.hib.dpf.core.JointlySurjectiveSemantics <em>Jointly Surjective Semantics</em>}'.
+	 * Returns the meta object for data type '{@link org.eclipse.emf.ecore.resource.ResourceSet <em>EResource Set</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Jointly Surjective Semantics</em>'.
-	 * @see no.hib.dpf.core.JointlySurjectiveSemantics
+	 * @return the meta object for data type '<em>EResource Set</em>'.
+	 * @see org.eclipse.emf.ecore.resource.ResourceSet
+	 * @model instanceClass="org.eclipse.emf.ecore.resource.ResourceSet"
 	 * @generated
 	 */
-	EClass getJointlySurjectiveSemantics();
-
-	/**
-	 * Returns the meta object for class '{@link no.hib.dpf.core.InverseSemantics <em>Inverse Semantics</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Inverse Semantics</em>'.
-	 * @see no.hib.dpf.core.InverseSemantics
-	 * @generated
-	 */
-	EClass getInverseSemantics();
-
-	/**
-	 * Returns the meta object for class '{@link no.hib.dpf.core.IrreflexiveSemantics <em>Irreflexive Semantics</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Irreflexive Semantics</em>'.
-	 * @see no.hib.dpf.core.IrreflexiveSemantics
-	 * @generated
-	 */
-	EClass getIrreflexiveSemantics();
-
-	/**
-	 * Returns the meta object for class '{@link no.hib.dpf.core.MultiplicitySemantics <em>Multiplicity Semantics</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Multiplicity Semantics</em>'.
-	 * @see no.hib.dpf.core.MultiplicitySemantics
-	 * @generated
-	 */
-	EClass getMultiplicitySemantics();
-
-	/**
-	 * Returns the meta object for class '{@link no.hib.dpf.core.XORSemantics <em>XOR Semantics</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>XOR Semantics</em>'.
-	 * @see no.hib.dpf.core.XORSemantics
-	 * @generated
-	 */
-	EClass getXORSemantics();
-
-	/**
-	 * Returns the meta object for class '{@link no.hib.dpf.core.TransitiveIrreflexiveSemantics <em>Transitive Irreflexive Semantics</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Transitive Irreflexive Semantics</em>'.
-	 * @see no.hib.dpf.core.TransitiveIrreflexiveSemantics
-	 * @generated
-	 */
-	EClass getTransitiveIrreflexiveSemantics();
-
-	/**
-	 * Returns the meta object for class '{@link no.hib.dpf.core.SurjectiveSemantics <em>Surjective Semantics</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Surjective Semantics</em>'.
-	 * @see no.hib.dpf.core.SurjectiveSemantics
-	 * @generated
-	 */
-	EClass getSurjectiveSemantics();
-
-	/**
-	 * Returns the meta object for class '{@link no.hib.dpf.core.NANDSemantics <em>NAND Semantics</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>NAND Semantics</em>'.
-	 * @see no.hib.dpf.core.NANDSemantics
-	 * @generated
-	 */
-	EClass getNANDSemantics();
-
-	/**
-	 * Returns the meta object for enum '{@link no.hib.dpf.core.ValidatorType <em>Validator Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Validator Type</em>'.
-	 * @see no.hib.dpf.core.ValidatorType
-	 * @generated
-	 */
-	EEnum getValidatorType();
-
-	/**
-	 * Returns the meta object for enum '{@link no.hib.dpf.core.VisualizationType <em>Visualization Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Visualization Type</em>'.
-	 * @see no.hib.dpf.core.VisualizationType
-	 * @generated
-	 */
-	EEnum getVisualizationType();
+	EDataType getEResourceSet();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1881,12 +1361,12 @@ public interface CorePackage extends EPackage {
 		EReference GRAPH__NODES = eINSTANCE.getGraph_Nodes();
 
 		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute GRAPH__NAME = eINSTANCE.getGraph_Name();
+		EReference GRAPH__TYPE = eINSTANCE.getGraph_Type();
 
 		/**
 		 * The meta object literal for the '<em><b>Arrows</b></em>' containment reference list feature.
@@ -1895,14 +1375,6 @@ public interface CorePackage extends EPackage {
 		 * @generated
 		 */
 		EReference GRAPH__ARROWS = eINSTANCE.getGraph_Arrows();
-
-		/**
-		 * The meta object literal for the '<em><b>Constraints</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference GRAPH__CONSTRAINTS = eINSTANCE.getGraph_Constraints();
 
 		/**
 		 * The meta object literal for the '{@link no.hib.dpf.core.impl.NodeImpl <em>Node</em>}' class.
@@ -1939,6 +1411,30 @@ public interface CorePackage extends EPackage {
 		EReference NODE__TYPE_NODE = eINSTANCE.getNode_TypeNode();
 
 		/**
+		 * The meta object literal for the '<em><b>Outgoings</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NODE__OUTGOINGS = eINSTANCE.getNode_Outgoings();
+
+		/**
+		 * The meta object literal for the '<em><b>Incomings</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NODE__INCOMINGS = eINSTANCE.getNode_Incomings();
+
+		/**
+		 * The meta object literal for the '<em><b>Constraints</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NODE__CONSTRAINTS = eINSTANCE.getNode_Constraints();
+
+		/**
 		 * The meta object literal for the '{@link no.hib.dpf.core.impl.ArrowImpl <em>Arrow</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1971,6 +1467,14 @@ public interface CorePackage extends EPackage {
 		 * @generated
 		 */
 		EReference ARROW__TYPE_ARROW = eINSTANCE.getArrow_TypeArrow();
+
+		/**
+		 * The meta object literal for the '<em><b>Constraints</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ARROW__CONSTRAINTS = eINSTANCE.getArrow_Constraints();
 
 		/**
 		 * The meta object literal for the '<em><b>Source</b></em>' reference feature.
@@ -2025,20 +1529,20 @@ public interface CorePackage extends EPackage {
 		EClass PREDICATE = eINSTANCE.getPredicate();
 
 		/**
+		 * The meta object literal for the '<em><b>Symbol</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDICATE__SYMBOL = eINSTANCE.getPredicate_Symbol();
+
+		/**
 		 * The meta object literal for the '<em><b>Shape</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference PREDICATE__SHAPE = eINSTANCE.getPredicate_Shape();
-
-		/**
-		 * The meta object literal for the '<em><b>Semantics Validator</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PREDICATE__SEMANTICS_VALIDATOR = eINSTANCE.getPredicate_SemanticsValidator();
 
 		/**
 		 * The meta object literal for the '<em><b>Parameters</b></em>' attribute feature.
@@ -2049,38 +1553,22 @@ public interface CorePackage extends EPackage {
 		EAttribute PREDICATE__PARAMETERS = eINSTANCE.getPredicate_Parameters();
 
 		/**
-		 * The meta object literal for the '<em><b>Visualization</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Validator</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PREDICATE__VISUALIZATION = eINSTANCE.getPredicate_Visualization();
+		EReference PREDICATE__VALIDATOR = eINSTANCE.getPredicate_Validator();
 
 		/**
-		 * The meta object literal for the '<em><b>Symbol</b></em>' attribute feature.
+		 * The meta object literal for the '{@link no.hib.dpf.core.impl.SemanticValidatorImpl <em>Semantic Validator</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see no.hib.dpf.core.impl.SemanticValidatorImpl
+		 * @see no.hib.dpf.core.impl.CorePackageImpl#getSemanticValidator()
 		 * @generated
 		 */
-		EAttribute PREDICATE__SYMBOL = eINSTANCE.getPredicate_Symbol();
-
-		/**
-		 * The meta object literal for the '<em><b>Icon</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PREDICATE__ICON = eINSTANCE.getPredicate_Icon();
-
-		/**
-		 * The meta object literal for the '{@link no.hib.dpf.core.impl.SemanticsValidatorImpl <em>Semantics Validator</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see no.hib.dpf.core.impl.SemanticsValidatorImpl
-		 * @see no.hib.dpf.core.impl.CorePackageImpl#getSemanticsValidator()
-		 * @generated
-		 */
-		EClass SEMANTICS_VALIDATOR = eINSTANCE.getSemanticsValidator();
+		EClass SEMANTIC_VALIDATOR = eINSTANCE.getSemanticValidator();
 
 		/**
 		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
@@ -2088,7 +1576,7 @@ public interface CorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SEMANTICS_VALIDATOR__TYPE = eINSTANCE.getSemanticsValidator_Type();
+		EAttribute SEMANTIC_VALIDATOR__TYPE = eINSTANCE.getSemanticValidator_Type();
 
 		/**
 		 * The meta object literal for the '<em><b>Validator</b></em>' attribute feature.
@@ -2096,41 +1584,7 @@ public interface CorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SEMANTICS_VALIDATOR__VALIDATOR = eINSTANCE.getSemanticsValidator_Validator();
-
-		/**
-		 * The meta object literal for the '{@link no.hib.dpf.core.impl.VisualizationImpl <em>Visualization</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see no.hib.dpf.core.impl.VisualizationImpl
-		 * @see no.hib.dpf.core.impl.CorePackageImpl#getVisualization()
-		 * @generated
-		 */
-		EClass VISUALIZATION = eINSTANCE.getVisualization();
-
-		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute VISUALIZATION__TYPE = eINSTANCE.getVisualization_Type();
-
-		/**
-		 * The meta object literal for the '<em><b>Source</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference VISUALIZATION__SOURCE = eINSTANCE.getVisualization_Source();
-
-		/**
-		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference VISUALIZATION__TARGET = eINSTANCE.getVisualization_Target();
+		EAttribute SEMANTIC_VALIDATOR__VALIDATOR = eINSTANCE.getSemanticValidator_Validator();
 
 		/**
 		 * The meta object literal for the '{@link no.hib.dpf.core.impl.NodeToNodeMapImpl <em>Node To Node Map</em>}' class.
@@ -2169,12 +1623,20 @@ public interface CorePackage extends EPackage {
 		EClass CONSTRAINT = eINSTANCE.getConstraint();
 
 		/**
-		 * The meta object literal for the '<em><b>Graph</b></em>' container reference feature.
+		 * The meta object literal for the '<em><b>Nodes</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CONSTRAINT__GRAPH = eINSTANCE.getConstraint_Graph();
+		EReference CONSTRAINT__NODES = eINSTANCE.getConstraint_Nodes();
+
+		/**
+		 * The meta object literal for the '<em><b>Arrows</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONSTRAINT__ARROWS = eINSTANCE.getConstraint_Arrows();
 
 		/**
 		 * The meta object literal for the '<em><b>Predicate</b></em>' reference feature.
@@ -2227,40 +1689,6 @@ public interface CorePackage extends EPackage {
 		EReference ARROW_TO_ARROW_MAP__VALUE = eINSTANCE.getArrowToArrowMap_Value();
 
 		/**
-		 * The meta object literal for the '{@link no.hib.dpf.core.impl.TypingMorphismImpl <em>Typing Morphism</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see no.hib.dpf.core.impl.TypingMorphismImpl
-		 * @see no.hib.dpf.core.impl.CorePackageImpl#getTypingMorphism()
-		 * @generated
-		 */
-		EClass TYPING_MORPHISM = eINSTANCE.getTypingMorphism();
-
-		/**
-		 * The meta object literal for the '<em><b>Model</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TYPING_MORPHISM__MODEL = eINSTANCE.getTypingMorphism_Model();
-
-		/**
-		 * The meta object literal for the '<em><b>Metamodel</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TYPING_MORPHISM__METAMODEL = eINSTANCE.getTypingMorphism_Metamodel();
-
-		/**
-		 * The meta object literal for the '<em><b>Mappings</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TYPING_MORPHISM__MAPPINGS = eINSTANCE.getTypingMorphism_Mappings();
-
-		/**
 		 * The meta object literal for the '{@link no.hib.dpf.core.impl.GraphHomomorphismImpl <em>Graph Homomorphism</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2305,6 +1733,16 @@ public interface CorePackage extends EPackage {
 		EAttribute ID_OBJECT__ID = eINSTANCE.getIDObject_Id();
 
 		/**
+		 * The meta object literal for the '{@link no.hib.dpf.core.ValidatorType <em>Validator Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see no.hib.dpf.core.ValidatorType
+		 * @see no.hib.dpf.core.impl.CorePackageImpl#getValidatorType()
+		 * @generated
+		 */
+		EEnum VALIDATOR_TYPE = eINSTANCE.getValidatorType();
+
+		/**
 		 * The meta object literal for the '{@link no.hib.dpf.core.impl.SpecificationImpl <em>Specification</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2323,20 +1761,20 @@ public interface CorePackage extends EPackage {
 		EReference SPECIFICATION__GRAPH = eINSTANCE.getSpecification_Graph();
 
 		/**
-		 * The meta object literal for the '<em><b>Type Graph</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Constraints</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SPECIFICATION__TYPE_GRAPH = eINSTANCE.getSpecification_TypeGraph();
+		EReference SPECIFICATION__CONSTRAINTS = eINSTANCE.getSpecification_Constraints();
 
 		/**
-		 * The meta object literal for the '<em><b>Signature</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Meta File</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SPECIFICATION__SIGNATURE = eINSTANCE.getSpecification_Signature();
+		EAttribute SPECIFICATION__META_FILE = eINSTANCE.getSpecification_MetaFile();
 
 		/**
 		 * The meta object literal for the '<em><b>Signature File</b></em>' attribute feature.
@@ -2347,122 +1785,30 @@ public interface CorePackage extends EPackage {
 		EAttribute SPECIFICATION__SIGNATURE_FILE = eINSTANCE.getSpecification_SignatureFile();
 
 		/**
-		 * The meta object literal for the '{@link no.hib.dpf.core.impl.ModelHierarchyImpl <em>Model Hierarchy</em>}' class.
+		 * The meta object literal for the '<em><b>Signature</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see no.hib.dpf.core.impl.ModelHierarchyImpl
-		 * @see no.hib.dpf.core.impl.CorePackageImpl#getModelHierarchy()
 		 * @generated
 		 */
-		EClass MODEL_HIERARCHY = eINSTANCE.getModelHierarchy();
+		EReference SPECIFICATION__SIGNATURE = eINSTANCE.getSpecification_Signature();
 
 		/**
-		 * The meta object literal for the '<em><b>Specifications</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MODEL_HIERARCHY__SPECIFICATIONS = eINSTANCE.getModelHierarchy_Specifications();
+		EReference SPECIFICATION__TYPE = eINSTANCE.getSpecification_Type();
 
 		/**
-		 * The meta object literal for the '{@link no.hib.dpf.core.impl.JointlySurjectiveSemanticsImpl <em>Jointly Surjective Semantics</em>}' class.
+		 * The meta object literal for the '<em>EResource Set</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see no.hib.dpf.core.impl.JointlySurjectiveSemanticsImpl
-		 * @see no.hib.dpf.core.impl.CorePackageImpl#getJointlySurjectiveSemantics()
+		 * @see org.eclipse.emf.ecore.resource.ResourceSet
+		 * @see no.hib.dpf.core.impl.CorePackageImpl#getEResourceSet()
 		 * @generated
 		 */
-		EClass JOINTLY_SURJECTIVE_SEMANTICS = eINSTANCE.getJointlySurjectiveSemantics();
-
-		/**
-		 * The meta object literal for the '{@link no.hib.dpf.core.impl.InverseSemanticsImpl <em>Inverse Semantics</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see no.hib.dpf.core.impl.InverseSemanticsImpl
-		 * @see no.hib.dpf.core.impl.CorePackageImpl#getInverseSemantics()
-		 * @generated
-		 */
-		EClass INVERSE_SEMANTICS = eINSTANCE.getInverseSemantics();
-
-		/**
-		 * The meta object literal for the '{@link no.hib.dpf.core.impl.IrreflexiveSemanticsImpl <em>Irreflexive Semantics</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see no.hib.dpf.core.impl.IrreflexiveSemanticsImpl
-		 * @see no.hib.dpf.core.impl.CorePackageImpl#getIrreflexiveSemantics()
-		 * @generated
-		 */
-		EClass IRREFLEXIVE_SEMANTICS = eINSTANCE.getIrreflexiveSemantics();
-
-		/**
-		 * The meta object literal for the '{@link no.hib.dpf.core.impl.MultiplicitySemanticsImpl <em>Multiplicity Semantics</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see no.hib.dpf.core.impl.MultiplicitySemanticsImpl
-		 * @see no.hib.dpf.core.impl.CorePackageImpl#getMultiplicitySemantics()
-		 * @generated
-		 */
-		EClass MULTIPLICITY_SEMANTICS = eINSTANCE.getMultiplicitySemantics();
-
-		/**
-		 * The meta object literal for the '{@link no.hib.dpf.core.impl.XORSemanticsImpl <em>XOR Semantics</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see no.hib.dpf.core.impl.XORSemanticsImpl
-		 * @see no.hib.dpf.core.impl.CorePackageImpl#getXORSemantics()
-		 * @generated
-		 */
-		EClass XOR_SEMANTICS = eINSTANCE.getXORSemantics();
-
-		/**
-		 * The meta object literal for the '{@link no.hib.dpf.core.impl.TransitiveIrreflexiveSemanticsImpl <em>Transitive Irreflexive Semantics</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see no.hib.dpf.core.impl.TransitiveIrreflexiveSemanticsImpl
-		 * @see no.hib.dpf.core.impl.CorePackageImpl#getTransitiveIrreflexiveSemantics()
-		 * @generated
-		 */
-		EClass TRANSITIVE_IRREFLEXIVE_SEMANTICS = eINSTANCE.getTransitiveIrreflexiveSemantics();
-
-		/**
-		 * The meta object literal for the '{@link no.hib.dpf.core.impl.SurjectiveSemanticsImpl <em>Surjective Semantics</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see no.hib.dpf.core.impl.SurjectiveSemanticsImpl
-		 * @see no.hib.dpf.core.impl.CorePackageImpl#getSurjectiveSemantics()
-		 * @generated
-		 */
-		EClass SURJECTIVE_SEMANTICS = eINSTANCE.getSurjectiveSemantics();
-
-		/**
-		 * The meta object literal for the '{@link no.hib.dpf.core.impl.NANDSemanticsImpl <em>NAND Semantics</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see no.hib.dpf.core.impl.NANDSemanticsImpl
-		 * @see no.hib.dpf.core.impl.CorePackageImpl#getNANDSemantics()
-		 * @generated
-		 */
-		EClass NAND_SEMANTICS = eINSTANCE.getNANDSemantics();
-
-		/**
-		 * The meta object literal for the '{@link no.hib.dpf.core.ValidatorType <em>Validator Type</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see no.hib.dpf.core.ValidatorType
-		 * @see no.hib.dpf.core.impl.CorePackageImpl#getValidatorType()
-		 * @generated
-		 */
-		EEnum VALIDATOR_TYPE = eINSTANCE.getValidatorType();
-
-		/**
-		 * The meta object literal for the '{@link no.hib.dpf.core.VisualizationType <em>Visualization Type</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see no.hib.dpf.core.VisualizationType
-		 * @see no.hib.dpf.core.impl.CorePackageImpl#getVisualizationType()
-		 * @generated
-		 */
-		EEnum VISUALIZATION_TYPE = eINSTANCE.getVisualizationType();
+		EDataType ERESOURCE_SET = eINSTANCE.getEResourceSet();
 
 	}
 

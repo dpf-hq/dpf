@@ -15,6 +15,7 @@
  */
 package no.hib.dpf.core.impl;
 
+import java.util.Collection;
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.CorePackage;
@@ -23,13 +24,16 @@ import no.hib.dpf.core.GraphHomomorphism;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Predicate;
 
+import no.hib.dpf.core.Specification;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,7 +42,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link no.hib.dpf.core.impl.ConstraintImpl#getGraph <em>Graph</em>}</li>
+ *   <li>{@link no.hib.dpf.core.impl.ConstraintImpl#getNodes <em>Nodes</em>}</li>
+ *   <li>{@link no.hib.dpf.core.impl.ConstraintImpl#getArrows <em>Arrows</em>}</li>
  *   <li>{@link no.hib.dpf.core.impl.ConstraintImpl#getPredicate <em>Predicate</em>}</li>
  *   <li>{@link no.hib.dpf.core.impl.ConstraintImpl#getMappings <em>Mappings</em>}</li>
  *   <li>{@link no.hib.dpf.core.impl.ConstraintImpl#getParameters <em>Parameters</em>}</li>
@@ -48,6 +53,26 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * @generated
  */
 public class ConstraintImpl extends IDObjectImpl implements Constraint {
+	/**
+	 * The cached value of the '{@link #getNodes() <em>Nodes</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNodes()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Node> nodes;
+
+	/**
+	 * The cached value of the '{@link #getArrows() <em>Arrows</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getArrows()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Arrow> arrows;
+
 	/**
 	 * The cached value of the '{@link #getPredicate() <em>Predicate</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -112,40 +137,23 @@ public class ConstraintImpl extends IDObjectImpl implements Constraint {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Graph getGraph() {
-		if (eContainerFeatureID() != CorePackage.CONSTRAINT__GRAPH) return null;
-		return (Graph)eContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetGraph(Graph newGraph, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newGraph, CorePackage.CONSTRAINT__GRAPH, msgs);
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setGraph(Graph newGraph) {
-		if (newGraph != eInternalContainer() || (eContainerFeatureID() != CorePackage.CONSTRAINT__GRAPH && newGraph != null)) {
-			if (EcoreUtil.isAncestor(this, newGraph))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newGraph != null)
-				msgs = ((InternalEObject)newGraph).eInverseAdd(this, CorePackage.GRAPH__CONSTRAINTS, Graph.class, msgs);
-			msgs = basicSetGraph(newGraph, msgs);
-			if (msgs != null) msgs.dispatch();
+	public EList<Node> getNodes() {
+		if (nodes == null) {
+			nodes = new EObjectWithInverseResolvingEList.ManyInverse<Node>(Node.class, this, CorePackage.CONSTRAINT__NODES, CorePackage.NODE__CONSTRAINTS);
 		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.CONSTRAINT__GRAPH, newGraph, newGraph));
+		return nodes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Arrow> getArrows() {
+		if (arrows == null) {
+			arrows = new EObjectWithInverseResolvingEList.ManyInverse<Arrow>(Arrow.class, this, CorePackage.CONSTRAINT__ARROWS, CorePackage.ARROW__CONSTRAINTS);
+		}
+		return arrows;
 	}
 
 	/**
@@ -177,11 +185,14 @@ public class ConstraintImpl extends IDObjectImpl implements Constraint {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setPredicate(Predicate newPredicate) {
+		if(newPredicate == predicate) return;
 		Predicate oldPredicate = predicate;
 		predicate = newPredicate;
+		if(newPredicate != null && !newPredicate.eIsProxy() && (oldPredicate == null || !oldPredicate.getParameters().equals(newPredicate.getParameters())))
+			setParameters(newPredicate.getParameters());
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.CONSTRAINT__PREDICATE, oldPredicate, predicate));
 	}
@@ -232,13 +243,10 @@ public class ConstraintImpl extends IDObjectImpl implements Constraint {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public String getParameters() {
-		if (parameters != null) {
-			return parameters;
-		}
-		return "";
+		return parameters;
 	}
 
 	/**
@@ -258,8 +266,15 @@ public class ConstraintImpl extends IDObjectImpl implements Constraint {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public EList<Node> getConstrainedNodes() {
-		return this.getGraph().getNodesForConstraint(this);
+	public void reconnect(EList<Node> nodes, EList<Arrow> arrows, Specification specification) {
+		if(!getNodes().isEmpty())
+			getNodes().clear();
+		if(!getArrows().isEmpty())
+			getArrows().clear();
+		getNodes().addAll(nodes);
+		getArrows().addAll(arrows);
+		if(specification != null && !specification.getConstraints().contains(this))
+			specification.getConstraints().add(this);
 	}
 
 	/**
@@ -267,8 +282,39 @@ public class ConstraintImpl extends IDObjectImpl implements Constraint {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public EList<Arrow> getConstrainedArrows() {
-		return this.getGraph().getArrowsForConstraint(this);
+	public void disconnect() {
+		Specification specification = (Specification) eContainer();
+		if(specification != null && specification.getConstraints().contains(this))
+			specification.getConstraints().remove(this);
+		getArrows().clear();
+		getNodes().clear();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void addArrow(Arrow arrow) {
+		getArrows().add(arrow);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void addNode(Node node) {
+		getNodes().add(node);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean validate(Graph graph) {
+		return getPredicate().validateSemantics(getParameters(), getMappings(), graph);
 	}
 
 	/**
@@ -276,13 +322,14 @@ public class ConstraintImpl extends IDObjectImpl implements Constraint {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case CorePackage.CONSTRAINT__GRAPH:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetGraph((Graph)otherEnd, msgs);
+			case CorePackage.CONSTRAINT__NODES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getNodes()).basicAdd(otherEnd, msgs);
+			case CorePackage.CONSTRAINT__ARROWS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getArrows()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -295,8 +342,10 @@ public class ConstraintImpl extends IDObjectImpl implements Constraint {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case CorePackage.CONSTRAINT__GRAPH:
-				return basicSetGraph(null, msgs);
+			case CorePackage.CONSTRAINT__NODES:
+				return ((InternalEList<?>)getNodes()).basicRemove(otherEnd, msgs);
+			case CorePackage.CONSTRAINT__ARROWS:
+				return ((InternalEList<?>)getArrows()).basicRemove(otherEnd, msgs);
 			case CorePackage.CONSTRAINT__MAPPINGS:
 				return basicSetMappings(null, msgs);
 		}
@@ -309,24 +358,12 @@ public class ConstraintImpl extends IDObjectImpl implements Constraint {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case CorePackage.CONSTRAINT__GRAPH:
-				return eInternalContainer().eInverseRemove(this, CorePackage.GRAPH__CONSTRAINTS, Graph.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CorePackage.CONSTRAINT__GRAPH:
-				return getGraph();
+			case CorePackage.CONSTRAINT__NODES:
+				return getNodes();
+			case CorePackage.CONSTRAINT__ARROWS:
+				return getArrows();
 			case CorePackage.CONSTRAINT__PREDICATE:
 				if (resolve) return getPredicate();
 				return basicGetPredicate();
@@ -343,11 +380,17 @@ public class ConstraintImpl extends IDObjectImpl implements Constraint {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CorePackage.CONSTRAINT__GRAPH:
-				setGraph((Graph)newValue);
+			case CorePackage.CONSTRAINT__NODES:
+				getNodes().clear();
+				getNodes().addAll((Collection<? extends Node>)newValue);
+				return;
+			case CorePackage.CONSTRAINT__ARROWS:
+				getArrows().clear();
+				getArrows().addAll((Collection<? extends Arrow>)newValue);
 				return;
 			case CorePackage.CONSTRAINT__PREDICATE:
 				setPredicate((Predicate)newValue);
@@ -370,8 +413,11 @@ public class ConstraintImpl extends IDObjectImpl implements Constraint {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CorePackage.CONSTRAINT__GRAPH:
-				setGraph((Graph)null);
+			case CorePackage.CONSTRAINT__NODES:
+				getNodes().clear();
+				return;
+			case CorePackage.CONSTRAINT__ARROWS:
+				getArrows().clear();
 				return;
 			case CorePackage.CONSTRAINT__PREDICATE:
 				setPredicate((Predicate)null);
@@ -394,8 +440,10 @@ public class ConstraintImpl extends IDObjectImpl implements Constraint {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CorePackage.CONSTRAINT__GRAPH:
-				return getGraph() != null;
+			case CorePackage.CONSTRAINT__NODES:
+				return nodes != null && !nodes.isEmpty();
+			case CorePackage.CONSTRAINT__ARROWS:
+				return arrows != null && !arrows.isEmpty();
 			case CorePackage.CONSTRAINT__PREDICATE:
 				return predicate != null;
 			case CorePackage.CONSTRAINT__MAPPINGS:

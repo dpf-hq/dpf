@@ -15,6 +15,7 @@
  */
 package no.hib.dpf.core;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -26,9 +27,11 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link no.hib.dpf.core.Specification#getGraph <em>Graph</em>}</li>
- *   <li>{@link no.hib.dpf.core.Specification#getTypeGraph <em>Type Graph</em>}</li>
- *   <li>{@link no.hib.dpf.core.Specification#getSignature <em>Signature</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Specification#getConstraints <em>Constraints</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Specification#getMetaFile <em>Meta File</em>}</li>
  *   <li>{@link no.hib.dpf.core.Specification#getSignatureFile <em>Signature File</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Specification#getSignature <em>Signature</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Specification#getType <em>Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -48,7 +51,7 @@ public interface Specification extends EObject {
 	 * @return the value of the '<em>Graph</em>' containment reference.
 	 * @see #setGraph(Graph)
 	 * @see no.hib.dpf.core.CorePackage#getSpecification_Graph()
-	 * @model containment="true" required="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	Graph getGraph();
@@ -64,56 +67,46 @@ public interface Specification extends EObject {
 	void setGraph(Graph value);
 
 	/**
-	 * Returns the value of the '<em><b>Type Graph</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Constraints</b></em>' containment reference list.
+	 * The list contents are of type {@link no.hib.dpf.core.Constraint}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Type Graph</em>' reference isn't clear,
+	 * If the meaning of the '<em>Constraints</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Type Graph</em>' containment reference.
-	 * @see #setTypeGraph(Graph)
-	 * @see no.hib.dpf.core.CorePackage#getSpecification_TypeGraph()
+	 * @return the value of the '<em>Constraints</em>' containment reference list.
+	 * @see no.hib.dpf.core.CorePackage#getSpecification_Constraints()
 	 * @model containment="true"
 	 * @generated
 	 */
-	Graph getTypeGraph();
+	EList<Constraint> getConstraints();
 
 	/**
-	 * Sets the value of the '{@link no.hib.dpf.core.Specification#getTypeGraph <em>Type Graph</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type Graph</em>' containment reference.
-	 * @see #getTypeGraph()
-	 * @generated
-	 */
-	void setTypeGraph(Graph value);
-
-	/**
-	 * Returns the value of the '<em><b>Signature</b></em>' reference.
+	 * Returns the value of the '<em><b>Meta File</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Signature</em>' reference isn't clear,
+	 * If the meaning of the '<em>Meta File</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Signature</em>' reference.
-	 * @see #setSignature(Signature)
-	 * @see no.hib.dpf.core.CorePackage#getSpecification_Signature()
+	 * @return the value of the '<em>Meta File</em>' attribute.
+	 * @see #setMetaFile(String)
+	 * @see no.hib.dpf.core.CorePackage#getSpecification_MetaFile()
 	 * @model
 	 * @generated
 	 */
-	Signature getSignature();
+	String getMetaFile();
 
 	/**
-	 * Sets the value of the '{@link no.hib.dpf.core.Specification#getSignature <em>Signature</em>}' reference.
+	 * Sets the value of the '{@link no.hib.dpf.core.Specification#getMetaFile <em>Meta File</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Signature</em>' reference.
-	 * @see #getSignature()
+	 * @param value the new value of the '<em>Meta File</em>' attribute.
+	 * @see #getMetaFile()
 	 * @generated
 	 */
-	void setSignature(Signature value);
+	void setMetaFile(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Signature File</b></em>' attribute.
@@ -142,11 +135,94 @@ public interface Specification extends EObject {
 	void setSignatureFile(String value);
 
 	/**
+	 * Returns the value of the '<em><b>Signature</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Signature</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Signature</em>' reference.
+	 * @see #setSignature(Signature)
+	 * @see no.hib.dpf.core.CorePackage#getSpecification_Signature()
+	 * @model
+	 * @generated
+	 */
+	Signature getSignature();
+
+	/**
+	 * Sets the value of the '{@link no.hib.dpf.core.Specification#getSignature <em>Signature</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Signature</em>' reference.
+	 * @see #getSignature()
+	 * @generated
+	 */
+	void setSignature(Signature value);
+
+	/**
+	 * Returns the value of the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Type</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Type</em>' reference.
+	 * @see #setType(Specification)
+	 * @see no.hib.dpf.core.CorePackage#getSpecification_Type()
+	 * @model
+	 * @generated
+	 */
+	Specification getType();
+
+	/**
+	 * Sets the value of the '{@link no.hib.dpf.core.Specification#getType <em>Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Type</em>' reference.
+	 * @see #getType()
+	 * @generated
+	 */
+	void setType(Specification value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model exceptions="no.hib.dpf.core.EIOException" uriDataType="no.hib.dpf.core.EURI" resourceSetDataType="no.hib.dpf.core.EResourceSet"
+	 * @generated
+	 */
+
+	/**
+//	 * <!-- begin-user-doc -->
+//	 * <!-- end-user-doc -->
+//	 * @model
+//	 * @generated
+//	 */
+//	Graph createOStar(Constraint constraint);
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model
 	 * @generated
 	 */
-	Graph createOStar(Constraint constraint);
+	Graph createGraph(String name);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model predicateRequired="true" parametersRequired="true" mappingRequired="true" stuckedNodesMany="true" stuckedArrowsMany="true" typeNodesMany="true" typeArrowsMany="true"
+	 * @generated
+	 */
+	Constraint createConstraint(Predicate predicate, String parameters, GraphHomomorphism mapping, EList<Node> stuckedNodes, EList<Arrow> stuckedArrows, EList<Node> typeNodes, EList<Arrow> typeArrows);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	boolean validate();
 
 } // Specification

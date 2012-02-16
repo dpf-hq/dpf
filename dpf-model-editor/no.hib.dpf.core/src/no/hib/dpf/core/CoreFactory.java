@@ -15,6 +15,7 @@
  */
 package no.hib.dpf.core;
 
+
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EFactory;
 
@@ -94,12 +95,28 @@ public interface CoreFactory extends EFactory {
 	Node createNode(Node typeNode);
 
 	/**
+	 * Returns a new object of class '<em>Node</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Node</em>'.
+	 * @generated NOT
+	 */
+	Node createNode(String name, Node typeNode);
+	
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	Arrow createArrow(Arrow typeArrow);
+	Arrow createArrow(Node source, Node target, Arrow typeArrow);
 	
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	Arrow createArrow(String name, Node source, Node target, Arrow typeArrow);
 	/**
 	 * Returns a new object of class '<em>Signature</em>'.
 	 * <!-- begin-user-doc -->
@@ -109,6 +126,7 @@ public interface CoreFactory extends EFactory {
 	 */
 	Signature createSignature();
 
+	
 	/**
 	 * Returns a new object of class '<em>Predicate</em>'.
 	 * <!-- begin-user-doc -->
@@ -119,40 +137,14 @@ public interface CoreFactory extends EFactory {
 	Predicate createPredicate();
 
 	/**
-	 * Returns a new object of class '<em>Semantics Validator</em>'.
+	 * Returns a new object of class '<em>Semantic Validator</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Semantics Validator</em>'.
+	 * @return a new object of class '<em>Semantic Validator</em>'.
 	 * @generated
 	 */
-	SemanticsValidator createSemanticsValidator();
+	SemanticValidator createSemanticValidator();
 
-	/**
-	 * Returns a new object of class '<em>Visualization</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Visualization</em>'.
-	 * @generated
-	 */
-	Visualization createVisualization();
-
-	/**
-	 * Returns a new object of class '<em>Predicate</em>'.
-	 * <!-- begin-user-doc -->
-	 * shapeDescription is used to construct a graph. See createGraph().
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Predicate</em>'.
-	 * @generated NOT
-	 */
-	Predicate createPredicate(String nodes, String edges);
-
-	/**
-	 * Returns a new object of class '<em>Predicate</em>'.
-	 * @return a new object of class '<em>Predicate</em>'.
-	 * @generated NOT
-	 */
-	Predicate createPredicate(String symbol, String nodes, String edges);
-	
 	/**
 	 * Returns a new object of class '<em>Constraint</em>'.
 	 * <!-- begin-user-doc -->
@@ -161,15 +153,6 @@ public interface CoreFactory extends EFactory {
 	 * @generated
 	 */
 	Constraint createConstraint();
-
-	/**
-	 * Returns a new object of class '<em>Typing Morphism</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Typing Morphism</em>'.
-	 * @generated
-	 */
-	TypingMorphism createTypingMorphism();
 
 	/**
 	 * Returns a new object of class '<em>Graph Homomorphism</em>'.
@@ -207,87 +190,8 @@ public interface CoreFactory extends EFactory {
 	 */
 	Specification createSpecification();
 
-	/**
-	 * Returns a new object of class '<em>Model Hierarchy</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Model Hierarchy</em>'.
-	 * @generated
-	 */
-	ModelHierarchy createModelHierarchy();
 
-	/**
-	 * Returns a new object of class '<em>Jointly Surjective Semantics</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Jointly Surjective Semantics</em>'.
-	 * @generated
-	 */
-	JointlySurjectiveSemantics createJointlySurjectiveSemantics();
-
-	/**
-	 * Returns a new object of class '<em>Inverse Semantics</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Inverse Semantics</em>'.
-	 * @generated
-	 */
-	InverseSemantics createInverseSemantics();
-
-	/**
-	 * Returns a new object of class '<em>Irreflexive Semantics</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Irreflexive Semantics</em>'.
-	 * @generated
-	 */
-	IrreflexiveSemantics createIrreflexiveSemantics();
-
-	/**
-	 * Returns a new object of class '<em>Multiplicity Semantics</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Multiplicity Semantics</em>'.
-	 * @generated
-	 */
-	MultiplicitySemantics createMultiplicitySemantics();
-
-	/**
-	 * Returns a new object of class '<em>XOR Semantics</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>XOR Semantics</em>'.
-	 * @generated
-	 */
-	XORSemantics createXORSemantics();
-
-	/**
-	 * Returns a new object of class '<em>Transitive Irreflexive Semantics</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Transitive Irreflexive Semantics</em>'.
-	 * @generated
-	 */
-	TransitiveIrreflexiveSemantics createTransitiveIrreflexiveSemantics();
-
-	/**
-	 * Returns a new object of class '<em>Surjective Semantics</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Surjective Semantics</em>'.
-	 * @generated
-	 */
-	SurjectiveSemantics createSurjectiveSemantics();
-
-	/**
-	 * Returns a new object of class '<em>NAND Semantics</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>NAND Semantics</em>'.
-	 * @generated
-	 */
-	NANDSemantics createNANDSemantics();
-
+	
 	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
@@ -296,5 +200,32 @@ public interface CoreFactory extends EFactory {
 	 * @generated
 	 */
 	CorePackage getCorePackage();
+
+	/**
+	 * Returns the package supported by this factory.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the package supported by this factory.
+	 * @generated NOT
+	 */
+	Predicate createPredicate(String string, String string2);
+
+	/**
+	 * Returns the package supported by this factory.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the package supported by this factory.
+	 * @generated NOT
+	 */
+	Graph createDefaultGraph();
+
+	/**
+	 * Returns the package supported by this factory.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the package supported by this factory.
+	 * @generated NOT
+	 */
+	Specification createDefaultSpecification();
 
 } //CoreFactory

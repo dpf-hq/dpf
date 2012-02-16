@@ -25,10 +25,9 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link no.hib.dpf.core.Graph#getType <em>Type</em>}</li>
  *   <li>{@link no.hib.dpf.core.Graph#getNodes <em>Nodes</em>}</li>
- *   <li>{@link no.hib.dpf.core.Graph#getName <em>Name</em>}</li>
  *   <li>{@link no.hib.dpf.core.Graph#getArrows <em>Arrows</em>}</li>
- *   <li>{@link no.hib.dpf.core.Graph#getConstraints <em>Constraints</em>}</li>
  * </ul>
  * </p>
  *
@@ -37,7 +36,6 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface Graph extends IDObject {
-	
 	/**
 	 * Returns the value of the '<em><b>Nodes</b></em>' containment reference list.
 	 * The list contents are of type {@link no.hib.dpf.core.Node}.
@@ -57,30 +55,30 @@ public interface Graph extends IDObject {
 	EList<Node> getNodes();
 
 	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * Returns the value of the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Type</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #setName(String)
-	 * @see no.hib.dpf.core.CorePackage#getGraph_Name()
-	 * @model
+	 * @return the value of the '<em>Type</em>' reference.
+	 * @see #setType(Graph)
+	 * @see no.hib.dpf.core.CorePackage#getGraph_Type()
+	 * @model required="true"
 	 * @generated
 	 */
-	String getName();
+	Graph getType();
 
 	/**
-	 * Sets the value of the '{@link no.hib.dpf.core.Graph#getName <em>Name</em>}' attribute.
+	 * Sets the value of the '{@link no.hib.dpf.core.Graph#getType <em>Type</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #getName()
+	 * @param value the new value of the '<em>Type</em>' reference.
+	 * @see #getType()
 	 * @generated
 	 */
-	void setName(String value);
+	void setType(Graph value);
 
 	/**
 	 * Returns the value of the '<em><b>Arrows</b></em>' containment reference list.
@@ -99,24 +97,6 @@ public interface Graph extends IDObject {
 	 * @generated
 	 */
 	EList<Arrow> getArrows();
-
-	/**
-	 * Returns the value of the '<em><b>Constraints</b></em>' containment reference list.
-	 * The list contents are of type {@link no.hib.dpf.core.Constraint}.
-	 * It is bidirectional and its opposite is '{@link no.hib.dpf.core.Constraint#getGraph <em>Graph</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Constraints</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Constraints</em>' containment reference list.
-	 * @see no.hib.dpf.core.CorePackage#getGraph_Constraints()
-	 * @see no.hib.dpf.core.Constraint#getGraph
-	 * @model opposite="graph" containment="true"
-	 * @generated
-	 */
-	EList<Constraint> getConstraints();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -246,6 +226,12 @@ public interface Graph extends IDObject {
 	 * @generated
 	 */
 	Graph getCopy();
-	
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 * @generated
+	 */
+	Specification getSpecification();
 } // Graph

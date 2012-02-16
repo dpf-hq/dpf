@@ -14,13 +14,19 @@ package no.hib.dpf.editor.figures;
 
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.PolylineConnection;
+import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.SWT;
 
 /**
  * Experimental class. Should draw a point or similar halfway out on the first line.
  */
 public class ArrowConnection extends PolylineConnection implements RoutableFigure {
-	
+	private boolean isEpi = false;
+
+	boolean isEpi(){
+		return isEpi;
+	}
 	@Override
 	protected void outlineShape(Graphics g) {
 		g.pushState();
@@ -31,7 +37,23 @@ public class ArrowConnection extends PolylineConnection implements RoutableFigur
 
 	@Override
 	public int getRoutingPriority() {
-		return 5;
+		return isEpi ? 6 : 5;
+	}
+	public void setLocation(Point p) {
+		super.setLocation(p);
+	}
+	public void setBounds(Rectangle rect) {
+		super.setBounds(rect);
+	}
+	
+	public Rectangle getOwnerBounds() {
+		if ((getSourceAnchor() != null) && (this.getSourceAnchor().getOwner() instanceof NodeFigure)) {
+			return ((NodeFigure)getSourceAnchor().getOwner()).getBounds().getCopy();
+		}
+		return null;
+	}
+	public void setEpi(boolean b) {
+		isEpi = b;
 	}
 	
 }

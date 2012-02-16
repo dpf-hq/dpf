@@ -1,7 +1,7 @@
 /*******************************************************************************
  * Copyright (c) 2000, 2010 IBM Corporation and others.
  * 
- * Portions of the code Copyright (c) 2011 H¿yskolen i Bergen
+ * Portions of the code Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,7 +11,7 @@
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *     
- *     ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ *     ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
  *******************************************************************************/
 package no.hib.dpf.editor.figures;
 
@@ -24,6 +24,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import no.hib.dpf.editor.DPFErrorReport;
 
 import org.eclipse.draw2d.AbstractRouter;
 import org.eclipse.draw2d.Bendpoint;
@@ -246,20 +248,23 @@ public final class DPFShortestPathConnectionRouter extends AbstractRouter {
 				bends.addPoint(bp.getLocation());
 			}
 			path.setBendPoints(bends);
-		} else if (conn instanceof EpiArrowConnection) {
-			PointList bends = new PointList(constraint.size());
-			// Default layout around the node:
-			// TODO: make this configurable and make the bendpoints editable
-			Rectangle ownerBounds = ((EpiArrowConnection) conn).getOwnerBounds();
-			
-			try {
-				bends.addPoint(new Point(path.getStartPoint().x, ownerBounds.y - 10));
-				bends.addPoint(new Point(ownerBounds.x - 40, ownerBounds.y - 10));
-				bends.addPoint(new Point(ownerBounds.x - 40, ownerBounds.getBottom().y + 40));
-				bends.addPoint(new Point(path.getEndPoint().x, ownerBounds.getBottom().y + 40));
-				path.setBendPoints(bends);
-			} catch (NullPointerException e) {
-				//System.out.println("No source, skipping routing for now.");
+		} else if (conn instanceof ArrowConnection) {
+			ArrowConnection arrow = (ArrowConnection) conn;
+			if(arrow.isEpi()){
+				PointList bends = new PointList(constraint.size());
+				// Default layout around the node:
+				// TODO: make this configurable and make the bendpoints editable
+				Rectangle ownerBounds = ((ArrowConnection) conn).getOwnerBounds();
+
+				try {
+					bends.addPoint(new Point(path.getStartPoint().x, ownerBounds.y - 10));
+					bends.addPoint(new Point(ownerBounds.x - 40, ownerBounds.y - 10));
+					bends.addPoint(new Point(ownerBounds.x - 40, ownerBounds.getBottom().y + 40));
+					bends.addPoint(new Point(path.getEndPoint().x, ownerBounds.getBottom().y + 40));
+					path.setBendPoints(bends);
+				} catch (NullPointerException e) {
+					DPFErrorReport.logError(e);
+				}
 			}
 			
 		} else {

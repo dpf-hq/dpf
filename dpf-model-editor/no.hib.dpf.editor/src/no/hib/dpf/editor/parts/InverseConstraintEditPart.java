@@ -19,10 +19,10 @@ import org.eclipse.draw2d.IFigure;
 /**
  * Edit part for Inverse constraint elements.
  */
-class InverseConstraintEditPart extends OppositeArrowsConstraintEditPart {
+public class InverseConstraintEditPart extends OppositeArrowsConstraintEditPart {
 
 	public InverseConstraintEditPart() {
-		super(false);
+		super();
 	}
 
 	public NodeFigure getRectangleFigureForFigure() {

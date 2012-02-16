@@ -36,6 +36,7 @@ public class NodeFigure extends Figure implements RoutableFigure {
 		setOpaque(true); // non-transparent figure
 		setBackgroundColor(DPFEditorPreferences.getDefault().getNodeColor());
 		listenToNodeColorProperty();
+		
 	}
 	
 	public NodeFigure(){}
@@ -88,10 +89,11 @@ public class NodeFigure extends Figure implements RoutableFigure {
 		setForegroundColor(ColorConstants.black);
 		setOpaque(true);
 
+		name.setForegroundColor(ColorConstants.black);
 		add(name);
 
 	}
-	
+
 	/**
 	 * @return returns the label used to edit the name
 	 */

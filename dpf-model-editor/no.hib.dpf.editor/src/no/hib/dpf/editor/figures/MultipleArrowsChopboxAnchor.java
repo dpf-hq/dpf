@@ -16,7 +16,7 @@
 package no.hib.dpf.editor.figures;
 
 
-import no.hib.dpf.editor.parts.NodeEditPart;
+import no.hib.dpf.editor.parts.DNodeEditPart;
 
 import org.eclipse.draw2d.ChopboxAnchor;
 import org.eclipse.draw2d.ConnectionAnchor;
@@ -173,22 +173,23 @@ public class MultipleArrowsChopboxAnchor extends ChopboxAnchor {
 		return super.getLocation(reference);
 	}
 
+	@SuppressWarnings("deprecation")
 	private int findAvalableOrthogonalSpace(Rectangle r, float centerX,
 			float centerY, float dx, float dy) {
-		Point orthoVector = new PrecisionPoint(-dy, dx);
+		Point orthoVector = new Point(-dy, dx);
 		double length = new Point(0, 0).getDistance(orthoVector);
 		
 		int availableOrthogonalSpace = 40;
 		double normOrthoVectorX = orthoVector.x / length;
 		double normOrthoVectorY = orthoVector.y / length;
-		Point finalVector1 = new PrecisionPoint(normOrthoVectorX * 100000, normOrthoVectorY  * 100000);
-		finalVector1.translate(new PrecisionPoint(centerX, centerY));
-		Point finalVector2 = new PrecisionPoint(normOrthoVectorX * -100000, normOrthoVectorY  * -100000);
-		finalVector2.translate(new PrecisionPoint(centerX, centerY));
+		Point finalVector1 = new Point(normOrthoVectorX * 100000, normOrthoVectorY  * 100000);
+		finalVector1.translate(new Point(centerX, centerY));
+		Point finalVector2 = new Point(normOrthoVectorX * -100000, normOrthoVectorY  * -100000);
+		finalVector2.translate(new Point(centerX, centerY));
 		
 		
-		Point intersect1 = findRectangleIntersection(r, centerX, centerY, new PrecisionPoint(centerX + finalVector1.x, centerY + finalVector1.y), new Straight(new PrecisionPoint(centerX, centerY), new PrecisionPoint(centerX + finalVector1.x, centerY + finalVector1.y)));
-		Point intersect2 = findRectangleIntersection(r, centerX, centerY, new PrecisionPoint(centerX + finalVector2.x, centerY + finalVector2.y), new Straight(new PrecisionPoint(centerX, centerY), new PrecisionPoint(centerX + finalVector2.x, centerY + finalVector2.y)));
+		Point intersect1 = findRectangleIntersection(r, centerX, centerY, new Point(centerX + finalVector1.x, centerY + finalVector1.y), new Straight(new PrecisionPoint(centerX, centerY), new PrecisionPoint(centerX + finalVector1.x, centerY + finalVector1.y)));
+		Point intersect2 = findRectangleIntersection(r, centerX, centerY, new Point(centerX + finalVector2.x, centerY + finalVector2.y), new Straight(new PrecisionPoint(centerX, centerY), new PrecisionPoint(centerX + finalVector2.x, centerY + finalVector2.y)));
 		
 		if ((intersect1 != null) && (intersect2 != null)) {
 			availableOrthogonalSpace = (int) intersect1.getDistance(intersect2);
@@ -218,8 +219,8 @@ public class MultipleArrowsChopboxAnchor extends ChopboxAnchor {
 	}
 
 	private boolean isAnchorLeftmostOrHighest() {
-		NodeFigure figure1 = (NodeFigure)((NodeEditPart)connectionEditPart.getSource()).getFigure();
-		NodeFigure figure2 = (NodeFigure)((NodeEditPart)connectionEditPart.getTarget()).getFigure();
+		NodeFigure figure1 = (NodeFigure)((DNodeEditPart)connectionEditPart.getSource()).getFigure();
+		NodeFigure figure2 = (NodeFigure)((DNodeEditPart)connectionEditPart.getTarget()).getFigure();
 		
 		return getOwner().equals(figure1.getLeftmostOrLowest(figure2));
 	}
@@ -267,16 +268,17 @@ public class MultipleArrowsChopboxAnchor extends ChopboxAnchor {
 		return null;
 	}
 
+	@SuppressWarnings("deprecation")
 	private Point getOrthogonalVector(float dx, float dy, int offset) {
 		// Move points orthogonally to line:
-		Point orthoVector = new PrecisionPoint(-dy, dx);
+		Point orthoVector = new Point(-dy, dx);
 		double length = new Point(0, 0).getDistance(orthoVector);
 
 		double normOrthoVectorX = orthoVector.x / length;
 		double normOrthoVectorY = orthoVector.y / length;
-		Point finalVector = new PrecisionPoint(normOrthoVectorX * offset, normOrthoVectorY  * offset);
+		Point finalVector = new Point(normOrthoVectorX * offset, normOrthoVectorY  * offset);
 		if (isAnchorLeftmostOrHighest()) {
-			finalVector = new PrecisionPoint(normOrthoVectorX * -offset, normOrthoVectorY  * -offset);
+			finalVector = new Point(normOrthoVectorX * -offset, normOrthoVectorY  * -offset);
 		}
 		return finalVector;
 	}

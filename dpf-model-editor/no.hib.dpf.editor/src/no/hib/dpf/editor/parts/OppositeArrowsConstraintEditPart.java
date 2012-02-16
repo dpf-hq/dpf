@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2011 H¿yskolen i Bergen
+ * Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,23 +7,23 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
 *******************************************************************************/
 package no.hib.dpf.editor.parts;
 
-import no.hib.dpf.editor.figures.ConstraintAnchor;
 import no.hib.dpf.editor.figures.OppositeArrowsConstraintAnchor;
 
 import org.eclipse.draw2d.ConnectionAnchor;
+import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.gef.EditPart;
 
 /**
  * Works with constraints that go across opposite arrows.
  */
-public abstract class OppositeArrowsConstraintEditPart extends ConstraintEditPart {
+public abstract class OppositeArrowsConstraintEditPart extends DConstraintEditPart {
 
-	public OppositeArrowsConstraintEditPart(boolean constraintFromTargetEnd) {
-		super(constraintFromTargetEnd);
+	public OppositeArrowsConstraintEditPart() {
+		super();
 	}
 
 	/**
@@ -35,16 +35,13 @@ public abstract class OppositeArrowsConstraintEditPart extends ConstraintEditPar
 	 * @return A new ConnectionAnchor.
 	 */
 	@Override
-	protected ConnectionAnchor getConnectionAnchor(EditPart supplier, boolean isSource) {
+	protected ConnectionAnchor getConnectionAnchor(EditPart supplier) {
 		// Constructing the anchor with "isSource" ensures that the target end
 		// of one arrow is used as well as the source end of the opposite arrow
 		// (the negation is to make the anchor appear on the right side)
-		ConstraintAnchor retval = new OppositeArrowsConstraintAnchor(!isSource);
-		if ((supplier == null)  || (!(supplier instanceof ArrowEditPart))) {
-			return retval;
+		if ((supplier == null)  || (!(supplier instanceof DArrowEditPart))) {
+			return null;
 		}
-		updateAnchor(retval, supplier, isSource);
-		
-		return retval;
-	}		
+		return new OppositeArrowsConstraintAnchor((PolylineConnection)((DArrowEditPart)supplier).getFigure());
+	}
 }

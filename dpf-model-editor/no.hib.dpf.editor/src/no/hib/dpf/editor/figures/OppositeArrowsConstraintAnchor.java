@@ -11,13 +11,15 @@
 *******************************************************************************/
 package no.hib.dpf.editor.figures;
 
+import org.eclipse.draw2d.PolylineConnection;
+
 public class OppositeArrowsConstraintAnchor extends ConstraintAnchor {
 
 	private static final int maxDistanceToConnectionPoint = 250;
 
-	public OppositeArrowsConstraintAnchor(boolean useTargetEnd) {
-		super(useTargetEnd);
-	}
+	public OppositeArrowsConstraintAnchor() { super(); }
+
+	public OppositeArrowsConstraintAnchor(PolylineConnection figure) { super(figure); }
 
 	protected double findDistanceToConnectionPoint(double distanceBetweenFirstPoints) {
 		double distanceToConnectionPoint = distanceBetweenFirstPoints*4/6;

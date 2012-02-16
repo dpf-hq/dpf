@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2011 H¿yskolen i Bergen
+ * Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,11 +7,11 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
 *******************************************************************************/
 package no.hib.dpf.editor.figures;
 
-import no.hib.dpf.editor.parts.ConstraintEditPart;
+import no.hib.dpf.editor.parts.DConstraintEditPart;
 
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Graphics;
@@ -24,7 +24,7 @@ import org.eclipse.draw2d.geometry.PointList;
  */
 public class ParallelArrowsConstraintConnection extends TwoArrowConstraintConnection {
 	
-	public ParallelArrowsConstraintConnection(ConstraintEditPart constraintEditPart, String labelText) {
+	public ParallelArrowsConstraintConnection(DConstraintEditPart constraintEditPart, String labelText) {
 		super(constraintEditPart, labelText, new int[]{ -20, 20});
 	}
 	

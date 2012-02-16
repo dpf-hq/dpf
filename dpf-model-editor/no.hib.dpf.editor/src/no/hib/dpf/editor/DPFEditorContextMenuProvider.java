@@ -17,7 +17,7 @@ package no.hib.dpf.editor;
 
 import java.util.Iterator;
 
-import no.hib.dpf.editor.editoractions.CreateConstraintAction;
+import no.hib.dpf.editor.actions.CreateConstraintAction;
 
 import org.eclipse.gef.ContextMenuProvider;
 import org.eclipse.gef.EditPartViewer;
@@ -76,14 +76,11 @@ public class DPFEditorContextMenuProvider extends ContextMenuProvider {
 		menu.appendToGroup(GEFActionConstants.GROUP_EDIT,
 				getAction(ActionFactory.DELETE.getId()));
 
-		Iterator<?> iter = actionRegistry.getActions();
-		while(iter.hasNext()){
-			Object cur = iter.next();
-			if(cur instanceof CreateConstraintAction){
-				CreateConstraintAction action = (CreateConstraintAction) cur;
-				if(action.isEnabled())
-					menu.appendToGroup(GEFActionConstants.GROUP_COPY, action);
-			}
+		Iterator<?> iterator = actionRegistry.getActions();
+		while(iterator.hasNext()){
+			Object current = iterator.next();
+			if(current instanceof CreateConstraintAction && ((CreateConstraintAction)current).isEnabled())
+				menu.appendToGroup(GEFActionConstants.GROUP_COPY, (CreateConstraintAction)current);
 		}
 	}
 

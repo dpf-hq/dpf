@@ -18,17 +18,14 @@ package no.hib.dpf.editor.policies;
  * Created on Jul 18, 2004
  */
 
-import no.hib.dpf.editor.displaymodel.ArrowLabel;
-import no.hib.dpf.editor.displaymodel.DArrow;
-import no.hib.dpf.editor.displaymodel.DNode;
-import no.hib.dpf.editor.displaymodel.ModelElement;
-import no.hib.dpf.editor.displaymodel.commands.ChangeNameCommand;
+import no.hib.dpf.diagram.DArrow;
+import no.hib.dpf.diagram.DNode;
+import no.hib.dpf.editor.commands.ChangeNameCommand;
 import no.hib.dpf.editor.figures.NodeFigure;
-import no.hib.dpf.editor.parts.LabelEditPart;
-import no.hib.dpf.editor.parts.NodeEditPart;
+import no.hib.dpf.editor.parts.ArrowLabelEditPart;
+import no.hib.dpf.editor.parts.DNodeEditPart;
 
 import org.eclipse.draw2d.Label;
-import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.DirectEditPolicy;
 import org.eclipse.gef.requests.DirectEditRequest;
@@ -45,22 +42,11 @@ public class NameDirectEditPolicy extends DirectEditPolicy {
 	 * @see DirectEditPolicy#getDirectEditCommand(org.eclipse.gef.requests.DirectEditRequest)
 	 */
 	protected Command getDirectEditCommand(DirectEditRequest request) {
-		EditPart host = getHost();
-		if(host instanceof NodeEditPart){
-			String oldValue = ((DNode) host.getModel()).getNameExec();
-			String newValue = (String) request.getCellEditor().getValue();
-			return oldValue.equals(newValue) ? null : new ChangeNameCommand((DNode) getHost().getModel(), newValue);
-		}
-		if(getHost() instanceof LabelEditPart)
-		{
-			ModelElement parent = ((ArrowLabel) host.getModel()).getParent();
-			if(parent instanceof DArrow){
-				String oldValue = ((DArrow)parent).getName();
-				String newValue = (String) request.getCellEditor().getValue();
-				return oldValue.equals(newValue) ? null : new ChangeNameCommand((DArrow) parent, newValue);
-			}
-		}
-		return null;
+		if(getHost() instanceof DNodeEditPart)
+			return new ChangeNameCommand((DNode) getHost().getModel(), (String) request.getCellEditor().getValue());
+		if(getHost() instanceof ArrowLabelEditPart)
+			return new ChangeNameCommand((DArrow) getHost().getParent().getModel(), (String) request.getCellEditor().getValue());
+		return super.getCommand(request);
 	}
 
 	/**

@@ -1,7 +1,7 @@
 /*******************************************************************************
  * Copyright (c) 2004, 2005 Elias Volanakis and others.
  * 
- * Portions of the code Copyright (c) 2011 H¿yskolen i Bergen
+ * Portions of the code Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,23 +11,28 @@
  * Contributors:
  * Elias Volanakis - initial API and implementation
  * 
- * ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
 *******************************************************************************/
 package no.hib.dpf.editor.parts;
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.util.List;
 
-import no.hib.dpf.editor.displaymodel.DNode;
-import no.hib.dpf.editor.displaymodel.DPFDiagram;
-import no.hib.dpf.editor.displaymodel.ModelElement;
+import no.hib.dpf.diagram.DGraph;
+import no.hib.dpf.diagram.DNode;
+import no.hib.dpf.diagram.DSpecification;
+import no.hib.dpf.diagram.DiagramPackage;
+import no.hib.dpf.editor.parts.listeners.UIAdapter;
+import no.hib.dpf.editor.preferences.DPFEditorPreferences;
+import no.hib.dpf.editor.preferences.PreferenceConstants;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.RootEditPart;
 import org.eclipse.gef.editparts.AbstractTreeEditPart;
 import org.eclipse.gef.editpolicies.RootComponentEditPolicy;
+import org.eclipse.jface.util.IPropertyChangeListener;
 
 
 
@@ -40,26 +45,127 @@ import org.eclipse.gef.editpolicies.RootComponentEditPolicy;
  * 
  * @author Elias Volanakis
  */
-class DiagramTreeEditPart extends AbstractTreeEditPart
-	implements PropertyChangeListener {
+class DiagramTreeEditPart extends AbstractTreeEditPart{
 
 /** 
  * Create a new instance of this edit part using the given model element.
  * @param model a non-null DPFDiagram instance
  */
-DiagramTreeEditPart(DPFDiagram model) {
+DiagramTreeEditPart(DGraph model) {
 	super(model);
 }
 
+
+
 /**
- * Upon activation, attach to the model element as a property change listener.
+ * Listener for the node notifications
+ */
+protected UIAdapter modelListener = new UIAdapter()
+{
+    /**
+     * @see org.topcased.modeler.listeners.UIAdapterImpl#safeNotifyChanged(org.eclipse.emf.common.notify.Notification)
+     */
+    @Override
+    protected void safeNotifyChanged(Notification msg)
+    {
+        handleModelChanged(msg);
+    }
+
+};
+
+/**
+ * Listener for the node notifications
+ */
+protected UIAdapter diagrammodelListener = new UIAdapter()
+{
+    /**
+     * @see org.topcased.modeler.listeners.UIAdapterImpl#safeNotifyChanged(org.eclipse.emf.common.notify.Notification)
+     */
+    @Override
+    protected void safeNotifyChanged(Notification msg)
+    {
+        handleDiagramModelChanged(msg);
+    }
+
+};
+
+protected IPropertyChangeListener propertyListener = new IPropertyChangeListener() {
+	@Override
+	public void propertyChange(org.eclipse.jface.util.PropertyChangeEvent event) {
+		DiagramTreeEditPart.this.propertyChange(event);
+	}
+};
+
+protected void handleModelChanged(Notification msg){}
+protected void propertyChange(org.eclipse.jface.util.PropertyChangeEvent event) {
+	// TODO Auto-generated method stub
+	if ((event.getProperty().equals(PreferenceConstants.P_DISPLAY_ARROWS)) ||
+			(event.getProperty().equals(PreferenceConstants.P_DISPLAY_TYPES))) {
+		refreshVisuals();
+	}
+	
+}
+protected void handleDiagramModelChanged(Notification msg){
+	if(msg.getNotifier() != null && msg.getNotifier() == getDiagramModel()){ 
+		switch(msg.getFeatureID(DGraph.class)){
+		case DiagramPackage.DGRAPH__DNODES:
+			if(msg.getEventType() == Notification.ADD)
+				addChild(createChild(msg.getNotifier()), -1);
+			else
+				removeChild(getEditPartForChild(msg.getNotifier()));
+		case DiagramPackage.DGRAPH__DARROWS:
+			refreshVisuals();
+			break;
+		}
+	}
+}
+protected DGraph getDiagramModel(){
+	return (DGraph) getModel();
+}
+
+/*
+ * listen to diagram model, DNode, DArrow
+ */
+protected void listen(){
+	EObject diagramModel = getDiagramModel();
+	if(diagramModel != null && !diagramModel.eAdapters().contains(diagrammodelListener))
+		diagramModel.eAdapters().add(diagrammodelListener);
+	DPFEditorPreferences.getDefault().getPreferenceStore().addPropertyChangeListener(propertyListener);
+}
+
+/*
+ * Unlisten to diagram model
+ */
+protected void unlisten(){
+	DPFEditorPreferences.getDefault().getPreferenceStore().removePropertyChangeListener(propertyListener);
+	EObject diagramModel = getDiagramModel();
+	if(diagramModel != null && diagramModel.eAdapters().contains(diagrammodelListener))
+		diagramModel.eAdapters().remove(diagrammodelListener);
+}
+
+
+/**
+ * Upon activation, attach to the model element as a property change
+ * listener.
  */
 public void activate() {
 	if (!isActive()) {
 		super.activate();
-		((ModelElement) getModel()).addPropertyChangeListener(this);
+		listen();
 	}
 }
+
+/**
+ * Upon deactivation, detach from the model element as a property change
+ * listener.
+ */
+public void deactivate() {
+	if (isActive()) {
+		unlisten();
+		super.deactivate();
+	}
+}
+
 
 /* (non-Javadoc)
  * @see org.eclipse.gef.examples.shapes.parts.ShapeTreeEditPart#createEditPolicies()
@@ -71,18 +177,8 @@ protected void createEditPolicies() {
 	}
 }
 
-/**
- * Upon deactivation, detach from the model element as a property change listener.
- */
-public void deactivate() {
-	if (isActive()) {
-		super.deactivate();
-		((ModelElement) getModel()).removePropertyChangeListener(this);
-	}
-}
-
-private DPFDiagram getCastedModel() {
-	return (DPFDiagram) getModel();
+private DSpecification getCastedModel() {
+	return (DSpecification) getModel();
 }
 
 /**
@@ -99,24 +195,6 @@ private EditPart getEditPartForChild(Object child) {
  */
 @Override
 protected List<DNode> getModelChildren() {
-	return getCastedModel().getChildren(); // a list of shapes
-}
-
-/* (non-Javadoc)
-* @see java.beans.PropertyChangeListener#propertyChange(java.beans.PropertyChangeEvent)
-*/
-public void propertyChange(PropertyChangeEvent evt) {
-	String prop = evt.getPropertyName();
-	if (DPFDiagram.CHILD_ADDED_PROP.equals(prop)) {
-		// add a child to this edit part
-		// causes an additional entry to appear in the tree of the outline view
-		addChild(createChild(evt.getNewValue()), -1);
-	} else if (DPFDiagram.CHILD_REMOVED_PROP.equals(prop)) {
-		// remove a child from this edit part
-		// causes the corresponding edit part to disappear from the tree in the outline view
-		removeChild(getEditPartForChild(evt.getNewValue()));
-	} else {
-		refreshVisuals();
-	}
+	return getCastedModel().getDGraph().getDNodes(); // a list of shapes
 }
 }

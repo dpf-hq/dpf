@@ -15,6 +15,11 @@
             uri="http://no.hib.dpf.core"
             class="no.hib.dpf.core.CorePackage"
             genModel="model/Dpf.genmodel"/>
+      <package
+            class="no.hib.dpf.diagram.DiagramPackage"
+            genModel="model/Dpf.genmodel"
+            uri="http://no.hib.dpf.diagram">
+      </package>
    </extension>
 
 </plugin>

@@ -1,6 +1,6 @@
 /**
  * <copyright>
- * Copyright (c) 2011 H¿yskolen i Bergen
+ * Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,12 +8,15 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
  * </copyright>
  *
  * $Id$
  */
 package no.hib.dpf.core;
+
+
+import org.eclipse.emf.common.util.EList;
 
 
 /**
@@ -24,11 +27,12 @@ package no.hib.dpf.core;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link no.hib.dpf.core.Arrow#getName <em>Name</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Arrow#getSource <em>Source</em>}</li>
  *   <li>{@link no.hib.dpf.core.Arrow#getTarget <em>Target</em>}</li>
  *   <li>{@link no.hib.dpf.core.Arrow#getGraph <em>Graph</em>}</li>
  *   <li>{@link no.hib.dpf.core.Arrow#getTypeArrow <em>Type Arrow</em>}</li>
- *   <li>{@link no.hib.dpf.core.Arrow#getSource <em>Source</em>}</li>
- *   <li>{@link no.hib.dpf.core.Arrow#getName <em>Name</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Arrow#getConstraints <em>Constraints</em>}</li>
  * </ul>
  * </p>
  *
@@ -39,6 +43,7 @@ package no.hib.dpf.core;
 public interface Arrow extends IDObject {
 	/**
 	 * Returns the value of the '<em><b>Target</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link no.hib.dpf.core.Node#getIncomings <em>Incomings</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Target</em>' reference isn't clear,
@@ -48,7 +53,8 @@ public interface Arrow extends IDObject {
 	 * @return the value of the '<em>Target</em>' reference.
 	 * @see #setTarget(Node)
 	 * @see no.hib.dpf.core.CorePackage#getArrow_Target()
-	 * @model
+	 * @see no.hib.dpf.core.Node#getIncomings
+	 * @model opposite="incomings"
 	 * @generated
 	 */
 	Node getTarget();
@@ -76,7 +82,7 @@ public interface Arrow extends IDObject {
 	 * @see #setGraph(Graph)
 	 * @see no.hib.dpf.core.CorePackage#getArrow_Graph()
 	 * @see no.hib.dpf.core.Graph#getArrows
-	 * @model opposite="arrows" transient="false"
+	 * @model opposite="arrows" transient="false" derived="true"
 	 * @generated
 	 */
 	Graph getGraph();
@@ -102,7 +108,7 @@ public interface Arrow extends IDObject {
 	 * @return the value of the '<em>Type Arrow</em>' reference.
 	 * @see #setTypeArrow(Arrow)
 	 * @see no.hib.dpf.core.CorePackage#getArrow_TypeArrow()
-	 * @model
+	 * @model required="true"
 	 * @generated
 	 */
 	Arrow getTypeArrow();
@@ -118,7 +124,26 @@ public interface Arrow extends IDObject {
 	void setTypeArrow(Arrow value);
 
 	/**
+	 * Returns the value of the '<em><b>Constraints</b></em>' reference list.
+	 * The list contents are of type {@link no.hib.dpf.core.Constraint}.
+	 * It is bidirectional and its opposite is '{@link no.hib.dpf.core.Constraint#getArrows <em>Arrows</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Constraints</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Constraints</em>' reference list.
+	 * @see no.hib.dpf.core.CorePackage#getArrow_Constraints()
+	 * @see no.hib.dpf.core.Constraint#getArrows
+	 * @model opposite="arrows"
+	 * @generated
+	 */
+	EList<Constraint> getConstraints();
+
+	/**
 	 * Returns the value of the '<em><b>Source</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link no.hib.dpf.core.Node#getOutgoings <em>Outgoings</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source</em>' reference isn't clear,
@@ -128,7 +153,8 @@ public interface Arrow extends IDObject {
 	 * @return the value of the '<em>Source</em>' reference.
 	 * @see #setSource(Node)
 	 * @see no.hib.dpf.core.CorePackage#getArrow_Source()
-	 * @model
+	 * @see no.hib.dpf.core.Node#getOutgoings
+	 * @model opposite="outgoings"
 	 * @generated
 	 */
 	Node getSource();

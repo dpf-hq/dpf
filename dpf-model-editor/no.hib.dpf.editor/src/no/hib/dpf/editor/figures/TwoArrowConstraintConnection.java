@@ -11,9 +11,10 @@
 *******************************************************************************/
 package no.hib.dpf.editor.figures;
 
-import no.hib.dpf.editor.parts.ConstraintEditPart;
+import no.hib.dpf.editor.parts.DConstraintEditPart;
 
 import org.eclipse.draw2d.ColorConstants;
+import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.FigureUtilities;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
@@ -21,7 +22,6 @@ import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
-import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.SWTException;
@@ -31,18 +31,26 @@ import org.eclipse.swt.widgets.Display;
 public abstract class TwoArrowConstraintConnection extends PolylineConnection implements RoutableFigure {
 	
 	protected String labelText;
-	protected ConstraintEditPart constraintEditPart;
+	protected DConstraintEditPart constraintEditPart;
 	private NodeFigure basicRectangleFigure;
 	protected int [] controlPointsOffsets;
 
-	public TwoArrowConstraintConnection(ConstraintEditPart constraintEditPart, String labelText, int [] controlPointsOffsets) {
+	public TwoArrowConstraintConnection(DConstraintEditPart constraintEditPart, String labelText, int [] controlPointsOffsets) {
 		super();
 		this.constraintEditPart = constraintEditPart;
 		this.labelText = labelText;
 		this.controlPointsOffsets = controlPointsOffsets;
 		setMyBackgroundColor(ColorConstants.black);		
 	}
-	
+	private void updateAnchorOwner(ConnectionAnchor anchor){
+		if(anchor != null && anchor.getOwner() != null)
+			anchor.getOwner().validate();
+	}
+	public void validate() {
+		updateAnchorOwner(getSourceAnchor());
+		updateAnchorOwner(getTargetAnchor());
+		super.validate();
+	}
 	@Override
 	protected void outlineShape(Graphics g) {
 		PointList points = getPoints();
@@ -87,6 +95,7 @@ public abstract class TwoArrowConstraintConnection extends PolylineConnection im
 		return secondCandidate;
 	}
 	
+	@SuppressWarnings("deprecation")
 	private Point[] makeMidwayControlPoints(Point startPoint, Point endPoint, int offset1, int offset2) {
 		// First point: to make control points for Bezier
 		// Second point: to make center point for text
@@ -98,13 +107,13 @@ public abstract class TwoArrowConstraintConnection extends PolylineConnection im
 		
 		double normOrthoVectorX = orthoVector.x / length;
 		double normOrthoVectorY = orthoVector.y / length;
-		Point finalVector = new PrecisionPoint(normOrthoVectorX * offset1, normOrthoVectorY  * offset1);		
+		Point finalVector = new Point(normOrthoVectorX * offset1, normOrthoVectorY  * offset1);		
 		Point midway = new Point(startPoint.x + (dx/2), startPoint.y + (dy/2));
 		
 		Point[] retval = new Point[2];
 		
 		retval[0] = new Point(midway.x + finalVector.x, midway.y + finalVector.y);
-		finalVector = new PrecisionPoint(normOrthoVectorX * offset2, normOrthoVectorY  * offset2);		
+		finalVector = new Point(normOrthoVectorX * offset2, normOrthoVectorY  * offset2);		
 		retval[1] = new Point(midway.x + finalVector.x, midway.y + finalVector.y);
 		
 		return retval;

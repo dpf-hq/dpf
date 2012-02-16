@@ -3,9 +3,9 @@ package no.hib.dpf.signature;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import no.hib.dpf.api.ui.DPFErrorReport;
-import no.hib.dpf.core.CoreFactory;
-import no.hib.dpf.core.Signature;
+import no.hib.dpf.diagram.DSignature;
+import no.hib.dpf.diagram.DiagramFactory;
+import no.hib.dpf.editor.DPFErrorReport;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
@@ -13,7 +13,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.swt.widgets.Composite;
@@ -89,12 +89,12 @@ public class SignatureWizard extends Wizard implements INewWizard {
 			// create a new diagram file, result != null if successful
 			IFile newDiagramFile = createNewFile();
 			fileCount++;
-			ResourceSet resourceSet = null;
+			ResourceSetImpl resourceSet = SignatureEditor.getResourceSet();
 			Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
 			//Initialize signature 
-			Signature signature = CoreFactory.eINSTANCE.createSignature();
+			DSignature dSignature = DiagramFactory.eINSTANCE.createDSignature();
 			try {
-				SignatureEditor.saveSignature(resourceSet, URI.createFileURI(newDiagramFile.getLocation().toOSString()), signature, resourceToDiagnosticMap);
+				SignatureEditor.saveDSignature(resourceSet, URI.createFileURI(newDiagramFile.getLocation().toOSString()), dSignature, resourceToDiagnosticMap);
 				newDiagramFile.getParent().refreshLocal(IResource.DEPTH_ONE, null);
 			} catch (CoreException e1) {
 				DPFErrorReport.logError(e1);

@@ -1,0 +1,159 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="no.hib.dpf.editor" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="no.hib.dpf.editor" id="Signature" name="no.hib.dpf.signature"/>
+      </appInfo>
+      <documentation>
+         [Enter description of this extension point.]
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appInfo>
+            <meta.element />
+         </appInfo>
+      </annotation>
+      <complexType>
+         <sequence minOccurs="1" maxOccurs="unbounded">
+            <element ref="Predicate"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute translatable="true"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="Predicate">
+      <annotation>
+         <documentation>
+            every predicate d
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="name" type="string" use="required">
+            <annotation>
+               <documentation>
+                  predicate name, used as id and should be unique in the containing signature
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="simpleName" type="string">
+            <annotation>
+               <documentation>
+                  Name shown on the visualization
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="nodes" type="string" use="required">
+            <annotation>
+               <documentation>
+                  string to create nodes
+example
+ n_1,n_2 to create two nodes with name n_1, n_2
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="arrows" type="string" use="required">
+            <annotation>
+               <documentation>
+                  string to create arrows
+example
+ a_1:n_1:n_2,a_2:n_1:n_3 create two arrows, a_1 from n1 to n2 and a_2 from n_1 to n_3
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="actionIcon" type="string" use="required">
+            <annotation>
+               <documentation>
+                  the icon shown on tool bar to create corresponding constraint
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="resource"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="checker" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn="no.hib.dpf.core.impl.ValidatorImpl:"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="editpart" type="string">
+            <annotation>
+               <documentation>
+                  for the predicate, create the editpart
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.gef.EditPart"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         [Enter the first release in which this extension point appears.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         [Enter extension point usage example here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="apiinfo"/>
+      </appInfo>
+      <documentation>
+         [Enter API information here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="implementation"/>
+      </appInfo>
+      <documentation>
+         [Enter information about supplied implementation of this extension point.]
+      </documentation>
+   </annotation>
+
+
+</schema>

@@ -1,7 +1,7 @@
 /*******************************************************************************
  * Copyright (c) 2004, 2005 Elias Volanakis and others.
  * 
- * Portions of the code Copyright (c) 2011 H¿yskolen i Bergen
+ * Portions of the code Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,12 +11,13 @@
  * Contributors:
  * Elias Volanakis - initial API and implementation
  * 
- * ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
-*******************************************************************************/
+ * ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
+ *******************************************************************************/
 package no.hib.dpf.editor;
 
 import org.eclipse.jface.action.IStatusLineManager;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.osgi.framework.BundleContext;
 
 /**
  * The plugin class (singleton).
@@ -28,30 +29,16 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
  * @see org.eclipse.ui.plugin.AbstractUIPlugin#getPreferenceStore()
  * @author Elias Volanakis
  */
-public class DPFPlugin extends AbstractUIPlugin {
-
-	public static final String PLUGIN_ID = "no.hib.dpf.editor";
+public final class DPFPlugin extends AbstractUIPlugin {
 
 	/** Single plugin instance. */
-	private static DPFPlugin singleton;
-	
-	private IStatusLineManager statusLineManager;
-
-	/**
-	 * Returns the shared plugin instance.
-	 */
-	public static DPFPlugin getDefault() {
-		return singleton;
+	private static DPFPlugin INSTANCE;
+	public DPFPlugin(){
+		super();
 	}
+	public static String PLUGIN_ID = "no.hib.dpf.editor";
 
-	/**
-	 * The constructor.
-	 */
-	public DPFPlugin() {
-		if (singleton == null) {
-			singleton = this;
-		}
-	}
+	private IStatusLineManager statusLineManager = null;
 
 	public void setStatusLineManager(IStatusLineManager statusLineManager) {
 		this.statusLineManager = statusLineManager;
@@ -60,6 +47,35 @@ public class DPFPlugin extends AbstractUIPlugin {
 	public IStatusLineManager getStatusLineManager() {
 		return statusLineManager;
 	}
-	
 
+//	public static final String DEFAULT_MODEL_EXTENSION = ".xmi";
+//	public static final String DEFAULT_DIAGRAM_MODEL_EXTENSION = ".dpf";
+//
+//	//dpf name to xmi name
+//	public static String getModelFromDiagram(String diagram){
+//		return diagram + DPFPlugin.DEFAULT_MODEL_EXTENSION;
+//	}
+//	//xmi name to dpf name
+//	public static String getDiagramFromModel(String model){
+//		return model.substring(0, model.indexOf(DPFPlugin.DEFAULT_MODEL_EXTENSION));
+//	}
+
+	/**
+	 * This method is called upon plug-in activation.
+	 */
+	public void start(BundleContext context) throws Exception {
+		super.start(context);
+		INSTANCE = this;
+	}
+	/**
+	 * This method is called when the plug-in is stopped.
+	 */
+	public void stop(BundleContext context) throws Exception {
+		INSTANCE = null;
+		super.stop(context);
+	}
+	
+	public static DPFPlugin getDefault(){
+		return INSTANCE;
+	}
 }

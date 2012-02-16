@@ -1,7 +1,7 @@
 /*******************************************************************************
  * Copyright (c) 2004, 2005 Elias Volanakis and others.
  * 
- * Portions of the code Copyright (c) 2011 H¿yskolen i Bergen
+ * Portions of the code Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,14 +11,14 @@
  * Contributors:
  * Elias Volanakis - initial API and implementation
  * 
- * ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
 *******************************************************************************/
 package no.hib.dpf.editor.parts;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-import no.hib.dpf.editor.displaymodel.DNode;
+import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.editor.displaymodel.ModelElement;
 import no.hib.dpf.editor.displaymodel.MovableAndSizable;
 
@@ -93,7 +93,11 @@ class NodeTreeEditPart extends AbstractTreeEditPart implements
 	 * @see org.eclipse.gef.editparts.AbstractTreeEditPart#getImage()
 	 */
 	protected Image getImage() {
-		return getCastedModel().getIcon();
+		/*
+		 * TODO
+		 */
+		return null;
+		//return getCastedModel().getIcon();
 	}
 
 	/*

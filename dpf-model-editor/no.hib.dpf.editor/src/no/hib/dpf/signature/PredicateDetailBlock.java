@@ -1,28 +1,25 @@
 package no.hib.dpf.signature;
 
-import no.hib.dpf.api.ui.DPFErrorReport;
+
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.IDObject;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Predicate;
 import no.hib.dpf.core.ValidatorType;
-import no.hib.dpf.core.VisualizationType;
-import no.hib.dpf.editor.DPFPlugin;
-import no.hib.dpf.editor.displaymodel.DPFDiagram;
-import no.hib.dpf.editor.parts.UIAdapter;
+import no.hib.dpf.diagram.DGraph;
+import no.hib.dpf.diagram.DPredicate;
+import no.hib.dpf.diagram.VisualizationType;
+import no.hib.dpf.editor.FileSelection;
 
-import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.Assert;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.gef.ui.actions.ActionRegistry;
 import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.IContentProvider;
@@ -35,8 +32,6 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.jface.viewers.ViewerFilter;
-import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.FocusListener;
@@ -49,22 +44,15 @@ import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.IWorkbenchPartSite;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.dialogs.ElementTreeSelectionDialog;
-import org.eclipse.ui.dialogs.ISelectionStatusValidator;
 import org.eclipse.ui.forms.IDetailsPage;
 import org.eclipse.ui.forms.IFormPart;
 import org.eclipse.ui.forms.IManagedForm;
 import org.eclipse.ui.forms.editor.FormPage;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Section;
-import org.eclipse.ui.model.WorkbenchContentProvider;
-import org.eclipse.ui.model.WorkbenchLabelProvider;
-import org.eclipse.ui.views.navigator.ResourceComparator;
 
 public class PredicateDetailBlock extends PredicateEditor implements IDetailsPage {
 
@@ -130,7 +118,7 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 		master.getMultiEditor().loadProperties(getGraphicalViewer());
 	}
 
-	private DPFDiagram dGraph;
+	private DGraph dGraph;
 	private Label sourceLabel;
 	private Label targetLabel;
 
@@ -139,27 +127,28 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 	}
 	@Override
 	public void refresh() {
-		if(predicate != null){
+		if(dPredicate != null){
+			Predicate predicate = dPredicate.getPredicate();
 			getGraphicalViewer().setContents(dGraph);
 			name.setText(getNNullString(predicate.getSymbol()));
 			infoSection.setText(getNNullString(predicate.getSymbol()));
-			icon.setText(getNNullString(predicate.getIcon()));
-			validatorCombo.setSelection(new StructuredSelection(predicate.getSemanticsValidator().getType()));
-			validator.setText(getNNullString(predicate.getSemanticsValidator().getValidator()));
-			visulationCombo.setSelection(new StructuredSelection(predicate.getVisualization().getType()));
+			icon.setText(getNNullString(dPredicate.getIcon()));
+			validatorCombo.setSelection(new StructuredSelection(predicate.getValidator().getType()));
+			validator.setText(getNNullString(predicate.getValidator().getValidator()));
+			visulationCombo.setSelection(new StructuredSelection(dPredicate.getVisualization().getType()));
 			parameters.setText(getNNullString(predicate.getParameters()));
 			refreshVisualization();
 		}
 	}
 	
 	private void refreshVisualization(){
-		switch(predicate.getVisualization().getType()){
+		switch(dPredicate.getVisualization().getType()){
 		case ARROW_LABEL: 
 			targetCombo.getControl().setVisible(false);
 			targetLabel.setVisible(false);
 			sourceCombo.setInput(getArrows());
-			IDObject source = predicate.getVisualization().getSource();
-			sourceCombo.setSelection(source == null ? null : new StructuredSelection(predicate.getVisualization().getSource()));
+			IDObject source = dPredicate.getVisualization().getSource();
+			sourceCombo.setSelection(source == null ? null : new StructuredSelection(dPredicate.getVisualization().getSource()));
 			break;
 		case NODE_TO_NODE:
 			updateVisualization(getNodes(), getNodes());
@@ -180,10 +169,10 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 		return value == null ? "" : value;
 	}
 
-	private UIAdapter adapter = new UIAdapter() {
+	private EContentAdapter adapter = new EContentAdapter() {
 
-		@Override
-		protected void safeNotifyChanged(Notification msg) {
+		public void notifyChanged(Notification notification) {
+			super.notifyChanged(notification);
 			refreshVisualization();
 		}
 	};
@@ -194,16 +183,16 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 		IStructuredSelection ssel = (IStructuredSelection)selection;
 		Object selected = null;
 		if(ssel.size() == 1) selected = ssel.getFirstElement();
-		if(predicate != null){
-			if(predicate.getShape().eAdapters().contains(adapter))
-				predicate.getShape().eAdapters().remove(adapter);
+		if(dGraph != null){
+			if(dGraph.getGraph().eAdapters().contains(adapter))
+				dGraph.getGraph().eAdapters().remove(adapter);
 		}
-		if(selected instanceof Predicate){
-			predicate = (Predicate) selected;
-			dGraph = master.getMultiEditor().findDGraph(predicate.getShape());
+		if(selected instanceof DPredicate){
+			dPredicate = (DPredicate) selected;
+			dGraph = dPredicate.getDGraph();
 			Assert.isNotNull(dGraph);
-			if(!predicate.getShape().eAdapters().contains(adapter))
-				predicate.getShape().eAdapters().add(adapter);
+			if(!dGraph.getGraph().eAdapters().contains(adapter))
+				dGraph.getGraph().eAdapters().add(adapter);
 			refresh();
 		}
 	}
@@ -211,10 +200,10 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 
 	private void updateVisualization(Object[] sources, Object[] targets){
 		sourceCombo.setInput(sources);
-		IDObject source1 = predicate.getVisualization().getSource();
+		IDObject source1 = dPredicate.getVisualization().getSource();
 		sourceCombo.setSelection(source1 == null ? null : new StructuredSelection(source1));
 		targetCombo.setInput(targets);
-		IDObject target = predicate.getVisualization().getTarget();
+		IDObject target = dPredicate.getVisualization().getTarget();
 		targetCombo.setSelection(target == null ? null : new StructuredSelection(target));
 		sourceCombo.refresh();
 		targetCombo.getControl().setVisible(true);
@@ -229,9 +218,9 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 				VisualizationType type = VisualizationType.get(0);
 				if (!event.getSelection().isEmpty())
 					type = (VisualizationType)((IStructuredSelection)event.getSelection()).getFirstElement();
-				if(type == predicate.getVisualization().getType())
+				if(type == dPredicate.getVisualization().getType())
 					return;
-				predicate.getVisualization().setType(type);
+				dPredicate.getVisualization().setType(type);
 				master.getMultiEditor().setDirty(true);
 				refresh();
 			}
@@ -276,7 +265,7 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 
 			@Override
 			public void focusLost(FocusEvent e) {
-				if(!name.getText().equals(predicate.getSymbol()))
+				if(!name.getText().equals(dPredicate.getPredicate().getSymbol()))
 					changePredicateName(name.getText());
 			}
 
@@ -287,7 +276,7 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 
 			@Override
 			public void focusLost(FocusEvent e) {
-				if(!parameters.getText().equals(predicate.getParameters()))
+				if(!parameters.getText().equals(dPredicate.getPredicate().getParameters()))
 					changeParameters(parameters.getText());
 			}
 
@@ -299,14 +288,12 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 			public void widgetSelected(SelectionEvent e) {
 				IFile signature = ((IFileEditorInput)master.getMultiEditor().getEditorInput()).getFile();
 				IProject project = signature.getProject();
-				URI uri = predicate.eResource().getURI();
-				System.out.println(uri);
+				URI uri = dPredicate.eResource().getURI();
 				IResource image = FileSelection.select(e.display.getActiveShell(), "Icon Selection", "Select a image", null, "This is not a image file", project, null, null);
+				if(image == null) return;
 				URI relative = URI.createFileURI(image.getLocation().toOSString());
-				System.out.println(relative);
 				String fileName = relative.deresolve(uri).path();
-				System.out.println(fileName);
-				if (fileName != null && !fileName.equals(predicate.getIcon())) {
+				if (fileName != null && !fileName.equals(dPredicate.getIcon())) {
 					changePredicateIcon(fileName);
 					icon.setText(fileName);
 				}
@@ -317,68 +304,6 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 		});
 	}
 	
-public static class FileSelection{
-	public static final IResource select(Shell shell, String title, String message, final String[] suffixs, final String validErrorMessage, IProject project, IFile file, String helpId){
-		//This is copy from org.eclipse.pde.internal.ui.editor.plugin.ExtensionPointDetails
-		ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(shell, new WorkbenchLabelProvider(), new WorkbenchContentProvider());
-		dialog.setTitle(title);
-		dialog.setMessage(message);
-		dialog.setDoubleClickSelects(false);
-		dialog.setAllowMultiple(false);
-		if(suffixs != null)
-		dialog.addFilter(new ViewerFilter() {
-			public boolean select(Viewer viewer, Object parent, Object element) {
-				if (element instanceof IFile) {
-					String ext = ((IFile) element).getFullPath().getFileExtension();
-					for (int i = 0; i < suffixs.length; i++) 
-						if(suffixs[i].equals(ext))
-							return true;
-					return false;
-				} else if (element instanceof IContainer) { // i.e. IProject, IFolder
-					try {
-						IResource[] resources = ((IContainer) element).members();
-						for (int i = 0; i < resources.length; i++) {
-							if (select(viewer, parent, resources[i]))
-								return true;
-						}
-					} catch (CoreException e) {
-						DPFErrorReport.logError(e);
-					}
-				}
-				return false;
-			}
-		});
-		dialog.setValidator(new ISelectionStatusValidator() {
-			public IStatus validate(Object[] selection) {
-
-				String errorMessage = validErrorMessage == null ? "" : validErrorMessage;
-				if (selection == null || selection.length != 1 || !(selection[0] instanceof IFile) )
-					return new Status(IStatus.ERROR, DPFPlugin.PLUGIN_ID, IStatus.ERROR, errorMessage, null);
-				IFile file = (IFile) selection[0];
-				String ext = file.getFullPath().getFileExtension();
-				if(suffixs == null)
-					return new Status(IStatus.OK, DPFPlugin.PLUGIN_ID, IStatus.OK, "", null);
-				for (int i = 0; i < suffixs.length; i++) 
-					if(suffixs[i].equals(ext))
-						return new Status(IStatus.OK, DPFPlugin.PLUGIN_ID, IStatus.OK, "", null);
-				return new Status(IStatus.ERROR, DPFPlugin.PLUGIN_ID, IStatus.ERROR, errorMessage, null);
-			}
-		});
-		dialog.setStatusLineAboveButtons(true);
-		dialog.setInput(project);
-		dialog.setComparator(new ResourceComparator(ResourceComparator.NAME));
-		if(file != null)
-			dialog.setInitialSelection(file);
-		dialog.create();
-		if(helpId != null)PlatformUI.getWorkbench().getHelpSystem().setHelp(dialog.getShell(), helpId);
-		if (dialog.open() == Window.OK) {
-			Object[] elements = dialog.getResult();
-			if (elements.length > 0) 
-				return (IResource) elements[0];
-		}
-		return null;
-	}
-}
 	@Override
 	public void createContents(Composite parent) {
 		parent.setLayout(new GridLayout());
@@ -524,11 +449,11 @@ public static class FileSelection{
 
 
 	protected Object[] getArrows() {
-		return toArray(predicate.getShape().getArrows());
+		return toArray(dPredicate.getPredicate().getShape().getArrows());
 	}
 
 	protected Object[] getNodes() {
-		return toArray(predicate.getShape().getNodes());
+		return toArray(dPredicate.getPredicate().getShape().getNodes());
 	}
 
 	private Object[] toArray(EList<?> lists){
@@ -536,66 +461,53 @@ public static class FileSelection{
 	}
 
 	protected void changeVisualizationSource(IDObject firstElement) {
-		if(firstElement == predicate.getVisualization().getSource())
+		if(firstElement == dPredicate.getVisualization().getSource())
 			return;
-		predicate.getVisualization().setSource(firstElement);
+		dPredicate.getVisualization().setSource(firstElement);
 		master.getMultiEditor().setDirty(true);
 	}
 
 	protected void changeVisualizationTarget(IDObject firstElement) {
-		if(firstElement == predicate.getVisualization().getTarget())
+		if(firstElement == dPredicate.getVisualization().getTarget())
 			return;
-		predicate.getVisualization().setTarget(firstElement);
+		dPredicate.getVisualization().setTarget(firstElement);
 		master.getMultiEditor().setDirty(true);
 	}
 
 	protected void changePredicateValidator(String data) {
-		if(data.equals(predicate.getSemanticsValidator().getValidator()))
+		if(data.equals(dPredicate.getPredicate().getValidator().getValidator()))
 			return;
-		predicate.getSemanticsValidator().setValidator(data);
+		dPredicate.getPredicate().getValidator().setValidator(data);
 		master.getMultiEditor().setDirty(true);
 	}
 
 	protected void changePredicateValidator(ValidatorType validatorType) {
-		if(validatorType == predicate.getSemanticsValidator().getType())
+		if(validatorType == dPredicate.getPredicate().getValidator().getType())
 			return;
-		predicate.getSemanticsValidator().setType(validatorType);
+		dPredicate.getPredicate().getValidator().setType(validatorType);
 		master.getMultiEditor().setDirty(true);
 	}
 
 	protected void changePredicateIcon(String fileName) {
-		predicate.setIcon(fileName);
+		dPredicate.setIcon(fileName);
 		master.getMultiEditor().setDirty(true);
 	}
 
 	protected void changePredicateName(String newText) {
-		predicate.setSymbol(newText);
-		master.refresh(predicate);
+		dPredicate.getPredicate().setSymbol(newText);
+		master.refresh(dPredicate);
 		master.getMultiEditor().setDirty(true);
 	}
 	protected void changeParameters(String text) {
-		predicate.setParameters(text);
+		dPredicate.getPredicate().setParameters(text);
 		master.getMultiEditor().setDirty(true);
 	}
-//	private String getParameterString(EList<String> paras){
-//		String result = "";
-//		for(int index = 0; index < paras.size(); ++ index){
-//			result += paras.get(index);
-//			if(index != paras.size() - 1)
-//				result += ";";
-//		}
-//		return result;
-//	}
-//	
-//	private EList<String> getParameterStringList(String paras){
-//		return new BasicEList<String>(Arrays.asList(paras.split(";")));
-//	}
 	
 	protected void changePredicateParameter(String newText) {
-		if(newText.equals(predicate.getParameters()))
+		if(newText.equals(dPredicate.getPredicate().getParameters()))
 			return;
-		predicate.setParameters(newText);
-		master.refresh(predicate);
+		dPredicate.getPredicate().setParameters(newText);
+		master.refresh(dPredicate);
 		master.getMultiEditor().setDirty(true);
 	}
 

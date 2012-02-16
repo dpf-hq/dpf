@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2011 H¿yskolen i Bergen
+ * Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,21 +7,20 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
 *******************************************************************************/
 package no.hib.dpf.editor.parts;
 
 import org.eclipse.draw2d.IFigure;
 
+import no.hib.dpf.diagram.DConstraint;
 import no.hib.dpf.editor.figures.NodeFigure;
 import no.hib.dpf.editor.figures.TwoArrowsOneNodeConstraintConnection;
 
-public abstract class TwoArrowsOneNodeConstraintEditPart extends ConstraintEditPart {
+public class TwoArrowsOneNodeConstraintEditPart extends DConstraintEditPart {
 	
-	protected String labelText;
-
 	public TwoArrowsOneNodeConstraintEditPart() {
-		super(false);
+		super();
 	}
 
 	@Override
@@ -35,7 +34,7 @@ public abstract class TwoArrowsOneNodeConstraintEditPart extends ConstraintEditP
 	 */
 	@Override
 	protected IFigure createFigureExec() {
-		return new TwoArrowsOneNodeConstraintConnection(this, labelText);
+		return new TwoArrowsOneNodeConstraintConnection(this, ((DConstraint)getModel()).getConstraint().getPredicate().getSymbol());
 	}
 	
 }

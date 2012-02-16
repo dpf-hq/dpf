@@ -17,16 +17,19 @@ package no.hib.dpf.core.impl;
 
 import java.util.Map;
 
-import no.hib.dpf.constant.DPFConstants;
 import no.hib.dpf.core.*;
+import no.hib.dpf.utils.DPFConstants;
 
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
 /**
  * <!-- begin-user-doc -->
@@ -72,29 +75,18 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
+			case CorePackage.SPECIFICATION: return createSpecification();
 			case CorePackage.GRAPH: return createGraph();
 			case CorePackage.NODE: return createNode();
 			case CorePackage.ARROW: return createArrow();
 			case CorePackage.SIGNATURE: return createSignature();
 			case CorePackage.PREDICATE: return createPredicate();
-			case CorePackage.SEMANTICS_VALIDATOR: return createSemanticsValidator();
-			case CorePackage.VISUALIZATION: return createVisualization();
-			case CorePackage.NODE_TO_NODE_MAP: return (EObject)createNodeToNodeMap();
+			case CorePackage.SEMANTIC_VALIDATOR: return createSemanticValidator();
 			case CorePackage.CONSTRAINT: return createConstraint();
-			case CorePackage.ARROW_TO_ARROW_MAP: return (EObject)createArrowToArrowMap();
-			case CorePackage.TYPING_MORPHISM: return createTypingMorphism();
 			case CorePackage.GRAPH_HOMOMORPHISM: return createGraphHomomorphism();
+			case CorePackage.NODE_TO_NODE_MAP: return (EObject)createNodeToNodeMap();
+			case CorePackage.ARROW_TO_ARROW_MAP: return (EObject)createArrowToArrowMap();
 			case CorePackage.ID_OBJECT: return createIDObject();
-			case CorePackage.SPECIFICATION: return createSpecification();
-			case CorePackage.MODEL_HIERARCHY: return createModelHierarchy();
-			case CorePackage.JOINTLY_SURJECTIVE_SEMANTICS: return createJointlySurjectiveSemantics();
-			case CorePackage.INVERSE_SEMANTICS: return createInverseSemantics();
-			case CorePackage.IRREFLEXIVE_SEMANTICS: return createIrreflexiveSemantics();
-			case CorePackage.MULTIPLICITY_SEMANTICS: return createMultiplicitySemantics();
-			case CorePackage.XOR_SEMANTICS: return createXORSemantics();
-			case CorePackage.TRANSITIVE_IRREFLEXIVE_SEMANTICS: return createTransitiveIrreflexiveSemantics();
-			case CorePackage.SURJECTIVE_SEMANTICS: return createSurjectiveSemantics();
-			case CorePackage.NAND_SEMANTICS: return createNANDSemantics();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -110,8 +102,8 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 		switch (eDataType.getClassifierID()) {
 			case CorePackage.VALIDATOR_TYPE:
 				return createValidatorTypeFromString(eDataType, initialValue);
-			case CorePackage.VISUALIZATION_TYPE:
-				return createVisualizationTypeFromString(eDataType, initialValue);
+			case CorePackage.ERESOURCE_SET:
+				return createEResourceSetFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -127,8 +119,8 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 		switch (eDataType.getClassifierID()) {
 			case CorePackage.VALIDATOR_TYPE:
 				return convertValidatorTypeToString(eDataType, instanceValue);
-			case CorePackage.VISUALIZATION_TYPE:
-				return convertVisualizationTypeToString(eDataType, instanceValue);
+			case CorePackage.ERESOURCE_SET:
+				return convertEResourceSetToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -137,11 +129,15 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * Default Value For Graph
+	 * name : null
+	 * Id : null
+	 * type : null which will be set when DGraph's type is set
 	 * @generated NOT
 	 */
 	public Graph createGraph() {
-		GraphImpl graph = new GraphImpl();
-		graph.setName("Default name");
+		Graph graph = new GraphImpl();
+		graph.setType(DPFConstants.REFLEXIVE_TYPE_GRAPH);
 		return graph;
 	}
 	
@@ -170,7 +166,7 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 	public Graph createGraph(String name, String nodes, String arrows) {
 		Graph retval = createGraphNodes(nodes.split(","));
 		addArrowsToGraph(retval, arrows.split(","));		
-		retval.setName(name);
+//		retval.setName(name);
 		return retval;
 	}
 	
@@ -184,6 +180,7 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 				g.createNode(node_name.trim());
 			}
 		}
+		g.setType(DPFConstants.REFLEXIVE_TYPE_GRAPH);
 		return g;
 	}
 	
@@ -202,20 +199,32 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * Default Value For Node
+	 * name : null
+	 * Id : null
+	 * graph : null
+	 * type : null which will be set when DNode's type is set
+	 * @generated NOT
 	 */
 	public Node createNode() {
 		NodeImpl node = new NodeImpl();
+		node.setTypeNode(DPFConstants.REFLEXIVE_TYPE_NODE);
 		return node;
 	}
 	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * Default Value For Arrow
+	 * name : null
+	 * Id : null
+	 * graph : null
+	 * type : null, which will be set when DArrow's type is set
+	 * @generated NOT
 	 */
 	public Arrow createArrow() {
-		ArrowImpl arrow = new ArrowImpl();
+		Arrow arrow = new ArrowImpl();
+		arrow.setTypeArrow(DPFConstants.REFLEXIVE_TYPE_ARROW);
 		return arrow;
 	}
 
@@ -225,7 +234,17 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 	 * @generated NOT
 	 */
 	public Node createNode(Node typeNode) {
+		return createNode(null, typeNode);
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Node createNode(String name, Node typeNode) {
 		Node retval = createNode();
+		retval.setName(name);
 		retval.setTypeNode(typeNode);
 		return retval;
 	}
@@ -235,8 +254,20 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Arrow createArrow(Arrow typeArrow) {
+	public Arrow createArrow(Node source, Node target, Arrow typeArrow) {
+		return createArrow(null, source, target, typeArrow);
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Arrow createArrow(String name, Node source, Node target, Arrow typeArrow) {
 		Arrow retval = createArrow();
+		retval.setName(name);
+		retval.setSource(source);
+		retval.setTarget(target);
 		retval.setTypeArrow(typeArrow);
 		return retval;
 	}
@@ -259,60 +290,21 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 	public Predicate createPredicate() {
 		PredicateImpl predicate = new PredicateImpl();
 		predicate.setShape(createGraph());
-		predicate.setSemanticsValidator(createSemanticsValidator());
-		predicate.setVisualization(createVisualization());
+		predicate.setValidator(createSemanticValidator());
 		return predicate;
 	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public SemanticsValidator createSemanticsValidator() {
-		SemanticsValidatorImpl semanticsValidator = new SemanticsValidatorImpl();
-		semanticsValidator.setType(ValidatorType.JAVA);
-		semanticsValidator.setValidator(DPFConstants.DefaultChecker);
-		return semanticsValidator;
-	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Visualization createVisualization() {
-		VisualizationImpl visualization = new VisualizationImpl();
-		visualization.setType(VisualizationType.ARROW_LABEL);
-		return visualization;
+	public SemanticValidator createSemanticValidator() {
+		SemanticValidator result = new SemanticValidatorImpl();
+		result.setType(ValidatorType.JAVA);
+		result.setValidator(DPFConstants.DefaultChecker);
+		return result;
 	}
-
-	/**
-	 * Returns a new object of class '<em>Predicate</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Predicate</em>'.
-	 * @generated NOT
-	 */
-	public Predicate createPredicate(String nodes, String arrows) {
-		Predicate predicate = createPredicate();
-		predicate.setShape(createGraph(nodes, arrows));
-		return predicate;		
-	}
-	
-	/**
-	 * Returns a new object of class '<em>Predicate</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Predicate</em>'.
-	 * @generated NOT
-	 */
-	public Predicate createPredicate(String symbol, String nodes, String arrows) {
-		Predicate predicate = createPredicate(nodes, arrows);
-		predicate.setSymbol(symbol);
-		return predicate;		
-	}
-	 
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -342,16 +334,6 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 	public Map.Entry<Arrow, Arrow> createArrowToArrowMap() {
 		ArrowToArrowMapImpl arrowToArrowMap = new ArrowToArrowMapImpl();
 		return arrowToArrowMap;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TypingMorphism createTypingMorphism() {
-		TypingMorphismImpl typingMorphism = new TypingMorphismImpl();
-		return typingMorphism;
 	}
 
 	/**
@@ -392,106 +374,6 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Specification createSpecification() {
-		SpecificationImpl specification = new SpecificationImpl();
-		return specification;
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ModelHierarchy createModelHierarchy() {
-		ModelHierarchyImpl modelHierarchy = new ModelHierarchyImpl();
-		return modelHierarchy;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public JointlySurjectiveSemantics createJointlySurjectiveSemantics() {
-		JointlySurjectiveSemanticsImpl jointlySurjectiveSemantics = new JointlySurjectiveSemanticsImpl();
-		return jointlySurjectiveSemantics;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public InverseSemantics createInverseSemantics() {
-		InverseSemanticsImpl inverseSemantics = new InverseSemanticsImpl();
-		return inverseSemantics;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public IrreflexiveSemantics createIrreflexiveSemantics() {
-		IrreflexiveSemanticsImpl irreflexiveSemantics = new IrreflexiveSemanticsImpl();
-		return irreflexiveSemantics;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public MultiplicitySemantics createMultiplicitySemantics() {
-		MultiplicitySemanticsImpl multiplicitySemantics = new MultiplicitySemanticsImpl();
-		return multiplicitySemantics;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public XORSemantics createXORSemantics() {
-		XORSemanticsImpl xorSemantics = new XORSemanticsImpl();
-		return xorSemantics;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TransitiveIrreflexiveSemantics createTransitiveIrreflexiveSemantics() {
-		TransitiveIrreflexiveSemanticsImpl transitiveIrreflexiveSemantics = new TransitiveIrreflexiveSemanticsImpl();
-		return transitiveIrreflexiveSemantics;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SurjectiveSemantics createSurjectiveSemantics() {
-		SurjectiveSemanticsImpl surjectiveSemantics = new SurjectiveSemanticsImpl();
-		return surjectiveSemantics;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NANDSemantics createNANDSemantics() {
-		NANDSemanticsImpl nandSemantics = new NANDSemanticsImpl();
-		return nandSemantics;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public ValidatorType createValidatorTypeFromString(EDataType eDataType, String initialValue) {
 		ValidatorType result = ValidatorType.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
@@ -510,12 +392,44 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param predicate 
+	 * @param inverse 
+	 * @generated NOT
+	 */
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public MultiplicityPredicate createMultiplicityPredicate() {
+		MultiplicityPredicateImpl multiplicityPredicate = new MultiplicityPredicateImpl();
+//		initPredicate(multiplicityPredicate, PredicateType.MULTIPLICITY, "[mult(m,n)]", "n_1,n_2", "a_1:n_1:n_2");
+		return multiplicityPredicate;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * Default Value For Specification
+	 * Graph : null which will be set when DSpecification's DGraph is set //Graph.REFLEXIVE_TYPE_GRAPH
+	 * @generated NOT
+	 */
+	public Specification createSpecification() {
+		SpecificationImpl specification = new SpecificationImpl();
+//		specification.setGraph(Graph.REFLEXIVE_TYPE_GRAPH);
+		return specification;
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VisualizationType createVisualizationTypeFromString(EDataType eDataType, String initialValue) {
-		VisualizationType result = VisualizationType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
+	public ResourceSet createEResourceSetFromString(EDataType eDataType, String initialValue) {
+		return (ResourceSet)super.createFromString(eDataType, initialValue);
 	}
 
 	/**
@@ -523,8 +437,8 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertVisualizationTypeToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
+	public String convertEResourceSetToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
 	}
 
 	/**
@@ -547,5 +461,40 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 		return CorePackage.eINSTANCE;
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public Predicate createPredicate(String string, String string2) {
+		Predicate predicate = createPredicate();
+		predicate.setSymbol("Default Name");
+		predicate.setShape(createGraph(string, string2));
+		return predicate;
+	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public Graph createDefaultGraph() {
+		Graph graph = new GraphImpl();
+		DPFConstants.REFLEXIVE_TYPE_NODE.setGraph(graph);
+		DPFConstants.REFLEXIVE_TYPE_ARROW.setGraph(graph);
+		return graph;
+	}
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public Specification createDefaultSpecification() {
+		Specification result = new SpecificationImpl();
+		result.setGraph(DPFConstants.REFLEXIVE_TYPE_GRAPH);
+		return result;
+	}
 } //MetamodelFactoryImpl

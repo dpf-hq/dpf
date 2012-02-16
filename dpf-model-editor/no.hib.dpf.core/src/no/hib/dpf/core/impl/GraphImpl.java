@@ -30,6 +30,10 @@ import no.hib.dpf.core.IDObject;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Predicate;
 
+import no.hib.dpf.core.Specification;
+import no.hib.dpf.utils.DPFConstants;
+
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
@@ -47,16 +51,25 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link no.hib.dpf.core.impl.GraphImpl#getType <em>Type</em>}</li>
  *   <li>{@link no.hib.dpf.core.impl.GraphImpl#getNodes <em>Nodes</em>}</li>
- *   <li>{@link no.hib.dpf.core.impl.GraphImpl#getName <em>Name</em>}</li>
  *   <li>{@link no.hib.dpf.core.impl.GraphImpl#getArrows <em>Arrows</em>}</li>
- *   <li>{@link no.hib.dpf.core.impl.GraphImpl#getConstraints <em>Constraints</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class GraphImpl extends IDObjectImpl implements Graph {
+	/**
+	 * The cached value of the '{@link #getType() <em>Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected Graph type;
+
 	/**
 	 * The cached value of the '{@link #getNodes() <em>Nodes</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -68,26 +81,6 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	protected EList<Node> nodes;
 
 	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
-
-	/**
 	 * The cached value of the '{@link #getArrows() <em>Arrows</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -96,16 +89,6 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	 * @ordered
 	 */
 	protected EList<Arrow> arrows;
-
-	/**
-	 * The cached value of the '{@link #getConstraints() <em>Constraints</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getConstraints()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Constraint> constraints;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -143,8 +126,16 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getName() {
-		return name;
+	public Graph getType() {
+		if (type != null && type.eIsProxy()) {
+			InternalEObject oldType = (InternalEObject)type;
+			type = (Graph)eResolveProxy(oldType);
+			if (type != oldType) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CorePackage.GRAPH__TYPE, oldType, type));
+			}
+		}
+		return type;
 	}
 
 	/**
@@ -152,11 +143,23 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
+	public Graph basicGetType() {
+		return type;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void setType(Graph newType) {
+		if(type == newType) return;
+		if(newType.eIsProxy())
+			newType = (Graph) eResolveProxy((InternalEObject) newType);
+		Graph oldType = type;
+		type = newType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.GRAPH__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.GRAPH__TYPE, oldType, type));
 	}
 
 	/**
@@ -174,23 +177,12 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Constraint> getConstraints() {
-		if (constraints == null) {
-			constraints = new EObjectContainmentWithInverseEList<Constraint>(Constraint.class, this, CorePackage.GRAPH__CONSTRAINTS, CorePackage.CONSTRAINT__GRAPH);
-		}
-		return constraints;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public Node createNode(String name) {
 		Node node = CoreFactory.eINSTANCE.createNode();
 		node.setName(name);
+		node.setTypeNode(DPFConstants.REFLEXIVE_TYPE_NODE);
 		node.setGraph(this);
 		return node;
 	}
@@ -201,7 +193,7 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	 * @generated NOT
 	 */
 	public Arrow createArrow(String name, Node source, Node target) {
-		testSurceAndTarget(source, target);
+		testSourceAndTarget(source, target);
 		
 		if (!source.arrowCanMakeConnectionAsTarget(target)) {
 			throw new AssertionError(String.format("The target node, %s, had the wrong type for an arrow to be connected from the node %s.", target, source));
@@ -211,6 +203,7 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 		if ((source.getTypeNode() != null) && (target.getTypeNode() != null)) {
 			arrow.setTypeArrow(source.getTypeNode().getArrowto(target.getTypeNode()));
 		}
+		arrow.setTypeArrow(DPFConstants.REFLEXIVE_TYPE_ARROW);
 		return arrow;
 	}
 
@@ -220,8 +213,9 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	 * @generated NOT
 	 */
 	public Arrow createArrow(String name, Node source, Node target, Arrow typeArrow) {
-		testSurceAndTarget(source, target);
-		if (!source.arrowCanMakeConnectionAsTarget(target, typeArrow)) {
+		testSourceAndTarget(source, target);
+		if(typeArrow.getTarget() != target.getTypeNode())
+		/*if (!source.arrowCanMakeConnectionAsTarget(target, typeArrow))*/ {
 			throw new AssertionError(String.format("The target node, %s, had the wrong type for an arrow to be connected from the node %s via the type arrow %s.", target, source, typeArrow));			
 		}
 		Arrow arrow = createArrowExec(name, source, target);
@@ -314,6 +308,17 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Specification getSpecification() {
+		Specification result = (Specification) eContainer();
+		Assert.isNotNull(result);
+		return result;
+	}
+
+	/**
 	 * @generated NOT
 	 */
 	private Arrow createArrowExec(String name, Node source, Node target) {
@@ -328,7 +333,7 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	/**
 	 * @generated NOT
 	 */
-	private void testSurceAndTarget(Node source, Node target) {
+	private void testSourceAndTarget(Node source, Node target) {
 		if ((source == null) || (target == null)) {
 			throw new NullPointerException("Tried to create an Arrow instance with no target and/or source.");
 		}
@@ -374,9 +379,6 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 		}		
 		for (Node aNode : getNodes()) {
 			if (aNode.getId().equals(id)) return aNode;
-		}
-		for (Constraint aConstraint : getConstraints()) {
-			if (aConstraint.getId().equals(id)) return aConstraint;
 		}
 		return null;
 	}
@@ -478,8 +480,6 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getNodes()).basicAdd(otherEnd, msgs);
 			case CorePackage.GRAPH__ARROWS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getArrows()).basicAdd(otherEnd, msgs);
-			case CorePackage.GRAPH__CONSTRAINTS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getConstraints()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -496,8 +496,6 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 				return ((InternalEList<?>)getNodes()).basicRemove(otherEnd, msgs);
 			case CorePackage.GRAPH__ARROWS:
 				return ((InternalEList<?>)getArrows()).basicRemove(otherEnd, msgs);
-			case CorePackage.GRAPH__CONSTRAINTS:
-				return ((InternalEList<?>)getConstraints()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -510,14 +508,13 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case CorePackage.GRAPH__TYPE:
+				if (resolve) return getType();
+				return basicGetType();
 			case CorePackage.GRAPH__NODES:
 				return getNodes();
-			case CorePackage.GRAPH__NAME:
-				return getName();
 			case CorePackage.GRAPH__ARROWS:
 				return getArrows();
-			case CorePackage.GRAPH__CONSTRAINTS:
-				return getConstraints();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -531,20 +528,16 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case CorePackage.GRAPH__TYPE:
+				setType((Graph)newValue);
+				return;
 			case CorePackage.GRAPH__NODES:
 				getNodes().clear();
 				getNodes().addAll((Collection<? extends Node>)newValue);
 				return;
-			case CorePackage.GRAPH__NAME:
-				setName((String)newValue);
-				return;
 			case CorePackage.GRAPH__ARROWS:
 				getArrows().clear();
 				getArrows().addAll((Collection<? extends Arrow>)newValue);
-				return;
-			case CorePackage.GRAPH__CONSTRAINTS:
-				getConstraints().clear();
-				getConstraints().addAll((Collection<? extends Constraint>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -553,22 +546,19 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case CorePackage.GRAPH__TYPE:
+				setType(DPFConstants.REFLEXIVE_TYPE_GRAPH);
+				return;
 			case CorePackage.GRAPH__NODES:
 				getNodes().clear();
 				return;
-			case CorePackage.GRAPH__NAME:
-				setName(NAME_EDEFAULT);
-				return;
 			case CorePackage.GRAPH__ARROWS:
 				getArrows().clear();
-				return;
-			case CorePackage.GRAPH__CONSTRAINTS:
-				getConstraints().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -577,38 +567,18 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case CorePackage.GRAPH__TYPE:
+				return type != null && type != DPFConstants.REFLEXIVE_TYPE_GRAPH;
 			case CorePackage.GRAPH__NODES:
 				return nodes != null && !nodes.isEmpty();
-			case CorePackage.GRAPH__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case CorePackage.GRAPH__ARROWS:
 				return arrows != null && !arrows.isEmpty();
-			case CorePackage.GRAPH__CONSTRAINTS:
-				return constraints != null && !constraints.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(')');
-		return result.toString();
-	}
-
-
 } //GraphImpl

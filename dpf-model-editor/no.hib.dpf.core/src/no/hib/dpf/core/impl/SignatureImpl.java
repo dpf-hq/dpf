@@ -1,6 +1,6 @@
 /**
  * <copyright>
- * Copyright (c) 2011 H¿yskolen i Bergen
+ * Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * Adrian Rutle, ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * Adrian Rutle, ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
  * </copyright>
  *
  * $Id$
@@ -18,7 +18,6 @@ package no.hib.dpf.core.impl;
 import java.io.IOException;
 import java.util.Collection;
 
-import no.hib.dpf.constant.DPFConstants;
 import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.core.Predicate;
 import no.hib.dpf.core.Signature;
@@ -142,8 +141,7 @@ public class SignatureImpl extends EObjectImpl implements Signature {
 	public void save(URI uri) throws IOException {
 		ResourceSet resourceSet = new ResourceSetImpl();
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new  XMLResourceFactoryImpl());		
-		Resource graph = resourceSet.createResource(DPFConstants.DefaultGraph);
-		graph.getContents().add(DPFConstants.REFLEXIVE_TYPE_GRAPH);
+
 		Resource resource = resourceSet.createResource(uri);
 		resource.getContents().add(this);		
 		
@@ -162,6 +160,26 @@ public class SignatureImpl extends EObjectImpl implements Signature {
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void addPredicate(Predicate dPredicate) {
+		if(!getPredicates().contains(dPredicate))
+			getPredicates().add(dPredicate);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void removePredicate(Predicate dPredicate) {
+		if(getPredicates().contains(dPredicate))
+			getPredicates().remove(dPredicate);
 	}
 
 	/**

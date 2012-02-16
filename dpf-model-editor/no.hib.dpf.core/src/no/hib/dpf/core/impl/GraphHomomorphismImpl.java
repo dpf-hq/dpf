@@ -1,6 +1,6 @@
 /**
  * <copyright>
- * Copyright (c) 2011 H¿yskolen i Bergen
+ * Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * Adrian Rutle, ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * Adrian Rutle, ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
  * </copyright>
  *
  * $Id$
@@ -140,18 +140,18 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public boolean tryToCreateGraphHomomorphism(Graph sourceGraph, EList<Node> nodes, EList<Arrow> arrows) {
+	public GraphHomomorphism createGraphHomomorphism(Graph sourceGraph, EList<Node> nodes, EList<Arrow> arrows) {
 		if (sourceGraph.getArrows().size() != arrows.size()) {
-			return false;
+			return null;
 		}
 		if ((arrows.size() == 0) &&
 			(sourceGraph.getNodes().size() != nodes.size())) {
-			return false;
+			return null;
 		}
 		if (sourceGraph.getNodes().size() == 0) {
 			// SIDE EFFECT:			
 			createSimpleArrowMapping(sourceGraph, arrows);			
-			return true;
+			return this;
 		}
 		
 		Graph targetGraph = null;
@@ -162,7 +162,7 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 			targetGraph = createTemporaryTargetGraph(nodes, arrows);
 		} catch (Exception e) {
 			// If the nodes and arrows don't contain a valid graph, we return false
-			return false;
+			return null;
 		}
 		// Check that mappings from node to node and arrow to arrow preserving structure can be made:
 		
@@ -186,12 +186,12 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 				// Now check that all arrows are mapped
 				if (sourceArrows.length == arrowMapping.size()) {
 					resolveBackwardMappingsAndCreateFinalMapping(nodeMapping, arrowMapping);
-					return true;
+					return this;
 				}
 			}
 		}
 		
-		return false;
+		return null;
 	}
 	
 	
@@ -327,10 +327,10 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 		for (Node source : mapping.keySet()) {			
 			Node mappedSource = mapping.get(source);
 			// Follow the arrows:
-			for (Arrow outgoingArrow : source.getOutgoingArrows()) {
+			for (Arrow outgoingArrow : source.getOutgoings()) {
 				Node target = outgoingArrow.getTarget();
 				Node mappedTarget = mapping.get(target);
-				for (Arrow outgoingArrowFromMappedSource : mappedSource.getOutgoingArrows()) {
+				for (Arrow outgoingArrowFromMappedSource : mappedSource.getOutgoings()) {
 					if (((target == null) && (outgoingArrowFromMappedSource.getTarget() == null)) ||
 						(mappedTarget.equals(outgoingArrowFromMappedSource.getTarget()))) {
 						// Only unique mappings from one source arrow to one target arrow:
@@ -368,11 +368,11 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 		for (Node source : mapping.keySet()) {			
 			Node mappedSource = mapping.get(source);
 			// Follow the arrows:
-			for (Arrow outgoingArrow : source.getOutgoingArrows()) {
+			for (Arrow outgoingArrow : source.getOutgoings()) {
 				Node target = outgoingArrow.getTarget();
 				Node mappedTarget = mapping.get(target);
 				boolean found = false;
-				for (Arrow outgoingArrowFromMappedSource : mappedSource.getOutgoingArrows()) {
+				for (Arrow outgoingArrowFromMappedSource : mappedSource.getOutgoings()) {
 					if (mappedTarget == null) {
 						// null is always found
 						found = true;

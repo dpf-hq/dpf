@@ -26,12 +26,10 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link no.hib.dpf.core.Predicate#getShape <em>Shape</em>}</li>
- *   <li>{@link no.hib.dpf.core.Predicate#getSemanticsValidator <em>Semantics Validator</em>}</li>
- *   <li>{@link no.hib.dpf.core.Predicate#getParameters <em>Parameters</em>}</li>
- *   <li>{@link no.hib.dpf.core.Predicate#getVisualization <em>Visualization</em>}</li>
  *   <li>{@link no.hib.dpf.core.Predicate#getSymbol <em>Symbol</em>}</li>
- *   <li>{@link no.hib.dpf.core.Predicate#getIcon <em>Icon</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Predicate#getShape <em>Shape</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Predicate#getParameters <em>Parameters</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Predicate#getValidator <em>Validator</em>}</li>
  * </ul>
  * </p>
  *
@@ -39,111 +37,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface Predicate extends EObject  {
-	/**
-	 * Returns the value of the '<em><b>Shape</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Shape</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Shape</em>' containment reference.
-	 * @see #setShape(Graph)
-	 * @see no.hib.dpf.core.CorePackage#getPredicate_Shape()
-	 * @model containment="true"
-	 * @generated
-	 */
-	Graph getShape();
-
-	/**
-	 * Sets the value of the '{@link no.hib.dpf.core.Predicate#getShape <em>Shape</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Shape</em>' containment reference.
-	 * @see #getShape()
-	 * @generated
-	 */
-	void setShape(Graph value);
-
-	/**
-	 * Returns the value of the '<em><b>Semantics Validator</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Semantics Validator</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Semantics Validator</em>' containment reference.
-	 * @see #setSemanticsValidator(SemanticsValidator)
-	 * @see no.hib.dpf.core.CorePackage#getPredicate_SemanticsValidator()
-	 * @model containment="true"
-	 * @generated
-	 */
-	SemanticsValidator getSemanticsValidator();
-
-	/**
-	 * Sets the value of the '{@link no.hib.dpf.core.Predicate#getSemanticsValidator <em>Semantics Validator</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Semantics Validator</em>' containment reference.
-	 * @see #getSemanticsValidator()
-	 * @generated
-	 */
-	void setSemanticsValidator(SemanticsValidator value);
-
-	/**
-	 * Returns the value of the '<em><b>Parameters</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Parameters</em>' attribute list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Parameters</em>' attribute.
-	 * @see #setParameters(String)
-	 * @see no.hib.dpf.core.CorePackage#getPredicate_Parameters()
-	 * @model
-	 * @generated
-	 */
-	String getParameters();
-
-	/**
-	 * Sets the value of the '{@link no.hib.dpf.core.Predicate#getParameters <em>Parameters</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Parameters</em>' attribute.
-	 * @see #getParameters()
-	 * @generated
-	 */
-	void setParameters(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Visualization</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Visualization</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Visualization</em>' containment reference.
-	 * @see #setVisualization(Visualization)
-	 * @see no.hib.dpf.core.CorePackage#getPredicate_Visualization()
-	 * @model containment="true"
-	 * @generated
-	 */
-	Visualization getVisualization();
-
-	/**
-	 * Sets the value of the '{@link no.hib.dpf.core.Predicate#getVisualization <em>Visualization</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Visualization</em>' containment reference.
-	 * @see #getVisualization()
-	 * @generated
-	 */
-	void setVisualization(Visualization value);
-
+public interface Predicate extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Symbol</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -171,30 +65,82 @@ public interface Predicate extends EObject  {
 	void setSymbol(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Icon</b></em>' attribute.
+	 * Returns the value of the '<em><b>Shape</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Icon</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Shape</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Icon</em>' attribute.
-	 * @see #setIcon(String)
-	 * @see no.hib.dpf.core.CorePackage#getPredicate_Icon()
-	 * @model
+	 * @return the value of the '<em>Shape</em>' containment reference.
+	 * @see #setShape(Graph)
+	 * @see no.hib.dpf.core.CorePackage#getPredicate_Shape()
+	 * @model containment="true"
 	 * @generated
 	 */
-	String getIcon();
+	Graph getShape();
 
 	/**
-	 * Sets the value of the '{@link no.hib.dpf.core.Predicate#getIcon <em>Icon</em>}' attribute.
+	 * Sets the value of the '{@link no.hib.dpf.core.Predicate#getShape <em>Shape</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Icon</em>' attribute.
-	 * @see #getIcon()
+	 * @param value the new value of the '<em>Shape</em>' containment reference.
+	 * @see #getShape()
 	 * @generated
 	 */
-	void setIcon(String value);
+	void setShape(Graph value);
+
+	/**
+	 * Returns the value of the '<em><b>Parameters</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Parameters</em>' attribute list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Parameters</em>' attribute.
+	 * @see #setParameters(String)
+	 * @see no.hib.dpf.core.CorePackage#getPredicate_Parameters()
+	 * @model required="true"
+	 * @generated
+	 */
+	String getParameters();
+
+	/**
+	 * Sets the value of the '{@link no.hib.dpf.core.Predicate#getParameters <em>Parameters</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Parameters</em>' attribute.
+	 * @see #getParameters()
+	 * @generated
+	 */
+	void setParameters(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Validator</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Validator</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Validator</em>' containment reference.
+	 * @see #setValidator(SemanticValidator)
+	 * @see no.hib.dpf.core.CorePackage#getPredicate_Validator()
+	 * @model containment="true"
+	 * @generated
+	 */
+	SemanticValidator getValidator();
+
+	/**
+	 * Sets the value of the '{@link no.hib.dpf.core.Predicate#getValidator <em>Validator</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Validator</em>' containment reference.
+	 * @see #getValidator()
+	 * @generated
+	 */
+	void setValidator(SemanticValidator value);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -215,17 +161,17 @@ public interface Predicate extends EObject  {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model typeNodesMany="true" typeArrowsMany="true"
-	 * @generated
-	 */
-	Boolean validateSemantics(Graph oStar, String constraintParameters, EList<Node> typeNodes, EList<Arrow> typeArrows);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @model
 	 * @generated
 	 */
 	boolean validateSemantics(String parameters, GraphHomomorphism mapping, Graph graph);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model constraintParametersMany="true" stuckedNodesMany="true" stuckedArrowsMany="true"
+	 * @generated NOT
+	 */
+	GraphHomomorphism createGraphHomomorphism(EList<Node> nodes, EList<Arrow> arrows);
 
 } // Predicate

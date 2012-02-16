@@ -19,13 +19,13 @@ import no.hib.dpf.editor.DPFPlugin;
 
 public class DPFEditorPreferences {
 
-	private static DPFEditorPreferences singleton;
+	private static DPFEditorPreferences INSTANCE;
 
 	public static DPFEditorPreferences getDefault() {
-		if (singleton == null) {
-			singleton = new DPFEditorPreferences();
+		if (INSTANCE == null) {
+			INSTANCE = new DPFEditorPreferences();
 		}
-		return singleton;
+		return INSTANCE;
 	}
 	
     public IPreferenceStore getPreferenceStore() {

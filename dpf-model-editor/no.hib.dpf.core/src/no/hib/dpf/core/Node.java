@@ -1,6 +1,6 @@
 /**
  * <copyright>
- * Copyright (c) 2011 H¿yskolen i Bergen
+ * Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * Adrian Rutle, ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * Adrian Rutle, ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
  * </copyright>
  *
  * $Id$
@@ -28,6 +28,9 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link no.hib.dpf.core.Node#getName <em>Name</em>}</li>
  *   <li>{@link no.hib.dpf.core.Node#getGraph <em>Graph</em>}</li>
  *   <li>{@link no.hib.dpf.core.Node#getTypeNode <em>Type Node</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Node#getOutgoings <em>Outgoings</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Node#getIncomings <em>Incomings</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Node#getConstraints <em>Constraints</em>}</li>
  * </ul>
  * </p>
  *
@@ -75,7 +78,7 @@ public interface Node extends IDObject {
 	 * @see #setGraph(Graph)
 	 * @see no.hib.dpf.core.CorePackage#getNode_Graph()
 	 * @see no.hib.dpf.core.Graph#getNodes
-	 * @model opposite="nodes" unsettable="true" transient="false"
+	 * @model opposite="nodes" unsettable="true" transient="false" derived="true"
 	 * @generated
 	 */
 	Graph getGraph();
@@ -101,7 +104,7 @@ public interface Node extends IDObject {
 	 * @return the value of the '<em>Type Node</em>' reference.
 	 * @see #setTypeNode(Node)
 	 * @see no.hib.dpf.core.CorePackage#getNode_TypeNode()
-	 * @model
+	 * @model required="true"
 	 * @generated
 	 */
 	Node getTypeNode();
@@ -117,12 +120,58 @@ public interface Node extends IDObject {
 	void setTypeNode(Node value);
 
 	/**
+	 * Returns the value of the '<em><b>Outgoings</b></em>' reference list.
+	 * The list contents are of type {@link no.hib.dpf.core.Arrow}.
+	 * It is bidirectional and its opposite is '{@link no.hib.dpf.core.Arrow#getSource <em>Source</em>}'.
 	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Outgoings</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
 	 * <!-- end-user-doc -->
-	 * @model kind="operation"
+	 * @return the value of the '<em>Outgoings</em>' reference list.
+	 * @see no.hib.dpf.core.CorePackage#getNode_Outgoings()
+	 * @see no.hib.dpf.core.Arrow#getSource
+	 * @model opposite="source"
 	 * @generated
 	 */
-	EList<Arrow> getOutgoingArrows();
+	EList<Arrow> getOutgoings();
+
+	/**
+	 * Returns the value of the '<em><b>Incomings</b></em>' reference list.
+	 * The list contents are of type {@link no.hib.dpf.core.Arrow}.
+	 * It is bidirectional and its opposite is '{@link no.hib.dpf.core.Arrow#getTarget <em>Target</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Incomings</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Incomings</em>' reference list.
+	 * @see no.hib.dpf.core.CorePackage#getNode_Incomings()
+	 * @see no.hib.dpf.core.Arrow#getTarget
+	 * @model opposite="target"
+	 * @generated
+	 */
+	EList<Arrow> getIncomings();
+
+	/**
+	 * Returns the value of the '<em><b>Constraints</b></em>' reference list.
+	 * The list contents are of type {@link no.hib.dpf.core.Constraint}.
+	 * It is bidirectional and its opposite is '{@link no.hib.dpf.core.Constraint#getNodes <em>Nodes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Constraints</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Constraints</em>' reference list.
+	 * @see no.hib.dpf.core.CorePackage#getNode_Constraints()
+	 * @see no.hib.dpf.core.Constraint#getNodes
+	 * @model opposite="nodes"
+	 * @generated
+	 */
+	EList<Constraint> getConstraints();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -195,13 +244,5 @@ public interface Node extends IDObject {
 	 * @generated
 	 */
 	Arrow getTypeArrow(Node intendedTarget);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model kind="operation"
-	 * @generated
-	 */
-	EList<Arrow> getIncomingArrows();
 
 } // Node

@@ -23,8 +23,6 @@ public class DPFCoreUtil {
 		catch(Exception exception){
 			analyzeResourceProblems(resource, exception, resourceToDiagnosticMap);
 		}
-		if(resource == null)
-			resource = resourceSet.createResource(resourceURI);
 		return resource;
 	}
 
@@ -64,13 +62,10 @@ public class DPFCoreUtil {
 		}
 	}
 	
-	public static final URI DefaultDSpecification = URI.createPlatformResourceURI("DefaultDSpecification.dpf", false);
-	public static final URI DefaultSpecification = URI.createPlatformResourceURI("DefaultSpecification.xmi", false);
-	public static final URI DefaultSignature = URI.createPlatformResourceURI("DefaultSignature.xmi", false);
-	public static final URI DefaultDSignature = URI.createPlatformResourceURI("DefaultDSignature.xmi", false);
+
 	
 	@SuppressWarnings("finally")
-	private static Resource getResource(ResourceSet resourceSet, URI resourceURI){
+	public static Resource getResource(ResourceSet resourceSet, URI resourceURI){
 		Resource resource = null;
 		try {
 			// Load the resource through the editing domain.
@@ -86,25 +81,11 @@ public class DPFCoreUtil {
 		}
 	}
 
-	//From .dpf to .xmi
-	public static URI getModelURI(URI diagramURI){
-		return diagramURI.trimFileExtension().appendFileExtension("xmi");
-	}
-
-	public static String getDiagramFromModel(String filename) {
-		int index = filename.lastIndexOf(".xmi");
-		if(index == -1)
-			return filename + ".dpf";
-		return filename.substring(0, index) + ".dpf";
-	}
-	public static String getModelFromDiagram(String filename) {
-		int index = filename.lastIndexOf(".dpf");
-		if(index == -1)
-			return filename + ".xmi";
-		return filename.substring(0, index) + ".xmi";
-	}
-	
 	public static URI getFileURI(IFile file){
 		return URI.createFileURI(file.getLocation().toOSString());
+	}
+	
+	public static URI updateRelativeURI(URI oldBaseURI, URI newBaseURI, URI relative){
+		return relative.resolve(oldBaseURI).deresolve(newBaseURI);
 	}
 }

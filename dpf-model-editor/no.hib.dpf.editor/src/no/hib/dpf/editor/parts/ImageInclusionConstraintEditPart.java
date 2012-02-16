@@ -22,7 +22,7 @@ import org.eclipse.draw2d.IFigure;
 public class ImageInclusionConstraintEditPart extends ParallelArrowsConstraintEditPart {
 
 	public ImageInclusionConstraintEditPart() {
-		super(false);
+		super();
 	}
 
 	public NodeFigure getRectangleFigureForFigure() {

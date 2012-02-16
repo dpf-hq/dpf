@@ -27,7 +27,8 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link no.hib.dpf.core.Constraint#getGraph <em>Graph</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Constraint#getNodes <em>Nodes</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Constraint#getArrows <em>Arrows</em>}</li>
  *   <li>{@link no.hib.dpf.core.Constraint#getPredicate <em>Predicate</em>}</li>
  *   <li>{@link no.hib.dpf.core.Constraint#getMappings <em>Mappings</em>}</li>
  *   <li>{@link no.hib.dpf.core.Constraint#getParameters <em>Parameters</em>}</li>
@@ -40,32 +41,40 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface Constraint extends IDObject {
 	/**
-	 * Returns the value of the '<em><b>Graph</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link no.hib.dpf.core.Graph#getConstraints <em>Constraints</em>}'.
+	 * Returns the value of the '<em><b>Nodes</b></em>' reference list.
+	 * The list contents are of type {@link no.hib.dpf.core.Node}.
+	 * It is bidirectional and its opposite is '{@link no.hib.dpf.core.Node#getConstraints <em>Constraints</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Graph</em>' container reference isn't clear,
+	 * If the meaning of the '<em>Nodes</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Graph</em>' container reference.
-	 * @see #setGraph(Graph)
-	 * @see no.hib.dpf.core.CorePackage#getConstraint_Graph()
-	 * @see no.hib.dpf.core.Graph#getConstraints
-	 * @model opposite="constraints" transient="false"
+	 * @return the value of the '<em>Nodes</em>' reference list.
+	 * @see no.hib.dpf.core.CorePackage#getConstraint_Nodes()
+	 * @see no.hib.dpf.core.Node#getConstraints
+	 * @model opposite="constraints"
 	 * @generated
 	 */
-	Graph getGraph();
+	EList<Node> getNodes();
 
 	/**
-	 * Sets the value of the '{@link no.hib.dpf.core.Constraint#getGraph <em>Graph</em>}' container reference.
+	 * Returns the value of the '<em><b>Arrows</b></em>' reference list.
+	 * The list contents are of type {@link no.hib.dpf.core.Arrow}.
+	 * It is bidirectional and its opposite is '{@link no.hib.dpf.core.Arrow#getConstraints <em>Constraints</em>}'.
 	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Arrows</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Graph</em>' container reference.
-	 * @see #getGraph()
+	 * @return the value of the '<em>Arrows</em>' reference list.
+	 * @see no.hib.dpf.core.CorePackage#getConstraint_Arrows()
+	 * @see no.hib.dpf.core.Arrow#getConstraints
+	 * @model opposite="constraints"
 	 * @generated
 	 */
-	void setGraph(Graph value);
+	EList<Arrow> getArrows();
 
 	/**
 	 * Returns the value of the '<em><b>Predicate</b></em>' reference.
@@ -130,7 +139,7 @@ public interface Constraint extends IDObject {
 	 * @return the value of the '<em>Parameters</em>' attribute.
 	 * @see #setParameters(String)
 	 * @see no.hib.dpf.core.CorePackage#getConstraint_Parameters()
-	 * @model
+	 * @model required="true"
 	 * @generated
 	 */
 	String getParameters();
@@ -148,17 +157,41 @@ public interface Constraint extends IDObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model kind="operation"
+	 * @model nodesMany="true" arrowsMany="true"
 	 * @generated
 	 */
-	EList<Node> getConstrainedNodes();
+	void reconnect(EList<Node> nodes, EList<Arrow> arrows, Specification specification);
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model kind="operation"
+	 * @model
 	 * @generated
 	 */
-	EList<Arrow> getConstrainedArrows();
+	void disconnect();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	void addArrow(Arrow arrow);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	void addNode(Node node);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	boolean validate(Graph graph);
 
 } // Constraint

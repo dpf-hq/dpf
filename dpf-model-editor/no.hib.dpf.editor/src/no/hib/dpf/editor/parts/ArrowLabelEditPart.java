@@ -1,91 +1,159 @@
-/*******************************************************************************
- * Copyright (c) 2011 H�yskolen i Bergen
+/**
+ * Original code taken from now-defunct site qvtp.org.
  * 
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- * �yvind Bech and Dag Viggo Lok�en - DPF Editor
-*******************************************************************************/
+ * Copyright (c) 2004, QVT-Partners.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+ * Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+ * Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+ * Neither the name of the QVT-Partners nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission. 
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, 
+THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS 
+BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE 
+GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
+STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
+OF SUCH DAMAGE. 
+ */
 package no.hib.dpf.editor.parts;
+/**
+ * 
+ * Copyright (c) 2004, QVT-Partners.
+ All rights reserved.
 
-import java.beans.PropertyChangeEvent;
+ Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 
-import no.hib.dpf.editor.displaymodel.DArrow;
+ * Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+ * Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+ * Neither the name of the QVT-Partners nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission. 
+
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, 
+ THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS 
+ BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE 
+ GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
+ STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
+ OF SUCH DAMAGE. 
+ */
+
+
+import no.hib.dpf.core.Arrow;
+import no.hib.dpf.diagram.DArrow;
+import no.hib.dpf.diagram.DOffset;
+import no.hib.dpf.diagram.DiagramPackage;
+import no.hib.dpf.editor.policies.ArrowTextMovePolicy;
 import no.hib.dpf.editor.policies.NameDirectEditPolicy;
-import no.hib.dpf.editor.policies.TextDirectEditManager;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;
-import no.hib.dpf.editor.preferences.PreferenceConstants;
+import no.hib.dpf.editor.tracker.ArrowTextTracker;
 
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
+import org.eclipse.draw2d.PolylineConnection;
+import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.gef.DragTracker;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.RequestConstants;
-import org.eclipse.jface.util.IPropertyChangeListener;
+import org.eclipse.gef.tools.DirectEditManager;
 import org.eclipse.jface.viewers.TextCellEditor;
 
-public class ArrowLabelEditPart extends LabelEditPart {
+public class ArrowLabelEditPart extends GraphicalEditPartWithListener{
 
-	@Override
-	protected boolean getVisible() {
-		return DPFEditorPreferences.getDefault().getDisplayArrows();
-	}
+	DirectEditManager manager = null;
 
-	@Override
-	protected boolean placeLabelAtEnd() {
-		return false;
+	protected Point getOffset(){
+		return getDOffset().getOffset();
 	}
 
-	@Override
-	protected String getFullName() {
-		if (DPFEditorPreferences.getDefault().getDisplayTypeNames()) {
-			return getModelParent().getName() + " : " + getModelParent().getTypeName();
-		} else {
-			return getModelParent().getName();
-		}
+	protected void listen(){
+		addUIAdapter(getDOffset(), diagrammodelListener);
+		DPFEditorPreferences.getDefault().getPreferenceStore().addPropertyChangeListener(propertyListener);
+	}
+	protected void unlisten(){
+		DPFEditorPreferences.getDefault().getPreferenceStore().removePropertyChangeListener(propertyListener);
+		removeUIAdapter(getDOffset(), diagrammodelListener);
 	}
 	
-	@Override
-	protected DArrow getModelParent() {
-		return (DArrow) getConnectionModel().getParent();
+	public IFigure createFigure() {
+		Label label = new Label();
+		label.setOpaque(true);
+		return label;
 	}
-	
-	public void propertyChange(PropertyChangeEvent evt) {
-		String request = evt.getPropertyName();
-		if (request.equals(DArrow.NAME_PROP) || request.equals(DArrow.PROP_CONFIGURE))
-			refreshVisuals();
-		else
-			super.propertyChange(evt);
-	}
-	
-	public void performRequest(Request request) {
-		if(getConnectionModel().isConstraintLabel())
-			return;
-		if (request.getType() == RequestConstants.REQ_DIRECT_EDIT) {
-			if (manager == null) {
-				manager = new TextDirectEditManager(this, TextCellEditor.class, new TextCellEditorLocator((Label) getFigure()));
-			}
-			manager.show();
-		}
-	}
-	
-	protected void listenToDisplayNameProperty() {
-		DPFEditorPreferences.getDefault().getPreferenceStore().addPropertyChangeListener(new IPropertyChangeListener() {
-			@Override
-			public void propertyChange(org.eclipse.jface.util.PropertyChangeEvent event) {
-				if ((event.getProperty().equals(PreferenceConstants.P_DISPLAY_ARROWS)) ||
-					(event.getProperty().equals(PreferenceConstants.P_DISPLAY_TYPES))) {
-					refreshVisuals();
-				}
-			}
-		});
-	}
-	
+
 	public void createEditPolicies() {
-		super.createEditPolicies();
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new ArrowTextMovePolicy());
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new NameDirectEditPolicy());
 	}
+
+	public DOffset getDOffset(){
+		return (DOffset) getModel();
+	}
+	
+	public DArrow getDArrow(){
+		EditPart parent = getParent();
+		if(parent instanceof DArrowEditPart){
+			return ((DArrowEditPart)parent).getDArrow();
+		}
+		return null;
+	}
+	
+	public DragTracker getDragTracker(Request request) {
+		return new ArrowTextTracker(this, (DArrowEditPart)getParent());
+	}
+
+	public Label getLabel() { return (Label)getFigure(); }
+
+	protected String getFullName() {
+		DArrow darrow = getDArrow();
+		if(darrow == null)
+			return "";
+		String result = darrow.getArrow().getName();
+		if(result == null) result = "";
+		Arrow type = darrow.getArrow().getTypeArrow();
+		if (DPFEditorPreferences.getDefault().getDisplayTypeNames() && type != null && type.getName() != null)
+			result += " : " + type.getName();
+		return result;
+	}	
+	@Override
+	protected void refreshVisuals() {
+		String arrowName = getFullName();
+		Label figure = getLabel();
+		figure.setText(arrowName);
+		figure.setVisible(DPFEditorPreferences.getDefault().getDisplayArrows());
+		DArrowEditPart parent = (DArrowEditPart) getParent();
+		PolylineConnection connFigure = (PolylineConnection)parent.getFigure();
+		ArrowLabelLocator constraint = new ArrowLabelLocator(arrowName, getOffset(), connFigure, true);
+		parent.setLayoutConstraint(this, getFigure(), constraint);
+	}
+
+	public DArrowEditPart getDArrowEditPart() {
+		return (DArrowEditPart) getParent();
+	}
+
+	public void performRequest(Request request) {
+		if (request.getType() == RequestConstants.REQ_DIRECT_EDIT) {
+			performDirectEdit();
+		}
+	}
+
+	protected void handleDiagramModelChanged(Notification msg){
+		if(msg.getNotifier() != null && msg.getNotifier() == getModel()){ 
+			switch(msg.getFeatureID(DOffset.class)){
+			case DiagramPackage.DOFFSET__OFFSET:
+				refreshVisuals();
+				break;
+			}
+		}
+	}
+	private void performDirectEdit() {
+		if (manager == null) {
+			manager = new TextDirectEditManager(this, TextCellEditor.class, new TextCellEditorLocator((Label) getFigure()));
+		}
+		manager.show();
+	}
+	
 	
 }

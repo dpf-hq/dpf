@@ -15,30 +15,29 @@
  */
 package no.hib.dpf.core.impl;
 
-import java.io.IOException;
 
-import no.hib.dpf.constant.DPFConstants;
+import java.util.Collection;
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.core.Graph;
-import no.hib.dpf.core.Signature;
+import no.hib.dpf.core.GraphHomomorphism;
 import no.hib.dpf.core.Node;
+import no.hib.dpf.core.Predicate;
+import no.hib.dpf.core.Signature;
 import no.hib.dpf.core.Specification;
+import no.hib.dpf.utils.DPFConstants;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 
 /**
@@ -49,15 +48,19 @@ import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link no.hib.dpf.core.impl.SpecificationImpl#getGraph <em>Graph</em>}</li>
- *   <li>{@link no.hib.dpf.core.impl.SpecificationImpl#getTypeGraph <em>Type Graph</em>}</li>
- *   <li>{@link no.hib.dpf.core.impl.SpecificationImpl#getSignature <em>Signature</em>}</li>
+ *   <li>{@link no.hib.dpf.core.impl.SpecificationImpl#getConstraints <em>Constraints</em>}</li>
+ *   <li>{@link no.hib.dpf.core.impl.SpecificationImpl#getMetaFile <em>Meta File</em>}</li>
  *   <li>{@link no.hib.dpf.core.impl.SpecificationImpl#getSignatureFile <em>Signature File</em>}</li>
+ *   <li>{@link no.hib.dpf.core.impl.SpecificationImpl#getSignature <em>Signature</em>}</li>
+ *   <li>{@link no.hib.dpf.core.impl.SpecificationImpl#getType <em>Type</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class SpecificationImpl extends EObjectImpl implements Specification {
+	
+
 	/**
 	 * The cached value of the '{@link #getGraph() <em>Graph</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -69,24 +72,34 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 	protected Graph graph;
 
 	/**
-	 * The cached value of the '{@link #getTypeGraph() <em>Type Graph</em>}' containment reference.
+	 * The cached value of the '{@link #getConstraints() <em>Constraints</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTypeGraph()
+	 * @see #getConstraints()
 	 * @generated
 	 * @ordered
 	 */
-	protected Graph typeGraph;
+	protected EList<Constraint> constraints;
 
 	/**
-	 * The cached value of the '{@link #getSignature() <em>Signature</em>}' reference.
+	 * The default value of the '{@link #getMetaFile() <em>Meta File</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSignature()
+	 * @see #getMetaFile()
 	 * @generated
 	 * @ordered
 	 */
-	protected Signature signature;
+	protected static final String META_FILE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getMetaFile() <em>Meta File</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMetaFile()
+	 * @generated
+	 * @ordered
+	 */
+	protected String metaFile = META_FILE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getSignatureFile() <em>Signature File</em>}' attribute.
@@ -109,14 +122,32 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 	protected String signatureFile = SIGNATURE_FILE_EDEFAULT;
 
 	/**
+	 * The cached value of the '{@link #getSignature() <em>Signature</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @see #getSignature()
+	 * @generated
+	 * @ordered
+	 */
+	protected Signature signature;
+
+	/**
+	 * The cached value of the '{@link #getType() <em>Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected Specification type;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	protected SpecificationImpl() {
 		super();
-		setTypeGraph(CoreFactory.eINSTANCE.createGraph());
-		setGraph(CoreFactory.eINSTANCE.createGraph());
 	}
 
 	/**
@@ -177,8 +208,20 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Graph getTypeGraph() {
-		return typeGraph;
+	public EList<Constraint> getConstraints() {
+		if (constraints == null) {
+			constraints = new EObjectContainmentEList<Constraint>(Constraint.class, this, CorePackage.SPECIFICATION__CONSTRAINTS);
+		}
+		return constraints;
+	}
+
+/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getMetaFile() {
+		return metaFile;
 	}
 
 	/**
@@ -186,14 +229,11 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTypeGraph(Graph newTypeGraph, NotificationChain msgs) {
-		Graph oldTypeGraph = typeGraph;
-		typeGraph = newTypeGraph;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CorePackage.SPECIFICATION__TYPE_GRAPH, oldTypeGraph, newTypeGraph);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
+	public void setMetaFile(String newMetaFile) {
+		String oldMetaFile = metaFile;
+		metaFile = newMetaFile;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.SPECIFICATION__META_FILE, oldMetaFile, metaFile));
 	}
 
 	/**
@@ -201,18 +241,20 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTypeGraph(Graph newTypeGraph) {
-		if (newTypeGraph != typeGraph) {
-			NotificationChain msgs = null;
-			if (typeGraph != null)
-				msgs = ((InternalEObject)typeGraph).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CorePackage.SPECIFICATION__TYPE_GRAPH, null, msgs);
-			if (newTypeGraph != null)
-				msgs = ((InternalEObject)newTypeGraph).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CorePackage.SPECIFICATION__TYPE_GRAPH, null, msgs);
-			msgs = basicSetTypeGraph(newTypeGraph, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.SPECIFICATION__TYPE_GRAPH, newTypeGraph, newTypeGraph));
+	public String getSignatureFile() {
+		return signatureFile;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSignatureFile(String newSignatureFile) {
+		String oldSignatureFile = signatureFile;
+		signatureFile = newSignatureFile;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.SPECIFICATION__SIGNATURE_FILE, oldSignatureFile, signatureFile));
 	}
 
 	/**
@@ -244,9 +286,10 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setSignature(Signature newSignature) {
+		if(newSignature == signature) return;
 		Signature oldSignature = signature;
 		signature = newSignature;
 		if (eNotificationRequired())
@@ -258,8 +301,16 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getSignatureFile() {
-		return signatureFile;
+	public Specification getType() {
+		if (type != null && type.eIsProxy()) {
+			InternalEObject oldType = (InternalEObject)type;
+			type = (Specification)eResolveProxy(oldType);
+			if (type != oldType) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CorePackage.SPECIFICATION__TYPE, oldType, type));
+			}
+		}
+		return type;
 	}
 
 	/**
@@ -267,11 +318,65 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSignatureFile(String newSignatureFile) {
-		String oldSignatureFile = signatureFile;
-		signatureFile = newSignatureFile;
+	public Specification basicGetType() {
+		return type;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setType(Specification newType) {
+		Specification oldType = type;
+		type = newType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.SPECIFICATION__SIGNATURE_FILE, oldSignatureFile, signatureFile));
+			eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.SPECIFICATION__TYPE, oldType, type));
+	}
+
+	//	/**
+//	 * <!-- begin-user-doc -->
+//	 * <!-- end-user-doc -->
+//	 * @generated NOT
+//	 */
+//	public Graph createOStar(Constraint constraint) {
+//		
+//		EList<Arrow> constrainedTypeArrows = constraint.getArrows();
+//		EList<Node> constrainedTypeNodes = constraint.getNodes();
+//		
+//		EList<Node> constrainedNodes = graph.getNodes(constrainedTypeNodes);
+//		EList<Arrow> constrainedArrows = graph.getArrows(constrainedTypeArrows);
+//		
+//		return graph.extractSubgraph(constrainedNodes, constrainedArrows);
+//	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Graph createGraph(String name) {
+		Graph graph = CoreFactory.eINSTANCE.createGraph();
+//		graph.setName(name);
+		setGraph(graph);
+		return graph;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return 
+	 * @generated NOT
+	 */
+	public Constraint createConstraint(Predicate predicate, String parameters, GraphHomomorphism mapping, EList<Node> stuckedNodes, EList<Arrow> stuckedArrows, EList<Node> typeNodes, EList<Arrow> typeArrows) {
+		Constraint constraint = CoreFactory.eINSTANCE.createConstraint();
+		constraint.setPredicate(predicate);
+		constraint.setMappings(mapping);
+		constraint.setParameters(parameters);
+		constraint.getNodes().addAll(stuckedNodes);
+		constraint.getArrows().addAll(stuckedArrows);
+		this.getConstraints().add(constraint);
+		return constraint;
 	}
 
 	/**
@@ -279,32 +384,9 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public void save(URI uri) throws IOException {
-		ResourceSet resourceSet = new ResourceSetImpl();
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new  XMLResourceFactoryImpl());		
-
-		Resource resource = resourceSet.createResource(uri);
-		Resource graph = resourceSet.createResource(DPFConstants.DefaultGraph);
-		graph.getContents().add(DPFConstants.REFLEXIVE_TYPE_GRAPH);
-		resource.getContents().add(this);		
-		
-		resource.save(null);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public Graph createOStar(Constraint constraint) {
-		
-		EList<Arrow> constrainedTypeArrows = constraint.getConstrainedArrows();
-		EList<Node> constrainedTypeNodes = constraint.getConstrainedNodes();
-		
-		EList<Node> constrainedNodes = graph.getNodes(constrainedTypeNodes);
-		EList<Arrow> constrainedArrows = graph.getArrows(constrainedTypeArrows);
-		
-		return graph.extractSubgraph(constrainedNodes, constrainedArrows);
+	public boolean validate() {
+		boolean result = true;
+		return result;
 	}
 
 	/**
@@ -317,8 +399,8 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 		switch (featureID) {
 			case CorePackage.SPECIFICATION__GRAPH:
 				return basicSetGraph(null, msgs);
-			case CorePackage.SPECIFICATION__TYPE_GRAPH:
-				return basicSetTypeGraph(null, msgs);
+			case CorePackage.SPECIFICATION__CONSTRAINTS:
+				return ((InternalEList<?>)getConstraints()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -333,13 +415,18 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 		switch (featureID) {
 			case CorePackage.SPECIFICATION__GRAPH:
 				return getGraph();
-			case CorePackage.SPECIFICATION__TYPE_GRAPH:
-				return getTypeGraph();
+			case CorePackage.SPECIFICATION__CONSTRAINTS:
+				return getConstraints();
+			case CorePackage.SPECIFICATION__META_FILE:
+				return getMetaFile();
+			case CorePackage.SPECIFICATION__SIGNATURE_FILE:
+				return getSignatureFile();
 			case CorePackage.SPECIFICATION__SIGNATURE:
 				if (resolve) return getSignature();
 				return basicGetSignature();
-			case CorePackage.SPECIFICATION__SIGNATURE_FILE:
-				return getSignatureFile();
+			case CorePackage.SPECIFICATION__TYPE:
+				if (resolve) return getType();
+				return basicGetType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -349,20 +436,28 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case CorePackage.SPECIFICATION__GRAPH:
 				setGraph((Graph)newValue);
 				return;
-			case CorePackage.SPECIFICATION__TYPE_GRAPH:
-				setTypeGraph((Graph)newValue);
+			case CorePackage.SPECIFICATION__CONSTRAINTS:
+				getConstraints().clear();
+				getConstraints().addAll((Collection<? extends Constraint>)newValue);
+				return;
+			case CorePackage.SPECIFICATION__META_FILE:
+				setMetaFile((String)newValue);
+				return;
+			case CorePackage.SPECIFICATION__SIGNATURE_FILE:
+				setSignatureFile((String)newValue);
 				return;
 			case CorePackage.SPECIFICATION__SIGNATURE:
 				setSignature((Signature)newValue);
 				return;
-			case CorePackage.SPECIFICATION__SIGNATURE_FILE:
-				setSignatureFile((String)newValue);
+			case CorePackage.SPECIFICATION__TYPE:
+				setType((Specification)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -371,7 +466,7 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void eUnset(int featureID) {
@@ -379,14 +474,20 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 			case CorePackage.SPECIFICATION__GRAPH:
 				setGraph((Graph)null);
 				return;
-			case CorePackage.SPECIFICATION__TYPE_GRAPH:
-				setTypeGraph((Graph)null);
+			case CorePackage.SPECIFICATION__CONSTRAINTS:
+				getConstraints().clear();
+				return;
+			case CorePackage.SPECIFICATION__META_FILE:
+				setMetaFile(META_FILE_EDEFAULT);
+				return;
+			case CorePackage.SPECIFICATION__SIGNATURE_FILE:
+				setSignatureFile(SIGNATURE_FILE_EDEFAULT);
 				return;
 			case CorePackage.SPECIFICATION__SIGNATURE:
 				setSignature((Signature)null);
 				return;
-			case CorePackage.SPECIFICATION__SIGNATURE_FILE:
-				setSignatureFile(SIGNATURE_FILE_EDEFAULT);
+			case CorePackage.SPECIFICATION__TYPE:
+				setType(DPFConstants.REFLEXIVE_SPECIFICATION);
 				return;
 		}
 		super.eUnset(featureID);
@@ -402,12 +503,16 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 		switch (featureID) {
 			case CorePackage.SPECIFICATION__GRAPH:
 				return graph != null;
-			case CorePackage.SPECIFICATION__TYPE_GRAPH:
-				return typeGraph != null;
-			case CorePackage.SPECIFICATION__SIGNATURE:
-				return signature != null;
+			case CorePackage.SPECIFICATION__CONSTRAINTS:
+				return constraints != null && !constraints.isEmpty();
+			case CorePackage.SPECIFICATION__META_FILE:
+				return META_FILE_EDEFAULT == null ? metaFile != null : !META_FILE_EDEFAULT.equals(metaFile);
 			case CorePackage.SPECIFICATION__SIGNATURE_FILE:
 				return SIGNATURE_FILE_EDEFAULT == null ? signatureFile != null : !SIGNATURE_FILE_EDEFAULT.equals(signatureFile);
+			case CorePackage.SPECIFICATION__SIGNATURE:
+				return signature != null;
+			case CorePackage.SPECIFICATION__TYPE:
+				return type != null && type != DPFConstants.REFLEXIVE_SPECIFICATION;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -422,7 +527,9 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (signatureFile: ");
+		result.append(" (metaFile: ");
+		result.append(metaFile);
+		result.append(", signatureFile: ");
 		result.append(signatureFile);
 		result.append(')');
 		return result.toString();

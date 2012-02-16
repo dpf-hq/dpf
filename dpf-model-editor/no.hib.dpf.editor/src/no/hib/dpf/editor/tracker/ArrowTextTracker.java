@@ -19,16 +19,16 @@ OF SUCH DAMAGE.
  */
 package no.hib.dpf.editor.tracker;
 
-import no.hib.dpf.editor.parts.ArrowEditPart;
+import no.hib.dpf.editor.parts.DArrowEditPart;
 
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.tools.DragEditPartsTracker;
 
 public class ArrowTextTracker extends DragEditPartsTracker {
 
-  ArrowEditPart arrow;
+  DArrowEditPart arrow;
 
-  public ArrowTextTracker(EditPart source, ArrowEditPart arrow)  {
+  public ArrowTextTracker(EditPart source, DArrowEditPart arrow)  {
   	super(source);
   	this.arrow = arrow;
   }

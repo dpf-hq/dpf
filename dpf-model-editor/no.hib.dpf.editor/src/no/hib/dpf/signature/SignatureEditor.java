@@ -1,10 +1,6 @@
 package no.hib.dpf.signature;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.EventObject;
 import java.util.Iterator;
@@ -12,13 +8,10 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import no.hib.dpf.api.ui.DPFErrorReport;
-import no.hib.dpf.constant.DPFConstants;
-import no.hib.dpf.core.Graph;
-import no.hib.dpf.core.Predicate;
-import no.hib.dpf.core.Signature;
+import no.hib.dpf.diagram.DPredicate;
+import no.hib.dpf.diagram.DSignature;
 import no.hib.dpf.editor.DPFCoreUtil;
-import no.hib.dpf.editor.displaymodel.DPFDiagram;
+import no.hib.dpf.editor.DPFErrorReport;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
@@ -27,12 +20,11 @@ import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 import org.eclipse.gef.DefaultEditDomain;
 import org.eclipse.gef.GraphicalViewer;
@@ -62,14 +54,14 @@ import org.eclipse.ui.dialogs.SaveAsDialog;
 import org.eclipse.ui.forms.editor.FormEditor;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.part.FileEditorInput;
+import no.hib.dpf.utils.*;
 
 public class SignatureEditor extends FormEditor implements CommandStackListener, ISelectionListener{
 
-	Signature signature = null;
+	DSignature dSignature = null;
 	private boolean isSignatureChanged = false;
 	private DefaultEditDomain editDomain;
 	
-	List<DPFDiagram> diagrams = new ArrayList<DPFDiagram>();
 	private String signatureFile;
 	public String getSignatureFile() {
 		return signatureFile;
@@ -120,21 +112,7 @@ public class SignatureEditor extends FormEditor implements CommandStackListener,
 	private Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
 	
 	private void saveSignature() {
-		try {
-			saveSignature(resourceSet, URI.createFileURI(signatureFile), signature, resourceToDiagnosticMap);
-			if(diagrams.size() == 0)
-				return;
-			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(signatureFile + ".graph"));
-			oos.writeBoolean(isSnapEnable);
-			oos.writeBoolean(isGridEnable);
-			oos.writeBoolean(isGridVisible);
-			for(DPFDiagram diagram : diagrams)
-				oos.writeObject(diagram);
-			oos.writeObject(null);
-			oos.close();
-		} catch (IOException e) {
-			DPFErrorReport.logError(e);
-		}
+		saveDSignature(resourceSet, URI.createFileURI(signatureFile), dSignature, resourceToDiagnosticMap);
 	}
 	
 	public boolean isDirty() {
@@ -156,6 +134,10 @@ public class SignatureEditor extends FormEditor implements CommandStackListener,
 				IFileEditorInput newInput = new FileEditorInput(file);
 				setInputWithNotify(newInput);
 				setPartName(newInput.getName());
+				URI oldBase = URI.createFileURI(signatureFile);
+				URI newBase = URI.createFileURI(file.getLocation().toOSString());
+				for(DPredicate predicate : dSignature.getDPredicates())
+					predicate.setIcon(DPFCoreUtil.updateRelativeURI(oldBase, newBase, URI.createFileURI(predicate.getIcon())).toFileString());
 				signatureFile = file.getLocation().toOSString();
 				doSave(new NullProgressMonitor());
 			}
@@ -177,82 +159,20 @@ public class SignatureEditor extends FormEditor implements CommandStackListener,
 		IFile file = ((IFileEditorInput)input).getFile();
 		signatureFile = file.getLocation().toOSString();
 		setPartName(file.getName());
-		loadSignature(signatureFile);
+		dSignature = loadDSignature(resourceSet, URI.createFileURI(signatureFile), resourceToDiagnosticMap);
 	}
 
 	protected CommandStack getCommandStack() {
 		return getEditDomain().getCommandStack();
 	}
 	
-	
-	private void loadSignature(String file){
-		
-		try {
-			URI uri = URI.createFileURI(file);
-			if(resourceSet == null)
-				resourceSet = getResourceSet();
-
-			Resource resource = DPFCoreUtil.getResource(resourceSet, uri, resourceToDiagnosticMap);
-			try {
-				resource.load(null);
-			} catch (IOException e) {
-				DPFErrorReport.logError(e);
-			}
-			Assert.isTrue(resource.getContents().size() == 1);
-			signature = (Signature) resource.getContents().get(0);
-			IFile iFile = ResourcesPlugin.getWorkspace().getRoot().getFileForLocation(new Path(file + ".graph"));
-			if(iFile == null || !iFile.exists())
-				return;
-			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file + ".graph"));
-			isSnapEnable = ois.readBoolean();
-			isGridEnable = ois.readBoolean();
-			isGridVisible = ois.readBoolean();
-			while(true){
-				Object object = ois.readObject();
-				if(object instanceof DPFDiagram){
-					DPFDiagram diagram = (DPFDiagram)object;
-					diagram.setDpfGraph(getGraph(signature, diagram.getGraphID()));
-					diagrams.add(diagram);
-					diagram.setDpfReferencesInViewModel();
-				}else
-					break;
-			}
-			ois.close();
-		} catch (IOException e) {
-			DPFErrorReport.logError(e);
-		} catch (ClassNotFoundException e) {
-			DPFErrorReport.logError(e);
-		}
-	}
-
-	private Graph getGraph(Signature signature2, String graphID) {
-		for(Predicate predicate : signature2.getPredicates())
-			if(predicate.getShape().getId().equals(graphID))
-				return predicate.getShape();
-		return null;
-	}
 	public void setDirty(boolean isDirty){
 		isSignatureChanged = isDirty;
 		firePropertyChange(IEditorPart.PROP_DIRTY);
 	}
 
-	public Signature getSignature() {
-		return signature;
-	}
-	public void addDGraph(List<DPFDiagram> dGraphs) {
-		if(!diagrams.containsAll(dGraphs))
-			diagrams.addAll(dGraphs);
-	}
-	
-	public void removeDGraph(List<DPFDiagram> dGraphs) {
-		if(diagrams.containsAll(dGraphs))
-			diagrams.removeAll(dGraphs);
-	}
-	public DPFDiagram findDGraph(Graph shape) {
-		for(DPFDiagram diagram : diagrams)
-			if(diagram.getDpfGraph() == shape)
-				return diagram;
-		return null;
+	public DSignature getSignature() {
+		return dSignature;
 	}
 	
 	private List<String> stackActions = new ArrayList<String>();
@@ -339,40 +259,35 @@ public class SignatureEditor extends FormEditor implements CommandStackListener,
 		return super.getAdapter(type);
 	}
 	
-	public List<DPFDiagram> findDGraph(List<?> selected) {
-		List<DPFDiagram> result = new ArrayList<DPFDiagram>();
-		for(Object predicate : selected)
-			if(predicate instanceof Predicate)
-				result.add(findDGraph(((Predicate)predicate).getShape()));
-			else
-				return result;
-		return result;
-	}
-	
 	public static ResourceSetImpl getResourceSet(){
 		ResourceSetImpl resourceSet = new ResourceSetImpl();
 		resourceSet.setURIResourceMap(new LinkedHashMap<URI, Resource>());
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("sig", new XMLResourceFactoryImpl());
-		Resource graph = resourceSet.createResource(DPFConstants.DefaultGraph);
-		graph.getContents().add(DPFConstants.REFLEXIVE_TYPE_GRAPH);
-		resourceSet.getURIResourceMap().put(DPFConstants.DefaultGraph, graph);
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("sig", new XMIResourceFactoryImpl());
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMLResourceFactoryImpl());
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("dpf", new XMLResourceFactoryImpl());
+		Resource dGraph = resourceSet.createResource(DPFConstants.DefaultDSpecification);
+		dGraph.getContents().add(DPFConstants.REFLEXIVE_DSPECIFICATION);
+		resourceSet.getURIResourceMap().put(DPFConstants.DefaultDSpecification, dGraph);
+		Resource graph = resourceSet.createResource(DPFConstants.DefaultSpecification);
+		graph.getContents().add(DPFConstants.REFLEXIVE_SPECIFICATION);
+		resourceSet.getURIResourceMap().put(DPFConstants.DefaultSpecification, graph);
 		return resourceSet;
 	}
 	
-	public static void saveSignature(ResourceSet resourceSet, URI osString, Signature signature2, 
+	public static void saveDSignature(ResourceSetImpl resourceSet, URI osString, DSignature signature2, 
 			Map<Resource, Diagnostic> resourceToDiagnosticMap) {
-		if(resourceSet == null)
-			resourceSet = getResourceSet();
-
-		Resource resource = DPFCoreUtil.getResource(resourceSet, osString, resourceToDiagnosticMap);
-
-		Assert.isNotNull(resource);
-		resource.getContents().add(signature2);		
-		
+		Assert.isNotNull(resourceSet);
+		Resource signature = resourceSet.getResource(osString, false);
+		if(signature == null){
+			signature = resourceSet.createResource(osString);
+			resourceSet.getURIResourceMap().put(osString, signature);
+			signature.getContents().add(signature2);
+			signature.getContents().add(signature2.getSignature());
+		}
 		try {
-			resource.save(null);
+			signature.save(null);
 		} catch (IOException e) {
-			DPFErrorReport.logError(e);
+			DPFCoreUtil.analyzeResourceProblems(signature, e, resourceToDiagnosticMap);
 		}
 	}
 	
@@ -389,25 +304,17 @@ public class SignatureEditor extends FormEditor implements CommandStackListener,
 //			manager.setZoom(diagram.getZoom());
 //		}
 	}
-	public static Signature loadSignature(ResourceSetImpl resourceSet2,
+	public static DSignature loadDSignature(ResourceSetImpl resourceSet2,
 			URI createFileURI,
 			Map<Resource, Diagnostic> resourceToDiagnosticMap2) {
-		if(resourceSet2 == null)
-			resourceSet2 = getResourceSet();
-		resourceSet2.getResourceFactoryRegistry().getExtensionToFactoryMap().put("sig", new XMLResourceFactoryImpl());
-		Resource graph = DPFCoreUtil.getResource(resourceSet2, DPFConstants.DefaultGraph, resourceToDiagnosticMap2);
-		if(graph == null){
-			graph = resourceSet2.createResource(DPFConstants.DefaultGraph);
-			graph.getContents().add(DPFConstants.REFLEXIVE_TYPE_GRAPH);
-			resourceSet2.getURIResourceMap().put(DPFConstants.DefaultGraph, graph);
-		}
-		Resource signature = DPFCoreUtil.getResource(resourceSet2, createFileURI, resourceToDiagnosticMap2);//resourceSet2.createResource(createFileURI);
+		Assert.isNotNull(resourceSet2);
+		Resource signature = resourceSet2.createResource(createFileURI);
 		try {
 			signature.load(null);
 		} catch (IOException e) {
 			DPFErrorReport.logError(e);
 		}
 		int size = signature.getContents().size();
-		return size == 1 ? (Signature) signature.getContents().get(0) : null;
+		return size == 2 ? (DSignature) signature.getContents().get(0) : null;
 	}	
 }
