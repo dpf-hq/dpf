@@ -54,6 +54,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link no.hib.dpf.core.impl.GraphImpl#getType <em>Type</em>}</li>
  *   <li>{@link no.hib.dpf.core.impl.GraphImpl#getNodes <em>Nodes</em>}</li>
  *   <li>{@link no.hib.dpf.core.impl.GraphImpl#getArrows <em>Arrows</em>}</li>
+ *   <li>{@link no.hib.dpf.core.impl.GraphImpl#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -89,6 +90,26 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	 * @ordered
 	 */
 	protected EList<Arrow> arrows;
+
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated NOT
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = "DEFAULT_GRAPH";
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -172,6 +193,27 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 			arrows = new EObjectContainmentWithInverseEList<Arrow>(Arrow.class, this, CorePackage.GRAPH__ARROWS, CorePackage.ARROW__GRAPH);
 		}
 		return arrows;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.GRAPH__NAME, oldName, name));
 	}
 
 	/**
@@ -515,6 +557,8 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 				return getNodes();
 			case CorePackage.GRAPH__ARROWS:
 				return getArrows();
+			case CorePackage.GRAPH__NAME:
+				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -539,6 +583,9 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 				getArrows().clear();
 				getArrows().addAll((Collection<? extends Arrow>)newValue);
 				return;
+			case CorePackage.GRAPH__NAME:
+				setName((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -560,6 +607,9 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 			case CorePackage.GRAPH__ARROWS:
 				getArrows().clear();
 				return;
+			case CorePackage.GRAPH__NAME:
+				name = NAME_EDEFAULT;
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -578,7 +628,25 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 				return nodes != null && !nodes.isEmpty();
 			case CorePackage.GRAPH__ARROWS:
 				return arrows != null && !arrows.isEmpty();
+			case CorePackage.GRAPH__NAME:
+				return name != null && !name.isEmpty() && !name.equals(NAME_EDEFAULT);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (name: ");
+		result.append(name);
+		result.append(')');
+		return result.toString();
 	}
 } //GraphImpl

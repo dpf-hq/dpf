@@ -299,7 +299,7 @@ public class DArrowImpl extends EObjectImpl implements DArrow {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setArrow(Arrow newArrow) {
 		if(newArrow == arrow) return;

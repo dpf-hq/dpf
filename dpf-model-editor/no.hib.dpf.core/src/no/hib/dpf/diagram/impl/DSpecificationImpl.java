@@ -710,7 +710,7 @@ public class DSpecificationImpl extends EObjectImpl implements DSpecification {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void eUnset(int featureID) {

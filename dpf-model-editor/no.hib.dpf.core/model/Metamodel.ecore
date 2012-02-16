@@ -92,6 +92,7 @@
               eType="#//hib/dpf/core/Node" containment="true" eOpposite="#//hib/dpf/core/Node/graph"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="arrows" upperBound="-1"
               eType="#//hib/dpf/core/Arrow" containment="true" eOpposite="#//hib/dpf/core/Arrow/graph"/>
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Node" eSuperTypes="#//hib/dpf/core/IDObject">
           <eOperations name="arrowCanMakeConnectionAsTarget" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">

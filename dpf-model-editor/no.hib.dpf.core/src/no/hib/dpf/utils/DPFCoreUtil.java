@@ -1,6 +1,11 @@
-package no.hib.dpf.editor;
+package no.hib.dpf.utils;
 
+import java.io.IOException;
+import java.util.LinkedHashMap;
 import java.util.Map;
+
+import no.hib.dpf.core.CoreFactory;
+import no.hib.dpf.core.Specification;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.Assert;
@@ -9,7 +14,9 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 public class DPFCoreUtil {
 
@@ -87,5 +94,31 @@ public class DPFCoreUtil {
 	
 	public static URI updateRelativeURI(URI oldBaseURI, URI newBaseURI, URI relative){
 		return relative.resolve(oldBaseURI).deresolve(newBaseURI);
+	}
+	
+	@SuppressWarnings("finally")
+	public static Specification loadSpecification(URI modelFileURI){
+		ResourceSetImpl resourceSet = new ResourceSetImpl();
+		resourceSet.setURIResourceMap(new LinkedHashMap<URI, Resource>());
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap() .put("xmi", new XMIResourceFactoryImpl());
+		Resource DefaultSpecification = resourceSet.createResource(DPFConstants.DefaultSpecification);
+		DefaultSpecification.getContents().add(DPFConstants.REFLEXIVE_SPECIFICATION);
+		resourceSet.getURIResourceMap().put(DPFConstants.DefaultSpecification, DefaultSpecification);
+		Resource model = resourceSet.createResource(modelFileURI);
+		resourceSet.getURIResourceMap().put(modelFileURI, model);
+		try {
+			model.load(null);
+		} catch (IOException e) {
+			analyzeResourceProblems(model, e, new LinkedHashMap<Resource, Diagnostic>());
+		} finally {
+			if (model.getContents().size() == 0) {
+				Specification result = CoreFactory.eINSTANCE.createSpecification();
+				model.getContents().add(result);
+				return result;
+			}
+			Specification dsp = (Specification) model.getContents().get(0);
+//			verifyAndUpdate(dsp);
+			return dsp;
+		}
 	}
 }

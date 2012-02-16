@@ -10,7 +10,6 @@ import java.util.Map;
 
 import no.hib.dpf.diagram.DPredicate;
 import no.hib.dpf.diagram.DSignature;
-import no.hib.dpf.editor.DPFCoreUtil;
 import no.hib.dpf.editor.DPFErrorReport;
 
 import org.eclipse.core.resources.IFile;

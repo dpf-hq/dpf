@@ -42,6 +42,7 @@ import no.hib.dpf.editor.parts.NodeTreeEditPartFactory;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;
 import no.hib.dpf.editor.preferences.PreferenceConstants;
 import no.hib.dpf.utils.DPFConstants;
+import no.hib.dpf.utils.DPFCoreUtil;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;

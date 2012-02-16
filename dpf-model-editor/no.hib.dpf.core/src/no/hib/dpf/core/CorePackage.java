@@ -298,13 +298,22 @@ public interface CorePackage extends EPackage {
 	int GRAPH__ARROWS = ID_OBJECT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPH__NAME = ID_OBJECT_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Graph</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPH_FEATURE_COUNT = ID_OBJECT_FEATURE_COUNT + 3;
+	int GRAPH_FEATURE_COUNT = ID_OBJECT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -766,6 +775,17 @@ public interface CorePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getGraph_Arrows();
+
+	/**
+	 * Returns the meta object for the attribute '{@link no.hib.dpf.core.Graph#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see no.hib.dpf.core.Graph#getName()
+	 * @see #getGraph()
+	 * @generated
+	 */
+	EAttribute getGraph_Name();
 
 	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.core.Node <em>Node</em>}'.
@@ -1375,6 +1395,14 @@ public interface CorePackage extends EPackage {
 		 * @generated
 		 */
 		EReference GRAPH__ARROWS = eINSTANCE.getGraph_Arrows();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GRAPH__NAME = eINSTANCE.getGraph_Name();
 
 		/**
 		 * The meta object literal for the '{@link no.hib.dpf.core.impl.NodeImpl <em>Node</em>}' class.

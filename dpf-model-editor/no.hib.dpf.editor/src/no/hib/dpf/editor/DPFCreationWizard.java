@@ -23,6 +23,7 @@ import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.diagram.DiagramFactory;
 import no.hib.dpf.signature.SignatureEditor;
 import no.hib.dpf.utils.DPFConstants;
+import no.hib.dpf.utils.DPFCoreUtil;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
