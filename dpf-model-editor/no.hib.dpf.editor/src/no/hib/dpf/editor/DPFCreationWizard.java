@@ -91,7 +91,6 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 			filename = DPFEditor.getWorkspaceDirectory();
 		typeLinkPage.setLinkTarget(filename);
 		
-		IDEWorkbenchMessages.WizardNewLinkPage_linkFileButton = "Load Signature specification:";
 		signatureLinkPage = new WizardNewLinkPage("Add Signature", IResource.FILE);
 		signatureLinkPage.setTitle("Include Signature");
 		signatureLinkPage.setLinkTarget(filename);

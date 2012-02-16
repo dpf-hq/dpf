@@ -218,7 +218,7 @@ public class DPredicateImpl extends EObjectImpl implements DPredicate {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setDGraph(DGraph newDGraph) {
 		if (newDGraph != dGraph) {
@@ -228,6 +228,8 @@ public class DPredicateImpl extends EObjectImpl implements DPredicate {
 			if (newDGraph != null)
 				msgs = ((InternalEObject)newDGraph).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DiagramPackage.DPREDICATE__DGRAPH, null, msgs);
 			msgs = basicSetDGraph(newDGraph, msgs);
+			if(predicate != null)
+				predicate.setShape(newDGraph.getGraph());
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
