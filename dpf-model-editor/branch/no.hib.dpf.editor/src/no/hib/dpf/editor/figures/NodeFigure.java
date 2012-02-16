@@ -18,10 +18,12 @@ import no.hib.dpf.editor.preferences.PreferenceConstants;
 
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Figure;
+import org.eclipse.draw2d.GridData;
+import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.LineBorder;
-import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.jface.util.IPropertyChangeListener;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 
 public class NodeFigure extends Figure implements RoutableFigure {
@@ -78,10 +80,8 @@ public class NodeFigure extends Figure implements RoutableFigure {
 	public NodeFigure(EditableLabel name, List colums) {
 
 		nameLabel = name;
-		ToolbarLayout layout = new ToolbarLayout();
-		layout.setHorizontal(false);
-		layout.setStretchMinorAxis(true);
-		setLayoutManager(layout);
+		GridLayout layout = new GridLayout(1, true);
+		layout.setConstraint(nameLabel, new GridData(SWT.CENTER, SWT.CENTER, true, true));
 		setBorder(new LineBorder(ColorConstants.black, 1));
 		setBackgroundColor(tableColor);
 		setForegroundColor(ColorConstants.black);

@@ -1,17 +1,25 @@
 package no.hib.dpf.signature;
 
-
+import no.hib.dpf.api.ui.DPFErrorReport;
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.IDObject;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Predicate;
 import no.hib.dpf.core.ValidatorType;
 import no.hib.dpf.core.VisualizationType;
+import no.hib.dpf.editor.DPFPlugin;
 import no.hib.dpf.editor.displaymodel.DPFDiagram;
 import no.hib.dpf.editor.parts.UIAdapter;
 
+import org.eclipse.core.resources.IContainer;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -27,6 +35,8 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ViewerFilter;
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.FocusListener;
@@ -38,16 +48,23 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.IWorkbenchPartSite;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.dialogs.ElementTreeSelectionDialog;
+import org.eclipse.ui.dialogs.ISelectionStatusValidator;
 import org.eclipse.ui.forms.IDetailsPage;
 import org.eclipse.ui.forms.IFormPart;
 import org.eclipse.ui.forms.IManagedForm;
 import org.eclipse.ui.forms.editor.FormPage;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Section;
+import org.eclipse.ui.model.WorkbenchContentProvider;
+import org.eclipse.ui.model.WorkbenchLabelProvider;
+import org.eclipse.ui.views.navigator.ResourceComparator;
 
 public class PredicateDetailBlock extends PredicateEditor implements IDetailsPage {
 
@@ -280,12 +297,15 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 		iconChooser.addSelectionListener(new SelectionListener() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				FileDialog dialog = new FileDialog(e.display.getActiveShell());
-				dialog.setFileName(master.getMultiEditor().getSignatureFile());
-				String fileName = dialog.open();
-				URI base = predicate.eResource().getURI();
-				URI relative = URI.createFileURI(fileName);
-				fileName = relative.deresolve(base).toFileString();
+				IFile signature = ((IFileEditorInput)master.getMultiEditor().getEditorInput()).getFile();
+				IProject project = signature.getProject();
+				URI uri = predicate.eResource().getURI();
+				System.out.println(uri);
+				IResource image = FileSelection.select(e.display.getActiveShell(), "Icon Selection", "Select a image", null, "This is not a image file", project, null, null);
+				URI relative = URI.createFileURI(image.getLocation().toOSString());
+				System.out.println(relative);
+				String fileName = relative.deresolve(uri).path();
+				System.out.println(fileName);
 				if (fileName != null && !fileName.equals(predicate.getIcon())) {
 					changePredicateIcon(fileName);
 					icon.setText(fileName);
@@ -297,7 +317,68 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 		});
 	}
 	
+public static class FileSelection{
+	public static final IResource select(Shell shell, String title, String message, final String[] suffixs, final String validErrorMessage, IProject project, IFile file, String helpId){
+		//This is copy from org.eclipse.pde.internal.ui.editor.plugin.ExtensionPointDetails
+		ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(shell, new WorkbenchLabelProvider(), new WorkbenchContentProvider());
+		dialog.setTitle(title);
+		dialog.setMessage(message);
+		dialog.setDoubleClickSelects(false);
+		dialog.setAllowMultiple(false);
+		if(suffixs != null)
+		dialog.addFilter(new ViewerFilter() {
+			public boolean select(Viewer viewer, Object parent, Object element) {
+				if (element instanceof IFile) {
+					String ext = ((IFile) element).getFullPath().getFileExtension();
+					for (int i = 0; i < suffixs.length; i++) 
+						if(suffixs[i].equals(ext))
+							return true;
+					return false;
+				} else if (element instanceof IContainer) { // i.e. IProject, IFolder
+					try {
+						IResource[] resources = ((IContainer) element).members();
+						for (int i = 0; i < resources.length; i++) {
+							if (select(viewer, parent, resources[i]))
+								return true;
+						}
+					} catch (CoreException e) {
+						DPFErrorReport.logError(e);
+					}
+				}
+				return false;
+			}
+		});
+		dialog.setValidator(new ISelectionStatusValidator() {
+			public IStatus validate(Object[] selection) {
 
+				String errorMessage = validErrorMessage == null ? "" : validErrorMessage;
+				if (selection == null || selection.length != 1 || !(selection[0] instanceof IFile) )
+					return new Status(IStatus.ERROR, DPFPlugin.PLUGIN_ID, IStatus.ERROR, errorMessage, null);
+				IFile file = (IFile) selection[0];
+				String ext = file.getFullPath().getFileExtension();
+				if(suffixs == null)
+					return new Status(IStatus.OK, DPFPlugin.PLUGIN_ID, IStatus.OK, "", null);
+				for (int i = 0; i < suffixs.length; i++) 
+					if(suffixs[i].equals(ext))
+						return new Status(IStatus.OK, DPFPlugin.PLUGIN_ID, IStatus.OK, "", null);
+				return new Status(IStatus.ERROR, DPFPlugin.PLUGIN_ID, IStatus.ERROR, errorMessage, null);
+			}
+		});
+		dialog.setStatusLineAboveButtons(true);
+		dialog.setInput(project);
+		dialog.setComparator(new ResourceComparator(ResourceComparator.NAME));
+		if(file != null)
+			dialog.setInitialSelection(file);
+		dialog.create();
+		if(helpId != null)PlatformUI.getWorkbench().getHelpSystem().setHelp(dialog.getShell(), helpId);
+		if (dialog.open() == Window.OK) {
+			Object[] elements = dialog.getResult();
+			if (elements.length > 0) 
+				return (IResource) elements[0];
+		}
+		return null;
+	}
+}
 	@Override
 	public void createContents(Composite parent) {
 		parent.setLayout(new GridLayout());
