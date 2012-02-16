@@ -1,6 +1,6 @@
 /**
  * <copyright>
- * Copyright (c) 2011 H¿yskolen i Bergen
+ * Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,14 +8,13 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * Adrian Rutle, ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * Adrian Rutle, ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
  * </copyright>
  *
  * $Id$
  */
 package no.hib.dpf.core.impl;
 
-import java.io.IOException;
 import java.util.Map;
 
 import no.hib.dpf.core.Arrow;
@@ -30,6 +29,7 @@ import no.hib.dpf.core.IrreflexiveSemantics;
 import no.hib.dpf.core.JointlySurjectiveSemantics;
 import no.hib.dpf.core.ModelHierarchy;
 import no.hib.dpf.core.MultiplicitySemantics;
+import no.hib.dpf.core.NANDSemantics;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Predicate;
 import no.hib.dpf.core.SemanticsValidator;
@@ -38,13 +38,14 @@ import no.hib.dpf.core.Specification;
 import no.hib.dpf.core.SurjectiveSemantics;
 import no.hib.dpf.core.TransitiveIrreflexiveSemantics;
 import no.hib.dpf.core.TypingMorphism;
+import no.hib.dpf.core.ValidatorType;
 import no.hib.dpf.core.Visualization;
+import no.hib.dpf.core.VisualizationType;
 import no.hib.dpf.core.XORSemantics;
 
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -216,14 +217,21 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EDataType euriEDataType = null;
+	private EClass nandSemanticsEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EDataType eioExceptionEDataType = null;
+	private EEnum validatorTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum visualizationTypeEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -444,6 +452,15 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getSignature_Name() {
+		return (EAttribute)signatureEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getPredicate() {
 		return predicateEClass;
 	}
@@ -471,8 +488,17 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getPredicate_Parameters() {
+		return (EAttribute)predicateEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getPredicate_Visualization() {
-		return (EReference)predicateEClass.getEStructuralFeatures().get(2);
+		return (EReference)predicateEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -481,7 +507,16 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 	 * @generated
 	 */
 	public EAttribute getPredicate_Symbol() {
-		return (EAttribute)predicateEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)predicateEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPredicate_Icon() {
+		return (EAttribute)predicateEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -498,8 +533,53 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getSemanticsValidator_Type() {
+		return (EAttribute)semanticsValidatorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSemanticsValidator_Validator() {
+		return (EAttribute)semanticsValidatorEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getVisualization() {
 		return visualizationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getVisualization_Type() {
+		return (EAttribute)visualizationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getVisualization_Source() {
+		return (EReference)visualizationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getVisualization_Target() {
+		return (EReference)visualizationEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -714,6 +794,24 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getSpecification_Signature() {
+		return (EReference)specificationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSpecification_SignatureFile() {
+		return (EAttribute)specificationEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getModelHierarchy() {
 		return modelHierarchyEClass;
 	}
@@ -795,8 +893,8 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EDataType getEURI() {
-		return euriEDataType;
+	public EClass getNANDSemantics() {
+		return nandSemanticsEClass;
 	}
 
 	/**
@@ -804,8 +902,17 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EDataType getEIOException() {
-		return eioExceptionEDataType;
+	public EEnum getValidatorType() {
+		return validatorTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getVisualizationType() {
+		return visualizationTypeEEnum;
 	}
 
 	/**
@@ -856,16 +963,24 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 
 		signatureEClass = createEClass(SIGNATURE);
 		createEReference(signatureEClass, SIGNATURE__PREDICATES);
+		createEAttribute(signatureEClass, SIGNATURE__NAME);
 
 		predicateEClass = createEClass(PREDICATE);
 		createEReference(predicateEClass, PREDICATE__SHAPE);
 		createEReference(predicateEClass, PREDICATE__SEMANTICS_VALIDATOR);
+		createEAttribute(predicateEClass, PREDICATE__PARAMETERS);
 		createEReference(predicateEClass, PREDICATE__VISUALIZATION);
 		createEAttribute(predicateEClass, PREDICATE__SYMBOL);
+		createEAttribute(predicateEClass, PREDICATE__ICON);
 
 		semanticsValidatorEClass = createEClass(SEMANTICS_VALIDATOR);
+		createEAttribute(semanticsValidatorEClass, SEMANTICS_VALIDATOR__TYPE);
+		createEAttribute(semanticsValidatorEClass, SEMANTICS_VALIDATOR__VALIDATOR);
 
 		visualizationEClass = createEClass(VISUALIZATION);
+		createEAttribute(visualizationEClass, VISUALIZATION__TYPE);
+		createEReference(visualizationEClass, VISUALIZATION__SOURCE);
+		createEReference(visualizationEClass, VISUALIZATION__TARGET);
 
 		nodeToNodeMapEClass = createEClass(NODE_TO_NODE_MAP);
 		createEReference(nodeToNodeMapEClass, NODE_TO_NODE_MAP__KEY);
@@ -896,6 +1011,8 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 		specificationEClass = createEClass(SPECIFICATION);
 		createEReference(specificationEClass, SPECIFICATION__GRAPH);
 		createEReference(specificationEClass, SPECIFICATION__TYPE_GRAPH);
+		createEReference(specificationEClass, SPECIFICATION__SIGNATURE);
+		createEAttribute(specificationEClass, SPECIFICATION__SIGNATURE_FILE);
 
 		modelHierarchyEClass = createEClass(MODEL_HIERARCHY);
 		createEReference(modelHierarchyEClass, MODEL_HIERARCHY__SPECIFICATIONS);
@@ -914,9 +1031,11 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 
 		surjectiveSemanticsEClass = createEClass(SURJECTIVE_SEMANTICS);
 
-		// Create data types
-		euriEDataType = createEDataType(EURI);
-		eioExceptionEDataType = createEDataType(EIO_EXCEPTION);
+		nandSemanticsEClass = createEClass(NAND_SEMANTICS);
+
+		// Create enums
+		validatorTypeEEnum = createEEnum(VALIDATOR_TYPE);
+		visualizationTypeEEnum = createEEnum(VISUALIZATION_TYPE);
 	}
 
 	/**
@@ -958,6 +1077,7 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 		xorSemanticsEClass.getESuperTypes().add(this.getSemanticsValidator());
 		transitiveIrreflexiveSemanticsEClass.getESuperTypes().add(this.getSemanticsValidator());
 		surjectiveSemanticsEClass.getESuperTypes().add(this.getSemanticsValidator());
+		nandSemanticsEClass.getESuperTypes().add(this.getSemanticsValidator());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(graphEClass, Graph.class, "Graph", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1071,10 +1191,7 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 
 		initEClass(signatureEClass, Signature.class, "Signature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSignature_Predicates(), this.getPredicate(), null, "predicates", null, 0, -1, Signature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		op = addEOperation(signatureEClass, null, "save", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getEURI(), "uri", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, this.getEIOException());
+		initEAttribute(getSignature_Name(), ecorePackage.getEString(), "name", null, 0, 1, Signature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = addEOperation(signatureEClass, this.getPredicate(), "getPredicateBySymbol", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "symbol", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -1082,8 +1199,10 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 		initEClass(predicateEClass, Predicate.class, "Predicate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPredicate_Shape(), this.getGraph(), null, "shape", null, 0, 1, Predicate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPredicate_SemanticsValidator(), this.getSemanticsValidator(), null, "semanticsValidator", null, 0, 1, Predicate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPredicate_Visualization(), this.getVisualization(), null, "visualization", null, 0, 1, Predicate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPredicate_Parameters(), ecorePackage.getEString(), "parameters", null, 0, 1, Predicate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPredicate_Visualization(), this.getVisualization(), null, "visualization", null, 0, 1, Predicate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPredicate_Symbol(), ecorePackage.getEString(), "symbol", null, 1, 1, Predicate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPredicate_Icon(), ecorePackage.getEString(), "icon", null, 0, 1, Predicate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = addEOperation(predicateEClass, this.getConstraint(), "createConstraint", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getNode(), "nodes", 0, -1, IS_UNIQUE, IS_ORDERED);
@@ -1101,7 +1220,14 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 		addEParameter(op, this.getNode(), "typeNodes", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getArrow(), "typeArrows", 0, -1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(semanticsValidatorEClass, SemanticsValidator.class, "SemanticsValidator", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		op = addEOperation(predicateEClass, ecorePackage.getEBoolean(), "validateSemantics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "parameters", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getGraphHomomorphism(), "mapping", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getGraph(), "graph", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(semanticsValidatorEClass, SemanticsValidator.class, "SemanticsValidator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSemanticsValidator_Type(), this.getValidatorType(), "type", null, 0, 1, SemanticsValidator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSemanticsValidator_Validator(), ecorePackage.getEString(), "validator", null, 0, 1, SemanticsValidator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = addEOperation(semanticsValidatorEClass, ecorePackage.getEBooleanObject(), "validateSemantics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getGraph(), "oStar", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -1109,7 +1235,10 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 		addEParameter(op, this.getNode(), "typeNodes", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getArrow(), "typeArrows", 0, -1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(visualizationEClass, Visualization.class, "Visualization", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(visualizationEClass, Visualization.class, "Visualization", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getVisualization_Type(), this.getVisualizationType(), "type", null, 0, 1, Visualization.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getVisualization_Source(), this.getIDObject(), null, "source", null, 0, 1, Visualization.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getVisualization_Target(), this.getIDObject(), null, "target", null, 0, 1, Visualization.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(nodeToNodeMapEClass, Map.Entry.class, "NodeToNodeMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getNodeToNodeMap_Key(), this.getNode(), null, "key", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1149,10 +1278,8 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 		initEClass(specificationEClass, Specification.class, "Specification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSpecification_Graph(), this.getGraph(), null, "graph", null, 1, 1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSpecification_TypeGraph(), this.getGraph(), null, "typeGraph", null, 0, 1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		op = addEOperation(specificationEClass, null, "save", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getEURI(), "uri", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, this.getEIOException());
+		initEReference(getSpecification_Signature(), this.getSignature(), null, "signature", null, 0, 1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSpecification_SignatureFile(), ecorePackage.getEString(), "signatureFile", null, 0, 1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = addEOperation(specificationEClass, this.getGraph(), "createOStar", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getConstraint(), "constraint", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -1174,9 +1301,19 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 
 		initEClass(surjectiveSemanticsEClass, SurjectiveSemantics.class, "SurjectiveSemantics", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		// Initialize data types
-		initEDataType(euriEDataType, URI.class, "EURI", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
-		initEDataType(eioExceptionEDataType, IOException.class, "EIOException", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEClass(nandSemanticsEClass, NANDSemantics.class, "NANDSemantics", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		// Initialize enums and add enum literals
+		initEEnum(validatorTypeEEnum, ValidatorType.class, "ValidatorType");
+		addEEnumLiteral(validatorTypeEEnum, ValidatorType.OCL);
+		addEEnumLiteral(validatorTypeEEnum, ValidatorType.JAVA);
+
+		initEEnum(visualizationTypeEEnum, VisualizationType.class, "VisualizationType");
+		addEEnumLiteral(visualizationTypeEEnum, VisualizationType.ARROW_LABEL);
+		addEEnumLiteral(visualizationTypeEEnum, VisualizationType.NODE_TO_NODE);
+		addEEnumLiteral(visualizationTypeEEnum, VisualizationType.NODE_TO_ARROW);
+		addEEnumLiteral(visualizationTypeEEnum, VisualizationType.ARROW_TO_NODE);
+		addEEnumLiteral(visualizationTypeEEnum, VisualizationType.ARROW_TO_ARROW);
 
 		// Create resource
 		createResource(eNS_URI);

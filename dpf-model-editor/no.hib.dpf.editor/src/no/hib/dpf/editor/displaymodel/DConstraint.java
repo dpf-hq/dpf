@@ -1,7 +1,7 @@
 /*******************************************************************************
  * Copyright (c) 2004, 2005 Elias Volanakis and others.
  * 
- * Portions of the code Copyright (c) 2011 H¿yskolen i Bergen
+ * Portions of the code Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,7 +11,7 @@
  * Contributors:
  * Elias Volanakis - initial API and implementation
  * 
- * ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
 *******************************************************************************/
 package no.hib.dpf.editor.displaymodel;
 
@@ -42,7 +42,7 @@ import org.eclipse.ui.views.properties.IPropertyDescriptor;
 
 public class DConstraint extends ModelElement implements Constraint, IDObjectContainer {
 
-	private static final IPropertyDescriptor[] descriptors = new IPropertyDescriptor[1];
+	private transient IPropertyDescriptor[] descriptors = null;
 	private static final long serialVersionUID = 1;
 
 	/** True, if the connection is attached to its endpoints. */
@@ -54,7 +54,8 @@ public class DConstraint extends ModelElement implements Constraint, IDObjectCon
 	
 	private transient Constraint constraintComponent;
 	private String constraintID;
-
+	public static final String PARAMETER_PROP = "Constraint.Parameter";
+	
 	@Override
 	public String getIDObjectID() {
 		return constraintID;
@@ -71,12 +72,14 @@ public class DConstraint extends ModelElement implements Constraint, IDObjectCon
 		IRREFLEXIVE,
 		TRANSITIVE_IRREFLEXIVE,
 		SURJECTIVE,
-		XOR
+		XOR,
+		NAND
 	}
 	
 	protected ConstraintType constraintType;
 	
-	protected DConstraint() {}
+	protected DConstraint() {
+	}
 	
 	/**
 	 * Create a constraint between two arrows.
@@ -138,7 +141,49 @@ public class DConstraint extends ModelElement implements Constraint, IDObjectCon
 	 * 
 	 * @see org.eclipse.ui.views.properties.IPropertySource#getPropertyDescriptors()
 	 */
+	public static String[] EMPTY_STRING = new String[0];
+	private transient String[] properties = null;
+	private transient String[] values = null;
+	public String[] getValues() {
+		if(values == null)
+			initProperties();
+		return values;
+	}
+
+	private void initProperties() {
+		properties = EMPTY_STRING;
+		values = EMPTY_STRING;
+		String parString = getParameters();
+		if(parString.isEmpty())
+			return;
+		String[] paras = parString.split(";");
+		properties = new String[paras.length];
+		values = new String[paras.length];
+		for (int i = 0; i < paras.length; i++) {
+			String string = paras[i];
+			String[] keyValue = string.split(":");
+			if(keyValue.length != 2){
+				properties = EMPTY_STRING;
+				values = EMPTY_STRING;
+				return;
+			}
+			String key = keyValue[0];
+			properties[i] = key;
+			String value = keyValue[1];
+			values[i] = value;
+		}
+	}
+
 	public IPropertyDescriptor[] getPropertyDescriptors() {
+		if(descriptors == null){
+			if(values == null)
+				initProperties();
+			descriptors = new IPropertyDescriptor[values.length];
+			for (int i = 0; i < values.length; i++) {
+				String key = properties[i];
+				descriptors[i] = new NegativeIntegerTextPropertyDescriptor(key, key);
+			}
+		}
 		return descriptors;
 	}
 
@@ -148,7 +193,41 @@ public class DConstraint extends ModelElement implements Constraint, IDObjectCon
 	 * @see org.eclipse.ui.views.properties.IPropertySource#getPropertyValue(java.lang.Object)
 	 */
 	public Object getPropertyValue(Object id) {
+		int i = 0;
+		for (; i < properties.length; i++) {
+			 if(id.equals(properties[i]))
+				 break;
+			
+		}
+		if(i < properties.length)
+			return values[i];
 		return super.getPropertyValue(id);
+	}
+
+	public void setPropertyValue(Object id, Object value) {
+		int i = 0;
+		for (; i < properties.length; i++) {
+			 if(id.equals(properties[i]))
+				 break;
+			
+		}
+		if(i < properties.length && !values[i].equals(value)){
+			values[i] = (String) value;
+			setParameters(construstParameterString());
+		}
+		else 
+			super.setPropertyValue(id, value);
+	}
+	private String construstParameterString() {
+		String result = "";
+		for (int i = 0; i < properties.length; i++) {
+			result += properties[i];
+			result += ":";
+			result += values[i];
+			if(i != properties.length - 1)
+				result += ";";
+		}
+		return result;
 	}
 
 	/**
@@ -373,7 +452,9 @@ public class DConstraint extends ModelElement implements Constraint, IDObjectCon
 
 	@Override
 	public void setParameters(String value) {
+		String old = constraintComponent.getParameters();
 		constraintComponent.setParameters(value);
+		firePropertyChange(PARAMETER_PROP, old, value);
 	}
 
 }

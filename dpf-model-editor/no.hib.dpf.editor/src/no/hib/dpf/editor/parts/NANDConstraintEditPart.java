@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2011 H¿yskolen i Bergen
+ * Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,27 +7,14 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
 *******************************************************************************/
 package no.hib.dpf.editor.parts;
 
+public class NANDConstraintEditPart extends TwoArrowsOneNodeConstraintEditPart {
 
-public class ArrowConstraintLabelEditPart extends ArrowLabelEditPart {
-
-	@Override
-	protected boolean getVisible() {
-		return true;
+	public NANDConstraintEditPart() {
+		labelText = "[nand]";
 	}
-
-	@Override
-	protected boolean placeLabelAtEnd() {
-		return true;
-	}
-
-	@Override
-	protected String getFullName() {
-		return getConnectionModel().getLabelText();
-	}
-	
 
 }

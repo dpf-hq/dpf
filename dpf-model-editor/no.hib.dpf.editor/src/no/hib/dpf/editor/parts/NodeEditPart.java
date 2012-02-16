@@ -1,7 +1,7 @@
 /*******************************************************************************
  * Copyright (c) 2004, 2005 Elias Volanakis and others.
  * 
- * Portions of the code Copyright (c) 2011 H¿yskolen i Bergen
+ * Portions of the code Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,7 +11,7 @@
  * Contributors:
  * Elias Volanakis - initial API and implementation
  * 
- * ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
 *******************************************************************************/
 package no.hib.dpf.editor.parts;
 
@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import no.hib.dpf.core.Arrow;
+import no.hib.dpf.api.ui.DPFErrorReport;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.editor.displaymodel.DArrow;
 import no.hib.dpf.editor.displaymodel.DNode;
@@ -30,12 +30,19 @@ import no.hib.dpf.editor.displaymodel.LocationAndSize;
 import no.hib.dpf.editor.displaymodel.ModelElement;
 import no.hib.dpf.editor.displaymodel.commands.ConnectionReconnectCommand;
 import no.hib.dpf.editor.displaymodel.commands.VArrowCreateCommand;
+import no.hib.dpf.editor.extension_points.FigureConfigureManager;
+import no.hib.dpf.editor.extension_points.INodePainting;
 import no.hib.dpf.editor.figures.EditableLabel;
 import no.hib.dpf.editor.figures.MultipleArrowsChopboxAnchor;
 import no.hib.dpf.editor.figures.NodeFigure;
+import no.hib.dpf.editor.parts.TextCellEditorLocator;
+import no.hib.dpf.editor.policies.NameDirectEditPolicy;
+import no.hib.dpf.editor.policies.TextDirectEditManager;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;
 import no.hib.dpf.editor.preferences.PreferenceConstants;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.draw2d.ChopboxAnchor;
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
@@ -44,13 +51,14 @@ import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
+import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy;
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.jface.util.IPropertyChangeListener;
-
+import org.eclipse.jface.viewers.TextCellEditor;
 
 /**
  * <p>This edit part must implement the PropertyChangeListener interface, 
@@ -63,6 +71,22 @@ public class NodeEditPart extends AbstractGraphicalEditPart implements
 		PropertyChangeListener, org.eclipse.gef.NodeEditPart {
 
 	private Map<NodeEditPart, List<ConnectionAnchor>> anchors = new HashMap<NodeEditPart, List<ConnectionAnchor>>();
+
+	protected IConfigurationElement configure = null;
+
+	public IConfigurationElement getConfigure() {
+		return configure;
+	}
+
+	public void setConfigure(IConfigurationElement configure) {
+		this.configure = configure;
+		
+	}
+
+	public NodeEditPart(IConfigurationElement figure) {
+		super();
+		configure = figure;
+	}
 
 	public NodeEditPart() {
 		listenToDisplayNameProperty();
@@ -91,6 +115,16 @@ public class NodeEditPart extends AbstractGraphicalEditPart implements
 		});
 	}
 
+	 @Override
+     public void performRequest(Request req) {
+           if (req.getType().equals(RequestConstants.REQ_DIRECT_EDIT)) {
+        	   TextDirectEditManager manager = new TextDirectEditManager(this, TextCellEditor.class, new TextCellEditorLocator(((NodeFigure)getFigure()).getNameLabel()));
+        	   manager.show();
+        	   return;
+           }
+           super.performRequest(req);
+     }
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -98,8 +132,8 @@ public class NodeEditPart extends AbstractGraphicalEditPart implements
 	 */
 	protected void createEditPolicies() {
 		// allow removal of the associated model element
-		installEditPolicy(EditPolicy.COMPONENT_ROLE,
-				new NodeComponentEditPolicy());
+		installEditPolicy(EditPolicy.COMPONENT_ROLE, new NodeComponentEditPolicy());
+		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new NameDirectEditPolicy());
 		// allow the creation of connections and
 		// and the reconnection of connections between Shape instances
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE,
@@ -109,7 +143,8 @@ public class NodeEditPart extends AbstractGraphicalEditPart implements
 							CreateConnectionRequest request) {
 						VArrowCreateCommand cmd = (VArrowCreateCommand) request
 								.getStartCommand();
-						cmd.setTarget((DNode) getHost().getModel());
+						if(cmd != null)
+							cmd.setTarget((DNode) getHost().getModel());
 						return cmd;
 					}
 
@@ -118,12 +153,11 @@ public class NodeEditPart extends AbstractGraphicalEditPart implements
 
 						DNode source = (DNode) getHost().getModel();
 						Object objectType = request.getNewObjectType();
-						Arrow typeArrow = null;
-						if (objectType instanceof Arrow) {
-							typeArrow = (Arrow)objectType;
+						VArrowCreateCommand cmd = null;
+						if (objectType == DArrow.class) {
+							DArrow darrow = (DArrow) request.getNewObject();
+							cmd = new VArrowCreateCommand(darrow, source);
 						}
-						VArrowCreateCommand cmd = new VArrowCreateCommand(
-								source, typeArrow);
 						request.setStartCommand(cmd);
 						return cmd;
 					}
@@ -178,13 +212,11 @@ public class NodeEditPart extends AbstractGraphicalEditPart implements
 	}
 
 	private String getFullName() {
-		
 		if (DPFEditorPreferences.getDefault().getDisplayTypeNames()) {
 			return getShape().getNameExec() + " : " + getShape().getTypeName();
 		} else {
 			return getShape().getNameExec();
 		}
-		
 	}
 
 	/**
@@ -195,7 +227,22 @@ public class NodeEditPart extends AbstractGraphicalEditPart implements
 	}
 
 	protected IFigure createFigure() {
+		if(configure != null)
+			getNodePaint();
+		if(nodePaint != null)
+			return nodePaint.createNodeFigure();
 		return new NodeFigure(new EditableLabel(getFullName()));
+	}
+
+	private INodePainting nodePaint;
+	private INodePainting getNodePaint() {
+		if(nodePaint == null)
+			try {
+				nodePaint = (INodePainting) configure.createExecutableExtension(FigureConfigureManager.PAINT_ATT);
+			} catch (CoreException e) {
+				e.printStackTrace();
+			}
+		return nodePaint;
 	}
 
 	/**
@@ -289,24 +336,43 @@ public class NodeEditPart extends AbstractGraphicalEditPart implements
 		return getCastedModel().getTargetConnections();
 	}
 
+	public ConnectionAnchor createConnectionAnchor(ConnectionEditPart connection, boolean b, NodeEditPart owner){
+		ConnectionAnchor anchor = owner.createAnchorUseConfigure();
+		if(anchor != null)
+			return anchor;
+		return getConnectionAnchor(connection, b);
+	}
+	private ConnectionAnchor createAnchorUseConfigure(){
+		if(configure != null)
+			getNodePaint();
+		if(nodePaint != null)
+			return nodePaint.createConnectionAnchor(getFigure());
+		return null;
+	}
 	@Override
 	public ConnectionAnchor getSourceConnectionAnchor(ConnectionEditPart connection) {
-		return getConnectionAnchor(connection, true);
+		return createConnectionAnchor(connection, true, getAnchorOwner(connection, true));
 	}
 
+	private NodeEditPart getAnchorOwner(ConnectionEditPart connection, boolean source){
+		if(connection == null || source || connection.getTarget() == null)
+			return this;
+		return (NodeEditPart) connection.getTarget();
+	}
 	@Override
 	public ConnectionAnchor getSourceConnectionAnchor(Request request) {
-		return getConnectionAnchor(null, true);
+		return createConnectionAnchor(null, true, getAnchorOwner(null, true));
 	}
 
 	@Override
 	public ConnectionAnchor getTargetConnectionAnchor(ConnectionEditPart connection) {
-		return getConnectionAnchor(connection, false);
+			
+		return createConnectionAnchor(connection, false, getAnchorOwner(connection, false));
 	}
 
 	@Override
 	public ConnectionAnchor getTargetConnectionAnchor(Request request) {
-		return getConnectionAnchor(null, false);
+		return createConnectionAnchor(null, false, getAnchorOwner(null, false));
 	}
 
 	/*
@@ -333,6 +399,7 @@ public class NodeEditPart extends AbstractGraphicalEditPart implements
 
 	protected void refreshVisuals() {
 		try {
+			super.refreshVisuals();
 			refreshLabel();
 			// notify parent container of changed position & location
 			// if this line is removed, the XYLayoutManager used by the parent
@@ -341,8 +408,7 @@ public class NodeEditPart extends AbstractGraphicalEditPart implements
 			Rectangle bounds = new Rectangle(getCastedModel().getLocation(), getCastedModel().getSize());
 			((GraphicalEditPart) getParent()).setLayoutConstraint(this, getFigure(), bounds);
 		} catch (Exception e) {
-			
-			
+			DPFErrorReport.logError(e);
 		}
 	}
 

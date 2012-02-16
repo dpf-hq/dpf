@@ -7,11 +7,13 @@ Bundle-ClassPath: .
 Bundle-Vendor: %Plugin.providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: no.hib.dpf.core,
+Export-Package: no.hib.dpf.constant,
+ no.hib.dpf.core,
  no.hib.dpf.core.impl,
  no.hib.dpf.core.util
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore;visibility:=reexport
+ org.eclipse.emf.ecore;visibility:=reexport,
+ no.hib.dpf.api
 Bundle-ActivationPolicy: lazy
 Import-Package: org.eclipse.emf.ecore.xmi,
  org.eclipse.emf.ecore.xmi.impl

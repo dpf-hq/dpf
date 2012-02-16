@@ -38,41 +38,46 @@ package no.hib.dpf.editor.displaymodel;
  */
 
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.ui.views.properties.IPropertyDescriptor;
 
 public class ArrowLabel extends ModelElement {
 
-	public static final String NAME_PROP = "ConnectionLabel.Name";
 	public static final String POSITION_PROP = "ConnectionLabel.Position";
 	private static final long serialVersionUID = -3733055120855210860L;
-	private String labelText = "";
 	private Point offset = new Point();
 	private boolean isConstraintLabel = false;
+	private ModelElement parent;
 
-	public ArrowLabel(String labelText, boolean isConstraintLabel) {
-		this.labelText = labelText;
+	public ArrowLabel(ModelElement dArrow, boolean isConstraintLabel) {
+		this.parent = dArrow;
 		this.isConstraintLabel = isConstraintLabel;
 	}
 
 	public void setOffset(Point offset) {
+		Point old = this.offset;
 		this.offset = offset;
-		firePropertyChange(POSITION_PROP, null, null);
+		firePropertyChange(POSITION_PROP, old, offset);
 	}
 
 	public Point getOffset() {
 		return offset;
 	}
 
-	public void setLabelText(String string) {
-		labelText = string;
-		firePropertyChange(NAME_PROP, null, null);		
-	}
-
-	public String getLabelText() {
-		return labelText;
+	public ModelElement getParent(){
+		return parent;
 	}
 
 	public boolean isConstraintLabel() {
 		return isConstraintLabel;
+	}
+	public IPropertyDescriptor[] getPropertyDescriptors() {
+		return parent.getPropertyDescriptors();
+	}
+	public Object getPropertyValue(Object id){
+		return parent.getPropertyValue(id);
+	}
+	public void setPropertyValue(Object id, Object value){
+		parent.setPropertyValue(id, value);
 	}
 
 }

@@ -1,7 +1,7 @@
 /*******************************************************************************
  * Copyright (c) 2004, 2005 Elias Volanakis and others.
  * 
- * Portions of the code Copyright (c) 2011 H¿yskolen i Bergen
+ * Portions of the code Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,29 +11,33 @@
  * Contributors:
  * Elias Volanakis - initial API and implementation
  * 
- * ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
-*******************************************************************************/
+ * ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
+ *******************************************************************************/
 package no.hib.dpf.editor;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.OutputStream;
-import java.lang.reflect.InvocationTargetException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.EventObject;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import no.hib.dpf.api.ui.DPFErrorReport;
+import no.hib.dpf.constant.DPFConstants;
 import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Graph;
-import no.hib.dpf.core.IDObject;
+import no.hib.dpf.core.GraphHomomorphism;
 import no.hib.dpf.core.Predicate;
 import no.hib.dpf.core.Signature;
 import no.hib.dpf.core.Specification;
@@ -41,10 +45,11 @@ import no.hib.dpf.editor.displaymodel.DArrow;
 import no.hib.dpf.editor.displaymodel.DConstraint;
 import no.hib.dpf.editor.displaymodel.DPFDiagram;
 import no.hib.dpf.editor.displaymodel.ModelElement;
-import no.hib.dpf.editor.displaymodel.ModelSerializationException;
-import no.hib.dpf.editor.displaymodel.SingleArrowConstraintElement;
+import no.hib.dpf.editor.displaymodel.commands.MultipleArrowConstraintCreateCommand;
+import no.hib.dpf.editor.displaymodel.commands.SingleArrowConstraintCreateCommand;
 import no.hib.dpf.editor.editoractions.ConstraintProperties;
 import no.hib.dpf.editor.editoractions.CreateCompositionConstraintAction;
+import no.hib.dpf.editor.editoractions.CreateConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateImageInclusionConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateInjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateInverseConstraintAction;
@@ -52,30 +57,41 @@ import no.hib.dpf.editor.editoractions.CreateIrreflexiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointlyInjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateJointlySurjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateMultiplicityConstraintAction;
+import no.hib.dpf.editor.editoractions.CreateNANDConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateSurjectiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateTransitiveIrreflexiveConstraintAction;
 import no.hib.dpf.editor.editoractions.CreateXORConstraintAction;
 import no.hib.dpf.editor.editoractions.PrintAction;
+import no.hib.dpf.editor.parts.ArrowEditPart;
 import no.hib.dpf.editor.parts.EditPartFactoryImpl;
+import no.hib.dpf.editor.parts.NodeEditPart;
 import no.hib.dpf.editor.parts.NodeTreeEditPartFactory;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;
 import no.hib.dpf.editor.preferences.PreferenceConstants;
+import no.hib.dpf.signature.SignatureEditor;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.draw2d.PositionConstants;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 import org.eclipse.gef.ContextMenuProvider;
 import org.eclipse.gef.DefaultEditDomain;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.SnapToGeometry;
 import org.eclipse.gef.SnapToGrid;
+import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editparts.ScalableFreeformRootEditPart;
 import org.eclipse.gef.editparts.ZoomManager;
 import org.eclipse.gef.palette.PaletteRoot;
@@ -94,7 +110,9 @@ import org.eclipse.gef.ui.parts.GraphicalEditorWithFlyoutPalette;
 import org.eclipse.gef.ui.parts.GraphicalViewerKeyHandler;
 import org.eclipse.gef.ui.parts.TreeViewer;
 import org.eclipse.jface.action.IAction;
+import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
@@ -103,9 +121,12 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IFileEditorInput;
+import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
@@ -125,24 +146,20 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements PropertyChangeListener {
 
 	/** This is the root of the editor's model. */
-	private DPFDiagram digram;
+	private DPFDiagram diagram;
 
 	private Specification specification = CoreFactory.eINSTANCE.createSpecification();
-	// private ModelHierarchy modelHierarchy = CoreFactory.eINSTANCE.createModelHierarchy();
-	private Signature signature;
 		
 //	/** Palette component, holding the tools and shapes. */
-	private static PaletteRoot PALETTE_MODEL;
+	private PaletteRoot paletteRoot;
 	
 	private EditPartFactoryImpl shapesEditPartFactory;
 	private DPFEditorPaletteFactory paletteFactory;
 
 	/** Create a new DPFEditor instance. This is called by the Workspace. */
 	public DPFEditor() {
-		specification.setTypeGraph(CoreFactory.eINSTANCE.createGraph("Node", "Arrow:Node:Node"));
 		paletteFactory = new DPFEditorPaletteFactory();
 		setEditDomain(new DefaultEditDomain(this));
-		shapesEditPartFactory = new EditPartFactoryImpl();
 		listenToDisplayDyntTypedArrowsProperty();
 	}
 	
@@ -152,19 +169,11 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 			public void propertyChange(org.eclipse.jface.util.PropertyChangeEvent event) {
 				if ((event.getProperty().equals(PreferenceConstants.P_DISPLAY_DYNTYPED_ARROWS)) ||
 					(event.getProperty().equals(PreferenceConstants.P_DISPLAY_TYPED_ARROWS))) {
-					paletteFactory.updatePalette(getPaletteRoot(), getSpecification().getTypeGraph());
+					//paletteFactory.updatePalette(getPaletteRoot(), getSpecification().getTypeGraph());
 				}
 			}
 		});
 	}	
-	
-	private DPFDiagram getDPFDiagram() {
-		return digram;
-	}
-
-	private void setDPFDiagram(DPFDiagram dPFDiagram) {
-		this.digram = dPFDiagram;
-	}
 	
 	/**
 	 * Overridden to create our own actions
@@ -175,102 +184,150 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		
 		// TODO: this is a temporary solution, only to get the signature from
 		// somwhere. Make this a part of the modelling hierarchy.
-		loadOrCreateSignature();
 		
-		// First step to move the predicates out of the editor:
-		// There remains to make some coupling between these predicates
-		// and the parts/figures that implement them.
-		ConstraintProperties xorProperties = new ConstraintProperties(
-				signature.getPredicateBySymbol("[xor]"), 
-				"Create new [xor] Constraint",
-				"Creates a new [xor] Constraint",
-				DConstraint.ConstraintType.XOR);
-		
-		registerAction(new CreateXORConstraintAction(this, getDPFDiagram().getDpfGraph(), xorProperties));
+		if(specification.getSignatureFile() != null){
+			for(Predicate predicate : specification.getSignature().getPredicates())
+				addActionForPredicate(predicate);
 
-		ConstraintProperties injectiveProperties = new ConstraintProperties(
-				signature.getPredicateBySymbol("[injective]"), 
-				"Create new [injective] Constraint",
-				"Creates a new [injective] Constraint",
-				DConstraint.ConstraintType.INJECTIVE);
-		
-		registerAction(new CreateInjectiveConstraintAction(this, getDPFDiagram().getDpfGraph(), injectiveProperties));
-		ConstraintProperties surjectiveProperties = new ConstraintProperties(
-				signature.getPredicateBySymbol("[surjective]"), 
-				"Create new [surjective] Constraint",
-				"Creates a new [surjective] Constraint",
-				DConstraint.ConstraintType.SURJECTIVE);
-		
-		registerAction(new CreateSurjectiveConstraintAction(this, getDPFDiagram().getDpfGraph(), surjectiveProperties));
+		}else{
+			// First step to move the predicates out of the editor:
+			// There remains to make some coupling between these predicates
+			// and the parts/figures that implement them.
+			Signature defaultSignature = specification.getSignature();
+			ConstraintProperties xorProperties = new ConstraintProperties(
+					defaultSignature.getPredicateBySymbol("[xor]"), 
+					"Create new [xor] Constraint",
+					"Creates a new [xor] Constraint",
+					DConstraint.ConstraintType.XOR);
 
-		
-		ConstraintProperties jointlyInjectiveProperties = new ConstraintProperties(
-				signature.getPredicateBySymbol("[jointly-injective]"), 
-				"Create new [jointly-injective] Constraint",
-				"Creates a new [jointly-injective] Constraint",
-				DConstraint.ConstraintType.JOINTLY_INJECTIVE);
-		
-		registerAction(new CreateJointlyInjectiveConstraintAction(this, getDPFDiagram().getDpfGraph(), jointlyInjectiveProperties));
-				
-		ConstraintProperties jointlySurjectiveProperties = new ConstraintProperties(
-				signature.getPredicateBySymbol("[jointly-surjective]"), 
-				"Create new [jointly-surjective] Constraint",
-				"Creates a new [jointly-surjective] Constraint",
-				DConstraint.ConstraintType.JOINTLY_SURJECTIVE);
-		
-		registerAction(new CreateJointlySurjectiveConstraintAction(this, getDPFDiagram().getDpfGraph(), jointlySurjectiveProperties));
-		
-		ConstraintProperties multiplicityProperties = new ConstraintProperties(
-				signature.getPredicateBySymbol("[mult(m,n)]"), 
-				"Create new [mult(m,n)] Constraint",
-				"Creates a new [mult(m,n)] Constraint",
-				DConstraint.ConstraintType.MULTIPLICITY);
+			registerConstraintAction(new CreateXORConstraintAction(this, diagram.getDpfGraph(), xorProperties));
 
-		registerAction(new CreateMultiplicityConstraintAction(this, getDPFDiagram().getDpfGraph(), multiplicityProperties));
-		
-		ConstraintProperties inverseProperties = new ConstraintProperties(
-				signature.getPredicateBySymbol("[inverse]"),
-				"Create new [inverse] Constraint",
-				"Creates a new [inverse] Constraint",
-				DConstraint.ConstraintType.INVERSE);
-		registerAction(new CreateInverseConstraintAction(this, getDPFDiagram().getDpfGraph(), inverseProperties));
+			ConstraintProperties nandProperties = new ConstraintProperties(
+					defaultSignature.getPredicateBySymbol("[nand]"), 
+					"Create new [nand] Constraint",
+					"Creates a new [nand] Constraint",
+					DConstraint.ConstraintType.NAND);
 
-		ConstraintProperties imageInclusionProperties = new ConstraintProperties(
-				signature.getPredicateBySymbol("[image-inclusion]"),
-				"Create new [image-inclusion] Constraint",
-				"Creates a new [image-inclusion] Constraint",
-				DConstraint.ConstraintType.IMAGE_INCLUSION);
-		registerAction(new CreateImageInclusionConstraintAction(this, getDPFDiagram().getDpfGraph(), imageInclusionProperties));
-		
-		ConstraintProperties compositionProperties = new ConstraintProperties(
-				signature.getPredicateBySymbol("[composition]"),
-				"Create new [composition] Constraint",
-				"Creates a new [composition] Constraint",
-				DConstraint.ConstraintType.COMPOSITION);
-		registerAction(new CreateCompositionConstraintAction(this, getDPFDiagram().getDpfGraph(), compositionProperties));
+			registerConstraintAction(new CreateNANDConstraintAction(this, diagram.getDpfGraph(), nandProperties));
+
+			ConstraintProperties injectiveProperties = new ConstraintProperties(
+					defaultSignature.getPredicateBySymbol("[injective]"), 
+					"Create new [injective] Constraint",
+					"Creates a new [injective] Constraint",
+					DConstraint.ConstraintType.INJECTIVE);
+
+			registerConstraintAction(new CreateInjectiveConstraintAction(this, diagram.getDpfGraph(), injectiveProperties));
+			ConstraintProperties surjectiveProperties = new ConstraintProperties(
+					defaultSignature.getPredicateBySymbol("[surjective]"), 
+					"Create new [surjective] Constraint",
+					"Creates a new [surjective] Constraint",
+					DConstraint.ConstraintType.SURJECTIVE);
+
+			registerConstraintAction(new CreateSurjectiveConstraintAction(this, diagram.getDpfGraph(), surjectiveProperties));
 
 
-		ConstraintProperties irreflexiveProperties = new ConstraintProperties(
-				signature.getPredicateBySymbol("[irreflexive]"),
-				"Create new [irreflexive] Constraint",
-				"Creates a new [irreflexive] Constraint",
-				DConstraint.ConstraintType.IRREFLEXIVE);
-		registerAction(new CreateIrreflexiveConstraintAction(this, getDPFDiagram().getDpfGraph(), irreflexiveProperties));
-		
-		ConstraintProperties transitiveIrreflexiveProperties = new ConstraintProperties(
-				signature.getPredicateBySymbol("[transitive-irreflexive]"),
-				"Create new [transitive-irreflexive] Constraint",
-				"Creates a new [transitive-irreflexive] Constraint",
-				DConstraint.ConstraintType.TRANSITIVE_IRREFLEXIVE);
-		
-		registerAction(new CreateTransitiveIrreflexiveConstraintAction(this, getDPFDiagram().getDpfGraph(), transitiveIrreflexiveProperties));
-		
+			ConstraintProperties jointlyInjectiveProperties = new ConstraintProperties(
+					defaultSignature.getPredicateBySymbol("[jointly-injective]"), 
+					"Create new [jointly-injective] Constraint",
+					"Creates a new [jointly-injective] Constraint",
+					DConstraint.ConstraintType.JOINTLY_INJECTIVE);
+
+			registerConstraintAction(new CreateJointlyInjectiveConstraintAction(this, diagram.getDpfGraph(), jointlyInjectiveProperties));
+
+			ConstraintProperties jointlySurjectiveProperties = new ConstraintProperties(
+					defaultSignature.getPredicateBySymbol("[jointly-surjective]"), 
+					"Create new [jointly-surjective] Constraint",
+					"Creates a new [jointly-surjective] Constraint",
+					DConstraint.ConstraintType.JOINTLY_SURJECTIVE);
+
+			registerConstraintAction(new CreateJointlySurjectiveConstraintAction(this, diagram.getDpfGraph(), jointlySurjectiveProperties));
+
+			ConstraintProperties multiplicityProperties = new ConstraintProperties(
+					defaultSignature.getPredicateBySymbol("[mult(m,n)]"), 
+					"Create new [mult(m,n)] Constraint",
+					"Creates a new [mult(m,n)] Constraint",
+					DConstraint.ConstraintType.MULTIPLICITY);
+
+			registerConstraintAction(new CreateMultiplicityConstraintAction(this, diagram.getDpfGraph(), multiplicityProperties));
+
+			ConstraintProperties inverseProperties = new ConstraintProperties(
+					defaultSignature.getPredicateBySymbol("[inverse]"),
+					"Create new [inverse] Constraint",
+					"Creates a new [inverse] Constraint",
+					DConstraint.ConstraintType.INVERSE);
+			registerConstraintAction(new CreateInverseConstraintAction(this, diagram.getDpfGraph(), inverseProperties));
+
+			ConstraintProperties imageInclusionProperties = new ConstraintProperties(
+					defaultSignature.getPredicateBySymbol("[image-inclusion]"),
+					"Create new [image-inclusion] Constraint",
+					"Creates a new [image-inclusion] Constraint",
+					DConstraint.ConstraintType.IMAGE_INCLUSION);
+			registerConstraintAction(new CreateImageInclusionConstraintAction(this, diagram.getDpfGraph(), imageInclusionProperties));
+
+			ConstraintProperties compositionProperties = new ConstraintProperties(
+					defaultSignature.getPredicateBySymbol("[composition]"),
+					"Create new [composition] Constraint",
+					"Creates a new [composition] Constraint",
+					DConstraint.ConstraintType.COMPOSITION);
+			registerConstraintAction(new CreateCompositionConstraintAction(this, diagram.getDpfGraph(), compositionProperties));
+
+
+			ConstraintProperties irreflexiveProperties = new ConstraintProperties(
+					defaultSignature.getPredicateBySymbol("[irreflexive]"),
+					"Create new [irreflexive] Constraint",
+					"Creates a new [irreflexive] Constraint",
+					DConstraint.ConstraintType.IRREFLEXIVE);
+			registerConstraintAction(new CreateIrreflexiveConstraintAction(this, diagram.getDpfGraph(), irreflexiveProperties));
+
+			ConstraintProperties transitiveIrreflexiveProperties = new ConstraintProperties(
+					defaultSignature.getPredicateBySymbol("[transitive-irreflexive]"),
+					"Create new [transitive-irreflexive] Constraint",
+					"Creates a new [transitive-irreflexive] Constraint",
+					DConstraint.ConstraintType.TRANSITIVE_IRREFLEXIVE);
+
+			registerConstraintAction(new CreateTransitiveIrreflexiveConstraintAction(this, diagram.getDpfGraph(), transitiveIrreflexiveProperties));
+		}
 		registerAction(new AlignmentAction((IWorkbenchPart)this, PositionConstants.LEFT));
 		registerAction(new AlignmentAction((IWorkbenchPart)this, PositionConstants.RIGHT));
 		registerAction(new AlignmentAction((IWorkbenchPart)this, PositionConstants.TOP));
 		registerAction(new AlignmentAction((IWorkbenchPart)this, PositionConstants.BOTTOM));
 		registerAction(new AlignmentAction((IWorkbenchPart)this, PositionConstants.CENTER));
 		registerAction(new AlignmentAction((IWorkbenchPart)this, PositionConstants.MIDDLE));
+	}
+
+	private void addActionForPredicate(final Predicate predicate) {
+		String tip = "Create a new [" + predicate.getSymbol() +"] Constraint";
+		String id = "no.hib.dpf.editor.editoractions." + predicate.getSymbol();
+		ConstraintProperties xorProperties = new ConstraintProperties(predicate, tip, tip, null);
+		CreateConstraintAction action = new CreateConstraintAction(this, id, diagram.getDpfGraph(), xorProperties){
+
+			@Override
+			protected Command getConstraintCreateCommand(
+					List<ArrowEditPart> connectionEditParts,
+					List<NodeEditPart> shapeEditParts) {
+				switch(predicate.getVisualization().getType()){
+				case ARROW_LABEL:
+					return new SingleArrowConstraintCreateCommand((DArrow)connectionEditParts.get(0).getModel(), DConstraint.ConstraintType.SURJECTIVE, createIDObject());
+				case ARROW_TO_ARROW:
+					return new MultipleArrowConstraintCreateCommand((DArrow)connectionEditParts.get(0).getModel(), (DArrow)connectionEditParts.get(1).getModel(), DConstraint.ConstraintType.XOR, createIDObject());
+				}
+				return null;
+			}
+			
+		};
+		try {
+			URI base = URI.createFileURI(specification.getSignature().eResource().getURI().toFileString());
+			File file = new File(URI.createFileURI(predicate.getIcon()).resolve(base).toFileString());
+			action.setImageDescriptor(ImageDescriptor.createFromURL(file.toURI().toURL()));
+		} catch (MalformedURLException e) {
+			DPFErrorReport.logError(e);
+		}
+		registerConstraintAction(action);
+	}
+
+	private void registerConstraintAction(IAction action){
+		registerAction(action);
+		constraintActions.add(action);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -332,28 +389,30 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 	
 	protected void loadProperties(GraphicalViewer viewer) {
 		// Snap to Geometry property
-		viewer.setProperty(SnapToGeometry.PROPERTY_SNAP_ENABLED, new Boolean(getDPFDiagram().isSnapToGeometryEnabled()));		
+		viewer.setProperty(SnapToGeometry.PROPERTY_SNAP_ENABLED, new Boolean(diagram.isSnapToGeometryEnabled()));		
 		// Grid properties
-		viewer.setProperty(SnapToGrid.PROPERTY_GRID_ENABLED, new Boolean(getDPFDiagram().isGridEnabled()));
+		viewer.setProperty(SnapToGrid.PROPERTY_GRID_ENABLED, new Boolean(diagram.isGridEnabled()));
 		// We keep grid visibility and enablement in sync
-		viewer.setProperty(SnapToGrid.PROPERTY_GRID_VISIBLE, new Boolean(getDPFDiagram().isGridEnabled()));
+		viewer.setProperty(SnapToGrid.PROPERTY_GRID_VISIBLE, new Boolean(diagram.isGridEnabled()));
 		// Zoom
 		ZoomManager manager = (ZoomManager)getGraphicalViewer().getProperty(ZoomManager.class.toString());
 		if (manager != null) {
-			manager.setZoom(getDPFDiagram().getZoom());
+			manager.setZoom(diagram.getZoom());
 		}
 	}	
 	
 	protected void saveViewerPropertiesToDiagram() {
 		try {
-			getDPFDiagram().setGridEnabled(((Boolean)getGraphicalViewer().getProperty(SnapToGrid.PROPERTY_GRID_ENABLED)).booleanValue());
-			getDPFDiagram().setSnapToGeometry(((Boolean)getGraphicalViewer().getProperty(SnapToGeometry.PROPERTY_SNAP_ENABLED)).booleanValue());
+			diagram.setGridEnabled(((Boolean)getGraphicalViewer().getProperty(SnapToGrid.PROPERTY_GRID_ENABLED)).booleanValue());
+			diagram.setSnapToGeometry(((Boolean)getGraphicalViewer().getProperty(SnapToGeometry.PROPERTY_SNAP_ENABLED)).booleanValue());
 		
 			ZoomManager manager = (ZoomManager)getGraphicalViewer().getProperty(ZoomManager.class.toString());
 			if (manager != null) {
-				getDPFDiagram().setZoom(manager.getZoom());
+				diagram.setZoom(manager.getZoom());
 			}
-		} catch (Exception e) {}
+		} catch (Exception e) {
+			DPFErrorReport.logError(e);
+		}
 	}
 	
 	/*
@@ -366,12 +425,6 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 	public void commandStackChanged(EventObject event) {
 		firePropertyChange(IEditorPart.PROP_DIRTY);
 		super.commandStackChanged(event);
-	}
-
-	private void createOutputStream(OutputStream os) throws IOException {
-		ObjectOutputStream oos = new ObjectOutputStream(os);
-		oos.writeObject(getDPFDiagram());
-		oos.close();
 	}
 
 	/*
@@ -391,7 +444,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 				// CombinatedTemplateCreationEntries
 				// from the palette into the editor
 				// @see ShapesEditor#createTransferDropTargetListener()
-//				viewer.addDragSourceListener(new TemplateTransferDragSourceListener(viewer));
+				//				viewer.addDragSourceListener(new TemplateTransferDragSourceListener(viewer));
 			}
 		};
 	}
@@ -422,6 +475,80 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 //		};
 //	}
 
+	public static final String DEFAULT_MODEL_EXTENSION = "xmi";
+	public static final String DEFAULT_VISUAL_EXTENSION = "dpf";
+
+	//dpf name to xmi name
+	public static String getModelFromDiagram(String diagram){
+		return diagram.substring(0, diagram.lastIndexOf('.') + 1) + DEFAULT_MODEL_EXTENSION;
+	}
+	//xmi name to dpf name
+	public static String getDiagramFromModel(String model){
+		return model.substring(0, model.lastIndexOf('.') + 1) + DEFAULT_VISUAL_EXTENSION;
+	}
+
+	// Temporary unused: the file is re-generated every time.
+	// TODO: make signature editor, fix all this, and make the user select a signature at some point.
+	private void loadSignature() {
+		if(resourceSet == null)
+			resourceSet = getResourceSet();
+		
+		if(specification.getSignatureFile() != null){
+			URI base = URI.createFileURI(((IFileEditorInput)getEditorInput()).getFile().getLocation().toOSString());
+			specification.setSignature(SignatureEditor.loadSignature(resourceSet, URI.createFileURI(specification.getSignatureFile()).resolve(base), resourceToDiagnosticMap));
+		}else{
+			Resource resource = DPFCoreUtil.getResource(resourceSet, DPFConstants.DefaultSignature, resourceToDiagnosticMap);
+			resourceSet.getURIResourceMap().put(DPFConstants.DefaultSignature, resource);
+			Signature defaultSignature = getDefaultSignature();
+			Assert.isNotNull(defaultSignature);
+			resource.getContents().add(defaultSignature);
+			specification.setSignature(defaultSignature);
+		}
+	}
+
+	private Signature getDefaultSignature() {
+		
+		Signature defaultSignature = CoreFactory.eINSTANCE.createSignature();
+		
+		defaultSignature.getPredicates().add(CoreFactory.eINSTANCE.createPredicate("[jointly-injective]", "n_1,n_2,n_3", "a_1:n_1:n_2,a_2:n_1:n_3"));
+		defaultSignature.getPredicates().add(CoreFactory.eINSTANCE.createPredicate("[image-inclusion]", "n_1,n_2", "a_1:n_1:n_2,a_2:n_1:n_2"));		
+		defaultSignature.getPredicates().add(CoreFactory.eINSTANCE.createPredicate("[composition]", "n_1,n_2,n_3", "a_1:n_1:n_2,a_2:n_2:n_3,a_3:n_1:n_3"));
+		defaultSignature.getPredicates().add(CoreFactory.eINSTANCE.createPredicate("[injective]", "n_1,n_2", "a_1:n_1:n_2"));
+		
+		Predicate surjectivePredicate = CoreFactory.eINSTANCE.createPredicate("[surjective]", "n_1,n_2", "a_1:n_1:n_2");
+		surjectivePredicate.setSemanticsValidator(CoreFactory.eINSTANCE.createSurjectiveSemantics());
+		defaultSignature.getPredicates().add(surjectivePredicate);		
+
+		Predicate xorPredicate = CoreFactory.eINSTANCE.createPredicate("[xor]", "n_1,n_2,n_3", "a_1:n_1:n_2,a_2:n_1:n_3");
+		xorPredicate.setSemanticsValidator(CoreFactory.eINSTANCE.createXORSemantics());
+		defaultSignature.getPredicates().add(xorPredicate);
+		
+		Predicate nandPredicate = CoreFactory.eINSTANCE.createPredicate("[nand]", "n_1,n_2,n_3", "a_1:n_1:n_2,a_2:n_1:n_3");
+		nandPredicate.setSemanticsValidator(CoreFactory.eINSTANCE.createNANDSemantics());
+		defaultSignature.getPredicates().add(nandPredicate);
+
+		Predicate jSPredicate = CoreFactory.eINSTANCE.createPredicate("[jointly-surjective]", "n_1,n_2,n_3", "a_1:n_2:n_1,a_2:n_3:n_1");
+		jSPredicate.setSemanticsValidator(CoreFactory.eINSTANCE.createJointlySurjectiveSemantics());
+		defaultSignature.getPredicates().add(jSPredicate);
+
+		Predicate inversePredicate = CoreFactory.eINSTANCE.createPredicate("[inverse]", "n_1,n_2", "a_1:n_1:n_2,a_2:n_2:n_1");
+		inversePredicate.setSemanticsValidator(CoreFactory.eINSTANCE.createInverseSemantics());
+		defaultSignature.getPredicates().add(inversePredicate);
+
+		Predicate irreflexivePredicate = CoreFactory.eINSTANCE.createPredicate("[irreflexive]", "n_1", "a_1:n_1:n_1");
+		irreflexivePredicate.setSemanticsValidator(CoreFactory.eINSTANCE.createIrreflexiveSemantics());
+		defaultSignature.getPredicates().add(irreflexivePredicate);
+
+		Predicate transitiveIrreflexivePredicate = CoreFactory.eINSTANCE.createPredicate("[transitive-irreflexive]", "n_1", "a_1:n_1:n_1");
+		transitiveIrreflexivePredicate.setSemanticsValidator(CoreFactory.eINSTANCE.createTransitiveIrreflexiveSemantics());
+		defaultSignature.getPredicates().add(transitiveIrreflexivePredicate);
+		
+		Predicate multiplicityPredicate = CoreFactory.eINSTANCE.createPredicate("[mult(m,n)]", "n_1,n_2", "a_1:n_1:n_2");
+		multiplicityPredicate.setSemanticsValidator(CoreFactory.eINSTANCE.createMultiplicitySemantics());
+		defaultSignature.getPredicates().add(multiplicityPredicate);
+		return defaultSignature;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -430,126 +557,34 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 	 * )
 	 */
 	public void doSave(IProgressMonitor monitor) {
-		saveViewerPropertiesToDiagram();
-		ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+		final String modelFileName = diagram.getFilename();
+
+		final String  diagramFileName  = getDiagramFromModel(modelFileName);
+		WorkspaceModifyOperation operation = new WorkspaceModifyOperation() {
+			@Override
+			public void execute(IProgressMonitor monitor) {
+				// Save the resources to the file system.
+				saveDPFModel(resourceSet, URI.createFileURI(modelFileName), specification, resourceToDiagnosticMap);
+				saveViewerPropertiesToDiagram();
+				saveDPFDiagram(diagramFileName, diagram);
+			}
+		};
+
 		try {
-			createOutputStream(out);
-			IFile file = ((IFileEditorInput) getEditorInput()).getFile();
-			file.setContents(new ByteArrayInputStream(out.toByteArray()), true, // keep
-																				// saving,
-																				// even
-																				// if
-																				// IFile
-																				// is
-																				// out
-																				// of
-																				// sync
-																				// with
-																				// the
-																				// Workspace
-					false, // dont keep history
-					monitor); // progress monitor
+			// This runs the options, and shows progress.
+			new ProgressMonitorDialog(getSite().getShell()).run(true, false, operation);
+
+			// Refresh the necessary state.
 			getCommandStack().markSaveLocation();
-			saveDPF(getDPFDiagram().getFilename(), getSpecification());
+
+			IFile file = ((IFileEditorInput)getEditorInput()).getFile();
+			file.getParent().refreshLocal(IResource.DEPTH_INFINITE, monitor);
 			
-			file.getProject().refreshLocal(IProject.DEPTH_INFINITE, monitor);
-		} catch (CoreException ce) {
-			ce.printStackTrace();
-		} catch (IOException ioe) {
-			ioe.printStackTrace();
+			updateStatusBar();
 		}
-		
-	}
-	
-	public static Specification loadDPF(String fileName) {
-		URI uri = URI.createFileURI(fileName);
-		Specification ret = null;
-		
-		try {
-			ret = CoreFactory.eINSTANCE.loadSpecification(uri);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		return ret;
-	}
-	
-	private void loadOrCreateSignature() {
-		// Temporary commented out: the file is re-generated every time.
-		// TODO: make signature editor, fix all this, and make the user select a signature at some point.
-//		if (new File(getSignatureFileName()).exists()) {
-//			loadSignature(); 
-//		} else {
-			saveDefaultSignature();
-//		}
-	}
-
-	// Temporary unused: the file is re-generated every time.
-	// TODO: make signature editor, fix all this, and make the user select a signature at some point.
-	@SuppressWarnings("unused")
-	private void loadSignature() {
-		try {
-			signature = CoreFactory.eINSTANCE.loadSignature(URI.createFileURI(getSignatureFileName()));
-		} catch (IOException e) {
-			e.printStackTrace();
-			saveDefaultSignature();
-		}
-	}
-
-	// Side effect: creates the object's default signature
-	private void saveDefaultSignature() {
-		resetSignature();
-		try {
-			signature.save(URI.createFileURI(getSignatureFileName()));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	private void resetSignature() {
-		signature = CoreFactory.eINSTANCE.createSignature();
-		
-		signature.getPredicates().add(CoreFactory.eINSTANCE.createPredicate("[jointly-injective]", "n_1,n_2,n_3", "a_1:n_1:n_2,a_2:n_1:n_3"));
-		signature.getPredicates().add(CoreFactory.eINSTANCE.createPredicate("[image-inclusion]", "n_1,n_2", "a_1:n_1:n_2,a_2:n_1:n_2"));		
-		signature.getPredicates().add(CoreFactory.eINSTANCE.createPredicate("[composition]", "n_1,n_2,n_3", "a_1:n_1:n_2,a_2:n_2:n_3,a_3:n_1:n_3"));
-		signature.getPredicates().add(CoreFactory.eINSTANCE.createPredicate("[injective]", "n_1,n_2", "a_1:n_1:n_2"));
-		
-		Predicate surjectivePredicate = CoreFactory.eINSTANCE.createPredicate("[surjective]", "n_1,n_2", "a_1:n_1:n_2");
-		surjectivePredicate.setSemanticsValidator(CoreFactory.eINSTANCE.createSurjectiveSemantics());
-		signature.getPredicates().add(surjectivePredicate);		
-
-		Predicate xorPredicate = CoreFactory.eINSTANCE.createPredicate("[xor]", "n_1,n_2,n_3", "a_1:n_1:n_2,a_2:n_1:n_3");
-		xorPredicate.setSemanticsValidator(CoreFactory.eINSTANCE.createXORSemantics());
-		signature.getPredicates().add(xorPredicate);
-
-		Predicate jSPredicate = CoreFactory.eINSTANCE.createPredicate("[jointly-surjective]", "n_1,n_2,n_3", "a_1:n_2:n_1,a_2:n_3:n_1");
-		jSPredicate.setSemanticsValidator(CoreFactory.eINSTANCE.createJointlySurjectiveSemantics());
-		signature.getPredicates().add(jSPredicate);
-
-		Predicate inversePredicate = CoreFactory.eINSTANCE.createPredicate("[inverse]", "n_1,n_2", "a_1:n_1:n_2,a_2:n_2:n_1");
-		inversePredicate.setSemanticsValidator(CoreFactory.eINSTANCE.createInverseSemantics());
-		signature.getPredicates().add(inversePredicate);
-
-		Predicate irreflexivePredicate = CoreFactory.eINSTANCE.createPredicate("[irreflexive]", "n_1", "a_1:n_1:n_1");
-		irreflexivePredicate.setSemanticsValidator(CoreFactory.eINSTANCE.createIrreflexiveSemantics());
-		signature.getPredicates().add(irreflexivePredicate);
-
-		Predicate transitiveIrreflexivePredicate = CoreFactory.eINSTANCE.createPredicate("[transitive-irreflexive]", "n_1", "a_1:n_1:n_1");
-		transitiveIrreflexivePredicate.setSemanticsValidator(CoreFactory.eINSTANCE.createTransitiveIrreflexiveSemantics());
-		signature.getPredicates().add(transitiveIrreflexivePredicate);
-		
-		Predicate multiplicityPredicate = CoreFactory.eINSTANCE.createPredicate("[mult(m,n)]", "n_1,n_2", "a_1:n_1:n_2");
-		multiplicityPredicate.setSemanticsValidator(CoreFactory.eINSTANCE.createMultiplicitySemantics());
-		signature.getPredicates().add(multiplicityPredicate);
-		
-	}
-	
-	public static void saveDPF(String dpfFileName, Specification specification) {		
-		try {
-			specification.save(URI.createFileURI(dpfFileName));
-		} catch (IOException e) {
-			e.printStackTrace();
+		catch (Exception exception) {
+			exception.printStackTrace();
 		}
 	}
 
@@ -565,42 +600,15 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		dialog.setOriginalFile(((IFileEditorInput) getEditorInput()).getFile());
 		dialog.open();
 
-		IPath path = dialog.getResult();
+		final IPath path = dialog.getResult();
 		if (path != null) {
-			// try to save the editor's contents under a different file name
-			final IFile file = ResourcesPlugin.getWorkspace().getRoot()
-					.getFile(path);
-			try {
-				new ProgressMonitorDialog(shell).run(false, // don't fork
-						false, // not cancelable
-						new WorkspaceModifyOperation() { // run this operation
-							public void execute(final IProgressMonitor monitor) {
-								try {
-									saveViewerPropertiesToDiagram();
-									ByteArrayOutputStream out = new ByteArrayOutputStream();
-									createOutputStream(out);
-									file.create(
-											new ByteArrayInputStream(out
-													.toByteArray()), // contents
-											true, // keep saving, even if IFile
-													// is out of sync with the
-													// Workspace
-											monitor); // progress monitor
-								} catch (CoreException ce) {
-									ce.printStackTrace();
-								} catch (IOException ioe) {
-									ioe.printStackTrace();
-								}
-							}
-						});
-				// set input to the new file
-				setInput(new FileEditorInput(file));
-				getCommandStack().markSaveLocation();
-			} catch (InterruptedException ie) {
-				// should not happen, since the monitor dialog is not cancelable
-				ie.printStackTrace();
-			} catch (InvocationTargetException ite) {
-				ite.printStackTrace();
+			IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(path);
+			if (file != null) {
+				IFileEditorInput newInput = new FileEditorInput(file);
+				setInputWithNotify(newInput);
+				setPartName(newInput.getName());
+				diagram.setFilename(getModelFromDiagram(file.getLocation().toOSString()));
+				doSave(new NullProgressMonitor());
 			}
 		}
 	}
@@ -625,19 +633,19 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 	 */
 	@Override
 	protected PaletteRoot getPaletteRoot() {
-		if (PALETTE_MODEL == null) {
-			PALETTE_MODEL = paletteFactory.createPalette(getSpecification().getTypeGraph());
+		if (paletteRoot == null) {
+			paletteRoot = paletteFactory.createPalette();
 		}
-		return PALETTE_MODEL;
+		return paletteRoot;
 	}
 
 	private void handleLoadException(Exception e) {
 		System.err.println("** Load failed. Using default model. **");
 		e.printStackTrace();
-		setSpecification(CoreFactory.eINSTANCE.createSpecification());
-		setDPFDiagram(new DPFDiagram());
-		getDPFDiagram().setDpfGraph(getSpecification().getGraph());
-		getDPFDiagram().addPropertyChangeListener(this);
+		specification = CoreFactory.eINSTANCE.createSpecification();
+		diagram = new DPFDiagram();
+		diagram.setDpfGraph(specification.getGraph());
+		diagram.addPropertyChangeListener(this);
 	}
 
 	/**
@@ -648,15 +656,15 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 	protected void initializeGraphicalViewer() {
 		super.initializeGraphicalViewer();
 		GraphicalViewer viewer = getGraphicalViewer();
-		viewer.setContents(getDPFDiagram()); // set the contents of this editor
+		viewer.setContents(diagram); // set the contents of this editor
 	}
 
-	@Override
+	/*@Override
 	public void setFocus() {
 		super.setFocus();
 		paletteFactory.updatePalette(getPaletteRoot(), getSpecification().getTypeGraph());
-	}
-		
+	}*/
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -675,91 +683,31 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 		super.setInput(input);
 		try {
 			IFile file = ((IFileEditorInput) input).getFile();
-			ObjectInputStream in = new ObjectInputStream(file.getContents());
-			setDPFDiagram((DPFDiagram) in.readObject());
-			getDPFDiagram().addPropertyChangeListener(this);			
-			in.close();
+			diagram = loadDPFDiagram(file.getContents());
+			final String modelFileName = getModelFromDiagram(file.getLocation().toString());
+			diagram.setFilename(modelFileName);
+			diagram.addPropertyChangeListener(this);
+			
+			specification = loadDPFModel(resourceSet, URI.createFileURI(modelFileName), resourceToDiagnosticMap);
+			verifyConstraint();
+			diagram.setDpfGraph(specification.getGraph());
+			diagram.setDpfReferencesInViewModel();
+			
+			loadSignature();
+			
+			paletteFactory.updatePalette(getPaletteRoot(), diagram.getParent(), specification.getTypeGraph());
+			shapesEditPartFactory = new EditPartFactoryImpl(diagram.getParent());
 			setPartName(file.getName());
-
-			// -------------------------------------------------------------------
-			// D P F   S T U F F
-			// -------------------------------------------------------------------
-			getDPFDiagram().setFilename(getDPFFileName(file.getFullPath().toString()));
-			
-			//FIXME: We should only refresh the project if needed
-			ResourcesPlugin.getWorkspace().getRoot().refreshLocal(IResource.DEPTH_INFINITE, null);
-			deserializeDpfModel();
-			setDpfReferencesInViewModel(getDPFDiagram().getChildrenWithID());
-			
-		} catch (IOException e) {
-			handleLoadException(e);
 		} catch (CoreException e) {
 			handleLoadException(e);
-		} catch (java.lang.ClassNotFoundException e) {
-			handleLoadException(e);
-		}		
-	}
-
-	private void setDpfReferencesInViewModel(Map<String, ModelElement> children) {
-		for (String id : children.keySet()) {
-			IDObject idObject = getDPFDiagram().getDpfGraph().getGraphMember(id);
-			if (idObject == null) {
-				throw new ModelSerializationException("A deserialized view model object had no serialized counterpart in the dpf model");
-			}
-			children.get(id).setIDObject(idObject);
-			
-		}
-		for (ModelElement modelElement : children.values()) {
-			if (modelElement instanceof DArrow) {
-				// Q&D fix to get single constraints out of this. TODO: refactor all
-				// constraints into "connection" constraints and "connected" constraints
-				DArrow arrow = (DArrow)modelElement;
-				for (SingleArrowConstraintElement singleLineConstraintElement : arrow.getSingleConstraints()) {
-				
-					IDObject idObject2 = getDPFDiagram().getDpfGraph().getGraphMember(singleLineConstraintElement.getIDObjectID());
-					if (idObject2 == null) {
-						throw new ModelSerializationException("A deserialized view model object had no serialized counterpart in the dpf model");
-					}
-					singleLineConstraintElement.setIDObject(idObject2);
-					singleLineConstraintElement.refreshSource();
-				}
-			}			
-		}
-	}
-
-	private void deserializeDpfModel() {
-		File serializedDPF = new File(getDPFDiagram().getFilename());
-		if (serializedDPF.exists()) {
-			setSpecification(loadDPF(getDPFDiagram().getFilename()));
-		}
-		getDPFDiagram().setDpfGraph(getSpecification().getGraph());
-//		paletteFactory.updatePalette(getPaletteRoot(), getSpecification().getTypeGraph());
+		} 	
 	}
 
 	/**
 	 * Returns the path to the workspace of this editor.
 	 */
 	public static String getWorkspaceDirectory() {
-		return ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
-	}
-
-	/**
-	 * Returns the name of the "DPF" file from a "base" file name
-	 */
-	public static String getDPFFileName(String filename) {
-		return getWorkspaceDirectory() + File.separator + filename + ".xmi";
-	}
-	
-	private static String getSignatureFileName() {
-		return getWorkspaceDirectory() + File.separator + "signature01.xmi";
-	}
-		
-	private void setSpecification(Specification specification) {
-		this.specification = specification;
-	}
-
-	private Specification getSpecification() {
-		return specification;
+		return ResourcesPlugin.getWorkspace().getRoot().getLocation().toOSString();
 	}
 
 	/**
@@ -800,7 +748,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 			// hook outline viewer
 			getSelectionSynchronizer().addViewer(getViewer());
 			// initialize outline viewer with model
-			getViewer().setContents(getDPFDiagram());
+			getViewer().setContents(diagram);
 			// show outline viewer
 		}
 
@@ -838,34 +786,178 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette implements Prope
 			bars.setGlobalActionHandler(id, registry.getAction(id));
 			id = ActionFactory.DELETE.getId();
 			bars.setGlobalActionHandler(id, registry.getAction(id));
+			id = ActionFactory.COPY.getId();
+			bars.setGlobalActionHandler(id, registry.getAction(id));
 		}
 	}
 
+	private static Image Valid_Constarint_Icon = PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJS_INFO_TSK);
+	private static Image InValid_Constarint_Icon = PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJS_INFO_TSK);
+	boolean isValid = true;
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
 		//System.err.println("VALIDATION RESULT: ");
-		boolean isValid = true;
+		verifyConstraint();
+	}
+
+	private void verifyConstraint(){
+		isValid = true;
 		for (Constraint c : specification.getTypeGraph().getConstraints()) {
 			try {
-				Graph oStar = specification.createOStar(c);
-				// Transfer the constraint's parameters to the predicate validator:
-				Boolean validation = c.getPredicate().validateSemantics(oStar, c.getParameters(), c.getConstrainedNodes(), c.getConstrainedArrows());
+				GraphHomomorphism mappings = c.getMappings();
+				Graph graph = specification.getGraph();
+				Boolean validation = c.getPredicate().validateSemantics(c.getParameters(), mappings, graph);
+//				Graph oStar = specification.createOStar(c);
+//				// Transfer the constraint's parameters to the predicate validator:
+//				Boolean validation = c.getPredicate().validateSemantics(oStar, c.getParameters(), c.getConstrainedNodes(), c.getConstrainedArrows());
 				isValid &= validation.booleanValue();
 			} catch (IllegalArgumentException e) {
 				isValid = false;
 			}
 			//System.err.println(validation);
 		}
-		Image icon;
-		if(isValid) {
-			icon = PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJS_INFO_TSK);
-			DPFPlugin.getDefault().getStatusLineManager().setMessage(icon, "All constraints validated.");
-		} else {
-			icon = PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJS_WARN_TSK);
-			DPFPlugin.getDefault().getStatusLineManager().setMessage(icon, "Validation failed.");
+		updateStatusBar();
+	}
+	private void updateStatusBar(){
+		DPFPlugin.getDefault().getStatusLineManager().setMessage(isValid ? Valid_Constarint_Icon : InValid_Constarint_Icon, 
+				isValid ? "All constraints validated." : "Validation failed.");
+	}
+
+
+	public void setFocus() {
+		super.setFocus();
+		updateStatusBar();
+	}
+	
+	private ResourceSetImpl resourceSet = getResourceSet();
+	private Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
+
+	public static void saveDPFDiagram(String diagramFile, DPFDiagram newDiagram) {
+		try {
+			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(diagramFile));
+			oos.writeObject(newDiagram);
+			oos.close();
+		} catch (IOException e) {
+			DPFErrorReport.logError(e);
+		}
+	}
+	
+	private static DPFDiagram loadDPFDiagram(InputStream stream){
+		DPFDiagram diagram = null;
+		try {
+			ObjectInputStream ois = new ObjectInputStream(stream);
+			diagram = (DPFDiagram) ois.readObject();
+			ois.close();
+		} catch (IOException e) {
+			DPFErrorReport.logError(e);
+		} catch (ClassNotFoundException e) {
+			DPFErrorReport.logError(e);
+		}
+		DPFDiagram current = diagram;
+		while(current != null){
+			for(ModelElement element : current.getChildrenWithID().values())
+				element.loadConfigure();
+					current = current.getParent();
 		}
 		
+		return diagram;
+	}
+	
+	public static DPFDiagram loadDPFDiagram(String diagramFromModel) {
+		try {
+			return loadDPFDiagram(new FileInputStream(diagramFromModel));
+		} catch (FileNotFoundException e) {
+			DPFErrorReport.logError(e);
+		}
+		return null;
+	}
+
+	public static ResourceSetImpl getResourceSet(){
+		ResourceSetImpl resourceSet = new ResourceSetImpl();
+		resourceSet.setURIResourceMap(new LinkedHashMap<URI, Resource>());
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMLResourceFactoryImpl());
+		Resource graph = resourceSet.createResource(DPFConstants.DefaultGraph);
+		graph.getContents().add(DPFConstants.REFLEXIVE_TYPE_GRAPH);
+		resourceSet.getURIResourceMap().put(DPFConstants.DefaultGraph, graph);
+		return resourceSet;
+	}
+
+	public static Specification loadDPFModel( ResourceSet resourceSet, URI createFileURI,
+			Map<Resource, Diagnostic> resourceToDiagnosticMap) {
+		if(resourceSet == null)
+			resourceSet = getResourceSet();
+
+		Resource resource = DPFCoreUtil.getResource(resourceSet, createFileURI, resourceToDiagnosticMap);
+		try {
+			resource.load(null);
+		} catch (IOException e) {
+			DPFErrorReport.logError(e);
+		}
+		Assert.isTrue(resource.getContents().size() == 1);
+		return (Specification) resource.getContents().get(0);
+
+	}
+
+	public static void saveDPFModel(ResourceSet resourceSet, URI createFileURI, Specification specification,
+			Map<Resource, Diagnostic> resourceToDiagnosticMap) {
+		if(resourceSet == null)
+			resourceSet = getResourceSet();
+
+		Resource resource = DPFCoreUtil.getResource(resourceSet, createFileURI, resourceToDiagnosticMap);
+
+		Assert.isNotNull(resource);
+		resource.getContents().add(specification);		
+		
+		try {
+			resource.save(null);
+		} catch (IOException e) {
+			DPFErrorReport.logError(e);
+		}
 		
 	}
 
+	public void init(IEditorSite site, IEditorInput input) throws PartInitException {
+		super.init(site, input);
+		getSite().getPage().addPartListener(partListener);
+	}
+
+	List<IAction> constraintActions = new ArrayList<IAction>();
+	
+	protected IPartListener partListener =
+			new IPartListener() {
+		public void partActivated(IWorkbenchPart p) { 
+			DPFEditor editor = DPFEditor.this;
+			if(p != editor)
+				return;
+			IActionBars actionBars = editor.getEditorSite().getActionBars();
+			IToolBarManager toolbar = actionBars.getToolBarManager();
+			for(IAction action : constraintActions)
+				toolbar.add(action);
+			toolbar.update(true);
+			actionBars.updateActionBars();
+		}
+		public void partBroughtToTop(IWorkbenchPart p) { }
+		public void partClosed(IWorkbenchPart p) { }
+		public void partDeactivated(IWorkbenchPart p) {
+			DPFEditor editor = DPFEditor.this;
+			if(p != editor)
+				return;
+			IActionBars actionBars = editor.getEditorSite().getActionBars();
+			IToolBarManager toolbar = actionBars.getToolBarManager();
+			for(IAction action : constraintActions)
+				toolbar.remove(action.getId());
+			toolbar.update(true);
+			actionBars.updateActionBars();
+		}
+		public void partOpened(IWorkbenchPart p) {
+			//			if (p instanceof PropertySheet) {
+			//				if (((PropertySheet)p).getCurrentPage() == propertySheetPage) {
+			//					UndoablePropertySheetEntry root = new UndoablePropertySheetEntry(getCommandStack());
+			//					root.setPropertySourceProvider(sourceProvider);
+			//					propertySheetPage.setRootEntry(root);
+			//					propertySheetPage.setPropertySourceProvider(sourceProvider);
+			//				}
+			//			}
+		}
+	};
 }

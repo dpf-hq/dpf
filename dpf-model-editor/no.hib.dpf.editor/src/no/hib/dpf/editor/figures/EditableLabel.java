@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2011 H¿yskolen i Bergen
+ * Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
 *******************************************************************************/
 package no.hib.dpf.editor.figures;
 
@@ -32,6 +32,7 @@ public class EditableLabel extends Label
 	public EditableLabel(String text)
 	{
 		super(text);
+		setForegroundColor(ColorConstants.black);
 	}
 	
 	private Rectangle getSelectionRectangle()
@@ -43,16 +44,6 @@ public class EditableLabel extends Label
 		return bounds;
 	}
 
-	
-	/**
-	 * sets the text of the label
-	 */
-	public void setText(String s)
-	{
-		super.setText(s);
-	}
-	
-	
 	/**
 	 * paints figure differently depends on the whether the figure has focus or is selected 
 	 */

@@ -23,7 +23,6 @@ import no.hib.dpf.core.Node;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,7 +33,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public class IrreflexiveSemanticsImpl extends EObjectImpl implements IrreflexiveSemantics {
+public class IrreflexiveSemanticsImpl extends SemanticsValidatorImpl implements IrreflexiveSemantics {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

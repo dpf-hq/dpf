@@ -1,6 +1,6 @@
 /**
  * <copyright>
- * Copyright (c) 2011 H¿yskolen i Bergen
+ * Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,17 +8,14 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * Adrian Rutle, ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * Adrian Rutle, ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
  * </copyright>
  *
  * $Id$
  */
 package no.hib.dpf.core;
 
-import java.io.IOException;
-
 import org.eclipse.emf.common.util.EMap;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EFactory;
 
 /**
@@ -122,6 +119,24 @@ public interface CoreFactory extends EFactory {
 	Predicate createPredicate();
 
 	/**
+	 * Returns a new object of class '<em>Semantics Validator</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Semantics Validator</em>'.
+	 * @generated
+	 */
+	SemanticsValidator createSemanticsValidator();
+
+	/**
+	 * Returns a new object of class '<em>Visualization</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Visualization</em>'.
+	 * @generated
+	 */
+	Visualization createVisualization();
+
+	/**
 	 * Returns a new object of class '<em>Predicate</em>'.
 	 * <!-- begin-user-doc -->
 	 * shapeDescription is used to construct a graph. See createGraph().
@@ -202,24 +217,6 @@ public interface CoreFactory extends EFactory {
 	ModelHierarchy createModelHierarchy();
 
 	/**
-	 * Loads specification from URI
-	 * @param uri
-	 * @return
-	 * @throws IOException 
-	 * @generated NOT
-	 */
-	Specification loadSpecification(URI uri) throws IOException;
-
-	/**
-	 * Loads signature from URI
-	 * @param uri
-	 * @return
-	 * @throws IOException 
-	 * @generated NOT
-	 */
-	Signature loadSignature(URI uri) throws IOException;
-	
-	/**
 	 * Returns a new object of class '<em>Jointly Surjective Semantics</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -281,6 +278,15 @@ public interface CoreFactory extends EFactory {
 	 * @generated
 	 */
 	SurjectiveSemantics createSurjectiveSemantics();
+
+	/**
+	 * Returns a new object of class '<em>NAND Semantics</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>NAND Semantics</em>'.
+	 * @generated
+	 */
+	NANDSemantics createNANDSemantics();
 
 	/**
 	 * Returns the package supported by this factory.

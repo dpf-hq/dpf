@@ -11,71 +11,66 @@
 *******************************************************************************/
 package no.hib.dpf.editor.editoractions;
 
-import no.hib.dpf.editor.DPFPlugin;
 import no.hib.dpf.editor.displaymodel.DConstraint;
 import no.hib.dpf.editor.icons.ImageSettings;
 
-import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.actions.LabelRetargetAction;
 
 public class ConstraintRetargetAction extends LabelRetargetAction {
 	
-	private ImageDescriptor getImageDescriptor(ImageSettings imageSettings) {
-		return imageSettings.getImageDescriptor();
-//		return ImageDescriptor.createFromFile(DPFPlugin.class, imageSettings.getFilePath());
-	}
-
 	public ConstraintRetargetAction(DConstraint.ConstraintType constraintType) {
 		super(null, null);
 		switch (constraintType) {
 			case INVERSE: 
 				setId(CreateInverseConstraintAction.ID);
-				setImageDescriptor(getImageDescriptor(ImageSettings.INVERSE));
+				setImageDescriptor(ImageSettings.INVERSE.getImageDescriptor());
 //			setImageDescriptor(InternalImages.DESC_VERT_ALIGN_BOTTOM);
 //			setDisabledImageDescriptor(InternalImages.DESC_VERT_ALIGN_BOTTOM_DIS);
 				break;
 			case JOINTLY_INJECTIVE:
 				setId(CreateJointlyInjectiveConstraintAction.ID);
-				setImageDescriptor(getImageDescriptor(ImageSettings.JOINTLY_INJECTIVE));
+				setImageDescriptor(ImageSettings.JOINTLY_INJECTIVE.getImageDescriptor());
 				break;
 			case JOINTLY_SURJECTIVE:
 				setId(CreateJointlySurjectiveConstraintAction.ID);
-				setImageDescriptor(getImageDescriptor(ImageSettings.JOINTLY_SURJECTIVE));
+				setImageDescriptor(ImageSettings.JOINTLY_SURJECTIVE.getImageDescriptor());
 				break;
 			case MULTIPLICITY:
 				setId(CreateMultiplicityConstraintAction.ID);
-				setImageDescriptor(getImageDescriptor(ImageSettings.MULTIPLICITY));
+				setImageDescriptor(ImageSettings.MULTIPLICITY.getImageDescriptor());
 				break;
 			case IMAGE_INCLUSION:
 				setId(CreateImageInclusionConstraintAction.ID);
-				setImageDescriptor(getImageDescriptor(ImageSettings.IMAGE_INCLUSION));
+				setImageDescriptor(ImageSettings.IMAGE_INCLUSION.getImageDescriptor());
 				break;
 			case COMPOSITION:
 				setId(CreateCompositionConstraintAction.ID);
-				setImageDescriptor(getImageDescriptor(ImageSettings.COMPOSITION));
+				setImageDescriptor(ImageSettings.COMPOSITION.getImageDescriptor());
 				break;
 			case INJECTIVE:
 				setId(CreateInjectiveConstraintAction.ID);
-				setImageDescriptor(getImageDescriptor(ImageSettings.INJECTIVE));
+				setImageDescriptor(ImageSettings.INJECTIVE.getImageDescriptor());
 				break;
 			case SURJECTIVE:
 				setId(CreateSurjectiveConstraintAction.ID);
-				setImageDescriptor(getImageDescriptor(ImageSettings.SURJECTIVE));
+				setImageDescriptor(ImageSettings.SURJECTIVE.getImageDescriptor());
 				break;
 			case IRREFLEXIVE:
 				setId(CreateIrreflexiveConstraintAction.ID);
-				setImageDescriptor(getImageDescriptor(ImageSettings.IRREFLEXIVE));
+				setImageDescriptor(ImageSettings.IRREFLEXIVE.getImageDescriptor());
 				break;
 			case TRANSITIVE_IRREFLEXIVE:
 				setId(CreateTransitiveIrreflexiveConstraintAction.ID);
-				setImageDescriptor(getImageDescriptor(ImageSettings.TRANSITIVE_IRREFLEXIVE));
+				setImageDescriptor(ImageSettings.TRANSITIVE_IRREFLEXIVE.getImageDescriptor());
 				break;
 			case XOR:
 				setId(CreateXORConstraintAction.ID);
-				setImageDescriptor(getImageDescriptor(ImageSettings.XOR));
+				setImageDescriptor(ImageSettings.XOR.getImageDescriptor());
 				break;
-			
-			
+			case NAND:
+				setId(CreateNANDConstraintAction.ID);
+				setImageDescriptor(ImageSettings.NAND.getImageDescriptor());
+				break;
 		}
 		// TODO Auto-generated constructor stub
 	}

@@ -1,6 +1,6 @@
 /**
  * <copyright>
- * Copyright (c) 2011 H¿yskolen i Bergen
+ * Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * Adrian Rutle, ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * Adrian Rutle, ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
  * </copyright>
  *
  * $Id$
@@ -278,13 +278,9 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	 */
 	public EList<Node> getNodes(EList<Node> typeNodes) {
 		EList<Node> retval = new BasicEList<Node>();
-		for (Node typeNode : typeNodes) {
-			for (Node node : getNodes()) {
-				if(node.getTypeNode().equals(typeNode)) {
-					retval.add(node);
-				}
-			}
-		}
+		for(Node node : getNodes())
+			if(typeNodes.contains(node.getTypeNode()))
+				retval.add(node);
 		return retval;
 	}
 
@@ -295,13 +291,9 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	 */
 	public EList<Arrow> getArrows(EList<Arrow> types) {
 		EList<Arrow> retval = new BasicEList<Arrow>();
-		for (Arrow typeArrow : types) {
-			for (Arrow arrow : getArrows()) {
-				if(arrow.getTypeArrow().equals(typeArrow)) {
-					retval.add(arrow);
-				}
-			}
-		}
+		for(Arrow arrow : getArrows())
+			if(types.contains(arrow.getTypeArrow()))
+				retval.add(arrow);
 		return retval;
 	}
 

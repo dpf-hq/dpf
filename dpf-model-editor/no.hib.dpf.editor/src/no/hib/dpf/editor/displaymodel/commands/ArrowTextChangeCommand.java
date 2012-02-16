@@ -39,25 +39,22 @@ OF SUCH DAMAGE.
 
 import org.eclipse.gef.commands.Command;
 
-import no.hib.dpf.editor.displaymodel.ArrowLabel;
+import no.hib.dpf.editor.displaymodel.DArrow;
 
 public class ArrowTextChangeCommand extends Command {
 
   private String newName;
   private String oldName;
-  private ArrowLabel label;
+  private DArrow dArrow;
 
-  public ArrowTextChangeCommand(ArrowLabel label, String string) {
-    this.label = label;
-	if (string != null)
-	  newName = string;
-	else
-	  newName = "";
+  public ArrowTextChangeCommand(DArrow dArrow, String string) {
+    this.dArrow = dArrow;
+    newName = string == null ? "" : string;
+	oldName = dArrow.getName();
   }
 
   public void execute() {
-    oldName = label.getLabelText();
-	label.setLabelText(newName);
+	dArrow.setName(newName);
   }
   
   public void redo() {
@@ -65,6 +62,6 @@ public class ArrowTextChangeCommand extends Command {
   }
 
   public void undo() {
-    label.setLabelText(oldName);
+    dArrow.setName(oldName);
   }
 }

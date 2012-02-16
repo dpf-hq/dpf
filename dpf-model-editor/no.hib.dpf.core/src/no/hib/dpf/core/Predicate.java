@@ -1,6 +1,6 @@
 /**
  * <copyright>
- * Copyright (c) 2011 H¿yskolen i Bergen
+ * Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * Adrian Rutle, ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * Adrian Rutle, ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
  * </copyright>
  *
  * $Id$
@@ -28,8 +28,10 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link no.hib.dpf.core.Predicate#getShape <em>Shape</em>}</li>
  *   <li>{@link no.hib.dpf.core.Predicate#getSemanticsValidator <em>Semantics Validator</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Predicate#getParameters <em>Parameters</em>}</li>
  *   <li>{@link no.hib.dpf.core.Predicate#getVisualization <em>Visualization</em>}</li>
  *   <li>{@link no.hib.dpf.core.Predicate#getSymbol <em>Symbol</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Predicate#getIcon <em>Icon</em>}</li>
  * </ul>
  * </p>
  *
@@ -37,7 +39,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface Predicate extends EObject {
+public interface Predicate extends EObject  {
 	/**
 	 * Returns the value of the '<em><b>Shape</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -91,26 +93,52 @@ public interface Predicate extends EObject {
 	void setSemanticsValidator(SemanticsValidator value);
 
 	/**
-	 * Returns the value of the '<em><b>Visualization</b></em>' reference.
+	 * Returns the value of the '<em><b>Parameters</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Parameters</em>' attribute list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Parameters</em>' attribute.
+	 * @see #setParameters(String)
+	 * @see no.hib.dpf.core.CorePackage#getPredicate_Parameters()
+	 * @model
+	 * @generated
+	 */
+	String getParameters();
+
+	/**
+	 * Sets the value of the '{@link no.hib.dpf.core.Predicate#getParameters <em>Parameters</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Parameters</em>' attribute.
+	 * @see #getParameters()
+	 * @generated
+	 */
+	void setParameters(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Visualization</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Visualization</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Visualization</em>' reference.
+	 * @return the value of the '<em>Visualization</em>' containment reference.
 	 * @see #setVisualization(Visualization)
 	 * @see no.hib.dpf.core.CorePackage#getPredicate_Visualization()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	Visualization getVisualization();
 
 	/**
-	 * Sets the value of the '{@link no.hib.dpf.core.Predicate#getVisualization <em>Visualization</em>}' reference.
+	 * Sets the value of the '{@link no.hib.dpf.core.Predicate#getVisualization <em>Visualization</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Visualization</em>' reference.
+	 * @param value the new value of the '<em>Visualization</em>' containment reference.
 	 * @see #getVisualization()
 	 * @generated
 	 */
@@ -143,6 +171,32 @@ public interface Predicate extends EObject {
 	void setSymbol(String value);
 
 	/**
+	 * Returns the value of the '<em><b>Icon</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Icon</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Icon</em>' attribute.
+	 * @see #setIcon(String)
+	 * @see no.hib.dpf.core.CorePackage#getPredicate_Icon()
+	 * @model
+	 * @generated
+	 */
+	String getIcon();
+
+	/**
+	 * Sets the value of the '{@link no.hib.dpf.core.Predicate#getIcon <em>Icon</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Icon</em>' attribute.
+	 * @see #getIcon()
+	 * @generated
+	 */
+	void setIcon(String value);
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model nodesMany="true" arrowsMany="true"
@@ -165,5 +219,13 @@ public interface Predicate extends EObject {
 	 * @generated
 	 */
 	Boolean validateSemantics(Graph oStar, String constraintParameters, EList<Node> typeNodes, EList<Arrow> typeArrows);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	boolean validateSemantics(String parameters, GraphHomomorphism mapping, Graph graph);
 
 } // Predicate

@@ -12,8 +12,17 @@
           ecorePackage="Metamodel.ecore#//hib/dpf">
         <nestedGenPackages prefix="Core" basePackage="no.hib.dpf" disposableProviderFactory="true"
             ecorePackage="Metamodel.ecore#//hib/dpf/core">
-          <genDataTypes ecoreDataType="Metamodel.ecore#//hib/dpf/core/EURI"/>
-          <genDataTypes ecoreDataType="Metamodel.ecore#//hib/dpf/core/EIOException"/>
+          <genEnums typeSafeEnumCompatible="false" ecoreEnum="Metamodel.ecore#//hib/dpf/core/ValidatorType">
+            <genEnumLiterals ecoreEnumLiteral="Metamodel.ecore#//hib/dpf/core/ValidatorType/OCL"/>
+            <genEnumLiterals ecoreEnumLiteral="Metamodel.ecore#//hib/dpf/core/ValidatorType/JAVA"/>
+          </genEnums>
+          <genEnums typeSafeEnumCompatible="false" ecoreEnum="Metamodel.ecore#//hib/dpf/core/VisualizationType">
+            <genEnumLiterals ecoreEnumLiteral="Metamodel.ecore#//hib/dpf/core/VisualizationType/ArrowLabel"/>
+            <genEnumLiterals ecoreEnumLiteral="Metamodel.ecore#//hib/dpf/core/VisualizationType/NodeToNode"/>
+            <genEnumLiterals ecoreEnumLiteral="Metamodel.ecore#//hib/dpf/core/VisualizationType/NodeToArrow"/>
+            <genEnumLiterals ecoreEnumLiteral="Metamodel.ecore#//hib/dpf/core/VisualizationType/ArrowToNode"/>
+            <genEnumLiterals ecoreEnumLiteral="Metamodel.ecore#//hib/dpf/core/VisualizationType/ArrowToArrow"/>
+          </genEnums>
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/core/Graph">
             <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/core/Graph/nodes"/>
             <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//hib/dpf/core/Graph/name"/>
@@ -122,9 +131,7 @@
           </genClasses>
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/core/Signature">
             <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/core/Signature/predicates"/>
-            <genOperations ecoreOperation="Metamodel.ecore#//hib/dpf/core/Signature/save">
-              <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/core/Signature/save/uri"/>
-            </genOperations>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//hib/dpf/core/Signature/name"/>
             <genOperations ecoreOperation="Metamodel.ecore#//hib/dpf/core/Signature/getPredicateBySymbol">
               <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/core/Signature/getPredicateBySymbol/symbol"/>
             </genOperations>
@@ -132,9 +139,11 @@
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/core/Predicate">
             <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/core/Predicate/shape"/>
             <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/core/Predicate/semanticsValidator"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//hib/dpf/core/Predicate/parameters"/>
             <genFeatures notify="false" createChild="false" propertySortChoices="true"
                 ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/core/Predicate/visualization"/>
             <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//hib/dpf/core/Predicate/symbol"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//hib/dpf/core/Predicate/icon"/>
             <genOperations ecoreOperation="Metamodel.ecore#//hib/dpf/core/Predicate/createConstraint">
               <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/core/Predicate/createConstraint/nodes"/>
               <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/core/Predicate/createConstraint/arrows"/>
@@ -151,8 +160,15 @@
               <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/core/Predicate/validateSemantics/typeNodes"/>
               <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/core/Predicate/validateSemantics/typeArrows"/>
             </genOperations>
+            <genOperations ecoreOperation="Metamodel.ecore#//hib/dpf/core/Predicate/validateSemantics.1">
+              <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/core/Predicate/validateSemantics.1/parameters"/>
+              <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/core/Predicate/validateSemantics.1/mapping"/>
+              <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/core/Predicate/validateSemantics.1/graph"/>
+            </genOperations>
           </genClasses>
           <genClasses image="false" ecoreClass="Metamodel.ecore#//hib/dpf/core/SemanticsValidator">
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//hib/dpf/core/SemanticsValidator/type"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//hib/dpf/core/SemanticsValidator/validator"/>
             <genOperations ecoreOperation="Metamodel.ecore#//hib/dpf/core/SemanticsValidator/validateSemantics">
               <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/core/SemanticsValidator/validateSemantics/oStar"/>
               <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/core/SemanticsValidator/validateSemantics/constraintParameters"/>
@@ -160,7 +176,13 @@
               <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/core/SemanticsValidator/validateSemantics/typeArrows"/>
             </genOperations>
           </genClasses>
-          <genClasses image="false" ecoreClass="Metamodel.ecore#//hib/dpf/core/Visualization"/>
+          <genClasses image="false" ecoreClass="Metamodel.ecore#//hib/dpf/core/Visualization">
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//hib/dpf/core/Visualization/type"/>
+            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+                ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/core/Visualization/source"/>
+            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+                ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/core/Visualization/target"/>
+          </genClasses>
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/core/NodeToNodeMap">
             <genFeatures notify="false" createChild="false" propertySortChoices="true"
                 ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/core/NodeToNodeMap/key"/>
@@ -205,9 +227,9 @@
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/core/Specification">
             <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/core/Specification/graph"/>
             <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/core/Specification/typeGraph"/>
-            <genOperations ecoreOperation="Metamodel.ecore#//hib/dpf/core/Specification/save">
-              <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/core/Specification/save/uri"/>
-            </genOperations>
+            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+                ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/core/Specification/signature"/>
+            <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//hib/dpf/core/Specification/signatureFile"/>
             <genOperations ecoreOperation="Metamodel.ecore#//hib/dpf/core/Specification/createOStar">
               <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/core/Specification/createOStar/constraint"/>
             </genOperations>
@@ -222,6 +244,7 @@
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/core/XORSemantics"/>
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/core/TransitiveIrreflexiveSemantics"/>
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/core/SurjectiveSemantics"/>
+          <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/core/NANDSemantics"/>
         </nestedGenPackages>
       </nestedGenPackages>
     </nestedGenPackages>

@@ -30,6 +30,8 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
  */
 public class DPFPlugin extends AbstractUIPlugin {
 
+	public static final String PLUGIN_ID = "no.hib.dpf.editor";
+
 	/** Single plugin instance. */
 	private static DPFPlugin singleton;
 	

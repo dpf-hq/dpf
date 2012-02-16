@@ -38,8 +38,9 @@ package no.hib.dpf.editor.policies;
  */
 
 import no.hib.dpf.editor.displaymodel.ArrowLabel;
+import no.hib.dpf.editor.displaymodel.DArrow;
 import no.hib.dpf.editor.displaymodel.commands.ArrowTextChangeCommand;
-import no.hib.dpf.editor.parts.ArrowLabelEditPart;
+import no.hib.dpf.editor.parts.LabelEditPart;
 
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.DirectEditPolicy;
@@ -49,9 +50,9 @@ public class ArrowTextEditPolicy extends DirectEditPolicy {
 
 	protected Command getDirectEditCommand(DirectEditRequest edit) {
 		String labelText = (String) edit.getCellEditor().getValue();
-		ArrowLabelEditPart label = (ArrowLabelEditPart) getHost();
+		LabelEditPart label = (LabelEditPart) getHost();
 		ArrowTextChangeCommand command = new ArrowTextChangeCommand(
-				(ArrowLabel) label.getModel(), labelText);
+				(DArrow)((ArrowLabel) label.getModel()).getParent(), labelText);
 		return command;
 	}
 

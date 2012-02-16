@@ -1,7 +1,7 @@
 /*******************************************************************************
  * Copyright (c) 2004, 2005 Elias Volanakis and others.
  * 
- * Portions of the code Copyright (c) 2011 H¿yskolen i Bergen
+ * Portions of the code Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,23 +11,9 @@
  * Contributors:
  * Elias Volanakis - initial API and implementation
  * 
- * ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
 *******************************************************************************/
 package no.hib.dpf.editor;
-
-import no.hib.dpf.editor.displaymodel.DConstraint;
-import no.hib.dpf.editor.editoractions.ConstraintRetargetAction;
-import no.hib.dpf.editor.editoractions.CreateCompositionConstraintAction;
-import no.hib.dpf.editor.editoractions.CreateImageInclusionConstraintAction;
-import no.hib.dpf.editor.editoractions.CreateInjectiveConstraintAction;
-import no.hib.dpf.editor.editoractions.CreateInverseConstraintAction;
-import no.hib.dpf.editor.editoractions.CreateIrreflexiveConstraintAction;
-import no.hib.dpf.editor.editoractions.CreateJointlyInjectiveConstraintAction;
-import no.hib.dpf.editor.editoractions.CreateJointlySurjectiveConstraintAction;
-import no.hib.dpf.editor.editoractions.CreateMultiplicityConstraintAction;
-import no.hib.dpf.editor.editoractions.CreateSurjectiveConstraintAction;
-import no.hib.dpf.editor.editoractions.CreateTransitiveIrreflexiveConstraintAction;
-import no.hib.dpf.editor.editoractions.CreateXORConstraintAction;
 
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.gef.editparts.ZoomManager;
@@ -82,27 +68,28 @@ protected void buildActions() {
 	addRetargetAction(new RetargetAction(ActionFactory.PRINT.getId(),
 			GEFMessages.PrintAction_Label, IAction.AS_PUSH_BUTTON));
 	
-	
+	//TODO should remove following lines in the future
 	addRetargetAction(new AlignmentRetargetAction(PositionConstants.LEFT));
 	addRetargetAction(new AlignmentRetargetAction(PositionConstants.CENTER));
 	addRetargetAction(new AlignmentRetargetAction(PositionConstants.RIGHT));
 	addRetargetAction(new AlignmentRetargetAction(PositionConstants.TOP));
 	addRetargetAction(new AlignmentRetargetAction(PositionConstants.MIDDLE));
 	addRetargetAction(new AlignmentRetargetAction(PositionConstants.BOTTOM));
-	
-	
-	addRetargetAction(new ConstraintRetargetAction(DConstraint.ConstraintType.MULTIPLICITY));
-	addRetargetAction(new ConstraintRetargetAction(DConstraint.ConstraintType.INJECTIVE));
-	addRetargetAction(new ConstraintRetargetAction(DConstraint.ConstraintType.JOINTLY_INJECTIVE));
-	addRetargetAction(new ConstraintRetargetAction(DConstraint.ConstraintType.JOINTLY_SURJECTIVE));
-	
-	addRetargetAction(new ConstraintRetargetAction(DConstraint.ConstraintType.IMAGE_INCLUSION));
-	addRetargetAction(new ConstraintRetargetAction(DConstraint.ConstraintType.COMPOSITION));
-	addRetargetAction(new ConstraintRetargetAction(DConstraint.ConstraintType.SURJECTIVE));
-	addRetargetAction(new ConstraintRetargetAction(DConstraint.ConstraintType.INVERSE));
-	addRetargetAction(new ConstraintRetargetAction(DConstraint.ConstraintType.IRREFLEXIVE));
-	addRetargetAction(new ConstraintRetargetAction(DConstraint.ConstraintType.TRANSITIVE_IRREFLEXIVE));	
-	addRetargetAction(new ConstraintRetargetAction(DConstraint.ConstraintType.XOR));	
+//	
+//	
+//	addRetargetAction(new ConstraintRetargetAction(DConstraint.ConstraintType.MULTIPLICITY));
+//	addRetargetAction(new ConstraintRetargetAction(DConstraint.ConstraintType.INJECTIVE));
+//	addRetargetAction(new ConstraintRetargetAction(DConstraint.ConstraintType.JOINTLY_INJECTIVE));
+//	addRetargetAction(new ConstraintRetargetAction(DConstraint.ConstraintType.JOINTLY_SURJECTIVE));
+//	
+//	addRetargetAction(new ConstraintRetargetAction(DConstraint.ConstraintType.IMAGE_INCLUSION));
+//	addRetargetAction(new ConstraintRetargetAction(DConstraint.ConstraintType.COMPOSITION));
+//	addRetargetAction(new ConstraintRetargetAction(DConstraint.ConstraintType.SURJECTIVE));
+//	addRetargetAction(new ConstraintRetargetAction(DConstraint.ConstraintType.INVERSE));
+//	addRetargetAction(new ConstraintRetargetAction(DConstraint.ConstraintType.IRREFLEXIVE));
+//	addRetargetAction(new ConstraintRetargetAction(DConstraint.ConstraintType.TRANSITIVE_IRREFLEXIVE));	
+//	addRetargetAction(new ConstraintRetargetAction(DConstraint.ConstraintType.XOR));	
+//	addRetargetAction(new ConstraintRetargetAction(DConstraint.ConstraintType.NAND));	
 }
 
 /**
@@ -146,19 +133,21 @@ public void contributeToToolBar(IToolBarManager toolBarManager) {
 	
 	toolBarManager.add(new Separator());	
 	
-	toolBarManager.add(getAction(CreateMultiplicityConstraintAction.ID));
-	toolBarManager.add(getAction(CreateInjectiveConstraintAction.ID));
-	toolBarManager.add(getAction(CreateJointlyInjectiveConstraintAction.ID));
-	toolBarManager.add(getAction(CreateSurjectiveConstraintAction.ID));
-	toolBarManager.add(getAction(CreateInverseConstraintAction.ID));
-
-	
-	toolBarManager.add(getAction(CreateJointlySurjectiveConstraintAction.ID));
-	toolBarManager.add(getAction(CreateImageInclusionConstraintAction.ID));
-	toolBarManager.add(getAction(CreateCompositionConstraintAction.ID));
-	toolBarManager.add(getAction(CreateIrreflexiveConstraintAction.ID));
-	toolBarManager.add(getAction(CreateTransitiveIrreflexiveConstraintAction.ID));
-	toolBarManager.add(getAction(CreateXORConstraintAction.ID));
+	//TODO should remove following lines in the future
+//	toolBarManager.add(getAction(CreateMultiplicityConstraintAction.ID));
+//	toolBarManager.add(getAction(CreateInjectiveConstraintAction.ID));
+//	toolBarManager.add(getAction(CreateJointlyInjectiveConstraintAction.ID));
+//	toolBarManager.add(getAction(CreateSurjectiveConstraintAction.ID));
+//	toolBarManager.add(getAction(CreateInverseConstraintAction.ID));
+//
+//	
+//	toolBarManager.add(getAction(CreateJointlySurjectiveConstraintAction.ID));
+//	toolBarManager.add(getAction(CreateImageInclusionConstraintAction.ID));
+//	toolBarManager.add(getAction(CreateCompositionConstraintAction.ID));
+//	toolBarManager.add(getAction(CreateIrreflexiveConstraintAction.ID));
+//	toolBarManager.add(getAction(CreateTransitiveIrreflexiveConstraintAction.ID));
+//	toolBarManager.add(getAction(CreateXORConstraintAction.ID));
+//	toolBarManager.add(getAction(CreateNANDConstraintAction.ID));
 }
 
 @Override

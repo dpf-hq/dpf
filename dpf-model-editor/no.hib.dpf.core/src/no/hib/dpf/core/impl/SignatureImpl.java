@@ -18,15 +18,18 @@ package no.hib.dpf.core.impl;
 import java.io.IOException;
 import java.util.Collection;
 
+import no.hib.dpf.constant.DPFConstants;
 import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.core.Predicate;
 import no.hib.dpf.core.Signature;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -43,6 +46,7 @@ import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link no.hib.dpf.core.impl.SignatureImpl#getPredicates <em>Predicates</em>}</li>
+ *   <li>{@link no.hib.dpf.core.impl.SignatureImpl#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -58,6 +62,25 @@ public class SignatureImpl extends EObjectImpl implements Signature {
 	 * @ordered
 	 */
 	protected EList<Predicate> predicates;
+
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -93,12 +116,34 @@ public class SignatureImpl extends EObjectImpl implements Signature {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.SIGNATURE__NAME, oldName, name));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public void save(URI uri) throws IOException {
 		ResourceSet resourceSet = new ResourceSetImpl();
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new  XMLResourceFactoryImpl());		
-
+		Resource graph = resourceSet.createResource(DPFConstants.DefaultGraph);
+		graph.getContents().add(DPFConstants.REFLEXIVE_TYPE_GRAPH);
 		Resource resource = resourceSet.createResource(uri);
 		resource.getContents().add(this);		
 		
@@ -143,6 +188,8 @@ public class SignatureImpl extends EObjectImpl implements Signature {
 		switch (featureID) {
 			case CorePackage.SIGNATURE__PREDICATES:
 				return getPredicates();
+			case CorePackage.SIGNATURE__NAME:
+				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -160,6 +207,9 @@ public class SignatureImpl extends EObjectImpl implements Signature {
 				getPredicates().clear();
 				getPredicates().addAll((Collection<? extends Predicate>)newValue);
 				return;
+			case CorePackage.SIGNATURE__NAME:
+				setName((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -175,6 +225,9 @@ public class SignatureImpl extends EObjectImpl implements Signature {
 			case CorePackage.SIGNATURE__PREDICATES:
 				getPredicates().clear();
 				return;
+			case CorePackage.SIGNATURE__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -189,8 +242,26 @@ public class SignatureImpl extends EObjectImpl implements Signature {
 		switch (featureID) {
 			case CorePackage.SIGNATURE__PREDICATES:
 				return predicates != null && !predicates.isEmpty();
+			case CorePackage.SIGNATURE__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (name: ");
+		result.append(name);
+		result.append(')');
+		return result.toString();
 	}
 
 } //SignatureImpl

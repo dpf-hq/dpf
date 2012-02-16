@@ -1,6 +1,6 @@
 /**
  * <copyright>
- * Copyright (c) 2011 H¿yskolen i Bergen
+ * Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * Adrian Rutle, ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * Adrian Rutle, ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
  * </copyright>
  *
  * $Id$
@@ -17,7 +17,7 @@ package no.hib.dpf.core;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -309,13 +309,22 @@ public interface CorePackage extends EPackage {
 	int SIGNATURE__PREDICATES = 0;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIGNATURE__NAME = 1;
+
+	/**
 	 * The number of structural features of the '<em>Signature</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SIGNATURE_FEATURE_COUNT = 1;
+	int SIGNATURE_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link no.hib.dpf.core.impl.PredicateImpl <em>Predicate</em>}' class.
@@ -346,13 +355,22 @@ public interface CorePackage extends EPackage {
 	int PREDICATE__SEMANTICS_VALIDATOR = 1;
 
 	/**
-	 * The feature id for the '<em><b>Visualization</b></em>' reference.
+	 * The feature id for the '<em><b>Parameters</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PREDICATE__VISUALIZATION = 2;
+	int PREDICATE__PARAMETERS = 2;
+
+	/**
+	 * The feature id for the '<em><b>Visualization</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDICATE__VISUALIZATION = 3;
 
 	/**
 	 * The feature id for the '<em><b>Symbol</b></em>' attribute.
@@ -361,7 +379,16 @@ public interface CorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PREDICATE__SYMBOL = 3;
+	int PREDICATE__SYMBOL = 4;
+
+	/**
+	 * The feature id for the '<em><b>Icon</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDICATE__ICON = 5;
 
 	/**
 	 * The number of structural features of the '<em>Predicate</em>' class.
@@ -370,17 +397,35 @@ public interface CorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PREDICATE_FEATURE_COUNT = 4;
+	int PREDICATE_FEATURE_COUNT = 6;
 
 	/**
-	 * The meta object id for the '{@link no.hib.dpf.core.SemanticsValidator <em>Semantics Validator</em>}' class.
+	 * The meta object id for the '{@link no.hib.dpf.core.impl.SemanticsValidatorImpl <em>Semantics Validator</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.core.SemanticsValidator
+	 * @see no.hib.dpf.core.impl.SemanticsValidatorImpl
 	 * @see no.hib.dpf.core.impl.CorePackageImpl#getSemanticsValidator()
 	 * @generated
 	 */
 	int SEMANTICS_VALIDATOR = 5;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEMANTICS_VALIDATOR__TYPE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Validator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEMANTICS_VALIDATOR__VALIDATOR = 1;
 
 	/**
 	 * The number of structural features of the '<em>Semantics Validator</em>' class.
@@ -389,7 +434,7 @@ public interface CorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SEMANTICS_VALIDATOR_FEATURE_COUNT = 0;
+	int SEMANTICS_VALIDATOR_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link no.hib.dpf.core.impl.VisualizationImpl <em>Visualization</em>}' class.
@@ -402,13 +447,40 @@ public interface CorePackage extends EPackage {
 	int VISUALIZATION = 6;
 
 	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VISUALIZATION__TYPE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VISUALIZATION__SOURCE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VISUALIZATION__TARGET = 2;
+
+	/**
 	 * The number of structural features of the '<em>Visualization</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VISUALIZATION_FEATURE_COUNT = 0;
+	int VISUALIZATION_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link no.hib.dpf.core.impl.NodeToNodeMapImpl <em>Node To Node Map</em>}' class.
@@ -660,13 +732,31 @@ public interface CorePackage extends EPackage {
 	int SPECIFICATION__TYPE_GRAPH = 1;
 
 	/**
+	 * The feature id for the '<em><b>Signature</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPECIFICATION__SIGNATURE = 2;
+
+	/**
+	 * The feature id for the '<em><b>Signature File</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPECIFICATION__SIGNATURE_FILE = 3;
+
+	/**
 	 * The number of structural features of the '<em>Specification</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SPECIFICATION_FEATURE_COUNT = 2;
+	int SPECIFICATION_FEATURE_COUNT = 4;
 
 	/**
 	 * The meta object id for the '{@link no.hib.dpf.core.impl.ModelHierarchyImpl <em>Model Hierarchy</em>}' class.
@@ -707,6 +797,24 @@ public interface CorePackage extends EPackage {
 	int JOINTLY_SURJECTIVE_SEMANTICS = 15;
 
 	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JOINTLY_SURJECTIVE_SEMANTICS__TYPE = SEMANTICS_VALIDATOR__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Validator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JOINTLY_SURJECTIVE_SEMANTICS__VALIDATOR = SEMANTICS_VALIDATOR__VALIDATOR;
+
+	/**
 	 * The number of structural features of the '<em>Jointly Surjective Semantics</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -724,6 +832,24 @@ public interface CorePackage extends EPackage {
 	 * @generated
 	 */
 	int INVERSE_SEMANTICS = 16;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVERSE_SEMANTICS__TYPE = SEMANTICS_VALIDATOR__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Validator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVERSE_SEMANTICS__VALIDATOR = SEMANTICS_VALIDATOR__VALIDATOR;
 
 	/**
 	 * The number of structural features of the '<em>Inverse Semantics</em>' class.
@@ -745,6 +871,24 @@ public interface CorePackage extends EPackage {
 	int IRREFLEXIVE_SEMANTICS = 17;
 
 	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IRREFLEXIVE_SEMANTICS__TYPE = SEMANTICS_VALIDATOR__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Validator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IRREFLEXIVE_SEMANTICS__VALIDATOR = SEMANTICS_VALIDATOR__VALIDATOR;
+
+	/**
 	 * The number of structural features of the '<em>Irreflexive Semantics</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -762,6 +906,24 @@ public interface CorePackage extends EPackage {
 	 * @generated
 	 */
 	int MULTIPLICITY_SEMANTICS = 18;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLICITY_SEMANTICS__TYPE = SEMANTICS_VALIDATOR__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Validator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLICITY_SEMANTICS__VALIDATOR = SEMANTICS_VALIDATOR__VALIDATOR;
 
 	/**
 	 * The number of structural features of the '<em>Multiplicity Semantics</em>' class.
@@ -783,6 +945,24 @@ public interface CorePackage extends EPackage {
 	int XOR_SEMANTICS = 19;
 
 	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XOR_SEMANTICS__TYPE = SEMANTICS_VALIDATOR__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Validator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XOR_SEMANTICS__VALIDATOR = SEMANTICS_VALIDATOR__VALIDATOR;
+
+	/**
 	 * The number of structural features of the '<em>XOR Semantics</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -800,6 +980,24 @@ public interface CorePackage extends EPackage {
 	 * @generated
 	 */
 	int TRANSITIVE_IRREFLEXIVE_SEMANTICS = 20;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSITIVE_IRREFLEXIVE_SEMANTICS__TYPE = SEMANTICS_VALIDATOR__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Validator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSITIVE_IRREFLEXIVE_SEMANTICS__VALIDATOR = SEMANTICS_VALIDATOR__VALIDATOR;
 
 	/**
 	 * The number of structural features of the '<em>Transitive Irreflexive Semantics</em>' class.
@@ -821,6 +1019,24 @@ public interface CorePackage extends EPackage {
 	int SURJECTIVE_SEMANTICS = 21;
 
 	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SURJECTIVE_SEMANTICS__TYPE = SEMANTICS_VALIDATOR__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Validator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SURJECTIVE_SEMANTICS__VALIDATOR = SEMANTICS_VALIDATOR__VALIDATOR;
+
+	/**
 	 * The number of structural features of the '<em>Surjective Semantics</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -830,25 +1046,61 @@ public interface CorePackage extends EPackage {
 	int SURJECTIVE_SEMANTICS_FEATURE_COUNT = SEMANTICS_VALIDATOR_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '<em>EURI</em>' data type.
+	 * The meta object id for the '{@link no.hib.dpf.core.impl.NANDSemanticsImpl <em>NAND Semantics</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.common.util.URI
-	 * @see no.hib.dpf.core.impl.CorePackageImpl#getEURI()
+	 * @see no.hib.dpf.core.impl.NANDSemanticsImpl
+	 * @see no.hib.dpf.core.impl.CorePackageImpl#getNANDSemantics()
 	 * @generated
 	 */
-	int EURI = 22;
+	int NAND_SEMANTICS = 22;
 
 	/**
-	 * The meta object id for the '<em>EIO Exception</em>' data type.
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see java.io.IOException
-	 * @see no.hib.dpf.core.impl.CorePackageImpl#getEIOException()
+	 * @generated
+	 * @ordered
+	 */
+	int NAND_SEMANTICS__TYPE = SEMANTICS_VALIDATOR__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Validator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAND_SEMANTICS__VALIDATOR = SEMANTICS_VALIDATOR__VALIDATOR;
+
+	/**
+	 * The number of structural features of the '<em>NAND Semantics</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAND_SEMANTICS_FEATURE_COUNT = SEMANTICS_VALIDATOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link no.hib.dpf.core.ValidatorType <em>Validator Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.core.ValidatorType
+	 * @see no.hib.dpf.core.impl.CorePackageImpl#getValidatorType()
 	 * @generated
 	 */
-	int EIO_EXCEPTION = 23;
+	int VALIDATOR_TYPE = 23;
 
+	/**
+	 * The meta object id for the '{@link no.hib.dpf.core.VisualizationType <em>Visualization Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.core.VisualizationType
+	 * @see no.hib.dpf.core.impl.CorePackageImpl#getVisualizationType()
+	 * @generated
+	 */
+	int VISUALIZATION_TYPE = 24;
 
 	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.core.Graph <em>Graph</em>}'.
@@ -1034,6 +1286,17 @@ public interface CorePackage extends EPackage {
 	EReference getSignature_Predicates();
 
 	/**
+	 * Returns the meta object for the attribute '{@link no.hib.dpf.core.Signature#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see no.hib.dpf.core.Signature#getName()
+	 * @see #getSignature()
+	 * @generated
+	 */
+	EAttribute getSignature_Name();
+
+	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.core.Predicate <em>Predicate</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1066,10 +1329,21 @@ public interface CorePackage extends EPackage {
 	EReference getPredicate_SemanticsValidator();
 
 	/**
-	 * Returns the meta object for the reference '{@link no.hib.dpf.core.Predicate#getVisualization <em>Visualization</em>}'.
+	 * Returns the meta object for the attribute '{@link no.hib.dpf.core.Predicate#getParameters <em>Parameters</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Visualization</em>'.
+	 * @return the meta object for the attribute '<em>Parameters</em>'.
+	 * @see no.hib.dpf.core.Predicate#getParameters()
+	 * @see #getPredicate()
+	 * @generated
+	 */
+	EAttribute getPredicate_Parameters();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link no.hib.dpf.core.Predicate#getVisualization <em>Visualization</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Visualization</em>'.
 	 * @see no.hib.dpf.core.Predicate#getVisualization()
 	 * @see #getPredicate()
 	 * @generated
@@ -1088,6 +1362,17 @@ public interface CorePackage extends EPackage {
 	EAttribute getPredicate_Symbol();
 
 	/**
+	 * Returns the meta object for the attribute '{@link no.hib.dpf.core.Predicate#getIcon <em>Icon</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Icon</em>'.
+	 * @see no.hib.dpf.core.Predicate#getIcon()
+	 * @see #getPredicate()
+	 * @generated
+	 */
+	EAttribute getPredicate_Icon();
+
+	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.core.SemanticsValidator <em>Semantics Validator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1098,6 +1383,28 @@ public interface CorePackage extends EPackage {
 	EClass getSemanticsValidator();
 
 	/**
+	 * Returns the meta object for the attribute '{@link no.hib.dpf.core.SemanticsValidator#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see no.hib.dpf.core.SemanticsValidator#getType()
+	 * @see #getSemanticsValidator()
+	 * @generated
+	 */
+	EAttribute getSemanticsValidator_Type();
+
+	/**
+	 * Returns the meta object for the attribute '{@link no.hib.dpf.core.SemanticsValidator#getValidator <em>Validator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Validator</em>'.
+	 * @see no.hib.dpf.core.SemanticsValidator#getValidator()
+	 * @see #getSemanticsValidator()
+	 * @generated
+	 */
+	EAttribute getSemanticsValidator_Validator();
+
+	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.core.Visualization <em>Visualization</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1106,6 +1413,39 @@ public interface CorePackage extends EPackage {
 	 * @generated
 	 */
 	EClass getVisualization();
+
+	/**
+	 * Returns the meta object for the attribute '{@link no.hib.dpf.core.Visualization#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see no.hib.dpf.core.Visualization#getType()
+	 * @see #getVisualization()
+	 * @generated
+	 */
+	EAttribute getVisualization_Type();
+
+	/**
+	 * Returns the meta object for the reference '{@link no.hib.dpf.core.Visualization#getSource <em>Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Source</em>'.
+	 * @see no.hib.dpf.core.Visualization#getSource()
+	 * @see #getVisualization()
+	 * @generated
+	 */
+	EReference getVisualization_Source();
+
+	/**
+	 * Returns the meta object for the reference '{@link no.hib.dpf.core.Visualization#getTarget <em>Target</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Target</em>'.
+	 * @see no.hib.dpf.core.Visualization#getTarget()
+	 * @see #getVisualization()
+	 * @generated
+	 */
+	EReference getVisualization_Target();
 
 	/**
 	 * Returns the meta object for class '{@link java.util.Map.Entry <em>Node To Node Map</em>}'.
@@ -1358,6 +1698,28 @@ public interface CorePackage extends EPackage {
 	EReference getSpecification_TypeGraph();
 
 	/**
+	 * Returns the meta object for the reference '{@link no.hib.dpf.core.Specification#getSignature <em>Signature</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Signature</em>'.
+	 * @see no.hib.dpf.core.Specification#getSignature()
+	 * @see #getSpecification()
+	 * @generated
+	 */
+	EReference getSpecification_Signature();
+
+	/**
+	 * Returns the meta object for the attribute '{@link no.hib.dpf.core.Specification#getSignatureFile <em>Signature File</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Signature File</em>'.
+	 * @see no.hib.dpf.core.Specification#getSignatureFile()
+	 * @see #getSpecification()
+	 * @generated
+	 */
+	EAttribute getSpecification_SignatureFile();
+
+	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.core.ModelHierarchy <em>Model Hierarchy</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1449,26 +1811,34 @@ public interface CorePackage extends EPackage {
 	EClass getSurjectiveSemantics();
 
 	/**
-	 * Returns the meta object for data type '{@link org.eclipse.emf.common.util.URI <em>EURI</em>}'.
+	 * Returns the meta object for class '{@link no.hib.dpf.core.NANDSemantics <em>NAND Semantics</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for data type '<em>EURI</em>'.
-	 * @see org.eclipse.emf.common.util.URI
-	 * @model instanceClass="org.eclipse.emf.common.util.URI"
+	 * @return the meta object for class '<em>NAND Semantics</em>'.
+	 * @see no.hib.dpf.core.NANDSemantics
 	 * @generated
 	 */
-	EDataType getEURI();
+	EClass getNANDSemantics();
 
 	/**
-	 * Returns the meta object for data type '{@link java.io.IOException <em>EIO Exception</em>}'.
+	 * Returns the meta object for enum '{@link no.hib.dpf.core.ValidatorType <em>Validator Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for data type '<em>EIO Exception</em>'.
-	 * @see java.io.IOException
-	 * @model instanceClass="java.io.IOException"
+	 * @return the meta object for enum '<em>Validator Type</em>'.
+	 * @see no.hib.dpf.core.ValidatorType
 	 * @generated
 	 */
-	EDataType getEIOException();
+	EEnum getValidatorType();
+
+	/**
+	 * Returns the meta object for enum '{@link no.hib.dpf.core.VisualizationType <em>Visualization Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Visualization Type</em>'.
+	 * @see no.hib.dpf.core.VisualizationType
+	 * @generated
+	 */
+	EEnum getVisualizationType();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1637,6 +2007,14 @@ public interface CorePackage extends EPackage {
 		EReference SIGNATURE__PREDICATES = eINSTANCE.getSignature_Predicates();
 
 		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SIGNATURE__NAME = eINSTANCE.getSignature_Name();
+
+		/**
 		 * The meta object literal for the '{@link no.hib.dpf.core.impl.PredicateImpl <em>Predicate</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1663,7 +2041,15 @@ public interface CorePackage extends EPackage {
 		EReference PREDICATE__SEMANTICS_VALIDATOR = eINSTANCE.getPredicate_SemanticsValidator();
 
 		/**
-		 * The meta object literal for the '<em><b>Visualization</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Parameters</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDICATE__PARAMETERS = eINSTANCE.getPredicate_Parameters();
+
+		/**
+		 * The meta object literal for the '<em><b>Visualization</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1679,14 +2065,38 @@ public interface CorePackage extends EPackage {
 		EAttribute PREDICATE__SYMBOL = eINSTANCE.getPredicate_Symbol();
 
 		/**
-		 * The meta object literal for the '{@link no.hib.dpf.core.SemanticsValidator <em>Semantics Validator</em>}' class.
+		 * The meta object literal for the '<em><b>Icon</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see no.hib.dpf.core.SemanticsValidator
+		 * @generated
+		 */
+		EAttribute PREDICATE__ICON = eINSTANCE.getPredicate_Icon();
+
+		/**
+		 * The meta object literal for the '{@link no.hib.dpf.core.impl.SemanticsValidatorImpl <em>Semantics Validator</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see no.hib.dpf.core.impl.SemanticsValidatorImpl
 		 * @see no.hib.dpf.core.impl.CorePackageImpl#getSemanticsValidator()
 		 * @generated
 		 */
 		EClass SEMANTICS_VALIDATOR = eINSTANCE.getSemanticsValidator();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SEMANTICS_VALIDATOR__TYPE = eINSTANCE.getSemanticsValidator_Type();
+
+		/**
+		 * The meta object literal for the '<em><b>Validator</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SEMANTICS_VALIDATOR__VALIDATOR = eINSTANCE.getSemanticsValidator_Validator();
 
 		/**
 		 * The meta object literal for the '{@link no.hib.dpf.core.impl.VisualizationImpl <em>Visualization</em>}' class.
@@ -1697,6 +2107,30 @@ public interface CorePackage extends EPackage {
 		 * @generated
 		 */
 		EClass VISUALIZATION = eINSTANCE.getVisualization();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VISUALIZATION__TYPE = eINSTANCE.getVisualization_Type();
+
+		/**
+		 * The meta object literal for the '<em><b>Source</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VISUALIZATION__SOURCE = eINSTANCE.getVisualization_Source();
+
+		/**
+		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VISUALIZATION__TARGET = eINSTANCE.getVisualization_Target();
 
 		/**
 		 * The meta object literal for the '{@link no.hib.dpf.core.impl.NodeToNodeMapImpl <em>Node To Node Map</em>}' class.
@@ -1897,6 +2331,22 @@ public interface CorePackage extends EPackage {
 		EReference SPECIFICATION__TYPE_GRAPH = eINSTANCE.getSpecification_TypeGraph();
 
 		/**
+		 * The meta object literal for the '<em><b>Signature</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SPECIFICATION__SIGNATURE = eINSTANCE.getSpecification_Signature();
+
+		/**
+		 * The meta object literal for the '<em><b>Signature File</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SPECIFICATION__SIGNATURE_FILE = eINSTANCE.getSpecification_SignatureFile();
+
+		/**
 		 * The meta object literal for the '{@link no.hib.dpf.core.impl.ModelHierarchyImpl <em>Model Hierarchy</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1985,24 +2435,34 @@ public interface CorePackage extends EPackage {
 		EClass SURJECTIVE_SEMANTICS = eINSTANCE.getSurjectiveSemantics();
 
 		/**
-		 * The meta object literal for the '<em>EURI</em>' data type.
+		 * The meta object literal for the '{@link no.hib.dpf.core.impl.NANDSemanticsImpl <em>NAND Semantics</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.common.util.URI
-		 * @see no.hib.dpf.core.impl.CorePackageImpl#getEURI()
+		 * @see no.hib.dpf.core.impl.NANDSemanticsImpl
+		 * @see no.hib.dpf.core.impl.CorePackageImpl#getNANDSemantics()
 		 * @generated
 		 */
-		EDataType EURI = eINSTANCE.getEURI();
+		EClass NAND_SEMANTICS = eINSTANCE.getNANDSemantics();
 
 		/**
-		 * The meta object literal for the '<em>EIO Exception</em>' data type.
+		 * The meta object literal for the '{@link no.hib.dpf.core.ValidatorType <em>Validator Type</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see java.io.IOException
-		 * @see no.hib.dpf.core.impl.CorePackageImpl#getEIOException()
+		 * @see no.hib.dpf.core.ValidatorType
+		 * @see no.hib.dpf.core.impl.CorePackageImpl#getValidatorType()
 		 * @generated
 		 */
-		EDataType EIO_EXCEPTION = eINSTANCE.getEIOException();
+		EEnum VALIDATOR_TYPE = eINSTANCE.getValidatorType();
+
+		/**
+		 * The meta object literal for the '{@link no.hib.dpf.core.VisualizationType <em>Visualization Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see no.hib.dpf.core.VisualizationType
+		 * @see no.hib.dpf.core.impl.CorePackageImpl#getVisualizationType()
+		 * @generated
+		 */
+		EEnum VISUALIZATION_TYPE = eINSTANCE.getVisualizationType();
 
 	}
 

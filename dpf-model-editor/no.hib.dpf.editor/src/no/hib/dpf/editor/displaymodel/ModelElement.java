@@ -1,7 +1,7 @@
 /*******************************************************************************
  * Copyright (c) 2004, 2005 Elias Volanakis and others.
  * 
- * Portions of the code Copyright (c) 2011 H¿yskolen i Bergen
+ * Portions of the code Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,7 +11,7 @@
  * Contributors:
  * Elias Volanakis - initial API and implementation
  * 
- * ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
 *******************************************************************************/
 package no.hib.dpf.editor.displaymodel;
 
@@ -22,7 +22,9 @@ import java.io.ObjectInputStream;
 import java.io.Serializable;
 
 import no.hib.dpf.core.IDObject;
+import no.hib.dpf.editor.extension_points.FigureConfigureManager;
 
+import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.ui.views.properties.IPropertyDescriptor;
 import org.eclipse.ui.views.properties.IPropertySource;
 
@@ -44,13 +46,28 @@ import org.eclipse.ui.views.properties.IPropertySource;
  */
 public abstract class ModelElement implements IPropertySource, Serializable {
 	/** An empty property descriptor. */
-	private static final IPropertyDescriptor[] EMPTY_ARRAY = new IPropertyDescriptor[0];
+	public static final IPropertyDescriptor[] EMPTY_ARRAY = new IPropertyDescriptor[0];
 
 	private static final long serialVersionUID = 1;
 	/** Delegate used to implemenent property-change-support. */
 	private transient PropertyChangeSupport pcsDelegate = new PropertyChangeSupport(this);
 
+	public IConfigurationElement getConfigure() {
+		return configure;
+	}
 
+	public void setConfigure(IConfigurationElement figure) {
+		this.configure = figure;
+	}
+
+
+	//for the editpart use
+	protected transient IConfigurationElement configure = null;
+	protected String configurationName = null;
+
+	public static final String PROP_CONFIGURE = "CONFIGURE";
+
+	protected String[] getConfigureLabels(){ return null;}
 	/**
 	 * Attach a non-null PropertyChangeListener to this object.
 	 * 
@@ -116,6 +133,14 @@ public abstract class ModelElement implements IPropertySource, Serializable {
 	 * Children should override this. The default implementation returns null.
 	 */
 	public Object getPropertyValue(Object id) {
+		if(id.equals(PROP_CONFIGURE)){
+			String name = FigureConfigureManager.getName(configure);
+			String[] configurStrings = getConfigureLabels();
+			for(int index = 0; index < configurStrings.length; ++index){
+				if(configurStrings[index].equals(name))
+					return new Integer(index);
+			}
+		}
 		return null;
 	}
 
@@ -132,7 +157,7 @@ public abstract class ModelElement implements IPropertySource, Serializable {
 	 * @see java.io.Serializable
 	 */
 	private void readObject(ObjectInputStream in) throws IOException,
-			ClassNotFoundException {
+	ClassNotFoundException {
 		in.defaultReadObject();
 		if (pcsDelegate == null) { 
 			pcsDelegate = new PropertyChangeSupport(this);
@@ -163,9 +188,22 @@ public abstract class ModelElement implements IPropertySource, Serializable {
 	 * Children should override this. The default implementation does nothing.
 	 */
 	public void setPropertyValue(Object id, Object value) {
-		// do nothing
+		if(id.equals(PROP_CONFIGURE)){
+			Integer index = (Integer) value;
+			IConfigurationElement newConfigure = index.intValue() == 0 ? null : FigureConfigureManager.getInstance().getConfigurationElement(getConfigureLabels()[index]);
+			if(configure != newConfigure){
+				IConfigurationElement old = configure;
+				configure = newConfigure;
+				configurationName = getConfigureLabels()[index];
+				firePropertyChange(PROP_CONFIGURE, old, newConfigure);
+			}
+		}
 	}
 
+	public void loadConfigure(){
+		if(configurationName != null && !configurationName.isEmpty())
+			configure = FigureConfigureManager.getInstance().getConfigurationElement(configurationName);
+	}
 	/**
 	 * May or may not create a new DPF Graph element. Only valid for those elements
 	 * that implement an IDObject descendant. TODO: refactor.

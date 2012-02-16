@@ -1,7 +1,7 @@
 /*******************************************************************************
  * Copyright (c) 2004, 2005 Elias Volanakis and others.
  * 
- * Portions of the code Copyright (c) 2011 H¿yskolen i Bergen
+ * Portions of the code Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,19 +11,13 @@
  * Contributors:
  * Elias Volanakis - initial API and implementation
  * 
- * ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
 *******************************************************************************/
 package no.hib.dpf.editor;
 
-import no.hib.dpf.editor.editoractions.CreateCompositionConstraintAction;
-import no.hib.dpf.editor.editoractions.CreateImageInclusionConstraintAction;
-import no.hib.dpf.editor.editoractions.CreateInverseConstraintAction;
-import no.hib.dpf.editor.editoractions.CreateIrreflexiveConstraintAction;
-import no.hib.dpf.editor.editoractions.CreateJointlyInjectiveConstraintAction;
-import no.hib.dpf.editor.editoractions.CreateJointlySurjectiveConstraintAction;
-import no.hib.dpf.editor.editoractions.CreateMultiplicityConstraintAction;
-import no.hib.dpf.editor.editoractions.CreateTransitiveIrreflexiveConstraintAction;
-import no.hib.dpf.editor.editoractions.CreateXORConstraintAction;
+import java.util.Iterator;
+
+import no.hib.dpf.editor.editoractions.CreateConstraintAction;
 
 import org.eclipse.gef.ContextMenuProvider;
 import org.eclipse.gef.EditPartViewer;
@@ -82,24 +76,14 @@ public class DPFEditorContextMenuProvider extends ContextMenuProvider {
 		menu.appendToGroup(GEFActionConstants.GROUP_EDIT,
 				getAction(ActionFactory.DELETE.getId()));
 
-		getActionAndAppendToMenu(menu, CreateJointlyInjectiveConstraintAction.ID);
-		getActionAndAppendToMenu(menu, CreateJointlySurjectiveConstraintAction.ID);
-		getActionAndAppendToMenu(menu, CreateInverseConstraintAction.ID);
-		getActionAndAppendToMenu(menu, CreateMultiplicityConstraintAction.ID);
-
-		getActionAndAppendToMenu(menu, CreateImageInclusionConstraintAction.ID);
-		getActionAndAppendToMenu(menu, CreateCompositionConstraintAction.ID);
-//		getActionAndAppendToMenu(menu, CreateInjectiveConstraintAction.ID);
-//		getActionAndAppendToMenu(menu, CreateSurjectiveConstraintAction.ID);
-		getActionAndAppendToMenu(menu, CreateIrreflexiveConstraintAction.ID);
-		getActionAndAppendToMenu(menu, CreateTransitiveIrreflexiveConstraintAction.ID);
-		getActionAndAppendToMenu(menu, CreateXORConstraintAction.ID);
-	}
-
-	private void getActionAndAppendToMenu(IMenuManager menu, String actionID) {
-		IAction action = getAction(actionID);
-		if ((action != null) && (action.isEnabled())) {
-			menu.appendToGroup(GEFActionConstants.GROUP_COPY, action);
+		Iterator<?> iter = actionRegistry.getActions();
+		while(iter.hasNext()){
+			Object cur = iter.next();
+			if(cur instanceof CreateConstraintAction){
+				CreateConstraintAction action = (CreateConstraintAction) cur;
+				if(action.isEnabled())
+					menu.appendToGroup(GEFActionConstants.GROUP_COPY, action);
+			}
 		}
 	}
 

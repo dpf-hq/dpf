@@ -28,7 +28,6 @@ import no.hib.dpf.core.TransitiveIrreflexiveSemantics;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,7 +38,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public class TransitiveIrreflexiveSemanticsImpl extends EObjectImpl implements TransitiveIrreflexiveSemantics {
+public class TransitiveIrreflexiveSemanticsImpl extends SemanticsValidatorImpl implements TransitiveIrreflexiveSemantics {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

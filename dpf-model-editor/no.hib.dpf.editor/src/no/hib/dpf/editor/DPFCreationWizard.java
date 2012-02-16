@@ -1,7 +1,7 @@
 /*******************************************************************************
  * Copyright (c) 2004, 2005 Elias Volanakis and others.
  * 
- * Portions of the code Copyright (c) 2011 H¿yskolen i Bergen
+ * Portions of the code Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,7 +11,7 @@
  * Contributors:
  * Elias Volanakis - initial API and implementation
  * 
- * ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
 *******************************************************************************/
 package no.hib.dpf.editor;
 
@@ -20,16 +20,25 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectOutputStream;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
+import no.hib.dpf.api.ui.DPFErrorReport;
 import no.hib.dpf.core.CoreFactory;
+import no.hib.dpf.core.Signature;
 import no.hib.dpf.core.Specification;
 import no.hib.dpf.editor.displaymodel.DPFDiagram;
+import no.hib.dpf.signature.SignatureEditor;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
@@ -38,7 +47,10 @@ import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 import org.eclipse.ui.dialogs.WizardNewLinkPage;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.internal.ide.IDEWorkbenchMessages;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
+import no.hib.dpf.constant.*;
 /**
  * Create a new .dpf-file.
  */
@@ -46,8 +58,9 @@ import org.eclipse.ui.internal.ide.IDEWorkbenchMessages;
 public class DPFCreationWizard extends Wizard implements INewWizard {
 
 	private static int fileCount = 1;
-	private CreationPage page1;
-	private WizardNewLinkPage page2;
+	private CreationPage createPage;
+	private WizardNewLinkPage metaLinkPage;
+	private WizardNewLinkPage signatureLinkPage;
 
 	/*
 	 * (non-Javadoc)
@@ -56,8 +69,9 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 	 */
 	public void addPages() {
 		// add pages to this wizard
-		addPage(page1);
-		addPage(page2);
+		addPage(createPage);
+		addPage(metaLinkPage);
+		addPage(signatureLinkPage);
 	}
 
 	/*
@@ -68,12 +82,25 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 	 */
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		// create pages for this wizard
-		page1 = new CreationPage(workbench, selection);
+		createPage = new CreationPage(workbench, selection);
 
-		IDEWorkbenchMessages.WizardNewLinkPage_linkFileButton = "Load type specification:";
-		page2 = new WizardNewLinkPage("Add type graph", IResource.FILE);
-		page2.setTitle("Include type graph");
-		page2.setLinkTarget(DPFEditor.getWorkspaceDirectory());
+		IDEWorkbenchMessages.WizardNewLinkPage_linkFileButton = "Load File:";
+		metaLinkPage = new WizardNewLinkPage("Add type graph", IResource.FILE);
+		metaLinkPage.setTitle("Include type graph");
+		String filename = null;
+		if(selection.getFirstElement() instanceof IResource){
+			filename = ((IResource)selection.getFirstElement()).getLocation().toOSString();
+			if(filename.endsWith(".dpf"))
+				filename = DPFEditor.getModelFromDiagram(filename);
+		}
+		else
+				filename = DPFEditor.getWorkspaceDirectory();
+				
+		metaLinkPage.setLinkTarget(filename);
+		
+		signatureLinkPage = new WizardNewLinkPage("Add Signature", IResource.FILE);
+		signatureLinkPage.setTitle("Include Signature");
+		signatureLinkPage.setLinkTarget(filename);
 	}
 
 	/*
@@ -82,7 +109,7 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 	 * @see org.eclipse.jface.wizard.IWizard#performFinish()
 	 */
 	public boolean performFinish() {
-		return page1.finish();
+		return createPage.finish();
 	}
 
 	/**
@@ -96,7 +123,7 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 		protected void handleAdvancedButtonSelect() {
 		}
 
-		private static final String DEFAULT_EXTENSION = ".dpf";
+
 		private final IWorkbench workbench;
 
 		/**
@@ -133,41 +160,64 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 			return new DPFDiagram();
 		}
 
+		private static final String DEFAULT_EXTENSION = ".dpf";
+		
 		/**
 		 * This method will be invoked, when the "Finish" button is pressed.
 		 * 
 		 * @see DPFCreationWizard#performFinish()
 		 */
 		boolean finish() {
-			// create a new file, result != null if successful
-			IFile newFile = createNewFile();
+			// create a new diagram file, result != null if successful
+			IFile newDiagramFile = createNewFile();
 			fileCount++;
-
+			
+			String diagramFileName = newDiagramFile.getLocation().toOSString();
+			URI base = URI.createFileURI(diagramFileName);
+			//Initialize model file and diagram file
+			Specification newSpec = CoreFactory.eINSTANCE.createSpecification();
+			DPFDiagram newDiagram = new DPFDiagram();
+			
 			// Gets null value when user does not check checkbox
-			String typeFileName = page2.getLinkTarget();
-			if (typeFileName != null) {
-				// TODO: move to validation (when wrong file, user must be
-				// notified)
-				Specification typeSpec = DPFEditor.loadDPF(typeFileName);
-
-				Specification newSpec = CoreFactory.eINSTANCE
-						.createSpecification();
+			String typeModelFileName = metaLinkPage.getLinkTarget();
+			ResourceSetImpl resourceSet = null;
+			Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
+			if (typeModelFileName != null) {
+				// TODO: move to validation (when wrong file, user must be notified)
+				Specification typeSpec = DPFEditor.loadDPFModel(resourceSet, URI.createFileURI(typeModelFileName), resourceToDiagnosticMap);
+				DPFDiagram typeDiagram = DPFEditor.loadDPFDiagram(DPFEditor.getDiagramFromModel(typeModelFileName));
 				newSpec.setTypeGraph(typeSpec.getGraph());
-
-				String dpfFile = DPFEditor.getDPFFileName(newFile.getFullPath()
-						.toString());
-
-				DPFEditor.saveDPF(dpfFile, newSpec);
+				newDiagram.setParent(typeDiagram);
+			}else
+				newSpec.setTypeGraph(DPFConstants.REFLEXIVE_TYPE_GRAPH);
+			
+			String signatureFileName = signatureLinkPage.getLinkTarget();
+			if(signatureFileName != null){
+				URI relative = URI.createFileURI(signatureFileName).deresolve(base);
+				Signature signature = SignatureEditor.loadSignature(resourceSet, relative, resourceToDiagnosticMap);
+				newSpec.setSignature(signature);
+				if(signature != null)
+					newSpec.setSignatureFile(relative.toFileString());
 			}
+			
+			newDiagram.setDpfGraph(newSpec.getGraph());
+			DPFEditor.saveDPFModel(resourceSet, URI.createFileURI(DPFEditor.getModelFromDiagram(diagramFileName)), newSpec, resourceToDiagnosticMap);
+			DPFEditor.saveDPFDiagram(diagramFileName, newDiagram);
 
+			try {
+				newDiagramFile.getParent().refreshLocal(IResource.DEPTH_ONE, null);
+			} catch (CoreException e1) {
+				DPFErrorReport.logError("Error happens when store new create DPF Specification", e1);
+			} 
 			// open newly created file in the editor
-			IWorkbenchPage page = workbench.getActiveWorkbenchWindow()
-					.getActivePage();
-			if (newFile != null && page != null) {
+			IWorkbenchPage page = workbench.getActiveWorkbenchWindow().getActivePage();
+			if (newDiagramFile != null && page != null) {
 				try {
-					IDE.openEditor(page, newFile, true);
+					IEditorPart editorPart = IDE.openEditor(page, newDiagramFile, true);
+					if(editorPart != null)
+						editorPart.setFocus();
 				} catch (PartInitException e) {
-					e.printStackTrace();
+					DPFErrorReport.logError("Error happens when Open DPF Editor", e);
 					return false;
 				}
 			}

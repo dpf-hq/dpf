@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2011 H¿yskolen i Bergen
+ * Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
 *******************************************************************************/
 package no.hib.dpf.editor.editoractions;
 
@@ -18,6 +18,7 @@ import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Predicate;
+import no.hib.dpf.editor.icons.ImageSettings;
 import no.hib.dpf.editor.parts.ArrowEditPart;
 import no.hib.dpf.editor.parts.NodeEditPart;
 
@@ -38,6 +39,46 @@ public abstract class CreateConstraintAction extends SelectionActionForEditParts
 		setText(constraintProperties.getText());
 		setToolTipText(constraintProperties.getTooltipText());
 		this.testPredicate = constraintProperties.getPredicate();
+		if(constraintProperties.getConstraintType() == null)
+			return;
+		switch (constraintProperties.getConstraintType()) {
+		case INVERSE: 
+			setImageDescriptor(ImageSettings.INVERSE.getImageDescriptor());
+			break;
+		case JOINTLY_INJECTIVE:
+			setImageDescriptor(ImageSettings.JOINTLY_INJECTIVE.getImageDescriptor());
+			break;
+		case JOINTLY_SURJECTIVE:
+			setImageDescriptor(ImageSettings.JOINTLY_SURJECTIVE.getImageDescriptor());
+			break;
+		case MULTIPLICITY:
+			setImageDescriptor(ImageSettings.MULTIPLICITY.getImageDescriptor());
+			break;
+		case IMAGE_INCLUSION:
+			setImageDescriptor(ImageSettings.IMAGE_INCLUSION.getImageDescriptor());
+			break;
+		case COMPOSITION:
+			setImageDescriptor(ImageSettings.COMPOSITION.getImageDescriptor());
+			break;
+		case INJECTIVE:
+			setImageDescriptor(ImageSettings.INJECTIVE.getImageDescriptor());
+			break;
+		case SURJECTIVE:
+			setImageDescriptor(ImageSettings.SURJECTIVE.getImageDescriptor());
+			break;
+		case IRREFLEXIVE:
+			setImageDescriptor(ImageSettings.IRREFLEXIVE.getImageDescriptor());
+			break;
+		case TRANSITIVE_IRREFLEXIVE:
+			setImageDescriptor(ImageSettings.TRANSITIVE_IRREFLEXIVE.getImageDescriptor());
+			break;
+		case XOR:
+			setImageDescriptor(ImageSettings.XOR.getImageDescriptor());
+			break;
+		case NAND:
+			setImageDescriptor(ImageSettings.NAND.getImageDescriptor());
+			break;
+		}
 	}
 	
 	@Override
@@ -70,10 +111,10 @@ public abstract class CreateConstraintAction extends SelectionActionForEditParts
 		List<ArrowEditPart> connectionEditParts = getSelectedConnectionEditParts();
 		List<NodeEditPart> shapeEditParts = getSelectedVNodeEditParts();
 		
+		execute(getConstraintCreateCommand(connectionEditParts, shapeEditParts));
 		if (!deselectInViewer(connectionEditParts)) {
 			deselectInViewer(shapeEditParts);
 		}
-		execute(getConstraintCreateCommand(connectionEditParts, shapeEditParts));
 	}
 	
 	@SuppressWarnings("rawtypes")
