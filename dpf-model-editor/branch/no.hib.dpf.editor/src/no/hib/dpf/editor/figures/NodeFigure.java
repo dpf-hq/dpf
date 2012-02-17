@@ -82,28 +82,13 @@ public class NodeFigure extends Figure implements RoutableFigure {
 		nameLabel = name;
 		GridLayout layout = new GridLayout(1, true);
 		layout.setConstraint(nameLabel, new GridData(SWT.CENTER, SWT.CENTER, true, true));
+		setLayoutManager(layout);
 		setBorder(new LineBorder(ColorConstants.black, 1));
 		setBackgroundColor(tableColor);
 		setForegroundColor(ColorConstants.black);
 		setOpaque(true);
-
-		name.setForegroundColor(ColorConstants.black);
 		add(name);
-//		add(columnsFigure);
-
 	}
-
-//	public void setSelected(boolean isSelected) {
-//		LineBorder lineBorder = (LineBorder) getBorder();
-//		if (isSelected)
-//		{
-//			lineBorder.setWidth(2);
-//		}
-//		else
-//		{
-//			lineBorder.setWidth(1);
-//		}
-//	}
 
 	
 	/**
@@ -119,11 +104,4 @@ public class NodeFigure extends Figure implements RoutableFigure {
 		return 0;
 	}
 
-//	/**
-//	 * @return the figure containing the column lables
-//	 */
-//	public ColumnsFigure getColumnsFigure()
-//	{
-//		return columnsFigure;
-//	}
 }

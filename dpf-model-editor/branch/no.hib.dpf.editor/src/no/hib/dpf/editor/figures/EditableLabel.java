@@ -32,6 +32,7 @@ public class EditableLabel extends Label
 	public EditableLabel(String text)
 	{
 		super(text);
+		setForegroundColor(ColorConstants.black);
 	}
 	
 	private Rectangle getSelectionRectangle()
