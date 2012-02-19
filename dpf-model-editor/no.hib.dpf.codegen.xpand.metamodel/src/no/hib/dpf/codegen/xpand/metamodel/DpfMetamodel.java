@@ -26,8 +26,7 @@ import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Predicate;
 import no.hib.dpf.core.Specification;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
@@ -48,7 +47,7 @@ import org.eclipse.xtend.typesystem.emf.EmfListType;
  * types which Xpand can understand. Types contained in the DPF Specification object are
  * mapped to their corresponding Xpand type, ie. an instance of Node (called DomainClass),
  * are mapped to {@link NodeType} with name "DomainClass". This happens through getKnownTypes and
- * dsmCache upon DpfMetamodel instantiation.
+ * dpfMetaModel#metaModelCache upon DpfMetamodel instantiation.
  * 
  * When a template is called with the instance model of the DPF meta model as argument, 
  * the Xpand generator will first try to match the Specification object and see if it
@@ -69,7 +68,7 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 		EPackage.Registry.INSTANCE.put(CorePackage.eNS_URI, CorePackage.eINSTANCE);
 	}
 	
-	private static Log log = LogFactory.getLog(DpfMetamodel.class);
+	private static Logger log = Logger.getLogger(DpfMetamodel.class);
 	
 	/** Contains ecore specific code for use with Xpand types */
 	private InternalEcoreHelper ecoreHelper = new InternalEcoreHelper();
@@ -96,13 +95,19 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 	/**
 	 * Sets the Domain Specific Modeling Language (meta model), and initializes the internal metamodel.
 	 * 
-	 * @param dpfMetaModel
+	 * @param metaModel
 	 *            Specification object which represents the Domain Specific Modeling Language
 	 */
 	public void addDpfMetaModel(Specification metaModel) {
 		dpfMetaModel.addMetaModel(NS_PREFIX, metaModel);
 	}
 	
+	/**
+	 * Sets the Domain Specific Modeling Language (meta model), and initializes the internal metamodel.
+	 * 
+	 * @param model
+	 *            Specification object which represents the instance of the Domain Specific Modeling Language
+	 */
 	public void setDpfModel(Specification model) {
 		dpfModel.setDpfModel(NS_PREFIX, model);
 	}
@@ -149,10 +154,12 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 			//Vi får inn objekt fieldRef med namn userName. Ein kallar så getTypeForName og får igjen NodeType som er feil feil type.
 			Type t = getTypeForName(((Node)obj).getName());
 			try {
+				//This does not cover the case where two arrows or nodes have the same name
+				//TODO: Should one be able to do that?
 				NodeType ret = (NodeType)t;
 				return ret;
 			} catch(ClassCastException e) {
-				System.out.println("ClassCastException: " + t.getName() + " is not of NodeType. Trying typeNode: " + ((Node)obj).getTypeNode().getName());
+				log.debug(("ClassCastException: " + t.getName() + " is not of NodeType. Trying typeNode: " + ((Node)obj).getTypeNode().getName()), e);
 				Type tmp = dpfMetaModel.getXpandTypeForDpfType(((Node)obj).getTypeNode());
 				return tmp;
 			}
@@ -162,7 +169,7 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 				ArrowType ret = (ArrowType)t;
 				return ret;
 			} catch(ClassCastException e) {
-				System.out.println("ClassCastException: " + t.getName() + " is not of ArrowType. Trying typeArrow: " + ((Arrow)obj).getTypeArrow().getName());
+				log.error("ClassCastException: " + t.getName() + " is not of ArrowType. Trying typeArrow: " + ((Arrow)obj).getTypeArrow().getName(),e);
 				Type tmp = dpfMetaModel.getXpandTypeForDpfType(((Arrow)obj).getTypeArrow());
 				return tmp;
 			}
@@ -174,42 +181,35 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 	}
 	
 	/**
-	 * Returns a Cache object with all instances of a dsm type grouped in a list.
+	 * Returns a Cache object with all instances of a DSML type grouped in a list.
 	 * This is used in the custom Xpand types such as {@link GraphType}.
-	 * 
-	 * It only saves types which are instances of Node.
 	 * 
 	 * It is not really necessary, but makes it a bit easier and more efficient.
 	 * 
-	 * @return Cache object with a dsm type name as key, and a list of DPF instance types (ie. Node) as value
+	 * @return Cache object with a DSML type ID as key, and a list of DSML instance types (ie. Node) as value
 	 */
-	public List<Object> getModelCollections(String typeName) {
-		return dpfModel.getMetaModelTypeCollections(typeName);
+	public List<Object> getModelCollections(String typeId) {
+		log.debug("getMetaModelCollections called with " + typeId + " as arg");
+		return dpfModel.getMetaModelTypeCollections(typeId);
 	}
 	
 	/**
 	 * This method returns all known types that Xpand should know of.
 	 * We call getKnownTypes in {@link DpfMetamodel#DpfMetamodel(Specification)} as well as in
-	 * {@link DpfMetamodel#addDpfMetaModel(Specification)} to initalize the meta models dsmCache with the proper types.
+	 * {@link DpfMetamodel#addDpfMetaModel(Specification)} to initalize the meta models dpfMetaModel#metaModelCache
+	 * with the proper types.
 	 * 
 	 * @return set of all known types
 	 */
 	@Override
 	public Set<Type> getKnownTypes() {
-		// Vi må på eit tidspunkt laste inn alle xpandtypar vi vil ha, slik at alle operasjonar kan gjennomførast. 
-		// Td. får ein ikkje brukt getAttributes utan at Attribute er registrert i cache
-
-		//hentar alle kjende type(instansar?)
-		//I emfrmm hentar den alle entitetar i modellen (allPackages()), legg alle til i ei liste, for så
-		//å sjekke kva type som er assosiert med kvar entitet; sjekkar mao. Eclassifiers mot getTypeForEclassifier
-		
 		Set<Type> res = new HashSet<Type>();
 		res.add(getTypeForName("dpf::Node"));
 		res.add(getTypeForName("dpf::Arrow"));
 		for(Type t : dpfMetaModel.getXpandTypes()) {
 			res.add(t);
 		}
-		log.debug("MetaModel#getKnownTypes called");
+		log.debug("getKnownTypes called");
 		return res;
 	}
 	
@@ -224,9 +224,6 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 	 */
 	@Override
 	public Set<String> getNamespaces() {
-		//Should probably not be hardcoded; in the emf mm the NS is resolved from the ecore package.
-		//In our case it will only be whatever is set in the CorePackage interface. This is hardcoded and is not changeable and will thus 
-		//always resolve no.hib.dpf.core. It is then easier to just use "dpf".
 		log.debug("DpfMetamodel#getNamespaces called");
 		Set<String> res = new HashSet<String>();
 		res.add(NS_PREFIX);

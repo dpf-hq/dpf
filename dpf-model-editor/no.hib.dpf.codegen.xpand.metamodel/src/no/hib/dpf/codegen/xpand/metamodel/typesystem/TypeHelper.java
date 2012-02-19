@@ -6,10 +6,8 @@ import java.util.List;
 import java.util.Set;
 
 import no.hib.dpf.codegen.xpand.metamodel.DpfMetamodel;
-import no.hib.dpf.codegen.xpand.metamodel.typesystem.types.GraphType;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
@@ -23,9 +21,9 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.xtend.typesystem.Type;
 
 public class TypeHelper {
-	private static Log log = LogFactory.getLog(GraphType.class);
+	private static Logger log = Logger.getLogger(TypeHelper.class);
 	private static char[] letters = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'n', 'm', 'o', 'r', 't', 'u', 'y'}; 
-	private static String[] ignoredEFeatures = {"target", "source"}; 
+	private static String[] ignoredEFeatures = {"target", "source", "createNode", "createArrow", "deleteNode", "deleteArrow", "getCopy"}; 
 	
 	public static String pluralize(String arg) {
 		for(char c : letters) {
