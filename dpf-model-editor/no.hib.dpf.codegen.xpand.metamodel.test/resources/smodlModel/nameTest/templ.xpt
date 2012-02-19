@@ -13,8 +13,6 @@
 
 
 «DEFINE service FOR dpf::Service»
-	«syserr(this.name)»
-	«REM»««XPAND methodref FOREACH this.getAMethodRefs()»«ENDREM»
 	«EXPAND struct FOREACH  this.getAStructRefs()»
 	
 «ENDDEFINE»
@@ -22,15 +20,10 @@
 
 
 «DEFINE struct FOR dpf::structRef»
-	«syserr("\t StructRef: "  + this.name + " " + this.target.name)»
-	«REM»<struct name=«this.target.name»>«ENDREM»
 	«EXPAND field FOREACH this.target.getAFieldRefs()»
-	«REM»</struct>«ENDREM»
 «ENDDEFINE»
 
 «DEFINE field FOR dpf::fieldRef»
-	«syserr("\t\t FieldRef: "  + this.name)»
-	«REM»<field name=«this.name» type=«this.target.name»/>«ENDREM»
 «ENDDEFINE»
 
 
