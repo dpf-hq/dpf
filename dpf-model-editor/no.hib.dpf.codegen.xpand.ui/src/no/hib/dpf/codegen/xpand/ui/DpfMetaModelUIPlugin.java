@@ -15,13 +15,18 @@ import no.hib.dpf.codegen.xpand.ui.wizards.WorkflowParser;
 import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Specification;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.ui.preferences.ScopedPreferenceStore;
+import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Collections;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,6 +46,7 @@ import org.eclipse.core.resources.ProjectScope;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.preferences.IScopeContext;
 import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.emf.common.util.URI;
@@ -52,6 +58,8 @@ import org.eclipse.jface.resource.ImageDescriptor;
 
 public class DpfMetaModelUIPlugin extends AbstractUIPlugin {
 	// A resource set to store the loaded profiles in
+	private static Logger log;
+	
 	public static ResourceSet dpfResourceSet = new ResourceSetImpl();
 
 	final static Map<IResource, Specification> fileModels = new HashMap<IResource, Specification>();
@@ -80,7 +88,7 @@ public class DpfMetaModelUIPlugin extends AbstractUIPlugin {
 				rootDelta
 						.accept(new DpfMetaModelUIPlugin.DpfResourceDeltaVisitor());
 			} catch (CoreException e) {
-				System.out.println();
+				log.error("CoreException", e);
 			}
 
 		}
@@ -92,8 +100,10 @@ public class DpfMetaModelUIPlugin extends AbstractUIPlugin {
 			Resource r = new ResourceSetImpl().createResource(uri);
 			r.load(file.getContents(), Collections.EMPTY_MAP);
 			return r.getContents();
-		} catch (Exception e) {
-			System.out.println();
+		} catch (IOException e) {
+			log.error("IOException", e);
+		} catch (CoreException e) {
+			log.error("CoreException", e);
 		}
 		return null;
 	}
@@ -121,8 +131,11 @@ public class DpfMetaModelUIPlugin extends AbstractUIPlugin {
 	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
-		// Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("uml2",
-		// UML22UMLResource.Factory.INSTANCE);
+
+		loadLogger("no.hib.dpf.codegen.xpand.metamodel");
+		loadLogger("no.hib.dpf.codegen.xpand.ui");
+		log = Logger.getLogger(DpfMetaModelUIPlugin.class);
+		
 		try {
 			IWorkspace workspace = ResourcesPlugin.getWorkspace();
 			workspace.addResourceChangeListener(listener);
@@ -130,9 +143,25 @@ public class DpfMetaModelUIPlugin extends AbstractUIPlugin {
 					new DpfMetaModelUIPlugin.DpfResourceDeltaVisitor());
 		} catch (CoreException e) {
 			e.printStackTrace();
-		}
+		} 
 	}
 
+	private void loadLogger(String bundle) {
+		//Load l4j on metamodel
+		Bundle b = Platform.getBundle(bundle);
+		Enumeration<URL> ee = b.findEntries("src", "log4j.properties", false);
+		
+		URL fileURL = null;
+		try {
+			if(ee.hasMoreElements()) {
+				fileURL = ee.nextElement();
+			}
+			PropertyConfigurator.configure(fileURL);
+		} catch(NullPointerException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -174,8 +203,7 @@ public class DpfMetaModelUIPlugin extends AbstractUIPlugin {
 	}
 	
 	/**
-	 * Scans the project for files that are valid according to  
-	 * hasValidDsm. 
+	 * Scans the workspace for projects that contain a .settings file, or a workflow file
 	 */
 	static class DpfResourceDeltaVisitor implements IResourceDeltaVisitor,
 			IResourceVisitor {
@@ -216,7 +244,7 @@ public class DpfMetaModelUIPlugin extends AbstractUIPlugin {
 				if(!path.equals("")) {
 					if(!fileModels.containsKey(project.getFile(new Path(path)))) {
 						Specification spectmp = CoreFactory.eINSTANCE.loadSpecification(uri);
-						System.out.println("FOUND AND SUCCESSFULLY LOADED VALID DSM: " + path);
+						log.info("SUCCESSFULLY LOADED METAMODEL FOR PROJECT: " + project.getName() + " path: " + path);
 						if(spectmp != null) {
 							fileModels.put(project.getFile(new Path(path)), spectmp);
 						}

@@ -3,7 +3,6 @@ package no.hib.dpf.codegen.xpand.ui;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -91,7 +90,6 @@ public class DpfMetaModelContributor implements MetamodelContributor2 {
 		@Override
 		public IStorage getUnderlyingStorage(IJavaProject project,
 				String typeName) {
-			System.out.println("DPFMETAMODELCONTRIBUTOR#getUnderlyingStorage");
 			return null;
 		}
 }
