@@ -11,7 +11,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.jdt.ui;bundle-version="3.6.1",
  org.eclipse.core.resources;bundle-version="3.6.0",
  no.hib.dpf.codegen.xpand.metamodel;bundle-version="1.0.0",
- no.hib.dpf.core;bundle-version="0.1.1"
+ no.hib.dpf.core;bundle-version="0.1.1",
+ org.apache.log4j;bundle-version="1.2.15"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Import-Package: org.eclipse.ui.wizards.newresource,
