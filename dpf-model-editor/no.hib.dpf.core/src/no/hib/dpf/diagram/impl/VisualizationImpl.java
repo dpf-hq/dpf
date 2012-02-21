@@ -149,8 +149,6 @@ public class VisualizationImpl extends EObjectImpl implements Visualization {
 	 */
 	public void setSource(IDObject newSource) {
 		if(newSource == source) return;
-		if(newSource.eIsProxy())
-			newSource = (IDObject) eResolveProxy((InternalEObject) newSource);
 		IDObject oldSource = source;
 		source = newSource;
 		if (eNotificationRequired())
@@ -189,9 +187,9 @@ public class VisualizationImpl extends EObjectImpl implements Visualization {
 	 * @generated NOT
 	 */
 	public void setTarget(IDObject newTarget) {
+//		if(newTarget.eIsProxy())
+//			newTarget = (IDObject) eResolveProxy((InternalEObject) newTarget);
 		if(newTarget == target) return;
-		if(newTarget.eIsProxy())
-			newTarget = (IDObject) eResolveProxy((InternalEObject) newTarget);
 		IDObject oldTarget = target;
 		target = newTarget;
 		if (eNotificationRequired())

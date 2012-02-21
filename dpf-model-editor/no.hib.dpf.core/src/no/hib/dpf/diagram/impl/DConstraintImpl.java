@@ -195,8 +195,6 @@ public class DConstraintImpl extends EObjectImpl implements DConstraint {
 	 */
 	public void setConstraint(Constraint newConstraint) {
 		if(newConstraint == constraint) return;
-		if(newConstraint.eIsProxy())
-			newConstraint = (Constraint) eResolveProxy((InternalEObject) newConstraint);
 		Constraint oldConstraint = constraint;
 		constraint = newConstraint;
 		if (eNotificationRequired())

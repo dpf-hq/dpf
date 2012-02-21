@@ -135,8 +135,11 @@ public class SignatureEditor extends FormEditor implements CommandStackListener,
 				setPartName(newInput.getName());
 				URI oldBase = URI.createFileURI(signatureFile);
 				URI newBase = URI.createFileURI(file.getLocation().toOSString());
-				for(DPredicate predicate : dSignature.getDPredicates())
-					predicate.setIcon(DPFCoreUtil.updateRelativeURI(oldBase, newBase, URI.createFileURI(predicate.getIcon())).toFileString());
+				for(DPredicate predicate : dSignature.getDPredicates()){
+					String icon = predicate.getIcon();
+					if(icon != null && !icon.isEmpty())
+						predicate.setIcon(DPFCoreUtil.updateRelativeURI(oldBase, newBase, URI.createFileURI(icon)).toFileString());
+				}
 				signatureFile = file.getLocation().toOSString();
 				doSave(new NullProgressMonitor());
 			}

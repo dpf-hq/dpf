@@ -160,10 +160,10 @@ public class DPredicateImpl extends EObjectImpl implements DPredicate {
 	 */
 	public void setPredicate(Predicate newPredicate) {
 		if(newPredicate == predicate) return;
-		if(newPredicate.eIsProxy())
-			newPredicate = (Predicate) eResolveProxy((InternalEObject) newPredicate);
 		Predicate oldPredicate = predicate;
 		predicate = newPredicate;
+		if(getDGraph() != null)
+			getDGraph().setGraph(getPredicate().getShape());
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DPREDICATE__PREDICATE, oldPredicate, predicate));
 	}
@@ -222,14 +222,13 @@ public class DPredicateImpl extends EObjectImpl implements DPredicate {
 	 */
 	public void setDGraph(DGraph newDGraph) {
 		if (newDGraph != dGraph) {
+//			getPredicate().setShape(newDGraph.getGraph());
 			NotificationChain msgs = null;
 			if (dGraph != null)
 				msgs = ((InternalEObject)dGraph).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DiagramPackage.DPREDICATE__DGRAPH, null, msgs);
 			if (newDGraph != null)
 				msgs = ((InternalEObject)newDGraph).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DiagramPackage.DPREDICATE__DGRAPH, null, msgs);
 			msgs = basicSetDGraph(newDGraph, msgs);
-			if(predicate != null)
-				predicate.setShape(newDGraph.getGraph());
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())

@@ -144,13 +144,11 @@ public class DGraphImpl extends EObjectImpl implements DGraph {
 		Assert.isNotNull(newDType);
 		Assert.isNotNull(getGraph());
 		Assert.isNotNull(newDType.getGraph());
-		if(newDType.eIsProxy())
-			newDType = (DGraph) eResolveProxy((InternalEObject) newDType);
 		if(newDType == dType)
 			return;
 		DGraph oldDType = dType;
 		dType = newDType;
-		getGraph().setType(newDType.getGraph());
+		getGraph().setType(getDType().getGraph());
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DGRAPH__DTYPE, oldDType, dType));
 	}
@@ -212,13 +210,12 @@ public class DGraphImpl extends EObjectImpl implements DGraph {
 	 */
 	public void setGraph(Graph newGraph) {
 		Assert.isNotNull(newGraph);
-		
-		if(newGraph.eIsProxy())
-			newGraph = (Graph)eResolveProxy((InternalEObject)newGraph);
 		if(newGraph == graph)
 			return;
 		Graph oldGraph = graph;
 		graph = newGraph;
+		if(getDType() != null)
+			getDType().setGraph(getGraph().getType());
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DGRAPH__GRAPH, oldGraph, graph));
 	}

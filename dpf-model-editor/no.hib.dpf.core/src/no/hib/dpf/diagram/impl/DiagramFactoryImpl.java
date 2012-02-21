@@ -6,32 +6,33 @@
  */
 package no.hib.dpf.diagram.impl;
 
-import java.io.IOException;
-
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Node;
-import no.hib.dpf.core.Signature;
-import no.hib.dpf.diagram.*;
+import no.hib.dpf.diagram.DArrow;
+import no.hib.dpf.diagram.DBound;
+import no.hib.dpf.diagram.DConstraint;
+import no.hib.dpf.diagram.DGraph;
+import no.hib.dpf.diagram.DNode;
+import no.hib.dpf.diagram.DOffset;
+import no.hib.dpf.diagram.DPredicate;
+import no.hib.dpf.diagram.DSignature;
+import no.hib.dpf.diagram.DSpecification;
+import no.hib.dpf.diagram.DiagramFactory;
+import no.hib.dpf.diagram.DiagramPackage;
+import no.hib.dpf.diagram.Visualization;
+import no.hib.dpf.diagram.VisualizationType;
 import no.hib.dpf.utils.DPFConstants;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.xmi.XMIResource;
-import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -252,6 +253,7 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 		DPredicateImpl dPredicate = new DPredicateImpl();
 		dPredicate.setPredicate(CoreFactory.eINSTANCE.createPredicate());
 		dPredicate.setDGraph(createDGraph());
+		dPredicate.getPredicate().setShape(dPredicate.getDGraph().getGraph());
 		dPredicate.setVisualization(createVisualization());
 		return dPredicate;
 	}
@@ -382,38 +384,6 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 		return DiagramPackage.eINSTANCE;
 	}
 
-	@Override
-	/**
-	 * @generated NOT
-	 */
-	public Signature loadSignature(URI uri) throws IOException {
-		return (Signature)createLoadResource(uri).getContents().get(0);
-	}
-	/**
-	 * @generated NOT
-	 */
-	private Resource createLoadResource(URI uri) throws IOException {
-		ResourceSet resourceSet = new ResourceSetImpl();
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMLResourceFactoryImpl());
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("dpf", new XMLResourceFactoryImpl());
-
-		resourceSet.getLoadOptions().put(XMIResource.OPTION_DEFER_IDREF_RESOLUTION, true);
-			
-		Resource diagram = resourceSet.createResource(uri);
-		Resource model = resourceSet.createResource(uri.appendFileExtension("xmi"));
-		model.load(null);
-		diagram.load(null);
-		return diagram;
-	}
-	@Override
-	/**
-	 * @generated NOT
-	 */
-	public DSpecification loadDSpecification(URI uri) throws IOException {
-		return (DSpecification)createLoadResource(uri).getContents().get(0);
-	}
-
-	
 	/**
 	 * @generated NOT
 	 */

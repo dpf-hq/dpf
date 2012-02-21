@@ -318,7 +318,12 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 			}
 			DSignature signature = iter.getDSignature();
 			if(signature != null){
-				String relative = signature.eResource().getURI().deresolve(createFileURI).toFileString();
+				String relative = "";
+				DSpecification type = iter.getDType();
+				if(type != null && type.getDSignature() == signature)
+					relative = type.getSignatureFile();
+				else
+					relative = signature.eResource().getURI().deresolve(createFileURI).toFileString();
 				iter.setSignatureFile(relative);
 				iter.getSpecification().setSignatureFile(relative);
 			}
@@ -339,8 +344,11 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		DSignature dSignature = iter.getDSignature();
 		if(dSignature != null){
 			URI oldBase = dSignature.eResource().getURI();
-			for(DPredicate predicate : dSignature.getDPredicates())
-				predicate.setIcon(DPFCoreUtil.updateRelativeURI(oldBase, newBase, URI.createFileURI(predicate.getIcon())).toFileString());
+			for(DPredicate predicate : dSignature.getDPredicates()){
+				String icon = predicate.getIcon();
+				if(icon != null && !icon.isEmpty())
+					predicate.setIcon(DPFCoreUtil.updateRelativeURI(oldBase, newBase, URI.createFileURI(predicate.getIcon())).toFileString());
+			}
 		}
 	}
 	public static void updateResourceSet(ResourceSetImpl resourceSet, DSpecification newSpec, URI oldURI, URI newURI){
@@ -374,8 +382,8 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		Resource model = resourceSet.getResource(modelFileURI, false);
 		Assert.isTrue(diagram != null && model != null);
 		try {
-			model.save(null);
 			diagram.save(null);
+			model.save(null);
 		} catch (IOException e) {
 			DPFCoreUtil.analyzeResourceProblems(diagram, e, resourceToDiagnosticMap);
 		}
@@ -392,8 +400,8 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		resourceSet.getURIResourceMap().put(diagramURI, diagram);
 		resourceSet.getURIResourceMap().put(modelFileURI, model);
 		try {
-			model.load(null);
 			diagram.load(null);
+			model.load(null);
 		} catch (IOException e) {
 			DPFCoreUtil.analyzeResourceProblems(diagram, e, resourceToDiagnosticMap);
 		} finally {

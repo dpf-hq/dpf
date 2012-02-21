@@ -256,16 +256,14 @@ public class DArrowImpl extends EObjectImpl implements DArrow {
 		Assert.isNotNull(newDType);
 		Assert.isNotNull(getArrow());
 		Assert.isNotNull(newDType.getArrow());
-		if(newDType.eIsProxy())
-			newDType = (DArrow) eResolveProxy((InternalEObject) newDType);
 		if(newDType == dType) return;
 		DArrow oldDType = dType;
 		dType = newDType;
-		getArrow().setTypeArrow(newDType.getArrow());
+		getArrow().setTypeArrow(getDType().getArrow());
 		if(getDSource() != null)
-			getDSource().setDType(newDType.getDSource());
+			getDSource().setDType(getDType().getDSource());
 		if(getDTarget() != null)
-			getDTarget().setDType(newDType.getDTarget());
+			getDTarget().setDType(getDType().getDTarget());
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DARROW__DTYPE, oldDType, dType));
 	}
@@ -302,9 +300,9 @@ public class DArrowImpl extends EObjectImpl implements DArrow {
 	 * @generated NOT
 	 */
 	public void setArrow(Arrow newArrow) {
+//		if(newArrow.eIsProxy())
+//			newArrow = (Arrow) eResolveProxy((InternalEObject) newArrow);
 		if(newArrow == arrow) return;
-		if(newArrow.eIsProxy())
-			newArrow = (Arrow) eResolveProxy((InternalEObject) newArrow);
 		Arrow oldArrow = arrow;
 		arrow = newArrow;
 		if (eNotificationRequired())

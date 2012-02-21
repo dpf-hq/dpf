@@ -6,11 +6,8 @@
  */
 package no.hib.dpf.diagram;
 
-import java.io.IOException;
 
-import no.hib.dpf.core.Signature;
 
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EFactory;
 
 /**
@@ -155,23 +152,6 @@ public interface DiagramFactory extends EFactory {
 	 * @generated
 	 */
 	DiagramPackage getDiagramPackage();
-	/**
-	 * Loads specification from URI
-	 * @param uri
-	 * @return
-	 * @throws IOException 
-	 * @generated NOT
-	 */
-	DSpecification loadDSpecification(URI uri) throws IOException;
-
-	/**
-	 * Loads signature from URI
-	 * @param uri
-	 * @return
-	 * @throws IOException 
-	 * @generated NOT
-	 */
-	Signature loadSignature(URI uri) throws IOException;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

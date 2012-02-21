@@ -176,13 +176,11 @@ public class DNodeImpl extends DBoundImpl implements DNode {
 		Assert.isNotNull(newDType);
 		Assert.isNotNull(newDType.getNode());
 		Assert.isNotNull(getNode());
-		if(newDType.eIsProxy())
-			newDType = (DNode) eResolveProxy((InternalEObject) newDType);
 		if(newDType == dType)
 			return;
 		DNode oldDType = dType;
 		dType = newDType;
-		getNode().setTypeNode(newDType.getNode());
+		getNode().setTypeNode(getDType().getNode());
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DNODE__DTYPE, oldDType, dType));
 	}
@@ -219,9 +217,9 @@ public class DNodeImpl extends DBoundImpl implements DNode {
 	 * @generated NOT
 	 */
 	public void setNode(Node newNode) {
+//		if(newNode.eIsProxy())
+//			newNode = (Node) eResolveProxy((InternalEObject) newNode);
 		if(newNode == node) return;
-		if(newNode.eIsProxy())
-			newNode = (Node) eResolveProxy((InternalEObject) newNode);
 		Node oldNode = node;
 		node = newNode;
 		if (eNotificationRequired())

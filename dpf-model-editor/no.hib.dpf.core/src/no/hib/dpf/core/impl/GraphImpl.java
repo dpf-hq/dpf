@@ -175,8 +175,6 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	 */
 	public void setType(Graph newType) {
 		if(type == newType) return;
-		if(newType.eIsProxy())
-			newType = (Graph) eResolveProxy((InternalEObject) newType);
 		Graph oldType = type;
 		type = newType;
 		if (eNotificationRequired())
