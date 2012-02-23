@@ -179,7 +179,7 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 			if(newSpec.getDSignature() == null && newSpec.getDType() != null)
 				newSpec.setDSignature(newSpec.getDType().getDSignature());
 			
-			DPFEditor.updateResourceSet(resourceSet, newSpec, null, newDiagarmURI);
+			DPFEditor.updateResourceSet(resourceSet, newSpec, typeSpec == null ? null : typeSpec.eResource().getURI(), newDiagarmURI);
 			try {
 				DPFEditor.saveDSpecification(resourceSet, newSpec, newDiagarmURI, resourceToDiagnosticMap);
 				newDiagramFile.getParent().refreshLocal(IResource.DEPTH_ONE, null);

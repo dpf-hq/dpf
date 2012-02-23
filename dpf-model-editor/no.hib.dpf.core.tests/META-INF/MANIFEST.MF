@@ -11,6 +11,11 @@ Export-Package: no.hib.dpf.core.tests
 Require-Bundle: org.eclipse.core.runtime,
  no.hib.dpf.core;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
- org.junit;visibility:=reexport
+ org.junit;visibility:=reexport,
+ no.hib.dpf.editor;bundle-version="0.1.1",
+ org.eclipse.gef,
+ org.eclipse.ui.ide,
+ org.eclipse.core.commands,
+ org.eclipse.core.resources
 Bundle-ActivationPolicy: lazy
 Import-Package: org.junit

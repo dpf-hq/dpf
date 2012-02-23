@@ -24,5 +24,6 @@ Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Import-Package: org.eclipse.emf.ecore.xmi
 Export-Package: no.hib.dpf.core.provider,
- no.hib.dpf.diagram.provider
+ no.hib.dpf.diagram.provider,
+ no.hib.dpf.editor
 

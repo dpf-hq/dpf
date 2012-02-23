@@ -419,7 +419,8 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 	 */
 	public Specification createSpecification() {
 		SpecificationImpl specification = new SpecificationImpl();
-//		specification.setGraph(Graph.REFLEXIVE_TYPE_GRAPH);
+		specification.setGraph(createGraph());
+		specification.setType(DPFConstants.REFLEXIVE_SPECIFICATION);
 		return specification;
 	}
 	

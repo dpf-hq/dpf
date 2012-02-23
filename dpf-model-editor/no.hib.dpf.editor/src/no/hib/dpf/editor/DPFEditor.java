@@ -352,6 +352,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		}
 	}
 	public static void updateResourceSet(ResourceSetImpl resourceSet, DSpecification newSpec, URI oldURI, URI newURI){
+		DPFCheck.checkDSpecification(newSpec);
 		Assert.isNotNull(resourceSet);
 		URI modelFileURI = getModelURI(newURI);
 		Resource diagram = resourceSet.createResource(newURI);
@@ -361,8 +362,6 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		DSpecification iter = newSpec;
 		while(iter != DPFConstants.REFLEXIVE_DSPECIFICATION){
 			DSpecification current = iter;
-			if(oldURI == null && iter != newSpec)
-				oldURI = newSpec.eResource().getURI();
 			updateMetaModelReference(current, oldURI, newURI);
 			model.getContents().add(current.getSpecification());
 			diagram.getContents().add(current);
@@ -386,6 +385,8 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 			model.save(null);
 		} catch (IOException e) {
 			DPFCoreUtil.analyzeResourceProblems(diagram, e, resourceToDiagnosticMap);
+			DPFErrorReport.logError(e);
+			System.out.println(e);
 		}
 
 	}
@@ -500,6 +501,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		// Show a SaveAs dialog
 		Shell shell = getSite().getWorkbenchWindow().getShell();
 		SaveAsDialog dialog = new SaveAsDialog(shell);
+		System.out.println(((IFileEditorInput) getEditorInput()).getFile().getLocation());
 		dialog.setOriginalFile(((IFileEditorInput) getEditorInput()).getFile());
 		dialog.open();
 
@@ -510,6 +512,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 				IFileEditorInput newInput = new FileEditorInput(file);
 				setInputWithNotify(newInput);
 				setPartName(newInput.getName());
+				System.out.println(dSpecification.eResource().getURI());
 				updateResourceSet(resourceSet, getDSpecification(), dSpecification.eResource().getURI(), DPFCoreUtil.getFileURI(file));
 				doSave(DPFCoreUtil.getFileURI(file), new NullProgressMonitor());
 			}
