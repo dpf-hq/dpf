@@ -1007,7 +1007,7 @@ object Test {
 	  {
 	
 		  //G_B
-		  val a101 = arrow(101,4,5)
+		  val a101 = arrow(101,4,4)
 
 		  //G_C
 		  val a103 = arrow(103,7,8)
@@ -1015,12 +1015,18 @@ object Test {
 		  val a111 = arrow(111,10,7)
 		  val a112 = arrow(112,11,7)
 		  val a121 = arrow(121,10,8)
-		  val a122 = arrow(122,11,9)
+		  val a122 = arrow(122,11,9)		  
+		  //loop ("new" with arrow-node-arrow):
+		  val a113 = arrow(113,12,7)
+		  val a123 = arrow(123,12,7)
+		  //loop ("old" only one arrow):
+		  val a105 = arrow(105,7,7)
+		  
 		  
 		  //G_D
-		  val a100 = arrow(100,1,2)
+		  val a100 = arrow(100,1,1)
 		  val a110 = arrow(110,3,1)
-		  val a120 = arrow(120,3,2)
+		  val a120 = arrow(120,3,1)
 		  
 		  val x = ArbitraryMorphism(Set(),Set(
 				  					(Some(a101),a100),
@@ -1034,7 +1040,10 @@ object Test {
 				  					(Some(a111),a110),
 				  					(Some(a112),a110),
 				  					(Some(a121),a120),
-				  					(Some(a122),a120)
+				  					(Some(a122),a120),
+				  					(Some(a113),a110),
+				  					(Some(a123),a120),
+				  					(Some(a105),a100)
 				  					));
 		  
 		  val cospan = Cospan(x,y)
