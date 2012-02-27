@@ -884,8 +884,8 @@ object Test {
 
 		  val pushout:Cospan = span.pushout()
 		  
-		  println(pushout.left);
-		  println(pushout.right);
+//		  println(pushout.left);
+//		  println(pushout.right);
 		  
 	  }	
 	  
@@ -975,7 +975,7 @@ object Test {
 		  val a12 = arrow(12,4,5)
 		  val a13 = arrow(13,4,6)
 		  
-		  //G_B
+		  //G_D
 		  val a14 = arrow(14,7,8)
 		  val a15 = arrow(15,7,9)
 		  val a16 = arrow(16,8,9)
@@ -1000,6 +1000,53 @@ object Test {
 		  
 	  }
 
+	  
+	  //
+	  //Test Pullback 2: Arrow 2 Node<-Arrow->Node (2 times)
+	  //
+	  {
+	
+		  //G_B
+		  val a101 = arrow(101,4,5)
+
+		  //G_C
+		  val a103 = arrow(103,7,8)
+		  val a104 = arrow(104,7,9)
+		  val a111 = arrow(111,10,7)
+		  val a112 = arrow(112,11,7)
+		  val a121 = arrow(121,10,8)
+		  val a122 = arrow(122,11,9)
+		  
+		  //G_D
+		  val a100 = arrow(100,1,2)
+		  val a110 = arrow(110,3,1)
+		  val a120 = arrow(120,3,2)
+		  
+		  val x = ArbitraryMorphism(Set(),Set(
+				  					(Some(a101),a100),
+				  					(None,a110),
+				  					(None,a120)
+				  					));
+		  
+		  val y = ArbitraryMorphism(Set(),Set(
+				  					(Some(a103),a100),
+				  					(Some(a104),a100),
+				  					(Some(a111),a110),
+				  					(Some(a112),a110),
+				  					(Some(a121),a120),
+				  					(Some(a122),a120)
+				  					));
+		  
+		  val cospan = Cospan(x,y)
+		  
+		  val pullback:Span = cospan.pullback()
+		  
+		  println(pullback.left);
+		  println(pullback.right);
+		  
+	  }
+
+	  
 	  //
 	  //Test Final Pullback Complement for Monic Matches: Sesqui-pushout rewriting (Andrea Corradini et. al.) Fig 3. Left-Part
 	  
