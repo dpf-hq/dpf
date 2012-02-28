@@ -1,6 +1,10 @@
 package no.dpf.text.graph;
 import scala.collection._;
 import scala.collection.mutable.{Set=>MSet}
+import scala.collection.mutable.{Map=>MMap}
+import scala.collection.immutable.{Map=>IMap}
+import scala.collection.immutable.{Set=>ISet}
+
 
 sealed trait Element{
 	val id: Id
@@ -98,7 +102,14 @@ trait AbstractGraph{
 	
 }
 
-case class SignatureConstraint(id:Id,n:String,p:List[String]) 
+case class SignatureConstraint(id:Id,n:String,p:List[String]){
+	private[graph] lazy val name2pos = {
+	  val temp = MMap[String,Int]();
+	  
+	  temp.toMap
+	}  
+} 
+
 case class Validator(id:Id, shape: List[Arrow],ocl:List[OclToken]){
 	//Parameter contained in constraint name
 	//def validate(g:Graph):VResult={
@@ -217,11 +228,11 @@ package mutable{
 	  */
 	class Graph(override val mmGraph: AbstractGraph, val idGen:()=>RId) extends AbstractGraph() with Converter{
 		
-		override val nodes = mutable.HashMap[Id,Node]()
-		override val arrows = mutable.HashMap[Id,Arrow]()
-		override val in = mutable.HashMap[Node,mutable.Map[TypeArrow,mutable.Set[Arrow]]]()
-		override val out = mutable.HashMap[Node,mutable.Map[TypeArrow,mutable.Set[Arrow]]]()
-		override val names = mutable.HashMap[Id,String]()
+		override val nodes = MMap[Id,Node]()
+		override val arrows = MMap[Id,Arrow]()
+		override val in = MMap[Node,MMap[TypeArrow,MSet[Arrow]]]()
+		override val out = MMap[Node,MMap[TypeArrow,MSet[Arrow]]]()
+		override val names = MMap[Id,String]()
 		
 		def addNode(name: String,t:TypeNode,id:Id=idGen()):Option[Node] = {
 			def inv(_n:Node):Boolean = { 
@@ -309,18 +320,18 @@ package mutable{
 			}			
 		}
 		//Update IN/OUT:
-		protected def update(_a:Arrow,_n:Node,_h:mutable.Map[Node,mutable.Map[TypeArrow,mutable.Set[Arrow]]]):Unit={
+		protected def update(_a:Arrow,_n:Node,_h:MMap[Node,MMap[TypeArrow,MSet[Arrow]]]):Unit={
 			 if(_h contains _n){
 				 val m = _h(_n)
 				 if(m contains _a.t){
 					 m(_a.t)+=_a	
 				 }else{
-					 val s = mutable.Set[Arrow]()
+					 val s = MSet[Arrow]()
 					 m += _a.t -> s //put set into hashmap by key arrow-type  
 				 }						 
 			 }else{
-				 val m = mutable.HashMap[TypeArrow,mutable.Set[Arrow]]()
-				 val s = mutable.Set[Arrow]()
+				 val m = MMap[TypeArrow,MSet[Arrow]]()
+				 val s = MSet[Arrow]()
 				  s += _a        //put arrow in set s
 				  m += _a.t -> s //put set into hashmap by key arrow-type  
 				 _h += _n -> m   //put hashmap in hashmap by key node 
@@ -331,9 +342,9 @@ package mutable{
 		
 		def immutable():no.dpf.text.graph.Graph={
 			//Make inmutable copy
-			def toInMut(_m: mutable.HashMap[Node,mutable.Map[TypeArrow,mutable.Set[Arrow]]]): 
-				scala.collection.immutable.Map[Node,scala.collection.immutable.Map[TypeArrow,scala.collection.immutable.Set[Arrow]]]={
-				_m.toMap map{v1 => (v1._1, (v1._2.toMap map (v2 => (v2._1, scala.collection.immutable.Set(v2._2 toSeq : _ *)))))}
+			def toInMut(_m: MMap[Node,MMap[TypeArrow,MSet[Arrow]]]): 
+				IMap[Node,IMap[TypeArrow,ISet[Arrow]]]={
+				_m.toMap map{v1 => (v1._1, (v1._2.toMap map (v2 => (v2._1, ISet(v2._2 toSeq : _ *)))))}
 			}
 			val i = toInMut(in)
 			val o = toInMut(out)
