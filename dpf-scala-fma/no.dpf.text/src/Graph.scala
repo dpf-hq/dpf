@@ -102,14 +102,7 @@ trait AbstractGraph{
 	
 }
 
-case class SignatureConstraint(id:Id,n:String,p:List[String]){
-	private[graph] lazy val name2pos = {
-	  val temp = MMap[String,Int]();
-	  
-	  temp.toMap
-	}  
-} 
-
+case class SignatureConstraint(id:Id,n:String,p:List[String])
 case class Validator(id:Id, shape: List[Arrow],ocl:List[OclToken]){
 	//Parameter contained in constraint name
 	//def validate(g:Graph):VResult={
