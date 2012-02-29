@@ -334,22 +334,13 @@ public interface CorePackage extends EPackage {
 	int NODE__NAME = ID_OBJECT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Graph</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NODE__GRAPH = ID_OBJECT_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Type Node</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NODE__TYPE_NODE = ID_OBJECT_FEATURE_COUNT + 2;
+	int NODE__TYPE_NODE = ID_OBJECT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Outgoings</b></em>' reference list.
@@ -358,7 +349,7 @@ public interface CorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NODE__OUTGOINGS = ID_OBJECT_FEATURE_COUNT + 3;
+	int NODE__OUTGOINGS = ID_OBJECT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Incomings</b></em>' reference list.
@@ -367,7 +358,7 @@ public interface CorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NODE__INCOMINGS = ID_OBJECT_FEATURE_COUNT + 4;
+	int NODE__INCOMINGS = ID_OBJECT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Constraints</b></em>' reference list.
@@ -376,7 +367,7 @@ public interface CorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NODE__CONSTRAINTS = ID_OBJECT_FEATURE_COUNT + 5;
+	int NODE__CONSTRAINTS = ID_OBJECT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Node</em>' class.
@@ -385,7 +376,7 @@ public interface CorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NODE_FEATURE_COUNT = ID_OBJECT_FEATURE_COUNT + 6;
+	int NODE_FEATURE_COUNT = ID_OBJECT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -424,22 +415,13 @@ public interface CorePackage extends EPackage {
 	int ARROW__TARGET = ID_OBJECT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Graph</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ARROW__GRAPH = ID_OBJECT_FEATURE_COUNT + 3;
-
-	/**
 	 * The feature id for the '<em><b>Type Arrow</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ARROW__TYPE_ARROW = ID_OBJECT_FEATURE_COUNT + 4;
+	int ARROW__TYPE_ARROW = ID_OBJECT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Constraints</b></em>' reference list.
@@ -448,7 +430,7 @@ public interface CorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ARROW__CONSTRAINTS = ID_OBJECT_FEATURE_COUNT + 5;
+	int ARROW__CONSTRAINTS = ID_OBJECT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Arrow</em>' class.
@@ -457,7 +439,7 @@ public interface CorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ARROW_FEATURE_COUNT = ID_OBJECT_FEATURE_COUNT + 6;
+	int ARROW_FEATURE_COUNT = ID_OBJECT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Predicates</b></em>' containment reference list.
@@ -809,17 +791,6 @@ public interface CorePackage extends EPackage {
 	EAttribute getNode_Name();
 
 	/**
-	 * Returns the meta object for the container reference '{@link no.hib.dpf.core.Node#getGraph <em>Graph</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Graph</em>'.
-	 * @see no.hib.dpf.core.Node#getGraph()
-	 * @see #getNode()
-	 * @generated
-	 */
-	EReference getNode_Graph();
-
-	/**
 	 * Returns the meta object for the reference '{@link no.hib.dpf.core.Node#getTypeNode <em>Type Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -883,17 +854,6 @@ public interface CorePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getArrow_Target();
-
-	/**
-	 * Returns the meta object for the container reference '{@link no.hib.dpf.core.Arrow#getGraph <em>Graph</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Graph</em>'.
-	 * @see no.hib.dpf.core.Arrow#getGraph()
-	 * @see #getArrow()
-	 * @generated
-	 */
-	EReference getArrow_Graph();
 
 	/**
 	 * Returns the meta object for the reference '{@link no.hib.dpf.core.Arrow#getTypeArrow <em>Type Arrow</em>}'.
@@ -1423,14 +1383,6 @@ public interface CorePackage extends EPackage {
 		EAttribute NODE__NAME = eINSTANCE.getNode_Name();
 
 		/**
-		 * The meta object literal for the '<em><b>Graph</b></em>' container reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference NODE__GRAPH = eINSTANCE.getNode_Graph();
-
-		/**
 		 * The meta object literal for the '<em><b>Type Node</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1479,14 +1431,6 @@ public interface CorePackage extends EPackage {
 		 * @generated
 		 */
 		EReference ARROW__TARGET = eINSTANCE.getArrow_Target();
-
-		/**
-		 * The meta object literal for the '<em><b>Graph</b></em>' container reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ARROW__GRAPH = eINSTANCE.getArrow_Graph();
 
 		/**
 		 * The meta object literal for the '<em><b>Type Arrow</b></em>' reference feature.

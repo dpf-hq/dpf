@@ -296,7 +296,8 @@ public class ConstraintImpl extends IDObjectImpl implements Constraint {
 	 * @generated NOT
 	 */
 	public void addArrow(Arrow arrow) {
-		getArrows().add(arrow);
+		if(!getArrows().contains(arrow))
+			getArrows().add(arrow);
 	}
 
 	/**
@@ -305,7 +306,8 @@ public class ConstraintImpl extends IDObjectImpl implements Constraint {
 	 * @generated NOT
 	 */
 	public void addNode(Node node) {
-		getNodes().add(node);
+		if(!getNodes().contains(node))
+			getNodes().add(node);
 	}
 
 	/**

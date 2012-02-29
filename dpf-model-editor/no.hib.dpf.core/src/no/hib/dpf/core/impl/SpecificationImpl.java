@@ -484,7 +484,7 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 				setSignatureFile(SIGNATURE_FILE_EDEFAULT);
 				return;
 			case CorePackage.SPECIFICATION__SIGNATURE:
-				setSignature((Signature)null);
+				setSignature(DPFConstants.DEFAULT_SIGNATURE);
 				return;
 			case CorePackage.SPECIFICATION__TYPE:
 				setType(DPFConstants.REFLEXIVE_SPECIFICATION);
@@ -510,7 +510,7 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 			case CorePackage.SPECIFICATION__SIGNATURE_FILE:
 				return SIGNATURE_FILE_EDEFAULT == null ? signatureFile != null : !SIGNATURE_FILE_EDEFAULT.equals(signatureFile);
 			case CorePackage.SPECIFICATION__SIGNATURE:
-				return signature != null;
+				return signature != null && signature != DPFConstants.DEFAULT_SIGNATURE;
 			case CorePackage.SPECIFICATION__TYPE:
 				return type != null && type != DPFConstants.REFLEXIVE_SPECIFICATION;
 		}

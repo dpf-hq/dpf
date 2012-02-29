@@ -103,11 +103,9 @@
               <genParameters ecoreParameter="Metamodel.ecore#//hib/dpf/core/Graph/getArrows/types"/>
             </genOperations>
             <genOperations ecoreOperation="Metamodel.ecore#//hib/dpf/core/Graph/getCopy"/>
-            <genOperations ecoreOperation="Metamodel.ecore#//hib/dpf/core/Graph/getSpecification"/>
           </genClasses>
           <genClasses ecoreClass="Metamodel.ecore#//hib/dpf/core/Node">
             <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//hib/dpf/core/Node/name"/>
-            <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/core/Node/graph"/>
             <genFeatures notify="false" createChild="false" propertySortChoices="true"
                 ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/core/Node/typeNode"/>
             <genFeatures notify="false" createChild="false" propertySortChoices="true"
@@ -148,7 +146,6 @@
                 ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/core/Arrow/source"/>
             <genFeatures notify="false" createChild="false" propertySortChoices="true"
                 ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/core/Arrow/target"/>
-            <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/core/Arrow/graph"/>
             <genFeatures notify="false" createChild="false" propertySortChoices="true"
                 ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/core/Arrow/typeArrow"/>
             <genFeatures notify="false" createChild="false" propertySortChoices="true"
@@ -314,7 +311,6 @@
                 ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/diagram/DNode/dOutgoings"/>
             <genFeatures notify="false" createChild="false" propertySortChoices="true"
                 ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/diagram/DNode/dIncomings"/>
-            <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/diagram/DNode/dGraph"/>
             <genFeatures notify="false" createChild="false" propertySortChoices="true"
                 ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/diagram/DNode/dConstraints"/>
             <genOperations ecoreOperation="Metamodel.ecore#//hib/dpf/diagram/DNode/getName"/>
@@ -331,7 +327,6 @@
                 ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/diagram/DArrow/dSource"/>
             <genFeatures notify="false" createChild="false" propertySortChoices="true"
                 ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/diagram/DArrow/dTarget"/>
-            <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/diagram/DArrow/dGraph"/>
             <genFeatures notify="false" createChild="false" propertySortChoices="true"
                 ecoreFeature="ecore:EReference Metamodel.ecore#//hib/dpf/diagram/DArrow/dConstraints"/>
             <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//hib/dpf/diagram/DArrow/bendpoints"/>

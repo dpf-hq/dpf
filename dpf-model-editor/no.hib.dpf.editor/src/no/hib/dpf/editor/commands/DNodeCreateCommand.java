@@ -56,14 +56,14 @@ public class DNodeCreateCommand extends AbstractCreateCommand {
 	 * @see org.eclipse.gef.commands.Command#execute()
 	 */
 	public void execute() {
-		((DNode) newObject).setDGraph(parent);
+		parent.addDNode((DNode) newObject);
 	}
 
 	/* (non-Javadoc)
 	 * @see org.eclipse.gef.commands.Command#undo()
 	 */
 	public void undo() {
-		((DNode) newObject).setDGraph(null);
+		parent.removeDNode((DNode) newObject);
 	}
 
 }

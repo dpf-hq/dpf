@@ -228,4 +228,10 @@ public interface CoreFactory extends EFactory {
 	 */
 	Specification createDefaultSpecification();
 
+	Signature createDefaultSignature();
+
+	Node createDefaultNode();
+
+	Arrow createDefaultArrow();
+
 } //CoreFactory

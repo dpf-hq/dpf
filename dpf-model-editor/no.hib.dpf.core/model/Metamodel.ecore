@@ -85,13 +85,12 @@
             <eParameters name="types" upperBound="-1" eType="#//hib/dpf/core/Arrow"/>
           </eOperations>
           <eOperations name="getCopy" eType="#//hib/dpf/core/Graph"/>
-          <eOperations name="getSpecification" lowerBound="1" eType="#//hib/dpf/core/Specification"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1"
               eType="#//hib/dpf/core/Graph"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" upperBound="-1"
-              eType="#//hib/dpf/core/Node" containment="true" eOpposite="#//hib/dpf/core/Node/graph"/>
+              eType="#//hib/dpf/core/Node" containment="true"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="arrows" upperBound="-1"
-              eType="#//hib/dpf/core/Arrow" containment="true" eOpposite="#//hib/dpf/core/Arrow/graph"/>
+              eType="#//hib/dpf/core/Arrow" containment="true"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Node" eSuperTypes="#//hib/dpf/core/IDObject">
@@ -121,8 +120,6 @@
             <eParameters name="intendedTarget" eType="#//hib/dpf/core/Node"/>
           </eOperations>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="graph" eType="#//hib/dpf/core/Graph"
-              unsettable="true" derived="true" eOpposite="#//hib/dpf/core/Graph/nodes"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="typeNode" lowerBound="1"
               eType="#//hib/dpf/core/Node"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="outgoings" upperBound="-1"
@@ -140,8 +137,6 @@
               eOpposite="#//hib/dpf/core/Node/outgoings"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//hib/dpf/core/Node"
               eOpposite="#//hib/dpf/core/Node/incomings"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="graph" eType="#//hib/dpf/core/Graph"
-              derived="true" eOpposite="#//hib/dpf/core/Graph/arrows"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="typeArrow" lowerBound="1"
               eType="#//hib/dpf/core/Arrow"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
@@ -299,9 +294,9 @@
           <eStructuralFeatures xsi:type="ecore:EReference" name="dType" lowerBound="1"
               eType="#//hib/dpf/diagram/DGraph"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="dNodes" upperBound="-1"
-              eType="#//hib/dpf/diagram/DNode" containment="true" eOpposite="#//hib/dpf/diagram/DNode/dGraph"/>
+              eType="#//hib/dpf/diagram/DNode" containment="true"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="dArrows" upperBound="-1"
-              eType="#//hib/dpf/diagram/DArrow" containment="true" eOpposite="#//hib/dpf/diagram/DArrow/dGraph"/>
+              eType="#//hib/dpf/diagram/DArrow" containment="true"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="graph" lowerBound="1"
               eType="#//hib/dpf/core/Graph"/>
         </eClassifiers>
@@ -318,8 +313,6 @@
               eType="#//hib/dpf/diagram/DArrow" eOpposite="#//hib/dpf/diagram/DArrow/dSource"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="dIncomings" upperBound="-1"
               eType="#//hib/dpf/diagram/DArrow" eOpposite="#//hib/dpf/diagram/DArrow/dTarget"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="dGraph" lowerBound="1"
-              eType="#//hib/dpf/diagram/DGraph" eOpposite="#//hib/dpf/diagram/DGraph/dNodes"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="dConstraints" upperBound="-1"
               eType="#//hib/dpf/diagram/DConstraint" eOpposite="#//hib/dpf/diagram/DConstraint/dNodes"/>
         </eClassifiers>
@@ -343,8 +336,6 @@
               eType="#//hib/dpf/diagram/DNode" eOpposite="#//hib/dpf/diagram/DNode/dOutgoings"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="dTarget" lowerBound="1"
               eType="#//hib/dpf/diagram/DNode" eOpposite="#//hib/dpf/diagram/DNode/dIncomings"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="dGraph" lowerBound="1"
-              eType="#//hib/dpf/diagram/DGraph" eOpposite="#//hib/dpf/diagram/DGraph/dArrows"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="dConstraints" upperBound="-1"
               eType="#//hib/dpf/diagram/DConstraint" eOpposite="#//hib/dpf/diagram/DConstraint/dArrows"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="bendpoints" upperBound="-1"

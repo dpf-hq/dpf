@@ -194,4 +194,7 @@ public interface DiagramFactory extends EFactory {
 	 */
 	DSpecification createDefaultDSpecification();
 
+	DSignature createDefaultDSignature();
+
+
 } //DiagramFactory

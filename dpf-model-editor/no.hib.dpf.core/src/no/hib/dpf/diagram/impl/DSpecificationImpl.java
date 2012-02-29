@@ -20,7 +20,6 @@ import no.hib.dpf.diagram.DiagramFactory;
 import no.hib.dpf.diagram.DiagramPackage;
 import no.hib.dpf.utils.DPFConstants;
 
-import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -281,14 +280,12 @@ public class DSpecificationImpl extends EObjectImpl implements DSpecification {
 	 * @generated NOT
 	 */
 	public void setDType(DSpecification newDType) {
-		Assert.isNotNull(newDType);
-		Assert.isNotNull(getDGraph());
-		Assert.isNotNull(newDType.getDGraph());
 		if(newDType == dType) return;
 		DSpecification oldDType = dType;
 		dType = newDType;
-		getSpecification().setType(newDType.getSpecification());
-		getDGraph().setDType(newDType.getDGraph());
+		getSpecification().setType(getDType() == null ? null : getDType().getSpecification());
+		if(getDGraph() != null)
+			getDGraph().setDType(getDType() == null ? null : getDType().getDGraph());
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DSPECIFICATION__DTYPE, oldDType, dType));
 	}
@@ -323,17 +320,14 @@ public class DSpecificationImpl extends EObjectImpl implements DSpecification {
 	 * @generated NOT
 	 */
 	public void setDGraph(DGraph newDGraph) {
-		Assert.isNotNull(newDGraph);
-		Assert.isNotNull(getSpecification());
-		Assert.isNotNull(newDGraph.getGraph());
 		if (newDGraph != dGraph) {
-			getSpecification().setGraph(newDGraph.getGraph());
 			NotificationChain msgs = null;
 			if (dGraph != null)
 				msgs = ((InternalEObject)dGraph).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DiagramPackage.DSPECIFICATION__DGRAPH, null, msgs);
 			if (newDGraph != null)
 				msgs = ((InternalEObject)newDGraph).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DiagramPackage.DSPECIFICATION__DGRAPH, null, msgs);
 			msgs = basicSetDGraph(newDGraph, msgs);
+			getSpecification().setGraph(getDGraph().getGraph());
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
@@ -740,7 +734,7 @@ public class DSpecificationImpl extends EObjectImpl implements DSpecification {
 				setGridVisible(GRID_VISIBLE_EDEFAULT);
 				return;
 			case DiagramPackage.DSPECIFICATION__DSIGNATURE:
-				setDSignature((DSignature)null);
+				setDSignature(DPFConstants.DEFAULT_DSIGNATURE);
 				return;
 			case DiagramPackage.DSPECIFICATION__META_FILE:
 				setMetaFile(META_FILE_EDEFAULT);
@@ -777,7 +771,7 @@ public class DSpecificationImpl extends EObjectImpl implements DSpecification {
 			case DiagramPackage.DSPECIFICATION__GRID_VISIBLE:
 				return gridVisible != GRID_VISIBLE_EDEFAULT;
 			case DiagramPackage.DSPECIFICATION__DSIGNATURE:
-				return dSignature != null;
+				return dSignature != null && dSignature != DPFConstants.DEFAULT_DSIGNATURE;
 			case DiagramPackage.DSPECIFICATION__META_FILE:
 				return META_FILE_EDEFAULT == null ? metaFile != null : !META_FILE_EDEFAULT.equals(metaFile);
 			case DiagramPackage.DSPECIFICATION__SIGNATURE_FILE:

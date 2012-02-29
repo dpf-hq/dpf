@@ -62,7 +62,6 @@ public interface DGraph extends EObject {
 	/**
 	 * Returns the value of the '<em><b>DNodes</b></em>' containment reference list.
 	 * The list contents are of type {@link no.hib.dpf.diagram.DNode}.
-	 * It is bidirectional and its opposite is '{@link no.hib.dpf.diagram.DNode#getDGraph <em>DGraph</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>DNodes</em>' containment reference list isn't clear,
@@ -71,8 +70,7 @@ public interface DGraph extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>DNodes</em>' containment reference list.
 	 * @see no.hib.dpf.diagram.DiagramPackage#getDGraph_DNodes()
-	 * @see no.hib.dpf.diagram.DNode#getDGraph
-	 * @model opposite="dGraph" containment="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<DNode> getDNodes();
@@ -80,7 +78,6 @@ public interface DGraph extends EObject {
 	/**
 	 * Returns the value of the '<em><b>DArrows</b></em>' containment reference list.
 	 * The list contents are of type {@link no.hib.dpf.diagram.DArrow}.
-	 * It is bidirectional and its opposite is '{@link no.hib.dpf.diagram.DArrow#getDGraph <em>DGraph</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>DArrows</em>' containment reference list isn't clear,
@@ -89,8 +86,7 @@ public interface DGraph extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>DArrows</em>' containment reference list.
 	 * @see no.hib.dpf.diagram.DiagramPackage#getDGraph_DArrows()
-	 * @see no.hib.dpf.diagram.DArrow#getDGraph
-	 * @model opposite="dGraph" containment="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<DArrow> getDArrows();
@@ -152,4 +148,9 @@ public interface DGraph extends EObject {
 	 * @generated
 	 */
 	DArrow createDArrow(String name, DNode dSource, DNode dTarget, DArrow dType);
+
+	void addDNode(DNode node);
+	void addDArrow(DArrow arrow);
+	void removeDNode(DNode node);
+	void removeDArrow(DArrow arrow);
 } // DGraph

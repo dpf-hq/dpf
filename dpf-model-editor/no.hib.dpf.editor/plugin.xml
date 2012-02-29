@@ -2,7 +2,6 @@
 <?eclipse version="3.0"?>
 <plugin>
    <extension-point id="FigureConfigure" name="Figure Configure" schema="schema/FigureConfigure.exsd"/>
-   <extension-point id="Signature" name="no.hib.dpf.signature" schema="schema/Signature.exsd"/>
 
      <extension point="org.eclipse.ui.editors">
       <editor name="DPF Specification Editor"
@@ -150,68 +149,5 @@
                menubarPath="additions">
          </action>
       </viewerContribution>
-   </extension>
-   <extension
-         id="DefaultSignature"
-         point="no.hib.dpf.editor.Signature">
-      <Predicate
-            actionIcon="icons/inv_36.png"
-            arrows="a_1:n_1:n_2,a_2:n_2:n_1"
-            checker="no.hib.dpf.core.impl.InverseValidator"
-            name="Inverse"
-            nodes="n_1,n_2"
-            simpleName="[inv]">
-      </Predicate>
-      <Predicate
-            actionIcon="icons/irr_36.png"
-            arrows="a_1:n_1:n_1"
-            checker="no.hib.dpf.core.impl.IrreflexiveValidator"
-            name="Irreflexive"
-            nodes="n_1"
-            simpleName="[irr]">
-      </Predicate>
-      <Predicate
-            actionIcon="icons/js_36.png"
-            arrows="a_1:n_2:n_1,a_2:n_3:n_1"
-            checker="no.hib.dpf.core.impl.JointlySurjectiveValidator"
-            editpart="no.hib.dpf.editor.parts.JointlySurjectiveConstraintEditPart"
-            name="JointSurjective"
-            nodes="n_1,n_2,n_3"
-            simpleName="[js]">
-      </Predicate>
-      <Predicate
-            actionIcon="icons/nand_36.png"
-            arrows="a_1:n_1:n_2,a_2:n_1:n_3"
-            checker="no.hib.dpf.core.impl.NANDValidator"
-            editpart="no.hib.dpf.editor.parts.TwoArrowsOneNodeConstraintEditPart"
-            name="Nand"
-            nodes="n_1,n_2,n_3"
-            simpleName="[nand]">
-      </Predicate>
-      <Predicate
-            actionIcon="icons/surj_36.png"
-            arrows="a_1:n_1:n_2"
-            checker="no.hib.dpf.core.impl.SurjectiveValidator"
-            name="Sujective"
-            nodes="n_1,n_2"
-            simpleName="[sur]">
-      </Predicate>
-      <Predicate
-            actionIcon="icons/t-irr_36.png"
-            arrows="a_1:n_1:n_1"
-            checker="no.hib.dpf.core.impl.TransitiveIrreflexiveValidator"
-            name="TransitiveIrreflexive"
-            nodes="n_1"
-            simpleName="[t-irr]">
-      </Predicate>
-      <Predicate
-            actionIcon="icons/xor_36.png"
-            arrows="a_1:n_1:n_2,a_2:n_1:n_3"
-            checker="no.hib.dpf.core.impl.XORValidator"
-            editpart="no.hib.dpf.editor.parts.TwoArrowsOneNodeConstraintEditPart"
-            name="Xor"
-            nodes="n_1,n_2,n_3"
-            simpleName="[xor]">
-      </Predicate>
    </extension>
 </plugin>

@@ -13,6 +13,7 @@ import no.hib.dpf.diagram.DPredicate;
 import no.hib.dpf.diagram.DiagramPackage;
 
 import no.hib.dpf.diagram.Visualization;
+
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -156,14 +157,11 @@ public class DPredicateImpl extends EObjectImpl implements DPredicate {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public void setPredicate(Predicate newPredicate) {
-		if(newPredicate == predicate) return;
 		Predicate oldPredicate = predicate;
 		predicate = newPredicate;
-		if(getDGraph() != null)
-			getDGraph().setGraph(getPredicate().getShape());
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DPREDICATE__PREDICATE, oldPredicate, predicate));
 	}
@@ -222,13 +220,13 @@ public class DPredicateImpl extends EObjectImpl implements DPredicate {
 	 */
 	public void setDGraph(DGraph newDGraph) {
 		if (newDGraph != dGraph) {
-//			getPredicate().setShape(newDGraph.getGraph());
 			NotificationChain msgs = null;
 			if (dGraph != null)
 				msgs = ((InternalEObject)dGraph).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DiagramPackage.DPREDICATE__DGRAPH, null, msgs);
 			if (newDGraph != null)
 				msgs = ((InternalEObject)newDGraph).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DiagramPackage.DPREDICATE__DGRAPH, null, msgs);
 			msgs = basicSetDGraph(newDGraph, msgs);
+			getPredicate().setShape(getDGraph().getGraph());
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())

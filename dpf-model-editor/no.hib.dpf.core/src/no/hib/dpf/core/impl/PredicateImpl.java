@@ -137,7 +137,7 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 	 */
 	protected SemanticValidator validator;
 
-	private Checker checker;
+	protected Checker checker;
 
 	/**
 	 * <!-- begin-user-doc -->

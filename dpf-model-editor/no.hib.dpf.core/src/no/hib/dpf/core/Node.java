@@ -26,7 +26,6 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link no.hib.dpf.core.Node#getName <em>Name</em>}</li>
- *   <li>{@link no.hib.dpf.core.Node#getGraph <em>Graph</em>}</li>
  *   <li>{@link no.hib.dpf.core.Node#getTypeNode <em>Type Node</em>}</li>
  *   <li>{@link no.hib.dpf.core.Node#getOutgoings <em>Outgoings</em>}</li>
  *   <li>{@link no.hib.dpf.core.Node#getIncomings <em>Incomings</em>}</li>
@@ -64,34 +63,6 @@ public interface Node extends IDObject {
 	 * @generated
 	 */
 	void setName(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Graph</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link no.hib.dpf.core.Graph#getNodes <em>Nodes</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Graph</em>' container reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Graph</em>' container reference.
-	 * @see #setGraph(Graph)
-	 * @see no.hib.dpf.core.CorePackage#getNode_Graph()
-	 * @see no.hib.dpf.core.Graph#getNodes
-	 * @model opposite="nodes" unsettable="true" transient="false" derived="true"
-	 * @generated
-	 */
-	Graph getGraph();
-
-	/**
-	 * Sets the value of the '{@link no.hib.dpf.core.Node#getGraph <em>Graph</em>}' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Graph</em>' container reference.
-	 * @see #getGraph()
-	 * @generated
-	 */
-	void setGraph(Graph value);
 
 	/**
 	 * Returns the value of the '<em><b>Type Node</b></em>' reference.
@@ -244,5 +215,7 @@ public interface Node extends IDObject {
 	 * @generated
 	 */
 	Arrow getTypeArrow(Node intendedTarget);
+
+	Graph getGraph();
 
 } // Node

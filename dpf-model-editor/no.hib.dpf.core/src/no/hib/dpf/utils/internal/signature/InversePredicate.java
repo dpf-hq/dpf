@@ -1,12 +1,20 @@
-package no.hib.dpf.core.impl;
+package no.hib.dpf.utils.internal.signature;
+
+import java.util.List;
+import java.util.Map;
 
 import no.hib.dpf.core.Arrow;
+import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.Node;
 
 import org.eclipse.emf.common.util.EList;
 
-public class InverseValidator extends SemanticValidatorImpl {
+public class InversePredicate extends AbstractBasePredicate {
 	
+	public InversePredicate() {
+		super("inv", null, "X,Y", "XY:X:Y, YX:Y:X");
+	}
+
 	@Override
 	public Boolean validateSemantics(EList<String> constraintParameters,
 			EList<Node> typeNodes, EList<Arrow> typeArrows,
@@ -30,6 +38,12 @@ public class InverseValidator extends SemanticValidatorImpl {
 			}
 		}
 		return true;
+	}
+
+	@Override
+	public boolean check(Map<String, String> paras, Graph graph,
+			Map<Node, List<Node>> nodeMap, Map<Arrow, List<Arrow>> arrowMap) {
+		return false;
 	}
 
 }

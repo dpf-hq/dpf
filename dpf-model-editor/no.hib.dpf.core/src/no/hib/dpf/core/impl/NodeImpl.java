@@ -34,7 +34,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -45,7 +44,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link no.hib.dpf.core.impl.NodeImpl#getName <em>Name</em>}</li>
- *   <li>{@link no.hib.dpf.core.impl.NodeImpl#getGraph <em>Graph</em>}</li>
  *   <li>{@link no.hib.dpf.core.impl.NodeImpl#getTypeNode <em>Type Node</em>}</li>
  *   <li>{@link no.hib.dpf.core.impl.NodeImpl#getOutgoings <em>Outgoings</em>}</li>
  *   <li>{@link no.hib.dpf.core.impl.NodeImpl#getIncomings <em>Incomings</em>}</li>
@@ -157,64 +155,26 @@ public class NodeImpl extends IDObjectImpl implements Node {
 			eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.NODE__NAME, oldName, name));
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Graph getGraph() {
-		if (eContainerFeatureID() != CorePackage.NODE__GRAPH) return null;
-		return (Graph)eContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetGraph(Graph newGraph, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newGraph, CorePackage.NODE__GRAPH, msgs);
+	public NotificationChain eBasicSetContainer(InternalEObject newContainer, int newContainerFeatureID, NotificationChain msgs){
+		super.eBasicSetContainer(newContainer, newContainerFeatureID, msgs);
+		if(newContainer instanceof Graph && getName() == null && getTypeNode() != null){
+			String name = getTypeNode().getName();
+			List<Integer> indexs = new ArrayList<Integer>();
+			for(Node iter : ((Graph)newContainer).getNodes()){
+				String current = iter.getName();
+				if(current != null && current.startsWith(name))
+					indexs.add(Integer.valueOf(current.substring(name.length())));
+			}
+			Collections.sort(indexs);
+			int i = 0;
+			for(; i < indexs.size(); ++i)
+				if(indexs.get(i).intValue() != i)
+					setName(name + i);
+			if(i >= indexs.size())
+				setName(name + i);
+		}
 		return msgs;
 	}
-
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public void setGraph(Graph newGraph) {
-		if (newGraph != eInternalContainer() || (eContainerFeatureID() != CorePackage.NODE__GRAPH && newGraph != null)) {
-			if (EcoreUtil.isAncestor(this, newGraph))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			if(getName() == null && getTypeNode() != null){
-				String name = getTypeNode().getName();
-				List<Integer> indexs = new ArrayList<Integer>();
-				for(Node iter : newGraph.getNodes()){
-					String current = iter.getName();
-					if(current != null && current.startsWith(name))
-						indexs.add(Integer.valueOf(current.substring(name.length())));
-				}
-				Collections.sort(indexs);
-				int i = 0;
-				for(; i < indexs.size(); ++i)
-					if(indexs.get(i).intValue() != i)
-						setName(name + i);
-				if(i >= indexs.size())
-					setName(name + i);
-			}
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newGraph != null)
-				msgs = ((InternalEObject)newGraph).eInverseAdd(this, CorePackage.GRAPH__NODES, Graph.class, msgs);
-			msgs = basicSetGraph(newGraph, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.NODE__GRAPH, newGraph, newGraph));
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -244,13 +204,11 @@ public class NodeImpl extends IDObjectImpl implements Node {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public void setTypeNode(Node newTypeNode) {
-		if(typeNode == newTypeNode) return;
 		Node oldTypeNode = typeNode;
 		typeNode = newTypeNode;
-//		setTypeID(newTypeNode.getId());
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.NODE__TYPE_NODE, oldTypeNode, typeNode));
 	}
@@ -408,6 +366,10 @@ public class NodeImpl extends IDObjectImpl implements Node {
 		
 		return name;
 	}
+	public Graph getGraph() {
+		return (Graph) eContainer();
+	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -478,10 +440,6 @@ public class NodeImpl extends IDObjectImpl implements Node {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case CorePackage.NODE__GRAPH:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetGraph((Graph)otherEnd, msgs);
 			case CorePackage.NODE__OUTGOINGS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOutgoings()).basicAdd(otherEnd, msgs);
 			case CorePackage.NODE__INCOMINGS:
@@ -500,8 +458,6 @@ public class NodeImpl extends IDObjectImpl implements Node {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case CorePackage.NODE__GRAPH:
-				return basicSetGraph(null, msgs);
 			case CorePackage.NODE__OUTGOINGS:
 				return ((InternalEList<?>)getOutgoings()).basicRemove(otherEnd, msgs);
 			case CorePackage.NODE__INCOMINGS:
@@ -518,26 +474,10 @@ public class NodeImpl extends IDObjectImpl implements Node {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case CorePackage.NODE__GRAPH:
-				return eInternalContainer().eInverseRemove(this, CorePackage.GRAPH__NODES, Graph.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case CorePackage.NODE__NAME:
 				return getName();
-			case CorePackage.NODE__GRAPH:
-				return getGraph();
 			case CorePackage.NODE__TYPE_NODE:
 				if (resolve) return getTypeNode();
 				return basicGetTypeNode();
@@ -562,9 +502,6 @@ public class NodeImpl extends IDObjectImpl implements Node {
 		switch (featureID) {
 			case CorePackage.NODE__NAME:
 				setName((String)newValue);
-				return;
-			case CorePackage.NODE__GRAPH:
-				setGraph((Graph)newValue);
 				return;
 			case CorePackage.NODE__TYPE_NODE:
 				setTypeNode((Node)newValue);
@@ -596,9 +533,6 @@ public class NodeImpl extends IDObjectImpl implements Node {
 			case CorePackage.NODE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case CorePackage.NODE__GRAPH:
-				setGraph((Graph)null);
-				return;
 			case CorePackage.NODE__TYPE_NODE:
 				setTypeNode(DPFConstants.REFLEXIVE_TYPE_NODE);
 				return;
@@ -625,8 +559,6 @@ public class NodeImpl extends IDObjectImpl implements Node {
 		switch (featureID) {
 			case CorePackage.NODE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case CorePackage.NODE__GRAPH:
-				return getGraph() != null;
 			case CorePackage.NODE__TYPE_NODE:
 				return typeNode != null && typeNode != DPFConstants.REFLEXIVE_TYPE_NODE;
 			case CorePackage.NODE__OUTGOINGS:

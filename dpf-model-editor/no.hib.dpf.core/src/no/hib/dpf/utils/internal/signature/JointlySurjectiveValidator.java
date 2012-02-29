@@ -1,7 +1,8 @@
-package no.hib.dpf.core.impl;
+package no.hib.dpf.utils.internal.signature;
 
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Node;
+import no.hib.dpf.core.impl.SemanticValidatorImpl;
 
 import org.eclipse.emf.common.util.EList;
 

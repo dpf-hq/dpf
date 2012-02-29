@@ -181,7 +181,6 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 			for (DPredicate predicate : dSpecification.getDSignature().getDPredicates())
 				addActionForPredicate(predicate);
 		}
-		// TODO: if not signature set, load default one defined in Plugin
 		registerAction(new AlignmentAction((IWorkbenchPart)this, PositionConstants.LEFT));
 		registerAction(new AlignmentAction((IWorkbenchPart)this, PositionConstants.RIGHT));
 		registerAction(new AlignmentAction((IWorkbenchPart)this, PositionConstants.TOP));
@@ -301,9 +300,11 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap() .put("dpf", new XMIResourceFactoryImpl());
 		Resource resource = resourceSet.createResource(DPFConstants.DefaultDSpecification);
 		resource.getContents().add(DPFConstants.REFLEXIVE_DSPECIFICATION);
+		resource.getContents().add(DPFConstants.DEFAULT_DSIGNATURE);
 		resourceSet.getURIResourceMap().put(DPFConstants.DefaultDSpecification, resource);
 		Resource model = resourceSet.createResource(DPFConstants.DefaultSpecification);
 		model.getContents().add(DPFConstants.REFLEXIVE_SPECIFICATION);
+		model.getContents().add(DPFConstants.DEFAULT_SIGNATURE);
 		resourceSet.getURIResourceMap().put(DPFConstants.DefaultSpecification, model);
 		return resourceSet;
 	}
@@ -365,7 +366,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 			updateMetaModelReference(current, oldURI, newURI);
 			model.getContents().add(current.getSpecification());
 			diagram.getContents().add(current);
-			if(current.getDSignature() != null){
+			if(current.getDSignature() != null && current.getDSignature() != DPFConstants.DEFAULT_DSIGNATURE){
 				updateSignatureReference(newSpec, newURI);
 				model.getContents().add(current.getDSignature().getSignature());
 				diagram.getContents().add(current.getDSignature());

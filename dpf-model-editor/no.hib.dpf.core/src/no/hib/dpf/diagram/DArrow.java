@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link no.hib.dpf.diagram.DArrow#getLineStyle <em>Line Style</em>}</li>
  *   <li>{@link no.hib.dpf.diagram.DArrow#getDSource <em>DSource</em>}</li>
  *   <li>{@link no.hib.dpf.diagram.DArrow#getDTarget <em>DTarget</em>}</li>
- *   <li>{@link no.hib.dpf.diagram.DArrow#getDGraph <em>DGraph</em>}</li>
  *   <li>{@link no.hib.dpf.diagram.DArrow#getDConstraints <em>DConstraints</em>}</li>
  *   <li>{@link no.hib.dpf.diagram.DArrow#getBendpoints <em>Bendpoints</em>}</li>
  *   <li>{@link no.hib.dpf.diagram.DArrow#getNameOffset <em>Name Offset</em>}</li>
@@ -200,34 +199,6 @@ public interface DArrow extends EObject {
 	 * @generated
 	 */
 	void setDTarget(DNode value);
-
-	/**
-	 * Returns the value of the '<em><b>DGraph</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link no.hib.dpf.diagram.DGraph#getDArrows <em>DArrows</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>DGraph</em>' container reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>DGraph</em>' container reference.
-	 * @see #setDGraph(DGraph)
-	 * @see no.hib.dpf.diagram.DiagramPackage#getDArrow_DGraph()
-	 * @see no.hib.dpf.diagram.DGraph#getDArrows
-	 * @model opposite="dArrows" required="true" transient="false"
-	 * @generated
-	 */
-	DGraph getDGraph();
-
-	/**
-	 * Sets the value of the '{@link no.hib.dpf.diagram.DArrow#getDGraph <em>DGraph</em>}' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>DGraph</em>' container reference.
-	 * @see #getDGraph()
-	 * @generated
-	 */
-	void setDGraph(DGraph value);
 
 	/**
 	 * Returns the value of the '<em><b>DConstraints</b></em>' reference list.

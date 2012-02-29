@@ -412,17 +412,8 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDNode_DGraph() {
-		return (EReference)dNodeEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getDNode_DConstraints() {
-		return (EReference)dNodeEClass.getEStructuralFeatures().get(6);
+		return (EReference)dNodeEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -493,7 +484,7 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDArrow_DGraph() {
+	public EReference getDArrow_DConstraints() {
 		return (EReference)dArrowEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -502,17 +493,8 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDArrow_DConstraints() {
-		return (EReference)dArrowEClass.getEStructuralFeatures().get(7);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getDArrow_Bendpoints() {
-		return (EAttribute)dArrowEClass.getEStructuralFeatures().get(8);
+		return (EAttribute)dArrowEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -521,7 +503,7 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 	 * @generated
 	 */
 	public EReference getDArrow_NameOffset() {
-		return (EReference)dArrowEClass.getEStructuralFeatures().get(9);
+		return (EReference)dArrowEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -530,7 +512,7 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 	 * @generated
 	 */
 	public EReference getDArrow_ConstraintOffset() {
-		return (EReference)dArrowEClass.getEStructuralFeatures().get(10);
+		return (EReference)dArrowEClass.getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -539,7 +521,7 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 	 * @generated
 	 */
 	public EReference getDArrow_ConstraintsFrom() {
-		return (EReference)dArrowEClass.getEStructuralFeatures().get(11);
+		return (EReference)dArrowEClass.getEStructuralFeatures().get(10);
 	}
 
 	/**
@@ -548,7 +530,7 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 	 * @generated
 	 */
 	public EReference getDArrow_ConstraintsTo() {
-		return (EReference)dArrowEClass.getEStructuralFeatures().get(12);
+		return (EReference)dArrowEClass.getEStructuralFeatures().get(11);
 	}
 
 	/**
@@ -865,7 +847,6 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		createEAttribute(dNodeEClass, DNODE__CONFIGURE_STRING);
 		createEReference(dNodeEClass, DNODE__DOUTGOINGS);
 		createEReference(dNodeEClass, DNODE__DINCOMINGS);
-		createEReference(dNodeEClass, DNODE__DGRAPH);
 		createEReference(dNodeEClass, DNODE__DCONSTRAINTS);
 
 		dArrowEClass = createEClass(DARROW);
@@ -875,7 +856,6 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		createEAttribute(dArrowEClass, DARROW__LINE_STYLE);
 		createEReference(dArrowEClass, DARROW__DSOURCE);
 		createEReference(dArrowEClass, DARROW__DTARGET);
-		createEReference(dArrowEClass, DARROW__DGRAPH);
 		createEReference(dArrowEClass, DARROW__DCONSTRAINTS);
 		createEAttribute(dArrowEClass, DARROW__BENDPOINTS);
 		createEReference(dArrowEClass, DARROW__NAME_OFFSET);
@@ -979,8 +959,8 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 
 		initEClass(dGraphEClass, DGraph.class, "DGraph", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDGraph_DType(), this.getDGraph(), null, "dType", null, 1, 1, DGraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDGraph_DNodes(), this.getDNode(), this.getDNode_DGraph(), "dNodes", null, 0, -1, DGraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDGraph_DArrows(), this.getDArrow(), this.getDArrow_DGraph(), "dArrows", null, 0, -1, DGraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDGraph_DNodes(), this.getDNode(), null, "dNodes", null, 0, -1, DGraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDGraph_DArrows(), this.getDArrow(), null, "dArrows", null, 0, -1, DGraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDGraph_Graph(), theCorePackage.getGraph(), null, "graph", null, 1, 1, DGraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = addEOperation(dGraphEClass, this.getDNode(), "getDNode", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -1005,7 +985,6 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		initEAttribute(getDNode_ConfigureString(), ecorePackage.getEString(), "configureString", null, 0, 1, DNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDNode_DOutgoings(), this.getDArrow(), this.getDArrow_DSource(), "dOutgoings", null, 0, -1, DNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDNode_DIncomings(), this.getDArrow(), this.getDArrow_DTarget(), "dIncomings", null, 0, -1, DNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDNode_DGraph(), this.getDGraph(), this.getDGraph_DNodes(), "dGraph", null, 1, 1, DNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDNode_DConstraints(), this.getDConstraint(), this.getDConstraint_DNodes(), "dConstraints", null, 0, -1, DNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		addEOperation(dNodeEClass, ecorePackage.getEString(), "getName", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -1019,7 +998,6 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		initEAttribute(getDArrow_LineStyle(), ecorePackage.getEInt(), "lineStyle", null, 1, 1, DArrow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDArrow_DSource(), this.getDNode(), this.getDNode_DOutgoings(), "dSource", null, 1, 1, DArrow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDArrow_DTarget(), this.getDNode(), this.getDNode_DIncomings(), "dTarget", null, 1, 1, DArrow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDArrow_DGraph(), this.getDGraph(), this.getDGraph_DArrows(), "dGraph", null, 1, 1, DArrow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDArrow_DConstraints(), this.getDConstraint(), this.getDConstraint_DArrows(), "dConstraints", null, 0, -1, DArrow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDArrow_Bendpoints(), this.getELocation(), "bendpoints", null, 0, -1, DArrow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDArrow_NameOffset(), this.getDOffset(), null, "nameOffset", null, 0, 1, DArrow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

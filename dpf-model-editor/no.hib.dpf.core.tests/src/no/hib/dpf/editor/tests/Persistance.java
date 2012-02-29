@@ -15,6 +15,8 @@ import no.hib.dpf.core.Specification;
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
+import no.hib.dpf.diagram.DPredicate;
+import no.hib.dpf.diagram.DSignature;
 import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.diagram.DiagramFactory;
 import no.hib.dpf.editor.DPFEditor;
@@ -148,6 +150,12 @@ public class Persistance {
 		assertTrue(REFLEXIVE_TYPE_DNODE.eContainer() == REFLEXIVE_TYPE_DGRAPH);
 		assertTrue(REFLEXIVE_TYPE_DARROW.eContainer() == REFLEXIVE_TYPE_DGRAPH);
 
+		assertNotNull(DEFAULT_SIGNATURE);
+		assertNotNull(DEFAULT_DSIGNATURE);
+		assertTrue(DEFAULT_DSIGNATURE.getSignature() == DEFAULT_SIGNATURE);
+		
+		testDSignature(DEFAULT_DSIGNATURE);
+		
 		assertNotNull(REFLEXIVE_SPECIFICATION);
 		assertNull(REFLEXIVE_SPECIFICATION.getType());
 		assertTrue(REFLEXIVE_SPECIFICATION.getGraph() == REFLEXIVE_TYPE_GRAPH);
@@ -157,6 +165,7 @@ public class Persistance {
 		assertTrue(REFLEXIVE_TYPE_DGRAPH.eContainer() == REFLEXIVE_DSPECIFICATION);
 		assertNull(REFLEXIVE_DSPECIFICATION.getDType());
 		assertTrue(REFLEXIVE_DSPECIFICATION.getDGraph() == REFLEXIVE_TYPE_DGRAPH);
+		assertTrue(REFLEXIVE_DSPECIFICATION.getDSignature() == DEFAULT_DSIGNATURE);
 	}
 
 	private void testNode(Node node) {
@@ -245,6 +254,13 @@ public class Persistance {
 
 	}
 
+	public void testDSignature(DSignature signature){
+		for(DPredicate dPredicate : signature.getDPredicates()){
+			testDGraph(dPredicate.getDGraph());
+			testGraph(dPredicate.getPredicate().getShape());
+			testDGraphWithGraph(dPredicate.getDGraph(), dPredicate.getPredicate().getShape());
+		}
+	}
 	private void testGraph(Graph graph) {
 		if(graph != DPFConstants.REFLEXIVE_TYPE_GRAPH){
 			Graph type = graph.getType();
@@ -263,10 +279,14 @@ public class Persistance {
 			assertNotNull(dGraph.getGraph());
 			assertNotNull(type != null);
 			testDGraph(type);
-			for(DArrow dArrow : dGraph.getDArrows())
+			for(DArrow dArrow : dGraph.getDArrows()){
+				assertTrue(dArrow.eContainer() == dGraph);
 				testDArrow(dArrow);
-			for(DNode dNode : dGraph.getDNodes())
+			}
+			for(DNode dNode : dGraph.getDNodes()){
+				assertTrue(dNode.eContainer() == dGraph);
 				testDNode(dNode);
+			}
 			testGraph(dGraph.getGraph());
 		}
 	}

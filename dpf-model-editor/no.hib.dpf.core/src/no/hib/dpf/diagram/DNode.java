@@ -24,7 +24,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link no.hib.dpf.diagram.DNode#getConfigureString <em>Configure String</em>}</li>
  *   <li>{@link no.hib.dpf.diagram.DNode#getDOutgoings <em>DOutgoings</em>}</li>
  *   <li>{@link no.hib.dpf.diagram.DNode#getDIncomings <em>DIncomings</em>}</li>
- *   <li>{@link no.hib.dpf.diagram.DNode#getDGraph <em>DGraph</em>}</li>
  *   <li>{@link no.hib.dpf.diagram.DNode#getDConstraints <em>DConstraints</em>}</li>
  * </ul>
  * </p>
@@ -151,34 +150,6 @@ public interface DNode extends DBound {
 	EList<DArrow> getDIncomings();
 
 	/**
-	 * Returns the value of the '<em><b>DGraph</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link no.hib.dpf.diagram.DGraph#getDNodes <em>DNodes</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>DGraph</em>' container reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>DGraph</em>' container reference.
-	 * @see #setDGraph(DGraph)
-	 * @see no.hib.dpf.diagram.DiagramPackage#getDNode_DGraph()
-	 * @see no.hib.dpf.diagram.DGraph#getDNodes
-	 * @model opposite="dNodes" required="true" transient="false"
-	 * @generated
-	 */
-	DGraph getDGraph();
-
-	/**
-	 * Sets the value of the '{@link no.hib.dpf.diagram.DNode#getDGraph <em>DGraph</em>}' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>DGraph</em>' container reference.
-	 * @see #getDGraph()
-	 * @generated
-	 */
-	void setDGraph(DGraph value);
-
-	/**
 	 * Returns the value of the '<em><b>DConstraints</b></em>' reference list.
 	 * The list contents are of type {@link no.hib.dpf.diagram.DConstraint}.
 	 * It is bidirectional and its opposite is '{@link no.hib.dpf.diagram.DConstraint#getDNodes <em>DNodes</em>}'.
@@ -211,5 +182,7 @@ public interface DNode extends DBound {
 	 * @generated
 	 */
 	String getTypeName();
+
+	DGraph getDGraph();
 
 } // DNode

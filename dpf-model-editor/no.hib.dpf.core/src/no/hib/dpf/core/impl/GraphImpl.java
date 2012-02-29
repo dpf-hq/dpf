@@ -41,7 +41,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -137,7 +137,7 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	 */
 	public EList<Node> getNodes() {
 		if (nodes == null) {
-			nodes = new EObjectContainmentWithInverseEList<Node>(Node.class, this, CorePackage.GRAPH__NODES, CorePackage.NODE__GRAPH);
+			nodes = new EObjectContainmentEList<Node>(Node.class, this, CorePackage.GRAPH__NODES);
 		}
 		return nodes;
 	}
@@ -171,10 +171,9 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public void setType(Graph newType) {
-		if(type == newType) return;
 		Graph oldType = type;
 		type = newType;
 		if (eNotificationRequired())
@@ -188,7 +187,7 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	 */
 	public EList<Arrow> getArrows() {
 		if (arrows == null) {
-			arrows = new EObjectContainmentWithInverseEList<Arrow>(Arrow.class, this, CorePackage.GRAPH__ARROWS, CorePackage.ARROW__GRAPH);
+			arrows = new EObjectContainmentEList<Arrow>(Arrow.class, this, CorePackage.GRAPH__ARROWS);
 		}
 		return arrows;
 	}
@@ -223,7 +222,7 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 		Node node = CoreFactory.eINSTANCE.createNode();
 		node.setName(name);
 		node.setTypeNode(DPFConstants.REFLEXIVE_TYPE_NODE);
-		node.setGraph(this);
+		getNodes().add(node);
 		return node;
 	}
 	
@@ -243,7 +242,6 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 		if ((source.getTypeNode() != null) && (target.getTypeNode() != null)) {
 			arrow.setTypeArrow(source.getTypeNode().getArrowto(target.getTypeNode()));
 		}
-		arrow.setTypeArrow(DPFConstants.REFLEXIVE_TYPE_ARROW);
 		return arrow;
 	}
 
@@ -365,7 +363,7 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 		Arrow arrow = CoreFactory.eINSTANCE.createArrow();
 		arrow.setSource(source);
 		arrow.setTarget(target);
-		arrow.setGraph(this);
+		getArrows().add(arrow);
 		arrow.setName(name);
 		return arrow;
 	}
@@ -512,23 +510,6 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case CorePackage.GRAPH__NODES:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getNodes()).basicAdd(otherEnd, msgs);
-			case CorePackage.GRAPH__ARROWS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getArrows()).basicAdd(otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -646,5 +627,31 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 		result.append(name);
 		result.append(')');
 		return result.toString();
+	}
+	@Override
+	public void addNode(Node node) {
+		if(!getNodes().contains(node))
+			getNodes().add(node);
+		
+	}
+
+	@Override
+	public void addArrow(Arrow Arrow) {
+		if(!getArrows().contains(Arrow))
+			getArrows().add(Arrow);
+		
+	}
+	@Override
+	public void removeNode(Node node) {
+		if(getNodes().contains(node))
+			getNodes().remove(node);
+		
+	}
+	
+	@Override
+	public void removeArrow(Arrow Arrow) {
+		if(getArrows().contains(Arrow))
+			getArrows().remove(Arrow);
+		
 	}
 } //GraphImpl

@@ -37,7 +37,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -50,7 +49,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link no.hib.dpf.core.impl.ArrowImpl#getName <em>Name</em>}</li>
  *   <li>{@link no.hib.dpf.core.impl.ArrowImpl#getSource <em>Source</em>}</li>
  *   <li>{@link no.hib.dpf.core.impl.ArrowImpl#getTarget <em>Target</em>}</li>
- *   <li>{@link no.hib.dpf.core.impl.ArrowImpl#getGraph <em>Graph</em>}</li>
  *   <li>{@link no.hib.dpf.core.impl.ArrowImpl#getTypeArrow <em>Type Arrow</em>}</li>
  *   <li>{@link no.hib.dpf.core.impl.ArrowImpl#getConstraints <em>Constraints</em>}</li>
  * </ul>
@@ -199,63 +197,26 @@ public class ArrowImpl extends IDObjectImpl implements Arrow {
 			eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.ARROW__TARGET, newTarget, newTarget));
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Graph getGraph() {
-		if (eContainerFeatureID() != CorePackage.ARROW__GRAPH) return null;
-		return (Graph)eContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetGraph(Graph newGraph, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newGraph, CorePackage.ARROW__GRAPH, msgs);
+	public NotificationChain eBasicSetContainer(InternalEObject newContainer, int newContainerFeatureID, NotificationChain msgs){
+		super.eBasicSetContainer(newContainer, newContainerFeatureID, msgs);
+		if(newContainer instanceof Graph && getName() == null && getTypeArrow() != null){
+			String name = getTypeArrow().getName();
+			List<Integer> indexs = new ArrayList<Integer>();
+			for(Arrow iter : ((Graph)newContainer).getArrows()){
+				String current = iter.getName();
+				if(current != null && current.startsWith(name))
+					indexs.add(Integer.valueOf(current.substring(name.length())));
+			}
+			Collections.sort(indexs);
+			int i = 0;
+			for(; i < indexs.size(); ++i)
+				if(indexs.get(i).intValue() != i)
+					setName(name + i);
+			if(i >= indexs.size())
+				setName(name + i);
+		}
 		return msgs;
 	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public void setGraph(Graph newGraph) {
-		if (newGraph != eInternalContainer() || (eContainerFeatureID() != CorePackage.ARROW__GRAPH && newGraph != null)) {
-			if (EcoreUtil.isAncestor(this, newGraph))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			if(getName() == null && getTypeArrow() != null){
-				String name = getTypeArrow().getName();
-				List<Integer> indexs = new ArrayList<Integer>();
-				for(Arrow iter : newGraph.getArrows()){
-					String current = iter.getName();
-					if(current != null && current.startsWith(name))
-						indexs.add(Integer.valueOf(current.substring(name.length())));
-				}
-				Collections.sort(indexs);
-				int i = 0;
-				for(; i < indexs.size(); ++i)
-					if(indexs.get(i).intValue() != i)
-						setName(name + i);
-				if(i >= indexs.size())
-					setName(name + i);
-			}
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newGraph != null)
-				msgs = ((InternalEObject)newGraph).eInverseAdd(this, CorePackage.GRAPH__ARROWS, Graph.class, msgs);
-			msgs = basicSetGraph(newGraph, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.ARROW__GRAPH, newGraph, newGraph));
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -285,13 +246,11 @@ public class ArrowImpl extends IDObjectImpl implements Arrow {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public void setTypeArrow(Arrow newTypeArrow) {
-		if(typeArrow == newTypeArrow) return;
 		Arrow oldTypeArrow = typeArrow;
 		typeArrow = newTypeArrow;
-//		setTypeID(newTypeArrow.getId());
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.ARROW__TYPE_ARROW, oldTypeArrow, typeArrow));
 	}
@@ -436,6 +395,10 @@ public class ArrowImpl extends IDObjectImpl implements Arrow {
 		return name;
 	}
 
+	public Graph getGraph() {
+		return (Graph) eContainer();
+	}
+
 	/**
 	 * 
 	 * @param name
@@ -470,10 +433,6 @@ public class ArrowImpl extends IDObjectImpl implements Arrow {
 				if (target != null)
 					msgs = ((InternalEObject)target).eInverseRemove(this, CorePackage.NODE__INCOMINGS, Node.class, msgs);
 				return basicSetTarget((Node)otherEnd, msgs);
-			case CorePackage.ARROW__GRAPH:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetGraph((Graph)otherEnd, msgs);
 			case CorePackage.ARROW__CONSTRAINTS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getConstraints()).basicAdd(otherEnd, msgs);
 		}
@@ -492,26 +451,10 @@ public class ArrowImpl extends IDObjectImpl implements Arrow {
 				return basicSetSource(null, msgs);
 			case CorePackage.ARROW__TARGET:
 				return basicSetTarget(null, msgs);
-			case CorePackage.ARROW__GRAPH:
-				return basicSetGraph(null, msgs);
 			case CorePackage.ARROW__CONSTRAINTS:
 				return ((InternalEList<?>)getConstraints()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case CorePackage.ARROW__GRAPH:
-				return eInternalContainer().eInverseRemove(this, CorePackage.GRAPH__ARROWS, Graph.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -530,8 +473,6 @@ public class ArrowImpl extends IDObjectImpl implements Arrow {
 			case CorePackage.ARROW__TARGET:
 				if (resolve) return getTarget();
 				return basicGetTarget();
-			case CorePackage.ARROW__GRAPH:
-				return getGraph();
 			case CorePackage.ARROW__TYPE_ARROW:
 				if (resolve) return getTypeArrow();
 				return basicGetTypeArrow();
@@ -558,9 +499,6 @@ public class ArrowImpl extends IDObjectImpl implements Arrow {
 				return;
 			case CorePackage.ARROW__TARGET:
 				setTarget((Node)newValue);
-				return;
-			case CorePackage.ARROW__GRAPH:
-				setGraph((Graph)newValue);
 				return;
 			case CorePackage.ARROW__TYPE_ARROW:
 				setTypeArrow((Arrow)newValue);
@@ -590,9 +528,6 @@ public class ArrowImpl extends IDObjectImpl implements Arrow {
 			case CorePackage.ARROW__TARGET:
 				setTarget(null);
 				return;
-			case CorePackage.ARROW__GRAPH:
-				setGraph((Graph)null);
-				return;
 			case CorePackage.ARROW__TYPE_ARROW:
 				setTypeArrow(DPFConstants.REFLEXIVE_TYPE_ARROW);
 				return;
@@ -617,8 +552,6 @@ public class ArrowImpl extends IDObjectImpl implements Arrow {
 				return source != null;
 			case CorePackage.ARROW__TARGET:
 				return target != null;
-			case CorePackage.ARROW__GRAPH:
-				return getGraph() != null;
 			case CorePackage.ARROW__TYPE_ARROW:
 				return typeArrow != null && typeArrow != DPFConstants.REFLEXIVE_TYPE_ARROW;
 			case CorePackage.ARROW__CONSTRAINTS:

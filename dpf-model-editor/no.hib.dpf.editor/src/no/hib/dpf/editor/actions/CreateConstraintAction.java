@@ -25,8 +25,11 @@ import no.hib.dpf.diagram.DPredicate;
 import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.editor.DPFEditor;
 import no.hib.dpf.editor.DPFErrorReport;
+import no.hib.dpf.editor.DPFPlugin;
 import no.hib.dpf.editor.commands.DConstraintCreateCommand;
+import no.hib.dpf.utils.DPFConstants;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -54,6 +57,8 @@ public class CreateConstraintAction extends SelectionActionForEditParts {
 	}
 	public static ImageDescriptor getImageDescriptor(DPredicate predicate, URI base){
 		if(predicate.getIcon() != null && !predicate.getIcon().isEmpty()){
+			if(predicate.eContainer() == DPFConstants.DEFAULT_DSIGNATURE)
+				return ImageDescriptor.createFromURL(Platform.getBundle(DPFPlugin.PLUGIN_ID).getResource(predicate.getIcon()));
 			File file = new File(URI.createFileURI(predicate.getIcon()).resolve(base).toFileString());
 			try {
 				return ImageDescriptor.createFromURL(file.toURI().toURL());

@@ -15,6 +15,7 @@
  */
 package no.hib.dpf.core;
 
+
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -40,7 +41,6 @@ public interface Graph extends IDObject {
 	/**
 	 * Returns the value of the '<em><b>Nodes</b></em>' containment reference list.
 	 * The list contents are of type {@link no.hib.dpf.core.Node}.
-	 * It is bidirectional and its opposite is '{@link no.hib.dpf.core.Node#getGraph <em>Graph</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Nodes</em>' containment reference list isn't clear,
@@ -49,8 +49,7 @@ public interface Graph extends IDObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Nodes</em>' containment reference list.
 	 * @see no.hib.dpf.core.CorePackage#getGraph_Nodes()
-	 * @see no.hib.dpf.core.Node#getGraph
-	 * @model opposite="graph" containment="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<Node> getNodes();
@@ -84,7 +83,6 @@ public interface Graph extends IDObject {
 	/**
 	 * Returns the value of the '<em><b>Arrows</b></em>' containment reference list.
 	 * The list contents are of type {@link no.hib.dpf.core.Arrow}.
-	 * It is bidirectional and its opposite is '{@link no.hib.dpf.core.Arrow#getGraph <em>Graph</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Arrows</em>' containment reference list isn't clear,
@@ -93,8 +91,7 @@ public interface Graph extends IDObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Arrows</em>' containment reference list.
 	 * @see no.hib.dpf.core.CorePackage#getGraph_Arrows()
-	 * @see no.hib.dpf.core.Arrow#getGraph
-	 * @model opposite="graph" containment="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<Arrow> getArrows();
@@ -253,12 +250,9 @@ public interface Graph extends IDObject {
 	 * @generated
 	 */
 	Graph getCopy();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model kind="operation" required="true"
-	 * @generated
-	 */
-	Specification getSpecification();
+	
+	void addNode(Node node);
+	void addArrow(Arrow arrow);
+	void removeNode(Node node);
+	void removeArrow(Arrow arrow);
 } // Graph

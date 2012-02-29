@@ -9,6 +9,7 @@ package no.hib.dpf.diagram.impl;
 import java.util.Collection;
 
 import no.hib.dpf.core.Arrow;
+import no.hib.dpf.core.Graph;
 
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DConstraint;
@@ -32,7 +33,6 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -48,7 +48,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link no.hib.dpf.diagram.impl.DArrowImpl#getLineStyle <em>Line Style</em>}</li>
  *   <li>{@link no.hib.dpf.diagram.impl.DArrowImpl#getDSource <em>DSource</em>}</li>
  *   <li>{@link no.hib.dpf.diagram.impl.DArrowImpl#getDTarget <em>DTarget</em>}</li>
- *   <li>{@link no.hib.dpf.diagram.impl.DArrowImpl#getDGraph <em>DGraph</em>}</li>
  *   <li>{@link no.hib.dpf.diagram.impl.DArrowImpl#getDConstraints <em>DConstraints</em>}</li>
  *   <li>{@link no.hib.dpf.diagram.impl.DArrowImpl#getBendpoints <em>Bendpoints</em>}</li>
  *   <li>{@link no.hib.dpf.diagram.impl.DArrowImpl#getNameOffset <em>Name Offset</em>}</li>
@@ -253,17 +252,13 @@ public class DArrowImpl extends EObjectImpl implements DArrow {
 	 * @generated NOT
 	 */
 	public void setDType(DArrow newDType) {
-		Assert.isNotNull(newDType);
-		Assert.isNotNull(getArrow());
-		Assert.isNotNull(newDType.getArrow());
-		if(newDType == dType) return;
 		DArrow oldDType = dType;
 		dType = newDType;
-		getArrow().setTypeArrow(getDType().getArrow());
+		getArrow().setTypeArrow(getDType() == null ? null : getDType().getArrow());
 		if(getDSource() != null)
-			getDSource().setDType(getDType().getDSource());
+			getDSource().setDType(getDType() == null ? null : getDType().getDSource());
 		if(getDTarget() != null)
-			getDTarget().setDType(getDType().getDTarget());
+			getDTarget().setDType(getDType() == null ? null : getDType().getDTarget());
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DARROW__DTYPE, oldDType, dType));
 	}
@@ -297,11 +292,9 @@ public class DArrowImpl extends EObjectImpl implements DArrow {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public void setArrow(Arrow newArrow) {
-//		if(newArrow.eIsProxy())
-//			newArrow = (Arrow) eResolveProxy((InternalEObject) newArrow);
 		if(newArrow == arrow) return;
 		Arrow oldArrow = arrow;
 		arrow = newArrow;
@@ -399,13 +392,13 @@ public class DArrowImpl extends EObjectImpl implements DArrow {
 	 */
 	public void setDSource(DNode newDSource) {
 		if (newDSource != dSource) {
-			getArrow().setSource(newDSource != null ? newDSource.getNode() : null);
 			NotificationChain msgs = null;
 			if (dSource != null)
 				msgs = ((InternalEObject)dSource).eInverseRemove(this, DiagramPackage.DNODE__DOUTGOINGS, DNode.class, msgs);
 			if (newDSource != null)
 				msgs = ((InternalEObject)newDSource).eInverseAdd(this, DiagramPackage.DNODE__DOUTGOINGS, DNode.class, msgs);
 			msgs = basicSetDSource(newDSource, msgs);
+			getArrow().setSource(getDSource() != null ? getDSource().getNode() : null);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
@@ -460,64 +453,17 @@ public class DArrowImpl extends EObjectImpl implements DArrow {
 	 */
 	public void setDTarget(DNode newDTarget) {
 		if (newDTarget != dTarget) {
-			getArrow().setTarget(newDTarget != null ? newDTarget.getNode() : null);
 			NotificationChain msgs = null;
 			if (dTarget != null)
 				msgs = ((InternalEObject)dTarget).eInverseRemove(this, DiagramPackage.DNODE__DINCOMINGS, DNode.class, msgs);
 			if (newDTarget != null)
 				msgs = ((InternalEObject)newDTarget).eInverseAdd(this, DiagramPackage.DNODE__DINCOMINGS, DNode.class, msgs);
 			msgs = basicSetDTarget(newDTarget, msgs);
+			getArrow().setTarget(getDTarget() != null ? getDTarget().getNode() : null);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DARROW__DTARGET, newDTarget, newDTarget));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DGraph getDGraph() {
-		if (eContainerFeatureID() != DiagramPackage.DARROW__DGRAPH) return null;
-		return (DGraph)eContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetDGraph(DGraph newDGraph, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newDGraph, DiagramPackage.DARROW__DGRAPH, msgs);
-		return msgs;
-	}
-
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public void setDGraph(DGraph newDGraph) {
-		if (newDGraph != eInternalContainer() || (eContainerFeatureID() != DiagramPackage.DARROW__DGRAPH && newDGraph != null)) {
-//			if(newDGraph.eIsProxy())
-//				newDGraph = (DGraph) eResolveProxy((InternalEObject) newDGraph);
-
-			if (EcoreUtil.isAncestor(this, newDGraph))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			
-			getArrow().setGraph(newDGraph != null ? newDGraph.getGraph() : null);
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newDGraph != null)
-				msgs = ((InternalEObject)newDGraph).eInverseAdd(this, DiagramPackage.DGRAPH__DARROWS, DGraph.class, msgs);
-			msgs = basicSetDGraph(newDGraph, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DARROW__DGRAPH, newDGraph, newDGraph));
 	}
 
 	/**
@@ -636,6 +582,19 @@ public class DArrowImpl extends EObjectImpl implements DArrow {
 		setDTarget(target);
 	}
 
+	private void setDGraph(DGraph graph) {
+		DGraph oldGraph = getDGraph();
+		if(graph == oldGraph) return;
+		if(oldGraph != null)
+			oldGraph.removeDArrow(this);
+		if(graph != null)
+			graph.addDArrow(this);
+	}
+
+	private DGraph getDGraph() {
+		return (DGraph) eContainer();
+	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -686,10 +645,6 @@ public class DArrowImpl extends EObjectImpl implements DArrow {
 				if (dTarget != null)
 					msgs = ((InternalEObject)dTarget).eInverseRemove(this, DiagramPackage.DNODE__DINCOMINGS, DNode.class, msgs);
 				return basicSetDTarget((DNode)otherEnd, msgs);
-			case DiagramPackage.DARROW__DGRAPH:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetDGraph((DGraph)otherEnd, msgs);
 			case DiagramPackage.DARROW__DCONSTRAINTS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getDConstraints()).basicAdd(otherEnd, msgs);
 			case DiagramPackage.DARROW__CONSTRAINTS_FROM:
@@ -712,8 +667,6 @@ public class DArrowImpl extends EObjectImpl implements DArrow {
 				return basicSetDSource(null, msgs);
 			case DiagramPackage.DARROW__DTARGET:
 				return basicSetDTarget(null, msgs);
-			case DiagramPackage.DARROW__DGRAPH:
-				return basicSetDGraph(null, msgs);
 			case DiagramPackage.DARROW__DCONSTRAINTS:
 				return ((InternalEList<?>)getDConstraints()).basicRemove(otherEnd, msgs);
 			case DiagramPackage.DARROW__NAME_OFFSET:
@@ -724,20 +677,6 @@ public class DArrowImpl extends EObjectImpl implements DArrow {
 				return ((InternalEList<?>)getConstraintsTo()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case DiagramPackage.DARROW__DGRAPH:
-				return eInternalContainer().eInverseRemove(this, DiagramPackage.DGRAPH__DARROWS, DGraph.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -764,8 +703,6 @@ public class DArrowImpl extends EObjectImpl implements DArrow {
 			case DiagramPackage.DARROW__DTARGET:
 				if (resolve) return getDTarget();
 				return basicGetDTarget();
-			case DiagramPackage.DARROW__DGRAPH:
-				return getDGraph();
 			case DiagramPackage.DARROW__DCONSTRAINTS:
 				return getDConstraints();
 			case DiagramPackage.DARROW__BENDPOINTS:
@@ -808,9 +745,6 @@ public class DArrowImpl extends EObjectImpl implements DArrow {
 				return;
 			case DiagramPackage.DARROW__DTARGET:
 				setDTarget((DNode)newValue);
-				return;
-			case DiagramPackage.DARROW__DGRAPH:
-				setDGraph((DGraph)newValue);
 				return;
 			case DiagramPackage.DARROW__DCONSTRAINTS:
 				getDConstraints().clear();
@@ -865,9 +799,6 @@ public class DArrowImpl extends EObjectImpl implements DArrow {
 			case DiagramPackage.DARROW__DTARGET:
 				setDTarget(DPFConstants.REFLEXIVE_TYPE_DNODE);
 				return;
-			case DiagramPackage.DARROW__DGRAPH:
-				setDGraph((DGraph)null);
-				return;
 			case DiagramPackage.DARROW__DCONSTRAINTS:
 				getDConstraints().clear();
 				return;
@@ -910,8 +841,6 @@ public class DArrowImpl extends EObjectImpl implements DArrow {
 				return dSource != null && dSource != DPFConstants.REFLEXIVE_TYPE_DNODE;
 			case DiagramPackage.DARROW__DTARGET:
 				return dTarget != null && dTarget != DPFConstants.REFLEXIVE_TYPE_DNODE;
-			case DiagramPackage.DARROW__DGRAPH:
-				return getDGraph() != null;
 			case DiagramPackage.DARROW__DCONSTRAINTS:
 				return dConstraints != null && !dConstraints.isEmpty();
 			case DiagramPackage.DARROW__BENDPOINTS:
@@ -946,6 +875,22 @@ public class DArrowImpl extends EObjectImpl implements DArrow {
 		result.append(bendpoints);
 		result.append(')');
 		return result.toString();
+	}
+	
+	public NotificationChain eBasicSetContainer(InternalEObject newContainer, int newContainerFeatureID, NotificationChain msgs){
+		DGraph oldGraph = getDGraph();
+		if(oldGraph instanceof DGraph){
+			Graph graph = ((DGraph) oldGraph).getGraph();
+			if(graph != null && graph.getArrows().contains(getArrow()))
+				graph.getArrows().remove(getArrow());
+		}
+		super.eBasicSetContainer(newContainer, newContainerFeatureID, msgs);
+		if(newContainer instanceof DGraph){
+			Graph graph = ((DGraph) newContainer).getGraph();
+			if(graph != null && !graph.getArrows().contains(getArrow()))
+				graph.getArrows().add(getArrow());
+		}
+		return msgs;
 	}
 
 } //DArrowImpl

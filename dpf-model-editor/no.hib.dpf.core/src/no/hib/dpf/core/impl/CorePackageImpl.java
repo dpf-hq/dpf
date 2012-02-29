@@ -282,7 +282,7 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getNode_Graph() {
+	public EReference getNode_TypeNode() {
 		return (EReference)nodeEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -291,7 +291,7 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getNode_TypeNode() {
+	public EReference getNode_Outgoings() {
 		return (EReference)nodeEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -300,7 +300,7 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getNode_Outgoings() {
+	public EReference getNode_Incomings() {
 		return (EReference)nodeEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -309,17 +309,8 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getNode_Incomings() {
-		return (EReference)nodeEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getNode_Constraints() {
-		return (EReference)nodeEClass.getEStructuralFeatures().get(5);
+		return (EReference)nodeEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -345,7 +336,7 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getArrow_Graph() {
+	public EReference getArrow_TypeArrow() {
 		return (EReference)arrowEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -354,17 +345,8 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getArrow_TypeArrow() {
-		return (EReference)arrowEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getArrow_Constraints() {
-		return (EReference)arrowEClass.getEStructuralFeatures().get(5);
+		return (EReference)arrowEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -762,7 +744,6 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 
 		nodeEClass = createEClass(NODE);
 		createEAttribute(nodeEClass, NODE__NAME);
-		createEReference(nodeEClass, NODE__GRAPH);
 		createEReference(nodeEClass, NODE__TYPE_NODE);
 		createEReference(nodeEClass, NODE__OUTGOINGS);
 		createEReference(nodeEClass, NODE__INCOMINGS);
@@ -772,7 +753,6 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 		createEAttribute(arrowEClass, ARROW__NAME);
 		createEReference(arrowEClass, ARROW__SOURCE);
 		createEReference(arrowEClass, ARROW__TARGET);
-		createEReference(arrowEClass, ARROW__GRAPH);
 		createEReference(arrowEClass, ARROW__TYPE_ARROW);
 		createEReference(arrowEClass, ARROW__CONSTRAINTS);
 
@@ -877,8 +857,8 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 
 		initEClass(graphEClass, Graph.class, "Graph", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getGraph_Type(), this.getGraph(), null, "type", null, 1, 1, Graph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getGraph_Nodes(), this.getNode(), this.getNode_Graph(), "nodes", null, 0, -1, Graph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getGraph_Arrows(), this.getArrow(), this.getArrow_Graph(), "arrows", null, 0, -1, Graph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGraph_Nodes(), this.getNode(), null, "nodes", null, 0, -1, Graph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGraph_Arrows(), this.getArrow(), null, "arrows", null, 0, -1, Graph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getGraph_Name(), ecorePackage.getEString(), "name", null, 0, 1, Graph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = addEOperation(graphEClass, this.getNode(), "createNode", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -937,11 +917,8 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 
 		addEOperation(graphEClass, this.getGraph(), "getCopy", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		addEOperation(graphEClass, this.getSpecification(), "getSpecification", 1, 1, IS_UNIQUE, IS_ORDERED);
-
 		initEClass(nodeEClass, Node.class, "Node", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNode_Name(), ecorePackage.getEString(), "name", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getNode_Graph(), this.getGraph(), this.getGraph_Nodes(), "graph", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getNode_TypeNode(), this.getNode(), null, "typeNode", null, 1, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNode_Outgoings(), this.getArrow(), this.getArrow_Source(), "outgoings", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNode_Incomings(), this.getArrow(), this.getArrow_Target(), "incomings", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -978,7 +955,6 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 		initEAttribute(getArrow_Name(), ecorePackage.getEString(), "name", null, 0, 1, Arrow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getArrow_Source(), this.getNode(), this.getNode_Outgoings(), "source", null, 0, 1, Arrow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getArrow_Target(), this.getNode(), this.getNode_Incomings(), "target", null, 0, 1, Arrow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getArrow_Graph(), this.getGraph(), this.getGraph_Arrows(), "graph", null, 0, 1, Arrow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getArrow_TypeArrow(), this.getArrow(), null, "typeArrow", null, 1, 1, Arrow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getArrow_Constraints(), this.getConstraint(), this.getConstraint_Arrows(), "constraints", null, 0, -1, Arrow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

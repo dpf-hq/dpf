@@ -12,6 +12,7 @@ import no.hib.dpf.core.Signature;
 import no.hib.dpf.diagram.DPredicate;
 import no.hib.dpf.diagram.DSignature;
 import no.hib.dpf.diagram.DiagramPackage;
+import no.hib.dpf.utils.DPFConstants;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -207,13 +208,13 @@ public class DSignatureImpl extends EObjectImpl implements DSignature {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DiagramPackage.DSIGNATURE__SIGNATURE:
-				setSignature((Signature)null);
+				setSignature(DPFConstants.DEFAULT_SIGNATURE);
 				return;
 			case DiagramPackage.DSIGNATURE__DPREDICATES:
 				getDPredicates().clear();
@@ -225,13 +226,13 @@ public class DSignatureImpl extends EObjectImpl implements DSignature {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DiagramPackage.DSIGNATURE__SIGNATURE:
-				return signature != null;
+				return signature != null && signature != DPFConstants.DEFAULT_SIGNATURE;
 			case DiagramPackage.DSIGNATURE__DPREDICATES:
 				return dPredicates != null && !dPredicates.isEmpty();
 		}

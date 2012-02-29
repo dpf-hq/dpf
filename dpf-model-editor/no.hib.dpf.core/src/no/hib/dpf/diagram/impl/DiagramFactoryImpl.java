@@ -8,7 +8,9 @@ package no.hib.dpf.diagram.impl;
 
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.CoreFactory;
+import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.Node;
+import no.hib.dpf.core.Predicate;
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DBound;
 import no.hib.dpf.diagram.DConstraint;
@@ -23,6 +25,12 @@ import no.hib.dpf.diagram.DiagramPackage;
 import no.hib.dpf.diagram.Visualization;
 import no.hib.dpf.diagram.VisualizationType;
 import no.hib.dpf.utils.DPFConstants;
+import no.hib.dpf.utils.internal.signature.InjectivePredicate;
+import no.hib.dpf.utils.internal.signature.IrreflexivePredicate;
+import no.hib.dpf.utils.internal.signature.MultiplicityPredicate;
+import no.hib.dpf.utils.internal.signature.NANDPredicate;
+import no.hib.dpf.utils.internal.signature.SurjectivePredicate;
+import no.hib.dpf.utils.internal.signature.XORPredicate;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.draw2d.geometry.Dimension;
@@ -140,8 +148,9 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	public DSpecification createDSpecification() {
 		DSpecificationImpl dSpecification = new DSpecificationImpl();
 		dSpecification.setSpecification(CoreFactory.eINSTANCE.createSpecification());
-		dSpecification.setDGraph(DiagramFactory.eINSTANCE.createDGraph());
 		dSpecification.setDType(DPFConstants.REFLEXIVE_DSPECIFICATION);
+		dSpecification.setDGraph(DiagramFactory.eINSTANCE.createDGraph());
+		dSpecification.setDSignature(DPFConstants.DEFAULT_DSIGNATURE);
 		dSpecification.setZoom(1.0);
 		dSpecification.setGridVisible(false);
 		dSpecification.setGrid(true);
@@ -179,10 +188,7 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 		DNodeImpl dNode = new DNodeImpl();
 		dNode.setNode(CoreFactory.eINSTANCE.createNode());
 		dNode.setDType(DPFConstants.REFLEXIVE_TYPE_DNODE);
-		dNode.setDGraph(null);
-		dNode.setLocation(null);
 		dNode.setSize(DNode.DEFAULT_DIMENSION);
-		dNode.setConfigureString(null);
 		return dNode;
 	}
 
@@ -250,7 +256,6 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 		DPredicateImpl dPredicate = new DPredicateImpl();
 		dPredicate.setPredicate(CoreFactory.eINSTANCE.createPredicate());
 		dPredicate.setDGraph(createDGraph());
-		dPredicate.getPredicate().setShape(dPredicate.getDGraph().getGraph());
 		dPredicate.setVisualization(createVisualization());
 		return dPredicate;
 	}
@@ -431,8 +436,8 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	public DGraph createDefaultDGraph() {
 		DGraph dGraph = new DGraphImpl();
 		dGraph.setGraph(DPFConstants.REFLEXIVE_TYPE_GRAPH);
-		DPFConstants.REFLEXIVE_TYPE_DNODE.setDGraph(dGraph);
-		DPFConstants.REFLEXIVE_TYPE_DARROW.setDGraph(dGraph);
+		dGraph.addDNode(DPFConstants.REFLEXIVE_TYPE_DNODE);
+		dGraph.addDArrow(DPFConstants.REFLEXIVE_TYPE_DARROW);
 		return dGraph;
 	}
 
@@ -443,7 +448,50 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	public DSpecification createDefaultDSpecification() {
 		DSpecificationImpl result = new DSpecificationImpl();
 		result.setSpecification(DPFConstants.REFLEXIVE_SPECIFICATION);
+		result.setDSignature(DPFConstants.DEFAULT_DSIGNATURE);
 		result.setDGraph(DPFConstants.REFLEXIVE_TYPE_DGRAPH);
+		return result;
+	}
+
+	private DPredicate createDPredicate(Predicate predicate, String icon){
+		DPredicate dPredicate = createDPredicate();
+		dPredicate.setPredicate(predicate);
+		dPredicate.getDGraph().setGraph(predicate.getShape());
+		dPredicate.setIcon(icon);
+		return dPredicate;
+	}
+	@Override
+	public DSignature createDefaultDSignature() {
+		DSignatureImpl result = new DSignatureImpl();
+		result.setSignature(DPFConstants.DEFAULT_SIGNATURE);
+		result.addDPredicate(createArrowLabelDPredicate(new InjectivePredicate(), "/icons/inj_36.png"));
+		result.addDPredicate(createArrowLabelDPredicate(new SurjectivePredicate(), "/icons/surj_36.png"));
+		result.addDPredicate(createArrowLabelDPredicate(new IrreflexivePredicate(), "/icons/irr_36.png"));
+		result.addDPredicate(createArrowLabelDPredicate(new MultiplicityPredicate(), "/icons/mult_36.png"));
+		result.addDPredicate(createArrowToArrowDPredicate(new XORPredicate(), "/icons/xor_36.png", "ZX", "ZY"));
+		result.addDPredicate(createArrowToArrowDPredicate(new NANDPredicate(), "/icons/nand_36.png", "ZX", "ZY"));
+		return result;
+	}
+
+	private DPredicate createArrowLabelDPredicate(
+			Predicate predicate, String icon) {
+		DPredicate result = createDPredicate(predicate, icon);
+		Visualization visualization = result.getVisualization();
+		visualization.setType(VisualizationType.ARROW_LABEL);
+		Graph graph = result.getPredicate().getShape();
+		visualization.setSource(graph.getArrowByName("XY"));
+		return result;
+	}
+
+	private DPredicate createArrowToArrowDPredicate(Predicate predicate,
+			String icon, String source,
+			String target) {
+		DPredicate result = createDPredicate(predicate, icon);
+		Visualization visualization = result.getVisualization();
+		visualization.setType(VisualizationType.ARROW_TO_ARROW);
+		Graph graph = result.getPredicate().getShape();
+		visualization.setSource(graph.getArrowByName("ZX"));
+		visualization.setTarget(graph.getArrowByName("ZY"));
 		return result;
 	}
 } //DiagramFactoryImpl

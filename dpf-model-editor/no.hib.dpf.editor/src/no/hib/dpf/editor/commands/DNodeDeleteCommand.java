@@ -66,7 +66,7 @@ public class DNodeDeleteCommand extends CompoundCommand {
 
 	public void execute() {
 		super.execute();
-		child.setDGraph(null);
+		parent.removeDNode(child);
 	}
 
 	public void redo() {
@@ -82,7 +82,7 @@ public class DNodeDeleteCommand extends CompoundCommand {
 	}
 
 	public void undo() {
-		child.setDGraph(parent);
+		parent.addDNode(child);
 		super.undo();
 	}
 }

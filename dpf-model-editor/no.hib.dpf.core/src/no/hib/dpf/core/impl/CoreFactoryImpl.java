@@ -166,7 +166,7 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 	public Graph createGraph(String name, String nodes, String arrows) {
 		Graph retval = createGraphNodes(nodes.split(","));
 		addArrowsToGraph(retval, arrows.split(","));		
-//		retval.setName(name);
+		retval.setName(name);
 		return retval;
 	}
 	
@@ -180,7 +180,6 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 				g.createNode(node_name.trim());
 			}
 		}
-		g.setType(DPFConstants.REFLEXIVE_TYPE_GRAPH);
 		return g;
 	}
 	
@@ -223,7 +222,7 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 	 * @generated NOT
 	 */
 	public Arrow createArrow() {
-		Arrow arrow = new ArrowImpl();
+		ArrowImpl arrow = new ArrowImpl();
 		arrow.setTypeArrow(DPFConstants.REFLEXIVE_TYPE_ARROW);
 		return arrow;
 	}
@@ -402,25 +401,15 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public MultiplicityPredicate createMultiplicityPredicate() {
-		MultiplicityPredicateImpl multiplicityPredicate = new MultiplicityPredicateImpl();
-//		initPredicate(multiplicityPredicate, PredicateType.MULTIPLICITY, "[mult(m,n)]", "n_1,n_2", "a_1:n_1:n_2");
-		return multiplicityPredicate;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * Default Value For Specification
 	 * Graph : null which will be set when DSpecification's DGraph is set //Graph.REFLEXIVE_TYPE_GRAPH
 	 * @generated NOT
 	 */
 	public Specification createSpecification() {
 		SpecificationImpl specification = new SpecificationImpl();
-		specification.setGraph(createGraph());
 		specification.setType(DPFConstants.REFLEXIVE_SPECIFICATION);
+		specification.setSignature(DPFConstants.DEFAULT_SIGNATURE);
+		specification.setGraph(createGraph());
 		return specification;
 	}
 	
@@ -483,8 +472,8 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 	@Override
 	public Graph createDefaultGraph() {
 		Graph graph = new GraphImpl();
-		DPFConstants.REFLEXIVE_TYPE_NODE.setGraph(graph);
-		DPFConstants.REFLEXIVE_TYPE_ARROW.setGraph(graph);
+		graph.addArrow(DPFConstants.REFLEXIVE_TYPE_ARROW);
+		graph.addNode(DPFConstants.REFLEXIVE_TYPE_NODE);
 		return graph;
 	}
 	/**
@@ -496,6 +485,26 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 	public Specification createDefaultSpecification() {
 		Specification result = new SpecificationImpl();
 		result.setGraph(DPFConstants.REFLEXIVE_TYPE_GRAPH);
+		return result;
+	}
+
+	@Override
+	public Signature createDefaultSignature() {
+		return new SignatureImpl();
+	}
+
+	@Override
+	public Node createDefaultNode() {
+		Node node = new NodeImpl();
+		node.setName(DPFConstants.NODE);
+		return node;
+	}
+	@Override
+	public Arrow createDefaultArrow() {
+		Arrow result = new ArrowImpl();
+		result.setName(DPFConstants.ARROW);
+		result.setSource(DPFConstants.REFLEXIVE_TYPE_NODE);
+		result.setTarget(DPFConstants.REFLEXIVE_TYPE_NODE);
 		return result;
 	}
 } //MetamodelFactoryImpl

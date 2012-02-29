@@ -345,22 +345,13 @@ public interface DiagramPackage extends EPackage {
 	int DNODE__DINCOMINGS = DBOUND_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>DGraph</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DNODE__DGRAPH = DBOUND_FEATURE_COUNT + 5;
-
-	/**
 	 * The feature id for the '<em><b>DConstraints</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DNODE__DCONSTRAINTS = DBOUND_FEATURE_COUNT + 6;
+	int DNODE__DCONSTRAINTS = DBOUND_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>DNode</em>' class.
@@ -369,7 +360,7 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DNODE_FEATURE_COUNT = DBOUND_FEATURE_COUNT + 7;
+	int DNODE_FEATURE_COUNT = DBOUND_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link no.hib.dpf.diagram.impl.DArrowImpl <em>DArrow</em>}' class.
@@ -436,22 +427,13 @@ public interface DiagramPackage extends EPackage {
 	int DARROW__DTARGET = 5;
 
 	/**
-	 * The feature id for the '<em><b>DGraph</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DARROW__DGRAPH = 6;
-
-	/**
 	 * The feature id for the '<em><b>DConstraints</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DARROW__DCONSTRAINTS = 7;
+	int DARROW__DCONSTRAINTS = 6;
 
 	/**
 	 * The feature id for the '<em><b>Bendpoints</b></em>' attribute list.
@@ -460,7 +442,7 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DARROW__BENDPOINTS = 8;
+	int DARROW__BENDPOINTS = 7;
 
 	/**
 	 * The feature id for the '<em><b>Name Offset</b></em>' containment reference.
@@ -469,7 +451,7 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DARROW__NAME_OFFSET = 9;
+	int DARROW__NAME_OFFSET = 8;
 
 	/**
 	 * The feature id for the '<em><b>Constraint Offset</b></em>' reference list.
@@ -478,7 +460,7 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DARROW__CONSTRAINT_OFFSET = 10;
+	int DARROW__CONSTRAINT_OFFSET = 9;
 
 	/**
 	 * The feature id for the '<em><b>Constraints From</b></em>' reference list.
@@ -487,7 +469,7 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DARROW__CONSTRAINTS_FROM = 11;
+	int DARROW__CONSTRAINTS_FROM = 10;
 
 	/**
 	 * The feature id for the '<em><b>Constraints To</b></em>' reference list.
@@ -496,7 +478,7 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DARROW__CONSTRAINTS_TO = 12;
+	int DARROW__CONSTRAINTS_TO = 11;
 
 	/**
 	 * The number of structural features of the '<em>DArrow</em>' class.
@@ -505,7 +487,7 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DARROW_FEATURE_COUNT = 13;
+	int DARROW_FEATURE_COUNT = 12;
 
 	/**
 	 * The meta object id for the '{@link no.hib.dpf.diagram.impl.DConstraintImpl <em>DConstraint</em>}' class.
@@ -1046,17 +1028,6 @@ public interface DiagramPackage extends EPackage {
 	EReference getDNode_DIncomings();
 
 	/**
-	 * Returns the meta object for the container reference '{@link no.hib.dpf.diagram.DNode#getDGraph <em>DGraph</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>DGraph</em>'.
-	 * @see no.hib.dpf.diagram.DNode#getDGraph()
-	 * @see #getDNode()
-	 * @generated
-	 */
-	EReference getDNode_DGraph();
-
-	/**
 	 * Returns the meta object for the reference list '{@link no.hib.dpf.diagram.DNode#getDConstraints <em>DConstraints</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1142,17 +1113,6 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getDArrow_DTarget();
-
-	/**
-	 * Returns the meta object for the container reference '{@link no.hib.dpf.diagram.DArrow#getDGraph <em>DGraph</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>DGraph</em>'.
-	 * @see no.hib.dpf.diagram.DArrow#getDGraph()
-	 * @see #getDArrow()
-	 * @generated
-	 */
-	EReference getDArrow_DGraph();
 
 	/**
 	 * Returns the meta object for the reference list '{@link no.hib.dpf.diagram.DArrow#getDConstraints <em>DConstraints</em>}'.
@@ -1745,14 +1705,6 @@ public interface DiagramPackage extends EPackage {
 		EReference DNODE__DINCOMINGS = eINSTANCE.getDNode_DIncomings();
 
 		/**
-		 * The meta object literal for the '<em><b>DGraph</b></em>' container reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DNODE__DGRAPH = eINSTANCE.getDNode_DGraph();
-
-		/**
 		 * The meta object literal for the '<em><b>DConstraints</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1817,14 +1769,6 @@ public interface DiagramPackage extends EPackage {
 		 * @generated
 		 */
 		EReference DARROW__DTARGET = eINSTANCE.getDArrow_DTarget();
-
-		/**
-		 * The meta object literal for the '<em><b>DGraph</b></em>' container reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DARROW__DGRAPH = eINSTANCE.getDArrow_DGraph();
 
 		/**
 		 * The meta object literal for the '<em><b>DConstraints</b></em>' reference list feature.

@@ -30,7 +30,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link no.hib.dpf.core.Arrow#getName <em>Name</em>}</li>
  *   <li>{@link no.hib.dpf.core.Arrow#getSource <em>Source</em>}</li>
  *   <li>{@link no.hib.dpf.core.Arrow#getTarget <em>Target</em>}</li>
- *   <li>{@link no.hib.dpf.core.Arrow#getGraph <em>Graph</em>}</li>
  *   <li>{@link no.hib.dpf.core.Arrow#getTypeArrow <em>Type Arrow</em>}</li>
  *   <li>{@link no.hib.dpf.core.Arrow#getConstraints <em>Constraints</em>}</li>
  * </ul>
@@ -68,34 +67,6 @@ public interface Arrow extends IDObject {
 	 * @generated
 	 */
 	void setTarget(Node value);
-
-	/**
-	 * Returns the value of the '<em><b>Graph</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link no.hib.dpf.core.Graph#getArrows <em>Arrows</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Graph</em>' container reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Graph</em>' container reference.
-	 * @see #setGraph(Graph)
-	 * @see no.hib.dpf.core.CorePackage#getArrow_Graph()
-	 * @see no.hib.dpf.core.Graph#getArrows
-	 * @model opposite="arrows" transient="false" derived="true"
-	 * @generated
-	 */
-	Graph getGraph();
-
-	/**
-	 * Sets the value of the '{@link no.hib.dpf.core.Arrow#getGraph <em>Graph</em>}' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Graph</em>' container reference.
-	 * @see #getGraph()
-	 * @generated
-	 */
-	void setGraph(Graph value);
 
 	/**
 	 * Returns the value of the '<em><b>Type Arrow</b></em>' reference.
@@ -211,4 +182,5 @@ public interface Arrow extends IDObject {
 	 */
 	String generateUniqueName();
 
+	Graph getGraph();
 } // Arrow
