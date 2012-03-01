@@ -2,7 +2,7 @@ package no.dpf.text.coevolution;
 
 import no.dpf.text.graph._;
 import no.dpf.text.graph.mutable.{Graph=>MGraph}
-
+import no.dpf.text.output.graphviz.Output
 
 trait AbstractCoevolutionSpan extends AbstractCoevolution{
   

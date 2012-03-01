@@ -7,7 +7,7 @@ import no.dpf.text.graph.mutable.{ExtSubGraph=>MExtSubGraph}
 import scala.collection.mutable.{Map=>MMap}
 import scala.collection.mutable.{Set=>MSet}
 import no.dpf.text.coevolution._
-import no.dpf.text.coevolution.Output
+import no.dpf.text.output.graphviz.Output
 
 class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with Converter with Output{
 	   
