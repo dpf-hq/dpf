@@ -112,10 +112,9 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 	
 	//OCL expressions:
 	def ocl: Parser[List[OclToken]] = repsep(ocl_pars,"") ^^ {case ocl => ocl}
-	def ocl_pars:   Parser[OclToken]   = ocl_pp | ocl_pn | ocl_pa | ocl_char ^^ {case d => d}
-	def ocl_pp:     Parser[OclPp] = "#p"~P_NUM~"#" ^^ {case "#p"~p~"#" => OclPp(p.toInt)}
-	def ocl_pn:     Parser[OclPn] = "#n"~P_NUM~"#" ^^ {case "#n"~p~"#" => OclPn(p.toInt)}
-	def ocl_pa:     Parser[OclPa] = "#a"~P_NUM~"#" ^^ {case "#a"~p~"#" => OclPa(p.toInt)}
+	def ocl_pars:   Parser[OclToken]   = ocl_pp | ocl_pe | ocl_char ^^ {case d => d}
+	def ocl_pp:     Parser[OclPp] = "#"~P_NUM~"#" ^^ {case "#"~p~"#" => OclPp(p.toInt)}
+	def ocl_pe:     Parser[OclPe] = "#"~ID~"#" ^^ {case "#"~p~"#" => OclPe(p)}
 	def ocl_char:   Parser[OclChar] = OCL   ^^ {case c=> OclChar(c.toCharArray()(0))}
 	def ocl_start:  Parser[Any] = "$" ^^ {case c=> isOCL = true}
 	def ocl_stop:   Parser[Any] = "$"  ^^ {case c=> isOCL = false}
@@ -495,28 +494,59 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
    /**
     * Attention algortihms must correspond to method in no.dpf.text.graph.validation.Helper.createShape
     */
-   private def createShape(rarrows:List[RArrow]):List[Arrow]={
+   private def createShape(rarrows:List[RArrow]):(List[Arrow],Map[String,Int],Map[String,Int])={
      var counter=0;
-	 val virtualIds = MMap[String,VId]()
-	 def getId(s:String):VId={
+	 
+     val virtualIds = MMap[String,VId]()
+	 val varNodes   = MMap[Id,String]()
+	 val varArrows  = MMap[Id,String]()
+	 
+	 //Create Virtual Ids and save these virtual Id mapping into a container:
+	 def getId(s:String, save:MMap[Id,String]):VId={
 	   if(virtualIds.contains(s)){
 	     virtualIds(s)
 	   }else{
 	     counter+=1
-		 virtualIds+=s->VId(counter) 
-		 getId(s)
+	     val newId = VId(counter)
+		 virtualIds+=s -> newId
+		 save+=newId -> s
+		 getId(s,save)
 	   }
 	 }
+     
+     //Create all arrows:
 	 val r = for(ra<-rarrows)yield{
 		 ra match {
-	     case RArrow(name,_,RNode(Some(n1),_,t1),Some(RNode(Some(n2),_,t2)),_,ty) => Arrow(getId(name),Node(getId(n1),t1),Node(getId(n2),t2),ty)
-	     case RArrow(name,_,RNode(Some(n1),_,t1),_,Some(n2),ty) => Arrow(getId(name),Node(getId(n1),t1),n2,ty)
+	     case RArrow(name,_,RNode(Some(n1),_,t1),Some(RNode(Some(n2),_,t2)),_,ty) => Arrow(getId(name,varArrows),Node(getId(n1,varNodes),t1),Node(getId(n2,varNodes),t2),ty)
+	     case RArrow(name,_,RNode(Some(n1),_,t1),_,Some(n2),ty) => Arrow(getId(name,varArrows),Node(getId(n1,varNodes),t1),n2,ty)
 		     case _ => sys.error("Programming Error")
 	     }	
 	 }
+     
+	 //Invariant:
+	 val inter = varNodes.values.toSet.intersect(varArrows.values.toSet)
+	 if(!inter.isEmpty){
+	   sys.error("Arrows and nodes cannot use the same variables:" + inter)
+	 }
+	 
+	 //Go through all arrows and save which variable has which position:
+     var counterNode = 0;
+     var counterArrow = 0;
+	 val var2PosNodes   = MMap[String,Int]()
+	 val var2PosArrows  = MMap[String,Int]()
+	 for(a<-r){
+       var2PosArrows+=varArrows(a.id)->counterArrow
+       counterArrow+=1
+       var2PosNodes+=varNodes(a.sr.id)->counterNode
+       counterNode+=1
+       var2PosNodes+=varNodes(a.tg.id)->counterNode
+       counterNode+=1
+     }
+	 
 //     println(rarrows)
 //     println(r)
-     r
+	 
+     (r,var2PosNodes.toMap,var2PosArrows.toMap)
    }
     
    private def createSConstraint(dpfid:Option[Id],n:String,ps:List[String]):SignatureConstraint ={
@@ -532,12 +562,19 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
    } 
 
    private def createValidator(id:Option[Id],n:String,as:List[List[RArrow]],v:List[OclToken]):Validator={
+		
+		//Create Shape:	
+		val r = createShape(as.flatten)
+		val shape = r._1
+		val nodeVars = r._2
+		val arrowVars = r._3
+		
 		id match{	
-		  case Some(id) => Validator(id,createShape(as.flatten),compressOCL(v)) 
+		  case Some(id) => Validator(id,shape,nodeVars,arrowVars,compressOCL(v)) 
 		  case None 	=> {
 		    curTS.cs.find(c=>c.s.n==n) match{
 		      case None => sys.error("Constraint does not exist:" + n);
-		      case Some(c) => Validator(c.s.id,createShape(as.flatten),compressOCL(v))
+		      case Some(c) => Validator(c.s.id,shape,nodeVars,arrowVars,compressOCL(v))
 		    }
 		  }
 		}   

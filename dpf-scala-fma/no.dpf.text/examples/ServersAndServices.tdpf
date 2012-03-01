@@ -29,8 +29,8 @@ MMS:=Spec<MM>{
 }
 
 MIS:=ISpec<M,MMS>{
-    min{x:_-y:_->z:_,}=$context #n0# inv: out#a0#s->size() >= #p0#$, 
-    irr{x:_-y:_->z:_,}=$context #n0# inv: not out#a0#s->includes(self)$
+    min{x:_-y:_->z:_,}=$context #x# inv: out#y#s->size() >= #0#$, 
+    irr{x:_-y:_->z:_,}=$context #x# inv: not out#y#s->includes(self)$
 }
 
 

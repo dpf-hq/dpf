@@ -103,17 +103,18 @@ trait AbstractGraph{
 }
 
 case class SignatureConstraint(id:Id,n:String,p:List[String])
-case class Validator(id:Id, shape: List[Arrow],ocl:List[OclToken]){
-	//Parameter contained in constraint name
-	//def validate(g:Graph):VResult={
-	//  null
-	//}   
-}
+case class Validator(id:Id, shape: List[Arrow],nodeVars:Map[String,Int], arrowVars:Map[String,Int],ocl:List[OclToken])
+
 //case class VResult(n:SignatureConstraint,msg:String)     //Validator result Typ?
 case class Constraint(s:SignatureConstraint,as:List[Arrow]){
   def paramByNo(i:Int)= s.p(i)
   def nodeByNo(i:Int) = if(0 == i % 2) as(i/2).sr else as(i/2).tg
   def arrowByNo(i:Int)= as(i)
+  
+  //
+  //Methods required for the integration with EMFtoCSP:
+  //
+  
   /**
    * Give all positions of a specific node
    */
@@ -172,11 +173,7 @@ case class IS(m:S,mm:S,pSem:Map[Id,Validator]){
 	private def inv(_m:S,_mm:S, _pSem:Map[Id,Validator]):Boolean={
 		 _m.g.mmGraph.nodes == mm.g.nodes &&
 		 _m.g.mmGraph.arrows == mm.g.arrows 
-		 //&& validateConstraint(_m.g,_mm.cs,_pSem)
 	}
-	//def validateConstraint(g:AbstractGraph, cs:List[Constraint], pSem:Map[SignatureConstraint,Validator]):Boolean={
-	//  true
-	//}
 	if(!inv(m,mm,pSem)){
 		sys.error("not valid instance specification!");
 	}
@@ -190,13 +187,10 @@ case class OclChar(c:Char) extends OclToken{
   override val toString="" + c;
 }
 case class OclPp(v:Int) extends OclToken{
-  override val toString="#p" + v + "#";
+  override val toString="#" + v + "#";
 }
-case class OclPa(v:Int) extends OclToken{
-  override val toString="#a" + v + "#";
-}
-case class OclPn(v:Int) extends OclToken{
-  override val toString="#n" + v + "#";
+case class OclPe(v:String) extends OclToken{
+  override val toString="#" + v + "#";
 }
 
 

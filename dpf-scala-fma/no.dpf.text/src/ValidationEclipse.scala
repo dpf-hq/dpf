@@ -264,7 +264,7 @@ object Validation extends Helper{
 	       }
 	       //Outer constraint loop:
 	       ocls=(ocl::ocls)
-	       fullOcls=(fillOcl(c,is.pSem(c.s.id).ocl)::fullOcls)
+	       fullOcls=(fillOcl(c,is.pSem(c.s.id))::fullOcls)
 	       equalities++=eqNodes.values
 	       equalities++=eqArrows.values
 	     }	     

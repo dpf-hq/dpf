@@ -47,22 +47,28 @@ trait Helper{
 	  }
       //Build OCL:
 	  val vali = pSem(c.s.id)
-      ret=((fillOcl(c,vali.ocl),temp)::ret)
+      ret=((fillOcl(c,vali),temp)::ret)
     }
    	//println(ret);
     ret
   } 
   
-  def fillOcl(c:Constraint,ocl:List[OclToken])={
+  def fillOcl(c:Constraint,v:Validator)={
       
 	  var oclList:List[String]=Nil
-	  for(o<-ocl){
+	  for(o<-v.ocl){
 		o match {
-		  case OclString(v) => oclList=(v::oclList) 
-		  case OclChar(v)   => oclList=(v.toString()::oclList)
-		  case OclPn(v)		=> oclList=(c.nodeByNo(v).id.toString()::oclList)
-		  case OclPa(v)		=> oclList=(c.arrowByNo(v).id.toString()::oclList)
-		  case OclPp(v)		=> oclList=(c.paramByNo(v)::oclList)
+		  case OclString(e) => oclList=(e::oclList) 
+		  case OclChar(e)   => oclList=(e.toString()::oclList)
+		  case OclPe(e)		=> v.nodeVars.get(e) match {
+		    					 case Some(pos) => oclList=(c.nodeByNo(pos).id.toString()::oclList)	
+		    					 case None 		=>
+			    					v.arrowVars.get(e) match {
+			    					 case Some(pos) => oclList=(c.arrowByNo(pos).id.toString()::oclList)	
+			    					 case None 		=> sys.error("Variable " + e + " is not specified!")
+			  					   }   
+		  					   }
+		  case OclPp(e)		=> oclList=(c.paramByNo(e)::oclList)
 		}
 	  }  
     
