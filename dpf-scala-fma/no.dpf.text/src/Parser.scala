@@ -705,7 +705,7 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 	}
 		
 	def createEps(n:String)={
-	   printGraph(tGraphs(n),n,outDir)
+	   printSpecification(specs(n),n,outDir)
 	}
 	
 	//Handle Escaped Strings and comments:
