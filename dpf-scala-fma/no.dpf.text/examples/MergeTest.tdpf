@@ -1,0 +1,46 @@
+//Type Graph as Metamodel
+TG:=TGraph<DPF>{
+    A:Node-c:Arrow->B:Node,
+    B:Node-a:Arrow->C:Node,
+    C:Node-b:Arrow->A:Node,
+}
+
+
+M:=TGraph<TG>{
+    AA:A-cc:c->BB:B,
+    BB:B-aa:a->CC:C,
+    CC:C-bb:b->AA:A,
+}
+
+
+//Rule Graphs:
+TL:=ExtSubTGraph<TG>{
+    A:Node-c:Arrow->B:Node,
+}
+
+TI:=ExtSubTGraph<TG>{
+    D:Node-id:Arrow->D:Node,
+}
+
+TR:=ExtSubTGraph<TG>{
+    D:Node,
+}
+
+
+ll:=Morphism<TL,TI>{
+ 	A:Node-c:Arrow->B:Node => D:Node-id:Arrow->D:Node
+}
+
+rr:=Morphism<TR,TI>{
+ 	D:Node => D:Node
+}
+
+
+TR:=ExtSubTGraph<TI>{
+    OutArr:Node-src:Arrow->Transition:Node,
+    OutArr:Node-trg:Arrow->Place:Node,
+    OutArr:Node-weight:*->Int,
+}
+
+//Perform Evolution:
+evolution(ll-><-rr,M)
