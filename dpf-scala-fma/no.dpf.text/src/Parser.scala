@@ -140,7 +140,7 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 	  	CoevolutionSpan(tGraphs(codo1._2),tGraphs(codo1._1),tGraphs(codo2._2),tGraphs(g),gMorphisms(l),gMorphisms(r)).print(outDir)
 	}
 	
-	def evoCospan: Parser[Any] = "evolution("~ID~"-><-"~ID~","~ID~")" ^^ { case "evolution("~l~"<->"~r~","~g~")" => 
+	def evoCospan: Parser[Any] = "evolution("~ID~"-><-"~ID~","~ID~")" ^^ { case "evolution("~l~"-><-"~r~","~g~")" => 
 	  	val codo1 = gMorphismsCoDomain(l)
 	  	val codo2 = gMorphismsCoDomain(r)
 	  	CoevolutionCospan(tGraphs(codo1._1),tGraphs(codo1._2),tGraphs(codo2._1),tGraphs(g),gMorphisms(l),gMorphisms(r)).print(outDir)
