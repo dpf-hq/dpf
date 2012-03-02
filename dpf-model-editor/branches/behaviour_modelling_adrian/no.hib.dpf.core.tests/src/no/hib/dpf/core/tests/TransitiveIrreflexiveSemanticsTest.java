@@ -1,6 +1,6 @@
 /**
  * <copyright>
- * Copyright (c) 2011 H¿yskolen i Bergen
+ * Copyright (c) 2011 HÃ¸yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * Adrian Rutle, ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * Adrian Rutle, Ã˜yvind Bech and Dag Viggo LokÃ¸en - DPF Editor
  * </copyright>
  *
  * $Id$
@@ -126,9 +126,9 @@ public class TransitiveIrreflexiveSemanticsTest extends TestCase {
 		assertTrue(getFixture().validateSemantics(graph, "", null, null));
 		graph = CoreFactory.eINSTANCE.createGraph("x,y,z", "f:x:y,g:y:z,h:z:x");		
 		assertFalse(getFixture().validateSemantics(graph, "", null, null));
-		graph = CoreFactory.eINSTANCE.createGraph("a,b,c,x,y,z,¾,¿,Œ", "a:a:x,x:x:¾,b:b:y,y:y:¿,c:c:z,z:z:Œ,¾:¾:¿,¿:¿:Œ,xx:x:z");		
+		graph = CoreFactory.eINSTANCE.createGraph("a,b,c,x,y,z,ï¿½,ï¿½,ï¿½", "a:a:x,x:x:ï¿½,b:b:y,y:y:ï¿½,c:c:z,z:z:ï¿½,ï¿½:ï¿½:ï¿½,ï¿½:ï¿½:ï¿½,xx:x:z");		
 		assertTrue(getFixture().validateSemantics(graph, "", null, null));
-		graph = CoreFactory.eINSTANCE.createGraph("a,b,c,x,y,z,¾,¿,Œ", "a:a:x,x:x:¾,b:b:y,y:y:¿,c:c:z,z:z:Œ,¾:¾:¿,¿:¿:Œ,xx:x:z,b:Œ:c");		
+		graph = CoreFactory.eINSTANCE.createGraph("a,b,c,x,y,z,ï¿½,ï¿½,ï¿½", "a:a:x,x:x:ï¿½,b:b:y,y:y:ï¿½,c:c:z,z:z:ï¿½,ï¿½:ï¿½:ï¿½,ï¿½:ï¿½:ï¿½,xx:x:z,b:ï¿½:c");		
 		assertFalse(getFixture().validateSemantics(graph, "", null, null));
 	}
 

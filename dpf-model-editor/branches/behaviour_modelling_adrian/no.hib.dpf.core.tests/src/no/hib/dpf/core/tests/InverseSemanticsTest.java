@@ -1,6 +1,6 @@
 /**
  * <copyright>
- * Copyright (c) 2011 H¿yskolen i Bergen
+ * Copyright (c) 2011 HÃ¸yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * Adrian Rutle, ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * Adrian Rutle, Ã˜yvind Bech and Dag Viggo LokÃ¸en - DPF Editor
  * </copyright>
  *
  * $Id$
@@ -120,9 +120,9 @@ public class InverseSemanticsTest extends TestCase {
 		assertFalse(getFixture().validateSemantics(graph, "", null, null));
 		graph = CoreFactory.eINSTANCE.createGraph("x, y, z", "f:x:y,g:y:x,h:y:z,i:z:y");		
 		assertTrue(getFixture().validateSemantics(graph, "", null, null));
-		graph = CoreFactory.eINSTANCE.createGraph("x, y, z, ¾", "f:x:y,g:y:x,h:¾:z");		
+		graph = CoreFactory.eINSTANCE.createGraph("x, y, z, ï¿½", "f:x:y,g:y:x,h:ï¿½:z");		
 		assertFalse(getFixture().validateSemantics(graph, "", null, null));
-		graph = CoreFactory.eINSTANCE.createGraph("x, y, z, ¾", "f:x:y,g:y:x,h:¾:z,i:z:¾");		
+		graph = CoreFactory.eINSTANCE.createGraph("x, y, z, ï¿½", "f:x:y,g:y:x,h:ï¿½:z,i:z:ï¿½");		
 		assertTrue(getFixture().validateSemantics(graph, "", null, null));
 	}
 
