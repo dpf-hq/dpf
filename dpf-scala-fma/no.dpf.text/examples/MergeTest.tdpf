@@ -23,7 +23,7 @@ TI:=ExtSubTGraph<TG>{
 }
 
 TR:=ExtSubTGraph<TG>{
-    D:Node,
+    D:Node-id:Arrow->D:Node,
 }
 
 
@@ -32,7 +32,7 @@ ll:=Morphism<TL,TI>{
 }
 
 rr:=Morphism<TR,TI>{
- 	D:Node => D:Node
+ 	D:Node-id:Arrow->D:Node => D:Node-id:Arrow->D:Node
 }
 
 
