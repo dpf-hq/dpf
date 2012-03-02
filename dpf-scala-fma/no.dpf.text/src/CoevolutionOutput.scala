@@ -71,7 +71,7 @@ trait AbstractCoevolution{
         	  case None => 
         	    //Only an attribute type:
         	    if(!sid.containsAId){
-        	    	sys.error("Node type with id=" + nId + " does not exist! ")
+        	    	sys.error("Node type with id=" + nt + " does not exist! ")
         	    }
         	  case Some(nt) => 
         	    	if(nt.t == TypeNode.TAttribute()){
