@@ -71,7 +71,7 @@ trait AbstractCoevolution{
         	  case None => 
         	    //Only an attribute type:
         	    if(!sid.containsAId){
-        	    	sys.error("Node type with id=" + nt + " does not exist! ")
+        	    	sys.error("Node type with id=" + nt + " does not exist! " + typeGraph)
         	    }
         	  case Some(nt) => 
         	    	if(nt.t == TypeNode.TAttribute()){
@@ -160,7 +160,7 @@ trait AbstractCoevolution{
         	}else{
 	            typeGraph.arrows.get(typing.codomain.arrow(aId)) match {
 	        	  case None => 
-	        	    sys.error("Arrow type with id=" + aId + " does not exist! ")
+	        	    sys.error("Arrow type with id=" + aId + " does not exist! " + typeGraph)
 	        	  case Some(at) =>  
 			        //Attribute Id can be wrapped into a SetId:
 	        	    if(at == TypeArrow.TAttribute()){
