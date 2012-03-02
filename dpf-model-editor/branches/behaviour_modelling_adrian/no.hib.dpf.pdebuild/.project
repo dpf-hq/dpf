@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>no.hib.dpf.pdebuild</name>
+	<comment></comment>
+	<projects>
+		<project>no.hib.dpf.feature</project>
+		<project>no.hib.dpf.core</project>
+		<project>no.hib.dpf.core.tests</project>
+	</projects>
+	<buildSpec>
+	</buildSpec>
+	<natures>
+	</natures>
+</projectDescription>

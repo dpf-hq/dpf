@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="DPF Model Editor" default="runBuild">
+	<property name="builder" location="." />
+	<property name="topLevelElementId" 
+			  value="no.hib.dpf.feature" />
+	<property name="baseLocation" location="${eclipse.home}" />
+	<property name="base" location="${baseLocation}/.." />
+	<property name="buildDirectory" location="build/" />
+	<property name="javacSource" value="1.6" />
+	<property name="javacTarget" value="1.6" />
+	
+	<property name="baseSvnPath" value="http://gs.hib.no/repos/eclipseplugin/dpf-model-editor/" />
+	
+	<path id="svnant.classpath">
+		<pathelement location="lib/svnant.jar" />
+		<pathelement location="lib/svnClientAdapter.jar" />
+		<pathelement location="lib/svnkit.jar" />
+		<pathelement location="lib/svnjavahl.jar" />
+	</path>
+	
+	<typedef resource="org/tigris/subversion/svnant/svnantlib.xml" classpathref="svnant.classpath" /> 
+	
+	<import file="${eclipse.pdebuild.scripts}/build.xml" />
+	
+	<target name="checkoutProjects">
+		<delete dir="${buildDirectory}" />
+		<mkdir dir="${buildDirectory}" />
+		
+		<record name="${buildDirectory}/${topLevelElementId}-build.log"
+				loglevel="verbose" />
+		<echoproperties />
+		
+		<svn javahl="false" username="builder" password="builder">
+			<checkout url="${baseSvnPath}/no.hib.dpf.feature" revision="HEAD" 
+			          destPath="${buildDirectory}/features/no.hib.dpf.feature" />
+			          
+			<checkout url="${baseSvnPath}/no.hib.dpf.core" revision="HEAD" 
+			        destPath="${buildDirectory}/plugins/no.hib.dpf.core" />
+			<checkout url="${baseSvnPath}/no.hib.dpf.core.tests" revision="HEAD" 
+					destPath="${buildDirectory}/plugins/no.hib.dpf.core.tests" /> 
+			<checkout url="${baseSvnPath}/no.hib.dpf.editor" revision="HEAD" 
+					destPath="${buildDirectory}/plugins/no.hib.dpf.editor" /> 
+			<checkout url="${baseSvnPath}/no.hib.dpf.api" revision="HEAD" 
+					destPath="${buildDirectory}/plugins/no.hib.dpf.api" /> 
+			
+		</svn>
+	</target>
+	
+	<target name="runBuild" depends="checkoutProjects, main" />
+</project>
