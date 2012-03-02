@@ -55,6 +55,9 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 	  curTS = null			   //current specification type graph
 	  curSignatureConstraints = MMap[(String,List[String]),SignatureConstraint]() //ids of constraints of current specification
 	  
+	  curDomain = null
+	  curCodomain = null
+	  
 	  //Init Counter:
 	  GCtx.init()
 	}
