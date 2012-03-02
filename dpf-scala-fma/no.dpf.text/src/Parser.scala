@@ -599,16 +599,16 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
     private def findArrow(ra: RArrow, searchGraph:AbstractGraph=curSGraph):Arrow={
 		ra match {
 		 //Usual arrow:
-	     case RArrow(name,None,rn1,Some(rn2),None,ty) =>	 	
-		    val n1 = findNode(rn1)
-		    val n2 = findNode(rn2)
+	     case RArrow(name,None,rn1,Some(rn2),None,ty) => 	
+		    val n1 = findNode(rn1,searchGraph)
+		    val n2 = findNode(rn2,searchGraph)
 			searchGraph.findArrow(name,n1,n2) match {
 				case Some(x) =>  x
 				case None 	 =>  sys.error("Arrow could not be found:" + name + " " + n1 + "->" + n2 + ":" + ty)
 			}
-	     case RArrow(name,Some(id),rn1,Some(rn2),None,ty) =>	
-		    val n1 = findNode(rn1)
-		    val n2 = findNode(rn2)
+	     case RArrow(name,Some(id),rn1,Some(rn2),None,ty) =>  	
+		    val n1 = findNode(rn1,searchGraph)
+		    val n2 = findNode(rn2,searchGraph)
 			searchGraph.getArrow(id) match {
 				case Some(x) =>  if(x.sr != n1 || x.tg != n2 || x.t != ty || searchGraph.names(id) != name){
 									sys.error("Arrow with id" + id + " must have a unique definition!")
@@ -616,14 +616,14 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 				case None 	 =>  sys.error("Arrow could not be found:" + name + " " + n1 + "->" + n2 + ":" + ty)
 			}
 		  //Attribute Type:		  
-		  case RArrow(name,None,rn1,None,Some(at),TypeArrow.TAttribute()) =>
-		  	val n1 = findNode(rn1)
+		  case RArrow(name,None,rn1,None,Some(at),TypeArrow.TAttribute()) =>  
+		  	val n1 = findNode(rn1,searchGraph)
 			searchGraph.findArrow(name,n1,at) match {
 					case Some(x) =>  x 
 					case None 	 =>  sys.error("Attribute-Arrow could not be found:" + name + " " + n1 + "->" + at + ":" + TypeArrow.TAttribute())
 			}	  	
-		  case RArrow(name,Some(id),rn1,None,Some(at),TypeArrow.TAttribute()) =>		  	
-		  	val n1 = findNode(rn1)
+		  case RArrow(name,Some(id),rn1,None,Some(at),TypeArrow.TAttribute()) =>  		  	
+		  	val n1 = findNode(rn1,searchGraph)
 			searchGraph.getArrow(id) match {
 					case Some(x) =>  if(x.sr != n1 || x.tg != at || x.t != TypeArrow.TAttribute() || searchGraph.names(id) != name){
 										sys.error("Arrow with id" + id + " must have a unique definition!")
