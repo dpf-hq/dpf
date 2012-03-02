@@ -36,11 +36,5 @@ rr:=Morphism<TR,TI>{
 }
 
 
-TR:=ExtSubTGraph<TI>{
-    OutArr:Node-src:Arrow->Transition:Node,
-    OutArr:Node-trg:Arrow->Place:Node,
-    OutArr:Node-weight:*->Int,
-}
-
 //Perform Evolution:
 evolution(ll-><-rr,M)
