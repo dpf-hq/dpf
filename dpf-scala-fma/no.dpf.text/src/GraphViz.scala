@@ -4,7 +4,6 @@ import no.dpf.text.graph._;
 import scala.collection.mutable.{Map=>MMap}
 import scala.collection.mutable.{Set=>MSet}
 
-
 trait Output{ 
  
   private class Helper(g:AbstractGraph,name:String,path:String,printNames:Boolean=true){
