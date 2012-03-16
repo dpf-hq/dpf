@@ -25,7 +25,7 @@ public class DConstraintCreateCommand extends AbstractCreateCommand {
 	protected EList<DArrow> darrows = new BasicEList<DArrow>();
 
 	private DConstraint createDConstraint(DPredicate dPredicate, GraphHomomorphism graHomomorphism){
-		DConstraint result = DiagramFactory.eINSTANCE.createDConstraint();
+		DConstraint result = DiagramFactory.eINSTANCE.createDefaultDConstraint();
 		Constraint constraint = result.getConstraint();
 		constraint.setPredicate(dPredicate.getPredicate());
 		constraint.setMappings(graHomomorphism);

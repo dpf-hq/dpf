@@ -173,7 +173,8 @@ public class DNodeImpl extends DBoundImpl implements DNode {
 	public void setDType(DNode newDType) {
 		DNode oldDType = dType;
 		dType = newDType;
-		getNode().setTypeNode(getDType().getNode());
+		if(getNode() != null)
+			getNode().setTypeNode(getDType().getNode());
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DNODE__DTYPE, oldDType, dType));
 	}
@@ -466,13 +467,13 @@ public class DNodeImpl extends DBoundImpl implements DNode {
 		DGraph oldGraph = getDGraph();
 		if(oldGraph instanceof DGraph){
 			Graph graph = ((DGraph) oldGraph).getGraph();
-			if(graph != null && graph.getNodes().contains(getNode()))
+			if(graph != null && getNode() != null  && graph.getNodes().contains(getNode()))
 				graph.getNodes().remove(getNode());
 		}
 		super.eBasicSetContainer(newContainer, newContainerFeatureID, msgs);
 		if(newContainer instanceof DGraph){
 			Graph graph = ((DGraph) newContainer).getGraph();
-			if(graph != null && !graph.getNodes().contains(getNode()))
+			if(graph != null && getNode() != null && !graph.getNodes().contains(getNode()))
 				graph.getNodes().add(getNode());
 		}
 		return msgs;

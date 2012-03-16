@@ -23,17 +23,17 @@ public class DPFConstants {
 	public static final String ARROW_CATEGORY = "Arrow";
 	public static final String NODE_CATEGORY = "Node";
 	
-	public static final Node REFLEXIVE_TYPE_NODE = CoreFactory.eINSTANCE.createDefaultNode();
-	public static final Arrow REFLEXIVE_TYPE_ARROW = CoreFactory.eINSTANCE.createDefaultArrow();
-	public static final Graph REFLEXIVE_TYPE_GRAPH = CoreFactory.eINSTANCE.createDefaultGraph();
-	public static final Signature DEFAULT_SIGNATURE = CoreFactory.eINSTANCE.createDefaultSignature();
-	public static final Specification REFLEXIVE_SPECIFICATION = CoreFactory.eINSTANCE.createDefaultSpecification();
+	public static final Node REFLEXIVE_TYPE_NODE = CoreFactory.eINSTANCE.createConstantNode();
+	public static final Arrow REFLEXIVE_TYPE_ARROW = CoreFactory.eINSTANCE.createConstantArrow();
+	public static final Graph REFLEXIVE_TYPE_GRAPH = CoreFactory.eINSTANCE.createConstantGraph();
+	public static final Signature DEFAULT_SIGNATURE = CoreFactory.eINSTANCE.createConstantSignature();
+	public static final Specification REFLEXIVE_SPECIFICATION = CoreFactory.eINSTANCE.createConstantSpecification();
 	
-	public static final DNode REFLEXIVE_TYPE_DNODE = DiagramFactory.eINSTANCE.createDefaultDNode();
-	public static final DArrow REFLEXIVE_TYPE_DARROW = DiagramFactory.eINSTANCE.createDefaultDArrow();
-	public static final DGraph REFLEXIVE_TYPE_DGRAPH = DiagramFactory.eINSTANCE.createDefaultDGraph();
-	public static final DSignature DEFAULT_DSIGNATURE = DiagramFactory.eINSTANCE.createDefaultDSignature();
-	public static final DSpecification REFLEXIVE_DSPECIFICATION = DiagramFactory.eINSTANCE.createDefaultDSpecification();
+	public static final DNode REFLEXIVE_TYPE_DNODE = DiagramFactory.eINSTANCE.createConstantDNode();
+	public static final DArrow REFLEXIVE_TYPE_DARROW = DiagramFactory.eINSTANCE.createConstantDArrow();
+	public static final DGraph REFLEXIVE_TYPE_DGRAPH = DiagramFactory.eINSTANCE.createConstantDGraph();
+	public static final DSignature DEFAULT_DSIGNATURE = DiagramFactory.eINSTANCE.createConstantDSignature();
+	public static final DSpecification REFLEXIVE_DSPECIFICATION = DiagramFactory.eINSTANCE.createConstantDSpecification();
 	
 	public static final URI DefaultDSpecification = URI.createPlatformResourceURI("DefaultDSpecification.dpf", false);
 	public static final URI DefaultSpecification = URI.createPlatformResourceURI("DefaultSpecification.xmi", false);

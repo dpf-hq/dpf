@@ -1,6 +1,6 @@
 /**
  * <copyright>
- * Copyright (c) 2011 H¿yskolen i Bergen
+ * Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * Adrian Rutle, ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * Adrian Rutle, ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
  * </copyright>
  *
  * $Id$
@@ -147,7 +147,7 @@ public class GraphHomomorphismTest extends TestCase {
 	 */
 	private void doTestReturnedMappings(List<Graph> graphs, String[] nodeNames, String[] edgeNames, boolean expectedResult) {
 		GraphHomomorphism graphHomomorphism = CoreFactory.eINSTANCE.createGraphHomomorphism();
-		boolean res = graphHomomorphism.tryToCreateGraphHomomorphism(graphs.get(0), graphs.get(1).getNodes(), graphs.get(1).getArrows());
+		boolean res = graphHomomorphism.createGraphHomomorphism(graphs.get(0), graphs.get(1).getNodes(), graphs.get(1).getArrows()) == null;
 		assertEquals(true, res);
 		for (String nodes : nodeNames) {			
 			checkNodeMapping(graphs, nodes.split(":")[0], nodes.split(":")[1], graphHomomorphism);
@@ -290,7 +290,7 @@ public class GraphHomomorphismTest extends TestCase {
 	 */
 	private void testTryToCreateHomomorphism(Graph sourceGraph, EList<Node> nodes, EList<Arrow> edges, boolean expectedResult) {
 		GraphHomomorphism graphHomomorphism = CoreFactory.eINSTANCE.createGraphHomomorphism();
-		boolean res = graphHomomorphism.tryToCreateGraphHomomorphism(sourceGraph, nodes, edges);
+		boolean res = graphHomomorphism.createGraphHomomorphism(sourceGraph, nodes, edges) == null;
 		assertEquals(expectedResult, res);
 	}
 

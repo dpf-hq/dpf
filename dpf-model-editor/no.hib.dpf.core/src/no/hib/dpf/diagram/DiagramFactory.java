@@ -152,12 +152,6 @@ public interface DiagramFactory extends EFactory {
 	 * @generated
 	 */
 	DiagramPackage getDiagramPackage();
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-//	DNode createDNode(Node node, DNode type);
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -194,7 +188,48 @@ public interface DiagramFactory extends EFactory {
 	 */
 	DSpecification createDefaultDSpecification();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	DSignature createDefaultDSignature();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	DNode createConstantDNode();
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	DGraph createConstantDGraph();
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	DArrow createConstantDArrow();
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	DSpecification createConstantDSpecification();
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	DSignature createConstantDSignature();
+	public DPredicate createDefaultDPredicate();
+	public DConstraint createDefaultDConstraint();
 
 } //DiagramFactory

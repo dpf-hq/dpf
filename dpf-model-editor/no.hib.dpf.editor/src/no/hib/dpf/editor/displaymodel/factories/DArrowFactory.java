@@ -26,7 +26,7 @@ public class DArrowFactory implements CreationFactory {
 
 	@Override
 	public Object getNewObject() {
-		DArrow result = DiagramFactory.eINSTANCE.createDArrow();
+		DArrow result = DiagramFactory.eINSTANCE.createDefaultDArrow();
 		result.setDType(typeDArrow);
 		return result;
 	}

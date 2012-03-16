@@ -283,7 +283,8 @@ public class DSpecificationImpl extends EObjectImpl implements DSpecification {
 		if(newDType == dType) return;
 		DSpecification oldDType = dType;
 		dType = newDType;
-		getSpecification().setType(getDType() == null ? null : getDType().getSpecification());
+		if(getSpecification() != null)
+			getSpecification().setType(getDType() == null ? null : getDType().getSpecification());
 		if(getDGraph() != null)
 			getDGraph().setDType(getDType() == null ? null : getDType().getDGraph());
 		if (eNotificationRequired())
@@ -327,7 +328,8 @@ public class DSpecificationImpl extends EObjectImpl implements DSpecification {
 			if (newDGraph != null)
 				msgs = ((InternalEObject)newDGraph).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DiagramPackage.DSPECIFICATION__DGRAPH, null, msgs);
 			msgs = basicSetDGraph(newDGraph, msgs);
-			getSpecification().setGraph(getDGraph().getGraph());
+			if(getSpecification() != null)
+				getSpecification().setGraph(getDGraph().getGraph());
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
@@ -503,7 +505,8 @@ public class DSpecificationImpl extends EObjectImpl implements DSpecification {
 		if(newDSignature == dSignature) return;
 		DSignature oldDSignature = dSignature;
 		dSignature = newDSignature;
-		getSpecification().setSignature(newDSignature.getSignature());
+		if(getSpecification() != null)
+			getSpecification().setSignature(newDSignature.getSignature());
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DSPECIFICATION__DSIGNATURE, oldDSignature, dSignature));
 	}

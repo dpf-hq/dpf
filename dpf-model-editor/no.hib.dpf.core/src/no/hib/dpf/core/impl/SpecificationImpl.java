@@ -356,8 +356,8 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 	 * @generated NOT
 	 */
 	public Graph createGraph(String name) {
-		Graph graph = CoreFactory.eINSTANCE.createGraph();
-//		graph.setName(name);
+		Graph graph = CoreFactory.eINSTANCE.createDefaultGraph();
+		graph.setName(name);
 		setGraph(graph);
 		return graph;
 	}

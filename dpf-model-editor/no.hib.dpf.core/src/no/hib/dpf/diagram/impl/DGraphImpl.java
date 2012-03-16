@@ -142,7 +142,8 @@ public class DGraphImpl extends EObjectImpl implements DGraph {
 	public void setDType(DGraph newDType) {
 		DGraph oldDType = dType;
 		dType = newDType;
-		getGraph().setType(getDType() == null ? null : getDType().getGraph());
+		if(getGraph() != null)
+			getGraph().setType(getDType() == null ? null : getDType().getGraph());
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DGRAPH__DTYPE, oldDType, dType));
 	}

@@ -86,7 +86,6 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 			case CorePackage.GRAPH_HOMOMORPHISM: return createGraphHomomorphism();
 			case CorePackage.NODE_TO_NODE_MAP: return (EObject)createNodeToNodeMap();
 			case CorePackage.ARROW_TO_ARROW_MAP: return (EObject)createArrowToArrowMap();
-			case CorePackage.ID_OBJECT: return createIDObject();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -127,21 +126,6 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * Default Value For Graph
-	 * name : null
-	 * Id : null
-	 * type : null which will be set when DGraph's type is set
-	 * @generated NOT
-	 */
-	public Graph createGraph() {
-		Graph graph = new GraphImpl();
-		graph.setType(DPFConstants.REFLEXIVE_TYPE_GRAPH);
-		return graph;
-	}
-	
-	/**
 	 * Returns a new object of class '<em>Graph</em>'.
 	 * <!-- begin-user-doc -->
 	 * This is intended as a quick way of generating Graph instances using string parameters for
@@ -174,7 +158,7 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 	 * @generated NOT
 	 */
 	private Graph createGraphNodes(String[] nodes) {
-		Graph g = CoreFactory.eINSTANCE.createGraph();
+		Graph g = CoreFactory.eINSTANCE.createDefaultGraph();
 		if (!((nodes.length == 1) && (nodes[0].equals("")))) {
 			for (String node_name : nodes) {
 				g.createNode(node_name.trim());
@@ -198,6 +182,21 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * Default Value For Graph
+	 * name : null
+	 * Id : null
+	 * type : null which will be set when DGraph's type is set
+	 * @generated NOT
+	 */
+	public Graph createDefaultGraph() {
+		Graph graph = new GraphImpl();
+		graph.setType(DPFConstants.REFLEXIVE_TYPE_GRAPH);
+		return graph;
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * Default Value For Node
 	 * name : null
 	 * Id : null
@@ -205,7 +204,7 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 	 * type : null which will be set when DNode's type is set
 	 * @generated NOT
 	 */
-	public Node createNode() {
+	public Node createDefaultNode() {
 		NodeImpl node = new NodeImpl();
 		node.setTypeNode(DPFConstants.REFLEXIVE_TYPE_NODE);
 		return node;
@@ -221,11 +220,38 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 	 * type : null, which will be set when DArrow's type is set
 	 * @generated NOT
 	 */
-	public Arrow createArrow() {
+	public Arrow createDefaultArrow() {
 		ArrowImpl arrow = new ArrowImpl();
 		arrow.setTypeArrow(DPFConstants.REFLEXIVE_TYPE_ARROW);
 		return arrow;
 	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Predicate createDefaultPredicate() {
+		PredicateImpl predicate = new PredicateImpl();
+		predicate.setShape(createDefaultGraph());
+		predicate.setValidator(createSemanticValidator());
+		return predicate;
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public Specification createDefaultSpecification() {
+		Specification specification = new SpecificationImpl();
+		specification.setGraph(createDefaultGraph());
+		specification.setType(DPFConstants.REFLEXIVE_SPECIFICATION);
+		return specification;
+	}
+	
+	
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -284,12 +310,10 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Predicate createPredicate() {
 		PredicateImpl predicate = new PredicateImpl();
-		predicate.setShape(createGraph());
-		predicate.setValidator(createSemanticValidator());
 		return predicate;
 	}
 
@@ -363,16 +387,6 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IDObject createIDObject() {
-		IDObjectImpl idObject = new IDObjectImpl();
-		return idObject;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public ValidatorType createValidatorTypeFromString(EDataType eDataType, String initialValue) {
 		ValidatorType result = ValidatorType.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
@@ -391,16 +405,6 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param predicate 
-	 * @param inverse 
-	 * @generated NOT
-	 */
-
-
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * Default Value For Specification
 	 * Graph : null which will be set when DSpecification's DGraph is set //Graph.REFLEXIVE_TYPE_GRAPH
 	 * @generated NOT
@@ -408,9 +412,40 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 	public Specification createSpecification() {
 		SpecificationImpl specification = new SpecificationImpl();
 		specification.setType(DPFConstants.REFLEXIVE_SPECIFICATION);
-		specification.setSignature(DPFConstants.DEFAULT_SIGNATURE);
-		specification.setGraph(createGraph());
 		return specification;
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Graph createGraph() {
+		GraphImpl graph = new GraphImpl();
+		graph.setType(DPFConstants.REFLEXIVE_TYPE_GRAPH);
+		return graph;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Node createNode() {
+		NodeImpl node = new NodeImpl();
+		node.setTypeNode(DPFConstants.REFLEXIVE_TYPE_NODE);
+		return node;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Arrow createArrow() {
+		ArrowImpl arrow = new ArrowImpl();
+		arrow.setTypeArrow(DPFConstants.REFLEXIVE_TYPE_ARROW);
+		return arrow;
 	}
 	
 	/**
@@ -470,7 +505,7 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 	 * @generated NOT
 	 */
 	@Override
-	public Graph createDefaultGraph() {
+	public Graph createConstantGraph() {
 		Graph graph = new GraphImpl();
 		graph.addArrow(DPFConstants.REFLEXIVE_TYPE_ARROW);
 		graph.addNode(DPFConstants.REFLEXIVE_TYPE_NODE);
@@ -482,9 +517,29 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 	 * @generated NOT
 	 */
 	@Override
-	public Specification createDefaultSpecification() {
+	public Specification createConstantSpecification() {
 		Specification result = new SpecificationImpl();
 		result.setGraph(DPFConstants.REFLEXIVE_TYPE_GRAPH);
+		return result;
+	}
+
+	@Override
+	public Signature createConstantSignature() {
+		return new SignatureImpl();
+	}
+
+	@Override
+	public Node createConstantNode() {
+		Node node = new NodeImpl();
+		node.setName(DPFConstants.NODE);
+		return node;
+	}
+	@Override
+	public Arrow createConstantArrow() {
+		Arrow result = new ArrowImpl();
+		result.setName(DPFConstants.ARROW);
+		result.setSource(DPFConstants.REFLEXIVE_TYPE_NODE);
+		result.setTarget(DPFConstants.REFLEXIVE_TYPE_NODE);
 		return result;
 	}
 
@@ -493,18 +548,5 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 		return new SignatureImpl();
 	}
 
-	@Override
-	public Node createDefaultNode() {
-		Node node = new NodeImpl();
-		node.setName(DPFConstants.NODE);
-		return node;
-	}
-	@Override
-	public Arrow createDefaultArrow() {
-		Arrow result = new ArrowImpl();
-		result.setName(DPFConstants.ARROW);
-		result.setSource(DPFConstants.REFLEXIVE_TYPE_NODE);
-		result.setTarget(DPFConstants.REFLEXIVE_TYPE_NODE);
-		return result;
-	}
+	
 } //MetamodelFactoryImpl

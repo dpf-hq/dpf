@@ -26,7 +26,7 @@ public class DNodeFactory implements CreationFactory {
 
 	@Override
 	public Object getNewObject() {
-		DNode retval = DiagramFactory.eINSTANCE.createDNode();
+		DNode retval = DiagramFactory.eINSTANCE.createDefaultDNode();
 		retval.setDType(typeDNode);
 		return retval;
 	}

@@ -92,7 +92,7 @@ public class SignatureWizard extends Wizard implements INewWizard {
 			ResourceSetImpl resourceSet = SignatureEditor.getResourceSet();
 			Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
 			//Initialize signature 
-			DSignature dSignature = DiagramFactory.eINSTANCE.createDSignature();
+			DSignature dSignature = DiagramFactory.eINSTANCE.createDefaultDSignature();
 			try {
 				SignatureEditor.saveDSignature(resourceSet, URI.createFileURI(newDiagramFile.getLocation().toOSString()), dSignature, resourceToDiagnosticMap);
 				newDiagramFile.getParent().refreshLocal(IResource.DEPTH_ONE, null);

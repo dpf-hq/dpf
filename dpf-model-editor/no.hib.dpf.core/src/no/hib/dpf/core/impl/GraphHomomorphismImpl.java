@@ -269,7 +269,7 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	 * @generated NOT
 	 */
 	private Graph createTemporaryTargetGraph(EList<Node> nodes, EList<Arrow> arrows) {
-		Graph retval = CoreFactory.eINSTANCE.createGraph();
+		Graph retval = CoreFactory.eINSTANCE.createDefaultGraph();
 		
 		backwardsNodeMap = new HashMap<Node, Node>();
 		backwardsArrowMap = new HashMap<Arrow, Arrow>();

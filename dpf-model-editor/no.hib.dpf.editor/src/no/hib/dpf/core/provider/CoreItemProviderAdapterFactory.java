@@ -331,29 +331,6 @@ public class CoreItemProviderAdapterFactory extends CoreAdapterFactory implement
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link no.hib.dpf.core.IDObject} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected IDObjectItemProvider idObjectItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link no.hib.dpf.core.IDObject}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createIDObjectAdapter() {
-		if (idObjectItemProvider == null) {
-			idObjectItemProvider = new IDObjectItemProvider(this);
-		}
-
-		return idObjectItemProvider;
-	}
-
-	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -463,7 +440,6 @@ public class CoreItemProviderAdapterFactory extends CoreAdapterFactory implement
 		if (graphHomomorphismItemProvider != null) graphHomomorphismItemProvider.dispose();
 		if (nodeToNodeMapItemProvider != null) nodeToNodeMapItemProvider.dispose();
 		if (arrowToArrowMapItemProvider != null) arrowToArrowMapItemProvider.dispose();
-		if (idObjectItemProvider != null) idObjectItemProvider.dispose();
 	}
 
 }

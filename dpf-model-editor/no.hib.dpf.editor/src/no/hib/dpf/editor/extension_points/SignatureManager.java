@@ -51,7 +51,7 @@ public class SignatureManager {
 	}
 
 	private static DSignature getDSignature( IConfigurationElement[] configElements) {
-		DSignature result = DiagramFactory.eINSTANCE.createDSignature();
+		DSignature result = DiagramFactory.eINSTANCE.createDefaultDSignature();
 		for(int j = 0; j < configElements.length; ++j)
 			updateDSignature(result, configElements[j]);
 		return result;
@@ -75,7 +75,7 @@ public class SignatureManager {
 	}
 	
 	private static void updateDSignature(DSignature result, IConfigurationElement iConfigurationElement) {
-		DPredicate dPredicate = DiagramFactory.eINSTANCE.createDPredicate();
+		DPredicate dPredicate = DiagramFactory.eINSTANCE.createDefaultDPredicate();
 		dPredicate.setSimpleName(iConfigurationElement.getAttribute(SIMPLENAME_ATT));
 		dPredicate.setIcon(iConfigurationElement.getAttribute(ICON_ATT));
 		String nodes = iConfigurationElement.getAttribute(NODES_ATT);

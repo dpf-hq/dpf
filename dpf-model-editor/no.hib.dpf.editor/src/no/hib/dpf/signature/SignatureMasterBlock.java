@@ -212,7 +212,7 @@ public class SignatureMasterBlock extends MasterDetailsBlock {
 	}
 	
 	private DPredicate getNewDPrediate(){
-		DPredicate result = DiagramFactory.eINSTANCE.createDPredicate();
+		DPredicate result = DiagramFactory.eINSTANCE.createDefaultDPredicate();
 		int i = 0;
 		Predicate search = null;
 		for(; i < dSignature.getDPredicates().size(); ++i){

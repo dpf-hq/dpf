@@ -1,6 +1,6 @@
 /**
  * <copyright>
- * Copyright (c) 2011 H¿yskolen i Bergen
+ * Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * Adrian Rutle, ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * Adrian Rutle, ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
  * </copyright>
  *
  * $Id$
@@ -74,7 +74,7 @@ public class ArrowTest extends IDObjectTest {
 	 */
 	@Override
 	protected void setUp() throws Exception {
-		setFixture(CoreFactory.eINSTANCE.createArrow());
+		setFixture(CoreFactory.eINSTANCE.createDefaultArrow());
 	}
 
 	/**
@@ -102,7 +102,8 @@ public class ArrowTest extends IDObjectTest {
 		
 		assertEquals("", untypedArrow.getTypeName());
 		
-		Arrow typedArrow = CoreFactory.eINSTANCE.createArrow(untypedArrow);
+		Arrow typedArrow = CoreFactory.eINSTANCE.createArrow();
+		typedArrow.setTypeArrow(untypedArrow);
 		assertEquals(typeName, typedArrow.getTypeName());
 	}
 
@@ -130,15 +131,15 @@ public class ArrowTest extends IDObjectTest {
 		Graph g = CoreFactory.eINSTANCE.createGraph();
 		
 		Node n1 = CoreFactory.eINSTANCE.createNode();
-		n1.setGraph(g);
+		g.addNode(n1);
 		
 		a1.setSource(n1);
 		a1.setTarget(n1);
 		a2.setSource(n1);
 		a2.setTarget(n1);
 		
-		a1.setGraph(g);
-		a2.setGraph(g);
+		g.addArrow(a1);
+		g.addArrow(a2);
 		
 		a1.setName(a1.generateUniqueName());
 		a2.setName(a2.generateUniqueName());

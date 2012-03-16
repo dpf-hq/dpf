@@ -254,7 +254,8 @@ public class DArrowImpl extends EObjectImpl implements DArrow {
 	public void setDType(DArrow newDType) {
 		DArrow oldDType = dType;
 		dType = newDType;
-		getArrow().setTypeArrow(getDType() == null ? null : getDType().getArrow());
+		if(getArrow() != null)
+			getArrow().setTypeArrow(getDType() == null ? null : getDType().getArrow());
 		if(getDSource() != null)
 			getDSource().setDType(getDType() == null ? null : getDType().getDSource());
 		if(getDTarget() != null)
@@ -295,7 +296,6 @@ public class DArrowImpl extends EObjectImpl implements DArrow {
 	 * @generated
 	 */
 	public void setArrow(Arrow newArrow) {
-		if(newArrow == arrow) return;
 		Arrow oldArrow = arrow;
 		arrow = newArrow;
 		if (eNotificationRequired())
@@ -398,7 +398,8 @@ public class DArrowImpl extends EObjectImpl implements DArrow {
 			if (newDSource != null)
 				msgs = ((InternalEObject)newDSource).eInverseAdd(this, DiagramPackage.DNODE__DOUTGOINGS, DNode.class, msgs);
 			msgs = basicSetDSource(newDSource, msgs);
-			getArrow().setSource(getDSource() != null ? getDSource().getNode() : null);
+			if(getArrow() != null)
+				getArrow().setSource(getDSource() != null ? getDSource().getNode() : null);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
@@ -459,7 +460,8 @@ public class DArrowImpl extends EObjectImpl implements DArrow {
 			if (newDTarget != null)
 				msgs = ((InternalEObject)newDTarget).eInverseAdd(this, DiagramPackage.DNODE__DINCOMINGS, DNode.class, msgs);
 			msgs = basicSetDTarget(newDTarget, msgs);
-			getArrow().setTarget(getDTarget() != null ? getDTarget().getNode() : null);
+			if(getArrow() != null)
+				getArrow().setTarget(getDTarget() != null ? getDTarget().getNode() : null);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
@@ -881,13 +883,13 @@ public class DArrowImpl extends EObjectImpl implements DArrow {
 		DGraph oldGraph = getDGraph();
 		if(oldGraph instanceof DGraph){
 			Graph graph = ((DGraph) oldGraph).getGraph();
-			if(graph != null && graph.getArrows().contains(getArrow()))
+			if(graph != null && getArrow() != null  && graph.getArrows().contains(getArrow()))
 				graph.getArrows().remove(getArrow());
 		}
 		super.eBasicSetContainer(newContainer, newContainerFeatureID, msgs);
 		if(newContainer instanceof DGraph){
 			Graph graph = ((DGraph) newContainer).getGraph();
-			if(graph != null && !graph.getArrows().contains(getArrow()))
+			if(graph != null && getArrow() != null  && !graph.getArrows().contains(getArrow()))
 				graph.getArrows().add(getArrow());
 		}
 		return msgs;

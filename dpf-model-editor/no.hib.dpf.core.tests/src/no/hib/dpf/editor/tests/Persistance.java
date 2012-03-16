@@ -33,25 +33,25 @@ import org.eclipse.core.runtime.IPath;
 public class Persistance {
 
 	private DSpecification getExampleDSpecification(){
-		DSpecification dSpecification = DiagramFactory.eINSTANCE.createDSpecification();
+		DSpecification dSpecification = DiagramFactory.eINSTANCE.createDefaultDSpecification();
 		Specification specification1 = dSpecification.getSpecification();
 		Graph graph = specification1.getGraph();
-		Node node1 = CoreFactory.eINSTANCE.createNode();
+		Node node1 = CoreFactory.eINSTANCE.createDefaultNode();
 		node1.setName("Node1");
-		Node node2 = CoreFactory.eINSTANCE.createNode();
+		Node node2 = CoreFactory.eINSTANCE.createDefaultNode();
 		node2.setName("Node2");
-		Arrow arrow = CoreFactory.eINSTANCE.createArrow();
+		Arrow arrow = CoreFactory.eINSTANCE.createDefaultArrow();
 		arrow.setName("Arrow");
 		arrow.setSource(node1);
 		arrow.setTarget(node2);
 		graph.getNodes().add(node1);
 		graph.getNodes().add(node2);
 		graph.getArrows().add(arrow);
-		DNode dNode1 = DiagramFactory.eINSTANCE.createDNode();
+		DNode dNode1 = DiagramFactory.eINSTANCE.createDefaultDNode();
 		dNode1.setNode(node1);
-		DNode dNode2 = DiagramFactory.eINSTANCE.createDNode();
+		DNode dNode2 = DiagramFactory.eINSTANCE.createDefaultDNode();
 		dNode2.setNode(node2);
-		DArrow dArrow = DiagramFactory.eINSTANCE.createDArrow();
+		DArrow dArrow = DiagramFactory.eINSTANCE.createDefaultDArrow();
 		dArrow.setArrow(arrow);
 		dArrow.setDSource(dNode1);
 		dArrow.setDTarget(dNode2);
@@ -80,12 +80,12 @@ public class Persistance {
 		dSpecification = DPFEditor.loadDSpecification(resourceSet, diagramURI, new HashMap<Resource, Diagnostic>());
 		testDSpecification(dSpecification);
 		
-		DSpecification twoLevel = DiagramFactory.eINSTANCE.createDSpecification();
+		DSpecification twoLevel = DiagramFactory.eINSTANCE.createDefaultDSpecification();
 		twoLevel.setDType(dSpecification);
 		testDSpecification(twoLevel);
 		
 		URI twoLevelURI = URI.createFileURI(ResourcesPlugin.getWorkspace().getRoot().getLocation().toOSString() + IPath.SEPARATOR + "Twolevel.dpf");
-		DPFEditor.updateResourceSet(resourceSet, twoLevel, diagramURI, twoLevelURI);
+		DPFEditor.updateResourceSet(resourceSet, twoLevel, null, twoLevelURI);
 		saveDPFSpecification(resourceSet, twoLevel, twoLevelURI);
 		
 		//store it to another place
@@ -103,14 +103,14 @@ public class Persistance {
 
 	@Test
 	public void testDefaults(){
-		testNode(CoreFactory.eINSTANCE.createNode());
-		testDNode(DiagramFactory.eINSTANCE.createDNode());
-		testArrow(CoreFactory.eINSTANCE.createArrow());
-		testDArrow(DiagramFactory.eINSTANCE.createDArrow());
-		testGraph(CoreFactory.eINSTANCE.createGraph());
-		testDGraph(DiagramFactory.eINSTANCE.createDGraph());
-		testSpecification(CoreFactory.eINSTANCE.createSpecification());
-		testDSpecification(DiagramFactory.eINSTANCE.createDSpecification());
+		testNode(CoreFactory.eINSTANCE.createDefaultNode());
+		testDNode(DiagramFactory.eINSTANCE.createDefaultDNode());
+		testArrow(CoreFactory.eINSTANCE.createDefaultArrow());
+		testDArrow(DiagramFactory.eINSTANCE.createDefaultDArrow());
+		testGraph(CoreFactory.eINSTANCE.createDefaultGraph());
+		testDGraph(DiagramFactory.eINSTANCE.createDefaultDGraph());
+		testSpecification(CoreFactory.eINSTANCE.createDefaultSpecification());
+		testDSpecification(DiagramFactory.eINSTANCE.createDefaultDSpecification());
 	}
 	@Test
 	public void testConstants(){

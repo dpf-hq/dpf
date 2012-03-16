@@ -1,6 +1,6 @@
 /**
  * <copyright>
- * Copyright (c) 2011 H¿yskolen i Bergen
+ * Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * Adrian Rutle, ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * Adrian Rutle, ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
  * </copyright>
  *
  * $Id$
@@ -114,14 +114,14 @@ public class NodeTest extends IDObjectTest {
 		Arrow e2 = g.createArrow("e2", n2, n3);
 		Arrow e3 = g.createArrow("e3", n2, n1);
 		
-		assertTrue(n1.getOutgoingArrows().size() == 1 &&
-				n1.getOutgoingArrows().get(0) == e1);
+		assertTrue(n1.getOutgoings().size() == 1 &&
+				n1.getOutgoings().get(0) == e1);
 		
-		assertTrue(n2.getOutgoingArrows().size() == 2 &&
-				n2.getOutgoingArrows().contains(e2) && 
-				n2.getOutgoingArrows().contains(e3));
+		assertTrue(n2.getOutgoings().size() == 2 &&
+				n2.getOutgoings().contains(e2) && 
+				n2.getOutgoings().contains(e3));
 		
-		assertTrue(n3.getOutgoingArrows().size() == 0);
+		assertTrue(n3.getOutgoings().size() == 0);
 	}
 
 	/**
@@ -310,20 +310,20 @@ public class NodeTest extends IDObjectTest {
 		Arrow e2 = g.createArrow("e2", n2, n3);
 		Arrow e3 = g.createArrow("e3", n2, n1);
 		
-		assertTrue(n4.getIncomingArrows().size() == 0);
+		assertTrue(n4.getIncomings().size() == 0);
 
-		assertTrue(n1.getIncomingArrows().size() == 1 &&
-				n1.getIncomingArrows().get(0) == e3);
+		assertTrue(n1.getIncomings().size() == 1 &&
+				n1.getIncomings().get(0) == e3);
 		
-		assertTrue(n2.getIncomingArrows().size() == 2 &&
-				n2.getIncomingArrows().contains(e1) && 
-				n2.getIncomingArrows().contains(e4));
+		assertTrue(n2.getIncomings().size() == 2 &&
+				n2.getIncomings().contains(e1) && 
+				n2.getIncomings().contains(e4));
 		
-		assertTrue(n3.getIncomingArrows().size() == 1 &&
-				n3.getIncomingArrows().get(0) == e2);
+		assertTrue(n3.getIncomings().size() == 1 &&
+				n3.getIncomings().get(0) == e2);
 		
 		g.deleteArrow(e2);
-		assertTrue(n3.getIncomingArrows().size() == 0);
+		assertTrue(n3.getIncomings().size() == 0);
 	}
 
 	public void testGenerateUniqueNameWhenInGraph() {
@@ -331,8 +331,8 @@ public class NodeTest extends IDObjectTest {
 		Node n2 = CoreFactory.eINSTANCE.createNode();
 		
 		Graph g = CoreFactory.eINSTANCE.createGraph();
-		n1.setGraph(g);
-		n2.setGraph(g);
+		g.addNode(n1);
+		g.addNode(n2);
 		
 		n1.setName(n1.generateUniqueName());
 		n2.setName(n2.generateUniqueName());

@@ -226,7 +226,11 @@ public class DPredicateImpl extends EObjectImpl implements DPredicate {
 			if (newDGraph != null)
 				msgs = ((InternalEObject)newDGraph).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DiagramPackage.DPREDICATE__DGRAPH, null, msgs);
 			msgs = basicSetDGraph(newDGraph, msgs);
-			getPredicate().setShape(getDGraph().getGraph());
+			if(getPredicate() != null)
+				if(getPredicate().getShape() == null )
+					getPredicate().setShape(getDGraph().getGraph());
+				else
+					getDGraph().setGraph(getPredicate().getShape());
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())

@@ -32,6 +32,7 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.swt.widgets.Composite;
@@ -160,26 +161,29 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 			fileCount++;
 			URI newDiagarmURI = DPFCoreUtil.getFileURI(newDiagramFile);
 			//Initialize model file and diagram file
-			DSpecification newSpec = DiagramFactory.eINSTANCE.createDSpecification();
+			DSpecification newSpec = DiagramFactory.eINSTANCE.createDefaultDSpecification();
 
 			// Gets null value when user does not check checkbox
 			String typeModelFileName = typeLinkPage.getLinkTarget();
 			DSpecification typeSpec = null;
 			ResourceSetImpl resourceSet = DPFEditor.getResourceSet();
 			Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
-			if(typeModelFileName != null)
+			if(typeModelFileName != null){
 				typeSpec = DPFEditor.loadDSpecification(resourceSet, URI.createFileURI(typeModelFileName), resourceToDiagnosticMap);
+				EcoreUtil.resolveAll(typeSpec);
+			}
 			newSpec.setDType(typeSpec != null ? typeSpec : DPFConstants.REFLEXIVE_DSPECIFICATION);
 
 			String signatureFileName = signatureLinkPage.getLinkTarget();
 			if(signatureFileName != null){
 				DSignature signature = SignatureEditor.loadDSignature(resourceSet, URI.createFileURI(signatureFileName), resourceToDiagnosticMap);
+				EcoreUtil.resolveAll(signature);
 				newSpec.setDSignature(signature);
 			}
 			if(newSpec.getDSignature() == null && newSpec.getDType() != null)
 				newSpec.setDSignature(newSpec.getDType().getDSignature());
 			
-			DPFEditor.updateResourceSet(resourceSet, newSpec, typeSpec == null ? null : typeSpec.eResource().getURI(), newDiagarmURI);
+			DPFEditor.updateResourceSet(resourceSet, newSpec, null, newDiagarmURI);
 			try {
 				DPFEditor.saveDSpecification(resourceSet, newSpec, newDiagarmURI, resourceToDiagnosticMap);
 				newDiagramFile.getParent().refreshLocal(IResource.DEPTH_ONE, null);

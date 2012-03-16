@@ -268,7 +268,7 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	 */
 	public Graph extractSubgraph(EList<Node> nodes, EList<Arrow> arrows) {
 		Map<Node, Node> nodeMap = new HashMap<Node, Node>();
-		Graph retval = CoreFactory.eINSTANCE.createGraph();
+		Graph retval = CoreFactory.eINSTANCE.createDefaultGraph();
 		
 		for (Node node : nodes) {
 			Node newNode = retval.createNode(node.getName(), node.getTypeNode());
@@ -335,7 +335,7 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	 * @generated NOT
 	 */
 	public Graph getCopy() {
-		Graph retval = CoreFactory.eINSTANCE.createGraph();
+		Graph retval = CoreFactory.eINSTANCE.createDefaultGraph();
 		for (Node node : getNodes()) {
 			retval.createNode(node.getName());
 		}
@@ -361,6 +361,7 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	 */
 	private Arrow createArrowExec(String name, Node source, Node target) {
 		Arrow arrow = CoreFactory.eINSTANCE.createArrow();
+		arrow.setTypeArrow(DPFConstants.REFLEXIVE_TYPE_ARROW);
 		arrow.setSource(source);
 		arrow.setTarget(target);
 		getArrows().add(arrow);

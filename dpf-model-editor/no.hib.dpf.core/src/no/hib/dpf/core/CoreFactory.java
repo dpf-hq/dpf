@@ -37,6 +37,15 @@ public interface CoreFactory extends EFactory {
 	CoreFactory eINSTANCE = no.hib.dpf.core.impl.CoreFactoryImpl.init();
 
 	/**
+	 * Returns a new object of class '<em>Specification</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Specification</em>'.
+	 * @generated
+	 */
+	Specification createSpecification();
+
+	/**
 	 * Returns a new object of class '<em>Graph</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -44,6 +53,33 @@ public interface CoreFactory extends EFactory {
 	 * @generated
 	 */
 	Graph createGraph();
+
+	/**
+	 * Returns a new object of class '<em>Node</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Node</em>'.
+	 * @generated
+	 */
+	Node createNode();
+
+	/**
+	 * Returns a new object of class '<em>Arrow</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Arrow</em>'.
+	 * @generated
+	 */
+	Arrow createArrow();
+
+	/**
+	 * Returns a new object of class '<em>Graph</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Graph</em>'.
+	 * @generated NOT
+	 */
+	Graph createDefaultGraph();
 
 	/**
 	 * Returns a new object of class '<em>Graph</em>'.
@@ -72,18 +108,18 @@ public interface CoreFactory extends EFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Node</em>'.
-	 * @generated
+	 * @generated NOT
 	 */
-	Node createNode();
+	Node createDefaultNode();
 
 	/**
 	 * Returns a new object of class '<em>Arrow</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Arrow</em>'.
-	 * @generated
+	 * @generated NOT
 	 */
-	Arrow createArrow();
+	Arrow createDefaultArrow();
 
 	/**
 	 * Returns a new object of class '<em>Node</em>'.
@@ -125,6 +161,14 @@ public interface CoreFactory extends EFactory {
 	 * @generated
 	 */
 	Signature createSignature();
+	/**
+	 * Returns a new object of class '<em>Signature</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Signature</em>'.
+	 * @generated NOT
+	 */
+	Signature createDefaultSignature();
 
 	
 	/**
@@ -135,6 +179,15 @@ public interface CoreFactory extends EFactory {
 	 * @generated
 	 */
 	Predicate createPredicate();
+
+	/**
+	 * Returns a new object of class '<em>Predicate</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Predicate</em>'.
+	 * @generated NOT
+	 */
+	Predicate createDefaultPredicate();
 
 	/**
 	 * Returns a new object of class '<em>Semantic Validator</em>'.
@@ -173,22 +226,13 @@ public interface CoreFactory extends EFactory {
 	GraphHomomorphism createGraphHomomorphism(EMap<Node, Node> nodeMap, EMap<Arrow, Arrow> edgeMap);
 	
 	/**
-	 * Returns a new object of class '<em>ID Object</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>ID Object</em>'.
-	 * @generated
-	 */
-	IDObject createIDObject();
-
-	/**
 	 * Returns a new object of class '<em>Specification</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Specification</em>'.
-	 * @generated
+	 * @generated NOT
 	 */
-	Specification createSpecification();
+	Specification createDefaultSpecification();
 
 
 	
@@ -217,7 +261,7 @@ public interface CoreFactory extends EFactory {
 	 * @return the package supported by this factory.
 	 * @generated NOT
 	 */
-	Graph createDefaultGraph();
+	Graph createConstantGraph();
 
 	/**
 	 * Returns the package supported by this factory.
@@ -226,12 +270,12 @@ public interface CoreFactory extends EFactory {
 	 * @return the package supported by this factory.
 	 * @generated NOT
 	 */
-	Specification createDefaultSpecification();
+	Specification createConstantSpecification();
 
-	Signature createDefaultSignature();
+	Signature createConstantSignature();
 
-	Node createDefaultNode();
+	Node createConstantNode();
 
-	Arrow createDefaultArrow();
+	Arrow createConstantArrow();
 
 } //CoreFactory

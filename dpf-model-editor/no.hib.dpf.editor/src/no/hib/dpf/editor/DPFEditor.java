@@ -56,6 +56,7 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
@@ -353,7 +354,6 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		}
 	}
 	public static void updateResourceSet(ResourceSetImpl resourceSet, DSpecification newSpec, URI oldURI, URI newURI){
-		DPFCheck.checkDSpecification(newSpec);
 		Assert.isNotNull(resourceSet);
 		URI modelFileURI = getModelURI(newURI);
 		Resource diagram = resourceSet.createResource(newURI);
@@ -362,14 +362,18 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		resourceSet.getURIResourceMap().put(modelFileURI, model);
 		DSpecification iter = newSpec;
 		while(iter != DPFConstants.REFLEXIVE_DSPECIFICATION){
-			DSpecification current = iter;
-			updateMetaModelReference(current, oldURI, newURI);
-			model.getContents().add(current.getSpecification());
-			diagram.getContents().add(current);
-			if(current.getDSignature() != null && current.getDSignature() != DPFConstants.DEFAULT_DSIGNATURE){
+			EcoreUtil.resolveAll(iter.getDType());
+			iter = iter.getDType();
+		}
+		iter = newSpec;
+		while(iter != DPFConstants.REFLEXIVE_DSPECIFICATION){
+			updateMetaModelReference(iter, oldURI, newURI);
+			model.getContents().add(iter.getSpecification());
+			diagram.getContents().add(iter);
+			if(iter.getDSignature() != null && iter.getDSignature() != DPFConstants.DEFAULT_DSIGNATURE){
 				updateSignatureReference(newSpec, newURI);
-				model.getContents().add(current.getDSignature().getSignature());
-				diagram.getContents().add(current.getDSignature());
+				model.getContents().add(iter.getDSignature().getSignature());
+				diagram.getContents().add(iter.getDSignature());
 			}
 			iter = iter.getDType();
 		}
@@ -403,18 +407,17 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		resourceSet.getURIResourceMap().put(modelFileURI, model);
 		try {
 			diagram.load(null);
-			model.load(null);
-		} catch (IOException e) {
+		} catch (Exception e) {
+			DPFErrorReport.logError(e);
 			DPFCoreUtil.analyzeResourceProblems(diagram, e, resourceToDiagnosticMap);
 		} finally {
 			if (diagram.getContents().size() == 0) {
-				DSpecification result = DiagramFactory.eINSTANCE .createDSpecification();
+				DSpecification result = DiagramFactory.eINSTANCE .createDefaultDSpecification();
 				diagram.getContents().add(result);
 				model.getContents().add(result.getSpecification());
 				return result;
 			}
 			DSpecification dsp = (DSpecification) diagram.getContents().get(0);
-//			verifyAndUpdate(dsp);
 			return dsp;
 		}
 	}
@@ -502,7 +505,6 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		// Show a SaveAs dialog
 		Shell shell = getSite().getWorkbenchWindow().getShell();
 		SaveAsDialog dialog = new SaveAsDialog(shell);
-		System.out.println(((IFileEditorInput) getEditorInput()).getFile().getLocation());
 		dialog.setOriginalFile(((IFileEditorInput) getEditorInput()).getFile());
 		dialog.open();
 
@@ -513,7 +515,6 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 				IFileEditorInput newInput = new FileEditorInput(file);
 				setInputWithNotify(newInput);
 				setPartName(newInput.getName());
-				System.out.println(dSpecification.eResource().getURI());
 				updateResourceSet(resourceSet, getDSpecification(), dSpecification.eResource().getURI(), DPFCoreUtil.getFileURI(file));
 				doSave(DPFCoreUtil.getFileURI(file), new NullProgressMonitor());
 			}
