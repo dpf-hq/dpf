@@ -256,10 +256,6 @@ public class DArrowImpl extends EObjectImpl implements DArrow {
 		dType = newDType;
 		if(getArrow() != null)
 			getArrow().setTypeArrow(getDType() == null ? null : getDType().getArrow());
-		if(getDSource() != null)
-			getDSource().setDType(getDType() == null ? null : getDType().getDSource());
-		if(getDTarget() != null)
-			getDTarget().setDType(getDType() == null ? null : getDType().getDTarget());
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DARROW__DTYPE, oldDType, dType));
 	}
