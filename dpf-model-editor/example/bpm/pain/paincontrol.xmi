@@ -6,7 +6,7 @@
     <nodes id="bd972717-ced2-4847-aa30-5dba651fd3b2" name="Measure Pain Intensity" typeNode="//@typeGraph/@nodes.0"/>
     <nodes id="22ae5757-6824-47ad-afdc-850b922ffdbf" name="Decide Opioid Regiment" typeNode="//@typeGraph/@nodes.1"/>
     <nodes id="232cc07b-f65b-4d51-a51a-6a5689eb02b6" name="Decide Opioid Regiment" typeNode="//@typeGraph/@nodes.1"/>
-    <nodes id="19c7f57e-6acb-4982-bd63-a6e29ee55aab" name="Strong Opioid" typeNode="//@typeGraph/@nodes.2"/>
+    <nodes id="19c7f57e-6acb-4982-bd63-a6e29ee55aab" name="String Opioid" typeNode="//@typeGraph/@nodes.2"/>
     <nodes id="06d7a341-ead8-46a2-97d2-9f6b195919a6" name="Severe Pain" typeNode="//@typeGraph/@nodes.2"/>
     <nodes id="aee3e3e4-0dcf-4edb-b34a-1445b535232b" name="Weak Opioid With Moderate Severe Pain" typeNode="//@typeGraph/@nodes.2"/>
     <nodes id="4238be0c-eb58-4616-9f8e-ea24cdc9fec4" name="String Opioid Regiment 2" typeNode="//@typeGraph/@nodes.0"/>
@@ -48,10 +48,10 @@
     <nodes id="08e6a79a-52d7-4998-ba70-feca25cfa58b" name="Gather Stability Info" typeNode="//@typeGraph/@nodes.0"/>
     <nodes id="7a4f876a-136b-4b42-ab81-ec0cd61c938e" name="Moderate Pain" typeNode="//@typeGraph/@nodes.2"/>
     <nodes id="8c492bb2-230b-40a3-b061-1fe7596c7255" name="Mild Pain" typeNode="//@typeGraph/@nodes.2"/>
-    <nodes id="2b266d30-7650-4b08-8a5d-4787a58777fc" name="Background Discomfort" typeNode="//@typeGraph/@nodes.2"/>
     <nodes id="4eaf7bf0-1aa4-432d-b59e-bc58a4be7401" name="No" typeNode="//@typeGraph/@nodes.2"/>
     <nodes id="dae02980-3ecc-432c-b252-6a8868a6cf5f" name="Yes" typeNode="//@typeGraph/@nodes.2"/>
     <nodes id="d91693b4-13aa-4284-92f0-6d67c2418ca2" name="Currently on Regular Opioid?" typeNode="//@typeGraph/@nodes.1"/>
+    <nodes id="b48a2424-000d-4d38-b425-2b29eca0b348" name="Background Discomfort" typeNode="//@typeGraph/@nodes.2"/>
     <arrows id="04edeb1e-56e6-4236-8787-57315c44c12c" target="//@graph/@nodes.4" typeArrow="//@typeGraph/@arrows.4" source="//@graph/@nodes.1" name=""/>
     <arrows id="17c5a07d-3065-46f7-92ac-341b789becea" target="//@graph/@nodes.3" typeArrow="//@typeGraph/@arrows.4" source="//@graph/@nodes.2" name=""/>
     <arrows id="0558a754-ee21-4f89-99db-49dcc8dabba4" target="//@graph/@nodes.5" typeArrow="//@typeGraph/@arrows.2" source="//@graph/@nodes.4" name=""/>
@@ -84,7 +84,6 @@
     <arrows id="adcd0fa2-c262-4fdf-818b-fc329dc38133" target="//@graph/@nodes.6" typeArrow="//@typeGraph/@arrows.2" source="//@graph/@nodes.3" name=""/>
     <arrows id="f80ad2d1-39a0-4294-8ba7-dfd0a124c7a9" target="//@graph/@nodes.45" typeArrow="//@typeGraph/@arrows.2" source="//@graph/@nodes.3" name=""/>
     <arrows id="94746283-289c-41d6-bced-94aafb163054" target="//@graph/@nodes.46" typeArrow="//@typeGraph/@arrows.2" source="//@graph/@nodes.3" name=""/>
-    <arrows id="856e55dd-b8d9-40d6-af7a-cfb885463bb6" target="//@graph/@nodes.47" typeArrow="//@typeGraph/@arrows.2" source="//@graph/@nodes.3" name=""/>
     <arrows id="c9ca043d-ed0a-4a39-ac25-dc34ce752b4e" target="//@graph/@nodes.43" typeArrow="//@typeGraph/@arrows.3" source="//@graph/@nodes.45" name=""/>
     <arrows id="f6740fb7-ef1d-4b80-a234-d4b397cd62de" target="//@graph/@nodes.44" typeArrow="//@typeGraph/@arrows.3" source="//@graph/@nodes.46" name=""/>
     <arrows id="f52538e7-6caf-4d66-b667-c45337bd0188" target="//@graph/@nodes.41" typeArrow="//@typeGraph/@arrows.4" source="//@graph/@nodes.43" name=""/>
@@ -107,12 +106,14 @@
     <arrows id="5a560bf1-3bbd-461a-95c3-e17098b5f6e3" target="//@graph/@nodes.33" typeArrow="//@typeGraph/@arrows.2" source="//@graph/@nodes.31" name=""/>
     <arrows id="6b7cabfd-0e4a-4d8a-b16e-e95519d2bcb5" target="//@graph/@nodes.35" typeArrow="//@typeGraph/@arrows.2" source="//@graph/@nodes.32" name=""/>
     <arrows id="67b39074-cb94-4beb-8df6-8f79ef51884d" target="//@graph/@nodes.36" typeArrow="//@typeGraph/@arrows.2" source="//@graph/@nodes.32" name=""/>
-    <arrows id="48be6483-8734-4e83-a9df-dddf4e250cd5" target="//@graph/@nodes.2" typeArrow="//@typeGraph/@arrows.3" source="//@graph/@nodes.48" name=""/>
-    <arrows id="08355bcd-c225-4e3a-8d7a-6c1af7f6b908" target="//@graph/@nodes.1" typeArrow="//@typeGraph/@arrows.3" source="//@graph/@nodes.49" name=""/>
-    <arrows id="c80593ea-62f5-4313-af54-8ecd1205901d" target="//@graph/@nodes.49" typeArrow="//@typeGraph/@arrows.2" source="//@graph/@nodes.50" name=""/>
-    <arrows id="58c7adb6-f069-43ac-99f8-3d027beb3876" target="//@graph/@nodes.48" typeArrow="//@typeGraph/@arrows.2" source="//@graph/@nodes.50" name=""/>
-    <arrows id="2e40bd87-19c7-46bd-9c25-eb5ba61107d6" target="//@graph/@nodes.50" typeArrow="//@typeGraph/@arrows.4" source="//@graph/@nodes.0" name=""/>
-    <arrows id="8df61a66-f885-4cc8-94b2-34ccde7f5108" target="//@graph/@nodes.30" typeArrow="//@typeGraph/@arrows.3" source="//@graph/@nodes.47" name=""/>
+    <arrows id="48be6483-8734-4e83-a9df-dddf4e250cd5" target="//@graph/@nodes.2" typeArrow="//@typeGraph/@arrows.3" source="//@graph/@nodes.47" name=""/>
+    <arrows id="08355bcd-c225-4e3a-8d7a-6c1af7f6b908" target="//@graph/@nodes.1" typeArrow="//@typeGraph/@arrows.3" source="//@graph/@nodes.48" name=""/>
+    <arrows id="c80593ea-62f5-4313-af54-8ecd1205901d" target="//@graph/@nodes.48" typeArrow="//@typeGraph/@arrows.2" source="//@graph/@nodes.49" name=""/>
+    <arrows id="58c7adb6-f069-43ac-99f8-3d027beb3876" target="//@graph/@nodes.47" typeArrow="//@typeGraph/@arrows.2" source="//@graph/@nodes.49" name=""/>
+    <arrows id="2e40bd87-19c7-46bd-9c25-eb5ba61107d6" target="//@graph/@nodes.49" typeArrow="//@typeGraph/@arrows.4" source="//@graph/@nodes.0" name=""/>
+    <arrows id="e04f6ba6-63e0-4712-81a1-3e081f4cc261" target="//@graph/@nodes.50" typeArrow="//@typeGraph/@arrows.2" source="//@graph/@nodes.3" name=""/>
+    <arrows id="ba62ff36-938b-4e93-b141-6a0f095ca990" target="//@graph/@nodes.9" typeArrow="//@typeGraph/@arrows.3" source="//@graph/@nodes.6" name=""/>
+    <arrows id="8df61a66-f885-4cc8-94b2-34ccde7f5108" target="//@graph/@nodes.30" typeArrow="//@typeGraph/@arrows.3" source="//@graph/@nodes.50" name=""/>
     <constraints id="dea556ff-dc05-4af1-be80-8f05a1a9fdf3">
       <predicate href="platform:/resource/DefaultSignature#//@predicates.5"/>
       <mappings>
@@ -133,26 +134,6 @@
         </arrowMapping>
       </mappings>
     </constraints>
-    <constraints id="2d91d929-90b4-49e5-a6dc-f5c801031f5b">
-      <predicate href="platform:/resource/DefaultSignature#//@predicates.5"/>
-      <mappings>
-        <nodeMapping value="//@graph/@nodes.3">
-          <key href="platform:/resource/DefaultSignature#//@predicates.5/@shape/@nodes.0"/>
-        </nodeMapping>
-        <nodeMapping value="//@graph/@nodes.45">
-          <key href="platform:/resource/DefaultSignature#//@predicates.5/@shape/@nodes.1"/>
-        </nodeMapping>
-        <nodeMapping value="//@graph/@nodes.46">
-          <key href="platform:/resource/DefaultSignature#//@predicates.5/@shape/@nodes.2"/>
-        </nodeMapping>
-        <arrowMapping value="//@graph/@arrows.31">
-          <key href="platform:/resource/DefaultSignature#//@predicates.5/@shape/@arrows.1"/>
-        </arrowMapping>
-        <arrowMapping value="//@graph/@arrows.30">
-          <key href="platform:/resource/DefaultSignature#//@predicates.5/@shape/@arrows.0"/>
-        </arrowMapping>
-      </mappings>
-    </constraints>
     <constraints id="d5165124-d57b-46ff-b3c8-10b713b5e046">
       <predicate href="platform:/resource/DefaultSignature#//@predicates.5"/>
       <mappings>
@@ -165,10 +146,10 @@
         <nodeMapping value="//@graph/@nodes.37">
           <key href="platform:/resource/DefaultSignature#//@predicates.5/@shape/@nodes.2"/>
         </nodeMapping>
-        <arrowMapping value="//@graph/@arrows.40">
+        <arrowMapping value="//@graph/@arrows.39">
           <key href="platform:/resource/DefaultSignature#//@predicates.5/@shape/@arrows.1"/>
         </arrowMapping>
-        <arrowMapping value="//@graph/@arrows.39">
+        <arrowMapping value="//@graph/@arrows.38">
           <key href="platform:/resource/DefaultSignature#//@predicates.5/@shape/@arrows.0"/>
         </arrowMapping>
       </mappings>
@@ -185,10 +166,10 @@
         <nodeMapping value="//@graph/@nodes.39">
           <key href="platform:/resource/DefaultSignature#//@predicates.5/@shape/@nodes.2"/>
         </nodeMapping>
-        <arrowMapping value="//@graph/@arrows.38">
+        <arrowMapping value="//@graph/@arrows.37">
           <key href="platform:/resource/DefaultSignature#//@predicates.5/@shape/@arrows.1"/>
         </arrowMapping>
-        <arrowMapping value="//@graph/@arrows.37">
+        <arrowMapping value="//@graph/@arrows.36">
           <key href="platform:/resource/DefaultSignature#//@predicates.5/@shape/@arrows.0"/>
         </arrowMapping>
       </mappings>
@@ -205,10 +186,10 @@
         <nodeMapping value="//@graph/@nodes.35">
           <key href="platform:/resource/DefaultSignature#//@predicates.5/@shape/@nodes.2"/>
         </nodeMapping>
-        <arrowMapping value="//@graph/@arrows.53">
+        <arrowMapping value="//@graph/@arrows.52">
           <key href="platform:/resource/DefaultSignature#//@predicates.5/@shape/@arrows.1"/>
         </arrowMapping>
-        <arrowMapping value="//@graph/@arrows.54">
+        <arrowMapping value="//@graph/@arrows.53">
           <key href="platform:/resource/DefaultSignature#//@predicates.5/@shape/@arrows.0"/>
         </arrowMapping>
       </mappings>
@@ -225,10 +206,10 @@
         <nodeMapping value="//@graph/@nodes.34">
           <key href="platform:/resource/DefaultSignature#//@predicates.5/@shape/@nodes.2"/>
         </nodeMapping>
-        <arrowMapping value="//@graph/@arrows.51">
+        <arrowMapping value="//@graph/@arrows.50">
           <key href="platform:/resource/DefaultSignature#//@predicates.5/@shape/@arrows.1"/>
         </arrowMapping>
-        <arrowMapping value="//@graph/@arrows.52">
+        <arrowMapping value="//@graph/@arrows.51">
           <key href="platform:/resource/DefaultSignature#//@predicates.5/@shape/@arrows.0"/>
         </arrowMapping>
       </mappings>
@@ -256,19 +237,19 @@
     <constraints id="1aa96f64-70a4-4556-b9eb-fcdbd2fc20f6">
       <predicate href="platform:/resource/DefaultSignature#//@predicates.5"/>
       <mappings>
-        <nodeMapping value="//@graph/@nodes.49">
+        <nodeMapping value="//@graph/@nodes.48">
           <key href="platform:/resource/DefaultSignature#//@predicates.5/@shape/@nodes.1"/>
         </nodeMapping>
-        <nodeMapping value="//@graph/@nodes.50">
+        <nodeMapping value="//@graph/@nodes.49">
           <key href="platform:/resource/DefaultSignature#//@predicates.5/@shape/@nodes.0"/>
         </nodeMapping>
-        <nodeMapping value="//@graph/@nodes.48">
+        <nodeMapping value="//@graph/@nodes.47">
           <key href="platform:/resource/DefaultSignature#//@predicates.5/@shape/@nodes.2"/>
         </nodeMapping>
-        <arrowMapping value="//@graph/@arrows.58">
+        <arrowMapping value="//@graph/@arrows.57">
           <key href="platform:/resource/DefaultSignature#//@predicates.5/@shape/@arrows.1"/>
         </arrowMapping>
-        <arrowMapping value="//@graph/@arrows.57">
+        <arrowMapping value="//@graph/@arrows.56">
           <key href="platform:/resource/DefaultSignature#//@predicates.5/@shape/@arrows.0"/>
         </arrowMapping>
       </mappings>
@@ -329,6 +310,26 @@
           <key href="platform:/resource/DefaultSignature#//@predicates.5/@shape/@arrows.1"/>
         </arrowMapping>
         <arrowMapping value="//@graph/@arrows.25">
+          <key href="platform:/resource/DefaultSignature#//@predicates.5/@shape/@arrows.0"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+    <constraints id="022cdf42-6fad-4328-ba33-7037f6e31f89">
+      <predicate href="platform:/resource/DefaultSignature#//@predicates.5"/>
+      <mappings>
+        <nodeMapping value="//@graph/@nodes.50">
+          <key href="platform:/resource/DefaultSignature#//@predicates.5/@shape/@nodes.2"/>
+        </nodeMapping>
+        <nodeMapping value="//@graph/@nodes.3">
+          <key href="platform:/resource/DefaultSignature#//@predicates.5/@shape/@nodes.0"/>
+        </nodeMapping>
+        <nodeMapping value="//@graph/@nodes.6">
+          <key href="platform:/resource/DefaultSignature#//@predicates.5/@shape/@nodes.1"/>
+        </nodeMapping>
+        <arrowMapping value="//@graph/@arrows.59">
+          <key href="platform:/resource/DefaultSignature#//@predicates.5/@shape/@arrows.1"/>
+        </arrowMapping>
+        <arrowMapping value="//@graph/@arrows.29">
           <key href="platform:/resource/DefaultSignature#//@predicates.5/@shape/@arrows.0"/>
         </arrowMapping>
       </mappings>
