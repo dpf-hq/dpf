@@ -327,6 +327,73 @@ package mutable{
 		override def arrowsIn(n: Node, t: TypeArrow):Set[Arrow] = if(in contains n)Set(in(n)(t) toSeq : _ *) else Set[Arrow]();  
 		override def arrowsOut(n: Node, t: TypeArrow):Set[Arrow] = if(out contains n)Set(out(n)(t) toSeq : _ *) else Set[Arrow]();  
 		
+		def normalize():Graph={
+		  //Note: Normalize specification will also be required later
+
+		  //Find topLevel Graph DPF and go the way down:
+		  var listOfGraph:List[AbstractGraph] = this::Nil
+		  val dpf = GraphDpf;
+		  {
+			  var g:AbstractGraph = this;
+			  while(g.mmGraph ne dpf){
+			    listOfGraph = g.mmGraph::listOfGraph
+			    g = g.mmGraph
+			  }
+		  }
+
+		  //Id Generator with Cache:
+		  val idCache = MMap[SetId,RId]();
+		  def getNewId(id:SetId):RId={
+		    idCache.get(id) match {
+		      case Some(i) => i
+		      case None	   => //Generate a new one:
+		        			  val ni = idGen()
+		        			  idCache +=id->ni;
+		        			  ni;
+		    }
+		  }
+		  def getId(id:Id):Id={
+		    id match {
+		      case s@SetId(_,_) => s.ids.size match {
+		    	  					 case 1 => s.ids.head
+		    	  					 case _ => getNewId(s)
+		      					   }	
+		      case i@_		    => i 	
+		    }
+		  }
+		  
+		  //
+		  //Normalize:
+		  //
+		  var mm:AbstractGraph = GraphDpf;
+		  var ng:Graph = null;
+		  for(g<-listOfGraph){
+			  ng = new Graph(mm,idGen);	
+
+			  //Normalize Nodes (transform SetIds to regular ones):
+			  for(e<-g.nodes){
+			    val n = Node(getId(e._1),mm.nodes(getId(e._2.t.id)));   
+			    ng.nodes+=n.id->n; 
+			    ng.names+=n.id->g.names(e._1)
+			  }
+
+			  //Normalize Arrows:
+			  for(e<-g.arrows){
+			    val a = Arrow(getId(e._1),ng.nodes(getId(e._2.sr.id)),ng.nodes(getId(e._2.tg.id)), mm.arrows(getId(e._2.t.id)));   
+			    ng.arrows+=a.id->a; 
+			    ng.names+=a.id->g.names(e._1)
+
+			    //Update Navigation maps:
+				ng.update(a,a.sr,ng.out)	
+				ng.update(a,a.tg,ng.in)   		
+			  }
+			  
+			  //Model becomes metamodel for the next step:
+			  mm = ng;
+		  }
+		  ng;
+		}
+		
 		def immutable():no.dpf.text.graph.Graph={
 			//Make inmutable copy
 			def toInMut(_m: MMap[Node,MMap[TypeArrow,MSet[Arrow]]]): 
