@@ -10,14 +10,6 @@ import no.dpf.text.graph.{Arrow=>DArrow}
 
 object EcoreGenerator extends ModelHelper with InstanceHelper with Converter{
 
-  //-------------------------------------------------------------------------------------------------------------------------------
-   
-  /*
-   * Simpler Ecore Presentations:
-   */
-
-  //-------------------------------------------------------------------------------------------------------------------------------
-
   def graph2EcoreM(g:AbstractGraph, ecoreName:String): xml.Elem={
     val nodesWithoutValues = g.nodes.values.filterNot(_  match {case DNode(_, DNode(_,TypeNode.TAttribute())) => true;case _ => false})
     val arrowsWithoutValues = g.arrows.values.filterNot(_ match {case DArrow(_,_,_,DArrow(_,_,_,TypeArrow.TAttribute())) => true;case _ => false})
@@ -147,7 +139,7 @@ object EcoreGenerator extends ModelHelper with InstanceHelper with Converter{
    			<eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
 		{
 	   		for{a <- g.arrowsOut(n).filterNot(_ match {case DArrow(_,_,_,DArrow(_,_,_,TypeArrow.TAttribute())) => true;case _ => false})} yield 
-	   		<eStructuralFeatures xsi:type="ecore:EReference" name={"out" + a.id + "s"}  upperBound="-1" eType={"#//"+a.tg.id}/>
+	   		<eStructuralFeatures xsi:type="ecore:EReference" name={a.id.toString}  upperBound="-1" eType={"#//"+a.tg.id}/>
    		}
    		</eClassifiers>
    		}
@@ -173,7 +165,7 @@ object EcoreGenerator extends ModelHelper with InstanceHelper with Converter{
 		  	   //All non attribute grouped by their type
 		  	   for(e<-g.arrowsOut(n).filterNot(_ match {case DArrow(_,_,_,TypeArrow.TAttribute()) => true;case _ => false}).groupBy(_.t)){
 		  		   val links = for(a<-e._2)yield {arrowtrRef(a) + " "}
-		  		   xn%= Attribute(None, "out" + e._1.id+"s", Text(links.reduceLeft(_+_)), Null);
+		  		   xn%= Attribute(None,e._1.id.toString, Text(links.reduceLeft(_+_)), Null);
 		  	   }
 	    
 	    
