@@ -76,6 +76,9 @@ trait AbstractGraph{
 	def arrowsIn(n: Node, t: TypeArrow):Set[Arrow] = if(in contains n)in(n)(t) else Set[Arrow]();  
 	def arrowsOut(n: Node, t: TypeArrow):Set[Arrow] = if(out contains n)out(n)(t) else Set[Arrow](); 
 	
+	//
+	//Format:
+	//
 	override def toString="Graph(\n\t"+ nodesToString +",\n\t"+arrowsToString +"\n)";
 	
 	protected def nodesToString = (for(n <-nodes.values) yield format(n)).toSet 
@@ -99,7 +102,6 @@ trait AbstractGraph{
 		case o:Id  => o.toString
 		}
 	}
-	
 }
 
 case class SignatureConstraint(id:Id,n:String,p:List[String])
