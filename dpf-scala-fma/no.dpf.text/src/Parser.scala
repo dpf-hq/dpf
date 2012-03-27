@@ -8,8 +8,9 @@ import scala.collection.mutable.{Map=>MMap}
 import scala.collection.mutable.{Set=>MSet}
 import no.dpf.text.coevolution._
 import no.dpf.text.output.graphviz.Output
+import no.dpf.text.output.parser.{Output=>POutput}
 
-class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with Converter with Output{
+class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with Converter with Output with POutput{
 	   
 	//Ids:
 	object GCtx{
@@ -133,9 +134,18 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 	
 	def image: Parser[Any] = "image("~ID~")" ^^ { case "image("~i~")" => createEps(i)}
 	
-	def simpleEvoSpan: Parser[Any] = "simpleEvolution("~ID~"<-"~ID~"->"~ID~","~ID~")" ^^ { case "simpleEvolution("~tl~"<-"~tk~"->"~tr~","~g~")" => SimpleCoevolutionSpan(tGraphs(tl),tGraphs(tk),tGraphs(tr),tGraphs(g),GCtx.gen).print(outDir)}
+	def simpleEvoSpan: Parser[Any] = "simpleEvolution("~ID~"<-"~ID~"->"~ID~","~ID~")" ^^ { case "simpleEvolution("~tl~"<-"~tk~"->"~tr~","~g~")" => 
+	    SimpleCoevolutionSpan(tGraphs(tl),tGraphs(tk),tGraphs(tr),tGraphs(g),GCtx.gen).print(outDir)
+	}
 
-	def simpleEvoCospan: Parser[Any] = "simpleEvolution("~ID~"->"~ID~"<-"~ID~","~ID~")" ^^ { case "simpleEvolution("~tl~"->"~ti~"<-"~tr~","~g~")" => SimpleCoevolutionCospan(tGraphs(tl),tGraphs(ti),tGraphs(tr),tGraphs(g),GCtx.gen).print(outDir)}
+	def simpleEvoCospan: Parser[Any] = "simpleEvolution("~ID~"->"~ID~"<-"~ID~","~ID~")" ^^ { case "simpleEvolution("~tl~"->"~ti~"<-"~tr~","~g~")" => 
+	    val x = SimpleCoevolutionCospan(tGraphs(tl),tGraphs(ti),tGraphs(tr),tGraphs(g),GCtx.gen)
+	    x.print(outDir)
+	  	val H = x.H.normalize(GCtx.gen)
+	  	val TH = H.mmGraph
+	  	serializeGraph(TH,"TH","DPF",outDir)
+	  	serializeGraph(H,"H","TH",outDir)
+	}
 
 	def evoSpan: Parser[Any] = "evolution("~ID~"<->"~ID~","~ID~")" ^^ { case "evolution("~l~"<->"~r~","~g~")" => 
 	  	val codo1 = gMorphismsCoDomain(l)
@@ -146,7 +156,12 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 	def evoCospan: Parser[Any] = "evolution("~ID~"-><-"~ID~","~ID~")" ^^ { case "evolution("~l~"-><-"~r~","~g~")" => 
 	  	val codo1 = gMorphismsCoDomain(l)
 	  	val codo2 = gMorphismsCoDomain(r)
-	  	CoevolutionCospan(tGraphs(codo1._1),tGraphs(codo1._2),tGraphs(codo2._1),tGraphs(g),gMorphisms(l),gMorphisms(r),GCtx.gen).print(outDir)
+	  	val x = CoevolutionCospan(tGraphs(codo1._1),tGraphs(codo1._2),tGraphs(codo2._1),tGraphs(g),gMorphisms(l),gMorphisms(r),GCtx.gen);
+	  	x.print(outDir)
+	  	val H = x.H.normalize(GCtx.gen)
+	  	val TH = H.mmGraph
+	  	serializeGraph(TH,"TH","DPF",outDir)
+	  	serializeGraph(H,"H","TH",outDir)
 	}
 
 	//Specification instance:

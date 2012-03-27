@@ -3,7 +3,6 @@ package no.dpf.text.coevolution;
 import no.dpf.text.graph._;
 import no.dpf.text.graph.mutable.{Graph=>MGraph}
 import no.dpf.text.output.graphviz.{Output=>GOutput}
-import no.dpf.text.output.parser.{Output=>POutput}
 
 trait AbstractCoevolutionSpan extends AbstractCoevolution{
   
@@ -116,7 +115,7 @@ trait AbstractCoevolutionSpan extends AbstractCoevolution{
 /**
  * Simplified Coevolution with Span
  */
-case class SimpleCoevolutionSpan(TL:AbstractGraph,TK:AbstractGraph,TR:AbstractGraph, G:AbstractGraph, newId:()=>RId) extends AbstractCoevolutionSpan with GOutput with POutput{
+case class SimpleCoevolutionSpan(TL:AbstractGraph,TK:AbstractGraph,TR:AbstractGraph, G:AbstractGraph, newId:()=>RId) extends AbstractCoevolutionSpan with GOutput{
   
   override val tm:Morphism = InclusionMorphism(TL,TG);
 
@@ -281,7 +280,7 @@ trait AbstractCoevolutionCospan extends AbstractCoevolution{
 /**
  * Simplified Coevolution with Span
  */
-case class SimpleCoevolutionCospan(TL:AbstractGraph,TI:AbstractGraph,TR:AbstractGraph, G:AbstractGraph, newId:()=>RId) extends AbstractCoevolutionCospan with GOutput with POutput{
+case class SimpleCoevolutionCospan(TL:AbstractGraph,TI:AbstractGraph,TR:AbstractGraph, G:AbstractGraph, newId:()=>RId) extends AbstractCoevolutionCospan with GOutput{
   
   override val tm:Morphism = InclusionMorphism(TL,TG);
 
@@ -306,12 +305,9 @@ case class SimpleCoevolutionCospan(TL:AbstractGraph,TI:AbstractGraph,TR:Abstract
 	 printGraph(U,"U",path)
 	 printGraph(TH,"TH",path)
 	 printGraph(H,"H",path)
-     
-	 println(H.normalize(newId))
-	 
+
 	 println("Cospan Coevolution last (msec): " + (System.currentTimeMillis() - start))
-	 
-	
+
 	//Generate PDF:
 	try {
 	    val cmd = path + "create_cospan_pdf.sh " + path
