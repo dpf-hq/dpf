@@ -115,7 +115,7 @@ trait AbstractCoevolutionSpan extends AbstractCoevolution{
 /**
  * Simplified Coevolution with Span
  */
-case class SimpleCoevolutionSpan(TL:AbstractGraph,TK:AbstractGraph,TR:AbstractGraph, G:AbstractGraph) extends AbstractCoevolutionSpan with Output{
+case class SimpleCoevolutionSpan(TL:AbstractGraph,TK:AbstractGraph,TR:AbstractGraph, G:AbstractGraph, newId:()=>RId) extends AbstractCoevolutionSpan with Output{
   
   override val tm:Morphism = InclusionMorphism(TL,TG);
 
@@ -156,7 +156,7 @@ case class SimpleCoevolutionSpan(TL:AbstractGraph,TK:AbstractGraph,TR:AbstractGr
 }  
 
 case class CoevolutionSpan(override val TL:AbstractGraph,override val TK:AbstractGraph,override val TR:AbstractGraph, 
-                           override val G:AbstractGraph, private val ll:Morphism, private val rr:Morphism) extends SimpleCoevolutionSpan(TL,TK,TR,G){
+                           override val G:AbstractGraph, private val ll:Morphism, private val rr:Morphism, override val newId:()=>RId) extends SimpleCoevolutionSpan(TL,TK,TR,G,newId){
 
   override val mmRule = Span(ll,rr);
 
@@ -280,7 +280,7 @@ trait AbstractCoevolutionCospan extends AbstractCoevolution{
 /**
  * Simplified Coevolution with Span
  */
-case class SimpleCoevolutionCospan(TL:AbstractGraph,TI:AbstractGraph,TR:AbstractGraph, G:AbstractGraph) extends AbstractCoevolutionCospan with Output{
+case class SimpleCoevolutionCospan(TL:AbstractGraph,TI:AbstractGraph,TR:AbstractGraph, G:AbstractGraph, newId:()=>RId) extends AbstractCoevolutionCospan with Output{
   
   override val tm:Morphism = InclusionMorphism(TL,TG);
 
@@ -306,6 +306,8 @@ case class SimpleCoevolutionCospan(TL:AbstractGraph,TI:AbstractGraph,TR:Abstract
 	 printGraph(TH,"TH",path)
 	 printGraph(H,"H",path)
      
+	 println(H.normalize(newId))
+	 
 	 println("Cospan Coevolution last (msec): " + (System.currentTimeMillis() - start))
 	 
 	
@@ -322,7 +324,7 @@ case class SimpleCoevolutionCospan(TL:AbstractGraph,TI:AbstractGraph,TR:Abstract
 }
 
 case class CoevolutionCospan(override val TL:AbstractGraph,override val TI:AbstractGraph,override val TR:AbstractGraph, 
-                           override val G:AbstractGraph, private val ll:Morphism, private val rr:Morphism) extends SimpleCoevolutionCospan(TL,TI,TR,G){
+                           override val G:AbstractGraph, private val ll:Morphism, private val rr:Morphism, override val newId:()=>RId) extends SimpleCoevolutionCospan(TL,TI,TR,G,newId){
 
   override val mmRule = Cospan(ll,rr);
 

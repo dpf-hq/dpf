@@ -327,9 +327,8 @@ package mutable{
 		override def arrowsIn(n: Node, t: TypeArrow):Set[Arrow] = if(in contains n)Set(in(n)(t) toSeq : _ *) else Set[Arrow]();  
 		override def arrowsOut(n: Node, t: TypeArrow):Set[Arrow] = if(out contains n)Set(out(n)(t) toSeq : _ *) else Set[Arrow]();  
 		
-		def normalize():Graph={
+		def normalize(newId:()=>RId = idGen):Graph={
 		  //Note: Normalize specification will also be required later
-
 		  //Find topLevel Graph DPF and go the way down:
 		  var listOfGraph:List[AbstractGraph] = this::Nil
 		  val dpf = GraphDpf;
@@ -340,14 +339,14 @@ package mutable{
 			    g = g.mmGraph
 			  }
 		  }
-
+		  
 		  //Id Generator with Cache:
 		  val idCache = MMap[SetId,RId]();
 		  def getNewId(id:SetId):RId={
 		    idCache.get(id) match {
 		      case Some(i) => i
 		      case None	   => //Generate a new one:
-		        			  val ni = idGen()
+		        			  val ni = newId()
 		        			  idCache +=id->ni;
 		        			  ni;
 		    }
@@ -369,14 +368,16 @@ package mutable{
 		  var ng:Graph = null;
 		  for(g<-listOfGraph){
 			  ng = new Graph(mm,idGen);	
-
+			  
 			  //Normalize Nodes (transform SetIds to regular ones):
 			  for(e<-g.nodes){
 			    val n = Node(getId(e._1),mm.nodes(getId(e._2.t.id)));   
 			    ng.nodes+=n.id->n; 
-			    ng.names+=n.id->g.names(e._1)
+			    e._2.t match{
+			      case Node(_,TypeNode.TAttribute()) => /*do nothing*/   
+			      case _ => ng.names+=n.id->g.names(e._1)
+			    }			      
 			  }
-
 			  //Normalize Arrows:
 			  for(e<-g.arrows){
 			    val a = Arrow(getId(e._1),ng.nodes(getId(e._2.sr.id)),ng.nodes(getId(e._2.tg.id)), mm.arrows(getId(e._2.t.id)));   
@@ -387,7 +388,7 @@ package mutable{
 				ng.update(a,a.sr,ng.out)	
 				ng.update(a,a.tg,ng.in)   		
 			  }
-			  
+
 			  //Model becomes metamodel for the next step:
 			  mm = ng;
 		  }

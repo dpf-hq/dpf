@@ -133,20 +133,20 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 	
 	def image: Parser[Any] = "image("~ID~")" ^^ { case "image("~i~")" => createEps(i)}
 	
-	def simpleEvoSpan: Parser[Any] = "simpleEvolution("~ID~"<-"~ID~"->"~ID~","~ID~")" ^^ { case "simpleEvolution("~tl~"<-"~tk~"->"~tr~","~g~")" => SimpleCoevolutionSpan(tGraphs(tl),tGraphs(tk),tGraphs(tr),tGraphs(g)).print(outDir)}
+	def simpleEvoSpan: Parser[Any] = "simpleEvolution("~ID~"<-"~ID~"->"~ID~","~ID~")" ^^ { case "simpleEvolution("~tl~"<-"~tk~"->"~tr~","~g~")" => SimpleCoevolutionSpan(tGraphs(tl),tGraphs(tk),tGraphs(tr),tGraphs(g),GCtx.gen).print(outDir)}
 
-	def simpleEvoCospan: Parser[Any] = "simpleEvolution("~ID~"->"~ID~"<-"~ID~","~ID~")" ^^ { case "simpleEvolution("~tl~"->"~ti~"<-"~tr~","~g~")" => SimpleCoevolutionCospan(tGraphs(tl),tGraphs(ti),tGraphs(tr),tGraphs(g)).print(outDir)}
+	def simpleEvoCospan: Parser[Any] = "simpleEvolution("~ID~"->"~ID~"<-"~ID~","~ID~")" ^^ { case "simpleEvolution("~tl~"->"~ti~"<-"~tr~","~g~")" => SimpleCoevolutionCospan(tGraphs(tl),tGraphs(ti),tGraphs(tr),tGraphs(g),GCtx.gen).print(outDir)}
 
 	def evoSpan: Parser[Any] = "evolution("~ID~"<->"~ID~","~ID~")" ^^ { case "evolution("~l~"<->"~r~","~g~")" => 
 	  	val codo1 = gMorphismsCoDomain(l)
 	  	val codo2 = gMorphismsCoDomain(r)
-	  	CoevolutionSpan(tGraphs(codo1._2),tGraphs(codo1._1),tGraphs(codo2._2),tGraphs(g),gMorphisms(l),gMorphisms(r)).print(outDir)
+	  	CoevolutionSpan(tGraphs(codo1._2),tGraphs(codo1._1),tGraphs(codo2._2),tGraphs(g),gMorphisms(l),gMorphisms(r),GCtx.gen).print(outDir)
 	}
 	
 	def evoCospan: Parser[Any] = "evolution("~ID~"-><-"~ID~","~ID~")" ^^ { case "evolution("~l~"-><-"~r~","~g~")" => 
 	  	val codo1 = gMorphismsCoDomain(l)
 	  	val codo2 = gMorphismsCoDomain(r)
-	  	CoevolutionCospan(tGraphs(codo1._1),tGraphs(codo1._2),tGraphs(codo2._1),tGraphs(g),gMorphisms(l),gMorphisms(r)).print(outDir)
+	  	CoevolutionCospan(tGraphs(codo1._1),tGraphs(codo1._2),tGraphs(codo2._1),tGraphs(g),gMorphisms(l),gMorphisms(r),GCtx.gen).print(outDir)
 	}
 
 	//Specification instance:
