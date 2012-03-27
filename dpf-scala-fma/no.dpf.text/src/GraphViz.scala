@@ -184,7 +184,7 @@ trait Output{
    	  rs=";\n"::rs  
     }
 
-    //Constraints:
+    //Arrows:
     for(a:Arrow<-g.arrows.values.toSet){
       rs=h.formatArrow(rs,a)
    	  rs=";\n"::rs     	    
