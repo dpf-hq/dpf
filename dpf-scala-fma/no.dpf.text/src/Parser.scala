@@ -217,7 +217,7 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 								        )
 	
 	def arrow: Parser[RArrow] = ( node~"-"~ID~dpfId~":"~ID_A~"->"~attributeType  ^^ {case n1~"-"~i~dpfId~":"~t~"->"~at => createRAttributeType(i,dpfId,n1,at,t)}
-	                            | node~"-"~ID~dpfId~":"~ID~"->"~attributeValue   ^^ {case n1~"-"~i~dpfId~":"~t~"->"~av => createRAttributeValue(i,dpfId,n1,av,t)}
+	                            | node~"-"~ID~dpfId~":"~ID~dpfId~"->"~attributeValue   ^^ {case n1~"-"~i~dpfId~":"~t~dpfId2~"->"~av => createRAttributeValue(i,dpfId,n1,av,t,dpfId2)}
 	                            | node~"-"~ID~dpfId~":"~ID~dpfId~"->"~node	   	 ^^ {case n1~"-"~i~dpfId1~":"~t~dpfId2~"->"~n2 => createRArrow(i,dpfId1,n1,n2,t,dpfId2)}
 	                            )       											 
 																		
@@ -395,15 +395,18 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 			  RArrow(name,id,n1,Some(n2),None,ty)
 		}
     }
-    
-	private def createRAttributeType(name:String,id:Option[Id],n1:RNode,at:Node with TypeP,t:String):RArrow={
+ 
+    private def createRAttributeType(name:String,id:Option[Id],n1:RNode,at:Node with TypeP,t:String):RArrow={
 		if("*" != t) sys.error("Attribute arrow has to have type *")
 		RArrow(name,id,n1,None,Some(at),TypeArrow.TAttribute())
 	}
 	
-	private def createRAttributeValue(name:String,id:Option[Id],n1:RNode,rav:String,t:String):RArrow={
-	    val result = curTGraph.findArrow(t,n1.t)
-	    val ty = result match {
+	private def createRAttributeValue(name:String,id:Option[Id],n1:RNode,rav:String,t:String,typeId:Option[Id]):RArrow={
+		val result = typeId match{
+		    case None =>  curTGraph.findArrow(t,n1.t)
+  		  	case Some(tId) => curTGraph.getArrow(tId)
+		}
+		val ty = result match {
 	    	case None => sys.error("Attribute does not exit! t="+t + " sr=" + n1.t)
 	    	case Some(x) => x
 	    }
