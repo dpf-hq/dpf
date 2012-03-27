@@ -2,7 +2,8 @@ package no.dpf.text.coevolution;
 
 import no.dpf.text.graph._;
 import no.dpf.text.graph.mutable.{Graph=>MGraph}
-import no.dpf.text.output.graphviz.Output
+import no.dpf.text.output.graphviz.{Output=>GOutput}
+import no.dpf.text.output.parser.{Output=>POutput}
 
 trait AbstractCoevolutionSpan extends AbstractCoevolution{
   
@@ -115,7 +116,7 @@ trait AbstractCoevolutionSpan extends AbstractCoevolution{
 /**
  * Simplified Coevolution with Span
  */
-case class SimpleCoevolutionSpan(TL:AbstractGraph,TK:AbstractGraph,TR:AbstractGraph, G:AbstractGraph, newId:()=>RId) extends AbstractCoevolutionSpan with Output{
+case class SimpleCoevolutionSpan(TL:AbstractGraph,TK:AbstractGraph,TR:AbstractGraph, G:AbstractGraph, newId:()=>RId) extends AbstractCoevolutionSpan with GOutput with POutput{
   
   override val tm:Morphism = InclusionMorphism(TL,TG);
 
@@ -280,7 +281,7 @@ trait AbstractCoevolutionCospan extends AbstractCoevolution{
 /**
  * Simplified Coevolution with Span
  */
-case class SimpleCoevolutionCospan(TL:AbstractGraph,TI:AbstractGraph,TR:AbstractGraph, G:AbstractGraph, newId:()=>RId) extends AbstractCoevolutionCospan with Output{
+case class SimpleCoevolutionCospan(TL:AbstractGraph,TI:AbstractGraph,TR:AbstractGraph, G:AbstractGraph, newId:()=>RId) extends AbstractCoevolutionCospan with GOutput with POutput{
   
   override val tm:Morphism = InclusionMorphism(TL,TG);
 
