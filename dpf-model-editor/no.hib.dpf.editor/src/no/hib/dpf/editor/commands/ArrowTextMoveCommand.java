@@ -66,4 +66,25 @@ public class ArrowTextMoveCommand extends Command {
 			dOffset.setOffset(oldOffset);;
 		}
 	}
+	/*DOffset dOffset;
+	Point oldOffset;
+	Point newOffset;
+
+	public ArrowTextMoveCommand(DOffset offset, Point location) {
+		dOffset = offset;
+		oldOffset = dOffset.getOffset();
+		newOffset = location;
+	}
+
+	public void execute() {
+		if(dOffset != null && newOffset != null)
+			dOffset.setOffset(newOffset);
+	}
+
+
+	public void undo() {
+		if(dOffset != null && oldOffset != null)
+			dOffset.setOffset(oldOffset);
+	}*/
+	
 }

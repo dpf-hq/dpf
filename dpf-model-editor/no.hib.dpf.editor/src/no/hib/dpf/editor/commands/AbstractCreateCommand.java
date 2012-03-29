@@ -1,6 +1,6 @@
 package no.hib.dpf.editor.commands;
 
-import no.hib.dpf.diagram.DBound;
+import no.hib.dpf.diagram.DNode;
 
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
@@ -10,5 +10,5 @@ public abstract class AbstractCreateCommand extends Command {
 
 	protected Dimension bounds;
 	protected Point start;
-	protected DBound newObject;
+	protected DNode newObject;
 }

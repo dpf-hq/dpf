@@ -40,7 +40,7 @@ public enum VisualizationType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NODE_TO_NODE(0, "NodeToNode", "NodeToNode"),
+	NODE_TO_NODE(1, "NodeToNode", "NodeToNode"),
 
 	/**
 	 * The '<em><b>Node To Arrow</b></em>' literal object.
@@ -50,7 +50,7 @@ public enum VisualizationType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NODE_TO_ARROW(0, "NodeToArrow", "NodeToArrow"),
+	NODE_TO_ARROW(2, "NodeToArrow", "NodeToArrow"),
 
 	/**
 	 * The '<em><b>Arrow To Node</b></em>' literal object.
@@ -60,7 +60,7 @@ public enum VisualizationType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ARROW_TO_NODE(0, "ArrowToNode", "ArrowToNode"),
+	ARROW_TO_NODE(3, "ArrowToNode", "ArrowToNode"),
 
 	/**
 	 * The '<em><b>Arrow To Arrow</b></em>' literal object.
@@ -70,7 +70,15 @@ public enum VisualizationType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ARROW_TO_ARROW(0, "ArrowToArrow", "ArrowToArrow");
+	ARROW_TO_ARROW(4, "ArrowToArrow", "ArrowToArrow"), /**
+	 * The '<em><b>Composed</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #COMPOSED_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	COMPOSED(5, "Composed", "Composed");
 
 	/**
 	 * The '<em><b>Arrow Label</b></em>' literal value.
@@ -100,7 +108,7 @@ public enum VisualizationType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NODE_TO_NODE_VALUE = 0;
+	public static final int NODE_TO_NODE_VALUE = 1;
 
 	/**
 	 * The '<em><b>Node To Arrow</b></em>' literal value.
@@ -115,7 +123,7 @@ public enum VisualizationType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NODE_TO_ARROW_VALUE = 0;
+	public static final int NODE_TO_ARROW_VALUE = 2;
 
 	/**
 	 * The '<em><b>Arrow To Node</b></em>' literal value.
@@ -130,7 +138,7 @@ public enum VisualizationType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ARROW_TO_NODE_VALUE = 0;
+	public static final int ARROW_TO_NODE_VALUE = 3;
 
 	/**
 	 * The '<em><b>Arrow To Arrow</b></em>' literal value.
@@ -145,7 +153,22 @@ public enum VisualizationType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ARROW_TO_ARROW_VALUE = 0;
+	public static final int ARROW_TO_ARROW_VALUE = 4;
+
+	/**
+	 * The '<em><b>Composed</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Composed</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #COMPOSED
+	 * @model name="Composed"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int COMPOSED_VALUE = 5;
 
 	/**
 	 * An array of all the '<em><b>Visualization Type</b></em>' enumerators.
@@ -160,6 +183,7 @@ public enum VisualizationType implements Enumerator {
 			NODE_TO_ARROW,
 			ARROW_TO_NODE,
 			ARROW_TO_ARROW,
+			COMPOSED,
 		};
 
 	/**
@@ -211,6 +235,11 @@ public enum VisualizationType implements Enumerator {
 	public static VisualizationType get(int value) {
 		switch (value) {
 			case ARROW_LABEL_VALUE: return ARROW_LABEL;
+			case NODE_TO_NODE_VALUE: return NODE_TO_NODE;
+			case NODE_TO_ARROW_VALUE: return NODE_TO_ARROW;
+			case ARROW_TO_NODE_VALUE: return ARROW_TO_NODE;
+			case ARROW_TO_ARROW_VALUE: return ARROW_TO_ARROW;
+			case COMPOSED_VALUE: return COMPOSED;
 		}
 		return null;
 	}

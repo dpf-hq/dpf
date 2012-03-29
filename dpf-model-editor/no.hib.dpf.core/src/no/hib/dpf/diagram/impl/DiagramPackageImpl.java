@@ -11,8 +11,12 @@ import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.core.impl.CorePackageImpl;
 
 import no.hib.dpf.diagram.DArrow;
-import no.hib.dpf.diagram.DBound;
+import no.hib.dpf.diagram.DArrowLabelConstraint;
+import no.hib.dpf.diagram.DComposedConstraint;
 import no.hib.dpf.diagram.DConstraint;
+import no.hib.dpf.diagram.DElement;
+import no.hib.dpf.diagram.DFakeNode;
+import no.hib.dpf.diagram.DGenericArrowConstraint;
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.diagram.DOffset;
@@ -69,6 +73,13 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass dFakeNodeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass dArrowEClass = null;
 
 	/**
@@ -83,14 +94,28 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass dPredicateEClass = null;
+	private EClass dArrowLabelConstraintEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass dBoundEClass = null;
+	private EClass dGenericArrowConstraintEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass dComposedConstraintEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass dPredicateEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -112,6 +137,13 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 	 * @generated
 	 */
 	private EClass visualizationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass dElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -421,6 +453,42 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getDNode_Location() {
+		return (EAttribute)dNodeEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDNode_Size() {
+		return (EAttribute)dNodeEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDFakeNode() {
+		return dFakeNodeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDFakeNode_DConstraint() {
+		return (EReference)dFakeNodeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getDArrow() {
 		return dArrowEClass;
 	}
@@ -511,33 +579,6 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDArrow_ConstraintOffset() {
-		return (EReference)dArrowEClass.getEStructuralFeatures().get(9);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getDArrow_ConstraintsFrom() {
-		return (EReference)dArrowEClass.getEStructuralFeatures().get(10);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getDArrow_ConstraintsTo() {
-		return (EReference)dArrowEClass.getEStructuralFeatures().get(11);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getDConstraint() {
 		return dConstraintEClass;
 	}
@@ -574,7 +615,7 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDConstraint_Offset() {
+	public EReference getDConstraint_DPredicate() {
 		return (EReference)dConstraintEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -583,8 +624,8 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDConstraint_Source() {
-		return (EReference)dConstraintEClass.getEStructuralFeatures().get(4);
+	public EClass getDArrowLabelConstraint() {
+		return dArrowLabelConstraintEClass;
 	}
 
 	/**
@@ -592,8 +633,8 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDConstraint_Target() {
-		return (EReference)dConstraintEClass.getEStructuralFeatures().get(5);
+	public EReference getDArrowLabelConstraint_Offset() {
+		return (EReference)dArrowLabelConstraintEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -601,8 +642,62 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDConstraint_DPredicate() {
-		return (EReference)dConstraintEClass.getEStructuralFeatures().get(6);
+	public EReference getDArrowLabelConstraint_Source() {
+		return (EReference)dArrowLabelConstraintEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDGenericArrowConstraint() {
+		return dGenericArrowConstraintEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDGenericArrowConstraint_Source() {
+		return (EReference)dGenericArrowConstraintEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDGenericArrowConstraint_Target() {
+		return (EReference)dGenericArrowConstraintEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDComposedConstraint() {
+		return dComposedConstraintEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDComposedConstraint_Children() {
+		return (EReference)dComposedConstraintEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDComposedConstraint_FakeNode() {
+		return (EReference)dComposedConstraintEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -657,33 +752,6 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 	 */
 	public EAttribute getDPredicate_Icon() {
 		return (EAttribute)dPredicateEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getDBound() {
-		return dBoundEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getDBound_Location() {
-		return (EAttribute)dBoundEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getDBound_Size() {
-		return (EAttribute)dBoundEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -772,6 +840,33 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getDElement() {
+		return dElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDElement_ConstraintsFrom() {
+		return (EReference)dElementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDElement_ConstraintsTo() {
+		return (EReference)dElementEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getVisualizationType() {
 		return visualizationTypeEEnum;
 	}
@@ -848,6 +943,11 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		createEReference(dNodeEClass, DNODE__DOUTGOINGS);
 		createEReference(dNodeEClass, DNODE__DINCOMINGS);
 		createEReference(dNodeEClass, DNODE__DCONSTRAINTS);
+		createEAttribute(dNodeEClass, DNODE__LOCATION);
+		createEAttribute(dNodeEClass, DNODE__SIZE);
+
+		dFakeNodeEClass = createEClass(DFAKE_NODE);
+		createEReference(dFakeNodeEClass, DFAKE_NODE__DCONSTRAINT);
 
 		dArrowEClass = createEClass(DARROW);
 		createEReference(dArrowEClass, DARROW__DTYPE);
@@ -859,18 +959,24 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		createEReference(dArrowEClass, DARROW__DCONSTRAINTS);
 		createEAttribute(dArrowEClass, DARROW__BENDPOINTS);
 		createEReference(dArrowEClass, DARROW__NAME_OFFSET);
-		createEReference(dArrowEClass, DARROW__CONSTRAINT_OFFSET);
-		createEReference(dArrowEClass, DARROW__CONSTRAINTS_FROM);
-		createEReference(dArrowEClass, DARROW__CONSTRAINTS_TO);
 
 		dConstraintEClass = createEClass(DCONSTRAINT);
 		createEReference(dConstraintEClass, DCONSTRAINT__CONSTRAINT);
 		createEReference(dConstraintEClass, DCONSTRAINT__DNODES);
 		createEReference(dConstraintEClass, DCONSTRAINT__DARROWS);
-		createEReference(dConstraintEClass, DCONSTRAINT__OFFSET);
-		createEReference(dConstraintEClass, DCONSTRAINT__SOURCE);
-		createEReference(dConstraintEClass, DCONSTRAINT__TARGET);
 		createEReference(dConstraintEClass, DCONSTRAINT__DPREDICATE);
+
+		dArrowLabelConstraintEClass = createEClass(DARROW_LABEL_CONSTRAINT);
+		createEReference(dArrowLabelConstraintEClass, DARROW_LABEL_CONSTRAINT__OFFSET);
+		createEReference(dArrowLabelConstraintEClass, DARROW_LABEL_CONSTRAINT__SOURCE);
+
+		dGenericArrowConstraintEClass = createEClass(DGENERIC_ARROW_CONSTRAINT);
+		createEReference(dGenericArrowConstraintEClass, DGENERIC_ARROW_CONSTRAINT__SOURCE);
+		createEReference(dGenericArrowConstraintEClass, DGENERIC_ARROW_CONSTRAINT__TARGET);
+
+		dComposedConstraintEClass = createEClass(DCOMPOSED_CONSTRAINT);
+		createEReference(dComposedConstraintEClass, DCOMPOSED_CONSTRAINT__CHILDREN);
+		createEReference(dComposedConstraintEClass, DCOMPOSED_CONSTRAINT__FAKE_NODE);
 
 		dPredicateEClass = createEClass(DPREDICATE);
 		createEReference(dPredicateEClass, DPREDICATE__PREDICATE);
@@ -878,10 +984,6 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		createEReference(dPredicateEClass, DPREDICATE__DGRAPH);
 		createEReference(dPredicateEClass, DPREDICATE__VISUALIZATION);
 		createEAttribute(dPredicateEClass, DPREDICATE__ICON);
-
-		dBoundEClass = createEClass(DBOUND);
-		createEAttribute(dBoundEClass, DBOUND__LOCATION);
-		createEAttribute(dBoundEClass, DBOUND__SIZE);
 
 		dOffsetEClass = createEClass(DOFFSET);
 		createEAttribute(dOffsetEClass, DOFFSET__OFFSET);
@@ -894,6 +996,10 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		createEAttribute(visualizationEClass, VISUALIZATION__TYPE);
 		createEReference(visualizationEClass, VISUALIZATION__SOURCE);
 		createEReference(visualizationEClass, VISUALIZATION__TARGET);
+
+		dElementEClass = createEClass(DELEMENT);
+		createEReference(dElementEClass, DELEMENT__CONSTRAINTS_FROM);
+		createEReference(dElementEClass, DELEMENT__CONSTRAINTS_TO);
 
 		// Create enums
 		visualizationTypeEEnum = createEEnum(VISUALIZATION_TYPE);
@@ -934,7 +1040,12 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		dNodeEClass.getESuperTypes().add(this.getDBound());
+		dNodeEClass.getESuperTypes().add(this.getDElement());
+		dFakeNodeEClass.getESuperTypes().add(this.getDNode());
+		dArrowEClass.getESuperTypes().add(this.getDElement());
+		dArrowLabelConstraintEClass.getESuperTypes().add(this.getDConstraint());
+		dGenericArrowConstraintEClass.getESuperTypes().add(this.getDConstraint());
+		dComposedConstraintEClass.getESuperTypes().add(this.getDConstraint());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(dSpecificationEClass, DSpecification.class, "DSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -986,10 +1097,15 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		initEReference(getDNode_DOutgoings(), this.getDArrow(), this.getDArrow_DSource(), "dOutgoings", null, 0, -1, DNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDNode_DIncomings(), this.getDArrow(), this.getDArrow_DTarget(), "dIncomings", null, 0, -1, DNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDNode_DConstraints(), this.getDConstraint(), this.getDConstraint_DNodes(), "dConstraints", null, 0, -1, DNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDNode_Location(), this.getELocation(), "location", null, 0, 1, DNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDNode_Size(), this.getEDimension(), "size", null, 0, 1, DNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		addEOperation(dNodeEClass, ecorePackage.getEString(), "getName", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		addEOperation(dNodeEClass, ecorePackage.getEString(), "getTypeName", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(dFakeNodeEClass, DFakeNode.class, "DFakeNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDFakeNode_DConstraint(), this.getDConstraint(), null, "dConstraint", null, 0, 1, DFakeNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(dArrowEClass, DArrow.class, "DArrow", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDArrow_DType(), this.getDArrow(), null, "dType", null, 1, 1, DArrow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1001,9 +1117,6 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		initEReference(getDArrow_DConstraints(), this.getDConstraint(), this.getDConstraint_DArrows(), "dConstraints", null, 0, -1, DArrow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDArrow_Bendpoints(), this.getELocation(), "bendpoints", null, 0, -1, DArrow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDArrow_NameOffset(), this.getDOffset(), null, "nameOffset", null, 0, 1, DArrow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDArrow_ConstraintOffset(), this.getDOffset(), null, "constraintOffset", null, 0, -1, DArrow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDArrow_ConstraintsFrom(), this.getDConstraint(), this.getDConstraint_Source(), "constraintsFrom", null, 0, -1, DArrow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDArrow_ConstraintsTo(), this.getDConstraint(), this.getDConstraint_Target(), "constraintsTo", null, 0, -1, DArrow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = addEOperation(dArrowEClass, null, "reconnect", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getDNode(), "source", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -1019,9 +1132,6 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		initEReference(getDConstraint_Constraint(), theCorePackage.getConstraint(), null, "constraint", null, 0, 1, DConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDConstraint_DNodes(), this.getDNode(), this.getDNode_DConstraints(), "dNodes", null, 0, -1, DConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDConstraint_DArrows(), this.getDArrow(), this.getDArrow_DConstraints(), "dArrows", null, 0, -1, DConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDConstraint_Offset(), this.getDOffset(), null, "offset", null, 0, 1, DConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDConstraint_Source(), this.getDArrow(), this.getDArrow_ConstraintsFrom(), "source", null, 0, 1, DConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDConstraint_Target(), this.getDArrow(), this.getDArrow_ConstraintsTo(), "target", null, 0, 1, DConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDConstraint_DPredicate(), this.getDPredicate(), null, "dPredicate", null, 0, 1, DConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = addEOperation(dConstraintEClass, null, "reconnect", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -1037,16 +1147,24 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		op = addEOperation(dConstraintEClass, null, "addDNode", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getDNode(), "dNode", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		initEClass(dArrowLabelConstraintEClass, DArrowLabelConstraint.class, "DArrowLabelConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDArrowLabelConstraint_Offset(), this.getDOffset(), null, "offset", null, 0, 1, DArrowLabelConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDArrowLabelConstraint_Source(), this.getDElement(), null, "source", null, 0, 1, DArrowLabelConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(dGenericArrowConstraintEClass, DGenericArrowConstraint.class, "DGenericArrowConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDGenericArrowConstraint_Source(), this.getDElement(), null, "source", null, 0, 1, DGenericArrowConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDGenericArrowConstraint_Target(), this.getDElement(), null, "target", null, 0, 1, DGenericArrowConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(dComposedConstraintEClass, DComposedConstraint.class, "DComposedConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDComposedConstraint_Children(), this.getDConstraint(), null, "children", null, 0, -1, DComposedConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDComposedConstraint_FakeNode(), this.getDFakeNode(), null, "fakeNode", null, 0, 1, DComposedConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(dPredicateEClass, DPredicate.class, "DPredicate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDPredicate_Predicate(), theCorePackage.getPredicate(), null, "predicate", null, 0, 1, DPredicate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDPredicate_SimpleName(), ecorePackage.getEString(), "simpleName", null, 0, 1, DPredicate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDPredicate_DGraph(), this.getDGraph(), null, "dGraph", null, 0, 1, DPredicate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDPredicate_Visualization(), this.getVisualization(), null, "visualization", null, 0, 1, DPredicate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDPredicate_Icon(), ecorePackage.getEString(), "icon", null, 0, 1, DPredicate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(dBoundEClass, DBound.class, "DBound", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getDBound_Location(), this.getELocation(), "location", null, 0, 1, DBound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getDBound_Size(), this.getEDimension(), "size", null, 0, 1, DBound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(dOffsetEClass, DOffset.class, "DOffset", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDOffset_Offset(), this.getELocation(), "offset", null, 0, 1, DOffset.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1066,6 +1184,10 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		initEReference(getVisualization_Source(), theCorePackage.getIDObject(), null, "source", null, 0, 1, Visualization.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getVisualization_Target(), theCorePackage.getIDObject(), null, "target", null, 0, 1, Visualization.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(dElementEClass, DElement.class, "DElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDElement_ConstraintsFrom(), this.getDConstraint(), null, "constraintsFrom", null, 0, -1, DElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDElement_ConstraintsTo(), this.getDConstraint(), null, "constraintsTo", null, 0, -1, DElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		// Initialize enums and add enum literals
 		initEEnum(visualizationTypeEEnum, VisualizationType.class, "VisualizationType");
 		addEEnumLiteral(visualizationTypeEEnum, VisualizationType.ARROW_LABEL);
@@ -1073,6 +1195,7 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		addEEnumLiteral(visualizationTypeEEnum, VisualizationType.NODE_TO_ARROW);
 		addEEnumLiteral(visualizationTypeEEnum, VisualizationType.ARROW_TO_NODE);
 		addEEnumLiteral(visualizationTypeEEnum, VisualizationType.ARROW_TO_ARROW);
+		addEEnumLiteral(visualizationTypeEEnum, VisualizationType.COMPOSED);
 
 		// Initialize data types
 		initEDataType(eDimensionEDataType, Dimension.class, "EDimension", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);

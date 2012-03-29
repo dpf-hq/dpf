@@ -29,9 +29,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -51,15 +49,12 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link no.hib.dpf.diagram.impl.DArrowImpl#getDConstraints <em>DConstraints</em>}</li>
  *   <li>{@link no.hib.dpf.diagram.impl.DArrowImpl#getBendpoints <em>Bendpoints</em>}</li>
  *   <li>{@link no.hib.dpf.diagram.impl.DArrowImpl#getNameOffset <em>Name Offset</em>}</li>
- *   <li>{@link no.hib.dpf.diagram.impl.DArrowImpl#getConstraintOffset <em>Constraint Offset</em>}</li>
- *   <li>{@link no.hib.dpf.diagram.impl.DArrowImpl#getConstraintsFrom <em>Constraints From</em>}</li>
- *   <li>{@link no.hib.dpf.diagram.impl.DArrowImpl#getConstraintsTo <em>Constraints To</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class DArrowImpl extends EObjectImpl implements DArrow {
+public class DArrowImpl extends DElementImpl implements DArrow {
 
 	/**
 	 * The cached value of the '{@link #getDType() <em>DType</em>}' reference.
@@ -172,36 +167,6 @@ public class DArrowImpl extends EObjectImpl implements DArrow {
 	protected DOffset nameOffset;
 
 	/**
-	 * The cached value of the '{@link #getConstraintOffset() <em>Constraint Offset</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getConstraintOffset()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<DOffset> constraintOffset;
-
-	/**
-	 * The cached value of the '{@link #getConstraintsFrom() <em>Constraints From</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getConstraintsFrom()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<DConstraint> constraintsFrom;
-
-	/**
-	 * The cached value of the '{@link #getConstraintsTo() <em>Constraints To</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getConstraintsTo()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<DConstraint> constraintsTo;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -254,8 +219,8 @@ public class DArrowImpl extends EObjectImpl implements DArrow {
 	public void setDType(DArrow newDType) {
 		DArrow oldDType = dType;
 		dType = newDType;
-		if(getArrow() != null)
-			getArrow().setTypeArrow(getDType() == null ? null : getDType().getArrow());
+		if(arrow != null && !arrow.eIsProxy())
+			arrow.setTypeArrow(dType == null ? null : dType.getArrow());
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DARROW__DTYPE, oldDType, dType));
 	}
@@ -394,8 +359,8 @@ public class DArrowImpl extends EObjectImpl implements DArrow {
 			if (newDSource != null)
 				msgs = ((InternalEObject)newDSource).eInverseAdd(this, DiagramPackage.DNODE__DOUTGOINGS, DNode.class, msgs);
 			msgs = basicSetDSource(newDSource, msgs);
-			if(getArrow() != null)
-				getArrow().setSource(getDSource() != null ? getDSource().getNode() : null);
+			if(arrow != null && !arrow.eIsProxy())
+				arrow.setSource(dSource != null ? dSource.getNode() : null);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
@@ -456,8 +421,8 @@ public class DArrowImpl extends EObjectImpl implements DArrow {
 			if (newDTarget != null)
 				msgs = ((InternalEObject)newDTarget).eInverseAdd(this, DiagramPackage.DNODE__DINCOMINGS, DNode.class, msgs);
 			msgs = basicSetDTarget(newDTarget, msgs);
-			if(getArrow() != null)
-				getArrow().setTarget(getDTarget() != null ? getDTarget().getNode() : null);
+			if(arrow != null && !arrow.eIsProxy())
+				arrow.setTarget(dTarget != null ? dTarget.getNode() : null);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
@@ -529,42 +494,6 @@ public class DArrowImpl extends EObjectImpl implements DArrow {
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DARROW__NAME_OFFSET, newNameOffset, newNameOffset));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<DOffset> getConstraintOffset() {
-		if (constraintOffset == null) {
-			constraintOffset = new EObjectResolvingEList<DOffset>(DOffset.class, this, DiagramPackage.DARROW__CONSTRAINT_OFFSET);
-		}
-		return constraintOffset;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<DConstraint> getConstraintsFrom() {
-		if (constraintsFrom == null) {
-			constraintsFrom = new EObjectWithInverseResolvingEList<DConstraint>(DConstraint.class, this, DiagramPackage.DARROW__CONSTRAINTS_FROM, DiagramPackage.DCONSTRAINT__SOURCE);
-		}
-		return constraintsFrom;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<DConstraint> getConstraintsTo() {
-		if (constraintsTo == null) {
-			constraintsTo = new EObjectWithInverseResolvingEList<DConstraint>(DConstraint.class, this, DiagramPackage.DARROW__CONSTRAINTS_TO, DiagramPackage.DCONSTRAINT__TARGET);
-		}
-		return constraintsTo;
 	}
 
 	/**
@@ -645,10 +574,6 @@ public class DArrowImpl extends EObjectImpl implements DArrow {
 				return basicSetDTarget((DNode)otherEnd, msgs);
 			case DiagramPackage.DARROW__DCONSTRAINTS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getDConstraints()).basicAdd(otherEnd, msgs);
-			case DiagramPackage.DARROW__CONSTRAINTS_FROM:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getConstraintsFrom()).basicAdd(otherEnd, msgs);
-			case DiagramPackage.DARROW__CONSTRAINTS_TO:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getConstraintsTo()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -669,10 +594,6 @@ public class DArrowImpl extends EObjectImpl implements DArrow {
 				return ((InternalEList<?>)getDConstraints()).basicRemove(otherEnd, msgs);
 			case DiagramPackage.DARROW__NAME_OFFSET:
 				return basicSetNameOffset(null, msgs);
-			case DiagramPackage.DARROW__CONSTRAINTS_FROM:
-				return ((InternalEList<?>)getConstraintsFrom()).basicRemove(otherEnd, msgs);
-			case DiagramPackage.DARROW__CONSTRAINTS_TO:
-				return ((InternalEList<?>)getConstraintsTo()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -707,12 +628,6 @@ public class DArrowImpl extends EObjectImpl implements DArrow {
 				return getBendpoints();
 			case DiagramPackage.DARROW__NAME_OFFSET:
 				return getNameOffset();
-			case DiagramPackage.DARROW__CONSTRAINT_OFFSET:
-				return getConstraintOffset();
-			case DiagramPackage.DARROW__CONSTRAINTS_FROM:
-				return getConstraintsFrom();
-			case DiagramPackage.DARROW__CONSTRAINTS_TO:
-				return getConstraintsTo();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -755,18 +670,6 @@ public class DArrowImpl extends EObjectImpl implements DArrow {
 			case DiagramPackage.DARROW__NAME_OFFSET:
 				setNameOffset((DOffset)newValue);
 				return;
-			case DiagramPackage.DARROW__CONSTRAINT_OFFSET:
-				getConstraintOffset().clear();
-				getConstraintOffset().addAll((Collection<? extends DOffset>)newValue);
-				return;
-			case DiagramPackage.DARROW__CONSTRAINTS_FROM:
-				getConstraintsFrom().clear();
-				getConstraintsFrom().addAll((Collection<? extends DConstraint>)newValue);
-				return;
-			case DiagramPackage.DARROW__CONSTRAINTS_TO:
-				getConstraintsTo().clear();
-				getConstraintsTo().addAll((Collection<? extends DConstraint>)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -792,10 +695,10 @@ public class DArrowImpl extends EObjectImpl implements DArrow {
 				setLineStyle(LINE_STYLE_EDEFAULT);
 				return;
 			case DiagramPackage.DARROW__DSOURCE:
-				setDSource(DPFConstants.REFLEXIVE_TYPE_DNODE);
+				setDSource((DNode)null);
 				return;
 			case DiagramPackage.DARROW__DTARGET:
-				setDTarget(DPFConstants.REFLEXIVE_TYPE_DNODE);
+				setDTarget((DNode)null);
 				return;
 			case DiagramPackage.DARROW__DCONSTRAINTS:
 				getDConstraints().clear();
@@ -805,9 +708,6 @@ public class DArrowImpl extends EObjectImpl implements DArrow {
 				return;
 			case DiagramPackage.DARROW__NAME_OFFSET:
 				setNameOffset((DOffset)null);
-				return;
-			case DiagramPackage.DARROW__CONSTRAINT_OFFSET:
-				getConstraintOffset().clear();
 				return;
 			case DiagramPackage.DARROW__CONSTRAINTS_FROM:
 				getConstraintsFrom().clear();
@@ -836,17 +736,15 @@ public class DArrowImpl extends EObjectImpl implements DArrow {
 			case DiagramPackage.DARROW__LINE_STYLE:
 				return lineStyle != LINE_STYLE_EDEFAULT;
 			case DiagramPackage.DARROW__DSOURCE:
-				return dSource != null && dSource != DPFConstants.REFLEXIVE_TYPE_DNODE;
+				return dSource != null;
 			case DiagramPackage.DARROW__DTARGET:
-				return dTarget != null && dTarget != DPFConstants.REFLEXIVE_TYPE_DNODE;
+				return dTarget != null;
 			case DiagramPackage.DARROW__DCONSTRAINTS:
 				return dConstraints != null && !dConstraints.isEmpty();
 			case DiagramPackage.DARROW__BENDPOINTS:
 				return bendpoints != null && !bendpoints.isEmpty();
 			case DiagramPackage.DARROW__NAME_OFFSET:
 				return nameOffset != null;
-			case DiagramPackage.DARROW__CONSTRAINT_OFFSET:
-				return constraintOffset != null && !constraintOffset.isEmpty();
 			case DiagramPackage.DARROW__CONSTRAINTS_FROM:
 				return constraintsFrom != null && !constraintsFrom.isEmpty();
 			case DiagramPackage.DARROW__CONSTRAINTS_TO:

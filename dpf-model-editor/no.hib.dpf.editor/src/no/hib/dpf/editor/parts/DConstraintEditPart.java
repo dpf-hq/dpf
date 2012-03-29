@@ -13,13 +13,10 @@ package no.hib.dpf.editor.parts;
 
 import no.hib.dpf.diagram.DConstraint;
 import no.hib.dpf.editor.commands.DConstraintDeleteCommand;
-import no.hib.dpf.editor.figures.ConstraintAnchor;
 import no.hib.dpf.editor.figures.NodeFigure;
 
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.PolylineConnection;
-import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.ConnectionEditPolicy;
@@ -59,7 +56,7 @@ public abstract class DConstraintEditPart extends GraphicalConnectionEditPart {
 	protected NodeFigure getRectangleFigureForFigure(boolean fromSource) {
 		NodeFigure basicRectangleFigure = null;
 		
-		if (getSource() != null) {
+		if (getSource() instanceof DArrowEditPart) {
 			DArrowEditPart source = (DArrowEditPart) getSource();
 
 			if (source.getSource() != null) {
@@ -92,7 +89,11 @@ public abstract class DConstraintEditPart extends GraphicalConnectionEditPart {
 	 */
 	@Override
 	protected ConnectionAnchor getSourceConnectionAnchor() {
-		return getConnectionAnchor(getSource());
+		if (getSource() instanceof DArrowEditPart) {
+			DArrowEditPart editPart = (DArrowEditPart) getSource();
+			return editPart.getSourceConnectionAnchor(this);
+		}
+		return super.getSourceConnectionAnchor();
 	}
 
 	/**
@@ -103,21 +104,12 @@ public abstract class DConstraintEditPart extends GraphicalConnectionEditPart {
 	 * @return ConnectionAnchor for the target end of the Connection
 	 */
 	protected ConnectionAnchor getTargetConnectionAnchor() {
-		return getConnectionAnchor(getTarget());
+		if (getTarget() instanceof DArrowEditPart) {
+			DArrowEditPart editPart = (DArrowEditPart) getTarget();
+			return editPart.getTargetConnectionAnchor(this);
+		}
+		return super.getTargetConnectionAnchor();
 	}
 	
-	/**
-	 * Produces a ConnectionAnchor for either the source or target end of this
-	 * constraint. The source (or target) needs to be an instance of 
-	 * <code>ArrowEditPart</code>,
-	 * @param supplier the source or target of this edit part.
-	 * @param isSource true if supplier is source, false if not.
-	 * @return A new ConnectionAnchor.
-	 */
-	protected ConnectionAnchor getConnectionAnchor(EditPart supplier) {
-		// Now, the connection constraint anchor is constructed, setting from which end of the line it
-		// should anchor itself:
-		if ((supplier == null)  || (!(supplier instanceof DArrowEditPart))) return null; 
-		return new ConstraintAnchor((PolylineConnection)((DArrowEditPart)supplier).getFigure());
-	}
+	
 }

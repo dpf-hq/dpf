@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import no.hib.dpf.diagram.DArrow;
+import no.hib.dpf.diagram.DFakeNode;
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
 
@@ -47,6 +48,12 @@ public class DNodeDeleteCommand extends CompoundCommand {
 			throw new IllegalArgumentException();
 		}
 		setLabel("node deletion");
+		if(child instanceof DFakeNode){
+			parent = null;
+			this.child = child;
+			add(new DConstraintDeleteCommand(((DFakeNode)child).getDConstraint()));
+			return;
+		}
 		this.parent = child.getDGraph();
 		this.child = child;
 		List<DArrow> arrows = new ArrayList<DArrow>();
@@ -66,7 +73,8 @@ public class DNodeDeleteCommand extends CompoundCommand {
 
 	public void execute() {
 		super.execute();
-		parent.removeDNode(child);
+		if(parent != null)
+			parent.removeDNode(child);
 	}
 
 	public void redo() {
@@ -74,15 +82,16 @@ public class DNodeDeleteCommand extends CompoundCommand {
 	}
 	
 	public boolean canExecute() {
-		return (parent != null && child != null && super.canExecute());
+		return ((parent != null || child instanceof DFakeNode) && super.canExecute());
 	}
 	
 	public boolean canUndo() {
-		return (parent != null && child != null && super.canUndo());
+		return ((parent != null || child instanceof DFakeNode) && super.canUndo());
 	}
 
 	public void undo() {
-		parent.addDNode(child);
+		if(parent != null)
+			parent.addDNode(child);
 		super.undo();
 	}
 }

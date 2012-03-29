@@ -7,15 +7,18 @@
 package no.hib.dpf.diagram.impl;
 
 import java.util.Collection;
+import java.util.List;
 
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
+import no.hib.dpf.core.GraphHomomorphism;
+import no.hib.dpf.core.IDObject;
 import no.hib.dpf.core.Node;
 
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DConstraint;
+import no.hib.dpf.diagram.DElement;
 import no.hib.dpf.diagram.DNode;
-import no.hib.dpf.diagram.DOffset;
 import no.hib.dpf.diagram.DPredicate;
 import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.diagram.DiagramPackage;
@@ -44,9 +47,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link no.hib.dpf.diagram.impl.DConstraintImpl#getConstraint <em>Constraint</em>}</li>
  *   <li>{@link no.hib.dpf.diagram.impl.DConstraintImpl#getDNodes <em>DNodes</em>}</li>
  *   <li>{@link no.hib.dpf.diagram.impl.DConstraintImpl#getDArrows <em>DArrows</em>}</li>
- *   <li>{@link no.hib.dpf.diagram.impl.DConstraintImpl#getOffset <em>Offset</em>}</li>
- *   <li>{@link no.hib.dpf.diagram.impl.DConstraintImpl#getSource <em>Source</em>}</li>
- *   <li>{@link no.hib.dpf.diagram.impl.DConstraintImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link no.hib.dpf.diagram.impl.DConstraintImpl#getDPredicate <em>DPredicate</em>}</li>
  * </ul>
  * </p>
@@ -82,36 +82,6 @@ public class DConstraintImpl extends EObjectImpl implements DConstraint {
 	 * @ordered
 	 */
 	protected EList<DArrow> dArrows;
-
-	/**
-	 * The cached value of the '{@link #getOffset() <em>Offset</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOffset()
-	 * @generated
-	 * @ordered
-	 */
-	protected DOffset offset;
-
-	/**
-	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSource()
-	 * @generated
-	 * @ordered
-	 */
-	protected DArrow source;
-
-	/**
-	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTarget()
-	 * @generated
-	 * @ordered
-	 */
-	protected DArrow target;
 
 	/**
 	 * The cached value of the '{@link #getDPredicate() <em>DPredicate</em>}' reference.
@@ -191,10 +161,9 @@ public class DConstraintImpl extends EObjectImpl implements DConstraint {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public void setConstraint(Constraint newConstraint) {
-		if(newConstraint == constraint) return;
 		Constraint oldConstraint = constraint;
 		constraint = newConstraint;
 		if (eNotificationRequired())
@@ -230,169 +199,6 @@ public class DConstraintImpl extends EObjectImpl implements DConstraint {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DOffset getOffset() {
-		return offset;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetOffset(DOffset newOffset, NotificationChain msgs) {
-		DOffset oldOffset = offset;
-		offset = newOffset;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DiagramPackage.DCONSTRAINT__OFFSET, oldOffset, newOffset);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOffset(DOffset newOffset) {
-		if (newOffset != offset) {
-			NotificationChain msgs = null;
-			if (offset != null)
-				msgs = ((InternalEObject)offset).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DiagramPackage.DCONSTRAINT__OFFSET, null, msgs);
-			if (newOffset != null)
-				msgs = ((InternalEObject)newOffset).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DiagramPackage.DCONSTRAINT__OFFSET, null, msgs);
-			msgs = basicSetOffset(newOffset, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DCONSTRAINT__OFFSET, newOffset, newOffset));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DArrow getSource() {
-		if (source != null && source.eIsProxy()) {
-			InternalEObject oldSource = (InternalEObject)source;
-			source = (DArrow)eResolveProxy(oldSource);
-			if (source != oldSource) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiagramPackage.DCONSTRAINT__SOURCE, oldSource, source));
-			}
-		}
-		return source;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DArrow basicGetSource() {
-		return source;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetSource(DArrow newSource, NotificationChain msgs) {
-		DArrow oldSource = source;
-		source = newSource;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DiagramPackage.DCONSTRAINT__SOURCE, oldSource, newSource);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSource(DArrow newSource) {
-		if (newSource != source) {
-			NotificationChain msgs = null;
-			if (source != null)
-				msgs = ((InternalEObject)source).eInverseRemove(this, DiagramPackage.DARROW__CONSTRAINTS_FROM, DArrow.class, msgs);
-			if (newSource != null)
-				msgs = ((InternalEObject)newSource).eInverseAdd(this, DiagramPackage.DARROW__CONSTRAINTS_FROM, DArrow.class, msgs);
-			msgs = basicSetSource(newSource, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DCONSTRAINT__SOURCE, newSource, newSource));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DArrow getTarget() {
-		if (target != null && target.eIsProxy()) {
-			InternalEObject oldTarget = (InternalEObject)target;
-			target = (DArrow)eResolveProxy(oldTarget);
-			if (target != oldTarget) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiagramPackage.DCONSTRAINT__TARGET, oldTarget, target));
-			}
-		}
-		return target;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DArrow basicGetTarget() {
-		return target;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetTarget(DArrow newTarget, NotificationChain msgs) {
-		DArrow oldTarget = target;
-		target = newTarget;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DiagramPackage.DCONSTRAINT__TARGET, oldTarget, newTarget);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setTarget(DArrow newTarget) {
-		if (newTarget != target) {
-			NotificationChain msgs = null;
-			if (target != null)
-				msgs = ((InternalEObject)target).eInverseRemove(this, DiagramPackage.DARROW__CONSTRAINTS_TO, DArrow.class, msgs);
-			if (newTarget != null)
-				msgs = ((InternalEObject)newTarget).eInverseAdd(this, DiagramPackage.DARROW__CONSTRAINTS_TO, DArrow.class, msgs);
-			msgs = basicSetTarget(newTarget, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DCONSTRAINT__TARGET, newTarget, newTarget));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public DPredicate getDPredicate() {
 		if (dPredicate != null && dPredicate.eIsProxy()) {
 			InternalEObject oldDPredicate = (InternalEObject)dPredicate;
@@ -417,11 +223,13 @@ public class DConstraintImpl extends EObjectImpl implements DConstraint {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setDPredicate(DPredicate newDPredicate) {
 		DPredicate oldDPredicate = dPredicate;
 		dPredicate = newDPredicate;
+		if(constraint != null && !constraint.eIsProxy())
+			constraint.setPredicate(dPredicate != null ? dPredicate.getPredicate() : null);
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DCONSTRAINT__DPREDICATE, oldDPredicate, dPredicate));
 	}
@@ -446,12 +254,6 @@ public class DConstraintImpl extends EObjectImpl implements DConstraint {
 		getDArrows().addAll(dArrows);
 		if(!dSpecification.getDConstraints().contains(this))
 			dSpecification.getDConstraints().add(this);
-		if(dArrows.size() == 1){
-			DArrow darrow = dArrows.get(0);
-			if(darrow == null)
-				return;
-			darrow.getConstraintOffset().add(getOffset());
-		}
 	}
 
 
@@ -461,12 +263,6 @@ public class DConstraintImpl extends EObjectImpl implements DConstraint {
 	 * @generated NOT
 	 */
 	public void disconnect() {
-		EList<DArrow> darrows = getDArrows();
-		if(darrows.size() == 1){
-			DArrow darrow = darrows.get(0);
-			if(darrow != null)
-				darrow.getConstraintOffset().remove(getOffset());
-		}
 		DSpecification dSpecification = (DSpecification) eContainer();
 		Assert.isNotNull(dSpecification);
 		if(dSpecification.getDConstraints().contains(this))
@@ -482,7 +278,8 @@ public class DConstraintImpl extends EObjectImpl implements DConstraint {
 	 * @generated NOT
 	 */
 	public void addDArrow(DArrow dArrow) {
-		getConstraint().addArrow(dArrow.getArrow());
+		if(getConstraint() != null && dArrow.getArrow() != null)
+			getConstraint().addArrow(dArrow.getArrow());
 		getDArrows().add(dArrow);
 	}
 
@@ -492,7 +289,8 @@ public class DConstraintImpl extends EObjectImpl implements DConstraint {
 	 * @generated NOT
 	 */
 	public void addDNode(DNode dNode) {
-		getConstraint().addNode(dNode.getNode());
+		if(getConstraint() != null && dNode.getNode() != null)
+			getConstraint().addNode(dNode.getNode());
 		getDNodes().add(dNode);
 	}
 
@@ -509,14 +307,6 @@ public class DConstraintImpl extends EObjectImpl implements DConstraint {
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getDNodes()).basicAdd(otherEnd, msgs);
 			case DiagramPackage.DCONSTRAINT__DARROWS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getDArrows()).basicAdd(otherEnd, msgs);
-			case DiagramPackage.DCONSTRAINT__SOURCE:
-				if (source != null)
-					msgs = ((InternalEObject)source).eInverseRemove(this, DiagramPackage.DARROW__CONSTRAINTS_FROM, DArrow.class, msgs);
-				return basicSetSource((DArrow)otherEnd, msgs);
-			case DiagramPackage.DCONSTRAINT__TARGET:
-				if (target != null)
-					msgs = ((InternalEObject)target).eInverseRemove(this, DiagramPackage.DARROW__CONSTRAINTS_TO, DArrow.class, msgs);
-				return basicSetTarget((DArrow)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -533,12 +323,6 @@ public class DConstraintImpl extends EObjectImpl implements DConstraint {
 				return ((InternalEList<?>)getDNodes()).basicRemove(otherEnd, msgs);
 			case DiagramPackage.DCONSTRAINT__DARROWS:
 				return ((InternalEList<?>)getDArrows()).basicRemove(otherEnd, msgs);
-			case DiagramPackage.DCONSTRAINT__OFFSET:
-				return basicSetOffset(null, msgs);
-			case DiagramPackage.DCONSTRAINT__SOURCE:
-				return basicSetSource(null, msgs);
-			case DiagramPackage.DCONSTRAINT__TARGET:
-				return basicSetTarget(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -558,14 +342,6 @@ public class DConstraintImpl extends EObjectImpl implements DConstraint {
 				return getDNodes();
 			case DiagramPackage.DCONSTRAINT__DARROWS:
 				return getDArrows();
-			case DiagramPackage.DCONSTRAINT__OFFSET:
-				return getOffset();
-			case DiagramPackage.DCONSTRAINT__SOURCE:
-				if (resolve) return getSource();
-				return basicGetSource();
-			case DiagramPackage.DCONSTRAINT__TARGET:
-				if (resolve) return getTarget();
-				return basicGetTarget();
 			case DiagramPackage.DCONSTRAINT__DPREDICATE:
 				if (resolve) return getDPredicate();
 				return basicGetDPredicate();
@@ -593,15 +369,6 @@ public class DConstraintImpl extends EObjectImpl implements DConstraint {
 				getDArrows().clear();
 				getDArrows().addAll((Collection<? extends DArrow>)newValue);
 				return;
-			case DiagramPackage.DCONSTRAINT__OFFSET:
-				setOffset((DOffset)newValue);
-				return;
-			case DiagramPackage.DCONSTRAINT__SOURCE:
-				setSource((DArrow)newValue);
-				return;
-			case DiagramPackage.DCONSTRAINT__TARGET:
-				setTarget((DArrow)newValue);
-				return;
 			case DiagramPackage.DCONSTRAINT__DPREDICATE:
 				setDPredicate((DPredicate)newValue);
 				return;
@@ -626,15 +393,6 @@ public class DConstraintImpl extends EObjectImpl implements DConstraint {
 			case DiagramPackage.DCONSTRAINT__DARROWS:
 				getDArrows().clear();
 				return;
-			case DiagramPackage.DCONSTRAINT__OFFSET:
-				setOffset((DOffset)null);
-				return;
-			case DiagramPackage.DCONSTRAINT__SOURCE:
-				setSource((DArrow)null);
-				return;
-			case DiagramPackage.DCONSTRAINT__TARGET:
-				setTarget((DArrow)null);
-				return;
 			case DiagramPackage.DCONSTRAINT__DPREDICATE:
 				setDPredicate((DPredicate)null);
 				return;
@@ -656,16 +414,30 @@ public class DConstraintImpl extends EObjectImpl implements DConstraint {
 				return dNodes != null && !dNodes.isEmpty();
 			case DiagramPackage.DCONSTRAINT__DARROWS:
 				return dArrows != null && !dArrows.isEmpty();
-			case DiagramPackage.DCONSTRAINT__OFFSET:
-				return offset != null;
-			case DiagramPackage.DCONSTRAINT__SOURCE:
-				return source != null;
-			case DiagramPackage.DCONSTRAINT__TARGET:
-				return target != null;
 			case DiagramPackage.DCONSTRAINT__DPREDICATE:
 				return dPredicate != null;
 		}
 		return super.eIsSet(featureID);
+	}
+	protected DNode findDNode(Node node, List<DNode> dnodes){
+		for(DNode dNode : dnodes)
+			if(dNode.getNode() == node)
+				return dNode;
+				return null;
+	}
+	protected DArrow findDArrow(Arrow arrow, List<DArrow> darrows){
+		for(DArrow dArrow : darrows)
+			if(dArrow.getArrow() == arrow)
+				return dArrow;
+				return null;
+	}
+
+	protected DElement findDElement(GraphHomomorphism graHomomorphism, IDObject idObject){
+		if(idObject instanceof Node)
+			return findDNode(graHomomorphism.getNodeMapping().get(idObject), this.getDNodes());
+		if(idObject instanceof Arrow)
+			return findDArrow(graHomomorphism.getArrowMapping().get(idObject), this.getDArrows());
+		return null;
 	}
 
 } //DConstraintImpl

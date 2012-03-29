@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import no.hib.dpf.diagram.DBound;
+import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.diagram.DiagramPackage;
 import no.hib.dpf.editor.parts.listeners.UIAdapter;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;
@@ -179,9 +179,9 @@ public abstract class GraphicalConnectionEditPart extends AbstractConnectionEdit
     protected void handleModelChanged(Notification msg){}
 	protected void handleDiagramModelChanged(Notification msg){
 		if(msg.getNotifier() != null && msg.getNotifier() == getDiagramModel()){ 
-			switch(msg.getFeatureID(DBound.class)){
-			case DiagramPackage.DBOUND__LOCATION:
-			case DiagramPackage.DBOUND__SIZE:
+			switch(msg.getFeatureID(DNode.class)){
+			case DiagramPackage.DNODE__LOCATION:
+			case DiagramPackage.DNODE__SIZE:
 				refreshVisuals();
 				break;
 			}

@@ -328,8 +328,8 @@ public class DSpecificationImpl extends EObjectImpl implements DSpecification {
 			if (newDGraph != null)
 				msgs = ((InternalEObject)newDGraph).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DiagramPackage.DSPECIFICATION__DGRAPH, null, msgs);
 			msgs = basicSetDGraph(newDGraph, msgs);
-			if(getSpecification() != null)
-				getSpecification().setGraph(getDGraph().getGraph());
+			if(specification != null && !specification.eIsProxy())
+				specification.setGraph(dGraph != null ? dGraph.getGraph() : null);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())

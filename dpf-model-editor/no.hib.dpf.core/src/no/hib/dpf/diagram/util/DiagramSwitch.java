@@ -85,13 +85,22 @@ public class DiagramSwitch<T> extends Switch<T> {
 			case DiagramPackage.DNODE: {
 				DNode dNode = (DNode)theEObject;
 				T result = caseDNode(dNode);
-				if (result == null) result = caseDBound(dNode);
+				if (result == null) result = caseDElement(dNode);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DiagramPackage.DFAKE_NODE: {
+				DFakeNode dFakeNode = (DFakeNode)theEObject;
+				T result = caseDFakeNode(dFakeNode);
+				if (result == null) result = caseDNode(dFakeNode);
+				if (result == null) result = caseDElement(dFakeNode);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case DiagramPackage.DARROW: {
 				DArrow dArrow = (DArrow)theEObject;
 				T result = caseDArrow(dArrow);
+				if (result == null) result = caseDElement(dArrow);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -101,15 +110,30 @@ public class DiagramSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case DiagramPackage.DPREDICATE: {
-				DPredicate dPredicate = (DPredicate)theEObject;
-				T result = caseDPredicate(dPredicate);
+			case DiagramPackage.DARROW_LABEL_CONSTRAINT: {
+				DArrowLabelConstraint dArrowLabelConstraint = (DArrowLabelConstraint)theEObject;
+				T result = caseDArrowLabelConstraint(dArrowLabelConstraint);
+				if (result == null) result = caseDConstraint(dArrowLabelConstraint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case DiagramPackage.DBOUND: {
-				DBound dBound = (DBound)theEObject;
-				T result = caseDBound(dBound);
+			case DiagramPackage.DGENERIC_ARROW_CONSTRAINT: {
+				DGenericArrowConstraint dGenericArrowConstraint = (DGenericArrowConstraint)theEObject;
+				T result = caseDGenericArrowConstraint(dGenericArrowConstraint);
+				if (result == null) result = caseDConstraint(dGenericArrowConstraint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DiagramPackage.DCOMPOSED_CONSTRAINT: {
+				DComposedConstraint dComposedConstraint = (DComposedConstraint)theEObject;
+				T result = caseDComposedConstraint(dComposedConstraint);
+				if (result == null) result = caseDConstraint(dComposedConstraint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DiagramPackage.DPREDICATE: {
+				DPredicate dPredicate = (DPredicate)theEObject;
+				T result = caseDPredicate(dPredicate);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -128,6 +152,12 @@ public class DiagramSwitch<T> extends Switch<T> {
 			case DiagramPackage.VISUALIZATION: {
 				Visualization visualization = (Visualization)theEObject;
 				T result = caseVisualization(visualization);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DiagramPackage.DELEMENT: {
+				DElement dElement = (DElement)theEObject;
+				T result = caseDElement(dElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -181,6 +211,21 @@ public class DiagramSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>DFake Node</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>DFake Node</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDFakeNode(DFakeNode object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>DArrow</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -211,6 +256,51 @@ public class DiagramSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>DArrow Label Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>DArrow Label Constraint</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDArrowLabelConstraint(DArrowLabelConstraint object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>DGeneric Arrow Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>DGeneric Arrow Constraint</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDGenericArrowConstraint(DGenericArrowConstraint object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>DComposed Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>DComposed Constraint</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDComposedConstraint(DComposedConstraint object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>DPredicate</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -222,21 +312,6 @@ public class DiagramSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseDPredicate(DPredicate object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>DBound</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>DBound</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseDBound(DBound object) {
 		return null;
 	}
 
@@ -282,6 +357,21 @@ public class DiagramSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseVisualization(Visualization object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>DElement</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>DElement</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDElement(DElement object) {
 		return null;
 	}
 

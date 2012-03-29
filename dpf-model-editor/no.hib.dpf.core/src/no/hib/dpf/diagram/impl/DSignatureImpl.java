@@ -138,7 +138,7 @@ public class DSignatureImpl extends EObjectImpl implements DSignature {
 	public void addDPredicate(DPredicate dPredicate) {
 		if(!getDPredicates().contains(dPredicate)){
 			getDPredicates().add(dPredicate);
-			signature.addPredicate(dPredicate.getPredicate());
+			getSignature().addPredicate(dPredicate.getPredicate());
 		}
 	}
 
@@ -150,7 +150,7 @@ public class DSignatureImpl extends EObjectImpl implements DSignature {
 	public void removeDPredicate(DPredicate dPredicate) {
 		if(getDPredicates().contains(dPredicate)){
 			getDPredicates().remove(dPredicate);
-			signature.removePredicate(dPredicate.getPredicate());
+			getSignature().removePredicate(dPredicate.getPredicate());
 		}
 	}
 

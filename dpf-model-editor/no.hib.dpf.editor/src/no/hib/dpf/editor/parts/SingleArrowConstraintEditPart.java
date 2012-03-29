@@ -11,16 +11,15 @@
 *******************************************************************************/
 package no.hib.dpf.editor.parts;
 
-import org.eclipse.core.runtime.Assert;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 
 import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.CorePackage;
+import no.hib.dpf.diagram.DArrowLabelConstraint;
 import no.hib.dpf.diagram.DConstraint;
 import no.hib.dpf.diagram.DOffset;
 import no.hib.dpf.editor.policies.ArrowTextMovePolicy;
@@ -68,24 +67,25 @@ public class SingleArrowConstraintEditPart extends ArrowLabelEditPart {
 	public void performRequest(Request request) { }
 	
 	protected DConstraint getDConstraint(){
-		DOffset offset = getDOffset();
-		EObject eObject = offset.eContainer();
-		Assert.isTrue(eObject instanceof DConstraint);
-		return (DConstraint) eObject;
+		return (DConstraint) getModel();
+	}
+	
+	public DOffset getDOffset(){
+		return ((DArrowLabelConstraint)getModel()).getOffset();
 	}
 	protected void listen(){
 		super.listen();
-		addUIAdapter(getDConstraint().getConstraint(), diagrammodelListener);
+		addUIAdapter(getDConstraint().getConstraint(), modelListener);
 		DPFEditorPreferences.getDefault().getPreferenceStore().addPropertyChangeListener(propertyListener);
 	}
 	protected void unlisten(){
-		super.unlisten();
 		DPFEditorPreferences.getDefault().getPreferenceStore().removePropertyChangeListener(propertyListener);
-		removeUIAdapter(getDConstraint().getConstraint(), diagrammodelListener);
+		removeUIAdapter(getDConstraint().getConstraint(), modelListener);
+		super.unlisten();
 	}
 	
-	protected void handleDiagramModelChanged(Notification msg){
-		super.handleDiagramModelChanged(msg);
+	protected void handleModelChanged(Notification msg){
+		super.handleModelChanged(msg);
 		if(msg.getNotifier() != null && msg.getNotifier() == getDConstraint().getConstraint()){ 
 			switch(msg.getFeatureID(Constraint.class)){
 			case CorePackage.CONSTRAINT__PARAMETERS:

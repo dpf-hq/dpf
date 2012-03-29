@@ -34,14 +34,14 @@ public abstract class ParallelArrowsConstraintEditPart extends DConstraintEditPa
 	 *            true if supplier is source, false if not.
 	 * @return A new ConnectionAnchor.
 	 */
-	@Override
-	protected ConnectionAnchor getConnectionAnchor(EditPart supplier) {
-		// Constructing the anchor with "isSource" ensures that the target end
-		// of one arrow is used as well as the source end of the opposite arrow
-		// (the negation is to make the anchor appear on the right side)
-		if ((supplier == null)  || (!(supplier instanceof DArrowEditPart))) {
-			return null;
-		}
-		return new OppositeArrowsConstraintAnchor((PolylineConnection)((DArrowEditPart)supplier).getFigure());
-	}
+//	@Override
+//	protected ConnectionAnchor getConnectionAnchor(EditPart supplier) {
+//		// Constructing the anchor with "isSource" ensures that the target end
+//		// of one arrow is used as well as the source end of the opposite arrow
+//		// (the negation is to make the anchor appear on the right side)
+//		if ((supplier == null)  || (!(supplier instanceof DArrowEditPart))) {
+//			return null;
+//		}
+//		return new OppositeArrowsConstraintAnchor((PolylineConnection)((DArrowEditPart)supplier).getFigure());
+//	}
 }

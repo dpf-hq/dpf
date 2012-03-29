@@ -148,6 +148,32 @@ public class DiagramItemProviderAdapterFactory extends DiagramAdapterFactory imp
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link no.hib.dpf.diagram.DFakeNode} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DFakeNodeItemProvider dFakeNodeItemProvider;
+
+
+	/**
+	 * This creates an adapter for a {@link no.hib.dpf.diagram.DFakeNode}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDFakeNodeAdapter() {
+		if (dFakeNodeItemProvider == null) {
+			dFakeNodeItemProvider = new DFakeNodeItemProvider(this);
+		}
+
+		return dFakeNodeItemProvider;
+	}
+
+
+
+	/**
 	 * This keeps track of the one adapter used for all {@link no.hib.dpf.diagram.DArrow} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -194,6 +220,82 @@ public class DiagramItemProviderAdapterFactory extends DiagramAdapterFactory imp
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link no.hib.dpf.diagram.DArrowLabelConstraint} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DArrowLabelConstraintItemProvider dArrowLabelConstraintItemProvider;
+
+
+	/**
+	 * This creates an adapter for a {@link no.hib.dpf.diagram.DArrowLabelConstraint}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDArrowLabelConstraintAdapter() {
+		if (dArrowLabelConstraintItemProvider == null) {
+			dArrowLabelConstraintItemProvider = new DArrowLabelConstraintItemProvider(this);
+		}
+
+		return dArrowLabelConstraintItemProvider;
+	}
+
+
+
+	/**
+	 * This keeps track of the one adapter used for all {@link no.hib.dpf.diagram.DGenericArrowConstraint} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DGenericArrowConstraintItemProvider dGenericArrowConstraintItemProvider;
+
+
+	/**
+	 * This creates an adapter for a {@link no.hib.dpf.diagram.DGenericArrowConstraint}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDGenericArrowConstraintAdapter() {
+		if (dGenericArrowConstraintItemProvider == null) {
+			dGenericArrowConstraintItemProvider = new DGenericArrowConstraintItemProvider(this);
+		}
+
+		return dGenericArrowConstraintItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link no.hib.dpf.diagram.DComposedConstraint} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DComposedConstraintItemProvider dComposedConstraintItemProvider;
+
+
+	/**
+	 * This creates an adapter for a {@link no.hib.dpf.diagram.DComposedConstraint}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDComposedConstraintAdapter() {
+		if (dComposedConstraintItemProvider == null) {
+			dComposedConstraintItemProvider = new DComposedConstraintItemProvider(this);
+		}
+
+		return dComposedConstraintItemProvider;
+	}
+
+
+
+	/**
 	 * This keeps track of the one adapter used for all {@link no.hib.dpf.diagram.DPredicate} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -215,32 +317,6 @@ public class DiagramItemProviderAdapterFactory extends DiagramAdapterFactory imp
 
 		return dPredicateItemProvider;
 	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link no.hib.dpf.diagram.DBound} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected DBoundItemProvider dBoundItemProvider;
-
-
-	/**
-	 * This creates an adapter for a {@link no.hib.dpf.diagram.DBound}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createDBoundAdapter() {
-		if (dBoundItemProvider == null) {
-			dBoundItemProvider = new DBoundItemProvider(this);
-		}
-
-		return dBoundItemProvider;
-	}
-
-
 
 	/**
 	 * This keeps track of the one adapter used for all {@link no.hib.dpf.diagram.DOffset} instances.
@@ -310,6 +386,30 @@ public class DiagramItemProviderAdapterFactory extends DiagramAdapterFactory imp
 		}
 
 		return visualizationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link no.hib.dpf.diagram.DElement} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DElementItemProvider dElementItemProvider;
+
+
+	/**
+	 * This creates an adapter for a {@link no.hib.dpf.diagram.DElement}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDElementAdapter() {
+		if (dElementItemProvider == null) {
+			dElementItemProvider = new DElementItemProvider(this);
+		}
+
+		return dElementItemProvider;
 	}
 
 	/**
@@ -414,13 +514,17 @@ public class DiagramItemProviderAdapterFactory extends DiagramAdapterFactory imp
 		if (dSpecificationItemProvider != null) dSpecificationItemProvider.dispose();
 		if (dGraphItemProvider != null) dGraphItemProvider.dispose();
 		if (dNodeItemProvider != null) dNodeItemProvider.dispose();
+		if (dFakeNodeItemProvider != null) dFakeNodeItemProvider.dispose();
 		if (dArrowItemProvider != null) dArrowItemProvider.dispose();
 		if (dConstraintItemProvider != null) dConstraintItemProvider.dispose();
+		if (dArrowLabelConstraintItemProvider != null) dArrowLabelConstraintItemProvider.dispose();
+		if (dGenericArrowConstraintItemProvider != null) dGenericArrowConstraintItemProvider.dispose();
+		if (dComposedConstraintItemProvider != null) dComposedConstraintItemProvider.dispose();
 		if (dPredicateItemProvider != null) dPredicateItemProvider.dispose();
-		if (dBoundItemProvider != null) dBoundItemProvider.dispose();
 		if (dOffsetItemProvider != null) dOffsetItemProvider.dispose();
 		if (dSignatureItemProvider != null) dSignatureItemProvider.dispose();
 		if (visualizationItemProvider != null) visualizationItemProvider.dispose();
+		if (dElementItemProvider != null) dElementItemProvider.dispose();
 	}
 
 }

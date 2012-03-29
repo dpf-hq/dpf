@@ -168,7 +168,7 @@ public class SignatureImpl extends EObjectImpl implements Signature {
 	 * @generated NOT
 	 */
 	public void addPredicate(Predicate dPredicate) {
-		if(!getPredicates().contains(dPredicate))
+		if(dPredicate != null && !getPredicates().contains(dPredicate))
 			getPredicates().add(dPredicate);
 	}
 
@@ -178,7 +178,7 @@ public class SignatureImpl extends EObjectImpl implements Signature {
 	 * @generated NOT
 	 */
 	public void removePredicate(Predicate dPredicate) {
-		if(getPredicates().contains(dPredicate))
+		if(dPredicate != null && getPredicates().contains(dPredicate))
 			getPredicates().remove(dPredicate);
 	}
 

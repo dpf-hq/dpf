@@ -22,8 +22,8 @@ import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.Node;
-import no.hib.dpf.diagram.DBound;
 import no.hib.dpf.diagram.DGraph;
+import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.diagram.DiagramPackage;
 import no.hib.dpf.editor.figures.DPFShortestPathConnectionRouter;
 import no.hib.dpf.editor.policies.DGraphXYLayoutEditPolicy;
@@ -138,8 +138,8 @@ class DGrahpEditPart extends GraphicalEditPartWithListener {
 	 * @see org.eclipse.gef.editparts.AbstractEditPart#getModelChildren()
 	 */
 	@Override
-	protected List<DBound> getModelChildren() {
-		EList<DBound> child = new BasicEList<DBound>();
+	protected List<DNode> getModelChildren() {
+		EList<DNode> child = new BasicEList<DNode>();
 		child.addAll(getDGraph().getDNodes());
 		return child; 
 	}

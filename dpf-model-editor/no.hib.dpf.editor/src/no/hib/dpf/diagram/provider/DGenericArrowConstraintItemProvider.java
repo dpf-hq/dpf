@@ -10,17 +10,10 @@ package no.hib.dpf.diagram.provider;
 import java.util.Collection;
 import java.util.List;
 
-
-import no.hib.dpf.core.provider.MetamodelEditPlugin;
-import no.hib.dpf.diagram.DBound;
 import no.hib.dpf.diagram.DiagramPackage;
-
-import org.eclipse.draw2d.geometry.Point;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -29,32 +22,28 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
-import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link no.hib.dpf.diagram.DBound} object.
+ * This is the item provider adapter for a {@link no.hib.dpf.diagram.DGenericArrowConstraint} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class DConfigItemProvider
-	extends ItemProviderAdapter
+public class DGenericArrowConstraintItemProvider
+	extends DConstraintItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
 		ITreeItemContentProvider,
 		IItemLabelProvider,
 		IItemPropertySource {
-	private final String DNODE_CATEGORY = "DNode";
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DConfigItemProvider(AdapterFactory adapterFactory) {
+	public DGenericArrowConstraintItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -69,65 +58,71 @@ public class DConfigItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addLocationPropertyDescriptor(object);
-			addSizePropertyDescriptor(object);
+			addSourcePropertyDescriptor(object);
+			addTargetPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Location feature.
+	 * This adds a property descriptor for the Source feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
-	protected void addLocationPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
+	protected void addSourcePropertyDescriptor(Object object) {
+		List<IItemPropertyDescriptor> target = itemPropertyDescriptors;
+		if(target == null)
+			target = unparametered != null ? unparametered : parametered;
+		target.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_DConfig_location_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DConfig_location_feature", "_UI_DConfig_type"),
-				 DiagramPackage.Literals.DBOUND__LOCATION,
+				 getString("_UI_DGenericArrowConstraint_source_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DGenericArrowConstraint_source_feature", "_UI_DGenericArrowConstraint_type"),
+				 DiagramPackage.Literals.DGENERIC_ARROW_CONSTRAINT__SOURCE,
 				 true,
 				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 DNODE_CATEGORY,
+				 true,
+				 null,
+				 null,
 				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Size feature.
+	 * This adds a property descriptor for the Target feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
-	protected void addSizePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
+	protected void addTargetPropertyDescriptor(Object object) {
+		List<IItemPropertyDescriptor> target = itemPropertyDescriptors;
+		if(target == null)
+			target = unparametered != null ? unparametered : parametered;
+		target.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_DConfig_size_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DConfig_size_feature", "_UI_DConfig_type"),
-				 DiagramPackage.Literals.DBOUND__SIZE,
+				 getString("_UI_DGenericArrowConstraint_target_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DGenericArrowConstraint_target_feature", "_UI_DGenericArrowConstraint_type"),
+				 DiagramPackage.Literals.DGENERIC_ARROW_CONSTRAINT__TARGET,
 				 true,
 				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 DNODE_CATEGORY,
+				 true,
+				 null,
+				 null,
 				 null));
 	}
 
 	/**
-	 * This returns DConfig.gif.
+	 * This returns DGenericArrowConstraint.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/DConfig"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/DGenericArrowConstraint"));
 	}
 
 	/**
@@ -138,11 +133,7 @@ public class DConfigItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		Point labelValue = ((DBound)object).getLocation();
-		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ?
-			getString("_UI_DConfig_type") :
-			getString("_UI_DConfig_type") + " " + label;
+		return getString("_UI_DGenericArrowConstraint_type");
 	}
 
 	/**
@@ -155,13 +146,6 @@ public class DConfigItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(DBound.class)) {
-			case DiagramPackage.DBOUND__LOCATION:
-			case DiagramPackage.DBOUND__SIZE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-		}
 		super.notifyChanged(notification);
 	}
 
@@ -175,17 +159,6 @@ public class DConfigItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return MetamodelEditPlugin.INSTANCE;
 	}
 
 }

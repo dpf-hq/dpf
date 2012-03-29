@@ -21,9 +21,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link no.hib.dpf.diagram.DConstraint#getConstraint <em>Constraint</em>}</li>
  *   <li>{@link no.hib.dpf.diagram.DConstraint#getDNodes <em>DNodes</em>}</li>
  *   <li>{@link no.hib.dpf.diagram.DConstraint#getDArrows <em>DArrows</em>}</li>
- *   <li>{@link no.hib.dpf.diagram.DConstraint#getOffset <em>Offset</em>}</li>
- *   <li>{@link no.hib.dpf.diagram.DConstraint#getSource <em>Source</em>}</li>
- *   <li>{@link no.hib.dpf.diagram.DConstraint#getTarget <em>Target</em>}</li>
  *   <li>{@link no.hib.dpf.diagram.DConstraint#getDPredicate <em>DPredicate</em>}</li>
  * </ul>
  * </p>
@@ -93,88 +90,6 @@ public interface DConstraint extends EObject {
 	 * @generated
 	 */
 	EList<DArrow> getDArrows();
-/**
-	 * Returns the value of the '<em><b>Offset</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Offset</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Offset</em>' containment reference.
-	 * @see #setOffset(DOffset)
-	 * @see no.hib.dpf.diagram.DiagramPackage#getDConstraint_Offset()
-	 * @model containment="true"
-	 * @generated
-	 */
-	DOffset getOffset();
-
-	/**
-	 * Sets the value of the '{@link no.hib.dpf.diagram.DConstraint#getOffset <em>Offset</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Offset</em>' containment reference.
-	 * @see #getOffset()
-	 * @generated
-	 */
-	void setOffset(DOffset value);
-
-/**
-	 * Returns the value of the '<em><b>Source</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link no.hib.dpf.diagram.DArrow#getConstraintsFrom <em>Constraints From</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Source</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Source</em>' reference.
-	 * @see #setSource(DArrow)
-	 * @see no.hib.dpf.diagram.DiagramPackage#getDConstraint_Source()
-	 * @see no.hib.dpf.diagram.DArrow#getConstraintsFrom
-	 * @model opposite="constraintsFrom"
-	 * @generated
-	 */
-	DArrow getSource();
-
-	/**
-	 * Sets the value of the '{@link no.hib.dpf.diagram.DConstraint#getSource <em>Source</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Source</em>' reference.
-	 * @see #getSource()
-	 * @generated
-	 */
-	void setSource(DArrow value);
-
-	/**
-	 * Returns the value of the '<em><b>Target</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link no.hib.dpf.diagram.DArrow#getConstraintsTo <em>Constraints To</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Target</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Target</em>' reference.
-	 * @see #setTarget(DArrow)
-	 * @see no.hib.dpf.diagram.DiagramPackage#getDConstraint_Target()
-	 * @see no.hib.dpf.diagram.DArrow#getConstraintsTo
-	 * @model opposite="constraintsTo"
-	 * @generated
-	 */
-	DArrow getTarget();
-
-	/**
-	 * Sets the value of the '{@link no.hib.dpf.diagram.DConstraint#getTarget <em>Target</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Target</em>' reference.
-	 * @see #getTarget()
-	 * @generated
-	 */
-	void setTarget(DArrow value);
-
 /**
 	 * Returns the value of the '<em><b>DPredicate</b></em>' reference.
 	 * <!-- begin-user-doc -->

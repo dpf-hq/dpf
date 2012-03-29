@@ -382,6 +382,21 @@ public class DSpecificationItemProvider
 			(createChildParameter
 				(DiagramPackage.Literals.DSPECIFICATION__DCONSTRAINTS,
 				 DiagramFactory.eINSTANCE.createDConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramPackage.Literals.DSPECIFICATION__DCONSTRAINTS,
+				 DiagramFactory.eINSTANCE.createDArrowLabelConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramPackage.Literals.DSPECIFICATION__DCONSTRAINTS,
+				 DiagramFactory.eINSTANCE.createDGenericArrowConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramPackage.Literals.DSPECIFICATION__DCONSTRAINTS,
+				 DiagramFactory.eINSTANCE.createDComposedConstraint()));
 	}
 
 	/**

@@ -55,13 +55,13 @@ public interface DiagramFactory extends EFactory {
 	DNode createDNode();
 
 	/**
-	 * Returns a new object of class '<em>DNode</em>'.
+	 * Returns a new object of class '<em>DFake Node</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>DNode</em>'.
-	 * @generated NOT
+	 * @return a new object of class '<em>DFake Node</em>'.
+	 * @generated
 	 */
-	//DNode createDNode();
+	DFakeNode createDFakeNode();
 
 	/**
 	 * Returns a new object of class '<em>DArrow</em>'.
@@ -72,6 +72,16 @@ public interface DiagramFactory extends EFactory {
 	 */
 	DArrow createDArrow();
 
+	/**
+	 * Returns a new object of class '<em>DConstraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>DConstraint</em>'.
+	 * @generated
+	 */
+	DConstraint createDConstraint();
+
+	
 	/**
 	 * Returns a new object of class '<em>DArrow</em>'.
 	 * <!-- begin-user-doc -->
@@ -90,14 +100,32 @@ public interface DiagramFactory extends EFactory {
 	 */
 	DArrow createDArrow(String name, DNode source, DNode target, DArrow type);
 
-	/**
-	 * Returns a new object of class '<em>DConstraint</em>'.
+		/**
+	 * Returns a new object of class '<em>DArrow Label Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>DConstraint</em>'.
+	 * @return a new object of class '<em>DArrow Label Constraint</em>'.
 	 * @generated
 	 */
-	DConstraint createDConstraint();
+	DArrowLabelConstraint createDArrowLabelConstraint();
+
+	/**
+	 * Returns a new object of class '<em>DGeneric Arrow Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>DGeneric Arrow Constraint</em>'.
+	 * @generated
+	 */
+	DGenericArrowConstraint createDGenericArrowConstraint();
+
+	/**
+	 * Returns a new object of class '<em>DComposed Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>DComposed Constraint</em>'.
+	 * @generated
+	 */
+	DComposedConstraint createDComposedConstraint();
 
 	/**
 	 * Returns a new object of class '<em>DPredicate</em>'.
@@ -107,15 +135,6 @@ public interface DiagramFactory extends EFactory {
 	 * @generated
 	 */
 	DPredicate createDPredicate();
-
-	/**
-	 * Returns a new object of class '<em>DBound</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>DBound</em>'.
-	 * @generated
-	 */
-	DBound createDBound();
 
 	/**
 	 * Returns a new object of class '<em>DOffset</em>'.
@@ -143,6 +162,15 @@ public interface DiagramFactory extends EFactory {
 	 * @generated
 	 */
 	Visualization createVisualization();
+
+	/**
+	 * Returns a new object of class '<em>DElement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>DElement</em>'.
+	 * @generated
+	 */
+	DElement createDElement();
 
 	/**
 	 * Returns the package supported by this factory.

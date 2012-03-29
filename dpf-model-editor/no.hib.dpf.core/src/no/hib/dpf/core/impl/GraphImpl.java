@@ -631,27 +631,27 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	}
 	@Override
 	public void addNode(Node node) {
-		if(!getNodes().contains(node))
+		if(node != null && !getNodes().contains(node))
 			getNodes().add(node);
 		
 	}
 
 	@Override
 	public void addArrow(Arrow Arrow) {
-		if(!getArrows().contains(Arrow))
+		if(Arrow != null && !getArrows().contains(Arrow))
 			getArrows().add(Arrow);
 		
 	}
 	@Override
 	public void removeNode(Node node) {
-		if(getNodes().contains(node))
+		if(node != null && getNodes().contains(node))
 			getNodes().remove(node);
 		
 	}
 	
 	@Override
 	public void removeArrow(Arrow Arrow) {
-		if(getArrows().contains(Arrow))
+		if(Arrow != null && getArrows().contains(Arrow))
 			getArrows().remove(Arrow);
 		
 	}

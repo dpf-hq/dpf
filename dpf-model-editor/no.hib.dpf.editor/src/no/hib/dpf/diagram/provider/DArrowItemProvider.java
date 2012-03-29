@@ -13,8 +13,8 @@ import java.util.List;
 
 
 import no.hib.dpf.core.provider.ArrowItemProvider;
-import no.hib.dpf.core.provider.MetamodelEditPlugin;
 import no.hib.dpf.diagram.DArrow;
+import no.hib.dpf.diagram.DiagramFactory;
 import no.hib.dpf.diagram.DiagramPackage;
 import no.hib.dpf.editor.extension_points.FigureConfigureManager;
 import no.hib.dpf.utils.DPFConstants;
@@ -22,8 +22,8 @@ import no.hib.dpf.utils.DPFConstants;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -32,7 +32,6 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
@@ -42,7 +41,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class DArrowItemProvider
-	extends ItemProviderAdapter
+	extends DElementItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -81,7 +80,6 @@ public class DArrowItemProvider
 //			addDConstraintsPropertyDescriptor(object);
 			addBendpointsPropertyDescriptor(object);
 			addNameOffsetPropertyDescriptor(object);
-			addConstraintOffsetPropertyDescriptor(object);
 //			addConstraintsFromPropertyDescriptor(object);
 //			addConstraintsToPropertyDescriptor(object);
 			if(object instanceof DArrow)
@@ -294,69 +292,33 @@ public class DArrowItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Constraint Offset feature.
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
-	protected void addConstraintOffsetPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_DArrow_constraintOffset_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DArrow_constraintOffset_feature", "_UI_DArrow_type"),
-				 DiagramPackage.Literals.DARROW__CONSTRAINT_OFFSET,
-				 false,
-				 false,
-				 true,
-				 null,
-				 DPFConstants.DARROW_CATEGORY,
-				 null));
+	@Override
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(DiagramPackage.Literals.DARROW__NAME_OFFSET);
+		}
+		return childrenFeatures;
 	}
 
 	/**
-	 * This adds a property descriptor for the Constraints From feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
-	protected void addConstraintsFromPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_DArrow_constraintsFrom_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DArrow_constraintsFrom_feature", "_UI_DArrow_type"),
-				 DiagramPackage.Literals.DARROW__CONSTRAINTS_FROM,
-				 false,
-				 false,
-				 true,
-				 null,
-				 DPFConstants.DARROW_CATEGORY,
-				 null));
-	}
+	@Override
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
 
-	/**
-	 * This adds a property descriptor for the Constraints To feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	protected void addConstraintsToPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_DArrow_constraintsTo_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DArrow_constraintsTo_feature", "_UI_DArrow_type"),
-				 DiagramPackage.Literals.DARROW__CONSTRAINTS_TO,
-				 false,
-				 false,
-				 true,
-				 null,
-				 DPFConstants.DARROW_CATEGORY,
-				 null));
+		return super.getChildFeature(object, child);
 	}
 
 	/**
@@ -396,8 +358,10 @@ public class DArrowItemProvider
 			case DiagramPackage.DARROW__CONFIGURE_STRING:
 			case DiagramPackage.DARROW__LINE_STYLE:
 			case DiagramPackage.DARROW__BENDPOINTS:
-			case DiagramPackage.DARROW__NAME_OFFSET:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case DiagramPackage.DARROW__NAME_OFFSET:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -413,17 +377,11 @@ public class DArrowItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-	}
 
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return MetamodelEditPlugin.INSTANCE;
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramPackage.Literals.DARROW__NAME_OFFSET,
+				 DiagramFactory.eINSTANCE.createDOffset()));
 	}
 
 }

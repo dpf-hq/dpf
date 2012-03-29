@@ -10,6 +10,7 @@ import no.hib.dpf.core.Predicate;
 
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DPredicate;
+import no.hib.dpf.diagram.DSignature;
 import no.hib.dpf.diagram.DiagramPackage;
 
 import no.hib.dpf.diagram.Visualization;
@@ -18,6 +19,7 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -226,11 +228,8 @@ public class DPredicateImpl extends EObjectImpl implements DPredicate {
 			if (newDGraph != null)
 				msgs = ((InternalEObject)newDGraph).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DiagramPackage.DPREDICATE__DGRAPH, null, msgs);
 			msgs = basicSetDGraph(newDGraph, msgs);
-			if(getPredicate() != null)
-				if(getPredicate().getShape() == null )
-					getPredicate().setShape(getDGraph().getGraph());
-				else
-					getDGraph().setGraph(getPredicate().getShape());
+			if(predicate != null && !predicate.eIsProxy())
+				predicate.setShape(dGraph != null ? dGraph.getGraph() : null);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
@@ -432,6 +431,16 @@ public class DPredicateImpl extends EObjectImpl implements DPredicate {
 		result.append(icon);
 		result.append(')');
 		return result.toString();
+	}
+	
+	public NotificationChain eBasicSetContainer(InternalEObject newContainer, int newContainerFeatureID, NotificationChain msgs){
+		EObject oldSignature = eContainer();
+		if(oldSignature instanceof DSignature && ((DSignature) oldSignature).getSignature() != null)
+			((DSignature) oldSignature).getSignature().removePredicate(getPredicate());
+		super.eBasicSetContainer(newContainer, newContainerFeatureID, msgs);
+		if(newContainer instanceof DSignature && ((DSignature) newContainer).getSignature() != null)
+			((DSignature) newContainer).getSignature().addPredicate(getPredicate());
+		return msgs;
 	}
 
 } //DPredicateImpl

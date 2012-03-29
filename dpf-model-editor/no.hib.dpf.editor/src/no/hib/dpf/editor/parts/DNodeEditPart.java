@@ -25,8 +25,7 @@ import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.Node;
-import no.hib.dpf.diagram.DArrow;
-import no.hib.dpf.diagram.DBound;
+import no.hib.dpf.diagram.DFakeNode;
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.diagram.DiagramPackage;
 import no.hib.dpf.editor.extension_points.FigureConfigureManager;
@@ -65,7 +64,7 @@ import org.eclipse.jface.viewers.TextCellEditor;
  */
 public class DNodeEditPart extends GraphicalEditPartWithListener implements NodeEditPart{
 
-	private Map<DNodeEditPart, List<ConnectionAnchor>> anchors = new HashMap<DNodeEditPart, List<ConnectionAnchor>>();
+	private Map<NodeEditPart, List<ConnectionAnchor>> anchors = new HashMap<NodeEditPart, List<ConnectionAnchor>>();
 
 	public DNodeEditPart() {
 		super();
@@ -74,7 +73,8 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 	public void setModel(Object object){
 		super.setModel(object);
 		DNode dNode = getDNode();
-		dNode.setConfigureString(dNode.getDType().getConfigureString());
+		if(!(dNode instanceof DFakeNode))
+			dNode.setConfigureString(dNode.getDType().getConfigureString());
 	}
 	/*
 	 * (non-Javadoc)
@@ -102,6 +102,8 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 
 	private String getNodeLabelName() {
 		String result = "";
+		if(getModel() instanceof DFakeNode)
+			return ((DFakeNode)getModel()).getDConstraint().getDPredicate().getSimpleName();
 		if(getDPFNode().getName() != null)
 			result += getDPFNode().getName();
 		Node type = getType();
@@ -160,8 +162,7 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 	}
 
 	private ConnectionAnchor getConnectionAnchor(ConnectionEditPart connection, boolean isSourceAnchor) {
-
-		DNodeEditPart oppositeEnd = getOppositeEnd(connection, isSourceAnchor);
+		NodeEditPart oppositeEnd = getOppositeEnd(connection, isSourceAnchor);
 		List<ConnectionAnchor> previousAnchorList;
 		ConnectionAnchor previousAnchor;
 
@@ -211,24 +212,30 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 		return null;		
 	}
 
-	private DNodeEditPart getOppositeEnd(ConnectionEditPart connection,
-			boolean isSourceAnchor) {
-		if (connection == null) {
+	private NodeEditPart getOppositeEnd(ConnectionEditPart connection, boolean isSourceAnchor) {
+		if (connection == null) 
 			return null;
-		} else if (isSourceAnchor) {
-			return (DNodeEditPart) connection.getTarget();
-		}
-		return (DNodeEditPart) connection.getSource();
+		if (isSourceAnchor) 
+			return (NodeEditPart) connection.getTarget();
+		return (NodeEditPart) connection.getSource();
 	}
 
 	@Override
-	protected List<DArrow> getModelSourceConnections() {
-		return getDNode().getDOutgoings();
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	protected List<?> getModelSourceConnections() {
+		EList sources = new BasicEList();
+		sources.addAll(getDNode().getDOutgoings());
+		sources.addAll(getDNode().getConstraintsFrom());
+		return sources;
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
-	protected List<DArrow> getModelTargetConnections() {
-		return getDNode().getDIncomings();
+	protected List<?> getModelTargetConnections() {
+		EList targets = new BasicEList();
+		targets.addAll(getDNode().getDIncomings());
+		targets.addAll(getDNode().getConstraintsTo());
+		return targets;
 	}
 
 	public ConnectionAnchor createConnectionAnchor(ConnectionEditPart connection, boolean b, DNodeEditPart owner){
@@ -269,7 +276,7 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 		return createConnectionAnchor(null, false, getAnchorOwner(null, false));
 	}
 
-	protected DBound getDiagramModel(){ return (DBound) getModel(); }
+	protected DNode getDiagramModel(){ return (DNode) getModel(); }
 	
 	protected void refreshVisuals() {
 		try {
@@ -351,9 +358,11 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 		if(msg.getNotifier() != null && msg.getNotifier() == getDiagramModel()){ 
 			switch(msg.getFeatureID(DNode.class)){
 			case DiagramPackage.DNODE__DOUTGOINGS:
+			case DiagramPackage.DNODE__CONSTRAINTS_FROM:
 				refreshSourceConnections();
 				break;
 			case DiagramPackage.DNODE__DINCOMINGS:
+			case DiagramPackage.DNODE__CONSTRAINTS_TO:
 				refreshTargetConnections();
 				break;
 			}

@@ -84,6 +84,10 @@ public class DiagramAdapterFactory extends AdapterFactoryImpl {
 				return createDNodeAdapter();
 			}
 			@Override
+			public Adapter caseDFakeNode(DFakeNode object) {
+				return createDFakeNodeAdapter();
+			}
+			@Override
 			public Adapter caseDArrow(DArrow object) {
 				return createDArrowAdapter();
 			}
@@ -92,12 +96,20 @@ public class DiagramAdapterFactory extends AdapterFactoryImpl {
 				return createDConstraintAdapter();
 			}
 			@Override
-			public Adapter caseDPredicate(DPredicate object) {
-				return createDPredicateAdapter();
+			public Adapter caseDArrowLabelConstraint(DArrowLabelConstraint object) {
+				return createDArrowLabelConstraintAdapter();
 			}
 			@Override
-			public Adapter caseDBound(DBound object) {
-				return createDBoundAdapter();
+			public Adapter caseDGenericArrowConstraint(DGenericArrowConstraint object) {
+				return createDGenericArrowConstraintAdapter();
+			}
+			@Override
+			public Adapter caseDComposedConstraint(DComposedConstraint object) {
+				return createDComposedConstraintAdapter();
+			}
+			@Override
+			public Adapter caseDPredicate(DPredicate object) {
+				return createDPredicateAdapter();
 			}
 			@Override
 			public Adapter caseDOffset(DOffset object) {
@@ -110,6 +122,10 @@ public class DiagramAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseVisualization(Visualization object) {
 				return createVisualizationAdapter();
+			}
+			@Override
+			public Adapter caseDElement(DElement object) {
+				return createDElementAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -174,6 +190,20 @@ public class DiagramAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link no.hib.dpf.diagram.DFakeNode <em>DFake Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see no.hib.dpf.diagram.DFakeNode
+	 * @generated
+	 */
+	public Adapter createDFakeNodeAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link no.hib.dpf.diagram.DArrow <em>DArrow</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -202,6 +232,48 @@ public class DiagramAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link no.hib.dpf.diagram.DArrowLabelConstraint <em>DArrow Label Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see no.hib.dpf.diagram.DArrowLabelConstraint
+	 * @generated
+	 */
+	public Adapter createDArrowLabelConstraintAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link no.hib.dpf.diagram.DGenericArrowConstraint <em>DGeneric Arrow Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see no.hib.dpf.diagram.DGenericArrowConstraint
+	 * @generated
+	 */
+	public Adapter createDGenericArrowConstraintAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link no.hib.dpf.diagram.DComposedConstraint <em>DComposed Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see no.hib.dpf.diagram.DComposedConstraint
+	 * @generated
+	 */
+	public Adapter createDComposedConstraintAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link no.hib.dpf.diagram.DPredicate <em>DPredicate</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -212,20 +284,6 @@ public class DiagramAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createDPredicateAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link no.hib.dpf.diagram.DBound <em>DBound</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see no.hib.dpf.diagram.DBound
-	 * @generated
-	 */
-	public Adapter createDBoundAdapter() {
 		return null;
 	}
 
@@ -268,6 +326,20 @@ public class DiagramAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createVisualizationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link no.hib.dpf.diagram.DElement <em>DElement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see no.hib.dpf.diagram.DElement
+	 * @generated
+	 */
+	public Adapter createDElementAdapter() {
 		return null;
 	}
 

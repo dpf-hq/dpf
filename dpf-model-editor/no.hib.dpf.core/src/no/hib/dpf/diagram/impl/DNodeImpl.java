@@ -16,6 +16,8 @@ import no.hib.dpf.diagram.DConstraint;
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.diagram.DiagramPackage;
+import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Point;
 import no.hib.dpf.utils.DPFConstants;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -42,12 +44,14 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link no.hib.dpf.diagram.impl.DNodeImpl#getDOutgoings <em>DOutgoings</em>}</li>
  *   <li>{@link no.hib.dpf.diagram.impl.DNodeImpl#getDIncomings <em>DIncomings</em>}</li>
  *   <li>{@link no.hib.dpf.diagram.impl.DNodeImpl#getDConstraints <em>DConstraints</em>}</li>
+ *   <li>{@link no.hib.dpf.diagram.impl.DNodeImpl#getLocation <em>Location</em>}</li>
+ *   <li>{@link no.hib.dpf.diagram.impl.DNodeImpl#getSize <em>Size</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class DNodeImpl extends DBoundImpl implements DNode {
+public class DNodeImpl extends DElementImpl implements DNode {
 	
 
 	/**
@@ -121,6 +125,46 @@ public class DNodeImpl extends DBoundImpl implements DNode {
 	protected EList<DConstraint> dConstraints;
 
 	/**
+	 * The default value of the '{@link #getLocation() <em>Location</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLocation()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Point LOCATION_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getLocation() <em>Location</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLocation()
+	 * @generated
+	 * @ordered
+	 */
+	protected Point location = LOCATION_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getSize() <em>Size</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSize()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Dimension SIZE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getSize() <em>Size</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSize()
+	 * @generated
+	 * @ordered
+	 */
+	protected Dimension size = SIZE_EDEFAULT;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -173,8 +217,8 @@ public class DNodeImpl extends DBoundImpl implements DNode {
 	public void setDType(DNode newDType) {
 		DNode oldDType = dType;
 		dType = newDType;
-		if(getNode() != null)
-			getNode().setTypeNode(getDType().getNode());
+		if(node != null && !node.eIsProxy())
+			node.setTypeNode(dType != null ? dType.getNode() : null);
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DNODE__DTYPE, oldDType, dType));
 	}
@@ -277,6 +321,48 @@ public class DNodeImpl extends DBoundImpl implements DNode {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Point getLocation() {
+		return location;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLocation(Point newLocation) {
+		Point oldLocation = location;
+		location = newLocation;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DNODE__LOCATION, oldLocation, location));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Dimension getSize() {
+		return size;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSize(Dimension newSize) {
+		Dimension oldSize = size;
+		size = newSize;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DNODE__SIZE, oldSize, size));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public String getName() {
@@ -355,6 +441,10 @@ public class DNodeImpl extends DBoundImpl implements DNode {
 				return getDIncomings();
 			case DiagramPackage.DNODE__DCONSTRAINTS:
 				return getDConstraints();
+			case DiagramPackage.DNODE__LOCATION:
+				return getLocation();
+			case DiagramPackage.DNODE__SIZE:
+				return getSize();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -389,6 +479,12 @@ public class DNodeImpl extends DBoundImpl implements DNode {
 				getDConstraints().clear();
 				getDConstraints().addAll((Collection<? extends DConstraint>)newValue);
 				return;
+			case DiagramPackage.DNODE__LOCATION:
+				setLocation((Point)newValue);
+				return;
+			case DiagramPackage.DNODE__SIZE:
+				setSize((Dimension)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -419,6 +515,12 @@ public class DNodeImpl extends DBoundImpl implements DNode {
 			case DiagramPackage.DNODE__DCONSTRAINTS:
 				getDConstraints().clear();
 				return;
+			case DiagramPackage.DNODE__LOCATION:
+				setLocation(LOCATION_EDEFAULT);
+				return;
+			case DiagramPackage.DNODE__SIZE:
+				setSize(SIZE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -443,6 +545,10 @@ public class DNodeImpl extends DBoundImpl implements DNode {
 				return dIncomings != null && !dIncomings.isEmpty();
 			case DiagramPackage.DNODE__DCONSTRAINTS:
 				return dConstraints != null && !dConstraints.isEmpty();
+			case DiagramPackage.DNODE__LOCATION:
+				return LOCATION_EDEFAULT == null ? location != null : !LOCATION_EDEFAULT.equals(location);
+			case DiagramPackage.DNODE__SIZE:
+				return SIZE_EDEFAULT == null ? size != null : !SIZE_EDEFAULT.equals(size);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -459,6 +565,10 @@ public class DNodeImpl extends DBoundImpl implements DNode {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (configureString: ");
 		result.append(configureString);
+		result.append(", location: ");
+		result.append(location);
+		result.append(", size: ");
+		result.append(size);
 		result.append(')');
 		return result.toString();
 	}

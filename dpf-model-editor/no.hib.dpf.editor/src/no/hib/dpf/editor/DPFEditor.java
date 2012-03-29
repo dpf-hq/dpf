@@ -267,13 +267,13 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 	
 	protected void saveProperties(GraphicalViewer viewer) {
 		// Snap to Geometry property
-		getDSpecification().setSnap((Boolean) viewer.getProperty(SnapToGeometry.PROPERTY_SNAP_ENABLED));		
+		getDSpecification().setSnap(viewer == null ? false : (Boolean) viewer.getProperty(SnapToGeometry.PROPERTY_SNAP_ENABLED));		
 		// Grid properties
-		getDSpecification().setGrid((Boolean) viewer.getProperty(SnapToGrid.PROPERTY_GRID_ENABLED));
+		getDSpecification().setGrid(viewer == null ? false : (Boolean) viewer.getProperty(SnapToGrid.PROPERTY_GRID_ENABLED));
 		// We keep grid visibility and enablement in sync
-		getDSpecification().setGridVisible((Boolean) viewer.getProperty(SnapToGrid.PROPERTY_GRID_VISIBLE));
+		getDSpecification().setGridVisible(viewer == null ? false : (Boolean) viewer.getProperty(SnapToGrid.PROPERTY_GRID_VISIBLE));
 		// Zoom
-		ZoomManager manager = (ZoomManager)getGraphicalViewer().getProperty(ZoomManager.class.toString());
+		ZoomManager manager = getGraphicalViewer() == null ? null : (ZoomManager)getGraphicalViewer().getProperty(ZoomManager.class.toString());
 		if (manager != null)
 			getDSpecification().setZoom(manager.getZoom());
 	}
@@ -607,6 +607,12 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		super.setInput(input);
 		IFile file = ((IFileEditorInput) input).getFile();
 		dSpecification = loadDSpecification(resourceSet, DPFCoreUtil.getFileURI(file), resourceToDiagnosticMap);
+		EcoreUtil.resolveAll(dSpecification);
+		EcoreUtil.resolveAll(dSpecification.getSpecification());
+		if(dSpecification.getDSignature() != null){
+			EcoreUtil.resolveAll(dSpecification.getDSignature());
+			EcoreUtil.resolveAll(dSpecification.getDSignature().getSignature());
+		}
 		Assert.isTrue(dSpecification != null);
 		setPartName(file.getName());
 

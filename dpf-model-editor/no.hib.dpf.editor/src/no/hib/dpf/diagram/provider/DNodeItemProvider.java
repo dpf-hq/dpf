@@ -36,7 +36,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class DNodeItemProvider
-	extends DBoundItemProvider
+	extends DElementItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -214,6 +214,50 @@ public class DNodeItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Location feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addLocationPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_DNode_location_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DNode_location_feature", "_UI_DNode_type"),
+				 DiagramPackage.Literals.DNODE__LOCATION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Size feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSizePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_DNode_size_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DNode_size_feature", "_UI_DNode_type"),
+				 DiagramPackage.Literals.DNODE__SIZE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns DNode.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -248,6 +292,8 @@ public class DNodeItemProvider
 
 		switch (notification.getFeatureID(DNode.class)) {
 			case DiagramPackage.DNODE__CONFIGURE_STRING:
+			case DiagramPackage.DNODE__LOCATION:
+			case DiagramPackage.DNODE__SIZE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

@@ -10,18 +10,14 @@ package no.hib.dpf.diagram.provider;
 import java.util.Collection;
 import java.util.List;
 
-import no.hib.dpf.core.provider.MetamodelEditPlugin;
-
-import no.hib.dpf.diagram.DBound;
+import no.hib.dpf.diagram.DComposedConstraint;
+import no.hib.dpf.diagram.DiagramFactory;
 import no.hib.dpf.diagram.DiagramPackage;
-import no.hib.dpf.utils.DPFConstants;
-
-import org.eclipse.draw2d.geometry.Point;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -30,18 +26,16 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link no.hib.dpf.diagram.DBound} object.
+ * This is the item provider adapter for a {@link no.hib.dpf.diagram.DComposedConstraint} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class DBoundItemProvider
-	extends ItemProviderAdapter
+public class DComposedConstraintItemProvider
+	extends DConstraintItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -54,7 +48,7 @@ public class DBoundItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DBoundItemProvider(AdapterFactory adapterFactory) {
+	public DComposedConstraintItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -69,65 +63,72 @@ public class DBoundItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addLocationPropertyDescriptor(object);
-			addSizePropertyDescriptor(object);
+			addFakeNodePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Location feature.
+	 * This adds a property descriptor for the Fake Node feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
-	protected void addLocationPropertyDescriptor(Object object) {
+	protected void addFakeNodePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_DBound_location_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DBound_location_feature", "_UI_DBound_type"),
-				 DiagramPackage.Literals.DBOUND__LOCATION,
+				 getString("_UI_DComposedConstraint_fakeNode_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DComposedConstraint_fakeNode_feature", "_UI_DComposedConstraint_type"),
+				 DiagramPackage.Literals.DCOMPOSED_CONSTRAINT__FAKE_NODE,
 				 true,
 				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 DPFConstants.DNODE_CATEGORY,
+				 true,
+				 null,
+				 null,
 				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Size feature.
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
-	protected void addSizePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_DBound_size_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DBound_size_feature", "_UI_DBound_type"),
-				 DiagramPackage.Literals.DBOUND__SIZE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 DPFConstants.DNODE_CATEGORY,
-				 null));
+	@Override
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(DiagramPackage.Literals.DCOMPOSED_CONSTRAINT__CHILDREN);
+		}
+		return childrenFeatures;
 	}
 
 	/**
-	 * This returns DBound.gif.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
+
+		return super.getChildFeature(object, child);
+	}
+
+	/**
+	 * This returns DComposedConstraint.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/DBound"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/DComposedConstraint"));
 	}
 
 	/**
@@ -138,11 +139,7 @@ public class DBoundItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		Point labelValue = ((DBound)object).getLocation();
-		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ?
-			getString("_UI_DBound_type") :
-			getString("_UI_DBound_type") + " " + label;
+		return getString("_UI_DComposedConstraint_type");
 	}
 
 	/**
@@ -156,10 +153,9 @@ public class DBoundItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(DBound.class)) {
-			case DiagramPackage.DBOUND__LOCATION:
-			case DiagramPackage.DBOUND__SIZE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+		switch (notification.getFeatureID(DComposedConstraint.class)) {
+			case DiagramPackage.DCOMPOSED_CONSTRAINT__CHILDREN:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -175,17 +171,26 @@ public class DBoundItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-	}
 
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return MetamodelEditPlugin.INSTANCE;
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramPackage.Literals.DCOMPOSED_CONSTRAINT__CHILDREN,
+				 DiagramFactory.eINSTANCE.createDConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramPackage.Literals.DCOMPOSED_CONSTRAINT__CHILDREN,
+				 DiagramFactory.eINSTANCE.createDArrowLabelConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramPackage.Literals.DCOMPOSED_CONSTRAINT__CHILDREN,
+				 DiagramFactory.eINSTANCE.createDGenericArrowConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramPackage.Literals.DCOMPOSED_CONSTRAINT__CHILDREN,
+				 DiagramFactory.eINSTANCE.createDComposedConstraint()));
 	}
 
 }

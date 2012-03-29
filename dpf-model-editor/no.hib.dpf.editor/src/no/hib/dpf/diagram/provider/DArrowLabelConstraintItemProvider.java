@@ -10,16 +10,12 @@ package no.hib.dpf.diagram.provider;
 import java.util.Collection;
 import java.util.List;
 
-
-import no.hib.dpf.core.provider.MetamodelEditPlugin;
-import no.hib.dpf.diagram.DGraph;
+import no.hib.dpf.diagram.DArrowLabelConstraint;
 import no.hib.dpf.diagram.DiagramFactory;
 import no.hib.dpf.diagram.DiagramPackage;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
@@ -30,17 +26,16 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link no.hib.dpf.diagram.DGraph} object.
+ * This is the item provider adapter for a {@link no.hib.dpf.diagram.DArrowLabelConstraint} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class DGraphItemProvider
-	extends ItemProviderAdapter
+public class DArrowLabelConstraintItemProvider
+	extends DConstraintItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -53,7 +48,7 @@ public class DGraphItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DGraphItemProvider(AdapterFactory adapterFactory) {
+	public DArrowLabelConstraintItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -61,61 +56,43 @@ public class DGraphItemProvider
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (unparametered == null) {
 			super.getPropertyDescriptors(object);
 
-			addDTypePropertyDescriptor(object);
-			addGraphPropertyDescriptor(object);
+			addSourcePropertyDescriptor(object);
 		}
-		return itemPropertyDescriptors;
+		return parametered == null ? unparametered : parametered;
 	}
 
 	/**
-	 * This adds a property descriptor for the DType feature.
+	 * This adds a property descriptor for the Source feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	protected void addDTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
+	protected void addSourcePropertyDescriptor(Object object) {
+		List<IItemPropertyDescriptor> target = itemPropertyDescriptors;
+		if(target == null)
+			target = parametered == null ? unparametered : parametered;
+		target.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_DGraph_dType_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DGraph_dType_feature", "_UI_DGraph_type"),
-				 DiagramPackage.Literals.DGRAPH__DTYPE,
+				 getString("_UI_DArrowLabelConstraint_source_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DArrowLabelConstraint_source_feature", "_UI_DArrowLabelConstraint_type"),
+				 DiagramPackage.Literals.DARROW_LABEL_CONSTRAINT__SOURCE,
 				 true,
 				 false,
 				 true,
 				 null,
 				 null,
 				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Graph feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addGraphPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_DGraph_graph_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DGraph_graph_feature", "_UI_DGraph_type"),
-				 DiagramPackage.Literals.DGRAPH__GRAPH,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		
+		
 	}
 
 	/**
@@ -130,8 +107,7 @@ public class DGraphItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(DiagramPackage.Literals.DGRAPH__DNODES);
-			childrenFeatures.add(DiagramPackage.Literals.DGRAPH__DARROWS);
+			childrenFeatures.add(DiagramPackage.Literals.DARROW_LABEL_CONSTRAINT__OFFSET);
 		}
 		return childrenFeatures;
 	}
@@ -150,14 +126,14 @@ public class DGraphItemProvider
 	}
 
 	/**
-	 * This returns DGraph.gif.
+	 * This returns DArrowLabelConstraint.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/DGraph"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/DArrowLabelConstraint"));
 	}
 
 	/**
@@ -168,7 +144,7 @@ public class DGraphItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_DGraph_type");
+		return getString("_UI_DArrowLabelConstraint_type");
 	}
 
 	/**
@@ -182,9 +158,8 @@ public class DGraphItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(DGraph.class)) {
-			case DiagramPackage.DGRAPH__DNODES:
-			case DiagramPackage.DGRAPH__DARROWS:
+		switch (notification.getFeatureID(DArrowLabelConstraint.class)) {
+			case DiagramPackage.DARROW_LABEL_CONSTRAINT__OFFSET:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -204,29 +179,8 @@ public class DGraphItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DiagramPackage.Literals.DGRAPH__DNODES,
-				 DiagramFactory.eINSTANCE.createDNode()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.DGRAPH__DNODES,
-				 DiagramFactory.eINSTANCE.createDFakeNode()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramPackage.Literals.DGRAPH__DARROWS,
-				 DiagramFactory.eINSTANCE.createDArrow()));
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return MetamodelEditPlugin.INSTANCE;
+				(DiagramPackage.Literals.DARROW_LABEL_CONSTRAINT__OFFSET,
+				 DiagramFactory.eINSTANCE.createDOffset()));
 	}
 
 }

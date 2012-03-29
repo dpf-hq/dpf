@@ -14,6 +14,7 @@ package no.hib.dpf.editor.parts;
 import org.eclipse.draw2d.IFigure;
 
 import no.hib.dpf.diagram.DConstraint;
+import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.editor.figures.NodeFigure;
 import no.hib.dpf.editor.figures.TwoArrowsOneNodeConstraintConnection;
 
@@ -34,7 +35,11 @@ public class TwoArrowsOneNodeConstraintEditPart extends DConstraintEditPart {
 	 */
 	@Override
 	protected IFigure createFigureExec() {
-		return new TwoArrowsOneNodeConstraintConnection(this, ((DConstraint)getModel()).getConstraint().getPredicate().getSymbol());
+		DConstraint constraint = getDConstraint();
+		String label = "";
+		if(constraint.eContainer() instanceof DSpecification)
+			label =  constraint.getConstraint().getPredicate().getSymbol();
+		return new TwoArrowsOneNodeConstraintConnection(this, label);
 	}
 	
 }

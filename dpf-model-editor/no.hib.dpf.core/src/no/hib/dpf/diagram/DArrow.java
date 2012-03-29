@@ -10,7 +10,6 @@ import no.hib.dpf.core.Arrow;
 import org.eclipse.draw2d.geometry.Point;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,9 +28,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link no.hib.dpf.diagram.DArrow#getDConstraints <em>DConstraints</em>}</li>
  *   <li>{@link no.hib.dpf.diagram.DArrow#getBendpoints <em>Bendpoints</em>}</li>
  *   <li>{@link no.hib.dpf.diagram.DArrow#getNameOffset <em>Name Offset</em>}</li>
- *   <li>{@link no.hib.dpf.diagram.DArrow#getConstraintOffset <em>Constraint Offset</em>}</li>
- *   <li>{@link no.hib.dpf.diagram.DArrow#getConstraintsFrom <em>Constraints From</em>}</li>
- *   <li>{@link no.hib.dpf.diagram.DArrow#getConstraintsTo <em>Constraints To</em>}</li>
  * </ul>
  * </p>
  *
@@ -39,7 +35,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface DArrow extends EObject {
+public interface DArrow extends DElement {
 	/**
 	 * Returns the value of the '<em><b>DType</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -238,7 +234,7 @@ public interface DArrow extends EObject {
 	 * Returns the value of the '<em><b>Name Offset</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Name Offset</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Name Offset</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
@@ -259,58 +255,6 @@ public interface DArrow extends EObject {
 	 * @generated
 	 */
 	void setNameOffset(DOffset value);
-
-	/**
-	 * Returns the value of the '<em><b>Constraint Offset</b></em>' reference list.
-	 * The list contents are of type {@link no.hib.dpf.diagram.DOffset}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Constraint Offset</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Constraint Offset</em>' reference list.
-	 * @see no.hib.dpf.diagram.DiagramPackage#getDArrow_ConstraintOffset()
-	 * @model
-	 * @generated
-	 */
-	EList<DOffset> getConstraintOffset();
-
-	/**
-	 * Returns the value of the '<em><b>Constraints From</b></em>' reference list.
-	 * The list contents are of type {@link no.hib.dpf.diagram.DConstraint}.
-	 * It is bidirectional and its opposite is '{@link no.hib.dpf.diagram.DConstraint#getSource <em>Source</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Constraints From</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Constraints From</em>' reference list.
-	 * @see no.hib.dpf.diagram.DiagramPackage#getDArrow_ConstraintsFrom()
-	 * @see no.hib.dpf.diagram.DConstraint#getSource
-	 * @model opposite="source"
-	 * @generated
-	 */
-	EList<DConstraint> getConstraintsFrom();
-
-	/**
-	 * Returns the value of the '<em><b>Constraints To</b></em>' reference list.
-	 * The list contents are of type {@link no.hib.dpf.diagram.DConstraint}.
-	 * It is bidirectional and its opposite is '{@link no.hib.dpf.diagram.DConstraint#getTarget <em>Target</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Constraints To</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Constraints To</em>' reference list.
-	 * @see no.hib.dpf.diagram.DiagramPackage#getDArrow_ConstraintsTo()
-	 * @see no.hib.dpf.diagram.DConstraint#getTarget
-	 * @model opposite="target"
-	 * @generated
-	 */
-	EList<DConstraint> getConstraintsTo();
 
 	/**
 	 * <!-- begin-user-doc -->

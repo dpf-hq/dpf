@@ -16,11 +16,11 @@
 package no.hib.dpf.editor.parts;
 
 import no.hib.dpf.diagram.DArrow;
-import no.hib.dpf.diagram.DConstraint;
+import no.hib.dpf.diagram.DArrowLabelConstraint;
+import no.hib.dpf.diagram.DGenericArrowConstraint;
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.diagram.DOffset;
-import no.hib.dpf.diagram.DPredicate;
 
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartFactory;
@@ -60,18 +60,15 @@ private EditPart getPartForElement(Object modelElement) {
 	}
 	if (modelElement instanceof DOffset) {
 		DOffset offset = (DOffset) modelElement;
-		if(offset.eContainer() instanceof DConstraint)
-			return new SingleArrowConstraintEditPart();
+//		if(offset.eContainer() instanceof DConstraint)
+//			return new SingleArrowConstraintEditPart();
 		if(offset.eContainer() instanceof DArrow)
 			return new ArrowLabelEditPart();
 	}
-	if (modelElement instanceof DConstraint) {
-		DPredicate dPredicate = ((DConstraint)modelElement).getDPredicate();
-		switch (dPredicate.getVisualization().getType()) {
-		case ARROW_TO_ARROW:
-			return new TwoArrowsOneNodeConstraintEditPart();
-		}
-	}
+	if(modelElement instanceof DGenericArrowConstraint)
+		return new TwoArrowsOneNodeConstraintEditPart();
+	if(modelElement instanceof DArrowLabelConstraint)
+		return new SingleArrowConstraintEditPart();
 	throw new RuntimeException(
 			"Can't create part for model element: "
 			+ ((modelElement != null) ? modelElement.getClass().getName() : "null"));

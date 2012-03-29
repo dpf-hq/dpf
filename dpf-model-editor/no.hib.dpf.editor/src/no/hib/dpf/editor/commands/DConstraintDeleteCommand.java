@@ -40,31 +40,25 @@ public class DConstraintDeleteCommand extends Command {
 	 * @throws IllegalArgumentException
 	 *             if conn is null
 	 */
-	public DConstraintDeleteCommand(DConstraint constraint) {
-		if (constraint == null || constraint.eContainer() == null) {
+	public DConstraintDeleteCommand(DConstraint dConstraint) {
+		if (dConstraint == null || dConstraint.eContainer() == null) {
 			throw new IllegalArgumentException();
 		}
 		setLabel("constraint deletion");
-		this.constraint = constraint;
+		constraint = dConstraint.eContainer() instanceof DConstraint ? 
+				(DConstraint) dConstraint.eContainer() : dConstraint;
+		specification = (DSpecification)constraint.eContainer();
 		darrows.addAll(constraint.getDArrows());
 		dnodes.addAll(constraint.getDNodes());
-		specification = (DSpecification) constraint.eContainer();
-		
 	}
 
 	public void execute() {
-		if(darrows.size() > 1){
-		constraint.setSource(null);
-		constraint.setTarget(null);
-		}
-		constraint.disconnect();
+		if(constraint.eContainer() instanceof DSpecification)
+			constraint.disconnect();
 	}
 
 	public void undo() {
-		constraint.reconnect(dnodes, darrows, specification);
-		if(darrows.size() > 1){
-		constraint.setSource(darrows.get(0));
-		constraint.setTarget(darrows.get(1));
-		}
+		if(constraint.eContainer() == null)
+			constraint.reconnect(dnodes, darrows, specification);
 	}
 }

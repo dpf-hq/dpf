@@ -23,15 +23,15 @@ import java.util.List;
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.diagram.DArrow;
-import no.hib.dpf.diagram.DBound;
+import no.hib.dpf.diagram.DArrowLabelConstraint;
 import no.hib.dpf.diagram.DConstraint;
-import no.hib.dpf.diagram.DOffset;
 import no.hib.dpf.diagram.DiagramPackage;
 import no.hib.dpf.editor.DPFErrorReport;
 import no.hib.dpf.editor.commands.DArrowDeleteCommand;
 import no.hib.dpf.editor.extension_points.IArrowPainting;
 import no.hib.dpf.editor.extension_points.FigureConfigureManager;
 import no.hib.dpf.editor.figures.ArrowConnection;
+import no.hib.dpf.editor.figures.ConstraintAnchor;
 import no.hib.dpf.editor.figures.OpenArrowDecoration;
 import no.hib.dpf.editor.policies.ArrowBendpointEditPolicy;
 
@@ -49,6 +49,7 @@ import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.draw2d.RoutingAnimator;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -170,41 +171,6 @@ public class DArrowEditPart extends GraphicalConnectionEditPart implements NodeE
 		connectionFigure.setTargetDecoration(arrowHead); // arrow at target endpoint		
 	}
 
-//	@SuppressWarnings({ "unchecked", "rawtypes" })
-//	private void addUniqueList(EList list, EList added){
-//		if(list.isEmpty())
-//			list.addAll(added);
-//		else for(Object iter : added)
-//			if(!list.contains(iter))
-//				list.add(iter);
-//	}
-	/*
-	 * For Arrow
-	 * 1. Add a arrow, check constraint related to source and target node's type and arrow's type
-	 * 2. Remove a arrow, check constraint related to source and target node's type
-	 */
-//	private void verifyOnNodeChange(Object oldNode, Object newNode){
-//		EList<Constraint> constraints = new BasicEList<Constraint>();
-//		Graph graph = null;
-//		Node checkedNode = null;
-//		if(newNode == null && oldNode instanceof Node){
-//			checkedNode = (Node) oldNode;
-//			constraints.addAll(checkedNode.getTypeNode().getConstraints());
-//			graph = checkedNode.getGraph();
-//		}
-//		else if(newNode instanceof Node){
-//			checkedNode = (Node) newNode;
-//			graph = checkedNode.getGraph();
-//			addUniqueList(constraints, checkedNode.getTypeNode().getConstraints());
-//			if(getDPFArrow().getTarget() != null){
-//				addUniqueList(constraints, getDPFArrow().getTypeArrow().getConstraints());
-//			}
-//		}
-//		
-//		if(graph != null)
-//			for(Constraint constraint : constraints)
-//				constraint.validate(graph);
-//	}
 	protected void handleModelChanged(Notification msg){
 		super.handleDiagramModelChanged(msg);
 		if(msg.getNotifier() != null && msg.getNotifier() == getDPFArrow()){ 
@@ -213,9 +179,6 @@ public class DArrowEditPart extends GraphicalConnectionEditPart implements NodeE
 				for(Object edit : getChildren())
 					if(edit instanceof AbstractGraphicalEditPart)
 						((AbstractGraphicalEditPart)edit).refresh();
-//			case CorePackage.ARROW__SOURCE:
-//			case CorePackage.ARROW__TARGET: 
-//				verifyOnNodeChange(msg.getOldValue(), msg.getNewValue());
 			}
 		}
 	}
@@ -223,7 +186,11 @@ public class DArrowEditPart extends GraphicalConnectionEditPart implements NodeE
 	protected void handleDiagramModelChanged(Notification msg){
 		super.handleDiagramModelChanged(msg);
 		if(msg.getNotifier() != null && msg.getNotifier() == getDiagramModel()){ 
-			switch(msg.getFeatureID(DBound.class)){
+			switch(msg.getFeatureID(DArrow.class)){
+			case DiagramPackage.DARROW__DCONSTRAINTS:
+				if(msg.getOldValue() instanceof DArrowLabelConstraint || msg.getNewValue() instanceof DArrowLabelConstraint)
+					refresh();
+				return;
 			case DiagramPackage.DARROW__CONSTRAINTS_FROM:{
 				refreshSourceConnections();
 				return;
@@ -233,7 +200,6 @@ public class DArrowEditPart extends GraphicalConnectionEditPart implements NodeE
 				return;
 			}
 			case DiagramPackage.DARROW__BENDPOINTS:
-			case DiagramPackage.DARROW__CONSTRAINT_OFFSET:
 				refresh();
 			}
 		}
@@ -349,10 +315,12 @@ public class DArrowEditPart extends GraphicalConnectionEditPart implements NodeE
 	}
 
 	@Override
-	protected List<?> getModelChildren() {
-		List<DOffset> result = new ArrayList<DOffset>();
+	protected List<EObject> getModelChildren() {
+		List<EObject> result = new ArrayList<EObject>();
 		result.add(getDArrow().getNameOffset());
-		result.addAll(getDArrow().getConstraintOffset());
+		for(DConstraint constraint : getDArrow().getDConstraints())
+			if(constraint instanceof DArrowLabelConstraint)
+				result.add(constraint);
 		return result;
 	}
 	@Override
@@ -367,18 +335,33 @@ public class DArrowEditPart extends GraphicalConnectionEditPart implements NodeE
 
 
 	@Override
-	public ConnectionAnchor getSourceConnectionAnchor( ConnectionEditPart connection) { return null; }
+	public ConnectionAnchor getSourceConnectionAnchor( ConnectionEditPart connection) { return getConnectionAnchor(connection); }
 
 
 	@Override
-	public ConnectionAnchor getTargetConnectionAnchor( ConnectionEditPart connection) { return null; }
+	public ConnectionAnchor getTargetConnectionAnchor( ConnectionEditPart connection) {return getConnectionAnchor(connection);}
 
 
 	@Override
-	public ConnectionAnchor getSourceConnectionAnchor(Request request) { return null; }
+	public ConnectionAnchor getSourceConnectionAnchor(Request request) {return getConnectionAnchor(null);}
 
 
 	@Override
-	public ConnectionAnchor getTargetConnectionAnchor(Request request) { return null; }
+	public ConnectionAnchor getTargetConnectionAnchor(Request request) {return getConnectionAnchor(null);}
+	
+	/**
+	 * Produces a ConnectionAnchor for either the source or target end of this
+	 * constraint. The source (or target) needs to be an instance of 
+	 * <code>ArrowEditPart</code>,
+	 * @param supplier the source or target of this edit part.
+	 * @param isSource true if supplier is source, false if not.
+	 * @return A new ConnectionAnchor.
+	 */
+	protected ConnectionAnchor getConnectionAnchor(EditPart supplier) {
+		// Now, the connection constraint anchor is constructed, setting from which end of the line it
+		// should anchor itself:
+		if (supplier == null) return null; 
+		return new ConstraintAnchor(connectionFigure);
+	}
 
 }

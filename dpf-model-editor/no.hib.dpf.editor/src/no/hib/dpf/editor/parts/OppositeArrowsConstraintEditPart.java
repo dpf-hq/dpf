@@ -26,22 +26,22 @@ public abstract class OppositeArrowsConstraintEditPart extends DConstraintEditPa
 		super();
 	}
 
-	/**
-	 * Produces a ConnectionAnchor for either the source or target end of this
-	 * constraint. The source (or target) needs to be an instance of 
-	 * <code>ArrowEditPart</code>,
-	 * @param supplier the source or target of this edit part.
-	 * @param isSource true if supplier is source, false if not.
-	 * @return A new ConnectionAnchor.
-	 */
-	@Override
-	protected ConnectionAnchor getConnectionAnchor(EditPart supplier) {
-		// Constructing the anchor with "isSource" ensures that the target end
-		// of one arrow is used as well as the source end of the opposite arrow
-		// (the negation is to make the anchor appear on the right side)
-		if ((supplier == null)  || (!(supplier instanceof DArrowEditPart))) {
-			return null;
-		}
-		return new OppositeArrowsConstraintAnchor((PolylineConnection)((DArrowEditPart)supplier).getFigure());
-	}
+//	/**
+//	 * Produces a ConnectionAnchor for either the source or target end of this
+//	 * constraint. The source (or target) needs to be an instance of 
+//	 * <code>ArrowEditPart</code>,
+//	 * @param supplier the source or target of this edit part.
+//	 * @param isSource true if supplier is source, false if not.
+//	 * @return A new ConnectionAnchor.
+//	 */
+//	@Override
+//	protected ConnectionAnchor getConnectionAnchor(EditPart supplier) {
+//		// Constructing the anchor with "isSource" ensures that the target end
+//		// of one arrow is used as well as the source end of the opposite arrow
+//		// (the negation is to make the anchor appear on the right side)
+//		if ((supplier == null)  || (!(supplier instanceof DArrowEditPart))) {
+//			return null;
+//		}
+//		return new OppositeArrowsConstraintAnchor((PolylineConnection)((DArrowEditPart)supplier).getFigure());
+//	}
 }

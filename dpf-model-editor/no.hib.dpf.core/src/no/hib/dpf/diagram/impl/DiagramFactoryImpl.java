@@ -6,13 +6,14 @@
  */
 package no.hib.dpf.diagram.impl;
 
+import no.hib.dpf.diagram.*;
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Predicate;
 import no.hib.dpf.diagram.DArrow;
-import no.hib.dpf.diagram.DBound;
+import no.hib.dpf.diagram.DArrowLabelConstraint;
 import no.hib.dpf.diagram.DConstraint;
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
@@ -89,13 +90,17 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 			case DiagramPackage.DSPECIFICATION: return createDSpecification();
 			case DiagramPackage.DGRAPH: return createDGraph();
 			case DiagramPackage.DNODE: return createDNode();
+			case DiagramPackage.DFAKE_NODE: return createDFakeNode();
 			case DiagramPackage.DARROW: return createDArrow();
 			case DiagramPackage.DCONSTRAINT: return createDConstraint();
+			case DiagramPackage.DARROW_LABEL_CONSTRAINT: return createDArrowLabelConstraint();
+			case DiagramPackage.DGENERIC_ARROW_CONSTRAINT: return createDGenericArrowConstraint();
+			case DiagramPackage.DCOMPOSED_CONSTRAINT: return createDComposedConstraint();
 			case DiagramPackage.DPREDICATE: return createDPredicate();
-			case DiagramPackage.DBOUND: return createDBound();
 			case DiagramPackage.DOFFSET: return createDOffset();
 			case DiagramPackage.DSIGNATURE: return createDSignature();
 			case DiagramPackage.VISUALIZATION: return createVisualization();
+			case DiagramPackage.DELEMENT: return createDElement();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -259,6 +264,18 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DFakeNode createDFakeNode() {
+		DFakeNodeImpl dFakeNode = new DFakeNodeImpl();
+		return dFakeNode;
+	}
+
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public DNode createDNode(Node node, DNode type) {
@@ -329,9 +346,19 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DBound createDBound() {
-		DBoundImpl dBound = new DBoundImpl();
-		return dBound;
+	public DGenericArrowConstraint createDGenericArrowConstraint() {
+		DGenericArrowConstraintImpl dGenericArrowConstraint = new DGenericArrowConstraintImpl();
+		return dGenericArrowConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DComposedConstraint createDComposedConstraint() {
+		DComposedConstraintImpl dComposedConstraint = new DComposedConstraintImpl();
+		return dComposedConstraint;
 	}
 
 	/**
@@ -375,6 +402,16 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 		VisualizationImpl visualization = new VisualizationImpl();
 		visualization.setType(VisualizationType.ARROW_LABEL);
 		return visualization;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DElement createDElement() {
+		DElementImpl dElement = new DElementImpl();
+		return dElement;
 	}
 
 	/**
@@ -575,5 +612,11 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 		visualization.setSource(graph.getArrowByName("ZX"));
 		visualization.setTarget(graph.getArrowByName("ZY"));
 		return result;
+	}
+
+	@Override
+	public DArrowLabelConstraint createDArrowLabelConstraint() {
+		DArrowLabelConstraintImpl dArrowLabelConstraint = new DArrowLabelConstraintImpl();
+		return dArrowLabelConstraint;
 	}
 } //DiagramFactoryImpl

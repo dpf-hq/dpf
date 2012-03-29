@@ -235,41 +235,41 @@ public interface DiagramPackage extends EPackage {
 	int DGRAPH_FEATURE_COUNT = 4;
 
 	/**
-	 * The meta object id for the '{@link no.hib.dpf.diagram.impl.DBoundImpl <em>DBound</em>}' class.
+	 * The meta object id for the '{@link no.hib.dpf.diagram.impl.DElementImpl <em>DElement</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.diagram.impl.DBoundImpl
-	 * @see no.hib.dpf.diagram.impl.DiagramPackageImpl#getDBound()
+	 * @see no.hib.dpf.diagram.impl.DElementImpl
+	 * @see no.hib.dpf.diagram.impl.DiagramPackageImpl#getDElement()
 	 * @generated
 	 */
-	int DBOUND = 6;
+	int DELEMENT = 13;
 
 	/**
-	 * The feature id for the '<em><b>Location</b></em>' attribute.
+	 * The feature id for the '<em><b>Constraints From</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DBOUND__LOCATION = 0;
+	int DELEMENT__CONSTRAINTS_FROM = 0;
 
 	/**
-	 * The feature id for the '<em><b>Size</b></em>' attribute.
+	 * The feature id for the '<em><b>Constraints To</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DBOUND__SIZE = 1;
+	int DELEMENT__CONSTRAINTS_TO = 1;
 
 	/**
-	 * The number of structural features of the '<em>DBound</em>' class.
+	 * The number of structural features of the '<em>DElement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DBOUND_FEATURE_COUNT = 2;
+	int DELEMENT_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link no.hib.dpf.diagram.impl.DNodeImpl <em>DNode</em>}' class.
@@ -282,22 +282,22 @@ public interface DiagramPackage extends EPackage {
 	int DNODE = 2;
 
 	/**
-	 * The feature id for the '<em><b>Location</b></em>' attribute.
+	 * The feature id for the '<em><b>Constraints From</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DNODE__LOCATION = DBOUND__LOCATION;
+	int DNODE__CONSTRAINTS_FROM = DELEMENT__CONSTRAINTS_FROM;
 
 	/**
-	 * The feature id for the '<em><b>Size</b></em>' attribute.
+	 * The feature id for the '<em><b>Constraints To</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DNODE__SIZE = DBOUND__SIZE;
+	int DNODE__CONSTRAINTS_TO = DELEMENT__CONSTRAINTS_TO;
 
 	/**
 	 * The feature id for the '<em><b>DType</b></em>' reference.
@@ -306,7 +306,7 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DNODE__DTYPE = DBOUND_FEATURE_COUNT + 0;
+	int DNODE__DTYPE = DELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Node</b></em>' reference.
@@ -315,7 +315,7 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DNODE__NODE = DBOUND_FEATURE_COUNT + 1;
+	int DNODE__NODE = DELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Configure String</b></em>' attribute.
@@ -324,7 +324,7 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DNODE__CONFIGURE_STRING = DBOUND_FEATURE_COUNT + 2;
+	int DNODE__CONFIGURE_STRING = DELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>DOutgoings</b></em>' reference list.
@@ -333,7 +333,7 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DNODE__DOUTGOINGS = DBOUND_FEATURE_COUNT + 3;
+	int DNODE__DOUTGOINGS = DELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>DIncomings</b></em>' reference list.
@@ -342,7 +342,7 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DNODE__DINCOMINGS = DBOUND_FEATURE_COUNT + 4;
+	int DNODE__DINCOMINGS = DELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>DConstraints</b></em>' reference list.
@@ -351,7 +351,25 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DNODE__DCONSTRAINTS = DBOUND_FEATURE_COUNT + 5;
+	int DNODE__DCONSTRAINTS = DELEMENT_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Location</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DNODE__LOCATION = DELEMENT_FEATURE_COUNT + 6;
+
+	/**
+	 * The feature id for the '<em><b>Size</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DNODE__SIZE = DELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The number of structural features of the '<em>DNode</em>' class.
@@ -360,7 +378,125 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DNODE_FEATURE_COUNT = DBOUND_FEATURE_COUNT + 6;
+	int DNODE_FEATURE_COUNT = DELEMENT_FEATURE_COUNT + 8;
+
+	/**
+	 * The meta object id for the '{@link no.hib.dpf.diagram.impl.DFakeNodeImpl <em>DFake Node</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.diagram.impl.DFakeNodeImpl
+	 * @see no.hib.dpf.diagram.impl.DiagramPackageImpl#getDFakeNode()
+	 * @generated
+	 */
+	int DFAKE_NODE = 3;
+
+	/**
+	 * The feature id for the '<em><b>Constraints From</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DFAKE_NODE__CONSTRAINTS_FROM = DNODE__CONSTRAINTS_FROM;
+
+	/**
+	 * The feature id for the '<em><b>Constraints To</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DFAKE_NODE__CONSTRAINTS_TO = DNODE__CONSTRAINTS_TO;
+
+	/**
+	 * The feature id for the '<em><b>DType</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DFAKE_NODE__DTYPE = DNODE__DTYPE;
+
+	/**
+	 * The feature id for the '<em><b>Node</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DFAKE_NODE__NODE = DNODE__NODE;
+
+	/**
+	 * The feature id for the '<em><b>Configure String</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DFAKE_NODE__CONFIGURE_STRING = DNODE__CONFIGURE_STRING;
+
+	/**
+	 * The feature id for the '<em><b>DOutgoings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DFAKE_NODE__DOUTGOINGS = DNODE__DOUTGOINGS;
+
+	/**
+	 * The feature id for the '<em><b>DIncomings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DFAKE_NODE__DINCOMINGS = DNODE__DINCOMINGS;
+
+	/**
+	 * The feature id for the '<em><b>DConstraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DFAKE_NODE__DCONSTRAINTS = DNODE__DCONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Location</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DFAKE_NODE__LOCATION = DNODE__LOCATION;
+
+	/**
+	 * The feature id for the '<em><b>Size</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DFAKE_NODE__SIZE = DNODE__SIZE;
+
+	/**
+	 * The feature id for the '<em><b>DConstraint</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DFAKE_NODE__DCONSTRAINT = DNODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>DFake Node</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DFAKE_NODE_FEATURE_COUNT = DNODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link no.hib.dpf.diagram.impl.DArrowImpl <em>DArrow</em>}' class.
@@ -370,97 +506,7 @@ public interface DiagramPackage extends EPackage {
 	 * @see no.hib.dpf.diagram.impl.DiagramPackageImpl#getDArrow()
 	 * @generated
 	 */
-	int DARROW = 3;
-
-	/**
-	 * The feature id for the '<em><b>DType</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DARROW__DTYPE = 0;
-
-	/**
-	 * The feature id for the '<em><b>Arrow</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DARROW__ARROW = 1;
-
-	/**
-	 * The feature id for the '<em><b>Configure String</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DARROW__CONFIGURE_STRING = 2;
-
-	/**
-	 * The feature id for the '<em><b>Line Style</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DARROW__LINE_STYLE = 3;
-
-	/**
-	 * The feature id for the '<em><b>DSource</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DARROW__DSOURCE = 4;
-
-	/**
-	 * The feature id for the '<em><b>DTarget</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DARROW__DTARGET = 5;
-
-	/**
-	 * The feature id for the '<em><b>DConstraints</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DARROW__DCONSTRAINTS = 6;
-
-	/**
-	 * The feature id for the '<em><b>Bendpoints</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DARROW__BENDPOINTS = 7;
-
-	/**
-	 * The feature id for the '<em><b>Name Offset</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DARROW__NAME_OFFSET = 8;
-
-	/**
-	 * The feature id for the '<em><b>Constraint Offset</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DARROW__CONSTRAINT_OFFSET = 9;
+	int DARROW = 4;
 
 	/**
 	 * The feature id for the '<em><b>Constraints From</b></em>' reference list.
@@ -469,7 +515,7 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DARROW__CONSTRAINTS_FROM = 10;
+	int DARROW__CONSTRAINTS_FROM = DELEMENT__CONSTRAINTS_FROM;
 
 	/**
 	 * The feature id for the '<em><b>Constraints To</b></em>' reference list.
@@ -478,7 +524,88 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DARROW__CONSTRAINTS_TO = 11;
+	int DARROW__CONSTRAINTS_TO = DELEMENT__CONSTRAINTS_TO;
+
+	/**
+	 * The feature id for the '<em><b>DType</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DARROW__DTYPE = DELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Arrow</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DARROW__ARROW = DELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Configure String</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DARROW__CONFIGURE_STRING = DELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Line Style</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DARROW__LINE_STYLE = DELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>DSource</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DARROW__DSOURCE = DELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>DTarget</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DARROW__DTARGET = DELEMENT_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>DConstraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DARROW__DCONSTRAINTS = DELEMENT_FEATURE_COUNT + 6;
+
+	/**
+	 * The feature id for the '<em><b>Bendpoints</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DARROW__BENDPOINTS = DELEMENT_FEATURE_COUNT + 7;
+
+	/**
+	 * The feature id for the '<em><b>Name Offset</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DARROW__NAME_OFFSET = DELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The number of structural features of the '<em>DArrow</em>' class.
@@ -487,7 +614,7 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DARROW_FEATURE_COUNT = 12;
+	int DARROW_FEATURE_COUNT = DELEMENT_FEATURE_COUNT + 9;
 
 	/**
 	 * The meta object id for the '{@link no.hib.dpf.diagram.impl.DConstraintImpl <em>DConstraint</em>}' class.
@@ -497,7 +624,7 @@ public interface DiagramPackage extends EPackage {
 	 * @see no.hib.dpf.diagram.impl.DiagramPackageImpl#getDConstraint()
 	 * @generated
 	 */
-	int DCONSTRAINT = 4;
+	int DCONSTRAINT = 5;
 
 	/**
 	 * The feature id for the '<em><b>Constraint</b></em>' reference.
@@ -527,40 +654,13 @@ public interface DiagramPackage extends EPackage {
 	int DCONSTRAINT__DARROWS = 2;
 
 	/**
-	 * The feature id for the '<em><b>Offset</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DCONSTRAINT__OFFSET = 3;
-
-	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DCONSTRAINT__SOURCE = 4;
-
-	/**
-	 * The feature id for the '<em><b>Target</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DCONSTRAINT__TARGET = 5;
-
-	/**
 	 * The feature id for the '<em><b>DPredicate</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DCONSTRAINT__DPREDICATE = 6;
+	int DCONSTRAINT__DPREDICATE = 3;
 
 	/**
 	 * The number of structural features of the '<em>DConstraint</em>' class.
@@ -569,7 +669,226 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DCONSTRAINT_FEATURE_COUNT = 7;
+	int DCONSTRAINT_FEATURE_COUNT = 4;
+
+	/**
+	 * The meta object id for the '{@link no.hib.dpf.diagram.impl.DArrowLabelConstraintImpl <em>DArrow Label Constraint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.diagram.impl.DArrowLabelConstraintImpl
+	 * @see no.hib.dpf.diagram.impl.DiagramPackageImpl#getDArrowLabelConstraint()
+	 * @generated
+	 */
+	int DARROW_LABEL_CONSTRAINT = 6;
+
+	/**
+	 * The feature id for the '<em><b>Constraint</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DARROW_LABEL_CONSTRAINT__CONSTRAINT = DCONSTRAINT__CONSTRAINT;
+
+	/**
+	 * The feature id for the '<em><b>DNodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DARROW_LABEL_CONSTRAINT__DNODES = DCONSTRAINT__DNODES;
+
+	/**
+	 * The feature id for the '<em><b>DArrows</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DARROW_LABEL_CONSTRAINT__DARROWS = DCONSTRAINT__DARROWS;
+
+	/**
+	 * The feature id for the '<em><b>DPredicate</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DARROW_LABEL_CONSTRAINT__DPREDICATE = DCONSTRAINT__DPREDICATE;
+
+	/**
+	 * The feature id for the '<em><b>Offset</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DARROW_LABEL_CONSTRAINT__OFFSET = DCONSTRAINT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DARROW_LABEL_CONSTRAINT__SOURCE = DCONSTRAINT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>DArrow Label Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DARROW_LABEL_CONSTRAINT_FEATURE_COUNT = DCONSTRAINT_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link no.hib.dpf.diagram.impl.DGenericArrowConstraintImpl <em>DGeneric Arrow Constraint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.diagram.impl.DGenericArrowConstraintImpl
+	 * @see no.hib.dpf.diagram.impl.DiagramPackageImpl#getDGenericArrowConstraint()
+	 * @generated
+	 */
+	int DGENERIC_ARROW_CONSTRAINT = 7;
+
+	/**
+	 * The feature id for the '<em><b>Constraint</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DGENERIC_ARROW_CONSTRAINT__CONSTRAINT = DCONSTRAINT__CONSTRAINT;
+
+	/**
+	 * The feature id for the '<em><b>DNodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DGENERIC_ARROW_CONSTRAINT__DNODES = DCONSTRAINT__DNODES;
+
+	/**
+	 * The feature id for the '<em><b>DArrows</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DGENERIC_ARROW_CONSTRAINT__DARROWS = DCONSTRAINT__DARROWS;
+
+	/**
+	 * The feature id for the '<em><b>DPredicate</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DGENERIC_ARROW_CONSTRAINT__DPREDICATE = DCONSTRAINT__DPREDICATE;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DGENERIC_ARROW_CONSTRAINT__SOURCE = DCONSTRAINT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DGENERIC_ARROW_CONSTRAINT__TARGET = DCONSTRAINT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>DGeneric Arrow Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DGENERIC_ARROW_CONSTRAINT_FEATURE_COUNT = DCONSTRAINT_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link no.hib.dpf.diagram.impl.DComposedConstraintImpl <em>DComposed Constraint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.diagram.impl.DComposedConstraintImpl
+	 * @see no.hib.dpf.diagram.impl.DiagramPackageImpl#getDComposedConstraint()
+	 * @generated
+	 */
+	int DCOMPOSED_CONSTRAINT = 8;
+
+	/**
+	 * The feature id for the '<em><b>Constraint</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DCOMPOSED_CONSTRAINT__CONSTRAINT = DCONSTRAINT__CONSTRAINT;
+
+	/**
+	 * The feature id for the '<em><b>DNodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DCOMPOSED_CONSTRAINT__DNODES = DCONSTRAINT__DNODES;
+
+	/**
+	 * The feature id for the '<em><b>DArrows</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DCOMPOSED_CONSTRAINT__DARROWS = DCONSTRAINT__DARROWS;
+
+	/**
+	 * The feature id for the '<em><b>DPredicate</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DCOMPOSED_CONSTRAINT__DPREDICATE = DCONSTRAINT__DPREDICATE;
+
+	/**
+	 * The feature id for the '<em><b>Children</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DCOMPOSED_CONSTRAINT__CHILDREN = DCONSTRAINT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Fake Node</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DCOMPOSED_CONSTRAINT__FAKE_NODE = DCONSTRAINT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>DComposed Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DCOMPOSED_CONSTRAINT_FEATURE_COUNT = DCONSTRAINT_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link no.hib.dpf.diagram.impl.DPredicateImpl <em>DPredicate</em>}' class.
@@ -579,7 +898,7 @@ public interface DiagramPackage extends EPackage {
 	 * @see no.hib.dpf.diagram.impl.DiagramPackageImpl#getDPredicate()
 	 * @generated
 	 */
-	int DPREDICATE = 5;
+	int DPREDICATE = 9;
 
 	/**
 	 * The feature id for the '<em><b>Predicate</b></em>' reference.
@@ -644,7 +963,7 @@ public interface DiagramPackage extends EPackage {
 	 * @see no.hib.dpf.diagram.impl.DiagramPackageImpl#getDOffset()
 	 * @generated
 	 */
-	int DOFFSET = 7;
+	int DOFFSET = 10;
 
 	/**
 	 * The feature id for the '<em><b>Offset</b></em>' attribute.
@@ -672,7 +991,7 @@ public interface DiagramPackage extends EPackage {
 	 * @see no.hib.dpf.diagram.impl.DiagramPackageImpl#getDSignature()
 	 * @generated
 	 */
-	int DSIGNATURE = 8;
+	int DSIGNATURE = 11;
 
 	/**
 	 * The feature id for the '<em><b>Signature</b></em>' reference.
@@ -709,7 +1028,7 @@ public interface DiagramPackage extends EPackage {
 	 * @see no.hib.dpf.diagram.impl.DiagramPackageImpl#getVisualization()
 	 * @generated
 	 */
-	int VISUALIZATION = 9;
+	int VISUALIZATION = 12;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -755,7 +1074,7 @@ public interface DiagramPackage extends EPackage {
 	 * @see no.hib.dpf.diagram.impl.DiagramPackageImpl#getVisualizationType()
 	 * @generated
 	 */
-	int VISUALIZATION_TYPE = 10;
+	int VISUALIZATION_TYPE = 14;
 
 	/**
 	 * The meta object id for the '<em>EDimension</em>' data type.
@@ -765,7 +1084,7 @@ public interface DiagramPackage extends EPackage {
 	 * @see no.hib.dpf.diagram.impl.DiagramPackageImpl#getEDimension()
 	 * @generated
 	 */
-	int EDIMENSION = 11;
+	int EDIMENSION = 15;
 
 	/**
 	 * The meta object id for the '<em>ELocation</em>' data type.
@@ -775,7 +1094,7 @@ public interface DiagramPackage extends EPackage {
 	 * @see no.hib.dpf.diagram.impl.DiagramPackageImpl#getELocation()
 	 * @generated
 	 */
-	int ELOCATION = 12;
+	int ELOCATION = 16;
 
 	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.diagram.DSpecification <em>DSpecification</em>}'.
@@ -1039,6 +1358,49 @@ public interface DiagramPackage extends EPackage {
 	EReference getDNode_DConstraints();
 
 	/**
+	 * Returns the meta object for the attribute '{@link no.hib.dpf.diagram.DNode#getLocation <em>Location</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Location</em>'.
+	 * @see no.hib.dpf.diagram.DNode#getLocation()
+	 * @see #getDNode()
+	 * @generated
+	 */
+	EAttribute getDNode_Location();
+
+	/**
+	 * Returns the meta object for the attribute '{@link no.hib.dpf.diagram.DNode#getSize <em>Size</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Size</em>'.
+	 * @see no.hib.dpf.diagram.DNode#getSize()
+	 * @see #getDNode()
+	 * @generated
+	 */
+	EAttribute getDNode_Size();
+
+	/**
+	 * Returns the meta object for class '{@link no.hib.dpf.diagram.DFakeNode <em>DFake Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>DFake Node</em>'.
+	 * @see no.hib.dpf.diagram.DFakeNode
+	 * @generated
+	 */
+	EClass getDFakeNode();
+
+	/**
+	 * Returns the meta object for the reference '{@link no.hib.dpf.diagram.DFakeNode#getDConstraint <em>DConstraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>DConstraint</em>'.
+	 * @see no.hib.dpf.diagram.DFakeNode#getDConstraint()
+	 * @see #getDFakeNode()
+	 * @generated
+	 */
+	EReference getDFakeNode_DConstraint();
+
+	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.diagram.DArrow <em>DArrow</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1148,39 +1510,6 @@ public interface DiagramPackage extends EPackage {
 	EReference getDArrow_NameOffset();
 
 	/**
-	 * Returns the meta object for the reference list '{@link no.hib.dpf.diagram.DArrow#getConstraintOffset <em>Constraint Offset</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Constraint Offset</em>'.
-	 * @see no.hib.dpf.diagram.DArrow#getConstraintOffset()
-	 * @see #getDArrow()
-	 * @generated
-	 */
-	EReference getDArrow_ConstraintOffset();
-
-	/**
-	 * Returns the meta object for the reference list '{@link no.hib.dpf.diagram.DArrow#getConstraintsFrom <em>Constraints From</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Constraints From</em>'.
-	 * @see no.hib.dpf.diagram.DArrow#getConstraintsFrom()
-	 * @see #getDArrow()
-	 * @generated
-	 */
-	EReference getDArrow_ConstraintsFrom();
-
-	/**
-	 * Returns the meta object for the reference list '{@link no.hib.dpf.diagram.DArrow#getConstraintsTo <em>Constraints To</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Constraints To</em>'.
-	 * @see no.hib.dpf.diagram.DArrow#getConstraintsTo()
-	 * @see #getDArrow()
-	 * @generated
-	 */
-	EReference getDArrow_ConstraintsTo();
-
-	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.diagram.DConstraint <em>DConstraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1224,39 +1553,6 @@ public interface DiagramPackage extends EPackage {
 	EReference getDConstraint_DArrows();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link no.hib.dpf.diagram.DConstraint#getOffset <em>Offset</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Offset</em>'.
-	 * @see no.hib.dpf.diagram.DConstraint#getOffset()
-	 * @see #getDConstraint()
-	 * @generated
-	 */
-	EReference getDConstraint_Offset();
-
-	/**
-	 * Returns the meta object for the reference '{@link no.hib.dpf.diagram.DConstraint#getSource <em>Source</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Source</em>'.
-	 * @see no.hib.dpf.diagram.DConstraint#getSource()
-	 * @see #getDConstraint()
-	 * @generated
-	 */
-	EReference getDConstraint_Source();
-
-	/**
-	 * Returns the meta object for the reference '{@link no.hib.dpf.diagram.DConstraint#getTarget <em>Target</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Target</em>'.
-	 * @see no.hib.dpf.diagram.DConstraint#getTarget()
-	 * @see #getDConstraint()
-	 * @generated
-	 */
-	EReference getDConstraint_Target();
-
-	/**
 	 * Returns the meta object for the reference '{@link no.hib.dpf.diagram.DConstraint#getDPredicate <em>DPredicate</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1266,6 +1562,102 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getDConstraint_DPredicate();
+
+	/**
+	 * Returns the meta object for class '{@link no.hib.dpf.diagram.DArrowLabelConstraint <em>DArrow Label Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>DArrow Label Constraint</em>'.
+	 * @see no.hib.dpf.diagram.DArrowLabelConstraint
+	 * @generated
+	 */
+	EClass getDArrowLabelConstraint();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link no.hib.dpf.diagram.DArrowLabelConstraint#getOffset <em>Offset</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Offset</em>'.
+	 * @see no.hib.dpf.diagram.DArrowLabelConstraint#getOffset()
+	 * @see #getDArrowLabelConstraint()
+	 * @generated
+	 */
+	EReference getDArrowLabelConstraint_Offset();
+
+	/**
+	 * Returns the meta object for the reference '{@link no.hib.dpf.diagram.DArrowLabelConstraint#getSource <em>Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Source</em>'.
+	 * @see no.hib.dpf.diagram.DArrowLabelConstraint#getSource()
+	 * @see #getDArrowLabelConstraint()
+	 * @generated
+	 */
+	EReference getDArrowLabelConstraint_Source();
+
+	/**
+	 * Returns the meta object for class '{@link no.hib.dpf.diagram.DGenericArrowConstraint <em>DGeneric Arrow Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>DGeneric Arrow Constraint</em>'.
+	 * @see no.hib.dpf.diagram.DGenericArrowConstraint
+	 * @generated
+	 */
+	EClass getDGenericArrowConstraint();
+
+	/**
+	 * Returns the meta object for the reference '{@link no.hib.dpf.diagram.DGenericArrowConstraint#getSource <em>Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Source</em>'.
+	 * @see no.hib.dpf.diagram.DGenericArrowConstraint#getSource()
+	 * @see #getDGenericArrowConstraint()
+	 * @generated
+	 */
+	EReference getDGenericArrowConstraint_Source();
+
+	/**
+	 * Returns the meta object for the reference '{@link no.hib.dpf.diagram.DGenericArrowConstraint#getTarget <em>Target</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Target</em>'.
+	 * @see no.hib.dpf.diagram.DGenericArrowConstraint#getTarget()
+	 * @see #getDGenericArrowConstraint()
+	 * @generated
+	 */
+	EReference getDGenericArrowConstraint_Target();
+
+	/**
+	 * Returns the meta object for class '{@link no.hib.dpf.diagram.DComposedConstraint <em>DComposed Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>DComposed Constraint</em>'.
+	 * @see no.hib.dpf.diagram.DComposedConstraint
+	 * @generated
+	 */
+	EClass getDComposedConstraint();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link no.hib.dpf.diagram.DComposedConstraint#getChildren <em>Children</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Children</em>'.
+	 * @see no.hib.dpf.diagram.DComposedConstraint#getChildren()
+	 * @see #getDComposedConstraint()
+	 * @generated
+	 */
+	EReference getDComposedConstraint_Children();
+
+	/**
+	 * Returns the meta object for the reference '{@link no.hib.dpf.diagram.DComposedConstraint#getFakeNode <em>Fake Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Fake Node</em>'.
+	 * @see no.hib.dpf.diagram.DComposedConstraint#getFakeNode()
+	 * @see #getDComposedConstraint()
+	 * @generated
+	 */
+	EReference getDComposedConstraint_FakeNode();
 
 	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.diagram.DPredicate <em>DPredicate</em>}'.
@@ -1331,38 +1723,6 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getDPredicate_Icon();
-
-	/**
-	 * Returns the meta object for class '{@link no.hib.dpf.diagram.DBound <em>DBound</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>DBound</em>'.
-	 * @see no.hib.dpf.diagram.DBound
-	 * @generated
-	 */
-	EClass getDBound();
-
-	/**
-	 * Returns the meta object for the attribute '{@link no.hib.dpf.diagram.DBound#getLocation <em>Location</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Location</em>'.
-	 * @see no.hib.dpf.diagram.DBound#getLocation()
-	 * @see #getDBound()
-	 * @generated
-	 */
-	EAttribute getDBound_Location();
-
-	/**
-	 * Returns the meta object for the attribute '{@link no.hib.dpf.diagram.DBound#getSize <em>Size</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Size</em>'.
-	 * @see no.hib.dpf.diagram.DBound#getSize()
-	 * @see #getDBound()
-	 * @generated
-	 */
-	EAttribute getDBound_Size();
 
 	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.diagram.DOffset <em>DOffset</em>}'.
@@ -1459,6 +1819,38 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getVisualization_Target();
+
+	/**
+	 * Returns the meta object for class '{@link no.hib.dpf.diagram.DElement <em>DElement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>DElement</em>'.
+	 * @see no.hib.dpf.diagram.DElement
+	 * @generated
+	 */
+	EClass getDElement();
+
+	/**
+	 * Returns the meta object for the reference list '{@link no.hib.dpf.diagram.DElement#getConstraintsFrom <em>Constraints From</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Constraints From</em>'.
+	 * @see no.hib.dpf.diagram.DElement#getConstraintsFrom()
+	 * @see #getDElement()
+	 * @generated
+	 */
+	EReference getDElement_ConstraintsFrom();
+
+	/**
+	 * Returns the meta object for the reference list '{@link no.hib.dpf.diagram.DElement#getConstraintsTo <em>Constraints To</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Constraints To</em>'.
+	 * @see no.hib.dpf.diagram.DElement#getConstraintsTo()
+	 * @see #getDElement()
+	 * @generated
+	 */
+	EReference getDElement_ConstraintsTo();
 
 	/**
 	 * Returns the meta object for enum '{@link no.hib.dpf.diagram.VisualizationType <em>Visualization Type</em>}'.
@@ -1713,6 +2105,40 @@ public interface DiagramPackage extends EPackage {
 		EReference DNODE__DCONSTRAINTS = eINSTANCE.getDNode_DConstraints();
 
 		/**
+		 * The meta object literal for the '<em><b>Location</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DNODE__LOCATION = eINSTANCE.getDNode_Location();
+
+		/**
+		 * The meta object literal for the '<em><b>Size</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DNODE__SIZE = eINSTANCE.getDNode_Size();
+
+		/**
+		 * The meta object literal for the '{@link no.hib.dpf.diagram.impl.DFakeNodeImpl <em>DFake Node</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see no.hib.dpf.diagram.impl.DFakeNodeImpl
+		 * @see no.hib.dpf.diagram.impl.DiagramPackageImpl#getDFakeNode()
+		 * @generated
+		 */
+		EClass DFAKE_NODE = eINSTANCE.getDFakeNode();
+
+		/**
+		 * The meta object literal for the '<em><b>DConstraint</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DFAKE_NODE__DCONSTRAINT = eINSTANCE.getDFakeNode_DConstraint();
+
+		/**
 		 * The meta object literal for the '{@link no.hib.dpf.diagram.impl.DArrowImpl <em>DArrow</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1795,30 +2221,6 @@ public interface DiagramPackage extends EPackage {
 		EReference DARROW__NAME_OFFSET = eINSTANCE.getDArrow_NameOffset();
 
 		/**
-		 * The meta object literal for the '<em><b>Constraint Offset</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DARROW__CONSTRAINT_OFFSET = eINSTANCE.getDArrow_ConstraintOffset();
-
-		/**
-		 * The meta object literal for the '<em><b>Constraints From</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DARROW__CONSTRAINTS_FROM = eINSTANCE.getDArrow_ConstraintsFrom();
-
-		/**
-		 * The meta object literal for the '<em><b>Constraints To</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DARROW__CONSTRAINTS_TO = eINSTANCE.getDArrow_ConstraintsTo();
-
-		/**
 		 * The meta object literal for the '{@link no.hib.dpf.diagram.impl.DConstraintImpl <em>DConstraint</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1853,12 +2255,30 @@ public interface DiagramPackage extends EPackage {
 		EReference DCONSTRAINT__DARROWS = eINSTANCE.getDConstraint_DArrows();
 
 		/**
+		 * The meta object literal for the '<em><b>DPredicate</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DCONSTRAINT__DPREDICATE = eINSTANCE.getDConstraint_DPredicate();
+
+		/**
+		 * The meta object literal for the '{@link no.hib.dpf.diagram.impl.DArrowLabelConstraintImpl <em>DArrow Label Constraint</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see no.hib.dpf.diagram.impl.DArrowLabelConstraintImpl
+		 * @see no.hib.dpf.diagram.impl.DiagramPackageImpl#getDArrowLabelConstraint()
+		 * @generated
+		 */
+		EClass DARROW_LABEL_CONSTRAINT = eINSTANCE.getDArrowLabelConstraint();
+
+		/**
 		 * The meta object literal for the '<em><b>Offset</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference DCONSTRAINT__OFFSET = eINSTANCE.getDConstraint_Offset();
+		EReference DARROW_LABEL_CONSTRAINT__OFFSET = eINSTANCE.getDArrowLabelConstraint_Offset();
 
 		/**
 		 * The meta object literal for the '<em><b>Source</b></em>' reference feature.
@@ -1866,7 +2286,25 @@ public interface DiagramPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference DCONSTRAINT__SOURCE = eINSTANCE.getDConstraint_Source();
+		EReference DARROW_LABEL_CONSTRAINT__SOURCE = eINSTANCE.getDArrowLabelConstraint_Source();
+
+		/**
+		 * The meta object literal for the '{@link no.hib.dpf.diagram.impl.DGenericArrowConstraintImpl <em>DGeneric Arrow Constraint</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see no.hib.dpf.diagram.impl.DGenericArrowConstraintImpl
+		 * @see no.hib.dpf.diagram.impl.DiagramPackageImpl#getDGenericArrowConstraint()
+		 * @generated
+		 */
+		EClass DGENERIC_ARROW_CONSTRAINT = eINSTANCE.getDGenericArrowConstraint();
+
+		/**
+		 * The meta object literal for the '<em><b>Source</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DGENERIC_ARROW_CONSTRAINT__SOURCE = eINSTANCE.getDGenericArrowConstraint_Source();
 
 		/**
 		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
@@ -1874,15 +2312,33 @@ public interface DiagramPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference DCONSTRAINT__TARGET = eINSTANCE.getDConstraint_Target();
+		EReference DGENERIC_ARROW_CONSTRAINT__TARGET = eINSTANCE.getDGenericArrowConstraint_Target();
 
 		/**
-		 * The meta object literal for the '<em><b>DPredicate</b></em>' reference feature.
+		 * The meta object literal for the '{@link no.hib.dpf.diagram.impl.DComposedConstraintImpl <em>DComposed Constraint</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see no.hib.dpf.diagram.impl.DComposedConstraintImpl
+		 * @see no.hib.dpf.diagram.impl.DiagramPackageImpl#getDComposedConstraint()
+		 * @generated
+		 */
+		EClass DCOMPOSED_CONSTRAINT = eINSTANCE.getDComposedConstraint();
+
+		/**
+		 * The meta object literal for the '<em><b>Children</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference DCONSTRAINT__DPREDICATE = eINSTANCE.getDConstraint_DPredicate();
+		EReference DCOMPOSED_CONSTRAINT__CHILDREN = eINSTANCE.getDComposedConstraint_Children();
+
+		/**
+		 * The meta object literal for the '<em><b>Fake Node</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DCOMPOSED_CONSTRAINT__FAKE_NODE = eINSTANCE.getDComposedConstraint_FakeNode();
 
 		/**
 		 * The meta object literal for the '{@link no.hib.dpf.diagram.impl.DPredicateImpl <em>DPredicate</em>}' class.
@@ -1933,32 +2389,6 @@ public interface DiagramPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute DPREDICATE__ICON = eINSTANCE.getDPredicate_Icon();
-
-		/**
-		 * The meta object literal for the '{@link no.hib.dpf.diagram.impl.DBoundImpl <em>DBound</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see no.hib.dpf.diagram.impl.DBoundImpl
-		 * @see no.hib.dpf.diagram.impl.DiagramPackageImpl#getDBound()
-		 * @generated
-		 */
-		EClass DBOUND = eINSTANCE.getDBound();
-
-		/**
-		 * The meta object literal for the '<em><b>Location</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute DBOUND__LOCATION = eINSTANCE.getDBound_Location();
-
-		/**
-		 * The meta object literal for the '<em><b>Size</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute DBOUND__SIZE = eINSTANCE.getDBound_Size();
 
 		/**
 		 * The meta object literal for the '{@link no.hib.dpf.diagram.impl.DOffsetImpl <em>DOffset</em>}' class.
@@ -2037,6 +2467,32 @@ public interface DiagramPackage extends EPackage {
 		 * @generated
 		 */
 		EReference VISUALIZATION__TARGET = eINSTANCE.getVisualization_Target();
+
+		/**
+		 * The meta object literal for the '{@link no.hib.dpf.diagram.impl.DElementImpl <em>DElement</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see no.hib.dpf.diagram.impl.DElementImpl
+		 * @see no.hib.dpf.diagram.impl.DiagramPackageImpl#getDElement()
+		 * @generated
+		 */
+		EClass DELEMENT = eINSTANCE.getDElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Constraints From</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DELEMENT__CONSTRAINTS_FROM = eINSTANCE.getDElement_ConstraintsFrom();
+
+		/**
+		 * The meta object literal for the '<em><b>Constraints To</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DELEMENT__CONSTRAINTS_TO = eINSTANCE.getDElement_ConstraintsTo();
 
 		/**
 		 * The meta object literal for the '{@link no.hib.dpf.diagram.VisualizationType <em>Visualization Type</em>}' enum.

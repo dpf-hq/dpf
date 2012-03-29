@@ -162,6 +162,12 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 		case ARROW_TO_NODE:
 			updateVisualization(getArrows(), getNodes());
 			break;
+		case COMPOSED:
+			targetCombo.getControl().setVisible(false);
+			targetLabel.setVisible(false);
+			sourceCombo.getControl().setVisible(false);
+			sourceLabel.setVisible(false);
+			break;
 		}
 	}
 

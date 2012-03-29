@@ -300,7 +300,7 @@
           <eStructuralFeatures xsi:type="ecore:EReference" name="graph" lowerBound="1"
               eType="#//hib/dpf/core/Graph"/>
         </eClassifiers>
-        <eClassifiers xsi:type="ecore:EClass" name="DNode" eSuperTypes="#//hib/dpf/diagram/DBound">
+        <eClassifiers xsi:type="ecore:EClass" name="DNode" eSuperTypes="#//hib/dpf/diagram/DElement">
           <eOperations name="getName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
           <eOperations name="getTypeName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="dType" lowerBound="1"
@@ -315,8 +315,13 @@
               eType="#//hib/dpf/diagram/DArrow" eOpposite="#//hib/dpf/diagram/DArrow/dTarget"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="dConstraints" upperBound="-1"
               eType="#//hib/dpf/diagram/DConstraint" eOpposite="#//hib/dpf/diagram/DConstraint/dNodes"/>
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" eType="#//hib/dpf/diagram/ELocation"/>
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" eType="#//hib/dpf/diagram/EDimension"/>
         </eClassifiers>
-        <eClassifiers xsi:type="ecore:EClass" name="DArrow">
+        <eClassifiers xsi:type="ecore:EClass" name="DFakeNode" eSuperTypes="#//hib/dpf/diagram/DNode">
+          <eStructuralFeatures xsi:type="ecore:EReference" name="dConstraint" eType="#//hib/dpf/diagram/DConstraint"/>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EClass" name="DArrow" eSuperTypes="#//hib/dpf/diagram/DElement">
           <eOperations name="reconnect">
             <eParameters name="source" eType="#//hib/dpf/diagram/DNode"/>
             <eParameters name="target" eType="#//hib/dpf/diagram/DNode"/>
@@ -342,12 +347,6 @@
               eType="#//hib/dpf/diagram/ELocation"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="nameOffset" eType="#//hib/dpf/diagram/DOffset"
               containment="true"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="constraintOffset"
-              upperBound="-1" eType="#//hib/dpf/diagram/DOffset"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="constraintsFrom"
-              upperBound="-1" eType="#//hib/dpf/diagram/DConstraint" eOpposite="#//hib/dpf/diagram/DConstraint/source"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="constraintsTo" upperBound="-1"
-              eType="#//hib/dpf/diagram/DConstraint" eOpposite="#//hib/dpf/diagram/DConstraint/target"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="DConstraint">
           <eOperations name="reconnect">
@@ -367,13 +366,21 @@
               eType="#//hib/dpf/diagram/DNode" eOpposite="#//hib/dpf/diagram/DNode/dConstraints"/>
           <eStructuralFeatures xsi:type="ecore:EReference" name="dArrows" upperBound="-1"
               eType="#//hib/dpf/diagram/DArrow" eOpposite="#//hib/dpf/diagram/DArrow/dConstraints"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="dPredicate" eType="#//hib/dpf/diagram/DPredicate"/>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EClass" name="DArrowLabelConstraint" eSuperTypes="#//hib/dpf/diagram/DConstraint">
           <eStructuralFeatures xsi:type="ecore:EReference" name="offset" eType="#//hib/dpf/diagram/DOffset"
               containment="true"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//hib/dpf/diagram/DArrow"
-              eOpposite="#//hib/dpf/diagram/DArrow/constraintsFrom"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//hib/dpf/diagram/DArrow"
-              eOpposite="#//hib/dpf/diagram/DArrow/constraintsTo"/>
-          <eStructuralFeatures xsi:type="ecore:EReference" name="dPredicate" eType="#//hib/dpf/diagram/DPredicate"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//hib/dpf/diagram/DElement"/>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EClass" name="DGenericArrowConstraint" eSuperTypes="#//hib/dpf/diagram/DConstraint">
+          <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//hib/dpf/diagram/DElement"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//hib/dpf/diagram/DElement"/>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EClass" name="DComposedConstraint" eSuperTypes="#//hib/dpf/diagram/DConstraint">
+          <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
+              eType="#//hib/dpf/diagram/DConstraint" containment="true"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="fakeNode" eType="#//hib/dpf/diagram/DFakeNode"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="DPredicate">
           <eStructuralFeatures xsi:type="ecore:EReference" name="predicate" eType="#//hib/dpf/core/Predicate"/>
@@ -383,10 +390,6 @@
           <eStructuralFeatures xsi:type="ecore:EReference" name="visualization" eType="#//hib/dpf/diagram/Visualization"
               containment="true"/>
           <eStructuralFeatures xsi:type="ecore:EAttribute" name="icon" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-        </eClassifiers>
-        <eClassifiers xsi:type="ecore:EClass" name="DBound">
-          <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" eType="#//hib/dpf/diagram/ELocation"/>
-          <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" eType="#//hib/dpf/diagram/EDimension"/>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EDataType" name="EDimension" instanceClassName="org.eclipse.draw2d.geometry.Dimension"/>
         <eClassifiers xsi:type="ecore:EDataType" name="ELocation" instanceClassName="org.eclipse.draw2d.geometry.Point"/>
@@ -411,10 +414,17 @@
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EEnum" name="VisualizationType">
           <eLiterals name="ArrowLabel"/>
-          <eLiterals name="NodeToNode"/>
-          <eLiterals name="NodeToArrow"/>
-          <eLiterals name="ArrowToNode"/>
-          <eLiterals name="ArrowToArrow"/>
+          <eLiterals name="NodeToNode" value="1"/>
+          <eLiterals name="NodeToArrow" value="2"/>
+          <eLiterals name="ArrowToNode" value="3"/>
+          <eLiterals name="ArrowToArrow" value="4"/>
+          <eLiterals name="Composed" value="5"/>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EClass" name="DElement">
+          <eStructuralFeatures xsi:type="ecore:EReference" name="constraintsFrom"
+              upperBound="-1" eType="#//hib/dpf/diagram/DConstraint"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="constraintsTo" upperBound="-1"
+              eType="#//hib/dpf/diagram/DConstraint"/>
         </eClassifiers>
       </eSubpackages>
     </eSubpackages>

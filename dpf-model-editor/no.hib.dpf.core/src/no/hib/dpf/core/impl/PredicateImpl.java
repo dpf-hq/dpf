@@ -585,5 +585,9 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 		GraphHomomorphism graphHomomorphism = CoreFactory.eINSTANCE.createGraphHomomorphism();
 		return graphHomomorphism.createGraphHomomorphism(getShape(), nodes, arrows);
 	}
+	
+	public NotificationChain eBasicSetContainer(InternalEObject newContainer, int newContainerFeatureID, NotificationChain msgs){
+		return super.eBasicSetContainer(newContainer, newContainerFeatureID, msgs);
+	}
 
 } //PredicateImpl
