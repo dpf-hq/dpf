@@ -71,10 +71,7 @@ public class DGenericArrowConstraintItemProvider
 	 * @generated
 	 */
 	protected void addSourcePropertyDescriptor(Object object) {
-		List<IItemPropertyDescriptor> target = itemPropertyDescriptors;
-		if(target == null)
-			target = unparametered != null ? unparametered : parametered;
-		target.add
+		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
@@ -96,10 +93,7 @@ public class DGenericArrowConstraintItemProvider
 	 * @generated
 	 */
 	protected void addTargetPropertyDescriptor(Object object) {
-		List<IItemPropertyDescriptor> target = itemPropertyDescriptors;
-		if(target == null)
-			target = unparametered != null ? unparametered : parametered;
-		target.add
+		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
