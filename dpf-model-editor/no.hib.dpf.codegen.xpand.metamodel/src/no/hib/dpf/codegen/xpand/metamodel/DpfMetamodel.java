@@ -20,7 +20,6 @@ import no.hib.dpf.codegen.xpand.metamodel.typesystem.types.PredicateType;
 import no.hib.dpf.codegen.xpand.metamodel.typesystem.types.SpecificationType;
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
-import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Predicate;
@@ -31,7 +30,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EGenericType;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.internal.xtend.type.baseimpl.BuiltinMetaModel;
@@ -62,11 +60,6 @@ import org.eclipse.xtend.typesystem.emf.EmfListType;
  * @author Anders Sandven <anders.sandven@gmail.com>
  */
 public class DpfMetamodel implements MetaModel, DpfMMConstants {
-	
-	static {
-		//Since we are using an instance model of the DPF ecore metamodel, we need to put the metamodel in the ecore package registry
-		EPackage.Registry.INSTANCE.put(CorePackage.eNS_URI, CorePackage.eINSTANCE);
-	}
 	
 	private static Logger log = Logger.getLogger(DpfMetamodel.class);
 	
@@ -151,7 +144,6 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 		} else if(obj instanceof Graph) {
 			return getTypeForName(GRAPH);
 		} else if(obj instanceof Node) {
-			//Vi får inn objekt fieldRef med namn userName. Ein kallar så getTypeForName og får igjen NodeType som er feil feil type.
 			Type t = getTypeForName(((Node)obj).getName());
 			try {
 				//This does not cover the case where two arrows or nodes have the same name
@@ -252,7 +244,7 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 				} else if(obj instanceof Arrow) {
 					return new ArrowType(DpfMetamodel.this, ns + "::" + ((Arrow)obj).getName(), (Arrow)obj);
 				} else if(obj instanceof Constraint) {
-					return new ConstraintType(DpfMetamodel.this, ns + "::" + CONSTRAINT, (Constraint)obj);
+					return new ConstraintType(DpfMetamodel.this, ns + "::" + ((Constraint)obj).getId(), (Constraint)obj);
 				} else if(obj instanceof Predicate) {
 					return new PredicateType(DpfMetamodel.this, ns + "::" + PREDICATE , (Predicate)obj);
 				} else if(obj instanceof DummyType) {
@@ -270,8 +262,8 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 			ns = namespace;
 			
 			//Placeholders for the actual node and arrow type, since it's not possible to traverse the metalevel hierarchy to get them
-			DummyType nodet = new DummyType(DpfMetamodel.this, "Node");
-			DummyType arrowt = new DummyType(DpfMetamodel.this, "Arrow");
+			DummyType nodet = new DummyType(DpfMetamodel.this, ns + "Node");
+			DummyType arrowt = new DummyType(DpfMetamodel.this, ns + "Arrow");
 			
 			dpfModel.typeForNameCache.put(ns + "::" + "Node", nodet);
 			dpfModel.typeForNameCache.put(ns + "::" + "Arrow", arrowt);
@@ -283,9 +275,6 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 			}
 			for(Arrow a : spec.getGraph().getArrows()) {
 				metaModelCache.get(a);
-			}
-			for(Constraint c : spec.getGraph().getConstraints()) {
-				metaModelCache.get(c);
 			}
 			
 			specifications.put(namespace, spec);
@@ -322,21 +311,6 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 			
 			@Override
 			protected Type createNew(Object obj) {
-//				log.debug("cache#createNew: " + obj);
-//				if(obj instanceof Specification) {
-//					return dpfMetaModel.getXpandTypeForDpfType(obj);
-//				} else if(obj instanceof Graph) {
-//					return dpfMetaModel.getXpandTypeForDpfType(obj);
-//				} else if(obj instanceof Node) {
-//					return dpfMetaModel.getXpandTypeForDpfType(((Node)obj).getTypeNode());
-//				} else if(obj instanceof Arrow) {
-//					return dpfMetaModel.getXpandTypeForDpfType(((Arrow)obj).getTypeArrow());
-//				} else if(obj instanceof Constraint) {
-//					return dpfMetaModel.getXpandTypeForDpfType(obj);
-//				} else if(obj instanceof Predicate) {
-//					return dpfMetaModel.getXpandTypeForDpfType(obj);
-//				}
-//				return null;
 				log.debug("cache#createNew: " + obj);
 				if(obj instanceof Specification) {
 					return new SpecificationType(DpfMetamodel.this, ns + "::" + SPECIFICATION , (Specification)obj);
@@ -354,45 +328,6 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 				return null;
 			}
 		};
-//	
-//		/** Contains a string to Xpand Type mapping */
-//		private Cache<String, Type> typeForNameCache2 = new Cache<String, Type>() {
-//			
-//			@Override
-//			protected Type createNew(String str) {
-//				//Finn namnet på typen, må strippa vekk namespace
-//				int i = str.indexOf("::");
-//				String typeDefinition = str;
-//				if(i != -1) {
-//					typeDefinition = str.substring(i+2);
-//				}
-//				log.debug("typeForNameCache#createNew: " + typeDefinition);
-//					
-//				if(model == null) log.debug("typeForNameCache: spec is null");
-//					
-//				Object key = getDpfMetaModelTypeForTypeName(typeDefinition);
-//					
-//				//If we already have registered the type
-//				if(key != null) {
-//					return dpfMetaModel.getXpandTypeForDpfType(key);
-//				} else {
-//					//We need to register the proper type
-//					//Should only return a valid dsm type.
-//					key = getGraphElementForName(typeDefinition);
-//					//FIXME: Workaround: The ecore specific code needs to get nodenames/nodes from dsm. When building the collections
-//					//we need to return a typenode. Hence we create a new method.
-//					if(!dpfMetaModel.dpfTypeExists(key) || key == null) {
-//						key = getMetaModelTypeForModelName(typeDefinition);
-//					}
-//					if(key != null) 
-//						return dpfMetaModel.getXpandTypeForDpfType(key);
-//				}
-//	
-//				//returnerer antakeligvis null dersom namespace
-//				log.debug("getTypeForName#createNew: returned null");	
-//				return null;
-//			}
-//		};
 		
 		/** Contains a string to Xpand Type mapping */
 		private Cache<String, Type> typeForNameCache = new Cache<String, Type>() {
@@ -407,12 +342,13 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 				
 				//MetaModel
 				if(typeDefinition.equals(IDOBJECT)) {
-					return null; //We dont handle this
+					return null; //We dont handle this, as it should subclass IDObj. Flytt test ned.
 				} else if(typeDefinition.equals(SPECIFICATION)) {
 					return dpfMetaModel.getXpandTypeForDpfType(dpfMetaModel.getMetaModelSpec());
 				}else if(typeDefinition.equals(PREDICATE)) {
 					try {
-						return dpfMetaModel.getXpandTypeForDpfType(dpfMetaModel.getMetaModelSpec().getGraph().getConstraints().get(0).getPredicate());
+						return null;
+//						return dpfMetaModel.getXpandTypeForDpfType(dpfMetaModel.getMetaModelSpec().getGraph().get);
 					} catch(NullPointerException e) {
 						return null; //We dont handle the PREDICATE type
 					}
@@ -421,7 +357,8 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 				} else if(typeDefinition.equals(CONSTRAINT)) {
 					//Only to ID the ConstraintType in metamodel.
 					try {
-						return dpfMetaModel.getXpandTypeForDpfType(dpfMetaModel.getMetaModelSpec().getGraph().getConstraints().get(0));
+						return null; //Vi skal ikkje få inn noko typedefinisjon her
+//						return dpfMetaModel.getXpandTypeForDpfType(dpfMetaModel.getMetaModelSpec().getGraph().getConstraints().get(0));
 					} catch(NullPointerException e) {
 						return null; //We dont handle the CONSTRAINT type
 					}
@@ -483,114 +420,9 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 			}
 		};
 		
-//		private Object getMetaModelTypeForModelName(String name) {
-//			log.debug("getDsmTypeForInstanceName: trying to find Graph element with name: " + name);
-//			//This method should map a instance type to a type specified in the DSM
-//			//TODO: Also there should be some validation that the type is actually in the DSM, and not just extract the type node of the instance like now.
-//			if(model != null) {
-//				if(name.equals(SPECIFICATION)) {
-//					log.debug("createNewTypeForName: Specification called. This makes stuff fucky");
-//					return model;
-//				} else {
-//					if(name.equals(GRAPH)) {
-//						return model.getGraph();
-//					} else {
-//						for(Node n : model.getGraph().getNodes()) {
-//							if(name.equals(n.getName())) { 
-//								return n.getTypeNode(); //We return an object which is in the DSM.
-//							}
-//						}
-//						for(Arrow a : model.getGraph().getArrows()) {
-//							if(name.equals(a.getName())) { 
-//								return a.getTypeArrow();
-//							}
-//						}
-//					}
-//				}
-//			}
-//			return null;
-//		}
-		
-		//FIXME: Horrible code. Vi sjekkar jo berre base types... det er useless.
-		//Used to find the first object with proper type to associate a type string with the proper Xpand Type in typeForNameCache
-		/**
-		 * Gets the DPF core instance object that is the key for {@link InternalMetaModel#metaModelCache}.
-		 * We need this in getTypeForNameCache to identify that a DPF object, ie. Node is of type node, 
-		 * which in it's turn is associated with the correct Xpand type.
-		 * 
-		 * @param k
-		 *            String that contains name of base dpf type
-		 * @return Object Returns the Object key (DPF core instance object) from dsmCache
-		 */
-//		private Object getDpfMetaModelTypeForTypeName(String k) {
-//			for(Object o : dpfMetaModel.getDpfTypes()) {
-//				if(k.equals(SPECIFICATION)) {
-//					if(o instanceof Specification) {
-//						return o;
-//					}
-//				} else if(k.equals(GRAPH)) {
-//					if(o instanceof Graph) {
-//						return o;
-//					}
-//				} else if(k.equals(NODE)) {
-//					if(o instanceof Node) {
-//						return o;
-//					}
-//				} else if(k.equals(ARROW)) {
-//					if(o instanceof Arrow) {
-//						return o;
-//					}
-//				} else if(k.equals(CONSTRAINT)) {
-//					if(o instanceof Constraint) {
-//						return o;
-//					}
-//				} else if(k.equals(PREDICATE)) {
-//					if(o instanceof Predicate) {
-//						return o;
-//					}
-//				}
-//			}
-//			return null;
-//		}
-		
-//		private Object getGraphElementForName(String name) {
-//			//This method is fugly and is used to retrieve a valid dpf object, which is identifying the proper 
-//			//object to do a lookup on in InternalMetaModel#metaModelCache.
-//			log.debug("getGraphElementForName: trying to find Graph element with name: " + name);
-//			
-//			Specification mm = dpfMetaModel.getMetaModelSpec();
-//			
-//			if(mm != null) {
-//				if(name.equals(SPECIFICATION)) {
-//					log.debug("createNewTypeForName: Specification called. This makes stuff fucky");
-//					return mm;
-//				} else {
-//					if(name.equals(GRAPH)) {
-//						return mm.getGraph();
-//					} else {
-//						for(Node n : mm.getGraph().getNodes()) {
-//							if(name.equals(n.getName())) { 
-//								return n;
-//							}
-//						}
-//						for(Arrow a : mm.getGraph().getArrows()) {
-//							if(name.equals(a.getName())) { 
-//								return a;
-//							}
-//						}
-//					}
-//				}
-//			}
-//			return null;
-//		}
-		
 		public InternalModel() {
 			
 		}
-		
-//		public Type getModelType(Object key) {
-//			return modelCache.get(key);
-//		}
 		
 		public void setDpfModel(String namespace, Specification model) {
 			this.model = model;

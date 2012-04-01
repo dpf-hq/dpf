@@ -2,19 +2,15 @@ package no.hib.dpf.codegen.xpand.metamodel.test;
 
 import static org.junit.Assert.*;
 
-import java.io.IOException;
 import java.util.Collection;
 import java.util.Set;
 
 import no.hib.dpf.codegen.xpand.metamodel.DpfMetamodel;
-import no.hib.dpf.codegen.xpand.metamodel.typesystem.types.*;
-import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Specification;
+import no.hib.dpf.utils.DPFCoreUtil;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.xtend.typesystem.Type;
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
@@ -29,12 +25,9 @@ public class MetaModelTest {
 	
 	@Before
 	public void setUp() {
-		try {
-			model = CoreFactory.eINSTANCE.loadSpecification(URI.createURI(modelPath));
-			metamodel = CoreFactory.eINSTANCE.loadSpecification(URI.createURI(metaModelPath));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		model = DPFCoreUtil.loadSpecification(URI.createURI(modelPath));
+		metamodel = DPFCoreUtil.loadSpecification(URI.createURI(metaModelPath));
+		
 		mm = new DpfMetamodel();
 		mm.addDpfMetaModel(metamodel);
 		mm.setDpfModel(model);

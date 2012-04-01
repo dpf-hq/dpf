@@ -1,10 +1,8 @@
 package no.hib.dpf.codegen.xpand.metamodel.workflow;
 
-import java.io.IOException;
-
 import no.hib.dpf.codegen.xpand.metamodel.DpfMetamodel;
-import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Specification;
+import no.hib.dpf.utils.DPFCoreUtil;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.mwe.core.WorkflowContext;
@@ -14,9 +12,9 @@ import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 
 /**
  * This class represents the DpfReader component used in MWE workflow files.
- * It provides xml attributes for setting a DPF meta model as well as model.
+ * It provides xml attributes for setting a DPF metamodel as well as model.
  * 
- * In it's current state it only supports one DPF meta model.
+ * In it's current state it only supports one DPF metamodel.
  * 
  * See example project for usage.
  * 
@@ -52,12 +50,7 @@ public class DpfReader extends WorkflowComponentWithModelSlot {
 	}
 
 	public void setDpfMetaModel(String path) {
-		try {
-			this.dpfMetaModel = CoreFactory.eINSTANCE.loadSpecification(URI.createURI(path));
-		} catch (IOException e) {
-			//do nothing, checkConfiguration should pick this up
-			e.printStackTrace();
-		}
+		this.dpfMetaModel = DPFCoreUtil.loadSpecification(URI.createURI(path));
 	}
 
 	public Specification getDpfModel() {
@@ -65,12 +58,7 @@ public class DpfReader extends WorkflowComponentWithModelSlot {
 	}
 
 	public void setDpfModel(String path) {
-		try {
-			this.dpfModel = CoreFactory.eINSTANCE.loadSpecification(URI.createURI(path));
-		} catch (IOException e) {
-			//do nothing, checkConfiguration should pick this up
-			e.printStackTrace();
-		}
+		this.dpfModel = DPFCoreUtil.loadSpecification(URI.createURI(path));
 	}
 	
 	public DpfMetamodel getMetaModel() {

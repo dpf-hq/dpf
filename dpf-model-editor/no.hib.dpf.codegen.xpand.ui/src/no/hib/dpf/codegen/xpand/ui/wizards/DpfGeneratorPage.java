@@ -35,7 +35,7 @@ public class DpfGeneratorPage extends WizardPage {
 		projectName.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		
 		mml = new Label(comp, SWT.RIGHT);
-		mml.setText("Meta model location:");
+		mml.setText("Metamodel Location:");
 		
 		metaModelLocation = new Text(comp, SWT.SINGLE);
 		metaModelLocation.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));

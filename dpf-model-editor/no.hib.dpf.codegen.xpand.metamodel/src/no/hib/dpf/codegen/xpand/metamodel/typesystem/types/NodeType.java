@@ -54,15 +54,14 @@ public class NodeType extends AbstractTypeImpl {
 		
 		createGettersForAllOutgoingArrowsInNode(res);
 		
-		res.add(new OperationImpl(NodeType.this, "toString", getTypeSystem().getStringType()) {
-
+		res.add(new OperationImpl(this, "getOutgoingArrows", new ListTypeImpl(model.getTypeForName("Arrow"), model.getTypeSystem(), "List")) {
+			
 			@Override
 			protected Object evaluateInternal(Object target, Object[] params) {
-				if(target instanceof Node) {
-					return "NodeType#toString: " + ((Node)target).getName();
-				}
-				return null;
-			}	
+				final List<Arrow> tmp = new ArrayList<Arrow>();
+				tmp.addAll(node.getOutgoings());
+				return tmp;
+			}
 		});
 		
 		return res.toArray(new Feature[res.size()]);
@@ -71,27 +70,25 @@ public class NodeType extends AbstractTypeImpl {
 	private void createGettersForAllOutgoingArrowsInNode(Set<FeatureImpl> res) {
 		// Meta model specific getters
 
-		Set<String> arrowtypes = new HashSet<String>();
-		for(Arrow a : node.getOutgoingArrows()) {
-			arrowtypes.add(a.getName());
+		Set<Arrow> arrowtypes = new HashSet<Arrow>();
+		for(Arrow a : node.getOutgoings()) {
+			if(!a.getName().equals("")) //To ensure we dont create methods without a name
+				arrowtypes.add(a);
 		}
 		
 		//We prefix arrow getters with A to denote arrow
-		for (final Arrow a : node.getOutgoingArrows()) {
+		for (final Arrow a : arrowtypes) {
 			res.add(new OperationImpl(this, TypeHelper.pluralize("getA" + TypeHelper.toFirstUpper(a.getName())),
 					new ListTypeImpl(model.getTypeForName(a.getName()), model
 							.getTypeSystem(), "List")) {
 				@Override
 				protected Object evaluateInternal(Object target, Object[] params) {
 					final List<Arrow> tmp = new ArrayList<Arrow>();
-					System.out.println("callee: " + node.getName() + " collection for: " + a.getName() + " " + a);
 					List<Object> arrows = model.getModelCollections(a.getId()); //instance level
 					if(arrows != null) {
 						for (Object o : arrows) {
-//							System.out.println("Matching: " + NodeType.this.getName()
-//									+ " with: " + ((Arrow)o).getName());
 							//We make sure that the typeNode has the typeArrow. To make sure the our arrow is allowed on the particular node
-							if (node.getOutgoingArrows().contains(((Arrow)o).getTypeArrow())) {
+							if (node.getOutgoings().contains(((Arrow)o).getTypeArrow())) {
 								//Instance level: We check that the model arrow has the callee node as source
 								if(((Arrow)o).getSource().equals(target)) {
 //									System.out.println("Matched!");
@@ -101,7 +98,6 @@ public class NodeType extends AbstractTypeImpl {
 							}
 						}
 					}
-					System.out.println("Result for " + a.getName()  + ": " +tmp);
 					return tmp;
 				}
 			});

@@ -12,8 +12,8 @@
 package no.hib.dpf.codegen.xpand.ui;
 
 import no.hib.dpf.codegen.xpand.ui.wizards.WorkflowParser;
-import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Specification;
+import no.hib.dpf.utils.DPFCoreUtil;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
@@ -239,19 +239,15 @@ public class DpfMetaModelUIPlugin extends AbstractUIPlugin {
 		}
 		
 		private void createAndStoreSpecification(IProject project, String path) {
-			try {
-				URI uri = URI.createURI(path);
-				if(!path.equals("")) {
-					if(!fileModels.containsKey(project.getFile(new Path(path)))) {
-						Specification spectmp = CoreFactory.eINSTANCE.loadSpecification(uri);
-						log.info("SUCCESSFULLY LOADED METAMODEL FOR PROJECT: " + project.getName() + " path: " + path);
-						if(spectmp != null) {
-							fileModels.put(project.getFile(new Path(path)), spectmp);
-						}
+			URI uri = URI.createURI(path);
+			if(!path.equals("")) {
+				if(!fileModels.containsKey(project.getFile(new Path(path)))) {
+					Specification spectmp = DPFCoreUtil.loadSpecification(uri);
+					log.info("SUCCESSFULLY LOADED METAMODEL FOR PROJECT: " + project.getName() + " path: " + path);
+					if(spectmp != null) {
+						fileModels.put(project.getFile(new Path(path)), spectmp);
 					}
 				}
-			} catch (IOException e) {
-				e.printStackTrace();
 			}
 		}
 		

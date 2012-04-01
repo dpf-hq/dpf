@@ -1,12 +1,11 @@
 package no.hib.dpf.codegen.xpand.metamodel.test;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 import no.hib.dpf.codegen.xpand.metamodel.DpfMetamodel;
-import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Specification;
+import no.hib.dpf.utils.DPFCoreUtil;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.mwe.core.WorkflowEngine;
@@ -47,23 +46,19 @@ public class DpfXpandRunner {
 
 		Specification model = null;
 
-		try {
-			DpfMetamodel dpfMetaModel = 
-					new DpfMetamodel();
+		DpfMetamodel dpfMetaModel = 
+				new DpfMetamodel();
 
-			Specification metaModel = CoreFactory.eINSTANCE.loadSpecification(
-					URI.createURI(metaModelPath));
+		Specification metaModel = DPFCoreUtil.loadSpecification(
+				URI.createURI(metaModelPath));
 
-			dpfMetaModel.addDpfMetaModel(metaModel);
+		dpfMetaModel.addDpfMetaModel(metaModel);
 
-			execCtx.registerMetaModel(dpfMetaModel);
+		execCtx.registerMetaModel(dpfMetaModel);
 
-			model = CoreFactory.eINSTANCE.loadSpecification(
-					URI.createURI(modelPath));
-			dpfMetaModel.setDpfModel(model);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		model = DPFCoreUtil.loadSpecification(
+				URI.createURI(modelPath));
+		dpfMetaModel.setDpfModel(model);
 
 		XpandFacade facade = XpandFacade.create(execCtx);
 		facade.evaluate(evalEntry, model);

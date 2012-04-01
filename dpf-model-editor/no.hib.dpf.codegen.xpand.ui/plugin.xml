@@ -26,7 +26,7 @@
             category="no.hib.dpf.api.wizards.dpfprojectcategory"
             class="no.hib.dpf.codegen.xpand.ui.wizards.NewDpfGeneratorWizard"
             id="no.hib.dpf.codegen.xpand.ui.wizards.newdpfgeneratorwizard"
-            name="DPF Generator Wizard">
+            name="DPF Generator Project">
       </wizard>
    </extension>
 
