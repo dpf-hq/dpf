@@ -7,12 +7,10 @@
 package no.hib.dpf.diagram.provider;
 
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 
-import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.provider.ConstraintItemProvider;
 import no.hib.dpf.core.provider.MetamodelEditPlugin;
 import no.hib.dpf.diagram.DConstraint;
@@ -48,7 +46,6 @@ public class DConstraintItemProvider
 		IItemPropertySource {
 	public static final String DConstraint_CATEGORY = "DConstraint";
 	ConstraintItemProvider constraintItemProvider = null;
-	protected List<IItemPropertyDescriptor> unparametered, parametered;
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -68,30 +65,9 @@ public class DConstraintItemProvider
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		boolean withParameter = false;
-		if(object instanceof DConstraint){
-			Constraint constraint = ((DConstraint)object).getConstraint();
-			String parameter = constraint == null ? null : constraint.getParameters();
-			if(parameter == null || parameter.isEmpty()){
-				if(unparametered != null) 
-					return unparametered;
-			}
-			else{
-				withParameter = true;
-				if(parametered != null)
-					return parametered;
-			}
-			super.getPropertyDescriptors(object);
-			itemPropertyDescriptors.addAll(constraintItemProvider.getPropertyDescriptors(((DConstraint)object).getConstraint()));
-
-			if(withParameter) 
-				parametered = itemPropertyDescriptors;
-			else 
-				unparametered = itemPropertyDescriptors;
-			itemPropertyDescriptors = null;
-			return withParameter ? parametered : unparametered;
-		}
-		return new ArrayList<IItemPropertyDescriptor>();
+		super.getPropertyDescriptors(object);
+		itemPropertyDescriptors.addAll(constraintItemProvider.getPropertyDescriptors(((DConstraint)object).getConstraint()));
+		return itemPropertyDescriptors;
 	}
 
 	/**

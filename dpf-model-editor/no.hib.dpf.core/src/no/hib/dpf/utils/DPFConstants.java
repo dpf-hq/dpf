@@ -56,4 +56,5 @@ public class DPFConstants {
 			"	}\n" +
 			"}\n";
 	public static final String DefaultCheckerClass = "CheckInstance";
+	public static String DCONSTRAINT_CATEGORY = "DConstraint";
 }

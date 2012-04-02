@@ -3,7 +3,9 @@ package no.hib.dpf.editor.extension_points.border;
 import java.util.List;
 
 import org.eclipse.draw2d.Graphics;
-import org.eclipse.draw2d.ToolbarLayout;
+import org.eclipse.draw2d.GridData;
+import org.eclipse.draw2d.GridLayout;
+import org.eclipse.swt.SWT;
 
 import no.hib.dpf.editor.figures.EditableLabel;
 import no.hib.dpf.editor.figures.NodeFigure;
@@ -14,10 +16,8 @@ public class BasicNodeFigure extends NodeFigure {
 	}
 	@SuppressWarnings("rawtypes")
 	public BasicNodeFigure(EditableLabel name, List colums) {
-		ToolbarLayout layout = new ToolbarLayout();
-		layout.setMinorAlignment(ToolbarLayout.ALIGN_CENTER);
-		layout.setStretchMinorAxis(false);
-		layout.setSpacing(2);
+		GridLayout layout = new GridLayout(1, true);
+		layout.setConstraint(nameLabel, new GridData(SWT.CENTER, SWT.CENTER, true, true));
 		setLayoutManager(layout);
 		setOpaque(true);
 		add(name);

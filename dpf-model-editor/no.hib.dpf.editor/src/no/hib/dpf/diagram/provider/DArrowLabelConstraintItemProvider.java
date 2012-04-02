@@ -13,6 +13,7 @@ import java.util.List;
 import no.hib.dpf.diagram.DArrowLabelConstraint;
 import no.hib.dpf.diagram.DiagramFactory;
 import no.hib.dpf.diagram.DiagramPackage;
+import no.hib.dpf.utils.DPFConstants;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -60,12 +61,10 @@ public class DArrowLabelConstraintItemProvider
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (unparametered == null) {
-			super.getPropertyDescriptors(object);
-
-			addSourcePropertyDescriptor(object);
-		}
-		return parametered == null ? unparametered : parametered;
+		itemPropertyDescriptors = null;
+		super.getPropertyDescriptors(object);
+		addSourcePropertyDescriptor(object);
+		return itemPropertyDescriptors;
 	}
 
 	/**
@@ -75,10 +74,7 @@ public class DArrowLabelConstraintItemProvider
 	 * @generated NOT
 	 */
 	protected void addSourcePropertyDescriptor(Object object) {
-		List<IItemPropertyDescriptor> target = itemPropertyDescriptors;
-		if(target == null)
-			target = parametered == null ? unparametered : parametered;
-		target.add
+		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
@@ -89,7 +85,7 @@ public class DArrowLabelConstraintItemProvider
 				 false,
 				 true,
 				 null,
-				 null,
+				 DPFConstants.DCONSTRAINT_CATEGORY,
 				 null));
 		
 		

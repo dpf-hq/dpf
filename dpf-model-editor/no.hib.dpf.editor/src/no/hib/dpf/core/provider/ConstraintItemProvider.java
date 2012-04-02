@@ -9,11 +9,14 @@ package no.hib.dpf.core.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.CorePackage;
+import no.hib.dpf.core.Predicate;
 import no.hib.dpf.diagram.provider.ExtendItemPropertyDescriptor;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -96,7 +99,6 @@ public class ConstraintItemProvider
 	public ConstraintItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
-	List<IItemPropertyDescriptor> parametered = null, unparametered = null;
 
 	/**
 	 * This returns the property descriptors for the adapted class.
@@ -106,35 +108,16 @@ public class ConstraintItemProvider
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		
-		boolean withParameter = false;
-		if(object instanceof Constraint){
-			String parameter = ((Constraint)object).getParameters();
-			if(parameter == null || parameter.isEmpty()){
-				if(unparametered != null) 
-					return unparametered;
-			}
-			else{
-				withParameter = true;
-				if(parametered != null)
-					return parametered;
-			}
-
+		if(itemPropertyDescriptors == null){
 			super.getPropertyDescriptors(object);
-
 			addNodesPropertyDescriptor(object);
 			addArrowsPropertyDescriptor(object);
 			addPredicatePropertyDescriptor(object);
-			if(withParameter)
-				addParametersPropertyDescriptor(object);
-			if(withParameter) 
-				parametered = itemPropertyDescriptors;
-			else 
-				unparametered = itemPropertyDescriptors;
-			itemPropertyDescriptors = null;
-			return withParameter ? parametered : unparametered;
 		}
-		return new ArrayList<IItemPropertyDescriptor>();
+		List<IItemPropertyDescriptor> dynamic = new ArrayList<IItemPropertyDescriptor>();
+		dynamic.addAll(itemPropertyDescriptors);
+		addParametersPropertyDescriptor(dynamic, object);
+		return dynamic;
 	}
 
 	/**
@@ -209,26 +192,36 @@ public class ConstraintItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	protected void addParametersPropertyDescriptor(Object object) {
-		List<IItemPropertyDescriptor> paras = new ArrayList<IItemPropertyDescriptor>();
+	private static Map<Predicate, List<IItemPropertyDescriptor>> database = new HashMap<Predicate, List<IItemPropertyDescriptor>>();
+	protected void addParametersPropertyDescriptor(List<IItemPropertyDescriptor> object2, Object object) {
 		if(object instanceof Constraint){
 			Constraint constraint = (Constraint) object;
-			String parameter = constraint.getParameters();
-			if(parameter != null && !parameter.isEmpty()){
-				String[] paras1 = parameter.split(";");
-				for (int i = 0; i < paras1.length; i++) {
-					String[] pair = paras1[i].split(":");
-					if(pair.length != 2) return;
-					paras.add
-			(new ConstraintParameterItemProvider(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-					pair[0], getString("_UI_PropertyDescriptor_description", "_UI_Constraint_parameters_feature", "_UI_Constraint_type"), CorePackage.Literals.CONSTRAINT__PARAMETERS, true, false,
-					false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, Constraint_CATEGORY, null));
+			if(constraint.getParameters() == null || constraint.getParameters().isEmpty())
+				return;
+			List<IItemPropertyDescriptor> paras = database.get(constraint.getPredicate());
+			if(paras != null)
+				object2.addAll(paras);
+			else{
+				paras = new ArrayList<IItemPropertyDescriptor>();
+				String parameter = constraint.getParameters();
+				if(parameter != null && !parameter.isEmpty()){
+					String[] paras1 = parameter.split(";");
+					for (int i = 0; i < paras1.length; i++) {
+						String[] pair = paras1[i].split(":");
+						if(pair.length != 2) return;
+						paras.add
+						(new ConstraintParameterItemProvider(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+								pair[0], getString("_UI_PropertyDescriptor_description", "_UI_Constraint_parameters_feature", "_UI_Constraint_type"), CorePackage.Literals.CONSTRAINT__PARAMETERS, true, false,
+								false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, Constraint_CATEGORY, null));
+						
+					}
 					
 				}
-				
+				database.put(constraint.getPredicate(), paras);
+				object2.addAll(paras);
 			}
+				
 		}
-		itemPropertyDescriptors.addAll(paras);
 	}
 
 	/**

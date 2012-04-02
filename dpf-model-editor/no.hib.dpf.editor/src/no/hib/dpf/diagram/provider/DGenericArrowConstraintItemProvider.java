@@ -11,6 +11,7 @@ import java.util.Collection;
 import java.util.List;
 
 import no.hib.dpf.diagram.DiagramPackage;
+import no.hib.dpf.utils.DPFConstants;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -55,12 +56,10 @@ public class DGenericArrowConstraintItemProvider
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
-			super.getPropertyDescriptors(object);
-
-			addSourcePropertyDescriptor(object);
-			addTargetPropertyDescriptor(object);
-		}
+		itemPropertyDescriptors = null;
+		super.getPropertyDescriptors(object);
+		addSourcePropertyDescriptor(object);
+		addTargetPropertyDescriptor(object);
 		return itemPropertyDescriptors;
 	}
 
@@ -68,7 +67,7 @@ public class DGenericArrowConstraintItemProvider
 	 * This adds a property descriptor for the Source feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void addSourcePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
@@ -82,7 +81,7 @@ public class DGenericArrowConstraintItemProvider
 				 false,
 				 true,
 				 null,
-				 null,
+				 DPFConstants.DCONSTRAINT_CATEGORY,
 				 null));
 	}
 
@@ -90,7 +89,7 @@ public class DGenericArrowConstraintItemProvider
 	 * This adds a property descriptor for the Target feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void addTargetPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
@@ -104,7 +103,7 @@ public class DGenericArrowConstraintItemProvider
 				 false,
 				 true,
 				 null,
-				 null,
+				 DPFConstants.DCONSTRAINT_CATEGORY,
 				 null));
 	}
 
