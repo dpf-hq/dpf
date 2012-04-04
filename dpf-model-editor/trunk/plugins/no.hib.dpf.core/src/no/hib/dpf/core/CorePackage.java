@@ -60,7 +60,7 @@ public interface CorePackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "no.hib.dpf.core";
+	String eNS_PREFIX = "core";
 
 	/**
 	 * The singleton instance of the package.

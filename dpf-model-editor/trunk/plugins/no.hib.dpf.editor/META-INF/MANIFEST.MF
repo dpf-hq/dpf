@@ -19,10 +19,14 @@ Require-Bundle: org.eclipse.gef;bundle-version="[3.5.0,4.0.0)",
  no.hib.dpf.api;bundle-version="0.1.1",
  org.eclipse.emf.common.ui,
  org.eclipse.emf.edit.ui,
- org.eclipse.ui.forms
+ org.eclipse.ui.forms,
+ no.hib.dpf.core
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Import-Package: org.eclipse.emf.ecore.xmi
+Import-Package: no.hib.dpf.diagram,
+ no.hib.dpf.diagram.impl,
+ no.hib.dpf.diagram.util,
+ org.eclipse.emf.ecore.xmi
 Export-Package: no.hib.dpf.core.provider,
  no.hib.dpf.diagram.provider,
  no.hib.dpf.editor,

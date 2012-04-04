@@ -11,10 +11,8 @@ Export-Package:
  no.hib.dpf.core,
  no.hib.dpf.core.impl,
  no.hib.dpf.core.util,
- no.hib.dpf.diagram,
- no.hib.dpf.diagram.impl,
- no.hib.dpf.diagram.util,
- no.hib.dpf.utils
+ no.hib.dpf.utils,
+ no.hib.dpf.utils.internal.signature
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport
 Bundle-ActivationPolicy: lazy

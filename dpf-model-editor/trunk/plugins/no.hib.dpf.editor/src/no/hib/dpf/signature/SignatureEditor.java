@@ -1,5 +1,5 @@
 package no.hib.dpf.signature;
-
+import static no.hib.dpf.diagram.util.DPFConstants.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.EventObject;
@@ -267,12 +267,12 @@ public class SignatureEditor extends FormEditor implements CommandStackListener,
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("sig", new XMIResourceFactoryImpl());
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMLResourceFactoryImpl());
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("dpf", new XMLResourceFactoryImpl());
-		Resource dGraph = resourceSet.createResource(DPFConstants.DefaultDSpecification);
-		dGraph.getContents().add(DPFConstants.REFLEXIVE_DSPECIFICATION);
-		resourceSet.getURIResourceMap().put(DPFConstants.DefaultDSpecification, dGraph);
-		Resource graph = resourceSet.createResource(DPFConstants.DefaultSpecification);
-		graph.getContents().add(DPFConstants.REFLEXIVE_SPECIFICATION);
-		resourceSet.getURIResourceMap().put(DPFConstants.DefaultSpecification, graph);
+		Resource dGraph = resourceSet.createResource(DefaultDSpecification);
+		dGraph.getContents().add(REFLEXIVE_DSPECIFICATION);
+		resourceSet.getURIResourceMap().put(DefaultDSpecification, dGraph);
+		Resource graph = resourceSet.createResource(DefaultSpecification);
+		graph.getContents().add(REFLEXIVE_SPECIFICATION);
+		resourceSet.getURIResourceMap().put(DefaultSpecification, graph);
 		return resourceSet;
 	}
 	

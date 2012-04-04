@@ -41,7 +41,7 @@ import no.hib.dpf.editor.parts.DPFEditPartFactory;
 import no.hib.dpf.editor.parts.NodeTreeEditPartFactory;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;
 import no.hib.dpf.editor.preferences.PreferenceConstants;
-import no.hib.dpf.utils.DPFConstants;
+import static no.hib.dpf.diagram.util.DPFConstants.*;
 import no.hib.dpf.utils.DPFCoreUtil;
 
 import org.eclipse.core.resources.IFile;
@@ -299,21 +299,21 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		resourceSet.setURIResourceMap(new LinkedHashMap<URI, Resource>());
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap() .put("xmi", new XMIResourceFactoryImpl());
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap() .put("dpf", new XMIResourceFactoryImpl());
-		Resource resource = resourceSet.createResource(DPFConstants.DefaultDSpecification);
-		resource.getContents().add(DPFConstants.REFLEXIVE_DSPECIFICATION);
-		resource.getContents().add(DPFConstants.DEFAULT_DSIGNATURE);
-		resourceSet.getURIResourceMap().put(DPFConstants.DefaultDSpecification, resource);
-		Resource model = resourceSet.createResource(DPFConstants.DefaultSpecification);
-		model.getContents().add(DPFConstants.REFLEXIVE_SPECIFICATION);
-		model.getContents().add(DPFConstants.DEFAULT_SIGNATURE);
-		resourceSet.getURIResourceMap().put(DPFConstants.DefaultSpecification, model);
+		Resource resource = resourceSet.createResource(DefaultDSpecification);
+		resource.getContents().add(REFLEXIVE_DSPECIFICATION);
+		resource.getContents().add(DEFAULT_DSIGNATURE);
+		resourceSet.getURIResourceMap().put(DefaultDSpecification, resource);
+		Resource model = resourceSet.createResource(DefaultSpecification);
+		model.getContents().add(REFLEXIVE_SPECIFICATION);
+		model.getContents().add(DEFAULT_SIGNATURE);
+		resourceSet.getURIResourceMap().put(DefaultSpecification, model);
 		return resourceSet;
 	}
 
 	private static void updateMetaModelReference(DSpecification iter, URI oldBase, URI createFileURI){
 		if(oldBase == null){
 			DSpecification typeSpec = iter.getDType();
-			if(typeSpec != null && typeSpec != DPFConstants.REFLEXIVE_DSPECIFICATION){
+			if(typeSpec != null && typeSpec != REFLEXIVE_DSPECIFICATION){
 				String relative = typeSpec.eResource().getURI().deresolve(createFileURI).toFileString();
 				iter.setMetaFile(relative);
 				iter.getSpecification().setMetaFile(DPFEditor.getModelFromDiagram(relative));
@@ -361,16 +361,16 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		resourceSet.getURIResourceMap().put(newURI, diagram);
 		resourceSet.getURIResourceMap().put(modelFileURI, model);
 		DSpecification iter = newSpec;
-		while(iter != DPFConstants.REFLEXIVE_DSPECIFICATION){
+		while(iter != REFLEXIVE_DSPECIFICATION){
 			EcoreUtil.resolveAll(iter.getDType());
 			iter = iter.getDType();
 		}
 		iter = newSpec;
-		while(iter != DPFConstants.REFLEXIVE_DSPECIFICATION){
+		while(iter != REFLEXIVE_DSPECIFICATION){
 			updateMetaModelReference(iter, oldURI, newURI);
 			model.getContents().add(iter.getSpecification());
 			diagram.getContents().add(iter);
-			if(iter.getDSignature() != null && iter.getDSignature() != DPFConstants.DEFAULT_DSIGNATURE){
+			if(iter.getDSignature() != null && iter.getDSignature() != DEFAULT_DSIGNATURE){
 				updateSignatureReference(newSpec, newURI);
 				model.getContents().add(iter.getDSignature().getSignature());
 				diagram.getContents().add(iter.getDSignature());
@@ -436,7 +436,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 //	}
 //	public static void verifyAndUpdate(DSpecification dsp) {
 //		DGraph instanceGraph = dsp.getDGraph(), typeGraph = dsp.getDType().getDGraph();
-//		if(typeGraph == DPFConstants.REFLEXIVE_TYPE_DGRAPH) return;
+//		if(typeGraph == REFLEXIVE_TYPE_DGRAPH) return;
 //		List<DArrow> violatedArrow = new ArrayList<DArrow>();
 //		for(DArrow arrow : instanceGraph.getDArrows()){
 //			DArrow typeArrow = arrow.getDType();

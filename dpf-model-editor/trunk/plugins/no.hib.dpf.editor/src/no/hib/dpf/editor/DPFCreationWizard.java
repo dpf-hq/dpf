@@ -22,7 +22,7 @@ import no.hib.dpf.diagram.DSignature;
 import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.diagram.DiagramFactory;
 import no.hib.dpf.signature.SignatureEditor;
-import no.hib.dpf.utils.DPFConstants;
+ import static no.hib.dpf.diagram.util.DPFConstants.*;
 import no.hib.dpf.utils.DPFCoreUtil;
 
 import org.eclipse.core.resources.IFile;
@@ -172,7 +172,7 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 				typeSpec = DPFEditor.loadDSpecification(resourceSet, URI.createFileURI(typeModelFileName), resourceToDiagnosticMap);
 				EcoreUtil.resolveAll(typeSpec);
 			}
-			newSpec.setDType(typeSpec != null ? typeSpec : DPFConstants.REFLEXIVE_DSPECIFICATION);
+			newSpec.setDType(typeSpec != null ? typeSpec : REFLEXIVE_DSPECIFICATION);
 
 			String signatureFileName = signatureLinkPage.getLinkTarget();
 			if(signatureFileName != null){

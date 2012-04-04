@@ -11,6 +11,7 @@
  *******************************************************************************/
 package no.hib.dpf.editor.actions;
 
+import static no.hib.dpf.diagram.util.DPFConstants.*;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.util.List;
@@ -27,7 +28,6 @@ import no.hib.dpf.editor.DPFEditor;
 import no.hib.dpf.editor.DPFErrorReport;
 import no.hib.dpf.editor.DPFPlugin;
 import no.hib.dpf.editor.commands.DConstraintCreateCommand;
-import no.hib.dpf.utils.DPFConstants;
 
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.BasicEList;
@@ -57,7 +57,7 @@ public class CreateConstraintAction extends SelectionActionForEditParts {
 	}
 	public static ImageDescriptor getImageDescriptor(DPredicate predicate, URI base){
 		if(predicate.getIcon() != null && !predicate.getIcon().isEmpty()){
-			if(predicate.eContainer() == DPFConstants.DEFAULT_DSIGNATURE)
+			if(predicate.eContainer() == DEFAULT_DSIGNATURE)
 				return ImageDescriptor.createFromURL(Platform.getBundle(DPFPlugin.PLUGIN_ID).getResource(predicate.getIcon()));
 			File file = new File(URI.createFileURI(predicate.getIcon()).resolve(base).toFileString());
 			try {

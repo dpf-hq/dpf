@@ -1,7 +1,6 @@
 package no.hib.dpf.editor;
 
-import static no.hib.dpf.utils.DPFConstants.REFLEXIVE_TYPE_DARROW;
-import static no.hib.dpf.utils.DPFConstants.REFLEXIVE_TYPE_DNODE;
+import static no.hib.dpf.diagram.util.DPFConstants.*;
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.Node;
@@ -88,7 +87,7 @@ public class DPFCheck {
 	}
 	
 	public static void checkDSpecification(DSpecification dSpecification){
-		if(dSpecification != DPFConstants.REFLEXIVE_DSPECIFICATION){
+		if(dSpecification != REFLEXIVE_DSPECIFICATION){
 			DSpecification type = dSpecification.getDType();
 			Assert.isNotNull(type);
 			Assert.isNotNull(dSpecification.getSpecification());
@@ -115,7 +114,7 @@ public class DPFCheck {
 	}
 
 	private static void checkDGraph(DGraph dGraph) {
-		if(dGraph != DPFConstants.REFLEXIVE_TYPE_DGRAPH){
+		if(dGraph != REFLEXIVE_TYPE_DGRAPH){
 			DGraph type = dGraph.getDType();
 			Assert.isNotNull(dGraph.getGraph());
 			Assert.isNotNull(type != null);

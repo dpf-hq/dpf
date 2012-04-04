@@ -30,8 +30,6 @@ import no.hib.dpf.core.SemanticValidator;
 import no.hib.dpf.core.Signature;
 import no.hib.dpf.core.Specification;
 import no.hib.dpf.core.ValidatorType;
-import no.hib.dpf.diagram.DiagramPackage;
-import no.hib.dpf.diagram.impl.DiagramPackageImpl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -194,16 +192,11 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 
 		isInited = true;
 
-		// Obtain or create and register interdependencies
-		DiagramPackageImpl theDiagramPackage = (DiagramPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DiagramPackage.eNS_URI) instanceof DiagramPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DiagramPackage.eNS_URI) : DiagramPackage.eINSTANCE);
-
 		// Create package meta-data objects
 		theCorePackage.createPackageContents();
-		theDiagramPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theCorePackage.initializePackageContents();
-		theDiagramPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theCorePackage.freeze();

@@ -15,11 +15,10 @@
  *******************************************************************************/
 package no.hib.dpf.signature;
 
-
+import static no.hib.dpf.diagram.util.DPFConstants.*;
 import no.hib.dpf.diagram.DPredicate;
 import no.hib.dpf.editor.DPFEditorPaletteFactory;
 import no.hib.dpf.editor.parts.DPFEditPartFactory;
-import no.hib.dpf.utils.DPFConstants;
 
 import org.eclipse.gef.ContextMenuProvider;
 import org.eclipse.gef.GraphicalViewer;
@@ -70,7 +69,7 @@ public abstract class PredicateEditor extends GraphicalEditorWithFlyoutPalette{
 	protected void configureGraphicalViewer() {
 		super.configureGraphicalViewer();
 		GraphicalViewer viewer = getGraphicalViewer();
-		paletteFactory.updatePalette(getPaletteRoot(), DPFConstants.REFLEXIVE_TYPE_DGRAPH);
+		paletteFactory.updatePalette(getPaletteRoot(), REFLEXIVE_TYPE_DGRAPH);
 		shapesEditPartFactory = new DPFEditPartFactory();
 		viewer.setEditPartFactory(shapesEditPartFactory);
 		viewer.setRootEditPart(new ScalableFreeformRootEditPart());
