@@ -13,7 +13,7 @@
  * 
  * �yvind Bech and Dag Viggo Lok�en - DPF Editor
 *******************************************************************************/
-package no.hib.dpf.signature;
+package no.hib.dpf.editor.signature;
 
 import org.eclipse.gef.ContextMenuProvider;
 import org.eclipse.gef.EditPartViewer;

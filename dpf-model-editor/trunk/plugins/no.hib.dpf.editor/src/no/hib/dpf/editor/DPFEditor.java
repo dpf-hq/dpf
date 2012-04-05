@@ -791,4 +791,17 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		}
 	}
 
+	public static DSignature loadDSignature(ResourceSetImpl resourceSet2,
+			URI createFileURI,
+			Map<Resource, Diagnostic> resourceToDiagnosticMap2) {
+		Assert.isNotNull(resourceSet2);
+		Resource signature = resourceSet2.createResource(createFileURI);
+		try {
+			signature.load(null);
+		} catch (IOException e) {
+			DPFErrorReport.logError(e);
+		}
+		int size = signature.getContents().size();
+		return size == 2 ? (DSignature) signature.getContents().get(0) : null;
+	}
 }

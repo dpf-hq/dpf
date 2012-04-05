@@ -1,4 +1,4 @@
-package no.hib.dpf.signature;
+package no.hib.dpf.editor.signature;
 
 
 import no.hib.dpf.core.Arrow;

@@ -30,5 +30,6 @@ Import-Package: no.hib.dpf.diagram,
 Export-Package: no.hib.dpf.core.provider,
  no.hib.dpf.diagram.provider,
  no.hib.dpf.editor,
- no.hib.dpf.signature
+ no.hib.dpf.editor.parts,
+ no.hib.dpf.editor.parts.listeners
 

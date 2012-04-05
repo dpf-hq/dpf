@@ -1,4 +1,4 @@
-package no.hib.dpf.signature;
+package no.hib.dpf.editor.signature;
 
 import org.eclipse.ui.forms.IManagedForm;
 import org.eclipse.ui.forms.editor.FormEditor;

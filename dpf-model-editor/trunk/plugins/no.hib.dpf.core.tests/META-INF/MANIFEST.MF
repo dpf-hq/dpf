@@ -23,4 +23,5 @@ Require-Bundle: org.eclipse.core.runtime,
  no.hib.dpf.api;bundle-version="0.1.1",
  no.hib.dpf.diagram
 Bundle-ActivationPolicy: lazy
-Import-Package: org.junit
+Import-Package: no.hib.dpf.editor.signature,
+ org.junit

@@ -13,7 +13,7 @@
  * 
  * �yvind Bech and Dag Viggo Lok�en - DPF Editor
  *******************************************************************************/
-package no.hib.dpf.signature;
+package no.hib.dpf.editor.signature;
 
 import static no.hib.dpf.diagram.util.DPFConstants.REFLEXIVE_TYPE_DGRAPH;
 import no.hib.dpf.diagram.DPredicate;

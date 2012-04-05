@@ -1,4 +1,4 @@
-package no.hib.dpf.signature;
+package no.hib.dpf.editor.signature;
 
 import org.eclipse.gef.ui.actions.ActionBarContributor;
 import org.eclipse.gef.ui.actions.DeleteRetargetAction;

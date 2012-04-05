@@ -1,4 +1,4 @@
-package no.hib.dpf.signature;
+package no.hib.dpf.editor.signature;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.common.util.Enumerator;

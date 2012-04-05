@@ -1,4 +1,4 @@
-package no.hib.dpf.signature;
+package no.hib.dpf.editor.signature;
 import static no.hib.dpf.diagram.util.DPFConstants.REFLEXIVE_DSPECIFICATION;
 import static no.hib.dpf.utils.DPFConstants.DefaultDSpecification;
 import static no.hib.dpf.utils.DPFConstants.DefaultSpecification;
@@ -14,6 +14,7 @@ import java.util.Map;
 
 import no.hib.dpf.diagram.DPredicate;
 import no.hib.dpf.diagram.DSignature;
+import no.hib.dpf.editor.DPFEditor;
 import no.hib.dpf.editor.DPFErrorReport;
 import no.hib.dpf.utils.DPFCoreUtil;
 
@@ -313,14 +314,6 @@ public class SignatureEditor extends FormEditor implements CommandStackListener,
 	public static DSignature loadDSignature(ResourceSetImpl resourceSet2,
 			URI createFileURI,
 			Map<Resource, Diagnostic> resourceToDiagnosticMap2) {
-		Assert.isNotNull(resourceSet2);
-		Resource signature = resourceSet2.createResource(createFileURI);
-		try {
-			signature.load(null);
-		} catch (IOException e) {
-			DPFErrorReport.logError(e);
-		}
-		int size = signature.getContents().size();
-		return size == 2 ? (DSignature) signature.getContents().get(0) : null;
+		return DPFEditor.loadDSignature(resourceSet2, createFileURI, resourceToDiagnosticMap2);
 	}	
 }

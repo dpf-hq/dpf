@@ -23,7 +23,6 @@ import java.util.Map;
 import no.hib.dpf.diagram.DSignature;
 import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.diagram.DiagramFactory;
-import no.hib.dpf.signature.SignatureEditor;
 import no.hib.dpf.utils.DPFCoreUtil;
 
 import org.eclipse.core.resources.IFile;
@@ -177,7 +176,7 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 
 			String signatureFileName = signatureLinkPage.getLinkTarget();
 			if(signatureFileName != null){
-				DSignature signature = SignatureEditor.loadDSignature(resourceSet, URI.createFileURI(signatureFileName), resourceToDiagnosticMap);
+				DSignature signature = DPFEditor.loadDSignature(resourceSet, URI.createFileURI(signatureFileName), resourceToDiagnosticMap);
 				EcoreUtil.resolveAll(signature);
 				newSpec.setDSignature(signature);
 			}
