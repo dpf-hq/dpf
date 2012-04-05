@@ -92,7 +92,7 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 
 	 @Override
      public void performRequest(Request req) {
-           if (req.getType().equals(RequestConstants.REQ_DIRECT_EDIT)) {
+           if (req.getType().equals(RequestConstants.REQ_DIRECT_EDIT) && !(getModel() instanceof DFakeNode)) {
         	   TextDirectEditManager manager = new TextDirectEditManager(this, TextCellEditor.class, new TextCellEditorLocator(((NodeFigure)getFigure()).getNameLabel()));
         	   manager.show();
         	   return;

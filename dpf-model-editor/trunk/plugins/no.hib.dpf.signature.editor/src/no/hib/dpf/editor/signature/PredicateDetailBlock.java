@@ -144,6 +144,8 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 	private void refreshVisualization(){
 		switch(dPredicate.getVisualization().getType()){
 		case ARROW_LABEL: 
+			sourceCombo.getControl().setVisible(true);
+			sourceLabel.setVisible(true);
 			targetCombo.getControl().setVisible(false);
 			targetLabel.setVisible(false);
 			sourceCombo.setInput(getArrows());
@@ -205,6 +207,8 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 
 
 	private void updateVisualization(Object[] sources, Object[] targets){
+		sourceCombo.getControl().setVisible(true);
+		sourceLabel.setVisible(true);
 		sourceCombo.setInput(sources);
 		IDObject source1 = dPredicate.getVisualization().getSource();
 		sourceCombo.setSelection(source1 == null ? null : new StructuredSelection(source1));
