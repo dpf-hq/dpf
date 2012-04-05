@@ -18,7 +18,6 @@ package no.hib.dpf.core.tests;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 import junit.textui.TestRunner;
-import no.hib.dpf.diagram.tests.DiagramTests;
 
 /**
  * <!-- begin-user-doc -->
@@ -43,9 +42,8 @@ public class MetamodelAllTests extends TestSuite {
 	 * @generated
 	 */
 	public static Test suite() {
-		TestSuite suite = new MetamodelAllTests("Metamodel Tests");
+		TestSuite suite = new MetamodelAllTests("Meta Tests");
 		suite.addTest(CoreTests.suite());
-		suite.addTest(DiagramTests.suite());
 		return suite;
 	}
 

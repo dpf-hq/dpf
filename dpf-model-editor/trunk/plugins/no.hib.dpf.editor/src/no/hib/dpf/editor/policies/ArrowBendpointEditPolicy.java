@@ -26,10 +26,9 @@ import org.eclipse.draw2d.Bendpoint;
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.RelativeBendpoint;
 import org.eclipse.draw2d.geometry.Point;
-
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.requests.BendpointRequest;
 import org.eclipse.gef.editpolicies.BendpointEditPolicy;
+import org.eclipse.gef.requests.BendpointRequest;
 
 public class ArrowBendpointEditPolicy extends BendpointEditPolicy {
 

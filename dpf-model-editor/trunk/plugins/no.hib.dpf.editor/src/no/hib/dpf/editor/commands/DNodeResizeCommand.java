@@ -18,7 +18,6 @@ package no.hib.dpf.editor.commands;
 import no.hib.dpf.diagram.DNode;
 
 import org.eclipse.draw2d.geometry.Rectangle;
-
 import org.eclipse.gef.commands.Command;
 
 

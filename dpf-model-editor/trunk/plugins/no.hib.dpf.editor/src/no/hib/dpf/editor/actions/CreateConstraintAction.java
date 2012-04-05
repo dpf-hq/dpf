@@ -11,7 +11,8 @@
  *******************************************************************************/
 package no.hib.dpf.editor.actions;
 
-import static no.hib.dpf.diagram.util.DPFConstants.*;
+import static no.hib.dpf.diagram.util.DPFConstants.DEFAULT_DSIGNATURE;
+
 import java.io.File;
 import java.net.MalformedURLException;
 import java.util.List;

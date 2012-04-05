@@ -10,17 +10,13 @@ package no.hib.dpf.diagram.provider;
 import java.util.Collection;
 import java.util.List;
 
-
 import no.hib.dpf.core.provider.ConstraintItemProvider;
-import no.hib.dpf.core.provider.MetamodelEditPlugin;
 import no.hib.dpf.diagram.DConstraint;
 import no.hib.dpf.diagram.DiagramPackage;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -213,7 +209,7 @@ public class DConstraintItemProvider
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return MetamodelEditPlugin.INSTANCE;
+		return DiagramMetamodelEditPlugin.INSTANCE;
 	}
 
 }

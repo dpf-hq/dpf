@@ -3,14 +3,6 @@ package no.hib.dpf.editor.extension_points;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.IExtension;
-import org.eclipse.core.runtime.Platform;
-import org.eclipse.gef.EditPart;
-import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.ui.plugin.AbstractUIPlugin;
-
 import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.Predicate;
@@ -20,6 +12,14 @@ import no.hib.dpf.diagram.DSignature;
 import no.hib.dpf.diagram.DiagramFactory;
 import no.hib.dpf.editor.DPFErrorReport;
 import no.hib.dpf.utils.DPFConstants;
+
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IExtension;
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.gef.EditPart;
+import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 public class SignatureManager {
 	public static final String EXTENSION_POINT_ID = "Signature";

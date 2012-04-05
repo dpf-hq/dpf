@@ -22,10 +22,9 @@ import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.editor.displaymodel.ModelElement;
 import no.hib.dpf.editor.displaymodel.MovableAndSizable;
 
-import org.eclipse.swt.graphics.Image;
-
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.editparts.AbstractTreeEditPart;
+import org.eclipse.swt.graphics.Image;
 
 /**
  * TreeEditPart used for VNode instances. This is used in the Outline View of

@@ -51,7 +51,7 @@ public interface DiagramPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "no.hib.dpf.diagram";
+	String eNS_PREFIX = "diagram";
 
 	/**
 	 * The singleton instance of the package.

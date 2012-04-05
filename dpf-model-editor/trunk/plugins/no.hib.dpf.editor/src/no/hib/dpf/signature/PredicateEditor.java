@@ -15,7 +15,7 @@
  *******************************************************************************/
 package no.hib.dpf.signature;
 
-import static no.hib.dpf.diagram.util.DPFConstants.*;
+import static no.hib.dpf.diagram.util.DPFConstants.REFLEXIVE_TYPE_DGRAPH;
 import no.hib.dpf.diagram.DPredicate;
 import no.hib.dpf.editor.DPFEditorPaletteFactory;
 import no.hib.dpf.editor.parts.DPFEditPartFactory;

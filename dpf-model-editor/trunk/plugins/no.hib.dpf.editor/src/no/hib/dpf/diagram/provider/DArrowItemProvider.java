@@ -11,7 +11,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-
 import no.hib.dpf.core.provider.ArrowItemProvider;
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DiagramFactory;
@@ -21,8 +20,6 @@ import no.hib.dpf.utils.DPFConstants;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
-
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;

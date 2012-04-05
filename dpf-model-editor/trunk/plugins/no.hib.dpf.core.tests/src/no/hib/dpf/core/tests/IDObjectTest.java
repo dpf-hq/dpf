@@ -18,7 +18,6 @@ package no.hib.dpf.core.tests;
 import java.util.UUID;
 
 import junit.framework.TestCase;
-import junit.textui.TestRunner;
 import no.hib.dpf.core.IDObject;
 
 import org.junit.Test;
@@ -29,7 +28,7 @@ import org.junit.Test;
  * <!-- end-user-doc -->
  * @generated
  */
-public class IDObjectTest extends TestCase {
+public abstract class IDObjectTest extends TestCase {
 
 	/**
 	 * The fixture for this ID Object test case.
@@ -38,15 +37,6 @@ public class IDObjectTest extends TestCase {
 	 * @generated
 	 */
 	protected IDObject fixture = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static void main(String[] args) {
-		TestRunner.run(IDObjectTest.class);
-	}
 
 	/**
 	 * Constructs a new ID Object test case with the given name.
@@ -78,28 +68,6 @@ public class IDObjectTest extends TestCase {
 		return fixture;
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see junit.framework.TestCase#setUp()
-	 * @generated
-	 */
-	@Override
-	protected void setUp() throws Exception {
-		setFixture(null);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see junit.framework.TestCase#tearDown()
-	 * @generated
-	 */
-	@Override
-	protected void tearDown() throws Exception {
-		setFixture(null);
-	}
-	
 	@Test
 	public void testConstructor() {
 		String id = getFixture().getId();

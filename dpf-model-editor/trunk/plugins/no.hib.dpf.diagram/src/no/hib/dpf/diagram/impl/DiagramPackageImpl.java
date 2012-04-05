@@ -8,8 +8,6 @@ package no.hib.dpf.diagram.impl;
 
 import no.hib.dpf.core.CorePackage;
 
-import no.hib.dpf.core.impl.CorePackageImpl;
-
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DArrowLabelConstraint;
 import no.hib.dpf.diagram.DComposedConstraint;
@@ -212,16 +210,14 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 
 		isInited = true;
 
-		// Obtain or create and register interdependencies
-		CorePackageImpl theCorePackage = (CorePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CorePackage.eNS_URI) instanceof CorePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CorePackage.eNS_URI) : CorePackage.eINSTANCE);
+		// Initialize simple dependencies
+		CorePackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theDiagramPackage.createPackageContents();
-		theCorePackage.createPackageContents();
 
 		// Initialize created meta-data
 		theDiagramPackage.initializePackageContents();
-		theCorePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theDiagramPackage.freeze();

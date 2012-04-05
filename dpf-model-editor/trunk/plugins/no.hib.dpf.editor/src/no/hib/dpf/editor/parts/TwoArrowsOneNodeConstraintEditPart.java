@@ -11,12 +11,12 @@
 *******************************************************************************/
 package no.hib.dpf.editor.parts;
 
-import org.eclipse.draw2d.IFigure;
-
 import no.hib.dpf.diagram.DConstraint;
 import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.editor.figures.NodeFigure;
 import no.hib.dpf.editor.figures.TwoArrowsOneNodeConstraintConnection;
+
+import org.eclipse.draw2d.IFigure;
 
 public class TwoArrowsOneNodeConstraintEditPart extends DConstraintEditPart {
 	

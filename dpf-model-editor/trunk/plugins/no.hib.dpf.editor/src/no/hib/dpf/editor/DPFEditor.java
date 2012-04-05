@@ -15,6 +15,13 @@
  *******************************************************************************/
 package no.hib.dpf.editor;
 
+import static no.hib.dpf.diagram.util.DPFConstants.DEFAULT_DSIGNATURE;
+import static no.hib.dpf.diagram.util.DPFConstants.REFLEXIVE_DSPECIFICATION;
+import static no.hib.dpf.utils.DPFConstants.DEFAULT_SIGNATURE;
+import static no.hib.dpf.utils.DPFConstants.DefaultDSpecification;
+import static no.hib.dpf.utils.DPFConstants.DefaultSpecification;
+import static no.hib.dpf.utils.DPFConstants.REFLEXIVE_SPECIFICATION;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.EventObject;
@@ -41,7 +48,6 @@ import no.hib.dpf.editor.parts.DPFEditPartFactory;
 import no.hib.dpf.editor.parts.NodeTreeEditPartFactory;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;
 import no.hib.dpf.editor.preferences.PreferenceConstants;
-import static no.hib.dpf.diagram.util.DPFConstants.*;
 import no.hib.dpf.utils.DPFCoreUtil;
 
 import org.eclipse.core.resources.IFile;

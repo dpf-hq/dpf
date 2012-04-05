@@ -18,7 +18,6 @@ package no.hib.dpf.editor.commands;
 import no.hib.dpf.editor.displaymodel.MovableAndSizable;
 
 import org.eclipse.draw2d.geometry.Rectangle;
-
 import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.requests.ChangeBoundsRequest;

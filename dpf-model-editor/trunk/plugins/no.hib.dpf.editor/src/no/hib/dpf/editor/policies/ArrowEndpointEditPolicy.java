@@ -1,7 +1,7 @@
 /*******************************************************************************
  * Copyright (c) 2000, 2005 IBM Corporation and others.
  * 
- * Portions of the code Copyright (c) 2011 H¿yskolen i Bergen
+ * Portions of the code Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,12 +11,11 @@
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *     
- *     ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ *     ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
  *******************************************************************************/
 package no.hib.dpf.editor.policies;
 
 import org.eclipse.draw2d.PolylineConnection;
-
 import org.eclipse.gef.GraphicalEditPart;
 
 public class ArrowEndpointEditPolicy extends

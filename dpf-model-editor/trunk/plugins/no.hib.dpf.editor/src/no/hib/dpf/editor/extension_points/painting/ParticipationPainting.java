@@ -1,9 +1,9 @@
 package no.hib.dpf.editor.extension_points.painting;
 
+import no.hib.dpf.editor.extension_points.IArrowPainting;
+
 import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.draw2d.RotatableDecoration;
-
-import no.hib.dpf.editor.extension_points.IArrowPainting;
 
 public class ParticipationPainting implements IArrowPainting {
 

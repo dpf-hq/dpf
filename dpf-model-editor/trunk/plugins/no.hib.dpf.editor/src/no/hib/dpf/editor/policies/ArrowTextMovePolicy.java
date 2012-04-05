@@ -39,6 +39,7 @@ package no.hib.dpf.editor.policies;
 
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DOffset;
+import no.hib.dpf.editor.Transform;
 import no.hib.dpf.editor.commands.ArrowTextMoveCommand;
 import no.hib.dpf.editor.parts.ArrowLabelEditPart;
 
@@ -50,7 +51,6 @@ import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
-import no.hib.dpf.editor.Transform;
 
 public class ArrowTextMovePolicy extends NonResizableEditPolicy {
 

@@ -19,17 +19,15 @@ OF SUCH DAMAGE.
  */
 package no.hib.dpf.editor.parts;
 
-import org.eclipse.swt.graphics.Font;
-import org.eclipse.swt.graphics.FontData;
-import org.eclipse.swt.widgets.Text;
-
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
-import org.eclipse.draw2d.geometry.*;
-
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.tools.CellEditorLocator;
 import org.eclipse.gef.tools.DirectEditManager;
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.graphics.FontData;
+import org.eclipse.swt.widgets.Text;
 
 public class TextEditManager extends DirectEditManager {
 

@@ -15,6 +15,8 @@
  *******************************************************************************/
 package no.hib.dpf.editor;
 
+import static no.hib.dpf.diagram.util.DPFConstants.REFLEXIVE_DSPECIFICATION;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -22,7 +24,6 @@ import no.hib.dpf.diagram.DSignature;
 import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.diagram.DiagramFactory;
 import no.hib.dpf.signature.SignatureEditor;
- import static no.hib.dpf.diagram.util.DPFConstants.*;
 import no.hib.dpf.utils.DPFCoreUtil;
 
 import org.eclipse.core.resources.IFile;

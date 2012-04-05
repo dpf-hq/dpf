@@ -1,5 +1,9 @@
 package no.hib.dpf.editor.extension_points.painting;
 
+import no.hib.dpf.editor.extension_points.IArrowPainting;
+import no.hib.dpf.editor.extension_points.painting.RelationshipPainting.RelationshipAnchor;
+import no.hib.dpf.editor.figures.ArrowConnection;
+
 import org.eclipse.draw2d.AnchorListener;
 import org.eclipse.draw2d.ChopboxAnchor;
 import org.eclipse.draw2d.ConnectionAnchor;
@@ -9,10 +13,6 @@ import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.draw2d.RotatableDecoration;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
-
-import no.hib.dpf.editor.extension_points.IArrowPainting;
-import no.hib.dpf.editor.extension_points.painting.RelationshipPainting.RelationshipAnchor;
-import no.hib.dpf.editor.figures.ArrowConnection;
 
 public class TotalParticipationPainting implements IArrowPainting {
 

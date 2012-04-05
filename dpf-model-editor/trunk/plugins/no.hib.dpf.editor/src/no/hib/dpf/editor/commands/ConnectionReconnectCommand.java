@@ -17,7 +17,6 @@ package no.hib.dpf.editor.commands;
 
 import java.util.Iterator;
 
-
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DNode;
 

@@ -1,6 +1,9 @@
 package no.hib.dpf.editor;
 
-import static no.hib.dpf.diagram.util.DPFConstants.*;
+import static no.hib.dpf.diagram.util.DPFConstants.REFLEXIVE_DSPECIFICATION;
+import static no.hib.dpf.diagram.util.DPFConstants.REFLEXIVE_TYPE_DARROW;
+import static no.hib.dpf.diagram.util.DPFConstants.REFLEXIVE_TYPE_DGRAPH;
+import static no.hib.dpf.diagram.util.DPFConstants.REFLEXIVE_TYPE_DNODE;
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.Node;

@@ -2,13 +2,13 @@ package no.hib.dpf.editor.extension_points.border;
 
 import java.util.List;
 
+import no.hib.dpf.editor.figures.EditableLabel;
+import no.hib.dpf.editor.figures.NodeFigure;
+
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.GridData;
 import org.eclipse.draw2d.GridLayout;
 import org.eclipse.swt.SWT;
-
-import no.hib.dpf.editor.figures.EditableLabel;
-import no.hib.dpf.editor.figures.NodeFigure;
 
 public class BasicNodeFigure extends NodeFigure {
 	public BasicNodeFigure(EditableLabel name) {

@@ -1,5 +1,9 @@
 package no.hib.dpf.signature;
-import static no.hib.dpf.diagram.util.DPFConstants.*;
+import static no.hib.dpf.diagram.util.DPFConstants.REFLEXIVE_DSPECIFICATION;
+import static no.hib.dpf.utils.DPFConstants.DefaultDSpecification;
+import static no.hib.dpf.utils.DPFConstants.DefaultSpecification;
+import static no.hib.dpf.utils.DPFConstants.REFLEXIVE_SPECIFICATION;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.EventObject;
@@ -11,6 +15,7 @@ import java.util.Map;
 import no.hib.dpf.diagram.DPredicate;
 import no.hib.dpf.diagram.DSignature;
 import no.hib.dpf.editor.DPFErrorReport;
+import no.hib.dpf.utils.DPFCoreUtil;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
@@ -53,7 +58,6 @@ import org.eclipse.ui.dialogs.SaveAsDialog;
 import org.eclipse.ui.forms.editor.FormEditor;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.part.FileEditorInput;
-import no.hib.dpf.utils.*;
 
 public class SignatureEditor extends FormEditor implements CommandStackListener, ISelectionListener{
 

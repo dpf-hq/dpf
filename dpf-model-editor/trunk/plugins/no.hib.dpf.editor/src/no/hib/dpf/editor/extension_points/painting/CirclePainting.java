@@ -2,6 +2,11 @@ package no.hib.dpf.editor.extension_points.painting;
 
 import java.util.List;
 
+import no.hib.dpf.editor.extension_points.INodePainting;
+import no.hib.dpf.editor.figures.EditableLabel;
+import no.hib.dpf.editor.figures.NodeFigure;
+import no.hib.dpf.editor.preferences.DPFEditorPreferences;
+
 import org.eclipse.draw2d.AbstractBorder;
 import org.eclipse.draw2d.ChopboxAnchor;
 import org.eclipse.draw2d.ConnectionAnchor;
@@ -13,11 +18,6 @@ import org.eclipse.draw2d.geometry.Insets;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.Rectangle;
-
-import no.hib.dpf.editor.extension_points.INodePainting;
-import no.hib.dpf.editor.figures.EditableLabel;
-import no.hib.dpf.editor.figures.NodeFigure;
-import no.hib.dpf.editor.preferences.DPFEditorPreferences;
 
 public class CirclePainting implements INodePainting {
 

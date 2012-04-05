@@ -4,25 +4,28 @@
  *
  * $Id$
  */
-package no.hib.dpf.core.provider;
+package no.hib.dpf.diagram.provider;
+
+import no.hib.dpf.core.provider.MetamodelEditPlugin;
 
 import org.eclipse.emf.common.EMFPlugin;
+
 import org.eclipse.emf.common.util.ResourceLocator;
 
 /**
- * This is the central singleton for the Meta edit plugin.
+ * This is the central singleton for the DiagramMetamodel edit plugin.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public final class MetamodelEditPlugin extends EMFPlugin {
+public final class DiagramMetamodelEditPlugin extends EMFPlugin {
 	/**
 	 * Keep track of the singleton.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final MetamodelEditPlugin INSTANCE = new MetamodelEditPlugin();
+	public static final DiagramMetamodelEditPlugin INSTANCE = new DiagramMetamodelEditPlugin();
 
 	/**
 	 * Keep track of the singleton.
@@ -38,9 +41,10 @@ public final class MetamodelEditPlugin extends EMFPlugin {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MetamodelEditPlugin() {
+	public DiagramMetamodelEditPlugin() {
 		super
 		  (new ResourceLocator [] {
+		     MetamodelEditPlugin.INSTANCE,
 		   });
 	}
 

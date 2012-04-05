@@ -19,7 +19,6 @@ package no.hib.dpf.editor.commands;
 import no.hib.dpf.diagram.DArrow;
 
 import org.eclipse.draw2d.geometry.Point;
-
 import org.eclipse.gef.commands.Command;
 
 public class BendpointCommand extends Command {

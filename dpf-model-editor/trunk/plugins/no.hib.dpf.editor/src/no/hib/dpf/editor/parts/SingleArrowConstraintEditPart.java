@@ -11,12 +11,6 @@
 *******************************************************************************/
 package no.hib.dpf.editor.parts;
 
-import org.eclipse.draw2d.Label;
-import org.eclipse.draw2d.PolylineConnection;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.gef.EditPolicy;
-import org.eclipse.gef.Request;
-
 import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.diagram.DArrowLabelConstraint;
@@ -25,6 +19,12 @@ import no.hib.dpf.diagram.DOffset;
 import no.hib.dpf.editor.policies.ArrowTextMovePolicy;
 import no.hib.dpf.editor.policies.DConstraintDeletePolicy;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;
+
+import org.eclipse.draw2d.Label;
+import org.eclipse.draw2d.PolylineConnection;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.Request;
 
 
 public class SingleArrowConstraintEditPart extends ArrowLabelEditPart {

@@ -10,17 +10,13 @@ package no.hib.dpf.diagram.provider;
 import java.util.Collection;
 import java.util.List;
 
-
-import no.hib.dpf.core.provider.MetamodelEditPlugin;
 import no.hib.dpf.diagram.DPredicate;
 import no.hib.dpf.diagram.DiagramFactory;
 import no.hib.dpf.diagram.DiagramPackage;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -70,7 +66,6 @@ public class DPredicateItemProvider
 
 			addPredicatePropertyDescriptor(object);
 			addSimpleNamePropertyDescriptor(object);
-			addDGraphPropertyDescriptor(object);
 			addIconPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -121,28 +116,6 @@ public class DPredicateItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the DGraph feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDGraphPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_DPredicate_dGraph_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DPredicate_dGraph_feature", "_UI_DPredicate_type"),
-				 DiagramPackage.Literals.DPREDICATE__DGRAPH,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This adds a property descriptor for the Icon feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -176,6 +149,7 @@ public class DPredicateItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
+			childrenFeatures.add(DiagramPackage.Literals.DPREDICATE__DGRAPH);
 			childrenFeatures.add(DiagramPackage.Literals.DPREDICATE__VISUALIZATION);
 		}
 		return childrenFeatures;
@@ -232,6 +206,7 @@ public class DPredicateItemProvider
 			case DiagramPackage.DPREDICATE__ICON:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
+			case DiagramPackage.DPREDICATE__DGRAPH:
 			case DiagramPackage.DPREDICATE__VISUALIZATION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -252,6 +227,11 @@ public class DPredicateItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(DiagramPackage.Literals.DPREDICATE__DGRAPH,
+				 DiagramFactory.eINSTANCE.createDGraph()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(DiagramPackage.Literals.DPREDICATE__VISUALIZATION,
 				 DiagramFactory.eINSTANCE.createVisualization()));
 	}
@@ -264,7 +244,7 @@ public class DPredicateItemProvider
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return MetamodelEditPlugin.INSTANCE;
+		return DiagramMetamodelEditPlugin.INSTANCE;
 	}
 
 }
