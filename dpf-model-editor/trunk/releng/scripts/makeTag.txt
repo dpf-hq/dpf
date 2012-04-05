@@ -1,0 +1,3 @@
+svn copy http://gs.hib.no/repos/eclipseplugin/dpf-model-editor/trunk/plugins \
+         http://gs.hib.no/repos/eclipseplugin/dpf-model-editor/tags/0.2.0.beta \
+      -m "Dpf-Editor Test version for release 0.2.0"
