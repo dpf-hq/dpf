@@ -1,0 +1,67 @@
+«IMPORT dpf»
+
+«EXTENSION org::eclipse::xtend::util::stdlib::io»
+
+	
+«DEFINE main FOR dpf::Specification»
+	«EXPAND graph FOR this.graph»
+«ENDDEFINE»
+
+«DEFINE graph FOR dpf::Graph»
+	«EXPAND service FOREACH this.getServices()»
+«ENDDEFINE»
+
+
+«DEFINE service FOR dpf::Service»
+	«EXPAND struct FOREACH  this.getAStructRefs()»
+	
+«ENDDEFINE»
+
+
+
+«DEFINE struct FOR dpf::structRef»
+	«EXPAND field FOREACH this.target.getAFieldRefs()»
+«ENDDEFINE»
+
+«DEFINE field FOR dpf::fieldRef»
+«ENDDEFINE»
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+«DEFINE methodref FOR dpf::methodRef»
+	«syserr("\t MethodRef: " + this.name)»
+	<method name=«this.target.name»>
+	«EXPAND firstargref FOREACH  this.target.getAArgRefs()»
+	 </method>
+«ENDDEFINE»
+
+«DEFINE firstargref FOR dpf::argRef»
+	«syserr("\t\t ArgRef: "  + this.name)»
+	«REM»<arg name=«this.target.name»	type=«this.target.getAArgTypes().first().target.name»/>«ENDREM»
+	
+«ENDDEFINE»
+
+

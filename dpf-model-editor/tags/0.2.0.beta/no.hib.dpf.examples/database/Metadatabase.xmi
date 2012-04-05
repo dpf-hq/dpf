@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ASCII"?>
+<no.hib.dpf.core:Specification xmlns:no.hib.dpf.core="http://no.hib.dpf.core">
+  <graph id="0afa630d-1450-4e96-b849-7cbef179cc07" name="Default name">
+    <nodes id="d717badd-7504-4c33-a218-ae9c26ecdd82" name="Entity">
+      <typeNode href="../../../../../../home/wxlfrank/Desktop/runtime-EclipseApplication/tests/specifications/d1.dpf.xmi#//@typeGraph/@nodes.0"/>
+    </nodes>
+    <nodes id="96891ebd-ee66-4579-a168-d40084a61d99" name="Attribute">
+      <typeNode href="../../../../../../home/wxlfrank/Desktop/runtime-EclipseApplication/tests/specifications/d1.dpf.xmi#//@typeGraph/@nodes.0"/>
+    </nodes>
+    <nodes id="b1349927-afe7-4e3f-8749-7f78e66ab2a5" name="Key Attribute">
+      <typeNode href="../../../../../../home/wxlfrank/Desktop/runtime-EclipseApplication/tests/specifications/d1.dpf.xmi#//@typeGraph/@nodes.0"/>
+    </nodes>
+    <nodes id="26ea9b9e-8d4e-460a-97bd-d0777dcb0670" name="Composed Attribute">
+      <typeNode href="../../../../../../home/wxlfrank/Desktop/runtime-EclipseApplication/tests/specifications/d1.dpf.xmi#//@typeGraph/@nodes.0"/>
+    </nodes>
+    <nodes id="72ef4c86-db57-4211-9440-a5483bcafd23" name="Multivalued Attribute">
+      <typeNode href="../../../../../../home/wxlfrank/Desktop/runtime-EclipseApplication/tests/specifications/d1.dpf.xmi#//@typeGraph/@nodes.0"/>
+    </nodes>
+    <nodes id="cbf84ee5-6cef-4d71-8c3f-833dbd34048d" name="Derived Attribute">
+      <typeNode href="../../../../../../home/wxlfrank/Desktop/runtime-EclipseApplication/tests/specifications/d1.dpf.xmi#//@typeGraph/@nodes.0"/>
+    </nodes>
+    <nodes id="f240fc33-3038-4804-b796-69287bf77e61" name="Relationship">
+      <typeNode href="../../../../../../home/wxlfrank/Desktop/runtime-EclipseApplication/tests/specifications/d1.dpf.xmi#//@typeGraph/@nodes.0"/>
+    </nodes>
+    <nodes id="5a09e22e-a1f3-4424-8c9c-091541eb85e7" name="Indentifying Relationship">
+      <typeNode href="../../../../../../home/wxlfrank/Desktop/runtime-EclipseApplication/tests/specifications/d1.dpf.xmi#//@typeGraph/@nodes.0"/>
+    </nodes>
+    <arrows id="a450f68f-5cac-4a90-a885-4ae093c6c995" target="//@graph/@nodes.1" source="//@graph/@nodes.0" name="Entity_Attribute">
+      <typeArrow href="../../../../../../home/wxlfrank/Desktop/runtime-EclipseApplication/tests/specifications/d1.dpf.xmi#//@typeGraph/@arrows.0"/>
+    </arrows>
+    <arrows id="0ba319f4-422a-4fab-8683-fdd596ae0c85" target="//@graph/@nodes.2" source="//@graph/@nodes.0" name="Entity_KeyAttribute">
+      <typeArrow href="../../../../../../home/wxlfrank/Desktop/runtime-EclipseApplication/tests/specifications/d1.dpf.xmi#//@typeGraph/@arrows.0"/>
+    </arrows>
+    <arrows id="1947d766-b34c-414a-96b4-759c90e8858e" target="//@graph/@nodes.4" source="//@graph/@nodes.0" name="Entity_MultivaluedAttribute">
+      <typeArrow href="../../../../../../home/wxlfrank/Desktop/runtime-EclipseApplication/tests/specifications/d1.dpf.xmi#//@typeGraph/@arrows.0"/>
+    </arrows>
+    <arrows id="5acdd9c1-f26b-4a7a-aadf-ceef66d3e8d5" target="//@graph/@nodes.5" source="//@graph/@nodes.0" name="Entity_DerviedAttribute">
+      <typeArrow href="../../../../../../home/wxlfrank/Desktop/runtime-EclipseApplication/tests/specifications/d1.dpf.xmi#//@typeGraph/@arrows.0"/>
+    </arrows>
+    <arrows id="c03873db-4389-4e41-a56d-f65ffb997fbf" target="//@graph/@nodes.1" source="//@graph/@nodes.3" name="ChildAttribute">
+      <typeArrow href="../../../../../../home/wxlfrank/Desktop/runtime-EclipseApplication/tests/specifications/d1.dpf.xmi#//@typeGraph/@arrows.0"/>
+    </arrows>
+    <arrows id="9646449c-5515-457d-8c11-e8726dd1bb8e" target="//@graph/@nodes.2" source="//@graph/@nodes.3" name="ChildKeyAttribute">
+      <typeArrow href="../../../../../../home/wxlfrank/Desktop/runtime-EclipseApplication/tests/specifications/d1.dpf.xmi#//@typeGraph/@arrows.0"/>
+    </arrows>
+    <arrows id="d4ec9103-2713-4280-a5de-d44540e38337" target="//@graph/@nodes.4" source="//@graph/@nodes.3" name="ChildMultivaluedAttribute">
+      <typeArrow href="../../../../../../home/wxlfrank/Desktop/runtime-EclipseApplication/tests/specifications/d1.dpf.xmi#//@typeGraph/@arrows.0"/>
+    </arrows>
+    <arrows id="9bcf392d-e90e-4667-beeb-3927df4c191f" target="//@graph/@nodes.5" source="//@graph/@nodes.3" name="ChildDerviedAttribute">
+      <typeArrow href="../../../../../../home/wxlfrank/Desktop/runtime-EclipseApplication/tests/specifications/d1.dpf.xmi#//@typeGraph/@arrows.0"/>
+    </arrows>
+    <arrows id="67d201b0-a0de-40bc-bffb-fea8a680cdf6" target="//@graph/@nodes.3" source="//@graph/@nodes.0" name="Entity_ComposedAttribute">
+      <typeArrow href="../../../../../../home/wxlfrank/Desktop/runtime-EclipseApplication/tests/specifications/d1.dpf.xmi#//@typeGraph/@arrows.0"/>
+    </arrows>
+    <arrows id="0a25486b-d3c8-43b6-a14a-593fc932d3ed" target="//@graph/@nodes.3" source="//@graph/@nodes.3" name="ChildComposedAttribute">
+      <typeArrow href="../../../../../../home/wxlfrank/Desktop/runtime-EclipseApplication/tests/specifications/d1.dpf.xmi#//@typeGraph/@arrows.0"/>
+    </arrows>
+    <arrows id="65593244-517e-490e-a430-c48aac1b9efa" target="//@graph/@nodes.0" source="//@graph/@nodes.7" name="IStructural Constraint Participation">
+      <typeArrow href="../../../../../../home/wxlfrank/Desktop/runtime-EclipseApplication/tests/specifications/d1.dpf.xmi#//@typeGraph/@arrows.0"/>
+    </arrows>
+    <arrows id="18dc1ef5-bc2e-4293-830e-79ba14c1ade4" target="//@graph/@nodes.0" source="//@graph/@nodes.7" name="ITotal Participation">
+      <typeArrow href="../../../../../../home/wxlfrank/Desktop/runtime-EclipseApplication/tests/specifications/d1.dpf.xmi#//@typeGraph/@arrows.0"/>
+    </arrows>
+    <arrows id="98f895f8-f968-47ef-b03b-e6b63de9f911" target="//@graph/@nodes.0" source="//@graph/@nodes.7" name="INParticipation">
+      <typeArrow href="../../../../../../home/wxlfrank/Desktop/runtime-EclipseApplication/tests/specifications/d1.dpf.xmi#//@typeGraph/@arrows.0"/>
+    </arrows>
+    <arrows id="98e41787-3939-45ab-8cac-b65cca1f9018" target="//@graph/@nodes.0" source="//@graph/@nodes.7" name="IPaticipation">
+      <typeArrow href="../../../../../../home/wxlfrank/Desktop/runtime-EclipseApplication/tests/specifications/d1.dpf.xmi#//@typeGraph/@arrows.0"/>
+    </arrows>
+    <arrows id="e074c96a-76a1-42f2-9170-72c1d66ce0d7" target="//@graph/@nodes.0" source="//@graph/@nodes.6" name="Structural Constraint Participation">
+      <typeArrow href="../../../../../../home/wxlfrank/Desktop/runtime-EclipseApplication/tests/specifications/d1.dpf.xmi#//@typeGraph/@arrows.0"/>
+    </arrows>
+    <arrows id="a653f53f-a1ac-487b-be65-e8ad0f372457" target="//@graph/@nodes.0" source="//@graph/@nodes.6" name="NParticipation">
+      <typeArrow href="../../../../../../home/wxlfrank/Desktop/runtime-EclipseApplication/tests/specifications/d1.dpf.xmi#//@typeGraph/@arrows.0"/>
+    </arrows>
+    <arrows id="a9ce630f-de90-4ca7-999d-1f3591ac2f0e" target="//@graph/@nodes.0" source="//@graph/@nodes.6" name="Total Participation">
+      <typeArrow href="../../../../../../home/wxlfrank/Desktop/runtime-EclipseApplication/tests/specifications/d1.dpf.xmi#//@typeGraph/@arrows.0"/>
+    </arrows>
+    <arrows id="68a671bb-3cc9-4e2d-b0a7-753e67ab7778" target="//@graph/@nodes.0" source="//@graph/@nodes.6" name="Paticipation">
+      <typeArrow href="../../../../../../home/wxlfrank/Desktop/runtime-EclipseApplication/tests/specifications/d1.dpf.xmi#//@typeGraph/@arrows.0"/>
+    </arrows>
+  </graph>
+  <typeGraph id="9d516432-eeb4-4ed1-bb5e-106a75c4f59d" name="Default name">
+    <nodes id="15ba980e-bf2d-46ec-9d06-3e0c93d35ade" name="Node"/>
+    <arrows id="923d3941-a93a-46c9-8645-54316f9117a2" target="//@typeGraph/@nodes.0" source="//@typeGraph/@nodes.0" name="Arrow"/>
+  </typeGraph>
+  <signature href="platform:/resource/DefaultSignature#/"/>
+</no.hib.dpf.core:Specification>
