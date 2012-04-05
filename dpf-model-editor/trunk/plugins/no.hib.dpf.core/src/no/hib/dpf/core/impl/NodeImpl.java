@@ -255,7 +255,7 @@ public class NodeImpl extends IDObjectImpl implements Node {
 	 * @generated NOT
 	 */
 	public boolean arrowCanMakeConnectionAsSource(Node intendedSource) {
-		if (getTypeNode() == null) {
+		if (getTypeNode() == DPFConstants.REFLEXIVE_TYPE_NODE) {
 			return true;
 		}
 		if ((intendedSource == null) || (intendedSource.getTypeNode() == null)) {
@@ -270,7 +270,7 @@ public class NodeImpl extends IDObjectImpl implements Node {
 	 * @generated NOT
 	 */ 
 	public boolean arrowCanMakeConnectionAsTarget(Node intendedTarget) {
-		if (getTypeNode() == null) {
+		if (getTypeNode() == DPFConstants.REFLEXIVE_TYPE_NODE) {
 			return true;
 		}
 		if ((intendedTarget == null) || (intendedTarget.getTypeNode() == null)) {
@@ -285,7 +285,7 @@ public class NodeImpl extends IDObjectImpl implements Node {
 	 * @generated NOT
 	 */
 	public Boolean arrowCanMakeConnectionAsTarget(Node intendedTarget, Arrow typeArrow) {
-		if ((getTypeNode() == null) && (typeArrow == null)) {
+		if ((getTypeNode() == DPFConstants.REFLEXIVE_TYPE_NODE) && (typeArrow == DPFConstants.REFLEXIVE_TYPE_NODE)) {
 			return true;
 		}
 		if ((intendedTarget == null) || (intendedTarget.getTypeNode() == null)) {

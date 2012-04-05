@@ -20,7 +20,6 @@ import java.util.UUID;
 import junit.framework.TestCase;
 import junit.textui.TestRunner;
 import no.hib.dpf.core.IDObject;
-import no.hib.dpf.core.impl.IDObjectImpl;
 
 import org.junit.Test;
 
@@ -87,7 +86,7 @@ public class IDObjectTest extends TestCase {
 	 */
 	@Override
 	protected void setUp() throws Exception {
-		setFixture(new IDObjectImpl() {});
+		setFixture(null);
 	}
 
 	/**

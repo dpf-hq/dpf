@@ -1,6 +1,6 @@
 /**
  * <copyright>
- * Copyright (c) 2011 H¿yskolen i Bergen
+ * Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * Adrian Rutle, ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * Adrian Rutle, ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
  * </copyright>
  *
  * $Id$
@@ -17,9 +17,9 @@ package no.hib.dpf.core.tests;
 
 import junit.framework.TestCase;
 import junit.textui.TestRunner;
-import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
+import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Predicate;
@@ -36,7 +36,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link no.hib.dpf.core.Predicate#createConstraint(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, no.hib.dpf.core.Graph) <em>Create Constraint</em>}</li>
  *   <li>{@link no.hib.dpf.core.Predicate#canCreateConstraint(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, no.hib.dpf.core.Graph) <em>Can Create Constraint</em>}</li>
- *   <li>{@link no.hib.dpf.core.Predicate#validateSemantics(no.hib.dpf.core.Graph, java.lang.String, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Validate Semantics</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Predicate#validateSemantics(java.lang.String, no.hib.dpf.core.GraphHomomorphism, no.hib.dpf.core.Graph) <em>Validate Semantics</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -138,7 +138,7 @@ public class PredicateTest extends TestCase {
 		
 		Constraint constraint = testPredicate.createConstraint(nodes, arrows, userGraph);		
 		assertNotNull(constraint);
-		assertEquals(1, userGraph.getConstraints().size());		
+		assertEquals(1, userGraph.getNodeByName("n_1").getConstraints().size());		
 	}
 
 	/**
@@ -173,8 +173,18 @@ public class PredicateTest extends TestCase {
 		canCreate = testPredicate.canCreateConstraint(nodes, arrows, userGraph);
 		assertTrue(canCreate);
 		
-		assertEquals(0, userGraph.getConstraints().size());
+		assertEquals(0, userGraph.getNodeByName("n_2").getConstraints().size());
 		
+	}
+
+	/**
+	 * Tests the '{@link no.hib.dpf.core.Predicate#validateSemantics(java.lang.String, no.hib.dpf.core.GraphHomomorphism, no.hib.dpf.core.Graph) <em>Validate Semantics</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.core.Predicate#validateSemantics(java.lang.String, no.hib.dpf.core.GraphHomomorphism, no.hib.dpf.core.Graph)
+	 * @generated NOT
+	 */
+	public void testValidateSemantics__String_GraphHomomorphism_Graph() {
 	}
 
 	/**
@@ -185,10 +195,6 @@ public class PredicateTest extends TestCase {
 	 * @generated NOT
 	 */
 	public void testValidateSemantics__Graph_String_EList_EList() {
-		Graph graph = CoreFactory.eINSTANCE.createGraph("x, y, z", "f:x:y,g:y:z");		
-		assertTrue(getFixture().validateSemantics(graph, "", null, null));
-		getFixture().setSemanticsValidator(CoreFactory.eINSTANCE.createJointlySurjectiveSemantics());
-		assertFalse(getFixture().validateSemantics(graph, "", null, null));
 	}
 
 } //PredicateTest

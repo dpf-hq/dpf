@@ -11,11 +11,6 @@
 *******************************************************************************/
 package no.hib.dpf.editor.parts;
 
-import no.hib.dpf.editor.figures.OppositeArrowsConstraintAnchor;
-
-import org.eclipse.draw2d.ConnectionAnchor;
-import org.eclipse.draw2d.PolylineConnection;
-import org.eclipse.gef.EditPart;
 
 /**
  * Works with constraints that go across opposite arrows.

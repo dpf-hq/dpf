@@ -492,9 +492,12 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 	 * @generated NOT
 	 */
 	@Override
-	public Predicate createPredicate(String string, String string2) {
+	public Predicate createPredicate(String name, String string, String string2) {
 		Predicate predicate = createPredicate();
-		predicate.setSymbol("Default Name");
+		if(name == null || name.isEmpty())
+			predicate.setSymbol("Default Name");
+		else
+			predicate.setSymbol(name);
 		predicate.setShape(createGraph(string, string2));
 		return predicate;
 	}

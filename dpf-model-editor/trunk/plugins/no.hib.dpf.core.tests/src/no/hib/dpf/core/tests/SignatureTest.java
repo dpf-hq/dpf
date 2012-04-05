@@ -1,6 +1,6 @@
 /**
  * <copyright>
- * Copyright (c) 2011 H¿yskolen i Bergen
+ * Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * Adrian Rutle, ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * Adrian Rutle, ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
  * </copyright>
  *
  * $Id$
@@ -16,9 +16,7 @@
 package no.hib.dpf.core.tests;
 
 import junit.framework.TestCase;
-
 import junit.textui.TestRunner;
-
 import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Predicate;
 import no.hib.dpf.core.Signature;
@@ -30,8 +28,9 @@ import no.hib.dpf.core.Signature;
  * <p>
  * The following operations are tested:
  * <ul>
- *   <li>{@link no.hib.dpf.core.Signature#save(org.eclipse.emf.common.util.URI) <em>Save</em>}</li>
  *   <li>{@link no.hib.dpf.core.Signature#getPredicateBySymbol(java.lang.String) <em>Get Predicate By Symbol</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Signature#addPredicate(no.hib.dpf.core.Predicate) <em>Add Predicate</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Signature#removePredicate(no.hib.dpf.core.Predicate) <em>Remove Predicate</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -138,6 +137,26 @@ public class SignatureTest extends TestCase {
 		assertEquals(p2, getFixture().getPredicateBySymbol("p2"));
 		assertEquals(p1, getFixture().getPredicateBySymbol("p1"));
 		assertEquals(null, getFixture().getPredicateBySymbol("p3"));
+	}
+
+	/**
+	 * Tests the '{@link no.hib.dpf.core.Signature#addPredicate(no.hib.dpf.core.Predicate) <em>Add Predicate</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.core.Signature#addPredicate(no.hib.dpf.core.Predicate)
+	 * @generated NOT
+	 */
+	public void testAddPredicate__Predicate() {
+	}
+
+	/**
+	 * Tests the '{@link no.hib.dpf.core.Signature#removePredicate(no.hib.dpf.core.Predicate) <em>Remove Predicate</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.core.Signature#removePredicate(no.hib.dpf.core.Predicate)
+	 * @generated NOT
+	 */
+	public void testRemovePredicate__Predicate() {
 	}
 
 } //SignatureTest

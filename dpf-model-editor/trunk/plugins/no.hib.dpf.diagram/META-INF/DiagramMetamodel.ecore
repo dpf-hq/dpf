@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="diagram"
+    nsURI="http://no.hib.dpf.diagram" nsPrefix="diagram">
+  <eClassifiers xsi:type="ecore:EClass" name="DSpecification">
+    <eOperations name="createDGraph" eType="#//DGraph">
+      <eParameters name="graph" eType="ecore:EClass ../../no.hib.dpf.core/model/Metamodel.ecore#//hib/dpf/core/Graph"/>
+      <eParameters name="dType" eType="#//DGraph"/>
+    </eOperations>
+    <eOperations name="createDConstraint" eType="#//DConstraint">
+      <eParameters name="constraint" eType="ecore:EClass ../../no.hib.dpf.core/model/Metamodel.ecore#//hib/dpf/core/Constraint"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dType" eType="#//DSpecification"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dGraph" eType="#//DGraph"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dConstraints" upperBound="-1"
+        eType="#//DConstraint" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="specification" lowerBound="1"
+        eType="ecore:EClass ../../no.hib.dpf.core/model/Metamodel.ecore#//hib/dpf/core/Specification"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="grid" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="snap" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="zoom" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
+        defaultValueLiteral="1.0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="gridVisible" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dSignature" eType="#//DSignature"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="metaFile" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="signatureFile" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DGraph">
+    <eOperations name="getDNode" eType="#//DNode">
+      <eParameters name="node" eType="ecore:EClass ../../no.hib.dpf.core/model/Metamodel.ecore#//hib/dpf/core/Node"/>
+    </eOperations>
+    <eOperations name="getDArrow" eType="#//DArrow">
+      <eParameters name="arrow" eType="ecore:EClass ../../no.hib.dpf.core/model/Metamodel.ecore#//hib/dpf/core/Arrow"/>
+    </eOperations>
+    <eOperations name="createDNode" eType="#//DNode">
+      <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="dType" eType="#//DNode"/>
+    </eOperations>
+    <eOperations name="createDArrow" eType="#//DArrow">
+      <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="dSource" eType="#//DNode"/>
+      <eParameters name="dTarget" eType="#//DNode"/>
+      <eParameters name="dType" eType="#//DArrow"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dType" lowerBound="1" eType="#//DGraph"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dNodes" upperBound="-1"
+        eType="#//DNode" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dArrows" upperBound="-1"
+        eType="#//DArrow" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="graph" lowerBound="1" eType="ecore:EClass ../../no.hib.dpf.core/model/Metamodel.ecore#//hib/dpf/core/Graph"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DNode" eSuperTypes="#//DElement">
+    <eOperations name="getName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eOperations name="getTypeName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dType" lowerBound="1" eType="#//DNode"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="node" lowerBound="1" eType="ecore:EClass ../../no.hib.dpf.core/model/Metamodel.ecore#//hib/dpf/core/Node"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="configureString" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dOutgoings" upperBound="-1"
+        eType="#//DArrow" eOpposite="#//DArrow/dSource"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dIncomings" upperBound="-1"
+        eType="#//DArrow" eOpposite="#//DArrow/dTarget"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dConstraints" upperBound="-1"
+        eType="#//DConstraint" eOpposite="#//DConstraint/dNodes"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" eType="#//ELocation"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" eType="#//EDimension"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DFakeNode" eSuperTypes="#//DNode">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dConstraint" eType="#//DConstraint"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DArrow" eSuperTypes="#//DElement">
+    <eOperations name="reconnect">
+      <eParameters name="source" eType="#//DNode"/>
+      <eParameters name="target" eType="#//DNode"/>
+    </eOperations>
+    <eOperations name="disconnect"/>
+    <eOperations name="getName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eOperations name="getTypeName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dType" lowerBound="1" eType="#//DArrow"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="arrow" lowerBound="1" eType="ecore:EClass ../../no.hib.dpf.core/model/Metamodel.ecore#//hib/dpf/core/Arrow"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="configureString" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lineStyle" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dSource" lowerBound="1"
+        eType="#//DNode" eOpposite="#//DNode/dOutgoings"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dTarget" lowerBound="1"
+        eType="#//DNode" eOpposite="#//DNode/dIncomings"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dConstraints" upperBound="-1"
+        eType="#//DConstraint" eOpposite="#//DConstraint/dArrows"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bendpoints" upperBound="-1"
+        eType="#//ELocation"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nameOffset" eType="#//DOffset"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DConstraint">
+    <eOperations name="reconnect">
+      <eParameters name="nodes" upperBound="-1" eType="#//DNode"/>
+      <eParameters name="arrows" upperBound="-1" eType="#//DArrow"/>
+      <eParameters name="specification" eType="#//DSpecification"/>
+    </eOperations>
+    <eOperations name="disconnect"/>
+    <eOperations name="addDArrow">
+      <eParameters name="dArrow" eType="#//DArrow"/>
+    </eOperations>
+    <eOperations name="addDNode">
+      <eParameters name="dNode" eType="#//DNode"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constraint" eType="ecore:EClass ../../no.hib.dpf.core/model/Metamodel.ecore#//hib/dpf/core/Constraint"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dNodes" upperBound="-1"
+        eType="#//DNode" eOpposite="#//DNode/dConstraints"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dArrows" upperBound="-1"
+        eType="#//DArrow" eOpposite="#//DArrow/dConstraints"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dPredicate" eType="#//DPredicate"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DArrowLabelConstraint" eSuperTypes="#//DConstraint">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="offset" eType="#//DOffset"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//DElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DGenericArrowConstraint" eSuperTypes="#//DConstraint">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//DElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//DElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DComposedConstraint" eSuperTypes="#//DConstraint">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
+        eType="#//DConstraint" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fakeNode" eType="#//DFakeNode"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DPredicate">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="predicate" eType="ecore:EClass ../../no.hib.dpf.core/model/Metamodel.ecore#//hib/dpf/core/Predicate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="simpleName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dGraph" eType="#//DGraph"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="visualization" eType="#//Visualization"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="icon" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="EDimension" instanceClassName="org.eclipse.draw2d.geometry.Dimension"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="ELocation" instanceClassName="org.eclipse.draw2d.geometry.Point"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DOffset">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="offset" eType="#//ELocation"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DSignature">
+    <eOperations name="addDPredicate">
+      <eParameters name="dPredicate" eType="#//DPredicate"/>
+    </eOperations>
+    <eOperations name="removeDPredicate">
+      <eParameters name="dPredicate" eType="#//DPredicate"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="signature" eType="ecore:EClass ../../no.hib.dpf.core/model/Metamodel.ecore#//hib/dpf/core/Signature"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dPredicates" upperBound="-1"
+        eType="#//DPredicate" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Visualization">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//VisualizationType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="ecore:EClass ../../no.hib.dpf.core/model/Metamodel.ecore#//hib/dpf/core/IDObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="ecore:EClass ../../no.hib.dpf.core/model/Metamodel.ecore#//hib/dpf/core/IDObject"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="VisualizationType">
+    <eLiterals name="ArrowLabel"/>
+    <eLiterals name="NodeToNode" value="1"/>
+    <eLiterals name="NodeToArrow" value="2"/>
+    <eLiterals name="ArrowToNode" value="3"/>
+    <eLiterals name="ArrowToArrow" value="4"/>
+    <eLiterals name="Composed" value="5"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constraintsFrom" upperBound="-1"
+        eType="#//DConstraint"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constraintsTo" upperBound="-1"
+        eType="#//DConstraint"/>
+  </eClassifiers>
+</ecore:EPackage>

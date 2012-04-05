@@ -1,6 +1,6 @@
 /**
  * <copyright>
- * Copyright (c) 2011 H¿yskolen i Bergen
+ * Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * Adrian Rutle, ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * Adrian Rutle, ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
  * </copyright>
  *
  * $Id$
@@ -17,7 +17,6 @@ package no.hib.dpf.core.tests;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
-
 import junit.textui.TestRunner;
 
 /**
@@ -49,16 +48,8 @@ public class CoreTests extends TestSuite {
 		suite.addTestSuite(ArrowTest.class);
 		suite.addTestSuite(SignatureTest.class);
 		suite.addTestSuite(PredicateTest.class);
+		suite.addTestSuite(SemanticValidatorTest.class);
 		suite.addTestSuite(ConstraintTest.class);
-		suite.addTestSuite(GraphHomomorphismTest.class);
-		suite.addTestSuite(SpecificationTest.class);
-		suite.addTestSuite(JointlySurjectiveSemanticsTest.class);
-		suite.addTestSuite(InverseSemanticsTest.class);
-		suite.addTestSuite(IrreflexiveSemanticsTest.class);
-		suite.addTestSuite(MultiplicitySemanticsTest.class);
-		suite.addTestSuite(XORSemanticsTest.class);
-		suite.addTestSuite(TransitiveIrreflexiveSemanticsTest.class);
-		suite.addTestSuite(SurjectiveSemanticsTest.class);
 		return suite;
 	}
 

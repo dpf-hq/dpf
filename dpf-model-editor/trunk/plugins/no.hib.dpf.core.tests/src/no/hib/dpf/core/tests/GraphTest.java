@@ -21,9 +21,9 @@ import java.util.List;
 import java.util.Map;
 
 import junit.textui.TestRunner;
-import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
+import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Predicate;
@@ -199,7 +199,7 @@ public class GraphTest extends IDObjectTest {
 	 * @generated NOT
 	 */
 	public void testGetNodesForConstraint__Constraint() {
-		Predicate pred = CoreFactory.eINSTANCE.createPredicate("n_1,n_2", "e_1:n_1:n_2");
+		Predicate pred = CoreFactory.eINSTANCE.createPredicate(null, "n_1,n_2", "e_1:n_1:n_2");
 		Graph graph = CoreFactory.eINSTANCE.createGraph("n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3");
 		
 		BasicEList<Node> nodes = new BasicEList<Node>();
@@ -208,11 +208,10 @@ public class GraphTest extends IDObjectTest {
 	
 		EList<Arrow> arrows = new BasicEList<Arrow>();
 		arrows.add(graph.getArrowByName("e_1"));
-		
 		pred.createConstraint(nodes, arrows, graph);
 		Constraint constraint = graph.getNodeByName("n_1").getConstraints().get(0);
 		
-		EList<Node> constrainedNodes = graph.getNodesForConstraint(constraint);
+		EList<Node> constrainedNodes = constraint.getNodes();
 		assertEquals(nodes.size(), constrainedNodes.size());
 		for(Node nodeInGraph : constrainedNodes) {
 			int count = 0;
@@ -234,7 +233,7 @@ public class GraphTest extends IDObjectTest {
 	 * @generated NOT
 	 */
 	public void testGetArrowsForConstraint__Constraint() {
-		Predicate pred = CoreFactory.eINSTANCE.createPredicate("n_1,n_2", "e_1:n_1:n_2");
+		Predicate pred = CoreFactory.eINSTANCE.createPredicate(null, "n_1,n_2", "e_1:n_1:n_2");
 		Graph graph = CoreFactory.eINSTANCE.createGraph("n_1,n_2,n_3", "e_1:n_1:n_2,e_2:n_1:n_3");
 		
 		BasicEList<Node> nodes = new BasicEList<Node>();
@@ -245,9 +244,9 @@ public class GraphTest extends IDObjectTest {
 		arrows.add(graph.getArrowByName("e_1"));
 		
 		pred.createConstraint(nodes, arrows, graph);
-		Constraint constraint = graph.getNodeByName("n_1").getConstraints().get(0);
+		Constraint constraint = graph.getArrowByName("e_1").getConstraints().get(0);
 		
-		EList<Arrow> constrainedArrows = graph.getArrowsForConstraint(constraint);
+		EList<Arrow> constrainedArrows = constraint.getArrows();
 		assertEquals(arrows.size(), constrainedArrows.size());
 		for(Arrow arrowInGraph : constrainedArrows) {
 			int count = 0;
@@ -380,10 +379,10 @@ public class GraphTest extends IDObjectTest {
 		assertEquals(nodes.size(), extractedNodes.size());
 		assertEquals(arrows.size(), extractedArrows.size());
 		for (Node node : extractedNodes) {
-			assertEquals(node.getTypeNode(), sourceGraph.getNodeByName(node.getTypeName()));
+			assertEquals(node.getTypeNode(), sourceGraph.getNodeByName(node.getName()).getTypeNode());
 		}
 		for (Arrow arrow : extractedArrows) {
-			assertEquals(arrow.getTypeArrow(), sourceGraph.getArrowByName(arrow.getTypeName()));
+			assertEquals(arrow.getTypeArrow(), sourceGraph.getArrowByName(arrow.getName()).getTypeArrow());
 		}
 	}
 

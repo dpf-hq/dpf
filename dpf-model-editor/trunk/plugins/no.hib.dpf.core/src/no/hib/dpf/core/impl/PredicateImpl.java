@@ -329,8 +329,9 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 			Node untypeNode = typeNodeToNode.get(type);
 			if(untypeNode != null){
 				List<Node> nodes = nodeMap.get(untypeNode);
-				if(nodes == null)
+				if(nodes == null){
 					nodes = new ArrayList<Node>();
+				}	
 				nodes.add(node);
 				nodeMap.put(untypeNode, nodes);
 			}
@@ -453,8 +454,8 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 		Constraint retval = CoreFactory.eINSTANCE.createConstraint();
 		retval.setMappings(graphHomomorphism);
 		retval.setPredicate(this);
-		retval.getNodes().addAll(modelToBeConstrained.getNodes());
-		retval.getArrows().addAll(modelToBeConstrained.getArrows());
+		retval.getNodes().addAll(graphHomomorphism.getNodeMapping().values());
+		retval.getArrows().addAll(graphHomomorphism.getArrowMapping().values());
 		return retval;
 	}
 

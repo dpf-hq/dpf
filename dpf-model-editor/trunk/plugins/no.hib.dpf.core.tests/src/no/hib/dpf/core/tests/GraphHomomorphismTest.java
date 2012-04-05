@@ -19,8 +19,8 @@ import java.util.List;
 
 import junit.framework.TestCase;
 import junit.textui.TestRunner;
-import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Arrow;
+import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.GraphHomomorphism;
 import no.hib.dpf.core.Node;
@@ -32,12 +32,6 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-user-doc -->
  * A test case for the model object '<em><b>Graph Homomorphism</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * The following operations are tested:
- * <ul>
- *   <li>{@link no.hib.dpf.core.GraphHomomorphism#tryToCreateGraphHomomorphism(no.hib.dpf.core.Graph, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Try To Create Graph Homomorphism</em>}</li>
- * </ul>
- * </p>
  * @generated
  */
 public class GraphHomomorphismTest extends TestCase {
@@ -147,8 +141,8 @@ public class GraphHomomorphismTest extends TestCase {
 	 */
 	private void doTestReturnedMappings(List<Graph> graphs, String[] nodeNames, String[] edgeNames, boolean expectedResult) {
 		GraphHomomorphism graphHomomorphism = CoreFactory.eINSTANCE.createGraphHomomorphism();
-		boolean res = graphHomomorphism.createGraphHomomorphism(graphs.get(0), graphs.get(1).getNodes(), graphs.get(1).getArrows()) == null;
-		assertEquals(true, res);
+		graphHomomorphism = graphHomomorphism.createGraphHomomorphism(graphs.get(0), graphs.get(1).getNodes(), graphs.get(1).getArrows());
+		assertNotNull(graphHomomorphism);
 		for (String nodes : nodeNames) {			
 			checkNodeMapping(graphs, nodes.split(":")[0], nodes.split(":")[1], graphHomomorphism);
 		}
@@ -290,8 +284,8 @@ public class GraphHomomorphismTest extends TestCase {
 	 */
 	private void testTryToCreateHomomorphism(Graph sourceGraph, EList<Node> nodes, EList<Arrow> edges, boolean expectedResult) {
 		GraphHomomorphism graphHomomorphism = CoreFactory.eINSTANCE.createGraphHomomorphism();
-		boolean res = graphHomomorphism.createGraphHomomorphism(sourceGraph, nodes, edges) == null;
-		assertEquals(expectedResult, res);
+		graphHomomorphism = graphHomomorphism.createGraphHomomorphism(sourceGraph, nodes, edges);
+		assertEquals(graphHomomorphism != null, expectedResult);
 	}
 
 

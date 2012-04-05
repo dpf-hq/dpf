@@ -1,9 +1,18 @@
 package no.hib.dpf.editor.tests;
 
+import static no.hib.dpf.diagram.util.DPFConstants.DEFAULT_DSIGNATURE;
+import static no.hib.dpf.diagram.util.DPFConstants.REFLEXIVE_DSPECIFICATION;
+import static no.hib.dpf.diagram.util.DPFConstants.REFLEXIVE_TYPE_DARROW;
+import static no.hib.dpf.diagram.util.DPFConstants.REFLEXIVE_TYPE_DGRAPH;
+import static no.hib.dpf.diagram.util.DPFConstants.REFLEXIVE_TYPE_DNODE;
+import static no.hib.dpf.utils.DPFConstants.DEFAULT_SIGNATURE;
+import static no.hib.dpf.utils.DPFConstants.REFLEXIVE_SPECIFICATION;
+import static no.hib.dpf.utils.DPFConstants.REFLEXIVE_TYPE_ARROW;
+import static no.hib.dpf.utils.DPFConstants.REFLEXIVE_TYPE_GRAPH;
+import static no.hib.dpf.utils.DPFConstants.REFLEXIVE_TYPE_NODE;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-import static no.hib.dpf.utils.DPFConstants.*;
 
 import java.util.HashMap;
 
@@ -11,6 +20,8 @@ import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.Node;
+import no.hib.dpf.core.Predicate;
+import no.hib.dpf.core.Signature;
 import no.hib.dpf.core.Specification;
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DGraph;
@@ -19,16 +30,19 @@ import no.hib.dpf.diagram.DPredicate;
 import no.hib.dpf.diagram.DSignature;
 import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.diagram.DiagramFactory;
+import no.hib.dpf.diagram.VisualizationType;
 import no.hib.dpf.editor.DPFEditor;
-import no.hib.dpf.utils.DPFConstants;
+import no.hib.dpf.signature.SignatureEditor;
 
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.junit.Test;
-import org.eclipse.core.resources.*;
-import org.eclipse.core.runtime.IPath;
 
 public class Persistance {
 
@@ -61,42 +75,141 @@ public class Persistance {
 		dGraph.getDArrows().add(dArrow);
 		return dSpecification;
 	}
-	
+
 	private void saveDPFSpecification(ResourceSetImpl resourceSet, DSpecification dSpecification, URI diagram){
 		DPFEditor.saveDSpecification(resourceSet, dSpecification, diagram, new HashMap<Resource, Diagnostic>());
+	}
+	private DSignature getExampleDSignature(){
+		DSignature result = DiagramFactory.eINSTANCE.createDefaultDSignature();
+		DPredicate dPredicate = DiagramFactory.eINSTANCE.createDefaultDPredicate();
+		DGraph dGraph = dPredicate.getDGraph();
+		DNode X = DiagramFactory.eINSTANCE.createDNode("X", null);
+		DNode Y = DiagramFactory.eINSTANCE.createDNode("Y", null);
+		DArrow XY = DiagramFactory.eINSTANCE.createDArrow("XY", X, Y, null);
+		dGraph.addDNode(X);
+		dGraph.addDNode(Y);
+		dGraph.addDArrow(XY);
+		dPredicate.getVisualization().setType(VisualizationType.COMPOSED);
+		dPredicate.setSimpleName("TEST");
+		result.getDPredicates().add(dPredicate);
+		return result;
+	}
+
+	@Test
+	public void testDPFSignature(){
+		DSignature sample = getExampleDSignature();
+		ResourceSetImpl resourceSet = DPFEditor.getResourceSet();
+		URI signatureURI = URI.createFileURI(ResourcesPlugin.getWorkspace().getRoot().getLocation().toOSString() + IPath.SEPARATOR +  "Example.sig");
+		SignatureEditor.saveDSignature(resourceSet, signatureURI, sample, new HashMap<Resource, Diagnostic>());
+
+		resourceSet = DPFEditor.getResourceSet();
+		sample = SignatureEditor.loadDSignature(resourceSet, signatureURI, new HashMap<Resource, Diagnostic>());
+		EcoreUtil.resolveAll(sample);
+		DSpecification example = getExampleDSpecification();
+		example.setDSignature(sample);
+		URI diagramURI = URI.createFileURI(ResourcesPlugin.getWorkspace().getRoot().getLocation().toOSString() + IPath.SEPARATOR + "Example.dpf");
+		DPFEditor.updateResourceSet(resourceSet, example, null, diagramURI);
+		checkResourceSet(resourceSet, example, diagramURI);
+		DPFEditor.saveDSpecification(resourceSet, example, diagramURI, new HashMap<Resource, Diagnostic>());
+		
+		resourceSet = DPFEditor.getResourceSet();
+		example = DPFEditor.loadDSpecification(resourceSet, diagramURI, new HashMap<Resource, Diagnostic>());
+		EcoreUtil.resolveAll(example);
+		EcoreUtil.resolveAll(example.getSpecification());
+		if(example.getDSignature() != null){
+			EcoreUtil.resolveAll(example.getDSignature());
+			EcoreUtil.resolveAll(example.getDSignature().getSignature());
+		}
+		testDSpecification(example);
+		DPFEditor.saveDSpecification(resourceSet, example, diagramURI, new HashMap<Resource, Diagnostic>());
+		
+		
+	}
+	private void checkResourceSet(ResourceSetImpl resourceSet,
+			DSpecification example, URI uri) {
+		Resource resource = resourceSet.getResource(uri, false);
+		checkResource(example, resource);
+		checkResource(example.getSpecification(), resourceSet.getResource(DPFEditor.getModelURI(uri), false));
+	}
+
+	private void checkResource(EObject example, Resource resource) {
+		if(example instanceof DSpecification){
+			DSpecification dSpecification = (DSpecification) example;
+			assertTrue(example.eResource() == resource);
+			checkResource(dSpecification.getDSignature(), resource);
+		}
+
+		if(example instanceof Specification){
+			Specification dSpecification = (Specification) example;
+			assertTrue(example.eResource() == resource);
+			checkResource(dSpecification.getSignature(), resource);
+		}
+
+		if(example instanceof DSignature){
+			DSignature dSpecification = (DSignature) example;
+			assertTrue(example.eResource() == resource);
+			for(DPredicate predicate : dSpecification.getDPredicates()){
+				assertTrue(predicate.eResource() == resource);
+				checkResource(predicate.getDGraph(), resource);
+			}
+		}
+		if(example instanceof Signature){
+			Signature dSpecification = (Signature) example;
+			assertTrue(example.eResource() == resource);
+			for(Predicate predicate : dSpecification.getPredicates()){
+				assertTrue(predicate.eResource() == resource);
+				checkResource(predicate.getShape(), resource);
+			}
+		}
+		if(example instanceof DGraph){
+			DGraph dGraph = (DGraph) example;
+			for(DNode dNode : dGraph.getDNodes())
+				checkResource(dNode , resource);
+					for(DArrow dNode : dGraph.getDArrows())
+						checkResource(dNode , resource);
+		}
+		if(example instanceof Graph){
+			Graph dGraph = (Graph) example;
+			for(Node dNode : dGraph.getNodes())
+				checkResource(dNode , resource);
+					for(Arrow dNode : dGraph.getArrows())
+						checkResource(dNode , resource);
+		}
+		if(example != null)
+			assertTrue(example.eResource() == resource);
 	}
 	@Test
 	public void testDPFPersisitence() {
 		DSpecification dSpecification = getExampleDSpecification();
 		testDSpecification(dSpecification );
-		
+
 		ResourceSetImpl resourceSet = DPFEditor.getResourceSet();
 		URI diagramURI = URI.createFileURI(ResourcesPlugin.getWorkspace().getRoot().getLocation().toOSString() + IPath.SEPARATOR + "Example.dpf");
 		DPFEditor.updateResourceSet(resourceSet, dSpecification, null, diagramURI);
 		saveDPFSpecification(resourceSet, dSpecification, diagramURI);
-		
+
 		//create two level specification
 		resourceSet = DPFEditor.getResourceSet();
 		dSpecification = DPFEditor.loadDSpecification(resourceSet, diagramURI, new HashMap<Resource, Diagnostic>());
 		testDSpecification(dSpecification);
-		
+
 		DSpecification twoLevel = DiagramFactory.eINSTANCE.createDefaultDSpecification();
 		twoLevel.setDType(dSpecification);
 		testDSpecification(twoLevel);
-		
+
 		URI twoLevelURI = URI.createFileURI(ResourcesPlugin.getWorkspace().getRoot().getLocation().toOSString() + IPath.SEPARATOR + "Twolevel.dpf");
-		DPFEditor.updateResourceSet(resourceSet, twoLevel, null, twoLevelURI);
+		DPFEditor.updateResourceSet(resourceSet, twoLevel, diagramURI, twoLevelURI);
 		saveDPFSpecification(resourceSet, twoLevel, twoLevelURI);
-		
+
 		//store it to another place
 		resourceSet = DPFEditor.getResourceSet();
 		twoLevel = DPFEditor.loadDSpecification(resourceSet, twoLevelURI, new HashMap<Resource, Diagnostic>());
 		testDSpecification(twoLevel);
-		
+
 		URI anotherURI = URI.createFileURI(ResourcesPlugin.getWorkspace().getRoot().getLocation().toOSString() + IPath.SEPARATOR + "Another.dpf");
 		DPFEditor.updateResourceSet(resourceSet, twoLevel, twoLevelURI, anotherURI);
 		saveDPFSpecification(resourceSet, twoLevel, anotherURI);
-		
+
 		twoLevel = DPFEditor.loadDSpecification(DPFEditor.getResourceSet(), anotherURI, new HashMap<Resource, Diagnostic>());
 		testDSpecification(twoLevel);
 	}
@@ -153,9 +266,9 @@ public class Persistance {
 		assertNotNull(DEFAULT_SIGNATURE);
 		assertNotNull(DEFAULT_DSIGNATURE);
 		assertTrue(DEFAULT_DSIGNATURE.getSignature() == DEFAULT_SIGNATURE);
-		
+
 		testDSignature(DEFAULT_DSIGNATURE);
-		
+
 		assertNotNull(REFLEXIVE_SPECIFICATION);
 		assertNull(REFLEXIVE_SPECIFICATION.getType());
 		assertTrue(REFLEXIVE_SPECIFICATION.getGraph() == REFLEXIVE_TYPE_GRAPH);
@@ -169,7 +282,7 @@ public class Persistance {
 	}
 
 	private void testNode(Node node) {
-		if(node != DPFConstants.REFLEXIVE_TYPE_NODE){
+		if(node != REFLEXIVE_TYPE_NODE){
 			Node type = node.getTypeNode();
 			assertNotNull(type);
 			testNode(type);
@@ -189,7 +302,7 @@ public class Persistance {
 	}
 
 	private void testArrow(Arrow arrow) {
-		if(arrow != DPFConstants.REFLEXIVE_TYPE_ARROW){
+		if(arrow != REFLEXIVE_TYPE_ARROW){
 			Arrow type = arrow.getTypeArrow();
 			assertNotNull(type);
 			assertTrue(arrow.getSource() != null || arrow.getTarget() == null);
@@ -221,7 +334,7 @@ public class Persistance {
 	}
 
 	public void testSpecification(Specification specification){
-		if(specification != DPFConstants.REFLEXIVE_SPECIFICATION){
+		if(specification != REFLEXIVE_SPECIFICATION){
 			Specification type = specification.getType();
 			assertNotNull(type);
 			testSpecification(type);
@@ -235,12 +348,12 @@ public class Persistance {
 		assertTrue(dGraph.getGraph() == graph);
 		for(DNode dNode : dGraph.getDNodes())
 			graph.getNodes().contains(dNode.getNode());
-		for(DArrow dArrow : dGraph.getDArrows())
-			graph.getArrows().contains(dArrow.getArrow());
+				for(DArrow dArrow : dGraph.getDArrows())
+					graph.getArrows().contains(dArrow.getArrow());
 	}
-	
+
 	public void testDSpecification(DSpecification dSpecification){
-		if(dSpecification != DPFConstants.REFLEXIVE_DSPECIFICATION){
+		if(dSpecification != REFLEXIVE_DSPECIFICATION){
 			DSpecification type = dSpecification.getDType();
 			assertNotNull(type);
 			assertNotNull(dSpecification.getSpecification());
@@ -249,32 +362,37 @@ public class Persistance {
 			testDSpecification(type);
 			testSpecification(dSpecification.getSpecification());
 			testDGraph(dSpecification.getDGraph());
+			testDSignature(dSpecification.getDSignature());
 			testDGraphWithGraph(dSpecification.getDGraph(), dSpecification.getSpecification().getGraph());
 		}
 
 	}
 
 	public void testDSignature(DSignature signature){
+		if(signature != null){
+			assertTrue(signature.getDPredicates().size() == signature.getSignature().getPredicates().size());
 		for(DPredicate dPredicate : signature.getDPredicates()){
 			testDGraph(dPredicate.getDGraph());
 			testGraph(dPredicate.getPredicate().getShape());
 			testDGraphWithGraph(dPredicate.getDGraph(), dPredicate.getPredicate().getShape());
 		}
+		
+		}
 	}
 	private void testGraph(Graph graph) {
-		if(graph != DPFConstants.REFLEXIVE_TYPE_GRAPH){
+		if(graph != REFLEXIVE_TYPE_GRAPH){
 			Graph type = graph.getType();
 			assertNotNull(type);
 			for(Node node : graph.getNodes())
 				testNode(node);
-			for(Arrow arrow : graph.getArrows())
-				testArrow(arrow);
-			testGraph(type);
+					for(Arrow arrow : graph.getArrows())
+						testArrow(arrow);
+							testGraph(type);
 		}
 	}
 
 	public void testDGraph(DGraph dGraph) {
-		if(dGraph != DPFConstants.REFLEXIVE_TYPE_DGRAPH){
+		if(dGraph != REFLEXIVE_TYPE_DGRAPH){
 			DGraph type = dGraph.getDType();
 			assertNotNull(dGraph.getGraph());
 			assertNotNull(type != null);

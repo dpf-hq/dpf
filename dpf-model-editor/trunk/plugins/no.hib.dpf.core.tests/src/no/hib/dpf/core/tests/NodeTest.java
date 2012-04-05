@@ -16,10 +16,11 @@
 package no.hib.dpf.core.tests;
 
 import junit.textui.TestRunner;
-import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Arrow;
+import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.Node;
+import no.hib.dpf.diagram.util.DPFConstants;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,7 +29,6 @@ import no.hib.dpf.core.Node;
  * <p>
  * The following operations are tested:
  * <ul>
- *   <li>{@link no.hib.dpf.core.Node#getOutgoingArrows() <em>Get Outgoing Arrows</em>}</li>
  *   <li>{@link no.hib.dpf.core.Node#arrowCanMakeConnectionAsTarget(no.hib.dpf.core.Node) <em>Arrow Can Make Connection As Target</em>}</li>
  *   <li>{@link no.hib.dpf.core.Node#canReachTargetByOneArrow(no.hib.dpf.core.Node) <em>Can Reach Target By One Arrow</em>}</li>
  *   <li>{@link no.hib.dpf.core.Node#arrowCanMakeConnectionAsTarget(no.hib.dpf.core.Node, no.hib.dpf.core.Arrow) <em>Arrow Can Make Connection As Target</em>}</li>
@@ -38,7 +38,6 @@ import no.hib.dpf.core.Node;
  *   <li>{@link no.hib.dpf.core.Node#generateUniqueName() <em>Generate Unique Name</em>}</li>
  *   <li>{@link no.hib.dpf.core.Node#canCreateTypedArrow(no.hib.dpf.core.Node) <em>Can Create Typed Arrow</em>}</li>
  *   <li>{@link no.hib.dpf.core.Node#getTypeArrow(no.hib.dpf.core.Node) <em>Get Type Arrow</em>}</li>
- *   <li>{@link no.hib.dpf.core.Node#getIncomingArrows() <em>Get Incoming Arrows</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -83,7 +82,7 @@ public class NodeTest extends IDObjectTest {
 	 */
 	@Override
 	protected void setUp() throws Exception {
-		setFixture(CoreFactory.eINSTANCE.createNode());
+		setFixture(CoreFactory.eINSTANCE.createDefaultNode());
 	}
 
 	/**
@@ -104,7 +103,7 @@ public class NodeTest extends IDObjectTest {
 	 * @see no.hib.dpf.core.Node#getOutgoingEdges()
 	 * @generated NOT
 	 */
-	public void testGetOutgoingArrows() {
+	public void testgetOutgoings() {
 		Graph g = CoreFactory.eINSTANCE.createGraph();
 		Node n1 = g.createNode("n1");
 		Node n2 = g.createNode("n2");
@@ -143,8 +142,8 @@ public class NodeTest extends IDObjectTest {
 		assertFalse(source.arrowCanMakeConnectionAsTarget(null));		
 		assertFalse(source.arrowCanMakeConnectionAsTarget(source));		
 
-		source = CoreFactory.eINSTANCE.createNode();
-		target = CoreFactory.eINSTANCE.createNode();
+		source = CoreFactory.eINSTANCE.createDefaultNode();
+		target = CoreFactory.eINSTANCE.createDefaultNode();
 		
 		assertTrue(source.arrowCanMakeConnectionAsTarget(target));		
 		assertTrue(source.arrowCanMakeConnectionAsTarget(source));
@@ -200,11 +199,11 @@ public class NodeTest extends IDObjectTest {
 	 * @generated NOT
 	 */
 	public void testGetTypeName() {
-		Node untypedNode = CoreFactory.eINSTANCE.createNode();
+		Node untypedNode = CoreFactory.eINSTANCE.createDefaultNode();
 		String typeName = "thetype";
 		untypedNode.setName(typeName);
 		
-		assertEquals("", untypedNode.getTypeName());
+		assertEquals("Node", untypedNode.getTypeName());
 		
 		Node typedNode = CoreFactory.eINSTANCE.createNode(untypedNode);
 		assertEquals(typeName, typedNode.getTypeName());
@@ -218,8 +217,8 @@ public class NodeTest extends IDObjectTest {
 	 * @generated NOT HOT DOT!
 	 */
 	public void testGenerateUniqueName() {
-		Node n1 = CoreFactory.eINSTANCE.createNode();
-		Node n2 = CoreFactory.eINSTANCE.createNode();
+		Node n1 = CoreFactory.eINSTANCE.createDefaultNode();
+		Node n2 = CoreFactory.eINSTANCE.createDefaultNode();
 		
 		n1.setName(n1.generateUniqueName());
 		n2.setName(n2.generateUniqueName());
@@ -240,19 +239,19 @@ public class NodeTest extends IDObjectTest {
 		Node tn_2 = typeGraph.getNodeByName("tn_2");
 		Node tn_3 = typeGraph.getNodeByName("tn_3");		
 		
-		Node source = CoreFactory.eINSTANCE.createNode();
-		Node target = CoreFactory.eINSTANCE.createNode();
+		Node source = CoreFactory.eINSTANCE.createDefaultNode();
+		Node target = CoreFactory.eINSTANCE.createDefaultNode();
 
-		assertFalse(source.canCreateTypedArrow(null));		
-		assertFalse(source.canCreateTypedArrow(target));		
-		assertFalse(target.canCreateTypedArrow(source));				
-		assertFalse(source.canCreateTypedArrow(source));		
+		assertFalse(source.canCreateTypedArrow(DPFConstants.REFLEXIVE_TYPE_NODE));		
+		assertTrue(source.canCreateTypedArrow(target));		
+		assertTrue(target.canCreateTypedArrow(source));				
+		assertTrue(source.canCreateTypedArrow(source));		
 		target = CoreFactory.eINSTANCE.createNode(tn_2);
 		assertFalse(source.canCreateTypedArrow(target));		
 		
 		source = CoreFactory.eINSTANCE.createNode(tn_1);
 		
-		assertFalse(source.canCreateTypedArrow(null));
+		assertFalse(source.canCreateTypedArrow(DPFConstants.REFLEXIVE_TYPE_NODE));
 		assertTrue(source.canCreateTypedArrow(target));
 		assertTrue(source.canCreateTypedArrow(source));		
 		
@@ -277,10 +276,10 @@ public class NodeTest extends IDObjectTest {
 		Node tn_1 = typeGraph.getNodeByName("tn_1");
 		Node tn_2 = typeGraph.getNodeByName("tn_2");
 		
-		Node source = CoreFactory.eINSTANCE.createNode();
-		Node target = CoreFactory.eINSTANCE.createNode();
+		Node source = CoreFactory.eINSTANCE.createDefaultNode();
+		Node target = CoreFactory.eINSTANCE.createDefaultNode();
 		
-		assertEquals(null, source.getTypeArrow(target));
+		assertEquals(DPFConstants.REFLEXIVE_TYPE_ARROW, source.getTypeArrow(target));
 		
 		
 		source = CoreFactory.eINSTANCE.createNode(tn_1);
@@ -292,13 +291,13 @@ public class NodeTest extends IDObjectTest {
 	}
 
 	/**
-	 * Tests the '{@link no.hib.dpf.core.Node#getIncomingArrows() <em>Get Incoming Arrows</em>}' operation.
+	 * Tests the '{@link no.hib.dpf.core.Node#getIncomings() <em>Get Incoming Arrows</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.core.Node#getIncomingArrows()
+	 * @see no.hib.dpf.core.Node#getIncomings()
 	 * @generated NOT
 	 */
-	public void testGetIncomingArrows() {
+	public void testgetIncomings() {
 		Graph g = CoreFactory.eINSTANCE.createGraph();
 		Node n1 = g.createNode("n1");
 		Node n2 = g.createNode("n2");
@@ -322,15 +321,15 @@ public class NodeTest extends IDObjectTest {
 		assertTrue(n3.getIncomings().size() == 1 &&
 				n3.getIncomings().get(0) == e2);
 		
-		g.deleteArrow(e2);
+		g.removeArrow(e2);
 		assertTrue(n3.getIncomings().size() == 0);
 	}
 
 	public void testGenerateUniqueNameWhenInGraph() {
-		Node n1 = CoreFactory.eINSTANCE.createNode();
-		Node n2 = CoreFactory.eINSTANCE.createNode();
+		Node n1 = CoreFactory.eINSTANCE.createDefaultNode();
+		Node n2 = CoreFactory.eINSTANCE.createDefaultNode();
 		
-		Graph g = CoreFactory.eINSTANCE.createGraph();
+		Graph g = CoreFactory.eINSTANCE.createDefaultGraph();
 		g.addNode(n1);
 		g.addNode(n2);
 		
@@ -357,15 +356,15 @@ public class NodeTest extends IDObjectTest {
 		Node target = CoreFactory.eINSTANCE.createNode(target_tn_2);
 		
 		assertTrue(source.arrowCanMakeConnectionAsTarget(target, te_1));		
-		assertFalse(source.arrowCanMakeConnectionAsTarget(null, te_1));		
+		assertFalse(source.arrowCanMakeConnectionAsTarget(DPFConstants.REFLEXIVE_TYPE_NODE, te_1));		
 		assertFalse(source.arrowCanMakeConnectionAsTarget(source, te_1));		
 
-		source = CoreFactory.eINSTANCE.createNode();
-		target = CoreFactory.eINSTANCE.createNode();
+		source = CoreFactory.eINSTANCE.createDefaultNode();
+		target = CoreFactory.eINSTANCE.createDefaultNode();
 		
-		assertTrue(source.arrowCanMakeConnectionAsTarget(target, null));		
+		assertTrue(source.arrowCanMakeConnectionAsTarget(target, DPFConstants.REFLEXIVE_TYPE_ARROW));		
 		assertFalse(source.arrowCanMakeConnectionAsTarget(target, te_1));		
 		assertFalse(source.arrowCanMakeConnectionAsTarget(source, te_1));
-		assertFalse(source.arrowCanMakeConnectionAsTarget(null, te_1));		
+		assertFalse(source.arrowCanMakeConnectionAsTarget(DPFConstants.REFLEXIVE_TYPE_NODE, te_1));		
 	}
 } //NodeTest

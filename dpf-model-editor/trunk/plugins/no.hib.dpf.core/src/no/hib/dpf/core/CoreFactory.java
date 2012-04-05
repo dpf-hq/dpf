@@ -252,7 +252,7 @@ public interface CoreFactory extends EFactory {
 	 * @return the package supported by this factory.
 	 * @generated NOT
 	 */
-	Predicate createPredicate(String string, String string2);
+	Predicate createPredicate(String name, String nodes, String string2);
 
 	/**
 	 * Returns the package supported by this factory.

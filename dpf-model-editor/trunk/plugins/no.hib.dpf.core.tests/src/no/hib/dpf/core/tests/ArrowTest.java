@@ -74,7 +74,7 @@ public class ArrowTest extends IDObjectTest {
 	 */
 	@Override
 	protected void setUp() throws Exception {
-		setFixture(CoreFactory.eINSTANCE.createDefaultArrow());
+		setFixture(CoreFactory.eINSTANCE.createArrow());
 	}
 
 	/**
@@ -100,10 +100,9 @@ public class ArrowTest extends IDObjectTest {
 		String typeName = "thearrow";
 		untypedArrow.setName(typeName);
 		
-		assertEquals("", untypedArrow.getTypeName());
+		assertEquals("Arrow", untypedArrow.getTypeName());
 		
-		Arrow typedArrow = CoreFactory.eINSTANCE.createArrow();
-		typedArrow.setTypeArrow(untypedArrow);
+		Arrow typedArrow = CoreFactory.eINSTANCE.createArrow(null, null, untypedArrow);
 		assertEquals(typeName, typedArrow.getTypeName());
 	}
 
