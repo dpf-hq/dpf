@@ -1,0 +1,101 @@
+\chapter{Conclusion}\label{chap:conclusion}
+This chapter will give an overview of what has been achieved through this project. The code generation tool which is developed in this project serves as a proof of concept solution which we will propose further work on. As the thesis has had some focus on the concept of language workbenches, we will propose some further work in this directon as well.
+
+\section{Summary}
+Previous efforts to create a DPF based tool has never reached the level of maturity needed to start serious work on code generation. With the work of Øyvind Bech and Dag Viggo Lokøen, we now have a diagrammatic editor which conveys the most important metamodelling concepts in DPF. The editor is built on top of a solid platform that enables us to create rich tooling for the DPF project. Through the chapters of this thesis we have created a solution for metamodel based code generation with the Xpand framework. Like the DPF Editor, this solution is based on Eclipse technologies and is thus well integrated.
+
+Although the creation of a metamodel for Xpand is not a unique concept, we have yet to find any implementations of custom metamodels besides the ones provided with the framework.
+
+Through the project we achieved the following:
+\begin{description}
+  \item[General solution for creating code generators] \hfill \\
+  We have introduced a solution which can be applied to any DSML created with the DPF Editor. The solution provides a functional environment for creating code generators. Creating a metamodel for Xpand has enabled us to use the domain concepts of a DSML when defining templates, extensions and constraints checking. This is possible because the metamodel is a mapping from DPF specifications to types which Xpand understands. We have defined a type system which represents each of the modelling constructs in DPF (i.e. node, arrow, constraint etc.). The types expose the functionality that is defined in the DPF Ecore metamodel, together with additional functionality that is defined to enhance the process of creating code generators.
+  \item[Eclipse integration] \hfill \\
+  With the implementation of a Xpand metamodel, we get a lot of functionality (almost) for free. Xpand provides a rich editing experience for templates, extensions and constraint checking based on the DPF Xpand metamodel. The editors feature code completion, syntax coloring, refactoring and error highlighting among others.
+  \item[Moved DPF Editor towards becoming a language workbench] \hfill \\
+  A DSML without any tooling around it is worthless. One of the most essential activities in a language workbench is model transformations, where model-to-text transformations might be the most pragmatic solution. Creating a usable language workbench without the support of creating code is arguably not a language workbench. Although the code generation activity can be seen as separate from creating the language itself, it is indeed part of a language workbench.
+\end{description}
+
+\section{Further Work}
+This section will propose further work for the code generation tool, as well as some suggestions for features that takes the DPF Editor further towards becoming a language workbench.
+
+\subsection{Code Generation}
+The code generation tool should be regarded as a prototype as it have not been properly tested. The following section will explore some of the aspects which can be worked on.
+
+\subsubsection{Work on Shortcomings}
+Section~\ref{sec:shortcomings} contains a small list of functionality which is not implemented at the time of writing. The tasks are relatively simple to implement, but might be time consuming.
+
+\begin{description}
+  \item[Consistent API:] This is not a shortcoming in the tool itself, but a project-wide problem. When relying on the DPF core API, one is very prone to errors due to modifications in the DPF Ecore metamodel (e.g. changing names, methods etc.). However, the biggest problem with this is rendering all "older" DPF models invalid. A migration strategy is needed, both for the API and models.
+  \item[Constraints and predicates as Xpand types:] Predicates and constraints are not properly implemented using their designated types (\codeText{PredicateType} and \codeText{ConstraintType}) for various reasons. The current functionality might be sufficient for now, but hopefully adoption of the tool will help to identify where the need for alterations lies.
+  \item[Test coverage:] The DPF Xpand metamodel has not been properly tested. Creating tests is also a challenge, and hard without using DPF models directly. Spending development time on creating model based tests is a waste of time if the models become invalid after the first change to the DPF Ecore metamodel.
+  \item[Namespaces:] Implementing the support for more than one DSML per project was not a priority when developing the DPF Xpand metamodel. This is a relatively simple task to achieve.
+\end{description}
+
+\subsubsection{Validating Constraints}
+The DPF Editor validates the different entities when creating a DSML. Each layer gets checked for the correct typing, and all constraints are validated. When creating a code generator the validation of constraints is left to the user. E.g. if a model has some kind of multiplicity constraint, there is no way to check if the constraint has been fulfilled in the generated code. Xpand provides a constraints checking language called \emph{Check} (see section~\ref{sec:xpand}), but this language works on the Xpand types rather than checking if the template code has fulfilled the constraints, which is defined within the model. Check can however be used to validate the generator's input models if this is desired.
+
+An idea can be to define a post-processor (see Xpand documentation~\cite{xpand}) which scans the output and checks statements against the model.
+
+\subsubsection{Investigate Xtend 2}
+In section~\ref{subsec:xtend2}, the Xtend 2 language is introduced as the replacement for Xpand. Xtend 2 is a general programming language (GPL) which compiles to Java. Unfortunately Xtend 2 is not compatible with Xpand as it is a completely different approach (Xpand uses an interpreter). Xtend 2 has not been properly investigated to draw any conclusions on if it can be used in the DPF Editor providing the same functionality as Xpand. At the time of writing there are indications which suggests that Xtend 2 is not able to fulfill the use case that Xpand fills, namely interpreting models runtime, and providing an editing environment based on the content of the model. The good news is that the template language used in Xtend 2 is Xpand, which means any templates written in the current tool, will (largely) be compatible with Xtend 2. This does not apply to any extensions specified, as these are written in Xtend 2.
+
+Although Xpand's future is uncertain, it will be supported a while longer. This means that bugs will be fixed, but no larger releases will occur.
+
+A few solutions to this problem can be:
+\begin{itemize}
+  \item Migrate our solution to Xtend 2
+  \item Fork the Xpand project
+  \item Create an in-house code generation solution
+  \item Find another solution (e.g. Acceleo)
+\end{itemize}
+It is the author's opinion (based on the current knowledge) that Xpand is a better solution than Xtend 2. Xtend 2 is a GPL that uses Xpand "template expressions" within the code, thus mixing code and templates. As stated, there does not seem to be any way of interpreting DPF models, which means we are back to using the Ecore instance directly (see section~\ref{sec:problem_description}).
+
+This is not a pressing issue as Xpand is a modern solution with a very stable code base. 
+
+\subsection{Language Workbench}
+A part of the DPF project's vision is to create a working tool that increases the developer's productivity, and do not exist solely for academic purposes. This thesis has introduced the term language workbench, which is a pragmatic take on the MDE methodology. In a language workbench the tooling which supports the modeler and its users are of upmost importance. This section will propose further work that will move the DPF Editor even closer towards the goal of becoming a productive language workbench.
+
+\subsubsection{Symbol Editor}
+One of the challenges the DPF Editor faces is visualizing the DSMLs. In chapter~\ref{chap:model_based_development} we looked at MetaCase's MetaEdit+ tool, which has the ability to create custom symbols for their \emph{object} modelling entity. This is an effective way of communicating the intent of the language and its concepts. In DPF there is no support for attributes on the nodes, there is only nodes and arrows. A DSML of only nodes and arrows can look a lot more complex than it actually is, which then becomes a usability problem.
+
+To tackle the problem with complex models, one can create create symbols for nodes and arrow. Currently there is support for using simple pre-defined shapes, like ellipse, square, circle etc.
+
+The most recent work by Ph.D. student Xiaoliang Wang has resulted in a signature editor where one can define custom predicates. All predicates needs a symbol, which means a symbol editor would be a nice fit for this requirement as well. The symbol editor can be a simple drawing application, with the possibility of importing graphics.
+
+\subsubsection{Visualization for DSMLs}
+Even though symbols will create a better user experience when modelling, the problem of only having nodes and arrows are not dealt with. Our models are centered around graph concepts. A solution to this problem is to create a visualization independent of the underlying model structure. One can group different nodes and arrows, and create a visualization for the group. As an example we could group the \codeText{DomainClass}, \codeText{Attribute} and \codeText{Type} concepts from the DSML in chapter~\ref{chap:case_study}, and create a visualization similar to an UML class.
+
+This way DSML modelers have a greater freedom in how he/she wants to present the domain concepts of the created language. One could also ship the tool with pre-defined DSMLs, visualizations and code generators that defines e.g. UML class diagrams, a language for modelling Android apps, petri-nets etc.
+
+A solution like this is as far as the author knows unique, and would probably give an advantage over other language workbenches.
+
+\subsubsection{Textual Representation of DPF models}
+The comparsion at the end of chapter~\ref{chap:model_based_development} mentioned the need for a textual representation of models in addition to projectional representations in language workbenches. Of the more popular solutions on the market, no one seems to have this feature. The language workbenches are either textual or graphical. An optimal solution would be a textual, human readable representation of a DPF model which the graphical representation was based on. Any modifications in either model should be reflected in the other.
+
+We have through Florian Mantz' Ph.D. work, an external DSL for DPF which could be integrated with the DPF Editor.
+
+\subsubsection{File Format}
+The current state of file formats in DPF are XMI serializations of the specifications, as well as the corresponding visualization\footnote{The serialization of the visualization is recent work by Ph.D. student Xiaoliang Wang, and was not implemented for the most part of this projects' time span}. A file format could be an archive file which contained all the specifications in a metamodelling hierarchy, together with its visualizations and signature.  If a textual model representation is integrated in the DPF Editor, there needs to be room for this in the file format as well. An important aspect of this task is to create a file handling facility which can keep compatibility between different versions files, and the models within.
+
+\subsubsection{Version Control System for Models}
+Creating a VCS for DPF models would be another unique feature for the DPF Editor. This subject was the focus of Alessandro Rossini's Ph.D. thesis~\cite{rossini_thesis_2011} which provides a formal approach to the problem.
+
+\section{Final Words}
+The work on this thesis has resulted in a prototype code generation tool, which provide the opportunity to create code generators for an arbitrary DSML. Code generation is an important activity in MDE, and thus an important feature in a language workbench. A usable code generation facility is critical for the success of the DPF Editor.
+
+Even though the Xpand framework's future is uncertain, it is a state of the art tool. The author is confident that Xpand and the prototype developed in this thesis is a solid foundation for further work.
+
+
+
+
+
+
+
+
+
+
+
+
+
+

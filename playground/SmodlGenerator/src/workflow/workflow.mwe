@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <workflow>
 	<!-- workflow properties -->
-
 	
 	<property name="dpf_model" value="platform:/resource/SmodlGenerator/model/smodlModel.dpf.xmi" /> -->
 	<property name="dpf_metamodel" value="platform:/resource/SmodlGenerator/metamodel/smodlMetaModel.dpf.xmi" /> -->

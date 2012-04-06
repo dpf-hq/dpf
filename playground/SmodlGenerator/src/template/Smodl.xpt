@@ -28,7 +28,7 @@
 	<doc>«this.target.name»</doc>
 «ENDDEFINE»
 
-«DEFINE methodref FOR dpf::methodRef»
+«DEFINE mref FOR dpf::methodRef»
 	<method name=«setQuotes(this.target.name)»>
 	«EXPAND methodDoc FOREACH  this.target.getAMethodDocs()»
 	«EXPAND firstargref FOREACH  this.target.getAFirstArgs()»

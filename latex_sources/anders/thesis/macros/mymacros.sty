@@ -1,0 +1,188 @@
+\usepackage{pifont}
+\usepackage{xargs}
+
+\def\clearleftpage{\clearpage\if@twoside\ifodd\c@page\mbox{}\newpage\if@twocolumn\hbox{}\newpage\fi\else\fi\fi}
+\def\clearrightpage{\clearpage\if@twoside\ifodd\c@page{}\else\mbox{}\newpage{\if@twocolumn\hbox{}\newpage\fi}\fi\fi}
+\def\leftrightpage#1#2{\if@twoside\ifodd\c@page#2\else#1\fi\fi}
+%% drop footnote rules
+
+
+%TODO ARU Commented out these commands by CTRL+D:
+
+%\renewcommand*{\footnoterule}{}
+
+%% these commands make footnotes appear as sidenotes instead
+% \newcommand{\notemark}[1]{}%\makebox[0pt][#1]{\hspace{1.5pt}\ensuremath{\color{red}^*}\hspace{1.5pt}}}
+% \renewcommand{\footnote}[1]{%
+%   \notemark{l}%
+%   \marginpar[\notestyle\raggedleft\notemark{r}#1]%
+%             {\notestyle\raggedright\notemark{r}#1}}
+
+
+
+%% sidemargin hearders
+\newcommand{\sidehead}[1]{\marginpar[\sideheadstyle\centering#1]{\sideheadstyle\centering#1}}
+%% note using this stuff
+%\newcommand{\sideref}[1]{\marginpar[\sideheadstyle\small\centering\itshape$\triangleright$\ #1]{\sideheadstyle\small\centering\itshape$\triangleright$\ #1}}
+\newcommand{\sideref}[1]{\typeout{SIDEREF: #1}}
+%% particular setup for the alerts paper
+
+% \input{alerts/alerts.sty}
+
+%define own fonts (here: font size 36pt,spacing 20pt) \begin{myfont}Text\end{myfont}
+\newcommand{\rulesize}{\fontsize{7pt}{2pt}\selectfont}
+\newcommand{\tablesize}{\fontsize{8pt}{1pt}\selectfont}
+
+\newcommandx{\sansrule}[1]{\mbox{\begin{rulesize}\textsf{#1}\end{rulesize}}}
+\newcommandx{\sans}[1]{\mbox{\textsf{#1}}}
+\newcommandx{\sem}[1]{\ensuremath{[\![{#1}]\!]}}
+
+\newcommandx{\cat}[2][2]{\mbox{\boldmath\ensuremath{\mathsf{#1}}\unboldmath}#2}
+\newcommandx{\nodes}[1]{\ensuremath{{#1}_0}}
+\newcommandx{\arrows}[1]{\ensuremath{{#1}_1}}
+
+\newcommandx{\sig}[2][2]{\ensuremath{{#1}_{#2}}}
+\newcommandx{\pred}[2][2]{\ensuremath{\Pi^{\sig{#1}[#2]}}}
+\newcommandx{\arity}[2][2]{\ensuremath{\alpha^{\sig{#1}[#2]}}}
+\newcommandx{\sigf}[2][2]{\ensuremath{(\pred{#1}[#2], \arity{#1}[#2])}}
+\newcommandx{\textpred}[1]{{\small\texttt{#1}}}
+\newcommandx{\mult}[2]{\textpred{[mult(}\ensuremath{#1,#2}\textpred{)]}}
+
+\newcommandx{\spec}[2][2]{\ensuremath{\mathfrak{#1}_{#2}}}
+\newcommandx{\ugraph}[2][2]{\ensuremath{{#1}_{#2}}}
+\newcommandx{\aconst}[2][2]{\ensuremath{C^{\spec{#1}[#2]}}}
+\newcommandx{\specf}[4][2,4]{\ensuremath{(\ugraph{#1}[#2], \aconst{#1}[#2]\!\!:\!\sig{#3}[#4])}}
+
+\newcommandx{\annot}[2][2]{\ensuremath{A^{\spec{#1}[#2]}}}
+
+\newcommandx{\tmorph}[1][1]{\ensuremath{\tau^#1}}
+\newcommandx{\imorph}[1][1]{\ensuremath{\iota^#1}}
+\newcommandx{\iimorph}[1]{\ensuremath{\iota^{-1}(#1)}}
+\newcommandx{\type}[1][1]{\ensuremath{\vartriangleright_#1}}
+\newcommandx{\conf}[1][1]{\ensuremath{\blacktriangleright_#1}}
+
+\newcommandx{\tsig}[4][2,4]{\ensuremath{\sig{#1}[#2]\!\!\type{}\!\!\ugraph{#3}[#4]}}
+\newcommandx{\csig}[4][2,4]{\ensuremath{\sig{#1}[#2]\!\!\conf{}\!\!\spec{#3}[#4]}}
+\newcommandx{\tsigf}[4][2,4]{\ensuremath{(\sigf{#1}[#2]\!\type{\tmorph{\sig{#1}[#2]}}\!\ugraph{#3}[#4])}}
+\newcommandx{\csigf}[4][2,4]{\ensuremath{(\sigf{#1}[#2]\!\type{\tmorph{\sig{#1}[#2]}}\!\spec{#3}[#4])}}
+
+\newcommandx{\tspec}[4][2,4]{\ensuremath{\spec{#1}[#2]\!\!\type{}\!\!\ugraph{#3}[#4]}}
+\newcommandx{\tspecf}[6][2,4,6]{\ensuremath{(\specf{#1}[#2]{#3}[#4]\!\type{\imorph{\ugraph{#1}[#2]}}\!\ugraph{#5}[#6])}}
+\newcommandx{\cspec}[4][2,4]{\ensuremath{\spec{#1}[#2]\!\!\conf{}\!\!\spec{#3}[#4]}}
+\newcommandx{\cspecf}[6][2,4,6]{\ensuremath{(\specf{#1}[#2]{#3}[#4]\!\conf{\imorph{\ugraph{#1}[#2]}}\!\spec{#5}[#6])}}
+
+\newcommandx{\form}[2][2]{\ensuremath{\mathcal{#1}_{#2}}}
+\newcommandx{\uconst}[2][2]{\ensuremath{U^{\form{#1}[#2]}}}
+\newcommandx{\formf}[4][2]{\ensuremath{(\tsig{#3}[2]{#4}[2], \spec{#4}[2], \sig{#3}[3])}}
+\newcommandx{\rformf}[4][2]{\ensuremath{(\sig{#3}[3], \spec{#4}[3], \sig{#3}[3])}}
+%\newcommandx{\formf}[8][2]{\ensuremath{(\sig{#3}[2], \uconst{#1}[#2], \spec{#4}[2], \sig{#3}[3])}}
+
+\newcommandx{\tfspec}[4][2,4]{\ensuremath{\spec{#1}[#2]\!\!\type{}\!\!\form{#3}[#4]}}
+\newcommandx{\tfspecf}[6][2,4,6]{\ensuremath{(\specf{#1}[#2]{#3}[#4]\!\type{\imorph{\ugraph{#1}[#2]}}\!\form{#5}[#6])}}
+\newcommandx{\cfspec}[4][2,4]{\ensuremath{\spec{#1}[#2]\!\!\conf{}\!\!\form{#3}[#4]}}
+\newcommandx{\cfspecf}[6][2,4,6]{\ensuremath{(\specf{#1}[#2]{#3}[#4]\!\conf{\imorph{\ugraph{#1}[#2]}}\!\form{#5}[#6])}}
+
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
+\newtheorem{procedure}{Procedure}
+%\newtheorem{example}{Example}{}
+\newtheorem{remark}{Remark}
+\newtheorem{fact}{Fact}
+\newtheorem{corollary}{Corollary}
+%\newtheorem{proof}{Proof}
+\newtheorem{theorem}{Theorem}
+
+\usepackage{ifthen}
+\newcounter{exCounter}
+% \setcounter{exCounter}{0}
+\newenvironment{example}[1][]{\refstepcounter{exCounter}\vspace*{.5ex}\par\noindent{\textbf{Example \arabic{exCounter} \ifthenelse{\equal{#1}{}}{}{(#1)}}} }{\hspace*{\fill$\diamondsuit$}\\}
+
+
+\newenvironment{proof}{\vspace*{.5ex}\par\noindent{\textbf{Proof.}}}{\hspace*{\fill$\diamondsuit$}\\}
+
+\newenvironment{aru}{\vspace*{.5ex}\par\noindent{\textbf{ARU.}}\begin{sf}}{\end{sf}\hspace*{\fill$\diamondsuit$}\\}
+
+%\newif\ifpdf
+%\ifx\pdfoutput\undefined                       
+%\pdffalse % we are not running pdflatex 
+%\else 
+%\pdfoutput=1 % we are running pdflatex                        
+%\pdfcompresslevel=9  % compression level for text and image                                                
+%\pdftrue 
+%\hypersetup{                        
+%pdfauthor = {Anya Helene Bagge},
+%pdftitle = {PhD},
+%pdfsubject = {Theoretical computer science},
+%pdfkeywords = {}
+%}
+%\fi
+
+
+%% styling for paper front pages
+\def\titlestyle{\chaptitlefont\centering\LARGE}
+\def\authorstyle{\authornamestyle\centering}
+\def\titleA#1[#2]{{\titlestyle #1\par\medskip\Large{#2}\par\bigskip\bigskip}}
+\def\titleB#1{{\titlestyle#1}\par\bigskip\bigskip}
+\newcommand{\paperhead}[1]{{%
+    \clearrightpage\thispagestyle{empty}\vspace*{18ex}
+    \vspace*{-3em}\centering
+    \def\author##1##2{\parbox[t]{.45\linewidth}{\authorstyle{##1}\par\bigskip}}%
+    \def\title##1{\@ifnextchar[{\titleA{##1}}{\titleB{##1}}}
+    #1%
+    \bigskip\bigskip}}
+
+\newcommand{\about}{{\par\medskip\aboutstyle}}
+\newcommand{\uib}{Department of Informatics, University of Bergen, Norway}
+\newcommand{\hib}{Department of Computer Engineering, Bergen University College, Norway}
+\newcommand{\address}[1]{{\medskip\par\subsubsecheadstyle\centering#1\par}}
+
+%% photos for chapter opening
+\newcommand{\picpage}[2]{{%
+    \clearleftpage\thispagestyle{empty}
+    \raggedleft\@conttfont\smaller\noindent%
+    \setlength{\fboxrule}{0.175pt}%
+    \setlength{\fboxsep}{0pt}%
+    \framebox{\resizebox{\textwidth}{1.618\textwidth}{\color{white}x%
+%%        \includegraphics{#1}
+      }}\par\medskip
+    \enlargethispage{3in}
+          (Not including photos -- uncomment includegraphics in mymacros.sty
+      to enable photo pages)\\
+%%    #2
+    \par\clearpage}}
+
+%% some reference commands
+%% the subpart stuff is there so that each paper can have a different
+%% namespace for reference labels (since basically all of them define an
+%% introduction, conclusion, etc.)
+\def\subpart{}
+\newcommand{\chapref}[1]{Chapter~\REF{chap:#1}}
+\newcommand{\secref}[2][\subpart]{Section~\REF{#1sec:#2}}
+\newcommand{\pgref}[2][\subpart]{Page~\pageref{#1#2}}
+%\newcommand{\eqref}[2][\subpart]{\eqref{#1#2}}
+\newcommand{\figref}[2][\subpart]{Figure~\REF{#1fig:#2}}
+\newcommand{\tblref}[2][\subpart]{Table~\REF{#1tbl:#2}}
+\newcommand{\tabref}[2][\subpart]{Table~\REF{#1tab:#2}}
+\newcommand{\defref}[2][\subpart]{Definition~\REF{#1def:#2}}
+
+%                                          1                     2             3
+% 
+%% the normal lowercase command doesn't work in index commands
+\def\lowerchar#1{\ifcat A#1%
+  \if A#1a\else\if B#1b\else\if C#1c\else\if D#1d\else\if E#1e\else%
+  \if F#1f\else\if G#1g\else\if H#1h\else\if I#1i\else\if J#1j\else%
+  \if K#1k\else\if L#1l\else\if M#1m\else\if N#1n\else\if O#1o\else%
+  \if P#1p\else\if Q#1q\else\if R#1r\else\if S#1s\else\if T#1t\else%
+  \if U#1u\else\if V#1b\else\if W#1w\else\if X#1x\else\if Y#1y\else
+  \if Z#1z\else%
+  #1\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\else #1\fi}
+\let\INDEX=\index
+%\def\index{\@ifnextchar[{\INDEX@}{\INDEX@@}}
+%\def\INDEX@[#1]#2{\INDEX[#1]{#2}}%{\makebox[0pt]{ }\color{gray}[#1:#2]}}
+%\def\INDEX@@#1{\INDEX{#1}}%{ \color{gray}[#1]}}
+
+
+
+
+
+\endinput

@@ -1,0 +1,45 @@
+\chapter{Introduction}
+
+\section{Motivation}
+Modelling languages has been used since the 1960's when the Entity-Relationship (ER) model was conceived ~\cite{Chen:1976:EMU:320434.320440}. Around the same time, the programming language Simula ~\cite{Dahl:1966:SAS:365813.365819} was launched as the first object-oriented language which triggered the interest in object-oriented design and analysis. In the 1980's CASE tools were the next big thing, and was by some predicted to completely replace textual programming. The use of these tools never really took off, but we see the legacy of these tools today through software such as intergrated development environments (IDE). With the adoption of UML~\cite{OMG07UML} 1.1 in 1997 as a standard by the Object Management Group (OMG)~\cite{OMG}, there was an increased interest in modelling. 
+
+Model-driven engineering (MDE) is influenced by lessons learned from previous efforts. What modelling languages and CASE tools tried to achieve in the 80-90's was systems based entirely on models, which would generate runnable code. This is a difficult task, and is probably even harder today due to the increased complexity in software. MDE addresses this complexity with raising the level of abstraction.
+
+The primary artefact in MDE is models. These models can be graphical and textual, but they serve the same purpose; creating an abstraction of the system which can be standardized and easily communicated with non-programmers. The MDE field has in the recent years gained new popularity, with ideas like \emph{domain-specific languages} (DSL), \emph{domain-specific modelling languages} (DSML) and meta-modelling as important concepts. MDE encourages a narrow and clearly defined problem domain which can be expressed with concise and expressive languages based on models. 
+
+When using a diagrammatic approach to MDE, one create models which usually has no meaning to a computer (semantics). To address this issue, we need a transformation engine or generator that can help us transform our model into something usable that the computer understands. A common solution to this problem is model-to-text transformation; generating code to a target language, which in its turn is interpreted, or compiled and executed. 
+
+This thesis will focus on facilitating model-to-text transformations in DPF Editor, the reference implementation of \emph{Diagram Predicate Framework (DPF)}. DPF is a formal diagrammatic approach to MDE. DPF Editor has at this point roughly implemented the metamodelling aspects of DPF, but lacks any form of model transformation support. To tackle this problem, one needs a general approach which can be used to facilitate code generation for all the languages created, not a specific solution targeting one DSML. This thesis will try to answer the research question: \emph{is it possible to create a general code generation facility for modelling languages specified in DPF?} Through the thesis there will be introduced a general solution for creating code generators in the DPF Editor based on the Xpand framework~\cite{xpand}. In the end the tool will be demonstrated with the building of a code generator for web applications, based on the Play Framework~\cite{playframework}.
+
+
+% \section{Software Engineering Research}
+% In classic research, the research method is centered around creating a hypothesis and then trying to prove or disprove it through experiments and observations~\cite{SolheimStolen07}.
+% 
+% -what is research
+% -kvalitativ/kvantitativ?
+
+
+\section{Structure of Thesis}
+The thesis is structured in the following way:
+
+\begin{description}
+\item[Chapter 2 -- Model-based Development] \hfill \\
+This chapter gives an introduction to Model-driven Engineering, Domain-specific languages, Diagram Predicate Framework and more. We will investigate the concept of \emph{language workbenches} and take a look at some of the existing model-based solutions which we find on the market today. We will finish up with a presentation of the DPF Editor, and compare it with the reviewed tools.
+
+\item[Chapter 3 -- Code Generation] \hfill \\
+We will introduce code generation as a general activity, and look at why it is interesting. The problem which this thesis tries to solve will be presented. At the end we will compare different code generation solutions and introduce the chosen framework.
+
+\item[Chapter 4 -- Design and Development] \hfill \\
+As the chapter title suggests, this chapter will describe the development of the code generation tool. We will take a closer look at how the chosen code generation framework works on the inside, and how this applies to our solution. In the end of the chapter there will be an overview covering what has been achieved, as well as the shortcomings of the tool.
+
+\item[Chapter 5 -- Demonstrating the Tool] \hfill \\
+This chapter will demonstrate the tool with the creation of Java code from a simple model. We will investigate the developed tool's features as well as the framework it is based on.
+
+\item[Chapter 6 -- Conclusion] \hfill \\
+We will conclude the thesis with a summary of what the developed solution is capable of. At the very end there is suggestions for further work, both in the direction of code generation and as a \emph{language workbench}.
+\end{description}
+% In \textbf{Chapter~\ref{chap:research_method}: \nameref{chap:research_method}}, we give a short presentation of the research method on which this thesis is based and briefly describe how this method has been applied to the thesis.
+
+
+% \subsection{A note on definitions}
+% All definitions and diagrams given in chapter \ref{chap:background} of this thesis, directly relating to DPF, are taken from \textsc{Rutle}~\cite{rutle_thesis_2010}. DPF is still a work in progress, and definitions given in other articles and presentations may differ slightly in form and/or content.

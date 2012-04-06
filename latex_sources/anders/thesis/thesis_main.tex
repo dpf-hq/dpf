@@ -1,0 +1,159 @@
+%Bech11.tex
+\documentclass[a4paper]{report}
+
+\usepackage{url} % formatting urls
+\usepackage[utf8]{inputenc} % unicode characters
+\usepackage[T1]{fontenc}
+\usepackage[pdftex,bookmarksnumbered=true]{hyperref} % pdf links
+\hypersetup{
+    pdftitle={Metamodel based Code Generation in DPF Editor}, pdfauthor={Anders Sandven},     % author
+    pdfsubject={Master Thesis},   % subject of the document
+    pdfkeywords={DPF, EMF, Xpand, Xtend, Play! Framework}, % list of keywords
+    colorlinks,%
+    citecolor=black,%
+    filecolor=black,%
+    linkcolor=black,%
+    urlcolor=black
+}
+
+\usepackage[all]{xy}
+\usepackage{subfigure}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[english]{babel}
+\usepackage{bera} % Font
+% DPF definitions content:
+\usepackage{macros/mymacros}
+\usepackage{multirow}
+
+\usepackage{changepage}
+%\usepackage{lipsum}% just to automatically generate some text
+\usepackage{sectsty}
+\chapterfont{\huge}
+
+\let\olditemize=\itemize
+\def\itemize{
+\olditemize
+\setlength{\itemsep}{1pt}
+\setlength{\parskip}{0pt}
+\setlength{\parsep}{0pt}
+}
+
+\let\oldenumerate=\enumerate
+\def\enumerate{
+\oldenumerate
+\setlength{\itemsep}{-1pt}
+\setlength{\parskip}{0pt}
+\setlength{\parsep}{0pt}
+}
+
+
+% ------------------------------------------------------
+% Variable names
+% ------------------------------------------------------
+
+\newcommand{\sketcherAppName}{Sketcher95}
+\newcommand{\pluginName}{DPF Editor}
+\newcommand{\pluginNameAbbreviated}{DPFE}
+\newcommand{\pluginNameDefArticle}{The \pluginName{}}
+\newcommand{\thesistitle}{Metamodel based Code Generation in~DPF~Editor}
+
+\newcommand{\codeText}[1]{\texttt{#1}}
+
+\lstset{
+	language=Java,
+	basicstyle=\ttfamily\small,
+	frame=lines,
+	literate={«}{{\flqq}}1 {»}{{\frqq}}1}
+
+\newtheorem{mydef}{Definition} %Definition definition
+
+\newcommand{\captionfonts}{\footnotesize} %smaller captions
+\makeatletter  % Allow the use of @ in command names
+\long\def\@makecaption#1#2{%
+  \vskip\abovecaptionskip
+  \sbox\@tempboxa{{\captionfonts #1: #2}}%
+  \ifdim \wd\@tempboxa >\hsize
+    {\captionfonts #1: #2\par}
+  \else
+    \hbox to\hsize{\hfil\box\@tempboxa\hfil}%
+  \fi
+  \vskip\belowcaptionskip}
+\makeatother   % Cancel the effect of \makeatletter
+% Code Generation in DPF Editor using the Xpand Framework  
+% Generating Code: A model-to-text approach in DPF Editor using the Xpand Framework
+% Model-to-text transformations using the Xpand Framework 
+% Constraint-aware Code Generation in DPF Editor
+% Metamodel based code generation in DPF Editor
+% Metamodel based model-to-text transformations in DPF Editor
+% An approach to metamodel based code generation in DPF Editor
+\title{\thesistitle}
+\author{Anders Sandven\\
+    Høgskolen i Bergen\\
+    \small{Draft date \today}}
+
+%Apace between paragraphs
+\setlength{\parskip}{1.3ex plus 0.2ex minus 0.2ex}
+
+% ------------------------------------------------------
+% Environments
+% ------------------------------------------------------
+\lstnewenvironment{plainlisting} {
+    \lstset{title=,caption=, breaklines=true, showstringspaces=false}
+} {}
+
+
+
+\begin{document}
+%\maketitle
+\input{titlepage}
+
+
+\pagenumbering{roman}
+\setcounter{tocdepth}{1}
+\tableofcontents
+
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{List of Figures}
+\listoffigures
+
+%%%%%%%%%%%%%%%%%%% MAIN %%%%%%%%%%%%%%%%%%%%
+\pagestyle{headings}
+
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Preface}
+\include{ch0_preface}
+\pagenumbering{arabic}
+\include{ch1_introduction}
+\include{ch2_mdd}
+\include{ch3_code_generation}
+\include{ch4_design_and_development}
+\include{ch5_case_study}
+\include{ch6_conclusion}
+
+%%%%%%%%%%%%%%%%%%% APPENDIX %%%%%%%%%%%%%%%%%%%%
+%\appendix
+%\include{appendix/ap0_eclipsesetup}
+%\include{appendix/ap1_resources}
+
+%%%%%%%%%%%%%%%%%%% META CONTENT  %%%%%%%%%%%%%%%%%%%%
+% \cleardoublepage
+% \phantomsection
+% \addcontentsline{toc}{chapter}{List of Figures}
+% \listoffigures
+% 
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Bibliography}
+\bibliographystyle{plain}
+\bibliography{../bib/bibliography}
+
+%\newpage
+%\addcontentsline{toc}{chapter}{Index}
+%\printindex
+
+\end{document} 

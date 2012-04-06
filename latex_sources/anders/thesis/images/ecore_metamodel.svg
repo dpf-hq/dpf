@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   height="287"
+   version="1.1"
+   width="906"
+   id="svg2"
+   inkscape:version="0.48.0 r9654"
+   sodipodi:docname="ecore_metamodel.svg">
+  <metadata
+     id="metadata106">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs104">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 143.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="906 : 143.5 : 1"
+       inkscape:persp3d-origin="453 : 95.666667 : 1"
+       id="perspective108" />
+  </defs>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1440"
+     inkscape:window-height="798"
+     id="namedview102"
+     showgrid="false"
+     showguides="false"
+     inkscape:guide-bbox="true"
+     inkscape:zoom="1.1898455"
+     inkscape:cx="466.99483"
+     inkscape:cy="142.82615"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg2">
+    <inkscape:grid
+       type="xygrid"
+       id="grid2914"
+       empspacing="5"
+       visible="true"
+       enabled="true"
+       snapvisiblegridlinesonly="true" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="125.64657,247.93135"
+       id="guide3698" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="113.67022,203.80798"
+       id="guide3700" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="100.01299,209.48098"
+       id="guide3702" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="283.86039,194.9833"
+       id="guide3704" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="435.77087,237.00557"
+       id="guide3706" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="588.10158,238.47635"
+       id="guide3708" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="535.78386,218.72588"
+       id="guide3710" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="759.3423,224.609"
+       id="guide3712" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="740.01206,260.95826"
+       id="guide3714" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="891.92254,253.81447"
+       id="guide3716" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="131.94991,69.336735"
+       id="guide3730" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="309.91419,80.472635"
+       id="guide3732" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="313.6962,79.422078"
+       id="guide3734" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="323.99165,35.718924"
+       id="guide3736" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="151.49026,139.72402"
+       id="guide3068" />
+  </sodipodi:namedview>
+  <rect
+     style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.88405798000000002;stroke-dasharray:none;stroke-dashoffset:0"
+     id="rect3089"
+     width="869.02039"
+     height="271.46378"
+     x="32.777367"
+     y="7.9721766" />
+  <g
+     id="g3061"
+     transform="translate(-4,0)">
+    <polyline
+       style="fill:none;stroke:#000000;stroke-width:1"
+       transform="translate(-26,0)"
+       id="polyline4"
+       points="252,105 252,182" />
+    <line
+       style="fill:#000000;stroke:#000000;stroke-width:1"
+       id="line6"
+       y2="182"
+       y1="170"
+       x2="226"
+       x1="219" />
+    <line
+       style="fill:#000000;stroke:#000000;stroke-width:1"
+       id="line8"
+       y2="182"
+       y1="170"
+       x2="226"
+       x1="233" />
+  </g>
+  <text
+     font-size="16"
+     x="232.89101"
+     y="145.80811"
+     id="text10"
+     style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Sans;-inkscape-font-specification:Sans"
+     sodipodi:linespacing="125%">eReferences</text>
+  <text
+     font-family="Helvetica"
+     font-size="16"
+     x="218"
+     y="50"
+     id="text12">
+1</text>
+  <text
+     font-size="16"
+     x="232.87245"
+     y="167"
+     id="text14"
+     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Sans;-inkscape-font-specification:Sans"
+     sodipodi:linespacing="125%">0..*</text>
+  <g
+     id="g3054"
+     transform="translate(16,0)">
+    <polyline
+       style="fill:none;stroke:#000000;stroke-width:1"
+       transform="translate(-26,0)"
+       id="polyline16"
+       points="172,182 172,105" />
+    <line
+       style="fill:#000000;stroke:#000000;stroke-width:1"
+       id="line18"
+       y2="105"
+       y1="117"
+       x2="146"
+       x1="153" />
+    <line
+       style="fill:#000000;stroke:#000000;stroke-width:1"
+       id="line20"
+       y2="105"
+       y1="117"
+       x2="146"
+       x1="139" />
+  </g>
+  <text
+     font-size="16"
+     x="39.905502"
+     y="144.45117"
+     id="text22"
+     style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Sans;-inkscape-font-specification:Sans"
+     sodipodi:linespacing="125%">eReferenceType</text>
+  <text
+     font-size="16"
+     x="141"
+     y="227"
+     id="text24"
+     style="font-size:16px;font-family:Helvetica">1</text>
+  <text
+     font-size="16"
+     x="143.94945"
+     y="126.78989"
+     id="text26"
+     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Sans;-inkscape-font-specification:Sans"
+     sodipodi:linespacing="125%">1</text>
+  <polyline
+     fill="none"
+     points="588,54 740,54"
+     stroke="#000000"
+     stroke-width="1"
+     id="polyline28" />
+  <line
+     fill="#000000"
+     stroke="#000000"
+     stroke-width="1"
+     x1="728"
+     x2="740"
+     y1="61"
+     y2="54"
+     id="line30" />
+  <line
+     fill="#000000"
+     stroke="#000000"
+     stroke-width="1"
+     x1="728"
+     x2="740"
+     y1="47"
+     y2="54"
+     id="line32" />
+  <text
+     font-size="16"
+     x="613.11328"
+     y="40"
+     id="text34"
+     style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Sans;-inkscape-font-specification:Sans"
+     sodipodi:linespacing="125%">eAttributetype</text>
+  <text
+     font-family="Helvetica"
+     font-size="16"
+     x="535"
+     y="57"
+     id="text36">
+1</text>
+  <text
+     font-family="Helvetica"
+     font-size="16"
+     x="796"
+     y="42"
+     id="text38">
+1</text>
+  <polyline
+     fill="none"
+     points="284,54 436,54"
+     stroke="#000000"
+     stroke-width="1"
+     id="polyline40" />
+  <line
+     fill="#000000"
+     stroke="#000000"
+     stroke-width="1"
+     x1="424"
+     x2="436"
+     y1="61"
+     y2="54"
+     id="line42" />
+  <line
+     fill="#000000"
+     stroke="#000000"
+     stroke-width="1"
+     x1="424"
+     x2="436"
+     y1="47"
+     y2="54"
+     id="line44" />
+  <text
+     font-size="16"
+     x="316"
+     y="41.356934"
+     id="text46"
+     style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Sans;-inkscape-font-specification:Sans"
+     sodipodi:linespacing="125%">eAttributes</text>
+  <text
+     font-family="Helvetica"
+     font-size="16"
+     x="238"
+     y="41"
+     id="text48">
+1</text>
+  <text
+     font-size="16"
+     x="400"
+     y="47"
+     id="text50"
+     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Sans;-inkscape-font-specification:Sans"
+     sodipodi:linespacing="125%">0..*</text>
+  <rect
+     height="90.905678"
+     width="182.21419"
+     x="101.73865"
+     y="14.04716"
+     id="rect52"
+     style="fill:#ffffff;stroke:#ffffff;stroke-width:1.09431946" />
+  <rect
+     height="90.905678"
+     width="183.95284"
+     x="100"
+     y="14.049764"
+     id="rect54"
+     style="fill:none;stroke:#000000;stroke-width:1.09952796" />
+  <text
+     font-size="16"
+     x="168.77524"
+     y="32"
+     id="text56"
+     style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Sans;-inkscape-font-specification:Sans"
+     sodipodi:linespacing="125%">EClass</text>
+  <text
+     font-size="16"
+     x="110"
+     y="56"
+     id="text60"
+     style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Sans;-inkscape-font-specification:Sans"
+     sodipodi:linespacing="125%">abstract : EBoolean</text>
+  <text
+     font-size="16"
+     x="110"
+     y="74"
+     id="text62"
+     style="font-size:14px;font-family:Sans;-inkscape-font-specification:Sans;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%"
+     sodipodi:linespacing="125%">interface : EBoolean</text>
+  <rect
+     fill="#ffffff"
+     height="80"
+     stroke="#ffffff"
+     stroke-width="1"
+     width="152"
+     x="436"
+     y="14"
+     id="rect66" />
+  <rect
+     height="80"
+     width="152"
+     x="436"
+     y="14"
+     id="rect68"
+     stroke-width="1"
+     stroke="#000000"
+     fill="none" />
+  <text
+     font-size="16"
+     x="476.33008"
+     y="32"
+     id="text70"
+     style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Sans;-inkscape-font-specification:Sans"
+     sodipodi:linespacing="125%">EAttribute</text>
+  <text
+     font-size="16"
+     x="446"
+     y="56"
+     id="text74"
+     style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Sans;-inkscape-font-specification:Sans"
+     sodipodi:linespacing="125%">iD : EBoolean</text>
+  <rect
+     fill="#ffffff"
+     height="72"
+     stroke="#ffffff"
+     stroke-width="1"
+     width="152"
+     x="740"
+     y="14"
+     id="rect78" />
+  <rect
+     fill="none"
+     height="72"
+     stroke="#000000"
+     stroke-width="1"
+     width="152"
+     x="740"
+     y="14"
+     id="rect80" />
+  <text
+     font-size="16"
+     x="778.45703"
+     y="30.427734"
+     id="text82"
+     style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Sans;-inkscape-font-specification:Sans"
+     sodipodi:linespacing="125%">EDataType</text>
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="m 740.01206,39.06865 151.91048,0"
+     id="path3718" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="m 891.92254,62.391 -151.91048,0"
+     id="path3720" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="m 435.77087,68.27412 152.33071,0"
+     id="path3722" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="m 588.10158,39.06865 -152.33071,0"
+     id="path3724" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="m 100.01299,83.19202 183.8474,0"
+     id="path3726" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="m 283.86039,39.06865 -183.8474,0"
+     id="path3728" />
+  <rect
+     height="91"
+     width="178"
+     x="100.06308"
+     y="182"
+     id="rect90"
+     style="fill:#ffffff;stroke:#000000;stroke-width:1" />
+  <text
+     font-size="16"
+     x="146.06308"
+     y="198"
+     id="text92"
+     style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Sans;-inkscape-font-specification:Sans"
+     sodipodi:linespacing="125%">EReference</text>
+  <text
+     font-size="16"
+     x="104.06308"
+     y="222"
+     id="text96"
+     style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Sans;-inkscape-font-specification:Sans"
+     sodipodi:linespacing="125%">containment : EBoolean</text>
+  <text
+     font-size="16"
+     x="104.06308"
+     y="240"
+     id="text98"
+     style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Sans;-inkscape-font-specification:Sans"
+     sodipodi:linespacing="125%">container : EBoolean</text>
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="m 100.01299,251.28108 177.96428,0"
+     id="path3738"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="m 277.97727,207.57792 -177.96428,0"
+     id="path3740"
+     inkscape:connector-curvature="0" />
+</svg>
