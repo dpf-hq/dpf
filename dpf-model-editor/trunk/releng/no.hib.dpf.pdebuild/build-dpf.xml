@@ -31,20 +31,26 @@
 		<echoproperties />
 		
 		<svn javahl="false" username="builder" password="builder">
-			<checkout url="${baseSvnPath}/no.hib.dpf.feature" revision="HEAD" 
-			          destPath="${buildDirectory}/features/no.hib.dpf.feature" />
-			          
-			<checkout url="${baseSvnPath}/no.hib.dpf.core" revision="HEAD" 
-			        destPath="${buildDirectory}/plugins/no.hib.dpf.core" />
-			<checkout url="${baseSvnPath}/no.hib.dpf.core.tests" revision="HEAD" 
-					destPath="${buildDirectory}/plugins/no.hib.dpf.core.tests" /> 
-			<checkout url="${baseSvnPath}/no.hib.dpf.editor" revision="HEAD" 
-					destPath="${buildDirectory}/plugins/no.hib.dpf.editor" /> 
-			<checkout url="${baseSvnPath}/no.hib.dpf.api" revision="HEAD" 
-					destPath="${buildDirectory}/plugins/no.hib.dpf.api" /> 
+			<checkout url="${baseSvnPath}/trunk/features/no.hib.dpf.feature" revision="HEAD" 
+		            destPath="${buildDirectory}/features/no.hib.dpf.feature" />		          
 			
+			<checkout url="${baseSvnPath}/trunk/plugins/no.hib.dpf.codegen.xpand.metamodel" revision="HEAD" 
+					destPath="${buildDirectory}/plugins/no.hib.dpf.codegen.xpand.metamodel" /> 
+			<checkout url="${baseSvnPath}/trunk/plugins/no.hib.dpf.codegen.xpand.ui" revision="HEAD" 
+					destPath="${buildDirectory}/plugins/no.hib.dpf.codegen.xpand.ui" /> 
+			<checkout url="${baseSvnPath}/trunk/plugins/no.hib.dpf.core" revision="HEAD" 
+			        destPath="${buildDirectory}/plugins/no.hib.dpf.core" />
+			<checkout url="${baseSvnPath}/trunk/plugins/no.hib.dpf.diagram" revision="HEAD" 
+			        destPath="${buildDirectory}/plugins/no.hib.dpf.diagram" />
+			<checkout url="${baseSvnPath}/trunk/plugins/no.hib.dpf.editor" revision="HEAD" 
+			        destPath="${buildDirectory}/plugins/no.hib.dpf.editor" />
+			<checkout url="${baseSvnPath}/trunk/plugins/no.hib.dpf.editor.signature" revision="HEAD" 
+			        destPath="${buildDirectory}/plugins/no.hib.dpf.editor.signature" />
+
+			<checkout url="${baseSvnPath}/trunk/tests/no.hib.dpf.tests" revision="HEAD" 
+					destPath="${buildDirectory}/plugins/no.hib.dpf.tests" /> 
 		</svn>
 	</target>
-	
 	<target name="runBuild" depends="checkoutProjects, main" />
+
 </project>
