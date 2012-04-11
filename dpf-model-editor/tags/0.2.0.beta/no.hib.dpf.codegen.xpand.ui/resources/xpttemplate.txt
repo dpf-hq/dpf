@@ -1,5 +1,0 @@
-«IMPORT dpf»
-
-«DEFINE main FOR dpf::Specification»
-
-«ENDDEFINE»
