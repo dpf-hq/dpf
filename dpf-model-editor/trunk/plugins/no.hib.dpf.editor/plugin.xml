@@ -17,7 +17,7 @@
       <category name="Diagram Predicate Framework"
                 id="no.hib.dpf.editor"/>
       <wizard
-            category="no.hib.dpf.api.wizards.dpfprojectcategory"
+            category="no.hib.dpf.editor"
             class="no.hib.dpf.editor.DPFCreationWizard"
             icon="icons/shapes.gif"
             id="no.hib.dpf.editor.DPFCreationWizard"

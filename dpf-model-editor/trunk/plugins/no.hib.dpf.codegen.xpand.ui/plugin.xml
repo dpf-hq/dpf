@@ -23,7 +23,7 @@
          name="DPF Xpand Generator"
          point="org.eclipse.ui.newWizards">
       <wizard
-            category="no.hib.dpf.api.wizards.dpfprojectcategory"
+            category="no.hib.dpf.editor"
             class="no.hib.dpf.codegen.xpand.ui.wizards.NewDpfGeneratorWizard"
             id="no.hib.dpf.codegen.xpand.ui.wizards.newdpfgeneratorwizard"
             name="DPF Generator Project">
