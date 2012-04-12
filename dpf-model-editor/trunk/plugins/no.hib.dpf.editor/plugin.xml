@@ -24,6 +24,14 @@
             name="DPF Specification Diagram">
          <selection class="org.eclipse.core.resources.IResource"/>
       </wizard>
+      <wizard
+            category="no.hib.dpf.editor"
+            class="no.hib.dpf.editor.nature.NewDPFProjectWizard"
+            finalPerspective="no.hib.dpf.editor.DPFEditorPerspective"
+            icon="icons/dpf_project.png"
+            id="no.hib.dpf.editor.DPFProjectWizard"
+            name="Diagram Predicate Framework Project">
+      </wizard>
    </extension>
    <extension
          point="org.eclipse.ui.preferencePages">
@@ -135,5 +143,24 @@
                menubarPath="additions">
          </action>
       </viewerContribution>
+   </extension>
+   <extension
+         id="no.hib.dpf.editor.nature.DPFEditorNature"
+         name="DPF Editor Nature"
+         point="org.eclipse.core.resources.natures">
+      <runtime>
+         <run
+               class="no.hib.dpf.editor.nature.DPFProjectNature">
+         </run>
+      </runtime>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="no.hib.dpf.editor.nature.DPFPerspective"
+            icon="icons/shapes.gif"
+            id="no.hib.dpf.editor.DPFEditorPerspective"
+            name="DPF Editor">
+      </perspective>
    </extension>
 </plugin>
