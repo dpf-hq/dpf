@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="no.hib.dpf.codegen.xpand.feature"
+      label="Xpand Code Generation Feature"
+      version="1.0.0.qualifier"
+      provider-name="Høgskolen i Bergen">
+
+   <description>
+      This feature provides functionality for using DPF specifications as metamodels in the Xpand framework.
+   </description>
+
+   <copyright url="http://www.example.com/copyright">
+      [Enter Copyright Description here.]
+   </copyright>
+
+   <license url="http://www.example.com/license">
+      [Enter License Description here.]
+   </license>
+
+   <requires>
+      <import plugin="org.eclipse.xtend"/>
+      <import plugin="org.apache.log4j"/>
+      <import plugin="org.eclipse.xtend.typesystem.emf"/>
+      <import plugin="no.hib.dpf.core"/>
+      <import plugin="org.eclipse.core.resources"/>
+      <import plugin="org.eclipse.jdt.core"/>
+      <import plugin="org.eclipse.xtend.shared.ui"/>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.core.runtime"/>
+   </requires>
+
+   <plugin
+         id="no.hib.dpf.codegen.xpand.metamodel"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="no.hib.dpf.codegen.xpand.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>
