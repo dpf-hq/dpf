@@ -5,7 +5,7 @@ import org.eclipse.core.resources.IProjectNature;
 import org.eclipse.core.runtime.CoreException;
 
 public class DPFProjectNature implements IProjectNature {
-	public static final String NATURE_ID = "no.hib.dpf.editor.nature.dpfprojectnature"; 
+	public static final String NATURE_ID = "no.hib.dpf.editor.nature.DPFEditorNature";
 	
 	@Override
 	public void configure() throws CoreException {
