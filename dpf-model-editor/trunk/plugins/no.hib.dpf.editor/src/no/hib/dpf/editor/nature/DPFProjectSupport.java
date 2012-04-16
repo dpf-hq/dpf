@@ -18,16 +18,16 @@ public class DPFProjectSupport {
 		Assert.isNotNull(projectName);
 		
 		IProject project = createBaseProject(projectName, location);
-		try {
-			addNature(project);
-			String[] paths = { "src", 
-					"specifications" };
-			addToProjectStructure(project, paths);
-		} catch (CoreException e) {
-			e.printStackTrace();
-			project = null;
+		if(project != null) {
+			try {
+				String[] paths = { "src", 
+						"specifications" };
+				addToProjectStructure(project, paths);
+			} catch (CoreException e) {
+				e.printStackTrace();
+				project = null;
+			}
 		}
-		
 		return project;
 	}
 
@@ -68,8 +68,13 @@ public class DPFProjectSupport {
 				e.printStackTrace();
 			}
 		}
-		
-		return newProject;
+		try {
+			addNature(newProject);
+			return newProject;
+		} catch(CoreException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	private static void addNature(IProject project) throws CoreException {
@@ -80,7 +85,6 @@ public class DPFProjectSupport {
 			System.arraycopy(prevNatures, 0, newNatures, 0, prevNatures.length);
 			newNatures[prevNatures.length] = DPFProjectNature.NATURE_ID;
 			description.setNatureIds(newNatures);
-			
 			IProgressMonitor monitor = null;
 			project.setDescription(description, monitor);
 		}
