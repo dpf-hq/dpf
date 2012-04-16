@@ -145,16 +145,6 @@
       </viewerContribution>
    </extension>
    <extension
-         id="no.hib.dpf.editor.nature.DPFEditorNature"
-         name="DPF Editor Nature"
-         point="org.eclipse.core.resources.natures">
-      <runtime>
-         <run
-               class="no.hib.dpf.editor.nature.DPFProjectNature">
-         </run>
-      </runtime>
-   </extension>
-   <extension
          point="org.eclipse.ui.perspectives">
       <perspective
             class="no.hib.dpf.editor.nature.DPFPerspective"
@@ -162,5 +152,15 @@
             id="no.hib.dpf.editor.DPFEditorPerspective"
             name="DPF Editor">
       </perspective>
+   </extension>
+   <extension
+         id="nature.dpfprojectnature"
+         name="DPF Project Nature"
+         point="org.eclipse.core.resources.natures">
+      <runtime>
+         <run
+               class="no.hib.dpf.editor.nature.DPFProjectNature">
+         </run>
+      </runtime>
    </extension>
 </plugin>
