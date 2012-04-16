@@ -51,9 +51,8 @@ public class NewDPFProjectWizard extends Wizard implements INewWizard, IExecutab
 			System.err.println("Location: " + location.toString());
 		}
 
-		DPFProjectSupport.createProject(name, location);
+		DPFProjectSupport.createProject(name, location); 
 		BasicNewProjectResourceWizard.updatePerspective(configurationElement);
-		
 		return true;
 	}
 

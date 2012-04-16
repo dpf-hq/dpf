@@ -5,7 +5,7 @@ import org.eclipse.core.resources.IProjectNature;
 import org.eclipse.core.runtime.CoreException;
 
 public class DPFProjectNature implements IProjectNature {
-	public static final String NATURE_ID = "no.hib.dpf.editor.nature.DPFEditorNature";
+	public static final String NATURE_ID = "no.hib.dpf.editor.nature.dpfprojectnature"; 
 	
 	@Override
 	public void configure() throws CoreException {
@@ -30,5 +30,5 @@ public class DPFProjectNature implements IProjectNature {
 		// TODO Auto-generated method stub
 
 	}
-
+ 
 }
