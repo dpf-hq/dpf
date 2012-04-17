@@ -20,6 +20,7 @@ import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Geometry;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
@@ -67,7 +68,7 @@ public abstract class TwoArrowConstraintConnection extends PolylineConnection im
 		Bezier bezier = new Bezier(p1, p2, getMidwayPoint(controlpoints[0], p1), getMidwayPoint(controlpoints[0], p2));
 		bezier.outlineShape(g);
 		
-		drawCenteredText(g, labelText, controlpoints[0]);
+		drawCenteredText(g, labelText, bezier.getPoints().getMidpoint());
 		drawEndpointBlobs(g, p1, p2);
 
 	}
@@ -152,17 +153,19 @@ public abstract class TwoArrowConstraintConnection extends PolylineConnection im
 	}
 
 	@Override
-	public Rectangle getBounds() {
-		if (bounds == null) {
-			super.getBounds();
-			for (int i = 0; i < getChildren().size(); i++) {
-				IFigure child = (IFigure) getChildren().get(i);
-				bounds.union(child.getBounds());
-			}
-			bounds.expand(90, 90);
-		}
-		return bounds;
+	protected boolean shapeContainsPoint(int x, int y) {
+		PointList points = getPoints();
+		Point p1 = points.getFirstPoint();
+		Point p2 = points.getLastPoint();
+		Point [] controlpoints = getMidwayControlPoints(p1, p2, controlPointsOffsets[0], controlPointsOffsets[1]);
 		
+		Bezier bezier = new Bezier(p1, p2, getMidwayPoint(controlpoints[0], p1), getMidwayPoint(controlpoints[0], p2));
+		bezier.reCompute();
+		points = bezier.getPoints();
+		points.removePoint(0);
+		points.reverse();
+		points.removePoint(0);
+		return Geometry.polylineContainsPoint(points, x, y, 2);
 	}
 
 	/**
