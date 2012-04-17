@@ -242,8 +242,15 @@ public class DpfMetaModelUIPlugin extends AbstractUIPlugin {
 			URI uri = URI.createURI(path);
 			if(!path.equals("")) {
 				if(!fileModels.containsKey(project.getFile(new Path(path)))) {
-					Specification spectmp = DPFCoreUtil.loadSpecification(uri);
-					log.info("SUCCESSFULLY LOADED METAMODEL FOR PROJECT: " + project.getName() + " path: " + path);
+					Specification spectmp = null;
+					try {
+						spectmp = DPFCoreUtil.loadSpecificationFromXMI(uri);
+						log.info("Successfully loaded metamodel for project \"" + project.getName() + "\" from path: " + path);
+					} catch (IOException e) {
+						log.error("Could not load metamodel for project: " + project.getName());
+						e.printStackTrace(); 
+					}
+					
 					if(spectmp != null) {
 						fileModels.put(project.getFile(new Path(path)), spectmp);
 					}

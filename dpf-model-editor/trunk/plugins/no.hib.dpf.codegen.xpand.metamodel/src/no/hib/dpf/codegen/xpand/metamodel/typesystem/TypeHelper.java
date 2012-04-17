@@ -26,6 +26,9 @@ public class TypeHelper {
 	private static String[] ignoredEFeatures = {"target", "source", "createNode", "createArrow", "deleteNode", "deleteArrow", "getCopy"}; 
 	
 	public static String pluralize(String arg) {
+		if(Character.isDigit(arg.charAt(arg.length()-1)))
+			return arg + "s";
+		
 		for(char c : letters) {
 			if(arg.endsWith(""+c)) 
 				return arg + "s";

@@ -1,9 +1,12 @@
 package no.hib.dpf.codegen.xpand.metamodel.workflow;
 
+import java.io.IOException;
+
 import no.hib.dpf.codegen.xpand.metamodel.DpfMetamodel;
 import no.hib.dpf.core.Specification;
 import no.hib.dpf.utils.DPFCoreUtil;
 
+import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.issues.Issues;
@@ -23,6 +26,8 @@ import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 
 public class DpfReader extends WorkflowComponentWithModelSlot {
 
+	private static Logger log = Logger.getLogger(DpfReader.class);
+	
 	private static final String COMPONENT_NAME = "DPF Reader";
 	private Specification dpfMetaModel, dpfModel;
 	private DpfMetamodel metaModel;
@@ -50,7 +55,12 @@ public class DpfReader extends WorkflowComponentWithModelSlot {
 	}
 
 	public void setDpfMetaModel(String path) {
-		this.dpfMetaModel = DPFCoreUtil.loadSpecification(URI.createURI(path));
+		try {
+			this.dpfMetaModel = DPFCoreUtil.loadSpecificationFromXMI(URI.createURI(path));
+		} catch (IOException e) {
+			log.error("Could not read DPF metamodel!");
+			e.printStackTrace();
+		}
 	}
 
 	public Specification getDpfModel() {
@@ -58,7 +68,12 @@ public class DpfReader extends WorkflowComponentWithModelSlot {
 	}
 
 	public void setDpfModel(String path) {
-		this.dpfModel = DPFCoreUtil.loadSpecification(URI.createURI(path));
+		try {
+			this.dpfModel = DPFCoreUtil.loadSpecificationFromXMI(URI.createURI(path));
+		} catch (IOException e) {
+			log.error("Could not read DPF model!");
+			e.printStackTrace();
+		}
 	}
 	
 	public DpfMetamodel getMetaModel() {

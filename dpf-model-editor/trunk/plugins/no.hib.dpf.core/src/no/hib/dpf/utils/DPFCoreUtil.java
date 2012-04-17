@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 public class DPFCoreUtil {
@@ -100,12 +101,16 @@ public class DPFCoreUtil {
 	public static Specification loadSpecification(URI modelFileURI){
 		ResourceSetImpl resourceSet = new ResourceSetImpl();
 		resourceSet.setURIResourceMap(new LinkedHashMap<URI, Resource>());
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap() .put("xmi", new XMIResourceFactoryImpl());
-		Resource DefaultSpecification = resourceSet.createResource(DPFConstants.DefaultSpecification);
-		DefaultSpecification.getContents().add(DPFConstants.REFLEXIVE_SPECIFICATION);
-		resourceSet.getURIResourceMap().put(DPFConstants.DefaultSpecification, DefaultSpecification);
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
+		
+		Resource defaultSpecification = resourceSet.createResource(DPFConstants.DefaultSpecification);
+		defaultSpecification.getContents().add(DPFConstants.REFLEXIVE_SPECIFICATION);
+		
+		resourceSet.getURIResourceMap().put(DPFConstants.DefaultSpecification, defaultSpecification);
+		
 		Resource model = resourceSet.createResource(modelFileURI);
 		resourceSet.getURIResourceMap().put(modelFileURI, model);
+		
 		try {
 			model.load(null);
 		} catch (IOException e) {
@@ -120,5 +125,17 @@ public class DPFCoreUtil {
 //			verifyAndUpdate(dsp);
 			return dsp;
 		}
+	}
+	
+	public static Specification loadSpecificationFromXMI(URI uri) throws IOException {
+		ResourceSet resourceSet = new ResourceSetImpl();
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
+
+		resourceSet.getLoadOptions().put(XMIResource.OPTION_DEFER_IDREF_RESOLUTION, true);
+			
+		Resource resource = resourceSet.createResource(uri);
+		resource.load(null);
+		
+		return (Specification)resource.getContents().get(0);
 	}
 }

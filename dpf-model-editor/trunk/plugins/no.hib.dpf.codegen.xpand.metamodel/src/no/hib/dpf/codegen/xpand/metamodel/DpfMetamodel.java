@@ -20,6 +20,7 @@ import no.hib.dpf.codegen.xpand.metamodel.typesystem.types.PredicateType;
 import no.hib.dpf.codegen.xpand.metamodel.typesystem.types.SpecificationType;
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
+import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Predicate;
@@ -30,6 +31,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EGenericType;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.internal.xtend.type.baseimpl.BuiltinMetaModel;
@@ -43,7 +45,7 @@ import org.eclipse.xtend.typesystem.emf.EmfListType;
  * 
  * This class represents a Xpand meta model. It's purpose is to map our custom types to
  * types which Xpand can understand. Types contained in the DPF Specification object are
- * mapped to their corresponding Xpand type, ie. an instance of Node (called DomainClass),
+ * mapped to their corresponding Xpand type, i.e. an instance of Node (called DomainClass),
  * are mapped to {@link NodeType} with name "DomainClass". This happens through getKnownTypes and
  * dpfMetaModel#metaModelCache upon DpfMetamodel instantiation.
  * 
@@ -60,6 +62,11 @@ import org.eclipse.xtend.typesystem.emf.EmfListType;
  * @author Anders Sandven <anders.sandven@gmail.com>
  */
 public class DpfMetamodel implements MetaModel, DpfMMConstants {
+	
+	static {                                                                                                                             
+        //When loading a DPF model, we take advantage of EMF. We must thus register the DPF package with EMF.
+        EPackage.Registry.INSTANCE.put(CorePackage.eNS_URI, CorePackage.eINSTANCE);                                                  
+	}
 	
 	private static Logger log = Logger.getLogger(DpfMetamodel.class);
 	
@@ -196,8 +203,6 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 	@Override
 	public Set<Type> getKnownTypes() {
 		Set<Type> res = new HashSet<Type>();
-		res.add(getTypeForName("dpf::Node"));
-		res.add(getTypeForName("dpf::Arrow"));
 		for(Type t : dpfMetaModel.getXpandTypes()) {
 			res.add(t);
 		}
@@ -248,7 +253,7 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 				} else if(obj instanceof Predicate) {
 					return new PredicateType(DpfMetamodel.this, ns + "::" + PREDICATE , (Predicate)obj);
 				} else if(obj instanceof DummyType) {
-					
+					return new DummyType(DpfMetamodel.this, ns + "::" + ((DummyType)obj).getName());
 				}
 				return null;
 			}
@@ -261,12 +266,12 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 		public void addMetaModel(String namespace, Specification spec) {
 			ns = namespace;
 			
-			//Placeholders for the actual node and arrow type, since it's not possible to traverse the metalevel hierarchy to get them
-			DummyType nodet = new DummyType(DpfMetamodel.this, ns + "Node");
-			DummyType arrowt = new DummyType(DpfMetamodel.this, ns + "Arrow");
+			//Placeholders for the actual node and arrow type
+			DummyType nodet = new DummyType(DpfMetamodel.this, ns + "::" + "Node");
+			DummyType arrowt = new DummyType(DpfMetamodel.this, ns + "::" + "Arrow");
 			
-			dpfModel.typeForNameCache.put(ns + "::" + "Node", nodet);
-			dpfModel.typeForNameCache.put(ns + "::" + "Arrow", arrowt);
+			metaModelCache.get(nodet);
+			metaModelCache.get(arrowt);
 			
 			metaModelCache.get(spec);
 			metaModelCache.get(spec.getGraph());
@@ -281,7 +286,6 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 		}
 		
 		public Specification getMetaModelSpec() {
-			//Needs to be properly implemented to support multiple namespaces.
 			return specifications.get(NS_PREFIX);
 		}
 		
@@ -341,9 +345,7 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 				}
 				
 				//MetaModel
-				if(typeDefinition.equals(IDOBJECT)) {
-					return null; //We dont handle this, as it should subclass IDObj. Flytt test ned.
-				} else if(typeDefinition.equals(SPECIFICATION)) {
+				if(typeDefinition.equals(SPECIFICATION)) {
 					return dpfMetaModel.getXpandTypeForDpfType(dpfMetaModel.getMetaModelSpec());
 				}else if(typeDefinition.equals(PREDICATE)) {
 					try {
@@ -357,11 +359,13 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 				} else if(typeDefinition.equals(CONSTRAINT)) {
 					//Only to ID the ConstraintType in metamodel.
 					try {
-						return null; //Vi skal ikkje få inn noko typedefinisjon her
+						return null;
 //						return dpfMetaModel.getXpandTypeForDpfType(dpfMetaModel.getMetaModelSpec().getGraph().getConstraints().get(0));
 					} catch(NullPointerException e) {
 						return null; //We dont handle the CONSTRAINT type
 					}
+				} else if(typeDefinition.equals(IDOBJECT)) {
+					return null; //We dont handle this, as it should subclass IDObj. 
 				}
 				
 				Object key = getSpecificationTypeForName(dpfMetaModel.getMetaModelSpec(), typeDefinition);
@@ -397,12 +401,11 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 			return null;
 		}
 		
-		/** A collection that holds all instances of a meta model type */
+		/** A collection that holds all instances of a DSML type */
 		private Cache<String, List<Object>> metaModelTypeCollections = new Cache<String, List<Object>>() {
 
 			@Override
 			protected List<Object> createNew(String typeId) {
-				//Dersom vi finn ein korresponderande type i DSM'en, lagar vi ein collection med alle instansar av den typen
 				log.debug("Creating type collection: " + typeId);
 				List<Object> res = new ArrayList<Object>();
 				
@@ -427,7 +430,7 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 		public void setDpfModel(String namespace, Specification model) {
 			this.model = model;
 			ns = namespace;
-
+			
 			//Collections of model types conforming to metamodel type
 			for(Node n : dpfMetaModel.getMetaModelSpec().getGraph().getNodes()) {
 				metaModelTypeCollections.get(n.getId());
@@ -451,19 +454,14 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 		}
 		
 		public Type getTypeForName(String name) {
-//			System.out.println("TYPE FOR NAME : " + name);
 			int i = name.indexOf("::");
 			String typeDefinition = name;
 			if(i == -1) {
 				typeDefinition = ns + "::" + name;
 			}
 			Type ret = typeForNameCache.get(typeDefinition);
-//			if(ret == null) System.out.println("ret NULL");
+			
 			return ret;
-//			Type ret2 = typeForNameCache2.get(name);
-//			if(ret2 == null) System.out.println("ret2 NULL");
-//			
-//			return ret2;
 		}
 		
 		public List<Object> getMetaModelTypeCollections(String typeId) {
@@ -490,7 +488,6 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 		
 		public Type getTypeForETypedElement(ETypedElement typedElement) {
 			//We need to map the pre-defined EStructuralFeatures (the ones specified in the DPF ecore metamodel.
-			//This is an attempt on making things as generic as possible. Allthough it will probably break if names change in the metamodel
 			log.debug("getTypeForETypedElement:");
 			if(typedElement.getEType() == null) {
 				return ts.getVoidType();
@@ -499,7 +496,6 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 			Type t = null;
 			EClassifier classifier = typedElement.getEType();
 			
-			// TODO: These should return metametamodel types (dpf ecore), right now returns dsm types.
 			if(classifier.getName().equals(GRAPH)) {
 				t = getTypeForName(NS_PREFIX + "::" + GRAPH);
 			}  else if(classifier instanceof EDataType) {
@@ -538,8 +534,7 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 			} else {
 				if(typedElement.getEGenericType() != null) {
 					log.debug("EGenericType: " + typedElement.getEGenericType());
-						//Linje 359-373 EmfRegistryMM... sjekk på om baseType har verdi eller om det er gyldig listetype
-					t = getTypeForEClassifier(typedElement.getEGenericType()); //Void type?
+					t = getTypeForEClassifier(typedElement.getEGenericType());
 				} else {
 					t = getTypeSystem().getTypeForName(typedElement.getEType().getName());
 					//TODO: See getFullyQualifiedName()
@@ -560,10 +555,10 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 				baseType = element.getERawType();
 			}
 			
-			//sjekkar at vi ikkje har ei liste
 			if (baseType == null || !(baseType instanceof EList<?>)) {
 				return getTypeForEClassifier(baseType);
 			}
+			
 			if (element.getETypeArguments().size() != 1)
 				throw new RuntimeException("Unexpected number of type arguments " + element.getETypeArguments().toString());
 
