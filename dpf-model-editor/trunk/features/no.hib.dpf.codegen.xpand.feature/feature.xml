@@ -18,15 +18,17 @@
    </license>
 
    <requires>
-      <import plugin="org.eclipse.xtend"/>
-      <import plugin="org.apache.log4j"/>
-      <import plugin="org.eclipse.xtend.typesystem.emf"/>
-      <import plugin="no.hib.dpf.core"/>
-      <import plugin="org.eclipse.core.resources"/>
-      <import plugin="org.eclipse.jdt.core"/>
-      <import plugin="org.eclipse.xtend.shared.ui"/>
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="no.hib.dpf.core" version="0.1.1" match="greaterOrEqual"/>
+      <import plugin="org.apache.log4j" version="1.2.15" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.xtend.typesystem.emf" version="1.0.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.xtend" version="1.1.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.xtend.shared.ui" version="1.0.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.jdt.core" version="3.6.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.core.resources" version="3.6.0" match="greaterOrEqual"/>
+      <import plugin="no.hib.dpf.codegen.xpand.metamodel" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.ide"/>
    </requires>
 
    <plugin
