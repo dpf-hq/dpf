@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="no.hib.dpf.feature"
-      label="DPF Feature"
+      label="DPF Workbench"
       version="0.2.0.qualifier"
       provider-name="Høyskolen i Bergen">
 
