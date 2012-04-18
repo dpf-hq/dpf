@@ -97,8 +97,7 @@ public class DPFCoreUtil {
 		return relative.resolve(oldBaseURI).deresolve(newBaseURI);
 	}
 	
-	@SuppressWarnings("finally")
-	public static Specification loadSpecification(URI modelFileURI){
+	private static Resource getResource(URI modelFileURI){		
 		ResourceSetImpl resourceSet = new ResourceSetImpl();
 		resourceSet.setURIResourceMap(new LinkedHashMap<URI, Resource>());
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
@@ -110,21 +109,37 @@ public class DPFCoreUtil {
 		
 		Resource model = resourceSet.createResource(modelFileURI);
 		resourceSet.getURIResourceMap().put(modelFileURI, model);
-		
+		return model;
+	}
+	
+	public static Specification loadSpecification(URI modelFileURI){
+		Resource model = getResource(modelFileURI);
+		Assert.isNotNull(model);
+		Specification dsp = null;
 		try {
 			model.load(null);
 		} catch (IOException e) {
+			System.out.println(e);
 			analyzeResourceProblems(model, e, new LinkedHashMap<Resource, Diagnostic>());
 		} finally {
 			if (model.getContents().size() == 0) {
-				Specification result = CoreFactory.eINSTANCE.createSpecification();
-				model.getContents().add(result);
-				return result;
-			}
-			Specification dsp = (Specification) model.getContents().get(0);
-//			verifyAndUpdate(dsp);
-			return dsp;
+				dsp = CoreFactory.eINSTANCE.createSpecification();
+				model.getContents().add(dsp);
+			}else
+				dsp = (Specification) model.getContents().get(0);
 		}
+		return dsp;
+	}
+	public static void saveSpecification(URI modelFileURI, Specification specification){
+		Resource model = getResource(modelFileURI);
+		Assert.isNotNull(model);
+		model.getContents().add(specification);		
+		try {
+			model.save(null);
+		} catch (IOException e) {
+			System.out.println(e);
+			analyzeResourceProblems(model, e, new LinkedHashMap<Resource, Diagnostic>());
+		} 
 	}
 	
 	public static Specification loadSpecificationFromXMI(URI uri) throws IOException {

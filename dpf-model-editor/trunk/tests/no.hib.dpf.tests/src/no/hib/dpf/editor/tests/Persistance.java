@@ -17,6 +17,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.HashMap;
 
 import no.hib.dpf.core.Arrow;
+import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.Node;
@@ -33,10 +34,12 @@ import no.hib.dpf.diagram.DiagramFactory;
 import no.hib.dpf.diagram.VisualizationType;
 import no.hib.dpf.editor.DPFEditor;
 import no.hib.dpf.editor.signature.SignatureEditor;
+import no.hib.dpf.utils.DPFCoreUtil;
 
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -410,6 +413,38 @@ public class Persistance {
 	}
 
 
+	@Test
+	public void testModelLoading(){
+		Specification model = DPFCoreUtil.loadSpecification(URI.createFileURI("model/testModel.xmi"));
+		assertNotNull(model);
+		EList<Constraint> constraints = model.getConstraints();
+		for(Constraint constraint : constraints)
+			System.out.println(constraint);
+				
+		Graph graph = model.getGraph();
+		for(Node node : graph.getNodes())
+			System.out.println(node.getName());
+		
+		for(Arrow arrow : graph.getArrows()){
+			System.out.print(arrow.getName() + " : ");
+			System.out.print(arrow.getSource().getName() + " --> ");
+			System.out.println(arrow.getTarget().getName());
+		}
+				
+		Specification instance = CoreFactory.eINSTANCE.createDefaultSpecification();
+		instance.setType(model);
+		Graph igraph = instance.getGraph();
+		Node page1 = igraph.createNode("page1", graph.getNodeByName("Webpage"));
+		Node page2 = igraph.createNode("page2", graph.getNodeByName("Webpage"));
+		Node entity = igraph.createNode("entity", graph.getNodeByName("Entiy"));
+		Node type = igraph.createNode("image", graph.getNodeByName("Datatype"));
+		Node Application = igraph.createNode("app", graph.getNodeByName("Application"));
+		igraph.createArrow("data1", page1, entity, graph.getArrowByName("data"));
+		igraph.createArrow("attribute", entity, type, graph.getArrowByName("attribute"));
+		igraph.createArrow("href1", page1, page2, graph.getArrowByName("href"));
+		igraph.createArrow("mainPage", Application, page1, graph.getArrowByName("startPage"));
+		DPFCoreUtil.saveSpecification(URI.createFileURI("model/testInstance.xmi"), instance);
+	}
 
 
 }
