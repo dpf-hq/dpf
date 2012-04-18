@@ -3,12 +3,11 @@
    <description name="DPF Editor Update Site" url="http://dpf.hib.no/update">
       Download site for DPF Editor. See dpf.hib.no for details.
    </description>
-   <feature url="features/no.hib.dpf.feature_0.2.0.201204172310.jar" id="no.hib.dpf.feature" version="0.2.0.201204172310">
+   <feature url="features/no.hib.dpf.feature_0.2.0.201204172316.jar" id="no.hib.dpf.feature" version="0.2.0.201204172316">
       <category name="dpf_workbench"/>
    </feature>
-   <feature url="features/no.hib.dpf.codegen.xpand.feature_0.2.0.201204172310.jar" id="no.hib.dpf.codegen.xpand.feature" version="0.2.0.201204172310">
-      <category name="dpf_code_generation"/>
+   <feature url="features/no.hib.dpf.codegen.xpand.feature_0.2.0.201204172316.jar" id="no.hib.dpf.codegen.xpand.feature" version="0.2.0.201204172316">
+      <category name="dpf_workbench"/>
    </feature>
    <category-def name="dpf_workbench" label="DPF Workbench"/>
-   <category-def name="dpf_code_generation" label="DPF code generation extension [OPTIONAL]"/>
 </site>
