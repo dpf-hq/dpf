@@ -2,7 +2,7 @@
 <feature
       id="no.hib.dpf.codegen.xpand.feature"
       label="Xpand Code Generation Feature"
-      version="1.0.0.qualifier"
+      version="0.2.0.qualifier"
       provider-name="Høgskolen i Bergen">
 
    <description>
