@@ -142,6 +142,18 @@ public class DPFCoreUtil {
 		} 
 	}
 	
+	/** 
+	 * This is a temporary method which should be replaced by loadSpecification.
+	 * As it is desirable for clients to handle an eventual IOException in its own 
+	 * manner, this method is provided.
+	 * 
+	 * @deprecated
+	 * 
+	 * @param uri
+	 * 		{@link URI} to the DPF models xmi file
+	 * @throws {@link IOException} 		
+	 * @return a {@link Specification} object that contains the given model
+	 */
 	public static Specification loadSpecificationFromXMI(URI uri) throws IOException {
 		ResourceSet resourceSet = new ResourceSetImpl();
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
