@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="no.hib.dpf.codegen.xpand.feature"
-      label="Xpand Code Generation Feature [Optional]"
+      label="Xpand Code Generation [Optional]"
       version="0.2.0.qualifier"
       provider-name="Høgskolen i Bergen">
 
