@@ -1,0 +1,5 @@
+import dpf;
+
+getOneArrowConstraints(Activity a) :
+	a.getConstraints().select(e|e.arrows.size == 1);
+

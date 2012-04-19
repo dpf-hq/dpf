@@ -1,4 +1,5 @@
 «EXTENSION org::eclipse::xtend::util::stdlib::io» 
+«EXTENSION template::eap»
 
 «DEFINE main FOR dpf::Specification»
 	«EXPAND graph FOR this.graph»
@@ -33,7 +34,7 @@
 					public class «e.name.toFirstUpper()»{
 						public «e.target.name.toFirstUpper()» target;
 						public List<Constraint> constraints = new ArrayList<Constraint>();
-						«FOREACH this.getOneArrowConstraints() AS c»
+						«FOREACH getOneArrowConstraints(this) AS c»
 							constraints.add(new Constraint«name»(«e.source»,«e.target»));
 						«ENDFOREACH»
 						//Do something sequence specific...
