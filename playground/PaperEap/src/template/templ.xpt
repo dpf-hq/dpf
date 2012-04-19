@@ -33,7 +33,9 @@
 					public class «e.name.toFirstUpper()»{
 						public «e.target.name.toFirstUpper()» target;
 						public List<Constraint> constraints = new ArrayList<Constraint>();
-						«EXPAND arrow_constraint FOR this.getConstraints() let x = source and x = target»
+						«FOREACH this.getOneArrowConstraints() AS c»
+							constraints.add(new Constraint«name»(«e.source»,«e.target»));
+						«ENDFOREACH»
 						//Do something sequence specific...
 					}
 				«ENDFILE»
@@ -57,10 +59,6 @@
 			«ENDFOREACH»
 		}
 	«ENDFILE»
-«ENDDEFINE»
-
-«DEFINE arrow_constraint(x,y) FOR dpf::Constraint»
-	constraints.add(new Constraint«name»(«x»,«y»));
 «ENDDEFINE»
 
 «DEFINE choice FOR dpf::Choice»
