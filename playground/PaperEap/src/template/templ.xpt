@@ -8,6 +8,20 @@
 	«EXPAND activity FOREACH this.getActivitys()»
 	«EXPAND choice FOREACH this.getChoices()»
 	«EXPAND condition FOREACH this.getConditions()»
+	«FILE "Constraint.java"»
+		public interface ConstraintIrr{
+			boolean check();
+		}
+	«ENDFILE»
+	«FILE "ConstraintIrr.java"»
+		public class ConstraintIrr{
+			public ConstraintIrr(Object o1,Object o2){
+				public boolean check(){
+					return o1 != o2;					
+				}
+			}
+		}
+	«ENDFILE»
 «ENDDEFINE»
 
 «DEFINE activity FOR dpf::Activity»
@@ -15,8 +29,11 @@
 		public class «this.name.toFirstUpper()»{
 			«FOREACH getASequences() AS e»
 				«FILE e.name.toFirstUpper() + ".java"»
+					import java.util.*;
 					public class «e.name.toFirstUpper()»{
 						public «e.target.name.toFirstUpper()» target;
+						public List<Constraint> constraints = new ArrayList<Constraint>();
+						«EXPAND arrow_constraint FOR this.getConstraints()»
 						//Do something sequence specific...
 					}
 				«ENDFILE»
@@ -40,6 +57,10 @@
 			«ENDFOREACH»
 		}
 	«ENDFILE»
+«ENDDEFINE»
+
+«DEFINE arrow_constraint(x,y) FOR dpf::Constraint»
+	constraints.add(new Constraint«name»Irr(«x»,«y»));
 «ENDDEFINE»
 
 «DEFINE choice FOR dpf::Choice»
