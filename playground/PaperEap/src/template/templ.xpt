@@ -35,10 +35,10 @@
 					import java.util.*;
 					public class «e.name.toFirstUpper()»{
 						public «e.target.name.toFirstUpper()» target;
-						public List<Constraint> constraints = new ArrayList<Constraint>();
+						public static List<Constraint> classInvariants = new ArrayList<Constraint>();
 						«FOREACH getOneArrowConstraints(this) AS c»
 							static{
-								constraints.add(new Constraint«c.id»(
+								classInvariants.add(new Constraint«c.id»(
 													new «e.source.name.toFirstUpper()»(),
 													new «e.target.name.toFirstUpper()»()));
 							}					
