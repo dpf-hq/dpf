@@ -1,6 +1,0 @@
-«IMPORT dpf»
-
-«DEFINE init FOR dpf::Specification»
-	«EXPAND PlayModel::main FOR this»
-	«EXPAND PlayController::main FOR this»
-«ENDDEFINE»
