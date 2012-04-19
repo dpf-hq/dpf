@@ -95,10 +95,16 @@ public class NodeType extends AbstractTypeImpl {
 				protected Object evaluateInternal(Object target, Object[] params) {
 					final List<Arrow> tmp = new ArrayList<Arrow>();
 					List<Object> arrows = model.getModelCollections(a.getId()); //instance level
+					
+					Set<String> outgoingArrowIds = new HashSet<String>();
+					for(Arrow a : node.getOutgoings()) {
+						outgoingArrowIds.add(a.getId());
+					}
+ 					
 					if(arrows != null) {
 						for (Object o : arrows) {
 							//We make sure that the typeNode has the typeArrow. To make sure the our arrow is allowed on the particular node
-							if (node.getOutgoings().contains(((Arrow)o).getTypeArrow())) {
+							if (outgoingArrowIds.contains(((Arrow)o).getTypeArrow().getId())) {
 								//Instance level: We check that the model arrow has the callee node as source
 								if(((Arrow)o).getSource().equals(target)) {
 //									System.out.println("Matched!");

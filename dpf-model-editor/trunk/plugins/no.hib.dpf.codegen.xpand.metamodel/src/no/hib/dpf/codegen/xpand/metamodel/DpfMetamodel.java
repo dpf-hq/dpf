@@ -204,7 +204,7 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 		Set<Type> res = new HashSet<Type>();
 		for(Type t : dpfMetaModel.getXpandTypes()) {
 			res.add(t);
-			log.warn("getKnownTypes: " + t);
+			log.debug("getKnownTypes: " + t);
 		}
 		
 		return res;
@@ -239,7 +239,7 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 			
 			@Override
 			protected Type createNew(Object obj) {
-				log.warn("cache#createNew: " + obj);
+				log.debug("cache#createNew: " + obj);
 				if(obj instanceof Specification) {
 					return new SpecificationType(DpfMetamodel.this, ns + "::" + SPECIFICATION , (Specification)obj);
 				} else if(obj instanceof Graph) {
@@ -286,7 +286,6 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 			for(Arrow a : spec.getGraph().getArrows()) {
 				metaModelCache.get(a);
 			}
-			System.out.println("METAMODEL CONSTRAINTS: ");
 			for(Constraint c : spec.getConstraints()) {
 				dpfModel.putEntry(c.getId(), metaModelCache.get(c));
 				System.out.println(c.getId() + " symbol: " + c.getParameters());
@@ -382,7 +381,7 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 				} catch (NullPointerException e) {
 					return null;
 				}
-				log.warn("getTypeForName#createNew: tried to resolve " + str + ", returned null");	
+				log.debug("getTypeForName#createNew: tried to resolve " + str + ", returned null");	
 				return null;
 			}
 		};
@@ -458,7 +457,6 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 				modelCache.get(a);
 			}
 			
-			System.out.println("MODEL CONSTRAINTS:");
 			for(Constraint c : model.getConstraints()) {
 				putEntry(c.getId(), modelCache.get(c));
 				System.out.println(c.getId());
