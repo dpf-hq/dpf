@@ -9,6 +9,16 @@
 	«EXPAND activity FOREACH this.getActivitys()»
 	«EXPAND choice FOREACH this.getChoices()»
 	«EXPAND condition FOREACH this.getConditions()»
+	«FILE "Activity.java"»
+		public interface Activity{
+			//something Activity common
+		}
+	«ENDFILE»
+	«FILE "Sequence.java"»
+		public interface Sequence{
+			//something Sequence common
+		}
+	«ENDFILE»
 	«FILE "Constraint.java"»
 		public interface Constraint{
 			boolean check();
@@ -21,45 +31,46 @@
 				this.o1=o1;this.o2=o2;
 			}
 			public boolean check(){
-				return o1 != o2;					
+				return (null == o1 || null == o2) && o1.getClass() != o2.getClass();					
 			}
 		}
 	«ENDFILE»
 «ENDDEFINE»
 
 «DEFINE activity FOR dpf::Activity»
-	«FILE this.name.toFirstUpper() + ".java"»
-		public class «this.name.toFirstUpper()»{
+	«FILE this.name.replaceAll(" ","").toFirstUpper() + ".java"»
+		public class «this.name.replaceAll(" ","").toFirstUpper()» implements Activity{
 			«FOREACH getASequences() AS e»
-				«FILE e.name.toFirstUpper() + ".java"»
+				«FILE e.name.replaceAll(" ","").toFirstUpper() + ".java"»
 					import java.util.*;
-					public class «e.name.toFirstUpper()»{
-						public «e.target.name.toFirstUpper()» target;
-						public static List<Constraint> classInvariants = new ArrayList<Constraint>();
+					public class «e.name.replaceAll(" ","").toFirstUpper()» implements Sequence{
+						public Activity source;
+						public Activity target;
+						public List<Constraint> classInvariants = new ArrayList<Constraint>();
 						«FOREACH getOneArrowConstraints(this) AS c»
-							static{
-								classInvariants.add(new Constraint«c.id»(
-													new «e.source.name.toFirstUpper()»(),
-													new «e.target.name.toFirstUpper()»()));
+							public List<Constraint> getInvariants(){
+								classInvariants.clear();  	
+								classInvariants.add(new Constraint«c.id»(source,target));
+								return classInvariants;
 							}					
 						«ENDFOREACH»
 						//Do something sequence specific...
 					}
 				«ENDFILE»
-				«e.name.toFirstUpper()» «e.name.toLowerCase()»; 
+				«e.name.replaceAll(" ","").toFirstUpper()» «e.name.replaceAll(" ","").toLowerCase()»; 
 			«ENDFOREACH»
 			«FOREACH getAMessages() AS e»
-				«FILE e.name.toFirstUpper() + ".java"»
-					public class «e.name.toFirstUpper()»{
-						public «e.target.name.toFirstUpper()» target;
+				«FILE e.name.replaceAll(" ","").toFirstUpper() + ".java"»
+					public class «e.name.replaceAll(" ","").toFirstUpper()»{
+						public «e.target.name.replaceAll(" ","").toFirstUpper()» target;
 						//Do something message specific...
 					}
 				«ENDFILE»
 			«ENDFOREACH»
 			«FOREACH getAChoiceIns() AS e»
-				«FILE e.name.toFirstUpper() + ".java"»
-					public class «e.name.toFirstUpper()»{
-						public «e.target.name.toFirstUpper()» target;
+				«FILE e.name.replaceAll(" ","").toFirstUpper() + ".java"»
+					public class «e.name.replaceAll(" ","").toFirstUpper()»{
+						public «e.target.name.replaceAll(" ","").toFirstUpper()» target;
 						//Do something choiceIn specific...
 					}
 				«ENDFILE»
@@ -69,15 +80,15 @@
 «ENDDEFINE»
 
 «DEFINE choice FOR dpf::Choice»
-	«FILE this.name.toFirstUpper() + ".java"»
-		public class «this.name.toFirstUpper()»{
+	«FILE this.name.replaceAll(" ","").toFirstUpper() + ".java"»
+		public class «this.name.replaceAll(" ","").toFirstUpper()»{
 		}
 	«ENDFILE»
 «ENDDEFINE»
 
 «DEFINE condition FOR dpf::Condition»
-	«FILE this.name.toFirstUpper() + ".java"»
-		public class «this.name.toFirstUpper()»{
+	«FILE this.name.replaceAll(" ","").toFirstUpper() + ".java"»
+		public class «this.name.replaceAll(" ","").toFirstUpper()»{
 		}
 	«ENDFILE»	
 «ENDDEFINE»
