@@ -10,12 +10,12 @@
 	«EXPAND choice FOREACH this.getChoices()»
 	«EXPAND condition FOREACH this.getConditions()»
 	«FILE "Constraint.java"»
-		public interface ConstraintIrr{
+		public interface Constraint{
 			boolean check();
 		}
 	«ENDFILE»
 	«FILE "ConstraintIrr.java"»
-		public class ConstraintIrr{
+		public class ConstraintIrr extends Constraint{
 			public ConstraintIrr(Object o1,Object o2){
 				public boolean check(){
 					return o1 != o2;					
@@ -35,7 +35,9 @@
 						public «e.target.name.toFirstUpper()» target;
 						public List<Constraint> constraints = new ArrayList<Constraint>();
 						«FOREACH getOneArrowConstraints(this) AS c»
-							constraints.add(new Constraint«name»(«e.source»,«e.target»));
+							constraints.add(new Constraint«name»(
+												new «e.source.name.toFirstUpper()»(),
+												new «e.target.name.toFirstUpper()»()));
 						«ENDFOREACH»
 						//Do something sequence specific...
 					}
