@@ -16,10 +16,11 @@
 			«FOREACH getASequences() AS e»
 				«FILE e.name.toFirstUpper() + ".java"»
 					class «e.name.toFirstUpper()»{
-						«e.target.name.toFirstUpper()» 
+						public «e.target.name.toFirstUpper()» target;
+						//Do someting sequence specific...
 					}
 				«ENDFILE»
-				«e.name» «e.getTypeName()» 
+				«e.name.toFirstUpper()» «e.name»; 
 			«ENDFOREACH»
 			«FOREACH getAMessages() AS e»
 				«e.name» Message
