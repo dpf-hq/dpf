@@ -153,8 +153,7 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 		} else if(obj instanceof Node) {
 			Type t = getTypeForName(((Node)obj).getName());
 			try {
-				//This does not cover the case where two arrows or nodes have the same name
-				//TODO: Should one be able to do that?
+				//TODO: This does not cover the case where two arrows or nodes have the same name
 				NodeType ret = (NodeType)t;
 				return ret;
 			} catch(ClassCastException e) {
@@ -173,7 +172,7 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 				return tmp;
 			}
 		} else if(obj instanceof Constraint) {
-			return getTypeForName(CONSTRAINT);
+			return getTypeForName(((Constraint)obj).getId());
 		} 
 		// Should return null if it's not a relevant type. If not, we create a lot of useless objects in cache, and denies the other xpand metamodels from matching the type.
 		return null;
@@ -205,8 +204,9 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 		Set<Type> res = new HashSet<Type>();
 		for(Type t : dpfMetaModel.getXpandTypes()) {
 			res.add(t);
+			log.warn("getKnownTypes: " + t);
 		}
-		log.debug("getKnownTypes called");
+		
 		return res;
 	}
 	
@@ -239,7 +239,7 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 			
 			@Override
 			protected Type createNew(Object obj) {
-				log.debug("cache#createNew: " + obj);
+				log.warn("cache#createNew: " + obj);
 				if(obj instanceof Specification) {
 					return new SpecificationType(DpfMetamodel.this, ns + "::" + SPECIFICATION , (Specification)obj);
 				} else if(obj instanceof Graph) {
@@ -249,7 +249,8 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 				} else if(obj instanceof Arrow) {
 					return new ArrowType(DpfMetamodel.this, ns + "::" + ((Arrow)obj).getName(), (Arrow)obj);
 				} else if(obj instanceof Constraint) {
-					return new ConstraintType(DpfMetamodel.this, ns + "::" + ((Constraint)obj).getId(), (Constraint)obj);
+//					return new ConstraintType(DpfMetamodel.this, ns + "::" + ((Constraint)obj).getId(), (Constraint)obj);
+					return new ConstraintType(DpfMetamodel.this, ns + "::" + DpfMMConstants.CONSTRAINT, (Constraint)obj);
 				} else if(obj instanceof Predicate) {
 					return new PredicateType(DpfMetamodel.this, ns + "::" + PREDICATE , (Predicate)obj);
 				} else if(obj instanceof DummyType) {
@@ -267,11 +268,15 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 			ns = namespace;
 			
 			//Placeholders for the actual node and arrow type
-			DummyType nodet = new DummyType(DpfMetamodel.this, ns + "::" + "Node");
-			DummyType arrowt = new DummyType(DpfMetamodel.this, ns + "::" + "Arrow");
+			DummyType nodet = new DummyType(DpfMetamodel.this, ns + "::" + DpfMMConstants.NODE);
+			DummyType arrowt = new DummyType(DpfMetamodel.this, ns + "::" + DpfMMConstants.ARROW);
 			
 			metaModelCache.get(nodet);
 			metaModelCache.get(arrowt);
+			
+			//Hardcoded base types
+			dpfModel.putEntry(nodet.getName(), nodet);
+			dpfModel.putEntry(arrowt.getName(), arrowt);
 			
 			metaModelCache.get(spec);
 			metaModelCache.get(spec.getGraph());
@@ -280,6 +285,11 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 			}
 			for(Arrow a : spec.getGraph().getArrows()) {
 				metaModelCache.get(a);
+			}
+			System.out.println("METAMODEL CONSTRAINTS: ");
+			for(Constraint c : spec.getConstraints()) {
+				dpfModel.putEntry(c.getId(), metaModelCache.get(c));
+				System.out.println(c.getId() + " symbol: " + c.getParameters());
 			}
 			
 			specifications.put(namespace, spec);
@@ -296,10 +306,6 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 		public Collection<Type> getXpandTypes() {
 			return metaModelCache.getValues();
 		}
-		
-//		public Collection<Object> getDpfTypes() {
-//			return metaModelCache.getKeys();
-//		}
 		
 		public boolean dpfTypeExists(Object obj) {
 			return metaModelCache.exists(obj);
@@ -325,7 +331,8 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 				} else if(obj instanceof Arrow) {
 					return new ArrowType(DpfMetamodel.this, ns + "::" + ((Arrow)obj).getName(), (Arrow)obj, dpfMetaModel.getXpandTypeForDpfType(((Arrow)obj).getTypeArrow()));
 				} else if(obj instanceof Constraint) {
-					return new ConstraintType(DpfMetamodel.this, ns + "::" + CONSTRAINT, (Constraint)obj);
+//					return new ConstraintType(DpfMetamodel.this, ns + "::" + ((Constraint)obj).getId(), (Constraint)obj);
+					return new ConstraintType(DpfMetamodel.this, ns + "::" + DpfMMConstants.CONSTRAINT, (Constraint)obj);
 				} else if(obj instanceof Predicate) {
 					return new PredicateType(DpfMetamodel.this, ns + "::" + PREDICATE , (Predicate)obj);
 				}
@@ -356,15 +363,8 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 					}
 				} else if(typeDefinition.equals(GRAPH)) {
 					return dpfMetaModel.getXpandTypeForDpfType(dpfMetaModel.getMetaModelSpec().getGraph());
-				} else if(typeDefinition.equals(CONSTRAINT)) {
-					//Only to ID the ConstraintType in metamodel.
-					try {
-						return null;
-//						return dpfMetaModel.getXpandTypeForDpfType(dpfMetaModel.getMetaModelSpec().getGraph().getConstraints().get(0));
-					} catch(NullPointerException e) {
-						return null; //We dont handle the CONSTRAINT type
-					}
-				} else if(typeDefinition.equals(IDOBJECT)) {
+				} 
+				else if(typeDefinition.equals(IDOBJECT)) {
 					return null; //We dont handle this, as it should subclass IDObj. 
 				}
 				
@@ -382,7 +382,7 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 				} catch (NullPointerException e) {
 					return null;
 				}
-				log.debug("getTypeForName#createNew: tried to resolve " + str + ", returned null");	
+				log.warn("getTypeForName#createNew: tried to resolve " + str + ", returned null");	
 				return null;
 			}
 		};
@@ -396,6 +396,12 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 			for(Arrow a : s.getGraph().getArrows()) {
 				if(a.getName().equals(name)) {
 					return a;
+				}
+			}
+			
+			for(Constraint c : s.getConstraints()) {
+				if(c.getId().equals(name)) {
+					return c;
 				}
 			}
 			return null;
@@ -451,6 +457,12 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 			for(Arrow a : model.getGraph().getArrows()) {
 				modelCache.get(a);
 			}
+			
+			System.out.println("MODEL CONSTRAINTS:");
+			for(Constraint c : model.getConstraints()) {
+				putEntry(c.getId(), modelCache.get(c));
+				System.out.println(c.getId());
+			}
 		}
 		
 		public Type getTypeForName(String name) {
@@ -466,6 +478,10 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 		
 		public List<Object> getMetaModelTypeCollections(String typeId) {
 			return metaModelTypeCollections.get(typeId);
+		}
+		
+		public void putEntry(String typeDefinition, Object obj) {
+			typeForNameCache.put(typeDefinition, (Type)obj);
 		}
 	}
 	
@@ -574,8 +590,8 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 		}
 		
 		/**
-		 * Contains a lists over the different Ecore types we want the Xpand typesystem to handle.
-		 * If this isnt checked, the Java Beans MetaModel is called, and we will only get plain Java functionality.
+		 * Contains a lists over the different Ecore types we want the Xpand type system to handle.
+		 * If this isn't checked, the Java Beans MetaModel is called, and we will only get plain Java functionality.
 		 */
 		private void initializeKnownETypes() {
 			stringTypes = new HashSet<EClassifier>();

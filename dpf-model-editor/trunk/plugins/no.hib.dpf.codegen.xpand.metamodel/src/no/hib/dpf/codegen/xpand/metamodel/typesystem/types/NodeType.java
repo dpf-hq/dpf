@@ -64,6 +64,16 @@ public class NodeType extends AbstractTypeImpl {
 			}
 		});
 		
+		if(node.getConstraints().size() != 0) {
+			//The reason for using the first constraint is to give xpand the required features for the constraint type.
+			res.add(new OperationImpl(this, "getConstraints", new ListTypeImpl(model.getTypeForName(node.getConstraints().get(0).getId()), model.getTypeSystem(), "List")) {
+				
+				@Override
+				protected Object evaluateInternal(Object target, Object[] params) {
+					return node.getConstraints();
+				}
+			});
+		}
 		return res.toArray(new Feature[res.size()]);
 	}
 	

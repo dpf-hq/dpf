@@ -5,6 +5,7 @@ import java.util.Set;
 
 import no.hib.dpf.codegen.xpand.metamodel.DpfMetamodel;
 import no.hib.dpf.codegen.xpand.metamodel.typesystem.FeatureImpl;
+import no.hib.dpf.codegen.xpand.metamodel.typesystem.OperationImpl;
 import no.hib.dpf.codegen.xpand.metamodel.typesystem.PropertyImpl;
 import no.hib.dpf.codegen.xpand.metamodel.typesystem.TypeHelper;
 import no.hib.dpf.core.Arrow;
@@ -48,9 +49,6 @@ public class ArrowType extends AbstractTypeImpl{
 		
 		res.addAll(TypeHelper.getEClassFeatures(model, arrow.eClass(), this));
 
-		//Hurtigløying: lag ein getter for kvar type: getTypeTarget, getDomainClassSource, då kan vi identifisere via Object target
-		//Vanskelig: 2 lag med xpand typar, med f.eks metamodell typar som parent
-		
 		if(metaType == null) {
 			res.add(new PropertyImpl(this, "target", model.getType(arrow.getTarget())) {
 				//Creates getters and setters for a specified property. This means you can access ie. the graph 
@@ -65,7 +63,16 @@ public class ArrowType extends AbstractTypeImpl{
 				}
 			});
 		}
-		
+		if(arrow.getConstraints().size() != 0) {
+			//The reason for using the first constraint is to give xpand the required features for the constraint type.
+			res.add(new OperationImpl(this, "getConstraints", new ListTypeImpl(model.getTypeForName(arrow.getConstraints().get(0).getId()), model.getTypeSystem(), "List")) {
+				
+				@Override
+				protected Object evaluateInternal(Object target, Object[] params) {
+					return arrow.getConstraints();
+				}
+			});
+		}
 		return res.toArray(new Feature[res.size()]);
 	}
 	@Override

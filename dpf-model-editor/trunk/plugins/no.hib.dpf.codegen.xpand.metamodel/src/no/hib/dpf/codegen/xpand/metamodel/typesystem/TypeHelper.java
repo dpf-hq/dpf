@@ -23,7 +23,7 @@ import org.eclipse.xtend.typesystem.Type;
 public class TypeHelper {
 	private static Logger log = Logger.getLogger(TypeHelper.class);
 	private static char[] letters = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'n', 'm', 'o', 'r', 't', 'u', 'y'}; 
-	private static String[] ignoredEFeatures = {"target", "source", "createNode", "createArrow", "deleteNode", "deleteArrow", "getCopy"}; 
+	private static String[] ignoredEFeatures = {"target", "source", "createNode", "createArrow", "deleteNode", "deleteArrow", "getCopy", "constraints"}; 
 	
 	public static String pluralize(String arg) {
 		if(Character.isDigit(arg.charAt(arg.length()-1)))
