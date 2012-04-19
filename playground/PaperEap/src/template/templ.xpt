@@ -12,30 +12,46 @@
 
 «DEFINE activity FOR dpf::Activity»
 	«FILE this.name.toFirstUpper() + ".java"»
-		class «this.name.toFirstUpper()»{
+		public class «this.name.toFirstUpper()»{
 			«FOREACH getASequences() AS e»
 				«FILE e.name.toFirstUpper() + ".java"»
-					class «e.name.toFirstUpper()»{
+					public class «e.name.toFirstUpper()»{
 						public «e.target.name.toFirstUpper()» target;
-						//Do someting sequence specific...
+						//Do something sequence specific...
 					}
 				«ENDFILE»
-				«e.name.toFirstUpper()» «e.name»; 
+				«e.name.toFirstUpper()» «e.name.toLowerCase()»; 
 			«ENDFOREACH»
 			«FOREACH getAMessages() AS e»
-				«e.name» Message
+				«FILE e.name.toFirstUpper() + ".java"»
+					public class «e.name.toFirstUpper()»{
+						public «e.target.name.toFirstUpper()» target;
+						//Do something message specific...
+					}
+				«ENDFILE»
 			«ENDFOREACH»
 			«FOREACH getAChoiceIns() AS e»
-				«e.name» Choice
+				«FILE e.name.toFirstUpper() + ".java"»
+					public class «e.name.toFirstUpper()»{
+						public «e.target.name.toFirstUpper()» target;
+						//Do something choiceIn specific...
+					}
+				«ENDFILE»
 			«ENDFOREACH»
 		}
 	«ENDFILE»
 «ENDDEFINE»
 
 «DEFINE choice FOR dpf::Choice»
-	
+	«FILE this.name.toFirstUpper() + ".java"»
+		public class «this.name.toFirstUpper()»{
+		}
+	«ENDFILE»
 «ENDDEFINE»
 
 «DEFINE condition FOR dpf::Condition»
-	
+	«FILE this.name.toFirstUpper() + ".java"»
+		public class «this.name.toFirstUpper()»{
+		}
+	«ENDFILE»	
 «ENDDEFINE»
