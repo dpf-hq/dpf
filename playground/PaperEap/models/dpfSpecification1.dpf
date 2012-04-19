@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ASCII"?>
+<diagram:DSpecification xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:diagram="http://no.hib.dpf.diagram" gridVisible="false">
+  <dGraph>
+    <dNodes dOutgoings="//@dGraph/@dArrows.1 //@dGraph/@dArrows.3 //@dGraph/@dArrows.4" dIncomings="//@dGraph/@dArrows.0 //@dGraph/@dArrows.3 //@dGraph/@dArrows.4" location="264 36" size="184 49">
+      <node href="dpfSpecification1.xmi#//@graph/@nodes.0"/>
+    </dNodes>
+    <dNodes configureString="Circle" dOutgoings="//@dGraph/@dArrows.0" dIncomings="//@dGraph/@dArrows.2" location="408 169" size="158 48">
+      <node href="dpfSpecification1.xmi#//@graph/@nodes.1"/>
+    </dNodes>
+    <dNodes configureString="Choice" dOutgoings="//@dGraph/@dArrows.2" dIncomings="//@dGraph/@dArrows.1" location="120 169" size="157 48">
+      <node href="dpfSpecification1.xmi#//@graph/@nodes.2"/>
+    </dNodes>
+    <dArrows dSource="//@dGraph/@dNodes.1" dTarget="//@dGraph/@dNodes.0">
+      <arrow href="dpfSpecification1.xmi#//@graph/@arrows.0"/>
+      <nameOffset offset="99 -81"/>
+    </dArrows>
+    <dArrows dSource="//@dGraph/@dNodes.0" dTarget="//@dGraph/@dNodes.2">
+      <arrow href="dpfSpecification1.xmi#//@graph/@arrows.1"/>
+      <nameOffset offset="205 -58"/>
+    </dArrows>
+    <dArrows dSource="//@dGraph/@dNodes.2" dTarget="//@dGraph/@dNodes.1">
+      <arrow href="dpfSpecification1.xmi#//@graph/@arrows.2"/>
+      <nameOffset offset="14 17"/>
+    </dArrows>
+    <dArrows dSource="//@dGraph/@dNodes.0" dTarget="//@dGraph/@dNodes.0">
+      <arrow href="dpfSpecification1.xmi#//@graph/@arrows.3"/>
+      <bendpoints>547 74</bendpoints>
+      <nameOffset offset="76 -1"/>
+    </dArrows>
+    <dArrows dSource="//@dGraph/@dNodes.0" dTarget="//@dGraph/@dNodes.0">
+      <arrow href="dpfSpecification1.xmi#//@graph/@arrows.4"/>
+      <nameOffset offset="14 53"/>
+    </dArrows>
+    <graph href="dpfSpecification1.xmi#//@graph"/>
+  </dGraph>
+  <specification href="dpfSpecification1.xmi#/"/>
+</diagram:DSpecification>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:core="http://no.hib.dpf.core">
+  <core:Specification metaFile="dpfSpecification1.xmi" type="/1">
+    <graph id="0f221dc8-377a-4f1d-8655-4d17b99e5814" type="/1/@graph">
+      <nodes id="25af126f-3bb5-47bb-b501-7b65f085a2ab" name="Activity0" typeNode="/1/@graph/@nodes.0" outgoings="/0/@graph/@arrows.0"/>
+      <nodes id="8184d766-82b5-41bf-b26f-23448b42e6a1" name="Activity1" typeNode="/1/@graph/@nodes.0" outgoings="/0/@graph/@arrows.1" incomings="/0/@graph/@arrows.0 /0/@graph/@arrows.5"/>
+      <nodes id="6b414a10-a105-4249-8e2d-2f825336fa05" name="Activity2" typeNode="/1/@graph/@nodes.0" outgoings="/0/@graph/@arrows.6 /0/@graph/@arrows.16" incomings="/0/@graph/@arrows.4"/>
+      <nodes id="8274b3dd-1e96-4736-a9f0-4a851cbf3d74" name="Activity3" typeNode="/1/@graph/@nodes.0" outgoings="/0/@graph/@arrows.7" incomings="/0/@graph/@arrows.6 /0/@graph/@arrows.17"/>
+      <nodes id="3411fc30-9096-4d6b-8ac9-a87dfcf1fc6c" name="Activity4" typeNode="/1/@graph/@nodes.0" outgoings="/0/@graph/@arrows.8 /0/@graph/@arrows.18" incomings="/0/@graph/@arrows.7"/>
+      <nodes id="b4deaa63-227c-4d25-a512-823d48464c8a" name="Activity5" typeNode="/1/@graph/@nodes.0" incomings="/0/@graph/@arrows.8"/>
+      <nodes id="1e39bad3-7ce2-4fde-a652-a1fe633d871d" name="Activity6" typeNode="/1/@graph/@nodes.0" outgoings="/0/@graph/@arrows.10" incomings="/0/@graph/@arrows.9 /0/@graph/@arrows.16"/>
+      <nodes id="a81bd771-55e5-42b6-a534-14e3fed50f6b" name="Activity7" typeNode="/1/@graph/@nodes.0" outgoings="/0/@graph/@arrows.11 /0/@graph/@arrows.17" incomings="/0/@graph/@arrows.10"/>
+      <nodes id="5167b2ee-23ec-44fc-8b79-d6b5074d466f" name="Activity8" typeNode="/1/@graph/@nodes.0" incomings="/0/@graph/@arrows.11 /0/@graph/@arrows.18"/>
+      <nodes id="d66aa52d-1228-4c91-a017-3481c2836d8f" name="Activity9" typeNode="/1/@graph/@nodes.0" incomings="/0/@graph/@arrows.15"/>
+      <nodes id="aa963ea0-286f-4dec-86c1-85804dea5265" name="Activity10" typeNode="/1/@graph/@nodes.0" outgoings="/0/@graph/@arrows.9" incomings="/0/@graph/@arrows.12"/>
+      <nodes id="32785c43-705d-47cf-a141-5f8947afe5c4" name="Choice0" typeNode="/1/@graph/@nodes.2" outgoings="/0/@graph/@arrows.13 /0/@graph/@arrows.14"/>
+      <nodes id="19de13fc-57fb-47cd-afbe-58c8969cbfbd" name="Choice1" typeNode="/1/@graph/@nodes.2" outgoings="/0/@graph/@arrows.2 /0/@graph/@arrows.3" incomings="/0/@graph/@arrows.1"/>
+      <nodes id="7145fb10-f813-45e0-955b-3fa19038e357" name="Condition0" typeNode="/1/@graph/@nodes.1" outgoings="/0/@graph/@arrows.4" incomings="/0/@graph/@arrows.2"/>
+      <nodes id="4d9529be-54fd-4a2d-adca-d2f1060d8fec" name="Condition1" typeNode="/1/@graph/@nodes.1" outgoings="/0/@graph/@arrows.5" incomings="/0/@graph/@arrows.3"/>
+      <nodes id="3f946d9c-908d-49b0-aacb-d30e6ebfa30f" name="Condition2" typeNode="/1/@graph/@nodes.1" outgoings="/0/@graph/@arrows.12" incomings="/0/@graph/@arrows.13"/>
+      <nodes id="271e0929-4f69-4362-bf36-e5a21f9af344" name="Condition3" typeNode="/1/@graph/@nodes.1" outgoings="/0/@graph/@arrows.15" incomings="/0/@graph/@arrows.14"/>
+      <arrows id="5bdf47b7-c656-4594-b43c-5b9b2e0facdd" name="Sequence0" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.1" typeArrow="/1/@graph/@arrows.4"/>
+      <arrows id="cafc17cb-7074-4671-a8c2-1020ad89b1c0" name="ChoiceIn0" source="/0/@graph/@nodes.1" target="/0/@graph/@nodes.12" typeArrow="/1/@graph/@arrows.1"/>
+      <arrows id="6f2ddb9a-e8ad-4c13-93a2-1adaf69769ef" name="ChoiceCondition0" source="/0/@graph/@nodes.12" target="/0/@graph/@nodes.13" typeArrow="/1/@graph/@arrows.2"/>
+      <arrows id="bb1c8e9d-942b-43f5-b6c8-9b01ccb0ccd6" name="ChoiceCondition1" source="/0/@graph/@nodes.12" target="/0/@graph/@nodes.14" typeArrow="/1/@graph/@arrows.2"/>
+      <arrows id="1dce1bfb-8c10-4142-9e8d-c6c14f686ad6" name="ChoiceOut0" source="/0/@graph/@nodes.13" target="/0/@graph/@nodes.2" typeArrow="/1/@graph/@arrows.0"/>
+      <arrows id="a6c28a68-6980-4217-83f6-a97d1f3d2731" name="ChoiceOut1" source="/0/@graph/@nodes.14" target="/0/@graph/@nodes.1" typeArrow="/1/@graph/@arrows.0"/>
+      <arrows id="d5e337a5-dde5-481d-807d-0991973a3cc9" name="Sequence1" source="/0/@graph/@nodes.2" target="/0/@graph/@nodes.3" typeArrow="/1/@graph/@arrows.4"/>
+      <arrows id="e857b387-92fe-422c-8639-765a5343e9e9" name="Sequence2" source="/0/@graph/@nodes.3" target="/0/@graph/@nodes.4" typeArrow="/1/@graph/@arrows.4"/>
+      <arrows id="09c4fab5-f66e-4d8e-89dd-ef0bfca09e48" name="Sequence3" source="/0/@graph/@nodes.4" target="/0/@graph/@nodes.5" typeArrow="/1/@graph/@arrows.4"/>
+      <arrows id="4e8f5833-8504-4f63-8db2-76f4189fc1ee" name="Sequence4" source="/0/@graph/@nodes.10" target="/0/@graph/@nodes.6" typeArrow="/1/@graph/@arrows.4"/>
+      <arrows id="4a562cc9-22f4-469e-8910-a101fb51a412" name="Sequence5" source="/0/@graph/@nodes.6" target="/0/@graph/@nodes.7" typeArrow="/1/@graph/@arrows.4"/>
+      <arrows id="cbbb3997-cf58-4894-8d91-b473f5df0c36" name="Sequence6" source="/0/@graph/@nodes.7" target="/0/@graph/@nodes.8" typeArrow="/1/@graph/@arrows.4"/>
+      <arrows id="f9fc5d27-0ab3-4edb-ad62-8af4798a641b" name="ChoiceOut2" source="/0/@graph/@nodes.15" target="/0/@graph/@nodes.10" typeArrow="/1/@graph/@arrows.0"/>
+      <arrows id="650c13f9-3ad8-4462-9f70-a71b6bda7774" name="ChoiceCondition2" source="/0/@graph/@nodes.11" target="/0/@graph/@nodes.15" typeArrow="/1/@graph/@arrows.2"/>
+      <arrows id="cd2eb336-5d20-4032-950d-6508ea6070ac" name="ChoiceCondition3" source="/0/@graph/@nodes.11" target="/0/@graph/@nodes.16" typeArrow="/1/@graph/@arrows.2"/>
+      <arrows id="67bf3f6f-8ff9-4eb2-b3e0-5e83fd2546c8" name="ChoiceOut3" source="/0/@graph/@nodes.16" target="/0/@graph/@nodes.9" typeArrow="/1/@graph/@arrows.0"/>
+      <arrows id="4061e460-e11c-4eac-b834-999b948f7a73" name="Message0" source="/0/@graph/@nodes.2" target="/0/@graph/@nodes.6" typeArrow="/1/@graph/@arrows.3"/>
+      <arrows id="da632d95-5a5c-4b4d-ac9c-872edd12ad45" name="Message1" source="/0/@graph/@nodes.7" target="/0/@graph/@nodes.3" typeArrow="/1/@graph/@arrows.3"/>
+      <arrows id="9a635cf2-8ed2-42a2-a379-55028cc9b3ec" name="Message2" source="/0/@graph/@nodes.4" target="/0/@graph/@nodes.8" typeArrow="/1/@graph/@arrows.3"/>
+    </graph>
+  </core:Specification>
+  <core:Specification>
+    <graph id="f305ab41-97f7-4eed-a737-99badec9eb4b">
+      <nodes id="62fd00d0-eb99-4584-b301-52e0058b34fa" name="Activity" outgoings="/1/@graph/@arrows.1 /1/@graph/@arrows.3 /1/@graph/@arrows.4" incomings="/1/@graph/@arrows.0 /1/@graph/@arrows.3 /1/@graph/@arrows.4"/>
+      <nodes id="86a1f403-7f54-4657-bbec-a98bd03358ae" name="Condition" outgoings="/1/@graph/@arrows.0" incomings="/1/@graph/@arrows.2"/>
+      <nodes id="b060f767-038f-46ec-9633-2b076be072aa" name="Choice" outgoings="/1/@graph/@arrows.2" incomings="/1/@graph/@arrows.1"/>
+      <arrows id="25c4d416-097f-4b59-8f2e-320ee889015d" name="ChoiceOut" source="/1/@graph/@nodes.1" target="/1/@graph/@nodes.0"/>
+      <arrows id="2f5514d3-2515-4018-b320-129ca5451c44" name="ChoiceIn" source="/1/@graph/@nodes.0" target="/1/@graph/@nodes.2"/>
+      <arrows id="4778f4ab-eef0-4e57-998b-5073b821b41e" name="ChoiceCondition" source="/1/@graph/@nodes.2" target="/1/@graph/@nodes.1"/>
+      <arrows id="1c630041-3ea8-4055-be5a-356a7a3c78ee" name="Message" source="/1/@graph/@nodes.0" target="/1/@graph/@nodes.0"/>
+      <arrows id="504d574c-fdfa-40b0-a130-60edd9470c44" name="Sequence" source="/1/@graph/@nodes.0" target="/1/@graph/@nodes.0"/>
+    </graph>
+  </core:Specification>
+</xmi:XMI>

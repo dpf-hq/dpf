@@ -1,0 +1,40 @@
+«EXTENSION org::eclipse::xtend::util::stdlib::io» 
+
+«DEFINE main FOR dpf::Specification»
+	«EXPAND graph FOR this.graph»
+«ENDDEFINE»
+
+«DEFINE graph FOR dpf::Graph»
+	«EXPAND activity FOREACH this.getActivitys()»
+	«EXPAND choice FOREACH this.getChoices()»
+	«EXPAND condition FOREACH this.getConditions()»
+«ENDDEFINE»
+
+«DEFINE activity FOR dpf::Activity»
+	«FILE this.name.toFirstUpper() + ".java"»
+		class «this.name.toFirstUpper()»{
+			«FOREACH getASequences() AS e»
+				«FILE e.name.toFirstUpper() + ".java"»
+					class «e.name.toFirstUpper()»{
+						«e.target.name.toFirstUpper()» 
+					}
+				«ENDFILE»
+				«e.name» «e.getTypeName()» 
+			«ENDFOREACH»
+			«FOREACH getAMessages() AS e»
+				«e.name» Message
+			«ENDFOREACH»
+			«FOREACH getAChoiceIns() AS e»
+				«e.name» Choice
+			«ENDFOREACH»
+		}
+	«ENDFILE»
+«ENDDEFINE»
+
+«DEFINE choice FOR dpf::Choice»
+	
+«ENDDEFINE»
+
+«DEFINE condition FOR dpf::Condition»
+	
+«ENDDEFINE»

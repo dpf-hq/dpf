@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ASCII"?>
+<core:Specification xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:core="http://no.hib.dpf.core">
+  <graph id="f305ab41-97f7-4eed-a737-99badec9eb4b">
+    <nodes id="62fd00d0-eb99-4584-b301-52e0058b34fa" name="Activity" outgoings="//@graph/@arrows.1 //@graph/@arrows.3 //@graph/@arrows.4" incomings="//@graph/@arrows.0 //@graph/@arrows.3 //@graph/@arrows.4"/>
+    <nodes id="86a1f403-7f54-4657-bbec-a98bd03358ae" name="Condition" outgoings="//@graph/@arrows.0" incomings="//@graph/@arrows.2"/>
+    <nodes id="b060f767-038f-46ec-9633-2b076be072aa" name="Choice" outgoings="//@graph/@arrows.2" incomings="//@graph/@arrows.1"/>
+    <arrows id="25c4d416-097f-4b59-8f2e-320ee889015d" name="ChoiceOut" source="//@graph/@nodes.1" target="//@graph/@nodes.0"/>
+    <arrows id="2f5514d3-2515-4018-b320-129ca5451c44" name="ChoiceIn" source="//@graph/@nodes.0" target="//@graph/@nodes.2"/>
+    <arrows id="4778f4ab-eef0-4e57-998b-5073b821b41e" name="ChoiceCondition" source="//@graph/@nodes.2" target="//@graph/@nodes.1"/>
+    <arrows id="1c630041-3ea8-4055-be5a-356a7a3c78ee" name="Message" source="//@graph/@nodes.0" target="//@graph/@nodes.0"/>
+    <arrows id="504d574c-fdfa-40b0-a130-60edd9470c44" name="Sequence" source="//@graph/@nodes.0" target="//@graph/@nodes.0"/>
+  </graph>
+</core:Specification>
