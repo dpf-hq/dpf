@@ -38,7 +38,7 @@
 						//Do something sequence specific...
 					}
 				«ENDFILE»
-				«e.name.replaceAll(" ","").toFirstUpper()» «e.name.replaceAll(" ","").toLowerCase()»; 
+				«e.name.replaceAll(" ","").toFirstUpper()» next; 
 			«ENDFOREACH»
 			«FOREACH getAMessages() AS e»
 				«FILE e.name.replaceAll(" ","").toFirstUpper() + ".java"»
