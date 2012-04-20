@@ -31,7 +31,7 @@
 				this.o1=o1;this.o2=o2;
 			}
 			public boolean check(){
-				return (null == o1 || null == o2) && o1.getClass() != o2.getClass();					
+				return null == o1 || null == o2 || o1.getClass() != o2.getClass();					
 			}
 		}
 	«ENDFILE»
