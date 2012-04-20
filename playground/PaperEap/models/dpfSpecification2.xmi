@@ -17,7 +17,7 @@
       <nodes id="4d9529be-54fd-4a2d-adca-d2f1060d8fec" name="No" typeNode="/1/@graph/@nodes.1" outgoings="/0/@graph/@arrows.5" incomings="/0/@graph/@arrows.3" constraints="/0/@constraints.0"/>
       <arrows id="5bdf47b7-c656-4594-b43c-5b9b2e0facdd" name="Sequence1" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.1" typeArrow="/1/@graph/@arrows.4"/>
       <arrows id="cafc17cb-7074-4671-a8c2-1020ad89b1c0" name="" source="/0/@graph/@nodes.1" target="/0/@graph/@nodes.10" typeArrow="/1/@graph/@arrows.1"/>
-      <arrows id="6f2ddb9a-e8ad-4c13-93a2-1adaf69769ef" name="ChoiceCondition1" source="/0/@graph/@nodes.10" target="/0/@graph/@nodes.11" typeArrow="/1/@graph/@arrows.2" constraints="/0/@constraints.0"/>
+      <arrows id="6f2ddb9a-e8ad-4c13-93a2-1adaf69769ef" name="" source="/0/@graph/@nodes.10" target="/0/@graph/@nodes.11" typeArrow="/1/@graph/@arrows.2" constraints="/0/@constraints.0"/>
       <arrows id="bb1c8e9d-942b-43f5-b6c8-9b01ccb0ccd6" name="" source="/0/@graph/@nodes.10" target="/0/@graph/@nodes.12" typeArrow="/1/@graph/@arrows.2" constraints="/0/@constraints.0"/>
       <arrows id="1dce1bfb-8c10-4142-9e8d-c6c14f686ad6" name="" source="/0/@graph/@nodes.11" target="/0/@graph/@nodes.2" typeArrow="/1/@graph/@arrows.0"/>
       <arrows id="a6c28a68-6980-4217-83f6-a97d1f3d2731" name="" source="/0/@graph/@nodes.12" target="/0/@graph/@nodes.1" typeArrow="/1/@graph/@arrows.0"/>

@@ -38,7 +38,7 @@
       <dNodes dType="/1/@dGraph/@dNodes.1" configureString="Circle" dOutgoings="/0/@dGraph/@dArrows.4" dIncomings="/0/@dGraph/@dArrows.2" dConstraints="/0/@dConstraints.0" location="339 -22" size="104 39">
         <node href="dpfSpecification2.xmi#/0/@graph/@nodes.11"/>
       </dNodes>
-      <dNodes dType="/1/@dGraph/@dNodes.1" configureString="Circle" dOutgoings="/0/@dGraph/@dArrows.5" dIncomings="/0/@dGraph/@dArrows.3" dConstraints="/0/@dConstraints.0" location="339 168" size="96 56">
+      <dNodes dType="/1/@dGraph/@dNodes.1" configureString="Circle" dOutgoings="/0/@dGraph/@dArrows.5" dIncomings="/0/@dGraph/@dArrows.3" dConstraints="/0/@dConstraints.0" location="353 168" size="78 41">
         <node href="dpfSpecification2.xmi#/0/@graph/@nodes.12"/>
       </dNodes>
       <dArrows dType="/1/@dGraph/@dArrows.4" dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.1">
