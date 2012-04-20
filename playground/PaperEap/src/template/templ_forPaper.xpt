@@ -1,4 +1,3 @@
-«EXTENSION org::eclipse::xtend::util::stdlib::io» 
 «EXTENSION template::eap»
 
 «DEFINE main FOR dpf::Specification»
@@ -7,34 +6,7 @@
 
 «DEFINE graph FOR dpf::Graph»
 	«EXPAND activity FOREACH this.getActivitys()»
-	«EXPAND choice FOREACH this.getChoices()»
-	«EXPAND condition FOREACH this.getConditions()»
-	«FILE "Activity.java"»
-		public interface Activity{
-			//something Activity common
-		}
-	«ENDFILE»
-	«FILE "Sequence.java"»
-		public interface Sequence{
-			//something Sequence common
-		}
-	«ENDFILE»
-	«FILE "Constraint.java"»
-		public interface Constraint{
-			boolean check();
-		}
-	«ENDFILE»
-	«FILE "ConstraintIrr.java"»
-		public class ConstraintIrr implements Constraint{
-			Object o1,o2;
-			public ConstraintIrr(Object o1,Object o2){
-				this.o1=o1;this.o2=o2;
-			}
-			public boolean check(){
-				return (null == o1 || null == o2) && o1.getClass() != o2.getClass();					
-			}
-		}
-	«ENDFILE»
+	//...	
 «ENDDEFINE»
 
 «DEFINE activity FOR dpf::Activity»
@@ -49,8 +21,7 @@
 						«FOREACH getOneArrowConstraints(this) AS c»
 							public List<Constraint> getInvariants(){
 								classInvariants.clear();  	
-								//classInvariants.add(new ConstraintIrr(source,target));
-								«REM»In paper: classInvariants.add(new Constraint«c.name»(source,target));«ENDREM»
+								classInvariants.add(new Constraint«c.name»(source,target));
 								return classInvariants;
 							}					
 						«ENDFOREACH»
