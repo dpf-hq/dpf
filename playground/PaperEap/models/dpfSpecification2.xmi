@@ -2,7 +2,7 @@
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:core="http://no.hib.dpf.core">
   <core:Specification metaFile="dpfSpecification1.xmi" type="/1">
     <graph id="0f221dc8-377a-4f1d-8655-4d17b99e5814" type="/1/@graph">
-      <nodes id="25af126f-3bb5-47bb-b501-7b65f085a2ab" name="Enter" typeNode="/1/@graph/@nodes.0" outgoings="/0/@graph/@arrows.0"/>
+      <nodes id="25af126f-3bb5-47bb-b501-7b65f085a2ab" name="Enter Shop" typeNode="/1/@graph/@nodes.0" outgoings="/0/@graph/@arrows.0"/>
       <nodes id="8184d766-82b5-41bf-b26f-23448b42e6a1" name="Pickup Goods" typeNode="/1/@graph/@nodes.0" outgoings="/0/@graph/@arrows.1" incomings="/0/@graph/@arrows.0 /0/@graph/@arrows.5"/>
       <nodes id="6b414a10-a105-4249-8e2d-2f825336fa05" name="Start" typeNode="/1/@graph/@nodes.0" outgoings="/0/@graph/@arrows.6 /0/@graph/@arrows.12" incomings="/0/@graph/@arrows.4"/>
       <nodes id="8274b3dd-1e96-4736-a9f0-4a851cbf3d74" name="Get Total" typeNode="/1/@graph/@nodes.0" outgoings="/0/@graph/@arrows.7" incomings="/0/@graph/@arrows.6 /0/@graph/@arrows.13"/>
@@ -12,7 +12,7 @@
       <nodes id="a81bd771-55e5-42b6-a534-14e3fed50f6b" name="Calculate Total" typeNode="/1/@graph/@nodes.0" outgoings="/0/@graph/@arrows.11 /0/@graph/@arrows.13" incomings="/0/@graph/@arrows.10"/>
       <nodes id="5167b2ee-23ec-44fc-8b79-d6b5074d466f" name="Receive Money" typeNode="/1/@graph/@nodes.0" incomings="/0/@graph/@arrows.11 /0/@graph/@arrows.14"/>
       <nodes id="aa963ea0-286f-4dec-86c1-85804dea5265" name="Cashier Wait" typeNode="/1/@graph/@nodes.0" outgoings="/0/@graph/@arrows.9"/>
-      <nodes id="19de13fc-57fb-47cd-afbe-58c8969cbfbd" name="        Pay" typeNode="/1/@graph/@nodes.2" outgoings="/0/@graph/@arrows.2 /0/@graph/@arrows.3" incomings="/0/@graph/@arrows.1" constraints="/0/@constraints.0"/>
+      <nodes id="19de13fc-57fb-47cd-afbe-58c8969cbfbd" name="      Pay" typeNode="/1/@graph/@nodes.2" outgoings="/0/@graph/@arrows.2 /0/@graph/@arrows.3" incomings="/0/@graph/@arrows.1" constraints="/0/@constraints.0"/>
       <nodes id="7145fb10-f813-45e0-955b-3fa19038e357" name="Yes" typeNode="/1/@graph/@nodes.1" outgoings="/0/@graph/@arrows.4" incomings="/0/@graph/@arrows.2" constraints="/0/@constraints.0"/>
       <nodes id="4d9529be-54fd-4a2d-adca-d2f1060d8fec" name="No" typeNode="/1/@graph/@nodes.1" outgoings="/0/@graph/@arrows.5" incomings="/0/@graph/@arrows.3" constraints="/0/@constraints.0"/>
       <arrows id="5bdf47b7-c656-4594-b43c-5b9b2e0facdd" name="Sequence1" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.1" typeArrow="/1/@graph/@arrows.4"/>
