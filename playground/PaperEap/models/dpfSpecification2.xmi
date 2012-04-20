@@ -2,8 +2,8 @@
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:core="http://no.hib.dpf.core">
   <core:Specification metaFile="dpfSpecification1.xmi" type="/1">
     <graph id="0f221dc8-377a-4f1d-8655-4d17b99e5814" type="/1/@graph">
-      <nodes id="25af126f-3bb5-47bb-b501-7b65f085a2ab" name="Enter Shop" typeNode="/1/@graph/@nodes.0" outgoings="/0/@graph/@arrows.0"/>
-      <nodes id="8184d766-82b5-41bf-b26f-23448b42e6a1" name="Pickup Goods" typeNode="/1/@graph/@nodes.0" outgoings="/0/@graph/@arrows.1" incomings="/0/@graph/@arrows.0 /0/@graph/@arrows.5"/>
+      <nodes id="25af126f-3bb5-47bb-b501-7b65f085a2ab" name="Enter Shop " typeNode="/1/@graph/@nodes.0" outgoings="/0/@graph/@arrows.0"/>
+      <nodes id="8184d766-82b5-41bf-b26f-23448b42e6a1" name="Pickup Goods " typeNode="/1/@graph/@nodes.0" outgoings="/0/@graph/@arrows.1" incomings="/0/@graph/@arrows.0 /0/@graph/@arrows.5"/>
       <nodes id="6b414a10-a105-4249-8e2d-2f825336fa05" name="Start" typeNode="/1/@graph/@nodes.0" outgoings="/0/@graph/@arrows.6 /0/@graph/@arrows.12" incomings="/0/@graph/@arrows.4"/>
       <nodes id="8274b3dd-1e96-4736-a9f0-4a851cbf3d74" name="Get Total" typeNode="/1/@graph/@nodes.0" outgoings="/0/@graph/@arrows.7" incomings="/0/@graph/@arrows.6 /0/@graph/@arrows.13"/>
       <nodes id="3411fc30-9096-4d6b-8ac9-a87dfcf1fc6c" name="Pay" typeNode="/1/@graph/@nodes.0" outgoings="/0/@graph/@arrows.8 /0/@graph/@arrows.14" incomings="/0/@graph/@arrows.7"/>
@@ -21,12 +21,12 @@
       <arrows id="bb1c8e9d-942b-43f5-b6c8-9b01ccb0ccd6" name="" source="/0/@graph/@nodes.10" target="/0/@graph/@nodes.12" typeArrow="/1/@graph/@arrows.2" constraints="/0/@constraints.0"/>
       <arrows id="1dce1bfb-8c10-4142-9e8d-c6c14f686ad6" name="" source="/0/@graph/@nodes.11" target="/0/@graph/@nodes.2" typeArrow="/1/@graph/@arrows.0"/>
       <arrows id="a6c28a68-6980-4217-83f6-a97d1f3d2731" name="" source="/0/@graph/@nodes.12" target="/0/@graph/@nodes.1" typeArrow="/1/@graph/@arrows.0"/>
-      <arrows id="d5e337a5-dde5-481d-807d-0991973a3cc9" name="Sequence2" source="/0/@graph/@nodes.2" target="/0/@graph/@nodes.3" typeArrow="/1/@graph/@arrows.4"/>
-      <arrows id="e857b387-92fe-422c-8639-765a5343e9e9" name="Sequence3" source="/0/@graph/@nodes.3" target="/0/@graph/@nodes.4" typeArrow="/1/@graph/@arrows.4"/>
-      <arrows id="09c4fab5-f66e-4d8e-89dd-ef0bfca09e48" name="Sequence4" source="/0/@graph/@nodes.4" target="/0/@graph/@nodes.5" typeArrow="/1/@graph/@arrows.4"/>
-      <arrows id="4e8f5833-8504-4f63-8db2-76f4189fc1ee" name="Sequence5" source="/0/@graph/@nodes.9" target="/0/@graph/@nodes.6" typeArrow="/1/@graph/@arrows.4"/>
-      <arrows id="4a562cc9-22f4-469e-8910-a101fb51a412" name="Sequence6" source="/0/@graph/@nodes.6" target="/0/@graph/@nodes.7" typeArrow="/1/@graph/@arrows.4"/>
-      <arrows id="cbbb3997-cf58-4894-8d91-b473f5df0c36" name="Sequence7" source="/0/@graph/@nodes.7" target="/0/@graph/@nodes.8" typeArrow="/1/@graph/@arrows.4"/>
+      <arrows id="d5e337a5-dde5-481d-807d-0991973a3cc9" name="Sequence2 " source="/0/@graph/@nodes.2" target="/0/@graph/@nodes.3" typeArrow="/1/@graph/@arrows.4"/>
+      <arrows id="e857b387-92fe-422c-8639-765a5343e9e9" name="Sequence3 " source="/0/@graph/@nodes.3" target="/0/@graph/@nodes.4" typeArrow="/1/@graph/@arrows.4"/>
+      <arrows id="09c4fab5-f66e-4d8e-89dd-ef0bfca09e48" name="Sequence4 " source="/0/@graph/@nodes.4" target="/0/@graph/@nodes.5" typeArrow="/1/@graph/@arrows.4"/>
+      <arrows id="4e8f5833-8504-4f63-8db2-76f4189fc1ee" name="Sequence5 " source="/0/@graph/@nodes.9" target="/0/@graph/@nodes.6" typeArrow="/1/@graph/@arrows.4"/>
+      <arrows id="4a562cc9-22f4-469e-8910-a101fb51a412" name="Sequence6 " source="/0/@graph/@nodes.6" target="/0/@graph/@nodes.7" typeArrow="/1/@graph/@arrows.4"/>
+      <arrows id="cbbb3997-cf58-4894-8d91-b473f5df0c36" name="Sequence7 " source="/0/@graph/@nodes.7" target="/0/@graph/@nodes.8" typeArrow="/1/@graph/@arrows.4"/>
       <arrows id="4061e460-e11c-4eac-b834-999b948f7a73" name="Goods" source="/0/@graph/@nodes.2" target="/0/@graph/@nodes.6" typeArrow="/1/@graph/@arrows.3"/>
       <arrows id="da632d95-5a5c-4b4d-ac9c-872edd12ad45" name="Amount To Pay" source="/0/@graph/@nodes.7" target="/0/@graph/@nodes.3" typeArrow="/1/@graph/@arrows.3"/>
       <arrows id="9a635cf2-8ed2-42a2-a379-55028cc9b3ec" name="Total Amount" source="/0/@graph/@nodes.4" target="/0/@graph/@nodes.8" typeArrow="/1/@graph/@arrows.3"/>

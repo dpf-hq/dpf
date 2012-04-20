@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="ASCII"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:diagram="http://no.hib.dpf.diagram">
-  <diagram:DSpecification dType="/1" grid="false" zoom="0.75" gridVisible="false" metaFile="dpfSpecification1.dpf">
+  <diagram:DSpecification dType="/1" grid="false" zoom="1.5" gridVisible="false" metaFile="dpfSpecification1.dpf">
     <dGraph dType="/1/@dGraph">
       <dNodes dType="/1/@dGraph/@dNodes.0" dOutgoings="/0/@dGraph/@dArrows.0" location="1 71" size="100 30">
         <node href="dpfSpecification2.xmi#/0/@graph/@nodes.0"/>
       </dNodes>
-      <dNodes dType="/1/@dGraph/@dNodes.0" dOutgoings="/0/@dGraph/@dArrows.1" dIncomings="/0/@dGraph/@dArrows.0 /0/@dGraph/@dArrows.5" location="142 71" size="100 30">
+      <dNodes dType="/1/@dGraph/@dNodes.0" dOutgoings="/0/@dGraph/@dArrows.1" dIncomings="/0/@dGraph/@dArrows.0 /0/@dGraph/@dArrows.5" location="134 71" size="110 30">
         <node href="dpfSpecification2.xmi#/0/@graph/@nodes.1"/>
       </dNodes>
-      <dNodes dType="/1/@dGraph/@dNodes.0" dOutgoings="/0/@dGraph/@dArrows.6 /0/@dGraph/@dArrows.12" dIncomings="/0/@dGraph/@dArrows.4" location="417 71" size="100 30">
+      <dNodes dType="/1/@dGraph/@dNodes.0" dOutgoings="/0/@dGraph/@dArrows.6 /0/@dGraph/@dArrows.12" dIncomings="/0/@dGraph/@dArrows.4" location="417 77" size="100 30">
         <node href="dpfSpecification2.xmi#/0/@graph/@nodes.2"/>
       </dNodes>
       <dNodes dType="/1/@dGraph/@dNodes.0" dOutgoings="/0/@dGraph/@dArrows.7" dIncomings="/0/@dGraph/@dArrows.6 /0/@dGraph/@dArrows.13" location="589 77" size="100 30">
@@ -67,15 +67,15 @@
       </dArrows>
       <dArrows dType="/1/@dGraph/@dArrows.4" dSource="/0/@dGraph/@dNodes.2" dTarget="/0/@dGraph/@dNodes.3">
         <arrow href="dpfSpecification2.xmi#/0/@graph/@arrows.6"/>
-        <nameOffset offset="0 0"/>
+        <nameOffset offset="2 5"/>
       </dArrows>
       <dArrows dType="/1/@dGraph/@dArrows.4" dSource="/0/@dGraph/@dNodes.3" dTarget="/0/@dGraph/@dNodes.4">
         <arrow href="dpfSpecification2.xmi#/0/@graph/@arrows.7"/>
-        <nameOffset offset="-6 -2"/>
+        <nameOffset offset="-11 4"/>
       </dArrows>
       <dArrows dType="/1/@dGraph/@dArrows.4" dSource="/0/@dGraph/@dNodes.4" dTarget="/0/@dGraph/@dNodes.5">
         <arrow href="dpfSpecification2.xmi#/0/@graph/@arrows.8"/>
-        <nameOffset offset="0 0"/>
+        <nameOffset offset="23 7"/>
       </dArrows>
       <dArrows dType="/1/@dGraph/@dArrows.4" dSource="/0/@dGraph/@dNodes.9" dTarget="/0/@dGraph/@dNodes.6">
         <arrow href="dpfSpecification2.xmi#/0/@graph/@arrows.9"/>
@@ -87,10 +87,11 @@
       </dArrows>
       <dArrows dType="/1/@dGraph/@dArrows.4" dSource="/0/@dGraph/@dNodes.7" dTarget="/0/@dGraph/@dNodes.8">
         <arrow href="dpfSpecification2.xmi#/0/@graph/@arrows.11"/>
-        <nameOffset offset="0 0"/>
+        <nameOffset offset="0 4"/>
       </dArrows>
       <dArrows dType="/1/@dGraph/@dArrows.3" dSource="/0/@dGraph/@dNodes.2" dTarget="/0/@dGraph/@dNodes.6">
         <arrow href="dpfSpecification2.xmi#/0/@graph/@arrows.12"/>
+        <bendpoints>464 250</bendpoints>
         <nameOffset offset="117 -46"/>
       </dArrows>
       <dArrows dType="/1/@dGraph/@dArrows.3" dSource="/0/@dGraph/@dNodes.7" dTarget="/0/@dGraph/@dNodes.3">
