@@ -18,13 +18,13 @@
 					public class «e.name.replaceAll(" ","").toFirstUpper()» implements Sequence{
 						public Activity source, target;
 						public List<Constraint> classInvariants = new ArrayList<Constraint>();
+						public List<Constraint> getInvariants(){
+						classInvariants.clear();  	
 						«FOREACH getOneArrowConstraints(this) AS c»
-							public List<Constraint> getInvariants(){
-								classInvariants.clear();  	
 								classInvariants.add(new Constraint«c.name»(source,target));
 								return classInvariants;
-							}					
 						«ENDFOREACH»
+						}							}					
 						//Do something sequence specific...
 					}
 				«ENDFILE»
