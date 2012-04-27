@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ASCII"?>
+<diagram:DSpecification xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:diagram="http://no.hib.dpf.diagram" gridVisible="false">
+  <dGraph>
+    <dNodes dOutgoings="//@dGraph/@dArrows.0 //@dGraph/@dArrows.1" dIncomings="//@dGraph/@dArrows.1" location="246 156" size="100 30">
+      <node href="SmodlMetametaModel.xmi#//@graph/@nodes.0"/>
+    </dNodes>
+    <dNodes dIncomings="//@dGraph/@dArrows.0" location="504 156" size="100 30">
+      <node href="SmodlMetametaModel.xmi#//@graph/@nodes.1"/>
+    </dNodes>
+    <dArrows dSource="//@dGraph/@dNodes.0" dTarget="//@dGraph/@dNodes.1">
+      <arrow href="SmodlMetametaModel.xmi#//@graph/@arrows.0"/>
+      <nameOffset offset="-70 -3"/>
+    </dArrows>
+    <dArrows dSource="//@dGraph/@dNodes.0" dTarget="//@dGraph/@dNodes.0">
+      <arrow href="SmodlMetametaModel.xmi#//@graph/@arrows.1"/>
+      <nameOffset offset="31 72"/>
+    </dArrows>
+    <graph href="SmodlMetametaModel.xmi#//@graph"/>
+  </dGraph>
+  <specification href="SmodlMetametaModel.xmi#/"/>
+</diagram:DSpecification>
