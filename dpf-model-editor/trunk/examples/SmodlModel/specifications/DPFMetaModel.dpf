@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ASCII"?>
+<diagram:DSpecification xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:diagram="http://no.hib.dpf.diagram" gridVisible="false">
+  <dGraph>
+    <dNodes dOutgoings="//@dGraph/@dArrows.0 //@dGraph/@dArrows.1" dIncomings="//@dGraph/@dArrows.1" location="247 201" size="100 30">
+      <node href="DPFMetaModel.xmi#//@graph/@nodes.0"/>
+    </dNodes>
+    <dNodes dIncomings="//@dGraph/@dArrows.0" location="468 201" size="100 30">
+      <node href="DPFMetaModel.xmi#//@graph/@nodes.1"/>
+    </dNodes>
+    <dArrows dSource="//@dGraph/@dNodes.0" dTarget="//@dGraph/@dNodes.1">
+      <arrow href="DPFMetaModel.xmi#//@graph/@arrows.0"/>
+      <nameOffset offset="-13 -6"/>
+    </dArrows>
+    <dArrows dSource="//@dGraph/@dNodes.0" dTarget="//@dGraph/@dNodes.0">
+      <arrow href="DPFMetaModel.xmi#//@graph/@arrows.1"/>
+      <nameOffset offset="29 59"/>
+    </dArrows>
+    <graph href="DPFMetaModel.xmi#//@graph"/>
+  </dGraph>
+  <specification href="DPFMetaModel.xmi#/"/>
+</diagram:DSpecification>

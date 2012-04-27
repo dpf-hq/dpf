@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:diagram="http://no.hib.dpf.diagram">
+  <diagram:DSpecification dType="/1" gridVisible="false" metaFile="SmodlMetaModel.dpf">
+    <dGraph dType="/1/@dGraph">
+      <dNodes dType="/1/@dGraph/@dNodes.0" dOutgoings="/0/@dGraph/@dArrows.0 /0/@dGraph/@dArrows.1 /0/@dGraph/@dArrows.2 /0/@dGraph/@dArrows.3 /0/@dGraph/@dArrows.4 /0/@dGraph/@dArrows.5 /0/@dGraph/@dArrows.6" location="72 156" size="100 30">
+        <node href="RepositoryService.xmi#/0/@graph/@nodes.0"/>
+      </dNodes>
+      <dNodes dType="/1/@dGraph/@dNodes.2" dOutgoings="/0/@dGraph/@dArrows.7 /0/@dGraph/@dArrows.10" dIncomings="/0/@dGraph/@dArrows.1" location="300 24" size="100 30">
+        <node href="RepositoryService.xmi#/0/@graph/@nodes.1"/>
+      </dNodes>
+      <dNodes dType="/1/@dGraph/@dNodes.2" dOutgoings="/0/@dGraph/@dArrows.13" dIncomings="/0/@dGraph/@dArrows.2" location="300 98" size="100 30">
+        <node href="RepositoryService.xmi#/0/@graph/@nodes.2"/>
+      </dNodes>
+      <dNodes dType="/1/@dGraph/@dNodes.2" dOutgoings="/0/@dGraph/@dArrows.20" dIncomings="/0/@dGraph/@dArrows.3" location="300 156" size="100 30">
+        <node href="RepositoryService.xmi#/0/@graph/@nodes.3"/>
+      </dNodes>
+      <dNodes dType="/1/@dGraph/@dNodes.2" dOutgoings="/0/@dGraph/@dArrows.9 /0/@dGraph/@dArrows.21" dIncomings="/0/@dGraph/@dArrows.4" location="300 216" size="100 30">
+        <node href="RepositoryService.xmi#/0/@graph/@nodes.4"/>
+      </dNodes>
+      <dNodes dType="/1/@dGraph/@dNodes.2" dOutgoings="/0/@dGraph/@dArrows.19" dIncomings="/0/@dGraph/@dArrows.5" location="300 288" size="100 30">
+        <node href="RepositoryService.xmi#/0/@graph/@nodes.5"/>
+      </dNodes>
+      <dNodes dType="/1/@dGraph/@dNodes.4" dOutgoings="/0/@dGraph/@dArrows.8 /0/@dGraph/@dArrows.11" dIncomings="/0/@dGraph/@dArrows.7" location="540 19" size="100 30">
+        <node href="RepositoryService.xmi#/0/@graph/@nodes.6"/>
+      </dNodes>
+      <dNodes dType="/1/@dGraph/@dNodes.4" dOutgoings="/0/@dGraph/@dArrows.12" dIncomings="/0/@dGraph/@dArrows.8" location="756 24" size="100 30">
+        <node href="RepositoryService.xmi#/0/@graph/@nodes.7"/>
+      </dNodes>
+      <dNodes dType="/1/@dGraph/@dNodes.4" dOutgoings="/0/@dGraph/@dArrows.14" dIncomings="/0/@dGraph/@dArrows.9" location="540 216" size="100 30">
+        <node href="RepositoryService.xmi#/0/@graph/@nodes.8"/>
+      </dNodes>
+      <dNodes dType="/1/@dGraph/@dNodes.3" dOutgoings="/0/@dGraph/@dArrows.15 /0/@dGraph/@dArrows.16 /0/@dGraph/@dArrows.17 /0/@dGraph/@dArrows.18" dIncomings="/0/@dGraph/@dArrows.6 /0/@dGraph/@dArrows.14 /0/@dGraph/@dArrows.20" location="300 396" size="100 30">
+        <node href="RepositoryService.xmi#/0/@graph/@nodes.9"/>
+      </dNodes>
+      <dNodes dType="/1/@dGraph/@dNodes.6" dIncomings="/0/@dGraph/@dArrows.0" location="72 48" size="100 30">
+        <node href="RepositoryService.xmi#/0/@graph/@nodes.10"/>
+      </dNodes>
+      <dNodes dType="/1/@dGraph/@dNodes.5" dIncomings="/0/@dGraph/@dArrows.11 /0/@dGraph/@dArrows.12 /0/@dGraph/@dArrows.15 /0/@dGraph/@dArrows.16 /0/@dGraph/@dArrows.17 /0/@dGraph/@dArrows.19" location="696 307" size="100 30">
+        <node href="RepositoryService.xmi#/0/@graph/@nodes.11"/>
+      </dNodes>
+      <dNodes dType="/1/@dGraph/@dNodes.5" dIncomings="/0/@dGraph/@dArrows.18" location="696 384" size="100 30">
+        <node href="RepositoryService.xmi#/0/@graph/@nodes.12"/>
+      </dNodes>
+      <dNodes dType="/1/@dGraph/@dNodes.5" dIncomings="/0/@dGraph/@dArrows.10 /0/@dGraph/@dArrows.13 /0/@dGraph/@dArrows.21" location="564 108" size="100 30">
+        <node href="RepositoryService.xmi#/0/@graph/@nodes.13"/>
+      </dNodes>
+      <dArrows dType="/1/@dGraph/@dArrows.10" dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.10">
+        <arrow href="RepositoryService.xmi#/0/@graph/@arrows.0"/>
+        <nameOffset offset="138 35"/>
+      </dArrows>
+      <dArrows dType="/1/@dGraph/@dArrows.1" dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.1">
+        <arrow href="RepositoryService.xmi#/0/@graph/@arrows.1"/>
+        <nameOffset offset="33 23"/>
+      </dArrows>
+      <dArrows dType="/1/@dGraph/@dArrows.1" dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.2">
+        <arrow href="RepositoryService.xmi#/0/@graph/@arrows.2"/>
+        <nameOffset offset="54 4"/>
+      </dArrows>
+      <dArrows dType="/1/@dGraph/@dArrows.1" dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.3">
+        <arrow href="RepositoryService.xmi#/0/@graph/@arrows.3"/>
+        <nameOffset offset="15 -31"/>
+      </dArrows>
+      <dArrows dType="/1/@dGraph/@dArrows.1" dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.4">
+        <arrow href="RepositoryService.xmi#/0/@graph/@arrows.4"/>
+        <nameOffset offset="46 -48"/>
+      </dArrows>
+      <dArrows dType="/1/@dGraph/@dArrows.1" dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.5">
+        <arrow href="RepositoryService.xmi#/0/@graph/@arrows.5"/>
+        <nameOffset offset="49 -65"/>
+      </dArrows>
+      <dArrows dType="/1/@dGraph/@dArrows.2" dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.9">
+        <arrow href="RepositoryService.xmi#/0/@graph/@arrows.6"/>
+        <bendpoints>237 409</bendpoints>
+        <nameOffset offset="0 -40"/>
+      </dArrows>
+      <dArrows dType="/1/@dGraph/@dArrows.3" dSource="/0/@dGraph/@dNodes.1" dTarget="/0/@dGraph/@dNodes.6">
+        <arrow href="RepositoryService.xmi#/0/@graph/@arrows.7"/>
+        <nameOffset offset="0 -34"/>
+      </dArrows>
+      <dArrows dType="/1/@dGraph/@dArrows.9" dSource="/0/@dGraph/@dNodes.6" dTarget="/0/@dGraph/@dNodes.7">
+        <arrow href="RepositoryService.xmi#/0/@graph/@arrows.8"/>
+        <nameOffset offset="3 -34"/>
+      </dArrows>
+      <dArrows dType="/1/@dGraph/@dArrows.3" dSource="/0/@dGraph/@dNodes.4" dTarget="/0/@dGraph/@dNodes.8">
+        <arrow href="RepositoryService.xmi#/0/@graph/@arrows.9"/>
+        <nameOffset offset="38 -38"/>
+      </dArrows>
+      <dArrows dType="/1/@dGraph/@dArrows.5" dSource="/0/@dGraph/@dNodes.1" dTarget="/0/@dGraph/@dNodes.13">
+        <arrow href="RepositoryService.xmi#/0/@graph/@arrows.10"/>
+        <nameOffset offset="46 -89"/>
+      </dArrows>
+      <dArrows dType="/1/@dGraph/@dArrows.6" dSource="/0/@dGraph/@dNodes.6" dTarget="/0/@dGraph/@dNodes.11">
+        <arrow href="RepositoryService.xmi#/0/@graph/@arrows.11"/>
+        <bendpoints>744 96</bendpoints>
+        <nameOffset offset="169 -74"/>
+      </dArrows>
+      <dArrows dType="/1/@dGraph/@dArrows.6" dSource="/0/@dGraph/@dNodes.7" dTarget="/0/@dGraph/@dNodes.11">
+        <arrow href="RepositoryService.xmi#/0/@graph/@arrows.12"/>
+        <bendpoints>809 324</bendpoints>
+        <nameOffset offset="160 27"/>
+      </dArrows>
+      <dArrows dType="/1/@dGraph/@dArrows.5" dSource="/0/@dGraph/@dNodes.2" dTarget="/0/@dGraph/@dNodes.13">
+        <arrow href="RepositoryService.xmi#/0/@graph/@arrows.13"/>
+        <nameOffset offset="27 -3"/>
+      </dArrows>
+      <dArrows dType="/1/@dGraph/@dArrows.11" dSource="/0/@dGraph/@dNodes.8" dTarget="/0/@dGraph/@dNodes.9">
+        <arrow href="RepositoryService.xmi#/0/@graph/@arrows.14"/>
+        <nameOffset offset="93 169"/>
+      </dArrows>
+      <dArrows dType="/1/@dGraph/@dArrows.4" dSource="/0/@dGraph/@dNodes.9" dTarget="/0/@dGraph/@dNodes.11">
+        <arrow href="RepositoryService.xmi#/0/@graph/@arrows.15"/>
+        <bendpoints>574 330</bendpoints>
+        <nameOffset offset="-27 -8"/>
+      </dArrows>
+      <dArrows dType="/1/@dGraph/@dArrows.4" dSource="/0/@dGraph/@dNodes.9" dTarget="/0/@dGraph/@dNodes.11">
+        <arrow href="RepositoryService.xmi#/0/@graph/@arrows.16"/>
+        <bendpoints>591 398</bendpoints>
+        <nameOffset offset="5 58"/>
+      </dArrows>
+      <dArrows dType="/1/@dGraph/@dArrows.4" dSource="/0/@dGraph/@dNodes.9" dTarget="/0/@dGraph/@dNodes.11">
+        <arrow href="RepositoryService.xmi#/0/@graph/@arrows.17"/>
+        <bendpoints>606 416</bendpoints>
+        <nameOffset offset="39 22"/>
+      </dArrows>
+      <dArrows dType="/1/@dGraph/@dArrows.4" dSource="/0/@dGraph/@dNodes.9" dTarget="/0/@dGraph/@dNodes.12">
+        <arrow href="RepositoryService.xmi#/0/@graph/@arrows.18"/>
+        <bendpoints>376 437</bendpoints>
+        <bendpoints>750 427</bendpoints>
+        <nameOffset offset="123 64"/>
+      </dArrows>
+      <dArrows dType="/1/@dGraph/@dArrows.5" dSource="/0/@dGraph/@dNodes.5" dTarget="/0/@dGraph/@dNodes.11">
+        <arrow href="RepositoryService.xmi#/0/@graph/@arrows.19"/>
+        <bendpoints>700 299</bendpoints>
+        <nameOffset offset="-41 -122"/>
+      </dArrows>
+      <dArrows dType="/1/@dGraph/@dArrows.12" dSource="/0/@dGraph/@dNodes.3" dTarget="/0/@dGraph/@dNodes.9">
+        <arrow href="RepositoryService.xmi#/0/@graph/@arrows.20"/>
+        <bendpoints>433 173</bendpoints>
+        <bendpoints>425 411</bendpoints>
+        <nameOffset offset="109 218"/>
+      </dArrows>
+      <dArrows dType="/1/@dGraph/@dArrows.5" dSource="/0/@dGraph/@dNodes.4" dTarget="/0/@dGraph/@dNodes.13">
+        <arrow href="RepositoryService.xmi#/0/@graph/@arrows.21"/>
+        <bendpoints>610 187</bendpoints>
+        <nameOffset offset="156 39"/>
+      </dArrows>
+      <graph href="RepositoryService.xmi#/0/@graph"/>
+    </dGraph>
+    <specification href="RepositoryService.xmi#/0"/>
+  </diagram:DSpecification>
+  <diagram:DSpecification dType="/2" gridVisible="false" metaFile="SmodlMetaModel.dpf">
+    <dGraph dType="/2/@dGraph">
+      <dNodes dType="/2/@dGraph/@dNodes.0" dOutgoings="/1/@dGraph/@dArrows.0 /1/@dGraph/@dArrows.1 /1/@dGraph/@dArrows.2 /1/@dGraph/@dArrows.10" dConstraints="/1/@dConstraints.0 /1/@dConstraints.1 /1/@dConstraints.2" location="72 228" size="100 30">
+        <node href="RepositoryService.xmi#/1/@graph/@nodes.0"/>
+      </dNodes>
+      <dNodes dType="/2/@dGraph/@dNodes.0" dIncomings="/1/@dGraph/@dArrows.0 /1/@dGraph/@dArrows.7 /1/@dGraph/@dArrows.8" dConstraints="/1/@dConstraints.1 /1/@dConstraints.5 /1/@dConstraints.8" location="324 48" size="100 30">
+        <node href="RepositoryService.xmi#/1/@graph/@nodes.1"/>
+      </dNodes>
+      <dNodes dType="/2/@dGraph/@dNodes.0" dOutgoings="/1/@dGraph/@dArrows.3 /1/@dGraph/@dArrows.5 /1/@dGraph/@dArrows.7 /1/@dGraph/@dArrows.12" dIncomings="/1/@dGraph/@dArrows.1" dConstraints="/1/@dConstraints.2 /1/@dConstraints.3 /1/@dConstraints.5 /1/@dConstraints.6 /1/@dConstraints.9" location="324 228" size="100 30">
+        <node href="RepositoryService.xmi#/1/@graph/@nodes.2"/>
+      </dNodes>
+      <dNodes dType="/2/@dGraph/@dNodes.0" dOutgoings="/1/@dGraph/@dArrows.4 /1/@dGraph/@dArrows.8 /1/@dGraph/@dArrows.13" dIncomings="/1/@dGraph/@dArrows.2 /1/@dGraph/@dArrows.11 /1/@dGraph/@dArrows.12 /1/@dGraph/@dArrows.13" dConstraints="/1/@dConstraints.6 /1/@dConstraints.7 /1/@dConstraints.8 /1/@dConstraints.10" location="324 420" size="100 30">
+        <node href="RepositoryService.xmi#/1/@graph/@nodes.3"/>
+      </dNodes>
+      <dNodes dType="/2/@dGraph/@dNodes.0" dOutgoings="/1/@dGraph/@dArrows.6 /1/@dGraph/@dArrows.9 /1/@dGraph/@dArrows.11" dIncomings="/1/@dGraph/@dArrows.3 /1/@dGraph/@dArrows.9" dConstraints="/1/@dConstraints.3 /1/@dConstraints.4 /1/@dConstraints.7 /1/@dConstraints.9" location="660 228" size="100 30">
+        <node href="RepositoryService.xmi#/1/@graph/@nodes.4"/>
+      </dNodes>
+      <dNodes dType="/2/@dGraph/@dNodes.0" dIncomings="/1/@dGraph/@dArrows.4 /1/@dGraph/@dArrows.5 /1/@dGraph/@dArrows.6" dConstraints="/1/@dConstraints.6 /1/@dConstraints.7" location="660 420" size="100 30">
+        <node href="RepositoryService.xmi#/1/@graph/@nodes.5"/>
+      </dNodes>
+      <dNodes dType="/2/@dGraph/@dNodes.1" dIncomings="/1/@dGraph/@dArrows.10" dConstraints="/1/@dConstraints.0" location="72 48" size="100 30">
+        <node href="RepositoryService.xmi#/1/@graph/@nodes.6"/>
+      </dNodes>
+      <dArrows dType="/2/@dGraph/@dArrows.1" dSource="/1/@dGraph/@dNodes.0" dTarget="/1/@dGraph/@dNodes.1" dConstraints="/1/@dConstraints.1">
+        <arrow href="RepositoryService.xmi#/1/@graph/@arrows.0"/>
+        <nameOffset offset="40 78"/>
+      </dArrows>
+      <dArrows dType="/2/@dGraph/@dArrows.1" dSource="/1/@dGraph/@dNodes.0" dTarget="/1/@dGraph/@dNodes.2" dConstraints="/1/@dConstraints.2">
+        <arrow href="RepositoryService.xmi#/1/@graph/@arrows.1"/>
+        <nameOffset offset="0 0"/>
+      </dArrows>
+      <dArrows dType="/2/@dGraph/@dArrows.1" dSource="/1/@dGraph/@dNodes.0" dTarget="/1/@dGraph/@dNodes.3">
+        <arrow href="RepositoryService.xmi#/1/@graph/@arrows.2"/>
+        <nameOffset offset="-5 -131"/>
+      </dArrows>
+      <dArrows dType="/2/@dGraph/@dArrows.1" dSource="/1/@dGraph/@dNodes.2" dTarget="/1/@dGraph/@dNodes.4" dConstraints="/1/@dConstraints.3 /1/@dConstraints.9">
+        <arrow href="RepositoryService.xmi#/1/@graph/@arrows.3"/>
+        <nameOffset offset="-49 -29"/>
+      </dArrows>
+      <dArrows dType="/2/@dGraph/@dArrows.1" dSource="/1/@dGraph/@dNodes.3" dTarget="/1/@dGraph/@dNodes.5">
+        <arrow href="RepositoryService.xmi#/1/@graph/@arrows.4"/>
+        <nameOffset offset="0 0"/>
+      </dArrows>
+      <dArrows constraintsTo="/1/@dConstraints.6" dType="/2/@dGraph/@dArrows.1" dSource="/1/@dGraph/@dNodes.2" dTarget="/1/@dGraph/@dNodes.5" dConstraints="/1/@dConstraints.6">
+        <arrow href="RepositoryService.xmi#/1/@graph/@arrows.5"/>
+        <nameOffset offset="25 -85"/>
+      </dArrows>
+      <dArrows constraintsTo="/1/@dConstraints.7" dType="/2/@dGraph/@dArrows.1" dSource="/1/@dGraph/@dNodes.4" dTarget="/1/@dGraph/@dNodes.5" dConstraints="/1/@dConstraints.7">
+        <arrow href="RepositoryService.xmi#/1/@graph/@arrows.6"/>
+        <nameOffset offset="134 -21"/>
+      </dArrows>
+      <dArrows dType="/2/@dGraph/@dArrows.1" dSource="/1/@dGraph/@dNodes.2" dTarget="/1/@dGraph/@dNodes.1" dConstraints="/1/@dConstraints.5">
+        <arrow href="RepositoryService.xmi#/1/@graph/@arrows.7"/>
+        <nameOffset offset="215 46"/>
+      </dArrows>
+      <dArrows dType="/2/@dGraph/@dArrows.1" dSource="/1/@dGraph/@dNodes.3" dTarget="/1/@dGraph/@dNodes.1" dConstraints="/1/@dConstraints.8">
+        <arrow href="RepositoryService.xmi#/1/@graph/@arrows.8"/>
+        <bendpoints>469 390</bendpoints>
+        <bendpoints>471 59</bendpoints>
+        <nameOffset offset="111 10"/>
+      </dArrows>
+      <dArrows dType="/2/@dGraph/@dArrows.1" dSource="/1/@dGraph/@dNodes.4" dTarget="/1/@dGraph/@dNodes.4" dConstraints="/1/@dConstraints.4">
+        <arrow href="RepositoryService.xmi#/1/@graph/@arrows.9"/>
+        <bendpoints>719 282</bendpoints>
+        <bendpoints>777 282</bendpoints>
+        <bendpoints>780 189</bendpoints>
+        <bendpoints>709 190</bendpoints>
+        <nameOffset offset="120 9"/>
+      </dArrows>
+      <dArrows dType="/2/@dGraph/@dArrows.0" dSource="/1/@dGraph/@dNodes.0" dTarget="/1/@dGraph/@dNodes.6" dConstraints="/1/@dConstraints.0">
+        <arrow href="RepositoryService.xmi#/1/@graph/@arrows.10"/>
+        <nameOffset offset="151 28"/>
+      </dArrows>
+      <dArrows constraintsFrom="/1/@dConstraints.7" dType="/2/@dGraph/@dArrows.1" dSource="/1/@dGraph/@dNodes.4" dTarget="/1/@dGraph/@dNodes.3" dConstraints="/1/@dConstraints.7">
+        <arrow href="RepositoryService.xmi#/1/@graph/@arrows.11"/>
+        <bendpoints>617 296</bendpoints>
+        <nameOffset offset="-1 125"/>
+      </dArrows>
+      <dArrows constraintsFrom="/1/@dConstraints.6" dType="/2/@dGraph/@dArrows.1" dSource="/1/@dGraph/@dNodes.2" dTarget="/1/@dGraph/@dNodes.3" dConstraints="/1/@dConstraints.6">
+        <arrow href="RepositoryService.xmi#/1/@graph/@arrows.12"/>
+        <nameOffset offset="174 -68"/>
+      </dArrows>
+      <dArrows dType="/2/@dGraph/@dArrows.1" dSource="/1/@dGraph/@dNodes.3" dTarget="/1/@dGraph/@dNodes.3" dConstraints="/1/@dConstraints.10">
+        <arrow href="RepositoryService.xmi#/1/@graph/@arrows.13"/>
+        <bendpoints>292 430</bendpoints>
+        <bendpoints>292 496</bendpoints>
+        <bendpoints>369 495</bendpoints>
+        <nameOffset offset="87 122"/>
+      </dArrows>
+      <graph href="RepositoryService.xmi#/1/@graph"/>
+    </dGraph>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/1/@dGraph/@dNodes.0 /1/@dGraph/@dNodes.6" dArrows="/1/@dGraph/@dArrows.10" source="/1/@dGraph/@dArrows.10">
+      <constraint href="RepositoryService.xmi#/1/@constraints.0"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.3"/>
+      <offset offset="59 -2"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/1/@dGraph/@dNodes.0 /1/@dGraph/@dNodes.1" dArrows="/1/@dGraph/@dArrows.0" source="/1/@dGraph/@dArrows.0">
+      <constraint href="RepositoryService.xmi#/1/@constraints.1"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.3"/>
+      <offset offset="9 24"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/1/@dGraph/@dNodes.0 /1/@dGraph/@dNodes.2" dArrows="/1/@dGraph/@dArrows.1" source="/1/@dGraph/@dArrows.1">
+      <constraint href="RepositoryService.xmi#/1/@constraints.2"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.3"/>
+      <offset offset="2 -34"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/1/@dGraph/@dNodes.2 /1/@dGraph/@dNodes.4" dArrows="/1/@dGraph/@dArrows.3" source="/1/@dGraph/@dArrows.3">
+      <constraint href="RepositoryService.xmi#/1/@constraints.3"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.3"/>
+      <offset offset="-2 -9"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/1/@dGraph/@dNodes.4" dArrows="/1/@dGraph/@dArrows.9" source="/1/@dGraph/@dArrows.9">
+      <constraint href="RepositoryService.xmi#/1/@constraints.4"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.3"/>
+      <offset offset="114 12"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/1/@dGraph/@dNodes.2 /1/@dGraph/@dNodes.1" dArrows="/1/@dGraph/@dArrows.7" source="/1/@dGraph/@dArrows.7">
+      <constraint href="RepositoryService.xmi#/1/@constraints.5"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.3"/>
+      <offset offset="65 -5"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DGenericArrowConstraint" dNodes="/1/@dGraph/@dNodes.2 /1/@dGraph/@dNodes.3 /1/@dGraph/@dNodes.5" dArrows="/1/@dGraph/@dArrows.12 /1/@dGraph/@dArrows.5" source="/1/@dGraph/@dArrows.12" target="/1/@dGraph/@dArrows.5">
+      <constraint href="RepositoryService.xmi#/1/@constraints.6"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.4"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DGenericArrowConstraint" dNodes="/1/@dGraph/@dNodes.4 /1/@dGraph/@dNodes.3 /1/@dGraph/@dNodes.5" dArrows="/1/@dGraph/@dArrows.11 /1/@dGraph/@dArrows.6" source="/1/@dGraph/@dArrows.11" target="/1/@dGraph/@dArrows.6">
+      <constraint href="RepositoryService.xmi#/1/@constraints.7"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.4"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/1/@dGraph/@dNodes.3 /1/@dGraph/@dNodes.1" dArrows="/1/@dGraph/@dArrows.8" source="/1/@dGraph/@dArrows.8">
+      <constraint href="RepositoryService.xmi#/1/@constraints.8"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.3"/>
+      <offset offset="52 -14"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/1/@dGraph/@dNodes.2 /1/@dGraph/@dNodes.4" dArrows="/1/@dGraph/@dArrows.3" source="/1/@dGraph/@dArrows.3">
+      <constraint href="RepositoryService.xmi#/1/@constraints.9"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.1"/>
+      <offset offset="0 -39"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/1/@dGraph/@dNodes.3" dArrows="/1/@dGraph/@dArrows.13" source="/1/@dGraph/@dArrows.13">
+      <constraint href="RepositoryService.xmi#/1/@constraints.10"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.2"/>
+      <offset offset="39 -1"/>
+    </dConstraints>
+    <specification href="RepositoryService.xmi#/1"/>
+  </diagram:DSpecification>
+  <diagram:DSpecification gridVisible="false">
+    <dGraph>
+      <dNodes dOutgoings="/2/@dGraph/@dArrows.0 /2/@dGraph/@dArrows.1" dIncomings="/2/@dGraph/@dArrows.1" location="247 201" size="100 30">
+        <node href="RepositoryService.xmi#/2/@graph/@nodes.0"/>
+      </dNodes>
+      <dNodes dIncomings="/2/@dGraph/@dArrows.0" location="468 201" size="100 30">
+        <node href="RepositoryService.xmi#/2/@graph/@nodes.1"/>
+      </dNodes>
+      <dArrows dSource="/2/@dGraph/@dNodes.0" dTarget="/2/@dGraph/@dNodes.1">
+        <arrow href="RepositoryService.xmi#/2/@graph/@arrows.0"/>
+        <nameOffset offset="-13 -6"/>
+      </dArrows>
+      <dArrows dSource="/2/@dGraph/@dNodes.0" dTarget="/2/@dGraph/@dNodes.0">
+        <arrow href="RepositoryService.xmi#/2/@graph/@arrows.1"/>
+        <nameOffset offset="29 59"/>
+      </dArrows>
+      <graph href="RepositoryService.xmi#/2/@graph"/>
+    </dGraph>
+    <specification href="RepositoryService.xmi#/2"/>
+  </diagram:DSpecification>
+</xmi:XMI>
