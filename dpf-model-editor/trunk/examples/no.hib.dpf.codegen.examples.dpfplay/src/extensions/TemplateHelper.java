@@ -4,6 +4,7 @@ import java.util.List;
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.Node;
+import no.hib.dpf.core.Specification;
 
 public class TemplateHelper {
 	public enum Mult {MANY_TO_ONE, ONE_TO_MANY, MANY_TO_MANY, ONE_TO_ONE};
@@ -44,10 +45,10 @@ public class TemplateHelper {
 	}
 	public static boolean hasOneOrManyToOtherConstraint(Arrow a) {
 		for(Constraint c : a.getConstraints()) {
-			if(c.getPredicate().getSymbol().equals(MULT_CONSTRAINT)) {
+//			if(c.getPredicate().getSymbol().equals(MULT_CONSTRAINT)) {
 				if(!parseConstraint(c.getParameters()).equals(Mult.MANY_TO_ONE))
 					return true;
-			}
+//			}
 		}
 		return false;
 	}
@@ -76,6 +77,19 @@ public class TemplateHelper {
 			ret.append("this." + a.getName() + " = " + a.getName() + ";"); 
 		}
 		return ret.toString();
+	}
+	
+	public String printSymbols(Specification spec) {
+		StringBuffer buf = new StringBuffer();
+		for(Constraint c : spec.getConstraints()) {
+//			try {
+				buf.append("Symbol for " + c.getId() + ": " + c.getPredicate().getSymbol() + 
+						" Parameters: " + c.getParameters() + "\n");
+//			} catch(NullPointerException e) {
+//				buf.append("Symbol for " + c.getId() + ": npe\n");
+//			}
+		}
+		return buf.toString();
 	}
 }
 

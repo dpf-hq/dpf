@@ -1,7 +1,9 @@
 «IMPORT dpf»
 «EXTENSION extensions::dpfplay»
+«EXTENSION org::eclipse::xtend::util::stdlib::io»
 
 «DEFINE main FOR dpf::Specification»
+	«syserr(printSymbols(this))»
 	«EXPAND graph FOR this.graph»
 «ENDDEFINE»
 

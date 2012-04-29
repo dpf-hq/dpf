@@ -21,3 +21,6 @@ String paramList(List[Attribute] attr, List[Reference] ref):
 constructorSetAttributes(List[Attribute] attr, List[Reference] ref):
 	let constructorInitList = attr.collect(e|"this." + e.name + " = " + e.name + ";") :
 		constructorInitList.addAll(ref.collect(e|"this." + e.name + " = " + e.name + ";"));
+
+String printSymbols(Specification spec):
+	JAVA extensions.TemplateHelper.printSymbols(no.hib.dpf.core.Specification);
