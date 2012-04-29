@@ -1,0 +1,47 @@
+import dpf;
+extension org::eclipse::xtend::util::stdlib::io;
+
+
+setQuotes(String strName):
+	"\""+strName+"\"";
+
+
+setArgType(dpf::Arg this):
+	this.getAArgStructs().size>0?this.getAArgStructs().first().target.name:
+								 (this.getAArgTypes().size>0?this.getAArgTypes().first().target.name:"");
+			
+
+
+setMethodResult(dpf::Method this):
+	this.getAStructResults().size>0?this.getAStructResults().first().target.name:
+									(this.getASimpleResults().size>0?this.getASimpleResults().first().target.name:"");
+
+
+
+setNextArg(dpf::nextArg this):
+	"<arg type= "+setQuotes(setArgType(this.target))+" name="+setQuotes(this.target.name)+"/>";
+
+String nextArgRecursion(dpf::nextArg this): this.target.getANextArgs().size>0 ? 
+											setNextArg(this)+" "+nextArgRecursion(this.target.getANextArgs().first()):
+											setNextArg(this) ;
+	
+			
+			
+
+	
+	
+
+
+	
+	
+		
+		
+	
+	
+	 
+	
+		
+		
+	
+	
+	 

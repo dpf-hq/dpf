@@ -2,32 +2,32 @@
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:diagram="http://no.hib.dpf.diagram">
   <diagram:DSpecification dType="/1" gridVisible="false" metaFile="SmodlMetametaModel.dpf">
     <dGraph dType="/1/@dGraph">
-      <dNodes dType="/1/@dGraph/@dNodes.0" dOutgoings="/0/@dGraph/@dArrows.0 /0/@dGraph/@dArrows.1 /0/@dGraph/@dArrows.2 /0/@dGraph/@dArrows.11" dConstraints="/0/@dConstraints.0 /0/@dConstraints.1 /0/@dConstraints.2" location="118 144" size="100 30">
+      <dNodes dType="/1/@dGraph/@dNodes.0" dOutgoings="/0/@dGraph/@dArrows.0 /0/@dGraph/@dArrows.1 /0/@dGraph/@dArrows.2 /0/@dGraph/@dArrows.11" dConstraints="/0/@dConstraints.0 /0/@dConstraints.9" location="118 144" size="100 30">
         <node href="SmodlMetaModel.xmi#/0/@graph/@nodes.0"/>
       </dNodes>
-      <dNodes dType="/1/@dGraph/@dNodes.0" dIncomings="/0/@dGraph/@dArrows.0 /0/@dGraph/@dArrows.5 /0/@dGraph/@dArrows.6" dConstraints="/0/@dConstraints.1 /0/@dConstraints.5 /0/@dConstraints.6" location="336 12" size="100 30">
+      <dNodes dType="/1/@dGraph/@dNodes.0" dIncomings="/0/@dGraph/@dArrows.0 /0/@dGraph/@dArrows.5 /0/@dGraph/@dArrows.6" dConstraints="/0/@dConstraints.3 /0/@dConstraints.4 /0/@dConstraints.9" location="336 12" size="100 30">
         <node href="SmodlMetaModel.xmi#/0/@graph/@nodes.1"/>
       </dNodes>
-      <dNodes dType="/1/@dGraph/@dNodes.0" dOutgoings="/0/@dGraph/@dArrows.3 /0/@dGraph/@dArrows.5 /0/@dGraph/@dArrows.7 /0/@dGraph/@dArrows.8" dIncomings="/0/@dGraph/@dArrows.1" dConstraints="/0/@dConstraints.2 /0/@dConstraints.3 /0/@dConstraints.5 /0/@dConstraints.7 /0/@dConstraints.9" location="336 144" size="100 30">
+      <dNodes dType="/1/@dGraph/@dNodes.0" dOutgoings="/0/@dGraph/@dArrows.3 /0/@dGraph/@dArrows.5 /0/@dGraph/@dArrows.7 /0/@dGraph/@dArrows.8" dIncomings="/0/@dGraph/@dArrows.1" dConstraints="/0/@dConstraints.1 /0/@dConstraints.3 /0/@dConstraints.5 /0/@dConstraints.7" location="336 144" size="100 30">
         <node href="SmodlMetaModel.xmi#/0/@graph/@nodes.2"/>
       </dNodes>
-      <dNodes dType="/1/@dGraph/@dNodes.0" dOutgoings="/0/@dGraph/@dArrows.4 /0/@dGraph/@dArrows.6 /0/@dGraph/@dArrows.13" dIncomings="/0/@dGraph/@dArrows.2 /0/@dGraph/@dArrows.8 /0/@dGraph/@dArrows.9 /0/@dGraph/@dArrows.13" dConstraints="/0/@dConstraints.6 /0/@dConstraints.7 /0/@dConstraints.8 /0/@dConstraints.10" location="336 300" size="100 30">
+      <dNodes dType="/1/@dGraph/@dNodes.0" dOutgoings="/0/@dGraph/@dArrows.4 /0/@dGraph/@dArrows.6 /0/@dGraph/@dArrows.13" dIncomings="/0/@dGraph/@dArrows.2 /0/@dGraph/@dArrows.8 /0/@dGraph/@dArrows.9 /0/@dGraph/@dArrows.13" dConstraints="/0/@dConstraints.4 /0/@dConstraints.5 /0/@dConstraints.6 /0/@dConstraints.8" location="336 300" size="100 30">
         <node href="SmodlMetaModel.xmi#/0/@graph/@nodes.3"/>
       </dNodes>
-      <dNodes dType="/1/@dGraph/@dNodes.0" dOutgoings="/0/@dGraph/@dArrows.9 /0/@dGraph/@dArrows.10 /0/@dGraph/@dArrows.12" dIncomings="/0/@dGraph/@dArrows.3 /0/@dGraph/@dArrows.12" dConstraints="/0/@dConstraints.3 /0/@dConstraints.4 /0/@dConstraints.8 /0/@dConstraints.9" location="636 144" size="100 30">
+      <dNodes dType="/1/@dGraph/@dNodes.0" dOutgoings="/0/@dGraph/@dArrows.9 /0/@dGraph/@dArrows.10 /0/@dGraph/@dArrows.12" dIncomings="/0/@dGraph/@dArrows.3 /0/@dGraph/@dArrows.12" dConstraints="/0/@dConstraints.1 /0/@dConstraints.2 /0/@dConstraints.6 /0/@dConstraints.7" location="636 144" size="100 30">
         <node href="SmodlMetaModel.xmi#/0/@graph/@nodes.4"/>
       </dNodes>
-      <dNodes dType="/1/@dGraph/@dNodes.0" dIncomings="/0/@dGraph/@dArrows.4 /0/@dGraph/@dArrows.7 /0/@dGraph/@dArrows.10" dConstraints="/0/@dConstraints.7 /0/@dConstraints.8" location="636 300" size="100 30">
+      <dNodes dType="/1/@dGraph/@dNodes.0" dIncomings="/0/@dGraph/@dArrows.4 /0/@dGraph/@dArrows.7 /0/@dGraph/@dArrows.10" dConstraints="/0/@dConstraints.5 /0/@dConstraints.6" location="636 300" size="100 30">
         <node href="SmodlMetaModel.xmi#/0/@graph/@nodes.5"/>
       </dNodes>
       <dNodes dType="/1/@dGraph/@dNodes.1" dIncomings="/0/@dGraph/@dArrows.11" dConstraints="/0/@dConstraints.0" location="118 12" size="100 30">
         <node href="SmodlMetaModel.xmi#/0/@graph/@nodes.6"/>
       </dNodes>
-      <dArrows dType="/1/@dGraph/@dArrows.1" dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.1" dConstraints="/0/@dConstraints.1">
+      <dArrows dType="/1/@dGraph/@dArrows.1" dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.1" dConstraints="/0/@dConstraints.9">
         <arrow href="SmodlMetaModel.xmi#/0/@graph/@arrows.0"/>
         <nameOffset offset="30 63"/>
       </dArrows>
-      <dArrows dType="/1/@dGraph/@dArrows.1" dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.2" dConstraints="/0/@dConstraints.2">
+      <dArrows dType="/1/@dGraph/@dArrows.1" dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.2">
         <arrow href="SmodlMetaModel.xmi#/0/@graph/@arrows.1"/>
         <nameOffset offset="0 0"/>
       </dArrows>
@@ -35,7 +35,7 @@
         <arrow href="SmodlMetaModel.xmi#/0/@graph/@arrows.2"/>
         <nameOffset offset="33 -109"/>
       </dArrows>
-      <dArrows dType="/1/@dGraph/@dArrows.1" dSource="/0/@dGraph/@dNodes.2" dTarget="/0/@dGraph/@dNodes.4" dConstraints="/0/@dConstraints.3 /0/@dConstraints.9">
+      <dArrows dType="/1/@dGraph/@dArrows.1" dSource="/0/@dGraph/@dNodes.2" dTarget="/0/@dGraph/@dNodes.4" dConstraints="/0/@dConstraints.1 /0/@dConstraints.7">
         <arrow href="SmodlMetaModel.xmi#/0/@graph/@arrows.3"/>
         <nameOffset offset="-20 -30"/>
       </dArrows>
@@ -43,31 +43,31 @@
         <arrow href="SmodlMetaModel.xmi#/0/@graph/@arrows.4"/>
         <nameOffset offset="-2 -14"/>
       </dArrows>
-      <dArrows dType="/1/@dGraph/@dArrows.1" dSource="/0/@dGraph/@dNodes.2" dTarget="/0/@dGraph/@dNodes.1" dConstraints="/0/@dConstraints.5">
+      <dArrows dType="/1/@dGraph/@dArrows.1" dSource="/0/@dGraph/@dNodes.2" dTarget="/0/@dGraph/@dNodes.1" dConstraints="/0/@dConstraints.3">
         <arrow href="SmodlMetaModel.xmi#/0/@graph/@arrows.5"/>
         <nameOffset offset="161 24"/>
       </dArrows>
-      <dArrows dType="/1/@dGraph/@dArrows.1" dSource="/0/@dGraph/@dNodes.3" dTarget="/0/@dGraph/@dNodes.1" dConstraints="/0/@dConstraints.6">
+      <dArrows dType="/1/@dGraph/@dArrows.1" dSource="/0/@dGraph/@dNodes.3" dTarget="/0/@dGraph/@dNodes.1" dConstraints="/0/@dConstraints.4">
         <arrow href="SmodlMetaModel.xmi#/0/@graph/@arrows.6"/>
         <bendpoints>508 313</bendpoints>
         <bendpoints>507 25</bendpoints>
         <nameOffset offset="87 -20"/>
       </dArrows>
-      <dArrows constraintsTo="/0/@dConstraints.7" dType="/1/@dGraph/@dArrows.1" dSource="/0/@dGraph/@dNodes.2" dTarget="/0/@dGraph/@dNodes.5" dConstraints="/0/@dConstraints.7">
+      <dArrows constraintsTo="/0/@dConstraints.5" dType="/1/@dGraph/@dArrows.1" dSource="/0/@dGraph/@dNodes.2" dTarget="/0/@dGraph/@dNodes.5" dConstraints="/0/@dConstraints.5">
         <arrow href="SmodlMetaModel.xmi#/0/@graph/@arrows.7"/>
         <bendpoints>450 198</bendpoints>
         <nameOffset offset="-26 -235"/>
       </dArrows>
-      <dArrows constraintsFrom="/0/@dConstraints.7" dType="/1/@dGraph/@dArrows.1" dSource="/0/@dGraph/@dNodes.2" dTarget="/0/@dGraph/@dNodes.3" dConstraints="/0/@dConstraints.7">
+      <dArrows constraintsFrom="/0/@dConstraints.5" dType="/1/@dGraph/@dArrows.1" dSource="/0/@dGraph/@dNodes.2" dTarget="/0/@dGraph/@dNodes.3" dConstraints="/0/@dConstraints.5">
         <arrow href="SmodlMetaModel.xmi#/0/@graph/@arrows.8"/>
         <nameOffset offset="214 -90"/>
       </dArrows>
-      <dArrows constraintsFrom="/0/@dConstraints.8" dType="/1/@dGraph/@dArrows.1" dSource="/0/@dGraph/@dNodes.4" dTarget="/0/@dGraph/@dNodes.3" dConstraints="/0/@dConstraints.8">
+      <dArrows constraintsFrom="/0/@dConstraints.6" dType="/1/@dGraph/@dArrows.1" dSource="/0/@dGraph/@dNodes.4" dTarget="/0/@dGraph/@dNodes.3" dConstraints="/0/@dConstraints.6">
         <arrow href="SmodlMetaModel.xmi#/0/@graph/@arrows.9"/>
         <bendpoints>613 198</bendpoints>
         <nameOffset offset="55 131"/>
       </dArrows>
-      <dArrows constraintsTo="/0/@dConstraints.8" dType="/1/@dGraph/@dArrows.1" dSource="/0/@dGraph/@dNodes.4" dTarget="/0/@dGraph/@dNodes.5" dConstraints="/0/@dConstraints.8">
+      <dArrows constraintsTo="/0/@dConstraints.6" dType="/1/@dGraph/@dArrows.1" dSource="/0/@dGraph/@dNodes.4" dTarget="/0/@dGraph/@dNodes.5" dConstraints="/0/@dConstraints.6">
         <arrow href="SmodlMetaModel.xmi#/0/@graph/@arrows.10"/>
         <nameOffset offset="203 -20"/>
       </dArrows>
@@ -75,7 +75,7 @@
         <arrow href="SmodlMetaModel.xmi#/0/@graph/@arrows.11"/>
         <nameOffset offset="160 45"/>
       </dArrows>
-      <dArrows dType="/1/@dGraph/@dArrows.1" dSource="/0/@dGraph/@dNodes.4" dTarget="/0/@dGraph/@dNodes.4" dConstraints="/0/@dConstraints.4">
+      <dArrows dType="/1/@dGraph/@dArrows.1" dSource="/0/@dGraph/@dNodes.4" dTarget="/0/@dGraph/@dNodes.4" dConstraints="/0/@dConstraints.2">
         <arrow href="SmodlMetaModel.xmi#/0/@graph/@arrows.12"/>
         <bendpoints>693 186</bendpoints>
         <bendpoints>750 184</bendpoints>
@@ -83,7 +83,7 @@
         <bendpoints>682 106</bendpoints>
         <nameOffset offset="160 -21"/>
       </dArrows>
-      <dArrows dType="/1/@dGraph/@dArrows.1" dSource="/0/@dGraph/@dNodes.3" dTarget="/0/@dGraph/@dNodes.3" dConstraints="/0/@dConstraints.10">
+      <dArrows dType="/1/@dGraph/@dArrows.1" dSource="/0/@dGraph/@dNodes.3" dTarget="/0/@dGraph/@dNodes.3" dConstraints="/0/@dConstraints.8">
         <arrow href="SmodlMetaModel.xmi#/0/@graph/@arrows.13"/>
         <nameOffset offset="118 73"/>
       </dArrows>
@@ -94,53 +94,48 @@
       <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.3"/>
       <offset offset="63 3"/>
     </dConstraints>
-    <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/0/@dGraph/@dNodes.0 /0/@dGraph/@dNodes.1" dArrows="/0/@dGraph/@dArrows.0" source="/0/@dGraph/@dArrows.0">
-      <constraint href="SmodlMetaModel.xmi#/0/@constraints.1"/>
-      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.3"/>
-      <offset offset="15 6"/>
-    </dConstraints>
-    <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/0/@dGraph/@dNodes.0 /0/@dGraph/@dNodes.2" dArrows="/0/@dGraph/@dArrows.1" source="/0/@dGraph/@dArrows.1">
-      <constraint href="SmodlMetaModel.xmi#/0/@constraints.2"/>
-      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.3"/>
-      <offset offset="-5 -39"/>
-    </dConstraints>
     <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/0/@dGraph/@dNodes.2 /0/@dGraph/@dNodes.4" dArrows="/0/@dGraph/@dArrows.3" source="/0/@dGraph/@dArrows.3">
-      <constraint href="SmodlMetaModel.xmi#/0/@constraints.3"/>
+      <constraint href="SmodlMetaModel.xmi#/0/@constraints.1"/>
       <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.3"/>
       <offset offset="-7 -12"/>
     </dConstraints>
     <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/0/@dGraph/@dNodes.4" dArrows="/0/@dGraph/@dArrows.12" source="/0/@dGraph/@dArrows.12">
-      <constraint href="SmodlMetaModel.xmi#/0/@constraints.4"/>
+      <constraint href="SmodlMetaModel.xmi#/0/@constraints.2"/>
       <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.3"/>
       <offset offset="61 -9"/>
     </dConstraints>
     <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/0/@dGraph/@dNodes.2 /0/@dGraph/@dNodes.1" dArrows="/0/@dGraph/@dArrows.5" source="/0/@dGraph/@dArrows.5">
-      <constraint href="SmodlMetaModel.xmi#/0/@constraints.5"/>
+      <constraint href="SmodlMetaModel.xmi#/0/@constraints.3"/>
       <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.3"/>
       <offset offset="58 -6"/>
     </dConstraints>
     <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/0/@dGraph/@dNodes.3 /0/@dGraph/@dNodes.1" dArrows="/0/@dGraph/@dArrows.6" source="/0/@dGraph/@dArrows.6">
-      <constraint href="SmodlMetaModel.xmi#/0/@constraints.6"/>
+      <constraint href="SmodlMetaModel.xmi#/0/@constraints.4"/>
       <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.3"/>
       <offset offset="59 6"/>
     </dConstraints>
     <dConstraints xsi:type="diagram:DGenericArrowConstraint" dNodes="/0/@dGraph/@dNodes.2 /0/@dGraph/@dNodes.3 /0/@dGraph/@dNodes.5" dArrows="/0/@dGraph/@dArrows.8 /0/@dGraph/@dArrows.7" source="/0/@dGraph/@dArrows.8" target="/0/@dGraph/@dArrows.7">
-      <constraint href="SmodlMetaModel.xmi#/0/@constraints.7"/>
+      <constraint href="SmodlMetaModel.xmi#/0/@constraints.5"/>
       <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.4"/>
     </dConstraints>
     <dConstraints xsi:type="diagram:DGenericArrowConstraint" dNodes="/0/@dGraph/@dNodes.4 /0/@dGraph/@dNodes.3 /0/@dGraph/@dNodes.5" dArrows="/0/@dGraph/@dArrows.9 /0/@dGraph/@dArrows.10" source="/0/@dGraph/@dArrows.9" target="/0/@dGraph/@dArrows.10">
-      <constraint href="SmodlMetaModel.xmi#/0/@constraints.8"/>
+      <constraint href="SmodlMetaModel.xmi#/0/@constraints.6"/>
       <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.4"/>
     </dConstraints>
     <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/0/@dGraph/@dNodes.2 /0/@dGraph/@dNodes.4" dArrows="/0/@dGraph/@dArrows.3" source="/0/@dGraph/@dArrows.3">
-      <constraint href="SmodlMetaModel.xmi#/0/@constraints.9"/>
+      <constraint href="SmodlMetaModel.xmi#/0/@constraints.7"/>
       <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.1"/>
       <offset offset="1 -48"/>
     </dConstraints>
     <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/0/@dGraph/@dNodes.3" dArrows="/0/@dGraph/@dArrows.13" source="/0/@dGraph/@dArrows.13">
-      <constraint href="SmodlMetaModel.xmi#/0/@constraints.10"/>
+      <constraint href="SmodlMetaModel.xmi#/0/@constraints.8"/>
       <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.2"/>
       <offset offset="55 86"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/0/@dGraph/@dNodes.0 /0/@dGraph/@dNodes.1" dArrows="/0/@dGraph/@dArrows.0" source="/0/@dGraph/@dArrows.0">
+      <constraint href="SmodlMetaModel.xmi#/0/@constraints.9"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.3"/>
+      <offset offset="15 6"/>
     </dConstraints>
     <specification href="SmodlMetaModel.xmi#/0"/>
   </diagram:DSpecification>

@@ -1,0 +1,72 @@
+«IMPORT dpf»
+
+«EXTENSION org::eclipse::xtend::util::stdlib::io»
+«EXTENSION template::smodlWrapper»
+	
+«DEFINE main FOR dpf::Specification»
+	«EXPAND graph FOR this.graph»
+«ENDDEFINE»
+
+«DEFINE graph FOR dpf::Graph»
+	«EXPAND service FOREACH this.getServices()»
+«ENDDEFINE»
+
+
+«DEFINE service FOR dpf::Service»
+	«FILE this.name+".xml"»
+	<?xml version="1.0" encoding="UTF-8"?>
+	<service name=«setQuotes(this.name)» xmlns=«setQuotes(this.getATargetRefs().first().target.name)»>
+	
+	«EXPAND servicedoc FOREACH  this.getAServiceDocs()»
+	«EXPAND methodref FOREACH this.getAMethodRefs()»
+	«EXPAND struct FOREACH  this.getAStructRefs()»
+	</service>		
+	«ENDFILE»
+	«syserr(this.name)»
+«ENDDEFINE»
+
+«DEFINE servicedoc FOR dpf::serviceDoc»
+	<doc>«this.target.name»</doc>
+«ENDDEFINE»
+
+«DEFINE methodref FOR dpf::methodRef»
+	<method name=«setQuotes(this.target.name)»>
+	«EXPAND methodDoc FOREACH  this.target.getAMethodDocs()»
+	«EXPAND firstargref FOREACH  this.target.getAFirstArgs()»
+	<result type=«setQuotes((setMethodResult(this.target)))»/>
+	 </method>
+«ENDDEFINE»
+
+«DEFINE methodDoc FOR dpf::methodDoc»
+	<doc>«this.target.name»</doc>
+«ENDDEFINE»
+
+«DEFINE firstargref FOR dpf::firstArg»
+	<arg type=«setQuotes(setArgType(this.target))» name=«setQuotes(this.target.name)»/>
+	«EXPAND nextArg FOREACH  this.target.getANextArgs()»
+	
+«ENDDEFINE»
+
+«DEFINE nextArg FOR dpf::nextArg»
+	«nextArgRecursion(this)»
+	«REM»«setNextArg(this)»
+	<arg name= «setQuotes(this.target.name)»
+	type=«setQuotes(setArgType(this.target))»/>«ENDREM»	
+	
+«ENDDEFINE»
+
+«DEFINE struct FOR dpf::structRef»
+
+	<struct name=«setQuotes(this.target.name)»>
+	«EXPAND structDoc FOREACH  this.target.getAStructDocs()»
+	«EXPAND field FOREACH this.target.getAFieldRefs()»
+	</struct>
+«ENDDEFINE»
+
+«DEFINE structDoc FOR dpf::structDoc»
+	<doc>«this.target.name»</doc>
+«ENDDEFINE»
+
+«DEFINE field FOR dpf::fieldRef»
+	<field type=«setQuotes(this.target.name)» name=«setQuotes(this.name)» />
+«ENDDEFINE»
