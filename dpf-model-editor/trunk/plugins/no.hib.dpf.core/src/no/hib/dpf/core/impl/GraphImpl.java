@@ -29,7 +29,6 @@ import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.IDObject;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Predicate;
-
 import no.hib.dpf.core.Specification;
 import no.hib.dpf.utils.DPFConstants;
 

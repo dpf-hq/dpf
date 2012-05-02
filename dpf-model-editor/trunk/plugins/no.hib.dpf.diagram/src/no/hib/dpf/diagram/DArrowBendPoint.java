@@ -6,9 +6,9 @@
  */
 package no.hib.dpf.diagram;
 
+import org.eclipse.draw2d.Bendpoint;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.Bendpoint;
 import org.eclipse.emf.ecore.EObject;
 
 /**

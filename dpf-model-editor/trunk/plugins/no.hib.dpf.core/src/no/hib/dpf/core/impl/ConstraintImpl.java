@@ -16,6 +16,7 @@
 package no.hib.dpf.core.impl;
 
 import java.util.Collection;
+
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.CorePackage;
@@ -23,7 +24,6 @@ import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.GraphHomomorphism;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Predicate;
-
 import no.hib.dpf.core.Specification;
 
 import org.eclipse.emf.common.notify.Notification;

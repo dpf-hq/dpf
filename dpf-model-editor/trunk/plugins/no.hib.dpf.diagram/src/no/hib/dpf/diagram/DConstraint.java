@@ -7,6 +7,7 @@
 package no.hib.dpf.diagram;
 
 import no.hib.dpf.core.Constraint;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 

@@ -159,7 +159,6 @@
       <genOperations ecoreOperation="Metamodel.ecore#//Predicate/createConstraint">
         <genParameters ecoreParameter="Metamodel.ecore#//Predicate/createConstraint/nodes"/>
         <genParameters ecoreParameter="Metamodel.ecore#//Predicate/createConstraint/arrows"/>
-        <genParameters ecoreParameter="Metamodel.ecore#//Predicate/createConstraint/modelToBeConstrained"/>
       </genOperations>
       <genOperations ecoreOperation="Metamodel.ecore#//Predicate/canCreateConstraint">
         <genParameters ecoreParameter="Metamodel.ecore#//Predicate/canCreateConstraint/nodes"/>

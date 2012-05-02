@@ -17,7 +17,18 @@ package no.hib.dpf.core.impl;
 
 import java.util.Map;
 
-import no.hib.dpf.core.*;
+import no.hib.dpf.core.Arrow;
+import no.hib.dpf.core.Constraint;
+import no.hib.dpf.core.CoreFactory;
+import no.hib.dpf.core.CorePackage;
+import no.hib.dpf.core.Graph;
+import no.hib.dpf.core.GraphHomomorphism;
+import no.hib.dpf.core.Node;
+import no.hib.dpf.core.Predicate;
+import no.hib.dpf.core.SemanticValidator;
+import no.hib.dpf.core.Signature;
+import no.hib.dpf.core.Specification;
+import no.hib.dpf.core.ValidatorType;
 import no.hib.dpf.utils.DPFConstants;
 
 import org.eclipse.emf.common.util.EMap;
@@ -25,9 +36,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 

@@ -17,6 +17,7 @@ package no.hib.dpf.core.impl;
 
 
 import java.util.Collection;
+
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.CoreFactory;

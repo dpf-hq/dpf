@@ -6,7 +6,21 @@
  */
 package no.hib.dpf.diagram.util;
 
-import no.hib.dpf.diagram.*;
+import no.hib.dpf.diagram.DArrow;
+import no.hib.dpf.diagram.DArrowLabelConstraint;
+import no.hib.dpf.diagram.DComposedConstraint;
+import no.hib.dpf.diagram.DConstraint;
+import no.hib.dpf.diagram.DElement;
+import no.hib.dpf.diagram.DFakeNode;
+import no.hib.dpf.diagram.DGenericArrowConstraint;
+import no.hib.dpf.diagram.DGraph;
+import no.hib.dpf.diagram.DNode;
+import no.hib.dpf.diagram.DOffset;
+import no.hib.dpf.diagram.DPredicate;
+import no.hib.dpf.diagram.DSignature;
+import no.hib.dpf.diagram.DSpecification;
+import no.hib.dpf.diagram.DiagramPackage;
+import no.hib.dpf.diagram.Visualization;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;

@@ -23,7 +23,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -293,10 +292,10 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Constraint createConstraint(EList<Node> nodes, EList<Arrow> arrows, Graph modelToBeConstrained) {
+	public Constraint createConstraint(EList<Node> nodes, EList<Arrow> arrows) {
 		GraphHomomorphism graphHomomorphism = CoreFactory.eINSTANCE.createGraphHomomorphism();
 		graphHomomorphism.createGraphHomomorphism(getShape(), nodes, arrows);
-		return constructConstraint(modelToBeConstrained, graphHomomorphism);
+		return constructConstraint(graphHomomorphism);
 	}
 
 	/**
@@ -308,44 +307,31 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 		GraphHomomorphism graphHomomorphism = CoreFactory.eINSTANCE.createGraphHomomorphism();
 		return graphHomomorphism.createGraphHomomorphism(getShape(), nodes, arrows) != null;
 	}
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private EMap changeKeyAndValue(EMap map){
-		//map must be bijective
-		EMap result = new BasicEMap();
-		Iterator iter = map.iterator();
-		while(iter.hasNext()){
-			Entry entry = (Entry) iter.next();
-			result.put(entry.getValue(), entry.getKey());
-		}
-		return result;
-	}
-	@SuppressWarnings("unchecked")
 	private void intialize(GraphHomomorphism mapping, Graph graph,
 			Map<Node, List<Node>> nodeMap, Map<Arrow, List<Arrow>> arrowMap) {
-		EMap<Node, Node> typeNodeToNode = changeKeyAndValue(mapping.getNodeMapping());
-		EMap<Arrow, Arrow> tyepArrowToArrow = changeKeyAndValue(mapping.getArrowMapping());
+		EMap<Node, List<Node>> typeNodeToNode = new BasicEMap<Node, List<Node>>();//(mapping.getNodeMapping());
+		EMap<Arrow, List<Arrow>> typeArrowToArrow = new BasicEMap<Arrow, List<Arrow>>();//= changeKeyAndValue(mapping.getArrowMapping());
 		for(Node node : graph.getNodes()){
 			Node type = node.getTypeNode();
-			Node untypeNode = typeNodeToNode.get(type);
-			if(untypeNode != null){
-				List<Node> nodes = nodeMap.get(untypeNode);
-				if(nodes == null){
-					nodes = new ArrayList<Node>();
-				}	
-				nodes.add(node);
-				nodeMap.put(untypeNode, nodes);
-			}
+			List<Node> instances = typeNodeToNode.get(type);
+			if(instances == null)
+				instances = new ArrayList<Node>();
+			instances.add(node);
+			typeNodeToNode.put(type, instances);
 		}
 		for(Arrow arrow : graph.getArrows()){
 			Arrow type = arrow.getTypeArrow();
-			Arrow untypeArrow = tyepArrowToArrow.get(type);
-			if(untypeArrow != null){
-				List<Arrow> arrows = arrowMap.get(untypeArrow);
-				if(arrows == null)
-					arrows = new ArrayList<Arrow>();
-				arrows.add(arrow);
-				arrowMap.put(untypeArrow, arrows);
-			}
+			List<Arrow> instances = typeArrowToArrow.get(type);
+			if(instances == null)
+				instances = new ArrayList<Arrow>();
+			instances.add(arrow);
+			typeArrowToArrow.put(type, instances);
+		}
+		for(Entry<Node, Node> entry : mapping.getNodeMapping()){
+			nodeMap.put(entry.getKey(), typeNodeToNode.get(entry.getValue()));
+		}
+		for(Entry<Arrow, Arrow> entry : mapping.getArrowMapping()){
+			arrowMap.put(entry.getKey(), typeArrowToArrow.get(entry.getValue()));
 		}
 	}
 	
@@ -431,7 +417,7 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 		Map<Arrow, List<Arrow>> arrowMap = new LinkedHashMap<Arrow, List<Arrow>>();
 		intialize(mapping, graph, nodeMap, arrowMap);
 		Map<String, String> paraMap = getParameterMap(parameters);
-		System.out.println("validating " + getSymbol());
+		System.out.println("\nValidating " + getSymbol());
 		Checker checker = getChecker();
 		if(checker != null)
 			return checker.check(paraMap, getShape(), nodeMap, arrowMap);
@@ -443,14 +429,14 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Boolean validateSemantics(EList<String> constraintParameters, EList<Node> typeNodes, EList<Arrow> typeArrows, EList<Node> stuckedNodes, EList<Arrow> stuckedArrows){
+	public Boolean validateSemantics(EList<String> constraintParameters,EList<Node> typeNodes, EList<Arrow> typeArrows, EList<Node> stuckedNodes, EList<Arrow> stuckedArrows){
 		return true;
 	}
 
 	/**
 	 * @generated NOT
 	 */
-	private Constraint constructConstraint(Graph modelToBeConstrained, GraphHomomorphism graphHomomorphism) {
+	private Constraint constructConstraint(GraphHomomorphism graphHomomorphism) {
 		Constraint retval = CoreFactory.eINSTANCE.createConstraint();
 		retval.setMappings(graphHomomorphism);
 		retval.setPredicate(this);

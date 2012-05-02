@@ -7,7 +7,6 @@
 package no.hib.dpf.diagram;
 
 import org.eclipse.draw2d.geometry.Point;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**

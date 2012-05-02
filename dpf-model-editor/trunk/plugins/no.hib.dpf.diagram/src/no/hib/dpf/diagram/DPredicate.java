@@ -7,6 +7,7 @@
 package no.hib.dpf.diagram;
 
 import no.hib.dpf.core.Predicate;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**

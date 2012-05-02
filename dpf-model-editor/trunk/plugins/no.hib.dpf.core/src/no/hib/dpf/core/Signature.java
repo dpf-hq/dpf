@@ -16,7 +16,6 @@
 package no.hib.dpf.core;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**

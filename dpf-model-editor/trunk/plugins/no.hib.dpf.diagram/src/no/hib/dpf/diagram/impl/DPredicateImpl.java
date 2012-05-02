@@ -7,21 +7,17 @@
 package no.hib.dpf.diagram.impl;
 
 import no.hib.dpf.core.Predicate;
-
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DPredicate;
 import no.hib.dpf.diagram.DSignature;
 import no.hib.dpf.diagram.DiagramPackage;
-
 import no.hib.dpf.diagram.Visualization;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 

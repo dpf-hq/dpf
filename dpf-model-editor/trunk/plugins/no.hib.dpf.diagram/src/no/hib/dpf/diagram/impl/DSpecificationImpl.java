@@ -11,7 +11,6 @@ import java.util.Collection;
 import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.Specification;
-
 import no.hib.dpf.diagram.DConstraint;
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DSignature;
@@ -22,14 +21,10 @@ import no.hib.dpf.diagram.util.DPFConstants;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;

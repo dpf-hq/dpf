@@ -7,8 +7,8 @@
 package no.hib.dpf.diagram;
 
 import no.hib.dpf.core.Arrow;
-import org.eclipse.draw2d.geometry.Point;
 
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.util.EList;
 
 /**

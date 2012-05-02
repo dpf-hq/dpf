@@ -156,7 +156,6 @@
     <eOperations name="createConstraint" eType="#//Constraint">
       <eParameters name="nodes" upperBound="-1" eType="#//Node"/>
       <eParameters name="arrows" upperBound="-1" eType="#//Arrow"/>
-      <eParameters name="modelToBeConstrained" eType="#//Graph"/>
     </eOperations>
     <eOperations name="canCreateConstraint" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eParameters name="nodes" upperBound="-1" eType="#//Node"/>

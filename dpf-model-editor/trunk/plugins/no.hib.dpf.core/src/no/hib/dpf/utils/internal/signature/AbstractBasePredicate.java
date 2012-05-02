@@ -3,7 +3,6 @@ package no.hib.dpf.utils.internal.signature;
 import java.util.List;
 import java.util.Map;
 
-
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Graph;

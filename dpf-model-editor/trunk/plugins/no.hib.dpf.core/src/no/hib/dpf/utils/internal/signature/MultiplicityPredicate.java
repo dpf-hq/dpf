@@ -55,11 +55,18 @@ public class MultiplicityPredicate extends AbstractSingleArrowPredicate {
 					Integer value = entry.getValue();
 					System.out.println(value);
 					System.out.println(max);
-					if(value < min || value > max){
+					System.out.println(min);
+					if(value==0 && value == min)
+						result=true;
+					
+					else
+					if(value < min || (max != -1 && value > max)){
 						System.out.println(entry.getKey().getName() + " has violates Multi[" + min + "," + max + "] constraints. It has " + value + " outgoings.");
 						result = false;
 					}
+					System.out.println(result);
 				}
+				System.out.println("mult---"+result);
 				return result;
 			}
 	

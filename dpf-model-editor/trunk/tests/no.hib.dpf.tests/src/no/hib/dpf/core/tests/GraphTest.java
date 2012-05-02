@@ -208,7 +208,7 @@ public class GraphTest extends IDObjectTest {
 	
 		EList<Arrow> arrows = new BasicEList<Arrow>();
 		arrows.add(graph.getArrowByName("e_1"));
-		pred.createConstraint(nodes, arrows, graph);
+		pred.createConstraint(nodes, arrows);
 		Constraint constraint = graph.getNodeByName("n_1").getConstraints().get(0);
 		
 		EList<Node> constrainedNodes = constraint.getNodes();
@@ -243,7 +243,7 @@ public class GraphTest extends IDObjectTest {
 		EList<Arrow> arrows = new BasicEList<Arrow>();
 		arrows.add(graph.getArrowByName("e_1"));
 		
-		pred.createConstraint(nodes, arrows, graph);
+		pred.createConstraint(nodes, arrows);
 		Constraint constraint = graph.getArrowByName("e_1").getConstraints().get(0);
 		
 		EList<Arrow> constrainedArrows = constraint.getArrows();

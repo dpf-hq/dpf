@@ -10,11 +10,8 @@ import no.hib.dpf.diagram.DOffset;
 import no.hib.dpf.diagram.DiagramPackage;
 
 import org.eclipse.draw2d.geometry.Point;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 

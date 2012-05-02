@@ -6,7 +6,6 @@
  */
 package no.hib.dpf.diagram.impl;
 
-import no.hib.dpf.diagram.*;
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Graph;
@@ -14,7 +13,11 @@ import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Predicate;
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DArrowLabelConstraint;
+import no.hib.dpf.diagram.DComposedConstraint;
 import no.hib.dpf.diagram.DConstraint;
+import no.hib.dpf.diagram.DElement;
+import no.hib.dpf.diagram.DFakeNode;
+import no.hib.dpf.diagram.DGenericArrowConstraint;
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.diagram.DOffset;
@@ -27,7 +30,10 @@ import no.hib.dpf.diagram.Visualization;
 import no.hib.dpf.diagram.VisualizationType;
 import no.hib.dpf.diagram.util.DPFConstants;
 import no.hib.dpf.utils.internal.signature.InjectivePredicate;
+import no.hib.dpf.utils.internal.signature.InversePredicate;
 import no.hib.dpf.utils.internal.signature.IrreflexivePredicate;
+import no.hib.dpf.utils.internal.signature.JointlyInjectivePredicate;
+import no.hib.dpf.utils.internal.signature.JointlySurjectiveValidator;
 import no.hib.dpf.utils.internal.signature.MultiplicityPredicate;
 import no.hib.dpf.utils.internal.signature.NANDPredicate;
 import no.hib.dpf.utils.internal.signature.SurjectivePredicate;
@@ -587,6 +593,9 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 		result.addDPredicate(createArrowLabelDPredicate(new SurjectivePredicate(), "/icons/surj_36.png"));
 		result.addDPredicate(createArrowLabelDPredicate(new IrreflexivePredicate(), "/icons/irr_36.png"));
 		result.addDPredicate(createArrowLabelDPredicate(new MultiplicityPredicate(), "/icons/mult_36.png"));
+		result.addDPredicate(createArrowToArrowDPredicate(new InversePredicate(), "/icons/inv_36.png", "XY", "YX"));
+		result.addDPredicate(createArrowToArrowDPredicate(new JointlySurjectiveValidator(), "/icons/js_36.png", "XZ", "YZ"));
+		result.addDPredicate(createArrowToArrowDPredicate(new JointlyInjectivePredicate(), "/icons/ji_36.png", "XY", "XZ"));
 		result.addDPredicate(createArrowToArrowDPredicate(new XORPredicate(), "/icons/xor_36.png", "ZX", "ZY"));
 		result.addDPredicate(createArrowToArrowDPredicate(new NANDPredicate(), "/icons/nand_36.png", "ZX", "ZY"));
 		return result;

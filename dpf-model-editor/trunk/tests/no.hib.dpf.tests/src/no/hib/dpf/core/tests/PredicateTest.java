@@ -136,7 +136,7 @@ public class PredicateTest extends TestCase {
 		arrows.add(userGraph.getArrowByName("e_1"));
 		arrows.add(userGraph.getArrowByName("e_2"));
 		
-		Constraint constraint = testPredicate.createConstraint(nodes, arrows, userGraph);		
+		Constraint constraint = testPredicate.createConstraint(nodes, arrows);		
 		assertNotNull(constraint);
 		assertEquals(1, userGraph.getNodeByName("n_1").getConstraints().size());		
 	}

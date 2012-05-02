@@ -14,7 +14,6 @@ import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.GraphHomomorphism;
 import no.hib.dpf.core.IDObject;
 import no.hib.dpf.core.Node;
-
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DConstraint;
 import no.hib.dpf.diagram.DElement;
@@ -25,13 +24,11 @@ import no.hib.dpf.diagram.DiagramPackage;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
