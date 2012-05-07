@@ -58,6 +58,7 @@ public class DPredicateImpl extends EObjectImpl implements DPredicate {
 	 * @ordered
 	 */
 	protected static final String SIMPLE_NAME_EDEFAULT = null;
+
 	/**
 	 * The cached value of the '{@link #getSimpleName() <em>Simple Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -67,6 +68,7 @@ public class DPredicateImpl extends EObjectImpl implements DPredicate {
 	 * @ordered
 	 */
 	protected String simpleName = SIMPLE_NAME_EDEFAULT;
+
 	/**
 	 * The cached value of the '{@link #getDGraph() <em>DGraph</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -121,79 +123,8 @@ public class DPredicateImpl extends EObjectImpl implements DPredicate {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	protected EClass eStaticClass() {
-		return DiagramPackage.Literals.DPREDICATE;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Predicate getPredicate() {
-		if (predicate != null && predicate.eIsProxy()) {
-			InternalEObject oldPredicate = (InternalEObject)predicate;
-			predicate = (Predicate)eResolveProxy(oldPredicate);
-			if (predicate != oldPredicate) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiagramPackage.DPREDICATE__PREDICATE, oldPredicate, predicate));
-			}
-		}
-		return predicate;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Predicate basicGetPredicate() {
 		return predicate;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setPredicate(Predicate newPredicate) {
-		Predicate oldPredicate = predicate;
-		predicate = newPredicate;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DPREDICATE__PREDICATE, oldPredicate, predicate));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public String getSimpleName() {
-		if(simpleName == null || simpleName.isEmpty())
-			simpleName = getPredicate().getSymbol();
-		return simpleName;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSimpleName(String newSimpleName) {
-		String oldSimpleName = simpleName;
-		simpleName = newSimpleName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DPREDICATE__SIMPLE_NAME, oldSimpleName, simpleName));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DGraph getDGraph() {
-		return dGraph;
 	}
 
 	/**
@@ -214,36 +145,6 @@ public class DPredicateImpl extends EObjectImpl implements DPredicate {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public void setDGraph(DGraph newDGraph) {
-		if (newDGraph != dGraph) {
-			NotificationChain msgs = null;
-			if (dGraph != null)
-				msgs = ((InternalEObject)dGraph).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DiagramPackage.DPREDICATE__DGRAPH, null, msgs);
-			if (newDGraph != null)
-				msgs = ((InternalEObject)newDGraph).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DiagramPackage.DPREDICATE__DGRAPH, null, msgs);
-			msgs = basicSetDGraph(newDGraph, msgs);
-			if(predicate != null && !predicate.eIsProxy())
-				predicate.setShape(dGraph != null ? dGraph.getGraph() : null);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DPREDICATE__DGRAPH, newDGraph, newDGraph));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Visualization getVisualization() {
-		return visualization;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public NotificationChain basicSetVisualization(Visualization newVisualization, NotificationChain msgs) {
@@ -256,44 +157,38 @@ public class DPredicateImpl extends EObjectImpl implements DPredicate {
 		return msgs;
 	}
 
+	@Override
+	public NotificationChain eBasicSetContainer(InternalEObject newContainer, int newContainerFeatureID, NotificationChain msgs){
+		EObject oldSignature = eContainer();
+		if(oldSignature instanceof DSignature && ((DSignature) oldSignature).getSignature() != null)
+			((DSignature) oldSignature).getSignature().removePredicate(getPredicate());
+		super.eBasicSetContainer(newContainer, newContainerFeatureID, msgs);
+		if(newContainer instanceof DSignature && ((DSignature) newContainer).getSignature() != null)
+			((DSignature) newContainer).getSignature().addPredicate(getPredicate());
+		return msgs;
+	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setVisualization(Visualization newVisualization) {
-		if (newVisualization != visualization) {
-			NotificationChain msgs = null;
-			if (visualization != null)
-				msgs = ((InternalEObject)visualization).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DiagramPackage.DPREDICATE__VISUALIZATION, null, msgs);
-			if (newVisualization != null)
-				msgs = ((InternalEObject)newVisualization).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DiagramPackage.DPREDICATE__VISUALIZATION, null, msgs);
-			msgs = basicSetVisualization(newVisualization, msgs);
-			if (msgs != null) msgs.dispatch();
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case DiagramPackage.DPREDICATE__PREDICATE:
+				if (resolve) return getPredicate();
+				return basicGetPredicate();
+			case DiagramPackage.DPREDICATE__SIMPLE_NAME:
+				return getSimpleName();
+			case DiagramPackage.DPREDICATE__DGRAPH:
+				return getDGraph();
+			case DiagramPackage.DPREDICATE__VISUALIZATION:
+				return getVisualization();
+			case DiagramPackage.DPREDICATE__ICON:
+				return getIcon();
 		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DPREDICATE__VISUALIZATION, newVisualization, newVisualization));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getIcon() {
-		return icon;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setIcon(String newIcon) {
-		String oldIcon = icon;
-		icon = newIcon;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DPREDICATE__ICON, oldIcon, icon));
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -318,21 +213,20 @@ public class DPredicateImpl extends EObjectImpl implements DPredicate {
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DiagramPackage.DPREDICATE__PREDICATE:
-				if (resolve) return getPredicate();
-				return basicGetPredicate();
+				return predicate != null;
 			case DiagramPackage.DPREDICATE__SIMPLE_NAME:
-				return getSimpleName();
+				return SIMPLE_NAME_EDEFAULT == null ? simpleName != null : !SIMPLE_NAME_EDEFAULT.equals(simpleName);
 			case DiagramPackage.DPREDICATE__DGRAPH:
-				return getDGraph();
+				return dGraph != null;
 			case DiagramPackage.DPREDICATE__VISUALIZATION:
-				return getVisualization();
+				return visualization != null;
 			case DiagramPackage.DPREDICATE__ICON:
-				return getIcon();
+				return ICON_EDEFAULT == null ? icon != null : !ICON_EDEFAULT.equals(icon);
 		}
-		return super.eGet(featureID, resolve, coreType);
+		return super.eIsSet(featureID);
 	}
 
 	/**
@@ -368,6 +262,16 @@ public class DPredicateImpl extends EObjectImpl implements DPredicate {
 	 * @generated
 	 */
 	@Override
+	protected EClass eStaticClass() {
+		return DiagramPackage.Literals.DPREDICATE;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DiagramPackage.DPREDICATE__PREDICATE:
@@ -395,22 +299,141 @@ public class DPredicateImpl extends EObjectImpl implements DPredicate {
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case DiagramPackage.DPREDICATE__PREDICATE:
-				return predicate != null;
-			case DiagramPackage.DPREDICATE__SIMPLE_NAME:
-				return SIMPLE_NAME_EDEFAULT == null ? simpleName != null : !SIMPLE_NAME_EDEFAULT.equals(simpleName);
-			case DiagramPackage.DPREDICATE__DGRAPH:
-				return dGraph != null;
-			case DiagramPackage.DPREDICATE__VISUALIZATION:
-				return visualization != null;
-			case DiagramPackage.DPREDICATE__ICON:
-				return ICON_EDEFAULT == null ? icon != null : !ICON_EDEFAULT.equals(icon);
-		}
-		return super.eIsSet(featureID);
+	public DGraph getDGraph() {
+		return dGraph;
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getIcon() {
+		return icon;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Predicate getPredicate() {
+		if (predicate != null && predicate.eIsProxy()) {
+			InternalEObject oldPredicate = (InternalEObject)predicate;
+			predicate = (Predicate)eResolveProxy(oldPredicate);
+			if (predicate != oldPredicate) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiagramPackage.DPREDICATE__PREDICATE, oldPredicate, predicate));
+			}
+		}
+		return predicate;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public String getSimpleName() {
+		if(simpleName == null || simpleName.isEmpty())
+			simpleName = getPredicate().getSymbol();
+		return simpleName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Visualization getVisualization() {
+		return visualization;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void setDGraph(DGraph newDGraph) {
+		if (newDGraph != dGraph) {
+			NotificationChain msgs = null;
+			if (dGraph != null)
+				msgs = ((InternalEObject)dGraph).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DiagramPackage.DPREDICATE__DGRAPH, null, msgs);
+			if (newDGraph != null)
+				msgs = ((InternalEObject)newDGraph).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DiagramPackage.DPREDICATE__DGRAPH, null, msgs);
+			msgs = basicSetDGraph(newDGraph, msgs);
+			if(predicate != null && !predicate.eIsProxy())
+				predicate.setShape(dGraph != null ? dGraph.getGraph() : null);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DPREDICATE__DGRAPH, newDGraph, newDGraph));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIcon(String newIcon) {
+		String oldIcon = icon;
+		icon = newIcon;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DPREDICATE__ICON, oldIcon, icon));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setPredicate(Predicate newPredicate) {
+		Predicate oldPredicate = predicate;
+		predicate = newPredicate;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DPREDICATE__PREDICATE, oldPredicate, predicate));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setSimpleName(String newSimpleName) {
+		String oldSimpleName = simpleName;
+		simpleName = newSimpleName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DPREDICATE__SIMPLE_NAME, oldSimpleName, simpleName));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setVisualization(Visualization newVisualization) {
+		if (newVisualization != visualization) {
+			NotificationChain msgs = null;
+			if (visualization != null)
+				msgs = ((InternalEObject)visualization).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DiagramPackage.DPREDICATE__VISUALIZATION, null, msgs);
+			if (newVisualization != null)
+				msgs = ((InternalEObject)newVisualization).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DiagramPackage.DPREDICATE__VISUALIZATION, null, msgs);
+			msgs = basicSetVisualization(newVisualization, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DPREDICATE__VISUALIZATION, newVisualization, newVisualization));
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -427,16 +450,6 @@ public class DPredicateImpl extends EObjectImpl implements DPredicate {
 		result.append(icon);
 		result.append(')');
 		return result.toString();
-	}
-	
-	public NotificationChain eBasicSetContainer(InternalEObject newContainer, int newContainerFeatureID, NotificationChain msgs){
-		EObject oldSignature = eContainer();
-		if(oldSignature instanceof DSignature && ((DSignature) oldSignature).getSignature() != null)
-			((DSignature) oldSignature).getSignature().removePredicate(getPredicate());
-		super.eBasicSetContainer(newContainer, newContainerFeatureID, msgs);
-		if(newContainer instanceof DSignature && ((DSignature) newContainer).getSignature() != null)
-			((DSignature) newContainer).getSignature().addPredicate(getPredicate());
-		return msgs;
 	}
 
 } //DPredicateImpl

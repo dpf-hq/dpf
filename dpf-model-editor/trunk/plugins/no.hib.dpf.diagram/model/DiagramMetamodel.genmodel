@@ -84,8 +84,8 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DiagramMetamodel.ecore#//DArrow/dSource"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DiagramMetamodel.ecore#//DArrow/dTarget"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DiagramMetamodel.ecore#//DArrow/dConstraints"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DiagramMetamodel.ecore#//DArrow/bendpoints"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DiagramMetamodel.ecore#//DArrow/nameOffset"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference DiagramMetamodel.ecore#//DArrow/bendpoints"/>
       <genOperations ecoreOperation="DiagramMetamodel.ecore#//DArrow/reconnect">
         <genParameters ecoreParameter="DiagramMetamodel.ecore#//DArrow/reconnect/source"/>
         <genParameters ecoreParameter="DiagramMetamodel.ecore#//DArrow/reconnect/target"/>
@@ -133,6 +133,8 @@
     </genClasses>
     <genClasses ecoreClass="DiagramMetamodel.ecore#//DOffset">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DiagramMetamodel.ecore#//DOffset/offset"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DiagramMetamodel.ecore#//DOffset/len"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DiagramMetamodel.ecore#//DOffset/index"/>
     </genClasses>
     <genClasses ecoreClass="DiagramMetamodel.ecore#//DSignature">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DiagramMetamodel.ecore#//DSignature/signature"/>

@@ -94,31 +94,18 @@ public class DGraphImpl extends EObjectImpl implements DGraph {
 		super();
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
-	protected EClass eStaticClass() {
-		return DiagramPackage.Literals.DGRAPH;
+	public void addDArrow(DArrow Arrow) {
+		if(!getDArrows().contains(Arrow))
+			getDArrows().add(Arrow);
+		
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DGraph getDType() {
-		if (dType != null && dType.eIsProxy()) {
-			InternalEObject oldDType = (InternalEObject)dType;
-			dType = (DGraph)eResolveProxy(oldDType);
-			if (dType != oldDType) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiagramPackage.DGRAPH__DTYPE, oldDType, dType));
-			}
-		}
-		return dType;
+	@Override
+	public void addDNode(DNode node) {
+		if(!getDNodes().contains(node))
+			getDNodes().add(node);
+		
 	}
 
 	/**
@@ -133,61 +120,6 @@ public class DGraphImpl extends EObjectImpl implements DGraph {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public void setDType(DGraph newDType) {
-		DGraph oldDType = dType;
-		dType = newDType;
-		if(graph != null && !graph.eIsProxy())
-			graph.setType(dType == null ? null : dType.getGraph());
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DGRAPH__DTYPE, oldDType, dType));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<DNode> getDNodes() {
-		if (dNodes == null) {
-			dNodes = new EObjectContainmentEList<DNode>(DNode.class, this, DiagramPackage.DGRAPH__DNODES);
-		}
-		return dNodes;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<DArrow> getDArrows() {
-		if (dArrows == null) {
-			dArrows = new EObjectContainmentEList<DArrow>(DArrow.class, this, DiagramPackage.DGRAPH__DARROWS);
-		}
-		return dArrows;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Graph getGraph() {
-		if (graph != null && graph.eIsProxy()) {
-			InternalEObject oldGraph = (InternalEObject)graph;
-			graph = (Graph)eResolveProxy(oldGraph);
-			if (graph != oldGraph) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiagramPackage.DGRAPH__GRAPH, oldGraph, graph));
-			}
-		}
-		return graph;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Graph basicGetGraph() {
@@ -197,13 +129,17 @@ public class DGraphImpl extends EObjectImpl implements DGraph {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public void setGraph(Graph newGraph) {
-		Graph oldGraph = graph;
-		graph = newGraph;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DGRAPH__GRAPH, oldGraph, graph));
+	public DArrow createDArrow(Arrow arrow, DNode dSource, DNode dTarget, DArrow dType) {
+		Assert.isTrue(dSource != null && dTarget != null && dType !=null);
+		DArrow result = new DArrowImpl();
+		result.setArrow(arrow);
+		result.setDSource(dSource);
+		result.setDTarget(dTarget);
+		result.setDType(dType);
+		addDArrow(result);
+		return result;
 	}
 
 	/**
@@ -211,40 +147,7 @@ public class DGraphImpl extends EObjectImpl implements DGraph {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public DNode getDNode(Node node) {
-		for(DNode dnode : getDNodes())
-			if(dnode.getNode() == node)
-				return dnode;
-				return null;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public DArrow getDArrow(Arrow arrow) {
-		for(DArrow darrow : getDArrows())
-			if(darrow.getArrow() == arrow)
-				return darrow;
-				return null;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public DNode createDNode(String name, DNode dType) {
-		Assert.isNotNull(dType);
-		return createDNode(getGraph().createNode(name, dType.getNode()), dType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
+	@Override
 	public DArrow createDArrow(String name, DNode dSource, DNode dTarget, DArrow dType) {
 		Assert.isTrue(dSource != null && dTarget != null && dType !=null);
 		return createDArrow(getGraph().createArrow(name, dSource.getNode(), dTarget.getNode(), dType.getArrow()), dSource, dTarget, dType);
@@ -268,31 +171,10 @@ public class DGraphImpl extends EObjectImpl implements DGraph {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public DArrow createDArrow(Arrow arrow, DNode dSource, DNode dTarget, DArrow dType) {
-		Assert.isTrue(dSource != null && dTarget != null && dType !=null);
-		DArrow result = new DArrowImpl();
-		result.setArrow(arrow);
-		result.setDSource(dSource);
-		result.setDTarget(dTarget);
-		result.setDType(dType);
-		addDArrow(result);
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case DiagramPackage.DGRAPH__DNODES:
-				return ((InternalEList<?>)getDNodes()).basicRemove(otherEnd, msgs);
-			case DiagramPackage.DGRAPH__DARROWS:
-				return ((InternalEList<?>)getDArrows()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+	public DNode createDNode(String name, DNode dType) {
+		Assert.isNotNull(dType);
+		return createDNode(getGraph().createNode(name, dType.getNode()), dType);
 	}
 
 	/**
@@ -315,6 +197,42 @@ public class DGraphImpl extends EObjectImpl implements DGraph {
 				return basicGetGraph();
 		}
 		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case DiagramPackage.DGRAPH__DNODES:
+				return ((InternalEList<?>)getDNodes()).basicRemove(otherEnd, msgs);
+			case DiagramPackage.DGRAPH__DARROWS:
+				return ((InternalEList<?>)getDArrows()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case DiagramPackage.DGRAPH__DTYPE:
+				return dType != null && dType != DPFConstants.REFLEXIVE_TYPE_DGRAPH;
+			case DiagramPackage.DGRAPH__DNODES:
+				return dNodes != null && !dNodes.isEmpty();
+			case DiagramPackage.DGRAPH__DARROWS:
+				return dArrows != null && !dArrows.isEmpty();
+			case DiagramPackage.DGRAPH__GRAPH:
+				return graph != null;
+		}
+		return super.eIsSet(featureID);
 	}
 
 	/**
@@ -347,6 +265,16 @@ public class DGraphImpl extends EObjectImpl implements DGraph {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return DiagramPackage.Literals.DGRAPH;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	@Override
@@ -374,44 +302,126 @@ public class DGraphImpl extends EObjectImpl implements DGraph {
 	 * @generated NOT
 	 */
 	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case DiagramPackage.DGRAPH__DTYPE:
-				return dType != null && dType != DPFConstants.REFLEXIVE_TYPE_DGRAPH;
-			case DiagramPackage.DGRAPH__DNODES:
-				return dNodes != null && !dNodes.isEmpty();
-			case DiagramPackage.DGRAPH__DARROWS:
-				return dArrows != null && !dArrows.isEmpty();
-			case DiagramPackage.DGRAPH__GRAPH:
-				return graph != null;
+	public DArrow getDArrow(Arrow arrow) {
+		for(DArrow darrow : getDArrows())
+			if(darrow.getArrow() == arrow)
+				return darrow;
+				return null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<DArrow> getDArrows() {
+		if (dArrows == null) {
+			dArrows = new EObjectContainmentEList<DArrow>(DArrow.class, this, DiagramPackage.DGRAPH__DARROWS);
 		}
-		return super.eIsSet(featureID);
+		return dArrows;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public DNode getDNode(Node node) {
+		for(DNode dnode : getDNodes())
+			if(dnode.getNode() == node)
+				return dnode;
+				return null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<DNode> getDNodes() {
+		if (dNodes == null) {
+			dNodes = new EObjectContainmentEList<DNode>(DNode.class, this, DiagramPackage.DGRAPH__DNODES);
+		}
+		return dNodes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public DGraph getDType() {
+		if (dType != null && dType.eIsProxy()) {
+			InternalEObject oldDType = (InternalEObject)dType;
+			dType = (DGraph)eResolveProxy(oldDType);
+			if (dType != oldDType) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiagramPackage.DGRAPH__DTYPE, oldDType, dType));
+			}
+		}
+		return dType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Graph getGraph() {
+		if (graph != null && graph.eIsProxy()) {
+			InternalEObject oldGraph = (InternalEObject)graph;
+			graph = (Graph)eResolveProxy(oldGraph);
+			if (graph != oldGraph) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiagramPackage.DGRAPH__GRAPH, oldGraph, graph));
+			}
+		}
+		return graph;
 	}
 
 	@Override
-	public void addDNode(DNode node) {
-		if(!getDNodes().contains(node))
-			getDNodes().add(node);
+	public void removeDArrow(DArrow Arrow) {
+		if(getDArrows().contains(Arrow))
+			getDArrows().remove(Arrow);
 		
 	}
 
-	@Override
-	public void addDArrow(DArrow Arrow) {
-		if(!getDArrows().contains(Arrow))
-			getDArrows().add(Arrow);
-		
-	}
 	@Override
 	public void removeDNode(DNode node) {
 		if(getDNodes().contains(node))
 			getDNodes().remove(node);
 		
 	}
-	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	@Override
-	public void removeDArrow(DArrow Arrow) {
-		if(getDArrows().contains(Arrow))
-			getDArrows().remove(Arrow);
-		
+	public void setDType(DGraph newDType) {
+		DGraph oldDType = dType;
+		dType = newDType;
+		if(graph != null && !graph.eIsProxy())
+			graph.setType(dType == null ? null : dType.getGraph());
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DGRAPH__DTYPE, oldDType, dType));
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setGraph(Graph newGraph) {
+		Graph oldGraph = graph;
+		graph = newGraph;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DGRAPH__GRAPH, oldGraph, graph));
 	}
 } //DGraphImpl

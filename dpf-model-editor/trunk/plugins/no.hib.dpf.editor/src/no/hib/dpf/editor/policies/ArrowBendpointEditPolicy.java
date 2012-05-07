@@ -17,66 +17,115 @@ package no.hib.dpf.editor.policies;
 
 
 import no.hib.dpf.diagram.DArrow;
+import no.hib.dpf.diagram.DArrowLabelConstraint;
+import no.hib.dpf.diagram.DConstraint;
+import no.hib.dpf.diagram.DOffset;
+import no.hib.dpf.diagram.util.DiagramUtil;
 import no.hib.dpf.editor.commands.BendPointCreateCommand;
-import no.hib.dpf.editor.commands.BendpointCommand;
 import no.hib.dpf.editor.commands.BendpointDeleteCommand;
 import no.hib.dpf.editor.commands.BendpointMoveCommand;
+import no.hib.dpf.editor.parts.DNodeEditPart;
 
-import org.eclipse.draw2d.Bendpoint;
 import org.eclipse.draw2d.Connection;
-import org.eclipse.draw2d.RelativeBendpoint;
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.PointList;
+import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.BendpointEditPolicy;
 import org.eclipse.gef.requests.BendpointRequest;
 
 public class ArrowBendpointEditPolicy extends BendpointEditPolicy {
 
-	private Bendpoint getBendPoint(Connection connectionFigure, Point p, float weight){
-		connectionFigure.translateToRelative(p);
-		Point ref1 = connectionFigure.getSourceAnchor().getReferencePoint();
-		Point ref2 = connectionFigure.getTargetAnchor().getReferencePoint();
-
-		connectionFigure.translateToRelative(ref1);
-		connectionFigure.translateToRelative(ref2);
-
-		RelativeBendpoint rbp = new RelativeBendpoint(connectionFigure);
-		rbp.setRelativeDimensions(p.getDifference(ref1), p.getDifference(ref2));
-		rbp.setWeight(weight);//(index + 1) / ((float)arrow.getBendpoints().size() + 1));
-		return rbp;
-	}
-	
 	protected Command getCreateBendpointCommand(BendpointRequest request) {
-		BendPointCreateCommand com = new BendPointCreateCommand();
-		Point p = request.getLocation();
-		int index = request.getIndex();
 		DArrow arrow = (DArrow) request.getSource().getModel();
+		Point newBendPoint = request.getLocation();
+		int index = request.getIndex();//bendpoints index
+		BendPointCreateCommand com = new BendPointCreateCommand();
+		ConnectionEditPart connection = request.getSource();
+		IFigure source = ((DNodeEditPart) connection.getSource()).getFigure();
+		IFigure target = ((DNodeEditPart) connection.getTarget()).getFigure();
+		DOffset offset = arrow.getNameOffset();
+		PointList points = ((Connection)connection.getFigure()).getPoints();
+		if(offset.getIndex() == index){
+			Point absolutePoint = DiagramUtil.getAbsolutePoint(source, target, points, offset);
+			DOffset newOffset = DiagramUtil.getDOffset(source, target, points, absolutePoint, index);
+			com.addUpdate(offset, newOffset);
+		}
+		else if(offset.getIndex() >= index + 1){
+				com.addOne(offset);
+		}
+		for(DConstraint constraint : arrow.getDConstraints())
+			if(constraint instanceof DArrowLabelConstraint){
+				offset = ((DArrowLabelConstraint)constraint).getOffset();
+				if(offset.getIndex() == index){
+					Point absolutePoint = DiagramUtil.getAbsolutePoint(source, target, points, offset);
+					DOffset newOffset = DiagramUtil.getDOffset(source, target, points, absolutePoint, index);
+					com.addUpdate(offset, newOffset);
+				}
+				else if(offset.getIndex() >= index + 1){
+						com.addOne(offset);
+				}
+			}
 		com.setArrow(arrow);
 		com.setIndex(index);
-		com.setLabel("Create BendPoint at " + p);
-		com.setLocation(getBendPoint((Connection)request.getSource().getFigure(), p, (index + 1) / ((float)arrow.getBendpoints().size() + 1)).getLocation());
+		com.setLabel("Create BendPoint at " + newBendPoint);
+		if(source == target)
+			com.setLocation(DiagramUtil.getDOffset(source.getBounds().getTop(), source.getBounds().getBottom(), newBendPoint));
+		else
+			com.setLocation(DiagramUtil.getDOffset(source.getBounds().getCenter(), target.getBounds().getCenter(), newBendPoint));
 		return com;
 	}
 
 	protected Command getMoveBendpointCommand(BendpointRequest request) {
+		DArrow arrow = (DArrow) request.getSource().getModel();
 		BendpointMoveCommand com = new BendpointMoveCommand();
 		Point p = request.getLocation();
-		DArrow arrow = (DArrow) request.getSource().getModel();
+		ConnectionEditPart connection = request.getSource();
+		IFigure source = ((DNodeEditPart) connection.getSource()).getFigure();
+		IFigure target = ((DNodeEditPart) connection.getTarget()).getFigure();
 		com.setArrow(arrow);
 		int index = request.getIndex();
 		com.setIndex(index);
 		com.setLabel("Move BendPoint from " + com.getOldBendpoint() + " to " + p);
-		com.setLocation(getBendPoint((Connection)request.getSource().getFigure(), p, (index + 1) / ((float)arrow.getBendpoints().size() + 1)).getLocation());
+		com.setLocation(DiagramUtil.getDOffset(source, target, p));
 		return com;
 	}
 
 	protected Command getDeleteBendpointCommand(BendpointRequest request) {
-		BendpointCommand com = new BendpointDeleteCommand();
-		Point p = request.getLocation();
-		com.setLocation(p);
-		com.setArrow((DArrow) request.getSource().getModel());
-		com.setIndex(request.getIndex());
+		int index = request.getIndex();
+		DArrow arrow = (DArrow) request.getSource().getModel();
+		DOffset offset = arrow.getNameOffset();
+		ConnectionEditPart connection = request.getSource();
+		IFigure source = ((DNodeEditPart) connection.getSource()).getFigure();
+		IFigure target = ((DNodeEditPart) connection.getTarget()).getFigure();
+		PointList points = ((Connection)connection.getFigure()).getPoints();
+		BendpointDeleteCommand com = new BendpointDeleteCommand();
+		DOffset p = arrow.getBendpoints().get(request.getIndex());
+		com.setArrow(arrow);
+		com.setIndex(index);
 		com.setLabel("Delete BendPoint at " + p);
+		com.setLocation(p);
+		if(offset.getIndex() == index || offset.getIndex() == index + 1){
+			Point absolutePoint = DiagramUtil.getAbsolutePoint(source, target, points, offset);
+			DOffset newOffset = DiagramUtil.getDOffsetBack(source, target, points, absolutePoint, index);
+			com.addUpdate(offset, newOffset);
+		}
+		else if(offset.getIndex() > index + 1){
+				com.addOne(offset);
+		}
+		for(DConstraint constraint : arrow.getDConstraints())
+			if(constraint instanceof DArrowLabelConstraint){
+				offset = ((DArrowLabelConstraint)constraint).getOffset();
+				if(offset.getIndex() == index || offset.getIndex() == index + 1){
+					Point absolutePoint = DiagramUtil.getAbsolutePoint(source, target, points, offset);
+					DOffset newOffset = DiagramUtil.getDOffsetBack(source, target, points, absolutePoint, index);
+					com.addUpdate(offset, newOffset);
+				}
+				else if(offset.getIndex() > index + 1){
+						com.addOne(offset);
+				}
+			}
 		return com;
 	}
 

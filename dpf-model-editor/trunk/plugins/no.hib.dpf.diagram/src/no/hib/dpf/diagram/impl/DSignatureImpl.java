@@ -71,28 +71,14 @@ public class DSignatureImpl extends EObjectImpl implements DSignature {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
-	protected EClass eStaticClass() {
-		return DiagramPackage.Literals.DSIGNATURE;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Signature getSignature() {
-		if (signature != null && signature.eIsProxy()) {
-			InternalEObject oldSignature = (InternalEObject)signature;
-			signature = (Signature)eResolveProxy(oldSignature);
-			if (signature != oldSignature) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiagramPackage.DSIGNATURE__SIGNATURE, oldSignature, signature));
-			}
+	public void addDPredicate(DPredicate dPredicate) {
+		if(!getDPredicates().contains(dPredicate)){
+			getDPredicates().add(dPredicate);
+			getSignature().addPredicate(dPredicate.getPredicate());
 		}
-		return signature;
 	}
 
 	/**
@@ -109,47 +95,16 @@ public class DSignatureImpl extends EObjectImpl implements DSignature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSignature(Signature newSignature) {
-		Signature oldSignature = signature;
-		signature = newSignature;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DSIGNATURE__SIGNATURE, oldSignature, signature));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<DPredicate> getDPredicates() {
-		if (dPredicates == null) {
-			dPredicates = new EObjectContainmentEList<DPredicate>(DPredicate.class, this, DiagramPackage.DSIGNATURE__DPREDICATES);
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case DiagramPackage.DSIGNATURE__SIGNATURE:
+				if (resolve) return getSignature();
+				return basicGetSignature();
+			case DiagramPackage.DSIGNATURE__DPREDICATES:
+				return getDPredicates();
 		}
-		return dPredicates;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public void addDPredicate(DPredicate dPredicate) {
-		if(!getDPredicates().contains(dPredicate)){
-			getDPredicates().add(dPredicate);
-			getSignature().addPredicate(dPredicate.getPredicate());
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public void removeDPredicate(DPredicate dPredicate) {
-		if(getDPredicates().contains(dPredicate)){
-			getDPredicates().remove(dPredicate);
-			getSignature().removePredicate(dPredicate.getPredicate());
-		}
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -169,18 +124,17 @@ public class DSignatureImpl extends EObjectImpl implements DSignature {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DiagramPackage.DSIGNATURE__SIGNATURE:
-				if (resolve) return getSignature();
-				return basicGetSignature();
+				return signature != null && signature != DPFConstants.DEFAULT_SIGNATURE;
 			case DiagramPackage.DSIGNATURE__DPREDICATES:
-				return getDPredicates();
+				return dPredicates != null && !dPredicates.isEmpty();
 		}
-		return super.eGet(featureID, resolve, coreType);
+		return super.eIsSet(featureID);
 	}
 
 	/**
@@ -206,6 +160,16 @@ public class DSignatureImpl extends EObjectImpl implements DSignature {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return DiagramPackage.Literals.DSIGNATURE;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	@Override
@@ -224,17 +188,58 @@ public class DSignatureImpl extends EObjectImpl implements DSignature {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<DPredicate> getDPredicates() {
+		if (dPredicates == null) {
+			dPredicates = new EObjectContainmentEList<DPredicate>(DPredicate.class, this, DiagramPackage.DSIGNATURE__DPREDICATES);
+		}
+		return dPredicates;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Signature getSignature() {
+		if (signature != null && signature.eIsProxy()) {
+			InternalEObject oldSignature = (InternalEObject)signature;
+			signature = (Signature)eResolveProxy(oldSignature);
+			if (signature != oldSignature) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiagramPackage.DSIGNATURE__SIGNATURE, oldSignature, signature));
+			}
+		}
+		return signature;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case DiagramPackage.DSIGNATURE__SIGNATURE:
-				return signature != null && signature != DPFConstants.DEFAULT_SIGNATURE;
-			case DiagramPackage.DSIGNATURE__DPREDICATES:
-				return dPredicates != null && !dPredicates.isEmpty();
+	public void removeDPredicate(DPredicate dPredicate) {
+		if(getDPredicates().contains(dPredicate)){
+			getDPredicates().remove(dPredicate);
+			getSignature().removePredicate(dPredicate.getPredicate());
 		}
-		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setSignature(Signature newSignature) {
+		Signature oldSignature = signature;
+		signature = newSignature;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DSIGNATURE__SIGNATURE, oldSignature, signature));
 	}
 
 } //DSignatureImpl

@@ -39,58 +39,6 @@ public interface DNode extends DElement {
 	
 	public static final Dimension DEFAULT_DIMENSION = new Dimension(100, 30);
 	/**
-	 * Returns the value of the '<em><b>DType</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>DType</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>DType</em>' reference.
-	 * @see #setDType(DNode)
-	 * @see no.hib.dpf.diagram.DiagramPackage#getDNode_DType()
-	 * @model required="true"
-	 * @generated
-	 */
-	DNode getDType();
-
-	/**
-	 * Sets the value of the '{@link no.hib.dpf.diagram.DNode#getDType <em>DType</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>DType</em>' reference.
-	 * @see #getDType()
-	 * @generated
-	 */
-	void setDType(DNode value);
-
-	/**
-	 * Returns the value of the '<em><b>Node</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Node</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Node</em>' reference.
-	 * @see #setNode(Node)
-	 * @see no.hib.dpf.diagram.DiagramPackage#getDNode_Node()
-	 * @model required="true"
-	 * @generated
-	 */
-	Node getNode();
-
-	/**
-	 * Sets the value of the '{@link no.hib.dpf.diagram.DNode#getNode <em>Node</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Node</em>' reference.
-	 * @see #getNode()
-	 * @generated
-	 */
-	void setNode(Node value);
-
-	/**
 	 * Returns the value of the '<em><b>Configure String</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -107,32 +55,24 @@ public interface DNode extends DElement {
 	String getConfigureString();
 
 	/**
-	 * Sets the value of the '{@link no.hib.dpf.diagram.DNode#getConfigureString <em>Configure String</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Configure String</em>' attribute.
-	 * @see #getConfigureString()
-	 * @generated
-	 */
-	void setConfigureString(String value);
-
-	/**
-	 * Returns the value of the '<em><b>DOutgoings</b></em>' reference list.
-	 * The list contents are of type {@link no.hib.dpf.diagram.DArrow}.
-	 * It is bidirectional and its opposite is '{@link no.hib.dpf.diagram.DArrow#getDSource <em>DSource</em>}'.
+	 * Returns the value of the '<em><b>DConstraints</b></em>' reference list.
+	 * The list contents are of type {@link no.hib.dpf.diagram.DConstraint}.
+	 * It is bidirectional and its opposite is '{@link no.hib.dpf.diagram.DConstraint#getDNodes <em>DNodes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>DOutgoings</em>' reference list isn't clear,
+	 * If the meaning of the '<em>DConstraints</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>DOutgoings</em>' reference list.
-	 * @see no.hib.dpf.diagram.DiagramPackage#getDNode_DOutgoings()
-	 * @see no.hib.dpf.diagram.DArrow#getDSource
-	 * @model opposite="dSource"
+	 * @return the value of the '<em>DConstraints</em>' reference list.
+	 * @see no.hib.dpf.diagram.DiagramPackage#getDNode_DConstraints()
+	 * @see no.hib.dpf.diagram.DConstraint#getDNodes
+	 * @model opposite="dNodes"
 	 * @generated
 	 */
-	EList<DArrow> getDOutgoings();
+	EList<DConstraint> getDConstraints();
+
+	DGraph getDGraph();
 
 	/**
 	 * Returns the value of the '<em><b>DIncomings</b></em>' reference list.
@@ -153,22 +93,38 @@ public interface DNode extends DElement {
 	EList<DArrow> getDIncomings();
 
 	/**
-	 * Returns the value of the '<em><b>DConstraints</b></em>' reference list.
-	 * The list contents are of type {@link no.hib.dpf.diagram.DConstraint}.
-	 * It is bidirectional and its opposite is '{@link no.hib.dpf.diagram.DConstraint#getDNodes <em>DNodes</em>}'.
+	 * Returns the value of the '<em><b>DOutgoings</b></em>' reference list.
+	 * The list contents are of type {@link no.hib.dpf.diagram.DArrow}.
+	 * It is bidirectional and its opposite is '{@link no.hib.dpf.diagram.DArrow#getDSource <em>DSource</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>DConstraints</em>' reference list isn't clear,
+	 * If the meaning of the '<em>DOutgoings</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>DConstraints</em>' reference list.
-	 * @see no.hib.dpf.diagram.DiagramPackage#getDNode_DConstraints()
-	 * @see no.hib.dpf.diagram.DConstraint#getDNodes
-	 * @model opposite="dNodes"
+	 * @return the value of the '<em>DOutgoings</em>' reference list.
+	 * @see no.hib.dpf.diagram.DiagramPackage#getDNode_DOutgoings()
+	 * @see no.hib.dpf.diagram.DArrow#getDSource
+	 * @model opposite="dSource"
 	 * @generated
 	 */
-	EList<DConstraint> getDConstraints();
+	EList<DArrow> getDOutgoings();
+
+	/**
+	 * Returns the value of the '<em><b>DType</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>DType</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>DType</em>' reference.
+	 * @see #setDType(DNode)
+	 * @see no.hib.dpf.diagram.DiagramPackage#getDNode_DType()
+	 * @model required="true"
+	 * @generated
+	 */
+	DNode getDType();
 
 	/**
 	 * Returns the value of the '<em><b>Location</b></em>' attribute.
@@ -187,14 +143,28 @@ public interface DNode extends DElement {
 	Point getLocation();
 
 	/**
-	 * Sets the value of the '{@link no.hib.dpf.diagram.DNode#getLocation <em>Location</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Location</em>' attribute.
-	 * @see #getLocation()
+	 * @model kind="operation"
 	 * @generated
 	 */
-	void setLocation(Point value);
+	String getName();
+
+	/**
+	 * Returns the value of the '<em><b>Node</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Node</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Node</em>' reference.
+	 * @see #setNode(Node)
+	 * @see no.hib.dpf.diagram.DiagramPackage#getDNode_Node()
+	 * @model required="true"
+	 * @generated
+	 */
+	Node getNode();
 
 	/**
 	 * Returns the value of the '<em><b>Size</b></em>' attribute.
@@ -213,6 +183,54 @@ public interface DNode extends DElement {
 	Dimension getSize();
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	String getTypeName();
+
+	/**
+	 * Sets the value of the '{@link no.hib.dpf.diagram.DNode#getConfigureString <em>Configure String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Configure String</em>' attribute.
+	 * @see #getConfigureString()
+	 * @generated
+	 */
+	void setConfigureString(String value);
+
+	/**
+	 * Sets the value of the '{@link no.hib.dpf.diagram.DNode#getDType <em>DType</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>DType</em>' reference.
+	 * @see #getDType()
+	 * @generated
+	 */
+	void setDType(DNode value);
+
+	/**
+	 * Sets the value of the '{@link no.hib.dpf.diagram.DNode#getLocation <em>Location</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Location</em>' attribute.
+	 * @see #getLocation()
+	 * @generated
+	 */
+	void setLocation(Point value);
+
+	/**
+	 * Sets the value of the '{@link no.hib.dpf.diagram.DNode#getNode <em>Node</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Node</em>' reference.
+	 * @see #getNode()
+	 * @generated
+	 */
+	void setNode(Node value);
+
+	/**
 	 * Sets the value of the '{@link no.hib.dpf.diagram.DNode#getSize <em>Size</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -221,23 +239,5 @@ public interface DNode extends DElement {
 	 * @generated
 	 */
 	void setSize(Dimension value);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model kind="operation"
-	 * @generated
-	 */
-	String getName();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model kind="operation"
-	 * @generated
-	 */
-	String getTypeName();
-
-	DGraph getDGraph();
 
 } // DNode

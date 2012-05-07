@@ -49,7 +49,6 @@ import no.hib.dpf.editor.tracker.ArrowTextTracker;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
-import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gef.DragTracker;
@@ -124,8 +123,7 @@ public class ArrowLabelEditPart extends GraphicalEditPartWithListener{
 		figure.setText(arrowName);
 		figure.setVisible(DPFEditorPreferences.getDefault().getDisplayArrows());
 		DArrowEditPart parent = (DArrowEditPart) getParent();
-		PolylineConnection connFigure = (PolylineConnection)parent.getFigure();
-		ArrowLabelLocator constraint = new ArrowLabelLocator(arrowName, getOffset(), connFigure, true);
+		ArrowLabelLocator constraint = new ArrowLabelLocator(arrowName, getDOffset(), parent);
 		parent.setLayoutConstraint(this, getFigure(), constraint);
 	}
 

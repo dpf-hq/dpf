@@ -42,16 +42,6 @@ public interface DGenericArrowConstraint extends DConstraint {
 	DElement getSource();
 
 	/**
-	 * Sets the value of the '{@link no.hib.dpf.diagram.DGenericArrowConstraint#getSource <em>Source</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Source</em>' reference.
-	 * @see #getSource()
-	 * @generated
-	 */
-	void setSource(DElement value);
-
-	/**
 	 * Returns the value of the '<em><b>Target</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -67,6 +57,20 @@ public interface DGenericArrowConstraint extends DConstraint {
 	 */
 	DElement getTarget();
 
+	void setDSource(DElement object);
+
+	void setDTarget(DElement object);
+
+
+	/**
+	 * Sets the value of the '{@link no.hib.dpf.diagram.DGenericArrowConstraint#getSource <em>Source</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Source</em>' reference.
+	 * @see #getSource()
+	 * @generated
+	 */
+	void setSource(DElement value);
 	/**
 	 * Sets the value of the '{@link no.hib.dpf.diagram.DGenericArrowConstraint#getTarget <em>Target</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -76,9 +80,5 @@ public interface DGenericArrowConstraint extends DConstraint {
 	 * @generated
 	 */
 	void setTarget(DElement value);
-
-
-	void setDSource(DElement object);
-	void setDTarget(DElement object);
 
 } // DGenericArrowConstraint

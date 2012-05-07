@@ -37,17 +37,16 @@ package no.hib.dpf.editor.policies;
  OF SUCH DAMAGE. 
  */
 
-import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DOffset;
-import no.hib.dpf.editor.Transform;
+import no.hib.dpf.diagram.util.DiagramUtil;
 import no.hib.dpf.editor.commands.ArrowTextMoveCommand;
 import no.hib.dpf.editor.parts.ArrowLabelEditPart;
+import no.hib.dpf.editor.parts.DNodeEditPart;
 
+import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.geometry.PointList;
-import org.eclipse.draw2d.geometry.PrecisionPoint;
+import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
@@ -58,20 +57,12 @@ public class ArrowTextMovePolicy extends NonResizableEditPolicy {
 		ArrowTextMoveCommand command = null;
 		ArrowLabelEditPart editpart = (ArrowLabelEditPart)getHost();
 		DOffset model = editpart.getDOffset();
-		Point delta = request.getMoveDelta();
 		IFigure label = editpart.getFigure();
-		Point start = label.getBounds().getLocation();
-		PrecisionPoint shouldBe = new PrecisionPoint(Transform.move(new PrecisionPoint(start), new PrecisionPoint(delta)));
-		boolean placeLabelAtEnd = model.eContainer() instanceof DArrow;
-		PolylineConnection connection = (PolylineConnection) label.getParent();
-		
-		PointList points = connection.getPoints();
-		PrecisionPoint to = new PrecisionPoint(placeLabelAtEnd ? points.getLastPoint() : points.getPoint(points.size() / 2));
-		PrecisionPoint from = new PrecisionPoint(placeLabelAtEnd ? points.getPoint(points.size() - 2) : points.getPoint(points.size() / 2 - 1));
-		PrecisionPoint orientation = Transform.getSubstract(to, from);
-		PrecisionPoint newPointinNewAxis = Transform.translateToNewAxis(shouldBe, new PrecisionPoint(to), orientation);
-		delta = new PrecisionPoint(newPointinNewAxis.preciseX() + label.getBounds().width, newPointinNewAxis.preciseY() - label.getBounds().height);
-		command = new ArrowTextMoveCommand(model, delta);
+		ConnectionEditPart connection = (ConnectionEditPart) editpart.getParent();
+		IFigure source = ((DNodeEditPart) connection.getSource()).getFigure();
+		IFigure target = ((DNodeEditPart) connection.getTarget()).getFigure();
+		Point p = label.getBounds().getTopLeft().getTranslated(request.getMoveDelta());
+		command = new ArrowTextMoveCommand(model, DiagramUtil.getDOffset(source, target, ((Connection)connection.getFigure()).getPoints(), p));
 		return command;
 	}
 }

@@ -91,10 +91,10 @@
         eType="#//DNode" eOpposite="#//DNode/dIncomings"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dConstraints" upperBound="-1"
         eType="#//DConstraint" eOpposite="#//DConstraint/dArrows"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bendpoints" upperBound="-1"
-        eType="#//ELocation"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nameOffset" eType="#//DOffset"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bendpoints" upperBound="-1"
+        eType="#//DOffset" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DConstraint">
     <eOperations name="reconnect">
@@ -143,6 +143,8 @@
   <eClassifiers xsi:type="ecore:EDataType" name="ELocation" instanceClassName="org.eclipse.draw2d.geometry.Point"/>
   <eClassifiers xsi:type="ecore:EClass" name="DOffset">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="offset" eType="#//ELocation"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="len" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="index" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DSignature">
     <eOperations name="addDPredicate">

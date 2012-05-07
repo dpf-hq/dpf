@@ -33,47 +33,33 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface DGraph extends EObject {
-	/**
-	 * Returns the value of the '<em><b>DType</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>DType</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>DType</em>' reference.
-	 * @see #setDType(DGraph)
-	 * @see no.hib.dpf.diagram.DiagramPackage#getDGraph_DType()
-	 * @model required="true"
-	 * @generated
-	 */
-	DGraph getDType();
+	void addDArrow(DArrow arrow);
+
+	void addDNode(DNode node);
 
 	/**
-	 * Sets the value of the '{@link no.hib.dpf.diagram.DGraph#getDType <em>DType</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>DType</em>' reference.
-	 * @see #getDType()
+	 * @model
 	 * @generated
 	 */
-	void setDType(DGraph value);
+	DArrow createDArrow(String name, DNode dSource, DNode dTarget, DArrow dType);
 
 	/**
-	 * Returns the value of the '<em><b>DNodes</b></em>' containment reference list.
-	 * The list contents are of type {@link no.hib.dpf.diagram.DNode}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>DNodes</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>DNodes</em>' containment reference list.
-	 * @see no.hib.dpf.diagram.DiagramPackage#getDGraph_DNodes()
-	 * @model containment="true"
+	 * @model
 	 * @generated
 	 */
-	EList<DNode> getDNodes();
+	DNode createDNode(String name, DNode dType);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	DArrow getDArrow(Arrow arrow);
 
 	/**
 	 * Returns the value of the '<em><b>DArrows</b></em>' containment reference list.
@@ -92,6 +78,46 @@ public interface DGraph extends EObject {
 	EList<DArrow> getDArrows();
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	DNode getDNode(Node node);
+
+	/**
+	 * Returns the value of the '<em><b>DNodes</b></em>' containment reference list.
+	 * The list contents are of type {@link no.hib.dpf.diagram.DNode}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>DNodes</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>DNodes</em>' containment reference list.
+	 * @see no.hib.dpf.diagram.DiagramPackage#getDGraph_DNodes()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<DNode> getDNodes();
+
+	/**
+	 * Returns the value of the '<em><b>DType</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>DType</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>DType</em>' reference.
+	 * @see #setDType(DGraph)
+	 * @see no.hib.dpf.diagram.DiagramPackage#getDGraph_DType()
+	 * @model required="true"
+	 * @generated
+	 */
+	DGraph getDType();
+
+	/**
 	 * Returns the value of the '<em><b>Graph</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -107,6 +133,17 @@ public interface DGraph extends EObject {
 	 */
 	Graph getGraph();
 
+	void removeDArrow(DArrow arrow);
+	void removeDNode(DNode node);
+	/**
+	 * Sets the value of the '{@link no.hib.dpf.diagram.DGraph#getDType <em>DType</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>DType</em>' reference.
+	 * @see #getDType()
+	 * @generated
+	 */
+	void setDType(DGraph value);
 	/**
 	 * Sets the value of the '{@link no.hib.dpf.diagram.DGraph#getGraph <em>Graph</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -116,41 +153,4 @@ public interface DGraph extends EObject {
 	 * @generated
 	 */
 	void setGraph(Graph value);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model
-	 * @generated
-	 */
-	DNode getDNode(Node node);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model
-	 * @generated
-	 */
-	DArrow getDArrow(Arrow arrow);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model
-	 * @generated
-	 */
-	DNode createDNode(String name, DNode dType);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model
-	 * @generated
-	 */
-	DArrow createDArrow(String name, DNode dSource, DNode dTarget, DArrow dType);
-
-	void addDNode(DNode node);
-	void addDArrow(DArrow arrow);
-	void removeDNode(DNode node);
-	void removeDArrow(DArrow arrow);
 } // DGraph

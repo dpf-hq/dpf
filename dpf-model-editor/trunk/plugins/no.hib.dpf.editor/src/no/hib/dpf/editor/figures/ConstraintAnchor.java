@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2011 H¿yskolen i Bergen
+ * Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
 *******************************************************************************/
 package no.hib.dpf.editor.figures;
 
@@ -20,6 +20,7 @@ import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.PointList;
 
 public class ConstraintAnchor implements ConnectionAnchor {
 
@@ -81,7 +82,26 @@ public class ConstraintAnchor implements ConnectionAnchor {
 	 * @see ConnectionAnchor#getLocation(Point)
 	 */
 	public Point getLocation(Point reference) {
-		return getLinePoint();
+		if(connectionFigure != null){
+			PointList points = connectionFigure.getPoints();
+			if(points.size() == 2)
+				return points.getMidpoint();
+			else{
+				Point small = null;
+				double len = 0;
+				for (int i = 0; i < points.size() - 1; i++) {
+					
+					Point middle = points.getPoint(i).getTranslated(points.getPoint(i + 1)).getScaled(0.5);
+					double temp = middle.getDistance(reference);
+					if(len == 0 || temp < len){
+						len = temp;
+						small = middle;
+					}
+				}
+				return small;
+			}
+		}
+		return null;
 	}
 
 	/**
@@ -98,7 +118,7 @@ public class ConstraintAnchor implements ConnectionAnchor {
 	 * @see ConnectionAnchor#getReferencePoint()
 	 */
 	public Point getReferencePoint() {
-		return connectionFigure != null ? getLinePoint() : null;
+		return connectionFigure != null ? connectionFigure.getBounds().getCenter() : null;
 	}
 
 	protected Point getLinePoint() {

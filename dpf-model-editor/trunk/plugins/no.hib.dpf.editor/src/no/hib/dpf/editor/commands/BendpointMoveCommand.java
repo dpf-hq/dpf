@@ -15,22 +15,22 @@
 *******************************************************************************/
 package no.hib.dpf.editor.commands;
 
-import org.eclipse.draw2d.geometry.Point;
+import no.hib.dpf.diagram.DOffset;
+
 
 public class BendpointMoveCommand extends BendpointCommand {
 
-	private Point oldBendpoint;
+	private DOffset oldBendpoint;
 
 	public void execute() {
 		getArrow().getBendpoints().set(getIndex(), getLocation());
-		super.execute();
 	}
 
-	public Point getOldBendpoint() {
+	public DOffset getOldBendpoint() {
 		return oldBendpoint;
 	}
 
-	public void setOldBendpoint(Point point) {
+	public void setOldBendpoint(DOffset point) {
 		oldBendpoint = point;
 	}
 

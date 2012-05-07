@@ -175,66 +175,8 @@ public class DNodeImpl extends DElementImpl implements DNode {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	protected EClass eStaticClass() {
-		return DiagramPackage.Literals.DNODE;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DNode getDType() {
-		if (dType != null && dType.eIsProxy()) {
-			InternalEObject oldDType = (InternalEObject)dType;
-			dType = (DNode)eResolveProxy(oldDType);
-			if (dType != oldDType) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiagramPackage.DNODE__DTYPE, oldDType, dType));
-			}
-		}
-		return dType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public DNode basicGetDType() {
 		return dType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public void setDType(DNode newDType) {
-		DNode oldDType = dType;
-		dType = newDType;
-		if(node != null && !node.eIsProxy())
-			node.setTypeNode(dType != null ? dType.getNode() : null);
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DNODE__DTYPE, oldDType, dType));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Node getNode() {
-		if (node != null && node.eIsProxy()) {
-			InternalEObject oldNode = (InternalEObject)node;
-			node = (Node)eResolveProxy(oldNode);
-			if (node != oldNode) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiagramPackage.DNODE__NODE, oldNode, node));
-			}
-		}
-		return node;
 	}
 
 	/**
@@ -246,61 +188,21 @@ public class DNodeImpl extends DElementImpl implements DNode {
 		return node;
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setNode(Node newNode) {
-		Node oldNode = node;
-		node = newNode;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DNODE__NODE, oldNode, node));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getConfigureString() {
-		return configureString;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setConfigureString(String newConfigureString) {
-		String oldConfigureString = configureString;
-		configureString = newConfigureString;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DNODE__CONFIGURE_STRING, oldConfigureString, configureString));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<DArrow> getDOutgoings() {
-		if (dOutgoings == null) {
-			dOutgoings = new EObjectWithInverseResolvingEList<DArrow>(DArrow.class, this, DiagramPackage.DNODE__DOUTGOINGS, DiagramPackage.DARROW__DSOURCE);
+	@Override
+	public NotificationChain eBasicSetContainer(InternalEObject newContainer, int newContainerFeatureID, NotificationChain msgs){
+		DGraph oldGraph = getDGraph();
+		if(oldGraph instanceof DGraph){
+			Graph graph = oldGraph.getGraph();
+			if(graph != null && getNode() != null  && graph.getNodes().contains(getNode()))
+				graph.getNodes().remove(getNode());
 		}
-		return dOutgoings;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<DArrow> getDIncomings() {
-		if (dIncomings == null) {
-			dIncomings = new EObjectWithInverseResolvingEList<DArrow>(DArrow.class, this, DiagramPackage.DNODE__DINCOMINGS, DiagramPackage.DARROW__DTARGET);
+		super.eBasicSetContainer(newContainer, newContainerFeatureID, msgs);
+		if(newContainer instanceof DGraph){
+			Graph graph = ((DGraph) newContainer).getGraph();
+			if(graph != null && getNode() != null && !graph.getNodes().contains(getNode()))
+				graph.getNodes().add(getNode());
 		}
-		return dIncomings;
+		return msgs;
 	}
 
 	/**
@@ -308,75 +210,29 @@ public class DNodeImpl extends DElementImpl implements DNode {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<DConstraint> getDConstraints() {
-		if (dConstraints == null) {
-			dConstraints = new EObjectWithInverseResolvingEList.ManyInverse<DConstraint>(DConstraint.class, this, DiagramPackage.DNODE__DCONSTRAINTS, DiagramPackage.DCONSTRAINT__DNODES);
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case DiagramPackage.DNODE__DTYPE:
+				if (resolve) return getDType();
+				return basicGetDType();
+			case DiagramPackage.DNODE__NODE:
+				if (resolve) return getNode();
+				return basicGetNode();
+			case DiagramPackage.DNODE__CONFIGURE_STRING:
+				return getConfigureString();
+			case DiagramPackage.DNODE__DOUTGOINGS:
+				return getDOutgoings();
+			case DiagramPackage.DNODE__DINCOMINGS:
+				return getDIncomings();
+			case DiagramPackage.DNODE__DCONSTRAINTS:
+				return getDConstraints();
+			case DiagramPackage.DNODE__LOCATION:
+				return getLocation();
+			case DiagramPackage.DNODE__SIZE:
+				return getSize();
 		}
-		return dConstraints;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Point getLocation() {
-		return location;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setLocation(Point newLocation) {
-		Point oldLocation = location;
-		location = newLocation;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DNODE__LOCATION, oldLocation, location));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Dimension getSize() {
-		return size;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSize(Dimension newSize) {
-		Dimension oldSize = size;
-		size = newSize;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DNODE__SIZE, oldSize, size));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public String getName() {
-		if(getNode() != null)
-			return getNode().getName();
-		return "";
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public String getTypeName() {
-		if(getDType() != null)
-			return getDType().getName();
-		return DPFConstants.NODE;
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -419,31 +275,29 @@ public class DNodeImpl extends DElementImpl implements DNode {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DiagramPackage.DNODE__DTYPE:
-				if (resolve) return getDType();
-				return basicGetDType();
+				return dType != null && dType != DPFConstants.REFLEXIVE_TYPE_DNODE;
 			case DiagramPackage.DNODE__NODE:
-				if (resolve) return getNode();
-				return basicGetNode();
+				return node != null;
 			case DiagramPackage.DNODE__CONFIGURE_STRING:
-				return getConfigureString();
+				return CONFIGURE_STRING_EDEFAULT == null ? configureString != null : !CONFIGURE_STRING_EDEFAULT.equals(configureString);
 			case DiagramPackage.DNODE__DOUTGOINGS:
-				return getDOutgoings();
+				return dOutgoings != null && !dOutgoings.isEmpty();
 			case DiagramPackage.DNODE__DINCOMINGS:
-				return getDIncomings();
+				return dIncomings != null && !dIncomings.isEmpty();
 			case DiagramPackage.DNODE__DCONSTRAINTS:
-				return getDConstraints();
+				return dConstraints != null && !dConstraints.isEmpty();
 			case DiagramPackage.DNODE__LOCATION:
-				return getLocation();
+				return LOCATION_EDEFAULT == null ? location != null : !LOCATION_EDEFAULT.equals(location);
 			case DiagramPackage.DNODE__SIZE:
-				return getSize();
+				return SIZE_EDEFAULT == null ? size != null : !SIZE_EDEFAULT.equals(size);
 		}
-		return super.eGet(featureID, resolve, coreType);
+		return super.eIsSet(featureID);
 	}
 
 	/**
@@ -489,6 +343,16 @@ public class DNodeImpl extends DElementImpl implements DNode {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return DiagramPackage.Literals.DNODE;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	@Override
@@ -525,29 +389,202 @@ public class DNodeImpl extends DElementImpl implements DNode {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getConfigureString() {
+		return configureString;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<DConstraint> getDConstraints() {
+		if (dConstraints == null) {
+			dConstraints = new EObjectWithInverseResolvingEList.ManyInverse<DConstraint>(DConstraint.class, this, DiagramPackage.DNODE__DCONSTRAINTS, DiagramPackage.DCONSTRAINT__DNODES);
+		}
+		return dConstraints;
+	}
+
+	@Override
+	public DGraph getDGraph() {
+		return (DGraph) eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<DArrow> getDIncomings() {
+		if (dIncomings == null) {
+			dIncomings = new EObjectWithInverseResolvingEList<DArrow>(DArrow.class, this, DiagramPackage.DNODE__DINCOMINGS, DiagramPackage.DARROW__DTARGET);
+		}
+		return dIncomings;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<DArrow> getDOutgoings() {
+		if (dOutgoings == null) {
+			dOutgoings = new EObjectWithInverseResolvingEList<DArrow>(DArrow.class, this, DiagramPackage.DNODE__DOUTGOINGS, DiagramPackage.DARROW__DSOURCE);
+		}
+		return dOutgoings;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public DNode getDType() {
+		if (dType != null && dType.eIsProxy()) {
+			InternalEObject oldDType = (InternalEObject)dType;
+			dType = (DNode)eResolveProxy(oldDType);
+			if (dType != oldDType) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiagramPackage.DNODE__DTYPE, oldDType, dType));
+			}
+		}
+		return dType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Point getLocation() {
+		return location;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case DiagramPackage.DNODE__DTYPE:
-				return dType != null && dType != DPFConstants.REFLEXIVE_TYPE_DNODE;
-			case DiagramPackage.DNODE__NODE:
-				return node != null;
-			case DiagramPackage.DNODE__CONFIGURE_STRING:
-				return CONFIGURE_STRING_EDEFAULT == null ? configureString != null : !CONFIGURE_STRING_EDEFAULT.equals(configureString);
-			case DiagramPackage.DNODE__DOUTGOINGS:
-				return dOutgoings != null && !dOutgoings.isEmpty();
-			case DiagramPackage.DNODE__DINCOMINGS:
-				return dIncomings != null && !dIncomings.isEmpty();
-			case DiagramPackage.DNODE__DCONSTRAINTS:
-				return dConstraints != null && !dConstraints.isEmpty();
-			case DiagramPackage.DNODE__LOCATION:
-				return LOCATION_EDEFAULT == null ? location != null : !LOCATION_EDEFAULT.equals(location);
-			case DiagramPackage.DNODE__SIZE:
-				return SIZE_EDEFAULT == null ? size != null : !SIZE_EDEFAULT.equals(size);
+	public String getName() {
+		if(getNode() != null)
+			return getNode().getName();
+		return "";
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Node getNode() {
+		if (node != null && node.eIsProxy()) {
+			InternalEObject oldNode = (InternalEObject)node;
+			node = (Node)eResolveProxy(oldNode);
+			if (node != oldNode) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiagramPackage.DNODE__NODE, oldNode, node));
+			}
 		}
-		return super.eIsSet(featureID);
+		return node;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Dimension getSize() {
+		return size;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public String getTypeName() {
+		if(getDType() != null)
+			return getDType().getName();
+		return no.hib.dpf.utils.DPFConstants.NODE;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setConfigureString(String newConfigureString) {
+		String oldConfigureString = configureString;
+		configureString = newConfigureString;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DNODE__CONFIGURE_STRING, oldConfigureString, configureString));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void setDType(DNode newDType) {
+		DNode oldDType = dType;
+		dType = newDType;
+		if(node != null && !node.eIsProxy())
+			node.setTypeNode(dType != null ? dType.getNode() : null);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DNODE__DTYPE, oldDType, dType));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setLocation(Point newLocation) {
+		Point oldLocation = location;
+		location = newLocation;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DNODE__LOCATION, oldLocation, location));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setNode(Node newNode) {
+		Node oldNode = node;
+		node = newNode;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DNODE__NODE, oldNode, node));
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setSize(Dimension newSize) {
+		Dimension oldSize = size;
+		size = newSize;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DNODE__SIZE, oldSize, size));
 	}
 
 	/**
@@ -568,26 +605,6 @@ public class DNodeImpl extends DElementImpl implements DNode {
 		result.append(size);
 		result.append(')');
 		return result.toString();
-	}
-	
-	public NotificationChain eBasicSetContainer(InternalEObject newContainer, int newContainerFeatureID, NotificationChain msgs){
-		DGraph oldGraph = getDGraph();
-		if(oldGraph instanceof DGraph){
-			Graph graph = ((DGraph) oldGraph).getGraph();
-			if(graph != null && getNode() != null  && graph.getNodes().contains(getNode()))
-				graph.getNodes().remove(getNode());
-		}
-		super.eBasicSetContainer(newContainer, newContainerFeatureID, msgs);
-		if(newContainer instanceof DGraph){
-			Graph graph = ((DGraph) newContainer).getGraph();
-			if(graph != null && getNode() != null && !graph.getNodes().contains(getNode()))
-				graph.getNodes().add(getNode());
-		}
-		return msgs;
-	}
-
-	public DGraph getDGraph() {
-		return (DGraph) eContainer();
 	}
 
 } //DNodeImpl

@@ -8,7 +8,6 @@ package no.hib.dpf.diagram;
 
 import no.hib.dpf.core.Arrow;
 
-import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -26,8 +25,8 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link no.hib.dpf.diagram.DArrow#getDSource <em>DSource</em>}</li>
  *   <li>{@link no.hib.dpf.diagram.DArrow#getDTarget <em>DTarget</em>}</li>
  *   <li>{@link no.hib.dpf.diagram.DArrow#getDConstraints <em>DConstraints</em>}</li>
- *   <li>{@link no.hib.dpf.diagram.DArrow#getBendpoints <em>Bendpoints</em>}</li>
  *   <li>{@link no.hib.dpf.diagram.DArrow#getNameOffset <em>Name Offset</em>}</li>
+ *   <li>{@link no.hib.dpf.diagram.DArrow#getBendpoints <em>Bendpoints</em>}</li>
  * </ul>
  * </p>
  *
@@ -215,20 +214,20 @@ public interface DArrow extends DElement {
 	EList<DConstraint> getDConstraints();
 
 	/**
-	 * Returns the value of the '<em><b>Bendpoints</b></em>' attribute list.
-	 * The list contents are of type {@link org.eclipse.draw2d.geometry.Point}.
+	 * Returns the value of the '<em><b>Bendpoints</b></em>' containment reference list.
+	 * The list contents are of type {@link no.hib.dpf.diagram.DOffset}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Bendpoints</em>' attribute list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Bendpoints</em>' attribute list.
+	 * @return the value of the '<em>Bendpoints</em>' containment reference list.
 	 * @see no.hib.dpf.diagram.DiagramPackage#getDArrow_Bendpoints()
-	 * @model dataType="no.hib.dpf.diagram.ELocation"
+	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Point> getBendpoints();
+	EList<DOffset> getBendpoints();
 
 	/**
 	 * Returns the value of the '<em><b>Name Offset</b></em>' containment reference.

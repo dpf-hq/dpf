@@ -9,7 +9,6 @@ package no.hib.dpf.diagram.provider;
 import no.hib.dpf.core.provider.MetamodelEditPlugin;
 
 import org.eclipse.emf.common.EMFPlugin;
-
 import org.eclipse.emf.common.util.ResourceLocator;
 
 /**

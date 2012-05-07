@@ -17,21 +17,21 @@ package no.hib.dpf.editor.commands;
 
 
 import no.hib.dpf.diagram.DArrow;
+import no.hib.dpf.diagram.DOffset;
 
-import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.commands.Command;
 
 public class BendpointCommand extends Command {
 
 	protected int index;
-	protected Point location;
+	protected DOffset location;
 	protected DArrow arrow;
 
 	protected int getIndex() {
 		return index;
 	}
 
-	protected Point getLocation() {
+	protected DOffset getLocation() {
 		return location;
 	}
 
@@ -47,7 +47,7 @@ public class BendpointCommand extends Command {
 		index = i;
 	}
 
-	public void setLocation(Point p) {
+	public void setLocation(DOffset p) {
 		location = p;
 	}
 

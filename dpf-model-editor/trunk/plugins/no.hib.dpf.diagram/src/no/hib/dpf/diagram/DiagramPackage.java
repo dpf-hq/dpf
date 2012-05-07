@@ -590,22 +590,22 @@ public interface DiagramPackage extends EPackage {
 	int DARROW__DCONSTRAINTS = DELEMENT_FEATURE_COUNT + 6;
 
 	/**
-	 * The feature id for the '<em><b>Bendpoints</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DARROW__BENDPOINTS = DELEMENT_FEATURE_COUNT + 7;
-
-	/**
 	 * The feature id for the '<em><b>Name Offset</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DARROW__NAME_OFFSET = DELEMENT_FEATURE_COUNT + 8;
+	int DARROW__NAME_OFFSET = DELEMENT_FEATURE_COUNT + 7;
+
+	/**
+	 * The feature id for the '<em><b>Bendpoints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DARROW__BENDPOINTS = DELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The number of structural features of the '<em>DArrow</em>' class.
@@ -975,13 +975,31 @@ public interface DiagramPackage extends EPackage {
 	int DOFFSET__OFFSET = 0;
 
 	/**
+	 * The feature id for the '<em><b>Len</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOFFSET__LEN = 1;
+
+	/**
+	 * The feature id for the '<em><b>Index</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOFFSET__INDEX = 2;
+
+	/**
 	 * The number of structural features of the '<em>DOffset</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DOFFSET_FEATURE_COUNT = 1;
+	int DOFFSET_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link no.hib.dpf.diagram.impl.DSignatureImpl <em>DSignature</em>}' class.
@@ -1488,15 +1506,15 @@ public interface DiagramPackage extends EPackage {
 	EReference getDArrow_DConstraints();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link no.hib.dpf.diagram.DArrow#getBendpoints <em>Bendpoints</em>}'.
+	 * Returns the meta object for the containment reference list '{@link no.hib.dpf.diagram.DArrow#getBendpoints <em>Bendpoints</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Bendpoints</em>'.
+	 * @return the meta object for the containment reference list '<em>Bendpoints</em>'.
 	 * @see no.hib.dpf.diagram.DArrow#getBendpoints()
 	 * @see #getDArrow()
 	 * @generated
 	 */
-	EAttribute getDArrow_Bendpoints();
+	EReference getDArrow_Bendpoints();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link no.hib.dpf.diagram.DArrow#getNameOffset <em>Name Offset</em>}'.
@@ -1744,6 +1762,28 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getDOffset_Offset();
+
+	/**
+	 * Returns the meta object for the attribute '{@link no.hib.dpf.diagram.DOffset#getLen <em>Len</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Len</em>'.
+	 * @see no.hib.dpf.diagram.DOffset#getLen()
+	 * @see #getDOffset()
+	 * @generated
+	 */
+	EAttribute getDOffset_Len();
+
+	/**
+	 * Returns the meta object for the attribute '{@link no.hib.dpf.diagram.DOffset#getIndex <em>Index</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Index</em>'.
+	 * @see no.hib.dpf.diagram.DOffset#getIndex()
+	 * @see #getDOffset()
+	 * @generated
+	 */
+	EAttribute getDOffset_Index();
 
 	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.diagram.DSignature <em>DSignature</em>}'.
@@ -2205,12 +2245,12 @@ public interface DiagramPackage extends EPackage {
 		EReference DARROW__DCONSTRAINTS = eINSTANCE.getDArrow_DConstraints();
 
 		/**
-		 * The meta object literal for the '<em><b>Bendpoints</b></em>' attribute list feature.
+		 * The meta object literal for the '<em><b>Bendpoints</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute DARROW__BENDPOINTS = eINSTANCE.getDArrow_Bendpoints();
+		EReference DARROW__BENDPOINTS = eINSTANCE.getDArrow_Bendpoints();
 
 		/**
 		 * The meta object literal for the '<em><b>Name Offset</b></em>' containment reference feature.
@@ -2407,6 +2447,22 @@ public interface DiagramPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute DOFFSET__OFFSET = eINSTANCE.getDOffset_Offset();
+
+		/**
+		 * The meta object literal for the '<em><b>Len</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DOFFSET__LEN = eINSTANCE.getDOffset_Len();
+
+		/**
+		 * The meta object literal for the '<em><b>Index</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DOFFSET__INDEX = eINSTANCE.getDOffset_Index();
 
 		/**
 		 * The meta object literal for the '{@link no.hib.dpf.diagram.impl.DSignatureImpl <em>DSignature</em>}' class.

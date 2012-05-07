@@ -38,53 +38,39 @@ package no.hib.dpf.editor.commands;
  */
 
 import no.hib.dpf.diagram.DOffset;
+import no.hib.dpf.diagram.impl.DOffsetImpl;
 
-import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.commands.Command;
 
 public class ArrowTextMoveCommand extends Command {
 
 	DOffset dOffset;
-	Point oldOffset;
-	Point newOffset;
+	DOffset newOffset;
+	DOffset oldOffset;
 
-	public ArrowTextMoveCommand(DOffset offset, Point location) {
-		dOffset = offset;
-		oldOffset = dOffset.getOffset();
-		newOffset = location;
+
+	public ArrowTextMoveCommand(DOffset model, DOffset newOffset) {
+		dOffset = model;
+		this.newOffset = newOffset;
+		oldOffset = new DOffsetImpl(model.getOffset(), model.getLen());
+		oldOffset.setIndex(model.getIndex());
 	}
 
 	public void execute() {
-		if(dOffset != null && newOffset != null){
-			dOffset.setOffset(newOffset);;
+		if(dOffset != null && newOffset.getOffset() != null){
+			dOffset.setOffset(newOffset.getOffset());
+			dOffset.setLen(newOffset.getLen());
+			dOffset.setIndex(newOffset.getIndex());
 		}
 	}
 
 
 	public void undo() {
-		if(dOffset != null && oldOffset != null){
-			dOffset.setOffset(oldOffset);;
+		if(dOffset != null && oldOffset.getOffset() != null){
+			dOffset.setOffset(oldOffset.getOffset());
+			dOffset.setLen(oldOffset.getLen());
+			dOffset.setIndex(oldOffset.getIndex());
 		}
 	}
-	/*DOffset dOffset;
-	Point oldOffset;
-	Point newOffset;
-
-	public ArrowTextMoveCommand(DOffset offset, Point location) {
-		dOffset = offset;
-		oldOffset = dOffset.getOffset();
-		newOffset = location;
-	}
-
-	public void execute() {
-		if(dOffset != null && newOffset != null)
-			dOffset.setOffset(newOffset);
-	}
-
-
-	public void undo() {
-		if(dOffset != null && oldOffset != null)
-			dOffset.setOffset(oldOffset);
-	}*/
 	
 }

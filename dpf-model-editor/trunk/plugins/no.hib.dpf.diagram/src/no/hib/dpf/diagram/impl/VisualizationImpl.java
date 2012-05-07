@@ -87,86 +87,8 @@ public class VisualizationImpl extends EObjectImpl implements Visualization {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	protected EClass eStaticClass() {
-		return DiagramPackage.Literals.VISUALIZATION;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public VisualizationType getType() {
-		return type;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setType(VisualizationType newType) {
-		VisualizationType oldType = type;
-		type = newType == null ? TYPE_EDEFAULT : newType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.VISUALIZATION__TYPE, oldType, type));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public IDObject getSource() {
-		if (source != null && source.eIsProxy()) {
-			InternalEObject oldSource = (InternalEObject)source;
-			source = (IDObject)eResolveProxy(oldSource);
-			if (source != oldSource) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiagramPackage.VISUALIZATION__SOURCE, oldSource, source));
-			}
-		}
-		return source;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IDObject basicGetSource() {
 		return source;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public void setSource(IDObject newSource) {
-		if(newSource == source) return;
-		IDObject oldSource = source;
-		source = newSource;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.VISUALIZATION__SOURCE, oldSource, source));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public IDObject getTarget() {
-		if (target != null && target.eIsProxy()) {
-			InternalEObject oldTarget = (InternalEObject)target;
-			target = (IDObject)eResolveProxy(oldTarget);
-			if (target != oldTarget) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiagramPackage.VISUALIZATION__TARGET, oldTarget, target));
-			}
-		}
-		return target;
 	}
 
 	/**
@@ -176,21 +98,6 @@ public class VisualizationImpl extends EObjectImpl implements Visualization {
 	 */
 	public IDObject basicGetTarget() {
 		return target;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public void setTarget(IDObject newTarget) {
-//		if(newTarget.eIsProxy())
-//			newTarget = (IDObject) eResolveProxy((InternalEObject) newTarget);
-		if(newTarget == target) return;
-		IDObject oldTarget = target;
-		target = newTarget;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.VISUALIZATION__TARGET, oldTarget, target));
 	}
 
 	/**
@@ -211,6 +118,24 @@ public class VisualizationImpl extends EObjectImpl implements Visualization {
 				return basicGetTarget();
 		}
 		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case DiagramPackage.VISUALIZATION__TYPE:
+				return type != TYPE_EDEFAULT;
+			case DiagramPackage.VISUALIZATION__SOURCE:
+				return source != null;
+			case DiagramPackage.VISUALIZATION__TARGET:
+				return target != null;
+		}
+		return super.eIsSet(featureID);
 	}
 
 	/**
@@ -240,6 +165,16 @@ public class VisualizationImpl extends EObjectImpl implements Visualization {
 	 * @generated
 	 */
 	@Override
+	protected EClass eStaticClass() {
+		return DiagramPackage.Literals.VISUALIZATION;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DiagramPackage.VISUALIZATION__TYPE:
@@ -261,16 +196,87 @@ public class VisualizationImpl extends EObjectImpl implements Visualization {
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case DiagramPackage.VISUALIZATION__TYPE:
-				return type != TYPE_EDEFAULT;
-			case DiagramPackage.VISUALIZATION__SOURCE:
-				return source != null;
-			case DiagramPackage.VISUALIZATION__TARGET:
-				return target != null;
+	public IDObject getSource() {
+		if (source != null && source.eIsProxy()) {
+			InternalEObject oldSource = (InternalEObject)source;
+			source = (IDObject)eResolveProxy(oldSource);
+			if (source != oldSource) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiagramPackage.VISUALIZATION__SOURCE, oldSource, source));
+			}
 		}
-		return super.eIsSet(featureID);
+		return source;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public IDObject getTarget() {
+		if (target != null && target.eIsProxy()) {
+			InternalEObject oldTarget = (InternalEObject)target;
+			target = (IDObject)eResolveProxy(oldTarget);
+			if (target != oldTarget) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiagramPackage.VISUALIZATION__TARGET, oldTarget, target));
+			}
+		}
+		return target;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public VisualizationType getType() {
+		return type;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void setSource(IDObject newSource) {
+		if(newSource == source) return;
+		IDObject oldSource = source;
+		source = newSource;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.VISUALIZATION__SOURCE, oldSource, source));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void setTarget(IDObject newTarget) {
+//		if(newTarget.eIsProxy())
+//			newTarget = (IDObject) eResolveProxy((InternalEObject) newTarget);
+		if(newTarget == target) return;
+		IDObject oldTarget = target;
+		target = newTarget;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.VISUALIZATION__TARGET, oldTarget, target));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setType(VisualizationType newType) {
+		VisualizationType oldType = type;
+		type = newType == null ? TYPE_EDEFAULT : newType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.VISUALIZATION__TYPE, oldType, type));
 	}
 
 	/**

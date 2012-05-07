@@ -52,6 +52,26 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class DConstraintImpl extends EObjectImpl implements DConstraint {
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public enum ConstraintType {
+		COMPOSITION,
+		IMAGE_INCLUSION,
+		INJECTIVE,
+		INVERSE,
+		IRREFLEXIVE,
+		JOINTLY_INJECTIVE,
+		JOINTLY_SURJECTIVE,
+		MULTIPLICITY,
+		NAND,
+		SURJECTIVE,
+		TRANSITIVE_IRREFLEXIVE,
+		XOR
+	}
+
+	/**
 	 * The cached value of the '{@link #getConstraint() <em>Constraint</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,7 +80,6 @@ public class DConstraintImpl extends EObjectImpl implements DConstraint {
 	 * @ordered
 	 */
 	protected Constraint constraint;
-
 	/**
 	 * The cached value of the '{@link #getDNodes() <em>DNodes</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -98,52 +117,29 @@ public class DConstraintImpl extends EObjectImpl implements DConstraint {
 	protected DConstraintImpl() {
 		super();
 	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void addDArrow(DArrow dArrow) {
+		if(getConstraint() != null && dArrow.getArrow() != null)
+			getConstraint().addArrow(dArrow.getArrow());
+		getDArrows().add(dArrow);
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public enum ConstraintType {
-		JOINTLY_INJECTIVE,
-		JOINTLY_SURJECTIVE,
-		MULTIPLICITY,
-		INVERSE,
-		IMAGE_INCLUSION,
-		COMPOSITION,
-		INJECTIVE,
-		IRREFLEXIVE,
-		TRANSITIVE_IRREFLEXIVE,
-		SURJECTIVE,
-		XOR,
-		NAND
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
-	protected EClass eStaticClass() {
-		return DiagramPackage.Literals.DCONSTRAINT;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Constraint getConstraint() {
-		if (constraint != null && constraint.eIsProxy()) {
-			InternalEObject oldConstraint = (InternalEObject)constraint;
-			constraint = (Constraint)eResolveProxy(oldConstraint);
-			if (constraint != oldConstraint) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiagramPackage.DCONSTRAINT__CONSTRAINT, oldConstraint, constraint));
-			}
-		}
-		return constraint;
+	public void addDNode(DNode dNode) {
+		if(getConstraint() != null && dNode.getNode() != null)
+			getConstraint().addNode(dNode.getNode());
+		getDNodes().add(dNode);
 	}
 
 	/**
@@ -160,59 +156,6 @@ public class DConstraintImpl extends EObjectImpl implements DConstraint {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setConstraint(Constraint newConstraint) {
-		Constraint oldConstraint = constraint;
-		constraint = newConstraint;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DCONSTRAINT__CONSTRAINT, oldConstraint, constraint));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<DNode> getDNodes() {
-		if (dNodes == null) {
-			dNodes = new EObjectWithInverseResolvingEList.ManyInverse<DNode>(DNode.class, this, DiagramPackage.DCONSTRAINT__DNODES, DiagramPackage.DNODE__DCONSTRAINTS);
-		}
-		return dNodes;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<DArrow> getDArrows() {
-		if (dArrows == null) {
-			dArrows = new EObjectWithInverseResolvingEList.ManyInverse<DArrow>(DArrow.class, this, DiagramPackage.DCONSTRAINT__DARROWS, DiagramPackage.DARROW__DCONSTRAINTS);
-		}
-		return dArrows;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DPredicate getDPredicate() {
-		if (dPredicate != null && dPredicate.eIsProxy()) {
-			InternalEObject oldDPredicate = (InternalEObject)dPredicate;
-			dPredicate = (DPredicate)eResolveProxy(oldDPredicate);
-			if (dPredicate != oldDPredicate) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiagramPackage.DCONSTRAINT__DPREDICATE, oldDPredicate, dPredicate));
-			}
-		}
-		return dPredicate;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public DPredicate basicGetDPredicate() {
 		return dPredicate;
 	}
@@ -222,43 +165,7 @@ public class DConstraintImpl extends EObjectImpl implements DConstraint {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public void setDPredicate(DPredicate newDPredicate) {
-		DPredicate oldDPredicate = dPredicate;
-		dPredicate = newDPredicate;
-		if(constraint != null && !constraint.eIsProxy())
-			constraint.setPredicate(dPredicate != null ? dPredicate.getPredicate() : null);
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DCONSTRAINT__DPREDICATE, oldDPredicate, dPredicate));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public void reconnect(EList<DNode> dNodes, EList<DArrow> dArrows, DSpecification dSpecification) {
-		Assert.isNotNull(dSpecification);
-		EList<Node> nodes = new BasicEList<Node>();
-		EList<Arrow> arrows = new BasicEList<Arrow>();
-		for(DNode node : dNodes) nodes.add(node.getNode());
-		for(DArrow arrow : dArrows) arrows.add(arrow.getArrow());
-		getConstraint().reconnect(nodes, arrows, dSpecification.getSpecification());
-		if(!getDNodes().isEmpty())
-			getDNodes().clear();
-		getDNodes().addAll(dNodes);
-		if(!getDArrows().isEmpty())
-			getDArrows().clear();
-		getDArrows().addAll(dArrows);
-		if(!dSpecification.getDConstraints().contains(this))
-			dSpecification.getDConstraints().add(this);
-	}
-
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
+	@Override
 	public void disconnect() {
 		DSpecification dSpecification = (DSpecification) eContainer();
 		Assert.isNotNull(dSpecification);
@@ -272,23 +179,23 @@ public class DConstraintImpl extends EObjectImpl implements DConstraint {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
-	public void addDArrow(DArrow dArrow) {
-		if(getConstraint() != null && dArrow.getArrow() != null)
-			getConstraint().addArrow(dArrow.getArrow());
-		getDArrows().add(dArrow);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public void addDNode(DNode dNode) {
-		if(getConstraint() != null && dNode.getNode() != null)
-			getConstraint().addNode(dNode.getNode());
-		getDNodes().add(dNode);
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case DiagramPackage.DCONSTRAINT__CONSTRAINT:
+				if (resolve) return getConstraint();
+				return basicGetConstraint();
+			case DiagramPackage.DCONSTRAINT__DNODES:
+				return getDNodes();
+			case DiagramPackage.DCONSTRAINT__DARROWS:
+				return getDArrows();
+			case DiagramPackage.DCONSTRAINT__DPREDICATE:
+				if (resolve) return getDPredicate();
+				return basicGetDPredicate();
+		}
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -330,20 +237,18 @@ public class DConstraintImpl extends EObjectImpl implements DConstraint {
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DiagramPackage.DCONSTRAINT__CONSTRAINT:
-				if (resolve) return getConstraint();
-				return basicGetConstraint();
+				return constraint != null;
 			case DiagramPackage.DCONSTRAINT__DNODES:
-				return getDNodes();
+				return dNodes != null && !dNodes.isEmpty();
 			case DiagramPackage.DCONSTRAINT__DARROWS:
-				return getDArrows();
+				return dArrows != null && !dArrows.isEmpty();
 			case DiagramPackage.DCONSTRAINT__DPREDICATE:
-				if (resolve) return getDPredicate();
-				return basicGetDPredicate();
+				return dPredicate != null;
 		}
-		return super.eGet(featureID, resolve, coreType);
+		return super.eIsSet(featureID);
 	}
 
 	/**
@@ -373,6 +278,17 @@ public class DConstraintImpl extends EObjectImpl implements DConstraint {
 		super.eSet(featureID, newValue);
 	}
 
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return DiagramPackage.Literals.DCONSTRAINT;
+	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -397,31 +313,6 @@ public class DConstraintImpl extends EObjectImpl implements DConstraint {
 		super.eUnset(featureID);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case DiagramPackage.DCONSTRAINT__CONSTRAINT:
-				return constraint != null;
-			case DiagramPackage.DCONSTRAINT__DNODES:
-				return dNodes != null && !dNodes.isEmpty();
-			case DiagramPackage.DCONSTRAINT__DARROWS:
-				return dArrows != null && !dArrows.isEmpty();
-			case DiagramPackage.DCONSTRAINT__DPREDICATE:
-				return dPredicate != null;
-		}
-		return super.eIsSet(featureID);
-	}
-	protected DNode findDNode(Node node, List<DNode> dnodes){
-		for(DNode dNode : dnodes)
-			if(dNode.getNode() == node)
-				return dNode;
-				return null;
-	}
 	protected DArrow findDArrow(Arrow arrow, List<DArrow> darrows){
 		for(DArrow dArrow : darrows)
 			if(dArrow.getArrow() == arrow)
@@ -435,6 +326,124 @@ public class DConstraintImpl extends EObjectImpl implements DConstraint {
 		if(idObject instanceof Arrow)
 			return findDArrow(graHomomorphism.getArrowMapping().get(idObject), this.getDArrows());
 		return null;
+	}
+
+	protected DNode findDNode(Node node, List<DNode> dnodes){
+		for(DNode dNode : dnodes)
+			if(dNode.getNode() == node)
+				return dNode;
+				return null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Constraint getConstraint() {
+		if (constraint != null && constraint.eIsProxy()) {
+			InternalEObject oldConstraint = (InternalEObject)constraint;
+			constraint = (Constraint)eResolveProxy(oldConstraint);
+			if (constraint != oldConstraint) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiagramPackage.DCONSTRAINT__CONSTRAINT, oldConstraint, constraint));
+			}
+		}
+		return constraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<DArrow> getDArrows() {
+		if (dArrows == null) {
+			dArrows = new EObjectWithInverseResolvingEList.ManyInverse<DArrow>(DArrow.class, this, DiagramPackage.DCONSTRAINT__DARROWS, DiagramPackage.DARROW__DCONSTRAINTS);
+		}
+		return dArrows;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<DNode> getDNodes() {
+		if (dNodes == null) {
+			dNodes = new EObjectWithInverseResolvingEList.ManyInverse<DNode>(DNode.class, this, DiagramPackage.DCONSTRAINT__DNODES, DiagramPackage.DNODE__DCONSTRAINTS);
+		}
+		return dNodes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public DPredicate getDPredicate() {
+		if (dPredicate != null && dPredicate.eIsProxy()) {
+			InternalEObject oldDPredicate = (InternalEObject)dPredicate;
+			dPredicate = (DPredicate)eResolveProxy(oldDPredicate);
+			if (dPredicate != oldDPredicate) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiagramPackage.DCONSTRAINT__DPREDICATE, oldDPredicate, dPredicate));
+			}
+		}
+		return dPredicate;
+	}
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void reconnect(EList<DNode> dNodes, EList<DArrow> dArrows, DSpecification dSpecification) {
+		Assert.isNotNull(dSpecification);
+		EList<Node> nodes = new BasicEList<Node>();
+		EList<Arrow> arrows = new BasicEList<Arrow>();
+		for(DNode node : dNodes) nodes.add(node.getNode());
+		for(DArrow arrow : dArrows) arrows.add(arrow.getArrow());
+		getConstraint().reconnect(nodes, arrows, dSpecification.getSpecification());
+		if(!getDNodes().isEmpty())
+			getDNodes().clear();
+		getDNodes().addAll(dNodes);
+		if(!getDArrows().isEmpty())
+			getDArrows().clear();
+		getDArrows().addAll(dArrows);
+		if(!dSpecification.getDConstraints().contains(this))
+			dSpecification.getDConstraints().add(this);
+	}
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setConstraint(Constraint newConstraint) {
+		Constraint oldConstraint = constraint;
+		constraint = newConstraint;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DCONSTRAINT__CONSTRAINT, oldConstraint, constraint));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void setDPredicate(DPredicate newDPredicate) {
+		DPredicate oldDPredicate = dPredicate;
+		dPredicate = newDPredicate;
+		if(constraint != null && !constraint.eIsProxy())
+			constraint.setPredicate(dPredicate != null ? dPredicate.getPredicate() : null);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DCONSTRAINT__DPREDICATE, oldDPredicate, dPredicate));
 	}
 
 } //DConstraintImpl

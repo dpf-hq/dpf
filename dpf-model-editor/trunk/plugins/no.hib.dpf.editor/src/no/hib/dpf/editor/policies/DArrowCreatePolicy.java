@@ -33,11 +33,15 @@ public class DArrowCreatePolicy extends GraphicalNodeEditPolicy {
 	}
 
 	protected Command getReconnectSourceCommand( ReconnectRequest request) {
-		DArrow conn = (DArrow) request.getConnectionEditPart() .getModel();
-		DNode newSource = (DNode) getHost().getModel();
-		ConnectionReconnectCommand cmd = new ConnectionReconnectCommand( conn);
-		cmd.setNewSource(newSource);
-		return cmd;
+		Object model = request.getConnectionEditPart().getModel();
+		if(model instanceof DArrow){
+			DArrow conn = (DArrow) model;
+			DNode newSource = (DNode) getHost().getModel();
+			ConnectionReconnectCommand cmd = new ConnectionReconnectCommand(conn);
+			cmd.setNewSource(newSource);
+			return cmd;
+		}
+		return null;
 	}
 
 	protected Command getReconnectTargetCommand( ReconnectRequest request) {

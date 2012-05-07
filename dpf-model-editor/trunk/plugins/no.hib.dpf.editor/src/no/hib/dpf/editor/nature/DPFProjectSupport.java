@@ -11,8 +11,6 @@ import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 
-import no.hib.dpf.editor.nature.DPFProjectNature;
-
 public class DPFProjectSupport {
 	public static IProject createProject(String projectName, URI location) {
 		Assert.isNotNull(projectName);

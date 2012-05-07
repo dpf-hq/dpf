@@ -238,26 +238,8 @@ public class DSpecificationImpl extends EObjectImpl implements DSpecification {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	protected EClass eStaticClass() {
-		return DiagramPackage.Literals.DSPECIFICATION;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DSpecification getDType() {
-		if (dType != null && dType.eIsProxy()) {
-			InternalEObject oldDType = (InternalEObject)dType;
-			dType = (DSpecification)eResolveProxy(oldDType);
-			if (dType != oldDType) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiagramPackage.DSPECIFICATION__DTYPE, oldDType, dType));
-			}
-		}
-		return dType;
+	public DSignature basicGetDSignature() {
+		return dSignature;
 	}
 
 	/**
@@ -272,27 +254,10 @@ public class DSpecificationImpl extends EObjectImpl implements DSpecification {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public void setDType(DSpecification newDType) {
-		if(newDType == dType) return;
-		DSpecification oldDType = dType;
-		dType = newDType;
-		if(getSpecification() != null)
-			getSpecification().setType(getDType() == null ? null : getDType().getSpecification());
-		if(getDGraph() != null)
-			getDGraph().setDType(getDType() == null ? null : getDType().getDGraph());
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DSPECIFICATION__DTYPE, oldDType, dType));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DGraph getDGraph() {
-		return dGraph;
+	public Specification basicGetSpecification() {
+		return specification;
 	}
 
 	/**
@@ -315,283 +280,7 @@ public class DSpecificationImpl extends EObjectImpl implements DSpecification {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public void setDGraph(DGraph newDGraph) {
-		if (newDGraph != dGraph) {
-			NotificationChain msgs = null;
-			if (dGraph != null)
-				msgs = ((InternalEObject)dGraph).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DiagramPackage.DSPECIFICATION__DGRAPH, null, msgs);
-			if (newDGraph != null)
-				msgs = ((InternalEObject)newDGraph).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DiagramPackage.DSPECIFICATION__DGRAPH, null, msgs);
-			msgs = basicSetDGraph(newDGraph, msgs);
-			if(specification != null && !specification.eIsProxy())
-				specification.setGraph(dGraph != null ? dGraph.getGraph() : null);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DSPECIFICATION__DGRAPH, newDGraph, newDGraph));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<DConstraint> getDConstraints() {
-		if (dConstraints == null) {
-			dConstraints = new EObjectContainmentEList<DConstraint>(DConstraint.class, this, DiagramPackage.DSPECIFICATION__DCONSTRAINTS);
-		}
-		return dConstraints;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Specification getSpecification() {
-		if (specification != null && specification.eIsProxy()) {
-			InternalEObject oldSpecification = (InternalEObject)specification;
-			specification = (Specification)eResolveProxy(oldSpecification);
-			if (specification != oldSpecification) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiagramPackage.DSPECIFICATION__SPECIFICATION, oldSpecification, specification));
-			}
-		}
-		return specification;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Specification basicGetSpecification() {
-		return specification;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSpecification(Specification newSpecification) {
-		Specification oldSpecification = specification;
-		specification = newSpecification;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DSPECIFICATION__SPECIFICATION, oldSpecification, specification));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isGrid() {
-		return grid;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setGrid(boolean newGrid) {
-		boolean oldGrid = grid;
-		grid = newGrid;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DSPECIFICATION__GRID, oldGrid, grid));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSnap() {
-		return snap;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSnap(boolean newSnap) {
-		boolean oldSnap = snap;
-		snap = newSnap;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DSPECIFICATION__SNAP, oldSnap, snap));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public double getZoom() {
-		return zoom;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setZoom(double newZoom) {
-		double oldZoom = zoom;
-		zoom = newZoom;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DSPECIFICATION__ZOOM, oldZoom, zoom));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isGridVisible() {
-		return gridVisible;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setGridVisible(boolean newGridVisible) {
-		boolean oldGridVisible = gridVisible;
-		gridVisible = newGridVisible;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DSPECIFICATION__GRID_VISIBLE, oldGridVisible, gridVisible));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DSignature getDSignature() {
-		if (dSignature != null && dSignature.eIsProxy()) {
-			InternalEObject oldDSignature = (InternalEObject)dSignature;
-			dSignature = (DSignature)eResolveProxy(oldDSignature);
-			if (dSignature != oldDSignature) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiagramPackage.DSPECIFICATION__DSIGNATURE, oldDSignature, dSignature));
-			}
-		}
-		return dSignature;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DSignature basicGetDSignature() {
-		return dSignature;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public void setDSignature(DSignature newDSignature) {
-		if(newDSignature == dSignature) return;
-		DSignature oldDSignature = dSignature;
-		dSignature = newDSignature;
-		if(getSpecification() != null)
-			getSpecification().setSignature(newDSignature.getSignature());
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DSPECIFICATION__DSIGNATURE, oldDSignature, dSignature));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getMetaFile() {
-		return metaFile;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setMetaFile(String newMetaFile) {
-		String oldMetaFile = metaFile;
-		metaFile = newMetaFile;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DSPECIFICATION__META_FILE, oldMetaFile, metaFile));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getSignatureFile() {
-		return signatureFile;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSignatureFile(String newSignatureFile) {
-		String oldSignatureFile = signatureFile;
-		signatureFile = newSignatureFile;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DSPECIFICATION__SIGNATURE_FILE, oldSignatureFile, signatureFile));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-//	public void save(URI uri) throws IOException {
-//		ResourceSet resourceSet = new ResourceSetImpl();
-//		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("dpf", new XMLResourceFactoryImpl());
-//		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMLResourceFactoryImpl());
-//		Resource diagram = resourceSet.createResource(uri);
-//		Resource model = resourceSet.createResource(uri.appendFileExtension("xmi"));
-//		Resource model_type = resourceSet.createResource(uri.appendFileExtension("type").appendFileExtension("xmi"));
-//		Resource diagram_type = resourceSet.createResource(uri.appendFileExtension("xmi").appendFileExtension("type").appendFileExtension("xmi"));
-//		model.getContents().add(getSpecification());
-//		if(getSpecification().getGraph().getType() == Graph.REFLEXIVE_TYPE_GRAPH)
-//			model_type.getContents().add(getSpecification().getGraph().getType());
-//		diagram.getContents().add(this);
-//		if(getDType() == DSpecification.REFLEXIVE_DSPECIFICATION)
-//			diagram_type.getContents().add(getDType());
-//		model_type.save(null);
-//		model.save(null);
-//		diagram_type.save(null);
-//		diagram.save(null);
-//	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public DGraph createDGraph(Graph graph, DGraph dType) {
-		DGraph dGraph = DiagramFactory.eINSTANCE.createDGraph();
-		dGraph.setGraph(graph);
-		if(dType != null)
-			dGraph.setDType(dType);
-		setDGraph(dGraph);
-		return dGraph;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
+	@Override
 	public DConstraint createDConstraint(Constraint constraint) {
 		DConstraint dConstraint = DiagramFactory.eINSTANCE.createDConstraint();
 		dConstraint.setConstraint(constraint);
@@ -602,17 +291,16 @@ public class DSpecificationImpl extends EObjectImpl implements DSpecification {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case DiagramPackage.DSPECIFICATION__DGRAPH:
-				return basicSetDGraph(null, msgs);
-			case DiagramPackage.DSPECIFICATION__DCONSTRAINTS:
-				return ((InternalEList<?>)getDConstraints()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+	public DGraph createDGraph(Graph graph, DGraph dType) {
+		DGraph dGraph = DiagramFactory.eINSTANCE.createDGraph();
+		dGraph.setGraph(graph);
+		if(dType != null)
+			dGraph.setDType(dType);
+		setDGraph(dGraph);
+		return dGraph;
 	}
 
 	/**
@@ -650,6 +338,56 @@ public class DSpecificationImpl extends EObjectImpl implements DSpecification {
 				return getSignatureFile();
 		}
 		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case DiagramPackage.DSPECIFICATION__DGRAPH:
+				return basicSetDGraph(null, msgs);
+			case DiagramPackage.DSPECIFICATION__DCONSTRAINTS:
+				return ((InternalEList<?>)getDConstraints()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case DiagramPackage.DSPECIFICATION__DTYPE:
+				return dType != null && dType != DPFConstants.REFLEXIVE_DSPECIFICATION;
+			case DiagramPackage.DSPECIFICATION__DGRAPH:
+				return dGraph != null;
+			case DiagramPackage.DSPECIFICATION__DCONSTRAINTS:
+				return dConstraints != null && !dConstraints.isEmpty();
+			case DiagramPackage.DSPECIFICATION__SPECIFICATION:
+				return specification != null;
+			case DiagramPackage.DSPECIFICATION__GRID:
+				return grid != GRID_EDEFAULT;
+			case DiagramPackage.DSPECIFICATION__SNAP:
+				return snap != SNAP_EDEFAULT;
+			case DiagramPackage.DSPECIFICATION__ZOOM:
+				return zoom != ZOOM_EDEFAULT;
+			case DiagramPackage.DSPECIFICATION__GRID_VISIBLE:
+				return gridVisible != GRID_VISIBLE_EDEFAULT;
+			case DiagramPackage.DSPECIFICATION__DSIGNATURE:
+				return dSignature != null && dSignature != DPFConstants.DEFAULT_DSIGNATURE;
+			case DiagramPackage.DSPECIFICATION__META_FILE:
+				return META_FILE_EDEFAULT == null ? metaFile != null : !META_FILE_EDEFAULT.equals(metaFile);
+			case DiagramPackage.DSPECIFICATION__SIGNATURE_FILE:
+				return SIGNATURE_FILE_EDEFAULT == null ? signatureFile != null : !SIGNATURE_FILE_EDEFAULT.equals(signatureFile);
+		}
+		return super.eIsSet(featureID);
 	}
 
 	/**
@@ -702,6 +440,16 @@ public class DSpecificationImpl extends EObjectImpl implements DSpecification {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return DiagramPackage.Literals.DSPECIFICATION;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	@Override
@@ -747,35 +495,310 @@ public class DSpecificationImpl extends EObjectImpl implements DSpecification {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<DConstraint> getDConstraints() {
+		if (dConstraints == null) {
+			dConstraints = new EObjectContainmentEList<DConstraint>(DConstraint.class, this, DiagramPackage.DSPECIFICATION__DCONSTRAINTS);
+		}
+		return dConstraints;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public DGraph getDGraph() {
+		return dGraph;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public DSignature getDSignature() {
+		if (dSignature != null && dSignature.eIsProxy()) {
+			InternalEObject oldDSignature = (InternalEObject)dSignature;
+			dSignature = (DSignature)eResolveProxy(oldDSignature);
+			if (dSignature != oldDSignature) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiagramPackage.DSPECIFICATION__DSIGNATURE, oldDSignature, dSignature));
+			}
+		}
+		return dSignature;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public DSpecification getDType() {
+		if (dType != null && dType.eIsProxy()) {
+			InternalEObject oldDType = (InternalEObject)dType;
+			dType = (DSpecification)eResolveProxy(oldDType);
+			if (dType != oldDType) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiagramPackage.DSPECIFICATION__DTYPE, oldDType, dType));
+			}
+		}
+		return dType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getMetaFile() {
+		return metaFile;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getSignatureFile() {
+		return signatureFile;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Specification getSpecification() {
+		if (specification != null && specification.eIsProxy()) {
+			InternalEObject oldSpecification = (InternalEObject)specification;
+			specification = (Specification)eResolveProxy(oldSpecification);
+			if (specification != oldSpecification) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiagramPackage.DSPECIFICATION__SPECIFICATION, oldSpecification, specification));
+			}
+		}
+		return specification;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public double getZoom() {
+		return zoom;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isGrid() {
+		return grid;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isGridVisible() {
+		return gridVisible;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isSnap() {
+		return snap;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case DiagramPackage.DSPECIFICATION__DTYPE:
-				return dType != null && dType != DPFConstants.REFLEXIVE_DSPECIFICATION;
-			case DiagramPackage.DSPECIFICATION__DGRAPH:
-				return dGraph != null;
-			case DiagramPackage.DSPECIFICATION__DCONSTRAINTS:
-				return dConstraints != null && !dConstraints.isEmpty();
-			case DiagramPackage.DSPECIFICATION__SPECIFICATION:
-				return specification != null;
-			case DiagramPackage.DSPECIFICATION__GRID:
-				return grid != GRID_EDEFAULT;
-			case DiagramPackage.DSPECIFICATION__SNAP:
-				return snap != SNAP_EDEFAULT;
-			case DiagramPackage.DSPECIFICATION__ZOOM:
-				return zoom != ZOOM_EDEFAULT;
-			case DiagramPackage.DSPECIFICATION__GRID_VISIBLE:
-				return gridVisible != GRID_VISIBLE_EDEFAULT;
-			case DiagramPackage.DSPECIFICATION__DSIGNATURE:
-				return dSignature != null && dSignature != DPFConstants.DEFAULT_DSIGNATURE;
-			case DiagramPackage.DSPECIFICATION__META_FILE:
-				return META_FILE_EDEFAULT == null ? metaFile != null : !META_FILE_EDEFAULT.equals(metaFile);
-			case DiagramPackage.DSPECIFICATION__SIGNATURE_FILE:
-				return SIGNATURE_FILE_EDEFAULT == null ? signatureFile != null : !SIGNATURE_FILE_EDEFAULT.equals(signatureFile);
+	public void setDGraph(DGraph newDGraph) {
+		if (newDGraph != dGraph) {
+			NotificationChain msgs = null;
+			if (dGraph != null)
+				msgs = ((InternalEObject)dGraph).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DiagramPackage.DSPECIFICATION__DGRAPH, null, msgs);
+			if (newDGraph != null)
+				msgs = ((InternalEObject)newDGraph).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DiagramPackage.DSPECIFICATION__DGRAPH, null, msgs);
+			msgs = basicSetDGraph(newDGraph, msgs);
+			if(specification != null && !specification.eIsProxy())
+				specification.setGraph(dGraph != null ? dGraph.getGraph() : null);
+			if (msgs != null) msgs.dispatch();
 		}
-		return super.eIsSet(featureID);
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DSPECIFICATION__DGRAPH, newDGraph, newDGraph));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void setDSignature(DSignature newDSignature) {
+		if(newDSignature == dSignature) return;
+		DSignature oldDSignature = dSignature;
+		dSignature = newDSignature;
+		if(getSpecification() != null)
+			getSpecification().setSignature(newDSignature.getSignature());
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DSPECIFICATION__DSIGNATURE, oldDSignature, dSignature));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void setDType(DSpecification newDType) {
+		if(newDType == dType) return;
+		DSpecification oldDType = dType;
+		dType = newDType;
+		if(getSpecification() != null)
+			getSpecification().setType(getDType() == null ? null : getDType().getSpecification());
+		if(getDGraph() != null)
+			getDGraph().setDType(getDType() == null ? null : getDType().getDGraph());
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DSPECIFICATION__DTYPE, oldDType, dType));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+//	public void save(URI uri) throws IOException {
+//		ResourceSet resourceSet = new ResourceSetImpl();
+//		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("dpf", new XMLResourceFactoryImpl());
+//		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMLResourceFactoryImpl());
+//		Resource diagram = resourceSet.createResource(uri);
+//		Resource model = resourceSet.createResource(uri.appendFileExtension("xmi"));
+//		Resource model_type = resourceSet.createResource(uri.appendFileExtension("type").appendFileExtension("xmi"));
+//		Resource diagram_type = resourceSet.createResource(uri.appendFileExtension("xmi").appendFileExtension("type").appendFileExtension("xmi"));
+//		model.getContents().add(getSpecification());
+//		if(getSpecification().getGraph().getType() == Graph.REFLEXIVE_TYPE_GRAPH)
+//			model_type.getContents().add(getSpecification().getGraph().getType());
+//		diagram.getContents().add(this);
+//		if(getDType() == DSpecification.REFLEXIVE_DSPECIFICATION)
+//			diagram_type.getContents().add(getDType());
+//		model_type.save(null);
+//		model.save(null);
+//		diagram_type.save(null);
+//		diagram.save(null);
+//	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setGrid(boolean newGrid) {
+		boolean oldGrid = grid;
+		grid = newGrid;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DSPECIFICATION__GRID, oldGrid, grid));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setGridVisible(boolean newGridVisible) {
+		boolean oldGridVisible = gridVisible;
+		gridVisible = newGridVisible;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DSPECIFICATION__GRID_VISIBLE, oldGridVisible, gridVisible));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setMetaFile(String newMetaFile) {
+		String oldMetaFile = metaFile;
+		metaFile = newMetaFile;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DSPECIFICATION__META_FILE, oldMetaFile, metaFile));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setSignatureFile(String newSignatureFile) {
+		String oldSignatureFile = signatureFile;
+		signatureFile = newSignatureFile;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DSPECIFICATION__SIGNATURE_FILE, oldSignatureFile, signatureFile));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setSnap(boolean newSnap) {
+		boolean oldSnap = snap;
+		snap = newSnap;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DSPECIFICATION__SNAP, oldSnap, snap));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setSpecification(Specification newSpecification) {
+		Specification oldSpecification = specification;
+		specification = newSpecification;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DSPECIFICATION__SPECIFICATION, oldSpecification, specification));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setZoom(double newZoom) {
+		double oldZoom = zoom;
+		zoom = newZoom;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DSPECIFICATION__ZOOM, oldZoom, zoom));
 	}
 
 	/**

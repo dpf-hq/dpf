@@ -70,18 +70,8 @@ public class DArrowLabelConstraintImpl extends DConstraintImpl implements DArrow
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	protected EClass eStaticClass() {
-		return DiagramPackage.Literals.DARROW_LABEL_CONSTRAINT;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DOffset getOffset() {
-		return offset;
+	public DElement basicGetSource() {
+		return source;
 	}
 
 	/**
@@ -102,58 +92,29 @@ public class DArrowLabelConstraintImpl extends DConstraintImpl implements DArrow
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void disconnect() {
+		setSource(null);
+		super.disconnect();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOffset(DOffset newOffset) {
-		if (newOffset != offset) {
-			NotificationChain msgs = null;
-			if (offset != null)
-				msgs = ((InternalEObject)offset).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DiagramPackage.DARROW_LABEL_CONSTRAINT__OFFSET, null, msgs);
-			if (newOffset != null)
-				msgs = ((InternalEObject)newOffset).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DiagramPackage.DARROW_LABEL_CONSTRAINT__OFFSET, null, msgs);
-			msgs = basicSetOffset(newOffset, msgs);
-			if (msgs != null) msgs.dispatch();
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case DiagramPackage.DARROW_LABEL_CONSTRAINT__OFFSET:
+				return getOffset();
+			case DiagramPackage.DARROW_LABEL_CONSTRAINT__SOURCE:
+				if (resolve) return getSource();
+				return basicGetSource();
 		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DARROW_LABEL_CONSTRAINT__OFFSET, newOffset, newOffset));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DElement getSource() {
-		if (source != null && source.eIsProxy()) {
-			InternalEObject oldSource = (InternalEObject)source;
-			source = (DElement)eResolveProxy(oldSource);
-			if (source != oldSource) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiagramPackage.DARROW_LABEL_CONSTRAINT__SOURCE, oldSource, source));
-			}
-		}
-		return source;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DElement basicGetSource() {
-		return source;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSource(DElement newSource) {
-		DElement oldSource = source;
-		source = newSource;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DARROW_LABEL_CONSTRAINT__SOURCE, oldSource, source));
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -176,15 +137,14 @@ public class DArrowLabelConstraintImpl extends DConstraintImpl implements DArrow
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DiagramPackage.DARROW_LABEL_CONSTRAINT__OFFSET:
-				return getOffset();
+				return offset != null;
 			case DiagramPackage.DARROW_LABEL_CONSTRAINT__SOURCE:
-				if (resolve) return getSource();
-				return basicGetSource();
+				return source != null;
 		}
-		return super.eGet(featureID, resolve, coreType);
+		return super.eIsSet(featureID);
 	}
 
 	/**
@@ -211,6 +171,16 @@ public class DArrowLabelConstraintImpl extends DConstraintImpl implements DArrow
 	 * @generated
 	 */
 	@Override
+	protected EClass eStaticClass() {
+		return DiagramPackage.Literals.DARROW_LABEL_CONSTRAINT;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DiagramPackage.DARROW_LABEL_CONSTRAINT__OFFSET:
@@ -229,35 +199,71 @@ public class DArrowLabelConstraintImpl extends DConstraintImpl implements DArrow
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case DiagramPackage.DARROW_LABEL_CONSTRAINT__OFFSET:
-				return offset != null;
-			case DiagramPackage.DARROW_LABEL_CONSTRAINT__SOURCE:
-				return source != null;
+	public DOffset getOffset() {
+		return offset;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public DElement getSource() {
+		if (source != null && source.eIsProxy()) {
+			InternalEObject oldSource = (InternalEObject)source;
+			source = (DElement)eResolveProxy(oldSource);
+			if (source != oldSource) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiagramPackage.DARROW_LABEL_CONSTRAINT__SOURCE, oldSource, source));
+			}
 		}
-		return super.eIsSet(featureID);
+		return source;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void reconnect(EList<DNode> dNodes, EList<DArrow> dArrows, DSpecification dSpecification) {
+		super.reconnect(dNodes, dArrows, dSpecification);
+		setSource(findDElement(getConstraint().getMappings(), getDPredicate().getVisualization().getSource()));
 	}
 	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
-	public void reconnect(EList<DNode> dNodes, EList<DArrow> dArrows, DSpecification dSpecification) {
-		super.reconnect(dNodes, dArrows, dSpecification);
-		setSource(findDElement(getConstraint().getMappings(), getDPredicate().getVisualization().getSource()));
+	@Override
+	public void setOffset(DOffset newOffset) {
+		if (newOffset != offset) {
+			NotificationChain msgs = null;
+			if (offset != null)
+				msgs = ((InternalEObject)offset).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DiagramPackage.DARROW_LABEL_CONSTRAINT__OFFSET, null, msgs);
+			if (newOffset != null)
+				msgs = ((InternalEObject)newOffset).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DiagramPackage.DARROW_LABEL_CONSTRAINT__OFFSET, null, msgs);
+			msgs = basicSetOffset(newOffset, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DARROW_LABEL_CONSTRAINT__OFFSET, newOffset, newOffset));
 	}
 
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
-	public void disconnect() {
-		setSource(null);
-		super.disconnect();
+	@Override
+	public void setSource(DElement newSource) {
+		DElement oldSource = source;
+		source = newSource;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DARROW_LABEL_CONSTRAINT__SOURCE, oldSource, source));
 	}
 
 } //DArrowLabelConstraintImpl

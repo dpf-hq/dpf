@@ -60,8 +60,6 @@ private EditPart getPartForElement(Object modelElement) {
 	}
 	if (modelElement instanceof DOffset) {
 		DOffset offset = (DOffset) modelElement;
-//		if(offset.eContainer() instanceof DConstraint)
-//			return new SingleArrowConstraintEditPart();
 		if(offset.eContainer() instanceof DArrow)
 			return new ArrowLabelEditPart();
 	}

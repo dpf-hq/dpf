@@ -21,7 +21,6 @@ import no.hib.dpf.editor.policies.DConstraintDeletePolicy;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;
 
 import org.eclipse.draw2d.Label;
-import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -59,8 +58,7 @@ public class SingleArrowConstraintEditPart extends ArrowLabelEditPart {
 		figure.setText(arrowName);
 		figure.setVisible(true);
 		DArrowEditPart parent = (DArrowEditPart) getParent();
-		PolylineConnection connFigure = (PolylineConnection)parent.getFigure();
-		ArrowLabelLocator constraint = new ArrowLabelLocator(arrowName, getOffset(), connFigure, true);
+		ArrowLabelLocator constraint = new ArrowLabelLocator(arrowName, getDOffset(), parent);
 		parent.setLayoutConstraint(this, getFigure(), constraint);
 	}
 	

@@ -64,6 +64,8 @@ public class DOffsetItemProvider
 			super.getPropertyDescriptors(object);
 
 			addOffsetPropertyDescriptor(object);
+			addLenPropertyDescriptor(object);
+			addIndexPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -86,6 +88,50 @@ public class DOffsetItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Len feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addLenPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_DOffset_len_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DOffset_len_feature", "_UI_DOffset_type"),
+				 DiagramPackage.Literals.DOFFSET__LEN,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Index feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addIndexPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_DOffset_index_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DOffset_index_feature", "_UI_DOffset_type"),
+				 DiagramPackage.Literals.DOFFSET__INDEX,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -126,6 +172,8 @@ public class DOffsetItemProvider
 
 		switch (notification.getFeatureID(DOffset.class)) {
 			case DiagramPackage.DOFFSET__OFFSET:
+			case DiagramPackage.DOFFSET__LEN:
+			case DiagramPackage.DOFFSET__INDEX:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

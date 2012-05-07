@@ -25,8 +25,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import no.hib.dpf.editor.DPFErrorReport;
-
 import org.eclipse.draw2d.AbstractRouter;
 import org.eclipse.draw2d.Bendpoint;
 import org.eclipse.draw2d.Connection;
@@ -241,35 +239,13 @@ public final class DPFShortestPathConnectionRouter extends AbstractRouter {
 		path.setStartPoint(start);
 		path.setEndPoint(end);
 
-		if (!constraint.isEmpty()) {
-			PointList bends = new PointList(constraint.size());
-			for (int i = 0; i < constraint.size(); i++) {
-				Bendpoint bp = (Bendpoint) constraint.get(i);
-				bends.addPoint(bp.getLocation());
-			}
-			path.setBendPoints(bends);
-		} else if (conn instanceof ArrowConnection) {
-			ArrowConnection arrow = (ArrowConnection) conn;
-			if(arrow.isEpi()){
-				PointList bends = new PointList(constraint.size());
-				// Default layout around the node:
-				// TODO: make this configurable and make the bendpoints editable
-				Rectangle ownerBounds = ((ArrowConnection) conn).getOwnerBounds();
-
-				try {
-					bends.addPoint(new Point(path.getStartPoint().x, ownerBounds.y - 10));
-					bends.addPoint(new Point(ownerBounds.x - 40, ownerBounds.y - 10));
-					bends.addPoint(new Point(ownerBounds.x - 40, ownerBounds.getBottom().y + 40));
-					bends.addPoint(new Point(path.getEndPoint().x, ownerBounds.getBottom().y + 40));
-					path.setBendPoints(bends);
-				} catch (NullPointerException e) {
-					DPFErrorReport.logError(e);
-				}
-			}
-			
-		} else {
-			path.setBendPoints(null);
+		
+		PointList bends = new PointList();
+		for (int i = 0; i < constraint.size(); i++) {
+			Bendpoint bp = (Bendpoint) constraint.get(i);
+			bends.addPoint(bp.getLocation());
 		}
+		path.setBendPoints(bends.size() == 0 ? null : bends);
 
 		isDirty |= path.isDirty;
 	}
@@ -425,28 +401,6 @@ public final class DPFShortestPathConnectionRouter extends AbstractRouter {
 	 */
 	public IFigure getContainer() {
 		return container;
-	}
-
-	/**
-	 * Sets the value indicating if connection invalidation should be ignored.
-	 * 
-	 * @param b
-	 *            true if invalidation should be skipped, false otherwise
-	 * @since 3.5
-	 */
-	public void setIgnoreInvalidate(boolean b) {
-		ignoreInvalidate = b;
-	}
-
-	/**
-	 * Returns the value indicating if connection invalidation should be
-	 * ignored.
-	 * 
-	 * @return true if invalidation should be skipped, false otherwise
-	 * @since 3.5
-	 */
-	public boolean shouldIgnoreInvalidate() {
-		return ignoreInvalidate;
 	}
 
 	/**

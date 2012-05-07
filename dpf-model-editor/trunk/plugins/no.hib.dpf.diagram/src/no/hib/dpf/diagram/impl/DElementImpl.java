@@ -67,40 +67,6 @@ public class DElementImpl extends EObjectImpl implements DElement {
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass() {
-		return DiagramPackage.Literals.DELEMENT;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<DConstraint> getConstraintsFrom() {
-		if (constraintsFrom == null) {
-			constraintsFrom = new EObjectResolvingEList<DConstraint>(DConstraint.class, this, DiagramPackage.DELEMENT__CONSTRAINTS_FROM);
-		}
-		return constraintsFrom;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<DConstraint> getConstraintsTo() {
-		if (constraintsTo == null) {
-			constraintsTo = new EObjectResolvingEList<DConstraint>(DConstraint.class, this, DiagramPackage.DELEMENT__CONSTRAINTS_TO);
-		}
-		return constraintsTo;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case DiagramPackage.DELEMENT__CONSTRAINTS_FROM:
@@ -109,6 +75,22 @@ public class DElementImpl extends EObjectImpl implements DElement {
 				return getConstraintsTo();
 		}
 		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case DiagramPackage.DELEMENT__CONSTRAINTS_FROM:
+				return constraintsFrom != null && !constraintsFrom.isEmpty();
+			case DiagramPackage.DELEMENT__CONSTRAINTS_TO:
+				return constraintsTo != null && !constraintsTo.isEmpty();
+		}
+		return super.eIsSet(featureID);
 	}
 
 	/**
@@ -138,6 +120,16 @@ public class DElementImpl extends EObjectImpl implements DElement {
 	 * @generated
 	 */
 	@Override
+	protected EClass eStaticClass() {
+		return DiagramPackage.Literals.DELEMENT;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DiagramPackage.DELEMENT__CONSTRAINTS_FROM:
@@ -156,14 +148,24 @@ public class DElementImpl extends EObjectImpl implements DElement {
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case DiagramPackage.DELEMENT__CONSTRAINTS_FROM:
-				return constraintsFrom != null && !constraintsFrom.isEmpty();
-			case DiagramPackage.DELEMENT__CONSTRAINTS_TO:
-				return constraintsTo != null && !constraintsTo.isEmpty();
+	public EList<DConstraint> getConstraintsFrom() {
+		if (constraintsFrom == null) {
+			constraintsFrom = new EObjectResolvingEList<DConstraint>(DConstraint.class, this, DiagramPackage.DELEMENT__CONSTRAINTS_FROM);
 		}
-		return super.eIsSet(featureID);
+		return constraintsFrom;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<DConstraint> getConstraintsTo() {
+		if (constraintsTo == null) {
+			constraintsTo = new EObjectResolvingEList<DConstraint>(DConstraint.class, this, DiagramPackage.DELEMENT__CONSTRAINTS_TO);
+		}
+		return constraintsTo;
 	}
 
 } //DElementImpl

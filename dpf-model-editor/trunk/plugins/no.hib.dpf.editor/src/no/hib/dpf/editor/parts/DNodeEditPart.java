@@ -48,7 +48,6 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPolicy;
-import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.NodeEditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.RequestConstants;
@@ -279,16 +278,13 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 	protected DNode getDiagramModel(){ return (DNode) getModel(); }
 	
 	protected void refreshVisuals() {
-		try {
-			super.refreshVisuals();
-			refreshLabel();
-			Rectangle bounds = new Rectangle(getDiagramModel().getLocation(), getDiagramModel().getSize());
-			((GraphicalEditPart) getParent()).setLayoutConstraint(this, getFigure(), bounds);
-			// notify parent container of changed position & location
-			// if this line is removed, the XYLayoutManager used by the parent
-			// container (the Figure of the DPFDiagramEditPart), will not know the bounds of
-			// this figure and will not draw it correctly.
-		} catch (Exception e) { }
+		getFigure().setBounds(new Rectangle(getDiagramModel().getLocation(), getDiagramModel().getSize()));
+		refreshLabel();
+		//			((GraphicalEditPart) getParent()).setLayoutConstraint(this, getFigure(), bounds);
+		// notify parent container of changed position & location
+		// if this line is removed, the XYLayoutManager used by the parent
+		// container (the Figure of the DPFDiagramEditPart), will not know the bounds of
+		// this figure and will not draw it correctly.
 	}
 
 	private void refreshLabel() {
@@ -296,6 +292,7 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 		EditableLabel label = tableFigure.getNameLabel();
 		label.setText(getNodeLabelName());
 		label.setVisible(true);
+		label.revalidate();
 	}
 
 	protected void listen(){

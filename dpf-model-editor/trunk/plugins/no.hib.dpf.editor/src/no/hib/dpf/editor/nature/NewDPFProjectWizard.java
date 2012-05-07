@@ -2,8 +2,6 @@ package no.hib.dpf.editor.nature;
 
 import java.net.URI;
 
-import no.hib.dpf.editor.nature.DPFProjectSupport;
-
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExecutableExtension;

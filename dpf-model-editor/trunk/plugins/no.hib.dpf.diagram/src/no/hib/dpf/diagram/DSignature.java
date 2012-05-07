@@ -30,30 +30,12 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface DSignature extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Signature</b></em>' reference.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Signature</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Signature</em>' reference.
-	 * @see #setSignature(Signature)
-	 * @see no.hib.dpf.diagram.DiagramPackage#getDSignature_Signature()
 	 * @model
 	 * @generated
 	 */
-	Signature getSignature();
-
-	/**
-	 * Sets the value of the '{@link no.hib.dpf.diagram.DSignature#getSignature <em>Signature</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Signature</em>' reference.
-	 * @see #getSignature()
-	 * @generated
-	 */
-	void setSignature(Signature value);
+	void addDPredicate(DPredicate dPredicate);
 
 	/**
 	 * Returns the value of the '<em><b>DPredicates</b></em>' containment reference list.
@@ -72,12 +54,20 @@ public interface DSignature extends EObject {
 	EList<DPredicate> getDPredicates();
 
 	/**
+	 * Returns the value of the '<em><b>Signature</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Signature</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
 	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Signature</em>' reference.
+	 * @see #setSignature(Signature)
+	 * @see no.hib.dpf.diagram.DiagramPackage#getDSignature_Signature()
 	 * @model
 	 * @generated
 	 */
-	void addDPredicate(DPredicate dPredicate);
+	Signature getSignature();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -86,5 +76,15 @@ public interface DSignature extends EObject {
 	 * @generated
 	 */
 	void removeDPredicate(DPredicate dPredicate);
+
+	/**
+	 * Sets the value of the '{@link no.hib.dpf.diagram.DSignature#getSignature <em>Signature</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Signature</em>' reference.
+	 * @see #getSignature()
+	 * @generated
+	 */
+	void setSignature(Signature value);
 
 } // DSignature

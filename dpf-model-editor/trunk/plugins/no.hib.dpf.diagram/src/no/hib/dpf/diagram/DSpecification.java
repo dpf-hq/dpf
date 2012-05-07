@@ -41,56 +41,20 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface DSpecification extends EObject {
 	/**
-	 * Returns the value of the '<em><b>DType</b></em>' reference.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>DType</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>DType</em>' reference.
-	 * @see #setDType(DSpecification)
-	 * @see no.hib.dpf.diagram.DiagramPackage#getDSpecification_DType()
 	 * @model
 	 * @generated
 	 */
-	DSpecification getDType();
+	DConstraint createDConstraint(Constraint constraint);
 
 	/**
-	 * Sets the value of the '{@link no.hib.dpf.diagram.DSpecification#getDType <em>DType</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>DType</em>' reference.
-	 * @see #getDType()
+	 * @model
 	 * @generated
 	 */
-	void setDType(DSpecification value);
-
-	/**
-	 * Returns the value of the '<em><b>DGraph</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>DGraph</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>DGraph</em>' containment reference.
-	 * @see #setDGraph(DGraph)
-	 * @see no.hib.dpf.diagram.DiagramPackage#getDSpecification_DGraph()
-	 * @model containment="true"
-	 * @generated
-	 */
-	DGraph getDGraph();
-
-	/**
-	 * Sets the value of the '{@link no.hib.dpf.diagram.DSpecification#getDGraph <em>DGraph</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>DGraph</em>' containment reference.
-	 * @see #getDGraph()
-	 * @generated
-	 */
-	void setDGraph(DGraph value);
+	DGraph createDGraph(Graph graph, DGraph dType);
 
 	/**
 	 * Returns the value of the '<em><b>DConstraints</b></em>' containment reference list.
@@ -109,6 +73,86 @@ public interface DSpecification extends EObject {
 	EList<DConstraint> getDConstraints();
 
 	/**
+	 * Returns the value of the '<em><b>DGraph</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>DGraph</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>DGraph</em>' containment reference.
+	 * @see #setDGraph(DGraph)
+	 * @see no.hib.dpf.diagram.DiagramPackage#getDSpecification_DGraph()
+	 * @model containment="true"
+	 * @generated
+	 */
+	DGraph getDGraph();
+
+	/**
+	 * Returns the value of the '<em><b>DSignature</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>DSignature</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>DSignature</em>' reference.
+	 * @see #setDSignature(DSignature)
+	 * @see no.hib.dpf.diagram.DiagramPackage#getDSpecification_DSignature()
+	 * @model
+	 * @generated
+	 */
+	DSignature getDSignature();
+
+	/**
+	 * Returns the value of the '<em><b>DType</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>DType</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>DType</em>' reference.
+	 * @see #setDType(DSpecification)
+	 * @see no.hib.dpf.diagram.DiagramPackage#getDSpecification_DType()
+	 * @model
+	 * @generated
+	 */
+	DSpecification getDType();
+
+	/**
+	 * Returns the value of the '<em><b>Meta File</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Meta File</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Meta File</em>' attribute.
+	 * @see #setMetaFile(String)
+	 * @see no.hib.dpf.diagram.DiagramPackage#getDSpecification_MetaFile()
+	 * @model
+	 * @generated
+	 */
+	String getMetaFile();
+
+	/**
+	 * Returns the value of the '<em><b>Signature File</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Signature File</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Signature File</em>' attribute.
+	 * @see #setSignatureFile(String)
+	 * @see no.hib.dpf.diagram.DiagramPackage#getDSpecification_SignatureFile()
+	 * @model
+	 * @generated
+	 */
+	String getSignatureFile();
+
+	/**
 	 * Returns the value of the '<em><b>Specification</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -123,70 +167,6 @@ public interface DSpecification extends EObject {
 	 * @generated
 	 */
 	Specification getSpecification();
-
-	/**
-	 * Sets the value of the '{@link no.hib.dpf.diagram.DSpecification#getSpecification <em>Specification</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Specification</em>' reference.
-	 * @see #getSpecification()
-	 * @generated
-	 */
-	void setSpecification(Specification value);
-
-	/**
-	 * Returns the value of the '<em><b>Grid</b></em>' attribute.
-	 * The default value is <code>"true"</code>.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Grid</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Grid</em>' attribute.
-	 * @see #setGrid(boolean)
-	 * @see no.hib.dpf.diagram.DiagramPackage#getDSpecification_Grid()
-	 * @model default="true" required="true"
-	 * @generated
-	 */
-	boolean isGrid();
-
-	/**
-	 * Sets the value of the '{@link no.hib.dpf.diagram.DSpecification#isGrid <em>Grid</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Grid</em>' attribute.
-	 * @see #isGrid()
-	 * @generated
-	 */
-	void setGrid(boolean value);
-
-	/**
-	 * Returns the value of the '<em><b>Snap</b></em>' attribute.
-	 * The default value is <code>"true"</code>.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Snap</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Snap</em>' attribute.
-	 * @see #setSnap(boolean)
-	 * @see no.hib.dpf.diagram.DiagramPackage#getDSpecification_Snap()
-	 * @model default="true" required="true"
-	 * @generated
-	 */
-	boolean isSnap();
-
-	/**
-	 * Sets the value of the '{@link no.hib.dpf.diagram.DSpecification#isSnap <em>Snap</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Snap</em>' attribute.
-	 * @see #isSnap()
-	 * @generated
-	 */
-	void setSnap(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Zoom</b></em>' attribute.
@@ -206,14 +186,21 @@ public interface DSpecification extends EObject {
 	double getZoom();
 
 	/**
-	 * Sets the value of the '{@link no.hib.dpf.diagram.DSpecification#getZoom <em>Zoom</em>}' attribute.
+	 * Returns the value of the '<em><b>Grid</b></em>' attribute.
+	 * The default value is <code>"true"</code>.
 	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Grid</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Zoom</em>' attribute.
-	 * @see #getZoom()
+	 * @return the value of the '<em>Grid</em>' attribute.
+	 * @see #setGrid(boolean)
+	 * @see no.hib.dpf.diagram.DiagramPackage#getDSpecification_Grid()
+	 * @model default="true" required="true"
 	 * @generated
 	 */
-	void setZoom(double value);
+	boolean isGrid();
 
 	/**
 	 * Returns the value of the '<em><b>Grid Visible</b></em>' attribute.
@@ -233,30 +220,31 @@ public interface DSpecification extends EObject {
 	boolean isGridVisible();
 
 	/**
-	 * Sets the value of the '{@link no.hib.dpf.diagram.DSpecification#isGridVisible <em>Grid Visible</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Grid Visible</em>' attribute.
-	 * @see #isGridVisible()
-	 * @generated
-	 */
-	void setGridVisible(boolean value);
-
-	/**
-	 * Returns the value of the '<em><b>DSignature</b></em>' reference.
+	 * Returns the value of the '<em><b>Snap</b></em>' attribute.
+	 * The default value is <code>"true"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>DSignature</em>' reference isn't clear,
+	 * If the meaning of the '<em>Snap</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>DSignature</em>' reference.
-	 * @see #setDSignature(DSignature)
-	 * @see no.hib.dpf.diagram.DiagramPackage#getDSpecification_DSignature()
-	 * @model
+	 * @return the value of the '<em>Snap</em>' attribute.
+	 * @see #setSnap(boolean)
+	 * @see no.hib.dpf.diagram.DiagramPackage#getDSpecification_Snap()
+	 * @model default="true" required="true"
 	 * @generated
 	 */
-	DSignature getDSignature();
+	boolean isSnap();
+
+	/**
+	 * Sets the value of the '{@link no.hib.dpf.diagram.DSpecification#getDGraph <em>DGraph</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>DGraph</em>' containment reference.
+	 * @see #getDGraph()
+	 * @generated
+	 */
+	void setDGraph(DGraph value);
 
 	/**
 	 * Sets the value of the '{@link no.hib.dpf.diagram.DSpecification#getDSignature <em>DSignature</em>}' reference.
@@ -269,20 +257,34 @@ public interface DSpecification extends EObject {
 	void setDSignature(DSignature value);
 
 	/**
-	 * Returns the value of the '<em><b>Meta File</b></em>' attribute.
+	 * Sets the value of the '{@link no.hib.dpf.diagram.DSpecification#getDType <em>DType</em>}' reference.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Meta File</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Meta File</em>' attribute.
-	 * @see #setMetaFile(String)
-	 * @see no.hib.dpf.diagram.DiagramPackage#getDSpecification_MetaFile()
-	 * @model
+	 * @param value the new value of the '<em>DType</em>' reference.
+	 * @see #getDType()
 	 * @generated
 	 */
-	String getMetaFile();
+	void setDType(DSpecification value);
+
+	/**
+	 * Sets the value of the '{@link no.hib.dpf.diagram.DSpecification#isGrid <em>Grid</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Grid</em>' attribute.
+	 * @see #isGrid()
+	 * @generated
+	 */
+	void setGrid(boolean value);
+
+	/**
+	 * Sets the value of the '{@link no.hib.dpf.diagram.DSpecification#isGridVisible <em>Grid Visible</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Grid Visible</em>' attribute.
+	 * @see #isGridVisible()
+	 * @generated
+	 */
+	void setGridVisible(boolean value);
 
 	/**
 	 * Sets the value of the '{@link no.hib.dpf.diagram.DSpecification#getMetaFile <em>Meta File</em>}' attribute.
@@ -295,22 +297,6 @@ public interface DSpecification extends EObject {
 	void setMetaFile(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Signature File</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Signature File</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Signature File</em>' attribute.
-	 * @see #setSignatureFile(String)
-	 * @see no.hib.dpf.diagram.DiagramPackage#getDSpecification_SignatureFile()
-	 * @model
-	 * @generated
-	 */
-	String getSignatureFile();
-
-	/**
 	 * Sets the value of the '{@link no.hib.dpf.diagram.DSpecification#getSignatureFile <em>Signature File</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -321,6 +307,16 @@ public interface DSpecification extends EObject {
 	void setSignatureFile(String value);
 
 	/**
+	 * Sets the value of the '{@link no.hib.dpf.diagram.DSpecification#isSnap <em>Snap</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Snap</em>' attribute.
+	 * @see #isSnap()
+	 * @generated
+	 */
+	void setSnap(boolean value);
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model exceptions="no.hib.dpf.core.EIOException" uriDataType="no.hib.dpf.core.EURI"
@@ -329,19 +325,23 @@ public interface DSpecification extends EObject {
 //	void save(URI uri) throws IOException;
 
 	/**
+	 * Sets the value of the '{@link no.hib.dpf.diagram.DSpecification#getSpecification <em>Specification</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model
+	 * @param value the new value of the '<em>Specification</em>' reference.
+	 * @see #getSpecification()
 	 * @generated
 	 */
-	DGraph createDGraph(Graph graph, DGraph dType);
+	void setSpecification(Specification value);
 
 	/**
+	 * Sets the value of the '{@link no.hib.dpf.diagram.DSpecification#getZoom <em>Zoom</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model
+	 * @param value the new value of the '<em>Zoom</em>' attribute.
+	 * @see #getZoom()
 	 * @generated
 	 */
-	DConstraint createDConstraint(Constraint constraint);
+	void setZoom(double value);
 
 } // DSpecification

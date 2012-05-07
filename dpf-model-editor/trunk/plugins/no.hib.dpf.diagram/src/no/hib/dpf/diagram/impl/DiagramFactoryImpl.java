@@ -319,7 +319,7 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 		DArrowImpl dArrow = new DArrowImpl();
 		dArrow.setArrow(CoreFactory.eINSTANCE.createArrow());
 		dArrow.setDType(DPFConstants.REFLEXIVE_TYPE_DARROW);
-		dArrow.setNameOffset(DiagramFactory.eINSTANCE.createDOffset());
+		dArrow.setNameOffset(DiagramFactory.eINSTANCE.createDefaultDOffset());
 		return dArrow;
 	}
 
@@ -627,5 +627,10 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	public DArrowLabelConstraint createDArrowLabelConstraint() {
 		DArrowLabelConstraintImpl dArrowLabelConstraint = new DArrowLabelConstraintImpl();
 		return dArrowLabelConstraint;
+	}
+
+	@Override
+	public DOffset createDefaultDOffset() {
+		return new DOffsetImpl(new Point(7, 1), 8);
 	}
 } //DiagramFactoryImpl

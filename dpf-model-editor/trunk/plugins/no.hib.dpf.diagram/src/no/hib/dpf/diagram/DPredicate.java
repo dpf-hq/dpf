@@ -32,58 +32,6 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface DPredicate extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Predicate</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Predicate</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Predicate</em>' reference.
-	 * @see #setPredicate(Predicate)
-	 * @see no.hib.dpf.diagram.DiagramPackage#getDPredicate_Predicate()
-	 * @model
-	 * @generated
-	 */
-	Predicate getPredicate();
-
-	/**
-	 * Sets the value of the '{@link no.hib.dpf.diagram.DPredicate#getPredicate <em>Predicate</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Predicate</em>' reference.
-	 * @see #getPredicate()
-	 * @generated
-	 */
-	void setPredicate(Predicate value);
-
-	/**
-	 * Returns the value of the '<em><b>Simple Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Simple Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Simple Name</em>' attribute.
-	 * @see #setSimpleName(String)
-	 * @see no.hib.dpf.diagram.DiagramPackage#getDPredicate_SimpleName()
-	 * @model
-	 * @generated
-	 */
-	String getSimpleName();
-
-	/**
-	 * Sets the value of the '{@link no.hib.dpf.diagram.DPredicate#getSimpleName <em>Simple Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Simple Name</em>' attribute.
-	 * @see #getSimpleName()
-	 * @generated
-	 */
-	void setSimpleName(String value);
-
-	/**
 	 * Returns the value of the '<em><b>DGraph</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -98,42 +46,6 @@ public interface DPredicate extends EObject {
 	 * @generated
 	 */
 	DGraph getDGraph();
-
-	/**
-	 * Sets the value of the '{@link no.hib.dpf.diagram.DPredicate#getDGraph <em>DGraph</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>DGraph</em>' containment reference.
-	 * @see #getDGraph()
-	 * @generated
-	 */
-	void setDGraph(DGraph value);
-
-	/**
-	 * Returns the value of the '<em><b>Visualization</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Visualization</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Visualization</em>' containment reference.
-	 * @see #setVisualization(Visualization)
-	 * @see no.hib.dpf.diagram.DiagramPackage#getDPredicate_Visualization()
-	 * @model containment="true"
-	 * @generated
-	 */
-	Visualization getVisualization();
-
-	/**
-	 * Sets the value of the '{@link no.hib.dpf.diagram.DPredicate#getVisualization <em>Visualization</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Visualization</em>' containment reference.
-	 * @see #getVisualization()
-	 * @generated
-	 */
-	void setVisualization(Visualization value);
 
 	/**
 	 * Returns the value of the '<em><b>Icon</b></em>' attribute.
@@ -152,6 +64,64 @@ public interface DPredicate extends EObject {
 	String getIcon();
 
 	/**
+	 * Returns the value of the '<em><b>Predicate</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Predicate</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Predicate</em>' reference.
+	 * @see #setPredicate(Predicate)
+	 * @see no.hib.dpf.diagram.DiagramPackage#getDPredicate_Predicate()
+	 * @model
+	 * @generated
+	 */
+	Predicate getPredicate();
+
+	/**
+	 * Returns the value of the '<em><b>Simple Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Simple Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Simple Name</em>' attribute.
+	 * @see #setSimpleName(String)
+	 * @see no.hib.dpf.diagram.DiagramPackage#getDPredicate_SimpleName()
+	 * @model
+	 * @generated
+	 */
+	String getSimpleName();
+
+	/**
+	 * Returns the value of the '<em><b>Visualization</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Visualization</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Visualization</em>' containment reference.
+	 * @see #setVisualization(Visualization)
+	 * @see no.hib.dpf.diagram.DiagramPackage#getDPredicate_Visualization()
+	 * @model containment="true"
+	 * @generated
+	 */
+	Visualization getVisualization();
+
+	/**
+	 * Sets the value of the '{@link no.hib.dpf.diagram.DPredicate#getDGraph <em>DGraph</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>DGraph</em>' containment reference.
+	 * @see #getDGraph()
+	 * @generated
+	 */
+	void setDGraph(DGraph value);
+
+	/**
 	 * Sets the value of the '{@link no.hib.dpf.diagram.DPredicate#getIcon <em>Icon</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -160,5 +130,35 @@ public interface DPredicate extends EObject {
 	 * @generated
 	 */
 	void setIcon(String value);
+
+	/**
+	 * Sets the value of the '{@link no.hib.dpf.diagram.DPredicate#getPredicate <em>Predicate</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Predicate</em>' reference.
+	 * @see #getPredicate()
+	 * @generated
+	 */
+	void setPredicate(Predicate value);
+
+	/**
+	 * Sets the value of the '{@link no.hib.dpf.diagram.DPredicate#getSimpleName <em>Simple Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Simple Name</em>' attribute.
+	 * @see #getSimpleName()
+	 * @generated
+	 */
+	void setSimpleName(String value);
+
+	/**
+	 * Sets the value of the '{@link no.hib.dpf.diagram.DPredicate#getVisualization <em>Visualization</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Visualization</em>' containment reference.
+	 * @see #getVisualization()
+	 * @generated
+	 */
+	void setVisualization(Visualization value);
 
 } // DPredicate

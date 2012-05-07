@@ -42,16 +42,6 @@ public interface DArrowLabelConstraint extends DConstraint {
 	DOffset getOffset();
 
 	/**
-	 * Sets the value of the '{@link no.hib.dpf.diagram.DArrowLabelConstraint#getOffset <em>Offset</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Offset</em>' containment reference.
-	 * @see #getOffset()
-	 * @generated
-	 */
-	void setOffset(DOffset value);
-
-	/**
 	 * Returns the value of the '<em><b>Source</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -66,6 +56,16 @@ public interface DArrowLabelConstraint extends DConstraint {
 	 * @generated
 	 */
 	DElement getSource();
+
+	/**
+	 * Sets the value of the '{@link no.hib.dpf.diagram.DArrowLabelConstraint#getOffset <em>Offset</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Offset</em>' containment reference.
+	 * @see #getOffset()
+	 * @generated
+	 */
+	void setOffset(DOffset value);
 
 	/**
 	 * Sets the value of the '{@link no.hib.dpf.diagram.DArrowLabelConstraint#getSource <em>Source</em>}' reference.

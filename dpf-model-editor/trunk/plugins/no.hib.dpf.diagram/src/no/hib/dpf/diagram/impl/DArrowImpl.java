@@ -19,14 +19,13 @@ import no.hib.dpf.diagram.DiagramPackage;
 import no.hib.dpf.diagram.util.DPFConstants;
 
 import org.eclipse.core.runtime.Assert;
-import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -44,8 +43,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link no.hib.dpf.diagram.impl.DArrowImpl#getDSource <em>DSource</em>}</li>
  *   <li>{@link no.hib.dpf.diagram.impl.DArrowImpl#getDTarget <em>DTarget</em>}</li>
  *   <li>{@link no.hib.dpf.diagram.impl.DArrowImpl#getDConstraints <em>DConstraints</em>}</li>
- *   <li>{@link no.hib.dpf.diagram.impl.DArrowImpl#getBendpoints <em>Bendpoints</em>}</li>
  *   <li>{@link no.hib.dpf.diagram.impl.DArrowImpl#getNameOffset <em>Name Offset</em>}</li>
+ *   <li>{@link no.hib.dpf.diagram.impl.DArrowImpl#getBendpoints <em>Bendpoints</em>}</li>
  * </ul>
  * </p>
  *
@@ -144,16 +143,6 @@ public class DArrowImpl extends DElementImpl implements DArrow {
 	protected EList<DConstraint> dConstraints;
 
 	/**
-	 * The cached value of the '{@link #getBendpoints() <em>Bendpoints</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getBendpoints()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Point> bendpoints;
-
-	/**
 	 * The cached value of the '{@link #getNameOffset() <em>Name Offset</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -162,6 +151,16 @@ public class DArrowImpl extends DElementImpl implements DArrow {
 	 * @ordered
 	 */
 	protected DOffset nameOffset;
+
+	/**
+	 * The cached value of the '{@link #getBendpoints() <em>Bendpoints</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBendpoints()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<DOffset> bendpoints;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -443,9 +442,9 @@ public class DArrowImpl extends DElementImpl implements DArrow {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Point> getBendpoints() {
+	public EList<DOffset> getBendpoints() {
 		if (bendpoints == null) {
-			bendpoints = new EDataTypeUniqueEList<Point>(Point.class, this, DiagramPackage.DARROW__BENDPOINTS);
+			bendpoints = new EObjectContainmentEList<DOffset>(DOffset.class, this, DiagramPackage.DARROW__BENDPOINTS);
 		}
 		return bendpoints;
 	}
@@ -591,6 +590,8 @@ public class DArrowImpl extends DElementImpl implements DArrow {
 				return ((InternalEList<?>)getDConstraints()).basicRemove(otherEnd, msgs);
 			case DiagramPackage.DARROW__NAME_OFFSET:
 				return basicSetNameOffset(null, msgs);
+			case DiagramPackage.DARROW__BENDPOINTS:
+				return ((InternalEList<?>)getBendpoints()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -621,10 +622,10 @@ public class DArrowImpl extends DElementImpl implements DArrow {
 				return basicGetDTarget();
 			case DiagramPackage.DARROW__DCONSTRAINTS:
 				return getDConstraints();
-			case DiagramPackage.DARROW__BENDPOINTS:
-				return getBendpoints();
 			case DiagramPackage.DARROW__NAME_OFFSET:
 				return getNameOffset();
+			case DiagramPackage.DARROW__BENDPOINTS:
+				return getBendpoints();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -660,12 +661,12 @@ public class DArrowImpl extends DElementImpl implements DArrow {
 				getDConstraints().clear();
 				getDConstraints().addAll((Collection<? extends DConstraint>)newValue);
 				return;
-			case DiagramPackage.DARROW__BENDPOINTS:
-				getBendpoints().clear();
-				getBendpoints().addAll((Collection<? extends Point>)newValue);
-				return;
 			case DiagramPackage.DARROW__NAME_OFFSET:
 				setNameOffset((DOffset)newValue);
+				return;
+			case DiagramPackage.DARROW__BENDPOINTS:
+				getBendpoints().clear();
+				getBendpoints().addAll((Collection<? extends DOffset>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -764,8 +765,6 @@ public class DArrowImpl extends DElementImpl implements DArrow {
 		result.append(configureString);
 		result.append(", lineStyle: ");
 		result.append(lineStyle);
-		result.append(", bendpoints: ");
-		result.append(bendpoints);
 		result.append(')');
 		return result.toString();
 	}

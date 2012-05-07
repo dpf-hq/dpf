@@ -28,40 +28,39 @@ public interface DiagramFactory extends EFactory {
 	DiagramFactory eINSTANCE = no.hib.dpf.diagram.impl.DiagramFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>DSpecification</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>DSpecification</em>'.
-	 * @generated
+	 * @generated NOT
 	 */
-	DSpecification createDSpecification();
+	DArrow createConstantDArrow();
 
 	/**
-	 * Returns a new object of class '<em>DGraph</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>DGraph</em>'.
-	 * @generated
+	 * @generated NOT
 	 */
-	DGraph createDGraph();
+	DGraph createConstantDGraph();
 
 	/**
-	 * Returns a new object of class '<em>DNode</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>DNode</em>'.
-	 * @generated
+	 * @generated NOT
 	 */
-	DNode createDNode();
+	DNode createConstantDNode();
 
 	/**
-	 * Returns a new object of class '<em>DFake Node</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>DFake Node</em>'.
-	 * @generated
+	 * @generated NOT
 	 */
-	DFakeNode createDFakeNode();
+	DSignature createConstantDSignature();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	DSpecification createConstantDSpecification();
 
 	/**
 	 * Returns a new object of class '<em>DArrow</em>'.
@@ -71,15 +70,6 @@ public interface DiagramFactory extends EFactory {
 	 * @generated
 	 */
 	DArrow createDArrow();
-
-	/**
-	 * Returns a new object of class '<em>DConstraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>DConstraint</em>'.
-	 * @generated
-	 */
-	DConstraint createDConstraint();
 
 	
 	/**
@@ -110,15 +100,6 @@ public interface DiagramFactory extends EFactory {
 	DArrowLabelConstraint createDArrowLabelConstraint();
 
 	/**
-	 * Returns a new object of class '<em>DGeneric Arrow Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>DGeneric Arrow Constraint</em>'.
-	 * @generated
-	 */
-	DGenericArrowConstraint createDGenericArrowConstraint();
-
-	/**
 	 * Returns a new object of class '<em>DComposed Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -128,72 +109,22 @@ public interface DiagramFactory extends EFactory {
 	DComposedConstraint createDComposedConstraint();
 
 	/**
-	 * Returns a new object of class '<em>DPredicate</em>'.
+	 * Returns a new object of class '<em>DConstraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>DPredicate</em>'.
+	 * @return a new object of class '<em>DConstraint</em>'.
 	 * @generated
 	 */
-	DPredicate createDPredicate();
-
-	/**
-	 * Returns a new object of class '<em>DOffset</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>DOffset</em>'.
-	 * @generated
-	 */
-	DOffset createDOffset();
-
-	/**
-	 * Returns a new object of class '<em>DSignature</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>DSignature</em>'.
-	 * @generated
-	 */
-	DSignature createDSignature();
-
-	/**
-	 * Returns a new object of class '<em>Visualization</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Visualization</em>'.
-	 * @generated
-	 */
-	Visualization createVisualization();
-
-	/**
-	 * Returns a new object of class '<em>DElement</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>DElement</em>'.
-	 * @generated
-	 */
-	DElement createDElement();
-
-	/**
-	 * Returns the package supported by this factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the package supported by this factory.
-	 * @generated
-	 */
-	DiagramPackage getDiagramPackage();
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	DNode createDNode(String name, DNode type);
+	DConstraint createDConstraint();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	DNode createDefaultDNode();
+	DArrow createDefaultDArrow();
+
+	public DConstraint createDefaultDConstraint();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -207,8 +138,17 @@ public interface DiagramFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	DArrow createDefaultDArrow();
+	DNode createDefaultDNode();
 
+	public DPredicate createDefaultDPredicate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	DSignature createDefaultDSignature();
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -217,47 +157,109 @@ public interface DiagramFactory extends EFactory {
 	DSpecification createDefaultDSpecification();
 
 	/**
+	 * Returns a new object of class '<em>DElement</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @return a new object of class '<em>DElement</em>'.
+	 * @generated
 	 */
-	DSignature createDefaultDSignature();
+	DElement createDElement();
+
+	/**
+	 * Returns a new object of class '<em>DFake Node</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>DFake Node</em>'.
+	 * @generated
+	 */
+	DFakeNode createDFakeNode();
+
+	/**
+	 * Returns a new object of class '<em>DGeneric Arrow Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>DGeneric Arrow Constraint</em>'.
+	 * @generated
+	 */
+	DGenericArrowConstraint createDGenericArrowConstraint();
+
+	/**
+	 * Returns a new object of class '<em>DGraph</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>DGraph</em>'.
+	 * @generated
+	 */
+	DGraph createDGraph();
+
+	/**
+	 * Returns a new object of class '<em>DNode</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>DNode</em>'.
+	 * @generated
+	 */
+	DNode createDNode();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	DNode createConstantDNode();
+	DNode createDNode(String name, DNode type);
 	
 	/**
+	 * Returns a new object of class '<em>DOffset</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @return a new object of class '<em>DOffset</em>'.
+	 * @generated
 	 */
-	DGraph createConstantDGraph();
+	DOffset createDOffset();
 	
 	/**
+	 * Returns a new object of class '<em>DPredicate</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @return a new object of class '<em>DPredicate</em>'.
+	 * @generated
 	 */
-	DArrow createConstantDArrow();
+	DPredicate createDPredicate();
 	
 	/**
+	 * Returns a new object of class '<em>DSignature</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @return a new object of class '<em>DSignature</em>'.
+	 * @generated
 	 */
-	DSpecification createConstantDSpecification();
+	DSignature createDSignature();
 	
 	/**
+	 * Returns a new object of class '<em>DSpecification</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @return a new object of class '<em>DSpecification</em>'.
+	 * @generated
 	 */
-	DSignature createConstantDSignature();
-	public DPredicate createDefaultDPredicate();
-	public DConstraint createDefaultDConstraint();
+	DSpecification createDSpecification();
+	/**
+	 * Returns a new object of class '<em>Visualization</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Visualization</em>'.
+	 * @generated
+	 */
+	Visualization createVisualization();
+	/**
+	 * Returns the package supported by this factory.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the package supported by this factory.
+	 * @generated
+	 */
+	DiagramPackage getDiagramPackage();
+
+	DOffset createDefaultDOffset();
 
 } //DiagramFactory

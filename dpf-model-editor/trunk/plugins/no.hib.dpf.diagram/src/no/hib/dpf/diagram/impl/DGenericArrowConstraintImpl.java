@@ -68,64 +68,8 @@ public class DGenericArrowConstraintImpl extends DConstraintImpl implements DGen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	protected EClass eStaticClass() {
-		return DiagramPackage.Literals.DGENERIC_ARROW_CONSTRAINT;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DElement getSource() {
-		if (source != null && source.eIsProxy()) {
-			InternalEObject oldSource = (InternalEObject)source;
-			source = (DElement)eResolveProxy(oldSource);
-			if (source != oldSource) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiagramPackage.DGENERIC_ARROW_CONSTRAINT__SOURCE, oldSource, source));
-			}
-		}
-		return source;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public DElement basicGetSource() {
 		return source;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSource(DElement newSource) {
-		DElement oldSource = source;
-		source = newSource;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DGENERIC_ARROW_CONSTRAINT__SOURCE, oldSource, source));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DElement getTarget() {
-		if (target != null && target.eIsProxy()) {
-			InternalEObject oldTarget = (InternalEObject)target;
-			target = (DElement)eResolveProxy(oldTarget);
-			if (target != oldTarget) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiagramPackage.DGENERIC_ARROW_CONSTRAINT__TARGET, oldTarget, target));
-			}
-		}
-		return target;
 	}
 
 	/**
@@ -140,13 +84,13 @@ public class DGenericArrowConstraintImpl extends DConstraintImpl implements DGen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public void setTarget(DElement newTarget) {
-		DElement oldTarget = target;
-		target = newTarget;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DGENERIC_ARROW_CONSTRAINT__TARGET, oldTarget, target));
+	@Override
+	public void disconnect() {
+		setDSource(null);
+		setDTarget(null);
+		super.disconnect();
 	}
 
 	/**
@@ -173,6 +117,22 @@ public class DGenericArrowConstraintImpl extends DConstraintImpl implements DGen
 	 * @generated
 	 */
 	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case DiagramPackage.DGENERIC_ARROW_CONSTRAINT__SOURCE:
+				return source != null;
+			case DiagramPackage.DGENERIC_ARROW_CONSTRAINT__TARGET:
+				return target != null;
+		}
+		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DiagramPackage.DGENERIC_ARROW_CONSTRAINT__SOURCE:
@@ -183,6 +143,16 @@ public class DGenericArrowConstraintImpl extends DConstraintImpl implements DGen
 				return;
 		}
 		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return DiagramPackage.Literals.DGENERIC_ARROW_CONSTRAINT;
 	}
 
 	/**
@@ -209,14 +179,34 @@ public class DGenericArrowConstraintImpl extends DConstraintImpl implements DGen
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case DiagramPackage.DGENERIC_ARROW_CONSTRAINT__SOURCE:
-				return source != null;
-			case DiagramPackage.DGENERIC_ARROW_CONSTRAINT__TARGET:
-				return target != null;
+	public DElement getSource() {
+		if (source != null && source.eIsProxy()) {
+			InternalEObject oldSource = (InternalEObject)source;
+			source = (DElement)eResolveProxy(oldSource);
+			if (source != oldSource) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiagramPackage.DGENERIC_ARROW_CONSTRAINT__SOURCE, oldSource, source));
+			}
 		}
-		return super.eIsSet(featureID);
+		return source;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public DElement getTarget() {
+		if (target != null && target.eIsProxy()) {
+			InternalEObject oldTarget = (InternalEObject)target;
+			target = (DElement)eResolveProxy(oldTarget);
+			if (target != oldTarget) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiagramPackage.DGENERIC_ARROW_CONSTRAINT__TARGET, oldTarget, target));
+			}
+		}
+		return target;
 	}
 
 	/**
@@ -224,22 +214,11 @@ public class DGenericArrowConstraintImpl extends DConstraintImpl implements DGen
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public void reconnect(EList<DNode> dNodes, EList<DArrow> dArrows, DSpecification dSpecification) {
 		super.reconnect(dNodes, dArrows, dSpecification);
 		setDSource(findDElement(getConstraint().getMappings(), getDPredicate().getVisualization().getSource()));
 		setDTarget(findDElement(getConstraint().getMappings(), getDPredicate().getVisualization().getTarget()));
-	}
-
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public void disconnect() {
-		setDSource(null);
-		setDTarget(null);
-		super.disconnect();
 	}
 
 	/*
@@ -256,6 +235,7 @@ public class DGenericArrowConstraintImpl extends DConstraintImpl implements DGen
 			_new.getConstraintsFrom().add(this);
 	}
 
+
 	@Override
 	public void setDTarget(DElement object) {
 		DElement old = getTarget();
@@ -265,5 +245,31 @@ public class DGenericArrowConstraintImpl extends DConstraintImpl implements DGen
 		DElement _new = getTarget();
 		if(_new != null && !_new.getConstraintsTo().contains(this))
 			_new.getConstraintsTo().add(this);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setSource(DElement newSource) {
+		DElement oldSource = source;
+		source = newSource;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DGENERIC_ARROW_CONSTRAINT__SOURCE, oldSource, source));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setTarget(DElement newTarget) {
+		DElement oldTarget = target;
+		target = newTarget;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DGENERIC_ARROW_CONSTRAINT__TARGET, oldTarget, target));
 	}
 } //DGenericArrowConstraintImpl

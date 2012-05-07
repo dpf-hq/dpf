@@ -25,7 +25,9 @@ import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DArrowLabelConstraint;
 import no.hib.dpf.diagram.DConstraint;
+import no.hib.dpf.diagram.DOffset;
 import no.hib.dpf.diagram.DiagramPackage;
+import no.hib.dpf.diagram.util.DiagramUtil;
 import no.hib.dpf.editor.DPFErrorReport;
 import no.hib.dpf.editor.commands.DArrowDeleteCommand;
 import no.hib.dpf.editor.extension_points.FigureConfigureManager;
@@ -48,6 +50,7 @@ import org.eclipse.draw2d.PolygonDecoration;
 import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.draw2d.RoutingAnimator;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.ConnectionEditPart;
@@ -290,11 +293,29 @@ public class DArrowEditPart extends GraphicalConnectionEditPart implements NodeE
 		if (getConnectionFigure().getConnectionRouter() instanceof ManhattanConnectionRouter) {
 			return;
 		}
-		List<Point> points = getDArrow().getBendpoints();
+		List<DOffset> points = getDArrow().getBendpoints();
 		List<Bendpoint> figureConstraint = new ArrayList<Bendpoint>();
-		for(Point p : points)
-			figureConstraint.add(new AbsoluteBendpoint(p));
-		getConnectionFigure().setRoutingConstraint(figureConstraint);
+		if(getSource() != null && getTarget() != null){
+			Rectangle source = ((NodeEditPart)getSource()).getFigure().getBounds();
+			Rectangle target = ((NodeEditPart)getTarget()).getFigure().getBounds();
+			Point start = source.getCenter(), end = target.getCenter();
+			if(getSource() == getTarget()){
+				start = source.getTop();
+				end = source.getBottom();
+				if(points.size() == 0){
+					int x = start.x, y = start.y;
+					points.add(DiagramUtil.getDOffset(start, end, new Point(x, y = y - source.height / 2)));
+					points.add(DiagramUtil.getDOffset(start, end, new Point(x = x - source.width, y)));
+					points.add(DiagramUtil.getDOffset(start, end, new Point(x, y = y + source.height * 2)));
+					points.add(DiagramUtil.getDOffset(start, end, new Point(x + source.width, y)));
+				}
+			}
+			for(DOffset p : points){
+				Point point = DiagramUtil.getAbsoluteBendPoint(start, end, p);
+				figureConstraint.add(new AbsoluteBendpoint(point));
+			}
+			getConnectionFigure().setRoutingConstraint(figureConstraint);
+		}
 	}
 
 	private void refreshBendpointEditPolicy(){
@@ -310,7 +331,6 @@ public class DArrowEditPart extends GraphicalConnectionEditPart implements NodeE
 		DArrow darrow = getDArrow();
 		if(connectionFigure instanceof ArrowConnection)
 			((ArrowConnection)connectionFigure).setEpi(darrow.getDSource() == darrow.getDTarget());
-		super.getModelChildren();
 		refreshBendpoints();
 	}
 
@@ -343,11 +363,11 @@ public class DArrowEditPart extends GraphicalConnectionEditPart implements NodeE
 
 
 	@Override
-	public ConnectionAnchor getSourceConnectionAnchor(Request request) {return getConnectionAnchor(null);}
+	public ConnectionAnchor getSourceConnectionAnchor(Request request) {return null;}
 
 
 	@Override
-	public ConnectionAnchor getTargetConnectionAnchor(Request request) {return getConnectionAnchor(null);}
+	public ConnectionAnchor getTargetConnectionAnchor(Request request) {return null;}
 	
 	/**
 	 * Produces a ConnectionAnchor for either the source or target end of this

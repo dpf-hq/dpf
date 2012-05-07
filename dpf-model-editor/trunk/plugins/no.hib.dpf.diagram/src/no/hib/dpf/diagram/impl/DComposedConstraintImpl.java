@@ -75,45 +75,6 @@ public class DComposedConstraintImpl extends DConstraintImpl implements DCompose
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	protected EClass eStaticClass() {
-		return DiagramPackage.Literals.DCOMPOSED_CONSTRAINT;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<DConstraint> getChildren() {
-		if (children == null) {
-			children = new EObjectContainmentEList<DConstraint>(DConstraint.class, this, DiagramPackage.DCOMPOSED_CONSTRAINT__CHILDREN);
-		}
-		return children;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DFakeNode getFakeNode() {
-		if (fakeNode != null && fakeNode.eIsProxy()) {
-			InternalEObject oldFakeNode = (InternalEObject)fakeNode;
-			fakeNode = (DFakeNode)eResolveProxy(oldFakeNode);
-			if (fakeNode != oldFakeNode) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiagramPackage.DCOMPOSED_CONSTRAINT__FAKE_NODE, oldFakeNode, fakeNode));
-			}
-		}
-		return fakeNode;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public DFakeNode basicGetFakeNode() {
 		return fakeNode;
 	}
@@ -121,13 +82,36 @@ public class DComposedConstraintImpl extends DConstraintImpl implements DCompose
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void disconnect() {
+		DSpecification dSpecification = (DSpecification) eContainer();
+		for(DConstraint constraint : children){
+			DGenericArrowConstraint generic = (DGenericArrowConstraint) constraint;
+			generic.setDSource(null);
+			generic.setDTarget(null);
+		}
+		dSpecification.getDGraph().removeDNode(getFakeNode());
+		super.disconnect();
+		
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFakeNode(DFakeNode newFakeNode) {
-		DFakeNode oldFakeNode = fakeNode;
-		fakeNode = newFakeNode;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DCOMPOSED_CONSTRAINT__FAKE_NODE, oldFakeNode, fakeNode));
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case DiagramPackage.DCOMPOSED_CONSTRAINT__CHILDREN:
+				return getChildren();
+			case DiagramPackage.DCOMPOSED_CONSTRAINT__FAKE_NODE:
+				if (resolve) return getFakeNode();
+				return basicGetFakeNode();
+		}
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -150,15 +134,14 @@ public class DComposedConstraintImpl extends DConstraintImpl implements DCompose
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DiagramPackage.DCOMPOSED_CONSTRAINT__CHILDREN:
-				return getChildren();
+				return children != null && !children.isEmpty();
 			case DiagramPackage.DCOMPOSED_CONSTRAINT__FAKE_NODE:
-				if (resolve) return getFakeNode();
-				return basicGetFakeNode();
+				return fakeNode != null;
 		}
-		return super.eGet(featureID, resolve, coreType);
+		return super.eIsSet(featureID);
 	}
 
 	/**
@@ -187,6 +170,16 @@ public class DComposedConstraintImpl extends DConstraintImpl implements DCompose
 	 * @generated
 	 */
 	@Override
+	protected EClass eStaticClass() {
+		return DiagramPackage.Literals.DCOMPOSED_CONSTRAINT;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DiagramPackage.DCOMPOSED_CONSTRAINT__CHILDREN:
@@ -205,20 +198,36 @@ public class DComposedConstraintImpl extends DConstraintImpl implements DCompose
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case DiagramPackage.DCOMPOSED_CONSTRAINT__CHILDREN:
-				return children != null && !children.isEmpty();
-			case DiagramPackage.DCOMPOSED_CONSTRAINT__FAKE_NODE:
-				return fakeNode != null;
+	public EList<DConstraint> getChildren() {
+		if (children == null) {
+			children = new EObjectContainmentEList<DConstraint>(DConstraint.class, this, DiagramPackage.DCOMPOSED_CONSTRAINT__CHILDREN);
 		}
-		return super.eIsSet(featureID);
+		return children;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public DFakeNode getFakeNode() {
+		if (fakeNode != null && fakeNode.eIsProxy()) {
+			InternalEObject oldFakeNode = (InternalEObject)fakeNode;
+			fakeNode = (DFakeNode)eResolveProxy(oldFakeNode);
+			if (fakeNode != oldFakeNode) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiagramPackage.DCOMPOSED_CONSTRAINT__FAKE_NODE, oldFakeNode, fakeNode));
+			}
+		}
+		return fakeNode;
 	}
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public void reconnect(EList<DNode> dNodes, EList<DArrow> dArrows, DSpecification dSpecification) {
 		super.reconnect(dNodes, dArrows, dSpecification);
 		dSpecification.getDGraph().addDNode(getFakeNode());
@@ -233,18 +242,14 @@ public class DComposedConstraintImpl extends DConstraintImpl implements DCompose
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
-	public void disconnect() {
-		DSpecification dSpecification = (DSpecification) eContainer();
-		for(DConstraint constraint : children){
-			DGenericArrowConstraint generic = (DGenericArrowConstraint) constraint;
-			generic.setDSource(null);
-			generic.setDTarget(null);
-		}
-		dSpecification.getDGraph().removeDNode(getFakeNode());
-		super.disconnect();
-		
+	@Override
+	public void setFakeNode(DFakeNode newFakeNode) {
+		DFakeNode oldFakeNode = fakeNode;
+		fakeNode = newFakeNode;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DCOMPOSED_CONSTRAINT__FAKE_NODE, oldFakeNode, fakeNode));
 	}
 
 } //DComposedConstraintImpl

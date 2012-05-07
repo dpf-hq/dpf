@@ -53,47 +53,8 @@ public class DFakeNodeImpl extends DNodeImpl implements DFakeNode {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	protected EClass eStaticClass() {
-		return DiagramPackage.Literals.DFAKE_NODE;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DConstraint getDConstraint() {
-		if (dConstraint != null && dConstraint.eIsProxy()) {
-			InternalEObject oldDConstraint = (InternalEObject)dConstraint;
-			dConstraint = (DConstraint)eResolveProxy(oldDConstraint);
-			if (dConstraint != oldDConstraint) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiagramPackage.DFAKE_NODE__DCONSTRAINT, oldDConstraint, dConstraint));
-			}
-		}
-		return dConstraint;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public DConstraint basicGetDConstraint() {
 		return dConstraint;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDConstraint(DConstraint newDConstraint) {
-		DConstraint oldDConstraint = dConstraint;
-		dConstraint = newDConstraint;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DFAKE_NODE__DCONSTRAINT, oldDConstraint, dConstraint));
 	}
 
 	/**
@@ -117,6 +78,20 @@ public class DFakeNodeImpl extends DNodeImpl implements DFakeNode {
 	 * @generated
 	 */
 	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case DiagramPackage.DFAKE_NODE__DCONSTRAINT:
+				return dConstraint != null;
+		}
+		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DiagramPackage.DFAKE_NODE__DCONSTRAINT:
@@ -124,6 +99,16 @@ public class DFakeNodeImpl extends DNodeImpl implements DFakeNode {
 				return;
 		}
 		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return DiagramPackage.Literals.DFAKE_NODE;
 	}
 
 	/**
@@ -147,12 +132,29 @@ public class DFakeNodeImpl extends DNodeImpl implements DFakeNode {
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case DiagramPackage.DFAKE_NODE__DCONSTRAINT:
-				return dConstraint != null;
+	public DConstraint getDConstraint() {
+		if (dConstraint != null && dConstraint.eIsProxy()) {
+			InternalEObject oldDConstraint = (InternalEObject)dConstraint;
+			dConstraint = (DConstraint)eResolveProxy(oldDConstraint);
+			if (dConstraint != oldDConstraint) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiagramPackage.DFAKE_NODE__DCONSTRAINT, oldDConstraint, dConstraint));
+			}
 		}
-		return super.eIsSet(featureID);
+		return dConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setDConstraint(DConstraint newDConstraint) {
+		DConstraint oldDConstraint = dConstraint;
+		dConstraint = newDConstraint;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DFAKE_NODE__DCONSTRAINT, oldDConstraint, dConstraint));
 	}
 
 } //DFakeNodeImpl

@@ -555,8 +555,8 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDArrow_Bendpoints() {
-		return (EAttribute)dArrowEClass.getEStructuralFeatures().get(7);
+	public EReference getDArrow_Bendpoints() {
+		return (EReference)dArrowEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -565,7 +565,7 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 	 * @generated
 	 */
 	public EReference getDArrow_NameOffset() {
-		return (EReference)dArrowEClass.getEStructuralFeatures().get(8);
+		return (EReference)dArrowEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -771,6 +771,24 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getDOffset_Len() {
+		return (EAttribute)dOffsetEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDOffset_Index() {
+		return (EAttribute)dOffsetEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getDSignature() {
 		return dSignatureEClass;
 	}
@@ -951,8 +969,8 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		createEReference(dArrowEClass, DARROW__DSOURCE);
 		createEReference(dArrowEClass, DARROW__DTARGET);
 		createEReference(dArrowEClass, DARROW__DCONSTRAINTS);
-		createEAttribute(dArrowEClass, DARROW__BENDPOINTS);
 		createEReference(dArrowEClass, DARROW__NAME_OFFSET);
+		createEReference(dArrowEClass, DARROW__BENDPOINTS);
 
 		dConstraintEClass = createEClass(DCONSTRAINT);
 		createEReference(dConstraintEClass, DCONSTRAINT__CONSTRAINT);
@@ -981,6 +999,8 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 
 		dOffsetEClass = createEClass(DOFFSET);
 		createEAttribute(dOffsetEClass, DOFFSET__OFFSET);
+		createEAttribute(dOffsetEClass, DOFFSET__LEN);
+		createEAttribute(dOffsetEClass, DOFFSET__INDEX);
 
 		dSignatureEClass = createEClass(DSIGNATURE);
 		createEReference(dSignatureEClass, DSIGNATURE__SIGNATURE);
@@ -1109,8 +1129,8 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		initEReference(getDArrow_DSource(), this.getDNode(), this.getDNode_DOutgoings(), "dSource", null, 1, 1, DArrow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDArrow_DTarget(), this.getDNode(), this.getDNode_DIncomings(), "dTarget", null, 1, 1, DArrow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDArrow_DConstraints(), this.getDConstraint(), this.getDConstraint_DArrows(), "dConstraints", null, 0, -1, DArrow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getDArrow_Bendpoints(), this.getELocation(), "bendpoints", null, 0, -1, DArrow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDArrow_NameOffset(), this.getDOffset(), null, "nameOffset", null, 0, 1, DArrow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDArrow_Bendpoints(), this.getDOffset(), null, "bendpoints", null, 0, -1, DArrow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = addEOperation(dArrowEClass, null, "reconnect", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getDNode(), "source", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -1162,6 +1182,8 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 
 		initEClass(dOffsetEClass, DOffset.class, "DOffset", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDOffset_Offset(), this.getELocation(), "offset", null, 0, 1, DOffset.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDOffset_Len(), ecorePackage.getEInt(), "len", null, 0, 1, DOffset.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDOffset_Index(), ecorePackage.getEInt(), "index", null, 0, 1, DOffset.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(dSignatureEClass, DSignature.class, "DSignature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDSignature_Signature(), theCorePackage.getSignature(), null, "signature", null, 0, 1, DSignature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

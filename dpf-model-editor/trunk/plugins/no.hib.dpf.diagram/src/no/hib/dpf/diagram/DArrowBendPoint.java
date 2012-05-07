@@ -48,16 +48,6 @@ public interface DArrowBendPoint extends EObject, Bendpoint{
 	Dimension getD1();
 
 	/**
-	 * Sets the value of the '{@link no.hib.dpf.diagram.DArrowBendPoint#getD1 <em>D1</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>D1</em>' attribute.
-	 * @see #getD1()
-	 * @generated
-	 */
-	void setD1(Dimension value);
-
-	/**
 	 * Returns the value of the '<em><b>D2</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -74,14 +64,21 @@ public interface DArrowBendPoint extends EObject, Bendpoint{
 	Dimension getD2();
 
 	/**
-	 * Sets the value of the '{@link no.hib.dpf.diagram.DArrowBendPoint#getD2 <em>D2</em>}' attribute.
+	 * Returns the value of the '<em><b>Location</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Location</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>D2</em>' attribute.
-	 * @see #getD2()
+	 * @return the value of the '<em>Location</em>' attribute.
+	 * @see #setLocation(Point)
+	 * @see no.hib.dpf.diagram.DiagramPackage#getDArrowBendPoint_Location()
+	 * @model dataType="no.hib.dpf.diagram.Location"
 	 * @generated
 	 */
-	void setD2(Dimension value);
+	@Override
+	Point getLocation();
 
 	/**
 	 * Returns the value of the '<em><b>Weight</b></em>' attribute.
@@ -100,30 +97,24 @@ public interface DArrowBendPoint extends EObject, Bendpoint{
 	int getWeight();
 
 	/**
-	 * Sets the value of the '{@link no.hib.dpf.diagram.DArrowBendPoint#getWeight <em>Weight</em>}' attribute.
+	 * Sets the value of the '{@link no.hib.dpf.diagram.DArrowBendPoint#getD1 <em>D1</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Weight</em>' attribute.
-	 * @see #getWeight()
+	 * @param value the new value of the '<em>D1</em>' attribute.
+	 * @see #getD1()
 	 * @generated
 	 */
-	void setWeight(int value);
+	void setD1(Dimension value);
 
 	/**
-	 * Returns the value of the '<em><b>Location</b></em>' attribute.
+	 * Sets the value of the '{@link no.hib.dpf.diagram.DArrowBendPoint#getD2 <em>D2</em>}' attribute.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Location</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Location</em>' attribute.
-	 * @see #setLocation(Point)
-	 * @see no.hib.dpf.diagram.DiagramPackage#getDArrowBendPoint_Location()
-	 * @model dataType="no.hib.dpf.diagram.Location"
+	 * @param value the new value of the '<em>D2</em>' attribute.
+	 * @see #getD2()
 	 * @generated
 	 */
-	Point getLocation();
+	void setD2(Dimension value);
 
 	/**
 	 * Sets the value of the '{@link no.hib.dpf.diagram.DArrowBendPoint#getLocation <em>Location</em>}' attribute.
@@ -134,5 +125,15 @@ public interface DArrowBendPoint extends EObject, Bendpoint{
 	 * @generated
 	 */
 	void setLocation(Point value);
+
+	/**
+	 * Sets the value of the '{@link no.hib.dpf.diagram.DArrowBendPoint#getWeight <em>Weight</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Weight</em>' attribute.
+	 * @see #getWeight()
+	 * @generated
+	 */
+	void setWeight(int value);
 
 } // DArrowBendPoint
