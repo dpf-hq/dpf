@@ -161,11 +161,7 @@ public abstract class TwoArrowConstraintConnection extends PolylineConnection im
 		
 		Bezier bezier = new Bezier(p1, p2, getMidwayPoint(controlpoints[0], p1), getMidwayPoint(controlpoints[0], p2));
 		bezier.reCompute();
-		points = bezier.getPoints();
-		points.removePoint(0);
-		points.reverse();
-		points.removePoint(0);
-		return Geometry.polylineContainsPoint(points, x, y, 2);
+		return Geometry.polylineContainsPoint(bezier.getPoints(), x, y, 2);
 	}
 
 	/**

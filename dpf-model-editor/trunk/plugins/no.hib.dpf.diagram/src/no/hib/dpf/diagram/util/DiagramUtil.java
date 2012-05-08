@@ -38,9 +38,9 @@ public class DiagramUtil {
 		if(points.size() > 2){
 			int pre = 0;
 			int relative = TransformS.getRelative(p).x;
-			int index = 1;
-			for(; index < points.size(); ++index){
-				Point currentPoint = points.getPoint(index);
+			int index = 0;
+			for(; index < points.size() - 2; ++index){
+				Point currentPoint = points.getPoint(index + 1);
 				int current = TransformS.getRelative(currentPoint).x;
 				if(current < pre) {
 					int temp = pre;
@@ -51,12 +51,8 @@ public class DiagramUtil {
 					break;
 				pre = current;
 			}
-			if(index == points.size())
-				index = 0;
-			else{
-				start = points.getPoint(index - 1).getCopy();
-				end = points.getPoint(index);
-			}
+			start = points.getPoint(index).getCopy();
+			end = points.getPoint(index + 1);
 			return DiagramUtil.getDOffset(start, end, p, index);
 		}else
 			return DiagramUtil.getDOffset(start, end, p, 0);
