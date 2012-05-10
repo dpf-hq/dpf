@@ -145,7 +145,7 @@
       </viewerContribution>
    </extension>
    <extension
-         id="no.hib.dpf.editor.nature.DPFEditorNature"
+         id="nature.dpfprojectnature"
          name="DPF Editor Nature"
          point="org.eclipse.core.resources.natures">
       <runtime>
