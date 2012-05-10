@@ -11,6 +11,9 @@
 *******************************************************************************/
 package no.hib.dpf.editor.figures;
 
+import no.hib.dpf.diagram.util.DiagramUtil;
+import no.hib.dpf.diagram.util.TransformS;
+import no.hib.dpf.editor.parts.DArrowEditPart;
 import no.hib.dpf.editor.parts.DConstraintEditPart;
 
 import org.eclipse.draw2d.ColorConstants;
@@ -24,6 +27,8 @@ import org.eclipse.draw2d.geometry.Geometry;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.draw2d.geometry.Transform;
+import org.eclipse.gef.EditPart;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.SWTException;
 import org.eclipse.swt.graphics.Color;
@@ -52,25 +57,67 @@ public abstract class TwoArrowConstraintConnection extends PolylineConnection im
 		updateAnchorOwner(getTargetAnchor());
 		super.validate();
 	}
+	
+	Bezier	bezier = null;
 	@Override
 	protected void outlineShape(Graphics g) {
 		PointList points = getPoints();
 		Point p1 = points.getFirstPoint();
 		Point p2 = points.getLastPoint();
-						
-		Point [] controlpoints = getMidwayControlPoints(p1, p2, controlPointsOffsets[0], controlPointsOffsets[1]);
-		
-// Draws the control points for your viewing pleasure		
-//		drawAnchorBlob(g, buildPointBox(getMidwayPoint(controlpoints[0], p1)));
-//		drawAnchorBlob(g, buildPointBox(getMidwayPoint(controlpoints[0], p2)));
-		
-		
-		Bezier bezier = new Bezier(p1, p2, getMidwayPoint(controlpoints[0], p1), getMidwayPoint(controlpoints[0], p2));
-		bezier.outlineShape(g);
-		
-		drawCenteredText(g, labelText, bezier.getPoints().getMidpoint());
-		drawEndpointBlobs(g, p1, p2);
-
+		EditPart source = constraintEditPart.getSource();
+		EditPart target = constraintEditPart.getTarget();
+		if(source instanceof DArrowEditPart && target instanceof DArrowEditPart){
+			PointList sourcePointList = ((DArrowEditPart)source).getConnectionFigure().getPoints();
+			PointList targetPointList = ((DArrowEditPart)target).getConnectionFigure().getPoints();
+			Point sm = null, tm = null;
+			Point sf = null, tf = null;
+			Point se = null, te = null;
+			double distance = Integer.MAX_VALUE;
+			for (int i = 0; i < sourcePointList.size() - 1; i++) {
+				Point sprep = sourcePointList.getPoint(i);
+				Point spostp = sourcePointList.getPoint(i + 1);
+				Point smidp = sprep.getTranslated(spostp).scale(0.5);
+				for (int j = 0; j < targetPointList.size() - 1; j++) {
+					Point tprep = targetPointList.getPoint(j);
+					Point tpostp = targetPointList.getPoint(j + 1);
+					Point tmidp = tprep.getTranslated(tpostp).scale(0.5);
+					double mtom = smidp.getDistance(tmidp);
+					if(mtom < distance){
+						sm = smidp;
+						tm = tmidp;
+						sf = sprep;
+						se = spostp;
+						tf = tprep;
+						te = tpostp;
+						distance = mtom;
+					}
+				}
+			}
+			Point cross = DiagramUtil.getCross(sf, se, tf, te);
+			bezier = new Bezier(p1, p2, sm, tm);
+			if(cross != null)
+			{
+				Point mm = sm.getTranslated(tm).scale(0.5);
+				TransformS.setBasic(mm, tm);
+				Point tmr = TransformS.getRelative(tm);
+				Transform trans = new Transform();
+				trans.setRotation(Math.PI / 2);
+				Point a = trans.getTransformed(tmr);
+				a = TransformS.getAbsolute(a);
+				trans.setRotation(-Math.PI / 2);
+				Point b = trans.getTransformed(tmr);
+				b = TransformS.getAbsolute(b);
+				Point control = cross.getDistance(a) < cross.getDistance(b) ? b : a;
+				double d1 = sm.getDistance(cross), d2 = tm.getDistance(cross);
+				double ration = d1 > d2 ? d2 / d1 : d1 / d2;
+				control = DiagramUtil.scableLine(mm, control, ration);
+				bezier = new Bezier(sm, tm, control, control);
+			}
+			bezier.outlineShape(g);
+			drawCenteredText(g, labelText, bezier.getPoints().getMidpoint());
+			drawEndpointBlobs(g, p1, p2);
+			return;
+		}
 	}
 	
 	protected NodeFigure getBasicRectangleFigure() {
@@ -154,14 +201,9 @@ public abstract class TwoArrowConstraintConnection extends PolylineConnection im
 
 	@Override
 	protected boolean shapeContainsPoint(int x, int y) {
-		PointList points = getPoints();
-		Point p1 = points.getFirstPoint();
-		Point p2 = points.getLastPoint();
-		Point [] controlpoints = getMidwayControlPoints(p1, p2, controlPointsOffsets[0], controlPointsOffsets[1]);
-		
-		Bezier bezier = new Bezier(p1, p2, getMidwayPoint(controlpoints[0], p1), getMidwayPoint(controlpoints[0], p2));
-		bezier.reCompute();
-		return Geometry.polylineContainsPoint(bezier.getPoints(), x, y, 2);
+		if(bezier != null)
+			return Geometry.polylineContainsPoint(bezier.getPoints(), x, y, 2);
+		return false;
 	}
 
 	/**

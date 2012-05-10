@@ -102,4 +102,19 @@ public class DiagramUtil {
 		result.setIndex(index);
 		return result;
 	}
+	//find the cross point of two lines. p1, p2 are two points of first line and p3, p4 are two points of second line
+	public static Point getCross(Point p1, Point p2, Point p3, Point p4){
+		int k = (p2.x - p1.x) * (p4.y - p3.y) - (p2.y - p1.y) * (p4.x - p3.x);
+		if(k == 0)
+			return null;
+		return new PrecisionPoint(((p3.y - p1.y) * (p2.x - p1.x) * (p4.x - p3.x) + p1.x * (p2.y - p1.y) * (p4.x - p3.x) - p3.x * (p4.y - p3.y) * (p2.x - p1.x)) / -k,
+				((p3.x - p1.x) * (p2.y - p1.y) * (p4.y - p3.y) + p1.y * (p2.x - p1.x) * (p4.y - p3.y) - p3.y * (p4.x - p3.x) * (p2.y - p1.y)) / k);
+	}
+	public static boolean isParallel(Point p1, Point p2, Point p3, Point p4){
+		return (p2.x - p1.x) * (p4.y - p3.y) == (p2.y - p1.y) * (p4.x - p3.x);
+	}
+	//scale the vector according to the direction and get the end point.
+	public static Point scableLine(Point start, Point end, double scale){
+		return end.getScaled(scale).translate(start.getScaled(1-scale));
+	}
 }
