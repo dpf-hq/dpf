@@ -11,9 +11,11 @@ package no.hib.dpf.codegen.xpand.ui.wizards;
  *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -28,6 +30,8 @@ import javax.xml.transform.TransformerException;
 
 import no.hib.dpf.codegen.xpand.ui.properties.DpfMetaModelProperties;
 
+import org.apache.log4j.Logger;
+import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
@@ -57,19 +61,20 @@ public class NewDpfGeneratorWizard extends Wizard implements INewWizard,
 		IExecutableExtension {
 
 	private DpfGeneratorPage page;
-
 	private DpfMetaModelProperties props;
-	
 	private IConfigurationElement configElement;
 	
+	private String workflowContent;
 	private String metaModelLocation;
 
-	private String workflowContent;
+	private Logger log;
+	
 	
 	public NewDpfGeneratorWizard() {
 		super();
 		super.setWindowTitle("New DPF Xpand Generator Project");
 		setNeedsProgressMonitor(true);
+		log = Logger.getLogger(NewDpfGeneratorWizard.class);
 	}
 
 	@Override
@@ -131,7 +136,17 @@ public class NewDpfGeneratorWizard extends Wizard implements INewWizard,
 
 		if (p == null)
 			return;
-
+		
+		//We create a folder where our metamodel/models will reside.
+		IFolder mfolder = p.getFolder("models");
+		if(!mfolder.exists()) {
+			try {
+				mfolder.create(false, true, monitor);
+			} catch (CoreException e) {
+				log.error("Could not create folder \"models\"", e);
+			}
+		}
+		
 		String encoding = ResourcesPlugin.getEncoding();
 		EclipseHelper.createFile(".settings/org.eclipse.core.resources.prefs",
 				p, "eclipse.preferences.version=1\nencoding/<project>="
@@ -149,24 +164,21 @@ public class NewDpfGeneratorWizard extends Wizard implements INewWizard,
 		
 		monitor.worked(1);
 		
-		//Cant access stuff outside of ui thread without this
+		//We can not access stuff outside of ui thread without this
 		Display.getDefault().syncExec(new Runnable() {
 			@Override
 			public void run() {
 				props = new DpfMetaModelProperties(p);
 				try {
 					props.setNature(true);
-					//We use .settings file instead
-//					props.setDsmPaths(page.getMetaModelLocation());
-					metaModelLocation = page.getMetaModelLocation();
+					metaModelLocation = page.getMetaModelLocation(); 
 				} catch (CoreException e) {
-					System.err.println("Problem loading dsmlocation from wizard.");
-					e.printStackTrace();
+					log.error("Could not load metamodel location from wizard", e);
 				}
 				
 				try {
-					WorkflowParser parse = new WorkflowParser(getContentStream("workflowtemplate.txt"));
-					parse.setProperty("dpf_metamodel", metaModelLocation);
+					WorkflowParser parse = new WorkflowParser(getUIContentStream("workflowtemplate.txt"));
+					parse.setProperty("dpf_metamodel", "platform:/resource/" + p.getName() + "/models/metamodel.xmi");
 					parse.setXpandEntryPoint("template::templ::main FOR dpf");
 					workflowContent = parse.getXml();
 				} catch (ParserConfigurationException e) {
@@ -178,26 +190,34 @@ public class NewDpfGeneratorWizard extends Wizard implements INewWizard,
 				} catch (TransformerException e) {
 					e.printStackTrace();
 				}
-				
-			
 			}
 		});
 		
+		try {
+			EclipseHelper.createFile("models/metamodel.xmi", p, 
+					getContents(new File(metaModelLocation).toURI().toURL().openStream()), monitor);
+			monitor.worked(1);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		EclipseHelper.createFile("src/workflow/workflow.mwe", p, workflowContent, monitor);
-		
 		monitor.worked(1);
 		
-		EclipseHelper.createFile("src/template/templ.xpt", p, getContents("xpttemplate.txt"), monitor);
-		
+		EclipseHelper.createFile("src/template/templ.xpt", p, getContentsOfTemplateResource("xpttemplate.txt"), monitor);
 		monitor.worked(1);
 		
 		EclipseHelper.createFile(".settings/no.hib.dpf.codegen.xpand.ui.prefs", 
 				p, 
 				"eclipse.preferences.version=1\n"
-				+ "metamodel.location=" + metaModelLocation, 
+				+ "metamodel.location=" + "platform:/resource/" + p.getName() + "/models/metamodel.xmi", 
 				new NullProgressMonitor());
 		monitor.worked(1);
+		
 	}
 
 	private Contributor getMetamodelContributor() {
@@ -214,35 +234,9 @@ public class NewDpfGeneratorWizard extends Wizard implements INewWizard,
 		return null;
 	}
 
-	private InputStream getContentStream(final String resource) {
-		Bundle b = Platform.getBundle("no.hib.dpf.codegen.xpand.ui");
-		Enumeration<URL> ee = b.findEntries("resources", resource, false);
-		
-		URL fileURL = null;
-		
-		if(ee.hasMoreElements()) {
-			fileURL = ee.nextElement();
-		}
+	private String getContents(final InputStream stream) {
 		try {
-			return fileURL.openStream();
-		} catch (IOException e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	private String getContents(final String resource) {
-		Bundle b = Platform.getBundle("no.hib.dpf.codegen.xpand.ui");
-		Enumeration<URL> ee = b.findEntries("resources", resource, false);
-		
-		URL fileURL = null;
-		
-		if(ee.hasMoreElements()) {
-			fileURL = ee.nextElement();
-		}
-		
-		try {
-			final InputStream inputStream = fileURL.openStream();
+			final InputStream inputStream = stream;
 
 			final byte[] buffer = new byte[4096];
 			final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -264,11 +258,40 @@ public class NewDpfGeneratorWizard extends Wizard implements INewWizard,
 			return outputStream.toString("UTF-8");
 		}
 		catch (final IOException e) {
-			e.printStackTrace();
+			log.error("Could not load resource", e);
 			return "";
 		}
 	}
 	
+	private URL findUIResource(String resource) {
+		Bundle b = Platform.getBundle("no.hib.dpf.codegen.xpand.ui");
+		Enumeration<URL> ee = b.findEntries("resources", resource, false);
+		
+		URL fileURL = null;
+		
+		if(ee.hasMoreElements()) {
+			fileURL = ee.nextElement();
+		}
+		return fileURL;
+	}
+	
+	private String getContentsOfTemplateResource(final String resource) {
+		try {
+			return getContents(findUIResource(resource).openStream());
+		} catch (IOException e) {
+			log.error("Could not load local template resource", e);
+			return "";
+		}
+	}
+	
+	private InputStream getUIContentStream(final String resource) {
+		try {
+			return findUIResource(resource).openStream();
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 	
 	/**
 	 * We will accept the selection in the workbench to see if we can initialize
