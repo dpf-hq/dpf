@@ -84,13 +84,18 @@ public class NewDpfGeneratorWizard extends Wizard implements INewWizard,
 	}
 
 	@Override
+	public boolean canFinish() {
+		return page.canFinish;
+	}
+	
+	@Override
 	public boolean performFinish() {
 		final String name = page.getProjectName();
 		final IRunnableWithProgress op = new IRunnableWithProgress() {
 			public void run(final IProgressMonitor monitor)
 					throws InvocationTargetException {
 				try {
-					 doFinish(name, monitor);
+					doFinish(name, monitor);
 				} finally {
 					monitor.done();
 				}
