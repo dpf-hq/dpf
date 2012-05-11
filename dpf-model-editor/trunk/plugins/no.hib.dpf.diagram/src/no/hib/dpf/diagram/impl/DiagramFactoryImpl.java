@@ -618,8 +618,8 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 		Visualization visualization = result.getVisualization();
 		visualization.setType(VisualizationType.ARROW_TO_ARROW);
 		Graph graph = result.getPredicate().getShape();
-		visualization.setSource(graph.getArrowByName("ZX"));
-		visualization.setTarget(graph.getArrowByName("ZY"));
+		visualization.setSource(graph.getArrowByName(source));
+		visualization.setTarget(graph.getArrowByName(target));
 		return result;
 	}
 

@@ -197,7 +197,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 	}
 
 	private void addActionForPredicate(final DPredicate dPredicate) {
-		CreateConstraintAction action = new CreateConstraintAction(this, dSpecification, dPredicate); registerAction(action);
+		CreateConstraintAction action = new CreateConstraintAction(this, dSpecification, dPredicate); 
 		registerAction(action);
 		constraintActions.add(action);
 	}
