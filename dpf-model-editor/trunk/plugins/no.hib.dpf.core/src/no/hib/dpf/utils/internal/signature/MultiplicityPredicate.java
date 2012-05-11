@@ -14,6 +14,7 @@ import java.util.Map.Entry;
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.Node;
+import no.hib.dpf.utils.DPFErrorReport;
 
 
 /**
@@ -33,8 +34,17 @@ public class MultiplicityPredicate extends AbstractSingleArrowPredicate {
 
 	public boolean check(Map<String, String> maps, Graph graph, Map<Node, List<Node>> nodeMap,
 					Map<Arrow, List<Arrow>> arrowMap) {
-				int min = Integer.parseInt(maps.get("min"));
-				int max = Integer.parseInt(maps.get("max"));
+				int min, max;
+				try{
+				min = Integer.parseInt(maps.get("min"));
+				if(maps.get("max").equals("*"))
+					max = -1;
+				else
+					max = Integer.parseInt(maps.get("max"));
+				}catch(NumberFormatException e){
+					DPFErrorReport.logError(e);
+					return true;
+				}
 				List<Arrow> arrows = arrowMap.get(graph.getArrowByName("XY"));
 				Map<Node, Integer> record = new HashMap<Node, Integer>();
 				if(arrows != null) {
