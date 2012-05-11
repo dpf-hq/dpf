@@ -70,6 +70,7 @@ public class DpfGeneratorPage extends WizardPage implements Listener {
 				fd.open();
 				if(!fd.getFileName().isEmpty()) {
 					metaModelLocation.setText(fd.getFilterPath() + "/" + fd.getFileName());
+					DpfGeneratorPage.this.metaModelLocation.notifyListeners(SWT.CHANGED, new Event());
 				}
 			}
 			
