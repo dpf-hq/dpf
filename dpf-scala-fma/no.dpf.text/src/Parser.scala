@@ -89,7 +89,7 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 	val DPF_ID: Parser[String] = """[0-9]|([1-9][0-9])+""".r
 	val CPARAM: Parser[String] = """[a-zA-Z_]*[0-9]*""".r
 	val OCL: Parser[String] = """[^#$]""".r	
-	val P_NUM: Parser[String] = """[1-9]?[0-9]*""".r
+	val P_NUM: Parser[String] = """[0-9]|([1-9][0-9])+""".r
 	
 	//Types:
 	val TBOOLEAN : Parser[String] = "Boolean".r
