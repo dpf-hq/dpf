@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<diagram:DSpecification xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:diagram="http://no.hib.dpf.diagram" gridVisible="false">
+<diagram:DSpecification xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:diagram="http://no.hib.dpf.diagram" zoom="1.5" gridVisible="false">
   <dGraph>
     <dNodes dOutgoings="//@dGraph/@dArrows.0 //@dGraph/@dArrows.1 //@dGraph/@dArrows.2" dIncomings="//@dGraph/@dArrows.2" dConstraints="//@dConstraints.0 //@dConstraints.1 //@dConstraints.2" location="450 194" size="100 30">
       <node href="metamodel.xmi#//@graph/@nodes.0"/>

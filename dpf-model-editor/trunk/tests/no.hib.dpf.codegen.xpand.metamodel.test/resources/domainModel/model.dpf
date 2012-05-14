@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ASCII"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:diagram="http://no.hib.dpf.diagram">
-  <diagram:DSpecification dType="/1" gridVisible="false" metaFile="metamodel.dpf">
+  <diagram:DSpecification dType="/1" zoom="1.5" gridVisible="false" metaFile="metamodel.dpf">
     <dGraph dType="/1/@dGraph">
       <dNodes dType="/1/@dGraph/@dNodes.0" dOutgoings="/0/@dGraph/@dArrows.1 /0/@dGraph/@dArrows.3" dIncomings="/0/@dGraph/@dArrows.2" dConstraints="/0/@dConstraints.1 /0/@dConstraints.2" location="276 263" size="100 30">
         <node href="model.xmi#/0/@graph/@nodes.0"/>

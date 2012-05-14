@@ -1,0 +1,36 @@
+«IMPORT dpf»
+
+«EXTENSION org::eclipse::xtend::util::stdlib::io»
+
+«DEFINE main FOR dpf::Specification»
+	«syserr("START(DomainClass)")»
+	«EXPAND abc FOREACH this.graph.getDomainClasses()»
+	«syserr("END")»
+	«syserr("START(Constraint)")»
+	«EXPAND const FOREACH this.getAllConstraints()»
+	«syserr("END")»
+	«syserr("START(Node)")»
+	«EXPAND n FOREACH this.graph.nodes»
+	«syserr("END")»
+	«EXPAND a FOREACH this.graph.arrows»
+«ENDDEFINE»
+
+«DEFINE n FOR Node»
+	«syserr(this.name)»
+«ENDDEFINE»
+
+«DEFINE abc FOR dpf::DomainClass»
+	«syserr(this.name)»
+	«EXPAND b FOREACH this.getAAttributes()»
+«ENDDEFINE»
+
+«DEFINE const FOR Constraint»
+	«syserr(this.id)»
+«ENDDEFINE»
+
+«DEFINE a FOR dpf::Arrow»
+«ENDDEFINE»
+
+«DEFINE b FOR dpf::Attribute»
+«ENDDEFINE»
+
