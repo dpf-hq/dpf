@@ -20,6 +20,7 @@ import no.hib.dpf.codegen.xpand.metamodel.typesystem.types.PredicateType;
 import no.hib.dpf.codegen.xpand.metamodel.typesystem.types.SpecificationType;
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
+import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.Node;
@@ -227,6 +228,10 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 		return res;
 	}
 	
+	public Specification getSpecification() {
+		return dpfMetaModel.getMetaModelSpec();
+	}
+	
 	private class InternalMetaModel {
 		/**Namespace for use when creating new Xpand Types*/
 		private String ns = null;
@@ -249,10 +254,9 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 				} else if(obj instanceof Arrow) {
 					return new ArrowType(DpfMetamodel.this, ns + "::" + ((Arrow)obj).getName(), (Arrow)obj);
 				} else if(obj instanceof Constraint) {
-//					return new ConstraintType(DpfMetamodel.this, ns + "::" + ((Constraint)obj).getId(), (Constraint)obj);
-					return new ConstraintType(DpfMetamodel.this, ns + "::" + DpfMMConstants.CONSTRAINT, (Constraint)obj);
+					return new ConstraintType(DpfMetamodel.this, ns + "::" + ((Constraint)obj).getId(), (Constraint)obj);
 				} else if(obj instanceof Predicate) {
-					return new PredicateType(DpfMetamodel.this, ns + "::" + PREDICATE , (Predicate)obj);
+					return new PredicateType(DpfMetamodel.this, ns + "::" + ((Predicate)obj).getSymbol() , (Predicate)obj);
 				} else if(obj instanceof DummyType) {
 					return new DummyType(DpfMetamodel.this, ns + "::" + ((DummyType)obj).getName());
 				}
@@ -264,19 +268,34 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 			
 		}
 		
+		private void buildBaseTypes() {
+			//This method creates base types which is used to build the corresponding Xpand types.
+			//The types are built using object introspection, as well as some "hardcoded" functionality.
+			
+			NodeType n = new NodeType(DpfMetamodel.this, ns + "::" + 
+					DpfMMConstants.NODE, CoreFactory.eINSTANCE.createDefaultNode());
+			ArrowType a = new ArrowType(DpfMetamodel.this, ns + "::" + 
+					DpfMMConstants.ARROW, CoreFactory.eINSTANCE.createDefaultArrow());
+			PredicateType p = new PredicateType(DpfMetamodel.this, ns + "::" +
+					DpfMMConstants.PREDICATE, CoreFactory.eINSTANCE.createDefaultPredicate());
+			ConstraintType c = new ConstraintType(DpfMetamodel.this, ns + "::" +
+					DpfMMConstants.CONSTRAINT, CoreFactory.eINSTANCE.createConstraint());
+
+			metaModelCache.put(n.getNode(), n);
+			metaModelCache.put(a.getArrow(), a);
+			metaModelCache.put(p.getPredicate(), p);
+			metaModelCache.put(c.getConstraint(), c);
+			
+			dpfModel.putEntry(ns + "::" + DpfMMConstants.NODE, n);
+			dpfModel.putEntry(ns + "::" + DpfMMConstants.ARROW, a);
+			dpfModel.putEntry(ns + "::" + DpfMMConstants.PREDICATE, p);
+			dpfModel.putEntry(ns + "::" + DpfMMConstants.CONSTRAINT, c);
+		}
+		
 		public void addMetaModel(String namespace, Specification spec) {
 			ns = namespace;
 			
-			//Placeholders for the actual node and arrow type
-			DummyType nodet = new DummyType(DpfMetamodel.this, ns + "::" + DpfMMConstants.NODE);
-			DummyType arrowt = new DummyType(DpfMetamodel.this, ns + "::" + DpfMMConstants.ARROW);
-			
-			metaModelCache.get(nodet);
-			metaModelCache.get(arrowt);
-			
-			//Hardcoded base types
-			dpfModel.putEntry(nodet.getName(), nodet);
-			dpfModel.putEntry(arrowt.getName(), arrowt);
+			buildBaseTypes();
 			
 			metaModelCache.get(spec);
 			metaModelCache.get(spec.getGraph());
@@ -285,10 +304,6 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 			}
 			for(Arrow a : spec.getGraph().getArrows()) {
 				metaModelCache.get(a);
-			}
-			for(Constraint c : spec.getConstraints()) {
-				dpfModel.putEntry(c.getId(), metaModelCache.get(c));
-				System.out.println(c.getId() + " symbol: " + c.getParameters());
 			}
 			
 			specifications.put(namespace, spec);
@@ -310,6 +325,7 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 			return metaModelCache.exists(obj);
 		}
 	}
+	
 	private class InternalModel {
 		
 		private String ns = NS_PREFIX;
@@ -330,8 +346,7 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 				} else if(obj instanceof Arrow) {
 					return new ArrowType(DpfMetamodel.this, ns + "::" + ((Arrow)obj).getName(), (Arrow)obj, dpfMetaModel.getXpandTypeForDpfType(((Arrow)obj).getTypeArrow()));
 				} else if(obj instanceof Constraint) {
-//					return new ConstraintType(DpfMetamodel.this, ns + "::" + ((Constraint)obj).getId(), (Constraint)obj);
-					return new ConstraintType(DpfMetamodel.this, ns + "::" + DpfMMConstants.CONSTRAINT, (Constraint)obj);
+					return new ConstraintType(DpfMetamodel.this, ns + "::" + ((Constraint)obj).getId(), (Constraint)obj);
 				} else if(obj instanceof Predicate) {
 					return new PredicateType(DpfMetamodel.this, ns + "::" + PREDICATE , (Predicate)obj);
 				}
@@ -353,17 +368,9 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 				//MetaModel
 				if(typeDefinition.equals(SPECIFICATION)) {
 					return dpfMetaModel.getXpandTypeForDpfType(dpfMetaModel.getMetaModelSpec());
-				}else if(typeDefinition.equals(PREDICATE)) {
-					try {
-						return null;
-//						return dpfMetaModel.getXpandTypeForDpfType(dpfMetaModel.getMetaModelSpec().getGraph().get);
-					} catch(NullPointerException e) {
-						return null; //We dont handle the PREDICATE type
-					}
 				} else if(typeDefinition.equals(GRAPH)) {
 					return dpfMetaModel.getXpandTypeForDpfType(dpfMetaModel.getMetaModelSpec().getGraph());
-				} 
-				else if(typeDefinition.equals(IDOBJECT)) {
+				} else if(typeDefinition.equals(IDOBJECT)) {
 					return null; //We dont handle this, as it should subclass IDObj. 
 				}
 				
@@ -371,7 +378,7 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 				if(key != null && dpfMetaModel.dpfTypeExists(key)) {
 					return dpfMetaModel.getXpandTypeForDpfType(key);
 				} 
-				
+	  			
 				//We try to retrieve from model. Is not instantiated before workflow is executed.
 				try {
 					key = getSpecificationTypeForName(model, typeDefinition);
@@ -459,7 +466,6 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 			
 			for(Constraint c : model.getConstraints()) {
 				putEntry(c.getId(), modelCache.get(c));
-				System.out.println(c.getId());
 			}
 		}
 		
@@ -478,8 +484,8 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 			return metaModelTypeCollections.get(typeId);
 		}
 		
-		public void putEntry(String typeDefinition, Object obj) {
-			typeForNameCache.put(typeDefinition, (Type)obj);
+		public void putEntry(String typeDefinition, Type obj) {
+			typeForNameCache.put(typeDefinition, obj);
 		}
 	}
 	

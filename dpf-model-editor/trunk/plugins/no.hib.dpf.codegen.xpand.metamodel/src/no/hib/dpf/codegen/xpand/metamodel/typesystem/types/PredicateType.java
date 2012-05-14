@@ -41,4 +41,8 @@ public class PredicateType extends AbstractTypeImpl {
 		
 		return res.toArray(new Feature[res.size()]);
 	}
+
+	public Predicate getPredicate() {
+		return predicate;
+	}
 }

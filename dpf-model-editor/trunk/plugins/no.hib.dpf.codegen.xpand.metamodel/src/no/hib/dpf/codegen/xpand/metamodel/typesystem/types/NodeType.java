@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import no.hib.dpf.codegen.xpand.metamodel.DpfMMConstants;
 import no.hib.dpf.codegen.xpand.metamodel.DpfMetamodel;
 import no.hib.dpf.codegen.xpand.metamodel.typesystem.FeatureImpl;
 import no.hib.dpf.codegen.xpand.metamodel.typesystem.OperationImpl;
@@ -64,16 +65,29 @@ public class NodeType extends AbstractTypeImpl {
 			}
 		});
 		
-		if(node.getConstraints().size() != 0) {
+//		if(model.getSpecification().getConstraints().isEmpty()) {
+//			Specification spectmp = model.getSpecification();
+//			Constraint tmp = spectmp.createConstraint(
+//					spectmp.getSignature().getPredicates().get(0),
+//					"", 
+//					null,
+//					spectmp.getGraph().getNodes(), 
+//					node.getOutgoings(), 
+//					spectmp.getType().getGraph().getNodes(), 
+//					spectmp.getType().getGraph().getArrows());
+//			model.getTypeForName(tmp.getId());
+//		}
 			//The reason for using the first constraint is to give xpand the required features for the constraint type.
-			res.add(new OperationImpl(this, "getConstraints", new ListTypeImpl(model.getTypeForName(node.getConstraints().get(0).getId()), model.getTypeSystem(), "List")) {
-				
+//		if(!model.getSpecification().getConstraints().isEmpty()) {
+			res.add(new OperationImpl(this, "getConstraints", new ListTypeImpl(
+					model.getTypeForName(DpfMMConstants.CONSTRAINT), model.getTypeSystem(), "List")) {
+//					model.getTypeForName(model.getSpecification().getConstraints().get(0).getId()), model.getTypeSystem(), "List")) {
 				@Override
 				protected Object evaluateInternal(Object target, Object[] params) {
 					return node.getConstraints();
 				}
 			});
-		}
+//		}
 		return res.toArray(new Feature[res.size()]);
 	}
 	
@@ -106,10 +120,8 @@ public class NodeType extends AbstractTypeImpl {
 							//We make sure that the typeNode has the typeArrow. To make sure the our arrow is allowed on the particular node
 							if (outgoingArrowIds.contains(((Arrow)o).getTypeArrow().getId())) {
 								//Instance level: We check that the model arrow has the callee node as source
-								if(((Arrow)o).getSource().equals(target)) {
-//									System.out.println("Matched!");
+								if(((Arrow)o).getSource().getId().equals(((Node)target).getId())) {
 									tmp.add(((Arrow) o));
-							
 								}
 							}
 						}
@@ -122,12 +134,17 @@ public class NodeType extends AbstractTypeImpl {
 	@Override
 	public Set<? extends Type> getSuperTypes() {
 		HashSet<Type> res = new HashSet<Type>();
+		//We add our base node type as supertype
+		if(!this.getName().equals(DpfMMConstants.NS_PREFIX + "::" + DpfMMConstants.NODE)) {
+			res.add(model.getTypeForName(DpfMMConstants.NODE));
+		}
 		if(metaType != null) res.add(metaType);
+		
 		res.add(model.getTypeSystem().getObjectType());
 		return res;
 	}
 	
-	public Node getDpfNode() {
+	public Node getNode() {
 		return node;
 	}
 }

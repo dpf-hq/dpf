@@ -3,9 +3,11 @@ package no.hib.dpf.codegen.xpand.metamodel.typesystem.types;
 import java.util.HashSet;
 import java.util.Set;
 
+import no.hib.dpf.codegen.xpand.metamodel.DpfMMConstants;
 import no.hib.dpf.codegen.xpand.metamodel.DpfMetamodel;
 import no.hib.dpf.core.Specification;
 import no.hib.dpf.codegen.xpand.metamodel.typesystem.FeatureImpl;
+import no.hib.dpf.codegen.xpand.metamodel.typesystem.OperationImpl;
 import no.hib.dpf.codegen.xpand.metamodel.typesystem.TypeHelper;
 
 import org.eclipse.xtend.typesystem.AbstractTypeImpl;
@@ -35,6 +37,14 @@ public class SpecificationType extends AbstractTypeImpl {
 		final Set<FeatureImpl> res = new HashSet<FeatureImpl>();
 		
 		res.addAll(TypeHelper.getEClassFeatures(model, spec.eClass(), this));
+		
+		res.add(new OperationImpl(this, "getAllConstraints", new ListTypeImpl(
+				model.getTypeForName(DpfMMConstants.CONSTRAINT), model.getTypeSystem(), "List")) {
+			@Override
+			protected Object evaluateInternal(Object target, Object[] params) {
+				return spec.getConstraints();
+			}
+		});
 		
 		return res.toArray(new Feature[res.size()]);
 	}
