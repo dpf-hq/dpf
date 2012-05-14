@@ -3,9 +3,13 @@ package no.hib.dpf.codegen.xpand.metamodel.test;
 import static org.junit.Assert.*;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import no.hib.dpf.codegen.xpand.metamodel.DpfMMConstants;
 import no.hib.dpf.codegen.xpand.metamodel.DpfMetamodel;
+import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Specification;
 import no.hib.dpf.utils.DPFCoreUtil;
@@ -18,8 +22,8 @@ import org.hamcrest.Matcher;
 import org.junit.*;
 
 public class MetaModelTest {
-	String modelPath = "resources/domainModel/model.dpf.xmi";
-	String metaModelPath = "resources/domainModel/test.dpf.xmi";
+	String modelPath = "resources/domainModel/model.xmi";
+	String metaModelPath = "resources/domainModel/metamodel.xmi";
 	Specification model, metamodel;
 	DpfMetamodel mm;
 	
@@ -38,20 +42,20 @@ public class MetaModelTest {
 	public void metaModelLoaded() {
 		Set<Type> res = mm.getKnownTypes();
 		//These types should be inside the metamodel.
-		assertThat(res, matchTypeName("dpf::DomainClass"));
-		assertThat(res, matchTypeName("dpf::Type"));
-		assertThat(res, matchTypeName("dpf::Attribute"));
-		assertThat(res, matchTypeName("dpf::Package"));
-		assertThat(res, matchTypeName("dpf::Controller"));
-		assertThat(res, matchTypeName("dpf::Reference"));
-		assertThat(res, matchTypeName("dpf::hasAction"));
-		assertThat(res, matchTypeName("dpf::operatesOn"));
-		assertThat(res, matchTypeName("dpf::classBelongsTo"));
-		assertThat(res, matchTypeName("dpf::controllerBelongsTo"));
-		assertThat(res, matchTypeName("dpf::Action"));
-		assertThat(res, matchTypeName("dpf::hasAction"));
-		//Last two are dummy nodes for node and arrow
-		assertTrue("Expected 16, got " + res.size(), res.size() == 16);
+		assertThat(res, matchTypesName("dpf::Specification"));
+		assertThat(res, matchTypesName("dpf::Graph"));
+		assertThat(res, matchTypesName("dpf::Node"));
+		assertThat(res, matchTypesName("dpf::Arrow"));
+		assertThat(res, matchTypesName("dpf::Predicate"));
+		assertThat(res, matchTypesName("dpf::Constraint"));
+		assertThat(res, matchTypesName("dpf::DomainClass"));
+		assertThat(res, matchTypesName("dpf::Type"));
+		assertThat(res, matchTypesName("dpf::Attribute"));
+		assertThat(res, matchTypesName("dpf::Package"));
+		assertThat(res, matchTypesName("dpf::Reference"));
+		assertThat(res, matchTypesName("dpf::classBelongsTo"));
+		
+		assertTrue("Expected 12, got " + res.size(), res.size() == 12);
 	}
 	
 	//Internal types is (and should) not be exported, and this creates a problem when 
@@ -89,6 +93,19 @@ public class MetaModelTest {
 		assertTrue(types.contains(expected));
 	}
 	
+	@SuppressWarnings("unchecked")
+	@Test
+	public void retrieveConstraints() {
+		List<Constraint> clist = model.getConstraints();
+		Set<Type> tlist = new HashSet<Type>();
+		
+		for(Constraint c : clist) {
+			tlist.add(mm.getTypeForName(c.getId()));
+		}
+		assertThat(tlist, matchTypesName(DpfMMConstants.NS_PREFIX + "::e9d1aeaa-ec78-4760-be2b-2187d3d1f96e"));
+		assertThat(tlist, matchTypesName(DpfMMConstants.NS_PREFIX + "::5d14cf39-6769-49fb-8cea-7f2364dee8bf"));
+		assertThat(tlist, matchTypesName(DpfMMConstants.NS_PREFIX + "::3c44d904-fa09-438c-86d1-b468c86ee940"));
+	}
 //	@Test
 //	public void getTypeForETypedElementReturnsCorrectType() {
 //		//This test addresses bug where the ecore specific code in the xpand metamodel will return 
@@ -116,12 +133,13 @@ public class MetaModelTest {
 	}
 	
 	@SuppressWarnings("rawtypes")
-	private Matcher matchTypeName(final String expected) {
+	private Matcher matchTypesName(final String expected) {
 		
 		return new BaseMatcher() {
 			@Override
 			public boolean matches(Object item) {
 				if(item instanceof Set) {
+					@SuppressWarnings("unchecked")
 					Set<Type> tmp = (Set<Type>)item;
 					for(Type t : tmp) {
 						if(t.getName().equals(expected)) {
@@ -137,6 +155,5 @@ public class MetaModelTest {
 				description.appendText(expected);
 			}
 		};
-		
 	}
 }

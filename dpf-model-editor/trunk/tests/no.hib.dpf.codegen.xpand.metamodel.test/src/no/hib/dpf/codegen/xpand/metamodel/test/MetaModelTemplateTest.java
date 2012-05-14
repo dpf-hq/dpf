@@ -11,7 +11,7 @@ import org.junit.Test;
 
 public class MetaModelTemplateTest {
 	private DpfXpandRunner runner;
-	private ByteArrayOutputStream sysOut = new ByteArrayOutputStream();
+//	private ByteArrayOutputStream sysOut = new ByteArrayOutputStream();
 	private ByteArrayOutputStream sysErr = new ByteArrayOutputStream();
 	@Before
 	public void setUp() {
