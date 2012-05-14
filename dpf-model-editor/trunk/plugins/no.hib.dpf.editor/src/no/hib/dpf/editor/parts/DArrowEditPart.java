@@ -50,6 +50,7 @@ import org.eclipse.draw2d.PolygonDecoration;
 import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.draw2d.RoutingAnimator;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
@@ -124,6 +125,19 @@ public class DArrowEditPart extends GraphicalConnectionEditPart implements NodeE
 		});
 	}
 
+	public PointList getRealPointList(){
+		PointList result = new PointList();
+		IFigure source = ((DNodeEditPart) getSource()).getFigure();
+		IFigure target = ((DNodeEditPart) getTarget()).getFigure();
+		Point start = source == target ? source.getBounds().getTop() : source.getBounds().getCenter();
+		Point end = source == target ? source.getBounds().getBottom() : target.getBounds().getCenter();
+		result.addPoint(start);
+		DArrow dArrow = getDArrow();
+		for(DOffset offset : dArrow.getBendpoints())
+			result.addPoint(DiagramUtil.getAbsoluteBendPoint(start, end, offset));
+		result.addPoint(end);
+		return result;
+	}
 	/*
 	 * (non-Javadoc)
 	 * 

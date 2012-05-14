@@ -141,6 +141,8 @@ public class ArrowLabelEditPart extends GraphicalEditPartWithListener{
 		if(msg.getNotifier() != null && msg.getNotifier() == getDOffset()){ 
 			switch(msg.getFeatureID(DOffset.class)){
 			case DiagramPackage.DOFFSET__OFFSET:
+			case DiagramPackage.DOFFSET__INDEX:
+			case DiagramPackage.DOFFSET__LEN:
 				refreshVisuals();
 				break;
 			}

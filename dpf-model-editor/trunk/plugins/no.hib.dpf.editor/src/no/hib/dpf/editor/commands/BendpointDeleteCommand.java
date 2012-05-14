@@ -15,7 +15,6 @@
 *******************************************************************************/
 package no.hib.dpf.editor.commands;
 
-import java.util.Map.Entry;
 
 import no.hib.dpf.diagram.DOffset;
 
@@ -24,10 +23,6 @@ public class BendpointDeleteCommand extends BendPointCreateCommand {
 	public void execute() {
 		for(DOffset offset : one)
 			offset.setIndex(offset.getIndex() - 1);
-		
-		for(Entry<DOffset, DOffset>  entry : newMap.entrySet())
-			entry.getKey().setDOffset(entry.getValue());
-				
 		getArrow().getBendpoints().remove(getIndex());
 	}
 
@@ -35,10 +30,6 @@ public class BendpointDeleteCommand extends BendPointCreateCommand {
 		getArrow().getBendpoints().add(getIndex(), getLocation());
 		for(DOffset offset : one)
 			offset.setIndex(offset.getIndex() + 1);
-		
-		for(Entry<DOffset, DOffset>  entry : newMap.entrySet()){
-			entry.getKey().setDOffset(entry.getValue());
-		}
 	}
 
 }

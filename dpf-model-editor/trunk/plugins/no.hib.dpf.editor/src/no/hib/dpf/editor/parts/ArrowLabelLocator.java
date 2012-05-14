@@ -40,13 +40,10 @@ package no.hib.dpf.editor.parts;
 import no.hib.dpf.diagram.DOffset;
 import no.hib.dpf.diagram.util.DiagramUtil;
 
-import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.FigureUtilities;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Locator;
 import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.geometry.PointList;
 
 class ArrowLabelLocator implements Locator {
 
@@ -63,18 +60,9 @@ class ArrowLabelLocator implements Locator {
 	public void relocate(IFigure figure) {
 		Dimension minimum = FigureUtilities.getTextExtents(text, figure.getFont());
 		figure.setSize(minimum);
-		IFigure source = ((DNodeEditPart) connection.getSource()).getFigure();
-		IFigure target = ((DNodeEditPart) connection.getTarget()).getFigure();
-		Connection connectionFigure = this.connection.getConnectionFigure();
-		PointList points = connectionFigure.getPoints();
-		Point start, end;
-		if(offset.getIndex() == 0 && points.size() == 2){
-			start = source == target ? source.getBounds().getTop() : source.getBounds().getCenter();
-			end = source == target ? source.getBounds().getBottom() : target.getBounds().getCenter();
-		}else{
-			start = points.getPoint(offset.getIndex());
-			end = points.getPoint(offset.getIndex() + 1);
-		}
-		figure.setLocation(DiagramUtil.getAbsoluteBendPoint(start, end, offset));
+		figure.setLocation(DiagramUtil.getAbsolutePoint(((DNodeEditPart) connection.getSource()).getFigure(), 
+				((DNodeEditPart) connection.getTarget()).getFigure(), 
+				connection.getRealPointList(), 
+				offset));
 	}
 }

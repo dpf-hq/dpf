@@ -57,19 +57,11 @@ public class DiagramUtil {
 		}else
 			return DiagramUtil.getDOffset(start, end, p, 0);
 	}
-	public static DOffset getDOffset(IFigure source, IFigure target, PointList points, Point p, int index){
-		Point start, end;
-		if(index == 0 && points.size() == 2){
-			start = source == target ? source.getBounds().getTop() : source.getBounds().getCenter();
-			end = source == target ? source.getBounds().getBottom() : target.getBounds().getCenter();
-		}else{
-			start = points.getPoint(index);
-			end = points.getPoint(index + 1);
-		}
+	public static boolean needToAdd(IFigure source, IFigure target, Point label, Point newBendPoint, DOffset offset){
+		Point start = source == target ? source.getBounds().getTop() : source.getBounds().getCenter();
+		Point end = source == target ? source.getBounds().getBottom() : target.getBounds().getCenter();
 		TransformS.setBasic(start, end);
-		Point relative = TransformS.getRelative(p);
-		double ratio = relative.preciseY() / relative.preciseX();
-		return new DOffsetImpl(relative, TransformS.getRelative(end).x, ratio > 1 ? index + 1 : index);
+		return TransformS.getRelative(label).x > TransformS.getRelative(newBendPoint).x ;
 	}
 	public static DOffset getDOffsetBack(IFigure source, IFigure target, PointList points, Point p, int index){
 		Point start, end;
@@ -87,7 +79,7 @@ public class DiagramUtil {
 	public static Point getAbsolutePoint(IFigure source, IFigure target, PointList points, DOffset offset){
 		Point start, end;
 		int index = offset.getIndex();
-		if(index == 0 && points.size() == 2){
+		if(points.size() == 2){
 			start = source == target ? source.getBounds().getTop() : source.getBounds().getCenter();
 			end = source == target ? source.getBounds().getBottom() : target.getBounds().getCenter();
 		}else{
