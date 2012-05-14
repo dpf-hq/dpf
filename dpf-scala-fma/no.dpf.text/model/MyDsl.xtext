@@ -22,6 +22,7 @@ enum DataType:
 //Java Datatypes:
 terminal CHAR: '\'' ANY_OTHER '\'';
 terminal NUMBER: INT ('.' INT);
+VALUE: NUMBER | CHAR | STRING;
 
 //
 //Grammar Rules:
@@ -52,7 +53,7 @@ InstanceSpecification : id = ID ':=' 'ISpec<' model=ChoosenSpecfication ',' meta
 
 ChoosenSpecfication : id=ID;
 
-ConstraintSemantic: id=DpfId '{''{'(arrows+=Arrows (',' arrows+=Arrows)*) ',' '}' '=' ocl=STRING;
+ConstraintSemantic: id=DpfId '{'(arrows+=Arrows (',' arrows+=Arrows)*) ',' '}' '=' ocl=STRING;
 
 //Specification:
 Specification : id = ID ':=' 'Spec<' graph=ChoosenGraph '>' '{' (constraints+=Constraint (',' constraints+=Constraint)*)? '}';
@@ -96,9 +97,7 @@ Arrow: ( sr=Node '-' id=DpfId ':' '*'        '->' tgDataType=DataType)
        
 Node: id=DpfId ':' type=DpfId;
 
-AttributeValue: '[' value=(NUMBER | CHAR | STRING) ']';
+AttributeValue: '[' value=(VALUE) ']';
 
 DpfId: name=ID ('@' id=INT)?;
- 
-
 	
