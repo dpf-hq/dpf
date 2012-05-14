@@ -62,7 +62,7 @@ import org.eclipse.gef.rulers.RulerProvider;
  * 
  * @author Elias Volanakis
  */
-class DGrahpEditPart extends GraphicalEditPartWithListener {
+public class DGraphEditPart extends GraphicalEditPartWithListener {
 
 	/**
 	 * Upon activation, attach to the model element as a property change

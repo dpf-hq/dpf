@@ -8,7 +8,6 @@ import no.hib.dpf.editor.preferences.DPFEditorPreferences;
 import org.eclipse.draw2d.AbstractBorder;
 import org.eclipse.draw2d.ChopboxAnchor;
 import org.eclipse.draw2d.ConnectionAnchor;
-import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.ToolbarLayout;
@@ -52,7 +51,7 @@ public class EllipsePainting implements INodePainting {
 		}
 	}
 	@Override
-	public Figure createNodeFigure() {
+	public NodeFigure createNodeFigure() {
 		return new EllipseFigure(new EditableLabel("choice"));
 	}
 

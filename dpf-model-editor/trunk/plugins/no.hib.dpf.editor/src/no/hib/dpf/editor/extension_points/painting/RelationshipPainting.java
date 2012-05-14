@@ -7,9 +7,9 @@ import no.hib.dpf.editor.extension_points.border.BasicAnchor;
 import no.hib.dpf.editor.extension_points.border.BasicBorder;
 import no.hib.dpf.editor.extension_points.border.BasicNodeFigure;
 import no.hib.dpf.editor.figures.EditableLabel;
+import no.hib.dpf.editor.figures.NodeFigure;
 
 import org.eclipse.draw2d.ConnectionAnchor;
-import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Point;
@@ -52,7 +52,7 @@ public class RelationshipPainting implements INodePainting {
 		}
 	}
 	@Override
-	public Figure createNodeFigure() {
+	public NodeFigure createNodeFigure() {
 		return new RelationshipFigure(new EditableLabel("Relationship"));
 	}
 	ConnectionAnchor inAnchor = null;

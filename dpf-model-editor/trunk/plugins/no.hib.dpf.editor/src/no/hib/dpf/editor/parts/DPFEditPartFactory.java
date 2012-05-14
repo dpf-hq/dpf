@@ -50,7 +50,7 @@ public EditPart createEditPart(EditPart context, Object modelElement) {
  */
 private EditPart getPartForElement(Object modelElement) {
 	if (modelElement instanceof DGraph) {
-		return new DGrahpEditPart();
+		return new DGraphEditPart();
 	}
 	if (modelElement instanceof DNode) {
 		return new DNodeEditPart();

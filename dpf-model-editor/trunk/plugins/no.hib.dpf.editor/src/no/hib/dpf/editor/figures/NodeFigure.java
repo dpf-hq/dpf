@@ -106,4 +106,9 @@ public class NodeFigure extends Figure implements RoutableFigure {
 	public int getRoutingPriority() {
 		return 0;
 	}
+
+	private static final Color[] colors = {DPFEditorPreferences.getDefault().getNodeColor(), ColorConstants.green, ColorConstants.darkGreen};
+	public void showFeedBack(int state) {
+		setBackgroundColor(colors[state]);
+	}
 }

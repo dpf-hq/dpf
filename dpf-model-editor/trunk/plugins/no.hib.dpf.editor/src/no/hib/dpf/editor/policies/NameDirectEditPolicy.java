@@ -42,10 +42,17 @@ public class NameDirectEditPolicy extends DirectEditPolicy {
 	 * @see DirectEditPolicy#getDirectEditCommand(org.eclipse.gef.requests.DirectEditRequest)
 	 */
 	protected Command getDirectEditCommand(DirectEditRequest request) {
-		if(getHost() instanceof DNodeEditPart)
-			return new ChangeNameCommand((DNode) getHost().getModel(), (String) request.getCellEditor().getValue());
-		if(getHost() instanceof ArrowLabelEditPart)
-			return new ChangeNameCommand((DArrow) getHost().getParent().getModel(), (String) request.getCellEditor().getValue());
+		String name = (String) request.getCellEditor().getValue();
+		if(getHost() instanceof DNodeEditPart){
+			DNode node = (DNode) getHost().getModel();
+			if(!node.getName().equals(name));
+			return new ChangeNameCommand(node, name);
+		}
+		if(getHost() instanceof ArrowLabelEditPart){
+			DArrow arrow = (DArrow) getHost().getParent().getModel();
+			if(!arrow.getName().equals(name))
+			return new ChangeNameCommand(arrow, name);
+		}
 		return super.getCommand(request);
 	}
 
