@@ -10,4 +10,5 @@
 
 ------------------------------------
 - Regeln mit AGG
+- Regeln auch mit IDs matchen, namen sollten in den Regeln keine Rolle mehr spielen
 
