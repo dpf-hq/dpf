@@ -181,6 +181,15 @@ public interface CoreFactory extends EFactory {
 	Predicate createPredicate();
 
 	/**
+	 * Returns a new object of class '<em>Semantic Validator</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Semantic Validator</em>'.
+	 * @generated
+	 */
+	SemanticValidator createSemanticValidator();
+
+	/**
 	 * Returns a new object of class '<em>Predicate</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -189,14 +198,7 @@ public interface CoreFactory extends EFactory {
 	 */
 	Predicate createDefaultPredicate();
 
-	/**
-	 * Returns a new object of class '<em>Semantic Validator</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Semantic Validator</em>'.
-	 * @generated
-	 */
-	SemanticValidator createSemanticValidator();
+	SemanticValidator createDefaultSemanticValidator();
 
 	/**
 	 * Returns a new object of class '<em>Constraint</em>'.

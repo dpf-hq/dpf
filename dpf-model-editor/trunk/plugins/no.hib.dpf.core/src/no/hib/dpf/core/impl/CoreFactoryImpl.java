@@ -243,7 +243,7 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 	public Predicate createDefaultPredicate() {
 		PredicateImpl predicate = new PredicateImpl();
 		predicate.setShape(createDefaultGraph());
-		predicate.setValidator(createSemanticValidator());
+		predicate.setValidator(createDefaultSemanticValidator());
 		return predicate;
 	}
 	
@@ -329,9 +329,19 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public SemanticValidator createSemanticValidator() {
+		SemanticValidatorImpl semanticValidator = new SemanticValidatorImpl();
+		return semanticValidator;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public SemanticValidator createDefaultSemanticValidator() {
 		SemanticValidator result = new SemanticValidatorImpl();
 		result.setType(ValidatorType.JAVA);
 		result.setValidator(DPFConstants.DefaultChecker);
