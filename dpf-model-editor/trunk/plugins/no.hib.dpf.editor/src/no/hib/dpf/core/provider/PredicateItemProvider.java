@@ -213,7 +213,7 @@ public class PredicateItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(CorePackage.Literals.PREDICATE__VALIDATOR,
-				 CoreFactory.eINSTANCE.createSemanticValidator()));
+				 CoreFactory.eINSTANCE.createDefaultSemanticValidator()));
 	}
 
 	/**
