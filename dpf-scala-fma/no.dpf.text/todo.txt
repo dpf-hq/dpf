@@ -1,0 +1,13 @@
+- Grammatik ändern auf Notes Adrian
+- Grammatik mit ANTLR
+- Fehlermedlungen OCL
+- Beim Speichern automatisch normalisieren, so das alle Ids auch nummern haben 
+- Normalisieren verbessern
+------------------------------------
+- IGraphs
+- IDs für den Merge Fall mit mehreren nummern (?)
+
+
+------------------------------------
+- Regeln mit AGG
+
