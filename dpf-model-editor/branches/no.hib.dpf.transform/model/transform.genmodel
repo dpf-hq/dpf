@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/no.hib.dpf.transform/src"
+    editDirectory="/no.hib.dpf.transform/src" editorDirectory="/no.hib.dpf.transform/src"
+    modelPluginID="no.hib.dpf.transform" modelName="Transform" testsDirectory="/no.hib.dpf.transform/src"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
+    editPluginID="no.hib.dpf.transform" usedGenPackages="../../no.hib.dpf.core/model/Metamodel.genmodel#//core">
+  <foreignModel>transform.ecore</foreignModel>
+  <genPackages prefix="Transform" basePackage="no.hib.dpf" disposableProviderFactory="true"
+      ecorePackage="transform.ecore#/">
+    <genClasses ecoreClass="transform.ecore#//Transform">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference transform.ecore#//Transform/sourceMeta"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference transform.ecore#//Transform/targetMeta"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference transform.ecore#//Transform/jointMeta"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference transform.ecore#//Transform/rules"/>
+      <genOperations ecoreOperation="transform.ecore#//Transform/getMappings">
+        <genParameters ecoreParameter="transform.ecore#//Transform/getMappings/model"/>
+        <genParameters ecoreParameter="transform.ecore#//Transform/getMappings/rule"/>
+      </genOperations>
+      <genOperations ecoreOperation="transform.ecore#//Transform/applyReduction">
+        <genParameters ecoreParameter="transform.ecore#//Transform/applyReduction/model"/>
+        <genParameters ecoreParameter="transform.ecore#//Transform/applyReduction/rule"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="transform.ecore#//ExGraph">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference transform.ecore#//ExGraph/mapArrow"/>
+    </genClasses>
+    <genClasses ecoreClass="transform.ecore#//MapArrow"/>
+    <genClasses ecoreClass="transform.ecore#//Reduction">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference transform.ecore#//Reduction/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference transform.ecore#//Reduction/right"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference transform.ecore#//Reduction/mapping"/>
+    </genClasses>
+    <genClasses ecoreClass="transform.ecore#//ExSpecification">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference transform.ecore#//ExSpecification/exgraph"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
