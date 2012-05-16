@@ -25,6 +25,7 @@ import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.diagram.DiagramFactory;
 import no.hib.dpf.utils.DPFCoreUtil;
 
+import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
@@ -83,18 +84,23 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 		typeLinkPage = new WizardNewLinkPage("Add type graph", IResource.FILE);
 		typeLinkPage.setTitle("Include type graph");
 		String filename = null;
-		if(selection.getFirstElement() instanceof IResource){
+		IContainer parentResource = null;
+		
+		if(selection.getFirstElement() instanceof IResource) {
+			parentResource = (IContainer)selection.getFirstElement();
 			filename = ((IResource)selection.getFirstElement()).getLocation().toOSString();
 			if(filename.endsWith(".xmi"))
 				filename = DPFEditor.getDiagramFromModel(filename);
-		}
-		else
+		} else
 			filename = DPFEditor.getWorkspaceDirectory();
+		
 		typeLinkPage.setLinkTarget(filename);
+		typeLinkPage.setContainer(parentResource);
 		
 		signatureLinkPage = new WizardNewLinkPage("Add Signature", IResource.FILE);
 		signatureLinkPage.setTitle("Include Signature");
 		signatureLinkPage.setLinkTarget(filename);
+		signatureLinkPage.setContainer(parentResource);
 	}
 
 	/*
