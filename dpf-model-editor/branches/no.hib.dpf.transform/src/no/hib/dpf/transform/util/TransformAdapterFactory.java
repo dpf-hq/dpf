@@ -7,11 +7,13 @@
 package no.hib.dpf.transform.util;
 
 import no.hib.dpf.core.Arrow;
-import no.hib.dpf.core.Graph;
+import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.IDObject;
-import no.hib.dpf.core.Specification;
-import no.hib.dpf.transform.ExGraph;
-import no.hib.dpf.transform.ExSpecification;
+import no.hib.dpf.core.Node;
+import no.hib.dpf.transform.Copied;
+import no.hib.dpf.transform.CopiedArrow;
+import no.hib.dpf.transform.CopiedConstraint;
+import no.hib.dpf.transform.CopiedNode;
 import no.hib.dpf.transform.MapArrow;
 import no.hib.dpf.transform.Reduction;
 import no.hib.dpf.transform.Transform;
@@ -83,36 +85,44 @@ public class TransformAdapterFactory extends AdapterFactoryImpl {
 				return createTransformAdapter();
 			}
 			@Override
-			public Adapter caseExGraph(ExGraph object) {
-				return createExGraphAdapter();
+			public Adapter caseCopiedNode(CopiedNode object) {
+				return createCopiedNodeAdapter();
 			}
 			@Override
 			public Adapter caseMapArrow(MapArrow object) {
 				return createMapArrowAdapter();
 			}
 			@Override
+			public Adapter caseCopiedArrow(CopiedArrow object) {
+				return createCopiedArrowAdapter();
+			}
+			@Override
 			public Adapter caseReduction(Reduction object) {
 				return createReductionAdapter();
 			}
 			@Override
-			public Adapter caseExSpecification(ExSpecification object) {
-				return createExSpecificationAdapter();
+			public Adapter caseCopiedConstraint(CopiedConstraint object) {
+				return createCopiedConstraintAdapter();
+			}
+			@Override
+			public Adapter caseCopied(Copied object) {
+				return createCopiedAdapter();
 			}
 			@Override
 			public Adapter caseIDObject(IDObject object) {
 				return createIDObjectAdapter();
 			}
 			@Override
-			public Adapter caseGraph(Graph object) {
-				return createGraphAdapter();
+			public Adapter caseNode(Node object) {
+				return createNodeAdapter();
 			}
 			@Override
 			public Adapter caseArrow(Arrow object) {
 				return createArrowAdapter();
 			}
 			@Override
-			public Adapter caseSpecification(Specification object) {
-				return createSpecificationAdapter();
+			public Adapter caseConstraint(Constraint object) {
+				return createConstraintAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -149,16 +159,16 @@ public class TransformAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link no.hib.dpf.transform.ExGraph <em>Ex Graph</em>}'.
+	 * Creates a new adapter for an object of class '{@link no.hib.dpf.transform.CopiedNode <em>Copied Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see no.hib.dpf.transform.ExGraph
+	 * @see no.hib.dpf.transform.CopiedNode
 	 * @generated
 	 */
-	public Adapter createExGraphAdapter() {
+	public Adapter createCopiedNodeAdapter() {
 		return null;
 	}
 
@@ -177,6 +187,20 @@ public class TransformAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link no.hib.dpf.transform.CopiedArrow <em>Copied Arrow</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see no.hib.dpf.transform.CopiedArrow
+	 * @generated
+	 */
+	public Adapter createCopiedArrowAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link no.hib.dpf.transform.Reduction <em>Reduction</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -191,16 +215,30 @@ public class TransformAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link no.hib.dpf.transform.ExSpecification <em>Ex Specification</em>}'.
+	 * Creates a new adapter for an object of class '{@link no.hib.dpf.transform.CopiedConstraint <em>Copied Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see no.hib.dpf.transform.ExSpecification
+	 * @see no.hib.dpf.transform.CopiedConstraint
 	 * @generated
 	 */
-	public Adapter createExSpecificationAdapter() {
+	public Adapter createCopiedConstraintAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link no.hib.dpf.transform.Copied <em>Copied</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see no.hib.dpf.transform.Copied
+	 * @generated
+	 */
+	public Adapter createCopiedAdapter() {
 		return null;
 	}
 
@@ -219,16 +257,16 @@ public class TransformAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link no.hib.dpf.core.Graph <em>Graph</em>}'.
+	 * Creates a new adapter for an object of class '{@link no.hib.dpf.core.Node <em>Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see no.hib.dpf.core.Graph
+	 * @see no.hib.dpf.core.Node
 	 * @generated
 	 */
-	public Adapter createGraphAdapter() {
+	public Adapter createNodeAdapter() {
 		return null;
 	}
 
@@ -247,16 +285,16 @@ public class TransformAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link no.hib.dpf.core.Specification <em>Specification</em>}'.
+	 * Creates a new adapter for an object of class '{@link no.hib.dpf.core.Constraint <em>Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see no.hib.dpf.core.Specification
+	 * @see no.hib.dpf.core.Constraint
 	 * @generated
 	 */
-	public Adapter createSpecificationAdapter() {
+	public Adapter createConstraintAdapter() {
 		return null;
 	}
 

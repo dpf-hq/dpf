@@ -9,6 +9,10 @@
   <foreignModel>transform.ecore</foreignModel>
   <genPackages prefix="Transform" basePackage="no.hib.dpf" disposableProviderFactory="true"
       ecorePackage="transform.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="transform.ecore#//CopiedType">
+      <genEnumLiterals ecoreEnumLiteral="transform.ecore#//CopiedType/SOURCE"/>
+      <genEnumLiterals ecoreEnumLiteral="transform.ecore#//CopiedType/Target"/>
+    </genEnums>
     <genClasses ecoreClass="transform.ecore#//Transform">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference transform.ecore#//Transform/sourceMeta"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference transform.ecore#//Transform/targetMeta"/>
@@ -23,17 +27,17 @@
         <genParameters ecoreParameter="transform.ecore#//Transform/applyReduction/rule"/>
       </genOperations>
     </genClasses>
-    <genClasses ecoreClass="transform.ecore#//ExGraph">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference transform.ecore#//ExGraph/mapArrow"/>
-    </genClasses>
+    <genClasses ecoreClass="transform.ecore#//CopiedNode"/>
     <genClasses ecoreClass="transform.ecore#//MapArrow"/>
+    <genClasses ecoreClass="transform.ecore#//CopiedArrow"/>
     <genClasses ecoreClass="transform.ecore#//Reduction">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference transform.ecore#//Reduction/left"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference transform.ecore#//Reduction/right"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference transform.ecore#//Reduction/mapping"/>
     </genClasses>
-    <genClasses ecoreClass="transform.ecore#//ExSpecification">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference transform.ecore#//ExSpecification/exgraph"/>
+    <genClasses ecoreClass="transform.ecore#//CopiedConstraint"/>
+    <genClasses ecoreClass="transform.ecore#//Copied">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute transform.ecore#//Copied/copiedType"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

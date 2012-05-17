@@ -12,7 +12,6 @@ import java.util.List;
 
 import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.transform.Reduction;
-import no.hib.dpf.transform.TransformFactory;
 import no.hib.dpf.transform.TransformPackage;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -156,12 +155,12 @@ public class ReductionItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(TransformPackage.Literals.REDUCTION__LEFT,
-				 TransformFactory.eINSTANCE.createExSpecification()));
+				 CoreFactory.eINSTANCE.createSpecification()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(TransformPackage.Literals.REDUCTION__RIGHT,
-				 TransformFactory.eINSTANCE.createExSpecification()));
+				 CoreFactory.eINSTANCE.createSpecification()));
 
 		newChildDescriptors.add
 			(createChildParameter

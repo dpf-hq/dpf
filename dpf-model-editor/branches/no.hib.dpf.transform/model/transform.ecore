@@ -14,26 +14,28 @@
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sourceMeta" eType="ecore:EClass ../../no.hib.dpf.core/model/Metamodel.ecore#//Specification"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="targetMeta" eType="ecore:EClass ../../no.hib.dpf.core/model/Metamodel.ecore#//Specification"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="jointMeta" eType="#//ExSpecification"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="jointMeta" eType="ecore:EClass ../../no.hib.dpf.core/model/Metamodel.ecore#//Specification"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="rules" upperBound="-1"
         eType="#//Reduction" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExGraph" eSuperTypes="../../no.hib.dpf.core/model/Metamodel.ecore#//Graph">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="mapArrow" upperBound="-1"
-        eType="#//MapArrow" containment="true"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="CopiedType">
+    <eLiterals name="SOURCE"/>
+    <eLiterals name="Target" value="1"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CopiedNode" eSuperTypes="../../no.hib.dpf.core/model/Metamodel.ecore#//Node #//Copied"/>
   <eClassifiers xsi:type="ecore:EClass" name="MapArrow" eSuperTypes="../../no.hib.dpf.core/model/Metamodel.ecore#//Arrow"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CopiedArrow" eSuperTypes="../../no.hib.dpf.core/model/Metamodel.ecore#//Arrow #//Copied"/>
   <eClassifiers xsi:type="ecore:EClass" name="Reduction">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//ExSpecification"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="ecore:EClass ../../no.hib.dpf.core/model/Metamodel.ecore#//Specification"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//ExSpecification"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="ecore:EClass ../../no.hib.dpf.core/model/Metamodel.ecore#//Specification"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="mapping" eType="ecore:EClass ../../no.hib.dpf.core/model/Metamodel.ecore#//GraphHomomorphism"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExSpecification" eSuperTypes="../../no.hib.dpf.core/model/Metamodel.ecore#//Specification">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="exgraph" eType="#//ExGraph"
-        containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CopiedConstraint" eSuperTypes="../../no.hib.dpf.core/model/Metamodel.ecore#//Constraint #//Copied"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Copied">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="copiedType" eType="#//CopiedType"/>
   </eClassifiers>
 </ecore:EPackage>

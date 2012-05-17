@@ -10,6 +10,7 @@ package no.hib.dpf.transform.provider;
 import java.util.Collection;
 import java.util.List;
 
+import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.transform.Transform;
 import no.hib.dpf.transform.TransformFactory;
 import no.hib.dpf.transform.TransformPackage;
@@ -200,7 +201,7 @@ public class TransformItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(TransformPackage.Literals.TRANSFORM__JOINT_META,
-				 TransformFactory.eINSTANCE.createExSpecification()));
+				 CoreFactory.eINSTANCE.createSpecification()));
 
 		newChildDescriptors.add
 			(createChildParameter

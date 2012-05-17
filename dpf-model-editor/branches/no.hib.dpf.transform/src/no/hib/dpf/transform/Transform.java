@@ -92,12 +92,12 @@ public interface Transform extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Joint Meta</em>' containment reference.
-	 * @see #setJointMeta(ExSpecification)
+	 * @see #setJointMeta(Specification)
 	 * @see no.hib.dpf.transform.TransformPackage#getTransform_JointMeta()
 	 * @model containment="true"
 	 * @generated
 	 */
-	ExSpecification getJointMeta();
+	Specification getJointMeta();
 
 	/**
 	 * Sets the value of the '{@link no.hib.dpf.transform.Transform#getJointMeta <em>Joint Meta</em>}' containment reference.
@@ -107,7 +107,7 @@ public interface Transform extends EObject {
 	 * @see #getJointMeta()
 	 * @generated
 	 */
-	void setJointMeta(ExSpecification value);
+	void setJointMeta(Specification value);
 
 	/**
 	 * Returns the value of the '<em><b>Rules</b></em>' containment reference list.

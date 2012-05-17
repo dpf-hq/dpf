@@ -7,15 +7,20 @@
 package no.hib.dpf.transform.impl;
 
 import no.hib.dpf.core.CorePackage;
-import no.hib.dpf.transform.ExGraph;
-import no.hib.dpf.transform.ExSpecification;
+import no.hib.dpf.transform.Copied;
+import no.hib.dpf.transform.CopiedArrow;
+import no.hib.dpf.transform.CopiedConstraint;
+import no.hib.dpf.transform.CopiedNode;
+import no.hib.dpf.transform.CopiedType;
 import no.hib.dpf.transform.MapArrow;
 import no.hib.dpf.transform.Reduction;
 import no.hib.dpf.transform.Transform;
 import no.hib.dpf.transform.TransformFactory;
 import no.hib.dpf.transform.TransformPackage;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -40,7 +45,7 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass exGraphEClass = null;
+	private EClass copiedNodeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -54,6 +59,13 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass copiedArrowEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass reductionEClass = null;
 
 	/**
@@ -61,7 +73,21 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass exSpecificationEClass = null;
+	private EClass copiedConstraintEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass copiedEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum copiedTypeEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -177,17 +203,8 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getExGraph() {
-		return exGraphEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getExGraph_MapArrow() {
-		return (EReference)exGraphEClass.getEStructuralFeatures().get(0);
+	public EClass getCopiedNode() {
+		return copiedNodeEClass;
 	}
 
 	/**
@@ -197,6 +214,15 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 	 */
 	public EClass getMapArrow() {
 		return mapArrowEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCopiedArrow() {
+		return copiedArrowEClass;
 	}
 
 	/**
@@ -240,8 +266,8 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getExSpecification() {
-		return exSpecificationEClass;
+	public EClass getCopiedConstraint() {
+		return copiedConstraintEClass;
 	}
 
 	/**
@@ -249,8 +275,26 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExSpecification_Exgraph() {
-		return (EReference)exSpecificationEClass.getEStructuralFeatures().get(0);
+	public EClass getCopied() {
+		return copiedEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getCopied_CopiedType() {
+		return (EAttribute)copiedEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getCopiedType() {
+		return copiedTypeEEnum;
 	}
 
 	/**
@@ -287,18 +331,24 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 		createEReference(transformEClass, TRANSFORM__JOINT_META);
 		createEReference(transformEClass, TRANSFORM__RULES);
 
-		exGraphEClass = createEClass(EX_GRAPH);
-		createEReference(exGraphEClass, EX_GRAPH__MAP_ARROW);
+		copiedNodeEClass = createEClass(COPIED_NODE);
 
 		mapArrowEClass = createEClass(MAP_ARROW);
+
+		copiedArrowEClass = createEClass(COPIED_ARROW);
 
 		reductionEClass = createEClass(REDUCTION);
 		createEReference(reductionEClass, REDUCTION__LEFT);
 		createEReference(reductionEClass, REDUCTION__RIGHT);
 		createEReference(reductionEClass, REDUCTION__MAPPING);
 
-		exSpecificationEClass = createEClass(EX_SPECIFICATION);
-		createEReference(exSpecificationEClass, EX_SPECIFICATION__EXGRAPH);
+		copiedConstraintEClass = createEClass(COPIED_CONSTRAINT);
+
+		copiedEClass = createEClass(COPIED);
+		createEAttribute(copiedEClass, COPIED__COPIED_TYPE);
+
+		// Create enums
+		copiedTypeEEnum = createEEnum(COPIED_TYPE);
 	}
 
 	/**
@@ -332,15 +382,19 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		exGraphEClass.getESuperTypes().add(theCorePackage.getGraph());
+		copiedNodeEClass.getESuperTypes().add(theCorePackage.getNode());
+		copiedNodeEClass.getESuperTypes().add(this.getCopied());
 		mapArrowEClass.getESuperTypes().add(theCorePackage.getArrow());
-		exSpecificationEClass.getESuperTypes().add(theCorePackage.getSpecification());
+		copiedArrowEClass.getESuperTypes().add(theCorePackage.getArrow());
+		copiedArrowEClass.getESuperTypes().add(this.getCopied());
+		copiedConstraintEClass.getESuperTypes().add(theCorePackage.getConstraint());
+		copiedConstraintEClass.getESuperTypes().add(this.getCopied());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(transformEClass, Transform.class, "Transform", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTransform_SourceMeta(), theCorePackage.getSpecification(), null, "sourceMeta", null, 0, 1, Transform.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTransform_TargetMeta(), theCorePackage.getSpecification(), null, "targetMeta", null, 0, 1, Transform.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTransform_JointMeta(), this.getExSpecification(), null, "jointMeta", null, 0, 1, Transform.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTransform_JointMeta(), theCorePackage.getSpecification(), null, "jointMeta", null, 0, 1, Transform.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTransform_Rules(), this.getReduction(), null, "rules", null, 0, -1, Transform.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		EOperation op = addEOperation(transformEClass, theCorePackage.getSpecification(), "getMappings", 0, -1, IS_UNIQUE, IS_ORDERED);
@@ -351,18 +405,26 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 		addEParameter(op, theCorePackage.getSpecification(), "model", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getReduction(), "rule", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(exGraphEClass, ExGraph.class, "ExGraph", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getExGraph_MapArrow(), this.getMapArrow(), null, "mapArrow", null, 0, -1, ExGraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(copiedNodeEClass, CopiedNode.class, "CopiedNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(mapArrowEClass, MapArrow.class, "MapArrow", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
+		initEClass(copiedArrowEClass, CopiedArrow.class, "CopiedArrow", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
 		initEClass(reductionEClass, Reduction.class, "Reduction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getReduction_Left(), this.getExSpecification(), null, "left", null, 0, 1, Reduction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getReduction_Right(), this.getExSpecification(), null, "right", null, 0, 1, Reduction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getReduction_Left(), theCorePackage.getSpecification(), null, "left", null, 0, 1, Reduction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getReduction_Right(), theCorePackage.getSpecification(), null, "right", null, 0, 1, Reduction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getReduction_Mapping(), theCorePackage.getGraphHomomorphism(), null, "mapping", null, 0, 1, Reduction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(exSpecificationEClass, ExSpecification.class, "ExSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getExSpecification_Exgraph(), this.getExGraph(), null, "exgraph", null, 0, 1, ExSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(copiedConstraintEClass, CopiedConstraint.class, "CopiedConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(copiedEClass, Copied.class, "Copied", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getCopied_CopiedType(), this.getCopiedType(), "copiedType", null, 0, 1, Copied.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		// Initialize enums and add enum literals
+		initEEnum(copiedTypeEEnum, CopiedType.class, "CopiedType");
+		addEEnumLiteral(copiedTypeEEnum, CopiedType.SOURCE);
+		addEEnumLiteral(copiedTypeEEnum, CopiedType.TARGET);
 
 		// Create resource
 		createResource(eNS_URI);

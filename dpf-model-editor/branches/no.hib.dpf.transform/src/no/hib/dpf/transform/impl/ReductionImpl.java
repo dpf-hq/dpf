@@ -7,7 +7,7 @@
 package no.hib.dpf.transform.impl;
 
 import no.hib.dpf.core.GraphHomomorphism;
-import no.hib.dpf.transform.ExSpecification;
+import no.hib.dpf.core.Specification;
 import no.hib.dpf.transform.Reduction;
 import no.hib.dpf.transform.TransformPackage;
 
@@ -42,7 +42,7 @@ public class ReductionImpl extends EObjectImpl implements Reduction {
 	 * @generated
 	 * @ordered
 	 */
-	protected ExSpecification left;
+	protected Specification left;
 
 	/**
 	 * The cached value of the '{@link #getRight() <em>Right</em>}' containment reference.
@@ -52,7 +52,7 @@ public class ReductionImpl extends EObjectImpl implements Reduction {
 	 * @generated
 	 * @ordered
 	 */
-	protected ExSpecification right;
+	protected Specification right;
 
 	/**
 	 * The cached value of the '{@link #getMapping() <em>Mapping</em>}' containment reference.
@@ -88,7 +88,7 @@ public class ReductionImpl extends EObjectImpl implements Reduction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExSpecification getLeft() {
+	public Specification getLeft() {
 		return left;
 	}
 
@@ -97,8 +97,8 @@ public class ReductionImpl extends EObjectImpl implements Reduction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetLeft(ExSpecification newLeft, NotificationChain msgs) {
-		ExSpecification oldLeft = left;
+	public NotificationChain basicSetLeft(Specification newLeft, NotificationChain msgs) {
+		Specification oldLeft = left;
 		left = newLeft;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TransformPackage.REDUCTION__LEFT, oldLeft, newLeft);
@@ -112,7 +112,7 @@ public class ReductionImpl extends EObjectImpl implements Reduction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLeft(ExSpecification newLeft) {
+	public void setLeft(Specification newLeft) {
 		if (newLeft != left) {
 			NotificationChain msgs = null;
 			if (left != null)
@@ -131,7 +131,7 @@ public class ReductionImpl extends EObjectImpl implements Reduction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExSpecification getRight() {
+	public Specification getRight() {
 		return right;
 	}
 
@@ -140,8 +140,8 @@ public class ReductionImpl extends EObjectImpl implements Reduction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetRight(ExSpecification newRight, NotificationChain msgs) {
-		ExSpecification oldRight = right;
+	public NotificationChain basicSetRight(Specification newRight, NotificationChain msgs) {
+		Specification oldRight = right;
 		right = newRight;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TransformPackage.REDUCTION__RIGHT, oldRight, newRight);
@@ -155,7 +155,7 @@ public class ReductionImpl extends EObjectImpl implements Reduction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRight(ExSpecification newRight) {
+	public void setRight(Specification newRight) {
 		if (newRight != right) {
 			NotificationChain msgs = null;
 			if (right != null)
@@ -257,10 +257,10 @@ public class ReductionImpl extends EObjectImpl implements Reduction {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case TransformPackage.REDUCTION__LEFT:
-				setLeft((ExSpecification)newValue);
+				setLeft((Specification)newValue);
 				return;
 			case TransformPackage.REDUCTION__RIGHT:
-				setRight((ExSpecification)newValue);
+				setRight((Specification)newValue);
 				return;
 			case TransformPackage.REDUCTION__MAPPING:
 				setMapping((GraphHomomorphism)newValue);
@@ -278,10 +278,10 @@ public class ReductionImpl extends EObjectImpl implements Reduction {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case TransformPackage.REDUCTION__LEFT:
-				setLeft((ExSpecification)null);
+				setLeft((Specification)null);
 				return;
 			case TransformPackage.REDUCTION__RIGHT:
-				setRight((ExSpecification)null);
+				setRight((Specification)null);
 				return;
 			case TransformPackage.REDUCTION__MAPPING:
 				setMapping((GraphHomomorphism)null);

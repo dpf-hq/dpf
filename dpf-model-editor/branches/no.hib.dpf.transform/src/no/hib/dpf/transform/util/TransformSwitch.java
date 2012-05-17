@@ -7,11 +7,13 @@
 package no.hib.dpf.transform.util;
 
 import no.hib.dpf.core.Arrow;
-import no.hib.dpf.core.Graph;
+import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.IDObject;
-import no.hib.dpf.core.Specification;
-import no.hib.dpf.transform.ExGraph;
-import no.hib.dpf.transform.ExSpecification;
+import no.hib.dpf.core.Node;
+import no.hib.dpf.transform.Copied;
+import no.hib.dpf.transform.CopiedArrow;
+import no.hib.dpf.transform.CopiedConstraint;
+import no.hib.dpf.transform.CopiedNode;
 import no.hib.dpf.transform.MapArrow;
 import no.hib.dpf.transform.Reduction;
 import no.hib.dpf.transform.Transform;
@@ -84,11 +86,12 @@ public class TransformSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case TransformPackage.EX_GRAPH: {
-				ExGraph exGraph = (ExGraph)theEObject;
-				T result = caseExGraph(exGraph);
-				if (result == null) result = caseGraph(exGraph);
-				if (result == null) result = caseIDObject(exGraph);
+			case TransformPackage.COPIED_NODE: {
+				CopiedNode copiedNode = (CopiedNode)theEObject;
+				T result = caseCopiedNode(copiedNode);
+				if (result == null) result = caseNode(copiedNode);
+				if (result == null) result = caseCopied(copiedNode);
+				if (result == null) result = caseIDObject(copiedNode);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -100,16 +103,33 @@ public class TransformSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case TransformPackage.COPIED_ARROW: {
+				CopiedArrow copiedArrow = (CopiedArrow)theEObject;
+				T result = caseCopiedArrow(copiedArrow);
+				if (result == null) result = caseArrow(copiedArrow);
+				if (result == null) result = caseCopied(copiedArrow);
+				if (result == null) result = caseIDObject(copiedArrow);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case TransformPackage.REDUCTION: {
 				Reduction reduction = (Reduction)theEObject;
 				T result = caseReduction(reduction);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case TransformPackage.EX_SPECIFICATION: {
-				ExSpecification exSpecification = (ExSpecification)theEObject;
-				T result = caseExSpecification(exSpecification);
-				if (result == null) result = caseSpecification(exSpecification);
+			case TransformPackage.COPIED_CONSTRAINT: {
+				CopiedConstraint copiedConstraint = (CopiedConstraint)theEObject;
+				T result = caseCopiedConstraint(copiedConstraint);
+				if (result == null) result = caseConstraint(copiedConstraint);
+				if (result == null) result = caseCopied(copiedConstraint);
+				if (result == null) result = caseIDObject(copiedConstraint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TransformPackage.COPIED: {
+				Copied copied = (Copied)theEObject;
+				T result = caseCopied(copied);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -133,17 +153,17 @@ public class TransformSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ex Graph</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Copied Node</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ex Graph</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Copied Node</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseExGraph(ExGraph object) {
+	public T caseCopiedNode(CopiedNode object) {
 		return null;
 	}
 
@@ -163,6 +183,21 @@ public class TransformSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Copied Arrow</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Copied Arrow</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCopiedArrow(CopiedArrow object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Reduction</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -178,17 +213,32 @@ public class TransformSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ex Specification</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Copied Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ex Specification</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Copied Constraint</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseExSpecification(ExSpecification object) {
+	public T caseCopiedConstraint(CopiedConstraint object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Copied</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Copied</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCopied(Copied object) {
 		return null;
 	}
 
@@ -208,17 +258,17 @@ public class TransformSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Graph</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Node</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Graph</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Node</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseGraph(Graph object) {
+	public T caseNode(Node object) {
 		return null;
 	}
 
@@ -238,17 +288,17 @@ public class TransformSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Specification</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Specification</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Constraint</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSpecification(Specification object) {
+	public T caseConstraint(Constraint object) {
 		return null;
 	}
 

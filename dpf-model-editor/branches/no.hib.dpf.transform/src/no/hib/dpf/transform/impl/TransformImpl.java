@@ -9,7 +9,6 @@ package no.hib.dpf.transform.impl;
 import java.util.Collection;
 
 import no.hib.dpf.core.Specification;
-import no.hib.dpf.transform.ExSpecification;
 import no.hib.dpf.transform.Reduction;
 import no.hib.dpf.transform.Transform;
 import no.hib.dpf.transform.TransformPackage;
@@ -69,7 +68,7 @@ public class TransformImpl extends EObjectImpl implements Transform {
 	 * @generated
 	 * @ordered
 	 */
-	protected ExSpecification jointMeta;
+	protected Specification jointMeta;
 
 	/**
 	 * The cached value of the '{@link #getRules() <em>Rules</em>}' containment reference list.
@@ -181,7 +180,7 @@ public class TransformImpl extends EObjectImpl implements Transform {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExSpecification getJointMeta() {
+	public Specification getJointMeta() {
 		return jointMeta;
 	}
 
@@ -190,8 +189,8 @@ public class TransformImpl extends EObjectImpl implements Transform {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetJointMeta(ExSpecification newJointMeta, NotificationChain msgs) {
-		ExSpecification oldJointMeta = jointMeta;
+	public NotificationChain basicSetJointMeta(Specification newJointMeta, NotificationChain msgs) {
+		Specification oldJointMeta = jointMeta;
 		jointMeta = newJointMeta;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TransformPackage.TRANSFORM__JOINT_META, oldJointMeta, newJointMeta);
@@ -205,7 +204,7 @@ public class TransformImpl extends EObjectImpl implements Transform {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setJointMeta(ExSpecification newJointMeta) {
+	public void setJointMeta(Specification newJointMeta) {
 		if (newJointMeta != jointMeta) {
 			NotificationChain msgs = null;
 			if (jointMeta != null)
@@ -307,7 +306,7 @@ public class TransformImpl extends EObjectImpl implements Transform {
 				setTargetMeta((Specification)newValue);
 				return;
 			case TransformPackage.TRANSFORM__JOINT_META:
-				setJointMeta((ExSpecification)newValue);
+				setJointMeta((Specification)newValue);
 				return;
 			case TransformPackage.TRANSFORM__RULES:
 				getRules().clear();
@@ -332,7 +331,7 @@ public class TransformImpl extends EObjectImpl implements Transform {
 				setTargetMeta((Specification)null);
 				return;
 			case TransformPackage.TRANSFORM__JOINT_META:
-				setJointMeta((ExSpecification)null);
+				setJointMeta((Specification)null);
 				return;
 			case TransformPackage.TRANSFORM__RULES:
 				getRules().clear();

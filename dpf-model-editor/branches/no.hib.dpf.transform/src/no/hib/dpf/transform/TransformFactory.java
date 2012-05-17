@@ -35,13 +35,13 @@ public interface TransformFactory extends EFactory {
 	Transform createTransform();
 
 	/**
-	 * Returns a new object of class '<em>Ex Graph</em>'.
+	 * Returns a new object of class '<em>Copied Node</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Ex Graph</em>'.
+	 * @return a new object of class '<em>Copied Node</em>'.
 	 * @generated
 	 */
-	ExGraph createExGraph();
+	CopiedNode createCopiedNode();
 
 	/**
 	 * Returns a new object of class '<em>Map Arrow</em>'.
@@ -53,6 +53,15 @@ public interface TransformFactory extends EFactory {
 	MapArrow createMapArrow();
 
 	/**
+	 * Returns a new object of class '<em>Copied Arrow</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Copied Arrow</em>'.
+	 * @generated
+	 */
+	CopiedArrow createCopiedArrow();
+
+	/**
 	 * Returns a new object of class '<em>Reduction</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,13 +71,22 @@ public interface TransformFactory extends EFactory {
 	Reduction createReduction();
 
 	/**
-	 * Returns a new object of class '<em>Ex Specification</em>'.
+	 * Returns a new object of class '<em>Copied Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Ex Specification</em>'.
+	 * @return a new object of class '<em>Copied Constraint</em>'.
 	 * @generated
 	 */
-	ExSpecification createExSpecification();
+	CopiedConstraint createCopiedConstraint();
+
+	/**
+	 * Returns a new object of class '<em>Copied</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Copied</em>'.
+	 * @generated
+	 */
+	Copied createCopied();
 
 	/**
 	 * Returns the package supported by this factory.

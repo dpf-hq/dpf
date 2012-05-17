@@ -8,7 +8,9 @@ package no.hib.dpf.transform;
 
 import no.hib.dpf.core.CorePackage;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -116,14 +118,14 @@ public interface TransformPackage extends EPackage {
 	int TRANSFORM_FEATURE_COUNT = 4;
 
 	/**
-	 * The meta object id for the '{@link no.hib.dpf.transform.impl.ExGraphImpl <em>Ex Graph</em>}' class.
+	 * The meta object id for the '{@link no.hib.dpf.transform.impl.CopiedNodeImpl <em>Copied Node</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.transform.impl.ExGraphImpl
-	 * @see no.hib.dpf.transform.impl.TransformPackageImpl#getExGraph()
+	 * @see no.hib.dpf.transform.impl.CopiedNodeImpl
+	 * @see no.hib.dpf.transform.impl.TransformPackageImpl#getCopiedNode()
 	 * @generated
 	 */
-	int EX_GRAPH = 1;
+	int COPIED_NODE = 1;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -132,34 +134,7 @@ public interface TransformPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EX_GRAPH__ID = CorePackage.GRAPH__ID;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EX_GRAPH__TYPE = CorePackage.GRAPH__TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Nodes</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EX_GRAPH__NODES = CorePackage.GRAPH__NODES;
-
-	/**
-	 * The feature id for the '<em><b>Arrows</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EX_GRAPH__ARROWS = CorePackage.GRAPH__ARROWS;
+	int COPIED_NODE__ID = CorePackage.NODE__ID;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -168,25 +143,61 @@ public interface TransformPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EX_GRAPH__NAME = CorePackage.GRAPH__NAME;
+	int COPIED_NODE__NAME = CorePackage.NODE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Map Arrow</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Type Node</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EX_GRAPH__MAP_ARROW = CorePackage.GRAPH_FEATURE_COUNT + 0;
+	int COPIED_NODE__TYPE_NODE = CorePackage.NODE__TYPE_NODE;
 
 	/**
-	 * The number of structural features of the '<em>Ex Graph</em>' class.
+	 * The feature id for the '<em><b>Outgoings</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EX_GRAPH_FEATURE_COUNT = CorePackage.GRAPH_FEATURE_COUNT + 1;
+	int COPIED_NODE__OUTGOINGS = CorePackage.NODE__OUTGOINGS;
+
+	/**
+	 * The feature id for the '<em><b>Incomings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COPIED_NODE__INCOMINGS = CorePackage.NODE__INCOMINGS;
+
+	/**
+	 * The feature id for the '<em><b>Constraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COPIED_NODE__CONSTRAINTS = CorePackage.NODE__CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Copied Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COPIED_NODE__COPIED_TYPE = CorePackage.NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Copied Node</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COPIED_NODE_FEATURE_COUNT = CorePackage.NODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link no.hib.dpf.transform.impl.MapArrowImpl <em>Map Arrow</em>}' class.
@@ -262,6 +273,88 @@ public interface TransformPackage extends EPackage {
 	int MAP_ARROW_FEATURE_COUNT = CorePackage.ARROW_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link no.hib.dpf.transform.impl.CopiedArrowImpl <em>Copied Arrow</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.transform.impl.CopiedArrowImpl
+	 * @see no.hib.dpf.transform.impl.TransformPackageImpl#getCopiedArrow()
+	 * @generated
+	 */
+	int COPIED_ARROW = 3;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COPIED_ARROW__ID = CorePackage.ARROW__ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COPIED_ARROW__NAME = CorePackage.ARROW__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COPIED_ARROW__SOURCE = CorePackage.ARROW__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COPIED_ARROW__TARGET = CorePackage.ARROW__TARGET;
+
+	/**
+	 * The feature id for the '<em><b>Type Arrow</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COPIED_ARROW__TYPE_ARROW = CorePackage.ARROW__TYPE_ARROW;
+
+	/**
+	 * The feature id for the '<em><b>Constraints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COPIED_ARROW__CONSTRAINTS = CorePackage.ARROW__CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Copied Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COPIED_ARROW__COPIED_TYPE = CorePackage.ARROW_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Copied Arrow</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COPIED_ARROW_FEATURE_COUNT = CorePackage.ARROW_FEATURE_COUNT + 1;
+
+	/**
 	 * The meta object id for the '{@link no.hib.dpf.transform.impl.ReductionImpl <em>Reduction</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -269,7 +362,7 @@ public interface TransformPackage extends EPackage {
 	 * @see no.hib.dpf.transform.impl.TransformPackageImpl#getReduction()
 	 * @generated
 	 */
-	int REDUCTION = 3;
+	int REDUCTION = 4;
 
 	/**
 	 * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -308,87 +401,124 @@ public interface TransformPackage extends EPackage {
 	int REDUCTION_FEATURE_COUNT = 3;
 
 	/**
-	 * The meta object id for the '{@link no.hib.dpf.transform.impl.ExSpecificationImpl <em>Ex Specification</em>}' class.
+	 * The meta object id for the '{@link no.hib.dpf.transform.impl.CopiedConstraintImpl <em>Copied Constraint</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.transform.impl.ExSpecificationImpl
-	 * @see no.hib.dpf.transform.impl.TransformPackageImpl#getExSpecification()
+	 * @see no.hib.dpf.transform.impl.CopiedConstraintImpl
+	 * @see no.hib.dpf.transform.impl.TransformPackageImpl#getCopiedConstraint()
 	 * @generated
 	 */
-	int EX_SPECIFICATION = 4;
+	int COPIED_CONSTRAINT = 5;
 
 	/**
-	 * The feature id for the '<em><b>Graph</b></em>' containment reference.
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EX_SPECIFICATION__GRAPH = CorePackage.SPECIFICATION__GRAPH;
+	int COPIED_CONSTRAINT__ID = CorePackage.CONSTRAINT__ID;
 
 	/**
-	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Nodes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EX_SPECIFICATION__CONSTRAINTS = CorePackage.SPECIFICATION__CONSTRAINTS;
+	int COPIED_CONSTRAINT__NODES = CorePackage.CONSTRAINT__NODES;
 
 	/**
-	 * The feature id for the '<em><b>Meta File</b></em>' attribute.
+	 * The feature id for the '<em><b>Arrows</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EX_SPECIFICATION__META_FILE = CorePackage.SPECIFICATION__META_FILE;
+	int COPIED_CONSTRAINT__ARROWS = CorePackage.CONSTRAINT__ARROWS;
 
 	/**
-	 * The feature id for the '<em><b>Signature File</b></em>' attribute.
+	 * The feature id for the '<em><b>Predicate</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EX_SPECIFICATION__SIGNATURE_FILE = CorePackage.SPECIFICATION__SIGNATURE_FILE;
+	int COPIED_CONSTRAINT__PREDICATE = CorePackage.CONSTRAINT__PREDICATE;
 
 	/**
-	 * The feature id for the '<em><b>Signature</b></em>' reference.
+	 * The feature id for the '<em><b>Mappings</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EX_SPECIFICATION__SIGNATURE = CorePackage.SPECIFICATION__SIGNATURE;
+	int COPIED_CONSTRAINT__MAPPINGS = CorePackage.CONSTRAINT__MAPPINGS;
 
 	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * The feature id for the '<em><b>Parameters</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EX_SPECIFICATION__TYPE = CorePackage.SPECIFICATION__TYPE;
+	int COPIED_CONSTRAINT__PARAMETERS = CorePackage.CONSTRAINT__PARAMETERS;
 
 	/**
-	 * The feature id for the '<em><b>Exgraph</b></em>' containment reference.
+	 * The feature id for the '<em><b>Copied Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EX_SPECIFICATION__EXGRAPH = CorePackage.SPECIFICATION_FEATURE_COUNT + 0;
+	int COPIED_CONSTRAINT__COPIED_TYPE = CorePackage.CONSTRAINT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Ex Specification</em>' class.
+	 * The number of structural features of the '<em>Copied Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EX_SPECIFICATION_FEATURE_COUNT = CorePackage.SPECIFICATION_FEATURE_COUNT + 1;
+	int COPIED_CONSTRAINT_FEATURE_COUNT = CorePackage.CONSTRAINT_FEATURE_COUNT + 1;
 
+	/**
+	 * The meta object id for the '{@link no.hib.dpf.transform.impl.CopiedImpl <em>Copied</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.transform.impl.CopiedImpl
+	 * @see no.hib.dpf.transform.impl.TransformPackageImpl#getCopied()
+	 * @generated
+	 */
+	int COPIED = 6;
+
+	/**
+	 * The feature id for the '<em><b>Copied Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COPIED__COPIED_TYPE = 0;
+
+	/**
+	 * The number of structural features of the '<em>Copied</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COPIED_FEATURE_COUNT = 1;
+
+	/**
+	 * The meta object id for the '{@link no.hib.dpf.transform.CopiedType <em>Copied Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.transform.CopiedType
+	 * @see no.hib.dpf.transform.impl.TransformPackageImpl#getCopiedType()
+	 * @generated
+	 */
+	int COPIED_TYPE = 7;
 
 	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.transform.Transform <em>Transform</em>}'.
@@ -445,25 +575,14 @@ public interface TransformPackage extends EPackage {
 	EReference getTransform_Rules();
 
 	/**
-	 * Returns the meta object for class '{@link no.hib.dpf.transform.ExGraph <em>Ex Graph</em>}'.
+	 * Returns the meta object for class '{@link no.hib.dpf.transform.CopiedNode <em>Copied Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Ex Graph</em>'.
-	 * @see no.hib.dpf.transform.ExGraph
+	 * @return the meta object for class '<em>Copied Node</em>'.
+	 * @see no.hib.dpf.transform.CopiedNode
 	 * @generated
 	 */
-	EClass getExGraph();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link no.hib.dpf.transform.ExGraph#getMapArrow <em>Map Arrow</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Map Arrow</em>'.
-	 * @see no.hib.dpf.transform.ExGraph#getMapArrow()
-	 * @see #getExGraph()
-	 * @generated
-	 */
-	EReference getExGraph_MapArrow();
+	EClass getCopiedNode();
 
 	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.transform.MapArrow <em>Map Arrow</em>}'.
@@ -474,6 +593,16 @@ public interface TransformPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getMapArrow();
+
+	/**
+	 * Returns the meta object for class '{@link no.hib.dpf.transform.CopiedArrow <em>Copied Arrow</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Copied Arrow</em>'.
+	 * @see no.hib.dpf.transform.CopiedArrow
+	 * @generated
+	 */
+	EClass getCopiedArrow();
 
 	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.transform.Reduction <em>Reduction</em>}'.
@@ -519,25 +648,45 @@ public interface TransformPackage extends EPackage {
 	EReference getReduction_Mapping();
 
 	/**
-	 * Returns the meta object for class '{@link no.hib.dpf.transform.ExSpecification <em>Ex Specification</em>}'.
+	 * Returns the meta object for class '{@link no.hib.dpf.transform.CopiedConstraint <em>Copied Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Ex Specification</em>'.
-	 * @see no.hib.dpf.transform.ExSpecification
+	 * @return the meta object for class '<em>Copied Constraint</em>'.
+	 * @see no.hib.dpf.transform.CopiedConstraint
 	 * @generated
 	 */
-	EClass getExSpecification();
+	EClass getCopiedConstraint();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link no.hib.dpf.transform.ExSpecification#getExgraph <em>Exgraph</em>}'.
+	 * Returns the meta object for class '{@link no.hib.dpf.transform.Copied <em>Copied</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Exgraph</em>'.
-	 * @see no.hib.dpf.transform.ExSpecification#getExgraph()
-	 * @see #getExSpecification()
+	 * @return the meta object for class '<em>Copied</em>'.
+	 * @see no.hib.dpf.transform.Copied
 	 * @generated
 	 */
-	EReference getExSpecification_Exgraph();
+	EClass getCopied();
+
+	/**
+	 * Returns the meta object for the attribute '{@link no.hib.dpf.transform.Copied#getCopiedType <em>Copied Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Copied Type</em>'.
+	 * @see no.hib.dpf.transform.Copied#getCopiedType()
+	 * @see #getCopied()
+	 * @generated
+	 */
+	EAttribute getCopied_CopiedType();
+
+	/**
+	 * Returns the meta object for enum '{@link no.hib.dpf.transform.CopiedType <em>Copied Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Copied Type</em>'.
+	 * @see no.hib.dpf.transform.CopiedType
+	 * @generated
+	 */
+	EEnum getCopiedType();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -604,22 +753,14 @@ public interface TransformPackage extends EPackage {
 		EReference TRANSFORM__RULES = eINSTANCE.getTransform_Rules();
 
 		/**
-		 * The meta object literal for the '{@link no.hib.dpf.transform.impl.ExGraphImpl <em>Ex Graph</em>}' class.
+		 * The meta object literal for the '{@link no.hib.dpf.transform.impl.CopiedNodeImpl <em>Copied Node</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see no.hib.dpf.transform.impl.ExGraphImpl
-		 * @see no.hib.dpf.transform.impl.TransformPackageImpl#getExGraph()
+		 * @see no.hib.dpf.transform.impl.CopiedNodeImpl
+		 * @see no.hib.dpf.transform.impl.TransformPackageImpl#getCopiedNode()
 		 * @generated
 		 */
-		EClass EX_GRAPH = eINSTANCE.getExGraph();
-
-		/**
-		 * The meta object literal for the '<em><b>Map Arrow</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference EX_GRAPH__MAP_ARROW = eINSTANCE.getExGraph_MapArrow();
+		EClass COPIED_NODE = eINSTANCE.getCopiedNode();
 
 		/**
 		 * The meta object literal for the '{@link no.hib.dpf.transform.impl.MapArrowImpl <em>Map Arrow</em>}' class.
@@ -630,6 +771,16 @@ public interface TransformPackage extends EPackage {
 		 * @generated
 		 */
 		EClass MAP_ARROW = eINSTANCE.getMapArrow();
+
+		/**
+		 * The meta object literal for the '{@link no.hib.dpf.transform.impl.CopiedArrowImpl <em>Copied Arrow</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see no.hib.dpf.transform.impl.CopiedArrowImpl
+		 * @see no.hib.dpf.transform.impl.TransformPackageImpl#getCopiedArrow()
+		 * @generated
+		 */
+		EClass COPIED_ARROW = eINSTANCE.getCopiedArrow();
 
 		/**
 		 * The meta object literal for the '{@link no.hib.dpf.transform.impl.ReductionImpl <em>Reduction</em>}' class.
@@ -666,22 +817,42 @@ public interface TransformPackage extends EPackage {
 		EReference REDUCTION__MAPPING = eINSTANCE.getReduction_Mapping();
 
 		/**
-		 * The meta object literal for the '{@link no.hib.dpf.transform.impl.ExSpecificationImpl <em>Ex Specification</em>}' class.
+		 * The meta object literal for the '{@link no.hib.dpf.transform.impl.CopiedConstraintImpl <em>Copied Constraint</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see no.hib.dpf.transform.impl.ExSpecificationImpl
-		 * @see no.hib.dpf.transform.impl.TransformPackageImpl#getExSpecification()
+		 * @see no.hib.dpf.transform.impl.CopiedConstraintImpl
+		 * @see no.hib.dpf.transform.impl.TransformPackageImpl#getCopiedConstraint()
 		 * @generated
 		 */
-		EClass EX_SPECIFICATION = eINSTANCE.getExSpecification();
+		EClass COPIED_CONSTRAINT = eINSTANCE.getCopiedConstraint();
 
 		/**
-		 * The meta object literal for the '<em><b>Exgraph</b></em>' containment reference feature.
+		 * The meta object literal for the '{@link no.hib.dpf.transform.impl.CopiedImpl <em>Copied</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see no.hib.dpf.transform.impl.CopiedImpl
+		 * @see no.hib.dpf.transform.impl.TransformPackageImpl#getCopied()
+		 * @generated
+		 */
+		EClass COPIED = eINSTANCE.getCopied();
+
+		/**
+		 * The meta object literal for the '<em><b>Copied Type</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference EX_SPECIFICATION__EXGRAPH = eINSTANCE.getExSpecification_Exgraph();
+		EAttribute COPIED__COPIED_TYPE = eINSTANCE.getCopied_CopiedType();
+
+		/**
+		 * The meta object literal for the '{@link no.hib.dpf.transform.CopiedType <em>Copied Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see no.hib.dpf.transform.CopiedType
+		 * @see no.hib.dpf.transform.impl.TransformPackageImpl#getCopiedType()
+		 * @generated
+		 */
+		EEnum COPIED_TYPE = eINSTANCE.getCopiedType();
 
 	}
 

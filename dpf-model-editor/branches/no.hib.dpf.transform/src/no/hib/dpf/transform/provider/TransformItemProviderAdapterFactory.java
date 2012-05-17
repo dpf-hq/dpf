@@ -98,26 +98,26 @@ public class TransformItemProviderAdapterFactory extends TransformAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link no.hib.dpf.transform.ExGraph} instances.
+	 * This keeps track of the one adapter used for all {@link no.hib.dpf.transform.CopiedNode} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ExGraphItemProvider exGraphItemProvider;
+	protected CopiedNodeItemProvider copiedNodeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link no.hib.dpf.transform.ExGraph}.
+	 * This creates an adapter for a {@link no.hib.dpf.transform.CopiedNode}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createExGraphAdapter() {
-		if (exGraphItemProvider == null) {
-			exGraphItemProvider = new ExGraphItemProvider(this);
+	public Adapter createCopiedNodeAdapter() {
+		if (copiedNodeItemProvider == null) {
+			copiedNodeItemProvider = new CopiedNodeItemProvider(this);
 		}
 
-		return exGraphItemProvider;
+		return copiedNodeItemProvider;
 	}
 
 	/**
@@ -144,6 +144,29 @@ public class TransformItemProviderAdapterFactory extends TransformAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link no.hib.dpf.transform.CopiedArrow} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CopiedArrowItemProvider copiedArrowItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link no.hib.dpf.transform.CopiedArrow}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCopiedArrowAdapter() {
+		if (copiedArrowItemProvider == null) {
+			copiedArrowItemProvider = new CopiedArrowItemProvider(this);
+		}
+
+		return copiedArrowItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link no.hib.dpf.transform.Reduction} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -167,26 +190,49 @@ public class TransformItemProviderAdapterFactory extends TransformAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link no.hib.dpf.transform.ExSpecification} instances.
+	 * This keeps track of the one adapter used for all {@link no.hib.dpf.transform.CopiedConstraint} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ExSpecificationItemProvider exSpecificationItemProvider;
+	protected CopiedConstraintItemProvider copiedConstraintItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link no.hib.dpf.transform.ExSpecification}.
+	 * This creates an adapter for a {@link no.hib.dpf.transform.CopiedConstraint}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createExSpecificationAdapter() {
-		if (exSpecificationItemProvider == null) {
-			exSpecificationItemProvider = new ExSpecificationItemProvider(this);
+	public Adapter createCopiedConstraintAdapter() {
+		if (copiedConstraintItemProvider == null) {
+			copiedConstraintItemProvider = new CopiedConstraintItemProvider(this);
 		}
 
-		return exSpecificationItemProvider;
+		return copiedConstraintItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link no.hib.dpf.transform.Copied} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CopiedItemProvider copiedItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link no.hib.dpf.transform.Copied}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCopiedAdapter() {
+		if (copiedItemProvider == null) {
+			copiedItemProvider = new CopiedItemProvider(this);
+		}
+
+		return copiedItemProvider;
 	}
 
 	/**
@@ -289,10 +335,12 @@ public class TransformItemProviderAdapterFactory extends TransformAdapterFactory
 	 */
 	public void dispose() {
 		if (transformItemProvider != null) transformItemProvider.dispose();
-		if (exGraphItemProvider != null) exGraphItemProvider.dispose();
+		if (copiedNodeItemProvider != null) copiedNodeItemProvider.dispose();
 		if (mapArrowItemProvider != null) mapArrowItemProvider.dispose();
+		if (copiedArrowItemProvider != null) copiedArrowItemProvider.dispose();
 		if (reductionItemProvider != null) reductionItemProvider.dispose();
-		if (exSpecificationItemProvider != null) exSpecificationItemProvider.dispose();
+		if (copiedConstraintItemProvider != null) copiedConstraintItemProvider.dispose();
+		if (copiedItemProvider != null) copiedItemProvider.dispose();
 	}
 
 }

@@ -7,6 +7,7 @@
 package no.hib.dpf.transform;
 
 import no.hib.dpf.core.GraphHomomorphism;
+import no.hib.dpf.core.Specification;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -38,12 +39,12 @@ public interface Reduction extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Left</em>' containment reference.
-	 * @see #setLeft(ExSpecification)
+	 * @see #setLeft(Specification)
 	 * @see no.hib.dpf.transform.TransformPackage#getReduction_Left()
 	 * @model containment="true"
 	 * @generated
 	 */
-	ExSpecification getLeft();
+	Specification getLeft();
 
 	/**
 	 * Sets the value of the '{@link no.hib.dpf.transform.Reduction#getLeft <em>Left</em>}' containment reference.
@@ -53,7 +54,7 @@ public interface Reduction extends EObject {
 	 * @see #getLeft()
 	 * @generated
 	 */
-	void setLeft(ExSpecification value);
+	void setLeft(Specification value);
 
 	/**
 	 * Returns the value of the '<em><b>Right</b></em>' containment reference.
@@ -64,12 +65,12 @@ public interface Reduction extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Right</em>' containment reference.
-	 * @see #setRight(ExSpecification)
+	 * @see #setRight(Specification)
 	 * @see no.hib.dpf.transform.TransformPackage#getReduction_Right()
 	 * @model containment="true"
 	 * @generated
 	 */
-	ExSpecification getRight();
+	Specification getRight();
 
 	/**
 	 * Sets the value of the '{@link no.hib.dpf.transform.Reduction#getRight <em>Right</em>}' containment reference.
@@ -79,7 +80,7 @@ public interface Reduction extends EObject {
 	 * @see #getRight()
 	 * @generated
 	 */
-	void setRight(ExSpecification value);
+	void setRight(Specification value);
 
 	/**
 	 * Returns the value of the '<em><b>Mapping</b></em>' containment reference.
