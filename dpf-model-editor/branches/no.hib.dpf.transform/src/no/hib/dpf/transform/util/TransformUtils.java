@@ -8,18 +8,24 @@ import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.GraphHomomorphism;
 import no.hib.dpf.core.Node;
+import no.hib.dpf.core.Predicate;
 import no.hib.dpf.core.Specification;
 import no.hib.dpf.transform.CopiedArrow;
 import no.hib.dpf.transform.CopiedConstraint;
 import no.hib.dpf.transform.CopiedNode;
 import no.hib.dpf.transform.CopiedType;
+import no.hib.dpf.transform.MapArrow;
 import no.hib.dpf.transform.TransformFactory;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 
-public class TranformUtils {
-	public static final CopyResult combine(Specification source, Specification target){
-		Specification result = CoreFactory.eINSTANCE.createSpecification();
+public class TransformUtils {
+	public static final Specification joint(Specification source, Specification target){
+		return combine(source, target).specification;
+	}
+	private static final CopyResult combine(Specification source, Specification target){
+		Specification result = CoreFactory.eINSTANCE.createDefaultSpecification();
 		GraphHomomorphism map = CoreFactory.eINSTANCE.createGraphHomomorphism();
 		GraphHomomorphism typeMap = null;
 		Specification sMeta = source.getType();
@@ -52,16 +58,17 @@ public class TranformUtils {
 				copiedHom.getNodeMapping().put(entry.getKey(), map.getNodeMapping().get(entry.getValue()));
 					for(Map.Entry<Arrow, Arrow> entry : hom.getArrowMapping())
 						copiedHom.getArrowMapping().put(entry.getKey(), map.getArrowMapping().get(entry.getValue()));
-			copied.setMappings(copiedHom);
-			
-			for(Node node : constraint.getNodes()){
-				copied.getNodes().add(map.getNodeMapping().get(node));
-			}
-			for(Arrow arrow : constraint.getArrows()){
-				copied.getArrows().add(map.getArrowMapping().get(arrow));
-			}
+							copied.setMappings(copiedHom);
+
+							for(Node node : constraint.getNodes()){
+								copied.getNodes().add(map.getNodeMapping().get(node));
+							}
+							for(Arrow arrow : constraint.getArrows()){
+								copied.getArrows().add(map.getArrowMapping().get(arrow));
+							}
+						result.getConstraints().add(copied);
 		}
-		
+
 	}
 
 	private static void combineGraph(GraphHomomorphism typeMap, GraphHomomorphism map, Graph copiedGraph, Graph graph, CopiedType source) {
@@ -112,6 +119,42 @@ public class TranformUtils {
 		result.setName(new String(node.getName()));
 		result.setTypeNode(nodeMap == null ? node.getTypeNode() : nodeMap.get(node));
 		return result;
+	}
+	public static Arrow createMapArrow(Graph graph, String source, String target) {
+		Node sNode = getNodeByName(graph, source, CopiedType.SOURCE);
+		Node tNode = getNodeByName(graph, target, CopiedType.TARGET);
+		if(sNode != null && tNode != null){
+			MapArrow arrow = TransformFactory.eINSTANCE.createMapArrow();
+			arrow.setSource(sNode);
+			arrow.setTarget(tNode);
+			graph.addArrow(arrow);
+			return arrow;
+		}
+		return null;
+	}
+	private static Node getNodeByName(Graph graph, String source, CopiedType type) {
+		for(Node node : graph.getNodes())
+			if(node instanceof CopiedNode && 
+					((CopiedNode)node).getCopiedType() == type && 
+					node.getName().endsWith(source) )
+				return node;
+
+				return null;
+	}
+	public static Constraint createConstraint(Specification joint, EList<Arrow> arrows, EList<Node> nodes, Predicate predicate, String paras) {
+		if(predicate == null)
+			return null;
+		Constraint result = CoreFactory.eINSTANCE.createConstraint();
+		GraphHomomorphism map = predicate.createGraphHomomorphism(nodes, arrows);
+		if(map != null){
+			result.setMappings(map);
+			result.setPredicate(predicate);
+			result.setParameters(paras);
+			joint.getConstraints().add(result);
+			return result;
+		}
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
 class CopyResult{

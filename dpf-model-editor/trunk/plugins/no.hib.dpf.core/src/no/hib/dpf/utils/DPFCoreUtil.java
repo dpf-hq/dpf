@@ -104,7 +104,7 @@ public class DPFCoreUtil {
 		
 		Resource defaultSpecification = resourceSet.createResource(DPFConstants.DefaultSpecification);
 		defaultSpecification.getContents().add(DPFConstants.REFLEXIVE_SPECIFICATION);
-		
+		defaultSpecification.getContents().add(DPFConstants.DEFAULT_SIGNATURE);
 		resourceSet.getURIResourceMap().put(DPFConstants.DefaultSpecification, defaultSpecification);
 		
 		Resource model = resourceSet.createResource(modelFileURI);

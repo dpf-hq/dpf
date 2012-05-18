@@ -75,7 +75,7 @@ public class DSignatureImpl extends EObjectImpl implements DSignature {
 	 */
 	@Override
 	public void addDPredicate(DPredicate dPredicate) {
-		if(!getDPredicates().contains(dPredicate)){
+		if(dPredicate != null && !getDPredicates().contains(dPredicate)){
 			getDPredicates().add(dPredicate);
 			getSignature().addPredicate(dPredicate.getPredicate());
 		}

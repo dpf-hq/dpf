@@ -6,8 +6,6 @@
  */
 package no.hib.dpf.core.tests;
 
-import org.eclipse.emf.common.util.EList;
-
 import junit.framework.TestCase;
 import junit.textui.TestRunner;
 import no.hib.dpf.core.Arrow;
@@ -27,6 +25,8 @@ import no.hib.dpf.utils.internal.signature.MultiplicityPredicate;
 import no.hib.dpf.utils.internal.signature.NANDPredicate;
 import no.hib.dpf.utils.internal.signature.SurjectivePredicate;
 import no.hib.dpf.utils.internal.signature.XORPredicate;
+
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc --> A test case for the model object '

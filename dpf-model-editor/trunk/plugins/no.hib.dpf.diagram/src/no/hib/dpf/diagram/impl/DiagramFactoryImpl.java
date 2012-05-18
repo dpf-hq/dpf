@@ -29,15 +29,6 @@ import no.hib.dpf.diagram.DiagramPackage;
 import no.hib.dpf.diagram.Visualization;
 import no.hib.dpf.diagram.VisualizationType;
 import no.hib.dpf.diagram.util.DPFConstants;
-import no.hib.dpf.utils.internal.signature.InjectivePredicate;
-import no.hib.dpf.utils.internal.signature.InversePredicate;
-import no.hib.dpf.utils.internal.signature.IrreflexivePredicate;
-import no.hib.dpf.utils.internal.signature.JointlyInjectivePredicate;
-import no.hib.dpf.utils.internal.signature.JointlySurjectiveValidator;
-import no.hib.dpf.utils.internal.signature.MultiplicityPredicate;
-import no.hib.dpf.utils.internal.signature.NANDPredicate;
-import no.hib.dpf.utils.internal.signature.SurjectivePredicate;
-import no.hib.dpf.utils.internal.signature.XORPredicate;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.draw2d.geometry.Dimension;
@@ -589,20 +580,22 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	public DSignature createConstantDSignature() {
 		DSignatureImpl result = new DSignatureImpl();
 		result.setSignature(DPFConstants.DEFAULT_SIGNATURE);
-		result.addDPredicate(createArrowLabelDPredicate(new InjectivePredicate(), "/icons/inj_36.png"));
-		result.addDPredicate(createArrowLabelDPredicate(new SurjectivePredicate(), "/icons/surj_36.png"));
-		result.addDPredicate(createArrowLabelDPredicate(new IrreflexivePredicate(), "/icons/irr_36.png"));
-		result.addDPredicate(createArrowLabelDPredicate(new MultiplicityPredicate(), "/icons/mult_36.png"));
-		result.addDPredicate(createArrowToArrowDPredicate(new InversePredicate(), "/icons/inv_36.png", "XY", "YX"));
-		result.addDPredicate(createArrowToArrowDPredicate(new JointlySurjectiveValidator(), "/icons/js_36.png", "XZ", "YZ"));
-		result.addDPredicate(createArrowToArrowDPredicate(new JointlyInjectivePredicate(), "/icons/ji_36.png", "XY", "XZ"));
-		result.addDPredicate(createArrowToArrowDPredicate(new XORPredicate(), "/icons/xor_36.png", "ZX", "ZY"));
-		result.addDPredicate(createArrowToArrowDPredicate(new NANDPredicate(), "/icons/nand_36.png", "ZX", "ZY"));
+		result.addDPredicate(createArrowLabelDPredicate(DPFConstants.DEFAULT_SIGNATURE.getPredicateBySymbol("inj"), "/icons/inj_36.png"));
+		result.addDPredicate(createArrowLabelDPredicate(DPFConstants.DEFAULT_SIGNATURE.getPredicateBySymbol("surj"), "/icons/surj_36.png"));
+		result.addDPredicate(createArrowLabelDPredicate(DPFConstants.DEFAULT_SIGNATURE.getPredicateBySymbol("irref"), "/icons/irr_36.png"));
+		result.addDPredicate(createArrowLabelDPredicate(DPFConstants.DEFAULT_SIGNATURE.getPredicateBySymbol("multi"), "/icons/mult_36.png"));
+		result.addDPredicate(createArrowToArrowDPredicate(DPFConstants.DEFAULT_SIGNATURE.getPredicateBySymbol("inv"), "/icons/inv_36.png", "XY", "YX"));
+		result.addDPredicate(createArrowToArrowDPredicate(DPFConstants.DEFAULT_SIGNATURE.getPredicateBySymbol("js"), "/icons/js_36.png", "XZ", "YZ"));
+		result.addDPredicate(createArrowToArrowDPredicate(DPFConstants.DEFAULT_SIGNATURE.getPredicateBySymbol("ji"), "/icons/ji_36.png", "XY", "XZ"));
+		result.addDPredicate(createArrowToArrowDPredicate(DPFConstants.DEFAULT_SIGNATURE.getPredicateBySymbol("xor"), "/icons/xor_36.png", "ZX", "ZY"));
+		result.addDPredicate(createArrowToArrowDPredicate(DPFConstants.DEFAULT_SIGNATURE.getPredicateBySymbol("nand"), "/icons/nand_36.png", "ZX", "ZY"));
 		return result;
 	}
 
 	private DPredicate createArrowLabelDPredicate(
 			Predicate predicate, String icon) {
+		if(predicate == null)
+			return null;
 		DPredicate result = createDPredicate(predicate, icon);
 		Visualization visualization = result.getVisualization();
 		visualization.setType(VisualizationType.ARROW_LABEL);
@@ -614,6 +607,8 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	private DPredicate createArrowToArrowDPredicate(Predicate predicate,
 			String icon, String source,
 			String target) {
+		if(predicate == null)
+			return null;
 		DPredicate result = createDPredicate(predicate, icon);
 		Visualization visualization = result.getVisualization();
 		visualization.setType(VisualizationType.ARROW_TO_ARROW);

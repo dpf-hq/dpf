@@ -30,6 +30,15 @@ import no.hib.dpf.core.Signature;
 import no.hib.dpf.core.Specification;
 import no.hib.dpf.core.ValidatorType;
 import no.hib.dpf.utils.DPFConstants;
+import no.hib.dpf.utils.internal.signature.InjectivePredicate;
+import no.hib.dpf.utils.internal.signature.InversePredicate;
+import no.hib.dpf.utils.internal.signature.IrreflexivePredicate;
+import no.hib.dpf.utils.internal.signature.JointlyInjectivePredicate;
+import no.hib.dpf.utils.internal.signature.JointlySurjectiveValidator;
+import no.hib.dpf.utils.internal.signature.MultiplicityPredicate;
+import no.hib.dpf.utils.internal.signature.NANDPredicate;
+import no.hib.dpf.utils.internal.signature.SurjectivePredicate;
+import no.hib.dpf.utils.internal.signature.XORPredicate;
 
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EClass;
@@ -547,7 +556,17 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 
 	@Override
 	public Signature createConstantSignature() {
-		return new SignatureImpl();
+		Signature result = new SignatureImpl();
+		result.getPredicates().add(new InjectivePredicate());
+		result.getPredicates().add(new SurjectivePredicate());
+		result.getPredicates().add(new IrreflexivePredicate());
+		result.getPredicates().add(new MultiplicityPredicate());
+		result.getPredicates().add(new InversePredicate());
+		result.getPredicates().add(new JointlySurjectiveValidator());
+		result.getPredicates().add(new JointlyInjectivePredicate());
+		result.getPredicates().add(new XORPredicate());
+		result.getPredicates().add(new NANDPredicate());
+		return result;
 	}
 
 	@Override
