@@ -18,7 +18,7 @@
                 id="no.hib.dpf.editor"/>
       <wizard
             category="no.hib.dpf.editor"
-            class="no.hib.dpf.editor.DPFCreationWizard"
+            class="no.hib.dpf.editor.wizards.DPFCreationWizard"
             icon="icons/shapes.gif"
             id="no.hib.dpf.editor.DPFCreationWizard"
             name="DPF Specification Diagram">

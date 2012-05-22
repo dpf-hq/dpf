@@ -13,7 +13,7 @@
  * 
  * �yvind Bech and Dag Viggo Lok�en - DPF Editor
  *******************************************************************************/
-package no.hib.dpf.editor;
+package no.hib.dpf.editor.wizards;
 
 import static no.hib.dpf.diagram.util.DPFConstants.REFLEXIVE_DSPECIFICATION;
 
@@ -23,6 +23,8 @@ import java.util.Map;
 import no.hib.dpf.diagram.DSignature;
 import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.diagram.DiagramFactory;
+import no.hib.dpf.editor.DPFEditor;
+import no.hib.dpf.editor.DPFErrorReport;
 import no.hib.dpf.utils.DPFCoreUtil;
 
 import org.eclipse.core.resources.IContainer;
@@ -43,7 +45,6 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
-import org.eclipse.ui.dialogs.WizardNewLinkPage;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.internal.ide.IDEWorkbenchMessages;
 
@@ -55,8 +56,8 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 
 	private static int fileCount = 1;
 	private CreationPage createPage = null;
-	private WizardNewLinkPage typeLinkPage = null;
-	private WizardNewLinkPage signatureLinkPage;
+	private DPFWizardPage typeLinkPage = null;
+	private DPFWizardPage signatureLinkPage;
 
 	/*
 	 * (non-Javadoc)
@@ -81,7 +82,10 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 		createPage = new CreationPage(workbench, selection);
 
 		IDEWorkbenchMessages.WizardNewLinkPage_linkFileButton = "Load File:";
-		typeLinkPage = new WizardNewLinkPage("Add type graph", IResource.FILE);
+		typeLinkPage = new DPFWizardPage("Add type graph", "Type graph");
+		String[] tmp = {"*" + DPFEditor.DEFAULT_DIAGRAM_MODEL_EXTENSION};
+		typeLinkPage.setFileDialogFilters(tmp, tmp);
+		
 		typeLinkPage.setTitle("Include type graph");
 		String filename = null;
 		IContainer parentResource = null;
@@ -97,8 +101,10 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 		typeLinkPage.setLinkTarget(filename);
 		typeLinkPage.setContainer(parentResource);
 		
-		signatureLinkPage = new WizardNewLinkPage("Add Signature", IResource.FILE);
-		signatureLinkPage.setTitle("Include Signature");
+		signatureLinkPage = new DPFWizardPage("Add Signature", "Signature");
+		tmp = new String[] { "*.sig"};
+		signatureLinkPage.setFileDialogFilters(tmp, tmp);
+		signatureLinkPage.setTitle("Include signature");
 		signatureLinkPage.setLinkTarget(filename);
 		signatureLinkPage.setContainer(parentResource);
 	}
