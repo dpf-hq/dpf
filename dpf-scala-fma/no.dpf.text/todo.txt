@@ -3,10 +3,11 @@
 - Fehlermedlungen OCL
 - Beim Speichern automatisch normalisieren, so das alle Ids auch nummern haben 
 - Normalisieren verbessern
-------------------------------------
-- IGraphs
-- IDs für den Merge Fall mit mehreren nummern (?)
 
+- Zweiter Editor, der wie IGraphs arbeitet und automatisch ergänzt. Aber speichern in multigraphs.
+------------------------------------
+
+- IDs für den Merge Fall mit mehreren nummern (?)
 
 ------------------------------------
 - Regeln mit AGG
