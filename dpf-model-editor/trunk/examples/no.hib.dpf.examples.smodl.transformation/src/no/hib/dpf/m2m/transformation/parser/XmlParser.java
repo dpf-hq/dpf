@@ -18,7 +18,11 @@ import org.xml.sax.SAXException;
 
 public class XmlParser {
 	public static void SmodlXMLParser(IFile file){
-		Point p = new Point(200,200);
+		/*
+		 * Initial location point
+		 */
+		Point p = new Point(10,200);
+		
 		try {
 			String filePath =file.getProject().getLocation().toPortableString()
 					+ "/"
@@ -31,26 +35,33 @@ public class XmlParser {
 				doc = dBuilder.parse(filetoparse);
 				doc.getDocumentElement().normalize();
 				NodeList nList = doc.getElementsByTagName("service");
+				/* 
+				 * iteration of the root element Service
+				 */
 				for (int temp = 0; temp < nList.getLength(); temp++) {
 					 
 					   Node nNode = nList.item(temp);
+					   /*
+					    * adding Node Service to the specification
+					    */
 					   if(nNode.getNodeType() == Node.ELEMENT_NODE)
 						   DPFTemplates.SpecificationContent(nNode.getNodeName(),getNodeValue(nNode,"name"),null,null,p.getCopy());
+					   /*
+					    * translating location of the point to top of the GraphicalEditor
+					    */
+					   p.translate(250, -150);
+					   p.getCopy();
+					   Point methodP = new Point(p);
 					   
-					   NodeList nServiceChildNodes = nNode.getChildNodes();
-					   p.translate(150, 100);
-					   for(int count=0; count<nServiceChildNodes.getLength(); count++){
-						   Node nServiceChild = nServiceChildNodes.item(count);
-						   if(nServiceChild.getNodeType() == Node.ELEMENT_NODE) {
-							   if(nServiceChild.getNodeName().equalsIgnoreCase("method")||nServiceChild.getNodeName().equalsIgnoreCase("struct")){
-								   p.translate(0, 180);
-								   DPFTemplates.SpecificationContent(nServiceChild.getNodeName(), getNodeValue(nServiceChild,"name"), 
-										   nNode.getNodeName(), getNodeValue(nNode,"name"), p.getCopy());
-								   getChildNodes(nServiceChild,p);
-							   }
-							  
-						   }
-					   }
+					   /*
+					    * getting the content of the child elements of Service and adding specification content of the 
+					    * Struct first to the Graph,if it exists  , because it can referred by the methods results and method args
+					   */
+					   getMethodAndStructdetails("struct", nNode, p);
+					   p.setLocation(methodP) ;
+					   p.translate(0, 150);
+					   getMethodAndStructdetails("method", nNode, p);
+
 				  }
 			} catch (SAXException e) {
 				
@@ -69,11 +80,32 @@ public class XmlParser {
 	
 	
 	
-	
+	public static void getMethodAndStructdetails(String childName, Node nNode,Point p){
+		 NodeList nServiceChildNodes = nNode.getChildNodes();
+		 Point nextMethodOrStruct = new Point(p);
+		for(int count=0; count<nServiceChildNodes.getLength(); count++){
+			   Node nServiceChild = nServiceChildNodes.item(count);
+			   
+			   if(nServiceChild.getNodeType() == Node.ELEMENT_NODE) {
+				   if(nServiceChild.getNodeName().equalsIgnoreCase(childName)){
+					   
+					   DPFTemplates.SpecificationContent(nServiceChild.getNodeName(), getNodeValue(nServiceChild,"name"), 
+							   nNode.getNodeName(), getNodeValue(nNode,"name"), p.getCopy());
+					   getChildNodes(nServiceChild,p);
+					   p.setLocation(nextMethodOrStruct);
+					   p.translate(0, 100);
+					   nextMethodOrStruct.setLocation(p);
+				
+				   }
+				   
+				 
+				   
+			   }
+		   }
+	}
 	
 	public static void getChildNodes(Node nNode,Point p){
 		NodeList nChildNodes = nNode.getChildNodes();
-		p.translate(200, 0);
 		boolean nextArg = false;
 		Node firstArg = null;
 		   for(int mChildCount=0; mChildCount<nChildNodes.getLength(); mChildCount++){
@@ -81,19 +113,23 @@ public class XmlParser {
 			   if(nChild.getNodeType() == Node.ELEMENT_NODE) {
 				   switch(nChild.getNodeName().toLowerCase()){
 				   case "arg" :
-					   p.translate(200, 0);
+					   
 					   if(nextArg){
+						   p.translate(250, 0);
 						   DPFTemplates.SpecificationContent(nChild.getNodeName(), getNodeValue(nChild,"name"), firstArg.getNodeName(), getNodeValue(firstArg,"name"), p.getCopy());
 						   if(getNodeValue(nChild, "type")!=null){
-							   p.translate(0, 100);
-							   DPFTemplates.SpecificationContent("simpletype", getNodeValue(nChild,"type"), firstArg.getNodeName(), getNodeValue(firstArg,"name"), p.getCopy());
+							   p.translate(0, 50);
+							   
+							   DPFTemplates.SpecificationContent("type", getNodeValue(nChild,"type"), nChild.getNodeName(), getNodeValue(nChild,"name"), p.getCopy());
+							  
 						   }
 					   }  
 					   else{
+						   p.translate(250, 0);
 						   DPFTemplates.SpecificationContent(nChild.getNodeName(), getNodeValue(nChild,"name"), nNode.getNodeName(), getNodeValue(nNode,"name"), p.getCopy());
 						   if(getNodeValue(nChild, "type")!=null){
-							   p.translate(0, 100);
-							   DPFTemplates.SpecificationContent("simpletype", getNodeValue(nChild,"type"), nNode.getNodeName(), getNodeValue(nNode,"name"), p.getCopy());
+							   p.translate(0, 50);
+							  DPFTemplates.SpecificationContent("type", getNodeValue(nChild,"type"), nChild.getNodeName(), getNodeValue(nChild,"name"), p.getCopy());
 						   }
 					   }
 					   firstArg = nChild;
@@ -101,12 +137,13 @@ public class XmlParser {
 					   
 					   break;
 				   case "result":
-					   p.translate(200, 0);
-					   DPFTemplates.SpecificationContent(nChild.getNodeName(), getNodeValue(nChild,"type"), nNode.getNodeName(), getNodeValue(nNode,"name"), p.getCopy());
+					   p.translate(250, 0);
+					   DPFTemplates.SpecificationContent("type", getNodeValue(nChild,"type"), nNode.getNodeName(), getNodeValue(nNode,"name"), p.getCopy());
 					   break;
 				   case "field":
 					   p.translate(200, 0);
-					   DPFTemplates.SpecificationContent("simpleType", getNodeValue(nChild,"type"), nNode.getNodeName(), getNodeValue(nNode,"name"), p.getCopy());
+					   DPFTemplates.SpecificationContent("type", getNodeValue(nChild,"type"), nNode.getNodeName(), getNodeValue(nNode,"name"), p.getCopy());
+					   
 					   break;
 				   }
 			   }

@@ -2,6 +2,8 @@ package no.hib.dpf.m2m.transformation.parser;
 
 
 
+import java.io.ObjectInputStream.GetField;
+
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.diagram.DSpecification;
@@ -24,18 +26,45 @@ public class DPFTemplates {
 		//return newSpec;
 	}
 	
+	
+	
+	
+	/***************
+	 * targetnode is the current node , source node is the previous node
+	 * typearrow is getting by the target and source node names
+	 * typenode is getting by the name of the targetnode
+	 * ****************/
 	public static void SpecificationContent(String targetnodeName,String targetnodeValue, String sourceNodeName,String sourceNodeValue,Point p){
 		
 		Assert.isNotNull(targetnodeName);
+		boolean existNodeInGrp = false;
+		if(targetnodeName.equals("type") ){
+			if(targetnodeValue.equals("binary")||targetnodeValue.equals("bool")||targetnodeValue.equals("dateTime")||
+				targetnodeValue.equals("double")||targetnodeValue.equals("float")||targetnodeValue.equals("int")||
+				targetnodeValue.equals("long")||targetnodeValue.equals("string"))
+					targetnodeName = "SimpleType";
+			else
+				targetnodeName = "Struct";
+	
+	}
 		DNode node = DiagramFactory.eINSTANCE.createDefaultDNode();
 		for(DNode typeNode : newSpec.getDType().getDGraph().getDNodes()){
+			
 			if(targetnodeName.equalsIgnoreCase(typeNode.getName().toString())){
 				node.setDType(typeNode);
 				node.getNode().setName(targetnodeValue);
-				//node.setConfigureString(targetnodeValue);
-				//node.setName(targetnodeValue);
 				node.setLocation(p);
-				newSpec.getDGraph().addDNode(node);
+				if(targetnodeName.equalsIgnoreCase("SimpleType") ||targetnodeName.equalsIgnoreCase("Struct")){
+					for(DNode existNode:newSpec.getDGraph().getDNodes()){
+						if(targetnodeValue.equalsIgnoreCase(existNode.getName().toString())){
+							existNodeInGrp = true;
+							node = existNode;
+							break;
+						}
+					}
+				}
+				if(!existNodeInGrp)
+					newSpec.getDGraph().addDNode(node);
 				break;
 			}
 			
@@ -52,8 +81,9 @@ public class DPFTemplates {
 					arrow.setDTarget(node);
 					
 					for(DNode sourceNode:newSpec.getDGraph().getDNodes()){
-						if(sourceNodeValue.equalsIgnoreCase(sourceNode.getName().toString()))
-						arrow.setDSource(sourceNode);
+						if(sourceNodeValue.equalsIgnoreCase(sourceNode.getName().toString())){
+							arrow.setDSource(sourceNode);
+						}
 					}
 					newSpec.getDGraph().addDArrow(arrow);
 				break;
@@ -61,30 +91,7 @@ public class DPFTemplates {
 					
 			}
 		}
-		/*DNode node1 = newSpec.getDType().getDGraph().getDNodes().get(0);
-		//DNode node = DiagramFactory.eINSTANCE.createDNode("test",node1 );
-		DNode node = DiagramFactory.eINSTANCE.createDefaultDNode();
-		node.setDType(node1);
-		Point p1 = new Point(100,100);
-		node.setLocation(p1);
-		newSpec.getDGraph().addDNode(node);
-		
-		DNode node2 = newSpec.getDType().getDGraph().getDNodes().get(2);
-		//DNode node = DiagramFactory.eINSTANCE.createDNode("test",node1 );
-		DNode node3 = DiagramFactory.eINSTANCE.createDefaultDNode();
-		node3.setDType(node2);
-		Point p2 = new Point(200,100);
-		node3.setLocation(p2);
-		newSpec.getDGraph().addDNode(node3);
-		
-		DArrow arrow = newSpec.getDType().getDGraph().getDArrows().get(1);
-		//DArrow arrow1 = DiagramFactory.eINSTANCE.createDArrow("dfd", node, node3, arrow);
-		DArrow arrow1 = DiagramFactory.eINSTANCE.createDefaultDArrow();
-		arrow1.setDType(arrow);
-		arrow1.setDSource(node);
-		arrow1.setDTarget(node3);
-	
-		newSpec.getDGraph().addDArrow(arrow1);*/
+
 
 		
 		
