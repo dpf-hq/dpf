@@ -348,7 +348,7 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 				} else if(obj instanceof Constraint) {
 					return new ConstraintType(DpfMetamodel.this, ns + "::" + ((Constraint)obj).getId(), (Constraint)obj);
 				} else if(obj instanceof Predicate) {
-					return new PredicateType(DpfMetamodel.this, ns + "::" + PREDICATE , (Predicate)obj);
+					return new PredicateType(DpfMetamodel.this, ns + "::" + ((Predicate)obj).getSymbol() , (Predicate)obj);
 				}
 				return null;
 			}
