@@ -13,3 +13,13 @@
 - Regeln mit AGG
 - Regeln auch mit IDs matchen, namen sollten in den Regeln keine Rolle mehr spielen
 
+-------------------------------------
+
+Metamodel Regeln matchen:
+1.) Cospan der Metamodelle bilden und dann Cospan melden
+2.) Falls das nicht gereicht hat, kann versucht werden die Linke Seite zu matchen und dann auf dem
+    Ergebnis Schritt 1.) (ähnlich wie Look-Ahead in den Grammatiken)
+
+
+
+
