@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="no.hib.dpf.codegen.xpand.feature"
-      label="Xpand Code Generation [Optional]"
+      label="Code Generation for DPF [Optional]"
       version="0.2.0.qualifier"
       provider-name="Høgskolen i Bergen">
 
@@ -9,12 +9,15 @@
       This feature provides functionality for using DPF specifications as metamodels in the Xpand framework.
    </description>
 
-   <copyright url="http://www.example.com/copyright">
-      [Enter Copyright Description here.]
+   <copyright>
+      Copyright (c) 2012 Høyskolen i Bergen, Norway. 
+Portions of the code are Copyright (c) 2004, 2005, 2010 IBM Corporation
+and others. Portions of the code are Copyright (c) 2005, 2007, 2009 committers 
+of openArchitechtureWare and others.
    </copyright>
 
-   <license url="http://www.example.com/license">
-      [Enter License Description here.]
+   <license url="">
+      All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
    </license>
 
    <requires>
