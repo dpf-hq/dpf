@@ -6,6 +6,7 @@ import java.util.Set;
 import no.hib.dpf.codegen.xpand.metamodel.DpfMMConstants;
 import no.hib.dpf.codegen.xpand.metamodel.DpfMetamodel;
 import no.hib.dpf.codegen.xpand.metamodel.typesystem.FeatureImpl;
+import no.hib.dpf.codegen.xpand.metamodel.typesystem.OperationImpl;
 import no.hib.dpf.codegen.xpand.metamodel.typesystem.PropertyImpl;
 import no.hib.dpf.codegen.xpand.metamodel.typesystem.TypeHelper;
 import no.hib.dpf.core.Arrow;
@@ -63,6 +64,13 @@ public class ArrowType extends AbstractTypeImpl{
 				}
 			});
 		}
+		res.add(new OperationImpl(this, "getConstraints", new ListTypeImpl(
+				model.getTypeForName(DpfMMConstants.CONSTRAINT), model.getTypeSystem(), "List")) {
+			@Override
+			protected Object evaluateInternal(Object target, Object[] params) {
+				return arrow.getConstraints();
+			}
+		});
 		return res.toArray(new Feature[res.size()]);
 	}
 	@Override
