@@ -17,7 +17,7 @@ import java.net.URI;
 
 import org.eclipse.core.filesystem.EFS;
 import org.eclipse.core.filesystem.IFileStore;
-import org.eclipse.core.resources.IContainer;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
@@ -42,7 +42,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.dialogs.WizardNewLinkPage;
 
 /**
- * This class is copypasta from {@link WizardNewLinkPage} which cant be subclassed.
+ * This class is copypasta from {@link WizardNewLinkPage} which can't be subclassed.
  * Internal classes has been replaced with Eclipse API classes. 
  * The Variable button has been removed, as well as validation for folders.
  */
@@ -51,10 +51,8 @@ public class DPFWizardPage extends WizardPage {
 
     private boolean createLink = false;
 
-    private IContainer container;
-
     // widgets
-    private Text linkTargetField;
+    private Text targetField;
 
     private Button browseButton;
 
@@ -64,16 +62,9 @@ public class DPFWizardPage extends WizardPage {
 
 	private String[] filterNames = null;
 
-    /**
-     * Creates a new resource link wizard page. 
-     *
-     * @param pageName the name of the page
-     * @param type specifies the type of resource to link to. 
-     * 	<code>IResource.FILE</code> or <code>IResource.FOLDER</code>
-     */
-    public DPFWizardPage(String pageName, String linkName) {
+    public DPFWizardPage(String pageName, String name) {
         super(pageName);
-        this.linkName = linkName;
+        this.linkName = name;
         setPageComplete(true);
     }
 
@@ -107,7 +98,7 @@ public class DPFWizardPage extends WizardPage {
             public void widgetSelected(SelectionEvent e) {
                 createLink = createLinkButton.getSelection();
                 browseButton.setEnabled(createLink);
-                linkTargetField.setEnabled(createLink);
+                targetField.setEnabled(createLink);
                 setPageComplete(validatePage());
             }
         };
@@ -138,18 +129,18 @@ public class DPFWizardPage extends WizardPage {
         fill.setLayoutData(data);
 
         // link target location entry field
-        linkTargetField = new Text(locationGroup, SWT.BORDER);
+        targetField = new Text(locationGroup, SWT.BORDER);
         data = new GridData(GridData.FILL_HORIZONTAL);
-        linkTargetField.setLayoutData(data);
-        linkTargetField.setFont(font);
-        linkTargetField.setEnabled(enabled);
-        linkTargetField.addModifyListener(new ModifyListener() {
+        targetField.setLayoutData(data);
+        targetField.setFont(font);
+        targetField.setEnabled(enabled);
+        targetField.addModifyListener(new ModifyListener() {
             public void modifyText(ModifyEvent e) {
                 setPageComplete(validatePage());
             }
         });
         if (initialLinkTarget != null) {
-            linkTargetField.setText(initialLinkTarget);
+            targetField.setText(initialLinkTarget);
         }
 
         // browse button
@@ -177,9 +168,9 @@ public class DPFWizardPage extends WizardPage {
      * 	choose not to create a link.
      */
     public String getLinkTarget() {
-        if (createLink && linkTargetField != null
-                && linkTargetField.isDisposed() == false) {
-            return linkTargetField.getText();
+        if (createLink && targetField != null
+                && targetField.isDisposed() == false) {
+            return targetField.getText();
         }
         return null;
     }
@@ -188,7 +179,7 @@ public class DPFWizardPage extends WizardPage {
      * Opens a file or directory browser depending on the link type.
      */
     private void handleLinkTargetBrowseButtonPressed() {
-        String linkTargetName = linkTargetField.getText();
+        String linkTargetName = targetField.getText();
         String selection = null;
         IFileStore store = null;
         if (linkTargetName.length() > 0) {
@@ -212,19 +203,8 @@ public class DPFWizardPage extends WizardPage {
         selection = fileDialog.open();
         
         if (selection != null) {
-            linkTargetField.setText(selection);
+            targetField.setText(selection);
         }
-    }
-
-    /**
-     * Sets the container to use for link validation.
-     * This should be the parent of the new resource that is being 
-     * linked.
-     *
-     * @param container the container to use for link validation.
-     */
-    public void setContainer(IContainer container) {
-        this.container = container;
     }
 
     /**
@@ -234,8 +214,8 @@ public class DPFWizardPage extends WizardPage {
      */
     public void setLinkTarget(String target) {
         initialLinkTarget = target;
-        if (linkTargetField != null && linkTargetField.isDisposed() == false) {
-            linkTargetField.setText(target);
+        if (targetField != null && targetField.isDisposed() == false) {
+            targetField.setText(target);
         }
     }
 
@@ -284,23 +264,22 @@ public class DPFWizardPage extends WizardPage {
         IWorkspace workspace = ResourcesPlugin.getWorkspace();
 
         if (createLink) {
-            String linkTargetName = linkTargetField.getText();
+            String targetName = targetField.getText();
 
-            valid = validateLinkTargetName(linkTargetName);
+            valid = validateLinkTargetName(targetName);
             if (valid) {
-                IFileStore linkTargetFile = getFileStore(linkTargetName);
-                if (linkTargetFile == null || !linkTargetFile.fetchInfo().exists()) {
+                IFileStore targetFile = getFileStore(targetName);
+                if (targetFile == null || !targetFile.fetchInfo().exists()) {
                     setErrorMessage(linkName + " target does not exist");
                     valid = false;
                 } else {
-                    IStatus locationStatus = workspace.validateLinkLocation(
-                            container, new Path(linkTargetName));
+                	IStatus locationStatus = workspace.validatePath(targetName, IResource.FILE);
 
                     if (locationStatus.isOK() == false) {
                         setErrorMessage(linkName + " location is invalid");
                         valid = false;
                     } else {
-                        valid = validateFileType(linkTargetFile);
+                        valid = validateFileType(targetFile);
                     }
                 }
             }
