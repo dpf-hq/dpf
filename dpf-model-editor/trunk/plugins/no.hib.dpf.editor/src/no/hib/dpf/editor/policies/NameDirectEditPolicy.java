@@ -45,7 +45,7 @@ public class NameDirectEditPolicy extends DirectEditPolicy {
 		String name = (String) request.getCellEditor().getValue();
 		if(getHost() instanceof DNodeEditPart){
 			DNode node = (DNode) getHost().getModel();
-			if(!node.getName().equals(name));
+			if(!node.getName().equals(name))
 			return new ChangeNameCommand(node, name);
 		}
 		if(getHost() instanceof ArrowLabelEditPart){
@@ -53,7 +53,7 @@ public class NameDirectEditPolicy extends DirectEditPolicy {
 			if(!arrow.getName().equals(name))
 			return new ChangeNameCommand(arrow, name);
 		}
-		return super.getCommand(request);
+		return null;
 	}
 
 	/**
