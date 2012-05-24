@@ -1,0 +1,464 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>How To Enable UUID In EMF Generated Model To Get Copy&amp;Paste Working</title>
+
+<meta name="designer" content="digitalnature.ro">
+
+
+<link rel="pingback" href="http://serdom.eu/ser/xmlrpc.php">
+<link rel="shortcut icon" href="http://serdom.eu/ser/wp-content/themes/mystique/favicon.ico">
+
+<style type="text/css">
+ @import "/ser/wp-content/themes/mystique/style.css";
+ @import "http://serdom.eu/ser/2007/03/05/how-to-enable-uuid-in-emf-generated-model-to-get-copypaste-working?mystique=css";
+</style>
+<!--[if lte IE 6]><link media="screen" rel="stylesheet" href="/ser/wp-content/themes/mystique/ie6.css" type="text/css" /><![endif]-->
+<!--[if IE 7]><link media="screen" rel="stylesheet" href="/ser/wp-content/themes/mystique/ie7.css" type="text/css" /><![endif]-->
+  <link rel="alternate" type="application/rss+xml" title="ser's home page » Feed" href="http://serdom.eu/ser/feed">
+<link rel="alternate" type="application/rss+xml" title="ser's home page » Comments Feed" href="http://serdom.eu/ser/comments/feed">
+<link rel="alternate" type="application/rss+xml" title="ser's home page » How To Enable UUID In EMF Generated Model To Get Copy&amp;Paste Working Comments Feed" href="http://serdom.eu/ser/2007/03/05/how-to-enable-uuid-in-emf-generated-model-to-get-copypaste-working/feed">
+<script src="how-to-enable-uuid-in-emf-generated-model-to-get-copypaste-working_files/ga.js" async="" type="text/javascript"></script><script type="text/javascript" src="how-to-enable-uuid-in-emf-generated-model-to-get-copypaste-working_files/jquery_002.js"></script>
+<script type="text/javascript" src="how-to-enable-uuid-in-emf-generated-model-to-get-copypaste-working_files/external-tracking.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://serdom.eu/ser/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://serdom.eu/ser/wp-includes/wlwmanifest.xml"> 
+<link rel="index" title="ser’s home page" href="http://serdom.eu/ser">
+<link rel="start" title="Color Scheme Generator for Charts" href="http://serdom.eu/ser/2007/03/03/color-scheme-generator-for-charts">
+<link rel="prev" title="New Project: netdgrm" href="http://serdom.eu/ser/2007/03/04/new-project-netdgrm">
+<link rel="next" title="gstpw – a simple stopwatch program" href="http://serdom.eu/ser/2007/03/21/gstpw-a-simple-stopwatch-program">
+<link rel="canonical" href="http://serdom.eu/ser/2007/03/05/how-to-enable-uuid-in-emf-generated-model-to-get-copypaste-working">
+<link rel="shortlink" href="http://serdom.eu/ser/?p=6">
+
+<!-- Protected by WP-SpamFree v2.1.0.9 :: JS BEGIN -->
+<script type="text/javascript" src="how-to-enable-uuid-in-emf-generated-model-to-get-copypaste-working_files/wpsf-js.js"></script> 
+<!-- Protected by WP-SpamFree v2.1.0.9 :: JS END -->
+
+
+<link rel="stylesheet" href="how-to-enable-uuid-in-emf-generated-model-to-get-copypaste-working_files/wp-syntax.css" type="text/css" media="screen">
+	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+<!-- Google Analytics Tracking by Google Analyticator 6.2: http://ronaldheft.com/code/analyticator/ -->
+<script type="text/javascript">
+	var analyticsFileTypes = [''];
+	var analyticsEventTracking = 'enabled';
+</script>
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-1951964-1']);
+	_gaq.push(['_trackPageview']);
+	_gaq.push(['_trackPageLoadTime']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+</head>
+<body class="single-post title-how-to-enable-uuid-in-emf-generated-model-to-get-copypaste-working category- author-admin col-2-right fixed browser-gecko">
+ <div id="page">
+
+
+  <div class="page-content header-wrapper">
+
+
+    <div id="header" class="bubbleTrigger">
+    
+                
+
+      <div id="site-title" class="clear-block">
+
+        <div id="logo"><a href="http://serdom.eu/ser">ser's home page</a></div>        <p class="headline">about searching</p>
+        
+      </div>
+
+      
+   <div class="shadow-left">
+   <div class="shadow-right clear-block">
+   <p class="nav-extra"><a href="http://serdom.eu/ser/feed" class="nav-extra rss" title="RSS Feeds"><span>RSS Feeds</span></a></p>
+   <ul class="navigation  clear-block sf-js-enabled">
+             <li class="home"><a class="home fadeThis" href="http://serdom.eu/ser" title="Click for Home"><span class="title">Home</span><span class="pointer"></span><span style="opacity: 0;" class="hover"></span></a></li>
+           <li id="menu-item-84"><a href="https://picasaweb.google.com/thugcee" class="fadeThis"><span class="title">Gallery</span><span class="pointer"></span><span style="opacity: 0;" class="hover"></span></a></li>
+<li id="menu-item-94"><a href="http://serdom.eu/ser/software" class="fadeThis"><span class="title">Software</span><span class="pointer"></span><span style="opacity: 0;" class="hover"></span></a></li>
+   </ul>
+   </div>
+   </div>
+  
+            
+
+    </div>
+
+  </div>
+
+  <!-- left+right bottom shadow -->
+  <div class="shadow-left page-content main-wrapper">
+   <div class="shadow-right">
+
+     
+  <!-- main content: primary + sidebar(s) -->
+  <div id="main">
+   <div id="main-inside" class="clear-block">
+    <!-- primary content -->
+    <div role="main" id="primary-content">
+     <div class="blocks">
+                    <div class="single-navigation clear-block">
+          <div class="alignleft">« <a href="http://serdom.eu/ser/2007/03/04/new-project-netdgrm" rel="prev">New Project: netdgrm</a></div>
+          <div class="alignright"><a href="http://serdom.eu/ser/2007/03/21/gstpw-a-simple-stopwatch-program" rel="next">gstpw – a simple stopwatch program</a> »</div>
+        </div>
+
+        <!-- post -->
+        <div id="post-6" class="hentry post post-1 odd author-admin single">
+
+          <h1 class="title">How To Enable UUID In EMF Generated Model To Get Copy&amp;Paste Working</h1>
+          <div class="post-content clear-block">
+          <p>If you get very strange results using Copy&amp;Paste in GMF
+ diagram editor then in all likelihood your EMF model doesn’t use 
+Universally Unique Identifiers. EMF’s <i>XMIResourceImpl</i> supports generation of UUID transparently but it’s disabled by default. To enable it you have to overwrite <i>XMIResourceImpl</i>‘s <i>useUUIDs()</i> method and make model plug-in use that new Resource implementation.</p>
+<ol>
+<li><strong>Overwrite <i>useUUIDs()</i></strong></li>
+<p>Create new class which extends XMIResourceImpl and overwrites <i>useUUIDs()</i>. Put it for example in <i>yourmodel.utils</i> package.</p>
+<pre><span class="PreProc">package</span> mymodel.util;
+
+<span class="PreProc">import</span> org.eclipse.emf.common.util.URI;
+<span class="PreProc">import</span> org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
+
+<span class="Type">public</span> <span class="Type">class</span> MymodelResource <span class="Type">extends</span> XMIResourceImpl {
+
+        <span class="Type">public</span> MymodelResource() {
+                <span class="Type">super</span>();
+        }
+
+        <span class="Type">public</span> MymodelResource(URI uri) {
+                <span class="Type">super</span>(uri);
+        }
+
+        <span class="Comment">/* (non-Javadoc)</span>
+<span class="Comment">         * @see org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl#useUUIDs()</span>
+<span class="Comment">         */</span>
+        <span class="Type">protected</span> <span class="Type">boolean</span> useUUIDs() {
+                <span class="Statement">return</span> <span class="Constant">true</span>;
+        }
+}
+</pre>
+<li><strong>Prepare special ResourceFactory</strong></li>
+<p>This ResourceFactory factory should always create instances of MymodelResource class.</p>
+<pre><span class="PreProc">package</span> mymodel.util;
+
+<span class="PreProc">import</span> org.eclipse.emf.common.util.URI;
+<span class="PreProc">import</span> org.eclipse.emf.ecore.resource.Resource;
+<span class="PreProc">import</span> org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+
+<span class="Type">public</span> <span class="Type">class</span> MymodelResourceFactory <span class="Type">extends</span> XMIResourceFactoryImpl {
+
+        <span class="Type">public</span> MymodelResourceFactory() {
+                <span class="Type">super</span>();
+        }
+
+        <span class="Comment">/* (non-Javadoc)</span>
+<span class="Comment">         * @see org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl#createResource(org.eclipse.emf.common.util.URI)</span>
+<span class="Comment">         */</span>
+        <span class="Type">public</span> Resource createResource(URI uri) {
+                <span class="Statement">return</span> <span class="Statement">new</span> MymodelResource(uri);
+        }
+}
+</pre>
+<li><strong>Wire new ResourceFactory with model plug-in</strong></li>
+<p>To <i>plug.xml</i> of your model plug-in add <i>extension_parser</i> extension:</p>
+<pre>   <span class="Identifier">&lt;</span><span class="Identifier">extension</span><span class="Identifier"> </span><span class="Type">point</span>=<span class="Constant">"org.eclipse.emf.ecore.extension_parser"</span><span class="Identifier">&gt;</span>
+      <span class="Identifier">&lt;</span><span class="Identifier">parser</span>
+<span class="Identifier">         </span><span class="Type">type</span>=<span class="Constant">"gnmsmodel"</span>
+<span class="Identifier">         </span><span class="Type">class</span>=<span class="Constant">"com.globalus.globnms.model.gnmsmodel.util.GnmsmodelResourceFactory"</span><span class="Identifier">&gt;</span>
+      <span class="Identifier">&lt;/parser&gt;</span>
+   <span class="Identifier">&lt;/extension&gt;</span>
+</pre>
+</ol>
+<p>All done. Now when you modify your model and save it you will get 
+UUID’s stored in XMI file. This will of course bread relations from 
+GMF’a notation model. Notation model should be deleted and initialized 
+again.</p>
+<p>[ratings]</p>
+                    </div>
+          
+          
+
+          
+        </div>
+        <!-- /post -->
+
+                <table class="post-meta">
+          <tbody><tr>
+                        <td><a class="control print">Print article</a> </td>                        <td class="details">
+              This entry was posted by <a href="http://serdom.eu/ser/author/admin/" title="Posts by Seweryn Niemiec ">Seweryn Niemiec</a> on 2007-03-5 at 21:30, and is filed under <a href="http://serdom.eu/ser/category" title="View all posts in " rel="category tag"></a>. Follow any responses to this post through <a href="http://serdom.eu/ser/2007/03/05/how-to-enable-uuid-in-emf-generated-model-to-get-copypaste-working/feed" title="RSS 2.0">RSS 2.0</a>. You can <a href="#respond">leave a response</a> or <a href="http://serdom.eu/ser/2007/03/05/how-to-enable-uuid-in-emf-generated-model-to-get-copypaste-working/trackback" rel="trackback">trackback</a> from your own site.            </td>
+                      </tr>
+        </tbody></table>
+        
+       
+       
+
+<!-- tabbed content -->
+<div class="tabbed-content post-tabs clear-block" id="post-tabs">
+
+  <!-- tab navigation (items must be in reverse order because of the tab-design) -->
+ <div class="tabs-wrap clear-block">
+  <ul class="tabs">
+            <li class="comments active"><a href="#section-comments"><span>Comments (4)</span></a></li>  </ul>
+ </div>
+ <!-- /tab nav -->
+ 
+ <!-- tab sections -->
+ <div class="sections">
+
+    <!-- comments -->
+  <div class="section clear-block" id="section-comments">
+
+         <div id="comments-wrap">
+      <div class="clear-block">
+       <ul id="comments" class="comments">
+        
+  <!-- comment entry -->
+  <li class="comment even thread-even depth-1 withAvatars reader name-KTB" id="comment-3687">
+    <div class="comment-head comment odd alt thread-odd thread-alt depth-1 withAvatars reader name-KTB">
+
+      <div class="avatar-box"><img alt="" src="how-to-enable-uuid-in-emf-generated-model-to-get-copypaste-working_files/f0ee2526613c87bf7d8d55c027de28b6.jpeg" class="avatar avatar-48 photo" height="48" width="48"></div>      <div class="author">
+       
+        <span class="by"><a class="comment-id" href="#comment-3687">#1</a> written by <a class="comment-author" id="comment-author-3687" href="http://www.ktb-blog.de/" rel="nofollow">KTB</a> </span>
+        <br>
+        about 3 years ago      </div>
+
+      <div class="controls bubble">
+                              <a class="reply" id="reply-to-3687" href="http://serdom.eu/ser/2007/03/05/how-to-enable-uuid-in-emf-generated-model-to-get-copypaste-working?replytocom=3687#respond">Reply</a>
+                      <a class="quote" title="Quote" href="#respond">Quote</a>
+                      </div>
+    </div>
+    <div class="comment-body clear-block" id="comment-body-3687">
+            <div class="comment-text"><p>Hello, thx for your post. It helped me a lot :)</p>
+</div>
+      <a id="comment-reply-3687"></a>
+    </div>
+</li>
+
+  <!-- comment entry -->
+  <li class="comment even thread-even depth-1 withAvatars reader name-Sairam Meghi" id="comment-3692">
+    <div class="comment-head comment odd alt thread-odd thread-alt depth-1 withAvatars reader name-Sairam Meghi">
+
+      <div class="avatar-box"><img alt="" src="how-to-enable-uuid-in-emf-generated-model-to-get-copypaste-working_files/b25226ac6c4317149a927bce865ff3a0.html" class="avatar avatar-48 photo" height="48" width="48"></div>      <div class="author">
+       
+        <span class="by"><a class="comment-id" href="#comment-3692">#2</a> written by <b class="comment-author" id="comment-author-3692">Sairam Meghi</b> </span>
+        <br>
+        about 2 years ago      </div>
+
+      <div class="controls bubble">
+                              <a class="reply" id="reply-to-3692" href="http://serdom.eu/ser/2007/03/05/how-to-enable-uuid-in-emf-generated-model-to-get-copypaste-working?replytocom=3692#respond">Reply</a>
+                      <a class="quote" title="Quote" href="#respond">Quote</a>
+                      </div>
+    </div>
+    <div class="comment-body clear-block" id="comment-body-3692">
+            <div class="comment-text"><p>I am able to copy and paste the
+ elements in a compartment, however when i am copying the element which 
+has compartment i am facing serious problems.</p>
+</div>
+      <a id="comment-reply-3692"></a>
+    </div>
+</li>
+
+  <!-- comment entry -->
+  <li class="comment even thread-even depth-1 withAvatars reader name-Sairam Meghi" id="comment-3693">
+    <div class="comment-head comment odd alt thread-odd thread-alt depth-1 withAvatars reader name-Sairam Meghi">
+
+      <div class="avatar-box"><img alt="" src="how-to-enable-uuid-in-emf-generated-model-to-get-copypaste-working_files/b25226ac6c4317149a927bce865ff3a0.html" class="avatar avatar-48 photo" height="48" width="48"></div>      <div class="author">
+       
+        <span class="by"><a class="comment-id" href="#comment-3693">#3</a> written by <b class="comment-author" id="comment-author-3693">Sairam Meghi</b> </span>
+        <br>
+        about 2 years ago      </div>
+
+      <div class="controls bubble">
+                              <a class="reply" id="reply-to-3693" href="http://serdom.eu/ser/2007/03/05/how-to-enable-uuid-in-emf-generated-model-to-get-copypaste-working?replytocom=3693#respond">Reply</a>
+                      <a class="quote" title="Quote" href="#respond">Quote</a>
+                      </div>
+    </div>
+    <div class="comment-body clear-block" id="comment-body-3693">
+            <div class="comment-text"><p>How to disable copy and paste from the editor?? Please let me know</p>
+</div>
+      <a id="comment-reply-3693"></a>
+    </div>
+</li>
+
+  <!-- comment entry -->
+  <li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1 withAvatars role-administrator user-admin" id="comment-3694">
+    <div class="comment-head comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1 withAvatars role-administrator user-admin">
+
+      <div class="avatar-box"><img alt="" src="how-to-enable-uuid-in-emf-generated-model-to-get-copypaste-working_files/c8a8ceea877afc952ba2a8aaa780f88e.html" class="avatar avatar-48 photo" height="48" width="48"></div>      <div class="author">
+       
+        <span class="by"><a class="comment-id" href="#comment-3694">#4</a> written by <a class="comment-author" id="comment-author-3694" href="http://serdom.szn.pl/" rel="nofollow">Seweryn Niemiec</a> </span>
+        <br>
+        about 2 years ago      </div>
+
+      <div class="controls bubble">
+                              <a class="reply" id="reply-to-3694" href="http://serdom.eu/ser/2007/03/05/how-to-enable-uuid-in-emf-generated-model-to-get-copypaste-working?replytocom=3694#respond">Reply</a>
+                      <a class="quote" title="Quote" href="#respond">Quote</a>
+                      </div>
+    </div>
+    <div class="comment-body clear-block" id="comment-body-3694">
+            <div class="comment-text"><p>I don’t know. Try to ask on GMF forum <a href="http://www.eclipse.org/forums/index.php?t=thread&amp;frm_id=16" rel="nofollow">http://www.eclipse.org/forums/index.php?t=thread&amp;frm_id=16</a></p>
+</div>
+      <a id="comment-reply-3694"></a>
+    </div>
+</li>
+       </ul>
+      </div>
+          </div>
+
+     
+    
+     <!-- comment form -->
+     <div class="comment-form clear-block" id="respond">
+      <div id="comment_post_status"></div><form action="/ser/wp-comments-post.php" method="post" id="commentform">
+          	                <div id="author-info">
+            <div class="row">
+                            <input rel="Name (required)" name="author" id="field-author" class="validate required textfield clearField clearFieldBlurred" value="Name (required)" size="40" type="text">
+            </div>
+            <div class="row">
+                            <input rel="E-mail (required, will not be published)" name="email" id="field-email" class="validate required textfield clearField clearFieldBlurred" value="E-mail (required, will not be published)" size="40" type="text">
+            </div>
+            <div class="row">
+                            <input rel="Website" name="url" id="field-url" class="textfield clearField clearFieldBlurred" value="Website" size="40" type="text">
+            </div>
+  		  </div>
+        
+        <!-- comment input -->
+        <div class="row">
+                    	<textarea name="comment" id="comment" class="validate required" rows="8" cols="50"></textarea>
+        </div>
+        <!-- /comment input -->
+        <div class="clear-block">
+                    <input name="comment_post_ID" value="6" id="comment_post_ID" type="hidden">
+<input name="comment_parent" id="comment_parent" value="0" type="hidden">
+                   	<script type="text/javascript">
+	<!--
+	refJS = escape( document[ 'referrer' ] );
+	document.write("<input type='hidden' name='refJS' value='"+refJS+"'>");
+	// -->
+	</script><input name="refJS" value="http%3A//www.google.com/url%3Fsa%3Dt%26rct%3Dj%26q%3Demf%2520model%2520get%2520uuid%26source%3Dweb%26cd%3D1%26ved%3D0CFEQFjAA%26url%3Dhttp%253A%252F%252Fserdom.eu%252Fser%252F2007%252F03%252F05%252Fhow-to-enable-uuid-in-emf-generated-model-to-get-copypaste-working%26ei%3DYVK-T9OOCIzfsga1iJ2XDw%26usg%3DAFQjCNEKyG-kYAigmkBRHpe99laSfMMRPw" type="hidden">
+	
+
+	<p style="clear: both;" class="subscribe-to-comments">
+	<input name="subscribe" id="subscribe" value="subscribe" style="width: auto;" type="checkbox">
+	<label for="subscribe">Notify me of followup comments via e-mail</label>
+	</p>
+
+
+<noscript><p><strong>Currently you have JavaScript disabled. In order to post comments, please make sure JavaScript and Cookies are enabled, and reload the page.</strong> <a href="http://www.google.com/support/bin/answer.py?answer=23852" rel="nofollow external" >Click here for instructions</a> on how to enable JavaScript in your browser.</p></noscript>
+        </div>
+        
+        <!-- comment submit and rss -->
+        <div id="submitbox">
+		<input name="submit" id="submit" class="button" value="Submit Comment" type="submit">
+        		<input name="cancel-reply" id="cancel-reply" class="button" value="Cancel Reply" type="button">
+                 <input name="formInput" type="hidden">
+        </div>
+
+      </form>
+
+     </div>
+     <!-- /comment form -->
+       </div>
+  <!-- /comments -->
+  
+    <!-- trackbacks -->
+	<div style="display: none;" class="section" id="section-trackbacks">
+         <h6 class="title">No trackbacks yet.</h6>
+      </div>
+  <!-- /trackbacks -->
+  
+
+  
+ </div>
+ <!-- /tab sections -->
+
+</div>
+<!-- /tabbed content -->
+
+            </div>
+    </div>
+    <!-- /primary content -->
+
+    
+<div role="complementary" id="sidebar">
+ <ul class="blocks">
+        <li class="block"><div class="block-widget_links clear-block" id="linkcat-25"><h3 class="title"><span></span></h3><div class="block-div"></div><div class="block-div-arrow"></div>
+	<ul class="xoxo blogroll">
+<li><a href="http://gruchala.eu/" rel="met neighbor">Java i pochodne</a></li>
+<li><a href="http://hse-at-work.blogspot.com/">My original blog</a></li>
+<li><a href="http://ssnn.blog.onet.pl/" rel="friend met">Spostrzeżenia Koniowe</a></li>
+<li><a href="http://groups.google.com/group/szczecin-jug" title="Strona Szczecińskiej Grupy Użytkowników JAVA">Szczecin Java User Group</a></li>
+
+	</ul>
+</div></li>
+		<li class="block"><div class="block-widget_recent_entries clear-block" id="instance-recent-posts-2">		<h3 class="title"><span>Recent Posts</span></h3><div class="block-div"></div><div class="block-div-arrow"></div>		<ul>
+				<li><a href="http://serdom.eu/ser/2009/01/21/eclipse-gmf-making-figures-sensitive-to-attributes-of-semantic-elements" title="Eclipse – GMF – Making Figures Sensitive To Attributes Of Semantic Elements">Eclipse – GMF – Making Figures Sensitive To Attributes Of Semantic Elements</a></li>
+				<li><a href="http://serdom.eu/ser/2009/01/12/bash-does-not-support-regexps-read-the-fucking-manual" title="Bash Does Not Support RegExps? Read The Fucking Manual!">Bash Does Not Support RegExps? Read The Fucking Manual!</a></li>
+				<li><a href="http://serdom.eu/ser/2008/08/22/put-image-size-into-filename" title="Put Image Size Into Filename">Put Image Size Into Filename</a></li>
+				<li><a href="http://serdom.eu/ser/2008/07/02/eclipse-gmf-enabling-uuids-in-semantic-model-the-simplest-way" title="Eclipse GMF – Enabling UUIDs in Semantic model – The Simplest Way">Eclipse GMF – Enabling UUIDs in Semantic model – The Simplest Way</a></li>
+				<li><a href="http://serdom.eu/ser/2008/02/07/problem-with-gwt-ext-in-hosted-mode-on-linux" title="Problem with GWT-Ext in hosted mode on Linux">Problem with GWT-Ext in hosted mode on Linux</a></li>
+				</ul>
+		</div></li><li class="block"><div class="block-widget_archive clear-block" id="instance-archives-2"><h3 class="title"><span>Archives</span></h3><div class="block-div"></div><div class="block-div-arrow"></div>		<ul>
+			<li><a href="http://serdom.eu/ser/2009/01" title="January 2009">January 2009</a>&nbsp;(2)</li>
+	<li><a href="http://serdom.eu/ser/2008/08" title="August 2008">August 2008</a>&nbsp;(1)</li>
+	<li><a href="http://serdom.eu/ser/2008/07" title="July 2008">July 2008</a>&nbsp;(1)</li>
+	<li><a href="http://serdom.eu/ser/2008/02" title="February 2008">February 2008</a>&nbsp;(1)</li>
+	<li><a href="http://serdom.eu/ser/2007/08" title="August 2007">August 2007</a>&nbsp;(1)</li>
+	<li><a href="http://serdom.eu/ser/2007/07" title="July 2007">July 2007</a>&nbsp;(1)</li>
+	<li><a href="http://serdom.eu/ser/2007/04" title="April 2007">April 2007</a>&nbsp;(1)</li>
+	<li><a href="http://serdom.eu/ser/2007/03" title="March 2007">March 2007</a>&nbsp;(6)</li>
+	<li><a href="http://serdom.eu/ser/2006/10" title="October 2006">October 2006</a>&nbsp;(2)</li>
+		</ul>
+</div></li><li class="block"><div class="block-widget_meta clear-block" id="instance-meta-2"><h3 class="title"><span>Meta</span></h3><div class="block-div"></div><div class="block-div-arrow"></div>			<ul>
+						<li><a href="http://serdom.eu/ser/wp-login.php">Log in</a></li>
+			<li><a href="http://serdom.eu/ser/feed" title="Syndicate this site using RSS 2.0">Entries <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="http://serdom.eu/ser/comments/feed" title="The latest comments to all posts in RSS">Comments <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="http://wordpress.org/" title="Powered by WordPress, state-of-the-art semantic personal publishing platform.">WordPress.org</a></li>
+						</ul>
+</div></li>     </ul>
+</div>
+
+
+   </div>
+  </div>
+  <!-- /main content -->
+
+
+ 
+ <!-- footer -->
+  <div id="footer">
+
+ 
+    <div class="page-content">
+    <div id="copyright">
+
+     <abbr title="Mystique 2.4.2">Mystique</abbr> theme by <a href="http://digitalnature.ro/">digitalnature</a> | Powered by <a href="http://wordpress.org/">WordPress</a> 
+     <!--[if lte IE 6]> <script type="text/javascript"> isIE6 = true; isIE = true; </script> <![endif]-->
+     <!--[if gte IE 7]> <script type="text/javascript"> isIE = true; </script> <![endif]-->
+
+     <script type="text/javascript" src="how-to-enable-uuid-in-emf-generated-model-to-get-copypaste-working_files/jquery.js"></script>
+<script type="text/javascript" src="how-to-enable-uuid-in-emf-generated-model-to-get-copypaste-working_files/how-to-enable-uuid-in-emf-generated-model-to-get-copypaste-wo.js"></script>
+
+    </div>
+
+   </div>
+  </div>
+  <!-- /footer -->
+
+ </div>
+</div>
+<!-- /shadow -->
+
+    <!-- page controls -->
+  <div id="pageControls"><a href="javascript:void(0);" class="fontSize bubble" title="Increase or decrease text size"></a></div>
+  <!-- /page controls -->
+  
+  <!-- 30 queries. 0.450 seconds. -->
+
+ </div>
+
+
+<div id="fancybox-tmp"></div><div id="fancybox-loading"><div></div></div><div id="fancybox-overlay"></div><div id="fancybox-wrap"><div id="fancybox-outer"><div id="fancybox-inner"></div><a id="fancybox-close"></a><a href="javascript:;" id="fancybox-left"><span class="fancy-ico" id="fancybox-left-ico"></span></a><a href="javascript:;" id="fancybox-right"><span class="fancy-ico" id="fancybox-right-ico"></span></a></div></div></body></html>
