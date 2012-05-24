@@ -1,0 +1,9 @@
+img { border: 0; }
+.noprint, .rightcol, h1 { display: none; }
+img.alignright { float: right; margin: 0 0 10px 10px; }
+a { color: #000; text-decoration: none; }
+/* Prince XML settings */
+@page {
+  size: A4;
+  margin: 100pt 40pt 100pt 40pt;
+}

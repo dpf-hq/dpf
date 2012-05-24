@@ -1,0 +1,10 @@
+/**
+
+	Additional CSS for markusstudiert.de
+	by Markus Tacker | http://coderbyheart.de/
+
+**/
+@media screen and (min-device-width: 1200px) and (min-width: 864px) {
+	#markus { background: transparent url(./img/markus-comic.png?2) no-repeat 0 0; position: absolute; top: 59px; left: -342px; width: 371px; height: 650px;  }
+	#jbswbadge { background: transparent url(./img/jbsw-badge.png) no-repeat 0 0; position: absolute; top: 1px; left: 483px; width: 129px; height: 141px; display: block; }
+}

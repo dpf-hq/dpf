@@ -1,0 +1,124 @@
+/*
+Theme Name: markusstudiert.de
+Theme URI: http://markusstudiert.de/
+Description: Theme for markusstudiert.de
+Version: $Id$
+Author: Markus Tacker
+Author URI: http://coderbyheart.de/
+*/
+html { height: 100%; background: #bcbcbc url(./img/bg.png) repeat-y 50% 0; font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Verdana, sans-serif; }
+a { color: #638813; outline: none; }
+em { font-style: italic; }
+img { vertical-align: top; }
+img.avatar { float: right; margin-right: 10px; }
+.alignleft { float: left; }
+.alignright { float: right; }
+img.alignright { float: right; margin: 0 0 10px 10px; }
+.clear { clear: both; }
+.hidden { display: none; }
+.link { cursor: pointer; }
+.nodisplay { display: none; }
+.block { display: block; }
+.center { text-align: center; }
+strong { font-weight: bold; }
+blockquote { border-left: 0.5em solid #d5eff5; font-family: Verdana, Arial, Helvetica, sans-serif; padding: 0 0 0 0.5em; font-style: italic; }
+
+hr { float: left; clear: both; width: 100%; border: 0; margin: 2em; }
+
+.sprite { background: transparent url(./img/sprites.png?3) no-repeat 0 0; }
+
+#main { margin: 0 auto; position: relative; }
+#content { background-color: #fff; color: #0e4a99; padding: 27px 0 0 0; }
+
+.leftcol, .rightcol, .navigation { width: 86.805555555555555555555555555556%; max-width: 500px; margin-left: 6.597222222222222222222222222222%; }
+.navigation { font-size: 0.75em; height: 50px; margin-top: 2em; }
+
+@media screen and (min-width: 864px) {
+	#main { width: 864px; }
+	.leftcol { width: 500px; margin-left: 57px; float: left; }
+	.rightcol { width: 250px; margin-left: 57px; float: left; }
+	.navigation { width: 500px; margin-left: 57px; clear: both; }
+}
+
+.latesttweet { height: 100px; }
+.latesttweet span, .latesttweet a { margin-right: 0.25em; }
+@media screen and (max-width: 863px) {
+	.latesttweet { display: none; }
+}
+.comments { margin-top: 40px; background-color: #e6edf5; padding: 3em 0; }
+.comments h4 { margin-top: 3em; }
+.comments iframe { margin-bottom: 3em; }
+.comments .comment { margin-bottom: 0.5em; background-color: #f9fafc; -moz-border-radius: 1em; border-radius: 1em; -webkit-border-radius: 1em; }
+.comments .comment p { margin: 1em; }
+
+textarea, input { width: 100%; }
+
+h1 { text-indent: -9000px; width: 420px; height: 77px; margin: 0 0 15px 0; }
+h2 { font-weight: bold; margin: 0 0 1em 0; }
+p, dl, ol, ul { font-size: 0.8125em; margin: 0 0 1em 0; line-height: 1.5em; }
+.latestpost li { margin: 0 0 0.5em 2em; list-style: initial; }
+.latestpost ol li { list-style-type: decimal; }
+p.outdent { margin-left: -1em; }
+p.nobottommargin { margin-bottom: 0; }
+dd { margin-left: 1em; }
+.editlink { float: right; }
+del { text-decoration: line-through; }
+#content del { color: #86a4cc; }
+
+#networks { right: 40px; position: absolute; top: 27px; }
+@media screen and (max-width: 863px) {
+	#networks { width: 40px; right: 40px; position: absolute; top: 20px; }
+}
+@media screen and (max-width: 550px) {
+	#networks { width: 100%; position: absolute; top: 5px; left: 6.597222222222222222222222222222%; }
+	#networks .sprite { display: none; }
+}
+#networks li { text-align: center; float: left; width: 70px; }
+#networks a { text-decoration: none; }
+.network-icon { display: block; width: 40px; height: 40px; margin: 0 auto 5px auto; }
+.network-twitter { background-position: 0 -78px; }
+.network-facebook { background-position: 0 -119px; }
+.network-xing { background-position: 0 -159px; }
+.network-google { background-position: 0 -199px; }
+
+#footerarea { color: #fff; margin: 27px 0; }
+#footerarea a { color: #fff; }
+
+.linksection { float: left; width: 166px; }
+.linklist { font-size: 0.8125em; margin: 0.5em 0 1em 0; line-height: 22px; }
+.linklist a { text-decoration: none; }
+.taglist li { float: left; margin-right: 0.5em; min-height: 25px; }
+@media screen and (max-width: 863px) {
+	.taglist, #links { float: left; clear: both; }
+}
+
+#footer { text-align: center; font-size: 0.6125em; color: #b1c489; margin-top: 40px; clear: both; }
+#footer a { color: #b1c489; }
+#footer li { display: inline; margin-right: 1em; }
+
+#skyscraper { position: absolute; top: 20px; left: 894px; }
+
+table.normal { width: 100%; margin-bottom: 1em; }
+table.normal th, table.normal td { padding: 0.2em; }
+table.normal thead th { text-align: center; font-weight: bold; }
+table.normal tbody { font-size: 0.875em; }
+table.statistics tbody { text-align: right; } 
+table.normal tbody tr:nth-child(odd) { background-color: #f5f5f5; }
+table.normal tbody td:nth-child(even) { background-color: #f5f5f5; }
+table.normal tbody tr:nth-child(odd) td:nth-child(even) { background-color: #f0f0f0; }
+table.normal tbody tr:hover td { background-color: #DFEEF5 !important; }
+table.statistics .worstvalue { color: #871D1D; font-weight: bold; }
+table.statistics .bestvalue { color: #42854D; font-weight: bold; }
+
+table.features .impl { color:#008000; }
+table.features .notimpl { color:#b80047; }
+table.features .discarded { color:#666666; }
+
+.multiline-textimage { margin-right: 0.5em; }
+
+@media screen {
+	#tckrcc-badge { position: absolute; top: 0; left: 50px; }
+}
+@media screen and (max-width: 1100px) {
+	#tckrcc-badge { display: none; }
+}
