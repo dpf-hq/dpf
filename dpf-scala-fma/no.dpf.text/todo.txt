@@ -21,5 +21,10 @@ Metamodel Regeln matchen:
     Ergebnis Schritt 1.) (ähnlich wie Look-Ahead in den Grammatiken)
 
 
+XMIResourseIMpl
+
+override useResourceUID()=true;
+
+Dann bekommt man im FileFormat die ID
 
 
