@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" type="EcoreTools" measurementUnit="Pixel">
+  <children xmi:type="notation:Node" type="1001">
+    <children xmi:type="notation:Node" type="4001"/>
+    <children xmi:type="notation:Node" type="5001">
+      <children xmi:type="notation:Node" type="2001">
+        <element xmi:type="ecore:EAttribute" href="original_minimal_metamodel.ecore#//ModelElement/name"/>
+        <layoutConstraint xmi:type="notation:Location"/>
+      </children>
+      <styles xmi:type="notation:DrawerStyle"/>
+      <styles xmi:type="notation:SortingStyle"/>
+      <styles xmi:type="notation:FilteringStyle"/>
+    </children>
+    <children xmi:type="notation:Node" type="5002">
+      <styles xmi:type="notation:DrawerStyle"/>
+      <styles xmi:type="notation:SortingStyle"/>
+      <styles xmi:type="notation:FilteringStyle"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" fontColor="4210752" fontName="Ubuntu" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
+    <element xmi:type="ecore:EClass" href="original_minimal_metamodel.ecore#//ModelElement"/>
+    <layoutConstraint xmi:type="notation:Bounds" x="432" y="24"/>
+  </children>
+  <children xmi:type="notation:Node" type="1001">
+    <children xmi:type="notation:Node" type="4001"/>
+    <children xmi:type="notation:Node" type="5001">
+      <styles xmi:type="notation:DrawerStyle"/>
+      <styles xmi:type="notation:SortingStyle"/>
+      <styles xmi:type="notation:FilteringStyle"/>
+    </children>
+    <children xmi:type="notation:Node" type="5002">
+      <styles xmi:type="notation:DrawerStyle"/>
+      <styles xmi:type="notation:SortingStyle"/>
+      <styles xmi:type="notation:FilteringStyle"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" fontColor="4210752" fontName="Ubuntu" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
+    <element xmi:type="ecore:EClass" href="original_minimal_metamodel.ecore#//Activity"/>
+    <layoutConstraint xmi:type="notation:Bounds" x="408" y="132" width="123" height="102"/>
+  </children>
+  <children xmi:type="notation:Node" type="1001">
+    <children xmi:type="notation:Node" type="4001"/>
+    <children xmi:type="notation:Node" type="5001">
+      <styles xmi:type="notation:DrawerStyle"/>
+      <styles xmi:type="notation:SortingStyle"/>
+      <styles xmi:type="notation:FilteringStyle"/>
+    </children>
+    <children xmi:type="notation:Node" type="5002">
+      <styles xmi:type="notation:DrawerStyle"/>
+      <styles xmi:type="notation:SortingStyle"/>
+      <styles xmi:type="notation:FilteringStyle"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" fontColor="4210752" fontName="Ubuntu" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
+    <element xmi:type="ecore:EClass" href="original_minimal_metamodel.ecore#//ActivityPartition"/>
+    <layoutConstraint xmi:type="notation:Bounds" x="852" y="144" width="159" height="75"/>
+  </children>
+  <children xmi:type="notation:Node" type="1001">
+    <children xmi:type="notation:Node" type="4001"/>
+    <children xmi:type="notation:Node" type="5001">
+      <children xmi:type="notation:Node" type="2001">
+        <element xmi:type="ecore:EAttribute" href="original_minimal_metamodel.ecore#//ActivityNode/kind"/>
+        <layoutConstraint xmi:type="notation:Location"/>
+      </children>
+      <styles xmi:type="notation:DrawerStyle"/>
+      <styles xmi:type="notation:SortingStyle"/>
+      <styles xmi:type="notation:FilteringStyle"/>
+    </children>
+    <children xmi:type="notation:Node" type="5002">
+      <styles xmi:type="notation:DrawerStyle" collapsed="true"/>
+      <styles xmi:type="notation:SortingStyle"/>
+      <styles xmi:type="notation:FilteringStyle"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" fontColor="4210752" fontName="Ubuntu" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
+    <element xmi:type="ecore:EClass" href="original_minimal_metamodel.ecore#//ActivityNode"/>
+    <layoutConstraint xmi:type="notation:Bounds" x="516" y="240" width="183" height="99"/>
+  </children>
+  <children xmi:type="notation:Node" type="1001">
+    <children xmi:type="notation:Node" type="4001"/>
+    <children xmi:type="notation:Node" type="5001">
+      <styles xmi:type="notation:DrawerStyle"/>
+      <styles xmi:type="notation:SortingStyle"/>
+      <styles xmi:type="notation:FilteringStyle"/>
+    </children>
+    <children xmi:type="notation:Node" type="5002">
+      <styles xmi:type="notation:DrawerStyle"/>
+      <styles xmi:type="notation:SortingStyle"/>
+      <styles xmi:type="notation:FilteringStyle"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" fontColor="4210752" fontName="Ubuntu" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
+    <element xmi:type="ecore:EClass" href="original_minimal_metamodel.ecore#//State"/>
+    <layoutConstraint xmi:type="notation:Bounds" x="564" y="420"/>
+  </children>
+  <children xmi:type="notation:Node" xmi:id="_ujuao6ZtEeGc64L3R1lJHQ" type="1001">
+    <children xmi:type="notation:Node" xmi:id="_ujvBtqZtEeGc64L3R1lJHQ" type="4001"/>
+    <children xmi:type="notation:Node" xmi:id="_ujvBsqZtEeGc64L3R1lJHQ" type="5001">
+      <styles xmi:type="notation:DrawerStyle" xmi:id="_ujvBtaZtEeGc64L3R1lJHQ"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_ujvBtKZtEeGc64L3R1lJHQ"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_ujvBs6ZtEeGc64L3R1lJHQ"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_ujuapqZtEeGc64L3R1lJHQ" type="5002">
+      <styles xmi:type="notation:DrawerStyle" xmi:id="_ujvBsaZtEeGc64L3R1lJHQ"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_ujvBsKZtEeGc64L3R1lJHQ"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_ujuap6ZtEeGc64L3R1lJHQ"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" xmi:id="_ujuapaZtEeGc64L3R1lJHQ" fontColor="4210752" fontName="Ubuntu" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
+    <element xmi:type="ecore:EClass" href="original_minimal_metamodel.ecore#//CompositeState"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ujuapKZtEeGc64L3R1lJHQ" x="888" y="528"/>
+  </children>
+  <children xmi:type="notation:Node" type="1001">
+    <children xmi:type="notation:Node" type="4001"/>
+    <children xmi:type="notation:Node" type="5001">
+      <styles xmi:type="notation:DrawerStyle"/>
+      <styles xmi:type="notation:SortingStyle"/>
+      <styles xmi:type="notation:FilteringStyle"/>
+    </children>
+    <children xmi:type="notation:Node" type="5002">
+      <styles xmi:type="notation:DrawerStyle"/>
+      <styles xmi:type="notation:SortingStyle"/>
+      <styles xmi:type="notation:FilteringStyle"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" fontColor="4210752" fontName="Ubuntu" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
+    <element xmi:type="ecore:EClass" href="original_minimal_metamodel.ecore#//OpaqueAction"/>
+    <layoutConstraint xmi:type="notation:Bounds" x="506" y="528"/>
+  </children>
+  <children xmi:type="notation:Node" type="1001">
+    <children xmi:type="notation:Node" type="4001"/>
+    <children xmi:type="notation:Node" type="5001">
+      <styles xmi:type="notation:DrawerStyle"/>
+      <styles xmi:type="notation:SortingStyle"/>
+      <styles xmi:type="notation:FilteringStyle"/>
+    </children>
+    <children xmi:type="notation:Node" type="5002">
+      <styles xmi:type="notation:DrawerStyle"/>
+      <styles xmi:type="notation:SortingStyle"/>
+      <styles xmi:type="notation:FilteringStyle"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" fontColor="4210752" fontName="Ubuntu" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
+    <element xmi:type="ecore:EClass" href="original_minimal_metamodel.ecore#//ObjectNode"/>
+    <layoutConstraint xmi:type="notation:Bounds" x="723" y="528"/>
+  </children>
+  <children xmi:type="notation:Node" type="1001">
+    <children xmi:type="notation:Node" type="4001"/>
+    <children xmi:type="notation:Node" type="5001">
+      <styles xmi:type="notation:DrawerStyle"/>
+      <styles xmi:type="notation:SortingStyle"/>
+      <styles xmi:type="notation:FilteringStyle"/>
+    </children>
+    <children xmi:type="notation:Node" type="5002">
+      <styles xmi:type="notation:DrawerStyle"/>
+      <styles xmi:type="notation:SortingStyle"/>
+      <styles xmi:type="notation:FilteringStyle"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" fontColor="4210752" fontName="Ubuntu" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
+    <element xmi:type="ecore:EClass" href="original_minimal_metamodel.ecore#//ActivityFinalNode"/>
+    <layoutConstraint xmi:type="notation:Bounds" x="348" y="528"/>
+  </children>
+  <children xmi:type="notation:Node" type="1001">
+    <children xmi:type="notation:Node" type="4001"/>
+    <children xmi:type="notation:Node" type="5001">
+      <styles xmi:type="notation:DrawerStyle"/>
+      <styles xmi:type="notation:SortingStyle"/>
+      <styles xmi:type="notation:FilteringStyle"/>
+    </children>
+    <children xmi:type="notation:Node" type="5002">
+      <styles xmi:type="notation:DrawerStyle"/>
+      <styles xmi:type="notation:SortingStyle"/>
+      <styles xmi:type="notation:FilteringStyle"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" fontColor="4210752" fontName="Ubuntu" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
+    <element xmi:type="ecore:EClass" href="original_minimal_metamodel.ecore#//ActivityEdge"/>
+    <layoutConstraint xmi:type="notation:Bounds" x="228" y="240" width="111" height="102"/>
+  </children>
+  <children xmi:type="notation:Node" type="1001">
+    <children xmi:type="notation:Node" type="4001"/>
+    <children xmi:type="notation:Node" type="5001">
+      <children xmi:type="notation:Node" type="2001">
+        <element xmi:type="ecore:EAttribute" href="original_minimal_metamodel.ecore#//OpaqueExpression/language"/>
+        <layoutConstraint xmi:type="notation:Location"/>
+      </children>
+      <children xmi:type="notation:Node" type="2001">
+        <element xmi:type="ecore:EAttribute" href="original_minimal_metamodel.ecore#//OpaqueExpression/body"/>
+        <layoutConstraint xmi:type="notation:Location"/>
+      </children>
+      <styles xmi:type="notation:DrawerStyle"/>
+      <styles xmi:type="notation:SortingStyle"/>
+      <styles xmi:type="notation:FilteringStyle"/>
+    </children>
+    <children xmi:type="notation:Node" type="5002">
+      <styles xmi:type="notation:DrawerStyle"/>
+      <styles xmi:type="notation:SortingStyle"/>
+      <styles xmi:type="notation:FilteringStyle"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" fontColor="4210752" fontName="Ubuntu" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
+    <element xmi:type="ecore:EClass" href="original_minimal_metamodel.ecore#//OpaqueExpression"/>
+    <layoutConstraint xmi:type="notation:Bounds" x="12" y="264"/>
+  </children>
+  <children xmi:type="notation:Node" type="1005">
+    <children xmi:type="notation:Node" type="4010"/>
+    <children xmi:type="notation:Node" type="5008">
+      <children xmi:type="notation:Node" type="2006">
+        <element xmi:type="ecore:EEnumLiteral" href="original_minimal_metamodel.ecore#//PseudostateKind/initial"/>
+        <layoutConstraint xmi:type="notation:Location"/>
+      </children>
+      <children xmi:type="notation:Node" type="2006">
+        <element xmi:type="ecore:EEnumLiteral" href="original_minimal_metamodel.ecore#//PseudostateKind/join"/>
+        <layoutConstraint xmi:type="notation:Location"/>
+      </children>
+      <children xmi:type="notation:Node" type="2006">
+        <element xmi:type="ecore:EEnumLiteral" href="original_minimal_metamodel.ecore#//PseudostateKind/fork"/>
+        <layoutConstraint xmi:type="notation:Location"/>
+      </children>
+      <children xmi:type="notation:Node" type="2006">
+        <element xmi:type="ecore:EEnumLiteral" href="original_minimal_metamodel.ecore#//PseudostateKind/junction"/>
+        <layoutConstraint xmi:type="notation:Location"/>
+      </children>
+      <styles xmi:type="notation:DrawerStyle"/>
+      <styles xmi:type="notation:SortingStyle"/>
+      <styles xmi:type="notation:FilteringStyle"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" fontColor="4210752" fontName="Ubuntu" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
+    <element xmi:type="ecore:EEnum" href="original_minimal_metamodel.ecore#//PseudostateKind"/>
+    <layoutConstraint xmi:type="notation:Bounds" x="204" y="372"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle"/>
+  <element xmi:type="ecore:EPackage" href="original_minimal_metamodel.ecore#/"/>
+  <edges xmi:type="notation:Edge" type="3002" source="//@children.1" target="//@children.9">
+    <children xmi:type="notation:Node" type="4011">
+      <layoutConstraint xmi:type="notation:Location" x="7" y="-30"/>
+    </children>
+    <children xmi:type="notation:Node" type="4012">
+      <layoutConstraint xmi:type="notation:Location" x="7" y="14"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" lineColor="4210752"/>
+    <styles xmi:type="notation:FontStyle" fontColor="4210752" fontName="Ubuntu" fontHeight="10"/>
+    <element xmi:type="ecore:EReference" href="original_minimal_metamodel.ecore#//Activity/edges"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" points="[-3, 0, 93, -74]$[-87, 0, 9, -74]$[-87, 69, 9, -5]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" id="(0.032520325203252036,0.39215686274509803)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" id="(0.8070175438596491,0.05555555555555555)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" type="3003" source="//@children.1" target="//@children.0">
+    <styles xmi:type="notation:ConnectorStyle" routing="Rectilinear" lineColor="4210752"/>
+    <styles xmi:type="notation:FontStyle" fontName="Ubuntu"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" points="[43, 0, 6, 61]$[43, -61, 6, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" id="(0.24271844660194175,0.0)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" id="(0.36752136752136755,1.0)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" type="3002" source="//@children.1" target="//@children.2">
+    <children xmi:type="notation:Node" type="4011">
+      <layoutConstraint xmi:type="notation:Location" x="-20" y="-10"/>
+    </children>
+    <children xmi:type="notation:Node" type="4012">
+      <layoutConstraint xmi:type="notation:Location" y="14"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" lineColor="4210752"/>
+    <styles xmi:type="notation:FontStyle" fontColor="4210752" fontName="Ubuntu" fontHeight="10"/>
+    <element xmi:type="ecore:EReference" href="original_minimal_metamodel.ecore#//Activity/groups"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" points="[8, -3, -92, 0]$[63, -3, -37, 0]$[99, -3, -1, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" id="(0.943089430894309,0.38235294117647056)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" id="(0.017543859649122806,0.25333333333333335)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" type="3002" source="//@children.2" target="//@children.0">
+    <children xmi:type="notation:Node" type="4011">
+      <layoutConstraint xmi:type="notation:Location" x="29" y="-17"/>
+    </children>
+    <children xmi:type="notation:Node" type="4012">
+      <layoutConstraint xmi:type="notation:Location" x="45" y="7"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" lineColor="4210752"/>
+    <styles xmi:type="notation:FontStyle" fontColor="4210752" fontName="Ubuntu" fontHeight="10"/>
+    <element xmi:type="ecore:EReference" href="original_minimal_metamodel.ecore#//ActivityPartition/contents"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" points="[-3, -3, 426, 81]$[-3, -39, 426, 45]$[-3, -84, 426, 0]$[-427, -84, 2, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" id="(0.7807017543859649,0.05333333333333334)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" id="(0.9829059829059829,0.8367346938775511)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" type="3003" source="//@children.2" target="//@children.0">
+    <styles xmi:type="notation:ConnectorStyle" routing="Rectilinear" lineColor="4210752"/>
+    <styles xmi:type="notation:FontStyle" fontName="Ubuntu"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" points="[-10, 0, 486, 73]$[-10, -36, 486, 37]$[-476, -36, 20, 37]$[-476, -73, 20, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" id="(0.6666666666666666,0.0)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" id="(0.24786324786324787,1.0)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" type="3002" source="//@children.3" target="//@children.9">
+    <children xmi:type="notation:Node" type="4011">
+      <layoutConstraint xmi:type="notation:Location" x="-31" y="8"/>
+    </children>
+    <children xmi:type="notation:Node" type="4012">
+      <layoutConstraint xmi:type="notation:Location" x="11" y="8"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" lineColor="4210752"/>
+    <styles xmi:type="notation:FontStyle" fontColor="4210752" fontName="Ubuntu" fontHeight="10"/>
+    <element xmi:type="ecore:EReference" href="original_minimal_metamodel.ecore#//ActivityNode/outgoing"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" points="[-1, -1, 217, 3]$[-105, -1, 113, 3]$[-217, -1, 1, 3]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" id="(0.032520325203252036,0.8181818181818182)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" id="(0.972972972972973,0.6862745098039216)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" type="3002" source="//@children.3" target="//@children.9">
+    <children xmi:type="notation:Node" type="4011">
+      <layoutConstraint xmi:type="notation:Location" x="-30" y="-9"/>
+    </children>
+    <children xmi:type="notation:Node" type="4012">
+      <layoutConstraint xmi:type="notation:Location" x="11" y="-9"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" lineColor="4210752"/>
+    <styles xmi:type="notation:FontStyle" fontColor="4210752" fontName="Ubuntu" fontHeight="10"/>
+    <element xmi:type="ecore:EReference" href="original_minimal_metamodel.ecore#//ActivityNode/incoming"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" points="[0, 8, 219, 0]$[-216, 8, 3, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" id="(0.008130081300813009,0.8282828282828283)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" id="(0.972972972972973,0.8823529411764706)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" type="3003" source="//@children.3" target="//@children.0">
+    <styles xmi:type="notation:ConnectorStyle" routing="Rectilinear" lineColor="4210752"/>
+    <styles xmi:type="notation:FontStyle" fontName="Ubuntu"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" points="[60, 0, 123, 178]$[60, -132, 123, 46]$[-66, -132, -3, 46]$[-66, -169, -3, 9]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" id="(0.16666666666666666,0.0)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" id="(0.4444444444444444,0.8163265306122449)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" type="3003" source="//@children.4" target="//@children.3">
+    <styles xmi:type="notation:ConnectorStyle" routing="Rectilinear" lineColor="4210752"/>
+    <styles xmi:type="notation:FontStyle" fontName="Ubuntu"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" points="[-1, 0, 0, 83]$[-1, -83, 0, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" id="(0.5,0.0)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" id="(0.5,1.0)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_ujtzkaZtEeGc64L3R1lJHQ" type="3003" source="_ujuao6ZtEeGc64L3R1lJHQ" target="//@children.4">
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="_ujuaoqZtEeGc64L3R1lJHQ" routing="Rectilinear" lineColor="4210752"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_ujuaoaZtEeGc64L3R1lJHQ" fontName="Ubuntu"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_ujuaoKZtEeGc64L3R1lJHQ" points="[0, 0, 250, 68]$[0, -34, 250, 34]$[-285, -34, -35, 34]$[-285, -68, -35, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ujtzk6ZtEeGc64L3R1lJHQ" id="(0.08620689655172414,0.0)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ujtzkqZtEeGc64L3R1lJHQ" id="(0.8333333333333334,1.0)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" type="3003" source="//@children.6" target="//@children.4">
+    <styles xmi:type="notation:ConnectorStyle" routing="Rectilinear" lineColor="4210752"/>
+    <styles xmi:type="notation:FontStyle" fontName="Ubuntu"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" points="[66, 0, -38, 68]$[66, -34, -38, 34]$[104, -34, 0, 34]$[104, -68, 0, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" id="(0.03125,0.0)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" id="(0.5,1.0)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" type="3002" source="//@children.7" target="//@children.0">
+    <children xmi:type="notation:Node" type="4011">
+      <layoutConstraint xmi:type="notation:Location" x="172" y="8"/>
+    </children>
+    <children xmi:type="notation:Node" type="4012">
+      <layoutConstraint xmi:type="notation:Location" x="193" y="8"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" lineColor="4210752"/>
+    <styles xmi:type="notation:FontStyle" fontColor="4210752" fontName="Ubuntu" fontHeight="10"/>
+    <element xmi:type="ecore:EReference" href="original_minimal_metamodel.ecore#//ObjectNode/type"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" points="[2, 1, 228, 536]$[2, 29, 228, 564]$[309, 29, 535, 564]$[309, -535, 535, 0]$[-222, -535, 4, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" id="(0.4666666666666667,0.9761904761904762)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" id="(0.9658119658119658,0.1836734693877551)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" type="3003" source="//@children.7" target="//@children.4">
+    <styles xmi:type="notation:ConnectorStyle" routing="Rectilinear" lineColor="4210752"/>
+    <styles xmi:type="notation:FontStyle" fontName="Ubuntu"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" points="[4, 0, 205, 68]$[4, -34, 205, 34]$[-186, -34, 15, 34]$[-186, -68, 15, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" id="(0.75,0.0)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" id="(0.3333333333333333,1.0)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" type="3003" source="//@children.8" target="//@children.4">
+    <styles xmi:type="notation:ConnectorStyle" routing="Rectilinear" lineColor="4210752"/>
+    <styles xmi:type="notation:FontStyle" fontName="Ubuntu"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" points="[0, 0, -219, 68]$[0, -34, -219, 34]$[201, -34, -18, 34]$[201, -68, -18, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" id="(0.5,0.0)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" id="(0.6666666666666666,1.0)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" type="3002" source="//@children.9" target="//@children.3">
+    <children xmi:type="notation:Node" type="4011">
+      <layoutConstraint xmi:type="notation:Location" x="3" y="-8"/>
+    </children>
+    <children xmi:type="notation:Node" type="4012">
+      <layoutConstraint xmi:type="notation:Location" x="-25" y="-10"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" lineColor="4210752"/>
+    <styles xmi:type="notation:FontStyle" fontColor="4210752" fontName="Ubuntu" fontHeight="10"/>
+    <element xmi:type="ecore:EReference" href="original_minimal_metamodel.ecore#//ActivityEdge/source"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" points="[10, -10, -219, 0]$[226, -10, -3, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" id="(0.9099099099099099,0.2549019607843137)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" id="(0.016260162601626018,0.31313131313131315)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" type="3003" source="//@children.9" target="//@children.0">
+    <styles xmi:type="notation:ConnectorStyle" routing="Rectilinear" lineColor="4210752"/>
+    <styles xmi:type="notation:FontStyle" fontName="Ubuntu"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" points="[34, 0, -215, 169]$[34, -132, -215, 37]$[226, -132, -23, 37]$[226, -169, -23, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" id="(0.24509803921568626,0.0)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" id="(0.6239316239316239,1.0)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" type="3002" source="//@children.9" target="//@children.3">
+    <children xmi:type="notation:Node" type="4011">
+      <layoutConstraint xmi:type="notation:Location" x="1" y="8"/>
+    </children>
+    <children xmi:type="notation:Node" type="4012">
+      <layoutConstraint xmi:type="notation:Location" x="-25" y="8"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" lineColor="4210752"/>
+    <styles xmi:type="notation:FontStyle" fontColor="4210752" fontName="Ubuntu" fontHeight="10"/>
+    <element xmi:type="ecore:EReference" href="original_minimal_metamodel.ecore#//ActivityEdge/target.1"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" points="[4, -5, -221, 0]$[220, -5, -5, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" id="(0.963963963963964,0.5392156862745098)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" id="(0.04878048780487805,0.5050505050505051)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" type="3002" source="//@children.9" target="//@children.10">
+    <children xmi:type="notation:Node" type="4011">
+      <layoutConstraint xmi:type="notation:Location" x="-10" y="-10"/>
+    </children>
+    <children xmi:type="notation:Node" type="4012">
+      <layoutConstraint xmi:type="notation:Location" x="-4" y="8"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" lineColor="4210752"/>
+    <styles xmi:type="notation:FontStyle" fontColor="4210752" fontName="Ubuntu" fontHeight="10"/>
+    <element xmi:type="ecore:EReference" href="original_minimal_metamodel.ecore#//ActivityEdge/guard.1"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" points="[-16, 1, 99, 1]$[-113, -28, 2, -28]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" id="(0.15315315315315314,0.5294117647058824)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" id="(0.8439716312056738,0.4461538461538462)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_9f_loKZtEeGc64L3R1lJHQ" type="3002" source="//@children.1" target="//@children.3">
+    <children xmi:type="notation:Node" xmi:id="_9gCo8KZtEeGc64L3R1lJHQ" type="4011">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_9gCo8aZtEeGc64L3R1lJHQ" x="-39" y="8"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_9gD3EKZtEeGc64L3R1lJHQ" type="4012">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_9gD3EaZtEeGc64L3R1lJHQ" x="-3" y="15"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="_9f_loaZtEeGc64L3R1lJHQ" lineColor="4210752"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_9f_loqZtEeGc64L3R1lJHQ" fontColor="4210752" fontName="Ubuntu" fontHeight="10"/>
+    <element xmi:type="ecore:EReference" href="original_minimal_metamodel.ecore#//Activity/nodes"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_9f_lo6ZtEeGc64L3R1lJHQ" points="[27, 8, -49, -42]$[76, 8, 0, -42]$[76, 44, 0, -6]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_9gHhcKZtEeGc64L3R1lJHQ" id="(0.7804878048780488,0.6470588235294118)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_9gIIgKZtEeGc64L3R1lJHQ" id="(0.3442622950819672,0.0707070707070707)"/>
+  </edges>
+</notation:Diagram>
