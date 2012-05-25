@@ -18,12 +18,11 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ActivityGraph" eSuperTypes="#//Activity"/>
   <eClassifiers xsi:type="ecore:EClass" name="ActivityPartition" eSuperTypes="#//ModelElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="contents" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="edges" upperBound="-1"
         eType="#//ActivityEdge"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="contents" upperBound="-1"
-        eType="#//Activity"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contents" eType="#//Activity"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="contents" eType="#//ActivityNode"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="contents" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" upperBound="-1"
         eType="#//ActivityNode"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ActivityNode" abstract="true" eSuperTypes="#//ModelElement">
@@ -37,13 +36,13 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="subvertex" upperBound="-1"
         eType="#//ActivityNode" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="OpaqueAction" eSuperTypes="#//State"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OpaqueAction" eSuperTypes="#//ActivityNode"/>
   <eClassifiers xsi:type="ecore:EClass" name="Pseudostate" eSuperTypes="#//ActivityNode"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ObjectNode" eSuperTypes="#//State">
+  <eClassifiers xsi:type="ecore:EClass" name="ObjectNode" eSuperTypes="#//ActivityNode">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="#//ModelElement"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ActivityFinalNode" eSuperTypes="#//State"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ActivityFinalNode" eSuperTypes="#//ActivityNode"/>
   <eClassifiers xsi:type="ecore:EClass" name="ActivityEdge" eSuperTypes="#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
         eType="#//ActivityNode"/>

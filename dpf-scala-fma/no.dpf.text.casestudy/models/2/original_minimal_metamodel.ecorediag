@@ -217,7 +217,7 @@
     </children>
     <styles xmi:type="notation:ShapeStyle" xmi:id="_uSxMkaW0EeG3it8lFc1-wA" fontColor="4210752" fontName="Ubuntu" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
     <element xmi:type="ecore:EEnum" href="original_minimal_metamodel.ecore#//PseudostateKind"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_uSxMkqW0EeG3it8lFc1-wA" x="204" y="372"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_uSxMkqW0EeG3it8lFc1-wA" x="204" y="372" width="135" height="99"/>
   </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_uR6Q8aW0EeG3it8lFc1-wA"/>
   <element xmi:type="ecore:EPackage" href="original_minimal_metamodel.ecore#/"/>
