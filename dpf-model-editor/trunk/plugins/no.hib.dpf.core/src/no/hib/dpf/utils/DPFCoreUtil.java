@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 public class DPFCoreUtil {
@@ -119,7 +118,7 @@ public class DPFCoreUtil {
 		try {
 			model.load(null);
 		} catch (IOException e) {
-			System.out.println(e);
+			e.printStackTrace();
 			analyzeResourceProblems(model, e, new LinkedHashMap<Resource, Diagnostic>());
 		} finally {
 			if (model.getContents().size() == 0) {
@@ -147,22 +146,27 @@ public class DPFCoreUtil {
 	 * As it is desirable for clients to handle an eventual IOException in its own 
 	 * manner, this method is provided.
 	 * 
-	 * @deprecated
-	 * 
 	 * @param uri
 	 * 		{@link URI} to the DPF models xmi file
 	 * @throws {@link IOException} 		
 	 * @return a {@link Specification} object that contains the given model
 	 */
-	public static Specification loadSpecificationFromXMI(URI uri) throws IOException {
-		ResourceSet resourceSet = new ResourceSetImpl();
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
-
-		resourceSet.getLoadOptions().put(XMIResource.OPTION_DEFER_IDREF_RESOLUTION, true);
-			
-		Resource resource = resourceSet.createResource(uri);
-		resource.load(null);
-		
-		return (Specification)resource.getContents().get(0);
+	public static Specification loadSpecification2(URI uri) throws IOException {
+		Resource model = getResource(uri);
+		Assert.isNotNull(model);
+		Specification dsp = null;
+		try {
+			model.load(null);
+		} catch (IOException e) {
+			analyzeResourceProblems(model, e, new LinkedHashMap<Resource, Diagnostic>());
+			throw new IOException(e);
+		} finally {
+			if (model.getContents().size() == 0) {
+				dsp = CoreFactory.eINSTANCE.createSpecification();
+				model.getContents().add(dsp);
+			}else
+				dsp = (Specification) model.getContents().get(0);
+		}
+		return dsp;
 	}
 }
