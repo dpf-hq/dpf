@@ -20,11 +20,22 @@ Metamodel Regeln matchen:
 2.) Falls das nicht gereicht hat, kann versucht werden die Linke Seite zu matchen und dann auf dem
     Ergebnis Schritt 1.) (ähnlich wie Look-Ahead in den Grammatiken)
 
+-------------------------------------
+EMF importer
+Support:
+-EClass
+-Datatype
+-Enum
+-EAttribute
+-Reference
+-Inheritance
 
 XMIResourseIMpl
 
 override useResourceUID()=true;
 
 Dann bekommt man im FileFormat die ID
+
+-------------------------------------
 
 
