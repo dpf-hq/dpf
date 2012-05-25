@@ -9,48 +9,46 @@
   <eClassifiers xsi:type="ecore:EClass" name="StateMachine" eSuperTypes="#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="top" lowerBound="1" eType="#//State"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="transitions" upperBound="-1"
-        eType="#//Transition" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="edges" upperBound="-1"
+        eType="#//ActivityEdge" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ActivityGraph" eSuperTypes="#//StateMachine">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="partition" upperBound="-1"
-        eType="#//Partition" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="groups" upperBound="-1"
+        eType="#//ActivityPartition" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Partition" eSuperTypes="#//ModelElement">
+  <eClassifiers xsi:type="ecore:EClass" name="ActivityPartition" eSuperTypes="#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="contents" upperBound="-1"
         eType="#//ModelElement"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="StateVertex" abstract="true" eSuperTypes="#//ModelElement">
+  <eClassifiers xsi:type="ecore:EClass" name="ActivityNode" abstract="true" eSuperTypes="#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="outgoing" upperBound="-1"
-        eType="#//Transition"/>
+        eType="#//ActivityEdge"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="incoming" upperBound="-1"
-        eType="#//Transition"/>
+        eType="#//ActivityEdge"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="State" eSuperTypes="#//StateVertex"/>
+  <eClassifiers xsi:type="ecore:EClass" name="State" eSuperTypes="#//ActivityNode"/>
   <eClassifiers xsi:type="ecore:EClass" name="CompositeState" eSuperTypes="#//State">
     <eStructuralFeatures xsi:type="ecore:EReference" name="subvertex" upperBound="-1"
-        eType="#//StateVertex" containment="true"/>
+        eType="#//ActivityNode" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ActionState" eSuperTypes="#//State">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isDynamic" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Pseudostate" eSuperTypes="#//StateVertex">
+  <eClassifiers xsi:type="ecore:EClass" name="OpaqueAction" eSuperTypes="#//State"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Pseudostate" eSuperTypes="#//ActivityNode">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" lowerBound="1" eType="#//PseudostateKind"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ObjectFlowState" eSuperTypes="#//State">
+  <eClassifiers xsi:type="ecore:EClass" name="ObjectNode" eSuperTypes="#//State">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="#//ModelElement"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FinalState" eSuperTypes="#//State"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Transition" eSuperTypes="#//ModelElement">
+  <eClassifiers xsi:type="ecore:EClass" name="ActivityFinalNode" eSuperTypes="#//State"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ActivityEdge" eSuperTypes="#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
-        eType="#//StateVertex"/>
+        eType="#//ActivityNode"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
-        eType="#//StateVertex"/>
+        eType="#//ActivityNode"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="guard" eType="#//Guard"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
-        eType="#//StateVertex"/>
+        eType="#//ActivityNode"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="guard" eType="#//Guard"
         containment="true"/>
   </eClassifiers>
