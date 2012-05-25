@@ -64,6 +64,8 @@ public abstract class TwoArrowConstraintConnection extends PolylineConnection im
 		PointList points = getPoints();
 		Point p1 = points.getFirstPoint();
 		Point p2 = points.getLastPoint();
+		Point sEnd = p1;
+		Point tEnd = p2;
 		EditPart source = constraintEditPart.getSource();
 		EditPart target = constraintEditPart.getTarget();
 		if(source instanceof DArrowEditPart && target instanceof DArrowEditPart){
@@ -112,10 +114,13 @@ public abstract class TwoArrowConstraintConnection extends PolylineConnection im
 				double ration = d1 > d2 ? d2 / d1 : d1 / d2;
 				control = DiagramUtil.scableLine(mm, control, ration);
 				bezier = new Bezier(sm, tm, control, control);
+				sEnd = sm;
+				tEnd = tm;
 			}
+			bounds = bezier.getBounds();
 			bezier.outlineShape(g);
 			drawCenteredText(g, labelText, bezier.getPoints().getMidpoint());
-			drawEndpointBlobs(g, p1, p2);
+			drawEndpointBlobs(g, sEnd, tEnd);
 			return;
 		}
 	}
@@ -239,11 +244,11 @@ public abstract class TwoArrowConstraintConnection extends PolylineConnection im
 		Dimension textSize = FigureUtilities.getTextExtents(text, g.getFont());
 		
 		Point textPoint = new Point(point.x - (textSize.width/2), point.y - (textSize.height/2));
-		g.drawText(text, textPoint);		
+		g.drawText("[" + text + "]", textPoint);		
 	}
 
 	protected void drawEndpointBlobs(Graphics g, Point p1, Point p2) {
-		setMyBackgroundColor(ColorConstants.black);
+//		setMyBackgroundColor(ColorConstants.black);
 		drawAnchorBlob(g, buildPointBox(p1));
 		drawAnchorBlob(g, buildPointBox(p2));
 	}
