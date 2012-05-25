@@ -423,7 +423,7 @@
     <styles xmi:type="notation:ConnectorStyle" xmi:id="_uTAdIaW0EeG3it8lFc1-wA" routing="Rectilinear" lineColor="4210752"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_uTAdIqW0EeG3it8lFc1-wA" fontName="Ubuntu"/>
     <element xsi:nil="true"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_uTAdI6W0EeG3it8lFc1-wA" points="[0, 0, -104, 68]$[0, -34, -104, 34]$[104, -34, 0, 34]$[104, -68, 0, 0]"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_uTAdI6W0EeG3it8lFc1-wA" points="[66, 0, -38, 68]$[66, -34, -38, 34]$[104, -34, 0, 34]$[104, -68, 0, 0]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_uWP-YqW0EeG3it8lFc1-wA" id="(0.03125,0.0)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_uWQlcKW0EeG3it8lFc1-wA" id="(0.5,1.0)"/>
   </edges>
@@ -453,7 +453,7 @@
     <styles xmi:type="notation:ConnectorStyle" xmi:id="_uTC5YaW0EeG3it8lFc1-wA" routing="Rectilinear" lineColor="4210752"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_uTC5YqW0EeG3it8lFc1-wA" fontName="Ubuntu"/>
     <element xsi:nil="true"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_uTC5Y6W0EeG3it8lFc1-wA"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_uTC5Y6W0EeG3it8lFc1-wA" points="[0, 0, 214, 68]$[0, -34, 214, 34]$[-214, -34, 0, 34]$[-214, -68, 0, 0]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_uWQlcaW0EeG3it8lFc1-wA" id="(0.75,0.0)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_uWQlcqW0EeG3it8lFc1-wA" id="(0.3333333333333333,1.0)"/>
   </edges>
@@ -470,7 +470,7 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_uTHx5aW0EeG3it8lFc1-wA" x="3" y="-8"/>
     </children>
     <children xmi:type="notation:Node" xmi:id="_uTIY8KW0EeG3it8lFc1-wA" type="4012">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_uTIY8aW0EeG3it8lFc1-wA" x="-37" y="-7"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_uTIY8aW0EeG3it8lFc1-wA" x="-25" y="-10"/>
     </children>
     <styles xmi:type="notation:ConnectorStyle" xmi:id="_uTHx4aW0EeG3it8lFc1-wA" lineColor="4210752"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_uTHx4qW0EeG3it8lFc1-wA" fontColor="4210752" fontName="Ubuntu" fontHeight="10"/>
