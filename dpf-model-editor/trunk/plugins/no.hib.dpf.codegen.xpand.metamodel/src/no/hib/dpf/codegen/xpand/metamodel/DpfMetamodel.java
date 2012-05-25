@@ -471,7 +471,6 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 			}
 			
 			for(Constraint c : model.getConstraints()) {
-				System.out.println("Constraint " + c.getId() + " params: " + c.getParameters());
 				putEntry(c.getId(), modelCache.get(c));
 				//Predicates should be identified by id.
 				putEntry(c.getPredicate().getSymbol(), modelCache.get(c.getPredicate()));
