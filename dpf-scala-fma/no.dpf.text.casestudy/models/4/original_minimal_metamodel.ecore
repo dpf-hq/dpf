@@ -13,6 +13,8 @@
         eType="#//ActivityEdge" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="groups" upperBound="-1"
         eType="#//ActivityPartition" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" upperBound="-1"
+        eType="#//ActivityNode"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ActivityGraph" eSuperTypes="#//Activity"/>
   <eClassifiers xsi:type="ecore:EClass" name="ActivityPartition" eSuperTypes="#//ModelElement">
@@ -27,7 +29,6 @@
         eType="#//ActivityEdge"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="incoming" upperBound="-1"
         eType="#//ActivityEdge"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" lowerBound="1" eType="#//PseudostateKind"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="State" eSuperTypes="#//ActivityNode"/>
   <eClassifiers xsi:type="ecore:EClass" name="CompositeState" eSuperTypes="#//State">
@@ -66,4 +67,10 @@
     <eLiterals name="fork" value="2"/>
     <eLiterals name="junction" value="3"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InitialNode" eSuperTypes="#//ActivityNode"/>
+  <eClassifiers xsi:type="ecore:EClass" name="JoinNode" eSuperTypes="#//ActivityNode"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ForkNode" eSuperTypes="#//ActivityNode"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DecisionNode" eSuperTypes="#//ActivityNode"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ControlFlow" eSuperTypes="#//ActivityEdge"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ObjectFlow" eSuperTypes="#//ActivityEdge"/>
 </ecore:EPackage>
