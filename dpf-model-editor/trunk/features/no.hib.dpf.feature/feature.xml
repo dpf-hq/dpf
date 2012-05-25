@@ -44,7 +44,7 @@ CHISEL Group, University of Victoria, Victoria, BC, Canada.
       <import plugin="org.eclipse.emf.common.ui"/>
       <import plugin="org.eclipse.emf.edit.ui"/>
       <import plugin="org.eclipse.ui.forms"/>
-      <import plugin="org.eclipse.emf.common"/>
+      <import plugin="org.eclipse.core.filesystem" version="1.3.100" match="greaterOrEqual"/>
    </requires>
 
    <plugin
@@ -63,13 +63,6 @@ CHISEL Group, University of Victoria, Victoria, BC, Canada.
 
    <plugin
          id="no.hib.dpf.diagram"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="no.hib.dpf.editor.signature"
          download-size="0"
          install-size="0"
          version="0.0.0"
