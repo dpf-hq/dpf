@@ -1,0 +1,2 @@
+-rename contents to nodes and edges
+-remove subclass state

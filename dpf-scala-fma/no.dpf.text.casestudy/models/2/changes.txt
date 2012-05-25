@@ -1,0 +1,4 @@
+-Remove Subclasses: ActivityGraph, PseudoState
+-Move BooleanExpression to Transition
+-Delete guard, delete Guard
+-Rename BooleanExpression->OpaqueExpression
