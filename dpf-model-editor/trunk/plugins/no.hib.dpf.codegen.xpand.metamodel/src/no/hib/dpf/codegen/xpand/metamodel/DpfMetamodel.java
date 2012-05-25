@@ -174,7 +174,9 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 			}
 		} else if(obj instanceof Constraint) {
 			return getTypeForName(((Constraint)obj).getId());
-		} 
+		} else if(obj instanceof Predicate) {
+			return getTypeForName(((Predicate)obj).getSymbol());
+		}
 		// Should return null if it's not a relevant type. If not, we create a lot of useless objects in cache, and denies the other xpand metamodels from matching the type.
 		return null;
 	}
@@ -280,7 +282,7 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 					DpfMMConstants.PREDICATE, CoreFactory.eINSTANCE.createDefaultPredicate());
 			ConstraintType c = new ConstraintType(DpfMetamodel.this, ns + "::" +
 					DpfMMConstants.CONSTRAINT, CoreFactory.eINSTANCE.createConstraint());
-
+			
 			metaModelCache.put(n.getNode(), n);
 			metaModelCache.put(a.getArrow(), a);
 			metaModelCache.put(p.getPredicate(), p);
@@ -409,7 +411,11 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 				if(c.getId().equals(name)) {
 					return c;
 				}
-			}
+				if(c.getPredicate().getSymbol().equals(name)) {
+					return c.getPredicate();
+				}
+ 			}
+			
 			return null;
 		}
 		
@@ -465,7 +471,10 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 			}
 			
 			for(Constraint c : model.getConstraints()) {
+				System.out.println("Constraint " + c.getId() + " params: " + c.getParameters());
 				putEntry(c.getId(), modelCache.get(c));
+				//Predicates should be identified by id.
+				putEntry(c.getPredicate().getSymbol(), modelCache.get(c.getPredicate()));
 			}
 		}
 		

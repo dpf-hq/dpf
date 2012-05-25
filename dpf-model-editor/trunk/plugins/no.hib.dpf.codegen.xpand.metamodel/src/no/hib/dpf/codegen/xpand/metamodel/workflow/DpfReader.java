@@ -56,7 +56,7 @@ public class DpfReader extends WorkflowComponentWithModelSlot {
 
 	public void setDpfMetaModel(String path) {
 		try {
-			this.dpfMetaModel = DPFCoreUtil.loadSpecificationFromXMI(URI.createURI(path));
+			this.dpfMetaModel = DPFCoreUtil.loadSpecification2(URI.createURI(path));
 		} catch (IOException e) {
 			log.error("Could not read DPF metamodel!");
 			e.printStackTrace();
@@ -69,7 +69,7 @@ public class DpfReader extends WorkflowComponentWithModelSlot {
 
 	public void setDpfModel(String path) {
 		try {
-			this.dpfModel = DPFCoreUtil.loadSpecificationFromXMI(URI.createURI(path));
+			this.dpfModel = DPFCoreUtil.loadSpecification2(URI.createURI(path));
 		} catch (IOException e) {
 			log.error("Could not read DPF model!");
 			e.printStackTrace();
