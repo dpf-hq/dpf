@@ -241,10 +241,11 @@ public class DpfMetaModelUIPlugin extends AbstractUIPlugin {
 		private void createAndStoreSpecification(IProject project, String path) {
 			URI uri = URI.createURI(path);
 			if(!path.equals("")) {
+				//Her må vi loade evt. ny spesifikasjon og samanlikne med den gamle for så å oppdatere
 				if(!fileModels.containsKey(project.getFile(new Path(path)))) {
 					Specification spectmp = null;
 					try {
-						spectmp = DPFCoreUtil.loadSpecificationFromXMI(uri);
+						spectmp = DPFCoreUtil.loadSpecification2(uri);
 						log.info("Successfully loaded metamodel for project \"" + project.getName() + "\" from path: " + path);
 					} catch (IOException e) {
 						log.error("Could not load metamodel for project: " + project.getName() + " with path: " + path);
