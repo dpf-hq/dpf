@@ -22,9 +22,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StateVertex" abstract="true" eSuperTypes="#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="outgoing" upperBound="-1"
-        eType="#//Transition"/>
+        eType="#//Transition" eOpposite="#//Transition/source"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="incoming" upperBound="-1"
-        eType="#//Transition"/>
+        eType="#//Transition" eOpposite="#//Transition/target"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="State" eSuperTypes="#//StateVertex"/>
   <eClassifiers xsi:type="ecore:EClass" name="CompositeState" eSuperTypes="#//State">
@@ -44,13 +44,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="FinalState" eSuperTypes="#//State"/>
   <eClassifiers xsi:type="ecore:EClass" name="Transition" eSuperTypes="#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
-        eType="#//StateVertex"/>
+        eType="#//StateVertex" eOpposite="#//StateVertex/outgoing"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
-        eType="#//StateVertex"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="guard" eType="#//Guard"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
-        eType="#//StateVertex"/>
+        eType="#//StateVertex" eOpposite="#//StateVertex/incoming"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="guard" eType="#//Guard"
         containment="true"/>
   </eClassifiers>
