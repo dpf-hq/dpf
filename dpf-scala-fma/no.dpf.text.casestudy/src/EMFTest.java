@@ -27,7 +27,7 @@ public class EMFTest {
 		EObject o = loadModel("models/original_model.xmi");
 		System.out.println("Test:" + o);
 		Iterator i = o.eAllContents();
-		while(false && i.hasNext()){
+		while(i.hasNext()){
 			EObject e = (EObject)i.next();
 			System.out.println(i);
 		}
@@ -54,7 +54,6 @@ public class EMFTest {
 	private static EObject loadModel(String fnameModel) {
 		return loadModel(fnameModel, true);
 	}	
-
 	/**
 	 * Loads models, if the model is already loaded, it is unload and re-loaded again.
 	 * 
