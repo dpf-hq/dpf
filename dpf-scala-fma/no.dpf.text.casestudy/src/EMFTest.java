@@ -4,6 +4,7 @@ import java.util.Iterator;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -21,10 +22,12 @@ public class EMFTest {
 	
 	public static void main(String[] args) {
 		initializeResourceFactories();
-		EObject o = loadModel("models/original_minimal_metamodel.ecore");
+		EObject o1 = loadModel("models/original_minimal_metamodel.ecore");
+		System.out.println(resourceSet.getResources());
+		EObject o = loadModel("models/original_model.xmi");
 		System.out.println("Test:" + o);
 		Iterator i = o.eAllContents();
-		while(i.hasNext()){
+		while(false && i.hasNext()){
 			EObject e = (EObject)i.next();
 			System.out.println(i);
 		}
@@ -48,12 +51,16 @@ public class EMFTest {
 				new EcoreResourceFactoryImpl());
 	}// initializeResourceFactories
 	
+	private static EObject loadModel(String fnameModel) {
+		return loadModel(fnameModel, true);
+	}	
+
 	/**
 	 * Loads models, if the model is already loaded, it is unload and re-loaded again.
 	 * 
 	 * @return
 	 */
-	private static EObject loadModel(String fnameModel) {
+	private static EObject loadModel(String fnameModel,boolean unload) {
 		
 		/*
 		 * Note the usage of ".getAbsolutePath()" below! This is necessary for
@@ -71,7 +78,7 @@ public class EMFTest {
 		 * each object with its proxy. The resource remains in the resource set
 		 * and therefore can be easily reloaded.
 		 */
-		if (resourceInstance.isLoaded()) {
+		if (unload && resourceInstance.isLoaded()) {
 			resourceInstance.unload();
 			try {
 				resourceInstance.load(null);
