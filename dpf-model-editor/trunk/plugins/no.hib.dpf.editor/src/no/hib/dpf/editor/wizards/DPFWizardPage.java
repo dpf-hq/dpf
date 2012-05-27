@@ -200,7 +200,6 @@ public class DPFWizardPage extends WizardPage {
         
         if (selection != null) {
             targetField.setText(selection);
-            System.out.println(selection);
         }
     }
 
