@@ -17,12 +17,8 @@ import java.net.URI;
 
 import org.eclipse.core.filesystem.EFS;
 import org.eclipse.core.filesystem.IFileStore;
-import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.IWorkspace;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
@@ -204,6 +200,7 @@ public class DPFWizardPage extends WizardPage {
         
         if (selection != null) {
             targetField.setText(selection);
+            System.out.println(selection);
         }
     }
 
@@ -261,7 +258,7 @@ public class DPFWizardPage extends WizardPage {
      */
     private boolean validatePage() {
         boolean valid = true;
-        IWorkspace workspace = ResourcesPlugin.getWorkspace();
+//        IWorkspace workspace = ResourcesPlugin.getWorkspace();
 
         if (createLink) {
             String targetName = targetField.getText();
@@ -273,14 +270,15 @@ public class DPFWizardPage extends WizardPage {
                     setErrorMessage(linkName + " target does not exist");
                     valid = false;
                 } else {
-                	IStatus locationStatus = workspace.validatePath(targetName, IResource.FILE);
-
-                    if (locationStatus.isOK() == false) {
-                        setErrorMessage(linkName + " location is invalid");
-                        valid = false;
-                    } else {
+                	//validatePath does not work for windows version. And i think it is not necessary to validate Path, The use choose the file. So the path should be valid by default.
+//                	IStatus locationStatus = workspace.validatePath(targetName, IResource.FILE);
+//
+//                    if (locationStatus.isOK() == false) {
+//                        setErrorMessage(linkName + " location is invalid");
+//                        valid = false;
+//                    } else {
                         valid = validateFileType(targetFile);
-                    }
+//                    }
                 }
             }
         }
