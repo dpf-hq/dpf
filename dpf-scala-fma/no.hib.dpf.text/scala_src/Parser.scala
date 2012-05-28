@@ -32,12 +32,12 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 	private var tGraphs:MMap[String,AbstractGraph]	= null
 	private var gMorphisms:MMap[String,Morphism]	= null
 	private var gMorphismsCoDomain:MMap[String,(String,String)]	= null
-	private var curTGraph:AbstractGraph = null 	  //current type graph
+	private var curTGraph:AbstractGraph = null 	//current type graph
 	private var curMGraph:MGraph = null           //current model graph
 	private var curSGraph:AbstractGraph = null    //current specification graph
-	private var curTS:S = null					  //current specification type graph
+	private var curTS:S = null					    //current specification type graph
 	private var curSignatureConstraints:MMap[(String,List[String]),SignatureConstraint] = null  //ids of constraints of current specification
-	private var curDomain:AbstractGraph = null	  //current domain type graph (for creating morphism on one model level)
+	private var curDomain:AbstractGraph = null	    //current domain type graph (for creating morphism on one model level)
 	private var curCodomain:AbstractGraph = null  //current codomain type graph (for creating morphism on one model level)
 	
 	protected def initParser()={
@@ -50,7 +50,7 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 	  gMorphisms = MMap();
 	  gMorphismsCoDomain = MMap();
 	  
-	  curTGraph = mmGraph	   //current type graph
+	  curTGraph = mmGraph	    //current type graph
 	  curMGraph = null         //current model graph
 	  curSGraph = null  	   //current specification graph
 	  curTS = null			   //current specification type graph
@@ -824,7 +824,6 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 object Main extends Parser(GraphDpf, "DPF") 
 {
 	import no.dpf.text.graph.validation.eclipse._
-//	import no.dpf.text.graph.validation.dresden._
 	def main(args:Array[String]) = {
  
 	initParser()  
@@ -840,7 +839,6 @@ object Main extends Parser(GraphDpf, "DPF")
 //  EMFtoCSP has a bug right now, bugreport submitted	
 //	println("Check conflicting constraints in specification:")
 //	parseR foreach (_ match {case is@IS(_,_,_) => Validation.checkOclDefintion(is);case _ =>;});
-	//
 	
 	println("Validate OCL")
 	val ds = System.currentTimeMillis();

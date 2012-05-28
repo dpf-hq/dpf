@@ -269,7 +269,7 @@ package mutable{
 			   //Check Type of tg node:  
 			   def check={
 			    _a.tg match{ case Node(_ ,t:TypeNode.TAttribute) => true  
-							 case _				   	     	     => false	
+							  case _				   	          => false	
 				          }
 			   }			   
 			   null != _a.id && //Check if id exist
