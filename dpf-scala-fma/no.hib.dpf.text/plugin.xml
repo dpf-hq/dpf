@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<plugin>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://no.hib.dpf/dpf-text" 
+       class = "no.hib.dpf.text.myDsl.MyDslPackage"
+       genModel = "no/hib/dpf/text/DPFText.genmodel" /> 	
+  </extension>
+
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            id="no.dpf.text.plugin.dpf-text"
+            objectClass="org.eclipse.core.resources.IFile">
+         <action
+               class="no.dpf.text.plugin.RunParser"
+               enablesFor="1"
+               id="no.dpf.text.plugin.RunParser"
+               label="Run DPF-Parser NEW">
+         </action>
+      </objectContribution>
+   </extension>
+
+</plugin>
