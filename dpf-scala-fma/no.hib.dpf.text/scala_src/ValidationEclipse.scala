@@ -51,20 +51,21 @@ object Validation extends Helper{
     private val init1 = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("xmi",new XMIResourceFactoryImpl());
 	private val init2 = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("ecore",new EcoreResourceFactoryImpl());
     
-	
-
+	/**
+	 * Validate the instance of a specification. Therefore run the 
+	 */
  	def validate(is:IS){
  	    import java.io._
 		validateShapes(is)	  
 
-		//Create and load model:
+		//Create and load meta model:
 		val name = "Temp" + System.currentTimeMillis();		
 		createMetaModel(name,is.mm.g)	
 		
 		//In create,load and validate instance:
 		for(e<-createValidationParts(is)){
-//			val i:ByteArrayOutputStream = new ByteArrayOutputStream()
-//			val writer = new PrintWriter(new BufferedWriter(new OutputStreamWriter(i)));
+		    
+			//Create tempural EMF instance which only contain the pullback of a constraint  
 			val nameI = "Temp" + System.currentTimeMillis()+".xmi";
 			val file = getWorkingFolder() match{
 		      case Some(f) => new File(f.getLocation().toFile(),nameI)      		
@@ -78,16 +79,26 @@ object Validation extends Helper{
 			}finally{	
 				writer.close()
 			}
+			
+			//Load the instance:
 			val modelResource = loadInstance(file.getAbsolutePath());
+			
+			//Call the OCL checker:
 			try{
+			    //First try method which works with OCL constraints how the are usually defined:
 				validate1(modelResource,e._1); 
 			}catch{
+			  //Call OCL methods with always works with expressions starting with "XXX.allInstances()"
 			  case ex => validate2(modelResource,e._1); 
 			}			
  	  }
 
 	}
 
+ 	/**
+ 	 * Create tempural EMF models as metamodel. This metamodel is required for working with the OCL 
+ 	 * constraints defined on instances of this model.
+ 	 */
 	private def createMetaModel(name:String,g:AbstractGraph):File={
 		import java.io._
 		val file = getWorkingFolder() match{
@@ -143,6 +154,9 @@ object Validation extends Helper{
      
    }
    
+    /**
+     * Load "EMF" model:
+     */
  	private def loadModel(fname:String)={
  		import java.io.File;
 		val modelUri = URI.createFileURI(new File(fname).getAbsolutePath());
@@ -151,19 +165,19 @@ object Validation extends Helper{
 		resourceModel
 		//resourceModel.getContents().get(0).asInstanceOf[EPackage];
 	}
-  
+	
+ 	/**
+ 	 * Load "EMF" instance:
+ 	 */
 	private def loadInstance(fname:String):EObject={
 		import java.io.File;
 		/*
 		 * Note the usage of ".getAbsolutePath()" below! This is necessary for
-		 * EMF to resolve relative paths in instance models. In our case, the
-		 * typing i.e. the meta-model petri.ecore is given relative to this
-		 * instance models location.
+		 * EMF to resolve relative paths in instance models. 
 		 */
 		val instanceUri = URI.createFileURI(new File(fname).getAbsolutePath());
 		val resourceSet:ResourceSet = new ResourceSetImpl();
 		val resourceInstance:Resource = resourceSet.getResource(instanceUri, true);
-
 		resourceInstance.getContents().get(0).asInstanceOf[EObject];
 	}
  	
@@ -297,7 +311,7 @@ object Validation extends Helper{
 		    case Some(b) => b
 		    case None => {
 		    	//Calculate and store value:
-		    	val r = callEmfToCsp(e,rs(e))
+		    	val r = callEmfToCsp(rs(e))
 		    	val b2 = r match {
 		    	  case Some(b2) => db+=e->b2
 		    	  case None => /*do nothing*/
@@ -311,7 +325,7 @@ object Validation extends Helper{
 		  }
 
 //TEST:
-callEmfToCsp(e,rs(e))		  
+callEmfToCsp(rs(e))		  
 		  
 	   }
 
@@ -327,8 +341,10 @@ callEmfToCsp(e,rs(e))
 //	   println(rs)
    }
 	
-  
-  def callEmfToCsp(k:(List[String],Set[MSet[Tuple3[String,Int,Int]]]),ms:(SimpleGraph,List[String])):Option[Boolean]={   
+  /**
+   * Call EMFtoCSP 
+   */
+  def callEmfToCsp(ms:(SimpleGraph,List[String])):Option[Boolean]={   
 	try{   
 	    import org.eclipse.core.resources._
 	    import org.eclipse.ui._;
@@ -401,17 +417,23 @@ callEmfToCsp(e,rs(e))
 	    
 	    //Compute:
 	    getWorkingFolder() match{
+	        //Solve Strong satisfiablity:
 	    	case Some(f) => println("Test:>" + f)
-	    	  				modelSolver.setResultLocation(f);
+	    	  				 modelSolver.setResultLocation(f);
 	    					//Solve Problem:
 	    				    Some(modelSolver.solveModel()) 
+	    	//There is no working folder: 			    
 	    	case None => None			     
 	    }
 	}catch{
+	    //Another error occured:
 		case e => e.printStackTrace();None
 	}
   }
   
+  /**
+   * The method writes the OCL file which can be used in EMFtoCSP to crossvalidate the constraint
+   */
   private def writeOclFile(name:String,ocls:List[String])={
     import java.io._
 	val file = getWorkingFolder() match{
@@ -429,6 +451,9 @@ callEmfToCsp(e,rs(e))
 	}	   
   }
   
+  /**
+   * Get the working debug folder of the project. 
+   */
   private def getWorkingFolder():Option[IFolder]={
 
     import org.eclipse.ui.PlatformUI;
@@ -451,14 +476,17 @@ callEmfToCsp(e,rs(e))
     rs 
   }
   
-  
+  /**
+   * Fill only OCL parameter into OCL template. This method is required for the optimization of checking 
+   * "strong satisfibility" with EMFtoCSP
+   */
   private def fillOcl_parameter(c:DConstraint,ocl:List[OclToken])={
       
 	  var oclList:List[String]=Nil
 	  for(o<-ocl){
 		o match {
 		  case OclPp(v)		=> oclList=(c.paramByNo(v)::oclList)
-		  case s@_	=> oclList=(s.toString::oclList)
+		  case s@_		    => oclList=(s.toString::oclList)
 		}
 	  }  
     
