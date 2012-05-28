@@ -1,0 +1,9 @@
+grammar no.hib.dpf.text.DPFText with org.eclipse.xtext.common.Terminals
+
+generate dPFText "http://www.hib.no/dpf/text/DPFText"
+
+Model:
+	greetings+=Greeting*;
+	
+Greeting:
+	'Hello' name=ID '!';
