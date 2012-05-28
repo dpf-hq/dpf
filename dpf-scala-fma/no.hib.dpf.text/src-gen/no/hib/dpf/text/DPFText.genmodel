@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/no.hib.dpf.text/src-gen"
+    editDirectory="/no.hib.dpf.text.edit/src" editorDirectory="/no.hib.dpf.text.editor/src"
+    modelPluginID="no.hib.dpf.text" forceOverwrite="true" modelName="DPFText" updateClasspath="false"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" complianceLevel="5.0"
+    copyrightFields="false" editPluginID="no.hib.dpf.text.edit" editorPluginID="no.hib.dpf.text.editor">
+  <genPackages prefix="Tdpf" basePackage="no.hib.dpf.text" disposableProviderFactory="true"
+      ecorePackage="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//DataType">
+      <genEnumLiterals ecoreEnumLiteral="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//DataType/TBOOLEAN"/>
+      <genEnumLiterals ecoreEnumLiteral="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//DataType/TCHAR"/>
+      <genEnumLiterals ecoreEnumLiteral="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//DataType/TBYTE"/>
+      <genEnumLiterals ecoreEnumLiteral="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//DataType/TSHORT"/>
+      <genEnumLiterals ecoreEnumLiteral="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//DataType/TINT"/>
+      <genEnumLiterals ecoreEnumLiteral="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//DataType/TLONG"/>
+      <genEnumLiterals ecoreEnumLiteral="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//DataType/TFLOAT"/>
+      <genEnumLiterals ecoreEnumLiteral="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//DataType/TDOUBLE"/>
+      <genEnumLiterals ecoreEnumLiteral="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//DataType/TSTRING"/>
+    </genEnums>
+    <genClasses ecoreClass="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Model">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Model/definitions"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Definition"/>
+    <genClasses ecoreClass="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//MakeEmf">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//MakeEmf/id"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//MakeEcore">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//MakeEcore/id"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//MakeImage">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//MakeImage/id"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//SimpleEvoSpan">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//SimpleEvoSpan/lhs"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//SimpleEvoSpan/diff"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//SimpleEvoSpan/rhS"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//SimpleEvoSpan/typeGraph"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//SimpleEvoCospan">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//SimpleEvoCospan/lhs"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//SimpleEvoCospan/joint"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//SimpleEvoCospan/rhs"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//SimpleEvoCospan/typeGraph"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//EvoSpan">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//EvoSpan/lhs"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//EvoSpan/rhs"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//EvoSpan/typeGraph"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//EvoCospan">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//EvoCospan/lhs"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//EvoCospan/rhs"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//EvoCospan/typeGraph"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//InstanceSpecification">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//InstanceSpecification/id"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//InstanceSpecification/model"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//InstanceSpecification/metamodel"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//InstanceSpecification/constraintSemantics"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//ChoosenSpecfication">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//ChoosenSpecfication/id"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//ConstraintSemantic">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//ConstraintSemantic/id"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//ConstraintSemantic/arrows"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//ConstraintSemantic/ocl"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Specification">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Specification/id"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Specification/graph"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Specification/constraints"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//ChoosenGraph">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//ChoosenGraph/id"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Constraint">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Constraint/signature"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Constraint/arrows"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//ConstraintSignature">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//ConstraintSignature/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//ConstraintSignature/parameter"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Morphism">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Morphism/domain"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Morphism/codmain"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Morphism/mappings"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Domain">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Domain/id"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Codomain">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Codomain/id"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Mapping"/>
+    <genClasses ecoreClass="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//MappingNode">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//MappingNode/domain"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//MappingNode/codomain"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//MappingArrow">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//MappingArrow/domain"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//MappingArrow/codmain"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//ExtSubTGraph">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//ExtSubTGraph/id"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//ExtSubTGraph/extendsGraph"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//ExtSubTGraph/elements"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//TGraphExtSubName">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//TGraphExtSubName/id"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//TGraph">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//TGraph/id"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//TGraph/typeGraph"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//TGraph/elements"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//TGraphName">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//TGraphName/id"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Element">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Element/id"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Element/type"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Arrows">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Arrows/sr"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Arrows/next"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Arrow">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Arrow/tgDataType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Arrow/tgValue"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Arrow/tgNode"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Node"/>
+    <genClasses ecoreClass="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//AttributeValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//AttributeValue/value"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//DpfId">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//DpfId/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//DpfId/id"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
