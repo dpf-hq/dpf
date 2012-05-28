@@ -10,7 +10,10 @@ import no.dpf.text.graph.{Element=>DElement}
 import no.dpf.text.graph.{Node=>DNode}
 import no.dpf.text.graph.{Arrow=>DArrow}
 
-
+/**
+ * SimpleGraph is usual graph but it is created without doing all the checks which usually are needed. 
+ * It is used only in the validation package with input graphs which have been already validated before.
+ */
 class SimpleGraph private[validation](namesMap:Map[Id,String]) extends no.dpf.text.graph.mutable.Graph(null,null) with Converter{
 	import scala.collection._;
 	
@@ -31,6 +34,9 @@ class SimpleGraph private[validation](namesMap:Map[Id,String]) extends no.dpf.te
 
 trait Helper{
   
+  /**
+   * Create Tuples with pullbacks for each predicate and concrete OCL expression
+   */
   def createValidationParts(is:IS):List[(String,AbstractGraph)]={
     val cs:Set[Constraint] = is.mm.cs
     val g:AbstractGraph = is.m.g 
@@ -53,6 +59,9 @@ trait Helper{
     ret
   } 
   
+  /**
+   * Fill OCL template with values so that it becomes a valid concrete OCL expression
+   */
   def fillOcl(c:Constraint,v:Validator)={
       
 	  var oclList:List[String]=Nil
@@ -77,7 +86,9 @@ trait Helper{
   
   
     /**
-    * Attention algortihms must correspond to method in Graph.scala 
+	* Translate the shape into a presentation which is unique for a shape only. Ids are normalized 
+	* to "virtual ids" starting from zero. Hence two shapes are equal if they have the same list of arrows.
+    * Attention: algortihm must correspond to method in Graph.scala 
     */
    private def createShape(arrows:List[Arrow]):List[Arrow]={
      var counter=0;
@@ -101,7 +112,11 @@ trait Helper{
 //     println(r)
      r
    }
-  	
+  
+   /**
+    * Validate if constraint predicate is correctly put on the graph. Therefore its validator must be defined on the 
+    * the same shape the predicate was added to the graph. 
+    */
    def validateShapes(is:IS)={
      for(c<-is.mm.cs){
 		  

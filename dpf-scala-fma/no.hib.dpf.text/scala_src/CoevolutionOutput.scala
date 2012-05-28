@@ -12,9 +12,9 @@ trait AbstractCoevolution{
    * do some magic
    */
   protected def toGraph(parent1:AbstractGraph,
-		  			    parent2:AbstractGraph,
-		  			    typeGraph:AbstractGraph,
-		  			    typing:Morphism):MGraph = {
+		  			     parent2:AbstractGraph,
+		  			     typeGraph:AbstractGraph,
+		  			     typing:Morphism):MGraph = {
  
     //Retrieve values from id
     def filterValues(s:Id):Id={
