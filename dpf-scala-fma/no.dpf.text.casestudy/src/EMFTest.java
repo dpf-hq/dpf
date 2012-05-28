@@ -1,9 +1,19 @@
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EEnumLiteral;
+import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -21,7 +31,52 @@ public class EMFTest {
 
 	public static void main(String[] args) {
 		initializeResourceFactories();
-		// EObject o = loadModel("models/original_minimal_metamodel.ecore");
+		
+		mm2dpftext();
+		
+//		m2dpftext();
+	}
+
+	private static void mm2dpftext() {
+		//EObject o = loadModel("models/original_minimal_metamodel.ecore");
+		EObject o = loadModel("models/evolved_metamodel.ecore");
+		final Iterator<EObject> i = o.eAllContents();
+		while (i.hasNext()) {
+			EObject e = (EObject) i.next();
+
+			if(e instanceof EClass){
+				final EClass c = (EClass)e;
+				//Inheritance Arrows:
+				for(EClass s:c.getEAllSuperTypes()){
+					System.out.println(c.getName() + ":Class-inherit->" +s.getName() + ":Class");					
+				};
+				System.out.println(c.getName() + ":Class");
+			}else if(e instanceof EAttribute){
+				final EAttribute a = (EAttribute) e;
+				System.out.println(
+						a.getEContainingClass().getName() + ":Class-"
+						+ a.getName() + ":*->" + a.getEAttributeType().getName() + ":DataType");					
+
+			//Arrows:	
+			}else if(e instanceof EReference){
+				final EReference r = (EReference) e;
+				System.out.println(r.getEContainingClass().getName() + 
+					   ":Class-" + r.getName() + ":Reference->" + r.getEReferenceType().getName() + ":Class");	
+			}else if(e instanceof EEnum){
+				System.out.println("*1* Enum" + e);
+			}else if(e instanceof EEnumLiteral){
+				System.out.println("*2* EnumLiteral" + e);				
+			}else if(e instanceof ETypedElement){
+				System.out.println("*3* TypedElement" + e);								
+			}else if(e instanceof EGenericType){
+//				System.out.println("*4* Type" + e);
+			}else{				
+				System.out.println("*5* Unkonwn:" + e.getClass());
+			}
+		}
+	}
+
+	private static void m2dpftext() {
 		System.out.println(resourceSet.getResources());
 		EObject o = loadModel("models/original_model.xmi");
 		System.out.println("Test:" + o);
