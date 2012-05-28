@@ -58,6 +58,9 @@ class RunParser extends IObjectActionDelegate {
 		}			
 	}
 
+	/**
+	 * Parse File and validate result:
+	 */	
 	private def doAction(file:IFile){
 	
 	   //Run Workflow:

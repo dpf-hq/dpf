@@ -93,6 +93,9 @@ trait Output{
     
   }
   
+ /**
+  * Serialize Graph into the same representation as they are stored in a file. 
+  */
   protected def serializeGraph(g:AbstractGraph,name:String,mmName:String,path:String)={
     
     //println("\n\n" + name + " " + g)
