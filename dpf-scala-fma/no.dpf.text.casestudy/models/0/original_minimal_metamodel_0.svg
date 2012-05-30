@@ -58,14 +58,14 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="1680"
-     inkscape:window-height="1026"
+     inkscape:window-width="1215"
+     inkscape:window-height="776"
      id="namedview932"
      showgrid="false"
      inkscape:zoom="0.97443545"
      inkscape:cx="465.14671"
      inkscape:cy="332.56606"
-     inkscape:window-x="1280"
+     inkscape:window-x="65"
      inkscape:window-y="24"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg2" />
@@ -1212,2091 +1212,2088 @@
       </clipPath>
     </defs>
   </defs>
-  <g
-     id="g5457">
-    <rect
-       style="font-size:13px;fill:#f8f9d1;stroke:none;font-family:Ubuntu"
-       id="rect436"
-       height="47"
-       width="115"
-       clip-path="url(#clipPath1)"
-       y="31"
-       x="430" />
-    <rect
-       style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="rect440"
-       height="46"
-       width="114"
-       clip-path="url(#clipPath1)"
-       y="31"
-       x="430" />
-    <image
-       id="image442"
-       xlink:show="embed"
-       preserveAspectRatio="none"
-       height="16"
-       xlink:actuate="onLoad"
-       xlink:type="simple"
-       xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAvUlEQVR42mP8//8/ AyWAiYFCwIIuMK/WgKCTkpovMOI0AASiaxfh1Ly0OQ6/F/79Z8RrO7o8hgv+/GVg +P+fFcxmhKkFeYoRQoPk8Rvwn4lh1YJpDLgCAiSP14Df/5gYwhNTcXphWs0J/GHw +y/+mEWXx3DBr7+MeMMAJI/fC0AF3X2rGXAFwh+CBgDDoKo4AKcXGgt3EgiDfwTC 4B8ToXTASCAdEPDCX2A8F2dl4nQBMxMBF0yafYCRlNwIAPWTSpioA+oRAAAAAElF TkSuQmCC"
-       width="16"
-       clip-path="url(#clipPath2)"
-       y="31"
-       x="433"
-       style="font-size:13px;fill:#808080;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
-    <text
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="text444"
-       xml:space="preserve"
-       clip-path="url(#clipPath3)"
-       y="44"
-       x="452">ModelElement</text>
-    <image
-       style="font-size:13px;fill:#404040;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="image446"
-       xlink:actuate="onLoad"
-       xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAXUlEQVR42mNgGAUD DxjRBebW6P8npCm55SJcHwu65I8/TAzJjQtwap5bn4DCZ0JX8PUXC17b0eUxVH8G Kvj/nxXiP5hD/0M9+x8ij9cAkA3FWZk4XcDBwjKacqgNALytGBsVIOzJAAAAAElF TkSuQmCC"
-       y="49"
-       x="435"
-       height="16"
-       preserveAspectRatio="none"
-       clip-path="url(#clipPath4)"
-       xlink:type="simple"
-       xlink:show="embed"
-       width="16" />
-    <text
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="text448"
-       xml:space="preserve"
-       clip-path="url(#clipPath5)"
-       y="62"
-       x="454">name : EString</text>
-    <line
-       style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line450"
-       y2="47"
-       y1="47"
-       x2="545"
-       x1="430"
-       clip-path="url(#clipPath6)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line452"
-       y2="66"
-       y1="66"
-       x2="545"
-       x1="430"
-       clip-path="url(#clipPath7)" />
-    <rect
-       style="font-size:13px;fill:#f8f9d1;stroke:none;font-family:Ubuntu"
-       id="rect454"
-       height="100"
-       width="121"
-       clip-path="url(#clipPath8)"
-       y="139"
-       x="406" />
-    <rect
-       style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="rect456"
-       height="99"
-       width="120"
-       clip-path="url(#clipPath8)"
-       y="139"
-       x="406" />
-    <image
-       id="image458"
-       xlink:show="embed"
-       preserveAspectRatio="none"
-       height="16"
-       xlink:actuate="onLoad"
-       xlink:type="simple"
-       xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAvUlEQVR42mP8//8/ AyWAiYFCwIIuMK/WgKCTkpovMOI0AASiaxfh1Ly0OQ6/F/79Z8RrO7o8hgv+/GVg +P+fFcxmhKkFeYoRQoPk8Rvwn4lh1YJpDLgCAiSP14Df/5gYwhNTcXphWs0J/GHw +y/+mEWXx3DBr7+MeMMAJI/fC0AF3X2rGXAFwh+CBgDDoKo4AKcXGgt3EgiDfwTC 4B8ToXTASCAdEPDCX2A8F2dl4nQBMxMBF0yafYCRlNwIAPWTSpioA+oRAAAAAElF TkSuQmCC"
-       width="16"
-       clip-path="url(#clipPath9)"
-       y="139"
-       x="416"
-       style="font-size:13px;fill:#808080;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
-    <text
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="text460"
-       xml:space="preserve"
-       clip-path="url(#clipPath10)"
-       y="152"
-       x="435">StateMachine</text>
-    <line
-       style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line462"
-       y2="155"
-       y1="155"
-       x2="527"
-       x1="406"
-       clip-path="url(#clipPath11)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line464"
-       y2="167"
-       y1="167"
-       x2="527"
-       x1="406"
-       clip-path="url(#clipPath12)" />
-    <rect
-       style="font-size:13px;fill:#f8f9d1;stroke:none;font-family:Ubuntu"
-       id="rect466"
-       height="40"
-       width="101"
-       clip-path="url(#clipPath13)"
-       y="151"
-       x="658" />
-    <rect
-       style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="rect468"
-       height="39"
-       width="100"
-       clip-path="url(#clipPath13)"
-       y="151"
-       x="658" />
-    <image
-       id="image470"
-       xlink:show="embed"
-       preserveAspectRatio="none"
-       height="16"
-       xlink:actuate="onLoad"
-       xlink:type="simple"
-       xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAvUlEQVR42mP8//8/ AyWAiYFCwIIuMK/WgKCTkpovMOI0AASiaxfh1Ly0OQ6/F/79Z8RrO7o8hgv+/GVg +P+fFcxmhKkFeYoRQoPk8Rvwn4lh1YJpDLgCAiSP14Df/5gYwhNTcXphWs0J/GHw +y/+mEWXx3DBr7+MeMMAJI/fC0AF3X2rGXAFwh+CBgDDoKo4AKcXGgt3EgiDfwTC 4B8ToXTASCAdEPDCX2A8F2dl4nQBMxMBF0yafYCRlNwIAPWTSpioA+oRAAAAAElF TkSuQmCC"
-       width="16"
-       clip-path="url(#clipPath14)"
-       y="151"
-       x="658"
-       style="font-size:13px;fill:#808080;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
-    <text
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="text472"
-       xml:space="preserve"
-       clip-path="url(#clipPath15)"
-       y="164"
-       x="677">ActivityGraph</text>
-    <line
-       style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line474"
-       y2="167"
-       y1="167"
-       x2="759"
-       x1="658"
-       clip-path="url(#clipPath16)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line476"
-       y2="179"
-       y1="179"
-       x2="759"
-       x1="658"
-       clip-path="url(#clipPath17)" />
-    <rect
-       style="font-size:13px;fill:#f8f9d1;stroke:none;font-family:Ubuntu"
-       id="rect478"
-       height="73"
-       width="112"
-       clip-path="url(#clipPath18)"
-       y="151"
-       x="850" />
-    <rect
-       style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="rect480"
-       height="72"
-       width="111"
-       clip-path="url(#clipPath18)"
-       y="151"
-       x="850" />
-    <image
-       id="image482"
-       xlink:show="embed"
-       preserveAspectRatio="none"
-       height="16"
-       xlink:actuate="onLoad"
-       xlink:type="simple"
-       xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAvUlEQVR42mP8//8/ AyWAiYFCwIIuMK/WgKCTkpovMOI0AASiaxfh1Ly0OQ6/F/79Z8RrO7o8hgv+/GVg +P+fFcxmhKkFeYoRQoPk8Rvwn4lh1YJpDLgCAiSP14Df/5gYwhNTcXphWs0J/GHw +y/+mEWXx3DBr7+MeMMAJI/fC0AF3X2rGXAFwh+CBgDDoKo4AKcXGgt3EgiDfwTC 4B8ToXTASCAdEPDCX2A8F2dl4nQBMxMBF0yafYCRlNwIAPWTSpioA+oRAAAAAElF TkSuQmCC"
-       width="16"
-       clip-path="url(#clipPath19)"
-       y="151"
-       x="870"
-       style="font-size:13px;fill:#808080;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
-    <text
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="text484"
-       xml:space="preserve"
-       clip-path="url(#clipPath20)"
-       y="164"
-       x="889">Partition</text>
-    <line
-       style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line486"
-       y2="167"
-       y1="167"
-       x2="962"
-       x1="850"
-       clip-path="url(#clipPath21)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line488"
-       y2="179"
-       y1="179"
-       x2="962"
-       x1="850"
-       clip-path="url(#clipPath22)" />
-    <rect
-       style="font-size:13px;fill:#f8f9d1;stroke:none;font-family:Ubuntu"
-       id="rect490"
-       height="97"
-       width="121"
-       clip-path="url(#clipPath23)"
-       y="247"
-       x="551" />
-    <rect
-       style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="rect492"
-       height="96"
-       width="120"
-       clip-path="url(#clipPath23)"
-       y="247"
-       x="551" />
-    <image
-       style="font-size:13px;font-style:italic;fill:#808080;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="image494"
-       xlink:actuate="onLoad"
-       xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAvUlEQVR42mP8//8/ AyWAiYFCwIIuMK/WgKCTkpovMOI0AASiaxfh1Ly0OQ6/F/79Z8RrO7o8hgv+/GVg +P+fFcxmhKkFeYoRQoPk8Rvwn4lh1YJpDLgCAiSP14Df/5gYwhNTcXphWs0J/GHw +y/+mEWXx3DBr7+MeMMAJI/fC0AF3X2rGXAFwh+CBgDDoKo4AKcXGgt3EgiDfwTC 4B8ToXTASCAdEPDCX2A8F2dl4nQBMxMBF0yafYCRlNwIAPWTSpioA+oRAAAAAElF TkSuQmCC"
-       y="247"
-       x="566"
-       font-style="italic"
-       height="16"
-       preserveAspectRatio="none"
-       clip-path="url(#clipPath24)"
-       xlink:type="simple"
-       xlink:show="embed"
-       width="16" />
-    <text
-       style="font-size:13px;font-style:italic;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="text496"
-       xml:space="preserve"
-       font-style="italic"
-       clip-path="url(#clipPath25)"
-       y="260"
-       x="585">StateVertex</text>
-    <line
-       style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line498"
-       y2="263"
-       y1="263"
-       x2="672"
-       x1="551"
-       clip-path="url(#clipPath26)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line500"
-       y2="275"
-       y1="275"
-       x2="672"
-       x1="551"
-       clip-path="url(#clipPath27)" />
-    <rect
-       style="font-size:13px;fill:#f8f9d1;stroke:none;font-family:Ubuntu"
-       id="rect502"
-       height="40"
-       width="100"
-       clip-path="url(#clipPath28)"
-       y="427"
-       x="562" />
-    <rect
-       style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="rect504"
-       height="39"
-       width="99"
-       clip-path="url(#clipPath28)"
-       y="427"
-       x="562" />
-    <image
-       id="image506"
-       xlink:show="embed"
-       preserveAspectRatio="none"
-       height="16"
-       xlink:actuate="onLoad"
-       xlink:type="simple"
-       xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAvUlEQVR42mP8//8/ AyWAiYFCwIIuMK/WgKCTkpovMOI0AASiaxfh1Ly0OQ6/F/79Z8RrO7o8hgv+/GVg +P+fFcxmhKkFeYoRQoPk8Rvwn4lh1YJpDLgCAiSP14Df/5gYwhNTcXphWs0J/GHw +y/+mEWXx3DBr7+MeMMAJI/fC0AF3X2rGXAFwh+CBgDDoKo4AKcXGgt3EgiDfwTC 4B8ToXTASCAdEPDCX2A8F2dl4nQBMxMBF0yafYCRlNwIAPWTSpioA+oRAAAAAElF TkSuQmCC"
-       width="16"
-       clip-path="url(#clipPath29)"
-       y="427"
-       x="587"
-       style="font-size:13px;fill:#808080;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
-    <text
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="text508"
-       xml:space="preserve"
-       clip-path="url(#clipPath30)"
-       y="440"
-       x="606">State</text>
-    <line
-       style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line510"
-       y2="443"
-       y1="443"
-       x2="662"
-       x1="562"
-       clip-path="url(#clipPath31)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line512"
-       y2="455"
-       y1="455"
-       x2="662"
-       x1="562"
-       clip-path="url(#clipPath32)" />
-    <rect
-       style="font-size:13px;fill:#f8f9d1;stroke:none;font-family:Ubuntu"
-       id="rect514"
-       height="40"
-       width="114"
-       clip-path="url(#clipPath33)"
-       y="535"
-       x="886" />
-    <rect
-       style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="rect516"
-       height="39"
-       width="113"
-       clip-path="url(#clipPath33)"
-       y="535"
-       x="886" />
-    <image
-       id="image518"
-       xlink:show="embed"
-       preserveAspectRatio="none"
-       height="16"
-       xlink:actuate="onLoad"
-       xlink:type="simple"
-       xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAvUlEQVR42mP8//8/ AyWAiYFCwIIuMK/WgKCTkpovMOI0AASiaxfh1Ly0OQ6/F/79Z8RrO7o8hgv+/GVg +P+fFcxmhKkFeYoRQoPk8Rvwn4lh1YJpDLgCAiSP14Df/5gYwhNTcXphWs0J/GHw +y/+mEWXx3DBr7+MeMMAJI/fC0AF3X2rGXAFwh+CBgDDoKo4AKcXGgt3EgiDfwTC 4B8ToXTASCAdEPDCX2A8F2dl4nQBMxMBF0yafYCRlNwIAPWTSpioA+oRAAAAAElF TkSuQmCC"
-       width="16"
-       clip-path="url(#clipPath34)"
-       y="535"
-       x="886"
-       style="font-size:13px;fill:#808080;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
-    <text
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="text520"
-       xml:space="preserve"
-       clip-path="url(#clipPath35)"
-       y="548"
-       x="905">CompositeState</text>
-    <line
-       style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line522"
-       y2="551"
-       y1="551"
-       x2="1000"
-       x1="886"
-       clip-path="url(#clipPath36)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line524"
-       y2="563"
-       y1="563"
-       x2="1000"
-       x1="886"
-       clip-path="url(#clipPath37)" />
-    <rect
-       style="font-size:13px;fill:#f8f9d1;stroke:none;font-family:Ubuntu"
-       id="rect526"
-       height="47"
-       width="158"
-       clip-path="url(#clipPath38)"
-       y="535"
-       x="504" />
-    <rect
-       style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="rect528"
-       height="46"
-       width="157"
-       clip-path="url(#clipPath38)"
-       y="535"
-       x="504" />
-    <image
-       id="image530"
-       xlink:show="embed"
-       preserveAspectRatio="none"
-       height="16"
-       xlink:actuate="onLoad"
-       xlink:type="simple"
-       xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAvUlEQVR42mP8//8/ AyWAiYFCwIIuMK/WgKCTkpovMOI0AASiaxfh1Ly0OQ6/F/79Z8RrO7o8hgv+/GVg +P+fFcxmhKkFeYoRQoPk8Rvwn4lh1YJpDLgCAiSP14Df/5gYwhNTcXphWs0J/GHw +y/+mEWXx3DBr7+MeMMAJI/fC0AF3X2rGXAFwh+CBgDDoKo4AKcXGgt3EgiDfwTC 4B8ToXTASCAdEPDCX2A8F2dl4nQBMxMBF0yafYCRlNwIAPWTSpioA+oRAAAAAElF TkSuQmCC"
-       width="16"
-       clip-path="url(#clipPath39)"
-       y="535"
-       x="538"
-       style="font-size:13px;fill:#808080;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
-    <text
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="text532"
-       xml:space="preserve"
-       clip-path="url(#clipPath40)"
-       y="548"
-       x="557">ActionState</text>
-    <image
-       style="font-size:13px;fill:#404040;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="image534"
-       xlink:actuate="onLoad"
-       xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAXUlEQVR42mNgGAUD DxjRBebW6P8npCm55SJcHwu65I8/TAzJjQtwap5bn4DCZ0JX8PUXC17b0eUxVH8G Kvj/nxXiP5hD/0M9+x8ij9cAkA3FWZk4XcDBwjKacqgNALytGBsVIOzJAAAAAElF TkSuQmCC"
-       y="553"
-       x="509"
-       height="16"
-       preserveAspectRatio="none"
-       clip-path="url(#clipPath41)"
-       xlink:type="simple"
-       xlink:show="embed"
-       width="16" />
-    <text
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="text536"
-       xml:space="preserve"
-       clip-path="url(#clipPath42)"
-       y="566"
-       x="528">isDynamic : EBoolean</text>
-    <line
-       style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line538"
-       y2="551"
-       y1="551"
-       x2="662"
-       x1="504"
-       clip-path="url(#clipPath43)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line540"
-       y2="570"
-       y1="570"
-       x2="662"
-       x1="504"
-       clip-path="url(#clipPath44)" />
-    <rect
-       style="font-size:13px;fill:#f8f9d1;stroke:none;font-family:Ubuntu"
-       id="rect542"
-       height="47"
-       width="166"
-       clip-path="url(#clipPath45)"
-       y="391"
-       x="346" />
-    <rect
-       style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="rect544"
-       height="46"
-       width="165"
-       clip-path="url(#clipPath45)"
-       y="391"
-       x="346" />
-    <image
-       id="image546"
-       xlink:show="embed"
-       preserveAspectRatio="none"
-       height="16"
-       xlink:actuate="onLoad"
-       xlink:type="simple"
-       xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAvUlEQVR42mP8//8/ AyWAiYFCwIIuMK/WgKCTkpovMOI0AASiaxfh1Ly0OQ6/F/79Z8RrO7o8hgv+/GVg +P+fFcxmhKkFeYoRQoPk8Rvwn4lh1YJpDLgCAiSP14Df/5gYwhNTcXphWs0J/GHw +y/+mEWXx3DBr7+MeMMAJI/fC0AF3X2rGXAFwh+CBgDDoKo4AKcXGgt3EgiDfwTC 4B8ToXTASCAdEPDCX2A8F2dl4nQBMxMBF0yafYCRlNwIAPWTSpioA+oRAAAAAElF TkSuQmCC"
-       width="16"
-       clip-path="url(#clipPath46)"
-       y="391"
-       x="382"
-       style="font-size:13px;fill:#808080;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
-    <text
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="text548"
-       xml:space="preserve"
-       clip-path="url(#clipPath47)"
-       y="404"
-       x="401">Pseudostate</text>
-    <image
-       style="font-size:13px;fill:#404040;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="image550"
-       xlink:actuate="onLoad"
-       xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAcklEQVR42mNgGAWM 6AJza/T/E9KU3HIRro8FXfLHHyaG5MYFODXPrU9A4TOhK/j6iwWv7ejyGKo/AxX8 /88K8R/Mof+hnv0PkcdrAMiG4qxMnC7gYGGhczRJ2pfhjRUmSjTT3gVkpURctj8/ 2MVIk0AGAJdzIYcp/aiWAAAAAElFTkSuQmCC"
-       y="409"
-       x="351"
-       height="16"
-       preserveAspectRatio="none"
-       clip-path="url(#clipPath48)"
-       xlink:type="simple"
-       xlink:show="embed"
-       width="16" />
-    <text
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="text552"
-       xml:space="preserve"
-       clip-path="url(#clipPath49)"
-       y="422"
-       x="370">kind : PseudostateKind</text>
-    <line
-       style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line554"
-       y2="407"
-       y1="407"
-       x2="512"
-       x1="346"
-       clip-path="url(#clipPath50)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line556"
-       y2="426"
-       y1="426"
-       x2="512"
-       x1="346"
-       clip-path="url(#clipPath51)" />
-    <rect
-       style="font-size:13px;fill:#f8f9d1;stroke:none;font-family:Ubuntu"
-       id="rect558"
-       height="40"
-       width="118"
-       clip-path="url(#clipPath52)"
-       y="535"
-       x="721" />
-    <rect
-       style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="rect560"
-       height="39"
-       width="117"
-       clip-path="url(#clipPath52)"
-       y="535"
-       x="721" />
-    <image
-       id="image562"
-       xlink:show="embed"
-       preserveAspectRatio="none"
-       height="16"
-       xlink:actuate="onLoad"
-       xlink:type="simple"
-       xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAvUlEQVR42mP8//8/ AyWAiYFCwIIuMK/WgKCTkpovMOI0AASiaxfh1Ly0OQ6/F/79Z8RrO7o8hgv+/GVg +P+fFcxmhKkFeYoRQoPk8Rvwn4lh1YJpDLgCAiSP14Df/5gYwhNTcXphWs0J/GHw +y/+mEWXx3DBr7+MeMMAJI/fC0AF3X2rGXAFwh+CBgDDoKo4AKcXGgt3EgiDfwTC 4B8ToXTASCAdEPDCX2A8F2dl4nQBMxMBF0yafYCRlNwIAPWTSpioA+oRAAAAAElF TkSuQmCC"
-       width="16"
-       clip-path="url(#clipPath53)"
-       y="535"
-       x="721"
-       style="font-size:13px;fill:#808080;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
-    <text
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="text564"
-       xml:space="preserve"
-       clip-path="url(#clipPath54)"
-       y="548"
-       x="740">ObjectFlowState</text>
-    <line
-       style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line566"
-       y2="551"
-       y1="551"
-       x2="839"
-       x1="721"
-       clip-path="url(#clipPath55)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line568"
-       y2="563"
-       y1="563"
-       x2="839"
-       x1="721"
-       clip-path="url(#clipPath56)" />
-    <rect
-       style="font-size:13px;fill:#f8f9d1;stroke:none;font-family:Ubuntu"
-       id="rect570"
-       height="40"
-       width="100"
-       clip-path="url(#clipPath57)"
-       y="535"
-       x="346" />
-    <rect
-       style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="rect572"
-       height="39"
-       width="99"
-       clip-path="url(#clipPath57)"
-       y="535"
-       x="346" />
-    <image
-       id="image574"
-       xlink:show="embed"
-       preserveAspectRatio="none"
-       height="16"
-       xlink:actuate="onLoad"
-       xlink:type="simple"
-       xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAvUlEQVR42mP8//8/ AyWAiYFCwIIuMK/WgKCTkpovMOI0AASiaxfh1Ly0OQ6/F/79Z8RrO7o8hgv+/GVg +P+fFcxmhKkFeYoRQoPk8Rvwn4lh1YJpDLgCAiSP14Df/5gYwhNTcXphWs0J/GHw +y/+mEWXx3DBr7+MeMMAJI/fC0AF3X2rGXAFwh+CBgDDoKo4AKcXGgt3EgiDfwTC 4B8ToXTASCAdEPDCX2A8F2dl4nQBMxMBF0yafYCRlNwIAPWTSpioA+oRAAAAAElF TkSuQmCC"
-       width="16"
-       clip-path="url(#clipPath58)"
-       y="535"
-       x="356"
-       style="font-size:13px;fill:#808080;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
-    <text
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="text576"
-       xml:space="preserve"
-       clip-path="url(#clipPath59)"
-       y="548"
-       x="375">FinalState</text>
-    <line
-       style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line578"
-       y2="551"
-       y1="551"
-       x2="446"
-       x1="346"
-       clip-path="url(#clipPath60)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line580"
-       y2="563"
-       y1="563"
-       x2="446"
-       x1="346"
-       clip-path="url(#clipPath61)" />
-    <rect
-       style="font-size:13px;fill:#f8f9d1;stroke:none;font-family:Ubuntu"
-       id="rect582"
-       height="100"
-       width="109"
-       clip-path="url(#clipPath62)"
-       y="247"
-       x="226" />
-    <rect
-       style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="rect584"
-       height="99"
-       width="108"
-       clip-path="url(#clipPath62)"
-       y="247"
-       x="226" />
-    <image
-       id="image586"
-       xlink:show="embed"
-       preserveAspectRatio="none"
-       height="16"
-       xlink:actuate="onLoad"
-       xlink:type="simple"
-       xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAvUlEQVR42mP8//8/ AyWAiYFCwIIuMK/WgKCTkpovMOI0AASiaxfh1Ly0OQ6/F/79Z8RrO7o8hgv+/GVg +P+fFcxmhKkFeYoRQoPk8Rvwn4lh1YJpDLgCAiSP14Df/5gYwhNTcXphWs0J/GHw +y/+mEWXx3DBr7+MeMMAJI/fC0AF3X2rGXAFwh+CBgDDoKo4AKcXGgt3EgiDfwTC 4B8ToXTASCAdEPDCX2A8F2dl4nQBMxMBF0yafYCRlNwIAPWTSpioA+oRAAAAAElF TkSuQmCC"
-       width="16"
-       clip-path="url(#clipPath63)"
-       y="247"
-       x="241"
-       style="font-size:13px;fill:#808080;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
-    <text
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="text588"
-       xml:space="preserve"
-       clip-path="url(#clipPath64)"
-       y="260"
-       x="260">Transition</text>
-    <line
-       style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line590"
-       y2="263"
-       y1="263"
-       x2="335"
-       x1="226"
-       clip-path="url(#clipPath65)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line592"
-       y2="275"
-       y1="275"
-       x2="335"
-       x1="226"
-       clip-path="url(#clipPath66)" />
-    <rect
-       style="font-size:13px;fill:#f8f9d1;stroke:none;font-family:Ubuntu"
-       id="rect594"
-       height="40"
-       width="100"
-       clip-path="url(#clipPath67)"
-       y="247"
-       x="10" />
-    <rect
-       style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="rect596"
-       height="39"
-       width="99"
-       clip-path="url(#clipPath67)"
-       y="247"
-       x="10" />
-    <image
-       id="image598"
-       xlink:show="embed"
-       preserveAspectRatio="none"
-       height="16"
-       xlink:actuate="onLoad"
-       xlink:type="simple"
-       xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAvUlEQVR42mP8//8/ AyWAiYFCwIIuMK/WgKCTkpovMOI0AASiaxfh1Ly0OQ6/F/79Z8RrO7o8hgv+/GVg +P+fFcxmhKkFeYoRQoPk8Rvwn4lh1YJpDLgCAiSP14Df/5gYwhNTcXphWs0J/GHw +y/+mEWXx3DBr7+MeMMAJI/fC0AF3X2rGXAFwh+CBgDDoKo4AKcXGgt3EgiDfwTC 4B8ToXTASCAdEPDCX2A8F2dl4nQBMxMBF0yafYCRlNwIAPWTSpioA+oRAAAAAElF TkSuQmCC"
-       width="16"
-       clip-path="url(#clipPath68)"
-       y="247"
-       x="32"
-       style="font-size:13px;fill:#808080;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
-    <text
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="text600"
-       xml:space="preserve"
-       clip-path="url(#clipPath69)"
-       y="260"
-       x="51">Guard</text>
-    <line
-       style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line602"
-       y2="263"
-       y1="263"
-       x2="110"
-       x1="10"
-       clip-path="url(#clipPath70)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line604"
-       y2="275"
-       y1="275"
-       x2="110"
-       x1="10"
-       clip-path="url(#clipPath71)" />
-    <rect
-       style="font-size:13px;fill:#f8f9d1;stroke:none;font-family:Ubuntu"
-       id="rect606"
-       height="63"
-       width="139"
-       clip-path="url(#clipPath72)"
-       y="343"
-       x="10" />
-    <rect
-       style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="rect608"
-       height="62"
-       width="138"
-       clip-path="url(#clipPath72)"
-       y="343"
-       x="10" />
-    <image
-       id="image610"
-       xlink:show="embed"
-       preserveAspectRatio="none"
-       height="16"
-       xlink:actuate="onLoad"
-       xlink:type="simple"
-       xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAvUlEQVR42mP8//8/ AyWAiYFCwIIuMK/WgKCTkpovMOI0AASiaxfh1Ly0OQ6/F/79Z8RrO7o8hgv+/GVg +P+fFcxmhKkFeYoRQoPk8Rvwn4lh1YJpDLgCAiSP14Df/5gYwhNTcXphWs0J/GHw +y/+mEWXx3DBr7+MeMMAJI/fC0AF3X2rGXAFwh+CBgDDoKo4AKcXGgt3EgiDfwTC 4B8ToXTASCAdEPDCX2A8F2dl4nQBMxMBF0yafYCRlNwIAPWTSpioA+oRAAAAAElF TkSuQmCC"
-       width="16"
-       clip-path="url(#clipPath73)"
-       y="343"
-       x="11"
-       style="font-size:13px;fill:#808080;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
-    <text
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="text612"
-       xml:space="preserve"
-       clip-path="url(#clipPath74)"
-       y="356"
-       x="30">BooleanExpression</text>
-    <image
-       style="font-size:13px;fill:#404040;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="image614"
-       xlink:actuate="onLoad"
-       xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAXUlEQVR42mNgGAUD DxjRBebW6P8npCm55SJcHwu65I8/TAzJjQtwap5bn4DCZ0JX8PUXC17b0eUxVH8G Kvj/nxXiP5hD/0M9+x8ij9cAkA3FWZk4XcDBwjKacqgNALytGBsVIOzJAAAAAElF TkSuQmCC"
-       y="361"
-       x="15"
-       height="16"
-       preserveAspectRatio="none"
-       clip-path="url(#clipPath75)"
-       xlink:type="simple"
-       xlink:show="embed"
-       width="16" />
-    <text
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="text616"
-       xml:space="preserve"
-       clip-path="url(#clipPath76)"
-       y="374"
-       x="34">language : EString</text>
-    <image
-       style="font-size:13px;fill:#404040;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="image618"
-       xlink:actuate="onLoad"
-       xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAXUlEQVR42mNgGAUD DxjRBebW6P8npCm55SJcHwu65I8/TAzJjQtwap5bn4DCZ0JX8PUXC17b0eUxVH8G Kvj/nxXiP5hD/0M9+x8ij9cAkA3FWZk4XcDBwjKacqgNALytGBsVIOzJAAAAAElF TkSuQmCC"
-       y="377"
-       x="15"
-       height="16"
-       preserveAspectRatio="none"
-       clip-path="url(#clipPath77)"
-       xlink:type="simple"
-       xlink:show="embed"
-       width="16" />
-    <text
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="text620"
-       xml:space="preserve"
-       clip-path="url(#clipPath78)"
-       y="390"
-       x="34">body : EString</text>
-    <line
-       style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line622"
-       y2="359"
-       y1="359"
-       x2="149"
-       x1="10"
-       clip-path="url(#clipPath79)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line624"
-       y2="394"
-       y1="394"
-       x2="149"
-       x1="10"
-       clip-path="url(#clipPath80)" />
-    <rect
-       style="font-size:13px;fill:#f8f9d1;stroke:none;font-family:Ubuntu"
-       id="rect626"
-       height="99"
-       width="121"
-       clip-path="url(#clipPath81)"
-       y="379"
-       x="202" />
-    <rect
-       style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="rect628"
-       height="98"
-       width="120"
-       clip-path="url(#clipPath81)"
-       y="379"
-       x="202" />
-    <text
-       style="font-size:13px;fill:#808080;stroke:none;font-family:Ubuntu"
-       id="text630"
-       clip-path="url(#clipPath82)"
-       y="392"
-       x="208"
-       xml:space="preserve">&lt;&lt;enumeration&gt;&gt;</text>
-    <image
-       id="image632"
-       xlink:show="embed"
-       preserveAspectRatio="none"
-       height="16"
-       xlink:actuate="onLoad"
-       xlink:type="simple"
-       xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAuElEQVR42mP8//8/ AyWAiYFCQBsDytpP/te2yEDxG4gPEkdXy9zQ0ICheevG+QxXT8xgBLELSlsaHr4W bdiwMIMRxna1lWnE6gJkzSA+iI1Mg8RBbGSXoBjQVWnO6O2fyABzPoiNTIPEQWyQ OpgeRmzRuHnvw/8V1e1wl8A0d7RWMvg6yzMiq2WkNB2wYBPMTnYAm8rO8o+Bh+0P Ay8QcwMxB5Cf1HyBkaABU+ceYBx1AfEuoDgzAQDdSHDLTl+jJgAAAABJRU5ErkJg gg=="
-       width="16"
-       clip-path="url(#clipPath83)"
-       y="395"
-       x="202"
-       style="font-size:13px;fill:#808080;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
-    <text
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="text634"
-       xml:space="preserve"
-       clip-path="url(#clipPath84)"
-       y="408"
-       x="221">PseudostateKind</text>
-    <image
-       style="font-size:13px;fill:#404040;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="image636"
-       xlink:actuate="onLoad"
-       xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAASklEQVR42mP8//8/ AyWAiYFCMGoAFQxgwSaYnewAjlt2lr8MPKx/GXjZ/zBws/1h4GD5x5DUfIGRBBcw ghHJLpg69wDjaDQOJQMA/OUOFnOMypIAAAAASUVORK5CYII="
-       y="413"
-       x="207"
-       height="16"
-       preserveAspectRatio="none"
-       clip-path="url(#clipPath85)"
-       xlink:type="simple"
-       xlink:show="embed"
-       width="16" />
-    <text
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="text638"
-       xml:space="preserve"
-       clip-path="url(#clipPath86)"
-       y="426"
-       x="226">initial</text>
-    <image
-       style="font-size:13px;fill:#404040;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="image640"
-       xlink:actuate="onLoad"
-       xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAASklEQVR42mP8//8/ AyWAiYFCMGoAFQxgwSaYnewAjlt2lr8MPKx/GXjZ/zBws/1h4GD5x5DUfIGRBBcw ghHJLpg69wDjaDQOJQMA/OUOFnOMypIAAAAASUVORK5CYII="
-       y="429"
-       x="207"
-       height="16"
-       preserveAspectRatio="none"
-       clip-path="url(#clipPath87)"
-       xlink:type="simple"
-       xlink:show="embed"
-       width="16" />
-    <text
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="text642"
-       xml:space="preserve"
-       clip-path="url(#clipPath88)"
-       y="442"
-       x="226">join</text>
-    <image
-       style="font-size:13px;fill:#404040;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="image644"
-       xlink:actuate="onLoad"
-       xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAASklEQVR42mP8//8/ AyWAiYFCMGoAFQxgwSaYnewAjlt2lr8MPKx/GXjZ/zBws/1h4GD5x5DUfIGRBBcw ghHJLpg69wDjaDQOJQMA/OUOFnOMypIAAAAASUVORK5CYII="
-       y="445"
-       x="207"
-       height="16"
-       preserveAspectRatio="none"
-       clip-path="url(#clipPath89)"
-       xlink:type="simple"
-       xlink:show="embed"
-       width="16" />
-    <text
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="text646"
-       xml:space="preserve"
-       clip-path="url(#clipPath90)"
-       y="458"
-       x="226">fork</text>
-    <image
-       style="font-size:13px;fill:#404040;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="image648"
-       xlink:actuate="onLoad"
-       xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAASklEQVR42mP8//8/ AyWAiYFCMGoAFQxgwSaYnewAjlt2lr8MPKx/GXjZ/zBws/1h4GD5x5DUfIGRBBcw ghHJLpg69wDjaDQOJQMA/OUOFnOMypIAAAAASUVORK5CYII="
-       y="461"
-       x="207"
-       height="16"
-       preserveAspectRatio="none"
-       clip-path="url(#clipPath91)"
-       xlink:type="simple"
-       xlink:show="embed"
-       width="16" />
-    <text
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="text650"
-       xml:space="preserve"
-       clip-path="url(#clipPath92)"
-       y="474"
-       x="226">junction</text>
-    <line
-       style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line652"
-       y2="411"
-       y1="411"
-       x2="323"
-       x1="202"
-       clip-path="url(#clipPath93)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line654"
-       y2="207"
-       y1="207"
-       x2="761"
-       x1="527"
-       clip-path="url(#clipPath94)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line656"
-       y2="444"
-       y1="207"
-       x2="757"
-       x1="761"
-       clip-path="url(#clipPath94)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line658"
-       y2="444"
-       y1="444"
-       x2="662"
-       x1="757"
-       clip-path="url(#clipPath94)" />
-    <polygon
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="polygon660"
-       points="541,207 534,204 534,204 527,207 534,210 "
-       clip-path="url(#clipPath95)" />
-    <polygon
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="polygon662"
-       points="541,207 534,204 534,204 527,207 534,210 "
-       clip-path="url(#clipPath95)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line664"
-       y2="444"
-       y1="441"
-       x2="662"
-       x1="669"
-       clip-path="url(#clipPath96)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line666"
-       y2="447"
-       y1="444"
-       x2="669"
-       x1="662"
-       clip-path="url(#clipPath96)" />
-    <text
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="text668"
-       xml:space="preserve"
-       clip-path="url(#clipPath97)"
-       y="459"
-       x="747">top</text>
-    <text
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="text670"
-       xml:space="preserve"
-       clip-path="url(#clipPath98)"
-       y="439"
-       x="733">1</text>
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line672"
-       y2="178"
-       y1="178"
-       x2="322"
-       x1="406"
-       clip-path="url(#clipPath94)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line674"
-       y2="247"
-       y1="178"
-       x2="322"
-       x1="322"
-       clip-path="url(#clipPath94)" />
-    <polygon
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="polygon676"
-       points="392,178 399,181 399,181 406,178 399,175 "
-       clip-path="url(#clipPath99)" />
-    <polygon
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="polygon678"
-       points="392,178 399,181 399,181 406,178 399,175 "
-       clip-path="url(#clipPath99)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line680"
-       y2="247"
-       y1="240"
-       x2="322"
-       x1="319"
-       clip-path="url(#clipPath100)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line682"
-       y2="240"
-       y1="247"
-       x2="325"
-       x1="322"
-       clip-path="url(#clipPath100)" />
-    <text
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="text684"
-       xml:space="preserve"
-       clip-path="url(#clipPath101)"
-       y="236"
-       x="334">transitions</text>
-    <text
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="text686"
-       xml:space="preserve"
-       clip-path="url(#clipPath102)"
-       y="236"
-       x="298">0..*</text>
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line688"
-       y2="78"
-       y1="139"
-       x2="478"
-       x1="478"
-       clip-path="url(#clipPath94)" />
-    <polygon
-       style="font-size:13px;fill:#ffffff;stroke:none;font-family:Ubuntu"
-       id="polygon690"
-       points="478,78 484,92 472,92 478,78 "
-       clip-path="url(#clipPath103)" />
-    <polygon
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="polygon692"
-       points="478,78 484,92 472,92 478,78 "
-       clip-path="url(#clipPath103)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line694"
-       y2="169"
-       y1="169"
-       x2="814"
-       x1="759"
-       clip-path="url(#clipPath94)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line696"
-       y2="169"
-       y1="169"
-       x2="850"
-       x1="814"
-       clip-path="url(#clipPath94)" />
-    <polygon
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="polygon698"
-       points="773,169 766,166 766,166 759,169 766,172 "
-       clip-path="url(#clipPath104)" />
-    <polygon
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="polygon700"
-       points="773,169 766,166 766,166 759,169 766,172 "
-       clip-path="url(#clipPath104)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line702"
-       y2="169"
-       y1="172"
-       x2="850"
-       x1="843"
-       clip-path="url(#clipPath105)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line704"
-       y2="166"
-       y1="169"
-       x2="843"
-       x1="850"
-       clip-path="url(#clipPath105)" />
-    <text
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="text706"
-       xml:space="preserve"
-       clip-path="url(#clipPath106)"
-       y="164"
-       x="790">partition</text>
-    <text
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="text708"
-       xml:space="preserve"
-       clip-path="url(#clipPath107)"
-       y="188"
-       x="826">0..*</text>
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line710"
-       y2="175"
-       y1="175"
-       x2="527"
-       x1="658"
-       clip-path="url(#clipPath94)" />
-    <polygon
-       style="font-size:13px;fill:#ffffff;stroke:none;font-family:Ubuntu"
-       id="polygon712"
-       points="527,175 541,169 541,181 527,175 "
-       clip-path="url(#clipPath108)" />
-    <polygon
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="polygon714"
-       points="527,175 541,169 541,181 527,175 "
-       clip-path="url(#clipPath108)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line716"
-       y2="115"
-       y1="151"
-       x2="946"
-       x1="946"
-       clip-path="url(#clipPath94)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line718"
-       y2="70"
-       y1="115"
-       x2="946"
-       x1="946"
-       clip-path="url(#clipPath94)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line720"
-       y2="70"
-       y1="70"
-       x2="545"
-       x1="946"
-       clip-path="url(#clipPath94)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line722"
-       y2="70"
-       y1="67"
-       x2="545"
-       x1="552"
-       clip-path="url(#clipPath109)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line724"
-       y2="73"
-       y1="70"
-       x2="552"
-       x1="545"
-       clip-path="url(#clipPath109)" />
-    <text
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="text726"
-       xml:space="preserve"
-       clip-path="url(#clipPath110)"
-       y="92"
-       x="562">contents</text>
-    <text
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="text728"
-       xml:space="preserve"
-       clip-path="url(#clipPath111)"
-       y="68"
-       x="562">0..*</text>
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line730"
-       y2="115"
-       y1="151"
-       x2="924"
-       x1="924"
-       clip-path="url(#clipPath94)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line732"
-       y2="115"
-       y1="115"
-       x2="478"
-       x1="924"
-       clip-path="url(#clipPath94)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line734"
-       y2="78"
-       y1="115"
-       x2="478"
-       x1="478"
-       clip-path="url(#clipPath94)" />
-    <polygon
-       style="font-size:13px;fill:#ffffff;stroke:none;font-family:Ubuntu"
-       id="polygon736"
-       points="478,78 484,92 472,92 478,78 "
-       clip-path="url(#clipPath103)" />
-    <polygon
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="polygon738"
-       points="478,78 484,92 472,92 478,78 "
-       clip-path="url(#clipPath103)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line740"
-       y2="321"
-       y1="321"
-       x2="447"
-       x1="551"
-       clip-path="url(#clipPath94)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line742"
-       y2="321"
-       y1="321"
-       x2="335"
-       x1="447"
-       clip-path="url(#clipPath94)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line744"
-       y2="321"
-       y1="318"
-       x2="335"
-       x1="342"
-       clip-path="url(#clipPath112)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line746"
-       y2="324"
-       y1="321"
-       x2="342"
-       x1="335"
-       clip-path="url(#clipPath112)" />
-    <text
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="text748"
-       xml:space="preserve"
-       clip-path="url(#clipPath113)"
-       y="318"
-       x="370">outgoing</text>
-    <text
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="text750"
-       xml:space="preserve"
-       clip-path="url(#clipPath114)"
-       y="318"
-       x="346">0..*</text>
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line752"
-       y2="335"
-       y1="335"
-       x2="335"
-       x1="551"
-       clip-path="url(#clipPath94)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line754"
-       y2="335"
-       y1="332"
-       x2="335"
-       x1="342"
-       clip-path="url(#clipPath115)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line756"
-       y2="338"
-       y1="335"
-       x2="342"
-       x1="335"
-       clip-path="url(#clipPath115)" />
-    <text
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="text758"
-       xml:space="preserve"
-       clip-path="url(#clipPath116)"
-       y="349"
-       x="370">incoming</text>
-    <text
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="text760"
-       xml:space="preserve"
-       clip-path="url(#clipPath117)"
-       y="349"
-       x="346">0..*</text>
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line762"
-       y2="115"
-       y1="247"
-       x2="622"
-       x1="622"
-       clip-path="url(#clipPath94)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line764"
-       y2="115"
-       y1="115"
-       x2="478"
-       x1="622"
-       clip-path="url(#clipPath94)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line766"
-       y2="78"
-       y1="115"
-       x2="478"
-       x1="478"
-       clip-path="url(#clipPath94)" />
-    <polygon
-       style="font-size:13px;fill:#ffffff;stroke:none;font-family:Ubuntu"
-       id="polygon768"
-       points="478,78 484,92 472,92 478,78 "
-       clip-path="url(#clipPath103)" />
-    <polygon
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="polygon770"
-       points="478,78 484,92 472,92 478,78 "
-       clip-path="url(#clipPath103)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line772"
-       y2="344"
-       y1="427"
-       x2="610"
-       x1="610"
-       clip-path="url(#clipPath94)" />
-    <polygon
-       style="font-size:13px;fill:#ffffff;stroke:none;font-family:Ubuntu"
-       id="polygon774"
-       points="610,344 616,358 604,358 610,344 "
-       clip-path="url(#clipPath118)" />
-    <polygon
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="polygon776"
-       points="610,344 616,358 604,358 610,344 "
-       clip-path="url(#clipPath118)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line778"
-       y2="295"
-       y1="535"
-       x2="934"
-       x1="934"
-       clip-path="url(#clipPath94)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line780"
-       y2="295"
-       y1="295"
-       x2="672"
-       x1="934"
-       clip-path="url(#clipPath94)" />
-    <polygon
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="polygon782"
-       points="934,521 931,528 931,528 934,535 937,528 "
-       clip-path="url(#clipPath119)" />
-    <polygon
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="polygon784"
-       points="934,521 931,528 931,528 934,535 937,528 "
-       clip-path="url(#clipPath119)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line786"
-       y2="295"
-       y1="292"
-       x2="672"
-       x1="679"
-       clip-path="url(#clipPath120)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line788"
-       y2="298"
-       y1="295"
-       x2="679"
-       x1="672"
-       clip-path="url(#clipPath120)" />
-    <text
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="text790"
-       xml:space="preserve"
-       clip-path="url(#clipPath121)"
-       y="308"
-       x="682">subvertex</text>
-    <text
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="text792"
-       xml:space="preserve"
-       clip-path="url(#clipPath122)"
-       y="284"
-       x="694">0..*</text>
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line794"
-       y2="501"
-       y1="535"
-       x2="895"
-       x1="895"
-       clip-path="url(#clipPath94)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line796"
-       y2="501"
-       y1="501"
-       x2="622"
-       x1="895"
-       clip-path="url(#clipPath94)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line798"
-       y2="467"
-       y1="501"
-       x2="622"
-       x1="622"
-       clip-path="url(#clipPath94)" />
-    <polygon
-       style="font-size:13px;fill:#ffffff;stroke:none;font-family:Ubuntu"
-       id="polygon800"
-       points="622,467 628,481 616,481 622,467 "
-       clip-path="url(#clipPath123)" />
-    <polygon
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="polygon802"
-       points="622,467 628,481 616,481 622,467 "
-       clip-path="url(#clipPath123)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line804"
-       y2="501"
-       y1="535"
-       x2="574"
-       x1="574"
-       clip-path="url(#clipPath94)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line806"
-       y2="501"
-       y1="501"
-       x2="622"
-       x1="574"
-       clip-path="url(#clipPath94)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line808"
-       y2="467"
-       y1="501"
-       x2="622"
-       x1="622"
-       clip-path="url(#clipPath94)" />
-    <polygon
-       style="font-size:13px;fill:#ffffff;stroke:none;font-family:Ubuntu"
-       id="polygon810"
-       points="622,467 628,481 616,481 622,467 "
-       clip-path="url(#clipPath123)" />
-    <polygon
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="polygon812"
-       points="622,467 628,481 616,481 622,467 "
-       clip-path="url(#clipPath123)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line814"
-       y2="367"
-       y1="391"
-       x2="429"
-       x1="429"
-       clip-path="url(#clipPath94)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line816"
-       y2="367"
-       y1="367"
-       x2="610"
-       x1="429"
-       clip-path="url(#clipPath94)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line818"
-       y2="344"
-       y1="367"
-       x2="610"
-       x1="610"
-       clip-path="url(#clipPath94)" />
-    <polygon
-       style="font-size:13px;fill:#ffffff;stroke:none;font-family:Ubuntu"
-       id="polygon820"
-       points="610,344 616,358 604,358 610,344 "
-       clip-path="url(#clipPath118)" />
-    <polygon
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="polygon822"
-       points="610,344 616,358 604,358 610,344 "
-       clip-path="url(#clipPath118)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line824"
-       y2="603"
-       y1="575"
-       x2="776"
-       x1="776"
-       clip-path="url(#clipPath94)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line826"
-       y2="599"
-       y1="603"
-       x2="1079"
-       x1="776"
-       clip-path="url(#clipPath94)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line828"
-       y2="39"
-       y1="599"
-       x2="1079"
-       x1="1079"
-       clip-path="url(#clipPath94)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line830"
-       y2="39"
-       y1="39"
-       x2="545"
-       x1="1079"
-       clip-path="url(#clipPath94)" />
-    <polygon
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="polygon832"
-       points="776,589 779,582 779,582 776,575 773,582 "
-       clip-path="url(#clipPath124)" />
-    <polygon
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="polygon834"
-       points="776,589 779,582 779,582 776,575 773,582 "
-       clip-path="url(#clipPath124)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line836"
-       y2="39"
-       y1="36"
-       x2="545"
-       x1="552"
-       clip-path="url(#clipPath125)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line838"
-       y2="42"
-       y1="39"
-       x2="552"
-       x1="545"
-       clip-path="url(#clipPath125)" />
-    <text
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="text840"
-       xml:space="preserve"
-       clip-path="url(#clipPath126)"
-       y="36"
-       x="574">type</text>
-    <text
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="text842"
-       xml:space="preserve"
-       clip-path="url(#clipPath127)"
-       y="36"
-       x="562">1</text>
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line844"
-       y2="501"
-       y1="535"
-       x2="809"
-       x1="809"
-       clip-path="url(#clipPath94)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line846"
-       y2="501"
-       y1="501"
-       x2="622"
-       x1="809"
-       clip-path="url(#clipPath94)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line848"
-       y2="467"
-       y1="501"
-       x2="622"
-       x1="622"
-       clip-path="url(#clipPath94)" />
-    <polygon
-       style="font-size:13px;fill:#ffffff;stroke:none;font-family:Ubuntu"
-       id="polygon850"
-       points="622,467 628,481 616,481 622,467 "
-       clip-path="url(#clipPath123)" />
-    <polygon
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="polygon852"
-       points="622,467 628,481 616,481 622,467 "
-       clip-path="url(#clipPath123)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line854"
-       y2="501"
-       y1="535"
-       x2="396"
-       x1="396"
-       clip-path="url(#clipPath94)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line856"
-       y2="501"
-       y1="501"
-       x2="622"
-       x1="396"
-       clip-path="url(#clipPath94)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line858"
-       y2="467"
-       y1="501"
-       x2="622"
-       x1="622"
-       clip-path="url(#clipPath94)" />
-    <polygon
-       style="font-size:13px;fill:#ffffff;stroke:none;font-family:Ubuntu"
-       id="polygon860"
-       points="622,467 628,481 616,481 622,467 "
-       clip-path="url(#clipPath123)" />
-    <polygon
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="polygon862"
-       points="622,467 628,481 616,481 622,467 "
-       clip-path="url(#clipPath123)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line864"
-       y2="277"
-       y1="277"
-       x2="551"
-       x1="335"
-       clip-path="url(#clipPath94)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line866"
-       y2="277"
-       y1="280"
-       x2="551"
-       x1="544"
-       clip-path="url(#clipPath128)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line868"
-       y2="274"
-       y1="277"
-       x2="544"
-       x1="551"
-       clip-path="url(#clipPath128)" />
-    <text
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="text870"
-       xml:space="preserve"
-       clip-path="url(#clipPath129)"
-       y="274"
-       x="502">source</text>
-    <text
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="text872"
-       xml:space="preserve"
-       clip-path="url(#clipPath130)"
-       y="272"
-       x="490">1</text>
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line874"
-       y2="115"
-       y1="247"
-       x2="286"
-       x1="286"
-       clip-path="url(#clipPath94)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line876"
-       y2="115"
-       y1="115"
-       x2="478"
-       x1="286"
-       clip-path="url(#clipPath94)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line878"
-       y2="78"
-       y1="115"
-       x2="478"
-       x1="478"
-       clip-path="url(#clipPath94)" />
-    <polygon
-       style="font-size:13px;fill:#ffffff;stroke:none;font-family:Ubuntu"
-       id="polygon880"
-       points="478,78 484,92 472,92 478,78 "
-       clip-path="url(#clipPath103)" />
-    <polygon
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="polygon882"
-       points="478,78 484,92 472,92 478,78 "
-       clip-path="url(#clipPath103)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line884"
-       y2="63"
-       y1="247"
-       x2="58"
-       x1="58"
-       clip-path="url(#clipPath94)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line886"
-       y2="63"
-       y1="63"
-       x2="430"
-       x1="58"
-       clip-path="url(#clipPath94)" />
-    <polygon
-       style="font-size:13px;fill:#ffffff;stroke:none;font-family:Ubuntu"
-       id="polygon888"
-       points="430,63 416,69 416,57 430,63 "
-       clip-path="url(#clipPath131)" />
-    <polygon
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="polygon890"
-       points="430,63 416,69 416,57 430,63 "
-       clip-path="url(#clipPath131)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line892"
-       y2="295"
-       y1="295"
-       x2="551"
-       x1="335"
-       clip-path="url(#clipPath94)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line894"
-       y2="295"
-       y1="298"
-       x2="551"
-       x1="544"
-       clip-path="url(#clipPath132)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line896"
-       y2="292"
-       y1="295"
-       x2="544"
-       x1="551"
-       clip-path="url(#clipPath132)" />
-    <text
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="text898"
-       xml:space="preserve"
-       clip-path="url(#clipPath133)"
-       y="308"
-       x="502">target</text>
-    <text
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="text900"
-       xml:space="preserve"
-       clip-path="url(#clipPath134)"
-       y="308"
-       x="490">1</text>
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line902"
-       y2="307"
-       y1="287"
-       x2="60"
-       x1="60"
-       clip-path="url(#clipPath94)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line904"
-       y2="343"
-       y1="307"
-       x2="60"
-       x1="60"
-       clip-path="url(#clipPath94)" />
-    <polygon
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="polygon906"
-       points="60,301 63,294 63,294 60,287 57,294 "
-       clip-path="url(#clipPath135)" />
-    <polygon
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="polygon908"
-       points="60,301 63,294 63,294 60,287 57,294 "
-       clip-path="url(#clipPath135)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line910"
-       y2="343"
-       y1="336"
-       x2="60"
-       x1="57"
-       clip-path="url(#clipPath136)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line912"
-       y2="336"
-       y1="343"
-       x2="63"
-       x1="60"
-       clip-path="url(#clipPath136)" />
-    <text
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="text914"
-       xml:space="preserve"
-       clip-path="url(#clipPath137)"
-       y="332"
-       x="64">expression</text>
-    <text
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="text916"
-       xml:space="preserve"
-       clip-path="url(#clipPath138)"
-       y="332"
-       x="40">1</text>
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line918"
-       y2="263"
-       y1="263"
-       x2="110"
-       x1="226"
-       clip-path="url(#clipPath94)" />
-    <polygon
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="polygon920"
-       points="212,263 219,266 219,266 226,263 219,260 "
-       clip-path="url(#clipPath139)" />
-    <polygon
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="polygon922"
-       points="212,263 219,266 219,266 226,263 219,260 "
-       clip-path="url(#clipPath139)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line924"
-       y2="263"
-       y1="260"
-       x2="110"
-       x1="117"
-       clip-path="url(#clipPath140)" />
-    <line
-       style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
-       id="line926"
-       y2="266"
-       y1="263"
-       x2="117"
-       x1="110"
-       clip-path="url(#clipPath140)" />
-    <text
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="text928"
-       xml:space="preserve"
-       clip-path="url(#clipPath141)"
-       y="278"
-       x="119">guard</text>
-    <text
-       style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-       id="text930"
-       xml:space="preserve"
-       clip-path="url(#clipPath142)"
-       y="260"
-       x="118">0..1</text>
-    <text
-       sodipodi:linespacing="125%"
-       id="text3911"
-       y="23.836842"
+  <rect
+     x="430"
+     y="31"
+     clip-path="url(#clipPath1)"
+     width="115"
+     height="47"
+     id="rect436"
+     style="font-size:13px;fill:#f8f9d1;stroke:none;font-family:Ubuntu" />
+  <rect
+     x="430"
+     y="31"
+     clip-path="url(#clipPath1)"
+     width="114"
+     height="46"
+     id="rect440"
+     style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <image
+     style="font-size:13px;fill:#808080;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
+     x="433"
+     y="31"
+     clip-path="url(#clipPath2)"
+     width="16"
+     xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAvUlEQVR42mP8//8/ AyWAiYFCwIIuMK/WgKCTkpovMOI0AASiaxfh1Ly0OQ6/F/79Z8RrO7o8hgv+/GVg +P+fFcxmhKkFeYoRQoPk8Rvwn4lh1YJpDLgCAiSP14Df/5gYwhNTcXphWs0J/GHw +y/+mEWXx3DBr7+MeMMAJI/fC0AF3X2rGXAFwh+CBgDDoKo4AKcXGgt3EgiDfwTC 4B8ToXTASCAdEPDCX2A8F2dl4nQBMxMBF0yafYCRlNwIAPWTSpioA+oRAAAAAElF TkSuQmCC"
+     xlink:type="simple"
+     xlink:actuate="onLoad"
+     height="16"
+     preserveAspectRatio="none"
+     xlink:show="embed"
+     id="image442" />
+  <text
+     x="452"
+     y="44"
+     clip-path="url(#clipPath3)"
+     xml:space="preserve"
+     id="text444"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu">ModelElement</text>
+  <image
+     width="16"
+     xlink:show="embed"
+     xlink:type="simple"
+     clip-path="url(#clipPath4)"
+     preserveAspectRatio="none"
+     height="16"
+     x="435"
+     y="49"
+     xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAXUlEQVR42mNgGAUD DxjRBebW6P8npCm55SJcHwu65I8/TAzJjQtwap5bn4DCZ0JX8PUXC17b0eUxVH8G Kvj/nxXiP5hD/0M9+x8ij9cAkA3FWZk4XcDBwjKacqgNALytGBsVIOzJAAAAAElF TkSuQmCC"
+     xlink:actuate="onLoad"
+     id="image446"
+     style="font-size:13px;fill:#404040;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <text
+     x="454"
+     y="62"
+     clip-path="url(#clipPath5)"
+     xml:space="preserve"
+     id="text448"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu">name : EString</text>
+  <line
+     clip-path="url(#clipPath6)"
+     x1="430"
+     x2="545"
+     y1="47"
+     y2="47"
+     id="line450"
+     style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath7)"
+     x1="430"
+     x2="545"
+     y1="66"
+     y2="66"
+     id="line452"
+     style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <rect
+     x="406"
+     y="139"
+     clip-path="url(#clipPath8)"
+     width="121"
+     height="100"
+     id="rect454"
+     style="font-size:13px;fill:#f8f9d1;stroke:none;font-family:Ubuntu" />
+  <rect
+     x="406"
+     y="139"
+     clip-path="url(#clipPath8)"
+     width="120"
+     height="99"
+     id="rect456"
+     style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <image
+     style="font-size:13px;fill:#808080;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
+     x="416"
+     y="139"
+     clip-path="url(#clipPath9)"
+     width="16"
+     xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAvUlEQVR42mP8//8/ AyWAiYFCwIIuMK/WgKCTkpovMOI0AASiaxfh1Ly0OQ6/F/79Z8RrO7o8hgv+/GVg +P+fFcxmhKkFeYoRQoPk8Rvwn4lh1YJpDLgCAiSP14Df/5gYwhNTcXphWs0J/GHw +y/+mEWXx3DBr7+MeMMAJI/fC0AF3X2rGXAFwh+CBgDDoKo4AKcXGgt3EgiDfwTC 4B8ToXTASCAdEPDCX2A8F2dl4nQBMxMBF0yafYCRlNwIAPWTSpioA+oRAAAAAElF TkSuQmCC"
+     xlink:type="simple"
+     xlink:actuate="onLoad"
+     height="16"
+     preserveAspectRatio="none"
+     xlink:show="embed"
+     id="image458" />
+  <text
+     x="435"
+     y="152"
+     clip-path="url(#clipPath10)"
+     xml:space="preserve"
+     id="text460"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu">StateMachine</text>
+  <line
+     clip-path="url(#clipPath11)"
+     x1="406"
+     x2="527"
+     y1="155"
+     y2="155"
+     id="line462"
+     style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath12)"
+     x1="406"
+     x2="527"
+     y1="167"
+     y2="167"
+     id="line464"
+     style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <rect
+     x="658"
+     y="151"
+     clip-path="url(#clipPath13)"
+     width="101"
+     height="40"
+     id="rect466"
+     style="font-size:13px;fill:#f8f9d1;stroke:none;font-family:Ubuntu" />
+  <rect
+     x="658"
+     y="151"
+     clip-path="url(#clipPath13)"
+     width="100"
+     height="39"
+     id="rect468"
+     style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <image
+     style="font-size:13px;fill:#808080;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
+     x="658"
+     y="151"
+     clip-path="url(#clipPath14)"
+     width="16"
+     xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAvUlEQVR42mP8//8/ AyWAiYFCwIIuMK/WgKCTkpovMOI0AASiaxfh1Ly0OQ6/F/79Z8RrO7o8hgv+/GVg +P+fFcxmhKkFeYoRQoPk8Rvwn4lh1YJpDLgCAiSP14Df/5gYwhNTcXphWs0J/GHw +y/+mEWXx3DBr7+MeMMAJI/fC0AF3X2rGXAFwh+CBgDDoKo4AKcXGgt3EgiDfwTC 4B8ToXTASCAdEPDCX2A8F2dl4nQBMxMBF0yafYCRlNwIAPWTSpioA+oRAAAAAElF TkSuQmCC"
+     xlink:type="simple"
+     xlink:actuate="onLoad"
+     height="16"
+     preserveAspectRatio="none"
+     xlink:show="embed"
+     id="image470" />
+  <text
+     x="677"
+     y="164"
+     clip-path="url(#clipPath15)"
+     xml:space="preserve"
+     id="text472"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu">ActivityGraph</text>
+  <line
+     clip-path="url(#clipPath16)"
+     x1="658"
+     x2="759"
+     y1="167"
+     y2="167"
+     id="line474"
+     style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath17)"
+     x1="658"
+     x2="759"
+     y1="179"
+     y2="179"
+     id="line476"
+     style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <rect
+     x="850"
+     y="151"
+     clip-path="url(#clipPath18)"
+     width="112"
+     height="73"
+     id="rect478"
+     style="font-size:13px;fill:#f8f9d1;stroke:none;font-family:Ubuntu" />
+  <rect
+     x="850"
+     y="151"
+     clip-path="url(#clipPath18)"
+     width="111"
+     height="72"
+     id="rect480"
+     style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <image
+     style="font-size:13px;fill:#808080;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
+     x="870"
+     y="151"
+     clip-path="url(#clipPath19)"
+     width="16"
+     xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAvUlEQVR42mP8//8/ AyWAiYFCwIIuMK/WgKCTkpovMOI0AASiaxfh1Ly0OQ6/F/79Z8RrO7o8hgv+/GVg +P+fFcxmhKkFeYoRQoPk8Rvwn4lh1YJpDLgCAiSP14Df/5gYwhNTcXphWs0J/GHw +y/+mEWXx3DBr7+MeMMAJI/fC0AF3X2rGXAFwh+CBgDDoKo4AKcXGgt3EgiDfwTC 4B8ToXTASCAdEPDCX2A8F2dl4nQBMxMBF0yafYCRlNwIAPWTSpioA+oRAAAAAElF TkSuQmCC"
+     xlink:type="simple"
+     xlink:actuate="onLoad"
+     height="16"
+     preserveAspectRatio="none"
+     xlink:show="embed"
+     id="image482" />
+  <text
+     x="889"
+     y="164"
+     clip-path="url(#clipPath20)"
+     xml:space="preserve"
+     id="text484"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu">Partition</text>
+  <line
+     clip-path="url(#clipPath21)"
+     x1="850"
+     x2="962"
+     y1="167"
+     y2="167"
+     id="line486"
+     style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath22)"
+     x1="850"
+     x2="962"
+     y1="179"
+     y2="179"
+     id="line488"
+     style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <rect
+     x="551"
+     y="247"
+     clip-path="url(#clipPath23)"
+     width="121"
+     height="97"
+     id="rect490"
+     style="font-size:13px;fill:#f8f9d1;stroke:none;font-family:Ubuntu" />
+  <rect
+     x="551"
+     y="247"
+     clip-path="url(#clipPath23)"
+     width="120"
+     height="96"
+     id="rect492"
+     style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <image
+     width="16"
+     xlink:show="embed"
+     xlink:type="simple"
+     clip-path="url(#clipPath24)"
+     preserveAspectRatio="none"
+     height="16"
+     font-style="italic"
+     x="566"
+     y="247"
+     xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAvUlEQVR42mP8//8/ AyWAiYFCwIIuMK/WgKCTkpovMOI0AASiaxfh1Ly0OQ6/F/79Z8RrO7o8hgv+/GVg +P+fFcxmhKkFeYoRQoPk8Rvwn4lh1YJpDLgCAiSP14Df/5gYwhNTcXphWs0J/GHw +y/+mEWXx3DBr7+MeMMAJI/fC0AF3X2rGXAFwh+CBgDDoKo4AKcXGgt3EgiDfwTC 4B8ToXTASCAdEPDCX2A8F2dl4nQBMxMBF0yafYCRlNwIAPWTSpioA+oRAAAAAElF TkSuQmCC"
+     xlink:actuate="onLoad"
+     id="image494"
+     style="font-size:13px;font-style:italic;fill:#808080;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <text
+     x="585"
+     y="260"
+     clip-path="url(#clipPath25)"
+     font-style="italic"
+     xml:space="preserve"
+     id="text496"
+     style="font-size:13px;font-style:italic;fill:#404040;stroke:none;font-family:Ubuntu">StateVertex</text>
+  <line
+     clip-path="url(#clipPath26)"
+     x1="551"
+     x2="672"
+     y1="263"
+     y2="263"
+     id="line498"
+     style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath27)"
+     x1="551"
+     x2="672"
+     y1="275"
+     y2="275"
+     id="line500"
+     style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <rect
+     x="562"
+     y="427"
+     clip-path="url(#clipPath28)"
+     width="100"
+     height="40"
+     id="rect502"
+     style="font-size:13px;fill:#f8f9d1;stroke:none;font-family:Ubuntu" />
+  <rect
+     x="562"
+     y="427"
+     clip-path="url(#clipPath28)"
+     width="99"
+     height="39"
+     id="rect504"
+     style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <image
+     style="font-size:13px;fill:#808080;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
+     x="587"
+     y="427"
+     clip-path="url(#clipPath29)"
+     width="16"
+     xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAvUlEQVR42mP8//8/ AyWAiYFCwIIuMK/WgKCTkpovMOI0AASiaxfh1Ly0OQ6/F/79Z8RrO7o8hgv+/GVg +P+fFcxmhKkFeYoRQoPk8Rvwn4lh1YJpDLgCAiSP14Df/5gYwhNTcXphWs0J/GHw +y/+mEWXx3DBr7+MeMMAJI/fC0AF3X2rGXAFwh+CBgDDoKo4AKcXGgt3EgiDfwTC 4B8ToXTASCAdEPDCX2A8F2dl4nQBMxMBF0yafYCRlNwIAPWTSpioA+oRAAAAAElF TkSuQmCC"
+     xlink:type="simple"
+     xlink:actuate="onLoad"
+     height="16"
+     preserveAspectRatio="none"
+     xlink:show="embed"
+     id="image506" />
+  <text
+     x="606"
+     y="440"
+     clip-path="url(#clipPath30)"
+     xml:space="preserve"
+     id="text508"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu">State</text>
+  <line
+     clip-path="url(#clipPath31)"
+     x1="562"
+     x2="662"
+     y1="443"
+     y2="443"
+     id="line510"
+     style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath32)"
+     x1="562"
+     x2="662"
+     y1="455"
+     y2="455"
+     id="line512"
+     style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <rect
+     x="886"
+     y="535"
+     clip-path="url(#clipPath33)"
+     width="114"
+     height="40"
+     id="rect514"
+     style="font-size:13px;fill:#f8f9d1;stroke:none;font-family:Ubuntu" />
+  <rect
+     x="886"
+     y="535"
+     clip-path="url(#clipPath33)"
+     width="113"
+     height="39"
+     id="rect516"
+     style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <image
+     style="font-size:13px;fill:#808080;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
+     x="886"
+     y="535"
+     clip-path="url(#clipPath34)"
+     width="16"
+     xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAvUlEQVR42mP8//8/ AyWAiYFCwIIuMK/WgKCTkpovMOI0AASiaxfh1Ly0OQ6/F/79Z8RrO7o8hgv+/GVg +P+fFcxmhKkFeYoRQoPk8Rvwn4lh1YJpDLgCAiSP14Df/5gYwhNTcXphWs0J/GHw +y/+mEWXx3DBr7+MeMMAJI/fC0AF3X2rGXAFwh+CBgDDoKo4AKcXGgt3EgiDfwTC 4B8ToXTASCAdEPDCX2A8F2dl4nQBMxMBF0yafYCRlNwIAPWTSpioA+oRAAAAAElF TkSuQmCC"
+     xlink:type="simple"
+     xlink:actuate="onLoad"
+     height="16"
+     preserveAspectRatio="none"
+     xlink:show="embed"
+     id="image518" />
+  <text
+     x="905"
+     y="548"
+     clip-path="url(#clipPath35)"
+     xml:space="preserve"
+     id="text520"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu">CompositeState</text>
+  <line
+     clip-path="url(#clipPath36)"
+     x1="886"
+     x2="1000"
+     y1="551"
+     y2="551"
+     id="line522"
+     style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath37)"
+     x1="886"
+     x2="1000"
+     y1="563"
+     y2="563"
+     id="line524"
+     style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <rect
+     x="504"
+     y="535"
+     clip-path="url(#clipPath38)"
+     width="158"
+     height="47"
+     id="rect526"
+     style="font-size:13px;fill:#f8f9d1;stroke:none;font-family:Ubuntu" />
+  <rect
+     x="504"
+     y="535"
+     clip-path="url(#clipPath38)"
+     width="157"
+     height="46"
+     id="rect528"
+     style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <image
+     style="font-size:13px;fill:#808080;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
+     x="538"
+     y="535"
+     clip-path="url(#clipPath39)"
+     width="16"
+     xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAvUlEQVR42mP8//8/ AyWAiYFCwIIuMK/WgKCTkpovMOI0AASiaxfh1Ly0OQ6/F/79Z8RrO7o8hgv+/GVg +P+fFcxmhKkFeYoRQoPk8Rvwn4lh1YJpDLgCAiSP14Df/5gYwhNTcXphWs0J/GHw +y/+mEWXx3DBr7+MeMMAJI/fC0AF3X2rGXAFwh+CBgDDoKo4AKcXGgt3EgiDfwTC 4B8ToXTASCAdEPDCX2A8F2dl4nQBMxMBF0yafYCRlNwIAPWTSpioA+oRAAAAAElF TkSuQmCC"
+     xlink:type="simple"
+     xlink:actuate="onLoad"
+     height="16"
+     preserveAspectRatio="none"
+     xlink:show="embed"
+     id="image530" />
+  <text
+     x="557"
+     y="548"
+     clip-path="url(#clipPath40)"
+     xml:space="preserve"
+     id="text532"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu">ActionState</text>
+  <image
+     width="16"
+     xlink:show="embed"
+     xlink:type="simple"
+     clip-path="url(#clipPath41)"
+     preserveAspectRatio="none"
+     height="16"
+     x="509"
+     y="553"
+     xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAXUlEQVR42mNgGAUD DxjRBebW6P8npCm55SJcHwu65I8/TAzJjQtwap5bn4DCZ0JX8PUXC17b0eUxVH8G Kvj/nxXiP5hD/0M9+x8ij9cAkA3FWZk4XcDBwjKacqgNALytGBsVIOzJAAAAAElF TkSuQmCC"
+     xlink:actuate="onLoad"
+     id="image534"
+     style="font-size:13px;fill:#404040;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <text
+     x="528"
+     y="566"
+     clip-path="url(#clipPath42)"
+     xml:space="preserve"
+     id="text536"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu">isDynamic : EBoolean</text>
+  <line
+     clip-path="url(#clipPath43)"
+     x1="504"
+     x2="662"
+     y1="551"
+     y2="551"
+     id="line538"
+     style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath44)"
+     x1="504"
+     x2="662"
+     y1="570"
+     y2="570"
+     id="line540"
+     style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <rect
+     x="346"
+     y="391"
+     clip-path="url(#clipPath45)"
+     width="166"
+     height="47"
+     id="rect542"
+     style="font-size:13px;fill:#f8f9d1;stroke:none;font-family:Ubuntu" />
+  <rect
+     x="346"
+     y="391"
+     clip-path="url(#clipPath45)"
+     width="165"
+     height="46"
+     id="rect544"
+     style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <image
+     style="font-size:13px;fill:#808080;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
+     x="382"
+     y="391"
+     clip-path="url(#clipPath46)"
+     width="16"
+     xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAvUlEQVR42mP8//8/ AyWAiYFCwIIuMK/WgKCTkpovMOI0AASiaxfh1Ly0OQ6/F/79Z8RrO7o8hgv+/GVg +P+fFcxmhKkFeYoRQoPk8Rvwn4lh1YJpDLgCAiSP14Df/5gYwhNTcXphWs0J/GHw +y/+mEWXx3DBr7+MeMMAJI/fC0AF3X2rGXAFwh+CBgDDoKo4AKcXGgt3EgiDfwTC 4B8ToXTASCAdEPDCX2A8F2dl4nQBMxMBF0yafYCRlNwIAPWTSpioA+oRAAAAAElF TkSuQmCC"
+     xlink:type="simple"
+     xlink:actuate="onLoad"
+     height="16"
+     preserveAspectRatio="none"
+     xlink:show="embed"
+     id="image546" />
+  <text
+     x="401"
+     y="404"
+     clip-path="url(#clipPath47)"
+     xml:space="preserve"
+     id="text548"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu">Pseudostate</text>
+  <image
+     width="16"
+     xlink:show="embed"
+     xlink:type="simple"
+     clip-path="url(#clipPath48)"
+     preserveAspectRatio="none"
+     height="16"
+     x="351"
+     y="409"
+     xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAcklEQVR42mNgGAWM 6AJza/T/E9KU3HIRro8FXfLHHyaG5MYFODXPrU9A4TOhK/j6iwWv7ejyGKo/AxX8 /88K8R/Mof+hnv0PkcdrAMiG4qxMnC7gYGGhczRJ2pfhjRUmSjTT3gVkpURctj8/ 2MVIk0AGAJdzIYcp/aiWAAAAAElFTkSuQmCC"
+     xlink:actuate="onLoad"
+     id="image550"
+     style="font-size:13px;fill:#404040;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <text
+     x="370"
+     y="422"
+     clip-path="url(#clipPath49)"
+     xml:space="preserve"
+     id="text552"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu">kind : PseudostateKind</text>
+  <line
+     clip-path="url(#clipPath50)"
+     x1="346"
+     x2="512"
+     y1="407"
+     y2="407"
+     id="line554"
+     style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath51)"
+     x1="346"
+     x2="512"
+     y1="426"
+     y2="426"
+     id="line556"
+     style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <rect
+     x="721"
+     y="535"
+     clip-path="url(#clipPath52)"
+     width="118"
+     height="40"
+     id="rect558"
+     style="font-size:13px;fill:#f8f9d1;stroke:none;font-family:Ubuntu" />
+  <rect
+     x="721"
+     y="535"
+     clip-path="url(#clipPath52)"
+     width="117"
+     height="39"
+     id="rect560"
+     style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <image
+     style="font-size:13px;fill:#808080;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
+     x="721"
+     y="535"
+     clip-path="url(#clipPath53)"
+     width="16"
+     xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAvUlEQVR42mP8//8/ AyWAiYFCwIIuMK/WgKCTkpovMOI0AASiaxfh1Ly0OQ6/F/79Z8RrO7o8hgv+/GVg +P+fFcxmhKkFeYoRQoPk8Rvwn4lh1YJpDLgCAiSP14Df/5gYwhNTcXphWs0J/GHw +y/+mEWXx3DBr7+MeMMAJI/fC0AF3X2rGXAFwh+CBgDDoKo4AKcXGgt3EgiDfwTC 4B8ToXTASCAdEPDCX2A8F2dl4nQBMxMBF0yafYCRlNwIAPWTSpioA+oRAAAAAElF TkSuQmCC"
+     xlink:type="simple"
+     xlink:actuate="onLoad"
+     height="16"
+     preserveAspectRatio="none"
+     xlink:show="embed"
+     id="image562" />
+  <text
+     x="740"
+     y="548"
+     clip-path="url(#clipPath54)"
+     xml:space="preserve"
+     id="text564"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu">ObjectFlowState</text>
+  <line
+     clip-path="url(#clipPath55)"
+     x1="721"
+     x2="839"
+     y1="551"
+     y2="551"
+     id="line566"
+     style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath56)"
+     x1="721"
+     x2="839"
+     y1="563"
+     y2="563"
+     id="line568"
+     style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <rect
+     x="346"
+     y="535"
+     clip-path="url(#clipPath57)"
+     width="100"
+     height="40"
+     id="rect570"
+     style="font-size:13px;fill:#f8f9d1;stroke:none;font-family:Ubuntu" />
+  <rect
+     x="346"
+     y="535"
+     clip-path="url(#clipPath57)"
+     width="99"
+     height="39"
+     id="rect572"
+     style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <image
+     style="font-size:13px;fill:#808080;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
+     x="356"
+     y="535"
+     clip-path="url(#clipPath58)"
+     width="16"
+     xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAvUlEQVR42mP8//8/ AyWAiYFCwIIuMK/WgKCTkpovMOI0AASiaxfh1Ly0OQ6/F/79Z8RrO7o8hgv+/GVg +P+fFcxmhKkFeYoRQoPk8Rvwn4lh1YJpDLgCAiSP14Df/5gYwhNTcXphWs0J/GHw +y/+mEWXx3DBr7+MeMMAJI/fC0AF3X2rGXAFwh+CBgDDoKo4AKcXGgt3EgiDfwTC 4B8ToXTASCAdEPDCX2A8F2dl4nQBMxMBF0yafYCRlNwIAPWTSpioA+oRAAAAAElF TkSuQmCC"
+     xlink:type="simple"
+     xlink:actuate="onLoad"
+     height="16"
+     preserveAspectRatio="none"
+     xlink:show="embed"
+     id="image574" />
+  <text
+     x="375"
+     y="548"
+     clip-path="url(#clipPath59)"
+     xml:space="preserve"
+     id="text576"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu">FinalState</text>
+  <line
+     clip-path="url(#clipPath60)"
+     x1="346"
+     x2="446"
+     y1="551"
+     y2="551"
+     id="line578"
+     style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath61)"
+     x1="346"
+     x2="446"
+     y1="563"
+     y2="563"
+     id="line580"
+     style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <rect
+     x="226"
+     y="247"
+     clip-path="url(#clipPath62)"
+     width="109"
+     height="100"
+     id="rect582"
+     style="font-size:13px;fill:#f8f9d1;stroke:none;font-family:Ubuntu" />
+  <rect
+     x="226"
+     y="247"
+     clip-path="url(#clipPath62)"
+     width="108"
+     height="99"
+     id="rect584"
+     style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <image
+     style="font-size:13px;fill:#808080;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
+     x="241"
+     y="247"
+     clip-path="url(#clipPath63)"
+     width="16"
+     xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAvUlEQVR42mP8//8/ AyWAiYFCwIIuMK/WgKCTkpovMOI0AASiaxfh1Ly0OQ6/F/79Z8RrO7o8hgv+/GVg +P+fFcxmhKkFeYoRQoPk8Rvwn4lh1YJpDLgCAiSP14Df/5gYwhNTcXphWs0J/GHw +y/+mEWXx3DBr7+MeMMAJI/fC0AF3X2rGXAFwh+CBgDDoKo4AKcXGgt3EgiDfwTC 4B8ToXTASCAdEPDCX2A8F2dl4nQBMxMBF0yafYCRlNwIAPWTSpioA+oRAAAAAElF TkSuQmCC"
+     xlink:type="simple"
+     xlink:actuate="onLoad"
+     height="16"
+     preserveAspectRatio="none"
+     xlink:show="embed"
+     id="image586" />
+  <text
+     x="260"
+     y="260"
+     clip-path="url(#clipPath64)"
+     xml:space="preserve"
+     id="text588"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu">Transition</text>
+  <line
+     clip-path="url(#clipPath65)"
+     x1="226"
+     x2="335"
+     y1="263"
+     y2="263"
+     id="line590"
+     style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath66)"
+     x1="226"
+     x2="335"
+     y1="275"
+     y2="275"
+     id="line592"
+     style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <rect
+     x="10"
+     y="247"
+     clip-path="url(#clipPath67)"
+     width="100"
+     height="40"
+     id="rect594"
+     style="font-size:13px;fill:#f8f9d1;stroke:none;font-family:Ubuntu" />
+  <rect
+     x="10"
+     y="247"
+     clip-path="url(#clipPath67)"
+     width="99"
+     height="39"
+     id="rect596"
+     style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <image
+     style="font-size:13px;fill:#808080;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
+     x="32"
+     y="247"
+     clip-path="url(#clipPath68)"
+     width="16"
+     xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAvUlEQVR42mP8//8/ AyWAiYFCwIIuMK/WgKCTkpovMOI0AASiaxfh1Ly0OQ6/F/79Z8RrO7o8hgv+/GVg +P+fFcxmhKkFeYoRQoPk8Rvwn4lh1YJpDLgCAiSP14Df/5gYwhNTcXphWs0J/GHw +y/+mEWXx3DBr7+MeMMAJI/fC0AF3X2rGXAFwh+CBgDDoKo4AKcXGgt3EgiDfwTC 4B8ToXTASCAdEPDCX2A8F2dl4nQBMxMBF0yafYCRlNwIAPWTSpioA+oRAAAAAElF TkSuQmCC"
+     xlink:type="simple"
+     xlink:actuate="onLoad"
+     height="16"
+     preserveAspectRatio="none"
+     xlink:show="embed"
+     id="image598" />
+  <text
+     x="51"
+     y="260"
+     clip-path="url(#clipPath69)"
+     xml:space="preserve"
+     id="text600"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu">Guard</text>
+  <line
+     clip-path="url(#clipPath70)"
+     x1="10"
+     x2="110"
+     y1="263"
+     y2="263"
+     id="line602"
+     style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath71)"
+     x1="10"
+     x2="110"
+     y1="275"
+     y2="275"
+     id="line604"
+     style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <rect
+     x="10"
+     y="343"
+     clip-path="url(#clipPath72)"
+     width="139"
+     height="63"
+     id="rect606"
+     style="font-size:13px;fill:#f8f9d1;stroke:none;font-family:Ubuntu" />
+  <rect
+     x="10"
+     y="343"
+     clip-path="url(#clipPath72)"
+     width="138"
+     height="62"
+     id="rect608"
+     style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <image
+     style="font-size:13px;fill:#808080;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
+     x="11"
+     y="343"
+     clip-path="url(#clipPath73)"
+     width="16"
+     xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAvUlEQVR42mP8//8/ AyWAiYFCwIIuMK/WgKCTkpovMOI0AASiaxfh1Ly0OQ6/F/79Z8RrO7o8hgv+/GVg +P+fFcxmhKkFeYoRQoPk8Rvwn4lh1YJpDLgCAiSP14Df/5gYwhNTcXphWs0J/GHw +y/+mEWXx3DBr7+MeMMAJI/fC0AF3X2rGXAFwh+CBgDDoKo4AKcXGgt3EgiDfwTC 4B8ToXTASCAdEPDCX2A8F2dl4nQBMxMBF0yafYCRlNwIAPWTSpioA+oRAAAAAElF TkSuQmCC"
+     xlink:type="simple"
+     xlink:actuate="onLoad"
+     height="16"
+     preserveAspectRatio="none"
+     xlink:show="embed"
+     id="image610" />
+  <text
+     x="30"
+     y="356"
+     clip-path="url(#clipPath74)"
+     xml:space="preserve"
+     id="text612"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu">BooleanExpression</text>
+  <image
+     width="16"
+     xlink:show="embed"
+     xlink:type="simple"
+     clip-path="url(#clipPath75)"
+     preserveAspectRatio="none"
+     height="16"
+     x="15"
+     y="361"
+     xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAXUlEQVR42mNgGAUD DxjRBebW6P8npCm55SJcHwu65I8/TAzJjQtwap5bn4DCZ0JX8PUXC17b0eUxVH8G Kvj/nxXiP5hD/0M9+x8ij9cAkA3FWZk4XcDBwjKacqgNALytGBsVIOzJAAAAAElF TkSuQmCC"
+     xlink:actuate="onLoad"
+     id="image614"
+     style="font-size:13px;fill:#404040;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <text
+     x="34"
+     y="374"
+     clip-path="url(#clipPath76)"
+     xml:space="preserve"
+     id="text616"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu">language : EString</text>
+  <image
+     width="16"
+     xlink:show="embed"
+     xlink:type="simple"
+     clip-path="url(#clipPath77)"
+     preserveAspectRatio="none"
+     height="16"
+     x="15"
+     y="377"
+     xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAXUlEQVR42mNgGAUD DxjRBebW6P8npCm55SJcHwu65I8/TAzJjQtwap5bn4DCZ0JX8PUXC17b0eUxVH8G Kvj/nxXiP5hD/0M9+x8ij9cAkA3FWZk4XcDBwjKacqgNALytGBsVIOzJAAAAAElF TkSuQmCC"
+     xlink:actuate="onLoad"
+     id="image618"
+     style="font-size:13px;fill:#404040;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <text
+     x="34"
+     y="390"
+     clip-path="url(#clipPath78)"
+     xml:space="preserve"
+     id="text620"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu">body : EString</text>
+  <line
+     clip-path="url(#clipPath79)"
+     x1="10"
+     x2="149"
+     y1="359"
+     y2="359"
+     id="line622"
+     style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath80)"
+     x1="10"
+     x2="149"
+     y1="394"
+     y2="394"
+     id="line624"
+     style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <rect
+     x="202"
+     y="379"
+     clip-path="url(#clipPath81)"
+     width="121"
+     height="99"
+     id="rect626"
+     style="font-size:13px;fill:#f8f9d1;stroke:none;font-family:Ubuntu" />
+  <rect
+     x="202"
+     y="379"
+     clip-path="url(#clipPath81)"
+     width="120"
+     height="98"
+     id="rect628"
+     style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <text
+     xml:space="preserve"
+     x="208"
+     y="392"
+     clip-path="url(#clipPath82)"
+     id="text630"
+     style="font-size:13px;fill:#808080;stroke:none;font-family:Ubuntu">&lt;&lt;enumeration&gt;&gt;</text>
+  <image
+     style="font-size:13px;fill:#808080;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu"
+     x="202"
+     y="395"
+     clip-path="url(#clipPath83)"
+     width="16"
+     xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAuElEQVR42mP8//8/ AyWAiYFCQBsDytpP/te2yEDxG4gPEkdXy9zQ0ICheevG+QxXT8xgBLELSlsaHr4W bdiwMIMRxna1lWnE6gJkzSA+iI1Mg8RBbGSXoBjQVWnO6O2fyABzPoiNTIPEQWyQ OpgeRmzRuHnvw/8V1e1wl8A0d7RWMvg6yzMiq2WkNB2wYBPMTnYAm8rO8o+Bh+0P Ay8QcwMxB5Cf1HyBkaABU+ceYBx1AfEuoDgzAQDdSHDLTl+jJgAAAABJRU5ErkJg gg=="
+     xlink:type="simple"
+     xlink:actuate="onLoad"
+     height="16"
+     preserveAspectRatio="none"
+     xlink:show="embed"
+     id="image632" />
+  <text
+     x="221"
+     y="408"
+     clip-path="url(#clipPath84)"
+     xml:space="preserve"
+     id="text634"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu">PseudostateKind</text>
+  <image
+     width="16"
+     xlink:show="embed"
+     xlink:type="simple"
+     clip-path="url(#clipPath85)"
+     preserveAspectRatio="none"
+     height="16"
+     x="207"
+     y="413"
+     xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAASklEQVR42mP8//8/ AyWAiYFCMGoAFQxgwSaYnewAjlt2lr8MPKx/GXjZ/zBws/1h4GD5x5DUfIGRBBcw ghHJLpg69wDjaDQOJQMA/OUOFnOMypIAAAAASUVORK5CYII="
+     xlink:actuate="onLoad"
+     id="image636"
+     style="font-size:13px;fill:#404040;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <text
+     x="226"
+     y="426"
+     clip-path="url(#clipPath86)"
+     xml:space="preserve"
+     id="text638"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu">initial</text>
+  <image
+     width="16"
+     xlink:show="embed"
+     xlink:type="simple"
+     clip-path="url(#clipPath87)"
+     preserveAspectRatio="none"
+     height="16"
+     x="207"
+     y="429"
+     xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAASklEQVR42mP8//8/ AyWAiYFCMGoAFQxgwSaYnewAjlt2lr8MPKx/GXjZ/zBws/1h4GD5x5DUfIGRBBcw ghHJLpg69wDjaDQOJQMA/OUOFnOMypIAAAAASUVORK5CYII="
+     xlink:actuate="onLoad"
+     id="image640"
+     style="font-size:13px;fill:#404040;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <text
+     x="226"
+     y="442"
+     clip-path="url(#clipPath88)"
+     xml:space="preserve"
+     id="text642"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu">join</text>
+  <image
+     width="16"
+     xlink:show="embed"
+     xlink:type="simple"
+     clip-path="url(#clipPath89)"
+     preserveAspectRatio="none"
+     height="16"
+     x="207"
+     y="445"
+     xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAASklEQVR42mP8//8/ AyWAiYFCMGoAFQxgwSaYnewAjlt2lr8MPKx/GXjZ/zBws/1h4GD5x5DUfIGRBBcw ghHJLpg69wDjaDQOJQMA/OUOFnOMypIAAAAASUVORK5CYII="
+     xlink:actuate="onLoad"
+     id="image644"
+     style="font-size:13px;fill:#404040;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <text
+     x="226"
+     y="458"
+     clip-path="url(#clipPath90)"
+     xml:space="preserve"
+     id="text646"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu">fork</text>
+  <image
+     width="16"
+     xlink:show="embed"
+     xlink:type="simple"
+     clip-path="url(#clipPath91)"
+     preserveAspectRatio="none"
+     height="16"
+     x="207"
+     y="461"
+     xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAASklEQVR42mP8//8/ AyWAiYFCMGoAFQxgwSaYnewAjlt2lr8MPKx/GXjZ/zBws/1h4GD5x5DUfIGRBBcw ghHJLpg69wDjaDQOJQMA/OUOFnOMypIAAAAASUVORK5CYII="
+     xlink:actuate="onLoad"
+     id="image648"
+     style="font-size:13px;fill:#404040;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <text
+     x="226"
+     y="474"
+     clip-path="url(#clipPath92)"
+     xml:space="preserve"
+     id="text650"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu">junction</text>
+  <line
+     clip-path="url(#clipPath93)"
+     x1="202"
+     x2="323"
+     y1="411"
+     y2="411"
+     id="line652"
+     style="font-size:13px;fill:none;stroke:#808080;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath94)"
+     x1="527"
+     x2="761"
+     y1="207"
+     y2="207"
+     id="line654"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath94)"
+     x1="761"
+     x2="757"
+     y1="207"
+     y2="444"
+     id="line656"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath94)"
+     x1="757"
+     x2="662"
+     y1="444"
+     y2="444"
+     id="line658"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <polygon
+     clip-path="url(#clipPath95)"
+     points="534,204 527,207 534,210 541,207 534,204 "
+     id="polygon660"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu" />
+  <polygon
+     clip-path="url(#clipPath95)"
+     points="534,204 527,207 534,210 541,207 534,204 "
+     id="polygon662"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath96)"
+     x1="669"
+     x2="662"
+     y1="441"
+     y2="444"
+     id="line664"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath96)"
+     x1="662"
+     x2="669"
+     y1="444"
+     y2="447"
+     id="line666"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <text
+     x="747"
+     y="459"
+     clip-path="url(#clipPath97)"
+     xml:space="preserve"
+     id="text668"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu">top</text>
+  <text
+     x="733"
+     y="439"
+     clip-path="url(#clipPath98)"
+     xml:space="preserve"
+     id="text670"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu">1</text>
+  <line
+     clip-path="url(#clipPath94)"
+     x1="406"
+     x2="322"
+     y1="178"
+     y2="178"
+     id="line672"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath94)"
+     x1="322"
+     x2="322"
+     y1="178"
+     y2="247"
+     id="line674"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <polygon
+     clip-path="url(#clipPath99)"
+     points="399,181 406,178 399,175 392,178 399,181 "
+     id="polygon676"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu" />
+  <polygon
+     clip-path="url(#clipPath99)"
+     points="399,181 406,178 399,175 392,178 399,181 "
+     id="polygon678"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath100)"
+     x1="319"
+     x2="322"
+     y1="240"
+     y2="247"
+     id="line680"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath100)"
+     x1="322"
+     x2="325"
+     y1="247"
+     y2="240"
+     id="line682"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <text
+     x="334"
+     y="236"
+     clip-path="url(#clipPath101)"
+     xml:space="preserve"
+     id="text684"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu">transitions</text>
+  <text
+     x="298"
+     y="236"
+     clip-path="url(#clipPath102)"
+     xml:space="preserve"
+     id="text686"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu">0..*</text>
+  <line
+     clip-path="url(#clipPath94)"
+     x1="478"
+     x2="478"
+     y1="139"
+     y2="78"
+     id="line688"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <polygon
+     clip-path="url(#clipPath103)"
+     points="472,92 478,78 478,78 484,92 "
+     id="polygon690"
+     style="font-size:13px;fill:#ffffff;stroke:none;font-family:Ubuntu" />
+  <polygon
+     clip-path="url(#clipPath103)"
+     points="472,92 478,78 478,78 484,92 "
+     id="polygon692"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath94)"
+     x1="759"
+     x2="814"
+     y1="169"
+     y2="169"
+     id="line694"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath94)"
+     x1="814"
+     x2="850"
+     y1="169"
+     y2="169"
+     id="line696"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <polygon
+     clip-path="url(#clipPath104)"
+     points="766,166 759,169 766,172 773,169 766,166 "
+     id="polygon698"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu" />
+  <polygon
+     clip-path="url(#clipPath104)"
+     points="766,166 759,169 766,172 773,169 766,166 "
+     id="polygon700"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath105)"
+     x1="843"
+     x2="850"
+     y1="172"
+     y2="169"
+     id="line702"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath105)"
+     x1="850"
+     x2="843"
+     y1="169"
+     y2="166"
+     id="line704"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <text
+     x="790"
+     y="164"
+     clip-path="url(#clipPath106)"
+     xml:space="preserve"
+     id="text706"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu">partition</text>
+  <text
+     x="826"
+     y="188"
+     clip-path="url(#clipPath107)"
+     xml:space="preserve"
+     id="text708"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu">0..*</text>
+  <line
+     clip-path="url(#clipPath94)"
+     x1="658"
+     x2="527"
+     y1="175"
+     y2="175"
+     id="line710"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <polygon
+     clip-path="url(#clipPath108)"
+     points="541,181 527,175 527,175 541,169 "
+     id="polygon712"
+     style="font-size:13px;fill:#ffffff;stroke:none;font-family:Ubuntu" />
+  <polygon
+     clip-path="url(#clipPath108)"
+     points="541,181 527,175 527,175 541,169 "
+     id="polygon714"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath94)"
+     x1="946"
+     x2="946"
+     y1="151"
+     y2="115"
+     id="line716"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath94)"
+     x1="946"
+     x2="946"
+     y1="115"
+     y2="70"
+     id="line718"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath94)"
+     x1="946"
+     x2="545"
+     y1="70"
+     y2="70"
+     id="line720"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath109)"
+     x1="552"
+     x2="545"
+     y1="67"
+     y2="70"
+     id="line722"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath109)"
+     x1="545"
+     x2="552"
+     y1="70"
+     y2="73"
+     id="line724"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <text
+     x="562"
+     y="92"
+     clip-path="url(#clipPath110)"
+     xml:space="preserve"
+     id="text726"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu">contents</text>
+  <text
+     x="562"
+     y="68"
+     clip-path="url(#clipPath111)"
+     xml:space="preserve"
+     id="text728"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu">0..*</text>
+  <line
+     clip-path="url(#clipPath94)"
+     x1="924"
+     x2="924"
+     y1="151"
+     y2="115"
+     id="line730"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath94)"
+     x1="924"
+     x2="478"
+     y1="115"
+     y2="115"
+     id="line732"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath94)"
+     x1="478"
+     x2="478"
+     y1="115"
+     y2="78"
+     id="line734"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <polygon
+     clip-path="url(#clipPath103)"
+     points="472,92 478,78 478,78 484,92 "
+     id="polygon736"
+     style="font-size:13px;fill:#ffffff;stroke:none;font-family:Ubuntu" />
+  <polygon
+     clip-path="url(#clipPath103)"
+     points="472,92 478,78 478,78 484,92 "
+     id="polygon738"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath94)"
+     x1="551"
+     x2="447"
+     y1="321"
+     y2="321"
+     id="line740"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath94)"
+     x1="447"
+     x2="335"
+     y1="321"
+     y2="321"
+     id="line742"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath112)"
+     x1="342"
+     x2="335"
+     y1="318"
+     y2="321"
+     id="line744"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath112)"
+     x1="335"
+     x2="342"
+     y1="321"
+     y2="324"
+     id="line746"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <text
+     x="370"
+     y="318"
+     clip-path="url(#clipPath113)"
+     xml:space="preserve"
+     id="text748"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu">outgoing</text>
+  <text
+     x="346"
+     y="318"
+     clip-path="url(#clipPath114)"
+     xml:space="preserve"
+     id="text750"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu">0..*</text>
+  <line
+     clip-path="url(#clipPath94)"
+     x1="551"
+     x2="335"
+     y1="335"
+     y2="335"
+     id="line752"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath115)"
+     x1="342"
+     x2="335"
+     y1="332"
+     y2="335"
+     id="line754"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath115)"
+     x1="335"
+     x2="342"
+     y1="335"
+     y2="338"
+     id="line756"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <text
+     x="370"
+     y="349"
+     clip-path="url(#clipPath116)"
+     xml:space="preserve"
+     id="text758"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu">incoming</text>
+  <text
+     x="346"
+     y="349"
+     clip-path="url(#clipPath117)"
+     xml:space="preserve"
+     id="text760"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu">0..*</text>
+  <line
+     clip-path="url(#clipPath94)"
+     x1="622"
+     x2="622"
+     y1="247"
+     y2="115"
+     id="line762"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath94)"
+     x1="622"
+     x2="478"
+     y1="115"
+     y2="115"
+     id="line764"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath94)"
+     x1="478"
+     x2="478"
+     y1="115"
+     y2="78"
+     id="line766"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <polygon
+     clip-path="url(#clipPath103)"
+     points="472,92 478,78 478,78 484,92 "
+     id="polygon768"
+     style="font-size:13px;fill:#ffffff;stroke:none;font-family:Ubuntu" />
+  <polygon
+     clip-path="url(#clipPath103)"
+     points="472,92 478,78 478,78 484,92 "
+     id="polygon770"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath94)"
+     x1="610"
+     x2="610"
+     y1="427"
+     y2="344"
+     id="line772"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <polygon
+     clip-path="url(#clipPath118)"
+     points="604,358 610,344 610,344 616,358 "
+     id="polygon774"
+     style="font-size:13px;fill:#ffffff;stroke:none;font-family:Ubuntu" />
+  <polygon
+     clip-path="url(#clipPath118)"
+     points="604,358 610,344 610,344 616,358 "
+     id="polygon776"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath94)"
+     x1="934"
+     x2="934"
+     y1="535"
+     y2="295"
+     id="line778"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath94)"
+     x1="934"
+     x2="672"
+     y1="295"
+     y2="295"
+     id="line780"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <polygon
+     clip-path="url(#clipPath119)"
+     points="931,528 934,535 937,528 934,521 931,528 "
+     id="polygon782"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu" />
+  <polygon
+     clip-path="url(#clipPath119)"
+     points="931,528 934,535 937,528 934,521 931,528 "
+     id="polygon784"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath120)"
+     x1="679"
+     x2="672"
+     y1="292"
+     y2="295"
+     id="line786"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath120)"
+     x1="672"
+     x2="679"
+     y1="295"
+     y2="298"
+     id="line788"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <text
+     x="682"
+     y="308"
+     clip-path="url(#clipPath121)"
+     xml:space="preserve"
+     id="text790"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu">subvertex</text>
+  <text
+     x="694"
+     y="284"
+     clip-path="url(#clipPath122)"
+     xml:space="preserve"
+     id="text792"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu">0..*</text>
+  <line
+     clip-path="url(#clipPath94)"
+     x1="895"
+     x2="895"
+     y1="535"
+     y2="501"
+     id="line794"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath94)"
+     x1="895"
+     x2="622"
+     y1="501"
+     y2="501"
+     id="line796"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath94)"
+     x1="622"
+     x2="622"
+     y1="501"
+     y2="467"
+     id="line798"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <polygon
+     clip-path="url(#clipPath123)"
+     points="616,481 622,467 622,467 628,481 "
+     id="polygon800"
+     style="font-size:13px;fill:#ffffff;stroke:none;font-family:Ubuntu" />
+  <polygon
+     clip-path="url(#clipPath123)"
+     points="616,481 622,467 622,467 628,481 "
+     id="polygon802"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath94)"
+     x1="574"
+     x2="574"
+     y1="535"
+     y2="501"
+     id="line804"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath94)"
+     x1="574"
+     x2="622"
+     y1="501"
+     y2="501"
+     id="line806"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath94)"
+     x1="622"
+     x2="622"
+     y1="501"
+     y2="467"
+     id="line808"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <polygon
+     clip-path="url(#clipPath123)"
+     points="616,481 622,467 622,467 628,481 "
+     id="polygon810"
+     style="font-size:13px;fill:#ffffff;stroke:none;font-family:Ubuntu" />
+  <polygon
+     clip-path="url(#clipPath123)"
+     points="616,481 622,467 622,467 628,481 "
+     id="polygon812"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath94)"
+     x1="429"
+     x2="429"
+     y1="391"
+     y2="367"
+     id="line814"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath94)"
+     x1="429"
+     x2="610"
+     y1="367"
+     y2="367"
+     id="line816"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath94)"
+     x1="610"
+     x2="610"
+     y1="367"
+     y2="344"
+     id="line818"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <polygon
+     clip-path="url(#clipPath118)"
+     points="604,358 610,344 610,344 616,358 "
+     id="polygon820"
+     style="font-size:13px;fill:#ffffff;stroke:none;font-family:Ubuntu" />
+  <polygon
+     clip-path="url(#clipPath118)"
+     points="604,358 610,344 610,344 616,358 "
+     id="polygon822"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath94)"
+     x1="776"
+     x2="776"
+     y1="575"
+     y2="603"
+     id="line824"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath94)"
+     x1="776"
+     x2="1079"
+     y1="603"
+     y2="599"
+     id="line826"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath94)"
+     x1="1079"
+     x2="1079"
+     y1="599"
+     y2="39"
+     id="line828"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath94)"
+     x1="1079"
+     x2="545"
+     y1="39"
+     y2="39"
+     id="line830"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <polygon
+     clip-path="url(#clipPath124)"
+     points="779,582 776,575 773,582 776,589 779,582 "
+     id="polygon832"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu" />
+  <polygon
+     clip-path="url(#clipPath124)"
+     points="779,582 776,575 773,582 776,589 779,582 "
+     id="polygon834"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath125)"
+     x1="552"
+     x2="545"
+     y1="36"
+     y2="39"
+     id="line836"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath125)"
+     x1="545"
+     x2="552"
+     y1="39"
+     y2="42"
+     id="line838"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <text
+     x="574"
+     y="36"
+     clip-path="url(#clipPath126)"
+     xml:space="preserve"
+     id="text840"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu">type</text>
+  <text
+     x="562"
+     y="36"
+     clip-path="url(#clipPath127)"
+     xml:space="preserve"
+     id="text842"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu">1</text>
+  <line
+     clip-path="url(#clipPath94)"
+     x1="809"
+     x2="809"
+     y1="535"
+     y2="501"
+     id="line844"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath94)"
+     x1="809"
+     x2="622"
+     y1="501"
+     y2="501"
+     id="line846"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath94)"
+     x1="622"
+     x2="622"
+     y1="501"
+     y2="467"
+     id="line848"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <polygon
+     clip-path="url(#clipPath123)"
+     points="616,481 622,467 622,467 628,481 "
+     id="polygon850"
+     style="font-size:13px;fill:#ffffff;stroke:none;font-family:Ubuntu" />
+  <polygon
+     clip-path="url(#clipPath123)"
+     points="616,481 622,467 622,467 628,481 "
+     id="polygon852"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath94)"
+     x1="396"
+     x2="396"
+     y1="535"
+     y2="501"
+     id="line854"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath94)"
+     x1="396"
+     x2="622"
+     y1="501"
+     y2="501"
+     id="line856"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath94)"
+     x1="622"
+     x2="622"
+     y1="501"
+     y2="467"
+     id="line858"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <polygon
+     clip-path="url(#clipPath123)"
+     points="616,481 622,467 622,467 628,481 "
+     id="polygon860"
+     style="font-size:13px;fill:#ffffff;stroke:none;font-family:Ubuntu" />
+  <polygon
+     clip-path="url(#clipPath123)"
+     points="616,481 622,467 622,467 628,481 "
+     id="polygon862"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath94)"
+     x1="335"
+     x2="551"
+     y1="277"
+     y2="277"
+     id="line864"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath128)"
+     x1="544"
+     x2="551"
+     y1="280"
+     y2="277"
+     id="line866"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath128)"
+     x1="551"
+     x2="544"
+     y1="277"
+     y2="274"
+     id="line868"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <text
+     x="502"
+     y="274"
+     clip-path="url(#clipPath129)"
+     xml:space="preserve"
+     id="text870"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu">source</text>
+  <text
+     x="490"
+     y="272"
+     clip-path="url(#clipPath130)"
+     xml:space="preserve"
+     id="text872"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu">1</text>
+  <line
+     clip-path="url(#clipPath94)"
+     x1="286"
+     x2="286"
+     y1="247"
+     y2="115"
+     id="line874"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath94)"
+     x1="286"
+     x2="478"
+     y1="115"
+     y2="115"
+     id="line876"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath94)"
+     x1="478"
+     x2="478"
+     y1="115"
+     y2="78"
+     id="line878"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <polygon
+     clip-path="url(#clipPath103)"
+     points="472,92 478,78 478,78 484,92 "
+     id="polygon880"
+     style="font-size:13px;fill:#ffffff;stroke:none;font-family:Ubuntu" />
+  <polygon
+     clip-path="url(#clipPath103)"
+     points="472,92 478,78 478,78 484,92 "
+     id="polygon882"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath94)"
+     x1="58"
+     x2="58"
+     y1="247"
+     y2="63"
+     id="line884"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath94)"
+     x1="58"
+     x2="430"
+     y1="63"
+     y2="63"
+     id="line886"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <polygon
+     clip-path="url(#clipPath131)"
+     points="416,57 430,63 430,63 416,69 "
+     id="polygon888"
+     style="font-size:13px;fill:#ffffff;stroke:none;font-family:Ubuntu" />
+  <polygon
+     clip-path="url(#clipPath131)"
+     points="416,57 430,63 430,63 416,69 "
+     id="polygon890"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath94)"
+     x1="335"
+     x2="551"
+     y1="295"
+     y2="295"
+     id="line892"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath132)"
+     x1="544"
+     x2="551"
+     y1="298"
+     y2="295"
+     id="line894"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath132)"
+     x1="551"
+     x2="544"
+     y1="295"
+     y2="292"
+     id="line896"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <text
+     x="502"
+     y="308"
+     clip-path="url(#clipPath133)"
+     xml:space="preserve"
+     id="text898"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu">target</text>
+  <text
+     x="490"
+     y="308"
+     clip-path="url(#clipPath134)"
+     xml:space="preserve"
+     id="text900"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu">1</text>
+  <line
+     clip-path="url(#clipPath94)"
+     x1="60"
+     x2="60"
+     y1="287"
+     y2="307"
+     id="line902"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath94)"
+     x1="60"
+     x2="60"
+     y1="307"
+     y2="343"
+     id="line904"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <polygon
+     clip-path="url(#clipPath135)"
+     points="63,294 60,287 57,294 60,301 63,294 "
+     id="polygon906"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu" />
+  <polygon
+     clip-path="url(#clipPath135)"
+     points="63,294 60,287 57,294 60,301 63,294 "
+     id="polygon908"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath136)"
+     x1="57"
+     x2="60"
+     y1="336"
+     y2="343"
+     id="line910"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath136)"
+     x1="60"
+     x2="63"
+     y1="343"
+     y2="336"
+     id="line912"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <text
+     x="64"
+     y="332"
+     clip-path="url(#clipPath137)"
+     xml:space="preserve"
+     id="text914"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu">expression</text>
+  <text
+     x="40"
+     y="332"
+     clip-path="url(#clipPath138)"
+     xml:space="preserve"
+     id="text916"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu">1</text>
+  <line
+     clip-path="url(#clipPath94)"
+     x1="226"
+     x2="110"
+     y1="263"
+     y2="263"
+     id="line918"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <polygon
+     clip-path="url(#clipPath139)"
+     points="219,266 226,263 219,260 212,263 219,266 "
+     id="polygon920"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu" />
+  <polygon
+     clip-path="url(#clipPath139)"
+     points="219,266 226,263 219,260 212,263 219,266 "
+     id="polygon922"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath140)"
+     x1="117"
+     x2="110"
+     y1="260"
+     y2="263"
+     id="line924"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <line
+     clip-path="url(#clipPath140)"
+     x1="110"
+     x2="117"
+     y1="263"
+     y2="266"
+     id="line926"
+     style="font-size:13px;fill:none;stroke:#404040;stroke-width:1.10000002;stroke-linecap:butt;font-family:Ubuntu" />
+  <text
+     x="119"
+     y="278"
+     clip-path="url(#clipPath141)"
+     xml:space="preserve"
+     id="text928"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu">guard</text>
+  <text
+     x="118"
+     y="260"
+     clip-path="url(#clipPath142)"
+     xml:space="preserve"
+     id="text930"
+     style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu">0..1</text>
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ff0000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+     x="589.87109"
+     y="23.836842"
+     id="text3911"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       id="tspan3913"
        x="589.87109"
-       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ff0000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
-       xml:space="preserve"><tspan
-         y="23.836842"
-         x="589.87109"
-         id="tspan3913"
-         sodipodi:role="line">Delete</tspan></text>
-    <text
-       sodipodi:linespacing="125%"
-       id="text3915"
-       y="54.455921"
+       y="23.836842">Delete</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+     x="671.23352"
+     y="54.455921"
+     id="text3915"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       id="tspan3917"
        x="671.23352"
-       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
-       xml:space="preserve"><tspan
-         y="54.455921"
-         x="671.23352"
-         id="tspan3917"
-         sodipodi:role="line" /></text>
-    <text
-       sodipodi:linespacing="125%"
-       id="text3911-6"
-       y="248.52068"
+       y="54.455921" /></text>
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ff0000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+     x="382.202"
+     y="248.52068"
+     id="text3911-6"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       id="tspan3913-2"
        x="382.202"
-       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ff0000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
-       xml:space="preserve"><tspan
-         y="248.52068"
-         x="382.202"
-         id="tspan3913-2"
-         sodipodi:role="line">Rename to edges</tspan></text>
-    <text
-       sodipodi:linespacing="125%"
-       id="text3911-6-0"
-       y="356.63617"
+       y="248.52068">Rename to edges</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ff0000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+     x="279.68674"
+     y="356.63617"
+     id="text3911-6-0"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       id="tspan3913-2-8"
+       x="281.3508"
+       y="356.63617">Rename </tspan><tspan
+       sodipodi:role="line"
        x="279.68674"
-       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ff0000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
-       xml:space="preserve"><tspan
-         y="356.63617"
-         x="281.3508"
-         id="tspan3913-2-8"
-         sodipodi:role="line">Rename </tspan><tspan
-         id="tspan3961"
-         y="371.63617"
-         x="279.68674"
-         sodipodi:role="line">to ActivityEdge</tspan></text>
-    <text
-       sodipodi:linespacing="125%"
-       id="text3911-6-0-1"
-       y="417.27765"
+       y="371.63617"
+       id="tspan3961">to ActivityEdge</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ff0000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+     x="76.340561"
+     y="417.27765"
+     id="text3911-6-0-1"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       id="tspan3913-2-8-4"
+       x="78.004623"
+       y="417.27765">Rename </tspan><tspan
+       sodipodi:role="line"
        x="76.340561"
-       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ff0000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
-       xml:space="preserve"><tspan
-         y="417.27765"
-         x="78.004623"
-         id="tspan3913-2-8-4"
-         sodipodi:role="line">Rename </tspan><tspan
-         id="tspan3961-7"
-         y="432.27765"
-         x="76.340561"
-         sodipodi:role="line">to OpaqueExpression</tspan></text>
-    <text
-       sodipodi:linespacing="125%"
-       id="text3911-6-0-7"
-       y="595.15198"
+       y="432.27765"
+       id="tspan3961-7">to OpaqueExpression</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ff0000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+     x="396.30176"
+     y="595.15198"
+     id="text3911-6-0-7"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       id="tspan3913-2-8-2"
+       x="397.96582"
+       y="595.15198">Rename </tspan><tspan
+       sodipodi:role="line"
        x="396.30176"
-       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ff0000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
-       xml:space="preserve"><tspan
-         y="595.15198"
-         x="397.96582"
-         id="tspan3913-2-8-2"
-         sodipodi:role="line">Rename </tspan><tspan
-         id="tspan3961-71"
-         y="610.15198"
-         x="396.30176"
-         sodipodi:role="line">to ActivityFinalNode</tspan></text>
-    <text
-       sodipodi:linespacing="125%"
-       id="text3911-6-0-7-4"
-       y="595.22229"
+       y="610.15198"
+       id="tspan3961-71">to ActivityFinalNode</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ff0000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+     x="580.97412"
+     y="595.22229"
+     id="text3911-6-0-7-4"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       id="tspan3913-2-8-2-6"
+       x="582.63818"
+       y="595.22229">Rename </tspan><tspan
+       sodipodi:role="line"
        x="580.97412"
-       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ff0000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
-       xml:space="preserve"><tspan
-         y="595.22229"
-         x="582.63818"
-         id="tspan3913-2-8-2-6"
-         sodipodi:role="line">Rename </tspan><tspan
-         id="tspan3961-71-8"
-         y="610.22229"
-         x="580.97412"
-         sodipodi:role="line">to OpaqueAction</tspan></text>
-    <text
-       sodipodi:linespacing="125%"
-       id="text3911-6-0-7-4-1"
-       y="595.15198"
+       y="610.22229"
+       id="tspan3961-71-8">to OpaqueAction</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ff0000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+     x="737.4198"
+     y="595.15198"
+     id="text3911-6-0-7-4-1"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       id="tspan3913-2-8-2-6-1"
+       x="739.08386"
+       y="595.15198">Rename </tspan><tspan
+       sodipodi:role="line"
        x="737.4198"
-       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ff0000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
-       xml:space="preserve"><tspan
-         y="595.15198"
-         x="739.08386"
-         id="tspan3913-2-8-2-6-1"
-         sodipodi:role="line">Rename </tspan><tspan
-         id="tspan3961-71-8-2"
-         y="610.15198"
-         x="737.4198"
-         sodipodi:role="line">to ObjectNode</tspan></text>
-    <text
-       sodipodi:linespacing="125%"
-       id="text3911-6-0-7-4-1-0"
-       y="357.44263"
+       y="610.15198"
+       id="tspan3961-71-8-2">to ObjectNode</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ff0000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+     x="663.09442"
+     y="357.44263"
+     id="text3911-6-0-7-4-1-0"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       id="tspan3913-2-8-2-6-1-4"
+       x="664.75848"
+       y="357.44263">Rename </tspan><tspan
+       sodipodi:role="line"
        x="663.09442"
-       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ff0000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
-       xml:space="preserve"><tspan
-         y="357.44263"
-         x="664.75848"
-         id="tspan3913-2-8-2-6-1-4"
-         sodipodi:role="line">Rename </tspan><tspan
-         id="tspan3961-71-8-2-4"
-         y="372.44263"
-         x="663.09442"
-         sodipodi:role="line">to ActivtiyNode</tspan></text>
-    <text
-       sodipodi:linespacing="125%"
-       id="text3911-3"
-       y="200.52063"
+       y="372.44263"
+       id="tspan3961-71-8-2-4">to ActivtiyNode</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ff0000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+     x="814.55859"
+     y="200.52063"
+     id="text3911-3"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       id="tspan3913-5"
        x="814.55859"
-       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ff0000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
-       xml:space="preserve"><tspan
-         y="200.52063"
-         x="814.55859"
-         id="tspan3913-5"
-         sodipodi:role="line">Rename</tspan><tspan
-         id="tspan4104"
-         y="215.52063"
-         x="814.55859"
-         sodipodi:role="line">to groups</tspan></text>
-    <text
-       sodipodi:linespacing="125%"
-       id="text3911-2"
-       y="566.33875"
+       y="200.52063">Rename</tspan><tspan
+       sodipodi:role="line"
+       x="814.55859"
+       y="215.52063"
+       id="tspan4104">to groups</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ff0000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+     x="680.18298"
+     y="566.33875"
+     id="text3911-2"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       id="tspan3913-9"
        x="680.18298"
-       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ff0000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
-       xml:space="preserve"><tspan
-         y="566.33875"
-         x="680.18298"
-         id="tspan3913-9"
-         sodipodi:role="line">Delete</tspan></text>
-  </g>
+       y="566.33875">Delete</tspan></text>
 </svg>
