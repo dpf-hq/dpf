@@ -54,9 +54,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Guard" eSuperTypes="#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="expression" lowerBound="1"
-        eType="#//BooleanExpression" containment="true"/>
+        eType="#//OpaqueExpression" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BooleanExpression">
+  <eClassifiers xsi:type="ecore:EClass" name="OpaqueExpression">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="language" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="body" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>

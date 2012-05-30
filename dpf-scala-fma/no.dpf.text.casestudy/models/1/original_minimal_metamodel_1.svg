@@ -217,7 +217,7 @@
 <path d="M9 321 L150 321 L150 339 L9 339 L9 321 Z"/>
 </clipPath>
 <clipPath clipPathUnits="userSpaceOnUse" id="clipPath72">
-<path d="M29 321 L148 321 L148 339 L29 339 L29 321 Z"/>
+<path d="M31 321 L147 321 L147 339 L31 339 L31 321 Z"/>
 </clipPath>
 <clipPath clipPathUnits="userSpaceOnUse" id="clipPath73">
 <path d="M14 339 L145 339 L145 357 L14 357 L14 339 Z"/>
@@ -502,8 +502,8 @@
 <line clip-path="url(#clipPath69)" fill="none" x1="10" x2="110" y1="254" y2="254"/>
 <rect x="10" y="322" clip-path="url(#clipPath70)" fill="rgb(248,249,209)" width="139" height="63" stroke="none"/>
 <rect x="10" y="322" clip-path="url(#clipPath70)" fill="none" width="138" height="62"/>
-<image x="11" y="322" clip-path="url(#clipPath71)" width="16" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAvUlEQVR42mP8//8/&#10;AyWAiYFCwIIuMK/WgKCTkpovMOI0AASiaxfh1Ly0OQ6/F/79Z8RrO7o8hgv+/GVg&#10;+P+fFcxmhKkFeYoRQoPk8Rvwn4lh1YJpDLgCAiSP14Df/5gYwhNTcXphWs0J/GHw&#10;+y/+mEWXx3DBr7+MeMMAJI/fC0AF3X2rGXAFwh+CBgDDoKo4AKcXGgt3EgiDfwTC&#10;4B8ToXTASCAdEPDCX2A8F2dl4nQBMxMBF0yafYCRlNwIAPWTSpioA+oRAAAAAElF&#10;TkSuQmCC" xlink:type="simple" xlink:actuate="onLoad" height="16" preserveAspectRatio="none" xlink:show="embed"/>
-<text x="30" y="335" clip-path="url(#clipPath72)" fill="rgb(64,64,64)" stroke="none" xml:space="preserve">BooleanExpression</text>
+<image x="13" y="322" clip-path="url(#clipPath71)" width="16" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAvUlEQVR42mP8//8/&#10;AyWAiYFCwIIuMK/WgKCTkpovMOI0AASiaxfh1Ly0OQ6/F/79Z8RrO7o8hgv+/GVg&#10;+P+fFcxmhKkFeYoRQoPk8Rvwn4lh1YJpDLgCAiSP14Df/5gYwhNTcXphWs0J/GHw&#10;+y/+mEWXx3DBr7+MeMMAJI/fC0AF3X2rGXAFwh+CBgDDoKo4AKcXGgt3EgiDfwTC&#10;4B8ToXTASCAdEPDCX2A8F2dl4nQBMxMBF0yafYCRlNwIAPWTSpioA+oRAAAAAElF&#10;TkSuQmCC" xlink:type="simple" xlink:actuate="onLoad" height="16" preserveAspectRatio="none" xlink:show="embed"/>
+<text x="32" y="335" clip-path="url(#clipPath72)" fill="rgb(64,64,64)" stroke="none" xml:space="preserve">OpaqueExpression</text>
 <image stroke="rgb(64,64,64)" width="16" xlink:show="embed" xlink:type="simple" fill="rgb(64,64,64)" clip-path="url(#clipPath73)" preserveAspectRatio="none" height="16" x="15" y="340" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAXUlEQVR42mNgGAUD&#10;DxjRBebW6P8npCm55SJcHwu65I8/TAzJjQtwap5bn4DCZ0JX8PUXC17b0eUxVH8G&#10;Kvj/nxXiP5hD/0M9+x8ij9cAkA3FWZk4XcDBwjKacqgNALytGBsVIOzJAAAAAElF&#10;TkSuQmCC" xlink:actuate="onLoad"/>
 <text x="34" y="353" clip-path="url(#clipPath74)" fill="rgb(64,64,64)" stroke="none" xml:space="preserve">language : EString</text>
 <image stroke="rgb(64,64,64)" width="16" xlink:show="embed" xlink:type="simple" fill="rgb(64,64,64)" clip-path="url(#clipPath75)" preserveAspectRatio="none" height="16" x="15" y="356" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAXUlEQVR42mNgGAUD&#10;DxjRBebW6P8npCm55SJcHwu65I8/TAzJjQtwap5bn4DCZ0JX8PUXC17b0eUxVH8G&#10;Kvj/nxXiP5hD/0M9+x8ij9cAkA3FWZk4XcDBwjKacqgNALytGBsVIOzJAAAAAElF&#10;TkSuQmCC" xlink:actuate="onLoad"/>

@@ -220,11 +220,11 @@
     <children xmi:type="notation:Node" xmi:id="_uSuwU6W0EeG3it8lFc1-wA" type="4001"/>
     <children xmi:type="notation:Node" xmi:id="_uSvXYKW0EeG3it8lFc1-wA" type="5001">
       <children xmi:type="notation:Node" xmi:id="_uSvXaKW0EeG3it8lFc1-wA" type="2001">
-        <element xmi:type="ecore:EAttribute" href="original_minimal_metamodel.ecore#//BooleanExpression/language"/>
+        <element xmi:type="ecore:EAttribute" href="original_minimal_metamodel.ecore#//OpaqueExpression/language"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_uSvXaaW0EeG3it8lFc1-wA"/>
       </children>
       <children xmi:type="notation:Node" xmi:id="_uSv-cKW0EeG3it8lFc1-wA" type="2001">
-        <element xmi:type="ecore:EAttribute" href="original_minimal_metamodel.ecore#//BooleanExpression/body"/>
+        <element xmi:type="ecore:EAttribute" href="original_minimal_metamodel.ecore#//OpaqueExpression/body"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_uSv-caW0EeG3it8lFc1-wA"/>
       </children>
       <styles xmi:type="notation:DrawerStyle" xmi:id="_uSvXYaW0EeG3it8lFc1-wA"/>
@@ -237,7 +237,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_uSvXZ6W0EeG3it8lFc1-wA"/>
     </children>
     <styles xmi:type="notation:ShapeStyle" xmi:id="_uSuwUaW0EeG3it8lFc1-wA" fontColor="4210752" fontName="Ubuntu" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
-    <element xmi:type="ecore:EClass" href="original_minimal_metamodel.ecore#//BooleanExpression"/>
+    <element xmi:type="ecore:EClass" href="original_minimal_metamodel.ecore#//OpaqueExpression"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_uSuwUqW0EeG3it8lFc1-wA" x="12" y="336"/>
   </children>
   <children xmi:type="notation:Node" xmi:id="_uSxMkKW0EeG3it8lFc1-wA" type="1005">
