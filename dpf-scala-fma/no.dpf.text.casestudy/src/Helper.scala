@@ -18,13 +18,14 @@ object RemoveImageFromSVG {
 	
 		  val removeIt = new RewriteRule {
 		    override def transform(n: Node): NodeSeq = n match {
-		      case e: Elem if n.label == "image" => NodeSeq.Empty
+		      case <image/> =>  NodeSeq.Empty
 		      case n => n
 		    }
-		  }
+	      }
 	      
 	      new RuleTransformer(removeIt).transform(xml)
 	      XML.save(path + fname,xml)
+	      //println(xml) 
       }
       
       println("Ready.")
