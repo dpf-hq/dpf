@@ -268,7 +268,7 @@ public class ArrowImpl extends ArrowsImpl implements Arrow
   @Override
   public void eSet(int featureID, Object newValue)
   {
-	System.out.println("eSet(int featureID, Object newValue)");  
+	System.out.println("ArrowImpl->eSet(int featureID, Object newValue)");  
     switch (featureID)
     {
       case TdpfPackage.ARROW__TG_DATA_TYPE:
@@ -316,7 +316,6 @@ public class ArrowImpl extends ArrowsImpl implements Arrow
   @Override
   public boolean eIsSet(int featureID)
   {
-	System.out.println("eIsSet(int featureID)");  
     switch (featureID)
     {
       case TdpfPackage.ARROW__TG_DATA_TYPE:
