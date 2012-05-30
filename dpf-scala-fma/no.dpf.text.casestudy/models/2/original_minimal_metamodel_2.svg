@@ -58,14 +58,14 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="1680"
-     inkscape:window-height="1026"
+     inkscape:window-width="1215"
+     inkscape:window-height="776"
      id="namedview754"
      showgrid="false"
      inkscape:zoom="1.0547618"
      inkscape:cx="744.80014"
      inkscape:cy="283"
-     inkscape:window-x="1280"
+     inkscape:window-x="65"
      inkscape:window-y="24"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg2" />
@@ -1107,7 +1107,9 @@
      font-style="italic"
      xml:space="preserve"
      id="text406"
-     style="font-size:13px;font-style:italic;fill:#404040;stroke:none;font-family:Ubuntu">ActivityNode</text>
+     style="font-size:13px;font-style:italic;fill:#404040;stroke:none;font-family:Ubuntu"><tspan
+       style="font-style:normal;-inkscape-font-specification:Ubuntu"
+       id="tspan3415">ActivityNode</tspan></text>
   <image
      width="16"
      xlink:show="embed"
