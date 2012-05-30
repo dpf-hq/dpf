@@ -7,10 +7,11 @@ package no.hib.dpf.text.tdpf.impl;
 
 import no.hib.dpf.text.tdpf.Definition;
 import no.hib.dpf.text.tdpf.TdpfPackage;
+import no.hib.dpf.text.wrapper.ScalaWrapper;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -19,14 +20,14 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <p>
  * </p>
  *
- * @generated
+ * @generated NOT
  */
 public class DefinitionImpl extends MinimalEObjectImpl.Container implements Definition
 {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * @generated NOT
    */
   protected DefinitionImpl()
   {

@@ -90,7 +90,8 @@ public class TGraphImpl extends DefinitionImpl implements TGraph
   protected TGraphImpl()
   {
     super();
-  }
+	System.out.println("TGraphImpl()");  
+ }
 
   /**
    * <!-- begin-user-doc -->
