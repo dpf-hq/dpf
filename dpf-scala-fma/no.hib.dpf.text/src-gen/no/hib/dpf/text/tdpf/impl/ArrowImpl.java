@@ -84,6 +84,7 @@ public class ArrowImpl extends ArrowsImpl implements Arrow
   protected ArrowImpl()
   {
     super();
+    System.out.println("ArrowImpl()"); 
   }
 
   /**
