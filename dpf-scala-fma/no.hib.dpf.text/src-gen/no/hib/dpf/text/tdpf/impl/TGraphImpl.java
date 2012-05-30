@@ -120,6 +120,7 @@ public class TGraphImpl extends DefinitionImpl implements TGraph
    */
   public void setId(String newId)
   {
+	System.out.println("TGraphImpl->setId(String newId)");  
     String oldId = id;
     id = newId;
     if (eNotificationRequired())
@@ -143,14 +144,15 @@ public class TGraphImpl extends DefinitionImpl implements TGraph
    */
   public NotificationChain basicSetTypeGraph(TGraphName newTypeGraph, NotificationChain msgs)
   {
-    TGraphName oldTypeGraph = typeGraph;
+   System.out.println("TGraphImpl->basicSetTypeGraph(TGraphName newTypeGraph, NotificationChain msgs)");
+   TGraphName oldTypeGraph = typeGraph;
     typeGraph = newTypeGraph;
     if (eNotificationRequired())
     {
       ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TdpfPackage.TGRAPH__TYPE_GRAPH, oldTypeGraph, newTypeGraph);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
-    return msgs;
+     return msgs;
   }
 
   /**
@@ -160,6 +162,7 @@ public class TGraphImpl extends DefinitionImpl implements TGraph
    */
   public void setTypeGraph(TGraphName newTypeGraph)
   {
+    System.out.println("TGraphImpl->setTypeGraph(TGraphName newTypeGraph)");
     if (newTypeGraph != typeGraph)
     {
       NotificationChain msgs = null;
@@ -196,7 +199,8 @@ public class TGraphImpl extends DefinitionImpl implements TGraph
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
-    switch (featureID)
+    System.out.println("TGraphImpl->eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)");
+	switch (featureID)
     {
       case TdpfPackage.TGRAPH__TYPE_GRAPH:
         return basicSetTypeGraph(null, msgs);
@@ -235,6 +239,7 @@ public class TGraphImpl extends DefinitionImpl implements TGraph
   @Override
   public void eSet(int featureID, Object newValue)
   {
+    System.out.println("TGraphImpl->eSet(int featureID, Object newValue)");
     switch (featureID)
     {
       case TdpfPackage.TGRAPH__ID:
@@ -259,6 +264,7 @@ public class TGraphImpl extends DefinitionImpl implements TGraph
   @Override
   public void eUnset(int featureID)
   {
+    System.out.println("TGraphImpl->eUnset(int featureID)");
     switch (featureID)
     {
       case TdpfPackage.TGRAPH__ID:
