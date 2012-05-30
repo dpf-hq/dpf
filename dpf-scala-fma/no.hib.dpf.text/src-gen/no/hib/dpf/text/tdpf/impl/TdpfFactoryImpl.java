@@ -32,6 +32,7 @@ public class TdpfFactoryImpl extends EFactoryImpl implements TdpfFactory
    */
   public static TdpfFactory init()
   {
+	System.out.println("TdpfFactory init()"); 
     try
     {
       TdpfFactory theTdpfFactory = (TdpfFactory)EPackage.Registry.INSTANCE.getEFactory("http://no.hib.dpf/dpf-text"); 
