@@ -10,7 +10,6 @@ object RemoveImageFromSVG {
       convert("2/original_minimal_metamodel_2.svg")
       convert("3/original_minimal_metamodel_3.svg")
       convert("4/original_minimal_metamodel_4.svg")
-      convert("5/original_minimal_metamodel_5.svg")
       
       def convert(fname:String)={ 
 	      val path = "/home/fma/scala/workspace_modelling/no.dpf.text.casestudy/models/";
@@ -18,14 +17,13 @@ object RemoveImageFromSVG {
 	
 		  val removeIt = new RewriteRule {
 		    override def transform(n: Node): NodeSeq = n match {
-		      case <image/> =>  NodeSeq.Empty
+		      case <image/> => NodeSeq.Empty
 		      case n => n
 		    }
 	      }
-	      
-	      new RuleTransformer(removeIt).transform(xml)
-	      XML.save(path + fname,xml)
-	      //println(xml) 
+	      val newXML = new RuleTransformer(removeIt).transform(xml)
+	      XML.save(path + fname + ".new",newXML(0))
+//	      println(xml) 
       }
       
       println("Ready.")
