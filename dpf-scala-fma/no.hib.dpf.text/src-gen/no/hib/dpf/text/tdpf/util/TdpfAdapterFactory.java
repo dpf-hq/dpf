@@ -40,8 +40,10 @@ public class TdpfAdapterFactory extends AdapterFactoryImpl
    */
   public TdpfAdapterFactory()
   {
+	System.out.println("TdpfAdapterFactory() 1");  
     if (modelPackage == null)
-    {
+    {	
+      System.out.println("TdpfAdapterFactory() 2");  
       modelPackage = TdpfPackage.eINSTANCE;
     }
   }
