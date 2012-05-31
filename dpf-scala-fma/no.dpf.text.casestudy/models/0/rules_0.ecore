@@ -7,7 +7,10 @@
         eType="#//2@ModelElement.1"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="2@ModelElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="1@ObjectFlowState"/>
+  <eClassifiers xsi:type="ecore:EClass" name="1@ObjectFlowState">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="3@type" lowerBound="1"
+        eType="#//2@ModelElement.1"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="2@ModelElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="A:1@ObjectFlowState">
     <eStructuralFeatures xsi:type="ecore:EReference" name="C:3@type" lowerBound="1"

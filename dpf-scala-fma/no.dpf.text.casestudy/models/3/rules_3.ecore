@@ -55,6 +55,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="B5@ObjectNode"/>
   <eClassifiers xsi:type="ecore:EClass" name="A:1@ActivityEdge">
     <eStructuralFeatures xsi:type="ecore:EReference" name="C:6@target" eType="#//B5@ObjectNode.1"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="D:7@target" eType="#//B5@ObjectNode.2"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="B5@ObjectNode"/>
   <eClassifiers xsi:type="ecore:EClass" name="B5@ObjectNode"/>
 </ecore:EPackage>
