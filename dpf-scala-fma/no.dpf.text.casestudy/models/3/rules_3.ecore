@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="rules">
+  <eAnnotations source="EAnnotation0"/>
+  <eAnnotations source="Keep PseudoState "/>
+  <eAnnotations source="EAnnotation1"/>
+  <eClassifiers xsi:type="ecore:EClass" name="3@ActivityPartition">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="4@contents" upperBound="-1"
+        eType="#//1@ModelElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="5@edges" upperBound="-1"
+        eType="#//2@ActivityEdge"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="1@ModelElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="2@ActivityEdge" eSuperTypes="#//1@ModelElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="A:1@ActivitEdge"/>
+  <eClassifiers xsi:type="ecore:EClass" name="B:3@ActivityPartition">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="C:4@contents" eType="#//A%3A1@ActivitEdge"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="D:5@edges" eType="#//A%3A1@ActivitEdge"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="1@ActivityNode">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="4@kind" eType="#//2@PseudostateKind"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="2@PseudostateKind">
+    <eLiterals name="5@initial" literal="initial"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="3@InitialNode" eSuperTypes="#//1@ActivityNode"/>
+  <eClassifiers xsi:type="ecore:EClass" name="A:1@ActivityNode">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="C:4@kind=B"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="B:2@PseudostateKind">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="D:5@initial"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="B:3@initialNode">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="D:5@initial"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EClass0"/>
+</ecore:EPackage>
