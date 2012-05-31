@@ -1,3 +1,1 @@
--Remove Subclasses: ActivityGraph, PseudoState
--Move OpaqueExpression to Transition
--Delete guard, delete Guard
+-Replace Top, Composition, SubVertex with Activtiy-Node Reference

@@ -50,7 +50,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="4@State" eSuperTypes="#//3@ActivityNode"/>
   <eClassifiers xsi:type="ecore:EClass" name="5@ObjectNode" eSuperTypes="#//4@State"/>
   <eClassifiers xsi:type="ecore:EClass" name="A:1@ActivityEdge">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="C:6@source" eType="#//B5@ObjectNode"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="C:6@source" eType="#//B5@ObjectNode.1"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="B5@ObjectNode"/>
   <eClassifiers xsi:type="ecore:EClass" name="A:1@ActivityEdge">
