@@ -5,6 +5,8 @@
   <eAnnotations source="EAnnotation0"/>
   <eAnnotations source="Keep PseudoState "/>
   <eAnnotations source="EAnnotation1"/>
+  <eAnnotations source="Retyping"/>
+  <eAnnotations source="Pac"/>
   <eClassifiers xsi:type="ecore:EClass" name="3@ActivityPartition">
     <eStructuralFeatures xsi:type="ecore:EReference" name="4@contents" upperBound="-1"
         eType="#//1@ModelElement"/>
@@ -34,5 +36,25 @@
   <eClassifiers xsi:type="ecore:EClass" name="B:3@initialNode">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="D:5@initial"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="EClass0"/>
+  <eClassifiers xsi:type="ecore:EClass" name="1@ActivitEdge"/>
+  <eClassifiers xsi:type="ecore:EClass" name="2@ControlFlow" eSuperTypes="#//1@ActivitEdge"/>
+  <eClassifiers xsi:type="ecore:EClass" name="A:1@ActivitEdge"/>
+  <eClassifiers xsi:type="ecore:EClass" name="A:2@ControlFlow"/>
+  <eClassifiers xsi:type="ecore:EClass" name="1@ActivityEdge">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="6@source" lowerBound="1"
+        eType="#//3@ActivityNode"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="7@target" lowerBound="1"
+        eType="#//3@ActivityNode"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="3@ActivityNode"/>
+  <eClassifiers xsi:type="ecore:EClass" name="4@State" eSuperTypes="#//3@ActivityNode"/>
+  <eClassifiers xsi:type="ecore:EClass" name="5@ObjectNode" eSuperTypes="#//4@State"/>
+  <eClassifiers xsi:type="ecore:EClass" name="A:1@ActivityEdge">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="C:6@source" eType="#//B5@ObjectNode"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="B5@ObjectNode"/>
+  <eClassifiers xsi:type="ecore:EClass" name="A:1@ActivityEdge">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="C:6@target" eType="#//B5@ObjectNode.1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="B5@ObjectNode"/>
 </ecore:EPackage>
