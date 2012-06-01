@@ -63,8 +63,8 @@
      id="namedview932"
      showgrid="false"
      inkscape:zoom="0.97443545"
-     inkscape:cx="465.14671"
-     inkscape:cy="332.56606"
+     inkscape:cx="433.23346"
+     inkscape:cy="373.61547"
      inkscape:window-x="65"
      inkscape:window-y="24"
      inkscape:window-maximized="1"
@@ -3151,13 +3151,13 @@
      xml:space="preserve"
      style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ff0000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
      x="589.87109"
-     y="23.836842"
+     y="21.836842"
      id="text3911"
      sodipodi:linespacing="125%"><tspan
        sodipodi:role="line"
        id="tspan3913"
        x="589.87109"
-       y="23.836842">Delete</tspan></text>
+       y="21.836842">Delete</tspan></text>
   <text
      xml:space="preserve"
      style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
@@ -3172,14 +3172,14 @@
   <text
      xml:space="preserve"
      style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ff0000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
-     x="382.202"
+     x="386.202"
      y="248.52068"
      id="text3911-6"
      sodipodi:linespacing="125%"><tspan
        sodipodi:role="line"
        id="tspan3913-2"
-       x="382.202"
-       y="248.52068">Rename to edges</tspan></text>
+       x="386.202"
+       y="248.52068">Rename to &quot;edges&quot;</tspan></text>
   <text
      xml:space="preserve"
      style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ff0000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
@@ -3194,7 +3194,7 @@
        sodipodi:role="line"
        x="279.68674"
        y="371.63617"
-       id="tspan3961">to ActivityEdge</tspan></text>
+       id="tspan3961">to &quot;ActivityEdge&quot;</tspan></text>
   <text
      xml:space="preserve"
      style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ff0000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
@@ -3209,22 +3209,22 @@
        sodipodi:role="line"
        x="76.340561"
        y="432.27765"
-       id="tspan3961-7">to OpaqueExpression</tspan></text>
+       id="tspan3961-7">to &quot;OpaqueExpression&quot;</tspan></text>
   <text
      xml:space="preserve"
      style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ff0000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
      x="396.30176"
-     y="595.15198"
+     y="589.15198"
      id="text3911-6-0-7"
      sodipodi:linespacing="125%"><tspan
        sodipodi:role="line"
        id="tspan3913-2-8-2"
        x="397.96582"
-       y="595.15198">Rename </tspan><tspan
+       y="589.15198">Rename </tspan><tspan
        sodipodi:role="line"
        x="396.30176"
-       y="610.15198"
-       id="tspan3961-71">to ActivityFinalNode</tspan></text>
+       y="604.15198"
+       id="tspan3961-71">to &quot;ActivityFinalNode&quot;</tspan></text>
   <text
      xml:space="preserve"
      style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ff0000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
@@ -3239,22 +3239,22 @@
        sodipodi:role="line"
        x="580.97412"
        y="610.22229"
-       id="tspan3961-71-8">to OpaqueAction</tspan></text>
+       id="tspan3961-71-8">to &quot;OpaqueAction&quot;</tspan></text>
   <text
      xml:space="preserve"
      style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ff0000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
-     x="737.4198"
-     y="595.15198"
+     x="729.4198"
+     y="591.15198"
      id="text3911-6-0-7-4-1"
      sodipodi:linespacing="125%"><tspan
        sodipodi:role="line"
        id="tspan3913-2-8-2-6-1"
-       x="739.08386"
-       y="595.15198">Rename </tspan><tspan
+       x="731.08386"
+       y="591.15198">Rename </tspan><tspan
        sodipodi:role="line"
-       x="737.4198"
-       y="610.15198"
-       id="tspan3961-71-8-2">to ObjectNode</tspan></text>
+       x="729.4198"
+       y="606.15198"
+       id="tspan3961-71-8-2">to &quot;ObjectNode&quot;</tspan></text>
   <text
      xml:space="preserve"
      style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ff0000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
@@ -3269,22 +3269,22 @@
        sodipodi:role="line"
        x="663.09442"
        y="372.44263"
-       id="tspan3961-71-8-2-4">to ActivtiyNode</tspan></text>
+       id="tspan3961-71-8-2-4">to &quot;ActivtiyNode&quot;</tspan></text>
   <text
      xml:space="preserve"
      style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ff0000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
      x="814.55859"
-     y="200.52063"
+     y="202.52063"
      id="text3911-3"
      sodipodi:linespacing="125%"><tspan
        sodipodi:role="line"
        id="tspan3913-5"
        x="814.55859"
-       y="200.52063">Rename</tspan><tspan
+       y="202.52063">Rename</tspan><tspan
        sodipodi:role="line"
        x="814.55859"
-       y="215.52063"
-       id="tspan4104">to groups</tspan></text>
+       y="217.52063"
+       id="tspan4104">to &quot;groups&quot;</tspan></text>
   <text
      xml:space="preserve"
      style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ff0000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
