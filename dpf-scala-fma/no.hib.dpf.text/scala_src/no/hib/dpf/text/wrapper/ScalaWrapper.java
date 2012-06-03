@@ -4,8 +4,11 @@ import no.dpf.text.graph.parser.Parser;
 import no.dpf.text.graph.GraphDpf$;
 
 public class ScalaWrapper {
-	public static void main(String[] args) {
-		Parser test = new Parser(GraphDpf$.MODULE$, "DPF");
-		System.out.println("Hallo" + test);
+	private final Parser parser = new Parser(GraphDpf$.MODULE$, "DPF");	
+
+	public ScalaWrapper(){
+		System.out.println("Scala init.");
 	}
+	
+	
 }
