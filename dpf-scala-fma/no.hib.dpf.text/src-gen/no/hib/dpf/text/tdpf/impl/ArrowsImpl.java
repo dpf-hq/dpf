@@ -271,5 +271,13 @@ public class ArrowsImpl extends ElementImpl implements Arrows
     }
     return super.eIsSet(featureID);
   }
+  
+  
+  @Override
+  public String toString(){
+	  return "Arrows";
+  }
 
+  
+  
 } //ArrowsImpl

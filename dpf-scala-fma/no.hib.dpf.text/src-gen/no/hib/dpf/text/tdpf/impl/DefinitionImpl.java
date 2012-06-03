@@ -32,7 +32,8 @@ public class DefinitionImpl extends MinimalEObjectImpl.Container implements Defi
   protected DefinitionImpl()
   {
     super();
-    System.out.println("DefinitionImpl()");
+    System.out.println("DefinitionImpl()" + eResource());
+    
   }
 
   /**

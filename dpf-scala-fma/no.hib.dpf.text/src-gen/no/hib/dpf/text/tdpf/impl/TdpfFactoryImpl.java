@@ -521,6 +521,7 @@ public class TdpfFactoryImpl extends EFactoryImpl implements TdpfFactory
    */
   public TdpfPackage getTdpfPackage()
   {
+	System.out.println("TdpfFactory->getTdpfPackage()");   
     return (TdpfPackage)getEPackage();
   }
 
@@ -533,7 +534,8 @@ public class TdpfFactoryImpl extends EFactoryImpl implements TdpfFactory
   @Deprecated
   public static TdpfPackage getPackage()
   {
-    return TdpfPackage.eINSTANCE;
+	  System.out.println("TdpfFactory->getPackage()");   
+	  return TdpfPackage.eINSTANCE;
   }
 
 } //TdpfFactoryImpl

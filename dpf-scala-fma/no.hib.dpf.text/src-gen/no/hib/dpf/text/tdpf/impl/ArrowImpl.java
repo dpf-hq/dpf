@@ -329,21 +329,27 @@ public class ArrowImpl extends ArrowsImpl implements Arrow
     return super.eIsSet(featureID);
   }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
+//  /**
+//   * <!-- begin-user-doc -->
+//   * <!-- end-user-doc -->
+//   * @generated
+//   */
+//  @Override
+//  public String toString()
+//  {
+//    if (eIsProxy()) return super.toString();
+//
+//    StringBuffer result = new StringBuffer(super.toString());
+//    result.append(" (tgDataType: ");
+//    result.append(tgDataType);
+//    result.append(')');
+//    return result.toString();
+//  }
 
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (tgDataType: ");
-    result.append(tgDataType);
-    result.append(')');
-    return result.toString();
-  }
-
+@Override
+public String toString(){
+  return "Arrow";
+}
+  
+  
 } //ArrowImpl
