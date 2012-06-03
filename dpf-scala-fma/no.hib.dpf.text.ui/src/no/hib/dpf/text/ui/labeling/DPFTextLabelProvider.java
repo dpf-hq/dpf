@@ -21,18 +21,18 @@ public class DPFTextLabelProvider extends DefaultEObjectLabelProvider {
 	public DPFTextLabelProvider(AdapterFactoryLabelProvider delegate) {
 		super(delegate);
 	}
-	
-	
+		
 	String text(Model m) {
 		  return "Model";
 	}
 
 	String text(TGraph n) {
-		  return "Graph<" + n.getTypeGraph().getId()+">";
+	  return "Graph<" + n.getTypeGraph().getId()+">";
 	}
-
+	
 //	
 //Have to be done in DPFTextOutlineTreeProvider since als the features should be modified:	
+//
 //	String text(Node n) {
 //		  return "";
 //	}

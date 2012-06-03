@@ -5,10 +5,11 @@ package no.hib.dpf.text.ui.outline;
 
 import no.hib.dpf.text.tdpf.Arrow;
 import no.hib.dpf.text.tdpf.AttributeValue;
-import no.hib.dpf.text.tdpf.DataType;
 import no.hib.dpf.text.tdpf.Definition;
 import no.hib.dpf.text.tdpf.Model;
 import no.hib.dpf.text.tdpf.Node;
+import no.hib.dpf.text.tdpf.TGraph;
+import no.hib.dpf.text.tdpf.TGraphName;
 import no.hib.dpf.text.tdpf.TdpfPackage;
 
 import org.eclipse.swt.graphics.Image;
@@ -17,6 +18,7 @@ import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider;
 import org.eclipse.xtext.ui.editor.outline.impl.DocumentRootNode;
 import org.eclipse.xtext.ui.editor.outline.impl.EObjectNode;
+import org.eclipse.xtext.ui.editor.outline.impl.EStructuralFeatureNode;
 
 import com.google.inject.Inject;
 
@@ -30,13 +32,20 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
     private IImageHelper imageHelper;
 	
 	protected void _createChildren(DocumentRootNode parentNode, Model model) {
-		System.out.println("Test1");
-        for(Definition d: model.getDefinitions()) {
-        	System.out.println("Test1-1" + d);
+       for(Definition d: model.getDefinitions()) {
             createNode(parentNode, d);
         }         
     }
-		
+	
+	//
+	//Graph:
+	//	
+	protected void _createNode(IOutlineNode parentNode, TGraphName node) {
+	}	
+
+	//
+	//Node:
+	//	
 	protected void _createNode(IOutlineNode parentNode, Node node) {
 		EObjectNode n = createEObjectNode(parentNode, node.eClass());
 		n.setImage(_image(node));
@@ -69,7 +78,10 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
 				"value=" + value.getValue(),
 				true);
 	}	
-	
+
+	//
+	//Arrow:
+	//	
 	protected void _createNode(IOutlineNode parentNode, Arrow arrow) {
 		EObjectNode n = createEObjectNode(parentNode, arrow.eClass());
 		n.setImage(_image(arrow));
@@ -122,13 +134,11 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		}
 	}	
 	
+	protected Image _image(TGraph graph) {
+        return this.imageHelper.getImage("graph.png");
+    }
+
 	protected Image _image(Node node) {
-        return this.imageHelper.getImage("node.png");
-    }
-	protected Image _image(DataType node) {
-        return this.imageHelper.getImage("node.png");
-    }
-	protected Image _image(AttributeValue node) {
         return this.imageHelper.getImage("node.png");
     }
 
