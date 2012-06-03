@@ -3,6 +3,8 @@
 */
 package no.hib.dpf.text.ui.labeling;
 
+import no.hib.dpf.text.tdpf.*;
+
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider;
 
@@ -19,16 +21,26 @@ public class DPFTextLabelProvider extends DefaultEObjectLabelProvider {
 	public DPFTextLabelProvider(AdapterFactoryLabelProvider delegate) {
 		super(delegate);
 	}
-
-/*
-	//Labels and icons can be computed like this:
 	
-	String text(MyModel ele) {
-	  return "my "+ele.getName();
+	
+	String text(Model m) {
+		  return "Model";
 	}
-	 
-    String image(MyModel ele) {
-      return "MyModel.gif";
-    }
-*/
+
+	String text(Node n) {
+		  return "";
+	}
+
+	String text(Arrow a) {
+		  return "";
+	}
+
+	String image(Node n) {
+		  return "node.png";
+	}
+
+	String image(Arrow a) {
+		  return "arrow.png";
+	}	
+
 }
