@@ -8,16 +8,14 @@ import no.hib.dpf.text.tdpf.Definition;
 import no.hib.dpf.text.tdpf.Model;
 import no.hib.dpf.text.tdpf.TGraphName;
 
+import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.xtext.nodemodel.ICompositeNode;
-import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.resource.ILocationInFileProvider;
 import org.eclipse.xtext.ui.IImageHelper;
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider;
 import org.eclipse.xtext.ui.editor.outline.impl.DocumentRootNode;
 import org.eclipse.xtext.ui.editor.outline.impl.EObjectNode;
-import org.eclipse.xtext.util.TextRegion;
 
 import com.google.inject.Inject;
 
@@ -50,7 +48,11 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	//
 	protected void _createNode(IOutlineNode parentNode, Arrow arrow) {
 //		EObjectNode n = createEObjectNode(parentNode, arrow.eClass());
-		Object text = textDispatcher.invoke(arrow);
+		StyledString text = (StyledString)textDispatcher.invoke(arrow);
+		String txt = text.getString();
+		final int offset = txt.indexOf("---");
+		final int end = txt.indexOf("-->");
+		text.setStyle(offset,end-offset+3, StyledString.COUNTER_STYLER);
 		Image image = imageDispatcher.invoke(arrow);
 		EObjectNode eObjectNode = new EObjectNode(arrow, parentNode, image, text, true);
 //		ICompositeNode parserNode = NodeModelUtils.getNode(arrow);

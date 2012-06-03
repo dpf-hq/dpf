@@ -56,7 +56,7 @@ public class DPFTextLabelProvider extends DefaultEObjectLabelProvider {
 		else if(null != arrow.getTgDataType()){
 			tg = arrow.getTgDataType().getName() + ":Datatype";
 		}		
-		return sr + "---" + id +"--->" + tg;
+		return sr + " --- " + id + " ---> " + tg;
 	}
 
 	String image(Node n) {
