@@ -132,6 +132,7 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
 				"target=" + arrow.getTgDataType().getName(),
 				false);
 		}
+
 	}	
 	
 	protected Image _image(TGraph graph) {
