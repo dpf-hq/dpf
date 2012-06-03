@@ -3,6 +3,7 @@
 */
 package no.hib.dpf.text.ui.outline;
 
+import no.hib.dpf.text.tdpf.Arrow;
 import no.hib.dpf.text.tdpf.Definition;
 import no.hib.dpf.text.tdpf.Model;
 import no.hib.dpf.text.tdpf.Node;
@@ -29,6 +30,7 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	protected void _createChildren(DocumentRootNode parentNode, Model model) {
 		System.out.println("Test1");
         for(Definition d: model.getDefinitions()) {
+        	System.out.println("Test1-1" + d);
             createNode(parentNode, d);
         }         
     }
@@ -38,7 +40,9 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
 //    }	
 
 	protected void _createNode(IOutlineNode parentNode, Node node) {
-		System.out.println("Test2");
+		_createNode(parentNode,node,_image(node));
+	}
+	protected void _createNode(IOutlineNode parentNode, Node node, Image image) {
 		EObjectNode n = createEObjectNode(parentNode, node.eClass());
 		n.setImage(_image(node));
 		n.setText("");
@@ -59,8 +63,69 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
 				true);
 	}	
 
+	protected void _createNode(IOutlineNode parentNode, Arrow arrow) {
+		EObjectNode n = createEObjectNode(parentNode, arrow.eClass());
+		n.setImage(_image(arrow));
+		n.setText("");
+//		createEStructuralFeatureNode(parentNode, owner, feature, image, text, isLeaf)
+		createEStructuralFeatureNode(
+				parentNode,
+				arrow,
+				arrow.eClass().getEStructuralFeature(TdpfPackage.ARROW__ID),
+				null, //Image for ID?
+				"id=" + arrow.getId().getId() + "@" + arrow.getId().getName(),
+				true);
+		createEStructuralFeatureNode(
+				parentNode,
+				arrow,
+				arrow.eClass().getEStructuralFeature(TdpfPackage.ARROW__TYPE),
+				null,//Image for type
+				"type=" + arrow.getType().getId() + "@" + arrow.getType().getName(),
+				true);
+		//Source:
+		createEStructuralFeatureNode(
+				parentNode,
+				arrow,
+				arrow.eClass().getEStructuralFeature(TdpfPackage.ARROW__SR),
+				null, //Image for ID?
+				"source=" + arrow.getSr().getId().getId() + "@" + arrow.getSr().getId().getName(),
+				false);
+		//Target:
+		if(null != arrow.getTgNode()){
+		createEStructuralFeatureNode(
+				parentNode,
+				arrow,
+				arrow.eClass().getEStructuralFeature(TdpfPackage.ARROW__TG_NODE),
+				null,//Image for type
+				"target=" + arrow.getTgNode().getId().getId() + "@" + arrow.getTgNode().getId().getName(),
+				false);
+		}
+		else if(null != arrow.getTgDataType()){
+		createEStructuralFeatureNode(
+				parentNode,
+				arrow,
+				arrow.eClass().getEStructuralFeature(TdpfPackage.ARROW__TG_DATA_TYPE),
+				null,//Image for type
+				"target=" + arrow.getTgDataType().getName(),
+				false);
+		}
+		else if(null != arrow.getTgValue()){
+		createEStructuralFeatureNode(
+				parentNode,
+				arrow,
+				arrow.eClass().getEStructuralFeature(TdpfPackage.ARROW__TG_VALUE),
+				null,//Image for type
+				"target=" + arrow.getTgValue().getValue(),
+				false);
+		}
+	}	
+	
 	protected Image _image(Node node) {
         return this.imageHelper.getImage("node.png");
+    }
+
+	protected Image _image(Arrow arrow) {
+        return this.imageHelper.getImage("arrow.png");
     }
 	
 }
