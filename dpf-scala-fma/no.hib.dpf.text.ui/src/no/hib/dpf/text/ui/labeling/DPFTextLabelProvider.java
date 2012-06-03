@@ -27,20 +27,26 @@ public class DPFTextLabelProvider extends DefaultEObjectLabelProvider {
 		  return "Model";
 	}
 
-	String text(Node n) {
-		  return "";
+	String text(TGraph n) {
+		  return "Graph<" + n.getTypeGraph().getId()+">";
 	}
 
-	String text(Arrow a) {
-		  return "";
-	}
-
-	String image(Node n) {
-		  return "node.png";
-	}
-
-	String image(Arrow a) {
-		  return "arrow.png";
-	}	
+//	
+//Have to be done in DPFTextOutlineTreeProvider since als the features should be modified:	
+//	String text(Node n) {
+//		  return "";
+//	}
+//	
+//	String text(Arrow a) {
+//		  return "";
+//	}
+//
+//	String image(Node n) {
+//		  return "node.png";
+//	}
+//
+//	String image(Arrow a) {
+//		  return "arrow.png";
+//	}	
 
 }
