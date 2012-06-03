@@ -27,6 +27,7 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
     private IImageHelper imageHelper;
 	
 	protected void _createChildren(DocumentRootNode parentNode, Model model) {
+		System.out.println("Test1");
         for(Definition d: model.getDefinitions()) {
             createNode(parentNode, d);
         }         
@@ -37,6 +38,7 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
 //    }	
 
 	protected void _createNode(IOutlineNode parentNode, Node node) {
+		System.out.println("Test2");
 		EObjectNode n = createEObjectNode(parentNode, node.eClass());
 		n.setImage(_image(node));
 		n.setText("");
@@ -46,14 +48,14 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
 				node,
 				node.eClass().getEStructuralFeature(TdpfPackage.NODE__ID),
 				null, //Image for ID?
-				"id=" + node.getId().getName(),
+				"id=" + node.getId().getId() + "@" + node.getId().getName(),
 				true);
 		createEStructuralFeatureNode(
 				parentNode,
 				node,
 				node.eClass().getEStructuralFeature(TdpfPackage.NODE__TYPE),
 				null,//Image for type
-				"type=" + node.getType().getName(),
+				"type=" + node.getType().getId() + "@" + node.getType().getName(),
 				true);
 	}	
 
