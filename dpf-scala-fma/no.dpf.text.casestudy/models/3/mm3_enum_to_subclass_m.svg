@@ -37,7 +37,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -58,7 +58,7 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:zoom="1.1819595"
+     inkscape:zoom="2.363919"
      inkscape:cx="291.78096"
      inkscape:cy="92.374216"
      inkscape:window-x="-2"
@@ -5092,7 +5092,7 @@
          xml:space="preserve"
          id="text7128"
          style="font-size:13px;fill:#404040;stroke:none;font-family:Ubuntu"
-         transform="translate(-148.40525,-758.76869)">B:3@InitialNode</text>
+         transform="translate(-148.40525,-758.76869)">A:3@InitialNode</text>
       <image
          width="16"
          xlink:show="embed"
