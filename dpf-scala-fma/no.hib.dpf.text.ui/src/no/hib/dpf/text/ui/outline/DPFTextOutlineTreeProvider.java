@@ -13,11 +13,14 @@ import no.hib.dpf.text.tdpf.TGraph;
 import no.hib.dpf.text.tdpf.TGraphName;
 import no.hib.dpf.text.tdpf.impl.TdpfFactoryImpl;
 
-import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.text.edits.ReplaceEdit;
 import org.eclipse.xtext.EcoreUtil2;
+import org.eclipse.xtext.nodemodel.impl.NodeModelBuilder;
 import org.eclipse.xtext.resource.ILocationInFileProvider;
+import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider;
@@ -33,42 +36,72 @@ import com.google.inject.Inject;
  */
 public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
 
-//	@Inject
-//	private IImageHelper imageHelper;
 
 	@Inject
 	protected ILocationInFileProvider locationInFileProvider;
-
+//	protected ILocationInFileProvider locationInFileProvider =	new DefaultLocationInFileProvider();
+	
+	@Inject
+	protected XtextResource xresource;
+			
+	protected NodeModelBuilder nodeModelBuilder = new NodeModelBuilder();
 	protected IXtextDocument document;
 	
-	protected void _createChildren(DocumentRootNode parentNode, Model model) {
+	boolean test = true;
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	protected void _createChildren(final DocumentRootNode parentNode, final Model model) {
+		
+		Display display = Display.getDefault();
+		
 		for (Definition d : model.getDefinitions()) {
 			createNode(parentNode, d);
 		}
-		
+
 		//Defs schon da?:
-		for (Definition d : model.getDefinitions()) {
-			System.out.println("TEST" + d.toString());
-			if(d instanceof TGraph){
-				TGraph t = (TGraph) d;
-				for (Element e : t.getElements()) {
-					System.out.println("TEST-Eelement:" + e.toString());
-				}		
+		if(test)
+		display.syncExec(new Runnable() {
+	    public void run(){
+	    	test=false;
+			for (Definition d : model.getDefinitions()){
+				int offSet = 0;
+				if(d instanceof TGraph){
+					final TGraph t = (TGraph) d;
+					for (Element e : t.getElements()) {
+						if(e instanceof Arrow){
+							Arrow arrow = (Arrow)e;
+							final ITextRegion location = locationInFileProvider.getSignificantTextRegion(arrow.getId());
+//							System.out.println("OLD: " + location.getOffset() + " " + location.getLength());
+							if(arrow.getId().getId() < 1){
+								
+								//Change document:
+								offSet += location.getOffset()+arrow.getId().getName().length();
+								ReplaceEdit r = new ReplaceEdit(offSet,0,"@" + 100);//UPDATE 1	
+								try {
+									r.apply(document);
+								} catch (Exception ex) {
+									ex.printStackTrace();
+								}
+								return;
+								//arrow.getId().setId(100); //UPDATE 2
+								
+							}
+						}
+					}		
+				}
 			}
-		}		
+	    }
+	  });
+		test=true;
 	}
 
-	//
-	//Document:
-	//
+//	//
+//	//Document:
+//	//
 	@Override
 	public IOutlineNode createRoot(IXtextDocument d){
-		if(d instanceof IDocument){
-			this.document = d;
-		}else{
-			new RuntimeException("Could not get access to XTextDocument.");
-		};
-		return super.createRoot(d);
+		this.document = d;
+		return super.createRoot(document);
 	}
 	
 	//
@@ -86,25 +119,11 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	 * @param arrow
 	 */
 	protected void _createNode(IOutlineNode parentNode, Arrow arrow) {
-//		EObjectNode n = createEObjectNode(parentNode, arrow.eClass());
 		Image image = imageDispatcher.invoke(arrow);
 		EObjectNode eObjectNode = new EObjectNode(arrow, parentNode, image, makeLabel(arrow), true);
 		ITextRegion location = locationInFileProvider.getSignificantTextRegion(arrow.getId());
 		eObjectNode.setShortTextRegion(location);
-		
-//		if(arrow.getId().getId() < 10){
-//			ReplaceEdit r = new ReplaceEdit(location.getOffset(),location.getLength(),arrow.getId().getName() + "@" + 10);
-//			try {
-//				r.apply(document);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		}
-
 	}
-	
-	//DefaultRefactoringDocumentProvider
-
 	
 	/**
 	 * Make Label
@@ -184,5 +203,6 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		   + n.getType().getName() + "@" + n.getType().getId();
 		return tg;
 	}
+	
 	
 }

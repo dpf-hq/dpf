@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_NUMBER", "RULE_CHAR", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_ANY_OTHER", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "'Boolean'", "'Char'", "'Byte'", "'Short'", "'Int'", "'Long'", "'Float'", "'Double'", "'String'", "'emf('", "')'", "'ecore('", "'image('", "'simpleEvolution('", "'<-'", "'->'", "','", "'evolution('", "'<->'", "'-><-'", "':='", "'ISpec<'", "'>'", "'{'", "'}'", "'='", "'Spec<'", "'('", "'Morphism<'", "'=>'", "'ExtSubTGraph<'", "'TGraph<'", "'-'", "':'", "'*'", "'['", "']'", "'@'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_NUMBER", "RULE_CHAR", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_ANY_OTHER", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "'Boolean'", "'Char'", "'Byte'", "'Short'", "'Int'", "'Long'", "'Float'", "'Double'", "'String'", "'emf('", "')'", "'ecore('", "'image('", "'simpleEvolution('", "'<-'", "'->'", "','", "'evolution('", "'<->'", "'-><-'", "':='", "'ISpec'", "'<'", "'>'", "'{'", "'}'", "'='", "'Spec'", "'('", "'Morphism'", "'=>'", "'ExtSubTGraph'", "'TGraph'", "'-'", "':'", "'*'", "'['", "']'", "'@'"
     };
     public static final int RULE_ID=7;
     public static final int T__29=29;
@@ -39,6 +39,7 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
     public static final int EOF=-1;
     public static final int T__19=19;
     public static final int T__16=16;
+    public static final int T__51=51;
     public static final int T__15=15;
     public static final int T__18=18;
     public static final int T__17=17;
@@ -7240,17 +7241,17 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InstanceSpecification__Group__2__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2727:1: rule__InstanceSpecification__Group__2__Impl : ( 'ISpec<' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2727:1: rule__InstanceSpecification__Group__2__Impl : ( 'ISpec' ) ;
     public final void rule__InstanceSpecification__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2731:1: ( ( 'ISpec<' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2732:1: ( 'ISpec<' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2731:1: ( ( 'ISpec' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2732:1: ( 'ISpec' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2732:1: ( 'ISpec<' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2733:1: 'ISpec<'
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2732:1: ( 'ISpec' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2733:1: 'ISpec'
             {
              before(grammarAccess.getInstanceSpecificationAccess().getISpecKeyword_2()); 
             match(input,34,FOLLOW_34_in_rule__InstanceSpecification__Group__2__Impl5637); 
@@ -7315,31 +7316,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InstanceSpecification__Group__3__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2758:1: rule__InstanceSpecification__Group__3__Impl : ( ( rule__InstanceSpecification__ModelAssignment_3 ) ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2758:1: rule__InstanceSpecification__Group__3__Impl : ( '<' ) ;
     public final void rule__InstanceSpecification__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2762:1: ( ( ( rule__InstanceSpecification__ModelAssignment_3 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2763:1: ( ( rule__InstanceSpecification__ModelAssignment_3 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2762:1: ( ( '<' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2763:1: ( '<' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2763:1: ( ( rule__InstanceSpecification__ModelAssignment_3 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2764:1: ( rule__InstanceSpecification__ModelAssignment_3 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2763:1: ( '<' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2764:1: '<'
             {
-             before(grammarAccess.getInstanceSpecificationAccess().getModelAssignment_3()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2765:1: ( rule__InstanceSpecification__ModelAssignment_3 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2765:2: rule__InstanceSpecification__ModelAssignment_3
-            {
-            pushFollow(FOLLOW_rule__InstanceSpecification__ModelAssignment_3_in_rule__InstanceSpecification__Group__3__Impl5698);
-            rule__InstanceSpecification__ModelAssignment_3();
-
-            state._fsp--;
-
-
-            }
-
-             after(grammarAccess.getInstanceSpecificationAccess().getModelAssignment_3()); 
+             before(grammarAccess.getInstanceSpecificationAccess().getLessThanSignKeyword_3()); 
+            match(input,35,FOLLOW_35_in_rule__InstanceSpecification__Group__3__Impl5699); 
+             after(grammarAccess.getInstanceSpecificationAccess().getLessThanSignKeyword_3()); 
 
             }
 
@@ -7362,21 +7353,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InstanceSpecification__Group__4"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2775:1: rule__InstanceSpecification__Group__4 : rule__InstanceSpecification__Group__4__Impl rule__InstanceSpecification__Group__5 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2777:1: rule__InstanceSpecification__Group__4 : rule__InstanceSpecification__Group__4__Impl rule__InstanceSpecification__Group__5 ;
     public final void rule__InstanceSpecification__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2779:1: ( rule__InstanceSpecification__Group__4__Impl rule__InstanceSpecification__Group__5 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2780:2: rule__InstanceSpecification__Group__4__Impl rule__InstanceSpecification__Group__5
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2781:1: ( rule__InstanceSpecification__Group__4__Impl rule__InstanceSpecification__Group__5 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2782:2: rule__InstanceSpecification__Group__4__Impl rule__InstanceSpecification__Group__5
             {
-            pushFollow(FOLLOW_rule__InstanceSpecification__Group__4__Impl_in_rule__InstanceSpecification__Group__45728);
+            pushFollow(FOLLOW_rule__InstanceSpecification__Group__4__Impl_in_rule__InstanceSpecification__Group__45730);
             rule__InstanceSpecification__Group__4__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__InstanceSpecification__Group__5_in_rule__InstanceSpecification__Group__45731);
+            pushFollow(FOLLOW_rule__InstanceSpecification__Group__5_in_rule__InstanceSpecification__Group__45733);
             rule__InstanceSpecification__Group__5();
 
             state._fsp--;
@@ -7400,21 +7391,31 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InstanceSpecification__Group__4__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2787:1: rule__InstanceSpecification__Group__4__Impl : ( ',' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2789:1: rule__InstanceSpecification__Group__4__Impl : ( ( rule__InstanceSpecification__ModelAssignment_4 ) ) ;
     public final void rule__InstanceSpecification__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2791:1: ( ( ',' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2792:1: ( ',' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2793:1: ( ( ( rule__InstanceSpecification__ModelAssignment_4 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2794:1: ( ( rule__InstanceSpecification__ModelAssignment_4 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2792:1: ( ',' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2793:1: ','
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2794:1: ( ( rule__InstanceSpecification__ModelAssignment_4 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2795:1: ( rule__InstanceSpecification__ModelAssignment_4 )
             {
-             before(grammarAccess.getInstanceSpecificationAccess().getCommaKeyword_4()); 
-            match(input,29,FOLLOW_29_in_rule__InstanceSpecification__Group__4__Impl5759); 
-             after(grammarAccess.getInstanceSpecificationAccess().getCommaKeyword_4()); 
+             before(grammarAccess.getInstanceSpecificationAccess().getModelAssignment_4()); 
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2796:1: ( rule__InstanceSpecification__ModelAssignment_4 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2796:2: rule__InstanceSpecification__ModelAssignment_4
+            {
+            pushFollow(FOLLOW_rule__InstanceSpecification__ModelAssignment_4_in_rule__InstanceSpecification__Group__4__Impl5760);
+            rule__InstanceSpecification__ModelAssignment_4();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getInstanceSpecificationAccess().getModelAssignment_4()); 
 
             }
 
@@ -7475,31 +7476,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InstanceSpecification__Group__5__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2818:1: rule__InstanceSpecification__Group__5__Impl : ( ( rule__InstanceSpecification__MetamodelAssignment_5 ) ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2818:1: rule__InstanceSpecification__Group__5__Impl : ( ',' ) ;
     public final void rule__InstanceSpecification__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2822:1: ( ( ( rule__InstanceSpecification__MetamodelAssignment_5 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2823:1: ( ( rule__InstanceSpecification__MetamodelAssignment_5 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2822:1: ( ( ',' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2823:1: ( ',' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2823:1: ( ( rule__InstanceSpecification__MetamodelAssignment_5 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2824:1: ( rule__InstanceSpecification__MetamodelAssignment_5 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2823:1: ( ',' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2824:1: ','
             {
-             before(grammarAccess.getInstanceSpecificationAccess().getMetamodelAssignment_5()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2825:1: ( rule__InstanceSpecification__MetamodelAssignment_5 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2825:2: rule__InstanceSpecification__MetamodelAssignment_5
-            {
-            pushFollow(FOLLOW_rule__InstanceSpecification__MetamodelAssignment_5_in_rule__InstanceSpecification__Group__5__Impl5820);
-            rule__InstanceSpecification__MetamodelAssignment_5();
-
-            state._fsp--;
-
-
-            }
-
-             after(grammarAccess.getInstanceSpecificationAccess().getMetamodelAssignment_5()); 
+             before(grammarAccess.getInstanceSpecificationAccess().getCommaKeyword_5()); 
+            match(input,29,FOLLOW_29_in_rule__InstanceSpecification__Group__5__Impl5821); 
+             after(grammarAccess.getInstanceSpecificationAccess().getCommaKeyword_5()); 
 
             }
 
@@ -7522,21 +7513,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InstanceSpecification__Group__6"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2835:1: rule__InstanceSpecification__Group__6 : rule__InstanceSpecification__Group__6__Impl rule__InstanceSpecification__Group__7 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2837:1: rule__InstanceSpecification__Group__6 : rule__InstanceSpecification__Group__6__Impl rule__InstanceSpecification__Group__7 ;
     public final void rule__InstanceSpecification__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2839:1: ( rule__InstanceSpecification__Group__6__Impl rule__InstanceSpecification__Group__7 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2840:2: rule__InstanceSpecification__Group__6__Impl rule__InstanceSpecification__Group__7
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2841:1: ( rule__InstanceSpecification__Group__6__Impl rule__InstanceSpecification__Group__7 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2842:2: rule__InstanceSpecification__Group__6__Impl rule__InstanceSpecification__Group__7
             {
-            pushFollow(FOLLOW_rule__InstanceSpecification__Group__6__Impl_in_rule__InstanceSpecification__Group__65850);
+            pushFollow(FOLLOW_rule__InstanceSpecification__Group__6__Impl_in_rule__InstanceSpecification__Group__65852);
             rule__InstanceSpecification__Group__6__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__InstanceSpecification__Group__7_in_rule__InstanceSpecification__Group__65853);
+            pushFollow(FOLLOW_rule__InstanceSpecification__Group__7_in_rule__InstanceSpecification__Group__65855);
             rule__InstanceSpecification__Group__7();
 
             state._fsp--;
@@ -7560,21 +7551,31 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InstanceSpecification__Group__6__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2847:1: rule__InstanceSpecification__Group__6__Impl : ( '>' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2849:1: rule__InstanceSpecification__Group__6__Impl : ( ( rule__InstanceSpecification__MetamodelAssignment_6 ) ) ;
     public final void rule__InstanceSpecification__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2851:1: ( ( '>' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2852:1: ( '>' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2853:1: ( ( ( rule__InstanceSpecification__MetamodelAssignment_6 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2854:1: ( ( rule__InstanceSpecification__MetamodelAssignment_6 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2852:1: ( '>' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2853:1: '>'
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2854:1: ( ( rule__InstanceSpecification__MetamodelAssignment_6 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2855:1: ( rule__InstanceSpecification__MetamodelAssignment_6 )
             {
-             before(grammarAccess.getInstanceSpecificationAccess().getGreaterThanSignKeyword_6()); 
-            match(input,35,FOLLOW_35_in_rule__InstanceSpecification__Group__6__Impl5881); 
-             after(grammarAccess.getInstanceSpecificationAccess().getGreaterThanSignKeyword_6()); 
+             before(grammarAccess.getInstanceSpecificationAccess().getMetamodelAssignment_6()); 
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2856:1: ( rule__InstanceSpecification__MetamodelAssignment_6 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2856:2: rule__InstanceSpecification__MetamodelAssignment_6
+            {
+            pushFollow(FOLLOW_rule__InstanceSpecification__MetamodelAssignment_6_in_rule__InstanceSpecification__Group__6__Impl5882);
+            rule__InstanceSpecification__MetamodelAssignment_6();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getInstanceSpecificationAccess().getMetamodelAssignment_6()); 
 
             }
 
@@ -7635,21 +7636,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InstanceSpecification__Group__7__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2878:1: rule__InstanceSpecification__Group__7__Impl : ( '{' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2878:1: rule__InstanceSpecification__Group__7__Impl : ( '>' ) ;
     public final void rule__InstanceSpecification__Group__7__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2882:1: ( ( '{' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2883:1: ( '{' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2882:1: ( ( '>' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2883:1: ( '>' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2883:1: ( '{' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2884:1: '{'
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2883:1: ( '>' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2884:1: '>'
             {
-             before(grammarAccess.getInstanceSpecificationAccess().getLeftCurlyBracketKeyword_7()); 
+             before(grammarAccess.getInstanceSpecificationAccess().getGreaterThanSignKeyword_7()); 
             match(input,36,FOLLOW_36_in_rule__InstanceSpecification__Group__7__Impl5943); 
-             after(grammarAccess.getInstanceSpecificationAccess().getLeftCurlyBracketKeyword_7()); 
+             after(grammarAccess.getInstanceSpecificationAccess().getGreaterThanSignKeyword_7()); 
 
             }
 
@@ -7710,31 +7711,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InstanceSpecification__Group__8__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2909:1: rule__InstanceSpecification__Group__8__Impl : ( ( rule__InstanceSpecification__Group_8__0 ) ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2909:1: rule__InstanceSpecification__Group__8__Impl : ( '{' ) ;
     public final void rule__InstanceSpecification__Group__8__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2913:1: ( ( ( rule__InstanceSpecification__Group_8__0 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2914:1: ( ( rule__InstanceSpecification__Group_8__0 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2913:1: ( ( '{' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2914:1: ( '{' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2914:1: ( ( rule__InstanceSpecification__Group_8__0 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2915:1: ( rule__InstanceSpecification__Group_8__0 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2914:1: ( '{' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2915:1: '{'
             {
-             before(grammarAccess.getInstanceSpecificationAccess().getGroup_8()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2916:1: ( rule__InstanceSpecification__Group_8__0 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2916:2: rule__InstanceSpecification__Group_8__0
-            {
-            pushFollow(FOLLOW_rule__InstanceSpecification__Group_8__0_in_rule__InstanceSpecification__Group__8__Impl6004);
-            rule__InstanceSpecification__Group_8__0();
-
-            state._fsp--;
-
-
-            }
-
-             after(grammarAccess.getInstanceSpecificationAccess().getGroup_8()); 
+             before(grammarAccess.getInstanceSpecificationAccess().getLeftCurlyBracketKeyword_8()); 
+            match(input,37,FOLLOW_37_in_rule__InstanceSpecification__Group__8__Impl6005); 
+             after(grammarAccess.getInstanceSpecificationAccess().getLeftCurlyBracketKeyword_8()); 
 
             }
 
@@ -7757,17 +7748,22 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InstanceSpecification__Group__9"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2926:1: rule__InstanceSpecification__Group__9 : rule__InstanceSpecification__Group__9__Impl ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2928:1: rule__InstanceSpecification__Group__9 : rule__InstanceSpecification__Group__9__Impl rule__InstanceSpecification__Group__10 ;
     public final void rule__InstanceSpecification__Group__9() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2930:1: ( rule__InstanceSpecification__Group__9__Impl )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2931:2: rule__InstanceSpecification__Group__9__Impl
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2932:1: ( rule__InstanceSpecification__Group__9__Impl rule__InstanceSpecification__Group__10 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2933:2: rule__InstanceSpecification__Group__9__Impl rule__InstanceSpecification__Group__10
             {
-            pushFollow(FOLLOW_rule__InstanceSpecification__Group__9__Impl_in_rule__InstanceSpecification__Group__96034);
+            pushFollow(FOLLOW_rule__InstanceSpecification__Group__9__Impl_in_rule__InstanceSpecification__Group__96036);
             rule__InstanceSpecification__Group__9__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__InstanceSpecification__Group__10_in_rule__InstanceSpecification__Group__96039);
+            rule__InstanceSpecification__Group__10();
 
             state._fsp--;
 
@@ -7790,21 +7786,31 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InstanceSpecification__Group__9__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2937:1: rule__InstanceSpecification__Group__9__Impl : ( '}' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2940:1: rule__InstanceSpecification__Group__9__Impl : ( ( rule__InstanceSpecification__Group_9__0 ) ) ;
     public final void rule__InstanceSpecification__Group__9__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2941:1: ( ( '}' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2942:1: ( '}' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2944:1: ( ( ( rule__InstanceSpecification__Group_9__0 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2945:1: ( ( rule__InstanceSpecification__Group_9__0 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2942:1: ( '}' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2943:1: '}'
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2945:1: ( ( rule__InstanceSpecification__Group_9__0 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2946:1: ( rule__InstanceSpecification__Group_9__0 )
             {
-             before(grammarAccess.getInstanceSpecificationAccess().getRightCurlyBracketKeyword_9()); 
-            match(input,37,FOLLOW_37_in_rule__InstanceSpecification__Group__9__Impl6062); 
-             after(grammarAccess.getInstanceSpecificationAccess().getRightCurlyBracketKeyword_9()); 
+             before(grammarAccess.getInstanceSpecificationAccess().getGroup_9()); 
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2947:1: ( rule__InstanceSpecification__Group_9__0 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2947:2: rule__InstanceSpecification__Group_9__0
+            {
+            pushFollow(FOLLOW_rule__InstanceSpecification__Group_9__0_in_rule__InstanceSpecification__Group__9__Impl6066);
+            rule__InstanceSpecification__Group_9__0();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getInstanceSpecificationAccess().getGroup_9()); 
 
             }
 
@@ -7826,23 +7832,18 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__InstanceSpecification__Group__9__Impl"
 
 
-    // $ANTLR start "rule__InstanceSpecification__Group_8__0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2976:1: rule__InstanceSpecification__Group_8__0 : rule__InstanceSpecification__Group_8__0__Impl rule__InstanceSpecification__Group_8__1 ;
-    public final void rule__InstanceSpecification__Group_8__0() throws RecognitionException {
+    // $ANTLR start "rule__InstanceSpecification__Group__10"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2957:1: rule__InstanceSpecification__Group__10 : rule__InstanceSpecification__Group__10__Impl ;
+    public final void rule__InstanceSpecification__Group__10() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2980:1: ( rule__InstanceSpecification__Group_8__0__Impl rule__InstanceSpecification__Group_8__1 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2981:2: rule__InstanceSpecification__Group_8__0__Impl rule__InstanceSpecification__Group_8__1
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2961:1: ( rule__InstanceSpecification__Group__10__Impl )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2962:2: rule__InstanceSpecification__Group__10__Impl
             {
-            pushFollow(FOLLOW_rule__InstanceSpecification__Group_8__0__Impl_in_rule__InstanceSpecification__Group_8__06113);
-            rule__InstanceSpecification__Group_8__0__Impl();
-
-            state._fsp--;
-
-            pushFollow(FOLLOW_rule__InstanceSpecification__Group_8__1_in_rule__InstanceSpecification__Group_8__06116);
-            rule__InstanceSpecification__Group_8__1();
+            pushFollow(FOLLOW_rule__InstanceSpecification__Group__10__Impl_in_rule__InstanceSpecification__Group__106096);
+            rule__InstanceSpecification__Group__10__Impl();
 
             state._fsp--;
 
@@ -7861,35 +7862,25 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__InstanceSpecification__Group_8__0"
+    // $ANTLR end "rule__InstanceSpecification__Group__10"
 
 
-    // $ANTLR start "rule__InstanceSpecification__Group_8__0__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2988:1: rule__InstanceSpecification__Group_8__0__Impl : ( ( rule__InstanceSpecification__ConstraintSemanticsAssignment_8_0 ) ) ;
-    public final void rule__InstanceSpecification__Group_8__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__InstanceSpecification__Group__10__Impl"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2968:1: rule__InstanceSpecification__Group__10__Impl : ( '}' ) ;
+    public final void rule__InstanceSpecification__Group__10__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2992:1: ( ( ( rule__InstanceSpecification__ConstraintSemanticsAssignment_8_0 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2993:1: ( ( rule__InstanceSpecification__ConstraintSemanticsAssignment_8_0 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2972:1: ( ( '}' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2973:1: ( '}' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2993:1: ( ( rule__InstanceSpecification__ConstraintSemanticsAssignment_8_0 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2994:1: ( rule__InstanceSpecification__ConstraintSemanticsAssignment_8_0 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2973:1: ( '}' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2974:1: '}'
             {
-             before(grammarAccess.getInstanceSpecificationAccess().getConstraintSemanticsAssignment_8_0()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2995:1: ( rule__InstanceSpecification__ConstraintSemanticsAssignment_8_0 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:2995:2: rule__InstanceSpecification__ConstraintSemanticsAssignment_8_0
-            {
-            pushFollow(FOLLOW_rule__InstanceSpecification__ConstraintSemanticsAssignment_8_0_in_rule__InstanceSpecification__Group_8__0__Impl6143);
-            rule__InstanceSpecification__ConstraintSemanticsAssignment_8_0();
-
-            state._fsp--;
-
-
-            }
-
-             after(grammarAccess.getInstanceSpecificationAccess().getConstraintSemanticsAssignment_8_0()); 
+             before(grammarAccess.getInstanceSpecificationAccess().getRightCurlyBracketKeyword_10()); 
+            match(input,38,FOLLOW_38_in_rule__InstanceSpecification__Group__10__Impl6124); 
+             after(grammarAccess.getInstanceSpecificationAccess().getRightCurlyBracketKeyword_10()); 
 
             }
 
@@ -7908,21 +7899,26 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__InstanceSpecification__Group_8__0__Impl"
+    // $ANTLR end "rule__InstanceSpecification__Group__10__Impl"
 
 
-    // $ANTLR start "rule__InstanceSpecification__Group_8__1"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3005:1: rule__InstanceSpecification__Group_8__1 : rule__InstanceSpecification__Group_8__1__Impl ;
-    public final void rule__InstanceSpecification__Group_8__1() throws RecognitionException {
+    // $ANTLR start "rule__InstanceSpecification__Group_9__0"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3009:1: rule__InstanceSpecification__Group_9__0 : rule__InstanceSpecification__Group_9__0__Impl rule__InstanceSpecification__Group_9__1 ;
+    public final void rule__InstanceSpecification__Group_9__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3009:1: ( rule__InstanceSpecification__Group_8__1__Impl )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3010:2: rule__InstanceSpecification__Group_8__1__Impl
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3013:1: ( rule__InstanceSpecification__Group_9__0__Impl rule__InstanceSpecification__Group_9__1 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3014:2: rule__InstanceSpecification__Group_9__0__Impl rule__InstanceSpecification__Group_9__1
             {
-            pushFollow(FOLLOW_rule__InstanceSpecification__Group_8__1__Impl_in_rule__InstanceSpecification__Group_8__16173);
-            rule__InstanceSpecification__Group_8__1__Impl();
+            pushFollow(FOLLOW_rule__InstanceSpecification__Group_9__0__Impl_in_rule__InstanceSpecification__Group_9__06177);
+            rule__InstanceSpecification__Group_9__0__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__InstanceSpecification__Group_9__1_in_rule__InstanceSpecification__Group_9__06180);
+            rule__InstanceSpecification__Group_9__1();
 
             state._fsp--;
 
@@ -7941,24 +7937,104 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__InstanceSpecification__Group_8__1"
+    // $ANTLR end "rule__InstanceSpecification__Group_9__0"
 
 
-    // $ANTLR start "rule__InstanceSpecification__Group_8__1__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3016:1: rule__InstanceSpecification__Group_8__1__Impl : ( ( rule__InstanceSpecification__Group_8_1__0 )* ) ;
-    public final void rule__InstanceSpecification__Group_8__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__InstanceSpecification__Group_9__0__Impl"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3021:1: rule__InstanceSpecification__Group_9__0__Impl : ( ( rule__InstanceSpecification__ConstraintSemanticsAssignment_9_0 ) ) ;
+    public final void rule__InstanceSpecification__Group_9__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3020:1: ( ( ( rule__InstanceSpecification__Group_8_1__0 )* ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3021:1: ( ( rule__InstanceSpecification__Group_8_1__0 )* )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3025:1: ( ( ( rule__InstanceSpecification__ConstraintSemanticsAssignment_9_0 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3026:1: ( ( rule__InstanceSpecification__ConstraintSemanticsAssignment_9_0 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3021:1: ( ( rule__InstanceSpecification__Group_8_1__0 )* )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3022:1: ( rule__InstanceSpecification__Group_8_1__0 )*
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3026:1: ( ( rule__InstanceSpecification__ConstraintSemanticsAssignment_9_0 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3027:1: ( rule__InstanceSpecification__ConstraintSemanticsAssignment_9_0 )
             {
-             before(grammarAccess.getInstanceSpecificationAccess().getGroup_8_1()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3023:1: ( rule__InstanceSpecification__Group_8_1__0 )*
+             before(grammarAccess.getInstanceSpecificationAccess().getConstraintSemanticsAssignment_9_0()); 
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3028:1: ( rule__InstanceSpecification__ConstraintSemanticsAssignment_9_0 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3028:2: rule__InstanceSpecification__ConstraintSemanticsAssignment_9_0
+            {
+            pushFollow(FOLLOW_rule__InstanceSpecification__ConstraintSemanticsAssignment_9_0_in_rule__InstanceSpecification__Group_9__0__Impl6207);
+            rule__InstanceSpecification__ConstraintSemanticsAssignment_9_0();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getInstanceSpecificationAccess().getConstraintSemanticsAssignment_9_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__InstanceSpecification__Group_9__0__Impl"
+
+
+    // $ANTLR start "rule__InstanceSpecification__Group_9__1"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3038:1: rule__InstanceSpecification__Group_9__1 : rule__InstanceSpecification__Group_9__1__Impl ;
+    public final void rule__InstanceSpecification__Group_9__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3042:1: ( rule__InstanceSpecification__Group_9__1__Impl )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3043:2: rule__InstanceSpecification__Group_9__1__Impl
+            {
+            pushFollow(FOLLOW_rule__InstanceSpecification__Group_9__1__Impl_in_rule__InstanceSpecification__Group_9__16237);
+            rule__InstanceSpecification__Group_9__1__Impl();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__InstanceSpecification__Group_9__1"
+
+
+    // $ANTLR start "rule__InstanceSpecification__Group_9__1__Impl"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3049:1: rule__InstanceSpecification__Group_9__1__Impl : ( ( rule__InstanceSpecification__Group_9_1__0 )* ) ;
+    public final void rule__InstanceSpecification__Group_9__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3053:1: ( ( ( rule__InstanceSpecification__Group_9_1__0 )* ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3054:1: ( ( rule__InstanceSpecification__Group_9_1__0 )* )
+            {
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3054:1: ( ( rule__InstanceSpecification__Group_9_1__0 )* )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3055:1: ( rule__InstanceSpecification__Group_9_1__0 )*
+            {
+             before(grammarAccess.getInstanceSpecificationAccess().getGroup_9_1()); 
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3056:1: ( rule__InstanceSpecification__Group_9_1__0 )*
             loop10:
             do {
                 int alt10=2;
@@ -7971,10 +8047,10 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
                 switch (alt10) {
             	case 1 :
-            	    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3023:2: rule__InstanceSpecification__Group_8_1__0
+            	    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3056:2: rule__InstanceSpecification__Group_9_1__0
             	    {
-            	    pushFollow(FOLLOW_rule__InstanceSpecification__Group_8_1__0_in_rule__InstanceSpecification__Group_8__1__Impl6200);
-            	    rule__InstanceSpecification__Group_8_1__0();
+            	    pushFollow(FOLLOW_rule__InstanceSpecification__Group_9_1__0_in_rule__InstanceSpecification__Group_9__1__Impl6264);
+            	    rule__InstanceSpecification__Group_9_1__0();
 
             	    state._fsp--;
 
@@ -7987,7 +8063,7 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
                 }
             } while (true);
 
-             after(grammarAccess.getInstanceSpecificationAccess().getGroup_8_1()); 
+             after(grammarAccess.getInstanceSpecificationAccess().getGroup_9_1()); 
 
             }
 
@@ -8006,96 +8082,26 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__InstanceSpecification__Group_8__1__Impl"
+    // $ANTLR end "rule__InstanceSpecification__Group_9__1__Impl"
 
 
-    // $ANTLR start "rule__InstanceSpecification__Group_8_1__0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3037:1: rule__InstanceSpecification__Group_8_1__0 : rule__InstanceSpecification__Group_8_1__0__Impl rule__InstanceSpecification__Group_8_1__1 ;
-    public final void rule__InstanceSpecification__Group_8_1__0() throws RecognitionException {
+    // $ANTLR start "rule__InstanceSpecification__Group_9_1__0"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3070:1: rule__InstanceSpecification__Group_9_1__0 : rule__InstanceSpecification__Group_9_1__0__Impl rule__InstanceSpecification__Group_9_1__1 ;
+    public final void rule__InstanceSpecification__Group_9_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3041:1: ( rule__InstanceSpecification__Group_8_1__0__Impl rule__InstanceSpecification__Group_8_1__1 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3042:2: rule__InstanceSpecification__Group_8_1__0__Impl rule__InstanceSpecification__Group_8_1__1
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3074:1: ( rule__InstanceSpecification__Group_9_1__0__Impl rule__InstanceSpecification__Group_9_1__1 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3075:2: rule__InstanceSpecification__Group_9_1__0__Impl rule__InstanceSpecification__Group_9_1__1
             {
-            pushFollow(FOLLOW_rule__InstanceSpecification__Group_8_1__0__Impl_in_rule__InstanceSpecification__Group_8_1__06235);
-            rule__InstanceSpecification__Group_8_1__0__Impl();
+            pushFollow(FOLLOW_rule__InstanceSpecification__Group_9_1__0__Impl_in_rule__InstanceSpecification__Group_9_1__06299);
+            rule__InstanceSpecification__Group_9_1__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__InstanceSpecification__Group_8_1__1_in_rule__InstanceSpecification__Group_8_1__06238);
-            rule__InstanceSpecification__Group_8_1__1();
-
-            state._fsp--;
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__InstanceSpecification__Group_8_1__0"
-
-
-    // $ANTLR start "rule__InstanceSpecification__Group_8_1__0__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3049:1: rule__InstanceSpecification__Group_8_1__0__Impl : ( ',' ) ;
-    public final void rule__InstanceSpecification__Group_8_1__0__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3053:1: ( ( ',' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3054:1: ( ',' )
-            {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3054:1: ( ',' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3055:1: ','
-            {
-             before(grammarAccess.getInstanceSpecificationAccess().getCommaKeyword_8_1_0()); 
-            match(input,29,FOLLOW_29_in_rule__InstanceSpecification__Group_8_1__0__Impl6266); 
-             after(grammarAccess.getInstanceSpecificationAccess().getCommaKeyword_8_1_0()); 
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__InstanceSpecification__Group_8_1__0__Impl"
-
-
-    // $ANTLR start "rule__InstanceSpecification__Group_8_1__1"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3068:1: rule__InstanceSpecification__Group_8_1__1 : rule__InstanceSpecification__Group_8_1__1__Impl ;
-    public final void rule__InstanceSpecification__Group_8_1__1() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3072:1: ( rule__InstanceSpecification__Group_8_1__1__Impl )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3073:2: rule__InstanceSpecification__Group_8_1__1__Impl
-            {
-            pushFollow(FOLLOW_rule__InstanceSpecification__Group_8_1__1__Impl_in_rule__InstanceSpecification__Group_8_1__16297);
-            rule__InstanceSpecification__Group_8_1__1__Impl();
+            pushFollow(FOLLOW_rule__InstanceSpecification__Group_9_1__1_in_rule__InstanceSpecification__Group_9_1__06302);
+            rule__InstanceSpecification__Group_9_1__1();
 
             state._fsp--;
 
@@ -8114,35 +8120,25 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__InstanceSpecification__Group_8_1__1"
+    // $ANTLR end "rule__InstanceSpecification__Group_9_1__0"
 
 
-    // $ANTLR start "rule__InstanceSpecification__Group_8_1__1__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3079:1: rule__InstanceSpecification__Group_8_1__1__Impl : ( ( rule__InstanceSpecification__ConstraintSemanticsAssignment_8_1_1 ) ) ;
-    public final void rule__InstanceSpecification__Group_8_1__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__InstanceSpecification__Group_9_1__0__Impl"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3082:1: rule__InstanceSpecification__Group_9_1__0__Impl : ( ',' ) ;
+    public final void rule__InstanceSpecification__Group_9_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3083:1: ( ( ( rule__InstanceSpecification__ConstraintSemanticsAssignment_8_1_1 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3084:1: ( ( rule__InstanceSpecification__ConstraintSemanticsAssignment_8_1_1 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3086:1: ( ( ',' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3087:1: ( ',' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3084:1: ( ( rule__InstanceSpecification__ConstraintSemanticsAssignment_8_1_1 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3085:1: ( rule__InstanceSpecification__ConstraintSemanticsAssignment_8_1_1 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3087:1: ( ',' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3088:1: ','
             {
-             before(grammarAccess.getInstanceSpecificationAccess().getConstraintSemanticsAssignment_8_1_1()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3086:1: ( rule__InstanceSpecification__ConstraintSemanticsAssignment_8_1_1 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3086:2: rule__InstanceSpecification__ConstraintSemanticsAssignment_8_1_1
-            {
-            pushFollow(FOLLOW_rule__InstanceSpecification__ConstraintSemanticsAssignment_8_1_1_in_rule__InstanceSpecification__Group_8_1__1__Impl6324);
-            rule__InstanceSpecification__ConstraintSemanticsAssignment_8_1_1();
-
-            state._fsp--;
-
-
-            }
-
-             after(grammarAccess.getInstanceSpecificationAccess().getConstraintSemanticsAssignment_8_1_1()); 
+             before(grammarAccess.getInstanceSpecificationAccess().getCommaKeyword_9_1_0()); 
+            match(input,29,FOLLOW_29_in_rule__InstanceSpecification__Group_9_1__0__Impl6330); 
+             after(grammarAccess.getInstanceSpecificationAccess().getCommaKeyword_9_1_0()); 
 
             }
 
@@ -8161,25 +8157,105 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__InstanceSpecification__Group_8_1__1__Impl"
+    // $ANTLR end "rule__InstanceSpecification__Group_9_1__0__Impl"
+
+
+    // $ANTLR start "rule__InstanceSpecification__Group_9_1__1"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3101:1: rule__InstanceSpecification__Group_9_1__1 : rule__InstanceSpecification__Group_9_1__1__Impl ;
+    public final void rule__InstanceSpecification__Group_9_1__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3105:1: ( rule__InstanceSpecification__Group_9_1__1__Impl )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3106:2: rule__InstanceSpecification__Group_9_1__1__Impl
+            {
+            pushFollow(FOLLOW_rule__InstanceSpecification__Group_9_1__1__Impl_in_rule__InstanceSpecification__Group_9_1__16361);
+            rule__InstanceSpecification__Group_9_1__1__Impl();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__InstanceSpecification__Group_9_1__1"
+
+
+    // $ANTLR start "rule__InstanceSpecification__Group_9_1__1__Impl"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3112:1: rule__InstanceSpecification__Group_9_1__1__Impl : ( ( rule__InstanceSpecification__ConstraintSemanticsAssignment_9_1_1 ) ) ;
+    public final void rule__InstanceSpecification__Group_9_1__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3116:1: ( ( ( rule__InstanceSpecification__ConstraintSemanticsAssignment_9_1_1 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3117:1: ( ( rule__InstanceSpecification__ConstraintSemanticsAssignment_9_1_1 ) )
+            {
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3117:1: ( ( rule__InstanceSpecification__ConstraintSemanticsAssignment_9_1_1 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3118:1: ( rule__InstanceSpecification__ConstraintSemanticsAssignment_9_1_1 )
+            {
+             before(grammarAccess.getInstanceSpecificationAccess().getConstraintSemanticsAssignment_9_1_1()); 
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3119:1: ( rule__InstanceSpecification__ConstraintSemanticsAssignment_9_1_1 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3119:2: rule__InstanceSpecification__ConstraintSemanticsAssignment_9_1_1
+            {
+            pushFollow(FOLLOW_rule__InstanceSpecification__ConstraintSemanticsAssignment_9_1_1_in_rule__InstanceSpecification__Group_9_1__1__Impl6388);
+            rule__InstanceSpecification__ConstraintSemanticsAssignment_9_1_1();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getInstanceSpecificationAccess().getConstraintSemanticsAssignment_9_1_1()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__InstanceSpecification__Group_9_1__1__Impl"
 
 
     // $ANTLR start "rule__ConstraintSemantic__Group__0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3100:1: rule__ConstraintSemantic__Group__0 : rule__ConstraintSemantic__Group__0__Impl rule__ConstraintSemantic__Group__1 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3133:1: rule__ConstraintSemantic__Group__0 : rule__ConstraintSemantic__Group__0__Impl rule__ConstraintSemantic__Group__1 ;
     public final void rule__ConstraintSemantic__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3104:1: ( rule__ConstraintSemantic__Group__0__Impl rule__ConstraintSemantic__Group__1 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3105:2: rule__ConstraintSemantic__Group__0__Impl rule__ConstraintSemantic__Group__1
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3137:1: ( rule__ConstraintSemantic__Group__0__Impl rule__ConstraintSemantic__Group__1 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3138:2: rule__ConstraintSemantic__Group__0__Impl rule__ConstraintSemantic__Group__1
             {
-            pushFollow(FOLLOW_rule__ConstraintSemantic__Group__0__Impl_in_rule__ConstraintSemantic__Group__06358);
+            pushFollow(FOLLOW_rule__ConstraintSemantic__Group__0__Impl_in_rule__ConstraintSemantic__Group__06422);
             rule__ConstraintSemantic__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ConstraintSemantic__Group__1_in_rule__ConstraintSemantic__Group__06361);
+            pushFollow(FOLLOW_rule__ConstraintSemantic__Group__1_in_rule__ConstraintSemantic__Group__06425);
             rule__ConstraintSemantic__Group__1();
 
             state._fsp--;
@@ -8203,23 +8279,23 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstraintSemantic__Group__0__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3112:1: rule__ConstraintSemantic__Group__0__Impl : ( ( rule__ConstraintSemantic__IdAssignment_0 ) ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3145:1: rule__ConstraintSemantic__Group__0__Impl : ( ( rule__ConstraintSemantic__IdAssignment_0 ) ) ;
     public final void rule__ConstraintSemantic__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3116:1: ( ( ( rule__ConstraintSemantic__IdAssignment_0 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3117:1: ( ( rule__ConstraintSemantic__IdAssignment_0 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3149:1: ( ( ( rule__ConstraintSemantic__IdAssignment_0 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3150:1: ( ( rule__ConstraintSemantic__IdAssignment_0 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3117:1: ( ( rule__ConstraintSemantic__IdAssignment_0 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3118:1: ( rule__ConstraintSemantic__IdAssignment_0 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3150:1: ( ( rule__ConstraintSemantic__IdAssignment_0 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3151:1: ( rule__ConstraintSemantic__IdAssignment_0 )
             {
              before(grammarAccess.getConstraintSemanticAccess().getIdAssignment_0()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3119:1: ( rule__ConstraintSemantic__IdAssignment_0 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3119:2: rule__ConstraintSemantic__IdAssignment_0
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3152:1: ( rule__ConstraintSemantic__IdAssignment_0 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3152:2: rule__ConstraintSemantic__IdAssignment_0
             {
-            pushFollow(FOLLOW_rule__ConstraintSemantic__IdAssignment_0_in_rule__ConstraintSemantic__Group__0__Impl6388);
+            pushFollow(FOLLOW_rule__ConstraintSemantic__IdAssignment_0_in_rule__ConstraintSemantic__Group__0__Impl6452);
             rule__ConstraintSemantic__IdAssignment_0();
 
             state._fsp--;
@@ -8250,21 +8326,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstraintSemantic__Group__1"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3129:1: rule__ConstraintSemantic__Group__1 : rule__ConstraintSemantic__Group__1__Impl rule__ConstraintSemantic__Group__2 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3162:1: rule__ConstraintSemantic__Group__1 : rule__ConstraintSemantic__Group__1__Impl rule__ConstraintSemantic__Group__2 ;
     public final void rule__ConstraintSemantic__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3133:1: ( rule__ConstraintSemantic__Group__1__Impl rule__ConstraintSemantic__Group__2 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3134:2: rule__ConstraintSemantic__Group__1__Impl rule__ConstraintSemantic__Group__2
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3166:1: ( rule__ConstraintSemantic__Group__1__Impl rule__ConstraintSemantic__Group__2 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3167:2: rule__ConstraintSemantic__Group__1__Impl rule__ConstraintSemantic__Group__2
             {
-            pushFollow(FOLLOW_rule__ConstraintSemantic__Group__1__Impl_in_rule__ConstraintSemantic__Group__16418);
+            pushFollow(FOLLOW_rule__ConstraintSemantic__Group__1__Impl_in_rule__ConstraintSemantic__Group__16482);
             rule__ConstraintSemantic__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ConstraintSemantic__Group__2_in_rule__ConstraintSemantic__Group__16421);
+            pushFollow(FOLLOW_rule__ConstraintSemantic__Group__2_in_rule__ConstraintSemantic__Group__16485);
             rule__ConstraintSemantic__Group__2();
 
             state._fsp--;
@@ -8288,20 +8364,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstraintSemantic__Group__1__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3141:1: rule__ConstraintSemantic__Group__1__Impl : ( '{' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3174:1: rule__ConstraintSemantic__Group__1__Impl : ( '{' ) ;
     public final void rule__ConstraintSemantic__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3145:1: ( ( '{' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3146:1: ( '{' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3178:1: ( ( '{' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3179:1: ( '{' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3146:1: ( '{' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3147:1: '{'
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3179:1: ( '{' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3180:1: '{'
             {
              before(grammarAccess.getConstraintSemanticAccess().getLeftCurlyBracketKeyword_1()); 
-            match(input,36,FOLLOW_36_in_rule__ConstraintSemantic__Group__1__Impl6449); 
+            match(input,37,FOLLOW_37_in_rule__ConstraintSemantic__Group__1__Impl6513); 
              after(grammarAccess.getConstraintSemanticAccess().getLeftCurlyBracketKeyword_1()); 
 
             }
@@ -8325,21 +8401,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstraintSemantic__Group__2"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3160:1: rule__ConstraintSemantic__Group__2 : rule__ConstraintSemantic__Group__2__Impl rule__ConstraintSemantic__Group__3 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3193:1: rule__ConstraintSemantic__Group__2 : rule__ConstraintSemantic__Group__2__Impl rule__ConstraintSemantic__Group__3 ;
     public final void rule__ConstraintSemantic__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3164:1: ( rule__ConstraintSemantic__Group__2__Impl rule__ConstraintSemantic__Group__3 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3165:2: rule__ConstraintSemantic__Group__2__Impl rule__ConstraintSemantic__Group__3
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3197:1: ( rule__ConstraintSemantic__Group__2__Impl rule__ConstraintSemantic__Group__3 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3198:2: rule__ConstraintSemantic__Group__2__Impl rule__ConstraintSemantic__Group__3
             {
-            pushFollow(FOLLOW_rule__ConstraintSemantic__Group__2__Impl_in_rule__ConstraintSemantic__Group__26480);
+            pushFollow(FOLLOW_rule__ConstraintSemantic__Group__2__Impl_in_rule__ConstraintSemantic__Group__26544);
             rule__ConstraintSemantic__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ConstraintSemantic__Group__3_in_rule__ConstraintSemantic__Group__26483);
+            pushFollow(FOLLOW_rule__ConstraintSemantic__Group__3_in_rule__ConstraintSemantic__Group__26547);
             rule__ConstraintSemantic__Group__3();
 
             state._fsp--;
@@ -8363,23 +8439,23 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstraintSemantic__Group__2__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3172:1: rule__ConstraintSemantic__Group__2__Impl : ( ( rule__ConstraintSemantic__Group_2__0 ) ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3205:1: rule__ConstraintSemantic__Group__2__Impl : ( ( rule__ConstraintSemantic__Group_2__0 ) ) ;
     public final void rule__ConstraintSemantic__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3176:1: ( ( ( rule__ConstraintSemantic__Group_2__0 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3177:1: ( ( rule__ConstraintSemantic__Group_2__0 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3209:1: ( ( ( rule__ConstraintSemantic__Group_2__0 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3210:1: ( ( rule__ConstraintSemantic__Group_2__0 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3177:1: ( ( rule__ConstraintSemantic__Group_2__0 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3178:1: ( rule__ConstraintSemantic__Group_2__0 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3210:1: ( ( rule__ConstraintSemantic__Group_2__0 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3211:1: ( rule__ConstraintSemantic__Group_2__0 )
             {
              before(grammarAccess.getConstraintSemanticAccess().getGroup_2()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3179:1: ( rule__ConstraintSemantic__Group_2__0 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3179:2: rule__ConstraintSemantic__Group_2__0
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3212:1: ( rule__ConstraintSemantic__Group_2__0 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3212:2: rule__ConstraintSemantic__Group_2__0
             {
-            pushFollow(FOLLOW_rule__ConstraintSemantic__Group_2__0_in_rule__ConstraintSemantic__Group__2__Impl6510);
+            pushFollow(FOLLOW_rule__ConstraintSemantic__Group_2__0_in_rule__ConstraintSemantic__Group__2__Impl6574);
             rule__ConstraintSemantic__Group_2__0();
 
             state._fsp--;
@@ -8410,21 +8486,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstraintSemantic__Group__3"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3189:1: rule__ConstraintSemantic__Group__3 : rule__ConstraintSemantic__Group__3__Impl rule__ConstraintSemantic__Group__4 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3222:1: rule__ConstraintSemantic__Group__3 : rule__ConstraintSemantic__Group__3__Impl rule__ConstraintSemantic__Group__4 ;
     public final void rule__ConstraintSemantic__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3193:1: ( rule__ConstraintSemantic__Group__3__Impl rule__ConstraintSemantic__Group__4 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3194:2: rule__ConstraintSemantic__Group__3__Impl rule__ConstraintSemantic__Group__4
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3226:1: ( rule__ConstraintSemantic__Group__3__Impl rule__ConstraintSemantic__Group__4 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3227:2: rule__ConstraintSemantic__Group__3__Impl rule__ConstraintSemantic__Group__4
             {
-            pushFollow(FOLLOW_rule__ConstraintSemantic__Group__3__Impl_in_rule__ConstraintSemantic__Group__36540);
+            pushFollow(FOLLOW_rule__ConstraintSemantic__Group__3__Impl_in_rule__ConstraintSemantic__Group__36604);
             rule__ConstraintSemantic__Group__3__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ConstraintSemantic__Group__4_in_rule__ConstraintSemantic__Group__36543);
+            pushFollow(FOLLOW_rule__ConstraintSemantic__Group__4_in_rule__ConstraintSemantic__Group__36607);
             rule__ConstraintSemantic__Group__4();
 
             state._fsp--;
@@ -8448,20 +8524,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstraintSemantic__Group__3__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3201:1: rule__ConstraintSemantic__Group__3__Impl : ( ',' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3234:1: rule__ConstraintSemantic__Group__3__Impl : ( ',' ) ;
     public final void rule__ConstraintSemantic__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3205:1: ( ( ',' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3206:1: ( ',' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3238:1: ( ( ',' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3239:1: ( ',' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3206:1: ( ',' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3207:1: ','
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3239:1: ( ',' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3240:1: ','
             {
              before(grammarAccess.getConstraintSemanticAccess().getCommaKeyword_3()); 
-            match(input,29,FOLLOW_29_in_rule__ConstraintSemantic__Group__3__Impl6571); 
+            match(input,29,FOLLOW_29_in_rule__ConstraintSemantic__Group__3__Impl6635); 
              after(grammarAccess.getConstraintSemanticAccess().getCommaKeyword_3()); 
 
             }
@@ -8485,21 +8561,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstraintSemantic__Group__4"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3220:1: rule__ConstraintSemantic__Group__4 : rule__ConstraintSemantic__Group__4__Impl rule__ConstraintSemantic__Group__5 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3253:1: rule__ConstraintSemantic__Group__4 : rule__ConstraintSemantic__Group__4__Impl rule__ConstraintSemantic__Group__5 ;
     public final void rule__ConstraintSemantic__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3224:1: ( rule__ConstraintSemantic__Group__4__Impl rule__ConstraintSemantic__Group__5 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3225:2: rule__ConstraintSemantic__Group__4__Impl rule__ConstraintSemantic__Group__5
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3257:1: ( rule__ConstraintSemantic__Group__4__Impl rule__ConstraintSemantic__Group__5 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3258:2: rule__ConstraintSemantic__Group__4__Impl rule__ConstraintSemantic__Group__5
             {
-            pushFollow(FOLLOW_rule__ConstraintSemantic__Group__4__Impl_in_rule__ConstraintSemantic__Group__46602);
+            pushFollow(FOLLOW_rule__ConstraintSemantic__Group__4__Impl_in_rule__ConstraintSemantic__Group__46666);
             rule__ConstraintSemantic__Group__4__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ConstraintSemantic__Group__5_in_rule__ConstraintSemantic__Group__46605);
+            pushFollow(FOLLOW_rule__ConstraintSemantic__Group__5_in_rule__ConstraintSemantic__Group__46669);
             rule__ConstraintSemantic__Group__5();
 
             state._fsp--;
@@ -8523,20 +8599,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstraintSemantic__Group__4__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3232:1: rule__ConstraintSemantic__Group__4__Impl : ( '}' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3265:1: rule__ConstraintSemantic__Group__4__Impl : ( '}' ) ;
     public final void rule__ConstraintSemantic__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3236:1: ( ( '}' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3237:1: ( '}' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3269:1: ( ( '}' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3270:1: ( '}' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3237:1: ( '}' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3238:1: '}'
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3270:1: ( '}' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3271:1: '}'
             {
              before(grammarAccess.getConstraintSemanticAccess().getRightCurlyBracketKeyword_4()); 
-            match(input,37,FOLLOW_37_in_rule__ConstraintSemantic__Group__4__Impl6633); 
+            match(input,38,FOLLOW_38_in_rule__ConstraintSemantic__Group__4__Impl6697); 
              after(grammarAccess.getConstraintSemanticAccess().getRightCurlyBracketKeyword_4()); 
 
             }
@@ -8560,21 +8636,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstraintSemantic__Group__5"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3251:1: rule__ConstraintSemantic__Group__5 : rule__ConstraintSemantic__Group__5__Impl rule__ConstraintSemantic__Group__6 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3284:1: rule__ConstraintSemantic__Group__5 : rule__ConstraintSemantic__Group__5__Impl rule__ConstraintSemantic__Group__6 ;
     public final void rule__ConstraintSemantic__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3255:1: ( rule__ConstraintSemantic__Group__5__Impl rule__ConstraintSemantic__Group__6 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3256:2: rule__ConstraintSemantic__Group__5__Impl rule__ConstraintSemantic__Group__6
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3288:1: ( rule__ConstraintSemantic__Group__5__Impl rule__ConstraintSemantic__Group__6 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3289:2: rule__ConstraintSemantic__Group__5__Impl rule__ConstraintSemantic__Group__6
             {
-            pushFollow(FOLLOW_rule__ConstraintSemantic__Group__5__Impl_in_rule__ConstraintSemantic__Group__56664);
+            pushFollow(FOLLOW_rule__ConstraintSemantic__Group__5__Impl_in_rule__ConstraintSemantic__Group__56728);
             rule__ConstraintSemantic__Group__5__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ConstraintSemantic__Group__6_in_rule__ConstraintSemantic__Group__56667);
+            pushFollow(FOLLOW_rule__ConstraintSemantic__Group__6_in_rule__ConstraintSemantic__Group__56731);
             rule__ConstraintSemantic__Group__6();
 
             state._fsp--;
@@ -8598,20 +8674,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstraintSemantic__Group__5__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3263:1: rule__ConstraintSemantic__Group__5__Impl : ( '=' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3296:1: rule__ConstraintSemantic__Group__5__Impl : ( '=' ) ;
     public final void rule__ConstraintSemantic__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3267:1: ( ( '=' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3268:1: ( '=' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3300:1: ( ( '=' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3301:1: ( '=' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3268:1: ( '=' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3269:1: '='
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3301:1: ( '=' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3302:1: '='
             {
              before(grammarAccess.getConstraintSemanticAccess().getEqualsSignKeyword_5()); 
-            match(input,38,FOLLOW_38_in_rule__ConstraintSemantic__Group__5__Impl6695); 
+            match(input,39,FOLLOW_39_in_rule__ConstraintSemantic__Group__5__Impl6759); 
              after(grammarAccess.getConstraintSemanticAccess().getEqualsSignKeyword_5()); 
 
             }
@@ -8635,16 +8711,16 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstraintSemantic__Group__6"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3282:1: rule__ConstraintSemantic__Group__6 : rule__ConstraintSemantic__Group__6__Impl ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3315:1: rule__ConstraintSemantic__Group__6 : rule__ConstraintSemantic__Group__6__Impl ;
     public final void rule__ConstraintSemantic__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3286:1: ( rule__ConstraintSemantic__Group__6__Impl )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3287:2: rule__ConstraintSemantic__Group__6__Impl
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3319:1: ( rule__ConstraintSemantic__Group__6__Impl )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3320:2: rule__ConstraintSemantic__Group__6__Impl
             {
-            pushFollow(FOLLOW_rule__ConstraintSemantic__Group__6__Impl_in_rule__ConstraintSemantic__Group__66726);
+            pushFollow(FOLLOW_rule__ConstraintSemantic__Group__6__Impl_in_rule__ConstraintSemantic__Group__66790);
             rule__ConstraintSemantic__Group__6__Impl();
 
             state._fsp--;
@@ -8668,23 +8744,23 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstraintSemantic__Group__6__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3293:1: rule__ConstraintSemantic__Group__6__Impl : ( ( rule__ConstraintSemantic__OclAssignment_6 ) ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3326:1: rule__ConstraintSemantic__Group__6__Impl : ( ( rule__ConstraintSemantic__OclAssignment_6 ) ) ;
     public final void rule__ConstraintSemantic__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3297:1: ( ( ( rule__ConstraintSemantic__OclAssignment_6 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3298:1: ( ( rule__ConstraintSemantic__OclAssignment_6 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3330:1: ( ( ( rule__ConstraintSemantic__OclAssignment_6 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3331:1: ( ( rule__ConstraintSemantic__OclAssignment_6 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3298:1: ( ( rule__ConstraintSemantic__OclAssignment_6 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3299:1: ( rule__ConstraintSemantic__OclAssignment_6 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3331:1: ( ( rule__ConstraintSemantic__OclAssignment_6 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3332:1: ( rule__ConstraintSemantic__OclAssignment_6 )
             {
              before(grammarAccess.getConstraintSemanticAccess().getOclAssignment_6()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3300:1: ( rule__ConstraintSemantic__OclAssignment_6 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3300:2: rule__ConstraintSemantic__OclAssignment_6
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3333:1: ( rule__ConstraintSemantic__OclAssignment_6 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3333:2: rule__ConstraintSemantic__OclAssignment_6
             {
-            pushFollow(FOLLOW_rule__ConstraintSemantic__OclAssignment_6_in_rule__ConstraintSemantic__Group__6__Impl6753);
+            pushFollow(FOLLOW_rule__ConstraintSemantic__OclAssignment_6_in_rule__ConstraintSemantic__Group__6__Impl6817);
             rule__ConstraintSemantic__OclAssignment_6();
 
             state._fsp--;
@@ -8715,21 +8791,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstraintSemantic__Group_2__0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3324:1: rule__ConstraintSemantic__Group_2__0 : rule__ConstraintSemantic__Group_2__0__Impl rule__ConstraintSemantic__Group_2__1 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3357:1: rule__ConstraintSemantic__Group_2__0 : rule__ConstraintSemantic__Group_2__0__Impl rule__ConstraintSemantic__Group_2__1 ;
     public final void rule__ConstraintSemantic__Group_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3328:1: ( rule__ConstraintSemantic__Group_2__0__Impl rule__ConstraintSemantic__Group_2__1 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3329:2: rule__ConstraintSemantic__Group_2__0__Impl rule__ConstraintSemantic__Group_2__1
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3361:1: ( rule__ConstraintSemantic__Group_2__0__Impl rule__ConstraintSemantic__Group_2__1 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3362:2: rule__ConstraintSemantic__Group_2__0__Impl rule__ConstraintSemantic__Group_2__1
             {
-            pushFollow(FOLLOW_rule__ConstraintSemantic__Group_2__0__Impl_in_rule__ConstraintSemantic__Group_2__06797);
+            pushFollow(FOLLOW_rule__ConstraintSemantic__Group_2__0__Impl_in_rule__ConstraintSemantic__Group_2__06861);
             rule__ConstraintSemantic__Group_2__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ConstraintSemantic__Group_2__1_in_rule__ConstraintSemantic__Group_2__06800);
+            pushFollow(FOLLOW_rule__ConstraintSemantic__Group_2__1_in_rule__ConstraintSemantic__Group_2__06864);
             rule__ConstraintSemantic__Group_2__1();
 
             state._fsp--;
@@ -8753,23 +8829,23 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstraintSemantic__Group_2__0__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3336:1: rule__ConstraintSemantic__Group_2__0__Impl : ( ( rule__ConstraintSemantic__ArrowsAssignment_2_0 ) ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3369:1: rule__ConstraintSemantic__Group_2__0__Impl : ( ( rule__ConstraintSemantic__ArrowsAssignment_2_0 ) ) ;
     public final void rule__ConstraintSemantic__Group_2__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3340:1: ( ( ( rule__ConstraintSemantic__ArrowsAssignment_2_0 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3341:1: ( ( rule__ConstraintSemantic__ArrowsAssignment_2_0 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3373:1: ( ( ( rule__ConstraintSemantic__ArrowsAssignment_2_0 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3374:1: ( ( rule__ConstraintSemantic__ArrowsAssignment_2_0 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3341:1: ( ( rule__ConstraintSemantic__ArrowsAssignment_2_0 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3342:1: ( rule__ConstraintSemantic__ArrowsAssignment_2_0 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3374:1: ( ( rule__ConstraintSemantic__ArrowsAssignment_2_0 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3375:1: ( rule__ConstraintSemantic__ArrowsAssignment_2_0 )
             {
              before(grammarAccess.getConstraintSemanticAccess().getArrowsAssignment_2_0()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3343:1: ( rule__ConstraintSemantic__ArrowsAssignment_2_0 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3343:2: rule__ConstraintSemantic__ArrowsAssignment_2_0
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3376:1: ( rule__ConstraintSemantic__ArrowsAssignment_2_0 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3376:2: rule__ConstraintSemantic__ArrowsAssignment_2_0
             {
-            pushFollow(FOLLOW_rule__ConstraintSemantic__ArrowsAssignment_2_0_in_rule__ConstraintSemantic__Group_2__0__Impl6827);
+            pushFollow(FOLLOW_rule__ConstraintSemantic__ArrowsAssignment_2_0_in_rule__ConstraintSemantic__Group_2__0__Impl6891);
             rule__ConstraintSemantic__ArrowsAssignment_2_0();
 
             state._fsp--;
@@ -8800,16 +8876,16 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstraintSemantic__Group_2__1"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3353:1: rule__ConstraintSemantic__Group_2__1 : rule__ConstraintSemantic__Group_2__1__Impl ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3386:1: rule__ConstraintSemantic__Group_2__1 : rule__ConstraintSemantic__Group_2__1__Impl ;
     public final void rule__ConstraintSemantic__Group_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3357:1: ( rule__ConstraintSemantic__Group_2__1__Impl )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3358:2: rule__ConstraintSemantic__Group_2__1__Impl
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3390:1: ( rule__ConstraintSemantic__Group_2__1__Impl )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3391:2: rule__ConstraintSemantic__Group_2__1__Impl
             {
-            pushFollow(FOLLOW_rule__ConstraintSemantic__Group_2__1__Impl_in_rule__ConstraintSemantic__Group_2__16857);
+            pushFollow(FOLLOW_rule__ConstraintSemantic__Group_2__1__Impl_in_rule__ConstraintSemantic__Group_2__16921);
             rule__ConstraintSemantic__Group_2__1__Impl();
 
             state._fsp--;
@@ -8833,20 +8909,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstraintSemantic__Group_2__1__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3364:1: rule__ConstraintSemantic__Group_2__1__Impl : ( ( rule__ConstraintSemantic__Group_2_1__0 )* ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3397:1: rule__ConstraintSemantic__Group_2__1__Impl : ( ( rule__ConstraintSemantic__Group_2_1__0 )* ) ;
     public final void rule__ConstraintSemantic__Group_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3368:1: ( ( ( rule__ConstraintSemantic__Group_2_1__0 )* ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3369:1: ( ( rule__ConstraintSemantic__Group_2_1__0 )* )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3401:1: ( ( ( rule__ConstraintSemantic__Group_2_1__0 )* ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3402:1: ( ( rule__ConstraintSemantic__Group_2_1__0 )* )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3369:1: ( ( rule__ConstraintSemantic__Group_2_1__0 )* )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3370:1: ( rule__ConstraintSemantic__Group_2_1__0 )*
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3402:1: ( ( rule__ConstraintSemantic__Group_2_1__0 )* )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3403:1: ( rule__ConstraintSemantic__Group_2_1__0 )*
             {
              before(grammarAccess.getConstraintSemanticAccess().getGroup_2_1()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3371:1: ( rule__ConstraintSemantic__Group_2_1__0 )*
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3404:1: ( rule__ConstraintSemantic__Group_2_1__0 )*
             loop11:
             do {
                 int alt11=2;
@@ -8865,9 +8941,9 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
                 switch (alt11) {
             	case 1 :
-            	    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3371:2: rule__ConstraintSemantic__Group_2_1__0
+            	    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3404:2: rule__ConstraintSemantic__Group_2_1__0
             	    {
-            	    pushFollow(FOLLOW_rule__ConstraintSemantic__Group_2_1__0_in_rule__ConstraintSemantic__Group_2__1__Impl6884);
+            	    pushFollow(FOLLOW_rule__ConstraintSemantic__Group_2_1__0_in_rule__ConstraintSemantic__Group_2__1__Impl6948);
             	    rule__ConstraintSemantic__Group_2_1__0();
 
             	    state._fsp--;
@@ -8904,21 +8980,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstraintSemantic__Group_2_1__0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3385:1: rule__ConstraintSemantic__Group_2_1__0 : rule__ConstraintSemantic__Group_2_1__0__Impl rule__ConstraintSemantic__Group_2_1__1 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3418:1: rule__ConstraintSemantic__Group_2_1__0 : rule__ConstraintSemantic__Group_2_1__0__Impl rule__ConstraintSemantic__Group_2_1__1 ;
     public final void rule__ConstraintSemantic__Group_2_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3389:1: ( rule__ConstraintSemantic__Group_2_1__0__Impl rule__ConstraintSemantic__Group_2_1__1 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3390:2: rule__ConstraintSemantic__Group_2_1__0__Impl rule__ConstraintSemantic__Group_2_1__1
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3422:1: ( rule__ConstraintSemantic__Group_2_1__0__Impl rule__ConstraintSemantic__Group_2_1__1 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3423:2: rule__ConstraintSemantic__Group_2_1__0__Impl rule__ConstraintSemantic__Group_2_1__1
             {
-            pushFollow(FOLLOW_rule__ConstraintSemantic__Group_2_1__0__Impl_in_rule__ConstraintSemantic__Group_2_1__06919);
+            pushFollow(FOLLOW_rule__ConstraintSemantic__Group_2_1__0__Impl_in_rule__ConstraintSemantic__Group_2_1__06983);
             rule__ConstraintSemantic__Group_2_1__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ConstraintSemantic__Group_2_1__1_in_rule__ConstraintSemantic__Group_2_1__06922);
+            pushFollow(FOLLOW_rule__ConstraintSemantic__Group_2_1__1_in_rule__ConstraintSemantic__Group_2_1__06986);
             rule__ConstraintSemantic__Group_2_1__1();
 
             state._fsp--;
@@ -8942,20 +9018,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstraintSemantic__Group_2_1__0__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3397:1: rule__ConstraintSemantic__Group_2_1__0__Impl : ( ',' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3430:1: rule__ConstraintSemantic__Group_2_1__0__Impl : ( ',' ) ;
     public final void rule__ConstraintSemantic__Group_2_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3401:1: ( ( ',' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3402:1: ( ',' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3434:1: ( ( ',' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3435:1: ( ',' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3402:1: ( ',' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3403:1: ','
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3435:1: ( ',' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3436:1: ','
             {
              before(grammarAccess.getConstraintSemanticAccess().getCommaKeyword_2_1_0()); 
-            match(input,29,FOLLOW_29_in_rule__ConstraintSemantic__Group_2_1__0__Impl6950); 
+            match(input,29,FOLLOW_29_in_rule__ConstraintSemantic__Group_2_1__0__Impl7014); 
              after(grammarAccess.getConstraintSemanticAccess().getCommaKeyword_2_1_0()); 
 
             }
@@ -8979,16 +9055,16 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstraintSemantic__Group_2_1__1"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3416:1: rule__ConstraintSemantic__Group_2_1__1 : rule__ConstraintSemantic__Group_2_1__1__Impl ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3449:1: rule__ConstraintSemantic__Group_2_1__1 : rule__ConstraintSemantic__Group_2_1__1__Impl ;
     public final void rule__ConstraintSemantic__Group_2_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3420:1: ( rule__ConstraintSemantic__Group_2_1__1__Impl )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3421:2: rule__ConstraintSemantic__Group_2_1__1__Impl
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3453:1: ( rule__ConstraintSemantic__Group_2_1__1__Impl )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3454:2: rule__ConstraintSemantic__Group_2_1__1__Impl
             {
-            pushFollow(FOLLOW_rule__ConstraintSemantic__Group_2_1__1__Impl_in_rule__ConstraintSemantic__Group_2_1__16981);
+            pushFollow(FOLLOW_rule__ConstraintSemantic__Group_2_1__1__Impl_in_rule__ConstraintSemantic__Group_2_1__17045);
             rule__ConstraintSemantic__Group_2_1__1__Impl();
 
             state._fsp--;
@@ -9012,23 +9088,23 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstraintSemantic__Group_2_1__1__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3427:1: rule__ConstraintSemantic__Group_2_1__1__Impl : ( ( rule__ConstraintSemantic__ArrowsAssignment_2_1_1 ) ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3460:1: rule__ConstraintSemantic__Group_2_1__1__Impl : ( ( rule__ConstraintSemantic__ArrowsAssignment_2_1_1 ) ) ;
     public final void rule__ConstraintSemantic__Group_2_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3431:1: ( ( ( rule__ConstraintSemantic__ArrowsAssignment_2_1_1 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3432:1: ( ( rule__ConstraintSemantic__ArrowsAssignment_2_1_1 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3464:1: ( ( ( rule__ConstraintSemantic__ArrowsAssignment_2_1_1 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3465:1: ( ( rule__ConstraintSemantic__ArrowsAssignment_2_1_1 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3432:1: ( ( rule__ConstraintSemantic__ArrowsAssignment_2_1_1 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3433:1: ( rule__ConstraintSemantic__ArrowsAssignment_2_1_1 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3465:1: ( ( rule__ConstraintSemantic__ArrowsAssignment_2_1_1 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3466:1: ( rule__ConstraintSemantic__ArrowsAssignment_2_1_1 )
             {
              before(grammarAccess.getConstraintSemanticAccess().getArrowsAssignment_2_1_1()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3434:1: ( rule__ConstraintSemantic__ArrowsAssignment_2_1_1 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3434:2: rule__ConstraintSemantic__ArrowsAssignment_2_1_1
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3467:1: ( rule__ConstraintSemantic__ArrowsAssignment_2_1_1 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3467:2: rule__ConstraintSemantic__ArrowsAssignment_2_1_1
             {
-            pushFollow(FOLLOW_rule__ConstraintSemantic__ArrowsAssignment_2_1_1_in_rule__ConstraintSemantic__Group_2_1__1__Impl7008);
+            pushFollow(FOLLOW_rule__ConstraintSemantic__ArrowsAssignment_2_1_1_in_rule__ConstraintSemantic__Group_2_1__1__Impl7072);
             rule__ConstraintSemantic__ArrowsAssignment_2_1_1();
 
             state._fsp--;
@@ -9059,21 +9135,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Specification__Group__0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3448:1: rule__Specification__Group__0 : rule__Specification__Group__0__Impl rule__Specification__Group__1 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3481:1: rule__Specification__Group__0 : rule__Specification__Group__0__Impl rule__Specification__Group__1 ;
     public final void rule__Specification__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3452:1: ( rule__Specification__Group__0__Impl rule__Specification__Group__1 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3453:2: rule__Specification__Group__0__Impl rule__Specification__Group__1
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3485:1: ( rule__Specification__Group__0__Impl rule__Specification__Group__1 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3486:2: rule__Specification__Group__0__Impl rule__Specification__Group__1
             {
-            pushFollow(FOLLOW_rule__Specification__Group__0__Impl_in_rule__Specification__Group__07042);
+            pushFollow(FOLLOW_rule__Specification__Group__0__Impl_in_rule__Specification__Group__07106);
             rule__Specification__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Specification__Group__1_in_rule__Specification__Group__07045);
+            pushFollow(FOLLOW_rule__Specification__Group__1_in_rule__Specification__Group__07109);
             rule__Specification__Group__1();
 
             state._fsp--;
@@ -9097,23 +9173,23 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Specification__Group__0__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3460:1: rule__Specification__Group__0__Impl : ( ( rule__Specification__IdAssignment_0 ) ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3493:1: rule__Specification__Group__0__Impl : ( ( rule__Specification__IdAssignment_0 ) ) ;
     public final void rule__Specification__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3464:1: ( ( ( rule__Specification__IdAssignment_0 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3465:1: ( ( rule__Specification__IdAssignment_0 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3497:1: ( ( ( rule__Specification__IdAssignment_0 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3498:1: ( ( rule__Specification__IdAssignment_0 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3465:1: ( ( rule__Specification__IdAssignment_0 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3466:1: ( rule__Specification__IdAssignment_0 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3498:1: ( ( rule__Specification__IdAssignment_0 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3499:1: ( rule__Specification__IdAssignment_0 )
             {
              before(grammarAccess.getSpecificationAccess().getIdAssignment_0()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3467:1: ( rule__Specification__IdAssignment_0 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3467:2: rule__Specification__IdAssignment_0
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3500:1: ( rule__Specification__IdAssignment_0 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3500:2: rule__Specification__IdAssignment_0
             {
-            pushFollow(FOLLOW_rule__Specification__IdAssignment_0_in_rule__Specification__Group__0__Impl7072);
+            pushFollow(FOLLOW_rule__Specification__IdAssignment_0_in_rule__Specification__Group__0__Impl7136);
             rule__Specification__IdAssignment_0();
 
             state._fsp--;
@@ -9144,21 +9220,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Specification__Group__1"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3477:1: rule__Specification__Group__1 : rule__Specification__Group__1__Impl rule__Specification__Group__2 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3510:1: rule__Specification__Group__1 : rule__Specification__Group__1__Impl rule__Specification__Group__2 ;
     public final void rule__Specification__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3481:1: ( rule__Specification__Group__1__Impl rule__Specification__Group__2 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3482:2: rule__Specification__Group__1__Impl rule__Specification__Group__2
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3514:1: ( rule__Specification__Group__1__Impl rule__Specification__Group__2 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3515:2: rule__Specification__Group__1__Impl rule__Specification__Group__2
             {
-            pushFollow(FOLLOW_rule__Specification__Group__1__Impl_in_rule__Specification__Group__17102);
+            pushFollow(FOLLOW_rule__Specification__Group__1__Impl_in_rule__Specification__Group__17166);
             rule__Specification__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Specification__Group__2_in_rule__Specification__Group__17105);
+            pushFollow(FOLLOW_rule__Specification__Group__2_in_rule__Specification__Group__17169);
             rule__Specification__Group__2();
 
             state._fsp--;
@@ -9182,20 +9258,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Specification__Group__1__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3489:1: rule__Specification__Group__1__Impl : ( ':=' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3522:1: rule__Specification__Group__1__Impl : ( ':=' ) ;
     public final void rule__Specification__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3493:1: ( ( ':=' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3494:1: ( ':=' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3526:1: ( ( ':=' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3527:1: ( ':=' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3494:1: ( ':=' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3495:1: ':='
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3527:1: ( ':=' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3528:1: ':='
             {
              before(grammarAccess.getSpecificationAccess().getColonEqualsSignKeyword_1()); 
-            match(input,33,FOLLOW_33_in_rule__Specification__Group__1__Impl7133); 
+            match(input,33,FOLLOW_33_in_rule__Specification__Group__1__Impl7197); 
              after(grammarAccess.getSpecificationAccess().getColonEqualsSignKeyword_1()); 
 
             }
@@ -9219,21 +9295,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Specification__Group__2"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3508:1: rule__Specification__Group__2 : rule__Specification__Group__2__Impl rule__Specification__Group__3 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3541:1: rule__Specification__Group__2 : rule__Specification__Group__2__Impl rule__Specification__Group__3 ;
     public final void rule__Specification__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3512:1: ( rule__Specification__Group__2__Impl rule__Specification__Group__3 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3513:2: rule__Specification__Group__2__Impl rule__Specification__Group__3
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3545:1: ( rule__Specification__Group__2__Impl rule__Specification__Group__3 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3546:2: rule__Specification__Group__2__Impl rule__Specification__Group__3
             {
-            pushFollow(FOLLOW_rule__Specification__Group__2__Impl_in_rule__Specification__Group__27164);
+            pushFollow(FOLLOW_rule__Specification__Group__2__Impl_in_rule__Specification__Group__27228);
             rule__Specification__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Specification__Group__3_in_rule__Specification__Group__27167);
+            pushFollow(FOLLOW_rule__Specification__Group__3_in_rule__Specification__Group__27231);
             rule__Specification__Group__3();
 
             state._fsp--;
@@ -9257,20 +9333,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Specification__Group__2__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3520:1: rule__Specification__Group__2__Impl : ( 'Spec<' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3553:1: rule__Specification__Group__2__Impl : ( 'Spec' ) ;
     public final void rule__Specification__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3524:1: ( ( 'Spec<' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3525:1: ( 'Spec<' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3557:1: ( ( 'Spec' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3558:1: ( 'Spec' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3525:1: ( 'Spec<' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3526:1: 'Spec<'
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3558:1: ( 'Spec' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3559:1: 'Spec'
             {
              before(grammarAccess.getSpecificationAccess().getSpecKeyword_2()); 
-            match(input,39,FOLLOW_39_in_rule__Specification__Group__2__Impl7195); 
+            match(input,40,FOLLOW_40_in_rule__Specification__Group__2__Impl7259); 
              after(grammarAccess.getSpecificationAccess().getSpecKeyword_2()); 
 
             }
@@ -9294,21 +9370,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Specification__Group__3"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3539:1: rule__Specification__Group__3 : rule__Specification__Group__3__Impl rule__Specification__Group__4 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3572:1: rule__Specification__Group__3 : rule__Specification__Group__3__Impl rule__Specification__Group__4 ;
     public final void rule__Specification__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3543:1: ( rule__Specification__Group__3__Impl rule__Specification__Group__4 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3544:2: rule__Specification__Group__3__Impl rule__Specification__Group__4
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3576:1: ( rule__Specification__Group__3__Impl rule__Specification__Group__4 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3577:2: rule__Specification__Group__3__Impl rule__Specification__Group__4
             {
-            pushFollow(FOLLOW_rule__Specification__Group__3__Impl_in_rule__Specification__Group__37226);
+            pushFollow(FOLLOW_rule__Specification__Group__3__Impl_in_rule__Specification__Group__37290);
             rule__Specification__Group__3__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Specification__Group__4_in_rule__Specification__Group__37229);
+            pushFollow(FOLLOW_rule__Specification__Group__4_in_rule__Specification__Group__37293);
             rule__Specification__Group__4();
 
             state._fsp--;
@@ -9332,31 +9408,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Specification__Group__3__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3551:1: rule__Specification__Group__3__Impl : ( ( rule__Specification__GraphAssignment_3 ) ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3584:1: rule__Specification__Group__3__Impl : ( '<' ) ;
     public final void rule__Specification__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3555:1: ( ( ( rule__Specification__GraphAssignment_3 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3556:1: ( ( rule__Specification__GraphAssignment_3 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3588:1: ( ( '<' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3589:1: ( '<' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3556:1: ( ( rule__Specification__GraphAssignment_3 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3557:1: ( rule__Specification__GraphAssignment_3 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3589:1: ( '<' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3590:1: '<'
             {
-             before(grammarAccess.getSpecificationAccess().getGraphAssignment_3()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3558:1: ( rule__Specification__GraphAssignment_3 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3558:2: rule__Specification__GraphAssignment_3
-            {
-            pushFollow(FOLLOW_rule__Specification__GraphAssignment_3_in_rule__Specification__Group__3__Impl7256);
-            rule__Specification__GraphAssignment_3();
-
-            state._fsp--;
-
-
-            }
-
-             after(grammarAccess.getSpecificationAccess().getGraphAssignment_3()); 
+             before(grammarAccess.getSpecificationAccess().getLessThanSignKeyword_3()); 
+            match(input,35,FOLLOW_35_in_rule__Specification__Group__3__Impl7321); 
+             after(grammarAccess.getSpecificationAccess().getLessThanSignKeyword_3()); 
 
             }
 
@@ -9379,21 +9445,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Specification__Group__4"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3568:1: rule__Specification__Group__4 : rule__Specification__Group__4__Impl rule__Specification__Group__5 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3603:1: rule__Specification__Group__4 : rule__Specification__Group__4__Impl rule__Specification__Group__5 ;
     public final void rule__Specification__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3572:1: ( rule__Specification__Group__4__Impl rule__Specification__Group__5 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3573:2: rule__Specification__Group__4__Impl rule__Specification__Group__5
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3607:1: ( rule__Specification__Group__4__Impl rule__Specification__Group__5 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3608:2: rule__Specification__Group__4__Impl rule__Specification__Group__5
             {
-            pushFollow(FOLLOW_rule__Specification__Group__4__Impl_in_rule__Specification__Group__47286);
+            pushFollow(FOLLOW_rule__Specification__Group__4__Impl_in_rule__Specification__Group__47352);
             rule__Specification__Group__4__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Specification__Group__5_in_rule__Specification__Group__47289);
+            pushFollow(FOLLOW_rule__Specification__Group__5_in_rule__Specification__Group__47355);
             rule__Specification__Group__5();
 
             state._fsp--;
@@ -9417,21 +9483,31 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Specification__Group__4__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3580:1: rule__Specification__Group__4__Impl : ( '>' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3615:1: rule__Specification__Group__4__Impl : ( ( rule__Specification__GraphAssignment_4 ) ) ;
     public final void rule__Specification__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3584:1: ( ( '>' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3585:1: ( '>' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3619:1: ( ( ( rule__Specification__GraphAssignment_4 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3620:1: ( ( rule__Specification__GraphAssignment_4 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3585:1: ( '>' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3586:1: '>'
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3620:1: ( ( rule__Specification__GraphAssignment_4 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3621:1: ( rule__Specification__GraphAssignment_4 )
             {
-             before(grammarAccess.getSpecificationAccess().getGreaterThanSignKeyword_4()); 
-            match(input,35,FOLLOW_35_in_rule__Specification__Group__4__Impl7317); 
-             after(grammarAccess.getSpecificationAccess().getGreaterThanSignKeyword_4()); 
+             before(grammarAccess.getSpecificationAccess().getGraphAssignment_4()); 
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3622:1: ( rule__Specification__GraphAssignment_4 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3622:2: rule__Specification__GraphAssignment_4
+            {
+            pushFollow(FOLLOW_rule__Specification__GraphAssignment_4_in_rule__Specification__Group__4__Impl7382);
+            rule__Specification__GraphAssignment_4();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getSpecificationAccess().getGraphAssignment_4()); 
 
             }
 
@@ -9454,21 +9530,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Specification__Group__5"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3599:1: rule__Specification__Group__5 : rule__Specification__Group__5__Impl rule__Specification__Group__6 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3632:1: rule__Specification__Group__5 : rule__Specification__Group__5__Impl rule__Specification__Group__6 ;
     public final void rule__Specification__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3603:1: ( rule__Specification__Group__5__Impl rule__Specification__Group__6 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3604:2: rule__Specification__Group__5__Impl rule__Specification__Group__6
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3636:1: ( rule__Specification__Group__5__Impl rule__Specification__Group__6 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3637:2: rule__Specification__Group__5__Impl rule__Specification__Group__6
             {
-            pushFollow(FOLLOW_rule__Specification__Group__5__Impl_in_rule__Specification__Group__57348);
+            pushFollow(FOLLOW_rule__Specification__Group__5__Impl_in_rule__Specification__Group__57412);
             rule__Specification__Group__5__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Specification__Group__6_in_rule__Specification__Group__57351);
+            pushFollow(FOLLOW_rule__Specification__Group__6_in_rule__Specification__Group__57415);
             rule__Specification__Group__6();
 
             state._fsp--;
@@ -9492,21 +9568,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Specification__Group__5__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3611:1: rule__Specification__Group__5__Impl : ( '{' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3644:1: rule__Specification__Group__5__Impl : ( '>' ) ;
     public final void rule__Specification__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3615:1: ( ( '{' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3616:1: ( '{' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3648:1: ( ( '>' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3649:1: ( '>' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3616:1: ( '{' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3617:1: '{'
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3649:1: ( '>' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3650:1: '>'
             {
-             before(grammarAccess.getSpecificationAccess().getLeftCurlyBracketKeyword_5()); 
-            match(input,36,FOLLOW_36_in_rule__Specification__Group__5__Impl7379); 
-             after(grammarAccess.getSpecificationAccess().getLeftCurlyBracketKeyword_5()); 
+             before(grammarAccess.getSpecificationAccess().getGreaterThanSignKeyword_5()); 
+            match(input,36,FOLLOW_36_in_rule__Specification__Group__5__Impl7443); 
+             after(grammarAccess.getSpecificationAccess().getGreaterThanSignKeyword_5()); 
 
             }
 
@@ -9529,21 +9605,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Specification__Group__6"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3630:1: rule__Specification__Group__6 : rule__Specification__Group__6__Impl rule__Specification__Group__7 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3663:1: rule__Specification__Group__6 : rule__Specification__Group__6__Impl rule__Specification__Group__7 ;
     public final void rule__Specification__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3634:1: ( rule__Specification__Group__6__Impl rule__Specification__Group__7 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3635:2: rule__Specification__Group__6__Impl rule__Specification__Group__7
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3667:1: ( rule__Specification__Group__6__Impl rule__Specification__Group__7 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3668:2: rule__Specification__Group__6__Impl rule__Specification__Group__7
             {
-            pushFollow(FOLLOW_rule__Specification__Group__6__Impl_in_rule__Specification__Group__67410);
+            pushFollow(FOLLOW_rule__Specification__Group__6__Impl_in_rule__Specification__Group__67474);
             rule__Specification__Group__6__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Specification__Group__7_in_rule__Specification__Group__67413);
+            pushFollow(FOLLOW_rule__Specification__Group__7_in_rule__Specification__Group__67477);
             rule__Specification__Group__7();
 
             state._fsp--;
@@ -9567,42 +9643,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Specification__Group__6__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3642:1: rule__Specification__Group__6__Impl : ( ( rule__Specification__Group_6__0 )? ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3675:1: rule__Specification__Group__6__Impl : ( '{' ) ;
     public final void rule__Specification__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3646:1: ( ( ( rule__Specification__Group_6__0 )? ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3647:1: ( ( rule__Specification__Group_6__0 )? )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3679:1: ( ( '{' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3680:1: ( '{' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3647:1: ( ( rule__Specification__Group_6__0 )? )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3648:1: ( rule__Specification__Group_6__0 )?
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3680:1: ( '{' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3681:1: '{'
             {
-             before(grammarAccess.getSpecificationAccess().getGroup_6()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3649:1: ( rule__Specification__Group_6__0 )?
-            int alt12=2;
-            int LA12_0 = input.LA(1);
-
-            if ( (LA12_0==RULE_ID) ) {
-                alt12=1;
-            }
-            switch (alt12) {
-                case 1 :
-                    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3649:2: rule__Specification__Group_6__0
-                    {
-                    pushFollow(FOLLOW_rule__Specification__Group_6__0_in_rule__Specification__Group__6__Impl7440);
-                    rule__Specification__Group_6__0();
-
-                    state._fsp--;
-
-
-                    }
-                    break;
-
-            }
-
-             after(grammarAccess.getSpecificationAccess().getGroup_6()); 
+             before(grammarAccess.getSpecificationAccess().getLeftCurlyBracketKeyword_6()); 
+            match(input,37,FOLLOW_37_in_rule__Specification__Group__6__Impl7505); 
+             after(grammarAccess.getSpecificationAccess().getLeftCurlyBracketKeyword_6()); 
 
             }
 
@@ -9625,17 +9680,22 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Specification__Group__7"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3659:1: rule__Specification__Group__7 : rule__Specification__Group__7__Impl ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3694:1: rule__Specification__Group__7 : rule__Specification__Group__7__Impl rule__Specification__Group__8 ;
     public final void rule__Specification__Group__7() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3663:1: ( rule__Specification__Group__7__Impl )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3664:2: rule__Specification__Group__7__Impl
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3698:1: ( rule__Specification__Group__7__Impl rule__Specification__Group__8 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3699:2: rule__Specification__Group__7__Impl rule__Specification__Group__8
             {
-            pushFollow(FOLLOW_rule__Specification__Group__7__Impl_in_rule__Specification__Group__77471);
+            pushFollow(FOLLOW_rule__Specification__Group__7__Impl_in_rule__Specification__Group__77536);
             rule__Specification__Group__7__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__Specification__Group__8_in_rule__Specification__Group__77539);
+            rule__Specification__Group__8();
 
             state._fsp--;
 
@@ -9658,21 +9718,42 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Specification__Group__7__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3670:1: rule__Specification__Group__7__Impl : ( '}' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3706:1: rule__Specification__Group__7__Impl : ( ( rule__Specification__Group_7__0 )? ) ;
     public final void rule__Specification__Group__7__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3674:1: ( ( '}' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3675:1: ( '}' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3710:1: ( ( ( rule__Specification__Group_7__0 )? ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3711:1: ( ( rule__Specification__Group_7__0 )? )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3675:1: ( '}' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3676:1: '}'
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3711:1: ( ( rule__Specification__Group_7__0 )? )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3712:1: ( rule__Specification__Group_7__0 )?
             {
-             before(grammarAccess.getSpecificationAccess().getRightCurlyBracketKeyword_7()); 
-            match(input,37,FOLLOW_37_in_rule__Specification__Group__7__Impl7499); 
-             after(grammarAccess.getSpecificationAccess().getRightCurlyBracketKeyword_7()); 
+             before(grammarAccess.getSpecificationAccess().getGroup_7()); 
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3713:1: ( rule__Specification__Group_7__0 )?
+            int alt12=2;
+            int LA12_0 = input.LA(1);
+
+            if ( (LA12_0==RULE_ID) ) {
+                alt12=1;
+            }
+            switch (alt12) {
+                case 1 :
+                    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3713:2: rule__Specification__Group_7__0
+                    {
+                    pushFollow(FOLLOW_rule__Specification__Group_7__0_in_rule__Specification__Group__7__Impl7566);
+                    rule__Specification__Group_7__0();
+
+                    state._fsp--;
+
+
+                    }
+                    break;
+
+            }
+
+             after(grammarAccess.getSpecificationAccess().getGroup_7()); 
 
             }
 
@@ -9694,23 +9775,18 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Specification__Group__7__Impl"
 
 
-    // $ANTLR start "rule__Specification__Group_6__0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3705:1: rule__Specification__Group_6__0 : rule__Specification__Group_6__0__Impl rule__Specification__Group_6__1 ;
-    public final void rule__Specification__Group_6__0() throws RecognitionException {
+    // $ANTLR start "rule__Specification__Group__8"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3723:1: rule__Specification__Group__8 : rule__Specification__Group__8__Impl ;
+    public final void rule__Specification__Group__8() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3709:1: ( rule__Specification__Group_6__0__Impl rule__Specification__Group_6__1 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3710:2: rule__Specification__Group_6__0__Impl rule__Specification__Group_6__1
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3727:1: ( rule__Specification__Group__8__Impl )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3728:2: rule__Specification__Group__8__Impl
             {
-            pushFollow(FOLLOW_rule__Specification__Group_6__0__Impl_in_rule__Specification__Group_6__07546);
-            rule__Specification__Group_6__0__Impl();
-
-            state._fsp--;
-
-            pushFollow(FOLLOW_rule__Specification__Group_6__1_in_rule__Specification__Group_6__07549);
-            rule__Specification__Group_6__1();
+            pushFollow(FOLLOW_rule__Specification__Group__8__Impl_in_rule__Specification__Group__87597);
+            rule__Specification__Group__8__Impl();
 
             state._fsp--;
 
@@ -9729,35 +9805,25 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Specification__Group_6__0"
+    // $ANTLR end "rule__Specification__Group__8"
 
 
-    // $ANTLR start "rule__Specification__Group_6__0__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3717:1: rule__Specification__Group_6__0__Impl : ( ( rule__Specification__ConstraintsAssignment_6_0 ) ) ;
-    public final void rule__Specification__Group_6__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__Specification__Group__8__Impl"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3734:1: rule__Specification__Group__8__Impl : ( '}' ) ;
+    public final void rule__Specification__Group__8__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3721:1: ( ( ( rule__Specification__ConstraintsAssignment_6_0 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3722:1: ( ( rule__Specification__ConstraintsAssignment_6_0 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3738:1: ( ( '}' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3739:1: ( '}' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3722:1: ( ( rule__Specification__ConstraintsAssignment_6_0 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3723:1: ( rule__Specification__ConstraintsAssignment_6_0 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3739:1: ( '}' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3740:1: '}'
             {
-             before(grammarAccess.getSpecificationAccess().getConstraintsAssignment_6_0()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3724:1: ( rule__Specification__ConstraintsAssignment_6_0 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3724:2: rule__Specification__ConstraintsAssignment_6_0
-            {
-            pushFollow(FOLLOW_rule__Specification__ConstraintsAssignment_6_0_in_rule__Specification__Group_6__0__Impl7576);
-            rule__Specification__ConstraintsAssignment_6_0();
-
-            state._fsp--;
-
-
-            }
-
-             after(grammarAccess.getSpecificationAccess().getConstraintsAssignment_6_0()); 
+             before(grammarAccess.getSpecificationAccess().getRightCurlyBracketKeyword_8()); 
+            match(input,38,FOLLOW_38_in_rule__Specification__Group__8__Impl7625); 
+             after(grammarAccess.getSpecificationAccess().getRightCurlyBracketKeyword_8()); 
 
             }
 
@@ -9776,21 +9842,26 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Specification__Group_6__0__Impl"
+    // $ANTLR end "rule__Specification__Group__8__Impl"
 
 
-    // $ANTLR start "rule__Specification__Group_6__1"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3734:1: rule__Specification__Group_6__1 : rule__Specification__Group_6__1__Impl ;
-    public final void rule__Specification__Group_6__1() throws RecognitionException {
+    // $ANTLR start "rule__Specification__Group_7__0"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3771:1: rule__Specification__Group_7__0 : rule__Specification__Group_7__0__Impl rule__Specification__Group_7__1 ;
+    public final void rule__Specification__Group_7__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3738:1: ( rule__Specification__Group_6__1__Impl )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3739:2: rule__Specification__Group_6__1__Impl
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3775:1: ( rule__Specification__Group_7__0__Impl rule__Specification__Group_7__1 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3776:2: rule__Specification__Group_7__0__Impl rule__Specification__Group_7__1
             {
-            pushFollow(FOLLOW_rule__Specification__Group_6__1__Impl_in_rule__Specification__Group_6__17606);
-            rule__Specification__Group_6__1__Impl();
+            pushFollow(FOLLOW_rule__Specification__Group_7__0__Impl_in_rule__Specification__Group_7__07674);
+            rule__Specification__Group_7__0__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__Specification__Group_7__1_in_rule__Specification__Group_7__07677);
+            rule__Specification__Group_7__1();
 
             state._fsp--;
 
@@ -9809,24 +9880,104 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Specification__Group_6__1"
+    // $ANTLR end "rule__Specification__Group_7__0"
 
 
-    // $ANTLR start "rule__Specification__Group_6__1__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3745:1: rule__Specification__Group_6__1__Impl : ( ( rule__Specification__Group_6_1__0 )* ) ;
-    public final void rule__Specification__Group_6__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__Specification__Group_7__0__Impl"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3783:1: rule__Specification__Group_7__0__Impl : ( ( rule__Specification__ConstraintsAssignment_7_0 ) ) ;
+    public final void rule__Specification__Group_7__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3749:1: ( ( ( rule__Specification__Group_6_1__0 )* ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3750:1: ( ( rule__Specification__Group_6_1__0 )* )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3787:1: ( ( ( rule__Specification__ConstraintsAssignment_7_0 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3788:1: ( ( rule__Specification__ConstraintsAssignment_7_0 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3750:1: ( ( rule__Specification__Group_6_1__0 )* )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3751:1: ( rule__Specification__Group_6_1__0 )*
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3788:1: ( ( rule__Specification__ConstraintsAssignment_7_0 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3789:1: ( rule__Specification__ConstraintsAssignment_7_0 )
             {
-             before(grammarAccess.getSpecificationAccess().getGroup_6_1()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3752:1: ( rule__Specification__Group_6_1__0 )*
+             before(grammarAccess.getSpecificationAccess().getConstraintsAssignment_7_0()); 
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3790:1: ( rule__Specification__ConstraintsAssignment_7_0 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3790:2: rule__Specification__ConstraintsAssignment_7_0
+            {
+            pushFollow(FOLLOW_rule__Specification__ConstraintsAssignment_7_0_in_rule__Specification__Group_7__0__Impl7704);
+            rule__Specification__ConstraintsAssignment_7_0();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getSpecificationAccess().getConstraintsAssignment_7_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Specification__Group_7__0__Impl"
+
+
+    // $ANTLR start "rule__Specification__Group_7__1"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3800:1: rule__Specification__Group_7__1 : rule__Specification__Group_7__1__Impl ;
+    public final void rule__Specification__Group_7__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3804:1: ( rule__Specification__Group_7__1__Impl )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3805:2: rule__Specification__Group_7__1__Impl
+            {
+            pushFollow(FOLLOW_rule__Specification__Group_7__1__Impl_in_rule__Specification__Group_7__17734);
+            rule__Specification__Group_7__1__Impl();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Specification__Group_7__1"
+
+
+    // $ANTLR start "rule__Specification__Group_7__1__Impl"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3811:1: rule__Specification__Group_7__1__Impl : ( ( rule__Specification__Group_7_1__0 )* ) ;
+    public final void rule__Specification__Group_7__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3815:1: ( ( ( rule__Specification__Group_7_1__0 )* ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3816:1: ( ( rule__Specification__Group_7_1__0 )* )
+            {
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3816:1: ( ( rule__Specification__Group_7_1__0 )* )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3817:1: ( rule__Specification__Group_7_1__0 )*
+            {
+             before(grammarAccess.getSpecificationAccess().getGroup_7_1()); 
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3818:1: ( rule__Specification__Group_7_1__0 )*
             loop13:
             do {
                 int alt13=2;
@@ -9839,10 +9990,10 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
                 switch (alt13) {
             	case 1 :
-            	    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3752:2: rule__Specification__Group_6_1__0
+            	    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3818:2: rule__Specification__Group_7_1__0
             	    {
-            	    pushFollow(FOLLOW_rule__Specification__Group_6_1__0_in_rule__Specification__Group_6__1__Impl7633);
-            	    rule__Specification__Group_6_1__0();
+            	    pushFollow(FOLLOW_rule__Specification__Group_7_1__0_in_rule__Specification__Group_7__1__Impl7761);
+            	    rule__Specification__Group_7_1__0();
 
             	    state._fsp--;
 
@@ -9855,7 +10006,7 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
                 }
             } while (true);
 
-             after(grammarAccess.getSpecificationAccess().getGroup_6_1()); 
+             after(grammarAccess.getSpecificationAccess().getGroup_7_1()); 
 
             }
 
@@ -9874,96 +10025,26 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Specification__Group_6__1__Impl"
+    // $ANTLR end "rule__Specification__Group_7__1__Impl"
 
 
-    // $ANTLR start "rule__Specification__Group_6_1__0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3766:1: rule__Specification__Group_6_1__0 : rule__Specification__Group_6_1__0__Impl rule__Specification__Group_6_1__1 ;
-    public final void rule__Specification__Group_6_1__0() throws RecognitionException {
+    // $ANTLR start "rule__Specification__Group_7_1__0"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3832:1: rule__Specification__Group_7_1__0 : rule__Specification__Group_7_1__0__Impl rule__Specification__Group_7_1__1 ;
+    public final void rule__Specification__Group_7_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3770:1: ( rule__Specification__Group_6_1__0__Impl rule__Specification__Group_6_1__1 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3771:2: rule__Specification__Group_6_1__0__Impl rule__Specification__Group_6_1__1
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3836:1: ( rule__Specification__Group_7_1__0__Impl rule__Specification__Group_7_1__1 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3837:2: rule__Specification__Group_7_1__0__Impl rule__Specification__Group_7_1__1
             {
-            pushFollow(FOLLOW_rule__Specification__Group_6_1__0__Impl_in_rule__Specification__Group_6_1__07668);
-            rule__Specification__Group_6_1__0__Impl();
+            pushFollow(FOLLOW_rule__Specification__Group_7_1__0__Impl_in_rule__Specification__Group_7_1__07796);
+            rule__Specification__Group_7_1__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Specification__Group_6_1__1_in_rule__Specification__Group_6_1__07671);
-            rule__Specification__Group_6_1__1();
-
-            state._fsp--;
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__Specification__Group_6_1__0"
-
-
-    // $ANTLR start "rule__Specification__Group_6_1__0__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3778:1: rule__Specification__Group_6_1__0__Impl : ( ',' ) ;
-    public final void rule__Specification__Group_6_1__0__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3782:1: ( ( ',' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3783:1: ( ',' )
-            {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3783:1: ( ',' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3784:1: ','
-            {
-             before(grammarAccess.getSpecificationAccess().getCommaKeyword_6_1_0()); 
-            match(input,29,FOLLOW_29_in_rule__Specification__Group_6_1__0__Impl7699); 
-             after(grammarAccess.getSpecificationAccess().getCommaKeyword_6_1_0()); 
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__Specification__Group_6_1__0__Impl"
-
-
-    // $ANTLR start "rule__Specification__Group_6_1__1"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3797:1: rule__Specification__Group_6_1__1 : rule__Specification__Group_6_1__1__Impl ;
-    public final void rule__Specification__Group_6_1__1() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3801:1: ( rule__Specification__Group_6_1__1__Impl )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3802:2: rule__Specification__Group_6_1__1__Impl
-            {
-            pushFollow(FOLLOW_rule__Specification__Group_6_1__1__Impl_in_rule__Specification__Group_6_1__17730);
-            rule__Specification__Group_6_1__1__Impl();
+            pushFollow(FOLLOW_rule__Specification__Group_7_1__1_in_rule__Specification__Group_7_1__07799);
+            rule__Specification__Group_7_1__1();
 
             state._fsp--;
 
@@ -9982,35 +10063,25 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Specification__Group_6_1__1"
+    // $ANTLR end "rule__Specification__Group_7_1__0"
 
 
-    // $ANTLR start "rule__Specification__Group_6_1__1__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3808:1: rule__Specification__Group_6_1__1__Impl : ( ( rule__Specification__ConstraintsAssignment_6_1_1 ) ) ;
-    public final void rule__Specification__Group_6_1__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__Specification__Group_7_1__0__Impl"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3844:1: rule__Specification__Group_7_1__0__Impl : ( ',' ) ;
+    public final void rule__Specification__Group_7_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3812:1: ( ( ( rule__Specification__ConstraintsAssignment_6_1_1 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3813:1: ( ( rule__Specification__ConstraintsAssignment_6_1_1 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3848:1: ( ( ',' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3849:1: ( ',' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3813:1: ( ( rule__Specification__ConstraintsAssignment_6_1_1 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3814:1: ( rule__Specification__ConstraintsAssignment_6_1_1 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3849:1: ( ',' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3850:1: ','
             {
-             before(grammarAccess.getSpecificationAccess().getConstraintsAssignment_6_1_1()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3815:1: ( rule__Specification__ConstraintsAssignment_6_1_1 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3815:2: rule__Specification__ConstraintsAssignment_6_1_1
-            {
-            pushFollow(FOLLOW_rule__Specification__ConstraintsAssignment_6_1_1_in_rule__Specification__Group_6_1__1__Impl7757);
-            rule__Specification__ConstraintsAssignment_6_1_1();
-
-            state._fsp--;
-
-
-            }
-
-             after(grammarAccess.getSpecificationAccess().getConstraintsAssignment_6_1_1()); 
+             before(grammarAccess.getSpecificationAccess().getCommaKeyword_7_1_0()); 
+            match(input,29,FOLLOW_29_in_rule__Specification__Group_7_1__0__Impl7827); 
+             after(grammarAccess.getSpecificationAccess().getCommaKeyword_7_1_0()); 
 
             }
 
@@ -10029,25 +10100,105 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Specification__Group_6_1__1__Impl"
+    // $ANTLR end "rule__Specification__Group_7_1__0__Impl"
+
+
+    // $ANTLR start "rule__Specification__Group_7_1__1"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3863:1: rule__Specification__Group_7_1__1 : rule__Specification__Group_7_1__1__Impl ;
+    public final void rule__Specification__Group_7_1__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3867:1: ( rule__Specification__Group_7_1__1__Impl )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3868:2: rule__Specification__Group_7_1__1__Impl
+            {
+            pushFollow(FOLLOW_rule__Specification__Group_7_1__1__Impl_in_rule__Specification__Group_7_1__17858);
+            rule__Specification__Group_7_1__1__Impl();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Specification__Group_7_1__1"
+
+
+    // $ANTLR start "rule__Specification__Group_7_1__1__Impl"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3874:1: rule__Specification__Group_7_1__1__Impl : ( ( rule__Specification__ConstraintsAssignment_7_1_1 ) ) ;
+    public final void rule__Specification__Group_7_1__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3878:1: ( ( ( rule__Specification__ConstraintsAssignment_7_1_1 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3879:1: ( ( rule__Specification__ConstraintsAssignment_7_1_1 ) )
+            {
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3879:1: ( ( rule__Specification__ConstraintsAssignment_7_1_1 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3880:1: ( rule__Specification__ConstraintsAssignment_7_1_1 )
+            {
+             before(grammarAccess.getSpecificationAccess().getConstraintsAssignment_7_1_1()); 
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3881:1: ( rule__Specification__ConstraintsAssignment_7_1_1 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3881:2: rule__Specification__ConstraintsAssignment_7_1_1
+            {
+            pushFollow(FOLLOW_rule__Specification__ConstraintsAssignment_7_1_1_in_rule__Specification__Group_7_1__1__Impl7885);
+            rule__Specification__ConstraintsAssignment_7_1_1();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getSpecificationAccess().getConstraintsAssignment_7_1_1()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Specification__Group_7_1__1__Impl"
 
 
     // $ANTLR start "rule__Constraint__Group__0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3829:1: rule__Constraint__Group__0 : rule__Constraint__Group__0__Impl rule__Constraint__Group__1 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3895:1: rule__Constraint__Group__0 : rule__Constraint__Group__0__Impl rule__Constraint__Group__1 ;
     public final void rule__Constraint__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3833:1: ( rule__Constraint__Group__0__Impl rule__Constraint__Group__1 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3834:2: rule__Constraint__Group__0__Impl rule__Constraint__Group__1
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3899:1: ( rule__Constraint__Group__0__Impl rule__Constraint__Group__1 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3900:2: rule__Constraint__Group__0__Impl rule__Constraint__Group__1
             {
-            pushFollow(FOLLOW_rule__Constraint__Group__0__Impl_in_rule__Constraint__Group__07791);
+            pushFollow(FOLLOW_rule__Constraint__Group__0__Impl_in_rule__Constraint__Group__07919);
             rule__Constraint__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Constraint__Group__1_in_rule__Constraint__Group__07794);
+            pushFollow(FOLLOW_rule__Constraint__Group__1_in_rule__Constraint__Group__07922);
             rule__Constraint__Group__1();
 
             state._fsp--;
@@ -10071,23 +10222,23 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Constraint__Group__0__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3841:1: rule__Constraint__Group__0__Impl : ( ( rule__Constraint__SignatureAssignment_0 ) ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3907:1: rule__Constraint__Group__0__Impl : ( ( rule__Constraint__SignatureAssignment_0 ) ) ;
     public final void rule__Constraint__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3845:1: ( ( ( rule__Constraint__SignatureAssignment_0 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3846:1: ( ( rule__Constraint__SignatureAssignment_0 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3911:1: ( ( ( rule__Constraint__SignatureAssignment_0 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3912:1: ( ( rule__Constraint__SignatureAssignment_0 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3846:1: ( ( rule__Constraint__SignatureAssignment_0 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3847:1: ( rule__Constraint__SignatureAssignment_0 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3912:1: ( ( rule__Constraint__SignatureAssignment_0 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3913:1: ( rule__Constraint__SignatureAssignment_0 )
             {
              before(grammarAccess.getConstraintAccess().getSignatureAssignment_0()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3848:1: ( rule__Constraint__SignatureAssignment_0 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3848:2: rule__Constraint__SignatureAssignment_0
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3914:1: ( rule__Constraint__SignatureAssignment_0 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3914:2: rule__Constraint__SignatureAssignment_0
             {
-            pushFollow(FOLLOW_rule__Constraint__SignatureAssignment_0_in_rule__Constraint__Group__0__Impl7821);
+            pushFollow(FOLLOW_rule__Constraint__SignatureAssignment_0_in_rule__Constraint__Group__0__Impl7949);
             rule__Constraint__SignatureAssignment_0();
 
             state._fsp--;
@@ -10118,21 +10269,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Constraint__Group__1"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3858:1: rule__Constraint__Group__1 : rule__Constraint__Group__1__Impl rule__Constraint__Group__2 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3924:1: rule__Constraint__Group__1 : rule__Constraint__Group__1__Impl rule__Constraint__Group__2 ;
     public final void rule__Constraint__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3862:1: ( rule__Constraint__Group__1__Impl rule__Constraint__Group__2 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3863:2: rule__Constraint__Group__1__Impl rule__Constraint__Group__2
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3928:1: ( rule__Constraint__Group__1__Impl rule__Constraint__Group__2 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3929:2: rule__Constraint__Group__1__Impl rule__Constraint__Group__2
             {
-            pushFollow(FOLLOW_rule__Constraint__Group__1__Impl_in_rule__Constraint__Group__17851);
+            pushFollow(FOLLOW_rule__Constraint__Group__1__Impl_in_rule__Constraint__Group__17979);
             rule__Constraint__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Constraint__Group__2_in_rule__Constraint__Group__17854);
+            pushFollow(FOLLOW_rule__Constraint__Group__2_in_rule__Constraint__Group__17982);
             rule__Constraint__Group__2();
 
             state._fsp--;
@@ -10156,20 +10307,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Constraint__Group__1__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3870:1: rule__Constraint__Group__1__Impl : ( '{' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3936:1: rule__Constraint__Group__1__Impl : ( '{' ) ;
     public final void rule__Constraint__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3874:1: ( ( '{' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3875:1: ( '{' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3940:1: ( ( '{' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3941:1: ( '{' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3875:1: ( '{' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3876:1: '{'
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3941:1: ( '{' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3942:1: '{'
             {
              before(grammarAccess.getConstraintAccess().getLeftCurlyBracketKeyword_1()); 
-            match(input,36,FOLLOW_36_in_rule__Constraint__Group__1__Impl7882); 
+            match(input,37,FOLLOW_37_in_rule__Constraint__Group__1__Impl8010); 
              after(grammarAccess.getConstraintAccess().getLeftCurlyBracketKeyword_1()); 
 
             }
@@ -10193,21 +10344,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Constraint__Group__2"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3889:1: rule__Constraint__Group__2 : rule__Constraint__Group__2__Impl rule__Constraint__Group__3 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3955:1: rule__Constraint__Group__2 : rule__Constraint__Group__2__Impl rule__Constraint__Group__3 ;
     public final void rule__Constraint__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3893:1: ( rule__Constraint__Group__2__Impl rule__Constraint__Group__3 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3894:2: rule__Constraint__Group__2__Impl rule__Constraint__Group__3
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3959:1: ( rule__Constraint__Group__2__Impl rule__Constraint__Group__3 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3960:2: rule__Constraint__Group__2__Impl rule__Constraint__Group__3
             {
-            pushFollow(FOLLOW_rule__Constraint__Group__2__Impl_in_rule__Constraint__Group__27913);
+            pushFollow(FOLLOW_rule__Constraint__Group__2__Impl_in_rule__Constraint__Group__28041);
             rule__Constraint__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Constraint__Group__3_in_rule__Constraint__Group__27916);
+            pushFollow(FOLLOW_rule__Constraint__Group__3_in_rule__Constraint__Group__28044);
             rule__Constraint__Group__3();
 
             state._fsp--;
@@ -10231,23 +10382,23 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Constraint__Group__2__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3901:1: rule__Constraint__Group__2__Impl : ( ( rule__Constraint__Group_2__0 ) ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3967:1: rule__Constraint__Group__2__Impl : ( ( rule__Constraint__Group_2__0 ) ) ;
     public final void rule__Constraint__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3905:1: ( ( ( rule__Constraint__Group_2__0 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3906:1: ( ( rule__Constraint__Group_2__0 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3971:1: ( ( ( rule__Constraint__Group_2__0 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3972:1: ( ( rule__Constraint__Group_2__0 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3906:1: ( ( rule__Constraint__Group_2__0 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3907:1: ( rule__Constraint__Group_2__0 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3972:1: ( ( rule__Constraint__Group_2__0 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3973:1: ( rule__Constraint__Group_2__0 )
             {
              before(grammarAccess.getConstraintAccess().getGroup_2()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3908:1: ( rule__Constraint__Group_2__0 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3908:2: rule__Constraint__Group_2__0
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3974:1: ( rule__Constraint__Group_2__0 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3974:2: rule__Constraint__Group_2__0
             {
-            pushFollow(FOLLOW_rule__Constraint__Group_2__0_in_rule__Constraint__Group__2__Impl7943);
+            pushFollow(FOLLOW_rule__Constraint__Group_2__0_in_rule__Constraint__Group__2__Impl8071);
             rule__Constraint__Group_2__0();
 
             state._fsp--;
@@ -10278,16 +10429,16 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Constraint__Group__3"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3918:1: rule__Constraint__Group__3 : rule__Constraint__Group__3__Impl ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3984:1: rule__Constraint__Group__3 : rule__Constraint__Group__3__Impl ;
     public final void rule__Constraint__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3922:1: ( rule__Constraint__Group__3__Impl )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3923:2: rule__Constraint__Group__3__Impl
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3988:1: ( rule__Constraint__Group__3__Impl )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3989:2: rule__Constraint__Group__3__Impl
             {
-            pushFollow(FOLLOW_rule__Constraint__Group__3__Impl_in_rule__Constraint__Group__37973);
+            pushFollow(FOLLOW_rule__Constraint__Group__3__Impl_in_rule__Constraint__Group__38101);
             rule__Constraint__Group__3__Impl();
 
             state._fsp--;
@@ -10311,20 +10462,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Constraint__Group__3__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3929:1: rule__Constraint__Group__3__Impl : ( '}' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3995:1: rule__Constraint__Group__3__Impl : ( '}' ) ;
     public final void rule__Constraint__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3933:1: ( ( '}' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3934:1: ( '}' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3999:1: ( ( '}' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4000:1: ( '}' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3934:1: ( '}' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3935:1: '}'
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4000:1: ( '}' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4001:1: '}'
             {
              before(grammarAccess.getConstraintAccess().getRightCurlyBracketKeyword_3()); 
-            match(input,37,FOLLOW_37_in_rule__Constraint__Group__3__Impl8001); 
+            match(input,38,FOLLOW_38_in_rule__Constraint__Group__3__Impl8129); 
              after(grammarAccess.getConstraintAccess().getRightCurlyBracketKeyword_3()); 
 
             }
@@ -10348,21 +10499,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Constraint__Group_2__0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3956:1: rule__Constraint__Group_2__0 : rule__Constraint__Group_2__0__Impl rule__Constraint__Group_2__1 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4022:1: rule__Constraint__Group_2__0 : rule__Constraint__Group_2__0__Impl rule__Constraint__Group_2__1 ;
     public final void rule__Constraint__Group_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3960:1: ( rule__Constraint__Group_2__0__Impl rule__Constraint__Group_2__1 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3961:2: rule__Constraint__Group_2__0__Impl rule__Constraint__Group_2__1
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4026:1: ( rule__Constraint__Group_2__0__Impl rule__Constraint__Group_2__1 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4027:2: rule__Constraint__Group_2__0__Impl rule__Constraint__Group_2__1
             {
-            pushFollow(FOLLOW_rule__Constraint__Group_2__0__Impl_in_rule__Constraint__Group_2__08040);
+            pushFollow(FOLLOW_rule__Constraint__Group_2__0__Impl_in_rule__Constraint__Group_2__08168);
             rule__Constraint__Group_2__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Constraint__Group_2__1_in_rule__Constraint__Group_2__08043);
+            pushFollow(FOLLOW_rule__Constraint__Group_2__1_in_rule__Constraint__Group_2__08171);
             rule__Constraint__Group_2__1();
 
             state._fsp--;
@@ -10386,23 +10537,23 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Constraint__Group_2__0__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3968:1: rule__Constraint__Group_2__0__Impl : ( ( rule__Constraint__ArrowsAssignment_2_0 ) ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4034:1: rule__Constraint__Group_2__0__Impl : ( ( rule__Constraint__ArrowsAssignment_2_0 ) ) ;
     public final void rule__Constraint__Group_2__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3972:1: ( ( ( rule__Constraint__ArrowsAssignment_2_0 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3973:1: ( ( rule__Constraint__ArrowsAssignment_2_0 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4038:1: ( ( ( rule__Constraint__ArrowsAssignment_2_0 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4039:1: ( ( rule__Constraint__ArrowsAssignment_2_0 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3973:1: ( ( rule__Constraint__ArrowsAssignment_2_0 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3974:1: ( rule__Constraint__ArrowsAssignment_2_0 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4039:1: ( ( rule__Constraint__ArrowsAssignment_2_0 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4040:1: ( rule__Constraint__ArrowsAssignment_2_0 )
             {
              before(grammarAccess.getConstraintAccess().getArrowsAssignment_2_0()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3975:1: ( rule__Constraint__ArrowsAssignment_2_0 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3975:2: rule__Constraint__ArrowsAssignment_2_0
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4041:1: ( rule__Constraint__ArrowsAssignment_2_0 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4041:2: rule__Constraint__ArrowsAssignment_2_0
             {
-            pushFollow(FOLLOW_rule__Constraint__ArrowsAssignment_2_0_in_rule__Constraint__Group_2__0__Impl8070);
+            pushFollow(FOLLOW_rule__Constraint__ArrowsAssignment_2_0_in_rule__Constraint__Group_2__0__Impl8198);
             rule__Constraint__ArrowsAssignment_2_0();
 
             state._fsp--;
@@ -10433,16 +10584,16 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Constraint__Group_2__1"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3985:1: rule__Constraint__Group_2__1 : rule__Constraint__Group_2__1__Impl ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4051:1: rule__Constraint__Group_2__1 : rule__Constraint__Group_2__1__Impl ;
     public final void rule__Constraint__Group_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3989:1: ( rule__Constraint__Group_2__1__Impl )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3990:2: rule__Constraint__Group_2__1__Impl
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4055:1: ( rule__Constraint__Group_2__1__Impl )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4056:2: rule__Constraint__Group_2__1__Impl
             {
-            pushFollow(FOLLOW_rule__Constraint__Group_2__1__Impl_in_rule__Constraint__Group_2__18100);
+            pushFollow(FOLLOW_rule__Constraint__Group_2__1__Impl_in_rule__Constraint__Group_2__18228);
             rule__Constraint__Group_2__1__Impl();
 
             state._fsp--;
@@ -10466,20 +10617,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Constraint__Group_2__1__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:3996:1: rule__Constraint__Group_2__1__Impl : ( ( rule__Constraint__Group_2_1__0 )* ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4062:1: rule__Constraint__Group_2__1__Impl : ( ( rule__Constraint__Group_2_1__0 )* ) ;
     public final void rule__Constraint__Group_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4000:1: ( ( ( rule__Constraint__Group_2_1__0 )* ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4001:1: ( ( rule__Constraint__Group_2_1__0 )* )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4066:1: ( ( ( rule__Constraint__Group_2_1__0 )* ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4067:1: ( ( rule__Constraint__Group_2_1__0 )* )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4001:1: ( ( rule__Constraint__Group_2_1__0 )* )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4002:1: ( rule__Constraint__Group_2_1__0 )*
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4067:1: ( ( rule__Constraint__Group_2_1__0 )* )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4068:1: ( rule__Constraint__Group_2_1__0 )*
             {
              before(grammarAccess.getConstraintAccess().getGroup_2_1()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4003:1: ( rule__Constraint__Group_2_1__0 )*
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4069:1: ( rule__Constraint__Group_2_1__0 )*
             loop14:
             do {
                 int alt14=2;
@@ -10492,9 +10643,9 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
                 switch (alt14) {
             	case 1 :
-            	    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4003:2: rule__Constraint__Group_2_1__0
+            	    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4069:2: rule__Constraint__Group_2_1__0
             	    {
-            	    pushFollow(FOLLOW_rule__Constraint__Group_2_1__0_in_rule__Constraint__Group_2__1__Impl8127);
+            	    pushFollow(FOLLOW_rule__Constraint__Group_2_1__0_in_rule__Constraint__Group_2__1__Impl8255);
             	    rule__Constraint__Group_2_1__0();
 
             	    state._fsp--;
@@ -10531,21 +10682,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Constraint__Group_2_1__0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4017:1: rule__Constraint__Group_2_1__0 : rule__Constraint__Group_2_1__0__Impl rule__Constraint__Group_2_1__1 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4083:1: rule__Constraint__Group_2_1__0 : rule__Constraint__Group_2_1__0__Impl rule__Constraint__Group_2_1__1 ;
     public final void rule__Constraint__Group_2_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4021:1: ( rule__Constraint__Group_2_1__0__Impl rule__Constraint__Group_2_1__1 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4022:2: rule__Constraint__Group_2_1__0__Impl rule__Constraint__Group_2_1__1
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4087:1: ( rule__Constraint__Group_2_1__0__Impl rule__Constraint__Group_2_1__1 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4088:2: rule__Constraint__Group_2_1__0__Impl rule__Constraint__Group_2_1__1
             {
-            pushFollow(FOLLOW_rule__Constraint__Group_2_1__0__Impl_in_rule__Constraint__Group_2_1__08162);
+            pushFollow(FOLLOW_rule__Constraint__Group_2_1__0__Impl_in_rule__Constraint__Group_2_1__08290);
             rule__Constraint__Group_2_1__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Constraint__Group_2_1__1_in_rule__Constraint__Group_2_1__08165);
+            pushFollow(FOLLOW_rule__Constraint__Group_2_1__1_in_rule__Constraint__Group_2_1__08293);
             rule__Constraint__Group_2_1__1();
 
             state._fsp--;
@@ -10569,20 +10720,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Constraint__Group_2_1__0__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4029:1: rule__Constraint__Group_2_1__0__Impl : ( ',' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4095:1: rule__Constraint__Group_2_1__0__Impl : ( ',' ) ;
     public final void rule__Constraint__Group_2_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4033:1: ( ( ',' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4034:1: ( ',' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4099:1: ( ( ',' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4100:1: ( ',' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4034:1: ( ',' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4035:1: ','
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4100:1: ( ',' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4101:1: ','
             {
              before(grammarAccess.getConstraintAccess().getCommaKeyword_2_1_0()); 
-            match(input,29,FOLLOW_29_in_rule__Constraint__Group_2_1__0__Impl8193); 
+            match(input,29,FOLLOW_29_in_rule__Constraint__Group_2_1__0__Impl8321); 
              after(grammarAccess.getConstraintAccess().getCommaKeyword_2_1_0()); 
 
             }
@@ -10606,16 +10757,16 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Constraint__Group_2_1__1"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4048:1: rule__Constraint__Group_2_1__1 : rule__Constraint__Group_2_1__1__Impl ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4114:1: rule__Constraint__Group_2_1__1 : rule__Constraint__Group_2_1__1__Impl ;
     public final void rule__Constraint__Group_2_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4052:1: ( rule__Constraint__Group_2_1__1__Impl )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4053:2: rule__Constraint__Group_2_1__1__Impl
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4118:1: ( rule__Constraint__Group_2_1__1__Impl )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4119:2: rule__Constraint__Group_2_1__1__Impl
             {
-            pushFollow(FOLLOW_rule__Constraint__Group_2_1__1__Impl_in_rule__Constraint__Group_2_1__18224);
+            pushFollow(FOLLOW_rule__Constraint__Group_2_1__1__Impl_in_rule__Constraint__Group_2_1__18352);
             rule__Constraint__Group_2_1__1__Impl();
 
             state._fsp--;
@@ -10639,23 +10790,23 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Constraint__Group_2_1__1__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4059:1: rule__Constraint__Group_2_1__1__Impl : ( ( rule__Constraint__ArrowsAssignment_2_1_1 ) ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4125:1: rule__Constraint__Group_2_1__1__Impl : ( ( rule__Constraint__ArrowsAssignment_2_1_1 ) ) ;
     public final void rule__Constraint__Group_2_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4063:1: ( ( ( rule__Constraint__ArrowsAssignment_2_1_1 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4064:1: ( ( rule__Constraint__ArrowsAssignment_2_1_1 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4129:1: ( ( ( rule__Constraint__ArrowsAssignment_2_1_1 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4130:1: ( ( rule__Constraint__ArrowsAssignment_2_1_1 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4064:1: ( ( rule__Constraint__ArrowsAssignment_2_1_1 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4065:1: ( rule__Constraint__ArrowsAssignment_2_1_1 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4130:1: ( ( rule__Constraint__ArrowsAssignment_2_1_1 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4131:1: ( rule__Constraint__ArrowsAssignment_2_1_1 )
             {
              before(grammarAccess.getConstraintAccess().getArrowsAssignment_2_1_1()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4066:1: ( rule__Constraint__ArrowsAssignment_2_1_1 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4066:2: rule__Constraint__ArrowsAssignment_2_1_1
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4132:1: ( rule__Constraint__ArrowsAssignment_2_1_1 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4132:2: rule__Constraint__ArrowsAssignment_2_1_1
             {
-            pushFollow(FOLLOW_rule__Constraint__ArrowsAssignment_2_1_1_in_rule__Constraint__Group_2_1__1__Impl8251);
+            pushFollow(FOLLOW_rule__Constraint__ArrowsAssignment_2_1_1_in_rule__Constraint__Group_2_1__1__Impl8379);
             rule__Constraint__ArrowsAssignment_2_1_1();
 
             state._fsp--;
@@ -10686,21 +10837,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstraintSignature__Group__0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4080:1: rule__ConstraintSignature__Group__0 : rule__ConstraintSignature__Group__0__Impl rule__ConstraintSignature__Group__1 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4146:1: rule__ConstraintSignature__Group__0 : rule__ConstraintSignature__Group__0__Impl rule__ConstraintSignature__Group__1 ;
     public final void rule__ConstraintSignature__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4084:1: ( rule__ConstraintSignature__Group__0__Impl rule__ConstraintSignature__Group__1 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4085:2: rule__ConstraintSignature__Group__0__Impl rule__ConstraintSignature__Group__1
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4150:1: ( rule__ConstraintSignature__Group__0__Impl rule__ConstraintSignature__Group__1 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4151:2: rule__ConstraintSignature__Group__0__Impl rule__ConstraintSignature__Group__1
             {
-            pushFollow(FOLLOW_rule__ConstraintSignature__Group__0__Impl_in_rule__ConstraintSignature__Group__08285);
+            pushFollow(FOLLOW_rule__ConstraintSignature__Group__0__Impl_in_rule__ConstraintSignature__Group__08413);
             rule__ConstraintSignature__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ConstraintSignature__Group__1_in_rule__ConstraintSignature__Group__08288);
+            pushFollow(FOLLOW_rule__ConstraintSignature__Group__1_in_rule__ConstraintSignature__Group__08416);
             rule__ConstraintSignature__Group__1();
 
             state._fsp--;
@@ -10724,23 +10875,23 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstraintSignature__Group__0__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4092:1: rule__ConstraintSignature__Group__0__Impl : ( ( rule__ConstraintSignature__IdAssignment_0 ) ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4158:1: rule__ConstraintSignature__Group__0__Impl : ( ( rule__ConstraintSignature__IdAssignment_0 ) ) ;
     public final void rule__ConstraintSignature__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4096:1: ( ( ( rule__ConstraintSignature__IdAssignment_0 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4097:1: ( ( rule__ConstraintSignature__IdAssignment_0 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4162:1: ( ( ( rule__ConstraintSignature__IdAssignment_0 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4163:1: ( ( rule__ConstraintSignature__IdAssignment_0 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4097:1: ( ( rule__ConstraintSignature__IdAssignment_0 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4098:1: ( rule__ConstraintSignature__IdAssignment_0 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4163:1: ( ( rule__ConstraintSignature__IdAssignment_0 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4164:1: ( rule__ConstraintSignature__IdAssignment_0 )
             {
              before(grammarAccess.getConstraintSignatureAccess().getIdAssignment_0()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4099:1: ( rule__ConstraintSignature__IdAssignment_0 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4099:2: rule__ConstraintSignature__IdAssignment_0
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4165:1: ( rule__ConstraintSignature__IdAssignment_0 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4165:2: rule__ConstraintSignature__IdAssignment_0
             {
-            pushFollow(FOLLOW_rule__ConstraintSignature__IdAssignment_0_in_rule__ConstraintSignature__Group__0__Impl8315);
+            pushFollow(FOLLOW_rule__ConstraintSignature__IdAssignment_0_in_rule__ConstraintSignature__Group__0__Impl8443);
             rule__ConstraintSignature__IdAssignment_0();
 
             state._fsp--;
@@ -10771,21 +10922,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstraintSignature__Group__1"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4109:1: rule__ConstraintSignature__Group__1 : rule__ConstraintSignature__Group__1__Impl rule__ConstraintSignature__Group__2 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4175:1: rule__ConstraintSignature__Group__1 : rule__ConstraintSignature__Group__1__Impl rule__ConstraintSignature__Group__2 ;
     public final void rule__ConstraintSignature__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4113:1: ( rule__ConstraintSignature__Group__1__Impl rule__ConstraintSignature__Group__2 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4114:2: rule__ConstraintSignature__Group__1__Impl rule__ConstraintSignature__Group__2
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4179:1: ( rule__ConstraintSignature__Group__1__Impl rule__ConstraintSignature__Group__2 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4180:2: rule__ConstraintSignature__Group__1__Impl rule__ConstraintSignature__Group__2
             {
-            pushFollow(FOLLOW_rule__ConstraintSignature__Group__1__Impl_in_rule__ConstraintSignature__Group__18345);
+            pushFollow(FOLLOW_rule__ConstraintSignature__Group__1__Impl_in_rule__ConstraintSignature__Group__18473);
             rule__ConstraintSignature__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ConstraintSignature__Group__2_in_rule__ConstraintSignature__Group__18348);
+            pushFollow(FOLLOW_rule__ConstraintSignature__Group__2_in_rule__ConstraintSignature__Group__18476);
             rule__ConstraintSignature__Group__2();
 
             state._fsp--;
@@ -10809,20 +10960,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstraintSignature__Group__1__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4121:1: rule__ConstraintSignature__Group__1__Impl : ( '(' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4187:1: rule__ConstraintSignature__Group__1__Impl : ( '(' ) ;
     public final void rule__ConstraintSignature__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4125:1: ( ( '(' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4126:1: ( '(' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4191:1: ( ( '(' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4192:1: ( '(' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4126:1: ( '(' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4127:1: '('
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4192:1: ( '(' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4193:1: '('
             {
              before(grammarAccess.getConstraintSignatureAccess().getLeftParenthesisKeyword_1()); 
-            match(input,40,FOLLOW_40_in_rule__ConstraintSignature__Group__1__Impl8376); 
+            match(input,41,FOLLOW_41_in_rule__ConstraintSignature__Group__1__Impl8504); 
              after(grammarAccess.getConstraintSignatureAccess().getLeftParenthesisKeyword_1()); 
 
             }
@@ -10846,21 +10997,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstraintSignature__Group__2"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4140:1: rule__ConstraintSignature__Group__2 : rule__ConstraintSignature__Group__2__Impl rule__ConstraintSignature__Group__3 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4206:1: rule__ConstraintSignature__Group__2 : rule__ConstraintSignature__Group__2__Impl rule__ConstraintSignature__Group__3 ;
     public final void rule__ConstraintSignature__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4144:1: ( rule__ConstraintSignature__Group__2__Impl rule__ConstraintSignature__Group__3 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4145:2: rule__ConstraintSignature__Group__2__Impl rule__ConstraintSignature__Group__3
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4210:1: ( rule__ConstraintSignature__Group__2__Impl rule__ConstraintSignature__Group__3 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4211:2: rule__ConstraintSignature__Group__2__Impl rule__ConstraintSignature__Group__3
             {
-            pushFollow(FOLLOW_rule__ConstraintSignature__Group__2__Impl_in_rule__ConstraintSignature__Group__28407);
+            pushFollow(FOLLOW_rule__ConstraintSignature__Group__2__Impl_in_rule__ConstraintSignature__Group__28535);
             rule__ConstraintSignature__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ConstraintSignature__Group__3_in_rule__ConstraintSignature__Group__28410);
+            pushFollow(FOLLOW_rule__ConstraintSignature__Group__3_in_rule__ConstraintSignature__Group__28538);
             rule__ConstraintSignature__Group__3();
 
             state._fsp--;
@@ -10884,20 +11035,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstraintSignature__Group__2__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4152:1: rule__ConstraintSignature__Group__2__Impl : ( ( rule__ConstraintSignature__Group_2__0 )? ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4218:1: rule__ConstraintSignature__Group__2__Impl : ( ( rule__ConstraintSignature__Group_2__0 )? ) ;
     public final void rule__ConstraintSignature__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4156:1: ( ( ( rule__ConstraintSignature__Group_2__0 )? ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4157:1: ( ( rule__ConstraintSignature__Group_2__0 )? )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4222:1: ( ( ( rule__ConstraintSignature__Group_2__0 )? ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4223:1: ( ( rule__ConstraintSignature__Group_2__0 )? )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4157:1: ( ( rule__ConstraintSignature__Group_2__0 )? )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4158:1: ( rule__ConstraintSignature__Group_2__0 )?
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4223:1: ( ( rule__ConstraintSignature__Group_2__0 )? )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4224:1: ( rule__ConstraintSignature__Group_2__0 )?
             {
              before(grammarAccess.getConstraintSignatureAccess().getGroup_2()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4159:1: ( rule__ConstraintSignature__Group_2__0 )?
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4225:1: ( rule__ConstraintSignature__Group_2__0 )?
             int alt15=2;
             int LA15_0 = input.LA(1);
 
@@ -10906,9 +11057,9 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
             }
             switch (alt15) {
                 case 1 :
-                    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4159:2: rule__ConstraintSignature__Group_2__0
+                    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4225:2: rule__ConstraintSignature__Group_2__0
                     {
-                    pushFollow(FOLLOW_rule__ConstraintSignature__Group_2__0_in_rule__ConstraintSignature__Group__2__Impl8437);
+                    pushFollow(FOLLOW_rule__ConstraintSignature__Group_2__0_in_rule__ConstraintSignature__Group__2__Impl8565);
                     rule__ConstraintSignature__Group_2__0();
 
                     state._fsp--;
@@ -10942,16 +11093,16 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstraintSignature__Group__3"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4169:1: rule__ConstraintSignature__Group__3 : rule__ConstraintSignature__Group__3__Impl ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4235:1: rule__ConstraintSignature__Group__3 : rule__ConstraintSignature__Group__3__Impl ;
     public final void rule__ConstraintSignature__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4173:1: ( rule__ConstraintSignature__Group__3__Impl )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4174:2: rule__ConstraintSignature__Group__3__Impl
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4239:1: ( rule__ConstraintSignature__Group__3__Impl )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4240:2: rule__ConstraintSignature__Group__3__Impl
             {
-            pushFollow(FOLLOW_rule__ConstraintSignature__Group__3__Impl_in_rule__ConstraintSignature__Group__38468);
+            pushFollow(FOLLOW_rule__ConstraintSignature__Group__3__Impl_in_rule__ConstraintSignature__Group__38596);
             rule__ConstraintSignature__Group__3__Impl();
 
             state._fsp--;
@@ -10975,20 +11126,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstraintSignature__Group__3__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4180:1: rule__ConstraintSignature__Group__3__Impl : ( ')' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4246:1: rule__ConstraintSignature__Group__3__Impl : ( ')' ) ;
     public final void rule__ConstraintSignature__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4184:1: ( ( ')' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4185:1: ( ')' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4250:1: ( ( ')' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4251:1: ( ')' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4185:1: ( ')' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4186:1: ')'
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4251:1: ( ')' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4252:1: ')'
             {
              before(grammarAccess.getConstraintSignatureAccess().getRightParenthesisKeyword_3()); 
-            match(input,23,FOLLOW_23_in_rule__ConstraintSignature__Group__3__Impl8496); 
+            match(input,23,FOLLOW_23_in_rule__ConstraintSignature__Group__3__Impl8624); 
              after(grammarAccess.getConstraintSignatureAccess().getRightParenthesisKeyword_3()); 
 
             }
@@ -11012,21 +11163,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstraintSignature__Group_2__0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4207:1: rule__ConstraintSignature__Group_2__0 : rule__ConstraintSignature__Group_2__0__Impl rule__ConstraintSignature__Group_2__1 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4273:1: rule__ConstraintSignature__Group_2__0 : rule__ConstraintSignature__Group_2__0__Impl rule__ConstraintSignature__Group_2__1 ;
     public final void rule__ConstraintSignature__Group_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4211:1: ( rule__ConstraintSignature__Group_2__0__Impl rule__ConstraintSignature__Group_2__1 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4212:2: rule__ConstraintSignature__Group_2__0__Impl rule__ConstraintSignature__Group_2__1
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4277:1: ( rule__ConstraintSignature__Group_2__0__Impl rule__ConstraintSignature__Group_2__1 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4278:2: rule__ConstraintSignature__Group_2__0__Impl rule__ConstraintSignature__Group_2__1
             {
-            pushFollow(FOLLOW_rule__ConstraintSignature__Group_2__0__Impl_in_rule__ConstraintSignature__Group_2__08535);
+            pushFollow(FOLLOW_rule__ConstraintSignature__Group_2__0__Impl_in_rule__ConstraintSignature__Group_2__08663);
             rule__ConstraintSignature__Group_2__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ConstraintSignature__Group_2__1_in_rule__ConstraintSignature__Group_2__08538);
+            pushFollow(FOLLOW_rule__ConstraintSignature__Group_2__1_in_rule__ConstraintSignature__Group_2__08666);
             rule__ConstraintSignature__Group_2__1();
 
             state._fsp--;
@@ -11050,23 +11201,23 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstraintSignature__Group_2__0__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4219:1: rule__ConstraintSignature__Group_2__0__Impl : ( ( rule__ConstraintSignature__ParameterAssignment_2_0 ) ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4285:1: rule__ConstraintSignature__Group_2__0__Impl : ( ( rule__ConstraintSignature__ParameterAssignment_2_0 ) ) ;
     public final void rule__ConstraintSignature__Group_2__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4223:1: ( ( ( rule__ConstraintSignature__ParameterAssignment_2_0 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4224:1: ( ( rule__ConstraintSignature__ParameterAssignment_2_0 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4289:1: ( ( ( rule__ConstraintSignature__ParameterAssignment_2_0 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4290:1: ( ( rule__ConstraintSignature__ParameterAssignment_2_0 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4224:1: ( ( rule__ConstraintSignature__ParameterAssignment_2_0 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4225:1: ( rule__ConstraintSignature__ParameterAssignment_2_0 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4290:1: ( ( rule__ConstraintSignature__ParameterAssignment_2_0 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4291:1: ( rule__ConstraintSignature__ParameterAssignment_2_0 )
             {
              before(grammarAccess.getConstraintSignatureAccess().getParameterAssignment_2_0()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4226:1: ( rule__ConstraintSignature__ParameterAssignment_2_0 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4226:2: rule__ConstraintSignature__ParameterAssignment_2_0
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4292:1: ( rule__ConstraintSignature__ParameterAssignment_2_0 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4292:2: rule__ConstraintSignature__ParameterAssignment_2_0
             {
-            pushFollow(FOLLOW_rule__ConstraintSignature__ParameterAssignment_2_0_in_rule__ConstraintSignature__Group_2__0__Impl8565);
+            pushFollow(FOLLOW_rule__ConstraintSignature__ParameterAssignment_2_0_in_rule__ConstraintSignature__Group_2__0__Impl8693);
             rule__ConstraintSignature__ParameterAssignment_2_0();
 
             state._fsp--;
@@ -11097,16 +11248,16 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstraintSignature__Group_2__1"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4236:1: rule__ConstraintSignature__Group_2__1 : rule__ConstraintSignature__Group_2__1__Impl ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4302:1: rule__ConstraintSignature__Group_2__1 : rule__ConstraintSignature__Group_2__1__Impl ;
     public final void rule__ConstraintSignature__Group_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4240:1: ( rule__ConstraintSignature__Group_2__1__Impl )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4241:2: rule__ConstraintSignature__Group_2__1__Impl
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4306:1: ( rule__ConstraintSignature__Group_2__1__Impl )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4307:2: rule__ConstraintSignature__Group_2__1__Impl
             {
-            pushFollow(FOLLOW_rule__ConstraintSignature__Group_2__1__Impl_in_rule__ConstraintSignature__Group_2__18595);
+            pushFollow(FOLLOW_rule__ConstraintSignature__Group_2__1__Impl_in_rule__ConstraintSignature__Group_2__18723);
             rule__ConstraintSignature__Group_2__1__Impl();
 
             state._fsp--;
@@ -11130,20 +11281,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstraintSignature__Group_2__1__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4247:1: rule__ConstraintSignature__Group_2__1__Impl : ( ( rule__ConstraintSignature__Group_2_1__0 )* ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4313:1: rule__ConstraintSignature__Group_2__1__Impl : ( ( rule__ConstraintSignature__Group_2_1__0 )* ) ;
     public final void rule__ConstraintSignature__Group_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4251:1: ( ( ( rule__ConstraintSignature__Group_2_1__0 )* ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4252:1: ( ( rule__ConstraintSignature__Group_2_1__0 )* )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4317:1: ( ( ( rule__ConstraintSignature__Group_2_1__0 )* ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4318:1: ( ( rule__ConstraintSignature__Group_2_1__0 )* )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4252:1: ( ( rule__ConstraintSignature__Group_2_1__0 )* )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4253:1: ( rule__ConstraintSignature__Group_2_1__0 )*
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4318:1: ( ( rule__ConstraintSignature__Group_2_1__0 )* )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4319:1: ( rule__ConstraintSignature__Group_2_1__0 )*
             {
              before(grammarAccess.getConstraintSignatureAccess().getGroup_2_1()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4254:1: ( rule__ConstraintSignature__Group_2_1__0 )*
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4320:1: ( rule__ConstraintSignature__Group_2_1__0 )*
             loop16:
             do {
                 int alt16=2;
@@ -11156,9 +11307,9 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
                 switch (alt16) {
             	case 1 :
-            	    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4254:2: rule__ConstraintSignature__Group_2_1__0
+            	    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4320:2: rule__ConstraintSignature__Group_2_1__0
             	    {
-            	    pushFollow(FOLLOW_rule__ConstraintSignature__Group_2_1__0_in_rule__ConstraintSignature__Group_2__1__Impl8622);
+            	    pushFollow(FOLLOW_rule__ConstraintSignature__Group_2_1__0_in_rule__ConstraintSignature__Group_2__1__Impl8750);
             	    rule__ConstraintSignature__Group_2_1__0();
 
             	    state._fsp--;
@@ -11195,21 +11346,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstraintSignature__Group_2_1__0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4268:1: rule__ConstraintSignature__Group_2_1__0 : rule__ConstraintSignature__Group_2_1__0__Impl rule__ConstraintSignature__Group_2_1__1 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4334:1: rule__ConstraintSignature__Group_2_1__0 : rule__ConstraintSignature__Group_2_1__0__Impl rule__ConstraintSignature__Group_2_1__1 ;
     public final void rule__ConstraintSignature__Group_2_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4272:1: ( rule__ConstraintSignature__Group_2_1__0__Impl rule__ConstraintSignature__Group_2_1__1 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4273:2: rule__ConstraintSignature__Group_2_1__0__Impl rule__ConstraintSignature__Group_2_1__1
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4338:1: ( rule__ConstraintSignature__Group_2_1__0__Impl rule__ConstraintSignature__Group_2_1__1 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4339:2: rule__ConstraintSignature__Group_2_1__0__Impl rule__ConstraintSignature__Group_2_1__1
             {
-            pushFollow(FOLLOW_rule__ConstraintSignature__Group_2_1__0__Impl_in_rule__ConstraintSignature__Group_2_1__08657);
+            pushFollow(FOLLOW_rule__ConstraintSignature__Group_2_1__0__Impl_in_rule__ConstraintSignature__Group_2_1__08785);
             rule__ConstraintSignature__Group_2_1__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ConstraintSignature__Group_2_1__1_in_rule__ConstraintSignature__Group_2_1__08660);
+            pushFollow(FOLLOW_rule__ConstraintSignature__Group_2_1__1_in_rule__ConstraintSignature__Group_2_1__08788);
             rule__ConstraintSignature__Group_2_1__1();
 
             state._fsp--;
@@ -11233,20 +11384,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstraintSignature__Group_2_1__0__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4280:1: rule__ConstraintSignature__Group_2_1__0__Impl : ( ',' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4346:1: rule__ConstraintSignature__Group_2_1__0__Impl : ( ',' ) ;
     public final void rule__ConstraintSignature__Group_2_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4284:1: ( ( ',' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4285:1: ( ',' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4350:1: ( ( ',' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4351:1: ( ',' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4285:1: ( ',' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4286:1: ','
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4351:1: ( ',' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4352:1: ','
             {
              before(grammarAccess.getConstraintSignatureAccess().getCommaKeyword_2_1_0()); 
-            match(input,29,FOLLOW_29_in_rule__ConstraintSignature__Group_2_1__0__Impl8688); 
+            match(input,29,FOLLOW_29_in_rule__ConstraintSignature__Group_2_1__0__Impl8816); 
              after(grammarAccess.getConstraintSignatureAccess().getCommaKeyword_2_1_0()); 
 
             }
@@ -11270,16 +11421,16 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstraintSignature__Group_2_1__1"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4299:1: rule__ConstraintSignature__Group_2_1__1 : rule__ConstraintSignature__Group_2_1__1__Impl ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4365:1: rule__ConstraintSignature__Group_2_1__1 : rule__ConstraintSignature__Group_2_1__1__Impl ;
     public final void rule__ConstraintSignature__Group_2_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4303:1: ( rule__ConstraintSignature__Group_2_1__1__Impl )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4304:2: rule__ConstraintSignature__Group_2_1__1__Impl
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4369:1: ( rule__ConstraintSignature__Group_2_1__1__Impl )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4370:2: rule__ConstraintSignature__Group_2_1__1__Impl
             {
-            pushFollow(FOLLOW_rule__ConstraintSignature__Group_2_1__1__Impl_in_rule__ConstraintSignature__Group_2_1__18719);
+            pushFollow(FOLLOW_rule__ConstraintSignature__Group_2_1__1__Impl_in_rule__ConstraintSignature__Group_2_1__18847);
             rule__ConstraintSignature__Group_2_1__1__Impl();
 
             state._fsp--;
@@ -11303,23 +11454,23 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstraintSignature__Group_2_1__1__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4310:1: rule__ConstraintSignature__Group_2_1__1__Impl : ( ( rule__ConstraintSignature__ParameterAssignment_2_1_1 ) ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4376:1: rule__ConstraintSignature__Group_2_1__1__Impl : ( ( rule__ConstraintSignature__ParameterAssignment_2_1_1 ) ) ;
     public final void rule__ConstraintSignature__Group_2_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4314:1: ( ( ( rule__ConstraintSignature__ParameterAssignment_2_1_1 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4315:1: ( ( rule__ConstraintSignature__ParameterAssignment_2_1_1 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4380:1: ( ( ( rule__ConstraintSignature__ParameterAssignment_2_1_1 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4381:1: ( ( rule__ConstraintSignature__ParameterAssignment_2_1_1 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4315:1: ( ( rule__ConstraintSignature__ParameterAssignment_2_1_1 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4316:1: ( rule__ConstraintSignature__ParameterAssignment_2_1_1 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4381:1: ( ( rule__ConstraintSignature__ParameterAssignment_2_1_1 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4382:1: ( rule__ConstraintSignature__ParameterAssignment_2_1_1 )
             {
              before(grammarAccess.getConstraintSignatureAccess().getParameterAssignment_2_1_1()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4317:1: ( rule__ConstraintSignature__ParameterAssignment_2_1_1 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4317:2: rule__ConstraintSignature__ParameterAssignment_2_1_1
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4383:1: ( rule__ConstraintSignature__ParameterAssignment_2_1_1 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4383:2: rule__ConstraintSignature__ParameterAssignment_2_1_1
             {
-            pushFollow(FOLLOW_rule__ConstraintSignature__ParameterAssignment_2_1_1_in_rule__ConstraintSignature__Group_2_1__1__Impl8746);
+            pushFollow(FOLLOW_rule__ConstraintSignature__ParameterAssignment_2_1_1_in_rule__ConstraintSignature__Group_2_1__1__Impl8874);
             rule__ConstraintSignature__ParameterAssignment_2_1_1();
 
             state._fsp--;
@@ -11350,21 +11501,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Morphism__Group__0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4331:1: rule__Morphism__Group__0 : rule__Morphism__Group__0__Impl rule__Morphism__Group__1 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4397:1: rule__Morphism__Group__0 : rule__Morphism__Group__0__Impl rule__Morphism__Group__1 ;
     public final void rule__Morphism__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4335:1: ( rule__Morphism__Group__0__Impl rule__Morphism__Group__1 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4336:2: rule__Morphism__Group__0__Impl rule__Morphism__Group__1
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4401:1: ( rule__Morphism__Group__0__Impl rule__Morphism__Group__1 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4402:2: rule__Morphism__Group__0__Impl rule__Morphism__Group__1
             {
-            pushFollow(FOLLOW_rule__Morphism__Group__0__Impl_in_rule__Morphism__Group__08780);
+            pushFollow(FOLLOW_rule__Morphism__Group__0__Impl_in_rule__Morphism__Group__08908);
             rule__Morphism__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Morphism__Group__1_in_rule__Morphism__Group__08783);
+            pushFollow(FOLLOW_rule__Morphism__Group__1_in_rule__Morphism__Group__08911);
             rule__Morphism__Group__1();
 
             state._fsp--;
@@ -11388,20 +11539,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Morphism__Group__0__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4343:1: rule__Morphism__Group__0__Impl : ( RULE_ID ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4409:1: rule__Morphism__Group__0__Impl : ( RULE_ID ) ;
     public final void rule__Morphism__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4347:1: ( ( RULE_ID ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4348:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4413:1: ( ( RULE_ID ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4414:1: ( RULE_ID )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4348:1: ( RULE_ID )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4349:1: RULE_ID
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4414:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4415:1: RULE_ID
             {
              before(grammarAccess.getMorphismAccess().getIDTerminalRuleCall_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Morphism__Group__0__Impl8810); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Morphism__Group__0__Impl8938); 
              after(grammarAccess.getMorphismAccess().getIDTerminalRuleCall_0()); 
 
             }
@@ -11425,21 +11576,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Morphism__Group__1"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4360:1: rule__Morphism__Group__1 : rule__Morphism__Group__1__Impl rule__Morphism__Group__2 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4426:1: rule__Morphism__Group__1 : rule__Morphism__Group__1__Impl rule__Morphism__Group__2 ;
     public final void rule__Morphism__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4364:1: ( rule__Morphism__Group__1__Impl rule__Morphism__Group__2 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4365:2: rule__Morphism__Group__1__Impl rule__Morphism__Group__2
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4430:1: ( rule__Morphism__Group__1__Impl rule__Morphism__Group__2 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4431:2: rule__Morphism__Group__1__Impl rule__Morphism__Group__2
             {
-            pushFollow(FOLLOW_rule__Morphism__Group__1__Impl_in_rule__Morphism__Group__18839);
+            pushFollow(FOLLOW_rule__Morphism__Group__1__Impl_in_rule__Morphism__Group__18967);
             rule__Morphism__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Morphism__Group__2_in_rule__Morphism__Group__18842);
+            pushFollow(FOLLOW_rule__Morphism__Group__2_in_rule__Morphism__Group__18970);
             rule__Morphism__Group__2();
 
             state._fsp--;
@@ -11463,20 +11614,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Morphism__Group__1__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4372:1: rule__Morphism__Group__1__Impl : ( ':=' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4438:1: rule__Morphism__Group__1__Impl : ( ':=' ) ;
     public final void rule__Morphism__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4376:1: ( ( ':=' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4377:1: ( ':=' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4442:1: ( ( ':=' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4443:1: ( ':=' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4377:1: ( ':=' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4378:1: ':='
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4443:1: ( ':=' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4444:1: ':='
             {
              before(grammarAccess.getMorphismAccess().getColonEqualsSignKeyword_1()); 
-            match(input,33,FOLLOW_33_in_rule__Morphism__Group__1__Impl8870); 
+            match(input,33,FOLLOW_33_in_rule__Morphism__Group__1__Impl8998); 
              after(grammarAccess.getMorphismAccess().getColonEqualsSignKeyword_1()); 
 
             }
@@ -11500,21 +11651,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Morphism__Group__2"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4391:1: rule__Morphism__Group__2 : rule__Morphism__Group__2__Impl rule__Morphism__Group__3 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4457:1: rule__Morphism__Group__2 : rule__Morphism__Group__2__Impl rule__Morphism__Group__3 ;
     public final void rule__Morphism__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4395:1: ( rule__Morphism__Group__2__Impl rule__Morphism__Group__3 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4396:2: rule__Morphism__Group__2__Impl rule__Morphism__Group__3
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4461:1: ( rule__Morphism__Group__2__Impl rule__Morphism__Group__3 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4462:2: rule__Morphism__Group__2__Impl rule__Morphism__Group__3
             {
-            pushFollow(FOLLOW_rule__Morphism__Group__2__Impl_in_rule__Morphism__Group__28901);
+            pushFollow(FOLLOW_rule__Morphism__Group__2__Impl_in_rule__Morphism__Group__29029);
             rule__Morphism__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Morphism__Group__3_in_rule__Morphism__Group__28904);
+            pushFollow(FOLLOW_rule__Morphism__Group__3_in_rule__Morphism__Group__29032);
             rule__Morphism__Group__3();
 
             state._fsp--;
@@ -11538,20 +11689,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Morphism__Group__2__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4403:1: rule__Morphism__Group__2__Impl : ( 'Morphism<' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4469:1: rule__Morphism__Group__2__Impl : ( 'Morphism' ) ;
     public final void rule__Morphism__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4407:1: ( ( 'Morphism<' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4408:1: ( 'Morphism<' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4473:1: ( ( 'Morphism' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4474:1: ( 'Morphism' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4408:1: ( 'Morphism<' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4409:1: 'Morphism<'
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4474:1: ( 'Morphism' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4475:1: 'Morphism'
             {
              before(grammarAccess.getMorphismAccess().getMorphismKeyword_2()); 
-            match(input,41,FOLLOW_41_in_rule__Morphism__Group__2__Impl8932); 
+            match(input,42,FOLLOW_42_in_rule__Morphism__Group__2__Impl9060); 
              after(grammarAccess.getMorphismAccess().getMorphismKeyword_2()); 
 
             }
@@ -11575,21 +11726,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Morphism__Group__3"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4422:1: rule__Morphism__Group__3 : rule__Morphism__Group__3__Impl rule__Morphism__Group__4 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4488:1: rule__Morphism__Group__3 : rule__Morphism__Group__3__Impl rule__Morphism__Group__4 ;
     public final void rule__Morphism__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4426:1: ( rule__Morphism__Group__3__Impl rule__Morphism__Group__4 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4427:2: rule__Morphism__Group__3__Impl rule__Morphism__Group__4
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4492:1: ( rule__Morphism__Group__3__Impl rule__Morphism__Group__4 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4493:2: rule__Morphism__Group__3__Impl rule__Morphism__Group__4
             {
-            pushFollow(FOLLOW_rule__Morphism__Group__3__Impl_in_rule__Morphism__Group__38963);
+            pushFollow(FOLLOW_rule__Morphism__Group__3__Impl_in_rule__Morphism__Group__39091);
             rule__Morphism__Group__3__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Morphism__Group__4_in_rule__Morphism__Group__38966);
+            pushFollow(FOLLOW_rule__Morphism__Group__4_in_rule__Morphism__Group__39094);
             rule__Morphism__Group__4();
 
             state._fsp--;
@@ -11613,31 +11764,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Morphism__Group__3__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4434:1: rule__Morphism__Group__3__Impl : ( ( rule__Morphism__DomainAssignment_3 ) ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4500:1: rule__Morphism__Group__3__Impl : ( '<' ) ;
     public final void rule__Morphism__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4438:1: ( ( ( rule__Morphism__DomainAssignment_3 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4439:1: ( ( rule__Morphism__DomainAssignment_3 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4504:1: ( ( '<' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4505:1: ( '<' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4439:1: ( ( rule__Morphism__DomainAssignment_3 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4440:1: ( rule__Morphism__DomainAssignment_3 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4505:1: ( '<' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4506:1: '<'
             {
-             before(grammarAccess.getMorphismAccess().getDomainAssignment_3()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4441:1: ( rule__Morphism__DomainAssignment_3 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4441:2: rule__Morphism__DomainAssignment_3
-            {
-            pushFollow(FOLLOW_rule__Morphism__DomainAssignment_3_in_rule__Morphism__Group__3__Impl8993);
-            rule__Morphism__DomainAssignment_3();
-
-            state._fsp--;
-
-
-            }
-
-             after(grammarAccess.getMorphismAccess().getDomainAssignment_3()); 
+             before(grammarAccess.getMorphismAccess().getLessThanSignKeyword_3()); 
+            match(input,35,FOLLOW_35_in_rule__Morphism__Group__3__Impl9122); 
+             after(grammarAccess.getMorphismAccess().getLessThanSignKeyword_3()); 
 
             }
 
@@ -11660,21 +11801,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Morphism__Group__4"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4451:1: rule__Morphism__Group__4 : rule__Morphism__Group__4__Impl rule__Morphism__Group__5 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4519:1: rule__Morphism__Group__4 : rule__Morphism__Group__4__Impl rule__Morphism__Group__5 ;
     public final void rule__Morphism__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4455:1: ( rule__Morphism__Group__4__Impl rule__Morphism__Group__5 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4456:2: rule__Morphism__Group__4__Impl rule__Morphism__Group__5
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4523:1: ( rule__Morphism__Group__4__Impl rule__Morphism__Group__5 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4524:2: rule__Morphism__Group__4__Impl rule__Morphism__Group__5
             {
-            pushFollow(FOLLOW_rule__Morphism__Group__4__Impl_in_rule__Morphism__Group__49023);
+            pushFollow(FOLLOW_rule__Morphism__Group__4__Impl_in_rule__Morphism__Group__49153);
             rule__Morphism__Group__4__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Morphism__Group__5_in_rule__Morphism__Group__49026);
+            pushFollow(FOLLOW_rule__Morphism__Group__5_in_rule__Morphism__Group__49156);
             rule__Morphism__Group__5();
 
             state._fsp--;
@@ -11698,21 +11839,31 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Morphism__Group__4__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4463:1: rule__Morphism__Group__4__Impl : ( ',' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4531:1: rule__Morphism__Group__4__Impl : ( ( rule__Morphism__DomainAssignment_4 ) ) ;
     public final void rule__Morphism__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4467:1: ( ( ',' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4468:1: ( ',' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4535:1: ( ( ( rule__Morphism__DomainAssignment_4 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4536:1: ( ( rule__Morphism__DomainAssignment_4 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4468:1: ( ',' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4469:1: ','
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4536:1: ( ( rule__Morphism__DomainAssignment_4 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4537:1: ( rule__Morphism__DomainAssignment_4 )
             {
-             before(grammarAccess.getMorphismAccess().getCommaKeyword_4()); 
-            match(input,29,FOLLOW_29_in_rule__Morphism__Group__4__Impl9054); 
-             after(grammarAccess.getMorphismAccess().getCommaKeyword_4()); 
+             before(grammarAccess.getMorphismAccess().getDomainAssignment_4()); 
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4538:1: ( rule__Morphism__DomainAssignment_4 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4538:2: rule__Morphism__DomainAssignment_4
+            {
+            pushFollow(FOLLOW_rule__Morphism__DomainAssignment_4_in_rule__Morphism__Group__4__Impl9183);
+            rule__Morphism__DomainAssignment_4();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getMorphismAccess().getDomainAssignment_4()); 
 
             }
 
@@ -11735,21 +11886,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Morphism__Group__5"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4482:1: rule__Morphism__Group__5 : rule__Morphism__Group__5__Impl rule__Morphism__Group__6 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4548:1: rule__Morphism__Group__5 : rule__Morphism__Group__5__Impl rule__Morphism__Group__6 ;
     public final void rule__Morphism__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4486:1: ( rule__Morphism__Group__5__Impl rule__Morphism__Group__6 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4487:2: rule__Morphism__Group__5__Impl rule__Morphism__Group__6
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4552:1: ( rule__Morphism__Group__5__Impl rule__Morphism__Group__6 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4553:2: rule__Morphism__Group__5__Impl rule__Morphism__Group__6
             {
-            pushFollow(FOLLOW_rule__Morphism__Group__5__Impl_in_rule__Morphism__Group__59085);
+            pushFollow(FOLLOW_rule__Morphism__Group__5__Impl_in_rule__Morphism__Group__59213);
             rule__Morphism__Group__5__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Morphism__Group__6_in_rule__Morphism__Group__59088);
+            pushFollow(FOLLOW_rule__Morphism__Group__6_in_rule__Morphism__Group__59216);
             rule__Morphism__Group__6();
 
             state._fsp--;
@@ -11773,31 +11924,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Morphism__Group__5__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4494:1: rule__Morphism__Group__5__Impl : ( ( rule__Morphism__CodmainAssignment_5 ) ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4560:1: rule__Morphism__Group__5__Impl : ( ',' ) ;
     public final void rule__Morphism__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4498:1: ( ( ( rule__Morphism__CodmainAssignment_5 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4499:1: ( ( rule__Morphism__CodmainAssignment_5 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4564:1: ( ( ',' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4565:1: ( ',' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4499:1: ( ( rule__Morphism__CodmainAssignment_5 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4500:1: ( rule__Morphism__CodmainAssignment_5 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4565:1: ( ',' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4566:1: ','
             {
-             before(grammarAccess.getMorphismAccess().getCodmainAssignment_5()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4501:1: ( rule__Morphism__CodmainAssignment_5 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4501:2: rule__Morphism__CodmainAssignment_5
-            {
-            pushFollow(FOLLOW_rule__Morphism__CodmainAssignment_5_in_rule__Morphism__Group__5__Impl9115);
-            rule__Morphism__CodmainAssignment_5();
-
-            state._fsp--;
-
-
-            }
-
-             after(grammarAccess.getMorphismAccess().getCodmainAssignment_5()); 
+             before(grammarAccess.getMorphismAccess().getCommaKeyword_5()); 
+            match(input,29,FOLLOW_29_in_rule__Morphism__Group__5__Impl9244); 
+             after(grammarAccess.getMorphismAccess().getCommaKeyword_5()); 
 
             }
 
@@ -11820,21 +11961,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Morphism__Group__6"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4511:1: rule__Morphism__Group__6 : rule__Morphism__Group__6__Impl rule__Morphism__Group__7 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4579:1: rule__Morphism__Group__6 : rule__Morphism__Group__6__Impl rule__Morphism__Group__7 ;
     public final void rule__Morphism__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4515:1: ( rule__Morphism__Group__6__Impl rule__Morphism__Group__7 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4516:2: rule__Morphism__Group__6__Impl rule__Morphism__Group__7
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4583:1: ( rule__Morphism__Group__6__Impl rule__Morphism__Group__7 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4584:2: rule__Morphism__Group__6__Impl rule__Morphism__Group__7
             {
-            pushFollow(FOLLOW_rule__Morphism__Group__6__Impl_in_rule__Morphism__Group__69145);
+            pushFollow(FOLLOW_rule__Morphism__Group__6__Impl_in_rule__Morphism__Group__69275);
             rule__Morphism__Group__6__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Morphism__Group__7_in_rule__Morphism__Group__69148);
+            pushFollow(FOLLOW_rule__Morphism__Group__7_in_rule__Morphism__Group__69278);
             rule__Morphism__Group__7();
 
             state._fsp--;
@@ -11858,21 +11999,31 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Morphism__Group__6__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4523:1: rule__Morphism__Group__6__Impl : ( '>' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4591:1: rule__Morphism__Group__6__Impl : ( ( rule__Morphism__CodmainAssignment_6 ) ) ;
     public final void rule__Morphism__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4527:1: ( ( '>' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4528:1: ( '>' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4595:1: ( ( ( rule__Morphism__CodmainAssignment_6 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4596:1: ( ( rule__Morphism__CodmainAssignment_6 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4528:1: ( '>' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4529:1: '>'
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4596:1: ( ( rule__Morphism__CodmainAssignment_6 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4597:1: ( rule__Morphism__CodmainAssignment_6 )
             {
-             before(grammarAccess.getMorphismAccess().getGreaterThanSignKeyword_6()); 
-            match(input,35,FOLLOW_35_in_rule__Morphism__Group__6__Impl9176); 
-             after(grammarAccess.getMorphismAccess().getGreaterThanSignKeyword_6()); 
+             before(grammarAccess.getMorphismAccess().getCodmainAssignment_6()); 
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4598:1: ( rule__Morphism__CodmainAssignment_6 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4598:2: rule__Morphism__CodmainAssignment_6
+            {
+            pushFollow(FOLLOW_rule__Morphism__CodmainAssignment_6_in_rule__Morphism__Group__6__Impl9305);
+            rule__Morphism__CodmainAssignment_6();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getMorphismAccess().getCodmainAssignment_6()); 
 
             }
 
@@ -11895,21 +12046,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Morphism__Group__7"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4542:1: rule__Morphism__Group__7 : rule__Morphism__Group__7__Impl rule__Morphism__Group__8 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4608:1: rule__Morphism__Group__7 : rule__Morphism__Group__7__Impl rule__Morphism__Group__8 ;
     public final void rule__Morphism__Group__7() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4546:1: ( rule__Morphism__Group__7__Impl rule__Morphism__Group__8 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4547:2: rule__Morphism__Group__7__Impl rule__Morphism__Group__8
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4612:1: ( rule__Morphism__Group__7__Impl rule__Morphism__Group__8 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4613:2: rule__Morphism__Group__7__Impl rule__Morphism__Group__8
             {
-            pushFollow(FOLLOW_rule__Morphism__Group__7__Impl_in_rule__Morphism__Group__79207);
+            pushFollow(FOLLOW_rule__Morphism__Group__7__Impl_in_rule__Morphism__Group__79335);
             rule__Morphism__Group__7__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Morphism__Group__8_in_rule__Morphism__Group__79210);
+            pushFollow(FOLLOW_rule__Morphism__Group__8_in_rule__Morphism__Group__79338);
             rule__Morphism__Group__8();
 
             state._fsp--;
@@ -11933,21 +12084,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Morphism__Group__7__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4554:1: rule__Morphism__Group__7__Impl : ( '{' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4620:1: rule__Morphism__Group__7__Impl : ( '>' ) ;
     public final void rule__Morphism__Group__7__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4558:1: ( ( '{' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4559:1: ( '{' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4624:1: ( ( '>' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4625:1: ( '>' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4559:1: ( '{' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4560:1: '{'
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4625:1: ( '>' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4626:1: '>'
             {
-             before(grammarAccess.getMorphismAccess().getLeftCurlyBracketKeyword_7()); 
-            match(input,36,FOLLOW_36_in_rule__Morphism__Group__7__Impl9238); 
-             after(grammarAccess.getMorphismAccess().getLeftCurlyBracketKeyword_7()); 
+             before(grammarAccess.getMorphismAccess().getGreaterThanSignKeyword_7()); 
+            match(input,36,FOLLOW_36_in_rule__Morphism__Group__7__Impl9366); 
+             after(grammarAccess.getMorphismAccess().getGreaterThanSignKeyword_7()); 
 
             }
 
@@ -11970,21 +12121,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Morphism__Group__8"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4573:1: rule__Morphism__Group__8 : rule__Morphism__Group__8__Impl rule__Morphism__Group__9 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4639:1: rule__Morphism__Group__8 : rule__Morphism__Group__8__Impl rule__Morphism__Group__9 ;
     public final void rule__Morphism__Group__8() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4577:1: ( rule__Morphism__Group__8__Impl rule__Morphism__Group__9 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4578:2: rule__Morphism__Group__8__Impl rule__Morphism__Group__9
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4643:1: ( rule__Morphism__Group__8__Impl rule__Morphism__Group__9 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4644:2: rule__Morphism__Group__8__Impl rule__Morphism__Group__9
             {
-            pushFollow(FOLLOW_rule__Morphism__Group__8__Impl_in_rule__Morphism__Group__89269);
+            pushFollow(FOLLOW_rule__Morphism__Group__8__Impl_in_rule__Morphism__Group__89397);
             rule__Morphism__Group__8__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Morphism__Group__9_in_rule__Morphism__Group__89272);
+            pushFollow(FOLLOW_rule__Morphism__Group__9_in_rule__Morphism__Group__89400);
             rule__Morphism__Group__9();
 
             state._fsp--;
@@ -12008,42 +12159,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Morphism__Group__8__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4585:1: rule__Morphism__Group__8__Impl : ( ( rule__Morphism__Group_8__0 )? ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4651:1: rule__Morphism__Group__8__Impl : ( '{' ) ;
     public final void rule__Morphism__Group__8__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4589:1: ( ( ( rule__Morphism__Group_8__0 )? ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4590:1: ( ( rule__Morphism__Group_8__0 )? )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4655:1: ( ( '{' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4656:1: ( '{' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4590:1: ( ( rule__Morphism__Group_8__0 )? )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4591:1: ( rule__Morphism__Group_8__0 )?
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4656:1: ( '{' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4657:1: '{'
             {
-             before(grammarAccess.getMorphismAccess().getGroup_8()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4592:1: ( rule__Morphism__Group_8__0 )?
-            int alt17=2;
-            int LA17_0 = input.LA(1);
-
-            if ( (LA17_0==RULE_ID) ) {
-                alt17=1;
-            }
-            switch (alt17) {
-                case 1 :
-                    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4592:2: rule__Morphism__Group_8__0
-                    {
-                    pushFollow(FOLLOW_rule__Morphism__Group_8__0_in_rule__Morphism__Group__8__Impl9299);
-                    rule__Morphism__Group_8__0();
-
-                    state._fsp--;
-
-
-                    }
-                    break;
-
-            }
-
-             after(grammarAccess.getMorphismAccess().getGroup_8()); 
+             before(grammarAccess.getMorphismAccess().getLeftCurlyBracketKeyword_8()); 
+            match(input,37,FOLLOW_37_in_rule__Morphism__Group__8__Impl9428); 
+             after(grammarAccess.getMorphismAccess().getLeftCurlyBracketKeyword_8()); 
 
             }
 
@@ -12066,17 +12196,22 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Morphism__Group__9"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4602:1: rule__Morphism__Group__9 : rule__Morphism__Group__9__Impl ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4670:1: rule__Morphism__Group__9 : rule__Morphism__Group__9__Impl rule__Morphism__Group__10 ;
     public final void rule__Morphism__Group__9() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4606:1: ( rule__Morphism__Group__9__Impl )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4607:2: rule__Morphism__Group__9__Impl
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4674:1: ( rule__Morphism__Group__9__Impl rule__Morphism__Group__10 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4675:2: rule__Morphism__Group__9__Impl rule__Morphism__Group__10
             {
-            pushFollow(FOLLOW_rule__Morphism__Group__9__Impl_in_rule__Morphism__Group__99330);
+            pushFollow(FOLLOW_rule__Morphism__Group__9__Impl_in_rule__Morphism__Group__99459);
             rule__Morphism__Group__9__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__Morphism__Group__10_in_rule__Morphism__Group__99462);
+            rule__Morphism__Group__10();
 
             state._fsp--;
 
@@ -12099,21 +12234,42 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Morphism__Group__9__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4613:1: rule__Morphism__Group__9__Impl : ( '}' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4682:1: rule__Morphism__Group__9__Impl : ( ( rule__Morphism__Group_9__0 )? ) ;
     public final void rule__Morphism__Group__9__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4617:1: ( ( '}' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4618:1: ( '}' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4686:1: ( ( ( rule__Morphism__Group_9__0 )? ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4687:1: ( ( rule__Morphism__Group_9__0 )? )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4618:1: ( '}' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4619:1: '}'
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4687:1: ( ( rule__Morphism__Group_9__0 )? )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4688:1: ( rule__Morphism__Group_9__0 )?
             {
-             before(grammarAccess.getMorphismAccess().getRightCurlyBracketKeyword_9()); 
-            match(input,37,FOLLOW_37_in_rule__Morphism__Group__9__Impl9358); 
-             after(grammarAccess.getMorphismAccess().getRightCurlyBracketKeyword_9()); 
+             before(grammarAccess.getMorphismAccess().getGroup_9()); 
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4689:1: ( rule__Morphism__Group_9__0 )?
+            int alt17=2;
+            int LA17_0 = input.LA(1);
+
+            if ( (LA17_0==RULE_ID) ) {
+                alt17=1;
+            }
+            switch (alt17) {
+                case 1 :
+                    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4689:2: rule__Morphism__Group_9__0
+                    {
+                    pushFollow(FOLLOW_rule__Morphism__Group_9__0_in_rule__Morphism__Group__9__Impl9489);
+                    rule__Morphism__Group_9__0();
+
+                    state._fsp--;
+
+
+                    }
+                    break;
+
+            }
+
+             after(grammarAccess.getMorphismAccess().getGroup_9()); 
 
             }
 
@@ -12135,23 +12291,18 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Morphism__Group__9__Impl"
 
 
-    // $ANTLR start "rule__Morphism__Group_8__0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4652:1: rule__Morphism__Group_8__0 : rule__Morphism__Group_8__0__Impl rule__Morphism__Group_8__1 ;
-    public final void rule__Morphism__Group_8__0() throws RecognitionException {
+    // $ANTLR start "rule__Morphism__Group__10"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4699:1: rule__Morphism__Group__10 : rule__Morphism__Group__10__Impl ;
+    public final void rule__Morphism__Group__10() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4656:1: ( rule__Morphism__Group_8__0__Impl rule__Morphism__Group_8__1 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4657:2: rule__Morphism__Group_8__0__Impl rule__Morphism__Group_8__1
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4703:1: ( rule__Morphism__Group__10__Impl )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4704:2: rule__Morphism__Group__10__Impl
             {
-            pushFollow(FOLLOW_rule__Morphism__Group_8__0__Impl_in_rule__Morphism__Group_8__09409);
-            rule__Morphism__Group_8__0__Impl();
-
-            state._fsp--;
-
-            pushFollow(FOLLOW_rule__Morphism__Group_8__1_in_rule__Morphism__Group_8__09412);
-            rule__Morphism__Group_8__1();
+            pushFollow(FOLLOW_rule__Morphism__Group__10__Impl_in_rule__Morphism__Group__109520);
+            rule__Morphism__Group__10__Impl();
 
             state._fsp--;
 
@@ -12170,35 +12321,25 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Morphism__Group_8__0"
+    // $ANTLR end "rule__Morphism__Group__10"
 
 
-    // $ANTLR start "rule__Morphism__Group_8__0__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4664:1: rule__Morphism__Group_8__0__Impl : ( ( rule__Morphism__MappingsAssignment_8_0 ) ) ;
-    public final void rule__Morphism__Group_8__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__Morphism__Group__10__Impl"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4710:1: rule__Morphism__Group__10__Impl : ( '}' ) ;
+    public final void rule__Morphism__Group__10__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4668:1: ( ( ( rule__Morphism__MappingsAssignment_8_0 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4669:1: ( ( rule__Morphism__MappingsAssignment_8_0 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4714:1: ( ( '}' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4715:1: ( '}' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4669:1: ( ( rule__Morphism__MappingsAssignment_8_0 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4670:1: ( rule__Morphism__MappingsAssignment_8_0 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4715:1: ( '}' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4716:1: '}'
             {
-             before(grammarAccess.getMorphismAccess().getMappingsAssignment_8_0()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4671:1: ( rule__Morphism__MappingsAssignment_8_0 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4671:2: rule__Morphism__MappingsAssignment_8_0
-            {
-            pushFollow(FOLLOW_rule__Morphism__MappingsAssignment_8_0_in_rule__Morphism__Group_8__0__Impl9439);
-            rule__Morphism__MappingsAssignment_8_0();
-
-            state._fsp--;
-
-
-            }
-
-             after(grammarAccess.getMorphismAccess().getMappingsAssignment_8_0()); 
+             before(grammarAccess.getMorphismAccess().getRightCurlyBracketKeyword_10()); 
+            match(input,38,FOLLOW_38_in_rule__Morphism__Group__10__Impl9548); 
+             after(grammarAccess.getMorphismAccess().getRightCurlyBracketKeyword_10()); 
 
             }
 
@@ -12217,21 +12358,26 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Morphism__Group_8__0__Impl"
+    // $ANTLR end "rule__Morphism__Group__10__Impl"
 
 
-    // $ANTLR start "rule__Morphism__Group_8__1"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4681:1: rule__Morphism__Group_8__1 : rule__Morphism__Group_8__1__Impl ;
-    public final void rule__Morphism__Group_8__1() throws RecognitionException {
+    // $ANTLR start "rule__Morphism__Group_9__0"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4751:1: rule__Morphism__Group_9__0 : rule__Morphism__Group_9__0__Impl rule__Morphism__Group_9__1 ;
+    public final void rule__Morphism__Group_9__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4685:1: ( rule__Morphism__Group_8__1__Impl )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4686:2: rule__Morphism__Group_8__1__Impl
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4755:1: ( rule__Morphism__Group_9__0__Impl rule__Morphism__Group_9__1 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4756:2: rule__Morphism__Group_9__0__Impl rule__Morphism__Group_9__1
             {
-            pushFollow(FOLLOW_rule__Morphism__Group_8__1__Impl_in_rule__Morphism__Group_8__19469);
-            rule__Morphism__Group_8__1__Impl();
+            pushFollow(FOLLOW_rule__Morphism__Group_9__0__Impl_in_rule__Morphism__Group_9__09601);
+            rule__Morphism__Group_9__0__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__Morphism__Group_9__1_in_rule__Morphism__Group_9__09604);
+            rule__Morphism__Group_9__1();
 
             state._fsp--;
 
@@ -12250,24 +12396,104 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Morphism__Group_8__1"
+    // $ANTLR end "rule__Morphism__Group_9__0"
 
 
-    // $ANTLR start "rule__Morphism__Group_8__1__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4692:1: rule__Morphism__Group_8__1__Impl : ( ( rule__Morphism__Group_8_1__0 )* ) ;
-    public final void rule__Morphism__Group_8__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__Morphism__Group_9__0__Impl"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4763:1: rule__Morphism__Group_9__0__Impl : ( ( rule__Morphism__MappingsAssignment_9_0 ) ) ;
+    public final void rule__Morphism__Group_9__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4696:1: ( ( ( rule__Morphism__Group_8_1__0 )* ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4697:1: ( ( rule__Morphism__Group_8_1__0 )* )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4767:1: ( ( ( rule__Morphism__MappingsAssignment_9_0 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4768:1: ( ( rule__Morphism__MappingsAssignment_9_0 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4697:1: ( ( rule__Morphism__Group_8_1__0 )* )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4698:1: ( rule__Morphism__Group_8_1__0 )*
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4768:1: ( ( rule__Morphism__MappingsAssignment_9_0 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4769:1: ( rule__Morphism__MappingsAssignment_9_0 )
             {
-             before(grammarAccess.getMorphismAccess().getGroup_8_1()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4699:1: ( rule__Morphism__Group_8_1__0 )*
+             before(grammarAccess.getMorphismAccess().getMappingsAssignment_9_0()); 
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4770:1: ( rule__Morphism__MappingsAssignment_9_0 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4770:2: rule__Morphism__MappingsAssignment_9_0
+            {
+            pushFollow(FOLLOW_rule__Morphism__MappingsAssignment_9_0_in_rule__Morphism__Group_9__0__Impl9631);
+            rule__Morphism__MappingsAssignment_9_0();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getMorphismAccess().getMappingsAssignment_9_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Morphism__Group_9__0__Impl"
+
+
+    // $ANTLR start "rule__Morphism__Group_9__1"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4780:1: rule__Morphism__Group_9__1 : rule__Morphism__Group_9__1__Impl ;
+    public final void rule__Morphism__Group_9__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4784:1: ( rule__Morphism__Group_9__1__Impl )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4785:2: rule__Morphism__Group_9__1__Impl
+            {
+            pushFollow(FOLLOW_rule__Morphism__Group_9__1__Impl_in_rule__Morphism__Group_9__19661);
+            rule__Morphism__Group_9__1__Impl();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Morphism__Group_9__1"
+
+
+    // $ANTLR start "rule__Morphism__Group_9__1__Impl"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4791:1: rule__Morphism__Group_9__1__Impl : ( ( rule__Morphism__Group_9_1__0 )* ) ;
+    public final void rule__Morphism__Group_9__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4795:1: ( ( ( rule__Morphism__Group_9_1__0 )* ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4796:1: ( ( rule__Morphism__Group_9_1__0 )* )
+            {
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4796:1: ( ( rule__Morphism__Group_9_1__0 )* )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4797:1: ( rule__Morphism__Group_9_1__0 )*
+            {
+             before(grammarAccess.getMorphismAccess().getGroup_9_1()); 
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4798:1: ( rule__Morphism__Group_9_1__0 )*
             loop18:
             do {
                 int alt18=2;
@@ -12280,10 +12506,10 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
                 switch (alt18) {
             	case 1 :
-            	    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4699:2: rule__Morphism__Group_8_1__0
+            	    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4798:2: rule__Morphism__Group_9_1__0
             	    {
-            	    pushFollow(FOLLOW_rule__Morphism__Group_8_1__0_in_rule__Morphism__Group_8__1__Impl9496);
-            	    rule__Morphism__Group_8_1__0();
+            	    pushFollow(FOLLOW_rule__Morphism__Group_9_1__0_in_rule__Morphism__Group_9__1__Impl9688);
+            	    rule__Morphism__Group_9_1__0();
 
             	    state._fsp--;
 
@@ -12296,7 +12522,7 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
                 }
             } while (true);
 
-             after(grammarAccess.getMorphismAccess().getGroup_8_1()); 
+             after(grammarAccess.getMorphismAccess().getGroup_9_1()); 
 
             }
 
@@ -12315,96 +12541,26 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Morphism__Group_8__1__Impl"
+    // $ANTLR end "rule__Morphism__Group_9__1__Impl"
 
 
-    // $ANTLR start "rule__Morphism__Group_8_1__0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4713:1: rule__Morphism__Group_8_1__0 : rule__Morphism__Group_8_1__0__Impl rule__Morphism__Group_8_1__1 ;
-    public final void rule__Morphism__Group_8_1__0() throws RecognitionException {
+    // $ANTLR start "rule__Morphism__Group_9_1__0"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4812:1: rule__Morphism__Group_9_1__0 : rule__Morphism__Group_9_1__0__Impl rule__Morphism__Group_9_1__1 ;
+    public final void rule__Morphism__Group_9_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4717:1: ( rule__Morphism__Group_8_1__0__Impl rule__Morphism__Group_8_1__1 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4718:2: rule__Morphism__Group_8_1__0__Impl rule__Morphism__Group_8_1__1
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4816:1: ( rule__Morphism__Group_9_1__0__Impl rule__Morphism__Group_9_1__1 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4817:2: rule__Morphism__Group_9_1__0__Impl rule__Morphism__Group_9_1__1
             {
-            pushFollow(FOLLOW_rule__Morphism__Group_8_1__0__Impl_in_rule__Morphism__Group_8_1__09531);
-            rule__Morphism__Group_8_1__0__Impl();
+            pushFollow(FOLLOW_rule__Morphism__Group_9_1__0__Impl_in_rule__Morphism__Group_9_1__09723);
+            rule__Morphism__Group_9_1__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Morphism__Group_8_1__1_in_rule__Morphism__Group_8_1__09534);
-            rule__Morphism__Group_8_1__1();
-
-            state._fsp--;
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__Morphism__Group_8_1__0"
-
-
-    // $ANTLR start "rule__Morphism__Group_8_1__0__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4725:1: rule__Morphism__Group_8_1__0__Impl : ( ',' ) ;
-    public final void rule__Morphism__Group_8_1__0__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4729:1: ( ( ',' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4730:1: ( ',' )
-            {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4730:1: ( ',' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4731:1: ','
-            {
-             before(grammarAccess.getMorphismAccess().getCommaKeyword_8_1_0()); 
-            match(input,29,FOLLOW_29_in_rule__Morphism__Group_8_1__0__Impl9562); 
-             after(grammarAccess.getMorphismAccess().getCommaKeyword_8_1_0()); 
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__Morphism__Group_8_1__0__Impl"
-
-
-    // $ANTLR start "rule__Morphism__Group_8_1__1"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4744:1: rule__Morphism__Group_8_1__1 : rule__Morphism__Group_8_1__1__Impl ;
-    public final void rule__Morphism__Group_8_1__1() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4748:1: ( rule__Morphism__Group_8_1__1__Impl )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4749:2: rule__Morphism__Group_8_1__1__Impl
-            {
-            pushFollow(FOLLOW_rule__Morphism__Group_8_1__1__Impl_in_rule__Morphism__Group_8_1__19593);
-            rule__Morphism__Group_8_1__1__Impl();
+            pushFollow(FOLLOW_rule__Morphism__Group_9_1__1_in_rule__Morphism__Group_9_1__09726);
+            rule__Morphism__Group_9_1__1();
 
             state._fsp--;
 
@@ -12423,35 +12579,25 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Morphism__Group_8_1__1"
+    // $ANTLR end "rule__Morphism__Group_9_1__0"
 
 
-    // $ANTLR start "rule__Morphism__Group_8_1__1__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4755:1: rule__Morphism__Group_8_1__1__Impl : ( ( rule__Morphism__MappingsAssignment_8_1_1 ) ) ;
-    public final void rule__Morphism__Group_8_1__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__Morphism__Group_9_1__0__Impl"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4824:1: rule__Morphism__Group_9_1__0__Impl : ( ',' ) ;
+    public final void rule__Morphism__Group_9_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4759:1: ( ( ( rule__Morphism__MappingsAssignment_8_1_1 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4760:1: ( ( rule__Morphism__MappingsAssignment_8_1_1 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4828:1: ( ( ',' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4829:1: ( ',' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4760:1: ( ( rule__Morphism__MappingsAssignment_8_1_1 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4761:1: ( rule__Morphism__MappingsAssignment_8_1_1 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4829:1: ( ',' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4830:1: ','
             {
-             before(grammarAccess.getMorphismAccess().getMappingsAssignment_8_1_1()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4762:1: ( rule__Morphism__MappingsAssignment_8_1_1 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4762:2: rule__Morphism__MappingsAssignment_8_1_1
-            {
-            pushFollow(FOLLOW_rule__Morphism__MappingsAssignment_8_1_1_in_rule__Morphism__Group_8_1__1__Impl9620);
-            rule__Morphism__MappingsAssignment_8_1_1();
-
-            state._fsp--;
-
-
-            }
-
-             after(grammarAccess.getMorphismAccess().getMappingsAssignment_8_1_1()); 
+             before(grammarAccess.getMorphismAccess().getCommaKeyword_9_1_0()); 
+            match(input,29,FOLLOW_29_in_rule__Morphism__Group_9_1__0__Impl9754); 
+             after(grammarAccess.getMorphismAccess().getCommaKeyword_9_1_0()); 
 
             }
 
@@ -12470,25 +12616,105 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Morphism__Group_8_1__1__Impl"
+    // $ANTLR end "rule__Morphism__Group_9_1__0__Impl"
+
+
+    // $ANTLR start "rule__Morphism__Group_9_1__1"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4843:1: rule__Morphism__Group_9_1__1 : rule__Morphism__Group_9_1__1__Impl ;
+    public final void rule__Morphism__Group_9_1__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4847:1: ( rule__Morphism__Group_9_1__1__Impl )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4848:2: rule__Morphism__Group_9_1__1__Impl
+            {
+            pushFollow(FOLLOW_rule__Morphism__Group_9_1__1__Impl_in_rule__Morphism__Group_9_1__19785);
+            rule__Morphism__Group_9_1__1__Impl();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Morphism__Group_9_1__1"
+
+
+    // $ANTLR start "rule__Morphism__Group_9_1__1__Impl"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4854:1: rule__Morphism__Group_9_1__1__Impl : ( ( rule__Morphism__MappingsAssignment_9_1_1 ) ) ;
+    public final void rule__Morphism__Group_9_1__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4858:1: ( ( ( rule__Morphism__MappingsAssignment_9_1_1 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4859:1: ( ( rule__Morphism__MappingsAssignment_9_1_1 ) )
+            {
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4859:1: ( ( rule__Morphism__MappingsAssignment_9_1_1 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4860:1: ( rule__Morphism__MappingsAssignment_9_1_1 )
+            {
+             before(grammarAccess.getMorphismAccess().getMappingsAssignment_9_1_1()); 
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4861:1: ( rule__Morphism__MappingsAssignment_9_1_1 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4861:2: rule__Morphism__MappingsAssignment_9_1_1
+            {
+            pushFollow(FOLLOW_rule__Morphism__MappingsAssignment_9_1_1_in_rule__Morphism__Group_9_1__1__Impl9812);
+            rule__Morphism__MappingsAssignment_9_1_1();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getMorphismAccess().getMappingsAssignment_9_1_1()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Morphism__Group_9_1__1__Impl"
 
 
     // $ANTLR start "rule__MappingNode__Group__0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4776:1: rule__MappingNode__Group__0 : rule__MappingNode__Group__0__Impl rule__MappingNode__Group__1 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4875:1: rule__MappingNode__Group__0 : rule__MappingNode__Group__0__Impl rule__MappingNode__Group__1 ;
     public final void rule__MappingNode__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4780:1: ( rule__MappingNode__Group__0__Impl rule__MappingNode__Group__1 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4781:2: rule__MappingNode__Group__0__Impl rule__MappingNode__Group__1
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4879:1: ( rule__MappingNode__Group__0__Impl rule__MappingNode__Group__1 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4880:2: rule__MappingNode__Group__0__Impl rule__MappingNode__Group__1
             {
-            pushFollow(FOLLOW_rule__MappingNode__Group__0__Impl_in_rule__MappingNode__Group__09654);
+            pushFollow(FOLLOW_rule__MappingNode__Group__0__Impl_in_rule__MappingNode__Group__09846);
             rule__MappingNode__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__MappingNode__Group__1_in_rule__MappingNode__Group__09657);
+            pushFollow(FOLLOW_rule__MappingNode__Group__1_in_rule__MappingNode__Group__09849);
             rule__MappingNode__Group__1();
 
             state._fsp--;
@@ -12512,23 +12738,23 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MappingNode__Group__0__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4788:1: rule__MappingNode__Group__0__Impl : ( ( rule__MappingNode__DomainAssignment_0 ) ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4887:1: rule__MappingNode__Group__0__Impl : ( ( rule__MappingNode__DomainAssignment_0 ) ) ;
     public final void rule__MappingNode__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4792:1: ( ( ( rule__MappingNode__DomainAssignment_0 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4793:1: ( ( rule__MappingNode__DomainAssignment_0 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4891:1: ( ( ( rule__MappingNode__DomainAssignment_0 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4892:1: ( ( rule__MappingNode__DomainAssignment_0 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4793:1: ( ( rule__MappingNode__DomainAssignment_0 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4794:1: ( rule__MappingNode__DomainAssignment_0 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4892:1: ( ( rule__MappingNode__DomainAssignment_0 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4893:1: ( rule__MappingNode__DomainAssignment_0 )
             {
              before(grammarAccess.getMappingNodeAccess().getDomainAssignment_0()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4795:1: ( rule__MappingNode__DomainAssignment_0 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4795:2: rule__MappingNode__DomainAssignment_0
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4894:1: ( rule__MappingNode__DomainAssignment_0 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4894:2: rule__MappingNode__DomainAssignment_0
             {
-            pushFollow(FOLLOW_rule__MappingNode__DomainAssignment_0_in_rule__MappingNode__Group__0__Impl9684);
+            pushFollow(FOLLOW_rule__MappingNode__DomainAssignment_0_in_rule__MappingNode__Group__0__Impl9876);
             rule__MappingNode__DomainAssignment_0();
 
             state._fsp--;
@@ -12559,21 +12785,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MappingNode__Group__1"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4805:1: rule__MappingNode__Group__1 : rule__MappingNode__Group__1__Impl rule__MappingNode__Group__2 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4904:1: rule__MappingNode__Group__1 : rule__MappingNode__Group__1__Impl rule__MappingNode__Group__2 ;
     public final void rule__MappingNode__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4809:1: ( rule__MappingNode__Group__1__Impl rule__MappingNode__Group__2 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4810:2: rule__MappingNode__Group__1__Impl rule__MappingNode__Group__2
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4908:1: ( rule__MappingNode__Group__1__Impl rule__MappingNode__Group__2 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4909:2: rule__MappingNode__Group__1__Impl rule__MappingNode__Group__2
             {
-            pushFollow(FOLLOW_rule__MappingNode__Group__1__Impl_in_rule__MappingNode__Group__19714);
+            pushFollow(FOLLOW_rule__MappingNode__Group__1__Impl_in_rule__MappingNode__Group__19906);
             rule__MappingNode__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__MappingNode__Group__2_in_rule__MappingNode__Group__19717);
+            pushFollow(FOLLOW_rule__MappingNode__Group__2_in_rule__MappingNode__Group__19909);
             rule__MappingNode__Group__2();
 
             state._fsp--;
@@ -12597,20 +12823,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MappingNode__Group__1__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4817:1: rule__MappingNode__Group__1__Impl : ( '=>' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4916:1: rule__MappingNode__Group__1__Impl : ( '=>' ) ;
     public final void rule__MappingNode__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4821:1: ( ( '=>' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4822:1: ( '=>' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4920:1: ( ( '=>' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4921:1: ( '=>' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4822:1: ( '=>' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4823:1: '=>'
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4921:1: ( '=>' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4922:1: '=>'
             {
              before(grammarAccess.getMappingNodeAccess().getEqualsSignGreaterThanSignKeyword_1()); 
-            match(input,42,FOLLOW_42_in_rule__MappingNode__Group__1__Impl9745); 
+            match(input,43,FOLLOW_43_in_rule__MappingNode__Group__1__Impl9937); 
              after(grammarAccess.getMappingNodeAccess().getEqualsSignGreaterThanSignKeyword_1()); 
 
             }
@@ -12634,16 +12860,16 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MappingNode__Group__2"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4836:1: rule__MappingNode__Group__2 : rule__MappingNode__Group__2__Impl ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4935:1: rule__MappingNode__Group__2 : rule__MappingNode__Group__2__Impl ;
     public final void rule__MappingNode__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4840:1: ( rule__MappingNode__Group__2__Impl )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4841:2: rule__MappingNode__Group__2__Impl
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4939:1: ( rule__MappingNode__Group__2__Impl )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4940:2: rule__MappingNode__Group__2__Impl
             {
-            pushFollow(FOLLOW_rule__MappingNode__Group__2__Impl_in_rule__MappingNode__Group__29776);
+            pushFollow(FOLLOW_rule__MappingNode__Group__2__Impl_in_rule__MappingNode__Group__29968);
             rule__MappingNode__Group__2__Impl();
 
             state._fsp--;
@@ -12667,23 +12893,23 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MappingNode__Group__2__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4847:1: rule__MappingNode__Group__2__Impl : ( ( rule__MappingNode__CodomainAssignment_2 ) ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4946:1: rule__MappingNode__Group__2__Impl : ( ( rule__MappingNode__CodomainAssignment_2 ) ) ;
     public final void rule__MappingNode__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4851:1: ( ( ( rule__MappingNode__CodomainAssignment_2 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4852:1: ( ( rule__MappingNode__CodomainAssignment_2 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4950:1: ( ( ( rule__MappingNode__CodomainAssignment_2 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4951:1: ( ( rule__MappingNode__CodomainAssignment_2 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4852:1: ( ( rule__MappingNode__CodomainAssignment_2 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4853:1: ( rule__MappingNode__CodomainAssignment_2 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4951:1: ( ( rule__MappingNode__CodomainAssignment_2 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4952:1: ( rule__MappingNode__CodomainAssignment_2 )
             {
              before(grammarAccess.getMappingNodeAccess().getCodomainAssignment_2()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4854:1: ( rule__MappingNode__CodomainAssignment_2 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4854:2: rule__MappingNode__CodomainAssignment_2
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4953:1: ( rule__MappingNode__CodomainAssignment_2 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4953:2: rule__MappingNode__CodomainAssignment_2
             {
-            pushFollow(FOLLOW_rule__MappingNode__CodomainAssignment_2_in_rule__MappingNode__Group__2__Impl9803);
+            pushFollow(FOLLOW_rule__MappingNode__CodomainAssignment_2_in_rule__MappingNode__Group__2__Impl9995);
             rule__MappingNode__CodomainAssignment_2();
 
             state._fsp--;
@@ -12714,21 +12940,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MappingArrow__Group__0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4870:1: rule__MappingArrow__Group__0 : rule__MappingArrow__Group__0__Impl rule__MappingArrow__Group__1 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4969:1: rule__MappingArrow__Group__0 : rule__MappingArrow__Group__0__Impl rule__MappingArrow__Group__1 ;
     public final void rule__MappingArrow__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4874:1: ( rule__MappingArrow__Group__0__Impl rule__MappingArrow__Group__1 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4875:2: rule__MappingArrow__Group__0__Impl rule__MappingArrow__Group__1
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4973:1: ( rule__MappingArrow__Group__0__Impl rule__MappingArrow__Group__1 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4974:2: rule__MappingArrow__Group__0__Impl rule__MappingArrow__Group__1
             {
-            pushFollow(FOLLOW_rule__MappingArrow__Group__0__Impl_in_rule__MappingArrow__Group__09839);
+            pushFollow(FOLLOW_rule__MappingArrow__Group__0__Impl_in_rule__MappingArrow__Group__010031);
             rule__MappingArrow__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__MappingArrow__Group__1_in_rule__MappingArrow__Group__09842);
+            pushFollow(FOLLOW_rule__MappingArrow__Group__1_in_rule__MappingArrow__Group__010034);
             rule__MappingArrow__Group__1();
 
             state._fsp--;
@@ -12752,23 +12978,23 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MappingArrow__Group__0__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4882:1: rule__MappingArrow__Group__0__Impl : ( ( rule__MappingArrow__DomainAssignment_0 ) ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4981:1: rule__MappingArrow__Group__0__Impl : ( ( rule__MappingArrow__DomainAssignment_0 ) ) ;
     public final void rule__MappingArrow__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4886:1: ( ( ( rule__MappingArrow__DomainAssignment_0 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4887:1: ( ( rule__MappingArrow__DomainAssignment_0 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4985:1: ( ( ( rule__MappingArrow__DomainAssignment_0 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4986:1: ( ( rule__MappingArrow__DomainAssignment_0 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4887:1: ( ( rule__MappingArrow__DomainAssignment_0 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4888:1: ( rule__MappingArrow__DomainAssignment_0 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4986:1: ( ( rule__MappingArrow__DomainAssignment_0 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4987:1: ( rule__MappingArrow__DomainAssignment_0 )
             {
              before(grammarAccess.getMappingArrowAccess().getDomainAssignment_0()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4889:1: ( rule__MappingArrow__DomainAssignment_0 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4889:2: rule__MappingArrow__DomainAssignment_0
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4988:1: ( rule__MappingArrow__DomainAssignment_0 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4988:2: rule__MappingArrow__DomainAssignment_0
             {
-            pushFollow(FOLLOW_rule__MappingArrow__DomainAssignment_0_in_rule__MappingArrow__Group__0__Impl9869);
+            pushFollow(FOLLOW_rule__MappingArrow__DomainAssignment_0_in_rule__MappingArrow__Group__0__Impl10061);
             rule__MappingArrow__DomainAssignment_0();
 
             state._fsp--;
@@ -12799,21 +13025,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MappingArrow__Group__1"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4899:1: rule__MappingArrow__Group__1 : rule__MappingArrow__Group__1__Impl rule__MappingArrow__Group__2 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4998:1: rule__MappingArrow__Group__1 : rule__MappingArrow__Group__1__Impl rule__MappingArrow__Group__2 ;
     public final void rule__MappingArrow__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4903:1: ( rule__MappingArrow__Group__1__Impl rule__MappingArrow__Group__2 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4904:2: rule__MappingArrow__Group__1__Impl rule__MappingArrow__Group__2
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5002:1: ( rule__MappingArrow__Group__1__Impl rule__MappingArrow__Group__2 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5003:2: rule__MappingArrow__Group__1__Impl rule__MappingArrow__Group__2
             {
-            pushFollow(FOLLOW_rule__MappingArrow__Group__1__Impl_in_rule__MappingArrow__Group__19899);
+            pushFollow(FOLLOW_rule__MappingArrow__Group__1__Impl_in_rule__MappingArrow__Group__110091);
             rule__MappingArrow__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__MappingArrow__Group__2_in_rule__MappingArrow__Group__19902);
+            pushFollow(FOLLOW_rule__MappingArrow__Group__2_in_rule__MappingArrow__Group__110094);
             rule__MappingArrow__Group__2();
 
             state._fsp--;
@@ -12837,20 +13063,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MappingArrow__Group__1__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4911:1: rule__MappingArrow__Group__1__Impl : ( '=>' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5010:1: rule__MappingArrow__Group__1__Impl : ( '=>' ) ;
     public final void rule__MappingArrow__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4915:1: ( ( '=>' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4916:1: ( '=>' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5014:1: ( ( '=>' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5015:1: ( '=>' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4916:1: ( '=>' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4917:1: '=>'
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5015:1: ( '=>' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5016:1: '=>'
             {
              before(grammarAccess.getMappingArrowAccess().getEqualsSignGreaterThanSignKeyword_1()); 
-            match(input,42,FOLLOW_42_in_rule__MappingArrow__Group__1__Impl9930); 
+            match(input,43,FOLLOW_43_in_rule__MappingArrow__Group__1__Impl10122); 
              after(grammarAccess.getMappingArrowAccess().getEqualsSignGreaterThanSignKeyword_1()); 
 
             }
@@ -12874,16 +13100,16 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MappingArrow__Group__2"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4930:1: rule__MappingArrow__Group__2 : rule__MappingArrow__Group__2__Impl ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5029:1: rule__MappingArrow__Group__2 : rule__MappingArrow__Group__2__Impl ;
     public final void rule__MappingArrow__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4934:1: ( rule__MappingArrow__Group__2__Impl )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4935:2: rule__MappingArrow__Group__2__Impl
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5033:1: ( rule__MappingArrow__Group__2__Impl )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5034:2: rule__MappingArrow__Group__2__Impl
             {
-            pushFollow(FOLLOW_rule__MappingArrow__Group__2__Impl_in_rule__MappingArrow__Group__29961);
+            pushFollow(FOLLOW_rule__MappingArrow__Group__2__Impl_in_rule__MappingArrow__Group__210153);
             rule__MappingArrow__Group__2__Impl();
 
             state._fsp--;
@@ -12907,23 +13133,23 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MappingArrow__Group__2__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4941:1: rule__MappingArrow__Group__2__Impl : ( ( rule__MappingArrow__CodmainAssignment_2 ) ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5040:1: rule__MappingArrow__Group__2__Impl : ( ( rule__MappingArrow__CodmainAssignment_2 ) ) ;
     public final void rule__MappingArrow__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4945:1: ( ( ( rule__MappingArrow__CodmainAssignment_2 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4946:1: ( ( rule__MappingArrow__CodmainAssignment_2 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5044:1: ( ( ( rule__MappingArrow__CodmainAssignment_2 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5045:1: ( ( rule__MappingArrow__CodmainAssignment_2 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4946:1: ( ( rule__MappingArrow__CodmainAssignment_2 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4947:1: ( rule__MappingArrow__CodmainAssignment_2 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5045:1: ( ( rule__MappingArrow__CodmainAssignment_2 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5046:1: ( rule__MappingArrow__CodmainAssignment_2 )
             {
              before(grammarAccess.getMappingArrowAccess().getCodmainAssignment_2()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4948:1: ( rule__MappingArrow__CodmainAssignment_2 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4948:2: rule__MappingArrow__CodmainAssignment_2
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5047:1: ( rule__MappingArrow__CodmainAssignment_2 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5047:2: rule__MappingArrow__CodmainAssignment_2
             {
-            pushFollow(FOLLOW_rule__MappingArrow__CodmainAssignment_2_in_rule__MappingArrow__Group__2__Impl9988);
+            pushFollow(FOLLOW_rule__MappingArrow__CodmainAssignment_2_in_rule__MappingArrow__Group__2__Impl10180);
             rule__MappingArrow__CodmainAssignment_2();
 
             state._fsp--;
@@ -12954,21 +13180,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExtSubTGraph__Group__0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4964:1: rule__ExtSubTGraph__Group__0 : rule__ExtSubTGraph__Group__0__Impl rule__ExtSubTGraph__Group__1 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5063:1: rule__ExtSubTGraph__Group__0 : rule__ExtSubTGraph__Group__0__Impl rule__ExtSubTGraph__Group__1 ;
     public final void rule__ExtSubTGraph__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4968:1: ( rule__ExtSubTGraph__Group__0__Impl rule__ExtSubTGraph__Group__1 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4969:2: rule__ExtSubTGraph__Group__0__Impl rule__ExtSubTGraph__Group__1
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5067:1: ( rule__ExtSubTGraph__Group__0__Impl rule__ExtSubTGraph__Group__1 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5068:2: rule__ExtSubTGraph__Group__0__Impl rule__ExtSubTGraph__Group__1
             {
-            pushFollow(FOLLOW_rule__ExtSubTGraph__Group__0__Impl_in_rule__ExtSubTGraph__Group__010024);
+            pushFollow(FOLLOW_rule__ExtSubTGraph__Group__0__Impl_in_rule__ExtSubTGraph__Group__010216);
             rule__ExtSubTGraph__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ExtSubTGraph__Group__1_in_rule__ExtSubTGraph__Group__010027);
+            pushFollow(FOLLOW_rule__ExtSubTGraph__Group__1_in_rule__ExtSubTGraph__Group__010219);
             rule__ExtSubTGraph__Group__1();
 
             state._fsp--;
@@ -12992,23 +13218,23 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExtSubTGraph__Group__0__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4976:1: rule__ExtSubTGraph__Group__0__Impl : ( ( rule__ExtSubTGraph__IdAssignment_0 ) ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5075:1: rule__ExtSubTGraph__Group__0__Impl : ( ( rule__ExtSubTGraph__IdAssignment_0 ) ) ;
     public final void rule__ExtSubTGraph__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4980:1: ( ( ( rule__ExtSubTGraph__IdAssignment_0 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4981:1: ( ( rule__ExtSubTGraph__IdAssignment_0 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5079:1: ( ( ( rule__ExtSubTGraph__IdAssignment_0 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5080:1: ( ( rule__ExtSubTGraph__IdAssignment_0 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4981:1: ( ( rule__ExtSubTGraph__IdAssignment_0 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4982:1: ( rule__ExtSubTGraph__IdAssignment_0 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5080:1: ( ( rule__ExtSubTGraph__IdAssignment_0 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5081:1: ( rule__ExtSubTGraph__IdAssignment_0 )
             {
              before(grammarAccess.getExtSubTGraphAccess().getIdAssignment_0()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4983:1: ( rule__ExtSubTGraph__IdAssignment_0 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4983:2: rule__ExtSubTGraph__IdAssignment_0
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5082:1: ( rule__ExtSubTGraph__IdAssignment_0 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5082:2: rule__ExtSubTGraph__IdAssignment_0
             {
-            pushFollow(FOLLOW_rule__ExtSubTGraph__IdAssignment_0_in_rule__ExtSubTGraph__Group__0__Impl10054);
+            pushFollow(FOLLOW_rule__ExtSubTGraph__IdAssignment_0_in_rule__ExtSubTGraph__Group__0__Impl10246);
             rule__ExtSubTGraph__IdAssignment_0();
 
             state._fsp--;
@@ -13039,21 +13265,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExtSubTGraph__Group__1"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4993:1: rule__ExtSubTGraph__Group__1 : rule__ExtSubTGraph__Group__1__Impl rule__ExtSubTGraph__Group__2 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5092:1: rule__ExtSubTGraph__Group__1 : rule__ExtSubTGraph__Group__1__Impl rule__ExtSubTGraph__Group__2 ;
     public final void rule__ExtSubTGraph__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4997:1: ( rule__ExtSubTGraph__Group__1__Impl rule__ExtSubTGraph__Group__2 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:4998:2: rule__ExtSubTGraph__Group__1__Impl rule__ExtSubTGraph__Group__2
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5096:1: ( rule__ExtSubTGraph__Group__1__Impl rule__ExtSubTGraph__Group__2 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5097:2: rule__ExtSubTGraph__Group__1__Impl rule__ExtSubTGraph__Group__2
             {
-            pushFollow(FOLLOW_rule__ExtSubTGraph__Group__1__Impl_in_rule__ExtSubTGraph__Group__110084);
+            pushFollow(FOLLOW_rule__ExtSubTGraph__Group__1__Impl_in_rule__ExtSubTGraph__Group__110276);
             rule__ExtSubTGraph__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ExtSubTGraph__Group__2_in_rule__ExtSubTGraph__Group__110087);
+            pushFollow(FOLLOW_rule__ExtSubTGraph__Group__2_in_rule__ExtSubTGraph__Group__110279);
             rule__ExtSubTGraph__Group__2();
 
             state._fsp--;
@@ -13077,20 +13303,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExtSubTGraph__Group__1__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5005:1: rule__ExtSubTGraph__Group__1__Impl : ( ':=' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5104:1: rule__ExtSubTGraph__Group__1__Impl : ( ':=' ) ;
     public final void rule__ExtSubTGraph__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5009:1: ( ( ':=' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5010:1: ( ':=' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5108:1: ( ( ':=' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5109:1: ( ':=' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5010:1: ( ':=' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5011:1: ':='
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5109:1: ( ':=' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5110:1: ':='
             {
              before(grammarAccess.getExtSubTGraphAccess().getColonEqualsSignKeyword_1()); 
-            match(input,33,FOLLOW_33_in_rule__ExtSubTGraph__Group__1__Impl10115); 
+            match(input,33,FOLLOW_33_in_rule__ExtSubTGraph__Group__1__Impl10307); 
              after(grammarAccess.getExtSubTGraphAccess().getColonEqualsSignKeyword_1()); 
 
             }
@@ -13114,21 +13340,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExtSubTGraph__Group__2"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5024:1: rule__ExtSubTGraph__Group__2 : rule__ExtSubTGraph__Group__2__Impl rule__ExtSubTGraph__Group__3 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5123:1: rule__ExtSubTGraph__Group__2 : rule__ExtSubTGraph__Group__2__Impl rule__ExtSubTGraph__Group__3 ;
     public final void rule__ExtSubTGraph__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5028:1: ( rule__ExtSubTGraph__Group__2__Impl rule__ExtSubTGraph__Group__3 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5029:2: rule__ExtSubTGraph__Group__2__Impl rule__ExtSubTGraph__Group__3
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5127:1: ( rule__ExtSubTGraph__Group__2__Impl rule__ExtSubTGraph__Group__3 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5128:2: rule__ExtSubTGraph__Group__2__Impl rule__ExtSubTGraph__Group__3
             {
-            pushFollow(FOLLOW_rule__ExtSubTGraph__Group__2__Impl_in_rule__ExtSubTGraph__Group__210146);
+            pushFollow(FOLLOW_rule__ExtSubTGraph__Group__2__Impl_in_rule__ExtSubTGraph__Group__210338);
             rule__ExtSubTGraph__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ExtSubTGraph__Group__3_in_rule__ExtSubTGraph__Group__210149);
+            pushFollow(FOLLOW_rule__ExtSubTGraph__Group__3_in_rule__ExtSubTGraph__Group__210341);
             rule__ExtSubTGraph__Group__3();
 
             state._fsp--;
@@ -13152,20 +13378,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExtSubTGraph__Group__2__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5036:1: rule__ExtSubTGraph__Group__2__Impl : ( 'ExtSubTGraph<' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5135:1: rule__ExtSubTGraph__Group__2__Impl : ( 'ExtSubTGraph' ) ;
     public final void rule__ExtSubTGraph__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5040:1: ( ( 'ExtSubTGraph<' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5041:1: ( 'ExtSubTGraph<' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5139:1: ( ( 'ExtSubTGraph' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5140:1: ( 'ExtSubTGraph' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5041:1: ( 'ExtSubTGraph<' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5042:1: 'ExtSubTGraph<'
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5140:1: ( 'ExtSubTGraph' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5141:1: 'ExtSubTGraph'
             {
              before(grammarAccess.getExtSubTGraphAccess().getExtSubTGraphKeyword_2()); 
-            match(input,43,FOLLOW_43_in_rule__ExtSubTGraph__Group__2__Impl10177); 
+            match(input,44,FOLLOW_44_in_rule__ExtSubTGraph__Group__2__Impl10369); 
              after(grammarAccess.getExtSubTGraphAccess().getExtSubTGraphKeyword_2()); 
 
             }
@@ -13189,21 +13415,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExtSubTGraph__Group__3"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5055:1: rule__ExtSubTGraph__Group__3 : rule__ExtSubTGraph__Group__3__Impl rule__ExtSubTGraph__Group__4 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5154:1: rule__ExtSubTGraph__Group__3 : rule__ExtSubTGraph__Group__3__Impl rule__ExtSubTGraph__Group__4 ;
     public final void rule__ExtSubTGraph__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5059:1: ( rule__ExtSubTGraph__Group__3__Impl rule__ExtSubTGraph__Group__4 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5060:2: rule__ExtSubTGraph__Group__3__Impl rule__ExtSubTGraph__Group__4
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5158:1: ( rule__ExtSubTGraph__Group__3__Impl rule__ExtSubTGraph__Group__4 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5159:2: rule__ExtSubTGraph__Group__3__Impl rule__ExtSubTGraph__Group__4
             {
-            pushFollow(FOLLOW_rule__ExtSubTGraph__Group__3__Impl_in_rule__ExtSubTGraph__Group__310208);
+            pushFollow(FOLLOW_rule__ExtSubTGraph__Group__3__Impl_in_rule__ExtSubTGraph__Group__310400);
             rule__ExtSubTGraph__Group__3__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ExtSubTGraph__Group__4_in_rule__ExtSubTGraph__Group__310211);
+            pushFollow(FOLLOW_rule__ExtSubTGraph__Group__4_in_rule__ExtSubTGraph__Group__310403);
             rule__ExtSubTGraph__Group__4();
 
             state._fsp--;
@@ -13227,31 +13453,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExtSubTGraph__Group__3__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5067:1: rule__ExtSubTGraph__Group__3__Impl : ( ( rule__ExtSubTGraph__ExtendsGraphAssignment_3 ) ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5166:1: rule__ExtSubTGraph__Group__3__Impl : ( '<' ) ;
     public final void rule__ExtSubTGraph__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5071:1: ( ( ( rule__ExtSubTGraph__ExtendsGraphAssignment_3 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5072:1: ( ( rule__ExtSubTGraph__ExtendsGraphAssignment_3 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5170:1: ( ( '<' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5171:1: ( '<' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5072:1: ( ( rule__ExtSubTGraph__ExtendsGraphAssignment_3 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5073:1: ( rule__ExtSubTGraph__ExtendsGraphAssignment_3 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5171:1: ( '<' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5172:1: '<'
             {
-             before(grammarAccess.getExtSubTGraphAccess().getExtendsGraphAssignment_3()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5074:1: ( rule__ExtSubTGraph__ExtendsGraphAssignment_3 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5074:2: rule__ExtSubTGraph__ExtendsGraphAssignment_3
-            {
-            pushFollow(FOLLOW_rule__ExtSubTGraph__ExtendsGraphAssignment_3_in_rule__ExtSubTGraph__Group__3__Impl10238);
-            rule__ExtSubTGraph__ExtendsGraphAssignment_3();
-
-            state._fsp--;
-
-
-            }
-
-             after(grammarAccess.getExtSubTGraphAccess().getExtendsGraphAssignment_3()); 
+             before(grammarAccess.getExtSubTGraphAccess().getLessThanSignKeyword_3()); 
+            match(input,35,FOLLOW_35_in_rule__ExtSubTGraph__Group__3__Impl10431); 
+             after(grammarAccess.getExtSubTGraphAccess().getLessThanSignKeyword_3()); 
 
             }
 
@@ -13274,21 +13490,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExtSubTGraph__Group__4"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5084:1: rule__ExtSubTGraph__Group__4 : rule__ExtSubTGraph__Group__4__Impl rule__ExtSubTGraph__Group__5 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5185:1: rule__ExtSubTGraph__Group__4 : rule__ExtSubTGraph__Group__4__Impl rule__ExtSubTGraph__Group__5 ;
     public final void rule__ExtSubTGraph__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5088:1: ( rule__ExtSubTGraph__Group__4__Impl rule__ExtSubTGraph__Group__5 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5089:2: rule__ExtSubTGraph__Group__4__Impl rule__ExtSubTGraph__Group__5
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5189:1: ( rule__ExtSubTGraph__Group__4__Impl rule__ExtSubTGraph__Group__5 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5190:2: rule__ExtSubTGraph__Group__4__Impl rule__ExtSubTGraph__Group__5
             {
-            pushFollow(FOLLOW_rule__ExtSubTGraph__Group__4__Impl_in_rule__ExtSubTGraph__Group__410268);
+            pushFollow(FOLLOW_rule__ExtSubTGraph__Group__4__Impl_in_rule__ExtSubTGraph__Group__410462);
             rule__ExtSubTGraph__Group__4__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ExtSubTGraph__Group__5_in_rule__ExtSubTGraph__Group__410271);
+            pushFollow(FOLLOW_rule__ExtSubTGraph__Group__5_in_rule__ExtSubTGraph__Group__410465);
             rule__ExtSubTGraph__Group__5();
 
             state._fsp--;
@@ -13312,21 +13528,31 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExtSubTGraph__Group__4__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5096:1: rule__ExtSubTGraph__Group__4__Impl : ( '>' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5197:1: rule__ExtSubTGraph__Group__4__Impl : ( ( rule__ExtSubTGraph__ExtendsGraphAssignment_4 ) ) ;
     public final void rule__ExtSubTGraph__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5100:1: ( ( '>' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5101:1: ( '>' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5201:1: ( ( ( rule__ExtSubTGraph__ExtendsGraphAssignment_4 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5202:1: ( ( rule__ExtSubTGraph__ExtendsGraphAssignment_4 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5101:1: ( '>' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5102:1: '>'
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5202:1: ( ( rule__ExtSubTGraph__ExtendsGraphAssignment_4 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5203:1: ( rule__ExtSubTGraph__ExtendsGraphAssignment_4 )
             {
-             before(grammarAccess.getExtSubTGraphAccess().getGreaterThanSignKeyword_4()); 
-            match(input,35,FOLLOW_35_in_rule__ExtSubTGraph__Group__4__Impl10299); 
-             after(grammarAccess.getExtSubTGraphAccess().getGreaterThanSignKeyword_4()); 
+             before(grammarAccess.getExtSubTGraphAccess().getExtendsGraphAssignment_4()); 
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5204:1: ( rule__ExtSubTGraph__ExtendsGraphAssignment_4 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5204:2: rule__ExtSubTGraph__ExtendsGraphAssignment_4
+            {
+            pushFollow(FOLLOW_rule__ExtSubTGraph__ExtendsGraphAssignment_4_in_rule__ExtSubTGraph__Group__4__Impl10492);
+            rule__ExtSubTGraph__ExtendsGraphAssignment_4();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getExtSubTGraphAccess().getExtendsGraphAssignment_4()); 
 
             }
 
@@ -13349,21 +13575,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExtSubTGraph__Group__5"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5115:1: rule__ExtSubTGraph__Group__5 : rule__ExtSubTGraph__Group__5__Impl rule__ExtSubTGraph__Group__6 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5214:1: rule__ExtSubTGraph__Group__5 : rule__ExtSubTGraph__Group__5__Impl rule__ExtSubTGraph__Group__6 ;
     public final void rule__ExtSubTGraph__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5119:1: ( rule__ExtSubTGraph__Group__5__Impl rule__ExtSubTGraph__Group__6 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5120:2: rule__ExtSubTGraph__Group__5__Impl rule__ExtSubTGraph__Group__6
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5218:1: ( rule__ExtSubTGraph__Group__5__Impl rule__ExtSubTGraph__Group__6 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5219:2: rule__ExtSubTGraph__Group__5__Impl rule__ExtSubTGraph__Group__6
             {
-            pushFollow(FOLLOW_rule__ExtSubTGraph__Group__5__Impl_in_rule__ExtSubTGraph__Group__510330);
+            pushFollow(FOLLOW_rule__ExtSubTGraph__Group__5__Impl_in_rule__ExtSubTGraph__Group__510522);
             rule__ExtSubTGraph__Group__5__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ExtSubTGraph__Group__6_in_rule__ExtSubTGraph__Group__510333);
+            pushFollow(FOLLOW_rule__ExtSubTGraph__Group__6_in_rule__ExtSubTGraph__Group__510525);
             rule__ExtSubTGraph__Group__6();
 
             state._fsp--;
@@ -13387,21 +13613,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExtSubTGraph__Group__5__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5127:1: rule__ExtSubTGraph__Group__5__Impl : ( '{' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5226:1: rule__ExtSubTGraph__Group__5__Impl : ( '>' ) ;
     public final void rule__ExtSubTGraph__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5131:1: ( ( '{' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5132:1: ( '{' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5230:1: ( ( '>' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5231:1: ( '>' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5132:1: ( '{' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5133:1: '{'
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5231:1: ( '>' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5232:1: '>'
             {
-             before(grammarAccess.getExtSubTGraphAccess().getLeftCurlyBracketKeyword_5()); 
-            match(input,36,FOLLOW_36_in_rule__ExtSubTGraph__Group__5__Impl10361); 
-             after(grammarAccess.getExtSubTGraphAccess().getLeftCurlyBracketKeyword_5()); 
+             before(grammarAccess.getExtSubTGraphAccess().getGreaterThanSignKeyword_5()); 
+            match(input,36,FOLLOW_36_in_rule__ExtSubTGraph__Group__5__Impl10553); 
+             after(grammarAccess.getExtSubTGraphAccess().getGreaterThanSignKeyword_5()); 
 
             }
 
@@ -13424,21 +13650,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExtSubTGraph__Group__6"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5146:1: rule__ExtSubTGraph__Group__6 : rule__ExtSubTGraph__Group__6__Impl rule__ExtSubTGraph__Group__7 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5245:1: rule__ExtSubTGraph__Group__6 : rule__ExtSubTGraph__Group__6__Impl rule__ExtSubTGraph__Group__7 ;
     public final void rule__ExtSubTGraph__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5150:1: ( rule__ExtSubTGraph__Group__6__Impl rule__ExtSubTGraph__Group__7 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5151:2: rule__ExtSubTGraph__Group__6__Impl rule__ExtSubTGraph__Group__7
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5249:1: ( rule__ExtSubTGraph__Group__6__Impl rule__ExtSubTGraph__Group__7 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5250:2: rule__ExtSubTGraph__Group__6__Impl rule__ExtSubTGraph__Group__7
             {
-            pushFollow(FOLLOW_rule__ExtSubTGraph__Group__6__Impl_in_rule__ExtSubTGraph__Group__610392);
+            pushFollow(FOLLOW_rule__ExtSubTGraph__Group__6__Impl_in_rule__ExtSubTGraph__Group__610584);
             rule__ExtSubTGraph__Group__6__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ExtSubTGraph__Group__7_in_rule__ExtSubTGraph__Group__610395);
+            pushFollow(FOLLOW_rule__ExtSubTGraph__Group__7_in_rule__ExtSubTGraph__Group__610587);
             rule__ExtSubTGraph__Group__7();
 
             state._fsp--;
@@ -13462,49 +13688,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExtSubTGraph__Group__6__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5158:1: rule__ExtSubTGraph__Group__6__Impl : ( ( rule__ExtSubTGraph__ElementsAssignment_6 )* ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5257:1: rule__ExtSubTGraph__Group__6__Impl : ( '{' ) ;
     public final void rule__ExtSubTGraph__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5162:1: ( ( ( rule__ExtSubTGraph__ElementsAssignment_6 )* ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5163:1: ( ( rule__ExtSubTGraph__ElementsAssignment_6 )* )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5261:1: ( ( '{' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5262:1: ( '{' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5163:1: ( ( rule__ExtSubTGraph__ElementsAssignment_6 )* )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5164:1: ( rule__ExtSubTGraph__ElementsAssignment_6 )*
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5262:1: ( '{' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5263:1: '{'
             {
-             before(grammarAccess.getExtSubTGraphAccess().getElementsAssignment_6()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5165:1: ( rule__ExtSubTGraph__ElementsAssignment_6 )*
-            loop19:
-            do {
-                int alt19=2;
-                int LA19_0 = input.LA(1);
-
-                if ( (LA19_0==RULE_ID) ) {
-                    alt19=1;
-                }
-
-
-                switch (alt19) {
-            	case 1 :
-            	    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5165:2: rule__ExtSubTGraph__ElementsAssignment_6
-            	    {
-            	    pushFollow(FOLLOW_rule__ExtSubTGraph__ElementsAssignment_6_in_rule__ExtSubTGraph__Group__6__Impl10422);
-            	    rule__ExtSubTGraph__ElementsAssignment_6();
-
-            	    state._fsp--;
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop19;
-                }
-            } while (true);
-
-             after(grammarAccess.getExtSubTGraphAccess().getElementsAssignment_6()); 
+             before(grammarAccess.getExtSubTGraphAccess().getLeftCurlyBracketKeyword_6()); 
+            match(input,37,FOLLOW_37_in_rule__ExtSubTGraph__Group__6__Impl10615); 
+             after(grammarAccess.getExtSubTGraphAccess().getLeftCurlyBracketKeyword_6()); 
 
             }
 
@@ -13527,17 +13725,22 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExtSubTGraph__Group__7"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5175:1: rule__ExtSubTGraph__Group__7 : rule__ExtSubTGraph__Group__7__Impl ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5276:1: rule__ExtSubTGraph__Group__7 : rule__ExtSubTGraph__Group__7__Impl rule__ExtSubTGraph__Group__8 ;
     public final void rule__ExtSubTGraph__Group__7() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5179:1: ( rule__ExtSubTGraph__Group__7__Impl )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5180:2: rule__ExtSubTGraph__Group__7__Impl
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5280:1: ( rule__ExtSubTGraph__Group__7__Impl rule__ExtSubTGraph__Group__8 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5281:2: rule__ExtSubTGraph__Group__7__Impl rule__ExtSubTGraph__Group__8
             {
-            pushFollow(FOLLOW_rule__ExtSubTGraph__Group__7__Impl_in_rule__ExtSubTGraph__Group__710453);
+            pushFollow(FOLLOW_rule__ExtSubTGraph__Group__7__Impl_in_rule__ExtSubTGraph__Group__710646);
             rule__ExtSubTGraph__Group__7__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__ExtSubTGraph__Group__8_in_rule__ExtSubTGraph__Group__710649);
+            rule__ExtSubTGraph__Group__8();
 
             state._fsp--;
 
@@ -13560,21 +13763,49 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExtSubTGraph__Group__7__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5186:1: rule__ExtSubTGraph__Group__7__Impl : ( '}' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5288:1: rule__ExtSubTGraph__Group__7__Impl : ( ( rule__ExtSubTGraph__ElementsAssignment_7 )* ) ;
     public final void rule__ExtSubTGraph__Group__7__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5190:1: ( ( '}' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5191:1: ( '}' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5292:1: ( ( ( rule__ExtSubTGraph__ElementsAssignment_7 )* ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5293:1: ( ( rule__ExtSubTGraph__ElementsAssignment_7 )* )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5191:1: ( '}' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5192:1: '}'
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5293:1: ( ( rule__ExtSubTGraph__ElementsAssignment_7 )* )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5294:1: ( rule__ExtSubTGraph__ElementsAssignment_7 )*
             {
-             before(grammarAccess.getExtSubTGraphAccess().getRightCurlyBracketKeyword_7()); 
-            match(input,37,FOLLOW_37_in_rule__ExtSubTGraph__Group__7__Impl10481); 
-             after(grammarAccess.getExtSubTGraphAccess().getRightCurlyBracketKeyword_7()); 
+             before(grammarAccess.getExtSubTGraphAccess().getElementsAssignment_7()); 
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5295:1: ( rule__ExtSubTGraph__ElementsAssignment_7 )*
+            loop19:
+            do {
+                int alt19=2;
+                int LA19_0 = input.LA(1);
+
+                if ( (LA19_0==RULE_ID) ) {
+                    alt19=1;
+                }
+
+
+                switch (alt19) {
+            	case 1 :
+            	    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5295:2: rule__ExtSubTGraph__ElementsAssignment_7
+            	    {
+            	    pushFollow(FOLLOW_rule__ExtSubTGraph__ElementsAssignment_7_in_rule__ExtSubTGraph__Group__7__Impl10676);
+            	    rule__ExtSubTGraph__ElementsAssignment_7();
+
+            	    state._fsp--;
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop19;
+                }
+            } while (true);
+
+             after(grammarAccess.getExtSubTGraphAccess().getElementsAssignment_7()); 
 
             }
 
@@ -13596,22 +13827,92 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__ExtSubTGraph__Group__7__Impl"
 
 
+    // $ANTLR start "rule__ExtSubTGraph__Group__8"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5305:1: rule__ExtSubTGraph__Group__8 : rule__ExtSubTGraph__Group__8__Impl ;
+    public final void rule__ExtSubTGraph__Group__8() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5309:1: ( rule__ExtSubTGraph__Group__8__Impl )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5310:2: rule__ExtSubTGraph__Group__8__Impl
+            {
+            pushFollow(FOLLOW_rule__ExtSubTGraph__Group__8__Impl_in_rule__ExtSubTGraph__Group__810707);
+            rule__ExtSubTGraph__Group__8__Impl();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__ExtSubTGraph__Group__8"
+
+
+    // $ANTLR start "rule__ExtSubTGraph__Group__8__Impl"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5316:1: rule__ExtSubTGraph__Group__8__Impl : ( '}' ) ;
+    public final void rule__ExtSubTGraph__Group__8__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5320:1: ( ( '}' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5321:1: ( '}' )
+            {
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5321:1: ( '}' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5322:1: '}'
+            {
+             before(grammarAccess.getExtSubTGraphAccess().getRightCurlyBracketKeyword_8()); 
+            match(input,38,FOLLOW_38_in_rule__ExtSubTGraph__Group__8__Impl10735); 
+             after(grammarAccess.getExtSubTGraphAccess().getRightCurlyBracketKeyword_8()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__ExtSubTGraph__Group__8__Impl"
+
+
     // $ANTLR start "rule__TGraph__Group__0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5221:1: rule__TGraph__Group__0 : rule__TGraph__Group__0__Impl rule__TGraph__Group__1 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5353:1: rule__TGraph__Group__0 : rule__TGraph__Group__0__Impl rule__TGraph__Group__1 ;
     public final void rule__TGraph__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5225:1: ( rule__TGraph__Group__0__Impl rule__TGraph__Group__1 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5226:2: rule__TGraph__Group__0__Impl rule__TGraph__Group__1
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5357:1: ( rule__TGraph__Group__0__Impl rule__TGraph__Group__1 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5358:2: rule__TGraph__Group__0__Impl rule__TGraph__Group__1
             {
-            pushFollow(FOLLOW_rule__TGraph__Group__0__Impl_in_rule__TGraph__Group__010528);
+            pushFollow(FOLLOW_rule__TGraph__Group__0__Impl_in_rule__TGraph__Group__010784);
             rule__TGraph__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__TGraph__Group__1_in_rule__TGraph__Group__010531);
+            pushFollow(FOLLOW_rule__TGraph__Group__1_in_rule__TGraph__Group__010787);
             rule__TGraph__Group__1();
 
             state._fsp--;
@@ -13635,23 +13936,23 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TGraph__Group__0__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5233:1: rule__TGraph__Group__0__Impl : ( ( rule__TGraph__IdAssignment_0 ) ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5365:1: rule__TGraph__Group__0__Impl : ( ( rule__TGraph__IdAssignment_0 ) ) ;
     public final void rule__TGraph__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5237:1: ( ( ( rule__TGraph__IdAssignment_0 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5238:1: ( ( rule__TGraph__IdAssignment_0 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5369:1: ( ( ( rule__TGraph__IdAssignment_0 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5370:1: ( ( rule__TGraph__IdAssignment_0 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5238:1: ( ( rule__TGraph__IdAssignment_0 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5239:1: ( rule__TGraph__IdAssignment_0 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5370:1: ( ( rule__TGraph__IdAssignment_0 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5371:1: ( rule__TGraph__IdAssignment_0 )
             {
              before(grammarAccess.getTGraphAccess().getIdAssignment_0()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5240:1: ( rule__TGraph__IdAssignment_0 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5240:2: rule__TGraph__IdAssignment_0
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5372:1: ( rule__TGraph__IdAssignment_0 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5372:2: rule__TGraph__IdAssignment_0
             {
-            pushFollow(FOLLOW_rule__TGraph__IdAssignment_0_in_rule__TGraph__Group__0__Impl10558);
+            pushFollow(FOLLOW_rule__TGraph__IdAssignment_0_in_rule__TGraph__Group__0__Impl10814);
             rule__TGraph__IdAssignment_0();
 
             state._fsp--;
@@ -13682,21 +13983,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TGraph__Group__1"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5250:1: rule__TGraph__Group__1 : rule__TGraph__Group__1__Impl rule__TGraph__Group__2 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5382:1: rule__TGraph__Group__1 : rule__TGraph__Group__1__Impl rule__TGraph__Group__2 ;
     public final void rule__TGraph__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5254:1: ( rule__TGraph__Group__1__Impl rule__TGraph__Group__2 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5255:2: rule__TGraph__Group__1__Impl rule__TGraph__Group__2
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5386:1: ( rule__TGraph__Group__1__Impl rule__TGraph__Group__2 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5387:2: rule__TGraph__Group__1__Impl rule__TGraph__Group__2
             {
-            pushFollow(FOLLOW_rule__TGraph__Group__1__Impl_in_rule__TGraph__Group__110588);
+            pushFollow(FOLLOW_rule__TGraph__Group__1__Impl_in_rule__TGraph__Group__110844);
             rule__TGraph__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__TGraph__Group__2_in_rule__TGraph__Group__110591);
+            pushFollow(FOLLOW_rule__TGraph__Group__2_in_rule__TGraph__Group__110847);
             rule__TGraph__Group__2();
 
             state._fsp--;
@@ -13720,20 +14021,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TGraph__Group__1__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5262:1: rule__TGraph__Group__1__Impl : ( ':=' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5394:1: rule__TGraph__Group__1__Impl : ( ':=' ) ;
     public final void rule__TGraph__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5266:1: ( ( ':=' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5267:1: ( ':=' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5398:1: ( ( ':=' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5399:1: ( ':=' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5267:1: ( ':=' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5268:1: ':='
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5399:1: ( ':=' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5400:1: ':='
             {
              before(grammarAccess.getTGraphAccess().getColonEqualsSignKeyword_1()); 
-            match(input,33,FOLLOW_33_in_rule__TGraph__Group__1__Impl10619); 
+            match(input,33,FOLLOW_33_in_rule__TGraph__Group__1__Impl10875); 
              after(grammarAccess.getTGraphAccess().getColonEqualsSignKeyword_1()); 
 
             }
@@ -13757,21 +14058,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TGraph__Group__2"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5281:1: rule__TGraph__Group__2 : rule__TGraph__Group__2__Impl rule__TGraph__Group__3 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5413:1: rule__TGraph__Group__2 : rule__TGraph__Group__2__Impl rule__TGraph__Group__3 ;
     public final void rule__TGraph__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5285:1: ( rule__TGraph__Group__2__Impl rule__TGraph__Group__3 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5286:2: rule__TGraph__Group__2__Impl rule__TGraph__Group__3
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5417:1: ( rule__TGraph__Group__2__Impl rule__TGraph__Group__3 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5418:2: rule__TGraph__Group__2__Impl rule__TGraph__Group__3
             {
-            pushFollow(FOLLOW_rule__TGraph__Group__2__Impl_in_rule__TGraph__Group__210650);
+            pushFollow(FOLLOW_rule__TGraph__Group__2__Impl_in_rule__TGraph__Group__210906);
             rule__TGraph__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__TGraph__Group__3_in_rule__TGraph__Group__210653);
+            pushFollow(FOLLOW_rule__TGraph__Group__3_in_rule__TGraph__Group__210909);
             rule__TGraph__Group__3();
 
             state._fsp--;
@@ -13795,20 +14096,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TGraph__Group__2__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5293:1: rule__TGraph__Group__2__Impl : ( 'TGraph<' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5425:1: rule__TGraph__Group__2__Impl : ( 'TGraph' ) ;
     public final void rule__TGraph__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5297:1: ( ( 'TGraph<' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5298:1: ( 'TGraph<' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5429:1: ( ( 'TGraph' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5430:1: ( 'TGraph' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5298:1: ( 'TGraph<' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5299:1: 'TGraph<'
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5430:1: ( 'TGraph' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5431:1: 'TGraph'
             {
              before(grammarAccess.getTGraphAccess().getTGraphKeyword_2()); 
-            match(input,44,FOLLOW_44_in_rule__TGraph__Group__2__Impl10681); 
+            match(input,45,FOLLOW_45_in_rule__TGraph__Group__2__Impl10937); 
              after(grammarAccess.getTGraphAccess().getTGraphKeyword_2()); 
 
             }
@@ -13832,21 +14133,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TGraph__Group__3"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5312:1: rule__TGraph__Group__3 : rule__TGraph__Group__3__Impl rule__TGraph__Group__4 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5444:1: rule__TGraph__Group__3 : rule__TGraph__Group__3__Impl rule__TGraph__Group__4 ;
     public final void rule__TGraph__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5316:1: ( rule__TGraph__Group__3__Impl rule__TGraph__Group__4 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5317:2: rule__TGraph__Group__3__Impl rule__TGraph__Group__4
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5448:1: ( rule__TGraph__Group__3__Impl rule__TGraph__Group__4 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5449:2: rule__TGraph__Group__3__Impl rule__TGraph__Group__4
             {
-            pushFollow(FOLLOW_rule__TGraph__Group__3__Impl_in_rule__TGraph__Group__310712);
+            pushFollow(FOLLOW_rule__TGraph__Group__3__Impl_in_rule__TGraph__Group__310968);
             rule__TGraph__Group__3__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__TGraph__Group__4_in_rule__TGraph__Group__310715);
+            pushFollow(FOLLOW_rule__TGraph__Group__4_in_rule__TGraph__Group__310971);
             rule__TGraph__Group__4();
 
             state._fsp--;
@@ -13870,31 +14171,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TGraph__Group__3__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5324:1: rule__TGraph__Group__3__Impl : ( ( rule__TGraph__TypeGraphAssignment_3 ) ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5456:1: rule__TGraph__Group__3__Impl : ( '<' ) ;
     public final void rule__TGraph__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5328:1: ( ( ( rule__TGraph__TypeGraphAssignment_3 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5329:1: ( ( rule__TGraph__TypeGraphAssignment_3 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5460:1: ( ( '<' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5461:1: ( '<' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5329:1: ( ( rule__TGraph__TypeGraphAssignment_3 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5330:1: ( rule__TGraph__TypeGraphAssignment_3 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5461:1: ( '<' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5462:1: '<'
             {
-             before(grammarAccess.getTGraphAccess().getTypeGraphAssignment_3()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5331:1: ( rule__TGraph__TypeGraphAssignment_3 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5331:2: rule__TGraph__TypeGraphAssignment_3
-            {
-            pushFollow(FOLLOW_rule__TGraph__TypeGraphAssignment_3_in_rule__TGraph__Group__3__Impl10742);
-            rule__TGraph__TypeGraphAssignment_3();
-
-            state._fsp--;
-
-
-            }
-
-             after(grammarAccess.getTGraphAccess().getTypeGraphAssignment_3()); 
+             before(grammarAccess.getTGraphAccess().getLessThanSignKeyword_3()); 
+            match(input,35,FOLLOW_35_in_rule__TGraph__Group__3__Impl10999); 
+             after(grammarAccess.getTGraphAccess().getLessThanSignKeyword_3()); 
 
             }
 
@@ -13917,21 +14208,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TGraph__Group__4"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5341:1: rule__TGraph__Group__4 : rule__TGraph__Group__4__Impl rule__TGraph__Group__5 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5475:1: rule__TGraph__Group__4 : rule__TGraph__Group__4__Impl rule__TGraph__Group__5 ;
     public final void rule__TGraph__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5345:1: ( rule__TGraph__Group__4__Impl rule__TGraph__Group__5 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5346:2: rule__TGraph__Group__4__Impl rule__TGraph__Group__5
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5479:1: ( rule__TGraph__Group__4__Impl rule__TGraph__Group__5 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5480:2: rule__TGraph__Group__4__Impl rule__TGraph__Group__5
             {
-            pushFollow(FOLLOW_rule__TGraph__Group__4__Impl_in_rule__TGraph__Group__410772);
+            pushFollow(FOLLOW_rule__TGraph__Group__4__Impl_in_rule__TGraph__Group__411030);
             rule__TGraph__Group__4__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__TGraph__Group__5_in_rule__TGraph__Group__410775);
+            pushFollow(FOLLOW_rule__TGraph__Group__5_in_rule__TGraph__Group__411033);
             rule__TGraph__Group__5();
 
             state._fsp--;
@@ -13955,21 +14246,31 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TGraph__Group__4__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5353:1: rule__TGraph__Group__4__Impl : ( '>' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5487:1: rule__TGraph__Group__4__Impl : ( ( rule__TGraph__TypeGraphAssignment_4 ) ) ;
     public final void rule__TGraph__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5357:1: ( ( '>' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5358:1: ( '>' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5491:1: ( ( ( rule__TGraph__TypeGraphAssignment_4 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5492:1: ( ( rule__TGraph__TypeGraphAssignment_4 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5358:1: ( '>' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5359:1: '>'
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5492:1: ( ( rule__TGraph__TypeGraphAssignment_4 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5493:1: ( rule__TGraph__TypeGraphAssignment_4 )
             {
-             before(grammarAccess.getTGraphAccess().getGreaterThanSignKeyword_4()); 
-            match(input,35,FOLLOW_35_in_rule__TGraph__Group__4__Impl10803); 
-             after(grammarAccess.getTGraphAccess().getGreaterThanSignKeyword_4()); 
+             before(grammarAccess.getTGraphAccess().getTypeGraphAssignment_4()); 
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5494:1: ( rule__TGraph__TypeGraphAssignment_4 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5494:2: rule__TGraph__TypeGraphAssignment_4
+            {
+            pushFollow(FOLLOW_rule__TGraph__TypeGraphAssignment_4_in_rule__TGraph__Group__4__Impl11060);
+            rule__TGraph__TypeGraphAssignment_4();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getTGraphAccess().getTypeGraphAssignment_4()); 
 
             }
 
@@ -13992,21 +14293,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TGraph__Group__5"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5372:1: rule__TGraph__Group__5 : rule__TGraph__Group__5__Impl rule__TGraph__Group__6 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5504:1: rule__TGraph__Group__5 : rule__TGraph__Group__5__Impl rule__TGraph__Group__6 ;
     public final void rule__TGraph__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5376:1: ( rule__TGraph__Group__5__Impl rule__TGraph__Group__6 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5377:2: rule__TGraph__Group__5__Impl rule__TGraph__Group__6
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5508:1: ( rule__TGraph__Group__5__Impl rule__TGraph__Group__6 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5509:2: rule__TGraph__Group__5__Impl rule__TGraph__Group__6
             {
-            pushFollow(FOLLOW_rule__TGraph__Group__5__Impl_in_rule__TGraph__Group__510834);
+            pushFollow(FOLLOW_rule__TGraph__Group__5__Impl_in_rule__TGraph__Group__511090);
             rule__TGraph__Group__5__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__TGraph__Group__6_in_rule__TGraph__Group__510837);
+            pushFollow(FOLLOW_rule__TGraph__Group__6_in_rule__TGraph__Group__511093);
             rule__TGraph__Group__6();
 
             state._fsp--;
@@ -14030,21 +14331,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TGraph__Group__5__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5384:1: rule__TGraph__Group__5__Impl : ( '{' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5516:1: rule__TGraph__Group__5__Impl : ( '>' ) ;
     public final void rule__TGraph__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5388:1: ( ( '{' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5389:1: ( '{' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5520:1: ( ( '>' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5521:1: ( '>' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5389:1: ( '{' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5390:1: '{'
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5521:1: ( '>' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5522:1: '>'
             {
-             before(grammarAccess.getTGraphAccess().getLeftCurlyBracketKeyword_5()); 
-            match(input,36,FOLLOW_36_in_rule__TGraph__Group__5__Impl10865); 
-             after(grammarAccess.getTGraphAccess().getLeftCurlyBracketKeyword_5()); 
+             before(grammarAccess.getTGraphAccess().getGreaterThanSignKeyword_5()); 
+            match(input,36,FOLLOW_36_in_rule__TGraph__Group__5__Impl11121); 
+             after(grammarAccess.getTGraphAccess().getGreaterThanSignKeyword_5()); 
 
             }
 
@@ -14067,21 +14368,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TGraph__Group__6"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5403:1: rule__TGraph__Group__6 : rule__TGraph__Group__6__Impl rule__TGraph__Group__7 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5535:1: rule__TGraph__Group__6 : rule__TGraph__Group__6__Impl rule__TGraph__Group__7 ;
     public final void rule__TGraph__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5407:1: ( rule__TGraph__Group__6__Impl rule__TGraph__Group__7 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5408:2: rule__TGraph__Group__6__Impl rule__TGraph__Group__7
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5539:1: ( rule__TGraph__Group__6__Impl rule__TGraph__Group__7 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5540:2: rule__TGraph__Group__6__Impl rule__TGraph__Group__7
             {
-            pushFollow(FOLLOW_rule__TGraph__Group__6__Impl_in_rule__TGraph__Group__610896);
+            pushFollow(FOLLOW_rule__TGraph__Group__6__Impl_in_rule__TGraph__Group__611152);
             rule__TGraph__Group__6__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__TGraph__Group__7_in_rule__TGraph__Group__610899);
+            pushFollow(FOLLOW_rule__TGraph__Group__7_in_rule__TGraph__Group__611155);
             rule__TGraph__Group__7();
 
             state._fsp--;
@@ -14105,49 +14406,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TGraph__Group__6__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5415:1: rule__TGraph__Group__6__Impl : ( ( rule__TGraph__ElementsAssignment_6 )* ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5547:1: rule__TGraph__Group__6__Impl : ( '{' ) ;
     public final void rule__TGraph__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5419:1: ( ( ( rule__TGraph__ElementsAssignment_6 )* ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5420:1: ( ( rule__TGraph__ElementsAssignment_6 )* )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5551:1: ( ( '{' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5552:1: ( '{' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5420:1: ( ( rule__TGraph__ElementsAssignment_6 )* )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5421:1: ( rule__TGraph__ElementsAssignment_6 )*
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5552:1: ( '{' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5553:1: '{'
             {
-             before(grammarAccess.getTGraphAccess().getElementsAssignment_6()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5422:1: ( rule__TGraph__ElementsAssignment_6 )*
-            loop20:
-            do {
-                int alt20=2;
-                int LA20_0 = input.LA(1);
-
-                if ( (LA20_0==RULE_ID) ) {
-                    alt20=1;
-                }
-
-
-                switch (alt20) {
-            	case 1 :
-            	    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5422:2: rule__TGraph__ElementsAssignment_6
-            	    {
-            	    pushFollow(FOLLOW_rule__TGraph__ElementsAssignment_6_in_rule__TGraph__Group__6__Impl10926);
-            	    rule__TGraph__ElementsAssignment_6();
-
-            	    state._fsp--;
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop20;
-                }
-            } while (true);
-
-             after(grammarAccess.getTGraphAccess().getElementsAssignment_6()); 
+             before(grammarAccess.getTGraphAccess().getLeftCurlyBracketKeyword_6()); 
+            match(input,37,FOLLOW_37_in_rule__TGraph__Group__6__Impl11183); 
+             after(grammarAccess.getTGraphAccess().getLeftCurlyBracketKeyword_6()); 
 
             }
 
@@ -14170,17 +14443,22 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TGraph__Group__7"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5432:1: rule__TGraph__Group__7 : rule__TGraph__Group__7__Impl ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5566:1: rule__TGraph__Group__7 : rule__TGraph__Group__7__Impl rule__TGraph__Group__8 ;
     public final void rule__TGraph__Group__7() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5436:1: ( rule__TGraph__Group__7__Impl )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5437:2: rule__TGraph__Group__7__Impl
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5570:1: ( rule__TGraph__Group__7__Impl rule__TGraph__Group__8 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5571:2: rule__TGraph__Group__7__Impl rule__TGraph__Group__8
             {
-            pushFollow(FOLLOW_rule__TGraph__Group__7__Impl_in_rule__TGraph__Group__710957);
+            pushFollow(FOLLOW_rule__TGraph__Group__7__Impl_in_rule__TGraph__Group__711214);
             rule__TGraph__Group__7__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__TGraph__Group__8_in_rule__TGraph__Group__711217);
+            rule__TGraph__Group__8();
 
             state._fsp--;
 
@@ -14203,21 +14481,49 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TGraph__Group__7__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5443:1: rule__TGraph__Group__7__Impl : ( '}' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5578:1: rule__TGraph__Group__7__Impl : ( ( rule__TGraph__ElementsAssignment_7 )* ) ;
     public final void rule__TGraph__Group__7__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5447:1: ( ( '}' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5448:1: ( '}' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5582:1: ( ( ( rule__TGraph__ElementsAssignment_7 )* ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5583:1: ( ( rule__TGraph__ElementsAssignment_7 )* )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5448:1: ( '}' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5449:1: '}'
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5583:1: ( ( rule__TGraph__ElementsAssignment_7 )* )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5584:1: ( rule__TGraph__ElementsAssignment_7 )*
             {
-             before(grammarAccess.getTGraphAccess().getRightCurlyBracketKeyword_7()); 
-            match(input,37,FOLLOW_37_in_rule__TGraph__Group__7__Impl10985); 
-             after(grammarAccess.getTGraphAccess().getRightCurlyBracketKeyword_7()); 
+             before(grammarAccess.getTGraphAccess().getElementsAssignment_7()); 
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5585:1: ( rule__TGraph__ElementsAssignment_7 )*
+            loop20:
+            do {
+                int alt20=2;
+                int LA20_0 = input.LA(1);
+
+                if ( (LA20_0==RULE_ID) ) {
+                    alt20=1;
+                }
+
+
+                switch (alt20) {
+            	case 1 :
+            	    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5585:2: rule__TGraph__ElementsAssignment_7
+            	    {
+            	    pushFollow(FOLLOW_rule__TGraph__ElementsAssignment_7_in_rule__TGraph__Group__7__Impl11244);
+            	    rule__TGraph__ElementsAssignment_7();
+
+            	    state._fsp--;
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop20;
+                }
+            } while (true);
+
+             after(grammarAccess.getTGraphAccess().getElementsAssignment_7()); 
 
             }
 
@@ -14239,22 +14545,92 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__TGraph__Group__7__Impl"
 
 
+    // $ANTLR start "rule__TGraph__Group__8"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5595:1: rule__TGraph__Group__8 : rule__TGraph__Group__8__Impl ;
+    public final void rule__TGraph__Group__8() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5599:1: ( rule__TGraph__Group__8__Impl )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5600:2: rule__TGraph__Group__8__Impl
+            {
+            pushFollow(FOLLOW_rule__TGraph__Group__8__Impl_in_rule__TGraph__Group__811275);
+            rule__TGraph__Group__8__Impl();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__TGraph__Group__8"
+
+
+    // $ANTLR start "rule__TGraph__Group__8__Impl"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5606:1: rule__TGraph__Group__8__Impl : ( '}' ) ;
+    public final void rule__TGraph__Group__8__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5610:1: ( ( '}' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5611:1: ( '}' )
+            {
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5611:1: ( '}' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5612:1: '}'
+            {
+             before(grammarAccess.getTGraphAccess().getRightCurlyBracketKeyword_8()); 
+            match(input,38,FOLLOW_38_in_rule__TGraph__Group__8__Impl11303); 
+             after(grammarAccess.getTGraphAccess().getRightCurlyBracketKeyword_8()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__TGraph__Group__8__Impl"
+
+
     // $ANTLR start "rule__Element__Group_0__0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5478:1: rule__Element__Group_0__0 : rule__Element__Group_0__0__Impl rule__Element__Group_0__1 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5643:1: rule__Element__Group_0__0 : rule__Element__Group_0__0__Impl rule__Element__Group_0__1 ;
     public final void rule__Element__Group_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5482:1: ( rule__Element__Group_0__0__Impl rule__Element__Group_0__1 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5483:2: rule__Element__Group_0__0__Impl rule__Element__Group_0__1
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5647:1: ( rule__Element__Group_0__0__Impl rule__Element__Group_0__1 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5648:2: rule__Element__Group_0__0__Impl rule__Element__Group_0__1
             {
-            pushFollow(FOLLOW_rule__Element__Group_0__0__Impl_in_rule__Element__Group_0__011032);
+            pushFollow(FOLLOW_rule__Element__Group_0__0__Impl_in_rule__Element__Group_0__011352);
             rule__Element__Group_0__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Element__Group_0__1_in_rule__Element__Group_0__011035);
+            pushFollow(FOLLOW_rule__Element__Group_0__1_in_rule__Element__Group_0__011355);
             rule__Element__Group_0__1();
 
             state._fsp--;
@@ -14278,20 +14654,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Element__Group_0__0__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5490:1: rule__Element__Group_0__0__Impl : ( ruleNode ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5655:1: rule__Element__Group_0__0__Impl : ( ruleNode ) ;
     public final void rule__Element__Group_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5494:1: ( ( ruleNode ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5495:1: ( ruleNode )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5659:1: ( ( ruleNode ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5660:1: ( ruleNode )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5495:1: ( ruleNode )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5496:1: ruleNode
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5660:1: ( ruleNode )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5661:1: ruleNode
             {
              before(grammarAccess.getElementAccess().getNodeParserRuleCall_0_0()); 
-            pushFollow(FOLLOW_ruleNode_in_rule__Element__Group_0__0__Impl11062);
+            pushFollow(FOLLOW_ruleNode_in_rule__Element__Group_0__0__Impl11382);
             ruleNode();
 
             state._fsp--;
@@ -14319,16 +14695,16 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Element__Group_0__1"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5507:1: rule__Element__Group_0__1 : rule__Element__Group_0__1__Impl ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5672:1: rule__Element__Group_0__1 : rule__Element__Group_0__1__Impl ;
     public final void rule__Element__Group_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5511:1: ( rule__Element__Group_0__1__Impl )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5512:2: rule__Element__Group_0__1__Impl
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5676:1: ( rule__Element__Group_0__1__Impl )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5677:2: rule__Element__Group_0__1__Impl
             {
-            pushFollow(FOLLOW_rule__Element__Group_0__1__Impl_in_rule__Element__Group_0__111091);
+            pushFollow(FOLLOW_rule__Element__Group_0__1__Impl_in_rule__Element__Group_0__111411);
             rule__Element__Group_0__1__Impl();
 
             state._fsp--;
@@ -14352,20 +14728,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Element__Group_0__1__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5518:1: rule__Element__Group_0__1__Impl : ( ',' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5683:1: rule__Element__Group_0__1__Impl : ( ',' ) ;
     public final void rule__Element__Group_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5522:1: ( ( ',' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5523:1: ( ',' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5687:1: ( ( ',' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5688:1: ( ',' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5523:1: ( ',' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5524:1: ','
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5688:1: ( ',' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5689:1: ','
             {
              before(grammarAccess.getElementAccess().getCommaKeyword_0_1()); 
-            match(input,29,FOLLOW_29_in_rule__Element__Group_0__1__Impl11119); 
+            match(input,29,FOLLOW_29_in_rule__Element__Group_0__1__Impl11439); 
              after(grammarAccess.getElementAccess().getCommaKeyword_0_1()); 
 
             }
@@ -14389,21 +14765,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Element__Group_1__0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5541:1: rule__Element__Group_1__0 : rule__Element__Group_1__0__Impl rule__Element__Group_1__1 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5706:1: rule__Element__Group_1__0 : rule__Element__Group_1__0__Impl rule__Element__Group_1__1 ;
     public final void rule__Element__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5545:1: ( rule__Element__Group_1__0__Impl rule__Element__Group_1__1 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5546:2: rule__Element__Group_1__0__Impl rule__Element__Group_1__1
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5710:1: ( rule__Element__Group_1__0__Impl rule__Element__Group_1__1 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5711:2: rule__Element__Group_1__0__Impl rule__Element__Group_1__1
             {
-            pushFollow(FOLLOW_rule__Element__Group_1__0__Impl_in_rule__Element__Group_1__011154);
+            pushFollow(FOLLOW_rule__Element__Group_1__0__Impl_in_rule__Element__Group_1__011474);
             rule__Element__Group_1__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Element__Group_1__1_in_rule__Element__Group_1__011157);
+            pushFollow(FOLLOW_rule__Element__Group_1__1_in_rule__Element__Group_1__011477);
             rule__Element__Group_1__1();
 
             state._fsp--;
@@ -14427,20 +14803,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Element__Group_1__0__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5553:1: rule__Element__Group_1__0__Impl : ( ruleArrows ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5718:1: rule__Element__Group_1__0__Impl : ( ruleArrows ) ;
     public final void rule__Element__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5557:1: ( ( ruleArrows ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5558:1: ( ruleArrows )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5722:1: ( ( ruleArrows ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5723:1: ( ruleArrows )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5558:1: ( ruleArrows )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5559:1: ruleArrows
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5723:1: ( ruleArrows )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5724:1: ruleArrows
             {
              before(grammarAccess.getElementAccess().getArrowsParserRuleCall_1_0()); 
-            pushFollow(FOLLOW_ruleArrows_in_rule__Element__Group_1__0__Impl11184);
+            pushFollow(FOLLOW_ruleArrows_in_rule__Element__Group_1__0__Impl11504);
             ruleArrows();
 
             state._fsp--;
@@ -14468,16 +14844,16 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Element__Group_1__1"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5570:1: rule__Element__Group_1__1 : rule__Element__Group_1__1__Impl ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5735:1: rule__Element__Group_1__1 : rule__Element__Group_1__1__Impl ;
     public final void rule__Element__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5574:1: ( rule__Element__Group_1__1__Impl )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5575:2: rule__Element__Group_1__1__Impl
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5739:1: ( rule__Element__Group_1__1__Impl )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5740:2: rule__Element__Group_1__1__Impl
             {
-            pushFollow(FOLLOW_rule__Element__Group_1__1__Impl_in_rule__Element__Group_1__111213);
+            pushFollow(FOLLOW_rule__Element__Group_1__1__Impl_in_rule__Element__Group_1__111533);
             rule__Element__Group_1__1__Impl();
 
             state._fsp--;
@@ -14501,20 +14877,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Element__Group_1__1__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5581:1: rule__Element__Group_1__1__Impl : ( ',' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5746:1: rule__Element__Group_1__1__Impl : ( ',' ) ;
     public final void rule__Element__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5585:1: ( ( ',' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5586:1: ( ',' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5750:1: ( ( ',' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5751:1: ( ',' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5586:1: ( ',' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5587:1: ','
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5751:1: ( ',' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5752:1: ','
             {
              before(grammarAccess.getElementAccess().getCommaKeyword_1_1()); 
-            match(input,29,FOLLOW_29_in_rule__Element__Group_1__1__Impl11241); 
+            match(input,29,FOLLOW_29_in_rule__Element__Group_1__1__Impl11561); 
              after(grammarAccess.getElementAccess().getCommaKeyword_1_1()); 
 
             }
@@ -14538,21 +14914,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrows__Group_0__0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5604:1: rule__Arrows__Group_0__0 : rule__Arrows__Group_0__0__Impl rule__Arrows__Group_0__1 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5769:1: rule__Arrows__Group_0__0 : rule__Arrows__Group_0__0__Impl rule__Arrows__Group_0__1 ;
     public final void rule__Arrows__Group_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5608:1: ( rule__Arrows__Group_0__0__Impl rule__Arrows__Group_0__1 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5609:2: rule__Arrows__Group_0__0__Impl rule__Arrows__Group_0__1
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5773:1: ( rule__Arrows__Group_0__0__Impl rule__Arrows__Group_0__1 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5774:2: rule__Arrows__Group_0__0__Impl rule__Arrows__Group_0__1
             {
-            pushFollow(FOLLOW_rule__Arrows__Group_0__0__Impl_in_rule__Arrows__Group_0__011276);
+            pushFollow(FOLLOW_rule__Arrows__Group_0__0__Impl_in_rule__Arrows__Group_0__011596);
             rule__Arrows__Group_0__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Arrows__Group_0__1_in_rule__Arrows__Group_0__011279);
+            pushFollow(FOLLOW_rule__Arrows__Group_0__1_in_rule__Arrows__Group_0__011599);
             rule__Arrows__Group_0__1();
 
             state._fsp--;
@@ -14576,23 +14952,23 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrows__Group_0__0__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5616:1: rule__Arrows__Group_0__0__Impl : ( ( rule__Arrows__SrAssignment_0_0 ) ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5781:1: rule__Arrows__Group_0__0__Impl : ( ( rule__Arrows__SrAssignment_0_0 ) ) ;
     public final void rule__Arrows__Group_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5620:1: ( ( ( rule__Arrows__SrAssignment_0_0 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5621:1: ( ( rule__Arrows__SrAssignment_0_0 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5785:1: ( ( ( rule__Arrows__SrAssignment_0_0 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5786:1: ( ( rule__Arrows__SrAssignment_0_0 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5621:1: ( ( rule__Arrows__SrAssignment_0_0 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5622:1: ( rule__Arrows__SrAssignment_0_0 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5786:1: ( ( rule__Arrows__SrAssignment_0_0 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5787:1: ( rule__Arrows__SrAssignment_0_0 )
             {
              before(grammarAccess.getArrowsAccess().getSrAssignment_0_0()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5623:1: ( rule__Arrows__SrAssignment_0_0 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5623:2: rule__Arrows__SrAssignment_0_0
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5788:1: ( rule__Arrows__SrAssignment_0_0 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5788:2: rule__Arrows__SrAssignment_0_0
             {
-            pushFollow(FOLLOW_rule__Arrows__SrAssignment_0_0_in_rule__Arrows__Group_0__0__Impl11306);
+            pushFollow(FOLLOW_rule__Arrows__SrAssignment_0_0_in_rule__Arrows__Group_0__0__Impl11626);
             rule__Arrows__SrAssignment_0_0();
 
             state._fsp--;
@@ -14623,21 +14999,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrows__Group_0__1"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5633:1: rule__Arrows__Group_0__1 : rule__Arrows__Group_0__1__Impl rule__Arrows__Group_0__2 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5798:1: rule__Arrows__Group_0__1 : rule__Arrows__Group_0__1__Impl rule__Arrows__Group_0__2 ;
     public final void rule__Arrows__Group_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5637:1: ( rule__Arrows__Group_0__1__Impl rule__Arrows__Group_0__2 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5638:2: rule__Arrows__Group_0__1__Impl rule__Arrows__Group_0__2
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5802:1: ( rule__Arrows__Group_0__1__Impl rule__Arrows__Group_0__2 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5803:2: rule__Arrows__Group_0__1__Impl rule__Arrows__Group_0__2
             {
-            pushFollow(FOLLOW_rule__Arrows__Group_0__1__Impl_in_rule__Arrows__Group_0__111336);
+            pushFollow(FOLLOW_rule__Arrows__Group_0__1__Impl_in_rule__Arrows__Group_0__111656);
             rule__Arrows__Group_0__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Arrows__Group_0__2_in_rule__Arrows__Group_0__111339);
+            pushFollow(FOLLOW_rule__Arrows__Group_0__2_in_rule__Arrows__Group_0__111659);
             rule__Arrows__Group_0__2();
 
             state._fsp--;
@@ -14661,20 +15037,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrows__Group_0__1__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5645:1: rule__Arrows__Group_0__1__Impl : ( '-' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5810:1: rule__Arrows__Group_0__1__Impl : ( '-' ) ;
     public final void rule__Arrows__Group_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5649:1: ( ( '-' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5650:1: ( '-' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5814:1: ( ( '-' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5815:1: ( '-' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5650:1: ( '-' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5651:1: '-'
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5815:1: ( '-' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5816:1: '-'
             {
              before(grammarAccess.getArrowsAccess().getHyphenMinusKeyword_0_1()); 
-            match(input,45,FOLLOW_45_in_rule__Arrows__Group_0__1__Impl11367); 
+            match(input,46,FOLLOW_46_in_rule__Arrows__Group_0__1__Impl11687); 
              after(grammarAccess.getArrowsAccess().getHyphenMinusKeyword_0_1()); 
 
             }
@@ -14698,21 +15074,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrows__Group_0__2"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5664:1: rule__Arrows__Group_0__2 : rule__Arrows__Group_0__2__Impl rule__Arrows__Group_0__3 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5829:1: rule__Arrows__Group_0__2 : rule__Arrows__Group_0__2__Impl rule__Arrows__Group_0__3 ;
     public final void rule__Arrows__Group_0__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5668:1: ( rule__Arrows__Group_0__2__Impl rule__Arrows__Group_0__3 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5669:2: rule__Arrows__Group_0__2__Impl rule__Arrows__Group_0__3
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5833:1: ( rule__Arrows__Group_0__2__Impl rule__Arrows__Group_0__3 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5834:2: rule__Arrows__Group_0__2__Impl rule__Arrows__Group_0__3
             {
-            pushFollow(FOLLOW_rule__Arrows__Group_0__2__Impl_in_rule__Arrows__Group_0__211398);
+            pushFollow(FOLLOW_rule__Arrows__Group_0__2__Impl_in_rule__Arrows__Group_0__211718);
             rule__Arrows__Group_0__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Arrows__Group_0__3_in_rule__Arrows__Group_0__211401);
+            pushFollow(FOLLOW_rule__Arrows__Group_0__3_in_rule__Arrows__Group_0__211721);
             rule__Arrows__Group_0__3();
 
             state._fsp--;
@@ -14736,23 +15112,23 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrows__Group_0__2__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5676:1: rule__Arrows__Group_0__2__Impl : ( ( rule__Arrows__IdAssignment_0_2 ) ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5841:1: rule__Arrows__Group_0__2__Impl : ( ( rule__Arrows__IdAssignment_0_2 ) ) ;
     public final void rule__Arrows__Group_0__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5680:1: ( ( ( rule__Arrows__IdAssignment_0_2 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5681:1: ( ( rule__Arrows__IdAssignment_0_2 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5845:1: ( ( ( rule__Arrows__IdAssignment_0_2 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5846:1: ( ( rule__Arrows__IdAssignment_0_2 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5681:1: ( ( rule__Arrows__IdAssignment_0_2 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5682:1: ( rule__Arrows__IdAssignment_0_2 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5846:1: ( ( rule__Arrows__IdAssignment_0_2 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5847:1: ( rule__Arrows__IdAssignment_0_2 )
             {
              before(grammarAccess.getArrowsAccess().getIdAssignment_0_2()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5683:1: ( rule__Arrows__IdAssignment_0_2 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5683:2: rule__Arrows__IdAssignment_0_2
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5848:1: ( rule__Arrows__IdAssignment_0_2 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5848:2: rule__Arrows__IdAssignment_0_2
             {
-            pushFollow(FOLLOW_rule__Arrows__IdAssignment_0_2_in_rule__Arrows__Group_0__2__Impl11428);
+            pushFollow(FOLLOW_rule__Arrows__IdAssignment_0_2_in_rule__Arrows__Group_0__2__Impl11748);
             rule__Arrows__IdAssignment_0_2();
 
             state._fsp--;
@@ -14783,21 +15159,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrows__Group_0__3"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5693:1: rule__Arrows__Group_0__3 : rule__Arrows__Group_0__3__Impl rule__Arrows__Group_0__4 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5858:1: rule__Arrows__Group_0__3 : rule__Arrows__Group_0__3__Impl rule__Arrows__Group_0__4 ;
     public final void rule__Arrows__Group_0__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5697:1: ( rule__Arrows__Group_0__3__Impl rule__Arrows__Group_0__4 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5698:2: rule__Arrows__Group_0__3__Impl rule__Arrows__Group_0__4
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5862:1: ( rule__Arrows__Group_0__3__Impl rule__Arrows__Group_0__4 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5863:2: rule__Arrows__Group_0__3__Impl rule__Arrows__Group_0__4
             {
-            pushFollow(FOLLOW_rule__Arrows__Group_0__3__Impl_in_rule__Arrows__Group_0__311458);
+            pushFollow(FOLLOW_rule__Arrows__Group_0__3__Impl_in_rule__Arrows__Group_0__311778);
             rule__Arrows__Group_0__3__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Arrows__Group_0__4_in_rule__Arrows__Group_0__311461);
+            pushFollow(FOLLOW_rule__Arrows__Group_0__4_in_rule__Arrows__Group_0__311781);
             rule__Arrows__Group_0__4();
 
             state._fsp--;
@@ -14821,20 +15197,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrows__Group_0__3__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5705:1: rule__Arrows__Group_0__3__Impl : ( ':' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5870:1: rule__Arrows__Group_0__3__Impl : ( ':' ) ;
     public final void rule__Arrows__Group_0__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5709:1: ( ( ':' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5710:1: ( ':' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5874:1: ( ( ':' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5875:1: ( ':' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5710:1: ( ':' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5711:1: ':'
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5875:1: ( ':' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5876:1: ':'
             {
              before(grammarAccess.getArrowsAccess().getColonKeyword_0_3()); 
-            match(input,46,FOLLOW_46_in_rule__Arrows__Group_0__3__Impl11489); 
+            match(input,47,FOLLOW_47_in_rule__Arrows__Group_0__3__Impl11809); 
              after(grammarAccess.getArrowsAccess().getColonKeyword_0_3()); 
 
             }
@@ -14858,21 +15234,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrows__Group_0__4"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5724:1: rule__Arrows__Group_0__4 : rule__Arrows__Group_0__4__Impl rule__Arrows__Group_0__5 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5889:1: rule__Arrows__Group_0__4 : rule__Arrows__Group_0__4__Impl rule__Arrows__Group_0__5 ;
     public final void rule__Arrows__Group_0__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5728:1: ( rule__Arrows__Group_0__4__Impl rule__Arrows__Group_0__5 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5729:2: rule__Arrows__Group_0__4__Impl rule__Arrows__Group_0__5
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5893:1: ( rule__Arrows__Group_0__4__Impl rule__Arrows__Group_0__5 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5894:2: rule__Arrows__Group_0__4__Impl rule__Arrows__Group_0__5
             {
-            pushFollow(FOLLOW_rule__Arrows__Group_0__4__Impl_in_rule__Arrows__Group_0__411520);
+            pushFollow(FOLLOW_rule__Arrows__Group_0__4__Impl_in_rule__Arrows__Group_0__411840);
             rule__Arrows__Group_0__4__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Arrows__Group_0__5_in_rule__Arrows__Group_0__411523);
+            pushFollow(FOLLOW_rule__Arrows__Group_0__5_in_rule__Arrows__Group_0__411843);
             rule__Arrows__Group_0__5();
 
             state._fsp--;
@@ -14896,23 +15272,23 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrows__Group_0__4__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5736:1: rule__Arrows__Group_0__4__Impl : ( ( rule__Arrows__TypeAssignment_0_4 ) ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5901:1: rule__Arrows__Group_0__4__Impl : ( ( rule__Arrows__TypeAssignment_0_4 ) ) ;
     public final void rule__Arrows__Group_0__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5740:1: ( ( ( rule__Arrows__TypeAssignment_0_4 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5741:1: ( ( rule__Arrows__TypeAssignment_0_4 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5905:1: ( ( ( rule__Arrows__TypeAssignment_0_4 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5906:1: ( ( rule__Arrows__TypeAssignment_0_4 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5741:1: ( ( rule__Arrows__TypeAssignment_0_4 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5742:1: ( rule__Arrows__TypeAssignment_0_4 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5906:1: ( ( rule__Arrows__TypeAssignment_0_4 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5907:1: ( rule__Arrows__TypeAssignment_0_4 )
             {
              before(grammarAccess.getArrowsAccess().getTypeAssignment_0_4()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5743:1: ( rule__Arrows__TypeAssignment_0_4 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5743:2: rule__Arrows__TypeAssignment_0_4
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5908:1: ( rule__Arrows__TypeAssignment_0_4 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5908:2: rule__Arrows__TypeAssignment_0_4
             {
-            pushFollow(FOLLOW_rule__Arrows__TypeAssignment_0_4_in_rule__Arrows__Group_0__4__Impl11550);
+            pushFollow(FOLLOW_rule__Arrows__TypeAssignment_0_4_in_rule__Arrows__Group_0__4__Impl11870);
             rule__Arrows__TypeAssignment_0_4();
 
             state._fsp--;
@@ -14943,21 +15319,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrows__Group_0__5"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5753:1: rule__Arrows__Group_0__5 : rule__Arrows__Group_0__5__Impl rule__Arrows__Group_0__6 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5918:1: rule__Arrows__Group_0__5 : rule__Arrows__Group_0__5__Impl rule__Arrows__Group_0__6 ;
     public final void rule__Arrows__Group_0__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5757:1: ( rule__Arrows__Group_0__5__Impl rule__Arrows__Group_0__6 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5758:2: rule__Arrows__Group_0__5__Impl rule__Arrows__Group_0__6
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5922:1: ( rule__Arrows__Group_0__5__Impl rule__Arrows__Group_0__6 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5923:2: rule__Arrows__Group_0__5__Impl rule__Arrows__Group_0__6
             {
-            pushFollow(FOLLOW_rule__Arrows__Group_0__5__Impl_in_rule__Arrows__Group_0__511580);
+            pushFollow(FOLLOW_rule__Arrows__Group_0__5__Impl_in_rule__Arrows__Group_0__511900);
             rule__Arrows__Group_0__5__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Arrows__Group_0__6_in_rule__Arrows__Group_0__511583);
+            pushFollow(FOLLOW_rule__Arrows__Group_0__6_in_rule__Arrows__Group_0__511903);
             rule__Arrows__Group_0__6();
 
             state._fsp--;
@@ -14981,20 +15357,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrows__Group_0__5__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5765:1: rule__Arrows__Group_0__5__Impl : ( '->' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5930:1: rule__Arrows__Group_0__5__Impl : ( '->' ) ;
     public final void rule__Arrows__Group_0__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5769:1: ( ( '->' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5770:1: ( '->' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5934:1: ( ( '->' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5935:1: ( '->' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5770:1: ( '->' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5771:1: '->'
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5935:1: ( '->' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5936:1: '->'
             {
              before(grammarAccess.getArrowsAccess().getHyphenMinusGreaterThanSignKeyword_0_5()); 
-            match(input,28,FOLLOW_28_in_rule__Arrows__Group_0__5__Impl11611); 
+            match(input,28,FOLLOW_28_in_rule__Arrows__Group_0__5__Impl11931); 
              after(grammarAccess.getArrowsAccess().getHyphenMinusGreaterThanSignKeyword_0_5()); 
 
             }
@@ -15018,16 +15394,16 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrows__Group_0__6"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5784:1: rule__Arrows__Group_0__6 : rule__Arrows__Group_0__6__Impl ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5949:1: rule__Arrows__Group_0__6 : rule__Arrows__Group_0__6__Impl ;
     public final void rule__Arrows__Group_0__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5788:1: ( rule__Arrows__Group_0__6__Impl )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5789:2: rule__Arrows__Group_0__6__Impl
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5953:1: ( rule__Arrows__Group_0__6__Impl )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5954:2: rule__Arrows__Group_0__6__Impl
             {
-            pushFollow(FOLLOW_rule__Arrows__Group_0__6__Impl_in_rule__Arrows__Group_0__611642);
+            pushFollow(FOLLOW_rule__Arrows__Group_0__6__Impl_in_rule__Arrows__Group_0__611962);
             rule__Arrows__Group_0__6__Impl();
 
             state._fsp--;
@@ -15051,23 +15427,23 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrows__Group_0__6__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5795:1: rule__Arrows__Group_0__6__Impl : ( ( rule__Arrows__NextAssignment_0_6 ) ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5960:1: rule__Arrows__Group_0__6__Impl : ( ( rule__Arrows__NextAssignment_0_6 ) ) ;
     public final void rule__Arrows__Group_0__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5799:1: ( ( ( rule__Arrows__NextAssignment_0_6 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5800:1: ( ( rule__Arrows__NextAssignment_0_6 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5964:1: ( ( ( rule__Arrows__NextAssignment_0_6 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5965:1: ( ( rule__Arrows__NextAssignment_0_6 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5800:1: ( ( rule__Arrows__NextAssignment_0_6 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5801:1: ( rule__Arrows__NextAssignment_0_6 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5965:1: ( ( rule__Arrows__NextAssignment_0_6 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5966:1: ( rule__Arrows__NextAssignment_0_6 )
             {
              before(grammarAccess.getArrowsAccess().getNextAssignment_0_6()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5802:1: ( rule__Arrows__NextAssignment_0_6 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5802:2: rule__Arrows__NextAssignment_0_6
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5967:1: ( rule__Arrows__NextAssignment_0_6 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5967:2: rule__Arrows__NextAssignment_0_6
             {
-            pushFollow(FOLLOW_rule__Arrows__NextAssignment_0_6_in_rule__Arrows__Group_0__6__Impl11669);
+            pushFollow(FOLLOW_rule__Arrows__NextAssignment_0_6_in_rule__Arrows__Group_0__6__Impl11989);
             rule__Arrows__NextAssignment_0_6();
 
             state._fsp--;
@@ -15098,21 +15474,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__Group_0__0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5826:1: rule__Arrow__Group_0__0 : rule__Arrow__Group_0__0__Impl rule__Arrow__Group_0__1 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5991:1: rule__Arrow__Group_0__0 : rule__Arrow__Group_0__0__Impl rule__Arrow__Group_0__1 ;
     public final void rule__Arrow__Group_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5830:1: ( rule__Arrow__Group_0__0__Impl rule__Arrow__Group_0__1 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5831:2: rule__Arrow__Group_0__0__Impl rule__Arrow__Group_0__1
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5995:1: ( rule__Arrow__Group_0__0__Impl rule__Arrow__Group_0__1 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5996:2: rule__Arrow__Group_0__0__Impl rule__Arrow__Group_0__1
             {
-            pushFollow(FOLLOW_rule__Arrow__Group_0__0__Impl_in_rule__Arrow__Group_0__011713);
+            pushFollow(FOLLOW_rule__Arrow__Group_0__0__Impl_in_rule__Arrow__Group_0__012033);
             rule__Arrow__Group_0__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Arrow__Group_0__1_in_rule__Arrow__Group_0__011716);
+            pushFollow(FOLLOW_rule__Arrow__Group_0__1_in_rule__Arrow__Group_0__012036);
             rule__Arrow__Group_0__1();
 
             state._fsp--;
@@ -15136,23 +15512,23 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__Group_0__0__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5838:1: rule__Arrow__Group_0__0__Impl : ( ( rule__Arrow__SrAssignment_0_0 ) ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6003:1: rule__Arrow__Group_0__0__Impl : ( ( rule__Arrow__SrAssignment_0_0 ) ) ;
     public final void rule__Arrow__Group_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5842:1: ( ( ( rule__Arrow__SrAssignment_0_0 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5843:1: ( ( rule__Arrow__SrAssignment_0_0 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6007:1: ( ( ( rule__Arrow__SrAssignment_0_0 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6008:1: ( ( rule__Arrow__SrAssignment_0_0 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5843:1: ( ( rule__Arrow__SrAssignment_0_0 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5844:1: ( rule__Arrow__SrAssignment_0_0 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6008:1: ( ( rule__Arrow__SrAssignment_0_0 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6009:1: ( rule__Arrow__SrAssignment_0_0 )
             {
              before(grammarAccess.getArrowAccess().getSrAssignment_0_0()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5845:1: ( rule__Arrow__SrAssignment_0_0 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5845:2: rule__Arrow__SrAssignment_0_0
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6010:1: ( rule__Arrow__SrAssignment_0_0 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6010:2: rule__Arrow__SrAssignment_0_0
             {
-            pushFollow(FOLLOW_rule__Arrow__SrAssignment_0_0_in_rule__Arrow__Group_0__0__Impl11743);
+            pushFollow(FOLLOW_rule__Arrow__SrAssignment_0_0_in_rule__Arrow__Group_0__0__Impl12063);
             rule__Arrow__SrAssignment_0_0();
 
             state._fsp--;
@@ -15183,21 +15559,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__Group_0__1"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5855:1: rule__Arrow__Group_0__1 : rule__Arrow__Group_0__1__Impl rule__Arrow__Group_0__2 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6020:1: rule__Arrow__Group_0__1 : rule__Arrow__Group_0__1__Impl rule__Arrow__Group_0__2 ;
     public final void rule__Arrow__Group_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5859:1: ( rule__Arrow__Group_0__1__Impl rule__Arrow__Group_0__2 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5860:2: rule__Arrow__Group_0__1__Impl rule__Arrow__Group_0__2
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6024:1: ( rule__Arrow__Group_0__1__Impl rule__Arrow__Group_0__2 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6025:2: rule__Arrow__Group_0__1__Impl rule__Arrow__Group_0__2
             {
-            pushFollow(FOLLOW_rule__Arrow__Group_0__1__Impl_in_rule__Arrow__Group_0__111773);
+            pushFollow(FOLLOW_rule__Arrow__Group_0__1__Impl_in_rule__Arrow__Group_0__112093);
             rule__Arrow__Group_0__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Arrow__Group_0__2_in_rule__Arrow__Group_0__111776);
+            pushFollow(FOLLOW_rule__Arrow__Group_0__2_in_rule__Arrow__Group_0__112096);
             rule__Arrow__Group_0__2();
 
             state._fsp--;
@@ -15221,20 +15597,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__Group_0__1__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5867:1: rule__Arrow__Group_0__1__Impl : ( '-' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6032:1: rule__Arrow__Group_0__1__Impl : ( '-' ) ;
     public final void rule__Arrow__Group_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5871:1: ( ( '-' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5872:1: ( '-' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6036:1: ( ( '-' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6037:1: ( '-' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5872:1: ( '-' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5873:1: '-'
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6037:1: ( '-' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6038:1: '-'
             {
              before(grammarAccess.getArrowAccess().getHyphenMinusKeyword_0_1()); 
-            match(input,45,FOLLOW_45_in_rule__Arrow__Group_0__1__Impl11804); 
+            match(input,46,FOLLOW_46_in_rule__Arrow__Group_0__1__Impl12124); 
              after(grammarAccess.getArrowAccess().getHyphenMinusKeyword_0_1()); 
 
             }
@@ -15258,21 +15634,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__Group_0__2"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5886:1: rule__Arrow__Group_0__2 : rule__Arrow__Group_0__2__Impl rule__Arrow__Group_0__3 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6051:1: rule__Arrow__Group_0__2 : rule__Arrow__Group_0__2__Impl rule__Arrow__Group_0__3 ;
     public final void rule__Arrow__Group_0__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5890:1: ( rule__Arrow__Group_0__2__Impl rule__Arrow__Group_0__3 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5891:2: rule__Arrow__Group_0__2__Impl rule__Arrow__Group_0__3
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6055:1: ( rule__Arrow__Group_0__2__Impl rule__Arrow__Group_0__3 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6056:2: rule__Arrow__Group_0__2__Impl rule__Arrow__Group_0__3
             {
-            pushFollow(FOLLOW_rule__Arrow__Group_0__2__Impl_in_rule__Arrow__Group_0__211835);
+            pushFollow(FOLLOW_rule__Arrow__Group_0__2__Impl_in_rule__Arrow__Group_0__212155);
             rule__Arrow__Group_0__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Arrow__Group_0__3_in_rule__Arrow__Group_0__211838);
+            pushFollow(FOLLOW_rule__Arrow__Group_0__3_in_rule__Arrow__Group_0__212158);
             rule__Arrow__Group_0__3();
 
             state._fsp--;
@@ -15296,23 +15672,23 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__Group_0__2__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5898:1: rule__Arrow__Group_0__2__Impl : ( ( rule__Arrow__IdAssignment_0_2 ) ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6063:1: rule__Arrow__Group_0__2__Impl : ( ( rule__Arrow__IdAssignment_0_2 ) ) ;
     public final void rule__Arrow__Group_0__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5902:1: ( ( ( rule__Arrow__IdAssignment_0_2 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5903:1: ( ( rule__Arrow__IdAssignment_0_2 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6067:1: ( ( ( rule__Arrow__IdAssignment_0_2 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6068:1: ( ( rule__Arrow__IdAssignment_0_2 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5903:1: ( ( rule__Arrow__IdAssignment_0_2 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5904:1: ( rule__Arrow__IdAssignment_0_2 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6068:1: ( ( rule__Arrow__IdAssignment_0_2 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6069:1: ( rule__Arrow__IdAssignment_0_2 )
             {
              before(grammarAccess.getArrowAccess().getIdAssignment_0_2()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5905:1: ( rule__Arrow__IdAssignment_0_2 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5905:2: rule__Arrow__IdAssignment_0_2
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6070:1: ( rule__Arrow__IdAssignment_0_2 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6070:2: rule__Arrow__IdAssignment_0_2
             {
-            pushFollow(FOLLOW_rule__Arrow__IdAssignment_0_2_in_rule__Arrow__Group_0__2__Impl11865);
+            pushFollow(FOLLOW_rule__Arrow__IdAssignment_0_2_in_rule__Arrow__Group_0__2__Impl12185);
             rule__Arrow__IdAssignment_0_2();
 
             state._fsp--;
@@ -15343,21 +15719,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__Group_0__3"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5915:1: rule__Arrow__Group_0__3 : rule__Arrow__Group_0__3__Impl rule__Arrow__Group_0__4 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6080:1: rule__Arrow__Group_0__3 : rule__Arrow__Group_0__3__Impl rule__Arrow__Group_0__4 ;
     public final void rule__Arrow__Group_0__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5919:1: ( rule__Arrow__Group_0__3__Impl rule__Arrow__Group_0__4 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5920:2: rule__Arrow__Group_0__3__Impl rule__Arrow__Group_0__4
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6084:1: ( rule__Arrow__Group_0__3__Impl rule__Arrow__Group_0__4 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6085:2: rule__Arrow__Group_0__3__Impl rule__Arrow__Group_0__4
             {
-            pushFollow(FOLLOW_rule__Arrow__Group_0__3__Impl_in_rule__Arrow__Group_0__311895);
+            pushFollow(FOLLOW_rule__Arrow__Group_0__3__Impl_in_rule__Arrow__Group_0__312215);
             rule__Arrow__Group_0__3__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Arrow__Group_0__4_in_rule__Arrow__Group_0__311898);
+            pushFollow(FOLLOW_rule__Arrow__Group_0__4_in_rule__Arrow__Group_0__312218);
             rule__Arrow__Group_0__4();
 
             state._fsp--;
@@ -15381,20 +15757,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__Group_0__3__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5927:1: rule__Arrow__Group_0__3__Impl : ( ':' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6092:1: rule__Arrow__Group_0__3__Impl : ( ':' ) ;
     public final void rule__Arrow__Group_0__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5931:1: ( ( ':' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5932:1: ( ':' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6096:1: ( ( ':' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6097:1: ( ':' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5932:1: ( ':' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5933:1: ':'
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6097:1: ( ':' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6098:1: ':'
             {
              before(grammarAccess.getArrowAccess().getColonKeyword_0_3()); 
-            match(input,46,FOLLOW_46_in_rule__Arrow__Group_0__3__Impl11926); 
+            match(input,47,FOLLOW_47_in_rule__Arrow__Group_0__3__Impl12246); 
              after(grammarAccess.getArrowAccess().getColonKeyword_0_3()); 
 
             }
@@ -15418,21 +15794,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__Group_0__4"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5946:1: rule__Arrow__Group_0__4 : rule__Arrow__Group_0__4__Impl rule__Arrow__Group_0__5 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6111:1: rule__Arrow__Group_0__4 : rule__Arrow__Group_0__4__Impl rule__Arrow__Group_0__5 ;
     public final void rule__Arrow__Group_0__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5950:1: ( rule__Arrow__Group_0__4__Impl rule__Arrow__Group_0__5 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5951:2: rule__Arrow__Group_0__4__Impl rule__Arrow__Group_0__5
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6115:1: ( rule__Arrow__Group_0__4__Impl rule__Arrow__Group_0__5 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6116:2: rule__Arrow__Group_0__4__Impl rule__Arrow__Group_0__5
             {
-            pushFollow(FOLLOW_rule__Arrow__Group_0__4__Impl_in_rule__Arrow__Group_0__411957);
+            pushFollow(FOLLOW_rule__Arrow__Group_0__4__Impl_in_rule__Arrow__Group_0__412277);
             rule__Arrow__Group_0__4__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Arrow__Group_0__5_in_rule__Arrow__Group_0__411960);
+            pushFollow(FOLLOW_rule__Arrow__Group_0__5_in_rule__Arrow__Group_0__412280);
             rule__Arrow__Group_0__5();
 
             state._fsp--;
@@ -15456,20 +15832,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__Group_0__4__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5958:1: rule__Arrow__Group_0__4__Impl : ( '*' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6123:1: rule__Arrow__Group_0__4__Impl : ( '*' ) ;
     public final void rule__Arrow__Group_0__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5962:1: ( ( '*' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5963:1: ( '*' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6127:1: ( ( '*' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6128:1: ( '*' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5963:1: ( '*' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5964:1: '*'
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6128:1: ( '*' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6129:1: '*'
             {
              before(grammarAccess.getArrowAccess().getAsteriskKeyword_0_4()); 
-            match(input,47,FOLLOW_47_in_rule__Arrow__Group_0__4__Impl11988); 
+            match(input,48,FOLLOW_48_in_rule__Arrow__Group_0__4__Impl12308); 
              after(grammarAccess.getArrowAccess().getAsteriskKeyword_0_4()); 
 
             }
@@ -15493,21 +15869,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__Group_0__5"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5977:1: rule__Arrow__Group_0__5 : rule__Arrow__Group_0__5__Impl rule__Arrow__Group_0__6 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6142:1: rule__Arrow__Group_0__5 : rule__Arrow__Group_0__5__Impl rule__Arrow__Group_0__6 ;
     public final void rule__Arrow__Group_0__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5981:1: ( rule__Arrow__Group_0__5__Impl rule__Arrow__Group_0__6 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5982:2: rule__Arrow__Group_0__5__Impl rule__Arrow__Group_0__6
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6146:1: ( rule__Arrow__Group_0__5__Impl rule__Arrow__Group_0__6 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6147:2: rule__Arrow__Group_0__5__Impl rule__Arrow__Group_0__6
             {
-            pushFollow(FOLLOW_rule__Arrow__Group_0__5__Impl_in_rule__Arrow__Group_0__512019);
+            pushFollow(FOLLOW_rule__Arrow__Group_0__5__Impl_in_rule__Arrow__Group_0__512339);
             rule__Arrow__Group_0__5__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Arrow__Group_0__6_in_rule__Arrow__Group_0__512022);
+            pushFollow(FOLLOW_rule__Arrow__Group_0__6_in_rule__Arrow__Group_0__512342);
             rule__Arrow__Group_0__6();
 
             state._fsp--;
@@ -15531,20 +15907,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__Group_0__5__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5989:1: rule__Arrow__Group_0__5__Impl : ( '->' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6154:1: rule__Arrow__Group_0__5__Impl : ( '->' ) ;
     public final void rule__Arrow__Group_0__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5993:1: ( ( '->' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5994:1: ( '->' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6158:1: ( ( '->' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6159:1: ( '->' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5994:1: ( '->' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:5995:1: '->'
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6159:1: ( '->' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6160:1: '->'
             {
              before(grammarAccess.getArrowAccess().getHyphenMinusGreaterThanSignKeyword_0_5()); 
-            match(input,28,FOLLOW_28_in_rule__Arrow__Group_0__5__Impl12050); 
+            match(input,28,FOLLOW_28_in_rule__Arrow__Group_0__5__Impl12370); 
              after(grammarAccess.getArrowAccess().getHyphenMinusGreaterThanSignKeyword_0_5()); 
 
             }
@@ -15568,16 +15944,16 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__Group_0__6"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6008:1: rule__Arrow__Group_0__6 : rule__Arrow__Group_0__6__Impl ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6173:1: rule__Arrow__Group_0__6 : rule__Arrow__Group_0__6__Impl ;
     public final void rule__Arrow__Group_0__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6012:1: ( rule__Arrow__Group_0__6__Impl )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6013:2: rule__Arrow__Group_0__6__Impl
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6177:1: ( rule__Arrow__Group_0__6__Impl )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6178:2: rule__Arrow__Group_0__6__Impl
             {
-            pushFollow(FOLLOW_rule__Arrow__Group_0__6__Impl_in_rule__Arrow__Group_0__612081);
+            pushFollow(FOLLOW_rule__Arrow__Group_0__6__Impl_in_rule__Arrow__Group_0__612401);
             rule__Arrow__Group_0__6__Impl();
 
             state._fsp--;
@@ -15601,23 +15977,23 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__Group_0__6__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6019:1: rule__Arrow__Group_0__6__Impl : ( ( rule__Arrow__TgDataTypeAssignment_0_6 ) ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6184:1: rule__Arrow__Group_0__6__Impl : ( ( rule__Arrow__TgDataTypeAssignment_0_6 ) ) ;
     public final void rule__Arrow__Group_0__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6023:1: ( ( ( rule__Arrow__TgDataTypeAssignment_0_6 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6024:1: ( ( rule__Arrow__TgDataTypeAssignment_0_6 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6188:1: ( ( ( rule__Arrow__TgDataTypeAssignment_0_6 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6189:1: ( ( rule__Arrow__TgDataTypeAssignment_0_6 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6024:1: ( ( rule__Arrow__TgDataTypeAssignment_0_6 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6025:1: ( rule__Arrow__TgDataTypeAssignment_0_6 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6189:1: ( ( rule__Arrow__TgDataTypeAssignment_0_6 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6190:1: ( rule__Arrow__TgDataTypeAssignment_0_6 )
             {
              before(grammarAccess.getArrowAccess().getTgDataTypeAssignment_0_6()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6026:1: ( rule__Arrow__TgDataTypeAssignment_0_6 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6026:2: rule__Arrow__TgDataTypeAssignment_0_6
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6191:1: ( rule__Arrow__TgDataTypeAssignment_0_6 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6191:2: rule__Arrow__TgDataTypeAssignment_0_6
             {
-            pushFollow(FOLLOW_rule__Arrow__TgDataTypeAssignment_0_6_in_rule__Arrow__Group_0__6__Impl12108);
+            pushFollow(FOLLOW_rule__Arrow__TgDataTypeAssignment_0_6_in_rule__Arrow__Group_0__6__Impl12428);
             rule__Arrow__TgDataTypeAssignment_0_6();
 
             state._fsp--;
@@ -15648,21 +16024,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__Group_1__0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6050:1: rule__Arrow__Group_1__0 : rule__Arrow__Group_1__0__Impl rule__Arrow__Group_1__1 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6215:1: rule__Arrow__Group_1__0 : rule__Arrow__Group_1__0__Impl rule__Arrow__Group_1__1 ;
     public final void rule__Arrow__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6054:1: ( rule__Arrow__Group_1__0__Impl rule__Arrow__Group_1__1 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6055:2: rule__Arrow__Group_1__0__Impl rule__Arrow__Group_1__1
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6219:1: ( rule__Arrow__Group_1__0__Impl rule__Arrow__Group_1__1 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6220:2: rule__Arrow__Group_1__0__Impl rule__Arrow__Group_1__1
             {
-            pushFollow(FOLLOW_rule__Arrow__Group_1__0__Impl_in_rule__Arrow__Group_1__012152);
+            pushFollow(FOLLOW_rule__Arrow__Group_1__0__Impl_in_rule__Arrow__Group_1__012472);
             rule__Arrow__Group_1__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Arrow__Group_1__1_in_rule__Arrow__Group_1__012155);
+            pushFollow(FOLLOW_rule__Arrow__Group_1__1_in_rule__Arrow__Group_1__012475);
             rule__Arrow__Group_1__1();
 
             state._fsp--;
@@ -15686,23 +16062,23 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__Group_1__0__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6062:1: rule__Arrow__Group_1__0__Impl : ( ( rule__Arrow__SrAssignment_1_0 ) ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6227:1: rule__Arrow__Group_1__0__Impl : ( ( rule__Arrow__SrAssignment_1_0 ) ) ;
     public final void rule__Arrow__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6066:1: ( ( ( rule__Arrow__SrAssignment_1_0 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6067:1: ( ( rule__Arrow__SrAssignment_1_0 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6231:1: ( ( ( rule__Arrow__SrAssignment_1_0 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6232:1: ( ( rule__Arrow__SrAssignment_1_0 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6067:1: ( ( rule__Arrow__SrAssignment_1_0 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6068:1: ( rule__Arrow__SrAssignment_1_0 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6232:1: ( ( rule__Arrow__SrAssignment_1_0 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6233:1: ( rule__Arrow__SrAssignment_1_0 )
             {
              before(grammarAccess.getArrowAccess().getSrAssignment_1_0()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6069:1: ( rule__Arrow__SrAssignment_1_0 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6069:2: rule__Arrow__SrAssignment_1_0
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6234:1: ( rule__Arrow__SrAssignment_1_0 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6234:2: rule__Arrow__SrAssignment_1_0
             {
-            pushFollow(FOLLOW_rule__Arrow__SrAssignment_1_0_in_rule__Arrow__Group_1__0__Impl12182);
+            pushFollow(FOLLOW_rule__Arrow__SrAssignment_1_0_in_rule__Arrow__Group_1__0__Impl12502);
             rule__Arrow__SrAssignment_1_0();
 
             state._fsp--;
@@ -15733,21 +16109,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__Group_1__1"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6079:1: rule__Arrow__Group_1__1 : rule__Arrow__Group_1__1__Impl rule__Arrow__Group_1__2 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6244:1: rule__Arrow__Group_1__1 : rule__Arrow__Group_1__1__Impl rule__Arrow__Group_1__2 ;
     public final void rule__Arrow__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6083:1: ( rule__Arrow__Group_1__1__Impl rule__Arrow__Group_1__2 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6084:2: rule__Arrow__Group_1__1__Impl rule__Arrow__Group_1__2
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6248:1: ( rule__Arrow__Group_1__1__Impl rule__Arrow__Group_1__2 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6249:2: rule__Arrow__Group_1__1__Impl rule__Arrow__Group_1__2
             {
-            pushFollow(FOLLOW_rule__Arrow__Group_1__1__Impl_in_rule__Arrow__Group_1__112212);
+            pushFollow(FOLLOW_rule__Arrow__Group_1__1__Impl_in_rule__Arrow__Group_1__112532);
             rule__Arrow__Group_1__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Arrow__Group_1__2_in_rule__Arrow__Group_1__112215);
+            pushFollow(FOLLOW_rule__Arrow__Group_1__2_in_rule__Arrow__Group_1__112535);
             rule__Arrow__Group_1__2();
 
             state._fsp--;
@@ -15771,20 +16147,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__Group_1__1__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6091:1: rule__Arrow__Group_1__1__Impl : ( '-' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6256:1: rule__Arrow__Group_1__1__Impl : ( '-' ) ;
     public final void rule__Arrow__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6095:1: ( ( '-' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6096:1: ( '-' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6260:1: ( ( '-' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6261:1: ( '-' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6096:1: ( '-' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6097:1: '-'
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6261:1: ( '-' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6262:1: '-'
             {
              before(grammarAccess.getArrowAccess().getHyphenMinusKeyword_1_1()); 
-            match(input,45,FOLLOW_45_in_rule__Arrow__Group_1__1__Impl12243); 
+            match(input,46,FOLLOW_46_in_rule__Arrow__Group_1__1__Impl12563); 
              after(grammarAccess.getArrowAccess().getHyphenMinusKeyword_1_1()); 
 
             }
@@ -15808,21 +16184,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__Group_1__2"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6110:1: rule__Arrow__Group_1__2 : rule__Arrow__Group_1__2__Impl rule__Arrow__Group_1__3 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6275:1: rule__Arrow__Group_1__2 : rule__Arrow__Group_1__2__Impl rule__Arrow__Group_1__3 ;
     public final void rule__Arrow__Group_1__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6114:1: ( rule__Arrow__Group_1__2__Impl rule__Arrow__Group_1__3 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6115:2: rule__Arrow__Group_1__2__Impl rule__Arrow__Group_1__3
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6279:1: ( rule__Arrow__Group_1__2__Impl rule__Arrow__Group_1__3 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6280:2: rule__Arrow__Group_1__2__Impl rule__Arrow__Group_1__3
             {
-            pushFollow(FOLLOW_rule__Arrow__Group_1__2__Impl_in_rule__Arrow__Group_1__212274);
+            pushFollow(FOLLOW_rule__Arrow__Group_1__2__Impl_in_rule__Arrow__Group_1__212594);
             rule__Arrow__Group_1__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Arrow__Group_1__3_in_rule__Arrow__Group_1__212277);
+            pushFollow(FOLLOW_rule__Arrow__Group_1__3_in_rule__Arrow__Group_1__212597);
             rule__Arrow__Group_1__3();
 
             state._fsp--;
@@ -15846,23 +16222,23 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__Group_1__2__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6122:1: rule__Arrow__Group_1__2__Impl : ( ( rule__Arrow__IdAssignment_1_2 ) ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6287:1: rule__Arrow__Group_1__2__Impl : ( ( rule__Arrow__IdAssignment_1_2 ) ) ;
     public final void rule__Arrow__Group_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6126:1: ( ( ( rule__Arrow__IdAssignment_1_2 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6127:1: ( ( rule__Arrow__IdAssignment_1_2 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6291:1: ( ( ( rule__Arrow__IdAssignment_1_2 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6292:1: ( ( rule__Arrow__IdAssignment_1_2 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6127:1: ( ( rule__Arrow__IdAssignment_1_2 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6128:1: ( rule__Arrow__IdAssignment_1_2 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6292:1: ( ( rule__Arrow__IdAssignment_1_2 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6293:1: ( rule__Arrow__IdAssignment_1_2 )
             {
              before(grammarAccess.getArrowAccess().getIdAssignment_1_2()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6129:1: ( rule__Arrow__IdAssignment_1_2 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6129:2: rule__Arrow__IdAssignment_1_2
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6294:1: ( rule__Arrow__IdAssignment_1_2 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6294:2: rule__Arrow__IdAssignment_1_2
             {
-            pushFollow(FOLLOW_rule__Arrow__IdAssignment_1_2_in_rule__Arrow__Group_1__2__Impl12304);
+            pushFollow(FOLLOW_rule__Arrow__IdAssignment_1_2_in_rule__Arrow__Group_1__2__Impl12624);
             rule__Arrow__IdAssignment_1_2();
 
             state._fsp--;
@@ -15893,21 +16269,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__Group_1__3"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6139:1: rule__Arrow__Group_1__3 : rule__Arrow__Group_1__3__Impl rule__Arrow__Group_1__4 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6304:1: rule__Arrow__Group_1__3 : rule__Arrow__Group_1__3__Impl rule__Arrow__Group_1__4 ;
     public final void rule__Arrow__Group_1__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6143:1: ( rule__Arrow__Group_1__3__Impl rule__Arrow__Group_1__4 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6144:2: rule__Arrow__Group_1__3__Impl rule__Arrow__Group_1__4
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6308:1: ( rule__Arrow__Group_1__3__Impl rule__Arrow__Group_1__4 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6309:2: rule__Arrow__Group_1__3__Impl rule__Arrow__Group_1__4
             {
-            pushFollow(FOLLOW_rule__Arrow__Group_1__3__Impl_in_rule__Arrow__Group_1__312334);
+            pushFollow(FOLLOW_rule__Arrow__Group_1__3__Impl_in_rule__Arrow__Group_1__312654);
             rule__Arrow__Group_1__3__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Arrow__Group_1__4_in_rule__Arrow__Group_1__312337);
+            pushFollow(FOLLOW_rule__Arrow__Group_1__4_in_rule__Arrow__Group_1__312657);
             rule__Arrow__Group_1__4();
 
             state._fsp--;
@@ -15931,20 +16307,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__Group_1__3__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6151:1: rule__Arrow__Group_1__3__Impl : ( ':' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6316:1: rule__Arrow__Group_1__3__Impl : ( ':' ) ;
     public final void rule__Arrow__Group_1__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6155:1: ( ( ':' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6156:1: ( ':' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6320:1: ( ( ':' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6321:1: ( ':' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6156:1: ( ':' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6157:1: ':'
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6321:1: ( ':' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6322:1: ':'
             {
              before(grammarAccess.getArrowAccess().getColonKeyword_1_3()); 
-            match(input,46,FOLLOW_46_in_rule__Arrow__Group_1__3__Impl12365); 
+            match(input,47,FOLLOW_47_in_rule__Arrow__Group_1__3__Impl12685); 
              after(grammarAccess.getArrowAccess().getColonKeyword_1_3()); 
 
             }
@@ -15968,21 +16344,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__Group_1__4"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6170:1: rule__Arrow__Group_1__4 : rule__Arrow__Group_1__4__Impl rule__Arrow__Group_1__5 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6335:1: rule__Arrow__Group_1__4 : rule__Arrow__Group_1__4__Impl rule__Arrow__Group_1__5 ;
     public final void rule__Arrow__Group_1__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6174:1: ( rule__Arrow__Group_1__4__Impl rule__Arrow__Group_1__5 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6175:2: rule__Arrow__Group_1__4__Impl rule__Arrow__Group_1__5
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6339:1: ( rule__Arrow__Group_1__4__Impl rule__Arrow__Group_1__5 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6340:2: rule__Arrow__Group_1__4__Impl rule__Arrow__Group_1__5
             {
-            pushFollow(FOLLOW_rule__Arrow__Group_1__4__Impl_in_rule__Arrow__Group_1__412396);
+            pushFollow(FOLLOW_rule__Arrow__Group_1__4__Impl_in_rule__Arrow__Group_1__412716);
             rule__Arrow__Group_1__4__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Arrow__Group_1__5_in_rule__Arrow__Group_1__412399);
+            pushFollow(FOLLOW_rule__Arrow__Group_1__5_in_rule__Arrow__Group_1__412719);
             rule__Arrow__Group_1__5();
 
             state._fsp--;
@@ -16006,23 +16382,23 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__Group_1__4__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6182:1: rule__Arrow__Group_1__4__Impl : ( ( rule__Arrow__TypeAssignment_1_4 ) ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6347:1: rule__Arrow__Group_1__4__Impl : ( ( rule__Arrow__TypeAssignment_1_4 ) ) ;
     public final void rule__Arrow__Group_1__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6186:1: ( ( ( rule__Arrow__TypeAssignment_1_4 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6187:1: ( ( rule__Arrow__TypeAssignment_1_4 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6351:1: ( ( ( rule__Arrow__TypeAssignment_1_4 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6352:1: ( ( rule__Arrow__TypeAssignment_1_4 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6187:1: ( ( rule__Arrow__TypeAssignment_1_4 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6188:1: ( rule__Arrow__TypeAssignment_1_4 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6352:1: ( ( rule__Arrow__TypeAssignment_1_4 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6353:1: ( rule__Arrow__TypeAssignment_1_4 )
             {
              before(grammarAccess.getArrowAccess().getTypeAssignment_1_4()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6189:1: ( rule__Arrow__TypeAssignment_1_4 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6189:2: rule__Arrow__TypeAssignment_1_4
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6354:1: ( rule__Arrow__TypeAssignment_1_4 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6354:2: rule__Arrow__TypeAssignment_1_4
             {
-            pushFollow(FOLLOW_rule__Arrow__TypeAssignment_1_4_in_rule__Arrow__Group_1__4__Impl12426);
+            pushFollow(FOLLOW_rule__Arrow__TypeAssignment_1_4_in_rule__Arrow__Group_1__4__Impl12746);
             rule__Arrow__TypeAssignment_1_4();
 
             state._fsp--;
@@ -16053,21 +16429,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__Group_1__5"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6199:1: rule__Arrow__Group_1__5 : rule__Arrow__Group_1__5__Impl rule__Arrow__Group_1__6 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6364:1: rule__Arrow__Group_1__5 : rule__Arrow__Group_1__5__Impl rule__Arrow__Group_1__6 ;
     public final void rule__Arrow__Group_1__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6203:1: ( rule__Arrow__Group_1__5__Impl rule__Arrow__Group_1__6 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6204:2: rule__Arrow__Group_1__5__Impl rule__Arrow__Group_1__6
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6368:1: ( rule__Arrow__Group_1__5__Impl rule__Arrow__Group_1__6 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6369:2: rule__Arrow__Group_1__5__Impl rule__Arrow__Group_1__6
             {
-            pushFollow(FOLLOW_rule__Arrow__Group_1__5__Impl_in_rule__Arrow__Group_1__512456);
+            pushFollow(FOLLOW_rule__Arrow__Group_1__5__Impl_in_rule__Arrow__Group_1__512776);
             rule__Arrow__Group_1__5__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Arrow__Group_1__6_in_rule__Arrow__Group_1__512459);
+            pushFollow(FOLLOW_rule__Arrow__Group_1__6_in_rule__Arrow__Group_1__512779);
             rule__Arrow__Group_1__6();
 
             state._fsp--;
@@ -16091,20 +16467,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__Group_1__5__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6211:1: rule__Arrow__Group_1__5__Impl : ( '->' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6376:1: rule__Arrow__Group_1__5__Impl : ( '->' ) ;
     public final void rule__Arrow__Group_1__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6215:1: ( ( '->' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6216:1: ( '->' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6380:1: ( ( '->' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6381:1: ( '->' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6216:1: ( '->' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6217:1: '->'
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6381:1: ( '->' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6382:1: '->'
             {
              before(grammarAccess.getArrowAccess().getHyphenMinusGreaterThanSignKeyword_1_5()); 
-            match(input,28,FOLLOW_28_in_rule__Arrow__Group_1__5__Impl12487); 
+            match(input,28,FOLLOW_28_in_rule__Arrow__Group_1__5__Impl12807); 
              after(grammarAccess.getArrowAccess().getHyphenMinusGreaterThanSignKeyword_1_5()); 
 
             }
@@ -16128,16 +16504,16 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__Group_1__6"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6230:1: rule__Arrow__Group_1__6 : rule__Arrow__Group_1__6__Impl ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6395:1: rule__Arrow__Group_1__6 : rule__Arrow__Group_1__6__Impl ;
     public final void rule__Arrow__Group_1__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6234:1: ( rule__Arrow__Group_1__6__Impl )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6235:2: rule__Arrow__Group_1__6__Impl
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6399:1: ( rule__Arrow__Group_1__6__Impl )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6400:2: rule__Arrow__Group_1__6__Impl
             {
-            pushFollow(FOLLOW_rule__Arrow__Group_1__6__Impl_in_rule__Arrow__Group_1__612518);
+            pushFollow(FOLLOW_rule__Arrow__Group_1__6__Impl_in_rule__Arrow__Group_1__612838);
             rule__Arrow__Group_1__6__Impl();
 
             state._fsp--;
@@ -16161,23 +16537,23 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__Group_1__6__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6241:1: rule__Arrow__Group_1__6__Impl : ( ( rule__Arrow__TgValueAssignment_1_6 ) ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6406:1: rule__Arrow__Group_1__6__Impl : ( ( rule__Arrow__TgValueAssignment_1_6 ) ) ;
     public final void rule__Arrow__Group_1__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6245:1: ( ( ( rule__Arrow__TgValueAssignment_1_6 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6246:1: ( ( rule__Arrow__TgValueAssignment_1_6 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6410:1: ( ( ( rule__Arrow__TgValueAssignment_1_6 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6411:1: ( ( rule__Arrow__TgValueAssignment_1_6 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6246:1: ( ( rule__Arrow__TgValueAssignment_1_6 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6247:1: ( rule__Arrow__TgValueAssignment_1_6 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6411:1: ( ( rule__Arrow__TgValueAssignment_1_6 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6412:1: ( rule__Arrow__TgValueAssignment_1_6 )
             {
              before(grammarAccess.getArrowAccess().getTgValueAssignment_1_6()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6248:1: ( rule__Arrow__TgValueAssignment_1_6 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6248:2: rule__Arrow__TgValueAssignment_1_6
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6413:1: ( rule__Arrow__TgValueAssignment_1_6 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6413:2: rule__Arrow__TgValueAssignment_1_6
             {
-            pushFollow(FOLLOW_rule__Arrow__TgValueAssignment_1_6_in_rule__Arrow__Group_1__6__Impl12545);
+            pushFollow(FOLLOW_rule__Arrow__TgValueAssignment_1_6_in_rule__Arrow__Group_1__6__Impl12865);
             rule__Arrow__TgValueAssignment_1_6();
 
             state._fsp--;
@@ -16208,21 +16584,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__Group_2__0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6272:1: rule__Arrow__Group_2__0 : rule__Arrow__Group_2__0__Impl rule__Arrow__Group_2__1 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6437:1: rule__Arrow__Group_2__0 : rule__Arrow__Group_2__0__Impl rule__Arrow__Group_2__1 ;
     public final void rule__Arrow__Group_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6276:1: ( rule__Arrow__Group_2__0__Impl rule__Arrow__Group_2__1 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6277:2: rule__Arrow__Group_2__0__Impl rule__Arrow__Group_2__1
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6441:1: ( rule__Arrow__Group_2__0__Impl rule__Arrow__Group_2__1 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6442:2: rule__Arrow__Group_2__0__Impl rule__Arrow__Group_2__1
             {
-            pushFollow(FOLLOW_rule__Arrow__Group_2__0__Impl_in_rule__Arrow__Group_2__012589);
+            pushFollow(FOLLOW_rule__Arrow__Group_2__0__Impl_in_rule__Arrow__Group_2__012909);
             rule__Arrow__Group_2__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Arrow__Group_2__1_in_rule__Arrow__Group_2__012592);
+            pushFollow(FOLLOW_rule__Arrow__Group_2__1_in_rule__Arrow__Group_2__012912);
             rule__Arrow__Group_2__1();
 
             state._fsp--;
@@ -16246,23 +16622,23 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__Group_2__0__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6284:1: rule__Arrow__Group_2__0__Impl : ( ( rule__Arrow__SrAssignment_2_0 ) ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6449:1: rule__Arrow__Group_2__0__Impl : ( ( rule__Arrow__SrAssignment_2_0 ) ) ;
     public final void rule__Arrow__Group_2__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6288:1: ( ( ( rule__Arrow__SrAssignment_2_0 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6289:1: ( ( rule__Arrow__SrAssignment_2_0 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6453:1: ( ( ( rule__Arrow__SrAssignment_2_0 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6454:1: ( ( rule__Arrow__SrAssignment_2_0 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6289:1: ( ( rule__Arrow__SrAssignment_2_0 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6290:1: ( rule__Arrow__SrAssignment_2_0 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6454:1: ( ( rule__Arrow__SrAssignment_2_0 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6455:1: ( rule__Arrow__SrAssignment_2_0 )
             {
              before(grammarAccess.getArrowAccess().getSrAssignment_2_0()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6291:1: ( rule__Arrow__SrAssignment_2_0 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6291:2: rule__Arrow__SrAssignment_2_0
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6456:1: ( rule__Arrow__SrAssignment_2_0 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6456:2: rule__Arrow__SrAssignment_2_0
             {
-            pushFollow(FOLLOW_rule__Arrow__SrAssignment_2_0_in_rule__Arrow__Group_2__0__Impl12619);
+            pushFollow(FOLLOW_rule__Arrow__SrAssignment_2_0_in_rule__Arrow__Group_2__0__Impl12939);
             rule__Arrow__SrAssignment_2_0();
 
             state._fsp--;
@@ -16293,21 +16669,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__Group_2__1"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6301:1: rule__Arrow__Group_2__1 : rule__Arrow__Group_2__1__Impl rule__Arrow__Group_2__2 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6466:1: rule__Arrow__Group_2__1 : rule__Arrow__Group_2__1__Impl rule__Arrow__Group_2__2 ;
     public final void rule__Arrow__Group_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6305:1: ( rule__Arrow__Group_2__1__Impl rule__Arrow__Group_2__2 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6306:2: rule__Arrow__Group_2__1__Impl rule__Arrow__Group_2__2
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6470:1: ( rule__Arrow__Group_2__1__Impl rule__Arrow__Group_2__2 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6471:2: rule__Arrow__Group_2__1__Impl rule__Arrow__Group_2__2
             {
-            pushFollow(FOLLOW_rule__Arrow__Group_2__1__Impl_in_rule__Arrow__Group_2__112649);
+            pushFollow(FOLLOW_rule__Arrow__Group_2__1__Impl_in_rule__Arrow__Group_2__112969);
             rule__Arrow__Group_2__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Arrow__Group_2__2_in_rule__Arrow__Group_2__112652);
+            pushFollow(FOLLOW_rule__Arrow__Group_2__2_in_rule__Arrow__Group_2__112972);
             rule__Arrow__Group_2__2();
 
             state._fsp--;
@@ -16331,20 +16707,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__Group_2__1__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6313:1: rule__Arrow__Group_2__1__Impl : ( '-' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6478:1: rule__Arrow__Group_2__1__Impl : ( '-' ) ;
     public final void rule__Arrow__Group_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6317:1: ( ( '-' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6318:1: ( '-' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6482:1: ( ( '-' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6483:1: ( '-' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6318:1: ( '-' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6319:1: '-'
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6483:1: ( '-' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6484:1: '-'
             {
              before(grammarAccess.getArrowAccess().getHyphenMinusKeyword_2_1()); 
-            match(input,45,FOLLOW_45_in_rule__Arrow__Group_2__1__Impl12680); 
+            match(input,46,FOLLOW_46_in_rule__Arrow__Group_2__1__Impl13000); 
              after(grammarAccess.getArrowAccess().getHyphenMinusKeyword_2_1()); 
 
             }
@@ -16368,21 +16744,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__Group_2__2"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6332:1: rule__Arrow__Group_2__2 : rule__Arrow__Group_2__2__Impl rule__Arrow__Group_2__3 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6497:1: rule__Arrow__Group_2__2 : rule__Arrow__Group_2__2__Impl rule__Arrow__Group_2__3 ;
     public final void rule__Arrow__Group_2__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6336:1: ( rule__Arrow__Group_2__2__Impl rule__Arrow__Group_2__3 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6337:2: rule__Arrow__Group_2__2__Impl rule__Arrow__Group_2__3
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6501:1: ( rule__Arrow__Group_2__2__Impl rule__Arrow__Group_2__3 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6502:2: rule__Arrow__Group_2__2__Impl rule__Arrow__Group_2__3
             {
-            pushFollow(FOLLOW_rule__Arrow__Group_2__2__Impl_in_rule__Arrow__Group_2__212711);
+            pushFollow(FOLLOW_rule__Arrow__Group_2__2__Impl_in_rule__Arrow__Group_2__213031);
             rule__Arrow__Group_2__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Arrow__Group_2__3_in_rule__Arrow__Group_2__212714);
+            pushFollow(FOLLOW_rule__Arrow__Group_2__3_in_rule__Arrow__Group_2__213034);
             rule__Arrow__Group_2__3();
 
             state._fsp--;
@@ -16406,23 +16782,23 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__Group_2__2__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6344:1: rule__Arrow__Group_2__2__Impl : ( ( rule__Arrow__IdAssignment_2_2 ) ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6509:1: rule__Arrow__Group_2__2__Impl : ( ( rule__Arrow__IdAssignment_2_2 ) ) ;
     public final void rule__Arrow__Group_2__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6348:1: ( ( ( rule__Arrow__IdAssignment_2_2 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6349:1: ( ( rule__Arrow__IdAssignment_2_2 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6513:1: ( ( ( rule__Arrow__IdAssignment_2_2 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6514:1: ( ( rule__Arrow__IdAssignment_2_2 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6349:1: ( ( rule__Arrow__IdAssignment_2_2 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6350:1: ( rule__Arrow__IdAssignment_2_2 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6514:1: ( ( rule__Arrow__IdAssignment_2_2 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6515:1: ( rule__Arrow__IdAssignment_2_2 )
             {
              before(grammarAccess.getArrowAccess().getIdAssignment_2_2()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6351:1: ( rule__Arrow__IdAssignment_2_2 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6351:2: rule__Arrow__IdAssignment_2_2
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6516:1: ( rule__Arrow__IdAssignment_2_2 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6516:2: rule__Arrow__IdAssignment_2_2
             {
-            pushFollow(FOLLOW_rule__Arrow__IdAssignment_2_2_in_rule__Arrow__Group_2__2__Impl12741);
+            pushFollow(FOLLOW_rule__Arrow__IdAssignment_2_2_in_rule__Arrow__Group_2__2__Impl13061);
             rule__Arrow__IdAssignment_2_2();
 
             state._fsp--;
@@ -16453,21 +16829,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__Group_2__3"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6361:1: rule__Arrow__Group_2__3 : rule__Arrow__Group_2__3__Impl rule__Arrow__Group_2__4 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6526:1: rule__Arrow__Group_2__3 : rule__Arrow__Group_2__3__Impl rule__Arrow__Group_2__4 ;
     public final void rule__Arrow__Group_2__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6365:1: ( rule__Arrow__Group_2__3__Impl rule__Arrow__Group_2__4 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6366:2: rule__Arrow__Group_2__3__Impl rule__Arrow__Group_2__4
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6530:1: ( rule__Arrow__Group_2__3__Impl rule__Arrow__Group_2__4 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6531:2: rule__Arrow__Group_2__3__Impl rule__Arrow__Group_2__4
             {
-            pushFollow(FOLLOW_rule__Arrow__Group_2__3__Impl_in_rule__Arrow__Group_2__312771);
+            pushFollow(FOLLOW_rule__Arrow__Group_2__3__Impl_in_rule__Arrow__Group_2__313091);
             rule__Arrow__Group_2__3__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Arrow__Group_2__4_in_rule__Arrow__Group_2__312774);
+            pushFollow(FOLLOW_rule__Arrow__Group_2__4_in_rule__Arrow__Group_2__313094);
             rule__Arrow__Group_2__4();
 
             state._fsp--;
@@ -16491,20 +16867,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__Group_2__3__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6373:1: rule__Arrow__Group_2__3__Impl : ( ':' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6538:1: rule__Arrow__Group_2__3__Impl : ( ':' ) ;
     public final void rule__Arrow__Group_2__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6377:1: ( ( ':' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6378:1: ( ':' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6542:1: ( ( ':' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6543:1: ( ':' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6378:1: ( ':' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6379:1: ':'
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6543:1: ( ':' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6544:1: ':'
             {
              before(grammarAccess.getArrowAccess().getColonKeyword_2_3()); 
-            match(input,46,FOLLOW_46_in_rule__Arrow__Group_2__3__Impl12802); 
+            match(input,47,FOLLOW_47_in_rule__Arrow__Group_2__3__Impl13122); 
              after(grammarAccess.getArrowAccess().getColonKeyword_2_3()); 
 
             }
@@ -16528,21 +16904,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__Group_2__4"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6392:1: rule__Arrow__Group_2__4 : rule__Arrow__Group_2__4__Impl rule__Arrow__Group_2__5 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6557:1: rule__Arrow__Group_2__4 : rule__Arrow__Group_2__4__Impl rule__Arrow__Group_2__5 ;
     public final void rule__Arrow__Group_2__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6396:1: ( rule__Arrow__Group_2__4__Impl rule__Arrow__Group_2__5 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6397:2: rule__Arrow__Group_2__4__Impl rule__Arrow__Group_2__5
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6561:1: ( rule__Arrow__Group_2__4__Impl rule__Arrow__Group_2__5 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6562:2: rule__Arrow__Group_2__4__Impl rule__Arrow__Group_2__5
             {
-            pushFollow(FOLLOW_rule__Arrow__Group_2__4__Impl_in_rule__Arrow__Group_2__412833);
+            pushFollow(FOLLOW_rule__Arrow__Group_2__4__Impl_in_rule__Arrow__Group_2__413153);
             rule__Arrow__Group_2__4__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Arrow__Group_2__5_in_rule__Arrow__Group_2__412836);
+            pushFollow(FOLLOW_rule__Arrow__Group_2__5_in_rule__Arrow__Group_2__413156);
             rule__Arrow__Group_2__5();
 
             state._fsp--;
@@ -16566,23 +16942,23 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__Group_2__4__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6404:1: rule__Arrow__Group_2__4__Impl : ( ( rule__Arrow__TypeAssignment_2_4 ) ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6569:1: rule__Arrow__Group_2__4__Impl : ( ( rule__Arrow__TypeAssignment_2_4 ) ) ;
     public final void rule__Arrow__Group_2__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6408:1: ( ( ( rule__Arrow__TypeAssignment_2_4 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6409:1: ( ( rule__Arrow__TypeAssignment_2_4 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6573:1: ( ( ( rule__Arrow__TypeAssignment_2_4 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6574:1: ( ( rule__Arrow__TypeAssignment_2_4 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6409:1: ( ( rule__Arrow__TypeAssignment_2_4 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6410:1: ( rule__Arrow__TypeAssignment_2_4 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6574:1: ( ( rule__Arrow__TypeAssignment_2_4 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6575:1: ( rule__Arrow__TypeAssignment_2_4 )
             {
              before(grammarAccess.getArrowAccess().getTypeAssignment_2_4()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6411:1: ( rule__Arrow__TypeAssignment_2_4 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6411:2: rule__Arrow__TypeAssignment_2_4
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6576:1: ( rule__Arrow__TypeAssignment_2_4 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6576:2: rule__Arrow__TypeAssignment_2_4
             {
-            pushFollow(FOLLOW_rule__Arrow__TypeAssignment_2_4_in_rule__Arrow__Group_2__4__Impl12863);
+            pushFollow(FOLLOW_rule__Arrow__TypeAssignment_2_4_in_rule__Arrow__Group_2__4__Impl13183);
             rule__Arrow__TypeAssignment_2_4();
 
             state._fsp--;
@@ -16613,21 +16989,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__Group_2__5"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6421:1: rule__Arrow__Group_2__5 : rule__Arrow__Group_2__5__Impl rule__Arrow__Group_2__6 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6586:1: rule__Arrow__Group_2__5 : rule__Arrow__Group_2__5__Impl rule__Arrow__Group_2__6 ;
     public final void rule__Arrow__Group_2__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6425:1: ( rule__Arrow__Group_2__5__Impl rule__Arrow__Group_2__6 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6426:2: rule__Arrow__Group_2__5__Impl rule__Arrow__Group_2__6
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6590:1: ( rule__Arrow__Group_2__5__Impl rule__Arrow__Group_2__6 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6591:2: rule__Arrow__Group_2__5__Impl rule__Arrow__Group_2__6
             {
-            pushFollow(FOLLOW_rule__Arrow__Group_2__5__Impl_in_rule__Arrow__Group_2__512893);
+            pushFollow(FOLLOW_rule__Arrow__Group_2__5__Impl_in_rule__Arrow__Group_2__513213);
             rule__Arrow__Group_2__5__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Arrow__Group_2__6_in_rule__Arrow__Group_2__512896);
+            pushFollow(FOLLOW_rule__Arrow__Group_2__6_in_rule__Arrow__Group_2__513216);
             rule__Arrow__Group_2__6();
 
             state._fsp--;
@@ -16651,20 +17027,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__Group_2__5__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6433:1: rule__Arrow__Group_2__5__Impl : ( '->' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6598:1: rule__Arrow__Group_2__5__Impl : ( '->' ) ;
     public final void rule__Arrow__Group_2__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6437:1: ( ( '->' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6438:1: ( '->' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6602:1: ( ( '->' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6603:1: ( '->' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6438:1: ( '->' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6439:1: '->'
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6603:1: ( '->' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6604:1: '->'
             {
              before(grammarAccess.getArrowAccess().getHyphenMinusGreaterThanSignKeyword_2_5()); 
-            match(input,28,FOLLOW_28_in_rule__Arrow__Group_2__5__Impl12924); 
+            match(input,28,FOLLOW_28_in_rule__Arrow__Group_2__5__Impl13244); 
              after(grammarAccess.getArrowAccess().getHyphenMinusGreaterThanSignKeyword_2_5()); 
 
             }
@@ -16688,16 +17064,16 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__Group_2__6"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6452:1: rule__Arrow__Group_2__6 : rule__Arrow__Group_2__6__Impl ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6617:1: rule__Arrow__Group_2__6 : rule__Arrow__Group_2__6__Impl ;
     public final void rule__Arrow__Group_2__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6456:1: ( rule__Arrow__Group_2__6__Impl )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6457:2: rule__Arrow__Group_2__6__Impl
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6621:1: ( rule__Arrow__Group_2__6__Impl )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6622:2: rule__Arrow__Group_2__6__Impl
             {
-            pushFollow(FOLLOW_rule__Arrow__Group_2__6__Impl_in_rule__Arrow__Group_2__612955);
+            pushFollow(FOLLOW_rule__Arrow__Group_2__6__Impl_in_rule__Arrow__Group_2__613275);
             rule__Arrow__Group_2__6__Impl();
 
             state._fsp--;
@@ -16721,23 +17097,23 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__Group_2__6__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6463:1: rule__Arrow__Group_2__6__Impl : ( ( rule__Arrow__TgNodeAssignment_2_6 ) ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6628:1: rule__Arrow__Group_2__6__Impl : ( ( rule__Arrow__TgNodeAssignment_2_6 ) ) ;
     public final void rule__Arrow__Group_2__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6467:1: ( ( ( rule__Arrow__TgNodeAssignment_2_6 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6468:1: ( ( rule__Arrow__TgNodeAssignment_2_6 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6632:1: ( ( ( rule__Arrow__TgNodeAssignment_2_6 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6633:1: ( ( rule__Arrow__TgNodeAssignment_2_6 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6468:1: ( ( rule__Arrow__TgNodeAssignment_2_6 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6469:1: ( rule__Arrow__TgNodeAssignment_2_6 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6633:1: ( ( rule__Arrow__TgNodeAssignment_2_6 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6634:1: ( rule__Arrow__TgNodeAssignment_2_6 )
             {
              before(grammarAccess.getArrowAccess().getTgNodeAssignment_2_6()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6470:1: ( rule__Arrow__TgNodeAssignment_2_6 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6470:2: rule__Arrow__TgNodeAssignment_2_6
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6635:1: ( rule__Arrow__TgNodeAssignment_2_6 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6635:2: rule__Arrow__TgNodeAssignment_2_6
             {
-            pushFollow(FOLLOW_rule__Arrow__TgNodeAssignment_2_6_in_rule__Arrow__Group_2__6__Impl12982);
+            pushFollow(FOLLOW_rule__Arrow__TgNodeAssignment_2_6_in_rule__Arrow__Group_2__6__Impl13302);
             rule__Arrow__TgNodeAssignment_2_6();
 
             state._fsp--;
@@ -16768,21 +17144,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Node__Group__0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6494:1: rule__Node__Group__0 : rule__Node__Group__0__Impl rule__Node__Group__1 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6659:1: rule__Node__Group__0 : rule__Node__Group__0__Impl rule__Node__Group__1 ;
     public final void rule__Node__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6498:1: ( rule__Node__Group__0__Impl rule__Node__Group__1 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6499:2: rule__Node__Group__0__Impl rule__Node__Group__1
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6663:1: ( rule__Node__Group__0__Impl rule__Node__Group__1 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6664:2: rule__Node__Group__0__Impl rule__Node__Group__1
             {
-            pushFollow(FOLLOW_rule__Node__Group__0__Impl_in_rule__Node__Group__013026);
+            pushFollow(FOLLOW_rule__Node__Group__0__Impl_in_rule__Node__Group__013346);
             rule__Node__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Node__Group__1_in_rule__Node__Group__013029);
+            pushFollow(FOLLOW_rule__Node__Group__1_in_rule__Node__Group__013349);
             rule__Node__Group__1();
 
             state._fsp--;
@@ -16806,23 +17182,23 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Node__Group__0__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6506:1: rule__Node__Group__0__Impl : ( ( rule__Node__IdAssignment_0 ) ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6671:1: rule__Node__Group__0__Impl : ( ( rule__Node__IdAssignment_0 ) ) ;
     public final void rule__Node__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6510:1: ( ( ( rule__Node__IdAssignment_0 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6511:1: ( ( rule__Node__IdAssignment_0 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6675:1: ( ( ( rule__Node__IdAssignment_0 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6676:1: ( ( rule__Node__IdAssignment_0 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6511:1: ( ( rule__Node__IdAssignment_0 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6512:1: ( rule__Node__IdAssignment_0 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6676:1: ( ( rule__Node__IdAssignment_0 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6677:1: ( rule__Node__IdAssignment_0 )
             {
              before(grammarAccess.getNodeAccess().getIdAssignment_0()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6513:1: ( rule__Node__IdAssignment_0 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6513:2: rule__Node__IdAssignment_0
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6678:1: ( rule__Node__IdAssignment_0 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6678:2: rule__Node__IdAssignment_0
             {
-            pushFollow(FOLLOW_rule__Node__IdAssignment_0_in_rule__Node__Group__0__Impl13056);
+            pushFollow(FOLLOW_rule__Node__IdAssignment_0_in_rule__Node__Group__0__Impl13376);
             rule__Node__IdAssignment_0();
 
             state._fsp--;
@@ -16853,21 +17229,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Node__Group__1"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6523:1: rule__Node__Group__1 : rule__Node__Group__1__Impl rule__Node__Group__2 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6688:1: rule__Node__Group__1 : rule__Node__Group__1__Impl rule__Node__Group__2 ;
     public final void rule__Node__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6527:1: ( rule__Node__Group__1__Impl rule__Node__Group__2 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6528:2: rule__Node__Group__1__Impl rule__Node__Group__2
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6692:1: ( rule__Node__Group__1__Impl rule__Node__Group__2 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6693:2: rule__Node__Group__1__Impl rule__Node__Group__2
             {
-            pushFollow(FOLLOW_rule__Node__Group__1__Impl_in_rule__Node__Group__113086);
+            pushFollow(FOLLOW_rule__Node__Group__1__Impl_in_rule__Node__Group__113406);
             rule__Node__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Node__Group__2_in_rule__Node__Group__113089);
+            pushFollow(FOLLOW_rule__Node__Group__2_in_rule__Node__Group__113409);
             rule__Node__Group__2();
 
             state._fsp--;
@@ -16891,20 +17267,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Node__Group__1__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6535:1: rule__Node__Group__1__Impl : ( ':' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6700:1: rule__Node__Group__1__Impl : ( ':' ) ;
     public final void rule__Node__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6539:1: ( ( ':' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6540:1: ( ':' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6704:1: ( ( ':' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6705:1: ( ':' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6540:1: ( ':' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6541:1: ':'
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6705:1: ( ':' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6706:1: ':'
             {
              before(grammarAccess.getNodeAccess().getColonKeyword_1()); 
-            match(input,46,FOLLOW_46_in_rule__Node__Group__1__Impl13117); 
+            match(input,47,FOLLOW_47_in_rule__Node__Group__1__Impl13437); 
              after(grammarAccess.getNodeAccess().getColonKeyword_1()); 
 
             }
@@ -16928,16 +17304,16 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Node__Group__2"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6554:1: rule__Node__Group__2 : rule__Node__Group__2__Impl ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6719:1: rule__Node__Group__2 : rule__Node__Group__2__Impl ;
     public final void rule__Node__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6558:1: ( rule__Node__Group__2__Impl )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6559:2: rule__Node__Group__2__Impl
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6723:1: ( rule__Node__Group__2__Impl )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6724:2: rule__Node__Group__2__Impl
             {
-            pushFollow(FOLLOW_rule__Node__Group__2__Impl_in_rule__Node__Group__213148);
+            pushFollow(FOLLOW_rule__Node__Group__2__Impl_in_rule__Node__Group__213468);
             rule__Node__Group__2__Impl();
 
             state._fsp--;
@@ -16961,23 +17337,23 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Node__Group__2__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6565:1: rule__Node__Group__2__Impl : ( ( rule__Node__TypeAssignment_2 ) ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6730:1: rule__Node__Group__2__Impl : ( ( rule__Node__TypeAssignment_2 ) ) ;
     public final void rule__Node__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6569:1: ( ( ( rule__Node__TypeAssignment_2 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6570:1: ( ( rule__Node__TypeAssignment_2 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6734:1: ( ( ( rule__Node__TypeAssignment_2 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6735:1: ( ( rule__Node__TypeAssignment_2 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6570:1: ( ( rule__Node__TypeAssignment_2 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6571:1: ( rule__Node__TypeAssignment_2 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6735:1: ( ( rule__Node__TypeAssignment_2 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6736:1: ( rule__Node__TypeAssignment_2 )
             {
              before(grammarAccess.getNodeAccess().getTypeAssignment_2()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6572:1: ( rule__Node__TypeAssignment_2 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6572:2: rule__Node__TypeAssignment_2
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6737:1: ( rule__Node__TypeAssignment_2 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6737:2: rule__Node__TypeAssignment_2
             {
-            pushFollow(FOLLOW_rule__Node__TypeAssignment_2_in_rule__Node__Group__2__Impl13175);
+            pushFollow(FOLLOW_rule__Node__TypeAssignment_2_in_rule__Node__Group__2__Impl13495);
             rule__Node__TypeAssignment_2();
 
             state._fsp--;
@@ -17008,21 +17384,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeValue__Group__0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6588:1: rule__AttributeValue__Group__0 : rule__AttributeValue__Group__0__Impl rule__AttributeValue__Group__1 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6753:1: rule__AttributeValue__Group__0 : rule__AttributeValue__Group__0__Impl rule__AttributeValue__Group__1 ;
     public final void rule__AttributeValue__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6592:1: ( rule__AttributeValue__Group__0__Impl rule__AttributeValue__Group__1 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6593:2: rule__AttributeValue__Group__0__Impl rule__AttributeValue__Group__1
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6757:1: ( rule__AttributeValue__Group__0__Impl rule__AttributeValue__Group__1 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6758:2: rule__AttributeValue__Group__0__Impl rule__AttributeValue__Group__1
             {
-            pushFollow(FOLLOW_rule__AttributeValue__Group__0__Impl_in_rule__AttributeValue__Group__013211);
+            pushFollow(FOLLOW_rule__AttributeValue__Group__0__Impl_in_rule__AttributeValue__Group__013531);
             rule__AttributeValue__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__AttributeValue__Group__1_in_rule__AttributeValue__Group__013214);
+            pushFollow(FOLLOW_rule__AttributeValue__Group__1_in_rule__AttributeValue__Group__013534);
             rule__AttributeValue__Group__1();
 
             state._fsp--;
@@ -17046,20 +17422,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeValue__Group__0__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6600:1: rule__AttributeValue__Group__0__Impl : ( '[' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6765:1: rule__AttributeValue__Group__0__Impl : ( '[' ) ;
     public final void rule__AttributeValue__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6604:1: ( ( '[' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6605:1: ( '[' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6769:1: ( ( '[' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6770:1: ( '[' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6605:1: ( '[' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6606:1: '['
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6770:1: ( '[' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6771:1: '['
             {
              before(grammarAccess.getAttributeValueAccess().getLeftSquareBracketKeyword_0()); 
-            match(input,48,FOLLOW_48_in_rule__AttributeValue__Group__0__Impl13242); 
+            match(input,49,FOLLOW_49_in_rule__AttributeValue__Group__0__Impl13562); 
              after(grammarAccess.getAttributeValueAccess().getLeftSquareBracketKeyword_0()); 
 
             }
@@ -17083,21 +17459,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeValue__Group__1"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6619:1: rule__AttributeValue__Group__1 : rule__AttributeValue__Group__1__Impl rule__AttributeValue__Group__2 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6784:1: rule__AttributeValue__Group__1 : rule__AttributeValue__Group__1__Impl rule__AttributeValue__Group__2 ;
     public final void rule__AttributeValue__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6623:1: ( rule__AttributeValue__Group__1__Impl rule__AttributeValue__Group__2 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6624:2: rule__AttributeValue__Group__1__Impl rule__AttributeValue__Group__2
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6788:1: ( rule__AttributeValue__Group__1__Impl rule__AttributeValue__Group__2 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6789:2: rule__AttributeValue__Group__1__Impl rule__AttributeValue__Group__2
             {
-            pushFollow(FOLLOW_rule__AttributeValue__Group__1__Impl_in_rule__AttributeValue__Group__113273);
+            pushFollow(FOLLOW_rule__AttributeValue__Group__1__Impl_in_rule__AttributeValue__Group__113593);
             rule__AttributeValue__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__AttributeValue__Group__2_in_rule__AttributeValue__Group__113276);
+            pushFollow(FOLLOW_rule__AttributeValue__Group__2_in_rule__AttributeValue__Group__113596);
             rule__AttributeValue__Group__2();
 
             state._fsp--;
@@ -17121,23 +17497,23 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeValue__Group__1__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6631:1: rule__AttributeValue__Group__1__Impl : ( ( rule__AttributeValue__ValueAssignment_1 ) ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6796:1: rule__AttributeValue__Group__1__Impl : ( ( rule__AttributeValue__ValueAssignment_1 ) ) ;
     public final void rule__AttributeValue__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6635:1: ( ( ( rule__AttributeValue__ValueAssignment_1 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6636:1: ( ( rule__AttributeValue__ValueAssignment_1 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6800:1: ( ( ( rule__AttributeValue__ValueAssignment_1 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6801:1: ( ( rule__AttributeValue__ValueAssignment_1 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6636:1: ( ( rule__AttributeValue__ValueAssignment_1 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6637:1: ( rule__AttributeValue__ValueAssignment_1 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6801:1: ( ( rule__AttributeValue__ValueAssignment_1 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6802:1: ( rule__AttributeValue__ValueAssignment_1 )
             {
              before(grammarAccess.getAttributeValueAccess().getValueAssignment_1()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6638:1: ( rule__AttributeValue__ValueAssignment_1 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6638:2: rule__AttributeValue__ValueAssignment_1
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6803:1: ( rule__AttributeValue__ValueAssignment_1 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6803:2: rule__AttributeValue__ValueAssignment_1
             {
-            pushFollow(FOLLOW_rule__AttributeValue__ValueAssignment_1_in_rule__AttributeValue__Group__1__Impl13303);
+            pushFollow(FOLLOW_rule__AttributeValue__ValueAssignment_1_in_rule__AttributeValue__Group__1__Impl13623);
             rule__AttributeValue__ValueAssignment_1();
 
             state._fsp--;
@@ -17168,16 +17544,16 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeValue__Group__2"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6648:1: rule__AttributeValue__Group__2 : rule__AttributeValue__Group__2__Impl ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6813:1: rule__AttributeValue__Group__2 : rule__AttributeValue__Group__2__Impl ;
     public final void rule__AttributeValue__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6652:1: ( rule__AttributeValue__Group__2__Impl )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6653:2: rule__AttributeValue__Group__2__Impl
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6817:1: ( rule__AttributeValue__Group__2__Impl )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6818:2: rule__AttributeValue__Group__2__Impl
             {
-            pushFollow(FOLLOW_rule__AttributeValue__Group__2__Impl_in_rule__AttributeValue__Group__213333);
+            pushFollow(FOLLOW_rule__AttributeValue__Group__2__Impl_in_rule__AttributeValue__Group__213653);
             rule__AttributeValue__Group__2__Impl();
 
             state._fsp--;
@@ -17201,20 +17577,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeValue__Group__2__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6659:1: rule__AttributeValue__Group__2__Impl : ( ']' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6824:1: rule__AttributeValue__Group__2__Impl : ( ']' ) ;
     public final void rule__AttributeValue__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6663:1: ( ( ']' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6664:1: ( ']' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6828:1: ( ( ']' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6829:1: ( ']' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6664:1: ( ']' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6665:1: ']'
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6829:1: ( ']' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6830:1: ']'
             {
              before(grammarAccess.getAttributeValueAccess().getRightSquareBracketKeyword_2()); 
-            match(input,49,FOLLOW_49_in_rule__AttributeValue__Group__2__Impl13361); 
+            match(input,50,FOLLOW_50_in_rule__AttributeValue__Group__2__Impl13681); 
              after(grammarAccess.getAttributeValueAccess().getRightSquareBracketKeyword_2()); 
 
             }
@@ -17238,21 +17614,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DpfId__Group__0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6684:1: rule__DpfId__Group__0 : rule__DpfId__Group__0__Impl rule__DpfId__Group__1 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6849:1: rule__DpfId__Group__0 : rule__DpfId__Group__0__Impl rule__DpfId__Group__1 ;
     public final void rule__DpfId__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6688:1: ( rule__DpfId__Group__0__Impl rule__DpfId__Group__1 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6689:2: rule__DpfId__Group__0__Impl rule__DpfId__Group__1
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6853:1: ( rule__DpfId__Group__0__Impl rule__DpfId__Group__1 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6854:2: rule__DpfId__Group__0__Impl rule__DpfId__Group__1
             {
-            pushFollow(FOLLOW_rule__DpfId__Group__0__Impl_in_rule__DpfId__Group__013398);
+            pushFollow(FOLLOW_rule__DpfId__Group__0__Impl_in_rule__DpfId__Group__013718);
             rule__DpfId__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__DpfId__Group__1_in_rule__DpfId__Group__013401);
+            pushFollow(FOLLOW_rule__DpfId__Group__1_in_rule__DpfId__Group__013721);
             rule__DpfId__Group__1();
 
             state._fsp--;
@@ -17276,23 +17652,23 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DpfId__Group__0__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6696:1: rule__DpfId__Group__0__Impl : ( ( rule__DpfId__NameAssignment_0 ) ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6861:1: rule__DpfId__Group__0__Impl : ( ( rule__DpfId__NameAssignment_0 ) ) ;
     public final void rule__DpfId__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6700:1: ( ( ( rule__DpfId__NameAssignment_0 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6701:1: ( ( rule__DpfId__NameAssignment_0 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6865:1: ( ( ( rule__DpfId__NameAssignment_0 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6866:1: ( ( rule__DpfId__NameAssignment_0 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6701:1: ( ( rule__DpfId__NameAssignment_0 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6702:1: ( rule__DpfId__NameAssignment_0 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6866:1: ( ( rule__DpfId__NameAssignment_0 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6867:1: ( rule__DpfId__NameAssignment_0 )
             {
              before(grammarAccess.getDpfIdAccess().getNameAssignment_0()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6703:1: ( rule__DpfId__NameAssignment_0 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6703:2: rule__DpfId__NameAssignment_0
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6868:1: ( rule__DpfId__NameAssignment_0 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6868:2: rule__DpfId__NameAssignment_0
             {
-            pushFollow(FOLLOW_rule__DpfId__NameAssignment_0_in_rule__DpfId__Group__0__Impl13428);
+            pushFollow(FOLLOW_rule__DpfId__NameAssignment_0_in_rule__DpfId__Group__0__Impl13748);
             rule__DpfId__NameAssignment_0();
 
             state._fsp--;
@@ -17323,16 +17699,16 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DpfId__Group__1"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6713:1: rule__DpfId__Group__1 : rule__DpfId__Group__1__Impl ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6878:1: rule__DpfId__Group__1 : rule__DpfId__Group__1__Impl ;
     public final void rule__DpfId__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6717:1: ( rule__DpfId__Group__1__Impl )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6718:2: rule__DpfId__Group__1__Impl
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6882:1: ( rule__DpfId__Group__1__Impl )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6883:2: rule__DpfId__Group__1__Impl
             {
-            pushFollow(FOLLOW_rule__DpfId__Group__1__Impl_in_rule__DpfId__Group__113458);
+            pushFollow(FOLLOW_rule__DpfId__Group__1__Impl_in_rule__DpfId__Group__113778);
             rule__DpfId__Group__1__Impl();
 
             state._fsp--;
@@ -17356,31 +17732,31 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DpfId__Group__1__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6724:1: rule__DpfId__Group__1__Impl : ( ( rule__DpfId__Group_1__0 )? ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6889:1: rule__DpfId__Group__1__Impl : ( ( rule__DpfId__Group_1__0 )? ) ;
     public final void rule__DpfId__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6728:1: ( ( ( rule__DpfId__Group_1__0 )? ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6729:1: ( ( rule__DpfId__Group_1__0 )? )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6893:1: ( ( ( rule__DpfId__Group_1__0 )? ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6894:1: ( ( rule__DpfId__Group_1__0 )? )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6729:1: ( ( rule__DpfId__Group_1__0 )? )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6730:1: ( rule__DpfId__Group_1__0 )?
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6894:1: ( ( rule__DpfId__Group_1__0 )? )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6895:1: ( rule__DpfId__Group_1__0 )?
             {
              before(grammarAccess.getDpfIdAccess().getGroup_1()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6731:1: ( rule__DpfId__Group_1__0 )?
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6896:1: ( rule__DpfId__Group_1__0 )?
             int alt21=2;
             int LA21_0 = input.LA(1);
 
-            if ( (LA21_0==50) ) {
+            if ( (LA21_0==51) ) {
                 alt21=1;
             }
             switch (alt21) {
                 case 1 :
-                    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6731:2: rule__DpfId__Group_1__0
+                    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6896:2: rule__DpfId__Group_1__0
                     {
-                    pushFollow(FOLLOW_rule__DpfId__Group_1__0_in_rule__DpfId__Group__1__Impl13485);
+                    pushFollow(FOLLOW_rule__DpfId__Group_1__0_in_rule__DpfId__Group__1__Impl13805);
                     rule__DpfId__Group_1__0();
 
                     state._fsp--;
@@ -17414,21 +17790,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DpfId__Group_1__0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6745:1: rule__DpfId__Group_1__0 : rule__DpfId__Group_1__0__Impl rule__DpfId__Group_1__1 ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6910:1: rule__DpfId__Group_1__0 : rule__DpfId__Group_1__0__Impl rule__DpfId__Group_1__1 ;
     public final void rule__DpfId__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6749:1: ( rule__DpfId__Group_1__0__Impl rule__DpfId__Group_1__1 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6750:2: rule__DpfId__Group_1__0__Impl rule__DpfId__Group_1__1
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6914:1: ( rule__DpfId__Group_1__0__Impl rule__DpfId__Group_1__1 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6915:2: rule__DpfId__Group_1__0__Impl rule__DpfId__Group_1__1
             {
-            pushFollow(FOLLOW_rule__DpfId__Group_1__0__Impl_in_rule__DpfId__Group_1__013520);
+            pushFollow(FOLLOW_rule__DpfId__Group_1__0__Impl_in_rule__DpfId__Group_1__013840);
             rule__DpfId__Group_1__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__DpfId__Group_1__1_in_rule__DpfId__Group_1__013523);
+            pushFollow(FOLLOW_rule__DpfId__Group_1__1_in_rule__DpfId__Group_1__013843);
             rule__DpfId__Group_1__1();
 
             state._fsp--;
@@ -17452,20 +17828,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DpfId__Group_1__0__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6757:1: rule__DpfId__Group_1__0__Impl : ( '@' ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6922:1: rule__DpfId__Group_1__0__Impl : ( '@' ) ;
     public final void rule__DpfId__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6761:1: ( ( '@' ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6762:1: ( '@' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6926:1: ( ( '@' ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6927:1: ( '@' )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6762:1: ( '@' )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6763:1: '@'
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6927:1: ( '@' )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6928:1: '@'
             {
              before(grammarAccess.getDpfIdAccess().getCommercialAtKeyword_1_0()); 
-            match(input,50,FOLLOW_50_in_rule__DpfId__Group_1__0__Impl13551); 
+            match(input,51,FOLLOW_51_in_rule__DpfId__Group_1__0__Impl13871); 
              after(grammarAccess.getDpfIdAccess().getCommercialAtKeyword_1_0()); 
 
             }
@@ -17489,16 +17865,16 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DpfId__Group_1__1"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6776:1: rule__DpfId__Group_1__1 : rule__DpfId__Group_1__1__Impl ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6941:1: rule__DpfId__Group_1__1 : rule__DpfId__Group_1__1__Impl ;
     public final void rule__DpfId__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6780:1: ( rule__DpfId__Group_1__1__Impl )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6781:2: rule__DpfId__Group_1__1__Impl
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6945:1: ( rule__DpfId__Group_1__1__Impl )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6946:2: rule__DpfId__Group_1__1__Impl
             {
-            pushFollow(FOLLOW_rule__DpfId__Group_1__1__Impl_in_rule__DpfId__Group_1__113582);
+            pushFollow(FOLLOW_rule__DpfId__Group_1__1__Impl_in_rule__DpfId__Group_1__113902);
             rule__DpfId__Group_1__1__Impl();
 
             state._fsp--;
@@ -17522,23 +17898,23 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DpfId__Group_1__1__Impl"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6787:1: rule__DpfId__Group_1__1__Impl : ( ( rule__DpfId__IdAssignment_1_1 ) ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6952:1: rule__DpfId__Group_1__1__Impl : ( ( rule__DpfId__IdAssignment_1_1 ) ) ;
     public final void rule__DpfId__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6791:1: ( ( ( rule__DpfId__IdAssignment_1_1 ) ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6792:1: ( ( rule__DpfId__IdAssignment_1_1 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6956:1: ( ( ( rule__DpfId__IdAssignment_1_1 ) ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6957:1: ( ( rule__DpfId__IdAssignment_1_1 ) )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6792:1: ( ( rule__DpfId__IdAssignment_1_1 ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6793:1: ( rule__DpfId__IdAssignment_1_1 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6957:1: ( ( rule__DpfId__IdAssignment_1_1 ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6958:1: ( rule__DpfId__IdAssignment_1_1 )
             {
              before(grammarAccess.getDpfIdAccess().getIdAssignment_1_1()); 
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6794:1: ( rule__DpfId__IdAssignment_1_1 )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6794:2: rule__DpfId__IdAssignment_1_1
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6959:1: ( rule__DpfId__IdAssignment_1_1 )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6959:2: rule__DpfId__IdAssignment_1_1
             {
-            pushFollow(FOLLOW_rule__DpfId__IdAssignment_1_1_in_rule__DpfId__Group_1__1__Impl13609);
+            pushFollow(FOLLOW_rule__DpfId__IdAssignment_1_1_in_rule__DpfId__Group_1__1__Impl13929);
             rule__DpfId__IdAssignment_1_1();
 
             state._fsp--;
@@ -17569,20 +17945,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Model__DefinitionsAssignment_0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6809:1: rule__Model__DefinitionsAssignment_0 : ( ruleDefinition ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6974:1: rule__Model__DefinitionsAssignment_0 : ( ruleDefinition ) ;
     public final void rule__Model__DefinitionsAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6813:1: ( ( ruleDefinition ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6814:1: ( ruleDefinition )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6978:1: ( ( ruleDefinition ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6979:1: ( ruleDefinition )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6814:1: ( ruleDefinition )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6815:1: ruleDefinition
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6979:1: ( ruleDefinition )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6980:1: ruleDefinition
             {
              before(grammarAccess.getModelAccess().getDefinitionsDefinitionParserRuleCall_0_0()); 
-            pushFollow(FOLLOW_ruleDefinition_in_rule__Model__DefinitionsAssignment_013648);
+            pushFollow(FOLLOW_ruleDefinition_in_rule__Model__DefinitionsAssignment_013968);
             ruleDefinition();
 
             state._fsp--;
@@ -17610,20 +17986,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Model__DefinitionsAssignment_1"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6824:1: rule__Model__DefinitionsAssignment_1 : ( ruleDefinition ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6989:1: rule__Model__DefinitionsAssignment_1 : ( ruleDefinition ) ;
     public final void rule__Model__DefinitionsAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6828:1: ( ( ruleDefinition ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6829:1: ( ruleDefinition )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6993:1: ( ( ruleDefinition ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6994:1: ( ruleDefinition )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6829:1: ( ruleDefinition )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6830:1: ruleDefinition
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6994:1: ( ruleDefinition )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6995:1: ruleDefinition
             {
              before(grammarAccess.getModelAccess().getDefinitionsDefinitionParserRuleCall_1_0()); 
-            pushFollow(FOLLOW_ruleDefinition_in_rule__Model__DefinitionsAssignment_113679);
+            pushFollow(FOLLOW_ruleDefinition_in_rule__Model__DefinitionsAssignment_113999);
             ruleDefinition();
 
             state._fsp--;
@@ -17651,20 +18027,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MakeEmf__IdAssignment_1"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6839:1: rule__MakeEmf__IdAssignment_1 : ( RULE_ID ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7004:1: rule__MakeEmf__IdAssignment_1 : ( RULE_ID ) ;
     public final void rule__MakeEmf__IdAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6843:1: ( ( RULE_ID ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6844:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7008:1: ( ( RULE_ID ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7009:1: ( RULE_ID )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6844:1: ( RULE_ID )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6845:1: RULE_ID
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7009:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7010:1: RULE_ID
             {
              before(grammarAccess.getMakeEmfAccess().getIdIDTerminalRuleCall_1_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__MakeEmf__IdAssignment_113710); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__MakeEmf__IdAssignment_114030); 
              after(grammarAccess.getMakeEmfAccess().getIdIDTerminalRuleCall_1_0()); 
 
             }
@@ -17688,20 +18064,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MakeEcore__IdAssignment_1"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6854:1: rule__MakeEcore__IdAssignment_1 : ( RULE_ID ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7019:1: rule__MakeEcore__IdAssignment_1 : ( RULE_ID ) ;
     public final void rule__MakeEcore__IdAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6858:1: ( ( RULE_ID ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6859:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7023:1: ( ( RULE_ID ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7024:1: ( RULE_ID )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6859:1: ( RULE_ID )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6860:1: RULE_ID
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7024:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7025:1: RULE_ID
             {
              before(grammarAccess.getMakeEcoreAccess().getIdIDTerminalRuleCall_1_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__MakeEcore__IdAssignment_113741); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__MakeEcore__IdAssignment_114061); 
              after(grammarAccess.getMakeEcoreAccess().getIdIDTerminalRuleCall_1_0()); 
 
             }
@@ -17725,20 +18101,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MakeImage__IdAssignment_1"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6869:1: rule__MakeImage__IdAssignment_1 : ( RULE_ID ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7034:1: rule__MakeImage__IdAssignment_1 : ( RULE_ID ) ;
     public final void rule__MakeImage__IdAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6873:1: ( ( RULE_ID ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6874:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7038:1: ( ( RULE_ID ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7039:1: ( RULE_ID )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6874:1: ( RULE_ID )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6875:1: RULE_ID
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7039:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7040:1: RULE_ID
             {
              before(grammarAccess.getMakeImageAccess().getIdIDTerminalRuleCall_1_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__MakeImage__IdAssignment_113772); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__MakeImage__IdAssignment_114092); 
              after(grammarAccess.getMakeImageAccess().getIdIDTerminalRuleCall_1_0()); 
 
             }
@@ -17762,20 +18138,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SimpleEvoSpan__LhsAssignment_1"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6884:1: rule__SimpleEvoSpan__LhsAssignment_1 : ( RULE_ID ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7049:1: rule__SimpleEvoSpan__LhsAssignment_1 : ( RULE_ID ) ;
     public final void rule__SimpleEvoSpan__LhsAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6888:1: ( ( RULE_ID ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6889:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7053:1: ( ( RULE_ID ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7054:1: ( RULE_ID )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6889:1: ( RULE_ID )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6890:1: RULE_ID
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7054:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7055:1: RULE_ID
             {
              before(grammarAccess.getSimpleEvoSpanAccess().getLhsIDTerminalRuleCall_1_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__SimpleEvoSpan__LhsAssignment_113803); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__SimpleEvoSpan__LhsAssignment_114123); 
              after(grammarAccess.getSimpleEvoSpanAccess().getLhsIDTerminalRuleCall_1_0()); 
 
             }
@@ -17799,20 +18175,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SimpleEvoSpan__DiffAssignment_3"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6899:1: rule__SimpleEvoSpan__DiffAssignment_3 : ( RULE_ID ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7064:1: rule__SimpleEvoSpan__DiffAssignment_3 : ( RULE_ID ) ;
     public final void rule__SimpleEvoSpan__DiffAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6903:1: ( ( RULE_ID ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6904:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7068:1: ( ( RULE_ID ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7069:1: ( RULE_ID )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6904:1: ( RULE_ID )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6905:1: RULE_ID
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7069:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7070:1: RULE_ID
             {
              before(grammarAccess.getSimpleEvoSpanAccess().getDiffIDTerminalRuleCall_3_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__SimpleEvoSpan__DiffAssignment_313834); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__SimpleEvoSpan__DiffAssignment_314154); 
              after(grammarAccess.getSimpleEvoSpanAccess().getDiffIDTerminalRuleCall_3_0()); 
 
             }
@@ -17836,20 +18212,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SimpleEvoSpan__RhSAssignment_5"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6914:1: rule__SimpleEvoSpan__RhSAssignment_5 : ( RULE_ID ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7079:1: rule__SimpleEvoSpan__RhSAssignment_5 : ( RULE_ID ) ;
     public final void rule__SimpleEvoSpan__RhSAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6918:1: ( ( RULE_ID ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6919:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7083:1: ( ( RULE_ID ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7084:1: ( RULE_ID )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6919:1: ( RULE_ID )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6920:1: RULE_ID
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7084:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7085:1: RULE_ID
             {
              before(grammarAccess.getSimpleEvoSpanAccess().getRhSIDTerminalRuleCall_5_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__SimpleEvoSpan__RhSAssignment_513865); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__SimpleEvoSpan__RhSAssignment_514185); 
              after(grammarAccess.getSimpleEvoSpanAccess().getRhSIDTerminalRuleCall_5_0()); 
 
             }
@@ -17873,20 +18249,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SimpleEvoSpan__TypeGraphAssignment_7"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6929:1: rule__SimpleEvoSpan__TypeGraphAssignment_7 : ( RULE_ID ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7094:1: rule__SimpleEvoSpan__TypeGraphAssignment_7 : ( RULE_ID ) ;
     public final void rule__SimpleEvoSpan__TypeGraphAssignment_7() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6933:1: ( ( RULE_ID ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6934:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7098:1: ( ( RULE_ID ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7099:1: ( RULE_ID )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6934:1: ( RULE_ID )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6935:1: RULE_ID
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7099:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7100:1: RULE_ID
             {
              before(grammarAccess.getSimpleEvoSpanAccess().getTypeGraphIDTerminalRuleCall_7_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__SimpleEvoSpan__TypeGraphAssignment_713896); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__SimpleEvoSpan__TypeGraphAssignment_714216); 
              after(grammarAccess.getSimpleEvoSpanAccess().getTypeGraphIDTerminalRuleCall_7_0()); 
 
             }
@@ -17910,20 +18286,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SimpleEvoCospan__LhsAssignment_1"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6944:1: rule__SimpleEvoCospan__LhsAssignment_1 : ( RULE_ID ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7109:1: rule__SimpleEvoCospan__LhsAssignment_1 : ( RULE_ID ) ;
     public final void rule__SimpleEvoCospan__LhsAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6948:1: ( ( RULE_ID ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6949:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7113:1: ( ( RULE_ID ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7114:1: ( RULE_ID )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6949:1: ( RULE_ID )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6950:1: RULE_ID
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7114:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7115:1: RULE_ID
             {
              before(grammarAccess.getSimpleEvoCospanAccess().getLhsIDTerminalRuleCall_1_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__SimpleEvoCospan__LhsAssignment_113927); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__SimpleEvoCospan__LhsAssignment_114247); 
              after(grammarAccess.getSimpleEvoCospanAccess().getLhsIDTerminalRuleCall_1_0()); 
 
             }
@@ -17947,20 +18323,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SimpleEvoCospan__JointAssignment_3"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6959:1: rule__SimpleEvoCospan__JointAssignment_3 : ( RULE_ID ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7124:1: rule__SimpleEvoCospan__JointAssignment_3 : ( RULE_ID ) ;
     public final void rule__SimpleEvoCospan__JointAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6963:1: ( ( RULE_ID ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6964:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7128:1: ( ( RULE_ID ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7129:1: ( RULE_ID )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6964:1: ( RULE_ID )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6965:1: RULE_ID
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7129:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7130:1: RULE_ID
             {
              before(grammarAccess.getSimpleEvoCospanAccess().getJointIDTerminalRuleCall_3_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__SimpleEvoCospan__JointAssignment_313958); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__SimpleEvoCospan__JointAssignment_314278); 
              after(grammarAccess.getSimpleEvoCospanAccess().getJointIDTerminalRuleCall_3_0()); 
 
             }
@@ -17984,20 +18360,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SimpleEvoCospan__RhsAssignment_5"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6974:1: rule__SimpleEvoCospan__RhsAssignment_5 : ( RULE_ID ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7139:1: rule__SimpleEvoCospan__RhsAssignment_5 : ( RULE_ID ) ;
     public final void rule__SimpleEvoCospan__RhsAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6978:1: ( ( RULE_ID ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6979:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7143:1: ( ( RULE_ID ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7144:1: ( RULE_ID )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6979:1: ( RULE_ID )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6980:1: RULE_ID
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7144:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7145:1: RULE_ID
             {
              before(grammarAccess.getSimpleEvoCospanAccess().getRhsIDTerminalRuleCall_5_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__SimpleEvoCospan__RhsAssignment_513989); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__SimpleEvoCospan__RhsAssignment_514309); 
              after(grammarAccess.getSimpleEvoCospanAccess().getRhsIDTerminalRuleCall_5_0()); 
 
             }
@@ -18021,20 +18397,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SimpleEvoCospan__TypeGraphAssignment_7"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6989:1: rule__SimpleEvoCospan__TypeGraphAssignment_7 : ( RULE_ID ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7154:1: rule__SimpleEvoCospan__TypeGraphAssignment_7 : ( RULE_ID ) ;
     public final void rule__SimpleEvoCospan__TypeGraphAssignment_7() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6993:1: ( ( RULE_ID ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6994:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7158:1: ( ( RULE_ID ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7159:1: ( RULE_ID )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6994:1: ( RULE_ID )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:6995:1: RULE_ID
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7159:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7160:1: RULE_ID
             {
              before(grammarAccess.getSimpleEvoCospanAccess().getTypeGraphIDTerminalRuleCall_7_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__SimpleEvoCospan__TypeGraphAssignment_714020); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__SimpleEvoCospan__TypeGraphAssignment_714340); 
              after(grammarAccess.getSimpleEvoCospanAccess().getTypeGraphIDTerminalRuleCall_7_0()); 
 
             }
@@ -18058,20 +18434,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EvoSpan__LhsAssignment_1"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7004:1: rule__EvoSpan__LhsAssignment_1 : ( RULE_ID ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7169:1: rule__EvoSpan__LhsAssignment_1 : ( RULE_ID ) ;
     public final void rule__EvoSpan__LhsAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7008:1: ( ( RULE_ID ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7009:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7173:1: ( ( RULE_ID ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7174:1: ( RULE_ID )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7009:1: ( RULE_ID )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7010:1: RULE_ID
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7174:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7175:1: RULE_ID
             {
              before(grammarAccess.getEvoSpanAccess().getLhsIDTerminalRuleCall_1_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__EvoSpan__LhsAssignment_114051); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__EvoSpan__LhsAssignment_114371); 
              after(grammarAccess.getEvoSpanAccess().getLhsIDTerminalRuleCall_1_0()); 
 
             }
@@ -18095,20 +18471,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EvoSpan__RhsAssignment_3"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7019:1: rule__EvoSpan__RhsAssignment_3 : ( RULE_ID ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7184:1: rule__EvoSpan__RhsAssignment_3 : ( RULE_ID ) ;
     public final void rule__EvoSpan__RhsAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7023:1: ( ( RULE_ID ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7024:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7188:1: ( ( RULE_ID ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7189:1: ( RULE_ID )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7024:1: ( RULE_ID )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7025:1: RULE_ID
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7189:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7190:1: RULE_ID
             {
              before(grammarAccess.getEvoSpanAccess().getRhsIDTerminalRuleCall_3_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__EvoSpan__RhsAssignment_314082); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__EvoSpan__RhsAssignment_314402); 
              after(grammarAccess.getEvoSpanAccess().getRhsIDTerminalRuleCall_3_0()); 
 
             }
@@ -18132,20 +18508,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EvoSpan__TypeGraphAssignment_5"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7034:1: rule__EvoSpan__TypeGraphAssignment_5 : ( RULE_ID ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7199:1: rule__EvoSpan__TypeGraphAssignment_5 : ( RULE_ID ) ;
     public final void rule__EvoSpan__TypeGraphAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7038:1: ( ( RULE_ID ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7039:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7203:1: ( ( RULE_ID ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7204:1: ( RULE_ID )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7039:1: ( RULE_ID )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7040:1: RULE_ID
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7204:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7205:1: RULE_ID
             {
              before(grammarAccess.getEvoSpanAccess().getTypeGraphIDTerminalRuleCall_5_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__EvoSpan__TypeGraphAssignment_514113); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__EvoSpan__TypeGraphAssignment_514433); 
              after(grammarAccess.getEvoSpanAccess().getTypeGraphIDTerminalRuleCall_5_0()); 
 
             }
@@ -18169,20 +18545,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EvoCospan__LhsAssignment_1"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7049:1: rule__EvoCospan__LhsAssignment_1 : ( RULE_ID ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7214:1: rule__EvoCospan__LhsAssignment_1 : ( RULE_ID ) ;
     public final void rule__EvoCospan__LhsAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7053:1: ( ( RULE_ID ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7054:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7218:1: ( ( RULE_ID ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7219:1: ( RULE_ID )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7054:1: ( RULE_ID )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7055:1: RULE_ID
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7219:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7220:1: RULE_ID
             {
              before(grammarAccess.getEvoCospanAccess().getLhsIDTerminalRuleCall_1_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__EvoCospan__LhsAssignment_114144); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__EvoCospan__LhsAssignment_114464); 
              after(grammarAccess.getEvoCospanAccess().getLhsIDTerminalRuleCall_1_0()); 
 
             }
@@ -18206,20 +18582,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EvoCospan__RhsAssignment_3"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7064:1: rule__EvoCospan__RhsAssignment_3 : ( RULE_ID ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7229:1: rule__EvoCospan__RhsAssignment_3 : ( RULE_ID ) ;
     public final void rule__EvoCospan__RhsAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7068:1: ( ( RULE_ID ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7069:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7233:1: ( ( RULE_ID ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7234:1: ( RULE_ID )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7069:1: ( RULE_ID )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7070:1: RULE_ID
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7234:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7235:1: RULE_ID
             {
              before(grammarAccess.getEvoCospanAccess().getRhsIDTerminalRuleCall_3_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__EvoCospan__RhsAssignment_314175); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__EvoCospan__RhsAssignment_314495); 
              after(grammarAccess.getEvoCospanAccess().getRhsIDTerminalRuleCall_3_0()); 
 
             }
@@ -18243,20 +18619,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EvoCospan__TypeGraphAssignment_5"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7079:1: rule__EvoCospan__TypeGraphAssignment_5 : ( RULE_ID ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7244:1: rule__EvoCospan__TypeGraphAssignment_5 : ( RULE_ID ) ;
     public final void rule__EvoCospan__TypeGraphAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7083:1: ( ( RULE_ID ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7084:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7248:1: ( ( RULE_ID ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7249:1: ( RULE_ID )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7084:1: ( RULE_ID )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7085:1: RULE_ID
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7249:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7250:1: RULE_ID
             {
              before(grammarAccess.getEvoCospanAccess().getTypeGraphIDTerminalRuleCall_5_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__EvoCospan__TypeGraphAssignment_514206); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__EvoCospan__TypeGraphAssignment_514526); 
              after(grammarAccess.getEvoCospanAccess().getTypeGraphIDTerminalRuleCall_5_0()); 
 
             }
@@ -18280,20 +18656,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InstanceSpecification__IdAssignment_0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7094:1: rule__InstanceSpecification__IdAssignment_0 : ( RULE_ID ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7259:1: rule__InstanceSpecification__IdAssignment_0 : ( RULE_ID ) ;
     public final void rule__InstanceSpecification__IdAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7098:1: ( ( RULE_ID ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7099:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7263:1: ( ( RULE_ID ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7264:1: ( RULE_ID )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7099:1: ( RULE_ID )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7100:1: RULE_ID
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7264:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7265:1: RULE_ID
             {
              before(grammarAccess.getInstanceSpecificationAccess().getIdIDTerminalRuleCall_0_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__InstanceSpecification__IdAssignment_014237); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__InstanceSpecification__IdAssignment_014557); 
              after(grammarAccess.getInstanceSpecificationAccess().getIdIDTerminalRuleCall_0_0()); 
 
             }
@@ -18316,26 +18692,26 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__InstanceSpecification__IdAssignment_0"
 
 
-    // $ANTLR start "rule__InstanceSpecification__ModelAssignment_3"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7109:1: rule__InstanceSpecification__ModelAssignment_3 : ( ruleChoosenSpecfication ) ;
-    public final void rule__InstanceSpecification__ModelAssignment_3() throws RecognitionException {
+    // $ANTLR start "rule__InstanceSpecification__ModelAssignment_4"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7274:1: rule__InstanceSpecification__ModelAssignment_4 : ( ruleChoosenSpecfication ) ;
+    public final void rule__InstanceSpecification__ModelAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7113:1: ( ( ruleChoosenSpecfication ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7114:1: ( ruleChoosenSpecfication )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7278:1: ( ( ruleChoosenSpecfication ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7279:1: ( ruleChoosenSpecfication )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7114:1: ( ruleChoosenSpecfication )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7115:1: ruleChoosenSpecfication
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7279:1: ( ruleChoosenSpecfication )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7280:1: ruleChoosenSpecfication
             {
-             before(grammarAccess.getInstanceSpecificationAccess().getModelChoosenSpecficationParserRuleCall_3_0()); 
-            pushFollow(FOLLOW_ruleChoosenSpecfication_in_rule__InstanceSpecification__ModelAssignment_314268);
+             before(grammarAccess.getInstanceSpecificationAccess().getModelChoosenSpecficationParserRuleCall_4_0()); 
+            pushFollow(FOLLOW_ruleChoosenSpecfication_in_rule__InstanceSpecification__ModelAssignment_414588);
             ruleChoosenSpecfication();
 
             state._fsp--;
 
-             after(grammarAccess.getInstanceSpecificationAccess().getModelChoosenSpecficationParserRuleCall_3_0()); 
+             after(grammarAccess.getInstanceSpecificationAccess().getModelChoosenSpecficationParserRuleCall_4_0()); 
 
             }
 
@@ -18354,29 +18730,29 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__InstanceSpecification__ModelAssignment_3"
+    // $ANTLR end "rule__InstanceSpecification__ModelAssignment_4"
 
 
-    // $ANTLR start "rule__InstanceSpecification__MetamodelAssignment_5"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7124:1: rule__InstanceSpecification__MetamodelAssignment_5 : ( ruleChoosenSpecfication ) ;
-    public final void rule__InstanceSpecification__MetamodelAssignment_5() throws RecognitionException {
+    // $ANTLR start "rule__InstanceSpecification__MetamodelAssignment_6"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7289:1: rule__InstanceSpecification__MetamodelAssignment_6 : ( ruleChoosenSpecfication ) ;
+    public final void rule__InstanceSpecification__MetamodelAssignment_6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7128:1: ( ( ruleChoosenSpecfication ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7129:1: ( ruleChoosenSpecfication )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7293:1: ( ( ruleChoosenSpecfication ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7294:1: ( ruleChoosenSpecfication )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7129:1: ( ruleChoosenSpecfication )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7130:1: ruleChoosenSpecfication
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7294:1: ( ruleChoosenSpecfication )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7295:1: ruleChoosenSpecfication
             {
-             before(grammarAccess.getInstanceSpecificationAccess().getMetamodelChoosenSpecficationParserRuleCall_5_0()); 
-            pushFollow(FOLLOW_ruleChoosenSpecfication_in_rule__InstanceSpecification__MetamodelAssignment_514299);
+             before(grammarAccess.getInstanceSpecificationAccess().getMetamodelChoosenSpecficationParserRuleCall_6_0()); 
+            pushFollow(FOLLOW_ruleChoosenSpecfication_in_rule__InstanceSpecification__MetamodelAssignment_614619);
             ruleChoosenSpecfication();
 
             state._fsp--;
 
-             after(grammarAccess.getInstanceSpecificationAccess().getMetamodelChoosenSpecficationParserRuleCall_5_0()); 
+             after(grammarAccess.getInstanceSpecificationAccess().getMetamodelChoosenSpecficationParserRuleCall_6_0()); 
 
             }
 
@@ -18395,29 +18771,29 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__InstanceSpecification__MetamodelAssignment_5"
+    // $ANTLR end "rule__InstanceSpecification__MetamodelAssignment_6"
 
 
-    // $ANTLR start "rule__InstanceSpecification__ConstraintSemanticsAssignment_8_0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7139:1: rule__InstanceSpecification__ConstraintSemanticsAssignment_8_0 : ( ruleConstraintSemantic ) ;
-    public final void rule__InstanceSpecification__ConstraintSemanticsAssignment_8_0() throws RecognitionException {
+    // $ANTLR start "rule__InstanceSpecification__ConstraintSemanticsAssignment_9_0"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7304:1: rule__InstanceSpecification__ConstraintSemanticsAssignment_9_0 : ( ruleConstraintSemantic ) ;
+    public final void rule__InstanceSpecification__ConstraintSemanticsAssignment_9_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7143:1: ( ( ruleConstraintSemantic ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7144:1: ( ruleConstraintSemantic )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7308:1: ( ( ruleConstraintSemantic ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7309:1: ( ruleConstraintSemantic )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7144:1: ( ruleConstraintSemantic )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7145:1: ruleConstraintSemantic
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7309:1: ( ruleConstraintSemantic )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7310:1: ruleConstraintSemantic
             {
-             before(grammarAccess.getInstanceSpecificationAccess().getConstraintSemanticsConstraintSemanticParserRuleCall_8_0_0()); 
-            pushFollow(FOLLOW_ruleConstraintSemantic_in_rule__InstanceSpecification__ConstraintSemanticsAssignment_8_014330);
+             before(grammarAccess.getInstanceSpecificationAccess().getConstraintSemanticsConstraintSemanticParserRuleCall_9_0_0()); 
+            pushFollow(FOLLOW_ruleConstraintSemantic_in_rule__InstanceSpecification__ConstraintSemanticsAssignment_9_014650);
             ruleConstraintSemantic();
 
             state._fsp--;
 
-             after(grammarAccess.getInstanceSpecificationAccess().getConstraintSemanticsConstraintSemanticParserRuleCall_8_0_0()); 
+             after(grammarAccess.getInstanceSpecificationAccess().getConstraintSemanticsConstraintSemanticParserRuleCall_9_0_0()); 
 
             }
 
@@ -18436,29 +18812,29 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__InstanceSpecification__ConstraintSemanticsAssignment_8_0"
+    // $ANTLR end "rule__InstanceSpecification__ConstraintSemanticsAssignment_9_0"
 
 
-    // $ANTLR start "rule__InstanceSpecification__ConstraintSemanticsAssignment_8_1_1"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7154:1: rule__InstanceSpecification__ConstraintSemanticsAssignment_8_1_1 : ( ruleConstraintSemantic ) ;
-    public final void rule__InstanceSpecification__ConstraintSemanticsAssignment_8_1_1() throws RecognitionException {
+    // $ANTLR start "rule__InstanceSpecification__ConstraintSemanticsAssignment_9_1_1"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7319:1: rule__InstanceSpecification__ConstraintSemanticsAssignment_9_1_1 : ( ruleConstraintSemantic ) ;
+    public final void rule__InstanceSpecification__ConstraintSemanticsAssignment_9_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7158:1: ( ( ruleConstraintSemantic ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7159:1: ( ruleConstraintSemantic )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7323:1: ( ( ruleConstraintSemantic ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7324:1: ( ruleConstraintSemantic )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7159:1: ( ruleConstraintSemantic )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7160:1: ruleConstraintSemantic
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7324:1: ( ruleConstraintSemantic )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7325:1: ruleConstraintSemantic
             {
-             before(grammarAccess.getInstanceSpecificationAccess().getConstraintSemanticsConstraintSemanticParserRuleCall_8_1_1_0()); 
-            pushFollow(FOLLOW_ruleConstraintSemantic_in_rule__InstanceSpecification__ConstraintSemanticsAssignment_8_1_114361);
+             before(grammarAccess.getInstanceSpecificationAccess().getConstraintSemanticsConstraintSemanticParserRuleCall_9_1_1_0()); 
+            pushFollow(FOLLOW_ruleConstraintSemantic_in_rule__InstanceSpecification__ConstraintSemanticsAssignment_9_1_114681);
             ruleConstraintSemantic();
 
             state._fsp--;
 
-             after(grammarAccess.getInstanceSpecificationAccess().getConstraintSemanticsConstraintSemanticParserRuleCall_8_1_1_0()); 
+             after(grammarAccess.getInstanceSpecificationAccess().getConstraintSemanticsConstraintSemanticParserRuleCall_9_1_1_0()); 
 
             }
 
@@ -18477,24 +18853,24 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__InstanceSpecification__ConstraintSemanticsAssignment_8_1_1"
+    // $ANTLR end "rule__InstanceSpecification__ConstraintSemanticsAssignment_9_1_1"
 
 
     // $ANTLR start "rule__ChoosenSpecfication__IdAssignment"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7169:1: rule__ChoosenSpecfication__IdAssignment : ( RULE_ID ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7334:1: rule__ChoosenSpecfication__IdAssignment : ( RULE_ID ) ;
     public final void rule__ChoosenSpecfication__IdAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7173:1: ( ( RULE_ID ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7174:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7338:1: ( ( RULE_ID ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7339:1: ( RULE_ID )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7174:1: ( RULE_ID )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7175:1: RULE_ID
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7339:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7340:1: RULE_ID
             {
              before(grammarAccess.getChoosenSpecficationAccess().getIdIDTerminalRuleCall_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__ChoosenSpecfication__IdAssignment14392); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__ChoosenSpecfication__IdAssignment14712); 
              after(grammarAccess.getChoosenSpecficationAccess().getIdIDTerminalRuleCall_0()); 
 
             }
@@ -18518,20 +18894,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstraintSemantic__IdAssignment_0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7184:1: rule__ConstraintSemantic__IdAssignment_0 : ( ruleDpfId ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7349:1: rule__ConstraintSemantic__IdAssignment_0 : ( ruleDpfId ) ;
     public final void rule__ConstraintSemantic__IdAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7188:1: ( ( ruleDpfId ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7189:1: ( ruleDpfId )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7353:1: ( ( ruleDpfId ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7354:1: ( ruleDpfId )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7189:1: ( ruleDpfId )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7190:1: ruleDpfId
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7354:1: ( ruleDpfId )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7355:1: ruleDpfId
             {
              before(grammarAccess.getConstraintSemanticAccess().getIdDpfIdParserRuleCall_0_0()); 
-            pushFollow(FOLLOW_ruleDpfId_in_rule__ConstraintSemantic__IdAssignment_014423);
+            pushFollow(FOLLOW_ruleDpfId_in_rule__ConstraintSemantic__IdAssignment_014743);
             ruleDpfId();
 
             state._fsp--;
@@ -18559,20 +18935,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstraintSemantic__ArrowsAssignment_2_0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7199:1: rule__ConstraintSemantic__ArrowsAssignment_2_0 : ( ruleArrows ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7364:1: rule__ConstraintSemantic__ArrowsAssignment_2_0 : ( ruleArrows ) ;
     public final void rule__ConstraintSemantic__ArrowsAssignment_2_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7203:1: ( ( ruleArrows ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7204:1: ( ruleArrows )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7368:1: ( ( ruleArrows ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7369:1: ( ruleArrows )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7204:1: ( ruleArrows )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7205:1: ruleArrows
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7369:1: ( ruleArrows )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7370:1: ruleArrows
             {
              before(grammarAccess.getConstraintSemanticAccess().getArrowsArrowsParserRuleCall_2_0_0()); 
-            pushFollow(FOLLOW_ruleArrows_in_rule__ConstraintSemantic__ArrowsAssignment_2_014454);
+            pushFollow(FOLLOW_ruleArrows_in_rule__ConstraintSemantic__ArrowsAssignment_2_014774);
             ruleArrows();
 
             state._fsp--;
@@ -18600,20 +18976,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstraintSemantic__ArrowsAssignment_2_1_1"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7214:1: rule__ConstraintSemantic__ArrowsAssignment_2_1_1 : ( ruleArrows ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7379:1: rule__ConstraintSemantic__ArrowsAssignment_2_1_1 : ( ruleArrows ) ;
     public final void rule__ConstraintSemantic__ArrowsAssignment_2_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7218:1: ( ( ruleArrows ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7219:1: ( ruleArrows )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7383:1: ( ( ruleArrows ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7384:1: ( ruleArrows )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7219:1: ( ruleArrows )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7220:1: ruleArrows
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7384:1: ( ruleArrows )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7385:1: ruleArrows
             {
              before(grammarAccess.getConstraintSemanticAccess().getArrowsArrowsParserRuleCall_2_1_1_0()); 
-            pushFollow(FOLLOW_ruleArrows_in_rule__ConstraintSemantic__ArrowsAssignment_2_1_114485);
+            pushFollow(FOLLOW_ruleArrows_in_rule__ConstraintSemantic__ArrowsAssignment_2_1_114805);
             ruleArrows();
 
             state._fsp--;
@@ -18641,20 +19017,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstraintSemantic__OclAssignment_6"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7229:1: rule__ConstraintSemantic__OclAssignment_6 : ( RULE_STRING ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7394:1: rule__ConstraintSemantic__OclAssignment_6 : ( RULE_STRING ) ;
     public final void rule__ConstraintSemantic__OclAssignment_6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7233:1: ( ( RULE_STRING ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7234:1: ( RULE_STRING )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7398:1: ( ( RULE_STRING ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7399:1: ( RULE_STRING )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7234:1: ( RULE_STRING )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7235:1: RULE_STRING
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7399:1: ( RULE_STRING )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7400:1: RULE_STRING
             {
              before(grammarAccess.getConstraintSemanticAccess().getOclSTRINGTerminalRuleCall_6_0()); 
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__ConstraintSemantic__OclAssignment_614516); 
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__ConstraintSemantic__OclAssignment_614836); 
              after(grammarAccess.getConstraintSemanticAccess().getOclSTRINGTerminalRuleCall_6_0()); 
 
             }
@@ -18678,20 +19054,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Specification__IdAssignment_0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7244:1: rule__Specification__IdAssignment_0 : ( RULE_ID ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7409:1: rule__Specification__IdAssignment_0 : ( RULE_ID ) ;
     public final void rule__Specification__IdAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7248:1: ( ( RULE_ID ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7249:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7413:1: ( ( RULE_ID ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7414:1: ( RULE_ID )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7249:1: ( RULE_ID )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7250:1: RULE_ID
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7414:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7415:1: RULE_ID
             {
              before(grammarAccess.getSpecificationAccess().getIdIDTerminalRuleCall_0_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Specification__IdAssignment_014547); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Specification__IdAssignment_014867); 
              after(grammarAccess.getSpecificationAccess().getIdIDTerminalRuleCall_0_0()); 
 
             }
@@ -18714,26 +19090,26 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Specification__IdAssignment_0"
 
 
-    // $ANTLR start "rule__Specification__GraphAssignment_3"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7259:1: rule__Specification__GraphAssignment_3 : ( ruleChoosenGraph ) ;
-    public final void rule__Specification__GraphAssignment_3() throws RecognitionException {
+    // $ANTLR start "rule__Specification__GraphAssignment_4"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7424:1: rule__Specification__GraphAssignment_4 : ( ruleChoosenGraph ) ;
+    public final void rule__Specification__GraphAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7263:1: ( ( ruleChoosenGraph ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7264:1: ( ruleChoosenGraph )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7428:1: ( ( ruleChoosenGraph ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7429:1: ( ruleChoosenGraph )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7264:1: ( ruleChoosenGraph )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7265:1: ruleChoosenGraph
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7429:1: ( ruleChoosenGraph )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7430:1: ruleChoosenGraph
             {
-             before(grammarAccess.getSpecificationAccess().getGraphChoosenGraphParserRuleCall_3_0()); 
-            pushFollow(FOLLOW_ruleChoosenGraph_in_rule__Specification__GraphAssignment_314578);
+             before(grammarAccess.getSpecificationAccess().getGraphChoosenGraphParserRuleCall_4_0()); 
+            pushFollow(FOLLOW_ruleChoosenGraph_in_rule__Specification__GraphAssignment_414898);
             ruleChoosenGraph();
 
             state._fsp--;
 
-             after(grammarAccess.getSpecificationAccess().getGraphChoosenGraphParserRuleCall_3_0()); 
+             after(grammarAccess.getSpecificationAccess().getGraphChoosenGraphParserRuleCall_4_0()); 
 
             }
 
@@ -18752,29 +19128,29 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Specification__GraphAssignment_3"
+    // $ANTLR end "rule__Specification__GraphAssignment_4"
 
 
-    // $ANTLR start "rule__Specification__ConstraintsAssignment_6_0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7274:1: rule__Specification__ConstraintsAssignment_6_0 : ( ruleConstraint ) ;
-    public final void rule__Specification__ConstraintsAssignment_6_0() throws RecognitionException {
+    // $ANTLR start "rule__Specification__ConstraintsAssignment_7_0"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7439:1: rule__Specification__ConstraintsAssignment_7_0 : ( ruleConstraint ) ;
+    public final void rule__Specification__ConstraintsAssignment_7_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7278:1: ( ( ruleConstraint ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7279:1: ( ruleConstraint )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7443:1: ( ( ruleConstraint ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7444:1: ( ruleConstraint )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7279:1: ( ruleConstraint )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7280:1: ruleConstraint
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7444:1: ( ruleConstraint )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7445:1: ruleConstraint
             {
-             before(grammarAccess.getSpecificationAccess().getConstraintsConstraintParserRuleCall_6_0_0()); 
-            pushFollow(FOLLOW_ruleConstraint_in_rule__Specification__ConstraintsAssignment_6_014609);
+             before(grammarAccess.getSpecificationAccess().getConstraintsConstraintParserRuleCall_7_0_0()); 
+            pushFollow(FOLLOW_ruleConstraint_in_rule__Specification__ConstraintsAssignment_7_014929);
             ruleConstraint();
 
             state._fsp--;
 
-             after(grammarAccess.getSpecificationAccess().getConstraintsConstraintParserRuleCall_6_0_0()); 
+             after(grammarAccess.getSpecificationAccess().getConstraintsConstraintParserRuleCall_7_0_0()); 
 
             }
 
@@ -18793,29 +19169,29 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Specification__ConstraintsAssignment_6_0"
+    // $ANTLR end "rule__Specification__ConstraintsAssignment_7_0"
 
 
-    // $ANTLR start "rule__Specification__ConstraintsAssignment_6_1_1"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7289:1: rule__Specification__ConstraintsAssignment_6_1_1 : ( ruleConstraint ) ;
-    public final void rule__Specification__ConstraintsAssignment_6_1_1() throws RecognitionException {
+    // $ANTLR start "rule__Specification__ConstraintsAssignment_7_1_1"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7454:1: rule__Specification__ConstraintsAssignment_7_1_1 : ( ruleConstraint ) ;
+    public final void rule__Specification__ConstraintsAssignment_7_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7293:1: ( ( ruleConstraint ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7294:1: ( ruleConstraint )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7458:1: ( ( ruleConstraint ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7459:1: ( ruleConstraint )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7294:1: ( ruleConstraint )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7295:1: ruleConstraint
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7459:1: ( ruleConstraint )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7460:1: ruleConstraint
             {
-             before(grammarAccess.getSpecificationAccess().getConstraintsConstraintParserRuleCall_6_1_1_0()); 
-            pushFollow(FOLLOW_ruleConstraint_in_rule__Specification__ConstraintsAssignment_6_1_114640);
+             before(grammarAccess.getSpecificationAccess().getConstraintsConstraintParserRuleCall_7_1_1_0()); 
+            pushFollow(FOLLOW_ruleConstraint_in_rule__Specification__ConstraintsAssignment_7_1_114960);
             ruleConstraint();
 
             state._fsp--;
 
-             after(grammarAccess.getSpecificationAccess().getConstraintsConstraintParserRuleCall_6_1_1_0()); 
+             after(grammarAccess.getSpecificationAccess().getConstraintsConstraintParserRuleCall_7_1_1_0()); 
 
             }
 
@@ -18834,24 +19210,24 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Specification__ConstraintsAssignment_6_1_1"
+    // $ANTLR end "rule__Specification__ConstraintsAssignment_7_1_1"
 
 
     // $ANTLR start "rule__ChoosenGraph__IdAssignment"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7304:1: rule__ChoosenGraph__IdAssignment : ( RULE_ID ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7469:1: rule__ChoosenGraph__IdAssignment : ( RULE_ID ) ;
     public final void rule__ChoosenGraph__IdAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7308:1: ( ( RULE_ID ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7309:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7473:1: ( ( RULE_ID ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7474:1: ( RULE_ID )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7309:1: ( RULE_ID )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7310:1: RULE_ID
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7474:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7475:1: RULE_ID
             {
              before(grammarAccess.getChoosenGraphAccess().getIdIDTerminalRuleCall_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__ChoosenGraph__IdAssignment14671); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__ChoosenGraph__IdAssignment14991); 
              after(grammarAccess.getChoosenGraphAccess().getIdIDTerminalRuleCall_0()); 
 
             }
@@ -18875,20 +19251,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Constraint__SignatureAssignment_0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7319:1: rule__Constraint__SignatureAssignment_0 : ( ruleConstraintSignature ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7484:1: rule__Constraint__SignatureAssignment_0 : ( ruleConstraintSignature ) ;
     public final void rule__Constraint__SignatureAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7323:1: ( ( ruleConstraintSignature ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7324:1: ( ruleConstraintSignature )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7488:1: ( ( ruleConstraintSignature ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7489:1: ( ruleConstraintSignature )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7324:1: ( ruleConstraintSignature )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7325:1: ruleConstraintSignature
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7489:1: ( ruleConstraintSignature )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7490:1: ruleConstraintSignature
             {
              before(grammarAccess.getConstraintAccess().getSignatureConstraintSignatureParserRuleCall_0_0()); 
-            pushFollow(FOLLOW_ruleConstraintSignature_in_rule__Constraint__SignatureAssignment_014702);
+            pushFollow(FOLLOW_ruleConstraintSignature_in_rule__Constraint__SignatureAssignment_015022);
             ruleConstraintSignature();
 
             state._fsp--;
@@ -18916,20 +19292,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Constraint__ArrowsAssignment_2_0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7334:1: rule__Constraint__ArrowsAssignment_2_0 : ( ruleArrows ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7499:1: rule__Constraint__ArrowsAssignment_2_0 : ( ruleArrows ) ;
     public final void rule__Constraint__ArrowsAssignment_2_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7338:1: ( ( ruleArrows ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7339:1: ( ruleArrows )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7503:1: ( ( ruleArrows ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7504:1: ( ruleArrows )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7339:1: ( ruleArrows )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7340:1: ruleArrows
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7504:1: ( ruleArrows )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7505:1: ruleArrows
             {
              before(grammarAccess.getConstraintAccess().getArrowsArrowsParserRuleCall_2_0_0()); 
-            pushFollow(FOLLOW_ruleArrows_in_rule__Constraint__ArrowsAssignment_2_014733);
+            pushFollow(FOLLOW_ruleArrows_in_rule__Constraint__ArrowsAssignment_2_015053);
             ruleArrows();
 
             state._fsp--;
@@ -18957,20 +19333,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Constraint__ArrowsAssignment_2_1_1"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7349:1: rule__Constraint__ArrowsAssignment_2_1_1 : ( ruleArrows ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7514:1: rule__Constraint__ArrowsAssignment_2_1_1 : ( ruleArrows ) ;
     public final void rule__Constraint__ArrowsAssignment_2_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7353:1: ( ( ruleArrows ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7354:1: ( ruleArrows )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7518:1: ( ( ruleArrows ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7519:1: ( ruleArrows )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7354:1: ( ruleArrows )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7355:1: ruleArrows
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7519:1: ( ruleArrows )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7520:1: ruleArrows
             {
              before(grammarAccess.getConstraintAccess().getArrowsArrowsParserRuleCall_2_1_1_0()); 
-            pushFollow(FOLLOW_ruleArrows_in_rule__Constraint__ArrowsAssignment_2_1_114764);
+            pushFollow(FOLLOW_ruleArrows_in_rule__Constraint__ArrowsAssignment_2_1_115084);
             ruleArrows();
 
             state._fsp--;
@@ -18998,20 +19374,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstraintSignature__IdAssignment_0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7364:1: rule__ConstraintSignature__IdAssignment_0 : ( ruleDpfId ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7529:1: rule__ConstraintSignature__IdAssignment_0 : ( ruleDpfId ) ;
     public final void rule__ConstraintSignature__IdAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7368:1: ( ( ruleDpfId ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7369:1: ( ruleDpfId )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7533:1: ( ( ruleDpfId ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7534:1: ( ruleDpfId )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7369:1: ( ruleDpfId )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7370:1: ruleDpfId
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7534:1: ( ruleDpfId )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7535:1: ruleDpfId
             {
              before(grammarAccess.getConstraintSignatureAccess().getIdDpfIdParserRuleCall_0_0()); 
-            pushFollow(FOLLOW_ruleDpfId_in_rule__ConstraintSignature__IdAssignment_014795);
+            pushFollow(FOLLOW_ruleDpfId_in_rule__ConstraintSignature__IdAssignment_015115);
             ruleDpfId();
 
             state._fsp--;
@@ -19039,20 +19415,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstraintSignature__ParameterAssignment_2_0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7379:1: rule__ConstraintSignature__ParameterAssignment_2_0 : ( RULE_ID ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7544:1: rule__ConstraintSignature__ParameterAssignment_2_0 : ( RULE_ID ) ;
     public final void rule__ConstraintSignature__ParameterAssignment_2_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7383:1: ( ( RULE_ID ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7384:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7548:1: ( ( RULE_ID ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7549:1: ( RULE_ID )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7384:1: ( RULE_ID )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7385:1: RULE_ID
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7549:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7550:1: RULE_ID
             {
              before(grammarAccess.getConstraintSignatureAccess().getParameterIDTerminalRuleCall_2_0_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__ConstraintSignature__ParameterAssignment_2_014826); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__ConstraintSignature__ParameterAssignment_2_015146); 
              after(grammarAccess.getConstraintSignatureAccess().getParameterIDTerminalRuleCall_2_0_0()); 
 
             }
@@ -19076,20 +19452,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstraintSignature__ParameterAssignment_2_1_1"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7394:1: rule__ConstraintSignature__ParameterAssignment_2_1_1 : ( RULE_ID ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7559:1: rule__ConstraintSignature__ParameterAssignment_2_1_1 : ( RULE_ID ) ;
     public final void rule__ConstraintSignature__ParameterAssignment_2_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7398:1: ( ( RULE_ID ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7399:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7563:1: ( ( RULE_ID ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7564:1: ( RULE_ID )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7399:1: ( RULE_ID )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7400:1: RULE_ID
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7564:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7565:1: RULE_ID
             {
              before(grammarAccess.getConstraintSignatureAccess().getParameterIDTerminalRuleCall_2_1_1_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__ConstraintSignature__ParameterAssignment_2_1_114857); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__ConstraintSignature__ParameterAssignment_2_1_115177); 
              after(grammarAccess.getConstraintSignatureAccess().getParameterIDTerminalRuleCall_2_1_1_0()); 
 
             }
@@ -19112,26 +19488,26 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__ConstraintSignature__ParameterAssignment_2_1_1"
 
 
-    // $ANTLR start "rule__Morphism__DomainAssignment_3"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7409:1: rule__Morphism__DomainAssignment_3 : ( ruleDomain ) ;
-    public final void rule__Morphism__DomainAssignment_3() throws RecognitionException {
+    // $ANTLR start "rule__Morphism__DomainAssignment_4"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7574:1: rule__Morphism__DomainAssignment_4 : ( ruleDomain ) ;
+    public final void rule__Morphism__DomainAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7413:1: ( ( ruleDomain ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7414:1: ( ruleDomain )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7578:1: ( ( ruleDomain ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7579:1: ( ruleDomain )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7414:1: ( ruleDomain )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7415:1: ruleDomain
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7579:1: ( ruleDomain )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7580:1: ruleDomain
             {
-             before(grammarAccess.getMorphismAccess().getDomainDomainParserRuleCall_3_0()); 
-            pushFollow(FOLLOW_ruleDomain_in_rule__Morphism__DomainAssignment_314888);
+             before(grammarAccess.getMorphismAccess().getDomainDomainParserRuleCall_4_0()); 
+            pushFollow(FOLLOW_ruleDomain_in_rule__Morphism__DomainAssignment_415208);
             ruleDomain();
 
             state._fsp--;
 
-             after(grammarAccess.getMorphismAccess().getDomainDomainParserRuleCall_3_0()); 
+             after(grammarAccess.getMorphismAccess().getDomainDomainParserRuleCall_4_0()); 
 
             }
 
@@ -19150,29 +19526,29 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Morphism__DomainAssignment_3"
+    // $ANTLR end "rule__Morphism__DomainAssignment_4"
 
 
-    // $ANTLR start "rule__Morphism__CodmainAssignment_5"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7424:1: rule__Morphism__CodmainAssignment_5 : ( ruleCodomain ) ;
-    public final void rule__Morphism__CodmainAssignment_5() throws RecognitionException {
+    // $ANTLR start "rule__Morphism__CodmainAssignment_6"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7589:1: rule__Morphism__CodmainAssignment_6 : ( ruleCodomain ) ;
+    public final void rule__Morphism__CodmainAssignment_6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7428:1: ( ( ruleCodomain ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7429:1: ( ruleCodomain )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7593:1: ( ( ruleCodomain ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7594:1: ( ruleCodomain )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7429:1: ( ruleCodomain )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7430:1: ruleCodomain
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7594:1: ( ruleCodomain )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7595:1: ruleCodomain
             {
-             before(grammarAccess.getMorphismAccess().getCodmainCodomainParserRuleCall_5_0()); 
-            pushFollow(FOLLOW_ruleCodomain_in_rule__Morphism__CodmainAssignment_514919);
+             before(grammarAccess.getMorphismAccess().getCodmainCodomainParserRuleCall_6_0()); 
+            pushFollow(FOLLOW_ruleCodomain_in_rule__Morphism__CodmainAssignment_615239);
             ruleCodomain();
 
             state._fsp--;
 
-             after(grammarAccess.getMorphismAccess().getCodmainCodomainParserRuleCall_5_0()); 
+             after(grammarAccess.getMorphismAccess().getCodmainCodomainParserRuleCall_6_0()); 
 
             }
 
@@ -19191,29 +19567,29 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Morphism__CodmainAssignment_5"
+    // $ANTLR end "rule__Morphism__CodmainAssignment_6"
 
 
-    // $ANTLR start "rule__Morphism__MappingsAssignment_8_0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7439:1: rule__Morphism__MappingsAssignment_8_0 : ( ruleMapping ) ;
-    public final void rule__Morphism__MappingsAssignment_8_0() throws RecognitionException {
+    // $ANTLR start "rule__Morphism__MappingsAssignment_9_0"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7604:1: rule__Morphism__MappingsAssignment_9_0 : ( ruleMapping ) ;
+    public final void rule__Morphism__MappingsAssignment_9_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7443:1: ( ( ruleMapping ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7444:1: ( ruleMapping )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7608:1: ( ( ruleMapping ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7609:1: ( ruleMapping )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7444:1: ( ruleMapping )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7445:1: ruleMapping
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7609:1: ( ruleMapping )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7610:1: ruleMapping
             {
-             before(grammarAccess.getMorphismAccess().getMappingsMappingParserRuleCall_8_0_0()); 
-            pushFollow(FOLLOW_ruleMapping_in_rule__Morphism__MappingsAssignment_8_014950);
+             before(grammarAccess.getMorphismAccess().getMappingsMappingParserRuleCall_9_0_0()); 
+            pushFollow(FOLLOW_ruleMapping_in_rule__Morphism__MappingsAssignment_9_015270);
             ruleMapping();
 
             state._fsp--;
 
-             after(grammarAccess.getMorphismAccess().getMappingsMappingParserRuleCall_8_0_0()); 
+             after(grammarAccess.getMorphismAccess().getMappingsMappingParserRuleCall_9_0_0()); 
 
             }
 
@@ -19232,29 +19608,29 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Morphism__MappingsAssignment_8_0"
+    // $ANTLR end "rule__Morphism__MappingsAssignment_9_0"
 
 
-    // $ANTLR start "rule__Morphism__MappingsAssignment_8_1_1"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7454:1: rule__Morphism__MappingsAssignment_8_1_1 : ( ruleMapping ) ;
-    public final void rule__Morphism__MappingsAssignment_8_1_1() throws RecognitionException {
+    // $ANTLR start "rule__Morphism__MappingsAssignment_9_1_1"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7619:1: rule__Morphism__MappingsAssignment_9_1_1 : ( ruleMapping ) ;
+    public final void rule__Morphism__MappingsAssignment_9_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7458:1: ( ( ruleMapping ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7459:1: ( ruleMapping )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7623:1: ( ( ruleMapping ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7624:1: ( ruleMapping )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7459:1: ( ruleMapping )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7460:1: ruleMapping
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7624:1: ( ruleMapping )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7625:1: ruleMapping
             {
-             before(grammarAccess.getMorphismAccess().getMappingsMappingParserRuleCall_8_1_1_0()); 
-            pushFollow(FOLLOW_ruleMapping_in_rule__Morphism__MappingsAssignment_8_1_114981);
+             before(grammarAccess.getMorphismAccess().getMappingsMappingParserRuleCall_9_1_1_0()); 
+            pushFollow(FOLLOW_ruleMapping_in_rule__Morphism__MappingsAssignment_9_1_115301);
             ruleMapping();
 
             state._fsp--;
 
-             after(grammarAccess.getMorphismAccess().getMappingsMappingParserRuleCall_8_1_1_0()); 
+             after(grammarAccess.getMorphismAccess().getMappingsMappingParserRuleCall_9_1_1_0()); 
 
             }
 
@@ -19273,24 +19649,24 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Morphism__MappingsAssignment_8_1_1"
+    // $ANTLR end "rule__Morphism__MappingsAssignment_9_1_1"
 
 
     // $ANTLR start "rule__Domain__IdAssignment"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7469:1: rule__Domain__IdAssignment : ( RULE_ID ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7634:1: rule__Domain__IdAssignment : ( RULE_ID ) ;
     public final void rule__Domain__IdAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7473:1: ( ( RULE_ID ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7474:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7638:1: ( ( RULE_ID ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7639:1: ( RULE_ID )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7474:1: ( RULE_ID )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7475:1: RULE_ID
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7639:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7640:1: RULE_ID
             {
              before(grammarAccess.getDomainAccess().getIdIDTerminalRuleCall_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Domain__IdAssignment15012); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Domain__IdAssignment15332); 
              after(grammarAccess.getDomainAccess().getIdIDTerminalRuleCall_0()); 
 
             }
@@ -19314,20 +19690,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Codomain__IdAssignment"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7484:1: rule__Codomain__IdAssignment : ( RULE_ID ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7649:1: rule__Codomain__IdAssignment : ( RULE_ID ) ;
     public final void rule__Codomain__IdAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7488:1: ( ( RULE_ID ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7489:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7653:1: ( ( RULE_ID ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7654:1: ( RULE_ID )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7489:1: ( RULE_ID )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7490:1: RULE_ID
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7654:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7655:1: RULE_ID
             {
              before(grammarAccess.getCodomainAccess().getIdIDTerminalRuleCall_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Codomain__IdAssignment15043); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Codomain__IdAssignment15363); 
              after(grammarAccess.getCodomainAccess().getIdIDTerminalRuleCall_0()); 
 
             }
@@ -19351,20 +19727,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MappingNode__DomainAssignment_0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7499:1: rule__MappingNode__DomainAssignment_0 : ( ruleNode ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7664:1: rule__MappingNode__DomainAssignment_0 : ( ruleNode ) ;
     public final void rule__MappingNode__DomainAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7503:1: ( ( ruleNode ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7504:1: ( ruleNode )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7668:1: ( ( ruleNode ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7669:1: ( ruleNode )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7504:1: ( ruleNode )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7505:1: ruleNode
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7669:1: ( ruleNode )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7670:1: ruleNode
             {
              before(grammarAccess.getMappingNodeAccess().getDomainNodeParserRuleCall_0_0()); 
-            pushFollow(FOLLOW_ruleNode_in_rule__MappingNode__DomainAssignment_015074);
+            pushFollow(FOLLOW_ruleNode_in_rule__MappingNode__DomainAssignment_015394);
             ruleNode();
 
             state._fsp--;
@@ -19392,20 +19768,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MappingNode__CodomainAssignment_2"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7514:1: rule__MappingNode__CodomainAssignment_2 : ( ruleNode ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7679:1: rule__MappingNode__CodomainAssignment_2 : ( ruleNode ) ;
     public final void rule__MappingNode__CodomainAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7518:1: ( ( ruleNode ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7519:1: ( ruleNode )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7683:1: ( ( ruleNode ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7684:1: ( ruleNode )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7519:1: ( ruleNode )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7520:1: ruleNode
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7684:1: ( ruleNode )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7685:1: ruleNode
             {
              before(grammarAccess.getMappingNodeAccess().getCodomainNodeParserRuleCall_2_0()); 
-            pushFollow(FOLLOW_ruleNode_in_rule__MappingNode__CodomainAssignment_215105);
+            pushFollow(FOLLOW_ruleNode_in_rule__MappingNode__CodomainAssignment_215425);
             ruleNode();
 
             state._fsp--;
@@ -19433,20 +19809,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MappingArrow__DomainAssignment_0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7529:1: rule__MappingArrow__DomainAssignment_0 : ( ruleArrow ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7694:1: rule__MappingArrow__DomainAssignment_0 : ( ruleArrow ) ;
     public final void rule__MappingArrow__DomainAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7533:1: ( ( ruleArrow ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7534:1: ( ruleArrow )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7698:1: ( ( ruleArrow ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7699:1: ( ruleArrow )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7534:1: ( ruleArrow )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7535:1: ruleArrow
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7699:1: ( ruleArrow )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7700:1: ruleArrow
             {
              before(grammarAccess.getMappingArrowAccess().getDomainArrowParserRuleCall_0_0()); 
-            pushFollow(FOLLOW_ruleArrow_in_rule__MappingArrow__DomainAssignment_015136);
+            pushFollow(FOLLOW_ruleArrow_in_rule__MappingArrow__DomainAssignment_015456);
             ruleArrow();
 
             state._fsp--;
@@ -19474,20 +19850,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MappingArrow__CodmainAssignment_2"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7544:1: rule__MappingArrow__CodmainAssignment_2 : ( ruleArrow ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7709:1: rule__MappingArrow__CodmainAssignment_2 : ( ruleArrow ) ;
     public final void rule__MappingArrow__CodmainAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7548:1: ( ( ruleArrow ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7549:1: ( ruleArrow )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7713:1: ( ( ruleArrow ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7714:1: ( ruleArrow )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7549:1: ( ruleArrow )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7550:1: ruleArrow
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7714:1: ( ruleArrow )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7715:1: ruleArrow
             {
              before(grammarAccess.getMappingArrowAccess().getCodmainArrowParserRuleCall_2_0()); 
-            pushFollow(FOLLOW_ruleArrow_in_rule__MappingArrow__CodmainAssignment_215167);
+            pushFollow(FOLLOW_ruleArrow_in_rule__MappingArrow__CodmainAssignment_215487);
             ruleArrow();
 
             state._fsp--;
@@ -19515,20 +19891,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExtSubTGraph__IdAssignment_0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7559:1: rule__ExtSubTGraph__IdAssignment_0 : ( RULE_ID ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7724:1: rule__ExtSubTGraph__IdAssignment_0 : ( RULE_ID ) ;
     public final void rule__ExtSubTGraph__IdAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7563:1: ( ( RULE_ID ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7564:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7728:1: ( ( RULE_ID ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7729:1: ( RULE_ID )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7564:1: ( RULE_ID )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7565:1: RULE_ID
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7729:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7730:1: RULE_ID
             {
              before(grammarAccess.getExtSubTGraphAccess().getIdIDTerminalRuleCall_0_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__ExtSubTGraph__IdAssignment_015198); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__ExtSubTGraph__IdAssignment_015518); 
              after(grammarAccess.getExtSubTGraphAccess().getIdIDTerminalRuleCall_0_0()); 
 
             }
@@ -19551,26 +19927,26 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__ExtSubTGraph__IdAssignment_0"
 
 
-    // $ANTLR start "rule__ExtSubTGraph__ExtendsGraphAssignment_3"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7574:1: rule__ExtSubTGraph__ExtendsGraphAssignment_3 : ( ruleTGraphExtSubName ) ;
-    public final void rule__ExtSubTGraph__ExtendsGraphAssignment_3() throws RecognitionException {
+    // $ANTLR start "rule__ExtSubTGraph__ExtendsGraphAssignment_4"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7739:1: rule__ExtSubTGraph__ExtendsGraphAssignment_4 : ( ruleTGraphExtSubName ) ;
+    public final void rule__ExtSubTGraph__ExtendsGraphAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7578:1: ( ( ruleTGraphExtSubName ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7579:1: ( ruleTGraphExtSubName )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7743:1: ( ( ruleTGraphExtSubName ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7744:1: ( ruleTGraphExtSubName )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7579:1: ( ruleTGraphExtSubName )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7580:1: ruleTGraphExtSubName
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7744:1: ( ruleTGraphExtSubName )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7745:1: ruleTGraphExtSubName
             {
-             before(grammarAccess.getExtSubTGraphAccess().getExtendsGraphTGraphExtSubNameParserRuleCall_3_0()); 
-            pushFollow(FOLLOW_ruleTGraphExtSubName_in_rule__ExtSubTGraph__ExtendsGraphAssignment_315229);
+             before(grammarAccess.getExtSubTGraphAccess().getExtendsGraphTGraphExtSubNameParserRuleCall_4_0()); 
+            pushFollow(FOLLOW_ruleTGraphExtSubName_in_rule__ExtSubTGraph__ExtendsGraphAssignment_415549);
             ruleTGraphExtSubName();
 
             state._fsp--;
 
-             after(grammarAccess.getExtSubTGraphAccess().getExtendsGraphTGraphExtSubNameParserRuleCall_3_0()); 
+             after(grammarAccess.getExtSubTGraphAccess().getExtendsGraphTGraphExtSubNameParserRuleCall_4_0()); 
 
             }
 
@@ -19589,29 +19965,29 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ExtSubTGraph__ExtendsGraphAssignment_3"
+    // $ANTLR end "rule__ExtSubTGraph__ExtendsGraphAssignment_4"
 
 
-    // $ANTLR start "rule__ExtSubTGraph__ElementsAssignment_6"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7589:1: rule__ExtSubTGraph__ElementsAssignment_6 : ( ruleElement ) ;
-    public final void rule__ExtSubTGraph__ElementsAssignment_6() throws RecognitionException {
+    // $ANTLR start "rule__ExtSubTGraph__ElementsAssignment_7"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7754:1: rule__ExtSubTGraph__ElementsAssignment_7 : ( ruleElement ) ;
+    public final void rule__ExtSubTGraph__ElementsAssignment_7() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7593:1: ( ( ruleElement ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7594:1: ( ruleElement )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7758:1: ( ( ruleElement ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7759:1: ( ruleElement )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7594:1: ( ruleElement )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7595:1: ruleElement
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7759:1: ( ruleElement )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7760:1: ruleElement
             {
-             before(grammarAccess.getExtSubTGraphAccess().getElementsElementParserRuleCall_6_0()); 
-            pushFollow(FOLLOW_ruleElement_in_rule__ExtSubTGraph__ElementsAssignment_615260);
+             before(grammarAccess.getExtSubTGraphAccess().getElementsElementParserRuleCall_7_0()); 
+            pushFollow(FOLLOW_ruleElement_in_rule__ExtSubTGraph__ElementsAssignment_715580);
             ruleElement();
 
             state._fsp--;
 
-             after(grammarAccess.getExtSubTGraphAccess().getElementsElementParserRuleCall_6_0()); 
+             after(grammarAccess.getExtSubTGraphAccess().getElementsElementParserRuleCall_7_0()); 
 
             }
 
@@ -19630,24 +20006,24 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ExtSubTGraph__ElementsAssignment_6"
+    // $ANTLR end "rule__ExtSubTGraph__ElementsAssignment_7"
 
 
     // $ANTLR start "rule__TGraphExtSubName__IdAssignment"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7604:1: rule__TGraphExtSubName__IdAssignment : ( RULE_ID ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7769:1: rule__TGraphExtSubName__IdAssignment : ( RULE_ID ) ;
     public final void rule__TGraphExtSubName__IdAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7608:1: ( ( RULE_ID ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7609:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7773:1: ( ( RULE_ID ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7774:1: ( RULE_ID )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7609:1: ( RULE_ID )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7610:1: RULE_ID
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7774:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7775:1: RULE_ID
             {
              before(grammarAccess.getTGraphExtSubNameAccess().getIdIDTerminalRuleCall_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__TGraphExtSubName__IdAssignment15291); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__TGraphExtSubName__IdAssignment15611); 
              after(grammarAccess.getTGraphExtSubNameAccess().getIdIDTerminalRuleCall_0()); 
 
             }
@@ -19671,20 +20047,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TGraph__IdAssignment_0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7619:1: rule__TGraph__IdAssignment_0 : ( RULE_ID ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7784:1: rule__TGraph__IdAssignment_0 : ( RULE_ID ) ;
     public final void rule__TGraph__IdAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7623:1: ( ( RULE_ID ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7624:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7788:1: ( ( RULE_ID ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7789:1: ( RULE_ID )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7624:1: ( RULE_ID )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7625:1: RULE_ID
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7789:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7790:1: RULE_ID
             {
              before(grammarAccess.getTGraphAccess().getIdIDTerminalRuleCall_0_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__TGraph__IdAssignment_015322); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__TGraph__IdAssignment_015642); 
              after(grammarAccess.getTGraphAccess().getIdIDTerminalRuleCall_0_0()); 
 
             }
@@ -19707,26 +20083,26 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__TGraph__IdAssignment_0"
 
 
-    // $ANTLR start "rule__TGraph__TypeGraphAssignment_3"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7634:1: rule__TGraph__TypeGraphAssignment_3 : ( ruleTGraphName ) ;
-    public final void rule__TGraph__TypeGraphAssignment_3() throws RecognitionException {
+    // $ANTLR start "rule__TGraph__TypeGraphAssignment_4"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7799:1: rule__TGraph__TypeGraphAssignment_4 : ( ruleTGraphName ) ;
+    public final void rule__TGraph__TypeGraphAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7638:1: ( ( ruleTGraphName ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7639:1: ( ruleTGraphName )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7803:1: ( ( ruleTGraphName ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7804:1: ( ruleTGraphName )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7639:1: ( ruleTGraphName )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7640:1: ruleTGraphName
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7804:1: ( ruleTGraphName )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7805:1: ruleTGraphName
             {
-             before(grammarAccess.getTGraphAccess().getTypeGraphTGraphNameParserRuleCall_3_0()); 
-            pushFollow(FOLLOW_ruleTGraphName_in_rule__TGraph__TypeGraphAssignment_315353);
+             before(grammarAccess.getTGraphAccess().getTypeGraphTGraphNameParserRuleCall_4_0()); 
+            pushFollow(FOLLOW_ruleTGraphName_in_rule__TGraph__TypeGraphAssignment_415673);
             ruleTGraphName();
 
             state._fsp--;
 
-             after(grammarAccess.getTGraphAccess().getTypeGraphTGraphNameParserRuleCall_3_0()); 
+             after(grammarAccess.getTGraphAccess().getTypeGraphTGraphNameParserRuleCall_4_0()); 
 
             }
 
@@ -19745,29 +20121,29 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__TGraph__TypeGraphAssignment_3"
+    // $ANTLR end "rule__TGraph__TypeGraphAssignment_4"
 
 
-    // $ANTLR start "rule__TGraph__ElementsAssignment_6"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7649:1: rule__TGraph__ElementsAssignment_6 : ( ruleElement ) ;
-    public final void rule__TGraph__ElementsAssignment_6() throws RecognitionException {
+    // $ANTLR start "rule__TGraph__ElementsAssignment_7"
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7814:1: rule__TGraph__ElementsAssignment_7 : ( ruleElement ) ;
+    public final void rule__TGraph__ElementsAssignment_7() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7653:1: ( ( ruleElement ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7654:1: ( ruleElement )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7818:1: ( ( ruleElement ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7819:1: ( ruleElement )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7654:1: ( ruleElement )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7655:1: ruleElement
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7819:1: ( ruleElement )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7820:1: ruleElement
             {
-             before(grammarAccess.getTGraphAccess().getElementsElementParserRuleCall_6_0()); 
-            pushFollow(FOLLOW_ruleElement_in_rule__TGraph__ElementsAssignment_615384);
+             before(grammarAccess.getTGraphAccess().getElementsElementParserRuleCall_7_0()); 
+            pushFollow(FOLLOW_ruleElement_in_rule__TGraph__ElementsAssignment_715704);
             ruleElement();
 
             state._fsp--;
 
-             after(grammarAccess.getTGraphAccess().getElementsElementParserRuleCall_6_0()); 
+             after(grammarAccess.getTGraphAccess().getElementsElementParserRuleCall_7_0()); 
 
             }
 
@@ -19786,24 +20162,24 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__TGraph__ElementsAssignment_6"
+    // $ANTLR end "rule__TGraph__ElementsAssignment_7"
 
 
     // $ANTLR start "rule__TGraphName__IdAssignment"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7664:1: rule__TGraphName__IdAssignment : ( RULE_ID ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7829:1: rule__TGraphName__IdAssignment : ( RULE_ID ) ;
     public final void rule__TGraphName__IdAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7668:1: ( ( RULE_ID ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7669:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7833:1: ( ( RULE_ID ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7834:1: ( RULE_ID )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7669:1: ( RULE_ID )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7670:1: RULE_ID
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7834:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7835:1: RULE_ID
             {
              before(grammarAccess.getTGraphNameAccess().getIdIDTerminalRuleCall_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__TGraphName__IdAssignment15415); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__TGraphName__IdAssignment15735); 
              after(grammarAccess.getTGraphNameAccess().getIdIDTerminalRuleCall_0()); 
 
             }
@@ -19827,20 +20203,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrows__SrAssignment_0_0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7679:1: rule__Arrows__SrAssignment_0_0 : ( ruleNode ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7844:1: rule__Arrows__SrAssignment_0_0 : ( ruleNode ) ;
     public final void rule__Arrows__SrAssignment_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7683:1: ( ( ruleNode ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7684:1: ( ruleNode )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7848:1: ( ( ruleNode ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7849:1: ( ruleNode )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7684:1: ( ruleNode )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7685:1: ruleNode
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7849:1: ( ruleNode )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7850:1: ruleNode
             {
              before(grammarAccess.getArrowsAccess().getSrNodeParserRuleCall_0_0_0()); 
-            pushFollow(FOLLOW_ruleNode_in_rule__Arrows__SrAssignment_0_015446);
+            pushFollow(FOLLOW_ruleNode_in_rule__Arrows__SrAssignment_0_015766);
             ruleNode();
 
             state._fsp--;
@@ -19868,20 +20244,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrows__IdAssignment_0_2"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7694:1: rule__Arrows__IdAssignment_0_2 : ( ruleDpfId ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7859:1: rule__Arrows__IdAssignment_0_2 : ( ruleDpfId ) ;
     public final void rule__Arrows__IdAssignment_0_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7698:1: ( ( ruleDpfId ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7699:1: ( ruleDpfId )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7863:1: ( ( ruleDpfId ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7864:1: ( ruleDpfId )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7699:1: ( ruleDpfId )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7700:1: ruleDpfId
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7864:1: ( ruleDpfId )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7865:1: ruleDpfId
             {
              before(grammarAccess.getArrowsAccess().getIdDpfIdParserRuleCall_0_2_0()); 
-            pushFollow(FOLLOW_ruleDpfId_in_rule__Arrows__IdAssignment_0_215477);
+            pushFollow(FOLLOW_ruleDpfId_in_rule__Arrows__IdAssignment_0_215797);
             ruleDpfId();
 
             state._fsp--;
@@ -19909,20 +20285,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrows__TypeAssignment_0_4"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7709:1: rule__Arrows__TypeAssignment_0_4 : ( ruleDpfId ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7874:1: rule__Arrows__TypeAssignment_0_4 : ( ruleDpfId ) ;
     public final void rule__Arrows__TypeAssignment_0_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7713:1: ( ( ruleDpfId ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7714:1: ( ruleDpfId )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7878:1: ( ( ruleDpfId ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7879:1: ( ruleDpfId )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7714:1: ( ruleDpfId )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7715:1: ruleDpfId
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7879:1: ( ruleDpfId )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7880:1: ruleDpfId
             {
              before(grammarAccess.getArrowsAccess().getTypeDpfIdParserRuleCall_0_4_0()); 
-            pushFollow(FOLLOW_ruleDpfId_in_rule__Arrows__TypeAssignment_0_415508);
+            pushFollow(FOLLOW_ruleDpfId_in_rule__Arrows__TypeAssignment_0_415828);
             ruleDpfId();
 
             state._fsp--;
@@ -19950,20 +20326,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrows__NextAssignment_0_6"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7724:1: rule__Arrows__NextAssignment_0_6 : ( ruleArrows ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7889:1: rule__Arrows__NextAssignment_0_6 : ( ruleArrows ) ;
     public final void rule__Arrows__NextAssignment_0_6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7728:1: ( ( ruleArrows ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7729:1: ( ruleArrows )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7893:1: ( ( ruleArrows ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7894:1: ( ruleArrows )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7729:1: ( ruleArrows )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7730:1: ruleArrows
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7894:1: ( ruleArrows )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7895:1: ruleArrows
             {
              before(grammarAccess.getArrowsAccess().getNextArrowsParserRuleCall_0_6_0()); 
-            pushFollow(FOLLOW_ruleArrows_in_rule__Arrows__NextAssignment_0_615539);
+            pushFollow(FOLLOW_ruleArrows_in_rule__Arrows__NextAssignment_0_615859);
             ruleArrows();
 
             state._fsp--;
@@ -19991,20 +20367,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__SrAssignment_0_0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7739:1: rule__Arrow__SrAssignment_0_0 : ( ruleNode ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7904:1: rule__Arrow__SrAssignment_0_0 : ( ruleNode ) ;
     public final void rule__Arrow__SrAssignment_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7743:1: ( ( ruleNode ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7744:1: ( ruleNode )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7908:1: ( ( ruleNode ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7909:1: ( ruleNode )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7744:1: ( ruleNode )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7745:1: ruleNode
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7909:1: ( ruleNode )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7910:1: ruleNode
             {
              before(grammarAccess.getArrowAccess().getSrNodeParserRuleCall_0_0_0()); 
-            pushFollow(FOLLOW_ruleNode_in_rule__Arrow__SrAssignment_0_015570);
+            pushFollow(FOLLOW_ruleNode_in_rule__Arrow__SrAssignment_0_015890);
             ruleNode();
 
             state._fsp--;
@@ -20032,20 +20408,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__IdAssignment_0_2"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7754:1: rule__Arrow__IdAssignment_0_2 : ( ruleDpfId ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7919:1: rule__Arrow__IdAssignment_0_2 : ( ruleDpfId ) ;
     public final void rule__Arrow__IdAssignment_0_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7758:1: ( ( ruleDpfId ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7759:1: ( ruleDpfId )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7923:1: ( ( ruleDpfId ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7924:1: ( ruleDpfId )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7759:1: ( ruleDpfId )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7760:1: ruleDpfId
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7924:1: ( ruleDpfId )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7925:1: ruleDpfId
             {
              before(grammarAccess.getArrowAccess().getIdDpfIdParserRuleCall_0_2_0()); 
-            pushFollow(FOLLOW_ruleDpfId_in_rule__Arrow__IdAssignment_0_215601);
+            pushFollow(FOLLOW_ruleDpfId_in_rule__Arrow__IdAssignment_0_215921);
             ruleDpfId();
 
             state._fsp--;
@@ -20073,20 +20449,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__TgDataTypeAssignment_0_6"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7769:1: rule__Arrow__TgDataTypeAssignment_0_6 : ( ruleDataType ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7934:1: rule__Arrow__TgDataTypeAssignment_0_6 : ( ruleDataType ) ;
     public final void rule__Arrow__TgDataTypeAssignment_0_6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7773:1: ( ( ruleDataType ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7774:1: ( ruleDataType )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7938:1: ( ( ruleDataType ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7939:1: ( ruleDataType )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7774:1: ( ruleDataType )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7775:1: ruleDataType
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7939:1: ( ruleDataType )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7940:1: ruleDataType
             {
              before(grammarAccess.getArrowAccess().getTgDataTypeDataTypeEnumRuleCall_0_6_0()); 
-            pushFollow(FOLLOW_ruleDataType_in_rule__Arrow__TgDataTypeAssignment_0_615632);
+            pushFollow(FOLLOW_ruleDataType_in_rule__Arrow__TgDataTypeAssignment_0_615952);
             ruleDataType();
 
             state._fsp--;
@@ -20114,20 +20490,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__SrAssignment_1_0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7784:1: rule__Arrow__SrAssignment_1_0 : ( ruleNode ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7949:1: rule__Arrow__SrAssignment_1_0 : ( ruleNode ) ;
     public final void rule__Arrow__SrAssignment_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7788:1: ( ( ruleNode ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7789:1: ( ruleNode )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7953:1: ( ( ruleNode ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7954:1: ( ruleNode )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7789:1: ( ruleNode )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7790:1: ruleNode
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7954:1: ( ruleNode )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7955:1: ruleNode
             {
              before(grammarAccess.getArrowAccess().getSrNodeParserRuleCall_1_0_0()); 
-            pushFollow(FOLLOW_ruleNode_in_rule__Arrow__SrAssignment_1_015663);
+            pushFollow(FOLLOW_ruleNode_in_rule__Arrow__SrAssignment_1_015983);
             ruleNode();
 
             state._fsp--;
@@ -20155,20 +20531,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__IdAssignment_1_2"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7799:1: rule__Arrow__IdAssignment_1_2 : ( ruleDpfId ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7964:1: rule__Arrow__IdAssignment_1_2 : ( ruleDpfId ) ;
     public final void rule__Arrow__IdAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7803:1: ( ( ruleDpfId ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7804:1: ( ruleDpfId )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7968:1: ( ( ruleDpfId ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7969:1: ( ruleDpfId )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7804:1: ( ruleDpfId )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7805:1: ruleDpfId
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7969:1: ( ruleDpfId )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7970:1: ruleDpfId
             {
              before(grammarAccess.getArrowAccess().getIdDpfIdParserRuleCall_1_2_0()); 
-            pushFollow(FOLLOW_ruleDpfId_in_rule__Arrow__IdAssignment_1_215694);
+            pushFollow(FOLLOW_ruleDpfId_in_rule__Arrow__IdAssignment_1_216014);
             ruleDpfId();
 
             state._fsp--;
@@ -20196,20 +20572,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__TypeAssignment_1_4"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7814:1: rule__Arrow__TypeAssignment_1_4 : ( ruleDpfId ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7979:1: rule__Arrow__TypeAssignment_1_4 : ( ruleDpfId ) ;
     public final void rule__Arrow__TypeAssignment_1_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7818:1: ( ( ruleDpfId ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7819:1: ( ruleDpfId )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7983:1: ( ( ruleDpfId ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7984:1: ( ruleDpfId )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7819:1: ( ruleDpfId )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7820:1: ruleDpfId
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7984:1: ( ruleDpfId )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7985:1: ruleDpfId
             {
              before(grammarAccess.getArrowAccess().getTypeDpfIdParserRuleCall_1_4_0()); 
-            pushFollow(FOLLOW_ruleDpfId_in_rule__Arrow__TypeAssignment_1_415725);
+            pushFollow(FOLLOW_ruleDpfId_in_rule__Arrow__TypeAssignment_1_416045);
             ruleDpfId();
 
             state._fsp--;
@@ -20237,20 +20613,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__TgValueAssignment_1_6"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7829:1: rule__Arrow__TgValueAssignment_1_6 : ( ruleAttributeValue ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7994:1: rule__Arrow__TgValueAssignment_1_6 : ( ruleAttributeValue ) ;
     public final void rule__Arrow__TgValueAssignment_1_6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7833:1: ( ( ruleAttributeValue ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7834:1: ( ruleAttributeValue )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7998:1: ( ( ruleAttributeValue ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7999:1: ( ruleAttributeValue )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7834:1: ( ruleAttributeValue )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7835:1: ruleAttributeValue
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7999:1: ( ruleAttributeValue )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:8000:1: ruleAttributeValue
             {
              before(grammarAccess.getArrowAccess().getTgValueAttributeValueParserRuleCall_1_6_0()); 
-            pushFollow(FOLLOW_ruleAttributeValue_in_rule__Arrow__TgValueAssignment_1_615756);
+            pushFollow(FOLLOW_ruleAttributeValue_in_rule__Arrow__TgValueAssignment_1_616076);
             ruleAttributeValue();
 
             state._fsp--;
@@ -20278,20 +20654,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__SrAssignment_2_0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7844:1: rule__Arrow__SrAssignment_2_0 : ( ruleNode ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:8009:1: rule__Arrow__SrAssignment_2_0 : ( ruleNode ) ;
     public final void rule__Arrow__SrAssignment_2_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7848:1: ( ( ruleNode ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7849:1: ( ruleNode )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:8013:1: ( ( ruleNode ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:8014:1: ( ruleNode )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7849:1: ( ruleNode )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7850:1: ruleNode
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:8014:1: ( ruleNode )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:8015:1: ruleNode
             {
              before(grammarAccess.getArrowAccess().getSrNodeParserRuleCall_2_0_0()); 
-            pushFollow(FOLLOW_ruleNode_in_rule__Arrow__SrAssignment_2_015787);
+            pushFollow(FOLLOW_ruleNode_in_rule__Arrow__SrAssignment_2_016107);
             ruleNode();
 
             state._fsp--;
@@ -20319,20 +20695,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__IdAssignment_2_2"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7859:1: rule__Arrow__IdAssignment_2_2 : ( ruleDpfId ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:8024:1: rule__Arrow__IdAssignment_2_2 : ( ruleDpfId ) ;
     public final void rule__Arrow__IdAssignment_2_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7863:1: ( ( ruleDpfId ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7864:1: ( ruleDpfId )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:8028:1: ( ( ruleDpfId ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:8029:1: ( ruleDpfId )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7864:1: ( ruleDpfId )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7865:1: ruleDpfId
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:8029:1: ( ruleDpfId )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:8030:1: ruleDpfId
             {
              before(grammarAccess.getArrowAccess().getIdDpfIdParserRuleCall_2_2_0()); 
-            pushFollow(FOLLOW_ruleDpfId_in_rule__Arrow__IdAssignment_2_215818);
+            pushFollow(FOLLOW_ruleDpfId_in_rule__Arrow__IdAssignment_2_216138);
             ruleDpfId();
 
             state._fsp--;
@@ -20360,20 +20736,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__TypeAssignment_2_4"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7874:1: rule__Arrow__TypeAssignment_2_4 : ( ruleDpfId ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:8039:1: rule__Arrow__TypeAssignment_2_4 : ( ruleDpfId ) ;
     public final void rule__Arrow__TypeAssignment_2_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7878:1: ( ( ruleDpfId ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7879:1: ( ruleDpfId )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:8043:1: ( ( ruleDpfId ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:8044:1: ( ruleDpfId )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7879:1: ( ruleDpfId )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7880:1: ruleDpfId
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:8044:1: ( ruleDpfId )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:8045:1: ruleDpfId
             {
              before(grammarAccess.getArrowAccess().getTypeDpfIdParserRuleCall_2_4_0()); 
-            pushFollow(FOLLOW_ruleDpfId_in_rule__Arrow__TypeAssignment_2_415849);
+            pushFollow(FOLLOW_ruleDpfId_in_rule__Arrow__TypeAssignment_2_416169);
             ruleDpfId();
 
             state._fsp--;
@@ -20401,20 +20777,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Arrow__TgNodeAssignment_2_6"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7889:1: rule__Arrow__TgNodeAssignment_2_6 : ( ruleNode ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:8054:1: rule__Arrow__TgNodeAssignment_2_6 : ( ruleNode ) ;
     public final void rule__Arrow__TgNodeAssignment_2_6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7893:1: ( ( ruleNode ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7894:1: ( ruleNode )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:8058:1: ( ( ruleNode ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:8059:1: ( ruleNode )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7894:1: ( ruleNode )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7895:1: ruleNode
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:8059:1: ( ruleNode )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:8060:1: ruleNode
             {
              before(grammarAccess.getArrowAccess().getTgNodeNodeParserRuleCall_2_6_0()); 
-            pushFollow(FOLLOW_ruleNode_in_rule__Arrow__TgNodeAssignment_2_615880);
+            pushFollow(FOLLOW_ruleNode_in_rule__Arrow__TgNodeAssignment_2_616200);
             ruleNode();
 
             state._fsp--;
@@ -20442,20 +20818,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Node__IdAssignment_0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7904:1: rule__Node__IdAssignment_0 : ( ruleDpfId ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:8069:1: rule__Node__IdAssignment_0 : ( ruleDpfId ) ;
     public final void rule__Node__IdAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7908:1: ( ( ruleDpfId ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7909:1: ( ruleDpfId )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:8073:1: ( ( ruleDpfId ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:8074:1: ( ruleDpfId )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7909:1: ( ruleDpfId )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7910:1: ruleDpfId
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:8074:1: ( ruleDpfId )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:8075:1: ruleDpfId
             {
              before(grammarAccess.getNodeAccess().getIdDpfIdParserRuleCall_0_0()); 
-            pushFollow(FOLLOW_ruleDpfId_in_rule__Node__IdAssignment_015911);
+            pushFollow(FOLLOW_ruleDpfId_in_rule__Node__IdAssignment_016231);
             ruleDpfId();
 
             state._fsp--;
@@ -20483,20 +20859,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Node__TypeAssignment_2"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7919:1: rule__Node__TypeAssignment_2 : ( ruleDpfId ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:8084:1: rule__Node__TypeAssignment_2 : ( ruleDpfId ) ;
     public final void rule__Node__TypeAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7923:1: ( ( ruleDpfId ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7924:1: ( ruleDpfId )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:8088:1: ( ( ruleDpfId ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:8089:1: ( ruleDpfId )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7924:1: ( ruleDpfId )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7925:1: ruleDpfId
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:8089:1: ( ruleDpfId )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:8090:1: ruleDpfId
             {
              before(grammarAccess.getNodeAccess().getTypeDpfIdParserRuleCall_2_0()); 
-            pushFollow(FOLLOW_ruleDpfId_in_rule__Node__TypeAssignment_215942);
+            pushFollow(FOLLOW_ruleDpfId_in_rule__Node__TypeAssignment_216262);
             ruleDpfId();
 
             state._fsp--;
@@ -20524,20 +20900,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeValue__ValueAssignment_1"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7934:1: rule__AttributeValue__ValueAssignment_1 : ( ruleVALUE ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:8099:1: rule__AttributeValue__ValueAssignment_1 : ( ruleVALUE ) ;
     public final void rule__AttributeValue__ValueAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7938:1: ( ( ruleVALUE ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7939:1: ( ruleVALUE )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:8103:1: ( ( ruleVALUE ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:8104:1: ( ruleVALUE )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7939:1: ( ruleVALUE )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7940:1: ruleVALUE
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:8104:1: ( ruleVALUE )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:8105:1: ruleVALUE
             {
              before(grammarAccess.getAttributeValueAccess().getValueVALUEParserRuleCall_1_0()); 
-            pushFollow(FOLLOW_ruleVALUE_in_rule__AttributeValue__ValueAssignment_115973);
+            pushFollow(FOLLOW_ruleVALUE_in_rule__AttributeValue__ValueAssignment_116293);
             ruleVALUE();
 
             state._fsp--;
@@ -20565,20 +20941,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DpfId__NameAssignment_0"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7949:1: rule__DpfId__NameAssignment_0 : ( RULE_ID ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:8114:1: rule__DpfId__NameAssignment_0 : ( RULE_ID ) ;
     public final void rule__DpfId__NameAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7953:1: ( ( RULE_ID ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7954:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:8118:1: ( ( RULE_ID ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:8119:1: ( RULE_ID )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7954:1: ( RULE_ID )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7955:1: RULE_ID
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:8119:1: ( RULE_ID )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:8120:1: RULE_ID
             {
              before(grammarAccess.getDpfIdAccess().getNameIDTerminalRuleCall_0_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__DpfId__NameAssignment_016004); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__DpfId__NameAssignment_016324); 
              after(grammarAccess.getDpfIdAccess().getNameIDTerminalRuleCall_0_0()); 
 
             }
@@ -20602,20 +20978,20 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DpfId__IdAssignment_1_1"
-    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7964:1: rule__DpfId__IdAssignment_1_1 : ( RULE_INT ) ;
+    // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:8129:1: rule__DpfId__IdAssignment_1_1 : ( RULE_INT ) ;
     public final void rule__DpfId__IdAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7968:1: ( ( RULE_INT ) )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7969:1: ( RULE_INT )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:8133:1: ( ( RULE_INT ) )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:8134:1: ( RULE_INT )
             {
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7969:1: ( RULE_INT )
-            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:7970:1: RULE_INT
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:8134:1: ( RULE_INT )
+            // ../no.hib.dpf.text.ui/src-gen/no/hib/dpf/text/ui/contentassist/antlr/internal/InternalDPFText.g:8135:1: RULE_INT
             {
              before(grammarAccess.getDpfIdAccess().getIdINTTerminalRuleCall_1_1_0()); 
-            match(input,RULE_INT,FOLLOW_RULE_INT_in_rule__DpfId__IdAssignment_1_116035); 
+            match(input,RULE_INT,FOLLOW_RULE_INT_in_rule__DpfId__IdAssignment_1_116355); 
              after(grammarAccess.getDpfIdAccess().getIdINTTerminalRuleCall_1_1_0()); 
 
             }
@@ -20652,10 +21028,10 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
     static final String DFA3_minS =
         "\1\7\1\41\3\uffff\2\7\1\42\1\33\1\37\11\uffff";
     static final String DFA3_maxS =
-        "\1\36\1\41\3\uffff\2\7\1\54\1\34\1\40\11\uffff";
+        "\1\36\1\41\3\uffff\2\7\1\55\1\34\1\40\11\uffff";
     static final String DFA3_acceptS =
-        "\2\uffff\1\5\1\6\1\7\5\uffff\1\1\1\4\1\12\1\2\1\3\1\10\1\11\1\14"+
-        "\1\13";
+        "\2\uffff\1\5\1\6\1\7\5\uffff\1\12\1\2\1\3\1\4\1\1\1\11\1\10\1\13"+
+        "\1\14";
     static final String DFA3_specialS =
         "\23\uffff}>";
     static final String[] DFA3_transitionS = {
@@ -20666,9 +21042,9 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
             "",
             "\1\10",
             "\1\11",
-            "\1\12\4\uffff\1\15\1\uffff\1\14\1\uffff\1\13\1\16",
-            "\1\17\1\20",
-            "\1\22\1\21",
+            "\1\16\5\uffff\1\13\1\uffff\1\12\1\uffff\1\15\1\14",
+            "\1\20\1\17",
+            "\1\21\1\22",
             "",
             "",
             "",
@@ -20718,9 +21094,9 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
     static final String DFA4_eofS =
         "\12\uffff";
     static final String DFA4_minS =
-        "\1\7\1\56\1\10\1\7\1\56\1\52\1\10\2\uffff\1\52";
+        "\1\7\1\57\1\10\1\7\1\57\1\53\1\10\2\uffff\1\53";
     static final String DFA4_maxS =
-        "\1\7\1\62\1\10\1\7\1\56\1\62\1\10\2\uffff\1\55";
+        "\1\7\1\63\1\10\1\7\1\57\1\63\1\10\2\uffff\1\56";
     static final String DFA4_acceptS =
         "\7\uffff\1\2\1\1\1\uffff";
     static final String DFA4_specialS =
@@ -20776,9 +21152,9 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
     static final String DFA5_eofS =
         "\12\uffff";
     static final String DFA5_minS =
-        "\1\7\1\56\1\10\1\7\1\56\1\35\1\10\2\uffff\1\35";
+        "\1\7\1\57\1\10\1\7\1\57\1\35\1\10\2\uffff\1\35";
     static final String DFA5_maxS =
-        "\1\7\1\62\1\10\1\7\1\56\1\62\1\10\2\uffff\1\55";
+        "\1\7\1\63\1\10\1\7\1\57\1\63\1\10\2\uffff\1\56";
     static final String DFA5_acceptS =
         "\7\uffff\1\2\1\1\1\uffff";
     static final String DFA5_specialS =
@@ -20789,11 +21165,11 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
             "\1\4",
             "\1\5",
             "\1\3",
-            "\1\10\17\uffff\1\7\4\uffff\1\6",
+            "\1\10\20\uffff\1\7\4\uffff\1\6",
             "\1\11",
             "",
             "",
-            "\1\10\17\uffff\1\7"
+            "\1\10\20\uffff\1\7"
     };
 
     static final short[] DFA5_eot = DFA.unpackEncodedString(DFA5_eotS);
@@ -20832,17 +21208,17 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
     static final String DFA6_eotS =
         "\32\uffff";
     static final String DFA6_eofS =
-        "\26\uffff\1\16\2\uffff\1\16";
+        "\26\uffff\1\15\2\uffff\1\15";
     static final String DFA6_minS =
-        "\1\7\1\56\1\10\1\7\1\56\1\55\1\10\1\7\1\55\1\56\1\10\1\7\1\56\1"+
-        "\34\1\uffff\1\10\1\7\1\34\1\56\1\10\1\7\1\56\1\35\1\10\1\uffff\1"+
+        "\1\7\1\57\1\10\1\7\1\57\1\56\1\10\1\7\1\56\1\57\1\10\1\7\1\57\1"+
+        "\uffff\1\34\1\10\1\7\1\34\1\57\1\10\1\7\1\57\1\35\1\10\1\uffff\1"+
         "\35";
     static final String DFA6_maxS =
-        "\1\7\1\62\1\10\1\7\1\56\1\62\1\10\1\7\1\55\1\62\1\10\1\57\1\56\1"+
-        "\62\1\uffff\1\10\1\60\1\34\1\62\1\10\1\7\1\56\1\62\1\10\1\uffff"+
-        "\1\55";
+        "\1\7\1\63\1\10\1\7\1\57\1\63\1\10\1\7\1\56\1\63\1\10\1\60\1\57\1"+
+        "\uffff\1\63\1\10\1\61\1\34\1\63\1\10\1\7\1\57\1\63\1\10\1\uffff"+
+        "\1\56";
     static final String DFA6_acceptS =
-        "\16\uffff\1\2\11\uffff\1\1\1\uffff";
+        "\15\uffff\1\2\12\uffff\1\1\1\uffff";
     static final String DFA6_specialS =
         "\32\uffff}>";
     static final String[] DFA6_transitionS = {
@@ -20857,21 +21233,21 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
             "\1\7",
             "\1\13\3\uffff\1\12",
             "\1\14",
-            "\1\15\47\uffff\1\16",
+            "\1\16\50\uffff\1\15",
             "\1\13",
-            "\1\20\25\uffff\1\17",
             "",
+            "\1\20\26\uffff\1\17",
             "\1\21",
-            "\1\22\50\uffff\1\16",
+            "\1\22\51\uffff\1\15",
             "\1\20",
             "\1\24\3\uffff\1\23",
             "\1\25",
             "\1\26",
             "\1\24",
-            "\1\16\7\uffff\1\16\7\uffff\1\30\4\uffff\1\27",
+            "\1\15\10\uffff\1\15\7\uffff\1\30\4\uffff\1\27",
             "\1\31",
             "",
-            "\1\16\7\uffff\1\16\7\uffff\1\30"
+            "\1\15\10\uffff\1\15\7\uffff\1\30"
     };
 
     static final short[] DFA6_eot = DFA.unpackEncodedString(DFA6_eotS);
@@ -20912,13 +21288,13 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
     static final String DFA7_eofS =
         "\24\uffff";
     static final String DFA7_minS =
-        "\1\7\1\56\1\10\1\7\1\56\1\55\1\10\1\7\1\55\1\56\1\10\1\7\1\56\1"+
+        "\1\7\1\57\1\10\1\7\1\57\1\56\1\10\1\7\1\56\1\57\1\10\1\7\1\57\1"+
         "\uffff\1\34\1\10\1\7\1\34\2\uffff";
     static final String DFA7_maxS =
-        "\1\7\1\62\1\10\1\7\1\56\1\62\1\10\1\7\1\55\1\62\1\10\1\57\1\56\1"+
-        "\uffff\1\62\1\10\1\60\1\34\2\uffff";
+        "\1\7\1\63\1\10\1\7\1\57\1\63\1\10\1\7\1\56\1\63\1\10\1\60\1\57\1"+
+        "\uffff\1\63\1\10\1\61\1\34\2\uffff";
     static final String DFA7_acceptS =
-        "\15\uffff\1\1\4\uffff\1\3\1\2";
+        "\15\uffff\1\1\4\uffff\1\2\1\3";
     static final String DFA7_specialS =
         "\24\uffff}>";
     static final String[] DFA7_transitionS = {
@@ -20933,12 +21309,12 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
             "\1\7",
             "\1\13\3\uffff\1\12",
             "\1\14",
-            "\1\16\47\uffff\1\15",
+            "\1\16\50\uffff\1\15",
             "\1\13",
             "",
-            "\1\20\25\uffff\1\17",
+            "\1\20\26\uffff\1\17",
             "\1\21",
-            "\1\22\50\uffff\1\23",
+            "\1\23\51\uffff\1\22",
             "\1\20",
             "",
             ""
@@ -21239,438 +21615,453 @@ public class InternalDPFTextParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__InstanceSpecification__Group__1__Impl_in_rule__InstanceSpecification__Group__15544 = new BitSet(new long[]{0x0000000400000000L});
     public static final BitSet FOLLOW_rule__InstanceSpecification__Group__2_in_rule__InstanceSpecification__Group__15547 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_33_in_rule__InstanceSpecification__Group__1__Impl5575 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__InstanceSpecification__Group__2__Impl_in_rule__InstanceSpecification__Group__25606 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_rule__InstanceSpecification__Group__2__Impl_in_rule__InstanceSpecification__Group__25606 = new BitSet(new long[]{0x0000000800000000L});
     public static final BitSet FOLLOW_rule__InstanceSpecification__Group__3_in_rule__InstanceSpecification__Group__25609 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_34_in_rule__InstanceSpecification__Group__2__Impl5637 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__InstanceSpecification__Group__3__Impl_in_rule__InstanceSpecification__Group__35668 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_rule__InstanceSpecification__Group__3__Impl_in_rule__InstanceSpecification__Group__35668 = new BitSet(new long[]{0x0000000000000080L});
     public static final BitSet FOLLOW_rule__InstanceSpecification__Group__4_in_rule__InstanceSpecification__Group__35671 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__InstanceSpecification__ModelAssignment_3_in_rule__InstanceSpecification__Group__3__Impl5698 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__InstanceSpecification__Group__4__Impl_in_rule__InstanceSpecification__Group__45728 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_rule__InstanceSpecification__Group__5_in_rule__InstanceSpecification__Group__45731 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_rule__InstanceSpecification__Group__4__Impl5759 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__InstanceSpecification__Group__5__Impl_in_rule__InstanceSpecification__Group__55790 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_35_in_rule__InstanceSpecification__Group__3__Impl5699 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__InstanceSpecification__Group__4__Impl_in_rule__InstanceSpecification__Group__45730 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_rule__InstanceSpecification__Group__5_in_rule__InstanceSpecification__Group__45733 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__InstanceSpecification__ModelAssignment_4_in_rule__InstanceSpecification__Group__4__Impl5760 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__InstanceSpecification__Group__5__Impl_in_rule__InstanceSpecification__Group__55790 = new BitSet(new long[]{0x0000000000000080L});
     public static final BitSet FOLLOW_rule__InstanceSpecification__Group__6_in_rule__InstanceSpecification__Group__55793 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__InstanceSpecification__MetamodelAssignment_5_in_rule__InstanceSpecification__Group__5__Impl5820 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__InstanceSpecification__Group__6__Impl_in_rule__InstanceSpecification__Group__65850 = new BitSet(new long[]{0x0000001000000000L});
-    public static final BitSet FOLLOW_rule__InstanceSpecification__Group__7_in_rule__InstanceSpecification__Group__65853 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_35_in_rule__InstanceSpecification__Group__6__Impl5881 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__InstanceSpecification__Group__7__Impl_in_rule__InstanceSpecification__Group__75912 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_29_in_rule__InstanceSpecification__Group__5__Impl5821 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__InstanceSpecification__Group__6__Impl_in_rule__InstanceSpecification__Group__65852 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_rule__InstanceSpecification__Group__7_in_rule__InstanceSpecification__Group__65855 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__InstanceSpecification__MetamodelAssignment_6_in_rule__InstanceSpecification__Group__6__Impl5882 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__InstanceSpecification__Group__7__Impl_in_rule__InstanceSpecification__Group__75912 = new BitSet(new long[]{0x0000002000000000L});
     public static final BitSet FOLLOW_rule__InstanceSpecification__Group__8_in_rule__InstanceSpecification__Group__75915 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_36_in_rule__InstanceSpecification__Group__7__Impl5943 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__InstanceSpecification__Group__8__Impl_in_rule__InstanceSpecification__Group__85974 = new BitSet(new long[]{0x0000002000000000L});
+    public static final BitSet FOLLOW_rule__InstanceSpecification__Group__8__Impl_in_rule__InstanceSpecification__Group__85974 = new BitSet(new long[]{0x0000000000000080L});
     public static final BitSet FOLLOW_rule__InstanceSpecification__Group__9_in_rule__InstanceSpecification__Group__85977 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__InstanceSpecification__Group_8__0_in_rule__InstanceSpecification__Group__8__Impl6004 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__InstanceSpecification__Group__9__Impl_in_rule__InstanceSpecification__Group__96034 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_37_in_rule__InstanceSpecification__Group__9__Impl6062 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__InstanceSpecification__Group_8__0__Impl_in_rule__InstanceSpecification__Group_8__06113 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_rule__InstanceSpecification__Group_8__1_in_rule__InstanceSpecification__Group_8__06116 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__InstanceSpecification__ConstraintSemanticsAssignment_8_0_in_rule__InstanceSpecification__Group_8__0__Impl6143 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__InstanceSpecification__Group_8__1__Impl_in_rule__InstanceSpecification__Group_8__16173 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__InstanceSpecification__Group_8_1__0_in_rule__InstanceSpecification__Group_8__1__Impl6200 = new BitSet(new long[]{0x0000000020000002L});
-    public static final BitSet FOLLOW_rule__InstanceSpecification__Group_8_1__0__Impl_in_rule__InstanceSpecification__Group_8_1__06235 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_rule__InstanceSpecification__Group_8_1__1_in_rule__InstanceSpecification__Group_8_1__06238 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_rule__InstanceSpecification__Group_8_1__0__Impl6266 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__InstanceSpecification__Group_8_1__1__Impl_in_rule__InstanceSpecification__Group_8_1__16297 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__InstanceSpecification__ConstraintSemanticsAssignment_8_1_1_in_rule__InstanceSpecification__Group_8_1__1__Impl6324 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConstraintSemantic__Group__0__Impl_in_rule__ConstraintSemantic__Group__06358 = new BitSet(new long[]{0x0000001000000000L});
-    public static final BitSet FOLLOW_rule__ConstraintSemantic__Group__1_in_rule__ConstraintSemantic__Group__06361 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConstraintSemantic__IdAssignment_0_in_rule__ConstraintSemantic__Group__0__Impl6388 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConstraintSemantic__Group__1__Impl_in_rule__ConstraintSemantic__Group__16418 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_rule__ConstraintSemantic__Group__2_in_rule__ConstraintSemantic__Group__16421 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_36_in_rule__ConstraintSemantic__Group__1__Impl6449 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConstraintSemantic__Group__2__Impl_in_rule__ConstraintSemantic__Group__26480 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_rule__ConstraintSemantic__Group__3_in_rule__ConstraintSemantic__Group__26483 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConstraintSemantic__Group_2__0_in_rule__ConstraintSemantic__Group__2__Impl6510 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConstraintSemantic__Group__3__Impl_in_rule__ConstraintSemantic__Group__36540 = new BitSet(new long[]{0x0000002000000000L});
-    public static final BitSet FOLLOW_rule__ConstraintSemantic__Group__4_in_rule__ConstraintSemantic__Group__36543 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_rule__ConstraintSemantic__Group__3__Impl6571 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConstraintSemantic__Group__4__Impl_in_rule__ConstraintSemantic__Group__46602 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_rule__ConstraintSemantic__Group__5_in_rule__ConstraintSemantic__Group__46605 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_37_in_rule__ConstraintSemantic__Group__4__Impl6633 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConstraintSemantic__Group__5__Impl_in_rule__ConstraintSemantic__Group__56664 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_rule__ConstraintSemantic__Group__6_in_rule__ConstraintSemantic__Group__56667 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_38_in_rule__ConstraintSemantic__Group__5__Impl6695 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConstraintSemantic__Group__6__Impl_in_rule__ConstraintSemantic__Group__66726 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConstraintSemantic__OclAssignment_6_in_rule__ConstraintSemantic__Group__6__Impl6753 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConstraintSemantic__Group_2__0__Impl_in_rule__ConstraintSemantic__Group_2__06797 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_rule__ConstraintSemantic__Group_2__1_in_rule__ConstraintSemantic__Group_2__06800 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConstraintSemantic__ArrowsAssignment_2_0_in_rule__ConstraintSemantic__Group_2__0__Impl6827 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConstraintSemantic__Group_2__1__Impl_in_rule__ConstraintSemantic__Group_2__16857 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConstraintSemantic__Group_2_1__0_in_rule__ConstraintSemantic__Group_2__1__Impl6884 = new BitSet(new long[]{0x0000000020000002L});
-    public static final BitSet FOLLOW_rule__ConstraintSemantic__Group_2_1__0__Impl_in_rule__ConstraintSemantic__Group_2_1__06919 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_rule__ConstraintSemantic__Group_2_1__1_in_rule__ConstraintSemantic__Group_2_1__06922 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_rule__ConstraintSemantic__Group_2_1__0__Impl6950 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConstraintSemantic__Group_2_1__1__Impl_in_rule__ConstraintSemantic__Group_2_1__16981 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConstraintSemantic__ArrowsAssignment_2_1_1_in_rule__ConstraintSemantic__Group_2_1__1__Impl7008 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Specification__Group__0__Impl_in_rule__Specification__Group__07042 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_rule__Specification__Group__1_in_rule__Specification__Group__07045 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Specification__IdAssignment_0_in_rule__Specification__Group__0__Impl7072 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Specification__Group__1__Impl_in_rule__Specification__Group__17102 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_rule__Specification__Group__2_in_rule__Specification__Group__17105 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_33_in_rule__Specification__Group__1__Impl7133 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Specification__Group__2__Impl_in_rule__Specification__Group__27164 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_rule__Specification__Group__3_in_rule__Specification__Group__27167 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_39_in_rule__Specification__Group__2__Impl7195 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Specification__Group__3__Impl_in_rule__Specification__Group__37226 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_rule__Specification__Group__4_in_rule__Specification__Group__37229 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Specification__GraphAssignment_3_in_rule__Specification__Group__3__Impl7256 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Specification__Group__4__Impl_in_rule__Specification__Group__47286 = new BitSet(new long[]{0x0000001000000000L});
-    public static final BitSet FOLLOW_rule__Specification__Group__5_in_rule__Specification__Group__47289 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_35_in_rule__Specification__Group__4__Impl7317 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Specification__Group__5__Impl_in_rule__Specification__Group__57348 = new BitSet(new long[]{0x0000002000000080L});
-    public static final BitSet FOLLOW_rule__Specification__Group__6_in_rule__Specification__Group__57351 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_36_in_rule__Specification__Group__5__Impl7379 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Specification__Group__6__Impl_in_rule__Specification__Group__67410 = new BitSet(new long[]{0x0000002000000080L});
-    public static final BitSet FOLLOW_rule__Specification__Group__7_in_rule__Specification__Group__67413 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Specification__Group_6__0_in_rule__Specification__Group__6__Impl7440 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Specification__Group__7__Impl_in_rule__Specification__Group__77471 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_37_in_rule__Specification__Group__7__Impl7499 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Specification__Group_6__0__Impl_in_rule__Specification__Group_6__07546 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_rule__Specification__Group_6__1_in_rule__Specification__Group_6__07549 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Specification__ConstraintsAssignment_6_0_in_rule__Specification__Group_6__0__Impl7576 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Specification__Group_6__1__Impl_in_rule__Specification__Group_6__17606 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Specification__Group_6_1__0_in_rule__Specification__Group_6__1__Impl7633 = new BitSet(new long[]{0x0000000020000002L});
-    public static final BitSet FOLLOW_rule__Specification__Group_6_1__0__Impl_in_rule__Specification__Group_6_1__07668 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_rule__Specification__Group_6_1__1_in_rule__Specification__Group_6_1__07671 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_rule__Specification__Group_6_1__0__Impl7699 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Specification__Group_6_1__1__Impl_in_rule__Specification__Group_6_1__17730 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Specification__ConstraintsAssignment_6_1_1_in_rule__Specification__Group_6_1__1__Impl7757 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Constraint__Group__0__Impl_in_rule__Constraint__Group__07791 = new BitSet(new long[]{0x0000001000000000L});
-    public static final BitSet FOLLOW_rule__Constraint__Group__1_in_rule__Constraint__Group__07794 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Constraint__SignatureAssignment_0_in_rule__Constraint__Group__0__Impl7821 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Constraint__Group__1__Impl_in_rule__Constraint__Group__17851 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_rule__Constraint__Group__2_in_rule__Constraint__Group__17854 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_36_in_rule__Constraint__Group__1__Impl7882 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Constraint__Group__2__Impl_in_rule__Constraint__Group__27913 = new BitSet(new long[]{0x0000002000000000L});
-    public static final BitSet FOLLOW_rule__Constraint__Group__3_in_rule__Constraint__Group__27916 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Constraint__Group_2__0_in_rule__Constraint__Group__2__Impl7943 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Constraint__Group__3__Impl_in_rule__Constraint__Group__37973 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_37_in_rule__Constraint__Group__3__Impl8001 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Constraint__Group_2__0__Impl_in_rule__Constraint__Group_2__08040 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_rule__Constraint__Group_2__1_in_rule__Constraint__Group_2__08043 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Constraint__ArrowsAssignment_2_0_in_rule__Constraint__Group_2__0__Impl8070 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Constraint__Group_2__1__Impl_in_rule__Constraint__Group_2__18100 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Constraint__Group_2_1__0_in_rule__Constraint__Group_2__1__Impl8127 = new BitSet(new long[]{0x0000000020000002L});
-    public static final BitSet FOLLOW_rule__Constraint__Group_2_1__0__Impl_in_rule__Constraint__Group_2_1__08162 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_rule__Constraint__Group_2_1__1_in_rule__Constraint__Group_2_1__08165 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_rule__Constraint__Group_2_1__0__Impl8193 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Constraint__Group_2_1__1__Impl_in_rule__Constraint__Group_2_1__18224 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Constraint__ArrowsAssignment_2_1_1_in_rule__Constraint__Group_2_1__1__Impl8251 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConstraintSignature__Group__0__Impl_in_rule__ConstraintSignature__Group__08285 = new BitSet(new long[]{0x0000010000000000L});
-    public static final BitSet FOLLOW_rule__ConstraintSignature__Group__1_in_rule__ConstraintSignature__Group__08288 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConstraintSignature__IdAssignment_0_in_rule__ConstraintSignature__Group__0__Impl8315 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConstraintSignature__Group__1__Impl_in_rule__ConstraintSignature__Group__18345 = new BitSet(new long[]{0x0000000000800080L});
-    public static final BitSet FOLLOW_rule__ConstraintSignature__Group__2_in_rule__ConstraintSignature__Group__18348 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_40_in_rule__ConstraintSignature__Group__1__Impl8376 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConstraintSignature__Group__2__Impl_in_rule__ConstraintSignature__Group__28407 = new BitSet(new long[]{0x0000000000800080L});
-    public static final BitSet FOLLOW_rule__ConstraintSignature__Group__3_in_rule__ConstraintSignature__Group__28410 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConstraintSignature__Group_2__0_in_rule__ConstraintSignature__Group__2__Impl8437 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConstraintSignature__Group__3__Impl_in_rule__ConstraintSignature__Group__38468 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_23_in_rule__ConstraintSignature__Group__3__Impl8496 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConstraintSignature__Group_2__0__Impl_in_rule__ConstraintSignature__Group_2__08535 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_rule__ConstraintSignature__Group_2__1_in_rule__ConstraintSignature__Group_2__08538 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConstraintSignature__ParameterAssignment_2_0_in_rule__ConstraintSignature__Group_2__0__Impl8565 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConstraintSignature__Group_2__1__Impl_in_rule__ConstraintSignature__Group_2__18595 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConstraintSignature__Group_2_1__0_in_rule__ConstraintSignature__Group_2__1__Impl8622 = new BitSet(new long[]{0x0000000020000002L});
-    public static final BitSet FOLLOW_rule__ConstraintSignature__Group_2_1__0__Impl_in_rule__ConstraintSignature__Group_2_1__08657 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_rule__ConstraintSignature__Group_2_1__1_in_rule__ConstraintSignature__Group_2_1__08660 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_rule__ConstraintSignature__Group_2_1__0__Impl8688 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConstraintSignature__Group_2_1__1__Impl_in_rule__ConstraintSignature__Group_2_1__18719 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConstraintSignature__ParameterAssignment_2_1_1_in_rule__ConstraintSignature__Group_2_1__1__Impl8746 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Morphism__Group__0__Impl_in_rule__Morphism__Group__08780 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_rule__Morphism__Group__1_in_rule__Morphism__Group__08783 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__Morphism__Group__0__Impl8810 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Morphism__Group__1__Impl_in_rule__Morphism__Group__18839 = new BitSet(new long[]{0x0000020000000000L});
-    public static final BitSet FOLLOW_rule__Morphism__Group__2_in_rule__Morphism__Group__18842 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_33_in_rule__Morphism__Group__1__Impl8870 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Morphism__Group__2__Impl_in_rule__Morphism__Group__28901 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_rule__Morphism__Group__3_in_rule__Morphism__Group__28904 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_41_in_rule__Morphism__Group__2__Impl8932 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Morphism__Group__3__Impl_in_rule__Morphism__Group__38963 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_rule__Morphism__Group__4_in_rule__Morphism__Group__38966 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Morphism__DomainAssignment_3_in_rule__Morphism__Group__3__Impl8993 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Morphism__Group__4__Impl_in_rule__Morphism__Group__49023 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_rule__Morphism__Group__5_in_rule__Morphism__Group__49026 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_rule__Morphism__Group__4__Impl9054 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Morphism__Group__5__Impl_in_rule__Morphism__Group__59085 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_rule__Morphism__Group__6_in_rule__Morphism__Group__59088 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Morphism__CodmainAssignment_5_in_rule__Morphism__Group__5__Impl9115 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Morphism__Group__6__Impl_in_rule__Morphism__Group__69145 = new BitSet(new long[]{0x0000001000000000L});
-    public static final BitSet FOLLOW_rule__Morphism__Group__7_in_rule__Morphism__Group__69148 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_35_in_rule__Morphism__Group__6__Impl9176 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Morphism__Group__7__Impl_in_rule__Morphism__Group__79207 = new BitSet(new long[]{0x0000002000000080L});
-    public static final BitSet FOLLOW_rule__Morphism__Group__8_in_rule__Morphism__Group__79210 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_36_in_rule__Morphism__Group__7__Impl9238 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Morphism__Group__8__Impl_in_rule__Morphism__Group__89269 = new BitSet(new long[]{0x0000002000000080L});
-    public static final BitSet FOLLOW_rule__Morphism__Group__9_in_rule__Morphism__Group__89272 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Morphism__Group_8__0_in_rule__Morphism__Group__8__Impl9299 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Morphism__Group__9__Impl_in_rule__Morphism__Group__99330 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_37_in_rule__Morphism__Group__9__Impl9358 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Morphism__Group_8__0__Impl_in_rule__Morphism__Group_8__09409 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_rule__Morphism__Group_8__1_in_rule__Morphism__Group_8__09412 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Morphism__MappingsAssignment_8_0_in_rule__Morphism__Group_8__0__Impl9439 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Morphism__Group_8__1__Impl_in_rule__Morphism__Group_8__19469 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Morphism__Group_8_1__0_in_rule__Morphism__Group_8__1__Impl9496 = new BitSet(new long[]{0x0000000020000002L});
-    public static final BitSet FOLLOW_rule__Morphism__Group_8_1__0__Impl_in_rule__Morphism__Group_8_1__09531 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_rule__Morphism__Group_8_1__1_in_rule__Morphism__Group_8_1__09534 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_rule__Morphism__Group_8_1__0__Impl9562 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Morphism__Group_8_1__1__Impl_in_rule__Morphism__Group_8_1__19593 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Morphism__MappingsAssignment_8_1_1_in_rule__Morphism__Group_8_1__1__Impl9620 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__MappingNode__Group__0__Impl_in_rule__MappingNode__Group__09654 = new BitSet(new long[]{0x0000040000000000L});
-    public static final BitSet FOLLOW_rule__MappingNode__Group__1_in_rule__MappingNode__Group__09657 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__MappingNode__DomainAssignment_0_in_rule__MappingNode__Group__0__Impl9684 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__MappingNode__Group__1__Impl_in_rule__MappingNode__Group__19714 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_rule__MappingNode__Group__2_in_rule__MappingNode__Group__19717 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_42_in_rule__MappingNode__Group__1__Impl9745 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__MappingNode__Group__2__Impl_in_rule__MappingNode__Group__29776 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__MappingNode__CodomainAssignment_2_in_rule__MappingNode__Group__2__Impl9803 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__MappingArrow__Group__0__Impl_in_rule__MappingArrow__Group__09839 = new BitSet(new long[]{0x0000040000000000L});
-    public static final BitSet FOLLOW_rule__MappingArrow__Group__1_in_rule__MappingArrow__Group__09842 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__MappingArrow__DomainAssignment_0_in_rule__MappingArrow__Group__0__Impl9869 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__MappingArrow__Group__1__Impl_in_rule__MappingArrow__Group__19899 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_rule__MappingArrow__Group__2_in_rule__MappingArrow__Group__19902 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_42_in_rule__MappingArrow__Group__1__Impl9930 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__MappingArrow__Group__2__Impl_in_rule__MappingArrow__Group__29961 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__MappingArrow__CodmainAssignment_2_in_rule__MappingArrow__Group__2__Impl9988 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExtSubTGraph__Group__0__Impl_in_rule__ExtSubTGraph__Group__010024 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_rule__ExtSubTGraph__Group__1_in_rule__ExtSubTGraph__Group__010027 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExtSubTGraph__IdAssignment_0_in_rule__ExtSubTGraph__Group__0__Impl10054 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExtSubTGraph__Group__1__Impl_in_rule__ExtSubTGraph__Group__110084 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_rule__ExtSubTGraph__Group__2_in_rule__ExtSubTGraph__Group__110087 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_33_in_rule__ExtSubTGraph__Group__1__Impl10115 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExtSubTGraph__Group__2__Impl_in_rule__ExtSubTGraph__Group__210146 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_rule__ExtSubTGraph__Group__3_in_rule__ExtSubTGraph__Group__210149 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_43_in_rule__ExtSubTGraph__Group__2__Impl10177 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExtSubTGraph__Group__3__Impl_in_rule__ExtSubTGraph__Group__310208 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_rule__ExtSubTGraph__Group__4_in_rule__ExtSubTGraph__Group__310211 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExtSubTGraph__ExtendsGraphAssignment_3_in_rule__ExtSubTGraph__Group__3__Impl10238 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExtSubTGraph__Group__4__Impl_in_rule__ExtSubTGraph__Group__410268 = new BitSet(new long[]{0x0000001000000000L});
-    public static final BitSet FOLLOW_rule__ExtSubTGraph__Group__5_in_rule__ExtSubTGraph__Group__410271 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_35_in_rule__ExtSubTGraph__Group__4__Impl10299 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExtSubTGraph__Group__5__Impl_in_rule__ExtSubTGraph__Group__510330 = new BitSet(new long[]{0x0000002000000080L});
-    public static final BitSet FOLLOW_rule__ExtSubTGraph__Group__6_in_rule__ExtSubTGraph__Group__510333 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_36_in_rule__ExtSubTGraph__Group__5__Impl10361 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExtSubTGraph__Group__6__Impl_in_rule__ExtSubTGraph__Group__610392 = new BitSet(new long[]{0x0000002000000080L});
-    public static final BitSet FOLLOW_rule__ExtSubTGraph__Group__7_in_rule__ExtSubTGraph__Group__610395 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExtSubTGraph__ElementsAssignment_6_in_rule__ExtSubTGraph__Group__6__Impl10422 = new BitSet(new long[]{0x0000000000000082L});
-    public static final BitSet FOLLOW_rule__ExtSubTGraph__Group__7__Impl_in_rule__ExtSubTGraph__Group__710453 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_37_in_rule__ExtSubTGraph__Group__7__Impl10481 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__TGraph__Group__0__Impl_in_rule__TGraph__Group__010528 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_rule__TGraph__Group__1_in_rule__TGraph__Group__010531 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__TGraph__IdAssignment_0_in_rule__TGraph__Group__0__Impl10558 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__TGraph__Group__1__Impl_in_rule__TGraph__Group__110588 = new BitSet(new long[]{0x0000100000000000L});
-    public static final BitSet FOLLOW_rule__TGraph__Group__2_in_rule__TGraph__Group__110591 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_33_in_rule__TGraph__Group__1__Impl10619 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__TGraph__Group__2__Impl_in_rule__TGraph__Group__210650 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_rule__TGraph__Group__3_in_rule__TGraph__Group__210653 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_44_in_rule__TGraph__Group__2__Impl10681 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__TGraph__Group__3__Impl_in_rule__TGraph__Group__310712 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_rule__TGraph__Group__4_in_rule__TGraph__Group__310715 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__TGraph__TypeGraphAssignment_3_in_rule__TGraph__Group__3__Impl10742 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__TGraph__Group__4__Impl_in_rule__TGraph__Group__410772 = new BitSet(new long[]{0x0000001000000000L});
-    public static final BitSet FOLLOW_rule__TGraph__Group__5_in_rule__TGraph__Group__410775 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_35_in_rule__TGraph__Group__4__Impl10803 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__TGraph__Group__5__Impl_in_rule__TGraph__Group__510834 = new BitSet(new long[]{0x0000002000000080L});
-    public static final BitSet FOLLOW_rule__TGraph__Group__6_in_rule__TGraph__Group__510837 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_36_in_rule__TGraph__Group__5__Impl10865 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__TGraph__Group__6__Impl_in_rule__TGraph__Group__610896 = new BitSet(new long[]{0x0000002000000080L});
-    public static final BitSet FOLLOW_rule__TGraph__Group__7_in_rule__TGraph__Group__610899 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__TGraph__ElementsAssignment_6_in_rule__TGraph__Group__6__Impl10926 = new BitSet(new long[]{0x0000000000000082L});
-    public static final BitSet FOLLOW_rule__TGraph__Group__7__Impl_in_rule__TGraph__Group__710957 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_37_in_rule__TGraph__Group__7__Impl10985 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Element__Group_0__0__Impl_in_rule__Element__Group_0__011032 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_rule__Element__Group_0__1_in_rule__Element__Group_0__011035 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleNode_in_rule__Element__Group_0__0__Impl11062 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Element__Group_0__1__Impl_in_rule__Element__Group_0__111091 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_rule__Element__Group_0__1__Impl11119 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Element__Group_1__0__Impl_in_rule__Element__Group_1__011154 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_rule__Element__Group_1__1_in_rule__Element__Group_1__011157 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleArrows_in_rule__Element__Group_1__0__Impl11184 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Element__Group_1__1__Impl_in_rule__Element__Group_1__111213 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_rule__Element__Group_1__1__Impl11241 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Arrows__Group_0__0__Impl_in_rule__Arrows__Group_0__011276 = new BitSet(new long[]{0x0000200000000000L});
-    public static final BitSet FOLLOW_rule__Arrows__Group_0__1_in_rule__Arrows__Group_0__011279 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Arrows__SrAssignment_0_0_in_rule__Arrows__Group_0__0__Impl11306 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Arrows__Group_0__1__Impl_in_rule__Arrows__Group_0__111336 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_rule__Arrows__Group_0__2_in_rule__Arrows__Group_0__111339 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_45_in_rule__Arrows__Group_0__1__Impl11367 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Arrows__Group_0__2__Impl_in_rule__Arrows__Group_0__211398 = new BitSet(new long[]{0x0000400000000000L});
-    public static final BitSet FOLLOW_rule__Arrows__Group_0__3_in_rule__Arrows__Group_0__211401 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Arrows__IdAssignment_0_2_in_rule__Arrows__Group_0__2__Impl11428 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Arrows__Group_0__3__Impl_in_rule__Arrows__Group_0__311458 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_rule__Arrows__Group_0__4_in_rule__Arrows__Group_0__311461 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_46_in_rule__Arrows__Group_0__3__Impl11489 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Arrows__Group_0__4__Impl_in_rule__Arrows__Group_0__411520 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_rule__Arrows__Group_0__5_in_rule__Arrows__Group_0__411523 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Arrows__TypeAssignment_0_4_in_rule__Arrows__Group_0__4__Impl11550 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Arrows__Group_0__5__Impl_in_rule__Arrows__Group_0__511580 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_rule__Arrows__Group_0__6_in_rule__Arrows__Group_0__511583 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_28_in_rule__Arrows__Group_0__5__Impl11611 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Arrows__Group_0__6__Impl_in_rule__Arrows__Group_0__611642 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Arrows__NextAssignment_0_6_in_rule__Arrows__Group_0__6__Impl11669 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Arrow__Group_0__0__Impl_in_rule__Arrow__Group_0__011713 = new BitSet(new long[]{0x0000200000000000L});
-    public static final BitSet FOLLOW_rule__Arrow__Group_0__1_in_rule__Arrow__Group_0__011716 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Arrow__SrAssignment_0_0_in_rule__Arrow__Group_0__0__Impl11743 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Arrow__Group_0__1__Impl_in_rule__Arrow__Group_0__111773 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_rule__Arrow__Group_0__2_in_rule__Arrow__Group_0__111776 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_45_in_rule__Arrow__Group_0__1__Impl11804 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Arrow__Group_0__2__Impl_in_rule__Arrow__Group_0__211835 = new BitSet(new long[]{0x0000400000000000L});
-    public static final BitSet FOLLOW_rule__Arrow__Group_0__3_in_rule__Arrow__Group_0__211838 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Arrow__IdAssignment_0_2_in_rule__Arrow__Group_0__2__Impl11865 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Arrow__Group_0__3__Impl_in_rule__Arrow__Group_0__311895 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_rule__Arrow__Group_0__4_in_rule__Arrow__Group_0__311898 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_46_in_rule__Arrow__Group_0__3__Impl11926 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Arrow__Group_0__4__Impl_in_rule__Arrow__Group_0__411957 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_rule__Arrow__Group_0__5_in_rule__Arrow__Group_0__411960 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_47_in_rule__Arrow__Group_0__4__Impl11988 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Arrow__Group_0__5__Impl_in_rule__Arrow__Group_0__512019 = new BitSet(new long[]{0x00000000003FE000L});
-    public static final BitSet FOLLOW_rule__Arrow__Group_0__6_in_rule__Arrow__Group_0__512022 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_28_in_rule__Arrow__Group_0__5__Impl12050 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Arrow__Group_0__6__Impl_in_rule__Arrow__Group_0__612081 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Arrow__TgDataTypeAssignment_0_6_in_rule__Arrow__Group_0__6__Impl12108 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Arrow__Group_1__0__Impl_in_rule__Arrow__Group_1__012152 = new BitSet(new long[]{0x0000200000000000L});
-    public static final BitSet FOLLOW_rule__Arrow__Group_1__1_in_rule__Arrow__Group_1__012155 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Arrow__SrAssignment_1_0_in_rule__Arrow__Group_1__0__Impl12182 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Arrow__Group_1__1__Impl_in_rule__Arrow__Group_1__112212 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_rule__Arrow__Group_1__2_in_rule__Arrow__Group_1__112215 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_45_in_rule__Arrow__Group_1__1__Impl12243 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Arrow__Group_1__2__Impl_in_rule__Arrow__Group_1__212274 = new BitSet(new long[]{0x0000400000000000L});
-    public static final BitSet FOLLOW_rule__Arrow__Group_1__3_in_rule__Arrow__Group_1__212277 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Arrow__IdAssignment_1_2_in_rule__Arrow__Group_1__2__Impl12304 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Arrow__Group_1__3__Impl_in_rule__Arrow__Group_1__312334 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_rule__Arrow__Group_1__4_in_rule__Arrow__Group_1__312337 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_46_in_rule__Arrow__Group_1__3__Impl12365 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Arrow__Group_1__4__Impl_in_rule__Arrow__Group_1__412396 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_rule__Arrow__Group_1__5_in_rule__Arrow__Group_1__412399 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Arrow__TypeAssignment_1_4_in_rule__Arrow__Group_1__4__Impl12426 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Arrow__Group_1__5__Impl_in_rule__Arrow__Group_1__512456 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_rule__Arrow__Group_1__6_in_rule__Arrow__Group_1__512459 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_28_in_rule__Arrow__Group_1__5__Impl12487 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Arrow__Group_1__6__Impl_in_rule__Arrow__Group_1__612518 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Arrow__TgValueAssignment_1_6_in_rule__Arrow__Group_1__6__Impl12545 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Arrow__Group_2__0__Impl_in_rule__Arrow__Group_2__012589 = new BitSet(new long[]{0x0000200000000000L});
-    public static final BitSet FOLLOW_rule__Arrow__Group_2__1_in_rule__Arrow__Group_2__012592 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Arrow__SrAssignment_2_0_in_rule__Arrow__Group_2__0__Impl12619 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Arrow__Group_2__1__Impl_in_rule__Arrow__Group_2__112649 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_rule__Arrow__Group_2__2_in_rule__Arrow__Group_2__112652 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_45_in_rule__Arrow__Group_2__1__Impl12680 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Arrow__Group_2__2__Impl_in_rule__Arrow__Group_2__212711 = new BitSet(new long[]{0x0000400000000000L});
-    public static final BitSet FOLLOW_rule__Arrow__Group_2__3_in_rule__Arrow__Group_2__212714 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Arrow__IdAssignment_2_2_in_rule__Arrow__Group_2__2__Impl12741 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Arrow__Group_2__3__Impl_in_rule__Arrow__Group_2__312771 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_rule__Arrow__Group_2__4_in_rule__Arrow__Group_2__312774 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_46_in_rule__Arrow__Group_2__3__Impl12802 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Arrow__Group_2__4__Impl_in_rule__Arrow__Group_2__412833 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_rule__Arrow__Group_2__5_in_rule__Arrow__Group_2__412836 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Arrow__TypeAssignment_2_4_in_rule__Arrow__Group_2__4__Impl12863 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Arrow__Group_2__5__Impl_in_rule__Arrow__Group_2__512893 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_rule__Arrow__Group_2__6_in_rule__Arrow__Group_2__512896 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_28_in_rule__Arrow__Group_2__5__Impl12924 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Arrow__Group_2__6__Impl_in_rule__Arrow__Group_2__612955 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Arrow__TgNodeAssignment_2_6_in_rule__Arrow__Group_2__6__Impl12982 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Node__Group__0__Impl_in_rule__Node__Group__013026 = new BitSet(new long[]{0x0000400000000000L});
-    public static final BitSet FOLLOW_rule__Node__Group__1_in_rule__Node__Group__013029 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Node__IdAssignment_0_in_rule__Node__Group__0__Impl13056 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Node__Group__1__Impl_in_rule__Node__Group__113086 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_rule__Node__Group__2_in_rule__Node__Group__113089 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_46_in_rule__Node__Group__1__Impl13117 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Node__Group__2__Impl_in_rule__Node__Group__213148 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Node__TypeAssignment_2_in_rule__Node__Group__2__Impl13175 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AttributeValue__Group__0__Impl_in_rule__AttributeValue__Group__013211 = new BitSet(new long[]{0x0000000000000070L});
-    public static final BitSet FOLLOW_rule__AttributeValue__Group__1_in_rule__AttributeValue__Group__013214 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_48_in_rule__AttributeValue__Group__0__Impl13242 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AttributeValue__Group__1__Impl_in_rule__AttributeValue__Group__113273 = new BitSet(new long[]{0x0002000000000000L});
-    public static final BitSet FOLLOW_rule__AttributeValue__Group__2_in_rule__AttributeValue__Group__113276 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AttributeValue__ValueAssignment_1_in_rule__AttributeValue__Group__1__Impl13303 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AttributeValue__Group__2__Impl_in_rule__AttributeValue__Group__213333 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_49_in_rule__AttributeValue__Group__2__Impl13361 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DpfId__Group__0__Impl_in_rule__DpfId__Group__013398 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_rule__DpfId__Group__1_in_rule__DpfId__Group__013401 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DpfId__NameAssignment_0_in_rule__DpfId__Group__0__Impl13428 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DpfId__Group__1__Impl_in_rule__DpfId__Group__113458 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DpfId__Group_1__0_in_rule__DpfId__Group__1__Impl13485 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DpfId__Group_1__0__Impl_in_rule__DpfId__Group_1__013520 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_rule__DpfId__Group_1__1_in_rule__DpfId__Group_1__013523 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_50_in_rule__DpfId__Group_1__0__Impl13551 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DpfId__Group_1__1__Impl_in_rule__DpfId__Group_1__113582 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DpfId__IdAssignment_1_1_in_rule__DpfId__Group_1__1__Impl13609 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDefinition_in_rule__Model__DefinitionsAssignment_013648 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDefinition_in_rule__Model__DefinitionsAssignment_113679 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__MakeEmf__IdAssignment_113710 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__MakeEcore__IdAssignment_113741 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__MakeImage__IdAssignment_113772 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__SimpleEvoSpan__LhsAssignment_113803 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__SimpleEvoSpan__DiffAssignment_313834 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__SimpleEvoSpan__RhSAssignment_513865 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__SimpleEvoSpan__TypeGraphAssignment_713896 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__SimpleEvoCospan__LhsAssignment_113927 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__SimpleEvoCospan__JointAssignment_313958 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__SimpleEvoCospan__RhsAssignment_513989 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__SimpleEvoCospan__TypeGraphAssignment_714020 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__EvoSpan__LhsAssignment_114051 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__EvoSpan__RhsAssignment_314082 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__EvoSpan__TypeGraphAssignment_514113 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__EvoCospan__LhsAssignment_114144 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__EvoCospan__RhsAssignment_314175 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__EvoCospan__TypeGraphAssignment_514206 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__InstanceSpecification__IdAssignment_014237 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleChoosenSpecfication_in_rule__InstanceSpecification__ModelAssignment_314268 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleChoosenSpecfication_in_rule__InstanceSpecification__MetamodelAssignment_514299 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleConstraintSemantic_in_rule__InstanceSpecification__ConstraintSemanticsAssignment_8_014330 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleConstraintSemantic_in_rule__InstanceSpecification__ConstraintSemanticsAssignment_8_1_114361 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__ChoosenSpecfication__IdAssignment14392 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDpfId_in_rule__ConstraintSemantic__IdAssignment_014423 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleArrows_in_rule__ConstraintSemantic__ArrowsAssignment_2_014454 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleArrows_in_rule__ConstraintSemantic__ArrowsAssignment_2_1_114485 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__ConstraintSemantic__OclAssignment_614516 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__Specification__IdAssignment_014547 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleChoosenGraph_in_rule__Specification__GraphAssignment_314578 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleConstraint_in_rule__Specification__ConstraintsAssignment_6_014609 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleConstraint_in_rule__Specification__ConstraintsAssignment_6_1_114640 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__ChoosenGraph__IdAssignment14671 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleConstraintSignature_in_rule__Constraint__SignatureAssignment_014702 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleArrows_in_rule__Constraint__ArrowsAssignment_2_014733 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleArrows_in_rule__Constraint__ArrowsAssignment_2_1_114764 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDpfId_in_rule__ConstraintSignature__IdAssignment_014795 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__ConstraintSignature__ParameterAssignment_2_014826 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__ConstraintSignature__ParameterAssignment_2_1_114857 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDomain_in_rule__Morphism__DomainAssignment_314888 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleCodomain_in_rule__Morphism__CodmainAssignment_514919 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleMapping_in_rule__Morphism__MappingsAssignment_8_014950 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleMapping_in_rule__Morphism__MappingsAssignment_8_1_114981 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__Domain__IdAssignment15012 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__Codomain__IdAssignment15043 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleNode_in_rule__MappingNode__DomainAssignment_015074 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleNode_in_rule__MappingNode__CodomainAssignment_215105 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleArrow_in_rule__MappingArrow__DomainAssignment_015136 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleArrow_in_rule__MappingArrow__CodmainAssignment_215167 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__ExtSubTGraph__IdAssignment_015198 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTGraphExtSubName_in_rule__ExtSubTGraph__ExtendsGraphAssignment_315229 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleElement_in_rule__ExtSubTGraph__ElementsAssignment_615260 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__TGraphExtSubName__IdAssignment15291 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__TGraph__IdAssignment_015322 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTGraphName_in_rule__TGraph__TypeGraphAssignment_315353 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleElement_in_rule__TGraph__ElementsAssignment_615384 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__TGraphName__IdAssignment15415 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleNode_in_rule__Arrows__SrAssignment_0_015446 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDpfId_in_rule__Arrows__IdAssignment_0_215477 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDpfId_in_rule__Arrows__TypeAssignment_0_415508 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleArrows_in_rule__Arrows__NextAssignment_0_615539 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleNode_in_rule__Arrow__SrAssignment_0_015570 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDpfId_in_rule__Arrow__IdAssignment_0_215601 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDataType_in_rule__Arrow__TgDataTypeAssignment_0_615632 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleNode_in_rule__Arrow__SrAssignment_1_015663 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDpfId_in_rule__Arrow__IdAssignment_1_215694 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDpfId_in_rule__Arrow__TypeAssignment_1_415725 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAttributeValue_in_rule__Arrow__TgValueAssignment_1_615756 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleNode_in_rule__Arrow__SrAssignment_2_015787 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDpfId_in_rule__Arrow__IdAssignment_2_215818 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDpfId_in_rule__Arrow__TypeAssignment_2_415849 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleNode_in_rule__Arrow__TgNodeAssignment_2_615880 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDpfId_in_rule__Node__IdAssignment_015911 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDpfId_in_rule__Node__TypeAssignment_215942 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleVALUE_in_rule__AttributeValue__ValueAssignment_115973 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__DpfId__NameAssignment_016004 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_INT_in_rule__DpfId__IdAssignment_1_116035 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_37_in_rule__InstanceSpecification__Group__8__Impl6005 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__InstanceSpecification__Group__9__Impl_in_rule__InstanceSpecification__Group__96036 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_rule__InstanceSpecification__Group__10_in_rule__InstanceSpecification__Group__96039 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__InstanceSpecification__Group_9__0_in_rule__InstanceSpecification__Group__9__Impl6066 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__InstanceSpecification__Group__10__Impl_in_rule__InstanceSpecification__Group__106096 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_rule__InstanceSpecification__Group__10__Impl6124 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__InstanceSpecification__Group_9__0__Impl_in_rule__InstanceSpecification__Group_9__06177 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_rule__InstanceSpecification__Group_9__1_in_rule__InstanceSpecification__Group_9__06180 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__InstanceSpecification__ConstraintSemanticsAssignment_9_0_in_rule__InstanceSpecification__Group_9__0__Impl6207 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__InstanceSpecification__Group_9__1__Impl_in_rule__InstanceSpecification__Group_9__16237 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__InstanceSpecification__Group_9_1__0_in_rule__InstanceSpecification__Group_9__1__Impl6264 = new BitSet(new long[]{0x0000000020000002L});
+    public static final BitSet FOLLOW_rule__InstanceSpecification__Group_9_1__0__Impl_in_rule__InstanceSpecification__Group_9_1__06299 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_rule__InstanceSpecification__Group_9_1__1_in_rule__InstanceSpecification__Group_9_1__06302 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_rule__InstanceSpecification__Group_9_1__0__Impl6330 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__InstanceSpecification__Group_9_1__1__Impl_in_rule__InstanceSpecification__Group_9_1__16361 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__InstanceSpecification__ConstraintSemanticsAssignment_9_1_1_in_rule__InstanceSpecification__Group_9_1__1__Impl6388 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ConstraintSemantic__Group__0__Impl_in_rule__ConstraintSemantic__Group__06422 = new BitSet(new long[]{0x0000002000000000L});
+    public static final BitSet FOLLOW_rule__ConstraintSemantic__Group__1_in_rule__ConstraintSemantic__Group__06425 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ConstraintSemantic__IdAssignment_0_in_rule__ConstraintSemantic__Group__0__Impl6452 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ConstraintSemantic__Group__1__Impl_in_rule__ConstraintSemantic__Group__16482 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_rule__ConstraintSemantic__Group__2_in_rule__ConstraintSemantic__Group__16485 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_37_in_rule__ConstraintSemantic__Group__1__Impl6513 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ConstraintSemantic__Group__2__Impl_in_rule__ConstraintSemantic__Group__26544 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_rule__ConstraintSemantic__Group__3_in_rule__ConstraintSemantic__Group__26547 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ConstraintSemantic__Group_2__0_in_rule__ConstraintSemantic__Group__2__Impl6574 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ConstraintSemantic__Group__3__Impl_in_rule__ConstraintSemantic__Group__36604 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_rule__ConstraintSemantic__Group__4_in_rule__ConstraintSemantic__Group__36607 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_rule__ConstraintSemantic__Group__3__Impl6635 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ConstraintSemantic__Group__4__Impl_in_rule__ConstraintSemantic__Group__46666 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_rule__ConstraintSemantic__Group__5_in_rule__ConstraintSemantic__Group__46669 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_rule__ConstraintSemantic__Group__4__Impl6697 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ConstraintSemantic__Group__5__Impl_in_rule__ConstraintSemantic__Group__56728 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_rule__ConstraintSemantic__Group__6_in_rule__ConstraintSemantic__Group__56731 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_39_in_rule__ConstraintSemantic__Group__5__Impl6759 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ConstraintSemantic__Group__6__Impl_in_rule__ConstraintSemantic__Group__66790 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ConstraintSemantic__OclAssignment_6_in_rule__ConstraintSemantic__Group__6__Impl6817 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ConstraintSemantic__Group_2__0__Impl_in_rule__ConstraintSemantic__Group_2__06861 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_rule__ConstraintSemantic__Group_2__1_in_rule__ConstraintSemantic__Group_2__06864 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ConstraintSemantic__ArrowsAssignment_2_0_in_rule__ConstraintSemantic__Group_2__0__Impl6891 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ConstraintSemantic__Group_2__1__Impl_in_rule__ConstraintSemantic__Group_2__16921 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ConstraintSemantic__Group_2_1__0_in_rule__ConstraintSemantic__Group_2__1__Impl6948 = new BitSet(new long[]{0x0000000020000002L});
+    public static final BitSet FOLLOW_rule__ConstraintSemantic__Group_2_1__0__Impl_in_rule__ConstraintSemantic__Group_2_1__06983 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_rule__ConstraintSemantic__Group_2_1__1_in_rule__ConstraintSemantic__Group_2_1__06986 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_rule__ConstraintSemantic__Group_2_1__0__Impl7014 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ConstraintSemantic__Group_2_1__1__Impl_in_rule__ConstraintSemantic__Group_2_1__17045 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ConstraintSemantic__ArrowsAssignment_2_1_1_in_rule__ConstraintSemantic__Group_2_1__1__Impl7072 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Specification__Group__0__Impl_in_rule__Specification__Group__07106 = new BitSet(new long[]{0x0000000200000000L});
+    public static final BitSet FOLLOW_rule__Specification__Group__1_in_rule__Specification__Group__07109 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Specification__IdAssignment_0_in_rule__Specification__Group__0__Impl7136 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Specification__Group__1__Impl_in_rule__Specification__Group__17166 = new BitSet(new long[]{0x0000010000000000L});
+    public static final BitSet FOLLOW_rule__Specification__Group__2_in_rule__Specification__Group__17169 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_33_in_rule__Specification__Group__1__Impl7197 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Specification__Group__2__Impl_in_rule__Specification__Group__27228 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_rule__Specification__Group__3_in_rule__Specification__Group__27231 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_40_in_rule__Specification__Group__2__Impl7259 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Specification__Group__3__Impl_in_rule__Specification__Group__37290 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_rule__Specification__Group__4_in_rule__Specification__Group__37293 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_35_in_rule__Specification__Group__3__Impl7321 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Specification__Group__4__Impl_in_rule__Specification__Group__47352 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_rule__Specification__Group__5_in_rule__Specification__Group__47355 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Specification__GraphAssignment_4_in_rule__Specification__Group__4__Impl7382 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Specification__Group__5__Impl_in_rule__Specification__Group__57412 = new BitSet(new long[]{0x0000002000000000L});
+    public static final BitSet FOLLOW_rule__Specification__Group__6_in_rule__Specification__Group__57415 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_36_in_rule__Specification__Group__5__Impl7443 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Specification__Group__6__Impl_in_rule__Specification__Group__67474 = new BitSet(new long[]{0x0000004000000080L});
+    public static final BitSet FOLLOW_rule__Specification__Group__7_in_rule__Specification__Group__67477 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_37_in_rule__Specification__Group__6__Impl7505 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Specification__Group__7__Impl_in_rule__Specification__Group__77536 = new BitSet(new long[]{0x0000004000000080L});
+    public static final BitSet FOLLOW_rule__Specification__Group__8_in_rule__Specification__Group__77539 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Specification__Group_7__0_in_rule__Specification__Group__7__Impl7566 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Specification__Group__8__Impl_in_rule__Specification__Group__87597 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_rule__Specification__Group__8__Impl7625 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Specification__Group_7__0__Impl_in_rule__Specification__Group_7__07674 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_rule__Specification__Group_7__1_in_rule__Specification__Group_7__07677 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Specification__ConstraintsAssignment_7_0_in_rule__Specification__Group_7__0__Impl7704 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Specification__Group_7__1__Impl_in_rule__Specification__Group_7__17734 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Specification__Group_7_1__0_in_rule__Specification__Group_7__1__Impl7761 = new BitSet(new long[]{0x0000000020000002L});
+    public static final BitSet FOLLOW_rule__Specification__Group_7_1__0__Impl_in_rule__Specification__Group_7_1__07796 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_rule__Specification__Group_7_1__1_in_rule__Specification__Group_7_1__07799 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_rule__Specification__Group_7_1__0__Impl7827 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Specification__Group_7_1__1__Impl_in_rule__Specification__Group_7_1__17858 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Specification__ConstraintsAssignment_7_1_1_in_rule__Specification__Group_7_1__1__Impl7885 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Constraint__Group__0__Impl_in_rule__Constraint__Group__07919 = new BitSet(new long[]{0x0000002000000000L});
+    public static final BitSet FOLLOW_rule__Constraint__Group__1_in_rule__Constraint__Group__07922 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Constraint__SignatureAssignment_0_in_rule__Constraint__Group__0__Impl7949 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Constraint__Group__1__Impl_in_rule__Constraint__Group__17979 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_rule__Constraint__Group__2_in_rule__Constraint__Group__17982 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_37_in_rule__Constraint__Group__1__Impl8010 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Constraint__Group__2__Impl_in_rule__Constraint__Group__28041 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_rule__Constraint__Group__3_in_rule__Constraint__Group__28044 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Constraint__Group_2__0_in_rule__Constraint__Group__2__Impl8071 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Constraint__Group__3__Impl_in_rule__Constraint__Group__38101 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_rule__Constraint__Group__3__Impl8129 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Constraint__Group_2__0__Impl_in_rule__Constraint__Group_2__08168 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_rule__Constraint__Group_2__1_in_rule__Constraint__Group_2__08171 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Constraint__ArrowsAssignment_2_0_in_rule__Constraint__Group_2__0__Impl8198 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Constraint__Group_2__1__Impl_in_rule__Constraint__Group_2__18228 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Constraint__Group_2_1__0_in_rule__Constraint__Group_2__1__Impl8255 = new BitSet(new long[]{0x0000000020000002L});
+    public static final BitSet FOLLOW_rule__Constraint__Group_2_1__0__Impl_in_rule__Constraint__Group_2_1__08290 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_rule__Constraint__Group_2_1__1_in_rule__Constraint__Group_2_1__08293 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_rule__Constraint__Group_2_1__0__Impl8321 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Constraint__Group_2_1__1__Impl_in_rule__Constraint__Group_2_1__18352 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Constraint__ArrowsAssignment_2_1_1_in_rule__Constraint__Group_2_1__1__Impl8379 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ConstraintSignature__Group__0__Impl_in_rule__ConstraintSignature__Group__08413 = new BitSet(new long[]{0x0000020000000000L});
+    public static final BitSet FOLLOW_rule__ConstraintSignature__Group__1_in_rule__ConstraintSignature__Group__08416 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ConstraintSignature__IdAssignment_0_in_rule__ConstraintSignature__Group__0__Impl8443 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ConstraintSignature__Group__1__Impl_in_rule__ConstraintSignature__Group__18473 = new BitSet(new long[]{0x0000000000800080L});
+    public static final BitSet FOLLOW_rule__ConstraintSignature__Group__2_in_rule__ConstraintSignature__Group__18476 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_41_in_rule__ConstraintSignature__Group__1__Impl8504 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ConstraintSignature__Group__2__Impl_in_rule__ConstraintSignature__Group__28535 = new BitSet(new long[]{0x0000000000800080L});
+    public static final BitSet FOLLOW_rule__ConstraintSignature__Group__3_in_rule__ConstraintSignature__Group__28538 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ConstraintSignature__Group_2__0_in_rule__ConstraintSignature__Group__2__Impl8565 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ConstraintSignature__Group__3__Impl_in_rule__ConstraintSignature__Group__38596 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_23_in_rule__ConstraintSignature__Group__3__Impl8624 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ConstraintSignature__Group_2__0__Impl_in_rule__ConstraintSignature__Group_2__08663 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_rule__ConstraintSignature__Group_2__1_in_rule__ConstraintSignature__Group_2__08666 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ConstraintSignature__ParameterAssignment_2_0_in_rule__ConstraintSignature__Group_2__0__Impl8693 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ConstraintSignature__Group_2__1__Impl_in_rule__ConstraintSignature__Group_2__18723 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ConstraintSignature__Group_2_1__0_in_rule__ConstraintSignature__Group_2__1__Impl8750 = new BitSet(new long[]{0x0000000020000002L});
+    public static final BitSet FOLLOW_rule__ConstraintSignature__Group_2_1__0__Impl_in_rule__ConstraintSignature__Group_2_1__08785 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_rule__ConstraintSignature__Group_2_1__1_in_rule__ConstraintSignature__Group_2_1__08788 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_rule__ConstraintSignature__Group_2_1__0__Impl8816 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ConstraintSignature__Group_2_1__1__Impl_in_rule__ConstraintSignature__Group_2_1__18847 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ConstraintSignature__ParameterAssignment_2_1_1_in_rule__ConstraintSignature__Group_2_1__1__Impl8874 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Morphism__Group__0__Impl_in_rule__Morphism__Group__08908 = new BitSet(new long[]{0x0000000200000000L});
+    public static final BitSet FOLLOW_rule__Morphism__Group__1_in_rule__Morphism__Group__08911 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__Morphism__Group__0__Impl8938 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Morphism__Group__1__Impl_in_rule__Morphism__Group__18967 = new BitSet(new long[]{0x0000040000000000L});
+    public static final BitSet FOLLOW_rule__Morphism__Group__2_in_rule__Morphism__Group__18970 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_33_in_rule__Morphism__Group__1__Impl8998 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Morphism__Group__2__Impl_in_rule__Morphism__Group__29029 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_rule__Morphism__Group__3_in_rule__Morphism__Group__29032 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_42_in_rule__Morphism__Group__2__Impl9060 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Morphism__Group__3__Impl_in_rule__Morphism__Group__39091 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_rule__Morphism__Group__4_in_rule__Morphism__Group__39094 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_35_in_rule__Morphism__Group__3__Impl9122 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Morphism__Group__4__Impl_in_rule__Morphism__Group__49153 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_rule__Morphism__Group__5_in_rule__Morphism__Group__49156 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Morphism__DomainAssignment_4_in_rule__Morphism__Group__4__Impl9183 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Morphism__Group__5__Impl_in_rule__Morphism__Group__59213 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_rule__Morphism__Group__6_in_rule__Morphism__Group__59216 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_rule__Morphism__Group__5__Impl9244 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Morphism__Group__6__Impl_in_rule__Morphism__Group__69275 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_rule__Morphism__Group__7_in_rule__Morphism__Group__69278 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Morphism__CodmainAssignment_6_in_rule__Morphism__Group__6__Impl9305 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Morphism__Group__7__Impl_in_rule__Morphism__Group__79335 = new BitSet(new long[]{0x0000002000000000L});
+    public static final BitSet FOLLOW_rule__Morphism__Group__8_in_rule__Morphism__Group__79338 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_36_in_rule__Morphism__Group__7__Impl9366 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Morphism__Group__8__Impl_in_rule__Morphism__Group__89397 = new BitSet(new long[]{0x0000004000000080L});
+    public static final BitSet FOLLOW_rule__Morphism__Group__9_in_rule__Morphism__Group__89400 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_37_in_rule__Morphism__Group__8__Impl9428 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Morphism__Group__9__Impl_in_rule__Morphism__Group__99459 = new BitSet(new long[]{0x0000004000000080L});
+    public static final BitSet FOLLOW_rule__Morphism__Group__10_in_rule__Morphism__Group__99462 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Morphism__Group_9__0_in_rule__Morphism__Group__9__Impl9489 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Morphism__Group__10__Impl_in_rule__Morphism__Group__109520 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_rule__Morphism__Group__10__Impl9548 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Morphism__Group_9__0__Impl_in_rule__Morphism__Group_9__09601 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_rule__Morphism__Group_9__1_in_rule__Morphism__Group_9__09604 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Morphism__MappingsAssignment_9_0_in_rule__Morphism__Group_9__0__Impl9631 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Morphism__Group_9__1__Impl_in_rule__Morphism__Group_9__19661 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Morphism__Group_9_1__0_in_rule__Morphism__Group_9__1__Impl9688 = new BitSet(new long[]{0x0000000020000002L});
+    public static final BitSet FOLLOW_rule__Morphism__Group_9_1__0__Impl_in_rule__Morphism__Group_9_1__09723 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_rule__Morphism__Group_9_1__1_in_rule__Morphism__Group_9_1__09726 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_rule__Morphism__Group_9_1__0__Impl9754 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Morphism__Group_9_1__1__Impl_in_rule__Morphism__Group_9_1__19785 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Morphism__MappingsAssignment_9_1_1_in_rule__Morphism__Group_9_1__1__Impl9812 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MappingNode__Group__0__Impl_in_rule__MappingNode__Group__09846 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_rule__MappingNode__Group__1_in_rule__MappingNode__Group__09849 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MappingNode__DomainAssignment_0_in_rule__MappingNode__Group__0__Impl9876 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MappingNode__Group__1__Impl_in_rule__MappingNode__Group__19906 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_rule__MappingNode__Group__2_in_rule__MappingNode__Group__19909 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_43_in_rule__MappingNode__Group__1__Impl9937 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MappingNode__Group__2__Impl_in_rule__MappingNode__Group__29968 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MappingNode__CodomainAssignment_2_in_rule__MappingNode__Group__2__Impl9995 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MappingArrow__Group__0__Impl_in_rule__MappingArrow__Group__010031 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_rule__MappingArrow__Group__1_in_rule__MappingArrow__Group__010034 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MappingArrow__DomainAssignment_0_in_rule__MappingArrow__Group__0__Impl10061 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MappingArrow__Group__1__Impl_in_rule__MappingArrow__Group__110091 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_rule__MappingArrow__Group__2_in_rule__MappingArrow__Group__110094 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_43_in_rule__MappingArrow__Group__1__Impl10122 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MappingArrow__Group__2__Impl_in_rule__MappingArrow__Group__210153 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MappingArrow__CodmainAssignment_2_in_rule__MappingArrow__Group__2__Impl10180 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExtSubTGraph__Group__0__Impl_in_rule__ExtSubTGraph__Group__010216 = new BitSet(new long[]{0x0000000200000000L});
+    public static final BitSet FOLLOW_rule__ExtSubTGraph__Group__1_in_rule__ExtSubTGraph__Group__010219 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExtSubTGraph__IdAssignment_0_in_rule__ExtSubTGraph__Group__0__Impl10246 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExtSubTGraph__Group__1__Impl_in_rule__ExtSubTGraph__Group__110276 = new BitSet(new long[]{0x0000100000000000L});
+    public static final BitSet FOLLOW_rule__ExtSubTGraph__Group__2_in_rule__ExtSubTGraph__Group__110279 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_33_in_rule__ExtSubTGraph__Group__1__Impl10307 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExtSubTGraph__Group__2__Impl_in_rule__ExtSubTGraph__Group__210338 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_rule__ExtSubTGraph__Group__3_in_rule__ExtSubTGraph__Group__210341 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_44_in_rule__ExtSubTGraph__Group__2__Impl10369 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExtSubTGraph__Group__3__Impl_in_rule__ExtSubTGraph__Group__310400 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_rule__ExtSubTGraph__Group__4_in_rule__ExtSubTGraph__Group__310403 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_35_in_rule__ExtSubTGraph__Group__3__Impl10431 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExtSubTGraph__Group__4__Impl_in_rule__ExtSubTGraph__Group__410462 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_rule__ExtSubTGraph__Group__5_in_rule__ExtSubTGraph__Group__410465 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExtSubTGraph__ExtendsGraphAssignment_4_in_rule__ExtSubTGraph__Group__4__Impl10492 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExtSubTGraph__Group__5__Impl_in_rule__ExtSubTGraph__Group__510522 = new BitSet(new long[]{0x0000002000000000L});
+    public static final BitSet FOLLOW_rule__ExtSubTGraph__Group__6_in_rule__ExtSubTGraph__Group__510525 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_36_in_rule__ExtSubTGraph__Group__5__Impl10553 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExtSubTGraph__Group__6__Impl_in_rule__ExtSubTGraph__Group__610584 = new BitSet(new long[]{0x0000004000000080L});
+    public static final BitSet FOLLOW_rule__ExtSubTGraph__Group__7_in_rule__ExtSubTGraph__Group__610587 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_37_in_rule__ExtSubTGraph__Group__6__Impl10615 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExtSubTGraph__Group__7__Impl_in_rule__ExtSubTGraph__Group__710646 = new BitSet(new long[]{0x0000004000000080L});
+    public static final BitSet FOLLOW_rule__ExtSubTGraph__Group__8_in_rule__ExtSubTGraph__Group__710649 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExtSubTGraph__ElementsAssignment_7_in_rule__ExtSubTGraph__Group__7__Impl10676 = new BitSet(new long[]{0x0000000000000082L});
+    public static final BitSet FOLLOW_rule__ExtSubTGraph__Group__8__Impl_in_rule__ExtSubTGraph__Group__810707 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_rule__ExtSubTGraph__Group__8__Impl10735 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__TGraph__Group__0__Impl_in_rule__TGraph__Group__010784 = new BitSet(new long[]{0x0000000200000000L});
+    public static final BitSet FOLLOW_rule__TGraph__Group__1_in_rule__TGraph__Group__010787 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__TGraph__IdAssignment_0_in_rule__TGraph__Group__0__Impl10814 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__TGraph__Group__1__Impl_in_rule__TGraph__Group__110844 = new BitSet(new long[]{0x0000200000000000L});
+    public static final BitSet FOLLOW_rule__TGraph__Group__2_in_rule__TGraph__Group__110847 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_33_in_rule__TGraph__Group__1__Impl10875 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__TGraph__Group__2__Impl_in_rule__TGraph__Group__210906 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_rule__TGraph__Group__3_in_rule__TGraph__Group__210909 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_45_in_rule__TGraph__Group__2__Impl10937 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__TGraph__Group__3__Impl_in_rule__TGraph__Group__310968 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_rule__TGraph__Group__4_in_rule__TGraph__Group__310971 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_35_in_rule__TGraph__Group__3__Impl10999 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__TGraph__Group__4__Impl_in_rule__TGraph__Group__411030 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_rule__TGraph__Group__5_in_rule__TGraph__Group__411033 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__TGraph__TypeGraphAssignment_4_in_rule__TGraph__Group__4__Impl11060 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__TGraph__Group__5__Impl_in_rule__TGraph__Group__511090 = new BitSet(new long[]{0x0000002000000000L});
+    public static final BitSet FOLLOW_rule__TGraph__Group__6_in_rule__TGraph__Group__511093 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_36_in_rule__TGraph__Group__5__Impl11121 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__TGraph__Group__6__Impl_in_rule__TGraph__Group__611152 = new BitSet(new long[]{0x0000004000000080L});
+    public static final BitSet FOLLOW_rule__TGraph__Group__7_in_rule__TGraph__Group__611155 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_37_in_rule__TGraph__Group__6__Impl11183 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__TGraph__Group__7__Impl_in_rule__TGraph__Group__711214 = new BitSet(new long[]{0x0000004000000080L});
+    public static final BitSet FOLLOW_rule__TGraph__Group__8_in_rule__TGraph__Group__711217 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__TGraph__ElementsAssignment_7_in_rule__TGraph__Group__7__Impl11244 = new BitSet(new long[]{0x0000000000000082L});
+    public static final BitSet FOLLOW_rule__TGraph__Group__8__Impl_in_rule__TGraph__Group__811275 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_rule__TGraph__Group__8__Impl11303 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Element__Group_0__0__Impl_in_rule__Element__Group_0__011352 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_rule__Element__Group_0__1_in_rule__Element__Group_0__011355 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleNode_in_rule__Element__Group_0__0__Impl11382 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Element__Group_0__1__Impl_in_rule__Element__Group_0__111411 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_rule__Element__Group_0__1__Impl11439 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Element__Group_1__0__Impl_in_rule__Element__Group_1__011474 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_rule__Element__Group_1__1_in_rule__Element__Group_1__011477 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleArrows_in_rule__Element__Group_1__0__Impl11504 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Element__Group_1__1__Impl_in_rule__Element__Group_1__111533 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_rule__Element__Group_1__1__Impl11561 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Arrows__Group_0__0__Impl_in_rule__Arrows__Group_0__011596 = new BitSet(new long[]{0x0000400000000000L});
+    public static final BitSet FOLLOW_rule__Arrows__Group_0__1_in_rule__Arrows__Group_0__011599 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Arrows__SrAssignment_0_0_in_rule__Arrows__Group_0__0__Impl11626 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Arrows__Group_0__1__Impl_in_rule__Arrows__Group_0__111656 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_rule__Arrows__Group_0__2_in_rule__Arrows__Group_0__111659 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_46_in_rule__Arrows__Group_0__1__Impl11687 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Arrows__Group_0__2__Impl_in_rule__Arrows__Group_0__211718 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_rule__Arrows__Group_0__3_in_rule__Arrows__Group_0__211721 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Arrows__IdAssignment_0_2_in_rule__Arrows__Group_0__2__Impl11748 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Arrows__Group_0__3__Impl_in_rule__Arrows__Group_0__311778 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_rule__Arrows__Group_0__4_in_rule__Arrows__Group_0__311781 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_47_in_rule__Arrows__Group_0__3__Impl11809 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Arrows__Group_0__4__Impl_in_rule__Arrows__Group_0__411840 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_rule__Arrows__Group_0__5_in_rule__Arrows__Group_0__411843 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Arrows__TypeAssignment_0_4_in_rule__Arrows__Group_0__4__Impl11870 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Arrows__Group_0__5__Impl_in_rule__Arrows__Group_0__511900 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_rule__Arrows__Group_0__6_in_rule__Arrows__Group_0__511903 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_28_in_rule__Arrows__Group_0__5__Impl11931 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Arrows__Group_0__6__Impl_in_rule__Arrows__Group_0__611962 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Arrows__NextAssignment_0_6_in_rule__Arrows__Group_0__6__Impl11989 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Arrow__Group_0__0__Impl_in_rule__Arrow__Group_0__012033 = new BitSet(new long[]{0x0000400000000000L});
+    public static final BitSet FOLLOW_rule__Arrow__Group_0__1_in_rule__Arrow__Group_0__012036 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Arrow__SrAssignment_0_0_in_rule__Arrow__Group_0__0__Impl12063 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Arrow__Group_0__1__Impl_in_rule__Arrow__Group_0__112093 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_rule__Arrow__Group_0__2_in_rule__Arrow__Group_0__112096 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_46_in_rule__Arrow__Group_0__1__Impl12124 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Arrow__Group_0__2__Impl_in_rule__Arrow__Group_0__212155 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_rule__Arrow__Group_0__3_in_rule__Arrow__Group_0__212158 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Arrow__IdAssignment_0_2_in_rule__Arrow__Group_0__2__Impl12185 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Arrow__Group_0__3__Impl_in_rule__Arrow__Group_0__312215 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_rule__Arrow__Group_0__4_in_rule__Arrow__Group_0__312218 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_47_in_rule__Arrow__Group_0__3__Impl12246 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Arrow__Group_0__4__Impl_in_rule__Arrow__Group_0__412277 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_rule__Arrow__Group_0__5_in_rule__Arrow__Group_0__412280 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_48_in_rule__Arrow__Group_0__4__Impl12308 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Arrow__Group_0__5__Impl_in_rule__Arrow__Group_0__512339 = new BitSet(new long[]{0x00000000003FE000L});
+    public static final BitSet FOLLOW_rule__Arrow__Group_0__6_in_rule__Arrow__Group_0__512342 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_28_in_rule__Arrow__Group_0__5__Impl12370 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Arrow__Group_0__6__Impl_in_rule__Arrow__Group_0__612401 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Arrow__TgDataTypeAssignment_0_6_in_rule__Arrow__Group_0__6__Impl12428 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Arrow__Group_1__0__Impl_in_rule__Arrow__Group_1__012472 = new BitSet(new long[]{0x0000400000000000L});
+    public static final BitSet FOLLOW_rule__Arrow__Group_1__1_in_rule__Arrow__Group_1__012475 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Arrow__SrAssignment_1_0_in_rule__Arrow__Group_1__0__Impl12502 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Arrow__Group_1__1__Impl_in_rule__Arrow__Group_1__112532 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_rule__Arrow__Group_1__2_in_rule__Arrow__Group_1__112535 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_46_in_rule__Arrow__Group_1__1__Impl12563 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Arrow__Group_1__2__Impl_in_rule__Arrow__Group_1__212594 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_rule__Arrow__Group_1__3_in_rule__Arrow__Group_1__212597 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Arrow__IdAssignment_1_2_in_rule__Arrow__Group_1__2__Impl12624 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Arrow__Group_1__3__Impl_in_rule__Arrow__Group_1__312654 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_rule__Arrow__Group_1__4_in_rule__Arrow__Group_1__312657 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_47_in_rule__Arrow__Group_1__3__Impl12685 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Arrow__Group_1__4__Impl_in_rule__Arrow__Group_1__412716 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_rule__Arrow__Group_1__5_in_rule__Arrow__Group_1__412719 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Arrow__TypeAssignment_1_4_in_rule__Arrow__Group_1__4__Impl12746 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Arrow__Group_1__5__Impl_in_rule__Arrow__Group_1__512776 = new BitSet(new long[]{0x0002000000000000L});
+    public static final BitSet FOLLOW_rule__Arrow__Group_1__6_in_rule__Arrow__Group_1__512779 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_28_in_rule__Arrow__Group_1__5__Impl12807 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Arrow__Group_1__6__Impl_in_rule__Arrow__Group_1__612838 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Arrow__TgValueAssignment_1_6_in_rule__Arrow__Group_1__6__Impl12865 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Arrow__Group_2__0__Impl_in_rule__Arrow__Group_2__012909 = new BitSet(new long[]{0x0000400000000000L});
+    public static final BitSet FOLLOW_rule__Arrow__Group_2__1_in_rule__Arrow__Group_2__012912 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Arrow__SrAssignment_2_0_in_rule__Arrow__Group_2__0__Impl12939 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Arrow__Group_2__1__Impl_in_rule__Arrow__Group_2__112969 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_rule__Arrow__Group_2__2_in_rule__Arrow__Group_2__112972 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_46_in_rule__Arrow__Group_2__1__Impl13000 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Arrow__Group_2__2__Impl_in_rule__Arrow__Group_2__213031 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_rule__Arrow__Group_2__3_in_rule__Arrow__Group_2__213034 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Arrow__IdAssignment_2_2_in_rule__Arrow__Group_2__2__Impl13061 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Arrow__Group_2__3__Impl_in_rule__Arrow__Group_2__313091 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_rule__Arrow__Group_2__4_in_rule__Arrow__Group_2__313094 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_47_in_rule__Arrow__Group_2__3__Impl13122 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Arrow__Group_2__4__Impl_in_rule__Arrow__Group_2__413153 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_rule__Arrow__Group_2__5_in_rule__Arrow__Group_2__413156 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Arrow__TypeAssignment_2_4_in_rule__Arrow__Group_2__4__Impl13183 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Arrow__Group_2__5__Impl_in_rule__Arrow__Group_2__513213 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_rule__Arrow__Group_2__6_in_rule__Arrow__Group_2__513216 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_28_in_rule__Arrow__Group_2__5__Impl13244 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Arrow__Group_2__6__Impl_in_rule__Arrow__Group_2__613275 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Arrow__TgNodeAssignment_2_6_in_rule__Arrow__Group_2__6__Impl13302 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Node__Group__0__Impl_in_rule__Node__Group__013346 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_rule__Node__Group__1_in_rule__Node__Group__013349 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Node__IdAssignment_0_in_rule__Node__Group__0__Impl13376 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Node__Group__1__Impl_in_rule__Node__Group__113406 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_rule__Node__Group__2_in_rule__Node__Group__113409 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_47_in_rule__Node__Group__1__Impl13437 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Node__Group__2__Impl_in_rule__Node__Group__213468 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Node__TypeAssignment_2_in_rule__Node__Group__2__Impl13495 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AttributeValue__Group__0__Impl_in_rule__AttributeValue__Group__013531 = new BitSet(new long[]{0x0000000000000070L});
+    public static final BitSet FOLLOW_rule__AttributeValue__Group__1_in_rule__AttributeValue__Group__013534 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_49_in_rule__AttributeValue__Group__0__Impl13562 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AttributeValue__Group__1__Impl_in_rule__AttributeValue__Group__113593 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_rule__AttributeValue__Group__2_in_rule__AttributeValue__Group__113596 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AttributeValue__ValueAssignment_1_in_rule__AttributeValue__Group__1__Impl13623 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AttributeValue__Group__2__Impl_in_rule__AttributeValue__Group__213653 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_50_in_rule__AttributeValue__Group__2__Impl13681 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__DpfId__Group__0__Impl_in_rule__DpfId__Group__013718 = new BitSet(new long[]{0x0008000000000000L});
+    public static final BitSet FOLLOW_rule__DpfId__Group__1_in_rule__DpfId__Group__013721 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__DpfId__NameAssignment_0_in_rule__DpfId__Group__0__Impl13748 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__DpfId__Group__1__Impl_in_rule__DpfId__Group__113778 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__DpfId__Group_1__0_in_rule__DpfId__Group__1__Impl13805 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__DpfId__Group_1__0__Impl_in_rule__DpfId__Group_1__013840 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_rule__DpfId__Group_1__1_in_rule__DpfId__Group_1__013843 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_51_in_rule__DpfId__Group_1__0__Impl13871 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__DpfId__Group_1__1__Impl_in_rule__DpfId__Group_1__113902 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__DpfId__IdAssignment_1_1_in_rule__DpfId__Group_1__1__Impl13929 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDefinition_in_rule__Model__DefinitionsAssignment_013968 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDefinition_in_rule__Model__DefinitionsAssignment_113999 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__MakeEmf__IdAssignment_114030 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__MakeEcore__IdAssignment_114061 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__MakeImage__IdAssignment_114092 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__SimpleEvoSpan__LhsAssignment_114123 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__SimpleEvoSpan__DiffAssignment_314154 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__SimpleEvoSpan__RhSAssignment_514185 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__SimpleEvoSpan__TypeGraphAssignment_714216 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__SimpleEvoCospan__LhsAssignment_114247 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__SimpleEvoCospan__JointAssignment_314278 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__SimpleEvoCospan__RhsAssignment_514309 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__SimpleEvoCospan__TypeGraphAssignment_714340 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__EvoSpan__LhsAssignment_114371 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__EvoSpan__RhsAssignment_314402 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__EvoSpan__TypeGraphAssignment_514433 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__EvoCospan__LhsAssignment_114464 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__EvoCospan__RhsAssignment_314495 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__EvoCospan__TypeGraphAssignment_514526 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__InstanceSpecification__IdAssignment_014557 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleChoosenSpecfication_in_rule__InstanceSpecification__ModelAssignment_414588 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleChoosenSpecfication_in_rule__InstanceSpecification__MetamodelAssignment_614619 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleConstraintSemantic_in_rule__InstanceSpecification__ConstraintSemanticsAssignment_9_014650 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleConstraintSemantic_in_rule__InstanceSpecification__ConstraintSemanticsAssignment_9_1_114681 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__ChoosenSpecfication__IdAssignment14712 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDpfId_in_rule__ConstraintSemantic__IdAssignment_014743 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleArrows_in_rule__ConstraintSemantic__ArrowsAssignment_2_014774 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleArrows_in_rule__ConstraintSemantic__ArrowsAssignment_2_1_114805 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rule__ConstraintSemantic__OclAssignment_614836 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__Specification__IdAssignment_014867 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleChoosenGraph_in_rule__Specification__GraphAssignment_414898 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleConstraint_in_rule__Specification__ConstraintsAssignment_7_014929 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleConstraint_in_rule__Specification__ConstraintsAssignment_7_1_114960 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__ChoosenGraph__IdAssignment14991 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleConstraintSignature_in_rule__Constraint__SignatureAssignment_015022 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleArrows_in_rule__Constraint__ArrowsAssignment_2_015053 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleArrows_in_rule__Constraint__ArrowsAssignment_2_1_115084 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDpfId_in_rule__ConstraintSignature__IdAssignment_015115 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__ConstraintSignature__ParameterAssignment_2_015146 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__ConstraintSignature__ParameterAssignment_2_1_115177 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDomain_in_rule__Morphism__DomainAssignment_415208 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCodomain_in_rule__Morphism__CodmainAssignment_615239 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMapping_in_rule__Morphism__MappingsAssignment_9_015270 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMapping_in_rule__Morphism__MappingsAssignment_9_1_115301 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__Domain__IdAssignment15332 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__Codomain__IdAssignment15363 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleNode_in_rule__MappingNode__DomainAssignment_015394 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleNode_in_rule__MappingNode__CodomainAssignment_215425 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleArrow_in_rule__MappingArrow__DomainAssignment_015456 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleArrow_in_rule__MappingArrow__CodmainAssignment_215487 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__ExtSubTGraph__IdAssignment_015518 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTGraphExtSubName_in_rule__ExtSubTGraph__ExtendsGraphAssignment_415549 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleElement_in_rule__ExtSubTGraph__ElementsAssignment_715580 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__TGraphExtSubName__IdAssignment15611 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__TGraph__IdAssignment_015642 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTGraphName_in_rule__TGraph__TypeGraphAssignment_415673 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleElement_in_rule__TGraph__ElementsAssignment_715704 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__TGraphName__IdAssignment15735 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleNode_in_rule__Arrows__SrAssignment_0_015766 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDpfId_in_rule__Arrows__IdAssignment_0_215797 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDpfId_in_rule__Arrows__TypeAssignment_0_415828 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleArrows_in_rule__Arrows__NextAssignment_0_615859 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleNode_in_rule__Arrow__SrAssignment_0_015890 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDpfId_in_rule__Arrow__IdAssignment_0_215921 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDataType_in_rule__Arrow__TgDataTypeAssignment_0_615952 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleNode_in_rule__Arrow__SrAssignment_1_015983 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDpfId_in_rule__Arrow__IdAssignment_1_216014 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDpfId_in_rule__Arrow__TypeAssignment_1_416045 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAttributeValue_in_rule__Arrow__TgValueAssignment_1_616076 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleNode_in_rule__Arrow__SrAssignment_2_016107 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDpfId_in_rule__Arrow__IdAssignment_2_216138 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDpfId_in_rule__Arrow__TypeAssignment_2_416169 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleNode_in_rule__Arrow__TgNodeAssignment_2_616200 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDpfId_in_rule__Node__IdAssignment_016231 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDpfId_in_rule__Node__TypeAssignment_216262 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleVALUE_in_rule__AttributeValue__ValueAssignment_116293 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__DpfId__NameAssignment_016324 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_INT_in_rule__DpfId__IdAssignment_1_116355 = new BitSet(new long[]{0x0000000000000002L});
 
 }
