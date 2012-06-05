@@ -6,33 +6,23 @@ package no.hib.dpf.text.ui.outline;
 import no.hib.dpf.text.tdpf.Arrow;
 import no.hib.dpf.text.tdpf.Arrows;
 import no.hib.dpf.text.tdpf.Definition;
+import no.hib.dpf.text.tdpf.Element;
 import no.hib.dpf.text.tdpf.Model;
 import no.hib.dpf.text.tdpf.Node;
+import no.hib.dpf.text.tdpf.TGraph;
 import no.hib.dpf.text.tdpf.TGraphName;
 import no.hib.dpf.text.tdpf.impl.TdpfFactoryImpl;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.text.edits.ReplaceEdit;
-import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IFileEditorInput;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.texteditor.ITextEditor;
-import org.eclipse.ui.texteditor.ITextEditorExtension;
 import org.eclipse.xtext.EcoreUtil2;
-import org.eclipse.xtext.parser.IEncodingProvider;
 import org.eclipse.xtext.resource.ILocationInFileProvider;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider;
 import org.eclipse.xtext.ui.editor.outline.impl.DocumentRootNode;
 import org.eclipse.xtext.ui.editor.outline.impl.EObjectNode;
-import org.eclipse.xtext.ui.refactoring.impl.DefaultRefactoringDocumentProvider.EditorDocument;
-import org.eclipse.xtext.ui.refactoring.impl.DefaultRefactoringDocumentProvider.FileDocument;
-import org.eclipse.xtext.ui.util.DisplayRunnableWithResult;
 import org.eclipse.xtext.util.ITextRegion;
 
 import com.google.inject.Inject;
@@ -55,6 +45,17 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		for (Definition d : model.getDefinitions()) {
 			createNode(parentNode, d);
 		}
+		
+		//Defs schon da?:
+		for (Definition d : model.getDefinitions()) {
+			System.out.println("TEST" + d.toString());
+			if(d instanceof TGraph){
+				TGraph t = (TGraph) d;
+				for (Element e : t.getElements()) {
+					System.out.println("TEST-Eelement:" + e.toString());
+				}		
+			}
+		}		
 	}
 
 	//
