@@ -33,10 +33,6 @@ public class DPFTextLabelProvider extends DefaultEObjectLabelProvider {
 	  return "Graph<" + n.getTypeGraph().getId()+">";
 	}
 		
-	String text(Node n) {
-		  return "";
-	}
-	
 	String image(Node n) {
 		  return "node.png";
 	}
