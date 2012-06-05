@@ -459,29 +459,30 @@ public class DPFTextGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cIdIDTerminalRuleCall_0_0 = (RuleCall)cIdAssignment_0.eContents().get(0);
 		private final Keyword cColonEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Keyword cISpecKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cModelAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cModelChoosenSpecficationParserRuleCall_3_0 = (RuleCall)cModelAssignment_3.eContents().get(0);
-		private final Keyword cCommaKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Assignment cMetamodelAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cMetamodelChoosenSpecficationParserRuleCall_5_0 = (RuleCall)cMetamodelAssignment_5.eContents().get(0);
-		private final Keyword cGreaterThanSignKeyword_6 = (Keyword)cGroup.eContents().get(6);
-		private final Keyword cLeftCurlyBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
-		private final Group cGroup_8 = (Group)cGroup.eContents().get(8);
-		private final Assignment cConstraintSemanticsAssignment_8_0 = (Assignment)cGroup_8.eContents().get(0);
-		private final RuleCall cConstraintSemanticsConstraintSemanticParserRuleCall_8_0_0 = (RuleCall)cConstraintSemanticsAssignment_8_0.eContents().get(0);
-		private final Group cGroup_8_1 = (Group)cGroup_8.eContents().get(1);
-		private final Keyword cCommaKeyword_8_1_0 = (Keyword)cGroup_8_1.eContents().get(0);
-		private final Assignment cConstraintSemanticsAssignment_8_1_1 = (Assignment)cGroup_8_1.eContents().get(1);
-		private final RuleCall cConstraintSemanticsConstraintSemanticParserRuleCall_8_1_1_0 = (RuleCall)cConstraintSemanticsAssignment_8_1_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_9 = (Keyword)cGroup.eContents().get(9);
+		private final Keyword cLessThanSignKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cModelAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cModelChoosenSpecficationParserRuleCall_4_0 = (RuleCall)cModelAssignment_4.eContents().get(0);
+		private final Keyword cCommaKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cMetamodelAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cMetamodelChoosenSpecficationParserRuleCall_6_0 = (RuleCall)cMetamodelAssignment_6.eContents().get(0);
+		private final Keyword cGreaterThanSignKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Keyword cLeftCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
+		private final Group cGroup_9 = (Group)cGroup.eContents().get(9);
+		private final Assignment cConstraintSemanticsAssignment_9_0 = (Assignment)cGroup_9.eContents().get(0);
+		private final RuleCall cConstraintSemanticsConstraintSemanticParserRuleCall_9_0_0 = (RuleCall)cConstraintSemanticsAssignment_9_0.eContents().get(0);
+		private final Group cGroup_9_1 = (Group)cGroup_9.eContents().get(1);
+		private final Keyword cCommaKeyword_9_1_0 = (Keyword)cGroup_9_1.eContents().get(0);
+		private final Assignment cConstraintSemanticsAssignment_9_1_1 = (Assignment)cGroup_9_1.eContents().get(1);
+		private final RuleCall cConstraintSemanticsConstraintSemanticParserRuleCall_9_1_1_0 = (RuleCall)cConstraintSemanticsAssignment_9_1_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_10 = (Keyword)cGroup.eContents().get(10);
 		
 		////Specification instance:
 		//InstanceSpecification:
-		//	id=ID ":=" "ISpec<" model=ChoosenSpecfication "," metamodel=ChoosenSpecfication ">" "{"
+		//	id=ID ":=" "ISpec" "<" model=ChoosenSpecfication "," metamodel=ChoosenSpecfication ">" "{"
 		//	(constraintSemantics+=ConstraintSemantic ("," constraintSemantics+=ConstraintSemantic)*) "}";
 		public ParserRule getRule() { return rule; }
 
-		//id=ID ":=" "ISpec<" model=ChoosenSpecfication "," metamodel=ChoosenSpecfication ">" "{"
+		//id=ID ":=" "ISpec" "<" model=ChoosenSpecfication "," metamodel=ChoosenSpecfication ">" "{"
 		//(constraintSemantics+=ConstraintSemantic ("," constraintSemantics+=ConstraintSemantic)*) "}"
 		public Group getGroup() { return cGroup; }
 
@@ -494,53 +495,56 @@ public class DPFTextGrammarAccess extends AbstractGrammarElementFinder {
 		//":="
 		public Keyword getColonEqualsSignKeyword_1() { return cColonEqualsSignKeyword_1; }
 
-		//"ISpec<"
+		//"ISpec"
 		public Keyword getISpecKeyword_2() { return cISpecKeyword_2; }
 
+		//"<"
+		public Keyword getLessThanSignKeyword_3() { return cLessThanSignKeyword_3; }
+
 		//model=ChoosenSpecfication
-		public Assignment getModelAssignment_3() { return cModelAssignment_3; }
+		public Assignment getModelAssignment_4() { return cModelAssignment_4; }
 
 		//ChoosenSpecfication
-		public RuleCall getModelChoosenSpecficationParserRuleCall_3_0() { return cModelChoosenSpecficationParserRuleCall_3_0; }
+		public RuleCall getModelChoosenSpecficationParserRuleCall_4_0() { return cModelChoosenSpecficationParserRuleCall_4_0; }
 
 		//","
-		public Keyword getCommaKeyword_4() { return cCommaKeyword_4; }
+		public Keyword getCommaKeyword_5() { return cCommaKeyword_5; }
 
 		//metamodel=ChoosenSpecfication
-		public Assignment getMetamodelAssignment_5() { return cMetamodelAssignment_5; }
+		public Assignment getMetamodelAssignment_6() { return cMetamodelAssignment_6; }
 
 		//ChoosenSpecfication
-		public RuleCall getMetamodelChoosenSpecficationParserRuleCall_5_0() { return cMetamodelChoosenSpecficationParserRuleCall_5_0; }
+		public RuleCall getMetamodelChoosenSpecficationParserRuleCall_6_0() { return cMetamodelChoosenSpecficationParserRuleCall_6_0; }
 
 		//">"
-		public Keyword getGreaterThanSignKeyword_6() { return cGreaterThanSignKeyword_6; }
+		public Keyword getGreaterThanSignKeyword_7() { return cGreaterThanSignKeyword_7; }
 
 		//"{"
-		public Keyword getLeftCurlyBracketKeyword_7() { return cLeftCurlyBracketKeyword_7; }
+		public Keyword getLeftCurlyBracketKeyword_8() { return cLeftCurlyBracketKeyword_8; }
 
 		//constraintSemantics+=ConstraintSemantic ("," constraintSemantics+=ConstraintSemantic)*
-		public Group getGroup_8() { return cGroup_8; }
+		public Group getGroup_9() { return cGroup_9; }
 
 		//constraintSemantics+=ConstraintSemantic
-		public Assignment getConstraintSemanticsAssignment_8_0() { return cConstraintSemanticsAssignment_8_0; }
+		public Assignment getConstraintSemanticsAssignment_9_0() { return cConstraintSemanticsAssignment_9_0; }
 
 		//ConstraintSemantic
-		public RuleCall getConstraintSemanticsConstraintSemanticParserRuleCall_8_0_0() { return cConstraintSemanticsConstraintSemanticParserRuleCall_8_0_0; }
+		public RuleCall getConstraintSemanticsConstraintSemanticParserRuleCall_9_0_0() { return cConstraintSemanticsConstraintSemanticParserRuleCall_9_0_0; }
 
 		//("," constraintSemantics+=ConstraintSemantic)*
-		public Group getGroup_8_1() { return cGroup_8_1; }
+		public Group getGroup_9_1() { return cGroup_9_1; }
 
 		//","
-		public Keyword getCommaKeyword_8_1_0() { return cCommaKeyword_8_1_0; }
+		public Keyword getCommaKeyword_9_1_0() { return cCommaKeyword_9_1_0; }
 
 		//constraintSemantics+=ConstraintSemantic
-		public Assignment getConstraintSemanticsAssignment_8_1_1() { return cConstraintSemanticsAssignment_8_1_1; }
+		public Assignment getConstraintSemanticsAssignment_9_1_1() { return cConstraintSemanticsAssignment_9_1_1; }
 
 		//ConstraintSemantic
-		public RuleCall getConstraintSemanticsConstraintSemanticParserRuleCall_8_1_1_0() { return cConstraintSemanticsConstraintSemanticParserRuleCall_8_1_1_0; }
+		public RuleCall getConstraintSemanticsConstraintSemanticParserRuleCall_9_1_1_0() { return cConstraintSemanticsConstraintSemanticParserRuleCall_9_1_1_0; }
 
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_9() { return cRightCurlyBracketKeyword_9; }
+		public Keyword getRightCurlyBracketKeyword_10() { return cRightCurlyBracketKeyword_10; }
 	}
 
 	public class ChoosenSpecficationElements extends AbstractParserRuleElementFinder {
@@ -638,25 +642,26 @@ public class DPFTextGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cIdIDTerminalRuleCall_0_0 = (RuleCall)cIdAssignment_0.eContents().get(0);
 		private final Keyword cColonEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Keyword cSpecKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cGraphAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cGraphChoosenGraphParserRuleCall_3_0 = (RuleCall)cGraphAssignment_3.eContents().get(0);
-		private final Keyword cGreaterThanSignKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Keyword cLeftCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
-		private final Assignment cConstraintsAssignment_6_0 = (Assignment)cGroup_6.eContents().get(0);
-		private final RuleCall cConstraintsConstraintParserRuleCall_6_0_0 = (RuleCall)cConstraintsAssignment_6_0.eContents().get(0);
-		private final Group cGroup_6_1 = (Group)cGroup_6.eContents().get(1);
-		private final Keyword cCommaKeyword_6_1_0 = (Keyword)cGroup_6_1.eContents().get(0);
-		private final Assignment cConstraintsAssignment_6_1_1 = (Assignment)cGroup_6_1.eContents().get(1);
-		private final RuleCall cConstraintsConstraintParserRuleCall_6_1_1_0 = (RuleCall)cConstraintsAssignment_6_1_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Keyword cLessThanSignKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cGraphAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cGraphChoosenGraphParserRuleCall_4_0 = (RuleCall)cGraphAssignment_4.eContents().get(0);
+		private final Keyword cGreaterThanSignKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Keyword cLeftCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Group cGroup_7 = (Group)cGroup.eContents().get(7);
+		private final Assignment cConstraintsAssignment_7_0 = (Assignment)cGroup_7.eContents().get(0);
+		private final RuleCall cConstraintsConstraintParserRuleCall_7_0_0 = (RuleCall)cConstraintsAssignment_7_0.eContents().get(0);
+		private final Group cGroup_7_1 = (Group)cGroup_7.eContents().get(1);
+		private final Keyword cCommaKeyword_7_1_0 = (Keyword)cGroup_7_1.eContents().get(0);
+		private final Assignment cConstraintsAssignment_7_1_1 = (Assignment)cGroup_7_1.eContents().get(1);
+		private final RuleCall cConstraintsConstraintParserRuleCall_7_1_1_0 = (RuleCall)cConstraintsAssignment_7_1_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
 		
 		////Specification:
 		//Specification:
-		//	id=ID ":=" "Spec<" graph=ChoosenGraph ">" "{" (constraints+=Constraint ("," constraints+=Constraint)*)? "}";
+		//	id=ID ":=" "Spec" "<" graph=ChoosenGraph ">" "{" (constraints+=Constraint ("," constraints+=Constraint)*)? "}";
 		public ParserRule getRule() { return rule; }
 
-		//id=ID ":=" "Spec<" graph=ChoosenGraph ">" "{" (constraints+=Constraint ("," constraints+=Constraint)*)? "}"
+		//id=ID ":=" "Spec" "<" graph=ChoosenGraph ">" "{" (constraints+=Constraint ("," constraints+=Constraint)*)? "}"
 		public Group getGroup() { return cGroup; }
 
 		//id=ID
@@ -668,44 +673,47 @@ public class DPFTextGrammarAccess extends AbstractGrammarElementFinder {
 		//":="
 		public Keyword getColonEqualsSignKeyword_1() { return cColonEqualsSignKeyword_1; }
 
-		//"Spec<"
+		//"Spec"
 		public Keyword getSpecKeyword_2() { return cSpecKeyword_2; }
 
+		//"<"
+		public Keyword getLessThanSignKeyword_3() { return cLessThanSignKeyword_3; }
+
 		//graph=ChoosenGraph
-		public Assignment getGraphAssignment_3() { return cGraphAssignment_3; }
+		public Assignment getGraphAssignment_4() { return cGraphAssignment_4; }
 
 		//ChoosenGraph
-		public RuleCall getGraphChoosenGraphParserRuleCall_3_0() { return cGraphChoosenGraphParserRuleCall_3_0; }
+		public RuleCall getGraphChoosenGraphParserRuleCall_4_0() { return cGraphChoosenGraphParserRuleCall_4_0; }
 
 		//">"
-		public Keyword getGreaterThanSignKeyword_4() { return cGreaterThanSignKeyword_4; }
+		public Keyword getGreaterThanSignKeyword_5() { return cGreaterThanSignKeyword_5; }
 
 		//"{"
-		public Keyword getLeftCurlyBracketKeyword_5() { return cLeftCurlyBracketKeyword_5; }
+		public Keyword getLeftCurlyBracketKeyword_6() { return cLeftCurlyBracketKeyword_6; }
 
 		//(constraints+=Constraint ("," constraints+=Constraint)*)?
-		public Group getGroup_6() { return cGroup_6; }
+		public Group getGroup_7() { return cGroup_7; }
 
 		//constraints+=Constraint
-		public Assignment getConstraintsAssignment_6_0() { return cConstraintsAssignment_6_0; }
+		public Assignment getConstraintsAssignment_7_0() { return cConstraintsAssignment_7_0; }
 
 		//Constraint
-		public RuleCall getConstraintsConstraintParserRuleCall_6_0_0() { return cConstraintsConstraintParserRuleCall_6_0_0; }
+		public RuleCall getConstraintsConstraintParserRuleCall_7_0_0() { return cConstraintsConstraintParserRuleCall_7_0_0; }
 
 		//("," constraints+=Constraint)*
-		public Group getGroup_6_1() { return cGroup_6_1; }
+		public Group getGroup_7_1() { return cGroup_7_1; }
 
 		//","
-		public Keyword getCommaKeyword_6_1_0() { return cCommaKeyword_6_1_0; }
+		public Keyword getCommaKeyword_7_1_0() { return cCommaKeyword_7_1_0; }
 
 		//constraints+=Constraint
-		public Assignment getConstraintsAssignment_6_1_1() { return cConstraintsAssignment_6_1_1; }
+		public Assignment getConstraintsAssignment_7_1_1() { return cConstraintsAssignment_7_1_1; }
 
 		//Constraint
-		public RuleCall getConstraintsConstraintParserRuleCall_6_1_1_0() { return cConstraintsConstraintParserRuleCall_6_1_1_0; }
+		public RuleCall getConstraintsConstraintParserRuleCall_7_1_1_0() { return cConstraintsConstraintParserRuleCall_7_1_1_0; }
 
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_7() { return cRightCurlyBracketKeyword_7; }
+		public Keyword getRightCurlyBracketKeyword_8() { return cRightCurlyBracketKeyword_8; }
 	}
 
 	public class ChoosenGraphElements extends AbstractParserRuleElementFinder {
@@ -842,28 +850,29 @@ public class DPFTextGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cIDTerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Keyword cColonEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Keyword cMorphismKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cDomainAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cDomainDomainParserRuleCall_3_0 = (RuleCall)cDomainAssignment_3.eContents().get(0);
-		private final Keyword cCommaKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Assignment cCodmainAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cCodmainCodomainParserRuleCall_5_0 = (RuleCall)cCodmainAssignment_5.eContents().get(0);
-		private final Keyword cGreaterThanSignKeyword_6 = (Keyword)cGroup.eContents().get(6);
-		private final Keyword cLeftCurlyBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
-		private final Group cGroup_8 = (Group)cGroup.eContents().get(8);
-		private final Assignment cMappingsAssignment_8_0 = (Assignment)cGroup_8.eContents().get(0);
-		private final RuleCall cMappingsMappingParserRuleCall_8_0_0 = (RuleCall)cMappingsAssignment_8_0.eContents().get(0);
-		private final Group cGroup_8_1 = (Group)cGroup_8.eContents().get(1);
-		private final Keyword cCommaKeyword_8_1_0 = (Keyword)cGroup_8_1.eContents().get(0);
-		private final Assignment cMappingsAssignment_8_1_1 = (Assignment)cGroup_8_1.eContents().get(1);
-		private final RuleCall cMappingsMappingParserRuleCall_8_1_1_0 = (RuleCall)cMappingsAssignment_8_1_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_9 = (Keyword)cGroup.eContents().get(9);
+		private final Keyword cLessThanSignKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cDomainAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cDomainDomainParserRuleCall_4_0 = (RuleCall)cDomainAssignment_4.eContents().get(0);
+		private final Keyword cCommaKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cCodmainAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cCodmainCodomainParserRuleCall_6_0 = (RuleCall)cCodmainAssignment_6.eContents().get(0);
+		private final Keyword cGreaterThanSignKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Keyword cLeftCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
+		private final Group cGroup_9 = (Group)cGroup.eContents().get(9);
+		private final Assignment cMappingsAssignment_9_0 = (Assignment)cGroup_9.eContents().get(0);
+		private final RuleCall cMappingsMappingParserRuleCall_9_0_0 = (RuleCall)cMappingsAssignment_9_0.eContents().get(0);
+		private final Group cGroup_9_1 = (Group)cGroup_9.eContents().get(1);
+		private final Keyword cCommaKeyword_9_1_0 = (Keyword)cGroup_9_1.eContents().get(0);
+		private final Assignment cMappingsAssignment_9_1_1 = (Assignment)cGroup_9_1.eContents().get(1);
+		private final RuleCall cMappingsMappingParserRuleCall_9_1_1_0 = (RuleCall)cMappingsAssignment_9_1_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_10 = (Keyword)cGroup.eContents().get(10);
 		
 		////Graph morphism:
 		//Morphism:
-		//	ID ":=" "Morphism<" domain=Domain "," codmain=Codomain ">" "{" (mappings+=Mapping ("," mappings+=Mapping)*)? "}";
+		//	ID ":=" "Morphism" "<" domain=Domain "," codmain=Codomain ">" "{" (mappings+=Mapping ("," mappings+=Mapping)*)? "}";
 		public ParserRule getRule() { return rule; }
 
-		//ID ":=" "Morphism<" domain=Domain "," codmain=Codomain ">" "{" (mappings+=Mapping ("," mappings+=Mapping)*)? "}"
+		//ID ":=" "Morphism" "<" domain=Domain "," codmain=Codomain ">" "{" (mappings+=Mapping ("," mappings+=Mapping)*)? "}"
 		public Group getGroup() { return cGroup; }
 
 		//ID
@@ -872,53 +881,56 @@ public class DPFTextGrammarAccess extends AbstractGrammarElementFinder {
 		//":="
 		public Keyword getColonEqualsSignKeyword_1() { return cColonEqualsSignKeyword_1; }
 
-		//"Morphism<"
+		//"Morphism"
 		public Keyword getMorphismKeyword_2() { return cMorphismKeyword_2; }
 
+		//"<"
+		public Keyword getLessThanSignKeyword_3() { return cLessThanSignKeyword_3; }
+
 		//domain=Domain
-		public Assignment getDomainAssignment_3() { return cDomainAssignment_3; }
+		public Assignment getDomainAssignment_4() { return cDomainAssignment_4; }
 
 		//Domain
-		public RuleCall getDomainDomainParserRuleCall_3_0() { return cDomainDomainParserRuleCall_3_0; }
+		public RuleCall getDomainDomainParserRuleCall_4_0() { return cDomainDomainParserRuleCall_4_0; }
 
 		//","
-		public Keyword getCommaKeyword_4() { return cCommaKeyword_4; }
+		public Keyword getCommaKeyword_5() { return cCommaKeyword_5; }
 
 		//codmain=Codomain
-		public Assignment getCodmainAssignment_5() { return cCodmainAssignment_5; }
+		public Assignment getCodmainAssignment_6() { return cCodmainAssignment_6; }
 
 		//Codomain
-		public RuleCall getCodmainCodomainParserRuleCall_5_0() { return cCodmainCodomainParserRuleCall_5_0; }
+		public RuleCall getCodmainCodomainParserRuleCall_6_0() { return cCodmainCodomainParserRuleCall_6_0; }
 
 		//">"
-		public Keyword getGreaterThanSignKeyword_6() { return cGreaterThanSignKeyword_6; }
+		public Keyword getGreaterThanSignKeyword_7() { return cGreaterThanSignKeyword_7; }
 
 		//"{"
-		public Keyword getLeftCurlyBracketKeyword_7() { return cLeftCurlyBracketKeyword_7; }
+		public Keyword getLeftCurlyBracketKeyword_8() { return cLeftCurlyBracketKeyword_8; }
 
 		//(mappings+=Mapping ("," mappings+=Mapping)*)?
-		public Group getGroup_8() { return cGroup_8; }
+		public Group getGroup_9() { return cGroup_9; }
 
 		//mappings+=Mapping
-		public Assignment getMappingsAssignment_8_0() { return cMappingsAssignment_8_0; }
+		public Assignment getMappingsAssignment_9_0() { return cMappingsAssignment_9_0; }
 
 		//Mapping
-		public RuleCall getMappingsMappingParserRuleCall_8_0_0() { return cMappingsMappingParserRuleCall_8_0_0; }
+		public RuleCall getMappingsMappingParserRuleCall_9_0_0() { return cMappingsMappingParserRuleCall_9_0_0; }
 
 		//("," mappings+=Mapping)*
-		public Group getGroup_8_1() { return cGroup_8_1; }
+		public Group getGroup_9_1() { return cGroup_9_1; }
 
 		//","
-		public Keyword getCommaKeyword_8_1_0() { return cCommaKeyword_8_1_0; }
+		public Keyword getCommaKeyword_9_1_0() { return cCommaKeyword_9_1_0; }
 
 		//mappings+=Mapping
-		public Assignment getMappingsAssignment_8_1_1() { return cMappingsAssignment_8_1_1; }
+		public Assignment getMappingsAssignment_9_1_1() { return cMappingsAssignment_9_1_1; }
 
 		//Mapping
-		public RuleCall getMappingsMappingParserRuleCall_8_1_1_0() { return cMappingsMappingParserRuleCall_8_1_1_0; }
+		public RuleCall getMappingsMappingParserRuleCall_9_1_1_0() { return cMappingsMappingParserRuleCall_9_1_1_0; }
 
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_9() { return cRightCurlyBracketKeyword_9; }
+		public Keyword getRightCurlyBracketKeyword_10() { return cRightCurlyBracketKeyword_10; }
 	}
 
 	public class DomainElements extends AbstractParserRuleElementFinder {
@@ -1044,20 +1056,21 @@ public class DPFTextGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cIdIDTerminalRuleCall_0_0 = (RuleCall)cIdAssignment_0.eContents().get(0);
 		private final Keyword cColonEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Keyword cExtSubTGraphKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cExtendsGraphAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cExtendsGraphTGraphExtSubNameParserRuleCall_3_0 = (RuleCall)cExtendsGraphAssignment_3.eContents().get(0);
-		private final Keyword cGreaterThanSignKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Keyword cLeftCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		private final Assignment cElementsAssignment_6 = (Assignment)cGroup.eContents().get(6);
-		private final RuleCall cElementsElementParserRuleCall_6_0 = (RuleCall)cElementsAssignment_6.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Keyword cLessThanSignKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cExtendsGraphAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cExtendsGraphTGraphExtSubNameParserRuleCall_4_0 = (RuleCall)cExtendsGraphAssignment_4.eContents().get(0);
+		private final Keyword cGreaterThanSignKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Keyword cLeftCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Assignment cElementsAssignment_7 = (Assignment)cGroup.eContents().get(7);
+		private final RuleCall cElementsElementParserRuleCall_7_0 = (RuleCall)cElementsAssignment_7.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
 		
 		////Typed subgraphs:
 		//ExtSubTGraph:
-		//	id=ID ":=" "ExtSubTGraph<" extendsGraph=TGraphExtSubName ">" "{" elements+=Element* "}";
+		//	id=ID ":=" "ExtSubTGraph" "<" extendsGraph=TGraphExtSubName ">" "{" elements+=Element* "}";
 		public ParserRule getRule() { return rule; }
 
-		//id=ID ":=" "ExtSubTGraph<" extendsGraph=TGraphExtSubName ">" "{" elements+=Element* "}"
+		//id=ID ":=" "ExtSubTGraph" "<" extendsGraph=TGraphExtSubName ">" "{" elements+=Element* "}"
 		public Group getGroup() { return cGroup; }
 
 		//id=ID
@@ -1069,29 +1082,32 @@ public class DPFTextGrammarAccess extends AbstractGrammarElementFinder {
 		//":="
 		public Keyword getColonEqualsSignKeyword_1() { return cColonEqualsSignKeyword_1; }
 
-		//"ExtSubTGraph<"
+		//"ExtSubTGraph"
 		public Keyword getExtSubTGraphKeyword_2() { return cExtSubTGraphKeyword_2; }
 
+		//"<"
+		public Keyword getLessThanSignKeyword_3() { return cLessThanSignKeyword_3; }
+
 		//extendsGraph=TGraphExtSubName
-		public Assignment getExtendsGraphAssignment_3() { return cExtendsGraphAssignment_3; }
+		public Assignment getExtendsGraphAssignment_4() { return cExtendsGraphAssignment_4; }
 
 		//TGraphExtSubName
-		public RuleCall getExtendsGraphTGraphExtSubNameParserRuleCall_3_0() { return cExtendsGraphTGraphExtSubNameParserRuleCall_3_0; }
+		public RuleCall getExtendsGraphTGraphExtSubNameParserRuleCall_4_0() { return cExtendsGraphTGraphExtSubNameParserRuleCall_4_0; }
 
 		//">"
-		public Keyword getGreaterThanSignKeyword_4() { return cGreaterThanSignKeyword_4; }
+		public Keyword getGreaterThanSignKeyword_5() { return cGreaterThanSignKeyword_5; }
 
 		//"{"
-		public Keyword getLeftCurlyBracketKeyword_5() { return cLeftCurlyBracketKeyword_5; }
+		public Keyword getLeftCurlyBracketKeyword_6() { return cLeftCurlyBracketKeyword_6; }
 
 		//elements+=Element*
-		public Assignment getElementsAssignment_6() { return cElementsAssignment_6; }
+		public Assignment getElementsAssignment_7() { return cElementsAssignment_7; }
 
 		//Element
-		public RuleCall getElementsElementParserRuleCall_6_0() { return cElementsElementParserRuleCall_6_0; }
+		public RuleCall getElementsElementParserRuleCall_7_0() { return cElementsElementParserRuleCall_7_0; }
 
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_7() { return cRightCurlyBracketKeyword_7; }
+		public Keyword getRightCurlyBracketKeyword_8() { return cRightCurlyBracketKeyword_8; }
 	}
 
 	public class TGraphExtSubNameElements extends AbstractParserRuleElementFinder {
@@ -1117,20 +1133,21 @@ public class DPFTextGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cIdIDTerminalRuleCall_0_0 = (RuleCall)cIdAssignment_0.eContents().get(0);
 		private final Keyword cColonEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Keyword cTGraphKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cTypeGraphAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cTypeGraphTGraphNameParserRuleCall_3_0 = (RuleCall)cTypeGraphAssignment_3.eContents().get(0);
-		private final Keyword cGreaterThanSignKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Keyword cLeftCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		private final Assignment cElementsAssignment_6 = (Assignment)cGroup.eContents().get(6);
-		private final RuleCall cElementsElementParserRuleCall_6_0 = (RuleCall)cElementsAssignment_6.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Keyword cLessThanSignKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cTypeGraphAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cTypeGraphTGraphNameParserRuleCall_4_0 = (RuleCall)cTypeGraphAssignment_4.eContents().get(0);
+		private final Keyword cGreaterThanSignKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Keyword cLeftCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Assignment cElementsAssignment_7 = (Assignment)cGroup.eContents().get(7);
+		private final RuleCall cElementsElementParserRuleCall_7_0 = (RuleCall)cElementsAssignment_7.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
 		
 		////Typed graphs:
 		//TGraph:
-		//	id=ID ":=" "TGraph<" typeGraph=TGraphName ">" "{" elements+=Element* "}";
+		//	id=ID ":=" "TGraph" "<" typeGraph=TGraphName ">" "{" elements+=Element* "}";
 		public ParserRule getRule() { return rule; }
 
-		//id=ID ":=" "TGraph<" typeGraph=TGraphName ">" "{" elements+=Element* "}"
+		//id=ID ":=" "TGraph" "<" typeGraph=TGraphName ">" "{" elements+=Element* "}"
 		public Group getGroup() { return cGroup; }
 
 		//id=ID
@@ -1142,29 +1159,32 @@ public class DPFTextGrammarAccess extends AbstractGrammarElementFinder {
 		//":="
 		public Keyword getColonEqualsSignKeyword_1() { return cColonEqualsSignKeyword_1; }
 
-		//"TGraph<"
+		//"TGraph"
 		public Keyword getTGraphKeyword_2() { return cTGraphKeyword_2; }
 
+		//"<"
+		public Keyword getLessThanSignKeyword_3() { return cLessThanSignKeyword_3; }
+
 		//typeGraph=TGraphName
-		public Assignment getTypeGraphAssignment_3() { return cTypeGraphAssignment_3; }
+		public Assignment getTypeGraphAssignment_4() { return cTypeGraphAssignment_4; }
 
 		//TGraphName
-		public RuleCall getTypeGraphTGraphNameParserRuleCall_3_0() { return cTypeGraphTGraphNameParserRuleCall_3_0; }
+		public RuleCall getTypeGraphTGraphNameParserRuleCall_4_0() { return cTypeGraphTGraphNameParserRuleCall_4_0; }
 
 		//">"
-		public Keyword getGreaterThanSignKeyword_4() { return cGreaterThanSignKeyword_4; }
+		public Keyword getGreaterThanSignKeyword_5() { return cGreaterThanSignKeyword_5; }
 
 		//"{"
-		public Keyword getLeftCurlyBracketKeyword_5() { return cLeftCurlyBracketKeyword_5; }
+		public Keyword getLeftCurlyBracketKeyword_6() { return cLeftCurlyBracketKeyword_6; }
 
 		//elements+=Element*
-		public Assignment getElementsAssignment_6() { return cElementsAssignment_6; }
+		public Assignment getElementsAssignment_7() { return cElementsAssignment_7; }
 
 		//Element
-		public RuleCall getElementsElementParserRuleCall_6_0() { return cElementsElementParserRuleCall_6_0; }
+		public RuleCall getElementsElementParserRuleCall_7_0() { return cElementsElementParserRuleCall_7_0; }
 
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_7() { return cRightCurlyBracketKeyword_7; }
+		public Keyword getRightCurlyBracketKeyword_8() { return cRightCurlyBracketKeyword_8; }
 	}
 
 	public class TGraphNameElements extends AbstractParserRuleElementFinder {
@@ -1810,7 +1830,7 @@ public class DPFTextGrammarAccess extends AbstractGrammarElementFinder {
 
 	////Specification instance:
 	//InstanceSpecification:
-	//	id=ID ":=" "ISpec<" model=ChoosenSpecfication "," metamodel=ChoosenSpecfication ">" "{"
+	//	id=ID ":=" "ISpec" "<" model=ChoosenSpecfication "," metamodel=ChoosenSpecfication ">" "{"
 	//	(constraintSemantics+=ConstraintSemantic ("," constraintSemantics+=ConstraintSemantic)*) "}";
 	public InstanceSpecificationElements getInstanceSpecificationAccess() {
 		return (pInstanceSpecification != null) ? pInstanceSpecification : (pInstanceSpecification = new InstanceSpecificationElements());
@@ -1842,7 +1862,7 @@ public class DPFTextGrammarAccess extends AbstractGrammarElementFinder {
 
 	////Specification:
 	//Specification:
-	//	id=ID ":=" "Spec<" graph=ChoosenGraph ">" "{" (constraints+=Constraint ("," constraints+=Constraint)*)? "}";
+	//	id=ID ":=" "Spec" "<" graph=ChoosenGraph ">" "{" (constraints+=Constraint ("," constraints+=Constraint)*)? "}";
 	public SpecificationElements getSpecificationAccess() {
 		return (pSpecification != null) ? pSpecification : (pSpecification = new SpecificationElements());
 	}
@@ -1883,7 +1903,7 @@ public class DPFTextGrammarAccess extends AbstractGrammarElementFinder {
 
 	////Graph morphism:
 	//Morphism:
-	//	ID ":=" "Morphism<" domain=Domain "," codmain=Codomain ">" "{" (mappings+=Mapping ("," mappings+=Mapping)*)? "}";
+	//	ID ":=" "Morphism" "<" domain=Domain "," codmain=Codomain ">" "{" (mappings+=Mapping ("," mappings+=Mapping)*)? "}";
 	public MorphismElements getMorphismAccess() {
 		return (pMorphism != null) ? pMorphism : (pMorphism = new MorphismElements());
 	}
@@ -1944,7 +1964,7 @@ public class DPFTextGrammarAccess extends AbstractGrammarElementFinder {
 
 	////Typed subgraphs:
 	//ExtSubTGraph:
-	//	id=ID ":=" "ExtSubTGraph<" extendsGraph=TGraphExtSubName ">" "{" elements+=Element* "}";
+	//	id=ID ":=" "ExtSubTGraph" "<" extendsGraph=TGraphExtSubName ">" "{" elements+=Element* "}";
 	public ExtSubTGraphElements getExtSubTGraphAccess() {
 		return (pExtSubTGraph != null) ? pExtSubTGraph : (pExtSubTGraph = new ExtSubTGraphElements());
 	}
@@ -1965,7 +1985,7 @@ public class DPFTextGrammarAccess extends AbstractGrammarElementFinder {
 
 	////Typed graphs:
 	//TGraph:
-	//	id=ID ":=" "TGraph<" typeGraph=TGraphName ">" "{" elements+=Element* "}";
+	//	id=ID ":=" "TGraph" "<" typeGraph=TGraphName ">" "{" elements+=Element* "}";
 	public TGraphElements getTGraphAccess() {
 		return (pTGraph != null) ? pTGraph : (pTGraph = new TGraphElements());
 	}

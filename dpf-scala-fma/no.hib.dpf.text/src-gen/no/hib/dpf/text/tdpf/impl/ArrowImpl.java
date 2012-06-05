@@ -84,7 +84,6 @@ public class ArrowImpl extends ArrowsImpl implements Arrow
   protected ArrowImpl()
   {
     super();
-    System.out.println("ArrowImpl()"); 
   }
 
   /**
@@ -115,7 +114,6 @@ public class ArrowImpl extends ArrowsImpl implements Arrow
    */
   public void setTgDataType(DataType newTgDataType)
   {
-	System.out.println("ArrowImpl->setTgDataType(DataType newTgDataType)");  
     DataType oldTgDataType = tgDataType;
     tgDataType = newTgDataType == null ? TG_DATA_TYPE_EDEFAULT : newTgDataType;
     if (eNotificationRequired())
@@ -139,7 +137,6 @@ public class ArrowImpl extends ArrowsImpl implements Arrow
    */
   public NotificationChain basicSetTgValue(AttributeValue newTgValue, NotificationChain msgs)
   {
-	System.out.println("ArrowImpl->basicSetTgValue(AttributeValue newTgValue, NotificationChain msgs)");  
     AttributeValue oldTgValue = tgValue;
     tgValue = newTgValue;
     if (eNotificationRequired())
@@ -157,7 +154,6 @@ public class ArrowImpl extends ArrowsImpl implements Arrow
    */
   public void setTgValue(AttributeValue newTgValue)
   {
-	System.out.println("ArrowImpl->setTgValue(AttributeValue newTgValue)");  
     if (newTgValue != tgValue)
     {
       NotificationChain msgs = null;
@@ -189,7 +185,6 @@ public class ArrowImpl extends ArrowsImpl implements Arrow
    */
   public NotificationChain basicSetTgNode(Node newTgNode, NotificationChain msgs)
   {
-	System.out.println("ArrowImpl->basicSetTgNode(Node newTgNode, NotificationChain msgs)");  
     Node oldTgNode = tgNode;
     tgNode = newTgNode;
     if (eNotificationRequired())
@@ -207,7 +202,6 @@ public class ArrowImpl extends ArrowsImpl implements Arrow
    */
   public void setTgNode(Node newTgNode)
   {
-	System.out.println("ArrowImpl->setTgNode(Node newTgNode)");  
     if (newTgNode != tgNode)
     {
       NotificationChain msgs = null;
@@ -230,7 +224,6 @@ public class ArrowImpl extends ArrowsImpl implements Arrow
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
-	System.out.println("ArrowImpl->eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)");  
     switch (featureID)
     {
       case TdpfPackage.ARROW__TG_VALUE:
@@ -269,7 +262,6 @@ public class ArrowImpl extends ArrowsImpl implements Arrow
   @Override
   public void eSet(int featureID, Object newValue)
   {
-	System.out.println("ArrowImpl->eSet(int featureID, Object newValue)");  
     switch (featureID)
     {
       case TdpfPackage.ARROW__TG_DATA_TYPE:
@@ -293,7 +285,6 @@ public class ArrowImpl extends ArrowsImpl implements Arrow
   @Override
   public void eUnset(int featureID)
   {
-	System.out.println("ArrowImpl->eUnset(int featureID)");  
     switch (featureID)
     {
       case TdpfPackage.ARROW__TG_DATA_TYPE:
@@ -329,27 +320,21 @@ public class ArrowImpl extends ArrowsImpl implements Arrow
     return super.eIsSet(featureID);
   }
 
-//  /**
-//   * <!-- begin-user-doc -->
-//   * <!-- end-user-doc -->
-//   * @generated
-//   */
-//  @Override
-//  public String toString()
-//  {
-//    if (eIsProxy()) return super.toString();
-//
-//    StringBuffer result = new StringBuffer(super.toString());
-//    result.append(" (tgDataType: ");
-//    result.append(tgDataType);
-//    result.append(')');
-//    return result.toString();
-//  }
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
 
-@Override
-public String toString(){
-  return "Arrow";
-}
-  
-  
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (tgDataType: ");
+    result.append(tgDataType);
+    result.append(')');
+    return result.toString();
+  }
+
 } //ArrowImpl

@@ -244,7 +244,8 @@
           <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
         </elements>
         <elements xsi:type="xtext:Keyword" value=":="/>
-        <elements xsi:type="xtext:Keyword" value="ISpec&lt;"/>
+        <elements xsi:type="xtext:Keyword" value="ISpec"/>
+        <elements xsi:type="xtext:Keyword" value="&lt;"/>
         <elements xsi:type="xtext:Assignment" feature="model" operator="=">
           <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.14"/>
         </elements>
@@ -313,7 +314,8 @@
           <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
         </elements>
         <elements xsi:type="xtext:Keyword" value=":="/>
-        <elements xsi:type="xtext:Keyword" value="Spec&lt;"/>
+        <elements xsi:type="xtext:Keyword" value="Spec"/>
+        <elements xsi:type="xtext:Keyword" value="&lt;"/>
         <elements xsi:type="xtext:Assignment" feature="graph" operator="=">
           <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.17"/>
         </elements>
@@ -394,7 +396,8 @@
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
         <elements xsi:type="xtext:Keyword" value=":="/>
-        <elements xsi:type="xtext:Keyword" value="Morphism&lt;"/>
+        <elements xsi:type="xtext:Keyword" value="Morphism"/>
+        <elements xsi:type="xtext:Keyword" value="&lt;"/>
         <elements xsi:type="xtext:Assignment" feature="domain" operator="=">
           <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.21"/>
         </elements>
@@ -480,7 +483,8 @@
           <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
         </elements>
         <elements xsi:type="xtext:Keyword" value=":="/>
-        <elements xsi:type="xtext:Keyword" value="ExtSubTGraph&lt;"/>
+        <elements xsi:type="xtext:Keyword" value="ExtSubTGraph"/>
+        <elements xsi:type="xtext:Keyword" value="&lt;"/>
         <elements xsi:type="xtext:Assignment" feature="extendsGraph" operator="=">
           <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.27"/>
         </elements>
@@ -509,7 +513,8 @@
           <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
         </elements>
         <elements xsi:type="xtext:Keyword" value=":="/>
-        <elements xsi:type="xtext:Keyword" value="TGraph&lt;"/>
+        <elements xsi:type="xtext:Keyword" value="TGraph"/>
+        <elements xsi:type="xtext:Keyword" value="&lt;"/>
         <elements xsi:type="xtext:Assignment" feature="typeGraph" operator="=">
           <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.29"/>
         </elements>

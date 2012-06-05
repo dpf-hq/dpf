@@ -56,7 +56,6 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   protected ModelImpl()
   {
     super();
-    System.out.println("ModelImpl()");  
   }
 
   /**

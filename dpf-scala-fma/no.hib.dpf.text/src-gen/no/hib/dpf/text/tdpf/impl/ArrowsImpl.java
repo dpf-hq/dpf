@@ -61,7 +61,6 @@ public class ArrowsImpl extends ElementImpl implements Arrows
   protected ArrowsImpl()
   {
     super();
-    System.out.println("ArrowsImpl()");
   }
 
   /**
@@ -92,8 +91,7 @@ public class ArrowsImpl extends ElementImpl implements Arrows
    */
   public NotificationChain basicSetSr(Node newSr, NotificationChain msgs)
   {
-	System.out.println("ArrowsImpl()->NotificationChain basicSetSr(Node newSr, NotificationChain msgs)");
-	Node oldSr = sr;
+    Node oldSr = sr;
     sr = newSr;
     if (eNotificationRequired())
     {
@@ -110,7 +108,6 @@ public class ArrowsImpl extends ElementImpl implements Arrows
    */
   public void setSr(Node newSr)
   {
-	System.out.println("ArrowsImpl()->setSr(Node newSr)");
     if (newSr != sr)
     {
       NotificationChain msgs = null;
@@ -142,7 +139,6 @@ public class ArrowsImpl extends ElementImpl implements Arrows
    */
   public NotificationChain basicSetNext(Arrows newNext, NotificationChain msgs)
   {
-	System.out.println("ArrowsImpl()->basicSetNext(Arrows newNext, NotificationChain msgs)");
     Arrows oldNext = next;
     next = newNext;
     if (eNotificationRequired())
@@ -160,7 +156,6 @@ public class ArrowsImpl extends ElementImpl implements Arrows
    */
   public void setNext(Arrows newNext)
   {
-	System.out.println("ArrowsImpl()->setNext(Arrows newNext)");
     if (newNext != next)
     {
       NotificationChain msgs = null;
@@ -183,7 +178,6 @@ public class ArrowsImpl extends ElementImpl implements Arrows
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
-	System.out.println("ArrowsImpl()->eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)");
     switch (featureID)
     {
       case TdpfPackage.ARROWS__SR:
@@ -220,8 +214,7 @@ public class ArrowsImpl extends ElementImpl implements Arrows
   @Override
   public void eSet(int featureID, Object newValue)
   {
-	System.out.println("ArrowsImpl()->eSet(int featureID, Object newValue)");
-	switch (featureID)
+    switch (featureID)
     {
       case TdpfPackage.ARROWS__SR:
         setSr((Node)newValue);
@@ -241,7 +234,6 @@ public class ArrowsImpl extends ElementImpl implements Arrows
   @Override
   public void eUnset(int featureID)
   {
-	System.out.println("ArrowsImpl()->eUnset(int featureID)");
     switch (featureID)
     {
       case TdpfPackage.ARROWS__SR:
@@ -271,13 +263,5 @@ public class ArrowsImpl extends ElementImpl implements Arrows
     }
     return super.eIsSet(featureID);
   }
-  
-  
-  @Override
-  public String toString(){
-	  return "Arrows";
-  }
 
-  
-  
 } //ArrowsImpl

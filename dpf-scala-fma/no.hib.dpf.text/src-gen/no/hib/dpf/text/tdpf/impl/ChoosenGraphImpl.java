@@ -58,7 +58,6 @@ public class ChoosenGraphImpl extends MinimalEObjectImpl.Container implements Ch
   protected ChoosenGraphImpl()
   {
     super();
-    System.out.println("FLO ChoosenGraphImpl()");
   }
 
   /**
@@ -89,7 +88,6 @@ public class ChoosenGraphImpl extends MinimalEObjectImpl.Container implements Ch
    */
   public void setId(String newId)
   {
-	System.out.println("ChoosenGraphImpl()->setId(String newId)" + newId);  
     String oldId = id;
     id = newId;
     if (eNotificationRequired())

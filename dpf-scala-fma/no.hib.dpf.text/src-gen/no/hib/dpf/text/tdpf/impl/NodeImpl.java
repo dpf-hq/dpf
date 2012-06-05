@@ -42,9 +42,4 @@ public class NodeImpl extends ElementImpl implements Node
     return TdpfPackage.Literals.NODE;
   }
 
-  
-  @Override
-  public String toString(){
-    return "Node";
-  }  
 } //NodeImpl

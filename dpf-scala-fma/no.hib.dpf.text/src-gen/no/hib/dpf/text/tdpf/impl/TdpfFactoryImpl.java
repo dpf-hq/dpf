@@ -32,7 +32,6 @@ public class TdpfFactoryImpl extends EFactoryImpl implements TdpfFactory
    */
   public static TdpfFactory init()
   {
-	System.out.println("TdpfFactory init()"); 
     try
     {
       TdpfFactory theTdpfFactory = (TdpfFactory)EPackage.Registry.INSTANCE.getEFactory("http://no.hib.dpf/dpf-text"); 
@@ -521,7 +520,6 @@ public class TdpfFactoryImpl extends EFactoryImpl implements TdpfFactory
    */
   public TdpfPackage getTdpfPackage()
   {
-	System.out.println("TdpfFactory->getTdpfPackage()");   
     return (TdpfPackage)getEPackage();
   }
 
@@ -534,8 +532,7 @@ public class TdpfFactoryImpl extends EFactoryImpl implements TdpfFactory
   @Deprecated
   public static TdpfPackage getPackage()
   {
-	  System.out.println("TdpfFactory->getPackage()");   
-	  return TdpfPackage.eINSTANCE;
+    return TdpfPackage.eINSTANCE;
   }
 
 } //TdpfFactoryImpl

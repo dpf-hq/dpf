@@ -58,7 +58,6 @@ public class TGraphNameImpl extends MinimalEObjectImpl.Container implements TGra
   protected TGraphNameImpl()
   {
     super();
-    System.out.println("TGraphNameImpl()");  
   }
 
   /**
@@ -89,7 +88,6 @@ public class TGraphNameImpl extends MinimalEObjectImpl.Container implements TGra
    */
   public void setId(String newId)
   {
-    System.out.println("TGraphNameImpl()->setId(String newId) "+newId);  
     String oldId = id;
     id = newId;
     if (eNotificationRequired())

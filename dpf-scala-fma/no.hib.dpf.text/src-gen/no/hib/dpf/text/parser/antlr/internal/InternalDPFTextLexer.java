@@ -26,6 +26,7 @@ public class InternalDPFTextLexer extends Lexer {
     public static final int T__20=20;
     public static final int EOF=-1;
     public static final int T__19=19;
+    public static final int T__51=51;
     public static final int T__16=16;
     public static final int T__15=15;
     public static final int T__18=18;
@@ -329,10 +330,10 @@ public class InternalDPFTextLexer extends Lexer {
         try {
             int _type = T__25;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:23:7: ( 'ISpec<' )
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:23:9: 'ISpec<'
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:23:7: ( 'ISpec' )
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:23:9: 'ISpec'
             {
-            match("ISpec<"); 
+            match("ISpec"); 
 
 
             }
@@ -350,10 +351,10 @@ public class InternalDPFTextLexer extends Lexer {
         try {
             int _type = T__26;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:24:7: ( '>' )
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:24:9: '>'
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:24:7: ( '<' )
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:24:9: '<'
             {
-            match('>'); 
+            match('<'); 
 
             }
 
@@ -370,10 +371,10 @@ public class InternalDPFTextLexer extends Lexer {
         try {
             int _type = T__27;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:25:7: ( '{' )
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:25:9: '{'
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:25:7: ( '>' )
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:25:9: '>'
             {
-            match('{'); 
+            match('>'); 
 
             }
 
@@ -390,10 +391,10 @@ public class InternalDPFTextLexer extends Lexer {
         try {
             int _type = T__28;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:26:7: ( '}' )
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:26:9: '}'
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:26:7: ( '{' )
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:26:9: '{'
             {
-            match('}'); 
+            match('{'); 
 
             }
 
@@ -410,10 +411,10 @@ public class InternalDPFTextLexer extends Lexer {
         try {
             int _type = T__29;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:27:7: ( '=' )
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:27:9: '='
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:27:7: ( '}' )
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:27:9: '}'
             {
-            match('='); 
+            match('}'); 
 
             }
 
@@ -430,11 +431,10 @@ public class InternalDPFTextLexer extends Lexer {
         try {
             int _type = T__30;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:28:7: ( 'Spec<' )
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:28:9: 'Spec<'
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:28:7: ( '=' )
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:28:9: '='
             {
-            match("Spec<"); 
-
+            match('='); 
 
             }
 
@@ -451,10 +451,11 @@ public class InternalDPFTextLexer extends Lexer {
         try {
             int _type = T__31;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:29:7: ( '(' )
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:29:9: '('
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:29:7: ( 'Spec' )
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:29:9: 'Spec'
             {
-            match('('); 
+            match("Spec"); 
+
 
             }
 
@@ -471,11 +472,10 @@ public class InternalDPFTextLexer extends Lexer {
         try {
             int _type = T__32;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:30:7: ( 'Morphism<' )
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:30:9: 'Morphism<'
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:30:7: ( '(' )
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:30:9: '('
             {
-            match("Morphism<"); 
-
+            match('('); 
 
             }
 
@@ -492,10 +492,10 @@ public class InternalDPFTextLexer extends Lexer {
         try {
             int _type = T__33;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:31:7: ( '=>' )
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:31:9: '=>'
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:31:7: ( 'Morphism' )
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:31:9: 'Morphism'
             {
-            match("=>"); 
+            match("Morphism"); 
 
 
             }
@@ -513,10 +513,10 @@ public class InternalDPFTextLexer extends Lexer {
         try {
             int _type = T__34;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:32:7: ( 'ExtSubTGraph<' )
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:32:9: 'ExtSubTGraph<'
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:32:7: ( '=>' )
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:32:9: '=>'
             {
-            match("ExtSubTGraph<"); 
+            match("=>"); 
 
 
             }
@@ -534,10 +534,10 @@ public class InternalDPFTextLexer extends Lexer {
         try {
             int _type = T__35;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:33:7: ( 'TGraph<' )
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:33:9: 'TGraph<'
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:33:7: ( 'ExtSubTGraph' )
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:33:9: 'ExtSubTGraph'
             {
-            match("TGraph<"); 
+            match("ExtSubTGraph"); 
 
 
             }
@@ -555,10 +555,11 @@ public class InternalDPFTextLexer extends Lexer {
         try {
             int _type = T__36;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:34:7: ( '-' )
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:34:9: '-'
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:34:7: ( 'TGraph' )
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:34:9: 'TGraph'
             {
-            match('-'); 
+            match("TGraph"); 
+
 
             }
 
@@ -575,10 +576,10 @@ public class InternalDPFTextLexer extends Lexer {
         try {
             int _type = T__37;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:35:7: ( ':' )
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:35:9: ':'
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:35:7: ( '-' )
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:35:9: '-'
             {
-            match(':'); 
+            match('-'); 
 
             }
 
@@ -595,10 +596,10 @@ public class InternalDPFTextLexer extends Lexer {
         try {
             int _type = T__38;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:36:7: ( '*' )
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:36:9: '*'
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:36:7: ( ':' )
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:36:9: ':'
             {
-            match('*'); 
+            match(':'); 
 
             }
 
@@ -615,10 +616,10 @@ public class InternalDPFTextLexer extends Lexer {
         try {
             int _type = T__39;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:37:7: ( '[' )
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:37:9: '['
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:37:7: ( '*' )
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:37:9: '*'
             {
-            match('['); 
+            match('*'); 
 
             }
 
@@ -635,10 +636,10 @@ public class InternalDPFTextLexer extends Lexer {
         try {
             int _type = T__40;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:38:7: ( ']' )
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:38:9: ']'
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:38:7: ( '[' )
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:38:9: '['
             {
-            match(']'); 
+            match('['); 
 
             }
 
@@ -655,10 +656,10 @@ public class InternalDPFTextLexer extends Lexer {
         try {
             int _type = T__41;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:39:7: ( '@' )
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:39:9: '@'
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:39:7: ( ']' )
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:39:9: ']'
             {
-            match('@'); 
+            match(']'); 
 
             }
 
@@ -675,11 +676,10 @@ public class InternalDPFTextLexer extends Lexer {
         try {
             int _type = T__42;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:40:7: ( 'Boolean' )
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:40:9: 'Boolean'
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:40:7: ( '@' )
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:40:9: '@'
             {
-            match("Boolean"); 
-
+            match('@'); 
 
             }
 
@@ -696,10 +696,10 @@ public class InternalDPFTextLexer extends Lexer {
         try {
             int _type = T__43;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:41:7: ( 'Char' )
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:41:9: 'Char'
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:41:7: ( 'Boolean' )
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:41:9: 'Boolean'
             {
-            match("Char"); 
+            match("Boolean"); 
 
 
             }
@@ -717,10 +717,10 @@ public class InternalDPFTextLexer extends Lexer {
         try {
             int _type = T__44;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:42:7: ( 'Byte' )
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:42:9: 'Byte'
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:42:7: ( 'Char' )
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:42:9: 'Char'
             {
-            match("Byte"); 
+            match("Char"); 
 
 
             }
@@ -738,10 +738,10 @@ public class InternalDPFTextLexer extends Lexer {
         try {
             int _type = T__45;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:43:7: ( 'Short' )
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:43:9: 'Short'
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:43:7: ( 'Byte' )
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:43:9: 'Byte'
             {
-            match("Short"); 
+            match("Byte"); 
 
 
             }
@@ -759,10 +759,10 @@ public class InternalDPFTextLexer extends Lexer {
         try {
             int _type = T__46;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:44:7: ( 'Int' )
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:44:9: 'Int'
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:44:7: ( 'Short' )
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:44:9: 'Short'
             {
-            match("Int"); 
+            match("Short"); 
 
 
             }
@@ -780,10 +780,10 @@ public class InternalDPFTextLexer extends Lexer {
         try {
             int _type = T__47;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:45:7: ( 'Long' )
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:45:9: 'Long'
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:45:7: ( 'Int' )
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:45:9: 'Int'
             {
-            match("Long"); 
+            match("Int"); 
 
 
             }
@@ -801,10 +801,10 @@ public class InternalDPFTextLexer extends Lexer {
         try {
             int _type = T__48;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:46:7: ( 'Float' )
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:46:9: 'Float'
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:46:7: ( 'Long' )
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:46:9: 'Long'
             {
-            match("Float"); 
+            match("Long"); 
 
 
             }
@@ -822,10 +822,10 @@ public class InternalDPFTextLexer extends Lexer {
         try {
             int _type = T__49;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:47:7: ( 'Double' )
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:47:9: 'Double'
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:47:7: ( 'Float' )
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:47:9: 'Float'
             {
-            match("Double"); 
+            match("Float"); 
 
 
             }
@@ -843,10 +843,10 @@ public class InternalDPFTextLexer extends Lexer {
         try {
             int _type = T__50;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:48:7: ( 'String' )
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:48:9: 'String'
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:48:7: ( 'Double' )
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:48:9: 'Double'
             {
-            match("String"); 
+            match("Double"); 
 
 
             }
@@ -859,13 +859,34 @@ public class InternalDPFTextLexer extends Lexer {
     }
     // $ANTLR end "T__50"
 
+    // $ANTLR start "T__51"
+    public final void mT__51() throws RecognitionException {
+        try {
+            int _type = T__51;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:49:7: ( 'String' )
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:49:9: 'String'
+            {
+            match("String"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__51"
+
     // $ANTLR start "RULE_CHAR"
     public final void mRULE_CHAR() throws RecognitionException {
         try {
             int _type = RULE_CHAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2765:11: ( '\\'' RULE_ANY_OTHER '\\'' )
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2765:13: '\\'' RULE_ANY_OTHER '\\''
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2785:11: ( '\\'' RULE_ANY_OTHER '\\'' )
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2785:13: '\\'' RULE_ANY_OTHER '\\''
             {
             match('\''); 
             mRULE_ANY_OTHER(); 
@@ -886,8 +907,8 @@ public class InternalDPFTextLexer extends Lexer {
         try {
             int _type = RULE_NUMBER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2767:13: ( RULE_INT '.' RULE_INT )
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2767:15: RULE_INT '.' RULE_INT
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2787:13: ( RULE_INT '.' RULE_INT )
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2787:15: RULE_INT '.' RULE_INT
             {
             mRULE_INT(); 
             match('.'); 
@@ -908,10 +929,10 @@ public class InternalDPFTextLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2769:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2769:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2789:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2789:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2769:11: ( '^' )?
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2789:11: ( '^' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -920,7 +941,7 @@ public class InternalDPFTextLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2769:11: '^'
+                    // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2789:11: '^'
                     {
                     match('^'); 
 
@@ -938,7 +959,7 @@ public class InternalDPFTextLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2769:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2789:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop2:
             do {
                 int alt2=2;
@@ -987,10 +1008,10 @@ public class InternalDPFTextLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2771:10: ( ( '0' .. '9' )+ )
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2771:12: ( '0' .. '9' )+
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2791:10: ( ( '0' .. '9' )+ )
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2791:12: ( '0' .. '9' )+
             {
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2771:12: ( '0' .. '9' )+
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2791:12: ( '0' .. '9' )+
             int cnt3=0;
             loop3:
             do {
@@ -1004,7 +1025,7 @@ public class InternalDPFTextLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2771:13: '0' .. '9'
+            	    // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2791:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -1036,10 +1057,10 @@ public class InternalDPFTextLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2773:13: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2773:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2793:13: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2793:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2773:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2793:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -1057,10 +1078,10 @@ public class InternalDPFTextLexer extends Lexer {
             }
             switch (alt6) {
                 case 1 :
-                    // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2773:16: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2793:16: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2773:20: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2793:20: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop4:
                     do {
                         int alt4=3;
@@ -1076,7 +1097,7 @@ public class InternalDPFTextLexer extends Lexer {
 
                         switch (alt4) {
                     	case 1 :
-                    	    // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2773:21: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
+                    	    // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2793:21: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
                     	    {
                     	    match('\\'); 
                     	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||(input.LA(1)>='t' && input.LA(1)<='u') ) {
@@ -1092,7 +1113,7 @@ public class InternalDPFTextLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2773:66: ~ ( ( '\\\\' | '\"' ) )
+                    	    // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2793:66: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -1117,10 +1138,10 @@ public class InternalDPFTextLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2773:86: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2793:86: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2773:91: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2793:91: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop5:
                     do {
                         int alt5=3;
@@ -1136,7 +1157,7 @@ public class InternalDPFTextLexer extends Lexer {
 
                         switch (alt5) {
                     	case 1 :
-                    	    // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2773:92: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
+                    	    // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2793:92: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
                     	    {
                     	    match('\\'); 
                     	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||(input.LA(1)>='t' && input.LA(1)<='u') ) {
@@ -1152,7 +1173,7 @@ public class InternalDPFTextLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2773:137: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2793:137: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -1195,12 +1216,12 @@ public class InternalDPFTextLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2775:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2775:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2795:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2795:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2775:24: ( options {greedy=false; } : . )*
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2795:24: ( options {greedy=false; } : . )*
             loop7:
             do {
                 int alt7=2;
@@ -1225,7 +1246,7 @@ public class InternalDPFTextLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2775:52: .
+            	    // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2795:52: .
             	    {
             	    matchAny(); 
 
@@ -1255,12 +1276,12 @@ public class InternalDPFTextLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2777:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2777:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2797:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2797:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2777:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2797:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop8:
             do {
                 int alt8=2;
@@ -1273,7 +1294,7 @@ public class InternalDPFTextLexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2777:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2797:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -1293,7 +1314,7 @@ public class InternalDPFTextLexer extends Lexer {
                 }
             } while (true);
 
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2777:40: ( ( '\\r' )? '\\n' )?
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2797:40: ( ( '\\r' )? '\\n' )?
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -1302,9 +1323,9 @@ public class InternalDPFTextLexer extends Lexer {
             }
             switch (alt10) {
                 case 1 :
-                    // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2777:41: ( '\\r' )? '\\n'
+                    // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2797:41: ( '\\r' )? '\\n'
                     {
-                    // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2777:41: ( '\\r' )?
+                    // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2797:41: ( '\\r' )?
                     int alt9=2;
                     int LA9_0 = input.LA(1);
 
@@ -1313,7 +1334,7 @@ public class InternalDPFTextLexer extends Lexer {
                     }
                     switch (alt9) {
                         case 1 :
-                            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2777:41: '\\r'
+                            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2797:41: '\\r'
                             {
                             match('\r'); 
 
@@ -1345,10 +1366,10 @@ public class InternalDPFTextLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2779:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2779:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2799:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2799:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2779:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2799:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt11=0;
             loop11:
             do {
@@ -1402,8 +1423,8 @@ public class InternalDPFTextLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2781:16: ( . )
-            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2781:18: .
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2801:16: ( . )
+            // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:2801:18: .
             {
             matchAny(); 
 
@@ -1418,8 +1439,8 @@ public class InternalDPFTextLexer extends Lexer {
     // $ANTLR end "RULE_ANY_OTHER"
 
     public void mTokens() throws RecognitionException {
-        // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:1:8: ( T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | RULE_CHAR | RULE_NUMBER | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
-        int alt12=47;
+        // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:1:8: ( T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | RULE_CHAR | RULE_NUMBER | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
+        int alt12=48;
         alt12 = dfa12.predict(input);
         switch (alt12) {
             case 1 :
@@ -1689,63 +1710,70 @@ public class InternalDPFTextLexer extends Lexer {
                 }
                 break;
             case 39 :
-                // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:1:238: RULE_CHAR
+                // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:1:238: T__51
+                {
+                mT__51(); 
+
+                }
+                break;
+            case 40 :
+                // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:1:244: RULE_CHAR
                 {
                 mRULE_CHAR(); 
 
                 }
                 break;
-            case 40 :
-                // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:1:248: RULE_NUMBER
+            case 41 :
+                // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:1:254: RULE_NUMBER
                 {
                 mRULE_NUMBER(); 
 
                 }
                 break;
-            case 41 :
-                // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:1:260: RULE_ID
+            case 42 :
+                // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:1:266: RULE_ID
                 {
                 mRULE_ID(); 
 
                 }
                 break;
-            case 42 :
-                // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:1:268: RULE_INT
+            case 43 :
+                // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:1:274: RULE_INT
                 {
                 mRULE_INT(); 
 
                 }
                 break;
-            case 43 :
-                // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:1:277: RULE_STRING
+            case 44 :
+                // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:1:283: RULE_STRING
                 {
                 mRULE_STRING(); 
 
                 }
                 break;
-            case 44 :
-                // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:1:289: RULE_ML_COMMENT
+            case 45 :
+                // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:1:295: RULE_ML_COMMENT
                 {
                 mRULE_ML_COMMENT(); 
 
                 }
                 break;
-            case 45 :
-                // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:1:305: RULE_SL_COMMENT
+            case 46 :
+                // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:1:311: RULE_SL_COMMENT
                 {
                 mRULE_SL_COMMENT(); 
 
                 }
                 break;
-            case 46 :
-                // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:1:321: RULE_WS
+            case 47 :
+                // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:1:327: RULE_WS
                 {
                 mRULE_WS(); 
 
                 }
                 break;
-            case 47 :
-                // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:1:329: RULE_ANY_OTHER
+            case 48 :
+                // ../no.hib.dpf.text/src-gen/no/hib/dpf/text/parser/antlr/internal/InternalDPFText.g:1:335: RULE_ANY_OTHER
                 {
                 mRULE_ANY_OTHER(); 
 
@@ -1759,62 +1787,63 @@ public class InternalDPFTextLexer extends Lexer {
 
     protected DFA12 dfa12 = new DFA12(this);
     static final String DFA12_eotS =
-        "\1\uffff\1\47\1\uffff\2\47\1\43\1\55\1\uffff\1\60\1\47\3\uffff\1"+
-        "\67\1\47\1\uffff\3\47\4\uffff\5\47\1\43\1\114\1\43\1\uffff\2\43"+
-        "\2\uffff\3\47\2\uffff\2\47\1\131\1\133\4\uffff\2\47\5\uffff\3\47"+
-        "\1\uffff\3\47\4\uffff\6\47\2\uffff\1\117\1\uffff\1\114\5\uffff\5"+
-        "\47\4\uffff\1\47\1\163\14\47\1\154\3\uffff\5\47\1\uffff\7\47\1\u008c"+
-        "\1\u008d\1\u008e\7\47\1\uffff\1\u0096\5\47\3\uffff\1\u009c\1\47"+
-        "\1\uffff\1\47\1\uffff\1\47\2\uffff\1\u00a0\4\47\1\uffff\1\u00a5"+
-        "\2\47\1\uffff\2\47\1\uffff\1\u00aa\1\uffff\4\47\1\uffff\2\47\1\uffff"+
-        "\1\47\1\uffff\7\47\1\uffff\2\47\1\uffff";
+        "\1\uffff\1\47\1\uffff\2\47\1\54\1\56\1\uffff\1\61\1\47\3\uffff\1"+
+        "\70\1\47\1\uffff\3\47\4\uffff\5\47\1\43\1\115\1\43\1\uffff\2\43"+
+        "\2\uffff\3\47\2\uffff\2\47\1\132\1\uffff\1\134\4\uffff\2\47\5\uffff"+
+        "\3\47\1\uffff\3\47\4\uffff\6\47\2\uffff\1\120\1\uffff\1\115\5\uffff"+
+        "\5\47\4\uffff\1\47\1\164\14\47\1\155\3\uffff\5\47\1\uffff\1\u0086"+
+        "\6\47\1\u008d\1\u008e\1\u008f\6\47\1\u0096\1\uffff\1\u0097\5\47"+
+        "\3\uffff\1\u009d\1\47\1\uffff\1\47\1\uffff\1\47\2\uffff\1\u00a1"+
+        "\2\47\1\u00a4\1\47\1\uffff\1\u00a6\2\47\1\uffff\2\47\1\uffff\1\u00ab"+
+        "\1\uffff\2\47\1\u00ae\1\47\1\uffff\2\47\1\uffff\1\47\1\uffff\5\47"+
+        "\1\u00b8\1\47\1\uffff\2\47\1\uffff";
     static final String DFA12_eofS =
-        "\u00bb\uffff";
+        "\u00bc\uffff";
     static final String DFA12_minS =
         "\1\0\1\143\1\uffff\1\155\1\151\1\55\1\76\1\uffff\1\75\1\123\3\uffff"+
         "\1\76\1\150\1\uffff\1\157\1\170\1\107\4\uffff\1\157\1\150\1\157"+
         "\1\154\1\157\1\0\1\56\1\101\1\uffff\1\0\1\52\2\uffff\1\146\2\157"+
-        "\2\uffff\1\141\1\155\1\76\1\74\4\uffff\1\160\1\164\5\uffff\1\145"+
-        "\1\157\1\162\1\uffff\1\162\1\164\1\162\4\uffff\1\157\1\164\1\141"+
-        "\1\156\1\157\1\165\1\42\1\0\1\47\1\uffff\1\56\5\uffff\1\50\1\162"+
-        "\1\154\1\147\1\160\4\uffff\1\145\1\60\1\143\1\162\1\151\1\160\1"+
-        "\123\1\141\1\154\1\145\1\162\1\147\1\141\1\142\1\0\3\uffff\1\145"+
-        "\1\165\1\145\1\154\1\143\1\uffff\1\74\1\164\1\156\1\150\1\165\1"+
-        "\160\1\145\3\60\1\164\1\154\1\50\1\164\1\50\1\145\1\74\1\uffff\1"+
-        "\60\1\147\1\151\1\142\1\150\1\141\3\uffff\1\60\1\145\1\uffff\1\151"+
-        "\1\uffff\1\105\2\uffff\1\60\1\163\1\124\1\74\1\156\1\uffff\1\60"+
-        "\1\157\1\166\1\uffff\1\155\1\107\1\uffff\1\60\1\uffff\1\156\1\157"+
-        "\1\74\1\162\1\uffff\1\50\1\154\1\uffff\1\141\1\uffff\1\165\1\160"+
-        "\1\164\1\150\1\151\1\74\1\157\1\uffff\1\156\1\50\1\uffff";
+        "\2\uffff\1\141\1\155\1\76\1\uffff\1\74\4\uffff\1\160\1\164\5\uffff"+
+        "\1\145\1\157\1\162\1\uffff\1\162\1\164\1\162\4\uffff\1\157\1\164"+
+        "\1\141\1\156\1\157\1\165\1\42\1\0\1\47\1\uffff\1\56\5\uffff\1\50"+
+        "\1\162\1\154\1\147\1\160\4\uffff\1\145\1\60\1\143\1\162\1\151\1"+
+        "\160\1\123\1\141\1\154\1\145\1\162\1\147\1\141\1\142\1\0\3\uffff"+
+        "\1\145\1\165\1\145\1\154\1\143\1\uffff\1\60\1\164\1\156\1\150\1"+
+        "\165\1\160\1\145\3\60\1\164\1\154\1\50\1\164\1\50\1\145\1\60\1\uffff"+
+        "\1\60\1\147\1\151\1\142\1\150\1\141\3\uffff\1\60\1\145\1\uffff\1"+
+        "\151\1\uffff\1\105\2\uffff\1\60\1\163\1\124\1\60\1\156\1\uffff\1"+
+        "\60\1\157\1\166\1\uffff\1\155\1\107\1\uffff\1\60\1\uffff\1\156\1"+
+        "\157\1\60\1\162\1\uffff\1\50\1\154\1\uffff\1\141\1\uffff\1\165\1"+
+        "\160\1\164\1\150\1\151\1\60\1\157\1\uffff\1\156\1\50\1\uffff";
     static final String DFA12_maxS =
         "\1\uffff\1\166\1\uffff\1\155\1\151\1\55\1\76\1\uffff\1\75\1\156"+
         "\3\uffff\1\76\1\164\1\uffff\1\157\1\170\1\107\4\uffff\1\171\1\150"+
         "\1\157\1\154\1\157\1\uffff\1\71\1\172\1\uffff\1\uffff\1\57\2\uffff"+
-        "\1\146\2\157\2\uffff\1\141\1\155\1\76\1\74\4\uffff\1\160\1\164\5"+
-        "\uffff\1\145\1\157\1\162\1\uffff\1\162\1\164\1\162\4\uffff\1\157"+
-        "\1\164\1\141\1\156\1\157\2\165\1\uffff\1\47\1\uffff\1\71\5\uffff"+
-        "\1\50\1\162\1\154\1\147\1\160\4\uffff\1\145\1\172\1\143\1\162\1"+
-        "\151\1\160\1\123\1\141\1\154\1\145\1\162\1\147\1\141\1\142\1\uffff"+
-        "\3\uffff\1\145\1\165\1\145\1\154\1\143\1\uffff\1\74\1\164\1\156"+
-        "\1\150\1\165\1\160\1\145\3\172\1\164\1\154\1\50\1\164\1\50\1\145"+
-        "\1\74\1\uffff\1\172\1\147\1\151\1\142\1\150\1\141\3\uffff\1\172"+
-        "\1\145\1\uffff\1\151\1\uffff\1\105\2\uffff\1\172\1\163\1\124\1\74"+
-        "\1\156\1\uffff\1\172\1\157\1\166\1\uffff\1\155\1\107\1\uffff\1\172"+
-        "\1\uffff\1\156\1\157\1\74\1\162\1\uffff\1\50\1\154\1\uffff\1\141"+
-        "\1\uffff\1\165\1\160\1\164\1\150\1\151\1\74\1\157\1\uffff\1\156"+
-        "\1\50\1\uffff";
+        "\1\146\2\157\2\uffff\1\141\1\155\1\76\1\uffff\1\74\4\uffff\1\160"+
+        "\1\164\5\uffff\1\145\1\157\1\162\1\uffff\1\162\1\164\1\162\4\uffff"+
+        "\1\157\1\164\1\141\1\156\1\157\2\165\1\uffff\1\47\1\uffff\1\71\5"+
+        "\uffff\1\50\1\162\1\154\1\147\1\160\4\uffff\1\145\1\172\1\143\1"+
+        "\162\1\151\1\160\1\123\1\141\1\154\1\145\1\162\1\147\1\141\1\142"+
+        "\1\uffff\3\uffff\1\145\1\165\1\145\1\154\1\143\1\uffff\1\172\1\164"+
+        "\1\156\1\150\1\165\1\160\1\145\3\172\1\164\1\154\1\50\1\164\1\50"+
+        "\1\145\1\172\1\uffff\1\172\1\147\1\151\1\142\1\150\1\141\3\uffff"+
+        "\1\172\1\145\1\uffff\1\151\1\uffff\1\105\2\uffff\1\172\1\163\1\124"+
+        "\1\172\1\156\1\uffff\1\172\1\157\1\166\1\uffff\1\155\1\107\1\uffff"+
+        "\1\172\1\uffff\1\156\1\157\1\172\1\162\1\uffff\1\50\1\154\1\uffff"+
+        "\1\141\1\uffff\1\165\1\160\1\164\1\150\1\151\1\172\1\157\1\uffff"+
+        "\1\156\1\50\1\uffff";
     static final String DFA12_acceptS =
-        "\2\uffff\1\2\4\uffff\1\10\2\uffff\1\16\1\17\1\20\2\uffff\1\23\3"+
-        "\uffff\1\32\1\33\1\34\1\35\10\uffff\1\51\2\uffff\1\56\1\57\3\uffff"+
-        "\1\51\1\2\4\uffff\1\30\1\10\1\14\1\31\2\uffff\1\16\1\17\1\20\1\25"+
-        "\1\21\3\uffff\1\23\3\uffff\1\32\1\33\1\34\1\35\11\uffff\1\52\1\uffff"+
-        "\1\50\1\53\1\54\1\55\1\56\5\uffff\1\12\1\6\1\13\1\7\17\uffff\2\47"+
-        "\1\1\5\uffff\1\42\21\uffff\1\22\6\uffff\1\40\1\37\1\43\2\uffff\1"+
-        "\3\1\uffff\1\4\1\uffff\1\15\1\41\5\uffff\1\44\3\uffff\1\46\2\uffff"+
-        "\1\27\1\uffff\1\45\4\uffff\1\36\2\uffff\1\24\1\uffff\1\11\7\uffff"+
-        "\1\26\2\uffff\1\5";
+        "\2\uffff\1\2\4\uffff\1\10\2\uffff\1\17\1\20\1\21\2\uffff\1\24\3"+
+        "\uffff\1\33\1\34\1\35\1\36\10\uffff\1\52\2\uffff\1\57\1\60\3\uffff"+
+        "\1\52\1\2\3\uffff\1\16\1\uffff\1\31\1\10\1\14\1\32\2\uffff\1\17"+
+        "\1\20\1\21\1\26\1\22\3\uffff\1\24\3\uffff\1\33\1\34\1\35\1\36\11"+
+        "\uffff\1\53\1\uffff\1\51\1\54\1\55\1\56\1\57\5\uffff\1\12\1\6\1"+
+        "\13\1\7\17\uffff\2\50\1\1\5\uffff\1\43\21\uffff\1\23\6\uffff\1\41"+
+        "\1\40\1\44\2\uffff\1\3\1\uffff\1\4\1\uffff\1\15\1\42\5\uffff\1\45"+
+        "\3\uffff\1\47\2\uffff\1\30\1\uffff\1\46\4\uffff\1\37\2\uffff\1\25"+
+        "\1\uffff\1\11\7\uffff\1\27\2\uffff\1\5";
     static final String DFA12_specialS =
-        "\1\0\33\uffff\1\2\3\uffff\1\4\51\uffff\1\1\37\uffff\1\3\120\uffff}>";
+        "\1\2\33\uffff\1\1\3\uffff\1\3\52\uffff\1\0\37\uffff\1\4\120\uffff}>";
     static final String[] DFA12_transitionS = {
             "\11\43\2\42\2\43\1\42\22\43\1\42\1\43\1\40\4\43\1\34\1\17\1"+
             "\2\1\23\1\43\1\7\1\6\1\43\1\41\12\35\1\10\1\43\1\5\1\15\1\12"+
@@ -1826,96 +1855,96 @@ public class InternalDPFTextLexer extends Lexer {
             "\1\51",
             "\1\52",
             "\1\53",
-            "\1\54",
+            "\1\55",
             "",
-            "\1\57",
-            "\1\61\32\uffff\1\62",
+            "\1\60",
+            "\1\62\32\uffff\1\63",
             "",
             "",
             "",
-            "\1\66",
-            "\1\71\7\uffff\1\70\3\uffff\1\72",
+            "\1\67",
+            "\1\72\7\uffff\1\71\3\uffff\1\73",
             "",
-            "\1\74",
             "\1\75",
             "\1\76",
+            "\1\77",
             "",
             "",
             "",
             "",
-            "\1\103\11\uffff\1\104",
-            "\1\105",
+            "\1\104\11\uffff\1\105",
             "\1\106",
             "\1\107",
             "\1\110",
-            "\47\112\1\113\64\112\1\111\uffa3\112",
-            "\1\116\1\uffff\12\115",
+            "\1\111",
+            "\47\113\1\114\64\113\1\112\uffa3\113",
+            "\1\117\1\uffff\12\116",
             "\32\47\4\uffff\1\47\1\uffff\32\47",
             "",
-            "\0\117",
-            "\1\120\4\uffff\1\121",
+            "\0\120",
+            "\1\121\4\uffff\1\122",
             "",
             "",
-            "\1\123",
             "\1\124",
             "\1\125",
-            "",
-            "",
             "\1\126",
+            "",
+            "",
             "\1\127",
             "\1\130",
-            "\1\132",
+            "\1\131",
+            "",
+            "\1\133",
             "",
             "",
             "",
             "",
-            "\1\134",
             "\1\135",
-            "",
-            "",
-            "",
-            "",
-            "",
             "\1\136",
+            "",
+            "",
+            "",
+            "",
+            "",
             "\1\137",
             "\1\140",
-            "",
             "\1\141",
+            "",
             "\1\142",
             "\1\143",
-            "",
-            "",
-            "",
-            "",
             "\1\144",
+            "",
+            "",
+            "",
+            "",
             "\1\145",
             "\1\146",
             "\1\147",
             "\1\150",
             "\1\151",
-            "\1\117\4\uffff\1\152\64\uffff\1\117\5\uffff\1\117\3\uffff\1"+
-            "\117\7\uffff\1\117\3\uffff\1\117\1\uffff\2\117",
-            "\47\117\1\153\uffd8\117",
-            "\1\154",
-            "",
-            "\1\116\1\uffff\12\115",
-            "",
-            "",
-            "",
-            "",
-            "",
+            "\1\152",
+            "\1\120\4\uffff\1\153\64\uffff\1\120\5\uffff\1\120\3\uffff\1"+
+            "\120\7\uffff\1\120\3\uffff\1\120\1\uffff\2\120",
+            "\47\120\1\154\uffd8\120",
             "\1\155",
+            "",
+            "\1\117\1\uffff\12\116",
+            "",
+            "",
+            "",
+            "",
+            "",
             "\1\156",
             "\1\157",
             "\1\160",
             "\1\161",
-            "",
-            "",
-            "",
-            "",
             "\1\162",
+            "",
+            "",
+            "",
+            "",
+            "\1\163",
             "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47",
-            "\1\164",
             "\1\165",
             "\1\166",
             "\1\167",
@@ -1927,86 +1956,87 @@ public class InternalDPFTextLexer extends Lexer {
             "\1\175",
             "\1\176",
             "\1\177",
-            "\0\117",
-            "",
-            "",
-            "",
             "\1\u0080",
+            "\0\120",
+            "",
+            "",
+            "",
             "\1\u0081",
             "\1\u0082",
             "\1\u0083",
             "\1\u0084",
-            "",
             "\1\u0085",
-            "\1\u0086",
+            "",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47",
             "\1\u0087",
             "\1\u0088",
             "\1\u0089",
             "\1\u008a",
             "\1\u008b",
+            "\1\u008c",
             "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47",
             "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47",
             "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47",
-            "\1\u008f",
             "\1\u0090",
             "\1\u0091",
             "\1\u0092",
             "\1\u0093",
             "\1\u0094",
             "\1\u0095",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47",
             "",
             "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47",
-            "\1\u0097",
             "\1\u0098",
             "\1\u0099",
             "\1\u009a",
             "\1\u009b",
+            "\1\u009c",
             "",
             "",
             "",
             "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47",
-            "\1\u009d",
-            "",
             "\1\u009e",
             "",
             "\1\u009f",
             "",
+            "\1\u00a0",
+            "",
             "",
             "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47",
-            "\1\u00a1",
             "\1\u00a2",
             "\1\u00a3",
-            "\1\u00a4",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47",
+            "\1\u00a5",
             "",
             "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47",
-            "\1\u00a6",
             "\1\u00a7",
-            "",
             "\1\u00a8",
+            "",
             "\1\u00a9",
+            "\1\u00aa",
             "",
             "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47",
             "",
-            "\1\u00ab",
             "\1\u00ac",
             "\1\u00ad",
-            "\1\u00ae",
-            "",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47",
             "\1\u00af",
-            "\1\u00b0",
             "",
+            "\1\u00b0",
             "\1\u00b1",
             "",
             "\1\u00b2",
+            "",
             "\1\u00b3",
             "\1\u00b4",
             "\1\u00b5",
             "\1\u00b6",
             "\1\u00b7",
-            "\1\u00b8",
-            "",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47",
             "\1\u00b9",
+            "",
             "\1\u00ba",
+            "\1\u00bb",
             ""
     };
 
@@ -2040,13 +2070,37 @@ public class InternalDPFTextLexer extends Lexer {
             this.transition = DFA12_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | RULE_CHAR | RULE_NUMBER | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
+            return "1:1: Tokens : ( T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | RULE_CHAR | RULE_NUMBER | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             IntStream input = _input;
         	int _s = s;
             switch ( s ) {
                     case 0 : 
+                        int LA12_75 = input.LA(1);
+
+                        s = -1;
+                        if ( (LA12_75=='\'') ) {s = 108;}
+
+                        else if ( ((LA12_75>='\u0000' && LA12_75<='&')||(LA12_75>='(' && LA12_75<='\uFFFF')) ) {s = 80;}
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 1 : 
+                        int LA12_28 = input.LA(1);
+
+                        s = -1;
+                        if ( (LA12_28=='\\') ) {s = 74;}
+
+                        else if ( ((LA12_28>='\u0000' && LA12_28<='&')||(LA12_28>='(' && LA12_28<='[')||(LA12_28>=']' && LA12_28<='\uFFFF')) ) {s = 75;}
+
+                        else if ( (LA12_28=='\'') ) {s = 76;}
+
+                        else s = 35;
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 2 : 
                         int LA12_0 = input.LA(1);
 
                         s = -1;
@@ -2122,47 +2176,23 @@ public class InternalDPFTextLexer extends Lexer {
 
                         if ( s>=0 ) return s;
                         break;
-                    case 1 : 
-                        int LA12_74 = input.LA(1);
+                    case 3 : 
+                        int LA12_32 = input.LA(1);
 
                         s = -1;
-                        if ( (LA12_74=='\'') ) {s = 107;}
-
-                        else if ( ((LA12_74>='\u0000' && LA12_74<='&')||(LA12_74>='(' && LA12_74<='\uFFFF')) ) {s = 79;}
-
-                        if ( s>=0 ) return s;
-                        break;
-                    case 2 : 
-                        int LA12_28 = input.LA(1);
-
-                        s = -1;
-                        if ( (LA12_28=='\\') ) {s = 73;}
-
-                        else if ( ((LA12_28>='\u0000' && LA12_28<='&')||(LA12_28>='(' && LA12_28<='[')||(LA12_28>=']' && LA12_28<='\uFFFF')) ) {s = 74;}
-
-                        else if ( (LA12_28=='\'') ) {s = 75;}
+                        if ( ((LA12_32>='\u0000' && LA12_32<='\uFFFF')) ) {s = 80;}
 
                         else s = 35;
-
-                        if ( s>=0 ) return s;
-                        break;
-                    case 3 : 
-                        int LA12_106 = input.LA(1);
-
-                        s = -1;
-                        if ( ((LA12_106>='\u0000' && LA12_106<='\uFFFF')) ) {s = 79;}
-
-                        else s = 108;
 
                         if ( s>=0 ) return s;
                         break;
                     case 4 : 
-                        int LA12_32 = input.LA(1);
+                        int LA12_107 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA12_32>='\u0000' && LA12_32<='\uFFFF')) ) {s = 79;}
+                        if ( ((LA12_107>='\u0000' && LA12_107<='\uFFFF')) ) {s = 80;}
 
-                        else s = 35;
+                        else s = 109;
 
                         if ( s>=0 ) return s;
                         break;
