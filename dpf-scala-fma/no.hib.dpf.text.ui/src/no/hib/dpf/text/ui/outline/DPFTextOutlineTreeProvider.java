@@ -11,14 +11,29 @@ import no.hib.dpf.text.tdpf.Node;
 import no.hib.dpf.text.tdpf.TGraphName;
 import no.hib.dpf.text.tdpf.impl.TdpfFactoryImpl;
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.text.edits.ReplaceEdit;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IFileEditorInput;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.texteditor.ITextEditor;
+import org.eclipse.ui.texteditor.ITextEditorExtension;
 import org.eclipse.xtext.EcoreUtil2;
+import org.eclipse.xtext.parser.IEncodingProvider;
 import org.eclipse.xtext.resource.ILocationInFileProvider;
+import org.eclipse.xtext.ui.editor.model.IXtextDocument;
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider;
 import org.eclipse.xtext.ui.editor.outline.impl.DocumentRootNode;
 import org.eclipse.xtext.ui.editor.outline.impl.EObjectNode;
+import org.eclipse.xtext.ui.refactoring.impl.DefaultRefactoringDocumentProvider.EditorDocument;
+import org.eclipse.xtext.ui.refactoring.impl.DefaultRefactoringDocumentProvider.FileDocument;
+import org.eclipse.xtext.ui.util.DisplayRunnableWithResult;
+import org.eclipse.xtext.util.ITextRegion;
 
 import com.google.inject.Inject;
 
@@ -33,6 +48,8 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
 
 	@Inject
 	protected ILocationInFileProvider locationInFileProvider;
+
+	protected IXtextDocument document;
 	
 	protected void _createChildren(DocumentRootNode parentNode, Model model) {
 		for (Definition d : model.getDefinitions()) {
@@ -40,6 +57,19 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		}
 	}
 
+	//
+	//Document:
+	//
+	@Override
+	public IOutlineNode createRoot(IXtextDocument d){
+		if(d instanceof IDocument){
+			this.document = d;
+		}else{
+			new RuntimeException("Could not get access to XTextDocument.");
+		};
+		return super.createRoot(d);
+	}
+	
 	//
 	// Graph:
 	//
@@ -58,8 +88,22 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
 //		EObjectNode n = createEObjectNode(parentNode, arrow.eClass());
 		Image image = imageDispatcher.invoke(arrow);
 		EObjectNode eObjectNode = new EObjectNode(arrow, parentNode, image, makeLabel(arrow), true);
-		eObjectNode.setShortTextRegion(locationInFileProvider.getSignificantTextRegion(arrow.getId()));
+		ITextRegion location = locationInFileProvider.getSignificantTextRegion(arrow.getId());
+		eObjectNode.setShortTextRegion(location);
+		
+//		if(arrow.getId().getId() < 10){
+//			ReplaceEdit r = new ReplaceEdit(location.getOffset(),location.getLength(),arrow.getId().getName() + "@" + 10);
+//			try {
+//				r.apply(document);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
+
 	}
+	
+	//DefaultRefactoringDocumentProvider
+
 	
 	/**
 	 * Make Label
@@ -70,7 +114,7 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		try {			
 			final String id = arrow.getId().getName() + "@" + arrow.getId().getId() + ":" +
 							  (null!=arrow.getType()?arrow.getType().getName() + "@" + arrow.getType().getId():"Attribute");
-			final String sr = arrow.getSr().getId().getId() + "@" + arrow.getSr().getId().getName() + ":" 
+			final String sr = arrow.getSr().getId().getName() + "@" + arrow.getSr().getId().getId() + ":" 
 						     + arrow.getSr().getType().getName() + "@" + arrow.getSr().getType().getId();
 			String tg = "";		
 			//Target:
