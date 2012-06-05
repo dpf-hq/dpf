@@ -49,14 +49,14 @@ EvoCospan: 'evolution(' lhs=ID '-><-' rhs=ID ',' typeGraph=ID ')';
 
 
 //Specification instance:
-InstanceSpecification : id = ID ':=' 'ISpec<' model=ChoosenSpecfication ',' metamodel=ChoosenSpecfication '>' '{' (constraintSemantics+=ConstraintSemantic (',' constraintSemantics+=ConstraintSemantic)*) '}';
+InstanceSpecification : id = ID ':=' 'ISpec' '<' model=ChoosenSpecfication ',' metamodel=ChoosenSpecfication '>' '{' (constraintSemantics+=ConstraintSemantic (',' constraintSemantics+=ConstraintSemantic)*) '}';
 
 ChoosenSpecfication : id=ID;
 
 ConstraintSemantic: id=DpfId '{'(arrows+=Arrows (',' arrows+=Arrows)*) ',' '}' '=' ocl=STRING;
 
 //Specification:
-Specification : id = ID ':=' 'Spec<' graph=ChoosenGraph '>' '{' (constraints+=Constraint (',' constraints+=Constraint)*)? '}';
+Specification : id = ID ':=' 'Spec' '<' graph=ChoosenGraph '>' '{' (constraints+=Constraint (',' constraints+=Constraint)*)? '}';
 
 ChoosenGraph : id=ID;
 
@@ -65,7 +65,7 @@ Constraint: signature=ConstraintSignature '{'(arrows+=Arrows (',' arrows+=Arrows
 ConstraintSignature: id=DpfId '(' (parameter+=ID (',' parameter+=ID)*)? ')';
 
 //Graph morphism:
-Morphism : ID ':=' 'Morphism<' domain=Domain ',' codmain=Codomain '>' '{' (mappings+=Mapping (',' mappings+=Mapping)*)? '}';
+Morphism : ID ':=' 'Morphism' '<' domain=Domain ',' codmain=Codomain '>' '{' (mappings+=Mapping (',' mappings+=Mapping)*)? '}';
 
 Domain : id=ID;
 
@@ -78,12 +78,12 @@ MappingNode :  domain=Node '=>'  codomain=Node;
 MappingArrow : domain=Arrow '=>' codmain=Arrow;
 	
 //Typed subgraphs:
-ExtSubTGraph : id = ID ':=' 'ExtSubTGraph<' extendsGraph=TGraphExtSubName '>' '{' (elements+=Element)* '}';
+ExtSubTGraph : id = ID ':=' 'ExtSubTGraph' '<' extendsGraph=TGraphExtSubName '>' '{' (elements+=Element)* '}';
 
 TGraphExtSubName : id=ID;
 
 //Typed graphs:
-TGraph : id = ID  ':=' 'TGraph<' typeGraph=TGraphName '>' '{' (elements+=Element)* '}';
+TGraph : id = ID  ':=' 'TGraph' '<' typeGraph=TGraphName '>' '{' (elements+=Element)* '}';
 
 TGraphName : id=ID;
 
