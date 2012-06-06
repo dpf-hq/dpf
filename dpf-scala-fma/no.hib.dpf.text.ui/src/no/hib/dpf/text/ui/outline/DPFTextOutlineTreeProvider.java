@@ -3,11 +3,10 @@
  */
 package no.hib.dpf.text.ui.outline;
 
-import java.util.Iterator;
-
 import no.hib.dpf.text.tdpf.Arrow;
 import no.hib.dpf.text.tdpf.Arrows;
 import no.hib.dpf.text.tdpf.Definition;
+import no.hib.dpf.text.tdpf.DpfId;
 import no.hib.dpf.text.tdpf.Element;
 import no.hib.dpf.text.tdpf.Model;
 import no.hib.dpf.text.tdpf.Node;
@@ -58,47 +57,26 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	protected NodeModelBuilder nodeModelBuilder = new NodeModelBuilder();
 	protected IXtextDocument document;
 	
-	boolean test = true;
-	boolean oneTime = true;
+	boolean autocompleteIds = false;
+	boolean isInited = false;
 	
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	protected void _createChildren(final DocumentRootNode parentNode, final Model model) {
-		
-		
-		//Test:
-		if(oneTime){
-		System.out.println("--------------------");
-		ICompositeNode c = NodeModelUtils.findActualNodeFor(model);
-		for(INode n:c.getAsTreeIterable()){
-			if(n instanceof LeafNode){
-				System.out.print(n.getText());
-			}
-		}
-		System.out.println("--------------------");
-		//Add automatic all IDs at once: use stringbuffer
-		ReplaceEdit r = new ReplaceEdit(0,document.getLength(),"Replace All Test");//Test:	
-		try {
-			r.apply(document,ReplaceEdit.NONE);
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		oneTime=false;
-		}
-
-		
-		
 		Display display = Display.getDefault();
+		
+		//Init:
+		if(!isInited){
+		   init(model); 	
+		}
 		
 		for (Definition d : model.getDefinitions()) {
 			createNode(parentNode, d);
 		}
-		
-		
+	
 		//Defs schon da?:
-		if(test)
+		if(autocompleteIds)
 		display.syncExec(new Runnable() {
 	    public void run(){
-	    	test=false;
+	    	autocompleteIds=false;
 			for (Definition d : model.getDefinitions()){
 				int offSet = 0;
 				if(d instanceof TGraph){
@@ -107,7 +85,6 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
 						if(e instanceof Arrow){
 							Arrow arrow = (Arrow)e;
 							final ITextRegion location = locationInFileProvider.getSignificantTextRegion(arrow.getId());
-//							System.out.println("OLD: " + location.getOffset() + " " + location.getLength());
 							if(arrow.getId().getId() < 1){
 								
 								//Change document:
@@ -119,8 +96,6 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
 									ex.printStackTrace();
 								}
 								return;
-								//arrow.getId().setId(100); //UPDATE 2
-								
 							}
 						}
 					}		
@@ -128,7 +103,7 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			}
 	    }
 	  });
-	  test=true;
+	  autocompleteIds=true;
 	}
 
 //	//
@@ -139,6 +114,51 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		this.document = d;
 		return super.createRoot(document);
 	}
+	
+	public void init(final Model model){
+		//
+		//Add missing Ids:
+		//
+		final ICompositeNode c = NodeModelUtils.findActualNodeFor(model);
+		final StringBuffer buffer = new StringBuffer();
+		BidiTreeIterator<INode> ti = c.getAsTreeIterable().iterator();
+		StringBuffer cache = new StringBuffer();
+		boolean incompleteDpfId=false;
+		DpfId id = null;
+		while(ti.hasNext()){
+			final INode n = ti.next();
+			if(n instanceof LeafNode){		
+				if(n.getSemanticElement() instanceof DpfId){
+					id = (DpfId)n.getSemanticElement(); 
+					if(id.getId() < 1){
+						incompleteDpfId=true;
+						cache.append(n.getText());
+					}else{
+						buffer.append(n.getText());
+					}
+				}else{
+					if(incompleteDpfId){
+						buffer.append(cache.toString().replaceFirst(id.getName(),id.getName() + "@100"));
+						cache = new StringBuffer();
+					    incompleteDpfId=false;
+					}
+					buffer.append(n.getText());
+				}
+			}
+		}
+		//
+		//Add automatic all IDs at once: 
+		//
+		final ReplaceEdit r = new ReplaceEdit(0,document.getLength(),buffer.toString());	
+		try {
+			r.apply(document,ReplaceEdit.NONE);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		System.out.println("Test:" + buffer.toString());
+		this.isInited=true;
+	}
+	
 	
 	//
 	// Graph:
@@ -162,7 +182,7 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	/**
-	 * Make Label
+	 * Make Label for an Arrow
 	 * @param arrow
 	 * @return
 	 */
@@ -232,7 +252,12 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		EObjectNode eObjectNode = new EObjectNode(node, parentNode, image, new StyledString(makeLabel(node)), true);
 		eObjectNode.setShortTextRegion(locationInFileProvider.getSignificantTextRegion(node.getId()));
 	}
-
+	
+	/**
+	 * Make Label for a Node
+	 * @param n
+	 * @return
+	 */
 	private String makeLabel(Node n) {
 		String tg;
 		tg = n.getId().getId() + "@" + n.getId().getName() + ":"
