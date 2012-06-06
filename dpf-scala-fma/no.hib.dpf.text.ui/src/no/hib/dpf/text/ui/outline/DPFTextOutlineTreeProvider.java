@@ -3,6 +3,8 @@
  */
 package no.hib.dpf.text.ui.outline;
 
+import java.util.Iterator;
+
 import no.hib.dpf.text.tdpf.Arrow;
 import no.hib.dpf.text.tdpf.Arrows;
 import no.hib.dpf.text.tdpf.Definition;
@@ -18,9 +20,15 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.text.edits.ReplaceEdit;
 import org.eclipse.xtext.EcoreUtil2;
+import org.eclipse.xtext.nodemodel.BidiTreeIterator;
+import org.eclipse.xtext.nodemodel.ICompositeNode;
+import org.eclipse.xtext.nodemodel.INode;
+import org.eclipse.xtext.nodemodel.impl.LeafNode;
 import org.eclipse.xtext.nodemodel.impl.NodeModelBuilder;
+import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.resource.ILocationInFileProvider;
 import org.eclipse.xtext.resource.XtextResource;
+import org.eclipse.xtext.ui.editor.XtextEditor;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider;
@@ -44,20 +52,48 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	@Inject
 	protected XtextResource xresource;
 			
+	@Inject
+	protected XtextEditor editor;
+	
 	protected NodeModelBuilder nodeModelBuilder = new NodeModelBuilder();
 	protected IXtextDocument document;
 	
 	boolean test = true;
+	boolean oneTime = true;
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	protected void _createChildren(final DocumentRootNode parentNode, final Model model) {
+		
+		
+		//Test:
+		if(oneTime){
+		System.out.println("--------------------");
+		ICompositeNode c = NodeModelUtils.findActualNodeFor(model);
+		for(INode n:c.getAsTreeIterable()){
+			if(n instanceof LeafNode){
+				System.out.print(n.getText());
+			}
+		}
+		System.out.println("--------------------");
+		//Add automatic all IDs at once: use stringbuffer
+		ReplaceEdit r = new ReplaceEdit(0,document.getLength(),"Replace All Test");//Test:	
+		try {
+			r.apply(document,ReplaceEdit.NONE);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		oneTime=false;
+		}
+
+		
 		
 		Display display = Display.getDefault();
 		
 		for (Definition d : model.getDefinitions()) {
 			createNode(parentNode, d);
 		}
-
+		
+		
 		//Defs schon da?:
 		if(test)
 		display.syncExec(new Runnable() {
@@ -78,7 +114,7 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
 								offSet += location.getOffset()+arrow.getId().getName().length();
 								ReplaceEdit r = new ReplaceEdit(offSet,0,"@" + 100);//UPDATE 1	
 								try {
-									r.apply(document);
+									r.apply(document,ReplaceEdit.NONE);
 								} catch (Exception ex) {
 									ex.printStackTrace();
 								}
@@ -92,7 +128,7 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			}
 	    }
 	  });
-		test=true;
+	  test=true;
 	}
 
 //	//
