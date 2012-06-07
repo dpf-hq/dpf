@@ -11,7 +11,6 @@ public class DPFTextAntlrTokenToAttributeIdMapper extends
 	
 	@Override
 	protected String calculateId(String tokenName, int tokenType) {
-		System.out.println(tokenName);
 		if(START_ARROW.equals(tokenName)) {
 			return  DPFTextSyntaxHighlighting.ARROW;
 		}
