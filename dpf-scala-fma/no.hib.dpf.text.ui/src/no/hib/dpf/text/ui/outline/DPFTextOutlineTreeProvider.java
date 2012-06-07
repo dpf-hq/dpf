@@ -155,7 +155,6 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-		System.out.println("Test:" + buffer.toString());
 		this.isInited=true;
 	}
 	
