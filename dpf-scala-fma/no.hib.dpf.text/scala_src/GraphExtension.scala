@@ -961,6 +961,49 @@ object Test {
 		  
 	  }	
 	  
+	  //
+	  //Test Pushout (own Example)
+	  //
+	  {
+		  //G_A
+		  val n1 = node(1)
+		  val n2 = node(2)
+		  val n3 = node(3)
+		  val n4 = node(4)
+	    
+		  //G_B
+		  val a9 = arrow(9,5,6)
+		  val a10 = arrow(10,7,8)
+	    
+		  //G_C
+		  //only non-reusable nodes: directly with node(x)
+		  
+		  val x = ArbitraryMorphism(Set(
+				  					 (Some(n1),node(5)),	
+				  					 (Some(n2),node(6)),	
+				  					 (Some(n3),node(7)),	
+				  					 (Some(n4),node(8))	
+				  					),Set(
+				  					(None,a9),
+				  					(None,a10)
+				  					));
+		  
+		  val y = ArbitraryMorphism(Set(
+				  					(Some(n1),node(11)),
+				  					(Some(n2),node(12)),
+				  					(Some(n3),node(11)),
+				  					(Some(n4),node(12))
+				  					),Set());
+		  
+		  val span = Span(x,y)
+
+		  val pushout:Cospan = span.pushout()
+		  
+		  //println(pushout.left);
+		  //println(pushout.right);
+		  
+	  }	
+	  
 	  
 	  //
 	  //Test Pullback (Fudamentals of Algebraic Graph Transformation, page. 35 )
@@ -1048,10 +1091,37 @@ object Test {
 		  
 		  val cospan = Cospan(x,y)
 		  
+//		  println("is cospan: " + cospan.validate())
 		  val pullback:Span = cospan.pullback()
 		  
-		  println(pullback.left);
-		  println(pullback.right);
+//		  println(pullback.left);
+//		  println(pullback.right);
+		  
+	  }
+
+	  //
+	  //Test Pullback 3 (own Example):
+	  //
+	  {
+	      val a3 = arrow(3,1,2) 
+	      val a10 = arrow(10,8,9)
+	      
+		  val x = ArbitraryMorphism(Set(
+				  					(Some(node(4)),node(1)),
+				  					(Some(node(5)),node(2)),
+				  					(Some(node(6)),node(1)),
+				  					(Some(node(7)),node(2))),Set((None,a3)));
+		  
+		  val y = ArbitraryMorphism(Set(),Set((Some(a10),a3)));
+		  
+		  val cospan = Cospan(x,y)
+		  
+//		  println("is cospan: " + cospan.validate())
+		  
+		  val pullback:Span = cospan.pullback()
+		  
+//		  println(pullback.left);
+//		  println(pullback.right);
 		  
 	  }
 
