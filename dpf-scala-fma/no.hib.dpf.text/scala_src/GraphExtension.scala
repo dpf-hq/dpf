@@ -1125,6 +1125,36 @@ object Test {
 		  
 	  }
 
+	  //
+	  //Test Pullback 4 (own Example):
+	  //
+	  {
+	      //D:
+	      val a1 = arrow(1,7,8)
+	      
+	      //B:
+	      val a2 = arrow(2,9,10)
+	      val a3 = arrow(3,11,12)
+	      val a4 = arrow(4,9,12)
+	      val a5 = arrow(5,11,10)
+	      
+	      //C:
+	      val a6 = arrow(6,13,14)
+	      
+		  val x = ArbitraryMorphism(Set(),Set((Some(a2),a1),(Some(a3),a1),(Some(a4),a1),(Some(a5),a1)));
+		  
+		  val y = ArbitraryMorphism(Set(),Set((Some(a6),a1)));
+		  
+		  val cospan = Cospan(x,y)
+		  
+//		  println("is cospan: " + cospan.validate())
+		  
+		  val pullback:Span = cospan.pullback()
+		  
+//		  println(pullback.left);
+//		  println(pullback.right);
+		  
+	  }
 	  
 	  //
 	  //Test Final Pullback Complement for Monic Matches: Sesqui-pushout rewriting (Andrea Corradini et. al.) Fig 3. Left-Part
