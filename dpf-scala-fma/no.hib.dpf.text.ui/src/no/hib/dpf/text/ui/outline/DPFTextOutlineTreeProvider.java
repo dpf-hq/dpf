@@ -5,13 +5,13 @@ package no.hib.dpf.text.ui.outline;
 
 import no.hib.dpf.text.tdpf.Arrow;
 import no.hib.dpf.text.tdpf.Arrows;
+import no.hib.dpf.text.tdpf.ChoosenGraph;
 import no.hib.dpf.text.tdpf.Definition;
 import no.hib.dpf.text.tdpf.DpfId;
 import no.hib.dpf.text.tdpf.Element;
 import no.hib.dpf.text.tdpf.Model;
 import no.hib.dpf.text.tdpf.Node;
 import no.hib.dpf.text.tdpf.TGraph;
-import no.hib.dpf.text.tdpf.TGraphName;
 import no.hib.dpf.text.tdpf.impl.TdpfFactoryImpl;
 
 import org.eclipse.jface.viewers.StyledString;
@@ -162,7 +162,7 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	//
 	// Graph:
 	//
-	protected void _createNode(IOutlineNode parentNode, TGraphName name) {
+	protected void _createNode(IOutlineNode parentNode, ChoosenGraph name) {
 	}
 
 	//
