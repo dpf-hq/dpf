@@ -78,14 +78,14 @@ MappingNode :  domain=Node '=>'  codomain=Node;
 MappingArrow : domain=Arrow '=>' codmain=Arrow;
 	
 //Typed subgraphs:
-ExtSubTGraph : id = ID ':=' 'ExtSubTGraph' '<' extendsGraph=TGraphExtSubName '>' '{' (elements+=Element)* '}';
+ExtSubTGraph : id = ID ':=' 'ExtSubTGraph' '<' extendsGraph=ChoosenExtSubTGraph  '>' '{' (elements+=Element)* '}';
 
-TGraphExtSubName : id=ID;
+ChoosenExtSubTGraph : id=ID;
 
 //Typed graphs:
-TGraph : id = ID  ':=' 'TGraph' '<' typeGraph=TGraphName '>' '{' (elements+=Element)* '}';
+TGraph : id = ID  ':=' 'TGraph' '<' typeGraph=ChoosenTGraph '>' '{' (elements+=Element)* '}';
 
-TGraphName : id=ID;
+ChoosenTGraph : id=ID;
 
 Element: (Node ',') | (Arrows ',');
 							  
