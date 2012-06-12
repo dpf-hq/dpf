@@ -13,7 +13,7 @@ public class DPFTextAntlrTokenToAttributeIdMapper extends
 	@Override
 	protected String calculateId(String tokenName, int tokenType) {
 		if(ID_SEP.equals(tokenName)) {
-			return  DPFTextSyntaxHighlighting.ID_SEP;
+			return  DPFTextHighlighting.ID_SEP;
 		}
 		return super.calculateId(tokenName, tokenType);
 	}

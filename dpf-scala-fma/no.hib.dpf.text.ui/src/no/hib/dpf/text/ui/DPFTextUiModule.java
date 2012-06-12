@@ -6,6 +6,7 @@ package no.hib.dpf.text.ui;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.AbstractAntlrTokenToAttributeIdMapper;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
+import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
 
 /**
  * Use this class to register components to be used within the IDE.
@@ -17,8 +18,12 @@ public class DPFTextUiModule extends no.hib.dpf.text.ui.AbstractDPFTextUiModule 
 	}
 	
 	public Class<? extends IHighlightingConfiguration> bindIHighlightingConfiguration () {
-	    return DPFTextSyntaxHighlighting.class;
+	    return DPFTextHighlighting.class;
     }
+	
+	public Class<? extends ISemanticHighlightingCalculator> bindSemanticConfig() {
+	    return DPFTextSemanticHighlighting.class;
+	 }	
 
 	public Class<? extends AbstractAntlrTokenToAttributeIdMapper>	bindAbstractAntlrTokenToAttributeIdMapper() {
 		return DPFTextAntlrTokenToAttributeIdMapper.class;
