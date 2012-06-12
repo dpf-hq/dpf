@@ -26,7 +26,7 @@ public class DPFTextHighlighting extends DefaultHighlightingConfiguration {
 
 	public static final TextStyle arrow() {
 		TextStyle textStyle = new TextStyle();
-		textStyle.setColor(new RGB(0, 128, 0));
+		textStyle.setColor(new RGB(0, 0, 255));
 		textStyle.setStyle(SWT.BOLD);
 		return textStyle;
 	}
