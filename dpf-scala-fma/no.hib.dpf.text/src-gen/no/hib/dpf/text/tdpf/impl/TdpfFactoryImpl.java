@@ -91,9 +91,9 @@ public class TdpfFactoryImpl extends EFactoryImpl implements TdpfFactory
       case TdpfPackage.MAPPING_NODE: return createMappingNode();
       case TdpfPackage.MAPPING_ARROW: return createMappingArrow();
       case TdpfPackage.EXT_SUB_TGRAPH: return createExtSubTGraph();
-      case TdpfPackage.TGRAPH_EXT_SUB_NAME: return createTGraphExtSubName();
+      case TdpfPackage.CHOOSEN_EXT_SUB_TGRAPH: return createChoosenExtSubTGraph();
       case TdpfPackage.TGRAPH: return createTGraph();
-      case TdpfPackage.TGRAPH_NAME: return createTGraphName();
+      case TdpfPackage.CHOOSEN_TGRAPH: return createChoosenTGraph();
       case TdpfPackage.ELEMENT: return createElement();
       case TdpfPackage.ARROWS: return createArrows();
       case TdpfPackage.ARROW: return createArrow();
@@ -397,10 +397,10 @@ public class TdpfFactoryImpl extends EFactoryImpl implements TdpfFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public TGraphExtSubName createTGraphExtSubName()
+  public ChoosenExtSubTGraph createChoosenExtSubTGraph()
   {
-    TGraphExtSubNameImpl tGraphExtSubName = new TGraphExtSubNameImpl();
-    return tGraphExtSubName;
+    ChoosenExtSubTGraphImpl choosenExtSubTGraph = new ChoosenExtSubTGraphImpl();
+    return choosenExtSubTGraph;
   }
 
   /**
@@ -419,10 +419,10 @@ public class TdpfFactoryImpl extends EFactoryImpl implements TdpfFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public TGraphName createTGraphName()
+  public ChoosenTGraph createChoosenTGraph()
   {
-    TGraphNameImpl tGraphName = new TGraphNameImpl();
-    return tGraphName;
+    ChoosenTGraphImpl choosenTGraph = new ChoosenTGraphImpl();
+    return choosenTGraph;
   }
 
   /**

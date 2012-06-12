@@ -912,14 +912,14 @@ public interface TdpfPackage extends EPackage
   int EXT_SUB_TGRAPH_FEATURE_COUNT = DEFINITION_FEATURE_COUNT + 3;
 
   /**
-   * The meta object id for the '{@link no.hib.dpf.text.tdpf.impl.TGraphExtSubNameImpl <em>TGraph Ext Sub Name</em>}' class.
+   * The meta object id for the '{@link no.hib.dpf.text.tdpf.impl.ChoosenExtSubTGraphImpl <em>Choosen Ext Sub TGraph</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see no.hib.dpf.text.tdpf.impl.TGraphExtSubNameImpl
-   * @see no.hib.dpf.text.tdpf.impl.TdpfPackageImpl#getTGraphExtSubName()
+   * @see no.hib.dpf.text.tdpf.impl.ChoosenExtSubTGraphImpl
+   * @see no.hib.dpf.text.tdpf.impl.TdpfPackageImpl#getChoosenExtSubTGraph()
    * @generated
    */
-  int TGRAPH_EXT_SUB_NAME = 23;
+  int CHOOSEN_EXT_SUB_TGRAPH = 23;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -928,16 +928,16 @@ public interface TdpfPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TGRAPH_EXT_SUB_NAME__ID = 0;
+  int CHOOSEN_EXT_SUB_TGRAPH__ID = 0;
 
   /**
-   * The number of structural features of the '<em>TGraph Ext Sub Name</em>' class.
+   * The number of structural features of the '<em>Choosen Ext Sub TGraph</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int TGRAPH_EXT_SUB_NAME_FEATURE_COUNT = 1;
+  int CHOOSEN_EXT_SUB_TGRAPH_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link no.hib.dpf.text.tdpf.impl.TGraphImpl <em>TGraph</em>}' class.
@@ -986,14 +986,14 @@ public interface TdpfPackage extends EPackage
   int TGRAPH_FEATURE_COUNT = DEFINITION_FEATURE_COUNT + 3;
 
   /**
-   * The meta object id for the '{@link no.hib.dpf.text.tdpf.impl.TGraphNameImpl <em>TGraph Name</em>}' class.
+   * The meta object id for the '{@link no.hib.dpf.text.tdpf.impl.ChoosenTGraphImpl <em>Choosen TGraph</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see no.hib.dpf.text.tdpf.impl.TGraphNameImpl
-   * @see no.hib.dpf.text.tdpf.impl.TdpfPackageImpl#getTGraphName()
+   * @see no.hib.dpf.text.tdpf.impl.ChoosenTGraphImpl
+   * @see no.hib.dpf.text.tdpf.impl.TdpfPackageImpl#getChoosenTGraph()
    * @generated
    */
-  int TGRAPH_NAME = 25;
+  int CHOOSEN_TGRAPH = 25;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -1002,16 +1002,16 @@ public interface TdpfPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TGRAPH_NAME__ID = 0;
+  int CHOOSEN_TGRAPH__ID = 0;
 
   /**
-   * The number of structural features of the '<em>TGraph Name</em>' class.
+   * The number of structural features of the '<em>Choosen TGraph</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int TGRAPH_NAME_FEATURE_COUNT = 1;
+  int CHOOSEN_TGRAPH_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link no.hib.dpf.text.tdpf.impl.ElementImpl <em>Element</em>}' class.
@@ -2037,25 +2037,25 @@ public interface TdpfPackage extends EPackage
   EReference getExtSubTGraph_Elements();
 
   /**
-   * Returns the meta object for class '{@link no.hib.dpf.text.tdpf.TGraphExtSubName <em>TGraph Ext Sub Name</em>}'.
+   * Returns the meta object for class '{@link no.hib.dpf.text.tdpf.ChoosenExtSubTGraph <em>Choosen Ext Sub TGraph</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>TGraph Ext Sub Name</em>'.
-   * @see no.hib.dpf.text.tdpf.TGraphExtSubName
+   * @return the meta object for class '<em>Choosen Ext Sub TGraph</em>'.
+   * @see no.hib.dpf.text.tdpf.ChoosenExtSubTGraph
    * @generated
    */
-  EClass getTGraphExtSubName();
+  EClass getChoosenExtSubTGraph();
 
   /**
-   * Returns the meta object for the attribute '{@link no.hib.dpf.text.tdpf.TGraphExtSubName#getId <em>Id</em>}'.
+   * Returns the meta object for the attribute '{@link no.hib.dpf.text.tdpf.ChoosenExtSubTGraph#getId <em>Id</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Id</em>'.
-   * @see no.hib.dpf.text.tdpf.TGraphExtSubName#getId()
-   * @see #getTGraphExtSubName()
+   * @see no.hib.dpf.text.tdpf.ChoosenExtSubTGraph#getId()
+   * @see #getChoosenExtSubTGraph()
    * @generated
    */
-  EAttribute getTGraphExtSubName_Id();
+  EAttribute getChoosenExtSubTGraph_Id();
 
   /**
    * Returns the meta object for class '{@link no.hib.dpf.text.tdpf.TGraph <em>TGraph</em>}'.
@@ -2101,25 +2101,25 @@ public interface TdpfPackage extends EPackage
   EReference getTGraph_Elements();
 
   /**
-   * Returns the meta object for class '{@link no.hib.dpf.text.tdpf.TGraphName <em>TGraph Name</em>}'.
+   * Returns the meta object for class '{@link no.hib.dpf.text.tdpf.ChoosenTGraph <em>Choosen TGraph</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>TGraph Name</em>'.
-   * @see no.hib.dpf.text.tdpf.TGraphName
+   * @return the meta object for class '<em>Choosen TGraph</em>'.
+   * @see no.hib.dpf.text.tdpf.ChoosenTGraph
    * @generated
    */
-  EClass getTGraphName();
+  EClass getChoosenTGraph();
 
   /**
-   * Returns the meta object for the attribute '{@link no.hib.dpf.text.tdpf.TGraphName#getId <em>Id</em>}'.
+   * Returns the meta object for the attribute '{@link no.hib.dpf.text.tdpf.ChoosenTGraph#getId <em>Id</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Id</em>'.
-   * @see no.hib.dpf.text.tdpf.TGraphName#getId()
-   * @see #getTGraphName()
+   * @see no.hib.dpf.text.tdpf.ChoosenTGraph#getId()
+   * @see #getChoosenTGraph()
    * @generated
    */
-  EAttribute getTGraphName_Id();
+  EAttribute getChoosenTGraph_Id();
 
   /**
    * Returns the meta object for class '{@link no.hib.dpf.text.tdpf.Element <em>Element</em>}'.
@@ -2923,14 +2923,14 @@ public interface TdpfPackage extends EPackage
     EReference EXT_SUB_TGRAPH__ELEMENTS = eINSTANCE.getExtSubTGraph_Elements();
 
     /**
-     * The meta object literal for the '{@link no.hib.dpf.text.tdpf.impl.TGraphExtSubNameImpl <em>TGraph Ext Sub Name</em>}' class.
+     * The meta object literal for the '{@link no.hib.dpf.text.tdpf.impl.ChoosenExtSubTGraphImpl <em>Choosen Ext Sub TGraph</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see no.hib.dpf.text.tdpf.impl.TGraphExtSubNameImpl
-     * @see no.hib.dpf.text.tdpf.impl.TdpfPackageImpl#getTGraphExtSubName()
+     * @see no.hib.dpf.text.tdpf.impl.ChoosenExtSubTGraphImpl
+     * @see no.hib.dpf.text.tdpf.impl.TdpfPackageImpl#getChoosenExtSubTGraph()
      * @generated
      */
-    EClass TGRAPH_EXT_SUB_NAME = eINSTANCE.getTGraphExtSubName();
+    EClass CHOOSEN_EXT_SUB_TGRAPH = eINSTANCE.getChoosenExtSubTGraph();
 
     /**
      * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
@@ -2938,7 +2938,7 @@ public interface TdpfPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute TGRAPH_EXT_SUB_NAME__ID = eINSTANCE.getTGraphExtSubName_Id();
+    EAttribute CHOOSEN_EXT_SUB_TGRAPH__ID = eINSTANCE.getChoosenExtSubTGraph_Id();
 
     /**
      * The meta object literal for the '{@link no.hib.dpf.text.tdpf.impl.TGraphImpl <em>TGraph</em>}' class.
@@ -2975,14 +2975,14 @@ public interface TdpfPackage extends EPackage
     EReference TGRAPH__ELEMENTS = eINSTANCE.getTGraph_Elements();
 
     /**
-     * The meta object literal for the '{@link no.hib.dpf.text.tdpf.impl.TGraphNameImpl <em>TGraph Name</em>}' class.
+     * The meta object literal for the '{@link no.hib.dpf.text.tdpf.impl.ChoosenTGraphImpl <em>Choosen TGraph</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see no.hib.dpf.text.tdpf.impl.TGraphNameImpl
-     * @see no.hib.dpf.text.tdpf.impl.TdpfPackageImpl#getTGraphName()
+     * @see no.hib.dpf.text.tdpf.impl.ChoosenTGraphImpl
+     * @see no.hib.dpf.text.tdpf.impl.TdpfPackageImpl#getChoosenTGraph()
      * @generated
      */
-    EClass TGRAPH_NAME = eINSTANCE.getTGraphName();
+    EClass CHOOSEN_TGRAPH = eINSTANCE.getChoosenTGraph();
 
     /**
      * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
@@ -2990,7 +2990,7 @@ public interface TdpfPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute TGRAPH_NAME__ID = eINSTANCE.getTGraphName_Id();
+    EAttribute CHOOSEN_TGRAPH__ID = eINSTANCE.getChoosenTGraph_Id();
 
     /**
      * The meta object literal for the '{@link no.hib.dpf.text.tdpf.impl.ElementImpl <em>Element</em>}' class.

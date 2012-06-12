@@ -9,21 +9,21 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>TGraph Ext Sub Name</b></em>'.
+ * A representation of the model object '<em><b>Choosen TGraph</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link no.hib.dpf.text.tdpf.TGraphExtSubName#getId <em>Id</em>}</li>
+ *   <li>{@link no.hib.dpf.text.tdpf.ChoosenTGraph#getId <em>Id</em>}</li>
  * </ul>
  * </p>
  *
- * @see no.hib.dpf.text.tdpf.TdpfPackage#getTGraphExtSubName()
+ * @see no.hib.dpf.text.tdpf.TdpfPackage#getChoosenTGraph()
  * @model
  * @generated
  */
-public interface TGraphExtSubName extends EObject
+public interface ChoosenTGraph extends EObject
 {
   /**
    * Returns the value of the '<em><b>Id</b></em>' attribute.
@@ -35,14 +35,14 @@ public interface TGraphExtSubName extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Id</em>' attribute.
    * @see #setId(String)
-   * @see no.hib.dpf.text.tdpf.TdpfPackage#getTGraphExtSubName_Id()
+   * @see no.hib.dpf.text.tdpf.TdpfPackage#getChoosenTGraph_Id()
    * @model
    * @generated
    */
   String getId();
 
   /**
-   * Sets the value of the '{@link no.hib.dpf.text.tdpf.TGraphExtSubName#getId <em>Id</em>}' attribute.
+   * Sets the value of the '{@link no.hib.dpf.text.tdpf.ChoosenTGraph#getId <em>Id</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Id</em>' attribute.
@@ -51,4 +51,4 @@ public interface TGraphExtSubName extends EObject
    */
   void setId(String value);
 
-} // TGraphExtSubName
+} // ChoosenTGraph

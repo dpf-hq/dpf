@@ -496,9 +496,9 @@
         <elements xsi:type="xtext:Keyword" value="}"/>
       </alternatives>
     </rules>
-    <rules xsi:type="xtext:ParserRule" name="TGraphExtSubName">
+    <rules xsi:type="xtext:ParserRule" name="ChoosenExtSubTGraph">
       <type metamodel="/0/@metamodelDeclarations.0">
-        <classifier xsi:type="ecore:EClass" href="http://no.hib.dpf/dpf-text#//TGraphExtSubName"/>
+        <classifier xsi:type="ecore:EClass" href="http://no.hib.dpf/dpf-text#//ChoosenExtSubTGraph"/>
       </type>
       <alternatives xsi:type="xtext:Assignment" feature="id" operator="=">
         <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
@@ -526,9 +526,9 @@
         <elements xsi:type="xtext:Keyword" value="}"/>
       </alternatives>
     </rules>
-    <rules xsi:type="xtext:ParserRule" name="TGraphName">
+    <rules xsi:type="xtext:ParserRule" name="ChoosenTGraph">
       <type metamodel="/0/@metamodelDeclarations.0">
-        <classifier xsi:type="ecore:EClass" href="http://no.hib.dpf/dpf-text#//TGraphName"/>
+        <classifier xsi:type="ecore:EClass" href="http://no.hib.dpf/dpf-text#//ChoosenTGraph"/>
       </type>
       <alternatives xsi:type="xtext:Assignment" feature="id" operator="=">
         <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>

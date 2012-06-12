@@ -7,9 +7,9 @@ package no.hib.dpf.text.tdpf.impl;
 
 import java.util.Collection;
 
+import no.hib.dpf.text.tdpf.ChoosenTGraph;
 import no.hib.dpf.text.tdpf.Element;
 import no.hib.dpf.text.tdpf.TGraph;
-import no.hib.dpf.text.tdpf.TGraphName;
 import no.hib.dpf.text.tdpf.TdpfPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -70,7 +70,7 @@ public class TGraphImpl extends DefinitionImpl implements TGraph
    * @generated
    * @ordered
    */
-  protected TGraphName typeGraph;
+  protected ChoosenTGraph typeGraph;
 
   /**
    * The cached value of the '{@link #getElements() <em>Elements</em>}' containment reference list.
@@ -131,7 +131,7 @@ public class TGraphImpl extends DefinitionImpl implements TGraph
    * <!-- end-user-doc -->
    * @generated
    */
-  public TGraphName getTypeGraph()
+  public ChoosenTGraph getTypeGraph()
   {
     return typeGraph;
   }
@@ -141,9 +141,9 @@ public class TGraphImpl extends DefinitionImpl implements TGraph
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetTypeGraph(TGraphName newTypeGraph, NotificationChain msgs)
+  public NotificationChain basicSetTypeGraph(ChoosenTGraph newTypeGraph, NotificationChain msgs)
   {
-    TGraphName oldTypeGraph = typeGraph;
+    ChoosenTGraph oldTypeGraph = typeGraph;
     typeGraph = newTypeGraph;
     if (eNotificationRequired())
     {
@@ -158,7 +158,7 @@ public class TGraphImpl extends DefinitionImpl implements TGraph
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setTypeGraph(TGraphName newTypeGraph)
+  public void setTypeGraph(ChoosenTGraph newTypeGraph)
   {
     if (newTypeGraph != typeGraph)
     {
@@ -241,7 +241,7 @@ public class TGraphImpl extends DefinitionImpl implements TGraph
         setId((String)newValue);
         return;
       case TdpfPackage.TGRAPH__TYPE_GRAPH:
-        setTypeGraph((TGraphName)newValue);
+        setTypeGraph((ChoosenTGraph)newValue);
         return;
       case TdpfPackage.TGRAPH__ELEMENTS:
         getElements().clear();
@@ -265,7 +265,7 @@ public class TGraphImpl extends DefinitionImpl implements TGraph
         setId(ID_EDEFAULT);
         return;
       case TdpfPackage.TGRAPH__TYPE_GRAPH:
-        setTypeGraph((TGraphName)null);
+        setTypeGraph((ChoosenTGraph)null);
         return;
       case TdpfPackage.TGRAPH__ELEMENTS:
         getElements().clear();

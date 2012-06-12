@@ -1058,7 +1058,7 @@ public class DPFTextGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cExtSubTGraphKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Keyword cLessThanSignKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Assignment cExtendsGraphAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cExtendsGraphTGraphExtSubNameParserRuleCall_4_0 = (RuleCall)cExtendsGraphAssignment_4.eContents().get(0);
+		private final RuleCall cExtendsGraphChoosenExtSubTGraphParserRuleCall_4_0 = (RuleCall)cExtendsGraphAssignment_4.eContents().get(0);
 		private final Keyword cGreaterThanSignKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		private final Keyword cLeftCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		private final Assignment cElementsAssignment_7 = (Assignment)cGroup.eContents().get(7);
@@ -1067,10 +1067,10 @@ public class DPFTextGrammarAccess extends AbstractGrammarElementFinder {
 		
 		////Typed subgraphs:
 		//ExtSubTGraph:
-		//	id=ID ":=" "ExtSubTGraph" "<" extendsGraph=TGraphExtSubName ">" "{" elements+=Element* "}";
+		//	id=ID ":=" "ExtSubTGraph" "<" extendsGraph=ChoosenExtSubTGraph ">" "{" elements+=Element* "}";
 		public ParserRule getRule() { return rule; }
 
-		//id=ID ":=" "ExtSubTGraph" "<" extendsGraph=TGraphExtSubName ">" "{" elements+=Element* "}"
+		//id=ID ":=" "ExtSubTGraph" "<" extendsGraph=ChoosenExtSubTGraph ">" "{" elements+=Element* "}"
 		public Group getGroup() { return cGroup; }
 
 		//id=ID
@@ -1088,11 +1088,11 @@ public class DPFTextGrammarAccess extends AbstractGrammarElementFinder {
 		//"<"
 		public Keyword getLessThanSignKeyword_3() { return cLessThanSignKeyword_3; }
 
-		//extendsGraph=TGraphExtSubName
+		//extendsGraph=ChoosenExtSubTGraph
 		public Assignment getExtendsGraphAssignment_4() { return cExtendsGraphAssignment_4; }
 
-		//TGraphExtSubName
-		public RuleCall getExtendsGraphTGraphExtSubNameParserRuleCall_4_0() { return cExtendsGraphTGraphExtSubNameParserRuleCall_4_0; }
+		//ChoosenExtSubTGraph
+		public RuleCall getExtendsGraphChoosenExtSubTGraphParserRuleCall_4_0() { return cExtendsGraphChoosenExtSubTGraphParserRuleCall_4_0; }
 
 		//">"
 		public Keyword getGreaterThanSignKeyword_5() { return cGreaterThanSignKeyword_5; }
@@ -1110,12 +1110,12 @@ public class DPFTextGrammarAccess extends AbstractGrammarElementFinder {
 		public Keyword getRightCurlyBracketKeyword_8() { return cRightCurlyBracketKeyword_8; }
 	}
 
-	public class TGraphExtSubNameElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TGraphExtSubName");
+	public class ChoosenExtSubTGraphElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ChoosenExtSubTGraph");
 		private final Assignment cIdAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cIdIDTerminalRuleCall_0 = (RuleCall)cIdAssignment.eContents().get(0);
 		
-		//TGraphExtSubName:
+		//ChoosenExtSubTGraph:
 		//	id=ID;
 		public ParserRule getRule() { return rule; }
 
@@ -1135,7 +1135,7 @@ public class DPFTextGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cTGraphKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Keyword cLessThanSignKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Assignment cTypeGraphAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cTypeGraphTGraphNameParserRuleCall_4_0 = (RuleCall)cTypeGraphAssignment_4.eContents().get(0);
+		private final RuleCall cTypeGraphChoosenTGraphParserRuleCall_4_0 = (RuleCall)cTypeGraphAssignment_4.eContents().get(0);
 		private final Keyword cGreaterThanSignKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		private final Keyword cLeftCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		private final Assignment cElementsAssignment_7 = (Assignment)cGroup.eContents().get(7);
@@ -1144,10 +1144,10 @@ public class DPFTextGrammarAccess extends AbstractGrammarElementFinder {
 		
 		////Typed graphs:
 		//TGraph:
-		//	id=ID ":=" "TGraph" "<" typeGraph=TGraphName ">" "{" elements+=Element* "}";
+		//	id=ID ":=" "TGraph" "<" typeGraph=ChoosenTGraph ">" "{" elements+=Element* "}";
 		public ParserRule getRule() { return rule; }
 
-		//id=ID ":=" "TGraph" "<" typeGraph=TGraphName ">" "{" elements+=Element* "}"
+		//id=ID ":=" "TGraph" "<" typeGraph=ChoosenTGraph ">" "{" elements+=Element* "}"
 		public Group getGroup() { return cGroup; }
 
 		//id=ID
@@ -1165,11 +1165,11 @@ public class DPFTextGrammarAccess extends AbstractGrammarElementFinder {
 		//"<"
 		public Keyword getLessThanSignKeyword_3() { return cLessThanSignKeyword_3; }
 
-		//typeGraph=TGraphName
+		//typeGraph=ChoosenTGraph
 		public Assignment getTypeGraphAssignment_4() { return cTypeGraphAssignment_4; }
 
-		//TGraphName
-		public RuleCall getTypeGraphTGraphNameParserRuleCall_4_0() { return cTypeGraphTGraphNameParserRuleCall_4_0; }
+		//ChoosenTGraph
+		public RuleCall getTypeGraphChoosenTGraphParserRuleCall_4_0() { return cTypeGraphChoosenTGraphParserRuleCall_4_0; }
 
 		//">"
 		public Keyword getGreaterThanSignKeyword_5() { return cGreaterThanSignKeyword_5; }
@@ -1187,12 +1187,12 @@ public class DPFTextGrammarAccess extends AbstractGrammarElementFinder {
 		public Keyword getRightCurlyBracketKeyword_8() { return cRightCurlyBracketKeyword_8; }
 	}
 
-	public class TGraphNameElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TGraphName");
+	public class ChoosenTGraphElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ChoosenTGraph");
 		private final Assignment cIdAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cIdIDTerminalRuleCall_0 = (RuleCall)cIdAssignment.eContents().get(0);
 		
-		//TGraphName:
+		//ChoosenTGraph:
 		//	id=ID;
 		public ParserRule getRule() { return rule; }
 
@@ -1667,9 +1667,9 @@ public class DPFTextGrammarAccess extends AbstractGrammarElementFinder {
 	private MappingNodeElements pMappingNode;
 	private MappingArrowElements pMappingArrow;
 	private ExtSubTGraphElements pExtSubTGraph;
-	private TGraphExtSubNameElements pTGraphExtSubName;
+	private ChoosenExtSubTGraphElements pChoosenExtSubTGraph;
 	private TGraphElements pTGraph;
-	private TGraphNameElements pTGraphName;
+	private ChoosenTGraphElements pChoosenTGraph;
 	private ElementElements pElement;
 	private ArrowsElements pArrows;
 	private ArrowElements pArrow;
@@ -1964,7 +1964,7 @@ public class DPFTextGrammarAccess extends AbstractGrammarElementFinder {
 
 	////Typed subgraphs:
 	//ExtSubTGraph:
-	//	id=ID ":=" "ExtSubTGraph" "<" extendsGraph=TGraphExtSubName ">" "{" elements+=Element* "}";
+	//	id=ID ":=" "ExtSubTGraph" "<" extendsGraph=ChoosenExtSubTGraph ">" "{" elements+=Element* "}";
 	public ExtSubTGraphElements getExtSubTGraphAccess() {
 		return (pExtSubTGraph != null) ? pExtSubTGraph : (pExtSubTGraph = new ExtSubTGraphElements());
 	}
@@ -1973,19 +1973,19 @@ public class DPFTextGrammarAccess extends AbstractGrammarElementFinder {
 		return getExtSubTGraphAccess().getRule();
 	}
 
-	//TGraphExtSubName:
+	//ChoosenExtSubTGraph:
 	//	id=ID;
-	public TGraphExtSubNameElements getTGraphExtSubNameAccess() {
-		return (pTGraphExtSubName != null) ? pTGraphExtSubName : (pTGraphExtSubName = new TGraphExtSubNameElements());
+	public ChoosenExtSubTGraphElements getChoosenExtSubTGraphAccess() {
+		return (pChoosenExtSubTGraph != null) ? pChoosenExtSubTGraph : (pChoosenExtSubTGraph = new ChoosenExtSubTGraphElements());
 	}
 	
-	public ParserRule getTGraphExtSubNameRule() {
-		return getTGraphExtSubNameAccess().getRule();
+	public ParserRule getChoosenExtSubTGraphRule() {
+		return getChoosenExtSubTGraphAccess().getRule();
 	}
 
 	////Typed graphs:
 	//TGraph:
-	//	id=ID ":=" "TGraph" "<" typeGraph=TGraphName ">" "{" elements+=Element* "}";
+	//	id=ID ":=" "TGraph" "<" typeGraph=ChoosenTGraph ">" "{" elements+=Element* "}";
 	public TGraphElements getTGraphAccess() {
 		return (pTGraph != null) ? pTGraph : (pTGraph = new TGraphElements());
 	}
@@ -1994,14 +1994,14 @@ public class DPFTextGrammarAccess extends AbstractGrammarElementFinder {
 		return getTGraphAccess().getRule();
 	}
 
-	//TGraphName:
+	//ChoosenTGraph:
 	//	id=ID;
-	public TGraphNameElements getTGraphNameAccess() {
-		return (pTGraphName != null) ? pTGraphName : (pTGraphName = new TGraphNameElements());
+	public ChoosenTGraphElements getChoosenTGraphAccess() {
+		return (pChoosenTGraph != null) ? pChoosenTGraph : (pChoosenTGraph = new ChoosenTGraphElements());
 	}
 	
-	public ParserRule getTGraphNameRule() {
-		return getTGraphNameAccess().getRule();
+	public ParserRule getChoosenTGraphRule() {
+		return getChoosenTGraphAccess().getRule();
 	}
 
 	//Element:

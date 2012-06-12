@@ -1899,9 +1899,9 @@ ruleExtSubTGraph returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getExtSubTGraphAccess().getExtendsGraphTGraphExtSubNameParserRuleCall_4_0()); 
+	        newCompositeNode(grammarAccess.getExtSubTGraphAccess().getExtendsGraphChoosenExtSubTGraphParserRuleCall_4_0()); 
 	    }
-		lv_extendsGraph_4_0=ruleTGraphExtSubName		{
+		lv_extendsGraph_4_0=ruleChoosenExtSubTGraph		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getExtSubTGraphRule());
 	        }
@@ -1909,7 +1909,7 @@ ruleExtSubTGraph returns [EObject current=null]
        			$current, 
        			"extendsGraph",
         		lv_extendsGraph_4_0, 
-        		"TGraphExtSubName");
+        		"ChoosenExtSubTGraph");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1951,17 +1951,17 @@ ruleExtSubTGraph returns [EObject current=null]
 
 
 
-// Entry rule entryRuleTGraphExtSubName
-entryRuleTGraphExtSubName returns [EObject current=null] 
+// Entry rule entryRuleChoosenExtSubTGraph
+entryRuleChoosenExtSubTGraph returns [EObject current=null] 
 	:
-	{ newCompositeNode(grammarAccess.getTGraphExtSubNameRule()); }
-	 iv_ruleTGraphExtSubName=ruleTGraphExtSubName 
-	 { $current=$iv_ruleTGraphExtSubName.current; } 
+	{ newCompositeNode(grammarAccess.getChoosenExtSubTGraphRule()); }
+	 iv_ruleChoosenExtSubTGraph=ruleChoosenExtSubTGraph 
+	 { $current=$iv_ruleChoosenExtSubTGraph.current; } 
 	 EOF 
 ;
 
-// Rule TGraphExtSubName
-ruleTGraphExtSubName returns [EObject current=null] 
+// Rule ChoosenExtSubTGraph
+ruleChoosenExtSubTGraph returns [EObject current=null] 
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
@@ -1969,11 +1969,11 @@ ruleTGraphExtSubName returns [EObject current=null]
 (
 		lv_id_0_0=RULE_ID
 		{
-			newLeafNode(lv_id_0_0, grammarAccess.getTGraphExtSubNameAccess().getIdIDTerminalRuleCall_0()); 
+			newLeafNode(lv_id_0_0, grammarAccess.getChoosenExtSubTGraphAccess().getIdIDTerminalRuleCall_0()); 
 		}
 		{
 	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getTGraphExtSubNameRule());
+	            $current = createModelElement(grammarAccess.getChoosenExtSubTGraphRule());
 	        }
        		setWithLastConsumed(
        			$current, 
@@ -2037,9 +2037,9 @@ ruleTGraph returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getTGraphAccess().getTypeGraphTGraphNameParserRuleCall_4_0()); 
+	        newCompositeNode(grammarAccess.getTGraphAccess().getTypeGraphChoosenTGraphParserRuleCall_4_0()); 
 	    }
-		lv_typeGraph_4_0=ruleTGraphName		{
+		lv_typeGraph_4_0=ruleChoosenTGraph		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getTGraphRule());
 	        }
@@ -2047,7 +2047,7 @@ ruleTGraph returns [EObject current=null]
        			$current, 
        			"typeGraph",
         		lv_typeGraph_4_0, 
-        		"TGraphName");
+        		"ChoosenTGraph");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2089,17 +2089,17 @@ ruleTGraph returns [EObject current=null]
 
 
 
-// Entry rule entryRuleTGraphName
-entryRuleTGraphName returns [EObject current=null] 
+// Entry rule entryRuleChoosenTGraph
+entryRuleChoosenTGraph returns [EObject current=null] 
 	:
-	{ newCompositeNode(grammarAccess.getTGraphNameRule()); }
-	 iv_ruleTGraphName=ruleTGraphName 
-	 { $current=$iv_ruleTGraphName.current; } 
+	{ newCompositeNode(grammarAccess.getChoosenTGraphRule()); }
+	 iv_ruleChoosenTGraph=ruleChoosenTGraph 
+	 { $current=$iv_ruleChoosenTGraph.current; } 
 	 EOF 
 ;
 
-// Rule TGraphName
-ruleTGraphName returns [EObject current=null] 
+// Rule ChoosenTGraph
+ruleChoosenTGraph returns [EObject current=null] 
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
@@ -2107,11 +2107,11 @@ ruleTGraphName returns [EObject current=null]
 (
 		lv_id_0_0=RULE_ID
 		{
-			newLeafNode(lv_id_0_0, grammarAccess.getTGraphNameAccess().getIdIDTerminalRuleCall_0()); 
+			newLeafNode(lv_id_0_0, grammarAccess.getChoosenTGraphAccess().getIdIDTerminalRuleCall_0()); 
 		}
 		{
 	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getTGraphNameRule());
+	            $current = createModelElement(grammarAccess.getChoosenTGraphRule());
 	        }
        		setWithLastConsumed(
        			$current, 

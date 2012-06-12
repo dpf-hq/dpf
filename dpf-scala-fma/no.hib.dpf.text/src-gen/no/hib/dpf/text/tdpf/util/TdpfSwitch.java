@@ -249,10 +249,10 @@ public class TdpfSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case TdpfPackage.TGRAPH_EXT_SUB_NAME:
+      case TdpfPackage.CHOOSEN_EXT_SUB_TGRAPH:
       {
-        TGraphExtSubName tGraphExtSubName = (TGraphExtSubName)theEObject;
-        T result = caseTGraphExtSubName(tGraphExtSubName);
+        ChoosenExtSubTGraph choosenExtSubTGraph = (ChoosenExtSubTGraph)theEObject;
+        T result = caseChoosenExtSubTGraph(choosenExtSubTGraph);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -264,10 +264,10 @@ public class TdpfSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case TdpfPackage.TGRAPH_NAME:
+      case TdpfPackage.CHOOSEN_TGRAPH:
       {
-        TGraphName tGraphName = (TGraphName)theEObject;
-        T result = caseTGraphName(tGraphName);
+        ChoosenTGraph choosenTGraph = (ChoosenTGraph)theEObject;
+        T result = caseChoosenTGraph(choosenTGraph);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -690,17 +690,17 @@ public class TdpfSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>TGraph Ext Sub Name</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Choosen Ext Sub TGraph</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>TGraph Ext Sub Name</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Choosen Ext Sub TGraph</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseTGraphExtSubName(TGraphExtSubName object)
+  public T caseChoosenExtSubTGraph(ChoosenExtSubTGraph object)
   {
     return null;
   }
@@ -722,17 +722,17 @@ public class TdpfSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>TGraph Name</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Choosen TGraph</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>TGraph Name</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Choosen TGraph</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseTGraphName(TGraphName object)
+  public T caseChoosenTGraph(ChoosenTGraph object)
   {
     return null;
   }

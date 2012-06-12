@@ -233,13 +233,13 @@ public interface TdpfFactory extends EFactory
   ExtSubTGraph createExtSubTGraph();
 
   /**
-   * Returns a new object of class '<em>TGraph Ext Sub Name</em>'.
+   * Returns a new object of class '<em>Choosen Ext Sub TGraph</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>TGraph Ext Sub Name</em>'.
+   * @return a new object of class '<em>Choosen Ext Sub TGraph</em>'.
    * @generated
    */
-  TGraphExtSubName createTGraphExtSubName();
+  ChoosenExtSubTGraph createChoosenExtSubTGraph();
 
   /**
    * Returns a new object of class '<em>TGraph</em>'.
@@ -251,13 +251,13 @@ public interface TdpfFactory extends EFactory
   TGraph createTGraph();
 
   /**
-   * Returns a new object of class '<em>TGraph Name</em>'.
+   * Returns a new object of class '<em>Choosen TGraph</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>TGraph Name</em>'.
+   * @return a new object of class '<em>Choosen TGraph</em>'.
    * @generated
    */
-  TGraphName createTGraphName();
+  ChoosenTGraph createChoosenTGraph();
 
   /**
    * Returns a new object of class '<em>Element</em>'.

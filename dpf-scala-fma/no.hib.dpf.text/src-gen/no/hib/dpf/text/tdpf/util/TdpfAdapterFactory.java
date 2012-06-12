@@ -193,9 +193,9 @@ public class TdpfAdapterFactory extends AdapterFactoryImpl
         return createExtSubTGraphAdapter();
       }
       @Override
-      public Adapter caseTGraphExtSubName(TGraphExtSubName object)
+      public Adapter caseChoosenExtSubTGraph(ChoosenExtSubTGraph object)
       {
-        return createTGraphExtSubNameAdapter();
+        return createChoosenExtSubTGraphAdapter();
       }
       @Override
       public Adapter caseTGraph(TGraph object)
@@ -203,9 +203,9 @@ public class TdpfAdapterFactory extends AdapterFactoryImpl
         return createTGraphAdapter();
       }
       @Override
-      public Adapter caseTGraphName(TGraphName object)
+      public Adapter caseChoosenTGraph(ChoosenTGraph object)
       {
-        return createTGraphNameAdapter();
+        return createChoosenTGraphAdapter();
       }
       @Override
       public Adapter caseElement(Element object)
@@ -605,16 +605,16 @@ public class TdpfAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link no.hib.dpf.text.tdpf.TGraphExtSubName <em>TGraph Ext Sub Name</em>}'.
+   * Creates a new adapter for an object of class '{@link no.hib.dpf.text.tdpf.ChoosenExtSubTGraph <em>Choosen Ext Sub TGraph</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see no.hib.dpf.text.tdpf.TGraphExtSubName
+   * @see no.hib.dpf.text.tdpf.ChoosenExtSubTGraph
    * @generated
    */
-  public Adapter createTGraphExtSubNameAdapter()
+  public Adapter createChoosenExtSubTGraphAdapter()
   {
     return null;
   }
@@ -635,16 +635,16 @@ public class TdpfAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link no.hib.dpf.text.tdpf.TGraphName <em>TGraph Name</em>}'.
+   * Creates a new adapter for an object of class '{@link no.hib.dpf.text.tdpf.ChoosenTGraph <em>Choosen TGraph</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see no.hib.dpf.text.tdpf.TGraphName
+   * @see no.hib.dpf.text.tdpf.ChoosenTGraph
    * @generated
    */
-  public Adapter createTGraphNameAdapter()
+  public Adapter createChoosenTGraphAdapter()
   {
     return null;
   }

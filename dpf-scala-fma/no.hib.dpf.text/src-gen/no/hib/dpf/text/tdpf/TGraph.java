@@ -62,12 +62,12 @@ public interface TGraph extends Definition
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Type Graph</em>' containment reference.
-   * @see #setTypeGraph(TGraphName)
+   * @see #setTypeGraph(ChoosenTGraph)
    * @see no.hib.dpf.text.tdpf.TdpfPackage#getTGraph_TypeGraph()
    * @model containment="true"
    * @generated
    */
-  TGraphName getTypeGraph();
+  ChoosenTGraph getTypeGraph();
 
   /**
    * Sets the value of the '{@link no.hib.dpf.text.tdpf.TGraph#getTypeGraph <em>Type Graph</em>}' containment reference.
@@ -77,7 +77,7 @@ public interface TGraph extends Definition
    * @see #getTypeGraph()
    * @generated
    */
-  void setTypeGraph(TGraphName value);
+  void setTypeGraph(ChoosenTGraph value);
 
   /**
    * Returns the value of the '<em><b>Elements</b></em>' containment reference list.

@@ -8,8 +8,10 @@ package no.hib.dpf.text.tdpf.impl;
 import no.hib.dpf.text.tdpf.Arrow;
 import no.hib.dpf.text.tdpf.Arrows;
 import no.hib.dpf.text.tdpf.AttributeValue;
+import no.hib.dpf.text.tdpf.ChoosenExtSubTGraph;
 import no.hib.dpf.text.tdpf.ChoosenGraph;
 import no.hib.dpf.text.tdpf.ChoosenSpecfication;
+import no.hib.dpf.text.tdpf.ChoosenTGraph;
 import no.hib.dpf.text.tdpf.Codomain;
 import no.hib.dpf.text.tdpf.Constraint;
 import no.hib.dpf.text.tdpf.ConstraintSemantic;
@@ -36,8 +38,6 @@ import no.hib.dpf.text.tdpf.SimpleEvoCospan;
 import no.hib.dpf.text.tdpf.SimpleEvoSpan;
 import no.hib.dpf.text.tdpf.Specification;
 import no.hib.dpf.text.tdpf.TGraph;
-import no.hib.dpf.text.tdpf.TGraphExtSubName;
-import no.hib.dpf.text.tdpf.TGraphName;
 import no.hib.dpf.text.tdpf.TdpfFactory;
 import no.hib.dpf.text.tdpf.TdpfPackage;
 
@@ -223,7 +223,7 @@ public class TdpfPackageImpl extends EPackageImpl implements TdpfPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass tGraphExtSubNameEClass = null;
+  private EClass choosenExtSubTGraphEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -237,7 +237,7 @@ public class TdpfPackageImpl extends EPackageImpl implements TdpfPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass tGraphNameEClass = null;
+  private EClass choosenTGraphEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1046,9 +1046,9 @@ public class TdpfPackageImpl extends EPackageImpl implements TdpfPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getTGraphExtSubName()
+  public EClass getChoosenExtSubTGraph()
   {
-    return tGraphExtSubNameEClass;
+    return choosenExtSubTGraphEClass;
   }
 
   /**
@@ -1056,9 +1056,9 @@ public class TdpfPackageImpl extends EPackageImpl implements TdpfPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getTGraphExtSubName_Id()
+  public EAttribute getChoosenExtSubTGraph_Id()
   {
-    return (EAttribute)tGraphExtSubNameEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)choosenExtSubTGraphEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1106,9 +1106,9 @@ public class TdpfPackageImpl extends EPackageImpl implements TdpfPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getTGraphName()
+  public EClass getChoosenTGraph()
   {
-    return tGraphNameEClass;
+    return choosenTGraphEClass;
   }
 
   /**
@@ -1116,9 +1116,9 @@ public class TdpfPackageImpl extends EPackageImpl implements TdpfPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getTGraphName_Id()
+  public EAttribute getChoosenTGraph_Id()
   {
-    return (EAttribute)tGraphNameEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)choosenTGraphEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1413,16 +1413,16 @@ public class TdpfPackageImpl extends EPackageImpl implements TdpfPackage
     createEReference(extSubTGraphEClass, EXT_SUB_TGRAPH__EXTENDS_GRAPH);
     createEReference(extSubTGraphEClass, EXT_SUB_TGRAPH__ELEMENTS);
 
-    tGraphExtSubNameEClass = createEClass(TGRAPH_EXT_SUB_NAME);
-    createEAttribute(tGraphExtSubNameEClass, TGRAPH_EXT_SUB_NAME__ID);
+    choosenExtSubTGraphEClass = createEClass(CHOOSEN_EXT_SUB_TGRAPH);
+    createEAttribute(choosenExtSubTGraphEClass, CHOOSEN_EXT_SUB_TGRAPH__ID);
 
     tGraphEClass = createEClass(TGRAPH);
     createEAttribute(tGraphEClass, TGRAPH__ID);
     createEReference(tGraphEClass, TGRAPH__TYPE_GRAPH);
     createEReference(tGraphEClass, TGRAPH__ELEMENTS);
 
-    tGraphNameEClass = createEClass(TGRAPH_NAME);
-    createEAttribute(tGraphNameEClass, TGRAPH_NAME__ID);
+    choosenTGraphEClass = createEClass(CHOOSEN_TGRAPH);
+    createEAttribute(choosenTGraphEClass, CHOOSEN_TGRAPH__ID);
 
     elementEClass = createEClass(ELEMENT);
     createEReference(elementEClass, ELEMENT__ID);
@@ -1587,19 +1587,19 @@ public class TdpfPackageImpl extends EPackageImpl implements TdpfPackage
 
     initEClass(extSubTGraphEClass, ExtSubTGraph.class, "ExtSubTGraph", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getExtSubTGraph_Id(), ecorePackage.getEString(), "id", null, 0, 1, ExtSubTGraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getExtSubTGraph_ExtendsGraph(), this.getTGraphExtSubName(), null, "extendsGraph", null, 0, 1, ExtSubTGraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExtSubTGraph_ExtendsGraph(), this.getChoosenExtSubTGraph(), null, "extendsGraph", null, 0, 1, ExtSubTGraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getExtSubTGraph_Elements(), this.getElement(), null, "elements", null, 0, -1, ExtSubTGraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(tGraphExtSubNameEClass, TGraphExtSubName.class, "TGraphExtSubName", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getTGraphExtSubName_Id(), ecorePackage.getEString(), "id", null, 0, 1, TGraphExtSubName.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(choosenExtSubTGraphEClass, ChoosenExtSubTGraph.class, "ChoosenExtSubTGraph", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getChoosenExtSubTGraph_Id(), ecorePackage.getEString(), "id", null, 0, 1, ChoosenExtSubTGraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(tGraphEClass, TGraph.class, "TGraph", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getTGraph_Id(), ecorePackage.getEString(), "id", null, 0, 1, TGraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getTGraph_TypeGraph(), this.getTGraphName(), null, "typeGraph", null, 0, 1, TGraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getTGraph_TypeGraph(), this.getChoosenTGraph(), null, "typeGraph", null, 0, 1, TGraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getTGraph_Elements(), this.getElement(), null, "elements", null, 0, -1, TGraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(tGraphNameEClass, TGraphName.class, "TGraphName", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getTGraphName_Id(), ecorePackage.getEString(), "id", null, 0, 1, TGraphName.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(choosenTGraphEClass, ChoosenTGraph.class, "ChoosenTGraph", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getChoosenTGraph_Id(), ecorePackage.getEString(), "id", null, 0, 1, ChoosenTGraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(elementEClass, Element.class, "Element", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getElement_Id(), this.getDpfId(), null, "id", null, 0, 1, Element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -62,12 +62,12 @@ public interface ExtSubTGraph extends Definition
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Extends Graph</em>' containment reference.
-   * @see #setExtendsGraph(TGraphExtSubName)
+   * @see #setExtendsGraph(ChoosenExtSubTGraph)
    * @see no.hib.dpf.text.tdpf.TdpfPackage#getExtSubTGraph_ExtendsGraph()
    * @model containment="true"
    * @generated
    */
-  TGraphExtSubName getExtendsGraph();
+  ChoosenExtSubTGraph getExtendsGraph();
 
   /**
    * Sets the value of the '{@link no.hib.dpf.text.tdpf.ExtSubTGraph#getExtendsGraph <em>Extends Graph</em>}' containment reference.
@@ -77,7 +77,7 @@ public interface ExtSubTGraph extends Definition
    * @see #getExtendsGraph()
    * @generated
    */
-  void setExtendsGraph(TGraphExtSubName value);
+  void setExtendsGraph(ChoosenExtSubTGraph value);
 
   /**
    * Returns the value of the '<em><b>Elements</b></em>' containment reference list.

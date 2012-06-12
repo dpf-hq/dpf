@@ -7,9 +7,9 @@ package no.hib.dpf.text.tdpf.impl;
 
 import java.util.Collection;
 
+import no.hib.dpf.text.tdpf.ChoosenExtSubTGraph;
 import no.hib.dpf.text.tdpf.Element;
 import no.hib.dpf.text.tdpf.ExtSubTGraph;
-import no.hib.dpf.text.tdpf.TGraphExtSubName;
 import no.hib.dpf.text.tdpf.TdpfPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -70,7 +70,7 @@ public class ExtSubTGraphImpl extends DefinitionImpl implements ExtSubTGraph
    * @generated
    * @ordered
    */
-  protected TGraphExtSubName extendsGraph;
+  protected ChoosenExtSubTGraph extendsGraph;
 
   /**
    * The cached value of the '{@link #getElements() <em>Elements</em>}' containment reference list.
@@ -131,7 +131,7 @@ public class ExtSubTGraphImpl extends DefinitionImpl implements ExtSubTGraph
    * <!-- end-user-doc -->
    * @generated
    */
-  public TGraphExtSubName getExtendsGraph()
+  public ChoosenExtSubTGraph getExtendsGraph()
   {
     return extendsGraph;
   }
@@ -141,9 +141,9 @@ public class ExtSubTGraphImpl extends DefinitionImpl implements ExtSubTGraph
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetExtendsGraph(TGraphExtSubName newExtendsGraph, NotificationChain msgs)
+  public NotificationChain basicSetExtendsGraph(ChoosenExtSubTGraph newExtendsGraph, NotificationChain msgs)
   {
-    TGraphExtSubName oldExtendsGraph = extendsGraph;
+    ChoosenExtSubTGraph oldExtendsGraph = extendsGraph;
     extendsGraph = newExtendsGraph;
     if (eNotificationRequired())
     {
@@ -158,7 +158,7 @@ public class ExtSubTGraphImpl extends DefinitionImpl implements ExtSubTGraph
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setExtendsGraph(TGraphExtSubName newExtendsGraph)
+  public void setExtendsGraph(ChoosenExtSubTGraph newExtendsGraph)
   {
     if (newExtendsGraph != extendsGraph)
     {
@@ -241,7 +241,7 @@ public class ExtSubTGraphImpl extends DefinitionImpl implements ExtSubTGraph
         setId((String)newValue);
         return;
       case TdpfPackage.EXT_SUB_TGRAPH__EXTENDS_GRAPH:
-        setExtendsGraph((TGraphExtSubName)newValue);
+        setExtendsGraph((ChoosenExtSubTGraph)newValue);
         return;
       case TdpfPackage.EXT_SUB_TGRAPH__ELEMENTS:
         getElements().clear();
@@ -265,7 +265,7 @@ public class ExtSubTGraphImpl extends DefinitionImpl implements ExtSubTGraph
         setId(ID_EDEFAULT);
         return;
       case TdpfPackage.EXT_SUB_TGRAPH__EXTENDS_GRAPH:
-        setExtendsGraph((TGraphExtSubName)null);
+        setExtendsGraph((ChoosenExtSubTGraph)null);
         return;
       case TdpfPackage.EXT_SUB_TGRAPH__ELEMENTS:
         getElements().clear();
