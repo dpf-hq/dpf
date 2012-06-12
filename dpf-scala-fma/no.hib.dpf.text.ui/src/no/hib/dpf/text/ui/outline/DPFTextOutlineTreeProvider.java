@@ -65,7 +65,8 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		
 		//Init:
 		if(!isInited){
-		   init(model); 	
+		   init(model);
+		   autocompleteIds=true;
 		}
 		
 		for (Definition d : model.getDefinitions()) {
@@ -95,6 +96,7 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
 								} catch (Exception ex) {
 									ex.printStackTrace();
 								}
+								autocompleteIds=true;
 								return;
 							}
 						}
@@ -103,7 +105,6 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			}
 	    }
 	  });
-	  autocompleteIds=true;
 	}
 
 //	//
