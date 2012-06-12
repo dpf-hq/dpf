@@ -235,7 +235,7 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 												|	TSTRING  ^^^ {TypeP.TString}
 												)
 												 
-	def attributeValue: Parser[String] = "["~tValue~"]" ^^ {case "["~v~"]" => decodeString(v)}
+	def attributeValue: Parser[String] = "["~tValue~"]" ^^ {case "["~v~"]" => /*decodeString(v)*/""}
 	
 	def tValue: Parser[String]  = floatingPointNumber | TVALUE_char | stringLiteral 
 
@@ -729,94 +729,94 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 	   printSpecification(specs(n),n,outDir)
 	}
 	
-	//Handle Escaped Strings and comments:
-	def readFile(f:String):String={		
-		
-		val comment = """//""".r
-		val ccomentBegin = """/*"""
-		val ccomentEnd = """*/"""	
-		
-		val escString = "\"".r
-		val magic = "*}D}p{F{*"
-
-   		val lines  = scala.io.Source.fromFile(f)
-		var file:List[String] = Nil 
-   		var inComment=false;  
-   		var inEscString=false;  
- 		
-   		//Exclude c-comments
-		def excludeCComments(l:String):String={
-		  var temp = l
-		  val r = new StringBuilder()
-		  if(!inComment){			  
-			  val bC = temp.indexOf(ccomentBegin)
-			  if(bC > -1){
-			    r++=temp.substring(0,bC) //til comment
-			    temp = temp.substring(bC) 
-			    inComment=true
-			  }else{
-			    r++=temp
-			  }
-		  }	  
-		  if(inComment){
-			 val eC =temp.indexOf(ccomentEnd) 
-			 if(eC > -1){
-				 temp=temp.substring(eC+ccomentEnd.length) //from comment
-				 inComment=false
-				 r++=excludeCComments(temp)
-			 }			 
-		  }
-		  r.mkString
-		} 
-  
-		//Handle Escaped Strings:
-		def handleEscapedStrings(l:String):String={
-  		  import java.net.URLEncoder
-		  val temp = escString.split(l.replaceAllLiterally("\\\"",magic))
-		  val r= new StringBuilder()
-		  for(i<-0 to temp.length-1){
-			  if(0 == i % 2){
-			    r++=temp(i)
-			  }else{
-			    r++="\"" 
-			    r++=URL_ENCODED  
-			    r++= URLEncoder.encode(temp(i).replaceAllLiterally(magic,"\""),"UTF-8")
-			    r++="\""
-			  }
-		  }
- 		  r.mkString
-		}
-
-		
-		var addLine = ""
-   		for(l<-lines.getLines()){
-		  
-		  //Eclude Comments:
-		  val temp1 = comment.split(l)
-		  if(temp1.length > 0){
-		    addLine=temp1(0) 
-		  }		  
-		  //Eclude C-Comments:
-		  addLine=excludeCComments(addLine)
-		  
-		  //Read Escaped Strings:
-		  addLine=handleEscapedStrings(addLine)
-		  
-		  file=(addLine::file)
-		}
-		file.reverse.mkString
-	}
-
-	
-	private def decodeString(s:String):String={
-	  import java.net.URLDecoder
-	  val prefix = "\""+ URL_ENCODED
-	  if(s.startsWith(prefix)){
-	    return URLDecoder.decode("\""+ s.stripPrefix(prefix),"UTF-8")
-	  }else{
-	    return s
-	  }
-	}		
+//	//Handle Escaped Strings and comments:
+//	def readFile(f:String):String={		
+//		
+//		val comment = """//""".r
+//		val ccomentBegin = """/*"""
+//		val ccomentEnd = """*/"""	
+//		
+//		val escString = "\"".r
+//		val magic = "*}D}p{F{*"
+//
+//   		val lines  = scala.io.Source.fromFile(f)
+//		var file:List[String] = Nil 
+//   		var inComment=false;  
+//   		var inEscString=false;  
+// 		
+//   		//Exclude c-comments
+//		def excludeCComments(l:String):String={
+//		  var temp = l
+//		  val r = new StringBuilder()
+//		  if(!inComment){			  
+//			  val bC = temp.indexOf(ccomentBegin)
+//			  if(bC > -1){
+//			    r++=temp.substring(0,bC) //til comment
+//			    temp = temp.substring(bC) 
+//			    inComment=true
+//			  }else{
+//			    r++=temp
+//			  }
+//		  }	  
+//		  if(inComment){
+//			 val eC =temp.indexOf(ccomentEnd) 
+//			 if(eC > -1){
+//				 temp=temp.substring(eC+ccomentEnd.length) //from comment
+//				 inComment=false
+//				 r++=excludeCComments(temp)
+//			 }			 
+//		  }
+//		  r.mkString
+//		} 
+//  
+//		//Handle Escaped Strings:
+//		def handleEscapedStrings(l:String):String={
+//  		  import java.net.URLEncoder
+//		  val temp = escString.split(l.replaceAllLiterally("\\\"",magic))
+//		  val r= new StringBuilder()
+//		  for(i<-0 to temp.length-1){
+//			  if(0 == i % 2){
+//			    r++=temp(i)
+//			  }else{
+//			    r++="\"" 
+//			    r++=URL_ENCODED  
+//			    r++= URLEncoder.encode(temp(i).replaceAllLiterally(magic,"\""),"UTF-8")
+//			    r++="\""
+//			  }
+//		  }
+// 		  r.mkString
+//		}
+//
+//		
+//		var addLine = ""
+//   		for(l<-lines.getLines()){
+//		  
+//		  //Eclude Comments:
+//		  val temp1 = comment.split(l)
+//		  if(temp1.length > 0){
+//		    addLine=temp1(0) 
+//		  }		  
+//		  //Eclude C-Comments:
+//		  addLine=excludeCComments(addLine)
+//		  
+//		  //Read Escaped Strings:
+//		  addLine=handleEscapedStrings(addLine)
+//		  
+//		  file=(addLine::file)
+//		}
+//		file.reverse.mkString
+//	}
+//
+//	
+//	private def decodeString(s:String):String={
+//	  import java.net.URLDecoder
+//	  val prefix = "\""+ URL_ENCODED
+//	  if(s.startsWith(prefix)){
+//	    return URLDecoder.decode("\""+ s.stripPrefix(prefix),"UTF-8")
+//	  }else{
+//	    return s
+//	  }
+//	}		
 	
 }
 
@@ -832,7 +832,7 @@ object Main extends Parser(GraphDpf, "DPF")
 	if(0<args.length)inFile = args(0)
 	if(1<args.length)outDir = args(1)
 	println("Parse File: " + inFile)
-	val parseR = parseAll(definitions,readFile(inFile)).get
+//	val parseR = parseAll(definitions,readFile(inFile)).get
 	//		println(parseR)
 	
 	//Only in Eclipse OCL:
@@ -842,7 +842,7 @@ object Main extends Parser(GraphDpf, "DPF")
 	
 	println("Validate OCL")
 	val ds = System.currentTimeMillis();
-	parseR foreach (_ match {case is@IS(_,_,_) => Validation.validate(is);case _ =>;});
+//	parseR foreach (_ match {case is@IS(_,_,_) => Validation.validate(is);case _ =>;});
 	println("OCL-check:" + (System.currentTimeMillis()-ds))
 
 }
