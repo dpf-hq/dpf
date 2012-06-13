@@ -12,7 +12,7 @@ import no.hib.dpf.text.tdpf.Element;
 import no.hib.dpf.text.tdpf.Model;
 import no.hib.dpf.text.tdpf.Node;
 import no.hib.dpf.text.tdpf.TGraph;
-import no.hib.dpf.text.tdpf.impl.TdpfFactoryImpl;
+import no.hib.dpf.text.tdpf.TdpfFactory;
 
 import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.swt.graphics.Image;
@@ -222,7 +222,7 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	protected void _createNode(IOutlineNode parentNode, Arrows arrows) {
 		
 		//Create head arrow:
-		Arrow a = new TdpfFactoryImpl().createArrow();
+		Arrow a = TdpfFactory.eINSTANCE.createArrow();
 		a.setId(arrows.getId());
 		a.setType(arrows.getType());
 		a.setSr(EcoreUtil2.clone(arrows.getSr()));
