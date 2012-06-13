@@ -1,12 +1,12 @@
-package no.dpf.text.graph.ecore
+package no.hib.dpf.text.graph.ecore
 
-import no.dpf.text.graph._
+import no.hib.dpf.text.graph._
 import scala.collection._
 import scala.collection.mutable.{Map=>MMap}
 import scala.xml._	  
-import no.dpf.text.graph.{Element=>DElement}
-import no.dpf.text.graph.{Node=>DNode}
-import no.dpf.text.graph.{Arrow=>DArrow}
+import no.hib.dpf.text.graph.{Element=>DElement}
+import no.hib.dpf.text.graph.{Node=>DNode}
+import no.hib.dpf.text.graph.{Arrow=>DArrow}
 
 object EcoreGenerator extends ModelHelper with InstanceHelper with Converter{
 

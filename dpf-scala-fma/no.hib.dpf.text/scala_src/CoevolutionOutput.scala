@@ -1,8 +1,8 @@
-package no.dpf.text.coevolution;
+package no.hib.dpf.text.coevolution;
 
-import no.dpf.text.graph._;
-import no.dpf.text.graph.mutable.{Graph=>MGraph}
-import no.dpf.text.coevolution._;
+import no.hib.dpf.text.graph._;
+import no.hib.dpf.text.graph.mutable.{Graph=>MGraph}
+import no.hib.dpf.text.coevolution._;
 import scala.collection.mutable.{Set=>MSet}
 import scala.collection.mutable.{Map=>MMap}
 

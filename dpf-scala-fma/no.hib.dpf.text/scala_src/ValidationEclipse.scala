@@ -1,10 +1,10 @@
-package no.dpf.text.graph.validation.eclipse
+package no.hib.dpf.text.graph.validation.eclipse
 
-import no.dpf.text.graph._
-import no.dpf.text.graph.ecore._
-import no.dpf.text.graph.validation._
-import no.dpf.text.graph.{Constraint=>DConstraint}
-import no.dpf.text.graph.validation.SimpleGraph
+import no.hib.dpf.text.graph._
+import no.hib.dpf.text.graph.ecore._
+import no.hib.dpf.text.graph.validation._
+import no.hib.dpf.text.graph.{Constraint=>DConstraint}
+import no.hib.dpf.text.graph.validation.SimpleGraph
 //Ecore:
 import org.eclipse.emf.ecore._;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -23,7 +23,7 @@ import org.eclipse.ocl.OCLInput;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.helper.OCLHelper;
-import no.dpf.text.graph.validation._;
+import no.hib.dpf.text.graph.validation._;
 import org.eclipse.emf.common.util.URI;
 //Util:
 import scala.collection.mutable.{Map=>MMap}

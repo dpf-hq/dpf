@@ -1,6 +1,6 @@
-package no.dpf.text.output.graphviz;
+package no.hib.dpf.text.output.graphviz;
 
-import no.dpf.text.graph._;
+import no.hib.dpf.text.graph._;
 import scala.collection.mutable.{Map=>MMap}
 import scala.collection.mutable.{Set=>MSet}
 

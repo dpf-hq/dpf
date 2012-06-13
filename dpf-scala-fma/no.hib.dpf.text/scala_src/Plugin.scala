@@ -1,6 +1,6 @@
-package no.dpf.text.plugin;
+package no.hib.dpf.text.plugin;
 
-import no.dpf.text.graph.parser._;
+import no.hib.dpf.text.graph.parser._;
 
 import java.net.MalformedURLException;
 import java.util.HashMap;
@@ -47,14 +47,14 @@ class RunParser extends IObjectActionDelegate {
 				val file = ss.getFirstElement().asInstanceOf[IFile];
 				if(null == file)return;
 				if(!file.getName().endsWith(FILE_EXT)){
-					MessageDialog.openInformation(shell, "no.dpf.text.plugin.RunParser","DPF-Test files must end with "+ FILE_EXT);
+					MessageDialog.openInformation(shell, "no.hib.dpf.text.plugin.RunParser","DPF-Test files must end with "+ FILE_EXT);
 				}else{
 					doAction(file);
 				}			
 		    	
 		    }	
 		} catch {
-			case e => MessageDialog.openError(shell, "no.dpf.text.plugin.RunParser",e.getMessage());
+			case e => MessageDialog.openError(shell, "no.hib.dpf.text.plugin.RunParser",e.getMessage());
 		}			
 	}
 
@@ -74,7 +74,7 @@ class RunParser extends IObjectActionDelegate {
 	   //Start Parser:
 	   Main.main(Array(wsFile,targetDir));
 	   
-	   MessageDialog.openInformation(shell, "no.dpf.text.plugin.RunParser",new String(bout.toByteArray,"UTF-8"));
+	   MessageDialog.openInformation(shell, "no.hib.dpf.text.plugin.RunParser",new String(bout.toByteArray,"UTF-8"));
 	   
 	   //Refresh Folder:
 	   try {

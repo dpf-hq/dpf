@@ -1,14 +1,14 @@
-package no.dpf.text.graph.parser;
+package no.hib.dpf.text.graph.parser;
 
 import scala.util.parsing.combinator._
-import no.dpf.text.graph._
-import no.dpf.text.graph.mutable.{Graph=>MGraph}
-import no.dpf.text.graph.mutable.{ExtSubGraph=>MExtSubGraph}
+import no.hib.dpf.text.graph._
+import no.hib.dpf.text.graph.mutable.{Graph=>MGraph}
+import no.hib.dpf.text.graph.mutable.{ExtSubGraph=>MExtSubGraph}
 import scala.collection.mutable.{Map=>MMap}
 import scala.collection.mutable.{Set=>MSet}
-import no.dpf.text.coevolution._
-import no.dpf.text.output.graphviz.Output
-import no.dpf.text.output.parser.{Output=>POutput}
+import no.hib.dpf.text.coevolution._
+import no.hib.dpf.text.output.graphviz.Output
+import no.hib.dpf.text.output.parser.{Output=>POutput}
 
 class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with Converter with Output with POutput{
 	   
@@ -513,7 +513,7 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
     }  
 
    /**
-    * Attention algortihms must correspond to method in no.dpf.text.graph.validation.Helper.createShape
+    * Attention algortihms must correspond to method in no.hib.dpf.text.graph.validation.Helper.createShape
     */
    private def createShape(rarrows:List[RArrow]):(List[Arrow],Map[String,Int],Map[String,Int])={
      var counter=0;
@@ -705,14 +705,14 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 	
 	def printEcore(n:String)={
 		import java.io._
-		import no.dpf.text.graph.ecore.EcoreGenerator
+		import no.hib.dpf.text.graph.ecore.EcoreGenerator
 		writeFile(outDir + n + ".ecore",EcoreGenerator.graph2EcoreM(tGraphs(n),n))
 		writeFile(outDir + n + "_simple.ecore",EcoreGenerator.graph2EcoreM_simple(tGraphs(n),n))
 	}
 
 	def printEmf(n:String)={
 		import java.io._
-		import no.dpf.text.graph.ecore.EcoreGenerator
+		import no.hib.dpf.text.graph.ecore.EcoreGenerator
 		def ecoreName():String = {
 		  for(k <- tGraphs.keys){
 		    if(tGraphs(k)==tGraphs(n).mmGraph){
@@ -823,7 +823,7 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 
 object Main extends Parser(GraphDpf, "DPF") 
 {
-	import no.dpf.text.graph.validation.eclipse._
+	import no.hib.dpf.text.graph.validation.eclipse._
 	def main(args:Array[String]) = {
  
 	initParser()  

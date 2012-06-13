@@ -1,7 +1,7 @@
-package no.dpf.text.graph;
+package no.hib.dpf.text.graph;
 import scala.collection.mutable.{Map=>MMap}
 import scala.collection.mutable.{Set=>MSet}
-import no.dpf.text.graph.mutable.{Graph=>MGraph}
+import no.hib.dpf.text.graph.mutable.{Graph=>MGraph}
 
 object TestCases {
 

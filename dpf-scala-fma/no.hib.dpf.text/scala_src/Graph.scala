@@ -1,4 +1,4 @@
-package no.dpf.text.graph;
+package no.hib.dpf.text.graph;
 import scala.collection._;
 import scala.collection.mutable.{Set=>MSet}
 import scala.collection.mutable.{Map=>MMap}
@@ -397,7 +397,7 @@ package mutable{
 		  ng;
 		}
 		
-		def immutable():no.dpf.text.graph.Graph={
+		def immutable():no.hib.dpf.text.graph.Graph={
 			//Make inmutable copy
 			def toInMut(_m: MMap[Node,MMap[TypeArrow,MSet[Arrow]]]): 
 				IMap[Node,IMap[TypeArrow,ISet[Arrow]]]={
@@ -406,7 +406,7 @@ package mutable{
 			val i = toInMut(in)
 			val o = toInMut(out)
 			val n:Map[Id,String] = Map(names toSeq: _*)
-			no.dpf.text.graph.Graph(Map(nodes toSeq : _*),Map(arrows toSeq : _*),i,o,n)	
+			no.hib.dpf.text.graph.Graph(Map(nodes toSeq : _*),Map(arrows toSeq : _*),i,o,n)	
 		}
 		
 		def rename(id:Id, newName: String){

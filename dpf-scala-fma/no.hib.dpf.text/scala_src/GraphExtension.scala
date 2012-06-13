@@ -1,7 +1,7 @@
-package no.dpf.text.graph;
+package no.hib.dpf.text.graph;
 import scala.collection.mutable.{Map=>MMap}
 import scala.collection.mutable.{Set=>MSet}
-import no.dpf.text.graph.mutable.{Graph=>MGraph}
+import no.hib.dpf.text.graph.mutable.{Graph=>MGraph}
 
 /**
  * Graph Morphism (Graph not in name because it is already in the package name)
@@ -14,7 +14,7 @@ sealed trait Morphism{
    * Untyped Graph
    */
   trait UGraph{
-   import no.dpf.text.graph.Id;
+   import no.hib.dpf.text.graph.Id;
    
    def arrowSr(id:Id):Id
    def arrowTg(id:Id):Id

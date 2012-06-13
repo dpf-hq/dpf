@@ -1,20 +1,20 @@
-package no.dpf.text.graph.validation
+package no.hib.dpf.text.graph.validation
 
-import no.dpf.text.graph._
-import no.dpf.text.graph.ecore._
+import no.hib.dpf.text.graph._
+import no.hib.dpf.text.graph.ecore._
 
 import scala.collection._
 import scala.collection.mutable.{Map=>MMap}
 import scala.xml._	  
-import no.dpf.text.graph.{Element=>DElement}
-import no.dpf.text.graph.{Node=>DNode}
-import no.dpf.text.graph.{Arrow=>DArrow}
+import no.hib.dpf.text.graph.{Element=>DElement}
+import no.hib.dpf.text.graph.{Node=>DNode}
+import no.hib.dpf.text.graph.{Arrow=>DArrow}
 
 /**
  * SimpleGraph is usual graph but it is created without doing all the checks which usually are needed. 
  * It is used only in the validation package with input graphs which have been already validated before.
  */
-class SimpleGraph private[validation](namesMap:Map[Id,String]) extends no.dpf.text.graph.mutable.Graph(null,null) with Converter{
+class SimpleGraph private[validation](namesMap:Map[Id,String]) extends no.hib.dpf.text.graph.mutable.Graph(null,null) with Converter{
 	import scala.collection._;
 	
 	//Add all names:
