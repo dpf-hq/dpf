@@ -5,7 +5,7 @@ import org.eclipse.xtext.generator.*
 import org.eclipse.xtext.ui.generator.*
 
 var grammarURI = "classpath:/no/hib/dpf/text/DPFText.xtext"
-var file.extensions = "mydsl"
+var file.extensions = "tdpf"
 var projectName = "no.hib.dpf.text"
 var runtimeProject = "../${projectName}"
 
