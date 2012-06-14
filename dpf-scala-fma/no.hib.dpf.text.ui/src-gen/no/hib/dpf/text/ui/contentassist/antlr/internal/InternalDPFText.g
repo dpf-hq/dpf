@@ -728,25 +728,25 @@ finally {
 
 
 
-// Entry rule entryRuleTGraphExtSubName
-entryRuleTGraphExtSubName 
+// Entry rule entryRuleChoosenExtSubTGraph
+entryRuleChoosenExtSubTGraph 
 :
-{ before(grammarAccess.getTGraphExtSubNameRule()); }
-	 ruleTGraphExtSubName
-{ after(grammarAccess.getTGraphExtSubNameRule()); } 
+{ before(grammarAccess.getChoosenExtSubTGraphRule()); }
+	 ruleChoosenExtSubTGraph
+{ after(grammarAccess.getChoosenExtSubTGraphRule()); } 
 	 EOF 
 ;
 
-// Rule TGraphExtSubName
-ruleTGraphExtSubName
+// Rule ChoosenExtSubTGraph
+ruleChoosenExtSubTGraph
     @init {
 		int stackSize = keepStackSize();
     }
 	:
 (
-{ before(grammarAccess.getTGraphExtSubNameAccess().getIdAssignment()); }
-(rule__TGraphExtSubName__IdAssignment)
-{ after(grammarAccess.getTGraphExtSubNameAccess().getIdAssignment()); }
+{ before(grammarAccess.getChoosenExtSubTGraphAccess().getIdAssignment()); }
+(rule__ChoosenExtSubTGraph__IdAssignment)
+{ after(grammarAccess.getChoosenExtSubTGraphAccess().getIdAssignment()); }
 )
 
 ;
@@ -784,25 +784,25 @@ finally {
 
 
 
-// Entry rule entryRuleTGraphName
-entryRuleTGraphName 
+// Entry rule entryRuleChoosenTGraph
+entryRuleChoosenTGraph 
 :
-{ before(grammarAccess.getTGraphNameRule()); }
-	 ruleTGraphName
-{ after(grammarAccess.getTGraphNameRule()); } 
+{ before(grammarAccess.getChoosenTGraphRule()); }
+	 ruleChoosenTGraph
+{ after(grammarAccess.getChoosenTGraphRule()); } 
 	 EOF 
 ;
 
-// Rule TGraphName
-ruleTGraphName
+// Rule ChoosenTGraph
+ruleChoosenTGraph
     @init {
 		int stackSize = keepStackSize();
     }
 	:
 (
-{ before(grammarAccess.getTGraphNameAccess().getIdAssignment()); }
-(rule__TGraphName__IdAssignment)
-{ after(grammarAccess.getTGraphNameAccess().getIdAssignment()); }
+{ before(grammarAccess.getChoosenTGraphAccess().getIdAssignment()); }
+(rule__ChoosenTGraph__IdAssignment)
+{ after(grammarAccess.getChoosenTGraphAccess().getIdAssignment()); }
 )
 
 ;
@@ -7742,8 +7742,8 @@ rule__ExtSubTGraph__ExtendsGraphAssignment_4
     }
 :
 (
-{ before(grammarAccess.getExtSubTGraphAccess().getExtendsGraphTGraphExtSubNameParserRuleCall_4_0()); }
-	ruleTGraphExtSubName{ after(grammarAccess.getExtSubTGraphAccess().getExtendsGraphTGraphExtSubNameParserRuleCall_4_0()); }
+{ before(grammarAccess.getExtSubTGraphAccess().getExtendsGraphChoosenExtSubTGraphParserRuleCall_4_0()); }
+	ruleChoosenExtSubTGraph{ after(grammarAccess.getExtSubTGraphAccess().getExtendsGraphChoosenExtSubTGraphParserRuleCall_4_0()); }
 )
 
 ;
@@ -7766,14 +7766,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__TGraphExtSubName__IdAssignment
+rule__ChoosenExtSubTGraph__IdAssignment
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getTGraphExtSubNameAccess().getIdIDTerminalRuleCall_0()); }
-	RULE_ID{ after(grammarAccess.getTGraphExtSubNameAccess().getIdIDTerminalRuleCall_0()); }
+{ before(grammarAccess.getChoosenExtSubTGraphAccess().getIdIDTerminalRuleCall_0()); }
+	RULE_ID{ after(grammarAccess.getChoosenExtSubTGraphAccess().getIdIDTerminalRuleCall_0()); }
 )
 
 ;
@@ -7802,8 +7802,8 @@ rule__TGraph__TypeGraphAssignment_4
     }
 :
 (
-{ before(grammarAccess.getTGraphAccess().getTypeGraphTGraphNameParserRuleCall_4_0()); }
-	ruleTGraphName{ after(grammarAccess.getTGraphAccess().getTypeGraphTGraphNameParserRuleCall_4_0()); }
+{ before(grammarAccess.getTGraphAccess().getTypeGraphChoosenTGraphParserRuleCall_4_0()); }
+	ruleChoosenTGraph{ after(grammarAccess.getTGraphAccess().getTypeGraphChoosenTGraphParserRuleCall_4_0()); }
 )
 
 ;
@@ -7826,14 +7826,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__TGraphName__IdAssignment
+rule__ChoosenTGraph__IdAssignment
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getTGraphNameAccess().getIdIDTerminalRuleCall_0()); }
-	RULE_ID{ after(grammarAccess.getTGraphNameAccess().getIdIDTerminalRuleCall_0()); }
+{ before(grammarAccess.getChoosenTGraphAccess().getIdIDTerminalRuleCall_0()); }
+	RULE_ID{ after(grammarAccess.getChoosenTGraphAccess().getIdIDTerminalRuleCall_0()); }
 )
 
 ;

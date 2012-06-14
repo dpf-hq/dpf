@@ -137,11 +137,11 @@ public class DPFTextParser extends AbstractContentAssistParser {
 					put(grammarAccess.getExtSubTGraphAccess().getIdAssignment_0(), "rule__ExtSubTGraph__IdAssignment_0");
 					put(grammarAccess.getExtSubTGraphAccess().getExtendsGraphAssignment_4(), "rule__ExtSubTGraph__ExtendsGraphAssignment_4");
 					put(grammarAccess.getExtSubTGraphAccess().getElementsAssignment_7(), "rule__ExtSubTGraph__ElementsAssignment_7");
-					put(grammarAccess.getTGraphExtSubNameAccess().getIdAssignment(), "rule__TGraphExtSubName__IdAssignment");
+					put(grammarAccess.getChoosenExtSubTGraphAccess().getIdAssignment(), "rule__ChoosenExtSubTGraph__IdAssignment");
 					put(grammarAccess.getTGraphAccess().getIdAssignment_0(), "rule__TGraph__IdAssignment_0");
 					put(grammarAccess.getTGraphAccess().getTypeGraphAssignment_4(), "rule__TGraph__TypeGraphAssignment_4");
 					put(grammarAccess.getTGraphAccess().getElementsAssignment_7(), "rule__TGraph__ElementsAssignment_7");
-					put(grammarAccess.getTGraphNameAccess().getIdAssignment(), "rule__TGraphName__IdAssignment");
+					put(grammarAccess.getChoosenTGraphAccess().getIdAssignment(), "rule__ChoosenTGraph__IdAssignment");
 					put(grammarAccess.getArrowsAccess().getSrAssignment_0_0(), "rule__Arrows__SrAssignment_0_0");
 					put(grammarAccess.getArrowsAccess().getIdAssignment_0_2(), "rule__Arrows__IdAssignment_0_2");
 					put(grammarAccess.getArrowsAccess().getTypeAssignment_0_4(), "rule__Arrows__TypeAssignment_0_4");
