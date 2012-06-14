@@ -39,9 +39,12 @@ public class DPFTextJavaValidator extends AbstractDPFTextJavaValidator {
 	@Check
 	public void checkGreetingStartsWithCapital(Arrow arrow) {
 		if(null != this.lastArrows){
+			//Important here everything have to be cloned:
+			//
+			//TODO Do noch change anything: BUT form Arrows to Scala individual
 			Arrow a = TdpfFactory.eINSTANCE.createArrow();
-			a.setSr(this.lastArrows.getSr());
-			a.setId(this.lastArrows.getId());
+			a.setSr(EcoreUtil2.clone(this.lastArrows.getSr()));
+			a.setId(EcoreUtil2.clone(this.lastArrows.getId()));
 			a.setTgNode(EcoreUtil2.clone(arrow.getSr()));
 			System.out.println("Consume" + a);
 			this.lastArrows=null;
