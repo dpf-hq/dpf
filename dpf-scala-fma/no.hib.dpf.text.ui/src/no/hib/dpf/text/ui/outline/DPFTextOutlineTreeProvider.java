@@ -74,6 +74,7 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		}
 	
 		//Defs schon da?:
+		try {
 		if(autocompleteIds)
 		display.syncExec(new Runnable() {
 	    public void run(){
@@ -105,6 +106,9 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			autocompleteIds=true;
 	    }
 	  });
+      } catch (Exception e) {
+		System.err.println("Autocomplete" + e.getMessage());
+	  }
 	}
 
 //	//
