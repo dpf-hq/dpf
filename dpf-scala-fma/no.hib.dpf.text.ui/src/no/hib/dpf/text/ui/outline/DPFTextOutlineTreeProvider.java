@@ -96,13 +96,13 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
 								} catch (Exception ex) {
 									ex.printStackTrace();
 								}
-								autocompleteIds=true;
 								return;
 							}
 						}
 					}		
 				}
 			}
+			autocompleteIds=true;
 	    }
 	  });
 	}
