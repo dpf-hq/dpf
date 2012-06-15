@@ -1,4 +1,7 @@
-package no.hib.dpf.text.graph.parser;
+package no.hib.dpf.text.wrapper;
+
+//Scala:
+import no.hib.dpf.text.graph.parser.Parser;
 import no.hib.dpf.text.graph._
 import no.hib.dpf.text.graph.mutable.{Graph=>MGraph}
 import no.hib.dpf.text.graph.mutable.{ExtSubGraph=>MExtSubGraph}
