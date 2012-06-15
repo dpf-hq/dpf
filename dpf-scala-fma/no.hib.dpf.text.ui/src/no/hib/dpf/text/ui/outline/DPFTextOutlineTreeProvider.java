@@ -58,7 +58,7 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	protected IXtextDocument document;
 	
 //	boolean autocompleteIds = false; Init before save and after loading
-	boolean isInited = false;
+	boolean isInited = true; //TEST false;
 	
 	protected void _createChildren(final DocumentRootNode parentNode, final Model model) {
 		Display display = Display.getDefault();
