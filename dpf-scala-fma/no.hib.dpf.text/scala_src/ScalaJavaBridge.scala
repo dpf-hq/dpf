@@ -31,6 +31,8 @@ class Bridge(mmGraph:AbstractGraph, mmName:String) extends Parser(mmGraph, mmNam
 	  
       //init:
 	  initParser();
+	  
+      createGraph(g.getTypeGraph().getId());
       
       for(e <-new IteratorWrapper(g.getElements().iterator())){
     	  if(e.isInstanceOf[JArrow]){
