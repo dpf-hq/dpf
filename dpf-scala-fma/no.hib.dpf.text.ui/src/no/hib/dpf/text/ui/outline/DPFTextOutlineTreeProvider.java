@@ -57,7 +57,7 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	protected NodeModelBuilder nodeModelBuilder = new NodeModelBuilder();
 	protected IXtextDocument document;
 	
-	boolean autocompleteIds = false;
+//	boolean autocompleteIds = false; Init before save and after loading
 	boolean isInited = false;
 	
 	protected void _createChildren(final DocumentRootNode parentNode, final Model model) {
@@ -66,54 +66,17 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		//Init:
 		if(!isInited){
 		   init(model);
-		   autocompleteIds=true;
 		}
 		
 		for (Definition d : model.getDefinitions()) {
 			createNode(parentNode, d);
 		}
 	
-		//Defs schon da?:
-		try {
-		if(autocompleteIds)
-		display.syncExec(new Runnable() {
-	    public void run(){
-	    	autocompleteIds=false;
-			for (Definition d : model.getDefinitions()){
-				int offSet = 0;
-				if(d instanceof TGraph){
-					final TGraph t = (TGraph) d;
-					for (Element e : t.getElements()) {
-						if(e instanceof Arrow){
-							Arrow arrow = (Arrow)e;
-							final ITextRegion location = locationInFileProvider.getSignificantTextRegion(arrow.getId());
-							if(arrow.getId().getId() < 1){
-								
-								//Change document:
-								offSet += location.getOffset()+arrow.getId().getName().length();
-								ReplaceEdit r = new ReplaceEdit(offSet,0,"@" + 100);//UPDATE 1	
-								try {
-									r.apply(document,ReplaceEdit.NONE);
-								} catch (Exception ex) {
-									ex.printStackTrace();
-								}
-								return;
-							}
-						}
-					}		
-				}
-			}
-			autocompleteIds=true;
-	    }
-	  });
-      } catch (Exception e) {
-		System.err.println("Autocomplete" + e.getMessage());
-	  }
 	}
 
-//	//
-//	//Document:
-//	//
+	//
+	//Document:
+	//
 	@Override
 	public IOutlineNode createRoot(IXtextDocument d){
 		this.document = d;
