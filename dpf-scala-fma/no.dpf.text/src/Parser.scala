@@ -224,7 +224,7 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 	def node: Parser[RNode] = ID~dpfId~":"~ID~dpfId ^^ {case i~dpfId1~":"~t~dpfId2 => createRNode(i,dpfId1,t,dpfId2)}
 	
 	def attributeType: Parser[Node with TypeP] = (	
-													TBOOLEAN ^^^ {TypeP.TInt}
+													TBOOLEAN ^^^ {TypeP.TBoolean}
 												|	TCHAR    ^^^ {TypeP.TChar}
 												|	TBYTE    ^^^ {TypeP.TByte}
 												|	TSHORT   ^^^ {TypeP.TShort}
