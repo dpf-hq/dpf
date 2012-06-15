@@ -224,7 +224,7 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 	def node: Parser[RNode] = ID~dpfId~":"~ID~dpfId ^^ {case i~dpfId1~":"~t~dpfId2 => createRNode(i,dpfId1,t,dpfId2)}
 	
 	def attributeType: Parser[Node with TypeP] = (	
-													TBOOLEAN ^^^ {TypeP.TInt}
+													TBOOLEAN ^^^ {TypeP.TBoolean}
 												|	TCHAR    ^^^ {TypeP.TChar}
 												|	TBYTE    ^^^ {TypeP.TByte}
 												|	TSHORT   ^^^ {TypeP.TShort}
@@ -331,7 +331,7 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 		curSGraph	  
 	}
 									
-	private def createGraph(mmName:String)={
+	protected def createGraph(mmName:String)={
 		//Init Graph:
 		curTGraph=tGraphs(mmName);
 		curMGraph=new MGraph(curTGraph,GCtx.gen);
@@ -346,7 +346,7 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 		mmName	
 	}
 	
-    private def createRNode(name:String, id:Option[Id], t:String, typeId:Option[Id]):RNode={
+    protected def createRNode(name:String, id:Option[Id], t:String, typeId:Option[Id]):RNode={
 		typeId match{	
 		  case None =>
 				if("_" == t){
@@ -371,7 +371,7 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 		}
 	}    
     
-    private def createRArrow(name:String,id:Option[Id],n1:RNode,n2:RNode,t:String,typeId:Option[Id]):RArrow={
+    protected def createRArrow(name:String,id:Option[Id],n1:RNode,n2:RNode,t:String,typeId:Option[Id]):RArrow={
 		typeId match{	
 		  case None =>
 				if("_" == t){
@@ -396,12 +396,12 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 		}
     }
  
-    private def createRAttributeType(name:String,id:Option[Id],n1:RNode,at:Node with TypeP,t:String):RArrow={
+    protected def createRAttributeType(name:String,id:Option[Id],n1:RNode,at:Node with TypeP,t:String):RArrow={
 		if("*" != t) sys.error("Attribute arrow has to have type *")
 		RArrow(name,id,n1,None,Some(at),TypeArrow.TAttribute())
 	}
 	
-	private def createRAttributeValue(name:String,id:Option[Id],n1:RNode,rav:String,t:String,typeId:Option[Id]):RArrow={
+	protected def createRAttributeValue(name:String,id:Option[Id],n1:RNode,rav:String,t:String,typeId:Option[Id]):RArrow={
 		val result = typeId match{
 		    case None =>  curTGraph.findArrow(t,n1.t)
   		  	case Some(tId) => curTGraph.getArrow(tId)
@@ -419,7 +419,7 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 	}
     
 
-   private def createNode(rn: RNode):Node={
+   protected def createNode(rn: RNode):Node={
 		rn match {
 		  case RNode(Some(name),Some(nId),ty) =>
 		  	curMGraph.getNode(nId) match{
@@ -448,7 +448,7 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 		}
     }
 	
-    private def createArrow(ra: RArrow):Arrow={
+    protected def createArrow(ra: RArrow):Arrow={
 		ra match {
 		 //Usual arrow:
 	     case RArrow(name,None,rn1,Some(rn2),None,ty) =>	
