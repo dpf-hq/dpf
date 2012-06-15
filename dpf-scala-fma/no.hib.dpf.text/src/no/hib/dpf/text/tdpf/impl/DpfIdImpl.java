@@ -54,12 +54,15 @@ public class DpfIdImpl extends MinimalEObjectImpl.Container implements DpfId
   /**
    * The default value of the '{@link #getId() <em>Id</em>}' attribute.
    * <!-- begin-user-doc -->
+   * 
+   * ************* CHANGED ***************
+   *  
    * <!-- end-user-doc -->
    * @see #getId()
-   * @generated
+   * @NOT generated
    * @ordered
    */
-  protected static final int ID_EDEFAULT = 0;
+  protected static final int ID_EDEFAULT = -1;
 
   /**
    * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
