@@ -5,6 +5,7 @@ import no.hib.dpf.text.tdpf.Arrows;
 import no.hib.dpf.text.tdpf.Element;
 import no.hib.dpf.text.tdpf.TGraph;
 import no.hib.dpf.text.tdpf.TdpfFactory;
+import no.hib.dpf.text.wrapper.JavaScalaBridge;
 
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.validation.Check;
@@ -13,7 +14,7 @@ import org.eclipse.xtext.validation.Check;
 
 public class DPFTextJavaValidator extends AbstractDPFTextJavaValidator {
 
-	private Arrows lastArrows = null;
+	JavaScalaBridge bridge = new JavaScalaBridge();
 	
 //	@Check
 //	public void checkGreetingStartsWithCapital(Greeting greeting) {
@@ -26,30 +27,20 @@ public class DPFTextJavaValidator extends AbstractDPFTextJavaValidator {
 	
 	@Check
 	public void checkGreetingStartsWithCapital(TGraph graph) {
-		for(Element e:graph.getElements()){
-			System.out.println(e);
-		}
+//		for(Element e:graph.getElements()){
+//			System.out.println(e);
+//		}
+		System.out.println("Test Start");
+		bridge.read(graph);
+		System.out.println("Test End");
 	}
 
 	@Check
 	public void checkGreetingStartsWithCapital(Arrows arrows) {
-		this.lastArrows = arrows;
 	}
 
 	@Check
 	public void checkGreetingStartsWithCapital(Arrow arrow) {
-		if(null != this.lastArrows){
-			//Important here everything have to be cloned:
-			//
-			//TODO Do noch change anything: BUT form Arrows to Scala individual
-			Arrow a = TdpfFactory.eINSTANCE.createArrow();
-			a.setSr(EcoreUtil2.clone(this.lastArrows.getSr()));
-			a.setId(EcoreUtil2.clone(this.lastArrows.getId()));
-			a.setTgNode(EcoreUtil2.clone(arrow.getSr()));
-			System.out.println("Consume" + a);
-			this.lastArrows=null;
-		}
-		System.out.println("3:>" + arrow);
 	}
 	
 }

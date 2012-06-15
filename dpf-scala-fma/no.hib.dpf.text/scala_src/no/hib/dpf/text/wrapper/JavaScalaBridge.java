@@ -1,16 +1,17 @@
 package no.hib.dpf.text.wrapper;
 
-import no.hib.dpf.text.graph.parser.Bridge;
-import no.hib.dpf.text.graph.GraphDpf$;
+import no.hib.dpf.text.tdpf.TGraph;
 
 public class JavaScalaBridge {
 	
-	private final Bridge parser = new Bridge(GraphDpf$.MODULE$, "DPF");	
+	private final Bridge bridge = new Bridge(GraphDpf$.MODULE$, "DPF");	
 
 	public JavaScalaBridge(){
 		System.out.println("Scala init.");
 	}
 	
-	
+	public void read(TGraph g){
+		bridge.readTGraph(g, "Test");
+	}
 	
 }
