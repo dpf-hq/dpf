@@ -28,7 +28,10 @@ class Bridge(mmGraph:AbstractGraph, mmName:String) extends Parser(mmGraph, mmNam
    * Read Graph as a whole:
    */
   def readTGraph(g:JGraph, name:String)={
-      createGraph(g.getTypeGraph().getId());
+	  
+      //init:
+	  initParser();
+      
       for(e <-new IteratorWrapper(g.getElements().iterator())){
     	  if(e.isInstanceOf[JArrow]){
     	    val a=e.asInstanceOf[JArrow];  	    
@@ -63,6 +66,7 @@ class Bridge(mmGraph:AbstractGraph, mmName:String) extends Parser(mmGraph, mmNam
       }
       //Save
       //...
+      System.out.println("jo");
   }
 
   //
