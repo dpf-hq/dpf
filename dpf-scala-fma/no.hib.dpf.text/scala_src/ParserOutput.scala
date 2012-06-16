@@ -109,7 +109,7 @@ trait Output{
     rs=">{\n"::rs
 
     //Nodes:
-    for(n:Node<-g.nodes.values.toSet.toList.reverse){
+    for(n:Node<-g.nodes.values.toSet){
       if(g.arrowsIn(n).isEmpty && g.arrowsOut(n).isEmpty){/*Node will not be printed by arrow*/
           rs="   "::rs
     	  rs=h.formatNode(n)::rs
@@ -118,7 +118,7 @@ trait Output{
     }
 
     //Arrows:
-    for(a:Arrow<-g.arrows.values.toSet.toList.reverse){
+    for(a:Arrow<-g.arrows.values.toSet){
       rs="   "::rs
       rs=h.formatArrow(a)::rs
    	  rs=",\n"::rs     	    
