@@ -13,7 +13,9 @@ import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.INode;
+import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.parser.IParseResult;
 import org.eclipse.xtext.parser.IParser;
 
@@ -58,9 +60,14 @@ class DeltaPrinter implements IResourceDeltaVisitor {
 			}
 			EObject eRoot = result.getRootASTElement();
 			System.out.println(eRoot);
+			
+			ICompositeNode co = NodeModelUtils.findActualNodeFor(eRoot);
+			System.out.println("Replace" + co.getOffset() + " " + co.getLength());
+			
 		} catch (CoreException e) {
 			e.printStackTrace();
 		}
+	
 	}
 
 	public static IFile getIFileIResource(IResource r) {
