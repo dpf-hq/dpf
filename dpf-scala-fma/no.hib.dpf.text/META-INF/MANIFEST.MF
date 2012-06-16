@@ -37,11 +37,12 @@ Import-Package: org.apache.log4j,
  org.eclipse.xtext.xtend2.lib
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: no.hib.dpf.text,
+ no.hib.dpf.text.parser.antlr,
+ no.hib.dpf.text.parser.antlr.internal,
+ no.hib.dpf.text.serializer,
  no.hib.dpf.text.services,
  no.hib.dpf.text.tdpf,
  no.hib.dpf.text.tdpf.impl,
  no.hib.dpf.text.tdpf.util,
- no.hib.dpf.text.serializer,
- no.hib.dpf.text.parser.antlr,
- no.hib.dpf.text.parser.antlr.internal,
- no.hib.dpf.text.validation
+ no.hib.dpf.text.validation,
+ no.hib.dpf.text.wrapper

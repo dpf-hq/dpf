@@ -44,9 +44,5 @@ public class DPFTextJavaValidator extends AbstractDPFTextJavaValidator {
 	public void checkGreetingStartsWithCapital(Arrow arrow) {
 	}
 	
-	@Check
-	public void defaultCheck(DpfId dpfid) {
-		
-	}
 
 }

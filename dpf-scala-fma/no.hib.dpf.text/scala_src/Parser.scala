@@ -33,7 +33,7 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 	private var gMorphisms:MMap[String,Morphism]	= null
 	private var gMorphismsCoDomain:MMap[String,(String,String)]	= null
 	private var curTGraph:AbstractGraph = null 	//current type graph
-	private var curMGraph:MGraph = null           //current model graph
+	protected var curMGraph:MGraph = null           //current model graph
 	private var curSGraph:AbstractGraph = null    //current specification graph
 	private var curTS:S = null					    //current specification type graph
 	private var curSignatureConstraints:MMap[(String,List[String]),SignatureConstraint] = null  //ids of constraints of current specification

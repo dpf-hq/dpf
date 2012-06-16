@@ -1,5 +1,7 @@
 package no.hib.dpf.text.wrapper;
 
+import java.util.*;
+
 import no.hib.dpf.text.graph.*;
 import no.hib.dpf.text.tdpf.TGraph;
 
@@ -11,8 +13,8 @@ public class JavaScalaBridge {
 		System.out.println("Scala init.");
 	}
 	
-	public void read(TGraph g){
-		bridge.readTGraph(g, "Test");
+	public List<String> read(TGraph g){
+		return bridge.readTGraph(g, "Test");
 	}
 	
 }

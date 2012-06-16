@@ -96,7 +96,7 @@ trait Output{
  /**
   * Serialize Graph into the same representation as they are stored in a file. 
   */
-  protected def serializeGraph(g:AbstractGraph,name:String,mmName:String,path:String)={
+  protected def serializeGraph(g:AbstractGraph,name:String,mmName:String,path:String):List[String]={
     
     //println("\n\n" + name + " " + g)
  
@@ -126,9 +126,14 @@ trait Output{
     
     rs=" }\n"::rs
     rs=rs.reverse 
-
-    h.writeFile(rs)
     
+    //Save:
+    if(!path.isEmpty() && !name.isEmpty()){
+      h.writeFile(rs)      
+    }
+    
+    //Return Result:
+    rs;
   }
     
 }

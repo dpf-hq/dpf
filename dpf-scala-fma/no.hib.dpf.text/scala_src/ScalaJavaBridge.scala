@@ -5,11 +5,13 @@ import no.hib.dpf.text.graph.parser.Parser;
 import no.hib.dpf.text.graph._
 import no.hib.dpf.text.graph.mutable.{Graph=>MGraph}
 import no.hib.dpf.text.graph.mutable.{ExtSubGraph=>MExtSubGraph}
-import scala.collection.mutable.{Map=>MMap}
-import scala.collection.mutable.{Set=>MSet}
-import no.hib.dpf.text.coevolution._
-import no.hib.dpf.text.output.graphviz.Output
-import no.hib.dpf.text.output.parser.{Output=>POutput}
+import scala.collection.mutable.{Map=>MMap};
+import scala.collection.mutable.{Set=>MSet};
+//import no.hib.dpf.text.coevolution._
+//import no.hib.dpf.text.output.graphviz.Output
+//import no.hib.dpf.text.output.parser.{Output=>POutput}
+import scala.collection.JavaConversions._;
+import scala.collection.mutable.ListBuffer;
 
 //Java:
 import no.hib.dpf.text.tdpf.{TGraph=>JGraph}
@@ -32,7 +34,9 @@ class Bridge(mmGraph:AbstractGraph, mmName:String) extends Parser(mmGraph, mmNam
       //init:
 	  initParser();
 	  
-      createGraph(g.getTypeGraph().getId());
+	  val mmGraphName = g.getTypeGraph().getId();
+	  
+      createGraph(mmGraphName);
       
       for(e <-new IteratorWrapper(g.getElements().iterator())){
     	  if(e.isInstanceOf[JArrow]){
@@ -66,9 +70,8 @@ class Bridge(mmGraph:AbstractGraph, mmName:String) extends Parser(mmGraph, mmNam
     	    
     	  }
       }
-      //Save
-      //...
-      System.out.println("jo");
+      //Return normalized Graph in List of StringBuffer:
+      asList(ListBuffer(serializeGraph(this.curMGraph.normalize(GCtx.gen),"",mmGraphName,""): _*));
   }
 
   //
