@@ -61,7 +61,7 @@ class DeltaPrinter implements IResourceDeltaVisitor {
 			}
 			
 			EObject eRoot = result.getRootASTElement();
-			System.out.println(eRoot);
+//			System.out.println(eRoot);
 			
 			if(eRoot.eAllContents().hasNext()){
 				final EObject o = eRoot.eAllContents().next();
