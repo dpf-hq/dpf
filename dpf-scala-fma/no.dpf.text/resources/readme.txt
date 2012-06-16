@@ -28,3 +28,44 @@
 //				}
 //			}
 //		}
+
+
+	public static Document parse(String path) {
+		// System.err.println("should open the file, may have parse error [not found in editor by XtextDocumentUtil.get(IFile)]");
+		// cf. IXtextDocument xtextDoc = XtextDocumentUtil.get(currFile);
+		URI uri = URI.createURI(path);
+		ResourceSet rs = new ResourceSetImpl();
+		Resource resource = rs.getResource(uri, true);
+		XtextDocument xdoc = new XtextDocument();
+		resource.setModified(true);
+		xdoc.setInput((XtextResource) resource);
+
+		return parse(xdoc);
+	}
+
+	public static Document parse(IFile f) {
+		IXtextDocument xd = XtextDocumentUtil.get(f);
+		if (xd == null) { // open the file
+			IWorkbenchWindow window = PlatformUI.getWorkbench()
+					.getActiveWorkbenchWindow();
+			IWorkbenchPage activePage = window.getActivePage();
+			activePage.saveAllEditors(true);
+			try {
+				IEditorPart editorPart = IDE.openEditor(activePage, f);
+				xd = XtextDocumentUtil.get(editorPart);
+				return parse(xd);
+			} catch (PartInitException e) {
+			}
+			return parse(f.getFullPath().toPortableString());
+		} else
+			return parse(xd);
+	}
+
+	public static Document parse(IXtextDocument xd) {
+		return xd.readOnly(new IUnitOfWork<Document, XtextResource>() {
+			public Document exec(XtextResource resource) throws Exception {
+				Model model = EcoreUtil.copy((Model) resource.getContents().get(0));
+				return Gaml2JDOM.doConvert(model);
+			}
+		});
+	}
