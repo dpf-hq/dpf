@@ -22,24 +22,15 @@ import org.eclipse.xtext.parser.IParser;
 
 import com.google.inject.Injector;
 
-class DeltaPrinter implements IResourceDeltaVisitor {
+class GraphNormalizer implements IResourceDeltaVisitor {
 	public boolean visit(IResourceDelta delta) {
        IResource res = delta.getResource();
        switch (delta.getKind()) {
-          case IResourceDelta.ADDED:
-             System.out.print("Resource ");
-             System.out.print(res.getFullPath());
-             System.out.println(" was added.");
-             break;
-          case IResourceDelta.REMOVED:
-             System.out.print("Resource ");
-             System.out.print(res.getFullPath());
-             System.out.println(" was removed.");
-             break;
+//          case IResourceDelta.ADDED:
+//             break;
+//          case IResourceDelta.REMOVED:
+//              break;
           case IResourceDelta.CHANGED:
-             System.out.print("Resource ");
-             System.out.print(res.getFullPath());
-             System.out.println(" has changed.");
              if(res.getFullPath().toString().endsWith(".tdpf")){
             	 System.out.println("War hier");
             	 getModel(getIFileIResource(res));
@@ -77,7 +68,7 @@ class DeltaPrinter implements IResourceDeltaVisitor {
 	
 	}
 
-	public static IFile getIFileIResource(IResource r) {
+	private static IFile getIFileIResource(IResource r) {
 		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 		return root.getFile(r.getFullPath());
 	}
