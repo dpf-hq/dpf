@@ -24,8 +24,6 @@ import no.hib.dpf.text.tdpf.{DataType=>JDataType}
 
 class Bridge(mmGraph:AbstractGraph, mmName:String) extends Parser(mmGraph, mmName){
  
-  private var lastJArrows:JArrows = null; 
-  
   /**
    * Read Graph as a whole:
    */
@@ -40,27 +38,25 @@ class Bridge(mmGraph:AbstractGraph, mmName:String) extends Parser(mmGraph, mmNam
       
       for(e <-new IteratorWrapper(g.getElements().iterator())){
     	  if(e.isInstanceOf[JArrow]){
+    	    
     	    val a=e.asInstanceOf[JArrow];  	    
-
-    	    //First Consume last  "Arrows"
-    	    if(null != lastJArrows){
-    	      addJArrows(lastJArrows,a);
-    	      lastJArrows = null;
-    	    }
     	    
     	    //Consume Arrow:
     	    addJArrow(a);
     	    
     	  }
     	  else if(e.isInstanceOf[JArrows]){
-    	    val as = e.asInstanceOf[JArrows];
-
-    	    //Consume last last "Arrows"
-    	    if(null != lastJArrows){
-    	      addJArrows(lastJArrows,as);
+    	    var as = e.asInstanceOf[JArrows];
+    	    
+    	    //Add Linked List of Arrows:
+    	    while(null != as.getNext()){
+    	      addJArrows(as,as.getNext());
+    	      as = as.getNext();
     	    }
-    	        	
-    	    lastJArrows=as;
+    	    
+    	    //Add Last Arrow:
+     	    addJArrow(as.asInstanceOf[JArrow]);
+    	  
     	  }
     	  else if(e.isInstanceOf[JNode]){
     	    val n = e.asInstanceOf[JNode];
