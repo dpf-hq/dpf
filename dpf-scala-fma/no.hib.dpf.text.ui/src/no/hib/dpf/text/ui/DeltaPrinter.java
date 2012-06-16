@@ -4,6 +4,7 @@ import java.io.InputStreamReader;
 
 import no.hib.dpf.text.DPFTextStandaloneSetup;
 import no.hib.dpf.text.parser.antlr.DPFTextParser;
+import no.hib.dpf.text.tdpf.TGraph;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
@@ -58,11 +59,17 @@ class DeltaPrinter implements IResourceDeltaVisitor {
 			for (INode n : result.getSyntaxErrors()) {
 				System.out.println("Error:" + n);
 			}
+			
 			EObject eRoot = result.getRootASTElement();
 			System.out.println(eRoot);
 			
-			ICompositeNode co = NodeModelUtils.findActualNodeFor(eRoot);
-			System.out.println("Replace" + co.getOffset() + " " + co.getLength());
+			if(eRoot.eAllContents().hasNext()){
+				final EObject o = eRoot.eAllContents().next();
+				if(o instanceof TGraph){
+					ICompositeNode co = NodeModelUtils.findActualNodeFor(o);	
+					System.out.println("Replace" + co.getOffset() + " " + co.getLength());
+				}
+			}
 			
 		} catch (CoreException e) {
 			e.printStackTrace();
