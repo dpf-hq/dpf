@@ -7,26 +7,18 @@ import no.hib.dpf.text.tdpf.Arrow;
 import no.hib.dpf.text.tdpf.Arrows;
 import no.hib.dpf.text.tdpf.ChoosenGraph;
 import no.hib.dpf.text.tdpf.Definition;
-import no.hib.dpf.text.tdpf.DpfId;
-import no.hib.dpf.text.tdpf.Element;
 import no.hib.dpf.text.tdpf.Model;
 import no.hib.dpf.text.tdpf.Node;
-import no.hib.dpf.text.tdpf.TGraph;
 import no.hib.dpf.text.tdpf.TdpfFactory;
 
 import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.text.edits.ReplaceEdit;
 import org.eclipse.xtext.EcoreUtil2;
-import org.eclipse.xtext.nodemodel.BidiTreeIterator;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
-import org.eclipse.xtext.nodemodel.INode;
-import org.eclipse.xtext.nodemodel.impl.LeafNode;
-import org.eclipse.xtext.nodemodel.impl.NodeModelBuilder;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.resource.ILocationInFileProvider;
-import org.eclipse.xtext.resource.XtextResource;
+import org.eclipse.xtext.ui.editor.IXtextEditorCallback;
 import org.eclipse.xtext.ui.editor.XtextEditor;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
@@ -37,41 +29,33 @@ import org.eclipse.xtext.util.ITextRegion;
 
 import com.google.inject.Inject;
 
-/**
- * customization of the default outline structure TODO Call scala wrapper from
- * here:
- */
-public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
 
+public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
 
 	@Inject
 	protected ILocationInFileProvider locationInFileProvider;
-//	protected ILocationInFileProvider locationInFileProvider =	new DefaultLocationInFileProvider();
 	
 	@Inject
-	protected XtextResource xresource;
-			
-	@Inject
-	protected XtextEditor editor;
+	protected XtextEditor xtextEditor;
 	
-	protected NodeModelBuilder nodeModelBuilder = new NodeModelBuilder();
 	protected IXtextDocument document;
 	
 //	boolean autocompleteIds = false; Init before save and after loading
 	boolean isInited = true; //TEST false;
 	
+	public DPFTextOutlineTreeProvider(){
+		//editor.addPartPropertyListener(listener);
+	}
+	
+	
 	protected void _createChildren(final DocumentRootNode parentNode, final Model model) {
-		Display display = Display.getDefault();
-		
 		//Init:
 		if(!isInited){
 		   init(model);
 		}
-		
 		for (Definition d : model.getDefinitions()) {
 			createNode(parentNode, d);
 		}
-	
 	}
 
 	//
@@ -80,40 +64,43 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	@Override
 	public IOutlineNode createRoot(IXtextDocument d){
 		this.document = d;
-		return super.createRoot(document);
+		return super.createRoot(d);
 	}
 	
 	public void init(final Model model){
 		//
-		//Add missing Ids:
+		//Add missing Ids: (while keeping comments)
 		//
 		final ICompositeNode c = NodeModelUtils.findActualNodeFor(model);
 		final StringBuffer buffer = new StringBuffer();
-		BidiTreeIterator<INode> ti = c.getAsTreeIterable().iterator();
-		StringBuffer cache = new StringBuffer();
-		boolean incompleteDpfId=false;
-		DpfId id = null;
-		while(ti.hasNext()){
-			final INode n = ti.next();
-			if(n instanceof LeafNode){		
-				if(n.getSemanticElement() instanceof DpfId){
-					id = (DpfId)n.getSemanticElement(); 
-					if(id.getId() < 1){
-						incompleteDpfId=true;
-						cache.append(n.getText());
-					}else{
-						buffer.append(n.getText());
-					}
-				}else{
-					if(incompleteDpfId){
-						buffer.append(cache.toString().replaceFirst(id.getName(),id.getName() + "@100"));
-						cache = new StringBuffer();
-					    incompleteDpfId=false;
-					}
-					buffer.append(n.getText());
-				}
-			}
-		}
+//		BidiTreeIterator<INode> ti = c.getAsTreeIterable().iterator();
+//		StringBuffer cache = new StringBuffer();
+//		boolean incompleteDpfId=false;
+//		DpfId id = null;
+//		while(ti.hasNext()){
+//			final INode n = ti.next();
+//			if(n instanceof LeafNode){		
+//				if(n.getSemanticElement() instanceof DpfId){
+//					id = (DpfId)n.getSemanticElement(); 
+//					if(id.getId() < 1){
+//						incompleteDpfId=true;
+//						cache.append(n.getText());
+//					}else{
+//						buffer.append(n.getText());
+//					}
+//				}else{
+//					if(incompleteDpfId){
+//						buffer.append(cache.toString().replaceFirst(id.getName(),id.getName() + "@100"));
+//						cache = new StringBuffer();
+//					    incompleteDpfId=false;
+//					}
+//					buffer.append(n.getText());
+//				}
+//			}
+//		}
+		
+		
+		
 		//
 		//Add automatic all IDs at once: 
 		//

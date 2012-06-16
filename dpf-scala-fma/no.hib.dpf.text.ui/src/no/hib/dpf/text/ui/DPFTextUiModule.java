@@ -3,6 +3,10 @@
  */
 package no.hib.dpf.text.ui;
 
+import org.eclipse.core.resources.IResourceChangeEvent;
+import org.eclipse.core.resources.IResourceChangeListener;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.AbstractAntlrTokenToAttributeIdMapper;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
@@ -15,6 +19,16 @@ public class DPFTextUiModule extends no.hib.dpf.text.ui.AbstractDPFTextUiModule 
 	
 	public DPFTextUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
+		ResourcesPlugin.getWorkspace().addResourceChangeListener(new IResourceChangeListener(){
+			@Override
+			public void resourceChanged(IResourceChangeEvent event) {
+				try {
+					event.getDelta().accept(new DeltaPrinter());
+				} catch (CoreException e) {
+					e.printStackTrace();
+				}
+			}}, IResourceChangeEvent.POST_CHANGE);
+
 	}
 	
 	public Class<? extends IHighlightingConfiguration> bindIHighlightingConfiguration () {
