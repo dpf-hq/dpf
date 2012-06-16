@@ -2,6 +2,7 @@ package no.hib.dpf.text.validation;
 
 import no.hib.dpf.text.tdpf.Arrow;
 import no.hib.dpf.text.tdpf.Arrows;
+import no.hib.dpf.text.tdpf.DpfId;
 import no.hib.dpf.text.tdpf.Element;
 import no.hib.dpf.text.tdpf.TGraph;
 import no.hib.dpf.text.tdpf.TdpfFactory;
@@ -31,7 +32,7 @@ public class DPFTextJavaValidator extends AbstractDPFTextJavaValidator {
 //			System.out.println(e);
 //		}
 		System.out.println("Test Start");
-		bridge.read(graph);
+//		bridge.read(graph);
 		System.out.println("Test End");
 	}
 
@@ -43,4 +44,9 @@ public class DPFTextJavaValidator extends AbstractDPFTextJavaValidator {
 	public void checkGreetingStartsWithCapital(Arrow arrow) {
 	}
 	
+	@Check
+	public void defaultCheck(DpfId dpfid) {
+		
+	}
+
 }
