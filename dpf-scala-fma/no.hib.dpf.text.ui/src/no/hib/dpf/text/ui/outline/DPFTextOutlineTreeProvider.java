@@ -10,6 +10,7 @@ import no.hib.dpf.text.tdpf.Definition;
 import no.hib.dpf.text.tdpf.Model;
 import no.hib.dpf.text.tdpf.Node;
 import no.hib.dpf.text.tdpf.TdpfFactory;
+import no.hib.dpf.text.ui.GraphNormalizer;
 
 import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.swt.graphics.Image;
@@ -18,7 +19,6 @@ import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.resource.ILocationInFileProvider;
-import org.eclipse.xtext.ui.editor.IXtextEditorCallback;
 import org.eclipse.xtext.ui.editor.XtextEditor;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
@@ -64,6 +64,7 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	@Override
 	public IOutlineNode createRoot(IXtextDocument d){
 		this.document = d;
+		GraphNormalizer.setDocument(d);
 		return super.createRoot(d);
 	}
 	

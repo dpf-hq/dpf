@@ -20,8 +20,12 @@ public class DPFTextSemanticHighlighting implements
 		INode root = resource.getParseResult().getRootNode();
 		for (INode node : root.getAsTreeIterable()) {
 			final EObject eo = NodeModelUtils.findActualSemanticObjectFor(node);
-			if (eo.getClass().getName().contains("Choosen")) {
-				acceptor.addPosition(node.getOffset(), node.getLength(),DPFTextHighlighting.ARROW);
+			try {
+				if (eo.getClass().getName().contains("Choosen")) {
+					acceptor.addPosition(node.getOffset(), node.getLength(),DPFTextHighlighting.ARROW);
+				}				
+			} catch (Exception e) {
+				//do nothing
 			}
 		}
 	}

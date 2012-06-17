@@ -9,7 +9,7 @@
             class="no.hib.dpf.text.ui.DPFTextExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
             contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
             default="true"
-            extensions="mydsl"
+            extensions="tdpf"
             id="no.hib.dpf.text.DPFText"
             name="DPFText Editor">
         </editor>
@@ -127,13 +127,13 @@
 		point="org.eclipse.emf.ecore.extension_parser">
 		<parser
 			class="no.hib.dpf.text.ui.DPFTextExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
-			type="mydsl">
+			type="tdpf">
 		</parser>
 	</extension>
 	<extension point="org.eclipse.xtext.extension_resourceServiceProvider">
         <resourceServiceProvider
             class="no.hib.dpf.text.ui.DPFTextExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
-            uriExtension="mydsl">
+            uriExtension="tdpf">
         </resourceServiceProvider>
     </extension>
 
@@ -216,19 +216,19 @@
   <extension point="org.eclipse.compare.contentViewers">
     <viewer id="no.hib.dpf.text.DPFText.compare.contentViewers"
             class="no.hib.dpf.text.ui.DPFTextExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
-            extensions="mydsl">
+            extensions="tdpf">
     </viewer>
   </extension>
   <extension point="org.eclipse.compare.contentMergeViewers">
     <viewer id="no.hib.dpf.text.DPFText.compare.contentMergeViewers"
             class="no.hib.dpf.text.ui.DPFTextExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
-            extensions="mydsl" label="DPFText Compare">
+            extensions="tdpf" label="DPFText Compare">
      </viewer>
   </extension>
   <extension point="org.eclipse.ui.editors.documentProviders">
     <provider id="no.hib.dpf.text.DPFText.editors.documentProviders"
             class="no.hib.dpf.text.ui.DPFTextExecutableExtensionFactory:org.eclipse.xtext.ui.editor.model.XtextDocumentProvider"
-            extensions="mydsl">
+            extensions="tdpf">
     </provider>
   </extension>
 
