@@ -98,8 +98,7 @@ public class GraphNormalizer implements IResourceDeltaVisitor{
 	
 	}
 
-	private static void replaceInOpendIFile(final ICompositeNode co,
-			final List<String> nGraph) {
+	private static void replaceInOpendIFile(final ICompositeNode co,	final List<String> nGraph) {
 		final StringBuilder nGraphAsString = new StringBuilder();
 		for(String s:nGraph){
 			nGraphAsString.append(s);
@@ -114,8 +113,7 @@ public class GraphNormalizer implements IResourceDeltaVisitor{
 	}
 
 	@SuppressWarnings("unused")
-	private static void replaceInUnopenedIFile(IFile f, final List<String> graph,
-			final ICompositeNode co) {
+	private static void replaceInUnopenedIFile(IFile f, final List<String> graph, final ICompositeNode co) {
 		//Replace content:
 		try{
 			final InputStreamReader reader = new InputStreamReader(f.getContents());
