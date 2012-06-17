@@ -14,11 +14,6 @@ import no.hib.dpf.text.tdpf.TGraph;
 import no.hib.dpf.text.wrapper.JavaScalaBridge;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.IResourceDelta;
-import org.eclipse.core.resources.IResourceDeltaVisitor;
-import org.eclipse.core.resources.IWorkspaceRoot;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.text.edits.ReplaceEdit;
@@ -27,37 +22,15 @@ import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.parser.IParseResult;
 import org.eclipse.xtext.parser.IParser;
+import org.eclipse.xtext.ui.editor.XtextEditor;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
 
 import com.google.inject.Injector;
 
 
-public class GraphNormalizer implements IResourceDeltaVisitor{
+public class GraphNormalizer{
 	
-	public boolean visit(IResourceDelta delta) {
-       IResource res = delta.getResource();
-       switch (delta.getKind()) {
-//          case IResourceDelta.ADDED:
-//             break;
-//          case IResourceDelta.REMOVED:
-//              break;
-          case IResourceDelta.CHANGED:
-             if(res.getFullPath().toString().endsWith(".tdpf")){
-            	 normalize(getIFileIResource(res));
-             }
-             break;
-       }
-       return true; // visit the children
-    }
-	
-	//Current opend document:
-	protected static IXtextDocument document;
-
-	public static final void setDocument(IXtextDocument document) {
-		GraphNormalizer.document = document;
-	}
-
-	private static void normalize(IFile f) {
+	public static void normalize(final IFile f, final IXtextDocument document, final XtextEditor editor) {
 		JavaScalaBridge bridge = new JavaScalaBridge();
 		Injector injector = new DPFTextStandaloneSetup().createInjectorAndDoEMFRegistration();
 		IParser parser = injector.getInstance(DPFTextParser.class);
@@ -80,15 +53,15 @@ public class GraphNormalizer implements IResourceDeltaVisitor{
 					if(o instanceof TGraph){
 						final TGraph graph = (TGraph)o;
 						final ICompositeNode co = NodeModelUtils.findActualNodeFor(o);	
-						
 						final List<String> nGraph = bridge.read(graph);
 						
-						replaceInOpendIFile(co, nGraph);
+						replaceInOpendIFile(co,nGraph,document,editor);
 						
 						//replaceUnopenedIFile(f, graph, co);
 					}
 				}				
 			} catch (Exception e) {
+				e.printStackTrace();
 				//do nothing
 			}
 			
@@ -98,18 +71,24 @@ public class GraphNormalizer implements IResourceDeltaVisitor{
 	
 	}
 
-	private static void replaceInOpendIFile(final ICompositeNode co,	final List<String> nGraph) {
+	private static void replaceInOpendIFile(final ICompositeNode co,	final List<String> nGraph, final IXtextDocument document, final XtextEditor editor) {
 		final StringBuilder nGraphAsString = new StringBuilder();
 		for(String s:nGraph){
 			nGraphAsString.append(s);
 		}
-
-		final ReplaceEdit r = new ReplaceEdit(co.getOffset(),co.getLength(),nGraphAsString.toString());					
+		//Replace:
+		final ReplaceEdit r = new ReplaceEdit(co.getOffset(),co.getLength(),nGraphAsString.toString());
+		
 		try {
 			r.apply(document,ReplaceEdit.NONE);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
+
+		System.out.println("TEST FLO");
+		
+		//Save:
+		editor.doSave(null);
 	}
 
 	@SuppressWarnings("unused")
@@ -159,10 +138,5 @@ public class GraphNormalizer implements IResourceDeltaVisitor{
 		}
 	}
 
-	private static IFile getIFileIResource(IResource r) {
-		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-		return root.getFile(r.getFullPath());
-	}
-	
 
 }

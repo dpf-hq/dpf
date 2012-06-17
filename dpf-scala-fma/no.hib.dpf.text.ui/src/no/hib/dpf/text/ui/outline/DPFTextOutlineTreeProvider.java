@@ -3,6 +3,9 @@
  */
 package no.hib.dpf.text.ui.outline;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
 import no.hib.dpf.text.tdpf.Arrow;
 import no.hib.dpf.text.tdpf.Arrows;
 import no.hib.dpf.text.tdpf.ChoosenGraph;
@@ -10,14 +13,14 @@ import no.hib.dpf.text.tdpf.Definition;
 import no.hib.dpf.text.tdpf.Model;
 import no.hib.dpf.text.tdpf.Node;
 import no.hib.dpf.text.tdpf.TdpfFactory;
+import no.hib.dpf.text.ui.FileSaveDetector;
 import no.hib.dpf.text.ui.GraphNormalizer;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.text.edits.ReplaceEdit;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.xtext.EcoreUtil2;
-import org.eclipse.xtext.nodemodel.ICompositeNode;
-import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.resource.ILocationInFileProvider;
 import org.eclipse.xtext.ui.editor.XtextEditor;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
@@ -30,7 +33,7 @@ import org.eclipse.xtext.util.ITextRegion;
 import com.google.inject.Inject;
 
 
-public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
+public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider implements PropertyChangeListener{
 
 	@Inject
 	protected ILocationInFileProvider locationInFileProvider;
@@ -40,19 +43,14 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	
 	protected IXtextDocument document;
 	
-//	boolean autocompleteIds = false; Init before save and after loading
-	boolean isInited = true; //TEST false;
-	
 	public DPFTextOutlineTreeProvider(){
-		//editor.addPartPropertyListener(listener);
+		FileSaveDetector.INSTANCE.getSupport().addPropertyChangeListener(this);
 	}
 	
-	
+	//
+	//Which model:
+	//
 	protected void _createChildren(final DocumentRootNode parentNode, final Model model) {
-		//Init:
-		if(!isInited){
-		   init(model);
-		}
 		for (Definition d : model.getDefinitions()) {
 			createNode(parentNode, d);
 		}
@@ -64,57 +62,9 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	@Override
 	public IOutlineNode createRoot(IXtextDocument d){
 		this.document = d;
-		GraphNormalizer.setDocument(d);
 		return super.createRoot(d);
 	}
-	
-	public void init(final Model model){
-		//
-		//Add missing Ids: (while keeping comments)
-		//
-		final ICompositeNode c = NodeModelUtils.findActualNodeFor(model);
-		final StringBuffer buffer = new StringBuffer();
-//		BidiTreeIterator<INode> ti = c.getAsTreeIterable().iterator();
-//		StringBuffer cache = new StringBuffer();
-//		boolean incompleteDpfId=false;
-//		DpfId id = null;
-//		while(ti.hasNext()){
-//			final INode n = ti.next();
-//			if(n instanceof LeafNode){		
-//				if(n.getSemanticElement() instanceof DpfId){
-//					id = (DpfId)n.getSemanticElement(); 
-//					if(id.getId() < 1){
-//						incompleteDpfId=true;
-//						cache.append(n.getText());
-//					}else{
-//						buffer.append(n.getText());
-//					}
-//				}else{
-//					if(incompleteDpfId){
-//						buffer.append(cache.toString().replaceFirst(id.getName(),id.getName() + "@100"));
-//						cache = new StringBuffer();
-//					    incompleteDpfId=false;
-//					}
-//					buffer.append(n.getText());
-//				}
-//			}
-//		}
 		
-		
-		
-		//
-		//Add automatic all IDs at once: 
-		//
-		final ReplaceEdit r = new ReplaceEdit(0,document.getLength(),buffer.toString());	
-		try {
-			r.apply(document,ReplaceEdit.NONE);
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		this.isInited=true;
-	}
-	
-	
 	//
 	// Graph:
 	//
@@ -218,6 +168,26 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		tg = n.getId().getId() + "@" + n.getId().getName() + ":"
 		   + n.getType().getName() + "@" + n.getType().getId();
 		return tg;
+	}
+
+
+	@Override
+	public void propertyChange(PropertyChangeEvent evt) {
+		try {
+			//What is the active File in the editor:
+			IFile f = null;
+			try {
+				f = (IFile)PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().
+						   getActivePart().getSite().getPage().getActiveEditor().getEditorInput().getAdapter(IFile.class);				
+			} catch (Exception e) {
+				//ignore
+			}
+			if(null != f && f.getName().equals(evt.getPropertyName())){
+				GraphNormalizer.normalize(f, document, xtextEditor);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	

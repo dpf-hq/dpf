@@ -23,7 +23,7 @@ public class DPFTextUiModule extends no.hib.dpf.text.ui.AbstractDPFTextUiModule 
 			@Override
 			public void resourceChanged(IResourceChangeEvent event) {
 				try {
-					event.getDelta().accept(new GraphNormalizer());
+					event.getDelta().accept(FileSaveDetector.INSTANCE);
 				} catch (CoreException e) {
 					e.printStackTrace();
 				}
