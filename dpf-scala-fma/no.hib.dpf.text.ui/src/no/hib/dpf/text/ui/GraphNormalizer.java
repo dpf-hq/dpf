@@ -31,7 +31,7 @@ import org.eclipse.xtext.parser.IParser;
 import com.google.inject.Injector;
 
 
-class GraphNormalizer implements IResourceDeltaVisitor {
+class GraphNormalizer implements IResourceDeltaVisitor{
 	public boolean visit(IResourceDelta delta) {
        IResource res = delta.getResource();
        switch (delta.getKind()) {
