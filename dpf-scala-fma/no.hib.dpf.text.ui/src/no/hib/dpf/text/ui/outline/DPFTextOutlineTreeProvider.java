@@ -21,7 +21,6 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.resource.ILocationInFileProvider;
-import org.eclipse.xtext.ui.editor.XtextEditor;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider;
@@ -36,9 +35,6 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider imple
 
 	@Inject
 	protected ILocationInFileProvider locationInFileProvider;
-	
-	@Inject
-	protected XtextEditor xtextEditor;
 	
 	protected IXtextDocument document;
 	
@@ -183,7 +179,7 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider imple
 			}
 			if(null != f && f.getName().equals(evt.getPropertyName())){
 				System.out.println("Normalize:" + f.getName());
-				GraphNormalizer.normalize(f, document, xtextEditor);
+				GraphNormalizer.normalize(f, document);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
