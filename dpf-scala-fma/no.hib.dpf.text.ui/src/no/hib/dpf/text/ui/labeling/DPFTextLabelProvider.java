@@ -6,7 +6,7 @@ package no.hib.dpf.text.ui.labeling;
 import no.hib.dpf.text.tdpf.Arrow;
 import no.hib.dpf.text.tdpf.Model;
 import no.hib.dpf.text.tdpf.Node;
-import no.hib.dpf.text.tdpf.TGraph;
+import no.hib.dpf.text.tdpf.Specification;
 
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider;
@@ -29,8 +29,8 @@ public class DPFTextLabelProvider extends DefaultEObjectLabelProvider {
 		  return "Model";
 	}
 
-	String text(TGraph n) {
-	  return "Graph<" + n.getTypeGraph().getId()+">";
+	String text(Specification n) {
+	  return "Specification:" + n.getType().getId();
 	}
 		
 	String image(Node n) {
@@ -41,7 +41,7 @@ public class DPFTextLabelProvider extends DefaultEObjectLabelProvider {
 		  return "arrow.png";
 	}	
 
-	String image(TGraph g) {
+	String image(Specification g) {
 		  return "graph.png";
 	}
 

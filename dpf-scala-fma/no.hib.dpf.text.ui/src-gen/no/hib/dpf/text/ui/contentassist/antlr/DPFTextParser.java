@@ -37,14 +37,15 @@ public class DPFTextParser extends AbstractContentAssistParser {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
+					put(grammarAccess.getModelAccess().getAlternatives(), "rule__Model__Alternatives");
 					put(grammarAccess.getVALUEAccess().getAlternatives(), "rule__VALUE__Alternatives");
-					put(grammarAccess.getDefinitionAccess().getAlternatives(), "rule__Definition__Alternatives");
+					put(grammarAccess.getCommandAccess().getAlternatives(), "rule__Command__Alternatives");
 					put(grammarAccess.getMappingAccess().getAlternatives(), "rule__Mapping__Alternatives");
 					put(grammarAccess.getElementAccess().getAlternatives(), "rule__Element__Alternatives");
 					put(grammarAccess.getArrowsAccess().getAlternatives(), "rule__Arrows__Alternatives");
 					put(grammarAccess.getArrowAccess().getAlternatives(), "rule__Arrow__Alternatives");
 					put(grammarAccess.getDataTypeAccess().getAlternatives(), "rule__DataType__Alternatives");
-					put(grammarAccess.getModelAccess().getGroup(), "rule__Model__Group__0");
+					put(grammarAccess.getModelAccess().getGroup_1(), "rule__Model__Group_1__0");
 					put(grammarAccess.getMakeEmfAccess().getGroup(), "rule__MakeEmf__Group__0");
 					put(grammarAccess.getMakeEcoreAccess().getGroup(), "rule__MakeEcore__Group__0");
 					put(grammarAccess.getMakeImageAccess().getGroup(), "rule__MakeImage__Group__0");
@@ -59,8 +60,8 @@ public class DPFTextParser extends AbstractContentAssistParser {
 					put(grammarAccess.getConstraintSemanticAccess().getGroup_2(), "rule__ConstraintSemantic__Group_2__0");
 					put(grammarAccess.getConstraintSemanticAccess().getGroup_2_1(), "rule__ConstraintSemantic__Group_2_1__0");
 					put(grammarAccess.getSpecificationAccess().getGroup(), "rule__Specification__Group__0");
-					put(grammarAccess.getSpecificationAccess().getGroup_7(), "rule__Specification__Group_7__0");
-					put(grammarAccess.getSpecificationAccess().getGroup_7_1(), "rule__Specification__Group_7_1__0");
+					put(grammarAccess.getSpecificationAccess().getGroup_13(), "rule__Specification__Group_13__0");
+					put(grammarAccess.getSpecificationAccess().getGroup_13_1(), "rule__Specification__Group_13_1__0");
 					put(grammarAccess.getConstraintAccess().getGroup(), "rule__Constraint__Group__0");
 					put(grammarAccess.getConstraintAccess().getGroup_2(), "rule__Constraint__Group_2__0");
 					put(grammarAccess.getConstraintAccess().getGroup_2_1(), "rule__Constraint__Group_2_1__0");
@@ -73,7 +74,7 @@ public class DPFTextParser extends AbstractContentAssistParser {
 					put(grammarAccess.getMappingNodeAccess().getGroup(), "rule__MappingNode__Group__0");
 					put(grammarAccess.getMappingArrowAccess().getGroup(), "rule__MappingArrow__Group__0");
 					put(grammarAccess.getExtSubTGraphAccess().getGroup(), "rule__ExtSubTGraph__Group__0");
-					put(grammarAccess.getTGraphAccess().getGroup(), "rule__TGraph__Group__0");
+					put(grammarAccess.getGraphAccess().getGroup(), "rule__Graph__Group__0");
 					put(grammarAccess.getElementAccess().getGroup_0(), "rule__Element__Group_0__0");
 					put(grammarAccess.getElementAccess().getGroup_1(), "rule__Element__Group_1__0");
 					put(grammarAccess.getArrowsAccess().getGroup_0(), "rule__Arrows__Group_0__0");
@@ -84,8 +85,8 @@ public class DPFTextParser extends AbstractContentAssistParser {
 					put(grammarAccess.getAttributeValueAccess().getGroup(), "rule__AttributeValue__Group__0");
 					put(grammarAccess.getDpfIdAccess().getGroup(), "rule__DpfId__Group__0");
 					put(grammarAccess.getDpfIdAccess().getGroup_1(), "rule__DpfId__Group_1__0");
-					put(grammarAccess.getModelAccess().getDefinitionsAssignment_0(), "rule__Model__DefinitionsAssignment_0");
-					put(grammarAccess.getModelAccess().getDefinitionsAssignment_1(), "rule__Model__DefinitionsAssignment_1");
+					put(grammarAccess.getModelAccess().getCommandsAssignment_1_0(), "rule__Model__CommandsAssignment_1_0");
+					put(grammarAccess.getModelAccess().getCommandsAssignment_1_1(), "rule__Model__CommandsAssignment_1_1");
 					put(grammarAccess.getMakeEmfAccess().getIdAssignment_1(), "rule__MakeEmf__IdAssignment_1");
 					put(grammarAccess.getMakeEcoreAccess().getIdAssignment_1(), "rule__MakeEcore__IdAssignment_1");
 					put(grammarAccess.getMakeImageAccess().getIdAssignment_1(), "rule__MakeImage__IdAssignment_1");
@@ -113,11 +114,14 @@ public class DPFTextParser extends AbstractContentAssistParser {
 					put(grammarAccess.getConstraintSemanticAccess().getArrowsAssignment_2_0(), "rule__ConstraintSemantic__ArrowsAssignment_2_0");
 					put(grammarAccess.getConstraintSemanticAccess().getArrowsAssignment_2_1_1(), "rule__ConstraintSemantic__ArrowsAssignment_2_1_1");
 					put(grammarAccess.getConstraintSemanticAccess().getOclAssignment_6(), "rule__ConstraintSemantic__OclAssignment_6");
-					put(grammarAccess.getSpecificationAccess().getIdAssignment_0(), "rule__Specification__IdAssignment_0");
-					put(grammarAccess.getSpecificationAccess().getGraphAssignment_4(), "rule__Specification__GraphAssignment_4");
-					put(grammarAccess.getSpecificationAccess().getConstraintsAssignment_7_0(), "rule__Specification__ConstraintsAssignment_7_0");
-					put(grammarAccess.getSpecificationAccess().getConstraintsAssignment_7_1_1(), "rule__Specification__ConstraintsAssignment_7_1_1");
-					put(grammarAccess.getChoosenGraphAccess().getIdAssignment(), "rule__ChoosenGraph__IdAssignment");
+					put(grammarAccess.getSpecificationAccess().getTypeAssignment_2(), "rule__Specification__TypeAssignment_2");
+					put(grammarAccess.getSpecificationAccess().getSequenceNumberAssignment_4(), "rule__Specification__SequenceNumberAssignment_4");
+					put(grammarAccess.getSpecificationAccess().getGraphAssignment_7(), "rule__Specification__GraphAssignment_7");
+					put(grammarAccess.getSpecificationAccess().getConstaintSemanticAssignment_10(), "rule__Specification__ConstaintSemanticAssignment_10");
+					put(grammarAccess.getSpecificationAccess().getConstraintsAssignment_13_0(), "rule__Specification__ConstraintsAssignment_13_0");
+					put(grammarAccess.getSpecificationAccess().getConstraintsAssignment_13_1_1(), "rule__Specification__ConstraintsAssignment_13_1_1");
+					put(grammarAccess.getChoosenSpecificationAccess().getIdAssignment(), "rule__ChoosenSpecification__IdAssignment");
+					put(grammarAccess.getChoosenConstraintSemanticAccess().getIdAssignment(), "rule__ChoosenConstraintSemantic__IdAssignment");
 					put(grammarAccess.getConstraintAccess().getSignatureAssignment_0(), "rule__Constraint__SignatureAssignment_0");
 					put(grammarAccess.getConstraintAccess().getArrowsAssignment_2_0(), "rule__Constraint__ArrowsAssignment_2_0");
 					put(grammarAccess.getConstraintAccess().getArrowsAssignment_2_1_1(), "rule__Constraint__ArrowsAssignment_2_1_1");
@@ -138,10 +142,7 @@ public class DPFTextParser extends AbstractContentAssistParser {
 					put(grammarAccess.getExtSubTGraphAccess().getExtendsGraphAssignment_4(), "rule__ExtSubTGraph__ExtendsGraphAssignment_4");
 					put(grammarAccess.getExtSubTGraphAccess().getElementsAssignment_7(), "rule__ExtSubTGraph__ElementsAssignment_7");
 					put(grammarAccess.getChoosenExtSubTGraphAccess().getIdAssignment(), "rule__ChoosenExtSubTGraph__IdAssignment");
-					put(grammarAccess.getTGraphAccess().getIdAssignment_0(), "rule__TGraph__IdAssignment_0");
-					put(grammarAccess.getTGraphAccess().getTypeGraphAssignment_4(), "rule__TGraph__TypeGraphAssignment_4");
-					put(grammarAccess.getTGraphAccess().getElementsAssignment_7(), "rule__TGraph__ElementsAssignment_7");
-					put(grammarAccess.getChoosenTGraphAccess().getIdAssignment(), "rule__ChoosenTGraph__IdAssignment");
+					put(grammarAccess.getGraphAccess().getElementsAssignment_2(), "rule__Graph__ElementsAssignment_2");
 					put(grammarAccess.getArrowsAccess().getSrAssignment_0_0(), "rule__Arrows__SrAssignment_0_0");
 					put(grammarAccess.getArrowsAccess().getIdAssignment_0_2(), "rule__Arrows__IdAssignment_0_2");
 					put(grammarAccess.getArrowsAccess().getTypeAssignment_0_4(), "rule__Arrows__TypeAssignment_0_4");

@@ -8,8 +8,7 @@ import java.beans.PropertyChangeListener;
 
 import no.hib.dpf.text.tdpf.Arrow;
 import no.hib.dpf.text.tdpf.Arrows;
-import no.hib.dpf.text.tdpf.ChoosenGraph;
-import no.hib.dpf.text.tdpf.Definition;
+import no.hib.dpf.text.tdpf.Command;
 import no.hib.dpf.text.tdpf.Model;
 import no.hib.dpf.text.tdpf.Node;
 import no.hib.dpf.text.tdpf.TdpfFactory;
@@ -51,7 +50,7 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider imple
 	//Which model:
 	//
 	protected void _createChildren(final DocumentRootNode parentNode, final Model model) {
-		for (Definition d : model.getDefinitions()) {
+		for (Command d : model.getCommands()) {
 			createNode(parentNode, d);
 		}
 	}
@@ -68,8 +67,8 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider imple
 	//
 	// Graph:
 	//
-	protected void _createNode(IOutlineNode parentNode, ChoosenGraph name) {
-	}
+//	protected void _createNode(IOutlineNode parentNode, ChoosenGraph name) {
+//	}
 
 	//
 	// Arrow:
@@ -183,6 +182,7 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider imple
 				//ignore
 			}
 			if(null != f && f.getName().equals(evt.getPropertyName())){
+				System.out.println("Normalize:" + f.getName());
 				GraphNormalizer.normalize(f, document, xtextEditor);
 			}
 		} catch (Exception e) {

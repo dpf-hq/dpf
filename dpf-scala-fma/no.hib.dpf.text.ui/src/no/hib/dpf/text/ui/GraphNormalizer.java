@@ -10,7 +10,7 @@ import java.util.List;
 
 import no.hib.dpf.text.DPFTextStandaloneSetup;
 import no.hib.dpf.text.parser.antlr.DPFTextParser;
-import no.hib.dpf.text.tdpf.TGraph;
+import no.hib.dpf.text.tdpf.Specification;
 import no.hib.dpf.text.wrapper.JavaScalaBridge;
 
 import org.eclipse.core.resources.IFile;
@@ -48,18 +48,20 @@ public class GraphNormalizer{
 //			System.out.println(eRoot);
 			
 			try {
-				if(eRoot.eAllContents().hasNext()){
-					final EObject o = eRoot.eAllContents().next();
-					if(o instanceof TGraph){
-						final TGraph graph = (TGraph)o;
-						final ICompositeNode co = NodeModelUtils.findActualNodeFor(o);	
-						final List<String> nGraph = bridge.read(graph);
-						
-						replaceInOpendIFile(co,nGraph,document,editor);
-						
-						//replaceUnopenedIFile(f, graph, co);
+				if(eRoot instanceof Specification){
+					final Specification specification = (Specification)eRoot;
+					final ICompositeNode co = NodeModelUtils.findActualNodeFor(eRoot);	
+					final List<String> nGraph = bridge.read(specification);
+					
+					//Test:
+					for(String s:nGraph){
+						System.out.print(">>>" + s);
 					}
-				}				
+					
+					replaceInOpendIFile(co,nGraph,document,editor);
+					
+					//replaceUnopenedIFile(f, graph, co);
+				}
 			} catch (Exception e) {
 				e.printStackTrace();
 				//do nothing
@@ -88,7 +90,11 @@ public class GraphNormalizer{
 		System.out.println("TEST FLO");
 		
 		//Save:
-		editor.doSave(null);
+		try {
+			editor.doSave(null);			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@SuppressWarnings("unused")
