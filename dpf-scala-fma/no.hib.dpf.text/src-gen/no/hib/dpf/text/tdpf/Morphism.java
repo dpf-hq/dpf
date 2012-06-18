@@ -25,7 +25,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Morphism extends Definition
+public interface Morphism extends Command
 {
   /**
    * Returns the value of the '<em><b>Domain</b></em>' containment reference.

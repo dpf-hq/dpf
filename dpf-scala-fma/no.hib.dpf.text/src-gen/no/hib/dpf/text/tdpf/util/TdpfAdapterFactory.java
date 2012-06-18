@@ -83,9 +83,9 @@ public class TdpfAdapterFactory extends AdapterFactoryImpl
         return createModelAdapter();
       }
       @Override
-      public Adapter caseDefinition(Definition object)
+      public Adapter caseCommand(Command object)
       {
-        return createDefinitionAdapter();
+        return createCommandAdapter();
       }
       @Override
       public Adapter caseMakeEmf(MakeEmf object)
@@ -143,9 +143,14 @@ public class TdpfAdapterFactory extends AdapterFactoryImpl
         return createSpecificationAdapter();
       }
       @Override
-      public Adapter caseChoosenGraph(ChoosenGraph object)
+      public Adapter caseChoosenSpecification(ChoosenSpecification object)
       {
-        return createChoosenGraphAdapter();
+        return createChoosenSpecificationAdapter();
+      }
+      @Override
+      public Adapter caseChoosenConstraintSemantic(ChoosenConstraintSemantic object)
+      {
+        return createChoosenConstraintSemanticAdapter();
       }
       @Override
       public Adapter caseConstraint(Constraint object)
@@ -198,14 +203,9 @@ public class TdpfAdapterFactory extends AdapterFactoryImpl
         return createChoosenExtSubTGraphAdapter();
       }
       @Override
-      public Adapter caseTGraph(TGraph object)
+      public Adapter caseGraph(Graph object)
       {
-        return createTGraphAdapter();
-      }
-      @Override
-      public Adapter caseChoosenTGraph(ChoosenTGraph object)
-      {
-        return createChoosenTGraphAdapter();
+        return createGraphAdapter();
       }
       @Override
       public Adapter caseElement(Element object)
@@ -275,16 +275,16 @@ public class TdpfAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link no.hib.dpf.text.tdpf.Definition <em>Definition</em>}'.
+   * Creates a new adapter for an object of class '{@link no.hib.dpf.text.tdpf.Command <em>Command</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see no.hib.dpf.text.tdpf.Definition
+   * @see no.hib.dpf.text.tdpf.Command
    * @generated
    */
-  public Adapter createDefinitionAdapter()
+  public Adapter createCommandAdapter()
   {
     return null;
   }
@@ -455,16 +455,31 @@ public class TdpfAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link no.hib.dpf.text.tdpf.ChoosenGraph <em>Choosen Graph</em>}'.
+   * Creates a new adapter for an object of class '{@link no.hib.dpf.text.tdpf.ChoosenSpecification <em>Choosen Specification</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see no.hib.dpf.text.tdpf.ChoosenGraph
+   * @see no.hib.dpf.text.tdpf.ChoosenSpecification
    * @generated
    */
-  public Adapter createChoosenGraphAdapter()
+  public Adapter createChoosenSpecificationAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link no.hib.dpf.text.tdpf.ChoosenConstraintSemantic <em>Choosen Constraint Semantic</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see no.hib.dpf.text.tdpf.ChoosenConstraintSemantic
+   * @generated
+   */
+  public Adapter createChoosenConstraintSemanticAdapter()
   {
     return null;
   }
@@ -620,31 +635,16 @@ public class TdpfAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link no.hib.dpf.text.tdpf.TGraph <em>TGraph</em>}'.
+   * Creates a new adapter for an object of class '{@link no.hib.dpf.text.tdpf.Graph <em>Graph</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see no.hib.dpf.text.tdpf.TGraph
+   * @see no.hib.dpf.text.tdpf.Graph
    * @generated
    */
-  public Adapter createTGraphAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link no.hib.dpf.text.tdpf.ChoosenTGraph <em>Choosen TGraph</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see no.hib.dpf.text.tdpf.ChoosenTGraph
-   * @generated
-   */
-  public Adapter createChoosenTGraphAdapter()
+  public Adapter createGraphAdapter()
   {
     return null;
   }

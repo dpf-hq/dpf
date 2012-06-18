@@ -69,7 +69,7 @@ public class TdpfFactoryImpl extends EFactoryImpl implements TdpfFactory
     switch (eClass.getClassifierID())
     {
       case TdpfPackage.MODEL: return createModel();
-      case TdpfPackage.DEFINITION: return createDefinition();
+      case TdpfPackage.COMMAND: return createCommand();
       case TdpfPackage.MAKE_EMF: return createMakeEmf();
       case TdpfPackage.MAKE_ECORE: return createMakeEcore();
       case TdpfPackage.MAKE_IMAGE: return createMakeImage();
@@ -81,7 +81,8 @@ public class TdpfFactoryImpl extends EFactoryImpl implements TdpfFactory
       case TdpfPackage.CHOOSEN_SPECFICATION: return createChoosenSpecfication();
       case TdpfPackage.CONSTRAINT_SEMANTIC: return createConstraintSemantic();
       case TdpfPackage.SPECIFICATION: return createSpecification();
-      case TdpfPackage.CHOOSEN_GRAPH: return createChoosenGraph();
+      case TdpfPackage.CHOOSEN_SPECIFICATION: return createChoosenSpecification();
+      case TdpfPackage.CHOOSEN_CONSTRAINT_SEMANTIC: return createChoosenConstraintSemantic();
       case TdpfPackage.CONSTRAINT: return createConstraint();
       case TdpfPackage.CONSTRAINT_SIGNATURE: return createConstraintSignature();
       case TdpfPackage.MORPHISM: return createMorphism();
@@ -92,8 +93,7 @@ public class TdpfFactoryImpl extends EFactoryImpl implements TdpfFactory
       case TdpfPackage.MAPPING_ARROW: return createMappingArrow();
       case TdpfPackage.EXT_SUB_TGRAPH: return createExtSubTGraph();
       case TdpfPackage.CHOOSEN_EXT_SUB_TGRAPH: return createChoosenExtSubTGraph();
-      case TdpfPackage.TGRAPH: return createTGraph();
-      case TdpfPackage.CHOOSEN_TGRAPH: return createChoosenTGraph();
+      case TdpfPackage.GRAPH: return createGraph();
       case TdpfPackage.ELEMENT: return createElement();
       case TdpfPackage.ARROWS: return createArrows();
       case TdpfPackage.ARROW: return createArrow();
@@ -155,10 +155,10 @@ public class TdpfFactoryImpl extends EFactoryImpl implements TdpfFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Definition createDefinition()
+  public Command createCommand()
   {
-    DefinitionImpl definition = new DefinitionImpl();
-    return definition;
+    CommandImpl command = new CommandImpl();
+    return command;
   }
 
   /**
@@ -287,10 +287,21 @@ public class TdpfFactoryImpl extends EFactoryImpl implements TdpfFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public ChoosenGraph createChoosenGraph()
+  public ChoosenSpecification createChoosenSpecification()
   {
-    ChoosenGraphImpl choosenGraph = new ChoosenGraphImpl();
-    return choosenGraph;
+    ChoosenSpecificationImpl choosenSpecification = new ChoosenSpecificationImpl();
+    return choosenSpecification;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ChoosenConstraintSemantic createChoosenConstraintSemantic()
+  {
+    ChoosenConstraintSemanticImpl choosenConstraintSemantic = new ChoosenConstraintSemanticImpl();
+    return choosenConstraintSemantic;
   }
 
   /**
@@ -408,21 +419,10 @@ public class TdpfFactoryImpl extends EFactoryImpl implements TdpfFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public TGraph createTGraph()
+  public Graph createGraph()
   {
-    TGraphImpl tGraph = new TGraphImpl();
-    return tGraph;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ChoosenTGraph createChoosenTGraph()
-  {
-    ChoosenTGraphImpl choosenTGraph = new ChoosenTGraphImpl();
-    return choosenTGraph;
+    GraphImpl graph = new GraphImpl();
+    return graph;
   }
 
   /**

@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class MakeEmfImpl extends DefinitionImpl implements MakeEmf
+public class MakeEmfImpl extends CommandImpl implements MakeEmf
 {
   /**
    * The default value of the '{@link #getId() <em>Id</em>}' attribute.

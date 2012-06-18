@@ -10,7 +10,7 @@ import no.hib.dpf.text.coevolution._
 import no.hib.dpf.text.output.graphviz.Output
 import no.hib.dpf.text.output.parser.{Output=>POutput}
 
-class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with Converter with Output with POutput{
+class Parser(mmSpecification:S, mmName:String) extends JavaTokenParsers with Converter with Output with POutput{
 	   
 	//Ids:
 	object GCtx{
@@ -46,14 +46,14 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 	  specs = MMap[String,S]()	
 	
 	  //Graph vars:
-	  tGraphs = MMap(mmName->mmGraph)
+	  tGraphs = MMap(mmName->mmSpecification.g)
 	  gMorphisms = MMap();
 	  gMorphismsCoDomain = MMap();
 	  
-	  curTGraph = mmGraph	    //current type graph
-	  curMGraph = null         //current model graph
-	  curSGraph = null  	   //current specification graph
-	  curTS = null			   //current specification type graph
+	  curTGraph = mmSpecification.g  //current type graph
+	  curMGraph = null              //current model graph
+	  curSGraph = null  	         //current specification graph
+	  curTS = null			         //current specification type graph
 	  curSignatureConstraints = MMap[(String,List[String]),SignatureConstraint]() //ids of constraints of current specification
 	  
 	  curDomain = null
@@ -821,7 +821,7 @@ class Parser(mmGraph:AbstractGraph, mmName:String) extends JavaTokenParsers with
 }
 
 
-object Main extends Parser(GraphDpf, "DPF") 
+object Main extends Parser(Dpf, "DPF") 
 {
 	import no.hib.dpf.text.graph.validation.eclipse._
 	def main(args:Array[String]) = {

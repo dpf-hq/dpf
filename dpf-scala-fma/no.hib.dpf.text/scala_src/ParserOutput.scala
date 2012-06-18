@@ -104,9 +104,12 @@ trait Output{
     var rs:List[String] = Nil
  
     rs=name::rs
-    rs=":=TGraph<"::rs
+    rs="Specification:"::rs
     rs=mmName::rs
+    rs="<"::rs
+    rs="1000"::rs
     rs=">{\n"::rs
+    rs=" Graph{\n"::rs
 
     //Nodes:
     for(n:Node<-g.nodes.values.toSet){
@@ -125,6 +128,11 @@ trait Output{
     }
     
     rs=" }\n"::rs
+    rs=" Constraints<"::rs
+    rs="test"::rs
+    rs=">{\n"::rs
+    rs=" }\n"::rs
+    rs="}\n"::rs
     rs=rs.reverse 
     
     //Save:

@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link no.hib.dpf.text.tdpf.Model#getDefinitions <em>Definitions</em>}</li>
+ *   <li>{@link no.hib.dpf.text.tdpf.Model#getCommands <em>Commands</em>}</li>
  * </ul>
  * </p>
  *
@@ -28,19 +28,19 @@ import org.eclipse.emf.ecore.EObject;
 public interface Model extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Definitions</b></em>' containment reference list.
-   * The list contents are of type {@link no.hib.dpf.text.tdpf.Definition}.
+   * Returns the value of the '<em><b>Commands</b></em>' containment reference list.
+   * The list contents are of type {@link no.hib.dpf.text.tdpf.Command}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Definitions</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>Commands</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Definitions</em>' containment reference list.
-   * @see no.hib.dpf.text.tdpf.TdpfPackage#getModel_Definitions()
+   * @return the value of the '<em>Commands</em>' containment reference list.
+   * @see no.hib.dpf.text.tdpf.TdpfPackage#getModel_Commands()
    * @model containment="true"
    * @generated
    */
-  EList<Definition> getDefinitions();
+  EList<Command> getCommands();
 
 } // Model

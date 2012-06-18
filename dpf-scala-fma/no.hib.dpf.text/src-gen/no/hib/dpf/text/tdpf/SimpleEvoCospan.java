@@ -25,7 +25,7 @@ package no.hib.dpf.text.tdpf;
  * @model
  * @generated
  */
-public interface SimpleEvoCospan extends Definition
+public interface SimpleEvoCospan extends Command
 {
   /**
    * Returns the value of the '<em><b>Lhs</b></em>' attribute.

@@ -5,7 +5,7 @@
  */
 package no.hib.dpf.text.tdpf.impl;
 
-import no.hib.dpf.text.tdpf.MakeImage;
+import no.hib.dpf.text.tdpf.ChoosenConstraintSemantic;
 import no.hib.dpf.text.tdpf.TdpfPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -13,21 +13,22 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Make Image</b></em>'.
+ * An implementation of the model object '<em><b>Choosen Constraint Semantic</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link no.hib.dpf.text.tdpf.impl.MakeImageImpl#getId <em>Id</em>}</li>
+ *   <li>{@link no.hib.dpf.text.tdpf.impl.ChoosenConstraintSemanticImpl#getId <em>Id</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class MakeImageImpl extends CommandImpl implements MakeImage
+public class ChoosenConstraintSemanticImpl extends MinimalEObjectImpl.Container implements ChoosenConstraintSemantic
 {
   /**
    * The default value of the '{@link #getId() <em>Id</em>}' attribute.
@@ -54,7 +55,7 @@ public class MakeImageImpl extends CommandImpl implements MakeImage
    * <!-- end-user-doc -->
    * @generated
    */
-  protected MakeImageImpl()
+  protected ChoosenConstraintSemanticImpl()
   {
     super();
   }
@@ -67,7 +68,7 @@ public class MakeImageImpl extends CommandImpl implements MakeImage
   @Override
   protected EClass eStaticClass()
   {
-    return TdpfPackage.Literals.MAKE_IMAGE;
+    return TdpfPackage.Literals.CHOOSEN_CONSTRAINT_SEMANTIC;
   }
 
   /**
@@ -90,7 +91,7 @@ public class MakeImageImpl extends CommandImpl implements MakeImage
     String oldId = id;
     id = newId;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, TdpfPackage.MAKE_IMAGE__ID, oldId, id));
+      eNotify(new ENotificationImpl(this, Notification.SET, TdpfPackage.CHOOSEN_CONSTRAINT_SEMANTIC__ID, oldId, id));
   }
 
   /**
@@ -103,7 +104,7 @@ public class MakeImageImpl extends CommandImpl implements MakeImage
   {
     switch (featureID)
     {
-      case TdpfPackage.MAKE_IMAGE__ID:
+      case TdpfPackage.CHOOSEN_CONSTRAINT_SEMANTIC__ID:
         return getId();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -119,7 +120,7 @@ public class MakeImageImpl extends CommandImpl implements MakeImage
   {
     switch (featureID)
     {
-      case TdpfPackage.MAKE_IMAGE__ID:
+      case TdpfPackage.CHOOSEN_CONSTRAINT_SEMANTIC__ID:
         setId((String)newValue);
         return;
     }
@@ -136,7 +137,7 @@ public class MakeImageImpl extends CommandImpl implements MakeImage
   {
     switch (featureID)
     {
-      case TdpfPackage.MAKE_IMAGE__ID:
+      case TdpfPackage.CHOOSEN_CONSTRAINT_SEMANTIC__ID:
         setId(ID_EDEFAULT);
         return;
     }
@@ -153,7 +154,7 @@ public class MakeImageImpl extends CommandImpl implements MakeImage
   {
     switch (featureID)
     {
-      case TdpfPackage.MAKE_IMAGE__ID:
+      case TdpfPackage.CHOOSEN_CONSTRAINT_SEMANTIC__ID:
         return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
     }
     return super.eIsSet(featureID);
@@ -176,4 +177,4 @@ public class MakeImageImpl extends CommandImpl implements MakeImage
     return result.toString();
   }
 
-} //MakeImageImpl
+} //ChoosenConstraintSemanticImpl

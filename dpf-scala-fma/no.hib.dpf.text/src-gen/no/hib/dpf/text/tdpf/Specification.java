@@ -15,8 +15,10 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link no.hib.dpf.text.tdpf.Specification#getId <em>Id</em>}</li>
+ *   <li>{@link no.hib.dpf.text.tdpf.Specification#getType <em>Type</em>}</li>
+ *   <li>{@link no.hib.dpf.text.tdpf.Specification#getSequenceNumber <em>Sequence Number</em>}</li>
  *   <li>{@link no.hib.dpf.text.tdpf.Specification#getGraph <em>Graph</em>}</li>
+ *   <li>{@link no.hib.dpf.text.tdpf.Specification#getConstaintSemantic <em>Constaint Semantic</em>}</li>
  *   <li>{@link no.hib.dpf.text.tdpf.Specification#getConstraints <em>Constraints</em>}</li>
  * </ul>
  * </p>
@@ -25,33 +27,59 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Specification extends Definition
+public interface Specification extends Model
 {
   /**
-   * Returns the value of the '<em><b>Id</b></em>' attribute.
+   * Returns the value of the '<em><b>Type</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Id</em>' attribute isn't clear,
+   * If the meaning of the '<em>Type</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Id</em>' attribute.
-   * @see #setId(String)
-   * @see no.hib.dpf.text.tdpf.TdpfPackage#getSpecification_Id()
+   * @return the value of the '<em>Type</em>' containment reference.
+   * @see #setType(ChoosenSpecification)
+   * @see no.hib.dpf.text.tdpf.TdpfPackage#getSpecification_Type()
+   * @model containment="true"
+   * @generated
+   */
+  ChoosenSpecification getType();
+
+  /**
+   * Sets the value of the '{@link no.hib.dpf.text.tdpf.Specification#getType <em>Type</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Type</em>' containment reference.
+   * @see #getType()
+   * @generated
+   */
+  void setType(ChoosenSpecification value);
+
+  /**
+   * Returns the value of the '<em><b>Sequence Number</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Sequence Number</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Sequence Number</em>' attribute.
+   * @see #setSequenceNumber(int)
+   * @see no.hib.dpf.text.tdpf.TdpfPackage#getSpecification_SequenceNumber()
    * @model
    * @generated
    */
-  String getId();
+  int getSequenceNumber();
 
   /**
-   * Sets the value of the '{@link no.hib.dpf.text.tdpf.Specification#getId <em>Id</em>}' attribute.
+   * Sets the value of the '{@link no.hib.dpf.text.tdpf.Specification#getSequenceNumber <em>Sequence Number</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Id</em>' attribute.
-   * @see #getId()
+   * @param value the new value of the '<em>Sequence Number</em>' attribute.
+   * @see #getSequenceNumber()
    * @generated
    */
-  void setId(String value);
+  void setSequenceNumber(int value);
 
   /**
    * Returns the value of the '<em><b>Graph</b></em>' containment reference.
@@ -62,12 +90,12 @@ public interface Specification extends Definition
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Graph</em>' containment reference.
-   * @see #setGraph(ChoosenGraph)
+   * @see #setGraph(Graph)
    * @see no.hib.dpf.text.tdpf.TdpfPackage#getSpecification_Graph()
    * @model containment="true"
    * @generated
    */
-  ChoosenGraph getGraph();
+  Graph getGraph();
 
   /**
    * Sets the value of the '{@link no.hib.dpf.text.tdpf.Specification#getGraph <em>Graph</em>}' containment reference.
@@ -77,7 +105,33 @@ public interface Specification extends Definition
    * @see #getGraph()
    * @generated
    */
-  void setGraph(ChoosenGraph value);
+  void setGraph(Graph value);
+
+  /**
+   * Returns the value of the '<em><b>Constaint Semantic</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Constaint Semantic</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Constaint Semantic</em>' containment reference.
+   * @see #setConstaintSemantic(ChoosenConstraintSemantic)
+   * @see no.hib.dpf.text.tdpf.TdpfPackage#getSpecification_ConstaintSemantic()
+   * @model containment="true"
+   * @generated
+   */
+  ChoosenConstraintSemantic getConstaintSemantic();
+
+  /**
+   * Sets the value of the '{@link no.hib.dpf.text.tdpf.Specification#getConstaintSemantic <em>Constaint Semantic</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Constaint Semantic</em>' containment reference.
+   * @see #getConstaintSemantic()
+   * @generated
+   */
+  void setConstaintSemantic(ChoosenConstraintSemantic value);
 
   /**
    * Returns the value of the '<em><b>Constraints</b></em>' containment reference list.

@@ -14,7 +14,7 @@ import scala.collection.JavaConversions._;
 import scala.collection.mutable.ListBuffer;
 
 //Java:
-import no.hib.dpf.text.tdpf.{TGraph=>JGraph}
+import no.hib.dpf.text.tdpf.{Specification=>JSpecification}
 import no.hib.dpf.text.tdpf.{Node=>JNode}
 import no.hib.dpf.text.tdpf.{Arrow=>JArrow}
 import no.hib.dpf.text.tdpf.{Arrows=>JArrows}
@@ -22,21 +22,20 @@ import no.hib.dpf.text.tdpf.{DpfId=>JId}
 import no.hib.dpf.text.tdpf.{DataType=>JDataType}
 
 
-class Bridge(mmGraph:AbstractGraph, mmName:String) extends Parser(mmGraph, mmName){
+class Bridge(mmSpec:S, mmName:String) extends Parser(mmSpec, mmName){
  
   /**
    * Read Graph as a whole:
    */
-  def readTGraph(g:JGraph, name:String)={
-	  
+  def read(g:JSpecification)={
       //init:
 	  initParser();
 	  
-	  val mmGraphName = g.getTypeGraph().getId();
+	  val mmGraphName = g.getType().getId();
 	  
       createGraph(mmGraphName);
       
-      for(e <-new IteratorWrapper(g.getElements().iterator())){
+      for(e <-new IteratorWrapper(g.getGraph().getElements().iterator())){
     	  if(e.isInstanceOf[JArrow]){
     	    
     	    val a=e.asInstanceOf[JArrow];  	    

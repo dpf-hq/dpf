@@ -9,21 +9,21 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Choosen TGraph</b></em>'.
+ * A representation of the model object '<em><b>Choosen Constraint Semantic</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link no.hib.dpf.text.tdpf.ChoosenTGraph#getId <em>Id</em>}</li>
+ *   <li>{@link no.hib.dpf.text.tdpf.ChoosenConstraintSemantic#getId <em>Id</em>}</li>
  * </ul>
  * </p>
  *
- * @see no.hib.dpf.text.tdpf.TdpfPackage#getChoosenTGraph()
+ * @see no.hib.dpf.text.tdpf.TdpfPackage#getChoosenConstraintSemantic()
  * @model
  * @generated
  */
-public interface ChoosenTGraph extends EObject
+public interface ChoosenConstraintSemantic extends EObject
 {
   /**
    * Returns the value of the '<em><b>Id</b></em>' attribute.
@@ -35,14 +35,14 @@ public interface ChoosenTGraph extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Id</em>' attribute.
    * @see #setId(String)
-   * @see no.hib.dpf.text.tdpf.TdpfPackage#getChoosenTGraph_Id()
+   * @see no.hib.dpf.text.tdpf.TdpfPackage#getChoosenConstraintSemantic_Id()
    * @model
    * @generated
    */
   String getId();
 
   /**
-   * Sets the value of the '{@link no.hib.dpf.text.tdpf.ChoosenTGraph#getId <em>Id</em>}' attribute.
+   * Sets the value of the '{@link no.hib.dpf.text.tdpf.ChoosenConstraintSemantic#getId <em>Id</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Id</em>' attribute.
@@ -51,4 +51,4 @@ public interface ChoosenTGraph extends EObject
    */
   void setId(String value);
 
-} // ChoosenTGraph
+} // ChoosenConstraintSemantic

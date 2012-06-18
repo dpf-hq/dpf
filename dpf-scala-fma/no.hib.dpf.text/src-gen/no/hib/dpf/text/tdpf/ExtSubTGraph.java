@@ -25,7 +25,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface ExtSubTGraph extends Definition
+public interface ExtSubTGraph extends Command
 {
   /**
    * Returns the value of the '<em><b>Id</b></em>' attribute.

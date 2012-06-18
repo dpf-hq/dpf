@@ -22,7 +22,7 @@ package no.hib.dpf.text.tdpf;
  * @model
  * @generated
  */
-public interface MakeImage extends Definition
+public interface MakeImage extends Command
 {
   /**
    * Returns the value of the '<em><b>Id</b></em>' attribute.

@@ -22,7 +22,7 @@ package no.hib.dpf.text.tdpf;
  * @model
  * @generated
  */
-public interface MakeEmf extends Definition
+public interface MakeEmf extends Command
 {
   /**
    * Returns the value of the '<em><b>Id</b></em>' attribute.

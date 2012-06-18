@@ -24,7 +24,7 @@ package no.hib.dpf.text.tdpf;
  * @model
  * @generated
  */
-public interface EvoSpan extends Definition
+public interface EvoSpan extends Command
 {
   /**
    * Returns the value of the '<em><b>Lhs</b></em>' attribute.

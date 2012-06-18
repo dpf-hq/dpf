@@ -7,7 +7,7 @@ package no.hib.dpf.text.tdpf.impl;
 
 import java.util.Collection;
 
-import no.hib.dpf.text.tdpf.Definition;
+import no.hib.dpf.text.tdpf.Command;
 import no.hib.dpf.text.tdpf.Model;
 import no.hib.dpf.text.tdpf.TdpfPackage;
 
@@ -30,7 +30,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link no.hib.dpf.text.tdpf.impl.ModelImpl#getDefinitions <em>Definitions</em>}</li>
+ *   <li>{@link no.hib.dpf.text.tdpf.impl.ModelImpl#getCommands <em>Commands</em>}</li>
  * </ul>
  * </p>
  *
@@ -39,14 +39,14 @@ import org.eclipse.emf.ecore.util.InternalEList;
 public class ModelImpl extends MinimalEObjectImpl.Container implements Model
 {
   /**
-   * The cached value of the '{@link #getDefinitions() <em>Definitions</em>}' containment reference list.
+   * The cached value of the '{@link #getCommands() <em>Commands</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getDefinitions()
+   * @see #getCommands()
    * @generated
    * @ordered
    */
-  protected EList<Definition> definitions;
+  protected EList<Command> commands;
 
   /**
    * <!-- begin-user-doc -->
@@ -74,13 +74,13 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Definition> getDefinitions()
+  public EList<Command> getCommands()
   {
-    if (definitions == null)
+    if (commands == null)
     {
-      definitions = new EObjectContainmentEList<Definition>(Definition.class, this, TdpfPackage.MODEL__DEFINITIONS);
+      commands = new EObjectContainmentEList<Command>(Command.class, this, TdpfPackage.MODEL__COMMANDS);
     }
-    return definitions;
+    return commands;
   }
 
   /**
@@ -93,8 +93,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case TdpfPackage.MODEL__DEFINITIONS:
-        return ((InternalEList<?>)getDefinitions()).basicRemove(otherEnd, msgs);
+      case TdpfPackage.MODEL__COMMANDS:
+        return ((InternalEList<?>)getCommands()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -109,8 +109,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case TdpfPackage.MODEL__DEFINITIONS:
-        return getDefinitions();
+      case TdpfPackage.MODEL__COMMANDS:
+        return getCommands();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -126,9 +126,9 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case TdpfPackage.MODEL__DEFINITIONS:
-        getDefinitions().clear();
-        getDefinitions().addAll((Collection<? extends Definition>)newValue);
+      case TdpfPackage.MODEL__COMMANDS:
+        getCommands().clear();
+        getCommands().addAll((Collection<? extends Command>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -144,8 +144,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case TdpfPackage.MODEL__DEFINITIONS:
-        getDefinitions().clear();
+      case TdpfPackage.MODEL__COMMANDS:
+        getCommands().clear();
         return;
     }
     super.eUnset(featureID);
@@ -161,8 +161,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case TdpfPackage.MODEL__DEFINITIONS:
-        return definitions != null && !definitions.isEmpty();
+      case TdpfPackage.MODEL__COMMANDS:
+        return commands != null && !commands.isEmpty();
     }
     return super.eIsSet(featureID);
   }

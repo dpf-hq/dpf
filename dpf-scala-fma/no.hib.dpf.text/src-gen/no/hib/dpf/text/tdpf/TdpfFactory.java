@@ -35,13 +35,13 @@ public interface TdpfFactory extends EFactory
   Model createModel();
 
   /**
-   * Returns a new object of class '<em>Definition</em>'.
+   * Returns a new object of class '<em>Command</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Definition</em>'.
+   * @return a new object of class '<em>Command</em>'.
    * @generated
    */
-  Definition createDefinition();
+  Command createCommand();
 
   /**
    * Returns a new object of class '<em>Make Emf</em>'.
@@ -143,13 +143,22 @@ public interface TdpfFactory extends EFactory
   Specification createSpecification();
 
   /**
-   * Returns a new object of class '<em>Choosen Graph</em>'.
+   * Returns a new object of class '<em>Choosen Specification</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Choosen Graph</em>'.
+   * @return a new object of class '<em>Choosen Specification</em>'.
    * @generated
    */
-  ChoosenGraph createChoosenGraph();
+  ChoosenSpecification createChoosenSpecification();
+
+  /**
+   * Returns a new object of class '<em>Choosen Constraint Semantic</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Choosen Constraint Semantic</em>'.
+   * @generated
+   */
+  ChoosenConstraintSemantic createChoosenConstraintSemantic();
 
   /**
    * Returns a new object of class '<em>Constraint</em>'.
@@ -242,22 +251,13 @@ public interface TdpfFactory extends EFactory
   ChoosenExtSubTGraph createChoosenExtSubTGraph();
 
   /**
-   * Returns a new object of class '<em>TGraph</em>'.
+   * Returns a new object of class '<em>Graph</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>TGraph</em>'.
+   * @return a new object of class '<em>Graph</em>'.
    * @generated
    */
-  TGraph createTGraph();
-
-  /**
-   * Returns a new object of class '<em>Choosen TGraph</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Choosen TGraph</em>'.
-   * @generated
-   */
-  ChoosenTGraph createChoosenTGraph();
+  Graph createGraph();
 
   /**
    * Returns a new object of class '<em>Element</em>'.

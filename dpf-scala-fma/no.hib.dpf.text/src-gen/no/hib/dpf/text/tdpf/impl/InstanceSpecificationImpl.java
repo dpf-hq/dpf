@@ -41,7 +41,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class InstanceSpecificationImpl extends DefinitionImpl implements InstanceSpecification
+public class InstanceSpecificationImpl extends CommandImpl implements InstanceSpecification
 {
   /**
    * The default value of the '{@link #getId() <em>Id</em>}' attribute.

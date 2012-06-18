@@ -6,10 +6,10 @@ import no.hib.dpf.text.services.DPFTextGrammarAccess;
 import no.hib.dpf.text.tdpf.Arrow;
 import no.hib.dpf.text.tdpf.Arrows;
 import no.hib.dpf.text.tdpf.AttributeValue;
+import no.hib.dpf.text.tdpf.ChoosenConstraintSemantic;
 import no.hib.dpf.text.tdpf.ChoosenExtSubTGraph;
-import no.hib.dpf.text.tdpf.ChoosenGraph;
 import no.hib.dpf.text.tdpf.ChoosenSpecfication;
-import no.hib.dpf.text.tdpf.ChoosenTGraph;
+import no.hib.dpf.text.tdpf.ChoosenSpecification;
 import no.hib.dpf.text.tdpf.Codomain;
 import no.hib.dpf.text.tdpf.Constraint;
 import no.hib.dpf.text.tdpf.ConstraintSemantic;
@@ -19,6 +19,7 @@ import no.hib.dpf.text.tdpf.DpfId;
 import no.hib.dpf.text.tdpf.EvoCospan;
 import no.hib.dpf.text.tdpf.EvoSpan;
 import no.hib.dpf.text.tdpf.ExtSubTGraph;
+import no.hib.dpf.text.tdpf.Graph;
 import no.hib.dpf.text.tdpf.InstanceSpecification;
 import no.hib.dpf.text.tdpf.MakeEcore;
 import no.hib.dpf.text.tdpf.MakeEmf;
@@ -31,7 +32,6 @@ import no.hib.dpf.text.tdpf.Node;
 import no.hib.dpf.text.tdpf.SimpleEvoCospan;
 import no.hib.dpf.text.tdpf.SimpleEvoSpan;
 import no.hib.dpf.text.tdpf.Specification;
-import no.hib.dpf.text.tdpf.TGraph;
 import no.hib.dpf.text.tdpf.TdpfPackage;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.serializer.acceptor.ISemanticSequenceAcceptor;
@@ -94,15 +94,15 @@ public class AbstractDPFTextSemanticSequencer extends AbstractSemanticSequencer 
 					return; 
 				}
 				else break;
-			case TdpfPackage.CHOOSEN_EXT_SUB_TGRAPH:
-				if(context == grammarAccess.getChoosenExtSubTGraphRule()) {
-					sequence_ChoosenExtSubTGraph(context, (ChoosenExtSubTGraph) semanticObject); 
+			case TdpfPackage.CHOOSEN_CONSTRAINT_SEMANTIC:
+				if(context == grammarAccess.getChoosenConstraintSemanticRule()) {
+					sequence_ChoosenConstraintSemantic(context, (ChoosenConstraintSemantic) semanticObject); 
 					return; 
 				}
 				else break;
-			case TdpfPackage.CHOOSEN_GRAPH:
-				if(context == grammarAccess.getChoosenGraphRule()) {
-					sequence_ChoosenGraph(context, (ChoosenGraph) semanticObject); 
+			case TdpfPackage.CHOOSEN_EXT_SUB_TGRAPH:
+				if(context == grammarAccess.getChoosenExtSubTGraphRule()) {
+					sequence_ChoosenExtSubTGraph(context, (ChoosenExtSubTGraph) semanticObject); 
 					return; 
 				}
 				else break;
@@ -112,9 +112,9 @@ public class AbstractDPFTextSemanticSequencer extends AbstractSemanticSequencer 
 					return; 
 				}
 				else break;
-			case TdpfPackage.CHOOSEN_TGRAPH:
-				if(context == grammarAccess.getChoosenTGraphRule()) {
-					sequence_ChoosenTGraph(context, (ChoosenTGraph) semanticObject); 
+			case TdpfPackage.CHOOSEN_SPECIFICATION:
+				if(context == grammarAccess.getChoosenSpecificationRule()) {
+					sequence_ChoosenSpecification(context, (ChoosenSpecification) semanticObject); 
 					return; 
 				}
 				else break;
@@ -155,49 +155,55 @@ public class AbstractDPFTextSemanticSequencer extends AbstractSemanticSequencer 
 				}
 				else break;
 			case TdpfPackage.EVO_COSPAN:
-				if(context == grammarAccess.getDefinitionRule() ||
+				if(context == grammarAccess.getCommandRule() ||
 				   context == grammarAccess.getEvoCospanRule()) {
 					sequence_EvoCospan(context, (EvoCospan) semanticObject); 
 					return; 
 				}
 				else break;
 			case TdpfPackage.EVO_SPAN:
-				if(context == grammarAccess.getDefinitionRule() ||
+				if(context == grammarAccess.getCommandRule() ||
 				   context == grammarAccess.getEvoSpanRule()) {
 					sequence_EvoSpan(context, (EvoSpan) semanticObject); 
 					return; 
 				}
 				else break;
 			case TdpfPackage.EXT_SUB_TGRAPH:
-				if(context == grammarAccess.getDefinitionRule() ||
+				if(context == grammarAccess.getCommandRule() ||
 				   context == grammarAccess.getExtSubTGraphRule()) {
 					sequence_ExtSubTGraph(context, (ExtSubTGraph) semanticObject); 
 					return; 
 				}
 				else break;
+			case TdpfPackage.GRAPH:
+				if(context == grammarAccess.getGraphRule()) {
+					sequence_Graph(context, (Graph) semanticObject); 
+					return; 
+				}
+				else break;
 			case TdpfPackage.INSTANCE_SPECIFICATION:
-				if(context == grammarAccess.getDefinitionRule() ||
+				if(context == grammarAccess.getCommandRule() ||
 				   context == grammarAccess.getInstanceSpecificationRule()) {
 					sequence_InstanceSpecification(context, (InstanceSpecification) semanticObject); 
 					return; 
 				}
 				else break;
 			case TdpfPackage.MAKE_ECORE:
-				if(context == grammarAccess.getDefinitionRule() ||
+				if(context == grammarAccess.getCommandRule() ||
 				   context == grammarAccess.getMakeEcoreRule()) {
 					sequence_MakeEcore(context, (MakeEcore) semanticObject); 
 					return; 
 				}
 				else break;
 			case TdpfPackage.MAKE_EMF:
-				if(context == grammarAccess.getDefinitionRule() ||
+				if(context == grammarAccess.getCommandRule() ||
 				   context == grammarAccess.getMakeEmfRule()) {
 					sequence_MakeEmf(context, (MakeEmf) semanticObject); 
 					return; 
 				}
 				else break;
 			case TdpfPackage.MAKE_IMAGE:
-				if(context == grammarAccess.getDefinitionRule() ||
+				if(context == grammarAccess.getCommandRule() ||
 				   context == grammarAccess.getMakeImageRule()) {
 					sequence_MakeImage(context, (MakeImage) semanticObject); 
 					return; 
@@ -224,7 +230,7 @@ public class AbstractDPFTextSemanticSequencer extends AbstractSemanticSequencer 
 				}
 				else break;
 			case TdpfPackage.MORPHISM:
-				if(context == grammarAccess.getDefinitionRule() ||
+				if(context == grammarAccess.getCommandRule() ||
 				   context == grammarAccess.getMorphismRule()) {
 					sequence_Morphism(context, (Morphism) semanticObject); 
 					return; 
@@ -238,30 +244,23 @@ public class AbstractDPFTextSemanticSequencer extends AbstractSemanticSequencer 
 				}
 				else break;
 			case TdpfPackage.SIMPLE_EVO_COSPAN:
-				if(context == grammarAccess.getDefinitionRule() ||
+				if(context == grammarAccess.getCommandRule() ||
 				   context == grammarAccess.getSimpleEvoCospanRule()) {
 					sequence_SimpleEvoCospan(context, (SimpleEvoCospan) semanticObject); 
 					return; 
 				}
 				else break;
 			case TdpfPackage.SIMPLE_EVO_SPAN:
-				if(context == grammarAccess.getDefinitionRule() ||
+				if(context == grammarAccess.getCommandRule() ||
 				   context == grammarAccess.getSimpleEvoSpanRule()) {
 					sequence_SimpleEvoSpan(context, (SimpleEvoSpan) semanticObject); 
 					return; 
 				}
 				else break;
 			case TdpfPackage.SPECIFICATION:
-				if(context == grammarAccess.getDefinitionRule() ||
+				if(context == grammarAccess.getModelRule() ||
 				   context == grammarAccess.getSpecificationRule()) {
 					sequence_Specification(context, (Specification) semanticObject); 
-					return; 
-				}
-				else break;
-			case TdpfPackage.TGRAPH:
-				if(context == grammarAccess.getDefinitionRule() ||
-				   context == grammarAccess.getTGraphRule()) {
-					sequence_TGraph(context, (TGraph) semanticObject); 
 					return; 
 				}
 				else break;
@@ -384,14 +383,14 @@ public class AbstractDPFTextSemanticSequencer extends AbstractSemanticSequencer 
 	 * Features:
 	 *    id[1, 1]
 	 */
-	protected void sequence_ChoosenExtSubTGraph(EObject context, ChoosenExtSubTGraph semanticObject) {
+	protected void sequence_ChoosenConstraintSemantic(EObject context, ChoosenConstraintSemantic semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, TdpfPackage.Literals.CHOOSEN_EXT_SUB_TGRAPH__ID) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TdpfPackage.Literals.CHOOSEN_EXT_SUB_TGRAPH__ID));
+			if(transientValues.isValueTransient(semanticObject, TdpfPackage.Literals.CHOOSEN_CONSTRAINT_SEMANTIC__ID) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TdpfPackage.Literals.CHOOSEN_CONSTRAINT_SEMANTIC__ID));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getChoosenExtSubTGraphAccess().getIdIDTerminalRuleCall_0(), semanticObject.getId());
+		feeder.accept(grammarAccess.getChoosenConstraintSemanticAccess().getIdIDTerminalRuleCall_0(), semanticObject.getId());
 		feeder.finish();
 	}
 	
@@ -403,14 +402,14 @@ public class AbstractDPFTextSemanticSequencer extends AbstractSemanticSequencer 
 	 * Features:
 	 *    id[1, 1]
 	 */
-	protected void sequence_ChoosenGraph(EObject context, ChoosenGraph semanticObject) {
+	protected void sequence_ChoosenExtSubTGraph(EObject context, ChoosenExtSubTGraph semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, TdpfPackage.Literals.CHOOSEN_GRAPH__ID) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TdpfPackage.Literals.CHOOSEN_GRAPH__ID));
+			if(transientValues.isValueTransient(semanticObject, TdpfPackage.Literals.CHOOSEN_EXT_SUB_TGRAPH__ID) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TdpfPackage.Literals.CHOOSEN_EXT_SUB_TGRAPH__ID));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getChoosenGraphAccess().getIdIDTerminalRuleCall_0(), semanticObject.getId());
+		feeder.accept(grammarAccess.getChoosenExtSubTGraphAccess().getIdIDTerminalRuleCall_0(), semanticObject.getId());
 		feeder.finish();
 	}
 	
@@ -441,14 +440,14 @@ public class AbstractDPFTextSemanticSequencer extends AbstractSemanticSequencer 
 	 * Features:
 	 *    id[1, 1]
 	 */
-	protected void sequence_ChoosenTGraph(EObject context, ChoosenTGraph semanticObject) {
+	protected void sequence_ChoosenSpecification(EObject context, ChoosenSpecification semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, TdpfPackage.Literals.CHOOSEN_TGRAPH__ID) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TdpfPackage.Literals.CHOOSEN_TGRAPH__ID));
+			if(transientValues.isValueTransient(semanticObject, TdpfPackage.Literals.CHOOSEN_SPECIFICATION__ID) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TdpfPackage.Literals.CHOOSEN_SPECIFICATION__ID));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getChoosenTGraphAccess().getIdIDTerminalRuleCall_0(), semanticObject.getId());
+		feeder.accept(grammarAccess.getChoosenSpecificationAccess().getIdIDTerminalRuleCall_0(), semanticObject.getId());
 		feeder.finish();
 	}
 	
@@ -614,6 +613,18 @@ public class AbstractDPFTextSemanticSequencer extends AbstractSemanticSequencer 
 	
 	/**
 	 * Constraint:
+	 *     elements+=Element*
+	 *
+	 * Features:
+	 *    elements[0, *]
+	 */
+	protected void sequence_Graph(EObject context, Graph semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (id=ID model=ChoosenSpecfication metamodel=ChoosenSpecfication constraintSemantics+=ConstraintSemantic constraintSemantics+=ConstraintSemantic*)
 	 *
 	 * Features:
@@ -732,10 +743,10 @@ public class AbstractDPFTextSemanticSequencer extends AbstractSemanticSequencer 
 	
 	/**
 	 * Constraint:
-	 *     (definitions+=Definition definitions+=Definition*)?
+	 *     (commands+=Command commands+=Command*)?
 	 *
 	 * Features:
-	 *    definitions[0, *]
+	 *    commands[0, *]
 	 */
 	protected void sequence_Model(EObject context, Model semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -843,28 +854,22 @@ public class AbstractDPFTextSemanticSequencer extends AbstractSemanticSequencer 
 	
 	/**
 	 * Constraint:
-	 *     (id=ID graph=ChoosenGraph (constraints+=Constraint constraints+=Constraint*)?)
+	 *     (
+	 *         type=ChoosenSpecification 
+	 *         sequenceNumber=INT 
+	 *         graph=Graph 
+	 *         constaintSemantic=ChoosenConstraintSemantic 
+	 *         (constraints+=Constraint constraints+=Constraint*)?
+	 *     )
 	 *
 	 * Features:
-	 *    id[1, 1]
+	 *    type[1, 1]
+	 *    sequenceNumber[1, 1]
 	 *    graph[1, 1]
+	 *    constaintSemantic[1, 1]
 	 *    constraints[0, *]
 	 */
 	protected void sequence_Specification(EObject context, Specification semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (id=ID typeGraph=ChoosenTGraph elements+=Element*)
-	 *
-	 * Features:
-	 *    id[1, 1]
-	 *    typeGraph[1, 1]
-	 *    elements[0, *]
-	 */
-	protected void sequence_TGraph(EObject context, TGraph semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 }

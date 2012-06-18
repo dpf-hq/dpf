@@ -4,7 +4,7 @@ import no.hib.dpf.text.tdpf.Arrow;
 import no.hib.dpf.text.tdpf.Arrows;
 import no.hib.dpf.text.tdpf.DpfId;
 import no.hib.dpf.text.tdpf.Element;
-import no.hib.dpf.text.tdpf.TGraph;
+import no.hib.dpf.text.tdpf.Specification;
 import no.hib.dpf.text.tdpf.TdpfFactory;
 import no.hib.dpf.text.wrapper.JavaScalaBridge;
 
@@ -27,7 +27,7 @@ public class DPFTextJavaValidator extends AbstractDPFTextJavaValidator {
 	//TODO: Add code here:
 	
 	@Check
-	public void checkGreetingStartsWithCapital(TGraph graph) {
+	public void checkGreetingStartsWithCapital(Specification graph) {
 //		for(Element e:graph.getElements()){
 //			System.out.println(e);
 //		}

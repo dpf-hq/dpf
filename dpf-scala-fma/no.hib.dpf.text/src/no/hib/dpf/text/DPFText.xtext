@@ -4,7 +4,7 @@ generate tdpf "http://no.hib.dpf/dpf-text"
 
 //Program:
 Model: 
-	(definitions+=Definition (definitions+=Definition)*)?
+	 Specification | (commands+=Command (commands+=Command)*)?
 ;
 
 enum DataType:
@@ -29,9 +29,10 @@ VALUE: NUMBER | CHAR | STRING;
 //
 
 //"Program-Parts":	
-Definition: InstanceSpecification | Specification | TGraph | ExtSubTGraph 
-			| MakeEmf | MakeEcore | MakeImage 
-			| SimpleEvoSpan | SimpleEvoCospan | Morphism | EvoSpan | EvoCospan;
+Command: InstanceSpecification| ExtSubTGraph 
+		| MakeEmf | MakeEcore | MakeImage 
+		| SimpleEvoSpan | SimpleEvoCospan | Morphism | EvoSpan | EvoCospan;
+		
 	
 MakeEmf: 'emf(' id=ID ')';
 
@@ -56,9 +57,16 @@ ChoosenSpecfication : id=ID;
 ConstraintSemantic: id=DpfId '{'(arrows+=Arrows (',' arrows+=Arrows)*) ',' '}' '=' ocl=STRING;
 
 //Specification:
-Specification : id = ID ':=' 'Spec' '<' graph=ChoosenGraph '>' '{' (constraints+=Constraint (',' constraints+=Constraint)*)? '}';
+Specification : 'Specification' ':' type=ChoosenSpecification '<' sequenceNumber=INT '>''{' 
+	 graph=Graph
+	 'Constraints' '<' constaintSemantic=ChoosenConstraintSemantic '>' '{'
+	 (constraints+=Constraint (',' constraints+=Constraint)*)? 
+	 '}'	 
+'}';
 
-ChoosenGraph : id=ID;
+ChoosenSpecification : id=ID;
+
+ChoosenConstraintSemantic : id=ID;
 
 Constraint: signature=ConstraintSignature '{'(arrows+=Arrows (',' arrows+=Arrows)*)'}';
 
@@ -83,9 +91,7 @@ ExtSubTGraph : id = ID ':=' 'ExtSubTGraph' '<' extendsGraph=ChoosenExtSubTGraph 
 ChoosenExtSubTGraph : id=ID;
 
 //Typed graphs:
-TGraph : id = ID  ':=' 'TGraph' '<' typeGraph=ChoosenTGraph '>' '{' (elements+=Element)* '}';
-
-ChoosenTGraph : id=ID;
+Graph : 'Graph' '{' (elements+=Element)* '}';  //Warning is OK, Empty Graph is possible
 
 Element: (Node ',') | (Arrows ',');
 							  
@@ -99,5 +105,4 @@ Node: id=DpfId ':' type=DpfId;
 
 AttributeValue: '[' value=(VALUE) ']';
 
-DpfId: name=ID ('@' id=INT)?;
-		
+DpfId: name=ID ('@' id=INT)?;		

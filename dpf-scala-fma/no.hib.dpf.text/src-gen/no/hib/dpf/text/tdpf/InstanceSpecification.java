@@ -26,7 +26,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface InstanceSpecification extends Definition
+public interface InstanceSpecification extends Command
 {
   /**
    * Returns the value of the '<em><b>Id</b></em>' attribute.

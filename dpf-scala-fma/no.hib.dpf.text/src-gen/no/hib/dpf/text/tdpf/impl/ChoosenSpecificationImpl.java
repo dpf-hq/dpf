@@ -5,7 +5,7 @@
  */
 package no.hib.dpf.text.tdpf.impl;
 
-import no.hib.dpf.text.tdpf.ChoosenTGraph;
+import no.hib.dpf.text.tdpf.ChoosenSpecification;
 import no.hib.dpf.text.tdpf.TdpfPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -17,18 +17,18 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Choosen TGraph</b></em>'.
+ * An implementation of the model object '<em><b>Choosen Specification</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link no.hib.dpf.text.tdpf.impl.ChoosenTGraphImpl#getId <em>Id</em>}</li>
+ *   <li>{@link no.hib.dpf.text.tdpf.impl.ChoosenSpecificationImpl#getId <em>Id</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ChoosenTGraphImpl extends MinimalEObjectImpl.Container implements ChoosenTGraph
+public class ChoosenSpecificationImpl extends MinimalEObjectImpl.Container implements ChoosenSpecification
 {
   /**
    * The default value of the '{@link #getId() <em>Id</em>}' attribute.
@@ -55,7 +55,7 @@ public class ChoosenTGraphImpl extends MinimalEObjectImpl.Container implements C
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ChoosenTGraphImpl()
+  protected ChoosenSpecificationImpl()
   {
     super();
   }
@@ -68,7 +68,7 @@ public class ChoosenTGraphImpl extends MinimalEObjectImpl.Container implements C
   @Override
   protected EClass eStaticClass()
   {
-    return TdpfPackage.Literals.CHOOSEN_TGRAPH;
+    return TdpfPackage.Literals.CHOOSEN_SPECIFICATION;
   }
 
   /**
@@ -91,7 +91,7 @@ public class ChoosenTGraphImpl extends MinimalEObjectImpl.Container implements C
     String oldId = id;
     id = newId;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, TdpfPackage.CHOOSEN_TGRAPH__ID, oldId, id));
+      eNotify(new ENotificationImpl(this, Notification.SET, TdpfPackage.CHOOSEN_SPECIFICATION__ID, oldId, id));
   }
 
   /**
@@ -104,7 +104,7 @@ public class ChoosenTGraphImpl extends MinimalEObjectImpl.Container implements C
   {
     switch (featureID)
     {
-      case TdpfPackage.CHOOSEN_TGRAPH__ID:
+      case TdpfPackage.CHOOSEN_SPECIFICATION__ID:
         return getId();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -120,7 +120,7 @@ public class ChoosenTGraphImpl extends MinimalEObjectImpl.Container implements C
   {
     switch (featureID)
     {
-      case TdpfPackage.CHOOSEN_TGRAPH__ID:
+      case TdpfPackage.CHOOSEN_SPECIFICATION__ID:
         setId((String)newValue);
         return;
     }
@@ -137,7 +137,7 @@ public class ChoosenTGraphImpl extends MinimalEObjectImpl.Container implements C
   {
     switch (featureID)
     {
-      case TdpfPackage.CHOOSEN_TGRAPH__ID:
+      case TdpfPackage.CHOOSEN_SPECIFICATION__ID:
         setId(ID_EDEFAULT);
         return;
     }
@@ -154,7 +154,7 @@ public class ChoosenTGraphImpl extends MinimalEObjectImpl.Container implements C
   {
     switch (featureID)
     {
-      case TdpfPackage.CHOOSEN_TGRAPH__ID:
+      case TdpfPackage.CHOOSEN_SPECIFICATION__ID:
         return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
     }
     return super.eIsSet(featureID);
@@ -177,4 +177,4 @@ public class ChoosenTGraphImpl extends MinimalEObjectImpl.Container implements C
     return result.toString();
   }
 
-} //ChoosenTGraphImpl
+} //ChoosenSpecificationImpl

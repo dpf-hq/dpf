@@ -5,57 +5,55 @@
  */
 package no.hib.dpf.text.tdpf.impl;
 
-import no.hib.dpf.text.tdpf.ChoosenGraph;
+import java.util.Collection;
+
+import no.hib.dpf.text.tdpf.Element;
+import no.hib.dpf.text.tdpf.Graph;
 import no.hib.dpf.text.tdpf.TdpfPackage;
 
-import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Choosen Graph</b></em>'.
+ * An implementation of the model object '<em><b>Graph</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link no.hib.dpf.text.tdpf.impl.ChoosenGraphImpl#getId <em>Id</em>}</li>
+ *   <li>{@link no.hib.dpf.text.tdpf.impl.GraphImpl#getElements <em>Elements</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ChoosenGraphImpl extends MinimalEObjectImpl.Container implements ChoosenGraph
+public class GraphImpl extends MinimalEObjectImpl.Container implements Graph
 {
   /**
-   * The default value of the '{@link #getId() <em>Id</em>}' attribute.
+   * The cached value of the '{@link #getElements() <em>Elements</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getId()
+   * @see #getElements()
    * @generated
    * @ordered
    */
-  protected static final String ID_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getId()
-   * @generated
-   * @ordered
-   */
-  protected String id = ID_EDEFAULT;
+  protected EList<Element> elements;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ChoosenGraphImpl()
+  protected GraphImpl()
   {
     super();
   }
@@ -68,7 +66,7 @@ public class ChoosenGraphImpl extends MinimalEObjectImpl.Container implements Ch
   @Override
   protected EClass eStaticClass()
   {
-    return TdpfPackage.Literals.CHOOSEN_GRAPH;
+    return TdpfPackage.Literals.GRAPH;
   }
 
   /**
@@ -76,9 +74,13 @@ public class ChoosenGraphImpl extends MinimalEObjectImpl.Container implements Ch
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getId()
+  public EList<Element> getElements()
   {
-    return id;
+    if (elements == null)
+    {
+      elements = new EObjectContainmentEList<Element>(Element.class, this, TdpfPackage.GRAPH__ELEMENTS);
+    }
+    return elements;
   }
 
   /**
@@ -86,12 +88,15 @@ public class ChoosenGraphImpl extends MinimalEObjectImpl.Container implements Ch
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setId(String newId)
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
-    String oldId = id;
-    id = newId;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, TdpfPackage.CHOOSEN_GRAPH__ID, oldId, id));
+    switch (featureID)
+    {
+      case TdpfPackage.GRAPH__ELEMENTS:
+        return ((InternalEList<?>)getElements()).basicRemove(otherEnd, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -104,8 +109,8 @@ public class ChoosenGraphImpl extends MinimalEObjectImpl.Container implements Ch
   {
     switch (featureID)
     {
-      case TdpfPackage.CHOOSEN_GRAPH__ID:
-        return getId();
+      case TdpfPackage.GRAPH__ELEMENTS:
+        return getElements();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -115,13 +120,15 @@ public class ChoosenGraphImpl extends MinimalEObjectImpl.Container implements Ch
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
-      case TdpfPackage.CHOOSEN_GRAPH__ID:
-        setId((String)newValue);
+      case TdpfPackage.GRAPH__ELEMENTS:
+        getElements().clear();
+        getElements().addAll((Collection<? extends Element>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -137,8 +144,8 @@ public class ChoosenGraphImpl extends MinimalEObjectImpl.Container implements Ch
   {
     switch (featureID)
     {
-      case TdpfPackage.CHOOSEN_GRAPH__ID:
-        setId(ID_EDEFAULT);
+      case TdpfPackage.GRAPH__ELEMENTS:
+        getElements().clear();
         return;
     }
     super.eUnset(featureID);
@@ -154,27 +161,10 @@ public class ChoosenGraphImpl extends MinimalEObjectImpl.Container implements Ch
   {
     switch (featureID)
     {
-      case TdpfPackage.CHOOSEN_GRAPH__ID:
-        return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
+      case TdpfPackage.GRAPH__ELEMENTS:
+        return elements != null && !elements.isEmpty();
     }
     return super.eIsSet(featureID);
   }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (id: ");
-    result.append(id);
-    result.append(')');
-    return result.toString();
-  }
-
-} //ChoosenGraphImpl
+} //GraphImpl

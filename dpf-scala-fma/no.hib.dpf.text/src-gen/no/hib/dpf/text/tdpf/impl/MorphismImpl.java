@@ -41,7 +41,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class MorphismImpl extends DefinitionImpl implements Morphism
+public class MorphismImpl extends CommandImpl implements Morphism
 {
   /**
    * The cached value of the '{@link #getDomain() <em>Domain</em>}' containment reference.

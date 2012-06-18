@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class MakeEcoreImpl extends DefinitionImpl implements MakeEcore
+public class MakeEcoreImpl extends CommandImpl implements MakeEcore
 {
   /**
    * The default value of the '{@link #getId() <em>Id</em>}' attribute.

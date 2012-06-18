@@ -71,13 +71,13 @@ public interface TdpfPackage extends EPackage
   int MODEL = 0;
 
   /**
-   * The feature id for the '<em><b>Definitions</b></em>' containment reference list.
+   * The feature id for the '<em><b>Commands</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MODEL__DEFINITIONS = 0;
+  int MODEL__COMMANDS = 0;
 
   /**
    * The number of structural features of the '<em>Model</em>' class.
@@ -89,23 +89,23 @@ public interface TdpfPackage extends EPackage
   int MODEL_FEATURE_COUNT = 1;
 
   /**
-   * The meta object id for the '{@link no.hib.dpf.text.tdpf.impl.DefinitionImpl <em>Definition</em>}' class.
+   * The meta object id for the '{@link no.hib.dpf.text.tdpf.impl.CommandImpl <em>Command</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see no.hib.dpf.text.tdpf.impl.DefinitionImpl
-   * @see no.hib.dpf.text.tdpf.impl.TdpfPackageImpl#getDefinition()
+   * @see no.hib.dpf.text.tdpf.impl.CommandImpl
+   * @see no.hib.dpf.text.tdpf.impl.TdpfPackageImpl#getCommand()
    * @generated
    */
-  int DEFINITION = 1;
+  int COMMAND = 1;
 
   /**
-   * The number of structural features of the '<em>Definition</em>' class.
+   * The number of structural features of the '<em>Command</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DEFINITION_FEATURE_COUNT = 0;
+  int COMMAND_FEATURE_COUNT = 0;
 
   /**
    * The meta object id for the '{@link no.hib.dpf.text.tdpf.impl.MakeEmfImpl <em>Make Emf</em>}' class.
@@ -124,7 +124,7 @@ public interface TdpfPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MAKE_EMF__ID = DEFINITION_FEATURE_COUNT + 0;
+  int MAKE_EMF__ID = COMMAND_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Make Emf</em>' class.
@@ -133,7 +133,7 @@ public interface TdpfPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MAKE_EMF_FEATURE_COUNT = DEFINITION_FEATURE_COUNT + 1;
+  int MAKE_EMF_FEATURE_COUNT = COMMAND_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link no.hib.dpf.text.tdpf.impl.MakeEcoreImpl <em>Make Ecore</em>}' class.
@@ -152,7 +152,7 @@ public interface TdpfPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MAKE_ECORE__ID = DEFINITION_FEATURE_COUNT + 0;
+  int MAKE_ECORE__ID = COMMAND_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Make Ecore</em>' class.
@@ -161,7 +161,7 @@ public interface TdpfPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MAKE_ECORE_FEATURE_COUNT = DEFINITION_FEATURE_COUNT + 1;
+  int MAKE_ECORE_FEATURE_COUNT = COMMAND_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link no.hib.dpf.text.tdpf.impl.MakeImageImpl <em>Make Image</em>}' class.
@@ -180,7 +180,7 @@ public interface TdpfPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MAKE_IMAGE__ID = DEFINITION_FEATURE_COUNT + 0;
+  int MAKE_IMAGE__ID = COMMAND_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Make Image</em>' class.
@@ -189,7 +189,7 @@ public interface TdpfPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MAKE_IMAGE_FEATURE_COUNT = DEFINITION_FEATURE_COUNT + 1;
+  int MAKE_IMAGE_FEATURE_COUNT = COMMAND_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link no.hib.dpf.text.tdpf.impl.SimpleEvoSpanImpl <em>Simple Evo Span</em>}' class.
@@ -208,7 +208,7 @@ public interface TdpfPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SIMPLE_EVO_SPAN__LHS = DEFINITION_FEATURE_COUNT + 0;
+  int SIMPLE_EVO_SPAN__LHS = COMMAND_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Diff</b></em>' attribute.
@@ -217,7 +217,7 @@ public interface TdpfPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SIMPLE_EVO_SPAN__DIFF = DEFINITION_FEATURE_COUNT + 1;
+  int SIMPLE_EVO_SPAN__DIFF = COMMAND_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Rh S</b></em>' attribute.
@@ -226,7 +226,7 @@ public interface TdpfPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SIMPLE_EVO_SPAN__RH_S = DEFINITION_FEATURE_COUNT + 2;
+  int SIMPLE_EVO_SPAN__RH_S = COMMAND_FEATURE_COUNT + 2;
 
   /**
    * The feature id for the '<em><b>Type Graph</b></em>' attribute.
@@ -235,7 +235,7 @@ public interface TdpfPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SIMPLE_EVO_SPAN__TYPE_GRAPH = DEFINITION_FEATURE_COUNT + 3;
+  int SIMPLE_EVO_SPAN__TYPE_GRAPH = COMMAND_FEATURE_COUNT + 3;
 
   /**
    * The number of structural features of the '<em>Simple Evo Span</em>' class.
@@ -244,7 +244,7 @@ public interface TdpfPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SIMPLE_EVO_SPAN_FEATURE_COUNT = DEFINITION_FEATURE_COUNT + 4;
+  int SIMPLE_EVO_SPAN_FEATURE_COUNT = COMMAND_FEATURE_COUNT + 4;
 
   /**
    * The meta object id for the '{@link no.hib.dpf.text.tdpf.impl.SimpleEvoCospanImpl <em>Simple Evo Cospan</em>}' class.
@@ -263,7 +263,7 @@ public interface TdpfPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SIMPLE_EVO_COSPAN__LHS = DEFINITION_FEATURE_COUNT + 0;
+  int SIMPLE_EVO_COSPAN__LHS = COMMAND_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Joint</b></em>' attribute.
@@ -272,7 +272,7 @@ public interface TdpfPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SIMPLE_EVO_COSPAN__JOINT = DEFINITION_FEATURE_COUNT + 1;
+  int SIMPLE_EVO_COSPAN__JOINT = COMMAND_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Rhs</b></em>' attribute.
@@ -281,7 +281,7 @@ public interface TdpfPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SIMPLE_EVO_COSPAN__RHS = DEFINITION_FEATURE_COUNT + 2;
+  int SIMPLE_EVO_COSPAN__RHS = COMMAND_FEATURE_COUNT + 2;
 
   /**
    * The feature id for the '<em><b>Type Graph</b></em>' attribute.
@@ -290,7 +290,7 @@ public interface TdpfPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SIMPLE_EVO_COSPAN__TYPE_GRAPH = DEFINITION_FEATURE_COUNT + 3;
+  int SIMPLE_EVO_COSPAN__TYPE_GRAPH = COMMAND_FEATURE_COUNT + 3;
 
   /**
    * The number of structural features of the '<em>Simple Evo Cospan</em>' class.
@@ -299,7 +299,7 @@ public interface TdpfPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SIMPLE_EVO_COSPAN_FEATURE_COUNT = DEFINITION_FEATURE_COUNT + 4;
+  int SIMPLE_EVO_COSPAN_FEATURE_COUNT = COMMAND_FEATURE_COUNT + 4;
 
   /**
    * The meta object id for the '{@link no.hib.dpf.text.tdpf.impl.EvoSpanImpl <em>Evo Span</em>}' class.
@@ -318,7 +318,7 @@ public interface TdpfPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EVO_SPAN__LHS = DEFINITION_FEATURE_COUNT + 0;
+  int EVO_SPAN__LHS = COMMAND_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Rhs</b></em>' attribute.
@@ -327,7 +327,7 @@ public interface TdpfPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EVO_SPAN__RHS = DEFINITION_FEATURE_COUNT + 1;
+  int EVO_SPAN__RHS = COMMAND_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Type Graph</b></em>' attribute.
@@ -336,7 +336,7 @@ public interface TdpfPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EVO_SPAN__TYPE_GRAPH = DEFINITION_FEATURE_COUNT + 2;
+  int EVO_SPAN__TYPE_GRAPH = COMMAND_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Evo Span</em>' class.
@@ -345,7 +345,7 @@ public interface TdpfPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EVO_SPAN_FEATURE_COUNT = DEFINITION_FEATURE_COUNT + 3;
+  int EVO_SPAN_FEATURE_COUNT = COMMAND_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link no.hib.dpf.text.tdpf.impl.EvoCospanImpl <em>Evo Cospan</em>}' class.
@@ -364,7 +364,7 @@ public interface TdpfPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EVO_COSPAN__LHS = DEFINITION_FEATURE_COUNT + 0;
+  int EVO_COSPAN__LHS = COMMAND_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Rhs</b></em>' attribute.
@@ -373,7 +373,7 @@ public interface TdpfPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EVO_COSPAN__RHS = DEFINITION_FEATURE_COUNT + 1;
+  int EVO_COSPAN__RHS = COMMAND_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Type Graph</b></em>' attribute.
@@ -382,7 +382,7 @@ public interface TdpfPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EVO_COSPAN__TYPE_GRAPH = DEFINITION_FEATURE_COUNT + 2;
+  int EVO_COSPAN__TYPE_GRAPH = COMMAND_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Evo Cospan</em>' class.
@@ -391,7 +391,7 @@ public interface TdpfPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EVO_COSPAN_FEATURE_COUNT = DEFINITION_FEATURE_COUNT + 3;
+  int EVO_COSPAN_FEATURE_COUNT = COMMAND_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link no.hib.dpf.text.tdpf.impl.InstanceSpecificationImpl <em>Instance Specification</em>}' class.
@@ -410,7 +410,7 @@ public interface TdpfPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INSTANCE_SPECIFICATION__ID = DEFINITION_FEATURE_COUNT + 0;
+  int INSTANCE_SPECIFICATION__ID = COMMAND_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Model</b></em>' containment reference.
@@ -419,7 +419,7 @@ public interface TdpfPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INSTANCE_SPECIFICATION__MODEL = DEFINITION_FEATURE_COUNT + 1;
+  int INSTANCE_SPECIFICATION__MODEL = COMMAND_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Metamodel</b></em>' containment reference.
@@ -428,7 +428,7 @@ public interface TdpfPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INSTANCE_SPECIFICATION__METAMODEL = DEFINITION_FEATURE_COUNT + 2;
+  int INSTANCE_SPECIFICATION__METAMODEL = COMMAND_FEATURE_COUNT + 2;
 
   /**
    * The feature id for the '<em><b>Constraint Semantics</b></em>' containment reference list.
@@ -437,7 +437,7 @@ public interface TdpfPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INSTANCE_SPECIFICATION__CONSTRAINT_SEMANTICS = DEFINITION_FEATURE_COUNT + 3;
+  int INSTANCE_SPECIFICATION__CONSTRAINT_SEMANTICS = COMMAND_FEATURE_COUNT + 3;
 
   /**
    * The number of structural features of the '<em>Instance Specification</em>' class.
@@ -446,7 +446,7 @@ public interface TdpfPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INSTANCE_SPECIFICATION_FEATURE_COUNT = DEFINITION_FEATURE_COUNT + 4;
+  int INSTANCE_SPECIFICATION_FEATURE_COUNT = COMMAND_FEATURE_COUNT + 4;
 
   /**
    * The meta object id for the '{@link no.hib.dpf.text.tdpf.impl.ChoosenSpecficationImpl <em>Choosen Specfication</em>}' class.
@@ -533,13 +533,31 @@ public interface TdpfPackage extends EPackage
   int SPECIFICATION = 12;
 
   /**
-   * The feature id for the '<em><b>Id</b></em>' attribute.
+   * The feature id for the '<em><b>Commands</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SPECIFICATION__ID = DEFINITION_FEATURE_COUNT + 0;
+  int SPECIFICATION__COMMANDS = MODEL__COMMANDS;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SPECIFICATION__TYPE = MODEL_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Sequence Number</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SPECIFICATION__SEQUENCE_NUMBER = MODEL_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Graph</b></em>' containment reference.
@@ -548,7 +566,16 @@ public interface TdpfPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SPECIFICATION__GRAPH = DEFINITION_FEATURE_COUNT + 1;
+  int SPECIFICATION__GRAPH = MODEL_FEATURE_COUNT + 2;
+
+  /**
+   * The feature id for the '<em><b>Constaint Semantic</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SPECIFICATION__CONSTAINT_SEMANTIC = MODEL_FEATURE_COUNT + 3;
 
   /**
    * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
@@ -557,7 +584,7 @@ public interface TdpfPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SPECIFICATION__CONSTRAINTS = DEFINITION_FEATURE_COUNT + 2;
+  int SPECIFICATION__CONSTRAINTS = MODEL_FEATURE_COUNT + 4;
 
   /**
    * The number of structural features of the '<em>Specification</em>' class.
@@ -566,17 +593,17 @@ public interface TdpfPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SPECIFICATION_FEATURE_COUNT = DEFINITION_FEATURE_COUNT + 3;
+  int SPECIFICATION_FEATURE_COUNT = MODEL_FEATURE_COUNT + 5;
 
   /**
-   * The meta object id for the '{@link no.hib.dpf.text.tdpf.impl.ChoosenGraphImpl <em>Choosen Graph</em>}' class.
+   * The meta object id for the '{@link no.hib.dpf.text.tdpf.impl.ChoosenSpecificationImpl <em>Choosen Specification</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see no.hib.dpf.text.tdpf.impl.ChoosenGraphImpl
-   * @see no.hib.dpf.text.tdpf.impl.TdpfPackageImpl#getChoosenGraph()
+   * @see no.hib.dpf.text.tdpf.impl.ChoosenSpecificationImpl
+   * @see no.hib.dpf.text.tdpf.impl.TdpfPackageImpl#getChoosenSpecification()
    * @generated
    */
-  int CHOOSEN_GRAPH = 13;
+  int CHOOSEN_SPECIFICATION = 13;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -585,16 +612,44 @@ public interface TdpfPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CHOOSEN_GRAPH__ID = 0;
+  int CHOOSEN_SPECIFICATION__ID = 0;
 
   /**
-   * The number of structural features of the '<em>Choosen Graph</em>' class.
+   * The number of structural features of the '<em>Choosen Specification</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CHOOSEN_GRAPH_FEATURE_COUNT = 1;
+  int CHOOSEN_SPECIFICATION_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link no.hib.dpf.text.tdpf.impl.ChoosenConstraintSemanticImpl <em>Choosen Constraint Semantic</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see no.hib.dpf.text.tdpf.impl.ChoosenConstraintSemanticImpl
+   * @see no.hib.dpf.text.tdpf.impl.TdpfPackageImpl#getChoosenConstraintSemantic()
+   * @generated
+   */
+  int CHOOSEN_CONSTRAINT_SEMANTIC = 14;
+
+  /**
+   * The feature id for the '<em><b>Id</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CHOOSEN_CONSTRAINT_SEMANTIC__ID = 0;
+
+  /**
+   * The number of structural features of the '<em>Choosen Constraint Semantic</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CHOOSEN_CONSTRAINT_SEMANTIC_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link no.hib.dpf.text.tdpf.impl.ConstraintImpl <em>Constraint</em>}' class.
@@ -604,7 +659,7 @@ public interface TdpfPackage extends EPackage
    * @see no.hib.dpf.text.tdpf.impl.TdpfPackageImpl#getConstraint()
    * @generated
    */
-  int CONSTRAINT = 14;
+  int CONSTRAINT = 15;
 
   /**
    * The feature id for the '<em><b>Signature</b></em>' containment reference.
@@ -641,7 +696,7 @@ public interface TdpfPackage extends EPackage
    * @see no.hib.dpf.text.tdpf.impl.TdpfPackageImpl#getConstraintSignature()
    * @generated
    */
-  int CONSTRAINT_SIGNATURE = 15;
+  int CONSTRAINT_SIGNATURE = 16;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' containment reference.
@@ -678,7 +733,7 @@ public interface TdpfPackage extends EPackage
    * @see no.hib.dpf.text.tdpf.impl.TdpfPackageImpl#getMorphism()
    * @generated
    */
-  int MORPHISM = 16;
+  int MORPHISM = 17;
 
   /**
    * The feature id for the '<em><b>Domain</b></em>' containment reference.
@@ -687,7 +742,7 @@ public interface TdpfPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MORPHISM__DOMAIN = DEFINITION_FEATURE_COUNT + 0;
+  int MORPHISM__DOMAIN = COMMAND_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Codmain</b></em>' containment reference.
@@ -696,7 +751,7 @@ public interface TdpfPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MORPHISM__CODMAIN = DEFINITION_FEATURE_COUNT + 1;
+  int MORPHISM__CODMAIN = COMMAND_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Mappings</b></em>' containment reference list.
@@ -705,7 +760,7 @@ public interface TdpfPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MORPHISM__MAPPINGS = DEFINITION_FEATURE_COUNT + 2;
+  int MORPHISM__MAPPINGS = COMMAND_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Morphism</em>' class.
@@ -714,7 +769,7 @@ public interface TdpfPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MORPHISM_FEATURE_COUNT = DEFINITION_FEATURE_COUNT + 3;
+  int MORPHISM_FEATURE_COUNT = COMMAND_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link no.hib.dpf.text.tdpf.impl.DomainImpl <em>Domain</em>}' class.
@@ -724,7 +779,7 @@ public interface TdpfPackage extends EPackage
    * @see no.hib.dpf.text.tdpf.impl.TdpfPackageImpl#getDomain()
    * @generated
    */
-  int DOMAIN = 17;
+  int DOMAIN = 18;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -752,7 +807,7 @@ public interface TdpfPackage extends EPackage
    * @see no.hib.dpf.text.tdpf.impl.TdpfPackageImpl#getCodomain()
    * @generated
    */
-  int CODOMAIN = 18;
+  int CODOMAIN = 19;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -780,7 +835,7 @@ public interface TdpfPackage extends EPackage
    * @see no.hib.dpf.text.tdpf.impl.TdpfPackageImpl#getMapping()
    * @generated
    */
-  int MAPPING = 19;
+  int MAPPING = 20;
 
   /**
    * The number of structural features of the '<em>Mapping</em>' class.
@@ -799,7 +854,7 @@ public interface TdpfPackage extends EPackage
    * @see no.hib.dpf.text.tdpf.impl.TdpfPackageImpl#getMappingNode()
    * @generated
    */
-  int MAPPING_NODE = 20;
+  int MAPPING_NODE = 21;
 
   /**
    * The feature id for the '<em><b>Domain</b></em>' containment reference.
@@ -836,7 +891,7 @@ public interface TdpfPackage extends EPackage
    * @see no.hib.dpf.text.tdpf.impl.TdpfPackageImpl#getMappingArrow()
    * @generated
    */
-  int MAPPING_ARROW = 21;
+  int MAPPING_ARROW = 22;
 
   /**
    * The feature id for the '<em><b>Domain</b></em>' containment reference.
@@ -873,7 +928,7 @@ public interface TdpfPackage extends EPackage
    * @see no.hib.dpf.text.tdpf.impl.TdpfPackageImpl#getExtSubTGraph()
    * @generated
    */
-  int EXT_SUB_TGRAPH = 22;
+  int EXT_SUB_TGRAPH = 23;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -882,7 +937,7 @@ public interface TdpfPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXT_SUB_TGRAPH__ID = DEFINITION_FEATURE_COUNT + 0;
+  int EXT_SUB_TGRAPH__ID = COMMAND_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Extends Graph</b></em>' containment reference.
@@ -891,7 +946,7 @@ public interface TdpfPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXT_SUB_TGRAPH__EXTENDS_GRAPH = DEFINITION_FEATURE_COUNT + 1;
+  int EXT_SUB_TGRAPH__EXTENDS_GRAPH = COMMAND_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Elements</b></em>' containment reference list.
@@ -900,7 +955,7 @@ public interface TdpfPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXT_SUB_TGRAPH__ELEMENTS = DEFINITION_FEATURE_COUNT + 2;
+  int EXT_SUB_TGRAPH__ELEMENTS = COMMAND_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Ext Sub TGraph</em>' class.
@@ -909,7 +964,7 @@ public interface TdpfPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXT_SUB_TGRAPH_FEATURE_COUNT = DEFINITION_FEATURE_COUNT + 3;
+  int EXT_SUB_TGRAPH_FEATURE_COUNT = COMMAND_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link no.hib.dpf.text.tdpf.impl.ChoosenExtSubTGraphImpl <em>Choosen Ext Sub TGraph</em>}' class.
@@ -919,7 +974,7 @@ public interface TdpfPackage extends EPackage
    * @see no.hib.dpf.text.tdpf.impl.TdpfPackageImpl#getChoosenExtSubTGraph()
    * @generated
    */
-  int CHOOSEN_EXT_SUB_TGRAPH = 23;
+  int CHOOSEN_EXT_SUB_TGRAPH = 24;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -940,32 +995,14 @@ public interface TdpfPackage extends EPackage
   int CHOOSEN_EXT_SUB_TGRAPH_FEATURE_COUNT = 1;
 
   /**
-   * The meta object id for the '{@link no.hib.dpf.text.tdpf.impl.TGraphImpl <em>TGraph</em>}' class.
+   * The meta object id for the '{@link no.hib.dpf.text.tdpf.impl.GraphImpl <em>Graph</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see no.hib.dpf.text.tdpf.impl.TGraphImpl
-   * @see no.hib.dpf.text.tdpf.impl.TdpfPackageImpl#getTGraph()
+   * @see no.hib.dpf.text.tdpf.impl.GraphImpl
+   * @see no.hib.dpf.text.tdpf.impl.TdpfPackageImpl#getGraph()
    * @generated
    */
-  int TGRAPH = 24;
-
-  /**
-   * The feature id for the '<em><b>Id</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TGRAPH__ID = DEFINITION_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Type Graph</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TGRAPH__TYPE_GRAPH = DEFINITION_FEATURE_COUNT + 1;
+  int GRAPH = 25;
 
   /**
    * The feature id for the '<em><b>Elements</b></em>' containment reference list.
@@ -974,44 +1011,16 @@ public interface TdpfPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TGRAPH__ELEMENTS = DEFINITION_FEATURE_COUNT + 2;
+  int GRAPH__ELEMENTS = 0;
 
   /**
-   * The number of structural features of the '<em>TGraph</em>' class.
+   * The number of structural features of the '<em>Graph</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int TGRAPH_FEATURE_COUNT = DEFINITION_FEATURE_COUNT + 3;
-
-  /**
-   * The meta object id for the '{@link no.hib.dpf.text.tdpf.impl.ChoosenTGraphImpl <em>Choosen TGraph</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see no.hib.dpf.text.tdpf.impl.ChoosenTGraphImpl
-   * @see no.hib.dpf.text.tdpf.impl.TdpfPackageImpl#getChoosenTGraph()
-   * @generated
-   */
-  int CHOOSEN_TGRAPH = 25;
-
-  /**
-   * The feature id for the '<em><b>Id</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CHOOSEN_TGRAPH__ID = 0;
-
-  /**
-   * The number of structural features of the '<em>Choosen TGraph</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CHOOSEN_TGRAPH_FEATURE_COUNT = 1;
+  int GRAPH_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link no.hib.dpf.text.tdpf.impl.ElementImpl <em>Element</em>}' class.
@@ -1311,25 +1320,25 @@ public interface TdpfPackage extends EPackage
   EClass getModel();
 
   /**
-   * Returns the meta object for the containment reference list '{@link no.hib.dpf.text.tdpf.Model#getDefinitions <em>Definitions</em>}'.
+   * Returns the meta object for the containment reference list '{@link no.hib.dpf.text.tdpf.Model#getCommands <em>Commands</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Definitions</em>'.
-   * @see no.hib.dpf.text.tdpf.Model#getDefinitions()
+   * @return the meta object for the containment reference list '<em>Commands</em>'.
+   * @see no.hib.dpf.text.tdpf.Model#getCommands()
    * @see #getModel()
    * @generated
    */
-  EReference getModel_Definitions();
+  EReference getModel_Commands();
 
   /**
-   * Returns the meta object for class '{@link no.hib.dpf.text.tdpf.Definition <em>Definition</em>}'.
+   * Returns the meta object for class '{@link no.hib.dpf.text.tdpf.Command <em>Command</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Definition</em>'.
-   * @see no.hib.dpf.text.tdpf.Definition
+   * @return the meta object for class '<em>Command</em>'.
+   * @see no.hib.dpf.text.tdpf.Command
    * @generated
    */
-  EClass getDefinition();
+  EClass getCommand();
 
   /**
    * Returns the meta object for class '{@link no.hib.dpf.text.tdpf.MakeEmf <em>Make Emf</em>}'.
@@ -1717,15 +1726,26 @@ public interface TdpfPackage extends EPackage
   EClass getSpecification();
 
   /**
-   * Returns the meta object for the attribute '{@link no.hib.dpf.text.tdpf.Specification#getId <em>Id</em>}'.
+   * Returns the meta object for the containment reference '{@link no.hib.dpf.text.tdpf.Specification#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Id</em>'.
-   * @see no.hib.dpf.text.tdpf.Specification#getId()
+   * @return the meta object for the containment reference '<em>Type</em>'.
+   * @see no.hib.dpf.text.tdpf.Specification#getType()
    * @see #getSpecification()
    * @generated
    */
-  EAttribute getSpecification_Id();
+  EReference getSpecification_Type();
+
+  /**
+   * Returns the meta object for the attribute '{@link no.hib.dpf.text.tdpf.Specification#getSequenceNumber <em>Sequence Number</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Sequence Number</em>'.
+   * @see no.hib.dpf.text.tdpf.Specification#getSequenceNumber()
+   * @see #getSpecification()
+   * @generated
+   */
+  EAttribute getSpecification_SequenceNumber();
 
   /**
    * Returns the meta object for the containment reference '{@link no.hib.dpf.text.tdpf.Specification#getGraph <em>Graph</em>}'.
@@ -1739,6 +1759,17 @@ public interface TdpfPackage extends EPackage
   EReference getSpecification_Graph();
 
   /**
+   * Returns the meta object for the containment reference '{@link no.hib.dpf.text.tdpf.Specification#getConstaintSemantic <em>Constaint Semantic</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Constaint Semantic</em>'.
+   * @see no.hib.dpf.text.tdpf.Specification#getConstaintSemantic()
+   * @see #getSpecification()
+   * @generated
+   */
+  EReference getSpecification_ConstaintSemantic();
+
+  /**
    * Returns the meta object for the containment reference list '{@link no.hib.dpf.text.tdpf.Specification#getConstraints <em>Constraints</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1750,25 +1781,46 @@ public interface TdpfPackage extends EPackage
   EReference getSpecification_Constraints();
 
   /**
-   * Returns the meta object for class '{@link no.hib.dpf.text.tdpf.ChoosenGraph <em>Choosen Graph</em>}'.
+   * Returns the meta object for class '{@link no.hib.dpf.text.tdpf.ChoosenSpecification <em>Choosen Specification</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Choosen Graph</em>'.
-   * @see no.hib.dpf.text.tdpf.ChoosenGraph
+   * @return the meta object for class '<em>Choosen Specification</em>'.
+   * @see no.hib.dpf.text.tdpf.ChoosenSpecification
    * @generated
    */
-  EClass getChoosenGraph();
+  EClass getChoosenSpecification();
 
   /**
-   * Returns the meta object for the attribute '{@link no.hib.dpf.text.tdpf.ChoosenGraph#getId <em>Id</em>}'.
+   * Returns the meta object for the attribute '{@link no.hib.dpf.text.tdpf.ChoosenSpecification#getId <em>Id</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Id</em>'.
-   * @see no.hib.dpf.text.tdpf.ChoosenGraph#getId()
-   * @see #getChoosenGraph()
+   * @see no.hib.dpf.text.tdpf.ChoosenSpecification#getId()
+   * @see #getChoosenSpecification()
    * @generated
    */
-  EAttribute getChoosenGraph_Id();
+  EAttribute getChoosenSpecification_Id();
+
+  /**
+   * Returns the meta object for class '{@link no.hib.dpf.text.tdpf.ChoosenConstraintSemantic <em>Choosen Constraint Semantic</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Choosen Constraint Semantic</em>'.
+   * @see no.hib.dpf.text.tdpf.ChoosenConstraintSemantic
+   * @generated
+   */
+  EClass getChoosenConstraintSemantic();
+
+  /**
+   * Returns the meta object for the attribute '{@link no.hib.dpf.text.tdpf.ChoosenConstraintSemantic#getId <em>Id</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Id</em>'.
+   * @see no.hib.dpf.text.tdpf.ChoosenConstraintSemantic#getId()
+   * @see #getChoosenConstraintSemantic()
+   * @generated
+   */
+  EAttribute getChoosenConstraintSemantic_Id();
 
   /**
    * Returns the meta object for class '{@link no.hib.dpf.text.tdpf.Constraint <em>Constraint</em>}'.
@@ -2058,68 +2110,25 @@ public interface TdpfPackage extends EPackage
   EAttribute getChoosenExtSubTGraph_Id();
 
   /**
-   * Returns the meta object for class '{@link no.hib.dpf.text.tdpf.TGraph <em>TGraph</em>}'.
+   * Returns the meta object for class '{@link no.hib.dpf.text.tdpf.Graph <em>Graph</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>TGraph</em>'.
-   * @see no.hib.dpf.text.tdpf.TGraph
+   * @return the meta object for class '<em>Graph</em>'.
+   * @see no.hib.dpf.text.tdpf.Graph
    * @generated
    */
-  EClass getTGraph();
+  EClass getGraph();
 
   /**
-   * Returns the meta object for the attribute '{@link no.hib.dpf.text.tdpf.TGraph#getId <em>Id</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Id</em>'.
-   * @see no.hib.dpf.text.tdpf.TGraph#getId()
-   * @see #getTGraph()
-   * @generated
-   */
-  EAttribute getTGraph_Id();
-
-  /**
-   * Returns the meta object for the containment reference '{@link no.hib.dpf.text.tdpf.TGraph#getTypeGraph <em>Type Graph</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Type Graph</em>'.
-   * @see no.hib.dpf.text.tdpf.TGraph#getTypeGraph()
-   * @see #getTGraph()
-   * @generated
-   */
-  EReference getTGraph_TypeGraph();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link no.hib.dpf.text.tdpf.TGraph#getElements <em>Elements</em>}'.
+   * Returns the meta object for the containment reference list '{@link no.hib.dpf.text.tdpf.Graph#getElements <em>Elements</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference list '<em>Elements</em>'.
-   * @see no.hib.dpf.text.tdpf.TGraph#getElements()
-   * @see #getTGraph()
+   * @see no.hib.dpf.text.tdpf.Graph#getElements()
+   * @see #getGraph()
    * @generated
    */
-  EReference getTGraph_Elements();
-
-  /**
-   * Returns the meta object for class '{@link no.hib.dpf.text.tdpf.ChoosenTGraph <em>Choosen TGraph</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Choosen TGraph</em>'.
-   * @see no.hib.dpf.text.tdpf.ChoosenTGraph
-   * @generated
-   */
-  EClass getChoosenTGraph();
-
-  /**
-   * Returns the meta object for the attribute '{@link no.hib.dpf.text.tdpf.ChoosenTGraph#getId <em>Id</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Id</em>'.
-   * @see no.hib.dpf.text.tdpf.ChoosenTGraph#getId()
-   * @see #getChoosenTGraph()
-   * @generated
-   */
-  EAttribute getChoosenTGraph_Id();
+  EReference getGraph_Elements();
 
   /**
    * Returns the meta object for class '{@link no.hib.dpf.text.tdpf.Element <em>Element</em>}'.
@@ -2335,22 +2344,22 @@ public interface TdpfPackage extends EPackage
     EClass MODEL = eINSTANCE.getModel();
 
     /**
-     * The meta object literal for the '<em><b>Definitions</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Commands</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference MODEL__DEFINITIONS = eINSTANCE.getModel_Definitions();
+    EReference MODEL__COMMANDS = eINSTANCE.getModel_Commands();
 
     /**
-     * The meta object literal for the '{@link no.hib.dpf.text.tdpf.impl.DefinitionImpl <em>Definition</em>}' class.
+     * The meta object literal for the '{@link no.hib.dpf.text.tdpf.impl.CommandImpl <em>Command</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see no.hib.dpf.text.tdpf.impl.DefinitionImpl
-     * @see no.hib.dpf.text.tdpf.impl.TdpfPackageImpl#getDefinition()
+     * @see no.hib.dpf.text.tdpf.impl.CommandImpl
+     * @see no.hib.dpf.text.tdpf.impl.TdpfPackageImpl#getCommand()
      * @generated
      */
-    EClass DEFINITION = eINSTANCE.getDefinition();
+    EClass COMMAND = eINSTANCE.getCommand();
 
     /**
      * The meta object literal for the '{@link no.hib.dpf.text.tdpf.impl.MakeEmfImpl <em>Make Emf</em>}' class.
@@ -2663,12 +2672,20 @@ public interface TdpfPackage extends EPackage
     EClass SPECIFICATION = eINSTANCE.getSpecification();
 
     /**
-     * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute SPECIFICATION__ID = eINSTANCE.getSpecification_Id();
+    EReference SPECIFICATION__TYPE = eINSTANCE.getSpecification_Type();
+
+    /**
+     * The meta object literal for the '<em><b>Sequence Number</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute SPECIFICATION__SEQUENCE_NUMBER = eINSTANCE.getSpecification_SequenceNumber();
 
     /**
      * The meta object literal for the '<em><b>Graph</b></em>' containment reference feature.
@@ -2679,6 +2696,14 @@ public interface TdpfPackage extends EPackage
     EReference SPECIFICATION__GRAPH = eINSTANCE.getSpecification_Graph();
 
     /**
+     * The meta object literal for the '<em><b>Constaint Semantic</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference SPECIFICATION__CONSTAINT_SEMANTIC = eINSTANCE.getSpecification_ConstaintSemantic();
+
+    /**
      * The meta object literal for the '<em><b>Constraints</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2687,14 +2712,14 @@ public interface TdpfPackage extends EPackage
     EReference SPECIFICATION__CONSTRAINTS = eINSTANCE.getSpecification_Constraints();
 
     /**
-     * The meta object literal for the '{@link no.hib.dpf.text.tdpf.impl.ChoosenGraphImpl <em>Choosen Graph</em>}' class.
+     * The meta object literal for the '{@link no.hib.dpf.text.tdpf.impl.ChoosenSpecificationImpl <em>Choosen Specification</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see no.hib.dpf.text.tdpf.impl.ChoosenGraphImpl
-     * @see no.hib.dpf.text.tdpf.impl.TdpfPackageImpl#getChoosenGraph()
+     * @see no.hib.dpf.text.tdpf.impl.ChoosenSpecificationImpl
+     * @see no.hib.dpf.text.tdpf.impl.TdpfPackageImpl#getChoosenSpecification()
      * @generated
      */
-    EClass CHOOSEN_GRAPH = eINSTANCE.getChoosenGraph();
+    EClass CHOOSEN_SPECIFICATION = eINSTANCE.getChoosenSpecification();
 
     /**
      * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
@@ -2702,7 +2727,25 @@ public interface TdpfPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute CHOOSEN_GRAPH__ID = eINSTANCE.getChoosenGraph_Id();
+    EAttribute CHOOSEN_SPECIFICATION__ID = eINSTANCE.getChoosenSpecification_Id();
+
+    /**
+     * The meta object literal for the '{@link no.hib.dpf.text.tdpf.impl.ChoosenConstraintSemanticImpl <em>Choosen Constraint Semantic</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see no.hib.dpf.text.tdpf.impl.ChoosenConstraintSemanticImpl
+     * @see no.hib.dpf.text.tdpf.impl.TdpfPackageImpl#getChoosenConstraintSemantic()
+     * @generated
+     */
+    EClass CHOOSEN_CONSTRAINT_SEMANTIC = eINSTANCE.getChoosenConstraintSemantic();
+
+    /**
+     * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CHOOSEN_CONSTRAINT_SEMANTIC__ID = eINSTANCE.getChoosenConstraintSemantic_Id();
 
     /**
      * The meta object literal for the '{@link no.hib.dpf.text.tdpf.impl.ConstraintImpl <em>Constraint</em>}' class.
@@ -2941,30 +2984,14 @@ public interface TdpfPackage extends EPackage
     EAttribute CHOOSEN_EXT_SUB_TGRAPH__ID = eINSTANCE.getChoosenExtSubTGraph_Id();
 
     /**
-     * The meta object literal for the '{@link no.hib.dpf.text.tdpf.impl.TGraphImpl <em>TGraph</em>}' class.
+     * The meta object literal for the '{@link no.hib.dpf.text.tdpf.impl.GraphImpl <em>Graph</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see no.hib.dpf.text.tdpf.impl.TGraphImpl
-     * @see no.hib.dpf.text.tdpf.impl.TdpfPackageImpl#getTGraph()
+     * @see no.hib.dpf.text.tdpf.impl.GraphImpl
+     * @see no.hib.dpf.text.tdpf.impl.TdpfPackageImpl#getGraph()
      * @generated
      */
-    EClass TGRAPH = eINSTANCE.getTGraph();
-
-    /**
-     * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute TGRAPH__ID = eINSTANCE.getTGraph_Id();
-
-    /**
-     * The meta object literal for the '<em><b>Type Graph</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference TGRAPH__TYPE_GRAPH = eINSTANCE.getTGraph_TypeGraph();
+    EClass GRAPH = eINSTANCE.getGraph();
 
     /**
      * The meta object literal for the '<em><b>Elements</b></em>' containment reference list feature.
@@ -2972,25 +2999,7 @@ public interface TdpfPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference TGRAPH__ELEMENTS = eINSTANCE.getTGraph_Elements();
-
-    /**
-     * The meta object literal for the '{@link no.hib.dpf.text.tdpf.impl.ChoosenTGraphImpl <em>Choosen TGraph</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see no.hib.dpf.text.tdpf.impl.ChoosenTGraphImpl
-     * @see no.hib.dpf.text.tdpf.impl.TdpfPackageImpl#getChoosenTGraph()
-     * @generated
-     */
-    EClass CHOOSEN_TGRAPH = eINSTANCE.getChoosenTGraph();
-
-    /**
-     * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute CHOOSEN_TGRAPH__ID = eINSTANCE.getChoosenTGraph_Id();
+    EReference GRAPH__ELEMENTS = eINSTANCE.getGraph_Elements();
 
     /**
      * The meta object literal for the '{@link no.hib.dpf.text.tdpf.impl.ElementImpl <em>Element</em>}' class.

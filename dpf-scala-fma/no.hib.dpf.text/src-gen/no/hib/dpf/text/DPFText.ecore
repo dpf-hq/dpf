@@ -4,8 +4,8 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="tdpf"
     nsURI="http://no.hib.dpf/dpf-text" nsPrefix="tdpf">
   <eClassifiers xsi:type="ecore:EClass" name="Model">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="definitions" upperBound="-1"
-        eType="ecore:EClass platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Definition"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="commands" upperBound="-1"
+        eType="ecore:EClass platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Command"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="DataType">
@@ -19,39 +19,39 @@
     <eLiterals name="TDOUBLE" value="7" literal="Double"/>
     <eLiterals name="TSTRING" value="8" literal="String"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Definition"/>
-  <eClassifiers xsi:type="ecore:EClass" name="MakeEmf" eSuperTypes="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Definition">
+  <eClassifiers xsi:type="ecore:EClass" name="Command"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MakeEmf" eSuperTypes="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Command">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MakeEcore" eSuperTypes="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Definition">
+  <eClassifiers xsi:type="ecore:EClass" name="MakeEcore" eSuperTypes="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Command">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MakeImage" eSuperTypes="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Definition">
+  <eClassifiers xsi:type="ecore:EClass" name="MakeImage" eSuperTypes="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Command">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SimpleEvoSpan" eSuperTypes="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Definition">
+  <eClassifiers xsi:type="ecore:EClass" name="SimpleEvoSpan" eSuperTypes="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Command">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="lhs" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="diff" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="rhS" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="typeGraph" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SimpleEvoCospan" eSuperTypes="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Definition">
+  <eClassifiers xsi:type="ecore:EClass" name="SimpleEvoCospan" eSuperTypes="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Command">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="lhs" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="joint" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="rhs" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="typeGraph" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="EvoSpan" eSuperTypes="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Definition">
+  <eClassifiers xsi:type="ecore:EClass" name="EvoSpan" eSuperTypes="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Command">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="lhs" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="rhs" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="typeGraph" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="EvoCospan" eSuperTypes="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Definition">
+  <eClassifiers xsi:type="ecore:EClass" name="EvoCospan" eSuperTypes="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Command">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="lhs" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="rhs" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="typeGraph" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="InstanceSpecification" eSuperTypes="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Definition">
+  <eClassifiers xsi:type="ecore:EClass" name="InstanceSpecification" eSuperTypes="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Command">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="model" eType="ecore:EClass platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//ChoosenSpecfication"
         containment="true"/>
@@ -72,15 +72,22 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="ocl" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Specification" eSuperTypes="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Definition">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="graph" eType="ecore:EClass platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//ChoosenGraph"
+  <eClassifiers xsi:type="ecore:EClass" name="Specification" eSuperTypes="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Model">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//ChoosenSpecification"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sequenceNumber" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="graph" eType="ecore:EClass platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Graph"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constaintSemantic" eType="ecore:EClass platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//ChoosenConstraintSemantic"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
         eType="ecore:EClass platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Constraint"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ChoosenGraph">
+  <eClassifiers xsi:type="ecore:EClass" name="ChoosenSpecification">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ChoosenConstraintSemantic">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Constraint">
@@ -96,7 +103,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="parameter" unique="false"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Morphism" eSuperTypes="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Definition">
+  <eClassifiers xsi:type="ecore:EClass" name="Morphism" eSuperTypes="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Command">
     <eStructuralFeatures xsi:type="ecore:EReference" name="domain" eType="ecore:EClass platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Domain"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="codmain" eType="ecore:EClass platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Codomain"
@@ -124,7 +131,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="codmain" eType="ecore:EClass platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Arrow"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExtSubTGraph" eSuperTypes="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Definition">
+  <eClassifiers xsi:type="ecore:EClass" name="ExtSubTGraph" eSuperTypes="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Command">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="extendsGraph" eType="ecore:EClass platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//ChoosenExtSubTGraph"
         containment="true"/>
@@ -135,16 +142,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="ChoosenExtSubTGraph">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TGraph" eSuperTypes="platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Definition">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="typeGraph" eType="ecore:EClass platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//ChoosenTGraph"
-        containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Graph">
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
         eType="ecore:EClass platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//Element"
         containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ChoosenTGraph">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Element">
     <eStructuralFeatures xsi:type="ecore:EReference" name="id" eType="ecore:EClass platform:/resource/no.hib.dpf.text/src-gen/no/hib/dpf/text/DPFText.ecore#//DpfId"

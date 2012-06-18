@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class EvoCospanImpl extends DefinitionImpl implements EvoCospan
+public class EvoCospanImpl extends CommandImpl implements EvoCospan
 {
   /**
    * The default value of the '{@link #getLhs() <em>Lhs</em>}' attribute.

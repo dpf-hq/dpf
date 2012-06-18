@@ -82,10 +82,10 @@ public class TdpfSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case TdpfPackage.DEFINITION:
+      case TdpfPackage.COMMAND:
       {
-        Definition definition = (Definition)theEObject;
-        T result = caseDefinition(definition);
+        Command command = (Command)theEObject;
+        T result = caseCommand(command);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -93,7 +93,7 @@ public class TdpfSwitch<T> extends Switch<T>
       {
         MakeEmf makeEmf = (MakeEmf)theEObject;
         T result = caseMakeEmf(makeEmf);
-        if (result == null) result = caseDefinition(makeEmf);
+        if (result == null) result = caseCommand(makeEmf);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -101,7 +101,7 @@ public class TdpfSwitch<T> extends Switch<T>
       {
         MakeEcore makeEcore = (MakeEcore)theEObject;
         T result = caseMakeEcore(makeEcore);
-        if (result == null) result = caseDefinition(makeEcore);
+        if (result == null) result = caseCommand(makeEcore);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -109,7 +109,7 @@ public class TdpfSwitch<T> extends Switch<T>
       {
         MakeImage makeImage = (MakeImage)theEObject;
         T result = caseMakeImage(makeImage);
-        if (result == null) result = caseDefinition(makeImage);
+        if (result == null) result = caseCommand(makeImage);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -117,7 +117,7 @@ public class TdpfSwitch<T> extends Switch<T>
       {
         SimpleEvoSpan simpleEvoSpan = (SimpleEvoSpan)theEObject;
         T result = caseSimpleEvoSpan(simpleEvoSpan);
-        if (result == null) result = caseDefinition(simpleEvoSpan);
+        if (result == null) result = caseCommand(simpleEvoSpan);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -125,7 +125,7 @@ public class TdpfSwitch<T> extends Switch<T>
       {
         SimpleEvoCospan simpleEvoCospan = (SimpleEvoCospan)theEObject;
         T result = caseSimpleEvoCospan(simpleEvoCospan);
-        if (result == null) result = caseDefinition(simpleEvoCospan);
+        if (result == null) result = caseCommand(simpleEvoCospan);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -133,7 +133,7 @@ public class TdpfSwitch<T> extends Switch<T>
       {
         EvoSpan evoSpan = (EvoSpan)theEObject;
         T result = caseEvoSpan(evoSpan);
-        if (result == null) result = caseDefinition(evoSpan);
+        if (result == null) result = caseCommand(evoSpan);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -141,7 +141,7 @@ public class TdpfSwitch<T> extends Switch<T>
       {
         EvoCospan evoCospan = (EvoCospan)theEObject;
         T result = caseEvoCospan(evoCospan);
-        if (result == null) result = caseDefinition(evoCospan);
+        if (result == null) result = caseCommand(evoCospan);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -149,7 +149,7 @@ public class TdpfSwitch<T> extends Switch<T>
       {
         InstanceSpecification instanceSpecification = (InstanceSpecification)theEObject;
         T result = caseInstanceSpecification(instanceSpecification);
-        if (result == null) result = caseDefinition(instanceSpecification);
+        if (result == null) result = caseCommand(instanceSpecification);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -171,14 +171,21 @@ public class TdpfSwitch<T> extends Switch<T>
       {
         Specification specification = (Specification)theEObject;
         T result = caseSpecification(specification);
-        if (result == null) result = caseDefinition(specification);
+        if (result == null) result = caseModel(specification);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case TdpfPackage.CHOOSEN_GRAPH:
+      case TdpfPackage.CHOOSEN_SPECIFICATION:
       {
-        ChoosenGraph choosenGraph = (ChoosenGraph)theEObject;
-        T result = caseChoosenGraph(choosenGraph);
+        ChoosenSpecification choosenSpecification = (ChoosenSpecification)theEObject;
+        T result = caseChoosenSpecification(choosenSpecification);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case TdpfPackage.CHOOSEN_CONSTRAINT_SEMANTIC:
+      {
+        ChoosenConstraintSemantic choosenConstraintSemantic = (ChoosenConstraintSemantic)theEObject;
+        T result = caseChoosenConstraintSemantic(choosenConstraintSemantic);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -200,7 +207,7 @@ public class TdpfSwitch<T> extends Switch<T>
       {
         Morphism morphism = (Morphism)theEObject;
         T result = caseMorphism(morphism);
-        if (result == null) result = caseDefinition(morphism);
+        if (result == null) result = caseCommand(morphism);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -245,7 +252,7 @@ public class TdpfSwitch<T> extends Switch<T>
       {
         ExtSubTGraph extSubTGraph = (ExtSubTGraph)theEObject;
         T result = caseExtSubTGraph(extSubTGraph);
-        if (result == null) result = caseDefinition(extSubTGraph);
+        if (result == null) result = caseCommand(extSubTGraph);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -256,18 +263,10 @@ public class TdpfSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case TdpfPackage.TGRAPH:
+      case TdpfPackage.GRAPH:
       {
-        TGraph tGraph = (TGraph)theEObject;
-        T result = caseTGraph(tGraph);
-        if (result == null) result = caseDefinition(tGraph);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case TdpfPackage.CHOOSEN_TGRAPH:
-      {
-        ChoosenTGraph choosenTGraph = (ChoosenTGraph)theEObject;
-        T result = caseChoosenTGraph(choosenTGraph);
+        Graph graph = (Graph)theEObject;
+        T result = caseGraph(graph);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -338,17 +337,17 @@ public class TdpfSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Definition</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Command</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Definition</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Command</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseDefinition(Definition object)
+  public T caseCommand(Command object)
   {
     return null;
   }
@@ -530,17 +529,33 @@ public class TdpfSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Choosen Graph</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Choosen Specification</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Choosen Graph</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Choosen Specification</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseChoosenGraph(ChoosenGraph object)
+  public T caseChoosenSpecification(ChoosenSpecification object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Choosen Constraint Semantic</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Choosen Constraint Semantic</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseChoosenConstraintSemantic(ChoosenConstraintSemantic object)
   {
     return null;
   }
@@ -706,33 +721,17 @@ public class TdpfSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>TGraph</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Graph</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>TGraph</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Graph</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseTGraph(TGraph object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Choosen TGraph</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Choosen TGraph</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseChoosenTGraph(ChoosenTGraph object)
+  public T caseGraph(Graph object)
   {
     return null;
   }

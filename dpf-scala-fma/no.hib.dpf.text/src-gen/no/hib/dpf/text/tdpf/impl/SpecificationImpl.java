@@ -7,8 +7,10 @@ package no.hib.dpf.text.tdpf.impl;
 
 import java.util.Collection;
 
-import no.hib.dpf.text.tdpf.ChoosenGraph;
+import no.hib.dpf.text.tdpf.ChoosenConstraintSemantic;
+import no.hib.dpf.text.tdpf.ChoosenSpecification;
 import no.hib.dpf.text.tdpf.Constraint;
+import no.hib.dpf.text.tdpf.Graph;
 import no.hib.dpf.text.tdpf.Specification;
 import no.hib.dpf.text.tdpf.TdpfPackage;
 
@@ -32,35 +34,47 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link no.hib.dpf.text.tdpf.impl.SpecificationImpl#getId <em>Id</em>}</li>
+ *   <li>{@link no.hib.dpf.text.tdpf.impl.SpecificationImpl#getType <em>Type</em>}</li>
+ *   <li>{@link no.hib.dpf.text.tdpf.impl.SpecificationImpl#getSequenceNumber <em>Sequence Number</em>}</li>
  *   <li>{@link no.hib.dpf.text.tdpf.impl.SpecificationImpl#getGraph <em>Graph</em>}</li>
+ *   <li>{@link no.hib.dpf.text.tdpf.impl.SpecificationImpl#getConstaintSemantic <em>Constaint Semantic</em>}</li>
  *   <li>{@link no.hib.dpf.text.tdpf.impl.SpecificationImpl#getConstraints <em>Constraints</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class SpecificationImpl extends DefinitionImpl implements Specification
+public class SpecificationImpl extends ModelImpl implements Specification
 {
   /**
-   * The default value of the '{@link #getId() <em>Id</em>}' attribute.
+   * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getId()
+   * @see #getType()
    * @generated
    * @ordered
    */
-  protected static final String ID_EDEFAULT = null;
+  protected ChoosenSpecification type;
 
   /**
-   * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
+   * The default value of the '{@link #getSequenceNumber() <em>Sequence Number</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getId()
+   * @see #getSequenceNumber()
    * @generated
    * @ordered
    */
-  protected String id = ID_EDEFAULT;
+  protected static final int SEQUENCE_NUMBER_EDEFAULT = 0;
+
+  /**
+   * The cached value of the '{@link #getSequenceNumber() <em>Sequence Number</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getSequenceNumber()
+   * @generated
+   * @ordered
+   */
+  protected int sequenceNumber = SEQUENCE_NUMBER_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getGraph() <em>Graph</em>}' containment reference.
@@ -70,7 +84,17 @@ public class SpecificationImpl extends DefinitionImpl implements Specification
    * @generated
    * @ordered
    */
-  protected ChoosenGraph graph;
+  protected Graph graph;
+
+  /**
+   * The cached value of the '{@link #getConstaintSemantic() <em>Constaint Semantic</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getConstaintSemantic()
+   * @generated
+   * @ordered
+   */
+  protected ChoosenConstraintSemantic constaintSemantic;
 
   /**
    * The cached value of the '{@link #getConstraints() <em>Constraints</em>}' containment reference list.
@@ -108,9 +132,9 @@ public class SpecificationImpl extends DefinitionImpl implements Specification
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getId()
+  public ChoosenSpecification getType()
   {
-    return id;
+    return type;
   }
 
   /**
@@ -118,12 +142,16 @@ public class SpecificationImpl extends DefinitionImpl implements Specification
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setId(String newId)
+  public NotificationChain basicSetType(ChoosenSpecification newType, NotificationChain msgs)
   {
-    String oldId = id;
-    id = newId;
+    ChoosenSpecification oldType = type;
+    type = newType;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, TdpfPackage.SPECIFICATION__ID, oldId, id));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TdpfPackage.SPECIFICATION__TYPE, oldType, newType);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
   }
 
   /**
@@ -131,7 +159,51 @@ public class SpecificationImpl extends DefinitionImpl implements Specification
    * <!-- end-user-doc -->
    * @generated
    */
-  public ChoosenGraph getGraph()
+  public void setType(ChoosenSpecification newType)
+  {
+    if (newType != type)
+    {
+      NotificationChain msgs = null;
+      if (type != null)
+        msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TdpfPackage.SPECIFICATION__TYPE, null, msgs);
+      if (newType != null)
+        msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TdpfPackage.SPECIFICATION__TYPE, null, msgs);
+      msgs = basicSetType(newType, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, TdpfPackage.SPECIFICATION__TYPE, newType, newType));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public int getSequenceNumber()
+  {
+    return sequenceNumber;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setSequenceNumber(int newSequenceNumber)
+  {
+    int oldSequenceNumber = sequenceNumber;
+    sequenceNumber = newSequenceNumber;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, TdpfPackage.SPECIFICATION__SEQUENCE_NUMBER, oldSequenceNumber, sequenceNumber));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Graph getGraph()
   {
     return graph;
   }
@@ -141,9 +213,9 @@ public class SpecificationImpl extends DefinitionImpl implements Specification
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetGraph(ChoosenGraph newGraph, NotificationChain msgs)
+  public NotificationChain basicSetGraph(Graph newGraph, NotificationChain msgs)
   {
-    ChoosenGraph oldGraph = graph;
+    Graph oldGraph = graph;
     graph = newGraph;
     if (eNotificationRequired())
     {
@@ -158,7 +230,7 @@ public class SpecificationImpl extends DefinitionImpl implements Specification
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setGraph(ChoosenGraph newGraph)
+  public void setGraph(Graph newGraph)
   {
     if (newGraph != graph)
     {
@@ -172,6 +244,54 @@ public class SpecificationImpl extends DefinitionImpl implements Specification
     }
     else if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, TdpfPackage.SPECIFICATION__GRAPH, newGraph, newGraph));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ChoosenConstraintSemantic getConstaintSemantic()
+  {
+    return constaintSemantic;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetConstaintSemantic(ChoosenConstraintSemantic newConstaintSemantic, NotificationChain msgs)
+  {
+    ChoosenConstraintSemantic oldConstaintSemantic = constaintSemantic;
+    constaintSemantic = newConstaintSemantic;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TdpfPackage.SPECIFICATION__CONSTAINT_SEMANTIC, oldConstaintSemantic, newConstaintSemantic);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setConstaintSemantic(ChoosenConstraintSemantic newConstaintSemantic)
+  {
+    if (newConstaintSemantic != constaintSemantic)
+    {
+      NotificationChain msgs = null;
+      if (constaintSemantic != null)
+        msgs = ((InternalEObject)constaintSemantic).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TdpfPackage.SPECIFICATION__CONSTAINT_SEMANTIC, null, msgs);
+      if (newConstaintSemantic != null)
+        msgs = ((InternalEObject)newConstaintSemantic).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TdpfPackage.SPECIFICATION__CONSTAINT_SEMANTIC, null, msgs);
+      msgs = basicSetConstaintSemantic(newConstaintSemantic, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, TdpfPackage.SPECIFICATION__CONSTAINT_SEMANTIC, newConstaintSemantic, newConstaintSemantic));
   }
 
   /**
@@ -198,8 +318,12 @@ public class SpecificationImpl extends DefinitionImpl implements Specification
   {
     switch (featureID)
     {
+      case TdpfPackage.SPECIFICATION__TYPE:
+        return basicSetType(null, msgs);
       case TdpfPackage.SPECIFICATION__GRAPH:
         return basicSetGraph(null, msgs);
+      case TdpfPackage.SPECIFICATION__CONSTAINT_SEMANTIC:
+        return basicSetConstaintSemantic(null, msgs);
       case TdpfPackage.SPECIFICATION__CONSTRAINTS:
         return ((InternalEList<?>)getConstraints()).basicRemove(otherEnd, msgs);
     }
@@ -216,10 +340,14 @@ public class SpecificationImpl extends DefinitionImpl implements Specification
   {
     switch (featureID)
     {
-      case TdpfPackage.SPECIFICATION__ID:
-        return getId();
+      case TdpfPackage.SPECIFICATION__TYPE:
+        return getType();
+      case TdpfPackage.SPECIFICATION__SEQUENCE_NUMBER:
+        return getSequenceNumber();
       case TdpfPackage.SPECIFICATION__GRAPH:
         return getGraph();
+      case TdpfPackage.SPECIFICATION__CONSTAINT_SEMANTIC:
+        return getConstaintSemantic();
       case TdpfPackage.SPECIFICATION__CONSTRAINTS:
         return getConstraints();
     }
@@ -237,11 +365,17 @@ public class SpecificationImpl extends DefinitionImpl implements Specification
   {
     switch (featureID)
     {
-      case TdpfPackage.SPECIFICATION__ID:
-        setId((String)newValue);
+      case TdpfPackage.SPECIFICATION__TYPE:
+        setType((ChoosenSpecification)newValue);
+        return;
+      case TdpfPackage.SPECIFICATION__SEQUENCE_NUMBER:
+        setSequenceNumber((Integer)newValue);
         return;
       case TdpfPackage.SPECIFICATION__GRAPH:
-        setGraph((ChoosenGraph)newValue);
+        setGraph((Graph)newValue);
+        return;
+      case TdpfPackage.SPECIFICATION__CONSTAINT_SEMANTIC:
+        setConstaintSemantic((ChoosenConstraintSemantic)newValue);
         return;
       case TdpfPackage.SPECIFICATION__CONSTRAINTS:
         getConstraints().clear();
@@ -261,11 +395,17 @@ public class SpecificationImpl extends DefinitionImpl implements Specification
   {
     switch (featureID)
     {
-      case TdpfPackage.SPECIFICATION__ID:
-        setId(ID_EDEFAULT);
+      case TdpfPackage.SPECIFICATION__TYPE:
+        setType((ChoosenSpecification)null);
+        return;
+      case TdpfPackage.SPECIFICATION__SEQUENCE_NUMBER:
+        setSequenceNumber(SEQUENCE_NUMBER_EDEFAULT);
         return;
       case TdpfPackage.SPECIFICATION__GRAPH:
-        setGraph((ChoosenGraph)null);
+        setGraph((Graph)null);
+        return;
+      case TdpfPackage.SPECIFICATION__CONSTAINT_SEMANTIC:
+        setConstaintSemantic((ChoosenConstraintSemantic)null);
         return;
       case TdpfPackage.SPECIFICATION__CONSTRAINTS:
         getConstraints().clear();
@@ -284,10 +424,14 @@ public class SpecificationImpl extends DefinitionImpl implements Specification
   {
     switch (featureID)
     {
-      case TdpfPackage.SPECIFICATION__ID:
-        return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
+      case TdpfPackage.SPECIFICATION__TYPE:
+        return type != null;
+      case TdpfPackage.SPECIFICATION__SEQUENCE_NUMBER:
+        return sequenceNumber != SEQUENCE_NUMBER_EDEFAULT;
       case TdpfPackage.SPECIFICATION__GRAPH:
         return graph != null;
+      case TdpfPackage.SPECIFICATION__CONSTAINT_SEMANTIC:
+        return constaintSemantic != null;
       case TdpfPackage.SPECIFICATION__CONSTRAINTS:
         return constraints != null && !constraints.isEmpty();
     }
@@ -305,8 +449,8 @@ public class SpecificationImpl extends DefinitionImpl implements Specification
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (id: ");
-    result.append(id);
+    result.append(" (sequenceNumber: ");
+    result.append(sequenceNumber);
     result.append(')');
     return result.toString();
   }

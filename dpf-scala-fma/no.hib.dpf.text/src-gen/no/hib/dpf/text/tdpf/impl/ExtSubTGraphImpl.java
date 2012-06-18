@@ -40,7 +40,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class ExtSubTGraphImpl extends DefinitionImpl implements ExtSubTGraph
+public class ExtSubTGraphImpl extends CommandImpl implements ExtSubTGraph
 {
   /**
    * The default value of the '{@link #getId() <em>Id</em>}' attribute.

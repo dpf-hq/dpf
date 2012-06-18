@@ -8,12 +8,15 @@
       <type metamodel="/0/@metamodelDeclarations.0">
         <classifier xsi:type="ecore:EClass" href="http://no.hib.dpf/dpf-text#//Model"/>
       </type>
-      <alternatives xsi:type="xtext:Group" cardinality="?">
-        <elements xsi:type="xtext:Assignment" feature="definitions" operator="+=">
-          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.5"/>
-        </elements>
-        <elements xsi:type="xtext:Assignment" cardinality="*" feature="definitions" operator="+=">
-          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.5"/>
+      <alternatives xsi:type="xtext:Alternatives">
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.16"/>
+        <elements xsi:type="xtext:Group" cardinality="?">
+          <elements xsi:type="xtext:Assignment" feature="commands" operator="+=">
+            <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.5"/>
+          </elements>
+          <elements xsi:type="xtext:Assignment" cardinality="*" feature="commands" operator="+=">
+            <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.5"/>
+          </elements>
         </elements>
       </alternatives>
     </rules>
@@ -92,21 +95,19 @@
         <elements xsi:type="xtext:RuleCall" rule="/1/@rules.2"/>
       </alternatives>
     </rules>
-    <rules xsi:type="xtext:ParserRule" name="Definition">
+    <rules xsi:type="xtext:ParserRule" name="Command">
       <type metamodel="/0/@metamodelDeclarations.0">
-        <classifier xsi:type="ecore:EClass" href="http://no.hib.dpf/dpf-text#//Definition"/>
+        <classifier xsi:type="ecore:EClass" href="http://no.hib.dpf/dpf-text#//Command"/>
       </type>
       <alternatives xsi:type="xtext:Alternatives">
         <elements xsi:type="xtext:RuleCall" rule="/0/@rules.13"/>
-        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.16"/>
-        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.28"/>
-        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.26"/>
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.27"/>
         <elements xsi:type="xtext:RuleCall" rule="/0/@rules.6"/>
         <elements xsi:type="xtext:RuleCall" rule="/0/@rules.7"/>
         <elements xsi:type="xtext:RuleCall" rule="/0/@rules.8"/>
         <elements xsi:type="xtext:RuleCall" rule="/0/@rules.9"/>
         <elements xsi:type="xtext:RuleCall" rule="/0/@rules.10"/>
-        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.20"/>
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.21"/>
         <elements xsi:type="xtext:RuleCall" rule="/0/@rules.11"/>
         <elements xsi:type="xtext:RuleCall" rule="/0/@rules.12"/>
       </alternatives>
@@ -310,34 +311,53 @@
         <classifier xsi:type="ecore:EClass" href="http://no.hib.dpf/dpf-text#//Specification"/>
       </type>
       <alternatives xsi:type="xtext:Group">
-        <elements xsi:type="xtext:Assignment" feature="id" operator="=">
-          <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
-        </elements>
-        <elements xsi:type="xtext:Keyword" value=":="/>
-        <elements xsi:type="xtext:Keyword" value="Spec"/>
-        <elements xsi:type="xtext:Keyword" value="&lt;"/>
-        <elements xsi:type="xtext:Assignment" feature="graph" operator="=">
+        <elements xsi:type="xtext:Keyword" value="Specification"/>
+        <elements xsi:type="xtext:Keyword" value=":"/>
+        <elements xsi:type="xtext:Assignment" feature="type" operator="=">
           <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.17"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="&lt;"/>
+        <elements xsi:type="xtext:Assignment" feature="sequenceNumber" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.1"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value=">"/>
+        <elements xsi:type="xtext:Keyword" value="{"/>
+        <elements xsi:type="xtext:Assignment" feature="graph" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.29"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="Constraints"/>
+        <elements xsi:type="xtext:Keyword" value="&lt;"/>
+        <elements xsi:type="xtext:Assignment" feature="constaintSemantic" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.18"/>
         </elements>
         <elements xsi:type="xtext:Keyword" value=">"/>
         <elements xsi:type="xtext:Keyword" value="{"/>
         <elements xsi:type="xtext:Group" cardinality="?">
           <elements xsi:type="xtext:Assignment" feature="constraints" operator="+=">
-            <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.18"/>
+            <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.19"/>
           </elements>
           <elements xsi:type="xtext:Group" cardinality="*">
             <elements xsi:type="xtext:Keyword" value=","/>
             <elements xsi:type="xtext:Assignment" feature="constraints" operator="+=">
-              <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.18"/>
+              <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.19"/>
             </elements>
           </elements>
         </elements>
         <elements xsi:type="xtext:Keyword" value="}"/>
+        <elements xsi:type="xtext:Keyword" value="}"/>
       </alternatives>
     </rules>
-    <rules xsi:type="xtext:ParserRule" name="ChoosenGraph">
+    <rules xsi:type="xtext:ParserRule" name="ChoosenSpecification">
       <type metamodel="/0/@metamodelDeclarations.0">
-        <classifier xsi:type="ecore:EClass" href="http://no.hib.dpf/dpf-text#//ChoosenGraph"/>
+        <classifier xsi:type="ecore:EClass" href="http://no.hib.dpf/dpf-text#//ChoosenSpecification"/>
+      </type>
+      <alternatives xsi:type="xtext:Assignment" feature="id" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="ChoosenConstraintSemantic">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://no.hib.dpf/dpf-text#//ChoosenConstraintSemantic"/>
       </type>
       <alternatives xsi:type="xtext:Assignment" feature="id" operator="=">
         <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
@@ -349,7 +369,7 @@
       </type>
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Assignment" feature="signature" operator="=">
-          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.19"/>
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.20"/>
         </elements>
         <elements xsi:type="xtext:Keyword" value="{"/>
         <elements xsi:type="xtext:Group">
@@ -399,22 +419,22 @@
         <elements xsi:type="xtext:Keyword" value="Morphism"/>
         <elements xsi:type="xtext:Keyword" value="&lt;"/>
         <elements xsi:type="xtext:Assignment" feature="domain" operator="=">
-          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.21"/>
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.22"/>
         </elements>
         <elements xsi:type="xtext:Keyword" value=","/>
         <elements xsi:type="xtext:Assignment" feature="codmain" operator="=">
-          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.22"/>
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.23"/>
         </elements>
         <elements xsi:type="xtext:Keyword" value=">"/>
         <elements xsi:type="xtext:Keyword" value="{"/>
         <elements xsi:type="xtext:Group" cardinality="?">
           <elements xsi:type="xtext:Assignment" feature="mappings" operator="+=">
-            <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.23"/>
+            <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.24"/>
           </elements>
           <elements xsi:type="xtext:Group" cardinality="*">
             <elements xsi:type="xtext:Keyword" value=","/>
             <elements xsi:type="xtext:Assignment" feature="mappings" operator="+=">
-              <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.23"/>
+              <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.24"/>
             </elements>
           </elements>
         </elements>
@@ -442,8 +462,8 @@
         <classifier xsi:type="ecore:EClass" href="http://no.hib.dpf/dpf-text#//Mapping"/>
       </type>
       <alternatives xsi:type="xtext:Alternatives">
-        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.24"/>
         <elements xsi:type="xtext:RuleCall" rule="/0/@rules.25"/>
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.26"/>
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="MappingNode">
@@ -486,7 +506,7 @@
         <elements xsi:type="xtext:Keyword" value="ExtSubTGraph"/>
         <elements xsi:type="xtext:Keyword" value="&lt;"/>
         <elements xsi:type="xtext:Assignment" feature="extendsGraph" operator="=">
-          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.27"/>
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.28"/>
         </elements>
         <elements xsi:type="xtext:Keyword" value=">"/>
         <elements xsi:type="xtext:Keyword" value="{"/>
@@ -504,34 +524,17 @@
         <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
       </alternatives>
     </rules>
-    <rules xsi:type="xtext:ParserRule" name="TGraph">
+    <rules xsi:type="xtext:ParserRule" name="Graph">
       <type metamodel="/0/@metamodelDeclarations.0">
-        <classifier xsi:type="ecore:EClass" href="http://no.hib.dpf/dpf-text#//TGraph"/>
+        <classifier xsi:type="ecore:EClass" href="http://no.hib.dpf/dpf-text#//Graph"/>
       </type>
       <alternatives xsi:type="xtext:Group">
-        <elements xsi:type="xtext:Assignment" feature="id" operator="=">
-          <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
-        </elements>
-        <elements xsi:type="xtext:Keyword" value=":="/>
-        <elements xsi:type="xtext:Keyword" value="TGraph"/>
-        <elements xsi:type="xtext:Keyword" value="&lt;"/>
-        <elements xsi:type="xtext:Assignment" feature="typeGraph" operator="=">
-          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.29"/>
-        </elements>
-        <elements xsi:type="xtext:Keyword" value=">"/>
+        <elements xsi:type="xtext:Keyword" value="Graph"/>
         <elements xsi:type="xtext:Keyword" value="{"/>
         <elements xsi:type="xtext:Assignment" cardinality="*" feature="elements" operator="+=">
           <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.30"/>
         </elements>
         <elements xsi:type="xtext:Keyword" value="}"/>
-      </alternatives>
-    </rules>
-    <rules xsi:type="xtext:ParserRule" name="ChoosenTGraph">
-      <type metamodel="/0/@metamodelDeclarations.0">
-        <classifier xsi:type="ecore:EClass" href="http://no.hib.dpf/dpf-text#//ChoosenTGraph"/>
-      </type>
-      <alternatives xsi:type="xtext:Assignment" feature="id" operator="=">
-        <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="Element">

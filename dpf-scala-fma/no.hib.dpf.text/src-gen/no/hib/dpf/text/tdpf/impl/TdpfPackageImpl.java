@@ -8,22 +8,23 @@ package no.hib.dpf.text.tdpf.impl;
 import no.hib.dpf.text.tdpf.Arrow;
 import no.hib.dpf.text.tdpf.Arrows;
 import no.hib.dpf.text.tdpf.AttributeValue;
+import no.hib.dpf.text.tdpf.ChoosenConstraintSemantic;
 import no.hib.dpf.text.tdpf.ChoosenExtSubTGraph;
-import no.hib.dpf.text.tdpf.ChoosenGraph;
 import no.hib.dpf.text.tdpf.ChoosenSpecfication;
-import no.hib.dpf.text.tdpf.ChoosenTGraph;
+import no.hib.dpf.text.tdpf.ChoosenSpecification;
 import no.hib.dpf.text.tdpf.Codomain;
+import no.hib.dpf.text.tdpf.Command;
 import no.hib.dpf.text.tdpf.Constraint;
 import no.hib.dpf.text.tdpf.ConstraintSemantic;
 import no.hib.dpf.text.tdpf.ConstraintSignature;
 import no.hib.dpf.text.tdpf.DataType;
-import no.hib.dpf.text.tdpf.Definition;
 import no.hib.dpf.text.tdpf.Domain;
 import no.hib.dpf.text.tdpf.DpfId;
 import no.hib.dpf.text.tdpf.Element;
 import no.hib.dpf.text.tdpf.EvoCospan;
 import no.hib.dpf.text.tdpf.EvoSpan;
 import no.hib.dpf.text.tdpf.ExtSubTGraph;
+import no.hib.dpf.text.tdpf.Graph;
 import no.hib.dpf.text.tdpf.InstanceSpecification;
 import no.hib.dpf.text.tdpf.MakeEcore;
 import no.hib.dpf.text.tdpf.MakeEmf;
@@ -37,7 +38,6 @@ import no.hib.dpf.text.tdpf.Node;
 import no.hib.dpf.text.tdpf.SimpleEvoCospan;
 import no.hib.dpf.text.tdpf.SimpleEvoSpan;
 import no.hib.dpf.text.tdpf.Specification;
-import no.hib.dpf.text.tdpf.TGraph;
 import no.hib.dpf.text.tdpf.TdpfFactory;
 import no.hib.dpf.text.tdpf.TdpfPackage;
 
@@ -69,7 +69,7 @@ public class TdpfPackageImpl extends EPackageImpl implements TdpfPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass definitionEClass = null;
+  private EClass commandEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -153,7 +153,14 @@ public class TdpfPackageImpl extends EPackageImpl implements TdpfPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass choosenGraphEClass = null;
+  private EClass choosenSpecificationEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass choosenConstraintSemanticEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -230,14 +237,7 @@ public class TdpfPackageImpl extends EPackageImpl implements TdpfPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass tGraphEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass choosenTGraphEClass = null;
+  private EClass graphEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -366,7 +366,7 @@ public class TdpfPackageImpl extends EPackageImpl implements TdpfPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getModel_Definitions()
+  public EReference getModel_Commands()
   {
     return (EReference)modelEClass.getEStructuralFeatures().get(0);
   }
@@ -376,9 +376,9 @@ public class TdpfPackageImpl extends EPackageImpl implements TdpfPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getDefinition()
+  public EClass getCommand()
   {
-    return definitionEClass;
+    return commandEClass;
   }
 
   /**
@@ -746,9 +746,19 @@ public class TdpfPackageImpl extends EPackageImpl implements TdpfPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getSpecification_Id()
+  public EReference getSpecification_Type()
   {
-    return (EAttribute)specificationEClass.getEStructuralFeatures().get(0);
+    return (EReference)specificationEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getSpecification_SequenceNumber()
+  {
+    return (EAttribute)specificationEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -758,7 +768,17 @@ public class TdpfPackageImpl extends EPackageImpl implements TdpfPackage
    */
   public EReference getSpecification_Graph()
   {
-    return (EReference)specificationEClass.getEStructuralFeatures().get(1);
+    return (EReference)specificationEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getSpecification_ConstaintSemantic()
+  {
+    return (EReference)specificationEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -768,7 +788,7 @@ public class TdpfPackageImpl extends EPackageImpl implements TdpfPackage
    */
   public EReference getSpecification_Constraints()
   {
-    return (EReference)specificationEClass.getEStructuralFeatures().get(2);
+    return (EReference)specificationEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -776,9 +796,9 @@ public class TdpfPackageImpl extends EPackageImpl implements TdpfPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getChoosenGraph()
+  public EClass getChoosenSpecification()
   {
-    return choosenGraphEClass;
+    return choosenSpecificationEClass;
   }
 
   /**
@@ -786,9 +806,29 @@ public class TdpfPackageImpl extends EPackageImpl implements TdpfPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getChoosenGraph_Id()
+  public EAttribute getChoosenSpecification_Id()
   {
-    return (EAttribute)choosenGraphEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)choosenSpecificationEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getChoosenConstraintSemantic()
+  {
+    return choosenConstraintSemanticEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getChoosenConstraintSemantic_Id()
+  {
+    return (EAttribute)choosenConstraintSemanticEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1066,9 +1106,9 @@ public class TdpfPackageImpl extends EPackageImpl implements TdpfPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getTGraph()
+  public EClass getGraph()
   {
-    return tGraphEClass;
+    return graphEClass;
   }
 
   /**
@@ -1076,49 +1116,9 @@ public class TdpfPackageImpl extends EPackageImpl implements TdpfPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getTGraph_Id()
+  public EReference getGraph_Elements()
   {
-    return (EAttribute)tGraphEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getTGraph_TypeGraph()
-  {
-    return (EReference)tGraphEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getTGraph_Elements()
-  {
-    return (EReference)tGraphEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getChoosenTGraph()
-  {
-    return choosenTGraphEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getChoosenTGraph_Id()
-  {
-    return (EAttribute)choosenTGraphEClass.getEStructuralFeatures().get(0);
+    return (EReference)graphEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1322,9 +1322,9 @@ public class TdpfPackageImpl extends EPackageImpl implements TdpfPackage
 
     // Create classes and their features
     modelEClass = createEClass(MODEL);
-    createEReference(modelEClass, MODEL__DEFINITIONS);
+    createEReference(modelEClass, MODEL__COMMANDS);
 
-    definitionEClass = createEClass(DEFINITION);
+    commandEClass = createEClass(COMMAND);
 
     makeEmfEClass = createEClass(MAKE_EMF);
     createEAttribute(makeEmfEClass, MAKE_EMF__ID);
@@ -1372,12 +1372,17 @@ public class TdpfPackageImpl extends EPackageImpl implements TdpfPackage
     createEAttribute(constraintSemanticEClass, CONSTRAINT_SEMANTIC__OCL);
 
     specificationEClass = createEClass(SPECIFICATION);
-    createEAttribute(specificationEClass, SPECIFICATION__ID);
+    createEReference(specificationEClass, SPECIFICATION__TYPE);
+    createEAttribute(specificationEClass, SPECIFICATION__SEQUENCE_NUMBER);
     createEReference(specificationEClass, SPECIFICATION__GRAPH);
+    createEReference(specificationEClass, SPECIFICATION__CONSTAINT_SEMANTIC);
     createEReference(specificationEClass, SPECIFICATION__CONSTRAINTS);
 
-    choosenGraphEClass = createEClass(CHOOSEN_GRAPH);
-    createEAttribute(choosenGraphEClass, CHOOSEN_GRAPH__ID);
+    choosenSpecificationEClass = createEClass(CHOOSEN_SPECIFICATION);
+    createEAttribute(choosenSpecificationEClass, CHOOSEN_SPECIFICATION__ID);
+
+    choosenConstraintSemanticEClass = createEClass(CHOOSEN_CONSTRAINT_SEMANTIC);
+    createEAttribute(choosenConstraintSemanticEClass, CHOOSEN_CONSTRAINT_SEMANTIC__ID);
 
     constraintEClass = createEClass(CONSTRAINT);
     createEReference(constraintEClass, CONSTRAINT__SIGNATURE);
@@ -1416,13 +1421,8 @@ public class TdpfPackageImpl extends EPackageImpl implements TdpfPackage
     choosenExtSubTGraphEClass = createEClass(CHOOSEN_EXT_SUB_TGRAPH);
     createEAttribute(choosenExtSubTGraphEClass, CHOOSEN_EXT_SUB_TGRAPH__ID);
 
-    tGraphEClass = createEClass(TGRAPH);
-    createEAttribute(tGraphEClass, TGRAPH__ID);
-    createEReference(tGraphEClass, TGRAPH__TYPE_GRAPH);
-    createEReference(tGraphEClass, TGRAPH__ELEMENTS);
-
-    choosenTGraphEClass = createEClass(CHOOSEN_TGRAPH);
-    createEAttribute(choosenTGraphEClass, CHOOSEN_TGRAPH__ID);
+    graphEClass = createEClass(GRAPH);
+    createEReference(graphEClass, GRAPH__ELEMENTS);
 
     elementEClass = createEClass(ELEMENT);
     createEReference(elementEClass, ELEMENT__ID);
@@ -1479,29 +1479,28 @@ public class TdpfPackageImpl extends EPackageImpl implements TdpfPackage
     // Set bounds for type parameters
 
     // Add supertypes to classes
-    makeEmfEClass.getESuperTypes().add(this.getDefinition());
-    makeEcoreEClass.getESuperTypes().add(this.getDefinition());
-    makeImageEClass.getESuperTypes().add(this.getDefinition());
-    simpleEvoSpanEClass.getESuperTypes().add(this.getDefinition());
-    simpleEvoCospanEClass.getESuperTypes().add(this.getDefinition());
-    evoSpanEClass.getESuperTypes().add(this.getDefinition());
-    evoCospanEClass.getESuperTypes().add(this.getDefinition());
-    instanceSpecificationEClass.getESuperTypes().add(this.getDefinition());
-    specificationEClass.getESuperTypes().add(this.getDefinition());
-    morphismEClass.getESuperTypes().add(this.getDefinition());
+    makeEmfEClass.getESuperTypes().add(this.getCommand());
+    makeEcoreEClass.getESuperTypes().add(this.getCommand());
+    makeImageEClass.getESuperTypes().add(this.getCommand());
+    simpleEvoSpanEClass.getESuperTypes().add(this.getCommand());
+    simpleEvoCospanEClass.getESuperTypes().add(this.getCommand());
+    evoSpanEClass.getESuperTypes().add(this.getCommand());
+    evoCospanEClass.getESuperTypes().add(this.getCommand());
+    instanceSpecificationEClass.getESuperTypes().add(this.getCommand());
+    specificationEClass.getESuperTypes().add(this.getModel());
+    morphismEClass.getESuperTypes().add(this.getCommand());
     mappingNodeEClass.getESuperTypes().add(this.getMapping());
     mappingArrowEClass.getESuperTypes().add(this.getMapping());
-    extSubTGraphEClass.getESuperTypes().add(this.getDefinition());
-    tGraphEClass.getESuperTypes().add(this.getDefinition());
+    extSubTGraphEClass.getESuperTypes().add(this.getCommand());
     arrowsEClass.getESuperTypes().add(this.getElement());
     arrowEClass.getESuperTypes().add(this.getArrows());
     nodeEClass.getESuperTypes().add(this.getElement());
 
     // Initialize classes and features; add operations and parameters
     initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getModel_Definitions(), this.getDefinition(), null, "definitions", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getModel_Commands(), this.getCommand(), null, "commands", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(definitionEClass, Definition.class, "Definition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEClass(commandEClass, Command.class, "Command", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(makeEmfEClass, MakeEmf.class, "MakeEmf", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getMakeEmf_Id(), ecorePackage.getEString(), "id", null, 0, 1, MakeEmf.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1549,12 +1548,17 @@ public class TdpfPackageImpl extends EPackageImpl implements TdpfPackage
     initEAttribute(getConstraintSemantic_Ocl(), ecorePackage.getEString(), "ocl", null, 0, 1, ConstraintSemantic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(specificationEClass, Specification.class, "Specification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getSpecification_Id(), ecorePackage.getEString(), "id", null, 0, 1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getSpecification_Graph(), this.getChoosenGraph(), null, "graph", null, 0, 1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSpecification_Type(), this.getChoosenSpecification(), null, "type", null, 0, 1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getSpecification_SequenceNumber(), ecorePackage.getEInt(), "sequenceNumber", null, 0, 1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSpecification_Graph(), this.getGraph(), null, "graph", null, 0, 1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSpecification_ConstaintSemantic(), this.getChoosenConstraintSemantic(), null, "constaintSemantic", null, 0, 1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSpecification_Constraints(), this.getConstraint(), null, "constraints", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(choosenGraphEClass, ChoosenGraph.class, "ChoosenGraph", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getChoosenGraph_Id(), ecorePackage.getEString(), "id", null, 0, 1, ChoosenGraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(choosenSpecificationEClass, ChoosenSpecification.class, "ChoosenSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getChoosenSpecification_Id(), ecorePackage.getEString(), "id", null, 0, 1, ChoosenSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(choosenConstraintSemanticEClass, ChoosenConstraintSemantic.class, "ChoosenConstraintSemantic", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getChoosenConstraintSemantic_Id(), ecorePackage.getEString(), "id", null, 0, 1, ChoosenConstraintSemantic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(constraintEClass, Constraint.class, "Constraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getConstraint_Signature(), this.getConstraintSignature(), null, "signature", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1593,13 +1597,8 @@ public class TdpfPackageImpl extends EPackageImpl implements TdpfPackage
     initEClass(choosenExtSubTGraphEClass, ChoosenExtSubTGraph.class, "ChoosenExtSubTGraph", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getChoosenExtSubTGraph_Id(), ecorePackage.getEString(), "id", null, 0, 1, ChoosenExtSubTGraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(tGraphEClass, TGraph.class, "TGraph", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getTGraph_Id(), ecorePackage.getEString(), "id", null, 0, 1, TGraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getTGraph_TypeGraph(), this.getChoosenTGraph(), null, "typeGraph", null, 0, 1, TGraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getTGraph_Elements(), this.getElement(), null, "elements", null, 0, -1, TGraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(choosenTGraphEClass, ChoosenTGraph.class, "ChoosenTGraph", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getChoosenTGraph_Id(), ecorePackage.getEString(), "id", null, 0, 1, ChoosenTGraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(graphEClass, Graph.class, "Graph", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getGraph_Elements(), this.getElement(), null, "elements", null, 0, -1, Graph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(elementEClass, Element.class, "Element", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getElement_Id(), this.getDpfId(), null, "id", null, 0, 1, Element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
