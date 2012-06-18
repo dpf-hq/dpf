@@ -15,23 +15,78 @@ import no.hib.dpf.text.wrapper.JavaScalaBridge;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.swt.widgets.Display;
+import org.eclipse.jface.text.IDocument;
 import org.eclipse.text.edits.ReplaceEdit;
-import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.PlatformUI;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.parser.IParseResult;
 import org.eclipse.xtext.parser.IParser;
+import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
+import org.eclipse.xtext.ui.editor.model.XtextDocument;
+import org.eclipse.xtext.ui.editor.model.XtextDocumentProvider;
+import org.eclipse.xtext.util.concurrent.IUnitOfWork;
 
 import com.google.inject.Injector;
 
 
 public class GraphNormalizer{
+	
+	XtextDocumentProvider test;
+	
+	public static void normalize(final IDocument d) {
+		if(d instanceof XtextDocument){
+			final XtextDocument document = (XtextDocument)d;
+			
+			final JavaScalaBridge bridge = new JavaScalaBridge();
+			//Injector injector = new DPFTextStandaloneSetup().createInjectorAndDoEMFRegistration();
+			//IParser parser = injector.getInstance(DPFTextParser.class);
+			//IParseResult parseResult;
+			try {
+				document.modify(new IUnitOfWork<EList<EObject>, XtextResource>() {
+					public EList<EObject> exec(XtextResource state) throws Exception {
+						IParseResult parseResult = state.getParseResult();
+						
+						//TODO Note to comment out:
+						for (INode n : parseResult.getSyntaxErrors()) {
+							System.out.println("Error:" + n);
+						}
+						
+						EObject eRoot = parseResult.getRootASTElement();
+	//					System.out.println(eRoot);
+						
+						try {
+							if(eRoot instanceof Specification){
+								final Specification specification = (Specification)eRoot;
+								final ICompositeNode co = NodeModelUtils.findActualNodeFor(eRoot);	
+								final List<String> nGraph = bridge.read(specification);
+								
+								//Test:
+								for(String s:nGraph){
+									System.out.print(s);
+								}
+								
+								replaceInOpendIFile(co,nGraph,document);
+								
+								//replaceUnopenedIFile(f, graph, co);
+							}
+						} catch (Exception e) {
+							e.printStackTrace();
+							//do nothing
+						}
+						return null;
+					}
+			    });
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 	
 	public static void normalize(final IFile f, final IXtextDocument document) {
 		JavaScalaBridge bridge = new JavaScalaBridge();
