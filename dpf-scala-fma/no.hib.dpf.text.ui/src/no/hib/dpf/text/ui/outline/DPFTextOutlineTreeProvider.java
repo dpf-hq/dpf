@@ -13,7 +13,6 @@ import no.hib.dpf.text.tdpf.Model;
 import no.hib.dpf.text.tdpf.Node;
 import no.hib.dpf.text.tdpf.TdpfFactory;
 import no.hib.dpf.text.ui.FileSaveDetector;
-import no.hib.dpf.text.ui.GraphNormalizer;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.jface.viewers.StyledString;
@@ -21,6 +20,8 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.resource.ILocationInFileProvider;
+import org.eclipse.xtext.ui.editor.CompoundXtextEditorCallback;
+import org.eclipse.xtext.ui.editor.XtextEditor;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider;
@@ -28,7 +29,10 @@ import org.eclipse.xtext.ui.editor.outline.impl.DocumentRootNode;
 import org.eclipse.xtext.ui.editor.outline.impl.EObjectNode;
 import org.eclipse.xtext.util.ITextRegion;
 
+import com.google.inject.Binder;
+import com.google.inject.Guice;
 import com.google.inject.Inject;
+import com.google.inject.Module;
 
 
 public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider implements PropertyChangeListener{
@@ -37,6 +41,9 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider imple
 	protected ILocationInFileProvider locationInFileProvider;
 	
 	protected IXtextDocument document;
+	
+	@Inject
+	protected XtextEditor xtextEditor;
 	
 	public DPFTextOutlineTreeProvider(){
 		FileSaveDetector.INSTANCE.getSupport().addPropertyChangeListener(this);
@@ -173,13 +180,15 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider imple
 			IFile f = null;
 			try {
 				f = (IFile)PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().
-						   getActivePart().getSite().getPage().getActiveEditor().getEditorInput().getAdapter(IFile.class);				
+						   getActivePart().getSite().getPage().getActiveEditor().getEditorInput().getAdapter(IFile.class);
 			} catch (Exception e) {
 				//ignore
 			}
 			if(null != f && f.getName().equals(evt.getPropertyName())){
-				System.out.println("Normalize:" + f.getName());
-				GraphNormalizer.normalize(f, document);
+				//Set Dirty Editor = false;
+				xtextEditor.setXtextEditorCallback(new CompoundXtextEditorCallback(Guice.createInjector(new Module() {
+					public void configure(Binder binder) {}
+				})));	
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

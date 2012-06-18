@@ -8,9 +8,12 @@ import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.xtext.ui.editor.model.XtextDocumentProvider;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.AbstractAntlrTokenToAttributeIdMapper;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
+
+import com.google.inject.Binder;
 
 /**
  * Use this class to register components to be used within the IDE.
@@ -28,7 +31,6 @@ public class DPFTextUiModule extends no.hib.dpf.text.ui.AbstractDPFTextUiModule 
 					e.printStackTrace();
 				}
 			}}, IResourceChangeEvent.POST_CHANGE);
-
 	}
 	
 	public Class<? extends IHighlightingConfiguration> bindIHighlightingConfiguration () {
@@ -43,5 +45,8 @@ public class DPFTextUiModule extends no.hib.dpf.text.ui.AbstractDPFTextUiModule 
 		return DPFTextAntlrTokenToAttributeIdMapper.class;
 	}
 
+	public void configureDocumentProvider(Binder binder) {
+	    binder.bind(XtextDocumentProvider.class).to(DPFTextDocumentProvider.class);
+	}
 	
 }
