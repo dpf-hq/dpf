@@ -209,6 +209,8 @@ case object GraphDpf extends AbstractGraph(){
 		override val toString = super.toString
 }
 
+case object Dpf extends S(GraphDpf,Set())
+
 package mutable{
 	import scala.collection._;
   
