@@ -39,7 +39,7 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider imple
 	
 	protected IXtextDocument document;
 	
-	boolean inited = true; //TEST 
+	boolean inited = false; 
 	
 	@Inject
 	protected XtextEditor xtextEditor;
@@ -54,11 +54,6 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider imple
 	@Override
 	public IOutlineNode createRoot(IXtextDocument d){
 		this.document = d;
-		if(!inited){
-			GraphNormalizer.normalize(document);
-			inited=true;
-			System.out.println("TEST Flo");
-		}
 		return super.createRoot(d);
 	}
 	
@@ -72,6 +67,11 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider imple
 //	}
 
 	protected void _createChildren(final DocumentRootNode parentNode, final Specification s) {
+		if(!inited){
+			GraphNormalizer.normalize(this.document,s);
+			inited=true;
+			System.out.println("Inited!");
+		}
 		super._createChildren(parentNode,s);
 	}
 	
