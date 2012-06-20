@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -104,7 +105,7 @@ public class GraphNormalizer{
 		if(result.getSyntaxErrors().iterator().hasNext()){
 			nGraph.add("\n/*");
 			nGraph.add("\n-------------------------------------------");
-			nGraph.add("\nCould not be parsed:");
+			nGraph.add("\nCould not be parsed:" + new Date());
 			nGraph.add("\n-------------------------------------------");
 			for (INode n : result.getSyntaxErrors()) {
 				nGraph.add(n.getText());

@@ -13,6 +13,7 @@ import no.hib.dpf.text.tdpf.Model;
 import no.hib.dpf.text.tdpf.Node;
 import no.hib.dpf.text.tdpf.TdpfFactory;
 import no.hib.dpf.text.ui.FileSaveDetector;
+import no.hib.dpf.text.ui.GraphNormalizer;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.jface.viewers.StyledString;
@@ -42,6 +43,8 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider imple
 	
 	protected IXtextDocument document;
 	
+	boolean inited = false;
+	
 	@Inject
 	protected XtextEditor xtextEditor;
 	
@@ -64,6 +67,10 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider imple
 	@Override
 	public IOutlineNode createRoot(IXtextDocument d){
 		this.document = d;
+		if(!inited){
+			GraphNormalizer.normalize(d);
+			inited=true;
+		}
 		return super.createRoot(d);
 	}
 		
