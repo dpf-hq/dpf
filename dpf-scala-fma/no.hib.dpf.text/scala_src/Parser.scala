@@ -66,10 +66,13 @@ class Parser(mmSpecification:S, mmName:String) extends JavaTokenParsers with Con
 	
 	def mTGraphs(name:String):mutable.Graph = tGraphs(name) match{
 		case x:mutable.Graph => x
-		case x:AbstractGraph => sys.error("Graph with name '" + name + "' is not mutable!") 
-		case _ 				 => sys.error("Graph with name '" + name + "' does not exist!")
+		case x:AbstractGraph => error("Graph with name '" + name + "' is not mutable!") 
+		case _ 				 => error("Graph with name '" + name + "' does not exist!")
 	}
 
+	//
+	//Own Elements;
+	//
 	trait RElement
 	case class RNode(name:Option[String],
 	                 id:Option[Id],
@@ -80,6 +83,9 @@ class Parser(mmSpecification:S, mmName:String) extends JavaTokenParsers with Con
 	                  tg1:Option[RNode],
 	                  tg2:Option[Node],
 	                  t:TypeArrow) extends RElement
+	                  
+	case class ParseResult(element:Option[Element],error:Option[String]); 	                  
+	case class RParseResult(element:Option[RElement],error:Option[String]); 	                  
 	                  
 //
 //Terminal
@@ -291,18 +297,18 @@ class Parser(mmSpecification:S, mmName:String) extends JavaTokenParsers with Con
 	        	val tuple=(Some(a1),a2)
 	        	arrows+=tuple
 	        
-	      case _ => sys.error("Programming error! " +  e)  
+	      case _ => error("Programming error! " +  e)  
 	    }	    
 	  }	  
 	  
 	  //Check if all arrows and nodes are mapped:
 	  val c1 = curDomain.nodes.values.toSet--domainNodes;
 	  if(!c1.isEmpty){
-	    sys.error("Not all nodes mapped: " + c1.mkString)
+	    error("Not all nodes mapped: " + c1.mkString)
 	  }
 	  val c2 = curDomain.arrows.values.toSet--domainArrows;
 	  if(!c2.isEmpty){
-	    sys.error("Not all arrows mapped: " + c2.mkString)
+	    error("Not all arrows mapped: " + c2.mkString)
 	  }
 
 	  //Add unmapped codomain arrows and nodes:
@@ -355,7 +361,7 @@ class Parser(mmSpecification:S, mmName:String) extends JavaTokenParsers with Con
 			    	val result = curTGraph.findNode(t)
 				    val ty =
 				    result match {
-				    	case None => sys.error("Node Type does not exit! t="+t)
+				    	case None => error("Node Type does not exit! t="+t)
 				    	case Some(x) => x
 				    }
 					RNode(Some(name),id,ty)
@@ -364,7 +370,7 @@ class Parser(mmSpecification:S, mmName:String) extends JavaTokenParsers with Con
 		  		val result = curTGraph.getNode(tId)
 			    val ty =
 			    result match {
-			    	case None => sys.error("Node Type does not exit! id="+tId)
+			    	case None => error("Node Type does not exit! id="+tId)
 			    	case Some(x) => x
 			    }
 		  		RNode(Some(name),id,ty)
@@ -379,7 +385,7 @@ class Parser(mmSpecification:S, mmName:String) extends JavaTokenParsers with Con
 				}else{
 			      val result = curTGraph.findArrow(t,n1.t,n2.t)
 				  val ty= result match {
-				      case None => sys.error("Type does not exit! t="+t + " sr=" + n1.t + " tg=" + n2.t)
+				      case None => error("Type does not exit! t="+t + " sr=" + n1.t + " tg=" + n2.t)
 				      case Some(x) => x
 				  }
 				  RArrow(name,id,n1,Some(n2),None,ty)
@@ -387,9 +393,9 @@ class Parser(mmSpecification:S, mmName:String) extends JavaTokenParsers with Con
 		  case Some(tId) =>
 		      val result = curTGraph.getArrow(tId)
 			  val ty= result match {
-			      case None => sys.error("Type does not exit! id=" + tId)
+			      case None => error("Type does not exit! id=" + tId)
 			      case Some(x) => if(x.sr!=n1.t || x.tg!=n2.t){
-			    	  				sys.error("Type with id=" + tId + " is not compatible with source and target!")	
+			    	  				error("Type with id=" + tId + " is not compatible with source and target!")	
 			      				  }else x 
 			  }
 			  RArrow(name,id,n1,Some(n2),None,ty)
@@ -397,7 +403,7 @@ class Parser(mmSpecification:S, mmName:String) extends JavaTokenParsers with Con
     }
  
     protected def createRAttributeType(name:String,id:Option[Id],n1:RNode,at:Node with TypeP,t:String):RArrow={
-		if("*" != t) sys.error("Attribute arrow has to have type *")
+		if("*" != t) error("Attribute arrow has to have type *")
 		RArrow(name,id,n1,None,Some(at),TypeArrow.TAttribute())
 	}
 	
@@ -407,108 +413,139 @@ class Parser(mmSpecification:S, mmName:String) extends JavaTokenParsers with Con
   		  	case Some(tId) => curTGraph.getArrow(tId)
 		}
 		val ty = result match {
-	    	case None => sys.error("Attribute does not exit! t="+t + " sr=" + n1.t)
+	    	case None => error("Attribute does not exit! t="+t + " sr=" + n1.t)
 	    	case Some(x) => x
 	    }
 	    val value = ty.tg match {
 	    	case tc:TypeP => tc.toValue(rav)
-	    	case _ => sys.error("Programming sys.error in createAttributeValue")
+	    	case _ => error("Programming error in createAttributeValue")
 	    }
 	    val v = RNode(None,Some(value),ty.tg) 	 //Only return inside Arrow (is not a problem here)
 	    RArrow(name,id,n1,Some(v),None,ty)       //Attribute Value has always a upper-bound of 1 that means one attribute => max one value
 	}
     
 
-   protected def createNode(rn: RNode):Node={
+   protected def createNode(rn: RNode):ParseResult={
 		rn match {
 		  case RNode(Some(name),Some(nId),ty) =>
 		  	curMGraph.getNode(nId) match{
 		  	  	case Some(n) => if(name!=curMGraph.names(n.id)){
-		  	  						sys.error("Node with id=" +  n.id + " must have a unique name.")
-		  	  					}else n
+		  	  						ParseResult(None,Some("Node with id=" +  n.id + " must have a unique name."));
+		  	  					}else{
+		  	  					    ParseResult(Some(n),None);
+		  	  					} 
 		  	  	case None => curMGraph.addNode(name,ty,nId) match {
-			  			   		case None => sys.error("Node could be created:" + name + ":" + ty)
-			  			   		case Some(x) => x
+			  			   		case None => ParseResult(None,Some("Node could be created:" + name + ":" + ty));
+			  			   		case Some(x) => ParseResult(Some(x),None);
 			  			   	 }
 		  	}
 		  case RNode(Some(name),None,ty) =>
 		    curMGraph.findNode(name) match {
-				case Some(x) =>  x 
+				case Some(x) =>  ParseResult(Some(x),None); 
 				case None    =>  curMGraph.addNode(name, ty) match{
-				  			   		case None => sys.error("Node could be created:" + name + ":" + ty)
-				  			   		case Some(x) => x
+				  			   		case None => ParseResult(None,Some("Node could be created:" + name + ":" + ty));
+				  			   		case Some(x) => ParseResult(Some(x),None);
 				  			   	 }
 			}
 		   case RNode(None,Some(value),ty) =>	
 		     	curMGraph.addVNode(value,ty) match {
-					case Some(x) =>  x 
-					case None    =>  sys.error("Programming sys.error")
+					case Some(x) =>  ParseResult(Some(x),None); 
+					case None    =>  error("Programming error")
 				}
-			case _ => sys.error("Programming sys.error")	
+			case _ => error("Programming error")	
 		}
     }
 	
-    protected def createArrow(ra: RArrow):Arrow={
+    protected def createArrow(ra: RArrow):ParseResult={
 		ra match {
 		 //Usual arrow:
 	     case RArrow(name,None,rn1,Some(rn2),None,ty) =>	
 		  	
-		    val n1 = createNode(rn1)
-		    val n2 = createNode(rn2)
+		    val n1 = createNode(rn1) match{
+		      			case ParseResult(Some(n),None) => n.asInstanceOf[Node];
+		      			case r@ParseResult(None,_) => return r;
+		      			case _ => error("Programming error");
+		    		 }
+		    val n2 = createNode(rn2) match{
+		      			case ParseResult(Some(n),None) => n.asInstanceOf[Node];
+		      			case r@ParseResult(None,_) => return r;
+		      			case _ => error("Programming error");
+		    		 }
 
 				curMGraph.findArrow(name,n1,n2) match {
-					case Some(x) =>  x
+					case Some(x) =>  ParseResult(Some(x),None);
 					case None 	 =>
 				    	curMGraph.addArrow(name,n1,n2,ty) match{
-		    		    	case None => sys.error("Arrow could not be created:" + name + " " + n1 + "->" + n2 + ":" + ty)
-		    		    	case Some(x) => x 
+		    		    	case None => ParseResult(None,Some("Arrow could not be created:" + name + " " + n1 + "->" + n2 + ":" + ty))
+		    		    	case Some(x) => ParseResult(Some(x),None); 
 				    	}
 				}
 	     
 	     case RArrow(name,Some(id),rn1,Some(rn2),None,ty) =>	
 		  	
-		    val n1 = createNode(rn1)
-		    val n2 = createNode(rn2)
+		    val n1 = createNode(rn1) match{
+		      			case ParseResult(Some(n),None) => n.asInstanceOf[Node];
+		      			case r@ParseResult(None,_) => return r;
+		      			case _ => error("Programming error");
+		    		 }
+		    val n2 = createNode(rn2) match{
+		      			case ParseResult(Some(n),None) => n.asInstanceOf[Node];
+		      			case r@ParseResult(None,_) => return r;
+		      			case _ => error("Programming error");
+		    		 }
 
 				curMGraph.getArrow(id) match {
 					case Some(x) =>  if(x.sr != n1 || x.tg != n2 || x.t != ty || curMGraph.names(id) != name){
-										sys.error("Arrow with id" + id + " must have a unique definition!")
-									 };x
+										ParseResult(None,Some("Arrow with id" + id + " must have a unique definition!"))
+									 }else{
+									   ParseResult(Some(x),None);
+		    						 }
 					case None 	 =>
 				    	curMGraph.addArrow(name,n1,n2,ty,id) match{
-		    		    	case None => sys.error("Arrow could not be created:" + name + " " + n1 + "->" + n2 + ":" + ty)
-		    		    	case Some(x) => x 
+		    		    	case None => ParseResult(None,Some("Arrow could not be created:" + name + " " + n1 + "->" + n2 + ":" + ty))
+		    		    	case Some(x) => ParseResult(Some(x),None); 
 				    	}
 				}
 		  //Attribute Type:		  
 		  case RArrow(name,None,rn1,None,Some(at),TypeArrow.TAttribute()) =>
 		  	
-		  	val n1 = createNode(rn1)
+		  	val n1 = createNode(rn1) match{
+		      			case ParseResult(Some(n),None) => n.asInstanceOf[Node];
+		      			case r@ParseResult(None,_) => return r;
+		      			case _ => error("Programming error");
+		    		 }
+		  	
 			curMGraph.findArrow(name,n1,at) match {
-					case Some(x) =>  x 
+					case Some(x) =>  ParseResult(Some(x),None); 
 					case None 	 =>
 						curMGraph.addAArrow(name,n1,at,TypeArrow.TAttribute()) match{
-					    	case None => sys.error("Attribute-Arrow could not be created:" + name + " " + n1 + "->" + at + ":" + TypeArrow.TAttribute())
-					    	case Some(x) => x
+					    	case None => ParseResult(None,Some("Attribute-Arrow could not be created:" + name + " " + n1 + "->" + at + ":" + TypeArrow.TAttribute()))
+					    	case Some(x) => ParseResult(Some(x),None);
 					    }	
 			}
 		  	
 		  case RArrow(name,Some(id),rn1,None,Some(at),TypeArrow.TAttribute()) =>
 		  	
-		  	val n1 = createNode(rn1)
+		  	val n1 = createNode(rn1) match{
+		      			case ParseResult(Some(n),None) => n.asInstanceOf[Node];
+		      			case r@ParseResult(None,_) => return r;
+		      			case _ => error("Programming error");
+		    		 }
 		  	
 			curMGraph.getArrow(id) match {
 					case Some(x) =>  if(x.sr != n1 || x.tg != at || x.t != TypeArrow.TAttribute() || curMGraph.names(id) != name){
-										sys.error("Arrow with id" + id + " must have a unique definition!")
-									 };x 
+										ParseResult(None,Some("Arrow with id" + id + " must have a unique definition!"));
+									 }else{
+										ParseResult(Some(x),None);
+									 }	
 					case None 	 =>
 						curMGraph.addAArrow(name,n1,at,TypeArrow.TAttribute(),id) match{
-					    	case None => sys.error("Attribute-Arrow could not be created:" + name + " " + n1 + "->" + at + ":" + TypeArrow.TAttribute())
-					    	case Some(x) => x
+					    	case None => ParseResult(None,Some("Attribute-Arrow could not be created:" + name + " " + n1 + "->" + at + ":" + TypeArrow.TAttribute()));
+					    	case Some(x) => ParseResult(Some(x),None);
 					    }	
 			}
-		  	
-		  case _ => sys.error("Programming sys.error")  
+
+		  case _ => error("Programming error")  
 		}
     }  
 
@@ -540,14 +577,14 @@ class Parser(mmSpecification:S, mmName:String) extends JavaTokenParsers with Con
 		 ra match {
 	     case RArrow(name,_,RNode(Some(n1),_,t1),Some(RNode(Some(n2),_,t2)),_,ty) => Arrow(getId(name,varArrows),Node(getId(n1,varNodes),t1),Node(getId(n2,varNodes),t2),ty)
 	     case RArrow(name,_,RNode(Some(n1),_,t1),_,Some(n2),ty) => Arrow(getId(name,varArrows),Node(getId(n1,varNodes),t1),n2,ty)
-		     case _ => sys.error("Programming Error")
+		     case _ => error("Programming Error")
 	     }	
 	 }
      
 	 //Invariant:
 	 val inter = varNodes.values.toSet.intersect(varArrows.values.toSet)
 	 if(!inter.isEmpty){
-	   sys.error("Arrows and nodes cannot use the same variables:" + inter)
+	   error("Arrows and nodes cannot use the same variables:" + inter)
 	 }
 	 
 	 //Go through all arrows and save which variable has which position:
@@ -594,7 +631,7 @@ class Parser(mmSpecification:S, mmName:String) extends JavaTokenParsers with Con
 		  case Some(id) => Validator(id,shape,nodeVars,arrowVars,compressOCL(v)) 
 		  case None 	=> {
 		    curTS.cs.find(c=>c.s.n==n) match{
-		      case None => sys.error("Constraint does not exist:" + n);
+		      case None => error("Constraint does not exist:" + n);
 		      case Some(c) => Validator(c.s.id,shape,nodeVars,arrowVars,compressOCL(v))
 		    }
 		  }
@@ -606,14 +643,14 @@ class Parser(mmSpecification:S, mmName:String) extends JavaTokenParsers with Con
 		  case RNode(_,Some(nId),ty) =>
 		  	searchGraph.getNode(nId) match{
 		  	  	case Some(n) => n
-		  	  	case None    => sys.error("Node not found:" + rn)
+		  	  	case None    => error("Node not found:" + rn)
 		  	}
 		  case RNode(Some(name),None,ty) =>
 		    searchGraph.findNode(name) match {
 				case Some(x) =>  x 
-				case None    =>  sys.error("Node not found:" + rn)
+				case None    =>  error("Node not found:" + rn)
 			}
-		   case _ => sys.error("Node not found:" + rn)	
+		   case _ => error("Node not found:" + rn)	
 		}
     }
     
@@ -625,33 +662,33 @@ class Parser(mmSpecification:S, mmName:String) extends JavaTokenParsers with Con
 		    val n2 = findNode(rn2,searchGraph)
 			searchGraph.findArrow(name,n1,n2) match {
 				case Some(x) =>  x
-				case None 	 =>  sys.error("Arrow could not be found:" + name + " " + n1 + "->" + n2 + ":" + ty)
+				case None 	 =>  error("Arrow could not be found:" + name + " " + n1 + "->" + n2 + ":" + ty)
 			}
 	     case RArrow(name,Some(id),rn1,Some(rn2),None,ty) =>  	
 		    val n1 = findNode(rn1,searchGraph)
 		    val n2 = findNode(rn2,searchGraph)
 			searchGraph.getArrow(id) match {
 				case Some(x) =>  if(x.sr != n1 || x.tg != n2 || x.t != ty || searchGraph.names(id) != name){
-									sys.error("Arrow with id" + id + " must have a unique definition!")
+									error("Arrow with id" + id + " must have a unique definition!")
 								 };x
-				case None 	 =>  sys.error("Arrow could not be found:" + name + " " + n1 + "->" + n2 + ":" + ty)
+				case None 	 =>  error("Arrow could not be found:" + name + " " + n1 + "->" + n2 + ":" + ty)
 			}
 		  //Attribute Type:		  
 		  case RArrow(name,None,rn1,None,Some(at),TypeArrow.TAttribute()) =>  
 		  	val n1 = findNode(rn1,searchGraph)
 			searchGraph.findArrow(name,n1,at) match {
 					case Some(x) =>  x 
-					case None 	 =>  sys.error("Attribute-Arrow could not be found:" + name + " " + n1 + "->" + at + ":" + TypeArrow.TAttribute())
+					case None 	 =>  error("Attribute-Arrow could not be found:" + name + " " + n1 + "->" + at + ":" + TypeArrow.TAttribute())
 			}	  	
 		  case RArrow(name,Some(id),rn1,None,Some(at),TypeArrow.TAttribute()) =>  		  	
 		  	val n1 = findNode(rn1,searchGraph)
 			searchGraph.getArrow(id) match {
 					case Some(x) =>  if(x.sr != n1 || x.tg != at || x.t != TypeArrow.TAttribute() || searchGraph.names(id) != name){
-										sys.error("Arrow with id" + id + " must have a unique definition!")
+										error("Arrow with id" + id + " must have a unique definition!")
 									 };x 
-					case None 	 => sys.error("Attribute-Arrow could not be found:" + name + " " + n1 + "->" + at + ":" + TypeArrow.TAttribute())
+					case None 	 => error("Attribute-Arrow could not be found:" + name + " " + n1 + "->" + at + ":" + TypeArrow.TAttribute())
 			}		  	
-		  case _ => sys.error("Programming sys.error")  
+		  case _ => error("Programming error")  
 		}
     }  
     
@@ -683,7 +720,7 @@ class Parser(mmSpecification:S, mmName:String) extends JavaTokenParsers with Con
 	  rElems foreach(x => x match {
 	    	case rn@RNode(_,_,_) 		=> createNode(rn) 
 	    	case ra@RArrow(_,_,_,_,_,_) => createArrow(ra)
-	      	case _ => sys.error("Programming sys.error")
+	      	case _ => error("Programming error")
 	  	  }
 	  )
 	  curMGraph
