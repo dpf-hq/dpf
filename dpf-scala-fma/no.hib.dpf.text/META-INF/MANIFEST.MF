@@ -44,5 +44,6 @@ Export-Package: no.hib.dpf.text,
  no.hib.dpf.text.tdpf,
  no.hib.dpf.text.tdpf.impl,
  no.hib.dpf.text.tdpf.util,
+ no.hib.dpf.text.util,
  no.hib.dpf.text.validation,
  no.hib.dpf.text.wrapper

@@ -20,16 +20,39 @@ import no.hib.dpf.text.tdpf.{Arrow=>JArrow}
 import no.hib.dpf.text.tdpf.{Arrows=>JArrows}
 import no.hib.dpf.text.tdpf.{DpfId=>JId}
 import no.hib.dpf.text.tdpf.{DataType=>JDataType}
-
+import no.hib.dpf.text.util.{Tuple=>JTuple}
+import java.util.{Stack=>JStack};
+import java.util.{List=>JList};
 
 class Bridge(mmSpec:S, mmName:String, nextSeq:Int) extends Parser(mmSpec, mmName, nextSeq){
  
+  
+  def read(s:JStack[JTuple[String,JSpecification]]):JList[String]={
+	
+	  if(s.empty()){
+	    sys.error("No Specification");
+	  }
+    
+	  //init:
+	  initParser();
+	  
+	  var rGraph:MGraph = null;
+	  var top:JTuple[String,JSpecification] = null;
+	  
+	  while(!s.empty()){
+	    top = s.pop();
+	    rGraph = read(top.x,top.y);
+	  }
+
+	  asList(ListBuffer(serializeGraph(rGraph,"",top.y.getType.getId(),GCtx.gen().v,""): _*));
+  }
+    
   /**
    * Read Graph as a whole:
    */
-  def read(g:JSpecification)={
-      //init:
-	  initParser();
+  private def read(name:String, g:JSpecification):MGraph={
+      
+	  GCtx.setNext(g.getSequenceNumber());
 	  
 	  val mmGraphName = g.getType().getId();
 	  
@@ -67,7 +90,8 @@ class Bridge(mmSpec:S, mmName:String, nextSeq:Int) extends Parser(mmSpec, mmName
       }
       //Return normalized Graph in List of StringBuffer:
       val rGraph = this.curMGraph.normalize(GCtx.gen);
-      asList(ListBuffer(serializeGraph(rGraph,"",mmGraphName,GCtx.gen().v,""): _*));
+      
+      saveTGraph(name,rGraph);
   }
 
   //

@@ -14,11 +14,13 @@ class Parser(mmSpecification:S, mmName:String, nextSeq: Int) extends JavaTokenPa
 	   
 	//Ids:
 	object GCtx{
-		private var i = nextSeq-1; 
-		def gen()= {i+=1;
-					RId(i);
+		private var _next = nextSeq-1 	
+		def setNext(value:Int):Unit = _next=value-1
+		def gen()= {
+		  _next+=1;
+		  RId(_next);
 		}
-	}
+	}	
 	
 	//Input and output:
 	var inFile="file.tdpf"
@@ -251,7 +253,7 @@ class Parser(mmSpecification:S, mmName:String, nextSeq: Int) extends JavaTokenPa
 	  s
 	}		
 	
-	private def saveTGraph(n:String,g:MGraph):MGraph={
+	protected def saveTGraph(n:String,g:MGraph):MGraph={
 	  tGraphs+=n->g;
 	  
 	  //Generate Standard Specification:
