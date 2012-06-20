@@ -70,18 +70,15 @@ public class GraphNormalizer{
 	 * Normalize a Xtextdocument so that it is a valid type graph (does not care about additional well-formedness rules)
 	 * @param d
 	 */
-	public static void normalize(final IDocument d, Specification specification) {
-		if(d instanceof XtextDocument){
-			try{
-				final XtextDocument document = (XtextDocument)d;
-				final JavaScalaBridge bridge = new JavaScalaBridge();
-				final ICompositeNode co = NodeModelUtils.findActualNodeFor(specification);	
-				final List<String> nGraph = bridge.read(specification);
-				replaceInOpendIFile(co,nGraph,document);
-				//replaceUnopenedIFile(f, graph, co);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+	public static void normalize(final IXtextDocument document, Specification specification) {
+		try{
+			final JavaScalaBridge bridge = new JavaScalaBridge();
+			final ICompositeNode co = NodeModelUtils.findActualNodeFor(specification);	
+			final List<String> nGraph = bridge.read(specification);
+			replaceInOpendIFile(co,nGraph,document);
+			//replaceUnopenedIFile(f, graph, co);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	
