@@ -8,13 +8,10 @@ import java.io.PipedOutputStream;
 import java.util.LinkedList;
 import java.util.List;
 
-import no.hib.dpf.text.DPFTextStandaloneSetup;
-import no.hib.dpf.text.parser.antlr.DPFTextParser;
 import no.hib.dpf.text.tdpf.Specification;
 import no.hib.dpf.text.wrapper.JavaScalaBridge;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.text.IDocument;
@@ -23,54 +20,35 @@ import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.parser.IParseResult;
-import org.eclipse.xtext.parser.IParser;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
 import org.eclipse.xtext.ui.editor.model.XtextDocument;
-import org.eclipse.xtext.ui.editor.model.XtextDocumentProvider;
 import org.eclipse.xtext.util.concurrent.IUnitOfWork;
-
-import com.google.inject.Injector;
 
 
 public class GraphNormalizer{
 	
-	XtextDocumentProvider test;
-	
+	/**
+	 * Normalize a Xtextdocument so that it is a valid type graph (does not care about additional well-formedness rules)
+	 * @param d
+	 */
 	public static void normalize(final IDocument d) {
 		if(d instanceof XtextDocument){
 			final XtextDocument document = (XtextDocument)d;
-			
 			final JavaScalaBridge bridge = new JavaScalaBridge();
-			//Injector injector = new DPFTextStandaloneSetup().createInjectorAndDoEMFRegistration();
-			//IParser parser = injector.getInstance(DPFTextParser.class);
-			//IParseResult parseResult;
 			try {
 				document.modify(new IUnitOfWork<EList<EObject>, XtextResource>() {
 					public EList<EObject> exec(XtextResource state) throws Exception {
-						IParseResult parseResult = state.getParseResult();
-						
-						//TODO Note to comment out:
-						for (INode n : parseResult.getSyntaxErrors()) {
-							System.out.println("Error:" + n);
-						}
-						
+						IParseResult parseResult = state.getParseResult();					
 						EObject eRoot = parseResult.getRootASTElement();
 	//					System.out.println(eRoot);
-						
 						try {
 							if(eRoot instanceof Specification){
 								final Specification specification = (Specification)eRoot;
 								final ICompositeNode co = NodeModelUtils.findActualNodeFor(eRoot);	
 								final List<String> nGraph = bridge.read(specification);
-								
-								//Test:
-								for(String s:nGraph){
-									System.out.print(s);
-								}
-								
+								addNonParsableLines(parseResult, nGraph);
 								replaceInOpendIFile(co,nGraph,document);
-								
 								//replaceUnopenedIFile(f, graph, co);
 							}
 						} catch (Exception e) {
@@ -87,51 +65,61 @@ public class GraphNormalizer{
 		}
 	}
 
-	
-	public static void normalize(final IFile f, final IXtextDocument document) {
-		JavaScalaBridge bridge = new JavaScalaBridge();
-		Injector injector = new DPFTextStandaloneSetup().createInjectorAndDoEMFRegistration();
-		IParser parser = injector.getInstance(DPFTextParser.class);
-		IParseResult result;
-		try {
-			
-			result = parser.parse(new InputStreamReader(f.getContents()));
-			
-			//TODO Note to comment out:
+//	
+//	public static void normalize(final IFile f, final IXtextDocument document) {
+//		JavaScalaBridge bridge = new JavaScalaBridge();
+//		Injector injector = new DPFTextStandaloneSetup().createInjectorAndDoEMFRegistration();
+//		IParser parser = injector.getInstance(DPFTextParser.class);
+//		IParseResult result;
+//		try {
+//			
+//			result = parser.parse(new InputStreamReader(f.getContents()));
+//			EObject eRoot = result.getRootASTElement();
+////			System.out.println(eRoot);
+//			
+//			try {
+//				if(eRoot instanceof Specification){
+//					final Specification specification = (Specification)eRoot;
+//					final ICompositeNode co = NodeModelUtils.findActualNodeFor(eRoot);	
+//					final List<String> nGraph = bridge.read(specification);
+//					addNonParsableLines(result, nGraph);
+//					replaceInOpendIFile(co,nGraph,document);
+//					//replaceUnopenedIFile(f, graph, co);
+//				}
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//				//do nothing
+//			}
+//			
+//		} catch (CoreException e) {
+//			e.printStackTrace();
+//		}
+//	
+//	}
+//
+
+	private static void addNonParsableLines(IParseResult result,
+			final List<String> nGraph) {
+		//Comment out errors:
+		if(result.getSyntaxErrors().iterator().hasNext()){
+			nGraph.add("\n/*");
+			nGraph.add("\n-------------------------------------------");
+			nGraph.add("\nCould not be parsed:");
+			nGraph.add("\n-------------------------------------------");
 			for (INode n : result.getSyntaxErrors()) {
-				System.out.println("Error:" + n);
+				nGraph.add(n.getText());
 			}
-			
-			EObject eRoot = result.getRootASTElement();
-//			System.out.println(eRoot);
-			
-			try {
-				if(eRoot instanceof Specification){
-					final Specification specification = (Specification)eRoot;
-					final ICompositeNode co = NodeModelUtils.findActualNodeFor(eRoot);	
-					final List<String> nGraph = bridge.read(specification);
-					
-					//Test:
-					for(String s:nGraph){
-						System.out.print(s);
-					}
-					
-					replaceInOpendIFile(co,nGraph,document);
-					
-					//replaceUnopenedIFile(f, graph, co);
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-				//do nothing
-			}
-			
-		} catch (CoreException e) {
-			e.printStackTrace();
+			nGraph.add("*/\n");
 		}
-	
 	}
 
-	private static void replaceInOpendIFile(final ICompositeNode co,	final List<String> nGraph, final IXtextDocument document) {
+   /**
+    * Replace in the current file which is displayed in the editor:	
+    * @param co
+    * @param nGraph
+    * @param document
+    */
+   private static void replaceInOpendIFile(final ICompositeNode co,	final List<String> nGraph, final IXtextDocument document) {
 		final StringBuilder nGraphAsString = new StringBuilder();
 		for(String s:nGraph){
 			nGraphAsString.append(s);
@@ -144,25 +132,14 @@ public class GraphNormalizer{
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-
-		System.out.println("TEST FLO");
-		
-//		//Save File:
-//		try {
-//			Display.getDefault().syncExec(new Runnable(){
-//				@Override
-//		        public void run() {
-//					
-//					IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-//					IEditorPart editor = page.getActiveEditor();
-//					page.saveEditor(editor, false /* confirm */);
-//				}
-//			});
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
 	}
 
+   /**
+    * Replace in a file which is stored on disk but not displayed in the editor:	
+    * @param co
+    * @param nGraph
+    * @param document
+    */
 	@SuppressWarnings("unused")
 	private static void replaceInUnopenedIFile(IFile f, final List<String> graph, final ICompositeNode co) {
 		//Replace content:
