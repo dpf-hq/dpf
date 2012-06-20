@@ -10,15 +10,14 @@ import no.hib.dpf.text.coevolution._
 import no.hib.dpf.text.output.graphviz.Output
 import no.hib.dpf.text.output.parser.{Output=>POutput}
 
-class Parser(mmSpecification:S, mmName:String) extends JavaTokenParsers with Converter with Output with POutput{
+class Parser(mmSpecification:S, mmName:String, nextSeq: Int) extends JavaTokenParsers with Converter with Output with POutput{
 	   
 	//Ids:
 	object GCtx{
-		private var i = 0; 
+		private var i = nextSeq-1; 
 		def gen()= {i+=1;
-					RId(1000 + i);
+					RId(i);
 		}
-		def init() = i = 0; 
 	}
 	
 	//Input and output:
@@ -58,9 +57,6 @@ class Parser(mmSpecification:S, mmName:String) extends JavaTokenParsers with Con
 	  
 	  curDomain = null
 	  curCodomain = null
-	  
-	  //Init Counter:
-	  GCtx.init()
 	}
 	
 	
@@ -149,8 +145,8 @@ class Parser(mmSpecification:S, mmName:String) extends JavaTokenParsers with Con
 	    x.print(outDir)
 	  	val H = x.H.normalize(GCtx.gen)
 	  	val TH = H.mmGraph
-	  	serializeGraph(TH,"TH","DPF",outDir)
-	  	serializeGraph(H,"H","TH",outDir)
+	  	serializeGraph(TH,"TH","DPF",GCtx.gen().v,outDir)
+	  	serializeGraph(H,"H","TH",GCtx.gen().v,outDir)
 	}
 
 	def evoSpan: Parser[Any] = "evolution("~ID~"<->"~ID~","~ID~")" ^^ { case "evolution("~l~"<->"~r~","~g~")" => 
@@ -166,8 +162,8 @@ class Parser(mmSpecification:S, mmName:String) extends JavaTokenParsers with Con
 	  	x.print(outDir)
 	  	val H = x.H.normalize(GCtx.gen)
 	  	val TH = H.mmGraph
-	  	serializeGraph(TH,"TH","DPF",outDir)
-	  	serializeGraph(H,"H","TH",outDir)
+	  	serializeGraph(TH,"TH","DPF",GCtx.gen().v,outDir)
+	  	serializeGraph(H,"H","TH",GCtx.gen().v,outDir)
 	}
 
 	//Specification instance:
@@ -858,7 +854,7 @@ class Parser(mmSpecification:S, mmName:String) extends JavaTokenParsers with Con
 }
 
 
-object Main extends Parser(Dpf, "DPF") 
+object Main extends Parser(Dpf, "DPF",10) 
 {
 	import no.hib.dpf.text.graph.validation.eclipse._
 	def main(args:Array[String]) = {

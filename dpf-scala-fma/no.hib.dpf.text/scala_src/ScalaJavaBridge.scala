@@ -22,7 +22,7 @@ import no.hib.dpf.text.tdpf.{DpfId=>JId}
 import no.hib.dpf.text.tdpf.{DataType=>JDataType}
 
 
-class Bridge(mmSpec:S, mmName:String) extends Parser(mmSpec, mmName){
+class Bridge(mmSpec:S, mmName:String, nextSeq:Int) extends Parser(mmSpec, mmName, nextSeq){
  
   /**
    * Read Graph as a whole:
@@ -66,7 +66,8 @@ class Bridge(mmSpec:S, mmName:String) extends Parser(mmSpec, mmName){
     	  }
       }
       //Return normalized Graph in List of StringBuffer:
-      asList(ListBuffer(serializeGraph(this.curMGraph.normalize(GCtx.gen),"",mmGraphName,""): _*));
+      val rGraph = this.curMGraph.normalize(GCtx.gen);
+      asList(ListBuffer(serializeGraph(rGraph,"",mmGraphName,GCtx.gen().v,""): _*));
   }
 
   //

@@ -96,7 +96,7 @@ trait Output{
  /**
   * Serialize Graph into the same representation as they are stored in a file. 
   */
-  protected def serializeGraph(g:AbstractGraph,name:String,mmName:String,path:String):List[String]={
+  protected def serializeGraph(g:AbstractGraph,name:String,mmName:String,sequenceNo:Long,path:String):List[String]={
     
     //println("\n\n" + name + " " + g)
  
@@ -107,7 +107,7 @@ trait Output{
     rs="Specification:"::rs
     rs=mmName::rs
     rs="<"::rs
-    rs="1000"::rs
+    rs=sequenceNo.toString()::rs
     rs=">{\n"::rs
     rs=" Graph{\n"::rs
 
