@@ -12,11 +12,12 @@ import no.hib.dpf.text.util.Tuple;
 import no.hib.dpf.text.wrapper.JavaScalaBridge;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.text.edits.ReplaceEdit;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
@@ -91,8 +92,8 @@ public class GraphNormalizer{
 		stack.add(new Tuple<String, Specification>(f.getName(), specification));
 		Specification s = specification;
 		while(!s.getType().getId().equals("DPF")){
-				stack.push(read(iFileFromParent(f,s)));
-				s=stack.peek().y;
+			stack.push(read(iFileFromParent(f,s)));
+			s=stack.peek().y;
 		}
 		return stack;
 	}
@@ -150,12 +151,16 @@ public class GraphNormalizer{
 	}
 
    private static IFile eObject2IFile(EObject o){
-	   IWorkspace workspace = ResourcesPlugin.getWorkspace(); 
-	   return workspace.getRoot().getFile(new Path(o.eResource().getURI().path())); 	   
+	   final Resource eResource = o.eResource();
+	   final URI eUri = eResource.getURI();
+	   final String platformString = eUri.toPlatformString(true);
+	   final IFile file = (IFile)ResourcesPlugin.getWorkspace().getRoot().findMember(platformString);	 
+	   return file;
    }
 
-   private static IFile iFileFromParent(IFile f, Specification s){
-	   return f.getParent().getFile(new Path(s.getType().getId() + ".tdpf"));   
+   private static IFile iFileFromParent(IFile f,Specification s){
+	   final String path = f.getParent().getFullPath() + "/" + s.getType().getId() + ".tdpf";
+	   return ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(path)); 	   
    }
  
 //   /**
