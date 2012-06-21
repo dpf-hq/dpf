@@ -175,7 +175,7 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider imple
 	 */
 	private String makeLabel(Node n) {
 		String tg;
-		tg = n.getId().getId() + "@" + n.getId().getName() + ":"
+		tg = n.getId().getName() + "@" + n.getId().getId() + ":"
 		   + n.getType().getName() + "@" + n.getType().getId();
 		return tg;
 	}
