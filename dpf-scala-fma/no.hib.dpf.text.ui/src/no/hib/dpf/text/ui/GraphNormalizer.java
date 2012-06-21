@@ -105,7 +105,8 @@ public class GraphNormalizer{
 			final IParseResult result = parser.parse(new InputStreamReader(f.getContents()));
 			final EObject eRoot = result.getRootASTElement();
 			if(eRoot instanceof Specification){
-				return new Tuple<String, Specification>(f.getName(),(Specification)eRoot);
+				final String name = f.getName().substring(0,-1 + f.getName().indexOf(f.getFileExtension())); 
+				return new Tuple<String, Specification>(name,(Specification)eRoot);
 			}
 		} catch (Exception e) {
 			throw new RuntimeException(e);
