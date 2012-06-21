@@ -68,7 +68,7 @@ public class DPFTextOutlineTreeProvider extends DefaultOutlineTreeProvider imple
 
 	protected void _createChildren(final DocumentRootNode parentNode, final Specification s) {
 		if(!inited){
-//TODO Wieder rein:			GraphNormalizer.normalize(this.document,s);
+			GraphNormalizer.normalize(this.document,s);
 			inited=true;
 			System.out.println("Inited!");
 		}
