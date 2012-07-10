@@ -93,7 +93,8 @@ public class DPFEditorPaletteFactory {
 			Arrow arrow = darrow.getArrow();
 			Assert.isTrue(arrow != null);
 			Assert.isTrue(darrow != null);
-			arrowGroup.add(new DPFConnectionCreationToolEntry(arrow.getName(), "Create a new " + arrow.getName(), new DArrowFactory(darrow), 
+//			add Arrow:Node-->Node to tooltip in case several arrows with same name showing up in the metamodel.
+			arrowGroup.add(new DPFConnectionCreationToolEntry(arrow.getName(), "Create a new " + arrow.getName() + ":" + arrow.getSource().getName() + "-->" + arrow.getTarget().getName(), new DArrowFactory(darrow), 
 					smallIcon != null ? smallIcon : SMALLARROW, 
 							largeIcon != null ? largeIcon : LARGEARROW));
 		}

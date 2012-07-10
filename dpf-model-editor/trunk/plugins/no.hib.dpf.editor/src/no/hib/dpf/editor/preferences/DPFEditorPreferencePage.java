@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2011 H¿yskolen i Bergen
+ * Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * ¯yvind Bech and Dag Viggo Lok¿en - DPF Editor
+ * ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
 *******************************************************************************/
 package no.hib.dpf.editor.preferences;
 
@@ -35,6 +35,7 @@ public class DPFEditorPreferencePage extends FieldEditorPreferencePage implement
 	private Composite fieldEditorParent;
 	private BooleanFieldEditor displayDynTypedArrowTools;
 	private BooleanFieldEditor displayTypedArrowTools;
+	private ColorFieldEditor nodebg, nodefg, arrowbg, arrowfg, arrowSource, arrowTarget, arrowLabelSelected;
 
 	public DPFEditorPreferencePage() {
 		super(GRID);
@@ -49,8 +50,6 @@ public class DPFEditorPreferencePage extends FieldEditorPreferencePage implement
 	 * restore itself.
 	 */
 	public void createFieldEditors() {
-//		addField(new DirectoryFieldEditor(PreferenceConstants.P_PATH, 
-//				"&Directory preference:", getFieldEditorParent()));
 		addField(new BooleanFieldEditor(PreferenceConstants.P_DISPLAY_ARROWS, "Display names on &arrows", getFieldEditorParent()));
 		
 		addField(new BooleanFieldEditor(PreferenceConstants.P_DISPLAY_TYPES, "Display &type names", getFieldEditorParent()));		
@@ -66,16 +65,22 @@ public class DPFEditorPreferencePage extends FieldEditorPreferencePage implement
 		
 		displayTypedArrowTools.setEnabled(DPFEditorPreferences.getDefault().getDisplayDynamicallyTypedArrows(), fieldEditorParent);
 		
+		nodebg = new ColorFieldEditor(PreferenceConstants.P_NODE_BGCOLOR, "Node Background Color", fieldEditorParent);
+		nodefg = new ColorFieldEditor(PreferenceConstants.P_NODE_FGCOLOR, "Node Foreground Color", fieldEditorParent);
+		arrowbg = new ColorFieldEditor(PreferenceConstants.P_ARROW_BGCOLOR, "Arrow Background Color", fieldEditorParent);
+		arrowfg = new ColorFieldEditor(PreferenceConstants.P_ARROW_FGCOLOR, "Arrow Foreground Color", fieldEditorParent);
+		arrowSource = new ColorFieldEditor(PreferenceConstants.P_ARROW_SOURCE_COLOR, "Qualified Arrow Source Color", fieldEditorParent);
+		arrowTarget = new ColorFieldEditor(PreferenceConstants.P_ARROW_TARGET_COLOR, "Qualified Arrow Target Color", fieldEditorParent);
+		arrowLabelSelected = new ColorFieldEditor(PreferenceConstants.P_ARROW_LABEL_SELECTED_ARROW_COLOR, "Arrow Color when clicking on Arrow Label", fieldEditorParent);
 		
-//		addField(new RadioGroupFieldEditor(
-//				PreferenceConstants.P_CHOICE,
-//			"An example of a multiple-choice preference",
-//			1,
-//			new String[][] { { "&Choice 1", "choice1" }, {
-//				"C&hoice 2", "choice2" }
-//		}, getFieldEditorParent()));
-//		addField(
-//			new StringFieldEditor(PreferenceConstants.P_STRING, "A &text preference:", getFieldEditorParent()));
+		addField(nodebg);
+		addField(nodefg);
+		addField(arrowbg);
+		addField(arrowfg);
+		addField(arrowSource);
+		addField(arrowTarget);
+		addField(arrowLabelSelected);
+		
 	}
 
 	@Override

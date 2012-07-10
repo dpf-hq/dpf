@@ -48,6 +48,45 @@ public class DPFEditorPreferences {
 		return getPreferenceStore().getBoolean(PreferenceConstants.P_DISPLAY_TYPED_ARROWS);
 	}
 
+	public Color getNodeBackgroundColor(){
+		return getColor(PreferenceConstants.P_NODE_BGCOLOR);
+	}
+	public Color getNodeForegroundColor(){
+		return getColor(PreferenceConstants.P_NODE_FGCOLOR);
+	}
+	public Color getArrowBackgroundColor(){
+		return getColor(PreferenceConstants.P_ARROW_BGCOLOR);
+	}
+	public Color getArrowForegroundColor(){
+		return getColor(PreferenceConstants.P_ARROW_FGCOLOR);
+	}
+	public Color getArrowSourceColor(){
+		return getColor(PreferenceConstants.P_ARROW_SOURCE_COLOR);
+	}
+	public Color getArrowTargetColor(){
+		return getColor(PreferenceConstants.P_ARROW_TARGET_COLOR);
+	}
+	public Color getArrowLabelSelectedArrowColor(){
+		return getColor(PreferenceConstants.P_ARROW_LABEL_SELECTED_ARROW_COLOR);
+	}
+	private Color getColor(String prefrence){
+		String color = getPreferenceStore().getString(prefrence);
+		Color result = getColorFromString(color);
+		if(result == null){
+			color = getPreferenceStore().getDefaultString(prefrence);
+			return getColorFromString(color);
+		}
+		return result;
+	}
+	private Color getColorFromString(String colorString) {
+		try {
+			String[] colors = colorString.split(",");
+			return new Color(null, Integer.parseInt(colors[0].trim()), Integer.parseInt(colors[1].trim()), Integer.parseInt(colors[2].trim()));
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
 	public Color getNodeColor() {
         String colorString = getPreferenceStore().getString(PreferenceConstants.P_NODE_COLOR);
 		

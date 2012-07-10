@@ -42,6 +42,7 @@ import no.hib.dpf.diagram.util.DiagramUtil;
 import no.hib.dpf.editor.commands.ArrowTextMoveCommand;
 import no.hib.dpf.editor.parts.ArrowLabelEditPart;
 import no.hib.dpf.editor.parts.DNodeEditPart;
+import no.hib.dpf.editor.preferences.DPFEditorPreferences;
 
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.IFigure;
@@ -64,5 +65,17 @@ public class ArrowTextMovePolicy extends NonResizableEditPolicy {
 		Point p = label.getBounds().getTopLeft().getTranslated(request.getMoveDelta());
 		command = new ArrowTextMoveCommand(model, DiagramUtil.getDOffset(source, target, ((Connection)connection.getFigure()).getPoints(), p));
 		return command;
+	}
+	protected void showSelection() {
+		super.showSelection();
+		ArrowLabelEditPart editpart = (ArrowLabelEditPart)getHost();
+		ConnectionEditPart connection = (ConnectionEditPart) editpart.getParent();
+		connection.getFigure().setForegroundColor(DPFEditorPreferences.getDefault().getArrowLabelSelectedArrowColor());		
+	}
+	protected void removeSelectionHandles() {
+		ArrowLabelEditPart editpart = (ArrowLabelEditPart)getHost();
+		ConnectionEditPart connection = (ConnectionEditPart) editpart.getParent();
+		connection.getFigure().setForegroundColor(DPFEditorPreferences.getDefault().getArrowForegroundColor());	
+		super.removeSelectionHandles();
 	}
 }

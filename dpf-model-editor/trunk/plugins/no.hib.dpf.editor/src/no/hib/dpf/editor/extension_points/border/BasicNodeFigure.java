@@ -6,9 +6,6 @@ import no.hib.dpf.editor.figures.EditableLabel;
 import no.hib.dpf.editor.figures.NodeFigure;
 
 import org.eclipse.draw2d.Graphics;
-import org.eclipse.draw2d.GridData;
-import org.eclipse.draw2d.GridLayout;
-import org.eclipse.swt.SWT;
 
 public class BasicNodeFigure extends NodeFigure {
 	public BasicNodeFigure(EditableLabel name) {
@@ -16,12 +13,7 @@ public class BasicNodeFigure extends NodeFigure {
 	}
 	@SuppressWarnings("rawtypes")
 	public BasicNodeFigure(EditableLabel name, List colums) {
-		GridLayout layout = new GridLayout(1, true);
-		layout.setConstraint(nameLabel, new GridData(SWT.CENTER, SWT.CENTER, true, true));
-		setLayoutManager(layout);
-		setOpaque(true);
-		add(name);
-		nameLabel = name;
+		super(name, colums);
 	}
 	/**
 	 * Paints this Figure and its children.

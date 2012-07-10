@@ -19,7 +19,7 @@ public class TextCellEditorLocator implements CellEditorLocator {
           Text text = (Text) celleditor.getControl();
           if(text == null) return;
           Rectangle constraints = label.getBounds();
-          if(constraints != null)
+          if(constraints != null && text.getDisplay() != null)
         	  text.setBounds(constraints.x, constraints.y, constraints.width, constraints.height);
     }
 

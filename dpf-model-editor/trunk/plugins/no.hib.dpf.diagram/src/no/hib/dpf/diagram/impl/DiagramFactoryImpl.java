@@ -626,6 +626,7 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 
 	@Override
 	public DOffset createDefaultDOffset() {
-		return new DOffsetImpl(new Point(7, 1), 8);
+//		Adjust the initial position of the arrow label
+		return new DOffsetImpl(new Point(10, -3), 16);
 	}
 } //DiagramFactoryImpl
