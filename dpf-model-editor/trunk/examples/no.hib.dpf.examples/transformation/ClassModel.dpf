@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:diagram="http://no.hib.dpf.diagram">
+  <diagram:DSpecification dType="/1" gridVisible="false" metaFile="classMeta.dpf">
+    <dGraph dType="/1/@dGraph">
+      <dNodes dType="/1/@dGraph/@dNodes.0" dOutgoings="/0/@dGraph/@dArrows.0 /0/@dGraph/@dArrows.7" dIncomings="/0/@dGraph/@dArrows.1" location="12 144" size="152 49">
+        <node href="ClassModel.xmi#/0/@graph/@nodes.0"/>
+      </dNodes>
+      <dNodes dType="/1/@dGraph/@dNodes.0" dOutgoings="/0/@dGraph/@dArrows.1 /0/@dGraph/@dArrows.8 /0/@dGraph/@dArrows.5 /0/@dGraph/@dArrows.9" dIncomings="/0/@dGraph/@dArrows.0 /0/@dGraph/@dArrows.2 /0/@dGraph/@dArrows.3 /0/@dGraph/@dArrows.4" location="372 144" size="126 42">
+        <node href="ClassModel.xmi#/0/@graph/@nodes.1"/>
+      </dNodes>
+      <dNodes dType="/1/@dGraph/@dNodes.0" dOutgoings="/0/@dGraph/@dArrows.2 /0/@dGraph/@dArrows.3 /0/@dGraph/@dArrows.4 /0/@dGraph/@dArrows.6" location="372 420" size="126 30">
+        <node href="ClassModel.xmi#/0/@graph/@nodes.2"/>
+      </dNodes>
+      <dNodes dType="/1/@dGraph/@dNodes.1" dIncomings="/0/@dGraph/@dArrows.6 /0/@dGraph/@dArrows.7 /0/@dGraph/@dArrows.8 /0/@dGraph/@dArrows.9" location="38 420" size="100 30">
+        <node href="ClassModel.xmi#/0/@graph/@nodes.3"/>
+      </dNodes>
+      <dNodes dType="/1/@dGraph/@dNodes.1" dIncomings="/0/@dGraph/@dArrows.5" location="600 154" size="125 30">
+        <node href="ClassModel.xmi#/0/@graph/@nodes.4"/>
+      </dNodes>
+      <dArrows dType="/1/@dGraph/@dArrows.0" dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.1">
+        <arrow href="ClassModel.xmi#/0/@graph/@arrows.0"/>
+        <nameOffset offset="156 18" len="347"/>
+      </dArrows>
+      <dArrows dType="/1/@dGraph/@dArrows.0" dSource="/0/@dGraph/@dNodes.1" dTarget="/0/@dGraph/@dNodes.0">
+        <arrow href="ClassModel.xmi#/0/@graph/@arrows.1"/>
+        <nameOffset offset="7 1" len="8"/>
+      </dArrows>
+      <dArrows dType="/1/@dGraph/@dArrows.0" dSource="/0/@dGraph/@dNodes.2" dTarget="/0/@dGraph/@dNodes.1">
+        <arrow href="ClassModel.xmi#/0/@graph/@arrows.2"/>
+        <nameOffset offset="210 -31" len="266"/>
+      </dArrows>
+      <dArrows dType="/1/@dGraph/@dArrows.0" dSource="/0/@dGraph/@dNodes.2" dTarget="/0/@dGraph/@dNodes.1">
+        <arrow href="ClassModel.xmi#/0/@graph/@arrows.3"/>
+        <nameOffset offset="231 35" len="266"/>
+      </dArrows>
+      <dArrows dType="/1/@dGraph/@dArrows.0" dSource="/0/@dGraph/@dNodes.2" dTarget="/0/@dGraph/@dNodes.1">
+        <arrow href="ClassModel.xmi#/0/@graph/@arrows.4"/>
+        <nameOffset offset="182 -89" len="270"/>
+      </dArrows>
+      <dArrows dType="/1/@dGraph/@dArrows.1" dSource="/0/@dGraph/@dNodes.1" dTarget="/0/@dGraph/@dNodes.4">
+        <arrow href="ClassModel.xmi#/0/@graph/@arrows.5"/>
+        <nameOffset offset="133 -19" len="214"/>
+      </dArrows>
+      <dArrows dType="/1/@dGraph/@dArrows.1" dSource="/0/@dGraph/@dNodes.2" dTarget="/0/@dGraph/@dNodes.3">
+        <arrow href="ClassModel.xmi#/0/@graph/@arrows.6"/>
+        <nameOffset offset="133 0" len="209"/>
+      </dArrows>
+      <dArrows dType="/1/@dGraph/@dArrows.1" dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.3">
+        <arrow href="ClassModel.xmi#/0/@graph/@arrows.7"/>
+        <nameOffset offset="211 61" len="267"/>
+      </dArrows>
+      <dArrows dType="/1/@dGraph/@dArrows.1" dSource="/0/@dGraph/@dNodes.1" dTarget="/0/@dGraph/@dNodes.3">
+        <arrow href="ClassModel.xmi#/0/@graph/@arrows.8"/>
+        <nameOffset offset="302 13" len="439"/>
+      </dArrows>
+      <dArrows dType="/1/@dGraph/@dArrows.1" dSource="/0/@dGraph/@dNodes.1" dTarget="/0/@dGraph/@dNodes.3">
+        <arrow href="ClassModel.xmi#/0/@graph/@arrows.9"/>
+        <nameOffset offset="7 1" len="8"/>
+      </dArrows>
+      <graph href="ClassModel.xmi#/0/@graph"/>
+    </dGraph>
+    <specification href="ClassModel.xmi#/0"/>
+  </diagram:DSpecification>
+  <diagram:DSpecification gridVisible="false">
+    <dGraph>
+      <dNodes dOutgoings="/1/@dGraph/@dArrows.0 /1/@dGraph/@dArrows.1" dIncomings="/1/@dGraph/@dArrows.0" location="312 105" size="95 35">
+        <node href="ClassModel.xmi#/1/@graph/@nodes.0"/>
+      </dNodes>
+      <dNodes dIncomings="/1/@dGraph/@dArrows.1" location="516 108" size="100 30">
+        <node href="ClassModel.xmi#/1/@graph/@nodes.1"/>
+      </dNodes>
+      <dArrows dSource="/1/@dGraph/@dNodes.0" dTarget="/1/@dGraph/@dNodes.0">
+        <arrow href="ClassModel.xmi#/1/@graph/@arrows.0"/>
+        <nameOffset offset="24 30" len="70" index="2"/>
+        <bendpoints offset="-15 0" len="30"/>
+        <bendpoints offset="-15 100" len="30"/>
+        <bendpoints offset="45 100" len="30"/>
+        <bendpoints offset="45 0" len="30"/>
+      </dArrows>
+      <dArrows dSource="/1/@dGraph/@dNodes.0" dTarget="/1/@dGraph/@dNodes.1">
+        <arrow href="ClassModel.xmi#/1/@graph/@arrows.1"/>
+        <nameOffset offset="91 -28" len="207"/>
+      </dArrows>
+      <graph href="ClassModel.xmi#/1/@graph"/>
+    </dGraph>
+    <specification href="ClassModel.xmi#/1"/>
+  </diagram:DSpecification>
+</xmi:XMI>

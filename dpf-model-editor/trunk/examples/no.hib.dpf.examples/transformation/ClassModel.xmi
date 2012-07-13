@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:core="http://no.hib.dpf.core">
+  <core:Specification metaFile="classMeta.xmi" type="/1">
+    <graph id="64b1e9bb-1871-4052-8b68-4406a1ef0ea4" type="/1/@graph">
+      <nodes id="03ef1367-e26b-420f-bd1b-35b13a9d1bd7" name="Company" typeNode="/1/@graph/@nodes.0" outgoings="/0/@graph/@arrows.0 /0/@graph/@arrows.7" incomings="/0/@graph/@arrows.1"/>
+      <nodes id="650660ab-068b-4b91-a235-dac2543bd917" name="Person" typeNode="/1/@graph/@nodes.0" outgoings="/0/@graph/@arrows.1 /0/@graph/@arrows.8 /0/@graph/@arrows.5 /0/@graph/@arrows.9" incomings="/0/@graph/@arrows.0 /0/@graph/@arrows.2 /0/@graph/@arrows.3 /0/@graph/@arrows.4"/>
+      <nodes id="800a7705-f6af-477f-9880-a42e0c17c2cb" name="Family" typeNode="/1/@graph/@nodes.0" outgoings="/0/@graph/@arrows.2 /0/@graph/@arrows.3 /0/@graph/@arrows.4 /0/@graph/@arrows.6"/>
+      <nodes id="b9787f9b-b73d-427e-86d0-337fd16756e8" name="String" typeNode="/1/@graph/@nodes.1" incomings="/0/@graph/@arrows.6 /0/@graph/@arrows.7 /0/@graph/@arrows.8 /0/@graph/@arrows.9"/>
+      <nodes id="4d35d55d-4c78-4b75-9db9-642ca12418a3" name="Boolean" typeNode="/1/@graph/@nodes.1" incomings="/0/@graph/@arrows.5"/>
+      <arrows id="1bc640db-cf87-48b2-a374-e720497fadc3" name="Employee" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.1" typeArrow="/1/@graph/@arrows.0"/>
+      <arrows id="0fe3b467-de1a-4cbd-8757-4702cc5d5ce1" name="Workin" source="/0/@graph/@nodes.1" target="/0/@graph/@nodes.0" typeArrow="/1/@graph/@arrows.0"/>
+      <arrows id="b9ffb752-dc7b-4491-9851-a44415975e93" name="Mother" source="/0/@graph/@nodes.2" target="/0/@graph/@nodes.1" typeArrow="/1/@graph/@arrows.0"/>
+      <arrows id="a8ce564e-bc8e-4718-9888-0eca8dff81ef" name="Father" source="/0/@graph/@nodes.2" target="/0/@graph/@nodes.1" typeArrow="/1/@graph/@arrows.0"/>
+      <arrows id="6aba3a30-e42f-49cb-a660-206a7893ff79" name="Member" source="/0/@graph/@nodes.2" target="/0/@graph/@nodes.1" typeArrow="/1/@graph/@arrows.0"/>
+      <arrows id="d79ad0ed-42a0-46c6-a6c8-6a3b61d2659e" name="Sex" source="/0/@graph/@nodes.1" target="/0/@graph/@nodes.4" typeArrow="/1/@graph/@arrows.1"/>
+      <arrows id="150c12ef-1012-47d0-912c-cc051a33119e" name="Address" source="/0/@graph/@nodes.2" target="/0/@graph/@nodes.3" typeArrow="/1/@graph/@arrows.1"/>
+      <arrows id="c2221afa-ba38-48c6-919f-8843b20da822" name="Address" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.3" typeArrow="/1/@graph/@arrows.1"/>
+      <arrows id="dfe77e23-251d-46d4-a042-d7128dc033bf" name="Address" source="/0/@graph/@nodes.1" target="/0/@graph/@nodes.3" typeArrow="/1/@graph/@arrows.1"/>
+      <arrows id="ab628d14-39c1-40d0-bb8b-2282a3655481" name="Title" source="/0/@graph/@nodes.1" target="/0/@graph/@nodes.3" typeArrow="/1/@graph/@arrows.1"/>
+    </graph>
+  </core:Specification>
+  <core:Specification>
+    <graph id="7be3797c-36b3-4172-bd69-6dadf8c5e13f">
+      <nodes id="57a2452d-69de-4424-abb1-2ec9e4c48f21" name="Class" outgoings="/1/@graph/@arrows.0 /1/@graph/@arrows.1" incomings="/1/@graph/@arrows.0"/>
+      <nodes id="a1c26198-8b08-44bd-b610-49a516eade37" name="DTS" incomings="/1/@graph/@arrows.1"/>
+      <arrows id="b3236d46-2cdc-49da-b80a-c4fefc112131" name="Ref" source="/1/@graph/@nodes.0" target="/1/@graph/@nodes.0"/>
+      <arrows id="6d13995c-0e09-46b3-b454-5eeaeef18256" name="Attr" source="/1/@graph/@nodes.0" target="/1/@graph/@nodes.1"/>
+    </graph>
+  </core:Specification>
+</xmi:XMI>
