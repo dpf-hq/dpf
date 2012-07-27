@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<plugin>
+
+    <extension
+            point="org.eclipse.ui.editors">
+        <editor
+            class="no.hib.dpf.text.ui.DPFTextExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
+            contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
+            default="true"
+            extensions="tdpf"
+            id="no.hib.dpf.text.DPFText"
+            name="DPFText Editor">
+        </editor>
+    </extension>
+    <extension
+        point="org.eclipse.ui.handlers">
+        <handler
+            class="no.hib.dpf.text.ui.DPFTextExecutableExtensionFactory:org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclarationHandler"
+            commandId="org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclaration">
+            <activeWhen>
+                <reference
+                    definitionId="no.hib.dpf.text.DPFText.Editor.opened">
+                </reference>
+            </activeWhen>
+        </handler>
+        <handler
+            class="no.hib.dpf.text.ui.DPFTextExecutableExtensionFactory:org.eclipse.xtext.ui.editor.handler.ValidateActionHandler"
+            commandId="no.hib.dpf.text.DPFText.validate">
+         <activeWhen>
+            <reference
+                    definitionId="no.hib.dpf.text.DPFText.Editor.opened">
+            </reference>
+         </activeWhen>
+      </handler>
+    </extension>
+    <extension point="org.eclipse.core.expressions.definitions">
+        <definition id="no.hib.dpf.text.DPFText.Editor.opened">
+            <and>
+                <reference definitionId="isActiveEditorAnInstanceOfXtextEditor"/>
+                <with variable="activeEditor">
+                    <test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName" 
+                        value="no.hib.dpf.text.DPFText" 
+                        forcePluginActivation="true"/>
+                </with>        
+            </and>
+        </definition>
+    </extension>
+    <extension
+            point="org.eclipse.ui.preferencePages">
+        <page
+            class="no.hib.dpf.text.ui.DPFTextExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+            id="no.hib.dpf.text.DPFText"
+            name="DPFText">
+            <keywordReference id="no.hib.dpf.text.ui.keyword_DPFText"/>
+        </page>
+        <page
+            category="no.hib.dpf.text.DPFText"
+            class="no.hib.dpf.text.ui.DPFTextExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
+            id="no.hib.dpf.text.DPFText.coloring"
+            name="Syntax Coloring">
+            <keywordReference id="no.hib.dpf.text.ui.keyword_DPFText"/>
+        </page>
+        <page
+            category="no.hib.dpf.text.DPFText"
+            class="no.hib.dpf.text.ui.DPFTextExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
+            id="no.hib.dpf.text.DPFText.templates"
+            name="Templates">
+            <keywordReference id="no.hib.dpf.text.ui.keyword_DPFText"/>
+        </page>
+    </extension>
+    <extension
+        point="org.eclipse.ui.keywords">
+        <keyword
+            id="no.hib.dpf.text.ui.keyword_DPFText"
+            label="DPFText"/>
+    </extension>
+    <extension
+         point="org.eclipse.ui.commands">
+      <command
+            description="Trigger expensive validation"
+            id="no.hib.dpf.text.DPFText.validate"
+            name="Validate">
+      </command>
+    </extension>
+    <extension point="org.eclipse.ui.menus">
+        <menuContribution
+            locationURI="popup:#TextEditorContext?after=group.edit">
+             <command
+                 commandId="no.hib.dpf.text.DPFText.validate"
+                 style="push"
+                 tooltip="Trigger expensive validation">
+            <visibleWhen checkEnabled="false">
+                <reference
+                    definitionId="no.hib.dpf.text.DPFText.Editor.opened">
+                </reference>
+            </visibleWhen>
+         </command>  
+         </menuContribution>
+    </extension>
+    <extension point="org.eclipse.ui.menus">
+		<menuContribution locationURI="popup:#TextEditorContext?endof=group.find">
+			<command commandId="org.eclipse.xtext.ui.editor.FindReferences">
+				<visibleWhen checkEnabled="false">
+                	<reference definitionId="no.hib.dpf.text.DPFText.Editor.opened">
+                	</reference>
+            	</visibleWhen>
+			</command>
+		</menuContribution>
+	</extension>
+	<extension point="org.eclipse.ui.handlers">
+	    <handler
+            class="no.hib.dpf.text.ui.DPFTextExecutableExtensionFactory:org.eclipse.xtext.ui.editor.findrefs.FindReferencesHandler"
+            commandId="org.eclipse.xtext.ui.editor.FindReferences">
+            <activeWhen>
+                <reference
+                    definitionId="no.hib.dpf.text.DPFText.Editor.opened">
+                </reference>
+            </activeWhen>
+        </handler>
+    </extension>   
+
+<!-- adding resource factories -->
+
+	<extension
+		point="org.eclipse.emf.ecore.extension_parser">
+		<parser
+			class="no.hib.dpf.text.ui.DPFTextExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
+			type="tdpf">
+		</parser>
+	</extension>
+	<extension point="org.eclipse.xtext.extension_resourceServiceProvider">
+        <resourceServiceProvider
+            class="no.hib.dpf.text.ui.DPFTextExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
+            uriExtension="tdpf">
+        </resourceServiceProvider>
+    </extension>
+
+
+
+   <extension
+         point="org.eclipse.xtext.builder.participant">
+      <participant
+            class="no.hib.dpf.text.ui.DPFTextExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant">
+      </participant>
+   </extension>
+
+	<!-- Quick Outline -->
+	<extension
+		point="org.eclipse.ui.handlers">
+		<handler 
+			class="no.hib.dpf.text.ui.DPFTextExecutableExtensionFactory:org.eclipse.xtext.ui.editor.outline.quickoutline.ShowQuickOutlineActionHandler"
+			commandId="org.eclipse.xtext.ui.editor.outline.QuickOutline">
+			<activeWhen>
+				<reference
+					definitionId="no.hib.dpf.text.DPFText.Editor.opened">
+				</reference>
+			</activeWhen>
+		</handler>
+	</extension>
+	<extension
+		point="org.eclipse.ui.commands">
+		<command
+			description="Open the quick outline."
+			id="org.eclipse.xtext.ui.editor.outline.QuickOutline"
+			name="Quick Outline">
+		</command>		
+	</extension>
+	<extension point="org.eclipse.ui.menus">
+		<menuContribution
+			locationURI="popup:#TextEditorContext?after=group.open">
+			<command commandId="org.eclipse.xtext.ui.editor.outline.QuickOutline"
+				style="push"
+				tooltip="Open Quick Outline">
+				<visibleWhen checkEnabled="false">
+					<reference definitionId="no.hib.dpf.text.DPFText.Editor.opened"/>
+				</visibleWhen>
+			</command>		
+		</menuContribution>
+		<menuContribution allPopups="false" locationURI="popup:no.hib.dpf.text.tdpf.outline?after=additions">
+				<command commandId="no.hib.dpf.text.ui.outline.OpenFileCommand" label="Open" style="push"> 	
+				<visibleWhen checkEnabled="true">
+					<iterate>
+						<adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode"/>
+					</iterate>
+				</visibleWhen>
+				</command>
+		</menuContribution>
+		<menuContribution allPopups="false" locationURI="popup:no.hib.dpf.text.tdpf.outline?after=additions">
+				<command commandId="no.hib.dpf.text.ui.outline.ValidateSpecificationInstanceCommand" label="Validate" style="push"> 	
+				<visibleWhen checkEnabled="true">
+					<iterate>
+						<adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode"/>
+					</iterate>
+				</visibleWhen>
+				</command>
+		</menuContribution>
+	</extension>
+    <extension point="org.eclipse.ui.handlers">
+     <handler commandId="no.hib.dpf.text.ui.outline.OpenFileCommand"
+              class="no.hib.dpf.text.ui.outline.OutlineHandlerOpen">
+	         <activeWhen>
+	            <with variable="activeEditorId">
+	               <equals value="no.hib.dpf.text.DPFText">
+	               </equals>
+	            </with>
+	         </activeWhen>
+      </handler>
+     <handler commandId="no.hib.dpf.text.ui.outline.ValidateSpecificationInstanceCommand"
+              class="no.hib.dpf.text.ui.outline.OutlineHandlerValidate">
+	         <activeWhen>
+	            <with variable="activeEditorId">
+	               <equals value="no.hib.dpf.text.DPFText">
+	               </equals>
+	            </with>
+	         </activeWhen>
+      </handler>
+	</extension>
+	<extension point="org.eclipse.ui.commands">
+      <command description="Open File" id="no.hib.dpf.text.ui.outline.OpenFileCommand" name="Open"/>
+      <command description="Validate Instance Specification File" id="no.hib.dpf.text.ui.outline.ValidateSpecificationInstanceCommand" name="Validate"/>
+    </extension>
+	
+
+   <!-- quickfix marker resolution generator -->
+   <extension
+         point="org.eclipse.ui.ide.markerResolution">
+      <markerResolutionGenerator
+            class="no.hib.dpf.text.ui.DPFTextExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator">
+      </markerResolutionGenerator>
+   </extension>
+
+   	<!-- Rename Refactoring -->
+	<extension point="org.eclipse.ui.handlers">
+		<handler 
+			class="no.hib.dpf.text.ui.DPFTextExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.RenameElementHandler"
+			commandId="org.eclipse.xtext.ui.refactoring.RenameElement">
+			<activeWhen>
+				<reference
+					definitionId="no.hib.dpf.text.DPFText.Editor.opened">
+				</reference>
+			</activeWhen>
+		</handler>
+	</extension>
+    <extension point="org.eclipse.ui.menus">
+         <menuContribution
+            locationURI="popup:#TextEditorContext?after=group.edit">
+         <command commandId="org.eclipse.xtext.ui.refactoring.RenameElement"
+               style="push">
+            <visibleWhen checkEnabled="false">
+               <reference
+                     definitionId="no.hib.dpf.text.DPFText.Editor.opened">
+               </reference>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+
+  <extension point="org.eclipse.compare.contentViewers">
+    <viewer id="no.hib.dpf.text.DPFText.compare.contentViewers"
+            class="no.hib.dpf.text.ui.DPFTextExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+            extensions="tdpf">
+    </viewer>
+  </extension>
+  <extension point="org.eclipse.compare.contentMergeViewers">
+    <viewer id="no.hib.dpf.text.DPFText.compare.contentMergeViewers"
+            class="no.hib.dpf.text.ui.DPFTextExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+            extensions="tdpf" label="DPFText Compare">
+     </viewer>
+  </extension>
+  <extension point="org.eclipse.ui.editors.documentProviders">
+    <provider id="no.hib.dpf.text.DPFText.editors.documentProviders"
+            class="no.hib.dpf.text.ui.DPFTextExecutableExtensionFactory:org.eclipse.xtext.ui.editor.model.XtextDocumentProvider"
+            extensions="tdpf">
+    </provider>
+  </extension>
+
+  <!-- Launcher GUI: -->
+  <extension point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+    <launchConfigurationTypeImage
+        icon="icons/dpf_text.png"
+        configTypeID="no.hib.dpf.text.Launcher.ID"
+        id="no.hib.dpf.text.Launcher.image.ID">
+    </launchConfigurationTypeImage>
+  </extension>  
+  
+  <extension point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+    <launchConfigurationTabGroup
+        type="no.hib.dpf.text.Launcher.ID"
+        class="no.hib.dpf.text.ui.DPFTextLauncherTabGroup"
+        id="no.hib.dpf.text.Launcher.tabgroup">
+    </launchConfigurationTabGroup>
+  </extension>
+       
+ <extension point="org.eclipse.debug.ui.launchShortcuts">
+  <shortcut
+    label="DPF-Text Command File"
+    icon="icons/dpf_text.png"
+    modes="run"
+    class="no.hib.dpf.text.ui.DPFTextLaunchShortcut"
+    description="Launch a DPF-Text Command File"
+    id="no.hib.dpf.text.ui.DPFTextLaunchShortcut.ID">
+    <description
+     description="Runs a DPF-Text Command File"
+     mode="run">
+    </description>
+    <description
+     description="Debugs a DPF-Text Command File"
+     mode="debug">
+    </description>
+  <contextualLaunch>
+  <enablement> 
+	   <with variable="selection">
+	      <count value="1"/>
+	      <iterate>
+	         <instanceof value="org.eclipse.core.resources.IFile"/>
+	         <test value="*_Command.tdpf"
+	               property="org.eclipse.debug.ui.matchesPattern"/>
+	      </iterate>
+	   </with>
+  </enablement>
+  </contextualLaunch>
+  <configurationType
+    id="no.hib.dpf.text.Launcher.ID">
+  </configurationType>
+  </shortcut>
+</extension>
+
+</plugin>

@@ -1,0 +1,108 @@
+grammar no.hib.dpf.text.DPFText with org.eclipse.xtext.common.Terminals
+
+generate tdpf "http://no.hib.dpf/dpf-text"
+
+//Program:
+Model: 
+	 Specification | Signature | (commands+=Command (commands+=Command)*)?
+;
+
+enum DataType:
+	TBOOLEAN = 'Boolean'
+	| TCHAR = 'Char'
+	| TBYTE = 'Byte'
+	| TSHORT = 'Short'
+	| TINT = 'Int'
+	| TLONG = 'Long'
+	| TFLOAT = 'Float'
+	| TDOUBLE = 'Double'
+	| TSTRING = 'String'
+;
+
+//Java Datatypes:
+terminal CHAR: '\'' ANY_OTHER '\'';
+terminal NUMBER: INT ('.' INT);
+VALUE: NUMBER | CHAR | STRING;
+
+//
+//Grammar Rules:
+//
+
+//"Program-Parts":	
+Command:  MakeEmf | MakeEcore | MakeImage | 
+		  ExtSubTGraph | SimpleEvoSpan | SimpleEvoCospan | Morphism | EvoSpan | EvoCospan;
+		
+	
+MakeEmf: 'emf(' id=ID ')';
+
+MakeEcore: 'ecore(' id=ID ')';
+
+MakeImage: 'image(' id=ID ')';
+
+SimpleEvoSpan: 'simpleEvolution(' lhs=ID '<-' diff=ID '->' rhS=ID ',' typeGraph=ID ')'; 
+
+SimpleEvoCospan: 'simpleEvolution(' lhs=ID '->' joint=ID '<-' rhs=ID ',' typeGraph=ID ')'; 
+
+EvoSpan: 'evolution(' lhs=ID '<->' rhs=ID ',' typeGraph=ID ')';
+
+EvoCospan: 'evolution(' lhs=ID '-><-' rhs=ID ',' typeGraph=ID ')';
+
+
+//Specification:
+Specification : 'Specification' ':' ((type=ChoosenSpecification) | ('(' type=ChoosenSpecification ',' constraintSemantic=ChoosenConstraintSemantic ')')) '<' sequenceNumber=SequenceNumber '>' '{' 
+	 graph=Graph
+	 ('Constraints' '{'
+	 (constraints+=Constraint (',' constraints+=Constraint)*)? 
+	 '}')?	 
+'}';
+
+ChoosenSpecification : id=ID;
+
+SequenceNumber : nextNumber = INT;
+
+//Constraints:
+ChoosenConstraintSemantic : id=ID;
+
+Constraint: signature=ConstraintSignature '{'(arrows+=Arrows (',' arrows+=Arrows)*) '}';
+
+ConstraintSignature: id=DpfId '(' (parameter+=STRING (',' parameter+=(STRING))*)? ')';
+
+Signature: constraintSemantics+=ConstraintSemantic (',' constraintSemantics+=ConstraintSemantic)*;
+
+ConstraintSemantic: id=DpfId '{'(arrows+=Arrows (',' arrows+=Arrows)*) '}' '=' ocl=STRING;
+
+
+//Graph morphism:
+Morphism : ID ':=' 'Morphism' '<' domain=Domain ',' codmain=Codomain '>' '{' (mappings+=Mapping (',' mappings+=Mapping)*)? '}';
+
+Domain : id=ID;
+
+Codomain : id=ID;	
+
+Mapping : MappingNode | MappingArrow;
+	
+MappingNode :  domain=Node '=>'  codomain=Node;
+	
+MappingArrow : domain=Arrow '=>' codmain=Arrow;
+	
+//Typed subgraphs:
+ExtSubTGraph : id = ID ':=' 'ExtSubTGraph' '<' extendsGraph=ChoosenExtSubTGraph  '>' '{' (elements+=Element (',' elements+=Element)*)? '}';
+
+ChoosenExtSubTGraph : id=ID;
+
+//Typed graphs:
+Graph : 'Graph' '{' (elements+=Element (',' elements+=Element)*)? '}';  //Warning is OK, Empty Graph is possible
+
+Element: Node | Arrows ;
+							  
+Arrows:  (sr=Node '-' id=DpfId ':' type=DpfId '->' next=Arrows) | Arrow;							   			
+											 
+Arrow: ( sr=Node '-' id=DpfId ':' '*'        '->' tgDataType=DataType) 
+     | ( sr=Node '-' id=DpfId ':' type=DpfId '->' tgValue=AttributeValue)
+     | ( sr=Node '-' id=DpfId ':' type=DpfId '->' tgNode=Node);  
+       
+Node: id=DpfId ':' type=DpfId;
+
+AttributeValue: '[' value=(VALUE) ']';
+
+DpfId: name=ID ('@' id=INT)?;		
