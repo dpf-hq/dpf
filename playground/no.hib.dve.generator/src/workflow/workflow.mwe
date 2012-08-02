@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><workflow>
+	<!-- workflow properties -->
+	<property name="dpf_model" value="platform:/resource/no.hib.dve.generator/specifications/def.xmi"/>
+	<property name="dpf_metamodel" value="platform:/resource/no.hib.dve.generator/models/metamodel.xmi"/>
+	
+	<property name="src-gen" value="src-gen"/>
+	
+	<!-- set up EMF, only needed when using URI's -->	
+	<bean class="org.eclipse.emf.mwe.utils.StandaloneSetup">
+		<platformUri value=".."/>
+	</bean>
+	
+	<!-- instantiate metamodel-->
+	<bean class="no.hib.dpf.codegen.xpand.metamodel.DpfMetamodel" id="mm_dpf"/>
+	
+	<!-- DPF component -->
+	<component class="no.hib.dpf.codegen.xpand.metamodel.workflow.DpfReader">
+		<dpfMetaModel value="${dpf_metamodel}"/>
+		<dpfModel value="${dpf_model}"/>
+		
+		<metaModel idRef="mm_dpf"/>
+		<modelSlot value="dpf"/>
+	</component>
+	
+	<!--  generate code -->
+	<component class="org.eclipse.xpand2.Generator">
+		<metaModel idRef="mm_dpf"/>
+		<expand value="template::templ::main FOR dpf"/>
+		<outlet path="${src-gen}">
+			<!--<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier"/>-->
+		</outlet>
+	</component>
+</workflow>

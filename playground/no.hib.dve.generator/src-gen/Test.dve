@@ -1,0 +1,109 @@
+
+		
+	int f1 = 0; 
+
+	int g1 = 0; 
+
+	int g2 = 0; 
+
+	int f2 = 0; 
+
+	int f3 = 0; 
+
+	int f4 = 0; 
+
+	int g4 = 0; 
+
+	int f5 = 0; 
+
+	int g5 = 0; 
+
+	int f6 = 0; 
+
+	int c = -1;
+		
+	process InitialEvaluation {
+		state disabled, enabled, running, finished;
+		init disabled;
+		trans
+		disabled -> enabled { },
+		enabled -> running { },
+		running -> finished { effect f1 = 1, g1 = 1; };		
+	}
+
+	process Mri {
+		state disabled, enabled, running, finished;
+		init disabled;
+		trans
+		disabled -> enabled { guard f1 > 0; },
+		enabled -> running { },
+		running -> finished { effect f2 = 1; };		
+	}
+
+	process BloodTest {
+		state disabled, enabled, running, finished;
+		init disabled;
+		trans
+		disabled -> enabled { guard g1 > 0; },
+		enabled -> running { },
+		running -> finished { effect g2 = 1; };		
+	}
+
+	process Evaluation {
+		state disabled, enabled, running, finished;
+		init disabled;
+		trans
+		disabled -> enabled { guard g2 > 0 && f2 > 0; },
+		enabled -> running { },
+		running -> finished { effect f3 = 1; };		
+	}
+
+	process Procedure_a {
+		state disabled, enabled, running, finished;
+		init disabled;
+		trans
+		disabled -> enabled { guard f4 > 0 && c == 1; },
+		enabled -> running { },
+		running -> finished { effect f5 = 1; };		
+	}
+
+	process CheckForProcedure {
+		state disabled, enabled, running, finished;
+		init disabled;
+		trans
+		disabled -> enabled { guard f3 > 0; },
+		enabled -> running { },
+		running -> finished { effect c = 1 && f4 = 1; },
+		running -> finished { effect c = 0 && g4 = 1; };		
+	}
+
+	process Procedure_b {
+		state disabled, enabled, running, finished;
+		init disabled;
+		trans
+		disabled -> enabled { guard g4 > 0 && c == 0; },
+		enabled -> running { },
+		running -> finished { effect g5 = 1; };		
+	}
+
+	process Join {
+		state disabled, enabled, running, finished;
+		init disabled;
+		trans
+		disabled -> enabled { guard f5 > 0 && g5 == 0; },
+		disabled -> enabled { guard g5 > 0 && f5 == 0; },
+		enabled -> running { },
+		running -> finished { effect f6 = 1; };		
+	}
+
+	process FinalEvaluation {
+		state disabled, enabled, running, finished;
+		init disabled;
+		trans
+		disabled -> enabled { guard f6 > 0; },
+		enabled -> running { },
+		running -> finished { },
+		
+	}
+	system async;
+	

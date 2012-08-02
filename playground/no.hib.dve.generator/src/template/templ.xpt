@@ -1,0 +1,59 @@
+«IMPORT dpf»
+«EXTENSION org::eclipse::xtend::util::stdlib::io»
+«EXTENSION template::extensions»
+
+«DEFINE main FOR dpf::Specification»
+	«EXPAND graph FOR this.graph»
+«REM»	«EXPAND sig FOREACH this.getAllConstraints()»«ENDREM»
+«ENDDEFINE»
+
+«DEFINE graph FOR dpf::Graph»«REM»«EXPAND TESTBLOCK FOR this»«ENDREM»
+	«FILE "Test.dve"»
+		«EXPAND printFlowStatements FOREACH getFlowStatements(this)»
+	«insertConstantDecl()»
+		«EXPAND task FOREACH this.getTaskes()-»
+	system async;
+	«ENDFILE»
+«ENDDEFINE»
+
+«DEFINE printFlowStatements FOR Arrow»
+	int «this.name» = 0; 
+«ENDDEFINE»
+
+«DEFINE sig FOR Constraint»
+	«syserr(this.predicate.symbol)»
+«ENDDEFINE»
+
+«DEFINE task FOR dpf::Task»
+	process «this.name» {
+		state disabled, enabled, running, finished;
+		init disabled;
+		trans
+		«printDisabledEnabled(this)-»
+		enabled -> running { },
+		«printRunningFinished(this)»		
+	}
+«ENDDEFINE»
+
+«DEFINE TESTBLOCK FOR Graph»
+	«FOREACH this.nodes AS n»
+		«IF n.getConstraints().size != 0»
+			«syserr("PREDICATE FOR TASK " + n.name + " " )»
+			«FOREACH n.getConstraints() AS c»
+				«syserr(c.predicate.symbol)»
+			«ENDFOREACH»
+		«ENDIF»
+	«ENDFOREACH»
+	«syserr("#################################")»
+	«FOREACH this.arrows AS a»
+		«IF a.getConstraints().size != 0»
+			«syserr("PREDICATE FOR TASK " + a.name + " " )»
+			«FOREACH a.getConstraints() AS c»
+				«syserr(c.predicate.symbol)»
+			«ENDFOREACH»
+		«ENDIF»
+	«ENDFOREACH»
+	
+	
+«ENDDEFINE»
+

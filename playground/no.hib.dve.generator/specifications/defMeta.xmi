@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ASCII"?>
+<core:Specification xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:core="http://no.hib.dpf.core">
+  <graph id="1ab8b552-1c37-4bbd-b13a-6fcc5b276056">
+    <nodes id="1c44b4dd-ec5e-42e5-9978-04a6e1f3eeb9" name="Task" outgoings="//@graph/@arrows.0" incomings="//@graph/@arrows.0" constraints="//@constraints.0"/>
+    <arrows id="e8b67513-13e2-49d5-8b3b-010f09c83fd3" name="Flow" source="//@graph/@nodes.0" target="//@graph/@nodes.0" constraints="//@constraints.0"/>
+  </graph>
+  <constraints id="76d5471b-b284-4874-91c8-bc07ebec2c0f" nodes="//@graph/@nodes.0" arrows="//@graph/@arrows.0">
+    <predicate href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.2"/>
+    <mappings>
+      <nodeMapping value="//@graph/@nodes.0">
+        <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.2/@shape/@nodes.0"/>
+      </nodeMapping>
+      <arrowMapping value="//@graph/@arrows.0">
+        <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.2/@shape/@arrows.0"/>
+      </arrowMapping>
+    </mappings>
+  </constraints>
+</core:Specification>

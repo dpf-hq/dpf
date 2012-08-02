@@ -1,0 +1,44 @@
+import dpf;
+extension org::eclipse::xtend::util::stdlib::io;
+ 
+getFlowStatements(Graph g):
+	g.arrows.select(e|e.typeArrow.name == "Flow");
+
+//Disabled -> Enabled uses guard expressions based on merge constraints	
+printDisabledEnabled(Task t):
+	if t.incomings.size == 0 then 
+		"disabled -> enabled { },\n"
+	else
+		mergeStatement(t.incomings);
+		
+//	let tmp = mergeStatement(t.incomings) :
+	//	if tmp.length == 0 then
+		//	"disabled -> enabled { },"
+		//else
+			//tmp;
+
+//Running -> Finished uses effect expressions based on split constraints	
+printRunningFinished(Task t):
+	if t.getOutgoingArrows().size == 0 then
+		"running -> finished { },\n" 
+	else
+		splitStatement(t.getOutgoingArrows());
+		//syserr(t.name + " " + t.getOutgoingArrows().size) ->
+		
+	//let tmp = splitStatement(t.getOutgoingArrows()) :
+		//if tmp.length == 0 then
+			//"running -> finished { },"
+		//else
+			//tmp;
+	
+String mergeStatement(List[Flow] f) :
+	JAVA template.StringUtil.mergeStatement(java.util.List);
+	
+String splitStatement(List[Flow] f):
+	JAVA template.StringUtil.splitStatement(java.util.List);
+		
+insertConstantDecl(Graph g) :
+	let res = g.nodes.collect(e|e.getConstraints().select(f|f.predicate.symbol == "xor")) :
+		syserr(res) ->
+		if res.size != 0 then
+			"int c = -1;";
