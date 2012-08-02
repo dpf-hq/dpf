@@ -11,12 +11,13 @@
  *******************************************************************************/
 package no.hib.dpf.codegen.xpand.ui;
 
+import no.hib.dpf.codegen.xpand.metamodel.Logger;
 import no.hib.dpf.codegen.xpand.ui.wizards.WorkflowParser;
 import no.hib.dpf.core.Specification;
 import no.hib.dpf.utils.DPFCoreUtil;
 
-import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
+//import org.apache.log4j.Logger;
+//import org.apache.log4j.PropertyConfigurator;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.ui.preferences.ScopedPreferenceStore;
 import org.osgi.framework.Bundle;
@@ -131,13 +132,17 @@ public class DpfMetaModelUIPlugin extends AbstractUIPlugin {
 	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
-
-		loadLogger("no.hib.dpf.codegen.xpand.metamodel");
-		loadLogger("no.hib.dpf.codegen.xpand.ui");
-		log = Logger.getLogger(DpfMetaModelUIPlugin.class);
 		
 		try {
 			IWorkspace workspace = ResourcesPlugin.getWorkspace();
+			
+//			loadLogger("no.hib.dpf.codegen.xpand.ui");
+//			loadLogger("no.hib.dpf.codegen.xpand.metamodel");
+//			
+//			log = Logger.getLogger(DpfMetaModelUIPlugin.class);
+			
+			log = Logger.getLogger(DpfMetaModelUIPlugin.class);
+			
 			workspace.addResourceChangeListener(listener);
 			workspace.getRoot().accept(
 					new DpfMetaModelUIPlugin.DpfResourceDeltaVisitor());
@@ -146,21 +151,27 @@ public class DpfMetaModelUIPlugin extends AbstractUIPlugin {
 		} 
 	}
 
-	private void loadLogger(String bundle) {
-		//Load l4j on metamodel
-		Bundle b = Platform.getBundle(bundle);
-		Enumeration<URL> ee = b.findEntries("src", "log4j.properties", false);
-		
-		URL fileURL = null;
-		try {
-			if(ee.hasMoreElements()) {
-				fileURL = ee.nextElement();
-			}
-			PropertyConfigurator.configure(fileURL);
-		} catch(NullPointerException e) {
-			e.printStackTrace();
-		}
-	}
+//	private void loadLogger(String bundle) {
+//		//Load l4j on metamodel
+//		Bundle b = Platform.getBundle(bundle);
+//		
+//		System.out.println(b.getBundleId());
+//		System.out.println(b.getLocation());
+//		System.out.println(b.getSymbolicName());
+//		System.out.println(b.getState());
+////		System.out.println(b.);
+//		Enumeration<URL> ee = b.findEntries("/", "log4j.properties", true);
+//		
+//		URL fileURL = null;
+//		try {
+//			if(ee.hasMoreElements()) {
+//				fileURL = ee.nextElement();
+//			}
+//			PropertyConfigurator.configure(fileURL);
+//		} catch(NullPointerException e) {
+//			e.printStackTrace();
+//		}
+//	}
 	
 	/*
 	 * (non-Javadoc)
