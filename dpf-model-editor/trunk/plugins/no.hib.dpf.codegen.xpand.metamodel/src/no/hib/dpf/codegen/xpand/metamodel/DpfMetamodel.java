@@ -27,7 +27,7 @@ import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Predicate;
 import no.hib.dpf.core.Specification;
 
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
@@ -407,14 +407,20 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 				}
 			}
 			
-			for(Constraint c : s.getConstraints()) {
-				if(c.getId().equals(name)) {
-					return c;
-				}
-				if(c.getPredicate().getSymbol().equals(name)) {
-					return c.getPredicate();
-				}
- 			}
+			//FIXME: try catch only for testing, need a thorough plan for retrieving data from core as
+			//it raises NPEs
+			try {
+				for(Constraint c : s.getConstraints()) {
+					if(c.getId().equals(name)) {
+						return c;
+					}
+					if(c.getPredicate().getSymbol().equals(name)) {
+						return c.getPredicate();
+					}
+	 			}
+			} catch(NullPointerException e) {
+				return null;
+			}
 			
 			return null;
 		}
