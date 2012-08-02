@@ -16,7 +16,7 @@ import org.eclipse.xtend.typesystem.Feature;
 import org.eclipse.xtend.typesystem.Type;
 
 public class ConstraintType extends AbstractTypeImpl {
-	private Logger log = Logger.getLogger(ConstraintType.class);
+//	private Logger log = Logger.getLogger(ConstraintType.class);
 	
 	private DpfMetamodel model;
 	private Constraint constraint = null;
@@ -95,7 +95,7 @@ public class ConstraintType extends AbstractTypeImpl {
 		HashSet<Type> res = new HashSet<Type>();
 		if(!this.getName().equals(DpfMMConstants.NS_PREFIX + "::" + DpfMMConstants.CONSTRAINT)) {
 			res.add(model.getTypeForName(DpfMMConstants.CONSTRAINT));
-			log.debug("Constraint " + this.getName() + " added as subtype of Constraint");
+//			log.debug("Constraint " + this.getName() + " added as subtype of Constraint");
 		}
 		res.add(model.getTypeSystem().getObjectType());
 		return res;

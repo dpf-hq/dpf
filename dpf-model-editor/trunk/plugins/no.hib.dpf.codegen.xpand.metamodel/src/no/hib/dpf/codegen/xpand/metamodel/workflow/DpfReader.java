@@ -3,10 +3,11 @@ package no.hib.dpf.codegen.xpand.metamodel.workflow;
 import java.io.IOException;
 
 import no.hib.dpf.codegen.xpand.metamodel.DpfMetamodel;
+import no.hib.dpf.codegen.xpand.metamodel.Logger;
 import no.hib.dpf.core.Specification;
 import no.hib.dpf.utils.DPFCoreUtil;
 
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.issues.Issues;
