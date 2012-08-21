@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+//This class implements a couple of convenience methods on top of the Xpand cache class.
 public abstract class Cache<K, V> {
 
 	protected abstract V createNew(K arg0);

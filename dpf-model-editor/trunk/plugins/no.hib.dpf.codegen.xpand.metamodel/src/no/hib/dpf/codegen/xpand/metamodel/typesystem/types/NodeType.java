@@ -1,3 +1,18 @@
+/**
+ * <copyright>
+ * Copyright (c) 2012 Høyskolen i Bergen
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * @author Anders Sandven <anders.sandven@gmail.com>
+ * </copyright>
+ *
+ * $Id$
+ */
+
 package no.hib.dpf.codegen.xpand.metamodel.typesystem.types;
 
 import java.util.ArrayList;
@@ -65,29 +80,13 @@ public class NodeType extends AbstractTypeImpl {
 			}
 		});
 		
-//		if(model.getSpecification().getConstraints().isEmpty()) {
-//			Specification spectmp = model.getSpecification();
-//			Constraint tmp = spectmp.createConstraint(
-//					spectmp.getSignature().getPredicates().get(0),
-//					"", 
-//					null,
-//					spectmp.getGraph().getNodes(), 
-//					node.getOutgoings(), 
-//					spectmp.getType().getGraph().getNodes(), 
-//					spectmp.getType().getGraph().getArrows());
-//			model.getTypeForName(tmp.getId());
-//		}
-			//The reason for using the first constraint is to give xpand the required features for the constraint type.
-//		if(!model.getSpecification().getConstraints().isEmpty()) {
-			res.add(new OperationImpl(this, "getConstraints", new ListTypeImpl(
-					model.getTypeForName(DpfMMConstants.CONSTRAINT), model.getTypeSystem(), "List")) {
-//					model.getTypeForName(model.getSpecification().getConstraints().get(0).getId()), model.getTypeSystem(), "List")) {
-				@Override
-				protected Object evaluateInternal(Object target, Object[] params) {
-					return node.getConstraints();
-				}
-			});
-//		}
+		res.add(new OperationImpl(this, "getConstraints", new ListTypeImpl(
+				model.getTypeForName(DpfMMConstants.CONSTRAINT), model.getTypeSystem(), "List")) {
+			@Override
+			protected Object evaluateInternal(Object target, Object[] params) {
+				return node.getConstraints();
+			}
+		});
 		return res.toArray(new Feature[res.size()]);
 	}
 	

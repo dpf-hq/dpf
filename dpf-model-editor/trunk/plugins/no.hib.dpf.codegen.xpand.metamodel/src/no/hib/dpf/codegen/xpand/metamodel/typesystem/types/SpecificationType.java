@@ -1,3 +1,18 @@
+/**
+ * <copyright>
+ * Copyright (c) 2012 Høyskolen i Bergen
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * @author Anders Sandven <anders.sandven@gmail.com>
+ * </copyright>
+ *
+ * $Id$
+ */
+
 package no.hib.dpf.codegen.xpand.metamodel.typesystem.types;
 
 import java.util.HashSet;
@@ -16,6 +31,7 @@ import org.eclipse.xtend.typesystem.Feature;
 public class SpecificationType extends AbstractTypeImpl {
 	DpfMetamodel model;
 	Specification spec;
+	
 	public SpecificationType(DpfMetamodel model, String name, Specification spec) {
 		super(model.getTypeSystem(), name);
 		this.model = model;

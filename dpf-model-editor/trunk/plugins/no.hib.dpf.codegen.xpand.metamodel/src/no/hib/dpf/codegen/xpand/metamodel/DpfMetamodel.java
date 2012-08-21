@@ -1,3 +1,18 @@
+/**
+ * <copyright>
+ * Copyright (c) 2012 Høyskolen i Bergen
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * @author Anders Sandven <anders.sandven@gmail.com>
+ * </copyright>
+ *
+ * $Id$
+ */
+
 package no.hib.dpf.codegen.xpand.metamodel;
 
 import java.util.ArrayList;
@@ -12,7 +27,6 @@ import no.hib.dpf.codegen.xpand.metamodel.typesystem.OperationImpl;
 import no.hib.dpf.codegen.xpand.metamodel.typesystem.PropertyImpl;
 import no.hib.dpf.codegen.xpand.metamodel.typesystem.types.ArrowType;
 import no.hib.dpf.codegen.xpand.metamodel.typesystem.types.ConstraintType;
-import no.hib.dpf.codegen.xpand.metamodel.typesystem.types.DummyType;
 import no.hib.dpf.codegen.xpand.metamodel.typesystem.types.GraphType;
 import no.hib.dpf.codegen.xpand.metamodel.typesystem.types.ListTypeImpl;
 import no.hib.dpf.codegen.xpand.metamodel.typesystem.types.NodeType;
@@ -44,7 +58,7 @@ import org.eclipse.xtend.typesystem.Type;
 import org.eclipse.xtend.typesystem.emf.EmfListType;
 /**
  * 
- * This class represents a Xpand meta model. It's purpose is to map our custom types to
+ * This class represents a Xpand meta model. Its purpose is to map our custom types to
  * types which Xpand can understand. Types contained in the DPF Specification object are
  * mapped to their corresponding Xpand type, i.e. an instance of Node (called DomainClass),
  * are mapped to {@link NodeType} with name "DomainClass". This happens through getKnownTypes and
@@ -60,7 +74,6 @@ import org.eclipse.xtend.typesystem.emf.EmfListType;
  * that we have all the operations defined + custom ones, specified as {@link OperationImpl}
  * and {@link PropertyImpl} 
  *  
- * @author Anders Sandven <anders.sandven@gmail.com>
  */
 public class DpfMetamodel implements MetaModel, DpfMMConstants {
 	
@@ -259,8 +272,6 @@ public class DpfMetamodel implements MetaModel, DpfMMConstants {
 					return new ConstraintType(DpfMetamodel.this, ns + "::" + ((Constraint)obj).getId(), (Constraint)obj);
 				} else if(obj instanceof Predicate) {
 					return new PredicateType(DpfMetamodel.this, ns + "::" + ((Predicate)obj).getSymbol() , (Predicate)obj);
-				} else if(obj instanceof DummyType) {
-					return new DummyType(DpfMetamodel.this, ns + "::" + ((DummyType)obj).getName());
 				}
 				return null;
 			}

@@ -1,3 +1,18 @@
+/**
+ * <copyright>
+ * Copyright (c) 2012 Høyskolen i Bergen
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * @author Anders Sandven <anders.sandven@gmail.com>
+ * </copyright>
+ *
+ * $Id$
+ */
+
 package no.hib.dpf.codegen.xpand.metamodel.typesystem.types;
 
 import java.util.HashSet;
@@ -10,14 +25,11 @@ import no.hib.dpf.codegen.xpand.metamodel.typesystem.PropertyImpl;
 import no.hib.dpf.codegen.xpand.metamodel.typesystem.TypeHelper;
 import no.hib.dpf.core.Constraint;
 
-import org.apache.log4j.Logger;
 import org.eclipse.xtend.typesystem.AbstractTypeImpl;
 import org.eclipse.xtend.typesystem.Feature;
 import org.eclipse.xtend.typesystem.Type;
 
 public class ConstraintType extends AbstractTypeImpl {
-//	private Logger log = Logger.getLogger(ConstraintType.class);
-	
 	private DpfMetamodel model;
 	private Constraint constraint = null;
 	

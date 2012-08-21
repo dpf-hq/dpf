@@ -1,3 +1,18 @@
+/**
+ * <copyright>
+ * Copyright (c) 2012 Høyskolen i Bergen
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * @author Anders Sandven <anders.sandven@gmail.com>
+ * </copyright>
+ *
+ * $Id$
+ */
+
 package no.hib.dpf.codegen.xpand.metamodel.typesystem.types;
 
 import java.util.ArrayList;
@@ -16,22 +31,15 @@ import org.eclipse.xtend.typesystem.AbstractTypeImpl;
 import org.eclipse.xtend.typesystem.Feature;
 
 public class GraphType extends AbstractTypeImpl {
-
 	private DpfMetamodel model;
 	private Graph graph;
-//	private Graph typeGraph;
+	
 	public GraphType(DpfMetamodel model, String name, Graph graph) {
 		super(model.getTypeSystem(), name);
 		this.model = model;
 		this.graph = graph;
 	}
 	
-//	public GraphType(DpfMetamodel model, String name, Graph graph, Graph typeGraph) {
-//		super(model.getTypeSystem(), name);
-//		this.model = model;
-//		this.graph = graph;
-//		this.typeGraph = typeGraph;
-//	}
 	@Override
 	public boolean isInstance(Object o) {
 		return o instanceof Graph;
