@@ -1,14 +1,18 @@
-/*
- * /*******************************************************************************
- * Copyright (c) 2005, 2009 committers of openArchitectureWare and others.
+/**
+ * <copyright>
+ * Copyright (c) 2012 Høyskolen i Bergen
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
- * Contributors:
- *     committers of openArchitectureWare - initial API and implementation
- *******************************************************************************/
+ * @author OAw/Itemis
+ * @author Anders Sandven <anders.sandven@gmail.com>
+ * </copyright>
+ *
+ * $Id$
+ */
 package no.hib.dpf.codegen.xpand.ui;
 
 import no.hib.dpf.codegen.xpand.metamodel.Logger;
@@ -16,18 +20,13 @@ import no.hib.dpf.codegen.xpand.ui.wizards.WorkflowParser;
 import no.hib.dpf.core.Specification;
 import no.hib.dpf.utils.DPFCoreUtil;
 
-//import org.apache.log4j.Logger;
-//import org.apache.log4j.PropertyConfigurator;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.ui.preferences.ScopedPreferenceStore;
-import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.Collections;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,7 +46,6 @@ import org.eclipse.core.resources.ProjectScope;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.preferences.IScopeContext;
 import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.emf.common.util.URI;
