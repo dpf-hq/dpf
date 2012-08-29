@@ -6,5 +6,8 @@
    <feature url="features/no.hib.dpf.feature.signature_0.2.0.qualifier.jar" id="no.hib.dpf.feature.signature" version="0.2.0.qualifier">
       <category name="no.hib.dpf.category"/>
    </feature>
+   <feature url="features/no.hib.dpf.codegen.xpand.feature_0.2.0.qualifier.jar" id="no.hib.dpf.codegen.xpand.feature" version="0.2.0.qualifier">
+      <category name="no.hib.dpf.category"/>
+   </feature>
    <category-def name="no.hib.dpf.category" label="DPF Workbench"/>
 </site>
