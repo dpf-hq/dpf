@@ -72,12 +72,11 @@ public class StringUtil {
 			return null;
 		}
 		
-	};
+	}
 	
 	public static String splitStatement(List<Arrow> l) {
 		//All outgoing arrows should result in an effect statement
 		try {
-//			System.out.println("###SPLIT  NODE: " + l.get(0).getSource().getName());
 			Predicate p = l.get(0).getConstraints().get(0).getPredicate();
 			Constraints c = Constraints.getConstraint(p.getSymbol());
 			return c.splitStatement(l);
@@ -90,7 +89,6 @@ public class StringUtil {
 	public static String mergeStatement(List<Arrow> l) {
 		//Assuming the incoming arrows are constrained by the same predicate
 		try {
-//			System.out.println("###MERGE  NODE: " + l.get(0).getSource().getName());
 			Predicate p = l.get(0).getConstraints().get(0).getPredicate();
 			Constraints c = Constraints.getConstraint(p.getSymbol());
 			return c.mergeStatement(l);
@@ -108,8 +106,8 @@ public class StringUtil {
 	private static String xorSplit(List<Arrow> l) {
 		//XOR split predicates shape consists of two arrows 
 		StringBuffer ret = new StringBuffer();
-		ret.append("running -> finished { effect c = 1 && " + l.get(0).getName() + " = 1; },\n\t\t");
-		ret.append("running -> finished { effect c = 0 && " + l.get(1).getName() + " = 1; };");
+		ret.append("running -> finished { effect c = 1, " + l.get(0).getName() + " = 1, " + l.get(1).getName() + " = 0; },\n\t\t");
+		ret.append("running -> finished { effect c = 0, " + l.get(1).getName() + " = 1, " + l.get(0).getName() + " = 0; };");
 		return ret.toString();
 	}
 	

@@ -73,8 +73,8 @@
 		trans
 		disabled -> enabled { guard f3 > 0; },
 		enabled -> running { },
-		running -> finished { effect c = 1 && f4 = 1; },
-		running -> finished { effect c = 0 && g4 = 1; };		
+		running -> finished { effect c = 1, f4 = 1, g4 = 0; },
+		running -> finished { effect c = 0, g4 = 1, f4 = 0; };		
 	}
 
 	process Procedure_b {

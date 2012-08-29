@@ -10,12 +10,6 @@ printDisabledEnabled(Task t):
 		"disabled -> enabled { },\n"
 	else
 		mergeStatement(t.incomings);
-		
-//	let tmp = mergeStatement(t.incomings) :
-	//	if tmp.length == 0 then
-		//	"disabled -> enabled { },"
-		//else
-			//tmp;
 
 //Running -> Finished uses effect expressions based on split constraints	
 printRunningFinished(Task t):
@@ -23,18 +17,11 @@ printRunningFinished(Task t):
 		"running -> finished { },\n" 
 	else
 		splitStatement(t.getOutgoingArrows());
-		//syserr(t.name + " " + t.getOutgoingArrows().size) ->
-		
-	//let tmp = splitStatement(t.getOutgoingArrows()) :
-		//if tmp.length == 0 then
-			//"running -> finished { },"
-		//else
-			//tmp;
 	
-String mergeStatement(List[Flow] f) :
+private String mergeStatement(List[Flow] f) :
 	JAVA template.StringUtil.mergeStatement(java.util.List);
 	
-String splitStatement(List[Flow] f):
+private String splitStatement(List[Flow] f):
 	JAVA template.StringUtil.splitStatement(java.util.List);
 		
 insertConstantDecl(Graph g) :
