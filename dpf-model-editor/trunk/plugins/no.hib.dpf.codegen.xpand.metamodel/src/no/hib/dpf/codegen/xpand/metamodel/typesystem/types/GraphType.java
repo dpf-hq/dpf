@@ -93,7 +93,7 @@ public class GraphType extends AbstractTypeImpl {
 		
 		//create a getter for each meta model type which returns all instances as a list
 		for(final Node n : nodetypes) {
-			res.add(new OperationImpl(this, TypeHelper.pluralize("get" + n.getName()), 
+			res.add(new OperationImpl(this, "get" + n.getName() + "Nodes", 
 					new ListTypeImpl(model.getTypeForName(n.getName()), model.getTypeSystem(), "List")) {
 				@Override
 				protected Object evaluateInternal(Object target, Object[] params) {

@@ -101,7 +101,7 @@ public class NodeType extends AbstractTypeImpl {
 		
 		//We prefix arrow getters with A to denote arrow
 		for (final Arrow a : arrowtypes) {
-			res.add(new OperationImpl(this, TypeHelper.pluralize("getA" + TypeHelper.toFirstUpper(a.getName())),
+			res.add(new OperationImpl(this, "get" + TypeHelper.toFirstUpper(a.getName()) + "Arrows",
 					new ListTypeImpl(model.getTypeForName(a.getName()), model
 							.getTypeSystem(), "List")) {
 				@Override
