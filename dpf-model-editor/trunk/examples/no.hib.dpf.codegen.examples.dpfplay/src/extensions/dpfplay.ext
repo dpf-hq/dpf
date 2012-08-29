@@ -1,7 +1,7 @@
 import dpf;
 extension org::eclipse::xtend::util::stdlib::io;
 packageName(DomainClass d):
-	d.getAClassBelongsTos().get(0).target.name.replaceAll("\\.", "/") + "/";
+	d.getClassBelongsToArrows().get(0).target.name.replaceAll("\\.", "/") + "/";
 	
 String printArrayImport(DomainClass d):
 	JAVA extensions.TemplateHelper.printArrayImport(no.hib.dpf.core.Node);

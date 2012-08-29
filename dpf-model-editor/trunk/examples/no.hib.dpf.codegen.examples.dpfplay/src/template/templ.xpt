@@ -8,23 +8,23 @@
 «ENDDEFINE»
 
 «DEFINE graph FOR dpf::Graph»
-	«EXPAND domainclasses FOREACH this.getDomainClasses()»
+	«EXPAND domainclasses FOREACH this.getDomainClassNodes()»
 «ENDDEFINE»
 
 «DEFINE domainclasses FOR dpf::DomainClass»
 	«FILE "models/"+this.name.toFirstUpper() + ".java"»
 		package models;
 		«printArrayImport(this)»
-		«EXPAND imports FOR this.getAAttributes()»
+		«EXPAND imports FOR this.getAttributeArrows()»
 		import javax.persistence.Entity;
 		import play.db.jpa.Model;
 		@Entity
 		public class «this.name.toFirstUpper()» extends Model {
-			«FOREACH getDomainClassAttrRef(this.getAAttributes(), this.getAReferences()) AS e»
+			«FOREACH getDomainClassAttrRef(this.getAttributeArrows(), this.getReferenceArrows()) AS e»
 				«e-»
 			«ENDFOREACH»
-		public «this.name.toFirstUpper()»(«paramList(this.getAAttributes(), this.getAReferences())») {
-			«FOREACH constructorSetAttributes(this.getAAttributes(), this.getAReferences()) AS e»
+		public «this.name.toFirstUpper()»(«paramList(this.getAttributeArrows(), this.getReferenceArrows())») {
+			«FOREACH constructorSetAttributes(this.getAttributeArrows(), this.getReferenceArrows()) AS e»
 				«e-»
 			«ENDFOREACH»
 			}

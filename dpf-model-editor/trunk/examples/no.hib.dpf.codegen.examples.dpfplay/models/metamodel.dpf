@@ -21,6 +21,10 @@
     <dArrows dSource="//@dGraph/@dNodes.0" dTarget="//@dGraph/@dNodes.0" dConstraints="//@dConstraints.1">
       <arrow href="metamodel.xmi#//@graph/@arrows.2"/>
       <nameOffset offset="145 93"/>
+      <bendpoints offset="-15 0" len="30"/>
+      <bendpoints offset="-15 139" len="30"/>
+      <bendpoints offset="45 139" len="30"/>
+      <bendpoints offset="45 0" len="30"/>
     </dArrows>
     <graph href="metamodel.xmi#//@graph"/>
   </dGraph>
