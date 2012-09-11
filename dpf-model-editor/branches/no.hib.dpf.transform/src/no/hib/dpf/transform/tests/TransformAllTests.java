@@ -34,7 +34,6 @@ public class TransformAllTests extends TestSuite {
 	 */
 	public static Test suite() {
 		TestSuite suite = new TransformAllTests("Transform Tests");
-		suite.addTest(TransformTests.suite());
 		return suite;
 	}
 

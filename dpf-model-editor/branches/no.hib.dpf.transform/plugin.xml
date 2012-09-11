@@ -49,9 +49,8 @@
             id="no.hib.dpf.transform.presentation.TransformEditorID"
             name="%_UI_TransformEditor_label"
             icon="icons/full/obj16/TransformModelFile.gif"
-            extensions="transform"
-            class="no.hib.dpf.transform.presentation.TransformEditor"
-            contributorClass="no.hib.dpf.transform.presentation.TransformActionBarContributor">
+            extensions="xform"
+            class="no.hib.dpf.transform.presentation.TransformEditor">
       </editor>
    </extension>
 

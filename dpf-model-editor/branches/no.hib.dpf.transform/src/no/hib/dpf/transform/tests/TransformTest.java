@@ -15,13 +15,6 @@ import no.hib.dpf.transform.TransformFactory;
  * <!-- begin-user-doc -->
  * A test case for the model object '<em><b>Transform</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * The following operations are tested:
- * <ul>
- *   <li>{@link no.hib.dpf.transform.Transform#getMappings(no.hib.dpf.core.Specification, no.hib.dpf.transform.Reduction) <em>Get Mappings</em>}</li>
- *   <li>{@link no.hib.dpf.transform.Transform#applyReduction(no.hib.dpf.core.Specification, no.hib.dpf.transform.Reduction) <em>Apply Reduction</em>}</li>
- * </ul>
- * </p>
  * @generated
  */
 public class TransformTest extends TestCase {
@@ -93,32 +86,6 @@ public class TransformTest extends TestCase {
 	@Override
 	protected void tearDown() throws Exception {
 		setFixture(null);
-	}
-
-	/**
-	 * Tests the '{@link no.hib.dpf.transform.Transform#getMappings(no.hib.dpf.core.Specification, no.hib.dpf.transform.Reduction) <em>Get Mappings</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.transform.Transform#getMappings(no.hib.dpf.core.Specification, no.hib.dpf.transform.Reduction)
-	 * @generated
-	 */
-	public void testGetMappings__Specification_Reduction() {
-		// TODO: implement this operation test method
-		// Ensure that you remove @generated or mark it @generated NOT
-		fail();
-	}
-
-	/**
-	 * Tests the '{@link no.hib.dpf.transform.Transform#applyReduction(no.hib.dpf.core.Specification, no.hib.dpf.transform.Reduction) <em>Apply Reduction</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.transform.Transform#applyReduction(no.hib.dpf.core.Specification, no.hib.dpf.transform.Reduction)
-	 * @generated
-	 */
-	public void testApplyReduction__Specification_Reduction() {
-		// TODO: implement this operation test method
-		// Ensure that you remove @generated or mark it @generated NOT
-		fail();
 	}
 
 } //TransformTest

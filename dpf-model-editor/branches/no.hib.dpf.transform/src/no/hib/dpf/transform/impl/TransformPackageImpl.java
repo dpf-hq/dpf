@@ -6,22 +6,14 @@
  */
 package no.hib.dpf.transform.impl;
 
-import no.hib.dpf.core.CorePackage;
-import no.hib.dpf.transform.Copied;
-import no.hib.dpf.transform.CopiedArrow;
-import no.hib.dpf.transform.CopiedConstraint;
-import no.hib.dpf.transform.CopiedNode;
-import no.hib.dpf.transform.CopiedType;
-import no.hib.dpf.transform.MapArrow;
-import no.hib.dpf.transform.Reduction;
+import no.hib.dpf.diagram.DiagramPackage;
+import no.hib.dpf.transform.Production;
 import no.hib.dpf.transform.Transform;
 import no.hib.dpf.transform.TransformFactory;
 import no.hib.dpf.transform.TransformPackage;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
@@ -45,49 +37,7 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass copiedNodeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass mapArrowEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass copiedArrowEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass reductionEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass copiedConstraintEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass copiedEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EEnum copiedTypeEEnum = null;
+	private EClass productionEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -136,7 +86,7 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 		isInited = true;
 
 		// Initialize simple dependencies
-		CorePackage.eINSTANCE.eClass();
+		DiagramPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theTransformPackage.createPackageContents();
@@ -167,7 +117,7 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTransform_SourceMeta() {
+	public EReference getTransform_MetaModel() {
 		return (EReference)transformEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -176,7 +126,7 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTransform_TargetMeta() {
+	public EReference getTransform_Rules() {
 		return (EReference)transformEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -185,7 +135,7 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTransform_JointMeta() {
+	public EReference getTransform_DSignature() {
 		return (EReference)transformEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -194,8 +144,8 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTransform_Rules() {
-		return (EReference)transformEClass.getEStructuralFeatures().get(3);
+	public EClass getProduction() {
+		return productionEClass;
 	}
 
 	/**
@@ -203,8 +153,8 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getCopiedNode() {
-		return copiedNodeEClass;
+	public EReference getProduction_Sum() {
+		return (EReference)productionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -212,8 +162,8 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getMapArrow() {
-		return mapArrowEClass;
+	public EReference getProduction_LeftNodes() {
+		return (EReference)productionEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -221,8 +171,8 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getCopiedArrow() {
-		return copiedArrowEClass;
+	public EReference getProduction_RightNodes() {
+		return (EReference)productionEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -230,8 +180,8 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getReduction() {
-		return reductionEClass;
+	public EReference getProduction_RightArrows() {
+		return (EReference)productionEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -239,8 +189,8 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getReduction_Left() {
-		return (EReference)reductionEClass.getEStructuralFeatures().get(0);
+	public EReference getProduction_LeftArrows() {
+		return (EReference)productionEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -248,8 +198,8 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getReduction_Right() {
-		return (EReference)reductionEClass.getEStructuralFeatures().get(1);
+	public EReference getProduction_CommonNodes() {
+		return (EReference)productionEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -257,8 +207,8 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getReduction_Mapping() {
-		return (EReference)reductionEClass.getEStructuralFeatures().get(2);
+	public EReference getProduction_CommonArrows() {
+		return (EReference)productionEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -266,35 +216,8 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getCopiedConstraint() {
-		return copiedConstraintEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getCopied() {
-		return copiedEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getCopied_CopiedType() {
-		return (EAttribute)copiedEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EEnum getCopiedType() {
-		return copiedTypeEEnum;
+	public EAttribute getProduction_Name() {
+		return (EAttribute)productionEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -326,29 +249,19 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 
 		// Create classes and their features
 		transformEClass = createEClass(TRANSFORM);
-		createEReference(transformEClass, TRANSFORM__SOURCE_META);
-		createEReference(transformEClass, TRANSFORM__TARGET_META);
-		createEReference(transformEClass, TRANSFORM__JOINT_META);
+		createEReference(transformEClass, TRANSFORM__META_MODEL);
 		createEReference(transformEClass, TRANSFORM__RULES);
+		createEReference(transformEClass, TRANSFORM__DSIGNATURE);
 
-		copiedNodeEClass = createEClass(COPIED_NODE);
-
-		mapArrowEClass = createEClass(MAP_ARROW);
-
-		copiedArrowEClass = createEClass(COPIED_ARROW);
-
-		reductionEClass = createEClass(REDUCTION);
-		createEReference(reductionEClass, REDUCTION__LEFT);
-		createEReference(reductionEClass, REDUCTION__RIGHT);
-		createEReference(reductionEClass, REDUCTION__MAPPING);
-
-		copiedConstraintEClass = createEClass(COPIED_CONSTRAINT);
-
-		copiedEClass = createEClass(COPIED);
-		createEAttribute(copiedEClass, COPIED__COPIED_TYPE);
-
-		// Create enums
-		copiedTypeEEnum = createEEnum(COPIED_TYPE);
+		productionEClass = createEClass(PRODUCTION);
+		createEReference(productionEClass, PRODUCTION__SUM);
+		createEReference(productionEClass, PRODUCTION__LEFT_NODES);
+		createEReference(productionEClass, PRODUCTION__RIGHT_NODES);
+		createEReference(productionEClass, PRODUCTION__RIGHT_ARROWS);
+		createEReference(productionEClass, PRODUCTION__LEFT_ARROWS);
+		createEReference(productionEClass, PRODUCTION__COMMON_NODES);
+		createEReference(productionEClass, PRODUCTION__COMMON_ARROWS);
+		createEAttribute(productionEClass, PRODUCTION__NAME);
 	}
 
 	/**
@@ -375,56 +288,29 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		CorePackage theCorePackage = (CorePackage)EPackage.Registry.INSTANCE.getEPackage(CorePackage.eNS_URI);
+		DiagramPackage theDiagramPackage = (DiagramPackage)EPackage.Registry.INSTANCE.getEPackage(DiagramPackage.eNS_URI);
 
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		copiedNodeEClass.getESuperTypes().add(theCorePackage.getNode());
-		copiedNodeEClass.getESuperTypes().add(this.getCopied());
-		mapArrowEClass.getESuperTypes().add(theCorePackage.getArrow());
-		copiedArrowEClass.getESuperTypes().add(theCorePackage.getArrow());
-		copiedArrowEClass.getESuperTypes().add(this.getCopied());
-		copiedConstraintEClass.getESuperTypes().add(theCorePackage.getConstraint());
-		copiedConstraintEClass.getESuperTypes().add(this.getCopied());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(transformEClass, Transform.class, "Transform", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTransform_SourceMeta(), theCorePackage.getSpecification(), null, "sourceMeta", null, 0, 1, Transform.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTransform_TargetMeta(), theCorePackage.getSpecification(), null, "targetMeta", null, 0, 1, Transform.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTransform_JointMeta(), theCorePackage.getSpecification(), null, "jointMeta", null, 0, 1, Transform.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTransform_Rules(), this.getReduction(), null, "rules", null, 0, -1, Transform.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTransform_MetaModel(), theDiagramPackage.getDSpecification(), null, "metaModel", null, 0, 1, Transform.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTransform_Rules(), this.getProduction(), null, "rules", null, 0, -1, Transform.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTransform_DSignature(), theDiagramPackage.getDSignature(), null, "dSignature", null, 0, 1, Transform.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		EOperation op = addEOperation(transformEClass, theCorePackage.getSpecification(), "getMappings", 0, -1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theCorePackage.getSpecification(), "model", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getReduction(), "rule", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = addEOperation(transformEClass, theCorePackage.getSpecification(), "applyReduction", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theCorePackage.getSpecification(), "model", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getReduction(), "rule", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		initEClass(copiedNodeEClass, CopiedNode.class, "CopiedNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(mapArrowEClass, MapArrow.class, "MapArrow", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(copiedArrowEClass, CopiedArrow.class, "CopiedArrow", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(reductionEClass, Reduction.class, "Reduction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getReduction_Left(), theCorePackage.getSpecification(), null, "left", null, 0, 1, Reduction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getReduction_Right(), theCorePackage.getSpecification(), null, "right", null, 0, 1, Reduction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getReduction_Mapping(), theCorePackage.getGraphHomomorphism(), null, "mapping", null, 0, 1, Reduction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(copiedConstraintEClass, CopiedConstraint.class, "CopiedConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(copiedEClass, Copied.class, "Copied", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getCopied_CopiedType(), this.getCopiedType(), "copiedType", null, 0, 1, Copied.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		// Initialize enums and add enum literals
-		initEEnum(copiedTypeEEnum, CopiedType.class, "CopiedType");
-		addEEnumLiteral(copiedTypeEEnum, CopiedType.SOURCE);
-		addEEnumLiteral(copiedTypeEEnum, CopiedType.TARGET);
+		initEClass(productionEClass, Production.class, "Production", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getProduction_Sum(), theDiagramPackage.getDSpecification(), null, "sum", null, 0, 1, Production.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProduction_LeftNodes(), theDiagramPackage.getDNode(), null, "leftNodes", null, 0, -1, Production.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProduction_RightNodes(), theDiagramPackage.getDNode(), null, "rightNodes", null, 0, -1, Production.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProduction_RightArrows(), theDiagramPackage.getDArrow(), null, "rightArrows", null, 0, -1, Production.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProduction_LeftArrows(), theDiagramPackage.getDArrow(), null, "leftArrows", null, 0, -1, Production.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProduction_CommonNodes(), theDiagramPackage.getDNode(), null, "commonNodes", null, 0, -1, Production.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProduction_CommonArrows(), theDiagramPackage.getDArrow(), null, "commonArrows", null, 0, -1, Production.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProduction_Name(), ecorePackage.getEString(), "name", null, 0, 1, Production.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

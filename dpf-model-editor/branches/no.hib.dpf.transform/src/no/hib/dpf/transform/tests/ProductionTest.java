@@ -8,24 +8,24 @@ package no.hib.dpf.transform.tests;
 
 import junit.framework.TestCase;
 import junit.textui.TestRunner;
-import no.hib.dpf.transform.Reduction;
+import no.hib.dpf.transform.Production;
 import no.hib.dpf.transform.TransformFactory;
 
 /**
  * <!-- begin-user-doc -->
- * A test case for the model object '<em><b>Reduction</b></em>'.
+ * A test case for the model object '<em><b>Production</b></em>'.
  * <!-- end-user-doc -->
  * @generated
  */
-public class ReductionTest extends TestCase {
+public class ProductionTest extends TestCase {
 
 	/**
-	 * The fixture for this Reduction test case.
+	 * The fixture for this Production test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Reduction fixture = null;
+	protected Production fixture = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -33,36 +33,36 @@ public class ReductionTest extends TestCase {
 	 * @generated
 	 */
 	public static void main(String[] args) {
-		TestRunner.run(ReductionTest.class);
+		TestRunner.run(ProductionTest.class);
 	}
 
 	/**
-	 * Constructs a new Reduction test case with the given name.
+	 * Constructs a new Production test case with the given name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReductionTest(String name) {
+	public ProductionTest(String name) {
 		super(name);
 	}
 
 	/**
-	 * Sets the fixture for this Reduction test case.
+	 * Sets the fixture for this Production test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void setFixture(Reduction fixture) {
+	protected void setFixture(Production fixture) {
 		this.fixture = fixture;
 	}
 
 	/**
-	 * Returns the fixture for this Reduction test case.
+	 * Returns the fixture for this Production test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Reduction getFixture() {
+	protected Production getFixture() {
 		return fixture;
 	}
 
@@ -74,7 +74,7 @@ public class ReductionTest extends TestCase {
 	 */
 	@Override
 	protected void setUp() throws Exception {
-		setFixture(TransformFactory.eINSTANCE.createReduction());
+		setFixture(TransformFactory.eINSTANCE.createProduction());
 	}
 
 	/**
@@ -88,4 +88,4 @@ public class ReductionTest extends TestCase {
 		setFixture(null);
 	}
 
-} //ReductionTest
+} //ProductionTest

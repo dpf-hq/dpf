@@ -23,5 +23,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.edit;visibility:=reexport,
  no.hib.dpf.editor;visibility:=reexport,
  org.eclipse.emf.edit.ui;visibility:=reexport,
- org.eclipse.ui.ide;visibility:=reexport
+ org.eclipse.ui.ide;visibility:=reexport,
+ no.hib.dpf.diagram,
+ org.eclipse.gef,
+ org.eclipse.ui.forms
 Bundle-ActivationPolicy: lazy

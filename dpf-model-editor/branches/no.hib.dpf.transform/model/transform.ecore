@@ -4,38 +4,27 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="transform"
     nsURI="http://no.hib.dpf.transform" nsPrefix="transform">
   <eClassifiers xsi:type="ecore:EClass" name="Transform">
-    <eOperations name="getMappings" upperBound="-1" eType="ecore:EClass ../../no.hib.dpf.core/model/Metamodel.ecore#//Specification">
-      <eParameters name="model" eType="ecore:EClass ../../no.hib.dpf.core/model/Metamodel.ecore#//Specification"/>
-      <eParameters name="rule" eType="#//Reduction"/>
-    </eOperations>
-    <eOperations name="applyReduction" eType="ecore:EClass ../../no.hib.dpf.core/model/Metamodel.ecore#//Specification">
-      <eParameters name="model" eType="ecore:EClass ../../no.hib.dpf.core/model/Metamodel.ecore#//Specification"/>
-      <eParameters name="rule" eType="#//Reduction"/>
-    </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceMeta" eType="ecore:EClass ../../no.hib.dpf.core/model/Metamodel.ecore#//Specification"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="targetMeta" eType="ecore:EClass ../../no.hib.dpf.core/model/Metamodel.ecore#//Specification"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="jointMeta" eType="ecore:EClass ../../no.hib.dpf.core/model/Metamodel.ecore#//Specification"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="metaModel" eType="ecore:EClass ../../no.hib.dpf.diagram/model/DiagramMetamodel.ecore#//DSpecification"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="rules" upperBound="-1"
-        eType="#//Reduction" containment="true"/>
+        eType="#//Production" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dSignature" eType="ecore:EClass ../../no.hib.dpf.diagram/model/DiagramMetamodel.ecore#//DSignature"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="CopiedType">
-    <eLiterals name="SOURCE"/>
-    <eLiterals name="Target" value="1"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CopiedNode" eSuperTypes="../../no.hib.dpf.core/model/Metamodel.ecore#//Node #//Copied"/>
-  <eClassifiers xsi:type="ecore:EClass" name="MapArrow" eSuperTypes="../../no.hib.dpf.core/model/Metamodel.ecore#//Arrow"/>
-  <eClassifiers xsi:type="ecore:EClass" name="CopiedArrow" eSuperTypes="../../no.hib.dpf.core/model/Metamodel.ecore#//Arrow #//Copied"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Reduction">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="ecore:EClass ../../no.hib.dpf.core/model/Metamodel.ecore#//Specification"
+  <eClassifiers xsi:type="ecore:EClass" name="Production">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sum" eType="ecore:EClass ../../no.hib.dpf.diagram/model/DiagramMetamodel.ecore#//DSpecification"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="ecore:EClass ../../no.hib.dpf.core/model/Metamodel.ecore#//Specification"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="mapping" eType="ecore:EClass ../../no.hib.dpf.core/model/Metamodel.ecore#//GraphHomomorphism"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CopiedConstraint" eSuperTypes="../../no.hib.dpf.core/model/Metamodel.ecore#//Constraint #//Copied"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Copied">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="copiedType" eType="#//CopiedType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="leftNodes" upperBound="-1"
+        eType="ecore:EClass ../../no.hib.dpf.diagram/model/DiagramMetamodel.ecore#//DNode"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rightNodes" upperBound="-1"
+        eType="ecore:EClass ../../no.hib.dpf.diagram/model/DiagramMetamodel.ecore#//DNode"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rightArrows" upperBound="-1"
+        eType="ecore:EClass ../../no.hib.dpf.diagram/model/DiagramMetamodel.ecore#//DArrow"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="leftArrows" upperBound="-1"
+        eType="ecore:EClass ../../no.hib.dpf.diagram/model/DiagramMetamodel.ecore#//DArrow"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="commonNodes" upperBound="-1"
+        eType="ecore:EClass ../../no.hib.dpf.diagram/model/DiagramMetamodel.ecore#//DNode"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="commonArrows" upperBound="-1"
+        eType="ecore:EClass ../../no.hib.dpf.diagram/model/DiagramMetamodel.ecore#//DArrow"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

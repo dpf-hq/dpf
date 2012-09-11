@@ -214,7 +214,7 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	 */
 	public DSpecification createDefaultDSpecification() {
 		DSpecificationImpl dSpecification = new DSpecificationImpl();
-		dSpecification.setSpecification(CoreFactory.eINSTANCE.createSpecification());
+		dSpecification.setSpecification(CoreFactory.eINSTANCE.createDefaultSpecification());
 		dSpecification.setDType(DPFConstants.REFLEXIVE_DSPECIFICATION);
 		dSpecification.setDGraph(DiagramFactory.eINSTANCE.createDefaultDGraph());
 		dSpecification.setZoom(1.0);

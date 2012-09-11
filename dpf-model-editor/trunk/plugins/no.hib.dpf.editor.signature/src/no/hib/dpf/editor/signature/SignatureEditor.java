@@ -46,6 +46,7 @@ import org.eclipse.gef.ui.actions.UpdateAction;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorInput;
@@ -88,6 +89,8 @@ public class SignatureEditor extends FormEditor implements CommandStackListener,
 		}catch(PartInitException e){
 			DPFErrorReport.logError(e);
 		}
+		if (getPageCount() == 1 && getContainer() instanceof CTabFolder) 
+			((CTabFolder) getContainer()).setTabHeight(0);
 	}
 
 	@Override

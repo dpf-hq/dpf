@@ -7,601 +7,227 @@
 package no.hib.dpf.transform.presentation;
 
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
+
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.MissingResourceException;
-import java.util.StringTokenizer;
 
+import no.hib.dpf.diagram.DSignature;
+import no.hib.dpf.diagram.DSpecification;
+import no.hib.dpf.diagram.util.DPFConstants;
+import no.hib.dpf.editor.DPFEditor;
+import no.hib.dpf.editor.DPFErrorReport;
+import no.hib.dpf.editor.wizards.DPFCreationWizard;
+import no.hib.dpf.editor.wizards.DPFWizardPage;
+import no.hib.dpf.transform.Transform;
 import no.hib.dpf.transform.TransformFactory;
-import no.hib.dpf.transform.TransformPackage;
-import no.hib.dpf.transform.provider.TransformEditPlugin;
+import no.hib.dpf.utils.DPFCoreUtil;
 
-import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IFolder;
-import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.Path;
-import org.eclipse.emf.common.CommonPlugin;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.xmi.XMLResource;
-import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
-import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
-import org.eclipse.jface.wizard.WizardPage;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Label;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
-import org.eclipse.ui.part.FileEditorInput;
-import org.eclipse.ui.part.ISetSelectionTarget;
+import org.eclipse.ui.ide.IDE;
 
 
 /**
  * This is a simple wizard for creating a new model file.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * @generated
+ * @generated NOT
  */
 public class TransformModelWizard extends Wizard implements INewWizard {
-	/**
-	 * The supported extensions for created files.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final List<String> FILE_EXTENSIONS =
-		Collections.unmodifiableList(Arrays.asList(TransformEditPlugin.INSTANCE.getString("_UI_TransformEditorFilenameExtensions").split("\\s*,\\s*")));
 
-	/**
-	 * A formatted list of supported file extensions, suitable for display.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final String FORMATTED_FILE_EXTENSIONS =
-		TransformEditPlugin.INSTANCE.getString("_UI_TransformEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
-
-	/**
-	 * This caches an instance of the model package.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected TransformPackage transformPackage = TransformPackage.eINSTANCE;
-
-	/**
-	 * This caches an instance of the model factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected TransformFactory transformFactory = transformPackage.getTransformFactory();
-
-	/**
-	 * This is the file creation page.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected TransformModelWizardNewFileCreationPage newFileCreationPage;
-
-	/**
-	 * This is the initial object creation page.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected TransformModelWizardInitialObjectCreationPage initialObjectCreationPage;
-
-	/**
-	 * Remember the selection during initialization for populating the default container.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected IStructuredSelection selection;
-
-	/**
-	 * Remember the workbench during initialization.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected IWorkbench workbench;
-
-	/**
-	 * Caches the names of the types that can be created as the root object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected List<String> initialObjectNames;
+	private static int fileCount = 1;
+	private CreationPage createPage = null;
+	private DPFWizardPage typeLinkPage = null;
+	private DPFWizardPage signatureLinkPage;
 
-	/**
-	 * This just records the information.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.jface.wizard.IWizard#addPages()
+	 */
+	public void addPages() {
+		// add pages to this wizard
+		addPage(createPage);
+		addPage(typeLinkPage);
+		addPage(signatureLinkPage);
+	}
+
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.ui.IWorkbenchWizard#init(org.eclipse.ui.IWorkbench,
+	 * org.eclipse.jface.viewers.IStructuredSelection)
 	 */
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
-		this.workbench = workbench;
-		this.selection = selection;
-		setWindowTitle(TransformEditPlugin.INSTANCE.getString("_UI_Wizard_label"));
-		setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(TransformEditPlugin.INSTANCE.getImage("full/wizban/NewTransform")));
+		// create pages for this wizard
+		createPage = new CreationPage(workbench, selection);
+
+		typeLinkPage = new DPFWizardPage("Add type graph", "Type graph");
+		String[] tmp = {"*" + DPFEditor.DEFAULT_DIAGRAM_MODEL_EXTENSION};
+		typeLinkPage.setFileDialogFilters(tmp, tmp);
+		
+		typeLinkPage.setTitle("Include type graph");
+		String filename = null;
+		
+		if(selection.getFirstElement() instanceof IResource) {
+			filename = ((IResource)selection.getFirstElement()).getLocation().toOSString();
+			if(filename.endsWith(".xmi"))
+				filename = DPFEditor.getDiagramFromModel(filename);
+		} else
+			filename = DPFEditor.getWorkspaceDirectory();
+		
+		typeLinkPage.setLinkTarget(filename);
+		
+		signatureLinkPage = new DPFWizardPage("Add Signature", "Signature");
+		tmp = new String[] { "*.sig"};
+		signatureLinkPage.setFileDialogFilters(tmp, tmp);
+		signatureLinkPage.setTitle("Include signature");
+		signatureLinkPage.setLinkTarget(filename);
 	}
 
-	/**
-	 * Returns the names of the types that can be created as the root object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected Collection<String> getInitialObjectNames() {
-		if (initialObjectNames == null) {
-			initialObjectNames = new ArrayList<String>();
-			for (EClassifier eClassifier : transformPackage.getEClassifiers()) {
-				if (eClassifier instanceof EClass) {
-					EClass eClass = (EClass)eClassifier;
-					if (!eClass.isAbstract()) {
-						initialObjectNames.add(eClass.getName());
-					}
-				}
-			}
-			Collections.sort(initialObjectNames, CommonPlugin.INSTANCE.getComparator());
-		}
-		return initialObjectNames;
-	}
 
-	/**
-	 * Create a new model.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected EObject createInitialModel() {
-		EClass eClass = (EClass)transformPackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
-		EObject rootObject = transformFactory.create(eClass);
-		return rootObject;
-	}
 
-	/**
-	 * Do the work after everything is specified.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.jface.wizard.IWizard#performFinish()
 	 */
-	@Override
 	public boolean performFinish() {
-		try {
-			// Remember the file.
-			//
-			final IFile modelFile = getModelFile();
-
-			// Do the work within an operation.
-			//
-			WorkspaceModifyOperation operation =
-				new WorkspaceModifyOperation() {
-					@Override
-					protected void execute(IProgressMonitor progressMonitor) {
-						try {
-							// Create a resource set
-							//
-							ResourceSet resourceSet = new ResourceSetImpl();
-
-							// Get the URI of the model file.
-							//
-							URI fileURI = URI.createPlatformResourceURI(modelFile.getFullPath().toString(), true);
-
-							// Create a resource for this file.
-							//
-							Resource resource = resourceSet.createResource(fileURI);
-
-							// Add the initial model object to the contents.
-							//
-							EObject rootObject = createInitialModel();
-							if (rootObject != null) {
-								resource.getContents().add(rootObject);
-							}
-
-							// Save the contents of the resource to the file system.
-							//
-							Map<Object, Object> options = new HashMap<Object, Object>();
-							options.put(XMLResource.OPTION_ENCODING, initialObjectCreationPage.getEncoding());
-							resource.save(options);
-						}
-						catch (Exception exception) {
-							TransformEditPlugin.INSTANCE.log(exception);
-						}
-						finally {
-							progressMonitor.done();
-						}
-					}
-				};
-
-			getContainer().run(false, false, operation);
-
-			// Select the new file resource in the current view.
-			//
-			IWorkbenchWindow workbenchWindow = workbench.getActiveWorkbenchWindow();
-			IWorkbenchPage page = workbenchWindow.getActivePage();
-			final IWorkbenchPart activePart = page.getActivePart();
-			if (activePart instanceof ISetSelectionTarget) {
-				final ISelection targetSelection = new StructuredSelection(modelFile);
-				getShell().getDisplay().asyncExec
-					(new Runnable() {
-						 public void run() {
-							 ((ISetSelectionTarget)activePart).selectReveal(targetSelection);
-						 }
-					 });
-			}
-
-			// Open an editor on the new file.
-			//
-			try {
-				page.openEditor
-					(new FileEditorInput(modelFile),
-					 workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());					 	 
-			}
-			catch (PartInitException exception) {
-				MessageDialog.openError(workbenchWindow.getShell(), TransformEditPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage());
-				return false;
-			}
-
-			return true;
-		}
-		catch (Exception exception) {
-			TransformEditPlugin.INSTANCE.log(exception);
-			return false;
-		}
+		return createPage.finish();
 	}
-
+	public static final String TRANSFORM_EXTENSION = ".xform";
 	/**
-	 * This is the one page of the wizard.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
+	 * This WizardPage can create an empty .shapes file for the ShapesEditor.
 	 */
-	public class TransformModelWizardNewFileCreationPage extends WizardNewFileCreationPage {
+	private class CreationPage extends WizardNewFileCreationPage {
+
 		/**
-		 * Pass in the selection.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
+		 * Hides the advanced option widgets.
 		 */
-		public TransformModelWizardNewFileCreationPage(String pageId, IStructuredSelection selection) {
-			super(pageId, selection);
+		protected void handleAdvancedButtonSelect() {
 		}
 
+
+		private final IWorkbench workbench;
+
 		/**
-		 * The framework calls this to see if the file is correct.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
+		 * Create a new wizard page instance.
+		 * 
+		 * @param workbench
+		 *            the current workbench
+		 * @param selection
+		 *            the current object selection
+		 * @see DPFCreationWizard#init(IWorkbench, IStructuredSelection)
 		 */
-		@Override
-		protected boolean validatePage() {
-			if (super.validatePage()) {
-				String extension = new Path(getFileName()).getFileExtension();
-				if (extension == null || !FILE_EXTENSIONS.contains(extension)) {
-					String key = FILE_EXTENSIONS.size() > 1 ? "_WARN_FilenameExtensions" : "_WARN_FilenameExtension";
-					setErrorMessage(TransformEditPlugin.INSTANCE.getString(key, new Object [] { FORMATTED_FILE_EXTENSIONS }));
-					return false;
-				}
-				return true;
-			}
-			return false;
+		CreationPage(IWorkbench workbench, IStructuredSelection selection) {
+			super("dpfCreationPage1", selection);
+			this.workbench = workbench;
+			setTitle("Create a new  " + TRANSFORM_EXTENSION + " file");
+			setDescription("Create a new  " + TRANSFORM_EXTENSION + " file");
 		}
 
-		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		public IFile getModelFile() {
-			return ResourcesPlugin.getWorkspace().getRoot().getFile(getContainerFullPath().append(getFileName()));
-		}
-	}
-
-	/**
-	 * This is the page where the type of object to create is selected.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public class TransformModelWizardInitialObjectCreationPage extends WizardPage {
-		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		protected Combo initialObjectField;
-
-		/**
-		 * @generated
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 */
-		protected List<String> encodings;
-
-		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		protected Combo encodingField;
-
-		/**
-		 * Pass in the selection.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		public TransformModelWizardInitialObjectCreationPage(String pageId) {
-			super(pageId);
-		}
-
-		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * org.eclipse.ui.dialogs.WizardNewFileCreationPage#createControl(org
+		 * .eclipse.swt.widgets.Composite)
 		 */
 		public void createControl(Composite parent) {
-			Composite composite = new Composite(parent, SWT.NONE); {
-				GridLayout layout = new GridLayout();
-				layout.numColumns = 1;
-				layout.verticalSpacing = 12;
-				composite.setLayout(layout);
-
-				GridData data = new GridData();
-				data.verticalAlignment = GridData.FILL;
-				data.grabExcessVerticalSpace = true;
-				data.horizontalAlignment = GridData.FILL;
-				composite.setLayoutData(data);
-			}
-
-			Label containerLabel = new Label(composite, SWT.LEFT);
-			{
-				containerLabel.setText(TransformEditPlugin.INSTANCE.getString("_UI_ModelObject"));
-
-				GridData data = new GridData();
-				data.horizontalAlignment = GridData.FILL;
-				containerLabel.setLayoutData(data);
-			}
-
-			initialObjectField = new Combo(composite, SWT.BORDER);
-			{
-				GridData data = new GridData();
-				data.horizontalAlignment = GridData.FILL;
-				data.grabExcessHorizontalSpace = true;
-				initialObjectField.setLayoutData(data);
-			}
-
-			for (String objectName : getInitialObjectNames()) {
-				initialObjectField.add(getLabel(objectName));
-			}
-
-			if (initialObjectField.getItemCount() == 1) {
-				initialObjectField.select(0);
-			}
-			initialObjectField.addModifyListener(validator);
-
-			Label encodingLabel = new Label(composite, SWT.LEFT);
-			{
-				encodingLabel.setText(TransformEditPlugin.INSTANCE.getString("_UI_XMLEncoding"));
-
-				GridData data = new GridData();
-				data.horizontalAlignment = GridData.FILL;
-				encodingLabel.setLayoutData(data);
-			}
-			encodingField = new Combo(composite, SWT.BORDER);
-			{
-				GridData data = new GridData();
-				data.horizontalAlignment = GridData.FILL;
-				data.grabExcessHorizontalSpace = true;
-				encodingField.setLayoutData(data);
-			}
-
-			for (String encoding : getEncodings()) {
-				encodingField.add(encoding);
-			}
-
-			encodingField.select(0);
-			encodingField.addModifyListener(validator);
-
+			super.createControl(parent);
+			setFileName("transform" + fileCount + TRANSFORM_EXTENSION);
 			setPageComplete(validatePage());
-			setControl(composite);
+		}
+
+		
+		/**
+		 * This method will be invoked, when the "Finish" button is pressed.
+		 * 
+		 * @see DPFCreationWizard#performFinish()
+		 */
+		boolean finish() {
+			// create a new diagram file, result != null if successful
+			IFile newDiagramFile = createNewFile();
+			fileCount++;
+			URI newDiagarmURI = DPFCoreUtil.getFileURI(newDiagramFile);
+			//Initialize model file and diagram file
+			Transform transform = TransformFactory.eINSTANCE.createTransform();
+
+			// Gets null value when user does not check checkbox
+			String typeModelFileName = typeLinkPage.getLinkTarget();
+			DSpecification typeSpec = null;
+			ResourceSetImpl resourceSet = TransformEditor.getResourceSet();
+			Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
+			if(typeModelFileName != null){
+				typeSpec = DPFEditor.loadDSpecification(resourceSet, URI.createFileURI(typeModelFileName), resourceToDiagnosticMap);
+				EcoreUtil.resolveAll(typeSpec);
+			}
+			transform.setMetaModel(typeSpec != null ? typeSpec : DPFConstants.REFLEXIVE_DSPECIFICATION);
+
+			String signatureFileName = signatureLinkPage.getLinkTarget();
+			DSignature signature = null;
+			if(signatureFileName != null){
+				signature = DPFEditor.loadDSignature(resourceSet, URI.createFileURI(signatureFileName), resourceToDiagnosticMap);
+				EcoreUtil.resolveAll(signature);
+			}
+			transform.setDSignature(signature == null ? DPFConstants.DEFAULT_DSIGNATURE : signature);
+			
+			try {
+				TransformEditor.saveTransform(resourceSet, newDiagarmURI, transform, resourceToDiagnosticMap);
+				newDiagramFile.getParent().refreshLocal(IResource.DEPTH_ONE, null);
+			} catch (CoreException e1) {
+				DPFErrorReport.logError("Error happens when store new create DPF Specification", e1);
+			} 
+			// open newly created file in the editor
+			IWorkbenchPage page = workbench.getActiveWorkbenchWindow().getActivePage();
+			if (newDiagramFile != null && page != null) {
+				try {
+					IEditorPart editorPart = IDE.openEditor(page, newDiagramFile, true);
+					if(editorPart != null)
+						editorPart.setFocus();
+				} catch (PartInitException e) {
+					DPFErrorReport.logError("Error happens when Open DPF Editor", e);
+					return false;
+				}
+			}
+			return true;
 		}
 
 		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
+		 * Return true, if the file name entered in this page is valid.
 		 */
-		protected ModifyListener validator =
-			new ModifyListener() {
-				public void modifyText(ModifyEvent e) {
-					setPageComplete(validatePage());
-				}
-			};
+		private boolean validateFilename() {
+			if (getFileName() != null && getFileName().endsWith(TRANSFORM_EXTENSION)) 
+				return true;
+			setErrorMessage("The 'file' name must end with " + TRANSFORM_EXTENSION);
+			return false;
+		}
 
-		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see org.eclipse.ui.dialogs.WizardNewFileCreationPage#validatePage()
 		 */
 		protected boolean validatePage() {
-			return getInitialObjectName() != null && getEncodings().contains(encodingField.getText());
-		}
-
-		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		@Override
-		public void setVisible(boolean visible) {
-			super.setVisible(visible);
-			if (visible) {
-				if (initialObjectField.getItemCount() == 1) {
-					initialObjectField.clearSelection();
-					encodingField.setFocus();
-				}
-				else {
-					encodingField.clearSelection();
-					initialObjectField.setFocus();
-				}
-			}
-		}
-
-		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		public String getInitialObjectName() {
-			String label = initialObjectField.getText();
-
-			for (String name : getInitialObjectNames()) {
-				if (getLabel(name).equals(label)) {
-					return name;
-				}
-			}
-			return null;
-		}
-
-		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		public String getEncoding() {
-			return encodingField.getText();
-		}
-
-		/**
-		 * Returns the label for the specified type name.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		protected String getLabel(String typeName) {
-			try {
-				return TransformEditPlugin.INSTANCE.getString("_UI_" + typeName + "_type");
-			}
-			catch(MissingResourceException mre) {
-				TransformEditPlugin.INSTANCE.log(mre);
-			}
-			return typeName;
-		}
-
-		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		protected Collection<String> getEncodings() {
-			if (encodings == null) {
-				encodings = new ArrayList<String>();
-				for (StringTokenizer stringTokenizer = new StringTokenizer(TransformEditPlugin.INSTANCE.getString("_UI_XMLEncodingChoices")); stringTokenizer.hasMoreTokens(); ) {
-					encodings.add(stringTokenizer.nextToken());
-				}
-			}
-			return encodings;
+			return super.validatePage() && validateFilename();
 		}
 	}
-
-	/**
-	 * The framework calls this to create the contents of the wizard.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-		@Override
-	public void addPages() {
-		// Create a page, set the title, and the initial model file name.
-		//
-		newFileCreationPage = new TransformModelWizardNewFileCreationPage("Whatever", selection);
-		newFileCreationPage.setTitle(TransformEditPlugin.INSTANCE.getString("_UI_TransformModelWizard_label"));
-		newFileCreationPage.setDescription(TransformEditPlugin.INSTANCE.getString("_UI_TransformModelWizard_description"));
-		newFileCreationPage.setFileName(TransformEditPlugin.INSTANCE.getString("_UI_TransformEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0));
-		addPage(newFileCreationPage);
-
-		// Try and get the resource selection to determine a current directory for the file dialog.
-		//
-		if (selection != null && !selection.isEmpty()) {
-			// Get the resource...
-			//
-			Object selectedElement = selection.iterator().next();
-			if (selectedElement instanceof IResource) {
-				// Get the resource parent, if its a file.
-				//
-				IResource selectedResource = (IResource)selectedElement;
-				if (selectedResource.getType() == IResource.FILE) {
-					selectedResource = selectedResource.getParent();
-				}
-
-				// This gives us a directory...
-				//
-				if (selectedResource instanceof IFolder || selectedResource instanceof IProject) {
-					// Set this for the container.
-					//
-					newFileCreationPage.setContainerFullPath(selectedResource.getFullPath());
-
-					// Make up a unique new name here.
-					//
-					String defaultModelBaseFilename = TransformEditPlugin.INSTANCE.getString("_UI_TransformEditorFilenameDefaultBase");
-					String defaultModelFilenameExtension = FILE_EXTENSIONS.get(0);
-					String modelFilename = defaultModelBaseFilename + "." + defaultModelFilenameExtension;
-					for (int i = 1; ((IContainer)selectedResource).findMember(modelFilename) != null; ++i) {
-						modelFilename = defaultModelBaseFilename + i + "." + defaultModelFilenameExtension;
-					}
-					newFileCreationPage.setFileName(modelFilename);
-				}
-			}
-		}
-		initialObjectCreationPage = new TransformModelWizardInitialObjectCreationPage("Whatever2");
-		initialObjectCreationPage.setTitle(TransformEditPlugin.INSTANCE.getString("_UI_TransformModelWizard_label"));
-		initialObjectCreationPage.setDescription(TransformEditPlugin.INSTANCE.getString("_UI_Wizard_initial_object_description"));
-		addPage(initialObjectCreationPage);
-	}
-
-	/**
-	 * Get the file from the page.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public IFile getModelFile() {
-		return newFileCreationPage.getModelFile();
-	}
-
 }

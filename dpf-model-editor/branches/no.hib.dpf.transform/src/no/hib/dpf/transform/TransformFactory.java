@@ -35,58 +35,13 @@ public interface TransformFactory extends EFactory {
 	Transform createTransform();
 
 	/**
-	 * Returns a new object of class '<em>Copied Node</em>'.
+	 * Returns a new object of class '<em>Production</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Copied Node</em>'.
+	 * @return a new object of class '<em>Production</em>'.
 	 * @generated
 	 */
-	CopiedNode createCopiedNode();
-
-	/**
-	 * Returns a new object of class '<em>Map Arrow</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Map Arrow</em>'.
-	 * @generated
-	 */
-	MapArrow createMapArrow();
-
-	/**
-	 * Returns a new object of class '<em>Copied Arrow</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Copied Arrow</em>'.
-	 * @generated
-	 */
-	CopiedArrow createCopiedArrow();
-
-	/**
-	 * Returns a new object of class '<em>Reduction</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Reduction</em>'.
-	 * @generated
-	 */
-	Reduction createReduction();
-
-	/**
-	 * Returns a new object of class '<em>Copied Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Copied Constraint</em>'.
-	 * @generated
-	 */
-	CopiedConstraint createCopiedConstraint();
-
-	/**
-	 * Returns a new object of class '<em>Copied</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Copied</em>'.
-	 * @generated
-	 */
-	Copied createCopied();
+	Production createProduction();
 
 	/**
 	 * Returns the package supported by this factory.

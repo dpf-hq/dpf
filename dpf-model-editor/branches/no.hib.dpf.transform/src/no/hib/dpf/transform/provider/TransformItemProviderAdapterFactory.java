@@ -98,141 +98,26 @@ public class TransformItemProviderAdapterFactory extends TransformAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link no.hib.dpf.transform.CopiedNode} instances.
+	 * This keeps track of the one adapter used for all {@link no.hib.dpf.transform.Production} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CopiedNodeItemProvider copiedNodeItemProvider;
+	protected ProductionItemProvider productionItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link no.hib.dpf.transform.CopiedNode}.
+	 * This creates an adapter for a {@link no.hib.dpf.transform.Production}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createCopiedNodeAdapter() {
-		if (copiedNodeItemProvider == null) {
-			copiedNodeItemProvider = new CopiedNodeItemProvider(this);
+	public Adapter createProductionAdapter() {
+		if (productionItemProvider == null) {
+			productionItemProvider = new ProductionItemProvider(this);
 		}
 
-		return copiedNodeItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link no.hib.dpf.transform.MapArrow} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected MapArrowItemProvider mapArrowItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link no.hib.dpf.transform.MapArrow}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createMapArrowAdapter() {
-		if (mapArrowItemProvider == null) {
-			mapArrowItemProvider = new MapArrowItemProvider(this);
-		}
-
-		return mapArrowItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link no.hib.dpf.transform.CopiedArrow} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected CopiedArrowItemProvider copiedArrowItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link no.hib.dpf.transform.CopiedArrow}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createCopiedArrowAdapter() {
-		if (copiedArrowItemProvider == null) {
-			copiedArrowItemProvider = new CopiedArrowItemProvider(this);
-		}
-
-		return copiedArrowItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link no.hib.dpf.transform.Reduction} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ReductionItemProvider reductionItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link no.hib.dpf.transform.Reduction}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createReductionAdapter() {
-		if (reductionItemProvider == null) {
-			reductionItemProvider = new ReductionItemProvider(this);
-		}
-
-		return reductionItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link no.hib.dpf.transform.CopiedConstraint} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected CopiedConstraintItemProvider copiedConstraintItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link no.hib.dpf.transform.CopiedConstraint}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createCopiedConstraintAdapter() {
-		if (copiedConstraintItemProvider == null) {
-			copiedConstraintItemProvider = new CopiedConstraintItemProvider(this);
-		}
-
-		return copiedConstraintItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link no.hib.dpf.transform.Copied} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected CopiedItemProvider copiedItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link no.hib.dpf.transform.Copied}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createCopiedAdapter() {
-		if (copiedItemProvider == null) {
-			copiedItemProvider = new CopiedItemProvider(this);
-		}
-
-		return copiedItemProvider;
+		return productionItemProvider;
 	}
 
 	/**
@@ -335,12 +220,7 @@ public class TransformItemProviderAdapterFactory extends TransformAdapterFactory
 	 */
 	public void dispose() {
 		if (transformItemProvider != null) transformItemProvider.dispose();
-		if (copiedNodeItemProvider != null) copiedNodeItemProvider.dispose();
-		if (mapArrowItemProvider != null) mapArrowItemProvider.dispose();
-		if (copiedArrowItemProvider != null) copiedArrowItemProvider.dispose();
-		if (reductionItemProvider != null) reductionItemProvider.dispose();
-		if (copiedConstraintItemProvider != null) copiedConstraintItemProvider.dispose();
-		if (copiedItemProvider != null) copiedItemProvider.dispose();
+		if (productionItemProvider != null) productionItemProvider.dispose();
 	}
 
 }

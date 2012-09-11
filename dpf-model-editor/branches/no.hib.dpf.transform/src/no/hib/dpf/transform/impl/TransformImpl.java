@@ -8,8 +8,9 @@ package no.hib.dpf.transform.impl;
 
 import java.util.Collection;
 
-import no.hib.dpf.core.Specification;
-import no.hib.dpf.transform.Reduction;
+import no.hib.dpf.diagram.DSignature;
+import no.hib.dpf.diagram.DSpecification;
+import no.hib.dpf.transform.Production;
 import no.hib.dpf.transform.Transform;
 import no.hib.dpf.transform.TransformPackage;
 
@@ -30,10 +31,9 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link no.hib.dpf.transform.impl.TransformImpl#getSourceMeta <em>Source Meta</em>}</li>
- *   <li>{@link no.hib.dpf.transform.impl.TransformImpl#getTargetMeta <em>Target Meta</em>}</li>
- *   <li>{@link no.hib.dpf.transform.impl.TransformImpl#getJointMeta <em>Joint Meta</em>}</li>
+ *   <li>{@link no.hib.dpf.transform.impl.TransformImpl#getMetaModel <em>Meta Model</em>}</li>
  *   <li>{@link no.hib.dpf.transform.impl.TransformImpl#getRules <em>Rules</em>}</li>
+ *   <li>{@link no.hib.dpf.transform.impl.TransformImpl#getDSignature <em>DSignature</em>}</li>
  * </ul>
  * </p>
  *
@@ -41,34 +41,14 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class TransformImpl extends EObjectImpl implements Transform {
 	/**
-	 * The cached value of the '{@link #getSourceMeta() <em>Source Meta</em>}' reference.
+	 * The cached value of the '{@link #getMetaModel() <em>Meta Model</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSourceMeta()
+	 * @see #getMetaModel()
 	 * @generated
 	 * @ordered
 	 */
-	protected Specification sourceMeta;
-
-	/**
-	 * The cached value of the '{@link #getTargetMeta() <em>Target Meta</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTargetMeta()
-	 * @generated
-	 * @ordered
-	 */
-	protected Specification targetMeta;
-
-	/**
-	 * The cached value of the '{@link #getJointMeta() <em>Joint Meta</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getJointMeta()
-	 * @generated
-	 * @ordered
-	 */
-	protected Specification jointMeta;
+	protected DSpecification metaModel;
 
 	/**
 	 * The cached value of the '{@link #getRules() <em>Rules</em>}' containment reference list.
@@ -78,7 +58,17 @@ public class TransformImpl extends EObjectImpl implements Transform {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Reduction> rules;
+	protected EList<Production> rules;
+
+	/**
+	 * The cached value of the '{@link #getDSignature() <em>DSignature</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDSignature()
+	 * @generated
+	 * @ordered
+	 */
+	protected DSignature dSignature;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -104,16 +94,8 @@ public class TransformImpl extends EObjectImpl implements Transform {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Specification getSourceMeta() {
-		if (sourceMeta != null && sourceMeta.eIsProxy()) {
-			InternalEObject oldSourceMeta = (InternalEObject)sourceMeta;
-			sourceMeta = (Specification)eResolveProxy(oldSourceMeta);
-			if (sourceMeta != oldSourceMeta) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TransformPackage.TRANSFORM__SOURCE_META, oldSourceMeta, sourceMeta));
-			}
-		}
-		return sourceMeta;
+	public DSpecification getMetaModel() {
+		return metaModel;
 	}
 
 	/**
@@ -121,79 +103,11 @@ public class TransformImpl extends EObjectImpl implements Transform {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Specification basicGetSourceMeta() {
-		return sourceMeta;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSourceMeta(Specification newSourceMeta) {
-		Specification oldSourceMeta = sourceMeta;
-		sourceMeta = newSourceMeta;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TransformPackage.TRANSFORM__SOURCE_META, oldSourceMeta, sourceMeta));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Specification getTargetMeta() {
-		if (targetMeta != null && targetMeta.eIsProxy()) {
-			InternalEObject oldTargetMeta = (InternalEObject)targetMeta;
-			targetMeta = (Specification)eResolveProxy(oldTargetMeta);
-			if (targetMeta != oldTargetMeta) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TransformPackage.TRANSFORM__TARGET_META, oldTargetMeta, targetMeta));
-			}
-		}
-		return targetMeta;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Specification basicGetTargetMeta() {
-		return targetMeta;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setTargetMeta(Specification newTargetMeta) {
-		Specification oldTargetMeta = targetMeta;
-		targetMeta = newTargetMeta;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TransformPackage.TRANSFORM__TARGET_META, oldTargetMeta, targetMeta));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Specification getJointMeta() {
-		return jointMeta;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetJointMeta(Specification newJointMeta, NotificationChain msgs) {
-		Specification oldJointMeta = jointMeta;
-		jointMeta = newJointMeta;
+	public NotificationChain basicSetMetaModel(DSpecification newMetaModel, NotificationChain msgs) {
+		DSpecification oldMetaModel = metaModel;
+		metaModel = newMetaModel;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TransformPackage.TRANSFORM__JOINT_META, oldJointMeta, newJointMeta);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TransformPackage.TRANSFORM__META_MODEL, oldMetaModel, newMetaModel);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -204,18 +118,18 @@ public class TransformImpl extends EObjectImpl implements Transform {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setJointMeta(Specification newJointMeta) {
-		if (newJointMeta != jointMeta) {
+	public void setMetaModel(DSpecification newMetaModel) {
+		if (newMetaModel != metaModel) {
 			NotificationChain msgs = null;
-			if (jointMeta != null)
-				msgs = ((InternalEObject)jointMeta).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TransformPackage.TRANSFORM__JOINT_META, null, msgs);
-			if (newJointMeta != null)
-				msgs = ((InternalEObject)newJointMeta).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TransformPackage.TRANSFORM__JOINT_META, null, msgs);
-			msgs = basicSetJointMeta(newJointMeta, msgs);
+			if (metaModel != null)
+				msgs = ((InternalEObject)metaModel).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TransformPackage.TRANSFORM__META_MODEL, null, msgs);
+			if (newMetaModel != null)
+				msgs = ((InternalEObject)newMetaModel).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TransformPackage.TRANSFORM__META_MODEL, null, msgs);
+			msgs = basicSetMetaModel(newMetaModel, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TransformPackage.TRANSFORM__JOINT_META, newJointMeta, newJointMeta));
+			eNotify(new ENotificationImpl(this, Notification.SET, TransformPackage.TRANSFORM__META_MODEL, newMetaModel, newMetaModel));
 	}
 
 	/**
@@ -223,9 +137,9 @@ public class TransformImpl extends EObjectImpl implements Transform {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Reduction> getRules() {
+	public EList<Production> getRules() {
 		if (rules == null) {
-			rules = new EObjectContainmentEList<Reduction>(Reduction.class, this, TransformPackage.TRANSFORM__RULES);
+			rules = new EObjectContainmentEList<Production>(Production.class, this, TransformPackage.TRANSFORM__RULES);
 		}
 		return rules;
 	}
@@ -235,10 +149,16 @@ public class TransformImpl extends EObjectImpl implements Transform {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Specification> getMappings(Specification model, Reduction rule) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+	public DSignature getDSignature() {
+		if (dSignature != null && dSignature.eIsProxy()) {
+			InternalEObject oldDSignature = (InternalEObject)dSignature;
+			dSignature = (DSignature)eResolveProxy(oldDSignature);
+			if (dSignature != oldDSignature) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TransformPackage.TRANSFORM__DSIGNATURE, oldDSignature, dSignature));
+			}
+		}
+		return dSignature;
 	}
 
 	/**
@@ -246,10 +166,20 @@ public class TransformImpl extends EObjectImpl implements Transform {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Specification applyReduction(Specification model, Reduction rule) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+	public DSignature basicGetDSignature() {
+		return dSignature;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDSignature(DSignature newDSignature) {
+		DSignature oldDSignature = dSignature;
+		dSignature = newDSignature;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TransformPackage.TRANSFORM__DSIGNATURE, oldDSignature, dSignature));
 	}
 
 	/**
@@ -260,8 +190,8 @@ public class TransformImpl extends EObjectImpl implements Transform {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case TransformPackage.TRANSFORM__JOINT_META:
-				return basicSetJointMeta(null, msgs);
+			case TransformPackage.TRANSFORM__META_MODEL:
+				return basicSetMetaModel(null, msgs);
 			case TransformPackage.TRANSFORM__RULES:
 				return ((InternalEList<?>)getRules()).basicRemove(otherEnd, msgs);
 		}
@@ -276,16 +206,13 @@ public class TransformImpl extends EObjectImpl implements Transform {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case TransformPackage.TRANSFORM__SOURCE_META:
-				if (resolve) return getSourceMeta();
-				return basicGetSourceMeta();
-			case TransformPackage.TRANSFORM__TARGET_META:
-				if (resolve) return getTargetMeta();
-				return basicGetTargetMeta();
-			case TransformPackage.TRANSFORM__JOINT_META:
-				return getJointMeta();
+			case TransformPackage.TRANSFORM__META_MODEL:
+				return getMetaModel();
 			case TransformPackage.TRANSFORM__RULES:
 				return getRules();
+			case TransformPackage.TRANSFORM__DSIGNATURE:
+				if (resolve) return getDSignature();
+				return basicGetDSignature();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -299,18 +226,15 @@ public class TransformImpl extends EObjectImpl implements Transform {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case TransformPackage.TRANSFORM__SOURCE_META:
-				setSourceMeta((Specification)newValue);
-				return;
-			case TransformPackage.TRANSFORM__TARGET_META:
-				setTargetMeta((Specification)newValue);
-				return;
-			case TransformPackage.TRANSFORM__JOINT_META:
-				setJointMeta((Specification)newValue);
+			case TransformPackage.TRANSFORM__META_MODEL:
+				setMetaModel((DSpecification)newValue);
 				return;
 			case TransformPackage.TRANSFORM__RULES:
 				getRules().clear();
-				getRules().addAll((Collection<? extends Reduction>)newValue);
+				getRules().addAll((Collection<? extends Production>)newValue);
+				return;
+			case TransformPackage.TRANSFORM__DSIGNATURE:
+				setDSignature((DSignature)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -324,17 +248,14 @@ public class TransformImpl extends EObjectImpl implements Transform {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case TransformPackage.TRANSFORM__SOURCE_META:
-				setSourceMeta((Specification)null);
-				return;
-			case TransformPackage.TRANSFORM__TARGET_META:
-				setTargetMeta((Specification)null);
-				return;
-			case TransformPackage.TRANSFORM__JOINT_META:
-				setJointMeta((Specification)null);
+			case TransformPackage.TRANSFORM__META_MODEL:
+				setMetaModel((DSpecification)null);
 				return;
 			case TransformPackage.TRANSFORM__RULES:
 				getRules().clear();
+				return;
+			case TransformPackage.TRANSFORM__DSIGNATURE:
+				setDSignature((DSignature)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -348,14 +269,12 @@ public class TransformImpl extends EObjectImpl implements Transform {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case TransformPackage.TRANSFORM__SOURCE_META:
-				return sourceMeta != null;
-			case TransformPackage.TRANSFORM__TARGET_META:
-				return targetMeta != null;
-			case TransformPackage.TRANSFORM__JOINT_META:
-				return jointMeta != null;
+			case TransformPackage.TRANSFORM__META_MODEL:
+				return metaModel != null;
 			case TransformPackage.TRANSFORM__RULES:
 				return rules != null && !rules.isEmpty();
+			case TransformPackage.TRANSFORM__DSIGNATURE:
+				return dSignature != null;
 		}
 		return super.eIsSet(featureID);
 	}

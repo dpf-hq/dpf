@@ -10,7 +10,7 @@ package no.hib.dpf.transform.provider;
 import java.util.Collection;
 import java.util.List;
 
-import no.hib.dpf.core.CoreFactory;
+import no.hib.dpf.diagram.DiagramFactory;
 import no.hib.dpf.transform.Transform;
 import no.hib.dpf.transform.TransformFactory;
 import no.hib.dpf.transform.TransformPackage;
@@ -64,48 +64,25 @@ public class TransformItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addSourceMetaPropertyDescriptor(object);
-			addTargetMetaPropertyDescriptor(object);
+			addDSignaturePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Source Meta feature.
+	 * This adds a property descriptor for the DSignature feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSourceMetaPropertyDescriptor(Object object) {
+	protected void addDSignaturePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Transform_sourceMeta_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Transform_sourceMeta_feature", "_UI_Transform_type"),
-				 TransformPackage.Literals.TRANSFORM__SOURCE_META,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Target Meta feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addTargetMetaPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Transform_targetMeta_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Transform_targetMeta_feature", "_UI_Transform_type"),
-				 TransformPackage.Literals.TRANSFORM__TARGET_META,
+				 getString("_UI_Transform_dSignature_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Transform_dSignature_feature", "_UI_Transform_type"),
+				 TransformPackage.Literals.TRANSFORM__DSIGNATURE,
 				 true,
 				 false,
 				 true,
@@ -126,7 +103,7 @@ public class TransformItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(TransformPackage.Literals.TRANSFORM__JOINT_META);
+			childrenFeatures.add(TransformPackage.Literals.TRANSFORM__META_MODEL);
 			childrenFeatures.add(TransformPackage.Literals.TRANSFORM__RULES);
 		}
 		return childrenFeatures;
@@ -179,7 +156,7 @@ public class TransformItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Transform.class)) {
-			case TransformPackage.TRANSFORM__JOINT_META:
+			case TransformPackage.TRANSFORM__META_MODEL:
 			case TransformPackage.TRANSFORM__RULES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -200,13 +177,13 @@ public class TransformItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(TransformPackage.Literals.TRANSFORM__JOINT_META,
-				 CoreFactory.eINSTANCE.createSpecification()));
+				(TransformPackage.Literals.TRANSFORM__META_MODEL,
+				 DiagramFactory.eINSTANCE.createDSpecification()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(TransformPackage.Literals.TRANSFORM__RULES,
-				 TransformFactory.eINSTANCE.createReduction()));
+				 TransformFactory.eINSTANCE.createProduction()));
 	}
 
 	/**

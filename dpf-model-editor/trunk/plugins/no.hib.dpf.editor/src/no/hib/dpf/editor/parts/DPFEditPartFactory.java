@@ -48,7 +48,7 @@ public EditPart createEditPart(EditPart context, Object modelElement) {
  * Maps an object to an EditPart. 
  * @throws RuntimeException if no match was found (programming error)
  */
-private EditPart getPartForElement(Object modelElement) {
+protected EditPart getPartForElement(Object modelElement) {
 	if (modelElement instanceof DGraph) {
 		return new DGraphEditPart();
 	}

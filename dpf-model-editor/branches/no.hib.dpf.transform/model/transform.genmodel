@@ -5,39 +5,24 @@
     editDirectory="/no.hib.dpf.transform/src" editorDirectory="/no.hib.dpf.transform/src"
     modelPluginID="no.hib.dpf.transform" modelName="Transform" testsDirectory="/no.hib.dpf.transform/src"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
-    editPluginID="no.hib.dpf.transform" usedGenPackages="../../no.hib.dpf.core/model/Metamodel.genmodel#//core">
+    editPluginID="no.hib.dpf.transform" usedGenPackages="../../no.hib.dpf.diagram/model/DiagramMetamodel.genmodel#//diagram ../../no.hib.dpf.core/model/Metamodel.genmodel#//core">
   <foreignModel>transform.ecore</foreignModel>
   <genPackages prefix="Transform" basePackage="no.hib.dpf" disposableProviderFactory="true"
       ecorePackage="transform.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="transform.ecore#//CopiedType">
-      <genEnumLiterals ecoreEnumLiteral="transform.ecore#//CopiedType/SOURCE"/>
-      <genEnumLiterals ecoreEnumLiteral="transform.ecore#//CopiedType/Target"/>
-    </genEnums>
     <genClasses ecoreClass="transform.ecore#//Transform">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference transform.ecore#//Transform/sourceMeta"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference transform.ecore#//Transform/targetMeta"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference transform.ecore#//Transform/jointMeta"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference transform.ecore#//Transform/metaModel"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference transform.ecore#//Transform/rules"/>
-      <genOperations ecoreOperation="transform.ecore#//Transform/getMappings">
-        <genParameters ecoreParameter="transform.ecore#//Transform/getMappings/model"/>
-        <genParameters ecoreParameter="transform.ecore#//Transform/getMappings/rule"/>
-      </genOperations>
-      <genOperations ecoreOperation="transform.ecore#//Transform/applyReduction">
-        <genParameters ecoreParameter="transform.ecore#//Transform/applyReduction/model"/>
-        <genParameters ecoreParameter="transform.ecore#//Transform/applyReduction/rule"/>
-      </genOperations>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference transform.ecore#//Transform/dSignature"/>
     </genClasses>
-    <genClasses ecoreClass="transform.ecore#//CopiedNode"/>
-    <genClasses ecoreClass="transform.ecore#//MapArrow"/>
-    <genClasses ecoreClass="transform.ecore#//CopiedArrow"/>
-    <genClasses ecoreClass="transform.ecore#//Reduction">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference transform.ecore#//Reduction/left"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference transform.ecore#//Reduction/right"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference transform.ecore#//Reduction/mapping"/>
-    </genClasses>
-    <genClasses ecoreClass="transform.ecore#//CopiedConstraint"/>
-    <genClasses ecoreClass="transform.ecore#//Copied">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute transform.ecore#//Copied/copiedType"/>
+    <genClasses ecoreClass="transform.ecore#//Production">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference transform.ecore#//Production/sum"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference transform.ecore#//Production/leftNodes"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference transform.ecore#//Production/rightNodes"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference transform.ecore#//Production/rightArrows"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference transform.ecore#//Production/leftArrows"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference transform.ecore#//Production/commonNodes"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference transform.ecore#//Production/commonArrows"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute transform.ecore#//Production/name"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

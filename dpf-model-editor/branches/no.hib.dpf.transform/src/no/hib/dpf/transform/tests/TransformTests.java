@@ -34,11 +34,6 @@ public class TransformTests extends TestSuite {
 	 */
 	public static Test suite() {
 		TestSuite suite = new TransformTests("transform Tests");
-		suite.addTestSuite(TransformTest.class);
-		suite.addTestSuite(CopiedNodeTest.class);
-		suite.addTestSuite(MapArrowTest.class);
-		suite.addTestSuite(CopiedArrowTest.class);
-		suite.addTestSuite(CopiedConstraintTest.class);
 		return suite;
 	}
 

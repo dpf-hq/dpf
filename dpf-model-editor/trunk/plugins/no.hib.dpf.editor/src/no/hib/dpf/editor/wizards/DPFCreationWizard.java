@@ -116,7 +116,7 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 	/**
 	 * This WizardPage can create an empty .shapes file for the ShapesEditor.
 	 */
-	private class CreationPage extends WizardNewFileCreationPage {
+	public class CreationPage extends WizardNewFileCreationPage {
 
 		/**
 		 * Hides the advanced option widgets.

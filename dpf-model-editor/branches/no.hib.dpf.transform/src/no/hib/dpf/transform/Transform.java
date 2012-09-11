@@ -6,7 +6,8 @@
  */
 package no.hib.dpf.transform;
 
-import no.hib.dpf.core.Specification;
+import no.hib.dpf.diagram.DSignature;
+import no.hib.dpf.diagram.DSpecification;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -19,10 +20,9 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link no.hib.dpf.transform.Transform#getSourceMeta <em>Source Meta</em>}</li>
- *   <li>{@link no.hib.dpf.transform.Transform#getTargetMeta <em>Target Meta</em>}</li>
- *   <li>{@link no.hib.dpf.transform.Transform#getJointMeta <em>Joint Meta</em>}</li>
+ *   <li>{@link no.hib.dpf.transform.Transform#getMetaModel <em>Meta Model</em>}</li>
  *   <li>{@link no.hib.dpf.transform.Transform#getRules <em>Rules</em>}</li>
+ *   <li>{@link no.hib.dpf.transform.Transform#getDSignature <em>DSignature</em>}</li>
  * </ul>
  * </p>
  *
@@ -32,86 +32,34 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Transform extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Source Meta</b></em>' reference.
+	 * Returns the value of the '<em><b>Meta Model</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Source Meta</em>' reference isn't clear,
+	 * If the meaning of the '<em>Meta Model</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Source Meta</em>' reference.
-	 * @see #setSourceMeta(Specification)
-	 * @see no.hib.dpf.transform.TransformPackage#getTransform_SourceMeta()
-	 * @model
-	 * @generated
-	 */
-	Specification getSourceMeta();
-
-	/**
-	 * Sets the value of the '{@link no.hib.dpf.transform.Transform#getSourceMeta <em>Source Meta</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Source Meta</em>' reference.
-	 * @see #getSourceMeta()
-	 * @generated
-	 */
-	void setSourceMeta(Specification value);
-
-	/**
-	 * Returns the value of the '<em><b>Target Meta</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Target Meta</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Target Meta</em>' reference.
-	 * @see #setTargetMeta(Specification)
-	 * @see no.hib.dpf.transform.TransformPackage#getTransform_TargetMeta()
-	 * @model
-	 * @generated
-	 */
-	Specification getTargetMeta();
-
-	/**
-	 * Sets the value of the '{@link no.hib.dpf.transform.Transform#getTargetMeta <em>Target Meta</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Target Meta</em>' reference.
-	 * @see #getTargetMeta()
-	 * @generated
-	 */
-	void setTargetMeta(Specification value);
-
-	/**
-	 * Returns the value of the '<em><b>Joint Meta</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Joint Meta</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Joint Meta</em>' containment reference.
-	 * @see #setJointMeta(Specification)
-	 * @see no.hib.dpf.transform.TransformPackage#getTransform_JointMeta()
+	 * @return the value of the '<em>Meta Model</em>' containment reference.
+	 * @see #setMetaModel(DSpecification)
+	 * @see no.hib.dpf.transform.TransformPackage#getTransform_MetaModel()
 	 * @model containment="true"
 	 * @generated
 	 */
-	Specification getJointMeta();
+	DSpecification getMetaModel();
 
 	/**
-	 * Sets the value of the '{@link no.hib.dpf.transform.Transform#getJointMeta <em>Joint Meta</em>}' containment reference.
+	 * Sets the value of the '{@link no.hib.dpf.transform.Transform#getMetaModel <em>Meta Model</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Joint Meta</em>' containment reference.
-	 * @see #getJointMeta()
+	 * @param value the new value of the '<em>Meta Model</em>' containment reference.
+	 * @see #getMetaModel()
 	 * @generated
 	 */
-	void setJointMeta(Specification value);
+	void setMetaModel(DSpecification value);
 
 	/**
 	 * Returns the value of the '<em><b>Rules</b></em>' containment reference list.
-	 * The list contents are of type {@link no.hib.dpf.transform.Reduction}.
+	 * The list contents are of type {@link no.hib.dpf.transform.Production}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Rules</em>' containment reference list isn't clear,
@@ -123,22 +71,32 @@ public interface Transform extends EObject {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Reduction> getRules();
+	EList<Production> getRules();
 
 	/**
+	 * Returns the value of the '<em><b>DSignature</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>DSignature</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
 	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>DSignature</em>' reference.
+	 * @see #setDSignature(DSignature)
+	 * @see no.hib.dpf.transform.TransformPackage#getTransform_DSignature()
 	 * @model
 	 * @generated
 	 */
-	EList<Specification> getMappings(Specification model, Reduction rule);
+	DSignature getDSignature();
 
 	/**
+	 * Sets the value of the '{@link no.hib.dpf.transform.Transform#getDSignature <em>DSignature</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model
+	 * @param value the new value of the '<em>DSignature</em>' reference.
+	 * @see #getDSignature()
 	 * @generated
 	 */
-	Specification applyReduction(Specification model, Reduction rule);
+	void setDSignature(DSignature value);
 
 } // Transform

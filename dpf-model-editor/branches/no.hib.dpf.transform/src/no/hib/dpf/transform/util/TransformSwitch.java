@@ -6,16 +6,7 @@
  */
 package no.hib.dpf.transform.util;
 
-import no.hib.dpf.core.Arrow;
-import no.hib.dpf.core.Constraint;
-import no.hib.dpf.core.IDObject;
-import no.hib.dpf.core.Node;
-import no.hib.dpf.transform.Copied;
-import no.hib.dpf.transform.CopiedArrow;
-import no.hib.dpf.transform.CopiedConstraint;
-import no.hib.dpf.transform.CopiedNode;
-import no.hib.dpf.transform.MapArrow;
-import no.hib.dpf.transform.Reduction;
+import no.hib.dpf.transform.Production;
 import no.hib.dpf.transform.Transform;
 import no.hib.dpf.transform.TransformPackage;
 
@@ -86,50 +77,9 @@ public class TransformSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case TransformPackage.COPIED_NODE: {
-				CopiedNode copiedNode = (CopiedNode)theEObject;
-				T result = caseCopiedNode(copiedNode);
-				if (result == null) result = caseNode(copiedNode);
-				if (result == null) result = caseCopied(copiedNode);
-				if (result == null) result = caseIDObject(copiedNode);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case TransformPackage.MAP_ARROW: {
-				MapArrow mapArrow = (MapArrow)theEObject;
-				T result = caseMapArrow(mapArrow);
-				if (result == null) result = caseArrow(mapArrow);
-				if (result == null) result = caseIDObject(mapArrow);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case TransformPackage.COPIED_ARROW: {
-				CopiedArrow copiedArrow = (CopiedArrow)theEObject;
-				T result = caseCopiedArrow(copiedArrow);
-				if (result == null) result = caseArrow(copiedArrow);
-				if (result == null) result = caseCopied(copiedArrow);
-				if (result == null) result = caseIDObject(copiedArrow);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case TransformPackage.REDUCTION: {
-				Reduction reduction = (Reduction)theEObject;
-				T result = caseReduction(reduction);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case TransformPackage.COPIED_CONSTRAINT: {
-				CopiedConstraint copiedConstraint = (CopiedConstraint)theEObject;
-				T result = caseCopiedConstraint(copiedConstraint);
-				if (result == null) result = caseConstraint(copiedConstraint);
-				if (result == null) result = caseCopied(copiedConstraint);
-				if (result == null) result = caseIDObject(copiedConstraint);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case TransformPackage.COPIED: {
-				Copied copied = (Copied)theEObject;
-				T result = caseCopied(copied);
+			case TransformPackage.PRODUCTION: {
+				Production production = (Production)theEObject;
+				T result = caseProduction(production);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -153,152 +103,17 @@ public class TransformSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Copied Node</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Production</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Copied Node</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Production</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseCopiedNode(CopiedNode object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Map Arrow</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Map Arrow</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseMapArrow(MapArrow object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Copied Arrow</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Copied Arrow</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseCopiedArrow(CopiedArrow object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Reduction</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Reduction</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseReduction(Reduction object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Copied Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Copied Constraint</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseCopiedConstraint(CopiedConstraint object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Copied</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Copied</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseCopied(Copied object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>ID Object</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>ID Object</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIDObject(IDObject object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Node</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Node</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseNode(Node object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Arrow</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Arrow</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseArrow(Arrow object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Constraint</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseConstraint(Constraint object) {
+	public T caseProduction(Production object) {
 		return null;
 	}
 
