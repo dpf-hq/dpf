@@ -9,6 +9,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
 import org.eclipse.core.commands.IHandlerListener;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.URI;
@@ -41,6 +42,17 @@ public class GenerateCodeHandler implements IHandler {
 		
 		//The Xpand Generator component uses absolute/relative paths
 		IResource ff = file.getProject().findMember("src-gen");
+		
+		if(ff == null || !ff.exists()) {
+			try {
+				IFolder folder = file.getProject().getFolder("src-gen");
+				folder.create(IResource.FORCE, true, null);
+				ff = folder;
+			} catch (CoreException e) {
+				e.printStackTrace();
+			}
+		}
+
 		props.put("outputPath", ff.getLocation().toOSString());
 		
 		GeneratorSetup gs = new GeneratorSetup();
