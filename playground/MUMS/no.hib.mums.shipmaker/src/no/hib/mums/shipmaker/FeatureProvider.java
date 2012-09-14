@@ -37,22 +37,19 @@ import org.eclipse.graphiti.ui.features.DefaultFeatureProvider;
 
 public class FeatureProvider extends DefaultFeatureProvider {
 
-	private static ShipHelper sh = DiagramTypeProvider.getHelperInstance();
+	private static ShipHelper sh;
 	
 	HashMap<String, FeatureContainer> featureContainers;
 	
 	public FeatureProvider(IDiagramTypeProvider dtp) {
 		super(dtp);
 		featureContainers = new HashMap<String, FeatureContainer>();
-//		featureContainers.put(HULL, new HullFeatureContainer());
-//		featureContainers.put(PROPULSOR, new PropulsorFeatureContainer());
-//		featureContainers.put(ACTUATOR, new ActuatorFeatureContainer());
-//		featureContainers.put(CONTROLLER, new ControllerFeatureContainer());
-//		featureContainers.put(THRUSTER_CONTROL, new ThrusterControlFeatureContainer());
 	}
 
 	public void init() {
 		DiagramTypeProvider dtp = (DiagramTypeProvider)getDiagramTypeProvider();
+		
+		sh = DiagramTypeProvider.getHelperInstance();
 		
 		for(String s : sh.getPartMap().keySet()) {
 			//Only the nodes are present in partmap
@@ -82,7 +79,6 @@ public class FeatureProvider extends DefaultFeatureProvider {
 	
 	private FeatureContainer getFeatureContainerForNode(Node n) {
 		if(n != null) {
-//			System.out.println("Reqesting featureContainer: " + n.getName());
 			return featureContainers.get(n.getName());
 		}
 		
@@ -91,7 +87,6 @@ public class FeatureProvider extends DefaultFeatureProvider {
 	
 	@Override
 	public ICreateFeature[] getCreateFeatures() {
-//		System.out.println("Ship#getCreateFeature");
 		ICreateFeature[] res = new ICreateFeature[featureContainers.size()];
 		int i = 0;
 		for(FeatureContainer fc : featureContainers.values()) {

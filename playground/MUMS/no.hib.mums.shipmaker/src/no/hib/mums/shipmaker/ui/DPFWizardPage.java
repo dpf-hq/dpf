@@ -85,9 +85,7 @@ public class DPFWizardPage extends WizardPage {
 		
         createLinkButton.setText("&Load file:");
         
-        //FIXME: REMOVE THIS
-        createLinkButton.setSelection(true);
-//		createLinkButton.setSelection(createLink);
+		createLinkButton.setSelection(createLink);
         
         GridData data = new GridData();
         data.horizontalSpan = 3;
@@ -133,9 +131,6 @@ public class DPFWizardPage extends WizardPage {
         targetField.setLayoutData(data);
         targetField.setFont(font);
         targetField.setEnabled(enabled);
-        
-        //FIXME: REMOVE THIS
-        targetField.setText("/home/anders/Master/Code/main/mums/runtime-test/blipdt/src/newDiagram.dpf.xmi");
         
         targetField.addModifyListener(new ModifyListener() {
             public void modifyText(ModifyEvent e) {
