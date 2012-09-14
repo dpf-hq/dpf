@@ -1,0 +1,22 @@
+«IMPORT dpf»
+«EXTENSION org::eclipse::xtend::util::stdlib::io»
+
+«DEFINE main FOR dpf::Specification»
+	«EXPAND graph FOR this.graph»
+«ENDDEFINE»
+
+«DEFINE graph FOR Graph»
+	«EXPAND hulls FOREACH this.getHullNodes()»
+«ENDDEFINE»
+
+«DEFINE hulls FOR Hull»
+	«FILE this.name + ".java"»
+		«syserr("Creating: " + this.name + ".java")»
+		«syserr()»
+		class «this.name.toFirstUpper()» {
+			«FOREACH this.getOutgoingArrows() AS e»
+				private final «e.typeArrow.name» = «e.name»; 
+			«ENDFOREACH»
+		}
+	«ENDFILE»
+«ENDDEFINE»

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.graphiti.ui.imageProviders">
+      <imageProvider
+            class="no.hib.mums.shared.ImageProvider"
+            id="no.hib.mums.shared.imageProvider">
+      </imageProvider>
+   </extension>
+   <extension
+         id="no.hib.mums.shared.wizard"
+         name="Shipmaker DSL"
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="no.hib.mums.shared.wizard.category"
+            name="DPF Shipmaker DSL">
+      </category>
+   </extension>
+
+</plugin>

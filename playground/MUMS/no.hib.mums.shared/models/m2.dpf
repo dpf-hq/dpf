@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ASCII"?>
+<diagram:DSpecification xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:diagram="http://no.hib.dpf.diagram" gridVisible="false">
+  <dGraph>
+    <dNodes dOutgoings="//@dGraph/@dArrows.0 //@dGraph/@dArrows.1" dIncomings="//@dGraph/@dArrows.0" location="416 292" size="100 30">
+      <node href="m2.xmi#//@graph/@nodes.0"/>
+    </dNodes>
+    <dNodes dIncomings="//@dGraph/@dArrows.1" location="732 292" size="100 30">
+      <node href="m2.xmi#//@graph/@nodes.1"/>
+    </dNodes>
+    <dArrows dSource="//@dGraph/@dNodes.0" dTarget="//@dGraph/@dNodes.0">
+      <arrow href="m2.xmi#//@graph/@arrows.0"/>
+      <nameOffset offset="78 -86" len="15" index="4"/>
+      <bendpoints offset="-15 0" len="30"/>
+      <bendpoints offset="-15 100" len="30"/>
+      <bendpoints offset="45 100" len="30"/>
+      <bendpoints offset="45 0" len="30"/>
+    </dArrows>
+    <dArrows dSource="//@dGraph/@dNodes.0" dTarget="//@dGraph/@dNodes.1">
+      <arrow href="m2.xmi#//@graph/@arrows.1"/>
+      <nameOffset offset="146 -22" len="316"/>
+    </dArrows>
+    <graph href="m2.xmi#//@graph"/>
+  </dGraph>
+  <specification href="m2.xmi#/"/>
+</diagram:DSpecification>

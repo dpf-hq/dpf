@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.graphiti.ui.diagramTypes">
+      <diagramType
+            id="no.hib.mums.partmaker.diagramType"
+            name="DPF PartMaker Diagram"
+            type="dpf.part">
+      </diagramType>
+   </extension>
+   <extension
+         point="org.eclipse.graphiti.ui.diagramTypeProviders">
+      <diagramTypeProvider
+            class="no.hib.mums.partmaker.DiagramTypeProvider"
+            id="no.hib.mums.partmaker.diagramTypeProvider"
+            name="TypeProvider">
+         <diagramType
+               id="no.hib.mums.partmaker.diagramType">
+         </diagramType>
+         <imageProvider
+               id="no.hib.mums.shared.imageProvider">
+         </imageProvider>
+      </diagramTypeProvider>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
+      <propertyContributor
+            contributorId="dpf.part.PropertyContributor">
+         <propertyCategory
+               category="PartMaker"></propertyCategory>
+      </propertyContributor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
+      <propertyTabs
+            contributorId="dpf.part.PropertyContributor">
+         <propertyTab
+               category="PartMaker"
+               id="no.hib.mums.partmaker.propertytab"
+               label="Part Maker">
+         </propertyTab>
+      </propertyTabs>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertySections">
+      <propertySections
+            contributorId="dpf.part.PropertyContributor">
+         <propertySection
+               class="no.hib.mums.partmaker.propertytab.PartPropertySection"
+               filter="no.hib.mums.partmaker.propertytab.PartPropertyFilter"
+               id="no.hib.mums.partmaker.propertysections.partmaker"
+               tab="no.hib.mums.partmaker.propertytab">
+         </propertySection>
+      </propertySections>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="no.hib.mums.partmaker.PartMakerEditor"
+            default="true"
+            extensions="dpf.part"
+            filenames="diagram"
+            id="no.hib.mums.partmaker.editor"
+            name="PartMaker Editor">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            category="no.hib.mums.shared.wizard.category"
+            class="no.hib.mums.partmaker.ui.NewPartDiagramWizard"
+            id="no.hib.mums.partmaker.wizard1"
+            name="New Partmaker Diagram">
+      </wizard>
+   </extension>
+
+</plugin>

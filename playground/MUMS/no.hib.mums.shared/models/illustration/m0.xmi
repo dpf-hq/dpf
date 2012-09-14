@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:core="http://no.hib.dpf.core">
+  <core:Specification metaFile="../m1.xmi" type="/1">
+    <graph id="ba924066-3089-4c92-8854-ce16191ddc89" type="/1/@graph">
+      <nodes id="41bced05-f180-40a9-b05c-c00e1f244282" name="Hull0" typeNode="/1/@graph/@nodes.0"/>
+      <nodes id="f618f91a-f57b-415d-84a9-887255a1fe80" name="Hull1" typeNode="/1/@graph/@nodes.0"/>
+      <nodes id="397b4061-70bd-4b23-99f3-ed6830e0178e" name="Controller0" typeNode="/1/@graph/@nodes.1"/>
+      <nodes id="ceb1a269-2f3b-41af-a781-c9f7aa0d4436" name="Propulsor0" typeNode="/1/@graph/@nodes.3"/>
+      <nodes id="233992ed-9df5-4298-ad51-81f00930e16c" name="300" typeNode="/1/@graph/@nodes.5"/>
+      <nodes id="3fd35411-dfd4-4144-86fa-9049230fe078" name="230" typeNode="/1/@graph/@nodes.6"/>
+      <nodes id="f19066b4-8425-456c-998a-faf943479fc4" name="43" typeNode="/1/@graph/@nodes.7"/>
+    </graph>
+  </core:Specification>
+  <core:Specification metaFile="../m1.xmi" type="/2">
+    <graph id="e1e61727-83c4-4e42-bd60-16833bf4bcc9" type="/2/@graph">
+      <nodes id="995a30cd-0aea-442e-a26b-f843a1115430" name="Hull" typeNode="/2/@graph/@nodes.0" outgoings="/1/@graph/@arrows.0 /1/@graph/@arrows.1 /1/@graph/@arrows.7 /1/@graph/@arrows.8 /1/@graph/@arrows.9 /1/@graph/@arrows.10 /1/@graph/@arrows.13 /1/@graph/@arrows.14 /1/@graph/@arrows.15"/>
+      <nodes id="265b2dbe-adcf-45c0-a1de-1f1a7000238f" name="Controller" typeNode="/2/@graph/@nodes.0" outgoings="/1/@graph/@arrows.2" incomings="/1/@graph/@arrows.0"/>
+      <nodes id="18ce4977-a36b-42de-965f-ab8e99a4903d" name="ThrusterControl" typeNode="/2/@graph/@nodes.0" outgoings="/1/@graph/@arrows.3" incomings="/1/@graph/@arrows.2"/>
+      <nodes id="04d8e44e-0238-4c2d-a328-45b7c9ecf834" name="Propulsor" typeNode="/2/@graph/@nodes.0" outgoings="/1/@graph/@arrows.5 /1/@graph/@arrows.6 /1/@graph/@arrows.11 /1/@graph/@arrows.12 /1/@graph/@arrows.16 /1/@graph/@arrows.17" incomings="/1/@graph/@arrows.1 /1/@graph/@arrows.4"/>
+      <nodes id="948bdb5e-6ec5-4ca0-a5fb-252d83fdeb86" name="Actuator" typeNode="/2/@graph/@nodes.0" outgoings="/1/@graph/@arrows.4" incomings="/1/@graph/@arrows.3"/>
+      <nodes id="c5737de3-26c3-467b-912f-42fba67bfeaf" name="Percent" typeNode="/2/@graph/@nodes.1" incomings="/1/@graph/@arrows.5"/>
+      <nodes id="b8266ae7-1ef8-4ab4-ad87-08661e35f852" name="Degree" typeNode="/2/@graph/@nodes.1" incomings="/1/@graph/@arrows.13 /1/@graph/@arrows.14"/>
+      <nodes id="a9a3bcf2-bb00-47b3-8ebb-2d56cfc7c610" name="W" typeNode="/2/@graph/@nodes.1" incomings="/1/@graph/@arrows.16"/>
+      <nodes id="6f6a6ec0-1390-40d7-a903-ca3900424264" name="Manufacturer" typeNode="/2/@graph/@nodes.1" incomings="/1/@graph/@arrows.11 /1/@graph/@arrows.15"/>
+      <nodes id="7f7acab7-f01e-49e2-87bc-fae7cf0e33ac" name="Length" typeNode="/2/@graph/@nodes.1" incomings="/1/@graph/@arrows.9"/>
+      <nodes id="2d363f3d-ce22-4b8a-bd9d-da2d18f77697" name="Length" typeNode="/2/@graph/@nodes.1" incomings="/1/@graph/@arrows.8"/>
+      <nodes id="29c66235-64a5-44aa-baaa-666ea6ddab7f" name="Length" typeNode="/2/@graph/@nodes.1" incomings="/1/@graph/@arrows.7"/>
+      <nodes id="717fc4df-f10a-46d4-b50a-a18491967150" name="PropType" typeNode="/2/@graph/@nodes.1" incomings="/1/@graph/@arrows.12"/>
+      <nodes id="91d211c4-aa64-45fa-8a98-aea99393ab5f" name="Model" typeNode="/2/@graph/@nodes.1" incomings="/1/@graph/@arrows.6 /1/@graph/@arrows.10"/>
+      <nodes id="5406241d-5de1-4034-9f62-a00125494e3e" name="Position" typeNode="/2/@graph/@nodes.1" incomings="/1/@graph/@arrows.17"/>
+      <arrows id="3d30e6a0-9859-4543-9eb4-d423c2228a8c" name="Hull_Controller" source="/1/@graph/@nodes.0" target="/1/@graph/@nodes.1" typeArrow="/2/@graph/@arrows.0"/>
+      <arrows id="b14af3e7-2b34-4d63-87aa-1eb7446c3a07" name="Hull_Propulsor" source="/1/@graph/@nodes.0" target="/1/@graph/@nodes.3" typeArrow="/2/@graph/@arrows.0"/>
+      <arrows id="892b0301-66ea-4b1e-9659-05534d5675da" name="Controller_ThrustContr" source="/1/@graph/@nodes.1" target="/1/@graph/@nodes.2" typeArrow="/2/@graph/@arrows.0"/>
+      <arrows id="60e333c5-56eb-4053-9100-5e5d037d2ba4" name="ThrusterController_Actuator" source="/1/@graph/@nodes.2" target="/1/@graph/@nodes.4" typeArrow="/2/@graph/@arrows.0"/>
+      <arrows id="5168b8b4-b5f7-4f19-9014-c5202772840d" name="Actuator_Propulsor" source="/1/@graph/@nodes.4" target="/1/@graph/@nodes.3" typeArrow="/2/@graph/@arrows.0"/>
+      <arrows id="c91a00d4-0915-40d0-9ff9-6515f3384326" name="prop_rpm" source="/1/@graph/@nodes.3" target="/1/@graph/@nodes.5" typeArrow="/2/@graph/@arrows.1"/>
+      <arrows id="7098c342-aed7-438b-82fd-de4cadf7f924" name="prop_manufacturer" source="/1/@graph/@nodes.3" target="/1/@graph/@nodes.13" typeArrow="/2/@graph/@arrows.1"/>
+      <arrows id="adac25c5-04e7-471f-a38a-27998321e9bb" name="hull_height" source="/1/@graph/@nodes.0" target="/1/@graph/@nodes.11" typeArrow="/2/@graph/@arrows.1"/>
+      <arrows id="3fa3d347-a369-4c0a-9506-b4fd5bc96721" name="hull_length" source="/1/@graph/@nodes.0" target="/1/@graph/@nodes.10" typeArrow="/2/@graph/@arrows.1"/>
+      <arrows id="ec3ef165-4c6a-4f46-ad7b-cc9cce3ee881" name="hull_width" source="/1/@graph/@nodes.0" target="/1/@graph/@nodes.9" typeArrow="/2/@graph/@arrows.1"/>
+      <arrows id="596c3ad5-adb7-4635-a7a3-8e55f154d1b3" name="hull_model" source="/1/@graph/@nodes.0" target="/1/@graph/@nodes.13" typeArrow="/2/@graph/@arrows.1"/>
+      <arrows id="22228cb9-582a-4098-aadc-89d836bc5fa6" name="prop_model" source="/1/@graph/@nodes.3" target="/1/@graph/@nodes.8" typeArrow="/2/@graph/@arrows.1"/>
+      <arrows id="30fe0d59-b326-41bc-b935-405ddd9e3a12" name="prop_type" source="/1/@graph/@nodes.3" target="/1/@graph/@nodes.12" typeArrow="/2/@graph/@arrows.1"/>
+      <arrows id="3ffa8104-5054-4b6a-991e-7e3817c75f6d" name="hull_yaw" source="/1/@graph/@nodes.0" target="/1/@graph/@nodes.6" typeArrow="/2/@graph/@arrows.1"/>
+      <arrows id="3b190052-73a2-4504-9516-ba4a25076bc4" name="hull_pitch" source="/1/@graph/@nodes.0" target="/1/@graph/@nodes.6" typeArrow="/2/@graph/@arrows.1"/>
+      <arrows id="dd4455ee-10c2-4e2e-b5b6-a003a9227712" name="hull_manufacturer" source="/1/@graph/@nodes.0" target="/1/@graph/@nodes.8" typeArrow="/2/@graph/@arrows.1"/>
+      <arrows id="e4e8bb7e-0fca-4078-8ccb-200b6ab1ba05" name="prop_force" source="/1/@graph/@nodes.3" target="/1/@graph/@nodes.7" typeArrow="/2/@graph/@arrows.1"/>
+      <arrows id="02271809-bf0f-4b00-9639-f1b1e3858619" name="prop_position" source="/1/@graph/@nodes.3" target="/1/@graph/@nodes.14" typeArrow="/2/@graph/@arrows.1"/>
+    </graph>
+  </core:Specification>
+  <core:Specification>
+    <graph id="a360093b-27f4-4896-8ba0-46962f5400d2">
+      <nodes id="38eb5c28-929e-447e-8954-64097b53728d" name="Part" outgoings="/2/@graph/@arrows.0 /2/@graph/@arrows.1" incomings="/2/@graph/@arrows.0"/>
+      <nodes id="2334bf16-1d2d-499d-8492-9d5bf2e29334" name="Type" incomings="/2/@graph/@arrows.1"/>
+      <arrows id="464c5090-cb4a-4d5a-8ce9-9ae40d7bf6fb" name="Relation" source="/2/@graph/@nodes.0" target="/2/@graph/@nodes.0"/>
+      <arrows id="84165e99-510e-4db9-9e7e-8f48d38dc10f" name="Attribute" source="/2/@graph/@nodes.0" target="/2/@graph/@nodes.1"/>
+    </graph>
+  </core:Specification>
+</xmi:XMI>

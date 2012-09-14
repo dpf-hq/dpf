@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ASCII"?>
+<core:Specification xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:core="http://no.hib.dpf.core">
+  <graph id="a360093b-27f4-4896-8ba0-46962f5400d2">
+    <nodes id="38eb5c28-929e-447e-8954-64097b53728d" name="Part" outgoings="//@graph/@arrows.0 //@graph/@arrows.1" incomings="//@graph/@arrows.0"/>
+    <nodes id="2334bf16-1d2d-499d-8492-9d5bf2e29334" name="Type" incomings="//@graph/@arrows.1"/>
+    <arrows id="464c5090-cb4a-4d5a-8ce9-9ae40d7bf6fb" name="Relation" source="//@graph/@nodes.0" target="//@graph/@nodes.0"/>
+    <arrows id="84165e99-510e-4db9-9e7e-8f48d38dc10f" name="Attribute" source="//@graph/@nodes.0" target="//@graph/@nodes.1"/>
+  </graph>
+</core:Specification>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.graphiti.ui.diagramTypes">
+      <diagramType
+            id="no.hib.mums.shipmaker.diagramType"
+            name="DPF Ship Maker Diagram"
+            type="dpf.ship">
+      </diagramType>
+   </extension>
+   <extension
+         point="org.eclipse.graphiti.ui.diagramTypeProviders">
+      <diagramTypeProvider
+            class="no.hib.mums.shipmaker.DiagramTypeProvider"
+            id="no.hib.mums.shipmaker.diagramTypeProvider"
+            name="TypeProvider">
+         <diagramType
+               id="no.hib.mums.shipmaker.diagramType">
+         </diagramType>
+      </diagramTypeProvider>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            category="no.hib.mums.shared.wizard.category"
+            class="no.hib.mums.shipmaker.ui.NewShipDiagramWizard"
+            id="no.hib.mums.shipmaker.wizard"
+            name="New ShipMaker Diagram">
+      </wizard>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="no.hib.mums.shipmaker.ShipMakerEditor"
+            default="false"
+            extensions="dpf.ship"
+            id="no.hib.mums.shipmaker.editor"
+            name="ShipMaker Editor">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
+      <propertyTabs
+            contributorId="dpf.ship.PropertyContributor">
+         <propertyTab
+               category="ShipMaker"
+               id="no.hib.mums.shipmaker.propertytab"
+               label="Ship Maker">
+         </propertyTab>
+      </propertyTabs>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
+      <propertyContributor
+            contributorId="dpf.ship.PropertyContributor">
+         <propertyCategory
+               category="ShipMaker"></propertyCategory>
+      </propertyContributor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertySections">
+      <propertySections
+            contributorId="dpf.ship.PropertyContributor">
+         <propertySection
+               class="no.hib.mums.shipmaker.propertytab.ShipProperties"
+               filter="no.hib.mums.shipmaker.propertytab.ShipPropertyFilter"
+               id="no.hib.mums.shipmaker.propertysections"
+               tab="no.hib.mums.shipmaker.propertytab">
+         </propertySection>
+      </propertySections>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="no.hib.mums.shipmaker.GenerateCodeHandler"
+            commandId="no.hib.mums.shipmaker.commands.codegen">
+         <activeWhen>
+            <count
+                  value="1">
+            </count>
+         </activeWhen>
+      </handler>
+   </extension>
+   <extension
+         id="no.hials.mums.shipmaker.menus"
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.ui.popup.any">
+         <command
+               commandId="no.hib.mums.shipmaker.commands.codegen"
+               label="Generate Code from Model"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <iterate
+                     ifEmpty="false"
+                     operator="or">
+                  <adapt
+                        type="org.eclipse.core.resources.IResource">
+                     <test
+                           property="org.eclipse.core.resources.name"
+                           value="*.dpf.xmi">
+                     </test>
+                  </adapt>
+               </iterate>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         id="no.hials.shipmaker.commands"
+         name="ShipMaker Command"
+         point="org.eclipse.ui.commands">
+      <command
+            id="no.hib.mums.shipmaker.commands.codegen"
+            name="Generate Code from Model">
+      </command>
+   </extension>
+
+</plugin>

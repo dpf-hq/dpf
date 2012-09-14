@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="ASCII"?>
+<core:Specification xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:core="http://no.hib.dpf.core">
+  <graph id="bbcba3b8-8969-4e0e-9a83-a43f35beef63" name="PartMaker Graph">
+    <type href="bundleentry://542.fwk18885993/models/m1.xmi#/0/@graph"/>
+    <nodes id="6bc47f94-3fd4-4b07-90e0-456a32dbf2d2" name="Hull0" outgoings="//@graph/@arrows.0 //@graph/@arrows.1 //@graph/@arrows.2 //@graph/@arrows.3 //@graph/@arrows.4 //@graph/@arrows.5 //@graph/@arrows.6">
+      <typeNode href="bundleentry://542.fwk18885993/models/m1.xmi#/0/@graph/@nodes.0"/>
+    </nodes>
+    <nodes id="82d41e15-a373-47df-bef3-1326d8eae329" name="LengthInstance" incomings="//@graph/@arrows.0">
+      <typeNode href="bundleentry://542.fwk18885993/models/m1.xmi#/0/@graph/@nodes.11"/>
+    </nodes>
+    <nodes id="db6c1855-ebc5-4b33-a9b5-3004068d9c1a" name="LengthInstance" incomings="//@graph/@arrows.1">
+      <typeNode href="bundleentry://542.fwk18885993/models/m1.xmi#/0/@graph/@nodes.10"/>
+    </nodes>
+    <nodes id="cf16423b-91f6-48ce-8727-6cf44e7ee5a1" name="32" incomings="//@graph/@arrows.2">
+      <typeNode href="bundleentry://542.fwk18885993/models/m1.xmi#/0/@graph/@nodes.9"/>
+    </nodes>
+    <nodes id="c5331d95-8d87-4cba-9d79-499481d41700" name="ModelInstance" incomings="//@graph/@arrows.3">
+      <typeNode href="bundleentry://542.fwk18885993/models/m1.xmi#/0/@graph/@nodes.13"/>
+    </nodes>
+    <nodes id="cd59a40e-5e45-4a1d-b7dc-2cf389e5e29f" name="DegreeInstance" incomings="//@graph/@arrows.4">
+      <typeNode href="bundleentry://542.fwk18885993/models/m1.xmi#/0/@graph/@nodes.6"/>
+    </nodes>
+    <nodes id="c0c96753-c856-402d-85fe-a539987c9822" name="DegreeInstance" incomings="//@graph/@arrows.5">
+      <typeNode href="bundleentry://542.fwk18885993/models/m1.xmi#/0/@graph/@nodes.6"/>
+    </nodes>
+    <nodes id="6bf2cb47-bc62-4f8c-aef3-427bfa8465a6" name="ManufacturerInstance" incomings="//@graph/@arrows.6">
+      <typeNode href="bundleentry://542.fwk18885993/models/m1.xmi#/0/@graph/@nodes.8"/>
+    </nodes>
+    <nodes id="0aed875a-3b73-44ec-beba-ee97ee190d9f" name="Hull1" outgoings="//@graph/@arrows.7 //@graph/@arrows.8 //@graph/@arrows.9 //@graph/@arrows.10 //@graph/@arrows.11 //@graph/@arrows.12 //@graph/@arrows.13">
+      <typeNode href="bundleentry://542.fwk18885993/models/m1.xmi#/0/@graph/@nodes.0"/>
+    </nodes>
+    <nodes id="8c19fb9c-c346-40c3-b12d-3faa4f1d0cdb" name="LengthInstance" incomings="//@graph/@arrows.7">
+      <typeNode href="bundleentry://542.fwk18885993/models/m1.xmi#/0/@graph/@nodes.11"/>
+    </nodes>
+    <nodes id="29469063-4c95-4c7c-864f-507c2bd9c404" name="LengthInstance" incomings="//@graph/@arrows.8">
+      <typeNode href="bundleentry://542.fwk18885993/models/m1.xmi#/0/@graph/@nodes.10"/>
+    </nodes>
+    <nodes id="076751f6-d052-445b-88d7-3f86a7baa6f1" name="LengthInstance" incomings="//@graph/@arrows.9">
+      <typeNode href="bundleentry://542.fwk18885993/models/m1.xmi#/0/@graph/@nodes.9"/>
+    </nodes>
+    <nodes id="61c00cf5-37b2-4f58-a499-7bd7a6e1dd44" name="ModelInstance" incomings="//@graph/@arrows.10">
+      <typeNode href="bundleentry://542.fwk18885993/models/m1.xmi#/0/@graph/@nodes.13"/>
+    </nodes>
+    <nodes id="3e7bb3be-c661-4ffa-951d-d47161acd524" name="46" incomings="//@graph/@arrows.11">
+      <typeNode href="bundleentry://542.fwk18885993/models/m1.xmi#/0/@graph/@nodes.6"/>
+    </nodes>
+    <nodes id="eb2c9492-576f-4615-82a2-245ecd96bf8b" name="DegreeInstance" incomings="//@graph/@arrows.12">
+      <typeNode href="bundleentry://542.fwk18885993/models/m1.xmi#/0/@graph/@nodes.6"/>
+    </nodes>
+    <nodes id="c3feccc6-32af-4628-9942-7fdb82be2cf1" name="ManufacturerInstance" incomings="//@graph/@arrows.13">
+      <typeNode href="bundleentry://542.fwk18885993/models/m1.xmi#/0/@graph/@nodes.8"/>
+    </nodes>
+    <arrows id="3818a773-7d2b-4e89-8a1b-8a939906a95e" name="Attribute0" source="//@graph/@nodes.0" target="//@graph/@nodes.1">
+      <typeArrow href="bundleentry://542.fwk18885993/models/m1.xmi#/0/@graph/@arrows.7"/>
+    </arrows>
+    <arrows id="8f5ea0e3-8e3f-4a69-997e-95b47ee582d0" name="Attribute1" source="//@graph/@nodes.0" target="//@graph/@nodes.2">
+      <typeArrow href="bundleentry://542.fwk18885993/models/m1.xmi#/0/@graph/@arrows.8"/>
+    </arrows>
+    <arrows id="0a5fe9cb-36b4-4f13-add0-c6bb63574fc8" name="Attribute2" source="//@graph/@nodes.0" target="//@graph/@nodes.3">
+      <typeArrow href="bundleentry://542.fwk18885993/models/m1.xmi#/0/@graph/@arrows.9"/>
+    </arrows>
+    <arrows id="0c5ca4d0-2488-488c-a6ee-54acd3037c2d" name="Attribute3" source="//@graph/@nodes.0" target="//@graph/@nodes.4">
+      <typeArrow href="bundleentry://542.fwk18885993/models/m1.xmi#/0/@graph/@arrows.10"/>
+    </arrows>
+    <arrows id="43eb5259-a38e-407b-a80f-e146c98a43c3" name="Attribute4" source="//@graph/@nodes.0" target="//@graph/@nodes.5">
+      <typeArrow href="bundleentry://542.fwk18885993/models/m1.xmi#/0/@graph/@arrows.13"/>
+    </arrows>
+    <arrows id="d2fb4b22-f32a-4954-9d14-38afaa3baaad" name="Attribute5" source="//@graph/@nodes.0" target="//@graph/@nodes.6">
+      <typeArrow href="bundleentry://542.fwk18885993/models/m1.xmi#/0/@graph/@arrows.14"/>
+    </arrows>
+    <arrows id="edc94acb-2d87-430d-86f5-537877e77b10" name="Attribute6" source="//@graph/@nodes.0" target="//@graph/@nodes.7">
+      <typeArrow href="bundleentry://542.fwk18885993/models/m1.xmi#/0/@graph/@arrows.15"/>
+    </arrows>
+    <arrows id="66f06b9c-899f-4129-90b6-3cbb6d032e25" name="Attribute7" source="//@graph/@nodes.8" target="//@graph/@nodes.9">
+      <typeArrow href="bundleentry://542.fwk18885993/models/m1.xmi#/0/@graph/@arrows.7"/>
+    </arrows>
+    <arrows id="1f3823a8-0d8a-4931-99e1-88fc1cbdf2c0" name="Attribute8" source="//@graph/@nodes.8" target="//@graph/@nodes.10">
+      <typeArrow href="bundleentry://542.fwk18885993/models/m1.xmi#/0/@graph/@arrows.8"/>
+    </arrows>
+    <arrows id="775e1fbe-0435-4f85-9740-590f4cad4abc" name="Attribute9" source="//@graph/@nodes.8" target="//@graph/@nodes.11">
+      <typeArrow href="bundleentry://542.fwk18885993/models/m1.xmi#/0/@graph/@arrows.9"/>
+    </arrows>
+    <arrows id="7051b916-6df5-4e62-b672-0bfe3b2c076f" name="Attribute10" source="//@graph/@nodes.8" target="//@graph/@nodes.12">
+      <typeArrow href="bundleentry://542.fwk18885993/models/m1.xmi#/0/@graph/@arrows.10"/>
+    </arrows>
+    <arrows id="6d21c202-947f-4cac-8e5c-b509aef0f57c" name="Attribute11" source="//@graph/@nodes.8" target="//@graph/@nodes.13">
+      <typeArrow href="bundleentry://542.fwk18885993/models/m1.xmi#/0/@graph/@arrows.13"/>
+    </arrows>
+    <arrows id="96370124-4baf-48f0-853c-118dc656c66b" name="Attribute12" source="//@graph/@nodes.8" target="//@graph/@nodes.14">
+      <typeArrow href="bundleentry://542.fwk18885993/models/m1.xmi#/0/@graph/@arrows.14"/>
+    </arrows>
+    <arrows id="fc6ebbe2-dcf0-40ab-a5c9-c7215cbe323a" name="Attribute13" source="//@graph/@nodes.8" target="//@graph/@nodes.15">
+      <typeArrow href="bundleentry://542.fwk18885993/models/m1.xmi#/0/@graph/@arrows.15"/>
+    </arrows>
+  </graph>
+  <type href="bundleentry://542.fwk18885993/models/m1.xmi#/0"/>
+</core:Specification>
