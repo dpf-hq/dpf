@@ -20,7 +20,6 @@ import java.util.Collection;
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.CorePackage;
-import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.GraphHomomorphism;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Predicate;
@@ -315,8 +314,9 @@ public class ConstraintImpl extends IDObjectImpl implements Constraint {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public boolean validate(Graph graph) {
-		return getPredicate().validateSemantics(getParameters(), getMappings(), graph);
+	public boolean validate(EList<Node> nodes, EList<Arrow> arrows) 
+	{
+		return getPredicate().validateSemantics(getParameters(), getMappings(),nodes,  arrows);
 	}
 
 	/**

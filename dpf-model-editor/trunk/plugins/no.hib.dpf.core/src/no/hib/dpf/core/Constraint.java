@@ -192,6 +192,6 @@ public interface Constraint extends IDObject {
 	 * @model
 	 * @generated
 	 */
-	boolean validate(Graph graph);
+	boolean validate(EList<Node> nodes, EList<Arrow> arrows);
 
 } // Constraint

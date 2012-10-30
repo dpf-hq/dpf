@@ -38,6 +38,7 @@ import no.hib.dpf.core.GraphHomomorphism;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Predicate;
 import no.hib.dpf.core.SemanticValidator;
+import no.hib.dpf.core.ValidatorType;
 import no.hib.dpf.utils.CharSequenceCompiler;
 import no.hib.dpf.utils.CharSequenceCompilerException;
 import no.hib.dpf.utils.Checker;
@@ -52,10 +53,15 @@ import org.eclipse.emf.common.util.BasicEMap;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.ocl.OCL;
+import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
+import org.eclipse.ocl.helper.OCLHelper;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
 
@@ -137,6 +143,8 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 	protected SemanticValidator validator;
 
 	protected Checker checker;
+	protected OCL<?, EClassifier, ?, ?, ?, ?, ?, ?, ?, org.eclipse.ocl.ecore.Constraint, EClass, EObject> ocl;
+	protected OCLHelper<EClassifier, ?, ?, org.eclipse.ocl.ecore.Constraint> helper ;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -307,11 +315,11 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 		GraphHomomorphism graphHomomorphism = CoreFactory.eINSTANCE.createGraphHomomorphism();
 		return graphHomomorphism.createGraphHomomorphism(getShape(), nodes, arrows) != null;
 	}
-	private void intialize(GraphHomomorphism mapping, Graph graph,
+	private void intialize(GraphHomomorphism mapping, EList<Node> nodes, EList<Arrow> arrows,
 			Map<Node, List<Node>> nodeMap, Map<Arrow, List<Arrow>> arrowMap) {
-		EMap<Node, List<Node>> typeNodeToNode = new BasicEMap<Node, List<Node>>();//(mapping.getNodeMapping());
-		EMap<Arrow, List<Arrow>> typeArrowToArrow = new BasicEMap<Arrow, List<Arrow>>();//= changeKeyAndValue(mapping.getArrowMapping());
-		for(Node node : graph.getNodes()){
+		EMap<Node, List<Node>> typeNodeToNode = new BasicEMap<Node, List<Node>>();
+		EMap<Arrow, List<Arrow>> typeArrowToArrow = new BasicEMap<Arrow, List<Arrow>>();
+		for(Node node : nodes){
 			Node type = node.getTypeNode();
 			List<Node> instances = typeNodeToNode.get(type);
 			if(instances == null)
@@ -319,7 +327,7 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 			instances.add(node);
 			typeNodeToNode.put(type, instances);
 		}
-		for(Arrow arrow : graph.getArrows()){
+		for(Arrow arrow : arrows){
 			Arrow type = arrow.getTypeArrow();
 			List<Arrow> instances = typeArrowToArrow.get(type);
 			if(instances == null)
@@ -410,18 +418,121 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public boolean validateSemantics(String parameters, GraphHomomorphism mapping, Graph graph) {
-		if(graph.getNodes().size() == 0)
+	public boolean validateSemantics(String parameters, GraphHomomorphism mapping, EList<Node> nodes, EList<Arrow> arrows) 
+	{
+		if(nodes.size() == 0)
 			return true;
 		Map<Node, List<Node>> nodeMap = new LinkedHashMap<Node, List<Node>>();
 		Map<Arrow, List<Arrow>> arrowMap = new LinkedHashMap<Arrow, List<Arrow>>();
-		intialize(mapping, graph, nodeMap, arrowMap);
-		Map<String, String> paraMap = getParameterMap(parameters);
-		System.out.println("\nValidating " + getSymbol());
-		Checker checker = getChecker();
-		if(checker != null)
-			return checker.check(paraMap, getShape(), nodeMap, arrowMap);
-		return true;
+		intialize(mapping,nodes, arrows, nodeMap, arrowMap);
+		if(getValidator().getType() == ValidatorType.JAVA) {
+			Map<String, String> paraMap = getParameterMap(parameters);
+			Checker checker = getChecker();
+			if(checker != null)
+				return checker.check(paraMap, getShape(), nodeMap, arrowMap);
+			return true;
+		}
+		else
+		{
+    		initializeArrowMap(mapping);
+			boolean valid = true;
+			List<Node> nodeList= nodeMap.get(getShape().getNodeByName(getContextVariable()));
+			if(nodeList!=null)
+				for(Node node : nodeList)
+					valid &=  getOclInstance().check(node, getInvariant());
+			return valid;
+		}
+	}
+
+	private org.eclipse.ocl.ecore.Constraint getInvariant() {
+		org.eclipse.ocl.ecore.Constraint invariant=null;
+		if(getOCLConString() != null)
+			try {
+				invariant = getOclHelper().createInvariant(createOCLExpression(parameters, getOCLConString()));
+			} catch (ParserException e) {
+				DPFErrorReport.logError(e);
+			}
+		return invariant;
+	}
+
+	private OCL<?, EClassifier, ?, ?, ?, ?, ?, ?, ?, org.eclipse.ocl.ecore.Constraint, EClass, EObject> getOclInstance() {
+		if(ocl==null){
+			ocl = OCL.newInstance(EcoreEnvironmentFactory.INSTANCE);
+		}
+		return ocl;
+	}
+
+	private OCLHelper<EClassifier, ?, ?, org.eclipse.ocl.ecore.Constraint> getOclHelper() {
+		if(helper==null){
+			helper= getOclInstance().createOCLHelper();
+			helper.setContext(CorePackage.Literals.NODE);
+		}
+		return helper;
+	}
+
+	private String getContextVariable()
+	{
+		String[] oclString=getOCLConString().split(":", 2);
+		String contextVar= oclString[0].trim();
+		String[] contextString= contextVar.split(" ", 2);
+		contextVar= contextString[1].trim();
+		return contextVar;
+	}
+
+	private String createOCLExpression(String parameter, String oclString) {
+
+		String[] expression= oclString.split(":", 2);
+		String real= expression[1];
+		for(Map.Entry<String, String> entry : getArrowMap().entrySet())
+			real =real.replaceAll(entry.getKey(),entry.getValue());   	
+
+		if(parameter!=null){
+			for(Map.Entry<String, String> entry : getParameterMap(parameter).entrySet()){
+				real = real.replaceAll("#p#"+entry.getKey(), entry.getValue());
+			}
+		}
+		return real;
+	}
+
+	private String getOCLConString() {
+		if(validator != null){
+			if(validator.getType() == ValidatorType.OCL)
+				return validator.getValidator();
+		}
+		return null;
+	}
+	private Map<String,String> getArrowMap(){
+		EList<Arrow>	arrows = getShape().getArrows();
+		Map<String,String>   map=new HashMap<String,String>();
+		for(Arrow arrow:arrows){
+			for(Map.Entry<String, String> entry : getInOutMap().entrySet()){
+				String arrowName=	arrow.getName();
+				map.put("#"+arrowName+"#"+entry.getKey(), entry.getValue()+getString(arrow));
+			}	
+		}
+		return map;
+	}
+
+	private String getString(Arrow arrow){
+		for(Map.Entry<String, String> entry : arrowMap.entrySet())
+			if(entry.getKey() == arrow.getName())
+				return "->select( a:Arrow| a.typeArrow.name='"+entry.getValue()+"')";
+		return null;
+	}
+
+	protected Map<String,String> arrowMap =new HashMap<String,String>();
+	void initializeArrowMap(GraphHomomorphism mapping){
+		for(Arrow arrow:getShape().getArrows()){
+			Arrow value=mapping.getArrowMapping().get(getShape().getArrowByName(arrow.getName()));
+			arrowMap.put(arrow.getName(),value.getName()) ;
+		}
+	}
+
+	private Map<String,String> getInOutMap(){
+		Map<String, String> inOut= new HashMap<String,String>();
+		inOut.put("in","incomings");
+		inOut.put("out", "outgoings");
+		return inOut;
 	}
 
 	/**

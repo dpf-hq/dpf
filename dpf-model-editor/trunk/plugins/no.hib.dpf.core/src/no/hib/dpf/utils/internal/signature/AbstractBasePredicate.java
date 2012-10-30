@@ -16,6 +16,7 @@ public abstract class AbstractBasePredicate extends PredicateImpl{
 		this.symbol = symbol;
 		this.parameters = parameter;
 		setShape(CoreFactory.eINSTANCE.createGraph(nodes, edges));
+		setValidator(CoreFactory.eINSTANCE.createDefaultSemanticValidator());
 		checker = new Checker() {
 			
 			@Override
