@@ -19,6 +19,7 @@ import java.util.Map;
 
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.diagram.DiagramPackage;
+import no.hib.dpf.editor.DPFEditor;
 import no.hib.dpf.editor.parts.listeners.UIAdapter;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;
 import no.hib.dpf.editor.preferences.PreferenceConstants;
@@ -26,9 +27,12 @@ import no.hib.dpf.editor.preferences.PreferenceConstants;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.ConnectionEditPart;
+import org.eclipse.gef.DefaultEditDomain;
+import org.eclipse.gef.EditDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.editparts.AbstractConnectionEditPart;
 import org.eclipse.jface.util.IPropertyChangeListener;
+import org.eclipse.ui.IEditorPart;
 
 public abstract class GraphicalConnectionEditPart extends AbstractConnectionEditPart{
 
@@ -232,6 +236,17 @@ public abstract class GraphicalConnectionEditPart extends AbstractConnectionEdit
 			unlisten();
 			super.deactivate();
 		}
+	}
+	protected DPFEditor getEditor(){
+		if(getRoot() == null || getRoot().getViewer() == null)
+			return null;
+		EditDomain editDomain = getRoot().getViewer().getEditDomain();
+		if(editDomain instanceof DefaultEditDomain){
+			IEditorPart editor = ((DefaultEditDomain)editDomain).getEditorPart();
+			if(editor instanceof DPFEditor)
+				return (DPFEditor) editor;
+		}
+		return null;
 	}
 
 

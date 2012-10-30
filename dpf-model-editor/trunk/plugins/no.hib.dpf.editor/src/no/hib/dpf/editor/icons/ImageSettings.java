@@ -36,7 +36,8 @@ public enum ImageSettings {
 	TRANSITIVE_IRREFLEXIVE("t-irr_36.png"),
 	SURJECTIVE("surj_36.png"),
 	XOR("xor_36.png"),
-	NAND("nand_36.png");
+	NAND("nand_36.png"),
+    IMG_ERROR("error.png");
 	
 	private String fileName;
 	

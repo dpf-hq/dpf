@@ -39,4 +39,6 @@ public class PreferenceConstants {
 	public static final String P_ARROW_TARGET_COLOR = "Arrow_Target_Color";
 //	Arrow Color when clicking on Arrow Label
 	public static final String P_ARROW_LABEL_SELECTED_ARROW_COLOR = "Arrow_Label_ARROW_COLOR";
+//  Arrow Color When Arrow has Validation Error
+	public static final String P_ARROW_VALIDATION_ERROR_ARROW_COLOR = "Arrow_Error_Color";
 }

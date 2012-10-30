@@ -69,6 +69,9 @@ public class DPFEditorPreferences {
 	public Color getArrowLabelSelectedArrowColor(){
 		return getColor(PreferenceConstants.P_ARROW_LABEL_SELECTED_ARROW_COLOR);
 	}
+	public Color getArrowValidationErrorColor(){
+		return getColor(PreferenceConstants.P_ARROW_VALIDATION_ERROR_ARROW_COLOR);
+	}
 	private Color getColor(String prefrence){
 		String color = getPreferenceStore().getString(prefrence);
 		Color result = getColorFromString(color);

@@ -25,13 +25,18 @@ import static no.hib.dpf.utils.DPFConstants.REFLEXIVE_SPECIFICATION;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.EventObject;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import no.hib.dpf.core.Constraint;
+import no.hib.dpf.core.IDObject;
+import no.hib.dpf.core.Node;
 import no.hib.dpf.core.provider.CoreItemProviderAdapterFactory;
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DConstraint;
+import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.diagram.DOffset;
 import no.hib.dpf.diagram.DPredicate;
 import no.hib.dpf.diagram.DSignature;
@@ -40,6 +45,7 @@ import no.hib.dpf.diagram.DiagramFactory;
 import no.hib.dpf.diagram.provider.DiagramItemProviderAdapterFactory;
 import no.hib.dpf.editor.actions.CreateConstraintAction;
 import no.hib.dpf.editor.actions.PrintAction;
+import no.hib.dpf.editor.figures.NodeFigure;
 import no.hib.dpf.editor.parts.ArrowLabelEditPart;
 import no.hib.dpf.editor.parts.DArrowEditPart;
 import no.hib.dpf.editor.parts.DConstraintEditPart;
@@ -49,11 +55,14 @@ import no.hib.dpf.editor.parts.NodeTreeEditPartFactory;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;
 import no.hib.dpf.editor.preferences.PreferenceConstants;
 import no.hib.dpf.utils.DPFCoreUtil;
+import no.hib.dpf.utils.DPFErrorReport;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -93,7 +102,6 @@ import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.util.IPropertyChangeListener;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
@@ -103,10 +111,8 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.IPartListener;
-import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.dialogs.SaveAsDialog;
@@ -135,6 +141,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 
 	private DPFEditPartFactory shapesEditPartFactory;
 	private DPFEditorPaletteFactory paletteFactory;
+	private static final String Marker_ID = DPFPlugin.PLUGIN_ID	+ ".validationmarker";
 
 	protected PropertySheetPage propertySheetPage;
 
@@ -428,53 +435,6 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		}
 	}
 
-//	private static DNode getDNodeByID(List<DNode> nodes, String ID){
-//		for(DNode node : nodes)
-//			if(node.getNode().getId().equals(ID))
-//				return node;
-//		return null;
-//	}
-//	private static DArrow getDArrowByID(List<DArrow> nodes, String ID){
-//		for(DArrow node : nodes)
-//			if(node.getArrow().getId().equals(ID))
-//				return node;
-//		return null;
-//	}
-//	public static void verifyAndUpdate(DSpecification dsp) {
-//		DGraph instanceGraph = dsp.getDGraph(), typeGraph = dsp.getDType().getDGraph();
-//		if(typeGraph == REFLEXIVE_TYPE_DGRAPH) return;
-//		List<DArrow> violatedArrow = new ArrayList<DArrow>();
-//		for(DArrow arrow : instanceGraph.getDArrows()){
-//			DArrow typeArrow = arrow.getDType();
-//			System.out.println(arrow.getArrow().getTypeID());
-//			System.out.println(typeArrow.getArrow().getId());
-//			if(!arrow.getArrow().getTypeID().equals(typeArrow.getArrow().getId())){
-//				DArrow rightType = getDArrowByID(typeGraph.getDArrows(), arrow.getArrow().getTypeID());
-//				if(rightType != null){
-//					arrow.getDSource().setDType(rightType.getDSource());
-//					arrow.getDTarget().setDType(rightType.getDTarget());
-//					arrow.setDType(rightType);
-//				}
-//				else
-//					violatedArrow.add(arrow);
-//			}
-//		}
-//		List<DNode> violatedNode = new ArrayList<DNode>();
-//		for(DNode node : instanceGraph.getDNodes()){
-//			DNode typeNode = node.getDType();
-//			if(!node.getNode().getTypeID().equals(typeNode.getNode().getId())){
-//				DNode rightType = getDNodeByID(typeGraph.getDNodes(), node.getNode().getTypeID());
-//				if(rightType != null)
-//					node.setDType(rightType);
-//				else
-//					violatedNode.add(node);
-//			}
-//		}
-//		for(DArrow arrow : violatedArrow)
-//			arrow.disconnect();
-//		for(DNode node : violatedNode)
-//			node.setDGraph(null);
-//	}
 
 	public DSignature getDSignature() {
 		return getDSpecification().getDSignature();
@@ -501,7 +461,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 			IFile file = ((IFileEditorInput)getEditorInput()).getFile();
 			file.getParent().refreshLocal(IResource.DEPTH_INFINITE, monitor);
 
-			updateStatusBar();
+			//			updateStatusBar();
 		} catch (Exception exception) {
 			exception.printStackTrace();
 		}
@@ -553,7 +513,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 	public Object getPropertySheetPage() {
 		if(propertySheetPage == null) {
 			propertySheetPage = (UndoablePropertySheetPage) super .getAdapter(IPropertySheetPage.class);
-//			 A new PropertySourceProvider was implemented to fetch the model
+			//			 A new PropertySourceProvider was implemented to fetch the model
 			// from the edit part when required. The property source is provided
 			// by the generated EMF classes and wrapped by the AdapterFactoryContentProvider
 			// to yield standard eclipse interfaces.
@@ -705,21 +665,6 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		return diagramURI.trimFileExtension().appendFileExtension("xmi");
 	}
 
-	private static Image VALID_CONSTRAINT_ICON = PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJS_INFO_TSK);
-	private static Image INVALID_CONSTRAINT_ICON = PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJS_INFO_TSK);
-	boolean isValid = true;
-
-	private void updateStatusBar() {
-		DPFPlugin.getDefault().getStatusLineManager().setMessage(
-						isValid ? VALID_CONSTRAINT_ICON : INVALID_CONSTRAINT_ICON,
-						isValid ? "All constraints validated." : "Validation failed.");
-	}
-
-	public void setFocus() {
-		super.setFocus();
-		updateStatusBar();
-	}
-
 	@Override
 	public void doSave(IProgressMonitor monitor) {
 		IFile file = ((IFileEditorInput) getEditorInput()).getFile();
@@ -803,5 +748,139 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		}
 		int size = signature.getContents().size();
 		return size == 2 ? (DSignature) signature.getContents().get(0) : null;
+	}
+	private Map<IDObject, List<IMarker>> markersMap = new HashMap<IDObject, List<IMarker>>();
+	private IMarker findMarker(List<IMarker> markers, Constraint constraint){
+		if(markers != null)
+			for(IMarker marker : markers)
+				try {
+					if(marker.getAttribute("constraint") == constraint)
+						return marker;
+				} catch (CoreException e) {
+					DPFErrorReport.logError(e);
+					return null;
+				}
+		return null;
+	}
+	public void addMarker(IDObject iter, Constraint constraint) {
+		IFile file = ((IFileEditorInput)getEditorInput()).getFile();
+		if(file == null) return;
+		List<IMarker> markers = markersMap.get(iter);
+		if(markers == null)
+			markers = new ArrayList<IMarker>();
+		if(findMarker(markers, constraint) == null){
+			IMarker marker = null;
+			try {
+				marker = file.createMarker(Marker_ID);
+				marker.setAttribute(IMarker.MESSAGE, "Validation Failed : "	+ constraint.getPredicate().getSymbol()	+ " Predicate ");
+				marker.setAttribute(IMarker.LOCATION, iter);
+				marker.setAttribute(IMarker.PRIORITY, IMarker.PRIORITY_NORMAL);
+				marker.setAttribute(IMarker.SEVERITY, IMarker.SEVERITY_ERROR);
+				marker.setAttribute("constraint", constraint);
+			} catch (CoreException e) {
+				marker = null;
+				DPFErrorReport.logError(e);
+			}
+			if(marker != null)
+				markers.add(marker);
+		}
+		if(markers.size() == 1){
+			markersMap.put(iter, markers);
+			updateVisual(iter);
+		}
+	}
+	private void updateVisual(IDObject iter){
+		if(iter instanceof Node){
+			DNode dNode = getDSpecification().getDGraph().getDNode((Node) iter);
+			if(dNode != null){
+				Object editpart = getGraphicalViewer().getEditPartRegistry().get(dNode);
+				if(editpart instanceof DNodeEditPart)
+					((NodeFigure)((DNodeEditPart)editpart).getFigure()).setErrorImageFlag(isMakerExisting(iter));
+			}
+		}
+	}
+	//	public IMarker addMarker(String message, String object, String constraint){
+	//		IFile file = ((IFileEditorInput)getEditorInput()).getFile();
+	//		if(file == null)
+	//			return null;
+	//		IMarker marker = null;
+	//		try {
+	//			marker = file.createMarker(Marker_ID);
+	//			marker.setAttribute(IMarker.MESSAGE, message);
+	//			marker.setAttribute(IMarker.LOCATION, object.toString());
+	//			marker.setAttribute(IMarker.PRIORITY, IMarker.PRIORITY_NORMAL);
+	//			marker.setAttribute(IMarker.SEVERITY, IMarker.SEVERITY_ERROR);
+	//			marker.setAttribute("constraint", constraint);
+	//		} catch (CoreException e) {
+	//			DPFErrorReport.logError(e);
+	//			return null;
+	//		}
+	//		return marker;
+	//	}
+
+	//	public List<IMarker> findAllMarkers() {
+	//		IFile file = ((IFileEditorInput)getEditorInput()).getFile();
+	//		if(file == null)
+	//			return null;
+	//		List<IMarker> markList;
+	//		try {
+	//			markList = Arrays.asList(file.findMarkers(Marker_ID, true,IFile.DEPTH_INFINITE));
+	//		} catch (CoreException e) {
+	//			DPFErrorReport.logError(e);
+	//			return new ArrayList<IMarker>();
+	//		}
+	//		return markList;
+	//	}
+
+	//	public void deleteSingleMarker(IMarker mark) {
+	//		if (mark.exists()) {
+	//			try {
+	//				mark.delete();
+	//			} catch (CoreException e) {
+	//				DPFErrorReport.logError(e);
+	//			}
+	//		}
+	//	}
+
+	public boolean isMakerExisting(IDObject object) {
+		return markersMap.containsKey(object) && !markersMap.get(object).isEmpty();
+	}
+
+	public void deleteMaker(IDObject iter, Constraint constraint) {
+		IFile file = ((IFileEditorInput)getEditorInput()).getFile();
+		if(file == null) return;
+		List<IMarker> markers = markersMap.get(iter);
+		if(markers != null){
+			IMarker marker = findMarker(markers, constraint);
+			if(marker != null){
+				if (marker.exists()) {
+					try {
+						marker.delete();
+						markers.remove(marker);
+						if(markers.isEmpty())
+							updateVisual(iter);
+					} catch (CoreException e) {
+						DPFErrorReport.logError(e);
+					}
+				}
+			}
+		}
+	}
+
+	public void deleteMaker(IDObject checkedArrow) {
+		List<IMarker> markers = markersMap.get(checkedArrow);
+		IFile file = ((IFileEditorInput)getEditorInput()).getFile();
+		if(file == null)
+			return;
+		if(markers == null) return;
+		try {
+			for(IMarker marker : markers)
+				if (marker.exists()) 
+					marker.delete();
+			markersMap.remove(checkedArrow);
+			updateVisual(checkedArrow);
+		} catch (CoreException e) {
+			DPFErrorReport.logError(e);
+		}
 	}
 }

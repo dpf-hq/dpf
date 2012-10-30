@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2011 H�yskolen i Bergen
+ * Copyright (c) 2011 Hï¿½yskolen i Bergen
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,17 +7,19 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * �yvind Bech and Dag Viggo Lok�en - DPF Editor
+ * ï¿½yvind Bech and Dag Viggo Lokï¿½en - DPF Editor
  *******************************************************************************/
 package no.hib.dpf.editor.figures;
 
 import java.util.List;
 
+import no.hib.dpf.editor.icons.ImageSettings;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;
 import no.hib.dpf.editor.preferences.PreferenceConstants;
 
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Figure;
+import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.GridData;
 import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.LineBorder;
@@ -28,6 +30,7 @@ import org.eclipse.swt.SWT;
 public class NodeFigure extends Figure implements RoutableFigure {
 
 	protected EditableLabel nameLabel;
+	public static final org.eclipse.swt.graphics.Image IMAGE = ImageSettings.IMG_ERROR.getImage();
 
 	public NodeFigure(EditableLabel name) {
 		this(name, null);
@@ -37,7 +40,9 @@ public class NodeFigure extends Figure implements RoutableFigure {
 		listenToNodeColorProperty();
 	}
 
-	public NodeFigure(){}
+	public NodeFigure(){
+		//super();
+		}
 
 
 	/**
@@ -102,7 +107,7 @@ public class NodeFigure extends Figure implements RoutableFigure {
 	public int getRoutingPriority() {
 		return 0;
 	}
-
+	public boolean valid = false;
 	public void showFeedBack(int state) {
 		switch (state) {
 		case 0:
@@ -117,5 +122,25 @@ public class NodeFigure extends Figure implements RoutableFigure {
 		default:
 			break;
 		}
+	}
+
+	@Override
+	protected void paintChildren(Graphics graphics) {
+		  if(valid){
+			 graphics.drawImage(IMAGE, getBounds().x(),getBounds().y());
+		}
+		  super.paintChildren(graphics);
+	}
+
+	public void setErrorImageFlag(boolean bool) {
+		if(valid != bool){
+            valid = bool;
+            revalidate();
+            repaint();
+		}
+	}
+
+	public boolean getErrorImageFlag() {
+		return valid;
 	}
 }

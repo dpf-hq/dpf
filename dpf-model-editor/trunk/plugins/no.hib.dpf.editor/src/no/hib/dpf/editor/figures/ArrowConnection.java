@@ -55,8 +55,11 @@ public class ArrowConnection extends PolylineConnection implements RoutableFigur
 		g.setAntialias(SWT.ON); //FIXME: this is a hack, it should really be set globally somewhere?
 		if (getLocalBackgroundColor() != null)
 			g.setBackgroundColor(getBackgroundColor());
-		if (getLocalForegroundColor() != null)
+		if (getLocalForegroundColor() != null){
 			g.setForegroundColor(getForegroundColor());
+			if(valid) 
+				g.setForegroundColor(DPFEditorPreferences.getDefault().getArrowValidationErrorColor());
+		}
 		super.outlineShape(g);
 		g.popState();
 	}
@@ -74,6 +77,15 @@ public class ArrowConnection extends PolylineConnection implements RoutableFigur
 	}
 	public void setEpi(boolean b) {
 		isEpi = b;
+	}
+
+	public boolean valid = false;
+	public void setErrorImageFlag(boolean bool) {
+			if(valid != bool){
+	            valid = bool;
+	            revalidate();
+	            repaint();
+			}		
 	}
 	
 }

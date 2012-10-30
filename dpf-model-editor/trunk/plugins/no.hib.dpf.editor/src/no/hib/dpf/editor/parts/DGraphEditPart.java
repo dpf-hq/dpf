@@ -18,6 +18,7 @@ package no.hib.dpf.editor.parts;
 import java.util.ArrayList;
 import java.util.List;
 
+import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.core.Graph;
@@ -25,6 +26,7 @@ import no.hib.dpf.core.Node;
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.diagram.DiagramPackage;
+import no.hib.dpf.editor.DPFEditor;
 import no.hib.dpf.editor.figures.DPFShortestPathConnectionRouter;
 import no.hib.dpf.editor.policies.DGraphXYLayoutEditPolicy;
 
@@ -144,34 +146,59 @@ public class DGraphEditPart extends GraphicalEditPartWithListener {
 		return child; 
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private void addUniqueList(EList list, EList added){
-		if(list.isEmpty())
-			list.addAll(added);
-		else for(Object iter : added)
-			if(!list.contains(iter))
-				list.add(iter);
-	}
 	/*
 	 * For Node
 	 * 1. Add a node, check constraint related to the node's type
 	 * 2. Remove a arrow, check constraint related to the node's type, the related incoming and outgoing connections's constraint
 	 *  is already checked when deleting them
 	 */
-	private void verifyOnNodeChange(Graph graph, Object oldNode, Object newNode){
-		EList<Constraint> constraints = new BasicEList<Constraint>();
+	private void verifyOnNodeChange(Graph graph, Object oldNode, Object newNode) {
 		Node checkedNode = null;
-		if(newNode == null && oldNode instanceof Node)
+		DPFEditor editor = getEditor();
+		if(editor == null)
+			return;
+		if (newNode == null && oldNode instanceof Node){
 			checkedNode = (Node) oldNode;
-		else if(newNode instanceof Node)
+			editor.deleteMaker(checkedNode);
+		}
+		else if (newNode instanceof Node)
 			checkedNode = (Node) newNode;
 		
-		if(checkedNode != null)
-			addUniqueList(constraints, checkedNode.getTypeNode().getConstraints());
+		EList<Constraint> constraints = new BasicEList<Constraint>();
+		constraints.addAll(checkedNode.getTypeNode().getConstraints());
 		
-		if(graph != null)
-			for(Constraint constraint : constraints)
-				constraint.validate(graph);
+		if(graph == null || editor == null) return;
+
+		for (Constraint constraint : constraints) {
+			EList<Node> nodes = new BasicEList<Node>();
+			EList<Arrow> arrows = new BasicEList<Arrow>();
+
+			findRelatedElements(checkedNode, graph, nodes, arrows);
+			List<Node> nodeList = graph.getNodes();
+			if (!nodeList.contains(checkedNode))
+				if (nodes.contains(checkedNode))
+					nodes.remove(checkedNode);
+			boolean valid = constraint.validate(nodes, arrows);
+			if(!valid){
+				for(Node iter : nodes)
+					editor.addMarker(iter, constraint);
+						for(Arrow iter : arrows)
+							editor.addMarker(iter, constraint);
+			}else{
+				for(Node iter : nodes)
+					editor.deleteMaker(iter, constraint);
+						for(Arrow iter : arrows)
+							editor.deleteMaker(iter, constraint);
+			}
+		}
+	}
+
+	private void findRelatedElements(Node checkedNode, Graph graph,
+			EList<Node> nodes, EList<Arrow> arrows) {
+		List<Node> nodeList = graph.getNodes();
+		if (nodeList.contains(checkedNode))
+			if (!nodes.contains(checkedNode))
+				nodes.add(checkedNode);
 	}
 	
 	protected void handleModelChanged(Notification msg){

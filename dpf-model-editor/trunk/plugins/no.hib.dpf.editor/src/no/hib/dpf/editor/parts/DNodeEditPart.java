@@ -19,15 +19,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.core.Graph;
+import no.hib.dpf.core.GraphHomomorphism;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.diagram.DFakeNode;
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.diagram.DiagramPackage;
+import no.hib.dpf.editor.DPFEditor;
 import no.hib.dpf.editor.extension_points.FigureConfigureManager;
 import no.hib.dpf.editor.extension_points.INodePainting;
 import no.hib.dpf.editor.figures.EditableLabel;
@@ -67,7 +70,7 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 
 	public DNodeEditPart() {
 		super();
-		
+
 	}
 	public void setModel(Object object){
 		super.setModel(object);
@@ -89,15 +92,15 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new NameDirectEditPolicy());
 	}
 
-	 @Override
-     public void performRequest(Request req) {
-           if (req.getType().equals(RequestConstants.REQ_DIRECT_EDIT) && !(getModel() instanceof DFakeNode)) {
-        	   TextDirectEditManager manager = new TextDirectEditManager(this, TextCellEditor.class, new TextCellEditorLocator(((NodeFigure)getFigure()).getNameLabel()));
-        	   manager.show();
-        	   return;
-           }
-           super.performRequest(req);
-     }
+	@Override
+	public void performRequest(Request req) {
+		if (req.getType().equals(RequestConstants.REQ_DIRECT_EDIT) && !(getModel() instanceof DFakeNode)) {
+			TextDirectEditManager manager = new TextDirectEditManager(this, TextCellEditor.class, new TextCellEditorLocator(((NodeFigure)getFigure()).getNameLabel()));
+			manager.show();
+			return;
+		}
+		super.performRequest(req);
+	}
 
 	private String getNodeLabelName() {
 		String result = "";
@@ -118,14 +121,14 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 			return model.getTypeNode();
 		return null;
 	}
-	
+
 	public DNode getDType(){
 		DNode model = getDNode();
 		if(model != null)
 			return model.getDType();
 		return null;
 	}
-	
+
 	public DNode getDNode(){
 		return (DNode) getModel();
 	}
@@ -136,7 +139,7 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 			return dnode.getNode();
 		return null;
 	}
-	
+
 	protected IFigure createFigure() {
 		if(getNodePaint() != null)
 			return nodePaint.createNodeFigure();
@@ -243,13 +246,13 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 			return anchor;
 		return getConnectionAnchor(connection, b);
 	}
-	
+
 	private ConnectionAnchor createAnchorUseConfigure(){
 		if(getNodePaint() != null)
 			return nodePaint.createConnectionAnchor(getFigure());
 		return null;
 	}
-	
+
 	@Override
 	public ConnectionAnchor getSourceConnectionAnchor(ConnectionEditPart connection) {
 		return createConnectionAnchor(connection, true, getAnchorOwner(connection, true));
@@ -276,8 +279,15 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 	}
 
 	protected DNode getDiagramModel(){ return (DNode) getModel(); }
-	
+
 	protected void refreshVisuals() {
+		NodeFigure figure = (NodeFigure)getFigure();
+		DPFEditor editor = getEditor();
+		if(editor != null){
+			boolean flag = editor.isMakerExisting(getDNode().getNode());
+			if(figure.getErrorImageFlag() != flag)
+				figure.setErrorImageFlag(flag);
+		}
 		getFigure().setBounds(new Rectangle(getDiagramModel().getLocation(), getDiagramModel().getSize()));
 		refreshLabel();
 		//			((GraphicalEditPart) getParent()).setLayoutConstraint(this, getFigure(), bounds);
@@ -317,33 +327,106 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 			case CorePackage.NODE__INCOMINGS:
 				verifyOnArrowChange((Node)msg.getNotifier(), msg.getOldValue(), msg.getNewValue());
 				break;
+			case CorePackage.NODE__OUTGOINGS:
+				verifyOnArrowChange((Node)msg.getNotifier(), msg.getOldValue(), msg.getNewValue());
+				break;
 			}
 		}
 	}
-	
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private void addUniqueList(EList list, EList added){
-		if(list.isEmpty())
-			list.addAll(added);
-		else for(Object iter : added)
-			if(!list.contains(iter))
-				list.add(iter);
-	}
+
 	private void verifyOnArrowChange(Node node, Object oldArrow, Object newArrow){
+		Arrow checkedArrow = null;
+		DPFEditor editor = getEditor();
+		if(editor == null)
+			return;
+		if (newArrow == null && oldArrow instanceof Arrow){
+			checkedArrow = (Arrow) oldArrow;
+			if(checkedArrow.getSource() == null && checkedArrow.getTarget() == null)
+				editor.deleteMaker(checkedArrow);
+		}
+		else if (newArrow instanceof Arrow)
+			checkedArrow = (Arrow) newArrow;
+
 		EList<Constraint> constraints = new BasicEList<Constraint>();
+		constraints.addAll(checkedArrow.getTypeArrow().getConstraints());
+
 		Graph graph = node.getGraph();
-		Arrow checkedNode = null;
-		if(newArrow == null && oldArrow instanceof Arrow)
-			checkedNode = (Arrow) oldArrow;
-		else if(newArrow instanceof Arrow)
-			checkedNode = (Arrow) newArrow;
-		
-		if(checkedNode != null)
-			addUniqueList(constraints, checkedNode.getTypeArrow().getConstraints());
-		
-		if(graph != null)
-			for(Constraint constraint : constraints)
-				constraint.validate(graph);
+		if(editor == null || graph == null) return;
+
+		for (Constraint constraint : constraints) {
+			EList<Node> nodes = new BasicEList<Node>();
+			EList<Arrow> arrows = new BasicEList<Arrow>();
+
+			List<Arrow> arrowList = graph.getArrows();
+			if (!arrowList.contains(checkedArrow))
+				if (arrows.contains(checkedArrow))
+					arrows.remove(checkedArrow);
+			findRelatedElements(getDPFNode(), checkedArrow, constraint, graph, nodes, arrows);
+
+			boolean valid = constraint.validate(nodes, arrows);
+			if(!valid){
+				for(Node iter : nodes)
+					editor.addMarker(iter, constraint);
+				for(Arrow iter : arrows)
+					editor.addMarker(iter, constraint);
+			}else{
+				for(Node iter : nodes)
+					editor.deleteMaker(iter, constraint);
+				for(Arrow iter : arrows)
+					editor.deleteMaker(iter, constraint);
+			}
+
+		}
+	}
+
+	private Node getArityNode(Node typeNode, Constraint constraint) {
+		GraphHomomorphism mapping = constraint.getMappings();
+		for (Entry<Node, Node> entry : mapping.getNodeMapping().entrySet())
+			if (entry.getValue().equals(typeNode)) 
+				return entry.getKey();
+		return null;
+	}
+
+	private Arrow getArityArrow(Arrow typeArrow, Constraint constraint) {
+		GraphHomomorphism mapping = constraint.getMappings();
+		for (Entry<Arrow, Arrow> entry : mapping.getArrowMapping().entrySet())
+			if (entry.getValue().equals(typeArrow))
+				return entry.getKey();
+		return null;
+	}
+
+	//Assume right now, the arity is a connected graph.
+	private void findRelatedElements(Node node, Arrow checkArrow, Constraint constraint, Graph graph,
+			EList<Node> nodes, EList<Arrow> arrows) {
+		Graph arity = constraint.getPredicate().getShape();
+		Node typeNode = node.getTypeNode();
+		List<Node> visited = new ArrayList<Node>();
+		visited.addAll(arity.getNodes());
+
+		Node arityNode = getArityNode(typeNode, constraint);
+		if (visited.contains(arityNode))
+			visited.remove(arityNode);
+		List<Arrow> arrowOutgoings = arityNode.getOutgoings();
+		for (Arrow arrow : node.getOutgoings())
+			if (arrowOutgoings.contains(getArityArrow(arrow.getTypeArrow(),constraint))) {
+				arrows.add(arrow);
+				if (arrow.getTarget() != null)
+					nodes.add(arrow.getTarget());
+			}
+		List<Arrow> arrowIncomings = arityNode.getIncomings();
+		for(Arrow arrow: node.getIncomings())
+			if (arrowIncomings.contains(getArityArrow(arrow.getTypeArrow(), constraint))) {
+				arrows.add(arrow);
+				if (arrow.getSource() != null)
+					nodes.add(arrow.getSource());
+			}
+		if (!visited.isEmpty()) {
+			Node n = visited.get(0);
+			for (Node newNode : graph.getNodes())
+				if (!nodes.contains(newNode) && newNode.getTypeNode().equals(n))
+					nodes.add(newNode);
+		}
+		nodes.add(node);
 	}
 	/*
 	 * After the diagram elements is created or updated, then refresh the visualization

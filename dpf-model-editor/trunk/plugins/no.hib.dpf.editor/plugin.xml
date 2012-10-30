@@ -163,4 +163,22 @@
             name="DPF Editor">
       </perspective>
    </extension>
+   <extension
+         id="validationmarker"
+         name="DPF Validation Problem"
+         point="org.eclipse.core.resources.markers">
+      <super
+            type="org.eclipse.core.resources.marker">
+      </super>
+      <persistent
+            value="false">
+      </persistent>
+      <super
+            type="org.eclipse.core.resources.problemmarker">
+      </super>
+      <attribute
+            name="constraint">
+      </attribute>
+      </extension>
+      
 </plugin>

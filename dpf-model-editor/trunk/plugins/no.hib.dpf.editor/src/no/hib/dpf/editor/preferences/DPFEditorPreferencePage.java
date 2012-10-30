@@ -35,7 +35,7 @@ public class DPFEditorPreferencePage extends FieldEditorPreferencePage implement
 	private Composite fieldEditorParent;
 	private BooleanFieldEditor displayDynTypedArrowTools;
 	private BooleanFieldEditor displayTypedArrowTools;
-	private ColorFieldEditor nodebg, nodefg, arrowbg, arrowfg, arrowSource, arrowTarget, arrowLabelSelected;
+	private ColorFieldEditor nodebg, nodefg, arrowbg, arrowfg, arrowSource, arrowTarget, arrowLabelSelected, arrowValidationError;
 
 	public DPFEditorPreferencePage() {
 		super(GRID);
@@ -72,6 +72,7 @@ public class DPFEditorPreferencePage extends FieldEditorPreferencePage implement
 		arrowSource = new ColorFieldEditor(PreferenceConstants.P_ARROW_SOURCE_COLOR, "Qualified Arrow Source Color", fieldEditorParent);
 		arrowTarget = new ColorFieldEditor(PreferenceConstants.P_ARROW_TARGET_COLOR, "Qualified Arrow Target Color", fieldEditorParent);
 		arrowLabelSelected = new ColorFieldEditor(PreferenceConstants.P_ARROW_LABEL_SELECTED_ARROW_COLOR, "Arrow Color when clicking on Arrow Label", fieldEditorParent);
+		arrowValidationError = new ColorFieldEditor(PreferenceConstants.P_ARROW_VALIDATION_ERROR_ARROW_COLOR, "Arrow Color at Validation Error", fieldEditorParent);
 		
 		addField(nodebg);
 		addField(nodefg);
@@ -80,6 +81,7 @@ public class DPFEditorPreferencePage extends FieldEditorPreferencePage implement
 		addField(arrowSource);
 		addField(arrowTarget);
 		addField(arrowLabelSelected);
+		addField(arrowValidationError);
 		
 	}
 
