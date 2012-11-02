@@ -57,7 +57,7 @@ public class ArrowConnection extends PolylineConnection implements RoutableFigur
 			g.setBackgroundColor(getBackgroundColor());
 		if (getLocalForegroundColor() != null){
 			g.setForegroundColor(getForegroundColor());
-			if(valid) 
+			if(invalid) 
 				g.setForegroundColor(DPFEditorPreferences.getDefault().getArrowValidationErrorColor());
 		}
 		super.outlineShape(g);
@@ -79,10 +79,10 @@ public class ArrowConnection extends PolylineConnection implements RoutableFigur
 		isEpi = b;
 	}
 
-	public boolean valid = false;
+	public boolean invalid = false;
 	public void setErrorImageFlag(boolean bool) {
-			if(valid != bool){
-	            valid = bool;
+			if(invalid != bool){
+	            invalid = bool;
 	            revalidate();
 	            repaint();
 			}		

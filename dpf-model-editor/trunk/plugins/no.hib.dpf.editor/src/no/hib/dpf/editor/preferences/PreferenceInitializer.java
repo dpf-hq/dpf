@@ -33,6 +33,7 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 		store.setDefault(PreferenceConstants.P_ARROW_SOURCE_COLOR, "0, 255, 0");
 		store.setDefault(PreferenceConstants.P_ARROW_TARGET_COLOR, "0, 127, 0");
 		store.setDefault(PreferenceConstants.P_ARROW_LABEL_SELECTED_ARROW_COLOR, "0, 0, 255");
+		store.setDefault(PreferenceConstants.P_ARROW_VALIDATION_ERROR_ARROW_COLOR, "255, 0, 0");
 	}
 
 }
