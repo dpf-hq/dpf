@@ -62,7 +62,8 @@ public class DArrowDeleteCommand extends CompoundCommand {
 	 */
 	public void execute() {
 		super.execute();
-		connection.disconnect();
+		if(connection.getDSource() == source && connection.getDTarget() == target && source.getDGraph() == target.getDGraph())
+			connection.disconnect();
 	}
 	
 	public void redo(){
@@ -75,7 +76,8 @@ public class DArrowDeleteCommand extends CompoundCommand {
 	 * @see org.eclipse.gef.commands.Command#undo()
 	 */
 	public void undo() {
-		connection.reconnect(source, target);
+		if(connection.getDSource() == null && connection.getDTarget() == null && source.getDGraph() == target.getDGraph())
+			connection.reconnect(source, target);
 		super.undo();
 	}
 }
