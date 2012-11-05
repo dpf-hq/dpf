@@ -1,0 +1,13 @@
+digraph G{
+	{rank = same; 1[label="C" ]; };
+	{rank = same; 3[label="C" ]; 4[label="B" ]; 5[label="C" ,color=lightblue,style=filled]; };
+	1->5[label="n"];
+	3->1[label="n"];
+	4->1[label="f"];
+	4->3[label="l"];
+	3->4[label="e"];
+	1->4[label="e"];
+	5->4[label="e"];
+	5->5[label="n"];
+	5->3[label="n"];
+}

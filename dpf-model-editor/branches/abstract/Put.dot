@@ -1,0 +1,21 @@
+digraph G{
+	subgraph clusterleft{
+		label="left";
+		{rank = same; 		l0[label="C"]; };
+		{rank = same; 		l2[label="B"]; 		l3[label="C"]; };
+		l3 -> l2[label="e"];
+		l0 -> l3[label="n"];
+		l2 -> l0[label="l"];
+	}
+	subgraph clusterright{
+		label="right"
+		{rank = same; 		r0[label="C"]; 		r1[label="O"]; };
+		{rank = same; 		r2[label="B"]; 		r3[label="C"]; };
+		r0 -> r3[label="n"];
+		r2 -> r3[label="l"];
+		r3 -> r1[label="v"];
+};
+	l2 -> r2[style=dotted];
+	l3 -> r3[style=dotted];
+	l0 -> r0[style=dotted];
+}
