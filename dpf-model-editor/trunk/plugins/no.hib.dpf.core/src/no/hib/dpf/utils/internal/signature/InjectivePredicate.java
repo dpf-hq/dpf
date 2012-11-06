@@ -31,11 +31,14 @@ public class InjectivePredicate extends AbstractSingleArrowPredicate {
 		boolean result = true;
 		for(Entry<Node, List<Arrow>> entry : violated.entrySet())
 			if(entry.getValue().size() > 1){
-				result = false;
-				System.out.println(entry.getKey().getName() + " violates INJECTIVE constraint");
-				System.out.println("It has multiply incoming arrows:");
-				for(Arrow arrow : entry.getValue())
-					System.out.println(arrow.getSource().getName() + "-->" + arrow.getTarget().getName());
+				for(int a =0 ;a< entry.getValue().size()-1; a++)
+					if(entry.getValue().get(a).getSource()!= entry.getValue().get(a+1).getSource()){
+				           result = false;
+				           System.out.println(entry.getKey().getName() + " violates INJECTIVE constraint");
+				           System.out.println("It has multiply incoming arrows:");
+				           for(Arrow arrow : entry.getValue())
+				               System.out.println(arrow.getSource().getName() + "-->" + arrow.getTarget().getName());
+					}
 			}
 		return result; 
 	} 

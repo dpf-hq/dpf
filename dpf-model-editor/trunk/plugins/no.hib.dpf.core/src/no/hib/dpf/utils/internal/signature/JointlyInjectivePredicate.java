@@ -13,7 +13,7 @@ import no.hib.dpf.core.Node;
 public class JointlyInjectivePredicate extends AbstractBasePredicate {
 
 	public JointlyInjectivePredicate() {
-		super("ji", null, "X,Y,Z", "XZ:X:Z, XY:X:Y");
+		super("ji", null, "X,Y,Z", "XY:X:Y, XZ:X:Y");
 
 	}
 
@@ -24,22 +24,21 @@ public class JointlyInjectivePredicate extends AbstractBasePredicate {
 		List<Arrow> xz = arrowMap.get(shape.getArrowByName("XZ"));
 		Map<Node, List<Arrow>> zViolated = new HashMap<Node, List<Arrow>>();
 		Map<Node, List<Arrow>> yViolated = new HashMap<Node, List<Arrow>>();
-		List<Node> visitedX = new ArrayList<Node>();
 		boolean result = true;
 		if (xy != null) {
-			List<Arrow> yValue= new ArrayList<Arrow>();
+//			List<Arrow> yValue= new ArrayList<Arrow>();
 			for (Arrow arrow : xy) {
 				Node target = arrow.getTarget();
+				List<Arrow> yValue = yViolated.containsKey(target) ? yViolated.get(target) : new ArrayList<Arrow>();
 				yValue.add(arrow);
 				yViolated.put(target, yValue);
 			}
 
 		}
 		if (xz != null) {
-			List<Arrow> zValue= new ArrayList<Arrow>();
-			for (Arrow arrow : xz) {
+				for (Arrow arrow : xz) {
 				Node target = arrow.getTarget();
-				visitedX.add(target);
+				List<Arrow> zValue = zViolated.containsKey(target) ? zViolated.get(target) : new ArrayList<Arrow>();
 				zValue.add(arrow);
 				zViolated.put(target, zValue);
 			}
@@ -53,39 +52,47 @@ public class JointlyInjectivePredicate extends AbstractBasePredicate {
 		 if (xNodes != null)
 		 for (Entry<Node, List<Arrow>> xEntry : yViolated.entrySet()) {
 			 if(xEntry.getValue().size() >1){
-				result = false;
-				System.out.println(xEntry.getKey().getName()
-						+ " violates Jointly Injective constraint");
-				if (xEntry.getValue() == null) {
-					System.out
-							.println("It has no outgoing arrows which has type homophomism to XZ or YZ");
-				} else {
-					System.out
-							.println("It has multiple outgoing arrows of same type:");
-					for (Arrow arrow : xEntry.getValue())
-						System.out.println(arrow.getSource().getName() + "-->"
-								+ arrow.getTarget().getName());
+				 for(int a =0 ;a< xEntry.getValue().size()-1; a++)
+						if(xEntry.getValue().get(a).getSource()!= xEntry.getValue().get(a+1).getSource()){
+				        result = false;
+							System.out.println(xEntry.getKey().getName()
+									+ " violates Jointly Injective constraint");
+							if (xEntry.getValue() == null) {
+								System.out
+										.println("It has no outgoing arrows which has type homophomism to XZ or YZ");
+							} else {
+								System.out
+										.println("It has multiple outgoing arrows of same type:");
+								for (Arrow arrow : xEntry.getValue())
+									System.out.println(arrow.getSource()
+											.getName()
+											+ "-->"
+											+ arrow.getTarget().getName());
+							}
+						}
 				}
 			}
-		 }
 		 for (Entry<Node, List<Arrow>> xEntry : zViolated.entrySet()) {
-			 if(xEntry.getValue().size() > 1){
-				result = false;
-				System.out.println(xEntry.getKey().getName()
-						+ " violates Jointly Injective constraint");
-				if (xEntry.getValue() == null) {
-					System.out
-							.println("It has no outgoing arrows which has type homophomism to XZ or YZ");
-				} else {
-					System.out
-							.println("It has multiple outgoing arrows of same type:");
-					for (Arrow arrow : xEntry.getValue())
-						System.out.println(arrow.getSource().getName() + "-->"
-								+ arrow.getTarget().getName());
-				}
+			if (xEntry.getValue().size() > 1) {
+				for (int a = 0; a < xEntry.getValue().size() - 1; a++)
+					if (xEntry.getValue().get(a).getSource() != xEntry
+							.getValue().get(a + 1).getSource()) {
+						result = false;
+						System.out.println(xEntry.getKey().getName()
+								+ " violates Jointly Injective constraint");
+						if (xEntry.getValue() == null) {
+							System.out
+									.println("It has no outgoing arrows which has type homophomism to XZ or YZ");
+						} else {
+							System.out
+									.println("It has multiple outgoing arrows of same type:");
+							for (Arrow arrow : xEntry.getValue())
+								System.out.println(arrow.getSource().getName()
+										+ "-->" + arrow.getTarget().getName());
+						}
+					}
 			}
-		 }
-		System.out.print("\nResult="+result);
+		}
 		return result;
 	}
 

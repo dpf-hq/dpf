@@ -39,24 +39,9 @@ public class JointlySurjectiveValidator extends AbstractBasePredicate {
 		}
 		List<Node> zNodes = nodeMap.get(shape.getNodeByName("Z"));
 		if (zNodes != null) {
-			List<Arrow> values = new ArrayList<Arrow>();
 			for (Node node : zNodes) {
 				if (!visitedZ.contains(node))
 					zViolated.put(node, null);
-				
-				if (node.getIncomings().size() > 2)
-					zViolated.put(node, node.getIncomings());
-				
-				for (Arrow arrow : node.getIncomings())
-					for (Arrow arrow1 : node.getIncomings()) {
-						if (arrow != arrow1) {
-							if (arrow.getSource().getTypeNode() == arrow1
-									.getSource().getTypeNode()) {
-								values.add(arrow1);
-								zViolated.put(node, values);
-							}
-						}
-					}
 			}
 		}
 		boolean result=true;
@@ -71,13 +56,7 @@ public class JointlySurjectiveValidator extends AbstractBasePredicate {
 				if (zEntry.getValue() == null) {
 					System.out
 							.println("It has no incoming arrows which has type homophomism to XZ or YZ");
-				} else {
-					System.out
-							.println("It has multiple incoming arrows of same type:");
-					for (Arrow arrow : zEntry.getValue())
-						System.out.println(arrow.getSource().getName() + "-->"
-								+ arrow.getTarget().getName());
-				}
+				} 
 			}
         return result;
 	}
