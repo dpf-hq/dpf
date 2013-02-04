@@ -163,7 +163,9 @@ public class NodeImpl extends IDObjectImpl implements Node {
 			for(Node iter : ((Graph)newContainer).getNodes()){
 				String current = iter.getName();
 				if(current != null && current.startsWith(name))
+					try{
 					indexs.add(Integer.valueOf(current.substring(name.length())));
+					}catch(NumberFormatException e){}
 			}
 			Collections.sort(indexs);
 			int i = 0;
