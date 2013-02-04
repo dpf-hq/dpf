@@ -37,7 +37,9 @@ public enum ImageSettings {
 	SURJECTIVE("surj_36.png"),
 	XOR("xor_36.png"),
 	NAND("nand_36.png"),
-    IMG_ERROR("error.png");
+    IMG_ERROR("error.png"),
+	IMG_GRID("grid_16.png"),
+	IMG_SNAP("snap_16.png");
 	
 	private String fileName;
 	

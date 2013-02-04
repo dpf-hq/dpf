@@ -16,6 +16,8 @@
 package no.hib.dpf.editor;
 
 
+import no.hib.dpf.editor.icons.ImageSettings;
+
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.gef.editparts.ZoomManager;
 import org.eclipse.gef.internal.GEFMessages;
@@ -28,7 +30,6 @@ import org.eclipse.gef.ui.actions.UndoRetargetAction;
 import org.eclipse.gef.ui.actions.ZoomComboContributionItem;
 import org.eclipse.gef.ui.actions.ZoomInRetargetAction;
 import org.eclipse.gef.ui.actions.ZoomOutRetargetAction;
-import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IStatusLineManager;
 import org.eclipse.jface.action.IToolBarManager;
@@ -58,10 +59,13 @@ protected void buildActions() {
 	
 	addRetargetAction(new ZoomInRetargetAction());
 	addRetargetAction(new ZoomOutRetargetAction());
-
-	addRetargetAction(new RetargetAction(GEFActionConstants.TOGGLE_SNAP_TO_GEOMETRY, GEFMessages.ToggleSnapToGeometry_Label, IAction.AS_CHECK_BOX));
-	addRetargetAction(new RetargetAction(GEFActionConstants.TOGGLE_GRID_VISIBILITY, GEFMessages.ToggleGrid_Label, IAction.AS_CHECK_BOX));
-	addRetargetAction(new RetargetAction(ActionFactory.PRINT.getId(), GEFMessages.PrintAction_Label, IAction.AS_PUSH_BUTTON));
+	RetargetAction action = new RetargetAction(GEFActionConstants.TOGGLE_SNAP_TO_GEOMETRY, GEFMessages.ToggleSnapToGeometry_Label);
+	action.setImageDescriptor(ImageSettings.IMG_SNAP.getImageDescriptor());
+	addRetargetAction(action);
+	action = new RetargetAction(GEFActionConstants.TOGGLE_GRID_VISIBILITY, GEFMessages.ToggleGrid_Label);
+	action.setImageDescriptor(ImageSettings.IMG_GRID.getImageDescriptor());
+	addRetargetAction(action);
+	addRetargetAction(new RetargetAction(ActionFactory.PRINT.getId(), GEFMessages.PrintAction_Label));
 	
 	
 	addRetargetAction(new AlignmentRetargetAction(PositionConstants.LEFT));
