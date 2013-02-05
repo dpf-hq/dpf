@@ -1,16 +1,23 @@
 package no.hib.dpf.utils;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
+import no.hib.dpf.core.Arrow;
+import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.CoreFactory;
+import no.hib.dpf.core.Graph;
+import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Specification;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -169,4 +176,37 @@ public class DPFCoreUtil {
 		}
 		return dsp;
 	}
+	//Assume right now, the arity is a connected graph.
+	public static void findRelatedElements(Node node, Constraint constraint, Graph graph,
+			EList<Node> nodes, EList<Arrow> arrows) {
+		List<Node> visit = new ArrayList<Node>();
+		visit.add(node);
+		while(!visit.isEmpty()){
+			Node cur = visit.get(0);
+			for (Arrow arrow : cur.getOutgoings()){
+				if(constraint.getArrows().contains(arrow.getTypeArrow())){
+					Node target = arrow.getTarget();
+					if(target != null){
+						if(!arrows.contains(arrow)) arrows.add(arrow);
+						if(!nodes.contains(target) && !visit.contains(target)) visit.add(target);
+					}
+					
+				}
+			}
+			for (Arrow arrow : cur.getIncomings()){
+				if(constraint.getArrows().contains(arrow.getTypeArrow())){
+					Node source = arrow.getSource();
+					if(source != null){
+						if(!arrows.contains(arrow)) arrows.add(arrow);
+						if(!nodes.contains(source) && !visit.contains(source)) visit.add(source);
+					}
+					
+				}
+			}
+			nodes.add(cur);
+			visit.remove(0);
+		}
+	}
+
+	
 }

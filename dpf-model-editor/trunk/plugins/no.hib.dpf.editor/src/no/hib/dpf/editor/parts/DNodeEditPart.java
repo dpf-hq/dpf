@@ -37,6 +37,7 @@ import no.hib.dpf.editor.figures.NodeFigure;
 import no.hib.dpf.editor.policies.DArrowCreatePolicy;
 import no.hib.dpf.editor.policies.NameDirectEditPolicy;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;
+import no.hib.dpf.utils.DPFCoreUtil;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -355,7 +356,7 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 			EList<Node> nodes = new BasicEList<Node>();
 			EList<Arrow> arrows = new BasicEList<Arrow>();
 
-			findRelatedElements(node, checkedArrow, constraint, graph, nodes, arrows);
+			DPFCoreUtil.findRelatedElements(node, constraint, graph, nodes, arrows);
 
 			boolean valid = constraint.validate(nodes, arrows);
 			if(!valid){
@@ -373,37 +374,6 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 		}
 	}
 
-	//Assume right now, the arity is a connected graph.
-	private void findRelatedElements(Node node, Arrow checkArrow, Constraint constraint, Graph graph,
-			EList<Node> nodes, EList<Arrow> arrows) {
-		List<Node> visit = new ArrayList<Node>();
-		visit.add(node);
-		while(!visit.isEmpty()){
-			Node cur = visit.get(0);
-			for (Arrow arrow : cur.getOutgoings()){
-				if(constraint.getArrows().contains(arrow.getTypeArrow())){
-					Node target = arrow.getTarget();
-					if(target != null){
-						if(!arrows.contains(arrow)) arrows.add(arrow);
-						if(!nodes.contains(target) && !visit.contains(target)) visit.add(target);
-					}
-					
-				}
-			}
-			for (Arrow arrow : cur.getIncomings()){
-				if(constraint.getArrows().contains(arrow.getTypeArrow())){
-					Node source = arrow.getSource();
-					if(source != null){
-						if(!arrows.contains(arrow)) arrows.add(arrow);
-						if(!nodes.contains(source) && !visit.contains(source)) visit.add(source);
-					}
-					
-				}
-			}
-			nodes.add(cur);
-			visit.remove(0);
-		}
-	}
 	/*
 	 * After the diagram elements is created or updated, then refresh the visualization
 	 * @see no.hib.dpf.editor.parts.GraphicalEditPartWithListener#handleDiagramModelChanged(org.eclipse.emf.common.notify.Notification)

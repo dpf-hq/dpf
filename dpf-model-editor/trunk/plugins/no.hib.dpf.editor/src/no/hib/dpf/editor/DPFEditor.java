@@ -32,6 +32,7 @@ import java.util.Map;
 
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
+import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.IDObject;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.core.provider.CoreItemProviderAdapterFactory;
@@ -67,7 +68,9 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.draw2d.PositionConstants;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -161,19 +164,19 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 
 	private void listenToDisplayDyntTypedArrowsProperty() {
 		DPFEditorPreferences.getDefault().getPreferenceStore()
-				.addPropertyChangeListener(new IPropertyChangeListener() {
-					@Override
-					public void propertyChange(
-							org.eclipse.jface.util.PropertyChangeEvent event) {
-						if ((event.getProperty()
-								.equals(PreferenceConstants.P_DISPLAY_DYNTYPED_ARROWS))
-								|| (event.getProperty()
-										.equals(PreferenceConstants.P_DISPLAY_TYPED_ARROWS))) {
-							// paletteFactory.updatePalette(getPaletteRoot(),
-							// getSpecification().getTypeGraph());
-						}
-					}
-				});
+		.addPropertyChangeListener(new IPropertyChangeListener() {
+			@Override
+			public void propertyChange(
+					org.eclipse.jface.util.PropertyChangeEvent event) {
+				if ((event.getProperty()
+						.equals(PreferenceConstants.P_DISPLAY_DYNTYPED_ARROWS))
+						|| (event.getProperty()
+								.equals(PreferenceConstants.P_DISPLAY_TYPED_ARROWS))) {
+					// paletteFactory.updatePalette(getPaletteRoot(),
+					// getSpecification().getTypeGraph());
+				}
+			}
+		});
 	}
 
 	public DSpecification getDSpecification() {
@@ -277,7 +280,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		if (manager != null)
 			manager.setZoom(getDSpecification().getZoom());
 	}
-	
+
 	protected void saveProperties(GraphicalViewer viewer) {
 		// Snap to Geometry property
 		getDSpecification().setSnap(viewer == null ? false : (Boolean) viewer.getProperty(SnapToGeometry.PROPERTY_SNAP_ENABLED));		
@@ -562,9 +565,42 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 	protected void initializeGraphicalViewer() {
 		super.initializeGraphicalViewer();
 		getGraphicalViewer().setContents(getDSpecification().getDGraph());
+		validateModel(getDSpecification().getDGraph().getGraph());
 		getSite().setSelectionProvider(getGraphicalViewer());
 	}
 
+	public  void validateModel(Graph graph) {
+		Map<Constraint, List<Node>> visited = new HashMap<Constraint, List<Node>>();
+		for(Node node : graph.getNodes()){
+			for (Constraint constraint : node.getTypeNode().getConstraints()) {
+				List<Node> visitedNodes = visited.get(constraint);
+				if(visitedNodes != null && visitedNodes.contains(node)) continue;
+				EList<Node> vertex = new BasicEList<Node>();
+				EList<Arrow> arrows = new BasicEList<Arrow>();
+				DPFCoreUtil.findRelatedElements(node, constraint, graph, vertex, arrows);
+				if(!vertex.isEmpty()){
+					boolean valid = constraint.validate(vertex, arrows);
+					if(!valid){
+						for(Node iter : vertex)
+							addMarker(iter, constraint);
+						for(Arrow iter : arrows)
+							addMarker(iter, constraint);
+					}
+					if(visitedNodes == null){
+						visitedNodes = new ArrayList<Node>(vertex.size());
+						visitedNodes.addAll(vertex);
+					}else{
+						for(Node iter : vertex){
+							if(!visitedNodes.contains(iter))
+								visitedNodes.add(iter);
+						}
+					}
+					visited.put(constraint, visitedNodes);
+				}
+			}
+		}
+	}
+	
 	public boolean isSaveAsAllowed() {
 		return true;
 	}
