@@ -30,6 +30,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.IDObject;
 import no.hib.dpf.core.Node;
@@ -55,7 +56,6 @@ import no.hib.dpf.editor.parts.NodeTreeEditPartFactory;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;
 import no.hib.dpf.editor.preferences.PreferenceConstants;
 import no.hib.dpf.utils.DPFCoreUtil;
-import no.hib.dpf.utils.DPFErrorReport;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
@@ -771,9 +771,14 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		if(findMarker(markers, constraint) == null){
 			IMarker marker = null;
 			try {
+				String name = (iter instanceof Node)? ((Node)iter).getName() : 
+					((iter instanceof Arrow) ? ((Arrow)iter).getName() : null);
+
 				marker = file.createMarker(Marker_ID);
-				marker.setAttribute(IMarker.MESSAGE, "Validation Failed : "	+ constraint.getPredicate().getSymbol()	+ " Predicate ");
-				marker.setAttribute(IMarker.LOCATION, iter);
+				marker.setAttribute(IMarker.MESSAGE, name + " violates constraint [" 
+						+ constraint.getPredicate().getSymbol()    + "] on {" 
+						+ DPFErrorReport.printConstraint(constraint) + "}");
+				marker.setAttribute(IMarker.LOCATION, name);
 				marker.setAttribute(IMarker.PRIORITY, IMarker.PRIORITY_NORMAL);
 				marker.setAttribute(IMarker.SEVERITY, IMarker.SEVERITY_ERROR);
 				marker.setAttribute("constraint", constraint);
