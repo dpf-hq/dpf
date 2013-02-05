@@ -19,13 +19,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.core.Graph;
-import no.hib.dpf.core.GraphHomomorphism;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.diagram.DFakeNode;
 import no.hib.dpf.diagram.DNode;
@@ -357,11 +355,7 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 			EList<Node> nodes = new BasicEList<Node>();
 			EList<Arrow> arrows = new BasicEList<Arrow>();
 
-			List<Arrow> arrowList = graph.getArrows();
-			if (!arrowList.contains(checkedArrow))
-				if (arrows.contains(checkedArrow))
-					arrows.remove(checkedArrow);
-			findRelatedElements(getDPFNode(), checkedArrow, constraint, graph, nodes, arrows);
+			findRelatedElements(node, checkedArrow, constraint, graph, nodes, arrows);
 
 			boolean valid = constraint.validate(nodes, arrows);
 			if(!valid){
@@ -379,54 +373,36 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 		}
 	}
 
-	private Node getArityNode(Node typeNode, Constraint constraint) {
-		GraphHomomorphism mapping = constraint.getMappings();
-		for (Entry<Node, Node> entry : mapping.getNodeMapping().entrySet())
-			if (entry.getValue().equals(typeNode)) 
-				return entry.getKey();
-		return null;
-	}
-
-	private Arrow getArityArrow(Arrow typeArrow, Constraint constraint) {
-		GraphHomomorphism mapping = constraint.getMappings();
-		for (Entry<Arrow, Arrow> entry : mapping.getArrowMapping().entrySet())
-			if (entry.getValue().equals(typeArrow))
-				return entry.getKey();
-		return null;
-	}
-
 	//Assume right now, the arity is a connected graph.
 	private void findRelatedElements(Node node, Arrow checkArrow, Constraint constraint, Graph graph,
 			EList<Node> nodes, EList<Arrow> arrows) {
-		Graph arity = constraint.getPredicate().getShape();
-		Node typeNode = node.getTypeNode();
-		List<Node> visited = new ArrayList<Node>();
-		visited.addAll(arity.getNodes());
-
-		Node arityNode = getArityNode(typeNode, constraint);
-		if (visited.contains(arityNode))
-			visited.remove(arityNode);
-		List<Arrow> arrowOutgoings = arityNode.getOutgoings();
-		for (Arrow arrow : node.getOutgoings())
-			if (arrowOutgoings.contains(getArityArrow(arrow.getTypeArrow(),constraint))) {
-				arrows.add(arrow);
-				if (arrow.getTarget() != null)
-					nodes.add(arrow.getTarget());
+		List<Node> visit = new ArrayList<Node>();
+		visit.add(node);
+		while(!visit.isEmpty()){
+			Node cur = visit.get(0);
+			for (Arrow arrow : cur.getOutgoings()){
+				if(constraint.getArrows().contains(arrow.getTypeArrow())){
+					Node target = arrow.getTarget();
+					if(target != null){
+						if(!arrows.contains(arrow)) arrows.add(arrow);
+						if(!nodes.contains(target) && !visit.contains(target)) visit.add(target);
+					}
+					
+				}
 			}
-		List<Arrow> arrowIncomings = arityNode.getIncomings();
-		for(Arrow arrow: node.getIncomings())
-			if (arrowIncomings.contains(getArityArrow(arrow.getTypeArrow(), constraint))) {
-				arrows.add(arrow);
-				if (arrow.getSource() != null)
-					nodes.add(arrow.getSource());
+			for (Arrow arrow : cur.getIncomings()){
+				if(constraint.getArrows().contains(arrow.getTypeArrow())){
+					Node source = arrow.getSource();
+					if(source != null){
+						if(!arrows.contains(arrow)) arrows.add(arrow);
+						if(!nodes.contains(source) && !visit.contains(source)) visit.add(source);
+					}
+					
+				}
 			}
-		if (!visited.isEmpty()) {
-			Node n = visited.get(0);
-			for (Node newNode : graph.getNodes())
-				if (!nodes.contains(newNode) && newNode.getTypeNode().equals(n))
-					nodes.add(newNode);
+			nodes.add(cur);
+			visit.remove(0);
 		}
-		nodes.add(node);
 	}
 	/*
 	 * After the diagram elements is created or updated, then refresh the visualization
