@@ -152,13 +152,6 @@ public class SMT {
 		}
 		writer.println(")) :named edge-type-add-kept))");
 
-//		writer.println("(assert (! (forall ((a " + VINN + ") (b " + VOUT + ") (c " + VOUT + ")) (=> (and (= b (delV a)) (= c (delV a))) (= b c))) :named del-function))");
-//		writer.println("(assert (! (forall ((a " + VINN + ") (b " + VINN + ") (c " + VOUT + ")) (=> (and (= b (addV c)) (= a (addV c))) (= b a))) :named add-function))");
-//		writer.println("(assert (! (forall ((a " + VINN + ") (b " + VINN + ") (c " + EINN + ") (d " + VOUT + ") (e " + VOUT + ") (f " + EOUT + ") (h " + VOUT + ") (i " + VOUT + ") (j " + EOUT + ")) " +
-//				"(=> (and (= (delE a b c) (out-tuple d e f)) (= (delE a b c) (out-tuple h i j))) (and (= d h) (and (= e i) (= f j))))) :named del-edge-function))");
-//		writer.println("(assert (! (forall ((a " + VINN + ") (b " + VINN + ") (c " + EINN + ") (d " + VOUT + ") (e " + VOUT + ") (f " + EOUT + ") (h " + VINN + ") (i " + VINN + ") (j " + EINN + ")) " +
-//				"(=> (and (= (addE d e f) (inn-tuple a b c)) (= (addE d e f) (inn-tuple h i j))) (and (= a h) (and (= b i) (= c j))))) :named add-edge-function))");
-
 		writer.println("(assert (! (forall ((a " + VINN + ") (b " + VOUT + ") (c " + VOUT + ")) " +
 				"(=> (and (and (NNullVO b) (NNullVO c)) (and (= (addV b) a) (NNullVI a))) (or (= c b) (not (= (addV c) a))))) :named node-add-injective))");
 		writer.println("(assert (! (forall ((a " + VINN + ") (b " + VOUT + ") (c " + VINN + ")) " +
@@ -184,17 +177,6 @@ public class SMT {
 		writer.println("(assert (! (forall ((a " + VINN + ") (b " + VINN + ") (c " + EINN + ")) (=> (VI a) (and (NEI a b c) (NEI b a c)))) :named no-dangle-in-source-model))");
 		writer.println("(assert (! (forall ((a " + VOUT + ") (b " + VOUT + ") (c " + EOUT + ")) (=> (VO a) (and (NEO a b c) (NEO b a c)))) :named no-dangle-in-target-model))");
 		
-		//		writer.println("(assert (! (forall ((a " + VINN + ") (b " + VOUT + ")) " +
-		//				"(=> (and (ValidVI a) (and (= (delV a) b) (VO b))) " +
-		//				"(forall ((c " + VINN + ") (d " + EINN + ") (e " + VOUT + ") (f " + EOUT + ")) " +
-		//				"(and (=> (and (ValidEI c a d) (and (ValidEO e b f) (= (delE c a d) (out-tuple e b f)))) (NEO e b f)) " +
-		//				"(=> (and (ValidEI a c d) (and (ValidEO b e f) (= (delE a c d) (out-tuple b e f)))) (NEO b e f)))))) :named no-dangle-edge-after-del)) ");
-		//		writer.println("(assert (! (forall ((a " + VINN + ") (b " + VOUT + ")) " +
-		//				"(=> (and (ValidVI a) (and (= (addV b) a) (VI a))) " +
-		//				"(forall ((c " + VINN + ") (d " + EINN + ") (e " + VOUT + ") (f " + EOUT + ")) " +
-		//				"(and (=> (and (ValidEI c a d) (and (ValidEO e b f) (= (addE e b f) (inn-tuple c a d)))) (NEI c a d)) " +
-		//				"(=> (and (ValidEI a c d) (and (ValidEO b e f) (= (addE b e f) (inn-tuple a c d)))) (NEI a c d)))))) :named no-dangle-edge-after-add)) ");
-
 		writer.println("(assert (! (forall ((a " + VINN + ")) (=> (ValidVI a) (exists ((b " + VOUT + ")) (and (ValidVO b) (= b (delV a)))))) :named every-node-in-source-is-deled))");
 		writer.println("(assert (! (forall ((a " + VOUT + ")) (=> (ValidVO a) (exists ((b " + VINN + ")) (and (ValidVI b) (= b (addV a)))))) :named every-node-in-target-is-added))");
 
@@ -227,10 +209,6 @@ public class SMT {
 		writer.println("(assert (! (forall ((a V-INN) (b V-INN) (c E-INN) (d V-OUT) (e V-OUT) (f E-OUT) (id RuleID)) " +
 				"(=> (and (addEID f id) (= (inn-tuple a b c) (addE d e f))) (NEI a b c))) :named id-edge-added))");
 								
-//		writer.println("(assert (! (forall ((a " + VINN + ") (b " + VOUT + ") (id RuleID)) (=> (and (delVID a id) (and (NNullVI a) (= b (delV a)))) (VO b))) :named id-node-deled))"); 
-//		writer.println("(assert (! (forall ((a " + VINN + ") (b " + VOUT + ") (id RuleID)) (=> (and (addVID b id) (and (NNullVO b) (= a (addV b)))) (VI a))) :named id-node-added)) ");
-//		writer.println("(assert (! (forall ((a " + VINN + ") (b " + VINN + ") (c " + EINN + ") (d " + VOUT + ") (e " + VOUT + ") (f " + EOUT + ") (id RuleID)) (=> (and (delEID c id) (and (NNullEI a b c) (= (out-tuple d e f) (delE a b c)))) (NEO d e f))) :named id-edge-deled)) ");
-//		writer.println("(assert (! (forall ((a " + VINN + ") (b " + VINN + ") (c " + EINN + ") (d " + VOUT + ") (e " + VOUT + ") (f " + EOUT + ") (id RuleID)) (=> (and (addEID f id) (and (NNullEO d e f) (= (inn-tuple a b c) (addE d e f)))) (NEI a b c))) :named id-edge-added)) ");
 		writer.println("(assert (! (forall ((a " + VINN + ") (b " + VINN + ") (c " + EINN + ") (id RuleID)) (=> (and (delVID a id)) " +
 				"(=> (or (NNullEI a b c) (NNullEI b a c)) (delEID c id)))) :named id-node-edge-deled-id)) ");
 		writer.println("(assert (! (forall ((a " + VOUT + ") (b " + VOUT + ") (c " + EOUT + ") (id RuleID)) " +
@@ -281,6 +259,13 @@ public class SMT {
 		writer.println(injective("PF1", true));
 		writer.println(injective("TR", true));
 		writer.println(injective("TP", true));
+		
+		writer.println(nullOrOne("non-active", true));
+		writer.println(nullOrOne("active", true));
+		writer.println(nullOrOne("start", true));
+		writer.println(nullOrOne("crit", true));
+		writer.println(nullOrOne("check", true));
+		writer.println(nullOrOne("setTurn", true));
 		writer.println(nullOrOne("PF2", true));
 		writer.println(nullOrOne("PF1", true));
 		writer.println(nullOrOne("F1R", true));
@@ -290,23 +275,40 @@ public class SMT {
 		writer.println(surjective("PF1", "F1", true));
 		writer.println(surjective("TR", "R", true));
 
-		System.out.println(existNode("P", false));
-		System.out.println(existNode("R", false));
-		System.out.println(existNode("T", false));
-		System.out.println(uniqueNode("T", false));
-		System.out.println(uniqueNode("R", false));
-		System.out.println(existOneOfEdges("non-active;active", false));
-		System.out.println(existOneOfEdges("start;crit;check;setTurn", false));
-		System.out.println(noncompatibleEdge("non-active;active", false));
-		System.out.println(noncompatibleEdge("start;crit;check;setTurn", false));
-		System.out.println(reflexiveEdge("non-active", false));
-		System.out.println(reflexiveEdge("active", false));
-		System.out.println(reflexiveEdge("start", false));
-		System.out.println(reflexiveEdge("crit", false));
-		System.out.println(reflexiveEdge("check", false));
-		System.out.println(reflexiveEdge("setTurn", false));
-		System.out.println(injective("PF2", false));
-		System.out.println(injective("PF1", false));
+		writer.print(";");
+		writer.println(existNode("P", false));
+		writer.print(";");
+		writer.println(existNode("R", false));
+		writer.print(";");
+		writer.println(existNode("T", false));
+		writer.print(";");
+		writer.println(uniqueNode("T", false));
+		writer.print(";");
+		writer.println(uniqueNode("R", false));
+		writer.print(";");
+		writer.println(existOneOfEdges("non-active;active", false));
+		writer.print(";");
+		writer.println(existOneOfEdges("start;crit;check;setTurn", false));
+		writer.print(";");
+		writer.println(noncompatibleEdge("non-active;active", false));
+		writer.print(";");
+		writer.println(noncompatibleEdge("start;crit;check;setTurn", false));
+		writer.print(";");
+		writer.println(reflexiveEdge("non-active", false));
+		writer.print(";");
+		writer.println(reflexiveEdge("active", false));
+		writer.print(";");
+		writer.println(reflexiveEdge("start", false));
+		writer.print(";");
+		writer.println(reflexiveEdge("crit", false));
+		writer.print(";");
+		writer.println(reflexiveEdge("check", false));
+		writer.print(";");
+		writer.println(reflexiveEdge("setTurn", false));
+		writer.print(";");
+		writer.println(injective("PF2", false));
+		writer.print(";");
+		writer.println(injective("PF1", false));
 		writer.println("(check-sat)");
 		writer.println("(get-unsat-core)");
 		writer.println("(exit)");
