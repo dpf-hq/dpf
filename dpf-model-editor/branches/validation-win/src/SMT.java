@@ -59,18 +59,29 @@ public class SMT {
 		writer.println("(define-fun ValidEO ((a " + VOUT + ") (b " + VOUT + ") (c " + EOUT + ")) Bool (or (NNullEO a b c) (NEO a b c)))");
 		writer.println("");
 		writer.println(";Source and target model type constraint");
+		writer.println(";Each element in the instance could be typed by only one element in the metamodel");
 		writer.println(nodeIncompatiable(sVertex, true));
 		writer.println(edgeIncompatiable(sEdges, true));
 		writer.println(nodeIncompatiable(tVertex, false));
 		writer.println(edgeIncompatiable(tEdges, false));
+		writer.println("");
+		writer.println(";Any edge comes in or goes out an invalid node is invalid");
 		writer.println("(assert (! (forall ((a V-INN) (b V-INN) (c E-INN)) (=> (not (ValidVI a)) (and (not (ValidEI a b c)) (not (ValidEI b a c))))) :named source-untyped-node-edge-undefined))");
 		writer.println("(assert (! (forall ((a V-OUT) (b V-OUT) (c E-OUT)) (=> (not (ValidVO a)) (and (not (ValidEO a b c)) (not (ValidEO b a c))))) :named target-untyped-node-edge-undefined))");
+		writer.println("");
+		writer.println(";Any edge comes in or goes out an null node is null");
+		writer.println("(assert (! (forall ((s V-INN) (t V-INN) (e E-INN)) (=> (and (VI s) (ValidVI t)) (and (=> (ValidEI s t e) (NEI s t e)) (=> (ValidEI t s e) (NEI t s e))))) :named VI-null-incoming-null-outing))");
+		writer.println("(assert (! (forall ((s V-OUT) (t V-OUT) (e E-OUT)) (=> (and (VO s) (ValidVO t)) (and (=> (ValidEO s t e) (NEO s t e)) (=> (ValidEO t s e) (NEO t s e))))) :named VO-null-incoming-null-outing))");
+		writer.println("");
+		writer.println(";Source and target information of an edge in metamodel should well kept in the instance level");
 		writer.println(sourceAndTarget(sEdges, true));
 		writer.println(sourceAndTarget(tEdges, false));
+		writer.println("");
+		writer.println(";If edge (s, t, e) is an valid edge, then other combination (s', t', e) are invalid");
 		writer.println(edgeExclusive(sEdges, true));
 		writer.println(edgeExclusive(tEdges, false));
-		writer.println("(assert (! (forall ((s " + VINN + ")) (=> (VI s) (forall ((t " + VINN + ") (e " + EINN + ")) (and (NEI s t e) (NEI t s e))))) :named VI-null-incoming-null-outing))");
-		writer.println("(assert (! (forall ((s " + VOUT + ")) (=> (VO s) (forall ((t " + VOUT + ") (e " + EOUT + ")) (and (NEO s t e) (NEO t s e))))) :named VO-null-incoming-null-outing))");
+		writer.println("");
+		writer.println(";Only one Null Node exists in instance level");
 		writer.println("(assert (! (forall ((s " + VINN + ") (t " + VINN + ")) (or (= s t) (not (and (VI s) (VI t))))) :named Source-only-one-null-node-allowed))");
 		writer.println("(assert (! (forall ((s " + VOUT + ") (t " + VOUT + ")) (or (= s t) (not (and (VO s) (VO t))))) :named Target-only-one-null-node-allowed))");
 		writer.println("(assert (! (forall ((s " + VINN + ") (t " + VINN + ") (e " + EINN + ") (e1 " + EINN + ")) (or (= e e1) (not (and (NEI s t e) (NEI s t e1))))) :named Source-only-one-null-edge-allowed))");
@@ -84,6 +95,8 @@ public class SMT {
 		writer.println("(declare-fun addE (" + VOUT + " " + VOUT + " " + EOUT + ") InnTuple)");
 		writer.println("(declare-fun delE (" + VINN + " " + VINN + " " + EINN + ") OutTuple)");
 
+		writer.println("");
+		writer.println(";If an node is changed, the incoming and outgoing edges are also changed");
 		writer.println("(assert (! (forall ((a V-INN) (b V-OUT) (t V-INN) (e E-INN)) (=> (and (= (delV a) b) (ValidVI a)) " +
 				"(and (=> (ValidEI a t e) (exists ((t1 V-OUT) (e1 E-OUT)) (= (delE a t e) (out-tuple b t1 e1)))) " +
 				"(=> (ValidEI t a e) (exists ((t1 V-OUT) (e1 E-OUT)) (= (delE t a e) (out-tuple t1 b e1))))))) :named node-del-edge-del))"); 
@@ -91,25 +104,30 @@ public class SMT {
 				"(and (=> (ValidEO a t e) (exists ((t1 V-INN) (e1 E-INN)) (= (addE a t e) (inn-tuple b t1 e1)))) " +
 				"(=> (ValidEO t a e) (exists ((t1 V-INN) (e1 E-INN)) (= (addE t a e) (inn-tuple t1 b e1))))))) :named node-add-edge-add))");
 		
+
+		writer.println("");
+		writer.println(";Invalid elements and Null elements are changed into Null elements");
+		writer.println("(assert (! (forall ((a " + VINN + ") (b " + VOUT + ")) (=> (and (or (not (ValidVI a)) (VI a)) (= (delV a) b)) (VO b))) :named Null-Inn-Or-Invalid-Node-Null-Out-Deled))");
+		writer.println("(assert (! (forall ((a " + VOUT + ") (b " + VINN + ")) (=> (and (or (not (ValidVO a)) (VO a)) (= (addV a) b)) (VI b))) :named Null-Out-Or-Invalid-Node-Null-Inn-Added))");
+		writer.println("(assert (! (forall ((a " + VINN + ") (b " + VINN + ") (c " + EINN + ") (d " + VOUT + ") (e " + VOUT + ") (f " + EOUT + ")) " +
+				"(=> (and (or (not (ValidEI a b c)) (NEI a b c)) (= (delE a b c) (out-tuple d e f))) (NEO d e f))) :named Null-Inn-Or-Invalid-Edge-Null-Out-Edge-Deled))");
+		writer.println("(assert (! (forall ((a " + VOUT + ") (b " + VOUT + ") (c " + EOUT + ") (d " + VINN + ") (e " + VINN + ") (f " + EINN + ")) " +
+				"(=> (and (or (not (ValidEO a b c)) (NEO a b c)) (= (addE a b c) (inn-tuple d e f))) (NEI d e f))) :named Null-Out-Or-Invalid-Edge-Null-Inn-Edge-Added))");
+
+		writer.println("");
+		writer.println(";Commond part for each transformation are well kept");
 		writer.println("(assert (! (forall ((a " + VOUT + ") (b " + VOUT + ") (c " + EOUT + ") (d " + VINN + ") (e " + VINN + ") (f " + EINN + ")) " +
 				"(=> (and (ValidEI d e f) (and (ValidEO a b c) (= (addE a b c) (inn-tuple d e f)))) (and (= (addV a) d) (= (addV b) e)))) :named Add-Source-Target-Kept))");
 		writer.println("(assert (! (forall ((a " + VINN + ") (b " + VINN + ") (c " + EINN + ") (d " + VOUT + ") (e " + VOUT + ") (f " + EOUT + ")) " +
 				"(=> (and (ValidEI a b c) (and (ValidEO d e f) (= (delE a b c) (out-tuple d e f)))) (and (= (delV a) d) (= (delV b) e)))) :named Del-Source-Target-Kept))");
-
-		writer.println("(assert (! (forall ((a " + VINN + ") (b " + VOUT + ")) (=> (and (or (not (ValidVI a)) (VI a)) (= (delV a) b)) (VO b))) :named Null-Inn-Or-Invalid-Node-Null-Out-Deled))");
-		writer.println("(assert (! (forall ((a " + VOUT + ") (b " + VINN + ")) (=> (and (or (not (ValidVO a)) (VO a)) (= (addV a) b)) (VI b))) :named Null-Out-Or-Invalid-Node-Null-Inn-Added))");
-
-		writer.println("(assert (! (forall ((a " + VINN + ") (b " + VINN + ") (c " + EINN + ") (d " + VOUT + ") (e " + VOUT + ") (f " + EOUT + ")) " +
-				"(=> (and (or (not (ValidEI a b c)) (NEI a b c)) (= (delE a b c) (out-tuple d e f))) (NEO d e f))) :named Null-Inn-Or-Invalid-Edge--Null-Out-Edge-Deled))");
-		writer.println("(assert (! (forall ((a " + VOUT + ") (b " + VOUT + ") (c " + EOUT + ") (d " + VINN + ") (e " + VINN + ") (f " + EINN + ")) " +
-				"(=> (and (or (not (ValidEO a b c)) (NEO a b c)) (= (addE a b c) (inn-tuple d e f))) (NEI d e f))) :named Null-Out-Or-Invalid-Edge--Null-Inn-Edge-Added))");
-
 		writer.println("(assert (! (forall ((a " + VINN + ") (b " + VOUT + ")) (=> (and (and (NNullVI a) (NNullVO b)) (= (delV a) b)) (= (addV b) a))) :named del-kept-add-kept))");
 		writer.println("(assert (! (forall ((a " + VINN + ") (b " + VOUT + ")) (=> (and (and (NNullVI a) (NNullVO b)) (= (addV b) a)) (= (delV a) b))) :named add-kept-del-kept))");
 		writer.println("(assert (! (forall ((a " + VINN + ") (b " + VINN + ") (c " + EINN + ") (d " + VOUT + ") (e " + VOUT + ") (f " + EOUT + ")) " +
 				"(=> (and (and (NNullEI a b c) (NNullEO d e f)) (= (addE d e f) (inn-tuple a b c))) (= (delE a b c) (out-tuple d e f)))) :named del-edge-kept-add-edge-kept))");
 		writer.println("(assert (! (forall ((a " + VINN + ") (b " + VINN + ") (c " + EINN + ") (d " + VOUT + ") (e " + VOUT + ") (f " + EOUT + ")) " +
 				"(=> (and (and (NNullEO d e f) (NNullEI a b c)) (= (addE d e f) (inn-tuple a b c))) (= (delE a b c) (out-tuple d e f)))) :named add-edge-kept-del-edge-kept))");
+		writer.println("");
+		writer.println(";Well kept elements are type well kept");
 		writer.println("(assert (! (forall ((a " + VINN + ") (b " + VOUT + ")) (=> (and (and (NNullVI a) (NNullVO b)) (= (delV a) b))");
 		for (int i = 0; i < sVertex.length - 2; i++) {
 			writer.print(" (and");
@@ -152,6 +170,8 @@ public class SMT {
 		}
 		writer.println(")) :named edge-type-add-kept))");
 
+		writer.println("");
+		writer.println(";Well kept elements are changed injectively");
 		writer.println("(assert (! (forall ((a " + VINN + ") (b " + VOUT + ") (c " + VOUT + ")) " +
 				"(=> (and (and (NNullVO b) (NNullVO c)) (and (= (addV b) a) (NNullVI a))) (or (= c b) (not (= (addV c) a))))) :named node-add-injective))");
 		writer.println("(assert (! (forall ((a " + VINN + ") (b " + VOUT + ") (c " + VINN + ")) " +
@@ -160,34 +180,35 @@ public class SMT {
 				"(=> (and (and (NNullEO d e f) (NNullEO h i j)) (and (= (addE d e f) (inn-tuple a b c)) (NNullEI a b c))) (or (or (= d h) (or (= e i) (= f j))) (not (= (addE h i j) (inn-tuple a b c)))))) :named edge-add-injective))");
 		writer.println("(assert (! (forall ((a " + VINN + ") (b " + VINN + ") (c " + EINN + ") (d " + VOUT + ") (e " + VOUT + ") (f " + EOUT + ") (h " + VINN + ") (i " + VINN + ") (j " + EINN + ")) " +
 				"(=> (and (and (NNullEI a b c) (NNullEI h i j)) (and (= (delE a b c) (out-tuple d e f)) (NNullEO d e f))) (or (or (= a h) (or (= b i) (= c j))) (not (= (delE h i j) (out-tuple d e f)))))) :named edge-del-injective))");
-
-		writer.println("(assert (! (forall ((a " + VOUT + ")) (=> (ValidVO a) (exists ((b " + VINN + ")) (and (ValidVI b) (= a (delV b)))))) :named each-valid-node-in-target-has-pre-image-in-del))");
-		writer.println("(assert (! (forall ((a " + VINN + ")) (=> (ValidVI a) (exists ((b " + VOUT + ")) (and (ValidVO b) (= a (addV b)))))) :named each-valid-node-in-source-has-pre-image-in-add))");
-
+		writer.println("");
+		writer.println(";Each valid elements in the target model should hava a preimage for del");
+		writer.println(";Each valid elements in the source model should hava a preimage for add");
+		writer.println("(assert (! (forall ((a " + VOUT + ")) (=> (NNullVO a) (exists ((b " + VINN + ")) (and (NNullVI b) (= a (delV b)))))) :named each-valid-node-in-target-has-pre-image-in-del))");
+		writer.println("(assert (! (forall ((a " + VINN + ")) (=> (NNullVI a) (exists ((b " + VOUT + ")) (and (NNullVO b) (= a (addV b)))))) :named each-valid-node-in-source-has-pre-image-in-add))");
 		writer.println("(assert (! (forall ((a " + VINN + ") (b " + VINN + ") (c " + EINN + ")) " +
 				"(=> (ValidEI a b c) (exists ((d " + VOUT + ") (e " + VOUT + ") (f " + EOUT + ")) (and (ValidEO d e f) (= (addE d e f) (inn-tuple a b c)))))) :named each-valid-edge-in-target-has-pre-image-in-add))");
 		writer.println("(assert (! (forall ((a " + VOUT + ") (b " + VOUT + ") (c " + EOUT + ")) " +
 				"(=> (ValidEO a b c) (exists ((d " + VINN + ") (e " + VINN + ") (f " + EINN + ")) (and (ValidEI d e f) (= (delE d e f) (out-tuple a b c)))))) :named each-valid-edge-in-target-has-pre-image-in-del))");
 
+		writer.println("");
+		writer.println(";Each valid elements in the source model should hava an image for del");
+		writer.println(";Each valid elements in the target model should hava an image for add");
 		writer.println("(assert (! (forall ((a " + VINN + ")) (=> (ValidVI a) (exists ((b " + VOUT + ")) (and (ValidVO b) (= b (delV a)))))) :named each-valid-node-in-source-is-deled))");
 		writer.println("(assert (! (forall ((a " + VOUT + ")) (=> (ValidVO a) (exists ((b " + VINN + ")) (and (ValidVI b) (= b (addV a)))))) :named each-valid-node-in-target-is-added))");
-		
 		writer.println("(assert (! (forall ((a " + VINN + ") (b " + VINN + ") (c " + EINN + ")) " +
 				"(=> (ValidEI a b c) (exists ((d " + VOUT + ") (e " + VOUT + ") (f " + EOUT + ")) (and (ValidEO d e f) (= (delE a b c) (out-tuple d e f)))))) :named each-valid-edge-in-source-is-deled))");
 		writer.println("(assert (! (forall ((a " + VOUT + ") (b " + VOUT + ") (c " + EOUT + ")) " +
 				"(=> (ValidEO a b c) (exists ((d " + VINN + ") (e " + VINN + ") (f " + EINN + ")) (and (ValidEI d e f) (= (addE a b c) (inn-tuple d e f)))))) :named each-valid-edge-in-target-is-added))");
 		
+		writer.println("");
+		writer.println(";Each invalid elements in the target model should hava no preimage for del");
+		writer.println(";Each invalid elements in the source model should hava no preimage for add");
 		writer.println("(assert (! (forall ((t V-OUT)) (=> (not (ValidVO t)) (not (exists ((s V-INN)) (= (delV s) t))))) :named no-invalid-node-in-source-has-pre-image-in-del))");
 		writer.println("(assert (! (forall ((s V-INN)) (=> (not (ValidVI s)) (not (exists ((t V-OUT)) (= (addV t) s))))) :named no-invalid-node-in-target-has-pre-image-in-add))");
 		writer.println("(assert (! (forall ((s V-OUT) (t V-OUT) (e E-OUT)) (=> (not (ValidEO s t e)) (not (exists ((a V-INN) (b V-INN) (c E-INN)) (= (delE a b c) (out-tuple s t e)))))) :named no-invalid-edge-in-source-has-pre-image-in-del))");
 		writer.println("(assert (! (forall ((a V-INN) (b V-INN) (c E-INN)) (=> (not (ValidEI a b c)) (not (exists ((s V-OUT) (t V-OUT) (e E-OUT)) (= (addE s t e) (inn-tuple a b c)))))) :named no-invalid-edge-in-target-has-pre-image-in-add))");
 		
-		writer.println("(assert (! (forall ((a " + VINN + ") (b " + VINN + ") (c " + EINN + ")) (=> (VI a) (and (NEI a b c) (NEI b a c)))) :named no-dangle-in-source-model))");
-		writer.println("(assert (! (forall ((a " + VOUT + ") (b " + VOUT + ") (c " + EOUT + ")) (=> (VO a) (and (NEO a b c) (NEO b a c)))) :named no-dangle-in-target-model))");
-		
-
-
-
+		writer.println("");
 		writer.print("(declare-datatypes () ((RuleID");
 		for (Rule iter : rules) {
 			writer.print(" id" + iter.name);
@@ -668,12 +689,12 @@ public class SMT {
 	}
 	private String edgeExclusive(String[][] sEdges, boolean in){
 		StringBuffer buffer = new StringBuffer();
-		for (int i = 0; i < sEdges.length - 1; i++) {
+//		for (int i = 0; i < sEdges.length - 1; i++) {
 			buffer.append("(assert (! (forall ((s " + (in ? VINN : VOUT) + ") (t " + (in ? VINN : VOUT) + ") (e " + (in ? EINN : EOUT) + ")) (=> (");
-			buffer.append(sEdges[i][0] + " s t e) (forall ((s1 " + (in ? VINN : VOUT) + ") (t1 " + (in ? VINN : VOUT) + ")) " +
-					"(=> (not (and (= s s1) (= t t1))) (not (ValidE" + (in ? "I" : "O") + " s1 t1 e)))))) :named " + sEdges[i][0] + "-edge-exclusive))");
-			buffer.append(System.getProperty("line.separator"));
-		}
+			buffer.append("ValidE" + (in ? "I" : "O") + " s t e) (forall ((s1 " + (in ? VINN : VOUT) + ") (t1 " + (in ? VINN : VOUT) + ")) " +
+					"(=> (not (and (= s s1) (= t t1))) (not (ValidE" + (in ? "I" : "O") + " s1 t1 e)))))) :named " + (in ? "source" : "target") + "-edge-exclusive))");
+//			buffer.append(System.getProperty("line.separator"));
+//		}
 		return buffer.toString();
 	}
 

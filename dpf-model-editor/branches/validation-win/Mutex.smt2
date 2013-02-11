@@ -60,12 +60,21 @@
 (define-fun ValidEO ((a V-OUT) (b V-OUT) (c E-OUT)) Bool (or (NNullEO a b c) (NEO a b c)))
 
 ;Source and target model type constraint
+;Each element in the instance could be typed by only one element in the metamodel
 (assert (! (forall ((a V-INN)) (and (and (and (and (and (not (and (PI a) (or (or (or (or (F1I a) (F2I a)) (TI a)) (RI a)) (VI a)))) (not (and (F1I a) (or (or (or (or (PI a) (F2I a)) (TI a)) (RI a)) (VI a))))) (not (and (F2I a) (or (or (or (or (PI a) (F1I a)) (TI a)) (RI a)) (VI a))))) (not (and (TI a) (or (or (or (or (PI a) (F1I a)) (F2I a)) (RI a)) (VI a))))) (not (and (RI a) (or (or (or (or (PI a) (F1I a)) (F2I a)) (TI a)) (VI a))))) (not (and (VI a) (or (or (or (or (PI a) (F1I a)) (F2I a)) (TI a)) (RI a)))))) :named Source-node-incompatiable))
 (assert (! (forall ((s V-INN) (t V-INN) (e E-INN)) (and (and (and (and (and (and (and (and (and (and (and (and (not (and (non-activeI s t e) (or (or (or (or (or (or (or (or (or (or (or (activeI s t e) (startI s t e)) (critI s t e)) (checkI s t e)) (setTurnI s t e)) (PF2I s t e)) (PF1I s t e)) (TPI s t e)) (F2RI s t e)) (F1RI s t e)) (TRI s t e)) (NEI s t e)))) (not (and (activeI s t e) (or (or (or (or (or (or (or (or (or (or (or (non-activeI s t e) (startI s t e)) (critI s t e)) (checkI s t e)) (setTurnI s t e)) (PF2I s t e)) (PF1I s t e)) (TPI s t e)) (F2RI s t e)) (F1RI s t e)) (TRI s t e)) (NEI s t e))))) (not (and (startI s t e) (or (or (or (or (or (or (or (or (or (or (or (non-activeI s t e) (activeI s t e)) (critI s t e)) (checkI s t e)) (setTurnI s t e)) (PF2I s t e)) (PF1I s t e)) (TPI s t e)) (F2RI s t e)) (F1RI s t e)) (TRI s t e)) (NEI s t e))))) (not (and (critI s t e) (or (or (or (or (or (or (or (or (or (or (or (non-activeI s t e) (activeI s t e)) (startI s t e)) (checkI s t e)) (setTurnI s t e)) (PF2I s t e)) (PF1I s t e)) (TPI s t e)) (F2RI s t e)) (F1RI s t e)) (TRI s t e)) (NEI s t e))))) (not (and (checkI s t e) (or (or (or (or (or (or (or (or (or (or (or (non-activeI s t e) (activeI s t e)) (startI s t e)) (critI s t e)) (setTurnI s t e)) (PF2I s t e)) (PF1I s t e)) (TPI s t e)) (F2RI s t e)) (F1RI s t e)) (TRI s t e)) (NEI s t e))))) (not (and (setTurnI s t e) (or (or (or (or (or (or (or (or (or (or (or (non-activeI s t e) (activeI s t e)) (startI s t e)) (critI s t e)) (checkI s t e)) (PF2I s t e)) (PF1I s t e)) (TPI s t e)) (F2RI s t e)) (F1RI s t e)) (TRI s t e)) (NEI s t e))))) (not (and (PF2I s t e) (or (or (or (or (or (or (or (or (or (or (or (non-activeI s t e) (activeI s t e)) (startI s t e)) (critI s t e)) (checkI s t e)) (setTurnI s t e)) (PF1I s t e)) (TPI s t e)) (F2RI s t e)) (F1RI s t e)) (TRI s t e)) (NEI s t e))))) (not (and (PF1I s t e) (or (or (or (or (or (or (or (or (or (or (or (non-activeI s t e) (activeI s t e)) (startI s t e)) (critI s t e)) (checkI s t e)) (setTurnI s t e)) (PF2I s t e)) (TPI s t e)) (F2RI s t e)) (F1RI s t e)) (TRI s t e)) (NEI s t e))))) (not (and (TPI s t e) (or (or (or (or (or (or (or (or (or (or (or (non-activeI s t e) (activeI s t e)) (startI s t e)) (critI s t e)) (checkI s t e)) (setTurnI s t e)) (PF2I s t e)) (PF1I s t e)) (F2RI s t e)) (F1RI s t e)) (TRI s t e)) (NEI s t e))))) (not (and (F2RI s t e) (or (or (or (or (or (or (or (or (or (or (or (non-activeI s t e) (activeI s t e)) (startI s t e)) (critI s t e)) (checkI s t e)) (setTurnI s t e)) (PF2I s t e)) (PF1I s t e)) (TPI s t e)) (F1RI s t e)) (TRI s t e)) (NEI s t e))))) (not (and (F1RI s t e) (or (or (or (or (or (or (or (or (or (or (or (non-activeI s t e) (activeI s t e)) (startI s t e)) (critI s t e)) (checkI s t e)) (setTurnI s t e)) (PF2I s t e)) (PF1I s t e)) (TPI s t e)) (F2RI s t e)) (TRI s t e)) (NEI s t e))))) (not (and (TRI s t e) (or (or (or (or (or (or (or (or (or (or (or (non-activeI s t e) (activeI s t e)) (startI s t e)) (critI s t e)) (checkI s t e)) (setTurnI s t e)) (PF2I s t e)) (PF1I s t e)) (TPI s t e)) (F2RI s t e)) (F1RI s t e)) (NEI s t e))))) (not (and (NEI s t e) (or (or (or (or (or (or (or (or (or (or (or (non-activeI s t e) (activeI s t e)) (startI s t e)) (critI s t e)) (checkI s t e)) (setTurnI s t e)) (PF2I s t e)) (PF1I s t e)) (TPI s t e)) (F2RI s t e)) (F1RI s t e)) (TRI s t e)))))) :named Source-edge-incompatiable))
 (assert (! (forall ((a V-OUT)) (and (and (and (and (and (not (and (PO a) (or (or (or (or (F1O a) (F2O a)) (TO a)) (RO a)) (VO a)))) (not (and (F1O a) (or (or (or (or (PO a) (F2O a)) (TO a)) (RO a)) (VO a))))) (not (and (F2O a) (or (or (or (or (PO a) (F1O a)) (TO a)) (RO a)) (VO a))))) (not (and (TO a) (or (or (or (or (PO a) (F1O a)) (F2O a)) (RO a)) (VO a))))) (not (and (RO a) (or (or (or (or (PO a) (F1O a)) (F2O a)) (TO a)) (VO a))))) (not (and (VO a) (or (or (or (or (PO a) (F1O a)) (F2O a)) (TO a)) (RO a)))))) :named Target-node-incompatiable))
 (assert (! (forall ((s V-OUT) (t V-OUT) (e E-OUT)) (and (and (and (and (and (and (and (and (and (and (and (and (not (and (non-activeO s t e) (or (or (or (or (or (or (or (or (or (or (or (activeO s t e) (startO s t e)) (critO s t e)) (checkO s t e)) (setTurnO s t e)) (PF2O s t e)) (PF1O s t e)) (TPO s t e)) (F2RO s t e)) (F1RO s t e)) (TRO s t e)) (NEO s t e)))) (not (and (activeO s t e) (or (or (or (or (or (or (or (or (or (or (or (non-activeO s t e) (startO s t e)) (critO s t e)) (checkO s t e)) (setTurnO s t e)) (PF2O s t e)) (PF1O s t e)) (TPO s t e)) (F2RO s t e)) (F1RO s t e)) (TRO s t e)) (NEO s t e))))) (not (and (startO s t e) (or (or (or (or (or (or (or (or (or (or (or (non-activeO s t e) (activeO s t e)) (critO s t e)) (checkO s t e)) (setTurnO s t e)) (PF2O s t e)) (PF1O s t e)) (TPO s t e)) (F2RO s t e)) (F1RO s t e)) (TRO s t e)) (NEO s t e))))) (not (and (critO s t e) (or (or (or (or (or (or (or (or (or (or (or (non-activeO s t e) (activeO s t e)) (startO s t e)) (checkO s t e)) (setTurnO s t e)) (PF2O s t e)) (PF1O s t e)) (TPO s t e)) (F2RO s t e)) (F1RO s t e)) (TRO s t e)) (NEO s t e))))) (not (and (checkO s t e) (or (or (or (or (or (or (or (or (or (or (or (non-activeO s t e) (activeO s t e)) (startO s t e)) (critO s t e)) (setTurnO s t e)) (PF2O s t e)) (PF1O s t e)) (TPO s t e)) (F2RO s t e)) (F1RO s t e)) (TRO s t e)) (NEO s t e))))) (not (and (setTurnO s t e) (or (or (or (or (or (or (or (or (or (or (or (non-activeO s t e) (activeO s t e)) (startO s t e)) (critO s t e)) (checkO s t e)) (PF2O s t e)) (PF1O s t e)) (TPO s t e)) (F2RO s t e)) (F1RO s t e)) (TRO s t e)) (NEO s t e))))) (not (and (PF2O s t e) (or (or (or (or (or (or (or (or (or (or (or (non-activeO s t e) (activeO s t e)) (startO s t e)) (critO s t e)) (checkO s t e)) (setTurnO s t e)) (PF1O s t e)) (TPO s t e)) (F2RO s t e)) (F1RO s t e)) (TRO s t e)) (NEO s t e))))) (not (and (PF1O s t e) (or (or (or (or (or (or (or (or (or (or (or (non-activeO s t e) (activeO s t e)) (startO s t e)) (critO s t e)) (checkO s t e)) (setTurnO s t e)) (PF2O s t e)) (TPO s t e)) (F2RO s t e)) (F1RO s t e)) (TRO s t e)) (NEO s t e))))) (not (and (TPO s t e) (or (or (or (or (or (or (or (or (or (or (or (non-activeO s t e) (activeO s t e)) (startO s t e)) (critO s t e)) (checkO s t e)) (setTurnO s t e)) (PF2O s t e)) (PF1O s t e)) (F2RO s t e)) (F1RO s t e)) (TRO s t e)) (NEO s t e))))) (not (and (F2RO s t e) (or (or (or (or (or (or (or (or (or (or (or (non-activeO s t e) (activeO s t e)) (startO s t e)) (critO s t e)) (checkO s t e)) (setTurnO s t e)) (PF2O s t e)) (PF1O s t e)) (TPO s t e)) (F1RO s t e)) (TRO s t e)) (NEO s t e))))) (not (and (F1RO s t e) (or (or (or (or (or (or (or (or (or (or (or (non-activeO s t e) (activeO s t e)) (startO s t e)) (critO s t e)) (checkO s t e)) (setTurnO s t e)) (PF2O s t e)) (PF1O s t e)) (TPO s t e)) (F2RO s t e)) (TRO s t e)) (NEO s t e))))) (not (and (TRO s t e) (or (or (or (or (or (or (or (or (or (or (or (non-activeO s t e) (activeO s t e)) (startO s t e)) (critO s t e)) (checkO s t e)) (setTurnO s t e)) (PF2O s t e)) (PF1O s t e)) (TPO s t e)) (F2RO s t e)) (F1RO s t e)) (NEO s t e))))) (not (and (NEO s t e) (or (or (or (or (or (or (or (or (or (or (or (non-activeO s t e) (activeO s t e)) (startO s t e)) (critO s t e)) (checkO s t e)) (setTurnO s t e)) (PF2O s t e)) (PF1O s t e)) (TPO s t e)) (F2RO s t e)) (F1RO s t e)) (TRO s t e)))))) :named Target-edge-incompatiable))
+
+;Any edge comes in or goes out an invalid node is invalid
 (assert (! (forall ((a V-INN) (b V-INN) (c E-INN)) (=> (not (ValidVI a)) (and (not (ValidEI a b c)) (not (ValidEI b a c))))) :named source-untyped-node-edge-undefined))
 (assert (! (forall ((a V-OUT) (b V-OUT) (c E-OUT)) (=> (not (ValidVO a)) (and (not (ValidEO a b c)) (not (ValidEO b a c))))) :named target-untyped-node-edge-undefined))
+
+;Any edge comes in or goes out an null node is null
+(assert (! (forall ((s V-INN) (t V-INN) (e E-INN)) (=> (and (VI s) (ValidVI t)) (and (=> (ValidEI s t e) (NEI s t e)) (=> (ValidEI t s e) (NEI t s e))))) :named VI-null-incoming-null-outing))
+(assert (! (forall ((s V-OUT) (t V-OUT) (e E-OUT)) (=> (and (VO s) (ValidVO t)) (and (=> (ValidEO s t e) (NEO s t e)) (=> (ValidEO t s e) (NEO t s e))))) :named VO-null-incoming-null-outing))
+
+;Source and target information of an edge in metamodel should well kept in the instance level
 (assert (! (forall ((s V-INN) (t V-INN) (e E-INN)) (=> (non-activeI s t e) (and (PI s) (PI t)))) :named non-activeI-source-target))
 (assert (! (forall ((s V-INN) (t V-INN) (e E-INN)) (=> (activeI s t e) (and (PI s) (PI t)))) :named activeI-source-target))
 (assert (! (forall ((s V-INN) (t V-INN) (e E-INN)) (=> (startI s t e) (and (PI s) (PI t)))) :named startI-source-target))
@@ -92,34 +101,12 @@
 (assert (! (forall ((s V-OUT) (t V-OUT) (e E-OUT)) (=> (F1RO s t e) (and (F1O s) (RO t)))) :named F1RO-source-target))
 (assert (! (forall ((s V-OUT) (t V-OUT) (e E-OUT)) (=> (TRO s t e) (and (TO s) (RO t)))) :named TRO-source-target))
 
-(assert (! (forall ((s V-INN) (t V-INN) (e E-INN)) (=> (non-activeI s t e) (forall ((s1 V-INN) (t1 V-INN)) (=> (not (and (= s s1) (= t t1))) (not (ValidEI s1 t1 e)))))) :named non-activeI-edge-exclusive))
-(assert (! (forall ((s V-INN) (t V-INN) (e E-INN)) (=> (activeI s t e) (forall ((s1 V-INN) (t1 V-INN)) (=> (not (and (= s s1) (= t t1))) (not (ValidEI s1 t1 e)))))) :named activeI-edge-exclusive))
-(assert (! (forall ((s V-INN) (t V-INN) (e E-INN)) (=> (startI s t e) (forall ((s1 V-INN) (t1 V-INN)) (=> (not (and (= s s1) (= t t1))) (not (ValidEI s1 t1 e)))))) :named startI-edge-exclusive))
-(assert (! (forall ((s V-INN) (t V-INN) (e E-INN)) (=> (critI s t e) (forall ((s1 V-INN) (t1 V-INN)) (=> (not (and (= s s1) (= t t1))) (not (ValidEI s1 t1 e)))))) :named critI-edge-exclusive))
-(assert (! (forall ((s V-INN) (t V-INN) (e E-INN)) (=> (checkI s t e) (forall ((s1 V-INN) (t1 V-INN)) (=> (not (and (= s s1) (= t t1))) (not (ValidEI s1 t1 e)))))) :named checkI-edge-exclusive))
-(assert (! (forall ((s V-INN) (t V-INN) (e E-INN)) (=> (setTurnI s t e) (forall ((s1 V-INN) (t1 V-INN)) (=> (not (and (= s s1) (= t t1))) (not (ValidEI s1 t1 e)))))) :named setTurnI-edge-exclusive))
-(assert (! (forall ((s V-INN) (t V-INN) (e E-INN)) (=> (PF2I s t e) (forall ((s1 V-INN) (t1 V-INN)) (=> (not (and (= s s1) (= t t1))) (not (ValidEI s1 t1 e)))))) :named PF2I-edge-exclusive))
-(assert (! (forall ((s V-INN) (t V-INN) (e E-INN)) (=> (PF1I s t e) (forall ((s1 V-INN) (t1 V-INN)) (=> (not (and (= s s1) (= t t1))) (not (ValidEI s1 t1 e)))))) :named PF1I-edge-exclusive))
-(assert (! (forall ((s V-INN) (t V-INN) (e E-INN)) (=> (TPI s t e) (forall ((s1 V-INN) (t1 V-INN)) (=> (not (and (= s s1) (= t t1))) (not (ValidEI s1 t1 e)))))) :named TPI-edge-exclusive))
-(assert (! (forall ((s V-INN) (t V-INN) (e E-INN)) (=> (F2RI s t e) (forall ((s1 V-INN) (t1 V-INN)) (=> (not (and (= s s1) (= t t1))) (not (ValidEI s1 t1 e)))))) :named F2RI-edge-exclusive))
-(assert (! (forall ((s V-INN) (t V-INN) (e E-INN)) (=> (F1RI s t e) (forall ((s1 V-INN) (t1 V-INN)) (=> (not (and (= s s1) (= t t1))) (not (ValidEI s1 t1 e)))))) :named F1RI-edge-exclusive))
-(assert (! (forall ((s V-INN) (t V-INN) (e E-INN)) (=> (TRI s t e) (forall ((s1 V-INN) (t1 V-INN)) (=> (not (and (= s s1) (= t t1))) (not (ValidEI s1 t1 e)))))) :named TRI-edge-exclusive))
 
-(assert (! (forall ((s V-OUT) (t V-OUT) (e E-OUT)) (=> (non-activeO s t e) (forall ((s1 V-OUT) (t1 V-OUT)) (=> (not (and (= s s1) (= t t1))) (not (ValidEO s1 t1 e)))))) :named non-activeO-edge-exclusive))
-(assert (! (forall ((s V-OUT) (t V-OUT) (e E-OUT)) (=> (activeO s t e) (forall ((s1 V-OUT) (t1 V-OUT)) (=> (not (and (= s s1) (= t t1))) (not (ValidEO s1 t1 e)))))) :named activeO-edge-exclusive))
-(assert (! (forall ((s V-OUT) (t V-OUT) (e E-OUT)) (=> (startO s t e) (forall ((s1 V-OUT) (t1 V-OUT)) (=> (not (and (= s s1) (= t t1))) (not (ValidEO s1 t1 e)))))) :named startO-edge-exclusive))
-(assert (! (forall ((s V-OUT) (t V-OUT) (e E-OUT)) (=> (critO s t e) (forall ((s1 V-OUT) (t1 V-OUT)) (=> (not (and (= s s1) (= t t1))) (not (ValidEO s1 t1 e)))))) :named critO-edge-exclusive))
-(assert (! (forall ((s V-OUT) (t V-OUT) (e E-OUT)) (=> (checkO s t e) (forall ((s1 V-OUT) (t1 V-OUT)) (=> (not (and (= s s1) (= t t1))) (not (ValidEO s1 t1 e)))))) :named checkO-edge-exclusive))
-(assert (! (forall ((s V-OUT) (t V-OUT) (e E-OUT)) (=> (setTurnO s t e) (forall ((s1 V-OUT) (t1 V-OUT)) (=> (not (and (= s s1) (= t t1))) (not (ValidEO s1 t1 e)))))) :named setTurnO-edge-exclusive))
-(assert (! (forall ((s V-OUT) (t V-OUT) (e E-OUT)) (=> (PF2O s t e) (forall ((s1 V-OUT) (t1 V-OUT)) (=> (not (and (= s s1) (= t t1))) (not (ValidEO s1 t1 e)))))) :named PF2O-edge-exclusive))
-(assert (! (forall ((s V-OUT) (t V-OUT) (e E-OUT)) (=> (PF1O s t e) (forall ((s1 V-OUT) (t1 V-OUT)) (=> (not (and (= s s1) (= t t1))) (not (ValidEO s1 t1 e)))))) :named PF1O-edge-exclusive))
-(assert (! (forall ((s V-OUT) (t V-OUT) (e E-OUT)) (=> (TPO s t e) (forall ((s1 V-OUT) (t1 V-OUT)) (=> (not (and (= s s1) (= t t1))) (not (ValidEO s1 t1 e)))))) :named TPO-edge-exclusive))
-(assert (! (forall ((s V-OUT) (t V-OUT) (e E-OUT)) (=> (F2RO s t e) (forall ((s1 V-OUT) (t1 V-OUT)) (=> (not (and (= s s1) (= t t1))) (not (ValidEO s1 t1 e)))))) :named F2RO-edge-exclusive))
-(assert (! (forall ((s V-OUT) (t V-OUT) (e E-OUT)) (=> (F1RO s t e) (forall ((s1 V-OUT) (t1 V-OUT)) (=> (not (and (= s s1) (= t t1))) (not (ValidEO s1 t1 e)))))) :named F1RO-edge-exclusive))
-(assert (! (forall ((s V-OUT) (t V-OUT) (e E-OUT)) (=> (TRO s t e) (forall ((s1 V-OUT) (t1 V-OUT)) (=> (not (and (= s s1) (= t t1))) (not (ValidEO s1 t1 e)))))) :named TRO-edge-exclusive))
+;If edge (s, t, e) is an valid edge, then other combination (s', t', e) are invalid
+(assert (! (forall ((s V-INN) (t V-INN) (e E-INN)) (=> (ValidEI s t e) (forall ((s1 V-INN) (t1 V-INN)) (=> (not (and (= s s1) (= t t1))) (not (ValidEI s1 t1 e)))))) :named source-edge-exclusive))
+(assert (! (forall ((s V-OUT) (t V-OUT) (e E-OUT)) (=> (ValidEO s t e) (forall ((s1 V-OUT) (t1 V-OUT)) (=> (not (and (= s s1) (= t t1))) (not (ValidEO s1 t1 e)))))) :named target-edge-exclusive))
 
-(assert (! (forall ((s V-INN)) (=> (VI s) (forall ((t V-INN) (e E-INN)) (and (NEI s t e) (NEI t s e))))) :named VI-null-incoming-null-outing))
-(assert (! (forall ((s V-OUT)) (=> (VO s) (forall ((t V-OUT) (e E-OUT)) (and (NEO s t e) (NEO t s e))))) :named VO-null-incoming-null-outing))
+;Only one Null Node exists in instance level
 (assert (! (forall ((s V-INN) (t V-INN)) (or (= s t) (not (and (VI s) (VI t))))) :named Source-only-one-null-node-allowed))
 (assert (! (forall ((s V-OUT) (t V-OUT)) (or (= s t) (not (and (VO s) (VO t))))) :named Target-only-one-null-node-allowed))
 (assert (! (forall ((s V-INN) (t V-INN) (e E-INN) (e1 E-INN)) (or (= e e1) (not (and (NEI s t e) (NEI s t e1))))) :named Source-only-one-null-edge-allowed))
@@ -132,18 +119,26 @@
 (declare-fun delV (V-INN) V-OUT)
 (declare-fun addE (V-OUT V-OUT E-OUT) InnTuple)
 (declare-fun delE (V-INN V-INN E-INN) OutTuple)
+
+;If an node is changed, the incoming and outgoing edges are also changed
 (assert (! (forall ((a V-INN) (b V-OUT) (t V-INN) (e E-INN)) (=> (and (= (delV a) b) (ValidVI a)) (and (=> (ValidEI a t e) (exists ((t1 V-OUT) (e1 E-OUT)) (= (delE a t e) (out-tuple b t1 e1)))) (=> (ValidEI t a e) (exists ((t1 V-OUT) (e1 E-OUT)) (= (delE t a e) (out-tuple t1 b e1))))))) :named node-del-edge-del))
 (assert (! (forall ((a V-OUT) (b V-INN) (t V-OUT) (e E-OUT)) (=> (and (= (addV a) b) (ValidVO a)) (and (=> (ValidEO a t e) (exists ((t1 V-INN) (e1 E-INN)) (= (addE a t e) (inn-tuple b t1 e1)))) (=> (ValidEO t a e) (exists ((t1 V-INN) (e1 E-INN)) (= (addE t a e) (inn-tuple t1 b e1))))))) :named node-add-edge-add))
-(assert (! (forall ((a V-OUT) (b V-OUT) (c E-OUT) (d V-INN) (e V-INN) (f E-INN)) (=> (and (ValidEI d e f) (and (ValidEO a b c) (= (addE a b c) (inn-tuple d e f)))) (and (= (addV a) d) (= (addV b) e)))) :named Add-Source-Target-Kept))
-(assert (! (forall ((a V-INN) (b V-INN) (c E-INN) (d V-OUT) (e V-OUT) (f E-OUT)) (=> (and (ValidEI a b c) (and (ValidEO d e f) (= (delE a b c) (out-tuple d e f)))) (and (= (delV a) d) (= (delV b) e)))) :named Del-Source-Target-Kept))
+
+;Invalid elements and Null elements are changed into Null elements
 (assert (! (forall ((a V-INN) (b V-OUT)) (=> (and (or (not (ValidVI a)) (VI a)) (= (delV a) b)) (VO b))) :named Null-Inn-Or-Invalid-Node-Null-Out-Deled))
 (assert (! (forall ((a V-OUT) (b V-INN)) (=> (and (or (not (ValidVO a)) (VO a)) (= (addV a) b)) (VI b))) :named Null-Out-Or-Invalid-Node-Null-Inn-Added))
-(assert (! (forall ((a V-INN) (b V-INN) (c E-INN) (d V-OUT) (e V-OUT) (f E-OUT)) (=> (and (or (not (ValidEI a b c)) (NEI a b c)) (= (delE a b c) (out-tuple d e f))) (NEO d e f))) :named Null-Inn-Or-Invalid-Edge--Null-Out-Edge-Deled))
-(assert (! (forall ((a V-OUT) (b V-OUT) (c E-OUT) (d V-INN) (e V-INN) (f E-INN)) (=> (and (or (not (ValidEO a b c)) (NEO a b c)) (= (addE a b c) (inn-tuple d e f))) (NEI d e f))) :named Null-Out-Or-Invalid-Edge--Null-Inn-Edge-Added))
+(assert (! (forall ((a V-INN) (b V-INN) (c E-INN) (d V-OUT) (e V-OUT) (f E-OUT)) (=> (and (or (not (ValidEI a b c)) (NEI a b c)) (= (delE a b c) (out-tuple d e f))) (NEO d e f))) :named Null-Inn-Or-Invalid-Edge-Null-Out-Edge-Deled))
+(assert (! (forall ((a V-OUT) (b V-OUT) (c E-OUT) (d V-INN) (e V-INN) (f E-INN)) (=> (and (or (not (ValidEO a b c)) (NEO a b c)) (= (addE a b c) (inn-tuple d e f))) (NEI d e f))) :named Null-Out-Or-Invalid-Edge-Null-Inn-Edge-Added))
+
+;Commond part for each transformation are well kept
+(assert (! (forall ((a V-OUT) (b V-OUT) (c E-OUT) (d V-INN) (e V-INN) (f E-INN)) (=> (and (ValidEI d e f) (and (ValidEO a b c) (= (addE a b c) (inn-tuple d e f)))) (and (= (addV a) d) (= (addV b) e)))) :named Add-Source-Target-Kept))
+(assert (! (forall ((a V-INN) (b V-INN) (c E-INN) (d V-OUT) (e V-OUT) (f E-OUT)) (=> (and (ValidEI a b c) (and (ValidEO d e f) (= (delE a b c) (out-tuple d e f)))) (and (= (delV a) d) (= (delV b) e)))) :named Del-Source-Target-Kept))
 (assert (! (forall ((a V-INN) (b V-OUT)) (=> (and (and (NNullVI a) (NNullVO b)) (= (delV a) b)) (= (addV b) a))) :named del-kept-add-kept))
 (assert (! (forall ((a V-INN) (b V-OUT)) (=> (and (and (NNullVI a) (NNullVO b)) (= (addV b) a)) (= (delV a) b))) :named add-kept-del-kept))
 (assert (! (forall ((a V-INN) (b V-INN) (c E-INN) (d V-OUT) (e V-OUT) (f E-OUT)) (=> (and (and (NNullEI a b c) (NNullEO d e f)) (= (addE d e f) (inn-tuple a b c))) (= (delE a b c) (out-tuple d e f)))) :named del-edge-kept-add-edge-kept))
 (assert (! (forall ((a V-INN) (b V-INN) (c E-INN) (d V-OUT) (e V-OUT) (f E-OUT)) (=> (and (and (NNullEO d e f) (NNullEI a b c)) (= (addE d e f) (inn-tuple a b c))) (= (delE a b c) (out-tuple d e f)))) :named add-edge-kept-del-edge-kept))
+
+;Well kept elements are type well kept
 (assert (! (forall ((a V-INN) (b V-OUT)) (=> (and (and (NNullVI a) (NNullVO b)) (= (delV a) b))
  (and (and (and (and (and (=> (PI a) (PO b)) (=> (PO b) (PI a))) (and (=> (F1I a) (F1O b)) (=> (F1O b) (F1I a))))
  (and (=> (F2I a) (F2O b)) (=> (F2O b) (F2I a))))
@@ -182,24 +177,34 @@
  (and (=> (F1RI a b c) (F1RO d e f)) (=> (F1RO d e f) (F1RI a b c))))
  (and (=> (TRI a b c) (TRO d e f)) (=> (TRO d e f) (TRI a b c))))
 )) :named edge-type-add-kept))
+
+;Well kept elements are changed injectively
 (assert (! (forall ((a V-INN) (b V-OUT) (c V-OUT)) (=> (and (and (NNullVO b) (NNullVO c)) (and (= (addV b) a) (NNullVI a))) (or (= c b) (not (= (addV c) a))))) :named node-add-injective))
 (assert (! (forall ((a V-INN) (b V-OUT) (c V-INN)) (=> (and (and (NNullVI a) (NNullVI c)) (and (= (delV a) b) (NNullVO b))) (or (= c a) (not (= (delV c) b))))) :named node-del-injective))
 (assert (! (forall ((a V-INN) (b V-INN) (c E-INN) (d V-OUT) (e V-OUT) (f E-OUT) (h V-OUT) (i V-OUT) (j E-OUT)) (=> (and (and (NNullEO d e f) (NNullEO h i j)) (and (= (addE d e f) (inn-tuple a b c)) (NNullEI a b c))) (or (or (= d h) (or (= e i) (= f j))) (not (= (addE h i j) (inn-tuple a b c)))))) :named edge-add-injective))
 (assert (! (forall ((a V-INN) (b V-INN) (c E-INN) (d V-OUT) (e V-OUT) (f E-OUT) (h V-INN) (i V-INN) (j E-INN)) (=> (and (and (NNullEI a b c) (NNullEI h i j)) (and (= (delE a b c) (out-tuple d e f)) (NNullEO d e f))) (or (or (= a h) (or (= b i) (= c j))) (not (= (delE h i j) (out-tuple d e f)))))) :named edge-del-injective))
-(assert (! (forall ((a V-INN)) (=> (ValidVI a) (exists ((b V-OUT)) (and (ValidVO b) (= a (addV b)))))) :named each-valid-node-in-target-is-added))
-(assert (! (forall ((a V-OUT)) (=> (ValidVO a) (exists ((b V-INN)) (and (ValidVI b) (= a (delV b)))))) :named each-valid-node-in-source-is-deled))
-(assert (! (forall ((a V-INN) (b V-INN) (c E-INN)) (=> (ValidEI a b c) (exists ((d V-OUT) (e V-OUT) (f E-OUT)) (and (ValidEO d e f) (= (addE d e f) (inn-tuple a b c)))))) :named each-valid-edge-in-target-is-added))
-(assert (! (forall ((a V-OUT) (b V-OUT) (c E-OUT)) (=> (ValidEO a b c) (exists ((d V-INN) (e V-INN) (f E-INN)) (and (ValidEI d e f) (= (delE d e f) (out-tuple a b c)))))) :named each-valid-edge-in-source-is-deled))
-(assert (! (forall ((t V-OUT)) (=> (not (ValidVO t)) (not (exists ((s V-INN)) (= (delV s) t))))) :named no-invalid-node-in-source-ismapped-by-del))
-(assert (! (forall ((s V-INN)) (=> (not (ValidVI s)) (not (exists ((t V-OUT)) (= (addV t) s))))) :named no-invalid-node-in-target-ismapped-by-add))
-(assert (! (forall ((s V-OUT) (t V-OUT) (e E-OUT)) (=> (not (ValidEO s t e)) (not (exists ((a V-INN) (b V-INN) (c E-INN)) (= (delE a b c) (out-tuple s t e)))))) :named no-invalid-edge-in-source-ismapped-by-del))
-(assert (! (forall ((a V-INN) (b V-INN) (c E-INN)) (=> (not (ValidEI a b c)) (not (exists ((s V-OUT) (t V-OUT) (e E-OUT)) (= (addE s t e) (inn-tuple a b c)))))) :named no-invalid-edge-in-target-ismapped-by-add))
-(assert (! (forall ((a V-INN) (b V-INN) (c E-INN)) (=> (VI a) (and (NEI a b c) (NEI b a c)))) :named no-dangle-in-source-model))
-(assert (! (forall ((a V-OUT) (b V-OUT) (c E-OUT)) (=> (VO a) (and (NEO a b c) (NEO b a c)))) :named no-dangle-in-target-model))
-(assert (! (forall ((a V-INN)) (=> (ValidVI a) (exists ((b V-OUT)) (and (ValidVO b) (= b (delV a)))))) :named each-node-in-source-is-deled))
-(assert (! (forall ((a V-OUT)) (=> (ValidVO a) (exists ((b V-INN)) (and (ValidVI b) (= b (addV a)))))) :named each-node-in-target-is-added))
-(assert (! (forall ((a V-INN) (b V-INN) (c E-INN)) (=> (ValidEI a b c) (exists ((d V-OUT) (e V-OUT) (f E-OUT)) (and (ValidEO d e f) (= (delE a b c) (out-tuple d e f)))))) :named each-edge-in-source-is-deled))
-(assert (! (forall ((a V-OUT) (b V-OUT) (c E-OUT)) (=> (ValidEO a b c) (exists ((d V-INN) (e V-INN) (f E-INN)) (and (ValidEI d e f) (= (addE a b c) (inn-tuple d e f)))))) :named each-edge-in-target-is-added))
+
+;Each valid elements in the target model should hava a preimage for del
+;Each valid elements in the source model should hava a preimage for add
+(assert (! (forall ((a V-OUT)) (=> (NNullVO a) (exists ((b V-INN)) (and (NNullVI b) (= a (delV b)))))) :named each-valid-node-in-target-has-pre-image-in-del))
+(assert (! (forall ((a V-INN)) (=> (NNullVI a) (exists ((b V-OUT)) (and (NNullVO b) (= a (addV b)))))) :named each-valid-node-in-source-has-pre-image-in-add))
+(assert (! (forall ((a V-INN) (b V-INN) (c E-INN)) (=> (ValidEI a b c) (exists ((d V-OUT) (e V-OUT) (f E-OUT)) (and (ValidEO d e f) (= (addE d e f) (inn-tuple a b c)))))) :named each-valid-edge-in-target-has-pre-image-in-add))
+(assert (! (forall ((a V-OUT) (b V-OUT) (c E-OUT)) (=> (ValidEO a b c) (exists ((d V-INN) (e V-INN) (f E-INN)) (and (ValidEI d e f) (= (delE d e f) (out-tuple a b c)))))) :named each-valid-edge-in-target-has-pre-image-in-del))
+
+;Each valid elements in the source model should hava an image for del
+;Each valid elements in the target model should hava an image for add
+(assert (! (forall ((a V-INN)) (=> (ValidVI a) (exists ((b V-OUT)) (and (ValidVO b) (= b (delV a)))))) :named each-valid-node-in-source-is-deled))
+(assert (! (forall ((a V-OUT)) (=> (ValidVO a) (exists ((b V-INN)) (and (ValidVI b) (= b (addV a)))))) :named each-valid-node-in-target-is-added))
+(assert (! (forall ((a V-INN) (b V-INN) (c E-INN)) (=> (ValidEI a b c) (exists ((d V-OUT) (e V-OUT) (f E-OUT)) (and (ValidEO d e f) (= (delE a b c) (out-tuple d e f)))))) :named each-valid-edge-in-source-is-deled))
+(assert (! (forall ((a V-OUT) (b V-OUT) (c E-OUT)) (=> (ValidEO a b c) (exists ((d V-INN) (e V-INN) (f E-INN)) (and (ValidEI d e f) (= (addE a b c) (inn-tuple d e f)))))) :named each-valid-edge-in-target-is-added))
+
+;Each invalid elements in the target model should hava no preimage for del
+;Each invalid elements in the source model should hava no preimage for add
+(assert (! (forall ((t V-OUT)) (=> (not (ValidVO t)) (not (exists ((s V-INN)) (= (delV s) t))))) :named no-invalid-node-in-source-has-pre-image-in-del))
+(assert (! (forall ((s V-INN)) (=> (not (ValidVI s)) (not (exists ((t V-OUT)) (= (addV t) s))))) :named no-invalid-node-in-target-has-pre-image-in-add))
+(assert (! (forall ((s V-OUT) (t V-OUT) (e E-OUT)) (=> (not (ValidEO s t e)) (not (exists ((a V-INN) (b V-INN) (c E-INN)) (= (delE a b c) (out-tuple s t e)))))) :named no-invalid-edge-in-source-has-pre-image-in-del))
+(assert (! (forall ((a V-INN) (b V-INN) (c E-INN)) (=> (not (ValidEI a b c)) (not (exists ((s V-OUT) (t V-OUT) (e E-OUT)) (= (addE s t e) (inn-tuple a b c)))))) :named no-invalid-edge-in-target-has-pre-image-in-add))
+
 (declare-datatypes () ((RuleID idsetFlag idsetTurn1 idsetTurn2 identer idexit)))
 (declare-fun delVID (V-INN RuleID) Bool)
 (declare-fun addVID (V-OUT RuleID) Bool)
@@ -276,12 +281,12 @@
 (assert (! (forall ((s V-INN) (t V-INN) (e E-INN)) (=> (critI s t e) (= s t))) :named critI-reflexive))
 (assert (! (forall ((s V-INN) (t V-INN) (e E-INN)) (=> (checkI s t e) (= s t))) :named checkI-reflexive))
 (assert (! (forall ((s V-INN) (t V-INN) (e E-INN)) (=> (setTurnI s t e) (= s t))) :named setTurnI-reflexive))
-(assert (! (forall ((a V-INN) (b V-INN)) (or (not (and (TI a) (TI b))) (= a b))) :named unique-TI))
-(assert (! (forall ((a V-INN) (b V-INN)) (or (not (and (RI a) (RI b))) (= a b))) :named unique-RI))
+;(assert (! (forall ((a V-INN) (b V-INN)) (or (not (and (TI a) (TI b))) (= a b))) :named unique-TI))
+;(assert (! (forall ((a V-INN) (b V-INN)) (or (not (and (RI a) (RI b))) (= a b))) :named unique-RI))
 (assert (! (exists ((a V-INN)) (TI a)) :named exist-TI))
-(assert (! (exists ((a V-INN)) (RI a)) :named exist-RI))
+;(assert (! (exists ((a V-INN)) (RI a)) :named exist-RI))
 (assert (! (exists ((a V-INN)) (PI a)) :named exist-PI))
-(assert (! (exists ((s V-INN) (t V-INN) (e E-INN)) (TPI s t e)) :named exist-edge-TPI))
+;(assert (! (exists ((s V-INN) (t V-INN) (e E-INN)) (TPI s t e)) :named exist-edge-TPI))
 (assert (!  (or (exists ((s0 V-INN) (t0 V-INN) (e0 E-INN)) (non-activeI s0 t0 e0)) (exists ((s1 V-INN) (t1 V-INN) (e1 E-INN)) (activeI s1 t1 e1))) :named exist-one-of-non-activeI-activeI-edges))
 (assert (!  (or (or (or (exists ((s0 V-INN) (t0 V-INN) (e0 E-INN)) (startI s0 t0 e0)) (exists ((s1 V-INN) (t1 V-INN) (e1 E-INN)) (critI s1 t1 e1))) (exists ((s2 V-INN) (t2 V-INN) (e2 E-INN)) (checkI s2 t2 e2))) (exists ((s3 V-INN) (t3 V-INN) (e3 E-INN)) (setTurnI s3 t3 e3))) :named exist-one-of-startI-critI-checkI-setTurnI-edges))
 (assert (!  (and (not (forall ((a0 V-INN) (b0 V-INN) (c0 E-INN)) (exists ((d0 V-INN) (e0 V-INN) (f0 E-INN)) (and (and (and (= a0 d0) (= b0 e0)) (non-activeI a0 b0 c0)) (activeI d0 e0 f0))))) (not (forall ((a1 V-INN) (b1 V-INN) (c1 E-INN)) (exists ((d1 V-INN) (e1 V-INN) (f1 E-INN)) (and (and (and (= a1 d1) (= b1 e1)) (activeI a1 b1 c1)) (non-activeI d1 e1 f1)))))) :named non-activeI-activeI-incompatiable))
