@@ -124,14 +124,14 @@ public class SMT {
 //				"(=> (and (ValidEI d e f) (and (ValidEO a b c) (= (addE a b c) (inn-tuple d e f)))) (and (= (addV a) d) (= (addV b) e)))) :named Add-Source-Target-Kept))");
 //		writer.println("(assert (! (forall ((a " + VINN + ") (b " + VINN + ") (c " + EINN + ") (d " + VOUT + ") (e " + VOUT + ") (f " + EOUT + ")) " +
 //				"(=> (and (ValidEI a b c) (and (ValidEO d e f) (= (delE a b c) (out-tuple d e f)))) (and (= (delV a) d) (= (delV b) e)))) :named Del-Source-Target-Kept))");
-		writer.println("(assert (! (forall ((a " + VINN + ") (b " + VOUT + ")) (=> (and (and (NNullVI a) (NNullVO b)) (= (delV a) b)) (= (addV b) a))) :named del-kept-add-kept))");
-		writer.println("(assert (! (forall ((a " + VINN + ") (b " + VOUT + ")) (=> (and (and (NNullVI a) (NNullVO b)) (= (addV b) a)) (= (delV a) b))) :named add-kept-del-kept))");
+		writer.println("(assert (! (forall ((a " + VINN + ") (b " + VOUT + ")) (=> (and (and (NNullVI a) (NNullVO b)) (= (delV a) b)) (= (addV b) a))) :named common-node-del-bi))");
+		writer.println("(assert (! (forall ((a " + VINN + ") (b " + VOUT + ")) (=> (and (and (NNullVI a) (NNullVO b)) (= (addV b) a)) (= (delV a) b))) :named common-node-add-bi))");
 		writer.println("(assert (! (forall ((a " + VINN + ") (b " + VINN + ") (c " + EINN + ") (d " + VOUT + ") (e " + VOUT + ") (f " + EOUT + ")) " +
-				"(=> (and (and (NNullEI a b c) (NNullEO d e f)) (= (addE d e f) (inn-tuple a b c))) (= (delE a b c) (out-tuple d e f)))) :named del-edge-kept-add-edge-kept))");
+				"(=> (and (and (NNullEI a b c) (NNullEO d e f)) (= (delE a b c) (out-tuple d e f))) (= (addE d e f) (inn-tuple a b c)))) :named common-edge-del-bi))");
 		writer.println("(assert (! (forall ((a " + VINN + ") (b " + VINN + ") (c " + EINN + ") (d " + VOUT + ") (e " + VOUT + ") (f " + EOUT + ")) " +
-				"(=> (and (and (NNullEO d e f) (NNullEI a b c)) (= (addE d e f) (inn-tuple a b c))) (= (delE a b c) (out-tuple d e f)))) :named add-edge-kept-del-edge-kept))");
+				"(=> (and (and (NNullEO d e f) (NNullEI a b c)) (= (addE d e f) (inn-tuple a b c))) (= (delE a b c) (out-tuple d e f)))) :named common-edge-add-bi))");
 		writer.println("");
-		writer.println(";Well kept elements are type well kept");
+		writer.println(";the type of commond elements are well kept");
 		writer.println("(assert (! (forall ((a " + VINN + ") (b " + VOUT + ")) (=> (and (and (NNullVI a) (NNullVO b)) (= (delV a) b))");
 		for (int i = 0; i < sVertex.length - 2; i++) {
 			writer.print(" (and");
@@ -175,7 +175,7 @@ public class SMT {
 		writer.println(")) :named edge-type-add-kept))");
 
 		writer.println("");
-		writer.println(";Well kept elements are changed injectively");
+		writer.println(";common elements are mapped injectively");
 		writer.println("(assert (! (forall ((a " + VINN + ") (b " + VOUT + ") (c " + VOUT + ")) " +
 				"(=> (and (and (NNullVO b) (NNullVO c)) (and (= (addV b) a) (NNullVI a))) (or (= c b) (not (= (addV c) a))))) :named node-add-injective))");
 		writer.println("(assert (! (forall ((a " + VINN + ") (b " + VOUT + ") (c " + VINN + ")) " +
@@ -305,18 +305,18 @@ public class SMT {
 //				"(=> (and (addEID f id) (= (inn-tuple a b c) (addE d e f))) (NEI a b c))) :named id-edge-added))");
 								
 		writer.println("(assert (! (forall ((a " + VINN + ") (b " + VINN + ") (c " + EINN + ") (id RuleID)) (=> (and (delVID a id)) " +
-				"(=> (or (NNullEI a b c) (NNullEI b a c)) (delEID c id)))) :named id-node-edge-deled-id)) ");
-		writer.println("(assert (! (forall ((a " + VOUT + ") (b " + VOUT + ") (c " + EOUT + ") (id RuleID)) " +
-				"(=> (and (addVID a id)) (=> (or (NNullEO a b c) (NNullEO b a c)) (addEID c id)))) :named id-node-edge-added-id))");
+				"(=> (and (=> (NNullEI a b c) (delEID a b c id)) (=> (NNullEI b a c) (delEID b a c id)))))) :named id-node-del-edge-del))");
+		writer.println("(assert (! (forall ((a " + VOUT + ") (b " + VOUT + ") (c " + EOUT + ") (id RuleID)) (=> (and (addVID a id)) " +
+				"(=> (and (=> (NNullEO a b c) (addEID a b c id)) (=> (NNullEO b a c) (addEID b a c id)))))) :named id-node-add-edge-add))");
 		
-		writer.println(idIncompatiable(rules, true, true));
-		writer.println(idIncompatiable(rules, true, false));
-		writer.println(idIncompatiable(rules, false, true));
-		writer.println(idIncompatiable(rules, false, false));
-		writer.println("(assert (! (forall ((s V-INN)) (=> (and (NNullVI s) (not (exists ((id RuleID)) (delVID s id)))) (exists ((t V-OUT)) (and (= t (delV s)) (NNullVO t))))) :named unmatched-node-del-kept))");
-		writer.println("(assert (! (forall ((s V-OUT)) (=> (and (NNullVO s) (not (exists ((id RuleID)) (addVID s id)))) (exists ((t V-INN)) (and (= t (addV s)) (NNullVI t))))) :named unmatched-node-add-kept))");
-		writer.println("(assert (! (forall ((a V-INN) (b V-INN) (c E-INN)) (=> (and (NNullEI a b c) (not (exists ((id RuleID)) (delEID c id)))) (exists ((d V-OUT) (e V-OUT) (f E-OUT)) (and (= (out-tuple d e f) (delE a b c)) (NNullEO d e f))))) :named unmatched-edge-del-kept))");
-		writer.println("(assert (! (forall ((a V-OUT) (b V-OUT) (c E-OUT)) (=> (and (NNullEO a b c) (not (exists ((id RuleID)) (addEID c id)))) (exists ((d V-INN) (e V-INN) (f E-INN)) (and (= (inn-tuple d e f) (addE a b c)) (NNullEI d e f))))) :named unmatched-edge-add-kept))");
+		writer.println(idNodeIncompatiable(rules, true));
+		writer.println(idNodeIncompatiable(rules, false));
+		writer.println(idEdgeIncompatiable(rules, true));
+		writer.println(idEdgeIncompatiable(rules, false));
+//		writer.println("(assert (! (forall ((s V-INN)) (=> (and (NNullVI s) (not (exists ((id RuleID)) (delVID s id)))) (exists ((t V-OUT)) (and (= t (delV s)) (NNullVO t))))) :named unmatched-node-del-kept))");
+//		writer.println("(assert (! (forall ((s V-OUT)) (=> (and (NNullVO s) (not (exists ((id RuleID)) (addVID s id)))) (exists ((t V-INN)) (and (= t (addV s)) (NNullVI t))))) :named unmatched-node-add-kept))");
+//		writer.println("(assert (! (forall ((a V-INN) (b V-INN) (c E-INN)) (=> (and (NNullEI a b c) (not (exists ((id RuleID)) (delEID c id)))) (exists ((d V-OUT) (e V-OUT) (f E-OUT)) (and (= (out-tuple d e f) (delE a b c)) (NNullEO d e f))))) :named unmatched-edge-del-kept))");
+//		writer.println("(assert (! (forall ((a V-OUT) (b V-OUT) (c E-OUT)) (=> (and (NNullEO a b c) (not (exists ((id RuleID)) (addEID c id)))) (exists ((d V-INN) (e V-INN) (f E-INN)) (and (= (inn-tuple d e f) (addE a b c)) (NNullEI d e f))))) :named unmatched-edge-add-kept))");
 
 		for(Rule rule : rules){
 			rule.printRule(writer);
@@ -596,13 +596,13 @@ public class SMT {
 	
 	}
 
-	private  String idIncompatiable(List<Rule> rules, boolean in, boolean node){
+	private  String idNodeIncompatiable(List<Rule> rules, boolean in){
 		if(rules.size() == 1)
 			return "";
 
-		String fname = (in ? "del" : "add") + (node ? "V" : "E") + "ID";
+		String fname = (in ? "del" : "add") + "VID";
 		StringBuffer result = new StringBuffer();
-		result.append("(assert (! (forall ((a " + (node ? "V" : "E") + "-" + (in ? INN : OUT) + "))");
+		result.append("(assert (! (forall ((a V-" + (in ? INN : OUT) + "))");
 		
 		int size = rules.size();
 		for (int i = 0; i < size - 1; i++) {
@@ -624,7 +624,38 @@ public class SMT {
 			if(i != 0)
 				result.append(")");
 		}
-		result.append(") :named " + (in ? "Del" : "Add") + "-" + (node ? "node" : "edge") + "-only-once))");
+		result.append(") :named " + (in ? "Del" : "Add") + "-node-only-once))");
+		return result.toString();
+	}
+	private  String idEdgeIncompatiable(List<Rule> rules, boolean in){
+		if(rules.size() == 1)
+			return "";
+		
+		String fname = (in ? "del" : "add")  + "EID";
+		StringBuffer result = new StringBuffer();
+		result.append("(assert (! (forall ((a V-" + (in ? INN : OUT) + ") (b V-" + (in ? INN : OUT) + ") (c E-" + (in ? INN : OUT) + "))");
+		
+		int size = rules.size();
+		for (int i = 0; i < size - 1; i++) {
+			result.append(" (and");
+		}
+		for (int i = 0; i < size; i++) {
+			result.append(" (not (and " + "(" + fname + " a b c id" + rules.get(i).name +  ")");
+			for(int j = 0; j < size - 2; j++){
+				result.append(" (or");
+			}
+			for(int j = 0; j < size; j++){
+				if(i != j){
+					result.append(" (" + fname + " a b c id" + rules.get(j).name +  ")");
+					if((i == 0 && j > 1) || (i > 0 && j > 0))
+						result.append(")");
+				}
+			}
+			result.append("))");
+			if(i != 0)
+				result.append(")");
+		}
+		result.append(") :named " + (in ? "Del" : "Add") + "-edge-only-once))");
 		return result.toString();
 	}
 

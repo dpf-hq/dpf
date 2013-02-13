@@ -269,9 +269,9 @@ class Rule{
 	private boolean printEdgeChange(PrintWriter writer, Edge n, boolean start,
 			boolean input) {
 		if(input)
-			writer.print(" (delEID ei" + n.index + " id" + name + ")");
+			writer.print(" (delEID ni" + n.src + " ni" + n.trg + " ei" + n.index + " id" + name + ")");
 		else
-			writer.print(" (addEID eo" + n.index + " id" + name + ")");
+			writer.print(" (addEID no" + n.src + " no" + n.trg + " eo" + n.index + " id" + name + ")");
 		if(!start)
 			writer.print(")");
 		else
