@@ -121,8 +121,8 @@
 (declare-fun delE (V-INN V-INN E-INN) OutTuple)
 
 ;If an node is changed, the incoming and outgoing edges are also changed
-(assert (! (forall ((a V-INN) (b V-OUT) (t V-INN) (e E-INN)) (=> (and (= (delV a) b) (ValidVI a)) (and (=> (ValidEI a t e) (exists ((t1 V-OUT) (e1 E-OUT)) (= (delE a t e) (out-tuple b t1 e1)))) (=> (ValidEI t a e) (exists ((t1 V-OUT) (e1 E-OUT)) (= (delE t a e) (out-tuple t1 b e1))))))) :named node-del-edge-del))
-(assert (! (forall ((a V-OUT) (b V-INN) (t V-OUT) (e E-OUT)) (=> (and (= (addV a) b) (ValidVO a)) (and (=> (ValidEO a t e) (exists ((t1 V-INN) (e1 E-INN)) (= (addE a t e) (inn-tuple b t1 e1)))) (=> (ValidEO t a e) (exists ((t1 V-INN) (e1 E-INN)) (= (addE t a e) (inn-tuple t1 b e1))))))) :named node-add-edge-add))
+(assert (! (forall ((a V-INN) (b V-INN) (c E-INN) (d V-OUT) (e V-OUT) (f E-OUT)) (=> (= (addE d e f) (inn-tuple a b c)) (and (= (addV d) a) (= (addV e) b)))) :named add-graph-morphism))
+(assert (! (forall ((a V-INN) (b V-INN) (c E-INN) (d V-OUT) (e V-OUT) (f E-OUT)) (=> (= (delE a b c) (out-tuple d e f)) (and (= (delV a) d) (= (delV b) e)))) :named del-graph-morphism))
 
 ;Invalid elements and Null elements are changed into Null elements
 (assert (! (forall ((a V-INN) (b V-OUT)) (=> (and (or (not (ValidVI a)) (VI a)) (= (delV a) b)) (VO b))) :named Null-Inn-Or-Invalid-Node-Null-Out-Deled))
@@ -131,8 +131,6 @@
 (assert (! (forall ((a V-OUT) (b V-OUT) (c E-OUT) (d V-INN) (e V-INN) (f E-INN)) (=> (and (or (not (ValidEO a b c)) (NEO a b c)) (= (addE a b c) (inn-tuple d e f))) (NEI d e f))) :named Null-Out-Or-Invalid-Edge-Null-Inn-Edge-Added))
 
 ;Commond part for each transformation are well kept
-(assert (! (forall ((a V-OUT) (b V-OUT) (c E-OUT) (d V-INN) (e V-INN) (f E-INN)) (=> (and (ValidEI d e f) (and (ValidEO a b c) (= (addE a b c) (inn-tuple d e f)))) (and (= (addV a) d) (= (addV b) e)))) :named Add-Source-Target-Kept))
-(assert (! (forall ((a V-INN) (b V-INN) (c E-INN) (d V-OUT) (e V-OUT) (f E-OUT)) (=> (and (ValidEI a b c) (and (ValidEO d e f) (= (delE a b c) (out-tuple d e f)))) (and (= (delV a) d) (= (delV b) e)))) :named Del-Source-Target-Kept))
 (assert (! (forall ((a V-INN) (b V-OUT)) (=> (and (and (NNullVI a) (NNullVO b)) (= (delV a) b)) (= (addV b) a))) :named del-kept-add-kept))
 (assert (! (forall ((a V-INN) (b V-OUT)) (=> (and (and (NNullVI a) (NNullVO b)) (= (addV b) a)) (= (delV a) b))) :named add-kept-del-kept))
 (assert (! (forall ((a V-INN) (b V-INN) (c E-INN) (d V-OUT) (e V-OUT) (f E-OUT)) (=> (and (and (NNullEI a b c) (NNullEO d e f)) (= (addE d e f) (inn-tuple a b c))) (= (delE a b c) (out-tuple d e f)))) :named del-edge-kept-add-edge-kept))
@@ -186,10 +184,10 @@
 
 ;Each valid elements in the target model should hava a preimage for del
 ;Each valid elements in the source model should hava a preimage for add
-(assert (! (forall ((a V-OUT)) (=> (NNullVO a) (exists ((b V-INN)) (and (NNullVI b) (= a (delV b)))))) :named each-valid-node-in-target-has-pre-image-in-del))
-(assert (! (forall ((a V-INN)) (=> (NNullVI a) (exists ((b V-OUT)) (and (NNullVO b) (= a (addV b)))))) :named each-valid-node-in-source-has-pre-image-in-add))
-(assert (! (forall ((a V-INN) (b V-INN) (c E-INN)) (=> (ValidEI a b c) (exists ((d V-OUT) (e V-OUT) (f E-OUT)) (and (ValidEO d e f) (= (addE d e f) (inn-tuple a b c)))))) :named each-valid-edge-in-target-has-pre-image-in-add))
-(assert (! (forall ((a V-OUT) (b V-OUT) (c E-OUT)) (=> (ValidEO a b c) (exists ((d V-INN) (e V-INN) (f E-INN)) (and (ValidEI d e f) (= (delE d e f) (out-tuple a b c)))))) :named each-valid-edge-in-target-has-pre-image-in-del))
+(assert (! (forall ((a V-OUT)) (=> (NNullVO a) (exists ((b V-INN)) (and (NNullVI b) (= a (delV b)))))) :named del-surjective-for-NotNull-node-in-target))
+(assert (! (forall ((a V-INN)) (=> (NNullVI a) (exists ((b V-OUT)) (and (NNullVO b) (= a (addV b)))))) :named add-surjective-for-NotNull-node-in-source))
+(assert (! (forall ((a V-INN) (b V-INN) (c E-INN)) (=> (NNullEI a b c) (exists ((d V-OUT) (e V-OUT) (f E-OUT)) (and (NNullEO d e f) (= (addE d e f) (inn-tuple a b c)))))) :named add-surjective-for-NotNull-edge-in-source))
+(assert (! (forall ((a V-OUT) (b V-OUT) (c E-OUT)) (=> (NNullEO a b c) (exists ((d V-INN) (e V-INN) (f E-INN)) (and (NNullEI d e f) (= (delE d e f) (out-tuple a b c)))))) :named del-surjective-for-NotNull-edge-in-target))
 
 ;Each valid elements in the source model should hava an image for del
 ;Each valid elements in the target model should hava an image for add
