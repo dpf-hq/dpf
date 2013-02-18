@@ -70,8 +70,8 @@ public class SMT {
 		writer.println("(assert (! (forall ((a V-OUT) (b V-OUT) (c E-OUT)) (=> (not (ValidVO a)) (and (not (ValidEO a b c)) (not (ValidEO b a c))))) :named target-untyped-node-edge-undefined))");
 		writer.println("");
 		writer.println(";Any edge comes in or goes out an null node is null");
-		writer.println("(assert (! (forall ((s V-INN) (t V-INN) (e E-INN)) (=> (and (VI s) (ValidVI t)) (and (=> (ValidEI s t e) (NEI s t e)) (=> (ValidEI t s e) (NEI t s e))))) :named VI-null-incoming-null-outing))");
-		writer.println("(assert (! (forall ((s V-OUT) (t V-OUT) (e E-OUT)) (=> (and (VO s) (ValidVO t)) (and (=> (ValidEO s t e) (NEO s t e)) (=> (ValidEO t s e) (NEO t s e))))) :named VO-null-incoming-null-outing))");
+		writer.println("(assert (! (forall ((s V-INN) (t V-INN) (e E-INN)) (=> (VI s) (and (=> (ValidEI s t e) (NEI s t e)) (=> (ValidEI t s e) (NEI t s e))))) :named VI-null-incoming-null-outing))");
+		writer.println("(assert (! (forall ((s V-OUT) (t V-OUT) (e E-OUT)) (=> (VO s) (and (=> (ValidEO s t e) (NEO s t e)) (=> (ValidEO t s e) (NEO t s e))))) :named VO-null-incoming-null-outing))");
 		writer.println("");
 		writer.println(";Source and target information of an edge in metamodel should well kept in the instance level");
 		writer.println(sourceAndTarget(sEdges, true));
@@ -793,13 +793,19 @@ public class SMT {
 			buffer.append(sEdges[i][0] + " s t e) (and (" + sEdges[i][1] + " s) (" + sEdges[i][2] + " t)))) :named " + sEdges[i][0] + "-source-target))");
 			buffer.append(System.getProperty("line.separator"));
 		}
+		if(in)
+			buffer.append("(assert (! (forall ((s V-INN) (t V-INN) (e E-INN)) (=> (NEI s t e) (and (ValidVI s) (ValidVI t)))) :named NEI-source-target))");
+		else
+			buffer.append("(assert (! (forall ((s V-OUT) (t V-OUT) (e E-OUT)) (=> (NEO s t e) (and (ValidVO s) (ValidVO t)))) :named NEO-source-target))");
+		
+		buffer.append(System.getProperty("line.separator"));
 		return buffer.toString();
 	}
 	private String edgeExclusive(String[][] sEdges, boolean in){
 		StringBuffer buffer = new StringBuffer();
 //		for (int i = 0; i < sEdges.length - 1; i++) {
 			buffer.append("(assert (! (forall ((s " + (in ? VINN : VOUT) + ") (t " + (in ? VINN : VOUT) + ") (e " + (in ? EINN : EOUT) + ")) (=> (");
-			buffer.append("ValidE" + (in ? "I" : "O") + " s t e) (forall ((s1 " + (in ? VINN : VOUT) + ") (t1 " + (in ? VINN : VOUT) + ")) " +
+			buffer.append("NNullE" + (in ? "I" : "O") + " s t e) (forall ((s1 " + (in ? VINN : VOUT) + ") (t1 " + (in ? VINN : VOUT) + ")) " +
 					"(=> (not (and (= s s1) (= t t1))) (not (ValidE" + (in ? "I" : "O") + " s1 t1 e)))))) :named " + (in ? "source" : "target") + "-edge-exclusive))");
 //			buffer.append(System.getProperty("line.separator"));
 //		}

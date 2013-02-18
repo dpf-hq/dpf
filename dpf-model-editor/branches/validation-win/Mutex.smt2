@@ -71,8 +71,8 @@
 (assert (! (forall ((a V-OUT) (b V-OUT) (c E-OUT)) (=> (not (ValidVO a)) (and (not (ValidEO a b c)) (not (ValidEO b a c))))) :named target-untyped-node-edge-undefined))
 
 ;Any edge comes in or goes out an null node is null
-(assert (! (forall ((s V-INN) (t V-INN) (e E-INN)) (=> (and (VI s) (ValidVI t)) (and (=> (ValidEI s t e) (NEI s t e)) (=> (ValidEI t s e) (NEI t s e))))) :named VI-null-incoming-null-outing))
-(assert (! (forall ((s V-OUT) (t V-OUT) (e E-OUT)) (=> (and (VO s) (ValidVO t)) (and (=> (ValidEO s t e) (NEO s t e)) (=> (ValidEO t s e) (NEO t s e))))) :named VO-null-incoming-null-outing))
+(assert (! (forall ((s V-INN) (t V-INN) (e E-INN)) (=> (VI s) (and (=> (ValidEI s t e) (NEI s t e)) (=> (ValidEI t s e) (NEI t s e))))) :named VI-null-incoming-null-outing))
+(assert (! (forall ((s V-OUT) (t V-OUT) (e E-OUT)) (=> (VO s) (and (=> (ValidEO s t e) (NEO s t e)) (=> (ValidEO t s e) (NEO t s e))))) :named VO-null-incoming-null-outing))
 
 ;Source and target information of an edge in metamodel should well kept in the instance level
 (assert (! (forall ((s V-INN) (t V-INN) (e E-INN)) (=> (non-activeI s t e) (and (PI s) (PI t)))) :named non-activeI-source-target))
@@ -87,6 +87,7 @@
 (assert (! (forall ((s V-INN) (t V-INN) (e E-INN)) (=> (F2RI s t e) (and (F2I s) (RI t)))) :named F2RI-source-target))
 (assert (! (forall ((s V-INN) (t V-INN) (e E-INN)) (=> (F1RI s t e) (and (F1I s) (RI t)))) :named F1RI-source-target))
 (assert (! (forall ((s V-INN) (t V-INN) (e E-INN)) (=> (TRI s t e) (and (TI s) (RI t)))) :named TRI-source-target))
+(assert (! (forall ((s V-INN) (t V-INN) (e E-INN)) (=> (NEI s t e) (and (ValidVI s) (ValidVI t)))) :named NEI-source-target))
 
 (assert (! (forall ((s V-OUT) (t V-OUT) (e E-OUT)) (=> (non-activeO s t e) (and (PO s) (PO t)))) :named non-activeO-source-target))
 (assert (! (forall ((s V-OUT) (t V-OUT) (e E-OUT)) (=> (activeO s t e) (and (PO s) (PO t)))) :named activeO-source-target))
@@ -100,11 +101,13 @@
 (assert (! (forall ((s V-OUT) (t V-OUT) (e E-OUT)) (=> (F2RO s t e) (and (F2O s) (RO t)))) :named F2RO-source-target))
 (assert (! (forall ((s V-OUT) (t V-OUT) (e E-OUT)) (=> (F1RO s t e) (and (F1O s) (RO t)))) :named F1RO-source-target))
 (assert (! (forall ((s V-OUT) (t V-OUT) (e E-OUT)) (=> (TRO s t e) (and (TO s) (RO t)))) :named TRO-source-target))
+(assert (! (forall ((s V-OUT) (t V-OUT) (e E-OUT)) (=> (NEO s t e) (and (ValidVO s) (ValidVO t)))) :named NEO-source-target))
 
 
 ;If edge (s, t, e) is an valid edge, then other combination (s', t', e) are invalid
-(assert (! (forall ((s V-INN) (t V-INN) (e E-INN)) (=> (ValidEI s t e) (forall ((s1 V-INN) (t1 V-INN)) (=> (not (and (= s s1) (= t t1))) (not (ValidEI s1 t1 e)))))) :named source-edge-exclusive))
-(assert (! (forall ((s V-OUT) (t V-OUT) (e E-OUT)) (=> (ValidEO s t e) (forall ((s1 V-OUT) (t1 V-OUT)) (=> (not (and (= s s1) (= t t1))) (not (ValidEO s1 t1 e)))))) :named target-edge-exclusive))
+;could be more specified
+(assert (! (forall ((s V-INN) (t V-INN) (e E-INN)) (=> (NNullEI s t e) (forall ((s1 V-INN) (t1 V-INN)) (=> (not (and (= s s1) (= t t1))) (not (ValidEI s1 t1 e)))))) :named source-edge-exclusive))
+(assert (! (forall ((s V-OUT) (t V-OUT) (e E-OUT)) (=> (NNullEO s t e) (forall ((s1 V-OUT) (t1 V-OUT)) (=> (not (and (= s s1) (= t t1))) (not (ValidEO s1 t1 e)))))) :named target-edge-exclusive))
 
 ;Only one Null Node exists in instance level
 (assert (! (forall ((s V-INN) (t V-INN)) (or (= s t) (not (and (VI s) (VI t))))) :named Source-only-one-null-node-allowed))
@@ -203,6 +206,7 @@
 (assert (! (forall ((s V-OUT) (t V-OUT) (e E-OUT)) (=> (not (ValidEO s t e)) (not (exists ((a V-INN) (b V-INN) (c E-INN)) (= (delE a b c) (out-tuple s t e)))))) :named no-invalid-edge-in-source-has-pre-image-in-del))
 (assert (! (forall ((a V-INN) (b V-INN) (c E-INN)) (=> (not (ValidEI a b c)) (not (exists ((s V-OUT) (t V-OUT) (e E-OUT)) (= (addE s t e) (inn-tuple a b c)))))) :named no-invalid-edge-in-target-has-pre-image-in-add))
 
+
 (declare-datatypes () ((RuleID idsetFlag idsetTurn1 idsetTurn2 identer idexit)))
 (declare-fun delVID (V-INN RuleID) Bool)
 (declare-fun addVID (V-OUT RuleID) Bool)
@@ -230,41 +234,6 @@
 (assert (! (forall ((a V-OUT)) (and (and (and (and (not (and (addVID a idsetFlag) (or (or (or (addVID a idsetTurn1) (addVID a idsetTurn2)) (addVID a identer)) (addVID a idexit)))) (not (and (addVID a idsetTurn1) (or (or (or (addVID a idsetFlag) (addVID a idsetTurn2)) (addVID a identer)) (addVID a idexit))))) (not (and (addVID a idsetTurn2) (or (or (or (addVID a idsetFlag) (addVID a idsetTurn1)) (addVID a identer)) (addVID a idexit))))) (not (and (addVID a identer) (or (or (or (addVID a idsetFlag) (addVID a idsetTurn1)) (addVID a idsetTurn2)) (addVID a idexit))))) (not (and (addVID a idexit) (or (or (or (addVID a idsetFlag) (addVID a idsetTurn1)) (addVID a idsetTurn2)) (addVID a identer)))))) :named Add-node-only-once))
 (assert (! (forall ((a V-INN) (b V-INN) (c E-INN)) (and (and (and (and (not (and (delEID a b c idsetFlag) (or (or (or (delEID a b c idsetTurn1) (delEID a b c idsetTurn2)) (delEID a b c identer)) (delEID a b c idexit)))) (not (and (delEID a b c idsetTurn1) (or (or (or (delEID a b c idsetFlag) (delEID a b c idsetTurn2)) (delEID a b c identer)) (delEID a b c idexit))))) (not (and (delEID a b c idsetTurn2) (or (or (or (delEID a b c idsetFlag) (delEID a b c idsetTurn1)) (delEID a b c identer)) (delEID a b c idexit))))) (not (and (delEID a b c identer) (or (or (or (delEID a b c idsetFlag) (delEID a b c idsetTurn1)) (delEID a b c idsetTurn2)) (delEID a b c idexit))))) (not (and (delEID a b c idexit) (or (or (or (delEID a b c idsetFlag) (delEID a b c idsetTurn1)) (delEID a b c idsetTurn2)) (delEID a b c identer)))))) :named Del-edge-only-once))
 (assert (! (forall ((a V-OUT) (b V-OUT) (c E-OUT)) (and (and (and (and (not (and (addEID a b c idsetFlag) (or (or (or (addEID a b c idsetTurn1) (addEID a b c idsetTurn2)) (addEID a b c identer)) (addEID a b c idexit)))) (not (and (addEID a b c idsetTurn1) (or (or (or (addEID a b c idsetFlag) (addEID a b c idsetTurn2)) (addEID a b c identer)) (addEID a b c idexit))))) (not (and (addEID a b c idsetTurn2) (or (or (or (addEID a b c idsetFlag) (addEID a b c idsetTurn1)) (addEID a b c identer)) (addEID a b c idexit))))) (not (and (addEID a b c identer) (or (or (or (addEID a b c idsetFlag) (addEID a b c idsetTurn1)) (addEID a b c idsetTurn2)) (addEID a b c idexit))))) (not (and (addEID a b c idexit) (or (or (or (addEID a b c idsetFlag) (addEID a b c idsetTurn1)) (addEID a b c idsetTurn2)) (addEID a b c identer)))))) :named Add-edge-only-once))
-;Rule setFlag
-(assert (! (forall ( (ei1 E-INN) (ei2 E-INN) (ni1 V-INN) (ni2 V-INN) (ni-2 V-INN) (ei-2 E-INN)) 
-(=> (and (and (and (and (and (and (and (and (non-activeI ni1 ni1 ei1) (startI ni1 ni1 ei2)) (PI ni1)) (RI ni2)) (VI ni-2)) (NEI ni1 ni1 ei-2)) (NEI ni1 ni1 ei-2)) (NEI ni1 ni-2 ei-2)) (NEI ni-2 ni2 ei-2)) 
-(exists ( (no3 V-OUT) (eo3 E-OUT) (eo4 E-OUT) (eo5 E-OUT) (eo6 E-OUT) (no1 V-OUT) (no2 V-OUT) (eo-1 E-OUT)) 
-(and (and (and (and (and (and (and (and (and (F1O no3) (activeO no1 no1 eo3)) (setTurnO no1 no1 eo4)) (PF1O no1 no3 eo5)) (F1RO no3 no2 eo6)) (PO no1)) (RO no2)) (NEO no1 no1 eo-1)) (NEO no1 no1 eo-1)) 
-(and (and (and (and (and (and (and (and (and (= (out-tuple no1 no1 eo-1) (delE ni1 ni1 ei1)) (= (out-tuple no1 no1 eo-1) (delE ni1 ni1 ei2))) (= no1 (delV ni1))) (= no2 (delV ni2))) (= ni-2 (addV no3))) (= (inn-tuple ni1 ni1 ei-2) (addE no1 no1 eo3))) (= (inn-tuple ni1 ni1 ei-2) (addE no1 no1 eo4))) (= (inn-tuple ni1 ni-2 ei-2) (addE no1 no3 eo5))) (= (inn-tuple ni-2 ni2 ei-2) (addE no3 no2 eo6)))
- (and (and (and (and (and (and (delEID ni1 ni1 ei1 idsetFlag) (delEID ni1 ni1 ei2 idsetFlag)) (addVID no3 idsetFlag)) (addEID no1 no1 eo3 idsetFlag)) (addEID no1 no1 eo4 idsetFlag)) (addEID no1 no3 eo5 idsetFlag)) (addEID no3 no2 eo6 idsetFlag))))))) :named rule-setFlag))
-;Rule setTurn1
-;(assert (! (forall ( (ei3 E-INN) (ei4 E-INN) (ni1 V-INN) (ni2 V-INN) (ni3 V-INN) (ni4 V-INN) (ei1 E-INN) (ei2 E-INN) (ei-2 E-INN)) 
-;(=> (and (and (and (and (and (and (and (and (and (TPI ni3 ni1 ei3) (setTurnI ni2 ni2 ei4)) (PI ni1)) (PI ni2)) (TI ni3)) (RI ni4)) (non-activeI ni1 ni1 ei1)) (TRI ni3 ni4 ei2)) (NEI ni2 ni2 ei-2)) (NEI ni3 ni2 ei-2)) 
-;(exists ( (eo5 E-OUT) (eo6 E-OUT) (no1 V-OUT) (no2 V-OUT) (no3 V-OUT) (no4 V-OUT) (eo1 E-OUT) (eo2 E-OUT) (eo-1 E-OUT)) 
-;(and (and (and (and (and (and (and (and (and (and (checkO no2 no2 eo5) (TPO no3 no2 eo6)) (PO no1)) (PO no2)) (TO no3)) (RO no4)) (non-activeO no1 no1 eo1)) (TRO no3 no4 eo2)) (NEO no3 no1 eo-1)) (NEO no2 no2 eo-1)) 
-;(and (and (and (and (and (and (and (and (and (and (= (out-tuple no3 no1 eo-1) (delE ni3 ni1 ei3)) (= (out-tuple no2 no2 eo-1) (delE ni2 ni2 ei4))) (= no1 (delV ni1))) (= no2 (delV ni2))) (= no3 (delV ni3))) (= no4 (delV ni4))) (= (out-tuple no1 no1 eo1) (delE ni1 ni1 ei1))) (= (out-tuple no3 no4 eo2) (delE ni3 ni4 ei2))) (= (inn-tuple ni2 ni2 ei-2) (addE no2 no2 eo5))) (= (inn-tuple ni3 ni2 ei-2) (addE no3 no2 eo6)))
-; (and (and (and (delEID ni3 ni1 ei3 idsetTurn1) (delEID ni2 ni2 ei4 idsetTurn1)) (addEID no2 no2 eo5 idsetTurn1)) (addEID no3 no2 eo6 idsetTurn1))))))) :named rule-setTurn1))
-;Rule setTurn2
-;(assert (! (forall ( (ei3 E-INN) (ni1 V-INN) (ni2 V-INN) (ni3 V-INN) (ei1 E-INN) (ei2 E-INN) (ei-2 E-INN)) 
-;(=> (and (and (and (and (and (and (setTurnI ni1 ni1 ei3) (PI ni1)) (TI ni2)) (RI ni3)) (TPI ni2 ni1 ei1)) (TRI ni2 ni3 ei2)) (NEI ni1 ni1 ei-2)) 
-;(exists ( (eo4 E-OUT) (no1 V-OUT) (no2 V-OUT) (no3 V-OUT) (eo1 E-OUT) (eo2 E-OUT) (eo-1 E-OUT)) 
-;(and (and (and (and (and (and (and (checkO no1 no1 eo4) (PO no1)) (TO no2)) (RO no3)) (TPO no2 no1 eo1)) (TRO no2 no3 eo2)) (NEO no1 no1 eo-1)) 
-;(and (and (and (and (and (and (and (= (out-tuple no1 no1 eo-1) (delE ni1 ni1 ei3)) (= no1 (delV ni1))) (= no2 (delV ni2))) (= no3 (delV ni3))) (= (out-tuple no2 no1 eo1) (delE ni2 ni1 ei1))) (= (out-tuple no2 no3 eo2) (delE ni2 ni3 ei2))) (= (inn-tuple ni1 ni1 ei-2) (addE no1 no1 eo4)))
-; (and (delEID ni1 ni1 ei3 idsetTurn2) (addEID no1 no1 eo4 idsetTurn2))))))) :named rule-setTurn2))
-;Rule enter
-;(assert (! (forall ( (ni4 V-INN) (ei3 E-INN) (ei4 E-INN) (ei5 E-INN) (ni1 V-INN) (ni2 V-INN) (ni3 V-INN) (ei1 E-INN) (ei2 E-INN) (ni-2 V-INN) (ei-2 E-INN)) 
-;(=> (and (and (and (and (and (and (and (and (and (and (and (and (F1I ni4) (checkI ni1 ni1 ei3)) (PF1I ni1 ni4 ei4)) (F1RI ni4 ni3 ei5)) (PI ni1)) (TI ni2)) (RI ni3)) (TPI ni2 ni1 ei1)) (TRI ni2 ni3 ei2)) (VI ni-2)) (NEI ni1 ni1 ei-2)) (NEI ni1 ni-2 ei-2)) (NEI ni-2 ni3 ei-2)) 
-;(exists ( (no5 V-OUT) (eo6 E-OUT) (eo7 E-OUT) (eo8 E-OUT) (no1 V-OUT) (no2 V-OUT) (no3 V-OUT) (eo1 E-OUT) (eo2 E-OUT) (no-1 V-OUT) (eo-1 E-OUT)) 
-;(and (and (and (and (and (and (and (and (and (and (and (and (and (F2O no5) (critO no1 no1 eo6)) (PF2O no1 no5 eo7)) (F2RO no5 no3 eo8)) (PO no1)) (TO no2)) (RO no3)) (TPO no2 no1 eo1)) (TRO no2 no3 eo2)) (VO no-1)) (NEO no1 no1 eo-1)) (NEO no1 no-1 eo-1)) (NEO no-1 no3 eo-1)) 
-;(and (and (and (and (and (and (and (and (and (and (and (and (and (= no-1 (delV ni4)) (= (out-tuple no1 no1 eo-1) (delE ni1 ni1 ei3))) (= (out-tuple no1 no-1 eo-1) (delE ni1 ni4 ei4))) (= (out-tuple no-1 no3 eo-1) (delE ni4 ni3 ei5))) (= no1 (delV ni1))) (= no2 (delV ni2))) (= no3 (delV ni3))) (= (out-tuple no2 no1 eo1) (delE ni2 ni1 ei1))) (= (out-tuple no2 no3 eo2) (delE ni2 ni3 ei2))) (= ni-2 (addV no5))) (= (inn-tuple ni1 ni1 ei-2) (addE no1 no1 eo6))) (= (inn-tuple ni1 ni-2 ei-2) (addE no1 no5 eo7))) (= (inn-tuple ni-2 ni3 ei-2) (addE no5 no3 eo8)))
- ;(and (and (and (and (and (and (and (delVID ni4 identer) (delEID ni1 ni1 ei3 identer)) (delEID ni1 ni4 ei4 identer)) (delEID ni4 ni3 ei5 identer)) (addVID no5 identer)) (addEID no1 no1 eo6 identer)) (addEID no1 no5 eo7 identer)) (addEID no5 no3 eo8 identer))))))) :named rule-enter))
-;Rule exit
-;(assert (! (forall ( (ni3 V-INN) (ei1 E-INN) (ei2 E-INN) (ei3 E-INN) (ei4 E-INN) (ni1 V-INN) (ni2 V-INN) (ei-2 E-INN)) 
-;(=> (and (and (and (and (and (and (and (and (F2I ni3) (activeI ni1 ni1 ei1)) (critI ni1 ni1 ei2)) (PF2I ni1 ni3 ei3)) (F2RI ni3 ni2 ei4)) (PI ni1)) (RI ni2)) (NEI ni1 ni1 ei-2)) (NEI ni1 ni1 ei-2)) 
-;(exists ( (eo5 E-OUT) (eo6 E-OUT) (no1 V-OUT) (no2 V-OUT) (no-1 V-OUT) (eo-1 E-OUT)) 
-;(and (and (and (and (and (and (and (and (and (non-activeO no1 no1 eo5) (startO no1 no1 eo6)) (PO no1)) (RO no2)) (VO no-1)) (NEO no1 no1 eo-1)) (NEO no1 no1 eo-1)) (NEO no1 no-1 eo-1)) (NEO no-1 no2 eo-1)) 
-;(and (and (and (and (and (and (and (and (and (= no-1 (delV ni3)) (= (out-tuple no1 no1 eo-1) (delE ni1 ni1 ei1))) (= (out-tuple no1 no1 eo-1) (delE ni1 ni1 ei2))) (= (out-tuple no1 no-1 eo-1) (delE ni1 ni3 ei3))) (= (out-tuple no-1 no2 eo-1) (delE ni3 ni2 ei4))) (= no1 (delV ni1))) (= no2 (delV ni2))) (= (inn-tuple ni1 ni1 ei-2) (addE no1 no1 eo5))) (= (inn-tuple ni1 ni1 ei-2) (addE no1 no1 eo6)))
-; (and (and (and (and (and (and (delVID ni3 idexit) (delEID ni1 ni1 ei1 idexit)) (delEID ni1 ni1 ei2 idexit)) (delEID ni1 ni3 ei3 idexit)) (delEID ni3 ni2 ei4 idexit)) (addEID no1 no1 eo5 idexit)) (addEID no1 no1 eo6 idexit))))))) :named rule-exit))
 
 (assert (!  (or (or (or (or
  (exists ( (ei_01 E-INN) (ei_02 E-INN) (ni_01 V-INN) (ni_02 V-INN) (ni_0-2 V-INN) (ei_0-2 E-INN)) 
@@ -277,6 +246,36 @@
  (and (and (and (and (and (and (and (and (and (and (and (and (F1I ni_34) (checkI ni_31 ni_31 ei_33)) (PF1I ni_31 ni_34 ei_34)) (F1RI ni_34 ni_33 ei_35)) (PI ni_31)) (TI ni_32)) (RI ni_33)) (TPI ni_32 ni_31 ei_31)) (TRI ni_32 ni_33 ei_32)) (VI ni_3-2)) (NEI ni_31 ni_31 ei_3-2)) (NEI ni_31 ni_3-2 ei_3-2)) (NEI ni_3-2 ni_33 ei_3-2))))
  (exists ( (ni_43 V-INN) (ei_41 E-INN) (ei_42 E-INN) (ei_43 E-INN) (ei_44 E-INN) (ni_41 V-INN) (ni_42 V-INN) (ei_4-2 E-INN)) 
  (and (and (and (and (and (and (and (and (F2I ni_43) (activeI ni_41 ni_41 ei_41)) (critI ni_41 ni_41 ei_42)) (PF2I ni_41 ni_43 ei_43)) (F2RI ni_43 ni_42 ei_44)) (PI ni_41)) (RI ni_42)) (NEI ni_41 ni_41 ei_4-2)) (NEI ni_41 ni_41 ei_4-2)))) :named source-model-should-match-at-least-one-rule))
+;Rule setFlag
+(assert (! (forall ( (ei1 E-INN) (ei2 E-INN) (ni1 V-INN) (ni2 V-INN) (ni-2 V-INN) (ei-2 E-INN)) 
+(=> (and (and (and (and (and (and (and (and (non-activeI ni1 ni1 ei1) (startI ni1 ni1 ei2)) (PI ni1)) (RI ni2)) (VI ni-2)) (NEI ni1 ni1 ei-2)) (NEI ni1 ni1 ei-2)) (NEI ni1 ni-2 ei-2)) (NEI ni-2 ni2 ei-2)) 
+(exists ( (no3 V-OUT) (eo3 E-OUT) (eo4 E-OUT) (eo5 E-OUT) (eo6 E-OUT) (no1 V-OUT) (no2 V-OUT) (eo-1 E-OUT)) 
+(and (and (and (and (and (and (and (and (and (F1O no3) (activeO no1 no1 eo3)) (setTurnO no1 no1 eo4)) (PF1O no1 no3 eo5)) (F1RO no3 no2 eo6)) (PO no1)) (RO no2)) (NEO no1 no1 eo-1)) (NEO no1 no1 eo-1)) 
+(and (and (and (and (and (and (and (and (and (= (out-tuple no1 no1 eo-1) (delE ni1 ni1 ei1)) (= (out-tuple no1 no1 eo-1) (delE ni1 ni1 ei2))) (= no1 (delV ni1))) (= no2 (delV ni2))) (= ni-2 (addV no3))) (= (inn-tuple ni1 ni1 ei-2) (addE no1 no1 eo3))) (= (inn-tuple ni1 ni1 ei-2) (addE no1 no1 eo4))) (= (inn-tuple ni1 ni-2 ei-2) (addE no1 no3 eo5))) (= (inn-tuple ni-2 ni2 ei-2) (addE no3 no2 eo6)))
+ (and (and (and (and (and (and (delEID ni1 ni1 ei1 idsetFlag) (delEID ni1 ni1 ei2 idsetFlag)) (addVID no3 idsetFlag)) (addEID no1 no1 eo3 idsetFlag)) (addEID no1 no1 eo4 idsetFlag)) (addEID no1 no3 eo5 idsetFlag)) (addEID no3 no2 eo6 idsetFlag))))))) :named rule-setFlag))
+;Rule setTurn1
+(assert (! (forall ( (ei3 E-INN) (ei4 E-INN) (ni1 V-INN) (ni2 V-INN) (ni3 V-INN) (ni4 V-INN) (ei1 E-INN) (ei2 E-INN) (ei-2 E-INN)) 
+(=> (and (and (and (and (and (and (and (and (and (TPI ni3 ni1 ei3) (setTurnI ni2 ni2 ei4)) (PI ni1)) (PI ni2)) (TI ni3)) (RI ni4)) (non-activeI ni1 ni1 ei1)) (TRI ni3 ni4 ei2)) (NEI ni2 ni2 ei-2)) (NEI ni3 ni2 ei-2)) 
+(exists ( (eo5 E-OUT) (eo6 E-OUT) (no1 V-OUT) (no2 V-OUT) (no3 V-OUT) (no4 V-OUT) (eo1 E-OUT) (eo2 E-OUT) (eo-1 E-OUT)) 
+(and (and (and (and (and (and (and (and (and (and (checkO no2 no2 eo5) (TPO no3 no2 eo6)) (PO no1)) (PO no2)) (TO no3)) (RO no4)) (non-activeO no1 no1 eo1)) (TRO no3 no4 eo2)) (NEO no3 no1 eo-1)) (NEO no2 no2 eo-1)) 
+(and (and (and (and (and (and (and (and (and (and (= (out-tuple no3 no1 eo-1) (delE ni3 ni1 ei3)) (= (out-tuple no2 no2 eo-1) (delE ni2 ni2 ei4))) (= no1 (delV ni1))) (= no2 (delV ni2))) (= no3 (delV ni3))) (= no4 (delV ni4))) (= (out-tuple no1 no1 eo1) (delE ni1 ni1 ei1))) (= (out-tuple no3 no4 eo2) (delE ni3 ni4 ei2))) (= (inn-tuple ni2 ni2 ei-2) (addE no2 no2 eo5))) (= (inn-tuple ni3 ni2 ei-2) (addE no3 no2 eo6)))
+ (and (and (and (delEID ni3 ni1 ei3 idsetTurn1) (delEID ni2 ni2 ei4 idsetTurn1)) (addEID no2 no2 eo5 idsetTurn1)) (addEID no3 no2 eo6 idsetTurn1))))))) :named rule-setTurn1))
+;Rule setTurn2
+(assert (! (forall ( (ei3 E-INN) (ni1 V-INN) (ni2 V-INN) (ni3 V-INN) (ei1 E-INN) (ei2 E-INN) (ei-2 E-INN)) 
+(=> (and (and (and (and (and (and (setTurnI ni1 ni1 ei3) (PI ni1)) (TI ni2)) (RI ni3)) (TPI ni2 ni1 ei1)) (TRI ni2 ni3 ei2)) (NEI ni1 ni1 ei-2)) 
+(exists ( (eo4 E-OUT) (no1 V-OUT) (no2 V-OUT) (no3 V-OUT) (eo1 E-OUT) (eo2 E-OUT) (eo-1 E-OUT)) 
+(and (and (and (and (and (and (and (checkO no1 no1 eo4) (PO no1)) (TO no2)) (RO no3)) (TPO no2 no1 eo1)) (TRO no2 no3 eo2)) (NEO no1 no1 eo-1)) 
+(and (and (and (and (and (and (and (= (out-tuple no1 no1 eo-1) (delE ni1 ni1 ei3)) (= no1 (delV ni1))) (= no2 (delV ni2))) (= no3 (delV ni3))) (= (out-tuple no2 no1 eo1) (delE ni2 ni1 ei1))) (= (out-tuple no2 no3 eo2) (delE ni2 ni3 ei2))) (= (inn-tuple ni1 ni1 ei-2) (addE no1 no1 eo4)))
+ (and (delEID ni1 ni1 ei3 idsetTurn2) (addEID no1 no1 eo4 idsetTurn2))))))) :named rule-setTurn2))
+;Rule enter
+(assert (! (forall ( (ni4 V-INN) (ei3 E-INN) (ei4 E-INN) (ei5 E-INN) (ni1 V-INN) (ni2 V-INN) (ni3 V-INN) (ei1 E-INN) (ei2 E-INN) (ni-2 V-INN) (ei-2 E-INN)) 
+(=> (and (and (and (and (and (and (and (and (and (and (and (and (F1I ni4) (checkI ni1 ni1 ei3)) (PF1I ni1 ni4 ei4)) (F1RI ni4 ni3 ei5)) (PI ni1)) (TI ni2)) (RI ni3)) (TPI ni2 ni1 ei1)) (TRI ni2 ni3 ei2)) (VI ni-2)) (NEI ni1 ni1 ei-2)) (NEI ni1 ni-2 ei-2)) (NEI ni-2 ni3 ei-2)) 
+(exists ( (no5 V-OUT) (eo6 E-OUT) (eo7 E-OUT) (eo8 E-OUT) (no1 V-OUT) (no2 V-OUT) (no3 V-OUT) (eo1 E-OUT) (eo2 E-OUT) (no-1 V-OUT) (eo-1 E-OUT)) 
+(and (and (and (and (and (and (and (and (and (and (and (and (and (F2O no5) (critO no1 no1 eo6)) (PF2O no1 no5 eo7)) (F2RO no5 no3 eo8)) (PO no1)) (TO no2)) (RO no3)) (TPO no2 no1 eo1)) (TRO no2 no3 eo2)) (VO no-1)) (NEO no1 no1 eo-1)) (NEO no1 no-1 eo-1)) (NEO no-1 no3 eo-1)) 
+(and (and (and (and (and (and (and (and (and (and (and (and (and (= no-1 (delV ni4)) (= (out-tuple no1 no1 eo-1) (delE ni1 ni1 ei3))) (= (out-tuple no1 no-1 eo-1) (delE ni1 ni4 ei4))) (= (out-tuple no-1 no3 eo-1) (delE ni4 ni3 ei5))) (= no1 (delV ni1))) (= no2 (delV ni2))) (= no3 (delV ni3))) (= (out-tuple no2 no1 eo1) (delE ni2 ni1 ei1))) (= (out-tuple no2 no3 eo2) (delE ni2 ni3 ei2))) (= ni-2 (addV no5))) (= (inn-tuple ni1 ni1 ei-2) (addE no1 no1 eo6))) (= (inn-tuple ni1 ni-2 ei-2) (addE no1 no5 eo7))) (= (inn-tuple ni-2 ni3 ei-2) (addE no5 no3 eo8)))
+ (and (and (and (and (and (and (and (delVID ni4 identer) (delEID ni1 ni1 ei3 identer)) (delEID ni1 ni4 ei4 identer)) (delEID ni4 ni3 ei5 identer)) (addVID no5 identer)) (addEID no1 no1 eo6 identer)) (addEID no1 no5 eo7 identer)) (addEID no5 no3 eo8 identer))))))) :named rule-enter))
+
+
 (assert (! (forall ((s V-INN) (t V-INN) (e E-INN)) (=> (non-activeI s t e) (= s t))) :named non-activeI-reflexive))
 (assert (! (forall ((s V-INN) (t V-INN) (e E-INN)) (=> (activeI s t e) (= s t))) :named activeI-reflexive))
 (assert (! (forall ((s V-INN) (t V-INN) (e E-INN)) (=> (startI s t e) (= s t))) :named startI-reflexive))
@@ -311,23 +310,6 @@
 (assert (! (forall ((t V-INN)) (=> (F2I t) (exists ((s V-INN) (e E-INN)) (PF2I s t e)))) :named surjective-PF2I))
 (assert (! (forall ((t V-INN)) (=> (F1I t) (exists ((s V-INN) (e E-INN)) (PF1I s t e)))) :named surjective-PF1I))
 (assert (! (forall ((t V-INN)) (=> (RI t) (exists ((s V-INN) (e E-INN)) (TRI s t e)))) :named surjective-TRI))
-;(assert (! (not (exists ((a V-OUT)) (PO a))) :named exist-PO))
-;(assert (! (not (exists ((a V-OUT)) (RO a))) :named exist-RO))
-;(assert (! (not (exists ((a V-OUT)) (TO a))) :named exist-TO))
-;(assert (! (not (forall ((a V-OUT) (b V-OUT)) (or (not (and (TO a) (TO b))) (= a b)))) :named unique-TO))
-;(assert (! (not (forall ((a V-OUT) (b V-OUT)) (or (not (and (RO a) (RO b))) (= a b)))) :named unique-RO))
-;(assert (! (not (or (exists ((s0 V-OUT) (t0 V-OUT) (e0 E-OUT)) (non-activeO s0 t0 e0)) (exists ((s1 V-OUT) (t1 V-OUT) (e1 E-OUT)) (activeO s1 t1 e1)))) :named exist-one-of-non-activeO-activeO-edges))
-;(assert (! (not (or (or (or (exists ((s0 V-OUT) (t0 V-OUT) (e0 E-OUT)) (startO s0 t0 e0)) (exists ((s1 V-OUT) (t1 V-OUT) (e1 E-OUT)) (critO s1 t1 e1))) (exists ((s2 V-OUT) (t2 V-OUT) (e2 E-OUT)) (checkO s2 t2 e2))) (exists ((s3 V-OUT) (t3 V-OUT) (e3 E-OUT)) (setTurnO s3 t3 e3)))) :named exist-one-of-startO-critO-checkO-setTurnO-edges))
-;(assert (! (not (and (not (forall ((a0 V-OUT) (b0 V-OUT) (c0 E-OUT)) (exists ((d0 V-OUT) (e0 V-OUT) (f0 E-OUT)) (and (and (and (= a0 d0) (= b0 e0)) (non-activeO a0 b0 c0)) (activeO d0 e0 f0))))) (not (forall ((a1 V-OUT) (b1 V-OUT) (c1 E-OUT)) (exists ((d1 V-OUT) (e1 V-OUT) (f1 E-OUT)) (and (and (and (= a1 d1) (= b1 e1)) (activeO a1 b1 c1)) (non-activeO d1 e1 f1))))))) :named non-activeO-activeO-incompatiable))
-;(assert (! (not (and (and (and (not (forall ((a0 V-OUT) (b0 V-OUT) (c0 E-OUT)) (exists ((d0 V-OUT) (e0 V-OUT) (f0 E-OUT)) (and (and (and (= a0 d0) (= b0 e0)) (startO a0 b0 c0)) (or (or (critO d0 e0 f0) (checkO d0 e0 f0)) (setTurnO d0 e0 f0)))))) (not (forall ((a1 V-OUT) (b1 V-OUT) (c1 E-OUT)) (exists ((d1 V-OUT) (e1 V-OUT) (f1 E-OUT)) (and (and (and (= a1 d1) (= b1 e1)) (critO a1 b1 c1)) (or (or (startO d1 e1 f1) (checkO d1 e1 f1)) (setTurnO d1 e1 f1))))))) (not (forall ((a2 V-OUT) (b2 V-OUT) (c2 E-OUT)) (exists ((d2 V-OUT) (e2 V-OUT) (f2 E-OUT)) (and (and (and (= a2 d2) (= b2 e2)) (checkO a2 b2 c2)) (or (or (startO d2 e2 f2) (critO d2 e2 f2)) (setTurnO d2 e2 f2))))))) (not (forall ((a3 V-OUT) (b3 V-OUT) (c3 E-OUT)) (exists ((d3 V-OUT) (e3 V-OUT) (f3 E-OUT)) (and (and (and (= a3 d3) (= b3 e3)) (setTurnO a3 b3 c3)) (or (or (startO d3 e3 f3) (critO d3 e3 f3)) (checkO d3 e3 f3)))))))) :named startO-critO-checkO-setTurnO-incompatiable))
-;(assert (! (not (forall ((s V-OUT) (t V-OUT) (e E-OUT)) (=> (non-activeO s t e) (= s t)))) :named non-activeO-reflexive))
-;(assert (! (not (forall ((s V-OUT) (t V-OUT) (e E-OUT)) (=> (activeO s t e) (= s t)))) :named activeO-reflexive))
-;(assert (! (not (forall ((s V-OUT) (t V-OUT) (e E-OUT)) (=> (startO s t e) (= s t)))) :named startO-reflexive))
-;(assert (! (not (forall ((s V-OUT) (t V-OUT) (e E-OUT)) (=> (critO s t e) (= s t)))) :named critO-reflexive))
-;(assert (! (not (forall ((s V-OUT) (t V-OUT) (e E-OUT)) (=> (checkO s t e) (= s t)))) :named checkO-reflexive))
-;(assert (! (not (forall ((s V-OUT) (t V-OUT) (e E-OUT)) (=> (setTurnO s t e) (= s t)))) :named setTurnO-reflexive))
-;(assert (! (not (forall ((s1 V-OUT) (s2 V-OUT) (t V-OUT) (e1 E-OUT) (e2 E-OUT)) (=> (and (PF2O s1 t e1) (PF2O s2 t e2)) (and (= s1 s2) (= e1 e2))))) :named injective-PF2O))
-;(assert (! (not (forall ((s1 V-OUT) (s2 V-OUT) (t V-OUT) (e1 E-OUT) (e2 E-OUT)) (=> (and (PF1O s1 t e1) (PF1O s2 t e2)) (and (= s1 s2) (= e1 e2))))) :named injective-PF1O))
 (check-sat)
 (get-unsat-core)
 (exit)
