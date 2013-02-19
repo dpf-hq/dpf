@@ -356,6 +356,23 @@ class Rule{
 			System.out.println(string[0] + "->" + string[1]);
 		}
 	}
+	List<int[]> getRuleNullEdge(boolean in){
+		List<int[]> NEdges = new ArrayList<int[]>();
+		for(Edge[] cur : (in ? addEdges : delEdges)){
+			int[] nulledge = new int[2];
+			nulledge[0] = cur[2].src;
+			nulledge[1] = cur[2].trg;
+			putIntoList(NEdges, nulledge);
+		}
+		return NEdges;
+	}
+	public static  void putIntoList(List<int[]> nEdges, int[] nulledge) {
+		for(int[] cur : nEdges){
+			if(cur[0] == nulledge[0] && cur[1] == nulledge[1])
+				return;
+		}
+		nEdges.add(nulledge);
+	}
 	Edge getTransformedEdge(Edge edge){
 		Edge new_edge = new Edge();
 		if(edge.tn.endsWith("I")){
@@ -441,7 +458,7 @@ class Rule{
 		for(Node[] iter : list)
 			if(iter[0].index == node.index)
 				return true;
-				return false;
+		return false;
 	}
 	private int getTransformedNode(int src, String type) {
 		Node cur = new Node(src, type);

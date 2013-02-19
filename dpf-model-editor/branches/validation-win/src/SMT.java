@@ -322,6 +322,7 @@ public class SMT {
 			rule.printRule(writer);
 		}
 
+		
 		writer.println();
 		//At least the source model should match one rule
 		writer.print("(assert (! ");
@@ -707,7 +708,11 @@ public class SMT {
 		other.addRule("exit", 
 				"1:PI;2:RI;1:PO;2:RO;3:F2I", 
 				"1|1->1:activeI|PI->PI;2|1->1:critI|PI->PI;3|1->3:PF2I|PI->F2I;4|3->2:F2RI|F2I->RI;5|1->1:non-activeO|PO->PO;6|1->1:startO|PO->PO");
+		other.refresh();
 		other.translate();
+	}
+	public void refresh() {
+		
 	}
 	String[] sVertex = null;
 	String[][] sEdges = null;
