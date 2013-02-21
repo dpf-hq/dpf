@@ -162,7 +162,7 @@ public class DArrowEditPart extends GraphicalConnectionEditPart implements NodeE
 	private IArrowPainting getArrowPaint(){
 		if(arrowPaint == null)
 			try {
-				String name = getDArrow().getConfigureString();
+				String name = getDArrow().getDType().getConfigureString();
 				if(name == null || name.isEmpty())
 					return null;
 				IConfigurationElement configure = FigureConfigureManager.getInstance().getConfigurationElement(name);

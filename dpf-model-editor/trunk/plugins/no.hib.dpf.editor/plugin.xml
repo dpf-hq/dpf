@@ -130,6 +130,10 @@
             paint="no.hib.dpf.editor.extension_points.painting.ParticipationPainting"
             smallicon="icons/p_16.png">
       </ArrowConfigure>
+      <ArrowConfigure
+            name="DashlineConfigure"
+            paint="no.hib.dpf.editor.extension_points.painting.DashLineArrowPainting">
+      </ArrowConfigure>
    </extension>
    <extension
          point="org.eclipse.ui.popupMenus">

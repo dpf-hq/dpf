@@ -71,12 +71,6 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 		super();
 
 	}
-	public void setModel(Object object){
-		super.setModel(object);
-		DNode dNode = getDNode();
-		if(!(dNode instanceof DFakeNode))
-			dNode.setConfigureString(dNode.getDType().getConfigureString());
-	}
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -150,7 +144,9 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 	private INodePainting getNodePaint() {
 		if(nodePaint == null)
 			try {
-				String name = getDNode().getConfigureString();
+				String name = null;
+				if(!(getDNode() instanceof DFakeNode))
+					name = getDNode().getDType().getConfigureString();
 				if(name == null || name.isEmpty())
 					return null;
 				IConfigurationElement configure = FigureConfigureManager.getInstance().getConfigurationElement(name);

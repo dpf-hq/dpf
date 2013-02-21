@@ -15,7 +15,7 @@ public class FigureConfigureManager {
 
 	private static final String EXTENSION_POINT_ID = "FigureConfigure";
 	private static final String PLUGIN_ID = "no.hib.dpf.editor";
-	private static final String ARROWCONFIGURE = "ArrowConfigre";
+	private static final String ARROWCONFIGURE = "ArrowConfigure";
 	private static final String NODECONFIGURE = "NodeConfigure";
 	public static final String SMALLICON_ATT = "smallicon";
 	public static final String LARGEICON_ATT = "largeicon";
@@ -80,7 +80,7 @@ public class FigureConfigureManager {
 				IConfigurationElement current = configElements[j];
 				if(current.getName().equals(NODECONFIGURE))
 					nodeMap.put(current.getAttribute(NAME_ATT), current);
-				else if(configElements[j].getName().equals(ARROWCONFIGURE))
+				else if(current.getName().equals(ARROWCONFIGURE))
 					arrowMap.put(current.getAttribute(NAME_ATT), current);
 			}
 		}
