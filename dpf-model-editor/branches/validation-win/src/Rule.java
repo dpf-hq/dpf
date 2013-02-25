@@ -7,7 +7,7 @@ import java.util.List;
 
 class Rule{
 	public static void main(String[] args) {
-		Rule rule = new Rule("setFlag", "1:PI;2:RI;1:PO;2:RO;3:F1O", "1|1->1:non-activeI|PI->PI;2|1->1:startI|PI->PI;3|1->1:activeO|PO->PO;4|1->1:setTurnO|PO->PO;5|1->3:PF1O|PO->F1O;6|3->2:F1RO|F1->R");
+		Rule rule = new Rule("setFlag", "1:PI;2:RI;1:PO;2:RO;3:F1O", "1|1->1:non-activeI|PI->PI;2|1->1:startI|PI->PI;3|1->1:activeO|PO->PO;4|1->1:setTurnO|PO->PO;5|1->3:PF1O|PO->F1O;6|3->2:F1RO|F1O->RO");
 		try {
 			rule.printRule(new PrintWriter(new File("rule")));
 		} catch (FileNotFoundException e) {
@@ -24,15 +24,15 @@ class Rule{
 	List<Edge[]> kepEdges = new ArrayList<Edge[]>();
 	public static final Node nadd, ndel;
 	public static final Edge eadd, edel;
-	public static final int DEL = -2, ADD = -1;
+	public static final int SRC = -2, TRG = -1;
 	static{
-		nadd = new Node(ADD, "VO");
-		ndel = new Node(DEL, "VI");
+		nadd = new Node(TRG, "VO");
+		ndel = new Node(SRC, "VI");
 		eadd = new Edge();
-		eadd.index = ADD;
+		eadd.index = TRG;
 		eadd.tn = "NEO";
 		edel = new Edge();
-		edel.index = DEL;
+		edel.index = SRC;
 		edel.tn = "NEI";
 	}
 	void printRuleMatch(PrintWriter writer, int index){
@@ -204,7 +204,7 @@ class Rule{
 		writer.println(" ");
 		writer.print("(and");
 
-		nu = delNodes.size() + delEdges.size() + kepNodes.size() + kepEdges.size() + addNodes.size() + addEdges.size() - 1;
+		nu = delNodes.size() + delEdges.size() + kepNodes.size() * 2 + kepEdges.size() * 2 + addNodes.size() + addEdges.size() - 1;
 		for(int i = 0; i < nu; i++){
 			writer.print(" (and");
 		}
@@ -220,8 +220,14 @@ class Rule{
 		for(Node[] n : kepNodes){
 			start = printNodeMap(writer, n[0], start, n[1], true);	
 		}
+		for(Node[] n : kepNodes){
+			start = printNodeMap(writer, n[1], start, n[0], false);	
+		}
 		for(Edge[] n : kepEdges){
 			start = printEdgeMap(writer, n[0], start, n[1], true);
+		}
+		for(Edge[] n : kepEdges){
+			start = printEdgeMap(writer, n[1], start, n[0], false);
 		}
 
 		for(Node n : addNodes){
@@ -316,13 +322,11 @@ class Rule{
 			int index = 0;
 			index = Integer.parseInt(node[0]);
 			String type = node[1];
+			boolean src = type.endsWith("I");
 			Node nu = new Node(index, type);
 
 			if(next == null){
-				if(type.endsWith("I"))
-					delNodes.add(nu);
-				else
-					addNodes.add(nu);
+				(src ? delNodes : addNodes).add(nu);
 				++i;
 			}else{
 				String[] nn = next.split(":");
@@ -331,10 +335,7 @@ class Rule{
 				String nt = nn[1];
 				Node nuo = new Node(index, nt);
 				if(ni != index){
-					if(type.endsWith("I"))
-						delNodes.add(nu);
-					else
-						addNodes.add(nu);
+					(src ? delNodes : addNodes).add(nu);
 					++i;
 				}else{
 					kepNodes.add(new Node[]{nu, nuo});
@@ -356,53 +357,68 @@ class Rule{
 			System.out.println(string[0] + "->" + string[1]);
 		}
 	}
-	List<int[]> getRuleNullEdge(boolean in){
-		List<int[]> NEdges = new ArrayList<int[]>();
-		for(Edge[] cur : (in ? addEdges : delEdges)){
-			int[] nulledge = new int[2];
-			nulledge[0] = cur[2].src;
-			nulledge[1] = cur[2].trg;
+	String findNode(int index, boolean in){
+		if(index >= 0)
+			return getNode(kepNodes, index, in).type;
+		return in ? "VI" : "VO";
+	}
+	private Node getNode(List<Node[]> list, int index, boolean in){
+		for(Node[] iter : list)
+			if(iter[in ? 0 : 1].index == index)
+				return iter[in ? 0 : 1];
+		return null;
+	}
+	List<String[]> getRuleNullEdge(List<String[]> NEdges, boolean in){
+		List<Edge[]> cur = (in ? delEdges : addEdges);
+		for(int i = 0; i < cur.size(); ++i){
+			String[] nulledge = new String[2];
+			nulledge[0] = findNode(cur.get(i)[1].src, in);
+			nulledge[1] = findNode(cur.get(i)[1].trg, in);
 			putIntoList(NEdges, nulledge);
 		}
+		cur = (in ? addEdges : delEdges);
+		for(int i = 0; i < cur.size(); ++i){
+			String[] nulledge = new String[2];
+			nulledge[0] = findNode(cur.get(i)[1].src, in);
+			nulledge[1] = findNode(cur.get(i)[1].trg, in);
+			putIntoList(NEdges, nulledge);
+		}
+		putIntoList(NEdges, new String[]{in ? "VI" : "VO", in ? "VI" : "VO"});
 		return NEdges;
 	}
-	public static  void putIntoList(List<int[]> nEdges, int[] nulledge) {
-		for(int[] cur : nEdges){
-			if(cur[0] == nulledge[0] && cur[1] == nulledge[1])
+	public static  void putIntoList(List<String[]> nEdges, String[] nulledge) {
+		for(String[] cur : nEdges){
+			if(cur[0].equals(nulledge[0]) && cur[1].endsWith(nulledge[1]))
 				return;
 		}
+		System.out.println("" + nulledge[0] + " " + nulledge[1]);
 		nEdges.add(nulledge);
 	}
-	Edge getTransformedEdge(Edge edge){
+	//transform *O to *I or *I to *O
+	String toOppositeName(String name){
+		char end = name.charAt(name.length() - 1);
+		String result = name.substring(0, name.length() - 1);
+		return result + (end == 'I' ? 'O' : 'I');
+	}
+	Edge getTransformedEdge(Edge edge, boolean src){
 		Edge new_edge = new Edge();
-		if(edge.tn.endsWith("I")){
-			new_edge.index = ADD;
-			new_edge.tn = "NEO";
+		new_edge.index = src ? TRG : SRC;
+		new_edge.tn = src ? "NEO" : "NEI";
+		boolean isKept = isKept(edge.src, edge.ts, src);
+		if(isKept){
+			new_edge.src = edge.src;
+			new_edge.ts = toOppositeName(edge.ts);
 		}else{
-			new_edge.index = DEL;
-			new_edge.tn = "NEI";
+			new_edge.src = src ? TRG : SRC;
+			new_edge.ts = src ? "VO" : "VI";
 		}
-		new_edge.src = getTransformedNode(edge.src, edge.ts);
-		switch(new_edge.src){
-		case DEL:
-			new_edge.ts = "VI";
-			break;
-		case ADD: 
-			new_edge.ts = "VO";
-			break;
-		default:
-			new_edge.ts = edge.ts;
-		}
-		new_edge.trg = getTransformedNode(edge.trg, edge.tt);
-		switch(new_edge.src){
-		case DEL:
-			new_edge.tt = "VI";
-			break;
-		case ADD: 
-			new_edge.tt = "VO";
-			break;
-		default:
-			new_edge.tt = edge.tt;
+		isKept = isKept(edge.trg, edge.tt, src);
+		if(isKept){
+			new_edge.trg = edge.trg;
+			new_edge.tt = toOppositeName(edge.tt);
+		}else{
+			new_edge.trg = src ? TRG : SRC;
+			new_edge.tt = src ? "VO" : "VI";
 		}
 		return new_edge;
 	}
@@ -416,12 +432,10 @@ class Rule{
 			Edge edge = new Edge();
 			init(edge, edge_type[0]);
 			initType(edge, edge_type[1]);
+			boolean src = edge.tn.endsWith("I");
 
 			if(next == null){
-				if(edge.tn.endsWith("I"))
-					delEdges.add(new Edge[]{edge, getTransformedEdge(edge)});
-				else
-					addEdges.add(new Edge[]{edge, getTransformedEdge(edge)});
+				(src ? delEdges : addEdges).add(new Edge[]{edge, getTransformedEdge(edge, src)});
 				++i;
 			}else{
 				String[] edge_next = next.split(":");
@@ -429,10 +443,7 @@ class Rule{
 				init(ne, edge_next[0]);
 				initType(ne, edge_next[1]);
 				if(edge.index != ne.index){
-					if(edge.tn.endsWith("I"))
-						delEdges.add(new Edge[]{edge, getTransformedEdge(edge)});
-					else
-						addEdges.add(new Edge[]{edge, getTransformedEdge(edge)});
+					(src ? delEdges : addEdges).add(new Edge[]{edge, getTransformedEdge(edge, src)});
 					++i;
 				}else{
 					kepEdges.add(new Edge[]{edge, ne});
@@ -443,33 +454,26 @@ class Rule{
 		}
 		System.out.println("Delete Edges");
 		for (Edge[] string : delEdges) {
-			System.out.println(string[0]);
+			System.out.println(string[0] + "->" + string[1]);
 		}
 		System.out.println("Add Edges");
 		for (Edge[] string : addEdges) {
-			System.out.println(string[0]);
+			System.out.println(string[0] + "->" + string[1]);
 		}
 		System.out.println("Kept Edges");
 		for (Edge[] string : kepEdges) {
 			System.out.println(string[0] + "->" + string[1]);
 		}
 	}
-	private boolean findNode(List<Node[]> list, Node node){
+	private boolean findNode(List<Node[]> list, Node node, boolean in){
 		for(Node[] iter : list)
-			if(iter[0].index == node.index)
+			if(iter[(in ? 0 : 1)].index == node.index)
 				return true;
 		return false;
 	}
-	private int getTransformedNode(int src, String type) {
+	private boolean isKept(int src, String type, boolean in) {
 		Node cur = new Node(src, type);
-		//		System.out.println(type);
-		Boolean result = !findNode(kepNodes, cur);
-		if(result && type.endsWith("O"))
-			return DEL;
-		if(result && type.endsWith("I"))
-			return ADD;
-		//		System.out.println(src);
-		return src;
+		return findNode(kepNodes, cur, in);
 	}
 	private void initType(Edge edge, String string) {
 		int f = string.indexOf("|");

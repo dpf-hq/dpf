@@ -65,6 +65,22 @@ public class SMT {
 		writer.println(nodeIncompatiable(tVertex, false));
 		writer.println(edgeIncompatiable(tEdges, false));
 		writer.println("");
+		List<String[]> SourceNullEdges = new ArrayList<String[]>();
+		for(Rule rule : rules){
+			rule.getRuleNullEdge(SourceNullEdges, true);
+		}
+		List<String[]> targetNullEdges = new ArrayList<String[]>();
+		for(Rule rule : rules){
+			rule.getRuleNullEdge(targetNullEdges, false);
+		}
+		writer.println(";Any NullEdge only comes and goes to those nodes");
+		writer.println(getNullEdges(SourceNullEdges, true));
+		writer.println(getNullEdges(targetNullEdges, false));
+		writer.println("(assert (! (forall ((a V-OUT) (b V-OUT) (c E-OUT) (d V-OUT) (e V-OUT) (f E-OUT)) " +
+				"(=> (and (NEO a b c) (NEO d e f)) (= c f))) :named only-one-NEO-exists))");
+		writer.println("(assert (! (forall ((a V-INN) (b V-INN) (c E-INN) (d V-INN) (e V-INN) (f E-INN)) " +
+				"(=> (and (NEI a b c) (NEI d e f)) (= c f))) :named only-one-NEI-exists))");
+		writer.println("");
 		writer.println(";Any edge comes in or goes out an invalid node is invalid");
 		writer.println("(assert (! (forall ((a V-INN) (b V-INN) (c E-INN)) (=> (not (ValidVI a)) (and (not (ValidEI a b c)) (not (ValidEI b a c))))) :named source-untyped-node-edge-undefined))");
 		writer.println("(assert (! (forall ((a V-OUT) (b V-OUT) (c E-OUT)) (=> (not (ValidVO a)) (and (not (ValidEO a b c)) (not (ValidEO b a c))))) :named target-untyped-node-edge-undefined))");
@@ -96,7 +112,7 @@ public class SMT {
 		writer.println("(declare-fun delE (" + VINN + " " + VINN + " " + EINN + ") OutTuple)");
 
 		writer.println("");
-		writer.println(";If an node is changed, the incoming and outgoing edges are also changed");
+		writer.println(";graph morphism");
 //		writer.println("(assert (! (forall ((a V-INN) (b V-OUT) (t V-INN) (e E-INN)) (=> (and (= (delV a) b) (ValidVI a)) " +
 //				"(and (=> (ValidEI a t e) (exists ((t1 V-OUT) (e1 E-OUT)) (= (delE a t e) (out-tuple b t1 e1)))) " +
 //				"(=> (ValidEI t a e) (exists ((t1 V-OUT) (e1 E-OUT)) (= (delE t a e) (out-tuple t1 b e1))))))) :named node-del-edge-del))"); 
@@ -104,9 +120,9 @@ public class SMT {
 //				"(and (=> (ValidEO a t e) (exists ((t1 V-INN) (e1 E-INN)) (= (addE a t e) (inn-tuple b t1 e1)))) " +
 //				"(=> (ValidEO t a e) (exists ((t1 V-INN) (e1 E-INN)) (= (addE t a e) (inn-tuple t1 b e1))))))) :named node-add-edge-add))");
 		writer.println("(assert (! (forall ((a " + VINN + ") (b " + VINN + ") (c " + EINN + ") (d " + VOUT + ") (e " + VOUT + ") (f " + EOUT + ")) " +
-				"(=> (= (addE d e f) (inn-tuple a b c)) (and (= (addV d) a) (= (addV e) b)))) :named add-graph-morphism))");
+				"(=> (and (ValidEO d e f) (= (addE d e f) (inn-tuple a b c))) (and (= (addV d) a) (= (addV e) b)))) :named add-graph-morphism))");
 		writer.println("(assert (! (forall ((a " + VINN + ") (b " + VINN + ") (c " + EINN + ") (d " + VOUT + ") (e " + VOUT + ") (f " + EOUT + ")) " +
-				"(=> (= (delE a b c) (out-tuple d e f)) (and (= (delV a) d) (= (delV b) e)))) :named del-graph-morphism))");
+				"(=> (and (ValidEI a b c) (= (delE a b c) (out-tuple d e f))) (and (= (delV a) d) (= (delV b) e)))) :named del-graph-morphism))");
 		
 
 		writer.println("");
@@ -114,9 +130,13 @@ public class SMT {
 		writer.println("(assert (! (forall ((a " + VINN + ") (b " + VOUT + ")) (=> (and (or (not (ValidVI a)) (VI a)) (= (delV a) b)) (VO b))) :named Null-Inn-Or-Invalid-Node-Null-Out-Deled))");
 		writer.println("(assert (! (forall ((a " + VOUT + ") (b " + VINN + ")) (=> (and (or (not (ValidVO a)) (VO a)) (= (addV a) b)) (VI b))) :named Null-Out-Or-Invalid-Node-Null-Inn-Added))");
 		writer.println("(assert (! (forall ((a " + VINN + ") (b " + VINN + ") (c " + EINN + ") (d " + VOUT + ") (e " + VOUT + ") (f " + EOUT + ")) " +
-				"(=> (and (or (not (ValidEI a b c)) (NEI a b c)) (= (delE a b c) (out-tuple d e f))) (NEO d e f))) :named Null-Inn-Or-Invalid-Edge-Null-Out-Edge-Deled))");
+				"(=> (and (not (ValidEI a b c)) (= (delE a b c) (out-tuple d e f))) (and (= d e) (and (VO d) (NEO d e f))))) :named Invalid-Edge-Null-Out-Edge-Deled))");
 		writer.println("(assert (! (forall ((a " + VOUT + ") (b " + VOUT + ") (c " + EOUT + ") (d " + VINN + ") (e " + VINN + ") (f " + EINN + ")) " +
-				"(=> (and (or (not (ValidEO a b c)) (NEO a b c)) (= (addE a b c) (inn-tuple d e f))) (NEI d e f))) :named Null-Out-Or-Invalid-Edge-Null-Inn-Edge-Added))");
+				"(=> (and (not (ValidEO a b c)) (= (addE a b c) (inn-tuple d e f))) (and (= d e) (and (VI d) (NEI d e f))))) :named Invalid-Edge-Null-Inn-Edge-Added))");
+		writer.println("(assert (! (forall ((a " + VOUT + ") (b " + VOUT + ") (c " + EOUT + ") (d " + VINN + ") (e " + VINN + ") (f " + EINN + ")) " +
+				"(=> (and (NEO a b c) (= (addE a b c) (inn-tuple d e f))) (NEI d e f))) :named Null-Out-Edge-Null-Inn-Edge-Added))");
+		writer.println("(assert (! (forall ((a " + VINN + ") (b " + VINN + ") (c " + EINN + ") (d " + VOUT + ") (e " + VOUT + ") (f " + EOUT + ")) " +
+				"(=> (and (NEI a b c) (= (delE a b c) (out-tuple d e f))) (NEO d e f))) :named Null-Inn-Edge-Null-Out-Edge-Deled))");
 
 		writer.println("");
 		writer.println(";Commond part for each transformation are well kept");
@@ -194,15 +214,15 @@ public class SMT {
 		writer.println("(assert (! (forall ((a " + VOUT + ") (b " + VOUT + ") (c " + EOUT + ")) " +
 				"(=> (NNullEO a b c) (exists ((d " + VINN + ") (e " + VINN + ") (f " + EINN + ")) (and (NNullEI d e f) (= (delE d e f) (out-tuple a b c)))))) :named del-surjective-for-NotNull-edge-in-target))");
 
-		writer.println("");
-		writer.println(";Each valid elements in the source model should hava an image for del");
-		writer.println(";Each valid elements in the target model should hava an image for add");
-		writer.println("(assert (! (forall ((a " + VINN + ")) (=> (ValidVI a) (exists ((b " + VOUT + ")) (and (ValidVO b) (= b (delV a)))))) :named each-valid-node-in-source-is-deled))");
-		writer.println("(assert (! (forall ((a " + VOUT + ")) (=> (ValidVO a) (exists ((b " + VINN + ")) (and (ValidVI b) (= b (addV a)))))) :named each-valid-node-in-target-is-added))");
-		writer.println("(assert (! (forall ((a " + VINN + ") (b " + VINN + ") (c " + EINN + ")) " +
-				"(=> (ValidEI a b c) (exists ((d " + VOUT + ") (e " + VOUT + ") (f " + EOUT + ")) (and (ValidEO d e f) (= (delE a b c) (out-tuple d e f)))))) :named each-valid-edge-in-source-is-deled))");
-		writer.println("(assert (! (forall ((a " + VOUT + ") (b " + VOUT + ") (c " + EOUT + ")) " +
-				"(=> (ValidEO a b c) (exists ((d " + VINN + ") (e " + VINN + ") (f " + EINN + ")) (and (ValidEI d e f) (= (addE a b c) (inn-tuple d e f)))))) :named each-valid-edge-in-target-is-added))");
+//		writer.println("");
+//		writer.println(";Each valid elements in the source model should hava an image for del");
+//		writer.println(";Each valid elements in the target model should hava an image for add");
+//		writer.println("(assert (! (forall ((a " + VINN + ")) (=> (ValidVI a) (exists ((b " + VOUT + ")) (and (ValidVO b) (= b (delV a)))))) :named each-valid-node-in-source-is-deled))");
+//		writer.println("(assert (! (forall ((a " + VOUT + ")) (=> (ValidVO a) (exists ((b " + VINN + ")) (and (ValidVI b) (= b (addV a)))))) :named each-valid-node-in-target-is-added))");
+//		writer.println("(assert (! (forall ((a " + VINN + ") (b " + VINN + ") (c " + EINN + ")) " +
+//				"(=> (ValidEI a b c) (exists ((d " + VOUT + ") (e " + VOUT + ") (f " + EOUT + ")) (and (ValidEO d e f) (= (delE a b c) (out-tuple d e f)))))) :named each-valid-edge-in-source-is-deled))");
+//		writer.println("(assert (! (forall ((a " + VOUT + ") (b " + VOUT + ") (c " + EOUT + ")) " +
+//				"(=> (ValidEO a b c) (exists ((d " + VINN + ") (e " + VINN + ") (f " + EINN + ")) (and (ValidEI d e f) (= (addE a b c) (inn-tuple d e f)))))) :named each-valid-edge-in-target-is-added))");
 		
 		writer.println("");
 		writer.println(";Each invalid elements in the target model should hava no preimage for del");
@@ -335,44 +355,74 @@ public class SMT {
 				writer.print(")");
 		}
 		writer.println(" :named source-model-should-match-at-least-one-rule))");
+		writer.print(";");
 		writer.println(reflexiveEdge("non-active", true));
+		writer.print(";");
 		writer.println(reflexiveEdge("active", true));
+		writer.print(";");
 		writer.println(reflexiveEdge("start", true));
+		writer.print(";");
 		writer.println(reflexiveEdge("crit", true));
+		writer.print(";");
 		writer.println(reflexiveEdge("check", true));
+		writer.print(";");
 		writer.println(reflexiveEdge("setTurn", true));
 		writer.print(";");
 		writer.println(uniqueNode("T", true));
 		writer.print(";");
 		writer.println(uniqueNode("R", true));
+		writer.print(";");
 		writer.println(existNode("T", true));
 		writer.print(";");
 		writer.println(existNode("R", true));
+		writer.print(";");
 		writer.println(existNode("P", true));
 		writer.print(";");
 		writer.println(existEdge("TP", true));
+		writer.print(";");
 		writer.println(existOneOfEdges("non-active;active", true));
+		writer.print(";");
 		writer.println(existOneOfEdges("start;crit;check;setTurn", true));
+		writer.print(";");
 		writer.println(noncompatibleEdge("non-active;active", true));
+		writer.print(";");
 		writer.println(noncompatibleEdge("start;crit;check;setTurn", true));
+		writer.print(";");
 		writer.println(injective("PF2", true));
+		writer.print(";");
 		writer.println(injective("PF1", true));
+		writer.print(";");
 		writer.println(injective("TR", true));
+		writer.print(";");
 		writer.println(injective("TP", true));
 		
+		writer.print(";");
 		writer.println(nullOrOne("non-active", true));
+		writer.print(";");
 		writer.println(nullOrOne("active", true));
+		writer.print(";");
 		writer.println(nullOrOne("start", true));
+		writer.print(";");
 		writer.println(nullOrOne("crit", true));
+		writer.print(";");
 		writer.println(nullOrOne("check", true));
+		writer.print(";");
 		writer.println(nullOrOne("setTurn", true));
+		writer.print(";");
 		writer.println(nullOrOne("PF2", true));
+		writer.print(";");
 		writer.println(nullOrOne("PF1", true));
+		writer.print(";");
 		writer.println(nullOrOne("F1R", true));
+		writer.print(";");
 		writer.println(nullOrOne("F2R", true));
+		writer.print(";");
 		writer.println(nullOrOne("TP", true));
+		writer.print(";");
 		writer.println(surjective("PF2", "F2", true));
+		writer.print(";");
 		writer.println(surjective("PF1", "F1", true));
+		writer.print(";");
 		writer.println(surjective("TR", "R", true));
 
 		writer.print(";");
@@ -413,6 +463,34 @@ public class SMT {
 		writer.println("(get-unsat-core)");
 		writer.println("(exit)");
 		writer.close();
+	}
+	private String getNullEdges(List<String[]> edges, boolean in) {
+		StringBuffer result = new StringBuffer();
+		result.append("(assert (! (forall ((a V-" + (in ? INN : OUT) + ") (b V-" + (in ? INN : OUT) + ") (c E-" + (in ? INN : OUT) + ")) (=> (NE" + (in ? "I" : "O") + " a b c) ");
+		int size = edges.size();
+		for (int i = 0; i < size - 1; i++) {
+			result.append(" (or");
+		}
+		for (int i = 0; i < size; i++) {
+			String src = edges.get(i)[0], trg = edges.get(i)[1];
+			if(in){
+				if(trg.equals("VO"))
+					trg = "VI";
+				if(src.equals("VO"))
+					src = "VI";
+			}else{
+				if(trg.equals("VI"))
+					trg = "VO";
+				if(src.equals("VI"))
+					src = "VO";
+			}
+				
+			result.append(" (and " + "(" + src  +  " a) (" + trg +  " b))");
+			if(i != 0)
+				result.append(")");
+		}
+		result.append(")) :named " + (in ? "Source" : "Target") + "-NullEdge-Source-Target))");
+		return result.toString();
 	}
 	private String existEdge(String a, boolean in) {
 		String node = a + (in ? "I" : "O");
@@ -798,10 +876,10 @@ public class SMT {
 			buffer.append(sEdges[i][0] + " s t e) (and (" + sEdges[i][1] + " s) (" + sEdges[i][2] + " t)))) :named " + sEdges[i][0] + "-source-target))");
 			buffer.append(System.getProperty("line.separator"));
 		}
-		if(in)
-			buffer.append("(assert (! (forall ((s V-INN) (t V-INN) (e E-INN)) (=> (NEI s t e) (and (ValidVI s) (ValidVI t)))) :named NEI-source-target))");
-		else
-			buffer.append("(assert (! (forall ((s V-OUT) (t V-OUT) (e E-OUT)) (=> (NEO s t e) (and (ValidVO s) (ValidVO t)))) :named NEO-source-target))");
+//		if(in)
+//			buffer.append("(assert (! (forall ((s V-INN) (t V-INN) (e E-INN)) (=> (NEI s t e) (and (ValidVI s) (ValidVI t)))) :named NEI-source-target))");
+//		else
+//			buffer.append("(assert (! (forall ((s V-OUT) (t V-OUT) (e E-OUT)) (=> (NEO s t e) (and (ValidVO s) (ValidVO t)))) :named NEO-source-target))");
 		
 		buffer.append(System.getProperty("line.separator"));
 		return buffer.toString();
