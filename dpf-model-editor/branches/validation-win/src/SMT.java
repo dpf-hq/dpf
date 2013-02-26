@@ -265,21 +265,21 @@ public class SMT {
 				"(not (addEID a b c id)))) " +
 				":named add-edge-id-false))");
 		
-		writer.println("(assert (! (forall ((a V-INN) (id RuleID)) (=> " +
+		writer.println("(assert (! (forall ((a V-INN)) (=> " +
 				"(and (NNullVI a) (exists ((b V-OUT)) (and (VO b) (= (delV a) b)))) " +
-				"(delVID a id))) " +
+				"(exists ((id RuleID)) (delVID a id)))) " +
 				":named del-node-id-true))");
-		writer.println("(assert (! (forall ((a V-OUT) (id RuleID)) (=> " +
+		writer.println("(assert (! (forall ((a V-OUT)) (=> " +
 				"(and (NNullVO a) (exists ((b V-INN)) (and (VI b) (= (addV a) b)))) " +
-				"(addVID a id))) " +
+				"(exists ((id RuleID)) (addVID a id)))) " +
 				":named add-node-id-true))");
-		writer.println("(assert (! (forall ((a V-INN) (b V-INN) (c E-INN) (id RuleID)) (=> " +
+		writer.println("(assert (! (forall ((a V-INN) (b V-INN) (c E-INN)) (=> " +
 				"(and (NNullEI a b c) (exists ((d V-OUT) (e V-OUT) (f E-OUT)) (and (NEO d e f) (= (delE a b c) (out-tuple d e f))))) " +
-				"(delEID a b c id))) " +
+				"(exists ((id RuleID)) (delEID a b c id)))) " +
 				":named del-edge-id-true))");
-		writer.println("(assert (! (forall ((a V-OUT) (b V-OUT) (c E-OUT) (id RuleID)) (=> " +
+		writer.println("(assert (! (forall ((a V-OUT) (b V-OUT) (c E-OUT)) (=> " +
 				"(and (NNullEO a b c) (exists ((d V-INN) (e V-INN) (f E-INN)) (and (NEI d e f) (= (addE a b c) (inn-tuple d e f))))) " +
-				"(addEID a b c id))) " +
+				"(exists ((id RuleID)) (addEID a b c id)))) " +
 				":named add-edge-id-true))");
 		
 		writer.println("(assert (! (forall ((a V-INN) (id RuleID)) (=> " +
@@ -299,20 +299,20 @@ public class SMT {
 				"(or (not (ValidEO a b c)) (or (NEO a b c) (and (NNullEO a b c) (exists ((d V-INN) (e V-INN) (f E-INN)) (and (NNullEI d e f) (= (addE a b c) (inn-tuple d e f))))))))) " +
 				":named add-edge-id-false-domain))");
 		
-		writer.println("(assert (! (forall ((a V-INN) (id RuleID)) (=> " +
-				"(delVID a id) " +
+		writer.println("(assert (! (forall ((a V-INN)) (=> " +
+				"(exists ((id RuleID)) (delVID a id)) " +
 				"(and (NNullVI a) (exists ((b V-OUT)) (and (VO b) (= (delV a) b)))))) " +
 				":named del-node-id-true-domain))");
-		writer.println("(assert (! (forall ((a V-OUT) (id RuleID)) (=> " +
-				"(addVID a id) " +
+		writer.println("(assert (! (forall ((a V-OUT)) (=> " +
+				"(exists ((id RuleID)) (addVID a id)) " +
 				"(and (NNullVO a) (exists ((b V-INN)) (and (VI b) (= (addV a) b)))))) " +
 				":named add-node-id-true-domain))");
-		writer.println("(assert (! (forall ((a V-INN) (b V-INN) (c E-INN) (id RuleID)) (=> " +
-				"(delEID a b c id) " +
+		writer.println("(assert (! (forall ((a V-INN) (b V-INN) (c E-INN)) (=> " +
+				"(exists ((id RuleID)) (delEID a b c id)) " +
 				"(and (NNullEI a b c) (exists ((d V-OUT) (e V-OUT) (f E-OUT)) (and (NEO d e f) (= (delE a b c) (out-tuple d e f))))))) " +
 				":named del-edge-id-true-domain))");
-		writer.println("(assert (! (forall ((a V-OUT) (b V-OUT) (c E-OUT) (id RuleID)) (=> " +
-				"(addEID a b c id) " +
+		writer.println("(assert (! (forall ((a V-OUT) (b V-OUT) (c E-OUT)) (=> " +
+				"(exists ((id RuleID)) (addEID a b c id)) " +
 				"(and (NNullEO a b c) (exists ((d V-INN) (e V-INN) (f E-INN)) (and (NEI d e f) (= (addE a b c) (inn-tuple d e f))))))) " +
 				":named add-edge-id-true-domain))");
 		
@@ -341,8 +341,12 @@ public class SMT {
 		for(Rule rule : rules){
 			rule.printRule(writer);
 		}
-
+		writer.println();
 		
+		writer.println("(assert (! (or (or (or (exists ((a1 V-INN) (b1 V-OUT)) (=> (and (NNullVI a) (= b (delV a))) (VO b))) ");
+		writer.println("(exists ((a2 V-OUT) (b2 V-INN)) (=> (and (NNullVO a2) (= b2 (addV a2))) (VI b2)))) ");
+		writer.println("(exists ((a3 V-INN) (b3 V-INN) (c3 E-INN) (d3 V-OUT) (e3 V-OUT) (f3 E-OUT)) (=> (and (NNullEI a3 b3 c3) (= (out-tuple d3 e3 f3) (delE a3 b3 c3))) (NEO d3 e3 f3)))) ");
+		writer.println("(exists ((a4 V-INN) (b4 V-INN) (c4 E-INN) (d4 V-OUT) (e4 V-OUT) (f4 E-OUT)) (=> (and (NNullEO d4 e4 f4) (= (inn-tuple a4 b4 c4) (delE d4 e4 f4))) (NEI a4 b4 c4)))) :named at-least-one-edge-node-is-added-or-deled))");
 		writer.println();
 		//At least the source model should match one rule
 		writer.print("(assert (! ");
@@ -354,6 +358,7 @@ public class SMT {
 			if(i > 0)
 				writer.print(")");
 		}
+		
 		writer.println(" :named source-model-should-match-at-least-one-rule))");
 		writer.print(";");
 		writer.println(reflexiveEdge("non-active", true));

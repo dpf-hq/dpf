@@ -97,7 +97,10 @@ class Rule{
 	}
 	private boolean printNode(PrintWriter writer, Node n, boolean start,
 			boolean b, String string) {
-		writer.print(" (" + n.type + (b ? " ni" : " no") + string + n.index + ")");
+		String type = n.type;
+		if(b != type.endsWith("I"))
+			type = toOppositeName(type);
+		writer.print(" (" + type + (b ? " ni" : " no") + string + n.index + ")");
 		if(!start)
 			writer.print(")");
 		else
@@ -154,6 +157,76 @@ class Rule{
 			start = printEdge(writer, n[1], start, true);
 		}
 		writer.println(" ");
+		writer.print("(or (exists (");
+		for(Node n : delNodes){
+			writer.print(" (no" + n.index + " V-OUT)");
+		}
+		for(Edge[] n : delEdges){
+			writer.print(" (eo" + n[0].index + " E-OUT)");
+		}
+		for(Node[] n : kepNodes){
+			writer.print(" (no" + n[0].index + " V-OUT)");
+		}
+
+		for(Edge[] n : kepEdges){
+			writer.print(" (eo" + n[0].index + " E-OUT)");
+		}
+
+		if(!addNodes.isEmpty())
+			writer.print(" (no" + ndel.index + " V-OUT)");
+		if(!addEdges.isEmpty())
+			writer.print(" (eo" + edel.index + " E-OUT)");
+		writer.println(") ");
+		writer.print("(and (");
+		for(int i = 0; i < nu; i++){
+			writer.print(" (and");
+		}
+		if(nu < 0)
+			writer.print(" ");
+		start = nu > 0;
+		for(Node n : delNodes){
+			start = printNode(writer, n, start, false);			
+		}
+		for(Edge[] n : delEdges){
+			start = printEdge(writer, n[0], start, false);
+		}
+		for(Node[] n : kepNodes){
+			start = printNode(writer, n[0], start, false);
+		}
+		for(Edge[] n : kepEdges){
+			start = printEdge(writer, n[0], start, false);
+		}
+		if(!addNodes.isEmpty())
+			printNode(writer, ndel, start, false);
+		for(Edge[] n : addEdges){
+			start = printEdge(writer, n[1], start, false);
+		}
+		writer.println(") ");
+		writer.print("(");
+		for(int i = 0; i < nu; i++){
+			writer.print(" (and");
+		}
+		if(nu < 0)
+			writer.print(" ");
+		start = nu > 0;
+		for(Node n : delNodes){
+			start = printNodeMap(writer, n, start);			
+		}
+		for(Edge[] n : delEdges){
+			start = printEdgeMap(writer, n[0], start);
+		}
+		for(Node[] n : kepNodes){
+			start = printNodeMap(writer, n[0], start);
+		}
+		for(Edge[] n : kepEdges){
+			start = printEdgeMap(writer, n[0], start);
+		}
+		if(!addNodes.isEmpty())
+			printNodeMap(writer, ndel, start);
+		for(Edge[] n : addEdges){
+			start = printEdgeMap(writer, n[1], start);
+		}
+		writer.println("))) ");
 		writer.print("(exists (");
 
 		for(Node n : addNodes){
@@ -284,8 +357,7 @@ class Rule{
 			start = false;
 		return start;
 	}
-	private boolean printEdgeMap(PrintWriter writer, Edge e, boolean start,
-			Edge edge2, boolean b) {
+	private boolean printEdgeMap(PrintWriter writer, Edge e, boolean start, Edge edge2, boolean b) {
 		if(b)
 			writer.print(" (= (out-tuple no" + edge2.src + " no" + edge2.trg + " eo" + edge2.index + ") (delE ni" + e.src + " ni" + e.trg + " ei" + e.index + "))");
 		else
@@ -297,9 +369,25 @@ class Rule{
 			start = false;
 		return start;
 	}
-	private boolean printNodeMap(PrintWriter writer, Node n, boolean start,
-			Node nadd2, boolean del) {
+	private boolean printEdgeMap(PrintWriter writer, Edge e, boolean start) {
+			writer.print(" (= (out-tuple no" + e.src + " no" + e.trg + " eo" + e.index + ") (delE ni" + e.src + " ni" + e.trg + " ei" + e.index + "))");
+		
+		if(!start)
+			writer.print(")");
+		else
+			start = false;
+		return start;
+	}
+	private boolean printNodeMap(PrintWriter writer, Node n, boolean start, Node nadd2, boolean del) {
 		writer.print(" (= n" + (del ? "o" : "i") + nadd2.index + " (" + (del ? "delV" : "addV") + (del ? " ni" : " no") + n.index + "))");
+		if(!start)
+			writer.print(")");
+		else
+			start = false;
+		return start;
+	}
+	private boolean printNodeMap(PrintWriter writer, Node n, boolean start) {
+		writer.print(" (= no" + n.index + " (delV ni" + n.index + "))");
 		if(!start)
 			writer.print(")");
 		else
