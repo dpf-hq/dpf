@@ -85,10 +85,13 @@ class Rule{
 	}
 	private boolean printEdge(PrintWriter writer, Edge e, boolean start,
 			boolean input, String string) {
+		String type = e.tn;
+		if(input != type.endsWith("I"))
+			type = toOppositeName(type);
 		if(input)
-			writer.print(" (" + e.tn + " ni" + string + e.src + " ni" + string + e.trg + " ei" + string + e.index + ")");
+			writer.print(" (" + type + " ni" + string + e.src + " ni" + string + e.trg + " ei" + string + e.index + ")");
 		else
-			writer.print(" (" + e.tn + " no" + string + e.src + " no" + string + e.trg + " eo" + string + e.index + ")");
+			writer.print(" (" + type + " no" + string + e.src + " no" + string + e.trg + " eo" + string + e.index + ")");
 		if(!start)
 			writer.print(")");
 		else
@@ -177,7 +180,7 @@ class Rule{
 		if(!addEdges.isEmpty())
 			writer.print(" (eo" + edel.index + " E-OUT)");
 		writer.println(") ");
-		writer.print("(and (");
+		writer.print("(and");
 		for(int i = 0; i < nu; i++){
 			writer.print(" (and");
 		}
@@ -201,8 +204,7 @@ class Rule{
 		for(Edge[] n : addEdges){
 			start = printEdge(writer, n[1], start, false);
 		}
-		writer.println(") ");
-		writer.print("(");
+		writer.println("");
 		for(int i = 0; i < nu; i++){
 			writer.print(" (and");
 		}
@@ -226,7 +228,7 @@ class Rule{
 		for(Edge[] n : addEdges){
 			start = printEdgeMap(writer, n[1], start);
 		}
-		writer.println("))) ");
+		writer.println(")) ");
 		writer.print("(exists (");
 
 		for(Node n : addNodes){
@@ -330,7 +332,7 @@ class Rule{
 		for(Edge[] n : addEdges){
 			start = printEdgeChange(writer, n[0], start, false);
 		}
-		writer.println("))))) :named rule-" + name + "))");
+		writer.println(")))))) :named rule-" + name + "))");
 	}
 	String name;
 	private boolean printNodeChange(PrintWriter writer, Node n, boolean start,
