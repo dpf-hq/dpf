@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/no.hib.dpf.visual/src" editDirectory="/no.hib.dpf.visual/src"
+    editorDirectory="/no.hib.dpf.visual/src" modelPluginID="no.hib.dpf.visual" modelName="ModelVisualizationGen"
+    testsDirectory="/no.hib.dpf.visual/src" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="6.0" copyrightFields="false" usedGenPackages="../../no.hib.dpf.core/model/Metamodel.genmodel#//core visualGen.genmodel#//visual">
+  <foreignModel>ModelVisualization.ecore</foreignModel>
+  <genPackages prefix="Visualization" basePackage="no.hib.dpf" disposableProviderFactory="true"
+      ecorePackage="ModelVisualization.ecore#/">
+    <genClasses ecoreClass="ModelVisualization.ecore#//Visualizations">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ModelVisualization.ecore#//Visualizations/entries"/>
+    </genClasses>
+    <genClasses ecoreClass="ModelVisualization.ecore#//ModelToVisualEntry">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ModelVisualization.ecore#//ModelToVisualEntry/key"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ModelVisualization.ecore#//ModelToVisualEntry/value"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

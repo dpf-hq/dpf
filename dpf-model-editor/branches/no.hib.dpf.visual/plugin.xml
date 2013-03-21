@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <factory
+            uri="http://no.hib.dpf.visual"
+            class="no.hib.dpf.visual.provider.VisualItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://no.hib.dpf.visual"
+            class="no.hib.dpf.visual.VisualPackage"
+            genModel="model/visualGen.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="no.hib.dpf.visual.presentation.VisualModelWizardID"
+            name="%_UI_VisualModelWizard_label"
+            class="no.hib.dpf.visual.presentation.VisualModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/VisualModelFile.gif">
+         <description>%_UI_VisualModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            id="no.hib.dpf.visual.presentation.VisualEditorID"
+            name="%_UI_VisualEditor_label"
+            icon="icons/full/obj16/VisualModelFile.gif"
+            extensions="visual"
+            class="no.hib.dpf.visual.presentation.VisualEditor1"
+            contributorClass="no.hib.dpf.visual.presentation.VisualActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>
