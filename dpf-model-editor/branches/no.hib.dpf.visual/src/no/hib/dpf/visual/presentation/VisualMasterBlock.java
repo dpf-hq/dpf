@@ -8,7 +8,7 @@ import no.hib.dpf.visual.VElement;
 import no.hib.dpf.visual.VisualFactory;
 import no.hib.dpf.visual.VisualPackage;
 import no.hib.dpf.visual.Visuals;
-import no.hib.dpf.visual.impl.VElementImpl;
+import no.hib.dpf.visual.impl.VNodeImpl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gef.DefaultEditDomain;
@@ -46,7 +46,7 @@ public class VisualMasterBlock extends MasterDetailsBlock {
 	private Visuals visuals;
 	private TableViewer viewer;
 	
-	class DSignatureContentProvider implements IStructuredContentProvider {
+	class VElementContentProvider implements IStructuredContentProvider {
 		public Object[] getElements(Object inputElement) {
 			if (inputElement instanceof VElement[]){
 				return (VElement[])(inputElement);
@@ -59,7 +59,7 @@ public class VisualMasterBlock extends MasterDetailsBlock {
 		}
 	}
 	
-	class SignatureLabelProvider extends LabelProvider implements ITableLabelProvider {
+	class VElementLabelProvider extends LabelProvider implements ITableLabelProvider {
 		public String getColumnText(Object obj, int index) {
 			if(obj instanceof VElement){
 				return ((VElement)obj).getName();
@@ -118,7 +118,7 @@ public class VisualMasterBlock extends MasterDetailsBlock {
 			
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				addDPredicate();
+				addVElement();
 			}
 			
 			@Override
@@ -152,9 +152,9 @@ public class VisualMasterBlock extends MasterDetailsBlock {
 				deBtn.setVisible(!event.getSelection().isEmpty());
 			}
 		});
-		viewer.setContentProvider(new DSignatureContentProvider());
-		viewer.setLabelProvider(new SignatureLabelProvider());
-		viewer.setInput(getDPredicates());
+		viewer.setContentProvider(new VElementContentProvider());
+		viewer.setLabelProvider(new VElementLabelProvider());
+		viewer.setInput(getVElements());
 		viewer.setSelection(null);
 	}
 
@@ -188,11 +188,11 @@ public class VisualMasterBlock extends MasterDetailsBlock {
 		return new ArrayList<VElement>(0);
 	}
 
-	protected void addDPredicate() {
+	protected void addVElement() {
 		final VisualFormEditor editor = getMultiEditor();
 		DefaultEditDomain domain = editor.getEditDomain();
-		final VElement created = getNewDPrediate();
-		domain.getCommandStack().execute(new Command("Add Predicate") {
+		final VElement created = getNewVisual();
+		domain.getCommandStack().execute(new Command("Add Visual") {
 			public boolean canExecute() {
 				return visuals != null && editor != null && created != null;
 			}
@@ -209,8 +209,8 @@ public class VisualMasterBlock extends MasterDetailsBlock {
 		});
 	}
 	
-	private VElement getNewDPrediate(){
-		VElement result = VisualFactory.eINSTANCE.createVArrow();
+	private VElement getNewVisual(){
+		VElement result = VisualFactory.eINSTANCE.createVNode();
 		int i = 0;
 		VElement search = null;
 		for(; i < visuals.getItems().size(); ++i){
@@ -223,11 +223,13 @@ public class VisualMasterBlock extends MasterDetailsBlock {
 	}
 
 	private VElement getVisualBySymbol(Visuals visuals2, String string) {
-		// TODO Auto-generated method stub
+		for(VElement e : visuals2.getItems())
+			if(e.getName().equals(string))
+				return e;
 		return null;
 	}
 
-	private VElement[] getDPredicates() {
+	private VElement[] getVElements() {
 		if(visuals != null){
 			return visuals.getItems().toArray(new VElement[visuals.getItems().size()]);
 		}
@@ -236,22 +238,23 @@ public class VisualMasterBlock extends MasterDetailsBlock {
 
 	@Override
 	protected void registerPages(DetailsPart detailsPart) {
-		detailsPart.registerPage(VElementImpl.class, new PredicateDetailBlock(this));
+		detailsPart.registerPage(VNodeImpl.class, new VNodeBlock(this));
+//		detailsPart.registerPage(VArrow.class, new V(this));
 	}
 
 	@Override
 	protected void createToolBarActions(IManagedForm managedForm) { }
 
 	public void refresh(VElement predicate) {
-		viewer.setInput(getDPredicates());
+		viewer.setInput(getVElements());
 		viewer.setSelection(new StructuredSelection(predicate));
 	}
 
 	public void refresh() {
-		VElement[] predicates = getDPredicates();
-		viewer.setInput(getDPredicates());
-		if(predicates.length > 0)
-			viewer.setSelection(new StructuredSelection(predicates[predicates.length - 1]));
+		VElement[] elements = getVElements();
+		viewer.setInput(getVElements());
+		if(elements.length > 0)
+			viewer.setSelection(new StructuredSelection(elements[elements.length - 1]));
 		else
 			viewer.setSelection(null);
 	}

@@ -58,6 +58,8 @@ public class VisualizationsItemProvider
 			super.getPropertyDescriptors(object);
 
 			addEntriesPropertyDescriptor(object);
+			addModelPropertyDescriptor(object);
+			addVisualPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -76,6 +78,50 @@ public class VisualizationsItemProvider
 				 getString("_UI_Visualizations_entries_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Visualizations_entries_feature", "_UI_Visualizations_type"),
 				 VisualizationPackage.Literals.VISUALIZATIONS__ENTRIES,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Model feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addModelPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Visualizations_model_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Visualizations_model_feature", "_UI_Visualizations_type"),
+				 VisualizationPackage.Literals.VISUALIZATIONS__MODEL,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Visual feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addVisualPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Visualizations_visual_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Visualizations_visual_feature", "_UI_Visualizations_type"),
+				 VisualizationPackage.Literals.VISUALIZATIONS__VISUAL,
 				 true,
 				 false,
 				 true,

@@ -31,6 +31,8 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
 
+import org.eclipse.core.filesystem.EFS;
+import org.eclipse.core.filesystem.IFileStore;
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
@@ -38,6 +40,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -51,13 +54,19 @@ import org.eclipse.swt.SWT;
 
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Table;
+import org.eclipse.swt.widgets.Text;
 
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
@@ -68,7 +77,11 @@ import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.ISetSelectionTarget;
+import org.eclipse.ui.views.markers.internal.TableViewLabelProvider;
 
+import no.hib.dpf.core.Specification;
+import no.hib.dpf.editor.DPFEditor;
+import no.hib.dpf.utils.DPFCoreUtil;
 import no.hib.dpf.visualization.VisualizationFactory;
 import no.hib.dpf.visualization.VisualizationPackage;
 import no.hib.dpf.visualization.provider.ModelVisualizationGenEditPlugin;
@@ -76,6 +89,9 @@ import no.hib.dpf.visualization.provider.ModelVisualizationGenEditPlugin;
 
 import org.eclipse.core.runtime.Path;
 
+import org.eclipse.jface.viewers.ArrayContentProvider;
+import org.eclipse.jface.viewers.CheckboxTableViewer;
+import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 
@@ -89,7 +105,7 @@ import org.eclipse.ui.PartInitException;
  * This is a simple wizard for creating a new model file.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * @generated
+ * @generated NOT
  */
 public class VisualizationModelWizard extends Wizard implements INewWizard {
 	/**
@@ -99,7 +115,7 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	public static final List<String> FILE_EXTENSIONS =
-		Collections.unmodifiableList(Arrays.asList(ModelVisualizationGenEditPlugin.INSTANCE.getString("_UI_VisualizationEditorFilenameExtensions").split("\\s*,\\s*")));
+			Collections.unmodifiableList(Arrays.asList(ModelVisualizationGenEditPlugin.INSTANCE.getString("_UI_VisualizationEditorFilenameExtensions").split("\\s*,\\s*")));
 
 	/**
 	 * A formatted list of supported file extensions, suitable for display.
@@ -108,7 +124,7 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	public static final String FORMATTED_FILE_EXTENSIONS =
-		ModelVisualizationGenEditPlugin.INSTANCE.getString("_UI_VisualizationEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
+			ModelVisualizationGenEditPlugin.INSTANCE.getString("_UI_VisualizationEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
 
 	/**
 	 * This caches an instance of the model package.
@@ -165,6 +181,10 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	protected List<String> initialObjectNames;
+
+	public Text visualFile;
+
+	public Button visualbrowseButton;
 
 	/**
 	 * This just records the information.
@@ -229,43 +249,39 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 			// Do the work within an operation.
 			//
 			WorkspaceModifyOperation operation =
-				new WorkspaceModifyOperation() {
-					@Override
-					protected void execute(IProgressMonitor progressMonitor) {
-						try {
-							// Create a resource set
-							//
-							ResourceSet resourceSet = new ResourceSetImpl();
+					new WorkspaceModifyOperation() {
+				@Override
+				protected void execute(IProgressMonitor progressMonitor) {
+					try {
+						// Create a resource set
+						//
+						ResourceSet resourceSet = new ResourceSetImpl();
 
-							// Get the URI of the model file.
-							//
-							URI fileURI = URI.createPlatformResourceURI(modelFile.getFullPath().toString(), true);
+						// Get the URI of the model file.
+						//
+						URI fileURI = URI.createPlatformResourceURI(modelFile.getFullPath().toString(), true);
 
-							// Create a resource for this file.
-							//
-							Resource resource = resourceSet.createResource(fileURI);
+						// Create a resource for this file.
+						//
+						Resource resource = resourceSet.createResource(fileURI);
 
-							// Add the initial model object to the contents.
-							//
-							EObject rootObject = createInitialModel();
-							if (rootObject != null) {
-								resource.getContents().add(rootObject);
-							}
-
-							// Save the contents of the resource to the file system.
-							//
-							Map<Object, Object> options = new HashMap<Object, Object>();
-							options.put(XMLResource.OPTION_ENCODING, initialObjectCreationPage.getEncoding());
-							resource.save(options);
+						// Add the initial model object to the contents.
+						//
+						EObject rootObject = createInitialModel();
+						if (rootObject != null) {
+							resource.getContents().add(rootObject);
 						}
-						catch (Exception exception) {
-							ModelVisualizationGenEditPlugin.INSTANCE.log(exception);
-						}
-						finally {
-							progressMonitor.done();
-						}
+
+						resource.save(null);
 					}
-				};
+					catch (Exception exception) {
+						ModelVisualizationGenEditPlugin.INSTANCE.log(exception);
+					}
+					finally {
+						progressMonitor.done();
+					}
+				}
+			};
 
 			getContainer().run(false, false, operation);
 
@@ -277,19 +293,19 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 			if (activePart instanceof ISetSelectionTarget) {
 				final ISelection targetSelection = new StructuredSelection(modelFile);
 				getShell().getDisplay().asyncExec
-					(new Runnable() {
-						 public void run() {
-							 ((ISetSelectionTarget)activePart).selectReveal(targetSelection);
-						 }
-					 });
+				(new Runnable() {
+					public void run() {
+						((ISetSelectionTarget)activePart).selectReveal(targetSelection);
+					}
+				});
 			}
 
 			// Open an editor on the new file.
 			//
 			try {
 				page.openEditor
-					(new FileEditorInput(modelFile),
-					 workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());					 	 
+				(new FileEditorInput(modelFile),
+						workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());					 	 
 			}
 			catch (PartInitException exception) {
 				MessageDialog.openError(workbenchWindow.getShell(), ModelVisualizationGenEditPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage());
@@ -350,6 +366,7 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 			return ResourcesPlugin.getWorkspace().getRoot().getFile(getContainerFullPath().append(getFileName()));
 		}
 	}
+	private Specification specification;
 
 	/**
 	 * This is the page where the type of object to create is selected.
@@ -363,21 +380,22 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		protected Combo initialObjectField;
+		protected Text modelFile;
 
-		/**
-		 * @generated
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 */
-		protected List<String> encodings;
 
-		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		protected Combo encodingField;
+		private Button browseButton;
+
+
+		private CheckboxTableViewer modelTable;
+
+
+		private CheckboxTableViewer visualTable;
+
+
+		private Label modelTableLabel;
+
+
+		private Label visualTableLabel;
 
 		/**
 		 * Pass in the selection.
@@ -397,7 +415,7 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 		public void createControl(Composite parent) {
 			Composite composite = new Composite(parent, SWT.NONE); {
 				GridLayout layout = new GridLayout();
-				layout.numColumns = 1;
+				layout.numColumns = 2;
 				layout.verticalSpacing = 12;
 				composite.setLayout(layout);
 
@@ -408,57 +426,138 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 				composite.setLayoutData(data);
 			}
 
-			Label containerLabel = new Label(composite, SWT.LEFT);
+			Label modelLabel = new Label(composite, SWT.LEFT);
 			{
-				containerLabel.setText(ModelVisualizationGenEditPlugin.INSTANCE.getString("_UI_ModelObject"));
+				modelLabel.setText(ModelVisualizationGenEditPlugin.INSTANCE.getString("_UI_ModelObject"));
 
 				GridData data = new GridData();
 				data.horizontalAlignment = GridData.FILL;
-				containerLabel.setLayoutData(data);
+				data.horizontalSpan = 2;
+				modelLabel.setLayoutData(data);
 			}
 
-			initialObjectField = new Combo(composite, SWT.BORDER);
-			{
-				GridData data = new GridData();
-				data.horizontalAlignment = GridData.FILL;
-				data.grabExcessHorizontalSpace = true;
-				initialObjectField.setLayoutData(data);
-			}
-
-			for (String objectName : getInitialObjectNames()) {
-				initialObjectField.add(getLabel(objectName));
-			}
-
-			if (initialObjectField.getItemCount() == 1) {
-				initialObjectField.select(0);
-			}
-			initialObjectField.addModifyListener(validator);
-
-			Label encodingLabel = new Label(composite, SWT.LEFT);
-			{
-				encodingLabel.setText(ModelVisualizationGenEditPlugin.INSTANCE.getString("_UI_XMLEncoding"));
-
-				GridData data = new GridData();
-				data.horizontalAlignment = GridData.FILL;
-				encodingLabel.setLayoutData(data);
-			}
-			encodingField = new Combo(composite, SWT.BORDER);
+			modelFile = new Text(composite, SWT.BORDER);
 			{
 				GridData data = new GridData();
 				data.horizontalAlignment = GridData.FILL;
 				data.grabExcessHorizontalSpace = true;
-				encodingField.setLayoutData(data);
+				modelFile.setLayoutData(data);
+			}
+			browseButton = new Button(composite, SWT.PUSH);
+			{
+				setButtonLayoutData(browseButton);
+				//				browseButton.setFont(font);
+				browseButton.setText("&Browse...");
+				browseButton.addSelectionListener(new SelectionAdapter() {
+
+					public void widgetSelected(SelectionEvent event) {
+						handleModelBrowseButtonPressed(modelFile, "xmi");
+						specification = DPFCoreUtil.loadSpecification(URI.createFileURI(modelFile.getText()));
+					}
+				});
+				browseButton.setEnabled(true);
 			}
 
-			for (String encoding : getEncodings()) {
-				encodingField.add(encoding);
+			modelFile.addModifyListener(validator);
+
+			Label visualLabel = new Label(composite, SWT.LEFT);
+			{
+				visualLabel.setText(ModelVisualizationGenEditPlugin.INSTANCE.getString("_UI_VisualObject"));
+
+				GridData data = new GridData();
+				data.horizontalAlignment = GridData.FILL;
+				data.horizontalSpan = 2;
+				visualLabel.setLayoutData(data);
 			}
 
-			encodingField.select(0);
-			encodingField.addModifyListener(validator);
+			visualFile = new Text(composite, SWT.BORDER);
+			{
+				GridData data = new GridData();
+				data.horizontalAlignment = GridData.FILL;
+				data.grabExcessHorizontalSpace = true;
+				visualFile.setLayoutData(data);
+			}
+			visualbrowseButton = new Button(composite, SWT.PUSH);
+			{
+				setButtonLayoutData(browseButton);
+				//				browseButton.setFont(font);
+				visualbrowseButton.setText("&Browse...");
+				visualbrowseButton.addSelectionListener(new SelectionAdapter() {
+					public void widgetSelected(SelectionEvent event) {
+						handleModelBrowseButtonPressed(visualFile, "vis");
+					}
+				});
+				visualbrowseButton.setEnabled(true);
+			}
 
+			visualFile.addModifyListener(validator);
+
+			Composite compos = new Composite(composite, SWT.NONE); {
+				GridLayout layout = new GridLayout();
+				layout.numColumns = 2;
+				layout.verticalSpacing = 12;
+				compos.setLayout(layout);
+
+				GridData data = new GridData();
+				data.horizontalSpan = 2;
+				data.verticalAlignment = GridData.FILL;
+				data.grabExcessVerticalSpace = true;
+				data.horizontalAlignment = GridData.FILL;
+				compos.setLayoutData(data);
+			}
+			GridData data = new GridData();
+			data.horizontalAlignment = GridData.CENTER;
+			data.grabExcessHorizontalSpace = true;
+			modelTableLabel = new Label(compos, SWT.LEFT);
+			{
+				modelTableLabel.setText("Model");
+				modelTableLabel.setLayoutData(data);
+
+			}
+			visualTableLabel = new Label(compos, SWT.LEFT);
+			{
+				visualTableLabel.setText("Visual");
+				visualTableLabel.setLayoutData(data);
+			}
+			
+			
+			modelTable = new CheckboxTableViewer(new Table(compos, SWT.BORDER));
+			modelTable.getTable().setLayoutData(data);
+			modelTable.setContentProvider(new ArrayContentProvider());
+			visualTable = new CheckboxTableViewer(new Table(compos, SWT.BORDER));
+			visualTable.getTable().setLayoutData(data);
 			setPageComplete(validatePage());
 			setControl(composite);
+		}
+
+
+
+		protected void handleModelBrowseButtonPressed(Text targetField, String name) {
+			String linkTargetName = targetField.getText();
+			String selection = null;
+			IFileStore store = null;
+			if (linkTargetName.length() > 0) {
+				store = getFileStore(linkTargetName);
+				if (store == null || !store.fetchInfo().exists()) {
+					store = null;
+				}
+			}
+
+			FileDialog fileDialog = new FileDialog(getShell(), SWT.SHEET);
+			fileDialog.setFilterExtensions(new String[]{name});
+
+			if (store != null) {
+				if (store.fetchInfo().isDirectory()) {
+					fileDialog.setFilterPath(linkTargetName);
+				} else {
+					fileDialog.setFileName(linkTargetName);
+				}
+			}
+			selection = fileDialog.open();
+
+			if (selection != null) {
+				targetField.setText(selection);
+			}
 		}
 
 		/**
@@ -467,11 +566,11 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 		 * @generated
 		 */
 		protected ModifyListener validator =
-			new ModifyListener() {
-				public void modifyText(ModifyEvent e) {
-					setPageComplete(validatePage());
-				}
-			};
+				new ModifyListener() {
+			public void modifyText(ModifyEvent e) {
+				setPageComplete(validatePage());
+			}
+		};
 
 		/**
 		 * <!-- begin-user-doc -->
@@ -479,7 +578,7 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 		 * @generated
 		 */
 		protected boolean validatePage() {
-			return getInitialObjectName() != null && getEncodings().contains(encodingField.getText());
+			return true;
 		}
 
 		/**
@@ -490,16 +589,22 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 		@Override
 		public void setVisible(boolean visible) {
 			super.setVisible(visible);
-			if (visible) {
-				if (initialObjectField.getItemCount() == 1) {
-					initialObjectField.clearSelection();
-					encodingField.setFocus();
-				}
-				else {
-					encodingField.clearSelection();
-					initialObjectField.setFocus();
-				}
-			}
+			visible = specification != null;
+			modelTable.getTable().setVisible(visible);
+			modelTableLabel.setVisible(visible);
+			boolean vv = modelTable.getTable().getSelectionCount() != 0 && visible;
+			visualTable.getTable().setVisible(vv);
+			visualTableLabel.setVisible(vv);
+			//			if (visible) {
+			//				if (modelFile.getItemCount() == 1) {
+			//					modelFile.clearSelection();
+			//					encodingField.setFocus();
+			//				}
+			//				else {
+			//					encodingField.clearSelection();
+			//					modelFile.setFocus();
+			//				}
+			//			}
 		}
 
 		/**
@@ -508,7 +613,7 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 		 * @generated
 		 */
 		public String getInitialObjectName() {
-			String label = initialObjectField.getText();
+			String label = modelFile.getText();
 
 			for (String name : getInitialObjectNames()) {
 				if (getLabel(name).equals(label)) {
@@ -516,15 +621,6 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 				}
 			}
 			return null;
-		}
-
-		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		public String getEncoding() {
-			return encodingField.getText();
 		}
 
 		/**
@@ -543,20 +639,6 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 			return typeName;
 		}
 
-		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		protected Collection<String> getEncodings() {
-			if (encodings == null) {
-				encodings = new ArrayList<String>();
-				for (StringTokenizer stringTokenizer = new StringTokenizer(ModelVisualizationGenEditPlugin.INSTANCE.getString("_UI_XMLEncodingChoices")); stringTokenizer.hasMoreTokens(); ) {
-					encodings.add(stringTokenizer.nextToken());
-				}
-			}
-			return encodings;
-		}
 	}
 
 	/**
@@ -565,7 +647,7 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-		@Override
+	@Override
 	public void addPages() {
 		// Create a page, set the title, and the initial model file name.
 		//
@@ -624,4 +706,30 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 		return newFileCreationPage.getModelFile();
 	}
 
+	/**
+	 * Get the file store for the string.
+	 * 
+	 * @param string
+	 * @return IFileStore or <code>null</code> if there is a
+	 *         {@link CoreException}.
+	 */
+	public static org.eclipse.core.filesystem.IFileStore getFileStore(String string) {
+		return getFileStore(new Path(string).toFile().toURI());
+	}
+
+	/**
+	 * Get the file store for the URI.
+	 * 
+	 * @param uri
+	 * @return IFileStore or <code>null</code> if there is a
+	 *         {@link CoreException}.
+	 */
+	public static IFileStore getFileStore(java.net.URI uri) {
+		try {
+			return EFS.getStore(uri);
+		} catch (CoreException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 }

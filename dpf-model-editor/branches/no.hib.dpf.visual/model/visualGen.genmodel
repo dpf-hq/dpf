@@ -9,12 +9,13 @@
       ecorePackage="visual.ecore#/">
     <genClasses image="false" ecoreClass="visual.ecore#//VElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute visual.ecore#//VElement/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute visual.ecore#//VElement/icon"/>
     </genClasses>
     <genClasses ecoreClass="visual.ecore#//VArrow">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute visual.ecore#//VArrow/isComposed"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute visual.ecore#//VArrow/composed"/>
     </genClasses>
     <genClasses ecoreClass="visual.ecore#//VNode">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute visual.ecore#//VNode/isComposite"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute visual.ecore#//VNode/composite"/>
     </genClasses>
     <genClasses ecoreClass="visual.ecore#//Visuals">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference visual.ecore#//Visuals/items"/>

@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link no.hib.dpf.visual.impl.VNodeImpl#isIsComposite <em>Is Composite</em>}</li>
+ *   <li>{@link no.hib.dpf.visual.impl.VNodeImpl#isComposite <em>Composite</em>}</li>
  * </ul>
  * </p>
  *
@@ -26,24 +26,24 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class VNodeImpl extends VElementImpl implements VNode {
 	/**
-	 * The default value of the '{@link #isIsComposite() <em>Is Composite</em>}' attribute.
+	 * The default value of the '{@link #isComposite() <em>Composite</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isIsComposite()
+	 * @see #isComposite()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean IS_COMPOSITE_EDEFAULT = false;
+	protected static final boolean COMPOSITE_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isIsComposite() <em>Is Composite</em>}' attribute.
+	 * The cached value of the '{@link #isComposite() <em>Composite</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isIsComposite()
+	 * @see #isComposite()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean isComposite = IS_COMPOSITE_EDEFAULT;
+	protected boolean composite = COMPOSITE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -69,8 +69,8 @@ public class VNodeImpl extends VElementImpl implements VNode {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isIsComposite() {
-		return isComposite;
+	public boolean isComposite() {
+		return composite;
 	}
 
 	/**
@@ -78,11 +78,11 @@ public class VNodeImpl extends VElementImpl implements VNode {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsComposite(boolean newIsComposite) {
-		boolean oldIsComposite = isComposite;
-		isComposite = newIsComposite;
+	public void setComposite(boolean newComposite) {
+		boolean oldComposite = composite;
+		composite = newComposite;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, VisualPackage.VNODE__IS_COMPOSITE, oldIsComposite, isComposite));
+			eNotify(new ENotificationImpl(this, Notification.SET, VisualPackage.VNODE__COMPOSITE, oldComposite, composite));
 	}
 
 	/**
@@ -93,8 +93,8 @@ public class VNodeImpl extends VElementImpl implements VNode {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case VisualPackage.VNODE__IS_COMPOSITE:
-				return isIsComposite();
+			case VisualPackage.VNODE__COMPOSITE:
+				return isComposite();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -107,8 +107,8 @@ public class VNodeImpl extends VElementImpl implements VNode {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case VisualPackage.VNODE__IS_COMPOSITE:
-				setIsComposite((Boolean)newValue);
+			case VisualPackage.VNODE__COMPOSITE:
+				setComposite((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -122,8 +122,8 @@ public class VNodeImpl extends VElementImpl implements VNode {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case VisualPackage.VNODE__IS_COMPOSITE:
-				setIsComposite(IS_COMPOSITE_EDEFAULT);
+			case VisualPackage.VNODE__COMPOSITE:
+				setComposite(COMPOSITE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -137,8 +137,8 @@ public class VNodeImpl extends VElementImpl implements VNode {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case VisualPackage.VNODE__IS_COMPOSITE:
-				return isComposite != IS_COMPOSITE_EDEFAULT;
+			case VisualPackage.VNODE__COMPOSITE:
+				return composite != COMPOSITE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -153,8 +153,8 @@ public class VNodeImpl extends VElementImpl implements VNode {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (isComposite: ");
-		result.append(isComposite);
+		result.append(" (composite: ");
+		result.append(composite);
 		result.append(')');
 		return result.toString();
 	}

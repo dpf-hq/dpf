@@ -65,7 +65,7 @@ public interface VisualizationPackage extends EPackage {
 	int VISUALIZATIONS = 0;
 
 	/**
-	 * The feature id for the '<em><b>Entries</b></em>' reference list.
+	 * The feature id for the '<em><b>Entries</b></em>' map.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -74,13 +74,31 @@ public interface VisualizationPackage extends EPackage {
 	int VISUALIZATIONS__ENTRIES = 0;
 
 	/**
+	 * The feature id for the '<em><b>Model</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VISUALIZATIONS__MODEL = 1;
+
+	/**
+	 * The feature id for the '<em><b>Visual</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VISUALIZATIONS__VISUAL = 2;
+
+	/**
 	 * The number of structural features of the '<em>Visualizations</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VISUALIZATIONS_FEATURE_COUNT = 1;
+	int VISUALIZATIONS_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link no.hib.dpf.visualization.impl.ModelToVisualEntryImpl <em>Model To Visual Entry</em>}' class.
@@ -131,15 +149,37 @@ public interface VisualizationPackage extends EPackage {
 	EClass getVisualizations();
 
 	/**
-	 * Returns the meta object for the reference list '{@link no.hib.dpf.visualization.Visualizations#getEntries <em>Entries</em>}'.
+	 * Returns the meta object for the map '{@link no.hib.dpf.visualization.Visualizations#getEntries <em>Entries</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Entries</em>'.
+	 * @return the meta object for the map '<em>Entries</em>'.
 	 * @see no.hib.dpf.visualization.Visualizations#getEntries()
 	 * @see #getVisualizations()
 	 * @generated
 	 */
 	EReference getVisualizations_Entries();
+
+	/**
+	 * Returns the meta object for the reference '{@link no.hib.dpf.visualization.Visualizations#getModel <em>Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Model</em>'.
+	 * @see no.hib.dpf.visualization.Visualizations#getModel()
+	 * @see #getVisualizations()
+	 * @generated
+	 */
+	EReference getVisualizations_Model();
+
+	/**
+	 * Returns the meta object for the reference '{@link no.hib.dpf.visualization.Visualizations#getVisual <em>Visual</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Visual</em>'.
+	 * @see no.hib.dpf.visualization.Visualizations#getVisual()
+	 * @see #getVisualizations()
+	 * @generated
+	 */
+	EReference getVisualizations_Visual();
 
 	/**
 	 * Returns the meta object for class '{@link java.util.Map.Entry <em>Model To Visual Entry</em>}'.
@@ -208,12 +248,28 @@ public interface VisualizationPackage extends EPackage {
 		EClass VISUALIZATIONS = eINSTANCE.getVisualizations();
 
 		/**
-		 * The meta object literal for the '<em><b>Entries</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Entries</b></em>' map feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference VISUALIZATIONS__ENTRIES = eINSTANCE.getVisualizations_Entries();
+
+		/**
+		 * The meta object literal for the '<em><b>Model</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VISUALIZATIONS__MODEL = eINSTANCE.getVisualizations_Model();
+
+		/**
+		 * The meta object literal for the '<em><b>Visual</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VISUALIZATIONS__VISUAL = eINSTANCE.getVisualizations_Visual();
 
 		/**
 		 * The meta object literal for the '{@link no.hib.dpf.visualization.impl.ModelToVisualEntryImpl <em>Model To Visual Entry</em>}' class.

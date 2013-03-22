@@ -9,17 +9,27 @@ import java.util.Map.Entry;
 
 import no.hib.dpf.core.IDObject;
 
+import no.hib.dpf.core.Specification;
 import no.hib.dpf.visual.VElement;
 
+import no.hib.dpf.visual.Visuals;
 import no.hib.dpf.visualization.VisualizationPackage;
 import no.hib.dpf.visualization.Visualizations;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
+import org.eclipse.emf.ecore.util.EcoreEMap;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**
@@ -30,6 +40,8 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link no.hib.dpf.visualization.impl.VisualizationsImpl#getEntries <em>Entries</em>}</li>
+ *   <li>{@link no.hib.dpf.visualization.impl.VisualizationsImpl#getModel <em>Model</em>}</li>
+ *   <li>{@link no.hib.dpf.visualization.impl.VisualizationsImpl#getVisual <em>Visual</em>}</li>
  * </ul>
  * </p>
  *
@@ -37,14 +49,33 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  */
 public class VisualizationsImpl extends EObjectImpl implements Visualizations {
 	/**
-	 * The cached value of the '{@link #getEntries() <em>Entries</em>}' reference list.
+	 * The cached value of the '{@link #getEntries() <em>Entries</em>}' map.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getEntries()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Map.Entry<IDObject, VElement>> entries;
+	protected EMap<IDObject, VElement> entries;
+
+	/**
+	 * The cached value of the '{@link #getModel() <em>Model</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getModel()
+	 * @generated
+	 * @ordered
+	 */
+	protected Specification model;
+	/**
+	 * The cached value of the '{@link #getVisual() <em>Visual</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getVisual()
+	 * @generated
+	 * @ordered
+	 */
+	protected Visuals visual;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -70,11 +101,101 @@ public class VisualizationsImpl extends EObjectImpl implements Visualizations {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Map.Entry<IDObject, VElement>> getEntries() {
+	public EMap<IDObject, VElement> getEntries() {
 		if (entries == null) {
-			entries = new EObjectResolvingEList<Map.Entry<IDObject, VElement>>(Entry.class, this, VisualizationPackage.VISUALIZATIONS__ENTRIES);
+			entries = new EcoreEMap<IDObject,VElement>(VisualizationPackage.Literals.MODEL_TO_VISUAL_ENTRY, ModelToVisualEntryImpl.class, this, VisualizationPackage.VISUALIZATIONS__ENTRIES);
 		}
 		return entries;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Specification getModel() {
+		if (model != null && model.eIsProxy()) {
+			InternalEObject oldModel = (InternalEObject)model;
+			model = (Specification)eResolveProxy(oldModel);
+			if (model != oldModel) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VisualizationPackage.VISUALIZATIONS__MODEL, oldModel, model));
+			}
+		}
+		return model;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Specification basicGetModel() {
+		return model;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setModel(Specification newModel) {
+		Specification oldModel = model;
+		model = newModel;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VisualizationPackage.VISUALIZATIONS__MODEL, oldModel, model));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Visuals getVisual() {
+		if (visual != null && visual.eIsProxy()) {
+			InternalEObject oldVisual = (InternalEObject)visual;
+			visual = (Visuals)eResolveProxy(oldVisual);
+			if (visual != oldVisual) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VisualizationPackage.VISUALIZATIONS__VISUAL, oldVisual, visual));
+			}
+		}
+		return visual;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Visuals basicGetVisual() {
+		return visual;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setVisual(Visuals newVisual) {
+		Visuals oldVisual = visual;
+		visual = newVisual;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VisualizationPackage.VISUALIZATIONS__VISUAL, oldVisual, visual));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case VisualizationPackage.VISUALIZATIONS__ENTRIES:
+				return ((InternalEList<?>)getEntries()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -86,7 +207,14 @@ public class VisualizationsImpl extends EObjectImpl implements Visualizations {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case VisualizationPackage.VISUALIZATIONS__ENTRIES:
-				return getEntries();
+				if (coreType) return getEntries();
+				else return getEntries().map();
+			case VisualizationPackage.VISUALIZATIONS__MODEL:
+				if (resolve) return getModel();
+				return basicGetModel();
+			case VisualizationPackage.VISUALIZATIONS__VISUAL:
+				if (resolve) return getVisual();
+				return basicGetVisual();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -101,8 +229,13 @@ public class VisualizationsImpl extends EObjectImpl implements Visualizations {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case VisualizationPackage.VISUALIZATIONS__ENTRIES:
-				getEntries().clear();
-				getEntries().addAll((Collection<? extends Map.Entry<IDObject, VElement>>)newValue);
+				((EStructuralFeature.Setting)getEntries()).set(newValue);
+				return;
+			case VisualizationPackage.VISUALIZATIONS__MODEL:
+				setModel((Specification)newValue);
+				return;
+			case VisualizationPackage.VISUALIZATIONS__VISUAL:
+				setVisual((Visuals)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -119,6 +252,12 @@ public class VisualizationsImpl extends EObjectImpl implements Visualizations {
 			case VisualizationPackage.VISUALIZATIONS__ENTRIES:
 				getEntries().clear();
 				return;
+			case VisualizationPackage.VISUALIZATIONS__MODEL:
+				setModel((Specification)null);
+				return;
+			case VisualizationPackage.VISUALIZATIONS__VISUAL:
+				setVisual((Visuals)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -133,6 +272,10 @@ public class VisualizationsImpl extends EObjectImpl implements Visualizations {
 		switch (featureID) {
 			case VisualizationPackage.VISUALIZATIONS__ENTRIES:
 				return entries != null && !entries.isEmpty();
+			case VisualizationPackage.VISUALIZATIONS__MODEL:
+				return model != null;
+			case VisualizationPackage.VISUALIZATIONS__VISUAL:
+				return visual != null;
 		}
 		return super.eIsSet(featureID);
 	}

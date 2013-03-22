@@ -127,6 +127,24 @@ public class VisualizationPackageImpl extends EPackageImpl implements Visualizat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getVisualizations_Model() {
+		return (EReference)visualizationsEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getVisualizations_Visual() {
+		return (EReference)visualizationsEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getModelToVisualEntry() {
 		return modelToVisualEntryEClass;
 	}
@@ -179,6 +197,8 @@ public class VisualizationPackageImpl extends EPackageImpl implements Visualizat
 		// Create classes and their features
 		visualizationsEClass = createEClass(VISUALIZATIONS);
 		createEReference(visualizationsEClass, VISUALIZATIONS__ENTRIES);
+		createEReference(visualizationsEClass, VISUALIZATIONS__MODEL);
+		createEReference(visualizationsEClass, VISUALIZATIONS__VISUAL);
 
 		modelToVisualEntryEClass = createEClass(MODEL_TO_VISUAL_ENTRY);
 		createEReference(modelToVisualEntryEClass, MODEL_TO_VISUAL_ENTRY__KEY);
@@ -220,7 +240,9 @@ public class VisualizationPackageImpl extends EPackageImpl implements Visualizat
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(visualizationsEClass, Visualizations.class, "Visualizations", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getVisualizations_Entries(), this.getModelToVisualEntry(), null, "entries", null, 0, -1, Visualizations.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getVisualizations_Entries(), this.getModelToVisualEntry(), null, "entries", null, 0, -1, Visualizations.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getVisualizations_Model(), theCorePackage.getSpecification(), null, "model", null, 1, 1, Visualizations.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getVisualizations_Visual(), theVisualPackage.getVisuals(), null, "visual", null, 1, 1, Visualizations.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(modelToVisualEntryEClass, Map.Entry.class, "ModelToVisualEntry", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getModelToVisualEntry_Key(), theCorePackage.getIDObject(), null, "key", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

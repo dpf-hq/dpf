@@ -11,7 +11,7 @@ package no.hib.dpf.visual;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link no.hib.dpf.visual.VNode#isIsComposite <em>Is Composite</em>}</li>
+ *   <li>{@link no.hib.dpf.visual.VNode#isComposite <em>Composite</em>}</li>
  * </ul>
  * </p>
  *
@@ -21,30 +21,30 @@ package no.hib.dpf.visual;
  */
 public interface VNode extends VElement {
 	/**
-	 * Returns the value of the '<em><b>Is Composite</b></em>' attribute.
+	 * Returns the value of the '<em><b>Composite</b></em>' attribute.
 	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Is Composite</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Composite</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Is Composite</em>' attribute.
-	 * @see #setIsComposite(boolean)
-	 * @see no.hib.dpf.visual.VisualPackage#getVNode_IsComposite()
+	 * @return the value of the '<em>Composite</em>' attribute.
+	 * @see #setComposite(boolean)
+	 * @see no.hib.dpf.visual.VisualPackage#getVNode_Composite()
 	 * @model default="false"
 	 * @generated
 	 */
-	boolean isIsComposite();
+	boolean isComposite();
 
 	/**
-	 * Sets the value of the '{@link no.hib.dpf.visual.VNode#isIsComposite <em>Is Composite</em>}' attribute.
+	 * Sets the value of the '{@link no.hib.dpf.visual.VNode#isComposite <em>Composite</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Is Composite</em>' attribute.
-	 * @see #isIsComposite()
+	 * @param value the new value of the '<em>Composite</em>' attribute.
+	 * @see #isComposite()
 	 * @generated
 	 */
-	void setIsComposite(boolean value);
+	void setComposite(boolean value);
 
 } // VNode

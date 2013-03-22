@@ -135,6 +135,15 @@ public class VisualPackageImpl extends EPackageImpl implements VisualPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getVElement_Icon() {
+		return (EAttribute)vElementEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getVArrow() {
 		return vArrowEClass;
 	}
@@ -144,7 +153,7 @@ public class VisualPackageImpl extends EPackageImpl implements VisualPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getVArrow_IsComposed() {
+	public EAttribute getVArrow_Composed() {
 		return (EAttribute)vArrowEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -162,7 +171,7 @@ public class VisualPackageImpl extends EPackageImpl implements VisualPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getVNode_IsComposite() {
+	public EAttribute getVNode_Composite() {
 		return (EAttribute)vNodeEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -214,12 +223,13 @@ public class VisualPackageImpl extends EPackageImpl implements VisualPackage {
 		// Create classes and their features
 		vElementEClass = createEClass(VELEMENT);
 		createEAttribute(vElementEClass, VELEMENT__NAME);
+		createEAttribute(vElementEClass, VELEMENT__ICON);
 
 		vArrowEClass = createEClass(VARROW);
-		createEAttribute(vArrowEClass, VARROW__IS_COMPOSED);
+		createEAttribute(vArrowEClass, VARROW__COMPOSED);
 
 		vNodeEClass = createEClass(VNODE);
-		createEAttribute(vNodeEClass, VNODE__IS_COMPOSITE);
+		createEAttribute(vNodeEClass, VNODE__COMPOSITE);
 
 		visualsEClass = createEClass(VISUALS);
 		createEReference(visualsEClass, VISUALS__ITEMS);
@@ -259,12 +269,13 @@ public class VisualPackageImpl extends EPackageImpl implements VisualPackage {
 		// Initialize classes and features; add operations and parameters
 		initEClass(vElementEClass, VElement.class, "VElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getVElement_Name(), ecorePackage.getEString(), "name", null, 0, 1, VElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getVElement_Icon(), ecorePackage.getEString(), "icon", null, 0, 1, VElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(vArrowEClass, VArrow.class, "VArrow", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getVArrow_IsComposed(), ecorePackage.getEBoolean(), "isComposed", "false", 0, 1, VArrow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getVArrow_Composed(), ecorePackage.getEBoolean(), "composed", "false", 0, 1, VArrow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(vNodeEClass, VNode.class, "VNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getVNode_IsComposite(), ecorePackage.getEBoolean(), "isComposite", "false", 0, 1, VNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getVNode_Composite(), ecorePackage.getEBoolean(), "composite", "false", 0, 1, VNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(visualsEClass, Visuals.class, "Visuals", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getVisuals_Items(), this.getVElement(), null, "items", null, 0, -1, Visuals.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

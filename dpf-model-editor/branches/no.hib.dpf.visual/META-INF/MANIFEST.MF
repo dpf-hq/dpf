@@ -25,7 +25,8 @@ Require-Bundle: org.eclipse.core.runtime,
  no.hib.dpf.editor,
  org.eclipse.gef,
  org.eclipse.ui.forms,
- no.hib.dpf.core
+ no.hib.dpf.core,
+ org.eclipse.core.filesystem
 Bundle-ActivationPolicy: lazy
 Import-Package: no.hib.dpf.core,
  org.eclipse.gef

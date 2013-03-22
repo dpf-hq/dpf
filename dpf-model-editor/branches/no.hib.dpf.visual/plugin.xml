@@ -16,6 +16,15 @@
                org.eclipse.emf.edit.provider.ITreeItemContentProvider
                org.eclipse.emf.edit.provider.IItemLabelProvider
                org.eclipse.emf.edit.provider.IItemPropertySource"/>
+      <factory
+            class="no.hib.dpf.visualization.provider.VisualizationItemProviderAdapterFactory"
+            uri="no.hib.dpf.visualization"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
@@ -23,6 +32,10 @@
             uri="http://no.hib.dpf.visual"
             class="no.hib.dpf.visual.VisualPackage"
             genModel="model/visualGen.genmodel"/>
+      <package
+            class="no.hib.dpf.visualization.VisualizationPackage"
+            uri="no.hib.dpf.visualization">
+      </package>
    </extension>
 
    <extension point="org.eclipse.ui.newWizards">
@@ -38,6 +51,19 @@
          <description>%_UI_VisualModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>
       </wizard>
+      <wizard
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            class="no.hib.dpf.visualization.presentation.VisualizationModelWizard"
+            icon="icons/full/obj16/VisualizationModelFile.gif"
+            id="no.hib.dpf.visual.presentation.VisualizationModelWizardID"
+            name="%_UI_VisualizationModelWizard_label">
+         <selection
+               class="org.eclipse.core.resources.IResource">
+         </selection>
+         <description>
+            %_UI_VisualizationModelWizard_description
+         </description>
+      </wizard>
    </extension>
 
    <extension point="org.eclipse.ui.editors">
@@ -46,8 +72,14 @@
             name="%_UI_VisualEditor_label"
             icon="icons/full/obj16/VisualModelFile.gif"
             extensions="visual"
-            class="no.hib.dpf.visual.presentation.VisualEditor1"
-            contributorClass="no.hib.dpf.visual.presentation.VisualActionBarContributor">
+            class="no.hib.dpf.visual.presentation.VisualFormEditor">
+      </editor>
+      <editor
+            class="no.hib.dpf.visualization.presentation.VisualizationEditor"
+            extensions="visual"
+            icon="icons/full/obj16/VisualizationModelFile.gif"
+            id="no.hib.dpf.visual.presentation.VisualizationEditorID"
+            name="%_UI_VisualizationEditor_label">
       </editor>
    </extension>
 

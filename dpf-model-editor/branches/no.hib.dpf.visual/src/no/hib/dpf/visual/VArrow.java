@@ -11,7 +11,7 @@ package no.hib.dpf.visual;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link no.hib.dpf.visual.VArrow#isIsComposed <em>Is Composed</em>}</li>
+ *   <li>{@link no.hib.dpf.visual.VArrow#isComposed <em>Composed</em>}</li>
  * </ul>
  * </p>
  *
@@ -21,30 +21,30 @@ package no.hib.dpf.visual;
  */
 public interface VArrow extends VElement {
 	/**
-	 * Returns the value of the '<em><b>Is Composed</b></em>' attribute.
+	 * Returns the value of the '<em><b>Composed</b></em>' attribute.
 	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Is Composed</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Composed</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Is Composed</em>' attribute.
-	 * @see #setIsComposed(boolean)
-	 * @see no.hib.dpf.visual.VisualPackage#getVArrow_IsComposed()
+	 * @return the value of the '<em>Composed</em>' attribute.
+	 * @see #setComposed(boolean)
+	 * @see no.hib.dpf.visual.VisualPackage#getVArrow_Composed()
 	 * @model default="false"
 	 * @generated
 	 */
-	boolean isIsComposed();
+	boolean isComposed();
 
 	/**
-	 * Sets the value of the '{@link no.hib.dpf.visual.VArrow#isIsComposed <em>Is Composed</em>}' attribute.
+	 * Sets the value of the '{@link no.hib.dpf.visual.VArrow#isComposed <em>Composed</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Is Composed</em>' attribute.
-	 * @see #isIsComposed()
+	 * @param value the new value of the '<em>Composed</em>' attribute.
+	 * @see #isComposed()
 	 * @generated
 	 */
-	void setIsComposed(boolean value);
+	void setComposed(boolean value);
 
 } // VArrow

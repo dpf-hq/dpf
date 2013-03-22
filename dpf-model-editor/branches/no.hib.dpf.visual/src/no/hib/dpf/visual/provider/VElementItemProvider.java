@@ -61,6 +61,7 @@ public class VElementItemProvider
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
+			addIconPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -79,6 +80,28 @@ public class VElementItemProvider
 				 getString("_UI_VElement_name_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_VElement_name_feature", "_UI_VElement_type"),
 				 VisualPackage.Literals.VELEMENT__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Icon feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addIconPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_VElement_icon_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_VElement_icon_feature", "_UI_VElement_type"),
+				 VisualPackage.Literals.VELEMENT__ICON,
 				 true,
 				 false,
 				 false,
@@ -114,6 +137,7 @@ public class VElementItemProvider
 
 		switch (notification.getFeatureID(VElement.class)) {
 			case VisualPackage.VELEMENT__NAME:
+			case VisualPackage.VELEMENT__ICON:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

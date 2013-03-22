@@ -75,13 +75,22 @@ public interface VisualPackage extends EPackage {
 	int VELEMENT__NAME = 0;
 
 	/**
+	 * The feature id for the '<em><b>Icon</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VELEMENT__ICON = 1;
+
+	/**
 	 * The number of structural features of the '<em>VElement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VELEMENT_FEATURE_COUNT = 1;
+	int VELEMENT_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link no.hib.dpf.visual.impl.VArrowImpl <em>VArrow</em>}' class.
@@ -103,13 +112,22 @@ public interface VisualPackage extends EPackage {
 	int VARROW__NAME = VELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Is Composed</b></em>' attribute.
+	 * The feature id for the '<em><b>Icon</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VARROW__IS_COMPOSED = VELEMENT_FEATURE_COUNT + 0;
+	int VARROW__ICON = VELEMENT__ICON;
+
+	/**
+	 * The feature id for the '<em><b>Composed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARROW__COMPOSED = VELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>VArrow</em>' class.
@@ -140,13 +158,22 @@ public interface VisualPackage extends EPackage {
 	int VNODE__NAME = VELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
+	 * The feature id for the '<em><b>Icon</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VNODE__IS_COMPOSITE = VELEMENT_FEATURE_COUNT + 0;
+	int VNODE__ICON = VELEMENT__ICON;
+
+	/**
+	 * The feature id for the '<em><b>Composite</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VNODE__COMPOSITE = VELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>VNode</em>' class.
@@ -209,6 +236,17 @@ public interface VisualPackage extends EPackage {
 	EAttribute getVElement_Name();
 
 	/**
+	 * Returns the meta object for the attribute '{@link no.hib.dpf.visual.VElement#getIcon <em>Icon</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Icon</em>'.
+	 * @see no.hib.dpf.visual.VElement#getIcon()
+	 * @see #getVElement()
+	 * @generated
+	 */
+	EAttribute getVElement_Icon();
+
+	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.visual.VArrow <em>VArrow</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -219,15 +257,15 @@ public interface VisualPackage extends EPackage {
 	EClass getVArrow();
 
 	/**
-	 * Returns the meta object for the attribute '{@link no.hib.dpf.visual.VArrow#isIsComposed <em>Is Composed</em>}'.
+	 * Returns the meta object for the attribute '{@link no.hib.dpf.visual.VArrow#isComposed <em>Composed</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Is Composed</em>'.
-	 * @see no.hib.dpf.visual.VArrow#isIsComposed()
+	 * @return the meta object for the attribute '<em>Composed</em>'.
+	 * @see no.hib.dpf.visual.VArrow#isComposed()
 	 * @see #getVArrow()
 	 * @generated
 	 */
-	EAttribute getVArrow_IsComposed();
+	EAttribute getVArrow_Composed();
 
 	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.visual.VNode <em>VNode</em>}'.
@@ -240,15 +278,15 @@ public interface VisualPackage extends EPackage {
 	EClass getVNode();
 
 	/**
-	 * Returns the meta object for the attribute '{@link no.hib.dpf.visual.VNode#isIsComposite <em>Is Composite</em>}'.
+	 * Returns the meta object for the attribute '{@link no.hib.dpf.visual.VNode#isComposite <em>Composite</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Is Composite</em>'.
-	 * @see no.hib.dpf.visual.VNode#isIsComposite()
+	 * @return the meta object for the attribute '<em>Composite</em>'.
+	 * @see no.hib.dpf.visual.VNode#isComposite()
 	 * @see #getVNode()
 	 * @generated
 	 */
-	EAttribute getVNode_IsComposite();
+	EAttribute getVNode_Composite();
 
 	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.visual.Visuals <em>Visuals</em>}'.
@@ -312,6 +350,14 @@ public interface VisualPackage extends EPackage {
 		EAttribute VELEMENT__NAME = eINSTANCE.getVElement_Name();
 
 		/**
+		 * The meta object literal for the '<em><b>Icon</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VELEMENT__ICON = eINSTANCE.getVElement_Icon();
+
+		/**
 		 * The meta object literal for the '{@link no.hib.dpf.visual.impl.VArrowImpl <em>VArrow</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -322,12 +368,12 @@ public interface VisualPackage extends EPackage {
 		EClass VARROW = eINSTANCE.getVArrow();
 
 		/**
-		 * The meta object literal for the '<em><b>Is Composed</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Composed</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute VARROW__IS_COMPOSED = eINSTANCE.getVArrow_IsComposed();
+		EAttribute VARROW__COMPOSED = eINSTANCE.getVArrow_Composed();
 
 		/**
 		 * The meta object literal for the '{@link no.hib.dpf.visual.impl.VNodeImpl <em>VNode</em>}' class.
@@ -340,12 +386,12 @@ public interface VisualPackage extends EPackage {
 		EClass VNODE = eINSTANCE.getVNode();
 
 		/**
-		 * The meta object literal for the '<em><b>Is Composite</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Composite</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute VNODE__IS_COMPOSITE = eINSTANCE.getVNode_IsComposite();
+		EAttribute VNODE__COMPOSITE = eINSTANCE.getVNode_Composite();
 
 		/**
 		 * The meta object literal for the '{@link no.hib.dpf.visual.impl.VisualsImpl <em>Visuals</em>}' class.

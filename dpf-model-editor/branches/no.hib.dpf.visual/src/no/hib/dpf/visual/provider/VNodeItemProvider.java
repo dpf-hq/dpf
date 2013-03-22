@@ -57,25 +57,25 @@ public class VNodeItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addIsCompositePropertyDescriptor(object);
+			addCompositePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Is Composite feature.
+	 * This adds a property descriptor for the Composite feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIsCompositePropertyDescriptor(Object object) {
+	protected void addCompositePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_VNode_isComposite_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_VNode_isComposite_feature", "_UI_VNode_type"),
-				 VisualPackage.Literals.VNODE__IS_COMPOSITE,
+				 getString("_UI_VNode_composite_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_VNode_composite_feature", "_UI_VNode_type"),
+				 VisualPackage.Literals.VNODE__COMPOSITE,
 				 true,
 				 false,
 				 false,
@@ -121,7 +121,7 @@ public class VNodeItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(VNode.class)) {
-			case VisualPackage.VNODE__IS_COMPOSITE:
+			case VisualPackage.VNODE__COMPOSITE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

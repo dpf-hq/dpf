@@ -9,6 +9,8 @@
       ecorePackage="ModelVisualization.ecore#/">
     <genClasses ecoreClass="ModelVisualization.ecore#//Visualizations">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ModelVisualization.ecore#//Visualizations/entries"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ModelVisualization.ecore#//Visualizations/model"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ModelVisualization.ecore#//Visualizations/visual"/>
     </genClasses>
     <genClasses ecoreClass="ModelVisualization.ecore#//ModelToVisualEntry">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ModelVisualization.ecore#//ModelToVisualEntry/key"/>

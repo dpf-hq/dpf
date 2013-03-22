@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link no.hib.dpf.visual.impl.VArrowImpl#isIsComposed <em>Is Composed</em>}</li>
+ *   <li>{@link no.hib.dpf.visual.impl.VArrowImpl#isComposed <em>Composed</em>}</li>
  * </ul>
  * </p>
  *
@@ -26,24 +26,24 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class VArrowImpl extends VElementImpl implements VArrow {
 	/**
-	 * The default value of the '{@link #isIsComposed() <em>Is Composed</em>}' attribute.
+	 * The default value of the '{@link #isComposed() <em>Composed</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isIsComposed()
+	 * @see #isComposed()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean IS_COMPOSED_EDEFAULT = false;
+	protected static final boolean COMPOSED_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isIsComposed() <em>Is Composed</em>}' attribute.
+	 * The cached value of the '{@link #isComposed() <em>Composed</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isIsComposed()
+	 * @see #isComposed()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean isComposed = IS_COMPOSED_EDEFAULT;
+	protected boolean composed = COMPOSED_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -69,8 +69,8 @@ public class VArrowImpl extends VElementImpl implements VArrow {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isIsComposed() {
-		return isComposed;
+	public boolean isComposed() {
+		return composed;
 	}
 
 	/**
@@ -78,11 +78,11 @@ public class VArrowImpl extends VElementImpl implements VArrow {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsComposed(boolean newIsComposed) {
-		boolean oldIsComposed = isComposed;
-		isComposed = newIsComposed;
+	public void setComposed(boolean newComposed) {
+		boolean oldComposed = composed;
+		composed = newComposed;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, VisualPackage.VARROW__IS_COMPOSED, oldIsComposed, isComposed));
+			eNotify(new ENotificationImpl(this, Notification.SET, VisualPackage.VARROW__COMPOSED, oldComposed, composed));
 	}
 
 	/**
@@ -93,8 +93,8 @@ public class VArrowImpl extends VElementImpl implements VArrow {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case VisualPackage.VARROW__IS_COMPOSED:
-				return isIsComposed();
+			case VisualPackage.VARROW__COMPOSED:
+				return isComposed();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -107,8 +107,8 @@ public class VArrowImpl extends VElementImpl implements VArrow {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case VisualPackage.VARROW__IS_COMPOSED:
-				setIsComposed((Boolean)newValue);
+			case VisualPackage.VARROW__COMPOSED:
+				setComposed((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -122,8 +122,8 @@ public class VArrowImpl extends VElementImpl implements VArrow {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case VisualPackage.VARROW__IS_COMPOSED:
-				setIsComposed(IS_COMPOSED_EDEFAULT);
+			case VisualPackage.VARROW__COMPOSED:
+				setComposed(COMPOSED_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -137,8 +137,8 @@ public class VArrowImpl extends VElementImpl implements VArrow {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case VisualPackage.VARROW__IS_COMPOSED:
-				return isComposed != IS_COMPOSED_EDEFAULT;
+			case VisualPackage.VARROW__COMPOSED:
+				return composed != COMPOSED_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -153,8 +153,8 @@ public class VArrowImpl extends VElementImpl implements VArrow {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (isComposed: ");
-		result.append(isComposed);
+		result.append(" (composed: ");
+		result.append(composed);
 		result.append(')');
 		return result.toString();
 	}

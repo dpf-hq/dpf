@@ -57,25 +57,25 @@ public class VArrowItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addIsComposedPropertyDescriptor(object);
+			addComposedPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Is Composed feature.
+	 * This adds a property descriptor for the Composed feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIsComposedPropertyDescriptor(Object object) {
+	protected void addComposedPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_VArrow_isComposed_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_VArrow_isComposed_feature", "_UI_VArrow_type"),
-				 VisualPackage.Literals.VARROW__IS_COMPOSED,
+				 getString("_UI_VArrow_composed_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_VArrow_composed_feature", "_UI_VArrow_type"),
+				 VisualPackage.Literals.VARROW__COMPOSED,
 				 true,
 				 false,
 				 false,
@@ -121,7 +121,7 @@ public class VArrowItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(VArrow.class)) {
-			case VisualPackage.VARROW__IS_COMPOSED:
+			case VisualPackage.VARROW__COMPOSED:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

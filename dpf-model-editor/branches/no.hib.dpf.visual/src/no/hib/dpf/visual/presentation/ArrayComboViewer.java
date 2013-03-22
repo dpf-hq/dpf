@@ -1,7 +1,11 @@
 package no.hib.dpf.visual.presentation;
 
-import org.eclipse.core.runtime.Assert;
-import org.eclipse.emf.common.util.Enumerator;
+import java.util.List;
+
+import no.hib.dpf.visualization.util.EMFUtils;
+
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -11,7 +15,7 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 
-public class EnumeratorCombo extends ComboViewer{
+public class ArrayComboViewer extends ComboViewer{
 
 	private final IContentProvider contentProvider = new IStructuredContentProvider() {
 		
@@ -21,21 +25,32 @@ public class EnumeratorCombo extends ComboViewer{
 		@Override
 		public void dispose() { }
 		
+		@SuppressWarnings({ "rawtypes", "unchecked" })
 		@Override
 		public Object[] getElements(Object inputElement) {
-			Assert.isTrue(inputElement instanceof Enumerator[]);
-			return (Enumerator[])inputElement;
+			if(inputElement instanceof Object[])
+				return (Object[])inputElement;
+			if(inputElement instanceof List){
+				List l = (List)inputElement;
+				return (l).toArray(new Object[l.size()]);
+			}
+			return new Object[]{inputElement};
 		}
 	};
 	
 	private final ILabelProvider labelProvider = new LabelProvider(){
 		public String getText(Object element) {
-			Assert.isTrue(element instanceof Enumerator);
-			return ((Enumerator)element).getLiteral();
+			if(element instanceof EObject){
+				EAttribute e = EMFUtils.getEAttribute(((EObject) element).eClass(), "name");
+				if(e != null && EMFUtils.isParentClass(e.getEAttributeType().getInstanceClass(), String.class)){
+					return (String) e.eGet(e);
+				}
+			}
+			return element.toString();
 		}
 	};
 	
-	public EnumeratorCombo(Composite parent, int style) {
+	public ArrayComboViewer(Composite parent, int style) {
 		super(parent, style);
 		GridData gridData = new GridData(GridData.BEGINNING, GridData.FILL, false, false);
 		gridData.horizontalSpan = 2;
