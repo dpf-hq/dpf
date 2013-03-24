@@ -10,8 +10,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.MissingResourceException;
-import java.util.StringTokenizer;
 
 import org.eclipse.emf.common.CommonPlugin;
 
@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.eclipse.emf.ecore.xmi.XMLResource;
 
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
 
@@ -61,11 +60,9 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 
 import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.Text;
 
 import org.eclipse.ui.INewWizard;
@@ -77,11 +74,15 @@ import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.ISetSelectionTarget;
-import org.eclipse.ui.views.markers.internal.TableViewLabelProvider;
 
+import no.hib.dpf.core.Arrow;
+import no.hib.dpf.core.IDObject;
+import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Specification;
-import no.hib.dpf.editor.DPFEditor;
 import no.hib.dpf.utils.DPFCoreUtil;
+import no.hib.dpf.visual.VElement;
+import no.hib.dpf.visual.Visuals;
+import no.hib.dpf.visual.util.VisualUtil;
 import no.hib.dpf.visualization.VisualizationFactory;
 import no.hib.dpf.visualization.VisualizationPackage;
 import no.hib.dpf.visualization.provider.ModelVisualizationGenEditPlugin;
@@ -90,9 +91,13 @@ import no.hib.dpf.visualization.provider.ModelVisualizationGenEditPlugin;
 import org.eclipse.core.runtime.Path;
 
 import org.eclipse.jface.viewers.ArrayContentProvider;
+import org.eclipse.jface.viewers.CheckStateChangedEvent;
 import org.eclipse.jface.viewers.CheckboxTableViewer;
-import org.eclipse.jface.viewers.IContentProvider;
+import org.eclipse.jface.viewers.ICheckStateListener;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 
 import org.eclipse.ui.IWorkbenchPage;
@@ -186,6 +191,9 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 
 	public Button visualbrowseButton;
 
+	protected Specification specification = null;
+	protected Visuals visuals = null;
+	protected Map<IDObject, VElement> maps = new HashMap<IDObject, VElement>();
 	/**
 	 * This just records the information.
 	 * <!-- begin-user-doc -->
@@ -366,7 +374,7 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 			return ResourcesPlugin.getWorkspace().getRoot().getFile(getContainerFullPath().append(getFileName()));
 		}
 	}
-	private Specification specification;
+	
 
 	/**
 	 * This is the page where the type of object to create is selected.
@@ -397,6 +405,9 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 
 		private Label visualTableLabel;
 
+
+		
+
 		/**
 		 * Pass in the selection.
 		 * <!-- begin-user-doc -->
@@ -421,8 +432,9 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 
 				GridData data = new GridData();
 				data.verticalAlignment = GridData.FILL;
-				data.grabExcessVerticalSpace = true;
 				data.horizontalAlignment = GridData.FILL;
+				data.grabExcessVerticalSpace = true;
+				data.grabExcessVerticalSpace = true;
 				composite.setLayoutData(data);
 			}
 
@@ -446,13 +458,15 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 			browseButton = new Button(composite, SWT.PUSH);
 			{
 				setButtonLayoutData(browseButton);
-				//				browseButton.setFont(font);
 				browseButton.setText("&Browse...");
 				browseButton.addSelectionListener(new SelectionAdapter() {
 
 					public void widgetSelected(SelectionEvent event) {
-						handleModelBrowseButtonPressed(modelFile, "xmi");
+						handleModelBrowseButtonPressed(modelFile, getModelFile().getParent().getLocation().toOSString(), "*.xmi");
 						specification = DPFCoreUtil.loadSpecification(URI.createFileURI(modelFile.getText()));
+						updateControl();
+						if(modelTable.getTable().getColumns().length > 0)
+							modelTable.getTable().setSelection(0);
 					}
 				});
 				browseButton.setEnabled(true);
@@ -484,7 +498,9 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 				visualbrowseButton.setText("&Browse...");
 				visualbrowseButton.addSelectionListener(new SelectionAdapter() {
 					public void widgetSelected(SelectionEvent event) {
-						handleModelBrowseButtonPressed(visualFile, "vis");
+						handleModelBrowseButtonPressed(visualFile, getModelFile().getParent().getLocation().toOSString(), "*.visual");
+						visuals = VisualUtil.loadVisuals(URI.createFileURI(visualFile.getText()));
+						updateControl();
 					}
 				});
 				visualbrowseButton.setEnabled(true);
@@ -496,65 +512,104 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 				GridLayout layout = new GridLayout();
 				layout.numColumns = 2;
 				layout.verticalSpacing = 12;
+				layout.makeColumnsEqualWidth = true;
 				compos.setLayout(layout);
 
 				GridData data = new GridData();
-				data.horizontalSpan = 2;
-				data.verticalAlignment = GridData.FILL;
+				data.grabExcessHorizontalSpace = true;
 				data.grabExcessVerticalSpace = true;
-				data.horizontalAlignment = GridData.FILL;
+				data.horizontalAlignment = SWT.FILL;
+				data.verticalAlignment = SWT.FILL;
+				data.horizontalSpan = 2;
 				compos.setLayoutData(data);
 			}
-			GridData data = new GridData();
-			data.horizontalAlignment = GridData.CENTER;
-			data.grabExcessHorizontalSpace = true;
-			modelTableLabel = new Label(compos, SWT.LEFT);
+			modelTableLabel = new Label(compos, SWT.NONE);
 			{
 				modelTableLabel.setText("Model");
-				modelTableLabel.setLayoutData(data);
+				GridData data1 = new GridData();
+				data1.horizontalAlignment = SWT.CENTER;
+				data1.grabExcessHorizontalSpace = true;
+				modelTableLabel.setLayoutData(data1);
 
 			}
-			visualTableLabel = new Label(compos, SWT.LEFT);
+			visualTableLabel = new Label(compos, SWT.NONE);
 			{
 				visualTableLabel.setText("Visual");
-				visualTableLabel.setLayoutData(data);
+				GridData data1 = new GridData();
+				data1.horizontalAlignment = SWT.CENTER;
+				data1.grabExcessHorizontalSpace = true;
+				visualTableLabel.setLayoutData(data1);
 			}
-			
-			
-			modelTable = new CheckboxTableViewer(new Table(compos, SWT.BORDER));
+			GridData data = new GridData();
+			data.horizontalAlignment = SWT.CENTER;
+			data.grabExcessHorizontalSpace = true;
+			data.horizontalAlignment = SWT.FILL;
+			data.verticalAlignment = SWT.FILL;
+			data.grabExcessHorizontalSpace = true;
+			data.grabExcessVerticalSpace = true;
+			modelTable = CheckboxTableViewer.newCheckList(compos, SWT.BORDER);
+			modelTable.addSelectionChangedListener(new ISelectionChangedListener() {
+				
+				@Override
+				public void selectionChanged(SelectionChangedEvent event) {
+					updateControl();
+				}
+			});
 			modelTable.getTable().setLayoutData(data);
 			modelTable.setContentProvider(new ArrayContentProvider());
-			visualTable = new CheckboxTableViewer(new Table(compos, SWT.BORDER));
+			modelTable.setLabelProvider(new LabelProvider(){
+				public String getText(Object element) {
+					if(element instanceof Node){
+						return ((Node)element).getName();
+					}else if(element instanceof Arrow){
+						return ((Arrow)element).getName();
+					}
+					return super.getText(element);
+				}
+			});
+			
+			visualTable = CheckboxTableViewer.newCheckList(compos, SWT.BORDER);
 			visualTable.getTable().setLayoutData(data);
+			visualTable.setContentProvider(new ArrayContentProvider());
+			visualTable.setLabelProvider(new LabelProvider(){
+				public String getText(Object element) {
+					if(element instanceof VElement){
+						return ((VElement)element).getName();
+					}
+					return super.getText(element);
+				}
+			});
+			visualTable.addCheckStateListener(new ICheckStateListener() {
+				
+				@Override
+				public void checkStateChanged(CheckStateChangedEvent event) {
+					Object o = event.getElement();
+					boolean checked = event.getChecked();
+					Object model = getSelectionObject(modelTable.getSelection());
+					if(model != null){
+						Object visual = maps.get(model);
+						if(checked && visual != null && visual != o){
+							visualTable.setChecked(visual, false);
+						}
+					}
+					modelTable.setChecked(model, checked);
+					maps.put((IDObject)model, (VElement)(checked ? o : null));
+					visualTable.setChecked(o, event.getChecked());
+				}
+			});
+			
 			setPageComplete(validatePage());
 			setControl(composite);
 		}
 
 
 
-		protected void handleModelBrowseButtonPressed(Text targetField, String name) {
-			String linkTargetName = targetField.getText();
+		protected void handleModelBrowseButtonPressed(Text targetField, String parent, String name) {
 			String selection = null;
-			IFileStore store = null;
-			if (linkTargetName.length() > 0) {
-				store = getFileStore(linkTargetName);
-				if (store == null || !store.fetchInfo().exists()) {
-					store = null;
-				}
-			}
-
 			FileDialog fileDialog = new FileDialog(getShell(), SWT.SHEET);
-			fileDialog.setFilterExtensions(new String[]{name});
-
-			if (store != null) {
-				if (store.fetchInfo().isDirectory()) {
-					fileDialog.setFilterPath(linkTargetName);
-				} else {
-					fileDialog.setFileName(linkTargetName);
-				}
-			}
+			fileDialog.setFilterPath(parent);
+			fileDialog.setFilterExtensions(new String[]{name, "*.*"});
 			selection = fileDialog.open();
-
 			if (selection != null) {
 				targetField.setText(selection);
 			}
@@ -578,33 +633,55 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 		 * @generated
 		 */
 		protected boolean validatePage() {
-			return true;
+			if(specification != null && visuals != null){
+				return true;
+			}
+			return false;
 		}
 
-		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		@Override
 		public void setVisible(boolean visible) {
 			super.setVisible(visible);
-			visible = specification != null;
+			updateControl();
+		}
+		public Object getSelectionObject(ISelection selection){
+			if(selection instanceof StructuredSelection){
+				StructuredSelection ss = (StructuredSelection) selection;
+				return ss.getFirstElement();
+			}
+			return null;
+		}
+		public void updateControl() {
+			boolean old = modelTable.getTable().isVisible();
+			boolean visible = specification != null;
 			modelTable.getTable().setVisible(visible);
 			modelTableLabel.setVisible(visible);
-			boolean vv = modelTable.getTable().getSelectionCount() != 0 && visible;
+			boolean vv = visuals != null && modelTable.getTable().getSelectionCount() != 0 && visible;
 			visualTable.getTable().setVisible(vv);
 			visualTableLabel.setVisible(vv);
-			//			if (visible) {
-			//				if (modelFile.getItemCount() == 1) {
-			//					modelFile.clearSelection();
-			//					encodingField.setFocus();
-			//				}
-			//				else {
-			//					encodingField.clearSelection();
-			//					modelFile.setFocus();
-			//				}
-			//			}
+			if(visible){
+				modelTable.setInput(specification.getGraph().eContents());
+				if(old != visible){
+					for(Entry<IDObject, VElement> item : maps.entrySet()){
+						modelTable.setChecked(item.getKey(), true);
+					}
+					if(modelTable.getTable().getItems().length > 0)
+						modelTable.getTable().setSelection(0);
+				}
+			}
+			if(vv){
+				visualTable.setInput(visuals.getItems());
+				Object[] objects = visualTable.getCheckedElements();
+				if(objects.length != 0){
+					visualTable.setChecked(objects[0], false);
+				}
+				
+				Object key = getSelectionObject(modelTable.getSelection());
+				if(key != null){
+					VElement e = maps.get(key);
+					if(e != null)
+						visualTable.setChecked(e, true);
+				}
+			}
 		}
 
 		/**

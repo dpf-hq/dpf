@@ -2,10 +2,6 @@
  */
 package no.hib.dpf.visualization.impl;
 
-import java.util.Collection;
-import java.util.Map;
-
-import java.util.Map.Entry;
 
 import no.hib.dpf.core.IDObject;
 
@@ -19,7 +15,6 @@ import no.hib.dpf.visualization.Visualizations;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EMap;
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
@@ -30,7 +25,6 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -224,7 +218,6 @@ public class VisualizationsImpl extends EObjectImpl implements Visualizations {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {

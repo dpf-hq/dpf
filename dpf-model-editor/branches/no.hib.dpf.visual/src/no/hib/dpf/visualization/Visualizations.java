@@ -2,7 +2,6 @@
  */
 package no.hib.dpf.visualization;
 
-import java.util.Map;
 
 import no.hib.dpf.core.IDObject;
 
@@ -11,7 +10,6 @@ import no.hib.dpf.visual.VElement;
 
 import no.hib.dpf.visual.Visuals;
 import org.eclipse.emf.common.util.EMap;
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
 
