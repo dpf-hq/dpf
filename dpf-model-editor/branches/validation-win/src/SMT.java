@@ -360,6 +360,17 @@ public class SMT {
 		}
 		
 		writer.println(" :named source-model-should-match-at-least-one-rule))");
+//		writer.print("(assert (! (not");
+//		for (int i = 0; i < rules.size() - 1; i++) {
+//			writer.print(" (or");
+//		}
+//		for (int i = 0; i < rules.size(); i++) {
+//			rules.get(i).printRuleMatchRight(writer, i);
+//			if(i > 0)
+//				writer.print(")");
+//		}
+//		
+//		writer.println(") :named target-model-should-not-match-any-rule))");
 //		writer.print(";");
 		writer.println(reflexiveEdge("non-active", true));
 //		writer.print(";");
@@ -429,6 +440,11 @@ public class SMT {
 		writer.println(surjective("PF1", "F1", true));
 //		writer.print(";");
 		writer.println(surjective("TR", "R", true));
+		writer.println(xand("P", "PF1", "F1", "PF2", "F2", true));
+		writer.println(xand("P", "non-active", "P", "check", "P", true));
+		writer.println(xand("P", "non-active", "P", "setTurn", "P", true));
+		writer.println(xand("P", "non-active", "P", "crit", "P", true));
+		writer.println(xand("P", "active", "P", "start", "P", true));
 
 		writer.print(";");
 		writer.println(existNode("P", false));
@@ -460,14 +476,31 @@ public class SMT {
 		writer.println(reflexiveEdge("check", false));
 		writer.print(";");
 		writer.println(reflexiveEdge("setTurn", false));
-//		writer.print(";");
+		writer.print(";");
 		writer.println(injective("PF2", false));
 		writer.print(";");
 		writer.println(injective("PF1", false));
+		writer.print(";");
+		writer.println(surjective("PF2", "F2", false));
+		writer.print(";");
+		writer.println(surjective("PF1", "F1", false));
+		writer.println(xand("P", "PF1", "F1", "PF2", "F2", false));
+		writer.println(";(assert (! (forall ((p V-INN) (t V-INN) (f V-INN) (tp E-INN) (pf E-INN)) (=> (and (PI p) (and (TI t) (and (F2I f) (and (critI p p pf) (and (PF2I p f pf) (TPI t p tp))))))");
+		writer.println("; (not (exists ((p1 V-INN) (t1 V-INN) (f1 V-INN) (tp1 E-INN) (pf1 E-INN)) (and (not (= p p1)) (and (PI p1) (and (TI t1) (and (F2I f1) (and (critI p1 p1 pf1) (and (PF2I p1 f1 pf1) (TPI t1 p1 tp1))))))))))) :named access-exclusive-inn))");
+		writer.println(";(assert (! (not (forall ((p V-OUT) (t V-OUT) (f V-OUT) (tp E-OUT) (pf E-OUT)) (=> (and (PO p) (and (TO t) (and (F2O f) (and (critO p p pf) (and (PF2O p f pf) (TPO t p tp))))))");
+		writer.println("; (not (exists ((p1 V-OUT) (t1 V-OUT) (f1 V-OUT) (tp1 E-OUT) (pf1 E-OUT)) (and (not (= p p1)) (and (PO p1) (and (TO t1) (and (F2O f1) (and (critO p1 p1 pf1) (and (PF2O p1 f1 pf1) (TPO t1 p1 tp1)))))))))))) :named access-exclusive-out))");
 		writer.println("(check-sat)");
 		writer.println("(get-unsat-core)");
 		writer.println("(exit)");
 		writer.close();
+	}
+	private String xand(String s, String e1, String t1,
+			String e2, String t2, boolean in) {
+		String node = in ? VINN : VOUT;
+		String edge = in ? EINN : EOUT;
+		return "(assert (! " + (in ? "" : "(not ") + "(forall ((s " + node + ")) (=> (" + s + (in ? "I" : "O") + " s) " +
+				"(not (exists ((t1 " + node + ") (e1 " + edge + ") (t2 " + node + ") (e2 " + edge + ")) (and (" + t1 + (in ? "I" : "O") + " t1) (and ("  + t2 + (in ? "I" : "O") + " t2) (and (" + e1 + (in ? "I" : "O") + " s t1 e1) (" + e2 + (in ? "I" : "O") + " s t2 e2)"
+		+ ")))))))" + (in ? "" : ")") + " :named xand-" + e1 + "-" + e2 + (in ? "I" : "O") + "))";
 	}
 	private String getNullEdges(List<String[]> edges, boolean in) {
 		StringBuffer result = new StringBuffer();
@@ -541,8 +574,10 @@ public class SMT {
 		for (int i = 0; i < es.length; i++) {
 			es[i] = findEdge(array[i], in);
 		}
-		String result = "(assert (! " + (in ? "" : "(not");
-		result += noncompatibleEdge(es, in ? INN : OUT) + (in ? "" : ")");
+		String s = es[0][1];
+		String result = "(assert (! " + (in ? "" : "(not ")  + "(forall ((s " + (in ? VINN : VOUT) + ")) " +
+				"(=> (" + s  + " s) ";
+		result += noncompatibleEdge(es, in ? INN : OUT) + (in ? "" : ")") + "))";
 		result += " :named ";
 		for (int i = 0; i < es.length; i++) {
 			result += (es[i][0] + "-");
@@ -563,7 +598,9 @@ public class SMT {
 		for (int i = 0; i < es.length; i++) {
 			es[i] = findEdge(array[i], in);
 		}
-		String result = "(assert (! " + (in ? "" : "(not") + existOneOfEdges(es, in ? VINN : VOUT, in ? EINN : EOUT) + (in ? "" : ")");
+		String s = es[0][1];
+		String result = "(assert (! " + (in ? "" : "(not ") + "(forall ((s " + (in ? VINN : VOUT) + ")) " +
+				"(=> (" + s  + " s) " + existOneOfEdges(es, in ? VINN : VOUT, in ? EINN : EOUT) + (in ? "" : ")") + "))";
 		result += " :named exist-one-of-";
 		for (int i = 0; i < es.length; i++) {
 			result += es[i][0] + "-";
@@ -577,8 +614,8 @@ public class SMT {
 			result += " (or";
 		}
 		for (int i = 0; i < edges.length; i++) {
-			result += " (exists ((s" + i + " " + node + ") (t" + i + " " + node + ") (e" + i + " " + edge + ")) (" 
-					+ edges[i][0] + " s" + i + " t" + i + " e" + i + "))";
+			result += " (exists ((t" + i + " " + node + ") (e" + i + " " + edge + ")) (" 
+					+ edges[i][0] + " s t" + i + " e" + i + "))";
 			if(i != 0)
 				result += ")";
 		}
@@ -591,19 +628,18 @@ public class SMT {
 			result.append(" (and");
 		}
 		for (int i = 0; i < edges.length; i++) {
-			result.append(" (not (forall ((a" + i + " V-" + in + ") (b" + i + " V-" + in + ") (c" + i + " E-" + in + ")) (exists ((d" + i 
-					+ " V-" + in + ") (e" + i + " V-" + in + ") (f" + i + " E-" + in + ")) (and (and (and (= a" + i + " d" + i + ") (= b" + i + " e" + i + ")) (" + edges[i][0] + " a" + i + " b" + i + " c" + i + "))");
+			result.append(" (not (and (exists ((b" + i  + " V-" + in + ") (c" + i + " E-" + in + ")) (" + edges[i][0] + " s b" + i + " c" + i + "))");
 			for(int j = 0; j < size - 2; j++){
 				result.append(" (or");
 			}
 			for(int j = 0; j < size; j++){
 				if(i != j){
-					result.append(" (" + edges[j][0] + " d" + i + " e" + i + " f" + i + ")");
+					result.append(" (exists ((b" + i + "-" + j + " V-" + in + ") (c" + i + "-" + j + " E-" + in + ")) (" + edges[j][0] + " s b" + i + "-" + j + " c" + i + "-" + j + "))");
 					if((i == 0 && j > 1) || (i > 0 && j > 0))
 						result.append(")");
 				}
 			}
-			result.append("))))");
+			result.append("))");
 			if(i != 0)
 				result.append(")");
 		}

@@ -83,6 +83,54 @@ class Rule{
 		}
 		writer.print(")");
 	}
+	void printRuleMatchRight(PrintWriter writer, int index){
+		writer.println();
+		writer.print(" (exists (");
+		for(Node n : delNodes){
+			writer.print(" (no_"+ index + n.index + " V-OUT)");
+		}
+		for(Edge[] n : delEdges){
+			writer.print(" (eo_" + index + n[0].index + " E-OUT)");
+		}
+		for(Node[] n : kepNodes){
+			writer.print(" (no_" + index + n[0].index + " V-OUT)");
+		}
+		
+		for(Edge[] n : kepEdges){
+			writer.print(" (eo_" + index + n[0].index + " E-OUT)");
+		}
+		
+		if(!addNodes.isEmpty())
+			writer.print(" (no_" + index + ndel.index + " V-OUT)");
+		if(!addEdges.isEmpty())
+			writer.print(" (eo_" + index + edel.index + " E-OUT)");
+		writer.println(") ");
+		int nu = delNodes.size() + delEdges.size() + kepNodes.size() + kepEdges.size() - 1 + (addNodes.isEmpty() ? 0 : 1) + addEdges.size();
+		for(int i = 0; i < nu; i++){
+			writer.print(" (and");
+		}
+		if(nu < 0)
+			writer.print(" ");
+		boolean start = nu > 0;
+		for(Node n : delNodes){
+			start = printNode(writer, n, start, false, "_" + index);			
+		}
+		for(Edge[] n : delEdges){
+			start = printEdge(writer, n[0], start, false, "_" + index);
+		}
+		for(Node[] n : kepNodes){
+			start = printNode(writer, n[0], start, false, "_" + index);
+		}
+		for(Edge[] n : kepEdges){
+			start = printEdge(writer, n[0], start, false, "_" + index);
+		}
+		if(!addNodes.isEmpty())
+			printNode(writer, ndel, start, false, "_" + index);
+		for(Edge[] n : addEdges){
+			start = printEdge(writer, n[1], start, false, "_" + index);
+		}
+		writer.print(")");
+	}
 	private boolean printEdge(PrintWriter writer, Edge e, boolean start,
 			boolean input, String string) {
 		String type = e.tn;
