@@ -1,7 +1,7 @@
 package no.hib.dpf.visual.presentation;
 
 
-import no.hib.dpf.visual.VNode;
+import no.hib.dpf.visual.VArrow;
 
 import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -14,34 +14,34 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.forms.IDetailsPage;
 
-public class VNodeBlock extends AbstractBlock implements IDetailsPage {
+public class VArrowBlock extends AbstractBlock implements IDetailsPage {
 
 
-	private ComboViewer compositeCombo;
+	private ComboViewer composedCombo;
 
-	public VNode getVNode(){
-		return (VNode) vElement;
+	public VArrow getVArrow(){
+		return (VArrow) this.vElement;
 	}
-	public VNodeBlock(VisualMasterBlock signatureMasterBlock) {
+	public VArrowBlock(VisualMasterBlock signatureMasterBlock) {
 		super(signatureMasterBlock);
 	}
 
 	public void refreshOthers() {
-			compositeCombo.setSelection(new StructuredSelection(getVNode().isComposite()));
+		composedCombo.setSelection(new StructuredSelection(getVArrow().isComposed()));
 	}
 	
 	protected void addListners(){
 		super.addListners();
-		compositeCombo.addSelectionChangedListener(new ISelectionChangedListener() {
+		composedCombo.addSelectionChangedListener(new ISelectionChangedListener() {
 
 			@Override
 			public void selectionChanged(SelectionChangedEvent event) {
 				boolean type = false;
 				if (!event.getSelection().isEmpty())
 					type = (Boolean)((IStructuredSelection)event.getSelection()).getFirstElement();
-				if(type == getVNode().isComposite())
+				if(type == getVArrow().isComposed())
 					return;
-				getVNode().setComposite(type);
+				getVArrow().setComposed(type);
 				master.getMultiEditor().setDirty(true);
 			}
 		});
@@ -50,13 +50,13 @@ public class VNodeBlock extends AbstractBlock implements IDetailsPage {
 	@Override
 	protected void createControl(Composite infoComposite) {
 		Label visulationLabel = new Label(infoComposite, SWT.NONE);
-		visulationLabel.setText("Composite:");
+		visulationLabel.setText("Composed:");
 		GridData gridData = new GridData(GridData.BEGINNING, GridData.FILL, false, false);
 		gridData.verticalSpan = 3;
 		gridData.minimumWidth = 20;
 		visulationLabel.setLayoutData(gridData);
-		compositeCombo = new ArrayComboViewer(infoComposite, SWT.NONE);
-		compositeCombo.setInput(BOOLEANS);
-		compositeCombo.getControl().setLayoutData(new GridData(GridData.FILL, GridData.FILL, true, false));
+		composedCombo = new ArrayComboViewer(infoComposite, SWT.NONE);
+		composedCombo.setInput(BOOLEANS);
+		composedCombo.getControl().setLayoutData(new GridData(GridData.FILL, GridData.FILL, true, false));
 	}
 }

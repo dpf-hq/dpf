@@ -6,7 +6,6 @@ import java.util.List;
 
 import no.hib.dpf.editor.FileSelection;
 import no.hib.dpf.visual.VElement;
-import no.hib.dpf.visual.VNode;
 import no.hib.dpf.visual.Visuals;
 
 import org.eclipse.core.resources.IFile;
@@ -48,7 +47,6 @@ public abstract class AbstractBlock extends EditorPart implements IDetailsPage {
 	protected Text name;
 	protected Text icon;
 	protected Button iconChooser;
-//	private ComboViewer compositeCombo;
 	protected Section infoSection;
 	protected VisualMasterBlock master;
 	protected static List<Boolean> BOOLEANS = new ArrayList<Boolean>();
@@ -60,7 +58,6 @@ public abstract class AbstractBlock extends EditorPart implements IDetailsPage {
 	public AbstractBlock(VisualMasterBlock signatureMasterBlock) {
 		super();
 		this.master = signatureMasterBlock;
-//		setEditDomain(master.getMultiEditor().getEditDomain());
 	}
 
 	private FormPage getEditor(){
@@ -99,13 +96,13 @@ public abstract class AbstractBlock extends EditorPart implements IDetailsPage {
 		return false;
 	}
 	protected Visuals visuals;
-	protected VElement vnode;
+	protected VElement vElement;
 
 	@Override
 	public void refresh() {
-		if(vnode != null){
-			name.setText(getNNullString(vnode.getName()));
-			icon.setText(getNNullString(vnode.getIcon()));
+		if(vElement != null){
+			name.setText(getNNullString(vElement.getName()));
+			icon.setText(getNNullString(vElement.getIcon()));
 			refreshOthers();
 		}
 	}
@@ -121,9 +118,9 @@ public abstract class AbstractBlock extends EditorPart implements IDetailsPage {
 		IStructuredSelection ssel = (IStructuredSelection)selection;
 		Object selected = null;
 		if(ssel.size() == 1) selected = ssel.getFirstElement();
-		if(selected instanceof VNode){
-			vnode = (VNode) selected;
-			visuals = (Visuals) vnode.eContainer();
+		if(selected instanceof VElement){
+			vElement =  (VElement) selected;
+			visuals = (Visuals) vElement.eContainer();
 			Assert.isNotNull(visuals);
 			refresh();
 		}
@@ -134,7 +131,7 @@ public abstract class AbstractBlock extends EditorPart implements IDetailsPage {
 
 			@Override
 			public void focusLost(FocusEvent e) {
-				if(!name.getText().equals(vnode.getName()))
+				if(!name.getText().equals(vElement.getName()))
 					changeVisualName(name.getText());
 			}
 
@@ -146,12 +143,12 @@ public abstract class AbstractBlock extends EditorPart implements IDetailsPage {
 			public void widgetSelected(SelectionEvent e) {
 				IFile signature = ((IFileEditorInput)master.getMultiEditor().getEditorInput()).getFile();
 				IProject project = signature.getProject();
-				URI uri = vnode.eResource().getURI();
+				URI uri = vElement.eResource().getURI();
 				IResource image = FileSelection.select(e.display.getActiveShell(), "Icon Selection", "Select a image", null, "This is not a image file", project, null, null);
 				if(image == null) return;
 				URI relative = URI.createFileURI(image.getLocation().toOSString());
 				String fileName = relative.deresolve(uri).path();
-				if (fileName != null && !fileName.equals(vnode.getIcon())) {
+				if (fileName != null && !fileName.equals(vElement.getIcon())) {
 					changeVisualIcon(fileName);
 					icon.setText(fileName);
 				}
@@ -207,13 +204,13 @@ public abstract class AbstractBlock extends EditorPart implements IDetailsPage {
 	protected abstract void createControl(Composite infoComposite) ;
 
 	protected void changeVisualIcon(String fileName) {
-		vnode.setIcon(fileName);
+		vElement.setIcon(fileName);
 		master.getMultiEditor().setDirty(true);
 	}
 
 	protected void changeVisualName(String newText) {
-		vnode.setName(newText);
-		master.refresh(vnode);
+		vElement.setName(newText);
+		master.refresh(vElement);
 		master.getMultiEditor().setDirty(true);
 	}
 

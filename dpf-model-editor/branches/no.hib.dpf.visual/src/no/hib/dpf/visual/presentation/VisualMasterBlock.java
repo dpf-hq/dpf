@@ -8,6 +8,7 @@ import no.hib.dpf.visual.VElement;
 import no.hib.dpf.visual.VisualFactory;
 import no.hib.dpf.visual.VisualPackage;
 import no.hib.dpf.visual.Visuals;
+import no.hib.dpf.visual.impl.VArrowImpl;
 import no.hib.dpf.visual.impl.VNodeImpl;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -95,7 +96,7 @@ public class VisualMasterBlock extends MasterDetailsBlock {
 		//final ScrolledForm form = managedForm.getForm();
 		FormToolkit toolkit = managedForm.getToolkit();
 		Section section = toolkit.createSection(parent, Section.TWISTIE| Section.TITLE_BAR);
-		section.setText("Predicates"); 
+		section.setText("VElements"); 
 		section.setExpanded(true);
 		section.marginWidth = 10;
 		section.marginHeight = 5;
@@ -109,16 +110,30 @@ public class VisualMasterBlock extends MasterDetailsBlock {
 		GridData gridData = new GridData(GridData.FILL_BOTH);
 		gridData.heightHint = 20;
 		gridData.widthHint = 100;
-		gridData.verticalSpan = 2;
+		gridData.verticalSpan = 3;
 		table.setLayoutData(gridData);
 		toolkit.paintBordersFor(client);
-		Button addBt = toolkit.createButton(client, "Add", SWT.PUSH); //$NON-NLS-1$
-		addBt.setLayoutData(new GridData(GridData.FILL, GridData.END, false, false));
-		addBt.addSelectionListener(new SelectionListener() {
+		Button addVBt = toolkit.createButton(client, "Add Node", SWT.PUSH); //$NON-NLS-1$
+		addVBt.setLayoutData(new GridData(GridData.FILL, GridData.END, false, false));
+		addVBt.addSelectionListener(new SelectionListener() {
 			
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				addVElement();
+				addVElement(true);
+			}
+			
+			@Override
+			public void widgetDefaultSelected(SelectionEvent e) {
+				
+			}
+		});
+		Button addEBt = toolkit.createButton(client, "Add Arrow", SWT.PUSH); //$NON-NLS-1$
+		addEBt.setLayoutData(new GridData(GridData.FILL, GridData.END, false, false));
+		addEBt.addSelectionListener(new SelectionListener() {
+			
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				addVElement(false);
 			}
 			
 			@Override
@@ -133,7 +148,7 @@ public class VisualMasterBlock extends MasterDetailsBlock {
 			
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				removePredicate(getSelection(viewer.getSelection()));
+				removeVElement(getSelection(viewer.getSelection()));
 			}
 			
 			@Override
@@ -158,10 +173,10 @@ public class VisualMasterBlock extends MasterDetailsBlock {
 		viewer.setSelection(null);
 	}
 
-	protected void removePredicate(final List<? extends VElement> selected) {
+	protected void removeVElement(final List<? extends VElement> selected) {
 		final VisualFormEditor editor = getMultiEditor();
 		DefaultEditDomain domain = editor.getEditDomain();
-		domain.getCommandStack().execute(new Command("Add Predicate" + (selected.size() > 1 ? "s" : "")){
+		domain.getCommandStack().execute(new Command("Remove VElement" + (selected.size() > 1 ? "s" : "")){
 			public boolean canExecute() {
 				return visuals != null && editor != null;
 			}
@@ -188,11 +203,11 @@ public class VisualMasterBlock extends MasterDetailsBlock {
 		return new ArrayList<VElement>(0);
 	}
 
-	protected void addVElement() {
+	protected void addVElement(boolean isNode) {
 		final VisualFormEditor editor = getMultiEditor();
 		DefaultEditDomain domain = editor.getEditDomain();
-		final VElement created = getNewVisual();
-		domain.getCommandStack().execute(new Command("Add Visual") {
+		final VElement created = getNewVisual(isNode);
+		domain.getCommandStack().execute(new Command("Add " + created.getName()) {
 			public boolean canExecute() {
 				return visuals != null && editor != null && created != null;
 			}
@@ -209,16 +224,16 @@ public class VisualMasterBlock extends MasterDetailsBlock {
 		});
 	}
 	
-	private VElement getNewVisual(){
-		VElement result = VisualFactory.eINSTANCE.createVNode();
+	private VElement getNewVisual(boolean isNode){
+		VElement result = isNode ? VisualFactory.eINSTANCE.createVNode() : VisualFactory.eINSTANCE.createVArrow();
 		int i = 0;
 		VElement search = null;
 		for(; i < visuals.getItems().size(); ++i){
-			search = getVisualBySymbol(visuals, "visual" + i);
+			search = getVisualBySymbol(visuals, (isNode ? "node" : "edge") + i);
 			if(search == null)
 				break;
 		}
-		result.setName("visual" + i);
+		result.setName((isNode ? "node" : "edge") + i);
 		return result;
 	}
 
@@ -239,15 +254,15 @@ public class VisualMasterBlock extends MasterDetailsBlock {
 	@Override
 	protected void registerPages(DetailsPart detailsPart) {
 		detailsPart.registerPage(VNodeImpl.class, new VNodeBlock(this));
-//		detailsPart.registerPage(VArrow.class, new V(this));
+		detailsPart.registerPage(VArrowImpl.class, new VArrowBlock(this));
 	}
 
 	@Override
 	protected void createToolBarActions(IManagedForm managedForm) { }
 
-	public void refresh(VElement predicate) {
+	public void refresh(VElement vElement) {
 		viewer.setInput(getVElements());
-		viewer.setSelection(new StructuredSelection(predicate));
+		viewer.setSelection(new StructuredSelection(vElement));
 	}
 
 	public void refresh() {

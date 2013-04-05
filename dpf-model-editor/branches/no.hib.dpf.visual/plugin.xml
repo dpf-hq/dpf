@@ -39,20 +39,17 @@
    </extension>
 
    <extension point="org.eclipse.ui.newWizards">
-      <category
-            id="org.eclipse.emf.ecore.Wizard.category.ID"
-            name="%_UI_Wizard_category"/>
       <wizard
             id="no.hib.dpf.visual.presentation.VisualModelWizardID"
             name="%_UI_VisualModelWizard_label"
             class="no.hib.dpf.visual.presentation.VisualModelWizard"
-            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            category="no.hib.dpf.editor"
             icon="icons/full/obj16/VisualModelFile.gif">
          <description>%_UI_VisualModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>
       </wizard>
       <wizard
-            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            category="no.hib.dpf.editor"
             class="no.hib.dpf.visualization.presentation.VisualizationModelWizard"
             icon="icons/full/obj16/VisualizationModelFile.gif"
             id="no.hib.dpf.visual.presentation.VisualizationModelWizardID"
@@ -76,7 +73,7 @@
       </editor>
       <editor
             class="no.hib.dpf.visualization.presentation.VisualizationEditor"
-            extensions="visual"
+            extensions="visualization"
             icon="icons/full/obj16/VisualizationModelFile.gif"
             id="no.hib.dpf.visual.presentation.VisualizationEditorID"
             name="%_UI_VisualizationEditor_label">

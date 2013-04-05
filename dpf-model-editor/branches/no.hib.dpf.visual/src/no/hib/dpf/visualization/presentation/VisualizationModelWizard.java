@@ -51,8 +51,6 @@ import org.eclipse.jface.wizard.WizardPage;
 
 import org.eclipse.swt.SWT;
 
-import org.eclipse.swt.events.ModifyListener;
-import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 
@@ -80,11 +78,14 @@ import no.hib.dpf.core.IDObject;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Specification;
 import no.hib.dpf.utils.DPFCoreUtil;
+import no.hib.dpf.visual.VArrow;
 import no.hib.dpf.visual.VElement;
+import no.hib.dpf.visual.VNode;
 import no.hib.dpf.visual.Visuals;
 import no.hib.dpf.visual.util.VisualUtil;
 import no.hib.dpf.visualization.VisualizationFactory;
 import no.hib.dpf.visualization.VisualizationPackage;
+import no.hib.dpf.visualization.Visualizations;
 import no.hib.dpf.visualization.provider.ModelVisualizationGenEditPlugin;
 
 
@@ -236,9 +237,11 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	protected EObject createInitialModel() {
-		EClass eClass = (EClass)visualizationPackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
-		EObject rootObject = visualizationFactory.create(eClass);
-		return rootObject;
+		Visualizations visualizations = VisualizationFactory.eINSTANCE.createVisualizations();
+		visualizations.setModel(specification);
+		visualizations.setVisual(visuals);
+		visualizations.getEntries().addAll(maps.entrySet());
+		return visualizations;
 	}
 
 	/**
@@ -374,7 +377,7 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 			return ResourcesPlugin.getWorkspace().getRoot().getFile(getContainerFullPath().append(getFileName()));
 		}
 	}
-	
+
 
 	/**
 	 * This is the page where the type of object to create is selected.
@@ -406,7 +409,7 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 		private Label visualTableLabel;
 
 
-		
+
 
 		/**
 		 * Pass in the selection.
@@ -464,6 +467,7 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 					public void widgetSelected(SelectionEvent event) {
 						handleModelBrowseButtonPressed(modelFile, getModelFile().getParent().getLocation().toOSString(), "*.xmi");
 						specification = DPFCoreUtil.loadSpecification(URI.createFileURI(modelFile.getText()));
+						setPageComplete(validatePage());
 						updateControl();
 						if(modelTable.getTable().getColumns().length > 0)
 							modelTable.getTable().setSelection(0);
@@ -471,8 +475,6 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 				});
 				browseButton.setEnabled(true);
 			}
-
-			modelFile.addModifyListener(validator);
 
 			Label visualLabel = new Label(composite, SWT.LEFT);
 			{
@@ -500,13 +502,12 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 					public void widgetSelected(SelectionEvent event) {
 						handleModelBrowseButtonPressed(visualFile, getModelFile().getParent().getLocation().toOSString(), "*.visual");
 						visuals = VisualUtil.loadVisuals(URI.createFileURI(visualFile.getText()));
+						setPageComplete(validatePage());
 						updateControl();
 					}
 				});
 				visualbrowseButton.setEnabled(true);
 			}
-
-			visualFile.addModifyListener(validator);
 
 			Composite compos = new Composite(composite, SWT.NONE); {
 				GridLayout layout = new GridLayout();
@@ -549,38 +550,14 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 			data.grabExcessVerticalSpace = true;
 			modelTable = CheckboxTableViewer.newCheckList(compos, SWT.BORDER);
 			modelTable.addSelectionChangedListener(new ISelectionChangedListener() {
-				
+
 				@Override
 				public void selectionChanged(SelectionChangedEvent event) {
 					updateControl();
 				}
 			});
-			modelTable.getTable().setLayoutData(data);
-			modelTable.setContentProvider(new ArrayContentProvider());
-			modelTable.setLabelProvider(new LabelProvider(){
-				public String getText(Object element) {
-					if(element instanceof Node){
-						return ((Node)element).getName();
-					}else if(element instanceof Arrow){
-						return ((Arrow)element).getName();
-					}
-					return super.getText(element);
-				}
-			});
-			
-			visualTable = CheckboxTableViewer.newCheckList(compos, SWT.BORDER);
-			visualTable.getTable().setLayoutData(data);
-			visualTable.setContentProvider(new ArrayContentProvider());
-			visualTable.setLabelProvider(new LabelProvider(){
-				public String getText(Object element) {
-					if(element instanceof VElement){
-						return ((VElement)element).getName();
-					}
-					return super.getText(element);
-				}
-			});
-			visualTable.addCheckStateListener(new ICheckStateListener() {
-				
+			modelTable.addCheckStateListener(new ICheckStateListener() {
+
 				@Override
 				public void checkStateChanged(CheckStateChangedEvent event) {
 					Object o = event.getElement();
@@ -597,7 +574,49 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 					visualTable.setChecked(o, event.getChecked());
 				}
 			});
-			
+			modelTable.getTable().setLayoutData(data);
+			modelTable.setContentProvider(new ArrayContentProvider());
+			modelTable.setLabelProvider(new LabelProvider(){
+				public String getText(Object element) {
+					if(element instanceof Node){
+						return ((Node)element).getName();
+					}else if(element instanceof Arrow){
+						return ((Arrow)element).getName();
+					}
+					return super.getText(element);
+				}
+			});
+
+			visualTable = CheckboxTableViewer.newCheckList(compos, SWT.BORDER);
+			visualTable.getTable().setLayoutData(data);
+			visualTable.setContentProvider(new ArrayContentProvider());
+			visualTable.setLabelProvider(new LabelProvider(){
+				public String getText(Object element) {
+					if(element instanceof VElement){
+						return ((VElement)element).getName();
+					}
+					return super.getText(element);
+				}
+			});
+			visualTable.addCheckStateListener(new ICheckStateListener() {
+
+				@Override
+				public void checkStateChanged(CheckStateChangedEvent event) {
+					Object o = event.getElement();
+					boolean checked = event.getChecked();
+					Object model = getSelectionObject(modelTable.getSelection());
+					if(model != null){
+						Object visual = maps.get(model);
+						if(checked && visual != null && visual != o){
+							visualTable.setChecked(visual, false);
+						}
+					}
+					modelTable.setChecked(model, checked);
+					maps.put((IDObject)model, (VElement)(checked ? o : null));
+					visualTable.setChecked(o, event.getChecked());
+				}
+			});
+
 			setPageComplete(validatePage());
 			setControl(composite);
 		}
@@ -614,18 +633,6 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 				targetField.setText(selection);
 			}
 		}
-
-		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		protected ModifyListener validator =
-				new ModifyListener() {
-			public void modifyText(ModifyEvent e) {
-				setPageComplete(validatePage());
-			}
-		};
 
 		/**
 		 * <!-- begin-user-doc -->
@@ -669,21 +676,47 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 				}
 			}
 			if(vv){
-				visualTable.setInput(visuals.getItems());
-				Object[] objects = visualTable.getCheckedElements();
-				if(objects.length != 0){
-					visualTable.setChecked(objects[0], false);
-				}
-				
 				Object key = getSelectionObject(modelTable.getSelection());
 				if(key != null){
-					VElement e = maps.get(key);
-					if(e != null)
-						visualTable.setChecked(e, true);
-				}
+					boolean node = key instanceof Node;
+					visualTable.setInput(node ? getVNodes() : getVArrows());
+					Object[] objects = visualTable.getCheckedElements();
+					if(objects.length != 0){
+						visualTable.setChecked(objects[0], false);
+						VElement e = maps.get(key);
+						if(e != null)
+							visualTable.setChecked(e, true);
+						for(VElement v : visuals.getItems()){
+							visualTable.setGrayed(v, v instanceof VNode == node );
+						}
+					}
+				}else
+					visualTable.setInput(null);
 			}
 		}
 
+		List<VNode> nodes = null;
+		List<VArrow> arrows = null;
+		private List<VNode> getVNodes(){
+			if(nodes == null && visuals != null){
+				nodes = new ArrayList<VNode>();
+				for(VElement v : visuals.getItems()){
+					if(v instanceof VNode)
+						nodes.add((VNode) v);
+				}
+			}
+			return nodes;
+		}
+		private List<VArrow> getVArrows(){
+			if(arrows == null && visuals != null){
+				arrows = new ArrayList<VArrow>();
+				for(VElement v : visuals.getItems()){
+					if(v instanceof VArrow)
+						arrows.add((VArrow) v);
+				}
+			}
+			return arrows;
+		}
 		/**
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
