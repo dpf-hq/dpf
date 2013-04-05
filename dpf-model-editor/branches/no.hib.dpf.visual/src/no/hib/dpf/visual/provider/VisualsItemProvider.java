@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.List;
 
 import no.hib.dpf.visual.VisualFactory;
+import no.hib.dpf.visual.VisualPlugin;
 import no.hib.dpf.visual.VisualPackage;
 import no.hib.dpf.visual.Visuals;
 
@@ -166,7 +167,7 @@ public class VisualsItemProvider
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return VisualGenEditPlugin.INSTANCE;
+		return VisualPlugin.INSTANCE;
 	}
 
 }

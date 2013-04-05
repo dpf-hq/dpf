@@ -72,7 +72,7 @@
             class="no.hib.dpf.visual.presentation.VisualFormEditor">
       </editor>
       <editor
-            class="no.hib.dpf.visualization.presentation.VisualizationEditor"
+            class="no.hib.dpf.visualization.presentation.SpecificationEditor"
             extensions="visualization"
             icon="icons/full/obj16/VisualizationModelFile.gif"
             id="no.hib.dpf.visual.presentation.VisualizationEditorID"

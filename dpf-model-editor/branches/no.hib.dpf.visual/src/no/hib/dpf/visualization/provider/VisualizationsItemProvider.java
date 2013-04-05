@@ -6,6 +6,7 @@ package no.hib.dpf.visualization.provider;
 import java.util.Collection;
 import java.util.List;
 
+import no.hib.dpf.visual.VisualPlugin;
 import no.hib.dpf.visualization.VisualizationPackage;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -185,7 +186,7 @@ public class VisualizationsItemProvider
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return ModelVisualizationGenEditPlugin.INSTANCE;
+		return VisualPlugin.INSTANCE;
 	}
 
 }

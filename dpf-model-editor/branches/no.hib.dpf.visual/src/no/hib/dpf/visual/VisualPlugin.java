@@ -1,31 +1,28 @@
 /**
  */
-package no.hib.dpf.visualization.provider;
-
-import no.hib.dpf.core.provider.MetamodelEditPlugin;
-
-import no.hib.dpf.visual.provider.VisualGenEditPlugin;
+package no.hib.dpf.visual;
 
 import org.eclipse.emf.common.EMFPlugin;
 
 import org.eclipse.emf.common.ui.EclipseUIPlugin;
 
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.jface.action.IStatusLineManager;
 
 /**
- * This is the central singleton for the ModelVisualizationGen editor plugin.
+ * This is the central singleton for the VisualGen editor plugin.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public final class ModelVisualizationGenEditPlugin extends EMFPlugin {
+public final class VisualPlugin extends EMFPlugin {
 	/**
 	 * Keep track of the singleton.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final ModelVisualizationGenEditPlugin INSTANCE = new ModelVisualizationGenEditPlugin();
+	public static final VisualPlugin INSTANCE = new VisualPlugin();
 	
 	/**
 	 * Keep track of the singleton.
@@ -41,11 +38,9 @@ public final class ModelVisualizationGenEditPlugin extends EMFPlugin {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelVisualizationGenEditPlugin() {
+	public VisualPlugin() {
 		super
 			(new ResourceLocator [] {
-				MetamodelEditPlugin.INSTANCE,
-				VisualGenEditPlugin.INSTANCE,
 			});
 	}
 
@@ -94,4 +89,17 @@ public final class ModelVisualizationGenEditPlugin extends EMFPlugin {
 		}
 	}
 
+	public static VisualPlugin getDefault() {
+		return INSTANCE;
+	}
+
+	private IStatusLineManager statusLineManager = null;
+
+	public void setStatusLineManager(IStatusLineManager statusLineManager) {
+		this.statusLineManager = statusLineManager;
+	}
+
+	public IStatusLineManager getStatusLineManager() {
+		return statusLineManager;
+	}
 }

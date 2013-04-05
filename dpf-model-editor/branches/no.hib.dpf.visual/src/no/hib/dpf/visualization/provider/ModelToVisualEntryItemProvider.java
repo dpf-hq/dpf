@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import no.hib.dpf.visual.VisualPlugin;
 import no.hib.dpf.visualization.VisualizationPackage;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -164,7 +165,7 @@ public class ModelToVisualEntryItemProvider
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return ModelVisualizationGenEditPlugin.INSTANCE;
+		return VisualPlugin.INSTANCE;
 	}
 
 }

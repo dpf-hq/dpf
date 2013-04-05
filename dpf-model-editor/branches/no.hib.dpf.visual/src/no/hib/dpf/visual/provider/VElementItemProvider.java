@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.List;
 
 import no.hib.dpf.visual.VElement;
+import no.hib.dpf.visual.VisualPlugin;
 import no.hib.dpf.visual.VisualPackage;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -164,7 +165,7 @@ public class VElementItemProvider
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return VisualGenEditPlugin.INSTANCE;
+		return VisualPlugin.INSTANCE;
 	}
 
 }

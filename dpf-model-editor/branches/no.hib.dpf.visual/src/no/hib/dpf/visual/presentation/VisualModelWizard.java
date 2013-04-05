@@ -70,8 +70,8 @@ import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.ISetSelectionTarget;
 
 import no.hib.dpf.visual.VisualFactory;
+import no.hib.dpf.visual.VisualPlugin;
 import no.hib.dpf.visual.VisualPackage;
-import no.hib.dpf.visual.provider.VisualGenEditPlugin;
 
 
 import org.eclipse.core.runtime.Path;
@@ -99,7 +99,7 @@ public class VisualModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	public static final List<String> FILE_EXTENSIONS =
-		Collections.unmodifiableList(Arrays.asList(VisualGenEditPlugin.INSTANCE.getString("_UI_VisualEditorFilenameExtensions").split("\\s*,\\s*")));
+		Collections.unmodifiableList(Arrays.asList(VisualPlugin.INSTANCE.getString("_UI_VisualEditorFilenameExtensions").split("\\s*,\\s*")));
 
 	/**
 	 * A formatted list of supported file extensions, suitable for display.
@@ -108,7 +108,7 @@ public class VisualModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	public static final String FORMATTED_FILE_EXTENSIONS =
-		VisualGenEditPlugin.INSTANCE.getString("_UI_VisualEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
+		VisualPlugin.INSTANCE.getString("_UI_VisualEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
 
 	/**
 	 * This caches an instance of the model package.
@@ -175,8 +175,8 @@ public class VisualModelWizard extends Wizard implements INewWizard {
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		this.workbench = workbench;
 		this.selection = selection;
-		setWindowTitle(VisualGenEditPlugin.INSTANCE.getString("_UI_Wizard_label"));
-		setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(VisualGenEditPlugin.INSTANCE.getImage("full/wizban/NewVisual")));
+		setWindowTitle(VisualPlugin.INSTANCE.getString("_UI_Wizard_label"));
+		setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(VisualPlugin.INSTANCE.getImage("full/wizban/NewVisual")));
 	}
 
 	/**
@@ -259,7 +259,7 @@ public class VisualModelWizard extends Wizard implements INewWizard {
 							resource.save(options);
 						}
 						catch (Exception exception) {
-							VisualGenEditPlugin.INSTANCE.log(exception);
+							VisualPlugin.INSTANCE.log(exception);
 						}
 						finally {
 							progressMonitor.done();
@@ -292,14 +292,14 @@ public class VisualModelWizard extends Wizard implements INewWizard {
 					 workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());					 	 
 			}
 			catch (PartInitException exception) {
-				MessageDialog.openError(workbenchWindow.getShell(), VisualGenEditPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage());
+				MessageDialog.openError(workbenchWindow.getShell(), VisualPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage());
 				return false;
 			}
 
 			return true;
 		}
 		catch (Exception exception) {
-			VisualGenEditPlugin.INSTANCE.log(exception);
+			VisualPlugin.INSTANCE.log(exception);
 			return false;
 		}
 	}
@@ -333,7 +333,7 @@ public class VisualModelWizard extends Wizard implements INewWizard {
 				String extension = new Path(getFileName()).getFileExtension();
 				if (extension == null || !FILE_EXTENSIONS.contains(extension)) {
 					String key = FILE_EXTENSIONS.size() > 1 ? "_WARN_FilenameExtensions" : "_WARN_FilenameExtension";
-					setErrorMessage(VisualGenEditPlugin.INSTANCE.getString(key, new Object [] { FORMATTED_FILE_EXTENSIONS }));
+					setErrorMessage(VisualPlugin.INSTANCE.getString(key, new Object [] { FORMATTED_FILE_EXTENSIONS }));
 					return false;
 				}
 				return true;
@@ -410,7 +410,7 @@ public class VisualModelWizard extends Wizard implements INewWizard {
 
 			Label containerLabel = new Label(composite, SWT.LEFT);
 			{
-				containerLabel.setText(VisualGenEditPlugin.INSTANCE.getString("_UI_ModelObject"));
+				containerLabel.setText(VisualPlugin.INSTANCE.getString("_UI_ModelObject"));
 
 				GridData data = new GridData();
 				data.horizontalAlignment = GridData.FILL;
@@ -436,7 +436,7 @@ public class VisualModelWizard extends Wizard implements INewWizard {
 
 			Label encodingLabel = new Label(composite, SWT.LEFT);
 			{
-				encodingLabel.setText(VisualGenEditPlugin.INSTANCE.getString("_UI_XMLEncoding"));
+				encodingLabel.setText(VisualPlugin.INSTANCE.getString("_UI_XMLEncoding"));
 
 				GridData data = new GridData();
 				data.horizontalAlignment = GridData.FILL;
@@ -535,10 +535,10 @@ public class VisualModelWizard extends Wizard implements INewWizard {
 		 */
 		protected String getLabel(String typeName) {
 			try {
-				return VisualGenEditPlugin.INSTANCE.getString("_UI_" + typeName + "_type");
+				return VisualPlugin.INSTANCE.getString("_UI_" + typeName + "_type");
 			}
 			catch(MissingResourceException mre) {
-				VisualGenEditPlugin.INSTANCE.log(mre);
+				VisualPlugin.INSTANCE.log(mre);
 			}
 			return typeName;
 		}
@@ -551,7 +551,7 @@ public class VisualModelWizard extends Wizard implements INewWizard {
 		protected Collection<String> getEncodings() {
 			if (encodings == null) {
 				encodings = new ArrayList<String>();
-				for (StringTokenizer stringTokenizer = new StringTokenizer(VisualGenEditPlugin.INSTANCE.getString("_UI_XMLEncodingChoices")); stringTokenizer.hasMoreTokens(); ) {
+				for (StringTokenizer stringTokenizer = new StringTokenizer(VisualPlugin.INSTANCE.getString("_UI_XMLEncodingChoices")); stringTokenizer.hasMoreTokens(); ) {
 					encodings.add(stringTokenizer.nextToken());
 				}
 			}
@@ -570,9 +570,9 @@ public class VisualModelWizard extends Wizard implements INewWizard {
 		// Create a page, set the title, and the initial model file name.
 		//
 		newFileCreationPage = new VisualModelWizardNewFileCreationPage("Whatever", selection);
-		newFileCreationPage.setTitle(VisualGenEditPlugin.INSTANCE.getString("_UI_VisualModelWizard_label"));
-		newFileCreationPage.setDescription(VisualGenEditPlugin.INSTANCE.getString("_UI_VisualModelWizard_description"));
-		newFileCreationPage.setFileName(VisualGenEditPlugin.INSTANCE.getString("_UI_VisualEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0));
+		newFileCreationPage.setTitle(VisualPlugin.INSTANCE.getString("_UI_VisualModelWizard_label"));
+		newFileCreationPage.setDescription(VisualPlugin.INSTANCE.getString("_UI_VisualModelWizard_description"));
+		newFileCreationPage.setFileName(VisualPlugin.INSTANCE.getString("_UI_VisualEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0));
 		addPage(newFileCreationPage);
 
 		// Try and get the resource selection to determine a current directory for the file dialog.
@@ -598,7 +598,7 @@ public class VisualModelWizard extends Wizard implements INewWizard {
 
 					// Make up a unique new name here.
 					//
-					String defaultModelBaseFilename = VisualGenEditPlugin.INSTANCE.getString("_UI_VisualEditorFilenameDefaultBase");
+					String defaultModelBaseFilename = VisualPlugin.INSTANCE.getString("_UI_VisualEditorFilenameDefaultBase");
 					String defaultModelFilenameExtension = FILE_EXTENSIONS.get(0);
 					String modelFilename = defaultModelBaseFilename + "." + defaultModelFilenameExtension;
 					for (int i = 1; ((IContainer)selectedResource).findMember(modelFilename) != null; ++i) {
@@ -609,8 +609,8 @@ public class VisualModelWizard extends Wizard implements INewWizard {
 			}
 		}
 		initialObjectCreationPage = new VisualModelWizardInitialObjectCreationPage("Whatever2");
-		initialObjectCreationPage.setTitle(VisualGenEditPlugin.INSTANCE.getString("_UI_VisualModelWizard_label"));
-		initialObjectCreationPage.setDescription(VisualGenEditPlugin.INSTANCE.getString("_UI_Wizard_initial_object_description"));
+		initialObjectCreationPage.setTitle(VisualPlugin.INSTANCE.getString("_UI_VisualModelWizard_label"));
+		initialObjectCreationPage.setDescription(VisualPlugin.INSTANCE.getString("_UI_Wizard_initial_object_description"));
 		addPage(initialObjectCreationPage);
 	}
 
