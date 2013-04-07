@@ -13,10 +13,8 @@
  * 
  * �yvind Bech and Dag Viggo Lok�en - DPF Editor
 *******************************************************************************/
-package no.hib.dpf.visual.presentation;
+package no.hib.dpf.visualization.presentation;
 
-
-import java.util.Map;
 
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Graph;
@@ -26,7 +24,10 @@ import no.hib.dpf.editor.icons.ImageSettings;
 import no.hib.dpf.visual.VArrow;
 import no.hib.dpf.visual.VElement;
 import no.hib.dpf.visual.VNode;
+import no.hib.dpf.visual.presentation.ArrowFactory;
+import no.hib.dpf.visual.presentation.NodeFactory;
 
+import org.eclipse.emf.common.util.EMap;
 import org.eclipse.gef.palette.CreationToolEntry;
 import org.eclipse.gef.palette.MarqueeToolEntry;
 import org.eclipse.gef.palette.PaletteContainer;
@@ -42,7 +43,7 @@ import org.eclipse.jface.resource.ImageDescriptor;
 /**
  * Utility class that can create a GEF Palette.
  */
-public class DPFEditorPaletteFactory {
+public class DPFPaletteFactory {
 	
 	private static final String NODES = "Nodes";
 	private static final String ARROWS = "Arrows";
@@ -72,7 +73,7 @@ public class DPFEditorPaletteFactory {
 		return palette;
 	}
 	
-	public void updatePalette(PaletteRoot root, Graph graph, Map<IDObject, VElement> maps) {
+	public void updatePalette(PaletteRoot root, Graph graph, EMap<IDObject, VElement> maps) {
 		for(Node node : graph.getNodes()){
 			VElement element = maps.get(node);
 			if(element instanceof VNode){

@@ -2,13 +2,15 @@
  */
 package no.hib.dpf.visual.util;
 
-import no.hib.dpf.visual.*;
+import no.hib.dpf.visual.VArrow;
+import no.hib.dpf.visual.VElement;
+import no.hib.dpf.visual.VNode;
+import no.hib.dpf.visual.VisualPackage;
+import no.hib.dpf.visual.Visuals;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**

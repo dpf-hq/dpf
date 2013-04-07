@@ -5,13 +5,9 @@ package no.hib.dpf.visualization.tests;
 import java.util.Map;
 
 import junit.framework.TestCase;
-
 import junit.textui.TestRunner;
-
 import no.hib.dpf.core.IDObject;
-
 import no.hib.dpf.visual.VElement;
-
 import no.hib.dpf.visualization.VisualizationFactory;
 import no.hib.dpf.visualization.VisualizationPackage;
 

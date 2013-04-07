@@ -7,6 +7,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="model" lowerBound="1" eType="ecore:EClass ../../no.hib.dpf.core/model/Metamodel.ecore#//Specification"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="visual" lowerBound="1"
         eType="ecore:EClass visual.ecore#//Visuals"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="instance" eType="ecore:EClass ../../no.hib.dpf.core/model/Metamodel.ecore#//Specification"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ModelToVisualEntry" instanceClassName="java.util.Map$Entry">
     <eStructuralFeatures xsi:type="ecore:EReference" name="key" eType="ecore:EClass ../../no.hib.dpf.core/model/Metamodel.ecore#//IDObject"/>

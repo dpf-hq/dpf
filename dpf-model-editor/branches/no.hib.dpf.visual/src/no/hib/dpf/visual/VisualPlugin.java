@@ -3,9 +3,7 @@
 package no.hib.dpf.visual;
 
 import org.eclipse.emf.common.EMFPlugin;
-
 import org.eclipse.emf.common.ui.EclipseUIPlugin;
-
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.jface.action.IStatusLineManager;
 
@@ -13,7 +11,7 @@ import org.eclipse.jface.action.IStatusLineManager;
  * This is the central singleton for the VisualGen editor plugin.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * @generated
+ * @generated NOT
  */
 public final class VisualPlugin extends EMFPlugin {
 	/**

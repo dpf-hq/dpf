@@ -5,16 +5,13 @@ package no.hib.dpf.visualization.util;
 import java.util.Map;
 
 import no.hib.dpf.core.IDObject;
-
 import no.hib.dpf.visual.VElement;
-
-import no.hib.dpf.visualization.*;
+import no.hib.dpf.visualization.VisualizationPackage;
+import no.hib.dpf.visualization.Visualizations;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**

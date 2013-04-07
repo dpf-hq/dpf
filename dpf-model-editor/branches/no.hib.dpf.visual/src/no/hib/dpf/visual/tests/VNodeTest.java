@@ -3,7 +3,6 @@
 package no.hib.dpf.visual.tests;
 
 import junit.textui.TestRunner;
-
 import no.hib.dpf.visual.VNode;
 import no.hib.dpf.visual.VisualFactory;
 

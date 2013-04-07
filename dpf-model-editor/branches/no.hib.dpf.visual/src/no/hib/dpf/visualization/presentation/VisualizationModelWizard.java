@@ -13,22 +13,21 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.MissingResourceException;
 
-import org.eclipse.emf.common.CommonPlugin;
-
-import org.eclipse.emf.common.util.URI;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
-
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-
-import org.eclipse.emf.ecore.EObject;
-
-
-import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
+import no.hib.dpf.core.Arrow;
+import no.hib.dpf.core.CoreFactory;
+import no.hib.dpf.core.IDObject;
+import no.hib.dpf.core.Node;
+import no.hib.dpf.core.Specification;
+import no.hib.dpf.utils.DPFCoreUtil;
+import no.hib.dpf.visual.VArrow;
+import no.hib.dpf.visual.VElement;
+import no.hib.dpf.visual.VNode;
+import no.hib.dpf.visual.VisualPlugin;
+import no.hib.dpf.visual.Visuals;
+import no.hib.dpf.visual.util.VisualUtil;
+import no.hib.dpf.visualization.VisualizationFactory;
+import no.hib.dpf.visualization.VisualizationPackage;
+import no.hib.dpf.visualization.Visualizations;
 
 import org.eclipse.core.filesystem.EFS;
 import org.eclipse.core.filesystem.IFileStore;
@@ -38,73 +37,51 @@ import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
-
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-
-import org.eclipse.jface.dialogs.MessageDialog;
-
-import org.eclipse.jface.viewers.IStructuredSelection;
-
-import org.eclipse.jface.wizard.Wizard;
-import org.eclipse.jface.wizard.WizardPage;
-
-import org.eclipse.swt.SWT;
-
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
-
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
-
-import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.FileDialog;
-import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Text;
-
-import org.eclipse.ui.INewWizard;
-import org.eclipse.ui.IWorkbench;
-
-import org.eclipse.ui.actions.WorkspaceModifyOperation;
-
-import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
-
-import org.eclipse.ui.part.FileEditorInput;
-import org.eclipse.ui.part.ISetSelectionTarget;
-
-import no.hib.dpf.core.Arrow;
-import no.hib.dpf.core.IDObject;
-import no.hib.dpf.core.Node;
-import no.hib.dpf.core.Specification;
-import no.hib.dpf.utils.DPFCoreUtil;
-import no.hib.dpf.visual.VArrow;
-import no.hib.dpf.visual.VElement;
-import no.hib.dpf.visual.VNode;
-import no.hib.dpf.visual.Visuals;
-import no.hib.dpf.visual.util.VisualUtil;
-import no.hib.dpf.visualization.VisualizationFactory;
-import no.hib.dpf.visualization.VisualizationPackage;
-import no.hib.dpf.visualization.Visualizations;
-import no.hib.dpf.visual.VisualPlugin;
-
-
 import org.eclipse.core.runtime.Path;
-
+import org.eclipse.emf.common.CommonPlugin;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.CheckStateChangedEvent;
 import org.eclipse.jface.viewers.CheckboxTableViewer;
 import org.eclipse.jface.viewers.ICheckStateListener;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
-
+import org.eclipse.jface.wizard.Wizard;
+import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.FileDialog;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.INewWizard;
+import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.actions.WorkspaceModifyOperation;
+import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
+import org.eclipse.ui.part.FileEditorInput;
+import org.eclipse.ui.part.ISetSelectionTarget;
 
 
 /**
@@ -240,7 +217,11 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 		Visualizations visualizations = VisualizationFactory.eINSTANCE.createVisualizations();
 		visualizations.setModel(specification);
 		visualizations.setVisual(visuals);
-		visualizations.getEntries().addAll(maps.entrySet());
+		Specification instance = CoreFactory.eINSTANCE.createDefaultSpecification();
+		System.out.println();
+		instance.setType(specification);
+		visualizations.setInstance(instance);
+		visualizations.getEntries().putAll(maps);
 		return visualizations;
 	}
 
@@ -271,8 +252,6 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 						// Get the URI of the model file.
 						//
 						URI fileURI = URI.createPlatformResourceURI(modelFile.getFullPath().toString(), true);
-						resourceSet.getResources().add(specification.eResource());
-						resourceSet.getResources().add(visuals.eResource());
 
 						// Create a resource for this file.
 						//
@@ -562,18 +541,28 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 
 				@Override
 				public void checkStateChanged(CheckStateChangedEvent event) {
-					Object o = event.getElement();
 					boolean checked = event.getChecked();
-					Object model = getSelectionObject(modelTable.getSelection());
-					if(model != null){
-						Object visual = maps.get(model);
-						if(checked && visual != null && visual != o){
-							visualTable.setChecked(visual, false);
+					Object model = event.getElement();
+					if(model instanceof IDObject){
+						if(checked){
+							Object visual = getSelectionObject(visualTable.getSelection());
+							if(visual instanceof VElement)
+							{
+								modelTable.setChecked(model, true);
+								maps.put((IDObject)model, (VElement)visual);
+								visualTable.setChecked(visual, true);
+							}
+							else
+								modelTable.setChecked(model, false);
+						}else{
+							Object visual = maps.get(model);
+							if(visual  instanceof VElement){
+								visualTable.setChecked(visual, false);
+							}
+							modelTable.setChecked(model, false);
+							maps.remove(model);
 						}
 					}
-					modelTable.setChecked(model, checked);
-					maps.put((IDObject)model, (VElement)(checked ? o : null));
-					visualTable.setChecked(o, event.getChecked());
 				}
 			});
 			modelTable.getTable().setLayoutData(data);
@@ -679,19 +668,16 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 			}
 			if(vv){
 				Object key = getSelectionObject(modelTable.getSelection());
-				if(key != null){
+				if(key instanceof IDObject){
 					boolean node = key instanceof Node;
 					visualTable.setInput(node ? getVNodes() : getVArrows());
 					Object[] objects = visualTable.getCheckedElements();
 					if(objects.length != 0){
 						visualTable.setChecked(objects[0], false);
-						VElement e = maps.get(key);
-						if(e != null)
-							visualTable.setChecked(e, true);
-						for(VElement v : visuals.getItems()){
-							visualTable.setGrayed(v, v instanceof VNode == node );
-						}
 					}
+					VElement e = maps.get(key);
+					if(e instanceof VElement)
+						visualTable.setChecked(e, true);
 				}else
 					visualTable.setInput(null);
 			}

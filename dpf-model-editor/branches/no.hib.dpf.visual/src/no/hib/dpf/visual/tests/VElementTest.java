@@ -3,7 +3,6 @@
 package no.hib.dpf.visual.tests;
 
 import junit.framework.TestCase;
-
 import no.hib.dpf.visual.VElement;
 
 /**

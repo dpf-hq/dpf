@@ -4,13 +4,11 @@ package no.hib.dpf.visualization;
 
 
 import no.hib.dpf.core.IDObject;
-
 import no.hib.dpf.core.Specification;
 import no.hib.dpf.visual.VElement;
-
 import no.hib.dpf.visual.Visuals;
-import org.eclipse.emf.common.util.EMap;
 
+import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -24,6 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link no.hib.dpf.visualization.Visualizations#getEntries <em>Entries</em>}</li>
  *   <li>{@link no.hib.dpf.visualization.Visualizations#getModel <em>Model</em>}</li>
  *   <li>{@link no.hib.dpf.visualization.Visualizations#getVisual <em>Visual</em>}</li>
+ *   <li>{@link no.hib.dpf.visualization.Visualizations#getInstance <em>Instance</em>}</li>
  * </ul>
  * </p>
  *
@@ -100,5 +99,31 @@ public interface Visualizations extends EObject {
 	 * @generated
 	 */
 	void setVisual(Visuals value);
+
+	/**
+	 * Returns the value of the '<em><b>Instance</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Instance</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Instance</em>' containment reference.
+	 * @see #setInstance(Specification)
+	 * @see no.hib.dpf.visualization.VisualizationPackage#getVisualizations_Instance()
+	 * @model containment="true"
+	 * @generated
+	 */
+	Specification getInstance();
+
+	/**
+	 * Sets the value of the '{@link no.hib.dpf.visualization.Visualizations#getInstance <em>Instance</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Instance</em>' containment reference.
+	 * @see #getInstance()
+	 * @generated
+	 */
+	void setInstance(Specification value);
 
 } // Visualizations

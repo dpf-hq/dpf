@@ -5,14 +5,12 @@ package no.hib.dpf.visualization.util;
 import java.util.Map;
 
 import no.hib.dpf.core.IDObject;
-
 import no.hib.dpf.visual.VElement;
-
-import no.hib.dpf.visualization.*;
+import no.hib.dpf.visualization.VisualizationPackage;
+import no.hib.dpf.visualization.Visualizations;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
 
 /**

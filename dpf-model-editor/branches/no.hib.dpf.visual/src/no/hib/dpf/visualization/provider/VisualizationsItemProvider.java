@@ -11,9 +11,7 @@ import no.hib.dpf.visualization.VisualizationPackage;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -61,6 +59,7 @@ public class VisualizationsItemProvider
 			addEntriesPropertyDescriptor(object);
 			addModelPropertyDescriptor(object);
 			addVisualPropertyDescriptor(object);
+			addInstancePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -123,6 +122,28 @@ public class VisualizationsItemProvider
 				 getString("_UI_Visualizations_visual_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Visualizations_visual_feature", "_UI_Visualizations_type"),
 				 VisualizationPackage.Literals.VISUALIZATIONS__VISUAL,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Instance feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addInstancePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Visualizations_instance_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Visualizations_instance_feature", "_UI_Visualizations_type"),
+				 VisualizationPackage.Literals.VISUALIZATIONS__INSTANCE,
 				 true,
 				 false,
 				 true,

@@ -2,14 +2,16 @@
  */
 package no.hib.dpf.visual.impl;
 
-import no.hib.dpf.visual.*;
+import no.hib.dpf.visual.VArrow;
+import no.hib.dpf.visual.VNode;
+import no.hib.dpf.visual.VisualFactory;
+import no.hib.dpf.visual.VisualPackage;
+import no.hib.dpf.visual.Visuals;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**

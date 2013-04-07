@@ -14,10 +14,11 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.provider.CoreItemProviderAdapterFactory;
-import no.hib.dpf.editor.DPFEditorPaletteFactory;
 import no.hib.dpf.visual.VisualPlugin;
 import no.hib.dpf.visual.provider.VisualItemProviderAdapterFactory;
+import no.hib.dpf.visualization.Visualizations;
 import no.hib.dpf.visualization.provider.VisualizationItemProviderAdapterFactory;
 
 import org.eclipse.core.resources.IFile;
@@ -41,6 +42,7 @@ import org.eclipse.emf.common.ui.editor.ProblemEditorPart;
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EValidator;
@@ -55,7 +57,6 @@ import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
-import org.eclipse.emf.edit.ui.action.EditingDomainActionBarContributor;
 import org.eclipse.emf.edit.ui.dnd.EditingDomainViewerDropAdapter;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
@@ -65,7 +66,11 @@ import org.eclipse.emf.edit.ui.provider.UnwrappingSelectionProvider;
 import org.eclipse.emf.edit.ui.util.EditUIMarkerHelper;
 import org.eclipse.emf.edit.ui.util.EditUIUtil;
 import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
+import org.eclipse.gef.DefaultEditDomain;
+import org.eclipse.gef.GraphicalViewer;
+import org.eclipse.gef.editparts.ScalableFreeformRootEditPart;
 import org.eclipse.gef.palette.PaletteRoot;
+import org.eclipse.gef.ui.actions.ActionBarContributor;
 import org.eclipse.gef.ui.parts.GraphicalEditorWithFlyoutPalette;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
@@ -94,6 +99,7 @@ import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
+import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
@@ -117,12 +123,6 @@ import org.eclipse.ui.views.properties.PropertySheetPage;
 public class SpecificationEditor
 extends GraphicalEditorWithFlyoutPalette
 	implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker {
-	/**
-	 * This keeps track of the editing domain that is used to track all changes to the model.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected AdapterFactoryEditingDomain editingDomain;
 
 	/**
@@ -277,7 +277,6 @@ extends GraphicalEditorWithFlyoutPalette
 				if (p instanceof ContentOutline) {
 					if (((ContentOutline)p).getCurrentPage() == contentOutlinePage) {
 						getActionBarContributor().setActiveEditor(SpecificationEditor.this);
-
 						setCurrentViewer(contentOutlineViewer);
 					}
 				}
@@ -609,6 +608,7 @@ extends GraphicalEditorWithFlyoutPalette
 	 */
 	public SpecificationEditor() {
 		super();
+		paletteFactory = new DPFPaletteFactory();
 		initializeEditingDomain();
 	}
 
@@ -660,6 +660,7 @@ extends GraphicalEditorWithFlyoutPalette
 		// Create the editing domain with a special command stack.
 		//
 		editingDomain = new AdapterFactoryEditingDomain(adapterFactory, commandStack, new HashMap<Resource, Boolean>());
+		setEditDomain(new DefaultEditDomain(this));
 	}
 
 	/**
@@ -879,6 +880,13 @@ extends GraphicalEditorWithFlyoutPalette
 		catch (Exception e) {
 			exception = e;
 			resource = editingDomain.getResourceSet().getResource(resourceURI, false);
+		}finally{
+			if(resource != null){
+				EList<EObject> contents = resource.getContents();
+				if(contents.size() == 1 && contents.get(0) instanceof Visualizations){
+					visualizations = (Visualizations) contents.get(0);
+				}
+			}
 		}
 
 		Diagnostic diagnostic = analyzeResourceProblems(resource, exception);
@@ -984,11 +992,11 @@ extends GraphicalEditorWithFlyoutPalette
 					contentOutlineStatusLineManager = statusLineManager;
 				}
 
-				@Override
-				public void setActionBars(IActionBars actionBars) {
-					super.setActionBars(actionBars);
-					getActionBarContributor().shareGlobalActions(this, actionBars);
-				}
+//				@Override
+//				public void setActionBars(IActionBars actionBars) {
+//					super.setActionBars(actionBars);
+//					getActionBarContributor().shareGlobalActions(this, actionBars);
+//				}
 			}
 
 			contentOutlinePage = new MyContentOutlinePage();
@@ -1024,11 +1032,11 @@ extends GraphicalEditorWithFlyoutPalette
 						SpecificationEditor.this.setFocus();
 					}
 
-					@Override
-					public void setActionBars(IActionBars actionBars) {
-						super.setActionBars(actionBars);
-						getActionBarContributor().shareGlobalActions(this, actionBars);
-					}
+//					@Override
+//					public void setActionBars(IActionBars actionBars) {
+//						super.setActionBars(actionBars);
+//						getActionBarContributor().shareGlobalActions(this, actionBars);
+//					}
 				};
 			propertySheetPage.setPropertySourceProvider(new AdapterFactoryContentProvider(adapterFactory));
 		}
@@ -1382,8 +1390,8 @@ extends GraphicalEditorWithFlyoutPalette
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EditingDomainActionBarContributor getActionBarContributor() {
-		return (EditingDomainActionBarContributor)getEditorSite().getActionBarContributor();
+	public ActionBarContributor getActionBarContributor() {
+		return (ActionBarContributor)getEditorSite().getActionBarContributor();
 	}
 
 	/**
@@ -1419,9 +1427,9 @@ extends GraphicalEditorWithFlyoutPalette
 
 		adapterFactory.dispose();
 
-		if (getActionBarContributor().getActiveEditor() == this) {
-			getActionBarContributor().setActiveEditor(null);
-		}
+//		if (getActionBarContributor().getActiveEditor() == this) {
+		getActionBarContributor().setActiveEditor(null);
+//		}
 
 		if (propertySheetPage != null) {
 			propertySheetPage.dispose();
@@ -1452,5 +1460,26 @@ extends GraphicalEditorWithFlyoutPalette
 		return paletteRoot;
 	}
 	private PaletteRoot paletteRoot;
-	private DPFEditorPaletteFactory paletteFactory;
+	private DPFPaletteFactory paletteFactory;
+	
+	protected void configureGraphicalViewer() {
+		super.configureGraphicalViewer();
+		GraphicalViewer viewer = getGraphicalViewer();
+		viewer.setEditPartFactory(new SpecificationEditPartFactory(visualizations));
+		viewer.setRootEditPart(new ScalableFreeformRootEditPart());
+	}
+	Visualizations visualizations;
+	protected void initializeGraphicalViewer() {
+		super.initializeGraphicalViewer();
+		Graph type = visualizations.getModel().getGraph();
+		Graph model = visualizations.getInstance().getGraph();
+		getGraphicalViewer().setContents(model);
+		paletteFactory.updatePalette(getPaletteRoot(), type, visualizations.getEntries());
+	}
+	protected void setInputWithNotify(IEditorInput input) {
+		super.setInputWithNotify(input);
+		IFile file = ((IFileEditorInput) input).getFile();
+		setPartName(file.getName());
+		createModel();
+	}
 }

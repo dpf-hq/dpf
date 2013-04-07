@@ -4,10 +4,8 @@ package no.hib.dpf.visualization.impl;
 
 
 import no.hib.dpf.core.IDObject;
-
 import no.hib.dpf.core.Specification;
 import no.hib.dpf.visual.VElement;
-
 import no.hib.dpf.visual.Visuals;
 import no.hib.dpf.visualization.VisualizationPackage;
 import no.hib.dpf.visualization.Visualizations;
@@ -15,14 +13,11 @@ import no.hib.dpf.visualization.Visualizations;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EMap;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -36,6 +31,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link no.hib.dpf.visualization.impl.VisualizationsImpl#getEntries <em>Entries</em>}</li>
  *   <li>{@link no.hib.dpf.visualization.impl.VisualizationsImpl#getModel <em>Model</em>}</li>
  *   <li>{@link no.hib.dpf.visualization.impl.VisualizationsImpl#getVisual <em>Visual</em>}</li>
+ *   <li>{@link no.hib.dpf.visualization.impl.VisualizationsImpl#getInstance <em>Instance</em>}</li>
  * </ul>
  * </p>
  *
@@ -70,6 +66,16 @@ public class VisualizationsImpl extends EObjectImpl implements Visualizations {
 	 * @ordered
 	 */
 	protected Visuals visual;
+
+	/**
+	 * The cached value of the '{@link #getInstance() <em>Instance</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInstance()
+	 * @generated
+	 * @ordered
+	 */
+	protected Specification instance;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -183,11 +189,56 @@ public class VisualizationsImpl extends EObjectImpl implements Visualizations {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Specification getInstance() {
+		return instance;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetInstance(Specification newInstance, NotificationChain msgs) {
+		Specification oldInstance = instance;
+		instance = newInstance;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VisualizationPackage.VISUALIZATIONS__INSTANCE, oldInstance, newInstance);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setInstance(Specification newInstance) {
+		if (newInstance != instance) {
+			NotificationChain msgs = null;
+			if (instance != null)
+				msgs = ((InternalEObject)instance).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VisualizationPackage.VISUALIZATIONS__INSTANCE, null, msgs);
+			if (newInstance != null)
+				msgs = ((InternalEObject)newInstance).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VisualizationPackage.VISUALIZATIONS__INSTANCE, null, msgs);
+			msgs = basicSetInstance(newInstance, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VisualizationPackage.VISUALIZATIONS__INSTANCE, newInstance, newInstance));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case VisualizationPackage.VISUALIZATIONS__ENTRIES:
 				return ((InternalEList<?>)getEntries()).basicRemove(otherEnd, msgs);
+			case VisualizationPackage.VISUALIZATIONS__INSTANCE:
+				return basicSetInstance(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -209,6 +260,8 @@ public class VisualizationsImpl extends EObjectImpl implements Visualizations {
 			case VisualizationPackage.VISUALIZATIONS__VISUAL:
 				if (resolve) return getVisual();
 				return basicGetVisual();
+			case VisualizationPackage.VISUALIZATIONS__INSTANCE:
+				return getInstance();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -229,6 +282,9 @@ public class VisualizationsImpl extends EObjectImpl implements Visualizations {
 				return;
 			case VisualizationPackage.VISUALIZATIONS__VISUAL:
 				setVisual((Visuals)newValue);
+				return;
+			case VisualizationPackage.VISUALIZATIONS__INSTANCE:
+				setInstance((Specification)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -251,6 +307,9 @@ public class VisualizationsImpl extends EObjectImpl implements Visualizations {
 			case VisualizationPackage.VISUALIZATIONS__VISUAL:
 				setVisual((Visuals)null);
 				return;
+			case VisualizationPackage.VISUALIZATIONS__INSTANCE:
+				setInstance((Specification)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -269,6 +328,8 @@ public class VisualizationsImpl extends EObjectImpl implements Visualizations {
 				return model != null;
 			case VisualizationPackage.VISUALIZATIONS__VISUAL:
 				return visual != null;
+			case VisualizationPackage.VISUALIZATIONS__INSTANCE:
+				return instance != null;
 		}
 		return super.eIsSet(featureID);
 	}

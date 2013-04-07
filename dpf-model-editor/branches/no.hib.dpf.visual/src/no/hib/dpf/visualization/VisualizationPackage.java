@@ -92,13 +92,22 @@ public interface VisualizationPackage extends EPackage {
 	int VISUALIZATIONS__VISUAL = 2;
 
 	/**
+	 * The feature id for the '<em><b>Instance</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VISUALIZATIONS__INSTANCE = 3;
+
+	/**
 	 * The number of structural features of the '<em>Visualizations</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VISUALIZATIONS_FEATURE_COUNT = 3;
+	int VISUALIZATIONS_FEATURE_COUNT = 4;
 
 	/**
 	 * The meta object id for the '{@link no.hib.dpf.visualization.impl.ModelToVisualEntryImpl <em>Model To Visual Entry</em>}' class.
@@ -180,6 +189,17 @@ public interface VisualizationPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getVisualizations_Visual();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link no.hib.dpf.visualization.Visualizations#getInstance <em>Instance</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Instance</em>'.
+	 * @see no.hib.dpf.visualization.Visualizations#getInstance()
+	 * @see #getVisualizations()
+	 * @generated
+	 */
+	EReference getVisualizations_Instance();
 
 	/**
 	 * Returns the meta object for class '{@link java.util.Map.Entry <em>Model To Visual Entry</em>}'.
@@ -270,6 +290,14 @@ public interface VisualizationPackage extends EPackage {
 		 * @generated
 		 */
 		EReference VISUALIZATIONS__VISUAL = eINSTANCE.getVisualizations_Visual();
+
+		/**
+		 * The meta object literal for the '<em><b>Instance</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VISUALIZATIONS__INSTANCE = eINSTANCE.getVisualizations_Instance();
 
 		/**
 		 * The meta object literal for the '{@link no.hib.dpf.visualization.impl.ModelToVisualEntryImpl <em>Model To Visual Entry</em>}' class.

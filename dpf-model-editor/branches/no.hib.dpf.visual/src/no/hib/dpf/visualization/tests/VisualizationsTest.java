@@ -3,9 +3,7 @@
 package no.hib.dpf.visualization.tests;
 
 import junit.framework.TestCase;
-
 import junit.textui.TestRunner;
-
 import no.hib.dpf.visualization.VisualizationFactory;
 import no.hib.dpf.visualization.Visualizations;
 
