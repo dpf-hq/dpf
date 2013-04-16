@@ -80,7 +80,7 @@ public interface Production extends EObject {
 	EList<DNode> getLeftNodes();
 
 	/**
-	 * Returns the value of the '<em><b>Right Nodes</b></em>' reference list.
+	 * Returns the value of the '<em><b>Right Nodes</b></em>' containment reference list.
 	 * The list contents are of type {@link no.hib.dpf.diagram.DNode}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -88,9 +88,9 @@ public interface Production extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Right Nodes</em>' reference list.
+	 * @return the value of the '<em>Right Nodes</em>' containment reference list.
 	 * @see no.hib.dpf.transform.TransformPackage#getProduction_RightNodes()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<DNode> getRightNodes();

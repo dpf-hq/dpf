@@ -3,10 +3,10 @@ package no.hib.dpf.transform.presentation;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.Request;
-import org.eclipse.gef.requests.LocationRequest;
-import org.eclipse.gef.tools.TargetingTool;
+import org.eclipse.gef.requests.SelectionRequest;
+import org.eclipse.gef.tools.SelectionTool;
 
-public class AddTool  extends TargetingTool  {
+public class AddTool  extends SelectionTool  {
 
 	public final static String REQ_MAKE_ADD = "make_add";
 	@Override
@@ -15,33 +15,32 @@ public class AddTool  extends TargetingTool  {
 	}
 	
 	protected Request createTargetRequest() {
-		LocationRequest request = new LocationRequest();
+		SelectionRequest request = new SelectionRequest();
 		request.setType(getCommandName());
 		return request;
 	}
 	protected void updateTargetRequest() {
-		LocationRequest request = (LocationRequest) getTargetRequest();
+		SelectionRequest request = (SelectionRequest) getTargetRequest();
 		request.setLocation(getLocation());
 	}
 	
 	protected boolean handleButtonDown(int button) {
-		resetHover();
-		updateTargetRequest();
-		updateTargetUnderMouse();
-		EditPart editpart = getTargetEditPart();
-		if (editpart != null) {
-			lockTargetEditPart(editpart);
-			setCurrentCommand(getCommand());
-			return true;
+		if(super.handleButtonDown(button)){
+			EditPart editpart = getTargetEditPart();
+			if (editpart != null) {
+				setCurrentCommand(getCommand());
+				return true;
+			}
 		}
 		return false;
 	}
 	
 	protected boolean handleButtonUp(int button) {
-		if (getCurrentInput().isAnyButtonDown())
-			return false;
-		unlockTargetEditPart();
-		return true;
+		if(super.handleButtonUp(button)){
+			executeCurrentCommand();
+			return true;
+		}
+		return false;
 	}
 	protected EditPartViewer.Conditional getTargetingConditional() {
 		return new EditPartViewer.Conditional() {
@@ -53,4 +52,4 @@ public class AddTool  extends TargetingTool  {
 	}
 	
 	
-}
+}	

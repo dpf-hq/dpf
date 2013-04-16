@@ -21,7 +21,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -65,7 +67,7 @@ public class ProductionImpl extends EObjectImpl implements Production {
 	protected EList<DNode> leftNodes;
 
 	/**
-	 * The cached value of the '{@link #getRightNodes() <em>Right Nodes</em>}' reference list.
+	 * The cached value of the '{@link #getRightNodes() <em>Right Nodes</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getRightNodes()
@@ -215,7 +217,7 @@ public class ProductionImpl extends EObjectImpl implements Production {
 	 */
 	public EList<DNode> getRightNodes() {
 		if (rightNodes == null) {
-			rightNodes = new EObjectResolvingEList<DNode>(DNode.class, this, TransformPackage.PRODUCTION__RIGHT_NODES);
+			rightNodes = new EObjectContainmentEList<DNode>(DNode.class, this, TransformPackage.PRODUCTION__RIGHT_NODES);
 		}
 		return rightNodes;
 	}
@@ -299,6 +301,8 @@ public class ProductionImpl extends EObjectImpl implements Production {
 		switch (featureID) {
 			case TransformPackage.PRODUCTION__SUM:
 				return basicSetSum(null, msgs);
+			case TransformPackage.PRODUCTION__RIGHT_NODES:
+				return ((InternalEList<?>)getRightNodes()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}

@@ -1,6 +1,8 @@
 package no.hib.dpf.transform.presentation;
 
 
+import java.util.jar.Attributes.Name;
+
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.transform.Production;
 
@@ -35,6 +37,7 @@ public class ProductionDetailBlock extends ProductionEditor implements IDetailsP
 	private Text name;
 	private Section infoSection;
 	private TransformMasterBlock master;
+	private static String currentProduction;
 
 	public ProductionDetailBlock(TransformMasterBlock master) {
 		super();
@@ -108,6 +111,7 @@ public class ProductionDetailBlock extends ProductionEditor implements IDetailsP
 		if(ssel.size() == 1) selected = ssel.getFirstElement();
 		if(selected instanceof Production){
 			production = (Production) selected;
+			currentProduction = production.getName();
 			dGraph = production.getSum().getDGraph();
 			Assert.isNotNull(dGraph);
 			refresh();
@@ -181,6 +185,7 @@ public class ProductionDetailBlock extends ProductionEditor implements IDetailsP
 
 	protected void changeProductName(String newText) {
 		production.setName(newText);
+		currentProduction = newText;
 		master.refresh(production);
 		master.getMultiEditor().setDirty(true);
 	}
@@ -189,5 +194,8 @@ public class ProductionDetailBlock extends ProductionEditor implements IDetailsP
 	@Override
 	public void doSave(IProgressMonitor monitor) {
 		master.getMultiEditor().doSave(monitor);
+	}
+	public static String getCurrentProduction(){
+		return currentProduction;
 	}
 }

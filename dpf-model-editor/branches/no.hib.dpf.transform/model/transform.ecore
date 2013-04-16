@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="transform"
-    nsURI="http://no.hib.dpf.transform" nsPrefix="transform">
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="transform" nsURI="http://no.hib.dpf.transform" nsPrefix="transform">
   <eClassifiers xsi:type="ecore:EClass" name="Transform">
     <eStructuralFeatures xsi:type="ecore:EReference" name="metaModel" eType="ecore:EClass ../../no.hib.dpf.diagram/model/DiagramMetamodel.ecore#//DSpecification"
         containment="true"/>
@@ -16,7 +14,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="leftNodes" upperBound="-1"
         eType="ecore:EClass ../../no.hib.dpf.diagram/model/DiagramMetamodel.ecore#//DNode"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="rightNodes" upperBound="-1"
-        eType="ecore:EClass ../../no.hib.dpf.diagram/model/DiagramMetamodel.ecore#//DNode"/>
+        eType="ecore:EClass ../../no.hib.dpf.diagram/model/DiagramMetamodel.ecore#//DNode"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="rightArrows" upperBound="-1"
         eType="ecore:EClass ../../no.hib.dpf.diagram/model/DiagramMetamodel.ecore#//DArrow"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="leftArrows" upperBound="-1"
