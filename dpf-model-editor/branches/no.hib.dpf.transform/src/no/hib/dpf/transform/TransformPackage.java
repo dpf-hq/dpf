@@ -134,7 +134,7 @@ public interface TransformPackage extends EPackage {
 	int PRODUCTION__LEFT_NODES = 1;
 
 	/**
-	 * The feature id for the '<em><b>Right Nodes</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Right Nodes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -273,10 +273,10 @@ public interface TransformPackage extends EPackage {
 	EReference getProduction_LeftNodes();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link no.hib.dpf.transform.Production#getRightNodes <em>Right Nodes</em>}'.
+	 * Returns the meta object for the reference list '{@link no.hib.dpf.transform.Production#getRightNodes <em>Right Nodes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Right Nodes</em>'.
+	 * @return the meta object for the reference list '<em>Right Nodes</em>'.
 	 * @see no.hib.dpf.transform.Production#getRightNodes()
 	 * @see #getProduction()
 	 * @generated
@@ -421,7 +421,7 @@ public interface TransformPackage extends EPackage {
 		EReference PRODUCTION__LEFT_NODES = eINSTANCE.getProduction_LeftNodes();
 
 		/**
-		 * The meta object literal for the '<em><b>Right Nodes</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Right Nodes</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

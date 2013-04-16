@@ -24,15 +24,15 @@ import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 public class AddTransformCommand extends Command {
 	
 	private final DGraph parent;
-	private DNode newObject;
+	private DNode insertObject;
 	private List<Production> rules;
 	private Production production;
 	
 	public AddTransformCommand(DNode editNode, DGraph parent){
-		this.newObject = editNode;
+		this.insertObject = (DNode) editNode;
 		this.parent = parent;
 		production = (Production) parent.eContainer().eContainer();
-		setLabel("add transform rule");
+		setLabel("insertion");
 	}
 
 	/**
@@ -40,7 +40,7 @@ public class AddTransformCommand extends Command {
 	 * @see org.eclipse.gef.commands.Command#canExecute()
 	 */
 	public boolean canExecute() {
-		return newObject instanceof DNode && parent != null;
+		return insertObject instanceof DNode && parent != null;
 	}
 
 	/* (non-Javadoc)
@@ -48,6 +48,8 @@ public class AddTransformCommand extends Command {
 	 */
 	public void execute() {
 		System.out.println("Rule: " + production.getName());
+		production.getRightNodes().add(insertObject);
+		production.getRightArrows().addAll(insertObject.getDIncomings());
 	}
 
 	/* (non-Javadoc)

@@ -14,8 +14,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="leftNodes" upperBound="-1"
         eType="ecore:EClass ../../no.hib.dpf.diagram/model/DiagramMetamodel.ecore#//DNode"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="rightNodes" upperBound="-1"
-        eType="ecore:EClass ../../no.hib.dpf.diagram/model/DiagramMetamodel.ecore#//DNode"
-        containment="true"/>
+        eType="ecore:EClass ../../no.hib.dpf.diagram/model/DiagramMetamodel.ecore#//DNode"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="rightArrows" upperBound="-1"
         eType="ecore:EClass ../../no.hib.dpf.diagram/model/DiagramMetamodel.ecore#//DArrow"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="leftArrows" upperBound="-1"
