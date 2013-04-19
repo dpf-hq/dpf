@@ -6,9 +6,9 @@ All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 
- * Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
- * Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
- * Neither the name of the QVT-Partners nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission. 
+    * Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+    * Neither the name of the QVT-Partners nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission. 
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, 
 THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS 
@@ -17,7 +17,7 @@ GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWE
 STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
 OF SUCH DAMAGE. 
  */
-package no.hib.dpf.editor.parts;
+package no.hib.dpf.editor.commands;
 /**
  * 
  * Copyright (c) 2004, QVT-Partners.
@@ -37,33 +37,46 @@ package no.hib.dpf.editor.parts;
  OF SUCH DAMAGE. 
  */
 
+import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DOffset;
-import no.hib.dpf.diagram.util.DiagramUtil;
+import no.hib.dpf.diagram.impl.DOffsetImpl;
 
-import org.eclipse.draw2d.FigureUtilities;
-import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.Locator;
-import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gef.commands.Command;
 
-class ArrowLabelLocator implements Locator {
+public class ArrowLabelMoveCommand extends Command {
 
-	private DArrowEditPart connection;
-	private DOffset offset;
-	private String text;
+	DOffset dOffset;
+	DOffset newOffset;
+	DOffset oldOffset;
 
-	public ArrowLabelLocator(String text, DOffset dOffset, DArrowEditPart parent) {
-		this.text = text == null ? "" : text;
-		this.offset = dOffset;
-		this.connection = parent;
+
+	public ArrowLabelMoveCommand(DOffset model, DOffset newOffset) {
+		dOffset = model;
+		this.newOffset = newOffset;
+		EObject container = model.eContainer();
+		if(container instanceof DArrow){
+			this.setLabel("move " + ((DArrow)container).getArrow().getName());
+		}
+		oldOffset = new DOffsetImpl(model.getOffset(), model.getLen());
+		oldOffset.setIndex(model.getIndex());
 	}
 
-	public void relocate(IFigure figure) {
-		Dimension minimum = FigureUtilities.getTextExtents(text, figure.getFont());
-		if(connection == null || connection.getSource() == null || connection.getTarget() == null) return;
-		figure.setSize(minimum);
-		figure.setLocation(DiagramUtil.getAbsolutePoint(((DNodeEditPart) connection.getSource()).getFigure(), 
-				((DNodeEditPart) connection.getTarget()).getFigure(), 
-				connection.getRealPointList(), 
-				offset));
+	public void execute() {
+		if(dOffset != null && newOffset.getOffset() != null){
+			dOffset.setOffset(newOffset.getOffset());
+			dOffset.setLen(newOffset.getLen());
+			dOffset.setIndex(newOffset.getIndex());
+		}
 	}
+
+
+	public void undo() {
+		if(dOffset != null && oldOffset.getOffset() != null){
+			dOffset.setOffset(oldOffset.getOffset());
+			dOffset.setLen(oldOffset.getLen());
+			dOffset.setIndex(oldOffset.getIndex());
+		}
+	}
+	
 }

@@ -51,12 +51,12 @@ public interface DComposedConstraint extends DConstraint {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Fake Node</em>' reference.
-	 * @see #setFakeNode(DFakeNode)
+	 * @see #setFakeNode(DConstraintNode)
 	 * @see no.hib.dpf.diagram.DiagramPackage#getDComposedConstraint_FakeNode()
 	 * @model
 	 * @generated
 	 */
-	DFakeNode getFakeNode();
+	DConstraintNode getFakeNode();
 
 	/**
 	 * Sets the value of the '{@link no.hib.dpf.diagram.DComposedConstraint#getFakeNode <em>Fake Node</em>}' reference.
@@ -66,6 +66,6 @@ public interface DComposedConstraint extends DConstraint {
 	 * @see #getFakeNode()
 	 * @generated
 	 */
-	void setFakeNode(DFakeNode value);
+	void setFakeNode(DConstraintNode value);
 
 } // DComposedConstraint

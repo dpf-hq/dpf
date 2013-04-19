@@ -17,7 +17,7 @@ package no.hib.dpf.editor.commands;
 
 import no.hib.dpf.diagram.DNode;
 
-import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.commands.Command;
 
 
@@ -26,36 +26,36 @@ import org.eclipse.gef.commands.Command;
  * The command can be undone or redone.
  * @author Elias Volanakis
  */
-public class DNodeResizeCommand extends Command {
+public class DNodeMoveCommand extends Command {
 	/** Stores the new size and location. */
-	private final Dimension newDimension;
+	private final Point newLocation;
 	/** Node to manipulate. */
 	private final DNode node;
 
 	/** Stores the old size and location. */
-	private Dimension oldDimension;
+	private Point oldLocation;
 
 	/**
 	 * Create a command that can resize and/or move a shape. 
 	 * @param node	the shape to manipulate
-	 * @param newDimension the new size
+	 * @param newLocation the new location
 	 * @throws IllegalArgumentException if any of the parameters is null
 	 */
-	public DNodeResizeCommand(DNode node, Dimension newDimension) {
-		if (node == null || newDimension == null) {
+	public DNodeMoveCommand(DNode node, Point newLocation) {
+		if (node == null || newLocation == null) {
 			throw new IllegalArgumentException();
 		}
+		setLabel("Move " + node.getNode().getName());
 		this.node = node;
-		this.newDimension = newDimension.getCopy();
-		setLabel("Resize " + node.getNode().getName());
-		oldDimension = node.getSize();
+		this.newLocation = newLocation.getCopy();
+		oldLocation = node.getLocation();
 	}
 
 	public void execute() {
-		node.setSize(newDimension);
+		node.setLocation(newLocation);
 	}
 
 	public void undo() {
-		node.setSize(oldDimension);
+		node.setLocation(oldLocation);
 	}
 }

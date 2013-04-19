@@ -7,7 +7,7 @@
 package no.hib.dpf.diagram.impl;
 
 import no.hib.dpf.diagram.DConstraint;
-import no.hib.dpf.diagram.DFakeNode;
+import no.hib.dpf.diagram.DConstraintNode;
 import no.hib.dpf.diagram.DiagramPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -22,13 +22,13 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link no.hib.dpf.diagram.impl.DFakeNodeImpl#getDConstraint <em>DConstraint</em>}</li>
+ *   <li>{@link no.hib.dpf.diagram.impl.DConstraintNodeImpl#getDConstraint <em>DConstraint</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class DFakeNodeImpl extends DNodeImpl implements DFakeNode {
+public class DConstraintNodeImpl extends DNodeImpl implements DConstraintNode {
 	/**
 	 * The cached value of the '{@link #getDConstraint() <em>DConstraint</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -44,7 +44,7 @@ public class DFakeNodeImpl extends DNodeImpl implements DFakeNode {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DFakeNodeImpl() {
+	protected DConstraintNodeImpl() {
 		super();
 	}
 
@@ -65,7 +65,7 @@ public class DFakeNodeImpl extends DNodeImpl implements DFakeNode {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case DiagramPackage.DFAKE_NODE__DCONSTRAINT:
+			case DiagramPackage.DCONSTRAINT_NODE__DCONSTRAINT:
 				if (resolve) return getDConstraint();
 				return basicGetDConstraint();
 		}
@@ -80,7 +80,7 @@ public class DFakeNodeImpl extends DNodeImpl implements DFakeNode {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case DiagramPackage.DFAKE_NODE__DCONSTRAINT:
+			case DiagramPackage.DCONSTRAINT_NODE__DCONSTRAINT:
 				return dConstraint != null;
 		}
 		return super.eIsSet(featureID);
@@ -94,7 +94,7 @@ public class DFakeNodeImpl extends DNodeImpl implements DFakeNode {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case DiagramPackage.DFAKE_NODE__DCONSTRAINT:
+			case DiagramPackage.DCONSTRAINT_NODE__DCONSTRAINT:
 				setDConstraint((DConstraint)newValue);
 				return;
 		}
@@ -108,7 +108,7 @@ public class DFakeNodeImpl extends DNodeImpl implements DFakeNode {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return DiagramPackage.Literals.DFAKE_NODE;
+		return DiagramPackage.Literals.DCONSTRAINT_NODE;
 	}
 
 	/**
@@ -119,7 +119,7 @@ public class DFakeNodeImpl extends DNodeImpl implements DFakeNode {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case DiagramPackage.DFAKE_NODE__DCONSTRAINT:
+			case DiagramPackage.DCONSTRAINT_NODE__DCONSTRAINT:
 				setDConstraint((DConstraint)null);
 				return;
 		}
@@ -138,7 +138,7 @@ public class DFakeNodeImpl extends DNodeImpl implements DFakeNode {
 			dConstraint = (DConstraint)eResolveProxy(oldDConstraint);
 			if (dConstraint != oldDConstraint) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiagramPackage.DFAKE_NODE__DCONSTRAINT, oldDConstraint, dConstraint));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiagramPackage.DCONSTRAINT_NODE__DCONSTRAINT, oldDConstraint, dConstraint));
 			}
 		}
 		return dConstraint;
@@ -154,7 +154,7 @@ public class DFakeNodeImpl extends DNodeImpl implements DFakeNode {
 		DConstraint oldDConstraint = dConstraint;
 		dConstraint = newDConstraint;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DFAKE_NODE__DCONSTRAINT, oldDConstraint, dConstraint));
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DCONSTRAINT_NODE__DCONSTRAINT, oldDConstraint, dConstraint));
 	}
 
 } //DFakeNodeImpl

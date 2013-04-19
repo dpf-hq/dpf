@@ -10,8 +10,8 @@ import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DArrowLabelConstraint;
 import no.hib.dpf.diagram.DComposedConstraint;
 import no.hib.dpf.diagram.DConstraint;
+import no.hib.dpf.diagram.DConstraintNode;
 import no.hib.dpf.diagram.DElement;
-import no.hib.dpf.diagram.DFakeNode;
 import no.hib.dpf.diagram.DGenericArrowConstraint;
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
@@ -137,21 +137,6 @@ public class DiagramSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>DFake Node</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>DFake Node</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseDFakeNode(DFakeNode object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>DGeneric Arrow Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -193,6 +178,21 @@ public class DiagramSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseDNode(DNode object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>DConstraint Node</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>DConstraint Node</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDConstraintNode(DConstraintNode object) {
 		return null;
 	}
 
@@ -316,11 +316,11 @@ public class DiagramSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case DiagramPackage.DFAKE_NODE: {
-				DFakeNode dFakeNode = (DFakeNode)theEObject;
-				T result = caseDFakeNode(dFakeNode);
-				if (result == null) result = caseDNode(dFakeNode);
-				if (result == null) result = caseDElement(dFakeNode);
+			case DiagramPackage.DCONSTRAINT_NODE: {
+				DConstraintNode dConstraintNode = (DConstraintNode)theEObject;
+				T result = caseDConstraintNode(dConstraintNode);
+				if (result == null) result = caseDNode(dConstraintNode);
+				if (result == null) result = caseDElement(dConstraintNode);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

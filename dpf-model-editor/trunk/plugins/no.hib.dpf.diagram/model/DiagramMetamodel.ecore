@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="diagram"
-    nsURI="http://no.hib.dpf.diagram" nsPrefix="diagram">
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="diagram" nsURI="http://no.hib.dpf.diagram" nsPrefix="diagram">
   <eClassifiers xsi:type="ecore:EClass" name="DSpecification">
     <eOperations name="createDGraph" eType="#//DGraph">
       <eParameters name="graph" eType="ecore:EClass ../../no.hib.dpf.core/model/Metamodel.ecore#//Graph"/>
@@ -69,7 +67,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" eType="#//ELocation"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" eType="#//EDimension"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DFakeNode" eSuperTypes="#//DNode">
+  <eClassifiers xsi:type="ecore:EClass" name="DConstraintNode" eSuperTypes="#//DNode">
     <eStructuralFeatures xsi:type="ecore:EReference" name="dConstraint" eType="#//DConstraint"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DArrow" eSuperTypes="#//DElement">
@@ -128,7 +126,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="DComposedConstraint" eSuperTypes="#//DConstraint">
     <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
         eType="#//DConstraint" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="fakeNode" eType="#//DFakeNode"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fakeNode" eType="#//DConstraintNode"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DPredicate">
     <eStructuralFeatures xsi:type="ecore:EReference" name="predicate" eType="ecore:EClass ../../no.hib.dpf.core/model/Metamodel.ecore#//Predicate"/>
@@ -169,6 +167,7 @@
     <eLiterals name="ArrowToNode" value="3"/>
     <eLiterals name="ArrowToArrow" value="4"/>
     <eLiterals name="Composed" value="5"/>
+    <eLiterals name="OnNode" value="6" literal="OnNode"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="constraintsFrom" upperBound="-1"

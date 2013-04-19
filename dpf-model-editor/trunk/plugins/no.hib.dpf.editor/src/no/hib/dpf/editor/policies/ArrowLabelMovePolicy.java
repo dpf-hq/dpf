@@ -17,7 +17,7 @@ GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWE
 STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
 OF SUCH DAMAGE. 
  */
-package no.hib.dpf.editor.parts;
+package no.hib.dpf.editor.policies;
 /**
  * 
  * Copyright (c) 2004, QVT-Partners.
@@ -39,31 +39,43 @@ package no.hib.dpf.editor.parts;
 
 import no.hib.dpf.diagram.DOffset;
 import no.hib.dpf.diagram.util.DiagramUtil;
+import no.hib.dpf.editor.commands.ArrowLabelMoveCommand;
+import no.hib.dpf.editor.parts.ArrowLabelEditPart;
+import no.hib.dpf.editor.parts.DNodeEditPart;
+import no.hib.dpf.editor.preferences.DPFEditorPreferences;
 
-import org.eclipse.draw2d.FigureUtilities;
+import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.Locator;
-import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.gef.ConnectionEditPart;
+import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
+import org.eclipse.gef.requests.ChangeBoundsRequest;
 
-class ArrowLabelLocator implements Locator {
+public class ArrowLabelMovePolicy extends NonResizableEditPolicy {
 
-	private DArrowEditPart connection;
-	private DOffset offset;
-	private String text;
-
-	public ArrowLabelLocator(String text, DOffset dOffset, DArrowEditPart parent) {
-		this.text = text == null ? "" : text;
-		this.offset = dOffset;
-		this.connection = parent;
+	public Command getMoveCommand(ChangeBoundsRequest request) {
+		ArrowLabelMoveCommand command = null;
+		ArrowLabelEditPart editpart = (ArrowLabelEditPart)getHost();
+		DOffset model = editpart.getDOffset();
+		IFigure label = editpart.getFigure();
+		ConnectionEditPart connection = (ConnectionEditPart) editpart.getParent();
+		IFigure source = ((DNodeEditPart) connection.getSource()).getFigure();
+		IFigure target = ((DNodeEditPart) connection.getTarget()).getFigure();
+		Point p = label.getBounds().getTopLeft().getTranslated(request.getMoveDelta());
+		command = new ArrowLabelMoveCommand(model, DiagramUtil.getDOffset(source, target, ((Connection)connection.getFigure()).getPoints(), p));
+		return command;
 	}
-
-	public void relocate(IFigure figure) {
-		Dimension minimum = FigureUtilities.getTextExtents(text, figure.getFont());
-		if(connection == null || connection.getSource() == null || connection.getTarget() == null) return;
-		figure.setSize(minimum);
-		figure.setLocation(DiagramUtil.getAbsolutePoint(((DNodeEditPart) connection.getSource()).getFigure(), 
-				((DNodeEditPart) connection.getTarget()).getFigure(), 
-				connection.getRealPointList(), 
-				offset));
+	protected void removeSelectionHandles() {
+		ArrowLabelEditPart editpart = (ArrowLabelEditPart)getHost();
+		ConnectionEditPart connection = (ConnectionEditPart) editpart.getParent();
+		connection.getFigure().setForegroundColor(DPFEditorPreferences.getDefault().getArrowForegroundColor());	
+		super.removeSelectionHandles();
+	}
+	protected void showSelection() {
+		super.showSelection();
+		ArrowLabelEditPart editpart = (ArrowLabelEditPart)getHost();
+		ConnectionEditPart connection = (ConnectionEditPart) editpart.getParent();
+		connection.getFigure().setForegroundColor(DPFEditorPreferences.getDefault().getArrowLabelSelectedArrowColor());		
 	}
 }

@@ -47,13 +47,21 @@ import org.eclipse.jface.util.IPropertyChangeListener;
  */
 class DiagramTreeEditPart extends AbstractTreeEditPart{
 
-/** 
- * Create a new instance of this edit part using the given model element.
- * @param model a non-null DPFDiagram instance
+/**
+ * Listener for the node notifications
  */
-DiagramTreeEditPart(DGraph model) {
-	super(model);
-}
+protected UIAdapter diagrammodelListener = new UIAdapter()
+{
+    /**
+     * @see org.topcased.modeler.listeners.UIAdapterImpl#safeNotifyChanged(org.eclipse.emf.common.notify.Notification)
+     */
+    @Override
+    protected void safeNotifyChanged(Notification msg)
+    {
+        handleDiagramModelChanged(msg);
+    }
+
+};
 
 
 
@@ -73,22 +81,6 @@ protected UIAdapter modelListener = new UIAdapter()
 
 };
 
-/**
- * Listener for the node notifications
- */
-protected UIAdapter diagrammodelListener = new UIAdapter()
-{
-    /**
-     * @see org.topcased.modeler.listeners.UIAdapterImpl#safeNotifyChanged(org.eclipse.emf.common.notify.Notification)
-     */
-    @Override
-    protected void safeNotifyChanged(Notification msg)
-    {
-        handleDiagramModelChanged(msg);
-    }
-
-};
-
 protected IPropertyChangeListener propertyListener = new IPropertyChangeListener() {
 	@Override
 	public void propertyChange(org.eclipse.jface.util.PropertyChangeEvent event) {
@@ -96,15 +88,69 @@ protected IPropertyChangeListener propertyListener = new IPropertyChangeListener
 	}
 };
 
-protected void handleModelChanged(Notification msg){}
-protected void propertyChange(org.eclipse.jface.util.PropertyChangeEvent event) {
-	// TODO Auto-generated method stub
-	if ((event.getProperty().equals(PreferenceConstants.P_DISPLAY_ARROWS)) ||
-			(event.getProperty().equals(PreferenceConstants.P_DISPLAY_TYPES))) {
-		refreshVisuals();
-	}
-	
+/** 
+ * Create a new instance of this edit part using the given model element.
+ * @param model a non-null DPFDiagram instance
+ */
+DiagramTreeEditPart(DGraph model) {
+	super(model);
 }
+
+/**
+ * Upon activation, attach to the model element as a property change
+ * listener.
+ */
+public void activate() {
+	if (!isActive()) {
+		super.activate();
+		listen();
+	}
+}
+/* (non-Javadoc)
+ * @see org.eclipse.gef.examples.shapes.parts.ShapeTreeEditPart#createEditPolicies()
+ */
+protected void createEditPolicies() {
+	// If this editpart is the root content of the viewer, then disallow removal
+	if (getParent() instanceof RootEditPart) {
+		installEditPolicy(EditPolicy.COMPONENT_ROLE, new RootComponentEditPolicy());
+	}
+}
+/**
+ * Upon deactivation, detach from the model element as a property change
+ * listener.
+ */
+public void deactivate() {
+	if (isActive()) {
+		unlisten();
+		super.deactivate();
+	}
+}
+private DSpecification getCastedModel() {
+	return (DSpecification) getModel();
+}
+
+protected DGraph getDiagramModel(){
+	return (DGraph) getModel();
+}
+
+/**
+ * Convenience method that returns the EditPart corresponding to a given child.
+ * @param child a model element instance
+ * @return the corresponding EditPart or null
+ */
+private EditPart getEditPartForChild(Object child) {
+	return (EditPart) getViewer().getEditPartRegistry().get(child);
+}
+
+
+/* (non-Javadoc)
+ * @see org.eclipse.gef.editparts.AbstractEditPart#getModelChildren()
+ */
+@Override
+protected List<DNode> getModelChildren() {
+	return getCastedModel().getDGraph().getDNodes(); // a list of shapes
+}
+
 protected void handleDiagramModelChanged(Notification msg){
 	if(msg.getNotifier() != null && msg.getNotifier() == getDiagramModel()){ 
 		switch(msg.getFeatureID(DGraph.class)){
@@ -119,9 +165,9 @@ protected void handleDiagramModelChanged(Notification msg){
 		}
 	}
 }
-protected DGraph getDiagramModel(){
-	return (DGraph) getModel();
-}
+
+
+protected void handleModelChanged(Notification msg){}
 
 /*
  * listen to diagram model, DNode, DArrow
@@ -133,6 +179,15 @@ protected void listen(){
 	DPFEditorPreferences.getDefault().getPreferenceStore().addPropertyChangeListener(propertyListener);
 }
 
+protected void propertyChange(org.eclipse.jface.util.PropertyChangeEvent event) {
+	// TODO Auto-generated method stub
+	if ((event.getProperty().equals(PreferenceConstants.P_DISPLAY_ARROWS)) ||
+			(event.getProperty().equals(PreferenceConstants.P_DISPLAY_TYPES))) {
+		refreshVisuals();
+	}
+	
+}
+
 /*
  * Unlisten to diagram model
  */
@@ -141,60 +196,5 @@ protected void unlisten(){
 	EObject diagramModel = getDiagramModel();
 	if(diagramModel != null && diagramModel.eAdapters().contains(diagrammodelListener))
 		diagramModel.eAdapters().remove(diagrammodelListener);
-}
-
-
-/**
- * Upon activation, attach to the model element as a property change
- * listener.
- */
-public void activate() {
-	if (!isActive()) {
-		super.activate();
-		listen();
-	}
-}
-
-/**
- * Upon deactivation, detach from the model element as a property change
- * listener.
- */
-public void deactivate() {
-	if (isActive()) {
-		unlisten();
-		super.deactivate();
-	}
-}
-
-
-/* (non-Javadoc)
- * @see org.eclipse.gef.examples.shapes.parts.ShapeTreeEditPart#createEditPolicies()
- */
-protected void createEditPolicies() {
-	// If this editpart is the root content of the viewer, then disallow removal
-	if (getParent() instanceof RootEditPart) {
-		installEditPolicy(EditPolicy.COMPONENT_ROLE, new RootComponentEditPolicy());
-	}
-}
-
-private DSpecification getCastedModel() {
-	return (DSpecification) getModel();
-}
-
-/**
- * Convenience method that returns the EditPart corresponding to a given child.
- * @param child a model element instance
- * @return the corresponding EditPart or null
- */
-private EditPart getEditPartForChild(Object child) {
-	return (EditPart) getViewer().getEditPartRegistry().get(child);
-}
-
-/* (non-Javadoc)
- * @see org.eclipse.gef.editparts.AbstractEditPart#getModelChildren()
- */
-@Override
-protected List<DNode> getModelChildren() {
-	return getCastedModel().getDGraph().getDNodes(); // a list of shapes
 }
 }

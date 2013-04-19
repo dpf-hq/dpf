@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package no.hib.dpf.diagram.provider;
 
@@ -10,11 +6,12 @@ package no.hib.dpf.diagram.provider;
 import java.util.Collection;
 import java.util.List;
 
-import no.hib.dpf.diagram.DFakeNode;
+import no.hib.dpf.diagram.DConstraintNode;
 import no.hib.dpf.diagram.DiagramPackage;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -24,12 +21,12 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 /**
- * This is the item provider adapter for a {@link no.hib.dpf.diagram.DFakeNode} object.
+ * This is the item provider adapter for a {@link no.hib.dpf.diagram.DConstraintNode} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class DFakeNodeItemProvider
+public class DConstraintNodeItemProvider
 	extends DNodeItemProvider
 	implements
 		IEditingDomainItemProvider,
@@ -43,7 +40,7 @@ public class DFakeNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DFakeNodeItemProvider(AdapterFactory adapterFactory) {
+	public DConstraintNodeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -74,9 +71,9 @@ public class DFakeNodeItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_DFakeNode_dConstraint_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DFakeNode_dConstraint_feature", "_UI_DFakeNode_type"),
-				 DiagramPackage.Literals.DFAKE_NODE__DCONSTRAINT,
+				 getString("_UI_DConstraintNode_dConstraint_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DConstraintNode_dConstraint_feature", "_UI_DConstraintNode_type"),
+				 DiagramPackage.Literals.DCONSTRAINT_NODE__DCONSTRAINT,
 				 true,
 				 false,
 				 true,
@@ -86,14 +83,14 @@ public class DFakeNodeItemProvider
 	}
 
 	/**
-	 * This returns DFakeNode.gif.
+	 * This returns DConstraintNode.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/DFakeNode"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/DConstraintNode"));
 	}
 
 	/**
@@ -104,10 +101,10 @@ public class DFakeNodeItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((DFakeNode)object).getConfigureString();
+		String label = ((DConstraintNode)object).getConfigureString();
 		return label == null || label.length() == 0 ?
-			getString("_UI_DFakeNode_type") :
-			getString("_UI_DFakeNode_type") + " " + label;
+			getString("_UI_DConstraintNode_type") :
+			getString("_UI_DConstraintNode_type") + " " + label;
 	}
 
 	/**

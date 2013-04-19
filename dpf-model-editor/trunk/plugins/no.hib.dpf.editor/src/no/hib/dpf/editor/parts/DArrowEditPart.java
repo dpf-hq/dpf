@@ -78,38 +78,6 @@ public class DArrowEditPart extends GraphicalConnectionEditPart implements NodeE
 	protected PolylineConnection connectionFigure; 
 	Label connectionLabel;	
 
-	/**
-	 * Sets the source EditPart of this connection.
-	 * 
-	 * @param editPart
-	 *            EditPart which is the source.
-	 */
-	public void setSource(EditPart editPart) {
-		super.setSource(editPart);
-		if (editPart != null) {
-			setParent(editPart.getParent());
-		}
-	}
-
-
-	/**
-	 * Sets the target EditPart of this connection.
-	 * 
-	 * @param editPart
-	 *            EditPart which is the target.
-	 */
-	public void setTarget(EditPart editPart) {
-		super.setTarget(editPart);
-		if (editPart != null) {
-			setParent(editPart.getParent());
-		}
-	}
-
-	/*
-	 * (non-Javadoc)
-	(ArrowBendpoint) * 
-	 * @see org.eclipse.gef.editparts.AbstractEditPart#createEditPolicies()
-	 */
 	@Override
 	protected void createEditPolicies() {
 		refreshBendpointEditPolicy();
@@ -178,7 +146,6 @@ public class DArrowEditPart extends GraphicalConnectionEditPart implements NodeE
 
 	protected void createConnectionFigure() {
 		connectionFigure = new ArrowConnection();
-		//		connectionFigure.setLineStyle(getDArrow().parentLineSytle == 0 ? SWT.LINE_SOLID : getCastedModel().parentLineSytle);
 	}
 
 	protected void setArrowHead(PolylineConnection connectionFigure) {
@@ -345,8 +312,6 @@ public class DArrowEditPart extends GraphicalConnectionEditPart implements NodeE
 		DArrow darrow = getDArrow();
 		if(getEditor() != null)
 			((ArrowConnection)connectionFigure).setErrorImageFlag(getEditor().isMakerExisting(darrow.getArrow()));
-		if(connectionFigure instanceof ArrowConnection)
-			((ArrowConnection)connectionFigure).setEpi(darrow.getDSource() == darrow.getDTarget());
 		refreshBendpoints();
 	}
 

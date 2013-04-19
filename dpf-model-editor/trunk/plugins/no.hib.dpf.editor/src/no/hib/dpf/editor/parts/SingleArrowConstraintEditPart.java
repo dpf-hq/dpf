@@ -16,7 +16,7 @@ import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.diagram.DArrowLabelConstraint;
 import no.hib.dpf.diagram.DConstraint;
 import no.hib.dpf.diagram.DOffset;
-import no.hib.dpf.editor.policies.ArrowTextMovePolicy;
+import no.hib.dpf.editor.policies.ArrowLabelMovePolicy;
 import no.hib.dpf.editor.policies.DConstraintDeletePolicy;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;
 
@@ -29,10 +29,18 @@ import org.eclipse.gef.Request;
 public class SingleArrowConstraintEditPart extends ArrowLabelEditPart {
 
 	public void createEditPolicies() {
-		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new ArrowTextMovePolicy());
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new ArrowLabelMovePolicy());
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new DConstraintDeletePolicy());
 	}
 
+	protected DConstraint getDConstraint(){
+		return (DConstraint) getModel();
+	}
+	
+	public DOffset getDOffset(){
+		return ((DArrowLabelConstraint)getModel()).getOffset();
+	}
+	
 	protected String getFullName() {
 		DConstraint dConstraint = getDConstraint();
 		String result = dConstraint.getDPredicate().getSimpleName();
@@ -52,6 +60,23 @@ public class SingleArrowConstraintEditPart extends ArrowLabelEditPart {
 		return result;
 	}
 	
+	protected void handleModelChanged(Notification msg){
+		super.handleModelChanged(msg);
+		if(msg.getNotifier() != null && msg.getNotifier() == getDConstraint().getConstraint()){ 
+			switch(msg.getFeatureID(Constraint.class)){
+			case CorePackage.CONSTRAINT__PARAMETERS:
+				refreshVisuals();
+				break;
+			}
+		}
+	}
+	
+	protected void listen(){
+		super.listen();
+		addUIAdapter(getDConstraint().getConstraint(), modelListener);
+		DPFEditorPreferences.getDefault().getPreferenceStore().addPropertyChangeListener(propertyListener);
+	}
+	public void performRequest(Request request) { }
 	@Override
 	protected void refreshVisuals() {
 		String arrowName = getFullName();
@@ -63,34 +88,9 @@ public class SingleArrowConstraintEditPart extends ArrowLabelEditPart {
 		parent.setLayoutConstraint(this, getFigure(), constraint);
 	}
 	
-	public void performRequest(Request request) { }
-	
-	protected DConstraint getDConstraint(){
-		return (DConstraint) getModel();
-	}
-	
-	public DOffset getDOffset(){
-		return ((DArrowLabelConstraint)getModel()).getOffset();
-	}
-	protected void listen(){
-		super.listen();
-		addUIAdapter(getDConstraint().getConstraint(), modelListener);
-		DPFEditorPreferences.getDefault().getPreferenceStore().addPropertyChangeListener(propertyListener);
-	}
 	protected void unlisten(){
 		DPFEditorPreferences.getDefault().getPreferenceStore().removePropertyChangeListener(propertyListener);
 		removeUIAdapter(getDConstraint().getConstraint(), modelListener);
 		super.unlisten();
-	}
-	
-	protected void handleModelChanged(Notification msg){
-		super.handleModelChanged(msg);
-		if(msg.getNotifier() != null && msg.getNotifier() == getDConstraint().getConstraint()){ 
-			switch(msg.getFeatureID(Constraint.class)){
-			case CorePackage.CONSTRAINT__PARAMETERS:
-				refreshVisuals();
-				break;
-			}
-		}
 	}
 }

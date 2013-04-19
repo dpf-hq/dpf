@@ -381,14 +381,14 @@ public interface DiagramPackage extends EPackage {
 	int DNODE_FEATURE_COUNT = DELEMENT_FEATURE_COUNT + 8;
 
 	/**
-	 * The meta object id for the '{@link no.hib.dpf.diagram.impl.DFakeNodeImpl <em>DFake Node</em>}' class.
+	 * The meta object id for the '{@link no.hib.dpf.diagram.impl.DConstraintNodeImpl <em>DConstraint Node</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see no.hib.dpf.diagram.impl.DFakeNodeImpl
-	 * @see no.hib.dpf.diagram.impl.DiagramPackageImpl#getDFakeNode()
+	 * @see no.hib.dpf.diagram.impl.DConstraintNodeImpl
+	 * @see no.hib.dpf.diagram.impl.DiagramPackageImpl#getDConstraintNode()
 	 * @generated
 	 */
-	int DFAKE_NODE = 3;
+	int DCONSTRAINT_NODE = 3;
 
 	/**
 	 * The feature id for the '<em><b>Constraints From</b></em>' reference list.
@@ -397,7 +397,7 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DFAKE_NODE__CONSTRAINTS_FROM = DNODE__CONSTRAINTS_FROM;
+	int DCONSTRAINT_NODE__CONSTRAINTS_FROM = DNODE__CONSTRAINTS_FROM;
 
 	/**
 	 * The feature id for the '<em><b>Constraints To</b></em>' reference list.
@@ -406,7 +406,7 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DFAKE_NODE__CONSTRAINTS_TO = DNODE__CONSTRAINTS_TO;
+	int DCONSTRAINT_NODE__CONSTRAINTS_TO = DNODE__CONSTRAINTS_TO;
 
 	/**
 	 * The feature id for the '<em><b>DType</b></em>' reference.
@@ -415,7 +415,7 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DFAKE_NODE__DTYPE = DNODE__DTYPE;
+	int DCONSTRAINT_NODE__DTYPE = DNODE__DTYPE;
 
 	/**
 	 * The feature id for the '<em><b>Node</b></em>' reference.
@@ -424,7 +424,7 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DFAKE_NODE__NODE = DNODE__NODE;
+	int DCONSTRAINT_NODE__NODE = DNODE__NODE;
 
 	/**
 	 * The feature id for the '<em><b>Configure String</b></em>' attribute.
@@ -433,7 +433,7 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DFAKE_NODE__CONFIGURE_STRING = DNODE__CONFIGURE_STRING;
+	int DCONSTRAINT_NODE__CONFIGURE_STRING = DNODE__CONFIGURE_STRING;
 
 	/**
 	 * The feature id for the '<em><b>DOutgoings</b></em>' reference list.
@@ -442,7 +442,7 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DFAKE_NODE__DOUTGOINGS = DNODE__DOUTGOINGS;
+	int DCONSTRAINT_NODE__DOUTGOINGS = DNODE__DOUTGOINGS;
 
 	/**
 	 * The feature id for the '<em><b>DIncomings</b></em>' reference list.
@@ -451,7 +451,7 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DFAKE_NODE__DINCOMINGS = DNODE__DINCOMINGS;
+	int DCONSTRAINT_NODE__DINCOMINGS = DNODE__DINCOMINGS;
 
 	/**
 	 * The feature id for the '<em><b>DConstraints</b></em>' reference list.
@@ -460,7 +460,7 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DFAKE_NODE__DCONSTRAINTS = DNODE__DCONSTRAINTS;
+	int DCONSTRAINT_NODE__DCONSTRAINTS = DNODE__DCONSTRAINTS;
 
 	/**
 	 * The feature id for the '<em><b>Location</b></em>' attribute.
@@ -469,7 +469,7 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DFAKE_NODE__LOCATION = DNODE__LOCATION;
+	int DCONSTRAINT_NODE__LOCATION = DNODE__LOCATION;
 
 	/**
 	 * The feature id for the '<em><b>Size</b></em>' attribute.
@@ -478,7 +478,7 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DFAKE_NODE__SIZE = DNODE__SIZE;
+	int DCONSTRAINT_NODE__SIZE = DNODE__SIZE;
 
 	/**
 	 * The feature id for the '<em><b>DConstraint</b></em>' reference.
@@ -487,16 +487,16 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DFAKE_NODE__DCONSTRAINT = DNODE_FEATURE_COUNT + 0;
+	int DCONSTRAINT_NODE__DCONSTRAINT = DNODE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>DFake Node</em>' class.
+	 * The number of structural features of the '<em>DConstraint Node</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DFAKE_NODE_FEATURE_COUNT = DNODE_FEATURE_COUNT + 1;
+	int DCONSTRAINT_NODE_FEATURE_COUNT = DNODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link no.hib.dpf.diagram.impl.DArrowImpl <em>DArrow</em>}' class.
@@ -1398,25 +1398,25 @@ public interface DiagramPackage extends EPackage {
 	EAttribute getDNode_Size();
 
 	/**
-	 * Returns the meta object for class '{@link no.hib.dpf.diagram.DFakeNode <em>DFake Node</em>}'.
+	 * Returns the meta object for class '{@link no.hib.dpf.diagram.DConstraintNode <em>DConstraint Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>DFake Node</em>'.
-	 * @see no.hib.dpf.diagram.DFakeNode
+	 * @return the meta object for class '<em>DConstraint Node</em>'.
+	 * @see no.hib.dpf.diagram.DConstraintNode
 	 * @generated
 	 */
-	EClass getDFakeNode();
+	EClass getDConstraintNode();
 
 	/**
-	 * Returns the meta object for the reference '{@link no.hib.dpf.diagram.DFakeNode#getDConstraint <em>DConstraint</em>}'.
+	 * Returns the meta object for the reference '{@link no.hib.dpf.diagram.DConstraintNode#getDConstraint <em>DConstraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>DConstraint</em>'.
-	 * @see no.hib.dpf.diagram.DFakeNode#getDConstraint()
-	 * @see #getDFakeNode()
+	 * @see no.hib.dpf.diagram.DConstraintNode#getDConstraint()
+	 * @see #getDConstraintNode()
 	 * @generated
 	 */
-	EReference getDFakeNode_DConstraint();
+	EReference getDConstraintNode_DConstraint();
 
 	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.diagram.DArrow <em>DArrow</em>}'.
@@ -2161,14 +2161,14 @@ public interface DiagramPackage extends EPackage {
 		EAttribute DNODE__SIZE = eINSTANCE.getDNode_Size();
 
 		/**
-		 * The meta object literal for the '{@link no.hib.dpf.diagram.impl.DFakeNodeImpl <em>DFake Node</em>}' class.
+		 * The meta object literal for the '{@link no.hib.dpf.diagram.impl.DConstraintNodeImpl <em>DConstraint Node</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see no.hib.dpf.diagram.impl.DFakeNodeImpl
-		 * @see no.hib.dpf.diagram.impl.DiagramPackageImpl#getDFakeNode()
+		 * @see no.hib.dpf.diagram.impl.DConstraintNodeImpl
+		 * @see no.hib.dpf.diagram.impl.DiagramPackageImpl#getDConstraintNode()
 		 * @generated
 		 */
-		EClass DFAKE_NODE = eINSTANCE.getDFakeNode();
+		EClass DCONSTRAINT_NODE = eINSTANCE.getDConstraintNode();
 
 		/**
 		 * The meta object literal for the '<em><b>DConstraint</b></em>' reference feature.
@@ -2176,7 +2176,7 @@ public interface DiagramPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference DFAKE_NODE__DCONSTRAINT = eINSTANCE.getDFakeNode_DConstraint();
+		EReference DCONSTRAINT_NODE__DCONSTRAINT = eINSTANCE.getDConstraintNode_DConstraint();
 
 		/**
 		 * The meta object literal for the '{@link no.hib.dpf.diagram.impl.DArrowImpl <em>DArrow</em>}' class.

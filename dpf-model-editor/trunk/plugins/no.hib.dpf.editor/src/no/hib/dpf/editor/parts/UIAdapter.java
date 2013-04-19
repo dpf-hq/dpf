@@ -42,6 +42,14 @@ public abstract class UIAdapter extends AdapterImpl
     }
 
     /**
+     * This method is called when an event occured on the model objects.<br>
+     * This method is always called in the Ui thread
+     * 
+     * @param msg the event notification
+     */
+    protected abstract void safeNotifyChanged(Notification msg);
+
+    /**
      * Handles the event notification in the UI thread
      * @param msg the event notification
      */
@@ -55,13 +63,5 @@ public abstract class UIAdapter extends AdapterImpl
             }
         });
     }
-
-    /**
-     * This method is called when an event occured on the model objects.<br>
-     * This method is always called in the Ui thread
-     * 
-     * @param msg the event notification
-     */
-    protected abstract void safeNotifyChanged(Notification msg);
 }
 

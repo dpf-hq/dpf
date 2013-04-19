@@ -8,7 +8,7 @@
  *
  * Contributors:
  * �yvind Bech and Dag Viggo Lok�en - DPF Editor
-*******************************************************************************/
+ *******************************************************************************/
 package no.hib.dpf.editor.figures;
 
 
@@ -25,7 +25,6 @@ import org.eclipse.swt.SWT;
  * Experimental class. Should draw a point or similar halfway out on the first line.
  */
 public class ArrowConnection extends PolylineConnection implements RoutableFigure {
-	private boolean isEpi = false;
 
 	public ArrowConnection(){
 		super();
@@ -44,10 +43,7 @@ public class ArrowConnection extends PolylineConnection implements RoutableFigur
 					setForegroundColor(DPFEditorPreferences.getDefault().getArrowForegroundColor());
 			}
 		});
-		
-	}
-	boolean isEpi(){
-		return isEpi;
+
 	}
 	@Override
 	protected void outlineShape(Graphics g) {
@@ -64,28 +60,25 @@ public class ArrowConnection extends PolylineConnection implements RoutableFigur
 		g.popState();
 	}
 
-	@Override
-	public int getRoutingPriority() {
-		return isEpi ? 6 : 5;
-	}
-	
+
 	public Rectangle getOwnerBounds() {
 		if ((getSourceAnchor() != null) && (this.getSourceAnchor().getOwner() instanceof NodeFigure)) {
 			return ((NodeFigure)getSourceAnchor().getOwner()).getBounds().getCopy();
 		}
 		return null;
 	}
-	public void setEpi(boolean b) {
-		isEpi = b;
-	}
 
 	public boolean invalid = false;
 	public void setErrorImageFlag(boolean bool) {
-			if(invalid != bool){
-	            invalid = bool;
-	            revalidate();
-	            repaint();
-			}		
+		if(invalid != bool){
+			invalid = bool;
+			revalidate();
+			repaint();
+		}		
 	}
-	
+	@Override
+	public int getRoutingPriority() {
+		return 6;
+	}
+
 }

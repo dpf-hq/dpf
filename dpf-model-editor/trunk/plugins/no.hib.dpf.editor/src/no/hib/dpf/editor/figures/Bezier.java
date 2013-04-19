@@ -84,7 +84,7 @@ public class Bezier extends Polyline {
 	/* (non-Javadoc)
 	 * @see org.eclipse.draw2d.Shape#outlineShape(org.eclipse.draw2d.Graphics)
 	 */
-	protected void outlineShape(Graphics graphics) {
+	public void outlineShape(Graphics graphics) {
 		reCompute();
 		graphics.pushState();
 		graphics.setAntialias(SWT.ON);

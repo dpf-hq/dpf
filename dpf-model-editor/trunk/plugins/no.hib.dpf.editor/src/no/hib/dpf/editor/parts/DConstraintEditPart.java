@@ -8,15 +8,14 @@
  *
  * Contributors:
  * �yvind Bech and Dag Viggo Lok�en - DPF Editor
-*******************************************************************************/
+ *******************************************************************************/
 package no.hib.dpf.editor.parts;
 
+import no.hib.dpf.core.Constraint;
 import no.hib.dpf.diagram.DConstraint;
 import no.hib.dpf.editor.commands.DConstraintDeleteCommand;
-import no.hib.dpf.editor.figures.NodeFigure;
 
 import org.eclipse.draw2d.ConnectionAnchor;
-import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.ConnectionEditPolicy;
@@ -25,16 +24,6 @@ import org.eclipse.gef.requests.GroupRequest;
 
 public abstract class DConstraintEditPart extends GraphicalConnectionEditPart {
 
-	public DConstraintEditPart() { super(); }
-	
-	@Override
-	protected IFigure createFigure() {
-		IFigure retval = createFigureExec();
-		return retval;
-	}		
-	
-	protected abstract  IFigure createFigureExec();
-	public abstract NodeFigure getRectangleFigureForFigure() ;
 
 	@Override	
 	protected void createEditPolicies() {
@@ -52,34 +41,7 @@ public abstract class DConstraintEditPart extends GraphicalConnectionEditPart {
 	protected DConstraint getDConstraint(){
 		return (DConstraint) getModel();
 	}
-	
-	protected NodeFigure getRectangleFigureForFigure(boolean fromSource) {
-		NodeFigure basicRectangleFigure = null;
-		
-		if (getSource() instanceof DArrowEditPart) {
-			DArrowEditPart source = (DArrowEditPart) getSource();
 
-			if (source.getSource() != null) {
-				if (source.getSource() instanceof DNodeEditPart) {
-					DNodeEditPart shapeEditPart;
-					if (fromSource) {
-						shapeEditPart = (DNodeEditPart) source.getSource();
-					} else {
-						shapeEditPart = (DNodeEditPart) source.getTarget();
-
-					}
-					if (shapeEditPart.getFigure() instanceof NodeFigure) {
-						basicRectangleFigure = (NodeFigure) shapeEditPart
-								.getFigure();
-					}
-				}
-			}
-		}
-		return basicRectangleFigure;
-		
-	}
-	
-	
 	/**
 	 * Returns the <code>ConnectionAnchor</code> for the <i>source</i> end of
 	 * the connection. If the source is an instance of {@link DArrowEditPart},
@@ -110,6 +72,8 @@ public abstract class DConstraintEditPart extends GraphicalConnectionEditPart {
 		}
 		return super.getTargetConnectionAnchor();
 	}
-	
-	
+
+	public Constraint getConstraint() {
+		return ((DConstraint)getModel()).getConstraint();
+	}
 }

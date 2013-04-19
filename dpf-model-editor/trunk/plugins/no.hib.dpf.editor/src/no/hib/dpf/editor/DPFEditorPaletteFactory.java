@@ -46,16 +46,16 @@ import org.eclipse.jface.resource.ImageDescriptor;
  */
 public class DPFEditorPaletteFactory {
 	
-	private static final String NODES = "Nodes";
 	private static final String ARROWS = "Arrows";
-	private PaletteGroup nodeGroup = new PaletteGroup(NODES);
-	private PaletteGroup arrowGroup = new PaletteGroup(ARROWS);
-	private PaletteRoot palette;
+	public final static ImageDescriptor LARGEARROW = ImageSettings.LARGE_CONNECTION.getImageDescriptor();
+	public static final ImageDescriptor LARGEICON = ImageSettings.LARGE_RECTANGLE.getImageDescriptor();
+	private static final String NODES = "Nodes";
+	public final static ImageDescriptor SMALLARROW = ImageSettings.SMALL_CONNECTION.getImageDescriptor();
 	
 	public static final ImageDescriptor SMALLICON = ImageSettings.SMALL_RECTANGLE.getImageDescriptor();
-	public static final ImageDescriptor LARGEICON = ImageSettings.LARGE_RECTANGLE.getImageDescriptor();
-	public final static ImageDescriptor SMALLARROW = ImageSettings.SMALL_CONNECTION.getImageDescriptor();
-	public final static ImageDescriptor LARGEARROW = ImageSettings.LARGE_CONNECTION.getImageDescriptor();
+	private PaletteGroup arrowGroup = new PaletteGroup(ARROWS);
+	private PaletteGroup nodeGroup = new PaletteGroup(NODES);
+	private PaletteRoot palette;
 	/**
 	 * Creates the PaletteRoot and adds all palette elements. Use this factory
 	 * method to create a new palette for your graphical editor.
@@ -72,6 +72,24 @@ public class DPFEditorPaletteFactory {
 			 palette.add(nodeGroup);
 		}
 		return palette;
+	}
+	
+	/** Create the "Tools" group. */
+	private PaletteContainer createToolsGroup(PaletteRoot palette) {
+		PaletteToolbar toolbar = new PaletteToolbar("Tools");
+
+		// Add a selection tool to the group
+		ToolEntry tool = new PanningSelectionToolEntry();
+		toolbar.add(tool);
+		palette.setDefaultEntry(tool);
+
+		// Add a marquee tool to the group
+		MarqueeToolEntry mqtool = new MarqueeToolEntry();
+		mqtool.setToolProperty(MarqueeSelectionTool.PROPERTY_MARQUEE_BEHAVIOR,
+				MarqueeSelectionTool.BEHAVIOR_NODES_CONTAINED_AND_RELATED_CONNECTIONS);
+		toolbar.add(mqtool);
+
+		return toolbar;
 	}
 	
 	public void updatePalette(PaletteRoot root, DGraph dGraph) {
@@ -98,24 +116,6 @@ public class DPFEditorPaletteFactory {
 					smallIcon != null ? smallIcon : SMALLARROW, 
 							largeIcon != null ? largeIcon : LARGEARROW));
 		}
-	}
-	
-	/** Create the "Tools" group. */
-	private PaletteContainer createToolsGroup(PaletteRoot palette) {
-		PaletteToolbar toolbar = new PaletteToolbar("Tools");
-
-		// Add a selection tool to the group
-		ToolEntry tool = new PanningSelectionToolEntry();
-		toolbar.add(tool);
-		palette.setDefaultEntry(tool);
-
-		// Add a marquee tool to the group
-		MarqueeToolEntry mqtool = new MarqueeToolEntry();
-		mqtool.setToolProperty(MarqueeSelectionTool.PROPERTY_MARQUEE_BEHAVIOR,
-				MarqueeSelectionTool.BEHAVIOR_NODES_CONTAINED_AND_RELATED_CONNECTIONS);
-		toolbar.add(mqtool);
-
-		return toolbar;
 	}
 
 }

@@ -78,7 +78,15 @@ public enum VisualizationType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	COMPOSED(5, "Composed", "Composed");
+	COMPOSED(5, "Composed", "Composed"), /**
+	 * The '<em><b>On Node</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #ON_NODE_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	ON_NODE(6, "OnNode", "OnNode");
 
 	/**
 	 * The '<em><b>Arrow Label</b></em>' literal value.
@@ -171,6 +179,21 @@ public enum VisualizationType implements Enumerator {
 	public static final int COMPOSED_VALUE = 5;
 
 	/**
+	 * The '<em><b>On Node</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>On Node</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #ON_NODE
+	 * @model name="OnNode"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int ON_NODE_VALUE = 6;
+
+	/**
 	 * An array of all the '<em><b>Visualization Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -184,6 +207,7 @@ public enum VisualizationType implements Enumerator {
 			ARROW_TO_NODE,
 			ARROW_TO_ARROW,
 			COMPOSED,
+			ON_NODE,
 		};
 
 	/**
@@ -240,6 +264,7 @@ public enum VisualizationType implements Enumerator {
 			case ARROW_TO_NODE_VALUE: return ARROW_TO_NODE;
 			case ARROW_TO_ARROW_VALUE: return ARROW_TO_ARROW;
 			case COMPOSED_VALUE: return COMPOSED;
+			case ON_NODE_VALUE: return ON_NODE;
 		}
 		return null;
 	}

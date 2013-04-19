@@ -147,27 +147,27 @@ public class DiagramItemProviderAdapterFactory extends DiagramAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link no.hib.dpf.diagram.DFakeNode} instances.
+	 * This keeps track of the one adapter used for all {@link no.hib.dpf.diagram.DConstraintNode} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DFakeNodeItemProvider dFakeNodeItemProvider;
+	protected DConstraintNodeItemProvider dConstraintNodeItemProvider;
 
 
 	/**
-	 * This creates an adapter for a {@link no.hib.dpf.diagram.DFakeNode}.
+	 * This creates an adapter for a {@link no.hib.dpf.diagram.DConstraintNode}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createDFakeNodeAdapter() {
-		if (dFakeNodeItemProvider == null) {
-			dFakeNodeItemProvider = new DFakeNodeItemProvider(this);
+	public Adapter createDConstraintNodeAdapter() {
+		if (dConstraintNodeItemProvider == null) {
+			dConstraintNodeItemProvider = new DConstraintNodeItemProvider(this);
 		}
 
-		return dFakeNodeItemProvider;
+		return dConstraintNodeItemProvider;
 	}
 
 
@@ -513,7 +513,7 @@ public class DiagramItemProviderAdapterFactory extends DiagramAdapterFactory imp
 		if (dSpecificationItemProvider != null) dSpecificationItemProvider.dispose();
 		if (dGraphItemProvider != null) dGraphItemProvider.dispose();
 		if (dNodeItemProvider != null) dNodeItemProvider.dispose();
-		if (dFakeNodeItemProvider != null) dFakeNodeItemProvider.dispose();
+		if (dConstraintNodeItemProvider != null) dConstraintNodeItemProvider.dispose();
 		if (dArrowItemProvider != null) dArrowItemProvider.dispose();
 		if (dConstraintItemProvider != null) dConstraintItemProvider.dispose();
 		if (dArrowLabelConstraintItemProvider != null) dArrowLabelConstraintItemProvider.dispose();

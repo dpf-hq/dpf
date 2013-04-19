@@ -166,15 +166,6 @@ public interface DiagramFactory extends EFactory {
 	DElement createDElement();
 
 	/**
-	 * Returns a new object of class '<em>DFake Node</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>DFake Node</em>'.
-	 * @generated
-	 */
-	DFakeNode createDFakeNode();
-
-	/**
 	 * Returns a new object of class '<em>DGeneric Arrow Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -200,6 +191,15 @@ public interface DiagramFactory extends EFactory {
 	 * @generated
 	 */
 	DNode createDNode();
+
+	/**
+	 * Returns a new object of class '<em>DConstraint Node</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>DConstraint Node</em>'.
+	 * @generated
+	 */
+	DConstraintNode createDConstraintNode();
 
 	/**
 	 * <!-- begin-user-doc -->

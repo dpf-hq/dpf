@@ -205,7 +205,7 @@ public class DGraphItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DiagramPackage.Literals.DGRAPH__DNODES,
-				 DiagramFactory.eINSTANCE.createDFakeNode()));
+				 DiagramFactory.eINSTANCE.createDConstraintNode()));
 
 		newChildDescriptors.add
 			(createChildParameter

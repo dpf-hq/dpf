@@ -10,8 +10,8 @@ import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DArrowLabelConstraint;
 import no.hib.dpf.diagram.DComposedConstraint;
 import no.hib.dpf.diagram.DConstraint;
+import no.hib.dpf.diagram.DConstraintNode;
 import no.hib.dpf.diagram.DElement;
-import no.hib.dpf.diagram.DFakeNode;
 import no.hib.dpf.diagram.DGenericArrowConstraint;
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
@@ -65,8 +65,8 @@ public class DiagramAdapterFactory extends AdapterFactoryImpl {
 				return createDNodeAdapter();
 			}
 			@Override
-			public Adapter caseDFakeNode(DFakeNode object) {
-				return createDFakeNodeAdapter();
+			public Adapter caseDConstraintNode(DConstraintNode object) {
+				return createDConstraintNodeAdapter();
 			}
 			@Override
 			public Adapter caseDArrow(DArrow object) {
@@ -211,20 +211,6 @@ public class DiagramAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link no.hib.dpf.diagram.DFakeNode <em>DFake Node</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see no.hib.dpf.diagram.DFakeNode
-	 * @generated
-	 */
-	public Adapter createDFakeNodeAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link no.hib.dpf.diagram.DGenericArrowConstraint <em>DGeneric Arrow Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -263,6 +249,20 @@ public class DiagramAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createDNodeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link no.hib.dpf.diagram.DConstraintNode <em>DConstraint Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see no.hib.dpf.diagram.DConstraintNode
+	 * @generated
+	 */
+	public Adapter createDConstraintNodeAdapter() {
 		return null;
 	}
 

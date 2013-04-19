@@ -11,7 +11,6 @@
 *******************************************************************************/
 package no.hib.dpf.editor.parts;
 
-import no.hib.dpf.editor.figures.NodeFigure;
 import no.hib.dpf.editor.figures.ParallelArrowsConstraintConnection;
 
 import org.eclipse.draw2d.IFigure;
@@ -21,16 +20,9 @@ import org.eclipse.draw2d.IFigure;
  */
 public class ImageInclusionConstraintEditPart extends ParallelArrowsConstraintEditPart {
 
-	public ImageInclusionConstraintEditPart() {
-		super();
-	}
-
-	public NodeFigure getRectangleFigureForFigure() {
-		return getRectangleFigureForFigure(false);
-	}
 	
 	@Override
-	protected IFigure createFigureExec() {
+	protected IFigure createFigure() {
 		return new ParallelArrowsConstraintConnection(this, "[⊒]");
 	}
 	

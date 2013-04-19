@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import no.hib.dpf.diagram.DArrow;
-import no.hib.dpf.diagram.DFakeNode;
+import no.hib.dpf.diagram.DConstraintNode;
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.editor.commands.ConnectionReconnectCommand;
 import no.hib.dpf.editor.commands.DArrowCreateCommand;
@@ -91,7 +91,7 @@ public class DArrowCreatePolicy extends GraphicalNodeEditPolicy {
 				for(Object child : parent.getChildren()){
 					if(child instanceof DNodeEditPart){
 						DNode dNode = ((DNodeEditPart) child).getDNode();
-						if(!(dNode instanceof DFakeNode) && dNode.getDType() == dType)
+						if(!(dNode instanceof DConstraintNode) && dNode.getDType() == dType)
 							result.add((DNodeEditPart) child);
 					}
 				}

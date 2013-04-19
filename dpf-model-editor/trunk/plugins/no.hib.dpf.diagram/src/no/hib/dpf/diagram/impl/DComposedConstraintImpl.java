@@ -11,7 +11,7 @@ import java.util.Collection;
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DComposedConstraint;
 import no.hib.dpf.diagram.DConstraint;
-import no.hib.dpf.diagram.DFakeNode;
+import no.hib.dpf.diagram.DConstraintNode;
 import no.hib.dpf.diagram.DGenericArrowConstraint;
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.diagram.DSpecification;
@@ -59,7 +59,7 @@ public class DComposedConstraintImpl extends DConstraintImpl implements DCompose
 	 * @generated
 	 * @ordered
 	 */
-	protected DFakeNode fakeNode;
+	protected DConstraintNode fakeNode;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -75,7 +75,7 @@ public class DComposedConstraintImpl extends DConstraintImpl implements DCompose
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DFakeNode basicGetFakeNode() {
+	public DConstraintNode basicGetFakeNode() {
 		return fakeNode;
 	}
 
@@ -158,7 +158,7 @@ public class DComposedConstraintImpl extends DConstraintImpl implements DCompose
 				getChildren().addAll((Collection<? extends DConstraint>)newValue);
 				return;
 			case DiagramPackage.DCOMPOSED_CONSTRAINT__FAKE_NODE:
-				setFakeNode((DFakeNode)newValue);
+				setFakeNode((DConstraintNode)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -186,7 +186,7 @@ public class DComposedConstraintImpl extends DConstraintImpl implements DCompose
 				getChildren().clear();
 				return;
 			case DiagramPackage.DCOMPOSED_CONSTRAINT__FAKE_NODE:
-				setFakeNode((DFakeNode)null);
+				setFakeNode((DConstraintNode)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -211,10 +211,10 @@ public class DComposedConstraintImpl extends DConstraintImpl implements DCompose
 	 * @generated
 	 */
 	@Override
-	public DFakeNode getFakeNode() {
+	public DConstraintNode getFakeNode() {
 		if (fakeNode != null && fakeNode.eIsProxy()) {
 			InternalEObject oldFakeNode = (InternalEObject)fakeNode;
-			fakeNode = (DFakeNode)eResolveProxy(oldFakeNode);
+			fakeNode = (DConstraintNode)eResolveProxy(oldFakeNode);
 			if (fakeNode != oldFakeNode) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiagramPackage.DCOMPOSED_CONSTRAINT__FAKE_NODE, oldFakeNode, fakeNode));
@@ -231,10 +231,11 @@ public class DComposedConstraintImpl extends DConstraintImpl implements DCompose
 	public void reconnect(EList<DNode> dNodes, EList<DArrow> dArrows, DSpecification dSpecification) {
 		super.reconnect(dNodes, dArrows, dSpecification);
 		dSpecification.getDGraph().addDNode(getFakeNode());
+		boolean isNode = dArrows.size() == 0;
 		for (int i = 0; i < children.size(); i++) {
 			DGenericArrowConstraint generic = (DGenericArrowConstraint) children.get(i);
 			generic.setDSource(getFakeNode());
-			generic.setDTarget(dArrows.get(i));
+			generic.setDTarget(isNode ? dNodes.get(i) : dArrows.get(i));
 		}
 	}
 
@@ -245,8 +246,8 @@ public class DComposedConstraintImpl extends DConstraintImpl implements DCompose
 	 * @generated
 	 */
 	@Override
-	public void setFakeNode(DFakeNode newFakeNode) {
-		DFakeNode oldFakeNode = fakeNode;
+	public void setFakeNode(DConstraintNode newFakeNode) {
+		DConstraintNode oldFakeNode = fakeNode;
 		fakeNode = newFakeNode;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DCOMPOSED_CONSTRAINT__FAKE_NODE, oldFakeNode, fakeNode));

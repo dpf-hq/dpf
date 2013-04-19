@@ -42,7 +42,7 @@ import no.hib.dpf.core.Arrow;
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DOffset;
 import no.hib.dpf.diagram.DiagramPackage;
-import no.hib.dpf.editor.policies.ArrowTextMovePolicy;
+import no.hib.dpf.editor.policies.ArrowLabelMovePolicy;
 import no.hib.dpf.editor.policies.NameDirectEditPolicy;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;
 import no.hib.dpf.editor.tracker.ArrowTextTracker;
@@ -63,34 +63,16 @@ public class ArrowLabelEditPart extends GraphicalEditPartWithListener{
 
 	DirectEditManager manager = null;
 
-	protected Point getOffset(){
-		return getDOffset().getOffset();
+	public void createEditPolicies() {
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new ArrowLabelMovePolicy());
+		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new NameDirectEditPolicy());
 	}
 
-	protected void listen(){
-		addUIAdapter(getDOffset(), diagrammodelListener);
-		DPFEditorPreferences.getDefault().getPreferenceStore().addPropertyChangeListener(propertyListener);
-	}
-	protected void unlisten(){
-		DPFEditorPreferences.getDefault().getPreferenceStore().removePropertyChangeListener(propertyListener);
-		removeUIAdapter(getDOffset(), diagrammodelListener);
-	}
-	
 	public IFigure createFigure() {
 		Label label = new Label();
 		label.setOpaque(true);
 		return label;
 	}
-
-	public void createEditPolicies() {
-		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new ArrowTextMovePolicy());
-		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new NameDirectEditPolicy());
-	}
-
-	public DOffset getDOffset(){
-		return (DOffset) getModel();
-	}
-	
 	public DArrow getDArrow(){
 		EditPart parent = getParent();
 		if(parent instanceof DArrowEditPart){
@@ -99,12 +81,18 @@ public class ArrowLabelEditPart extends GraphicalEditPartWithListener{
 		return null;
 	}
 	
+	public DArrowEditPart getDArrowEditPart() {
+		return (DArrowEditPart) getParent();
+	}
+
+	public DOffset getDOffset(){
+		return (DOffset) getModel();
+	}
+
 	public DragTracker getDragTracker(Request request) {
 		return new ArrowTextTracker(this, (DArrowEditPart)getParent());
 	}
-
-	public Label getLabel() { return (Label)getFigure(); }
-
+	
 	protected String getFullName() {
 		DArrow darrow = getDArrow();
 		if(darrow == null)
@@ -115,26 +103,12 @@ public class ArrowLabelEditPart extends GraphicalEditPartWithListener{
 		if (DPFEditorPreferences.getDefault().getDisplayTypeNames() && type != null && type.getName() != null)
 			result += " : " + type.getName();
 		return result;
-	}	
-	@Override
-	protected void refreshVisuals() {
-		String arrowName = getFullName();
-		Label figure = getLabel();
-		figure.setText(arrowName);
-		figure.setVisible(DPFEditorPreferences.getDefault().getDisplayArrows());
-		DArrowEditPart parent = (DArrowEditPart) getParent();
-		ArrowLabelLocator constraint = new ArrowLabelLocator(arrowName, getDOffset(), parent);
-		parent.setLayoutConstraint(this, getFigure(), constraint);
 	}
+	
+	public Label getLabel() { return (Label)getFigure(); }
 
-	public DArrowEditPart getDArrowEditPart() {
-		return (DArrowEditPart) getParent();
-	}
-
-	public void performRequest(Request request) {
-		if (request.getType() == RequestConstants.REQ_DIRECT_EDIT) {
-			performDirectEdit();
-		}
+	protected Point getOffset(){
+		return getDOffset().getOffset();
 	}
 
 	protected void handleDiagramModelChanged(Notification msg){
@@ -147,12 +121,38 @@ public class ArrowLabelEditPart extends GraphicalEditPartWithListener{
 				break;
 			}
 		}
+	}	
+	protected void listen(){
+		addUIAdapter(getDOffset(), diagrammodelListener);
+		DPFEditorPreferences.getDefault().getPreferenceStore().addPropertyChangeListener(propertyListener);
 	}
+
 	private void performDirectEdit() {
 		if (manager == null) {
 			manager = new TextDirectEditManager(this, TextCellEditor.class, new TextCellEditorLocator((Label) getFigure()));
 		}
 		manager.show();
+	}
+
+	public void performRequest(Request request) {
+		if (request.getType() == RequestConstants.REQ_DIRECT_EDIT) {
+			performDirectEdit();
+		}
+	}
+
+	@Override
+	protected void refreshVisuals() {
+		String arrowName = getFullName();
+		Label figure = getLabel();
+		figure.setText(arrowName);
+		figure.setVisible(DPFEditorPreferences.getDefault().getDisplayArrows());
+		DArrowEditPart parent = (DArrowEditPart) getParent();
+		ArrowLabelLocator constraint = new ArrowLabelLocator(arrowName, getDOffset(), parent);
+		parent.setLayoutConstraint(this, getFigure(), constraint);
+	}
+	protected void unlisten(){
+		DPFEditorPreferences.getDefault().getPreferenceStore().removePropertyChangeListener(propertyListener);
+		removeUIAdapter(getDOffset(), diagrammodelListener);
 	}
 	
 	

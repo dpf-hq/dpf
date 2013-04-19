@@ -17,10 +17,10 @@ import no.hib.dpf.editor.parts.DConstraintEditPart;
  * Draws a figure located between two points (on arrows).
  * The arrows are supposed to be parallel, and (for the time being) in opposite directions.
  */
-public class OppositeArrowsConstraintConnection extends TwoArrowConstraintConnection {
+public class OppositeArrowsConstraintConnection extends ConstraintConnection {
 	
 	public OppositeArrowsConstraintConnection(DConstraintEditPart constraintEditPart, String labelText) {
-		super(constraintEditPart, labelText, new int[]{ 20, -20});
+		super(constraintEditPart);
 	}
 	
 }

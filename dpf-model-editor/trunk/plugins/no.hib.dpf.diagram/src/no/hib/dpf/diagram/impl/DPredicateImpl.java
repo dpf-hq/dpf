@@ -338,7 +338,7 @@ public class DPredicateImpl extends EObjectImpl implements DPredicate {
 	 */
 	@Override
 	public String getSimpleName() {
-		if(simpleName == null || simpleName.isEmpty())
+		if((simpleName == null || simpleName.isEmpty()) && getPredicate() != null)
 			simpleName = getPredicate().getSymbol();
 		return simpleName;
 	}

@@ -15,7 +15,6 @@
 *******************************************************************************/
 package no.hib.dpf.editor.parts;
 
-import no.hib.dpf.editor.figures.NodeFigure;
 import no.hib.dpf.editor.figures.TwoArrowsOneNodeConstraintConnection;
 
 import org.eclipse.draw2d.IFigure;
@@ -25,21 +24,13 @@ import org.eclipse.draw2d.IFigure;
  */
 public class JointlySurjectiveConstraintEditPart extends DConstraintEditPart {
 
-	public JointlySurjectiveConstraintEditPart() {
-		super();
-	}
-
-	public NodeFigure getRectangleFigureForFigure() {
-		return getRectangleFigureForFigure(false);
-	}
-	
 	/**
 	 * Returns the primary Figure representing this GraphicalEditPart, a Constraint Figure.
 	 * @see org.eclipse.gef.editparts.AbstractGraphicalEditPart#createFigure()
 	 */
 	@Override
-	protected IFigure createFigureExec() {
-		return new TwoArrowsOneNodeConstraintConnection(this, "[js]");
+	protected IFigure createFigure() {
+		return new TwoArrowsOneNodeConstraintConnection(this);
 	}
 
 }

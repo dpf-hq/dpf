@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import no.hib.dpf.diagram.DArrow;
-import no.hib.dpf.diagram.DFakeNode;
+import no.hib.dpf.diagram.DConstraintNode;
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
 
@@ -48,10 +48,10 @@ public class DNodeDeleteCommand extends CompoundCommand {
 			throw new IllegalArgumentException();
 		}
 		setLabel("node deletion");
-		if(child instanceof DFakeNode){
+		if(child instanceof DConstraintNode){
 			parent = null;
 			this.child = child;
-			add(new DConstraintDeleteCommand(((DFakeNode)child).getDConstraint()));
+			add(new DConstraintDeleteCommand(((DConstraintNode)child).getDConstraint()));
 			return;
 		}
 		this.parent = child.getDGraph();
@@ -71,22 +71,22 @@ public class DNodeDeleteCommand extends CompoundCommand {
 			add(EmptyExecutableCommand.INSTANCE);
 	}
 
+	public boolean canExecute() {
+		return ((parent != null || child instanceof DConstraintNode) && super.canExecute());
+	}
+
+	public boolean canUndo() {
+		return ((parent != null || child instanceof DConstraintNode) && super.canUndo());
+	}
+	
 	public void execute() {
 		super.execute();
 		if(parent != null)
 			parent.removeDNode(child);
 	}
-
+	
 	public void redo() {
 		execute();
-	}
-	
-	public boolean canExecute() {
-		return ((parent != null || child instanceof DFakeNode) && super.canExecute());
-	}
-	
-	public boolean canUndo() {
-		return ((parent != null || child instanceof DFakeNode) && super.canUndo());
 	}
 
 	public void undo() {

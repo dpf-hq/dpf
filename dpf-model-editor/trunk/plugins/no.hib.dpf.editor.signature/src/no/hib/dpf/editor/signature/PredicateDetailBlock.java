@@ -165,6 +165,7 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 			updateVisualization(getArrows(), getNodes());
 			break;
 		case COMPOSED:
+		case ON_NODE:
 			targetCombo.getControl().setVisible(false);
 			targetLabel.setVisible(false);
 			sourceCombo.getControl().setVisible(false);

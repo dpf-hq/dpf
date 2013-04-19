@@ -60,15 +60,19 @@ public final class DPFShortestPathConnectionRouter extends AbstractRouter {
 		}
 	}
 
-	private Map constraintMap = new HashMap();
-	private Map figuresToBounds;
-	private Map connectionToPaths;
-	private boolean isDirty;
+	private class RoutableComparator implements Comparator<RoutableFigure> {
+		@Override
+		public int compare(RoutableFigure o1, RoutableFigure o2) {
+			int o1p = o1.getRoutingPriority();
+			int o2p = o2.getRoutingPriority();
+			
+			return (o1p < o2p ? -1 : (o1p == o2p ? 0 : 1));
+		}	
+	}
 	private ShortestPathRouter algorithm = new ShortestPathRouter();
+	private Map connectionToPaths;
+	private Map constraintMap = new HashMap();
 	private IFigure container;
-	private Set staleConnections = new HashSet();
-	private LayoutListener listener = new LayoutTracker();
-
 	private FigureListener figureListener = new FigureListener() {
 		@SuppressWarnings("unchecked")
 		public void figureMoved(IFigure source) {
@@ -82,7 +86,13 @@ public final class DPFShortestPathConnectionRouter extends AbstractRouter {
 			figuresToBounds.put(source, newBounds);
 		}
 	};
+	private Map figuresToBounds;
 	private boolean ignoreInvalidate;
+
+	private boolean isDirty;
+	private LayoutListener listener = new LayoutTracker();
+
+	private Set staleConnections = new HashSet();
 
 	/**
 	 * Creates a new shortest path router with the given container. The
@@ -114,25 +124,17 @@ public final class DPFShortestPathConnectionRouter extends AbstractRouter {
 		isDirty = true;
 	}
 
-	private void hookAll() {
-		figuresToBounds = new HashMap();
-		for (int i = 0; i < container.getChildren().size(); i++)
-			addChild((IFigure) container.getChildren().get(i));
-		container.addLayoutListener(listener);
-	}
-
-	private void unhookAll() {
-		container.removeLayoutListener(listener);
-		if (figuresToBounds != null) {
-			Iterator figureItr = figuresToBounds.keySet().iterator();
-			while (figureItr.hasNext()) {
-				// Must use iterator's remove to avoid concurrent modification
-				IFigure child = (IFigure) figureItr.next();
-				figureItr.remove();
-				removeChild(child);
-			}
-			figuresToBounds = null;
-		}
+	/**
+	 * Returns true if the given connection is routed by this router, false
+	 * otherwise
+	 * 
+	 * @param conn
+	 *            Connection whose router is questioned
+	 * @return true if this is the router used for conn
+	 * @since 3.5
+	 */
+	public boolean containsConnection(Connection conn) {
+		return connectionToPaths != null && connectionToPaths.containsKey(conn);
 	}
 
 	/**
@@ -148,6 +150,31 @@ public final class DPFShortestPathConnectionRouter extends AbstractRouter {
 	}
 
 	/**
+	 * @return the container which contains connections routed by this router
+	 * @since 3.5
+	 */
+	public IFigure getContainer() {
+		return container;
+	}
+
+	/**
+	 * @return All connection paths after routing dirty paths. Some of the paths
+	 *         that were not dirty may change as well, as a consequence of new
+	 *         routings.
+	 * @since 3.5
+	 */
+	public List getPathsAfterRouting() {
+		if (isDirty) {
+			processStaleConnections();
+			isDirty = false;
+			List all = algorithm.solve();
+			return all;
+
+		}
+		return null;
+	}
+
+	/**
 	 * Returns the default spacing maintained on either side of a connection.
 	 * The default value is 4.
 	 * 
@@ -156,6 +183,22 @@ public final class DPFShortestPathConnectionRouter extends AbstractRouter {
 	 */
 	public int getSpacing() {
 		return algorithm.getSpacing();
+	}
+	
+	/**
+	 * @return true if there are connections routed by this router, false
+	 *         otherwise
+	 * @since 3.5
+	 */
+	public boolean hasMoreConnections() {
+		return connectionToPaths != null && !connectionToPaths.isEmpty();
+	}
+
+	private void hookAll() {
+		figuresToBounds = new HashMap();
+		for (int i = 0; i < container.getChildren().size(); i++)
+			addChild((IFigure) container.getChildren().get(i));
+		container.addLayoutListener(listener);
 	}
 
 	/**
@@ -169,43 +212,21 @@ public final class DPFShortestPathConnectionRouter extends AbstractRouter {
 		isDirty = true;
 	}
 
+	/**
+	 * Returns the value indicating if the router is dirty, i.e. if there are
+	 * any outstanding connections that need to be routed
+	 * 
+	 * @return true if there are connections to be routed, false otherwise
+	 * @since 3.5
+	 */
+	public boolean isDirty() {
+		return isDirty;
+	}
+
 	private void processLayout() {
 		if (staleConnections.isEmpty())
 			return;
 		((Connection) staleConnections.iterator().next()).revalidate();
-	}
-	
-	// Revised for DPF:
-	// Connections are laid out before constraints
-	private void processStaleConnections() {
-		Iterator iter = staleConnections.iterator();
-		if (iter.hasNext() && connectionToPaths == null) {
-			connectionToPaths = new HashMap();
-			hookAll();
-		}
-		
-		List<RoutableFigure> routableConnectionList = new ArrayList<RoutableFigure>();
-		List<Connection> connectionList = new ArrayList<Connection>();
-		
-		while (iter.hasNext()) {
-			Connection conn = (Connection) iter.next();
-			if (conn instanceof RoutableFigure) {
-				routableConnectionList.add((RoutableFigure )conn);
-			} else {
-				connectionList.add(conn);
-			}
-		}
-		// Sorts the connections so that constraints are routed lastly:
-		Collections.sort(routableConnectionList, new RoutableComparator());
-		
-		for (Connection conn : connectionList) {
-			processStaleConnection(conn, false);
-		}
-		for (RoutableFigure routable : routableConnectionList) {
-			Connection conn = (Connection)routable;
-			processStaleConnection(conn, false);
-		}
-		staleConnections.clear();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -248,6 +269,39 @@ public final class DPFShortestPathConnectionRouter extends AbstractRouter {
 		path.setBendPoints(bends.size() == 0 ? null : bends);
 
 		isDirty |= path.isDirty;
+	}
+
+	// Revised for DPF:
+	// Connections are laid out before constraints
+	private void processStaleConnections() {
+		Iterator iter = staleConnections.iterator();
+		if (iter.hasNext() && connectionToPaths == null) {
+			connectionToPaths = new HashMap();
+			hookAll();
+		}
+		
+		List<RoutableFigure> routableConnectionList = new ArrayList<RoutableFigure>();
+		List<Connection> connectionList = new ArrayList<Connection>();
+		
+		while (iter.hasNext()) {
+			Connection conn = (Connection) iter.next();
+			if (conn instanceof RoutableFigure) {
+				routableConnectionList.add((RoutableFigure )conn);
+			} else {
+				connectionList.add(conn);
+			}
+		}
+		// Sorts the connections so that constraints are routed lastly:
+		Collections.sort(routableConnectionList, new RoutableComparator());
+		
+		for (Connection conn : connectionList) {
+			processStaleConnection(conn, false);
+		}
+		for (RoutableFigure routable : routableConnectionList) {
+			Connection conn = (Connection)routable;
+			processStaleConnection(conn, false);
+		}
+		staleConnections.clear();
 	}
 
 	void queueSomeRouting() {
@@ -324,7 +378,7 @@ public final class DPFShortestPathConnectionRouter extends AbstractRouter {
 				// --------------------------------------------------------------
 				// CHANGE FROM ORIGINAL:
 				// --------------------------------------------------------------			
-				if (!(current instanceof TwoArrowConstraintConnection)) {
+				if (!(current instanceof ConstraintConnection)) {
 					// Arrows are already translated. Translating constraint 
 					// anchors (on arrows) will make constraints dislocated
 					// --------------------------------------------------------------
@@ -341,23 +395,6 @@ public final class DPFShortestPathConnectionRouter extends AbstractRouter {
 			}
 			ignoreInvalidate = false;
 		}
-	}
-
-	/**
-	 * @return All connection paths after routing dirty paths. Some of the paths
-	 *         that were not dirty may change as well, as a consequence of new
-	 *         routings.
-	 * @since 3.5
-	 */
-	public List getPathsAfterRouting() {
-		if (isDirty) {
-			processStaleConnections();
-			isDirty = false;
-			List all = algorithm.solve();
-			return all;
-
-		}
-		return null;
 	}
 
 	/**
@@ -386,57 +423,20 @@ public final class DPFShortestPathConnectionRouter extends AbstractRouter {
 		algorithm.setSpacing(spacing);
 	}
 
-	/**
-	 * @return true if there are connections routed by this router, false
-	 *         otherwise
-	 * @since 3.5
-	 */
-	public boolean hasMoreConnections() {
-		return connectionToPaths != null && !connectionToPaths.isEmpty();
-	}
-
-	/**
-	 * @return the container which contains connections routed by this router
-	 * @since 3.5
-	 */
-	public IFigure getContainer() {
-		return container;
-	}
-
-	/**
-	 * Returns the value indicating if the router is dirty, i.e. if there are
-	 * any outstanding connections that need to be routed
-	 * 
-	 * @return true if there are connections to be routed, false otherwise
-	 * @since 3.5
-	 */
-	public boolean isDirty() {
-		return isDirty;
-	}
-
-	/**
-	 * Returns true if the given connection is routed by this router, false
-	 * otherwise
-	 * 
-	 * @param conn
-	 *            Connection whose router is questioned
-	 * @return true if this is the router used for conn
-	 * @since 3.5
-	 */
-	public boolean containsConnection(Connection conn) {
-		return connectionToPaths != null && connectionToPaths.containsKey(conn);
-	}
-
 	// -----------------------------------------------------------------------
 	
-	private class RoutableComparator implements Comparator<RoutableFigure> {
-		@Override
-		public int compare(RoutableFigure o1, RoutableFigure o2) {
-			int o1p = o1.getRoutingPriority();
-			int o2p = o2.getRoutingPriority();
-			
-			return (o1p < o2p ? -1 : (o1p == o2p ? 0 : 1));
-		}	
+	private void unhookAll() {
+		container.removeLayoutListener(listener);
+		if (figuresToBounds != null) {
+			Iterator figureItr = figuresToBounds.keySet().iterator();
+			while (figureItr.hasNext()) {
+				// Must use iterator's remove to avoid concurrent modification
+				IFigure child = (IFigure) figureItr.next();
+				figureItr.remove();
+				removeChild(child);
+			}
+			figuresToBounds = null;
+		}
 	}
 	
 	

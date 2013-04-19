@@ -15,8 +15,8 @@ import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DArrowLabelConstraint;
 import no.hib.dpf.diagram.DComposedConstraint;
 import no.hib.dpf.diagram.DConstraint;
+import no.hib.dpf.diagram.DConstraintNode;
 import no.hib.dpf.diagram.DElement;
-import no.hib.dpf.diagram.DFakeNode;
 import no.hib.dpf.diagram.DGenericArrowConstraint;
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
@@ -47,6 +47,17 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  * @generated
  */
 public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @deprecated
+	 * @generated
+	 */
+	@Deprecated
+	public static DiagramPackage getPackage() {
+		return DiagramPackage.eINSTANCE;
+	}
+
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
@@ -79,47 +90,21 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	@Override
-	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case DiagramPackage.DSPECIFICATION: return createDSpecification();
-			case DiagramPackage.DGRAPH: return createDGraph();
-			case DiagramPackage.DNODE: return createDNode();
-			case DiagramPackage.DFAKE_NODE: return createDFakeNode();
-			case DiagramPackage.DARROW: return createDArrow();
-			case DiagramPackage.DCONSTRAINT: return createDConstraint();
-			case DiagramPackage.DARROW_LABEL_CONSTRAINT: return createDArrowLabelConstraint();
-			case DiagramPackage.DGENERIC_ARROW_CONSTRAINT: return createDGenericArrowConstraint();
-			case DiagramPackage.DCOMPOSED_CONSTRAINT: return createDComposedConstraint();
-			case DiagramPackage.DPREDICATE: return createDPredicate();
-			case DiagramPackage.DOFFSET: return createDOffset();
-			case DiagramPackage.DSIGNATURE: return createDSignature();
-			case DiagramPackage.VISUALIZATION: return createVisualization();
-			case DiagramPackage.DELEMENT: return createDElement();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
+	public String convertEDimensionToString(EDataType eDataType, Object instanceValue) {
+		Dimension point = (Dimension) instanceValue;
+		return point.width + " " + point.height;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	@Override
-	public Object createFromString(EDataType eDataType, String initialValue) {
-		switch (eDataType.getClassifierID()) {
-			case DiagramPackage.VISUALIZATION_TYPE:
-				return createVisualizationTypeFromString(eDataType, initialValue);
-			case DiagramPackage.EDIMENSION:
-				return createEDimensionFromString(eDataType, initialValue);
-			case DiagramPackage.ELOCATION:
-				return createELocationFromString(eDataType, initialValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-		}
+	public String convertELocationToString(EDataType eDataType, Object instanceValue) {
+		Point point = (Point) instanceValue;
+		return point.x + " " + point.y;
 	}
 
 	/**
@@ -144,36 +129,128 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
-	public DSpecification createDSpecification() {
-		DSpecificationImpl dSpecification = new DSpecificationImpl();
-		dSpecification.setDType(DPFConstants.REFLEXIVE_DSPECIFICATION);
-		dSpecification.setDSignature(DPFConstants.DEFAULT_DSIGNATURE);
-		return dSpecification;
+	public String convertVisualizationTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EObject create(EClass eClass) {
+		switch (eClass.getClassifierID()) {
+			case DiagramPackage.DSPECIFICATION: return createDSpecification();
+			case DiagramPackage.DGRAPH: return createDGraph();
+			case DiagramPackage.DNODE: return createDNode();
+			case DiagramPackage.DCONSTRAINT_NODE: return createDConstraintNode();
+			case DiagramPackage.DARROW: return createDArrow();
+			case DiagramPackage.DCONSTRAINT: return createDConstraint();
+			case DiagramPackage.DARROW_LABEL_CONSTRAINT: return createDArrowLabelConstraint();
+			case DiagramPackage.DGENERIC_ARROW_CONSTRAINT: return createDGenericArrowConstraint();
+			case DiagramPackage.DCOMPOSED_CONSTRAINT: return createDComposedConstraint();
+			case DiagramPackage.DPREDICATE: return createDPredicate();
+			case DiagramPackage.DOFFSET: return createDOffset();
+			case DiagramPackage.DSIGNATURE: return createDSignature();
+			case DiagramPackage.VISUALIZATION: return createVisualization();
+			case DiagramPackage.DELEMENT: return createDElement();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		}
+	}
+
+	private DPredicate createArrowLabelDPredicate(
+			Predicate predicate, String icon) {
+		if(predicate == null)
+			return null;
+		DPredicate result = createDPredicate(predicate, icon);
+		Visualization visualization = result.getVisualization();
+		visualization.setType(VisualizationType.ARROW_LABEL);
+		Graph graph = result.getPredicate().getShape();
+		visualization.setSource(graph.getArrowByName("XY"));
+		return result;
+	}
+
+	private DPredicate createArrowToArrowDPredicate(Predicate predicate,
+			String icon, String source,
+			String target) {
+		if(predicate == null)
+			return null;
+		DPredicate result = createDPredicate(predicate, icon);
+		Visualization visualization = result.getVisualization();
+		visualization.setType(VisualizationType.ARROW_TO_ARROW);
+		Graph graph = result.getPredicate().getShape();
+		visualization.setSource(graph.getArrowByName(source));
+		visualization.setTarget(graph.getArrowByName(target));
+		return result;
+	}
+
+	/**
 	 * @generated NOT
 	 */
-	public DGraph createDGraph() {
-		DGraphImpl dGraph = new DGraphImpl();
-		dGraph.setDType(DPFConstants.REFLEXIVE_TYPE_DGRAPH);
+	@Override
+	public DArrow createConstantDArrow() {
+		DArrow darrow = new DArrowImpl();
+		darrow.setArrow(DPFConstants.REFLEXIVE_TYPE_ARROW);
+		darrow.setDSource(DPFConstants.REFLEXIVE_TYPE_DNODE);
+		darrow.setDTarget(DPFConstants.REFLEXIVE_TYPE_DNODE);
+		return darrow;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	@Override
+	public DGraph createConstantDGraph() {
+		DGraph dGraph = new DGraphImpl();
+		dGraph.setGraph(DPFConstants.REFLEXIVE_TYPE_GRAPH);
+		dGraph.addDNode(DPFConstants.REFLEXIVE_TYPE_DNODE);
+		dGraph.addDArrow(DPFConstants.REFLEXIVE_TYPE_DARROW);
 		return dGraph;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public DNode createDNode() {
-		DNodeImpl dNode = new DNodeImpl();
-		dNode.setDType(DPFConstants.REFLEXIVE_TYPE_DNODE);
-		return dNode;
+	@Override
+	public DNode createConstantDNode() {
+		DNode dnode = new DNodeImpl();
+		dnode.setNode(DPFConstants.REFLEXIVE_TYPE_NODE);
+		return dnode;
 	}
+
+	@Override
+	public DSignature createConstantDSignature() {
+		DSignatureImpl result = new DSignatureImpl();
+		result.setSignature(DPFConstants.DEFAULT_SIGNATURE);
+		result.addDPredicate(createArrowLabelDPredicate(DPFConstants.DEFAULT_SIGNATURE.getPredicateBySymbol("inj"), "/icons/inj_36.png"));
+		result.addDPredicate(createArrowLabelDPredicate(DPFConstants.DEFAULT_SIGNATURE.getPredicateBySymbol("surj"), "/icons/surj_36.png"));
+		result.addDPredicate(createArrowLabelDPredicate(DPFConstants.DEFAULT_SIGNATURE.getPredicateBySymbol("irref"), "/icons/irr_36.png"));
+		result.addDPredicate(createArrowLabelDPredicate(DPFConstants.DEFAULT_SIGNATURE.getPredicateBySymbol("multi"), "/icons/mult_36.png"));
+		result.addDPredicate(createArrowToArrowDPredicate(DPFConstants.DEFAULT_SIGNATURE.getPredicateBySymbol("inv"), "/icons/inv_36.png", "XY", "YX"));
+		result.addDPredicate(createArrowToArrowDPredicate(DPFConstants.DEFAULT_SIGNATURE.getPredicateBySymbol("js"), "/icons/js_36.png", "XZ", "YZ"));
+		result.addDPredicate(createArrowToArrowDPredicate(DPFConstants.DEFAULT_SIGNATURE.getPredicateBySymbol("ji"), "/icons/ji_36.png", "XY", "XZ"));
+		result.addDPredicate(createArrowToArrowDPredicate(DPFConstants.DEFAULT_SIGNATURE.getPredicateBySymbol("xor"), "/icons/xor_36.png", "ZX", "ZY"));
+		result.addDPredicate(createArrowToArrowDPredicate(DPFConstants.DEFAULT_SIGNATURE.getPredicateBySymbol("nand"), "/icons/nand_36.png", "ZX", "ZY"));
+		return result;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	@Override
+	public DSpecification createConstantDSpecification() {
+		DSpecificationImpl result = new DSpecificationImpl();
+		result.setSpecification(DPFConstants.REFLEXIVE_SPECIFICATION);
+		result.setDSignature(DPFConstants.DEFAULT_DSIGNATURE);
+		result.setDGraph(DPFConstants.REFLEXIVE_TYPE_DGRAPH);
+		return result;
+	}
+
+
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -184,6 +261,43 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 		DArrowImpl dArrow = new DArrowImpl();
 		dArrow.setDType(DPFConstants.REFLEXIVE_TYPE_DARROW);
 		return dArrow;
+	}
+	
+	/**
+	 * @generated NOT
+	 */
+	public DArrow createDArrow(Arrow arrow, DNode source, DNode target, DArrow type) {
+		DArrow newArrow = new DArrowImpl();
+		newArrow.setArrow(arrow);
+		newArrow.setDSource(source);
+		newArrow.setDTarget(target);
+		newArrow.setDType(type);
+		return newArrow;
+	}
+	@Override
+	/**
+	 * @generated NOT
+	 */
+	public DArrow createDArrow(String name, DNode source, DNode target, DArrow type) {
+		if(type == null)
+			type = DPFConstants.REFLEXIVE_TYPE_DARROW;
+		return createDArrow(CoreFactory.eINSTANCE.createArrow(name, source.getNode(), target.getNode(), type.getArrow()), source, target, type);
+	}
+
+	@Override
+	public DArrowLabelConstraint createDArrowLabelConstraint() {
+		DArrowLabelConstraintImpl dArrowLabelConstraint = new DArrowLabelConstraintImpl();
+		return dArrowLabelConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DComposedConstraint createDComposedConstraint() {
+		DComposedConstraintImpl dComposedConstraint = new DComposedConstraintImpl();
+		return dComposedConstraint;
 	}
 
 	/**
@@ -199,28 +313,34 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * Default Value for DArrow
+	 * Arrow : a new Arrow not Arrow.REFLEXIVE_TYPE_ARROW
+	 * DType : DArrow.REFLEXIVE_TYPE_DARROW
+	 * DSource : null
+	 * DTarget : null
+	 * DGraph : null
+	 * Location : (0,0)
+	 * Size : (0, 0)
+	 * Configure : null
+	 * @generated NOT
 	 */
-	public DPredicate createDPredicate() {
-		DPredicateImpl dPredicate = new DPredicateImpl();
-		return dPredicate;
+	public DArrow createDefaultDArrow() {
+		DArrowImpl dArrow = new DArrowImpl();
+		dArrow.setArrow(CoreFactory.eINSTANCE.createArrow());
+		dArrow.setDType(DPFConstants.REFLEXIVE_TYPE_DARROW);
+		dArrow.setNameOffset(DiagramFactory.eINSTANCE.createDefaultDOffset());
+		return dArrow;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * Default Value for DSpecification
 	 * @generated NOT
 	 */
-	public DSpecification createDefaultDSpecification() {
-		DSpecificationImpl dSpecification = new DSpecificationImpl();
-		dSpecification.setSpecification(CoreFactory.eINSTANCE.createDefaultSpecification());
-		dSpecification.setDType(DPFConstants.REFLEXIVE_DSPECIFICATION);
-		dSpecification.setDGraph(DiagramFactory.eINSTANCE.createDefaultDGraph());
-		dSpecification.setZoom(1.0);
-		dSpecification.setGridVisible(false);
-		dSpecification.setGrid(true);
-		return dSpecification;
+	public DConstraint createDefaultDConstraint() {
+		DConstraintImpl dConstraint = new DConstraintImpl();
+		dConstraint.setConstraint(CoreFactory.eINSTANCE.createConstraint());
+		return dConstraint;
 	}
 
 	/**
@@ -258,71 +378,10 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 		return dNode;
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DFakeNode createDFakeNode() {
-		DFakeNodeImpl dFakeNode = new DFakeNodeImpl();
-		return dFakeNode;
-	}
-
-
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public DNode createDNode(Node node, DNode type) {
-		DNode dNode = new DNodeImpl();
-		dNode.setNode(node);
-		dNode.setDType(type);
-		return dNode;
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public DNode createDNode(String name, DNode type) {
-		if(type == null)
-			type = DPFConstants.REFLEXIVE_TYPE_DNODE;
-		return createDNode(CoreFactory.eINSTANCE.createNode(name, type.getNode()), type);
-	}
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * Default Value for DArrow
-	 * Arrow : a new Arrow not Arrow.REFLEXIVE_TYPE_ARROW
-	 * DType : DArrow.REFLEXIVE_TYPE_DARROW
-	 * DSource : null
-	 * DTarget : null
-	 * DGraph : null
-	 * Location : (0,0)
-	 * Size : (0, 0)
-	 * Configure : null
-	 * @generated NOT
-	 */
-	public DArrow createDefaultDArrow() {
-		DArrowImpl dArrow = new DArrowImpl();
-		dArrow.setArrow(CoreFactory.eINSTANCE.createArrow());
-		dArrow.setDType(DPFConstants.REFLEXIVE_TYPE_DARROW);
-		dArrow.setNameOffset(DiagramFactory.eINSTANCE.createDefaultDOffset());
-		return dArrow;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public DConstraint createDefaultDConstraint() {
-		DConstraintImpl dConstraint = new DConstraintImpl();
-		dConstraint.setConstraint(CoreFactory.eINSTANCE.createConstraint());
-		return dConstraint;
+	@Override
+	public DOffset createDefaultDOffset() {
+//		Adjust the initial position of the arrow label
+		return new DOffsetImpl(new Point(10, -3), 16);
 	}
 
 	/**
@@ -341,6 +400,44 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public DSignature createDefaultDSignature() {
+		DSignatureImpl dSignature = new DSignatureImpl();
+		dSignature.setSignature(CoreFactory.eINSTANCE.createSignature());
+		return dSignature;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * Default Value for DSpecification
+	 * @generated NOT
+	 */
+	public DSpecification createDefaultDSpecification() {
+		DSpecificationImpl dSpecification = new DSpecificationImpl();
+		dSpecification.setSpecification(CoreFactory.eINSTANCE.createDefaultSpecification());
+		dSpecification.setDType(DPFConstants.REFLEXIVE_DSPECIFICATION);
+		dSpecification.setDGraph(DiagramFactory.eINSTANCE.createDefaultDGraph());
+		dSpecification.setZoom(1.0);
+		dSpecification.setGridVisible(false);
+		dSpecification.setGrid(true);
+		return dSpecification;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DElement createDElement() {
+		DElementImpl dElement = new DElementImpl();
+		return dElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public DGenericArrowConstraint createDGenericArrowConstraint() {
@@ -351,11 +448,56 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public DGraph createDGraph() {
+		DGraphImpl dGraph = new DGraphImpl();
+		dGraph.setDType(DPFConstants.REFLEXIVE_TYPE_DGRAPH);
+		return dGraph;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public DNode createDNode() {
+		DNodeImpl dNode = new DNodeImpl();
+		dNode.setDType(DPFConstants.REFLEXIVE_TYPE_DNODE);
+		return dNode;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DComposedConstraint createDComposedConstraint() {
-		DComposedConstraintImpl dComposedConstraint = new DComposedConstraintImpl();
-		return dComposedConstraint;
+	public DConstraintNode createDConstraintNode() {
+		DConstraintNodeImpl dConstraintNode = new DConstraintNodeImpl();
+		return dConstraintNode;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public DNode createDNode(Node node, DNode type) {
+		DNode dNode = new DNodeImpl();
+		dNode.setNode(node);
+		dNode.setDType(type);
+		return dNode;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public DNode createDNode(String name, DNode type) {
+		if(type == null)
+			type = DPFConstants.REFLEXIVE_TYPE_DNODE;
+		return createDNode(CoreFactory.eINSTANCE.createNode(name, type.getNode()), type);
 	}
 
 	/**
@@ -374,61 +516,46 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public DPredicate createDPredicate() {
+		DPredicateImpl dPredicate = new DPredicateImpl();
+		return dPredicate;
+	}
+
+	/*
+	 * Three different create method
+	 * createX() method is automatic generated. Used when model is loaded. Do not change the code here.
+	 * createDefaultX() method is default one. Used when you want to create a new instance.
+	 * createConstantX() method is constants creation method. Those methods are only used in DPFConstants.
+	 * xwa@hib.no
+	 */
+	
+	private DPredicate createDPredicate(Predicate predicate, String icon){
+		DPredicate dPredicate = createDefaultDPredicate();
+		dPredicate.setPredicate(predicate);
+		dPredicate.getDGraph().setGraph(predicate.getShape());
+		dPredicate.setIcon(icon);
+		return dPredicate;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public DSignature createDSignature() {
 		DSignatureImpl dSignature = new DSignatureImpl();
 		return dSignature;
 	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public DSignature createDefaultDSignature() {
-		DSignatureImpl dSignature = new DSignatureImpl();
-		dSignature.setSignature(CoreFactory.eINSTANCE.createSignature());
-		return dSignature;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public Visualization createVisualization() {
-		VisualizationImpl visualization = new VisualizationImpl();
-		visualization.setType(VisualizationType.ARROW_LABEL);
-		return visualization;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DElement createDElement() {
-		DElementImpl dElement = new DElementImpl();
-		return dElement;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public VisualizationType createVisualizationTypeFromString(EDataType eDataType, String initialValue) {
-		VisualizationType result = VisualizationType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertVisualizationTypeToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
+	public DSpecification createDSpecification() {
+		DSpecificationImpl dSpecification = new DSpecificationImpl();
+		dSpecification.setDType(DPFConstants.REFLEXIVE_DSPECIFICATION);
+		dSpecification.setDSignature(DPFConstants.DEFAULT_DSIGNATURE);
+		return dSpecification;
 	}
 
 	/**
@@ -448,30 +575,50 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public String convertEDimensionToString(EDataType eDataType, Object instanceValue) {
-		Dimension point = (Dimension) instanceValue;
-		return point.width + " " + point.height;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
 	public Point createELocationFromString(EDataType eDataType, String initialValue) {
 		String[] result = initialValue.split(" ");
 		Assert.isTrue(result.length == 2);
 		return new Point(Integer.valueOf(result[0]).intValue(), Integer.valueOf(result[1]).intValue());
 	}
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object createFromString(EDataType eDataType, String initialValue) {
+		switch (eDataType.getClassifierID()) {
+			case DiagramPackage.VISUALIZATION_TYPE:
+				return createVisualizationTypeFromString(eDataType, initialValue);
+			case DiagramPackage.EDIMENSION:
+				return createEDimensionFromString(eDataType, initialValue);
+			case DiagramPackage.ELOCATION:
+				return createELocationFromString(eDataType, initialValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public String convertELocationToString(EDataType eDataType, Object instanceValue) {
-		Point point = (Point) instanceValue;
-		return point.x + " " + point.y;
+	public Visualization createVisualization() {
+		VisualizationImpl visualization = new VisualizationImpl();
+		visualization.setType(VisualizationType.ARROW_LABEL);
+		return visualization;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public VisualizationType createVisualizationTypeFromString(EDataType eDataType, String initialValue) {
+		VisualizationType result = VisualizationType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
 	}
 
 	/**
@@ -481,152 +628,5 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	 */
 	public DiagramPackage getDiagramPackage() {
 		return (DiagramPackage)getEPackage();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
-	@Deprecated
-	public static DiagramPackage getPackage() {
-		return DiagramPackage.eINSTANCE;
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	public DArrow createDArrow(Arrow arrow, DNode source, DNode target, DArrow type) {
-		DArrow newArrow = new DArrowImpl();
-		newArrow.setArrow(arrow);
-		newArrow.setDSource(source);
-		newArrow.setDTarget(target);
-		newArrow.setDType(type);
-		return newArrow;
-	}
-
-	@Override
-	/**
-	 * @generated NOT
-	 */
-	public DArrow createDArrow(String name, DNode source, DNode target, DArrow type) {
-		if(type == null)
-			type = DPFConstants.REFLEXIVE_TYPE_DARROW;
-		return createDArrow(CoreFactory.eINSTANCE.createArrow(name, source.getNode(), target.getNode(), type.getArrow()), source, target, type);
-	}
-
-	/*
-	 * Three different create method
-	 * createX() method is automatic generated. Used when model is loaded. Do not change the code here.
-	 * createDefaultX() method is default one. Used when you want to create a new instance.
-	 * createConstantX() method is constants creation method. Those methods are only used in DPFConstants.
-	 * xwa@hib.no
-	 */
-	
-	/**
-	 * @generated NOT
-	 */
-	@Override
-	public DNode createConstantDNode() {
-		DNode dnode = new DNodeImpl();
-		dnode.setNode(DPFConstants.REFLEXIVE_TYPE_NODE);
-		return dnode;
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	@Override
-	public DArrow createConstantDArrow() {
-		DArrow darrow = new DArrowImpl();
-		darrow.setArrow(DPFConstants.REFLEXIVE_TYPE_ARROW);
-		darrow.setDSource(DPFConstants.REFLEXIVE_TYPE_DNODE);
-		darrow.setDTarget(DPFConstants.REFLEXIVE_TYPE_DNODE);
-		return darrow;
-	}
-	/**
-	 * @generated NOT
-	 */
-	@Override
-	public DGraph createConstantDGraph() {
-		DGraph dGraph = new DGraphImpl();
-		dGraph.setGraph(DPFConstants.REFLEXIVE_TYPE_GRAPH);
-		dGraph.addDNode(DPFConstants.REFLEXIVE_TYPE_DNODE);
-		dGraph.addDArrow(DPFConstants.REFLEXIVE_TYPE_DARROW);
-		return dGraph;
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	@Override
-	public DSpecification createConstantDSpecification() {
-		DSpecificationImpl result = new DSpecificationImpl();
-		result.setSpecification(DPFConstants.REFLEXIVE_SPECIFICATION);
-		result.setDSignature(DPFConstants.DEFAULT_DSIGNATURE);
-		result.setDGraph(DPFConstants.REFLEXIVE_TYPE_DGRAPH);
-		return result;
-	}
-
-	private DPredicate createDPredicate(Predicate predicate, String icon){
-		DPredicate dPredicate = createDefaultDPredicate();
-		dPredicate.setPredicate(predicate);
-		dPredicate.getDGraph().setGraph(predicate.getShape());
-		dPredicate.setIcon(icon);
-		return dPredicate;
-	}
-	@Override
-	public DSignature createConstantDSignature() {
-		DSignatureImpl result = new DSignatureImpl();
-		result.setSignature(DPFConstants.DEFAULT_SIGNATURE);
-		result.addDPredicate(createArrowLabelDPredicate(DPFConstants.DEFAULT_SIGNATURE.getPredicateBySymbol("inj"), "/icons/inj_36.png"));
-		result.addDPredicate(createArrowLabelDPredicate(DPFConstants.DEFAULT_SIGNATURE.getPredicateBySymbol("surj"), "/icons/surj_36.png"));
-		result.addDPredicate(createArrowLabelDPredicate(DPFConstants.DEFAULT_SIGNATURE.getPredicateBySymbol("irref"), "/icons/irr_36.png"));
-		result.addDPredicate(createArrowLabelDPredicate(DPFConstants.DEFAULT_SIGNATURE.getPredicateBySymbol("multi"), "/icons/mult_36.png"));
-		result.addDPredicate(createArrowToArrowDPredicate(DPFConstants.DEFAULT_SIGNATURE.getPredicateBySymbol("inv"), "/icons/inv_36.png", "XY", "YX"));
-		result.addDPredicate(createArrowToArrowDPredicate(DPFConstants.DEFAULT_SIGNATURE.getPredicateBySymbol("js"), "/icons/js_36.png", "XZ", "YZ"));
-		result.addDPredicate(createArrowToArrowDPredicate(DPFConstants.DEFAULT_SIGNATURE.getPredicateBySymbol("ji"), "/icons/ji_36.png", "XY", "XZ"));
-		result.addDPredicate(createArrowToArrowDPredicate(DPFConstants.DEFAULT_SIGNATURE.getPredicateBySymbol("xor"), "/icons/xor_36.png", "ZX", "ZY"));
-		result.addDPredicate(createArrowToArrowDPredicate(DPFConstants.DEFAULT_SIGNATURE.getPredicateBySymbol("nand"), "/icons/nand_36.png", "ZX", "ZY"));
-		return result;
-	}
-
-	private DPredicate createArrowLabelDPredicate(
-			Predicate predicate, String icon) {
-		if(predicate == null)
-			return null;
-		DPredicate result = createDPredicate(predicate, icon);
-		Visualization visualization = result.getVisualization();
-		visualization.setType(VisualizationType.ARROW_LABEL);
-		Graph graph = result.getPredicate().getShape();
-		visualization.setSource(graph.getArrowByName("XY"));
-		return result;
-	}
-
-	private DPredicate createArrowToArrowDPredicate(Predicate predicate,
-			String icon, String source,
-			String target) {
-		if(predicate == null)
-			return null;
-		DPredicate result = createDPredicate(predicate, icon);
-		Visualization visualization = result.getVisualization();
-		visualization.setType(VisualizationType.ARROW_TO_ARROW);
-		Graph graph = result.getPredicate().getShape();
-		visualization.setSource(graph.getArrowByName(source));
-		visualization.setTarget(graph.getArrowByName(target));
-		return result;
-	}
-
-	@Override
-	public DArrowLabelConstraint createDArrowLabelConstraint() {
-		DArrowLabelConstraintImpl dArrowLabelConstraint = new DArrowLabelConstraintImpl();
-		return dArrowLabelConstraint;
-	}
-
-	@Override
-	public DOffset createDefaultDOffset() {
-//		Adjust the initial position of the arrow label
-		return new DOffsetImpl(new Point(10, -3), 16);
 	}
 } //DiagramFactoryImpl

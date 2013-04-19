@@ -25,7 +25,6 @@ import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.Node;
-import no.hib.dpf.diagram.DFakeNode;
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.diagram.DiagramPackage;
 import no.hib.dpf.editor.DPFEditor;
@@ -67,10 +66,30 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 
 	private Map<NodeEditPart, List<ConnectionAnchor>> anchors = new HashMap<NodeEditPart, List<ConnectionAnchor>>();
 
+	private INodePainting nodePaint;
 	public DNodeEditPart() {
 		super();
 
 	}
+
+	private boolean anchorListContainsConnection(List<ConnectionAnchor> previousAnchorList, ConnectionEditPart connection) {
+		return (getConnectionsAnchor(previousAnchorList, connection) != null);
+	}
+
+	private ConnectionAnchor createAnchorUseConfigure(){
+		if(getNodePaint() != null)
+			return nodePaint.createConnectionAnchor(getFigure());
+		return null;
+	}
+
+
+	public ConnectionAnchor createConnectionAnchor(ConnectionEditPart connection, boolean b, DNodeEditPart owner){
+		ConnectionAnchor anchor = owner.createAnchorUseConfigure();
+		if(anchor != null)
+			return anchor;
+		return getConnectionAnchor(connection, b);
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -85,54 +104,6 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new NameDirectEditPolicy());
 	}
 
-	@Override
-	public void performRequest(Request req) {
-		if (req.getType().equals(RequestConstants.REQ_DIRECT_EDIT) && !(getModel() instanceof DFakeNode)) {
-			TextDirectEditManager manager = new TextDirectEditManager(this, TextCellEditor.class, new TextCellEditorLocator(((NodeFigure)getFigure()).getNameLabel()));
-			manager.show();
-			return;
-		}
-		super.performRequest(req);
-	}
-
-	private String getNodeLabelName() {
-		String result = "";
-		if(getModel() instanceof DFakeNode)
-			return ((DFakeNode)getModel()).getDConstraint().getDPredicate().getSimpleName();
-		if(getDPFNode().getName() != null)
-			result += getDPFNode().getName();
-		Node type = getType();
-		if (DPFEditorPreferences.getDefault().getDisplayTypeNames() && type != null && type.getName() != null) 
-			result += " : " + type.getName();
-		return result;
-	}
-
-
-	public Node getType(){
-		Node model = getDPFNode();
-		if(model != null)
-			return model.getTypeNode();
-		return null;
-	}
-
-	public DNode getDType(){
-		DNode model = getDNode();
-		if(model != null)
-			return model.getDType();
-		return null;
-	}
-
-	public DNode getDNode(){
-		return (DNode) getModel();
-	}
-
-	public Node getDPFNode(){
-		DNode dnode = getDNode();
-		if(dnode != null)
-			return dnode.getNode();
-		return null;
-	}
-
 	protected IFigure createFigure() {
 		if(getNodePaint() != null)
 			return nodePaint.createNodeFigure();
@@ -140,22 +111,10 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 		return figure;
 	}
 
-	private INodePainting nodePaint;
-	private INodePainting getNodePaint() {
-		if(nodePaint == null)
-			try {
-				String name = null;
-				if(!(getDNode() instanceof DFakeNode))
-					name = getDNode().getDType().getConfigureString();
-				if(name == null || name.isEmpty())
-					return null;
-				IConfigurationElement configure = FigureConfigureManager.getInstance().getConfigurationElement(name);
-				if(configure != null)
-					nodePaint = (INodePainting) configure.createExecutableExtension(FigureConfigureManager.PAINT_ATT);
-			} catch (CoreException e) {
-				e.printStackTrace();
-			}
-		return nodePaint;
+	private DNodeEditPart getAnchorOwner(ConnectionEditPart connection, boolean source){
+		if(connection == null || source || connection.getTarget() == null)
+			return this;
+		return (DNodeEditPart) connection.getTarget();
 	}
 
 	private ConnectionAnchor getConnectionAnchor(ConnectionEditPart connection, boolean isSourceAnchor) {
@@ -193,10 +152,6 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 		}
 	}
 
-	private boolean anchorListContainsConnection(List<ConnectionAnchor> previousAnchorList, ConnectionEditPart connection) {
-		return (getConnectionsAnchor(previousAnchorList, connection) != null);
-	}
-
 	private ConnectionAnchor getConnectionsAnchor(List<ConnectionAnchor> previousAnchorList, ConnectionEditPart connection) {
 		for (ConnectionAnchor connectionAnchor : previousAnchorList) {
 			if (connectionAnchor instanceof MultipleArrowsChopboxAnchor) {
@@ -208,13 +163,24 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 		}
 		return null;		
 	}
+	protected DNode getDiagramModel(){ return (DNode) getModel(); }
 
-	private NodeEditPart getOppositeEnd(ConnectionEditPart connection, boolean isSourceAnchor) {
-		if (connection == null) 
-			return null;
-		if (isSourceAnchor) 
-			return (NodeEditPart) connection.getTarget();
-		return (NodeEditPart) connection.getSource();
+	public DNode getDNode(){
+		return (DNode) getModel();
+	}
+
+	public Node getDPFNode(){
+		DNode dnode = getDNode();
+		if(dnode != null)
+			return dnode.getNode();
+		return null;
+	}
+
+	public DNode getDType(){
+		DNode model = getDNode();
+		if(model != null)
+			return model.getDType();
+		return null;
 	}
 
 	@Override
@@ -235,17 +201,39 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 		return targets;
 	}
 
-	public ConnectionAnchor createConnectionAnchor(ConnectionEditPart connection, boolean b, DNodeEditPart owner){
-		ConnectionAnchor anchor = owner.createAnchorUseConfigure();
-		if(anchor != null)
-			return anchor;
-		return getConnectionAnchor(connection, b);
+	private String getNodeLabelName() {
+		String result = "";
+		if(getDPFNode().getName() != null)
+			result += getDPFNode().getName();
+		Node type = getType();
+		if (DPFEditorPreferences.getDefault().getDisplayTypeNames() && type != null && type.getName() != null) 
+			result += " : " + type.getName();
+		return result;
 	}
 
-	private ConnectionAnchor createAnchorUseConfigure(){
-		if(getNodePaint() != null)
-			return nodePaint.createConnectionAnchor(getFigure());
-		return null;
+	private INodePainting getNodePaint() {
+		if(nodePaint == null)
+			try {
+				String name = null;
+				if(!(getDNode() instanceof DNode))
+					name = getDNode().getDType().getConfigureString();
+				if(name == null || name.isEmpty())
+					return null;
+				IConfigurationElement configure = FigureConfigureManager.getInstance().getConfigurationElement(name);
+				if(configure != null)
+					nodePaint = (INodePainting) configure.createExecutableExtension(FigureConfigureManager.PAINT_ATT);
+			} catch (CoreException e) {
+				e.printStackTrace();
+			}
+		return nodePaint;
+	}
+
+	private NodeEditPart getOppositeEnd(ConnectionEditPart connection, boolean isSourceAnchor) {
+		if (connection == null) 
+			return null;
+		if (isSourceAnchor) 
+			return (NodeEditPart) connection.getTarget();
+		return (NodeEditPart) connection.getSource();
 	}
 
 	@Override
@@ -253,16 +241,10 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 		return createConnectionAnchor(connection, true, getAnchorOwner(connection, true));
 	}
 
-	private DNodeEditPart getAnchorOwner(ConnectionEditPart connection, boolean source){
-		if(connection == null || source || connection.getTarget() == null)
-			return this;
-		return (DNodeEditPart) connection.getTarget();
-	}
 	@Override
 	public ConnectionAnchor getSourceConnectionAnchor(Request request) {
 		return createConnectionAnchor(null, true, getAnchorOwner(null, true));
 	}
-
 	@Override
 	public ConnectionAnchor getTargetConnectionAnchor(ConnectionEditPart connection) {
 		return createConnectionAnchor(connection, false, getAnchorOwner(connection, false));
@@ -273,41 +255,45 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 		return createConnectionAnchor(null, false, getAnchorOwner(null, false));
 	}
 
-	protected DNode getDiagramModel(){ return (DNode) getModel(); }
+	public Node getType(){
+		Node model = getDPFNode();
+		if(model != null)
+			return model.getTypeNode();
+		return null;
+	}
 
-	protected void refreshVisuals() {
-		NodeFigure figure = (NodeFigure)getFigure();
-		DPFEditor editor = getEditor();
-		if(editor != null){
-			boolean flag = editor.isMakerExisting(getDNode().getNode());
-			if(figure.getErrorImageFlag() != flag)
-				figure.setErrorImageFlag(flag);
+	/*
+	 * After the diagram elements is created or updated, then refresh the visualization
+	 * @see no.hib.dpf.editor.parts.GraphicalEditPartWithListener#handleDiagramModelChanged(org.eclipse.emf.common.notify.Notification)
+	 */
+	@Override
+	protected void handleDiagramModelChanged(Notification msg) {
+		super.handleDiagramModelChanged(msg);
+		if(msg.getNotifier() != null && msg.getNotifier() == getDiagramModel()){ 
+			switch(msg.getFeatureID(DNode.class)){
+			case DiagramPackage.DNODE__DOUTGOINGS:
+			case DiagramPackage.DNODE__CONSTRAINTS_FROM:
+				refreshSourceConnections();
+				break;
+			case DiagramPackage.DNODE__DINCOMINGS:
+			case DiagramPackage.DNODE__CONSTRAINTS_TO:
+				refreshTargetConnections();
+				break;
+			case DiagramPackage.DNODE__LOCATION:
+			case DiagramPackage.DNODE__SIZE:
+				refresh();
+				for(Object connect : getTargetConnections()){
+					if(connect instanceof DConstraintEditPart && ((DConstraintEditPart)connect).getSource() instanceof DComposedNodePart){
+						DComposedNodePart editPart = (DComposedNodePart) ((DConstraintEditPart)connect).getSource();
+						editPart.resize(getDNode().getLocation());
+						
+					}
+				}
+			}
+
 		}
-		getFigure().setBounds(new Rectangle(getDiagramModel().getLocation(), getDiagramModel().getSize()));
-		refreshLabel();
-		//			((GraphicalEditPart) getParent()).setLayoutConstraint(this, getFigure(), bounds);
-		// notify parent container of changed position & location
-		// if this line is removed, the XYLayoutManager used by the parent
-		// container (the Figure of the DPFDiagramEditPart), will not know the bounds of
-		// this figure and will not draw it correctly.
 	}
 
-	private void refreshLabel() {
-		NodeFigure tableFigure = (NodeFigure) getFigure();
-		EditableLabel label = tableFigure.getNameLabel();
-		label.setText(getNodeLabelName());
-		label.setVisible(true);
-		label.revalidate();
-	}
-
-	protected void listen(){
-		super.listen();
-		addUIAdapter(getDPFNode(), modelListener);
-	}
-	protected void unlisten(){
-		removeUIAdapter(getDPFNode(), modelListener);
-		super.unlisten();
-	}
 	/*
 	 * Verification of the model after arrows added or deleted.
 	 * @see no.hib.dpf.editor.parts.GraphicalEditPartWithListener#handleModelChanged(org.eclipse.emf.common.notify.Notification)
@@ -327,6 +313,49 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 				break;
 			}
 		}
+	}
+
+	protected void listen(){
+		super.listen();
+		addUIAdapter(getDPFNode(), modelListener);
+	}
+
+	@Override
+	public void performRequest(Request req) {
+		if (req.getType().equals(RequestConstants.REQ_DIRECT_EDIT)) {
+			TextDirectEditManager manager = new TextDirectEditManager(this, TextCellEditor.class, new TextCellEditorLocator(((NodeFigure)getFigure()).getNameLabel()));
+			manager.show();
+			return;
+		}
+		super.performRequest(req);
+	}
+	private void refreshLabel() {
+		NodeFigure tableFigure = (NodeFigure) getFigure();
+		EditableLabel label = tableFigure.getNameLabel();
+		label.setText(getNodeLabelName());
+		label.setVisible(true);
+		label.revalidate();
+	}
+	protected void refreshVisuals() {
+		NodeFigure figure = (NodeFigure)getFigure();
+		DPFEditor editor = getEditor();
+		if(editor != null){
+			boolean flag = editor.isMakerExisting(getDNode().getNode());
+			if(figure.getErrorImageFlag() != flag)
+				figure.setErrorImageFlag(flag);
+		}
+		getFigure().setBounds(new Rectangle(getDiagramModel().getLocation(), getDiagramModel().getSize()));
+		refreshLabel();
+		//			((GraphicalEditPart) getParent()).setLayoutConstraint(this, getFigure(), bounds);
+		// notify parent container of changed position & location
+		// if this line is removed, the XYLayoutManager used by the parent
+		// container (the Figure of the DPFDiagramEditPart), will not know the bounds of
+		// this figure and will not draw it correctly.
+	}
+
+	protected void unlisten(){
+		removeUIAdapter(getDPFNode(), modelListener);
+		super.unlisten();
 	}
 
 	private void verifyOnArrowChange(Node node, Object oldArrow, Object newArrow){
@@ -365,28 +394,6 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 					editor.deleteMaker(iter, constraint);
 				for(Arrow iter : arrows)
 					editor.deleteMaker(iter, constraint);
-			}
-
-		}
-	}
-
-	/*
-	 * After the diagram elements is created or updated, then refresh the visualization
-	 * @see no.hib.dpf.editor.parts.GraphicalEditPartWithListener#handleDiagramModelChanged(org.eclipse.emf.common.notify.Notification)
-	 */
-	@Override
-	protected void handleDiagramModelChanged(Notification msg) {
-		super.handleDiagramModelChanged(msg);
-		if(msg.getNotifier() != null && msg.getNotifier() == getDiagramModel()){ 
-			switch(msg.getFeatureID(DNode.class)){
-			case DiagramPackage.DNODE__DOUTGOINGS:
-			case DiagramPackage.DNODE__CONSTRAINTS_FROM:
-				refreshSourceConnections();
-				break;
-			case DiagramPackage.DNODE__DINCOMINGS:
-			case DiagramPackage.DNODE__CONSTRAINTS_TO:
-				refreshTargetConnections();
-				break;
 			}
 
 		}
