@@ -15,6 +15,7 @@
  *******************************************************************************/
 package no.hib.dpf.editor.commands;
 
+import no.hib.dpf.diagram.DConstraintNode;
 import no.hib.dpf.diagram.DNode;
 
 import org.eclipse.draw2d.geometry.Point;
@@ -45,7 +46,12 @@ public class DNodeMoveCommand extends Command {
 		if (node == null || newLocation == null) {
 			throw new IllegalArgumentException();
 		}
-		setLabel("Move " + node.getNode().getName());
+		String name = null;
+		if(node instanceof DConstraintNode){
+			name = ((DConstraintNode)node).getDConstraint().getDPredicate().getPredicate().getSymbol();
+		}else
+			name = node.getNode().getName();
+		setLabel("Move " + name);
 		this.node = node;
 		this.newLocation = newLocation.getCopy();
 		oldLocation = node.getLocation();
