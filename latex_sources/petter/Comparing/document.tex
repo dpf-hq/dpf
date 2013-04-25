@@ -2,6 +2,9 @@
 %%There is just one section and two subsections.
 \documentclass[pdftex,11pt,a4paper]{article}
 
+\usepackage{graphicx}
+\usepackage{float}
+
 \begin{document}
 
 \title{Analyzing Model to Model Transformation
@@ -47,14 +50,47 @@ as output. In this article we try and go into depth for some model
 transformation tools. These tools are Henshin, AGG and ATL. Henshin and AGG is
 build around graph transformation. 
 
+\subsection{The Model Instances}
+The task was to take a certain instance of model transformation, in this case
+transforming a activity diagram, written in the language UML and
+transform it to petri net. We initialize the metamodels to make sure that the
+models remain consistent.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{figures/ActivityMetamodel.png}
+	\caption{Metamodel of Activity Diagram }
+\end{figure}
+
+The metamodel of an activity diagram has an arbitrary number of activity and
+next elements. An activity element can have a name and can be of some type kind.
+Example of activity types can be decision or simple. The next element can have
+an inscription and has the property to either start or end an activity. The
+collection of activity and next elements have to have an activity diagram that
+they belong to. Now we have defined the metamodel that the source model should
+conform to. To keep consistency between the models we need to have a
+metamodel for the target model.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{figures/PetriNetsMetamodel.png}
+	\caption{Metamodel of Petri nets}
+\end{figure}
+
+The metamodel for a petri net consist of places and transitions. A petri net
+instance must have a place connected to a transition or the other way around.
+But a petri net can never have two of the same types connected with each other.
+There also is two nodes that distinguish if the arrow has a place or a
+transition as source node and the opposite as target node.
+
+\subsection{Defining a set of rules}
+For a transformation language to be able to execute for graph transformations a
+set of rules needs to be defined. Through these rules, a transformation
+interpreter can act accordingly. 
+
 \subsection{Graph Transformation}
 Model transformations can occur through the use of graph transformations, also
 referred to graph rewriting.
-
-\subsection{The Model Instance}
-The task was to take a certain instance of model transformation, in this case
-transforming a activity diagram, written in the language UML and
-transform it to Petri net. 
 
 \section{Henshin}
 
@@ -69,10 +105,19 @@ both endogenous and exogenous transformations.
 \subsection{Defining transformation rules}
 
 In Henshin, objects are referred to as nodes and links between objects as edges.
-A collection of these nodes and edges form a graph. Each rule is represented as
-a graph in the graphical editor. 
+A collection of these nodes and edges form a graph. For each graph, a rule has
+to be defined. These rules can have parameters for checking and model
+verification. Each rule can be represented as a graph in the graphical
+editor. \linebreak
+\newline When creating these rules, there has to be a way of distinguishing
+elements between the LHS and the RHS. This is done through the use of
+a set of predefined tag words, or stereotypes. For handling transformations
+either in the pattern graph or the replacement graph, we can use the three
+predefined words preserve, create or delete. Forbid and require are used for
+defining Negative Application Conditions (NACs) and Positive Application
+Conditions (PACs). These actions are supported for nodes, edges and attributes.
 
-
+\pagebreak
 \bibliographystyle{plain} 
 \bibliography{Master}
 
