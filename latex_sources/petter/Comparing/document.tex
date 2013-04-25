@@ -10,14 +10,56 @@
 \author{Petter Barvik}
 
 \maketitle
-\abstract{Troll}
 \section{Introduction}
 
+Model Driven Engineering(MDE)\cite{France2007} thrives to raise the level of abstraction in
+program specification and increase automation in program development. The idea
+from MDE is to use models at different levels of abstraction when developing
+applications. Therefore raising the level of abstraction in program
+specification. This level of abstraction is fulfilled either through extensive
+use of models to describe some design patterns in a software application or
+through use of standardized models. The first option is probably an element of
+MDE that is most common among software engineers. That you implement some aspect
+of a system based on a model of a specific language. Unified Modelling Language is
+an example of an modelling language often used to describe system design
+patterns in an application domain. The second principle of Model Driven
+Engineering is to increase automation in program development, and to obtain this
+we use something called model transformations. \linebreak 
+\newline A model transformation is when we change some source model from one
+instance to another instance and end up with a targeted model. We can
+distinguish these operations into either endogenous or exogenous model
+transformations. In an endogenous model transformation we take one model
+expressed in a language and produce a model expressed in the same language.
+While in an exogenous model transformation we produce a model expressed in a
+different language. It is essential that these models are consistent. This is
+obtained through the use of metamodels. A metamodel is an abstraction of a
+model, where it defines elements that are used in the model. Models in a
+system is consistent if the source and target model conforms to some unique 
+metamodel. This way system developers can safely presume that a model has
+changed accordingly to its metamodel and therefore is consistent. A target model
+can produce two different kind of output models. The first one is code
+generation, often referred to Model to Text(M2T) transformation, and it takes
+one model and produces implementation code. This is convenient if for example a software
+engineer wants to produce source code from a given model. The latter is often
+referred to Model to Model(M2M) transformations, that is also the subject of
+my master thesis. M2M transformations take a model as input and produces a model
+as output. In this article we try and go into depth for some model
+transformation tools. These tools are Henshin, AGG and ATL. Henshin and AGG is
+build around graph transformation. 
+
+\subsection{Graph Transformation}
+Model transformations can occur through the use of graph transformations, also
+referred to graph rewriting.
+
+\subsection{The Model Instance}
+The task was to take a certain instance of model transformation, in this case
+transforming a activity diagram, written in the language UML and
+transform it to Petri net. 
 
 \section{Henshin}
 
 Henshin provides a model transformation language for the Eclipse Modelling
-Framework \cite{Steinberg:2009:EEM:1197540}. With support for both direct 
+Framework \cite{Steinberg2009}. With support for both direct 
 transformation of EMF single model instances, and translation from source
 model to targeted model. The Henshin project is a transformation language with a
 provided graphical syntax. With the help of this graphical editor, it provides
@@ -28,19 +70,7 @@ both endogenous and exogenous transformations.
 
 In Henshin, objects are referred to as nodes and links between objects as edges.
 A collection of these nodes and edges form a graph. Each rule is represented as
-a graph in the graphical editor.
-
-Plain text. and some more text \cite{Taentzer2004}
-sdsd  dsd
-
-sd
-
-sd
-
-\subsection{Another subtitle}
-
-More plain text.
-dsd dsds 
+a graph in the graphical editor. 
 
 
 \bibliographystyle{plain} 
