@@ -78,7 +78,7 @@ public class DPFPaletteFactory {
 			VElement element = maps.get(node);
 			if(element instanceof VNode){
 				VNode vNode = (VNode) element;
-					ImageDescriptor smallIcon = vNode.getIcon() != null && !vNode.getIcon().isEmpty() ? null : ImageDescriptor.createFromFile(null, vNode.getIcon());
+					ImageDescriptor smallIcon = vNode.getIcon() == null || vNode.getIcon().isEmpty() ? null : ImageDescriptor.createFromFile(null, vNode.getIcon());
 					nodeGroup.add(new CreationToolEntry(node.getName(), "Create a new " + node.getName(), new NodeFactory(node), 
 							smallIcon != null ? smallIcon : SMALLICON, 
 									LARGEICON));
@@ -87,7 +87,7 @@ public class DPFPaletteFactory {
 		for(Arrow arrow : graph.getArrows()){
 			if(arrow instanceof VArrow){
 				VArrow vArrow = (VArrow) arrow;
-					ImageDescriptor smallIcon = vArrow.getIcon() != null && !vArrow.getIcon().isEmpty() ? null : ImageDescriptor.createFromFile(null, vArrow.getIcon());
+					ImageDescriptor smallIcon = vArrow.getIcon() == null || vArrow.getIcon().isEmpty() ? null : ImageDescriptor.createFromFile(null, vArrow.getIcon());
 					nodeGroup.add(new CreationToolEntry(arrow.getName(), "Create a new " + arrow.getName(), new ArrowFactory(arrow), 
 							smallIcon != null ? smallIcon : SMALLICON, 
 									LARGEICON));
