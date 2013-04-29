@@ -4,6 +4,8 @@
 
 \usepackage{graphicx}
 \usepackage{float}
+\usepackage{indentfirst}
+\usepackage{url}
 
 \begin{document}
 
@@ -28,7 +30,7 @@ an example of an modelling language often used to describe system design
 patterns in an application domain. The second principle of Model Driven
 Engineering is to increase automation in program development, and to obtain this
 we use something called model transformations. \linebreak 
-\newline A model transformation is when we change some source model from one
+\indent A model transformation is when we change some source model from one
 instance to another instance and end up with a targeted model. We can
 distinguish these operations into either endogenous or exogenous model
 transformations. In an endogenous model transformation we take one model
@@ -124,12 +126,39 @@ graphs. The editor provides a graphical user-interface with several visual
 editors for applying the principles of graph transformation. It also has an
 interpreter and a set of validation tools.
 
+\subsection{Graphical Editor}
+The graphical editor of AGG has several functions to help the user to define
+model transformations. In the top left corner of the graphical user-interface is
+a tree based editor for defining rules and grammar. This tree based editor also
+contains the type graphs and the host graphs. Where the host graph represents
+some input model for a model transformation.
+\indent Each application rule has two visual editors, representing the left and
+the right hand side, or the pattern and the replacement graph. In the tree
+collection of rules and grammars it is possible to give rules application
+conditions. This is convenient if the user wants to have constrains for the
+pattern or the replacement graph. 
+\indent In the tree based visual editor it is also possible to define host
+graphs and type graphs. Type graphs is described more in depths in the next
+section, but roughly said, the type graph defines elements that can be used in
+the host graph. Type graphs defines the abstract models for the host graph and
+can be compared to Meta Object Facility
+(MOF)\cite{OMGAdoptedSpecificationptc/03-10-04}, that is a language for defining
+abstract syntax of modeling languages. The users can now create instances
+from these type graphs. These instances represents the host graphs and
+corresponds to its concurrent type graph. 
+\indent For the application rules, the user can extend the attributes with Java
+expressions. This means that the users can use Java primitives such as strings,
+integers or float numbers to form the pattern graph or the left hand side of the
+rule. The user cannot bind attributes that is not initialised in the type graph. 
+
 \subsection{}
+
+sdas
 
 
 
 \pagebreak
 \bibliographystyle{plain} 
-\bibliography{Master}
+\bibliography{Master,websites}
 
 \end{document}
