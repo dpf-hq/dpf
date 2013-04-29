@@ -1,9 +1,9 @@
-package no.hib.dpf.editor;
+package no.hib.dpf.editor.figures.draw2d;
 
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
 
-public class  Transform {
+public class  TransformUtils {
 
 	public static double getAngle(double x, double y){
 		return Math.atan2(y, x);

@@ -1,20 +1,18 @@
 package no.hib.dpf.visual.presentation;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.EventObject;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import no.hib.dpf.editor.DPFErrorReport;
+import no.hib.dpf.visual.VisualPlugin;
+import no.hib.dpf.visual.VisualUtils;
 import no.hib.dpf.visual.Visuals;
-import no.hib.dpf.visual.util.VisualUtil;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -22,7 +20,6 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.gef.DefaultEditDomain;
 import org.eclipse.gef.commands.CommandStack;
 import org.eclipse.gef.commands.CommandStackListener;
@@ -66,7 +63,7 @@ public class VisualFormEditor extends FormEditor implements CommandStackListener
 			int index = addPage(editor, getEditorInput());
 			setPageText(index, editor.getTitle());
 		}catch(PartInitException e){
-			DPFErrorReport.logError(e);
+			VisualPlugin.INSTANCE.log(e);
 		}
 		if (getPageCount() == 1 && getContainer() instanceof CTabFolder) 
 			((CTabFolder) getContainer()).setTabHeight(0);
@@ -90,15 +87,15 @@ public class VisualFormEditor extends FormEditor implements CommandStackListener
 			setDirty(false);
 		}
 		catch (Exception exception) {
-			DPFErrorReport.logError(exception);
+			VisualPlugin.INSTANCE.log(exception);
 		}
 	}
 
-	private ResourceSetImpl resourceSet = getResourceSet();
+	private ResourceSetImpl resourceSet = VisualUtils.getResourceSet();
 	private Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
 	
 	private void saveSignature() {
-		saveDSignature(resourceSet, URI.createFileURI(visualFile), visuals, resourceToDiagnosticMap);
+		VisualUtils.saveVisuals(resourceSet, URI.createFileURI(visualFile), visuals, resourceToDiagnosticMap);
 	}
 	
 	public boolean isDirty() {
@@ -139,7 +136,7 @@ public class VisualFormEditor extends FormEditor implements CommandStackListener
 		IFile file = ((IFileEditorInput)input).getFile();
 		visualFile = file.getLocation().toOSString();
 		setPartName(file.getName());
-		visuals = loadEObjects(resourceSet, URI.createFileURI(visualFile), resourceToDiagnosticMap);
+		visuals = VisualUtils.loadVisuals(resourceSet, URI.createFileURI(visualFile), resourceToDiagnosticMap);
 	}
 
 	protected CommandStack getCommandStack() {
@@ -177,33 +174,4 @@ public class VisualFormEditor extends FormEditor implements CommandStackListener
 			return getCommandStack();
 		return super.getAdapter(type);
 	}
-	
-	public static ResourceSetImpl getResourceSet(){
-		ResourceSetImpl resourceSet = new ResourceSetImpl();
-		resourceSet.setURIResourceMap(new LinkedHashMap<URI, Resource>());
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("vis", new XMIResourceFactoryImpl());
-		return resourceSet;
-	}
-	
-	public static void saveDSignature(ResourceSetImpl resourceSet, URI osString, Visuals visuals, 
-			Map<Resource, Diagnostic> resourceToDiagnosticMap) {
-		Assert.isNotNull(resourceSet);
-		Resource resource = resourceSet.getResource(osString, false);
-		if(resource == null){
-			resource = resourceSet.createResource(osString);
-			resourceSet.getURIResourceMap().put(osString, resource);
-			resource.getContents().add(visuals);
-		}
-		try {
-			resource.save(null);
-		} catch (IOException e) {
-			no.hib.dpf.utils.DPFCoreUtil.analyzeResourceProblems(resource, e, resourceToDiagnosticMap);
-		}
-	}
-	
-	public static Visuals loadEObjects(ResourceSetImpl resourceSet2,
-			URI createFileURI,
-			Map<Resource, Diagnostic> resourceToDiagnosticMap2) {
-		return VisualUtil.loadEObjects(resourceSet2, createFileURI, resourceToDiagnosticMap2);
-	}	
 }

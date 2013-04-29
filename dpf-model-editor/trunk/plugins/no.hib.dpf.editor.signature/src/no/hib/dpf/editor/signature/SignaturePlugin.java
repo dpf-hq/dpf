@@ -13,7 +13,7 @@
  * 
  * �yvind Bech and Dag Viggo Lok�en - DPF Editor
  *******************************************************************************/
-package no.hib.dpf.editor;
+package no.hib.dpf.editor.signature;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -28,11 +28,11 @@ import org.osgi.framework.BundleContext;
  * @see org.eclipse.ui.plugin.AbstractUIPlugin#getPreferenceStore()
  * @author Elias Volanakis
  */
-public final class DPFPlugin extends AbstractUIPlugin {
+public final class SignaturePlugin extends AbstractUIPlugin {
 
 	/** Single plugin instance. */
-	private static DPFPlugin INSTANCE;
-	public static String PLUGIN_ID = "no.hib.dpf.editor";
+	private static SignaturePlugin INSTANCE;
+	public static String PLUGIN_ID = "no.hib.dpf.editor.signature";
 
 	/**
 	 * This method is called upon plug-in activation.
@@ -49,7 +49,7 @@ public final class DPFPlugin extends AbstractUIPlugin {
 		super.stop(context);
 	}
 	
-	public static DPFPlugin getDefault(){
+	public static SignaturePlugin getDefault(){
 		return INSTANCE;
 	}
 }

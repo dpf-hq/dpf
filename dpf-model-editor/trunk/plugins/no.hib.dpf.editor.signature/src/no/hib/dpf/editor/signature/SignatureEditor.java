@@ -1,10 +1,5 @@
 package no.hib.dpf.editor.signature;
-import static no.hib.dpf.diagram.util.DPFConstants.REFLEXIVE_DSPECIFICATION;
-import static no.hib.dpf.utils.DPFConstants.DefaultDSpecification;
-import static no.hib.dpf.utils.DPFConstants.DefaultSpecification;
-import static no.hib.dpf.utils.DPFConstants.REFLEXIVE_SPECIFICATION;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.EventObject;
 import java.util.Iterator;
@@ -14,14 +9,10 @@ import java.util.Map;
 
 import no.hib.dpf.diagram.DPredicate;
 import no.hib.dpf.diagram.DSignature;
-import no.hib.dpf.editor.DPFEditor;
-import no.hib.dpf.editor.DPFErrorReport;
-import no.hib.dpf.utils.DPFCoreUtil;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -29,8 +20,6 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 import org.eclipse.gef.DefaultEditDomain;
 import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.SnapToGeometry;
@@ -87,7 +76,7 @@ public class SignatureEditor extends FormEditor implements CommandStackListener,
 			int index = addPage(editor, getEditorInput());
 			setPageText(index, editor.getTitle());
 		}catch(PartInitException e){
-			DPFErrorReport.logError(e);
+			SignatureUtils.logError(e);
 		}
 		if (getPageCount() == 1 && getContainer() instanceof CTabFolder) 
 			((CTabFolder) getContainer()).setTabHeight(0);
@@ -111,15 +100,15 @@ public class SignatureEditor extends FormEditor implements CommandStackListener,
 			setDirty(false);
 		}
 		catch (Exception exception) {
-			DPFErrorReport.logError(exception);
+			SignatureUtils.logError(exception);
 		}
 	}
 
-	private ResourceSetImpl resourceSet = getResourceSet();
+	private ResourceSetImpl resourceSet = SignatureUtils.getResourceSet();
 	private Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
 	
 	private void saveSignature() {
-		saveDSignature(resourceSet, URI.createFileURI(signatureFile), dSignature, resourceToDiagnosticMap);
+		SignatureUtils.saveDSignature(resourceSet, URI.createFileURI(signatureFile), dSignature, resourceToDiagnosticMap);
 	}
 	
 	public boolean isDirty() {
@@ -146,7 +135,7 @@ public class SignatureEditor extends FormEditor implements CommandStackListener,
 				for(DPredicate predicate : dSignature.getDPredicates()){
 					String icon = predicate.getIcon();
 					if(icon != null && !icon.isEmpty())
-						predicate.setIcon(DPFCoreUtil.updateRelativeURI(oldBase, newBase, URI.createFileURI(icon)).toFileString());
+						predicate.setIcon(SignatureUtils.updateRelativeURI(oldBase, newBase, URI.createFileURI(icon)).toFileString());
 				}
 				signatureFile = file.getLocation().toOSString();
 				doSave(new NullProgressMonitor());
@@ -169,7 +158,7 @@ public class SignatureEditor extends FormEditor implements CommandStackListener,
 		IFile file = ((IFileEditorInput)input).getFile();
 		signatureFile = file.getLocation().toOSString();
 		setPartName(file.getName());
-		dSignature = loadDSignature(resourceSet, URI.createFileURI(signatureFile), resourceToDiagnosticMap);
+		dSignature = SignatureUtils.loadDSignature(resourceSet, URI.createFileURI(signatureFile), resourceToDiagnosticMap);
 	}
 
 	protected CommandStack getCommandStack() {
@@ -269,37 +258,6 @@ public class SignatureEditor extends FormEditor implements CommandStackListener,
 		return super.getAdapter(type);
 	}
 	
-	public static ResourceSetImpl getResourceSet(){
-		ResourceSetImpl resourceSet = new ResourceSetImpl();
-		resourceSet.setURIResourceMap(new LinkedHashMap<URI, Resource>());
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("sig", new XMIResourceFactoryImpl());
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMLResourceFactoryImpl());
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("dpf", new XMLResourceFactoryImpl());
-		Resource dGraph = resourceSet.createResource(DefaultDSpecification);
-		dGraph.getContents().add(REFLEXIVE_DSPECIFICATION);
-		resourceSet.getURIResourceMap().put(DefaultDSpecification, dGraph);
-		Resource graph = resourceSet.createResource(DefaultSpecification);
-		graph.getContents().add(REFLEXIVE_SPECIFICATION);
-		resourceSet.getURIResourceMap().put(DefaultSpecification, graph);
-		return resourceSet;
-	}
-	
-	public static void saveDSignature(ResourceSetImpl resourceSet, URI osString, DSignature signature2, 
-			Map<Resource, Diagnostic> resourceToDiagnosticMap) {
-		Assert.isNotNull(resourceSet);
-		Resource signature = resourceSet.getResource(osString, false);
-		if(signature == null){
-			signature = resourceSet.createResource(osString);
-			resourceSet.getURIResourceMap().put(osString, signature);
-			signature.getContents().add(signature2);
-			signature.getContents().add(signature2.getSignature());
-		}
-		try {
-			signature.save(null);
-		} catch (IOException e) {
-			DPFCoreUtil.analyzeResourceProblems(signature, e, resourceToDiagnosticMap);
-		}
-	}
 	
 	protected void loadProperties(GraphicalViewer viewer) {
 		// Snap to Geometry property
@@ -314,9 +272,5 @@ public class SignatureEditor extends FormEditor implements CommandStackListener,
 //			manager.setZoom(diagram.getZoom());
 //		}
 	}
-	public static DSignature loadDSignature(ResourceSetImpl resourceSet2,
-			URI createFileURI,
-			Map<Resource, Diagnostic> resourceToDiagnosticMap2) {
-		return DPFEditor.loadDSignature(resourceSet2, createFileURI, resourceToDiagnosticMap2);
-	}	
+		
 }

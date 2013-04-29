@@ -17,12 +17,7 @@ package no.hib.dpf.editor;
 
 import static no.hib.dpf.diagram.util.DPFConstants.DEFAULT_DSIGNATURE;
 import static no.hib.dpf.diagram.util.DPFConstants.REFLEXIVE_DSPECIFICATION;
-import static no.hib.dpf.utils.DPFConstants.DEFAULT_SIGNATURE;
-import static no.hib.dpf.utils.DPFConstants.DefaultDSpecification;
-import static no.hib.dpf.utils.DPFConstants.DefaultSpecification;
-import static no.hib.dpf.utils.DPFConstants.REFLEXIVE_SPECIFICATION;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.EventObject;
 import java.util.HashMap;
@@ -43,7 +38,6 @@ import no.hib.dpf.diagram.DOffset;
 import no.hib.dpf.diagram.DPredicate;
 import no.hib.dpf.diagram.DSignature;
 import no.hib.dpf.diagram.DSpecification;
-import no.hib.dpf.diagram.DiagramFactory;
 import no.hib.dpf.diagram.provider.DiagramItemProviderAdapterFactory;
 import no.hib.dpf.editor.actions.CreateConstraintAction;
 import no.hib.dpf.editor.actions.PrintAction;
@@ -75,8 +69,8 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor.PropertyValueWrapper;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.gef.ContextMenuProvider;
 import org.eclipse.gef.DefaultEditDomain;
@@ -122,6 +116,7 @@ import org.eclipse.ui.dialogs.SaveAsDialog;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.IPageSite;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
+import org.eclipse.ui.views.properties.IPropertyDescriptor;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.IPropertySource;
 import org.eclipse.ui.views.properties.IPropertySourceProvider;
@@ -148,9 +143,6 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 
 	protected PropertySheetPage propertySheetPage;
 
-	public static final String DEFAULT_DIAGRAM_MODEL_EXTENSION = ".dpf";
-	public static final String DEFAULT_MODEL_EXTENSION = ".xmi";
-
 	/** Create a new DPFEditor instance. This is called by the Workspace. */
 	public DPFEditor() {
 		paletteFactory = new DPFEditorPaletteFactory();
@@ -159,7 +151,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 	}
 
 	protected URI getFileURI() {
-		return getDSpecification().eResource().getURI();
+		return dSpecification.eResource().getURI();
 	}
 
 	private void listenToDisplayDyntTypedArrowsProperty() {
@@ -177,14 +169,6 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 				}
 			}
 		});
-	}
-
-	public DSpecification getDSpecification() {
-		return dSpecification;
-	}
-
-	public void setDSpecification(DSpecification other) {
-		dSpecification = other;
 	}
 
 	/**
@@ -270,28 +254,28 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 
 	protected void loadProperties(GraphicalViewer viewer) {
 		// Snap to Geometry property
-		viewer.setProperty(SnapToGeometry.PROPERTY_SNAP_ENABLED, getDSpecification().isSnap());
+		viewer.setProperty(SnapToGeometry.PROPERTY_SNAP_ENABLED, dSpecification.isSnap());
 		// Grid properties
-		viewer.setProperty(SnapToGrid.PROPERTY_GRID_ENABLED, getDSpecification().isGrid());
+		viewer.setProperty(SnapToGrid.PROPERTY_GRID_ENABLED, dSpecification.isGrid());
 		// We keep grid visibility and enablement in sync
-		viewer.setProperty(SnapToGrid.PROPERTY_GRID_VISIBLE, getDSpecification().isGridVisible());
+		viewer.setProperty(SnapToGrid.PROPERTY_GRID_VISIBLE, dSpecification.isGridVisible());
 		// Zoom
 		ZoomManager manager = (ZoomManager)getGraphicalViewer().getProperty(ZoomManager.class.toString());
 		if (manager != null)
-			manager.setZoom(getDSpecification().getZoom());
+			manager.setZoom(dSpecification.getZoom());
 	}
 
 	protected void saveProperties(GraphicalViewer viewer) {
 		// Snap to Geometry property
-		getDSpecification().setSnap(viewer == null ? false : (Boolean) viewer.getProperty(SnapToGeometry.PROPERTY_SNAP_ENABLED));		
+		dSpecification.setSnap(viewer == null ? false : (Boolean) viewer.getProperty(SnapToGeometry.PROPERTY_SNAP_ENABLED));		
 		// Grid properties
-		getDSpecification().setGrid(viewer == null ? false : (Boolean) viewer.getProperty(SnapToGrid.PROPERTY_GRID_ENABLED));
+		dSpecification.setGrid(viewer == null ? false : (Boolean) viewer.getProperty(SnapToGrid.PROPERTY_GRID_ENABLED));
 		// We keep grid visibility and enablement in sync
-		getDSpecification().setGridVisible(viewer == null ? false : (Boolean) viewer.getProperty(SnapToGrid.PROPERTY_GRID_VISIBLE));
+		dSpecification.setGridVisible(viewer == null ? false : (Boolean) viewer.getProperty(SnapToGrid.PROPERTY_GRID_VISIBLE));
 		// Zoom
 		ZoomManager manager = getGraphicalViewer() == null ? null : (ZoomManager)getGraphicalViewer().getProperty(ZoomManager.class.toString());
 		if (manager != null)
-			getDSpecification().setZoom(manager.getZoom());
+			dSpecification.setZoom(manager.getZoom());
 	}
 
 	public void commandStackChanged(EventObject event) {
@@ -307,24 +291,8 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		return retval;
 	}
 
-	private ResourceSetImpl resourceSet = getResourceSet();
+	private ResourceSetImpl resourceSet = DPFUtils.getResourceSet();
 	private Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
-
-	public static ResourceSetImpl getResourceSet() {
-		ResourceSetImpl resourceSet = new ResourceSetImpl();
-		resourceSet.setURIResourceMap(new LinkedHashMap<URI, Resource>());
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap() .put("xmi", new XMIResourceFactoryImpl());
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap() .put("dpf", new XMIResourceFactoryImpl());
-		Resource resource = resourceSet.createResource(DefaultDSpecification);
-		resource.getContents().add(REFLEXIVE_DSPECIFICATION);
-		resource.getContents().add(DEFAULT_DSIGNATURE);
-		resourceSet.getURIResourceMap().put(DefaultDSpecification, resource);
-		Resource model = resourceSet.createResource(DefaultSpecification);
-		model.getContents().add(REFLEXIVE_SPECIFICATION);
-		model.getContents().add(DEFAULT_SIGNATURE);
-		resourceSet.getURIResourceMap().put(DefaultSpecification, model);
-		return resourceSet;
-	}
 
 	private static void updateMetaModelReference(DSpecification iter, URI oldBase, URI createFileURI){
 		if(oldBase == null){
@@ -332,7 +300,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 			if(typeSpec != null && typeSpec != REFLEXIVE_DSPECIFICATION){
 				String relative = typeSpec.eResource().getURI().deresolve(createFileURI).toFileString();
 				iter.setMetaFile(relative);
-				iter.getSpecification().setMetaFile(DPFEditor.getModelFromDiagram(relative));
+				iter.getSpecification().setMetaFile(DPFUtils.getModelFromDiagram(relative));
 			}
 			DSignature signature = iter.getDSignature();
 			if(signature != null){
@@ -348,12 +316,12 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 			return;
 		}
 		if(iter.getMetaFile() != null && !iter.getMetaFile().isEmpty()){
-			String newMetaFile = DPFCoreUtil.updateRelativeURI(oldBase, createFileURI, URI.createFileURI(iter.getMetaFile())).toFileString();
+			String newMetaFile = DPFUtils.updateRelativeURI(oldBase, createFileURI, URI.createFileURI(iter.getMetaFile())).toFileString();
 			iter.setMetaFile(newMetaFile);
-			iter.getSpecification().setMetaFile(getModelFromDiagram(newMetaFile));
+			iter.getSpecification().setMetaFile(DPFUtils.getModelFromDiagram(newMetaFile));
 		}
 		if(iter.getSignatureFile() != null && !iter.getSignatureFile().isEmpty()){
-			String newSignatureFile = DPFCoreUtil.updateRelativeURI(oldBase, createFileURI, URI.createFileURI(iter.getSignatureFile())).toFileString();
+			String newSignatureFile = DPFUtils.updateRelativeURI(oldBase, createFileURI, URI.createFileURI(iter.getSignatureFile())).toFileString();
 			iter.setSignatureFile(newSignatureFile);
 			iter.getSpecification().setSignatureFile(newSignatureFile);
 		}
@@ -365,13 +333,13 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 			for(DPredicate predicate : dSignature.getDPredicates()){
 				String icon = predicate.getIcon();
 				if(icon != null && !icon.isEmpty())
-					predicate.setIcon(DPFCoreUtil.updateRelativeURI(oldBase, newBase, URI.createFileURI(predicate.getIcon())).toFileString());
+					predicate.setIcon(DPFUtils.updateRelativeURI(oldBase, newBase, URI.createFileURI(predicate.getIcon())).toFileString());
 			}
 		}
 	}
 	public static void updateResourceSet(ResourceSetImpl resourceSet, DSpecification newSpec, URI oldURI, URI newURI){
 		Assert.isNotNull(resourceSet);
-		URI modelFileURI = getModelURI(newURI);
+		URI modelFileURI = DPFUtils.getModelURI(newURI);
 		Resource diagram = resourceSet.createResource(newURI);
 		Resource model = resourceSet.createResource(modelFileURI);
 		resourceSet.getURIResourceMap().put(newURI, diagram);
@@ -394,53 +362,9 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 			iter = iter.getDType();
 		}
 	}		
-	public static void saveDSpecification(ResourceSetImpl resourceSet, DSpecification newSpec,
-			URI createFileURI, Map<Resource, Diagnostic> resourceToDiagnosticMap) {
-		Assert.isNotNull(resourceSet);
-		URI modelFileURI = getModelURI(createFileURI);
-		Resource diagram = resourceSet.getResource(createFileURI, false);
-		Resource model = resourceSet.getResource(modelFileURI, false);
-		Assert.isTrue(diagram != null && model != null);
-		try {
-			diagram.save(null);
-			model.save(null);
-		} catch (IOException e) {
-			DPFCoreUtil.analyzeResourceProblems(diagram, e, resourceToDiagnosticMap);
-			DPFErrorReport.logError(e);
-			System.out.println(e);
-		}
-
-	}
-
-	@SuppressWarnings("finally")
-	public static DSpecification loadDSpecification(ResourceSetImpl resourceSet,
-			URI diagramURI, Map<Resource, Diagnostic> resourceToDiagnosticMap) {
-		Assert.isNotNull(resourceSet);
-		URI modelFileURI = getModelURI(diagramURI);
-		Resource diagram = resourceSet.createResource(diagramURI);
-		Resource model = resourceSet.createResource(modelFileURI);
-		resourceSet.getURIResourceMap().put(diagramURI, diagram);
-		resourceSet.getURIResourceMap().put(modelFileURI, model);
-		try {
-			diagram.load(null);
-		} catch (Exception e) {
-			DPFErrorReport.logError(e);
-			DPFCoreUtil.analyzeResourceProblems(diagram, e, resourceToDiagnosticMap);
-		} finally {
-			if (diagram.getContents().size() == 0) {
-				DSpecification result = DiagramFactory.eINSTANCE .createDefaultDSpecification();
-				diagram.getContents().add(result);
-				model.getContents().add(result.getSpecification());
-				return result;
-			}
-			DSpecification dsp = (DSpecification) diagram.getContents().get(0);
-			return dsp;
-		}
-	}
-
 
 	public DSignature getDSignature() {
-		return getDSpecification().getDSignature();
+		return dSpecification.getDSignature();
 	}
 
 	public void doSave(final URI uri, IProgressMonitor monitor) {
@@ -450,7 +374,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 			@Override
 			public void execute(IProgressMonitor monitor) {
 				// Save the resources to the file system.
-				saveDSpecification(resourceSet, getDSpecification(), uri, resourceToDiagnosticMap);
+				DPFUtils.saveDSpecification(resourceSet, dSpecification, uri, resourceToDiagnosticMap);
 			}
 		};
 
@@ -484,8 +408,8 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 				IFileEditorInput newInput = new FileEditorInput(file);
 				setInputWithNotify(newInput);
 				setPartName(newInput.getName());
-				updateResourceSet(resourceSet, getDSpecification(), dSpecification.eResource().getURI(), DPFCoreUtil.getFileURI(file));
-				doSave(DPFCoreUtil.getFileURI(file), new NullProgressMonitor());
+				updateResourceSet(resourceSet, dSpecification, dSpecification.eResource().getURI(), DPFUtils.getFileURI(file));
+				doSave(DPFUtils.getFileURI(file), new NullProgressMonitor());
 			}
 		}
 	}
@@ -564,8 +488,8 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 	 */
 	protected void initializeGraphicalViewer() {
 		super.initializeGraphicalViewer();
-		getGraphicalViewer().setContents(getDSpecification().getDGraph());
-		validateModel(getDSpecification().getDGraph().getGraph());
+		getGraphicalViewer().setContents(dSpecification.getDGraph());
+		validateModel(dSpecification.getDGraph().getGraph());
 		getSite().setSelectionProvider(getGraphicalViewer());
 	}
 
@@ -608,7 +532,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 	protected void setInput(IEditorInput input) {
 		super.setInput(input);
 		IFile file = ((IFileEditorInput) input).getFile();
-		dSpecification = loadDSpecification(resourceSet, DPFCoreUtil.getFileURI(file), resourceToDiagnosticMap);
+		dSpecification = DPFUtils.loadDSpecification(resourceSet, DPFUtils.getFileURI(file), resourceToDiagnosticMap);
 		EcoreUtil.resolveAll(dSpecification);
 		EcoreUtil.resolveAll(dSpecification.getSpecification());
 		if(dSpecification.getDSignature() != null){
@@ -674,37 +598,11 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		return ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
 	}
 
-	/*
-	 * Get Diagram file name from Model file name
-	 */
-	public static String getDiagramFromModel(String filename) {
-		int index = filename.lastIndexOf(DEFAULT_MODEL_EXTENSION);
-		if(index == -1)
-			return filename + DEFAULT_DIAGRAM_MODEL_EXTENSION;
-		return filename.substring(0, index) + DEFAULT_DIAGRAM_MODEL_EXTENSION;
-	}
-
-	/*
-	 * Get Model file name from Diagram file name
-	 */
-	public static String getModelFromDiagram(String filename) {
-		int index = filename.lastIndexOf(DEFAULT_DIAGRAM_MODEL_EXTENSION);
-		if(index == -1)
-			return filename + DEFAULT_MODEL_EXTENSION;
-		return filename.substring(0, index) + DEFAULT_MODEL_EXTENSION;
-	}
-
-	/*
-	 * Get Model URI from Diagam URI
-	 */
-	public static URI getModelURI(URI diagramURI) {
-		return diagramURI.trimFileExtension().appendFileExtension("xmi");
-	}
 
 	@Override
 	public void doSave(IProgressMonitor monitor) {
 		IFile file = ((IFileEditorInput) getEditorInput()).getFile();
-		doSave(DPFCoreUtil.getFileURI(file), monitor);
+		doSave(DPFUtils.getFileURI(file), monitor);
 	}
 
 	/**
@@ -738,7 +636,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 			// hook outline viewer
 			getSelectionSynchronizer().addViewer(getViewer());
 			// initialize outline viewer with model
-			getViewer().setContents(getDSpecification().getSpecification());
+			getViewer().setContents(dSpecification.getSpecification());
 			// show outline viewer
 		}
 
@@ -772,19 +670,6 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		}
 	}
 
-	public static DSignature loadDSignature(ResourceSetImpl resourceSet2,
-			URI createFileURI,
-			Map<Resource, Diagnostic> resourceToDiagnosticMap2) {
-		Assert.isNotNull(resourceSet2);
-		Resource signature = resourceSet2.createResource(createFileURI);
-		try {
-			signature.load(null);
-		} catch (IOException e) {
-			DPFErrorReport.logError(e);
-		}
-		int size = signature.getContents().size();
-		return size == 2 ? (DSignature) signature.getContents().get(0) : null;
-	}
 	private Map<IDObject, List<IMarker>> markersMap = new HashMap<IDObject, List<IMarker>>();
 	private IMarker findMarker(List<IMarker> markers, Constraint constraint){
 		if(markers != null)
@@ -793,7 +678,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 					if(marker.getAttribute("constraint") == constraint)
 						return marker;
 				} catch (CoreException e) {
-					DPFErrorReport.logError(e);
+					DPFUtils.logError(e);
 					return null;
 				}
 		return null;
@@ -813,14 +698,14 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 				marker = file.createMarker(Marker_ID);
 				marker.setAttribute(IMarker.MESSAGE, name + " violates constraint [" 
 						+ constraint.getPredicate().getSymbol()    + "] on {" 
-						+ DPFErrorReport.printConstraint(constraint) + "}");
+						+ DPFUtils.printConstraint(constraint) + "}");
 				marker.setAttribute(IMarker.LOCATION, name);
 				marker.setAttribute(IMarker.PRIORITY, IMarker.PRIORITY_NORMAL);
 				marker.setAttribute(IMarker.SEVERITY, IMarker.SEVERITY_ERROR);
 				marker.setAttribute("constraint", constraint);
 			} catch (CoreException e) {
 				marker = null;
-				DPFErrorReport.logError(e);
+				DPFUtils.logError(e);
 			}
 			if(marker != null)
 				markers.add(marker);
@@ -832,7 +717,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 	}
 	private void updateVisual(IDObject iter){
 		if(iter instanceof Node){
-			DNode dNode = getDSpecification().getDGraph().getDNode((Node) iter);
+			DNode dNode = dSpecification.getDGraph().getDNode((Node) iter);
 			if(dNode != null){
 				Object editpart = getGraphicalViewer().getEditPartRegistry().get(dNode);
 				if(editpart instanceof DNodeEditPart)
@@ -840,48 +725,6 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 			}
 		}
 	}
-	//	public IMarker addMarker(String message, String object, String constraint){
-	//		IFile file = ((IFileEditorInput)getEditorInput()).getFile();
-	//		if(file == null)
-	//			return null;
-	//		IMarker marker = null;
-	//		try {
-	//			marker = file.createMarker(Marker_ID);
-	//			marker.setAttribute(IMarker.MESSAGE, message);
-	//			marker.setAttribute(IMarker.LOCATION, object.toString());
-	//			marker.setAttribute(IMarker.PRIORITY, IMarker.PRIORITY_NORMAL);
-	//			marker.setAttribute(IMarker.SEVERITY, IMarker.SEVERITY_ERROR);
-	//			marker.setAttribute("constraint", constraint);
-	//		} catch (CoreException e) {
-	//			DPFErrorReport.logError(e);
-	//			return null;
-	//		}
-	//		return marker;
-	//	}
-
-	//	public List<IMarker> findAllMarkers() {
-	//		IFile file = ((IFileEditorInput)getEditorInput()).getFile();
-	//		if(file == null)
-	//			return null;
-	//		List<IMarker> markList;
-	//		try {
-	//			markList = Arrays.asList(file.findMarkers(Marker_ID, true,IFile.DEPTH_INFINITE));
-	//		} catch (CoreException e) {
-	//			DPFErrorReport.logError(e);
-	//			return new ArrayList<IMarker>();
-	//		}
-	//		return markList;
-	//	}
-
-	//	public void deleteSingleMarker(IMarker mark) {
-	//		if (mark.exists()) {
-	//			try {
-	//				mark.delete();
-	//			} catch (CoreException e) {
-	//				DPFErrorReport.logError(e);
-	//			}
-	//		}
-	//	}
 
 	public boolean isMakerExisting(IDObject object) {
 		return markersMap.containsKey(object) && !markersMap.get(object).isEmpty();
@@ -901,7 +744,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 						if(markers.isEmpty())
 							updateVisual(iter);
 					} catch (CoreException e) {
-						DPFErrorReport.logError(e);
+						DPFUtils.logError(e);
 					}
 				}
 			}
@@ -921,7 +764,49 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 			markersMap.remove(checkedArrow);
 			updateVisual(checkedArrow);
 		} catch (CoreException e) {
-			DPFErrorReport.logError(e);
+			DPFUtils.logError(e);
 		}
+	}
+	
+	class UnwrappingPropertySource implements IPropertySource {
+	    private IPropertySource source;
+
+	    public UnwrappingPropertySource(final IPropertySource source) {
+	        this.source = source;
+	    }
+
+	    @Override
+	    public Object getEditableValue() {
+	        Object value = source.getEditableValue();
+	        return value instanceof PropertyValueWrapper ? ((PropertyValueWrapper) value).getEditableValue(null) : source.getEditableValue();
+	    }
+
+	    @Override
+	    public IPropertyDescriptor[] getPropertyDescriptors() {
+	        return source.getPropertyDescriptors();
+	    }
+
+	    @Override
+	    public Object getPropertyValue(Object id) {
+	        Object value = source.getPropertyValue(id);
+	        if(value == null)
+	        	return null;
+	        return value instanceof PropertyValueWrapper ? ((PropertyValueWrapper) value).getEditableValue(null) : value;//source.getEditableValue();
+	    }
+
+	    @Override
+	    public boolean isPropertySet(Object id) {
+	        return source.isPropertySet(id);
+	    }
+
+	    @Override
+	    public void resetPropertyValue(Object id) {
+	        source.resetPropertyValue(id);
+	    }
+
+	    @Override
+	    public void setPropertyValue(Object id, Object value) {
+	        source.setPropertyValue(id, value);
+	    }
 	}
 }

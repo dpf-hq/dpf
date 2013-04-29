@@ -34,5 +34,6 @@ Export-Package: no.hib.dpf.core.provider,
  no.hib.dpf.editor.commands,
  no.hib.dpf.editor.parts,
  no.hib.dpf.editor.parts.listeners,
+ no.hib.dpf.editor.policies,
  no.hib.dpf.editor.wizards
 

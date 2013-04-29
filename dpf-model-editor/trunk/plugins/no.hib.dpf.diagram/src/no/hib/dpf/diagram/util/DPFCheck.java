@@ -1,4 +1,4 @@
-package no.hib.dpf.editor;
+package no.hib.dpf.diagram.util;
 
 import static no.hib.dpf.diagram.util.DPFConstants.REFLEXIVE_DSPECIFICATION;
 import static no.hib.dpf.diagram.util.DPFConstants.REFLEXIVE_TYPE_DARROW;
@@ -15,7 +15,7 @@ import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.utils.DPFConstants;
 
 import org.eclipse.core.runtime.Assert;
-
+//Check the dpf model. Only use for test
 public class DPFCheck {
 	
 	private static void checkNode(Node node) {

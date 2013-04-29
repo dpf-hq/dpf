@@ -20,10 +20,10 @@ import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DArrowLabelConstraint;
 import no.hib.dpf.diagram.DConstraint;
 import no.hib.dpf.diagram.DOffset;
-import no.hib.dpf.diagram.util.DiagramUtil;
 import no.hib.dpf.editor.commands.BendPointCreateCommand;
 import no.hib.dpf.editor.commands.BendpointDeleteCommand;
 import no.hib.dpf.editor.commands.BendpointMoveCommand;
+import no.hib.dpf.editor.figures.draw2d.Draw2dUtil;
 import no.hib.dpf.editor.parts.DArrowEditPart;
 import no.hib.dpf.editor.parts.DNodeEditPart;
 
@@ -49,8 +49,8 @@ public class ArrowBendpointEditPolicy extends BendpointEditPolicy {
 		DOffset offset = arrow.getNameOffset();
 		PointList points = ((Connection)connection.getFigure()).getPoints();
 		if(offset.getIndex() == index){
-			Point label = DiagramUtil.getAbsolutePoint(source, target, ((DArrowEditPart)connection).getRealPointList(), offset);
-			if(DiagramUtil.needToAdd(source, target, label, newBendPoint, offset))
+			Point label = Draw2dUtil.getAbsolutePoint(source, target, ((DArrowEditPart)connection).getRealPointList(), offset);
+			if(Draw2dUtil.needToAdd(source, target, label, newBendPoint, offset))
 				com.addOne(offset);
 		}
 		else if(offset.getIndex() >= index + 1){
@@ -60,8 +60,8 @@ public class ArrowBendpointEditPolicy extends BendpointEditPolicy {
 			if(constraint instanceof DArrowLabelConstraint){
 				offset = ((DArrowLabelConstraint)constraint).getOffset();
 				if(offset.getIndex() == index){
-					Point label = DiagramUtil.getAbsolutePoint(source, target, points, offset);
-					if(DiagramUtil.needToAdd(source, target, label, newBendPoint, offset))
+					Point label = Draw2dUtil.getAbsolutePoint(source, target, points, offset);
+					if(Draw2dUtil.needToAdd(source, target, label, newBendPoint, offset))
 						com.addOne(offset);
 				}
 				else if(offset.getIndex() >= index + 1)
@@ -71,9 +71,9 @@ public class ArrowBendpointEditPolicy extends BendpointEditPolicy {
 		com.setIndex(index);
 		com.setLabel("Create BendPoint at " + newBendPoint);
 		if(source == target)
-			com.setLocation(DiagramUtil.getDOffset(source.getBounds().getTop(), source.getBounds().getBottom(), newBendPoint));
+			com.setLocation(Draw2dUtil.getDOffset(source.getBounds().getTop(), source.getBounds().getBottom(), newBendPoint));
 		else
-			com.setLocation(DiagramUtil.getDOffset(source.getBounds().getCenter(), target.getBounds().getCenter(), newBendPoint));
+			com.setLocation(Draw2dUtil.getDOffset(source.getBounds().getCenter(), target.getBounds().getCenter(), newBendPoint));
 		return com;
 	}
 
@@ -88,7 +88,7 @@ public class ArrowBendpointEditPolicy extends BendpointEditPolicy {
 		int index = request.getIndex();
 		com.setIndex(index);
 		com.setLabel("Move BendPoint from " + com.getOldBendpoint() + " to " + p);
-		com.setLocation(DiagramUtil.getDOffset(source, target, p));
+		com.setLocation(Draw2dUtil.getDOffset(source, target, p));
 		return com;
 	}
 

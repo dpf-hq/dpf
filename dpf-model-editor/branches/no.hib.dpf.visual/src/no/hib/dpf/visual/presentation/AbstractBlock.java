@@ -4,8 +4,8 @@ package no.hib.dpf.visual.presentation;
 import java.util.ArrayList;
 import java.util.List;
 
-import no.hib.dpf.editor.FileSelection;
 import no.hib.dpf.visual.VElement;
+import no.hib.dpf.visual.VisualUtils;
 import no.hib.dpf.visual.Visuals;
 
 import org.eclipse.core.resources.IFile;
@@ -144,7 +144,7 @@ public abstract class AbstractBlock extends EditorPart implements IDetailsPage {
 				IFile signature = ((IFileEditorInput)master.getMultiEditor().getEditorInput()).getFile();
 				IProject project = signature.getProject();
 				URI uri = vElement.eResource().getURI();
-				IResource image = FileSelection.select(e.display.getActiveShell(), "Icon Selection", "Select a image", null, "This is not a image file", project, null, null);
+				IResource image = VisualUtils.select(e.display.getActiveShell(), "Icon Selection", "Select a image", null, "This is not a image file", project, null, null);
 				if(image == null) return;
 				URI relative = URI.createFileURI(image.getLocation().toOSString());
 				String fileName = relative.deresolve(uri).path();

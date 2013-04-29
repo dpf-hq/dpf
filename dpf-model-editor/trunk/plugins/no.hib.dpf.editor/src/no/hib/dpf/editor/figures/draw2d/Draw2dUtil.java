@@ -1,4 +1,4 @@
-package no.hib.dpf.diagram.util;
+package no.hib.dpf.editor.figures.draw2d;
 
 
 import no.hib.dpf.diagram.DOffset;
@@ -9,7 +9,7 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
 
-public class DiagramUtil {
+public class Draw2dUtil {
 
 	public static Point getAbsoluteBendPoint(Point start, Point end, DOffset p) {
 		TransformS.setBasic(start, end);
@@ -27,7 +27,7 @@ public class DiagramUtil {
 	public static DOffset getDOffset(IFigure source, IFigure target, Point p){
 		Point start = source == target ? source.getBounds().getTop() : source.getBounds().getCenter();
 		Point end = source == target ? source.getBounds().getBottom() : target.getBounds().getCenter();
-		return DiagramUtil.getDOffset(start, end, p);
+		return Draw2dUtil.getDOffset(start, end, p);
 	}
 	
 	public static DOffset getDOffset(IFigure source, IFigure target, PointList points, Point p){
@@ -53,9 +53,9 @@ public class DiagramUtil {
 			}
 			start = points.getPoint(index).getCopy();
 			end = points.getPoint(index + 1);
-			return DiagramUtil.getDOffset(start, end, p, index);
+			return Draw2dUtil.getDOffset(start, end, p, index);
 		}else
-			return DiagramUtil.getDOffset(start, end, p, 0);
+			return Draw2dUtil.getDOffset(start, end, p, 0);
 	}
 	public static boolean needToAdd(IFigure source, IFigure target, Point label, Point newBendPoint, DOffset offset){
 		Point start = source == target ? source.getBounds().getTop() : source.getBounds().getCenter();
@@ -109,4 +109,5 @@ public class DiagramUtil {
 	public static Point scableLine(Point start, Point end, double scale){
 		return end.getScaled(scale).translate(start.getScaled(1-scale));
 	}
+
 }

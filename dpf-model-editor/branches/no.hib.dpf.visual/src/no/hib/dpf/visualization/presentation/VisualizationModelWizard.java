@@ -24,8 +24,8 @@ import no.hib.dpf.visual.VArrow;
 import no.hib.dpf.visual.VElement;
 import no.hib.dpf.visual.VNode;
 import no.hib.dpf.visual.VisualPlugin;
+import no.hib.dpf.visual.VisualUtils;
 import no.hib.dpf.visual.Visuals;
-import no.hib.dpf.visual.util.VisualUtil;
 import no.hib.dpf.visualization.VisualizationFactory;
 import no.hib.dpf.visualization.VisualizationPackage;
 import no.hib.dpf.visualization.Visualizations;
@@ -42,6 +42,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.CommonPlugin;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -482,7 +483,7 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 				visualbrowseButton.addSelectionListener(new SelectionAdapter() {
 					public void widgetSelected(SelectionEvent event) {
 						handleModelBrowseButtonPressed(visualFile, getModelFile().getParent().getLocation().toOSString(), "*.visual");
-						visuals = VisualUtil.loadVisuals(URI.createFileURI(visualFile.getText()));
+						visuals = VisualUtils.loadVisuals(new ResourceSetImpl(), URI.createFileURI(visualFile.getText()), new HashMap<Resource, Diagnostic>());
 						setPageComplete(validatePage());
 						updateControl();
 					}

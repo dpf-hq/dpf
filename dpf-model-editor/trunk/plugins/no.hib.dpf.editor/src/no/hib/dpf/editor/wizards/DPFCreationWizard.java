@@ -15,17 +15,12 @@
  *******************************************************************************/
 package no.hib.dpf.editor.wizards;
 
-import static no.hib.dpf.diagram.util.DPFConstants.REFLEXIVE_DSPECIFICATION;
-
 import java.util.LinkedHashMap;
-import java.util.Map;
 
-import no.hib.dpf.diagram.DSignature;
 import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.diagram.DiagramFactory;
 import no.hib.dpf.editor.DPFEditor;
-import no.hib.dpf.editor.DPFErrorReport;
-import no.hib.dpf.utils.DPFCoreUtil;
+import no.hib.dpf.editor.DPFUtils;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
@@ -33,8 +28,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.swt.widgets.Composite;
@@ -55,8 +48,7 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 
 	private static int fileCount = 1;
 	private CreationPage createPage = null;
-	private DPFWizardPage typeLinkPage = null;
-	private DPFWizardPage signatureLinkPage;
+	private DPFWizardPage configPage = null;
 
 	/*
 	 * (non-Javadoc)
@@ -66,8 +58,7 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 	public void addPages() {
 		// add pages to this wizard
 		addPage(createPage);
-		addPage(typeLinkPage);
-		addPage(signatureLinkPage);
+		addPage(configPage);
 	}
 
 	/*
@@ -81,27 +72,20 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 		createPage = new CreationPage(workbench, selection);
 
 		IDEWorkbenchMessages.WizardNewLinkPage_linkFileButton = "Load File:";
-		typeLinkPage = new DPFWizardPage("Add type graph", "Type graph");
-		String[] tmp = {"*" + DPFEditor.DEFAULT_DIAGRAM_MODEL_EXTENSION};
-		typeLinkPage.setFileDialogFilters(tmp, tmp);
+		configPage = new DPFWizardPage("The wizard id does not matter");
+		configPage.setTitle("Choose metamodel and signature");
+		configPage.setDescription("The page allows you to choose your own metamodel and customed signature. " +
+				"The default metamodel and signature will be used if you check default metamodel and default signature");
 		
-		typeLinkPage.setTitle("Include type graph");
 		String filename = null;
 		
 		if(selection.getFirstElement() instanceof IResource) {
 			filename = ((IResource)selection.getFirstElement()).getLocation().toOSString();
 			if(filename.endsWith(".xmi"))
-				filename = DPFEditor.getDiagramFromModel(filename);
+				filename = DPFUtils.getDiagramFromModel(filename);
 		} else
 			filename = DPFEditor.getWorkspaceDirectory();
-		
-		typeLinkPage.setLinkTarget(filename);
-		
-		signatureLinkPage = new DPFWizardPage("Add Signature", "Signature");
-		tmp = new String[] { "*.sig"};
-		signatureLinkPage.setFileDialogFilters(tmp, tmp);
-		signatureLinkPage.setTitle("Include signature");
-		signatureLinkPage.setLinkTarget(filename);
+		configPage.setInitialLocation(filename);
 	}
 
 	/*
@@ -139,8 +123,8 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 		CreationPage(IWorkbench workbench, IStructuredSelection selection) {
 			super("dpfCreationPage1", selection);
 			this.workbench = workbench;
-			setTitle("Create a new " + DPFEditor.DEFAULT_DIAGRAM_MODEL_EXTENSION + " file");
-			setDescription("Create a new " + DPFEditor.DEFAULT_DIAGRAM_MODEL_EXTENSION + " file");
+			setTitle("Create a new " + DPFUtils.DEFAULT_DIAGRAM_MODEL_EXTENSION + " file");
+			setDescription("Create a new " + DPFUtils.DEFAULT_DIAGRAM_MODEL_EXTENSION + " file");
 		}
 
 		/*
@@ -152,7 +136,7 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 		 */
 		public void createControl(Composite parent) {
 			super.createControl(parent);
-			setFileName("dpfSpecification" + fileCount + DPFEditor.DEFAULT_DIAGRAM_MODEL_EXTENSION);
+			setFileName("dpfSpecification" + fileCount + DPFUtils.DEFAULT_DIAGRAM_MODEL_EXTENSION);
 			setPageComplete(validatePage());
 		}
 
@@ -166,36 +150,18 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 			// create a new diagram file, result != null if successful
 			IFile newDiagramFile = createNewFile();
 			fileCount++;
-			URI newDiagarmURI = DPFCoreUtil.getFileURI(newDiagramFile);
+			URI newDiagarmURI = DPFUtils.getFileURI(newDiagramFile);
 			//Initialize model file and diagram file
 			DSpecification newSpec = DiagramFactory.eINSTANCE.createDefaultDSpecification();
+			newSpec.setDType(configPage.getMetaModel());
+			newSpec.setDSignature(configPage.getSignature());
 
 			// Gets null value when user does not check checkbox
-			String typeModelFileName = typeLinkPage.getLinkTarget();
-			DSpecification typeSpec = null;
-			ResourceSetImpl resourceSet = DPFEditor.getResourceSet();
-			Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
-			if(typeModelFileName != null){
-				typeSpec = DPFEditor.loadDSpecification(resourceSet, URI.createFileURI(typeModelFileName), resourceToDiagnosticMap);
-				EcoreUtil.resolveAll(typeSpec);
-			}
-			newSpec.setDType(typeSpec != null ? typeSpec : REFLEXIVE_DSPECIFICATION);
-
-			String signatureFileName = signatureLinkPage.getLinkTarget();
-			if(signatureFileName != null){
-				DSignature signature = DPFEditor.loadDSignature(resourceSet, URI.createFileURI(signatureFileName), resourceToDiagnosticMap);
-				EcoreUtil.resolveAll(signature);
-				newSpec.setDSignature(signature);
-			}
-			if(newSpec.getDSignature() == null && newSpec.getDType() != null)
-				newSpec.setDSignature(newSpec.getDType().getDSignature());
-			
-			DPFEditor.updateResourceSet(resourceSet, newSpec, null, newDiagarmURI);
 			try {
-				DPFEditor.saveDSpecification(resourceSet, newSpec, newDiagarmURI, resourceToDiagnosticMap);
+				DPFUtils.saveDSpecification(DPFUtils.getResourceSet(), newSpec, newDiagarmURI, new LinkedHashMap<Resource, Diagnostic>());
 				newDiagramFile.getParent().refreshLocal(IResource.DEPTH_ONE, null);
 			} catch (CoreException e1) {
-				DPFErrorReport.logError("Error happens when store new create DPF Specification", e1);
+				DPFUtils.logError("Error happens when store new create DPF Specification", e1);
 			} 
 			// open newly created file in the editor
 			IWorkbenchPage page = workbench.getActiveWorkbenchWindow().getActivePage();
@@ -205,7 +171,7 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 					if(editorPart != null)
 						editorPart.setFocus();
 				} catch (PartInitException e) {
-					DPFErrorReport.logError("Error happens when Open DPF Editor", e);
+					DPFUtils.logError("Error happens when Open DPF Editor", e);
 					return false;
 				}
 			}
@@ -216,9 +182,9 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 		 * Return true, if the file name entered in this page is valid.
 		 */
 		private boolean validateFilename() {
-			if (getFileName() != null && getFileName().endsWith(DPFEditor.DEFAULT_DIAGRAM_MODEL_EXTENSION)) 
+			if (getFileName() != null && getFileName().endsWith(DPFUtils.DEFAULT_DIAGRAM_MODEL_EXTENSION)) 
 				return true;
-			setErrorMessage("The 'file' name must end with " + DPFEditor.DEFAULT_DIAGRAM_MODEL_EXTENSION);
+			setErrorMessage("The 'file' name must end with " + DPFUtils.DEFAULT_DIAGRAM_MODEL_EXTENSION);
 			return false;
 		}
 

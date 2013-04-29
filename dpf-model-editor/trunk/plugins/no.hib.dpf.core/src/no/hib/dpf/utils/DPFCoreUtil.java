@@ -10,11 +10,14 @@ import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Graph;
+import no.hib.dpf.core.DPFCorePlugin;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Specification;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Plugin;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.EList;
@@ -27,82 +30,53 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 public class DPFCoreUtil {
 
-	public static Resource getResource(ResourceSet resourceSet, URI resourceURI, Map<Resource, Diagnostic> resourceToDiagnosticMap){
-		Assert.isTrue(resourceSet != null);
-		Assert.isTrue(resourceToDiagnosticMap != null);
+	public static Resource createResource(ResourceSet resourceSet, URI resourceURI, Map<Resource, Diagnostic> resourceToDiagnosticMap) {
+		Exception exception = null;
 		Resource resource = null;
-		try{
-			resource = getResource(resourceSet, resourceURI);
+		try {
+			resource = resourceSet.getResource(resourceURI, true);
 		}
-		catch(Exception exception){
-			analyzeResourceProblems(resource, exception, resourceToDiagnosticMap);
+		catch (Exception e) {
+			exception = e;
+			resource = resourceSet.getResource(resourceURI, false);
 		}
+		analyzeResourceProblems(resource, exception, resourceToDiagnosticMap);
 		return resource;
 	}
 
-	private static String fileError(URI uri) {
-		return "Problems encountered in file " + uri.toString();
-	}
-
-	public static  void analyzeResourceProblems(Resource resource, Exception exception, Map<Resource, Diagnostic> resourceToDiagnosticMap) {
-		Diagnostic diagnostic = analyzeResourceProblems(resource, exception);
-		if (diagnostic.getSeverity() != Diagnostic.OK) {
-			resourceToDiagnosticMap.put(resource,  analyzeResourceProblems(resource, exception));
-		}
-	}
-	public static  Diagnostic analyzeResourceProblems(Resource resource, Exception exception) {
+	public static Diagnostic analyzeResourceProblems(Resource resource, Exception exception, Map<Resource, Diagnostic> resourceToDiagnosticMap) {
+		BasicDiagnostic basicDiagnostic = null;
 		if (!resource.getErrors().isEmpty() || !resource.getWarnings().isEmpty()) {
-			BasicDiagnostic basicDiagnostic =
+			basicDiagnostic =
 					new BasicDiagnostic
 					(Diagnostic.ERROR,
-							"no.hib.dpf.editor",
+							getPluginID(),
 							0,
-							fileError(resource.getURI()),
+							getErrorMessage(resource),
 							new Object [] { exception == null ? (Object)resource : exception });
 			basicDiagnostic.merge(EcoreUtil.computeDiagnostic(resource, true));
-			return basicDiagnostic;
 		}
 		else if (exception != null) {
-			return
+			basicDiagnostic =
 					new BasicDiagnostic
 					(Diagnostic.ERROR,
-							"no.hib.dpf.editor",
+							getPluginID(),
 							0,
-							fileError(resource.getURI()),
+							getErrorMessage(resource),
 							new Object[] { exception });
 		}
 		else {
 			return Diagnostic.OK_INSTANCE;
 		}
+		if (basicDiagnostic.getSeverity() != Diagnostic.OK) {
+			resourceToDiagnosticMap.put(resource,  basicDiagnostic);
+		}else
+			resourceToDiagnosticMap.remove(resource);
+		return basicDiagnostic;
 	}
 	
+	protected static String getErrorMessage(Resource resource) {return "Problems encountered in file " + resource.getURI().toFileString();};
 
-	
-	@SuppressWarnings("finally")
-	public static Resource getResource(ResourceSet resourceSet, URI resourceURI){
-		Resource resource = null;
-		try {
-			// Load the resource through the editing domain.
-			//
-			resource = resourceSet.getResource(resourceURI, true);
-		}
-		catch (Exception e) {
-			resource = resourceSet.getResource(resourceURI, false);
-			throw e;
-		}
-		finally{
-			return resource;
-		}
-	}
-
-	public static URI getFileURI(IFile file){
-		return URI.createFileURI(file.getLocation().toOSString());
-	}
-	
-	public static URI updateRelativeURI(URI oldBaseURI, URI newBaseURI, URI relative){
-		return relative.resolve(oldBaseURI).deresolve(newBaseURI);
-	}
-	
 	private static Resource getResource(URI modelFileURI){		
 		ResourceSetImpl resourceSet = new ResourceSetImpl();
 		resourceSet.setURIResourceMap(new LinkedHashMap<URI, Resource>());
@@ -208,5 +182,27 @@ public class DPFCoreUtil {
 		}
 	}
 
-	
+	public static Plugin getPlugin(){return DPFCorePlugin.getDefault();};
+	public static String getPluginID(){return DPFCorePlugin.PLUGIN_ID;};
+	public  static void logInfo(String message) {
+		log(IStatus.INFO, IStatus.OK, message, null);
+	}
+	public  static void logError(Throwable exception) {
+		logError("Unexpected Exception", exception);
+	}
+	public  static void logError(String message, Throwable exception) {
+		log(IStatus.ERROR, IStatus.OK, message, exception);
+	}
+
+	public static  IStatus createStatus(int severity, int code,
+			String message, Throwable exception) {
+		return new Status(severity, getPluginID(), code,
+				message, exception);
+	}
+	public  static void log(IStatus status) {
+		getPlugin().getLog().log(status);
+	}
+	public  static void log(int severity, int code, String message, Throwable exception) {
+		log(createStatus(severity, code, message, exception));
+	}
 }

@@ -27,14 +27,14 @@ import no.hib.dpf.diagram.DArrowLabelConstraint;
 import no.hib.dpf.diagram.DConstraint;
 import no.hib.dpf.diagram.DOffset;
 import no.hib.dpf.diagram.DiagramPackage;
-import no.hib.dpf.diagram.util.DiagramUtil;
-import no.hib.dpf.editor.DPFErrorReport;
+import no.hib.dpf.editor.DPFUtils;
 import no.hib.dpf.editor.commands.DArrowDeleteCommand;
 import no.hib.dpf.editor.extension_points.FigureConfigureManager;
 import no.hib.dpf.editor.extension_points.IArrowPainting;
 import no.hib.dpf.editor.figures.ArrowConnection;
 import no.hib.dpf.editor.figures.ConstraintAnchor;
 import no.hib.dpf.editor.figures.OpenArrowDecoration;
+import no.hib.dpf.editor.figures.draw2d.Draw2dUtil;
 import no.hib.dpf.editor.policies.ArrowBendpointEditPolicy;
 
 import org.eclipse.core.runtime.CoreException;
@@ -102,7 +102,7 @@ public class DArrowEditPart extends GraphicalConnectionEditPart implements NodeE
 		result.addPoint(start);
 		DArrow dArrow = getDArrow();
 		for(DOffset offset : dArrow.getBendpoints())
-			result.addPoint(DiagramUtil.getAbsoluteBendPoint(start, end, offset));
+			result.addPoint(Draw2dUtil.getAbsoluteBendPoint(start, end, offset));
 		result.addPoint(end);
 		return result;
 	}
@@ -137,7 +137,7 @@ public class DArrowEditPart extends GraphicalConnectionEditPart implements NodeE
 				if(configure != null)
 					arrowPaint = (IArrowPainting) configure.createExecutableExtension(FigureConfigureManager.PAINT_ATT);
 			} catch (CoreException e) {
-				DPFErrorReport.logError(e);
+				DPFUtils.logError(e);
 			}
 		return arrowPaint;
 	}
@@ -285,14 +285,14 @@ public class DArrowEditPart extends GraphicalConnectionEditPart implements NodeE
 				end = source.getBottom();
 				if(points.size() == 0){
 					int x = start.x, y = start.y;
-					points.add(DiagramUtil.getDOffset(start, end, new Point(x, y = y - source.height / 2)));
-					points.add(DiagramUtil.getDOffset(start, end, new Point(x = x - source.width, y)));
-					points.add(DiagramUtil.getDOffset(start, end, new Point(x, y = y + source.height * 2)));
-					points.add(DiagramUtil.getDOffset(start, end, new Point(x + source.width, y)));
+					points.add(Draw2dUtil.getDOffset(start, end, new Point(x, y = y - source.height / 2)));
+					points.add(Draw2dUtil.getDOffset(start, end, new Point(x = x - source.width, y)));
+					points.add(Draw2dUtil.getDOffset(start, end, new Point(x, y = y + source.height * 2)));
+					points.add(Draw2dUtil.getDOffset(start, end, new Point(x + source.width, y)));
 				}
 			}
 			for(DOffset p : points){
-				Point point = DiagramUtil.getAbsoluteBendPoint(start, end, p);
+				Point point = Draw2dUtil.getAbsoluteBendPoint(start, end, p);
 				figureConstraint.add(new AbsoluteBendpoint(point));
 			}
 			getConnectionFigure().setRoutingConstraint(figureConstraint);

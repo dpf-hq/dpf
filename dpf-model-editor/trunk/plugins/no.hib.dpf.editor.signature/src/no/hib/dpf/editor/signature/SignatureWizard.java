@@ -5,7 +5,6 @@ import java.util.Map;
 
 import no.hib.dpf.diagram.DSignature;
 import no.hib.dpf.diagram.DiagramFactory;
-import no.hib.dpf.editor.DPFErrorReport;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
@@ -89,15 +88,15 @@ public class SignatureWizard extends Wizard implements INewWizard {
 			// create a new diagram file, result != null if successful
 			IFile newDiagramFile = createNewFile();
 			fileCount++;
-			ResourceSetImpl resourceSet = SignatureEditor.getResourceSet();
+			ResourceSetImpl resourceSet = SignatureUtils.getResourceSet();
 			Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
 			//Initialize signature 
 			DSignature dSignature = DiagramFactory.eINSTANCE.createDefaultDSignature();
 			try {
-				SignatureEditor.saveDSignature(resourceSet, URI.createFileURI(newDiagramFile.getLocation().toOSString()), dSignature, resourceToDiagnosticMap);
+				SignatureUtils.saveDSignature(resourceSet, URI.createFileURI(newDiagramFile.getLocation().toOSString()), dSignature, resourceToDiagnosticMap);
 				newDiagramFile.getParent().refreshLocal(IResource.DEPTH_ONE, null);
 			} catch (CoreException e1) {
-				DPFErrorReport.logError(e1);
+				SignatureUtils.logError(e1);
 				return false;
 			} 
 			// open newly created file in the editor
@@ -108,7 +107,7 @@ public class SignatureWizard extends Wizard implements INewWizard {
 					if(editorPart != null)
 						editorPart.setFocus();
 				} catch (PartInitException e) {
-					DPFErrorReport.logError(e);
+					SignatureUtils.logError(e);
 					return false;
 				}
 			}

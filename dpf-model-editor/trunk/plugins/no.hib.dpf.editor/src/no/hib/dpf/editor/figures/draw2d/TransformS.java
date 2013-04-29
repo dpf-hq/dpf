@@ -1,4 +1,4 @@
-package no.hib.dpf.diagram.util;
+package no.hib.dpf.editor.figures.draw2d;
 
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionPoint;

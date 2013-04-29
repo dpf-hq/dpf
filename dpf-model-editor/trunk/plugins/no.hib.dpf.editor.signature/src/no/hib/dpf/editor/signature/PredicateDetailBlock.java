@@ -9,7 +9,6 @@ import no.hib.dpf.core.ValidatorType;
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DPredicate;
 import no.hib.dpf.diagram.VisualizationType;
-import no.hib.dpf.editor.FileSelection;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -300,7 +299,7 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 				IFile signature = ((IFileEditorInput)master.getMultiEditor().getEditorInput()).getFile();
 				IProject project = signature.getProject();
 				URI uri = dPredicate.eResource().getURI();
-				IResource image = FileSelection.select(e.display.getActiveShell(), "Icon Selection", "Select a image", null, "This is not a image file", project, null, null);
+				IResource image = SignatureUtils.select(e.display.getActiveShell(), "Icon Selection", "Select a image", null, "This is not a image file", project, null, null);
 				if(image == null) return;
 				URI relative = URI.createFileURI(image.getLocation().toOSString());
 				String fileName = relative.deresolve(uri).path();

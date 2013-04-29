@@ -43,7 +43,7 @@ import no.hib.dpf.utils.CharSequenceCompiler;
 import no.hib.dpf.utils.CharSequenceCompilerException;
 import no.hib.dpf.utils.Checker;
 import no.hib.dpf.utils.DPFConstants;
-import no.hib.dpf.utils.DPFErrorReport;
+import no.hib.dpf.utils.DPFCoreUtil;
 
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.emf.common.notify.Notification;
@@ -387,13 +387,13 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 				Class<Checker> clazz = compiler.compile(DPFConstants.DefaultCheckerClass, getValidator().getValidator(), null, Checker.class);
 				checker = clazz.newInstance();
 			} catch (ClassCastException e) {
-				DPFErrorReport.logError(e);
+				DPFCoreUtil.logError(e);
 			} catch (CharSequenceCompilerException e) {
-				DPFErrorReport.logError(e);
+				DPFCoreUtil.logError(e);
 			} catch (InstantiationException e) {
-				DPFErrorReport.logError(e);
+				DPFCoreUtil.logError(e);
 			} catch (IllegalAccessException e) {
-				DPFErrorReport.logError(e);
+				DPFCoreUtil.logError(e);
 			} 
 		}
 		return checker;
@@ -450,7 +450,7 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 			try {
 				invariant = getOclHelper().createInvariant(createOCLExpression(parameters, getOCLConString()));
 			} catch (ParserException e) {
-				DPFErrorReport.logError(e);
+				DPFCoreUtil.logError(e);
 			}
 		return invariant;
 	}

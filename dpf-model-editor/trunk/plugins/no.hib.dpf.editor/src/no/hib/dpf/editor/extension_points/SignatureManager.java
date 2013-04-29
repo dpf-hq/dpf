@@ -10,7 +10,7 @@ import no.hib.dpf.core.SemanticValidator;
 import no.hib.dpf.diagram.DPredicate;
 import no.hib.dpf.diagram.DSignature;
 import no.hib.dpf.diagram.DiagramFactory;
-import no.hib.dpf.editor.DPFErrorReport;
+import no.hib.dpf.editor.DPFUtils;
 import no.hib.dpf.utils.DPFConstants;
 
 import org.eclipse.core.runtime.CoreException;
@@ -89,7 +89,7 @@ public class SignatureManager {
 		try {
 			predicate.setValidator((SemanticValidator) iConfigurationElement.createExecutableExtension(CHECKER_ATT));
 		} catch (CoreException e) {
-			DPFErrorReport.logError(e);
+			DPFUtils.logError(e);
 		}
 		result.getDPredicates().add(dPredicate);
 		result.getSignature().getPredicates().add(dPredicate.getPredicate());
@@ -107,7 +107,7 @@ public class SignatureManager {
 		try {
 			return (EditPart) getDPredicateToEditPartMap().get(predicate).createExecutableExtension(EDITPART_ATT);
 		} catch (CoreException e) {
-			DPFErrorReport.logError(e);
+			DPFUtils.logError(e);
 		}
 		return null;
 	}

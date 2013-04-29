@@ -38,8 +38,8 @@ package no.hib.dpf.editor.policies;
  */
 
 import no.hib.dpf.diagram.DOffset;
-import no.hib.dpf.diagram.util.DiagramUtil;
 import no.hib.dpf.editor.commands.ArrowTextMoveCommand;
+import no.hib.dpf.editor.figures.draw2d.Draw2dUtil;
 import no.hib.dpf.editor.parts.ArrowLabelEditPart;
 import no.hib.dpf.editor.parts.DNodeEditPart;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;
@@ -63,7 +63,7 @@ public class ArrowTextMovePolicy extends NonResizableEditPolicy {
 		IFigure source = ((DNodeEditPart) connection.getSource()).getFigure();
 		IFigure target = ((DNodeEditPart) connection.getTarget()).getFigure();
 		Point p = label.getBounds().getTopLeft().getTranslated(request.getMoveDelta());
-		command = new ArrowTextMoveCommand(model, DiagramUtil.getDOffset(source, target, ((Connection)connection.getFigure()).getPoints(), p));
+		command = new ArrowTextMoveCommand(model, Draw2dUtil.getDOffset(source, target, ((Connection)connection.getFigure()).getPoints(), p));
 		return command;
 	}
 	protected void showSelection() {

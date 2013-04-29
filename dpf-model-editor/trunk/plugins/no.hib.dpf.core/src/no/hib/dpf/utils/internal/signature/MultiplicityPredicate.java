@@ -14,7 +14,7 @@ import java.util.Map.Entry;
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.Node;
-import no.hib.dpf.utils.DPFErrorReport;
+import no.hib.dpf.utils.DPFCoreUtil;
 
 
 /**
@@ -42,7 +42,7 @@ public class MultiplicityPredicate extends AbstractSingleArrowPredicate {
 				else
 					max = Integer.parseInt(maps.get("max"));
 				}catch(NumberFormatException e){
-					DPFErrorReport.logError(e);
+					DPFCoreUtil.logError(e);
 					return true;
 				}
 				List<Arrow> arrows = arrowMap.get(graph.getArrowByName("XY"));
