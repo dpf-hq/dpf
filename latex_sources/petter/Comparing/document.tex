@@ -29,7 +29,7 @@ of a system based on a model of a specific language. Unified Modelling Language 
 an example of an modelling language often used to describe system design
 patterns in an application domain. The second principle of Model Driven
 Engineering is to increase automation in program development, and to obtain this
-we use something called model transformations. \linebreak 
+we use something called model transformations. \\
 \indent A model transformation is when we change some source model from one
 instance to another instance and end up with a targeted model. We can
 distinguish these operations into either endogenous or exogenous model
@@ -54,7 +54,7 @@ build around graph transformation.
 
 \subsection{The Model Instances}
 The task was to take a certain instance of model transformation, in this case
-transforming a activity diagram, written in the language UML and
+translating a activity diagram, written in the language UML and
 transform it to petri net. We initialize the metamodels to make sure that the
 models remain consistent.
 
@@ -62,6 +62,7 @@ models remain consistent.
 	\centering
 	\includegraphics[scale=0.5]{figures/ActivityMetamodel.png}
 	\caption{Metamodel of Activity Diagram }
+	\label{fig:ActivityMetamodel}
 \end{figure}
 
 The metamodel of an activity diagram has an arbitrary number of activity and
@@ -77,6 +78,7 @@ metamodel for the target model.
 	\centering
 	\includegraphics[scale=0.5]{figures/PetriNetsMetamodel.png}
 	\caption{Metamodel of Petri nets}
+	\label{fig:PetriNetsMetamodel}
 \end{figure}
 
 The metamodel for a petri net consist of places and transitions. A petri net
@@ -85,19 +87,36 @@ But a petri net can never have two of the same types connected with each other.
 There also is two nodes that distinguish if the arrow has a place or a
 transition as source node and the opposite as target node.
 
+\section{Graph Transformation}
+One approach to model transformations is by graph transformations, also referred
+to as graph rewriting. And one approach to graph rewriting is an algebraic
+approach, which is based upon category theory\cite{Barr1990}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{figures/categoryTheory.png}
+	\caption{Collection of objects A,B and C}
+	\label{fig:categoryTheory}
+\end{figure}
+
+In category theory there are a collection of objects and arrows. These arrows
+are also called morphisms. In figure~\ref{fig:categoryTheory} we have a
+collection of objects A, B and C and morphisms f, g and g o f. Category
+theory can then be used to formalize concepts of high-level abstractions. 
+
+This approach are based on the concepts of gluing of graphs, modelled by
+pushouts of graphs and graph morphisms. These pushouts comes in different
+categories, and we will look a the two major ones
+
 \subsection{Defining a set of rules}
 For a transformation language to be able to execute for graph transformations a
 set of rules needs to be defined. Through these rules, a transformation
-interpreter can act accordingly. 
+interpreter can act accordingly.
 
-\subsection{Graph Transformation}
-Model transformations can occur through the use of graph transformations, also
-referred to graph rewriting.
+\section{The Henshin Project}
 
-\section{Henshin}
-
-Henshin provides a model transformation language for the Eclipse Modelling
-Framework \cite{Steinberg2009}. With support for both direct 
+The Henshin project\cite{Henshin} provides a model transformation language for the Eclipse
+Modelling Framework \cite{Steinberg2009}. With support for both direct 
 transformation of EMF single model instances, and translation from source
 model to targeted model. The Henshin project is a transformation language with a
 provided graphical syntax. With the help of this graphical editor, it provides
@@ -151,9 +170,42 @@ expressions. This means that the users can use Java primitives such as strings,
 integers or float numbers to form the pattern graph or the left hand side of the
 rule. The user cannot bind attributes that is not initialised in the type graph. 
 
-\subsection{}
+\subsection{Type Graph}
 
-sdas
+Before the host graphs can be created. a type graph has to be initialised. These
+type graphs represents the abstract syntax for the host graphs. For this
+case study we created a type graph enabling translation from an activity diagram
+to petri nets. Unlike Henshin, the AGG graphs does not allow for separately
+definitions of type graphs. Henshin allows the use of one source and one target
+metamodel independent of each other. If we want to prepare an AGG graph for a
+transformation, we create a single type graph with references between elements
+of both source and target metamodel. This way, when the application rules is
+executed, we can choose to keep both the source graph and the references between
+these elements. The references and source graph can be deleted through a cycle
+of transformation rules.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{figures/AggTypeGraph.png}
+	\caption{Activity diagram to petri nets type graph in AGG}
+	\label{fig:AggTypeGraph}
+\end{figure}
+
+\indent For the type graph, the user must define nodes and arrows for each
+element for both source and target model. These nodes and arrows can also have
+attributes. Nodes represents elements from the two modelling languages and
+arrows represents the associations between these elements. In the type graph we
+want to distinguish between associations and references, and therefore we
+represent references as a dashed edge. These dashed edges are not given any
+attributes, and that is because we want these edges to represent what the
+targeted element was translated from. From figure~\ref{fig:AggTypeGraph} we can
+see that a RefAct node is defined and is connected between the activity
+element and the transition element. The same initialisation is defined between
+the place next element and the place element. The elements presented in the
+type graph for AGG graphs is very similar to the metamodels represented for
+Henshin transformations. For AGG type graphs there is a multiplier condition for
+the edges. This means that there can be an arbitrary, or a zero to many number of
+instances of these relations in the host graph.
 
 
 
