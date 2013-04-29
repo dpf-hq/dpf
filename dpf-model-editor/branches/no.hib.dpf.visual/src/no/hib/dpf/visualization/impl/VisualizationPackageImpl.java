@@ -5,6 +5,7 @@ package no.hib.dpf.visualization.impl;
 import java.util.Map;
 
 import no.hib.dpf.core.CorePackage;
+import no.hib.dpf.diagram.DiagramPackage;
 import no.hib.dpf.visual.VisualPackage;
 import no.hib.dpf.visualization.VisualizationFactory;
 import no.hib.dpf.visualization.VisualizationPackage;
@@ -83,7 +84,7 @@ public class VisualizationPackageImpl extends EPackageImpl implements Visualizat
 		isInited = true;
 
 		// Initialize simple dependencies
-		CorePackage.eINSTANCE.eClass();
+		DiagramPackage.eINSTANCE.eClass();
 		VisualPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
@@ -238,6 +239,7 @@ public class VisualizationPackageImpl extends EPackageImpl implements Visualizat
 		// Obtain other dependent packages
 		CorePackage theCorePackage = (CorePackage)EPackage.Registry.INSTANCE.getEPackage(CorePackage.eNS_URI);
 		VisualPackage theVisualPackage = (VisualPackage)EPackage.Registry.INSTANCE.getEPackage(VisualPackage.eNS_URI);
+		DiagramPackage theDiagramPackage = (DiagramPackage)EPackage.Registry.INSTANCE.getEPackage(DiagramPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -250,7 +252,7 @@ public class VisualizationPackageImpl extends EPackageImpl implements Visualizat
 		initEReference(getVisualizations_Entries(), this.getModelToVisualEntry(), null, "entries", null, 0, -1, Visualizations.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getVisualizations_Model(), theCorePackage.getSpecification(), null, "model", null, 1, 1, Visualizations.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getVisualizations_Visual(), theVisualPackage.getVisuals(), null, "visual", null, 1, 1, Visualizations.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getVisualizations_Instance(), theCorePackage.getSpecification(), null, "instance", null, 0, 1, Visualizations.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getVisualizations_Instance(), theDiagramPackage.getDSpecification(), null, "instance", null, 0, 1, Visualizations.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(modelToVisualEntryEClass, Map.Entry.class, "ModelToVisualEntry", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getModelToVisualEntry_Key(), theCorePackage.getIDObject(), null, "key", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

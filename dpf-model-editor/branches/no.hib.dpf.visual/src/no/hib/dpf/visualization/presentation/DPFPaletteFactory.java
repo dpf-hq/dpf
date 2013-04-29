@@ -84,13 +84,14 @@ public class DPFPaletteFactory {
 									LARGEICON));
 			}
 		}
-		for(Arrow arrow : graph.getArrows()){
-			if(arrow instanceof VArrow){
-				VArrow vArrow = (VArrow) arrow;
+ 		for(Arrow arrow : graph.getArrows()){
+ 			VElement element = maps.get(arrow);
+			if(element instanceof VArrow){
+				VArrow vArrow = (VArrow) element;
 					ImageDescriptor smallIcon = vArrow.getIcon() == null || vArrow.getIcon().isEmpty() ? null : ImageDescriptor.createFromFile(null, vArrow.getIcon());
-					nodeGroup.add(new CreationToolEntry(arrow.getName(), "Create a new " + arrow.getName(), new ArrowFactory(arrow), 
-							smallIcon != null ? smallIcon : SMALLICON, 
-									LARGEICON));
+					arrowGroup.add(new CreationToolEntry(arrow.getName(), "Create a new " + arrow.getName(), new ArrowFactory(arrow), 
+							smallIcon != null ? smallIcon : SMALLARROW, 
+									LARGEARROW));
 			}
 		}
 	}

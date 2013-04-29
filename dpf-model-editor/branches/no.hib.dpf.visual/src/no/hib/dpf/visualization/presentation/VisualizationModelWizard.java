@@ -14,10 +14,11 @@ import java.util.Map.Entry;
 import java.util.MissingResourceException;
 
 import no.hib.dpf.core.Arrow;
-import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.IDObject;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Specification;
+import no.hib.dpf.diagram.DSpecification;
+import no.hib.dpf.diagram.DiagramFactory;
 import no.hib.dpf.utils.DPFCoreUtil;
 import no.hib.dpf.visual.VArrow;
 import no.hib.dpf.visual.VElement;
@@ -44,7 +45,6 @@ import org.eclipse.emf.common.CommonPlugin;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -213,13 +213,13 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EObject createInitialModel() {
+	protected Visualizations createInitialModel() {
 		Visualizations visualizations = VisualizationFactory.eINSTANCE.createVisualizations();
 		visualizations.setModel(specification);
 		visualizations.setVisual(visuals);
-		Specification instance = CoreFactory.eINSTANCE.createDefaultSpecification();
-		System.out.println();
-		instance.setType(specification);
+		DSpecification instance = DiagramFactory.eINSTANCE.createDefaultDSpecification();
+		instance.setDType(null);
+		instance.getSpecification().setType(specification);
 		visualizations.setInstance(instance);
 		visualizations.getEntries().putAll(maps);
 		return visualizations;
@@ -259,7 +259,7 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 
 						// Add the initial model object to the contents.
 						//
-						EObject rootObject = createInitialModel();
+						Visualizations rootObject = createInitialModel();
 						if (rootObject != null) {
 							resource.getContents().add(rootObject);
 						}

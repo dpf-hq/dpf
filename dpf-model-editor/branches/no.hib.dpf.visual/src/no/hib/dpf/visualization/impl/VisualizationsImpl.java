@@ -5,6 +5,7 @@ package no.hib.dpf.visualization.impl;
 
 import no.hib.dpf.core.IDObject;
 import no.hib.dpf.core.Specification;
+import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.visual.VElement;
 import no.hib.dpf.visual.Visuals;
 import no.hib.dpf.visualization.VisualizationPackage;
@@ -75,7 +76,7 @@ public class VisualizationsImpl extends EObjectImpl implements Visualizations {
 	 * @generated
 	 * @ordered
 	 */
-	protected Specification instance;
+	protected DSpecification instance;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -189,7 +190,7 @@ public class VisualizationsImpl extends EObjectImpl implements Visualizations {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Specification getInstance() {
+	public DSpecification getInstance() {
 		return instance;
 	}
 
@@ -198,8 +199,8 @@ public class VisualizationsImpl extends EObjectImpl implements Visualizations {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetInstance(Specification newInstance, NotificationChain msgs) {
-		Specification oldInstance = instance;
+	public NotificationChain basicSetInstance(DSpecification newInstance, NotificationChain msgs) {
+		DSpecification oldInstance = instance;
 		instance = newInstance;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VisualizationPackage.VISUALIZATIONS__INSTANCE, oldInstance, newInstance);
@@ -213,7 +214,7 @@ public class VisualizationsImpl extends EObjectImpl implements Visualizations {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setInstance(Specification newInstance) {
+	public void setInstance(DSpecification newInstance) {
 		if (newInstance != instance) {
 			NotificationChain msgs = null;
 			if (instance != null)
@@ -284,7 +285,7 @@ public class VisualizationsImpl extends EObjectImpl implements Visualizations {
 				setVisual((Visuals)newValue);
 				return;
 			case VisualizationPackage.VISUALIZATIONS__INSTANCE:
-				setInstance((Specification)newValue);
+				setInstance((DSpecification)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -308,7 +309,7 @@ public class VisualizationsImpl extends EObjectImpl implements Visualizations {
 				setVisual((Visuals)null);
 				return;
 			case VisualizationPackage.VISUALIZATIONS__INSTANCE:
-				setInstance((Specification)null);
+				setInstance((DSpecification)null);
 				return;
 		}
 		super.eUnset(featureID);

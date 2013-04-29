@@ -11,8 +11,9 @@
 *******************************************************************************/
 package no.hib.dpf.visual.presentation;
 
-import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Node;
+import no.hib.dpf.diagram.DNode;
+import no.hib.dpf.diagram.DiagramFactory;
 
 import org.eclipse.gef.requests.CreationFactory;
 
@@ -26,14 +27,14 @@ public class NodeFactory implements CreationFactory {
 
 	@Override
 	public Object getNewObject() {
-		Node retval = CoreFactory.eINSTANCE.createDefaultNode();
-		retval.setTypeNode(typeDNode);
+		DNode retval = DiagramFactory.eINSTANCE.createDefaultDNode();
+		retval.getNode().setTypeNode(typeDNode);
 		return retval;
 	}
 
 	@Override
 	public Object getObjectType() {
-		return Node.class;
+		return DNode.class;
 	}
 
 }

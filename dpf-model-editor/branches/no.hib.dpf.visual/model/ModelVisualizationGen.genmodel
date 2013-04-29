@@ -4,7 +4,7 @@
     editorDirectory="/no.hib.dpf.visual/src" modelPluginID="no.hib.dpf.visual" modelName="ModelVisualizationGen"
     editPluginClass="no.hib.dpf.visual.VisualPlugin" editorPluginClass="no.hib.dpf.visual.VisualPlugin"
     testsDirectory="/no.hib.dpf.visual/src" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="6.0" copyrightFields="false" usedGenPackages="../../no.hib.dpf.core/model/Metamodel.genmodel#//core visualGen.genmodel#//visual">
+    complianceLevel="6.0" copyrightFields="false" usedGenPackages="../../no.hib.dpf.diagram/model/DiagramMetamodel.genmodel#//diagram ../../no.hib.dpf.core/model/Metamodel.genmodel#//core visualGen.genmodel#//visual">
   <foreignModel>ModelVisualization.ecore</foreignModel>
   <genPackages prefix="Visualization" basePackage="no.hib.dpf" disposableProviderFactory="true"
       multipleEditorPages="false" ecorePackage="ModelVisualization.ecore#/">

@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.EventObject;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -16,6 +17,7 @@ import java.util.Map;
 
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.provider.CoreItemProviderAdapterFactory;
+import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.visual.VisualPlugin;
 import no.hib.dpf.visual.provider.VisualItemProviderAdapterFactory;
 import no.hib.dpf.visualization.Visualizations;
@@ -34,6 +36,9 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.command.BasicCommandStack;
+import org.eclipse.emf.common.command.CommandStack;
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.ui.MarkerHelper;
@@ -48,8 +53,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
@@ -102,6 +109,7 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.dialogs.SaveAsDialog;
 import org.eclipse.ui.ide.IGotoMarker;
@@ -120,8 +128,7 @@ import org.eclipse.ui.views.properties.PropertySheetPage;
  * <!-- end-user-doc -->
  * @generated NOT
  */
-public class SpecificationEditor
-extends GraphicalEditorWithFlyoutPalette
+public class VisualizationEditor extends GraphicalEditorWithFlyoutPalette
 	implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker {
 	protected AdapterFactoryEditingDomain editingDomain;
 
@@ -276,17 +283,17 @@ extends GraphicalEditorWithFlyoutPalette
 			public void partActivated(IWorkbenchPart p) {
 				if (p instanceof ContentOutline) {
 					if (((ContentOutline)p).getCurrentPage() == contentOutlinePage) {
-						getActionBarContributor().setActiveEditor(SpecificationEditor.this);
+						getActionBarContributor().setActiveEditor(VisualizationEditor.this);
 						setCurrentViewer(contentOutlineViewer);
 					}
 				}
 				else if (p instanceof PropertySheet) {
 					if (((PropertySheet)p).getCurrentPage() == propertySheetPage) {
-						getActionBarContributor().setActiveEditor(SpecificationEditor.this);
+						getActionBarContributor().setActiveEditor(VisualizationEditor.this);
 						handleActivate();
 					}
 				}
-				else if (p == SpecificationEditor.this) {
+				else if (p == VisualizationEditor.this) {
 					handleActivate();
 				}
 			}
@@ -449,7 +456,7 @@ extends GraphicalEditorWithFlyoutPalette
 								 public void run() {
 									 removedResources.addAll(visitor.getRemovedResources());
 									 if (!isDirty()) {
-										 getSite().getPage().closeEditor(SpecificationEditor.this, false);
+										 getSite().getPage().closeEditor(VisualizationEditor.this, false);
 									 }
 								 }
 							 });
@@ -460,7 +467,7 @@ extends GraphicalEditorWithFlyoutPalette
 							(new Runnable() {
 								 public void run() {
 									 changedResources.addAll(visitor.getChangedResources());
-									 if (getSite().getPage().getActiveEditor() == SpecificationEditor.this) {
+									 if (getSite().getPage().getActiveEditor() == VisualizationEditor.this) {
 										 handleActivate();
 									 }
 								 }
@@ -492,7 +499,7 @@ extends GraphicalEditorWithFlyoutPalette
 
 		if (!removedResources.isEmpty()) {
 			if (handleDirtyConflict()) {
-				getSite().getPage().closeEditor(SpecificationEditor.this, false);
+				getSite().getPage().closeEditor(VisualizationEditor.this, false);
 			}
 			else {
 				removedResources.clear();
@@ -606,7 +613,7 @@ extends GraphicalEditorWithFlyoutPalette
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SpecificationEditor() {
+	public VisualizationEditor() {
 		super();
 		paletteFactory = new DPFPaletteFactory();
 		initializeEditingDomain();
@@ -635,32 +642,41 @@ extends GraphicalEditorWithFlyoutPalette
 
 		// Add a listener to set the most recent command's affected objects to be the selection of the viewer with focus.
 		//
-//		commandStack.addCommandStackListener
-//			(new CommandStackListener() {
-//				 public void commandStackChanged(final EventObject event) {
-//					 getContainer().getDisplay().asyncExec
-//						 (new Runnable() {
-//							  public void run() {
-//								  firePropertyChange(IEditorPart.PROP_DIRTY);
-//
-//								  // Try to select the affected objects.
-//								  //
-//								  Command mostRecentCommand = ((CommandStack)event.getSource()).getMostRecentCommand();
-//								  if (mostRecentCommand != null) {
-//									  setSelectionToViewer(mostRecentCommand.getAffectedObjects());
-//								  }
-//								  if (propertySheetPage != null && !propertySheetPage.getControl().isDisposed()) {
-//									  propertySheetPage.refresh();
-//								  }
-//							  }
-//						  });
-//				 }
-//			 });
+		commandStack.addCommandStackListener
+			(new CommandStackListener() {
+				 public void commandStackChanged(final EventObject event) {
+					 getSite().getShell().getDisplay().asyncExec
+						 (new Runnable() {
+							  public void run() {
+								  firePropertyChange(IEditorPart.PROP_DIRTY);
+
+								  // Try to select the affected objects.
+								  //
+								  Command mostRecentCommand = ((CommandStack)event.getSource()).getMostRecentCommand();
+								  if (mostRecentCommand != null) {
+									  setSelectionToViewer(mostRecentCommand.getAffectedObjects());
+								  }
+								  if (propertySheetPage != null && !propertySheetPage.getControl().isDisposed()) {
+									  propertySheetPage.refresh();
+								  }
+							  }
+						  });
+				 }
+			 });
 
 		// Create the editing domain with a special command stack.
 		//
 		editingDomain = new AdapterFactoryEditingDomain(adapterFactory, commandStack, new HashMap<Resource, Boolean>());
+		ResourceSetImpl resourceSet = (ResourceSetImpl) editingDomain.getResourceSet();
+		if(resourceSet.getResourceFactoryRegistry() == null)
+			resourceSet.setURIResourceMap(new LinkedHashMap<URI, Resource>());
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap() .put("xmi", new XMIResourceFactoryImpl());
+//		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap() .put("dpf", new XMIResourceFactoryImpl());
 		setEditDomain(new DefaultEditDomain(this));
+	}
+	public void commandStackChanged(EventObject event) {
+		firePropertyChange(IEditorPart.PROP_DIRTY);
+		super.commandStackChanged(event);
 	}
 
 	/**
@@ -1028,8 +1044,8 @@ extends GraphicalEditorWithFlyoutPalette
 				new ExtendedPropertySheetPage(editingDomain) {
 					@Override
 					public void setSelectionToViewer(List<?> selection) {
-						SpecificationEditor.this.setSelectionToViewer(selection);
-						SpecificationEditor.this.setFocus();
+						VisualizationEditor.this.setSelectionToViewer(selection);
+						VisualizationEditor.this.setFocus();
 					}
 
 //					@Override
@@ -1091,7 +1107,7 @@ extends GraphicalEditorWithFlyoutPalette
 	 */
 	@Override
 	public boolean isDirty() {
-		return ((BasicCommandStack)editingDomain.getCommandStack()).isSaveNeeded();
+		return getCommandStack().isDirty();
 	}
 
 	/**
@@ -1144,6 +1160,7 @@ extends GraphicalEditorWithFlyoutPalette
 
 			// Refresh the necessary state.
 			//
+			getCommandStack().markSaveLocation();
 			((BasicCommandStack)editingDomain.getCommandStack()).saveIsDone();
 			firePropertyChange(IEditorPart.PROP_DIRTY);
 		}
@@ -1247,18 +1264,9 @@ extends GraphicalEditorWithFlyoutPalette
 		}
 	}
 
-	/**
-	 * This is called during startup.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void init(IEditorSite site, IEditorInput editorInput) {
-		setSite(site);
-		setInputWithNotify(editorInput);
-		setPartName(editorInput.getName());
-		site.setSelectionProvider(this);
+	
+	public void init(IEditorSite site, IEditorInput input) throws PartInitException {
+		super.init(site, input);
 		site.getPage().addPartListener(partListener);
 		ResourcesPlugin.getWorkspace().addResourceChangeListener(resourceChangeListener, IResourceChangeEvent.POST_CHANGE);
 	}
@@ -1465,19 +1473,19 @@ extends GraphicalEditorWithFlyoutPalette
 	protected void configureGraphicalViewer() {
 		super.configureGraphicalViewer();
 		GraphicalViewer viewer = getGraphicalViewer();
-		viewer.setEditPartFactory(new SpecificationEditPartFactory(visualizations));
+		viewer.setEditPartFactory(new VisualizationEditPartFactory(visualizations));
 		viewer.setRootEditPart(new ScalableFreeformRootEditPart());
 	}
 	Visualizations visualizations;
 	protected void initializeGraphicalViewer() {
 		super.initializeGraphicalViewer();
 		Graph type = visualizations.getModel().getGraph();
-		Graph model = visualizations.getInstance().getGraph();
+		DGraph model = visualizations.getInstance().getDGraph();
 		getGraphicalViewer().setContents(model);
 		paletteFactory.updatePalette(getPaletteRoot(), type, visualizations.getEntries());
 	}
-	protected void setInputWithNotify(IEditorInput input) {
-		super.setInputWithNotify(input);
+	protected void setInput(IEditorInput input) {
+		super.setInput(input);
 		IFile file = ((IFileEditorInput) input).getFile();
 		setPartName(file.getName());
 		createModel();

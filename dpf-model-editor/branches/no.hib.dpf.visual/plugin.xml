@@ -72,7 +72,7 @@
             class="no.hib.dpf.visual.presentation.VisualFormEditor">
       </editor>
       <editor
-            class="no.hib.dpf.visualization.presentation.SpecificationEditor"
+            class="no.hib.dpf.visualization.presentation.VisualizationEditor"
             contributorClass="no.hib.dpf.visualization.presentation.DPFEditorActionBarContributor"
             default="true"
             extensions="visualization"

@@ -5,6 +5,7 @@ package no.hib.dpf.visualization;
 
 import no.hib.dpf.core.IDObject;
 import no.hib.dpf.core.Specification;
+import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.visual.VElement;
 import no.hib.dpf.visual.Visuals;
 
@@ -109,12 +110,12 @@ public interface Visualizations extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Instance</em>' containment reference.
-	 * @see #setInstance(Specification)
+	 * @see #setInstance(DSpecification)
 	 * @see no.hib.dpf.visualization.VisualizationPackage#getVisualizations_Instance()
 	 * @model containment="true"
 	 * @generated
 	 */
-	Specification getInstance();
+	DSpecification getInstance();
 
 	/**
 	 * Sets the value of the '{@link no.hib.dpf.visualization.Visualizations#getInstance <em>Instance</em>}' containment reference.
@@ -124,6 +125,6 @@ public interface Visualizations extends EObject {
 	 * @see #getInstance()
 	 * @generated
 	 */
-	void setInstance(Specification value);
+	void setInstance(DSpecification value);
 
 } // Visualizations
