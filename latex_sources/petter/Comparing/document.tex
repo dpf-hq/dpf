@@ -7,6 +7,15 @@
 \usepackage{indentfirst}
 \usepackage{url}
 
+\usepackage{amssymb, amsmath}
+
+\usepackage[T1]{fontenc} % font encoding
+\usepackage[utf8]{inputenc} % input encoding
+\usepackage[english]{babel} % keyword translation and hyphenation
+\usepackage{lmodern} % lmodern looks better than cm-super
+
+\usepackage[none]{hyphenat}%%%%
+
 \begin{document}
 
 \title{Analyzing Model to Model Transformation
@@ -15,10 +24,15 @@
 \author{Petter Barvik}
 
 \maketitle
+
+\abstract{}
+Trass
+
+\newpage
 \section{Introduction}
 
-Model Driven Engineering(MDE)\cite{France2007} thrives to raise the level of abstraction in
-program specification and increase automation in program development. The idea
+\noindent Model Driven Engineering(MDE)\cite{France2007} thrives to raise the
+level of abstraction in program specification and increase automation in program development. The idea
 from MDE is to use models at different levels of abstraction when developing
 applications. Therefore raising the level of abstraction in program
 specification. This level of abstraction is fulfilled either through extensive
@@ -53,15 +67,15 @@ transformation tools. These tools are Henshin, AGG and ATL. Henshin and AGG is
 build around graph transformation. 
 
 \subsection{The Model Instances}
-The task was to take a certain instance of model transformation, in this case
-translating a activity diagram, written in the language UML and
+\noindent The task was to take a certain instance of model transformation, in
+this case translating a activity diagram, written in the language UML and
 transform it to petri net. We initialize the metamodels to make sure that the
 models remain consistent.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.5]{figures/ActivityMetamodel.png}
-	\caption{Metamodel of Activity Diagram }
+	\caption{Metamodel of Activity Diagram.}
 	\label{fig:ActivityMetamodel}
 \end{figure}
 
@@ -77,7 +91,7 @@ metamodel for the target model.
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.5]{figures/PetriNetsMetamodel.png}
-	\caption{Metamodel of Petri nets}
+	\caption{Metamodel of Petri nets.}
 	\label{fig:PetriNetsMetamodel}
 \end{figure}
 
@@ -88,35 +102,79 @@ There also is two nodes that distinguish if the arrow has a place or a
 transition as source node and the opposite as target node.
 
 \section{Graph Transformation}
-One approach to model transformations is by graph transformations, also referred
-to as graph rewriting. And one approach to graph rewriting is an algebraic
+\noindent One approach to model transformations is by graph transformations,
+also referred to as graph rewriting. And one approach to graph rewriting is an algebraic
 approach, which is based upon category theory\cite{Barr1990}.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.7]{figures/categoryTheory.png}
-	\caption{Collection of objects A,B and C}
+	\caption{Collection of objects A,B and C.}
 	\label{fig:categoryTheory}
 \end{figure}
 
 In category theory there are a collection of objects and arrows. These arrows
 are also called morphisms. In figure~\ref{fig:categoryTheory} we have a
-collection of objects A, B and C and morphisms f, g and g o f. Category
-theory can then be used to formalize concepts of high-level abstractions. 
+collection of objects A, B and C and morphisms f, g and g $\circ$ f. And for the
+purpose of this paper, the collection of objects are graphs and the arrows are
+morphisms. This is also very typical when writing papers to explain the concepts
+of graph transformations, where these objects are represented as graphs, and
+arrows are represented at as morphisms. Category theory can then be used to
+formalize concepts of high-level abstractions.
 
-This approach are based on the concepts of gluing of graphs, modelled by
-pushouts of graphs and graph morphisms. These pushouts comes in different
-categories, and we will look a the two major ones
+\subsection{An Algebraic Approach}
+\noindent This approach are based on the concepts of gluing of graphs, modelled
+by pushouts of graphs and graph morphisms. These pushouts comes in different
+categories, and we will look at two approaches to graph transformations, namely
+the double-pushout (DPO) approach and the single pushout (SPO)
+approach\cite{Loewe1997,Ehrig1997}.
 
-\subsection{Defining a set of rules}
-For a transformation language to be able to execute for graph transformations a
-set of rules needs to be defined. Through these rules, a transformation
-interpreter can act accordingly.
+\indent Historically, the first of the algebraic approaches to graph
+transformations, the double-pushout, was first introduced at the Technical
+University of Berlin in the early seventies by H. Ehrig, M. Pfender and H.J.
+Schneider\cite{INSPEC:606170}. They tried to generalize Chromsky grammars from
+strings to graphs. This allowed to define a graph rewriting step by the use of
+two gluing constructions. And by applying a graph rewriting step for the
+double-pushout approach is a pair of morphisms in the category of graphs where
+the arrows represents total graph morphisms, \mbox{L $\longleftarrow$ \ K
+$\longrightarrow$ R}. This is true for each application rule in a graph
+transformation for the double-pushout approach. Where the graph K represents the
+gluing part and the two morphisms \mbox{L $\longleftarrow$ \ K and K
+$\longrightarrow$ R} use the algebraic construction, pushout to apply an
+application rule for a rewriting step. Hence the name double pushout and the use
+of two gluing conditions.
+
+\subsection{Productions}
+\noindent For a transformation language to be able to execute for graph
+transformations a set of application rules needs to be defined. Through these
+rules, a transformation interpreter can act accordingly. These rules are often
+referred to as Productions. 
+
+\subsection{A Direct Derivation}
+\noindent The basic idea for graph transformation for both the double-pushout
+approach and the signle pushout approach is to apply an application rule
+\mbox{r: L $\longrightarrow$ R}. Where the rule represents a single rewriting
+step for graph transformations and L represents the left hand side of the rule and R
+represents the right hand side of the rule. These are often referred to as the
+pattern graph and the replacement graph. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{figures/GraphTransformationGeneral.png}
+	\caption{The basic idea for graph transformation by applying a rule r.}
+	\label{fig:GraphTransformationGeneral}
+\end{figure}
+
+For a production rule r, \mbox{G$\xrightarrow{r,m}$G'} indicates a direct
+derivation to a derived graph G'. If there is a match m of nodes and arrows for a
+subgraph L in a host graph G, then this indicates a graph homomorphism, mapping
+elements from the subgraph to the host graph in such a way that the graphical
+structure in G is preserved.
 
 \section{The Henshin Project}
 
-The Henshin project\cite{Henshin} provides a model transformation language for the Eclipse
-Modelling Framework \cite{Steinberg2009}. With support for both direct 
+\noindent The Henshin project\cite{Henshin} provides a model transformation
+language for the Eclipse Modelling Framework \cite{Steinberg2009}. With support for both direct 
 transformation of EMF single model instances, and translation from source
 model to targeted model. The Henshin project is a transformation language with a
 provided graphical syntax. With the help of this graphical editor, it provides
@@ -125,11 +183,13 @@ both endogenous and exogenous transformations.
 
 \subsection{Defining transformation rules}
 
-In Henshin, objects are referred to as nodes and links between objects as edges.
-A collection of these nodes and edges form a graph. For each graph, a rule has
-to be defined. These rules can have parameters for checking and model
+\noindent In Henshin, objects are referred to as nodes and links between objects
+as edges. A collection of these nodes and edges form a graph. For each graph, a
+rule has to be defined. These rules can have parameters for checking and model
 verification. Each rule can be represented as a graph in the graphical
-editor. \newline When creating these rules, there has to be a way of
+editor. 
+
+\indent When creating these rules, there has to be a way of
 distinguishing elements between the LHS and the RHS. This is done through the use of
 a set of predefined tag words, or stereotypes. For handling transformations
 either in the pattern graph or the replacement graph, we can use the three
@@ -139,23 +199,25 @@ Conditions (PACs). These actions are supported for nodes, edges and attributes.
 
 \section{The Attributed Graph Grammar System}
 
-AGG is a general development environment for algebraic graph transformation
-systems. AGG is provided with a graphical editor for creating and modifying
-graphs. The editor provides a graphical user-interface with several visual
-editors for applying the principles of graph transformation. It also has an
-interpreter and a set of validation tools.
+\noindent AGG is a general development environment for algebraic graph
+transformation systems. AGG is provided with a graphical editor for creating
+and modifying graphs. The editor provides a graphical user-interface with
+several visual editors for applying the principles of graph transformation. It
+also has an interpreter and a set of validation tools.
 
 \subsection{Graphical Editor}
-The graphical editor of AGG has several functions to help the user to define
-model transformations. In the top left corner of the graphical user-interface is
+\noindent The graphical editor of AGG has several functions to help the user to
+define model transformations. In the top left corner of the graphical user-interface is
 a tree based editor for defining rules and grammar. This tree based editor also
 contains the type graphs and the host graphs. Where the host graph represents
 some input model for a model transformation.
+
 \indent Each application rule has two visual editors, representing the left and
 the right hand side, or the pattern and the replacement graph. In the tree
 collection of rules and grammars it is possible to give rules application
 conditions. This is convenient if the user wants to have constrains for the
 pattern or the replacement graph. 
+
 \indent In the tree based visual editor it is also possible to define host
 graphs and type graphs. Type graphs is described more in depths in the next
 section, but roughly said, the type graph defines elements that can be used in
@@ -165,6 +227,7 @@ can be compared to Meta Object Facility
 abstract syntax of modeling languages. The users can now create instances
 from these type graphs. These instances represents the host graphs and
 corresponds to its concurrent type graph. 
+
 \indent For the application rules, the user can extend the attributes with Java
 expressions. This means that the users can use Java primitives such as strings,
 integers or float numbers to form the pattern graph or the left hand side of the
@@ -172,9 +235,9 @@ rule. The user cannot bind attributes that is not initialised in the type graph.
 
 \subsection{Type Graph}
 
-Before the host graphs can be created. a type graph has to be initialised. These
-type graphs represents the abstract syntax for the host graphs. For this
-case study we created a type graph enabling translation from an activity diagram
+\noindent Before the host graphs can be created. a type graph has to be
+initialised. These type graphs represents the abstract syntax for the host
+graphs. For this case study we created a type graph enabling translation from an activity diagram
 to petri nets. Unlike Henshin, the AGG graphs does not allow for separately
 definitions of type graphs. Henshin allows the use of one source and one target
 metamodel independent of each other. If we want to prepare an AGG graph for a
@@ -187,7 +250,7 @@ of transformation rules.
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.7]{figures/AggTypeGraph.png}
-	\caption{Activity diagram to petri nets type graph in AGG}
+	\caption{Activity diagram to petri nets type graph in AGG.}
 	\label{fig:AggTypeGraph}
 \end{figure}
 
