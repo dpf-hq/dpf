@@ -63,8 +63,8 @@ engineer wants to produce source code from a given model. The latter is often
 referred to Model to Model(M2M) transformations, that is also the subject of
 my master thesis. M2M transformations take a model as input and produces a model
 as output. In this article we try and go into depth for some model
-transformation tools. These tools are Henshin, AGG and ATL. Henshin and AGG is
-build around graph transformation. 
+transformation tools. These tools are Henshin\cite{Henshin}, AGG\cite{AGG} and
+ATL\cite{ATL}. Henshin and AGG is build around graph transformation. 
 
 \subsection{The Model Instances}
 \noindent The task was to take a certain instance of model transformation, in
@@ -144,11 +144,16 @@ $\longrightarrow$ R} use the algebraic construction, pushout to apply an
 application rule for a rewriting step. Hence the name double pushout and the use
 of two gluing conditions.
 
+
 \subsection{Productions}
 \noindent For a transformation language to be able to execute for graph
 transformations a set of application rules needs to be defined. Through these
 rules, a transformation interpreter can act accordingly. These rules are often
-referred to as Productions. 
+referred to as Productions. For graph transformations, there can be an arbitrary
+number of rules. Its truly up to the users how they want to translate a
+language and how many rules that is needed to acquire this. Each rule consists
+of a left hand side (LHS) and a right hand side (RHS), also often referred to as
+pattern graph and replacement graph. These two elements 
 
 \subsection{A Direct Derivation}
 \noindent The basic idea for graph transformation for both the double-pushout
@@ -193,9 +198,10 @@ editor.
 distinguishing elements between the LHS and the RHS. This is done through the use of
 a set of predefined tag words, or stereotypes. For handling transformations
 either in the pattern graph or the replacement graph, we can use the three
-predefined words preserve, create or delete. Forbid and require are used for
-defining Negative Application Conditions (NACs) and Positive Application
-Conditions (PACs). These actions are supported for nodes, edges and attributes.
+predefined words <<preserve>>, <<create>> or <<delete>>. <<forbid>> and
+<<require>> are used for defining Negative Application Conditions (NACs) and
+Positive Application Conditions (PACs). These actions are supported for nodes,
+edges and attributes.
 
 \section{The Attributed Graph Grammar System}
 
@@ -222,9 +228,8 @@ pattern or the replacement graph.
 graphs and type graphs. Type graphs is described more in depths in the next
 section, but roughly said, the type graph defines elements that can be used in
 the host graph. Type graphs defines the abstract models for the host graph and
-can be compared to Meta Object Facility
-(MOF)\cite{OMGAdoptedSpecificationptc/03-10-04}, that is a language for defining
-abstract syntax of modeling languages. The users can now create instances
+can be compared to Meta Object Facility (MOF)\cite{MOF}, that is a language for
+defining abstract syntax of modeling languages. The users can now create instances
 from these type graphs. These instances represents the host graphs and
 corresponds to its concurrent type graph. 
 
@@ -273,7 +278,7 @@ instances of these relations in the host graph.
 
 
 \pagebreak
-\bibliographystyle{plain} 
-\bibliography{Master,websites}
+\bibliographystyle{ieeetr} 
+\bibliography{master,websites}
 
 \end{document}
