@@ -78,7 +78,10 @@ import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.editparts.ScalableFreeformRootEditPart;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.ui.actions.ActionBarContributor;
+import org.eclipse.gef.ui.actions.ToggleGridAction;
+import org.eclipse.gef.ui.actions.ToggleSnapToGeometryAction;
 import org.eclipse.gef.ui.parts.GraphicalEditorWithFlyoutPalette;
+import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IStatusLineManager;
@@ -1475,6 +1478,8 @@ public class VisualizationEditor extends GraphicalEditorWithFlyoutPalette
 		GraphicalViewer viewer = getGraphicalViewer();
 		viewer.setEditPartFactory(new VisualizationEditPartFactory(visualizations));
 		viewer.setRootEditPart(new ScalableFreeformRootEditPart());
+		registerAction(new ToggleSnapToGeometryAction(viewer));
+		registerAction(new ToggleGridAction(viewer));
 	}
 	Visualizations visualizations;
 	protected void initializeGraphicalViewer() {
@@ -1489,5 +1494,10 @@ public class VisualizationEditor extends GraphicalEditorWithFlyoutPalette
 		IFile file = ((IFileEditorInput) input).getFile();
 		setPartName(file.getName());
 		createModel();
+	}
+	@SuppressWarnings("unchecked")
+	private void registerAction(IAction action) {
+		getActionRegistry().registerAction(action);
+		getSelectionActions().add(action.getId());
 	}
 }

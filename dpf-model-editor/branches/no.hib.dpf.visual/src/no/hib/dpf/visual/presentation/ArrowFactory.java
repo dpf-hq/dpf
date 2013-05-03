@@ -11,15 +11,15 @@
 *******************************************************************************/
 package no.hib.dpf.visual.presentation;
 
-
 import no.hib.dpf.core.Arrow;
-import no.hib.dpf.core.CoreFactory;
+import no.hib.dpf.diagram.DArrow;
+import no.hib.dpf.diagram.DiagramFactory;
 
 import org.eclipse.gef.requests.CreationFactory;
 
 public class ArrowFactory implements CreationFactory {
 
-	Arrow typeArrow;
+	private Arrow typeArrow;
 	
 	public ArrowFactory(Arrow darrow) {
 		typeArrow = darrow;
@@ -27,14 +27,15 @@ public class ArrowFactory implements CreationFactory {
 
 	@Override
 	public Object getNewObject() {
-		Arrow result = CoreFactory.eINSTANCE.createDefaultArrow();
-		result.setTypeArrow(typeArrow);
-		return result;
+		DArrow retval = DiagramFactory.eINSTANCE.createDefaultDArrow();
+		retval.getArrow().setTypeArrow(typeArrow);
+		retval.getArrow().setName("");
+		return retval;
 	}
 
 	@Override
 	public Object getObjectType() {
-		return Arrow.class;
+		return DArrow.class;
 	}
 
 }

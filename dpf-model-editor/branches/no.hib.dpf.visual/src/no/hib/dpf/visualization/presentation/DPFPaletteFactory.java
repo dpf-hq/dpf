@@ -20,6 +20,12 @@ import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.IDObject;
 import no.hib.dpf.core.Node;
+import no.hib.dpf.diagram.DArrow;
+import no.hib.dpf.diagram.DGraph;
+import no.hib.dpf.diagram.DNode;
+import no.hib.dpf.editor.displaymodel.factories.DArrowFactory;
+import no.hib.dpf.editor.displaymodel.factories.DNodeFactory;
+import no.hib.dpf.editor.displaymodel.factories.DPFConnectionCreationToolEntry;
 import no.hib.dpf.editor.icons.ImageSettings;
 import no.hib.dpf.visual.VArrow;
 import no.hib.dpf.visual.VElement;
@@ -78,20 +84,24 @@ public class DPFPaletteFactory {
 			VElement element = maps.get(node);
 			if(element instanceof VNode){
 				VNode vNode = (VNode) element;
-					ImageDescriptor smallIcon = vNode.getIcon() == null || vNode.getIcon().isEmpty() ? null : ImageDescriptor.createFromFile(null, vNode.getIcon());
-					nodeGroup.add(new CreationToolEntry(node.getName(), "Create a new " + node.getName(), new NodeFactory(node), 
-							smallIcon != null ? smallIcon : SMALLICON, 
-									LARGEICON));
+				ImageDescriptor smallIcon = vNode.getIcon() == null || vNode.getIcon().isEmpty() ? null : ImageDescriptor.createFromFile(null, vNode.getIcon());
+				nodeGroup.add(new CreationToolEntry(node.getName(), "Create a new " + node.getName(), new NodeFactory(node), 
+							smallIcon != null ? smallIcon : SMALLICON, LARGEICON));
 			}
 		}
  		for(Arrow arrow : graph.getArrows()){
  			VElement element = maps.get(arrow);
 			if(element instanceof VArrow){
 				VArrow vArrow = (VArrow) element;
+				if(vArrow.isComposed()) {
 					ImageDescriptor smallIcon = vArrow.getIcon() == null || vArrow.getIcon().isEmpty() ? null : ImageDescriptor.createFromFile(null, vArrow.getIcon());
-					arrowGroup.add(new CreationToolEntry(arrow.getName(), "Create a new " + arrow.getName(), new ArrowFactory(arrow), 
-							smallIcon != null ? smallIcon : SMALLARROW, 
-									LARGEARROW));
+					nodeGroup.add(new CreationToolEntry(arrow.getName(), "Create a new " + arrow.getName(), new ArrowFactory(arrow), 
+								smallIcon != null ? smallIcon : SMALLICON, LARGEICON));
+				} else {
+					ImageDescriptor smallIcon = vArrow.getIcon() == null || vArrow.getIcon().isEmpty() ? null : ImageDescriptor.createFromFile(null, vArrow.getIcon());
+					arrowGroup.add(new DPFConnectionCreationToolEntry(arrow.getName(), "Create a new " + arrow.getName() + ":" + arrow.getSource().getName() + "-->" + arrow.getTarget().getName(), new ArrowFactory(arrow), 
+							smallIcon != null ? smallIcon : SMALLARROW, LARGEARROW));
+				}
 			}
 		}
 	}
