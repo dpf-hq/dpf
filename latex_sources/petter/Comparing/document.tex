@@ -16,6 +16,14 @@
 
 \usepackage[none]{hyphenat}%%%%
 
+\usepackage{color, colortbl}
+\definecolor{Gray}{gray}{0.9}
+\definecolor{LightCyan}{rgb}{0.88,1,1}
+
+\usepackage[first=0,last=9]{lcg}
+\newcommand{\ra}{\rand0.\arabic{rand}}
+
+\usepackage[table]{xcolor}% http://ctan.org/pkg/xcolor
 \begin{document}
 
 \title{Analyzing Model to Model Transformation
@@ -26,12 +34,11 @@
 \maketitle
 
 \abstract{}
-Trass
 
 \newpage
 \section{Introduction}
 
-\noindent Model Driven Engineering(MDE)\cite{France2007} thrives to raise the
+\noindent Model Driven Engineering (MDE)\cite{France2007} thrives to raise the
 level of abstraction in program specification and increase automation in program development. The idea
 from MDE is to use models at different levels of abstraction when developing
 applications. Therefore raising the level of abstraction in program
@@ -40,7 +47,7 @@ use of models to describe some design patterns in a software application or
 through use of standardized models. The first option is probably an element of
 MDE that is most common among software engineers. That you implement some aspect
 of a system based on a model of a specific language. Unified Modelling Language is
-an example of an modelling language often used to describe system design
+an example of a modelling language often used to describe system design
 patterns in an application domain. The second principle of Model Driven
 Engineering is to increase automation in program development, and to obtain this
 we use something called model transformations. \\
@@ -68,7 +75,7 @@ ATL\cite{ATL}. Henshin and AGG is build around graph transformation.
 
 \subsection{The Model Instances}
 \noindent The task was to take a certain instance of model transformation, in
-this case translating a activity diagram, written in the language UML and
+this case translating an activity diagram, written in the language UML and
 transform it to petri net. We initialize the metamodels to make sure that the
 models remain consistent.
 
@@ -80,10 +87,10 @@ models remain consistent.
 \end{figure}
 
 The metamodel of an activity diagram has an arbitrary number of activity and
-next elements. An activity element can have a name and can be of some type kind.
+next elements. An activity element can have a name and a type.
 Example of activity types can be decision or simple. The next element can have
 an inscription and has the property to either start or end an activity. The
-collection of activity and next elements have to have an activity diagram that
+collection of activities and next elements have to have an activity diagram that
 they belong to. Now we have defined the metamodel that the source model should
 conform to. To keep consistency between the models we need to have a
 metamodel for the target model.
@@ -119,7 +126,7 @@ collection of objects A, B and C and morphisms f, g and g $\circ$ f. And for the
 purpose of this paper, the collection of objects are graphs and the arrows are
 morphisms. This is also very typical when writing papers to explain the concepts
 of graph transformations, where these objects are represented as graphs, and
-arrows are represented at as morphisms. Category theory can then be used to
+arrows are represented as morphisms. Category theory can then be used to
 formalize concepts of high-level abstractions.
 
 \subsection{An Algebraic Approach}
@@ -136,10 +143,10 @@ Schneider\cite{INSPEC:606170}. They tried to generalize Chromsky grammars from
 strings to graphs. This allowed to define a graph rewriting step by the use of
 two gluing constructions. And by applying a graph rewriting step for the
 double-pushout approach is a pair of morphisms in the category of graphs where
-the arrows represents total graph morphisms, \mbox{L $\longleftarrow$ \ K
-$\longrightarrow$ R}. This is true for each application rule in a graph
+the arrows represents total graph morphisms, \linebreak\mbox{L $\longleftarrow$
+\ K $\longrightarrow$ R}. This is true for each application rule in a graph
 transformation for the double-pushout approach. Where the graph K represents the
-gluing part and the two morphisms \mbox{L $\longleftarrow$ \ K and K
+gluing part and the two morphisms \mbox{L $\longleftarrow$ \ K} and \mbox{K
 $\longrightarrow$ R} use the algebraic construction, pushout to apply an
 application rule for a rewriting step. Hence the name double pushout and the use
 of two gluing conditions.
@@ -153,15 +160,16 @@ referred to as Productions. For graph transformations, there can be an arbitrary
 number of rules. Its truly up to the users how they want to translate a
 language and how many rules that is needed to acquire this. Each rule consists
 of a left hand side (LHS) and a right hand side (RHS), also often referred to as
-pattern graph and replacement graph. These two elements 
+pattern graph and replacement graph. The pattern graph represents a subgraph of
+the model that is going to be translated, namely the host graph.
+% \indent These productions are handled 
 
 \subsection{A Direct Derivation}
 \noindent The basic idea for graph transformation for both the double-pushout
-approach and the signle pushout approach is to apply an application rule
+approach and the single pushout approach is to apply an application rule
 \mbox{r: L $\longrightarrow$ R}. Where the rule represents a single rewriting
 step for graph transformations and L represents the left hand side of the rule and R
-represents the right hand side of the rule. These are often referred to as the
-pattern graph and the replacement graph. 
+represents the right hand side of the rule.
 
 \begin{figure}[H]
 	\centering
@@ -242,15 +250,15 @@ rule. The user cannot bind attributes that is not initialised in the type graph.
 
 \noindent Before the host graphs can be created. a type graph has to be
 initialised. These type graphs represents the abstract syntax for the host
-graphs. For this case study we created a type graph enabling translation from an activity diagram
-to petri nets. Unlike Henshin, the AGG graphs does not allow for separately
-definitions of type graphs. Henshin allows the use of one source and one target
-metamodel independent of each other. If we want to prepare an AGG graph for a
-transformation, we create a single type graph with references between elements
-of both source and target metamodel. This way, when the application rules is
-executed, we can choose to keep both the source graph and the references between
-these elements. The references and source graph can be deleted through a cycle
-of transformation rules.
+graphs. For this case study we created a type graph enabling translation from
+an activity diagram to petri nets. Unlike Henshin, the AGG graphs does not
+allow for separately definitions of type graphs. Henshin allows the use of one
+source and one target metamodel independent of each other. If we want to
+prepare an AGG graph for a transformation, we create a single type graph with
+references between elements of both source and target metamodel. This way, when
+the application rules is executed, we can choose to keep both the source graph
+and the references between these elements. The references and source graph can
+be deleted through a cycle of transformation rules.
 
 \begin{figure}[H]
 	\centering
@@ -276,6 +284,24 @@ the edges. This means that there can be an arbitrary, or a zero to many number o
 instances of these relations in the host graph.
 
 
+\begin{table}[ht]
+\centering
+\begin{tabular}{c | c | c | c |}
+\hline
+& AGG & Henshin & ATL \\
+\hline
+Input Elements& 1\ldots n & 1\ldots n & 1\ldots n\\
+Output Elements & 1\ldots n & 1\ldots n & 1\ldots n\\
+Endogenous transformation& \cellcolor{green!25}Yes & \cellcolor{green!25}Yes & \cellcolor{green!25}Yes \\
+Exogenous transformation& \cellcolor{green!25}Yes & \cellcolor{green!25}Yes & \cellcolor{green!25}Yes \\
+Intuitive& \cellcolor{green!25}Yes & \cellcolor{green!25}Yes
+&\cellcolor{red!25}No  \\
+row4& \ra & \ra & \ra \\
+row5& \ra & \ra & \ra \\
+row6& \ra & \ra & \ra \\
+\hline
+\end{tabular}
+\end{table}
 
 \pagebreak
 \bibliographystyle{ieeetr} 
