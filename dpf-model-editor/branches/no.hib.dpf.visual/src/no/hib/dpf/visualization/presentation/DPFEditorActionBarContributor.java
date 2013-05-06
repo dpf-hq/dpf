@@ -16,8 +16,8 @@
 package no.hib.dpf.visualization.presentation;
 
 
-import no.hib.dpf.editor.icons.ImageSettings;
 import no.hib.dpf.visual.VisualPlugin;
+import no.hib.dpf.visual.util.ImageSettings;
 
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.gef.editparts.ZoomManager;

@@ -9,7 +9,7 @@
  * Contributors:
  * �yvind Bech and Dag Viggo Lok�en - DPF Editor
 *******************************************************************************/
-package no.hib.dpf.editor.icons;
+package no.hib.dpf.visual.util;
 
 import java.io.IOException;
 import java.util.HashMap;
