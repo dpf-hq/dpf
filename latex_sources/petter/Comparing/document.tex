@@ -80,10 +80,18 @@ build around graph transformation.
 % styrker og svakheter. Så kan du forklare eksemplet etterpå.
 
 \subsection{Problem specification}
-\noindent In this article we have a specific example of a model transformation
-and will evaluate how this  The task was to take a certain instance of model
-transformation, in this case translating an activity diagram, written in the language UML and transform it to petri net. We initialize the metamodels to make sure that the
-models remain consistent.
+\noindent In this article we look at a specific example of a model to model
+transformation and evaluate how this example performs for different tools.
+When we have applied this example to the different tools, we will try and
+find both strengths and weaknesses for these tools. The task was to take a
+certain instance of a model to model transformation, in this case translating
+an activity diagram, written in the language UML, and transform it to a petri
+net model. We initialize the metamodels to make sure that the models remain
+consistent. These metamodels are represented in the Ecore
+model\cite{Steinberg2009}. The Ecore model is used to represent models in EMF.
+Ecore itself is an EMF model, and therefore has its own metamodel. You could say
+that this makes Ecore a meta-metamodel, since the two metamodels below are
+represented in Ecore.
 
 \begin{figure}[H]
 	\centering
@@ -92,10 +100,10 @@ models remain consistent.
 	\label{fig:ActivityMetamodel}
 \end{figure}
 
-The metamodel of an activity diagram has an arbitrary number of activity and
-next elements. An activity element can have a name and a type.
+The metamodel of an activity diagram has an arbitrary number of activities and
+next elements. An activity element can have a name and a kind.
 Example of activity types can be decision or simple. The next element can have
-an inscription and has the property to either start or end an activity. The
+an inscription and has the property to either start or end activities. The
 collection of activities and next elements have to have an activity diagram that
 they belong to. Now we have defined the metamodel that the source model should
 conform to. To keep consistency between the models we need to have a
@@ -111,8 +119,12 @@ metamodel for the target model.
 The metamodel for a petri net consist of places and transitions. A petri net
 instance must have a place connected to a transition or the other way around.
 But a petri net can never have two of the same types connected with each other.
-There also is two nodes that distinguish if the arrow has a place or a
-transition as source node and the opposite as target node.
+To solve this, the petri net metamodel has two nodes that specify if the
+connection is between a place and a transition or a transition and a place.
+\indent Now that we have defined the two corresponding metamodels, we can use
+these two ecore models in both Henshin and ATL. These two transformation
+languages provides support the Ecore meta-metamodel technology, defined by
+Eclipse Modelling Framework. 
 
 \section{Graph Transformation}
 \noindent One approach to model transformations is by graph transformations,
@@ -126,16 +138,17 @@ approach, which is based upon category theory\cite{Barr1990}.
 	\label{fig:categoryTheory}
 \end{figure}
 
+
 In category theory there are a collection of objects and arrows. These arrows
 are also called morphisms. In figure~\ref{fig:categoryTheory} we have a
 collection of objects A, B and C and morphisms f, g and g $\circ$ f. And for the
 purpose of this paper, the collection of objects are graphs and the arrows are
-morphisms. This is also very typical when writing papers to explain the concepts
-of graph transformations, where these objects are represented as graphs, and
+graph morphisms. This is also very typical when writing papers to explain the
+concepts of graph transformations, where these objects are represented as graphs, and
 arrows are represented as morphisms. Category theory can then be used to
-formalize concepts of high-level abstractions.
+formalize the concepts at a high level of abstraction.
 
-\subsection{An Algebraic Approach}
+\subsection{The Algebraic Approach}
 \noindent This approach are based on the concepts of gluing of graphs, modelled
 by pushouts of graphs and graph morphisms. These pushouts comes in different
 categories, and we will look at two approaches to graph transformations, namely
