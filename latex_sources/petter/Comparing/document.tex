@@ -203,33 +203,6 @@ subgraph L in a host graph G, then this indicates a graph homomorphism, mapping
 elements from the subgraph to the host graph in such a way that the graphical
 structure in G is preserved.
 
-\section{The Henshin Project}
-
-\noindent The Henshin project\cite{Henshin} provides a model transformation
-language for the Eclipse Modelling Framework \cite{Steinberg2009}. With support for both direct 
-transformation of EMF single model instances, and translation from source
-model to targeted model. The Henshin project is a transformation language with a
-provided graphical syntax. With the help of this graphical editor, it provides
-the user with an intuitive way of representing rules. The tool also has support 
-both endogenous and exogenous transformations.
-
-\subsection{Defining transformation rules}
-
-\noindent In Henshin, objects are referred to as nodes and links between objects
-as edges. A collection of these nodes and edges form a graph. For each graph, a
-rule has to be defined. These rules can have parameters for checking and model
-verification. Each rule can be represented as a graph in the graphical
-editor. 
-
-\indent When creating these rules, there has to be a way of
-distinguishing elements between the LHS and the RHS. This is done through the use of
-a set of predefined tag words, or stereotypes. For handling transformations
-either in the pattern graph or the replacement graph, we can use the three
-predefined words <<preserve>>, <<create>> or <<delete>>. <<forbid>> and
-<<require>> are used for defining Negative Application Conditions (NACs) and
-Positive Application Conditions (PACs). These actions are supported for nodes,
-edges and attributes.
-
 \section{The Attributed Graph Grammar System}
 
 \noindent AGG is a general development environment for algebraic graph
@@ -302,6 +275,57 @@ Henshin transformations. For AGG type graphs there is a multiplier condition for
 the edges. This means that there can be an arbitrary, or a zero to many number of
 instances of these relations in the host graph.
 
+\section{The Henshin Project}
+
+\noindent The Henshin project\cite{Henshin} provides a model transformation
+language for the Eclipse Modelling Framework \cite{Steinberg2009}. With support for both direct 
+transformation of EMF single model instances, and translation from source
+model to targeted model. The Henshin project is a transformation language with a
+provided graphical syntax. With the help of this graphical editor, it provides
+the user with an intuitive way of representing rules. 
+
+\subsection{Graphical Editor}
+\noindent Henshin model transformation language is a plugin for the Eclipse
+Integrated Development Environment\cite{Eclipse}. The Henshin project provides
+the users with a graphical editor to create and modify model to model
+transformations. 
+
+The users start out with using the Eclipse wizard to create an empty Henshin
+document. The henshin document is based on the commonly known Extensible Markup
+Language (XML)\cite{XML}. If applicable a Henshin diagram file can be created
+based on the Henshin file. This gives the users an intuitive approach to
+creating model transformation rules.
+
+The Henshin transformation file is represented in a tree based editor in
+Eclipse. In this tree based editor it is possible to include metamodels for both
+the source and the target model. These metamodels are created based the EMF
+standard for creating models, that we talked about in section two. This approach
+differ from the AGG approach we saw in section 3, where we have to create both
+target and source metamodel in one common type graph. In Henshin the two
+metamodels are independent of one and another, therefore they are included as
+two separate models in the Henshin file. 
+
+
+\subsection{Defining transformation rules}
+
+\noindent In Henshin, objects are referred to as nodes and links between objects
+as edges. A collection of these nodes and edges form a graph. For each graph, a
+rule has to be defined. These rules can have parameters for checking and model
+verification. Each rule can be represented as a graph in the graphical
+editor. 
+
+\indent When creating these rules, there has to be a way of
+distinguishing elements between the LHS and the RHS. This is done through the use of
+a set of predefined tag words, or stereotypes. For handling transformations
+either in the pattern graph or the replacement graph, we can use the three
+predefined words <<preserve>>, <<create>> or <<delete>>. <<forbid>> and
+<<require>> are used for defining Negative Application Conditions (NACs) and
+Positive Application Conditions (PACs). These actions are supported for nodes,
+edges and attributes.
+
+\section{Evaluation}
+The tool also has support 
+both endogenous and exogenous transformations.
 
 \begin{table}[ht]
 \centering
