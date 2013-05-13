@@ -90,7 +90,7 @@ public class DPFPaletteFactory {
 				VArrow vArrow = (VArrow) element;
 				if(vArrow.isComposed()) {
 					ImageDescriptor smallIcon = vArrow.getIcon() == null || vArrow.getIcon().isEmpty() ? null : ImageDescriptor.createFromFile(null, vArrow.getIcon());
-					nodeGroup.add(new CreationToolEntry(arrow.getName(), "Create a new " + arrow.getName(), new ArrowFactory(arrow), 
+					nodeGroup.add(new CreationToolEntry(arrow.getTarget().getName(), "Create a new " + arrow.getTarget().getName(), new ArrowFactory(arrow), 
 								smallIcon != null ? smallIcon : SMALLICON, LARGEICON));
 				} else {
 					ImageDescriptor smallIcon = vArrow.getIcon() == null || vArrow.getIcon().isEmpty() ? null : ImageDescriptor.createFromFile(null, vArrow.getIcon());

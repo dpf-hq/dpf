@@ -2,10 +2,13 @@
  */
 package no.hib.dpf.visual.impl;
 
+import no.hib.dpf.visual.VCompositeElement;
 import no.hib.dpf.visual.VNode;
 import no.hib.dpf.visual.VisualPackage;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
@@ -42,6 +45,8 @@ public class VNodeImpl extends VElementImpl implements VNode {
 	 * @ordered
 	 */
 	protected boolean composite = COMPOSITE_EDEFAULT;
+	
+	protected EList<VCompositeElement> compartments;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -50,6 +55,7 @@ public class VNodeImpl extends VElementImpl implements VNode {
 	 */
 	protected VNodeImpl() {
 		super();
+		compartments = new BasicEList<VCompositeElement>();
 	}
 
 	/**
@@ -155,6 +161,16 @@ public class VNodeImpl extends VElementImpl implements VNode {
 		result.append(composite);
 		result.append(')');
 		return result.toString();
+	}
+
+	@Override
+	public EList<VCompositeElement> getCompartments() {
+		return compartments;
+	}
+
+	@Override
+	public void addCompartment(VCompositeElement compartment) {
+		compartments.add(compartment);
 	}
 
 } //VNodeImpl

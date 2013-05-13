@@ -2,6 +2,8 @@
  */
 package no.hib.dpf.visual;
 
+import org.eclipse.emf.common.util.EList;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -46,5 +48,9 @@ public interface VNode extends VElement {
 	 * @generated
 	 */
 	void setComposite(boolean value);
+	
+	EList<VCompositeElement> getCompartments();
+	
+	void addCompartment(VCompositeElement compartment);
 
 } // VNode
