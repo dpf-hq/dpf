@@ -28,18 +28,18 @@ public class VisualizationEditPartFactory extends DPFEditPartFactory {
 	protected EditPart getPartForElement(Object modelElement) {
 		if (modelElement instanceof DNode) {
 			DNode dNode = (DNode) modelElement;
-			EList<Node> composedChildren = new BasicEList<Node>();
+			EList<Node> compartments = new BasicEList<Node>();
 			VNode vNode = (VNode) maps.get(dNode.getNode().getTypeNode());
 			
 			if(vNode.isComposite()) {
 				EList<Arrow> arrows = dNode.getNode().getTypeNode().getOutgoings();
 				for(Arrow arrow : arrows) {
 					if(((VArrow) maps.get(arrow)).isComposed())
-						composedChildren.add(arrow.getTarget());
+						compartments.add(arrow.getTarget());
 				}
 			}
 			
-			return new DPFNodeEditPart(vNode, composedChildren);
+			return new DPFNodeEditPart(vNode, compartments);
 		}
 		if (modelElement instanceof DArrow) {
 			DArrow dArrow = (DArrow) modelElement;

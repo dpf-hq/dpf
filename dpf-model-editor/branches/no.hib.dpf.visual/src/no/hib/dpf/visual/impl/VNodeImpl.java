@@ -2,7 +2,7 @@
  */
 package no.hib.dpf.visual.impl;
 
-import no.hib.dpf.visual.VCompositeElement;
+import no.hib.dpf.visual.VCompartment;
 import no.hib.dpf.visual.VNode;
 import no.hib.dpf.visual.VisualPackage;
 
@@ -46,7 +46,7 @@ public class VNodeImpl extends VElementImpl implements VNode {
 	 */
 	protected boolean composite = COMPOSITE_EDEFAULT;
 	
-	protected EList<VCompositeElement> compartments;
+	protected EList<VCompartment> compartments;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -55,7 +55,7 @@ public class VNodeImpl extends VElementImpl implements VNode {
 	 */
 	protected VNodeImpl() {
 		super();
-		compartments = new BasicEList<VCompositeElement>();
+		compartments = new BasicEList<VCompartment>();
 	}
 
 	/**
@@ -164,12 +164,12 @@ public class VNodeImpl extends VElementImpl implements VNode {
 	}
 
 	@Override
-	public EList<VCompositeElement> getCompartments() {
+	public EList<VCompartment> getCompartments() {
 		return compartments;
 	}
 
 	@Override
-	public void addCompartment(VCompositeElement compartment) {
+	public void addCompartment(VCompartment compartment) {
 		compartments.add(compartment);
 	}
 

@@ -13,7 +13,7 @@ import no.hib.dpf.editor.DPFEditor;
 import no.hib.dpf.editor.parts.DNodeEditPart;
 import no.hib.dpf.editor.parts.TextCellEditorLocator;
 import no.hib.dpf.editor.parts.TextDirectEditManager;
-import no.hib.dpf.visual.VCompositeElement;
+import no.hib.dpf.visual.VCompartment;
 import no.hib.dpf.visual.VNode;
 import no.hib.dpf.visual.VisualFactory;
 import no.hib.dpf.visual.impl.VisualFactoryImpl;
@@ -25,27 +25,27 @@ import no.hib.dpf.visualization.policies.VNodeLayoutPolicy;
 public class DPFNodeEditPart extends DNodeEditPart {
 
 	VNode visual = null;
-	EList<Node> children = null;
-	public DPFNodeEditPart(VNode vElement, EList<Node> children) {
+	EList<Node> compartments = null;
+	public DPFNodeEditPart(VNode vElement, EList<Node> compartments) {
 		visual = vElement;
-		this.children = children;
+		this.compartments = compartments;
 	}
 	
 	protected void createEditPolicies() {
 		super.createEditPolicies();
-		//installEditPolicy(EditPolicy.LAYOUT_ROLE, new VNodeLayoutPolicy());
+		installEditPolicy(EditPolicy.LAYOUT_ROLE, new VNodeLayoutPolicy());
 	}
 	
 	protected IFigure createFigure() {
 		IFigure figure;
 		if(visual.isComposite()) {
-			figure = new CompositeNodeFigure(new EditableLabel(getNodeLabelName()), children);
+			figure = new CompositeNodeFigure(new EditableLabel(getNodeLabelName()), compartments);
 			VisualFactory factory = new VisualFactoryImpl();
-			/*for(Node child : children) {
-				VCompositeElement compartment = factory.createVCompositeElement();
-				compartment.setName(child.getName());
-				visual.addCompartment(compartment);
-			}*/
+			for(Node compartment : compartments) {
+				VCompartment vCompartment = factory.createVCompartment();
+				compartment.setName(compartment.getName());
+				visual.addCompartment(vCompartment);
+			}
 		} else
 			figure = new NodeFigure(new EditableLabel(getNodeLabelName()));
 		return figure;

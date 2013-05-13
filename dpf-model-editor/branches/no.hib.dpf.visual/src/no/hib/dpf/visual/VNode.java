@@ -49,8 +49,8 @@ public interface VNode extends VElement {
 	 */
 	void setComposite(boolean value);
 	
-	EList<VCompositeElement> getCompartments();
+	EList<VCompartment> getCompartments();
 	
-	void addCompartment(VCompositeElement compartment);
+	void addCompartment(VCompartment compartment);
 
 } // VNode

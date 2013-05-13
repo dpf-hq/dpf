@@ -55,7 +55,7 @@ public interface VisualFactory extends EFactory {
 	 * @return a new object of class '<em>VCompositeElement</em>'.
 	 * @generated
 	 */
-	VCompositeElement createVCompositeElement();
+	VCompartment createVCompartment();
 
 	/**
 	 * Returns the package supported by this factory.

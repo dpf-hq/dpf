@@ -4,20 +4,20 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-import no.hib.dpf.core.Node;
-import no.hib.dpf.visual.VCompositeElement;
+import no.hib.dpf.diagram.DNode;
+import no.hib.dpf.visual.VCompartment;
 import no.hib.dpf.visual.VisualPackage;
 
-public class VCompositeElementImpl extends VElementImpl implements VCompositeElement {
+public class VCompartmentImpl extends VElementImpl implements VCompartment {
 	
-	protected Node childrenType;
+	protected DNode childrenType;
 	
-	protected Node parent;
+	protected DNode parent;
 	
-	protected EList<Node> children;
+	protected EList<DNode> children;
 
 	
-	protected VCompositeElementImpl() {
+	protected VCompartmentImpl() {
 		super();
 	}
 
@@ -51,32 +51,12 @@ public class VCompositeElementImpl extends VElementImpl implements VCompositeEle
 	}
 
 	@Override
-	public EList<Node> getChildren() {
+	public EList<DNode> getChildren() {
 		return children;
 	}
 
 	@Override
-	public Node getParent() {
-		return parent;
-	}
-
-	@Override
-	public Node getChildrenType() {
-		return childrenType;
-	}
-
-	@Override
-	public void setParent(Node node) {
-		parent = node;
-	}
-
-	@Override
-	public void setChildrenType(Node node) {
-		childrenType = node;
-	}
-
-	@Override
-	public void addChild(Node child) {
+	public void addChild(DNode child) {
 		children.add(child);
 	}
 
