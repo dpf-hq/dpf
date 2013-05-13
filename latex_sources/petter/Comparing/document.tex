@@ -79,6 +79,12 @@ build around graph transformation.
 % utføres i forskjellige verktøy? Etterpå evalurer du verktøyene med tanke på
 % styrker og svakheter. Så kan du forklare eksemplet etterpå.
 
+Model-to-model transformation is a key aspect of model-driven development (MDD).
+The MMT project provides a framework for model-to-model transformation
+languages. Transformations are executed by transformation engines. There are
+three transformation engines that are developed in the scope of this project:
+ATL, QVTo, QVTd. MMT is a subproject of the top-level Eclipse Modeling Project.
+
 \subsection{Problem specification}
 \noindent In this article we look at a specific example of a model to model
 transformation and evaluate how this example performs for different tools.
@@ -298,13 +304,12 @@ creating model transformation rules.
 
 The Henshin transformation file is represented in a tree based editor in
 Eclipse. In this tree based editor it is possible to include metamodels for both
-the source and the target model. These metamodels are created based the EMF
-standard for creating models, that we talked about in section two. This approach
-differ from the AGG approach we saw in section 3, where we have to create both
-target and source metamodel in one common type graph. In Henshin the two
-metamodels are independent of one and another, therefore they are included as
-two separate models in the Henshin file. 
-
+the source and the target model. These metamodels are created based on the EMF
+standard for creating models, that we talked about in the first chapter.
+This approach differ from the AGG approach we saw in section 3, where we have
+to create both target and source metamodel in one common type graph. In Henshin
+the two metamodels are independent of one and another, therefore they are
+included as two separate models in the Henshin file. 
 
 \subsection{Defining transformation rules}
 
@@ -321,7 +326,30 @@ either in the pattern graph or the replacement graph, we can use the three
 predefined words <<preserve>>, <<create>> or <<delete>>. <<forbid>> and
 <<require>> are used for defining Negative Application Conditions (NACs) and
 Positive Application Conditions (PACs). These actions are supported for nodes,
-edges and attributes.
+edges and attributes. 
+
+
+ATL - a model transformation technology
+ATL (ATL Transformation Language) is a model transformation language
+and toolkit. In the field of Model-Driven Engineering (MDE), ATL provides ways to
+produce a set of target models from a set of source models. Developed on top of
+the Eclipse platform, the ATL Integrated Environnement (IDE) provides a number
+of standard development tools (syntax highlighting, debugger, etc.) that aims
+to ease development of ATL transformations.
+
+\section{ATL Transformation Language}
+
+ATL\cite{ATL} (ATL Transformation Language) is a model transformation language.
+It provides ways to produce a set of target models from a set of source models.
+ATL is developed on top of the Eclipse platform
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{figures/ATL.png}
+	\caption{Model transformation process for Activity2PetriNets.}
+	\label{fig:ATL}
+\end{figure}
 
 \section{Evaluation}
 The tool also has support 
