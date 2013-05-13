@@ -17,6 +17,7 @@ package no.hib.dpf.visualization.commands;
 
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.editor.commands.AbstractCreateCommand;
+import no.hib.dpf.visual.VNode;
 
 /**
  * A command to add a Shape to a ShapeDiagram.
@@ -27,7 +28,8 @@ public class ChildDNodeCreateCommand extends AbstractCreateCommand {
 
 	/** Diagram to add to. */
 	private final DNode parent;
-	/** The bounds of the new VNode. */
+	/** The VNode associated. */
+	private VNode container;
 
 
 	/**
