@@ -2,8 +2,9 @@ package no.hib.dpf.visualization.figures;
 
 import java.io.IOException;
 
-import no.hib.dpf.core.Node;
 import no.hib.dpf.editor.DPFPlugin;
+import no.hib.dpf.visual.VCompartment;
+import no.hib.dpf.visual.VNode;
 
 import org.eclipse.draw2d.AbstractBorder;
 import org.eclipse.draw2d.ColorConstants;
@@ -13,7 +14,6 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.LineBorder;
 import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.geometry.Insets;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 
@@ -23,7 +23,7 @@ public class CompositeNodeFigure extends NodeFigure {
 		//super();
 		}
 	
-	public CompositeNodeFigure(EditableLabel name, EList<Node> columns) {
+	public CompositeNodeFigure(EditableLabel name, VNode node) {
 		nameLabel = name;
 		ToolbarLayout layout = new ToolbarLayout();
 		setLayoutManager(layout);
@@ -33,8 +33,8 @@ public class CompositeNodeFigure extends NodeFigure {
 		setOpaque(true);
 		name.setForegroundColor(new Color(null, 0, 0, 0));
 		add(name);
-		for(Node node : columns) {
-			CompartmentFigure child = new CompartmentFigure(node.getName()+"s");
+		for(VCompartment compartment : node.getCompartments()) {
+			CompartmentFigure child = new CompartmentFigure(compartment.getName()+"s");
 			add(child);
 		}
 		try {

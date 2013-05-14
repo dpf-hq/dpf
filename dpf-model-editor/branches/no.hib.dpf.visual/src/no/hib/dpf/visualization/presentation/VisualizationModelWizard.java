@@ -21,11 +21,14 @@ import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.diagram.DiagramFactory;
 import no.hib.dpf.utils.DPFCoreUtil;
 import no.hib.dpf.visual.VArrow;
+import no.hib.dpf.visual.VCompartment;
 import no.hib.dpf.visual.VElement;
 import no.hib.dpf.visual.VNode;
+import no.hib.dpf.visual.VisualFactory;
 import no.hib.dpf.visual.VisualPlugin;
 import no.hib.dpf.visual.VisualUtils;
 import no.hib.dpf.visual.Visuals;
+import no.hib.dpf.visual.impl.VisualFactoryImpl;
 import no.hib.dpf.visualization.VisualizationFactory;
 import no.hib.dpf.visualization.VisualizationPackage;
 import no.hib.dpf.visualization.Visualizations;
@@ -43,6 +46,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.CommonPlugin;
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -223,6 +227,26 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 		instance.getSpecification().setType(specification);
 		visualizations.setInstance(instance);
 		visualizations.getEntries().putAll(maps);
+		
+		/*for(Node node : visualizations.getModel().getGraph().getNodes()){
+			VElement element = maps.get(node);
+			if(element instanceof VNode){
+				VNode vNode = (VNode) element;
+				if(vNode.isComposite()) {
+					VisualFactory factory = new VisualFactoryImpl();
+					EList<Arrow> arrows = node.getOutgoings();
+					for(Arrow arrow : arrows) {
+						if(((VArrow) maps.get(arrow)).isComposed()) {
+							VCompartment vCompartment = factory.createVCompartment();
+							vCompartment.setName(arrow.getTarget().getName());
+							vCompartment.setParent(arrow.getTarget());
+							vNode.addCompartment(vCompartment);
+						}
+					}
+				}
+			}
+		}*/
+		
 		return visualizations;
 	}
 

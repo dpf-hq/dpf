@@ -4,6 +4,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import no.hib.dpf.core.Node;
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.visual.VCompartment;
 import no.hib.dpf.visual.VisualPackage;
@@ -12,7 +13,7 @@ public class VCompartmentImpl extends VElementImpl implements VCompartment {
 	
 	protected DNode childrenType;
 	
-	protected DNode parent;
+	protected Node parent;
 	
 	protected EList<DNode> children;
 
@@ -58,6 +59,16 @@ public class VCompartmentImpl extends VElementImpl implements VCompartment {
 	@Override
 	public void addChild(DNode child) {
 		children.add(child);
+	}
+
+	@Override
+	public Node getParent() {
+		return parent;
+	}
+
+	@Override
+	public void setParent(Node parent) {
+		this.parent = parent;
 	}
 
 }
