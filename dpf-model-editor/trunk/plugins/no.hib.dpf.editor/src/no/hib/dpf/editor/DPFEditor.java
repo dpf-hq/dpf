@@ -178,9 +178,14 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 	protected void createActions() {
 		super.createActions(); // to get the default actions
 
-		if (dSpecification.getDSignature() != null) {
-			for (DPredicate predicate : dSpecification.getDSignature().getDPredicates())
+		DSignature signature = dSpecification.getDSignature();
+		if (signature != null) {
+			for (DPredicate predicate : signature.getDPredicates())
 				addActionForPredicate(predicate);
+			if(signature != DEFAULT_DSIGNATURE){
+				for (DPredicate predicate : DEFAULT_DSIGNATURE.getDPredicates())
+					addActionForPredicate(predicate);
+			}
 		}
 		registerAction(new AlignmentAction((IWorkbenchPart)this, PositionConstants.LEFT));
 		registerAction(new AlignmentAction((IWorkbenchPart)this, PositionConstants.RIGHT));
