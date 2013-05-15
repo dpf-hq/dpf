@@ -13,6 +13,7 @@
 \usepackage[utf8]{inputenc} % input encoding
 \usepackage[english]{babel} % keyword translation and hyphenation
 \usepackage{lmodern} % lmodern looks better than cm-super
+\usepackage{moreverb}
 
 \usepackage[none]{hyphenat}%%%%
 
@@ -73,7 +74,9 @@ to Model to Model(M2M) transformations. M2M transformations take a model as
 input and produces a model as output. In this article we try and go into depth
 for some model to model transformation tools. These tools are
 Henshin\cite{Henshin}, AGG\cite{AGG} and ATL\cite{ATL}. Henshin and AGG is
-build around graph transformation.
+build around the algebraic concepts of graph transformations. Whereas ATL
+transformation language is a syntax based transformation language that relies on
+manual coding to create model to model transformations. 
 
 % Er det ikke mer å se på en eksempel model transformasjon og hvordan den kan
 % utføres i forskjellige verktøy? Etterpå evalurer du verktøyene med tanke på
@@ -131,6 +134,8 @@ connection is between a place and a transition or a transition and a place.
 these two ecore models in both Henshin and ATL. These two transformation
 languages provides support the Ecore meta-metamodel technology, defined by
 Eclipse Modelling Framework. 
+
+\subsection{What is model transformation?}
 
 \section{Graph Transformation}
 \noindent One approach to model transformations is by graph transformations,
@@ -320,8 +325,8 @@ verification. Each rule can be represented as a graph in the graphical
 editor. 
 
 \indent When creating these rules, there has to be a way of
-distinguishing elements between the LHS and the RHS. This is done through the use of
-a set of predefined tag words, or stereotypes. For handling transformations
+distinguishing elements between the LHS and the RHS. This is done through the
+use of a set of predefined tag words, or stereotypes. For handling transformations
 either in the pattern graph or the replacement graph, we can use the three
 predefined words <<preserve>>, <<create>> or <<delete>>. <<forbid>> and
 <<require>> are used for defining Negative Application Conditions (NACs) and
@@ -342,7 +347,6 @@ metametamodel. Note that a metametamodel is usually self-defined, which means
 that it can be specified by means of its own semantics. In such a case, a
 metametamodel conforms to itself.
 
-
 Several metametamodel technologies are available. The ATL transformation engine
 currently provides support for two of these existing technologies: the Meta
 Object Facilities (MOF 1.4) defined by the OMG and the Ecore metametamodel
@@ -354,16 +358,48 @@ to either the MOF or the Ecore semantics.
 
 \subsection{Syntax based editor}
 
-\noindent ATL 
+\noindent ATL can be looked upon as a programming language, because it is
+basically a transformation language. ATL is a syntax based transformation
+language, and is build around the Object Constrain Language (OCL) \cite{OCL}
+with some additional predefined functions. ATL transformations is stored in a
+file extension called ``.atl'' These ATL files can contain different kind of
+ATL units and are defined in its own distinct ATL file. These different ATL
+units are ATL modules, ATL queries and ATL libraries. Libraries can be used to
+create independent ATL libraries that can be imported to different types of ATL
+units. The module unit specifies the different application rules for a model to
+model transformation. And the Queries are used when the users want to compute
+primitive values from the source models. Through the use of these three units,
+the ATL transformation language is defined as an answer to the QVT\cite{QVT}
+standard.
 
-Model-to-model transformation is a key aspect of model-driven development (MDD).
-The MMT project provides a framework for model-to-model transformation
-languages. Transformations are executed by transformation engines. There are
-three transformation engines that are developed in the scope of this project:
-ATL, QVTo, QVTd. MMT is a subproject of the top-level Eclipse Modeling Project.
+Now that we have specified these three ATL units, we can describe shortly how
+we can use the ATL transformation language to create model to model
+transformations. For our test case, we only need the ATL modules. An ATL module
+corresponds to a model to model transformation. This unit enables developers to
+specify the way to produce a set of target models from a set of source models.
+The source and target models of an ATL module must be consistent with their
+respective metamodels. 
 
-syntax-based transfor-
-mation language
+At first, the user start out with a blank ATL file. Since we are working in
+the ATL Integrated Development Environment for Eclipse, we want to start the
+document with defining the path to the source and target metamodel. The
+reason for doing this is to achieve auto completion from the ecore metamodels.
+This is convenient for the users when creating transformation rules. Next the
+file is composed of four different elements. The first element is the header
+section, where the user can give the module a name and name the variables
+corresponding from the source and target models. The module name has to be
+identical to the name of the ATL file. We also need to specify a way to
+distinguish between source and target models. The target models declaration is
+introduced with the keyword create, and the source models are introduced using
+the keyword from. The user can also import some existing libraries if needed.
+This import section is however optional. The third element in a ATL module is a
+set of helpers. This collection of helpers can be compared to Java methods.
+These helper methods can be used to make the transformation rules easier to read
+for example. The last element is a set of rules that defines how the target
+models are generated from the source models. These rules are used to implicitly
+match source elements and produce target elements. 
+
+\subsection{Model transformation}
 
 \begin{figure}[H]
 	\centering
@@ -372,13 +408,14 @@ mation language
 	\label{fig:ATL}
 \end{figure}
 
-This schema provides an overview of the ATL transformation (Author2Person) that
-enables to generate a Person model, conforming to the metamodel MMPerson, from
-an Author model that conforms to the metamodel MMAuthor. The designed
-transformation, which is expressed by means of the ATL language, conforms to
-the ATL metamodel. In this example, the three metamodels (MMAuthor, MMPerson
-and ATL) are expressed using the semantics of the Ecore metametamodel.
-
+This diagram gives us an idea of how the ATL transformation from an activity
+diagram to petri nets are handled. We want to generate a model PetriNets
+instance, that conforms to the metamodel PetriNets. This is generated from a
+source model, Activity Instance, that conforms to its respective metamodel.
+The created transformation Activity2PetriNets is expressed in the ATL
+transformation  language, that conforms to its own metamodel. These three
+metamodels conform to the metamodel Ecore. So this makes Ecore a metametamodel
+for the other three metamodels. 
 
 
 
@@ -414,6 +451,11 @@ Seperate metamodels& Yes / No & \cellcolor{red!25}No &
 
 \end{tabular}
 \end{table}
+
+Moreover, an ATL module accepts a fixed number of models as input, and returns a fixed number of 
+target models. As a consequence, an ATL module can not generate an unknown number of similar
+target models (e.g. models that conform to a same metamodel).
+
 
 \pagebreak
 \bibliographystyle{ieeetr} 
