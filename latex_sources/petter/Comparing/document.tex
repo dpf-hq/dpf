@@ -328,22 +328,33 @@ predefined words <<preserve>>, <<create>> or <<delete>>. <<forbid>> and
 Positive Application Conditions (PACs). These actions are supported for nodes,
 edges and attributes. 
 
-
-ATL - a model transformation technology
-ATL (ATL Transformation Language) is a model transformation language
-and toolkit. In the field of Model-Driven Engineering (MDE), ATL provides ways to
-produce a set of target models from a set of source models. Developed on top of
-the Eclipse platform, the ATL Integrated Environnement (IDE) provides a number
-of standard development tools (syntax highlighting, debugger, etc.) that aims
-to ease development of ATL transformations.
-
 \section{ATL Transformation Language}
 
 \noindent ATL\cite{ATL} (ATL Transformation Language) is a model transformation
 language. It provides ways to produce a set of target models from a set of
 source models. ATL is developed on top of the Eclipse platform and is one of
 three transformation engines provided by the MMT project\cite{MMT}. MMT is a
-subproject of the top level Eclipse Modeling Project\cite{EMP}. 
+sub project of the top level Eclipse Modeling Project\cite{EMP}. 
+
+A metametamodel aims to introduce the semantics that are required to specify
+metamodels. As a  model with its metamodel, a metamodel conforms to the
+metametamodel. Note that a metametamodel is usually self-defined, which means
+that it can be specified by means of its own semantics. In such a case, a
+metametamodel conforms to itself.
+
+
+Several metametamodel technologies are available. The ATL transformation engine
+currently provides support for two of these existing technologies: the Meta
+Object Facilities (MOF 1.4) defined by the OMG and the Ecore metametamodel
+(Budinsky, F., Steinberg, D., Ellersick, R., Grose, T. Eclipse Modeling
+Framework, Chapter 5 "Ecore Modeling Concepts". Addison Wesley Professional.
+ISBN: 0131425420, 2004) defined by the Eclipse Modeling Framework (EMF). This
+means that ATL is able to handle metamodels that have been specified according
+to either the MOF or the Ecore semantics.
+
+\subsection{Syntax based editor}
+
+\noindent ATL 
 
 Model-to-model transformation is a key aspect of model-driven development (MDD).
 The MMT project provides a framework for model-to-model transformation
@@ -351,6 +362,8 @@ languages. Transformations are executed by transformation engines. There are
 three transformation engines that are developed in the scope of this project:
 ATL, QVTo, QVTd. MMT is a subproject of the top-level Eclipse Modeling Project.
 
+syntax-based transfor-
+mation language
 
 \begin{figure}[H]
 	\centering
@@ -359,26 +372,46 @@ ATL, QVTo, QVTd. MMT is a subproject of the top-level Eclipse Modeling Project.
 	\label{fig:ATL}
 \end{figure}
 
+This schema provides an overview of the ATL transformation (Author2Person) that
+enables to generate a Person model, conforming to the metamodel MMPerson, from
+an Author model that conforms to the metamodel MMAuthor. The designed
+transformation, which is expressed by means of the ATL language, conforms to
+the ATL metamodel. In this example, the three metamodels (MMAuthor, MMPerson
+and ATL) are expressed using the semantics of the Ecore metametamodel.
+
+
+
+
 \section{Evaluation}
 The tool also has support 
 both endogenous and exogenous transformations.
 
 \begin{table}[ht]
 \centering
-\begin{tabular}{c | c | c | c |}
+\begin{tabular}{| c | c | c | c | c |}
 \hline
-& AGG & Henshin & ATL \\
+&Values & AGG & Henshin & ATL \\
 \hline
-Input Elements& 1\ldots n & 1\ldots n & 1\ldots n\\
-Output Elements & 1\ldots n & 1\ldots n & 1\ldots n\\
-Endogenous transformation& \cellcolor{green!25}Yes & \cellcolor{green!25}Yes & \cellcolor{green!25}Yes \\
-Exogenous transformation& \cellcolor{green!25}Yes & \cellcolor{green!25}Yes & \cellcolor{green!25}Yes \\
-Intuitive& \cellcolor{green!25}Yes & \cellcolor{green!25}Yes
-&\cellcolor{red!25}No  \\
-row4& \ra & \ra & \ra \\
-row5& \ra & \ra & \ra \\
-row6& \ra & \ra & \ra \\
+Endogenous transformation& Yes / No & \cellcolor{green!25}Yes &
+\cellcolor{green!25}Yes & \cellcolor{green!25}Yes \\
+
+Exogenous transformation& Yes / No & \cellcolor{green!25}Yes &
+\cellcolor{green!25}Yes & \cellcolor{green!25}Yes \\
+
+Input Elements& 1 to n & 1\ldots n & 1\ldots n & 1\ldots n\\
+Output Elements & 1 to n & 1\ldots n & 1\ldots n & 1\ldots n\\
+Graphical syntax& Yes / No &\cellcolor{green!25}Yes &
+\cellcolor{green!25}Yes &\cellcolor{red!25}No  \\
+Creates target model isntances & Yes / No &\cellcolor{red!25}No &
+\cellcolor{red!25}No &\cellcolor{green!25}Yes \\
+Integrated with Java& Yes / No & \cellcolor{green!25}Yes &
+\cellcolor{green!25}Yes & \cellcolor{green!25}Yes \\
+Supports EMF& Yes / No & \cellcolor{red!25}No &
+\cellcolor{green!25}Yes & \cellcolor{green!25}Yes \\
+Seperate metamodels& Yes / No & \cellcolor{red!25}No &
+\cellcolor{green!25}Yes & \cellcolor{green!25}Yes \\
 \hline
+
 \end{tabular}
 \end{table}
 
