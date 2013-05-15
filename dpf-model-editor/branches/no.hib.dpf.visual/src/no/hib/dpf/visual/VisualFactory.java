@@ -47,15 +47,6 @@ public interface VisualFactory extends EFactory {
 	 * @generated
 	 */
 	Visuals createVisuals();
-	
-	/**
-	 * Returns a new object of class '<em>VCompositeElement</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>VCompositeElement</em>'.
-	 * @generated
-	 */
-	VCompartment createVCompartment();
 
 	/**
 	 * Returns the package supported by this factory.

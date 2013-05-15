@@ -2,9 +2,6 @@
  */
 package no.hib.dpf.visual;
 
-import org.eclipse.emf.common.util.EList;
-
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>VNode</b></em>'.
@@ -48,9 +45,5 @@ public interface VNode extends VElement {
 	 * @generated
 	 */
 	void setComposite(boolean value);
-	
-	EList<VCompartment> getCompartments();
-	
-	void addCompartment(VCompartment compartment);
 
 } // VNode

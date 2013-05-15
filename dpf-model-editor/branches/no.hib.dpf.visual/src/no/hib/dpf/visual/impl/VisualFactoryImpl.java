@@ -3,7 +3,6 @@
 package no.hib.dpf.visual.impl;
 
 import no.hib.dpf.visual.VArrow;
-import no.hib.dpf.visual.VCompartment;
 import no.hib.dpf.visual.VNode;
 import no.hib.dpf.visual.VisualFactory;
 import no.hib.dpf.visual.VisualPackage;
@@ -95,16 +94,6 @@ public class VisualFactoryImpl extends EFactoryImpl implements VisualFactory {
 	public Visuals createVisuals() {
 		VisualsImpl visuals = new VisualsImpl();
 		return visuals;
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public VCompartment createVCompartment() {
-		VCompartmentImpl vCompositeElement = new VCompartmentImpl();
-		return vCompositeElement;
 	}
 
 	/**
