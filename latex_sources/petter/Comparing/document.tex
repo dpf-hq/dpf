@@ -73,34 +73,39 @@ wants to produce source code from a given model. The latter is often referred
 to Model to Model(M2M) transformations. M2M transformations take a model as
 input and produces a model as output. In this article we try and go into depth
 for some model to model transformation tools. These tools are
-Henshin\cite{Henshin}, AGG\cite{AGG} and ATL\cite{ATL}. Henshin and AGG is
-build around the algebraic concepts of graph transformations. Whereas ATL
-transformation language is a syntax based transformation language that relies on
-manual coding to create model to model transformations. 
-
-% Er det ikke mer å se på en eksempel model transformasjon og hvordan den kan
-% utføres i forskjellige verktøy? Etterpå evalurer du verktøyene med tanke på
-% styrker og svakheter. Så kan du forklare eksemplet etterpå.
-
-Model-to-model transformation is a key aspect of model-driven development (MDD).
-The MMT project provides a framework for model-to-model transformation
-languages. Transformations are executed by transformation engines. There are
-three transformation engines that are developed in the scope of this project:
-ATL, QVTo, QVTd. MMT is a subproject of the top-level Eclipse Modeling Project.
+Henshin\cite{Henshin}, Attributed Graph Grammer System (AGG) \cite{AGG} and
+ATL Transformation Language (ATL) \cite{ATL}. Henshin and AGG is build around
+the algebraic concepts of graph transformations. Whereas ATL transformation
+language is a syntax based transformation language that relies on manual coding
+to create model to model transformations. In this paper we will look at a
+specific example of a model to model transformation, where we are going to
+translate from a Activity diagram to a Petri Nets model and evaluate how this
+example performs for different tools. When we have applied this example to the
+different tools, we will try and find both strengths and weaknesses for these
+tools. In the next section, we will shortly describe the two models that are
+involved in this model to model transformation. Then in chapter 2 we will look a
+bit about what graph transformation is. Model transformations are still being
+researched on, and to use graph transformation or graph rewriting is the
+most common tool used at this moment to handle model to model transformation.
+In chapter 3,4 and 5 we will look at these three different tools. Where we will
+shortly describe how editing model to model transformation is handled. If its
+either a graphical editor or a syntax based editor. We will also describe how
+these three tools handle consistency and metamodels. And in the final chapter,
+we will evaluate these tools. Where we will look at strength and weaknesses. But
+before we go into depth in these tools, we have to specify the test case for
+this paper.
 
 \subsection{Problem specification}
-\noindent In this article we look at a specific example of a model to model
-transformation and evaluate how this example performs for different tools.
-When we have applied this example to the different tools, we will try and
-find both strengths and weaknesses for these tools. The task was to take a
-certain instance of a model to model transformation, in this case translating
-an activity diagram, written in the language UML, and transform it to a petri
-net model. We initialize the metamodels to make sure that the models remain
-consistent. These metamodels are represented in the Ecore
-model\cite{Steinberg2009}. The Ecore model is used to represent models in EMF.
-Ecore itself is an EMF model, and therefore has its own metamodel. You could say
-that this makes Ecore a meta-metamodel, since the two metamodels below are
-represented in Ecore.
+\noindent The task was to take a certain instance of a model to model
+transformation, in this case translating an activity diagram, written in the
+language UML, and transform it to a petri net model. We initialize the
+metamodels to make sure that the models remain consistent. These metamodels are
+represented in the Ecore model\cite{Steinberg2009}. The Ecore model is used to
+represent models in EMF. Ecore itself is an EMF model, and therefore has its own
+metamodel. You could say that this makes Ecore a meta-metamodel, since the two
+metamodels below are represented in Ecore. The why we represent the target and
+the source metamodels in ecore in this sections is because two of the tools
+support metamodels written in Ecore.
 
 \begin{figure}[H]
 	\centering
@@ -110,12 +115,12 @@ represented in Ecore.
 \end{figure}
 
 The metamodel of an activity diagram has an arbitrary number of activities and
-next elements. An activity element can have a name and a kind.
-Example of activity types can be decision or simple. The next element can have
-an inscription and has the property to either start or end activities. The
-collection of activities and next elements have to have an activity diagram that
-they belong to. Now we have defined the metamodel that the source model should
-conform to. To keep consistency between the models we need to have a
+next elements. An activity element can have a name and a kind. Example of
+activity types can be decision or simple. The next element can have an
+inscription and has the property to either start or end activities. The
+collection of activities and next elements have to have an activity diagram
+that they belong to. Now we have defined the metamodel that the source model
+should conform to. To keep consistency between the models we need to have a
 metamodel for the target model.
 
 \begin{figure}[H]
@@ -135,12 +140,12 @@ these two ecore models in both Henshin and ATL. These two transformation
 languages provides support the Ecore meta-metamodel technology, defined by
 Eclipse Modelling Framework. 
 
-\subsection{What is model transformation?}
+\subsection{}
 
 \section{Graph Transformation}
 \noindent One approach to model transformations is by graph transformations,
-also referred to as graph rewriting. And one approach to graph rewriting is an algebraic
-approach, which is based upon category theory\cite{Barr1990}.
+also referred to as graph rewriting. And one approach to graph rewriting is an
+algebraic approach, which is based upon category theory\cite{Barr1990}.
 
 \begin{figure}[H]
 	\centering
@@ -155,16 +160,15 @@ are also called morphisms. In figure~\ref{fig:categoryTheory} we have a
 collection of objects A, B and C and morphisms f, g and g $\circ$ f. And for the
 purpose of this paper, the collection of objects are graphs and the arrows are
 graph morphisms. This is also very typical when writing papers to explain the
-concepts of graph transformations, where these objects are represented as graphs, and
-arrows are represented as morphisms. Category theory can then be used to
-formalize the concepts at a high level of abstraction.
+concepts of graph transformations, where these objects are represented as
+graphs, and arrows are represented as morphisms. Category theory can then be
+used to formalize the concepts at a high level of abstraction.
 
 \subsection{The Algebraic Approach}
 \noindent This approach are based on the concepts of gluing of graphs, modelled
 by pushouts of graphs and graph morphisms. These pushouts comes in different
-categories, and we will look at two approaches to graph transformations, namely
-the double-pushout (DPO) approach and the single pushout (SPO)
-approach\cite{Loewe1997,Ehrig1997}.
+categories, and we will look at two of these, namely the double-pushout (DPO)
+approach and the single pushout (SPO) approach\cite{Loewe1997,Ehrig1997}.
 
 \indent Historically, the first of the algebraic approaches to graph
 transformations, the double-pushout, was first introduced at the Technical
@@ -180,7 +184,6 @@ gluing part and the two morphisms \mbox{L $\longleftarrow$ \ K} and \mbox{K
 $\longrightarrow$ R} use the algebraic construction, pushout to apply an
 application rule for a rewriting step. Hence the name double pushout and the use
 of two gluing conditions.
-
 
 \subsection{Productions}
 \noindent For a transformation language to be able to execute for graph
@@ -341,21 +344,6 @@ source models. ATL is developed on top of the Eclipse platform and is one of
 three transformation engines provided by the MMT project\cite{MMT}. MMT is a
 sub project of the top level Eclipse Modeling Project\cite{EMP}. 
 
-A metametamodel aims to introduce the semantics that are required to specify
-metamodels. As a  model with its metamodel, a metamodel conforms to the
-metametamodel. Note that a metametamodel is usually self-defined, which means
-that it can be specified by means of its own semantics. In such a case, a
-metametamodel conforms to itself.
-
-Several metametamodel technologies are available. The ATL transformation engine
-currently provides support for two of these existing technologies: the Meta
-Object Facilities (MOF 1.4) defined by the OMG and the Ecore metametamodel
-(Budinsky, F., Steinberg, D., Ellersick, R., Grose, T. Eclipse Modeling
-Framework, Chapter 5 "Ecore Modeling Concepts". Addison Wesley Professional.
-ISBN: 0131425420, 2004) defined by the Eclipse Modeling Framework (EMF). This
-means that ATL is able to handle metamodels that have been specified according
-to either the MOF or the Ecore semantics.
-
 \subsection{Syntax based editor}
 
 \noindent ATL can be looked upon as a programming language, because it is
@@ -399,7 +387,7 @@ for example. The last element is a set of rules that defines how the target
 models are generated from the source models. These rules are used to implicitly
 match source elements and produce target elements. 
 
-\subsection{Model transformation}
+\subsection{Principles behind execution}
 
 \begin{figure}[H]
 	\centering
