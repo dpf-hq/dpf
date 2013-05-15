@@ -3,6 +3,8 @@ package no.hib.dpf.editor.parts;
 import java.util.ArrayList;
 import java.util.List;
 
+import no.hib.dpf.core.Constraint;
+import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DConstraint;
 import no.hib.dpf.diagram.DConstraintNode;
@@ -14,7 +16,6 @@ import no.hib.dpf.editor.parts.listeners.UIAdapter;
 
 import org.eclipse.draw2d.ChopboxAnchor;
 import org.eclipse.draw2d.ConnectionAnchor;
-import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Point;
@@ -100,26 +101,53 @@ public class DComposedNodePart extends GraphicalEditPartWithListener  implements
 		}
 		if(exist == false)
 			list.add(new ComposedNodeAdapter(getDConstraintNode(), element, isNode));
+		Constraint constraint = getDConstraint().getConstraint();
+		String parameter = constraint.getPredicate().getParameters();
+		if(parameter != null && !parameter.isEmpty()){
+			constraint.eAdapters().add(paraListner);
+		}
 	}
+	UIAdapter paraListner = new UIAdapter() {
+		
+		@Override
+		protected void safeNotifyChanged(Notification msg) {
+			if(msg.getNotifier() == getDConstraint().getConstraint()){
+				switch(msg.getFeatureID(Constraint.class)){
+				case CorePackage.CONSTRAINT__PARAMETERS:
+					refreshVisuals();
+				}
+			}
+		}
+	};
 	@Override
 	protected void createEditPolicies() {
 		// allow removal of the associated model element
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new NodeComponentEditPolicy());
 	}
 
+	protected String getFullName() {
+		DConstraint dConstraint = getDConstraint();
+		String result = dConstraint.getDPredicate().getSimpleName();
+		result = "[" + result + "]";
+		String parameter = dConstraint.getConstraint().getParameters();
+		if(parameter != null && !parameter.isEmpty()){
+			result += "(" + parameter + ")";
+		}
+		return result;
+	}
+	
 	public IFigure createFigure() {
-		final String name = "[" + getDConstraint().getConstraint().getPredicate().getSymbol() + "]";
-		label = new Label(name){
+		label = new Label(){
 			protected String getTruncationString() {
-				return name;
+				return getText();
 			}
-			protected void paintFigure(Graphics graphics) {
-				if(getSize().equals(1, 1))
+			public void setText(String s) {
+				boolean changed = getText().equals(s);
+				super.setText(s);
+				if(changed)
 					setSize(getMinimumSize());
-				super.paintFigure(graphics);
 			}
 		};
-		label.setSize(1, 1);
 		label.setOpaque(true);
 		return label;
 	}
@@ -155,7 +183,7 @@ public class DComposedNodePart extends GraphicalEditPartWithListener  implements
 		return newLocation;
 	}
 
-	private DConstraint getDConstraint() {
+	public DConstraint getDConstraint() {
 		return getDConstraintNode().getDConstraint();
 	}
 
@@ -215,11 +243,10 @@ public class DComposedNodePart extends GraphicalEditPartWithListener  implements
 		if(getDConstraintNode().getLocation() == null){
 			getDConstraintNode().setLocation(new Point());
 		}
+		label.setText(getFullName());
 		Rectangle bound = getBound();
 		if(bound != null)
 			label.setLocation(bound.getCenter().getTranslated(getDConstraintNode().getLocation()));
-		if(getFigure().getSize().equals(1, 1))
-			label.revalidate();
 	}
 	public void remove(EditPart target){
 		if(target instanceof DArrowEditPart){
@@ -243,6 +270,11 @@ public class DComposedNodePart extends GraphicalEditPartWithListener  implements
 			getArrows().remove(editPart);
 	}
 	private void removeListner(DElement element){
+		Constraint constraint = getDConstraint().getConstraint();
+		String parameter = constraint.getPredicate().getParameters();
+		if(parameter != null && !parameter.isEmpty()){
+			constraint.eAdapters().remove(paraListner);
+		}
 		EList<Adapter> list = element.eAdapters();
 		DConstraintNode node = getDConstraintNode();
 		for(Adapter adapter : list){

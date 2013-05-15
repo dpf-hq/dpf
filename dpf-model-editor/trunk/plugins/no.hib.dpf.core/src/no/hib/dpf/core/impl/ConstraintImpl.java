@@ -190,7 +190,7 @@ public class ConstraintImpl extends IDObjectImpl implements Constraint {
 		if(newPredicate == predicate) return;
 		Predicate oldPredicate = predicate;
 		predicate = newPredicate;
-		if(newPredicate != null && !newPredicate.eIsProxy() && (oldPredicate == null || !oldPredicate.getParameters().equals(newPredicate.getParameters())))
+		if(getParameters() == null || getParameters().isEmpty())
 			setParameters(newPredicate.getParameters());
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.CONSTRAINT__PREDICATE, oldPredicate, predicate));

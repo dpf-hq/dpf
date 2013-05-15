@@ -44,6 +44,7 @@ import no.hib.dpf.editor.actions.PrintAction;
 import no.hib.dpf.editor.figures.NodeFigure;
 import no.hib.dpf.editor.parts.ArrowLabelEditPart;
 import no.hib.dpf.editor.parts.DArrowEditPart;
+import no.hib.dpf.editor.parts.DComposedNodePart;
 import no.hib.dpf.editor.parts.DConstraintEditPart;
 import no.hib.dpf.editor.parts.DNodeEditPart;
 import no.hib.dpf.editor.parts.DPFEditPartFactory;
@@ -457,6 +458,8 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 					IPropertySource source = null;
 					if(object instanceof DNodeEditPart) 
 						source = modelPropertySourceProvider.getPropertySource(((DNodeEditPart) object).getDNode());
+					else if(object instanceof DComposedNodePart)
+						source = modelPropertySourceProvider.getPropertySource((((DComposedNodePart)object).getDConstraint()));
 					else if(object instanceof DArrowEditPart) 
 						source = modelPropertySourceProvider.getPropertySource(((DArrowEditPart) object).getDArrow());
 					else if(object instanceof DConstraintEditPart)
