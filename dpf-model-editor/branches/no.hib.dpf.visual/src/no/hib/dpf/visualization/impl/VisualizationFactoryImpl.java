@@ -6,6 +6,7 @@ import java.util.Map;
 
 import no.hib.dpf.core.IDObject;
 import no.hib.dpf.visual.VElement;
+import no.hib.dpf.visualization.*;
 import no.hib.dpf.visualization.VisualizationFactory;
 import no.hib.dpf.visualization.VisualizationPackage;
 import no.hib.dpf.visualization.Visualizations;
@@ -62,6 +63,7 @@ public class VisualizationFactoryImpl extends EFactoryImpl implements Visualizat
 		switch (eClass.getClassifierID()) {
 			case VisualizationPackage.VISUALIZATIONS: return createVisualizations();
 			case VisualizationPackage.MODEL_TO_VISUAL_ENTRY: return (EObject)createModelToVisualEntry();
+			case VisualizationPackage.VCOMPARTMENT: return createVCompartment();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -85,6 +87,16 @@ public class VisualizationFactoryImpl extends EFactoryImpl implements Visualizat
 	public Map.Entry<IDObject, VElement> createModelToVisualEntry() {
 		ModelToVisualEntryImpl modelToVisualEntry = new ModelToVisualEntryImpl();
 		return modelToVisualEntry;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public VCompartment createVCompartment() {
+		VCompartmentImpl vCompartment = new VCompartmentImpl();
+		return vCompartment;
 	}
 
 	/**

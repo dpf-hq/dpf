@@ -7,6 +7,7 @@ import java.util.Map;
 import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.diagram.DiagramPackage;
 import no.hib.dpf.visual.VisualPackage;
+import no.hib.dpf.visualization.VCompartment;
 import no.hib.dpf.visualization.VisualizationFactory;
 import no.hib.dpf.visualization.VisualizationPackage;
 import no.hib.dpf.visualization.Visualizations;
@@ -36,6 +37,13 @@ public class VisualizationPackageImpl extends EPackageImpl implements Visualizat
 	 * @generated
 	 */
 	private EClass modelToVisualEntryEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass vCompartmentEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -152,6 +160,15 @@ public class VisualizationPackageImpl extends EPackageImpl implements Visualizat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getVisualizations_Compartments() {
+		return (EReference)visualizationsEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getModelToVisualEntry() {
 		return modelToVisualEntryEClass;
 	}
@@ -172,6 +189,33 @@ public class VisualizationPackageImpl extends EPackageImpl implements Visualizat
 	 */
 	public EReference getModelToVisualEntry_Value() {
 		return (EReference)modelToVisualEntryEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getVCompartment() {
+		return vCompartmentEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getVCompartment_Parent() {
+		return (EReference)vCompartmentEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getVCompartment_Children() {
+		return (EReference)vCompartmentEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -207,10 +251,15 @@ public class VisualizationPackageImpl extends EPackageImpl implements Visualizat
 		createEReference(visualizationsEClass, VISUALIZATIONS__MODEL);
 		createEReference(visualizationsEClass, VISUALIZATIONS__VISUAL);
 		createEReference(visualizationsEClass, VISUALIZATIONS__INSTANCE);
+		createEReference(visualizationsEClass, VISUALIZATIONS__COMPARTMENTS);
 
 		modelToVisualEntryEClass = createEClass(MODEL_TO_VISUAL_ENTRY);
 		createEReference(modelToVisualEntryEClass, MODEL_TO_VISUAL_ENTRY__KEY);
 		createEReference(modelToVisualEntryEClass, MODEL_TO_VISUAL_ENTRY__VALUE);
+
+		vCompartmentEClass = createEClass(VCOMPARTMENT);
+		createEReference(vCompartmentEClass, VCOMPARTMENT__PARENT);
+		createEReference(vCompartmentEClass, VCOMPARTMENT__CHILDREN);
 	}
 
 	/**
@@ -246,6 +295,7 @@ public class VisualizationPackageImpl extends EPackageImpl implements Visualizat
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		vCompartmentEClass.getESuperTypes().add(theVisualPackage.getVElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(visualizationsEClass, Visualizations.class, "Visualizations", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -253,10 +303,15 @@ public class VisualizationPackageImpl extends EPackageImpl implements Visualizat
 		initEReference(getVisualizations_Model(), theCorePackage.getSpecification(), null, "model", null, 1, 1, Visualizations.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getVisualizations_Visual(), theVisualPackage.getVisuals(), null, "visual", null, 1, 1, Visualizations.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getVisualizations_Instance(), theDiagramPackage.getDSpecification(), null, "instance", null, 0, 1, Visualizations.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getVisualizations_Compartments(), this.getVCompartment(), null, "compartments", null, 0, -1, Visualizations.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(modelToVisualEntryEClass, Map.Entry.class, "ModelToVisualEntry", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getModelToVisualEntry_Key(), theCorePackage.getIDObject(), null, "key", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getModelToVisualEntry_Value(), theVisualPackage.getVElement(), null, "value", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(vCompartmentEClass, VCompartment.class, "VCompartment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getVCompartment_Parent(), theVisualPackage.getVNode(), null, "parent", null, 0, 1, VCompartment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getVCompartment_Children(), theDiagramPackage.getDNode(), null, "children", null, 0, -1, VCompartment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

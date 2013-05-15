@@ -6,6 +6,7 @@ import java.util.Map;
 
 import no.hib.dpf.core.IDObject;
 import no.hib.dpf.visual.VElement;
+import no.hib.dpf.visualization.*;
 import no.hib.dpf.visualization.VisualizationPackage;
 import no.hib.dpf.visualization.Visualizations;
 
@@ -82,6 +83,13 @@ public class VisualizationSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case VisualizationPackage.VCOMPARTMENT: {
+				VCompartment vCompartment = (VCompartment)theEObject;
+				T result = caseVCompartment(vCompartment);
+				if (result == null) result = caseVElement(vCompartment);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -113,6 +121,36 @@ public class VisualizationSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseModelToVisualEntry(Map.Entry<IDObject, VElement> object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>VCompartment</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>VCompartment</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseVCompartment(VCompartment object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>VElement</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>VElement</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseVElement(VElement object) {
 		return null;
 	}
 

@@ -2,6 +2,7 @@
  */
 package no.hib.dpf.visualization;
 
+import no.hib.dpf.visual.VisualPackage;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -101,13 +102,22 @@ public interface VisualizationPackage extends EPackage {
 	int VISUALIZATIONS__INSTANCE = 3;
 
 	/**
+	 * The feature id for the '<em><b>Compartments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VISUALIZATIONS__COMPARTMENTS = 4;
+
+	/**
 	 * The number of structural features of the '<em>Visualizations</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VISUALIZATIONS_FEATURE_COUNT = 4;
+	int VISUALIZATIONS_FEATURE_COUNT = 5;
 
 	/**
 	 * The meta object id for the '{@link no.hib.dpf.visualization.impl.ModelToVisualEntryImpl <em>Model To Visual Entry</em>}' class.
@@ -145,6 +155,62 @@ public interface VisualizationPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_TO_VISUAL_ENTRY_FEATURE_COUNT = 2;
+
+
+	/**
+	 * The meta object id for the '{@link no.hib.dpf.visualization.impl.VCompartmentImpl <em>VCompartment</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.visualization.impl.VCompartmentImpl
+	 * @see no.hib.dpf.visualization.impl.VisualizationPackageImpl#getVCompartment()
+	 * @generated
+	 */
+	int VCOMPARTMENT = 2;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VCOMPARTMENT__NAME = VisualPackage.VELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Icon</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VCOMPARTMENT__ICON = VisualPackage.VELEMENT__ICON;
+
+	/**
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VCOMPARTMENT__PARENT = VisualPackage.VELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Children</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VCOMPARTMENT__CHILDREN = VisualPackage.VELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>VCompartment</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VCOMPARTMENT_FEATURE_COUNT = VisualPackage.VELEMENT_FEATURE_COUNT + 2;
 
 
 	/**
@@ -202,6 +268,17 @@ public interface VisualizationPackage extends EPackage {
 	EReference getVisualizations_Instance();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link no.hib.dpf.visualization.Visualizations#getCompartments <em>Compartments</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Compartments</em>'.
+	 * @see no.hib.dpf.visualization.Visualizations#getCompartments()
+	 * @see #getVisualizations()
+	 * @generated
+	 */
+	EReference getVisualizations_Compartments();
+
+	/**
 	 * Returns the meta object for class '{@link java.util.Map.Entry <em>Model To Visual Entry</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -234,6 +311,38 @@ public interface VisualizationPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getModelToVisualEntry_Value();
+
+	/**
+	 * Returns the meta object for class '{@link no.hib.dpf.visualization.VCompartment <em>VCompartment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>VCompartment</em>'.
+	 * @see no.hib.dpf.visualization.VCompartment
+	 * @generated
+	 */
+	EClass getVCompartment();
+
+	/**
+	 * Returns the meta object for the reference '{@link no.hib.dpf.visualization.VCompartment#getParent <em>Parent</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Parent</em>'.
+	 * @see no.hib.dpf.visualization.VCompartment#getParent()
+	 * @see #getVCompartment()
+	 * @generated
+	 */
+	EReference getVCompartment_Parent();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link no.hib.dpf.visualization.VCompartment#getChildren <em>Children</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Children</em>'.
+	 * @see no.hib.dpf.visualization.VCompartment#getChildren()
+	 * @see #getVCompartment()
+	 * @generated
+	 */
+	EReference getVCompartment_Children();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -300,6 +409,14 @@ public interface VisualizationPackage extends EPackage {
 		EReference VISUALIZATIONS__INSTANCE = eINSTANCE.getVisualizations_Instance();
 
 		/**
+		 * The meta object literal for the '<em><b>Compartments</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VISUALIZATIONS__COMPARTMENTS = eINSTANCE.getVisualizations_Compartments();
+
+		/**
 		 * The meta object literal for the '{@link no.hib.dpf.visualization.impl.ModelToVisualEntryImpl <em>Model To Visual Entry</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -324,6 +441,32 @@ public interface VisualizationPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MODEL_TO_VISUAL_ENTRY__VALUE = eINSTANCE.getModelToVisualEntry_Value();
+
+		/**
+		 * The meta object literal for the '{@link no.hib.dpf.visualization.impl.VCompartmentImpl <em>VCompartment</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see no.hib.dpf.visualization.impl.VCompartmentImpl
+		 * @see no.hib.dpf.visualization.impl.VisualizationPackageImpl#getVCompartment()
+		 * @generated
+		 */
+		EClass VCOMPARTMENT = eINSTANCE.getVCompartment();
+
+		/**
+		 * The meta object literal for the '<em><b>Parent</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VCOMPARTMENT__PARENT = eINSTANCE.getVCompartment_Parent();
+
+		/**
+		 * The meta object literal for the '<em><b>Children</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VCOMPARTMENT__CHILDREN = eINSTANCE.getVCompartment_Children();
 
 	}
 

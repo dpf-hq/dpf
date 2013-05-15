@@ -3,22 +3,26 @@
 package no.hib.dpf.visualization.impl;
 
 
+import java.util.Collection;
 import no.hib.dpf.core.IDObject;
 import no.hib.dpf.core.Specification;
 import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.visual.VElement;
 import no.hib.dpf.visual.Visuals;
+import no.hib.dpf.visualization.VCompartment;
 import no.hib.dpf.visualization.VisualizationPackage;
 import no.hib.dpf.visualization.Visualizations;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -33,6 +37,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link no.hib.dpf.visualization.impl.VisualizationsImpl#getModel <em>Model</em>}</li>
  *   <li>{@link no.hib.dpf.visualization.impl.VisualizationsImpl#getVisual <em>Visual</em>}</li>
  *   <li>{@link no.hib.dpf.visualization.impl.VisualizationsImpl#getInstance <em>Instance</em>}</li>
+ *   <li>{@link no.hib.dpf.visualization.impl.VisualizationsImpl#getCompartments <em>Compartments</em>}</li>
  * </ul>
  * </p>
  *
@@ -77,6 +82,16 @@ public class VisualizationsImpl extends EObjectImpl implements Visualizations {
 	 * @ordered
 	 */
 	protected DSpecification instance;
+
+	/**
+	 * The cached value of the '{@link #getCompartments() <em>Compartments</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCompartments()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<VCompartment> compartments;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -233,6 +248,18 @@ public class VisualizationsImpl extends EObjectImpl implements Visualizations {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<VCompartment> getCompartments() {
+		if (compartments == null) {
+			compartments = new EObjectContainmentEList<VCompartment>(VCompartment.class, this, VisualizationPackage.VISUALIZATIONS__COMPARTMENTS);
+		}
+		return compartments;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -240,6 +267,8 @@ public class VisualizationsImpl extends EObjectImpl implements Visualizations {
 				return ((InternalEList<?>)getEntries()).basicRemove(otherEnd, msgs);
 			case VisualizationPackage.VISUALIZATIONS__INSTANCE:
 				return basicSetInstance(null, msgs);
+			case VisualizationPackage.VISUALIZATIONS__COMPARTMENTS:
+				return ((InternalEList<?>)getCompartments()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -263,6 +292,8 @@ public class VisualizationsImpl extends EObjectImpl implements Visualizations {
 				return basicGetVisual();
 			case VisualizationPackage.VISUALIZATIONS__INSTANCE:
 				return getInstance();
+			case VisualizationPackage.VISUALIZATIONS__COMPARTMENTS:
+				return getCompartments();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -272,6 +303,7 @@ public class VisualizationsImpl extends EObjectImpl implements Visualizations {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -286,6 +318,10 @@ public class VisualizationsImpl extends EObjectImpl implements Visualizations {
 				return;
 			case VisualizationPackage.VISUALIZATIONS__INSTANCE:
 				setInstance((DSpecification)newValue);
+				return;
+			case VisualizationPackage.VISUALIZATIONS__COMPARTMENTS:
+				getCompartments().clear();
+				getCompartments().addAll((Collection<? extends VCompartment>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -311,6 +347,9 @@ public class VisualizationsImpl extends EObjectImpl implements Visualizations {
 			case VisualizationPackage.VISUALIZATIONS__INSTANCE:
 				setInstance((DSpecification)null);
 				return;
+			case VisualizationPackage.VISUALIZATIONS__COMPARTMENTS:
+				getCompartments().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -331,6 +370,8 @@ public class VisualizationsImpl extends EObjectImpl implements Visualizations {
 				return visual != null;
 			case VisualizationPackage.VISUALIZATIONS__INSTANCE:
 				return instance != null;
+			case VisualizationPackage.VISUALIZATIONS__COMPARTMENTS:
+				return compartments != null && !compartments.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

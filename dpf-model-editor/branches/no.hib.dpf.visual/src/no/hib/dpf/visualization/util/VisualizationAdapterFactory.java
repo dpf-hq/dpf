@@ -6,6 +6,7 @@ import java.util.Map;
 
 import no.hib.dpf.core.IDObject;
 import no.hib.dpf.visual.VElement;
+import no.hib.dpf.visualization.*;
 import no.hib.dpf.visualization.VisualizationPackage;
 import no.hib.dpf.visualization.Visualizations;
 
@@ -79,6 +80,14 @@ public class VisualizationAdapterFactory extends AdapterFactoryImpl {
 				return createModelToVisualEntryAdapter();
 			}
 			@Override
+			public Adapter caseVCompartment(VCompartment object) {
+				return createVCompartmentAdapter();
+			}
+			@Override
+			public Adapter caseVElement(VElement object) {
+				return createVElementAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -123,6 +132,34 @@ public class VisualizationAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createModelToVisualEntryAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link no.hib.dpf.visualization.VCompartment <em>VCompartment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see no.hib.dpf.visualization.VCompartment
+	 * @generated
+	 */
+	public Adapter createVCompartmentAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link no.hib.dpf.visual.VElement <em>VElement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see no.hib.dpf.visual.VElement
+	 * @generated
+	 */
+	public Adapter createVElementAdapter() {
 		return null;
 	}
 

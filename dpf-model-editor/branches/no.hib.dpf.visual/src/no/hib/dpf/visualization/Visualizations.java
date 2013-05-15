@@ -9,6 +9,7 @@ import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.visual.VElement;
 import no.hib.dpf.visual.Visuals;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EObject;
 
@@ -24,6 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link no.hib.dpf.visualization.Visualizations#getModel <em>Model</em>}</li>
  *   <li>{@link no.hib.dpf.visualization.Visualizations#getVisual <em>Visual</em>}</li>
  *   <li>{@link no.hib.dpf.visualization.Visualizations#getInstance <em>Instance</em>}</li>
+ *   <li>{@link no.hib.dpf.visualization.Visualizations#getCompartments <em>Compartments</em>}</li>
  * </ul>
  * </p>
  *
@@ -126,5 +128,21 @@ public interface Visualizations extends EObject {
 	 * @generated
 	 */
 	void setInstance(DSpecification value);
+
+	/**
+	 * Returns the value of the '<em><b>Compartments</b></em>' containment reference list.
+	 * The list contents are of type {@link no.hib.dpf.visualization.VCompartment}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Compartments</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Compartments</em>' containment reference list.
+	 * @see no.hib.dpf.visualization.VisualizationPackage#getVisualizations_Compartments()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<VCompartment> getCompartments();
 
 } // Visualizations

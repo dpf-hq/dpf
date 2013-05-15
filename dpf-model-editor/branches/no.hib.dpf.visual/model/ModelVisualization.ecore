@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="visualization" nsURI="no.hib.dpf.visualization" nsPrefix="visualization">
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="visualization"
+    nsURI="no.hib.dpf.visualization" nsPrefix="visualization">
   <eClassifiers xsi:type="ecore:EClass" name="Visualizations">
     <eStructuralFeatures xsi:type="ecore:EReference" name="entries" upperBound="-1"
         eType="#//ModelToVisualEntry" containment="true"/>
@@ -9,9 +11,17 @@
         eType="ecore:EClass visual.ecore#//Visuals"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="instance" eType="ecore:EClass ../../no.hib.dpf.diagram/model/DiagramMetamodel.ecore#//DSpecification"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compartments" upperBound="-1"
+        eType="#//VCompartment" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ModelToVisualEntry" instanceClassName="java.util.Map$Entry">
     <eStructuralFeatures xsi:type="ecore:EReference" name="key" eType="ecore:EClass ../../no.hib.dpf.core/model/Metamodel.ecore#//IDObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass visual.ecore#//VElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VCompartment" eSuperTypes="visual.ecore#//VElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="ecore:EClass visual.ecore#//VNode"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
+        eType="ecore:EClass ../../no.hib.dpf.diagram/model/DiagramMetamodel.ecore#//DNode"
+        containment="true"/>
   </eClassifiers>
 </ecore:EPackage>
