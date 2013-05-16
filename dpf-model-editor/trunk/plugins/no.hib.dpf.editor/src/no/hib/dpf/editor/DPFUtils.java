@@ -95,7 +95,7 @@ public class DPFUtils extends DPFCoreUtil {
 		}
 	}
 	public static DSpecification loadDSpecification(URI createFileURI) {
-		return loadDSpecification(new ResourceSetImpl(), createFileURI, new HashMap<Resource, Diagnostic>());
+		return loadDSpecification(getResourceSet(), createFileURI, new HashMap<Resource, Diagnostic>());
 	}
 	
 	public static DSignature loadDSignature(ResourceSetImpl resourceSet, URI createFileURI, Map<Resource, Diagnostic> resourceToDiagnosticMap) {

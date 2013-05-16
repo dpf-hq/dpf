@@ -306,7 +306,7 @@ public class DGraphImpl extends EObjectImpl implements DGraph {
 		for(DArrow darrow : getDArrows())
 			if(darrow.getArrow() == arrow)
 				return darrow;
-				return null;
+		return null;
 	}
 
 	/**
@@ -332,7 +332,7 @@ public class DGraphImpl extends EObjectImpl implements DGraph {
 		for(DNode dnode : getDNodes())
 			if(dnode.getNode() == node)
 				return dnode;
-				return null;
+		return null;
 	}
 
 	/**

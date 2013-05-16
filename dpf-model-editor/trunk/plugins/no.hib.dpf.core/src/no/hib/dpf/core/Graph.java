@@ -181,11 +181,14 @@ public interface Graph extends IDObject {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * If the arrow is named uniquely under all the arrows, you could search it by only arrow name.
+	 * Otherwise, you should provide the source node name and the target node name. 
 	 * <!-- end-user-doc -->
 	 * @model
-	 * @generated
+	 * @generated NOT
 	 */
 	Arrow getArrowByName(String name);
+	Arrow getArrowByName(String name, String src, String trg);
 
 	/**
 	 * <!-- begin-user-doc -->

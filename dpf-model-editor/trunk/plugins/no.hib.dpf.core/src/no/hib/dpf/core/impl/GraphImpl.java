@@ -485,6 +485,7 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public Arrow getArrowByName(String name) {
 		for (Arrow arrow : getArrows()) {
 			if (arrow.getName().equals(name)) {
@@ -493,6 +494,14 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 		}
 		return null;
 	}
+	public Arrow getArrowByName(String name, String src, String trg) {
+		for (Arrow arrow : getArrows()) {
+			if (arrow.getName().equals(name) && arrow.getSource().getName().equals(src) && arrow.getTarget().getName().equals(trg)) {
+				return arrow;
+			}
+		}
+		return null;
+	}	
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -662,4 +671,6 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 		}
 		
 	}
+
+	
 } //GraphImpl
