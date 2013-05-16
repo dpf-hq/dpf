@@ -86,14 +86,14 @@ tools. In the next section, we will shortly describe the two models that are
 involved in this model to model transformation. Then in chapter 2 we will look a
 bit about what graph transformation is. Model transformations are still being
 researched on, and to use graph transformation or graph rewriting is the
-most common tool used at this moment to handle model to model transformation.
-In chapter 3,4 and 5 we will look at these three different tools. Where we will
-shortly describe how editing model to model transformation is handled. If its
-either a graphical editor or a syntax based editor. We will also describe how
-these three tools handle consistency and metamodels. And in the final chapter,
-we will evaluate these tools. Where we will look at strength and weaknesses. But
-before we go into depth in these tools, we have to specify the test case for
-this paper.
+most common tool used at this moment to handle model to model transformation
+problems. In chapter 3, 4 and 5 we will look at these three different tools.
+Where we will shortly describe how editing model to model transformation is
+handled. If its either a graphical editor or a syntax based editor. We will
+also describe how these three tools handle consistency and metamodels. And in
+the final chapter, we will evaluate these tools. Where we will look at strength
+and weaknesses. But before we go into depth in these tools, we have to specify
+the test case for this paper.
 
 \subsection{Problem specification}
 \noindent The task was to take a certain instance of a model to model
@@ -139,8 +139,6 @@ connection is between a place and a transition or a transition and a place.
 these two ecore models in both Henshin and ATL. These two transformation
 languages provides support the Ecore meta-metamodel technology, defined by
 Eclipse Modelling Framework. 
-
-\subsection{}
 
 \section{Graph Transformation}
 \noindent One approach to model transformations is by graph transformations,
@@ -405,11 +403,33 @@ transformation  language, that conforms to its own metamodel. These three
 metamodels conform to the metamodel Ecore. So this makes Ecore a metametamodel
 for the other three metamodels. 
 
-
-
 \section{Evaluation}
-The tool also has support 
-both endogenous and exogenous transformations.
+\noindent Now that we have worked with these tools, we have to evaluate them.
+From the table underneath we have tried to compare the different tools, and we
+will explain some of them in further detail. We should start talking about how
+easy or hard these tools were to learn. It took some time to fully understand
+how graph transformations work. That there are a right hand and a left hand
+side of each rule, and that these rules also can have both negative and
+positive application conditions. But after a while, when the aspects around
+graph transformation got clearer, the tools were easier to handle. AGG was the
+first tool i encountered, my learning curve became steep after i learned how
+graph transformations works. AGG has a clear procedure on how to create and
+manage new application rules. AGG is also very intuitive to work with, as long
+as the users understands how graph transformation steps works. After spending
+time on AGG and its graphical editor to create transformation rules, the next
+stop was Henshin. My learning curve for Henshin was not as steep as AGG, but
+this tool was also very nice once the knowledge of it was present. After
+tackling the problems that Henshin brought along it was time to look at ATL
+Transformation Language. And this tool is a very nice tool to write model to
+model transformation. Its definitely not as intuitive as the two graph
+transformation tools, but that is common issue when learning a new tool, no
+matter what it is used for. Once you understand how to create transformation
+rules and how to work with the included metamodels it is a nice framework for
+working with model transformations. However, if a user do not fully understand
+the Object Constraint Language (OCL), ATL is rather a hard tool to work with.
+Because OCL has a very leveled learning curve, since it is a declarative
+programming language. Where we are more or less used to work with imperative
+programming languages during our studies here in Bergen.
 
 \begin{table}[ht]
 \centering
@@ -438,11 +458,17 @@ Seperate metamodels& Yes / No & \cellcolor{red!25}No &
 \hline
 
 \end{tabular}
+\caption{Comparing model transformation tools.}
 \end{table}
 
-Moreover, an ATL module accepts a fixed number of models as input, and returns a fixed number of 
-target models. As a consequence, an ATL module can not generate an unknown number of similar
-target models (e.g. models that conform to a same metamodel).
+Moreover, an ATL module accepts a fixed number of models as input, and returns
+a fixed number of target models. As a consequence, an ATL module can not
+generate an unknown number of similar target models (e.g. models that conform
+to a same metamodel).
+
+Henshin supports both direct transformations of EMF single model instances
+(endogenous transformations), and translation of source model instances into a
+target language (exogenous transformations).
 
 
 \pagebreak
