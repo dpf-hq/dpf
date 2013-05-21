@@ -219,7 +219,9 @@ structure in G is preserved.
 transformation systems. AGG is provided with a graphical editor for creating
 and modifying graphs. The editor provides a graphical user-interface with
 several visual editors for applying the principles of graph transformation. It
-also has an interpreter and a set of validation tools.
+also has an interpreter and a set of validation tools. AGG is ongoing research
+activity of the graph grammar group at TU Berlin. The work on AGG started back
+in the beginning of 1997.
 
 \subsection{Graphical Editor}
 \noindent The graphical editor of AGG has several functions to help the user to
@@ -229,8 +231,8 @@ contains the type graphs and the host graphs. Where the host graph represents
 some input model for a model transformation.
 
 \indent Each application rule has two visual editors, representing the left and
-the right hand side, or the pattern and the replacement graph. In the tree based
-editor containing rules and grammars it is possible to give rules application
+the right hand side, or the pattern and the replacement graph. In the tree
+based editor containing rules and grammars it is possible to give rules application
 conditions. This is convenient if the user wants to have constrains for the
 pattern or the replacement graph.
 
@@ -245,8 +247,15 @@ corresponds to its concurrent type graph.
 
 \indent For the application rules, the user can extend the attributes with Java
 expressions. This means that the users can use Java primitives such as strings,
-integers or float numbers to form the pattern graph or the left hand side of the
-rule. The user cannot bind attributes that is not initialised in the type graph. 
+integers or float numbers to form the pattern graph or the left hand side of
+the rule. The user cannot bind attributes that is not initialised in the type graph. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{figures/AGGscreen.png}
+	\caption{Activity2PetriNets for AGG.}
+	\label{fig:AGGScreen}
+\end{figure}
 
 \subsection{Type Graph}
 
@@ -313,6 +322,13 @@ to create both target and source metamodel in one common type graph. In Henshin
 the two metamodels are independent of one and another, therefore they are
 included as two separate models in the Henshin file. 
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{figures/Henshin_TreeEdtiro.png}
+	\caption{Tree Based Editor for rules in Henshin.}
+	\label{fig:Henshin_TreeEditor}
+\end{figure}
+
 \subsection{Defining transformation rules}
 
 \noindent In Henshin, objects are referred to as nodes and links between objects
@@ -329,6 +345,13 @@ predefined words <<preserve>>, <<create>> or <<delete>>. <<forbid>> and
 <<require>> are used for defining Negative Application Conditions (NACs) and
 Positive Application Conditions (PACs). These actions are supported for nodes,
 edges and attributes. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{figures/HenshinScreen.png}
+	\caption{Activity2PetriNets for Henshin}
+	\label{fig:HenshinScreen}
+\end{figure}
 
 \section{ATL Transformation Language}
 
@@ -365,7 +388,16 @@ At first, the user start out with a blank ATL file. Since we are working in
 the ATL Integrated Development Environment for Eclipse, we want to start the
 document with defining the path to the source and target metamodel. The
 reason for doing this is to achieve auto completion from the ecore metamodels.
-This is convenient for the users when creating transformation rules. Next the
+This is convenient for the users when creating transformation rules. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{figures/ATLScreen.png}
+	\caption{Two simple rules for Activity2PetriNets in ATL.}
+	\label{fig:ATL_Screen}
+\end{figure}
+
+Next the
 file is composed of four different elements. The first element is the header
 section, where the user can give the module a name and name the variables
 corresponding from the source and target models. The module name has to be
@@ -448,7 +480,7 @@ Integrated with Java & \cellcolor{green!25}Yes &
 \cellcolor{green!25}Yes & \cellcolor{green!25}Yes \\
 Supports EMF & \cellcolor{red!25}No &
 \cellcolor{green!25}Yes & \cellcolor{green!25}Yes \\
-Seperate metamodels & \cellcolor{red!25}No &
+Separate metamodels & \cellcolor{red!25}No &
 \cellcolor{green!25}Yes & \cellcolor{green!25}Yes \\
 \hline
 
