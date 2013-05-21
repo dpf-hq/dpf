@@ -27,8 +27,7 @@
 \usepackage[table]{xcolor}% http://ctan.org/pkg/xcolor
 \begin{document}
 
-\title{Analyzing Model to Model Transformation
-	   Tools}
+\title{Model transformation tools -- a comparision between 3 different tools}
 \date{April 23}
 \author{Petter Barvik}
 
@@ -41,18 +40,17 @@
 
 \noindent Model Driven Engineering (MDE)\cite{France2007} thrives to raise the
 level of abstraction in program specification and increase automation in program
-development. The main idea for MDE is to use models at different levels of
+development. The main idea in MDE is to use models at different levels of
 abstraction when developing applications. This leads to a higher level
 of abstraction in program and problem specification. This level of abstraction
 is obtained either through extensive use of models to describe some design
 patterns in a software application or through use of standardized models. The
 first option is probably an element of MDE that is most common among software
-engineers. That you implement some aspect of a system based on a model of a 
-specific language. Unified Modelling Language is an example of a modelling
-language often used to describe system design patterns in an application
-domain. The second principle of Model Driven Engineering is to increase
-automation in program development, and to obtain this we use something called
-model transformations. \\
+engineers. That you implement some aspect of a system based on a model. Unified
+Modelling Language is an example of a modelling language often used to describe
+system design patterns in an application domain. The second principle of Model
+Driven Engineering is to increase automation in program development, and to
+obtain this we use something called model transformations. \\
 \indent A model transformation is when we change some source model from one
 instance to another instance and end up with a target model. We can
 distinguish these operations into either endogenous or exogenous model
@@ -60,40 +58,40 @@ transformations. In an endogenous model transformation we take one model
 expressed in a language and produce a model expressed in the same language.
 While in an exogenous model transformation we start with a model
 expressed in one language and translate this into a model expressed in another
-language. It is essential that these models are consistent. This is obtained
-through the use of metamodels. A metamodel is a description of a model, where
-it defines elements that are used in the model. Models in a system is consistent
-if the source and target model corresponds to a metamodel. This way system
-developers can safely presume that a model has changed accordingly to its
-metamodel and therefore is consistent. A target model can produce two different
-kind of output models. The first one is code generation, often referred to
-Model to Text(M2T) transformation, and it takes one model and produces
-implementation code. This is convenient if for example a software engineer
-wants to produce source code from a given model. The latter is often referred
-to Model to Model(M2M) transformations. M2M transformations take a model as
-input and produces a model as output. In this article we try and go into depth
-for some model to model transformation tools. These tools are
-Henshin\cite{Henshin}, Attributed Graph Grammer System (AGG) \cite{AGG} and
-ATL Transformation Language (ATL) \cite{ATL}. Henshin and AGG is build around
-the algebraic concepts of graph transformations. Whereas ATL transformation
-language is a syntax based transformation language that relies on manual coding
-to create model to model transformations. In this paper we will look at a
-specific example of a model to model transformation, where we are going to
-translate from a Activity diagram to a Petri Nets model and evaluate how this
-example performs for different tools. When we have applied this example to the
-different tools, we will try and find both strengths and weaknesses for these
-tools. In the next section, we will shortly describe the two models that are
-involved in this model to model transformation. Then in chapter 2 we will look a
-bit about what graph transformation is. Model transformations are still being
-researched on, and to use graph transformation or graph rewriting is the
-most common tool used at this moment to handle model to model transformation
-problems. In chapter 3, 4 and 5 we will look at these three different tools.
-Where we will shortly describe how editing model to model transformation is
-handled. If its either a graphical editor or a syntax based editor. We will
-also describe how these three tools handle consistency and metamodels. And in
-the final chapter, we will evaluate these tools. Where we will look at strength
-and weaknesses. But before we go into depth in these tools, we have to specify
-the test case for this paper.
+modelling language. It is essential that these models are consistent. This is
+obtained through the use of metamodels. A metamodel is a description of a
+model, where it defines elements that are used in the model. Models in a system
+is consistent if the source and target model corresponds to a metamodel. This
+way system developers can safely presume that a model has changed accordingly
+to its metamodel and therefore is consistent. A target model can produce two
+different kind of output models. The first one is code generation, often
+referred to Model to Text(M2T) transformation, and it takes one model and
+produces implementation code. This is convenient if for example a software
+engineer wants to produce source code from a given model. The latter is often
+referred to Model to Model(M2M) transformations. M2M transformations take a
+model as input and produces a model as output. In this article we try and go
+into depth for some model to model transformation tools. These tools are
+The Henshin project\cite{Henshin}, Attributed Graph Grammer System (AGG)
+\cite{AGG} and ATLAS Transformation Language (ATL) \cite{ATL}. Henshin and AGG
+is build around the algebraic concepts of graph transformations. Whereas ATL
+transformation language is a syntax based transformation language that relies
+on manual coding to create model to model transformations. In this paper we
+will look at a specific example of a model to model transformation, where we
+are going to translate from a Activity diagram to a Petri Nets model and
+evaluate how this example performs for different tools. When we have applied
+this example to the different tools, we will try and find both strengths and
+weaknesses for these tools. In the next section, we will shortly describe the
+two models that are involved in this model to model transformation. Then in
+chapter 2 we will look at what graph transformation is. Model transformations
+is still a subject of research, and to use graph transformation or graph
+rewriting is the most common tool used at this moment to handle model to model
+transformation problems for graph based models. In chapter 3, 4 and 5 we will
+look at these three different tools. Where we will shortly describe how editing
+model to model transformation is handled. If its either a graphical editor or a
+syntax based editor. We will also describe how these three tools handle
+consistency and metamodels. And in the final chapter, we will evaluate these
+tools. Where we will look at strength and weaknesses. But before we go into
+depth in these tools, we have to specify the test case for this paper.
 
 \subsection{Problem specification}
 \noindent The task was to take a certain instance of a model to model
@@ -101,11 +99,12 @@ transformation, in this case translating an activity diagram, written in the
 language UML, and transform it to a petri net model. We initialize the
 metamodels to make sure that the models remain consistent. These metamodels are
 represented in the Ecore model\cite{Steinberg2009}. The Ecore model is used to
-represent models in EMF. Ecore itself is an EMF model, and therefore has its own
-metamodel. You could say that this makes Ecore a meta-metamodel, since the two
-metamodels below are represented in Ecore. The why we represent the target and
-the source metamodels in ecore in this sections is because two of the tools
-support metamodels written in Ecore.
+represent models in Eclipse Modelling Framework (EMF) \cite{Steinberg2009}.
+Models and metamodels created in EMF needs to conform to the Ecore Metamodel.
+You could say that this makes Ecore a meta-metamodel, since the two metamodels
+below are represented in Ecore. The reason why we represent the target and the
+source metamodels in Ecore in this sections is because two of the tools support
+metamodels written in Ecore.
 
 \begin{figure}[H]
 	\centering
@@ -135,15 +134,14 @@ instance must have a place connected to a transition or the other way around.
 But a petri net can never have two of the same types connected with each other.
 To solve this, the petri net metamodel has two nodes that specify if the
 connection is between a place and a transition or a transition and a place.
-\indent Now that we have defined the two corresponding metamodels, we can use
-these two ecore models in both Henshin and ATL. These two transformation
-languages provides support the Ecore meta-metamodel technology, defined by
-Eclipse Modelling Framework. 
+
+These two metamodels can we use as source and target metamodel for
+both Henhin and ATL. 
 
 \section{Graph Transformation}
 \noindent One approach to model transformations is by graph transformations,
-also referred to as graph rewriting. And one approach to graph rewriting is an
-algebraic approach, which is based upon category theory\cite{Barr1990}.
+also referred to as graph rewriting. Graph rewriting can be implemented with
+an algebraic approach, which is based upon category theory\cite{Barr1990}.
 
 \begin{figure}[H]
 	\centering
@@ -163,10 +161,10 @@ graphs, and arrows are represented as morphisms. Category theory can then be
 used to formalize the concepts at a high level of abstraction.
 
 \subsection{The Algebraic Approach}
-\noindent This approach are based on the concepts of gluing of graphs, modelled
-by pushouts of graphs and graph morphisms. These pushouts comes in different
-categories, and we will look at two of these, namely the double-pushout (DPO)
-approach and the single pushout (SPO) approach\cite{Loewe1997,Ehrig1997}.
+\noindent This approach are based on the concepts of composing graphs, modelled
+by pushouts of graphs and graph morphisms. This pushout approach comes in
+different categories, and we will look at two of these, namely the
+double-pushout (DPO) approach and the single pushout (SPO) approach\cite{Loewe1997,Ehrig1997}.
 
 \indent Historically, the first of the algebraic approaches to graph
 transformations, the double-pushout, was first introduced at the Technical
@@ -178,13 +176,13 @@ double-pushout approach is a pair of morphisms in the category of graphs where
 the arrows represents total graph morphisms, \linebreak\mbox{L $\longleftarrow$
 \ K $\longrightarrow$ R}. This is true for each application rule in a graph
 transformation for the double-pushout approach. Where the graph K represents the
-gluing part and the two morphisms \mbox{L $\longleftarrow$ \ K} and \mbox{K
+common part and the two morphisms \mbox{L $\longleftarrow$ \ K} and \mbox{K
 $\longrightarrow$ R} use the algebraic construction, pushout to apply an
 application rule for a rewriting step. Hence the name double pushout and the use
-of two gluing conditions.
+of two rewriting conditions.
 
 \subsection{Productions}
-\noindent For a transformation language to be able to execute for graph
+\noindent For a transformation language to be able to execute graph
 transformations a set of application rules needs to be defined. Through these
 rules, a transformation interpreter can act accordingly. These rules are often
 referred to as Productions. For graph transformations, there can be an arbitrary
@@ -231,10 +229,10 @@ contains the type graphs and the host graphs. Where the host graph represents
 some input model for a model transformation.
 
 \indent Each application rule has two visual editors, representing the left and
-the right hand side, or the pattern and the replacement graph. In the tree
-collection of rules and grammars it is possible to give rules application
+the right hand side, or the pattern and the replacement graph. In the tree based
+editor containing rules and grammars it is possible to give rules application
 conditions. This is convenient if the user wants to have constrains for the
-pattern or the replacement graph. 
+pattern or the replacement graph.
 
 \indent In the tree based visual editor it is also possible to define host
 graphs and type graphs. Type graphs is described more in depths in the next
@@ -271,7 +269,7 @@ be deleted through a cycle of transformation rules.
 	\label{fig:AggTypeGraph}
 \end{figure}
 
-\indent For the type graph, the user must define nodes and arrows for each
+\indent For the type graph, the user must define nodes and arrows for each meta
 element for both source and target model. These nodes and arrows can also have
 attributes. Nodes represents elements from the two modelling languages and
 arrows represents the associations between these elements. In the type graph we
@@ -281,20 +279,18 @@ attributes, and that is because we want these edges to represent what the
 targeted element was translated from. From figure~\ref{fig:AggTypeGraph} we can
 see that a RefAct node is defined and is connected between the activity
 element and the transition element. The same initialisation is defined between
-the place next element and the place element. The elements presented in the
-type graph for AGG graphs is very similar to the metamodels represented for
-Henshin transformations. For AGG type graphs there is a multiplier condition for
-the edges. This means that there can be an arbitrary, or a zero to many number of
-instances of these relations in the host graph.
+the next element and the place element. For AGG type graphs there is a
+multiplier condition for the edges. This means that there can be an arbitrary,
+or a zero to many number of instances of these relations in the host graph.
 
 \section{The Henshin Project}
 
 \noindent The Henshin project\cite{Henshin} provides a model transformation
-language for the Eclipse Modelling Framework \cite{Steinberg2009}. With support for both direct 
-transformation of EMF single model instances, and translation from source
-model to targeted model. The Henshin project is a transformation language with a
-provided graphical syntax. With the help of this graphical editor, it provides
-the user with an intuitive way of representing rules. 
+language for the Eclipse Modelling Framework \cite{Steinberg2009}. With support
+for both direct transformation of EMF single model instances, and translation
+from source model to targeted model. The Henshin project is a transformation
+language with a provided graphical syntax. With the help of this graphical
+editor, it provides the user with an intuitive way of representing rules. 
 
 \subsection{Graphical Editor}
 \noindent Henshin model transformation language is a plugin for the Eclipse
@@ -337,10 +333,11 @@ edges and attributes.
 \section{ATL Transformation Language}
 
 \noindent ATL\cite{ATL} (ATL Transformation Language) is a model transformation
-language. It provides ways to produce a set of target models from a set of
-source models. ATL is developed on top of the Eclipse platform and is one of
-three transformation engines provided by the MMT project\cite{MMT}. MMT is a
-sub project of the top level Eclipse Modeling Project\cite{EMP}. 
+language and is defined as a direct answer to the QVT\cite{QVT} standard. It
+provides ways to produce a set of target models from a set of source models.
+ATL is developed on top of the Eclipse platform and is one of three
+transformation engines provided by the MMT project\cite{MMT}. MMT is a sub
+project of the top level Eclipse Modeling Project\cite{EMP}.
 
 \subsection{Syntax based editor}
 
@@ -354,9 +351,7 @@ units are ATL modules, ATL queries and ATL libraries. Libraries can be used to
 create independent ATL libraries that can be imported to different types of ATL
 units. The module unit specifies the different application rules for a model to
 model transformation. And the Queries are used when the users want to compute
-primitive values from the source models. Through the use of these three units,
-the ATL transformation language is defined as an answer to the QVT\cite{QVT}
-standard.
+primitive values from the source models.
 
 Now that we have specified these three ATL units, we can describe shortly how
 we can use the ATL transformation language to create model to model
@@ -419,9 +414,9 @@ as the users understands how graph transformation steps works. After spending
 time on AGG and its graphical editor to create transformation rules, the next
 stop was Henshin. My learning curve for Henshin was not as steep as AGG, but
 this tool was also very nice once the knowledge of it was present. After
-tackling the problems that Henshin brought along it was time to look at ATL
-Transformation Language. And this tool is a very nice tool to write model to
-model transformation. Its definitely not as intuitive as the two graph
+tackling the problems that Henshin brought along it was time to look at the
+ATLAS Transformation Language. And this tool is a very nice tool to write model
+to model transformation. Its definitely not as intuitive as the two graph
 transformation tools, but that is common issue when learning a new tool, no
 matter what it is used for. Once you understand how to create transformation
 rules and how to work with the included metamodels it is a nice framework for
@@ -433,27 +428,27 @@ programming languages during our studies here in Bergen.
 
 \begin{table}[ht]
 \centering
-\begin{tabular}{| c | c | c | c | c |}
+\begin{tabular}{| c | c | c | c |}
 \hline
-&Values & AGG & Henshin & ATL \\
+ & AGG & Henshin & ATL \\
 \hline
-Endogenous transformation& Yes / No & \cellcolor{green!25}Yes &
+Endogenous transformation & \cellcolor{green!25}Yes &
 \cellcolor{green!25}Yes & \cellcolor{green!25}Yes \\
 
-Exogenous transformation& Yes / No & \cellcolor{green!25}Yes &
+Exogenous transformation & \cellcolor{green!25}Yes &
 \cellcolor{green!25}Yes & \cellcolor{green!25}Yes \\
 
-Input Elements& 1 to n & 1\ldots n & 1\ldots n & 1\ldots n\\
-Output Elements & 1 to n & 1\ldots n & 1\ldots n & 1\ldots n\\
-Graphical syntax& Yes / No &\cellcolor{green!25}Yes &
+Input Elements & 1\ldots n & 1\ldots n & 1\ldots n\\
+Output Elements & 1\ldots n & 1\ldots n & 1\ldots n\\
+Inplace/outplace model transformation &inplace &
+inplace &outplace \\
+Graphical syntax &\cellcolor{green!25}Yes &
 \cellcolor{green!25}Yes &\cellcolor{red!25}No  \\
-Creates target model isntances & Yes / No &\cellcolor{red!25}No &
-\cellcolor{red!25}No &\cellcolor{green!25}Yes \\
-Integrated with Java& Yes / No & \cellcolor{green!25}Yes &
+Integrated with Java & \cellcolor{green!25}Yes &
 \cellcolor{green!25}Yes & \cellcolor{green!25}Yes \\
-Supports EMF& Yes / No & \cellcolor{red!25}No &
+Supports EMF & \cellcolor{red!25}No &
 \cellcolor{green!25}Yes & \cellcolor{green!25}Yes \\
-Seperate metamodels& Yes / No & \cellcolor{red!25}No &
+Seperate metamodels & \cellcolor{red!25}No &
 \cellcolor{green!25}Yes & \cellcolor{green!25}Yes \\
 \hline
 
@@ -461,17 +456,69 @@ Seperate metamodels& Yes / No & \cellcolor{red!25}No &
 \caption{Comparing model transformation tools.}
 \end{table}
 
-Moreover, an ATL module accepts a fixed number of models as input, and returns
-a fixed number of target models. As a consequence, an ATL module can not
-generate an unknown number of similar target models (e.g. models that conform
-to a same metamodel).
+From the table above, we can see that all the three tools have support for both
+endogenous and exogenous model to model transformations. For Henshin and ATL
+this means that there is support for both direct transformation of single EMF
+model instances and translation from source model instances to a target model
+written in another modelling language. One thing that is worth mentioning is
+that AGG does not have support for EMF, the transformation engine that comes
+with AGG can be integrated with Java, and therefore it can be supported with
+EMF, but this has to be integrated manually. This is a very nice feature for
+Henshin and ATL, that they support the popular modelling framework EMF. This
+means that the users can create metamodels in the Ecore modeling language and
+use these metamodels in Henshin or ATL. 
 
-Henshin supports both direct transformations of EMF single model instances
-(endogenous transformations), and translation of source model instances into a
-target language (exogenous transformations).
+All the three tools has support for an arbitrary number of both input and output
+elements. The ATL module accepts a fixed number of models as input, and returns
+a fixed number of target models. This means that an ATL module can not generate
+an unknown number of target models. If there is one input model, then there
+will be one output model that conforms to a given metamodel.
 
+Both AGG and Henshin have a graphical editor, where the users can type in
+graphical syntax to create transformation rules. This makes them both very
+intuitive for the users. This is not the case for ATL, where this tools uses a
+syntax based approach. This means that the users have to implement
+transformation rules. This is a very nice approach if the users master the mix
+between the ATL transformation language and the OCL programming language.
 
-\pagebreak
+When ATL transformation language executes the application rules for the model to
+model transformation, a new model instance is created for the target model. This
+means that the source model and the target model are independent of eachother.
+Where Henshin and AGG performs in-place model to model transformations. This
+means that they both operate on the host graph, and translates the models inside
+the host graph. All three approaches can however give the same result. Inn AGG
+and Henshin the users just need to make sure to delete unwanted elements from the
+translated host graph. On the other side, for ATL this is not needed, since both
+the source and target model are kept as separated files. 
+
+All three tools can be integrated with Java. The problem with ATL is that there
+has to be a ``atl'' file containing the ATL module. This is because the ATL
+transformation engine relies on a file extension with the name ``atl''. The
+graphical editor that AGG provides runs on top of a separate transformation
+engine. AGG's transformation engine can take java objects as input parameter and
+manipulate models from these java objects.
+
+And lastly we can sum up how these tools handles the source and target
+metamodels. Henshin and ATL includes them pretty much the same way. They have
+one seperate source metamodel and one seperate target metamodel. In ATL the
+users has to explicitly assign the metamodels to either source model or target
+models through the ATL run configuration. The run configuration is when the
+model to model transformation is initiated. So this needs to be configured with
+assigning the appropriate metamodel to the appropriate models. Henshin on the
+other hand includes the metamodels in the henshin model transformation file. Now
+it is up to the users who model these transformation rules to make sure that the
+models are consistent with their respective metamodels. This is done when
+carefully assigning the source and target model to either the right hand side or
+the left hand side of the transformation rule. AGG on the other hand uses a
+disjoint metamodel. This means that in AGG there is something called a type
+graph, and in this type graph both the target and the source metamodel are
+defined. From figure \ref{fig:AggTypeGraph} in chapter 3, we can see that there
+are created references between these two metamodels. And through the use of
+these references, AGG can create and modify application rules to translate
+amongst two models.
+
+\noindent 
+
 \bibliographystyle{ieeetr} 
 \bibliography{master,websites}
 
