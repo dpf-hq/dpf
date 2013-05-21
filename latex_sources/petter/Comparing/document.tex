@@ -6,25 +6,23 @@
 \usepackage{float}
 \usepackage{indentfirst}
 \usepackage{url}
-
 \usepackage{amssymb, amsmath}
-
 \usepackage[T1]{fontenc} % font encoding
 \usepackage[utf8]{inputenc} % input encoding
 \usepackage[english]{babel} % keyword translation and hyphenation
 \usepackage{lmodern} % lmodern looks better than cm-super
 \usepackage{moreverb}
-
+\usepackage{soul}
+\usepackage[table]{xcolor}% http://ctan.org/pkg/xcolor
 \usepackage[none]{hyphenat}%%%%
-
 \usepackage{color, colortbl}
+\usepackage[first=0,last=9]{lcg}
+
 \definecolor{Gray}{gray}{0.9}
 \definecolor{LightCyan}{rgb}{0.88,1,1}
 
-\usepackage[first=0,last=9]{lcg}
 \newcommand{\ra}{\rand0.\arabic{rand}}
 
-\usepackage[table]{xcolor}% http://ctan.org/pkg/xcolor
 \begin{document}
 
 \title{Model transformation tools -- a comparision between 3 different tools}
@@ -34,6 +32,18 @@
 \maketitle
 
 \abstract{}
+\noindent Model transformations play a key role in Model Driven Development.
+Where there are quite a few model transformation tools already out there for
+the public to use, if its either model transformation tools based on known
+frameworks such as the Eclipse Modelling Framework or from standalone model
+transformation tools. This paper takes three of these tools, based on
+different model to model transformation technologies, and tries to go into
+detail for these three tools. Amongst the three tools there is established a
+specific model to model transformation that is applied to these tools.
+Translating from an activity diagram to a petri nets model. After working with
+these tools hands-on, and based on how these tools handles metamodels and how
+their user-interface is presented, they are compared with one another and
+evaluated.
 
 \newpage
 \section{Introduction}
@@ -190,8 +200,38 @@ number of rules. Its truly up to the users how they want to translate a
 language and how many rules that is needed to acquire this. Each rule consists
 of a left hand side (LHS) and a right hand side (RHS), also often referred to as
 pattern graph and replacement graph. The pattern graph represents a subgraph of
-the model that is going to be translated, namely the host graph.
-% \indent These productions are handled 
+the model that is going to be translated, namely the host graph. For these
+productions to execute, there has to be some control mechanism, namely the
+transformation unit.
+
+
+\subsection{Transformation Units}
+\noindent In graph transformation, there has to be some way to control these
+productions. This is handled through the use of something called transformation
+units. These units controls the order that the transformation rules are
+executed. The most basic transformation unit is a rule itself which corresponds
+to a single application of that rule. But in most cases, a transformation units
+will have to control several rule applications. This is handled differently
+amongst the different tools, but some of the most commonly used constructs for
+transforming models are transforming non-deterministically and transforming
+sequentially. When a model is translated non-deterministically it basically
+means that the users is not interested in controlling the order that the
+different transformation rules is applied. Before using this construct the users
+have to make sure that the different transformation rules are independent of
+each other. The sequential construct for a transformation unit applies
+transformation rules in a specific order.
+
+These transformation rules are integrated differently amongst graph
+transformation tools. One thing to be aware of is that non-deterministically
+transformations can easily result in infinite loops. The different model
+transformation tools have to define limitations when using this construct. These
+limitations can be handled through applying application conditions to the
+different transformation rules.
+
+There is also one special type of transformation unit, namely an amalgamation
+unit. This transformation unit gives the users the possibility to applying
+transformation rules in parallel. Henshin has support for this, and we will come
+back to that one in section 4.
 
 \subsection{A Direct Derivation}
 \noindent The basic idea for graph transformation for both the double-pushout
@@ -208,10 +248,58 @@ represents the right hand side of the rule.
 \end{figure}
 
 For a production rule r, \mbox{G$\xrightarrow{r,m}$G'} indicates a direct
-derivation to a derived graph G'. If there is a match m of nodes and arrows for a
-subgraph L in a host graph G, then this indicates a graph homomorphism, mapping
-elements from the subgraph to the host graph in such a way that the graphical
-structure in G is preserved.
+derivation to a derived graph G'. In
+figure~\ref{fig:GraphTransformationGeneral}, the graph G' is created by
+applying a single pushout for a transformatin rule r. If there is a match m of
+nodes and arrows for a subgraph L in a host graph G, then this indicates a
+graph homomorphism, mapping elements from the subgraph to the host graph in
+such a way that the graphical structure in G is preserved. For each rule r,
+there are some algebraic approaches to how we can achieve G'. At this moment
+there are four approaches, the double-pushout approach (DPO), the
+single-pushout approach (SPO), the sesqui-pushout and the pullback approach.
+Where the two most common approaches used in graph transformation tools are the
+DPO and the SPO approach. There is one major aspect that separate these two
+approaches, and that is that the DPO approach has an application condition.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{figures/DPO.png}
+	\caption{Principles behind the double pushout approach.}
+	\label{fig:DPO}
+\end{figure}
+
+\noindent This application condition, named the gluing condition\cite{Loewe1997}
+consists of two parts. Namely the dangling condition and identification
+condition. From figure~\ref{fig:DPO}, the dangling condition requires that if
+the transformation rule p specifies the deletion of a node in G, then it must also
+specify the deletion of all incoming and outgoing edges of this node in G. By
+applying this condition, we can be sure that there are no dangling edges after
+deleting a node in G. The identification condition requires that every element
+of G that should be deleted by applying a transformation rule p is only present
+once in L for each transformation rule p. 
+
+A single transformation rule p in the DPO approach is given by a pair of graph
+homomorphisms from a common graph C. This common graph C is formed by taking
+elements that are present in both L (LHS) and R (LHS) of a transformation rule
+p. The graph G' are created from the graph G, by deleting all elements that is
+matched from the pattern graph L, but none in C. To avoid dangling edges,
+the gluing condition must be satisfied before deleting these elements. This is
+the first part (1) of the DPO approach, namely the deletion of elements. The
+second part (2) is insertion of elements. From here we create a graph H off all
+nodes and arrows from the replacement graph R that is not presented in the
+common graph C. The DPO approach has the possibility to preserve elements from
+translating from the pattern graph L and the replacement graph R with the help
+of a common graph C.
+
+For the SPO approach on the other hand, deletion has priority over preservation.
+Figure~\ref{fig:GraphTransformationGeneral} is a representation of the practices
+of the SPO approach. Where nodes that are present in the pattern graph L but not
+the replacement graph R are deleted. And the incoming and outgoing edges of the
+deleted nodes that are not present in the replacement graph R is deleted.
+
+Now that we have explained some aspects of Graph transformations, we can
+describe the three different tools, where both AGG and Henshin is build around
+the concepts of graph transformations explained in this section. 
 
 \section{The Attributed Graph Grammar System}
 
@@ -224,31 +312,39 @@ activity of the graph grammar group at TU Berlin. The work on AGG started back
 in the beginning of 1997.
 
 \subsection{Graphical Editor}
-\noindent The graphical editor of AGG has several functions to help the user to
-define model transformations. In the top left corner of the graphical user-interface is
-a tree based editor for defining rules and grammar. This tree based editor also
-contains the type graphs and the host graphs. Where the host graph represents
-some input model for a model transformation.
+\noindent The graphical editor of AGG, represented in
+figure~\ref{fig:AGGScreen}, has several functions to help the user to define
+model transformations. In the top left corner of the graphical user-interface
+is a tree based editor for defining rules and grammar. This tree based editor
+also contains the type graphs and the host graphs. Where the host graph
+represents some input model for a model transformation.
 
-\indent Each application rule has two visual editors, representing the left and
-the right hand side, or the pattern and the replacement graph. In the tree
-based editor containing rules and grammars it is possible to give rules application
-conditions. This is convenient if the user wants to have constrains for the
-pattern or the replacement graph.
+Each application rule has two visual editors, representing the left
+(LHS) and the right hand side (RHS), or the pattern and the replacement graph.
+In the tree based editor containing rules and grammars it is possible to give
+rules application conditions. This is convenient if the user wants to have
+constrains for the pattern or the replacement graph.
 
-\indent In the tree based visual editor it is also possible to define host
+In the tree based visual editor it is also possible to define host
 graphs and type graphs. Type graphs is described more in depths in the next
 section, but roughly said, the type graph defines elements that can be used in
 the host graph. Type graphs defines the abstract models for the host graph and
-can be compared to Meta Object Facility (MOF)\cite{MOF}, that is a language for
-defining abstract syntax of modeling languages. The users can now create instances
-from these type graphs. These instances represents the host graphs and
-corresponds to its concurrent type graph. 
+can be compared to defining metamodels in Ecore for EMF and the Meta Object
+Facility (MOF)\cite{MOF}, that is a language for defining abstract syntax of
+modeling languages. The users can now create instances from these type graphs.
+These instances represents the host graphs and corresponds to its concurrent
+type graph.
 
-\indent For the application rules, the user can extend the attributes with Java
+For the application rules, the user can extend the attributes with Java
 expressions. This means that the users can use Java primitives such as strings,
 integers or float numbers to form the pattern graph or the left hand side of
-the rule. The user cannot bind attributes that is not initialised in the type graph. 
+the rule. The user cannot bind attributes that is not initialised in the type graph.
+
+In figure~\ref{fig:AGGScreen} there are some node elements and association
+elements. These are meta elements that are initialized in the type graph. These
+meta elements are used to create the host graph, the different transformation
+rules and application conditions. The host graph is not consistent with the
+type graph, since these meta elements are initialized in the type graph. 
 
 \begin{figure}[H]
 	\centering
@@ -299,7 +395,12 @@ language for the Eclipse Modelling Framework \cite{Steinberg2009}. With support
 for both direct transformation of EMF single model instances, and translation
 from source model to targeted model. The Henshin project is a transformation
 language with a provided graphical syntax. With the help of this graphical
-editor, it provides the user with an intuitive way of representing rules. 
+editor, it provides the user with an intuitive way of representing rules. The
+Henshin Editor is based on the Henshin subproject of Eclipse EMFT\cite{EMFT}
+that integrates the Henshin modeling language as an Eclipse plugin. The Henshin
+Editor was first developed in a student project at Technical University of
+Berlin in 2010, and extended in the bachelor thesis of Johann Schmidt and the
+master thesis of Angeline Warning.
 
 \subsection{Graphical Editor}
 \noindent Henshin model transformation language is a plugin for the Eclipse
@@ -315,8 +416,13 @@ creating model transformation rules.
 
 The Henshin transformation file is represented in a tree based editor in
 Eclipse. In this tree based editor it is possible to include metamodels for both
-the source and the target model. These metamodels are created based on the EMF
-standard for creating models, that we talked about in the first chapter.
+the source and the target model, represented in
+figure~\ref{fig:Henshin_TreeEditor}. This figure represents the Tree based
+editor for defining Henshin M2M transformation for this test case. Where
+there is one sequential unit, main, that administrates the transformation
+rules. There is also two external Ecore models included in the editor,
+more specifically the two metamodels. These metamodels are created based on the
+EMF standard for creating models, that we talked about in the first chapter.
 This approach differ from the AGG approach we saw in section 3, where we have
 to create both target and source metamodel in one common type graph. In Henshin
 the two metamodels are independent of one and another, therefore they are
@@ -337,21 +443,43 @@ rule has to be defined. These rules can have parameters for checking and model
 verification. Each rule can be represented as a graph in the graphical
 editor. 
 
-\indent When creating these rules, there has to be a way of
-distinguishing elements between the LHS and the RHS. This is done through the
-use of a set of predefined tag words, or stereotypes. For handling transformations
-either in the pattern graph or the replacement graph, we can use the three
-predefined words <<preserve>>, <<create>> or <<delete>>. <<forbid>> and
-<<require>> are used for defining Negative Application Conditions (NACs) and
-Positive Application Conditions (PACs). These actions are supported for nodes,
-edges and attributes. 
-
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.5]{figures/HenshinScreen.png}
+	\includegraphics[scale=0.5]{figures/Henshin_Screen.png}
 	\caption{Activity2PetriNets for Henshin}
 	\label{fig:HenshinScreen}
 \end{figure}
+
+Figure~\ref{fig:HenshinScreen} is a visualization of the graphical syntax of a
+specific application rule in Henshin. This rule is responsible for handling the
+start element for an activity. Through the use of the elements in the Palette on
+right side of the window, the users can create and modify elements. The imported
+metamodels, activity and petrinets can also be used to create elements, but
+these can elements can also be accessed when creating a new node element. The
+nodes, edges and attributes always have to be defined in a rule element. And a
+rule element can be a child of a transformation unit.
+
+\indent When creating these rules, there has to be a way of
+distinguishing elements between the LHS and the RHS. This is done through the
+use of a set of predefined stereotypes, or action types. For handling
+transformations either in the pattern graph or the replacement graph, we can
+use the three predefined words <<preserve>>, <<create>> or <<delete>>.
+<<forbid>> and <<require>> are used for defining Negative Application
+Conditions (NACs) and Positive Application Conditions (PACs). These actions are
+supported for nodes, edges and attributes. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{figures/Henshin_Action.png}
+	\caption{Action types for a Node.}
+	\label{fig:HenshinAction}
+\end{figure}
+
+Figure~\ref{fig:HenshinAction} is a representation of how the users can choose
+from these action types. The ``Multi-node'' option is a zero to many
+relationship for the nodes. This is used if the target model can have more than
+one element of this instance. The path option is used as a variable, that can be
+used across transformation rules. 
 
 \section{ATL Transformation Language}
 
@@ -360,7 +488,14 @@ language and is defined as a direct answer to the QVT\cite{QVT} standard. It
 provides ways to produce a set of target models from a set of source models.
 ATL is developed on top of the Eclipse platform and is one of three
 transformation engines provided by the MMT project\cite{MMT}. MMT is a sub
-project of the top level Eclipse Modeling Project\cite{EMP}.
+project of the top level Eclipse Modeling Project\cite{EMP}. ATL is maintained
+by OBEO\cite{OBEO} and AtlanMod\cite{ATLANMod} and was first initiated by the
+AtlanMod team, previously called the ATLAS Group, located at the University of
+Nantes in France. The initial version of ATL was created In 2004, where ATL
+became part of the Eclipse Generative Modeling Technologies (GMT) \cite{GMT}.
+The goal of GMT is to produce a set of research tools in the area of Model
+Driven Software Development. The ATL Integrated Development Environment (IDE)
+was later promoted for the Eclipse M2M project in January 2007.
 
 \subsection{Syntax based editor}
 
@@ -397,20 +532,22 @@ This is convenient for the users when creating transformation rules.
 	\label{fig:ATL_Screen}
 \end{figure}
 
-Next the
-file is composed of four different elements. The first element is the header
-section, where the user can give the module a name and name the variables
-corresponding from the source and target models. The module name has to be
-identical to the name of the ATL file. We also need to specify a way to
-distinguish between source and target models. The target models declaration is
-introduced with the keyword create, and the source models are introduced using
-the keyword from. The user can also import some existing libraries if needed.
-This import section is however optional. The third element in a ATL module is a
-set of helpers. This collection of helpers can be compared to Java methods.
-These helper methods can be used to make the transformation rules easier to read
-for example. The last element is a set of rules that defines how the target
-models are generated from the source models. These rules are used to implicitly
-match source elements and produce target elements. 
+Next the file is composed of four different elements. The first element is the
+header section, where the user can give the module a name and name the
+variables corresponding from the source and target models. The module name has
+to be identical to the name of the ATL file. We also need to specify a way to
+distinguish between source and target models. From figure~\ref{fig:ATL_Screen}
+the target models declaration is introduced with the keyword create, and the
+source models are introduced using the keyword from. The user can also import
+some existing libraries if needed. This import section is however optional. The
+third element in a ATL module is a set of helpers. This collection of helpers
+can be compared to Java methods. These helper methods can be used to make the
+transformation rules easier to read for example. The last element is a set of
+rules that defines how the target models are generated from the source models.
+These rules are used to implicitly match source elements and produce target
+elements. In figure~\ref{fig:ATL_Screen} we have examples of two rules, namely
+the rule for transforming the start activity and the rule for transforming the
+end activity. 
 
 \subsection{Principles behind execution}
 
@@ -472,8 +609,8 @@ Exogenous transformation & \cellcolor{green!25}Yes &
 
 Input Elements & 1\ldots n & 1\ldots n & 1\ldots n\\
 Output Elements & 1\ldots n & 1\ldots n & 1\ldots n\\
-Inplace/outplace model transformation &inplace &
-inplace &outplace \\
+In-place/out-place model transformation &in-place &
+in-place &out-place \\
 Graphical syntax &\cellcolor{green!25}Yes &
 \cellcolor{green!25}Yes &\cellcolor{red!25}No  \\
 Integrated with Java & \cellcolor{green!25}Yes &
@@ -482,6 +619,7 @@ Supports EMF & \cellcolor{red!25}No &
 \cellcolor{green!25}Yes & \cellcolor{green!25}Yes \\
 Separate metamodels & \cellcolor{red!25}No &
 \cellcolor{green!25}Yes & \cellcolor{green!25}Yes \\
+Model transformation file size &200 kb &80 kb &4 kb \\
 \hline
 
 \end{tabular}
@@ -500,11 +638,13 @@ Henshin and ATL, that they support the popular modelling framework EMF. This
 means that the users can create metamodels in the Ecore modeling language and
 use these metamodels in Henshin or ATL. 
 
-All the three tools has support for an arbitrary number of both input and output
-elements. The ATL module accepts a fixed number of models as input, and returns
-a fixed number of target models. This means that an ATL module can not generate
-an unknown number of target models. If there is one input model, then there
-will be one output model that conforms to a given metamodel.
+\hl{All the three tools has support for an arbitrary number of both input and
+output elements. This means that if the tool takes a number of input models, then it
+produces the same number of target models. Take an ATL module as an example. It
+accepts a fixed number of models as input, and returns a fixed number of target
+models. This means that an ATL module can not generate an unknown number of
+target models. If there is one input model, then there will be one output model
+that conforms to a given metamodel.}
 
 Both AGG and Henshin have a graphical editor, where the users can type in
 graphical syntax to create transformation rules. This makes them both very
@@ -529,6 +669,20 @@ transformation engine relies on a file extension with the name ``atl''. The
 graphical editor that AGG provides runs on top of a separate transformation
 engine. AGG's transformation engine can take java objects as input parameter and
 manipulate models from these java objects.
+
+\hl{We can also se that the size of the transformation rules is different
+between the 3 tools. A classic example of an exogenous transformation is translating
+from a class diagram to a relational database, that has more or less become a
+benchmark for model to model transformation. For this example we can see that
+AGG uses 200 kb of the hard drive space. This number is so unbelievable small
+that it will never be noticed in any modern day computers. But there is one
+interesting thing however, and that is that the transformation rules defined in
+ATL is 50 times smaller than AGG. What this basically means is that creating model
+transformations through the use of textual concrete syntax is less space
+consuming than through the use of graphical syntax. This is only logical since
+the graphical syntax based transformation languages requires more hard drive
+space simply because they use graphical elements to represent the transformation
+rules.}
 
 And lastly we can sum up how these tools handles the source and target
 metamodels. Henshin and ATL includes them pretty much the same way. They have
