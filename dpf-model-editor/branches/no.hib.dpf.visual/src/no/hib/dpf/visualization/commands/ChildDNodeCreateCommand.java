@@ -15,9 +15,10 @@
  *******************************************************************************/
 package no.hib.dpf.visualization.commands;
 
+import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.editor.commands.AbstractCreateCommand;
-import no.hib.dpf.visual.VNode;
+import no.hib.dpf.visualization.figures.CompositeNodeFigure;
 
 /**
  * A command to add a Shape to a ShapeDiagram.
@@ -27,9 +28,8 @@ import no.hib.dpf.visual.VNode;
 public class ChildDNodeCreateCommand extends AbstractCreateCommand {
 
 	/** Diagram to add to. */
-	private final DNode parent;
-	/** The VNode associated. */
-	private VNode container;
+	private final CompositeNodeFigure parent;
+	private final DGraph parentDGraph;
 
 
 	/**
@@ -40,9 +40,10 @@ public class ChildDNodeCreateCommand extends AbstractCreateCommand {
 	 * @throws IllegalArgumentException if any parameter is null, or the request
 	 * 						  does not provide a new Shape instance
 	 */
-	public ChildDNodeCreateCommand(DNode newVNode, DNode parent) {
+	public ChildDNodeCreateCommand(DNode newVNode, CompositeNodeFigure parent, DGraph dGraph) {
 		this.newObject =  newVNode;
 		this.parent = parent;
+		this.parentDGraph = dGraph;
 		setLabel("shape creation");
 	}
 
@@ -58,14 +59,17 @@ public class ChildDNodeCreateCommand extends AbstractCreateCommand {
 	 * @see org.eclipse.gef.commands.Command#execute()
 	 */
 	public void execute() {
-		//parent.addDNode((DNode) newObject);
+		parent.addChild(newObject.getNode(), newObject.getName());
+		//parentDGraph.addDNode((DNode) newObject);
+		// Must add an arrow here as well
 	}
 
 	/* (non-Javadoc)
 	 * @see org.eclipse.gef.commands.Command#undo()
 	 */
 	public void undo() {
-		//parent.removeDNode((DNode) newObject);
+		// Remove figure...
+		//parentDGraph.removeDNode((DNode) newObject);
 	}
 
 }

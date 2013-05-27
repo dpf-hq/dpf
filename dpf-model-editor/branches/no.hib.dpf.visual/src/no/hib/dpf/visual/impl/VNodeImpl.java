@@ -6,8 +6,6 @@ import no.hib.dpf.visual.VNode;
 import no.hib.dpf.visual.VisualPackage;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 

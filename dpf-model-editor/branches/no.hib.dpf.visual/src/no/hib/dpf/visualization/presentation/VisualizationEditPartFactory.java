@@ -40,6 +40,10 @@ public class VisualizationEditPartFactory extends DPFEditPartFactory {
 			DArrow dArrow = (DArrow) modelElement;
 			return new DPFArrowEditPart((VArrow) maps.get(dArrow.getArrow().getTypeArrow()));
 		}
+		if (modelElement instanceof VCompartment) {
+			VCompartment vCompartment = (VCompartment) modelElement;
+			return new VCompartmentEditPart(vCompartment);
+		}
 		return super.getPartForElement(modelElement);
 	}
 }

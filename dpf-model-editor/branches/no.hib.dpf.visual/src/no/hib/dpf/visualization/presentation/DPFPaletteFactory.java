@@ -25,6 +25,7 @@ import no.hib.dpf.visual.VArrow;
 import no.hib.dpf.visual.VElement;
 import no.hib.dpf.visual.VNode;
 import no.hib.dpf.visual.presentation.ArrowFactory;
+import no.hib.dpf.visual.presentation.ComposedNodeFactory;
 import no.hib.dpf.visual.presentation.NodeFactory;
 import no.hib.dpf.visual.util.ImageSettings;
 
@@ -90,7 +91,7 @@ public class DPFPaletteFactory {
 				VArrow vArrow = (VArrow) element;
 				if(vArrow.isComposed()) {
 					ImageDescriptor smallIcon = vArrow.getIcon() == null || vArrow.getIcon().isEmpty() ? null : ImageDescriptor.createFromFile(null, vArrow.getIcon());
-					nodeGroup.add(new CreationToolEntry(arrow.getTarget().getName(), "Create a new " + arrow.getTarget().getName(), new ArrowFactory(arrow), 
+					nodeGroup.add(new CreationToolEntry(arrow.getTarget().getName(), "Create a new " + arrow.getTarget().getName(), new ComposedNodeFactory(arrow.getTarget()), 
 								smallIcon != null ? smallIcon : SMALLICON, LARGEICON));
 				} else {
 					ImageDescriptor smallIcon = vArrow.getIcon() == null || vArrow.getIcon().isEmpty() ? null : ImageDescriptor.createFromFile(null, vArrow.getIcon());
