@@ -9,24 +9,17 @@ package no.hib.dpf.visualization.impl;
 import java.util.Collection;
 
 import no.hib.dpf.diagram.DNode;
-
 import no.hib.dpf.visual.VNode;
-
 import no.hib.dpf.visual.impl.VElementImpl;
-
 import no.hib.dpf.visualization.VCompartment;
 import no.hib.dpf.visualization.VisualizationPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 

@@ -4,6 +4,7 @@ package no.hib.dpf.visualization.impl;
 
 
 import java.util.Collection;
+
 import no.hib.dpf.core.IDObject;
 import no.hib.dpf.core.Specification;
 import no.hib.dpf.diagram.DSpecification;
@@ -74,7 +75,7 @@ public class VisualizationsImpl extends EObjectImpl implements Visualizations {
 	protected Visuals visual;
 
 	/**
-	 * The cached value of the '{@link #getInstance() <em>Instance</em>}' containment reference.
+	 * The cached value of the '{@link #getInstance() <em>Instance</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getInstance()
@@ -206,6 +207,14 @@ public class VisualizationsImpl extends EObjectImpl implements Visualizations {
 	 * @generated
 	 */
 	public DSpecification getInstance() {
+		if (instance != null && instance.eIsProxy()) {
+			InternalEObject oldInstance = (InternalEObject)instance;
+			instance = (DSpecification)eResolveProxy(oldInstance);
+			if (instance != oldInstance) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VisualizationPackage.VISUALIZATIONS__INSTANCE, oldInstance, instance));
+			}
+		}
 		return instance;
 	}
 
@@ -214,14 +223,8 @@ public class VisualizationsImpl extends EObjectImpl implements Visualizations {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetInstance(DSpecification newInstance, NotificationChain msgs) {
-		DSpecification oldInstance = instance;
-		instance = newInstance;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VisualizationPackage.VISUALIZATIONS__INSTANCE, oldInstance, newInstance);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
+	public DSpecification basicGetInstance() {
+		return instance;
 	}
 
 	/**
@@ -230,17 +233,10 @@ public class VisualizationsImpl extends EObjectImpl implements Visualizations {
 	 * @generated
 	 */
 	public void setInstance(DSpecification newInstance) {
-		if (newInstance != instance) {
-			NotificationChain msgs = null;
-			if (instance != null)
-				msgs = ((InternalEObject)instance).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VisualizationPackage.VISUALIZATIONS__INSTANCE, null, msgs);
-			if (newInstance != null)
-				msgs = ((InternalEObject)newInstance).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VisualizationPackage.VISUALIZATIONS__INSTANCE, null, msgs);
-			msgs = basicSetInstance(newInstance, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, VisualizationPackage.VISUALIZATIONS__INSTANCE, newInstance, newInstance));
+		DSpecification oldInstance = instance;
+		instance = newInstance;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VisualizationPackage.VISUALIZATIONS__INSTANCE, oldInstance, instance));
 	}
 
 	/**
@@ -265,8 +261,6 @@ public class VisualizationsImpl extends EObjectImpl implements Visualizations {
 		switch (featureID) {
 			case VisualizationPackage.VISUALIZATIONS__ENTRIES:
 				return ((InternalEList<?>)getEntries()).basicRemove(otherEnd, msgs);
-			case VisualizationPackage.VISUALIZATIONS__INSTANCE:
-				return basicSetInstance(null, msgs);
 			case VisualizationPackage.VISUALIZATIONS__COMPARTMENTS:
 				return ((InternalEList<?>)getCompartments()).basicRemove(otherEnd, msgs);
 		}
@@ -291,7 +285,8 @@ public class VisualizationsImpl extends EObjectImpl implements Visualizations {
 				if (resolve) return getVisual();
 				return basicGetVisual();
 			case VisualizationPackage.VISUALIZATIONS__INSTANCE:
-				return getInstance();
+				if (resolve) return getInstance();
+				return basicGetInstance();
 			case VisualizationPackage.VISUALIZATIONS__COMPARTMENTS:
 				return getCompartments();
 		}

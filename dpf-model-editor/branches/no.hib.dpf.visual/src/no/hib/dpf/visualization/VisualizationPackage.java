@@ -3,6 +3,7 @@
 package no.hib.dpf.visualization;
 
 import no.hib.dpf.visual.VisualPackage;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -93,7 +94,7 @@ public interface VisualizationPackage extends EPackage {
 	int VISUALIZATIONS__VISUAL = 2;
 
 	/**
-	 * The feature id for the '<em><b>Instance</b></em>' containment reference.
+	 * The feature id for the '<em><b>Instance</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -257,10 +258,10 @@ public interface VisualizationPackage extends EPackage {
 	EReference getVisualizations_Visual();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link no.hib.dpf.visualization.Visualizations#getInstance <em>Instance</em>}'.
+	 * Returns the meta object for the reference '{@link no.hib.dpf.visualization.Visualizations#getInstance <em>Instance</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Instance</em>'.
+	 * @return the meta object for the reference '<em>Instance</em>'.
 	 * @see no.hib.dpf.visualization.Visualizations#getInstance()
 	 * @see #getVisualizations()
 	 * @generated
@@ -401,7 +402,7 @@ public interface VisualizationPackage extends EPackage {
 		EReference VISUALIZATIONS__VISUAL = eINSTANCE.getVisualizations_Visual();
 
 		/**
-		 * The meta object literal for the '<em><b>Instance</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Instance</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

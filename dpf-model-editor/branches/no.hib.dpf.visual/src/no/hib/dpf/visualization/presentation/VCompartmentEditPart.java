@@ -1,11 +1,11 @@
 package no.hib.dpf.visualization.presentation;
 
-import org.eclipse.draw2d.IFigure;
-import org.eclipse.gef.EditPolicy;
-
 import no.hib.dpf.editor.parts.GraphicalEditPartWithListener;
 import no.hib.dpf.editor.policies.NameDirectEditPolicy;
 import no.hib.dpf.visualization.VCompartment;
+
+import org.eclipse.draw2d.IFigure;
+import org.eclipse.gef.EditPolicy;
 
 public class VCompartmentEditPart extends GraphicalEditPartWithListener {
 

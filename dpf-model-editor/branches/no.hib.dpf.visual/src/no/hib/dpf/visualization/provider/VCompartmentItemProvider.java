@@ -6,10 +6,10 @@ package no.hib.dpf.visualization.provider;
 import java.util.Collection;
 import java.util.List;
 
-import no.hib.dpf.visual.VisualPlugin;
-import no.hib.dpf.visualization.VisualizationFactory;
+import no.hib.dpf.diagram.DiagramFactory;
+import no.hib.dpf.visual.provider.VElementItemProvider;
+import no.hib.dpf.visualization.VCompartment;
 import no.hib.dpf.visualization.VisualizationPackage;
-import no.hib.dpf.visualization.Visualizations;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -22,17 +22,16 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link no.hib.dpf.visualization.Visualizations} object.
+ * This is the item provider adapter for a {@link no.hib.dpf.visualization.VCompartment} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class VisualizationsItemProvider
-	extends ItemProviderAdapter
+public class VCompartmentItemProvider
+	extends VElementItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -45,7 +44,7 @@ public class VisualizationsItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VisualizationsItemProvider(AdapterFactory adapterFactory) {
+	public VCompartmentItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -60,94 +59,25 @@ public class VisualizationsItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addEntriesPropertyDescriptor(object);
-			addModelPropertyDescriptor(object);
-			addVisualPropertyDescriptor(object);
-			addInstancePropertyDescriptor(object);
+			addParentPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Entries feature.
+	 * This adds a property descriptor for the Parent feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addEntriesPropertyDescriptor(Object object) {
+	protected void addParentPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Visualizations_entries_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Visualizations_entries_feature", "_UI_Visualizations_type"),
-				 VisualizationPackage.Literals.VISUALIZATIONS__ENTRIES,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Model feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addModelPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Visualizations_model_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Visualizations_model_feature", "_UI_Visualizations_type"),
-				 VisualizationPackage.Literals.VISUALIZATIONS__MODEL,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Visual feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addVisualPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Visualizations_visual_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Visualizations_visual_feature", "_UI_Visualizations_type"),
-				 VisualizationPackage.Literals.VISUALIZATIONS__VISUAL,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Instance feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addInstancePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Visualizations_instance_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Visualizations_instance_feature", "_UI_Visualizations_type"),
-				 VisualizationPackage.Literals.VISUALIZATIONS__INSTANCE,
+				 getString("_UI_VCompartment_parent_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_VCompartment_parent_feature", "_UI_VCompartment_type"),
+				 VisualizationPackage.Literals.VCOMPARTMENT__PARENT,
 				 true,
 				 false,
 				 true,
@@ -168,7 +98,7 @@ public class VisualizationsItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(VisualizationPackage.Literals.VISUALIZATIONS__COMPARTMENTS);
+			childrenFeatures.add(VisualizationPackage.Literals.VCOMPARTMENT__CHILDREN);
 		}
 		return childrenFeatures;
 	}
@@ -187,14 +117,14 @@ public class VisualizationsItemProvider
 	}
 
 	/**
-	 * This returns Visualizations.gif.
+	 * This returns VCompartment.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Visualizations"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/VCompartment"));
 	}
 
 	/**
@@ -205,7 +135,10 @@ public class VisualizationsItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_Visualizations_type");
+		String label = ((VCompartment)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_VCompartment_type") :
+			getString("_UI_VCompartment_type") + " " + label;
 	}
 
 	/**
@@ -219,8 +152,8 @@ public class VisualizationsItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Visualizations.class)) {
-			case VisualizationPackage.VISUALIZATIONS__COMPARTMENTS:
+		switch (notification.getFeatureID(VCompartment.class)) {
+			case VisualizationPackage.VCOMPARTMENT__CHILDREN:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -240,19 +173,24 @@ public class VisualizationsItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(VisualizationPackage.Literals.VISUALIZATIONS__COMPARTMENTS,
-				 VisualizationFactory.eINSTANCE.createVCompartment()));
+				(VisualizationPackage.Literals.VCOMPARTMENT__CHILDREN,
+				 DiagramFactory.eINSTANCE.createDNode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(VisualizationPackage.Literals.VCOMPARTMENT__CHILDREN,
+				 DiagramFactory.eINSTANCE.createDConstraintNode()));
 	}
 
 	/**
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return VisualPlugin.INSTANCE;
+		return null;
 	}
 
 }

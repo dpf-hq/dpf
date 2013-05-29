@@ -6,9 +6,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import no.hib.dpf.visual.VisualPlugin;
 import no.hib.dpf.visual.VisualUtils;
 import no.hib.dpf.visual.Visuals;
+import no.hib.dpf.visualization.util.VisualizationUtils;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
@@ -63,7 +63,7 @@ public class VisualFormEditor extends FormEditor implements CommandStackListener
 			int index = addPage(editor, getEditorInput());
 			setPageText(index, editor.getTitle());
 		}catch(PartInitException e){
-			VisualPlugin.INSTANCE.log(e);
+			VisualizationUtils.logError(e);
 		}
 		if (getPageCount() == 1 && getContainer() instanceof CTabFolder) 
 			((CTabFolder) getContainer()).setTabHeight(0);
@@ -87,7 +87,7 @@ public class VisualFormEditor extends FormEditor implements CommandStackListener
 			setDirty(false);
 		}
 		catch (Exception exception) {
-			VisualPlugin.INSTANCE.log(exception);
+			VisualizationUtils.logError(exception);
 		}
 	}
 

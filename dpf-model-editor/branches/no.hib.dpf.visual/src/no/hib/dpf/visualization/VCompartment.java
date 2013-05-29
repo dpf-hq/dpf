@@ -7,7 +7,6 @@
 package no.hib.dpf.visualization;
 
 import no.hib.dpf.diagram.DNode;
-
 import no.hib.dpf.visual.VElement;
 import no.hib.dpf.visual.VNode;
 

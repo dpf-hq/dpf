@@ -3,6 +3,13 @@
 package no.hib.dpf.visualization.presentation;
 
 
+import static no.hib.dpf.diagram.util.DPFConstants.DEFAULT_DSIGNATURE;
+import static no.hib.dpf.diagram.util.DPFConstants.REFLEXIVE_DSPECIFICATION;
+import static no.hib.dpf.utils.DPFConstants.DEFAULT_SIGNATURE;
+import static no.hib.dpf.utils.DPFConstants.DefaultDSpecification;
+import static no.hib.dpf.utils.DPFConstants.DefaultSpecification;
+import static no.hib.dpf.utils.DPFConstants.REFLEXIVE_SPECIFICATION;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -22,6 +29,7 @@ import no.hib.dpf.visual.VisualPlugin;
 import no.hib.dpf.visual.provider.VisualItemProviderAdapterFactory;
 import no.hib.dpf.visualization.Visualizations;
 import no.hib.dpf.visualization.provider.VisualizationItemProviderAdapterFactory;
+import no.hib.dpf.visualization.util.VisualizationUtils;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
@@ -36,8 +44,8 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.command.BasicCommandStack;
-import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -47,7 +55,6 @@ import org.eclipse.emf.common.ui.editor.ProblemEditorPart;
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EValidator;
@@ -273,7 +280,13 @@ public class VisualizationEditor extends GraphicalEditorWithFlyoutPalette
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MarkerHelper markerHelper = new EditUIMarkerHelper();
+	protected MarkerHelper markerHelper = new EditUIMarkerHelper(){
+		protected IFile getFile(URI uri){
+			if(uri.equals(DefaultDSpecification) || uri.equals(DefaultSpecification))
+				return null;
+			return super.getFile(uri);
+		}
+	};
 
 	/**
 	 * This listens for when the outline becomes active
@@ -286,13 +299,13 @@ public class VisualizationEditor extends GraphicalEditorWithFlyoutPalette
 			public void partActivated(IWorkbenchPart p) {
 				if (p instanceof ContentOutline) {
 					if (((ContentOutline)p).getCurrentPage() == contentOutlinePage) {
-						getActionBarContributor().setActiveEditor(VisualizationEditor.this);
+//						getActionBarContributor().setActiveEditor(VisualizationEditor.this);
 						setCurrentViewer(contentOutlineViewer);
 					}
 				}
 				else if (p instanceof PropertySheet) {
 					if (((PropertySheet)p).getCurrentPage() == propertySheetPage) {
-						getActionBarContributor().setActiveEditor(VisualizationEditor.this);
+//						getActionBarContributor().setActiveEditor(VisualizationEditor.this);
 						handleActivate();
 					}
 				}
@@ -470,15 +483,15 @@ public class VisualizationEditor extends GraphicalEditorWithFlyoutPalette
 							(new Runnable() {
 								 public void run() {
 									 changedResources.addAll(visitor.getChangedResources());
-									 if (getSite().getPage().getActiveEditor() == VisualizationEditor.this) {
-										 handleActivate();
-									 }
+//									 if (getSite().getPage().getActiveEditor() == VisualizationEditor.this) {
+//										 handleActivate();
+//									 }
 								 }
 							 });
 					}
 				}
 				catch (CoreException exception) {
-					VisualPlugin.INSTANCE.log(exception);
+					VisualizationUtils.logError(exception);
 				}
 			}
 		};
@@ -493,7 +506,7 @@ public class VisualizationEditor extends GraphicalEditorWithFlyoutPalette
 		// Recompute the read only state.
 		//
 		if (editingDomain.getResourceToReadOnlyMap() != null) {
-		  editingDomain.getResourceToReadOnlyMap().clear();
+//		  editingDomain.getResourceToReadOnlyMap().clear();
 
 		  // Refresh any actions that may become enabled or disabled.
 		  //
@@ -589,7 +602,7 @@ public class VisualizationEditor extends GraphicalEditorWithFlyoutPalette
 						markerHelper.createMarkers(diagnostic);
 					}
 					catch (CoreException exception) {
-						VisualPlugin.INSTANCE.log(exception);
+						VisualizationUtils.logError(exception);
 					}
 				}
 			}
@@ -674,7 +687,21 @@ public class VisualizationEditor extends GraphicalEditorWithFlyoutPalette
 		if(resourceSet.getResourceFactoryRegistry() == null)
 			resourceSet.setURIResourceMap(new LinkedHashMap<URI, Resource>());
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap() .put("xmi", new XMIResourceFactoryImpl());
-//		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap() .put("dpf", new XMIResourceFactoryImpl());
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap() .put("dpf", new XMIResourceFactoryImpl());
+		if(resourceSet.getURIResourceMap() == null)
+			resourceSet.setURIResourceMap(new HashMap<URI, Resource>());
+		Map<Resource, Boolean> readOnly = editingDomain.getResourceToReadOnlyMap();
+		Resource resource = resourceSet.createResource(DefaultDSpecification);
+		resource.getContents().add(REFLEXIVE_DSPECIFICATION);
+		resource.getContents().add(DEFAULT_DSIGNATURE);
+		resourceSet.getURIResourceMap().put(DefaultDSpecification, resource);
+		readOnly.put(resource, new Boolean(true));
+		Resource model = resourceSet.createResource(DefaultSpecification);
+		model.getContents().add(REFLEXIVE_SPECIFICATION);
+		model.getContents().add(DEFAULT_SIGNATURE);
+		resourceSet.getURIResourceMap().put(DefaultSpecification, model);
+		readOnly.put(model, new Boolean(true));
+		editingDomain.setResourceToReadOnlyMap(readOnly);
 		setEditDomain(new DefaultEditDomain(this));
 	}
 	public void commandStackChanged(EventObject event) {
@@ -885,34 +912,10 @@ public class VisualizationEditor extends GraphicalEditorWithFlyoutPalette
 	 * This is the method called to load a resource into the editing domain's resource set based on the editor's input.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void createModel() {
-		URI resourceURI = EditUIUtil.getURI(getEditorInput());
-		Exception exception = null;
-		Resource resource = null;
-		try {
-			// Load the resource through the editing domain.
-			//
-			resource = editingDomain.getResourceSet().getResource(resourceURI, true);
-		}
-		catch (Exception e) {
-			exception = e;
-			resource = editingDomain.getResourceSet().getResource(resourceURI, false);
-		}finally{
-			if(resource != null){
-				EList<EObject> contents = resource.getContents();
-				if(contents.size() == 1 && contents.get(0) instanceof Visualizations){
-					visualizations = (Visualizations) contents.get(0);
-				}
-			}
-		}
-
-		Diagnostic diagnostic = analyzeResourceProblems(resource, exception);
-		if (diagnostic.getSeverity() != Diagnostic.OK) {
-			resourceToDiagnosticMap.put(resource,  analyzeResourceProblems(resource, exception));
-		}
-		editingDomain.getResourceSet().eAdapters().add(problemIndicationAdapter);
+		visualizations = VisualizationUtils.loadVisualizations(editingDomain.getResourceSet(), EditUIUtil.getURI(getEditorInput()), new HashMap<Resource, Diagnostic>());
 	}
 
 	/**
@@ -1170,7 +1173,7 @@ public class VisualizationEditor extends GraphicalEditorWithFlyoutPalette
 		catch (Exception exception) {
 			// Something went wrong that shouldn't.
 			//
-			VisualPlugin.INSTANCE.log(exception);
+			VisualizationUtils.logError(exception);
 		}
 		updateProblemIndication = true;
 		updateProblemIndication();
@@ -1263,7 +1266,7 @@ public class VisualizationEditor extends GraphicalEditorWithFlyoutPalette
 			}
 		}
 		catch (CoreException exception) {
-			VisualPlugin.INSTANCE.log(exception);
+			VisualizationUtils.logError(exception);
 		}
 	}
 
@@ -1439,7 +1442,7 @@ public class VisualizationEditor extends GraphicalEditorWithFlyoutPalette
 		adapterFactory.dispose();
 
 //		if (getActionBarContributor().getActiveEditor() == this) {
-		getActionBarContributor().setActiveEditor(null);
+//		getActionBarContributor().setActiveEditor(null);
 //		}
 
 		if (propertySheetPage != null) {

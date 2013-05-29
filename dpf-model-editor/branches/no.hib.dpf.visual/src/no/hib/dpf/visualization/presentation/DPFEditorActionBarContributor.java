@@ -12,17 +12,17 @@
  * Elias Volanakis - initial API and implementation
  * 
  * �yvind Bech and Dag Viggo Lok�en - DPF Editor
-*******************************************************************************/
+ *******************************************************************************/
 package no.hib.dpf.visualization.presentation;
 
 
-import no.hib.dpf.visual.VisualPlugin;
 import no.hib.dpf.visual.util.ImageSettings;
 
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.gef.editparts.ZoomManager;
 import org.eclipse.gef.internal.GEFMessages;
 import org.eclipse.gef.ui.actions.ActionBarContributor;
+import org.eclipse.gef.ui.actions.ActionRegistry;
 import org.eclipse.gef.ui.actions.AlignmentRetargetAction;
 import org.eclipse.gef.ui.actions.DeleteRetargetAction;
 import org.eclipse.gef.ui.actions.GEFActionConstants;
@@ -32,10 +32,10 @@ import org.eclipse.gef.ui.actions.ZoomComboContributionItem;
 import org.eclipse.gef.ui.actions.ZoomInRetargetAction;
 import org.eclipse.gef.ui.actions.ZoomOutRetargetAction;
 import org.eclipse.jface.action.IMenuManager;
-import org.eclipse.jface.action.IStatusLineManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.actions.RetargetAction;
@@ -48,92 +48,91 @@ import org.eclipse.ui.actions.RetargetAction;
 @SuppressWarnings("restriction")
 public class DPFEditorActionBarContributor extends ActionBarContributor {
 
-/**
- * Create actions managed by this contributor.
- * @see org.eclipse.gef.ui.actions.ActionBarContributor#buildActions()
- */
-@Override
-protected void buildActions() {
-	addRetargetAction(new DeleteRetargetAction());
-	addRetargetAction(new UndoRetargetAction());
-	addRetargetAction(new RedoRetargetAction());
-	
-	addRetargetAction(new ZoomInRetargetAction());
-	addRetargetAction(new ZoomOutRetargetAction());
-	RetargetAction action = new RetargetAction(GEFActionConstants.TOGGLE_SNAP_TO_GEOMETRY, GEFMessages.ToggleSnapToGeometry_Label);
-	action.setImageDescriptor(ImageSettings.IMG_SNAP.getImageDescriptor());
-	addRetargetAction(action);
-	action = new RetargetAction(GEFActionConstants.TOGGLE_GRID_VISIBILITY, GEFMessages.ToggleGrid_Label);
-	action.setImageDescriptor(ImageSettings.IMG_GRID.getImageDescriptor());
-	addRetargetAction(action);
-	addRetargetAction(new RetargetAction(ActionFactory.PRINT.getId(), GEFMessages.PrintAction_Label));
-	
-	
-	addRetargetAction(new AlignmentRetargetAction(PositionConstants.LEFT));
-	addRetargetAction(new AlignmentRetargetAction(PositionConstants.CENTER));
-	addRetargetAction(new AlignmentRetargetAction(PositionConstants.RIGHT));
-	addRetargetAction(new AlignmentRetargetAction(PositionConstants.TOP));
-	addRetargetAction(new AlignmentRetargetAction(PositionConstants.MIDDLE));
-	addRetargetAction(new AlignmentRetargetAction(PositionConstants.BOTTOM));
-}
+	/**
+	 * Create actions managed by this contributor.
+	 * @see org.eclipse.gef.ui.actions.ActionBarContributor#buildActions()
+	 */
+	@Override
+	protected void buildActions() {
+		addRetargetAction(new DeleteRetargetAction());
+		addRetargetAction(new UndoRetargetAction());
+		addRetargetAction(new RedoRetargetAction());
 
-/**
- * @see org.eclipse.ui.part.EditorActionBarContributor#contributeToMenu(IMenuManager)
- */
-public void contributeToMenu(IMenuManager menubar) {
-	super.contributeToMenu(menubar);
-	MenuManager viewMenu = new MenuManager("DPF Diagram");
-	viewMenu.add(getAction(GEFActionConstants.ZOOM_IN));
-	viewMenu.add(getAction(GEFActionConstants.ZOOM_OUT));
-	viewMenu.add(new Separator());
-	viewMenu.add(getAction(GEFActionConstants.TOGGLE_GRID_VISIBILITY));
-	viewMenu.add(getAction(GEFActionConstants.TOGGLE_SNAP_TO_GEOMETRY));
-	menubar.insertAfter(IWorkbenchActionConstants.M_EDIT, viewMenu);
-}
+		addRetargetAction(new ZoomInRetargetAction());
+		addRetargetAction(new ZoomOutRetargetAction());
+		RetargetAction action = new RetargetAction(GEFActionConstants.TOGGLE_SNAP_TO_GEOMETRY, GEFMessages.ToggleSnapToGeometry_Label);
+		action.setImageDescriptor(ImageSettings.IMG_SNAP.getImageDescriptor());
+		addRetargetAction(action);
+		action = new RetargetAction(GEFActionConstants.TOGGLE_GRID_VISIBILITY, GEFMessages.ToggleGrid_Label);
+		action.setImageDescriptor(ImageSettings.IMG_GRID.getImageDescriptor());
+		addRetargetAction(action);
+		addRetargetAction(new RetargetAction(ActionFactory.PRINT.getId(), GEFMessages.PrintAction_Label));
 
-/**
- * Add actions to the given toolbar.
- * @see org.eclipse.ui.part.EditorActionBarContributor#contributeToToolBar(org.eclipse.jface.action.IToolBarManager)
- */
-@Override
-public void contributeToToolBar(IToolBarManager toolBarManager) {
-	super.contributeToToolBar(toolBarManager);
-	toolBarManager.add(getAction(ActionFactory.UNDO.getId()));
-	toolBarManager.add(getAction(ActionFactory.REDO.getId()));
-	toolBarManager.add(getAction(ActionFactory.DELETE.getId()));
-	
-	
-	toolBarManager.add(new Separator());
-	toolBarManager.add(getAction(GEFActionConstants.ALIGN_LEFT));
-	toolBarManager.add(getAction(GEFActionConstants.ALIGN_CENTER));
-	toolBarManager.add(getAction(GEFActionConstants.ALIGN_RIGHT));
-	toolBarManager.add(new Separator());
-	toolBarManager.add(getAction(GEFActionConstants.ALIGN_TOP));
-	toolBarManager.add(getAction(GEFActionConstants.ALIGN_MIDDLE));
-	toolBarManager.add(getAction(GEFActionConstants.ALIGN_BOTTOM));
-//	
-	toolBarManager.add(new Separator());	
-	String[] zoomStrings = new String[] {	ZoomManager.FIT_ALL, ZoomManager.FIT_HEIGHT, ZoomManager.FIT_WIDTH	};
-	toolBarManager.add(new ZoomComboContributionItem(getPage(), zoomStrings));
-	toolBarManager.add(getAction(GEFActionConstants.TOGGLE_GRID_VISIBILITY));
-    toolBarManager.add(getAction(GEFActionConstants.TOGGLE_SNAP_TO_GEOMETRY));
-	
-	toolBarManager.add(new Separator());	
-	
-}
 
-@Override
-public void contributeToStatusLine(IStatusLineManager statusLineManager) {
-	super.contributeToStatusLine(statusLineManager);
-	VisualPlugin.getDefault().setStatusLineManager(statusLineManager);
-}
+		addRetargetAction(new AlignmentRetargetAction(PositionConstants.LEFT));
+		addRetargetAction(new AlignmentRetargetAction(PositionConstants.CENTER));
+		addRetargetAction(new AlignmentRetargetAction(PositionConstants.RIGHT));
+		addRetargetAction(new AlignmentRetargetAction(PositionConstants.TOP));
+		addRetargetAction(new AlignmentRetargetAction(PositionConstants.MIDDLE));
+		addRetargetAction(new AlignmentRetargetAction(PositionConstants.BOTTOM));
+	}
 
-/*
- * (non-Javadoc)
- * @see org.eclipse.gef.ui.actions.ActionBarContributor#declareGlobalActionKeys()
- */
-protected void declareGlobalActionKeys() {
-	// currently none
-}
+	/**
+	 * @see org.eclipse.ui.part.EditorActionBarContributor#contributeToMenu(IMenuManager)
+	 */
+	public void contributeToMenu(IMenuManager menubar) {
+		super.contributeToMenu(menubar);
+		MenuManager viewMenu = new MenuManager("DPF Diagram");
+		viewMenu.add(getAction(GEFActionConstants.ZOOM_IN));
+		viewMenu.add(getAction(GEFActionConstants.ZOOM_OUT));
+		viewMenu.add(new Separator());
+		viewMenu.add(getAction(GEFActionConstants.TOGGLE_GRID_VISIBILITY));
+		viewMenu.add(getAction(GEFActionConstants.TOGGLE_SNAP_TO_GEOMETRY));
+		menubar.insertAfter(IWorkbenchActionConstants.M_EDIT, viewMenu);
+	}
 
+	/**
+	 * Add actions to the given toolbar.
+	 * @see org.eclipse.ui.part.EditorActionBarContributor#contributeToToolBar(org.eclipse.jface.action.IToolBarManager)
+	 */
+	@Override
+	public void contributeToToolBar(IToolBarManager toolBarManager) {
+		super.contributeToToolBar(toolBarManager);
+		toolBarManager.add(getAction(ActionFactory.UNDO.getId()));
+		toolBarManager.add(getAction(ActionFactory.REDO.getId()));
+		toolBarManager.add(getAction(ActionFactory.DELETE.getId()));
+
+
+		toolBarManager.add(new Separator());
+		toolBarManager.add(getAction(GEFActionConstants.ALIGN_LEFT));
+		toolBarManager.add(getAction(GEFActionConstants.ALIGN_CENTER));
+		toolBarManager.add(getAction(GEFActionConstants.ALIGN_RIGHT));
+		toolBarManager.add(new Separator());
+		toolBarManager.add(getAction(GEFActionConstants.ALIGN_TOP));
+		toolBarManager.add(getAction(GEFActionConstants.ALIGN_MIDDLE));
+		toolBarManager.add(getAction(GEFActionConstants.ALIGN_BOTTOM));
+		//	
+		toolBarManager.add(new Separator());	
+		String[] zoomStrings = new String[] {	ZoomManager.FIT_ALL, ZoomManager.FIT_HEIGHT, ZoomManager.FIT_WIDTH	};
+		toolBarManager.add(new ZoomComboContributionItem(getPage(), zoomStrings));
+		toolBarManager.add(getAction(GEFActionConstants.TOGGLE_GRID_VISIBILITY));
+		toolBarManager.add(getAction(GEFActionConstants.TOGGLE_SNAP_TO_GEOMETRY));
+
+		toolBarManager.add(new Separator());	
+
+	}
+	/*
+	 * (non-Javadoc)
+	 * @see org.eclipse.gef.ui.actions.ActionBarContributor#declareGlobalActionKeys()
+	 */
+	protected void declareGlobalActionKeys() {
+		// currently none
+	}
+
+	public void setActiveEditor(IEditorPart editor) {
+		ActionRegistry registry = (ActionRegistry) editor
+				.getAdapter(ActionRegistry.class);
+		if(registry != null)
+			super.setActiveEditor(editor);
+	}
 }

@@ -31,6 +31,7 @@ import no.hib.dpf.visualization.VisualizationFactory;
 import no.hib.dpf.visualization.VisualizationPackage;
 import no.hib.dpf.visualization.Visualizations;
 import no.hib.dpf.visualization.impl.VisualizationFactoryImpl;
+import no.hib.dpf.visualization.util.VisualizationUtils;
 
 import org.eclipse.core.filesystem.EFS;
 import org.eclipse.core.filesystem.IFileStore;
@@ -50,7 +51,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -222,8 +222,11 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 		visualizations.setModel(specification);
 		visualizations.setVisual(visuals);
 		DSpecification instance = DiagramFactory.eINSTANCE.createDefaultDSpecification();
-		instance.setDType(null);
-		instance.getSpecification().setType(specification);
+		DSpecification type = DiagramFactory.eINSTANCE.createDefaultDSpecification();
+		type.setSpecification(specification);
+		type.getDGraph().setGraph(specification.getGraph());
+		
+		instance.setDType(type);
 		visualizations.setInstance(instance);
 		visualizations.getEntries().putAll(maps);
 		
@@ -235,7 +238,7 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 					VisualizationFactory factory = new VisualizationFactoryImpl();
 					EList<Arrow> arrows = node.getOutgoings();
 					for(Arrow arrow : arrows) {
-						if(((VArrow) maps.get(arrow)).isComposed()) {
+						if(maps.containsKey(arrow) && ((VArrow) maps.get(arrow)).isComposed()) {
 							VCompartment vCompartment = factory.createVCompartment();
 							vCompartment.setName(arrow.getTarget().getName());
 							vCompartment.setParent(vNode);
@@ -253,7 +256,7 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 	 * Do the work after everything is specified.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public boolean performFinish() {
@@ -271,7 +274,8 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 					try {
 						// Create a resource set
 						//
-						ResourceSet resourceSet = new ResourceSetImpl();
+						Visualizations result = createInitialModel();
+						ResourceSetImpl resourceSet = VisualizationUtils.getResourceSet();
 
 						// Get the URI of the model file.
 						//
@@ -279,19 +283,10 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 
 						// Create a resource for this file.
 						//
-						Resource resource = resourceSet.createResource(fileURI);
-
-						// Add the initial model object to the contents.
-						//
-						Visualizations rootObject = createInitialModel();
-						if (rootObject != null) {
-							resource.getContents().add(rootObject);
-						}
-
-						resource.save(null);
+						VisualizationUtils.saveVisualizations(resourceSet, result, fileURI, new HashMap<Resource, Diagnostic>());
 					}
 					catch (Exception exception) {
-						VisualPlugin.INSTANCE.log(exception);
+						VisualizationUtils.logError(exception);
 					}
 					finally {
 						progressMonitor.done();
@@ -331,7 +326,7 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 			return true;
 		}
 		catch (Exception exception) {
-			VisualPlugin.INSTANCE.log(exception);
+			VisualizationUtils.logError(exception);
 			return false;
 		}
 	}

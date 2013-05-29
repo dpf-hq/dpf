@@ -17,6 +17,7 @@ package no.hib.dpf.visualization.presentation;
 
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.editor.commands.DNodeDeleteCommand;
+import no.hib.dpf.editor.parts.DNodeEditPart;
 
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.ComponentEditPolicy;

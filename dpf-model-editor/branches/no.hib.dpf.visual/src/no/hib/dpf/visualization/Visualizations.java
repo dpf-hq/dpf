@@ -104,26 +104,26 @@ public interface Visualizations extends EObject {
 	void setVisual(Visuals value);
 
 	/**
-	 * Returns the value of the '<em><b>Instance</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Instance</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Instance</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Instance</em>' containment reference.
+	 * @return the value of the '<em>Instance</em>' reference.
 	 * @see #setInstance(DSpecification)
 	 * @see no.hib.dpf.visualization.VisualizationPackage#getVisualizations_Instance()
-	 * @model containment="true"
+	 * @model
 	 * @generated
 	 */
 	DSpecification getInstance();
 
 	/**
-	 * Sets the value of the '{@link no.hib.dpf.visualization.Visualizations#getInstance <em>Instance</em>}' containment reference.
+	 * Sets the value of the '{@link no.hib.dpf.visualization.Visualizations#getInstance <em>Instance</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Instance</em>' containment reference.
+	 * @param value the new value of the '<em>Instance</em>' reference.
 	 * @see #getInstance()
 	 * @generated
 	 */

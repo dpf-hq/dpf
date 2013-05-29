@@ -117,6 +117,29 @@ public class VisualizationItemProviderAdapterFactory extends VisualizationAdapte
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link no.hib.dpf.visualization.VCompartment} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected VCompartmentItemProvider vCompartmentItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link no.hib.dpf.visualization.VCompartment}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createVCompartmentAdapter() {
+		if (vCompartmentItemProvider == null) {
+			vCompartmentItemProvider = new VCompartmentItemProvider(this);
+		}
+
+		return vCompartmentItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -217,6 +240,7 @@ public class VisualizationItemProviderAdapterFactory extends VisualizationAdapte
 	public void dispose() {
 		if (visualizationsItemProvider != null) visualizationsItemProvider.dispose();
 		if (modelToVisualEntryItemProvider != null) modelToVisualEntryItemProvider.dispose();
+		if (vCompartmentItemProvider != null) vCompartmentItemProvider.dispose();
 	}
 
 }

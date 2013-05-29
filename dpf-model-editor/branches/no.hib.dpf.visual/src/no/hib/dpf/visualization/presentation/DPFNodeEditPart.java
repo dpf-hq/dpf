@@ -1,13 +1,5 @@
 package no.hib.dpf.visualization.presentation;
 
-import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.gef.EditPolicy;
-import org.eclipse.gef.Request;
-import org.eclipse.gef.RequestConstants;
-import org.eclipse.jface.viewers.TextCellEditor;
-
 import no.hib.dpf.core.Node;
 import no.hib.dpf.editor.DPFEditor;
 import no.hib.dpf.editor.parts.DNodeEditPart;
@@ -21,6 +13,14 @@ import no.hib.dpf.visualization.figures.EditableLabel;
 import no.hib.dpf.visualization.figures.NodeFigure;
 import no.hib.dpf.visualization.policies.DArrowCreatePolicy;
 import no.hib.dpf.visualization.policies.VNodeLayoutPolicy;
+
+import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.Request;
+import org.eclipse.gef.RequestConstants;
+import org.eclipse.jface.viewers.TextCellEditor;
 
 public class DPFNodeEditPart extends DNodeEditPart {
 
