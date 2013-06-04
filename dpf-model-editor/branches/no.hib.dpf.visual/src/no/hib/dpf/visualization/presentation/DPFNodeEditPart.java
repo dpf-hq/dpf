@@ -32,7 +32,9 @@ public class DPFNodeEditPart extends DNodeEditPart {
 	}
 	
 	protected void createEditPolicies() {
-		installEditPolicy(EditPolicy.LAYOUT_ROLE, new VNodeLayoutPolicy());
+		// allow adding of childs in compartments
+		if(visual.isComposite())
+			installEditPolicy(EditPolicy.LAYOUT_ROLE, new VNodeLayoutPolicy());
 		// allow removal of the associated model element
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new NodeComponentEditPolicy());
 		// allow the creation of connections and
@@ -91,5 +93,8 @@ public class DPFNodeEditPart extends DNodeEditPart {
 		// if this line is removed, the XYLayoutManager used by the parent
 		// container (the Figure of the DPFDiagramEditPart), will not know the bounds of
 		// this figure and will not draw it correctly.
+	}
+	public EList<VCompartment> getCompartments() {
+		return compartments;
 	}
 }

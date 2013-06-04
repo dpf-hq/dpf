@@ -40,6 +40,15 @@ public interface VisualizationFactory extends EFactory {
 	VCompartment createVCompartment();
 
 	/**
+	 * Returns a new object of class '<em>VCompartment Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>VCompartment Element</em>'.
+	 * @generated
+	 */
+	VCompartmentElement createVCompartmentElement();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -8,6 +8,7 @@ import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.diagram.DiagramPackage;
 import no.hib.dpf.visual.VisualPackage;
 import no.hib.dpf.visualization.VCompartment;
+import no.hib.dpf.visualization.VCompartmentElement;
 import no.hib.dpf.visualization.VisualizationFactory;
 import no.hib.dpf.visualization.VisualizationPackage;
 import no.hib.dpf.visualization.Visualizations;
@@ -44,6 +45,13 @@ public class VisualizationPackageImpl extends EPackageImpl implements Visualizat
 	 * @generated
 	 */
 	private EClass vCompartmentEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass vCompartmentElementEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -223,6 +231,24 @@ public class VisualizationPackageImpl extends EPackageImpl implements Visualizat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getVCompartmentElement() {
+		return vCompartmentElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getVCompartmentElement_DNode() {
+		return (EReference)vCompartmentElementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public VisualizationFactory getVisualizationFactory() {
 		return (VisualizationFactory)getEFactoryInstance();
 	}
@@ -260,6 +286,9 @@ public class VisualizationPackageImpl extends EPackageImpl implements Visualizat
 		vCompartmentEClass = createEClass(VCOMPARTMENT);
 		createEReference(vCompartmentEClass, VCOMPARTMENT__PARENT);
 		createEReference(vCompartmentEClass, VCOMPARTMENT__CHILDREN);
+
+		vCompartmentElementEClass = createEClass(VCOMPARTMENT_ELEMENT);
+		createEReference(vCompartmentElementEClass, VCOMPARTMENT_ELEMENT__DNODE);
 	}
 
 	/**
@@ -296,6 +325,7 @@ public class VisualizationPackageImpl extends EPackageImpl implements Visualizat
 
 		// Add supertypes to classes
 		vCompartmentEClass.getESuperTypes().add(theVisualPackage.getVElement());
+		vCompartmentElementEClass.getESuperTypes().add(theVisualPackage.getVElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(visualizationsEClass, Visualizations.class, "Visualizations", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -312,6 +342,9 @@ public class VisualizationPackageImpl extends EPackageImpl implements Visualizat
 		initEClass(vCompartmentEClass, VCompartment.class, "VCompartment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getVCompartment_Parent(), theVisualPackage.getVNode(), null, "parent", null, 0, 1, VCompartment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getVCompartment_Children(), theDiagramPackage.getDNode(), null, "children", null, 0, -1, VCompartment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(vCompartmentElementEClass, VCompartmentElement.class, "VCompartmentElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getVCompartmentElement_DNode(), theDiagramPackage.getDNode(), null, "dNode", null, 0, 1, VCompartmentElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

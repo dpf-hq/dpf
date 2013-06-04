@@ -42,7 +42,7 @@ public class VisualizationEditPartFactory extends DPFEditPartFactory {
 		}
 		if (modelElement instanceof VCompartment) {
 			VCompartment vCompartment = (VCompartment) modelElement;
-			return new VCompartmentEditPart(vCompartment);
+			return new VCompartmentElementEditPart(vCompartment);
 		}
 		return super.getPartForElement(modelElement);
 	}

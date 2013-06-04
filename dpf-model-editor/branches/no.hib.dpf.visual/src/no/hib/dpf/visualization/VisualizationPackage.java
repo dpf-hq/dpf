@@ -215,6 +215,53 @@ public interface VisualizationPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link no.hib.dpf.visualization.impl.VCompartmentElementImpl <em>VCompartment Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.visualization.impl.VCompartmentElementImpl
+	 * @see no.hib.dpf.visualization.impl.VisualizationPackageImpl#getVCompartmentElement()
+	 * @generated
+	 */
+	int VCOMPARTMENT_ELEMENT = 3;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VCOMPARTMENT_ELEMENT__NAME = VisualPackage.VELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Icon</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VCOMPARTMENT_ELEMENT__ICON = VisualPackage.VELEMENT__ICON;
+
+	/**
+	 * The feature id for the '<em><b>DNode</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VCOMPARTMENT_ELEMENT__DNODE = VisualPackage.VELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>VCompartment Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VCOMPARTMENT_ELEMENT_FEATURE_COUNT = VisualPackage.VELEMENT_FEATURE_COUNT + 1;
+
+
+	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.visualization.Visualizations <em>Visualizations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -346,6 +393,27 @@ public interface VisualizationPackage extends EPackage {
 	EReference getVCompartment_Children();
 
 	/**
+	 * Returns the meta object for class '{@link no.hib.dpf.visualization.VCompartmentElement <em>VCompartment Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>VCompartment Element</em>'.
+	 * @see no.hib.dpf.visualization.VCompartmentElement
+	 * @generated
+	 */
+	EClass getVCompartmentElement();
+
+	/**
+	 * Returns the meta object for the reference '{@link no.hib.dpf.visualization.VCompartmentElement#getDNode <em>DNode</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>DNode</em>'.
+	 * @see no.hib.dpf.visualization.VCompartmentElement#getDNode()
+	 * @see #getVCompartmentElement()
+	 * @generated
+	 */
+	EReference getVCompartmentElement_DNode();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -468,6 +536,24 @@ public interface VisualizationPackage extends EPackage {
 		 * @generated
 		 */
 		EReference VCOMPARTMENT__CHILDREN = eINSTANCE.getVCompartment_Children();
+
+		/**
+		 * The meta object literal for the '{@link no.hib.dpf.visualization.impl.VCompartmentElementImpl <em>VCompartment Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see no.hib.dpf.visualization.impl.VCompartmentElementImpl
+		 * @see no.hib.dpf.visualization.impl.VisualizationPackageImpl#getVCompartmentElement()
+		 * @generated
+		 */
+		EClass VCOMPARTMENT_ELEMENT = eINSTANCE.getVCompartmentElement();
+
+		/**
+		 * The meta object literal for the '<em><b>DNode</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VCOMPARTMENT_ELEMENT__DNODE = eINSTANCE.getVCompartmentElement_DNode();
 
 	}
 

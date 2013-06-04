@@ -15,7 +15,6 @@
  *******************************************************************************/
 package no.hib.dpf.visualization.commands;
 
-import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.editor.commands.AbstractCreateCommand;
 import no.hib.dpf.visualization.figures.CompositeNodeFigure;
@@ -29,7 +28,6 @@ public class ChildDNodeCreateCommand extends AbstractCreateCommand {
 
 	/** Diagram to add to. */
 	private final CompositeNodeFigure parent;
-	private final DGraph parentDGraph;
 
 
 	/**
@@ -40,10 +38,9 @@ public class ChildDNodeCreateCommand extends AbstractCreateCommand {
 	 * @throws IllegalArgumentException if any parameter is null, or the request
 	 * 						  does not provide a new Shape instance
 	 */
-	public ChildDNodeCreateCommand(DNode newVNode, CompositeNodeFigure parent, DGraph dGraph) {
+	public ChildDNodeCreateCommand(DNode newVNode, CompositeNodeFigure parent) {
 		this.newObject =  newVNode;
 		this.parent = parent;
-		this.parentDGraph = dGraph;
 		setLabel("shape creation");
 	}
 

@@ -7,11 +7,11 @@ import no.hib.dpf.visualization.VCompartment;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.EditPolicy;
 
-public class VCompartmentEditPart extends GraphicalEditPartWithListener {
+public class VCompartmentElementEditPart extends GraphicalEditPartWithListener {
 
 	VCompartment compartment = null;
 	
-	public VCompartmentEditPart(VCompartment compartment) {
+	public VCompartmentElementEditPart(VCompartment compartment) {
 		this.compartment = compartment;
 	}
 	

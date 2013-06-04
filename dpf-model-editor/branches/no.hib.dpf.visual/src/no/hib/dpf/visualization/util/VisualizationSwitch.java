@@ -6,6 +6,7 @@ import java.util.Map;
 
 import no.hib.dpf.core.IDObject;
 import no.hib.dpf.visual.VElement;
+import no.hib.dpf.visualization.*;
 import no.hib.dpf.visualization.VCompartment;
 import no.hib.dpf.visualization.VisualizationPackage;
 import no.hib.dpf.visualization.Visualizations;
@@ -90,6 +91,13 @@ public class VisualizationSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case VisualizationPackage.VCOMPARTMENT_ELEMENT: {
+				VCompartmentElement vCompartmentElement = (VCompartmentElement)theEObject;
+				T result = caseVCompartmentElement(vCompartmentElement);
+				if (result == null) result = caseVElement(vCompartmentElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -136,6 +144,21 @@ public class VisualizationSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseVCompartment(VCompartment object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>VCompartment Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>VCompartment Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseVCompartmentElement(VCompartmentElement object) {
 		return null;
 	}
 
