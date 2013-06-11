@@ -12,7 +12,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import no.hib.dpf.core.Specification;
 import no.hib.dpf.diagram.DSignature;
 import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.diagram.util.DPFConstants;
@@ -24,12 +23,9 @@ import no.hib.dpf.transform.Transform;
 import no.hib.dpf.transform.TransformFactory;
 import no.hib.dpf.utils.DPFCoreUtil;
 
-import org.eclipse.core.filesystem.EFS;
-import org.eclipse.core.filesystem.IFileStore;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -37,20 +33,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.graphics.Font;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.FileDialog;
-import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
@@ -73,8 +56,6 @@ public class TransformModelWizard extends Wizard implements INewWizard {
 	private CreationPage createPage = null;
 	private DPFWizardPage typeLinkPage = null;
 	private DPFWizardPage signatureLinkPage;
-	
-	protected Specification specification = null;
 
 	/*
 	 * (non-Javadoc)
@@ -138,17 +119,6 @@ public class TransformModelWizard extends Wizard implements INewWizard {
 	 */
 	private class CreationPage extends WizardNewFileCreationPage {
 
-		private boolean createSourceLink = false;
-		private boolean createTargetLink = false;
-		
-		private Text createSourceField;
-		private Text createTargetField;
-		
-		private Button browseSourceButton;
-		private Button browseTargetButton;
-		
-		
-		
 		/**
 		 * Hides the advanced option widgets.
 		 */
@@ -185,140 +155,8 @@ public class TransformModelWizard extends Wizard implements INewWizard {
 			super.createControl(parent);
 			setFileName("transform" + fileCount + TRANSFORM_EXTENSION);
 			setPageComplete(validatePage());
-			
-			initializeDialogUnits(parent);
-			
-			//Composite topLevel = new Composite(parent, SWT.NONE);
-			//GridLayout layout = new GridLayout();
-			
-			Composite topLevel = new Composite(parent, SWT.NONE); {
-				Font font = parent.getFont();
-				GridLayout layout = new GridLayout();
-				layout.numColumns = 2;
-				layout.verticalSpacing = 12;
-				topLevel.setLayout(layout);
-
-				GridData data = new GridData();
-				data.verticalAlignment = GridData.FILL;
-				data.horizontalAlignment = GridData.FILL;
-				data.grabExcessVerticalSpace = true;
-				data.grabExcessVerticalSpace = true;
-				topLevel.setFont(font);
-				topLevel.setLayoutData(data);
-			}
-			
-			final Button createSourceLinkButton = new Button(topLevel, SWT.CHECK);
-			
-			createSourceLinkButton.setText("Load &Source Specification");
-			createSourceLinkButton.setSelection(createSourceLink);
-			GridData newData = new GridData();
-			newData.horizontalSpan = 2;
-			createSourceLinkButton.setLayoutData(newData);
-			createSourceLinkButton.setFont(parent.getFont());
-			
-			SelectionListener sourceListener = new SelectionAdapter() {
-				public void widgetSelected(SelectionEvent e) {
-					createSourceLink = createSourceLinkButton.getSelection();
-					createSourceField.setEnabled(createSourceLink);
-					browseSourceButton.setEnabled(createSourceLink);
-				}
-			};
-			createSourceLinkButton.addSelectionListener(sourceListener);
-			
-			createSourceField = new Text(topLevel, SWT.BORDER);
-			{
-				GridData data = new GridData();
-				data.horizontalAlignment = GridData.FILL;
-				data.grabExcessHorizontalSpace = true;
-				createSourceField.setLayoutData(data);
-				createSourceField.setEnabled(createSourceLink);
-			}
-			
-			browseSourceButton = new Button(topLevel, SWT.PUSH);
-			{
-				setButtonLayoutData(browseSourceButton);
-				browseSourceButton.setText("&Browse...");
-				browseSourceButton.addSelectionListener(new SelectionAdapter() {
-
-					public void widgetSelected(SelectionEvent event) {
-						browseButtonPressed(createSourceField, "*.dpf");
-						specification = DPFCoreUtil.loadSpecification(URI.createFileURI(createSourceField.getText()));
-						
-					}
-				});
-				browseSourceButton.setEnabled(createSourceLink);
-			}
-			
-			final Button createTargetLinkButton = new Button(topLevel, SWT.CHECK);
-			
-			createTargetLinkButton.setText("Load &Target Specification");
-			createTargetLinkButton.setSelection(createTargetLink);
-			createTargetLinkButton.setLayoutData(newData);
-			createTargetLinkButton.setFont(parent.getFont());
-			
-			SelectionListener targetListener = new SelectionAdapter() {
-				public void widgetSelected(SelectionEvent e) {
-					createTargetLink = createTargetLinkButton.getSelection();
-					createTargetField.setEnabled(createTargetLink);
-					browseTargetButton.setEnabled(createTargetLink);
-				}
-			};	
-			
-			createTargetLinkButton.addSelectionListener(targetListener);
-			
-			createTargetField = new Text(topLevel, SWT.BORDER);
-			{
-				GridData data = new GridData();
-				data.horizontalAlignment = GridData.FILL;
-				data.grabExcessHorizontalSpace = true;
-				createTargetField.setLayoutData(data);
-				createTargetField.setEnabled(createTargetLink);
-			}
-			
-			browseTargetButton = new Button(topLevel, SWT.PUSH);
-			{
-				setButtonLayoutData(browseTargetButton);
-				browseTargetButton.setText("&Browse...");
-				browseTargetButton.addSelectionListener(new SelectionAdapter() {
-
-					public void widgetSelected(SelectionEvent event) {
-						browseButtonPressed(createTargetField, "*.dpf");
-					}
-				});
-				browseTargetButton.setEnabled(createTargetLink);
-			}
 		}
-		private void browseButtonPressed(Text field, String filterExtensions) {
-			String targetName = field.getText();
-			String selection = null;
-			IFileStore store = null;
-			
-			if(targetName.length() > 0){
-				store = getFileStore(targetName);
-				if(store == null || !store.fetchInfo().exists()){
-					store = null;
-				}
-			}
-			
-			FileDialog fileDialog = new FileDialog(getShell(), SWT.SHEET);
-			fileDialog.setFilterExtensions(new String[]{filterExtensions, "*"});
-			
-			if(store != null){
-				if(store.fetchInfo().isDirectory()){
-					fileDialog.setFilterPath(targetName);
-				}
-				else{
-					fileDialog.setFileName(targetName);
-				}
-			}
-	
-	        selection = fileDialog.open();
-	        
-	        if (selection != null) {
-	        	field.setText(selection);
-	        }
-			
-		}
+
 		
 		/**
 		 * This method will be invoked, when the "Finish" button is pressed.
@@ -392,30 +230,4 @@ public class TransformModelWizard extends Wizard implements INewWizard {
 			return super.validatePage() && validateFilename();
 		}
 	}
-	 /**
-		 * Get the file store for the string.
-		 * 
-		 * @param string
-		 * @return IFileStore or <code>null</code> if there is a
-		 *         {@link CoreException}.
-		 */
-		public static IFileStore getFileStore(String string) {
-			return getFileStore(new Path(string).toFile().toURI());
-		}
-
-		/**
-		 * Get the file store for the URI.
-		 * 
-		 * @param uri
-		 * @return IFileStore or <code>null</code> if there is a
-		 *         {@link CoreException}.
-		 */
-		public static IFileStore getFileStore(java.net.URI uri) {
-			try {
-				return EFS.getStore(uri);
-			} catch (CoreException e) {
-				e.printStackTrace();
-				return null;
-			}
-		}
 }
