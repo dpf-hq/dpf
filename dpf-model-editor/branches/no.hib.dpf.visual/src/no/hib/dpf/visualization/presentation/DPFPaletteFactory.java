@@ -46,7 +46,7 @@ import org.eclipse.jface.resource.ImageDescriptor;
  * Utility class that can create a GEF Palette.
  */
 public class DPFPaletteFactory {
-	
+
 	private static final String NODES = "Nodes";
 	private static final String ARROWS = "Arrows";
 	private PaletteGroup nodeGroup = new PaletteGroup(NODES);
@@ -74,41 +74,40 @@ public class DPFPaletteFactory {
 		}
 		return palette;
 	}
+
+	/*
+	 * find if there is a composed visual configure for the arrow which target to the node. 
+	 */
+	private boolean hasVArrowTargetTo(Node node, EMap<IDObject, VElement> maps){
+		for(Arrow arrow : node.getIncomings()){
+			VElement aElement = maps.get(arrow);
+			if(aElement instanceof VArrow && ((VArrow)aElement).isComposed()) 
+				return true;
+		}
+		return false;
+	}
 	
 	public void updatePalette(PaletteRoot root, Graph graph, EMap<IDObject, VElement> maps) {
 		for(Node node : graph.getNodes()){
 			VElement element = maps.get(node);
-			if(element instanceof VNode){
+			if(element instanceof VNode && hasVArrowTargetTo(node, maps)){
 				VNode vNode = (VNode) element;
-				boolean composed = false;
-				for(Arrow arrow : node.getIncomings()){
-					VElement aElement = maps.get(arrow);
-					if(aElement instanceof VArrow) {
-						if(((VArrow)aElement).isComposed())
-							composed = true;
-					}
-				}
-				if(!composed){
-					ImageDescriptor smallIcon = vNode.getIcon() == null || vNode.getIcon().isEmpty() ? null : ImageDescriptor.createFromFile(null, vNode.getIcon());
-					nodeGroup.add(new CreationToolEntry(node.getName(), "Create a new " + node.getName(), new NodeFactory(node), 
-								smallIcon != null ? smallIcon : SMALLICON, LARGEICON));
-				}
-			}
+				ImageDescriptor smallIcon = vNode.getIcon() == null || vNode.getIcon().isEmpty() ? null : ImageDescriptor.createFromFile(null, vNode.getIcon());
+				nodeGroup.add(new CreationToolEntry(node.getName(), "Create a new " + node.getName(), new NodeFactory(node), 
+						smallIcon != null ? smallIcon : SMALLICON, LARGEICON));
+			}else
+				nodeGroup.add(new CreationToolEntry(node.getName(), "Create a new " + node.getName(), new NodeFactory(node), SMALLICON, LARGEICON));
 		}
- 		for(Arrow arrow : graph.getArrows()){
- 			VElement element = maps.get(arrow);
-			if(element instanceof VArrow){
+		for(Arrow arrow : graph.getArrows()){
+			VElement element = maps.get(arrow);
+			if(element instanceof VArrow && ((VArrow)element).isComposed()){
 				VArrow vArrow = (VArrow) element;
-				if(vArrow.isComposed()) {
-					ImageDescriptor smallIcon = vArrow.getIcon() == null || vArrow.getIcon().isEmpty() ? null : ImageDescriptor.createFromFile(null, vArrow.getIcon());
-					nodeGroup.add(new CreationToolEntry(arrow.getTarget().getName(), "Create a new " + arrow.getTarget().getName(), new ComposedNodeFactory(arrow.getTarget()), 
-								smallIcon != null ? smallIcon : SMALLICON, LARGEICON));
-				} else {
-					ImageDescriptor smallIcon = vArrow.getIcon() == null || vArrow.getIcon().isEmpty() ? null : ImageDescriptor.createFromFile(null, vArrow.getIcon());
-					arrowGroup.add(new DPFConnectionCreationToolEntry(arrow.getName(), "Create a new " + arrow.getName() + ":" + arrow.getSource().getName() + "-->" + arrow.getTarget().getName(), new ArrowFactory(arrow), 
-							smallIcon != null ? smallIcon : SMALLARROW, LARGEARROW));
-				}
-			}
+				ImageDescriptor smallIcon = vArrow.getIcon() == null || vArrow.getIcon().isEmpty() ? null : ImageDescriptor.createFromFile(null, vArrow.getIcon());
+				nodeGroup.add(new CreationToolEntry(arrow.getTarget().getName(), "Create a new " + arrow.getTarget().getName(), new ComposedNodeFactory(arrow.getTarget()), 
+						smallIcon != null ? smallIcon : SMALLICON, LARGEICON));
+			}else 
+				arrowGroup.add(new DPFConnectionCreationToolEntry(arrow.getName(), "Create a new " + arrow.getName() + ":" + arrow.getSource().getName() + "-->" + arrow.getTarget().getName(), new ArrowFactory(arrow), 
+						SMALLARROW, LARGEARROW));
 		}
 	}
 	
