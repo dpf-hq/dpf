@@ -28,10 +28,11 @@ public class VNodeLayoutPolicy extends LayoutEditPolicy {
 		Object childClass = request.getNewObjectType();
 		if (childClass == VCompartmentElement.class) {
 			VCompartmentElement node = (VCompartmentElement)request.getNewObject();
+			node.getDNode().setLocation(editpart.getDNode().getLocation());
 			// return a command that can add a Shape to a DPFDiagram
 			for(VCompartment compartment : editpart.getCompartments()) {
 				if(compartment.getName().equals(node.getDNode().getNode().getTypeName()))
-					return new ChildDNodeCreateCommand(node.getDNode(), figure);
+					return new ChildDNodeCreateCommand(node.getDNode(), editpart.getDNode(), figure, editpart.getDNode().getDGraph());
 			}
 		}
 		return null;

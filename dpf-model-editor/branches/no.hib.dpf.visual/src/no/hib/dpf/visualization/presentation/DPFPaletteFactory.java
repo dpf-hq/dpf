@@ -80,9 +80,19 @@ public class DPFPaletteFactory {
 			VElement element = maps.get(node);
 			if(element instanceof VNode){
 				VNode vNode = (VNode) element;
-				ImageDescriptor smallIcon = vNode.getIcon() == null || vNode.getIcon().isEmpty() ? null : ImageDescriptor.createFromFile(null, vNode.getIcon());
-				nodeGroup.add(new CreationToolEntry(node.getName(), "Create a new " + node.getName(), new NodeFactory(node), 
-							smallIcon != null ? smallIcon : SMALLICON, LARGEICON));
+				boolean composed = false;
+				for(Arrow arrow : node.getIncomings()){
+					VElement aElement = maps.get(arrow);
+					if(aElement instanceof VArrow) {
+						if(((VArrow)aElement).isComposed())
+							composed = true;
+					}
+				}
+				if(!composed){
+					ImageDescriptor smallIcon = vNode.getIcon() == null || vNode.getIcon().isEmpty() ? null : ImageDescriptor.createFromFile(null, vNode.getIcon());
+					nodeGroup.add(new CreationToolEntry(node.getName(), "Create a new " + node.getName(), new NodeFactory(node), 
+								smallIcon != null ? smallIcon : SMALLICON, LARGEICON));
+				}
 			}
 		}
  		for(Arrow arrow : graph.getArrows()){

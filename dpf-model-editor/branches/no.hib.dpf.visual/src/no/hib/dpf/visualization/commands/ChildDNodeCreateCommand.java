@@ -15,8 +15,12 @@
  *******************************************************************************/
 package no.hib.dpf.visualization.commands;
 
+import no.hib.dpf.core.Arrow;
+import no.hib.dpf.diagram.DArrow;
+import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.editor.commands.AbstractCreateCommand;
+import no.hib.dpf.visual.presentation.ArrowFactory;
 import no.hib.dpf.visualization.figures.CompositeNodeFigure;
 
 /**
@@ -27,20 +31,24 @@ import no.hib.dpf.visualization.figures.CompositeNodeFigure;
 public class ChildDNodeCreateCommand extends AbstractCreateCommand {
 
 	/** Diagram to add to. */
-	private final CompositeNodeFigure parent;
-
+	private final CompositeNodeFigure parentFigure;
+	private final DNode parent;
+	private final DGraph dGraph;
 
 	/**
 	 * Create a command that will add a new Shape to a ShapesDiagram.
 	 * @param newVNode the new VNode that is to be added
 	 * @param parent the ShapesDiagram that will hold the new element
+	 * @param dGraph 
 	 * @param bounds the bounds of the new shape; the size can be (-1, -1) if not known
 	 * @throws IllegalArgumentException if any parameter is null, or the request
 	 * 						  does not provide a new Shape instance
 	 */
-	public ChildDNodeCreateCommand(DNode newVNode, CompositeNodeFigure parent) {
-		this.newObject =  newVNode;
+	public ChildDNodeCreateCommand(DNode newVNode, DNode parent, CompositeNodeFigure parentFigure, DGraph dGraph) {
+		this.newObject = newVNode;
 		this.parent = parent;
+		this.parentFigure = parentFigure;
+		this.dGraph = dGraph;
 		setLabel("shape creation");
 	}
 
@@ -49,16 +57,26 @@ public class ChildDNodeCreateCommand extends AbstractCreateCommand {
 	 * @see org.eclipse.gef.commands.Command#canExecute()
 	 */
 	public boolean canExecute() {
-		return newObject instanceof DNode && parent != null;
+		return newObject instanceof DNode && parentFigure != null && parent != null && dGraph != null;
 	}
 
 	/* (non-Javadoc)
 	 * @see org.eclipse.gef.commands.Command#execute()
 	 */
 	public void execute() {
-		parent.addChild(newObject.getNode(), newObject.getName());
-		//parentDGraph.addDNode((DNode) newObject);
-		// Must add an arrow here as well
+		parentFigure.addChild(newObject.getNode(), newObject.getName());
+		
+		dGraph.addDNode(newObject);
+		
+		Arrow typeArrow = null;
+		for(Arrow arrow : dGraph.getGraph().getType().getArrows()) {
+			if(arrow.getSource() == parent.getNode().getTypeNode() && arrow.getTarget() == newObject.getNode().getTypeNode())
+				typeArrow = arrow;
+		}
+		ArrowFactory arrowFactory = new ArrowFactory(typeArrow);
+		DArrow arrow = (DArrow)arrowFactory.getNewObject();
+		arrow.getArrow().setName("child of");
+		arrow.reconnect(parent, newObject);
 	}
 
 	/* (non-Javadoc)
