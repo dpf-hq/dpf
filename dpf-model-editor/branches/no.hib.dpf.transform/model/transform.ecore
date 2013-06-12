@@ -7,6 +7,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="rules" upperBound="-1"
         eType="#//Production" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dSignature" eType="ecore:EClass ../../no.hib.dpf.diagram/model/DiagramMetamodel.ecore#//DSignature"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="generate" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Production">
     <eStructuralFeatures xsi:type="ecore:EReference" name="sum" eType="ecore:EClass ../../no.hib.dpf.diagram/model/DiagramMetamodel.ecore#//DSpecification"

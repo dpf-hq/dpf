@@ -34,6 +34,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link no.hib.dpf.transform.impl.TransformImpl#getMetaModel <em>Meta Model</em>}</li>
  *   <li>{@link no.hib.dpf.transform.impl.TransformImpl#getRules <em>Rules</em>}</li>
  *   <li>{@link no.hib.dpf.transform.impl.TransformImpl#getDSignature <em>DSignature</em>}</li>
+ *   <li>{@link no.hib.dpf.transform.impl.TransformImpl#isGenerate <em>Generate</em>}</li>
  * </ul>
  * </p>
  *
@@ -69,6 +70,26 @@ public class TransformImpl extends EObjectImpl implements Transform {
 	 * @ordered
 	 */
 	protected DSignature dSignature;
+
+	/**
+	 * The default value of the '{@link #isGenerate() <em>Generate</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isGenerate()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean GENERATE_EDEFAULT = true;
+
+	/**
+	 * The cached value of the '{@link #isGenerate() <em>Generate</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isGenerate()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean generate = GENERATE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -187,6 +208,27 @@ public class TransformImpl extends EObjectImpl implements Transform {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isGenerate() {
+		return generate;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setGenerate(boolean newGenerate) {
+		boolean oldGenerate = generate;
+		generate = newGenerate;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TransformPackage.TRANSFORM__GENERATE, oldGenerate, generate));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -213,6 +255,8 @@ public class TransformImpl extends EObjectImpl implements Transform {
 			case TransformPackage.TRANSFORM__DSIGNATURE:
 				if (resolve) return getDSignature();
 				return basicGetDSignature();
+			case TransformPackage.TRANSFORM__GENERATE:
+				return isGenerate();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -236,6 +280,9 @@ public class TransformImpl extends EObjectImpl implements Transform {
 			case TransformPackage.TRANSFORM__DSIGNATURE:
 				setDSignature((DSignature)newValue);
 				return;
+			case TransformPackage.TRANSFORM__GENERATE:
+				setGenerate((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -257,6 +304,9 @@ public class TransformImpl extends EObjectImpl implements Transform {
 			case TransformPackage.TRANSFORM__DSIGNATURE:
 				setDSignature((DSignature)null);
 				return;
+			case TransformPackage.TRANSFORM__GENERATE:
+				setGenerate(GENERATE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -275,8 +325,26 @@ public class TransformImpl extends EObjectImpl implements Transform {
 				return rules != null && !rules.isEmpty();
 			case TransformPackage.TRANSFORM__DSIGNATURE:
 				return dSignature != null;
+			case TransformPackage.TRANSFORM__GENERATE:
+				return generate != GENERATE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (generate: ");
+		result.append(generate);
+		result.append(')');
+		return result.toString();
 	}
 
 } //TransformImpl

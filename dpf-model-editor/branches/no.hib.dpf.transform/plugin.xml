@@ -46,11 +46,13 @@
 
    <extension point="org.eclipse.ui.editors">
       <editor
-            id="no.hib.dpf.transform.presentation.TransformEditorID"
-            name="%_UI_TransformEditor_label"
-            icon="icons/full/obj16/TransformModelFile.gif"
+            class="no.hib.dpf.transform.presentation.TransformEditor"
+            contributorClass="no.hib.dpf.transform.presentation.TransformActionBarContributor"
+            default="true"
             extensions="xform"
-            class="no.hib.dpf.transform.presentation.TransformEditor">
+            icon="icons/full/obj16/TransformModelFile.gif"
+            id="no.hib.dpf.transform.presentation.TransformEditorID"
+            name="%_UI_TransformEditor_label">
       </editor>
    </extension>
 

@@ -28,4 +28,11 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.gef,
  org.eclipse.ui.forms
 Bundle-ActivationPolicy: lazy
-Import-Package: org.eclipse.core.filesystem
+Import-Package: org.eclipse.core.filesystem,
+ org.eclipse.emf.henshin,
+ org.eclipse.emf.henshin.interpreter,
+ org.eclipse.emf.henshin.interpreter.impl,
+ org.eclipse.emf.henshin.interpreter.util,
+ org.eclipse.emf.henshin.model,
+ org.eclipse.emf.henshin.model.impl,
+ org.eclipse.emf.henshin.model.resource

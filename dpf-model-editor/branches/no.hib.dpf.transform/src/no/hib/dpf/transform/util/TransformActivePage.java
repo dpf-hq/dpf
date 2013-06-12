@@ -17,14 +17,32 @@ import org.eclipse.ui.part.FileEditorInput;
 
 public class TransformActivePage {
 		
-	public static URI activePage(){
+	public static String activeTransformModel(){
 		IWorkbench wb = PlatformUI.getWorkbench();
 		IWorkbenchWindow win = wb.getActiveWorkbenchWindow();
 		IWorkbenchPage page = win.getActivePage();
 		IEditorPart editor = page.getActiveEditor();
 		IEditorInput input = editor.getEditorInput();
-		IPath path = ((FileEditorInput)input).getPath();	
+		//IPath path = ((FileEditorInput)input).getPath();		
+		String path = ((FileEditorInput)input).getName();
 		
-		return URI.createURI("file:/" + path);
+		return path;
+	}
+	
+	public static String activeWorkingDirectory(){
+		//String path = ((FileEditorInput)input).getName();
+		IWorkbench wb = PlatformUI.getWorkbench();
+		IWorkbenchWindow win = wb.getActiveWorkbenchWindow();
+		IWorkbenchPage page = win.getActivePage();
+		IEditorPart editor = page.getActiveEditor();
+		IEditorInput input = editor.getEditorInput();
+		IPath path = ((FileEditorInput)input).getPath();
+		
+		return path.toFile().getParentFile().toString();
+	}
+	public static String trimActiveTransformModel(){
+		String oldName = activeTransformModel();
+		String trimmedString = oldName.replace(".xform", "");
+		return trimmedString;
 	}
 }

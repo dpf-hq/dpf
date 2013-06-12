@@ -30,14 +30,14 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 public class DeleteTransformCommand extends Command {
 	
 	private final DGraph parent;
-	private DNode deleteObject;
+	private Object deleteObject;
 	private Production production;
 	
 	public DeleteTransformCommand(Object editNode, DGraph parent){
-		this.deleteObject = (DNode) editNode;
+		this.deleteObject = editNode;
 		this.parent = parent;
 		production = (Production) parent.eContainer().eContainer();
-		setLabel("deletion");
+		setLabel("Deletion element");
 	}
 
 	/**
@@ -45,14 +45,31 @@ public class DeleteTransformCommand extends Command {
 	 * @see org.eclipse.gef.commands.Command#canExecute()
 	 */
 	public boolean canExecute() {
-		return deleteObject instanceof DNode && parent != null;
+		return deleteObject instanceof DNode || deleteObject instanceof DArrow && parent != null;
 	}
 
 	/* (non-Javadoc)
 	 * @see org.eclipse.gef.commands.Command#execute()
 	 */
 	public void execute() {
-		production.getLeftNodes().add(deleteObject);
+		if(deleteObject instanceof DNode){
+			if(production.getCommonNodes().contains(deleteObject)){
+				production.getCommonNodes().remove(deleteObject);
+			}
+			if(production.getRightNodes().contains(deleteObject)){
+				production.getRightNodes().remove(deleteObject);
+			}
+			production.getLeftNodes().add((DNode) deleteObject);
+		}
+		if(deleteObject instanceof DArrow){
+			if(production.getCommonArrows().contains(deleteObject)){
+				production.getCommonArrows().remove(deleteObject);
+			}
+			if(production.getRightArrows().contains(deleteObject)){
+				production.getRightArrows().remove(deleteObject);
+			}
+			production.getLeftArrows().add((DArrow) deleteObject);
+		}
 	}
 
 	/* (non-Javadoc)
@@ -61,6 +78,9 @@ public class DeleteTransformCommand extends Command {
 	public void undo() {
 		if(deleteObject instanceof DNode){
 			production.getLeftNodes().remove((DNode) deleteObject);
+		}
+		if(deleteObject instanceof DArrow){
+			production.getLeftArrows().remove((DArrow) deleteObject);
 		}
 	}
 }

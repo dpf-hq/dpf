@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link no.hib.dpf.transform.Transform#getMetaModel <em>Meta Model</em>}</li>
  *   <li>{@link no.hib.dpf.transform.Transform#getRules <em>Rules</em>}</li>
  *   <li>{@link no.hib.dpf.transform.Transform#getDSignature <em>DSignature</em>}</li>
+ *   <li>{@link no.hib.dpf.transform.Transform#isGenerate <em>Generate</em>}</li>
  * </ul>
  * </p>
  *
@@ -98,5 +99,32 @@ public interface Transform extends EObject {
 	 * @generated
 	 */
 	void setDSignature(DSignature value);
+
+	/**
+	 * Returns the value of the '<em><b>Generate</b></em>' attribute.
+	 * The default value is <code>"true"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Generate</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Generate</em>' attribute.
+	 * @see #setGenerate(boolean)
+	 * @see no.hib.dpf.transform.TransformPackage#getTransform_Generate()
+	 * @model default="true" required="true"
+	 * @generated
+	 */
+	boolean isGenerate();
+
+	/**
+	 * Sets the value of the '{@link no.hib.dpf.transform.Transform#isGenerate <em>Generate</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Generate</em>' attribute.
+	 * @see #isGenerate()
+	 * @generated
+	 */
+	void setGenerate(boolean value);
 
 } // Transform

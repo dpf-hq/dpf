@@ -144,6 +144,15 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getTransform_Generate() {
+		return (EAttribute)transformEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getProduction() {
 		return productionEClass;
 	}
@@ -252,6 +261,7 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 		createEReference(transformEClass, TRANSFORM__META_MODEL);
 		createEReference(transformEClass, TRANSFORM__RULES);
 		createEReference(transformEClass, TRANSFORM__DSIGNATURE);
+		createEAttribute(transformEClass, TRANSFORM__GENERATE);
 
 		productionEClass = createEClass(PRODUCTION);
 		createEReference(productionEClass, PRODUCTION__SUM);
@@ -301,6 +311,7 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 		initEReference(getTransform_MetaModel(), theDiagramPackage.getDSpecification(), null, "metaModel", null, 0, 1, Transform.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTransform_Rules(), this.getProduction(), null, "rules", null, 0, -1, Transform.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTransform_DSignature(), theDiagramPackage.getDSignature(), null, "dSignature", null, 0, 1, Transform.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTransform_Generate(), ecorePackage.getEBoolean(), "generate", "true", 1, 1, Transform.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(productionEClass, Production.class, "Production", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getProduction_Sum(), theDiagramPackage.getDSpecification(), null, "sum", null, 0, 1, Production.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

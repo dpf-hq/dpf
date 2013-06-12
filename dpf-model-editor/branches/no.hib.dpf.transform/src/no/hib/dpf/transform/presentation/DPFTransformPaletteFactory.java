@@ -14,6 +14,8 @@ public class DPFTransformPaletteFactory extends DPFEditorPaletteFactory {
 		if(root != null){
 			publicGroup.add(new ActionToolEntry("Add", "set this as an add element", null, null, AddTool.class));
 			publicGroup.add(new ActionToolEntry("Delete", "set this as a delete element", null, null, DeleteTool.class));
+			publicGroup.add(new ActionToolEntry("Preserve", "set this as a preserve element", null, null, PreserveTool.class));
+			//publicGroup.add(new ActionToolEntry("Generate Henshin", "Translates to Henshin rules", null, null, TranslateHenshin.class));
 			root.add(publicGroup);
 		}
 		return root;

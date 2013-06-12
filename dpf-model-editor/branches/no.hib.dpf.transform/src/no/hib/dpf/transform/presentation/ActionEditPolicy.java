@@ -11,6 +11,7 @@ import no.hib.dpf.transform.Transform;
 import no.hib.dpf.transform.Production;
 import no.hib.dpf.transform.TransformPackage;
 import no.hib.dpf.transform.command.AddTransformCommand;
+import no.hib.dpf.transform.command.PreserveTransformCommand;
 import no.hib.dpf.transform.command.DeleteTransformCommand;
 import no.hib.dpf.transform.impl.ProductionImpl;
 import no.hib.dpf.transform.impl.TransformFactoryImpl;
@@ -45,7 +46,18 @@ public class ActionEditPolicy extends AbstractEditPolicy {
 			return MakeAddCommand(getHost());
 		if (DeleteTool.REQ_MAKE_DELETE.equals(request.getType()))
 			return MakeDeleteCommand(getHost());
+		if(PreserveTool.REQ_MAKE_COMMON.equals(request.getType()))
+			return MakeCommonCommand(getHost());
 		return null;
+	}
+
+	private Command MakeCommonCommand(EditPart editPart) {
+		Object editObject = editPart.getModel();
+		
+		if(editPart != null){
+			return new PreserveTransformCommand(editObject, (DGraph)getHost().getParent().getModel());
+		}
+		return EmptyExecutableCommand.INSTANCE;
 	}
 
 	private Command MakeDeleteCommand(EditPart editPart) {
@@ -61,13 +73,15 @@ public class ActionEditPolicy extends AbstractEditPolicy {
 		Object editObject = editPart.getModel();
 		
 		if(editPart != null){
-			return new AddTransformCommand((DNode) editObject, (DGraph)getHost().getParent().getModel());
+			return new AddTransformCommand(editObject, (DGraph)getHost().getParent().getModel());
 		}
 		return EmptyExecutableCommand.INSTANCE;
 	}
 	
 	public EditPart getTargetEditPart(Request request) {
-		if (AddTool.REQ_MAKE_ADD.equals(request.getType()) || DeleteTool.REQ_MAKE_DELETE.equals(request.getType()))
+		if (AddTool.REQ_MAKE_ADD.equals(request.getType()) || 
+			DeleteTool.REQ_MAKE_DELETE.equals(request.getType()) || 
+			PreserveTool.REQ_MAKE_COMMON.equals(request.getType()))
 			return getHost();
 		return null;
 	}

@@ -28,8 +28,6 @@ import no.hib.dpf.utils.DPFCoreUtil;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.IResourceChangeEvent;
-import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IPath;
@@ -71,7 +69,7 @@ import org.eclipse.ui.dialogs.SaveAsDialog;
 import org.eclipse.ui.forms.editor.FormEditor;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.part.FileEditorInput;
-public class TransformEditor extends FormEditor implements CommandStackListener, ISelectionListener, IResourceChangeListener{
+public class TransformEditor extends FormEditor implements CommandStackListener, ISelectionListener{
 
 	Transform transform = null;
 	private boolean isTransformChanged = false;
@@ -345,11 +343,6 @@ public class TransformEditor extends FormEditor implements CommandStackListener,
 			DPFErrorReport.logError(e);
 		}
 		return (Transform) transform.getContents().get(0);
-	}
-	@Override
-	public void resourceChanged(IResourceChangeEvent event) {
-		System.out.println("Her er jeg?");
-		
 	}	
 }
 

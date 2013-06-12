@@ -97,13 +97,22 @@ public interface TransformPackage extends EPackage {
 	int TRANSFORM__DSIGNATURE = 2;
 
 	/**
+	 * The feature id for the '<em><b>Generate</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSFORM__GENERATE = 3;
+
+	/**
 	 * The number of structural features of the '<em>Transform</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFORM_FEATURE_COUNT = 3;
+	int TRANSFORM_FEATURE_COUNT = 4;
 
 	/**
 	 * The meta object id for the '{@link no.hib.dpf.transform.impl.ProductionImpl <em>Production</em>}' class.
@@ -239,6 +248,17 @@ public interface TransformPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getTransform_DSignature();
+
+	/**
+	 * Returns the meta object for the attribute '{@link no.hib.dpf.transform.Transform#isGenerate <em>Generate</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Generate</em>'.
+	 * @see no.hib.dpf.transform.Transform#isGenerate()
+	 * @see #getTransform()
+	 * @generated
+	 */
+	EAttribute getTransform_Generate();
 
 	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.transform.Production <em>Production</em>}'.
@@ -393,6 +413,14 @@ public interface TransformPackage extends EPackage {
 		 * @generated
 		 */
 		EReference TRANSFORM__DSIGNATURE = eINSTANCE.getTransform_DSignature();
+
+		/**
+		 * The meta object literal for the '<em><b>Generate</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TRANSFORM__GENERATE = eINSTANCE.getTransform_Generate();
 
 		/**
 		 * The meta object literal for the '{@link no.hib.dpf.transform.impl.ProductionImpl <em>Production</em>}' class.

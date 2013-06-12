@@ -26,6 +26,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
@@ -65,6 +66,7 @@ public class TransformItemProvider
 			super.getPropertyDescriptors(object);
 
 			addDSignaturePropertyDescriptor(object);
+			addGeneratePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -87,6 +89,28 @@ public class TransformItemProvider
 				 false,
 				 true,
 				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Generate feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addGeneratePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Transform_generate_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Transform_generate_feature", "_UI_Transform_type"),
+				 TransformPackage.Literals.TRANSFORM__GENERATE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -141,7 +165,8 @@ public class TransformItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_Transform_type");
+		Transform transform = (Transform)object;
+		return getString("_UI_Transform_type") + " " + transform.isGenerate();
 	}
 
 	/**
@@ -156,6 +181,9 @@ public class TransformItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Transform.class)) {
+			case TransformPackage.TRANSFORM__GENERATE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 			case TransformPackage.TRANSFORM__META_MODEL:
 			case TransformPackage.TRANSFORM__RULES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
