@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.henshin.interpreter.EGraph;
 import org.eclipse.emf.henshin.interpreter.Engine;
 import org.eclipse.emf.henshin.interpreter.UnitApplication;
+import org.eclipse.emf.henshin.interpreter.impl.ChangeImpl;
 import org.eclipse.emf.henshin.interpreter.impl.EGraphImpl;
 import org.eclipse.emf.henshin.interpreter.impl.EngineImpl;
 import org.eclipse.emf.henshin.interpreter.impl.UnitApplicationImpl;
@@ -24,6 +25,7 @@ public class TranslateToHenshinRules {
 	public static final String PATH = "C:/Users/Petter/workspace/Henshin_Test/model/";
 	public static final String HENSHIN = "generateHenshinRules.henshin";
 	public static final String HENSHINNEW = "C:/Users/Petter/workspace/no.hib.dpf.transform/model/generateHenshinRules.henshin";
+	public static final String HENSHINUNITS = "C:/Users/Petter/workspace/no.hib.dpf.transform/model/generateLoopHenshin.henshin";
 	
 	
 	public static void generateHenshinModule(String path, boolean save){
@@ -43,11 +45,16 @@ public class TranslateToHenshinRules {
 		EGraph graph = new EGraphImpl(model);
 		Engine engine = new EngineImpl();
 		
-		Unit unit = module.getUnit("createHenshinRules");
+		//Unit unit = module.getUnit("createHenshinRules");
+		Unit unit = module.getUnit("generateHenshinRules");
+		
 		UnitApplication unitApp = new UnitApplicationImpl(engine, graph, unit, null);
+		
+		//unitApp.setParameterValue("fileName", TransformActivePage.trimActiveTransformModel());
 		
 		try{
 			InterpreterUtil.executeOrDie(unitApp);
+			ChangeImpl.PRINT_WARNINGS = false;
 		} catch (AssertionError e){
 			System.out.println("Errer " + e);
 		}
@@ -62,7 +69,6 @@ public class TranslateToHenshinRules {
 			}
 			resourceSet.saveEObject(result, henshinModelName);
 		}
-		
-		System.out.println("Module" + result.getRules().toString());
+		System.out.println("Module" + result.getRules());
 	}
 }
