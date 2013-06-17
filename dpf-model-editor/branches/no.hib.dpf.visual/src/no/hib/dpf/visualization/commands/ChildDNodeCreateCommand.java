@@ -21,7 +21,7 @@ import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.editor.commands.AbstractCreateCommand;
 import no.hib.dpf.visual.presentation.ArrowFactory;
-import no.hib.dpf.visualization.figures.CompositeNodeFigure;
+import no.hib.dpf.visualization.VCompartment;
 
 /**
  * A command to add a Shape to a ShapeDiagram.
@@ -31,7 +31,7 @@ import no.hib.dpf.visualization.figures.CompositeNodeFigure;
 public class ChildDNodeCreateCommand extends AbstractCreateCommand {
 
 	/** Diagram to add to. */
-	private final CompositeNodeFigure parentFigure;
+	private final VCompartment compartment;
 	private final DNode parent;
 	private final DGraph dGraph;
 
@@ -44,10 +44,10 @@ public class ChildDNodeCreateCommand extends AbstractCreateCommand {
 	 * @throws IllegalArgumentException if any parameter is null, or the request
 	 * 						  does not provide a new Shape instance
 	 */
-	public ChildDNodeCreateCommand(DNode newVNode, DNode parent, CompositeNodeFigure parentFigure, DGraph dGraph) {
+	public ChildDNodeCreateCommand(DNode newVNode, DNode parent, VCompartment compartment, DGraph dGraph) {
 		this.newObject = newVNode;
 		this.parent = parent;
-		this.parentFigure = parentFigure;
+		this.compartment = compartment;
 		this.dGraph = dGraph;
 		setLabel("shape creation");
 	}
@@ -57,17 +57,19 @@ public class ChildDNodeCreateCommand extends AbstractCreateCommand {
 	 * @see org.eclipse.gef.commands.Command#canExecute()
 	 */
 	public boolean canExecute() {
-		return newObject instanceof DNode && parentFigure != null && parent != null && dGraph != null;
+		return newObject instanceof DNode && compartment != null && parent != null && dGraph != null;
 	}
 
 	/* (non-Javadoc)
 	 * @see org.eclipse.gef.commands.Command#execute()
 	 */
 	public void execute() {
-		parentFigure.addChild(newObject.getNode(), newObject.getName());
-		
+		// Add the node to the graph
 		dGraph.addDNode(newObject);
 		
+		//compartment.addChild(newObject);
+		
+		// Add an arrow between the nodes
 		Arrow typeArrow = null;
 		for(Arrow arrow : dGraph.getGraph().getType().getArrows()) {
 			if(arrow.getSource() == parent.getNode().getTypeNode() && arrow.getTarget() == newObject.getNode().getTypeNode())

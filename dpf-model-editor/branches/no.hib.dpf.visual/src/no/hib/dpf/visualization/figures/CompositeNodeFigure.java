@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import no.hib.dpf.core.Node;
+import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.editor.DPFPlugin;
 import no.hib.dpf.visualization.VCompartment;
 
@@ -48,6 +49,9 @@ public class CompositeNodeFigure extends NodeFigure {
 		compartmentfigures = new ArrayList<CompartmentFigure>();
 		for(VCompartment compartment : compartments) {
 			CompartmentFigure child = new CompartmentFigure(compartment.getName());
+			for(DNode dNode : compartment.getChildren()) {
+				addChild(dNode.getNode());
+			}
 			compartmentfigures.add(child);
 			add(child);
 		}
@@ -58,7 +62,8 @@ public class CompositeNodeFigure extends NodeFigure {
 		}
 	}
 	
-	public void addChild(Node node, String name) {
+	public void addChild(Node node) {
+		String name = node.getName();
 		for(CompartmentFigure compartment : compartmentfigures) {
 			if(compartment.getName().equals(node.getTypeName())) {
 				if (node.getTypeName() != null) 

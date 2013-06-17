@@ -33,7 +33,7 @@ public class DPFNodeEditPart extends DNodeEditPart {
 	
 	protected void createEditPolicies() {
 		// allow adding of childs in compartments
-		if(visual.isComposite())
+		if(visual != null && visual.isComposite())
 			installEditPolicy(EditPolicy.LAYOUT_ROLE, new VNodeLayoutPolicy());
 		// allow removal of the associated model element
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new NodeComponentEditPolicy());
@@ -45,7 +45,7 @@ public class DPFNodeEditPart extends DNodeEditPart {
 	
 	protected IFigure createFigure() {
 		IFigure figure;
-		if(visual.isComposite()) {
+		if(visual != null && visual.isComposite()) {
 			figure = new CompositeNodeFigure(new EditableLabel(getNodeLabelName()), compartments);
 		} else
 			figure = new NodeFigure(new EditableLabel(getNodeLabelName()));

@@ -90,13 +90,15 @@ public class DPFPaletteFactory {
 	public void updatePalette(PaletteRoot root, Graph graph, EMap<IDObject, VElement> maps) {
 		for(Node node : graph.getNodes()){
 			VElement element = maps.get(node);
-			if(element instanceof VNode && hasVArrowTargetTo(node, maps)){
-				VNode vNode = (VNode) element;
-				ImageDescriptor smallIcon = vNode.getIcon() == null || vNode.getIcon().isEmpty() ? null : ImageDescriptor.createFromFile(null, vNode.getIcon());
-				nodeGroup.add(new CreationToolEntry(node.getName(), "Create a new " + node.getName(), new NodeFactory(node), 
-						smallIcon != null ? smallIcon : SMALLICON, LARGEICON));
-			}else
-				nodeGroup.add(new CreationToolEntry(node.getName(), "Create a new " + node.getName(), new NodeFactory(node), SMALLICON, LARGEICON));
+			if(!hasVArrowTargetTo(node, maps)) {
+				if(element instanceof VNode){
+					VNode vNode = (VNode) element;
+					ImageDescriptor smallIcon = vNode.getIcon() == null || vNode.getIcon().isEmpty() ? null : ImageDescriptor.createFromFile(null, vNode.getIcon());
+					nodeGroup.add(new CreationToolEntry(node.getName(), "Create a new " + node.getName(), new NodeFactory(node), 
+							smallIcon != null ? smallIcon : SMALLICON, LARGEICON));
+				}else
+					nodeGroup.add(new CreationToolEntry(node.getName(), "Create a new " + node.getName(), new NodeFactory(node), SMALLICON, LARGEICON));
+			}
 		}
 		for(Arrow arrow : graph.getArrows()){
 			VElement element = maps.get(arrow);

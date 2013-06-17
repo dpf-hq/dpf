@@ -3,7 +3,6 @@ package no.hib.dpf.visualization.policies;
 import no.hib.dpf.visualization.VCompartment;
 import no.hib.dpf.visualization.VCompartmentElement;
 import no.hib.dpf.visualization.commands.ChildDNodeCreateCommand;
-import no.hib.dpf.visualization.figures.CompositeNodeFigure;
 import no.hib.dpf.visualization.presentation.DPFNodeEditPart;
 
 import org.eclipse.gef.EditPart;
@@ -24,7 +23,6 @@ public class VNodeLayoutPolicy extends LayoutEditPolicy {
 	@Override
 	protected Command getCreateCommand(CreateRequest request) {
 		DPFNodeEditPart editpart =(DPFNodeEditPart)getHost();
-		CompositeNodeFigure figure = (CompositeNodeFigure)editpart.getFigure();
 		Object childClass = request.getNewObjectType();
 		if (childClass == VCompartmentElement.class) {
 			VCompartmentElement node = (VCompartmentElement)request.getNewObject();
@@ -32,7 +30,7 @@ public class VNodeLayoutPolicy extends LayoutEditPolicy {
 			// return a command that can add a Shape to a DPFDiagram
 			for(VCompartment compartment : editpart.getCompartments()) {
 				if(compartment.getName().equals(node.getDNode().getNode().getTypeName()))
-					return new ChildDNodeCreateCommand(node.getDNode(), editpart.getDNode(), figure, editpart.getDNode().getDGraph());
+					return new ChildDNodeCreateCommand(node.getDNode(), editpart.getDNode(), compartment, editpart.getDNode().getDGraph());
 			}
 		}
 		return null;
