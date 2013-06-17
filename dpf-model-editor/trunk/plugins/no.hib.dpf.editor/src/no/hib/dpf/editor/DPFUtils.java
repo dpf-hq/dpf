@@ -72,6 +72,9 @@ public class DPFUtils extends DPFCoreUtil {
 		}
 	}
 	
+	/*
+	 * Load a DSpecification. If no model is loaded, a default DSpecification is created and return.
+	 */
 	@SuppressWarnings("finally")
 	public static DSpecification loadDSpecification(ResourceSetImpl resourceSet,
 			URI diagramURI, Map<Resource, Diagnostic> resourceToDiagnosticMap) {
@@ -94,10 +97,31 @@ public class DPFUtils extends DPFCoreUtil {
 			return dsp;
 		}
 	}
+	/*
+	 * load a DSpecification
+	 */
+	public static DSpecification loadDModel(ResourceSetImpl resourceSet,
+			URI diagramURI, Map<Resource, Diagnostic> resourceToDiagnosticMap) {
+		URI modelFileURI = getModelURI(diagramURI);
+		Resource diagram = createResource(resourceSet, diagramURI, resourceToDiagnosticMap);
+		createResource(resourceSet, modelFileURI, resourceToDiagnosticMap);
+		try {
+			diagram.load(null);
+		} catch (Exception e) {
+			logError(e);
+			analyzeResourceProblems(diagram, e, resourceToDiagnosticMap);
+			return null;
+		} 
+		if (diagram.getContents().size() == 0) return null;
+		return (DSpecification) diagram.getContents().get(0);
+	}
 	public static DSpecification loadDSpecification(URI createFileURI) {
 		return loadDSpecification(getResourceSet(), createFileURI, new HashMap<Resource, Diagnostic>());
 	}
 	
+	public static DSpecification loadDModel(URI createFileURI) {
+		return loadDModel(getResourceSet(), createFileURI, new HashMap<Resource, Diagnostic>());
+	}
 	public static DSignature loadDSignature(ResourceSetImpl resourceSet, URI createFileURI, Map<Resource, Diagnostic> resourceToDiagnosticMap) {
 		Resource signature = createResource(resourceSet, createFileURI, resourceToDiagnosticMap);
 		try {

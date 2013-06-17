@@ -97,7 +97,7 @@ public class DPFWizardPage extends WizardPage {
 				
 				public void widgetSelected(SelectionEvent event) {
 					handleModelBrowseButtonPressed(metaModelFileText, "*.dpf");
-					metaModel = DPFUtils.loadDSpecification(URI.createFileURI(metaModelFileText.getText()));
+					metaModel = DPFUtils.loadDModel(URI.createFileURI(metaModelFileText.getText()));
 					setPageComplete(validatePage());
 				}
 			});
@@ -113,7 +113,7 @@ public class DPFWizardPage extends WizardPage {
 				}else{
 					metaModelFileText.setEnabled(true);
 					metaModelFileChooser.setEnabled(true);
-					metaModel = DPFUtils.loadDSpecification(URI.createFileURI(metaModelFileText.getText()));
+					metaModel = DPFUtils.loadDModel(URI.createFileURI(metaModelFileText.getText()));
 				}
 				setPageComplete(validatePage());
 			}
@@ -162,6 +162,18 @@ public class DPFWizardPage extends WizardPage {
 			}
 		});
 
+		/*
+		 * Initialize the fields to make sure the default metamodel and default signature are used by default
+		 */
+		defaultMetamodelButton.setSelection(true);
+		metaModelFileText.setEnabled(false);
+		metaModelFileChooser.setEnabled(false);
+		metaModel = DPFConstants.REFLEXIVE_DSPECIFICATION;
+		defaultSigButton.setSelection(true);
+		
+		sigFileText.setEnabled(false);
+		sigFileChooser.setEnabled(false);
+		sig = DPFConstants.DEFAULT_DSIGNATURE;
 		setPageComplete(validatePage());
 		setControl(composite);
 	}
