@@ -8,6 +8,7 @@ import no.hib.dpf.visual.VArrow;
 import no.hib.dpf.visual.VElement;
 import no.hib.dpf.visual.VNode;
 import no.hib.dpf.visualization.VCompartment;
+import no.hib.dpf.visualization.VCompartmentElement;
 import no.hib.dpf.visualization.Visualizations;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -41,8 +42,10 @@ public class VisualizationEditPartFactory extends DPFEditPartFactory {
 			return new DPFArrowEditPart((VArrow) maps.get(dArrow.getArrow().getTypeArrow()));
 		}
 		if (modelElement instanceof VCompartment) {
-			VCompartment vCompartment = (VCompartment) modelElement;
-			return new VCompartmentElementEditPart(vCompartment);
+			return new VCompartmentEditPart();
+		}
+		if (modelElement instanceof VCompartmentElement) {
+			return new VCompartmentElementEditPart();
 		}
 		return super.getPartForElement(modelElement);
 	}

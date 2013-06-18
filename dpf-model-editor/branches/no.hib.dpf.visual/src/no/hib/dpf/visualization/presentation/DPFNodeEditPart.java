@@ -1,5 +1,7 @@
 package no.hib.dpf.visualization.presentation;
 
+import java.util.List;
+
 import no.hib.dpf.core.Node;
 import no.hib.dpf.editor.DPFEditor;
 import no.hib.dpf.editor.parts.DNodeEditPart;
@@ -46,7 +48,7 @@ public class DPFNodeEditPart extends DNodeEditPart {
 	protected IFigure createFigure() {
 		IFigure figure;
 		if(visual != null && visual.isComposite()) {
-			figure = new CompositeNodeFigure(new EditableLabel(getNodeLabelName()), compartments);
+			figure = new CompositeNodeFigure(new EditableLabel(getNodeLabelName()));
 		} else
 			figure = new NodeFigure(new EditableLabel(getNodeLabelName()));
 		return figure;
@@ -96,5 +98,9 @@ public class DPFNodeEditPart extends DNodeEditPart {
 	}
 	public EList<VCompartment> getCompartments() {
 		return compartments;
+	}
+	@Override
+	protected List<VCompartment> getModelChildren() {
+		return compartments; 
 	}
 }

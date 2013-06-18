@@ -8,7 +8,7 @@ package no.hib.dpf.visualization.impl;
 
 import java.util.Collection;
 
-import no.hib.dpf.diagram.DNode;
+import no.hib.dpf.core.Node;
 import no.hib.dpf.visual.VNode;
 import no.hib.dpf.visual.impl.VElementImpl;
 import no.hib.dpf.visualization.VCompartment;
@@ -56,7 +56,7 @@ public class VCompartmentImpl extends VElementImpl implements VCompartment {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<DNode> children;
+	protected EList<Node> children;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -120,15 +120,15 @@ public class VCompartmentImpl extends VElementImpl implements VCompartment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<DNode> getChildren() {
+	public EList<Node> getChildren() {
 		if (children == null) {
-			children = new EObjectContainmentEList<DNode>(DNode.class, this, VisualizationPackage.VCOMPARTMENT__CHILDREN);
+			children = new EObjectContainmentEList<Node>(Node.class, this, VisualizationPackage.VCOMPARTMENT__CHILDREN);
 		}
 		return children;
 	}
 
 	@Override
-	public void addChild(DNode child) {
+	public void addChild(Node child) {
 		children.add(child);
 	}
 	
@@ -177,7 +177,7 @@ public class VCompartmentImpl extends VElementImpl implements VCompartment {
 				return;
 			case VisualizationPackage.VCOMPARTMENT__CHILDREN:
 				getChildren().clear();
-				getChildren().addAll((Collection<? extends DNode>)newValue);
+				getChildren().addAll((Collection<? extends Node>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

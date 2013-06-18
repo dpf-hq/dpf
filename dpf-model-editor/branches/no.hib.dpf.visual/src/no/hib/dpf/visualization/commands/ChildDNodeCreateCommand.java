@@ -64,10 +64,10 @@ public class ChildDNodeCreateCommand extends AbstractCreateCommand {
 	 * @see org.eclipse.gef.commands.Command#execute()
 	 */
 	public void execute() {
+		compartment.addChild(newObject.getNode());
+		
 		// Add the node to the graph
 		dGraph.addDNode(newObject);
-		
-		//compartment.addChild(newObject);
 		
 		// Add an arrow between the nodes
 		Arrow typeArrow = null;
