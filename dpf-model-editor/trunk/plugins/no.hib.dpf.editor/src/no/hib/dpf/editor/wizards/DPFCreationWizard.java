@@ -30,7 +30,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
-import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
@@ -46,7 +45,6 @@ import org.eclipse.ui.internal.ide.IDEWorkbenchMessages;
 @SuppressWarnings("restriction")
 public class DPFCreationWizard extends Wizard implements INewWizard {
 
-	private static int fileCount = 1;
 	private CreationPage createPage = null;
 	private DPFWizardPage configPage = null;
 
@@ -71,6 +69,7 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 		// create pages for this wizard
 		createPage = new CreationPage(workbench, selection);
 
+		DPFUtils.updateFileName(createPage, selection, "specification", "dpf");
 		IDEWorkbenchMessages.WizardNewLinkPage_linkFileButton = "Load File:";
 		configPage = new DPFWizardPage("The wizard id does not matter");
 		configPage.setTitle("Choose metamodel and signature");
@@ -127,20 +126,6 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 			setDescription("Create a new " + DPFUtils.DEFAULT_DIAGRAM_MODEL_EXTENSION + " file");
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * org.eclipse.ui.dialogs.WizardNewFileCreationPage#createControl(org
-		 * .eclipse.swt.widgets.Composite)
-		 */
-		public void createControl(Composite parent) {
-			super.createControl(parent);
-			setFileName("dpfSpecification" + fileCount + DPFUtils.DEFAULT_DIAGRAM_MODEL_EXTENSION);
-			setPageComplete(validatePage());
-		}
-
-		
 		/**
 		 * This method will be invoked, when the "Finish" button is pressed.
 		 * 
@@ -149,7 +134,6 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 		boolean finish() {
 			// create a new diagram file, result != null if successful
 			IFile newDiagramFile = createNewFile();
-			fileCount++;
 			URI newDiagarmURI = DPFUtils.getFileURI(newDiagramFile);
 			//Initialize model file and diagram file
 			DSpecification newSpec = DiagramFactory.eINSTANCE.createDefaultDSpecification();
