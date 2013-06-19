@@ -19,8 +19,8 @@ import no.hib.dpf.core.Arrow;
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
+import no.hib.dpf.diagram.DiagramFactory;
 import no.hib.dpf.editor.commands.AbstractCreateCommand;
-import no.hib.dpf.visual.presentation.ArrowFactory;
 import no.hib.dpf.visualization.VCompartment;
 
 /**
@@ -75,10 +75,12 @@ public class ChildDNodeCreateCommand extends AbstractCreateCommand {
 			if(arrow.getSource() == parent.getNode().getTypeNode() && arrow.getTarget() == newObject.getNode().getTypeNode())
 				typeArrow = arrow;
 		}
-		ArrowFactory arrowFactory = new ArrowFactory(typeArrow);
-		DArrow arrow = (DArrow)arrowFactory.getNewObject();
+		DArrow arrow = DiagramFactory.eINSTANCE.createDefaultDArrow();
+		arrow.getDType().setArrow(typeArrow);
+		arrow.getArrow().setTypeArrow(typeArrow);
 		arrow.getArrow().setName("child of");
-		arrow.reconnect(parent, newObject);
+		arrow.setDSource(parent);
+		arrow.setDTarget(newObject);
 	}
 
 	/* (non-Javadoc)

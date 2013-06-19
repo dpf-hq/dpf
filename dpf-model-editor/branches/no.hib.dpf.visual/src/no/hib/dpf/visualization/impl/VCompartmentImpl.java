@@ -129,7 +129,7 @@ public class VCompartmentImpl extends VElementImpl implements VCompartment {
 
 	@Override
 	public void addChild(Node child) {
-		children.add(child);
+		getChildren().add(child);
 	}
 	
 	/**
