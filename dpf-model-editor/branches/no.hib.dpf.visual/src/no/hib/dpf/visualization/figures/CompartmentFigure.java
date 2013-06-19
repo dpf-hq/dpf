@@ -4,8 +4,6 @@ import org.eclipse.draw2d.AbstractBorder;
 import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.Label;
-import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.geometry.Insets;
 import org.eclipse.swt.SWT;
@@ -15,6 +13,7 @@ import org.eclipse.swt.widgets.Display;
 
 public class CompartmentFigure extends Figure {
 	public String name;
+	Figure pane;
 	
 	public CompartmentFigure(String name) {
 		this.name = name;
@@ -35,16 +34,14 @@ public class CompartmentFigure extends Figure {
 	    nameLabel.setFont(font);
 	    
 	    add(nameLabel);
-	}
-	
-	public String getName() {
-		return name;
-	}
-	
-	public void addChild(String name) {
-		Label label = new Label(name);
-		label.setLabelAlignment(PositionConstants.LEFT);
-		add(label);
+	    
+	    pane = new Figure();
+	    ToolbarLayout panelayout = new ToolbarLayout();
+	    panelayout.setMinorAlignment(ToolbarLayout.ALIGN_TOPLEFT);
+	    panelayout.setStretchMinorAxis(true);
+	    panelayout.setSpacing(2);
+        pane.setLayoutManager(panelayout);
+        add(pane);
 	}
 	    
 	public class CompartmentFigureBorder extends AbstractBorder {
@@ -54,5 +51,9 @@ public class CompartmentFigure extends Figure {
 		public void paint(IFigure figure, Graphics graphics, Insets insets) {
 			graphics.drawLine(getPaintRectangle(figure, insets).getTopLeft(), tempRect.getTopRight());
 	    }
+	}
+	
+	public IFigure getContentPane() {
+		return pane;
 	}
 }

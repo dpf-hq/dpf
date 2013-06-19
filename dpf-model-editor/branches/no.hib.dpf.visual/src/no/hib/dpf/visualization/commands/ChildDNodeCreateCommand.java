@@ -22,6 +22,8 @@ import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.diagram.DiagramFactory;
 import no.hib.dpf.editor.commands.AbstractCreateCommand;
 import no.hib.dpf.visualization.VCompartment;
+import no.hib.dpf.visualization.VCompartmentElement;
+import no.hib.dpf.visualization.VisualizationFactory;
 
 /**
  * A command to add a Shape to a ShapeDiagram.
@@ -64,11 +66,9 @@ public class ChildDNodeCreateCommand extends AbstractCreateCommand {
 	 * @see org.eclipse.gef.commands.Command#execute()
 	 */
 	public void execute() {
-		compartment.addChild(newObject.getNode());
-		
 		// Add the node to the graph
 		dGraph.addDNode(newObject);
-		
+
 		// Add an arrow between the nodes
 		Arrow typeArrow = null;
 		for(Arrow arrow : dGraph.getGraph().getType().getArrows()) {
@@ -81,6 +81,11 @@ public class ChildDNodeCreateCommand extends AbstractCreateCommand {
 		arrow.getArrow().setName("child of");
 		arrow.setDSource(parent);
 		arrow.setDTarget(newObject);
+		
+		// Wrap the node in a compartmentElement and add it to the compartment
+		VCompartmentElement compElement = VisualizationFactory.eINSTANCE.createVCompartmentElement();
+		compElement.setDNode(newObject);
+		compartment.addChild(compElement);
 	}
 
 	/* (non-Javadoc)

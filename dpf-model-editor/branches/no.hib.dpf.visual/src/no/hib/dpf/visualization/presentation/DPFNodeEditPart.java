@@ -33,11 +33,6 @@ public class DPFNodeEditPart extends DNodeEditPart {
 		compartments = nodeCompartments;
 	}
 	
-	public IFigure getContentPane() {
-		if(visual != null && visual.isComposite())
-			return ((CompositeNodeFigure)getFigure()).getComposite();
-		return super.getContentPane();
-	}
 	protected void createEditPolicies() {
 		// allow adding of childs in compartments
 		if(visual != null && visual.isComposite())
@@ -57,6 +52,12 @@ public class DPFNodeEditPart extends DNodeEditPart {
 		} else
 			figure = new NodeFigure(new EditableLabel(getNodeLabelName()));
 		return figure;
+	}
+	
+	public IFigure getContentPane(){
+		if(visual != null && visual.isComposite())
+			return ((CompositeNodeFigure)getFigure()).getContentPane();
+		return super.getContentPane();
 	}
 	
 	private String getNodeLabelName() {

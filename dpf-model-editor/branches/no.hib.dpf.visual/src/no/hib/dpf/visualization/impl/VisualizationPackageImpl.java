@@ -341,7 +341,7 @@ public class VisualizationPackageImpl extends EPackageImpl implements Visualizat
 
 		initEClass(vCompartmentEClass, VCompartment.class, "VCompartment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getVCompartment_Parent(), theVisualPackage.getVNode(), null, "parent", null, 0, 1, VCompartment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getVCompartment_Children(), theCorePackage.getNode(), null, "children", null, 0, -1, VCompartment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getVCompartment_Children(), this.getVCompartmentElement(), null, "children", null, 0, -1, VCompartment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(vCompartmentElementEClass, VCompartmentElement.class, "VCompartmentElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getVCompartmentElement_DNode(), theDiagramPackage.getDNode(), null, "dNode", null, 0, 1, VCompartmentElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

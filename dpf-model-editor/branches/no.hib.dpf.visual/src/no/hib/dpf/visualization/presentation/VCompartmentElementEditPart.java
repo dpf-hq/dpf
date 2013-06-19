@@ -65,4 +65,10 @@ public class VCompartmentElementEditPart extends GraphicalEditPartWithListener {
 		return result;
 	}
 
+	protected void refreshVisuals() {
+		EditableLabel figure = (EditableLabel)getFigure();
+		figure.setText(getNodeLabelName());
+		figure.setVisible(true);
+		figure.revalidate();
+	}
 }

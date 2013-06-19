@@ -2,6 +2,7 @@ package no.hib.dpf.visualization.presentation;
 
 import no.hib.dpf.core.IDObject;
 import no.hib.dpf.diagram.DArrow;
+import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.editor.parts.DPFEditPartFactory;
 import no.hib.dpf.visual.VArrow;
@@ -28,6 +29,9 @@ public class VisualizationEditPartFactory extends DPFEditPartFactory {
 	}
 
 	protected EditPart getPartForElement(Object modelElement) {
+		if (modelElement instanceof DGraph) {
+			return new DPFGraphEditPart(maps);
+		}
 		if (modelElement instanceof DNode) {
 			DNode dNode = (DNode) modelElement;
 			EList<VCompartment> nodeCompartments = new BasicEList<VCompartment>();

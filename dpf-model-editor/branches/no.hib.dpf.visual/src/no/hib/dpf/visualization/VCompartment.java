@@ -6,7 +6,6 @@
  */
 package no.hib.dpf.visualization;
 
-import no.hib.dpf.core.Node;
 import no.hib.dpf.visual.VElement;
 import no.hib.dpf.visual.VNode;
 
@@ -58,7 +57,7 @@ public interface VCompartment extends VElement {
 
 	/**
 	 * Returns the value of the '<em><b>Children</b></em>' containment reference list.
-	 * The list contents are of type {@link no.hib.dpf.core.Node}.
+	 * The list contents are of type {@link no.hib.dpf.visualization.VCompartmentElement}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Children</em>' containment reference list isn't clear,
@@ -70,8 +69,8 @@ public interface VCompartment extends VElement {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Node> getChildren();
+	EList<VCompartmentElement> getChildren();
 	
-	void addChild(Node child);
+	void addChild(VCompartmentElement child);
 
 } // VCompartment

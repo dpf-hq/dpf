@@ -8,10 +8,10 @@ package no.hib.dpf.visualization.impl;
 
 import java.util.Collection;
 
-import no.hib.dpf.core.Node;
 import no.hib.dpf.visual.VNode;
 import no.hib.dpf.visual.impl.VElementImpl;
 import no.hib.dpf.visualization.VCompartment;
+import no.hib.dpf.visualization.VCompartmentElement;
 import no.hib.dpf.visualization.VisualizationPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -56,7 +56,7 @@ public class VCompartmentImpl extends VElementImpl implements VCompartment {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Node> children;
+	protected EList<VCompartmentElement> children;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -120,15 +120,15 @@ public class VCompartmentImpl extends VElementImpl implements VCompartment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Node> getChildren() {
+	public EList<VCompartmentElement> getChildren() {
 		if (children == null) {
-			children = new EObjectContainmentEList<Node>(Node.class, this, VisualizationPackage.VCOMPARTMENT__CHILDREN);
+			children = new EObjectContainmentEList<VCompartmentElement>(VCompartmentElement.class, this, VisualizationPackage.VCOMPARTMENT__CHILDREN);
 		}
 		return children;
 	}
 
 	@Override
-	public void addChild(Node child) {
+	public void addChild(VCompartmentElement child) {
 		getChildren().add(child);
 	}
 	
@@ -177,7 +177,7 @@ public class VCompartmentImpl extends VElementImpl implements VCompartment {
 				return;
 			case VisualizationPackage.VCOMPARTMENT__CHILDREN:
 				getChildren().clear();
-				getChildren().addAll((Collection<? extends Node>)newValue);
+				getChildren().addAll((Collection<? extends VCompartmentElement>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

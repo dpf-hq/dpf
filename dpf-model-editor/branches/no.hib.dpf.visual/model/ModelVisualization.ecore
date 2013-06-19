@@ -20,7 +20,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="VCompartment" eSuperTypes="visual.ecore#//VElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="ecore:EClass visual.ecore#//VNode"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
-        eType="ecore:EClass ../../no.hib.dpf.core/model/Metamodel.ecore#//Node" containment="true"/>
+        eType="#//VCompartmentElement" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VCompartmentElement" eSuperTypes="visual.ecore#//VElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="dNode" eType="ecore:EClass ../../no.hib.dpf.diagram/model/DiagramMetamodel.ecore#//DNode"/>
