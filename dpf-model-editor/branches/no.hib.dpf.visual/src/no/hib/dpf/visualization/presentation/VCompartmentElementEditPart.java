@@ -3,19 +3,35 @@ package no.hib.dpf.visualization.presentation;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.editor.parts.GraphicalEditPartWithListener;
-import no.hib.dpf.editor.policies.NameDirectEditPolicy;
+import no.hib.dpf.editor.parts.TextCellEditorLocator;
 import no.hib.dpf.visualization.VCompartmentElement;
 import no.hib.dpf.visualization.figures.EditableLabel;
+import no.hib.dpf.visualization.policies.NameDirectEditPolicy;
 
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.Request;
+import org.eclipse.gef.RequestConstants;
+import org.eclipse.jface.viewers.TextCellEditor;
 
 public class VCompartmentElementEditPart extends GraphicalEditPartWithListener {
-
-	
-	public VCompartmentElementEditPart() {
+    
+    protected void listen(){
+		super.listen();
+		addUIAdapter(getDPFNode(), modelListener);
 	}
 	
+	protected void unlisten(){
+		removeUIAdapter(getDPFNode(), modelListener);
+		super.unlisten();
+	}
+	
+	@Override
+	protected void handleModelChanged(Notification msg) {
+		refreshVisuals();
+	}
+    
 	@Override
 	protected IFigure createFigure() {
 		return new EditableLabel(getNodeLabelName());
@@ -70,5 +86,15 @@ public class VCompartmentElementEditPart extends GraphicalEditPartWithListener {
 		figure.setText(getNodeLabelName());
 		figure.setVisible(true);
 		figure.revalidate();
+	}
+	
+	@Override
+	public void performRequest(Request req) {
+		if (req.getType().equals(RequestConstants.REQ_DIRECT_EDIT)) {
+			TextDirectEditManager manager = new TextDirectEditManager(this, TextCellEditor.class, new TextCellEditorLocator((EditableLabel)getFigure()));
+			manager.show();
+			return;
+		}
+		super.performRequest(req);
 	}
 }

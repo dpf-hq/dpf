@@ -4,40 +4,24 @@ import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.DragTracker;
+import org.eclipse.gef.Request;
 
 import no.hib.dpf.editor.parts.GraphicalEditPartWithListener;
-import no.hib.dpf.editor.parts.listeners.UIAdapter;
-import no.hib.dpf.editor.policies.NameDirectEditPolicy;
 import no.hib.dpf.visualization.VCompartment;
 import no.hib.dpf.visualization.VCompartmentElement;
 import no.hib.dpf.visualization.figures.CompartmentFigure;
 
 public class VCompartmentEditPart extends GraphicalEditPartWithListener {
 	
-	/**
-     * Listener for the node notifications
-     */
-    protected UIAdapter listener = new UIAdapter()
-    {
-        /**
-         * @see org.topcased.modeler.listeners.UIAdapterImpl#safeNotifyChanged(org.eclipse.emf.common.notify.Notification)
-         */
-        @Override
-        protected void safeNotifyChanged(Notification msg)
-        {
-        	refreshChildren();
-        }
-
-    };
-    
+	
     protected void listen(){
 		super.listen();
-		addUIAdapter((VCompartment)getModel(), listener);
+		addUIAdapter((VCompartment)getModel(), modelListener);
 	}
 	
 	protected void unlisten(){
-		removeUIAdapter((VCompartment)getModel(), listener);
+		removeUIAdapter((VCompartment)getModel(), modelListener);
 		super.unlisten();
 	}
 
@@ -52,7 +36,7 @@ public class VCompartmentEditPart extends GraphicalEditPartWithListener {
 
 	@Override
 	protected void createEditPolicies() {
-		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new NameDirectEditPolicy());
+		
 	}
 	
 	public VCompartment getCompartment() {
@@ -62,5 +46,17 @@ public class VCompartmentEditPart extends GraphicalEditPartWithListener {
 	@Override
 	protected List<VCompartmentElement> getModelChildren() {
 		return getCompartment().getChildren();
+	}
+	
+	@Override
+	protected void handleModelChanged(Notification msg) {
+		refreshChildren();
+	}
+	
+	@Override
+	public DragTracker getDragTracker(Request request) {
+	    if (REQ_SELECTION.equals(request.getType())) {
+	        return getParent().getDragTracker(request);
+	    } else return super.getDragTracker(request);
 	}
 }
