@@ -2,12 +2,16 @@ package no.hib.dpf.visualization.presentation;
 
 import java.util.List;
 
+import no.hib.dpf.core.IDObject;
 import no.hib.dpf.core.Node;
+import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.editor.DPFEditor;
 import no.hib.dpf.editor.parts.DNodeEditPart;
 import no.hib.dpf.editor.parts.TextCellEditorLocator;
 import no.hib.dpf.editor.parts.TextDirectEditManager;
 import no.hib.dpf.editor.policies.NameDirectEditPolicy;
+import no.hib.dpf.visual.VArrow;
+import no.hib.dpf.visual.VElement;
 import no.hib.dpf.visual.VNode;
 import no.hib.dpf.visualization.VCompartment;
 import no.hib.dpf.visualization.figures.CompositeNodeFigure;
@@ -18,7 +22,9 @@ import no.hib.dpf.visualization.policies.VNodeLayoutPolicy;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.EMap;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.RequestConstants;
@@ -28,9 +34,12 @@ public class DPFNodeEditPart extends DNodeEditPart {
 
 	VNode visual = null;
 	EList<VCompartment> compartments = null;
-	public DPFNodeEditPart(VNode vElement, EList<VCompartment> nodeCompartments) {
+	EMap<IDObject, VElement> maps;
+	
+	public DPFNodeEditPart(VNode vElement, EList<VCompartment> nodeCompartments, EMap<IDObject, VElement> maps) {
 		visual = vElement;
 		compartments = nodeCompartments;
+		this.maps = maps;
 	}
 	
 	protected void createEditPolicies() {
@@ -108,5 +117,22 @@ public class DPFNodeEditPart extends DNodeEditPart {
 	@Override
 	protected List<VCompartment> getModelChildren() {
 		return compartments; 
+	}
+	
+	// Hide connections to contained nodes
+	@Override
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	protected List<?> getModelSourceConnections() {
+		EList sources = new BasicEList();
+		sources.addAll(getDNode().getDOutgoings());
+		sources.addAll(getDNode().getConstraintsFrom());
+		
+		for(DArrow arrow : getDNode().getDOutgoings()) {
+			VElement aElement = maps.get(arrow.getArrow().getTypeArrow());
+			if(aElement instanceof VArrow && ((VArrow)aElement).isComposed())
+				sources.remove(arrow);
+		}
+		
+		return sources;
 	}
 }

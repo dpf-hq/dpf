@@ -39,7 +39,7 @@ public class VisualizationEditPartFactory extends DPFEditPartFactory {
 				if(compartment.getParent() == maps.get(dNode.getNode().getTypeNode()))
 					nodeCompartments.add(compartment);
 			}
-			return new DPFNodeEditPart((VNode) maps.get(dNode.getNode().getTypeNode()), nodeCompartments);
+			return new DPFNodeEditPart((VNode) maps.get(dNode.getNode().getTypeNode()), nodeCompartments, maps);
 		}
 		if (modelElement instanceof DArrow) {
 			DArrow dArrow = (DArrow) modelElement;

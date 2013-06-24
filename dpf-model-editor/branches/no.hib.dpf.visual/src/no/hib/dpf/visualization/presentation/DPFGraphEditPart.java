@@ -16,6 +16,7 @@ import no.hib.dpf.visual.VArrow;
 import no.hib.dpf.visual.VElement;
 
 public class DPFGraphEditPart extends DGraphEditPart {
+	
 	EMap<IDObject, VElement> maps;
 	
 	public DPFGraphEditPart(EMap<IDObject, VElement> maps) {
@@ -23,6 +24,7 @@ public class DPFGraphEditPart extends DGraphEditPart {
 		this.maps = maps;
 	}
 	
+	// Hide contained nodes
 	@Override
 	protected List<DNode> getModelChildren() {
 		EList<DNode> child = new BasicEList<DNode>();

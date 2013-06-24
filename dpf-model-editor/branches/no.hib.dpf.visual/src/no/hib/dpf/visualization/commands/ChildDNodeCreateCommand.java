@@ -15,6 +15,8 @@
  *******************************************************************************/
 package no.hib.dpf.visualization.commands;
 
+import java.util.Iterator;
+
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DGraph;
@@ -93,7 +95,12 @@ public class ChildDNodeCreateCommand extends AbstractCreateCommand {
 	 */
 	public void undo() {
 		// Remove figure...
-		//parentDGraph.removeDNode((DNode) newObject);
+		Iterator<VCompartmentElement> it = compartment.getChildren().iterator();
+		while(it.hasNext()) {
+			if(it.next().getDNode()==newObject)
+				it.remove();
+		}
+		dGraph.removeDNode(newObject);
 	}
 
 }
