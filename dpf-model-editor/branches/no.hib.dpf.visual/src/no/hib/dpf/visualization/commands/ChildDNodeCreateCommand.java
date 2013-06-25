@@ -83,6 +83,7 @@ public class ChildDNodeCreateCommand extends AbstractCreateCommand {
 		arrow.getArrow().setName("child of");
 		arrow.setDSource(parent);
 		arrow.setDTarget(newObject);
+		dGraph.addDArrow(arrow);
 		
 		// Wrap the node in a compartmentElement and add it to the compartment
 		VCompartmentElement compElement = VisualizationFactory.eINSTANCE.createVCompartmentElement();
