@@ -6,8 +6,8 @@
  */
 package no.hib.dpf.visualization;
 
+import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.visual.VElement;
-import no.hib.dpf.visual.VNode;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -38,12 +38,12 @@ public interface VCompartment extends VElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Parent</em>' reference.
-	 * @see #setParent(VNode)
+	 * @see #setParent(DNode)
 	 * @see no.hib.dpf.visualization.VisualizationPackage#getVCompartment_Parent()
 	 * @model
 	 * @generated
 	 */
-	VNode getParent();
+	DNode getParent();
 
 	/**
 	 * Sets the value of the '{@link no.hib.dpf.visualization.VCompartment#getParent <em>Parent</em>}' reference.
@@ -53,7 +53,7 @@ public interface VCompartment extends VElement {
 	 * @see #getParent()
 	 * @generated
 	 */
-	void setParent(VNode value);
+	void setParent(DNode value);
 
 	/**
 	 * Returns the value of the '<em><b>Children</b></em>' containment reference list.

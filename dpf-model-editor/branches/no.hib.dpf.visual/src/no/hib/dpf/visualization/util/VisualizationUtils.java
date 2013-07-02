@@ -4,11 +4,21 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import no.hib.dpf.core.Arrow;
+import no.hib.dpf.core.Node;
+import no.hib.dpf.diagram.DArrow;
+import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.diagram.DSignature;
 import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.diagram.util.DPFConstants;
 import no.hib.dpf.editor.DPFUtils;
+import no.hib.dpf.visual.VArrow;
+import no.hib.dpf.visual.VElement;
+import no.hib.dpf.visual.VNode;
 import no.hib.dpf.visual.VisualPlugin;
+import no.hib.dpf.visualization.VCompartment;
+import no.hib.dpf.visualization.VCompartmentElement;
+import no.hib.dpf.visualization.VisualizationFactory;
 import no.hib.dpf.visualization.Visualizations;
 
 import org.eclipse.emf.common.util.Diagnostic;
@@ -72,6 +82,39 @@ public class VisualizationUtils extends DPFUtils {
 				return null;
 			}
 			Visualizations dsp = (Visualizations) visual.getContents().get(0);
+			
+			for(DNode dNode : dsp.getInstance().getDGraph().getDNodes()){
+				Node typeNode = dNode.getNode().getTypeNode();
+				VElement element = dsp.getEntries().get(typeNode);
+				if(element instanceof VNode){
+					VNode vNode = (VNode) element;
+					if(vNode.isComposite()) {
+						// Add compartments to composite nodes
+						for(Arrow arrow : typeNode.getOutgoings()) {
+							if(dsp.getEntries().containsKey(arrow) && ((VArrow) dsp.getEntries().get(arrow)).isComposed()) {
+								VCompartment vCompartment = VisualizationFactory.eINSTANCE.createVCompartment();
+								vCompartment.setName(arrow.getTarget().getName());
+								vCompartment.setParent(dNode);
+								dsp.getCompartments().add(vCompartment);
+							}
+						}
+						// Add compartmentElements to compartments if any are saved
+						for(DArrow dArrow : dNode.getDOutgoings()){
+							Arrow arrow = dArrow.getArrow();
+							if(dsp.getEntries().containsKey(arrow.getTypeArrow()) && ((VArrow) dsp.getEntries().get(arrow.getTypeArrow())).isComposed()) {
+								VCompartmentElement compElement = VisualizationFactory.eINSTANCE.createVCompartmentElement();
+								compElement.setDNode(dArrow.getDTarget());
+								for(VCompartment compartment : dsp.getCompartments()) {
+									if(compartment.getParent() == dNode && compartment.getName().equals(compElement.getDNode().getNode().getTypeNode().getName()))
+										compartment.addChild(compElement);
+								}
+							}
+						}
+					}
+				}
+			}
+			
+			
 			return dsp;
 		}
 	}

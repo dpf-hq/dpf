@@ -140,7 +140,7 @@ public interface Visualizations extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Compartments</em>' containment reference list.
 	 * @see no.hib.dpf.visualization.VisualizationPackage#getVisualizations_Compartments()
-	 * @model containment="true"
+	 * @model containment="true" transient="true"
 	 * @generated
 	 */
 	EList<VCompartment> getCompartments();

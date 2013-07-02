@@ -1,5 +1,6 @@
 package no.hib.dpf.visualization.presentation;
 
+import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.IDObject;
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DGraph;
@@ -10,6 +11,7 @@ import no.hib.dpf.visual.VElement;
 import no.hib.dpf.visual.VNode;
 import no.hib.dpf.visualization.VCompartment;
 import no.hib.dpf.visualization.VCompartmentElement;
+import no.hib.dpf.visualization.VisualizationFactory;
 import no.hib.dpf.visualization.Visualizations;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -36,8 +38,19 @@ public class VisualizationEditPartFactory extends DPFEditPartFactory {
 			DNode dNode = (DNode) modelElement;
 			EList<VCompartment> nodeCompartments = new BasicEList<VCompartment>();
 			for(VCompartment compartment: compartments){
-				if(compartment.getParent() == maps.get(dNode.getNode().getTypeNode()))
+				if(compartment.getParent() == dNode)
 					nodeCompartments.add(compartment);
+			}
+			if(nodeCompartments.isEmpty() && ((VNode)maps.get(dNode.getNode().getTypeNode())).isComposite()) {
+				for(Arrow arrow : dNode.getNode().getTypeNode().getOutgoings()) {
+					if(maps.containsKey(arrow) && ((VArrow) maps.get(arrow)).isComposed()) {
+						VCompartment vCompartment = VisualizationFactory.eINSTANCE.createVCompartment();
+						vCompartment.setName(arrow.getTarget().getName());
+						vCompartment.setParent(dNode);
+						compartments.add(vCompartment);
+						nodeCompartments.add(vCompartment);
+					}
+				}
 			}
 			return new DPFNodeEditPart((VNode) maps.get(dNode.getNode().getTypeNode()), nodeCompartments, maps);
 		}

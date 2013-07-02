@@ -8,7 +8,7 @@ package no.hib.dpf.visualization.impl;
 
 import java.util.Collection;
 
-import no.hib.dpf.visual.VNode;
+import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.visual.impl.VElementImpl;
 import no.hib.dpf.visualization.VCompartment;
 import no.hib.dpf.visualization.VCompartmentElement;
@@ -46,7 +46,7 @@ public class VCompartmentImpl extends VElementImpl implements VCompartment {
 	 * @generated
 	 * @ordered
 	 */
-	protected VNode parent;
+	protected DNode parent;
 
 	/**
 	 * The cached value of the '{@link #getChildren() <em>Children</em>}' containment reference list.
@@ -82,10 +82,10 @@ public class VCompartmentImpl extends VElementImpl implements VCompartment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VNode getParent() {
+	public DNode getParent() {
 		if (parent != null && parent.eIsProxy()) {
 			InternalEObject oldParent = (InternalEObject)parent;
-			parent = (VNode)eResolveProxy(oldParent);
+			parent = (DNode)eResolveProxy(oldParent);
 			if (parent != oldParent) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VisualizationPackage.VCOMPARTMENT__PARENT, oldParent, parent));
@@ -99,7 +99,7 @@ public class VCompartmentImpl extends VElementImpl implements VCompartment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VNode basicGetParent() {
+	public DNode basicGetParent() {
 		return parent;
 	}
 
@@ -108,8 +108,8 @@ public class VCompartmentImpl extends VElementImpl implements VCompartment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setParent(VNode newParent) {
-		VNode oldParent = parent;
+	public void setParent(DNode newParent) {
+		DNode oldParent = parent;
 		parent = newParent;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, VisualizationPackage.VCOMPARTMENT__PARENT, oldParent, parent));
@@ -173,7 +173,7 @@ public class VCompartmentImpl extends VElementImpl implements VCompartment {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case VisualizationPackage.VCOMPARTMENT__PARENT:
-				setParent((VNode)newValue);
+				setParent((DNode)newValue);
 				return;
 			case VisualizationPackage.VCOMPARTMENT__CHILDREN:
 				getChildren().clear();
@@ -192,7 +192,7 @@ public class VCompartmentImpl extends VElementImpl implements VCompartment {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case VisualizationPackage.VCOMPARTMENT__PARENT:
-				setParent((VNode)null);
+				setParent((DNode)null);
 				return;
 			case VisualizationPackage.VCOMPARTMENT__CHILDREN:
 				getChildren().clear();

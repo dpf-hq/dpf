@@ -11,14 +11,14 @@
         eType="ecore:EClass visual.ecore#//Visuals"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="instance" eType="ecore:EClass ../../no.hib.dpf.diagram/model/DiagramMetamodel.ecore#//DSpecification"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="compartments" upperBound="-1"
-        eType="#//VCompartment" containment="true"/>
+        eType="#//VCompartment" transient="true" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ModelToVisualEntry" instanceClassName="java.util.Map$Entry">
     <eStructuralFeatures xsi:type="ecore:EReference" name="key" eType="ecore:EClass ../../no.hib.dpf.core/model/Metamodel.ecore#//IDObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass visual.ecore#//VElement"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VCompartment" eSuperTypes="visual.ecore#//VElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="ecore:EClass visual.ecore#//VNode"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="ecore:EClass ../../no.hib.dpf.diagram/model/DiagramMetamodel.ecore#//DNode"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
         eType="#//VCompartmentElement" containment="true"/>
   </eClassifiers>
