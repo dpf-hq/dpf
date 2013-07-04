@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 import no.hib.dpf.core.Specification;
-import no.hib.dpf.editor.DPFErrorReport;
+import no.hib.dpf.editor.DPFUtils;
 import no.hib.dpf.transform.Production;
 import no.hib.dpf.transform.Transform;
 import no.hib.dpf.utils.DPFCoreUtil;
@@ -96,7 +96,7 @@ public class TransformEditor extends FormEditor implements CommandStackListener,
 			int index = addPage(editor, getEditorInput());
 			setPageText(index, editor.getTitle());
 		}catch(PartInitException e){
-			DPFErrorReport.logError(e);
+			DPFUtils.logError(e);
 		}
 		if (getPageCount() == 1 && getContainer() instanceof CTabFolder) 
 			((CTabFolder) getContainer()).setTabHeight(0);
@@ -120,7 +120,7 @@ public class TransformEditor extends FormEditor implements CommandStackListener,
 			setDirty(false);
 		}
 		catch (Exception exception) {
-			DPFErrorReport.logError(exception);
+			DPFUtils.logError(exception);
 		}
 	}
 
@@ -340,7 +340,7 @@ public class TransformEditor extends FormEditor implements CommandStackListener,
 		try {
 			transform.load(null);
 		} catch (IOException e) {
-			DPFErrorReport.logError(e);
+			DPFUtils.logError(e);
 		}
 		return (Transform) transform.getContents().get(0);
 	}	

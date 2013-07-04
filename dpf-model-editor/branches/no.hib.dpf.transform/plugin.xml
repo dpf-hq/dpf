@@ -36,7 +36,7 @@
       <wizard
             id="no.hib.dpf.transform.presentation.TransformModelWizardID"
             name="%_UI_TransformModelWizard_label"
-            class="no.hib.dpf.transform.presentation.TransformModelWizard"
+            class="no.hib.dpf.transform.presentation.DPFCreationWizard"
             category="org.eclipse.emf.ecore.Wizard.category.ID"
             icon="icons/full/obj16/TransformModelFile.gif">
          <description>%_UI_TransformModelWizard_description</description>
