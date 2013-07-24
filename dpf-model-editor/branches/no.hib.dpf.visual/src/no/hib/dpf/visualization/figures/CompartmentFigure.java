@@ -18,8 +18,6 @@ public class CompartmentFigure extends Figure {
 	public CompartmentFigure(String name) {
 		this.name = name;
 		ToolbarLayout layout = new ToolbarLayout();
-	    layout.setMinorAlignment(ToolbarLayout.ALIGN_TOPLEFT);
-	    layout.setStretchMinorAxis(true);
 	    layout.setSpacing(2);
 	    setLayoutManager(layout);
 	    setBorder(new CompartmentFigureBorder());
@@ -37,8 +35,6 @@ public class CompartmentFigure extends Figure {
 	    
 	    pane = new Figure();
 	    ToolbarLayout panelayout = new ToolbarLayout();
-	    panelayout.setMinorAlignment(ToolbarLayout.ALIGN_TOPLEFT);
-	    panelayout.setStretchMinorAxis(true);
 	    panelayout.setSpacing(2);
         pane.setLayoutManager(panelayout);
         add(pane);
