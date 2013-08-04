@@ -28,15 +28,15 @@ import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 
 public class AddTransformCommand extends Command {
 	
-	private final DGraph parent;
+//	private final DGraph parent;
 	private Object insertObject;
 	private List<Production> rules;
 	private Production production;
 	
-	public AddTransformCommand(Object editNode, DGraph parent){
+	public AddTransformCommand(Object editNode, Production prod){
 		this.insertObject = editNode;
-		this.parent = parent;
-		production = (Production) parent.eContainer().eContainer();
+		this.production = prod;
+		//production = (Production) parent.eContainer().eContainer();
 		setLabel("Insertion element");
 //		Specification spec = production.getSum().getSpecification();
 //		System.out.println("Get Metafile " + spec.getMetaFile());
@@ -47,7 +47,7 @@ public class AddTransformCommand extends Command {
 	 * @see org.eclipse.gef.commands.Command#canExecute()
 	 */
 	public boolean canExecute() {
-		return insertObject instanceof DNode || insertObject instanceof DArrow && parent != null;
+		return insertObject instanceof DNode || insertObject instanceof DArrow && production != null;
 	}
 
 	/* (non-Javadoc)

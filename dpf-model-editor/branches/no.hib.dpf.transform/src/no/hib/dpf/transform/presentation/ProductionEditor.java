@@ -16,14 +16,32 @@
 package no.hib.dpf.transform.presentation;
 
 import static no.hib.dpf.diagram.util.DPFConstants.REFLEXIVE_TYPE_DGRAPH;
+
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import no.hib.dpf.diagram.DArrow;
+import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
+import no.hib.dpf.diagram.DSpecification;
+import no.hib.dpf.diagram.DiagramFactory;
+import no.hib.dpf.diagram.util.DPFConstants;
 import no.hib.dpf.editor.DPFEditorPaletteFactory;
+import no.hib.dpf.editor.DPFUtils;
 import no.hib.dpf.editor.parts.DArrowEditPart;
 import no.hib.dpf.editor.parts.DNodeEditPart;
 import no.hib.dpf.editor.parts.DPFEditPartFactory;
 import no.hib.dpf.transform.Production;
+import no.hib.dpf.transform.Transform;
+import no.hib.dpf.transform.util.TransformActivePage;
 
+import org.eclipse.core.runtime.Assert;
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gef.ContextMenuProvider;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalViewer;
@@ -48,6 +66,9 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 	protected Production production;
 
 	//	/** Palette component, holding the tools and shapes. */
+	private Transform transform = null;
+	private DGraph newGraph = null;
+	private Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
 	private PaletteRoot paletteRoot;
 
 	private DPFEditPartFactory shapesEditPartFactory;
@@ -73,8 +94,14 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 	 */
 	protected void configureGraphicalViewer() {
 		super.configureGraphicalViewer();
+		String transformFile = TransformActivePage.activeWindowFileLocation();
+		transform = TransformEditor.loadTransform(DPFUtils.getResourceSet(), URI.createFileURI(transformFile), resourceToDiagnosticMap);
+		DSpecification sourceDSpecification = transform.getSourceMetaModel();
+//		setDGraph();
 		GraphicalViewer viewer = getGraphicalViewer();
-		paletteFactory.updatePalette(getPaletteRoot(), REFLEXIVE_TYPE_DGRAPH);
+		//paletteFactory.updatePalette(getPaletteRoot(), dSpecification.getDType().getDGraph());
+		//paletteFactory.updatePalette(getPaletteRoot(), dSpecification.getDGraph());
+		paletteFactory.updatePalette(getPaletteRoot(), sourceDSpecification.getDGraph());
 		shapesEditPartFactory = new DPFEditPartFactory(){
 			protected EditPart getPartForElement(Object modelElement) {
 //				if (modelElement instanceof DGraph) {
@@ -131,5 +158,25 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 			paletteRoot = paletteFactory.createPalette();
 		}
 		return paletteRoot;
+	}
+	private void setDGraph(){
+		String transformFile = TransformActivePage.activeWindowFileLocation();
+		transform = TransformEditor.loadTransform(DPFUtils.getResourceSet(), URI.createFileURI(transformFile), resourceToDiagnosticMap);
+		DSpecification sourceDSpecification = transform.getSourceMetaModel();
+		DSpecification targetDSpecification = transform.getTargetMetaModel();
+			
+		EcoreUtil.resolveAll(sourceDSpecification);
+		EcoreUtil.resolveAll(sourceDSpecification.getSpecification());
+		
+		Assert.isTrue(sourceDSpecification != null);
+		setPartName(transformFile);
+		newGraph = sourceDSpecification.getDGraph();
+		
+		if(!targetDSpecification.getDGraph().getDNodes().isEmpty() && sourceDSpecification!=targetDSpecification){
+			newGraph.getDNodes().addAll(targetDSpecification.getDGraph().getDNodes());
+		}
+		if(!targetDSpecification.getDGraph().getDArrows().isEmpty() && sourceDSpecification!=targetDSpecification){
+			newGraph.getDArrows().addAll(targetDSpecification.getDGraph().getDArrows());
+		}
 	}
 }

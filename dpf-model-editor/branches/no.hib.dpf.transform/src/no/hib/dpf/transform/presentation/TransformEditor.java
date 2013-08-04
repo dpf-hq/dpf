@@ -311,7 +311,6 @@ public class TransformEditor extends FormEditor implements CommandStackListener,
 			for(EObject e : has)
 				tranfromResource.getContents().remove(e);
 				
-				
 			tranfromResource.save(null);
 		} catch (IOException e) {
 			DPFCoreUtil.analyzeResourceProblems(tranfromResource, e, resourceToDiagnosticMap);

@@ -127,7 +127,8 @@ public class TransformItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(TransformPackage.Literals.TRANSFORM__META_MODEL);
+			childrenFeatures.add(TransformPackage.Literals.TRANSFORM__SOURCE_META_MODEL);
+			childrenFeatures.add(TransformPackage.Literals.TRANSFORM__TARGET_META_MODEL);
 			childrenFeatures.add(TransformPackage.Literals.TRANSFORM__RULES);
 		}
 		return childrenFeatures;
@@ -184,7 +185,8 @@ public class TransformItemProvider
 			case TransformPackage.TRANSFORM__GENERATE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case TransformPackage.TRANSFORM__META_MODEL:
+			case TransformPackage.TRANSFORM__SOURCE_META_MODEL:
+			case TransformPackage.TRANSFORM__TARGET_META_MODEL:
 			case TransformPackage.TRANSFORM__RULES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -205,13 +207,41 @@ public class TransformItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(TransformPackage.Literals.TRANSFORM__META_MODEL,
+				(TransformPackage.Literals.TRANSFORM__SOURCE_META_MODEL,
+				 DiagramFactory.eINSTANCE.createDSpecification()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(TransformPackage.Literals.TRANSFORM__TARGET_META_MODEL,
 				 DiagramFactory.eINSTANCE.createDSpecification()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(TransformPackage.Literals.TRANSFORM__RULES,
 				 TransformFactory.eINSTANCE.createProduction()));
+	}
+
+	/**
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+		Object childFeature = feature;
+		Object childObject = child;
+
+		boolean qualify =
+			childFeature == TransformPackage.Literals.TRANSFORM__SOURCE_META_MODEL ||
+			childFeature == TransformPackage.Literals.TRANSFORM__TARGET_META_MODEL;
+
+		if (qualify) {
+			return getString
+				("_UI_CreateChild_text2",
+				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 	/**

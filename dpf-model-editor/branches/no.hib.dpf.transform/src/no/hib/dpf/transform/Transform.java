@@ -20,7 +20,8 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link no.hib.dpf.transform.Transform#getMetaModel <em>Meta Model</em>}</li>
+ *   <li>{@link no.hib.dpf.transform.Transform#getSourceMetaModel <em>Source Meta Model</em>}</li>
+ *   <li>{@link no.hib.dpf.transform.Transform#getTargetMetaModel <em>Target Meta Model</em>}</li>
  *   <li>{@link no.hib.dpf.transform.Transform#getRules <em>Rules</em>}</li>
  *   <li>{@link no.hib.dpf.transform.Transform#getDSignature <em>DSignature</em>}</li>
  *   <li>{@link no.hib.dpf.transform.Transform#isGenerate <em>Generate</em>}</li>
@@ -33,30 +34,56 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Transform extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Meta Model</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Source Meta Model</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Meta Model</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Source Meta Model</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Meta Model</em>' containment reference.
-	 * @see #setMetaModel(DSpecification)
-	 * @see no.hib.dpf.transform.TransformPackage#getTransform_MetaModel()
+	 * @return the value of the '<em>Source Meta Model</em>' containment reference.
+	 * @see #setSourceMetaModel(DSpecification)
+	 * @see no.hib.dpf.transform.TransformPackage#getTransform_SourceMetaModel()
 	 * @model containment="true"
 	 * @generated
 	 */
-	DSpecification getMetaModel();
+	DSpecification getSourceMetaModel();
 
 	/**
-	 * Sets the value of the '{@link no.hib.dpf.transform.Transform#getMetaModel <em>Meta Model</em>}' containment reference.
+	 * Sets the value of the '{@link no.hib.dpf.transform.Transform#getSourceMetaModel <em>Source Meta Model</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Meta Model</em>' containment reference.
-	 * @see #getMetaModel()
+	 * @param value the new value of the '<em>Source Meta Model</em>' containment reference.
+	 * @see #getSourceMetaModel()
 	 * @generated
 	 */
-	void setMetaModel(DSpecification value);
+	void setSourceMetaModel(DSpecification value);
+
+	/**
+	 * Returns the value of the '<em><b>Target Meta Model</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Target Meta Model</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Target Meta Model</em>' containment reference.
+	 * @see #setTargetMetaModel(DSpecification)
+	 * @see no.hib.dpf.transform.TransformPackage#getTransform_TargetMetaModel()
+	 * @model containment="true"
+	 * @generated
+	 */
+	DSpecification getTargetMetaModel();
+
+	/**
+	 * Sets the value of the '{@link no.hib.dpf.transform.Transform#getTargetMetaModel <em>Target Meta Model</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Target Meta Model</em>' containment reference.
+	 * @see #getTargetMetaModel()
+	 * @generated
+	 */
+	void setTargetMetaModel(DSpecification value);
 
 	/**
 	 * Returns the value of the '<em><b>Rules</b></em>' containment reference list.

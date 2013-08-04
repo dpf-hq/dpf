@@ -44,6 +44,7 @@
       </wizard>
    </extension>
 
+
    <extension point="org.eclipse.ui.editors">
       <editor
             class="no.hib.dpf.transform.presentation.TransformEditor"

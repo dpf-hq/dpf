@@ -9,18 +9,16 @@ import org.eclipse.gef.commands.Command;
 
 public class PreserveTransformCommand extends Command {
 	
-	private final DGraph parent;
 	private Object commonObject;
 	private Production production;
 	
-	public PreserveTransformCommand(Object editNode, DGraph parent){
+	public PreserveTransformCommand(Object editNode, Production prod){
 		this.commonObject = editNode;
-		this.parent = parent;
-		production = (Production) parent.eContainer().eContainer();
+		this.production = prod;
 		setLabel("Preserve elements");
 	}
 	public boolean canExecute() {
-		return commonObject instanceof DNode || commonObject instanceof DArrow && parent != null;
+		return commonObject instanceof DNode || commonObject instanceof DArrow && production != null;
 	}
 
 	/* (non-Javadoc)

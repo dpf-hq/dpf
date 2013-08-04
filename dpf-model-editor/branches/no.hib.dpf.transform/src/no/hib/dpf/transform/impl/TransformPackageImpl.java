@@ -117,7 +117,7 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTransform_MetaModel() {
+	public EReference getTransform_SourceMetaModel() {
 		return (EReference)transformEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -126,7 +126,7 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTransform_Rules() {
+	public EReference getTransform_TargetMetaModel() {
 		return (EReference)transformEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -135,7 +135,7 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTransform_DSignature() {
+	public EReference getTransform_Rules() {
 		return (EReference)transformEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -144,8 +144,17 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getTransform_DSignature() {
+		return (EReference)transformEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getTransform_Generate() {
-		return (EAttribute)transformEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)transformEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -258,7 +267,8 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 
 		// Create classes and their features
 		transformEClass = createEClass(TRANSFORM);
-		createEReference(transformEClass, TRANSFORM__META_MODEL);
+		createEReference(transformEClass, TRANSFORM__SOURCE_META_MODEL);
+		createEReference(transformEClass, TRANSFORM__TARGET_META_MODEL);
 		createEReference(transformEClass, TRANSFORM__RULES);
 		createEReference(transformEClass, TRANSFORM__DSIGNATURE);
 		createEAttribute(transformEClass, TRANSFORM__GENERATE);
@@ -308,7 +318,8 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(transformEClass, Transform.class, "Transform", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTransform_MetaModel(), theDiagramPackage.getDSpecification(), null, "metaModel", null, 0, 1, Transform.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTransform_SourceMetaModel(), theDiagramPackage.getDSpecification(), null, "sourceMetaModel", null, 0, 1, Transform.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTransform_TargetMetaModel(), theDiagramPackage.getDSpecification(), null, "targetMetaModel", null, 0, 1, Transform.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTransform_Rules(), this.getProduction(), null, "rules", null, 0, -1, Transform.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTransform_DSignature(), theDiagramPackage.getDSignature(), null, "dSignature", null, 0, 1, Transform.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTransform_Generate(), ecorePackage.getEBoolean(), "generate", "true", 1, 1, Transform.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

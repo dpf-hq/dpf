@@ -29,14 +29,12 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
 public class DeleteTransformCommand extends Command {
 	
-	private final DGraph parent;
 	private Object deleteObject;
 	private Production production;
 	
-	public DeleteTransformCommand(Object editNode, DGraph parent){
+	public DeleteTransformCommand(Object editNode, Production prod){
 		this.deleteObject = editNode;
-		this.parent = parent;
-		production = (Production) parent.eContainer().eContainer();
+		this.production = prod;
 		setLabel("Deletion element");
 	}
 
@@ -45,7 +43,7 @@ public class DeleteTransformCommand extends Command {
 	 * @see org.eclipse.gef.commands.Command#canExecute()
 	 */
 	public boolean canExecute() {
-		return deleteObject instanceof DNode || deleteObject instanceof DArrow && parent != null;
+		return deleteObject instanceof DNode || deleteObject instanceof DArrow && production != null;
 	}
 
 	/* (non-Javadoc)

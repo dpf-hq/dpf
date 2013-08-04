@@ -33,7 +33,7 @@ public class TransformFactoryImpl extends EFactoryImpl implements TransformFacto
 	 */
 	public static TransformFactory init() {
 		try {
-			TransformFactory theTransformFactory = (TransformFactory)EPackage.Registry.INSTANCE.getEFactory("http://no.hib.dpf.transform"); 
+			TransformFactory theTransformFactory = (TransformFactory)EPackage.Registry.INSTANCE.getEFactory(TransformPackage.eNS_URI);
 			if (theTransformFactory != null) {
 				return theTransformFactory;
 			}

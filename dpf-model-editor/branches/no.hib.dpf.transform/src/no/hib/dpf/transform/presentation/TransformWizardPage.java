@@ -13,12 +13,17 @@ package no.hib.dpf.transform.presentation;
  *******************************************************************************/
 
 //import org.eclipse.core.filesystem.IFileStore;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import no.hib.dpf.diagram.DSignature;
 import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.diagram.util.DPFConstants;
 import no.hib.dpf.editor.DPFUtils;
 
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.WizardPage;
@@ -38,25 +43,32 @@ import org.eclipse.ui.dialogs.WizardNewLinkPage;
  * Internal classes has been replaced with Eclipse API classes. 
  * The Variable button has been removed, as well as validation for folders.
  */
-public class DPFWizardPage extends WizardPage {
-	protected Text metaModelFileText;
+public class TransformWizardPage extends WizardPage {
+	protected Text sourceMetaModelFileText;
+	protected Text targetMetaModelFileText;
+	
+	private String sourceURIMetamodel;
+	private String targetURIMetamodel;
 
-	private Button metaModelFileChooser;
+	private Button sourceMetaModelFileChooser;
+	private Button targetMetaModelFileChooser;
 
 	private Text sigFileText;
 
 	private Button sigFileChooser;
 
-	private DSpecification metaModel;
+	private DSpecification sourceMetaModel;
+	private DSpecification targetMetaModel;
 
 	private DSignature sig;
-
+	
+	private Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
 
 	private static final String DEFAULTMETAMODEL = "Default Metamodel";
-
 	private static final String DEFAULTSIGNATURE = "Default Signature";
+	private static final String ENDOGENOUS_TRANSFORMATION = "Endogenous Transformation";
 
-	public DPFWizardPage(String pageId) {
+	public TransformWizardPage(String pageId) {
 		super(pageId);
 	}
 
@@ -81,39 +93,94 @@ public class DPFWizardPage extends WizardPage {
 			data.horizontalSpan = 2;
 			defaultMetamodelButton.setLayoutData(data);
 		}
-		metaModelFileText = new Text(composite, SWT.BORDER);
+		sourceMetaModelFileText = new Text(composite, SWT.BORDER);
 		{
 			GridData data = new GridData();
 			data.horizontalAlignment = GridData.FILL;
 			data.grabExcessHorizontalSpace = true;
-			metaModelFileText.setLayoutData(data);
+			sourceMetaModelFileText.setLayoutData(data);
 		}
 		
-		metaModelFileChooser = new Button(composite, SWT.PUSH);
+		sourceMetaModelFileChooser = new Button(composite, SWT.PUSH);
 		{
-			setButtonLayoutData(metaModelFileChooser);
-			metaModelFileChooser.setText("&Browse...");
-			metaModelFileChooser.addSelectionListener(new SelectionAdapter() {
-				
+			setButtonLayoutData(sourceMetaModelFileChooser);
+			sourceMetaModelFileChooser.setText("&Browse...");
+			sourceMetaModelFileChooser.addSelectionListener(new SelectionAdapter() {
+
 				public void widgetSelected(SelectionEvent event) {
-					handleModelBrowseButtonPressed(metaModelFileText, "*.xform");
-					metaModel = DPFUtils.loadDModel(URI.createFileURI(metaModelFileText.getText()));
+					handleModelBrowseButtonPressed(sourceMetaModelFileText, "*.dpf");
+					//metaModel = DPFUtils.loadDSpecification(TransformEditor.getResourceSet(), URI.createFileURI(metaModelFileText.getText()), resourceToDiagnosticMap);
+					sourceMetaModel = DPFUtils.loadDModel(URI.createFileURI(sourceMetaModelFileText.getText()));
+					sourceURIMetamodel = sourceMetaModelFileText.getText();
 					setPageComplete(validatePage());
 				}
 			});
-			metaModelFileChooser.setEnabled(true);
+			sourceMetaModelFileChooser.setEnabled(true);
+		}
+		final Button targetMetaModelFileButton = new Button(composite, SWT.CHECK);{
+			targetMetaModelFileButton.setText(ENDOGENOUS_TRANSFORMATION);
+			GridData data = new GridData();
+			data.horizontalSpan = 2;
+			targetMetaModelFileButton.setLayoutData(data);
+		}
+		targetMetaModelFileText = new Text(composite, SWT.BORDER);
+		{
+			GridData data = new GridData();
+			data.horizontalAlignment = GridData.FILL;
+			data.grabExcessHorizontalSpace = true;
+			targetMetaModelFileText.setLayoutData(data);
+		}
+		
+		targetMetaModelFileChooser = new Button(composite, SWT.PUSH);
+		{
+			setButtonLayoutData(targetMetaModelFileChooser);
+			targetMetaModelFileChooser.setText("&Browse...");
+			targetMetaModelFileChooser.addSelectionListener(new SelectionAdapter() {
+
+				public void widgetSelected(SelectionEvent event) {
+					handleModelBrowseButtonPressed(targetMetaModelFileText, "*.dpf");
+					//metaModel = DPFUtils.loadDSpecification(TransformEditor.getResourceSet(), URI.createFileURI(metaModelFileText.getText()), resourceToDiagnosticMap);
+					targetMetaModel = DPFUtils.loadDModel(URI.createFileURI(targetMetaModelFileText.getText()));
+					targetURIMetamodel = targetMetaModelFileText.getText();
+					setPageComplete(validatePage());
+				}
+			});
+			targetMetaModelFileChooser.setEnabled(true);
 		}
 		defaultMetamodelButton.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent event) {
 				boolean useDefault = defaultMetamodelButton.getSelection();
 				if(useDefault){
-					metaModelFileText.setEnabled(false);
-					metaModelFileChooser.setEnabled(false);
-					metaModel = DPFConstants.REFLEXIVE_DSPECIFICATION;
+					sourceMetaModelFileText.setEnabled(false);
+					sourceMetaModelFileChooser.setEnabled(false);
+					sourceMetaModel = DPFConstants.REFLEXIVE_DSPECIFICATION;
 				}else{
-					metaModelFileText.setEnabled(true);
-					metaModelFileChooser.setEnabled(true);
-					metaModel = DPFUtils.loadDModel(URI.createFileURI(metaModelFileText.getText()));
+					sourceMetaModelFileText.setEnabled(true);
+					sourceMetaModelFileChooser.setEnabled(true);
+					sourceMetaModel = DPFUtils.loadDModel(URI.createFileURI(sourceMetaModelFileText.getText()));
+					if(targetMetaModelFileButton.getEnabled()){
+						targetMetaModel =  sourceMetaModel;
+						targetURIMetamodel = sourceMetaModelFileText.getText();
+					}
+					//metaModel = DPFUtils.loadDSpecification(TransformEditor.getResourceSet(), URI.createFileURI(metaModelFileText.getText()), resourceToDiagnosticMap);
+					sourceURIMetamodel = sourceMetaModelFileText.getText();
+				}
+				setPageComplete(validatePage());
+			}
+		});
+		targetMetaModelFileButton.addSelectionListener(new SelectionAdapter() {
+			public void widgetSelected(SelectionEvent event) {
+				boolean useDefault = targetMetaModelFileButton.getSelection();
+				if(useDefault){
+					targetMetaModelFileText.setEnabled(false);
+					targetMetaModelFileChooser.setEnabled(false);
+					sourceMetaModel = DPFConstants.REFLEXIVE_DSPECIFICATION;
+				}else{
+					targetMetaModelFileText.setEnabled(true);
+					targetMetaModelFileChooser.setEnabled(true);
+					targetMetaModel = DPFUtils.loadDModel(URI.createFileURI(targetMetaModelFileText.getText()));
+					//metaModel = DPFUtils.loadDSpecification(TransformEditor.getResourceSet(), URI.createFileURI(metaModelFileText.getText()), resourceToDiagnosticMap);
+					targetURIMetamodel = targetMetaModelFileText.getText();
 				}
 				setPageComplete(validatePage());
 			}
@@ -135,7 +202,7 @@ public class DPFWizardPage extends WizardPage {
 		}
 		sigFileChooser = new Button(composite, SWT.PUSH);
 		{
-			setButtonLayoutData(metaModelFileChooser);
+			setButtonLayoutData(sourceMetaModelFileChooser);
 			sigFileChooser.setText("&Browse...");
 			sigFileChooser.addSelectionListener(new SelectionAdapter() {
 				public void widgetSelected(SelectionEvent event) {
@@ -156,7 +223,7 @@ public class DPFWizardPage extends WizardPage {
 				}else{
 					sigFileText.setEnabled(true);
 					sigFileChooser.setEnabled(true);
-					sig = DPFUtils.loadDSignature(URI.createFileURI(metaModelFileText.getText()));
+					sig = DPFUtils.loadDSignature(URI.createFileURI(sourceMetaModelFileText.getText()));
 				}
 				setPageComplete(validatePage());
 			}
@@ -166,11 +233,16 @@ public class DPFWizardPage extends WizardPage {
 		 * Initialize the fields to make sure the default metamodel and default signature are used by default
 		 */
 		defaultMetamodelButton.setSelection(true);
-		metaModelFileText.setEnabled(false);
-		metaModelFileChooser.setEnabled(false);
-		metaModel = DPFConstants.REFLEXIVE_DSPECIFICATION;
-		defaultSigButton.setSelection(true);
+		sourceMetaModelFileText.setEnabled(false);
+		sourceMetaModelFileChooser.setEnabled(false);
+		sourceMetaModel = DPFConstants.REFLEXIVE_DSPECIFICATION;
 		
+		targetMetaModelFileButton.setSelection(true);
+		targetMetaModelFileText.setEnabled(false);
+		targetMetaModelFileChooser.setEnabled(false);
+		targetMetaModel = sourceMetaModel;
+		
+		defaultSigButton.setSelection(true);
 		sigFileText.setEnabled(false);
 		sigFileChooser.setEnabled(false);
 		sig = DPFConstants.DEFAULT_DSIGNATURE;
@@ -190,7 +262,7 @@ public class DPFWizardPage extends WizardPage {
 	}
 
 	protected boolean validatePage() {
-		if(metaModel != null && sig != null){
+		if(sourceMetaModel != null && sig != null){
 			return true;
 		}
 		return false;
@@ -209,12 +281,21 @@ public class DPFWizardPage extends WizardPage {
 		initialLocation = filename;
 	}
 
-	public DSpecification getMetaModel() {
-		return metaModel;
+	public DSpecification getSourceMetaModel() {
+		return sourceMetaModel;
+	}
+	
+	public DSpecification getTargetMetaModel() {
+		return targetMetaModel;
 	}
 
 	public DSignature getSignature() {
 		return sig;
 	}
-
+	public String getSourceMetaModelURI(){
+		return sourceURIMetamodel;
+	}
+	public String getTargetMetaModelURI(){
+		return targetURIMetamodel;
+	}
 }

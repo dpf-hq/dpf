@@ -1,6 +1,7 @@
 package no.hib.dpf.transform.presentation;
 
 import no.hib.dpf.editor.DPFPlugin;
+import no.hib.dpf.transform.henshin.TranslateToEcore;
 import no.hib.dpf.transform.henshin.TranslateToHenshinRules;
 import no.hib.dpf.transform.icons.ImageSettings;
 import no.hib.dpf.transform.provider.TransformEditPlugin;
@@ -52,8 +53,8 @@ public class TransformActionBarContributor extends ActionBarContributor {
 
 		@Override
 		public void run() {
-			System.out.println("Test");
-			TranslateToHenshinRules.generateHenshinModule(TransformActivePage.activeTransformModel(), true);
+			//TranslateToHenshinRules.generateHenshinModule(TransformActivePage.activeTransformModel(), true);
+			TranslateToEcore.translateToEcore(TransformActivePage.activeTransformModel(), true);
 		}
 	};
 
@@ -95,5 +96,4 @@ public class TransformActionBarContributor extends ActionBarContributor {
 		viewMenu.add(generateAction);
 		menubar.insertAfter(IWorkbenchActionConstants.M_EDIT, viewMenu);
 	}
-
 }

@@ -5,13 +5,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import no.hib.dpf.editor.DPFPlugin;
+import no.hib.dpf.transform.provider.TransformEditPlugin;
 
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
 
 public enum ImageSettings {
-	IMG_GENERATE("GenerateHenshin_rules_16.png"),
-	IMG_GENERATE2("ModelToVisualEntry.gif");
+	IMG_GENERATE("GenerateHenshin_Rules_v1_16.gif");
 	
 	private String fileName;
 	
@@ -25,7 +25,7 @@ public enum ImageSettings {
 	public Image getImage(){
 		Image result = null;
 		try {
-			result = new Image(null, DPFPlugin.getDefault().getBundle().getResource(fileName).openStream());
+			result = new Image(null, TransformEditPlugin.getPlugin().getBundle().getResource(fileName).openStream());
 		} catch (IOException e) {
 			e.printStackTrace();
 			return result;
@@ -35,7 +35,7 @@ public enum ImageSettings {
 	public ImageDescriptor getImageDescriptor() {
 		ImageDescriptor result = maps.get(fileName);
 		if(result == null){
-			result = ImageDescriptor.createFromURL(DPFPlugin.getDefault().getBundle().getResource(fileName));
+			result = ImageDescriptor.createFromURL(TransformEditPlugin.getPlugin().getBundle().getResource(fileName));
 			maps.put(fileName, result);
 		}
 		return result;

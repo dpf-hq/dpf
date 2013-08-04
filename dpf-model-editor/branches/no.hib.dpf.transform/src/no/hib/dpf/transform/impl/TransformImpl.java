@@ -31,7 +31,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link no.hib.dpf.transform.impl.TransformImpl#getMetaModel <em>Meta Model</em>}</li>
+ *   <li>{@link no.hib.dpf.transform.impl.TransformImpl#getSourceMetaModel <em>Source Meta Model</em>}</li>
+ *   <li>{@link no.hib.dpf.transform.impl.TransformImpl#getTargetMetaModel <em>Target Meta Model</em>}</li>
  *   <li>{@link no.hib.dpf.transform.impl.TransformImpl#getRules <em>Rules</em>}</li>
  *   <li>{@link no.hib.dpf.transform.impl.TransformImpl#getDSignature <em>DSignature</em>}</li>
  *   <li>{@link no.hib.dpf.transform.impl.TransformImpl#isGenerate <em>Generate</em>}</li>
@@ -42,14 +43,24 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class TransformImpl extends EObjectImpl implements Transform {
 	/**
-	 * The cached value of the '{@link #getMetaModel() <em>Meta Model</em>}' containment reference.
+	 * The cached value of the '{@link #getSourceMetaModel() <em>Source Meta Model</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getMetaModel()
+	 * @see #getSourceMetaModel()
 	 * @generated
 	 * @ordered
 	 */
-	protected DSpecification metaModel;
+	protected DSpecification sourceMetaModel;
+
+	/**
+	 * The cached value of the '{@link #getTargetMetaModel() <em>Target Meta Model</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTargetMetaModel()
+	 * @generated
+	 * @ordered
+	 */
+	protected DSpecification targetMetaModel;
 
 	/**
 	 * The cached value of the '{@link #getRules() <em>Rules</em>}' containment reference list.
@@ -115,8 +126,8 @@ public class TransformImpl extends EObjectImpl implements Transform {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DSpecification getMetaModel() {
-		return metaModel;
+	public DSpecification getSourceMetaModel() {
+		return sourceMetaModel;
 	}
 
 	/**
@@ -124,11 +135,11 @@ public class TransformImpl extends EObjectImpl implements Transform {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetMetaModel(DSpecification newMetaModel, NotificationChain msgs) {
-		DSpecification oldMetaModel = metaModel;
-		metaModel = newMetaModel;
+	public NotificationChain basicSetSourceMetaModel(DSpecification newSourceMetaModel, NotificationChain msgs) {
+		DSpecification oldSourceMetaModel = sourceMetaModel;
+		sourceMetaModel = newSourceMetaModel;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TransformPackage.TRANSFORM__META_MODEL, oldMetaModel, newMetaModel);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TransformPackage.TRANSFORM__SOURCE_META_MODEL, oldSourceMetaModel, newSourceMetaModel);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -139,18 +150,61 @@ public class TransformImpl extends EObjectImpl implements Transform {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMetaModel(DSpecification newMetaModel) {
-		if (newMetaModel != metaModel) {
+	public void setSourceMetaModel(DSpecification newSourceMetaModel) {
+		if (newSourceMetaModel != sourceMetaModel) {
 			NotificationChain msgs = null;
-			if (metaModel != null)
-				msgs = ((InternalEObject)metaModel).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TransformPackage.TRANSFORM__META_MODEL, null, msgs);
-			if (newMetaModel != null)
-				msgs = ((InternalEObject)newMetaModel).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TransformPackage.TRANSFORM__META_MODEL, null, msgs);
-			msgs = basicSetMetaModel(newMetaModel, msgs);
+			if (sourceMetaModel != null)
+				msgs = ((InternalEObject)sourceMetaModel).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TransformPackage.TRANSFORM__SOURCE_META_MODEL, null, msgs);
+			if (newSourceMetaModel != null)
+				msgs = ((InternalEObject)newSourceMetaModel).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TransformPackage.TRANSFORM__SOURCE_META_MODEL, null, msgs);
+			msgs = basicSetSourceMetaModel(newSourceMetaModel, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TransformPackage.TRANSFORM__META_MODEL, newMetaModel, newMetaModel));
+			eNotify(new ENotificationImpl(this, Notification.SET, TransformPackage.TRANSFORM__SOURCE_META_MODEL, newSourceMetaModel, newSourceMetaModel));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DSpecification getTargetMetaModel() {
+		return targetMetaModel;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetTargetMetaModel(DSpecification newTargetMetaModel, NotificationChain msgs) {
+		DSpecification oldTargetMetaModel = targetMetaModel;
+		targetMetaModel = newTargetMetaModel;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TransformPackage.TRANSFORM__TARGET_META_MODEL, oldTargetMetaModel, newTargetMetaModel);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTargetMetaModel(DSpecification newTargetMetaModel) {
+		if (newTargetMetaModel != targetMetaModel) {
+			NotificationChain msgs = null;
+			if (targetMetaModel != null)
+				msgs = ((InternalEObject)targetMetaModel).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TransformPackage.TRANSFORM__TARGET_META_MODEL, null, msgs);
+			if (newTargetMetaModel != null)
+				msgs = ((InternalEObject)newTargetMetaModel).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TransformPackage.TRANSFORM__TARGET_META_MODEL, null, msgs);
+			msgs = basicSetTargetMetaModel(newTargetMetaModel, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TransformPackage.TRANSFORM__TARGET_META_MODEL, newTargetMetaModel, newTargetMetaModel));
 	}
 
 	/**
@@ -232,8 +286,10 @@ public class TransformImpl extends EObjectImpl implements Transform {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case TransformPackage.TRANSFORM__META_MODEL:
-				return basicSetMetaModel(null, msgs);
+			case TransformPackage.TRANSFORM__SOURCE_META_MODEL:
+				return basicSetSourceMetaModel(null, msgs);
+			case TransformPackage.TRANSFORM__TARGET_META_MODEL:
+				return basicSetTargetMetaModel(null, msgs);
 			case TransformPackage.TRANSFORM__RULES:
 				return ((InternalEList<?>)getRules()).basicRemove(otherEnd, msgs);
 		}
@@ -248,8 +304,10 @@ public class TransformImpl extends EObjectImpl implements Transform {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case TransformPackage.TRANSFORM__META_MODEL:
-				return getMetaModel();
+			case TransformPackage.TRANSFORM__SOURCE_META_MODEL:
+				return getSourceMetaModel();
+			case TransformPackage.TRANSFORM__TARGET_META_MODEL:
+				return getTargetMetaModel();
 			case TransformPackage.TRANSFORM__RULES:
 				return getRules();
 			case TransformPackage.TRANSFORM__DSIGNATURE:
@@ -270,8 +328,11 @@ public class TransformImpl extends EObjectImpl implements Transform {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case TransformPackage.TRANSFORM__META_MODEL:
-				setMetaModel((DSpecification)newValue);
+			case TransformPackage.TRANSFORM__SOURCE_META_MODEL:
+				setSourceMetaModel((DSpecification)newValue);
+				return;
+			case TransformPackage.TRANSFORM__TARGET_META_MODEL:
+				setTargetMetaModel((DSpecification)newValue);
 				return;
 			case TransformPackage.TRANSFORM__RULES:
 				getRules().clear();
@@ -295,8 +356,11 @@ public class TransformImpl extends EObjectImpl implements Transform {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case TransformPackage.TRANSFORM__META_MODEL:
-				setMetaModel((DSpecification)null);
+			case TransformPackage.TRANSFORM__SOURCE_META_MODEL:
+				setSourceMetaModel((DSpecification)null);
+				return;
+			case TransformPackage.TRANSFORM__TARGET_META_MODEL:
+				setTargetMetaModel((DSpecification)null);
 				return;
 			case TransformPackage.TRANSFORM__RULES:
 				getRules().clear();
@@ -319,8 +383,10 @@ public class TransformImpl extends EObjectImpl implements Transform {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case TransformPackage.TRANSFORM__META_MODEL:
-				return metaModel != null;
+			case TransformPackage.TRANSFORM__SOURCE_META_MODEL:
+				return sourceMetaModel != null;
+			case TransformPackage.TRANSFORM__TARGET_META_MODEL:
+				return targetMetaModel != null;
 			case TransformPackage.TRANSFORM__RULES:
 				return rules != null && !rules.isEmpty();
 			case TransformPackage.TRANSFORM__DSIGNATURE:

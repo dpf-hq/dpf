@@ -1,12 +1,23 @@
 package no.hib.dpf.transform.henshin;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import no.hib.dpf.editor.DPFEditor;
 import no.hib.dpf.editor.DPFPlugin;
+import no.hib.dpf.editor.DPFUtils;
+import no.hib.dpf.transform.Transform;
 import no.hib.dpf.transform.TransformPackage;
+import no.hib.dpf.transform.presentation.TransformEditor;
+import no.hib.dpf.transform.rules.TransformModule;
 import no.hib.dpf.transform.util.TransformActivePage;
 
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.henshin.interpreter.EGraph;
 import org.eclipse.emf.henshin.interpreter.Engine;
@@ -27,12 +38,22 @@ public class TranslateToHenshinRules {
 	public static final String HENSHINNEW = "C:/Users/Petter/workspace/no.hib.dpf.transform/model/generateHenshinRules.henshin";
 	public static final String HENSHINUNITS = "C:/Users/Petter/workspace/no.hib.dpf.transform/model/generateLoopHenshin.henshin";
 	
-	
 	public static void generateHenshinModule(String path, boolean save){
 		
-		//Create the resource set
+		//TranslateToEcore.translateToEcore(TransformActivePage.activeTransformModel(), true);
+
 		HenshinResourceSet resourceSet = new HenshinResourceSet(TransformActivePage.activeWorkingDirectory());
- 		
+		Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
+		//Transform the metamodels
+		Engine engine = new EngineImpl();
+		//TranslateToEcore.translateToEcore(path, save, engine, resourceSet);
+		
+		/*EPackage metamodel = (EPackage) loadMetaModelObject(resourceSet);
+		System.out.println("/testing.ecore");
+		//Create the resource set
+		
+
+		
 		//Register file extension for resoure set
  		resourceSet.registerXMIResourceFactories("xform");
  		TransformPackage.eINSTANCE.getName();
@@ -41,9 +62,10 @@ public class TranslateToHenshinRules {
  		Resource model = resourceSet.getResource(TransformActivePage.activeTransformModel());	
 		Module module = resourceSet.getModule(HENSHINNEW, true);
 		
+		module.getImports().add(metamodel);
+		
 		//Load the model in a EGraph and define a Engine for the transformation
 		EGraph graph = new EGraphImpl(model);
-		Engine engine = new EngineImpl();
 		
 		//Unit unit = module.getUnit("createHenshinRules");
 		Unit unit = module.getUnit("generateHenshinRules");
@@ -58,17 +80,36 @@ public class TranslateToHenshinRules {
 		} catch (AssertionError e){
 			System.out.println("Errer " + e);
 		}
-		
-		Module result = (Module) unitApp.getResultParameterValue("module");
-		
-		if(save){
-			String henshinModelName = TransformActivePage.trimActiveTransformModel()+"toHenshin.henshin";
-			File file = new File(TransformActivePage.activeWorkingDirectory()+"/"+henshinModelName);
-			if(file.exists()){
-				file.delete();
-			}
-			resourceSet.saveEObject(result, henshinModelName);
-		}
-		System.out.println("Module" + result.getRules());
+		*/
+//		Module result = (Module) unitApp.getResultParameterValue("module");
+//		Transform transform = TransformEditor.loadTransform(DPFUtils.getResourceSet(), URI.createFileURI(TransformActivePage.activeWindowFileLocation()), resourceToDiagnosticMap);
+//		TransformModule translateHenshinRules = new TransformModule(transform, "C:/Users/Petter/runtime-EclipseApplication/transformtest/testing.ecore", resourceSet);
+//		
+//		Module result = (Module) translateHenshinRules.createModule();
+//		
+//		if(save){
+//			String henshinModelName = TransformActivePage.trimActiveTransformModel()+"toHenshin.henshin";
+//			File file = new File(TransformActivePage.activeWorkingDirectory()+"/"+henshinModelName);
+//			if(file.exists()){
+//				file.delete();
+//			}
+//			resourceSet.saveEObject(result, henshinModelName);
+//		}
+//		System.out.println("Module" + result.getRules());
 	}
+	/*private static EObject loadMetaModelObject(HenshinResourceSet resourceSet){
+		URI instanceUri = URI.createFileURI(new File("C:/Users/Petter/runtime-EclipseApplication/transformtest/testing.ecore").getAbsolutePath());
+		Resource resourceInstance = resourceSet.getResource(instanceUri, true);
+		
+		if (resourceInstance.isLoaded()) {
+			resourceInstance.unload();
+			try {
+				resourceInstance.load(null);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}// try catch
+		}// if
+
+		return resourceInstance.getContents().get(0);
+	}*/
 }

@@ -4,6 +4,8 @@ import no.hib.dpf.editor.DPFEditorPaletteFactory;
 
 import org.eclipse.gef.palette.PaletteGroup;
 import org.eclipse.gef.palette.PaletteRoot;
+import org.eclipse.gef.palette.PaletteSeparator;
+import org.eclipse.jface.action.Separator;
 
 public class DPFTransformPaletteFactory extends DPFEditorPaletteFactory {
 
@@ -12,6 +14,7 @@ public class DPFTransformPaletteFactory extends DPFEditorPaletteFactory {
 	public PaletteRoot createPalette() {
 		PaletteRoot root = super.createPalette();
 		if(root != null){
+			root.add(new PaletteSeparator());
 			publicGroup.add(new ActionToolEntry("Add", "set this as an add element", null, null, AddTool.class));
 			publicGroup.add(new ActionToolEntry("Delete", "set this as a delete element", null, null, DeleteTool.class));
 			publicGroup.add(new ActionToolEntry("Preserve", "set this as a preserve element", null, null, PreserveTool.class));

@@ -70,13 +70,22 @@ public interface TransformPackage extends EPackage {
 	int TRANSFORM = 0;
 
 	/**
-	 * The feature id for the '<em><b>Meta Model</b></em>' containment reference.
+	 * The feature id for the '<em><b>Source Meta Model</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFORM__META_MODEL = 0;
+	int TRANSFORM__SOURCE_META_MODEL = 0;
+
+	/**
+	 * The feature id for the '<em><b>Target Meta Model</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSFORM__TARGET_META_MODEL = 1;
 
 	/**
 	 * The feature id for the '<em><b>Rules</b></em>' containment reference list.
@@ -85,7 +94,7 @@ public interface TransformPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFORM__RULES = 1;
+	int TRANSFORM__RULES = 2;
 
 	/**
 	 * The feature id for the '<em><b>DSignature</b></em>' reference.
@@ -94,7 +103,7 @@ public interface TransformPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFORM__DSIGNATURE = 2;
+	int TRANSFORM__DSIGNATURE = 3;
 
 	/**
 	 * The feature id for the '<em><b>Generate</b></em>' attribute.
@@ -103,7 +112,7 @@ public interface TransformPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFORM__GENERATE = 3;
+	int TRANSFORM__GENERATE = 4;
 
 	/**
 	 * The number of structural features of the '<em>Transform</em>' class.
@@ -112,7 +121,7 @@ public interface TransformPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFORM_FEATURE_COUNT = 4;
+	int TRANSFORM_FEATURE_COUNT = 5;
 
 	/**
 	 * The meta object id for the '{@link no.hib.dpf.transform.impl.ProductionImpl <em>Production</em>}' class.
@@ -217,15 +226,26 @@ public interface TransformPackage extends EPackage {
 	EClass getTransform();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link no.hib.dpf.transform.Transform#getMetaModel <em>Meta Model</em>}'.
+	 * Returns the meta object for the containment reference '{@link no.hib.dpf.transform.Transform#getSourceMetaModel <em>Source Meta Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Meta Model</em>'.
-	 * @see no.hib.dpf.transform.Transform#getMetaModel()
+	 * @return the meta object for the containment reference '<em>Source Meta Model</em>'.
+	 * @see no.hib.dpf.transform.Transform#getSourceMetaModel()
 	 * @see #getTransform()
 	 * @generated
 	 */
-	EReference getTransform_MetaModel();
+	EReference getTransform_SourceMetaModel();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link no.hib.dpf.transform.Transform#getTargetMetaModel <em>Target Meta Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Target Meta Model</em>'.
+	 * @see no.hib.dpf.transform.Transform#getTargetMetaModel()
+	 * @see #getTransform()
+	 * @generated
+	 */
+	EReference getTransform_TargetMetaModel();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link no.hib.dpf.transform.Transform#getRules <em>Rules</em>}'.
@@ -391,12 +411,20 @@ public interface TransformPackage extends EPackage {
 		EClass TRANSFORM = eINSTANCE.getTransform();
 
 		/**
-		 * The meta object literal for the '<em><b>Meta Model</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Source Meta Model</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TRANSFORM__META_MODEL = eINSTANCE.getTransform_MetaModel();
+		EReference TRANSFORM__SOURCE_META_MODEL = eINSTANCE.getTransform_SourceMetaModel();
+
+		/**
+		 * The meta object literal for the '<em><b>Target Meta Model</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TRANSFORM__TARGET_META_MODEL = eINSTANCE.getTransform_TargetMetaModel();
 
 		/**
 		 * The meta object literal for the '<em><b>Rules</b></em>' containment reference list feature.

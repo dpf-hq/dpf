@@ -3,6 +3,7 @@ package no.hib.dpf.transform.presentation;
 import java.io.IOException;
 import java.util.List;
 
+import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.diagram.DSpecification;
@@ -23,11 +24,13 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.editparts.ScalableRootEditPart;
 import org.eclipse.gef.editpolicies.AbstractEditPolicy;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
@@ -53,27 +56,56 @@ public class ActionEditPolicy extends AbstractEditPolicy {
 
 	private Command MakeCommonCommand(EditPart editPart) {
 		Object editObject = editPart.getModel();
+		Production production = null;
 		
-		if(editPart != null){
-			return new PreserveTransformCommand(editObject, (DGraph)getHost().getParent().getModel());
+		if(editObject instanceof DArrow){
+			DArrow dArrow = (DArrow) editObject;
+			production = (Production) dArrow.eContainer().eContainer().eContainer();
+		}
+		if(editObject instanceof DNode){
+			DNode dNode = ((DNode) editObject);
+			production = (Production) (dNode).eContainer().eContainer().eContainer();
+		}
+		if(editPart != null && production != null){
+			return new PreserveTransformCommand(editObject, production);
+			//
 		}
 		return EmptyExecutableCommand.INSTANCE;
 	}
 
 	private Command MakeDeleteCommand(EditPart editPart) {
 		Object editObject = editPart.getModel();
+		Production production = null;
 		
-		if(editPart != null){
-			return new DeleteTransformCommand(editObject, (DGraph)getHost().getParent().getModel());
+		if(editObject instanceof DArrow){
+			DArrow dArrow = (DArrow) editObject;
+			production = (Production) dArrow.eContainer().eContainer().eContainer();
+		}
+		if(editObject instanceof DNode){
+			DNode dNode = ((DNode) editObject);
+			production = (Production) (dNode).eContainer().eContainer().eContainer();
+		}
+		if(editPart != null && production != null){
+			return new DeleteTransformCommand(editObject, production);
 		}
 		return EmptyExecutableCommand.INSTANCE;
 	}
 
 	private Command MakeAddCommand(EditPart editPart) {
 		Object editObject = editPart.getModel();
+		Production production = null;
 		
-		if(editPart != null){
-			return new AddTransformCommand(editObject, (DGraph)getHost().getParent().getModel());
+		if(editObject instanceof DArrow){
+			DArrow dArrow = (DArrow) editObject;
+			production = (Production) dArrow.eContainer().eContainer().eContainer();
+			System.out.println("Ger " + (dArrow).eContainer().eContainer().eContainer());
+		}
+		if(editObject instanceof DNode){
+			DNode dNode = ((DNode) editObject);
+			production = (Production) (dNode).eContainer().eContainer().eContainer();
+		}
+		if(editPart != null && production != null){
+			return new AddTransformCommand(editObject, production);
 		}
 		return EmptyExecutableCommand.INSTANCE;
 	}
