@@ -11,7 +11,8 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
 
 public enum ImageSettings {
-	IMG_GENERATE("GenerateHenshin_Rules_v1_16.gif");
+	IMG_GENERATE_ECORE("GenerateHenshin_Rules_v1_16.gif"),
+	IMG_GENERATE_HENSHIN("GenerateHenshin_rules.gif");
 	
 	private String fileName;
 	

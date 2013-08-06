@@ -4,9 +4,12 @@ import java.io.File;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import no.hib.dpf.core.Specification;
+import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.editor.DPFEditor;
 import no.hib.dpf.editor.DPFPlugin;
 import no.hib.dpf.editor.DPFUtils;
+import no.hib.dpf.transform.Transform;
 import no.hib.dpf.transform.TransformPackage;
 import no.hib.dpf.transform.presentation.TransformEditor;
 import no.hib.dpf.transform.util.TransformActivePage;
@@ -29,34 +32,35 @@ import org.eclipse.emf.henshin.model.resource.HenshinResourceSet;
 
 public class TranslateToEcore {
 
-	public static final String SPEC_TO_ECORE = "C:/Users/Petter/workspace/no.hib.dpf.transform/model/generateEcore.henshin";
+	public static final String SPEC_TO_ECORE = "C:/Users/Petter/workspace/no.hib.dpf.transform/model/generateEcoreFromDSpec.henshin";
 	
-	
-	//public static void translateToEcore(String modelPath, boolean save, Engine engine, HenshinResourceSet resourceSet){
-	public static void translateToEcore(String modelPath, boolean save){
+	public static void translateToEcore(Transform transform, boolean save){
 		
-				
 		HenshinResourceSet resourceSet = new HenshinResourceSet(TransformActivePage.activeWorkingDirectory());
-			
+		String metaModelName = transform.getSourceMetaModel().getSpecification().eResource().getURI().lastSegment().replace("xmi", "");
 		
 		//Register file extension for resoure set
-		resourceSet.registerXMIResourceFactories("xform");
+		resourceSet.registerXMIResourceFactories("xmi");
 		TransformPackage.eINSTANCE.getName();
-			
+		
+		System.out.println(transform.getSourceMetaModel().getSpecification().eResource().getURI());
+		
 		//Load the model and the Henshin module into resource set
-		Resource model = resourceSet.getResource(TransformActivePage.activeTransformModel());
+		Resource model = resourceSet.getResource(transform.getSourceMetaModel().getSpecification().eResource().getURI(), true);
+		
 		Module module = resourceSet.getModule(SPEC_TO_ECORE, true);
 			
-		EGraph graph = new EGraphImpl(model);
+		Specification spec1 = (Specification) model.getContents().get(0);
+		Specification spec2 = (Specification) model.getContents().get(1);
+		System.out.println("LOL " + spec1.getGraph().getNodes() + " " + spec2.getGraph().getNodes());
+		
+		EGraph graph = new EGraphImpl(model.getContents().get(0));
 		Engine engine = new EngineImpl();
 		
-		//Unit unit = module.getUnit("createHenshinRules");
-		Unit unit = module.getUnit("generateEPackage");
-		//Unit unit = module.getUnit("generateEcoreModel");
-		
+		Unit unit = module.getUnit("generateSpecToEcore");
 		
 		UnitApplication unitApp = new UnitApplicationImpl(engine, graph, unit, null);
-		unitApp.setParameterValue("ecoreName", TransformActivePage.trimActiveTransformModel());
+		unitApp.setParameterValue("ecoreName", metaModelName);
 		
 		try{
 			InterpreterUtil.executeOrDie(unitApp);
@@ -68,7 +72,7 @@ public class TranslateToEcore {
 		EPackage result = (EPackage) unitApp.getResultParameterValue("package");
 		
 		if(save){
-			String henshinModelName = TransformActivePage.trimActiveTransformModel()+".ecore";
+			String henshinModelName = metaModelName+".ecore";
 			File file = new File(TransformActivePage.activeWorkingDirectory()+"/"+henshinModelName);
 			if(file.exists()){
 				file.delete();

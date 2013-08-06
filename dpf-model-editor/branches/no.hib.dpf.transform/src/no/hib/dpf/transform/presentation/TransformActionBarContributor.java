@@ -1,6 +1,11 @@
 package no.hib.dpf.transform.presentation;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import no.hib.dpf.editor.DPFPlugin;
+import no.hib.dpf.editor.DPFUtils;
+import no.hib.dpf.transform.Transform;
 import no.hib.dpf.transform.henshin.TranslateToEcore;
 import no.hib.dpf.transform.henshin.TranslateToHenshinRules;
 import no.hib.dpf.transform.icons.ImageSettings;
@@ -9,6 +14,9 @@ import no.hib.dpf.transform.util.TransformActivePage;
 
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gef.editparts.ZoomManager;
 import org.eclipse.gef.internal.GEFMessages;
 import org.eclipse.gef.ui.actions.ActionBarContributor;
@@ -41,11 +49,12 @@ public class TransformActionBarContributor extends ActionBarContributor {
 	// };
 	protected IEditorPart activeEditorPart;
 	
-	public final String GENERATE = "Generate To Henshin Transformations";
+	public final String GENERATE_HENSHIN = "Generate To Henshin Transformations";
+	public final String GENERATE_ECORE = "Generate To Ecore Model";
 
 	//private RetargetAction generateAction;
 
-	protected IAction generateAction = new Action(GENERATE, ImageSettings.IMG_GENERATE.getImageDescriptor()) {
+	protected IAction generateToEcore = new Action(GENERATE_ECORE, ImageSettings.IMG_GENERATE_ECORE.getImageDescriptor()) {
 		@Override
 		public boolean isEnabled() {
 			return true;
@@ -53,8 +62,20 @@ public class TransformActionBarContributor extends ActionBarContributor {
 
 		@Override
 		public void run() {
-			//TranslateToHenshinRules.generateHenshinModule(TransformActivePage.activeTransformModel(), true);
-			TranslateToEcore.translateToEcore(TransformActivePage.activeTransformModel(), true);
+			Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
+			Transform transform = TransformEditor.loadTransform(DPFUtils.getResourceSet(), URI.createFileURI(TransformActivePage.activeWindowFileLocation()), resourceToDiagnosticMap);
+			TranslateToEcore.translateToEcore(transform, true);
+		}
+	};
+	protected IAction generateToHenshin = new Action(GENERATE_HENSHIN, ImageSettings.IMG_GENERATE_HENSHIN.getImageDescriptor()) {
+		@Override
+		public boolean isEnabled() {
+			return true;
+		}
+
+		@Override
+		public void run() {
+			TranslateToHenshinRules.generateHenshinModule(true);
 		}
 	};
 
@@ -80,7 +101,8 @@ public class TransformActionBarContributor extends ActionBarContributor {
 
 		toolBarManager.add(new Separator());
 
-		toolBarManager.add(generateAction);
+		toolBarManager.add(generateToEcore);
+		toolBarManager.add(generateToHenshin);
 	}
 
 	@Override
@@ -93,7 +115,8 @@ public class TransformActionBarContributor extends ActionBarContributor {
 	public void contributeToMenu(IMenuManager menubar) {
 		super.contributeToMenu(menubar);
 		MenuManager viewMenu = new MenuManager("Transform Editor");
-		viewMenu.add(generateAction);
+		viewMenu.add(generateToEcore);
+		viewMenu.add(generateToHenshin);
 		menubar.insertAfter(IWorkbenchActionConstants.M_EDIT, viewMenu);
 	}
 }
