@@ -58,7 +58,7 @@ public class TranslateToHenshinRules {
 			if(file.exists()){
 				file.delete();
 			}
-			resourceSet.createResource(null, TransformActivePage.trimActiveTransformModel()+"toHenshin.henshin");
+			//resourceSet.createResource(null, TransformActivePage.trimActiveTransformModel()+"toHenshin.henshin");
 			resourceSet.saveEObject(result, henshinModelName);
 		}
 		System.out.println("Module" + result.getRules());

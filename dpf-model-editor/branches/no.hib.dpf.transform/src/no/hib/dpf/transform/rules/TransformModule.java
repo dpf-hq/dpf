@@ -35,8 +35,12 @@ import org.eclipse.emf.henshin.model.Mapping;
 import org.eclipse.emf.henshin.model.Node;
 import org.eclipse.emf.henshin.model.Rule;
 import org.eclipse.emf.henshin.model.Module;
+import org.eclipse.emf.henshin.model.SequentialUnit;
+import org.eclipse.emf.henshin.model.TransformationUnit;
+import org.eclipse.emf.henshin.model.Unit;
 import org.eclipse.emf.henshin.model.impl.HenshinFactoryImpl;
 import org.eclipse.emf.henshin.model.impl.HenshinPackageImpl;
+import org.eclipse.emf.henshin.model.impl.SequentialUnitImpl;
 import org.eclipse.emf.henshin.model.resource.HenshinResourceSet;
 
 
@@ -72,7 +76,17 @@ public class TransformModule {
 		for(int i = 0;i<transform.getRules().size();i++){
 			mainModule.getUnits().add(generateRule(transform.getRules().get(i)));
 		}
+		setSequentialUnit(mainModule);
 		return mainModule;
+	}
+	public void setSequentialUnit(Module module){
+		SequentialUnit seqUnit = new SequentialUnitImpl();
+		seqUnit.setName("main");
+		for(int i = 0;i<module.getUnits().size();i++){
+			seqUnit.getSubUnits().add(module.getUnits().get(0));
+		}
+		module.getUnits().add(seqUnit);
+		
 	}
 	private Rule generateRule(Production production) {
 		HashMap<String, Node> nodes = new HashMap<String, Node>();
