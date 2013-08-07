@@ -21,13 +21,16 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.henshin.interpreter.EGraph;
 import org.eclipse.emf.henshin.interpreter.Engine;
+import org.eclipse.emf.henshin.interpreter.Match;
 import org.eclipse.emf.henshin.interpreter.UnitApplication;
 import org.eclipse.emf.henshin.interpreter.impl.ChangeImpl;
 import org.eclipse.emf.henshin.interpreter.impl.EGraphImpl;
 import org.eclipse.emf.henshin.interpreter.impl.EngineImpl;
+import org.eclipse.emf.henshin.interpreter.impl.MatchImpl;
 import org.eclipse.emf.henshin.interpreter.impl.UnitApplicationImpl;
 import org.eclipse.emf.henshin.interpreter.util.InterpreterUtil;
 import org.eclipse.emf.henshin.model.Module;
+import org.eclipse.emf.henshin.model.Rule;
 import org.eclipse.emf.henshin.model.Unit;
 import org.eclipse.emf.henshin.model.resource.HenshinResourceSet;
 
@@ -48,18 +51,29 @@ public class TranslateToEcore {
 		Resource model = resourceSet.getResource(specification.getSpecification().eResource().getURI(), true);
 		Module module = resourceSet.getModule(SPEC_TO_ECORE, true);
 	
+		System.out.println("model : " + model.getContents());
+		
 		Specification spec1 = (Specification) model.getContents().get(0);
 		System.out.println("Spec " + spec1.getGraph().getNodes());
-//		Specification spec2 = (Specification) model.getContents().get(1);
-//		System.out.println("LOL " + spec1.getGraph().getNodes() + " " + spec2.getGraph().getNodes());
 		
-		EGraph graph = new EGraphImpl(model.getContents().get(0));
+		EGraph graph = new EGraphImpl();
+		graph.addTree(model.getContents().get(0));
+		
 		Engine engine = new EngineImpl();
 		
 		Unit unit = module.getUnit("generateSpecToEcore");
 		
 		UnitApplication unitApp = new UnitApplicationImpl(engine, graph, unit, null);
 		unitApp.setParameterValue("ecoreName", metaModelName);
+		
+		Rule rule = module.getRule("initialiseEPackage");
+		Match partialMatch = new MatchImpl(rule);  // can be also null
+		 
+		// Iterate over all matches and print them on the console:
+		for (Match match : engine.findMatches(rule, graph, partialMatch)) {
+			System.out.println(match.getNodeTargets());	
+		}
+		
 		
 		try{
 			InterpreterUtil.executeOrDie(unitApp);
