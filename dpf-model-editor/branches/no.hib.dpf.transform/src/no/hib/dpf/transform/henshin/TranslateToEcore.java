@@ -44,8 +44,8 @@ public class TranslateToEcore {
 		String metaModelName = specification.getSpecification().eResource().getURI().lastSegment().replace(".xmi", "");
 		
 		//Register file extension for resoure set
-//		resourceSet.registerXMIResourceFactories("xmi");
-//		TransformPackage.eINSTANCE.getName();
+		resourceSet.registerXMIResourceFactories("xmi");
+		TransformPackage.eINSTANCE.getName();
 		
 		//Load the model and the Henshin module into resource set
 		Resource model = resourceSet.getResource(specification.getSpecification().eResource().getURI(), true);

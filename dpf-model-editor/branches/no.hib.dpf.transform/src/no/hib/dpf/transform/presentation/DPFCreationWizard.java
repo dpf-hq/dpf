@@ -166,6 +166,7 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 			}
 			//transform.setMetaModel(typeSpec != null ? typeSpec : DPFConstants.REFLEXIVE_DSPECIFICATION);
 			transform.setSourceMetaModel(sourceTypeSpec != null ? sourceTypeSpec : DPFConstants.REFLEXIVE_DSPECIFICATION);
+			System.out.println("DSPec " + transform.getSourceMetaModel().getDType().getDGraph().getDNodes());
 			
 			String targetTypeModelFileName = configPage.getTargetMetaModelURI();
 			DSpecification targetTypeSpec = DiagramFactory.eINSTANCE.createDefaultDSpecification();

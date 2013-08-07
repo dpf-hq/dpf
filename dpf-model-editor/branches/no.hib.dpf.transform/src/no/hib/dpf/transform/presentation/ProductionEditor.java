@@ -95,7 +95,9 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 		super.configureGraphicalViewer();
 		String transformFile = TransformActivePage.activeWindowFileLocation();
 		transform = TransformEditor.loadTransform(DPFUtils.getResourceSet(), URI.createFileURI(transformFile), resourceToDiagnosticMap);
-		DGraph newGraph = null;
+		DSpecification defaultDSpecification = DiagramFactory.eINSTANCE.createDefaultDSpecification();
+		defaultDSpecification.setDType(DiagramFactory.eINSTANCE.createDefaultDSpecification());
+		DGraph newGraph = DiagramFactory.eINSTANCE.createDefaultDGraph();
 		
 		DSpecification sourceDSpecification = transform.getSourceMetaModel();
 		DSpecification targetDSpecification = transform.getTargetMetaModel();
