@@ -159,6 +159,7 @@ public class TransformWizardPage extends WizardPage {
 					sourceMetaModelFileChooser.setEnabled(true);
 					sourceMetaModel = DPFUtils.loadDModel(URI.createFileURI(sourceMetaModelFileText.getText()));
 					if(targetMetaModelFileButton.getEnabled()){
+						System.out.println("Check");
 						targetMetaModel = sourceMetaModel;
 						targetURIMetamodel = sourceMetaModelFileText.getText();
 					}
