@@ -67,7 +67,6 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 
 	//	/** Palette component, holding the tools and shapes. */
 	private Transform transform = null;
-	private DGraph newGraph = null;
 	private Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
 	private PaletteRoot paletteRoot;
 
@@ -96,12 +95,21 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 		super.configureGraphicalViewer();
 		String transformFile = TransformActivePage.activeWindowFileLocation();
 		transform = TransformEditor.loadTransform(DPFUtils.getResourceSet(), URI.createFileURI(transformFile), resourceToDiagnosticMap);
+		DGraph newGraph = null;
+		
 		DSpecification sourceDSpecification = transform.getSourceMetaModel();
-//		setDGraph();
+		DSpecification targetDSpecification = transform.getTargetMetaModel();
+		
+		if(sourceDSpecification!=targetDSpecification && !targetDSpecification.getDGraph().getDNodes().isEmpty()){
+			newGraph = setDGraphForExogenousTransformation(sourceDSpecification, targetDSpecification, transformFile);
+		}
+		else{
+			newGraph = sourceDSpecification.getDGraph();
+		}
 		GraphicalViewer viewer = getGraphicalViewer();
 		//paletteFactory.updatePalette(getPaletteRoot(), dSpecification.getDType().getDGraph());
 		//paletteFactory.updatePalette(getPaletteRoot(), dSpecification.getDGraph());
-		paletteFactory.updatePalette(getPaletteRoot(), sourceDSpecification.getDGraph());
+		paletteFactory.updatePalette(getPaletteRoot(), newGraph);
 		shapesEditPartFactory = new DPFEditPartFactory(){
 			protected EditPart getPartForElement(Object modelElement) {
 //				if (modelElement instanceof DGraph) {
@@ -159,24 +167,24 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 		}
 		return paletteRoot;
 	}
-	private void setDGraph(){
-		String transformFile = TransformActivePage.activeWindowFileLocation();
-		transform = TransformEditor.loadTransform(DPFUtils.getResourceSet(), URI.createFileURI(transformFile), resourceToDiagnosticMap);
-		DSpecification sourceDSpecification = transform.getSourceMetaModel();
-		DSpecification targetDSpecification = transform.getTargetMetaModel();
-			
+	private DGraph setDGraphForExogenousTransformation(DSpecification sourceDSpecification, 
+			DSpecification targetDSpecification, String transformFile){
+		
+		DGraph tempGraph = null;
+		
 		EcoreUtil.resolveAll(sourceDSpecification);
 		EcoreUtil.resolveAll(sourceDSpecification.getSpecification());
 		
 		Assert.isTrue(sourceDSpecification != null);
 		setPartName(transformFile);
-		newGraph = sourceDSpecification.getDGraph();
+		tempGraph = sourceDSpecification.getDGraph();
 		
-		if(!targetDSpecification.getDGraph().getDNodes().isEmpty() && sourceDSpecification!=targetDSpecification){
-			newGraph.getDNodes().addAll(targetDSpecification.getDGraph().getDNodes());
-		}
-		if(!targetDSpecification.getDGraph().getDArrows().isEmpty() && sourceDSpecification!=targetDSpecification){
-			newGraph.getDArrows().addAll(targetDSpecification.getDGraph().getDArrows());
-		}
+		EcoreUtil.resolveAll(targetDSpecification);
+		EcoreUtil.resolveAll(targetDSpecification.getSpecification());
+		
+		tempGraph.getDNodes().addAll(targetDSpecification.getDGraph().getDNodes());
+		tempGraph.getDArrows().addAll(targetDSpecification.getDGraph().getDArrows());
+		
+		return tempGraph;
 	}
 }

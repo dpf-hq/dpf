@@ -16,6 +16,7 @@ import no.hib.dpf.transform.util.TransformActivePage;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.henshin.interpreter.EGraph;
@@ -34,25 +35,23 @@ public class TranslateToEcore {
 
 	public static final String SPEC_TO_ECORE = "C:/Users/Petter/workspace/no.hib.dpf.transform/model/generateEcoreFromDSpec.henshin";
 	
-	public static void translateToEcore(Transform transform, boolean save){
+	public static void translateToEcore(DSpecification specification, boolean save){
 		
 		HenshinResourceSet resourceSet = new HenshinResourceSet(TransformActivePage.activeWorkingDirectory());
-		String metaModelName = transform.getSourceMetaModel().getSpecification().eResource().getURI().lastSegment().replace("xmi", "");
+		String metaModelName = specification.getSpecification().eResource().getURI().lastSegment().replace(".xmi", "");
 		
 		//Register file extension for resoure set
-		resourceSet.registerXMIResourceFactories("xmi");
-		TransformPackage.eINSTANCE.getName();
-		
-		System.out.println(transform.getSourceMetaModel().getSpecification().eResource().getURI());
+//		resourceSet.registerXMIResourceFactories("xmi");
+//		TransformPackage.eINSTANCE.getName();
 		
 		//Load the model and the Henshin module into resource set
-		Resource model = resourceSet.getResource(transform.getSourceMetaModel().getSpecification().eResource().getURI(), true);
-		
+		Resource model = resourceSet.getResource(specification.getSpecification().eResource().getURI(), true);
 		Module module = resourceSet.getModule(SPEC_TO_ECORE, true);
-			
+	
 		Specification spec1 = (Specification) model.getContents().get(0);
-		Specification spec2 = (Specification) model.getContents().get(1);
-		System.out.println("LOL " + spec1.getGraph().getNodes() + " " + spec2.getGraph().getNodes());
+		System.out.println("Spec " + spec1.getGraph().getNodes());
+//		Specification spec2 = (Specification) model.getContents().get(1);
+//		System.out.println("LOL " + spec1.getGraph().getNodes() + " " + spec2.getGraph().getNodes());
 		
 		EGraph graph = new EGraphImpl(model.getContents().get(0));
 		Engine engine = new EngineImpl();
@@ -80,6 +79,5 @@ public class TranslateToEcore {
 			resourceSet.saveEObject(result, henshinModelName);
 		}
 		System.out.println("EPackage" + result.getEClassifiers().size());
-		
 	}
 }

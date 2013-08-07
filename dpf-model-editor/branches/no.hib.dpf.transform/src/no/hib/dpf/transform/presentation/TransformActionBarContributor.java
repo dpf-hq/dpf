@@ -64,7 +64,7 @@ public class TransformActionBarContributor extends ActionBarContributor {
 		public void run() {
 			Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
 			Transform transform = TransformEditor.loadTransform(DPFUtils.getResourceSet(), URI.createFileURI(TransformActivePage.activeWindowFileLocation()), resourceToDiagnosticMap);
-			TranslateToEcore.translateToEcore(transform, true);
+			TranslateToEcore.translateToEcore(transform.getSourceMetaModel(), true);
 		}
 	};
 	protected IAction generateToHenshin = new Action(GENERATE_HENSHIN, ImageSettings.IMG_GENERATE_HENSHIN.getImageDescriptor()) {

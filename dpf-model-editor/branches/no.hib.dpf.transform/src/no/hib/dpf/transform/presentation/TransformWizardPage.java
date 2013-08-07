@@ -159,7 +159,7 @@ public class TransformWizardPage extends WizardPage {
 					sourceMetaModelFileChooser.setEnabled(true);
 					sourceMetaModel = DPFUtils.loadDModel(URI.createFileURI(sourceMetaModelFileText.getText()));
 					if(targetMetaModelFileButton.getEnabled()){
-						targetMetaModel =  sourceMetaModel;
+						targetMetaModel = sourceMetaModel;
 						targetURIMetamodel = sourceMetaModelFileText.getText();
 					}
 					//metaModel = DPFUtils.loadDSpecification(TransformEditor.getResourceSet(), URI.createFileURI(metaModelFileText.getText()), resourceToDiagnosticMap);
@@ -170,15 +170,15 @@ public class TransformWizardPage extends WizardPage {
 		});
 		targetMetaModelFileButton.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent event) {
-				boolean useDefault = targetMetaModelFileButton.getSelection();
-				if(useDefault){
+				boolean isEndogenous_transformation = targetMetaModelFileButton.getSelection();
+				if(isEndogenous_transformation){
 					targetMetaModelFileText.setEnabled(false);
 					targetMetaModelFileChooser.setEnabled(false);
-					sourceMetaModel = DPFConstants.REFLEXIVE_DSPECIFICATION;
 				}else{
 					targetMetaModelFileText.setEnabled(true);
 					targetMetaModelFileChooser.setEnabled(true);
 					targetMetaModel = DPFUtils.loadDModel(URI.createFileURI(targetMetaModelFileText.getText()));
+					System.out.println("herigjen");
 					//metaModel = DPFUtils.loadDSpecification(TransformEditor.getResourceSet(), URI.createFileURI(metaModelFileText.getText()), resourceToDiagnosticMap);
 					targetURIMetamodel = targetMetaModelFileText.getText();
 				}
