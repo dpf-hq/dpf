@@ -32,6 +32,14 @@ public class TransformActivePage {
 		return path;
 	}
 	
+	public static IWorkbenchWindow getActiveWorkBenchWindow(){
+		IWorkbench wb = PlatformUI.getWorkbench();
+		IWorkbenchWindow win = wb.getActiveWorkbenchWindow();
+		
+		return win;
+	}
+	
+	
 	public static String activeWorkingDirectory(){
 		//String path = ((FileEditorInput)input).getName();
 		IWorkbench wb = PlatformUI.getWorkbench();

@@ -9,6 +9,7 @@ import java.util.Set;
 import no.hib.dpf.core.Specification;
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DNode;
+import no.hib.dpf.diagram.util.DPFConstants;
 import no.hib.dpf.transform.Production;
 import no.hib.dpf.transform.Transform;
 import no.hib.dpf.transform.util.TransformActivePage;
@@ -55,13 +56,21 @@ public class TransformModule {
 	public TransformModule(Transform transform, HenshinResourceSet resourceSet){
 		this.resourceSet = resourceSet;
 		this.transform = transform;
-		URI modelUri = URI.createURI(resourceSet.getBaseDir() +
+		URI sourceModelUri = URI.createURI(resourceSet.getBaseDir() +
 			transform.getSourceMetaModel().getSpecification().eResource().getURI().lastSegment().replace(".xmi", ".ecore"));
-		System.out.println(modelUri);
-		Resource resourceModel = resourceSet.getResource(modelUri, true);
-		sourceMetaModel = (EPackage) resourceModel.getContents().get(0);
-		resourceSet.getResources().add(resourceModel);
+		System.out.println(sourceModelUri);
+		Resource sourceModel = resourceSet.getResource(sourceModelUri, true);
+		sourceMetaModel = (EPackage) sourceModel.getContents().get(0);
+		resourceSet.getResources().add(sourceModel);
 		System.out.println("Her + " + sourceMetaModel.getEClassifiers());
+		
+		URI targetModelUri = URI.createURI(resourceSet.getBaseDir() +
+				transform.getSourceMetaModel().getSpecification().eResource().getURI().lastSegment().replace(".xmi", ".ecore"));
+		System.out.println(targetModelUri);
+		Resource targetModel = resourceSet.getResource(targetModelUri, true);
+		targetMetaModel = (EPackage) targetModel.getContents().get(0);
+		resourceSet.getResources().add(targetModel);
+		System.out.println("Her + " + targetMetaModel.getEClassifiers());
 		
 	}
 	public Module createModule(){
@@ -70,9 +79,12 @@ public class TransformModule {
 		if(sourceMetaModel != null && sourceMetaModel instanceof EPackage){
 			mainModule.getImports().add(sourceMetaModel);
 		}
-//		for(int i = 0;i<transform.getRules().size();i++){
-//			mainModule.getUnits().add(generateRule(transform.getRules().get(i)));
-//		}
+		if(targetMetaModel != null && targetMetaModel instanceof EPackage && targetMetaModel!=sourceMetaModel){
+			mainModule.getImports().add(targetMetaModel);
+		}
+		
+		mainModule.getUnits().add(generateInitialRule(mainModule));
+		
 		for(int i = 0;i<transform.getRules().size();i++){
 			mainModule.getUnits().add(generateRule(transform.getRules().get(i)));
 		}
@@ -83,10 +95,49 @@ public class TransformModule {
 		SequentialUnit seqUnit = new SequentialUnitImpl();
 		seqUnit.setName("main");
 		for(int i = 0;i<module.getUnits().size();i++){
-			seqUnit.getSubUnits().add(module.getUnits().get(0));
+			seqUnit.getSubUnits().add(module.getUnits().get(i));
 		}
 		module.getUnits().add(seqUnit);
 		
+	}
+
+	public Rule generateInitialRule(Module module){
+		Rule rule = henshinFac.createRule("initialiseSpecificationAndGraph");
+		
+		Graph lhs = rule.getLhs();
+		Graph rhs = rule.getRhs();
+		
+		String path = "file:/C:/Users/Petter/workspace/no.hib.dpf.core/model/Metamodel.ecore";
+		URI coreModelURI = URI.createURI(path);
+		System.out.println(coreModelURI);
+		Resource coreModel = resourceSet.getResource(coreModelURI, true);
+		EPackage core = (EPackage) coreModel.getContents().get(0);
+		
+		module.getImports().add(core);
+		
+		EClass specificationType = (EClass) core.getEClassifier("Specification");
+		Node specification_lhs = henshinFac.createNode(lhs, specificationType, null);
+		Node specification_rhs = henshinFac.createNode(rhs, specificationType, null);
+		
+		rule.getMappings().add(henshinFac.createMapping(specification_lhs, specification_rhs));
+		
+		EClass graphType = (EClass) sourceMetaModel.getEClassifier("Graph");
+		Node graph_lhs = henshinFac.createNode(lhs, graphType, null);
+		Node graph_rhs = henshinFac.createNode(rhs, graphType, null);
+		
+		rule.getMappings().add(henshinFac.createMapping(graph_lhs, graph_rhs));
+		
+		EReference ref_spec_graph = null;
+		for(int i = 0;i<specificationType.getEReferences().size();i++){
+			if(specificationType.getEReferences().get(i).getEReferenceType()==graphType){
+				ref_spec_graph = specificationType.getEReferences().get(i);
+			}
+		}
+		
+		rule.createEdge(specification_lhs, graph_lhs, ref_spec_graph);
+		rule.createEdge(specification_rhs, graph_rhs, ref_spec_graph);
+		
+		return rule;
 	}
 	private Rule generateRule(Production production) {
 		HashMap<String, Node> nodes = new HashMap<String, Node>();
@@ -103,7 +154,7 @@ public class TransformModule {
 			EClass nodeType = (EClass) sourceMetaModel.getEClassifier(dNodeType);
 			
 			Node deletion = henshinFac.createNode(lhs, nodeType, null);
-			deletion.setName(production.getLeftNodes().get(i).getNode().getName());
+			//deletion.setName(production.getLeftNodes().get(i).getNode().getName());
 			
 			nodes.put(production.getLeftNodes().get(i).getName(), deletion);
 		}
@@ -113,7 +164,7 @@ public class TransformModule {
 			EClass arrowType = (EClass) sourceMetaModel.getEClassifier(dArrowType);
 			
 			Node deletion = henshinFac.createNode(lhs, arrowType, null);
-			deletion.setName(production.getLeftArrows().get(i).getArrow().getName());
+			//deletion.setName(production.getLeftArrows().get(i).getArrow().getName());
 			
 			nodes.put(production.getLeftArrows().get(i).getName(), deletion);
 		}

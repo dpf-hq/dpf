@@ -6,10 +6,12 @@ import java.util.Map;
 import no.hib.dpf.editor.DPFPlugin;
 import no.hib.dpf.editor.DPFUtils;
 import no.hib.dpf.transform.Transform;
+import no.hib.dpf.transform.henshin.ApplyTransformation;
 import no.hib.dpf.transform.henshin.TranslateToEcore;
 import no.hib.dpf.transform.henshin.TranslateToHenshinRules;
 import no.hib.dpf.transform.icons.ImageSettings;
 import no.hib.dpf.transform.provider.TransformEditPlugin;
+import no.hib.dpf.transform.util.BrowseInstanceModel;
 import no.hib.dpf.transform.util.TransformActivePage;
 
 import org.eclipse.draw2d.PositionConstants;
@@ -36,8 +38,11 @@ import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.window.Window;
+import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchActionConstants;
+import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.actions.RetargetAction;
 
@@ -51,6 +56,7 @@ public class TransformActionBarContributor extends ActionBarContributor {
 	
 	public final String GENERATE_HENSHIN = "Generate To Henshin Transformations";
 	public final String GENERATE_ECORE = "Generate To Ecore Model";
+	public final String EXECUTE_TRANSFORMATION = "Apply Model Transformation";
 
 	//private RetargetAction generateAction;
 
@@ -78,6 +84,24 @@ public class TransformActionBarContributor extends ActionBarContributor {
 			TranslateToHenshinRules.generateHenshinModule(true);
 		}
 	};
+	protected IAction executeTransformation = new Action(EXECUTE_TRANSFORMATION, ImageSettings.IMG_EXECUTE_TRANFORMATION.getImageDescriptor()) {
+		@Override
+		public boolean isEnabled() {
+			return true;
+		}
+
+		@Override
+		public void run() {
+			ApplyTransformation.exeucteTransformation("C:/Users/Petter/workspace/DPFTest/specifications/theModelInstance.xmi", true);
+			//			WizardDialog wizardDialog = new WizardDialog(TransformActivePage.getActiveWorkBenchWindow().getShell(),
+//				      new BrowseInstanceModel());
+//				    if (wizardDialog.open() == Window.OK) {
+//				      System.out.println("Ok pressed");
+//				    } else {
+//				      System.out.println("Cancel pressed");
+//				    }
+		}
+	};
 
 	@Override
 	public void setActiveEditor(IEditorPart part) {
@@ -103,6 +127,7 @@ public class TransformActionBarContributor extends ActionBarContributor {
 
 		toolBarManager.add(generateToEcore);
 		toolBarManager.add(generateToHenshin);
+		toolBarManager.add(executeTransformation);
 	}
 
 	@Override
@@ -117,6 +142,7 @@ public class TransformActionBarContributor extends ActionBarContributor {
 		MenuManager viewMenu = new MenuManager("Transform Editor");
 		viewMenu.add(generateToEcore);
 		viewMenu.add(generateToHenshin);
+		viewMenu.add(executeTransformation);
 		menubar.insertAfter(IWorkbenchActionConstants.M_EDIT, viewMenu);
 	}
 }
