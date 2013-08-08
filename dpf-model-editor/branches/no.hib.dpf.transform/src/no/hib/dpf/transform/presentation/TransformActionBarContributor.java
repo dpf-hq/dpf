@@ -92,7 +92,7 @@ public class TransformActionBarContributor extends ActionBarContributor {
 
 		@Override
 		public void run() {
-			ApplyTransformation.exeucteTransformation("C:/Users/Petter/workspace/DPFTest/specifications/theModelInstance.xmi", true);
+			ApplyTransformation.exeucteTransformation("C:/Users/Petter/workspace/DPF_PRoject/specifications/dpfSpecification2.xmi", true);
 			//			WizardDialog wizardDialog = new WizardDialog(TransformActivePage.getActiveWorkBenchWindow().getShell(),
 //				      new BrowseInstanceModel());
 //				    if (wizardDialog.open() == Window.OK) {

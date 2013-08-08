@@ -28,14 +28,11 @@ import org.eclipse.emf.henshin.interpreter.UnitApplication;
 import org.eclipse.emf.henshin.interpreter.impl.EGraphImpl;
 import org.eclipse.emf.henshin.interpreter.impl.EngineImpl;
 import org.eclipse.emf.henshin.interpreter.impl.UnitApplicationImpl;
-import org.eclipse.emf.henshin.model.Action;
-import org.eclipse.emf.henshin.model.AttributeCondition;
 import org.eclipse.emf.henshin.model.Edge;
 import org.eclipse.emf.henshin.model.Graph;
 import org.eclipse.emf.henshin.model.HenshinFactory;
 import org.eclipse.emf.henshin.model.LoopUnit;
 import org.eclipse.emf.henshin.model.Mapping;
-import org.eclipse.emf.henshin.model.NestedCondition;
 import org.eclipse.emf.henshin.model.Node;
 import org.eclipse.emf.henshin.model.Rule;
 import org.eclipse.emf.henshin.model.Module;
@@ -44,21 +41,19 @@ import org.eclipse.emf.henshin.model.TransformationUnit;
 import org.eclipse.emf.henshin.model.Unit;
 import org.eclipse.emf.henshin.model.impl.HenshinFactoryImpl;
 import org.eclipse.emf.henshin.model.impl.HenshinPackageImpl;
-import org.eclipse.emf.henshin.model.impl.NestedConditionImpl;
 import org.eclipse.emf.henshin.model.impl.SequentialUnitImpl;
 import org.eclipse.emf.henshin.model.resource.HenshinResourceSet;
 
 
-public class TransformModule {
+public class CopyOfTransformModule {
 	
 	private Transform transform = null;
 	private EPackage sourceMetaModel = null;
 	private EPackage targetMetaModel = null;
 	private HenshinResourceSet resourceSet = null;
 	private HenshinFactory henshinFac = HenshinFactoryImpl.eINSTANCE;
-	private EPackage core;
 	
-	public TransformModule(Transform transform, HenshinResourceSet resourceSet){
+	public CopyOfTransformModule(Transform transform, HenshinResourceSet resourceSet){
 		this.resourceSet = resourceSet;
 		this.transform = transform;
 		URI sourceModelUri = URI.createURI(resourceSet.getBaseDir() +
@@ -116,7 +111,7 @@ public class TransformModule {
 		URI coreModelURI = URI.createURI(path);
 		System.out.println(coreModelURI);
 		Resource coreModel = resourceSet.getResource(coreModelURI, true);
-		core = (EPackage) coreModel.getContents().get(0);
+		EPackage core = (EPackage) coreModel.getContents().get(0);
 		
 		EClass idObject = (EClass) core.getEClassifier("IDObject");
 		sourceMetaModel.getEClassifiers().add(idObject);
@@ -144,13 +139,13 @@ public class TransformModule {
 		
 		module.getImports().add(core);
 		
-		EClass specificationType = (EClass) core.getEClassifier("Specification");
+		EClass specificationType = (EClass) sourceMetaModel.getEClassifier("Specification");
 		Node specification_lhs = henshinFac.createNode(lhs, specificationType, null);
 		Node specification_rhs = henshinFac.createNode(rhs, specificationType, null);
 		
 		rule.getMappings().add(henshinFac.createMapping(specification_lhs, specification_rhs));
 		
-		EClass graphType = (EClass) core.getEClassifier("Graph");
+		EClass graphType = (EClass) sourceMetaModel.getEClassifier("Graph");
 		Node graph_lhs = henshinFac.createNode(lhs, graphType, null);
 		Node graph_rhs = henshinFac.createNode(rhs, graphType, null);
 		
@@ -180,17 +175,12 @@ public class TransformModule {
 		//Create Nodes on LHS
 		for(int i = 0; i<production.getLeftNodes().size();i++){
 			String dNodeType = production.getLeftNodes().get(i).getTypeName();
-			EClass nodeType = (EClass) core.getEClassifier("Node");
+			EClass nodeType = (EClass) sourceMetaModel.getEClassifier(dNodeType);
 			
 			Node deletion = henshinFac.createNode(lhs, nodeType, null);
-			deletion.setName(production.getLeftNodes().get(i).getNode().getName());
-			NestedCondition nestCond = new NestedConditionImpl();
-			lhs.createNAC("Hei");
-		}
-		return rule;
-	}
+			//deletion.setName(production.getLeftNodes().get(i).getNode().getName());
 			
-			/*nodes.put(production.getLeftNodes().get(i).getName(), deletion);
+			nodes.put(production.getLeftNodes().get(i).getName(), deletion);
 		}
 		//Create Arrows LHS
 		for(int i = 0;i<production.getLeftArrows().size();i++){
@@ -345,7 +335,7 @@ public class TransformModule {
 			}
 			henshinFac.createEdge(source_DArrow_Node, target_DNode_Node, ref_DArrow_DNode);
 		}
-	}*/
+	}
 //	private void findEReferencesDNodesLHS_RHS(EList<DNode> dNodes, 
 //			HashMap<String, Node> nodes){
 //		

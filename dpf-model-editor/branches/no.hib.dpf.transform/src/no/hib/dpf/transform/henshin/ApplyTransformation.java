@@ -54,7 +54,7 @@ public class ApplyTransformation {
 		
 		Resource model = resourceSet.getResource(newUri, true);
 		Module module = resourceSet.getModule(TransformActivePage.trimActiveTransformModel()+"toHenshin.henshin", true);
-		Specification spec =  (Specification) model.getContents().get(0);
+		Specification spec = (Specification) model.getContents().get(0);
 		//DSpecification spec =  (DSpecification) model.getContents().get(0);
 		System.out.println("model " + spec.getGraph().getNodes());
 		System.out.println("module " + module.getRules());
@@ -76,6 +76,17 @@ public class ApplyTransformation {
 				System.out.println(match);	
 			}
 		}
+//		Unit unit = module.getUnit(module.getRules().get(0).getName());
+//		
+//		UnitApplication unitApp = new UnitApplicationImpl(engine, graph, unit, null);
+//		
+//		try{
+//			InterpreterUtil.executeOrDie(unitApp);
+//			ChangeImpl.PRINT_WARNINGS = false;
+//		} catch (AssertionError e){
+//			System.out.println("Errer " + e);
+//		}
+		
 //		Transform transform = TransformEditor.loadTransform(DPFUtils.getResourceSet(), URI.createFileURI(TransformActivePage.activeWindowFileLocation()), resourceToDiagnosticMap);
 //		TransformModule translateHenshinRules = new TransformModule(transform, resourceSet);
 //				

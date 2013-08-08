@@ -16,8 +16,10 @@ import no.hib.dpf.transform.util.TransformActivePage;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.henshin.interpreter.EGraph;
 import org.eclipse.emf.henshin.interpreter.Engine;
@@ -39,9 +41,17 @@ public class TranslateToEcore {
 	public static final String SPEC_TO_ECORE = "C:/Users/Petter/workspace/no.hib.dpf.transform/model/generateEcoreFromDSpec.henshin";
 	
 	public static void translateToEcore(DSpecification specification, boolean save){
-		
 		HenshinResourceSet resourceSet = new HenshinResourceSet(TransformActivePage.activeWorkingDirectory());
 		String metaModelName = specification.getSpecification().eResource().getURI().lastSegment().replace(".xmi", "");
+		
+		
+		String path = "file:/C:/Users/Petter/workspace/no.hib.dpf.core/model/Metamodel.ecore";
+		URI coreModelURI = URI.createURI(path);
+		System.out.println(coreModelURI);
+		Resource coreModel = resourceSet.getResource(coreModelURI, true);
+		EPackage core = (EPackage) coreModel.getContents().get(0);
+
+		EClass idObject = (EClass) core.getEClassifier("IDObject");
 		
 		//Register file extension for resoure set
 		resourceSet.registerXMIResourceFactories("xmi");
@@ -65,6 +75,8 @@ public class TranslateToEcore {
 		
 		UnitApplication unitApp = new UnitApplicationImpl(engine, graph, unit, null);
 		unitApp.setParameterValue("ecoreName", metaModelName);
+		unitApp.setParameterValue("idObject", idObject);
+		
 		
 		Rule rule = module.getRule("initialiseEPackage");
 		Match partialMatch = new MatchImpl(rule);  // can be also null
@@ -73,8 +85,6 @@ public class TranslateToEcore {
 		for (Match match : engine.findMatches(rule, graph, partialMatch)) {
 			System.out.println(match.getNodeTargets());	
 		}
-		
-		
 		try{
 			InterpreterUtil.executeOrDie(unitApp);
 			ChangeImpl.PRINT_WARNINGS = false;
@@ -83,6 +93,18 @@ public class TranslateToEcore {
 		}
 		
 		EPackage result = (EPackage) unitApp.getResultParameterValue("package");
+
+		EClass spec = (EClass) core.getEClassifier("Specification");	
+		result.getEClassifiers().add(spec);
+		
+		EClass default_graph = (EClass) core.getEClassifier("Graph");	
+		result.getEClassifiers().add(default_graph);
+
+		EClass node = (EClass) core.getEClassifier("Node");
+		result.getEClassifiers().add(node);
+		
+		EClass arrow = (EClass) core.getEClassifier("Arrow");
+		result.getEClassifiers().add(arrow);
 		
 		if(save){
 			String henshinModelName = metaModelName+".ecore";

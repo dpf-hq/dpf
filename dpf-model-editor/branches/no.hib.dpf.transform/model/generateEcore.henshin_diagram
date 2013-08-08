@@ -811,6 +811,11 @@
         <element xmi:type="henshin:LoopUnit" href="generateEcore.henshin#_0ulDQPncEeK7b9HIiN9jEA"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_0umRbfncEeK7b9HIiN9jEA" x="496" y="53"/>
       </children>
+      <children xmi:type="notation:Shape" xmi:id="_Ds7igAArEeOUvuAtfN_EVg" type="3003" fontName="Segoe UI" italic="true" lineColor="0">
+        <children xmi:type="notation:DecorationNode" xmi:id="_Ds7iggArEeOUvuAtfN_EVg" type="5005"/>
+        <element xmi:type="henshin:Rule" href="generateEcore.henshin#_HzykIPneEeK7b9HIiN9jEA"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Ds7igQArEeOUvuAtfN_EVg"/>
+      </children>
     </children>
     <element xmi:type="henshin:LoopUnit" href="generateEcore.henshin#_0ulDQPncEeK7b9HIiN9jEA"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0ulqUfncEeK7b9HIiN9jEA" x="593" y="376" width="544" height="169"/>
@@ -1455,5 +1460,23 @@
     <styles xmi:type="notation:FontStyle" xmi:id="_0m-Z2f0mEeKHebzKe6aGiQ" fontName="Segoe UI"/>
     <element xmi:type="henshin:SequentialUnit" href="generateEcore.henshin#_DUzyAPnLEeK7b9HIiN9jEA"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_0m-Z2v0mEeKHebzKe6aGiQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_Ds7igwArEeOUvuAtfN_EVg" type="4002" source="_0umRYPncEeK7b9HIiN9jEA" target="_Ds7igAArEeOUvuAtfN_EVg">
+    <styles xmi:type="notation:RoutingStyle" xmi:id="_Ds7ihAArEeOUvuAtfN_EVg" routing="Rectilinear"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_Ds7ihQArEeOUvuAtfN_EVg" fontName="Segoe UI"/>
+    <element xmi:type="henshin:LoopUnit" href="generateEcore.henshin#_0ulDQPncEeK7b9HIiN9jEA"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Ds7ihgArEeOUvuAtfN_EVg" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_Ds8JkAArEeOUvuAtfN_EVg" type="4002" source="_Ds7igAArEeOUvuAtfN_EVg" target="_0umRZ_ncEeK7b9HIiN9jEA">
+    <styles xmi:type="notation:RoutingStyle" xmi:id="_Ds8JkQArEeOUvuAtfN_EVg" routing="Rectilinear"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_Ds8JkgArEeOUvuAtfN_EVg" fontName="Segoe UI"/>
+    <element xmi:type="henshin:LoopUnit" href="generateEcore.henshin#_0ulDQPncEeK7b9HIiN9jEA"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Ds8JkwArEeOUvuAtfN_EVg" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_Ds8JlAArEeOUvuAtfN_EVg" type="4002" source="_Ds7igAArEeOUvuAtfN_EVg" target="_Ds7igAArEeOUvuAtfN_EVg">
+    <styles xmi:type="notation:RoutingStyle" xmi:id="_Ds8JlQArEeOUvuAtfN_EVg" routing="Rectilinear"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_Ds8JlgArEeOUvuAtfN_EVg" fontName="Segoe UI"/>
+    <element xmi:type="henshin:LoopUnit" href="generateEcore.henshin#_0ulDQPncEeK7b9HIiN9jEA"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Ds8JlwArEeOUvuAtfN_EVg" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
   </edges>
 </notation:Diagram>
