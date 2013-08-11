@@ -31,33 +31,28 @@ apply operations to the data accordingly to the type. But when we talk about
 data representing software artifacts such as a data schema, programs or models,
 then transformation approaches 
 
-Machine code or machine language is a set of instructions executed directly by a
-computer's central processing unit (CPU). Each instruction performs a very
-specific task, such as a load, a jump, or an ALU operation on a unit of data in
-a CPU register or memory. Every program directly executed by a CPU is made up
-of a series of such instructions.
-
 %-----------------------------------
 %	SUBSECTION 1
 %-----------------------------------
 \subsection{Basic concepts of model transformation}
 
-The basic concept of model transformations is to do changes to a model. 
+The very basic concept of model transformations is to perform changes to a
+model.
 
 A model transformation is when we change an instance of a source metamodel to an
-instance that conforms to the target metamodel. We can distinguish these operations into either endogenous or exogenous model transformations. In an
+instance that conforms to the target metamodel. We can distinguish these
+operations into either endogenous or exogenous model transformations. In an
 endogenous model transformation we take one model expressed in a language and
-produce a model expressed in the same language.
+produce a model expressed in the same language. 
 While an exogenous model transformation start with a model expressed in one
 modelling language and translate this into a model expressed in another
 modelling language. It is essential that these models are consistent. This is
-obtained through the use of metamodels. A metamodel is a description of a
-modelling language, where it defines elements that are used in the model.
+obtained through the use of metamodels.
 A model transformation can produce two different kind of output models. The
 first one is code generation, often referred to Model to Text(M2T)
 transformation, and it takes one model and produces implementation code. This
 is convenient if for example a software engineer wants to produce source code
-from a given model. asdsd
+
 \begin{figure}[H]
   \centering
     \includegraphics[scale=0.5]{./Figures/BasicTransformation.png}
@@ -74,57 +69,65 @@ from a given model. asdsd
 
 \subsection{Classification of a model transformation}
 
+In March 2006 Krzysztof Czarnecki and Simon Helsen did a domain analysis to
+existing model transformation approaches. Domain analysis represents
+information on software system that share a common set of features for a given
+domain\cite{FODA,Prieto-Diaz1990}, in this case model transformations.
+
 \begin{figure}[H]
   \centering
-    \includegraphics[scale=0.5]{./Figures/Model_Transformation_Survey.png}
+    \includegraphics[scale=0.6]{./Figures/Model_Transformation_Survey.png}
     \rule{35em}{0.5pt}
   \caption[Domain Analysis of Model Transformations]
-  				{A domain analysis of model transformations.}
+  				{A domain analysis of model transformations\cite{Czarnecki2006}.}
   \label{fig:Model_Transformation_Survey}
 \end{figure}
 
-Domain-Specific Metamodelling Languages for Software Language Engineering
 %----------------------------------------------------------------------------------------
 %	SECTION 2
 %----------------------------------------------------------------------------------------
 
 \section{Graph Transformation} 
-\noindent One approach to model transformations is by graph transformations,
+One approach to model transformations is by graph transformations,
 also referred to as graph rewriting. Graph rewriting can be implemented with
 an algebraic approach, which is based on category theory\cite{Barr1990}.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.7]{./Figures/categoryTheory.png}
-	\caption{Collection of objects A,B and C.}
+	\caption[Category Theory]{Collection of objects A,B and C.}
 	\label{fig:categoryTheory}
 \end{figure}
 
+By analogy, for a category Dgph of directed graphs, in which Dgph(B;C) denotes the
+set of morphisms B ! C of directed
 
-In category theory there are a collection of objects and arrows. These arrows
-are also called morphisms. In figure~\ref{fig:categoryTheory} we have a
-collection of objects A, B and C and morphisms f, g and g $\circ$ f. And for the
-purpose of this paper, the collection of objects are graphs and the arrows are
-graph morphisms. This is also very typical when writing papers to explain the
-concepts of graph transformations, where these objects are represented as
-graphs, and arrows are represented as morphisms. Category theory can then be
-used to formalize the concepts at a high level of abstraction.
+In category theory there are a collection of objects and arrows. In
+figure~\ref{fig:categoryTheory} we have a collection of objects A, B and C and
+graph morphisms f, g and g $\circ$ f. Morphisms are pair of maps which commute
+with the source and target\cite{Brown2008}. In figure~\ref{fig:categoryTheory}
+there are three sets of graph morphisms, f : A $\longrightarrow$ B, g : B
+$\longrightarrow$ C and g $\circ$ f : A $\longrightarrow$ C.  Category theory
+can then be used to formalize mathematical or software theory's at a high level of abstraction. And
+for the purpose of this thesis, the collection of objects represents graphs and
+the arrows represents morphisms between these graphs. This is also common when
+writing papers, for example to explain the concepts of graph transformations.
 
 \subsection{The Algebraic Approach}
-\noindent This approach are based on the concepts of composing graphs, modelled
+This approach are based on the concepts of composing graphs, modelled
 by pushouts of graphs and graph morphisms. This pushout approach comes in
 different variants, and we will look at two of these, namely the
 double-pushout (DPO) approach and the single pushout (SPO)
 approach\cite{Loewe1997,Ehrig1997}.
 
-\indent Historically, the first of the algebraic approaches to graph
+Historically, the first of the algebraic approaches to graph
 transformations, the double-pushout, was first introduced at the Technical
 University of Berlin in the early seventies by H. Ehrig, M. Pfender and H.J.
 Schneider\cite{INSPEC:606170}. They tried to generalize Chromsky grammars from
 strings to graphs. This allowed to define a graph rewriting step by the use of
 two gluing constructions. And by applying a graph rewriting step for the
 double-pushout approach is a pair of morphisms in the category of graphs where
-the arrows represents total graph morphisms, \linebreak\mbox{L $\longleftarrow$
+the arrows represents total graph morphisms, \mbox{L $\longleftarrow$
 \ K $\longrightarrow$ R}. This is true for each application rule in a graph
 transformation for the double-pushout approach. Where the graph K represents the
 common part and the two morphisms \mbox{L $\longleftarrow$ \ K} and \mbox{K
@@ -133,7 +136,7 @@ application rule for a rewriting step. Hence the name double pushout and the use
 of two rewriting conditions.
 
 \subsection{Productions}
-\noindent For a transformation language to be able to execute graph
+For a transformation language to be able to execute graph
 transformations a set of application rules needs to be defined. Through these
 rules, a transformation interpreter can act accordingly. These rules are often
 referred to as Productions. For graph transformations, there can be an arbitrary
@@ -147,7 +150,7 @@ transformation unit.
 
 
 \subsection{Transformation Units}
-\noindent In graph transformation, there has to be a control mechanism that
+In graph transformation, there has to be a control mechanism that
 administrates these productions. These control mechanisms are also called
 transformation units. These units controls the order that the transformation
 rules are executed. The most basic transformation unit is a rule itself which
@@ -155,7 +158,7 @@ corresponds to a single application of that rule. But in most cases, a
 transformation unit will have to control several rule applications. 
 
 \subsection{A Direct Derivation}
-\noindent The basic idea for graph transformation for both the double-pushout
+The basic idea for graph transformation for both the double-pushout
 approach and the single pushout approach is to apply an application rule
 \mbox{r: L $\longrightarrow$ R}. Where the rule represents a single rewriting
 step for graph transformations and L represents the left hand side of the rule and R
@@ -163,8 +166,9 @@ represents the right hand side of the rule.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.7]{./Figures/GraphTransformationGeneral.png}
-	\caption{The basic idea for graph transformation by applying a rule r.}
+	\includegraphics[scale=0.7]{./Figures/Single_Pushout_Appr.png}
+	\caption[Idea of graph transformation]
+	{The basic idea for graph transformation by applying a rule r.}
 	\label{fig:GraphTransformationGeneral}
 \end{figure}
 
@@ -185,8 +189,9 @@ has an application condition.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.7]{./Figures/DPO.png}
-	\caption{Principles behind the double pushout approach.}
+	\includegraphics[scale=0.7]{./Figures/Double_Pushout_Appr.png}
+	\caption[The Double Pushout approach]
+	{Principles behind the double pushout approach.}
 	\label{fig:DPO}
 \end{figure}
 
@@ -222,4 +227,20 @@ deleted nodes that are not present in the replacement graph R is deleted.
 Now that we have explained some aspects of Graph transformations, we can
 describe the three different tools, where both AGG and Henshin is build around
 the concepts of graph transformations explained in this section. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{./Figures/Double_Pushout_NAC.png}
+	\caption[The Double Pushout approach with NAC]
+	{Double pushout approach with negative application condition.}
+	\label{fig:DPO_NAC}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{./Figures/Double_Pushout_PAC.png}
+	\caption[The Double Pushout approach with PAC]
+	{Double pushout approach with positive application condition.}
+	\label{fig:DPO_NAC}
+\end{figure}
 
