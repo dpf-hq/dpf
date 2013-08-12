@@ -19,6 +19,7 @@ import no.hib.dpf.transform.util.TransformAdapterFactory;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 
+import org.eclipse.core.internal.registry.OffsetTable;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -71,7 +72,9 @@ public class AddTransformCommand extends Command {
 			if(production.getCommonArrows().contains(insertObject)){
 				production.getCommonArrows().remove(insertObject);
 			}
+			((DArrow) insertObject).getArrow().setName("create--");
 			production.getRightArrows().add((DArrow) insertObject);
+			
 		}
 	}
 

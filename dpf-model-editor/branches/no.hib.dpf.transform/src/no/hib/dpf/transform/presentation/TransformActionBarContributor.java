@@ -13,6 +13,7 @@ import no.hib.dpf.transform.icons.ImageSettings;
 import no.hib.dpf.transform.provider.TransformEditPlugin;
 import no.hib.dpf.transform.util.BrowseInstanceModel;
 import no.hib.dpf.transform.util.TransformActivePage;
+import no.hib.dpf.transform.util.TransformConstants;
 
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
@@ -53,14 +54,9 @@ public class TransformActionBarContributor extends ActionBarContributor {
 	// ImageSettings.IMG_GENERATE.getImageDescriptor()) {
 	// };
 	protected IEditorPart activeEditorPart;
-	
-	public final String GENERATE_HENSHIN = "Generate To Henshin Transformations";
-	public final String GENERATE_ECORE = "Generate To Ecore Model";
-	public final String EXECUTE_TRANSFORMATION = "Apply Model Transformation";
-
 	//private RetargetAction generateAction;
 
-	protected IAction generateToEcore = new Action(GENERATE_ECORE, ImageSettings.IMG_GENERATE_ECORE.getImageDescriptor()) {
+	protected IAction generateToEcore = new Action(TransformConstants.GENERATE_ECORE, ImageSettings.IMG_GENERATE_ECORE.getImageDescriptor()) {
 		@Override
 		public boolean isEnabled() {
 			return true;
@@ -73,7 +69,7 @@ public class TransformActionBarContributor extends ActionBarContributor {
 			TranslateToEcore.translateToEcore(transform.getSourceMetaModel(), true);
 		}
 	};
-	protected IAction generateToHenshin = new Action(GENERATE_HENSHIN, ImageSettings.IMG_GENERATE_HENSHIN.getImageDescriptor()) {
+	protected IAction generateToHenshin = new Action(TransformConstants.GENERATE_HENSHIN, ImageSettings.IMG_GENERATE_HENSHIN.getImageDescriptor()) {
 		@Override
 		public boolean isEnabled() {
 			return true;
@@ -84,7 +80,7 @@ public class TransformActionBarContributor extends ActionBarContributor {
 			TranslateToHenshinRules.generateHenshinModule(true);
 		}
 	};
-	protected IAction executeTransformation = new Action(EXECUTE_TRANSFORMATION, ImageSettings.IMG_EXECUTE_TRANFORMATION.getImageDescriptor()) {
+	protected IAction executeTransformation = new Action(TransformConstants.EXECUTE_TRANSFORMATION, ImageSettings.IMG_EXECUTE_TRANFORMATION.getImageDescriptor()) {
 		@Override
 		public boolean isEnabled() {
 			return true;
@@ -92,7 +88,7 @@ public class TransformActionBarContributor extends ActionBarContributor {
 
 		@Override
 		public void run() {
-			ApplyTransformation.exeucteTransformation("C:/Users/Petter/workspace/DPF_PRoject/specifications/dpfSpecification2.xmi", true);
+			ApplyTransformation.exeucteTransformation("C:/Users/Petter/workspace/DPFTest/specifications/theModelInstance.xmi", true);
 			//			WizardDialog wizardDialog = new WizardDialog(TransformActivePage.getActiveWorkBenchWindow().getShell(),
 //				      new BrowseInstanceModel());
 //				    if (wizardDialog.open() == Window.OK) {

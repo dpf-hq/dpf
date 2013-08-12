@@ -17,10 +17,17 @@ package no.hib.dpf.transform.presentation;
 
 import static no.hib.dpf.diagram.util.DPFConstants.REFLEXIVE_TYPE_DGRAPH;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
+import no.hib.dpf.core.Arrow;
+import no.hib.dpf.core.Constraint;
+import no.hib.dpf.core.Graph;
+import no.hib.dpf.core.Node;
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
@@ -35,8 +42,13 @@ import no.hib.dpf.editor.parts.DPFEditPartFactory;
 import no.hib.dpf.transform.Production;
 import no.hib.dpf.transform.Transform;
 import no.hib.dpf.transform.util.TransformActivePage;
+import no.hib.dpf.transform.parts.TransformDArrowEditPart;
+import no.hib.dpf.transform.parts.TransformDNodeEditPart;
+import no.hib.dpf.utils.DPFCoreUtil;
 
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -50,7 +62,16 @@ import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.ui.palette.FlyoutPaletteComposite;
 import org.eclipse.gef.ui.palette.FlyoutPaletteComposite.FlyoutPreferences;
 import org.eclipse.gef.ui.parts.GraphicalEditorWithFlyoutPalette;
+import org.eclipse.jface.util.IPropertyChangeListener;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.views.properties.PropertySheetPage;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Composite;
 
 /**
  * A graphical editor with flyout palette that can edit .dpf files. The
@@ -91,7 +112,13 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 	 * 
 	 * @see org.eclipse.gef.ui.parts.GraphicalEditor#configureGraphicalViewer()
 	 */
-	protected void configureGraphicalViewer() {
+	 public void createPartControl(Composite parent) {
+		 super.createPartControl(parent);
+		
+		 
+	 }
+	
+	 protected void configureGraphicalViewer() {
 		super.configureGraphicalViewer();
 		String transformFile = TransformActivePage.activeWindowFileLocation();
 		transform = TransformEditor.loadTransform(DPFUtils.getResourceSet(), URI.createFileURI(transformFile), resourceToDiagnosticMap);
@@ -123,7 +150,7 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 //					};
 //				}
 				if (modelElement instanceof DNode) {
-					return new DNodeEditPart(){
+					return new TransformDNodeEditPart(modelElement){
 						protected void createEditPolicies() {
 							super.createEditPolicies();
 							installEditPolicy("action", new ActionEditPolicy());
@@ -131,7 +158,7 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 					};
 				}
 				if (modelElement instanceof DArrow) {
-					return new DArrowEditPart(){
+					return new TransformDArrowEditPart(){
 						protected void createEditPolicies() {
 							super.createEditPolicies();
 							installEditPolicy("action", new ActionEditPolicy());
@@ -147,8 +174,6 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 		viewer.setContextMenu(cmProvider);
 	}
 
-	
-
 	@Override
 	protected FlyoutPreferences getPalettePreferences() {
 		FlyoutPreferences retval = super.getPalettePreferences();
@@ -156,7 +181,6 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 		retval.setPaletteWidth(200);
 		return retval;
 	}
-
 
 	public boolean isSaveAsAllowed() {
 		return false;

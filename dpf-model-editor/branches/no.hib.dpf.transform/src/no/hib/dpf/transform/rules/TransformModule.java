@@ -13,9 +13,11 @@ import no.hib.dpf.diagram.util.DPFConstants;
 import no.hib.dpf.transform.Production;
 import no.hib.dpf.transform.Transform;
 import no.hib.dpf.transform.util.TransformActivePage;
+import no.hib.dpf.transform.util.TransformConstants;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -29,6 +31,8 @@ import org.eclipse.emf.henshin.interpreter.impl.EGraphImpl;
 import org.eclipse.emf.henshin.interpreter.impl.EngineImpl;
 import org.eclipse.emf.henshin.interpreter.impl.UnitApplicationImpl;
 import org.eclipse.emf.henshin.model.Action;
+import org.eclipse.emf.henshin.model.Action.Type;
+import org.eclipse.emf.henshin.model.Attribute;
 import org.eclipse.emf.henshin.model.AttributeCondition;
 import org.eclipse.emf.henshin.model.Edge;
 import org.eclipse.emf.henshin.model.Graph;
@@ -57,6 +61,14 @@ public class TransformModule {
 	private HenshinResourceSet resourceSet = null;
 	private HenshinFactory henshinFac = HenshinFactoryImpl.eINSTANCE;
 	private EPackage core;
+	private EPackage diagram;
+	
+
+	private static final String DEFAULT_ARROW = "Arrow";
+	private static final String DEFAULT_NODE = "Node";
+	private static final String ARROWTYPE = "ArrowType";	
+	private static final String NODETYPE = "DNodeType";
+	private static final String NODE = "Node";
 	
 	public TransformModule(Transform transform, HenshinResourceSet resourceSet){
 		this.resourceSet = resourceSet;
@@ -81,17 +93,18 @@ public class TransformModule {
 	public Module createModule(){
 		Module mainModule = henshinFac.createModule();
 		
-		if(sourceMetaModel != null && sourceMetaModel instanceof EPackage){
-			mainModule.getImports().add(sourceMetaModel);
-		}
-		if(targetMetaModel != null && targetMetaModel instanceof EPackage && targetMetaModel!=sourceMetaModel){
-			mainModule.getImports().add(targetMetaModel);
-		}
+//		if(sourceMetaModel != null && sourceMetaModel instanceof EPackage){
+//			mainModule.getImports().add(sourceMetaModel);
+//		}
+//		if(targetMetaModel != null && targetMetaModel instanceof EPackage && targetMetaModel!=sourceMetaModel){
+//			mainModule.getImports().add(targetMetaModel);
+//		}
 		
-		mainModule.getUnits().add(generateInitialRule(mainModule));
+		mainModule.getUnits().add(generateInitialRuleSpecification(mainModule));
 		
 		for(int i = 0;i<transform.getRules().size();i++){
-			mainModule.getUnits().add(generateRule(transform.getRules().get(i)));
+			//mainModule.getUnits().add(generateRuleForDiagram(transform.getRules().get(i)));
+			mainModule.getUnits().add(generateRuleForCore(transform.getRules().get(i)));
 		}
 		setSequentialUnit(mainModule);
 		return mainModule;
@@ -106,7 +119,7 @@ public class TransformModule {
 		
 	}
 
-	public Rule generateInitialRule(Module module){
+	public Rule generateInitialRuleSpecification(Module module){
 		Rule rule = henshinFac.createRule("initialiseSpecificationAndGraph");
 		
 		Graph lhs = rule.getLhs();
@@ -118,31 +131,15 @@ public class TransformModule {
 		Resource coreModel = resourceSet.getResource(coreModelURI, true);
 		core = (EPackage) coreModel.getContents().get(0);
 		
-		EClass idObject = (EClass) core.getEClassifier("IDObject");
-		sourceMetaModel.getEClassifiers().add(idObject);
-		
-		EClass node = (EClass) core.getEClassifier("Node");
-		sourceMetaModel.getEClassifiers().add(node);
-		
-		EClass arrow = (EClass) core.getEClassifier("Arrow");
-		sourceMetaModel.getEClassifiers().add(arrow);
-		
-		EClass graph = (EClass) core.getEClassifier("Graph");
-		sourceMetaModel.getEClassifiers().add(graph);
-		
-		EClass specification = (EClass) core.getEClassifier("Specification");
-		sourceMetaModel.getEClassifiers().add(specification);
-		
-		
-		String henshinModelName = "dpfSpecification1"+".ecore";
-		File file = new File(TransformActivePage.activeWorkingDirectory()+"/"+henshinModelName);
-		if(file.exists()){
-			file.delete();
-		}
-		resourceSet.saveEObject(sourceMetaModel, henshinModelName);
-		
-		
 		module.getImports().add(core);
+		
+		String diagrampath = "file:/C:/Users/Petter/workspace/no.hib.dpf.diagram/model/DiagramMetamodel.ecore";
+		URI diagramModelURI = URI.createURI(diagrampath);
+		System.out.println(diagramModelURI);
+		Resource diagramModel = resourceSet.getResource(diagramModelURI, true);
+		diagram = (EPackage) diagramModel.getContents().get(0);
+
+		module.getImports().add(diagram);
 		
 		EClass specificationType = (EClass) core.getEClassifier("Specification");
 		Node specification_lhs = henshinFac.createNode(lhs, specificationType, null);
@@ -168,7 +165,53 @@ public class TransformModule {
 		
 		return rule;
 	}
-	private Rule generateRule(Production production) {
+	public Rule generateInitialRuleDSpecification(Module module){
+		Rule rule = henshinFac.createRule("initialiseDSpecificationAndDGraph");
+		
+		Graph lhs = rule.getLhs();
+		Graph rhs = rule.getRhs();
+		
+		String path = "file:/C:/Users/Petter/workspace/no.hib.dpf.core/model/Metamodel.ecore";
+		URI coreModelURI = URI.createURI(path);
+		System.out.println(coreModelURI);
+		Resource coreModel = resourceSet.getResource(coreModelURI, true);
+		core = (EPackage) coreModel.getContents().get(0);
+		
+		module.getImports().add(core);
+		
+		String diagrampath = "file:/C:/Users/Petter/workspace/no.hib.dpf.diagram/model/DiagramMetamodel.ecore";
+		URI diagramModelURI = URI.createURI(diagrampath);
+		System.out.println(diagramModelURI);
+		Resource diagramModel = resourceSet.getResource(diagramModelURI, true);
+		diagram = (EPackage) diagramModel.getContents().get(0);
+
+		module.getImports().add(diagram);
+		
+		EClass dSpecificationType = (EClass) diagram.getEClassifier(TransformConstants.D_SPECIFICATION);
+		Node specification_lhs = henshinFac.createNode(lhs, dSpecificationType, null);
+		Node specification_rhs = henshinFac.createNode(rhs, dSpecificationType, null);
+		
+		rule.getMappings().add(henshinFac.createMapping(specification_lhs, specification_rhs));
+		
+		EClass dGraphType = (EClass) diagram.getEClassifier(TransformConstants.D_GRAPH);
+		Node graph_lhs = henshinFac.createNode(lhs, dGraphType, null);
+		Node graph_rhs = henshinFac.createNode(rhs, dGraphType, null);
+		
+		rule.getMappings().add(henshinFac.createMapping(graph_lhs, graph_rhs));
+		
+		EReference ref_spec_graph = null;
+		for(int i = 0;i<dSpecificationType.getEReferences().size();i++){
+			if(dSpecificationType.getEReferences().get(i).getEReferenceType()==dGraphType){
+				ref_spec_graph = dSpecificationType.getEReferences().get(i);
+			}
+		}
+		
+		rule.createEdge(specification_lhs, graph_lhs, ref_spec_graph);
+		rule.createEdge(specification_rhs, graph_rhs, ref_spec_graph);
+		
+		return rule;
+	}
+	private Rule generateRuleForCore(Production production) {
 		HashMap<String, Node> nodes = new HashMap<String, Node>();
 		System.out.println("name "+production.getName() );
 		Rule rule = henshinFac.createRule(production.getName());
@@ -180,14 +223,454 @@ public class TransformModule {
 		//Create Nodes on LHS
 		for(int i = 0; i<production.getLeftNodes().size();i++){
 			String dNodeType = production.getLeftNodes().get(i).getTypeName();
+			EClass node = (EClass) core.getEClassifier("Node");
+			EReference referenceNode = null;
+			for(int j = 0; j<node.getEReferences().size();j++){
+				if(node.getEReferences().get(j).getName().contains("typeNode")){
+					referenceNode = node.getEReferences().get(j);
+					System.out.println(referenceNode);
+				}
+			}
 			EClass nodeType = (EClass) core.getEClassifier("Node");
+			EAttribute nodeTypeAttribute = null;
+			for(int j = 0;j<nodeType.getEAttributes().size();j++){
+				if(nodeType.getEAttributes().get(j).getName().contains("name")){
+					nodeTypeAttribute = nodeType.getEAttributes().get(j);
+				}
+			}
+			Node deletion = henshinFac.createNode(lhs, node, null);
+			deletion.setName(production.getLeftNodes().get(i).getName());
+			nodes.put(production.getLeftNodes().get(i).getName(), deletion);
+			Node deletionType = henshinFac.createNode(lhs, nodeType, null);
+			deletionType.setName(production.getLeftNodes().get(i).getName()+NODETYPE);
+			nodes.put(production.getLeftNodes().get(i).getName()+NODETYPE, deletionType);
+			henshinFac.createEdge(deletion, deletionType, referenceNode);
+			Attribute henshin_attribute = henshinFac.createAttribute(deletionType, nodeTypeAttribute, "\""+dNodeType+"\"");
 			
-			Node deletion = henshinFac.createNode(lhs, nodeType, null);
-			deletion.setName(production.getLeftNodes().get(i).getNode().getName());
-			NestedCondition nestCond = new NestedConditionImpl();
-			lhs.createNAC("Hei");
+			henshin_attribute.setAction(new Action(Type.REQUIRE));
 		}
+		for(int i = 0;i<production.getLeftArrows().size();i++){
+			String dArrowType = production.getLeftArrows().get(i).getTypeName();
+			EClass arrow = (EClass) core.getEClassifier(DEFAULT_ARROW);
+			EReference referenceArrow = null;
+			for(int j = 0;j<arrow.getEReferences().size();j++){
+				if(arrow.getEReferences().get(j).getName().contains("typeArrow")){
+					referenceArrow = arrow.getEReferences().get(j);
+					System.out.println(referenceArrow);
+				}
+			}
+			EClass arrowType = (EClass) core.getEClassifier(DEFAULT_ARROW);
+			EAttribute arrowTypeAttribute = null;
+			for(int j = 0;j<arrowType.getEAttributes().size();j++){
+				if(arrowType.getEAttributes().get(j).getName().contains("name")){
+					arrowTypeAttribute = arrowType.getEAttributes().get(j);
+				}
+			}
+			Node deletion = henshinFac.createNode(lhs, arrow, null);
+			deletion.setName(production.getLeftArrows().get(i).getName());
+			nodes.put(production.getLeftArrows().get(i).getName(), deletion);
+			Node deletionType = henshinFac.createNode(lhs, arrowType, null);
+			deletionType.setName(production.getLeftArrows().get(i).getName()+ARROWTYPE);
+			nodes.put(production.getLeftArrows().get(i).getName()+ARROWTYPE, deletionType);
+			
+			henshinFac.createEdge(deletion, deletionType, referenceArrow);
+			Attribute henshin_attribute = henshinFac.createAttribute(deletionType, arrowTypeAttribute, "\""+dArrowType+"\"");
+			henshin_attribute.setAction(new Action(Type.REQUIRE));
+		}
+		for(int i = 0; i<production.getCommonNodes().size();i++){
+			String dNodeType = production.getCommonNodes().get(i).getTypeName();
+			EClass node = (EClass) core.getEClassifier(TransformConstants.NODE);
+			EReference referenceNode = null;
+			for(int j = 0; j<node.getEReferences().size();j++){
+				if(node.getEReferences().get(j).getName().contains("typeNode")){
+					referenceNode = node.getEReferences().get(j);
+					System.out.println(referenceNode);
+				}
+			}
+			EClass nodeType = (EClass) core.getEClassifier("Node");
+			EAttribute nodeTypeAttribute = null;
+			for(int j = 0;j<nodeType.getEAttributes().size();j++){
+				if(nodeType.getEAttributes().get(j).getName().contains("name")){
+					nodeTypeAttribute = nodeType.getEAttributes().get(j);
+				}
+			}
+			Node preserveNode = henshinFac.createNode(lhs, node, null);
+			preserveNode.setName(production.getCommonNodes().get(i).getName());
+			nodes.put(production.getCommonNodes().get(i).getName(), preserveNode);
+			preserveNode.setAction(new Action(Type.PRESERVE));
+			nodes.put(production.getCommonNodes().get(i).getName()+NODETYPE, preserveNode);
+			Node preserveNodeType = henshinFac.createNode(lhs, nodeType, null);
+			preserveNodeType.setName(production.getCommonNodes().get(i).getName()+NODETYPE);
+			preserveNodeType.setAction(new Action(Type.PRESERVE));
+			Edge edge = henshinFac.createEdge(preserveNode, preserveNodeType, referenceNode);
+			edge.setAction(new Action(Type.PRESERVE));
+			
+			Attribute henshin_attribute = henshinFac.createAttribute(preserveNodeType, nodeTypeAttribute, "\""+dNodeType+"\"");
+			henshin_attribute.setAction(new Action(Type.REQUIRE));
+			
+		}
+		//Determing common arrows
+		for(int i = 0; i<production.getCommonArrows().size();i++){
+			String dArrowType = production.getCommonArrows().get(i).getTypeName();
+			EClass arrow = (EClass) core.getEClassifier(TransformConstants.ARROW);
+			
+			EReference referenceArrow = null;
+			for(int j = 0;j<arrow.getEReferences().size();j++){
+				if(arrow.getEReferences().get(j).getName().contains("typeArrow")){
+					referenceArrow = arrow.getEReferences().get(j);
+					System.out.println(referenceArrow);
+				}
+			}
+			
+			EClass arrowType = (EClass) core.getEClassifier(TransformConstants.ARROW);
+			EAttribute arrowTypeAttribute = null;
+			for(int j = 0;j<arrowType.getEAttributes().size();j++){
+				if(arrowType.getEAttributes().get(j).getName().contains("name")){
+					arrowTypeAttribute = arrowType.getEAttributes().get(j);
+				}
+			}
+			Node deletion = henshinFac.createNode(lhs, arrow, null);
+			deletion.setName(production.getCommonArrows().get(i).getName());
+			deletion.setAction(new Action(Type.PRESERVE));
+			nodes.put(production.getCommonArrows().get(i).getName(), deletion);
+			Node deletionType = henshinFac.createNode(lhs, arrowType, null);
+			deletionType.setName(production.getCommonArrows().get(i).getName()+ARROWTYPE);
+			deletionType.setAction(new Action(Type.PRESERVE));
+			nodes.put(production.getCommonArrows().get(i).getName()+ARROWTYPE, deletionType);
+			
+			Edge edge = henshinFac.createEdge(deletion, deletionType, referenceArrow);
+			edge.setAction(new Action(Type.PRESERVE));
+			
+			Attribute henshin_attribute = henshinFac.createAttribute(deletionType, arrowTypeAttribute, "\""+dArrowType+"\"");
+			henshin_attribute.setAction(new Action(Type.REQUIRE));
+		}
+		for(int i = 0; i<production.getRightNodes().size();i++){
+			String dNodeType = production.getRightNodes().get(i).getTypeName();
+			EClass node = (EClass) core.getEClassifier("Node");
+			EReference referenceNode = null;
+			for(int j = 0; j<node.getEReferences().size();j++){
+				if(node.getEReferences().get(j).getName().contains("typeNode")){
+					referenceNode = node.getEReferences().get(j);
+					System.out.println(referenceNode);
+				}
+			}
+			EClass nodeType = (EClass) core.getEClassifier("Node");
+			EAttribute nodeTypeAttribute = null;
+			for(int j = 0;j<nodeType.getEAttributes().size();j++){
+				if(nodeType.getEAttributes().get(j).getName().contains("name")){
+					nodeTypeAttribute = nodeType.getEAttributes().get(j);
+				}
+			}
+			Node deletion = henshinFac.createNode(rhs, node, null);
+			deletion.setName(production.getRightNodes().get(i).getName());
+			nodes.put(production.getRightNodes().get(i).getName(), deletion);
+			Node deletionType = henshinFac.createNode(rhs, nodeType, null);
+			deletionType.setName(production.getRightNodes().get(i).getName()+NODETYPE);
+			nodes.put(production.getRightNodes().get(i).getName()+NODETYPE, deletionType);
+			henshinFac.createEdge(deletion, deletionType, referenceNode);
+			
+			henshinFac.createAttribute(deletionType, nodeTypeAttribute, "\""+dNodeType+"\"");
+		}
+		for(int i = 0;i<production.getRightArrows().size();i++){
+			String dArrowType = production.getRightArrows().get(i).getTypeName();
+			EClass arrow = (EClass) core.getEClassifier(DEFAULT_ARROW);
+			EReference referenceArrow = null;
+			for(int j = 0;j<arrow.getEReferences().size();j++){
+				if(arrow.getEReferences().get(j).getName().contains("typeArrow")){
+					referenceArrow = arrow.getEReferences().get(j);
+					System.out.println(referenceArrow);
+				}
+			}
+			EClass arrowType = (EClass) core.getEClassifier(DEFAULT_ARROW);
+			EAttribute arrowTypeAttribute = null;
+			for(int j = 0;j<arrowType.getEAttributes().size();j++){
+				if(arrowType.getEAttributes().get(j).getName().contains("name")){
+					arrowTypeAttribute = arrowType.getEAttributes().get(j);
+				}
+			}
+			
+			Node deletion = henshinFac.createNode(rhs, arrow, null);
+			deletion.setName(production.getRightArrows().get(i).getName());
+			nodes.put(production.getRightArrows().get(i).getName(), deletion);
+			Node deletionType = henshinFac.createNode(rhs, arrowType, null);
+			deletionType.setName(production.getRightArrows().get(i).getName()+ARROWTYPE);
+			nodes.put(production.getRightArrows().get(i).getName()+ARROWTYPE, deletionType);
+			
+			henshinFac.createEdge(deletion, deletionType, referenceArrow);
+			
+			henshinFac.createAttribute(deletionType, arrowTypeAttribute, "\""+dArrowType+"\"");
+		}
+		
+		
+		findEReferencesDArrowsLHS_RHS(production.getLeftArrows(), nodes, false);
+		findEReferencesDArrowsLHS_RHS(production.getRightArrows(), nodes, false);
+		findEReferencesDArrowsLHS_RHS(production.getCommonArrows(), nodes, true);
+		
+		
+		
+//		for(int i = 0; i<production.getRightNodes().size();i++){
+//			String dNodeType = production.getRightNodes().get(i).getTypeName();
+//			EClass node = (EClass) core.getEClassifier("Node");
+//			EReference typeNode = null;
+//			for(int j = 0; j<node.getEReferences().size();j++){
+//				if(node.getEReferences().get(j).getName().contains("typeNode")){
+//					typeNode = node.getEReferences().get(j);
+//					System.out.println(typeNode);
+//				}
+//			}
+//			EClass nodeType = (EClass) core.getEClassifier("Node");
+//			EAttribute attribute = null;
+//			for(int j = 0;j<nodeType.getEAttributes().size();j++){
+//				if(nodeType.getEAttributes().get(j).getName().contains("name")){
+//					attribute = nodeType.getEAttributes().get(j);
+//				}
+//			}
+//			
+//			Node insertion = henshinFac.createNode(rhs, node, null);
+//			insertion.setAction(new Action(Type.CREATE));
+//			Node insertionType = henshinFac.createNode(rhs, nodeType, null);
+//			insertionType.setAction(new Action(Type.CREATE));
+//			Edge edge = henshinFac.createEdge(insertion, insertionType, typeNode);
+//			edge.setAction(new Action(Type.CREATE));
+//			
+//			Attribute henshin_attribute = henshinFac.createAttribute(insertionType, attribute, "\""+dNodeType+"\"");
+//			insertionType.setName(production.getRightNodes().get(i).getNode().getName());
+//			
+//			henshin_attribute.setAction(new Action(Type.REQUIRE));
+//		}
+		rule.setInjectiveMatching(false);
+		rule.setCheckDangling(false);
 		return rule;
+	}
+	private Rule generateRuleForDiagram(Production production) {
+		HashMap<String, Node> nodes = new HashMap<String, Node>();
+		System.out.println("name "+production.getName());
+		Rule rule = henshinFac.createRule(production.getName());
+		rule.setActivated(true);
+		
+		Graph lhs = rule.getLhs();
+		Graph rhs = rule.getRhs();
+		
+		//Create Nodes on LHS
+		for(int i = 0; i<production.getLeftNodes().size();i++){
+			String type = production.getLeftNodes().get(i).getTypeName();
+			EClass dNode = (EClass) diagram.getEClassifier(TransformConstants.D_NODE);
+			EReference reference_to_DNode = null;
+			for(int j = 0; j<dNode.getEReferences().size();j++){
+				if(dNode.getEReferences().get(j).getName().contains(TransformConstants.D_TYPE)){
+					reference_to_DNode = dNode.getEReferences().get(j);
+					System.out.println(reference_to_DNode);
+				}
+			}
+			EClass dNodeType = (EClass) diagram.getEClassifier(TransformConstants.D_NODE);
+			EReference reference_to_Node = null;
+			for(int j = 0; j<dNodeType.getEReferences().size();j++){
+				if(dNodeType.getEReferences().get(j).getName().contains(TransformConstants.DNODE_TYPE_NODE)){
+					reference_to_Node = dNodeType.getEReferences().get(j);
+					System.out.println(reference_to_Node);
+				}
+			}
+			
+			EClass nodeType = (EClass) core.getEClassifier(TransformConstants.NODE);
+			EAttribute nodeTypeAttribute = null;
+			for(int j = 0;j<nodeType.getEAttributes().size();j++){
+				if(nodeType.getEAttributes().get(j).getName().contains("name")){
+					nodeTypeAttribute = nodeType.getEAttributes().get(j);
+				}
+			}
+			Node deletion_DNode = henshinFac.createNode(lhs, dNode, null);
+			deletion_DNode.setName(production.getLeftNodes().get(i).getName());
+			nodes.put(production.getLeftNodes().get(i).getName(), deletion_DNode);
+			
+			Node deletion_DNode_Type = henshinFac.createNode(lhs, dNodeType, null);
+			deletion_DNode_Type.setName(production.getLeftNodes().get(i).getName()+NODETYPE);
+			nodes.put(production.getLeftNodes().get(i).getName()+NODETYPE, deletion_DNode_Type);
+			henshinFac.createEdge(deletion_DNode, deletion_DNode_Type, reference_to_DNode);
+			
+			Node deletion_DNode_NodeType = henshinFac.createNode(lhs, nodeType, null);
+			nodes.put(production.getLeftNodes().get(i).getName()+NODE, deletion_DNode_NodeType);
+			henshinFac.createEdge(deletion_DNode_Type, deletion_DNode_NodeType, reference_to_Node);
+			
+			Attribute henshin_attribute = henshinFac.createAttribute(deletion_DNode_NodeType, nodeTypeAttribute, "\""+type+"\"");
+			
+			henshin_attribute.setAction(new Action(Type.REQUIRE));
+		}
+		/*for(int i = 0;i<production.getLeftArrows().size();i++){
+			String dArrowType = production.getLeftArrows().get(i).getTypeName();
+			EClass arrow = (EClass) core.getEClassifier(DEFAULT_ARROW);
+			EReference referenceArrow = null;
+			for(int j = 0;j<arrow.getEReferences().size();j++){
+				if(arrow.getEReferences().get(j).getName().contains("typeArrow")){
+					referenceArrow = arrow.getEReferences().get(j);
+					System.out.println(referenceArrow);
+				}
+			}
+			EClass arrowType = (EClass) core.getEClassifier(DEFAULT_ARROW);
+			EAttribute arrowTypeAttribute = null;
+			for(int j = 0;j<arrowType.getEAttributes().size();j++){
+				if(arrowType.getEAttributes().get(j).getName().contains("name")){
+					arrowTypeAttribute = arrowType.getEAttributes().get(j);
+				}
+			}
+			Node deletion = henshinFac.createNode(lhs, arrow, null);
+			deletion.setName(production.getLeftArrows().get(i).getName());
+			nodes.put(production.getLeftArrows().get(i).getName(), deletion);
+			Node deletionType = henshinFac.createNode(lhs, arrowType, null);
+			deletionType.setName(production.getLeftArrows().get(i).getName()+ARROWTYPE);
+			nodes.put(production.getLeftArrows().get(i).getName()+ARROWTYPE, deletionType);
+			
+			henshinFac.createEdge(deletion, deletionType, referenceArrow);
+			Attribute henshin_attribute = henshinFac.createAttribute(deletionType, arrowTypeAttribute, "\""+dArrowType+"\"");
+			henshin_attribute.setAction(new Action(Type.REQUIRE));
+		}
+		for(int i = 0; i<production.getCommonNodes().size();i++){
+			String dNodeType = production.getCommonNodes().get(i).getTypeName();
+			EClass node = (EClass) core.getEClassifier(DEFAULT_NODE);
+			EReference referenceNode = null;
+			for(int j = 0; j<node.getEReferences().size();j++){
+				if(node.getEReferences().get(j).getName().contains("typeNode")){
+					referenceNode = node.getEReferences().get(j);
+					System.out.println(referenceNode);
+				}
+			}
+			EClass nodeType = (EClass) core.getEClassifier("Node");
+			EAttribute nodeTypeAttribute = null;
+			for(int j = 0;j<nodeType.getEAttributes().size();j++){
+				if(nodeType.getEAttributes().get(j).getName().contains("name")){
+					nodeTypeAttribute = nodeType.getEAttributes().get(j);
+				}
+			}
+			Node preserveNode = henshinFac.createNode(lhs, node, null);
+			preserveNode.setName(production.getCommonNodes().get(i).getName());
+			nodes.put(production.getCommonNodes().get(i).getName(), preserveNode);
+			preserveNode.setAction(new Action(Type.PRESERVE));
+			nodes.put(production.getCommonNodes().get(i).getName()+NODETYPE, preserveNode);
+			Node preserveNodeType = henshinFac.createNode(lhs, nodeType, null);
+			preserveNodeType.setName(production.getCommonNodes().get(i).getName()+NODETYPE);
+			preserveNodeType.setAction(new Action(Type.PRESERVE));
+			Edge edge = henshinFac.createEdge(preserveNode, preserveNodeType, referenceNode);
+			edge.setAction(new Action(Type.PRESERVE));
+			
+			Attribute henshin_attribute = henshinFac.createAttribute(preserveNodeType, nodeTypeAttribute, "\""+dNodeType+"\"");
+			henshin_attribute.setAction(new Action(Type.REQUIRE));
+			
+		}
+		//Determing common arrows
+		for(int i = 0; i<production.getCommonArrows().size();i++){
+			String dArrowType = production.getCommonArrows().get(i).getTypeName();
+			EClass arrowType = (EClass) sourceMetaModel.getEClassifier(dArrowType);
+			
+			Node preserve_lhs = henshinFac.createNode(lhs, arrowType, null);
+			Node preserve_rhs = henshinFac.createNode(rhs, arrowType, null);
+			
+			preserve_lhs.setName(production.getCommonArrows().get(i).getName());
+			preserve_rhs.setName(production.getCommonArrows().get(i).getName());
+			
+			Mapping m2 = henshinFac.createMapping(preserve_lhs, preserve_rhs);
+			rule.getMappings().add(m2);
+
+			nodes.put(production.getCommonArrows().get(i).getName()+"_LHS", preserve_lhs);
+			nodes.put(production.getCommonArrows().get(i).getName()+"_RHS", preserve_rhs);
+		}
+		
+//		for(int i = 0; i<production.getRightNodes().size();i++){
+//			String dNodeType = production.getRightNodes().get(i).getTypeName();
+//			EClass node = (EClass) core.getEClassifier("Node");
+//			EReference typeNode = null;
+//			for(int j = 0; j<node.getEReferences().size();j++){
+//				if(node.getEReferences().get(j).getName().contains("typeNode")){
+//					typeNode = node.getEReferences().get(j);
+//					System.out.println(typeNode);
+//				}
+//			}
+//			EClass nodeType = (EClass) core.getEClassifier("Node");
+//			EAttribute attribute = null;
+//			for(int j = 0;j<nodeType.getEAttributes().size();j++){
+//				if(nodeType.getEAttributes().get(j).getName().contains("name")){
+//					attribute = nodeType.getEAttributes().get(j);
+//				}
+//			}
+//			
+//			Node insertion = henshinFac.createNode(rhs, node, null);
+//			insertion.setAction(new Action(Type.CREATE));
+//			Node insertionType = henshinFac.createNode(rhs, nodeType, null);
+//			insertionType.setAction(new Action(Type.CREATE));
+//			Edge edge = henshinFac.createEdge(insertion, insertionType, typeNode);
+//			edge.setAction(new Action(Type.CREATE));
+//			
+//			Attribute henshin_attribute = henshinFac.createAttribute(insertionType, attribute, "\""+dNodeType+"\"");
+//			insertionType.setName(production.getRightNodes().get(i).getNode().getName());
+//			
+//			henshin_attribute.setAction(new Action(Type.REQUIRE));
+//		}*/
+		rule.setCheckDangling(false);
+		return rule;
+	}
+	private void findEReferencesDArrowsLHS_RHS(EList<DArrow> dArrows, 
+			HashMap<String, Node> nodes, boolean preserve){
+		
+		EReference ref_DArrow_DNode = null;
+		
+		for(int i = 0;i<dArrows.size();i++){
+			DNode dNode_source = dArrows.get(i).getDSource();
+			DArrow dArrow_target = dArrows.get(i);
+			Node source_DNode_Node = nodes.get(dNode_source.getName());
+			System.out.println(source_DNode_Node.getName());
+			Node target_DArrow_Node = nodes.get(dArrow_target.getName());
+			System.out.println(target_DArrow_Node.getName());
+			EClass arrow = (EClass) core.getEClassifier("Arrow");
+		
+			for(int k = 0; k<arrow.getEReferences().size();k++){
+				if(arrow.getEReferences().get(k).getName().contains("source")){
+					ref_DArrow_DNode = arrow.getEReferences().get(k);
+				}
+			}
+			if(preserve){
+				Edge edge = henshinFac.createEdge(target_DArrow_Node, source_DNode_Node, ref_DArrow_DNode);
+				edge.setAction(new Action(Type.PRESERVE));
+			}else{
+				henshinFac.createEdge(target_DArrow_Node, source_DNode_Node, ref_DArrow_DNode);
+			}
+			
+		}
+		for(int i = 0;i<dArrows.size();i++){
+			DArrow dArrow_source = dArrows.get(i);
+			DNode dNode_target = dArrows.get(i).getDTarget();
+			Node source_DArrow_Node = nodes.get(dArrow_source.getName());
+			Node target_DNode_Node = nodes.get(dNode_target.getName());
+			EClass arrow = (EClass) core.getEClassifier("Arrow");
+		
+			for(int k = 0; k<arrow.getEReferences().size();k++){
+				if(arrow.getEReferences().get(k).getName().contains("target")){
+					ref_DArrow_DNode = arrow.getEReferences().get(k);
+				}
+			}
+			if(preserve){
+				Edge edge = henshinFac.createEdge(source_DArrow_Node, target_DNode_Node, ref_DArrow_DNode);
+				edge.setAction(new Action(Type.PRESERVE));
+			}else{
+				Edge edge = henshinFac.createEdge(source_DArrow_Node, target_DNode_Node, ref_DArrow_DNode);
+			}
+			
+		}
+	}
+	
+	private void setEData(EClass node, EClass nodeType, EReference typeNode, EAttribute attribute){
+		node = (EClass) core.getEClassifier("Node");
+		typeNode = null;
+		for(int j = 0; j<node.getEReferences().size();j++){
+			if(node.getEReferences().get(j).getName().contains("typeNode")){
+				typeNode = node.getEReferences().get(j);
+				System.out.println(typeNode);
+			}
+		}
+		nodeType = (EClass) core.getEClassifier("Node");
+		attribute = null;
+		for(int j = 0;j<nodeType.getEAttributes().size();j++){
+			if(nodeType.getEAttributes().get(j).getName().contains("name")){
+				attribute = nodeType.getEAttributes().get(j);
+			}
+		}
 	}
 			
 			/*nodes.put(production.getLeftNodes().get(i).getName(), deletion);
@@ -381,42 +864,7 @@ public class TransformModule {
 //			}
 //		}
 //	}
-//	private void findEReferencesDArrowsLHS_RHS(EList<DArrow> dArrows, 
-//			HashMap<String, Node> nodes){
-//		
-//		EReference ref_DArrow_DNode = null;
-//		
-//		for(int i = 0;i<dArrows.size();i++){
-//			DNode dNode_source = dArrows.get(i).getDSource();
-//			DArrow dArrow_target = dArrows.get(i);
-//			Node source_DNode_Node = nodes.get(dNode_source.getName());
-//			Node target_DArrow_Node = nodes.get(dArrow_target.getName());
-//			EClass source = (EClass) sourceMetaModel.getEClassifier(dNode_source.getTypeName());
-//			EClass target = (EClass) sourceMetaModel.getEClassifier(dArrow_target.getTypeName());
-//		
-//			for(int k = 0; k<source.getEReferences().size();k++){
-//				if(source.getEReferences().get(k).getEReferenceType()==target){
-//					ref_DArrow_DNode = source.getEReferences().get(k);
-//				}
-//			}
-//			henshinFac.createEdge(source_DNode_Node, target_DArrow_Node, ref_DArrow_DNode);
-//		}
-//		for(int i = 0;i<dArrows.size();i++){
-//			DArrow dArrow_source = dArrows.get(i);
-//			DNode dNode_target = dArrows.get(i).getDTarget();
-//			Node source_DArrow_Node = nodes.get(dArrow_source.getName());
-//			Node target_DNode_Node = nodes.get(dNode_target.getName());
-//			EClass source = (EClass) sourceMetaModel.getEClassifier(dArrow_source.getTypeName());
-//			EClass target = (EClass) sourceMetaModel.getEClassifier(dNode_target.getTypeName());
-//		
-//			for(int k = 0; k<source.getEReferences().size();k++){
-//				if(target.getEReferences().get(k).getEReferenceType()==source){
-//					ref_DArrow_DNode = target.getEReferences().get(k);
-//				}
-//			}
-//			henshinFac.createEdge(source_DArrow_Node, target_DNode_Node, ref_DArrow_DNode);
-//		}
-//	}
+//	
 
 //	private void findEReferences(Graph rhs, Production production, HashMap<String, Node> nodes){
 //		EReference ref_DNode_DArrow = null;

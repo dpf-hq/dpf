@@ -56,5 +56,19 @@
             name="%_UI_TransformEditor_label">
       </editor>
    </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="no.hib.dpf.transform.preferences.TransformEditorPreferencePage"
+            id="no.hib.dpf.transform.preferences.TransformEditorPreferencePage"
+            name="Transform Editor Preferences">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="no.hib.dpf.transform.preferences.PreferenceInitializer">
+      </initializer>
+   </extension>
 
 </plugin>

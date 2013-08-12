@@ -10,6 +10,7 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: no.hib.dpf.transform,
  no.hib.dpf.transform.impl,
+ no.hib.dpf.transform.parts,
  no.hib.dpf.transform.presentation,
  no.hib.dpf.transform.provider,
  no.hib.dpf.transform.tests,

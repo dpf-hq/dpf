@@ -67,6 +67,7 @@ public class TransformWizardPage extends WizardPage {
 	private static final String DEFAULTMETAMODEL = "Default Metamodel";
 	private static final String DEFAULTSIGNATURE = "Default Signature";
 	private static final String ENDOGENOUS_TRANSFORMATION = "Endogenous Transformation";
+	private static final String EXOGENOUS_TRANSFORMATION = "Exogenous Transformation";
 
 	public TransformWizardPage(String pageId) {
 		super(pageId);
@@ -87,11 +88,11 @@ public class TransformWizardPage extends WizardPage {
 			composite.setLayoutData(data);
 		}
 
-		final Button defaultMetamodelButton = new Button(composite, SWT.CHECK);{
-			defaultMetamodelButton.setText("Use " + DEFAULTMETAMODEL);
+		final Button sourcetMetamodelButton = new Button(composite, SWT.CHECK);{
+			sourcetMetamodelButton.setText("Use " + DEFAULTMETAMODEL);
 			GridData data = new GridData();
 			data.horizontalSpan = 2;
-			defaultMetamodelButton.setLayoutData(data);
+			sourcetMetamodelButton.setLayoutData(data);
 		}
 		sourceMetaModelFileText = new Text(composite, SWT.BORDER);
 		{
@@ -117,11 +118,11 @@ public class TransformWizardPage extends WizardPage {
 			});
 			sourceMetaModelFileChooser.setEnabled(true);
 		}
-		final Button targetMetaModelFileButton = new Button(composite, SWT.CHECK);{
-			targetMetaModelFileButton.setText(ENDOGENOUS_TRANSFORMATION);
+		final Button targetMetamodelButton = new Button(composite, SWT.CHECK);{
+			targetMetamodelButton.setText(ENDOGENOUS_TRANSFORMATION);
 			GridData data = new GridData();
 			data.horizontalSpan = 2;
-			targetMetaModelFileButton.setLayoutData(data);
+			targetMetamodelButton.setLayoutData(data);
 		}
 		targetMetaModelFileText = new Text(composite, SWT.BORDER);
 		{
@@ -147,9 +148,9 @@ public class TransformWizardPage extends WizardPage {
 			});
 			targetMetaModelFileChooser.setEnabled(true);
 		}
-		defaultMetamodelButton.addSelectionListener(new SelectionAdapter() {
+		sourcetMetamodelButton.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent event) {
-				boolean useDefault = defaultMetamodelButton.getSelection();
+				boolean useDefault = sourcetMetamodelButton.getSelection();
 				if(useDefault){
 					sourceMetaModelFileText.setEnabled(false);
 					sourceMetaModelFileChooser.setEnabled(false);
@@ -158,7 +159,7 @@ public class TransformWizardPage extends WizardPage {
 					sourceMetaModelFileText.setEnabled(true);
 					sourceMetaModelFileChooser.setEnabled(true);
 					sourceMetaModel = DPFUtils.loadDModel(URI.createFileURI(sourceMetaModelFileText.getText()));
-					if(targetMetaModelFileButton.getEnabled()){
+					if(targetMetamodelButton.getEnabled()){
 						System.out.println("Check");
 						targetMetaModel = sourceMetaModel;
 						targetURIMetamodel = sourceMetaModelFileText.getText();
@@ -169,13 +170,15 @@ public class TransformWizardPage extends WizardPage {
 				setPageComplete(validatePage());
 			}
 		});
-		targetMetaModelFileButton.addSelectionListener(new SelectionAdapter() {
+		targetMetamodelButton.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent event) {
-				boolean isEndogenous_transformation = targetMetaModelFileButton.getSelection();
+				boolean isEndogenous_transformation = targetMetamodelButton.getSelection();
 				if(isEndogenous_transformation){
+					targetMetamodelButton.setText(ENDOGENOUS_TRANSFORMATION);
 					targetMetaModelFileText.setEnabled(false);
 					targetMetaModelFileChooser.setEnabled(false);
 				}else{
+					targetMetamodelButton.setText(EXOGENOUS_TRANSFORMATION);
 					targetMetaModelFileText.setEnabled(true);
 					targetMetaModelFileChooser.setEnabled(true);
 					targetMetaModel = DPFUtils.loadDModel(URI.createFileURI(targetMetaModelFileText.getText()));
@@ -233,12 +236,12 @@ public class TransformWizardPage extends WizardPage {
 		/*
 		 * Initialize the fields to make sure the default metamodel and default signature are used by default
 		 */
-		defaultMetamodelButton.setSelection(true);
+		sourcetMetamodelButton.setSelection(true);
 		sourceMetaModelFileText.setEnabled(false);
 		sourceMetaModelFileChooser.setEnabled(false);
 		sourceMetaModel = DPFConstants.REFLEXIVE_DSPECIFICATION;
 		
-		targetMetaModelFileButton.setSelection(true);
+		targetMetamodelButton.setSelection(true);
 		targetMetaModelFileText.setEnabled(false);
 		targetMetaModelFileChooser.setEnabled(false);
 		targetMetaModel = sourceMetaModel;

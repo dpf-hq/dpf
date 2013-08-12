@@ -15,10 +15,24 @@
 *******************************************************************************/
 package no.hib.dpf.transform.presentation;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import no.hib.dpf.editor.DPFUtils;
+import no.hib.dpf.transform.Transform;
+import no.hib.dpf.transform.henshin.TranslateToEcore;
+import no.hib.dpf.transform.icons.ImageSettings;
+import no.hib.dpf.transform.util.TransformActivePage;
+import no.hib.dpf.transform.util.TransformConstants;
+
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gef.ContextMenuProvider;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.ui.actions.ActionRegistry;
 import org.eclipse.gef.ui.actions.GEFActionConstants;
+import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.Separator;
@@ -57,6 +71,18 @@ public class TranformEditorContextMenuProvider extends ContextMenuProvider {
 //		registry.registerAction(add);
 	}
 
+	protected Action generateToEcore = new Action(TransformConstants.ADD_VARIABLE, ImageSettings.IMG_GENERATE_ECORE.getImageDescriptor()) {
+		@Override
+		public boolean isEnabled() {
+			return true;
+		}
+
+		@Override
+		public void run() {
+			
+		}
+	};
+	
 //	AddLeftAction add, remove;
 	/**
 	 * Called when the context menu is about to show. Actions, whose state is
@@ -76,6 +102,9 @@ public class TranformEditorContextMenuProvider extends ContextMenuProvider {
 				getAction(ActionFactory.REDO.getId()));
 		menu.appendToGroup(GEFActionConstants.GROUP_EDIT,
 				getAction(ActionFactory.DELETE.getId()));
+		
+		menu.add(new Separator());
+		menu.appendToGroup(GEFActionConstants.GROUP_EDIT, generateToEcore);
 //		if(add.isEnabled())
 //			menu.appendToGroup(GEFActionConstants.GROUP_EDIT, add);
 	}

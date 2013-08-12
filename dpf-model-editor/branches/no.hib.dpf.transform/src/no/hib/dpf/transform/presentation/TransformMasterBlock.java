@@ -1,6 +1,7 @@
 package no.hib.dpf.transform.presentation;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import no.hib.dpf.diagram.DiagramFactory;
@@ -100,7 +101,7 @@ public class TransformMasterBlock extends MasterDetailsBlock {
 		GridData gridData = new GridData(GridData.FILL_BOTH);
 		gridData.heightHint = 20;
 		gridData.widthHint = 100;
-		gridData.verticalSpan = 2;
+		gridData.verticalSpan = 4;
 		table.setLayoutData(gridData);
 		toolkit.paintBordersFor(client);
 		Button addBt = toolkit.createButton(client, "Add", SWT.PUSH); //$NON-NLS-1$
@@ -111,6 +112,7 @@ public class TransformMasterBlock extends MasterDetailsBlock {
 				addProduction();
 			}
 		});
+		
 
 		final Button deBtn = toolkit.createButton(client, "REMOVE", SWT.PUSH); //$NON-NLS-1$
 		deBtn.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, false, false));
@@ -119,6 +121,28 @@ public class TransformMasterBlock extends MasterDetailsBlock {
 			public void widgetSelected(SelectionEvent e) {
 				removeProduction(getSelection(viewer.getSelection()));
 			}
+		});
+		
+		Button upBtn = toolkit.createButton(client, "Move Up", SWT.PUSH); //$NON-NLS-1$
+		upBtn.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, false, false));
+		upBtn.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				moveProductionUp(getSelection(viewer.getSelection()));
+			}
+
+			
+		});
+		
+		Button downBtn = toolkit.createButton(client, "Move Down", SWT.PUSH); //$NON-NLS-1$
+		downBtn.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, false, false));
+		downBtn.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				moveProductionDown(getSelection(viewer.getSelection()));
+			}
+
+			
 		});
 
 		section.setClient(client);
@@ -166,7 +190,46 @@ public class TransformMasterBlock extends MasterDetailsBlock {
 		}
 		return new ArrayList<Production>(0);
 	}
+	
+	protected void moveProductionUp(final List<? extends Production> selection) {
+		final TransformEditor editor = getMultiEditor();
+		DefaultEditDomain domain = editor.getEditDomain();
+		domain.getCommandStack().execute(new Command("Move Production Up"){
+			
+			public boolean canExecute() {
+				return transform != null && editor != null;
+			}
 
+			public boolean canUndo() {
+				return canExecute();
+			}
+			public void execute() {
+				Production tempProd = null;
+				for(Production product : selection){
+					tempProd=product;
+				}
+				for(int i = 0;i<transform.getRules().size();i++){
+					if(transform.getRules().get(i).equals(tempProd)){
+						if(i!=0){
+							transform.getRules().move(i, transform.getRules().get(i-1));
+							transform.getRules().remove(i-1);
+							transform.getRules().add(i-1, tempProd);	
+						}
+					}
+				}
+					
+			}
+			public void undo() {
+				
+			}
+		});
+	}
+	
+	protected void moveProductionDown(List<? extends Production> selection) {
+		final TransformEditor editor = getMultiEditor();
+		
+	}
+	
 	protected void addProduction() {
 		final TransformEditor editor = getMultiEditor();
 		DefaultEditDomain domain = editor.getEditDomain();
