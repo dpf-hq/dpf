@@ -1,5 +1,6 @@
 package no.hib.dpf.transform.presentation;
 
+import org.eclipse.swt.widgets.FileDialog;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -88,7 +89,9 @@ public class TransformActionBarContributor extends ActionBarContributor {
 
 		@Override
 		public void run() {
-			ApplyTransformation.exeucteTransformation("C:/Users/Petter/workspace/DPFTest/specifications/theModelInstance.xmi", true);
+			//ApplyTransformation.exeucteTransformation("C:/Users/Petter/workspace/DPFTest/specifications/theModelInstance.xmi", true);
+			FileDialog file = new FileDialog(TransformActivePage.getActiveWorkBenchWindow().getShell());
+			file.open();
 			//			WizardDialog wizardDialog = new WizardDialog(TransformActivePage.getActiveWorkBenchWindow().getShell(),
 //				      new BrowseInstanceModel());
 //				    if (wizardDialog.open() == Window.OK) {
