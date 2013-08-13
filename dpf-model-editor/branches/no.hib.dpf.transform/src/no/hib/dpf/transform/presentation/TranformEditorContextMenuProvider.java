@@ -15,6 +15,7 @@
 *******************************************************************************/
 package no.hib.dpf.transform.presentation;
 
+import java.awt.Dialog;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -22,8 +23,11 @@ import no.hib.dpf.editor.DPFUtils;
 import no.hib.dpf.transform.Transform;
 import no.hib.dpf.transform.henshin.TranslateToEcore;
 import no.hib.dpf.transform.icons.ImageSettings;
+import no.hib.dpf.transform.provider.TransformEditPlugin;
+import no.hib.dpf.transform.util.BrowseInstanceModel;
 import no.hib.dpf.transform.util.TransformActivePage;
 import no.hib.dpf.transform.util.TransformConstants;
+import no.hib.dpf.transform.util.VariableDialog;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
@@ -36,6 +40,8 @@ import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.Separator;
+import org.eclipse.jface.window.Window;
+import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.ui.actions.ActionFactory;
 
 /**
@@ -46,6 +52,7 @@ import org.eclipse.ui.actions.ActionFactory;
 public class TranformEditorContextMenuProvider extends ContextMenuProvider {
 
 	private ActionRegistry actionRegistry;
+	private EditPartViewer editViewer;
 
 	/**
 	 * Instantiate a new menu context provider for the specified EditPartViewer
@@ -66,6 +73,9 @@ public class TranformEditorContextMenuProvider extends ContextMenuProvider {
 		if (registry == null) {
 			throw new IllegalArgumentException();
 		}
+		viewer.getEditPartRegistry();
+		
+		editViewer = viewer;
 //		add = new AddLeftAction(viewer);
 		this.actionRegistry = registry;
 //		registry.registerAction(add);
@@ -77,9 +87,20 @@ public class TranformEditorContextMenuProvider extends ContextMenuProvider {
 			return true;
 		}
 
-		@Override
+		@Override	
 		public void run() {
-			
+			//WizardDialog wizardDialog = new WizardDialog(TransformActivePage.getActiveWorkBenchWindow().getShell(),
+			VariableDialog dialog = new VariableDialog(TransformActivePage.getActiveWorkBenchWindow().getShell(), editViewer.getFocusEditPart());
+			dialog.create();
+			if(dialog.open() == Window.OK){
+				System.out.println(dialog.getVariable());
+			}
+//				    if (VariableDialog.open() == Window.OK) {
+//				      System.out.println("Ok pressed");
+//				    } else {
+//				      System.out.println("Cancel pressed");
+//				    }
+			System.out.println(editViewer.getFocusEditPart());
 		}
 	};
 	

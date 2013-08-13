@@ -195,6 +195,7 @@ public class TransformMasterBlock extends MasterDetailsBlock {
 		final TransformEditor editor = getMultiEditor();
 		DefaultEditDomain domain = editor.getEditDomain();
 		domain.getCommandStack().execute(new Command("Move Production Up"){
+			private Production tempProd = null;
 			
 			public boolean canExecute() {
 				return transform != null && editor != null;
@@ -204,30 +205,78 @@ public class TransformMasterBlock extends MasterDetailsBlock {
 				return canExecute();
 			}
 			public void execute() {
-				Production tempProd = null;
 				for(Production product : selection){
 					tempProd=product;
 				}
+				boolean foundSelected = false;
 				for(int i = 0;i<transform.getRules().size();i++){
-					if(transform.getRules().get(i).equals(tempProd)){
+					if(transform.getRules().get(i).equals(tempProd) && !foundSelected){
 						if(i!=0){
 							transform.getRules().move(i, transform.getRules().get(i-1));
 							transform.getRules().remove(i-1);
-							transform.getRules().add(i-1, tempProd);	
+							transform.getRules().add(i-1, tempProd);
+							foundSelected = true;
 						}
 					}
 				}
 					
 			}
 			public void undo() {
-				
+				boolean foundSelected = false;
+				for(int i = 0;i<transform.getRules().size();i++){
+					if(transform.getRules().get(i).equals(tempProd) && !foundSelected && i!=(transform.getRules().size()-1)){
+						System.out.println("i" + i);
+						transform.getRules().move(i, transform.getRules().get(i+1));
+						transform.getRules().remove(i+1);
+						transform.getRules().add(i+1, tempProd);
+						foundSelected = true;
+					}
+				}
 			}
 		});
 	}
 	
-	protected void moveProductionDown(List<? extends Production> selection) {
+	protected void moveProductionDown(final List<? extends Production> selection) {
 		final TransformEditor editor = getMultiEditor();
-		
+		DefaultEditDomain domain = editor.getEditDomain();
+		domain.getCommandStack().execute(new Command("Move Production Down"){
+			private Production tempProd = null;
+			
+			public boolean canExecute() {
+				return transform != null && editor != null;
+			}
+			public boolean canUndo() {
+				return canExecute();
+			}
+			public void execute() {
+				for(Production product : selection){
+					tempProd=product;
+				}
+				boolean foundSelected = false;
+				for(int i = 0;i<transform.getRules().size();i++){
+					if(transform.getRules().get(i).equals(tempProd) && !foundSelected){
+						if(i!=(transform.getRules().size()-1)){
+							transform.getRules().move(i, transform.getRules().get(i+1));
+							transform.getRules().remove(i+1);
+							transform.getRules().add(i+1, tempProd);
+							foundSelected = true;
+						}
+					}
+				}
+			}
+			public void undo() {
+				boolean foundSelected = false;
+				for(int i = 0;i<transform.getRules().size();i++){
+					if(transform.getRules().get(i).equals(tempProd) && !foundSelected){
+						System.out.println("i" + i);
+						transform.getRules().move(i, transform.getRules().get(i-1));
+						transform.getRules().remove(i-1);
+						transform.getRules().add(i-1, tempProd);
+						foundSelected = true;
+					}
+				}
+			}
+		});
 	}
 	
 	protected void addProduction() {

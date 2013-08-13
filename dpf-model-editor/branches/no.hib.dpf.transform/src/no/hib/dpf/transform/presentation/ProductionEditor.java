@@ -31,17 +31,20 @@ import no.hib.dpf.core.Node;
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
+import no.hib.dpf.diagram.DOffset;
 import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.diagram.DiagramFactory;
 import no.hib.dpf.diagram.util.DPFConstants;
 import no.hib.dpf.editor.DPFEditorPaletteFactory;
 import no.hib.dpf.editor.DPFUtils;
+import no.hib.dpf.editor.parts.ArrowLabelEditPart;
 import no.hib.dpf.editor.parts.DArrowEditPart;
 import no.hib.dpf.editor.parts.DNodeEditPart;
 import no.hib.dpf.editor.parts.DPFEditPartFactory;
 import no.hib.dpf.transform.Production;
 import no.hib.dpf.transform.Transform;
 import no.hib.dpf.transform.util.TransformActivePage;
+import no.hib.dpf.transform.parts.TransformArrowLabelEditPart;
 import no.hib.dpf.transform.parts.TransformDArrowEditPart;
 import no.hib.dpf.transform.parts.TransformDNodeEditPart;
 import no.hib.dpf.utils.DPFCoreUtil;
@@ -158,12 +161,17 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 					};
 				}
 				if (modelElement instanceof DArrow) {
-					return new TransformDArrowEditPart(){
+					return new TransformDArrowEditPart(modelElement){
 						protected void createEditPolicies() {
 							super.createEditPolicies();
 							installEditPolicy("action", new ActionEditPolicy());
 						}
 					};
+				}
+				if (modelElement instanceof DOffset) {
+					DOffset offset = (DOffset) modelElement;
+					if(offset.eContainer() instanceof DArrow)
+						return new TransformArrowLabelEditPart(offset);
 				}
 				return super.getPartForElement(modelElement);
 			}

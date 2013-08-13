@@ -100,7 +100,6 @@ public class TransformDNodeEditPart extends DNodeEditPart{
 	
 	@Override
 	protected void handleModelChanged(Notification msg) {
-		System.out.println("IGJEN");
 		if(msg.getNotifier() != null && msg.getNotifier() == getDPFNode()){ 
 			switch(msg.getFeatureID(Node.class)){
 			case CorePackage.NODE__NAME:

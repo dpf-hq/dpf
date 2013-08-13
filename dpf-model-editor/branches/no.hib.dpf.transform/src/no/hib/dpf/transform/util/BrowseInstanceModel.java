@@ -54,8 +54,6 @@ public class BrowseInstanceModel extends Wizard implements IWizard{
 	
 		  public CreationPage() {
 		    super("First Page");
-		    setTitle("First Page");
-		    setDescription("Fake Wizard. First page");
 		    
 		  }
 	
