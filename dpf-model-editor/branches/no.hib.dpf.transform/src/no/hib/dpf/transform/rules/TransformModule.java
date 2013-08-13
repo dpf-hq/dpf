@@ -89,6 +89,7 @@ public class TransformModule {
 		resourceSet.getResources().add(targetModel);
 		System.out.println("Her + " + targetMetaModel.getEClassifiers());
 		
+		
 	}
 	public Module createModule(){
 		Module mainModule = henshinFac.createModule();
