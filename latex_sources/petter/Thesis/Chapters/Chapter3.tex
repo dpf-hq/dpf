@@ -2,9 +2,11 @@
 
 \chapter{Model Transformation} % Main chapter title
 
-\label{Chapte3} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
+\label{Chapte3} % Change X to a consecutive number; for referencing this
+% chapter elsewhere, use \ref{ChapterX}
 
-\lhead{Chapter 3. \emph{Model Transformation}} % Change X to a consecutive number; this is for the header on each page - perhaps a shortened title
+\lhead{Chapter 3. \emph{Model Transformation}} % Change X to a consecutive 
+% number; this is for the header on each page - perhaps a shortened title
 
 In this chapter we will describe what model transformations is and also write
 about the different types of model transformation. 
@@ -73,13 +75,14 @@ is convenient if for example a software engineer wants to produce source code
 %	SUBSECTION 2
 %-----------------------------------
 
-\subsection{Classification of a model transformation}
+\section{Classification of a model transformation}
 
 In March 2006 Krzysztof Czarnecki and Simon Helsen did a domain analysis to
-existing model transformation approaches. A domain analysis represents
+existing model transformation approaches\cite{Czarnecki2006}. A domain analysis represents
 information on software system that share a common set of features for a given
 domain\cite{FODA,Prieto-Diaz1990}, in this case the domain is model
-transformations. 
+transformations. This next section is based on the ideas and result from
+Czarnecki and Helsens domain analysis. 
 
 \begin{figure}[H]
   \centering
@@ -98,25 +101,79 @@ transformations.
 
 One approach to model transformations is by graph transformations,
 also referred to as graph rewriting. Graph rewriting can be implemented with
-an algebraic approach, which is based on category theory\cite{Barr1990}.
+an algebraic approach, which is based on Category Theory. Before we go into
+detail about graph transformation, we should quickly describe the concepts of
+Category Theory\cite{Herrlich1973,Barr1990}. Category theory can be used to
+formalize mathematical or software theory's at a high level of abstraction. In
+2006 Steve Awodey published a second edition of the book, Category Theory,
+where he stated,
+
+``Just as group theory is the abstraction of the idea of a system of
+permutations of a set or symmetries of a geometric object, category theory
+arises from the idea of a system of functions among some
+objects\cite{Awodey2006}.''
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.7]{./Figures/categoryTheory.png}
-	\caption[Category Theory]{Collection of objects A,B and C.}
+	\caption[Category Theory]
+	{Collection of objects A,B and C.}
 	\label{fig:categoryTheory}
 \end{figure}
 
-In category theory there are a collection of objects and arrows. In
-figure~\ref{fig:categoryTheory} we have a collection of objects A, B and C and
-graph morphisms f, g and g $\circ$ f. Morphisms are pair of maps which commute
-with the source and target\cite{Brown2008}. In figure~\ref{fig:categoryTheory}
-there are three sets of graph morphisms, f : A $\longrightarrow$ B, g : B
-$\longrightarrow$ C and g $\circ$ f : A $\longrightarrow$ C.  Category theory
-can then be used to formalize mathematical or software theory's at a high level of abstraction. And
-for the purpose of this thesis, the collection of objects represents graphs and
-the arrows represents morphisms between these graphs. This is also common when
-writing papers, for example to explain the concepts of graph transformations.
+Category Theory can be used as a supplement to explain the theoretical aspects
+behind a problem or solution. A category consists of a collections of
+objects and functions. In figure~\ref{fig:categoryTheory} we have a collection
+of objects A, B, C and arrows f, g, g $\circ$ f. The figure describe that
+there is a connection between the two objects A and B. This connection
+indicates that there are some association between two objects. For this case
+this means that function f is defined in A and the values of this function are
+in B. When the objects represents graphs, then these connections between objects
+are often referred to as morphisms between graphs or graph morphisms. Morphisms
+are pair of maps which commute with source and target\cite{Brown2008}.
+Figure~\ref{fig:categoryTheory} has three sets of graph morphisms, f : A
+$\longrightarrow$ B, g : B $\longrightarrow$ C and g $\circ$ f : A
+$\longrightarrow$ C. The last set of graph morphisms, g $\circ$ f indicates that
+there is a composite function between A and C. This basically means that if
+C is a function g of B and B is a function f of A, then C is the result of a
+function between C and A. 
+
+For the purpose of this thesis the collection of objects represents graphs the
+arrows represents morphisms. A graph contains a collection of nodes and edges.
+A graph is undirected when there is no distinction between two nodes associated
+with an edge or it is a directed graph if an edge has a direction between two
+nodes. This means that each node is represented as a source and a target node
+for an edge. A directed graph L can be defined by L = \{
+N\textsubscript{L}, E\textsubscript{L}, source\textsubscript{L},
+target\textsubscript{L} \}. N\textsubscript{L} represents the collection of
+nodes and E\textsubscript{L} represents the collection of edges that are
+included for the directed graph. The third and forth elements,
+source\textsubscript{L} and target\textsubscript{L}, are functions that
+retrieves the source and target node for an edge. This collection of nodes and
+edges in a graph L can result in an excact match in another graph G. The
+morphism between these two graphs are called homomorphism.
+
+\subsubsection*{Graph Homomorphism}
+
+When there is a graph that has a match of all its nodes and edges in another
+graph, then we have a graph homomorphism between these two graphs. 
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{./Figures/GraphHomomorphism.png}
+	\caption[Basic concepts of graph homomorphism]
+	{Two sets of graph homomorphism of graph L in G and R in H}
+	\label{fig:graphHomomorphism.png}
+\end{figure}
+
+Figure~\ref{fig:graphHomomorphism} has two graph homomorphisms
+\mbox{L$\xrightarrow{m\textsubscript{L}}$G} and 
+\mbox{R$\xrightarrow{m\textsubscript{R}}$H}. Now if we consider the first
+example, if there is to be a valid graph homomorphism between graph L and G,
+then the collection of nodes and edges in L has to be present in G. 
+
+
 
 \subsection{The Algebraic Approach}
 This approach are based on the concepts of composing graphs, modelled
@@ -171,7 +228,7 @@ represents the right hand side of the rule.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.7]{./Figures/Single_Pushout_Appr.png}
+	\includegraphics[scale=0.7]{./Figures/Single_Pushout.png}
 	\caption[Idea of graph transformation]
 	{The basic idea for graph transformation by applying a rule r.}
 	\label{fig:GraphTransformationGeneral}
@@ -194,7 +251,7 @@ has an application condition.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.7]{./Figures/Double_Pushout_Appr.png}
+	\includegraphics[scale=0.7]{./Figures/Double_Pushout.png}
 	\caption[The Double Pushout approach]
 	{Principles behind the double pushout approach.}
 	\label{fig:DPO}
