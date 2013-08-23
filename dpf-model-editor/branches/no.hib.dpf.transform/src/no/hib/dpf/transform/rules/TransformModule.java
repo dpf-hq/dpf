@@ -250,10 +250,13 @@ public class TransformModule {
 			trace.getTarget().add(deletionType);
 			deletionType.setName(production.getLeftNodes().get(i).getName()+NODETYPE);
 			nodes.put(production.getLeftNodes().get(i).getName()+NODETYPE, deletionType);
-			henshinFac.createEdge(deletion, deletionType, referenceNode);
+			Edge deleteTypeNode = henshinFac.createEdge(deletion, deletionType, referenceNode);
 			Attribute henshin_attribute = henshinFac.createAttribute(deletionType, nodeTypeAttribute, "\""+dNodeType+"\"");
 			
 			henshin_attribute.setAction(new Action(Type.REQUIRE));
+			deletionType.setAction(new Action(Type.PRESERVE));
+			deletion.setAction(new Action(Type.DELETE));
+			deleteTypeNode.setAction(new Action(Type.DELETE));
 		}
 		for(int i = 0;i<production.getLeftArrows().size();i++){
 			String dArrowType = production.getLeftArrows().get(i).getTypeName();
@@ -279,9 +282,13 @@ public class TransformModule {
 			deletionType.setName(production.getLeftArrows().get(i).getName()+ARROWTYPE);
 			nodes.put(production.getLeftArrows().get(i).getName()+ARROWTYPE, deletionType);
 			
-			henshinFac.createEdge(deletion, deletionType, referenceArrow);
+			Edge deleteTypeArrow = henshinFac.createEdge(deletion, deletionType, referenceArrow);
 			Attribute henshin_attribute = henshinFac.createAttribute(deletionType, arrowTypeAttribute, "\""+dArrowType+"\"");
+			
 			henshin_attribute.setAction(new Action(Type.REQUIRE));
+			deletionType.setAction(new Action(Type.PRESERVE));
+			deleteTypeArrow.setAction(new Action(Type.DELETE));
+			deletion.setAction(new Action(Type.DELETE));
 		}
 		for(int i = 0; i<production.getCommonNodes().size();i++){
 			String dNodeType = production.getCommonNodes().get(i).getTypeName();
