@@ -63,6 +63,7 @@ public class AddTransformCommand extends Command {
 			if(production.getCommonNodes().contains(insertObject)){
 				production.getCommonNodes().remove(insertObject);
 			}
+			System.out.println(" her " + ((DNode) insertObject).getConfigureString());
 			production.getRightNodes().add((DNode) insertObject);
 		}
 		if(insertObject instanceof DArrow){

@@ -2,7 +2,10 @@ package no.hib.dpf.transform.henshin;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import no.hib.dpf.core.CoreFactory;
@@ -18,29 +21,36 @@ import no.hib.dpf.editor.DPFUtils;
 import no.hib.dpf.editor.commands.DNodeDeleteCommand;
 import no.hib.dpf.transform.Transform;
 import no.hib.dpf.transform.TransformPackage;
+import no.hib.dpf.transform.execute.TranslateDPFModel;
 import no.hib.dpf.transform.presentation.TransformEditor;
 import no.hib.dpf.transform.rules.TransformModule;
 import no.hib.dpf.transform.util.TransformActivePage;
 
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.henshin.interpreter.ApplicationMonitor;
 import org.eclipse.emf.henshin.interpreter.EGraph;
 import org.eclipse.emf.henshin.interpreter.Engine;
+import org.eclipse.emf.henshin.interpreter.InterpreterFactory;
 import org.eclipse.emf.henshin.interpreter.Match;
+import org.eclipse.emf.henshin.interpreter.RuleApplication;
 import org.eclipse.emf.henshin.interpreter.UnitApplication;
 import org.eclipse.emf.henshin.interpreter.impl.ChangeImpl;
 import org.eclipse.emf.henshin.interpreter.impl.EGraphImpl;
 import org.eclipse.emf.henshin.interpreter.impl.EngineImpl;
 import org.eclipse.emf.henshin.interpreter.impl.MatchImpl;
+import org.eclipse.emf.henshin.interpreter.impl.RuleApplicationImpl;
 import org.eclipse.emf.henshin.interpreter.impl.UnitApplicationImpl;
 import org.eclipse.emf.henshin.interpreter.util.InterpreterUtil;
 import org.eclipse.emf.henshin.model.Module;
 import org.eclipse.emf.henshin.model.Rule;
 import org.eclipse.emf.henshin.model.Unit;
 import org.eclipse.emf.henshin.model.resource.HenshinResourceSet;
+import org.eclipse.emf.henshin.trace.TraceFactory;
 
 public class ApplyTransformation {
 	
@@ -54,87 +64,104 @@ public class ApplyTransformation {
 
 		HenshinResourceSet resourceSet = new HenshinResourceSet(TransformActivePage.activeWorkingDirectory());
 		Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
-		URI newUri = URI.createFileURI(path);
+		
+		String newPath = path.replace(".dpf", ".xmi");
+		
+		URI dSpecUri = URI.createFileURI(newPath);
+		
+//		DSpecification dSpec = DPFUtils.loadDSpecification(dSpecUri);
 		//Transform the metamodels
 		//Engine engine = new EngineImpl();
 		
-		Resource model = resourceSet.getResource(newUri, true);
+		Resource model = resourceSet.getResource(dSpecUri, true);
 		Module module = resourceSet.getModule(TransformActivePage.trimActiveTransformModel()+"toHenshin.henshin", true);
-//		Specification spec = (Specification) model.getContents().get(0);
 //		//DSpecification spec =  (DSpecification) model.getContents().get(0);
 //		System.out.println("model " + spec.getGraph().getNodes());
 //		System.out.println("module " + module.getRules());
-//		
-		EGraph graph = new EGraphImpl();
-		graph.addTree(model.getContents().get(0));
+//		URI dSpecUri = URI.createFileURI("C:/Users/Petter/workspace/DPFTest/specifications/theModelInstance.dpf");
+//		DSpecification dSpec = DPFUtils.loadDSpecification(dSpecUri);
+		Specification spec = (Specification) model.getContents().get(0);
+		
+		EGraph graph = new EGraphImpl(model);
+		//graph.addTree(model.getContents().get(0));
 		System.out.println(graph);
 		
 		Engine engine = new EngineImpl();
-		Specification specification = null;
-		Graph DPF_Graph = null;
-		Node node = null;
-		for(int i = 0;i<module.getRules().size();i++){
+		
+		RuleApplication ruleApplication = new RuleApplicationImpl(engine);
+		ruleApplication.setEGraph(graph);
+		ApplicationMonitor monitor = InterpreterFactory.INSTANCE.createApplicationMonitor();
+		
+		Rule initialRule = module.getRules().get(0);
+		Match initialMatch = new MatchImpl(initialRule);  
+//		for (Match initial : engine.findMatches(initialRule, graph, initialMatch)) {
+//			for(int j = 0;j<initial.getNodeTargets().size();j++){
+//				if(initial.getNodeTargets().get(j) instanceof Specification){
+//					specification = (Specification) initial.getNodeTargets().get(j);
+//				}
+//				if(initial.getNodeTargets().get(j) instanceof Graph){
+//					core_graph = (Graph) initial.getNodeTargets().get(j);
+//				}
+//			}
+//		}
+		
+		
+		for(int i = 1;i<module.getRules().size();i++){
 			
 			Rule rule = module.getRules().get(i);
-//			Rule rule = module.getRule("deleteMessage");
-			Match partialMatch = new MatchImpl(rule);  
-			System.out.println("Matches for rule: " + rule.getName());
 			
+			
+			Match partialMatch = new MatchImpl(rule);  
+			if(rule.getParameter("name") != null){
+				partialMatch.setParameterValue(rule.getParameter("name"), "Send Money");
+			}
+				
+			System.out.println("Matches for rule: " + rule.getName());
+			HashMap<Rule, List<EObject>> matches = new HashMap<Rule, List<EObject>>();
 			for (Match match : engine.findMatches(rule, graph, partialMatch)) {
+				List<EObject> list = new ArrayList<EObject>();
 				
 				for(int j = 0;j<match.getNodeTargets().size();j++){
-					System.out.println(match.getNodeTargets().get(j));
+					list.add(match.getNodeTargets().get(j));
+//					matches.put(rule, match.getNodeTargets().get(j));
+					//System.out.println(match.getNodeTargets().get(j));
 				}
+				ruleApplication.setRule(rule);
+				ruleApplication.setCompleteMatch(match);
+				ruleApplication.execute(monitor);
+//				
+//				TranslateDPFModel translate_DPF = new TranslateDPFModel(list, rule, 
+//						newUri, spec, dSpec, true, resourceSet);
+//				translate_DPF.executeChanges();
+				
+				for (int j = 0;j<list.size();j++){
+					System.out.println(list.get(j));
+				}
+				
+				
 //				DSpecification spec = null;
 //				spec.getDGraph().removeDNode(node);
 //				DPFUtils.save
 				System.out.println();
 			}
+			
 			System.out.println();
 		}
-//		DSpecification dspecccs = DPFUtils.loadDSpecification(URI.createFileURI("C:/Users/Petter/workspace/DPFTest/specifications/theModelInstance.dpf"));
-//		Specification specccs = DPFUtils.loadSpecification(URI.createFileURI("C:/Users/Petter/workspace/DPFTest/specifications/theModelInstance.xmi"));
-
-//		Node nodePetter = specccs.getGraph().createNode("Petter");
-//		
-//		DNode dNode = null;
-//		
-//		for(int i = 0;i<dspecccs.getDGraph().getDNodes().size();i++){
-//			if(dspecccs.getDGraph().getDNodes().get(i).getNode().equals(node)){
-//				dNode = dspecccs.getDGraph().getDNodes().get(i);
-//			}
-//		}
-//		
-//		dspecccs.getDGraph().removeDNode(dNode);
-//		new DNodeDeleteCommand(dNode);
-//		
-//		DPFUtils.saveSpecification(URI.createFileURI("C:/Users/Petter/workspace/DPFTest/specifications/theModelInstance.xmi"), specccs);
-//		DPFUtils.saveDSpecification(DPFUtils.getResourceSet(), dspecccs, URI.createFileURI("C:/Users/Petter/workspace/DPFTest/specifications/theModelInstance.dpf"), new LinkedHashMap<Resource, Diagnostic>());
-//		Unit unit = module.getUnit(module.getRules().get(0).getName());
-//		
+		
+		try {
+			model.save(null);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+//		Unit unit = module.getUnit("main");
 //		UnitApplication unitApp = new UnitApplicationImpl(engine, graph, unit, null);
-//		
+
 //		try{
 //			InterpreterUtil.executeOrDie(unitApp);
 //			ChangeImpl.PRINT_WARNINGS = false;
 //		} catch (AssertionError e){
-//			System.out.println("Errer " + e);
+//			System.out.println("Error " + e);
 //		}
-		
-//		Transform transform = TransformEditor.loadTransform(DPFUtils.getResourceSet(), URI.createFileURI(TransformActivePage.activeWindowFileLocation()), resourceToDiagnosticMap);
-//		TransformModule translateHenshinRules = new TransformModule(transform, resourceSet);
-//				
-//		Module result = (Module) translateHenshinRules.createModule();
-//				
-//		if(save){
-//			String henshinModelName = TransformActivePage.trimActiveTransformModel()+"toHenshin.henshin";
-//			File file = new File(TransformActivePage.activeWorkingDirectory()+"/"+henshinModelName);
-//			if(file.exists()){
-//				file.delete();
-//			}
-//			//resourceSet.createResource(null, TransformActivePage.trimActiveTransformModel()+"toHenshin.henshin");
-//			resourceSet.saveEObject(result, henshinModelName);
-//		}
-//		System.out.println("Module" + result.getRules());
 	}
 }

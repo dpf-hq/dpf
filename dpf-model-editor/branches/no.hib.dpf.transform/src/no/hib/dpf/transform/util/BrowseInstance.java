@@ -1,29 +1,172 @@
 package no.hib.dpf.transform.util;
 
+import no.hib.dpf.core.Specification;
+import no.hib.dpf.diagram.DSpecification;
+import no.hib.dpf.editor.DPFUtils;
+import no.hib.dpf.transform.Transform;
+import no.hib.dpf.transform.presentation.TransformEditor;
+
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.FileDialog;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Table;
+import org.eclipse.swt.widgets.TableColumn;
+import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.dialogs.Dialog; 
+import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.swt.widgets.Shell;
 
 public class BrowseInstance extends Dialog {
 
-	public BrowseInstance(Shell parent) {
+	private Text modelInstance;
+	private Button instanceModelFileChooser;
+	private Label errorSourceMessage;
+	
+	private Transform transform = null;
+	
+	private DSpecification sourceDSpecification = null;
+	private DSpecification targetDSpecification = null;
+	
+	private Specification sourcespecification = null;
+	private Specification targetspecification = null;
+	
+	private String sourceDSpec = "";
+	private String sourceSpec = ""; 
+	
+	private String targetDSpec = "";
+	private String targetSpec = ""; 
+	
+	private String modelInstanceFilePath;
+	
+	
+	public BrowseInstance(Shell parent, Transform transform) {
 		super(parent);
-	}
-	protected Control createDialogArea(Composite parent) { 
-
-		Composite composite = (Composite) super.createDialogArea(parent); 
-		createControls(composite); 
-		//add controls to composite as necessary 
-		return composite; 
-	}
-	private void createControls(Composite composite) {
-		// TODO Auto-generated method stub
 		
-	} 
+		this.transform = transform;
+//		sourceDSpecification = transform.getSourceMetaModel();
+//		targetDSpecification = transform.getTargetMetaModel();
+//		
+//		System.out.println("Source " + sourceDSpecification.eContainer() + " Target " + targetDSpecification.eContainer());
+//		
+//		if(transform != null){
+//			sourceDSpecification = transform.getSourceMetaModel().getDType();
+//			sourcespecification = transform.getSourceMetaModel().getSpecification();
+//
+//		}
+//		sourceDSpec = sourceDSpecification.eResource().getURI().toFileString();
+//		sourceSpec = sourcespecification.eResource().getURI().toFileString();
+//		
+//		if(transform != null){
+//			targetDSpecification = transform.getTargetMetaModel();
+//			targetspecification = transform.getTargetMetaModel().getSpecification();
+//			
+//		}
+//		targetDSpec = targetDSpecification.eResource().getURI().toFileString();
+//		targetSpec = targetspecification.eResource().getURI().toFileString();
+//		
+//		System.out.println("Target: " + targetDSpec);
+		
+	}
+	
+	protected Control createDialogArea(Composite parent) { 
+		
+		Composite composite = (Composite) super.createDialogArea(parent);
+	    GridLayout layout = new GridLayout(3, false);
+	    layout.marginRight = 5;
+	    layout.marginLeft = 10;
+	    layout.marginTop = 10;
+	    composite.setLayout(layout);
+
+	    Label lblUser = new Label(composite, SWT.NONE);
+	    lblUser.setText("Instance Model:");
+
+	    modelInstance = new Text(composite, SWT.BORDER);
+	    modelInstance.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false,
+	        1, 1));
+
+	    instanceModelFileChooser = new Button(composite, SWT.PUSH);
+	    {
+			setButtonLayoutData(instanceModelFileChooser);
+			instanceModelFileChooser.setText("&Browse...");
+			instanceModelFileChooser.addSelectionListener(new SelectionAdapter() {
+
+				public void widgetSelected(SelectionEvent event) {
+					handleModelBrowseButtonPressed(modelInstance, "*.dpf");
+				}
+			});
+			instanceModelFileChooser.setEnabled(true);
+		}
+	    
+	    errorSourceMessage = new Label(composite, SWT.NONE);
+	    errorSourceMessage.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, SWT.FILL, 0));
+	    errorSourceMessage.setText("Type specification from instance model does not match source metamodel");
+	    errorSourceMessage.setForeground(new Color(null, 255, 0, 0));
+	    
+	    
+		Table table = new Table(composite, SWT.FULL_SELECTION | SWT.BORDER);
+		table.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, SWT.FILL, 0));
+		
+		table.setHeaderVisible(true);
+		
+		TableColumn one = new TableColumn(table, SWT.NONE);
+		
+		TableColumn two = new TableColumn(table, SWT.NONE);
+		
+		TableItem item = new TableItem(table, SWT.NONE);
+		item.setText(0, "Source Metamodel");
+		item.setText(1, sourceDSpec);
+		
+		item = new TableItem(table, SWT.NONE);
+		item.setText(0, "Source Specification");
+		item.setText(1, sourceSpec);
+		
+		item = new TableItem(table, SWT.NONE);
+		item.setText(0, "Target Metamodel");
+		item.setText(1, sourceDSpec);
+		
+		item = new TableItem(table, SWT.NONE);
+		item.setText(0, "Target Specification");
+		item.setText(1, sourceSpec);
+		
+		one.pack();
+		two.pack();
+		
+		return composite; 
+		
+	}
+	
+	@Override
+	protected void createButtonsForButtonBar(Composite parent) {
+		createButton(parent, IDialogConstants.OK_ID, "Execute", true);
+		createButton(parent, IDialogConstants.CANCEL_ID,
+	    IDialogConstants.CANCEL_LABEL, false);	
+	}
+	@Override
+	protected Point getInitialSize() {
+		return new Point(600, 300);
+	}
+	@Override
+	protected void okPressed(){
+		modelInstanceFilePath = modelInstance.getText().toString();
+		super.okPressed();
+	}
+	
+	public String getModelInstanceFilePath(){
+		return modelInstanceFilePath;
+	}
+	
 	protected void handleModelBrowseButtonPressed(Text targetField, String name) {
 		String selection = null;
 		FileDialog fileDialog = new FileDialog(getShell(), SWT.SHEET);

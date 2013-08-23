@@ -219,6 +219,21 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 		tempGraph.getDNodes().addAll(targetDSpecification.getDGraph().getDNodes());
 		tempGraph.getDArrows().addAll(targetDSpecification.getDGraph().getDArrows());
 		
+		System.out.println(targetDSpecification.getDGraph().getDNodes());
+		
+		for(int i = 0;i<tempGraph.getDNodes().size();i++){
+			for(int j = 0;j<targetDSpecification.getDGraph().getDNodes().size();j++){
+				if(targetDSpecification.getDGraph().getDNodes().get(j).getName() == tempGraph.getDNodes().get(i).getName()){
+					System.out.println(targetDSpecification.getDGraph().getDNodes().get(j).getName());
+				}
+			}
+		}
+		
+		
 		return tempGraph;
+	}
+	
+	protected void initializeGraphicalViewer() {
+		super.initializeGraphicalViewer();
 	}
 }

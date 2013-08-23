@@ -12,6 +12,7 @@ import no.hib.dpf.transform.henshin.TranslateToEcore;
 import no.hib.dpf.transform.henshin.TranslateToHenshinRules;
 import no.hib.dpf.transform.icons.ImageSettings;
 import no.hib.dpf.transform.provider.TransformEditPlugin;
+import no.hib.dpf.transform.util.BrowseInstance;
 import no.hib.dpf.transform.util.BrowseInstanceModel;
 import no.hib.dpf.transform.util.TransformActivePage;
 import no.hib.dpf.transform.util.TransformConstants;
@@ -90,10 +91,18 @@ public class TransformActionBarContributor extends ActionBarContributor {
 		@Override
 		public void run() {
 			//ApplyTransformation.exeucteTransformation("C:/Users/Petter/workspace/DPFTest/specifications/theModelInstance.xmi", true);
-			FileDialog file = new FileDialog(TransformActivePage.getActiveWorkBenchWindow().getShell());
-			file.open();
-			//			WizardDialog wizardDialog = new WizardDialog(TransformActivePage.getActiveWorkBenchWindow().getShell(),
-//				      new BrowseInstanceModel());
+			Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
+			Transform transform = TransformEditor.loadTransform(DPFUtils.getResourceSet(), URI.createFileURI(TransformActivePage.activeWindowFileLocation()), resourceToDiagnosticMap);
+			BrowseInstance br = new BrowseInstance(TransformActivePage.getActiveWorkBenchWindow().getShell(), transform);
+			if(br.open() == Window.OK){
+//				String xmiPath = br.getModelInstanceFilePath().replace(".dpf", ".xmi");
+				ApplyTransformation.exeucteTransformation(br.getModelInstanceFilePath(), true);
+			}
+			
+//			FileDialog file = new FileDialog(TransformActivePage.getActiveWorkBenchWindow().getShell());
+//			file.open();
+//			WizardDialog wizardDialog = new WizardDialog(TransformActivePage.getActiveWorkBenchWindow().getShell(),
+//				      new BrowseInstance());
 //				    if (wizardDialog.open() == Window.OK) {
 //				      System.out.println("Ok pressed");
 //				    } else {

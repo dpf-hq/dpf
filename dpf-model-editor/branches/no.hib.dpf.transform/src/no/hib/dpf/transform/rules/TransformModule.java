@@ -51,6 +51,8 @@ import org.eclipse.emf.henshin.model.impl.HenshinPackageImpl;
 import org.eclipse.emf.henshin.model.impl.NestedConditionImpl;
 import org.eclipse.emf.henshin.model.impl.SequentialUnitImpl;
 import org.eclipse.emf.henshin.model.resource.HenshinResourceSet;
+import org.eclipse.emf.henshin.trace.TraceFactory;
+import org.eclipse.emf.henshin.trace.Trace;
 
 
 public class TransformModule {
@@ -60,6 +62,7 @@ public class TransformModule {
 	private EPackage targetMetaModel = null;
 	private HenshinResourceSet resourceSet = null;
 	private HenshinFactory henshinFac = HenshinFactoryImpl.eINSTANCE;
+	private TraceFactory traceFac = TraceFactory.eINSTANCE;
 	private EPackage core;
 	private EPackage diagram;
 	
@@ -73,23 +76,21 @@ public class TransformModule {
 	public TransformModule(Transform transform, HenshinResourceSet resourceSet){
 		this.resourceSet = resourceSet;
 		this.transform = transform;
-		URI sourceModelUri = URI.createURI(resourceSet.getBaseDir() +
-			transform.getSourceMetaModel().getSpecification().eResource().getURI().lastSegment().replace(".xmi", ".ecore"));
-		System.out.println(sourceModelUri);
-		Resource sourceModel = resourceSet.getResource(sourceModelUri, true);
-		sourceMetaModel = (EPackage) sourceModel.getContents().get(0);
-		resourceSet.getResources().add(sourceModel);
-		System.out.println("Her + " + sourceMetaModel.getEClassifiers());
-		
-		URI targetModelUri = URI.createURI(resourceSet.getBaseDir() +
-				transform.getSourceMetaModel().getSpecification().eResource().getURI().lastSegment().replace(".xmi", ".ecore"));
-		System.out.println(targetModelUri);
-		Resource targetModel = resourceSet.getResource(targetModelUri, true);
-		targetMetaModel = (EPackage) targetModel.getContents().get(0);
-		resourceSet.getResources().add(targetModel);
-		System.out.println("Her + " + targetMetaModel.getEClassifiers());
-		
-		
+//		URI sourceModelUri = URI.createURI(resourceSet.getBaseDir() +
+//			transform.getSourceMetaModel().getSpecification().eResource().getURI().lastSegment().replace(".xmi", ".ecore"));
+//		System.out.println(sourceModelUri);
+//		Resource sourceModel = resourceSet.getResource(sourceModelUri, true);
+//		sourceMetaModel = (EPackage) sourceModel.getContents().get(0);
+//		resourceSet.getResources().add(sourceModel);
+//		System.out.println("Her + " + sourceMetaModel.getEClassifiers());
+//		
+//		URI targetModelUri = URI.createURI(resourceSet.getBaseDir() +
+//				transform.getSourceMetaModel().getSpecification().eResource().getURI().lastSegment().replace(".xmi", ".ecore"));
+//		System.out.println(targetModelUri);
+//		Resource targetModel = resourceSet.getResource(targetModelUri, true);
+//		targetMetaModel = (EPackage) targetModel.getContents().get(0);
+//		resourceSet.getResources().add(targetModel);
+//		System.out.println("Her + " + targetMetaModel.getEClassifiers());
 	}
 	public Module createModule(){
 		Module mainModule = henshinFac.createModule();
@@ -239,10 +240,14 @@ public class TransformModule {
 					nodeTypeAttribute = nodeType.getEAttributes().get(j);
 				}
 			}
+			Trace trace = traceFac.createTrace();
+			
 			Node deletion = henshinFac.createNode(lhs, node, null);
+			trace.getSource().add(deletion);
 			deletion.setName(production.getLeftNodes().get(i).getName());
 			nodes.put(production.getLeftNodes().get(i).getName(), deletion);
 			Node deletionType = henshinFac.createNode(lhs, nodeType, null);
+			trace.getTarget().add(deletionType);
 			deletionType.setName(production.getLeftNodes().get(i).getName()+NODETYPE);
 			nodes.put(production.getLeftNodes().get(i).getName()+NODETYPE, deletionType);
 			henshinFac.createEdge(deletion, deletionType, referenceNode);
@@ -346,6 +351,7 @@ public class TransformModule {
 			henshin_attribute.setAction(new Action(Type.REQUIRE));
 		}
 		for(int i = 0; i<production.getRightNodes().size();i++){
+			System.out.println("Her " + production.getRightNodes().get(i).getTypeName());
 			String dNodeType = production.getRightNodes().get(i).getTypeName();
 			EClass node = (EClass) core.getEClassifier("Node");
 			EReference referenceNode = null;
@@ -373,6 +379,7 @@ public class TransformModule {
 			henshinFac.createAttribute(deletionType, nodeTypeAttribute, "\""+dNodeType+"\"");
 		}
 		for(int i = 0;i<production.getRightArrows().size();i++){
+			System.out.println("Her " + production.getRightArrows().get(i).getTypeName());
 			String dArrowType = production.getRightArrows().get(i).getTypeName();
 			EClass arrow = (EClass) core.getEClassifier(DEFAULT_ARROW);
 			EReference referenceArrow = null;
