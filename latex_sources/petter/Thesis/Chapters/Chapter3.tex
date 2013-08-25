@@ -71,6 +71,8 @@ is convenient if for example a software engineer wants to produce source code
   \label{fig:BasicTransformation}
 \end{figure}
 
+\section{Model Transformation in MDE}
+
 %-----------------------------------
 %	SUBSECTION 2
 %-----------------------------------
@@ -81,8 +83,21 @@ In March 2006 Krzysztof Czarnecki and Simon Helsen did a domain analysis to
 existing model transformation approaches\cite{Czarnecki2006}. A domain analysis represents
 information on software system that share a common set of features for a given
 domain\cite{FODA,Prieto-Diaz1990}, in this case the domain is model
-transformations. This next section is based on the ideas and result from
-Czarnecki and Helsens domain analysis. 
+transformations. This section is based on the ideas and result from Czarnecki
+and Helsen's report. In their paper they presents a feature diagram that
+provides a terminology and representation of the design choices for model
+transformation approaches. This feature diagram does not only present model to
+model approaches, but also consider the design choices for model to text
+approaches. For the purpose of this thesis we will only address the model to
+model approaches in Czarnecki and Helsen's survey on model transformations.
+However it is important to address that at top level, we can divide model
+transformations into to categories, namely model to text and model to model
+transformations. The major difference between these categories are that model to
+model transformations generate a target model as an instance of the targets
+metamodel. While the target of a model to text transformation are string
+sequences. Model to text transformation are also often referred to as model to
+code transformation since a collection of strings can be source code that
+corresponds to some programming language. 
 
 \begin{figure}[H]
   \centering
@@ -92,6 +107,58 @@ Czarnecki and Helsens domain analysis.
   				{A domain analysis of model transformations\cite{Czarnecki2006}.}
   \label{fig:Model_Transformation_Survey}
 \end{figure}
+
+Figure~\ref{fig:Model_Transformation_Survey} shows the feature diagram at top
+level of a model transformation, where each subnode represents a major aspect
+of model transformations. 
+
+\subsection{Specification}
+
+\subsection{Transformation Rules}
+
+For a model transformation to be able to translate a model to another model it
+needs a set of guidelines on how this should be done. Therefore a model
+transformation has a set of transformation rules that specifies how a target
+model should be produced. An obvious example of such rules are the rewrite
+rules. A rewrite rule provides a left hand side (LHS) and a right hand side
+(RHS) and both sides represents some user created patterns that are considered
+when a transformation engine executes their corresponding transformation rules.
+But a function that implements some transformation steps can also be seen as a
+transformation rule. For example in ATL Transformation Language (ATL) \cite{ATL}
+a transformation rule is implemented as a function, that consists of various
+steps on how this transformation rule should be applied. 
+
+Every transformation rule has a metamodel attached. A metamodel is referred
+to as a domain in Czarnecki and Helsen's survey\cite{Czarnecki2006}. This
+is to make the term metamodel a more general term since some transformation
+languages take other approaches to how these metamodels are created. The
+Attributed Graph Grammar System\cite{AGG} (AGG) for example, uses a common type
+graph for both source and target model that contains all possible elements that
+are available to create transformation rules. Therefore its better to use the
+term domain when we are discussing transformation rules in general. These
+domains are usually represented as a source and a target domain for a
+transformation rule. However a transformation rule is not necessary bound to
+only a source and a target domain, but can also have several other domains to
+its disposal. 
+
+These domains for a transformation rule are expressed in a language that
+describes the possible structures for a model for that domain. When we operate
+on models expressed in the context of MDA, then the language of the domain has
+the form of a metamodel expressed in MOF\cite{MOF}.
+
+
+\subsection{Rule Application Control}
+
+The transformation rule has to 
+
+\subsection{Rule Organization}
+
+\subsection{Source - Target Relationship}
+
+\subsection{Directionality}
+
+\subsection{Tracing}
+
 
 %----------------------------------------------------------------------------------------
 %	SECTION 2
@@ -155,25 +222,34 @@ morphism between these two graphs are called homomorphism.
 
 \subsubsection*{Graph Homomorphism}
 
-When there is a graph that has a match of all its nodes and edges in another
-graph, then we have a graph homomorphism between these two graphs. 
-
+When a graph that has a mapping of nodes and edges in another graph, then there
+is a graph homomorphism between these two graphs.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.7]{./Figures/GraphHomomorphism.png}
 	\caption[Basic concepts of graph homomorphism]
 	{Two sets of graph homomorphism of graph L in G and R in H}
-	\label{fig:graphHomomorphism.png}
+	\label{fig:graphHomomorphism}
 \end{figure}
 
 Figure~\ref{fig:graphHomomorphism} has two graph homomorphisms
 \mbox{L$\xrightarrow{m\textsubscript{L}}$G} and 
 \mbox{R$\xrightarrow{m\textsubscript{R}}$H}. Now if we consider the first
 example, if there is to be a valid graph homomorphism between graph L and G,
-then the collection of nodes and edges in L has to be present in G. 
-
-
+then the collection of nodes and edges in L has to be mapped to nodes and edges
+in G. If both graphs L and G are directed graphs we can safely assume that the
+definition of graph L in the last paragraph is also true for graph G =\{
+N\textsubscript{G}, E\textsubscript{G}, source\textsubscript{G},
+target\textsubscript{G} \}. For a graph homomorphism m\textsubscript{L} from the
+graph L to the graph G, \mbox{L$\xrightarrow{m\textsubscript{L}}$G}, there is a
+mapping m\textsubscript{L} : N\textsubscript{L} $\longrightarrow$
+N\textsubscript{G} from the set of nodes in graph L to the set of nodes in
+graph G and a mapping mapping m\textsubscript{L} : E\textsubscript{L}
+$\longrightarrow$E \textsubscript{G} from the set of edges in graph L to the
+set of edges in graph G that preserve both source and target nodes. This means
+that there is a mapping from a source node in G that is equal to a source node
+in L and a target node in G is equal to a target node in L. 
 
 \subsection{The Algebraic Approach}
 This approach are based on the concepts of composing graphs, modelled
@@ -209,7 +285,6 @@ pattern graph and replacement graph. The pattern graph represents a subgraph of
 the model that is going to be translated, namely the host graph. For these
 productions to execute, there has to be some control mechanism, namely the
 transformation unit.
-
 
 \subsection{Transformation Units}
 In graph transformation, there has to be a control mechanism that
@@ -305,4 +380,8 @@ the concepts of graph transformations explained in this section.
 	{Double pushout approach with positive application condition.}
 	\label{fig:DPO_NAC}
 \end{figure}
+
+\section{Textual Model Transformation}
+
+
 
