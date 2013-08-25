@@ -166,7 +166,7 @@ The transformation rule has to
 
 \section{Graph Transformation} 
 
-One approach to model transformations is by graph transformations,
+One common approach to model transformations is by graph transformations,
 also referred to as graph rewriting. Graph rewriting can be implemented with
 an algebraic approach, which is based on Category Theory. Before we go into
 detail about graph transformation, we should quickly describe the concepts of
@@ -294,7 +294,7 @@ rules are executed. The most basic transformation unit is a rule itself which
 corresponds to a single application of that rule. But in most cases, a
 transformation unit will have to control several rule applications. 
 
-\subsection{A Direct Derivation}
+\subsection{Execution of rules}
 The basic idea for graph transformation for both the double-pushout
 approach and the single pushout approach is to apply an application rule
 \mbox{r: L $\longrightarrow$ R}. Where the rule represents a single rewriting
@@ -313,16 +313,16 @@ For a production rule r, \mbox{G$\xrightarrow{r,m}$G'} indicates a direct
 derivation to a derived graph G'. In
 figure~\ref{fig:GraphTransformationGeneral}, the graph G' is created by
 applying a single pushout for a transformatin rule r. If there is a match m of
-nodes and arrows for a subgraph L in a host graph G, then this indicates a
+nodes and arrows for a subgraph L in a host graph G, Then this indicates a
 graph homomorphism, mapping elements from the subgraph to the host graph in
 such a way that the graphical structure in G is preserved. For each rule r,
 there are some algebraic approaches to how we can achieve G'. At this moment
 there are four approaches, the double-pushout approach (DPO) \cite{Loewe1997}, the
-single-pushout approach (SPO) \cite{Ehrig1997}, the sesqui-pushout and the
-pullback approach. Where the two most common approaches used in graph
-transformation tools are the DPO and the SPO approach. There is one major
-aspect that separate these two approaches, and that is that the DPO approach
-has an application condition.
+single-pushout approach (SPO) \cite{Ehrig1997}, the
+sesqui-pushout\cite{Corradini2006} and the pullback approach\cite{Bauderon}.
+Where the two most common approaches used in graph transformation tools are the
+DPO and the SPO approach. There is one major aspect that separate these two
+approaches, and that is that the DPO approach has an application condition.
 
 \begin{figure}[H]
 	\centering
