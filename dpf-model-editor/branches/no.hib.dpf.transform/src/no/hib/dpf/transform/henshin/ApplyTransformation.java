@@ -8,6 +8,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.Node;
@@ -42,6 +43,7 @@ import org.eclipse.emf.henshin.interpreter.UnitApplication;
 import org.eclipse.emf.henshin.interpreter.impl.ChangeImpl;
 import org.eclipse.emf.henshin.interpreter.impl.EGraphImpl;
 import org.eclipse.emf.henshin.interpreter.impl.EngineImpl;
+import org.eclipse.emf.henshin.interpreter.impl.LoggingApplicationMonitor;
 import org.eclipse.emf.henshin.interpreter.impl.MatchImpl;
 import org.eclipse.emf.henshin.interpreter.impl.RuleApplicationImpl;
 import org.eclipse.emf.henshin.interpreter.impl.UnitApplicationImpl;
@@ -81,10 +83,10 @@ public class ApplyTransformation {
 //		URI dSpecUri = URI.createFileURI("C:/Users/Petter/workspace/DPFTest/specifications/theModelInstance.dpf");
 //		DSpecification dSpec = DPFUtils.loadDSpecification(dSpecUri);
 		Specification spec = (Specification) model.getContents().get(0);
+		Graph spec_graph = spec.getGraph();
 		
 		EGraph graph = new EGraphImpl(model);
 		//graph.addTree(model.getContents().get(0));
-		System.out.println(graph);
 		
 		Engine engine = new EngineImpl();
 		
@@ -111,6 +113,9 @@ public class ApplyTransformation {
 			Rule rule = module.getRules().get(i);
 			
 			
+			ruleApplication.setRule(rule);
+//			ruleApplication.setParameterValue("graph", spec_graph);
+//			
 			Match partialMatch = new MatchImpl(rule);  
 			if(rule.getParameter("name") != null){
 				partialMatch.setParameterValue(rule.getParameter("name"), "Send Money");
@@ -118,6 +123,7 @@ public class ApplyTransformation {
 				
 			System.out.println("Matches for rule: " + rule.getName());
 			HashMap<Rule, List<EObject>> matches = new HashMap<Rule, List<EObject>>();
+			int tall = 0;
 			for (Match match : engine.findMatches(rule, graph, partialMatch)) {
 				List<EObject> list = new ArrayList<EObject>();
 				
@@ -125,19 +131,44 @@ public class ApplyTransformation {
 					list.add(match.getNodeTargets().get(j));
 //					matches.put(rule, match.getNodeTargets().get(j));
 					//System.out.println(match.getNodeTargets().get(j));
-				}
-				ruleApplication.setRule(rule);
+				}		
+				tall++;
+				System.out.println("tall: " + tall + " " + match.getNodeTargets());
+//				ruleApplication.setRule(rule);
+//				ruleApplication.setParameterValue("graph", spec_graph);
 				ruleApplication.setCompleteMatch(match);
+//				ruleApplication.setPartialMatch(match);
 				ruleApplication.execute(monitor);
+				
+				for(int k = 0;k<ruleApplication.getEGraph().getRoots().size();k++){
+					
+					if(ruleApplication.getEGraph().getRoots().get(k) instanceof Node){
+						Node node = (Node) ruleApplication.getEGraph().getRoots().get(k);
+						System.out.println("Node " + node.getName() + " " + node.getTypeName());
+					}else if(ruleApplication.getEGraph().getRoots().get(k) instanceof Specification){
+						Specification testSpec = (Specification) ruleApplication.getEGraph().getRoots().get(k);
+						for(int p = 0;p<testSpec.getGraph().getNodes().size();p++){
+							System.out.println("Specification " + testSpec.getGraph().getNodes().get(p).getName() + " " + testSpec.getGraph().getNodes().get(p).getTypeName());
+						}
+					} else{
+						System.out.println("HER " + ruleApplication.getEGraph().getRoots().get(k));
+					}
+					
+				}
+				
+				LoggingApplicationMonitor log = new LoggingApplicationMonitor();
+				log.notifyExecute(ruleApplication, true);
+
+				
 //				
 //				TranslateDPFModel translate_DPF = new TranslateDPFModel(list, rule, 
 //						newUri, spec, dSpec, true, resourceSet);
 //				translate_DPF.executeChanges();
 				
-				for (int j = 0;j<list.size();j++){
-					System.out.println(list.get(j));
-				}
-				
+//				for (int j = 0;j<list.size();j++){
+//					System.out.println(list.get(j));
+//				}
+//				
 				
 //				DSpecification spec = null;
 //				spec.getDGraph().removeDNode(node);
@@ -145,8 +176,15 @@ public class ApplyTransformation {
 				System.out.println();
 			}
 			
-			System.out.println();
+			System.out.println(tall);
 		}
+		for(int k = 0; k<model.getContents().size();k++){
+			Specification specTest = (Specification) model.getContents().get(k);
+			for(int i = 0;i<specTest.getGraph().getNodes().size();i++){
+				System.out.println(k+ ", " + i + " " + specTest.getGraph().getNodes().get(i).getName());
+			}
+		}
+		
 		
 		try {
 			model.save(null);
