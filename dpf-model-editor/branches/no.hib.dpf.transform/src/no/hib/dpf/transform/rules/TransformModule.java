@@ -12,7 +12,7 @@ import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.diagram.util.DPFConstants;
 import no.hib.dpf.transform.Production;
 import no.hib.dpf.transform.Transform;
-import no.hib.dpf.transform.util.TransformActivePage;
+import no.hib.dpf.transform.util.TransformUtils;
 import no.hib.dpf.transform.util.TransformConstants;
 
 import org.eclipse.emf.common.util.EList;

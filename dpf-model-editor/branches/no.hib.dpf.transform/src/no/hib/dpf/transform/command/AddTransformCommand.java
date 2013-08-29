@@ -13,7 +13,7 @@ import no.hib.dpf.transform.Production;
 import no.hib.dpf.transform.Transform;
 import no.hib.dpf.transform.henshin.TranslateToHenshinRules;
 import no.hib.dpf.transform.provider.ProductionItemProvider;
-import no.hib.dpf.transform.util.TransformActivePage;
+import no.hib.dpf.transform.util.TransformUtils;
 import no.hib.dpf.transform.util.TransformAdapterFactory;
 
 import org.eclipse.gef.EditPart;

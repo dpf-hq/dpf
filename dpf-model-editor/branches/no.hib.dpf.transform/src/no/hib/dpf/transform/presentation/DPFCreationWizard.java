@@ -28,7 +28,7 @@ import no.hib.dpf.editor.DPFUtils;
 import no.hib.dpf.transform.Production;
 import no.hib.dpf.transform.Transform;
 import no.hib.dpf.transform.TransformFactory;
-import no.hib.dpf.transform.util.TransformActivePage;
+import no.hib.dpf.transform.util.TransformUtils;
 import no.hib.dpf.transform.util.TransformConstants;
 
 import org.eclipse.core.resources.IFile;

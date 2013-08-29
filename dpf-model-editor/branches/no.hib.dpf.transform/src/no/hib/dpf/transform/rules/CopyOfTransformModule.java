@@ -12,7 +12,7 @@ import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.diagram.util.DPFConstants;
 import no.hib.dpf.transform.Production;
 import no.hib.dpf.transform.Transform;
-import no.hib.dpf.transform.util.TransformActivePage;
+import no.hib.dpf.transform.util.TransformUtils;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -130,7 +130,7 @@ public class CopyOfTransformModule {
 		
 		
 		String henshinModelName = "dpfSpecification1"+".ecore";
-		File file = new File(TransformActivePage.activeWorkingDirectory()+"/"+henshinModelName);
+		File file = new File(TransformUtils.activeWorkingDirectory()+"/"+henshinModelName);
 		if(file.exists()){
 			file.delete();
 		}

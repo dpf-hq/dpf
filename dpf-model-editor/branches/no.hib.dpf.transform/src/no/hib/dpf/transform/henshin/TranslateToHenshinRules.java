@@ -12,7 +12,7 @@ import no.hib.dpf.transform.Transform;
 import no.hib.dpf.transform.TransformPackage;
 import no.hib.dpf.transform.presentation.TransformEditor;
 import no.hib.dpf.transform.rules.TransformModule;
-import no.hib.dpf.transform.util.TransformActivePage;
+import no.hib.dpf.transform.util.TransformUtils;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
@@ -42,19 +42,19 @@ public class TranslateToHenshinRules {
 		
 		//TranslateToEcore.translateToEcore(TransformActivePage.activeTransformModel(), true);
 
-		HenshinResourceSet resourceSet = new HenshinResourceSet(TransformActivePage.activeWorkingDirectory());
+		HenshinResourceSet resourceSet = new HenshinResourceSet(TransformUtils.activeWorkingDirectory());
 		Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
 		//Transform the metamodels
 		//Engine engine = new EngineImpl();
 
-		Transform transform = TransformEditor.loadTransform(DPFUtils.getResourceSet(), URI.createFileURI(TransformActivePage.activeWindowFileLocation()), resourceToDiagnosticMap);
+		Transform transform = TransformEditor.loadTransform(DPFUtils.getResourceSet(), URI.createFileURI(TransformUtils.activeWindowFileLocation()), resourceToDiagnosticMap);
 		TransformModule translateHenshinRules = new TransformModule(transform, resourceSet);
 		
 		Module result = (Module) translateHenshinRules.createModule();
 		
 		if(save){
-			String henshinModelName = TransformActivePage.trimActiveTransformModel()+"toHenshin.henshin";
-			File file = new File(TransformActivePage.activeWorkingDirectory()+"/"+henshinModelName);
+			String henshinModelName = TransformUtils.trimActiveTransformModel()+"toHenshin.henshin";
+			File file = new File(TransformUtils.activeWorkingDirectory()+"/"+henshinModelName);
 			if(file.exists()){
 				file.delete();
 			}

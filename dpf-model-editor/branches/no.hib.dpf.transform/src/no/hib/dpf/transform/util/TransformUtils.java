@@ -2,6 +2,8 @@ package no.hib.dpf.transform.util;
 
 import java.io.File;
 
+import no.hib.dpf.editor.DPFUtils;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -17,7 +19,7 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.FileEditorInput;
 
-public class TransformActivePage {
+public class TransformUtils {
 
 		
 	public static String activeTransformModel(){
@@ -38,7 +40,6 @@ public class TransformActivePage {
 		
 		return win;
 	}
-	
 	
 	public static String activeWorkingDirectory(){
 		//String path = ((FileEditorInput)input).getName();

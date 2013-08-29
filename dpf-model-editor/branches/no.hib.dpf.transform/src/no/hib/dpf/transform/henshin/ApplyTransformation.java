@@ -25,7 +25,7 @@ import no.hib.dpf.transform.TransformPackage;
 import no.hib.dpf.transform.execute.TranslateDPFModel;
 import no.hib.dpf.transform.presentation.TransformEditor;
 import no.hib.dpf.transform.rules.TransformModule;
-import no.hib.dpf.transform.util.TransformActivePage;
+import no.hib.dpf.transform.util.TransformUtils;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.EList;
@@ -64,7 +64,7 @@ public class ApplyTransformation {
 	public static void exeucteTransformation(String path, boolean save){
 		//TranslateToEcore.translateToEcore(TransformActivePage.activeTransformModel(), true);
 
-		HenshinResourceSet resourceSet = new HenshinResourceSet(TransformActivePage.activeWorkingDirectory());
+		HenshinResourceSet resourceSet = new HenshinResourceSet(TransformUtils.activeWorkingDirectory());
 		Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
 		
 		String newPath = path.replace(".dpf", ".xmi");
@@ -76,7 +76,7 @@ public class ApplyTransformation {
 		//Engine engine = new EngineImpl();
 		
 		Resource model = resourceSet.getResource(dSpecUri, true);
-		Module module = resourceSet.getModule(TransformActivePage.trimActiveTransformModel()+"toHenshin.henshin", true);
+		Module module = resourceSet.getModule(TransformUtils.trimActiveTransformModel()+"toHenshin.henshin", true);
 //		//DSpecification spec =  (DSpecification) model.getContents().get(0);
 //		System.out.println("model " + spec.getGraph().getNodes());
 //		System.out.println("module " + module.getRules());

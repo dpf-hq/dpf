@@ -25,7 +25,7 @@ import no.hib.dpf.transform.henshin.TranslateToEcore;
 import no.hib.dpf.transform.icons.ImageSettings;
 import no.hib.dpf.transform.provider.TransformEditPlugin;
 import no.hib.dpf.transform.util.BrowseInstanceModel;
-import no.hib.dpf.transform.util.TransformActivePage;
+import no.hib.dpf.transform.util.TransformUtils;
 import no.hib.dpf.transform.util.TransformConstants;
 import no.hib.dpf.transform.util.VariableDialog;
 
@@ -90,7 +90,7 @@ public class TranformEditorContextMenuProvider extends ContextMenuProvider {
 		@Override	
 		public void run() {
 			//WizardDialog wizardDialog = new WizardDialog(TransformActivePage.getActiveWorkBenchWindow().getShell(),
-			VariableDialog dialog = new VariableDialog(TransformActivePage.getActiveWorkBenchWindow().getShell(), editViewer.getFocusEditPart());
+			VariableDialog dialog = new VariableDialog(TransformUtils.getActiveWorkBenchWindow().getShell(), editViewer.getFocusEditPart());
 			dialog.create();
 			if(dialog.open() == Window.OK){
 				System.out.println(dialog.getVariable());

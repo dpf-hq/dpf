@@ -12,7 +12,7 @@ import no.hib.dpf.editor.DPFUtils;
 import no.hib.dpf.transform.Transform;
 import no.hib.dpf.transform.TransformPackage;
 import no.hib.dpf.transform.presentation.TransformEditor;
-import no.hib.dpf.transform.util.TransformActivePage;
+import no.hib.dpf.transform.util.TransformUtils;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
@@ -41,7 +41,7 @@ public class TranslateToEcore {
 	public static final String SPEC_TO_ECORE = "C:/Users/Petter/workspace/no.hib.dpf.transform/model/generateEcoreFromDSpec.henshin";
 	
 	public static void translateToEcore(DSpecification specification, boolean save){
-		HenshinResourceSet resourceSet = new HenshinResourceSet(TransformActivePage.activeWorkingDirectory());
+		HenshinResourceSet resourceSet = new HenshinResourceSet(TransformUtils.activeWorkingDirectory());
 		String metaModelName = specification.getSpecification().eResource().getURI().lastSegment().replace(".xmi", "");
 		
 		
@@ -108,7 +108,7 @@ public class TranslateToEcore {
 		
 		if(save){
 			String henshinModelName = metaModelName+".ecore";
-			File file = new File(TransformActivePage.activeWorkingDirectory()+"/"+henshinModelName);
+			File file = new File(TransformUtils.activeWorkingDirectory()+"/"+henshinModelName);
 			if(file.exists()){
 				file.delete();
 			}

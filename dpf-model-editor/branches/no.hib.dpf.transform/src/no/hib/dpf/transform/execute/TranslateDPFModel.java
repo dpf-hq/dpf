@@ -19,7 +19,7 @@ import no.hib.dpf.editor.DPFEditor;
 import no.hib.dpf.editor.DPFUtils;
 import no.hib.dpf.editor.commands.DArrowDeleteCommand;
 import no.hib.dpf.transform.presentation.TransformEditor;
-import no.hib.dpf.transform.util.TransformActivePage;
+import no.hib.dpf.transform.util.TransformUtils;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;

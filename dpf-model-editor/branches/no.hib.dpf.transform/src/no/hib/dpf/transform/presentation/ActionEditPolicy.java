@@ -17,7 +17,7 @@ import no.hib.dpf.transform.command.DeleteTransformCommand;
 import no.hib.dpf.transform.impl.ProductionImpl;
 import no.hib.dpf.transform.impl.TransformFactoryImpl;
 import no.hib.dpf.transform.impl.TransformImpl;
-import no.hib.dpf.transform.util.TransformActivePage;
+import no.hib.dpf.transform.util.TransformUtils;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;

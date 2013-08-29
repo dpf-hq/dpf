@@ -47,7 +47,7 @@ import no.hib.dpf.editor.parts.DNodeEditPart;
 import no.hib.dpf.editor.parts.DPFEditPartFactory;
 import no.hib.dpf.transform.Production;
 import no.hib.dpf.transform.Transform;
-import no.hib.dpf.transform.util.TransformActivePage;
+import no.hib.dpf.transform.util.TransformUtils;
 import no.hib.dpf.transform.util.TransformConstants;
 import no.hib.dpf.transform.parts.TransformArrowLabelEditPart;
 import no.hib.dpf.transform.parts.TransformDArrowEditPart;
@@ -143,7 +143,7 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 	
 	 protected void configureGraphicalViewer() {
 		super.configureGraphicalViewer();
-		String transformFile = TransformActivePage.activeWindowFileLocation();
+		String transformFile = TransformUtils.activeWindowFileLocation();
 		transform = TransformEditor.loadTransform(DPFUtils.getResourceSet(), URI.createFileURI(transformFile), resourceToDiagnosticMap);
 		DSpecification defaultDSpecification = DiagramFactory.eINSTANCE.createDefaultDSpecification();
 		defaultDSpecification.setDType(DiagramFactory.eINSTANCE.createDefaultDSpecification());

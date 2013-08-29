@@ -17,7 +17,7 @@ import no.hib.dpf.transform.presentation.TransformEditor;
 import no.hib.dpf.transform.presentation.TransformFormPage;
 import no.hib.dpf.transform.presentation.TransformMasterBlock;
 import no.hib.dpf.transform.provider.TransformEditPlugin;
-import no.hib.dpf.transform.util.TransformActivePage;
+import no.hib.dpf.transform.util.TransformUtils;
 
 import org.eclipse.core.resources.IResourceChangeEvent;
 import org.eclipse.core.resources.IResourceChangeListener;

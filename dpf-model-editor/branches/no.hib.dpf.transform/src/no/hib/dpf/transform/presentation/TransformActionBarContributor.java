@@ -21,7 +21,7 @@ import no.hib.dpf.transform.icons.ImageSettings;
 import no.hib.dpf.transform.provider.TransformEditPlugin;
 import no.hib.dpf.transform.util.BrowseInstance;
 import no.hib.dpf.transform.util.BrowseInstanceModel;
-import no.hib.dpf.transform.util.TransformActivePage;
+import no.hib.dpf.transform.util.TransformUtils;
 import no.hib.dpf.transform.util.TransformConstants;
 
 import org.eclipse.core.resources.IFile;
@@ -94,7 +94,7 @@ public class TransformActionBarContributor extends ActionBarContributor {
 		public void run() {
 			DSpecification dspec = null;
 			
-			String filename = TransformActivePage.activeWorkingDirectory()+"/CorrespondanceModel.dpf";
+			String filename = TransformUtils.activeWorkingDirectory()+"/CorrespondanceModel.dpf";
 			URI newDiagramUri = URI.createFileURI(filename);
 			
 			CorrespondanceGraph cGraph = new CorrespondanceGraph();
@@ -177,8 +177,8 @@ public class TransformActionBarContributor extends ActionBarContributor {
 		public void run() {
 			//ApplyTransformation.exeucteTransformation("C:/Users/Petter/workspace/DPFTest/specifications/theModelInstance.xmi", true);
 			Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
-			Transform transform = TransformEditor.loadTransform(DPFUtils.getResourceSet(), URI.createFileURI(TransformActivePage.activeWindowFileLocation()), resourceToDiagnosticMap);
-			BrowseInstance br = new BrowseInstance(TransformActivePage.getActiveWorkBenchWindow().getShell(), transform);
+			Transform transform = TransformEditor.loadTransform(DPFUtils.getResourceSet(), URI.createFileURI(TransformUtils.activeWindowFileLocation()), resourceToDiagnosticMap);
+			BrowseInstance br = new BrowseInstance(TransformUtils.getActiveWorkBenchWindow().getShell(), transform);
 			if(br.open() == Window.OK){
 //				String xmiPath = br.getModelInstanceFilePath().replace(".dpf", ".xmi");
 				ApplyTransformation.exeucteTransformation(br.getModelInstanceFilePath(), true);

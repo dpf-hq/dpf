@@ -15,7 +15,7 @@ import no.hib.dpf.diagram.DiagramFactory;
 import no.hib.dpf.diagram.util.DPFConstants;
 import no.hib.dpf.editor.DPFUtils;
 import no.hib.dpf.transform.Transform;
-import no.hib.dpf.transform.util.TransformActivePage;
+import no.hib.dpf.transform.util.TransformUtils;
 import no.hib.dpf.transform.util.TransformConstants;
 
 public class CorrespondanceGraph {
@@ -36,7 +36,7 @@ public class CorrespondanceGraph {
 	private Transform transform = null;
 	
 	public CorrespondanceGraph(){
-		String transformFile = TransformActivePage.activeWindowFileLocation();
+		String transformFile = TransformUtils.activeWindowFileLocation();
 		transform = TransformEditor.loadTransform(DPFUtils.getResourceSet(), URI.createFileURI(transformFile), resourceToDiagnosticMap);
 
 		defaultDSpecification =  DPFConstants.REFLEXIVE_DSPECIFICATION;
@@ -56,11 +56,11 @@ public class CorrespondanceGraph {
 		defaultArrow = defaultDSpec.getDGraph().getDArrows().get(0);
 		defaultNode = defaultDSpec.getDGraph().getDNodes().get(0);
 		
-		sourceModel = TransformActivePage.getDSpecificationFileName(transform.getSourceLocation());
-		targetModel = TransformActivePage.getDSpecificationFileName(transform.getTargetLocation());
+		sourceModel = TransformUtils.getDSpecificationFileName(transform.getSourceLocation());
+		targetModel = TransformUtils.getDSpecificationFileName(transform.getTargetLocation());
 		
 		DNode bridgeElement = correspondanceDSpecification.getDGraph().
-				createDNode(TransformActivePage.createCorrespondanceType(sourceModel, targetModel), defaultNode);
+				createDNode(TransformUtils.createCorrespondanceType(sourceModel, targetModel), defaultNode);
 		
 		for(int i = 0;i<sourceDSpecification.getDGraph().getDNodes().size();i++){
 			DNode dNode = sourceDSpecification.getDGraph().getDNodes().get(i);
