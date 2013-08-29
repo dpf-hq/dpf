@@ -58,6 +58,17 @@ public class TransformActivePage {
 		return trimmedString;
 	}
 	
+	public static String getDSpecificationFileName(String file){
+		URI fileName = URI.createFileURI(file);
+		String trimmedString = fileName.lastSegment().replace(".dpf", "");
+		return trimmedString;
+		
+	}
+	
+	public static String createCorrespondanceType(String source, String target){
+		return source + "2" + target;
+	}
+	
 	public static String activeWindowFileLocation(){
 		IWorkbench wb = PlatformUI.getWorkbench();
 		IWorkbenchWindow win = wb.getActiveWorkbenchWindow();

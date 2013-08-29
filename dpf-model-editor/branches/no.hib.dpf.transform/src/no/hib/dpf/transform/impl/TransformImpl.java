@@ -36,6 +36,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link no.hib.dpf.transform.impl.TransformImpl#getRules <em>Rules</em>}</li>
  *   <li>{@link no.hib.dpf.transform.impl.TransformImpl#getDSignature <em>DSignature</em>}</li>
  *   <li>{@link no.hib.dpf.transform.impl.TransformImpl#isGenerate <em>Generate</em>}</li>
+ *   <li>{@link no.hib.dpf.transform.impl.TransformImpl#getSourceLocation <em>Source Location</em>}</li>
+ *   <li>{@link no.hib.dpf.transform.impl.TransformImpl#getTargetLocation <em>Target Location</em>}</li>
  * </ul>
  * </p>
  *
@@ -101,6 +103,46 @@ public class TransformImpl extends EObjectImpl implements Transform {
 	 * @ordered
 	 */
 	protected boolean generate = GENERATE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getSourceLocation() <em>Source Location</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSourceLocation()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String SOURCE_LOCATION_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getSourceLocation() <em>Source Location</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSourceLocation()
+	 * @generated
+	 * @ordered
+	 */
+	protected String sourceLocation = SOURCE_LOCATION_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getTargetLocation() <em>Target Location</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTargetLocation()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String TARGET_LOCATION_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getTargetLocation() <em>Target Location</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTargetLocation()
+	 * @generated
+	 * @ordered
+	 */
+	protected String targetLocation = TARGET_LOCATION_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -283,6 +325,48 @@ public class TransformImpl extends EObjectImpl implements Transform {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getSourceLocation() {
+		return sourceLocation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSourceLocation(String newSourceLocation) {
+		String oldSourceLocation = sourceLocation;
+		sourceLocation = newSourceLocation;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TransformPackage.TRANSFORM__SOURCE_LOCATION, oldSourceLocation, sourceLocation));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getTargetLocation() {
+		return targetLocation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTargetLocation(String newTargetLocation) {
+		String oldTargetLocation = targetLocation;
+		targetLocation = newTargetLocation;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TransformPackage.TRANSFORM__TARGET_LOCATION, oldTargetLocation, targetLocation));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -315,6 +399,10 @@ public class TransformImpl extends EObjectImpl implements Transform {
 				return basicGetDSignature();
 			case TransformPackage.TRANSFORM__GENERATE:
 				return isGenerate();
+			case TransformPackage.TRANSFORM__SOURCE_LOCATION:
+				return getSourceLocation();
+			case TransformPackage.TRANSFORM__TARGET_LOCATION:
+				return getTargetLocation();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -344,6 +432,12 @@ public class TransformImpl extends EObjectImpl implements Transform {
 			case TransformPackage.TRANSFORM__GENERATE:
 				setGenerate((Boolean)newValue);
 				return;
+			case TransformPackage.TRANSFORM__SOURCE_LOCATION:
+				setSourceLocation((String)newValue);
+				return;
+			case TransformPackage.TRANSFORM__TARGET_LOCATION:
+				setTargetLocation((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -371,6 +465,12 @@ public class TransformImpl extends EObjectImpl implements Transform {
 			case TransformPackage.TRANSFORM__GENERATE:
 				setGenerate(GENERATE_EDEFAULT);
 				return;
+			case TransformPackage.TRANSFORM__SOURCE_LOCATION:
+				setSourceLocation(SOURCE_LOCATION_EDEFAULT);
+				return;
+			case TransformPackage.TRANSFORM__TARGET_LOCATION:
+				setTargetLocation(TARGET_LOCATION_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -393,6 +493,10 @@ public class TransformImpl extends EObjectImpl implements Transform {
 				return dSignature != null;
 			case TransformPackage.TRANSFORM__GENERATE:
 				return generate != GENERATE_EDEFAULT;
+			case TransformPackage.TRANSFORM__SOURCE_LOCATION:
+				return SOURCE_LOCATION_EDEFAULT == null ? sourceLocation != null : !SOURCE_LOCATION_EDEFAULT.equals(sourceLocation);
+			case TransformPackage.TRANSFORM__TARGET_LOCATION:
+				return TARGET_LOCATION_EDEFAULT == null ? targetLocation != null : !TARGET_LOCATION_EDEFAULT.equals(targetLocation);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -409,6 +513,10 @@ public class TransformImpl extends EObjectImpl implements Transform {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (generate: ");
 		result.append(generate);
+		result.append(", sourceLocation: ");
+		result.append(sourceLocation);
+		result.append(", targetLocation: ");
+		result.append(targetLocation);
 		result.append(')');
 		return result.toString();
 	}

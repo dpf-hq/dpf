@@ -9,9 +9,13 @@
   <genPackages prefix="Transform" basePackage="no.hib.dpf" disposableProviderFactory="true"
       ecorePackage="transform.ecore#/">
     <genClasses ecoreClass="transform.ecore#//Transform">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference transform.ecore#//Transform/metaModel"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference transform.ecore#//Transform/sourceMetaModel"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference transform.ecore#//Transform/targetMetaModel"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference transform.ecore#//Transform/rules"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference transform.ecore#//Transform/dSignature"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute transform.ecore#//Transform/generate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute transform.ecore#//Transform/sourceLocation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute transform.ecore#//Transform/targetLocation"/>
     </genClasses>
     <genClasses ecoreClass="transform.ecore#//Production">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference transform.ecore#//Production/sum"/>

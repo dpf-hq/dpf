@@ -26,6 +26,9 @@ public class CorrespondanceGraph {
 	private DSpecification sourceDSpecification = null;
 	private DSpecification targetDSpecification = null;
 	
+	private String sourceModel = null;
+	private String targetModel = null;
+	
 	private DGraph defaultDGraph = null;
 	private DNode defaultNode = null;
 	private DArrow defaultArrow = null;
@@ -53,9 +56,11 @@ public class CorrespondanceGraph {
 		defaultArrow = defaultDSpec.getDGraph().getDArrows().get(0);
 		defaultNode = defaultDSpec.getDGraph().getDNodes().get(0);
 		
-		System.out.println("Target" + targetDSpecification.eResource().getURI());
+		sourceModel = TransformActivePage.getDSpecificationFileName(transform.getSourceLocation());
+		targetModel = TransformActivePage.getDSpecificationFileName(transform.getTargetLocation());
 		
-		DNode bridgeElement = correspondanceDSpecification.getDGraph().createDNode("BridgeElement", defaultNode);
+		DNode bridgeElement = correspondanceDSpecification.getDGraph().
+				createDNode(TransformActivePage.createCorrespondanceType(sourceModel, targetModel), defaultNode);
 		
 		for(int i = 0;i<sourceDSpecification.getDGraph().getDNodes().size();i++){
 			DNode dNode = sourceDSpecification.getDGraph().getDNodes().get(i);

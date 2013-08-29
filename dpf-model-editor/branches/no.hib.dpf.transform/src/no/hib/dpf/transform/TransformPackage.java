@@ -115,13 +115,31 @@ public interface TransformPackage extends EPackage {
 	int TRANSFORM__GENERATE = 4;
 
 	/**
+	 * The feature id for the '<em><b>Source Location</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSFORM__SOURCE_LOCATION = 5;
+
+	/**
+	 * The feature id for the '<em><b>Target Location</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSFORM__TARGET_LOCATION = 6;
+
+	/**
 	 * The number of structural features of the '<em>Transform</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFORM_FEATURE_COUNT = 5;
+	int TRANSFORM_FEATURE_COUNT = 7;
 
 	/**
 	 * The meta object id for the '{@link no.hib.dpf.transform.impl.ProductionImpl <em>Production</em>}' class.
@@ -279,6 +297,28 @@ public interface TransformPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getTransform_Generate();
+
+	/**
+	 * Returns the meta object for the attribute '{@link no.hib.dpf.transform.Transform#getSourceLocation <em>Source Location</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Source Location</em>'.
+	 * @see no.hib.dpf.transform.Transform#getSourceLocation()
+	 * @see #getTransform()
+	 * @generated
+	 */
+	EAttribute getTransform_SourceLocation();
+
+	/**
+	 * Returns the meta object for the attribute '{@link no.hib.dpf.transform.Transform#getTargetLocation <em>Target Location</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Target Location</em>'.
+	 * @see no.hib.dpf.transform.Transform#getTargetLocation()
+	 * @see #getTransform()
+	 * @generated
+	 */
+	EAttribute getTransform_TargetLocation();
 
 	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.transform.Production <em>Production</em>}'.
@@ -449,6 +489,22 @@ public interface TransformPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute TRANSFORM__GENERATE = eINSTANCE.getTransform_Generate();
+
+		/**
+		 * The meta object literal for the '<em><b>Source Location</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TRANSFORM__SOURCE_LOCATION = eINSTANCE.getTransform_SourceLocation();
+
+		/**
+		 * The meta object literal for the '<em><b>Target Location</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TRANSFORM__TARGET_LOCATION = eINSTANCE.getTransform_TargetLocation();
 
 		/**
 		 * The meta object literal for the '{@link no.hib.dpf.transform.impl.ProductionImpl <em>Production</em>}' class.

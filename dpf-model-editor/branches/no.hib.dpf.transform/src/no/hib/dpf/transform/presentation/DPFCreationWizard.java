@@ -163,6 +163,11 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 			Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
 			
 			String sourceTypeModelFileName = configPage.getSourceMetaModelURI();
+			
+			if(sourceTypeModelFileName!=null){
+				transform.setSourceLocation(sourceTypeModelFileName);
+			}
+			
 			DSpecification sourceTypeSpec = DiagramFactory.eINSTANCE.createDefaultDSpecification();
 			sourceTypeSpec.setDType(configPage.getSourceMetaModel());
 			
@@ -177,6 +182,11 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 			System.out.println("DSPec " + transform.getSourceMetaModel().getDType().getDGraph().getDNodes());
 			
 			String targetTypeModelFileName = configPage.getTargetMetaModelURI();
+			
+			if(targetTypeModelFileName!=null){
+				transform.setTargetLocation(targetTypeModelFileName);
+			}
+			
 			DSpecification targetTypeSpec = DiagramFactory.eINSTANCE.createDefaultDSpecification();
 			targetTypeSpec.setDType(configPage.getTargetMetaModel());
 			

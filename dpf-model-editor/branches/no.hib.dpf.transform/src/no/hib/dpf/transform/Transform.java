@@ -25,6 +25,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link no.hib.dpf.transform.Transform#getRules <em>Rules</em>}</li>
  *   <li>{@link no.hib.dpf.transform.Transform#getDSignature <em>DSignature</em>}</li>
  *   <li>{@link no.hib.dpf.transform.Transform#isGenerate <em>Generate</em>}</li>
+ *   <li>{@link no.hib.dpf.transform.Transform#getSourceLocation <em>Source Location</em>}</li>
+ *   <li>{@link no.hib.dpf.transform.Transform#getTargetLocation <em>Target Location</em>}</li>
  * </ul>
  * </p>
  *
@@ -153,5 +155,57 @@ public interface Transform extends EObject {
 	 * @generated
 	 */
 	void setGenerate(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Source Location</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Source Location</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Source Location</em>' attribute.
+	 * @see #setSourceLocation(String)
+	 * @see no.hib.dpf.transform.TransformPackage#getTransform_SourceLocation()
+	 * @model
+	 * @generated
+	 */
+	String getSourceLocation();
+
+	/**
+	 * Sets the value of the '{@link no.hib.dpf.transform.Transform#getSourceLocation <em>Source Location</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Source Location</em>' attribute.
+	 * @see #getSourceLocation()
+	 * @generated
+	 */
+	void setSourceLocation(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Target Location</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Target Location</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Target Location</em>' attribute.
+	 * @see #setTargetLocation(String)
+	 * @see no.hib.dpf.transform.TransformPackage#getTransform_TargetLocation()
+	 * @model
+	 * @generated
+	 */
+	String getTargetLocation();
+
+	/**
+	 * Sets the value of the '{@link no.hib.dpf.transform.Transform#getTargetLocation <em>Target Location</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Target Location</em>' attribute.
+	 * @see #getTargetLocation()
+	 * @generated
+	 */
+	void setTargetLocation(String value);
 
 } // Transform
