@@ -14,14 +14,14 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell; 
 import org.eclipse.swt.widgets.Text; 
 
-public class VariableDialog extends Dialog { 
+public class DefineNameVariableDialog extends Dialog { 
 	
 	private Text variableName;
 	private Shell shell=null; 
 	private Object variable;
 	private String name;
 	
-	public VariableDialog( Shell parent, EditPart editPart) { 
+	public DefineNameVariableDialog( Shell parent, EditPart editPart) { 
 		super(parent); 
 		variableName = null;
 		variable = editPart;

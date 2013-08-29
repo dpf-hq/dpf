@@ -19,7 +19,6 @@ import no.hib.dpf.transform.henshin.TranslateToEcore;
 import no.hib.dpf.transform.henshin.TranslateToHenshinRules;
 import no.hib.dpf.transform.icons.ImageSettings;
 import no.hib.dpf.transform.provider.TransformEditPlugin;
-import no.hib.dpf.transform.util.BrowseInstance;
 import no.hib.dpf.transform.util.BrowseInstanceModel;
 import no.hib.dpf.transform.util.TransformUtils;
 import no.hib.dpf.transform.util.TransformConstants;
@@ -178,7 +177,7 @@ public class TransformActionBarContributor extends ActionBarContributor {
 			//ApplyTransformation.exeucteTransformation("C:/Users/Petter/workspace/DPFTest/specifications/theModelInstance.xmi", true);
 			Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
 			Transform transform = TransformEditor.loadTransform(DPFUtils.getResourceSet(), URI.createFileURI(TransformUtils.activeWindowFileLocation()), resourceToDiagnosticMap);
-			BrowseInstance br = new BrowseInstance(TransformUtils.getActiveWorkBenchWindow().getShell(), transform);
+			BrowseInstanceModel br = new BrowseInstanceModel(TransformUtils.getActiveWorkBenchWindow().getShell(), transform);
 			if(br.open() == Window.OK){
 //				String xmiPath = br.getModelInstanceFilePath().replace(".dpf", ".xmi");
 				ApplyTransformation.exeucteTransformation(br.getModelInstanceFilePath(), true);
