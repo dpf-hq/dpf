@@ -321,6 +321,7 @@ public class TransformModule {
 		for(int i = 0; i<production.getCommonNodes().size();i++){
 			String dNodeType = production.getCommonNodes().get(i).getTypeName();
 			EClass node = (EClass) core.getEClassifier(TransformConstants.NODE);
+			System.out.println("node " + dNodeType + " " + production.getCommonNodes().get(i).getName());
 			EReference referenceNode = null;
 			for(int j = 0; j<node.getEReferences().size();j++){
 				if(node.getEReferences().get(j).getName().contains("typeNode")){

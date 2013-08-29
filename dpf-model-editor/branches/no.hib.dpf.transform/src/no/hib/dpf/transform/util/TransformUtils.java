@@ -78,5 +78,5 @@ public class TransformUtils {
 		IEditorInput input = editor.getEditorInput();
 		IFile file = ((IFileEditorInput)input).getFile();
 		return file.getLocation().toOSString();
-	}	
+	}
 }

@@ -150,24 +150,32 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 		
 		DGraph newGraph = DiagramFactory.eINSTANCE.createDefaultDGraph();
 		
-		CorrespondanceGraph cGraph = new CorrespondanceGraph();
-		dspec = cGraph.getCorrespondanceDSpecification();
-		for(int i = 0;i<dspec.getDGraph().getDNodes().size();i++){
-			System.out.println(i+ " Name: " + dspec.getDGraph().getDNodes().get(i).getName() + " " + dspec.getDGraph().getDNodes().get(i).getTypeName());
-		}
-		for(int i = 0;i<dspec.getDGraph().getDArrows().size();i++){
-			System.out.println(i+ " Name: " + dspec.getDGraph().getDArrows().get(i).getName() + " " + dspec.getDGraph().getDArrows().get(i).getTypeName());
-		}
-		
+
+
 		DSpecification sourceDSpecification = transform.getSourceMetaModel();
 		DSpecification targetDSpecification = transform.getTargetMetaModel();
 		
 		if(sourceDSpecification!=targetDSpecification && !targetDSpecification.getDGraph().getDNodes().isEmpty()){
+			System.out.println("Like");
 			newGraph = setDGraphForExogenousTransformation(sourceDSpecification, targetDSpecification, transformFile);
+			CorrespondanceGraph cGraph = new CorrespondanceGraph();
+			dspec = cGraph.getCorrespondanceDSpecification();
+			
+			for(int i = 0;i<dspec.getDGraph().getDNodes().size();i++){
+				System.out.println(i+ " Name: " + dspec.getDGraph().getDNodes().get(i).getName() + " " + dspec.getDGraph().getDNodes().get(i).getTypeName());
+			}
+			for(int i = 0;i<dspec.getDGraph().getDArrows().size();i++){
+				System.out.println(i+ " Name: " + dspec.getDGraph().getDArrows().get(i).getName() + " " + dspec.getDGraph().getDArrows().get(i).getTypeName());
+			}
 		}
 		else{
+			System.out.println("Ulike");
 			newGraph = sourceDSpecification.getDGraph();
 		}
+		for(int i = 0;i<newGraph.getDNodes().size();i++){
+			System.out.println(newGraph.getDNodes().get(i).getName());
+		}
+		
 		GraphicalViewer viewer = getGraphicalViewer();
 		//paletteFactory.updatePalette(getPaletteRoot(), dSpecification.getDType().getDGraph());
 		//paletteFactory.updatePalette(getPaletteRoot(), dSpecification.getDGraph());
@@ -238,7 +246,53 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 		}
 		return paletteRoot;
 	}
+		
 	private DGraph setDGraphForExogenousTransformation(DSpecification sourceDSpecification, 
+			DSpecification targetDSpecification, String transformFile){
+		
+		DGraph tempGraph = null;
+		
+		DGraph defaultDGraph = DiagramFactory.eINSTANCE.createDefaultDGraph();
+		DNode defaultNode = DPFConstants.REFLEXIVE_TYPE_DNODE;
+		DArrow defaultDArrow = DPFConstants.REFLEXIVE_TYPE_DARROW;
+		
+		EcoreUtil.resolveAll(targetDSpecification);
+		EcoreUtil.resolveAll(targetDSpecification.getSpecification());
+		
+		Assert.isTrue(targetDSpecification != null);
+		setPartName(transformFile);
+		tempGraph = targetDSpecification.getDGraph();
+		defaultDGraph = targetDSpecification.getDGraph();
+
+		
+//		tempGraph.getDNodes().addAll(targetDSpecification.getDGraph().getDNodes());
+//		tempGraph.getDArrows().addAll(targetDSpecification.getDGraph().getDArrows());
+		
+		for(int i = 0;i<sourceDSpecification.getDGraph().getDNodes().size();i++){
+			tempGraph.createDNode(sourceDSpecification.getDGraph().getDNodes().get(i).getName(), defaultNode);
+		}
+		
+		for(int i = 0;i<sourceDSpecification.getDGraph().getDArrows().size();i++){
+			DArrow dArrow = sourceDSpecification.getDGraph().getDArrows().get(i);
+			DNode dSource = null;
+			DNode dTarget = null;
+			for(int j = 0;j<tempGraph.getDNodes().size();j++){
+				if(tempGraph.getDNodes().get(j).getName().contains(dArrow.getDSource().getName())){
+					dSource = tempGraph.getDNodes().get(j);
+				}
+			}
+			for(int j = 0;j<tempGraph.getDNodes().size();j++){
+				if(tempGraph.getDNodes().get(j).getName().contains(dArrow.getDTarget().getName())){
+					dTarget = tempGraph.getDNodes().get(j);
+				}
+			}
+			tempGraph.createDArrow(dArrow.getName(), dSource, dTarget, defaultDArrow);
+		}
+		//return tempGraph;
+		return defaultDGraph;
+	}
+
+	/*private DGraph setDGraphForExogenousTransformation(DSpecification sourceDSpecification, 
 			DSpecification targetDSpecification, String transformFile){
 		
 		DGraph tempGraph = null;
@@ -266,8 +320,9 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 		
 		
 		return tempGraph;
-	}
+	}*/
 
+	
 	protected void initializeGraphicalViewer() {
 		super.initializeGraphicalViewer();	
 	}

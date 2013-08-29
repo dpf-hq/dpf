@@ -108,12 +108,12 @@ public class ApplyTransformation {
 //		}
 		
 		
-		for(int i = 1;i<module.getRules().size();i++){
+		/*for(int i = 1;i<module.getRules().size();i++){
 			
 			Rule rule = module.getRules().get(i);
+			Unit unit = module.getUnit("main");
 			
-			
-			ruleApplication.setRule(rule);
+			//ruleApplication.setRule(rule);
 //			ruleApplication.setParameterValue("graph", spec_graph);
 //			
 			Match partialMatch = new MatchImpl(rule);  
@@ -134,10 +134,12 @@ public class ApplyTransformation {
 				}		
 				tall++;
 				System.out.println("tall: " + tall + " " + match.getNodeTargets());
-//				ruleApplication.setRule(rule);
+				
+				ruleApplication.setUnit(unit);
+				ruleApplication.setRule(rule);
 //				ruleApplication.setParameterValue("graph", spec_graph);
-				ruleApplication.setCompleteMatch(match);
-//				ruleApplication.setPartialMatch(match);
+			//	ruleApplication.setCompleteMatch(match);
+				ruleApplication.setPartialMatch(match);
 				ruleApplication.execute(monitor);
 				
 				for(int k = 0;k<ruleApplication.getEGraph().getRoots().size();k++){
@@ -177,7 +179,7 @@ public class ApplyTransformation {
 			}
 			
 			System.out.println(tall);
-		}
+		}*/
 		for(int k = 0; k<model.getContents().size();k++){
 			Specification specTest = (Specification) model.getContents().get(k);
 			for(int i = 0;i<specTest.getGraph().getNodes().size();i++){
@@ -192,14 +194,29 @@ public class ApplyTransformation {
 			e.printStackTrace();
 		}
 		
-//		Unit unit = module.getUnit("main");
-//		UnitApplication unitApp = new UnitApplicationImpl(engine, graph, unit, null);
+		Unit unit = module.getUnit("main");
+		UnitApplication unitApp = new UnitApplicationImpl(engine, graph, unit, null);
 
-//		try{
-//			InterpreterUtil.executeOrDie(unitApp);
-//			ChangeImpl.PRINT_WARNINGS = false;
-//		} catch (AssertionError e){
-//			System.out.println("Error " + e);
-//		}
+		try{
+			InterpreterUtil.executeOrDie(unitApp);
+			ChangeImpl.PRINT_WARNINGS = false;
+		} catch (AssertionError e){
+			System.out.println("Error " + e);
+		}
+		for(int k = 0;k<unitApp.getEGraph().getRoots().size();k++){
+			
+			if(unitApp.getEGraph().getRoots().get(k) instanceof Node){
+				Node node = (Node) unitApp.getEGraph().getRoots().get(k);
+				System.out.println("Node " + node.getName() + " " + node.getTypeName());
+			}else if(unitApp.getEGraph().getRoots().get(k) instanceof Specification){
+				Specification testSpec = (Specification) unitApp.getEGraph().getRoots().get(k);
+				for(int p = 0;p<testSpec.getGraph().getNodes().size();p++){
+					System.out.println("Specification " + testSpec.getGraph().getNodes().get(p).getName() + " " + testSpec.getGraph().getNodes().get(p).getTypeName());
+				}
+			} else{
+				System.out.println("HER " + unitApp.getEGraph().getRoots().get(k));
+			}
+			
+		}
 	}
 }

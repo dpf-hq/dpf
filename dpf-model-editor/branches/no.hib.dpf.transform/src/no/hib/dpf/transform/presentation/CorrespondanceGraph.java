@@ -79,7 +79,7 @@ public class CorrespondanceGraph {
 		}
 
 		for(int i = 0;i<targetDSpecification.getDGraph().getDArrows().size();i++){
-			DArrow dArrow = sourceDSpecification.getDGraph().getDArrows().get(i);
+			DArrow dArrow = targetDSpecification.getDGraph().getDArrows().get(i);
 			DNode newNode = correspondanceDSpecification.getDGraph().createDNode(dArrow.getName(), defaultNode);
 			correspondanceDSpecification.getDGraph().createDArrow("source"+dArrow.getName(), bridgeElement, newNode, defaultArrow);
 		}
