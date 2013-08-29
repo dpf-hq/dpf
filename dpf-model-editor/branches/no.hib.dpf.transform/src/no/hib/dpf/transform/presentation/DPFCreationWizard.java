@@ -25,9 +25,11 @@ import no.hib.dpf.diagram.DiagramFactory;
 import no.hib.dpf.diagram.util.DPFConstants;
 import no.hib.dpf.editor.DPFEditor;
 import no.hib.dpf.editor.DPFUtils;
+import no.hib.dpf.transform.Production;
 import no.hib.dpf.transform.Transform;
 import no.hib.dpf.transform.TransformFactory;
 import no.hib.dpf.transform.util.TransformActivePage;
+import no.hib.dpf.transform.util.TransformConstants;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
@@ -150,6 +152,12 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 			URI newDiagarmURI = DPFUtils.getFileURI(newDiagramFile);
 			//Initialize model file and diagram file
 			Transform transform = TransformFactory.eINSTANCE.createTransform();
+			
+//			Production correspondanceGraph = TransformFactory.eINSTANCE.createProduction();
+//			correspondanceGraph.setSum(DiagramFactory.eINSTANCE.createDefaultDSpecification());
+//			correspondanceGraph.setName(TransformConstants.CORRESPONDACE_GRAPH);
+//			
+//			transform.getRules().add(correspondanceGraph);
 			
 			ResourceSetImpl resourceSet = DPFUtils.getResourceSet();
 			Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();

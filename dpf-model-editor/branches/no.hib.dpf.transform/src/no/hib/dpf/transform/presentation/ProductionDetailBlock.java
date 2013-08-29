@@ -4,7 +4,11 @@ package no.hib.dpf.transform.presentation;
 import java.util.jar.Attributes.Name;
 
 import no.hib.dpf.diagram.DGraph;
+import no.hib.dpf.diagram.DSpecification;
+import no.hib.dpf.diagram.DiagramFactory;
+import no.hib.dpf.diagram.util.DPFConstants;
 import no.hib.dpf.transform.Production;
+import no.hib.dpf.transform.util.TransformConstants;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -38,7 +42,7 @@ public class ProductionDetailBlock extends ProductionEditor implements IDetailsP
 	private Section infoSection;
 	private TransformMasterBlock master;
 	private static String currentProduction;
-
+	
 	public ProductionDetailBlock(TransformMasterBlock master) {
 		super();
 		this.master = master;
@@ -111,6 +115,7 @@ public class ProductionDetailBlock extends ProductionEditor implements IDetailsP
 		if(ssel.size() == 1) selected = ssel.getFirstElement();
 		if(selected instanceof Production){
 			production = (Production) selected;
+			setProduction(production);
 			currentProduction = production.getName();
 			dGraph = production.getSum().getDGraph();
 			Assert.isNotNull(dGraph);

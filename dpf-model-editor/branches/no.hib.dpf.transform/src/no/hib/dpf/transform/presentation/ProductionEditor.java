@@ -37,6 +37,10 @@ import no.hib.dpf.diagram.DiagramFactory;
 import no.hib.dpf.diagram.util.DPFConstants;
 import no.hib.dpf.editor.DPFEditorPaletteFactory;
 import no.hib.dpf.editor.DPFUtils;
+import no.hib.dpf.editor.displaymodel.factories.DArrowFactory;
+import no.hib.dpf.editor.displaymodel.factories.DNodeFactory;
+import no.hib.dpf.editor.displaymodel.factories.DPFConnectionCreationToolEntry;
+import no.hib.dpf.editor.extension_points.FigureConfigureManager;
 import no.hib.dpf.editor.parts.ArrowLabelEditPart;
 import no.hib.dpf.editor.parts.DArrowEditPart;
 import no.hib.dpf.editor.parts.DNodeEditPart;
@@ -44,27 +48,33 @@ import no.hib.dpf.editor.parts.DPFEditPartFactory;
 import no.hib.dpf.transform.Production;
 import no.hib.dpf.transform.Transform;
 import no.hib.dpf.transform.util.TransformActivePage;
+import no.hib.dpf.transform.util.TransformConstants;
 import no.hib.dpf.transform.parts.TransformArrowLabelEditPart;
 import no.hib.dpf.transform.parts.TransformDArrowEditPart;
 import no.hib.dpf.transform.parts.TransformDNodeEditPart;
 import no.hib.dpf.utils.DPFCoreUtil;
 
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gef.ContextMenuProvider;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.editparts.ScalableFreeformRootEditPart;
+import org.eclipse.gef.palette.CreationToolEntry;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.ui.palette.FlyoutPaletteComposite;
+import org.eclipse.gef.ui.palette.PaletteViewerProvider;
 import org.eclipse.gef.ui.palette.FlyoutPaletteComposite.FlyoutPreferences;
 import org.eclipse.gef.ui.parts.GraphicalEditorWithFlyoutPalette;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IWorkbenchPart;
@@ -92,14 +102,20 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 	//	/** Palette component, holding the tools and shapes. */
 	private Transform transform = null;
 	private Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
-	private PaletteRoot paletteRoot;
+	protected PaletteRoot paletteRoot;
 
 	private DPFEditPartFactory shapesEditPartFactory;
-	private DPFEditorPaletteFactory paletteFactory;
+	protected DPFTransformPaletteFactory paletteFactory;
 
+	protected DSpecification dspec = null;
+	
 	protected PropertySheetPage propertySheetPage;
 
 
+	public void setProduction(Production prod){
+		production = prod;
+	}
+	
 	public ProductionEditor(){
 		paletteFactory = new DPFTransformPaletteFactory();
 	}
@@ -120,6 +136,10 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 		
 		 
 	 }
+	 
+	 public DPFTransformPaletteFactory getpaletteFactory(){
+		 return paletteFactory;
+	 }
 	
 	 protected void configureGraphicalViewer() {
 		super.configureGraphicalViewer();
@@ -127,7 +147,17 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 		transform = TransformEditor.loadTransform(DPFUtils.getResourceSet(), URI.createFileURI(transformFile), resourceToDiagnosticMap);
 		DSpecification defaultDSpecification = DiagramFactory.eINSTANCE.createDefaultDSpecification();
 		defaultDSpecification.setDType(DiagramFactory.eINSTANCE.createDefaultDSpecification());
+		
 		DGraph newGraph = DiagramFactory.eINSTANCE.createDefaultDGraph();
+		
+		CorrespondanceGraph cGraph = new CorrespondanceGraph();
+		dspec = cGraph.getCorrespondanceDSpecification();
+		for(int i = 0;i<dspec.getDGraph().getDNodes().size();i++){
+			System.out.println(i+ " Name: " + dspec.getDGraph().getDNodes().get(i).getName() + " " + dspec.getDGraph().getDNodes().get(i).getTypeName());
+		}
+		for(int i = 0;i<dspec.getDGraph().getDArrows().size();i++){
+			System.out.println(i+ " Name: " + dspec.getDGraph().getDArrows().get(i).getName() + " " + dspec.getDGraph().getDArrows().get(i).getTypeName());
+		}
 		
 		DSpecification sourceDSpecification = transform.getSourceMetaModel();
 		DSpecification targetDSpecification = transform.getTargetMetaModel();
@@ -144,6 +174,13 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 		paletteFactory.updatePalette(getPaletteRoot(), newGraph);
 		shapesEditPartFactory = new DPFEditPartFactory(){
 			protected EditPart getPartForElement(Object modelElement) {
+//				System.out.println("Her " + modelElement.toString());
+//				EObject object = (EObject) modelElement;
+//				Production prod = (Production) object.eContainer().eContainer();
+//				if(prod.getName().contains(TransformConstants.CORRESPONDACE_GRAPH)){
+//					System.out.println("her");
+//				}
+//				System.out.println(object.eContainer().eContainer());
 //				if (modelElement instanceof DGraph) {
 //					return new DGraphEditPart(){
 //						protected void createEditPolicies() {
@@ -219,8 +256,6 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 		tempGraph.getDNodes().addAll(targetDSpecification.getDGraph().getDNodes());
 		tempGraph.getDArrows().addAll(targetDSpecification.getDGraph().getDArrows());
 		
-		System.out.println(targetDSpecification.getDGraph().getDNodes());
-		
 		for(int i = 0;i<tempGraph.getDNodes().size();i++){
 			for(int j = 0;j<targetDSpecification.getDGraph().getDNodes().size();j++){
 				if(targetDSpecification.getDGraph().getDNodes().get(j).getName() == tempGraph.getDNodes().get(i).getName()){
@@ -232,8 +267,8 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 		
 		return tempGraph;
 	}
-	
+
 	protected void initializeGraphicalViewer() {
-		super.initializeGraphicalViewer();
+		super.initializeGraphicalViewer();	
 	}
-}
+};

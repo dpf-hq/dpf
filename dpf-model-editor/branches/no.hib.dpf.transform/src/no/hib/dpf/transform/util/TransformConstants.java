@@ -15,4 +15,5 @@ public class TransformConstants {
 	public static final String GENERATE_ECORE = "Generate To Ecore Model";
 	public static final String EXECUTE_TRANSFORMATION = "Apply Model Transformation";
 	public static final String ADD_VARIABLE = "Create Paramater";
+	public static final String CORRESPONDACE_GRAPH = "InitialiseCorrespondanceGraph";
 }
