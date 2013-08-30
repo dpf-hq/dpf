@@ -37,4 +37,6 @@ Import-Package: org.eclipse.core.filesystem,
  org.eclipse.emf.henshin.model,
  org.eclipse.emf.henshin.model.impl,
  org.eclipse.emf.henshin.model.resource,
- org.eclipse.emf.henshin.trace
+ org.eclipse.emf.henshin.trace,
+ org.eclipse.emf.henshin.trace.impl,
+ org.eclipse.emf.henshin.trace.util
