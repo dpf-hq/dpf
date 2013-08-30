@@ -56,25 +56,23 @@ public class AddTransformCommand extends Command {
 	 */
 	public void execute() {
 		System.out.println("Rule: " + production.getName());
-		if(insertObject instanceof DNode){
+		if(insertObject instanceof DNode && ((DNode) insertObject).getTypeName()!= "Trace"){
 			if(production.getLeftNodes().contains(insertObject)){
 				production.getLeftNodes().remove(insertObject);
 			}
 			if(production.getCommonNodes().contains(insertObject)){
 				production.getCommonNodes().remove(insertObject);
 			}
-			System.out.println(" her " + ((DNode) insertObject).getConfigureString());
 			System.out.println(((DNode) insertObject).getName() + " " + ((DNode) insertObject).getTypeName());
 			production.getRightNodes().add((DNode) insertObject);
 		}
-		if(insertObject instanceof DArrow){
+		if(insertObject instanceof DArrow && !((DArrow) insertObject).getTypeName().startsWith("trace")){
 			if(production.getLeftArrows().contains(insertObject)){
 				production.getLeftArrows().remove(insertObject);
 			}
 			if(production.getCommonArrows().contains(insertObject)){
 				production.getCommonArrows().remove(insertObject);
 			}
-			((DArrow) insertObject).getArrow().setName("create--");
 			production.getRightArrows().add((DArrow) insertObject);
 			
 		}

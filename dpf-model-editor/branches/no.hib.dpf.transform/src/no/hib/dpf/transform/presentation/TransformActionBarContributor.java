@@ -96,8 +96,11 @@ public class TransformActionBarContributor extends ActionBarContributor {
 			String filename = TransformUtils.activeWorkingDirectory()+"/CorrespondanceModel.dpf";
 			URI newDiagramUri = URI.createFileURI(filename);
 			
-			CorrespondanceGraph cGraph = new CorrespondanceGraph();
-			dspec = cGraph.getCorrespondanceDSpecification();
+//			CorrespondanceGraph cGraph = new CorrespondanceGraph();
+//			dspec = cGraph.getCorrespondanceDSpecification();
+			
+			EditPartGraph cGraph = new EditPartGraph();
+			dspec = cGraph.getCommonGraph();
 			
 			DSpecification newDSpecification = DiagramFactory.eINSTANCE.createDefaultDSpecification();
 			newDSpecification.setDType(dspec);

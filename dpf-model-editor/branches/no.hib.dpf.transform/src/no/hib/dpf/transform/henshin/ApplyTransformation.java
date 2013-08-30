@@ -67,7 +67,12 @@ public class ApplyTransformation {
 		HenshinResourceSet resourceSet = new HenshinResourceSet(TransformUtils.activeWorkingDirectory());
 		Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
 		
+		String transformFile = TransformUtils.activeWindowFileLocation();
+		Transform transform = TransformEditor.loadTransform(DPFUtils.getResourceSet(), URI.createFileURI(transformFile), resourceToDiagnosticMap); 
+		
 		String newPath = path.replace(".dpf", ".xmi");
+		
+		int buffer = 0;
 		
 		URI dSpecUri = URI.createFileURI(newPath);
 		
@@ -93,6 +98,8 @@ public class ApplyTransformation {
 		RuleApplication ruleApplication = new RuleApplicationImpl(engine);
 		ruleApplication.setEGraph(graph);
 		ApplicationMonitor monitor = InterpreterFactory.INSTANCE.createApplicationMonitor();
+		
+	
 		
 		Rule initialRule = module.getRules().get(0);
 		Match initialMatch = new MatchImpl(initialRule);  
@@ -196,27 +203,65 @@ public class ApplyTransformation {
 		
 		Unit unit = module.getUnit("main");
 		UnitApplication unitApp = new UnitApplicationImpl(engine, graph, unit, null);
-
+		
+		buffer = unitApp.getEGraph().getRoots().size();
+		System.out.println("ANNTALL ELEMENTER : " + buffer);
+		
 		try{
 			InterpreterUtil.executeOrDie(unitApp);
 			ChangeImpl.PRINT_WARNINGS = false;
 		} catch (AssertionError e){
 			System.out.println("Error " + e);
 		}
-		for(int k = 0;k<unitApp.getEGraph().getRoots().size();k++){
-			
+		buffer = unitApp.getEGraph().getRoots().size() - buffer;
+		Specification newSpec = CoreFactory.eINSTANCE.createDefaultSpecification();
+		Graph newGraph = CoreFactory.eINSTANCE.createDefaultGraph();
+		newSpec.setGraph(newGraph);
+		spec.setType(transform.getTargetMetaModel().getSpecification());
+		
+		for(int k = 0;k<spec.getType().getGraph().getNodes().size();k++){
+			System.out.println("JAAAAAAAA " + spec.getType().getGraph().getNodes().get(k).getName());
+		}
+		
+		
+		for(int k = buffer;k<unitApp.getEGraph().getRoots().size();k++){
 			if(unitApp.getEGraph().getRoots().get(k) instanceof Node){
 				Node node = (Node) unitApp.getEGraph().getRoots().get(k);
-				System.out.println("Node " + node.getName() + " " + node.getTypeName());
-			}else if(unitApp.getEGraph().getRoots().get(k) instanceof Specification){
-				Specification testSpec = (Specification) unitApp.getEGraph().getRoots().get(k);
-				for(int p = 0;p<testSpec.getGraph().getNodes().size();p++){
-					System.out.println("Specification " + testSpec.getGraph().getNodes().get(p).getName() + " " + testSpec.getGraph().getNodes().get(p).getTypeName());
-				}
-			} else{
-				System.out.println("HER " + unitApp.getEGraph().getRoots().get(k));
+//				Node type1 = spec.getType().getGraph().getNodeByName(node.getTypeName());
+//				node.setTypeNode(type1);
+				newGraph.addNode(node);
+//				newGraph.getType().addNode(type1);
+				System.out.println("Node " + node.getTypeName());
 			}
+			if(unitApp.getEGraph().getRoots().get(k) instanceof Arrow){
+				Arrow arrow = (Arrow) unitApp.getEGraph().getRoots().get(k);
+				newGraph.addArrow(arrow);
+			}
+
+//			if(unitApp.getEGraph().getRoots().get(k) instanceof Node){
+//				Node node = (Node) unitApp.getEGraph().getRoots().get(k);
+//				System.out.println("Node " + node.getName() + " " + node.getTypeName());
+//			}else if(unitApp.getEGraph().getRoots().get(k) instanceof Specification){
+//				Specification testSpec = (Specification) unitApp.getEGraph().getRoots().get(k);
+//				for(int p = 0;p<testSpec.getGraph().getNodes().size();p++){
+//					System.out.println("Specification " + testSpec.getGraph().getNodes().get(p).getName() + " " + testSpec.getGraph().getNodes().get(p).getTypeName());
+//				}
+//			} else{
+//				System.out.println("HER " + unitApp.getEGraph().getRoots().get(k));
+//			}
 			
 		}
+		for(int k = 0;k<newGraph.getNodes().size();k++){
+			System.out.println("Node " + k + " " + newGraph.getNodes().get(k).getTypeName());
+		}
+		
+		System.out.println("Complete" + unitApp.getEGraph().getRoots().size());
+		
+		String uriNew = TransformUtils.activeWorkingDirectory() + "/spec.xmi";
+		
+		spec.setType(transform.getTargetMetaModel().getSpecification());
+		
+		DPFUtils.saveSpecification(URI.createFileURI(uriNew), newSpec);
+		
 	}
 }

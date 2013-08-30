@@ -1,5 +1,6 @@
 package no.hib.dpf.transform.presentation;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -26,6 +27,8 @@ public class EditPartGraph {
 	private DSpecification sourceDSpecification = null;
 	private DSpecification targetDSpecification = null;
 	
+	private HashMap<String, DNode> createNodes = null;
+	
 	private String sourceModel = null;
 	private String targetModel = null;
 	
@@ -38,13 +41,15 @@ public class EditPartGraph {
 	public EditPartGraph(){
 		String transformFile = TransformUtils.activeWindowFileLocation();
 		transform = TransformEditor.loadTransform(DPFUtils.getResourceSet(), URI.createFileURI(transformFile), resourceToDiagnosticMap);
+		
+		createNodes = new HashMap<String, DNode>();
 
 		defaultDSpecification =  DPFConstants.REFLEXIVE_DSPECIFICATION;
 		
 		sourceDSpecification = transform.getSourceMetaModel();
 		targetDSpecification = transform.getTargetMetaModel();
 	}
-	public DSpecification getCorrespondanceDSpecification(){
+	public DSpecification getCommonGraph(){
 		DSpecification defaultDSpec = DiagramFactory.eINSTANCE.createConstantDSpecification();
 		defaultDSpec.setDType(defaultDSpecification);
 		
@@ -60,17 +65,32 @@ public class EditPartGraph {
 		targetModel = TransformUtils.getDSpecificationFileName(transform.getTargetLocation());
 		
 		DNode bridgeElement = correspondanceDSpecification.getDGraph().
-				createDNode(TransformUtils.createCorrespondanceType(sourceModel, targetModel), defaultNode);
+				createDNode("Trace", defaultNode);
 		
 		for(int i = 0;i<sourceDSpecification.getDGraph().getDNodes().size();i++){
 			DNode dNode = sourceDSpecification.getDGraph().getDNodes().get(i);
 			DNode newNode = correspondanceDSpecification.getDGraph().createDNode(dNode.getName(), defaultNode);
-			correspondanceDSpecification.getDGraph().createDArrow("source"+dNode.getName(), bridgeElement, newNode, defaultArrow);
+			createNodes.put("source"+newNode.getName(), newNode);
+			correspondanceDSpecification.getDGraph().createDArrow("traceSource_"+dNode.getName(), bridgeElement, newNode, defaultArrow);
+			
 		}
 		for(int i = 0;i<targetDSpecification.getDGraph().getDNodes().size();i++){
 			DNode dNode = targetDSpecification.getDGraph().getDNodes().get(i);
 			DNode newNode = correspondanceDSpecification.getDGraph().createDNode(dNode.getName(), defaultNode);
-			correspondanceDSpecification.getDGraph().createDArrow("target"+dNode.getName(), bridgeElement, newNode, defaultArrow);
+			createNodes.put("target"+newNode.getName(), newNode);
+			correspondanceDSpecification.getDGraph().createDArrow("traceTarget_"+dNode.getName(), bridgeElement, newNode, defaultArrow);
+		}
+		for(int i = 0;i<sourceDSpecification.getDGraph().getDArrows().size();i++){
+			DArrow dArrow = sourceDSpecification.getDGraph().getDArrows().get(i);
+			DNode sourceNode = dArrow.getDSource();
+			DNode targetNode = dArrow.getDTarget();
+			correspondanceDSpecification.getDGraph().createDArrow(dArrow.getName(), createNodes.get("source"+sourceNode.getName()), createNodes.get("source"+targetNode.getName()), defaultArrow);
+		}
+		for(int i = 0;i<targetDSpecification.getDGraph().getDArrows().size();i++){
+			DArrow dArrow = targetDSpecification.getDGraph().getDArrows().get(i);
+			DNode sourceNode = dArrow.getDSource();
+			DNode targetNode = dArrow.getDTarget();
+			correspondanceDSpecification.getDGraph().createDArrow(dArrow.getName(), createNodes.get("target"+sourceNode.getName()), createNodes.get("target"+targetNode.getName()), defaultArrow);
 		}
 		return correspondanceDSpecification;
 	}

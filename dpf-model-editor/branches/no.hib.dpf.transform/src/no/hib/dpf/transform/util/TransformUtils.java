@@ -79,4 +79,9 @@ public class TransformUtils {
 		IFile file = ((IFileEditorInput)input).getFile();
 		return file.getLocation().toOSString();
 	}
+	public static String trimNumber(String name){
+		String trimmedString = null;
+		trimmedString = name.replaceAll("[\\d-]", "");
+		return trimmedString;
+	}
 }

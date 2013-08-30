@@ -47,6 +47,7 @@ import no.hib.dpf.editor.parts.DNodeEditPart;
 import no.hib.dpf.editor.parts.DPFEditPartFactory;
 import no.hib.dpf.transform.Production;
 import no.hib.dpf.transform.Transform;
+import no.hib.dpf.transform.TransformFactory;
 import no.hib.dpf.transform.util.TransformUtils;
 import no.hib.dpf.transform.util.TransformConstants;
 import no.hib.dpf.transform.parts.TransformArrowLabelEditPart;
@@ -100,7 +101,7 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 	protected Production production;
 
 	//	/** Palette component, holding the tools and shapes. */
-	private Transform transform = null;
+	protected Transform transform = null;
 	private Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
 	protected PaletteRoot paletteRoot;
 
@@ -156,17 +157,24 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 		DSpecification targetDSpecification = transform.getTargetMetaModel();
 		
 		if(sourceDSpecification!=targetDSpecification && !targetDSpecification.getDGraph().getDNodes().isEmpty()){
+			//commonGraph.setGraph(DiagramFactory.eINSTANCE.createDefaultDSpecification());
+
 			System.out.println("Like");
+			
 			newGraph = setDGraphForExogenousTransformation(sourceDSpecification, targetDSpecification, transformFile);
-			CorrespondanceGraph cGraph = new CorrespondanceGraph();
-			dspec = cGraph.getCorrespondanceDSpecification();
+//			EditPartGraph cGraph = new EditPartGraph();
+//			dspec = cGraph.getCommonGraph();
+//			dspec.setDSignature(DPFConstants.DEFAULT_DSIGNATURE);
+//			dspec.setDType(DPFConstants.REFLEXIVE_DSPECIFICATION);
+			
+			String uri = "C:/Users/Petter/runtime-EclipseApplication/model/CorrespondanceModel.dpf";
+			
+			dspec = DPFUtils.loadDSpecification(DPFUtils.getResourceSet(), URI.createFileURI(uri), resourceToDiagnosticMap);
 			
 			for(int i = 0;i<dspec.getDGraph().getDNodes().size();i++){
 				System.out.println(i+ " Name: " + dspec.getDGraph().getDNodes().get(i).getName() + " " + dspec.getDGraph().getDNodes().get(i).getTypeName());
 			}
-			for(int i = 0;i<dspec.getDGraph().getDArrows().size();i++){
-				System.out.println(i+ " Name: " + dspec.getDGraph().getDArrows().get(i).getName() + " " + dspec.getDGraph().getDArrows().get(i).getTypeName());
-			}
+			newGraph = dspec.getDType().getDGraph();
 		}
 		else{
 			System.out.println("Ulike");
