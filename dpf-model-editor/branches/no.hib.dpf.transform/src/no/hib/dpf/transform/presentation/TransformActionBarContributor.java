@@ -19,6 +19,7 @@ import no.hib.dpf.transform.henshin.TranslateToEcore;
 import no.hib.dpf.transform.henshin.TranslateToHenshinRules;
 import no.hib.dpf.transform.icons.ImageSettings;
 import no.hib.dpf.transform.provider.TransformEditPlugin;
+import no.hib.dpf.transform.rules.CorrespondanceGraph;
 import no.hib.dpf.transform.util.BrowseInstanceModel;
 import no.hib.dpf.transform.util.TransformUtils;
 import no.hib.dpf.transform.util.TransformConstants;
@@ -93,69 +94,34 @@ public class TransformActionBarContributor extends ActionBarContributor {
 		public void run() {
 			DSpecification dspec = null;
 			
-			String filename = TransformUtils.activeWorkingDirectory()+"/CorrespondanceModel.dpf";
-			URI newDiagramUri = URI.createFileURI(filename);
+			Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
+			Transform transform = TransformEditor.loadTransform(DPFUtils.getResourceSet(), URI.createFileURI(TransformUtils.activeWindowFileLocation()), resourceToDiagnosticMap);
 			
-//			CorrespondanceGraph cGraph = new CorrespondanceGraph();
-//			dspec = cGraph.getCorrespondanceDSpecification();
+			URI source = URI.createFileURI(transform.getSourceLocation());
+			URI target = URI.createFileURI(transform.getTargetLocation());
 			
-			EditPartGraph cGraph = new EditPartGraph();
-			dspec = cGraph.getCommonGraph();
+			String dpfFilename = TransformUtils.activeWorkingDirectory()+"\\"+TransformUtils.createCorrespondanceType(source.lastSegment().replace(".dpf", ""), 
+					target.lastSegment());
+			String xmiFilename = TransformUtils.activeWorkingDirectory()+"\\"+TransformUtils.createCorrespondanceType(source.lastSegment().replace(".dpf", ""), 
+					target.lastSegment().replace(".dpf", "xmi"));
+			System.out.println("1" + dpfFilename);
+			URI newDiagramUri = URI.createFileURI(dpfFilename);
+			URI newCoreUri = URI.createFileURI(xmiFilename);
+
+			CorrespondanceGraph cGraph = new CorrespondanceGraph();
+			dspec = cGraph.createCorrespondanceGraph();
 			
 			DSpecification newDSpecification = DiagramFactory.eINSTANCE.createDefaultDSpecification();
 			newDSpecification.setDType(dspec);
 			newDSpecification.setDSignature(DiagramFactory.eINSTANCE.createDefaultDSignature());
 
+			File dpfFile = new File(newDiagramUri.toFileString());
+			File xmiFile = new File(newCoreUri.toFileString());
+			if(dpfFile.exists()){
+				xmiFile.delete();
+				dpfFile.delete();
+			}
 			DPFUtils.saveDSpecification(DPFUtils.getResourceSet(), newDSpecification, newDiagramUri, new LinkedHashMap<Resource, Diagnostic>());
-			
-//			IWorkspaceRoot myWorkspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
-//			IProject myWebProject = myWorkspaceRoot.getProject("model");
-//			   // open if necessary
-//			   if (myWebProject.exists() && !myWebProject.isOpen()){
-//			      try {
-//					myWebProject.open(null);
-//				} catch (CoreException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//			   }
-//			
-//			IPath location = new Path(newDiagramUri.toFileString());
-//			IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(location);
-//		    
-//			FileInputStream fileStream = null;
-//			try {
-//				fileStream = new FileInputStream(filename);
-//			} catch (FileNotFoundException e3) {
-//				// TODO Auto-generated catch block
-//				e3.printStackTrace();
-//			}
-//			try {
-//				file.create(fileStream, false, null);
-//			} catch (CoreException e2) {
-//				// TODO Auto-generated catch block
-//				e2.printStackTrace();
-//			}
-//		      // create closes the file stream, so no worries.  
-//			
-//			
-//			System.out.println("FILENAME " + file.getName() + " " + file.getLocation().toOSString());
-//			URI newDiagarmURI = DPFUtils.getFileURI(file);
-//			
-//			System.out.println("IFile " + file.getFullPath());
-//			
-//			IWorkbench workbench = PlatformUI.getWorkbench();
-//			IWorkbenchPage page = workbench.getActiveWorkbenchWindow().getActivePage();
-//			
-//			if (file != null && page != null) {
-//				try {
-//					IEditorPart editorPart = IDE.openEditor(page, file, true);
-//					if(editorPart != null)
-//						editorPart.setFocus();
-//				} catch (PartInitException e) {
-//					DPFUtils.logError("Error happens when Open DPF Editor", e);
-//				}
-//			}
 		}
 	};
 	protected IAction generateToHenshin = new Action(TransformConstants.GENERATE_HENSHIN, ImageSettings.IMG_GENERATE_HENSHIN.getImageDescriptor()) {

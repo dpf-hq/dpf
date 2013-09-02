@@ -564,13 +564,13 @@ public class TransformModule {
 		System.out.println("Node : " + targetNode.getName() + "Production : " + production.getName());
 		for(int i = 0;i<targetNode.getDIncomings().size();i++){
 			System.out.println(targetNode.getName() + " " + targetNode.getDIncomings().get(i).getName());
-			if(targetNode.getDIncomings().get(i).getName().startsWith("traceTarget_")){
+			if(targetNode.getDIncomings().get(i).getName().startsWith("linkTarget_")){
 				DArrow targetDArrow = targetNode.getDIncomings().get(i);
 				System.out.println("Target!!!!" + targetDArrow.getName());
 				DNode trace = targetDArrow.getDSource();
 				System.out.println("Trace " + trace.getName());
 				for(int j = 0; j<trace.getDOutgoings().size();j++){
-					if(trace.getDOutgoings().get(j).getName().startsWith("traceSource_")){
+					if(trace.getDOutgoings().get(j).getName().startsWith("linkource_")){
 						sourceNode = trace.getDOutgoings().get(j).getDTarget();
 						System.out.println("S " + sourceNode.getNode().getName());
 						System.out.println("S " + sourceNode.getNode().getId());
