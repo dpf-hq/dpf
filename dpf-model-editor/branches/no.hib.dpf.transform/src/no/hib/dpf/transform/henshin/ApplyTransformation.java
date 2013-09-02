@@ -214,7 +214,7 @@ public class ApplyTransformation {
 		buffer = unitApp.getEGraph().getRoots().size();
 		System.out.println("ANNTALL ELEMENTER : " + buffer);
 		
-		
+		graph.add(newSpec.getType().getGraph());
 		
 		try{
 			InterpreterUtil.executeOrDie(unitApp);
@@ -246,9 +246,11 @@ public class ApplyTransformation {
 			System.out.println("JAAAAAAAA " + newSpec.getType().getGraph().getNodes().get(k).getName());
 		}		
 		for(int k = buffer;k<unitApp.getEGraph().getRoots().size();k++){
-			if(unitApp.getEGraph().getRoots().get(k) instanceof Node){
-				
+			if(unitApp.getEGraph().getRoots().get(k) instanceof Node && ((Node) unitApp.getEGraph().getRoots().get(k)).getName() != null){
 				Node node = (Node) unitApp.getEGraph().getRoots().get(k);
+				if(node.getName() == null){
+					System.out.println("THIS MIGHT WORK!");
+				}
 				
 				node.setTypeNode(newGraph.getNodeByName(node.getTypeName()));
 				newSpec.getGraph().addNode(node);

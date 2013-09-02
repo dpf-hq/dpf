@@ -384,6 +384,9 @@ public class TransformModule {
 		for(int i = 0; i<production.getCommonNodes().size();i++){
 //			String dNodeType = production.getCommonNodes().get(i).getTypeName();
 			String dNodeType = TransformUtils.trimNumber(production.getCommonNodes().get(i).getName());
+			if(dNodeType.isEmpty()){
+				System.out.println("EMPTY!!!!!");	
+			}
 //			EClass node = (EClass) core.getEClassifier(TransformConstants.NODE);
 			EClass node = specificationPackage.getNode();
 			System.out.println("node " + dNodeType + " " + production.getCommonNodes().get(i).getName());
