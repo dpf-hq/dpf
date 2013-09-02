@@ -1,5 +1,7 @@
 package no.hib.dpf.transform.util;
 
+import java.util.LinkedHashMap;
+
 import no.hib.dpf.core.Specification;
 import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.editor.DPFUtils;
@@ -22,7 +24,9 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.dialogs.Dialog; 
 import org.eclipse.jface.dialogs.IDialogConstants;
@@ -55,29 +59,17 @@ public class BrowseInstanceModel extends Dialog {
 		super(parent);
 		
 		this.transform = transform;
-//		sourceDSpecification = transform.getSourceMetaModel();
-//		targetDSpecification = transform.getTargetMetaModel();
-//		
-//		System.out.println("Source " + sourceDSpecification.eContainer() + " Target " + targetDSpecification.eContainer());
-//		
-//		if(transform != null){
-//			sourceDSpecification = transform.getSourceMetaModel().getDType();
-//			sourcespecification = transform.getSourceMetaModel().getSpecification();
-//
-//		}
-//		sourceDSpec = sourceDSpecification.eResource().getURI().toFileString();
-//		sourceSpec = sourcespecification.eResource().getURI().toFileString();
-//		
-//		if(transform != null){
-//			targetDSpecification = transform.getTargetMetaModel();
-//			targetspecification = transform.getTargetMetaModel().getSpecification();
-//			
-//		}
-//		targetDSpec = targetDSpecification.eResource().getURI().toFileString();
-//		targetSpec = targetspecification.eResource().getURI().toFileString();
-//		
-//		System.out.println("Target: " + targetDSpec);
 		
+		sourceDSpecification = transform.getSourceMetaModel();
+		targetDSpecification = transform.getTargetMetaModel();
+
+		sourceDSpec = transform.getSourceLocation();
+		targetDSpec = transform.getTargetLocation();
+		
+
+		
+		targetspecification = DPFUtils.loadSpecification(URI.createFileURI(sourceDSpec.replace(".dpf", ".xmi")));
+		System.out.println("UIR: " + targetspecification.eResource().getURI());
 	}
 	
 	protected Control createDialogArea(Composite parent) { 
@@ -104,6 +96,14 @@ public class BrowseInstanceModel extends Dialog {
 
 				public void widgetSelected(SelectionEvent event) {
 					handleModelBrowseButtonPressed(modelInstance, "*.dpf");
+					
+					sourcespecification = DPFUtils.loadSpecification(URI.createFileURI(modelInstance.getText().toString().replace(".dpf", ".xmi"))).getType();
+					
+					if(targetspecification == sourcespecification){
+						System.out.println("Target uri " + sourcespecification.getGraph().getNodes());
+					}
+					
+					
 				}
 			});
 			instanceModelFileChooser.setEnabled(true);
@@ -111,7 +111,7 @@ public class BrowseInstanceModel extends Dialog {
 	    
 	    errorSourceMessage = new Label(composite, SWT.NONE);
 	    errorSourceMessage.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, SWT.FILL, 0));
-	    errorSourceMessage.setText("Type specification from instance model does not match source metamodel");
+	    errorSourceMessage.setText("Type specification from instance model does not match source specification");
 	    errorSourceMessage.setForeground(new Color(null, 255, 0, 0));
 	    
 	    
@@ -134,12 +134,12 @@ public class BrowseInstanceModel extends Dialog {
 		
 		item = new TableItem(table, SWT.NONE);
 		item.setText(0, "Target Metamodel");
-		item.setText(1, sourceDSpec);
-		
+		item.setText(1, targetDSpec);
+			
 		item = new TableItem(table, SWT.NONE);
 		item.setText(0, "Target Specification");
-		item.setText(1, sourceSpec);
-		
+		item.setText(1, targetDSpec);
+	
 		one.pack();
 		two.pack();
 		

@@ -98,6 +98,7 @@ public class TransformMasterBlock extends MasterDetailsBlock {
 		layout.marginHeight = 2;
 		client.setLayout(layout);
 		Table table = toolkit.createTable(client, SWT.NULL);
+		table.setSize(30, SWT.FILL);
 		GridData gridData = new GridData(GridData.FILL_BOTH);
 		gridData.heightHint = 20;
 		gridData.widthHint = 100;

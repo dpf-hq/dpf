@@ -54,6 +54,7 @@ import org.eclipse.emf.henshin.model.impl.HenshinPackageImpl;
 import org.eclipse.emf.henshin.model.impl.LoopUnitImpl;
 import org.eclipse.emf.henshin.model.impl.NestedConditionImpl;
 import org.eclipse.emf.henshin.model.impl.SequentialUnitImpl;
+import org.eclipse.emf.henshin.model.impl.UnitImpl;
 import org.eclipse.emf.henshin.model.resource.HenshinResourceSet;
 import org.eclipse.emf.henshin.trace.TraceFactory;
 import org.eclipse.emf.henshin.trace.Trace;
@@ -127,7 +128,7 @@ public class TransformModule {
 //			mainModule.getImports().add(targetMetaModel);
 //		}
 		
-		mainModule.getUnits().add(generateInitialRuleSpecification(mainModule));
+//		mainModule.getUnits().add(generateInitialRuleSpecification(mainModule));
 		
 		Rule tempRule = null;
 	
@@ -157,7 +158,10 @@ public class TransformModule {
 		SequentialUnit seqUnit = new SequentialUnitImpl();
 		seqUnit.setName("main");
 		for(int i = 0;i<module.getUnits().size();i++){
-			seqUnit.getSubUnits().add(module.getUnits().get(i));
+			if(module.getUnits().get(i) instanceof LoopUnitImpl){
+				seqUnit.getSubUnits().add(module.getUnits().get(i));
+			}
+			
 		}
 		module.getUnits().add(seqUnit);
 		

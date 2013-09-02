@@ -16,6 +16,7 @@ import no.hib.dpf.core.Specification;
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.diagram.DiagramFactory;
+import no.hib.dpf.diagram.util.DPFConstants;
 import no.hib.dpf.editor.DPFEditor;
 import no.hib.dpf.editor.DPFPlugin;
 import no.hib.dpf.editor.DPFUtils;
@@ -201,11 +202,19 @@ public class ApplyTransformation {
 			e.printStackTrace();
 		}
 		
+		Specification targetSpec = DPFUtils.loadSpecification(URI.createFileURI("C:/Users/Petter/runtime-EclipseApplication/model/petriNetMetaModel.xmi"));
+		
+		Specification newSpec = CoreFactory.eINSTANCE.createDefaultSpecification();
+		newSpec.setType(targetSpec);
+		newSpec.setSignature(DPFConstants.DEFAULT_SIGNATURE);
+
 		Unit unit = module.getUnit("main");
 		UnitApplication unitApp = new UnitApplicationImpl(engine, graph, unit, null);
 		
 		buffer = unitApp.getEGraph().getRoots().size();
 		System.out.println("ANNTALL ELEMENTER : " + buffer);
+		
+		
 		
 		try{
 			InterpreterUtil.executeOrDie(unitApp);
@@ -214,28 +223,44 @@ public class ApplyTransformation {
 			System.out.println("Error " + e);
 		}
 		buffer = unitApp.getEGraph().getRoots().size() - buffer;
-		Specification newSpec = CoreFactory.eINSTANCE.createDefaultSpecification();
-		Graph newGraph = CoreFactory.eINSTANCE.createDefaultGraph();
-		newSpec.setGraph(newGraph);
-		spec.setType(transform.getTargetMetaModel().getSpecification());
+
+		Graph newGraph = newSpec.getType().getGraph();
 		
-		for(int k = 0;k<spec.getType().getGraph().getNodes().size();k++){
-			System.out.println("JAAAAAAAA " + spec.getType().getGraph().getNodes().get(k).getName());
+		for(int k = 0;k<ruleApplication.getEGraph().getRoots().size();k++){
+			
+			if(ruleApplication.getEGraph().getRoots().get(k) instanceof Node){
+				Node node = (Node) ruleApplication.getEGraph().getRoots().get(k);
+				System.out.println("Node " + node.getName() + " " + node.getTypeName());
+			}else if(ruleApplication.getEGraph().getRoots().get(k) instanceof Specification){
+				Specification testSpec = (Specification) ruleApplication.getEGraph().getRoots().get(k);
+				for(int p = 0;p<testSpec.getGraph().getNodes().size();p++){
+					System.out.println("Specification " + testSpec.getGraph().getNodes().get(p).getName() + " " + testSpec.getGraph().getNodes().get(p).getTypeName());
+				}
+			} else{
+				System.out.println("HER " + ruleApplication.getEGraph().getRoots().get(k));
+			}
+			
 		}
 		
-		
+		for(int k = 0;k<newSpec.getType().getGraph().getNodes().size();k++){
+			System.out.println("JAAAAAAAA " + newSpec.getType().getGraph().getNodes().get(k).getName());
+		}		
 		for(int k = buffer;k<unitApp.getEGraph().getRoots().size();k++){
 			if(unitApp.getEGraph().getRoots().get(k) instanceof Node){
+				
 				Node node = (Node) unitApp.getEGraph().getRoots().get(k);
+				
+				node.setTypeNode(newGraph.getNodeByName(node.getTypeName()));
+				newSpec.getGraph().addNode(node);
+				System.out.println("Node " + node.getName() + " " + node.getTypeName());
+
+	
 //				Node type1 = spec.getType().getGraph().getNodeByName(node.getTypeName());
-//				node.setTypeNode(type1);
-				newGraph.addNode(node);
-//				newGraph.getType().addNode(type1);
-				System.out.println("Node " + node.getTypeName());
 			}
 			if(unitApp.getEGraph().getRoots().get(k) instanceof Arrow){
 				Arrow arrow = (Arrow) unitApp.getEGraph().getRoots().get(k);
-				newGraph.addArrow(arrow);
+				arrow.setTypeArrow(newGraph.getArrowByName(arrow.getTypeName()));
+				newSpec.getGraph().addArrow(arrow);
 			}
 
 //			if(unitApp.getEGraph().getRoots().get(k) instanceof Node){
@@ -251,15 +276,15 @@ public class ApplyTransformation {
 //			}
 			
 		}
-		for(int k = 0;k<newGraph.getNodes().size();k++){
+		/*for(int k = 0;k<newGraph.getNodes().size();k++){
 			System.out.println("Node " + k + " " + newGraph.getNodes().get(k).getTypeName());
-		}
+		}*/
 		
 		System.out.println("Complete" + unitApp.getEGraph().getRoots().size());
 		
 		String uriNew = TransformUtils.activeWorkingDirectory() + "/spec.xmi";
 		
-		spec.setType(transform.getTargetMetaModel().getSpecification());
+	//	spec.setType(transform.getTargetMetaModel().getSpecification());
 		
 		DPFUtils.saveSpecification(URI.createFileURI(uriNew), newSpec);
 		
