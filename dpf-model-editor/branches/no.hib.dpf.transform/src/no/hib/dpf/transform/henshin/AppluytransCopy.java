@@ -55,7 +55,7 @@ import org.eclipse.emf.henshin.model.Unit;
 import org.eclipse.emf.henshin.model.resource.HenshinResourceSet;
 import org.eclipse.emf.henshin.trace.TraceFactory;
 
-public class ApplyTransformation {
+public class AppluytransCopy {
 	
 	public static final String PATH = "C:/Users/Petter/workspace/Henshin_Test/model/";
 	public static final String HENSHIN = "generateHenshinRules.henshin";
@@ -223,7 +223,6 @@ public class ApplyTransformation {
 			System.out.println("Error " + e);
 		}
 		buffer = unitApp.getEGraph().getRoots().size() - buffer;
-		System.out.println("nybuffer " + buffer);
 
 		Graph newGraph = newSpec.getType().getGraph();
 		
