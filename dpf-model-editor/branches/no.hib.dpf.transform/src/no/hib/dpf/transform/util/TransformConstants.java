@@ -11,9 +11,10 @@ public class TransformConstants {
 	public static final String DNODE_TYPE_NODE = "node";
 	public static final String NODE = "Node";	
 	public static final String ARROW = "Arrow";
-	public static final String GENERATE_HENSHIN = "Generate To Henshin Transformations";
+	public static final String GENERATE_HENSHIN = "Generate Henshin Rules";
 	public static final String GENERATE_ECORE = "Generate To Ecore Model";
 	public static final String EXECUTE_TRANSFORMATION = "Apply Model Transformation";
 	public static final String ADD_VARIABLE = "Create Paramater";
 	public static final String CORRESPONDACE_GRAPH = "InitialiseCorrespondanceGraph";
+	public static final String GENERATE_CORRESPONDANCE = "Generate Correspondance Graph";
 }

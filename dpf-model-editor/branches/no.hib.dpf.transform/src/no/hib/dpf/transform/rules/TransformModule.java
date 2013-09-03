@@ -28,6 +28,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.impl.EcorePackageImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.henshin.interpreter.EGraph;
 import org.eclipse.emf.henshin.interpreter.Engine;
@@ -76,11 +78,14 @@ public class TransformModule {
 	
 	private TracePackage tracePackage = null;
 	private CorePackage specificationPackage = null;
+	private EcorePackage ecorePackage = null;
 	
 	private LoopUnit loopUnit = null;
 	
 	private HashMap<String, Node> traces = null;
 	private HashMap<String, DNode> correspond = null;
+	
+	private static final String BRIDGEELEMENT = "Link";
 	
 	private static final String DEFAULT_ARROW = "Arrow";
 	private static final String DEFAULT_NODE = "Node";
@@ -94,6 +99,7 @@ public class TransformModule {
 		
 		tracePackage = TracePackageImpl.init();
 		specificationPackage = CorePackageImpl.init();
+		ecorePackage = EcorePackageImpl.init();
 
 		traces = new HashMap<String,Node>();
 		correspond = new HashMap<String, DNode>();
@@ -101,7 +107,7 @@ public class TransformModule {
 		correspondance = DPFUtils.loadDSpecification(URI.createFileURI(TransformUtils.activeWorkingDirectory()+"/metamodel2petriNetMetaModel.dpf"));
 		
 		for(int i = 0;i<correspondance.getDGraph().getDNodes().size();i++){
-			correspond.put(correspondance.getDGraph().getDNodes().get(i).getName(), correspondance.getDGraph().getDNodes().get(i));
+			correspond.put(correspondance.getDGraph().getDNodes().get(i).getNode().getName(), correspondance.getDGraph().getDNodes().get(i));
 		}
 	}
 	public Module createModule(){
@@ -265,9 +271,15 @@ public class TransformModule {
 			
 			
 			if(!dNodeType.equals("Trace")){
+				String name = "name"+parameter;
+				Parameter nameParameter = henshinFac.createParameter("name"+parameter);
+				nameParameter.setType(ecorePackage.getEClassifier("EString"));
+				parameter++;
+				
+				rule.getParameters().add(nameParameter);
+				
 				EClass node = specificationPackage.getNode();
 				EClass nodeType = specificationPackage.getNode();
-				
 				EAttribute nodeTypeAttribute = specificationPackage.getNode_Name();
 				
 				EReference referenceNode = specificationPackage.getNode_TypeNode();
@@ -275,6 +287,16 @@ public class TransformModule {
 				Node insertionNode = henshinFac.createNode(rhs, node, null);
 				insertionNode.setName(production.getRightNodes().get(i).getName());
 				nodes.put(production.getRightNodes().get(i).getName(), insertionNode);
+				traces.put(production.getRightNodes().get(i).getNode().getId(),insertionNode);
+				
+				Attribute node_name = henshinFac.createAttribute(insertionNode, nodeTypeAttribute, name);
+				
+				if(!hasCorrespondancePart(dNodeType)){
+					node_name.setValue("\"\"");
+				}
+				else{
+					map_lhs_rhs_parameter(production, dNodeType, name, production.getRightNodes().get(i));
+				}
 				
 				setTargetTrace(rule, insertionNode, production.getRightNodes().get(i), production);
 				
@@ -283,7 +305,7 @@ public class TransformModule {
 				nodes.put(production.getRightNodes().get(i).getName()+NODETYPE, insertionTypeNode);
 				insertionTypeNode.setAction(new Action(Type.CREATE));
 
-				traces.put(production.getRightNodes().get(i).getNode().getId(),insertionNode);
+				
 				
 				Attribute henshin_attribute = henshinFac.createAttribute(insertionTypeNode, nodeTypeAttribute, "\""+dNodeType+"\"");
 				henshin_attribute.setAction(new Action(Type.CREATE));
@@ -301,6 +323,13 @@ public class TransformModule {
 		for(int i = 0;i<production.getRightArrows().size();i++){
 			String dArrowType = TransformUtils.trimNumber(production.getRightArrows().get(i).getName());
 			if(!dArrowType.equals("Trace")){
+				String name = "name"+parameter;
+				Parameter nameParameter = henshinFac.createParameter("name"+parameter);
+				nameParameter.setType(ecorePackage.getEClassifier("EString"));
+				parameter++;
+
+				rule.getParameters().add(nameParameter);
+				
 				EClass arrow = specificationPackage.getArrow();
 				EClass arrowType = specificationPackage.getArrow();
 				
@@ -312,6 +341,12 @@ public class TransformModule {
 				insertionArrow.setName(production.getRightArrows().get(i).getName());
 				nodes.put(production.getRightArrows().get(i).getName(), insertionArrow);
 				insertionArrow.setAction(new Action(Type.CREATE));
+				
+				Attribute arrow_name = henshinFac.createAttribute(insertionArrow, arrowTypeAttribute, name);
+				
+				if(!hasCorrespondancePart(dArrowType)){
+					arrow_name.setValue("\"\"");
+				}
 				
 				Node insertionTypeArrow = henshinFac.createNode(rhs, arrowType, null);
 				insertionTypeArrow.setName(production.getRightArrows().get(i).getName()+ARROWTYPE);
@@ -423,11 +458,10 @@ public class TransformModule {
 						
 						Mapping mapping = henshinFac.createMapping(insertionNode, forbid_target_node);
 						
-						rule.getLhs().createNAC("Test");
-						rule.getLhs().getNAC("Test").getMappings().add(mapping);
-						rule.getLhs().getNAC("Test").setConclusion(graph);
+						rule.getLhs().createNAC("TempNAC");
+						rule.getLhs().getNAC("TempNAC").getMappings().add(mapping);
+						rule.getLhs().getNAC("TempNAC").setConclusion(graph);
 					}
-					
 				}
 				for(int j = 0;j<dNodeTrace.getDOutgoings().size();j++){
 					if(dNodeTrace.getDOutgoings().get(j).getName().startsWith("traceTarget_")){
@@ -455,6 +489,59 @@ public class TransformModule {
 		return rule;
 	}
 	
+	private void map_lhs_rhs_parameter(Production production, String dNodeType, String parameter, DNode dNode) {
+		boolean hasTraceOject = false;
+		for(int i = 0;i<dNode.getDIncomings().size();i++){
+			if(dNode.getDIncomings().get(i).getName().startsWith("trace")){
+				DNode traceNode = dNode.getDIncomings().get(i).getDSource();
+				for(int j = 0;j<traceNode.getDOutgoings().size();j++){
+					if(traceNode.getDOutgoings().get(j).getName().contains("Source")){
+						Node node = traces.get(traceNode.getDOutgoings().get(j).getDTarget().getNode().getId());
+						System.out.println("Node " + node.getName());
+						Attribute attribute = henshinFac.createAttribute(node, specificationPackage.getNode_Name(), parameter);
+						attribute.setAction(new Action(Type.PRESERVE));
+						
+						hasTraceOject = true;
+					}
+				}
+			}
+		}
+		if(!hasTraceOject){
+			String type = null;
+			for(DNode dnode : correspond.values()){
+				if(dnode.getTypeName().equals(BRIDGEELEMENT)){
+					DNode bridgeNode = dnode;
+					for(int j = 0;j<bridgeNode.getDOutgoings().size();j++){
+						if(bridgeNode.getDOutgoings().get(j).getTypeName().contains("sourceSequence")){
+							type = bridgeNode.getDOutgoings().get(j).getDTarget().getTypeName();
+						}
+					}
+					 
+				}
+			}
+			for(Node node : traces.values()){
+				if(node.getName().startsWith(type)){
+					Attribute attribute = henshinFac.createAttribute(node, specificationPackage.getNode_Name(), parameter);
+					attribute.setAction(new Action(Type.PRESERVE));
+				}
+			}
+		}
+	}
+	private boolean hasCorrespondancePart(String type) {
+		for(DNode node : correspond.values()){
+			if(node.getTypeName().equals(type)){
+				if(!node.getDIncomings().isEmpty()){
+					System.out.println(type+" True");
+					return true;
+				}
+				else{
+					System.out.println(type+" False");
+					return false;
+				}
+			}
+		}
+		return false;
+	}
 	private void setTargetTrace(Rule rule, Node insertionNode, DNode dNode,
 			Production production) {
 		

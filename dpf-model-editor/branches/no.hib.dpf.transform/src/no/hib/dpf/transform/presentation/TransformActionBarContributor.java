@@ -43,7 +43,7 @@ public class TransformActionBarContributor extends ActionBarContributor {
 	protected IEditorPart activeEditorPart;
 	//private RetargetAction generateAction;
 
-	protected IAction generateCorrespondanceGraph = new Action(TransformConstants.GENERATE_ECORE, ImageSettings.IMG_GENERATE_ECORE.getImageDescriptor()) {
+	protected IAction generateCorrespondanceGraph = new Action(TransformConstants.GENERATE_CORRESPONDANCE, ImageSettings.IMG_GENERATE_ECORE.getImageDescriptor()) {
 		
 		
 		@Override
