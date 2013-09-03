@@ -15,22 +15,11 @@
 *******************************************************************************/
 package no.hib.dpf.transform.presentation;
 
-import java.awt.Dialog;
-import java.util.LinkedHashMap;
-import java.util.Map;
-
-import no.hib.dpf.editor.DPFUtils;
-import no.hib.dpf.transform.Transform;
-import no.hib.dpf.transform.henshin.TranslateToEcore;
 import no.hib.dpf.transform.icons.ImageSettings;
-import no.hib.dpf.transform.provider.TransformEditPlugin;
-import no.hib.dpf.transform.util.TransformUtils;
-import no.hib.dpf.transform.util.TransformConstants;
 import no.hib.dpf.transform.util.DefineNameVariableDialog;
+import no.hib.dpf.transform.util.TransformConstants;
+import no.hib.dpf.transform.util.TransformUtils;
 
-import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gef.ContextMenuProvider;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.ui.actions.ActionRegistry;
@@ -40,7 +29,6 @@ import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.window.Window;
-import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.ui.actions.ActionFactory;
 
 /**

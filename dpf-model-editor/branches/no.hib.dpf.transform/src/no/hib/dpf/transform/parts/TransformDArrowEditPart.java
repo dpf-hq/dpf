@@ -35,7 +35,6 @@ import no.hib.dpf.editor.extension_points.IArrowPainting;
 import no.hib.dpf.editor.figures.ArrowConnection;
 import no.hib.dpf.editor.figures.EditableLabel;
 import no.hib.dpf.editor.figures.NodeFigure;
-import no.hib.dpf.editor.figures.draw2d.Draw2dUtil;
 import no.hib.dpf.editor.parts.DArrowEditPart;
 import no.hib.dpf.editor.parts.listeners.UIAdapter;
 import no.hib.dpf.editor.policies.ArrowBendpointEditPolicy;

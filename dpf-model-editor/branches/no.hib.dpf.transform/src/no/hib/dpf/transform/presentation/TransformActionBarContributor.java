@@ -1,77 +1,38 @@
 package no.hib.dpf.transform.presentation;
 
-import org.eclipse.swt.widgets.FileDialog;
-
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.diagram.DiagramFactory;
-import no.hib.dpf.editor.DPFPlugin;
 import no.hib.dpf.editor.DPFUtils;
 import no.hib.dpf.transform.Transform;
 import no.hib.dpf.transform.henshin.ApplyTransformation;
-import no.hib.dpf.transform.henshin.TranslateToEcore;
 import no.hib.dpf.transform.henshin.TranslateToHenshinRules;
 import no.hib.dpf.transform.icons.ImageSettings;
-import no.hib.dpf.transform.provider.TransformEditPlugin;
 import no.hib.dpf.transform.rules.CorrespondanceGraph;
 import no.hib.dpf.transform.util.BrowseInstanceModel;
-import no.hib.dpf.transform.util.TransformUtils;
 import no.hib.dpf.transform.util.TransformConstants;
+import no.hib.dpf.transform.util.TransformUtils;
 
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.IWorkspace;
-import org.eclipse.core.resources.IWorkspaceRoot;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.Path;
-import org.eclipse.draw2d.PositionConstants;
-import org.eclipse.emf.common.ui.viewer.IViewerProvider;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.gef.editparts.ZoomManager;
-import org.eclipse.gef.internal.GEFMessages;
 import org.eclipse.gef.ui.actions.ActionBarContributor;
-import org.eclipse.gef.ui.actions.AlignmentRetargetAction;
 import org.eclipse.gef.ui.actions.DeleteRetargetAction;
-import org.eclipse.gef.ui.actions.GEFActionConstants;
 import org.eclipse.gef.ui.actions.RedoRetargetAction;
 import org.eclipse.gef.ui.actions.UndoRetargetAction;
-import org.eclipse.gef.ui.actions.ZoomComboContributionItem;
-import org.eclipse.gef.ui.actions.ZoomInRetargetAction;
-import org.eclipse.gef.ui.actions.ZoomOutRetargetAction;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuManager;
-import org.eclipse.jface.action.IStatusLineManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
-import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.window.Window;
-import org.eclipse.jface.wizard.WizardDialog;
-import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IFileEditorInput;
-import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchActionConstants;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.ActionFactory;
-import org.eclipse.ui.actions.RetargetAction;
-import org.eclipse.ui.ide.IDE;
 
 @SuppressWarnings("restriction")
 public class TransformActionBarContributor extends ActionBarContributor {
@@ -82,7 +43,7 @@ public class TransformActionBarContributor extends ActionBarContributor {
 	protected IEditorPart activeEditorPart;
 	//private RetargetAction generateAction;
 
-	protected IAction generateToEcore = new Action(TransformConstants.GENERATE_ECORE, ImageSettings.IMG_GENERATE_ECORE.getImageDescriptor()) {
+	protected IAction generateCorrespondanceGraph = new Action(TransformConstants.GENERATE_ECORE, ImageSettings.IMG_GENERATE_ECORE.getImageDescriptor()) {
 		
 		
 		@Override
@@ -186,7 +147,7 @@ public class TransformActionBarContributor extends ActionBarContributor {
 
 		toolBarManager.add(new Separator());
 
-		toolBarManager.add(generateToEcore);
+		toolBarManager.add(generateCorrespondanceGraph);
 		toolBarManager.add(generateToHenshin);
 		toolBarManager.add(executeTransformation);
 	}
@@ -201,7 +162,7 @@ public class TransformActionBarContributor extends ActionBarContributor {
 	public void contributeToMenu(IMenuManager menubar) {
 		super.contributeToMenu(menubar);
 		MenuManager viewMenu = new MenuManager("Transform Editor");
-		viewMenu.add(generateToEcore);
+		viewMenu.add(generateCorrespondanceGraph);
 		viewMenu.add(generateToHenshin);
 		viewMenu.add(executeTransformation);
 		menubar.insertAfter(IWorkbenchActionConstants.M_EDIT, viewMenu);
