@@ -20,6 +20,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import no.hib.dpf.core.Specification;
+import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.diagram.DiagramFactory;
 import no.hib.dpf.diagram.util.DPFConstants;
@@ -28,6 +29,7 @@ import no.hib.dpf.editor.DPFUtils;
 import no.hib.dpf.transform.Production;
 import no.hib.dpf.transform.Transform;
 import no.hib.dpf.transform.TransformFactory;
+import no.hib.dpf.transform.rules.CorrespondanceGraph;
 import no.hib.dpf.transform.util.TransformUtils;
 import no.hib.dpf.transform.util.TransformConstants;
 
@@ -153,14 +155,10 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 			//Initialize model file and diagram file
 			Transform transform = TransformFactory.eINSTANCE.createTransform();
 			
-//			Production correspondanceGraph = TransformFactory.eINSTANCE.createProduction();
-//			correspondanceGraph.setSum(DiagramFactory.eINSTANCE.createDefaultDSpecification());
-//			correspondanceGraph.setName(TransformConstants.CORRESPONDACE_GRAPH);
-//			
-//			transform.getRules().add(correspondanceGraph);
-			
 			ResourceSetImpl resourceSet = DPFUtils.getResourceSet();
 			Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
+
+
 			
 			String sourceTypeModelFileName = configPage.getSourceMetaModelURI();
 			
@@ -196,12 +194,23 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 			}
 			transform.setTargetMetaModel(targetTypeSpec != null ? targetTypeSpec : DPFConstants.REFLEXIVE_DSPECIFICATION);
 
+			String uri = "C:/Users/Petter/runtime-EclipseApplication/model/CorrespondanceModel.dpf";
+			
+			DSpecification correspondanceSpec = DiagramFactory.eINSTANCE.createDefaultDSpecification();
+			
+			if(uri != null){
+				correspondanceSpec = DPFUtils.loadDSpecification(resourceSet, URI.createFileURI(uri), resourceToDiagnosticMap);
+			}
+			
+			transform.setCommonGraph(correspondanceSpec);
+			
 			try {
 				TransformEditor.saveTransform(resourceSet, newDiagarmURI, transform, resourceToDiagnosticMap);
 				newDiagramFile.getParent().refreshLocal(IResource.DEPTH_ONE, null);
 			} catch (CoreException e1) {
 				DPFUtils.logError("Error happens when store new create DPF Specification", e1);
 			} 
+			
 			// open newly created file in the editor
 			IWorkbenchPage page = workbench.getActiveWorkbenchWindow().getActivePage();
 			

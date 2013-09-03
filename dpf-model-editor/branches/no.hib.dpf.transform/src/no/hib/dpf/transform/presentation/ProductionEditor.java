@@ -54,6 +54,7 @@ import no.hib.dpf.transform.util.TransformConstants;
 import no.hib.dpf.transform.parts.TransformArrowLabelEditPart;
 import no.hib.dpf.transform.parts.TransformDArrowEditPart;
 import no.hib.dpf.transform.parts.TransformDNodeEditPart;
+import no.hib.dpf.transform.rules.CorrespondanceGraph;
 import no.hib.dpf.utils.DPFCoreUtil;
 
 import org.eclipse.core.resources.IFile;
@@ -179,10 +180,15 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 //			dspec = cGraph.getCommonGraph();
 //			dspec.setDSignature(DPFConstants.DEFAULT_DSIGNATURE);
 //			dspec.setDType(DPFConstants.REFLEXIVE_DSPECIFICATION);
+//			
+//			String uri = "C:/Users/Petter/runtime-EclipseApplication/model/CorrespondanceModel.dpf";
+//			
+//			CorrespondanceGraph graph = new CorrespondanceGraph();
+			dspec = transform.getCommonGraph();
 			
-			String uri = "C:/Users/Petter/runtime-EclipseApplication/model/CorrespondanceModel.dpf";
 			
-			dspec = DPFUtils.loadDSpecification(DPFUtils.getResourceSet(), URI.createFileURI(uri), resourceToDiagnosticMap);
+//			dspec = DPFUtils.loadDSpecification(DPFUtils.getResourceSet(), URI.createFileURI(uri), resourceToDiagnosticMap);
+//			EcoreUtil.resolveAll(dspec);
 			
 			for(int i = 0;i<dspec.getDGraph().getDNodes().size();i++){
 				System.out.println(i+ " Name: " + dspec.getDGraph().getDNodes().get(i).getName() + " " + dspec.getDGraph().getDNodes().get(i).getTypeName());

@@ -16,6 +16,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute transform.ecore#//Transform/generate"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute transform.ecore#//Transform/sourceLocation"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute transform.ecore#//Transform/targetLocation"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference transform.ecore#//Transform/commonGraph"/>
     </genClasses>
     <genClasses ecoreClass="transform.ecore#//Production">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference transform.ecore#//Production/sum"/>

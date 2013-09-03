@@ -52,7 +52,7 @@ public class CorrespondanceGraph {
 		sourceDSpecification = transform.getSourceMetaModel();
 		targetDSpecification = transform.getTargetMetaModel();
 	}
-	public DSpecification getCommonGraph(){
+	public DSpecification getCommonGraph(DSpecification source, DSpecification target){
 //		DSpecification defaultDSpec = DiagramFactory.eINSTANCE.createConstantDSpecification();
 //		defaultDSpec.setDType(defaultDSpecification);
 		
@@ -60,6 +60,9 @@ public class CorrespondanceGraph {
 		correspondanceDSpecification.setDType(defaultDSpecification);
 		DGraph correspondanceDGraph = DiagramFactory.eINSTANCE.createDefaultDGraph();
 		correspondanceDSpecification.setDGraph(correspondanceDGraph);
+		
+		DSpecification sourceDSpecification = source;
+		DSpecification targetDSpecification = target;
 		
 //		defaultArrow = defaultDSpec.getDGraph().getDArrows().get(0);
 //		defaultNode = defaultDSpec.getDGraph().getDNodes().get(0);
@@ -95,6 +98,7 @@ public class CorrespondanceGraph {
 			DNode targetNode = dArrow.getDTarget();
 			correspondanceDSpecification.getDGraph().createDArrow(dArrow.getName(), createNodes.get("target"+sourceNode.getName()), createNodes.get("target"+targetNode.getName()), defaultArrow);
 		}
+		
 		return correspondanceDSpecification;
 	}
 	public DSpecification createCorrespondanceGraph(){

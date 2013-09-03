@@ -6,6 +6,7 @@
  */
 package no.hib.dpf.transform;
 
+import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DSignature;
 import no.hib.dpf.diagram.DSpecification;
 
@@ -27,6 +28,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link no.hib.dpf.transform.Transform#isGenerate <em>Generate</em>}</li>
  *   <li>{@link no.hib.dpf.transform.Transform#getSourceLocation <em>Source Location</em>}</li>
  *   <li>{@link no.hib.dpf.transform.Transform#getTargetLocation <em>Target Location</em>}</li>
+ *   <li>{@link no.hib.dpf.transform.Transform#getCommonGraph <em>Common Graph</em>}</li>
  * </ul>
  * </p>
  *
@@ -207,5 +209,31 @@ public interface Transform extends EObject {
 	 * @generated
 	 */
 	void setTargetLocation(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Common Graph</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Common Graph</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Common Graph</em>' reference.
+	 * @see #setCommonGraph(DSpecification)
+	 * @see no.hib.dpf.transform.TransformPackage#getTransform_CommonGraph()
+	 * @model
+	 * @generated
+	 */
+	DSpecification getCommonGraph();
+
+	/**
+	 * Sets the value of the '{@link no.hib.dpf.transform.Transform#getCommonGraph <em>Common Graph</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Common Graph</em>' reference.
+	 * @see #getCommonGraph()
+	 * @generated
+	 */
+	void setCommonGraph(DSpecification value);
 
 } // Transform

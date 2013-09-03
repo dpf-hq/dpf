@@ -205,6 +205,7 @@ public class TransformModule {
 		}
 		for(int i = 0; i<production.getCommonNodes().size();i++){
 			String dNodeType = TransformUtils.trimNumber(production.getCommonNodes().get(i).getName());
+			System.out.println("TYPE: " + production.getCommonNodes().get(i).getTypeName());
 			if(!dNodeType.equals("Trace")){
 				EClass node = specificationPackage.getNode();
 				EReference referenceNode = specificationPackage.getNode_TypeNode();

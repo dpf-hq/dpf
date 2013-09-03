@@ -8,6 +8,7 @@ package no.hib.dpf.transform.impl;
 
 import java.util.Collection;
 
+import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DSignature;
 import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.transform.Production;
@@ -38,6 +39,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link no.hib.dpf.transform.impl.TransformImpl#isGenerate <em>Generate</em>}</li>
  *   <li>{@link no.hib.dpf.transform.impl.TransformImpl#getSourceLocation <em>Source Location</em>}</li>
  *   <li>{@link no.hib.dpf.transform.impl.TransformImpl#getTargetLocation <em>Target Location</em>}</li>
+ *   <li>{@link no.hib.dpf.transform.impl.TransformImpl#getCommonGraph <em>Common Graph</em>}</li>
  * </ul>
  * </p>
  *
@@ -143,6 +145,16 @@ public class TransformImpl extends EObjectImpl implements Transform {
 	 * @ordered
 	 */
 	protected String targetLocation = TARGET_LOCATION_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getCommonGraph() <em>Common Graph</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCommonGraph()
+	 * @generated
+	 * @ordered
+	 */
+	protected DSpecification commonGraph;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -367,6 +379,44 @@ public class TransformImpl extends EObjectImpl implements Transform {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public DSpecification getCommonGraph() {
+		if (commonGraph != null && commonGraph.eIsProxy()) {
+			InternalEObject oldCommonGraph = (InternalEObject)commonGraph;
+			commonGraph = (DSpecification)eResolveProxy(oldCommonGraph);
+			if (commonGraph != oldCommonGraph) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TransformPackage.TRANSFORM__COMMON_GRAPH, oldCommonGraph, commonGraph));
+			}
+		}
+		return commonGraph;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DSpecification basicGetCommonGraph() {
+		return commonGraph;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCommonGraph(DSpecification newCommonGraph) {
+		DSpecification oldCommonGraph = commonGraph;
+		commonGraph = newCommonGraph;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TransformPackage.TRANSFORM__COMMON_GRAPH, oldCommonGraph, commonGraph));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -403,6 +453,9 @@ public class TransformImpl extends EObjectImpl implements Transform {
 				return getSourceLocation();
 			case TransformPackage.TRANSFORM__TARGET_LOCATION:
 				return getTargetLocation();
+			case TransformPackage.TRANSFORM__COMMON_GRAPH:
+				if (resolve) return getCommonGraph();
+				return basicGetCommonGraph();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -438,6 +491,9 @@ public class TransformImpl extends EObjectImpl implements Transform {
 			case TransformPackage.TRANSFORM__TARGET_LOCATION:
 				setTargetLocation((String)newValue);
 				return;
+			case TransformPackage.TRANSFORM__COMMON_GRAPH:
+				setCommonGraph((DSpecification)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -471,6 +527,9 @@ public class TransformImpl extends EObjectImpl implements Transform {
 			case TransformPackage.TRANSFORM__TARGET_LOCATION:
 				setTargetLocation(TARGET_LOCATION_EDEFAULT);
 				return;
+			case TransformPackage.TRANSFORM__COMMON_GRAPH:
+				setCommonGraph((DSpecification)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -497,6 +556,8 @@ public class TransformImpl extends EObjectImpl implements Transform {
 				return SOURCE_LOCATION_EDEFAULT == null ? sourceLocation != null : !SOURCE_LOCATION_EDEFAULT.equals(sourceLocation);
 			case TransformPackage.TRANSFORM__TARGET_LOCATION:
 				return TARGET_LOCATION_EDEFAULT == null ? targetLocation != null : !TARGET_LOCATION_EDEFAULT.equals(targetLocation);
+			case TransformPackage.TRANSFORM__COMMON_GRAPH:
+				return commonGraph != null;
 		}
 		return super.eIsSet(featureID);
 	}
