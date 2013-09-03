@@ -35,6 +35,7 @@ import no.hib.dpf.diagram.DOffset;
 import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.diagram.DiagramFactory;
 import no.hib.dpf.diagram.util.DPFConstants;
+import no.hib.dpf.editor.DPFEditor;
 import no.hib.dpf.editor.DPFEditorPaletteFactory;
 import no.hib.dpf.editor.DPFUtils;
 import no.hib.dpf.editor.displaymodel.factories.DArrowFactory;
@@ -55,9 +56,14 @@ import no.hib.dpf.transform.parts.TransformDArrowEditPart;
 import no.hib.dpf.transform.parts.TransformDNodeEditPart;
 import no.hib.dpf.utils.DPFCoreUtil;
 
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.EList;
@@ -75,10 +81,16 @@ import org.eclipse.gef.ui.palette.FlyoutPaletteComposite;
 import org.eclipse.gef.ui.palette.PaletteViewerProvider;
 import org.eclipse.gef.ui.palette.FlyoutPaletteComposite.FlyoutPreferences;
 import org.eclipse.gef.ui.parts.GraphicalEditorWithFlyoutPalette;
+import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.actions.WorkspaceModifyOperation;
+import org.eclipse.ui.dialogs.SaveAsDialog;
+import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.views.properties.PropertySheetPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
@@ -86,6 +98,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Shell;
 
 /**
  * A graphical editor with flyout palette that can edit .dpf files. The
@@ -174,6 +187,7 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 			for(int i = 0;i<dspec.getDGraph().getDNodes().size();i++){
 				System.out.println(i+ " Name: " + dspec.getDGraph().getDNodes().get(i).getName() + " " + dspec.getDGraph().getDNodes().get(i).getTypeName());
 			}
+			
 			newGraph = dspec.getDType().getDGraph();
 		}
 		else{
@@ -187,7 +201,10 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 		GraphicalViewer viewer = getGraphicalViewer();
 		//paletteFactory.updatePalette(getPaletteRoot(), dSpecification.getDType().getDGraph());
 		//paletteFactory.updatePalette(getPaletteRoot(), dSpecification.getDGraph());
+		
+
 		paletteFactory.updatePalette(getPaletteRoot(), newGraph);
+		
 		shapesEditPartFactory = new DPFEditPartFactory(){
 			protected EditPart getPartForElement(Object modelElement) {
 //				System.out.println("Her " + modelElement.toString());
@@ -300,38 +317,78 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 		return defaultDGraph;
 	}
 
-	/*private DGraph setDGraphForExogenousTransformation(DSpecification sourceDSpecification, 
-			DSpecification targetDSpecification, String transformFile){
-		
-		DGraph tempGraph = null;
-		
-		EcoreUtil.resolveAll(sourceDSpecification);
-		EcoreUtil.resolveAll(sourceDSpecification.getSpecification());
-		
-		Assert.isTrue(sourceDSpecification != null);
-		setPartName(transformFile);
-		tempGraph = sourceDSpecification.getDGraph();
-		
-		EcoreUtil.resolveAll(targetDSpecification);
-		EcoreUtil.resolveAll(targetDSpecification.getSpecification());
-		
-		tempGraph.getDNodes().addAll(targetDSpecification.getDGraph().getDNodes());
-		tempGraph.getDArrows().addAll(targetDSpecification.getDGraph().getDArrows());
-		
-		for(int i = 0;i<tempGraph.getDNodes().size();i++){
-			for(int j = 0;j<targetDSpecification.getDGraph().getDNodes().size();j++){
-				if(targetDSpecification.getDGraph().getDNodes().get(j).getName() == tempGraph.getDNodes().get(i).getName()){
-					System.out.println(targetDSpecification.getDGraph().getDNodes().get(j).getName());
-				}
-			}
-		}
-		
-		
-		return tempGraph;
-	}*/
-
+	public GraphicalViewer getGraphicalViewer() {
+		return super.getGraphicalViewer();
+	}
 	
 	protected void initializeGraphicalViewer() {
 		super.initializeGraphicalViewer();	
+		getGraphicalViewer().setContents(dspec.getDGraph());
+		System.out.println("Hei");
+	}
+	@Override
+	protected void setInput(IEditorInput input) {
+		super.setInput(input);
+		IFile file = ((IFileEditorInput) input).getFile();
+		dspec = DPFUtils.loadDSpecification(DPFUtils.getResourceSet(), DPFUtils.getFileURI(file), resourceToDiagnosticMap);
+		EcoreUtil.resolveAll(dspec);
+		EcoreUtil.resolveAll(dspec.getSpecification());
+		
+		if(dspec.getDSignature() != null){
+			EcoreUtil.resolveAll(dspec.getDSignature());
+			EcoreUtil.resolveAll(dspec.getDSignature().getSignature());
+		}
+		System.out.println("GHJØR DETTE");
+		Assert.isTrue(dspec != null);
+		setPartName(file.getName());
+		
+		paletteFactory.updatePalette(getPaletteRoot(), dspec.getDType().getDGraph());
+		shapesEditPartFactory = new DPFEditPartFactory();
+	}
+	
+	public void doSave(final URI uri, IProgressMonitor monitor) {
+
+		WorkspaceModifyOperation operation = new WorkspaceModifyOperation() {
+			@Override
+			public void execute(IProgressMonitor monitor) {
+				// Save the resources to the file system.
+				DPFUtils.saveDSpecification(DPFUtils.getResourceSet(), dspec, uri, resourceToDiagnosticMap);
+			}
+		};
+
+		try {
+			// This runs the options, and shows progress.
+			new ProgressMonitorDialog(getSite().getShell()).run(true, false, operation);
+
+			// Refresh the necessary state.
+			getCommandStack().markSaveLocation();
+
+			IFile file = ((IFileEditorInput)getEditorInput()).getFile();
+			file.getParent().refreshLocal(IResource.DEPTH_INFINITE, monitor);
+
+			//			updateStatusBar();
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		}
+	}
+	
+	public void doSave(IProgressMonitor monitor) {
+		Shell shell = getSite().getWorkbenchWindow().getShell();
+		SaveAsDialog dialog = new SaveAsDialog(shell);
+		dialog.setOriginalFile(((IFileEditorInput) getEditorInput()).getFile());
+		dialog.open();
+
+		final IPath path = dialog.getResult();
+		if (path != null) {
+			IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(path);
+			if (file != null) {
+				IFileEditorInput newInput = new FileEditorInput(file);
+				setInputWithNotify(newInput);
+				setPartName(newInput.getName());
+				DPFEditor.updateResourceSet(DPFUtils.getResourceSet(), dspec, dspec.eResource().getURI(), DPFUtils.getFileURI(file));
+				doSave(DPFUtils.getFileURI(file), new NullProgressMonitor());
+			}
+		}
+		
 	}
 };

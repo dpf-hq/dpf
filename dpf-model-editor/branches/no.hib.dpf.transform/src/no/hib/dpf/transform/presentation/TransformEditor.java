@@ -343,5 +343,7 @@ public class TransformEditor extends FormEditor implements CommandStackListener,
 		}
 		return (Transform) transform.getContents().get(0);
 	}	
+	
+	
 }
 
