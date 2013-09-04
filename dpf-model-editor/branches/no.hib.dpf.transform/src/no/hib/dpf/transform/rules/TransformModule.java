@@ -92,6 +92,7 @@ public class TransformModule {
 	private static final String ARROWTYPE = "ArrowType";	
 	private static final String NODETYPE = "DNodeType";
 	private static final String NODE = "Node";
+	private static final String MAPARROW = "->";
 	
 	public TransformModule(Transform transform, HenshinResourceSet resourceSet){
 		this.resourceSet = resourceSet;
@@ -160,7 +161,8 @@ public class TransformModule {
 				
 		//Create Nodes on LHS
 		for(int i = 0; i<production.getLeftNodes().size();i++){
-			String dNodeType = TransformUtils.trimNumber(production.getLeftNodes().get(i).getName());
+//			String dNodeType = TransformUtils.trimNumber(production.getLeftNodes().get(i).getName());
+			String dNodeType = production.getLeftNodes().get(i).getTypeName();
 			EClass node = specificationPackage.getNode();
 			EReference referenceNode_typeNode = specificationPackage.getNode_TypeNode();
 			EClass nodeType = specificationPackage.getNode();
@@ -182,7 +184,8 @@ public class TransformModule {
 			deleteTypeNodeRef.setAction(new Action(Type.DELETE));
 		}
 		for(int i = 0;i<production.getLeftArrows().size();i++){
-			String dArrowType = TransformUtils.trimNumber(production.getLeftArrows().get(i).getName());
+//			String dArrowType = TransformUtils.trimNumber(production.getLeftArrows().get(i).getName());
+			String dArrowType = production.getLeftArrows().get(i).getTypeName();
 			EClass arrow = specificationPackage.getArrow();
 			EReference referenceArrow = specificationPackage.getArrow_TypeArrow();
 			EClass arrowType = specificationPackage.getArrow();
@@ -204,8 +207,8 @@ public class TransformModule {
 			deletion.setAction(new Action(Type.DELETE));
 		}
 		for(int i = 0; i<production.getCommonNodes().size();i++){
-			String dNodeType = TransformUtils.trimNumber(production.getCommonNodes().get(i).getName());
-			System.out.println("TYPE: " + production.getCommonNodes().get(i).getTypeName());
+			//String dNodeType = TransformUtils.trimNumber(production.getCommonNodes().get(i).getName());
+			String dNodeType = production.getCommonNodes().get(i).getTypeName();
 			if(!dNodeType.equals("Trace")){
 				EClass node = specificationPackage.getNode();
 				EReference referenceNode = specificationPackage.getNode_TypeNode();
@@ -236,38 +239,42 @@ public class TransformModule {
 		}
 		//Determing common arrows
 		for(int i = 0; i<production.getCommonArrows().size();i++){
-			String dArrowType = TransformUtils.trimNumber(production.getCommonArrows().get(i).getName());
-			if(!dArrowType.equals("Trace")){
-				EClass arrow = specificationPackage.getArrow();
-				EReference referenceArrow = specificationPackage.getArrow_TypeArrow();
-				EClass arrowType = specificationPackage.getArrow();
-				EAttribute arrowTypeAttribute = specificationPackage.getArrow_Name();
+//			String dArrowType = TransformUtils.trimNumber(production.getCommonArrows().get(i).getName());
+			String dArrowType = production.getCommonArrows().get(i).getTypeName();
+			EClass arrow = specificationPackage.getArrow();
+			EReference referenceArrow = specificationPackage.getArrow_TypeArrow();
+			EClass arrowType = specificationPackage.getArrow();
+			EAttribute arrowTypeAttribute = specificationPackage.getArrow_Name();
 
-				Node preserveArrowNode = henshinFac.createNode(lhs, arrow, null);
-				preserveArrowNode.setName(production.getCommonArrows().get(i).getName());
-				preserveArrowNode.setAction(new Action(Type.PRESERVE));
-				nodes.put(production.getCommonArrows().get(i).getName(), preserveArrowNode);
-				
-				traces.put(production.getCommonArrows().get(i).getArrow().getId(),preserveArrowNode);
-
-				Node preserveTypeArrowNode = henshinFac.createNode(lhs, arrowType, null);
-				preserveTypeArrowNode.setName(production.getCommonArrows().get(i).getName()+ARROWTYPE);
-				preserveTypeArrowNode.setAction(new Action(Type.PRESERVE));
-				nodes.put(production.getCommonArrows().get(i).getName()+ARROWTYPE, preserveTypeArrowNode);
-				
-				Edge preserveTypeArrowRef = henshinFac.createEdge(preserveArrowNode, preserveTypeArrowNode, referenceArrow);
-				preserveTypeArrowRef.setAction(new Action(Type.PRESERVE));
-				
-				Attribute henshin_attribute = henshinFac.createAttribute(preserveTypeArrowNode, arrowTypeAttribute, "\""+dArrowType+"\"");
-				henshin_attribute.setAction(new Action(Type.REQUIRE));
-			}
-			else{
+			String name = production.getCommonArrows().get(i).getName();
+			if(name.contains(MAPARROW)){
 				commonTraces.put(production.getCommonArrows().get(i).getArrow().getId(), production.getCommonArrows().get(i));
+				name = name.substring(0, name.indexOf(MAPARROW));
+				System.out.println("HER " + name);
 			}
+				
+			Node preserveArrowNode = henshinFac.createNode(lhs, arrow, null);
+			preserveArrowNode.setName(name);
+			preserveArrowNode.setAction(new Action(Type.PRESERVE));
+			nodes.put(production.getCommonArrows().get(i).getName(), preserveArrowNode);
+				
+			traces.put(production.getCommonArrows().get(i).getArrow().getId(),preserveArrowNode);
+
+			Node preserveTypeArrowNode = henshinFac.createNode(lhs, arrowType, null);
+			preserveTypeArrowNode.setName(name+ARROWTYPE);
+			preserveTypeArrowNode.setAction(new Action(Type.PRESERVE));
+			nodes.put(production.getCommonArrows().get(i).getName()+ARROWTYPE, preserveTypeArrowNode);
+				
+			Edge preserveTypeArrowRef = henshinFac.createEdge(preserveArrowNode, preserveTypeArrowNode, referenceArrow);
+			preserveTypeArrowRef.setAction(new Action(Type.PRESERVE));
+				
+			Attribute henshin_attribute = henshinFac.createAttribute(preserveTypeArrowNode, arrowTypeAttribute, "\""+dArrowType+"\"");
+			henshin_attribute.setAction(new Action(Type.REQUIRE));
 			
 		}
 		for(int i = 0; i<production.getRightNodes().size();i++){
-			String dNodeType = TransformUtils.trimNumber(production.getRightNodes().get(i).getName());
+//			String dNodeType = TransformUtils.trimNumber(production.getRightNodes().get(i).getName());
+			String dNodeType = production.getRightNodes().get(i).getTypeName();
 			
 			
 			
@@ -295,7 +302,7 @@ public class TransformModule {
 				if(!hasCorrespondancePart(dNodeType)){
 					node_name.setValue("\"\"");
 				}
-				else{
+				else if(hasTraceObject(production.getRightNodes().get(i))){
 					map_lhs_rhs_parameter(production, dNodeType, name, production.getRightNodes().get(i));
 				}
 				
@@ -322,52 +329,52 @@ public class TransformModule {
 			}
 		}
 		for(int i = 0;i<production.getRightArrows().size();i++){
-			String dArrowType = TransformUtils.trimNumber(production.getRightArrows().get(i).getName());
-			if(!dArrowType.equals("Trace")){
-				String name = "name"+parameter;
-				Parameter nameParameter = henshinFac.createParameter("name"+parameter);
-				nameParameter.setType(ecorePackage.getEClassifier("EString"));
-				parameter++;
+			//String dArrowType = TransformUtils.trimNumber(production.getRightArrows().get(i).getName());
+			insertTraces.put(production.getRightArrows().get(i).getArrow().getId(), production.getRightArrows().get(i));
+			String dArrowType = production.getRightArrows().get(i).getTypeName();
+			String name = "name"+parameter;
+			Parameter nameParameter = henshinFac.createParameter("name"+parameter);
+			nameParameter.setType(ecorePackage.getEClassifier("EString"));
+			parameter++;
 
-				rule.getParameters().add(nameParameter);
+			rule.getParameters().add(nameParameter);
 				
-				EClass arrow = specificationPackage.getArrow();
-				EClass arrowType = specificationPackage.getArrow();
+			EClass arrow = specificationPackage.getArrow();
+			EClass arrowType = specificationPackage.getArrow();
 				
-				EReference referenceArrow = specificationPackage.getArrow_TypeArrow();
+			EReference referenceArrow = specificationPackage.getArrow_TypeArrow();
 
-				EAttribute arrowTypeAttribute = specificationPackage.getArrow_Name();
+			EAttribute arrowTypeAttribute = specificationPackage.getArrow_Name();
 
-				Node insertionArrow = henshinFac.createNode(rhs, arrow, null);
-				insertionArrow.setName(production.getRightArrows().get(i).getName());
-				nodes.put(production.getRightArrows().get(i).getName(), insertionArrow);
-				insertionArrow.setAction(new Action(Type.CREATE));
+			Node insertionArrow = henshinFac.createNode(rhs, arrow, null);
+			insertionArrow.setName(production.getRightArrows().get(i).getName());
+			nodes.put(production.getRightArrows().get(i).getName(), insertionArrow);
+			insertionArrow.setAction(new Action(Type.CREATE));
 				
-				Attribute arrow_name = henshinFac.createAttribute(insertionArrow, arrowTypeAttribute, name);
+			Attribute arrow_name = henshinFac.createAttribute(insertionArrow, arrowTypeAttribute, name);
 				
-				if(!hasCorrespondancePart(dArrowType)){
-					arrow_name.setValue("\"\"");
-				}
-				
-				Node insertionTypeArrow = henshinFac.createNode(rhs, arrowType, null);
-				insertionTypeArrow.setName(production.getRightArrows().get(i).getName()+ARROWTYPE);
-				nodes.put(production.getRightArrows().get(i).getName()+ARROWTYPE, insertionTypeArrow);
-				insertionTypeArrow.setAction(new Action(Type.CREATE));
-		
-				traces.put(production.getRightArrows().get(i).getArrow().getId(),insertionArrow);
-				
-				Attribute henshin_attribute = henshinFac.createAttribute(insertionTypeArrow, arrowTypeAttribute, "\""+dArrowType+"\"");
-				henshin_attribute.setAction(new Action(Type.CREATE));
-				
-				Edge insertionTypeArrowRef = henshinFac.createEdge(insertionArrow, insertionTypeArrow, referenceArrow);
-				insertionTypeArrowRef.setAction(new Action(Type.CREATE));
-				
-				insertionArrow.setAction(new Action(Type.CREATE));	
-				insertionTypeArrowRef.setAction(new Action(Type.CREATE));
-			}	
-			else{
-				insertTraces.put(production.getRightArrows().get(i).getArrow().getId(), production.getRightArrows().get(i));
+			if(!hasCorrespondancePart(dArrowType)){
+				arrow_name.setValue("\"\"");
 			}
+			else{
+				map_lhs_rhs_parameter(production, dArrowType, name, production.getRightNodes().get(i));
+			}
+				
+			Node insertionTypeArrow = henshinFac.createNode(rhs, arrowType, null);
+			insertionTypeArrow.setName(production.getRightArrows().get(i).getName()+ARROWTYPE);
+			nodes.put(production.getRightArrows().get(i).getName()+ARROWTYPE, insertionTypeArrow);
+			insertionTypeArrow.setAction(new Action(Type.CREATE));
+		
+			traces.put(production.getRightArrows().get(i).getArrow().getId(),insertionArrow);
+				
+			Attribute henshin_attribute = henshinFac.createAttribute(insertionTypeArrow, arrowTypeAttribute, "\""+dArrowType+"\"");
+			henshin_attribute.setAction(new Action(Type.CREATE));
+				
+			Edge insertionTypeArrowRef = henshinFac.createEdge(insertionArrow, insertionTypeArrow, referenceArrow);
+			insertionTypeArrowRef.setAction(new Action(Type.CREATE));
+			
+			insertionArrow.setAction(new Action(Type.CREATE));	
+			insertionTypeArrowRef.setAction(new Action(Type.CREATE));
 		}
 		
 		for (DElement value : commonTraces.values()) {
@@ -391,7 +398,8 @@ public class TransformModule {
 				DNode source = null;
 				DNode target = null;
 				for(int j = 0;j<dNodeTrace.getDOutgoings().size();j++){
-					if(dNodeTrace.getDOutgoings().get(j).getName().startsWith("traceSource_")){
+//					if(dNodeTrace.getDOutgoings().get(j).getName().startsWith("traceSource_")){
+					if(dNodeTrace.getDOutgoings().get(j).getTypeName().startsWith("traceSource_")){
 						source = dNodeTrace.getDOutgoings().get(j).getDTarget();
 						
 						Node preserveNode = traces.get(source.getNode().getId());
@@ -400,7 +408,8 @@ public class TransformModule {
 					}
 				}
 				for(int j = 0;j<dNodeTrace.getDOutgoings().size();j++){
-					if(dNodeTrace.getDOutgoings().get(j).getName().startsWith("traceTarget_")){
+//					if(dNodeTrace.getDOutgoings().get(j).getName().startsWith("traceTarget_")){
+					if(dNodeTrace.getDOutgoings().get(j).getTypeName().startsWith("traceTarget_")){
 						target = dNodeTrace.getDOutgoings().get(j).getDTarget();
 						
 						Node preserveNode = traces.get(target.getNode().getId());
@@ -411,6 +420,8 @@ public class TransformModule {
 				}
 			}
 			else{
+				System.out.println("DArrow " + dArrowTrace.getTypeName());
+				
 				DNode source = dArrowTrace.getDSource();
 				DNode target = dArrowTrace.getDTarget();
 			}		
@@ -436,7 +447,8 @@ public class TransformModule {
 				DNode source = null;
 				DNode target = null;
 				for(int j = 0;j<dNodeTrace.getDOutgoings().size();j++){
-					if(dNodeTrace.getDOutgoings().get(j).getName().startsWith("traceSource_")){
+//					if(dNodeTrace.getDOutgoings().get(j).getName().startsWith("traceSource_")){
+					if(dNodeTrace.getDOutgoings().get(j).getTypeName().startsWith("traceSource_")){
 						source = dNodeTrace.getDOutgoings().get(j).getDTarget();
 						
 						Node insertionNode = traces.get(source.getNode().getId());
@@ -465,7 +477,8 @@ public class TransformModule {
 					}
 				}
 				for(int j = 0;j<dNodeTrace.getDOutgoings().size();j++){
-					if(dNodeTrace.getDOutgoings().get(j).getName().startsWith("traceTarget_")){
+//					if(dNodeTrace.getDOutgoings().get(j).getName().startsWith("traceTarget_")){
+					if(dNodeTrace.getDOutgoings().get(j).getTypeName().startsWith("traceTarget_")){
 						target = dNodeTrace.getDOutgoings().get(j).getDTarget();
 						
 						Node insertionNode = traces.get(target.getNode().getId());
@@ -474,7 +487,7 @@ public class TransformModule {
 					}
 				}
 			}
-			else{
+			else if(value instanceof DArrow){
 				DNode source = dArrowTrace.getDSource();
 				DNode target = dArrowTrace.getDTarget();
 				
@@ -490,53 +503,72 @@ public class TransformModule {
 		return rule;
 	}
 	
-	private void map_lhs_rhs_parameter(Production production, String dNodeType, String parameter, DNode dNode) {
-		boolean hasTraceOject = false;
-		for(int i = 0;i<dNode.getDIncomings().size();i++){
-			if(dNode.getDIncomings().get(i).getName().startsWith("trace")){
-				DNode traceNode = dNode.getDIncomings().get(i).getDSource();
-				for(int j = 0;j<traceNode.getDOutgoings().size();j++){
-					if(traceNode.getDOutgoings().get(j).getName().contains("Source")){
-						Node node = traces.get(traceNode.getDOutgoings().get(j).getDTarget().getNode().getId());
-						System.out.println("Node " + node.getName());
-						Attribute attribute = henshinFac.createAttribute(node, specificationPackage.getNode_Name(), parameter);
-						attribute.setAction(new Action(Type.PRESERVE));
-						
-						hasTraceOject = true;
+	private void map_lhs_rhs_parameter(Production production, String dNodeType, String parameter, DElement dElement) {
+	
+		if(hasTraceObject(dElement)){
+			DNode dNode = (DNode) dElement;
+			for(int i = 0;i<dNode.getDIncomings().size();i++){
+				if(dNode.getDIncomings().get(i).getName().startsWith("trace")){
+					DNode traceNode = dNode.getDIncomings().get(i).getDSource();
+					for(int j = 0;j<traceNode.getDOutgoings().size();j++){
+						if(traceNode.getDOutgoings().get(j).getName().contains("Source")){
+							Node node = traces.get(traceNode.getDOutgoings().get(j).getDTarget().getNode().getId());
+							System.out.println("Node " + node.getName());
+							Attribute attribute = henshinFac.createAttribute(node, specificationPackage.getNode_Name(), parameter);
+							attribute.setAction(new Action(Type.PRESERVE));
+						}
 					}
 				}
 			}
 		}
-		if(!hasTraceOject){
+		else if(dElement instanceof DNode && !hasTraceObject(dElement)){
+			DNode dNode = (DNode) dElement;
 			String type = null;
-			for(DNode dnode : correspond.values()){
-				if(dnode.getTypeName().equals(BRIDGEELEMENT)){
-					DNode bridgeNode = dnode;
-					for(int j = 0;j<bridgeNode.getDOutgoings().size();j++){
-						if(bridgeNode.getDOutgoings().get(j).getTypeName().contains("sourceSequence")){
-							type = bridgeNode.getDOutgoings().get(j).getDTarget().getTypeName();
-						}
-					}
-					 
+			String name = dNode.getName();
+			for(int i = 0 ; i<production.getSum().getDGraph().getDNodes().size();i++){
+				DNode temp = production.getSum().getDGraph().getDNodes().get(i);
+				if(temp.getName().contains(MAPARROW+dNode.getName())){
+					System.out.println("FANT");
+					type = temp.getTypeName();
+				}
+			}
+			for(int i = 0 ; i<production.getSum().getDGraph().getDArrows().size();i++){
+				DArrow temp = production.getSum().getDGraph().getDArrows().get(i);
+				if(temp.getName().contains(MAPARROW+dNode.getName())){
+					System.out.println("FANT");
+					type = temp.getTypeName();
 				}
 			}
 			for(Node node : traces.values()){
 				if(node.getName().startsWith(type)){
+					System.out.println("Ndoe " + node);
 					Attribute attribute = henshinFac.createAttribute(node, specificationPackage.getNode_Name(), parameter);
 					attribute.setAction(new Action(Type.PRESERVE));
 				}
 			}
-		}
+		}			
 	}
+	private boolean hasTraceObject(DElement dElement){
+		if(dElement instanceof DNode){
+			DNode dNode = (DNode) dElement;
+			for(int i = 0;i<dNode.getDIncomings().size();i++){
+				if(dNode.getDIncomings().get(i).getTypeName().startsWith("trace")){
+					System.out.println("HAR TRACE");
+					return true;
+					
+				}
+			}
+		}
+		return false;
+	}
+	
 	private boolean hasCorrespondancePart(String type) {
 		for(DNode node : correspond.values()){
 			if(node.getTypeName().equals(type)){
 				if(!node.getDIncomings().isEmpty()){
-					System.out.println(type+" True");
 					return true;
 				}
 				else{
-					System.out.println(type+" False");
 					return false;
 				}
 			}
