@@ -40,8 +40,20 @@
 \usepackage[first=0,last=9]{lcg}
 \usepackage{float}
 \usepackage{fixltx2e}
+\usepackage{tabu}
+\usepackage{xargs}
 
+\newcommandx{\aconst}[2][2]{\ensuremath{C^{\spec{#1}[#2]}}}
+\newcommandx{\spec}[2][2]{\ensuremath{\mathfrak{#1}_{#2}}}
 \newcommand{\ra}{\rand0.\arabic{rand}}
+
+\newcolumntype{M}{>{$\vcenter\bgroup\hbox\bgroup}c<{\egroup\egroup$}}
+
+\newcommand\boxup[2]{%
+  \savebox\mybox{#1}%
+  \setlength\mylength{\wd\mybox}%
+  \parbox{\mylength}{#1 \\ #2}%
+}
 
 \usepackage[table]{xcolor}% http://ctan.org/pkg/xcolor
 
@@ -93,13 +105,25 @@
 % remove the link
 \end{flushright}
 \end{minipage}\\[3cm]
+
+\includegraphics[width=0.25\textwidth]{Figures/uib_logo.png}\\
+{\normalsize Department of Informatics}\\
+{\normalsize University of Bergen}\\[1cm]
+
+\includegraphics[width=0.3\textwidth]{Figures/hib_logo.png}\\
+{\normalsize Department of Computer Engineering}\\
+{\normalsize Bergen University College}\\[1cm]
  
-\large \textit{A thesis submitted in fulfilment of the requirements\\ for the degree of \degreename}\\[0.3cm] % University requirement text
-\textit{in the}\\[0.4cm]
-\groupname\\\deptname\\[2cm] % Research group name and department name
+%\large \textit{A thesis submitted in fulfilment of the requirements\\ for the
+% degree of \degreename}\\[0.3cm] % University requirement text
+%\textit{in the}\\[0.4cm]
+%\groupname\\\deptname\\[2cm] % Research group name and department name
  
 {\large \today}\\[4cm] % Date
 %\includegraphics{Logo} % University/department logo - uncomment to place it
+ 
+ 
+ 
  
 \vfill
 \end{center}
@@ -132,24 +156,6 @@ Signed:\\
 Date:\\
 \rule[1em]{25em}{0.5pt} % This prints a line to write the date
 }
-
-\clearpage % Start a new page
-
-%----------------------------------------------------------------------------------------
-%	QUOTATION PAGE
-%----------------------------------------------------------------------------------------
-
-\pagestyle{empty} % No headers or footers for the following pages
-
-\null\vfill % Add some space to move the quote down the page a bit
-
-\textit{``Thanks to my solid academic training, today I can write hundreds of words on virtually any topic without possessing a shred of information, which is how I got a good job in journalism."}
-
-\begin{flushright}
-Dave Barry
-\end{flushright}
-
-\vfill\vfill\vfill\vfill\vfill\vfill\null % Add some space at the bottom to position the quote just right
 
 \clearpage % Start a new page
 

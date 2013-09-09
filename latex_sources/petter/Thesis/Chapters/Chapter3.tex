@@ -47,19 +47,6 @@ transformation start with a source model expressed in one modelling language and
 translate this into a target model expressed in another modelling language. It
 is essential that these models remain consistent, and therefore both the source
 and target model have to conform to their corresponding metamodel.
-Figure~\ref{fig:BasicTransformation} is a representation of the basic concepts
-for a model transformation. The two concepts, transformation language and
-transformation engine are provided by some model transformation environment.
-The transformation language use metadata that are defined in the source and
-target metamodel to create an executable environment for the transformation
-engine. 
-
-It is essential that these models are consistent. This is
-obtained through the use of metamodels.
-A model transformation can produce two different kind of output models. The
-first one is code generation, often referred to Model to Text(M2T)
-transformation, and it takes one model and produces implementation code. This
-is convenient if for example a software engineer wants to produce source code
 
 \begin{figure}[H]
   \centering
@@ -71,7 +58,54 @@ is convenient if for example a software engineer wants to produce source code
   \label{fig:BasicTransformation}
 \end{figure}
 
-\section{Model Transformation in MDE}
+Figure~\ref{fig:BasicTransformation} is a representation of the basic concepts
+for a model transformation. The two concepts, transformation language and
+transformation engine are provided by some model transformation environment.
+The main idea behind changing two models are to read the content of a source
+model and write the contents to a target model. The transformation engine
+executes a transformation language that specifies a set of guidelines that
+express how the target model is constructed. These guidelines is created from
+metadata that are defined in the source and target metamodel to create an
+executable environment for the transformation engine. Where the transformation
+language use both the source and target metamodel as a reference point for the
+source and target model. The transformation language specifies how a
+translation between two models should be applied through the use of these
+metamodels. Both metamodels provides some abstract syntax that a transformation
+language can utilize to specify a model transformation environment. One aspect
+behind the abstract syntax that should be taken into consideration is that the
+concrete syntax of the abstract syntax can be either textual or graphical.
+Traditionally when we use the concept model, we think of a miniatures, with
+nodes and vertexes that are connected with arrows and edges. These miniatures
+represent a graphical representation of a model. However a model can also have a
+textual representation. Therefore we often say that a model transformation
+can produce two different kind of target models. At the highest level of
+abstraction these the two different results can be code generation, often
+referred to Model to Text (M2T) transformation. A Model to Text transformation
+takes a source model and produce implementation code as a target model. The
+other approach is refereed to as Model to Model (M2M) transformation and takes a
+source model as an input model and produce a target model. The distinction
+between these two categories is that a M2M transformation produce an instance
+model that conforms to some metamodel while an M2T produces strings as its
+target model. 
+
+\subsection{Model Transformations in MDE}
+
+Model transformations are right there in the center of Model Driven Engineering.
+The vision for MDE is to increase automation of models between level of
+abstractions. This vision is achieved through the use of model transformations.
+Either if it is to use a model to text approach to generate source code, or by
+transforming a model to another model. A model driven approach to software
+development thrives to keep a level of abstraction on the models for as long as
+possible through translating these models. 
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[scale=0.8]{./Figures/MDA_MDE.png}
+    \rule{35em}{0.5pt}
+  \caption[Model Transformations in MDA]
+  				{Model Transformations in Model Driven Architecture.}
+  \label{fig:MDE_MDA_MT}
+\end{figure}
 
 %-----------------------------------
 %	SUBSECTION 2
@@ -164,16 +198,93 @@ The transformation rule has to
 
 \subsection{Source - Target Relationship}
 
+How does a model transformation environment distinguish if a model
+transformation is an endogenous or exogenous model transformation? This is
+achieved by specifying how a source model and target model are related to one
+another. These source and target models can relate to a metamodel for example.
+Both the source and target model could be described by the same modeling
+language. This specifies that a translation between source and target model are
+an endogenous model transformation. And as we described in earlier in this
+section is that an endogenous model transformation translates one model written
+in one modeling language and produces a model written in the same modeling
+language. One aspect of this source-target relationship is that the source and
+target model are independent of each other. The model transformation
+environment is responsible to read and write these models, and to make sure that
+these models remain consistent. One could say that the target model does
+implicit depend on the source model, since a model transformation requires a
+source model to translate accordingly. The model transformation language creates
+transformation rules based on the corresponding metamodels that describes both
+the source and target model. And therefore administrate how these models relate
+to one another through these transformation rules. If the source and target
+models are written or modelled by using two different modeling languages, then
+we have an exogenous model transformation, and the relationship between the
+models should be adapted accordingly.
+
+The source and target model can also in some cases be one and the same model,
+Model transformations that are applied one and the same model are called
+in-place model transformations. In AGG the source and target model are always
+the same model, and therefore AGG only supports in-place update of a model.
+The older versions of Atlas Transformation Language (ATL) requires that a new
+target model, that is separated from a source model is created when applying a
+model transformation. Creating a new model as a target model for a model
+transformation specifies that this is an out-place change to a model. However
+since January 2013 ATL support in-place transformations through a refining
+mode. Other approaches offers support for both in-place or out-place updates
+and lets the users specify how the models should be updated. These out-place
+model transformations could either be changes made to an existing model or by
+creating a new model. QVT Relations and Henshin is an example of approaches to
+these model transformations. Henshin does implicitly deliver an in-place model
+transformation environment, that allows for in-place update of models. But
+explicitly, when using the Henshin API, one could programmatically set up
+Henshin to do out-place changes to a model.
+
 \subsection{Directionality}
+
+This section describes that a model transformation environment can 
 
 \subsection{Tracing}
 
+Some model transformation environment has support for tracing of model
+elements. Tracing works like a fingerprint in a model transformation and
+has an unique link between elements. A traceable link between source and target
+elements is a link between mapped elements when a model transformation is
+executed and provides information between the relationship between source
+element and its corresponding target elements. The traceable link is stored in
+memory for the duration it takes to execute a set of transformation rules. A
+traceable link is specified when creating the transformation rules and requires
+source and target elements. When there is a match in a transformation rule, a
+new traceable link is created between a matched source element and all
+corresponding target elements. These traceable links is very convenient when
+analysing and debugging a model transformation. Because now there is tracing on
+source and target elements on each time a transformation rule finds a match in
+the source model.
+
+How traceable links are used across transformation tools varies. In Henshin, ATL
+and QVT these traceable links are handled automatically. For Henshin the user
+can use Henshin Trace model to create traceable links. The trace model consists
+of a single class Trace with a source and target reference. The user can then
+create this trace element together with the transformation rules to relate
+source and target models. ATL has an implicit tracing mechanism that specifies
+relationships between the source element and its corresponding target elements
+by using a native type called ASMTransientLink\cite{Wagelaar}. For every time a
+transformation rule is matched to a source element, one ASMTransientLink is
+created. To this transient link the name of the transformation rule provided
+together with the source element and the target elements. These links are added
+to a collection that has all the transient links and stored internally for ATL.
+This means that the users of ATL cannot access these links after a model
+transformation has finished executing. However, as shown by Andr\'{e}s Yie and
+Dennis Wagelaar\cite{Wagelaar}, that gaining access to these ATL traces can be
+done explicitly by creating transformation rules that generates a tracing
+model based on the internal tracing information provided by ATL. In AGG
+traceable links are created as any other modeling element. Where the user can
+specify a node and two arrows between source and target meta-element in the type
+graph. 
 
 %----------------------------------------------------------------------------------------
 %	SECTION 2
 %----------------------------------------------------------------------------------------
 
-\section{Graph Transformation} 
+\section{Graph based Approach to Model Transformations} 
 
 One common approach to model transformations is by graph transformations,
 also referred to as graph rewriting. Graph rewriting can be implemented with
@@ -390,7 +501,7 @@ the concepts of graph transformations explained in this section.
 	\label{fig:DPO_NAC}
 \end{figure}
 
-\section{Textual Model Transformation}
+\section{Textual based approach to Model Transformations}
 
 
 
