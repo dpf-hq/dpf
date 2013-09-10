@@ -15,6 +15,7 @@
  *******************************************************************************/
 package no.hib.dpf.transform.presentation;
 
+import static no.hib.dpf.diagram.util.DPFConstants.DEFAULT_DSIGNATURE;
 import static no.hib.dpf.diagram.util.DPFConstants.REFLEXIVE_TYPE_DGRAPH;
 
 import java.util.ArrayList;
@@ -29,21 +30,26 @@ import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.diagram.DArrow;
+import no.hib.dpf.diagram.DConstraint;
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.diagram.DOffset;
+import no.hib.dpf.diagram.DPredicate;
+import no.hib.dpf.diagram.DSignature;
 import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.diagram.DiagramFactory;
 import no.hib.dpf.diagram.util.DPFConstants;
 import no.hib.dpf.editor.DPFEditor;
 import no.hib.dpf.editor.DPFEditorPaletteFactory;
 import no.hib.dpf.editor.DPFUtils;
+import no.hib.dpf.transform.presentation.CreateConstraintAction;
 import no.hib.dpf.editor.displaymodel.factories.DArrowFactory;
 import no.hib.dpf.editor.displaymodel.factories.DNodeFactory;
 import no.hib.dpf.editor.displaymodel.factories.DPFConnectionCreationToolEntry;
 import no.hib.dpf.editor.extension_points.FigureConfigureManager;
 import no.hib.dpf.editor.parts.ArrowLabelEditPart;
 import no.hib.dpf.editor.parts.DArrowEditPart;
+import no.hib.dpf.editor.parts.DConstraintEditPart;
 import no.hib.dpf.editor.parts.DNodeEditPart;
 import no.hib.dpf.editor.parts.DPFEditPartFactory;
 import no.hib.dpf.transform.Production;
@@ -65,6 +71,7 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.EList;
@@ -78,16 +85,21 @@ import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.editparts.ScalableFreeformRootEditPart;
 import org.eclipse.gef.palette.CreationToolEntry;
 import org.eclipse.gef.palette.PaletteRoot;
+import org.eclipse.gef.ui.actions.AlignmentAction;
 import org.eclipse.gef.ui.palette.FlyoutPaletteComposite;
 import org.eclipse.gef.ui.palette.PaletteViewerProvider;
 import org.eclipse.gef.ui.palette.FlyoutPaletteComposite.FlyoutPreferences;
 import org.eclipse.gef.ui.parts.GraphicalEditorWithFlyoutPalette;
+import org.eclipse.jface.action.IAction;
+import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IFileEditorInput;
+import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.dialogs.SaveAsDialog;
@@ -249,6 +261,14 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 					if(offset.eContainer() instanceof DArrow)
 						return new TransformArrowLabelEditPart(offset);
 				}
+				if(modelElement instanceof DConstraint){
+					return new DConstraintEditPart(){
+						protected void createEditPolicies() {
+							super.createEditPolicies();
+							installEditPolicy("action", new ActionEditPolicy());	
+						}
+					};
+				}
 				return super.getPartForElement(modelElement);
 			}
 		};
@@ -397,4 +417,73 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 		}
 		
 	}
+	
+	@Override
+	protected void createActions() {
+		super.createActions(); // to get the default actions
+
+		DSignature signature = dspec.getDSignature();
+		if (signature != null) {
+			for (DPredicate predicate : signature.getDPredicates())
+				addActionForPredicate(predicate);
+			if(signature != DEFAULT_DSIGNATURE){
+				for (DPredicate predicate : DEFAULT_DSIGNATURE.getDPredicates())
+					addActionForPredicate(predicate);
+			}
+		}
+		registerAction(new AlignmentAction((IWorkbenchPart)this, PositionConstants.LEFT));
+		registerAction(new AlignmentAction((IWorkbenchPart)this, PositionConstants.RIGHT));
+		registerAction(new AlignmentAction((IWorkbenchPart)this, PositionConstants.TOP));
+		registerAction(new AlignmentAction((IWorkbenchPart)this, PositionConstants.BOTTOM));
+		registerAction(new AlignmentAction((IWorkbenchPart)this, PositionConstants.CENTER));
+		registerAction(new AlignmentAction((IWorkbenchPart)this, PositionConstants.MIDDLE));
+	}
+	
+	private void addActionForPredicate(final DPredicate dPredicate) {
+		CreateConstraintAction action = new CreateConstraintAction(this, dspec, dPredicate); 
+		registerAction(action);
+		constraintActions.add(action);
+	}
+	
+	@SuppressWarnings("unchecked")
+	private void registerAction(IAction action) {
+		getActionRegistry().registerAction(action);
+		getSelectionActions().add(action.getId());
+	}
+	
+	List<IAction> constraintActions = new ArrayList<IAction>();
+
+	protected IPartListener partListener = new IPartListener() {
+		public void partActivated(IWorkbenchPart p) {
+			ProductionEditor editor = ProductionEditor.this;
+			if (p != editor)
+				return;
+			IActionBars actionBars = editor.getEditorSite().getActionBars();
+			IToolBarManager toolbar = actionBars.getToolBarManager();
+			for (IAction action : constraintActions)
+				toolbar.add(action);
+			toolbar.update(true);
+			actionBars.updateActionBars();
+		}
+
+		public void partBroughtToTop(IWorkbenchPart p) { }
+
+		public void partClosed(IWorkbenchPart p) { }
+
+		public void partDeactivated(IWorkbenchPart p) {
+			ProductionEditor editor = ProductionEditor.this;
+			if (p != editor)
+				return;
+			IActionBars actionBars = editor.getEditorSite().getActionBars();
+			IToolBarManager toolbar = actionBars.getToolBarManager();
+			for (IAction action : constraintActions)
+				toolbar.remove(action.getId());
+			toolbar.update(true);
+			actionBars.updateActionBars();
+		}
+
+		public void partOpened(IWorkbenchPart p) { }
+	};
+	
+	
 };

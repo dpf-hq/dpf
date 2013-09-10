@@ -12,6 +12,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -66,7 +67,8 @@ public class BrowseInstanceModel extends Dialog {
 		sourceDSpec = transform.getSourceLocation();
 		targetDSpec = transform.getTargetLocation();
 		
-
+		sourceSpec = sourceDSpec.replace(".dpf", ".xmi");
+		targetSpec = targetDSpec.replace(".dpf", ".xmi");
 		
 		targetspecification = DPFUtils.loadSpecification(URI.createFileURI(sourceDSpec.replace(".dpf", ".xmi")));
 		System.out.println("UIR: " + targetspecification.eResource().getURI());
@@ -97,12 +99,9 @@ public class BrowseInstanceModel extends Dialog {
 				public void widgetSelected(SelectionEvent event) {
 					handleModelBrowseButtonPressed(modelInstance, "*.dpf");
 					
-					sourcespecification = DPFUtils.loadSpecification(URI.createFileURI(modelInstance.getText().toString().replace(".dpf", ".xmi"))).getType();
-					
-					if(targetspecification == sourcespecification){
-						System.out.println("Target uri " + sourcespecification.getGraph().getNodes());
-					}
-					
+					String uri = modelInstance.getText();
+					DSpecification newTargetDSpec = DPFUtils.loadDSpecification(URI.createFileURI(uri));
+					System.out.println("Test");
 					
 				}
 			});
@@ -111,8 +110,10 @@ public class BrowseInstanceModel extends Dialog {
 	    
 	    errorSourceMessage = new Label(composite, SWT.NONE);
 	    errorSourceMessage.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, SWT.FILL, 0));
+	    errorSourceMessage.setFont(new Font(null, "Segoe UI", 9, SWT.BOLD));
 	    errorSourceMessage.setText("Type specification from instance model does not match source specification");
 	    errorSourceMessage.setForeground(new Color(null, 255, 0, 0));
+	    errorSourceMessage.setVisible(false);
 	    
 	    
 		Table table = new Table(composite, SWT.FULL_SELECTION | SWT.BORDER);
@@ -138,7 +139,7 @@ public class BrowseInstanceModel extends Dialog {
 			
 		item = new TableItem(table, SWT.NONE);
 		item.setText(0, "Target Specification");
-		item.setText(1, targetDSpec);
+		item.setText(1, targetSpec);
 	
 		one.pack();
 		two.pack();

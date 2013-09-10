@@ -16,12 +16,15 @@ import no.hib.dpf.transform.util.BrowseInstanceModel;
 import no.hib.dpf.transform.util.TransformConstants;
 import no.hib.dpf.transform.util.TransformUtils;
 
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gef.ui.actions.ActionBarContributor;
+import org.eclipse.gef.ui.actions.AlignmentRetargetAction;
 import org.eclipse.gef.ui.actions.DeleteRetargetAction;
+import org.eclipse.gef.ui.actions.GEFActionConstants;
 import org.eclipse.gef.ui.actions.RedoRetargetAction;
 import org.eclipse.gef.ui.actions.UndoRetargetAction;
 import org.eclipse.jface.action.Action;
@@ -137,6 +140,15 @@ public class TransformActionBarContributor extends ActionBarContributor {
 		addRetargetAction(new DeleteRetargetAction());
 		addRetargetAction(new UndoRetargetAction());
 		addRetargetAction(new RedoRetargetAction());
+		
+		
+		addRetargetAction(new AlignmentRetargetAction(PositionConstants.LEFT));
+		addRetargetAction(new AlignmentRetargetAction(PositionConstants.CENTER));
+		addRetargetAction(new AlignmentRetargetAction(PositionConstants.RIGHT));
+		addRetargetAction(new AlignmentRetargetAction(PositionConstants.TOP));
+		addRetargetAction(new AlignmentRetargetAction(PositionConstants.MIDDLE));
+		addRetargetAction(new AlignmentRetargetAction(PositionConstants.BOTTOM));
+		
 	}
 
 	@Override
@@ -151,6 +163,17 @@ public class TransformActionBarContributor extends ActionBarContributor {
 		toolBarManager.add(generateCorrespondanceGraph);
 		toolBarManager.add(generateToHenshin);
 		toolBarManager.add(executeTransformation);
+		
+
+		toolBarManager.add(new Separator());
+		toolBarManager.add(getAction(GEFActionConstants.ALIGN_LEFT));
+		toolBarManager.add(getAction(GEFActionConstants.ALIGN_CENTER));
+		toolBarManager.add(getAction(GEFActionConstants.ALIGN_RIGHT));
+		toolBarManager.add(new Separator());
+		toolBarManager.add(getAction(GEFActionConstants.ALIGN_TOP));
+		toolBarManager.add(getAction(GEFActionConstants.ALIGN_MIDDLE));
+		toolBarManager.add(getAction(GEFActionConstants.ALIGN_BOTTOM));
+		
 	}
 
 	@Override

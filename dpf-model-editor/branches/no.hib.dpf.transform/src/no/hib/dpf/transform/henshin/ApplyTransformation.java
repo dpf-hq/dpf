@@ -85,11 +85,21 @@ public class ApplyTransformation {
 		RuleApplication ruleApplication = new RuleApplicationImpl(engine);
 		ruleApplication.setEGraph(graph);
 		
+		DSpecification dType = DPFUtils.loadDSpecification(URI.createFileURI("C:/Users/Petter/runtime-EclipseApplication/model/petriNetMetaModel.dpf"));
+		
+		DSpecification dSpecification = DiagramFactory.eINSTANCE.createDefaultDSpecification();
+		dSpecification.setDSignature(DiagramFactory.eINSTANCE.createDefaultDSignature());
+		dSpecification.setDType(dType);
+		
+		
 		Specification targetSpec = DPFUtils.loadSpecification(URI.createFileURI("C:/Users/Petter/runtime-EclipseApplication/model/petriNetMetaModel.xmi"));
 		
 		Specification newSpec = CoreFactory.eINSTANCE.createDefaultSpecification();
+		newSpec.setGraph(CoreFactory.eINSTANCE.createDefaultGraph());
 		newSpec.setType(targetSpec);
 		newSpec.setSignature(DPFConstants.DEFAULT_SIGNATURE);
+		
+		dSpecification.setSpecification(newSpec);
 
 		Unit unit = module.getUnit("main");
 		UnitApplication unitApp = new UnitApplicationImpl(engine, graph, unit, null);
@@ -152,9 +162,14 @@ public class ApplyTransformation {
 		System.out.println("Complete" + unitApp.getEGraph().getRoots().size());
 		
 		String uriNew = TransformUtils.activeWorkingDirectory() + "/spec.xmi";
+		String dSpecuriNew = TransformUtils.activeWorkingDirectory() + "/spec.dpf";
 		
-		
+
 		DPFUtils.saveSpecification(URI.createFileURI(uriNew), newSpec);
+		//DPFUtils.saveDSpecification(DPFUtils.getResourceSet(), dSpecification, URI.createFileURI(dSpecuriNew), resourceToDiagnosticMap);
+		
+		
+		
 		
 	}
 }

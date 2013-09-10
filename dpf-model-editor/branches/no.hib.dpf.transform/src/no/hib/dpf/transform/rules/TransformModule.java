@@ -390,7 +390,7 @@ public class TransformModule {
 				arrow_name.setValue("\"\"");
 			}
 			else{
-				map_lhs_rhs_parameter(production, dArrowType, name, production.getRightNodes().get(i));
+				map_lhs_rhs_parameter(production, dArrowType, name, production.getRightArrows().get(i));
 			}
 				
 			Node insertionTypeArrow = henshinFac.createNode(rhs, arrowType, null);
@@ -415,7 +415,6 @@ public class TransformModule {
 					boolean match = false;
 					
 					DArrow dArrow = production.getSum().getDGraph().getDArrows().get(i);
-					//DElement source = null;
 					String target_id = "";
 					DNode sourceNode = corrNode;
 					String sourceType = dArrow.getTypeName();
@@ -448,6 +447,21 @@ public class TransformModule {
 						Node target_trace_node = traces.get(target_id);
 						Node trace_node = null;
 						
+						//set parameter
+						if(!target_trace_node.getAttributes().isEmpty()){
+							EAttribute attributeType = null;
+							if(traces.get(target_trace_node) instanceof DArrow){
+								attributeType = specificationPackage.getArrow_Name();
+							}
+							else{
+								attributeType = specificationPackage.getNode_Name();
+							}
+							Attribute temp = target_trace_node.getAttribute(attributeType);
+							Attribute attribute = henshinFac.createAttribute(source_trace_node, attributeType, temp.getValue());
+							attribute.setAction(new Action(Type.PRESERVE));
+							
+						}
+						
 						System.out.println("Navnet på Noden " + traces.get(target_id).getName());
 						
 						if(traces.get(target_id).getAction().toString().equals("create")){
@@ -458,6 +472,10 @@ public class TransformModule {
 							
 							henshinFac.createEdge(trace_node, target_trace_node, tracePackage.getTrace_Target());
 							henshinFac.createEdge(trace_node, rhs.getNode(source_trace_node.getName()), tracePackage.getTrace_Source());
+							
+							
+							
+							
 							
 							boolean exisitNAC = false;
 							Graph graph = henshinFac.createGraph();
@@ -649,32 +667,6 @@ public class TransformModule {
 				}
 			}
 		}
-//		else if(dElement instanceof DNode && !hasTraceObject(dElement)){
-//			DNode dNode = (DNode) dElement;
-//			String type = "";
-//			String name = dNode.getName();
-//			for(int i = 0 ; i<production.getSum().getDGraph().getDNodes().size();i++){
-//				DNode temp = production.getSum().getDGraph().getDNodes().get(i);
-//				if(temp.getName().contains(MAPARROW+dNode.getName())){
-//					System.out.println("FANT");
-//					type = temp.getTypeName();
-//				}
-//			}
-//			for(int i = 0 ; i<production.getSum().getDGraph().getDArrows().size();i++){
-//				DArrow temp = production.getSum().getDGraph().getDArrows().get(i);
-//				if(temp.getName().contains(MAPARROW+dNode.getName())){
-//					System.out.println("FANT");
-//					type = temp.getTypeName();
-//				}
-//			}
-//			for(Node node : traces.values()){
-//				if(node.getName().startsWith(type)){
-//					System.out.println("Ndoe " + node);
-//					Attribute attribute = henshinFac.createAttribute(node, specificationPackage.getNode_Name(), parameter);
-//					attribute.setAction(new Action(Type.PRESERVE));
-//				}
-//			}
-//		}			
 	}
 	
 	private void insertTraces(HashMap<String, DNode> insertTraces, Rule rule){
