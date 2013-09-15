@@ -8,15 +8,15 @@
 \lhead{Chapter 3. \emph{Model Transformation}} % Change X to a consecutive 
 % number; this is for the header on each page - perhaps a shortened title
 
-In this chapter we will describe what model transformations is and also write
-about the different types of model transformation. 
+In this chapter we will describe what model transformations is and also discuss
+the different types of model transformation.
 %----------------------------------------------------------------------------------------
 %	SECTION 1
 %----------------------------------------------------------------------------------------
 
 \section{What is model transformation?}
 
-Transformation is a fundamental theme in computer science and software
+Transformation is a fundamental aspect in computer science and software
 engineering. Whenever a computer starts up, transformation of computer systems
 and computer programs happens frequently. Take a compiler for instance, it plays
 a vital part of a computers internal infrastructure. A compiler is a computer
@@ -29,7 +29,7 @@ able to execute a set of instructions. But also computation of primitive data
 values and performing operations on data structures such as lists and arrays can
 also be viewed as data transformations. When a programming language provides a way
 to type these data values or data structures, a compiler or interpreter can
-apply operations to the data accordingly to the type. But when we talk about
+apply operations to the data accordingly to the type. But when we mention
 data representing software artifacts such as a data schema, programs or models,
 then transformation approaches 
 
@@ -90,13 +90,13 @@ target model.
 
 \subsection{Model Transformations in MDE}
 
-Model transformations are right there in the center of Model Driven Engineering.
+Model transformations are in the center of Model Driven Engineering.
 The vision for MDE is to increase automation of models between level of
 abstractions. This vision is achieved through the use of model transformations.
 Either if it is to use a model to text approach to generate source code, or by
 transforming a model to another model. A model driven approach to software
 development thrives to keep a level of abstraction on the models for as long as
-possible through translating these models. 
+possible through translating these models.  
 
 \begin{figure}[H]
   \centering
@@ -113,13 +113,13 @@ possible through translating these models.
 
 \section{Classification of a model transformation}
 
-In March 2006 Krzysztof Czarnecki and Simon Helsen did a domain analysis to
-existing model transformation approaches\cite{Czarnecki2006}. A domain analysis represents
-information on software system that share a common set of features for a given
-domain\cite{FODA,Prieto-Diaz1990}, in this case the domain is model
-transformations. This section is based on the ideas and result from Czarnecki
-and Helsen's report. In their paper they presents a feature diagram that
-provides a terminology and representation of the design choices for model
+In March 2006 Krzysztof Czarnecki and Simon Helsen published a domain analysis
+to existing model transformation approaches\cite{Czarnecki2006}. A domain
+analysis represents information on software system that share a common set of
+features for a given domain\cite{FODA,Prieto-Diaz1990}, in this case the domain
+is model transformations. This section is based on the ideas and result from
+Czarnecki and Helsen's report. In their paper they presents a feature diagram
+that provides a terminology and representation of the design choices for model
 transformation approaches. This feature diagram does not only present model to
 model approaches, but also consider the design choices for model to text
 approaches. For the purpose of this thesis we will only address the model to
@@ -160,12 +160,13 @@ of model transformations.
 \end{figure}
 
 For a model transformation to be able to translate a model to another model it
-needs a set of guidelines on how this should be done. Therefore a model
+needs a set of guidelines on how this could be done. Therefore a model
 transformation has a set of transformation rules that specifies how a target
 model should be produced. An obvious example of such rules are the rewrite
 rules. A rewrite rule provides a left hand side (LHS) and a right hand side
 (RHS) and both sides represents some user created patterns that are considered
 when a transformation engine executes their corresponding transformation rules.
+A transformation rule can 
 But a function that implements some transformation steps can also be seen as a
 transformation rule. For example in ATL Transformation Language (ATL) \cite{ATL}
 a transformation rule is implemented as a function, that consists of various
@@ -192,13 +193,31 @@ the form of a metamodel expressed in MOF\cite{MOF}.
 
 \subsection{Rule Application Control}
 
-The transformation rule has to 
+This section can be divided into two sub categories, namely locating matches and
+how to these transformation rules are be applied. 
 
 \subsection{Rule Organization}
 
+This feature represents how the rules are organized and if they are easy to
+reuse. The rules are usually represented as a collection of rules, where these
+rules could either be represented in some source code or by some tree based
+editor. Some model transformation approaches offer a modular approach to rule
+organizing. This means that the rules are contained in a module and are
+therefore easy to reuse. This gives the users the possibility to import these
+modules and use them in other modules. This modular approach to creating
+transformation rules can implement lazy rules, and lazy rules are transformation
+rules that can be integrated in other rules. These rules are highly reusable and
+can be used in any other module. In graph based model transformations rules are
+in most cases organized into a set of rules, where each rule is not available
+for other rules to use. This is because a transformation rule expressed in an
+algebraic approach to model transformation has the pattern and the replacement
+graph. And by adding a new rule with a new pattern graph and replacement graph
+will probably result in a transformation rule that search for matches that was
+not intended. 
+
 \subsection{Source - Target Relationship}
 
-How does a model transformation environment distinguish if a model
+How can a model transformation environment distinguish if a model
 transformation is an endogenous or exogenous model transformation? This is
 achieved by specifying how a source model and target model are related to one
 another. These source and target models can relate to a metamodel for example.
@@ -210,8 +229,8 @@ in one modeling language and produces a model written in the same modeling
 language. One aspect of this source-target relationship is that the source and
 target model are independent of each other. The model transformation
 environment is responsible to read and write these models, and to make sure that
-these models remain consistent. One could say that the target model does
-implicit depend on the source model, since a model transformation requires a
+these models remain consistent. One could say that the target model are
+implicit depending on a source model, since a model transformation requires a
 source model to translate accordingly. The model transformation language creates
 transformation rules based on the corresponding metamodels that describes both
 the source and target model. And therefore administrate how these models relate

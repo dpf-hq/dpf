@@ -29,10 +29,10 @@ primarily used as a reference when implementing an application.
 A model is an abstraction of a system, and has its origin from Latin,
 \textit{modulus} that means measure or standard. A model can either be used to
 represent a system before it is created or to describe some major aspects of a
-system or a concept. When people hear the world model, many will think that it
+system or a concept. When we hear the term model, many will think that it
 is a miniature that consists of a set of nodes and arrows. But it is important
 to consider that a model can also be represented by text. 
- 
+
 If we consider traditionally software development processes, then models are
 primarily used in application requirements and use-case diagrams specify what 
 the costumer wants. Then developers can specify models to detect important
@@ -47,32 +47,32 @@ Corporation\cite{IBMRational} in 2006 and was later acquired by International
 Business Machines Corporation\cite{IBM}. This is an iterative software
 development process and the purpose of RUP is to be an adaptable process
 framework where the software project teams decide the elements that are
-required for a development cycle. Figure~\ref{fig:RUP} explain the four
-different phases, Inception, Elaboration, Construction and Transition that RUP
-provides. The Inception phase and the Elaboration phase is the two phases where
-some of the example models above are created, both under business modeling and
-requirements. For the Inception phase of RUP, the idea is to create the
-software application without writing any source code. This phase is  concerned
-with writing text and creating models that gives the developers a detailed
-specification on how the program should be implemented. In the Elaboration
-phase a prototype might be implemented to show the customer a possible
-implementation, but this phase also consist of creating and modifying an
-extensive amount text and models that specifies analysis and design choices.
-The Elaboration phase focus on designing the architecture for the software
-application. The goal for these two phases is to define a solid foundation of
-the application before starting with the implementation and testing. In the
-Construction phase the developers should know exactly how the application
-should be implemented by referring to documents and models created in earlier
-phases. RUP is only one example of how a software development process could be
-applied to a project. Agile development processes has become popular the last
-couple of years, where processes like Scrum\cite{Schwaber2001} and Extreme
-Programming\cite{Beck1999} (XP) has been integrated in software development
-teams all over the world. Both Scrum and XP thrives to focus more on the
-implementation and on delivering high quality code than creating documents and
-models. But models will always be a tool for developers, also in agile
-development processes, when some aspects of a system needs to be explained.
-Because to explain parts of an implementation with a model will help to make the
-explanation less complex and more abstract. 
+required for a development cycle. Figure~\ref{fig:RUP} explains the four
+different phases, Inception, Elaboration, Construction and Transition, with
+different iterations for each phase that RUP provides. The Inception phase and
+the Elaboration phase is the two phases where some of the example models above
+are created, both under business modeling and requirements. For the Inception
+phase of RUP, the idea is to create the software application without writing
+any source code. This phase is  concerned with writing text and creating models
+that gives the developers a detailed specification on how the program should be
+implemented. In the Elaboration phase a prototype might be implemented to show
+the customer a possible implementation, but this phase also consist of creating
+and modifying an extensive amount text and models that specifies analysis and
+design choices. The Elaboration phase focus on designing the architecture for
+the software application. The goal for these two phases is to define a solid
+foundation of the application before starting with the implementation and
+testing. In the Construction phase the developers should know exactly how the
+application should be implemented by referring to documents and models created
+in earlier phases. RUP is only one example of how a software development
+process could be applied to a project. Agile development processes has become
+popular the last couple of years, where processes like Scrum\cite{Schwaber2001}
+and Extreme Programming\cite{Beck1999} (XP) has been integrated in software
+development teams all over the world. Both Scrum and XP thrives to focus more
+on the implementation and on delivering high quality code than creating
+documents and models. But models will always be a tool for developers, also in
+agile development processes, when some aspects of a system needs to be
+explained. Because to explain parts of an implementation with a model will help
+to make the explanation less complex and more abstract. 
 
 \begin{figure}[H]
 	\centering
@@ -121,13 +121,13 @@ modeling language. A metamodel defines the abstract syntax and provides a
 description of a modeling language. Another popular definition for
 metamodeling is that it is a ``model of models". This definition is both
 unhelpful and incorrect according to Steve Cook and Stuart Kent in their
-paper\cite{Cook2008}. They think that a better definition for a metamodel is
-that ``it is a model of the concepts expressed by a modeling language.'' A
-metamodel is basically a model that is specified by a metamodeling language.
-The exact definition of a metamodel is highly debated amongst MDE
-researchers\cite{Rutle_thesis}. When creating instance of these metamodels we can
-specify a Domain Specific Modelling Language (DSML) from the concrete syntax of
-a metamodel.
+paper\cite{Cook2008} published in 2008. They think that a better definition for
+a metamodel is that ``it is a model of the concepts expressed by a modeling
+language.'' A metamodel is basically a model that is specified by a
+metamodeling language. The exact definition of a metamodel is highly debated
+amongst MDE researchers\cite{Rutle_thesis}. When creating instance of these
+metamodels we can specify a Domain Specific Modelling Language (DSML) from the
+concrete syntax of a metamodel.
 
 \begin{figure}[H]
 	\centering
@@ -300,7 +300,7 @@ theory and graph transformations and is an extension of the Generalised
 Sketches\cite{Diskin2003} formalism that was initially developed by Zinovy
 Diskin.
 
-In October 2002 Dominique Duval wrote a paper where he specified that a
+In October 2002 Dominique Duval published a paper where he specified that a
 specification can be considered as a directed graph with additional structure
 in the same way that a theory can be considered as a category with additional
 structures\cite{Duval2003}. Generalised Sketches by Zinovy Diskin utilize the
@@ -332,7 +332,7 @@ nodes and arrows could be specified through several underlying layers of
 metamodels or specifications. The \emph{specification $\spec{S}$} also consist
 of a set of constraints, these constraints will restrict the model structure of
 a new instance model of this specification. Figure~\ref{fig:DPF_Spec} presents a
-specification $\spec{S}$\textsubscript{2}, that is specified by an underlying
+specification $\spec{S}$\textsubscript{2}, that is defined by an underlying
 specification $\spec{S}$\textsubscript{3} and describes a modeling language for
 some $\spec{S}$\textsubscript{1} specification. This specification includes two
 nodes Condition and Activity, two arrows ChoiceOut and Message and  two sets of
