@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/no.hib.dpf.core/src"
+    editDirectory="/no.hib.dpf.editor/src" modelPluginID="no.hib.dpf.core" modelName="Meta"
+    editPluginClass="no.hib.dpf.core.provider.MetamodelEditPlugin" editorPluginClass="no.hib.dpf.core.presentation.MetamodelEditorPlugin"
+    testsDirectory="/no.hib.dpf.tests/src" testSuiteClass="no.hib.dpf.core.tests.MetamodelAllTests"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
+    editPluginID="no.hib.dpf.editor" testsPluginID="no.hib.dpf.tests">
+  <foreignModel>Metamodel.ecore</foreignModel>
+  <genPackages prefix="Core" basePackage="no.hib.dpf" disposableProviderFactory="true"
+      ecorePackage="Metamodel.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Metamodel.ecore#//ValidatorType">
+      <genEnumLiterals ecoreEnumLiteral="Metamodel.ecore#//ValidatorType/OCL"/>
+      <genEnumLiterals ecoreEnumLiteral="Metamodel.ecore#//ValidatorType/JAVA"/>
+    </genEnums>
+    <genDataTypes ecoreDataType="Metamodel.ecore#//EResourceSet"/>
+    <genClasses ecoreClass="Metamodel.ecore#//Specification">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Metamodel.ecore#//Specification/graph"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Metamodel.ecore#//Specification/constraints"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//Specification/metaFile"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//Specification/signatureFile"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Metamodel.ecore#//Specification/signature"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Metamodel.ecore#//Specification/type"/>
+      <genOperations ecoreOperation="Metamodel.ecore#//Specification/createGraph">
+        <genParameters ecoreParameter="Metamodel.ecore#//Specification/createGraph/name"/>
+      </genOperations>
+      <genOperations ecoreOperation="Metamodel.ecore#//Specification/createConstraint">
+        <genParameters ecoreParameter="Metamodel.ecore#//Specification/createConstraint/predicate"/>
+        <genParameters ecoreParameter="Metamodel.ecore#//Specification/createConstraint/parameters"/>
+        <genParameters ecoreParameter="Metamodel.ecore#//Specification/createConstraint/mapping"/>
+        <genParameters ecoreParameter="Metamodel.ecore#//Specification/createConstraint/stuckedNodes"/>
+        <genParameters ecoreParameter="Metamodel.ecore#//Specification/createConstraint/stuckedArrows"/>
+        <genParameters ecoreParameter="Metamodel.ecore#//Specification/createConstraint/typeNodes"/>
+        <genParameters ecoreParameter="Metamodel.ecore#//Specification/createConstraint/typeArrows"/>
+      </genOperations>
+      <genOperations ecoreOperation="Metamodel.ecore#//Specification/validate"/>
+    </genClasses>
+    <genClasses ecoreClass="Metamodel.ecore#//Graph">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Metamodel.ecore#//Graph/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Metamodel.ecore#//Graph/nodes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Metamodel.ecore#//Graph/arrows"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//Graph/name"/>
+      <genOperations ecoreOperation="Metamodel.ecore#//Graph/createNode">
+        <genParameters ecoreParameter="Metamodel.ecore#//Graph/createNode/name"/>
+      </genOperations>
+      <genOperations ecoreOperation="Metamodel.ecore#//Graph/getGraphMember">
+        <genParameters ecoreParameter="Metamodel.ecore#//Graph/getGraphMember/id"/>
+      </genOperations>
+      <genOperations ecoreOperation="Metamodel.ecore#//Graph/createArrow">
+        <genParameters ecoreParameter="Metamodel.ecore#//Graph/createArrow/name"/>
+        <genParameters ecoreParameter="Metamodel.ecore#//Graph/createArrow/source"/>
+        <genParameters ecoreParameter="Metamodel.ecore#//Graph/createArrow/target"/>
+      </genOperations>
+      <genOperations ecoreOperation="Metamodel.ecore#//Graph/applyPredicate">
+        <genParameters ecoreParameter="Metamodel.ecore#//Graph/applyPredicate/predicate"/>
+        <genParameters ecoreParameter="Metamodel.ecore#//Graph/applyPredicate/nodes"/>
+        <genParameters ecoreParameter="Metamodel.ecore#//Graph/applyPredicate/edges"/>
+      </genOperations>
+      <genOperations ecoreOperation="Metamodel.ecore#//Graph/deleteNode">
+        <genParameters ecoreParameter="Metamodel.ecore#//Graph/deleteNode/node"/>
+      </genOperations>
+      <genOperations ecoreOperation="Metamodel.ecore#//Graph/deleteArrow">
+        <genParameters ecoreParameter="Metamodel.ecore#//Graph/deleteArrow/edge"/>
+      </genOperations>
+      <genOperations ecoreOperation="Metamodel.ecore#//Graph/getNodeByName">
+        <genParameters ecoreParameter="Metamodel.ecore#//Graph/getNodeByName/name"/>
+      </genOperations>
+      <genOperations ecoreOperation="Metamodel.ecore#//Graph/getArrowByName">
+        <genParameters ecoreParameter="Metamodel.ecore#//Graph/getArrowByName/name"/>
+      </genOperations>
+      <genOperations ecoreOperation="Metamodel.ecore#//Graph/createNode.1">
+        <genParameters ecoreParameter="Metamodel.ecore#//Graph/createNode.1/name"/>
+        <genParameters ecoreParameter="Metamodel.ecore#//Graph/createNode.1/typeNode"/>
+      </genOperations>
+      <genOperations ecoreOperation="Metamodel.ecore#//Graph/createArrow.1">
+        <genParameters ecoreParameter="Metamodel.ecore#//Graph/createArrow.1/name"/>
+        <genParameters ecoreParameter="Metamodel.ecore#//Graph/createArrow.1/source"/>
+        <genParameters ecoreParameter="Metamodel.ecore#//Graph/createArrow.1/target"/>
+        <genParameters ecoreParameter="Metamodel.ecore#//Graph/createArrow.1/typeEdge"/>
+      </genOperations>
+      <genOperations ecoreOperation="Metamodel.ecore#//Graph/extractSubgraph">
+        <genParameters ecoreParameter="Metamodel.ecore#//Graph/extractSubgraph/nodes"/>
+        <genParameters ecoreParameter="Metamodel.ecore#//Graph/extractSubgraph/arrows"/>
+      </genOperations>
+      <genOperations ecoreOperation="Metamodel.ecore#//Graph/getNodesForConstraint">
+        <genParameters ecoreParameter="Metamodel.ecore#//Graph/getNodesForConstraint/constraint"/>
+      </genOperations>
+      <genOperations ecoreOperation="Metamodel.ecore#//Graph/getArrowsForConstraint">
+        <genParameters ecoreParameter="Metamodel.ecore#//Graph/getArrowsForConstraint/constraint"/>
+      </genOperations>
+      <genOperations ecoreOperation="Metamodel.ecore#//Graph/getNodes">
+        <genParameters ecoreParameter="Metamodel.ecore#//Graph/getNodes/typeNodes"/>
+      </genOperations>
+      <genOperations ecoreOperation="Metamodel.ecore#//Graph/getArrows">
+        <genParameters ecoreParameter="Metamodel.ecore#//Graph/getArrows/types"/>
+      </genOperations>
+      <genOperations ecoreOperation="Metamodel.ecore#//Graph/getCopy"/>
+    </genClasses>
+    <genClasses ecoreClass="Metamodel.ecore#//Node">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//Node/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Metamodel.ecore#//Node/typeNode"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Metamodel.ecore#//Node/outgoings"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Metamodel.ecore#//Node/incomings"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Metamodel.ecore#//Node/constraints"/>
+      <genOperations ecoreOperation="Metamodel.ecore#//Node/arrowCanMakeConnectionAsTarget">
+        <genParameters ecoreParameter="Metamodel.ecore#//Node/arrowCanMakeConnectionAsTarget/intendedTarget"/>
+      </genOperations>
+      <genOperations ecoreOperation="Metamodel.ecore#//Node/canReachTargetByOneArrow">
+        <genParameters ecoreParameter="Metamodel.ecore#//Node/canReachTargetByOneArrow/target"/>
+      </genOperations>
+      <genOperations ecoreOperation="Metamodel.ecore#//Node/arrowCanMakeConnectionAsTarget.1">
+        <genParameters ecoreParameter="Metamodel.ecore#//Node/arrowCanMakeConnectionAsTarget.1/intendedTarget"/>
+        <genParameters ecoreParameter="Metamodel.ecore#//Node/arrowCanMakeConnectionAsTarget.1/typeEdge"/>
+      </genOperations>
+      <genOperations ecoreOperation="Metamodel.ecore#//Node/canReachTargetByTypeArrow">
+        <genParameters ecoreParameter="Metamodel.ecore#//Node/canReachTargetByTypeArrow/target"/>
+        <genParameters ecoreParameter="Metamodel.ecore#//Node/canReachTargetByTypeArrow/typeEdge"/>
+      </genOperations>
+      <genOperations ecoreOperation="Metamodel.ecore#//Node/getArrowto">
+        <genParameters ecoreParameter="Metamodel.ecore#//Node/getArrowto/target"/>
+      </genOperations>
+      <genOperations ecoreOperation="Metamodel.ecore#//Node/getTypeName"/>
+      <genOperations ecoreOperation="Metamodel.ecore#//Node/generateUniqueName"/>
+      <genOperations ecoreOperation="Metamodel.ecore#//Node/canCreateTypedArrow">
+        <genParameters ecoreParameter="Metamodel.ecore#//Node/canCreateTypedArrow/intendedTarget"/>
+      </genOperations>
+      <genOperations ecoreOperation="Metamodel.ecore#//Node/getTypeArrow">
+        <genParameters ecoreParameter="Metamodel.ecore#//Node/getTypeArrow/intendedTarget"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="Metamodel.ecore#//Arrow">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//Arrow/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Metamodel.ecore#//Arrow/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Metamodel.ecore#//Arrow/target"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Metamodel.ecore#//Arrow/typeArrow"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Metamodel.ecore#//Arrow/constraints"/>
+      <genOperations ecoreOperation="Metamodel.ecore#//Arrow/getTypeName"/>
+      <genOperations ecoreOperation="Metamodel.ecore#//Arrow/generateUniqueName"/>
+    </genClasses>
+    <genClasses ecoreClass="Metamodel.ecore#//Signature">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Metamodel.ecore#//Signature/predicates"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//Signature/name"/>
+      <genOperations ecoreOperation="Metamodel.ecore#//Signature/getPredicateBySymbol">
+        <genParameters ecoreParameter="Metamodel.ecore#//Signature/getPredicateBySymbol/symbol"/>
+      </genOperations>
+      <genOperations ecoreOperation="Metamodel.ecore#//Signature/addPredicate">
+        <genParameters ecoreParameter="Metamodel.ecore#//Signature/addPredicate/dPredicate"/>
+      </genOperations>
+      <genOperations ecoreOperation="Metamodel.ecore#//Signature/removePredicate">
+        <genParameters ecoreParameter="Metamodel.ecore#//Signature/removePredicate/dPredicate"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="Metamodel.ecore#//Predicate">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//Predicate/symbol"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Metamodel.ecore#//Predicate/shape"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//Predicate/parameters"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Metamodel.ecore#//Predicate/validator"/>
+      <genOperations ecoreOperation="Metamodel.ecore#//Predicate/createConstraint">
+        <genParameters ecoreParameter="Metamodel.ecore#//Predicate/createConstraint/nodes"/>
+        <genParameters ecoreParameter="Metamodel.ecore#//Predicate/createConstraint/arrows"/>
+      </genOperations>
+      <genOperations ecoreOperation="Metamodel.ecore#//Predicate/canCreateConstraint">
+        <genParameters ecoreParameter="Metamodel.ecore#//Predicate/canCreateConstraint/nodes"/>
+        <genParameters ecoreParameter="Metamodel.ecore#//Predicate/canCreateConstraint/arrows"/>
+        <genParameters ecoreParameter="Metamodel.ecore#//Predicate/canCreateConstraint/modelToBeConstrained"/>
+      </genOperations>
+      <genOperations ecoreOperation="Metamodel.ecore#//Predicate/validateSemantics">
+        <genParameters ecoreParameter="Metamodel.ecore#//Predicate/validateSemantics/parameters"/>
+        <genParameters ecoreParameter="Metamodel.ecore#//Predicate/validateSemantics/mapping"/>
+        <genParameters ecoreParameter="Metamodel.ecore#//Predicate/validateSemantics/graph"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="Metamodel.ecore#//SemanticValidator">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//SemanticValidator/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//SemanticValidator/validator"/>
+      <genOperations ecoreOperation="Metamodel.ecore#//SemanticValidator/validateSemantics">
+        <genParameters ecoreParameter="Metamodel.ecore#//SemanticValidator/validateSemantics/constraintParameters"/>
+        <genParameters ecoreParameter="Metamodel.ecore#//SemanticValidator/validateSemantics/typeNodes"/>
+        <genParameters ecoreParameter="Metamodel.ecore#//SemanticValidator/validateSemantics/typeArrows"/>
+        <genParameters ecoreParameter="Metamodel.ecore#//SemanticValidator/validateSemantics/stuckedNodes"/>
+        <genParameters ecoreParameter="Metamodel.ecore#//SemanticValidator/validateSemantics/stuckedArrows"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="Metamodel.ecore#//Constraint">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Metamodel.ecore#//Constraint/nodes"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Metamodel.ecore#//Constraint/arrows"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Metamodel.ecore#//Constraint/predicate"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Metamodel.ecore#//Constraint/mappings"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//Constraint/parameters"/>
+      <genOperations ecoreOperation="Metamodel.ecore#//Constraint/reconnect">
+        <genParameters ecoreParameter="Metamodel.ecore#//Constraint/reconnect/nodes"/>
+        <genParameters ecoreParameter="Metamodel.ecore#//Constraint/reconnect/arrows"/>
+        <genParameters ecoreParameter="Metamodel.ecore#//Constraint/reconnect/specification"/>
+      </genOperations>
+      <genOperations ecoreOperation="Metamodel.ecore#//Constraint/disconnect"/>
+      <genOperations ecoreOperation="Metamodel.ecore#//Constraint/addArrow">
+        <genParameters ecoreParameter="Metamodel.ecore#//Constraint/addArrow/arrow"/>
+      </genOperations>
+      <genOperations ecoreOperation="Metamodel.ecore#//Constraint/addNode">
+        <genParameters ecoreParameter="Metamodel.ecore#//Constraint/addNode/node"/>
+      </genOperations>
+      <genOperations ecoreOperation="Metamodel.ecore#//Constraint/validate">
+        <genParameters ecoreParameter="Metamodel.ecore#//Constraint/validate/graph"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="Metamodel.ecore#//GraphHomomorphism">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Metamodel.ecore#//GraphHomomorphism/nodeMapping"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Metamodel.ecore#//GraphHomomorphism/arrowMapping"/>
+    </genClasses>
+    <genClasses ecoreClass="Metamodel.ecore#//NodeToNodeMap">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Metamodel.ecore#//NodeToNodeMap/key"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Metamodel.ecore#//NodeToNodeMap/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Metamodel.ecore#//ArrowToArrowMap">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Metamodel.ecore#//ArrowToArrowMap/key"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Metamodel.ecore#//ArrowToArrowMap/value"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Metamodel.ecore#//IDObject">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//IDObject/id"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

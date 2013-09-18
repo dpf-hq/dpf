@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Metamodel
+Bundle-SymbolicName: no.hib.dpf.codegen.xpand.metamodel
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: no.hib.dpf.core;bundle-version="0.1.1",
+ org.apache.log4j;bundle-version="1.2.15",
+ org.eclipse.xtend.typesystem.emf;bundle-version="1.0.1",
+ org.eclipse.xtend;bundle-version="1.1.0"
+Export-Package: no.hib.dpf.codegen.xpand.metamodel,
+ no.hib.dpf.codegen.xpand.metamodel.workflow
+Bundle-ActivationPolicy: lazy
