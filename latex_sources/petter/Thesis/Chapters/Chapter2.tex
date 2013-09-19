@@ -114,33 +114,33 @@ we described above as a supplement in developing an application. Runtime models
 %-----------------------------------
 %	SUBSECTION 1
 %-----------------------------------
-\section{Metamodeling}
+\section{Meta-modeling}
 
-Metamodeling plays a vital role in model driven engineering (MDE) to describe a
-modeling language. A metamodel defines the abstract syntax and provides a
+Meta-modeling plays a vital role in model driven engineering (MDE) to describe a
+modeling language. A meta-model defines the abstract syntax and provides a
 description of a modeling language. Another popular definition for
-metamodeling is that it is a ``model of models". This definition is both
+meta-modeling is that it is a ``model of models". This definition is both
 unhelpful and incorrect according to Steve Cook and Stuart Kent in their
 paper\cite{Cook2008} published in 2008. They think that a better definition for
-a metamodel is that ``it is a model of the concepts expressed by a modeling
-language.'' A metamodel is basically a model that is specified by a
-metamodeling language. The exact definition of a metamodel is highly debated
+a meta-model is that ``it is a model of the concepts expressed by a modeling
+language.'' A meta-model is basically a model that is specified by a
+meta-modeling language. The exact definition of a meta-model is highly debated
 amongst MDE researchers\cite{Rutle_thesis}. When creating instance of these
-metamodels we can specify a Domain Specific Modelling Language (DSML) from the
-concrete syntax of a metamodel.
+meta-models we can specify a Domain Specific Modelling Language (DSML) from the
+concrete syntax of a meta-model.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.6]{./Figures/SimpleMetamodel.png}
-	\caption[Example of a model and metamodel]
-	{A simple example of a model and its metamodel.}
-	\label{fig:SimpleMetamodel}
+	\includegraphics[scale=0.6]{./Figures/SimpleMeta-model.png}
+	\caption[Example of a model and meta-model]
+	{A simple example of a model and its meta-model.}
+	\label{fig:SimpleMeta-model}
 \end{figure}
 
-Figure~\ref{fig:SimpleMetamodel} shows a simple example of a instance model and
-its corresponding metamodel. This model has two classes, Student and Course, and
+Figure~\ref{fig:SimpleMeta-model} shows a simple example of a instance model and
+its corresponding meta-model. This model has two classes, Student and Course, and
 a bidirectional association, take course and has students, that relate
-these two classes. The model is specified by a metamodel that consists of two
+these two classes. The model is specified by a meta-model that consists of two
 metaclasses Class and Association and an association between them. Both Student
 and Course are an instance of the metaclass Class, while the association
 between Student and Course are instance of the metaclass Association. The
@@ -159,7 +159,7 @@ developed by the organisation.
 
 The Object Management Group was in need of a architecture to define the
 UML. Therefore the Meta-Object Facility has its origin from, that specifies UML.
-MOF and is a semi-formal approach to writing metamodels. The Meta-Object
+MOF and is a semi-formal approach to writing meta-models. The Meta-Object
 Facility\cite{MOF} (MOF) is an Object Management Group standard for model
 driven engineering. According to OMG, this standard provi des a four leveled
 architecture.
@@ -174,11 +174,11 @@ architecture.
 
 Figure~\ref{fig:MOFLayers} gives a impression of the four layers that are
 available in the Meta-Object Facility. At the top level, M\textsubscript{3}
-there is a meta-metamodel called MOF. This meta-metamodel is meant to both
-describe it self and conform to itself. This MOF meta-metamodel is then used to
-describe metamodels at the M\textsubscript{2} level. The UML metamodel is an
-example of such a metamodel. The idea is that these metamodels are specified by
-some meta-modeling language. These metamodels at the M\textsubscript{2} layer
+there is a meta-meta-model called MOF. This meta-meta-model is meant to both
+describe it self and conform to itself. This MOF meta-meta-model is then used to
+describe meta-models at the M\textsubscript{2} level. The UML meta-model is an
+example of such a meta-model. The idea is that these meta-models are specified by
+some meta-modeling language. These meta-models at the M\textsubscript{2} layer
 describes elements that can be used in the M\textsubscript{1} layer, namely
 models. These could be models specified by the modeling language, UML. Finally
 at the M\textsubscript{0} we have an instance model of a real world object. 
@@ -215,7 +215,7 @@ diagrams\cite{Warmer:2003:OCL:861416}.
 The difference between object and classes needs to be specified. A class
 is often a meta element for an object. This means that a class could be part of
 a model that describes an object element, and therefore an object element is
-typed by class element\cite{OO_UML}. Figure~\ref{fig:SimpleMetamodel} describes
+typed by class element\cite{OO_UML}. Figure~\ref{fig:SimpleMeta-model} describes
 the two object elements Student and Course that are an instance of the
 meta-element Class.
 
@@ -230,7 +230,7 @@ meta-element Class.
 These restrictions on model elements can either be a structural constraint or an
 attached constraint. These structural constraints are defined in the structure
 of the models. In figure~\ref{fig:Constraints} we have extended the model we
-introduced in figure~\ref{fig:SimpleMetamodel} with some  modeling elements. We
+introduced in figure~\ref{fig:SimpleMeta-model} with some  modeling elements. We
 have created an association that specifies that a student can date other
 students. In this model we can see that the model has three multiplicity
 constraints that are part of the models structure. A multiplicity constraint for
@@ -289,6 +289,18 @@ one another.
 
 \subsubsection{EMF}
 
+In EMF we can create data models based on the Essential MOF (EMOF) and specify
+domain specific languages. The Henshin meta-model is created as an EMF
+meta-model and uses the Ecore meta-model for typing purposes.
+
+EMF will generate interfaces and factory
+
+With EMF you make your domain model explicit which helps to provide clear
+visibility of the model. EMF also provides change notification functionality to
+the model in case of model changes. EMF will generate interfaces and factory to
+create your objects; therefore it helps you to keep your application clean from
+the individual implementaiton classes.
+
 \section{DPF}
 
 Diagram Predicate Framework\cite{Rutle_thesis,Rossini_thesis,Lamo2013} (DPF) is
@@ -307,8 +319,8 @@ structures\cite{Duval2003}. Generalised Sketches by Zinovy Diskin utilize the
 concept of sketches. A sketch, first introduced by Ehresman in 1966, is a
 directed graph that provides additional properties, such as colimit, limit and
 constraints. DPF utilize this concept through an diagrammatic approach to
-metamodeling and to facilitate the concepts of MDE. The framework provides the
-possibility to define an unlimited layers of metamodeling. In DPF models are
+meta-modeling and to facilitate the concepts of MDE. The framework provides the
+possibility to define an unlimited layers of meta-modeling. In DPF models are
 represented as specifications. 
 
 \begin{itemize}
@@ -329,7 +341,7 @@ A \emph{specification $\spec{S}$} has an underlying graph S that contains
 modeling elements that defines the model structure of the specification. These
 modeling elements are always represented as a node and an arrow. However these
 nodes and arrows could be specified through several underlying layers of
-metamodels or specifications. The \emph{specification $\spec{S}$} also consist
+meta-models or specifications. The \emph{specification $\spec{S}$} also consist
 of a set of constraints, these constraints will restrict the model structure of
 a new instance model of this specification. Figure~\ref{fig:DPF_Spec} presents a
 specification $\spec{S}$\textsubscript{2}, that is defined by an underlying
@@ -371,8 +383,8 @@ to create a graph structure.
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.7]{./Figures/MOF_vs_DPF}
-	\caption[OMG's layers of metamodeling and multilayer modeling]
-	{OMG's layers of metamodeling and an arbitrary layer of metamodeling.}
+	\caption[OMG's layers of meta-modeling and multilayer modeling]
+	{OMG's layers of meta-modeling and an arbitrary layer of meta-modeling.}
 	\label{fig:MOF_vs_DPF}
 \end{figure}
 

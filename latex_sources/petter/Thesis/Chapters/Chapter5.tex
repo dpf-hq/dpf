@@ -62,7 +62,7 @@ purpose of this paper.
 	\label{fig:AGGScreen}
 \end{figure}
 
-\subsection{Defining Metamodels}
+\subsection{Defining Meta-models}
 
 Before the host graphs can be created, we have to initialise the AGG
 tool with the metamodels. In AGG both the source and the target metamodel are
@@ -83,7 +83,7 @@ The references and source graph can be deleted through a cycle of transformation
 
 For the type graph, the user must define nodes and arrows for each meta
 element for both the source and target model. These nodes and arrows can also
-have attributes. Nodes represents elements from the two modelling languages and
+have attributes. Nodes represents elements from the two modeling languages and
 arrows represents the associations between these elements. In the type graph we
 want to distinguish between associations and references, and therefore we
 represent references as a dashed edge. These dashed edges are not given any
@@ -172,11 +172,11 @@ the time for each rule.
 
 The Henshin project\cite{Henshin} provides a model transformation
 language and an editor for defining model transformations for the Eclipse
-Modelling Framework \cite{Steinberg2009}. The Henshin project provides a
+Modeling Framework \cite{Steinberg2009}. The Henshin project provides a
 transformation language that has support for both endogenous and exogenous
 model transformations and a provided graphical syntax. With the help of a
 graphical editor, it provides the user with an intuitive way of representing
-transformation rules. The Henshin Editor is build on the Eclipse Modelling
+transformation rules. The Henshin Editor is build on the Eclipse Modeling
 Framework and is integrated as an Eclipse plugin. The Henshin Editor was first
 developed in a student project at Technical University of Berlin in 2010, and
 extended in the bachelor thesis \cite{JohannSchmidt} of Johann Schmidt and the
@@ -215,11 +215,11 @@ models and are independent of one and another.
 	\label{fig:Henshin_TreeEditor}
 \end{figure}
 
-\subsection{Defining Metamodels}
+\subsection{Defining Meta-models}
 
 The Henshin language requires a source and a target metamodel to be able to
 perform model transformations. The target metamodel can either be the same as
-the source metamodel or defined in another modelling language. Either way, before
+the source metamodel or defined in another modeling language. Either way, before
 the users can start creating transformation rules, the metamodels has
 to be defined. To define these metamodels, Henshin use Ecore, that is
 provided with the Eclipse Modeling Framework\cite{Steinberg2009}. Ecore models
@@ -241,7 +241,7 @@ predefined list of types or by defining user created EData types. For the
 purpose of this case study we only needed to name the different nodes and
 therefore we only needed the data type EString. Through the use of these Ecore
 elements, we can create the two metamodels from
-figure~\ref{fig:ActivityMetamodel} and figure~\ref{fig:PetriNetsMetamodel} from
+figure~\ref{fig:ActivityMeta-model} and figure~\ref{fig:PetriNetsMeta-model} from
 problem specification in the first chapter.
 
 
@@ -442,10 +442,10 @@ specify the way to produce a set of target models from a set of source models.
 The source and target models of an ATL module must be consistent with their
 respective metamodels. 
 
-\subsection{Defining Metamodels}
+\subsection{Defining Meta-models}
 
-Defining metamodels for the ATL language is defined by the modelling language
-Ecore. Since defining the metamodels are defined the same way as Henshin, see
+Defining metamodels for the ATL language is defined by the modeling language
+Ecore. Since defining the meta-models are defined the same way as Henshin, see
 chapter 4.2.
 
 At first, the user start out with a blank ATL file. Since we are working in

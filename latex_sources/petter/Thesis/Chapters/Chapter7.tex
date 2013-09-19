@@ -66,15 +66,15 @@ both the LHS and the RHS. The Henshin Model Editor updates the RHS and the LHS
 explicitly depending of which action type is provided from the graphical
 editor when creating nodes and edges. But other than creating and managing
 rules both AGG and Henshin are very similar. They both provide a graphical editor where
-the users can insert elements that conform to a metamodel. For AGG these
-metamodels are represented as a type graph in the tree based editor. While in
-Henshin these metamodels are imported to the Module element in the Henshin Model
+the users can insert elements that conform to a meta-model. For AGG these
+meta-models are represented as a type graph in the tree based editor. While in
+Henshin these meta-models are imported to the Module element in the Henshin Model
 Editor and synchronized with the graphical editor file.
 
 The third transformation tool we encountered is ATLAS Transformation Language.
 And while this tool is definitely not as intuitive as the two graph
 transformation tools, once you understand how to create transformation rules
-and how to work with the included metamodels, it is a good framework for
+and how to work with the included meta-models, it is a good framework for
 working with model transformations. However, if a user do not fully understand
 the Object Constraint Language (OCL), ATL is rather a hard tool to work with.
 Because OCL has a very leveled learning curve, since it is a declarative
@@ -85,36 +85,36 @@ a very strict way of writing transformation rules, since the tool uses a
 textual based approach to create transformation rules. The user has to use the
 predefined stereotypes defined by ATL.
 
-\subsection{The Metamodels}
-Metamodels are initialised and handled differently amongst some of the tools.
-The initialisation of the metamodels for Henshin and ATL is similar. Both of
-these tools use Ecore to create metamodels, since they are both integrated with
+\subsection{The Meta-models}
+Meta-models are initialised and handled differently amongst some of the tools.
+The initialisation of the meta-models for Henshin and ATL is similar. Both of
+these tools use Ecore to create meta-models, since they are both integrated with
 EMF. For Henshin and ATL the user has to create one Ecore model for both the
-source and the target metamodel. Both of these metamodels can be imported both
+source and the target meta-model. Both of these meta-models can be imported both
 into Henshin and ATL. One thing that is convenient with Henshin that ATL does
-not provide, is that Henshin provides a list of metamodels that is available
-for the user. These are metamodels that can be used either as source or target
-metamodel. If we want to translate a instance model to an Ecore model, we can
-in Henshin import this ecore metamodel from a list and use it as the target metamodel.
+not provide, is that Henshin provides a list of meta-models that is available
+for the user. These are meta-models that can be used either as source or target
+meta-model. If we want to translate a instance model to an Ecore model, we can
+in Henshin import this ecore meta-model from a list and use it as the target meta-model.
 
 Unlike Henshin and ATL, AGG does not allow for separately initialisation of
-metamodels. For AGG we have to create both the target and source metamodel in a
-disjoint metamodel, or one common type graph in AGG.
+meta-models. For AGG we have to create both the target and source meta-model in a
+disjoint meta-model, or one common type graph in AGG.
 
 The user has to fill out a configuration form for an ATL model transformation.
-This form the user has to explicitly assign the metamodels to source model and
+This form the user has to explicitly assign the meta-models to source model and
 target models. The run configuration is done prior to the execution of the model
 to model transformation. In Henshin the user has to implicit include the
-metamodels in the Henshin module element. Henshin will not allow the user to
+meta-models in the Henshin module element. Henshin will not allow the user to
 create nodes or create edges between nodes that are not defined in the
-metamodels. 
+meta-models. 
 
-AGG on the other hand uses a disjoint metamodel. This means that in AGG there
+AGG on the other hand uses a disjoint meta-model. This means that in AGG there
 is something called a type graph, and in this type graph both the target and
-the source metamodel are defined. AGG handles consistency similar to
+the source meta-model are defined. AGG handles consistency similar to
 Henshin. AGG will restrict the user to only create nodes or arrows between
 nodes that are specified in the type graph. Figure \ref{fig:AggTypeGraph}
-in chapter 3 shows that there are created references between two metamodels. And
+in chapter 3 shows that there are created references between two meta-models. And
 through the use of these references, AGG can create and modify application
 rules to translate these two models represented in the type graph. 
  
@@ -123,7 +123,7 @@ We have seen that the creation of transformation rules varies over the three
 different tools. ATL provides a textual based approach and therefore requires
 multiple lines of code. The abstract syntax for the three different tools are
 not that different, since both Henshin and ATL utilizes the Ecore model to
-create metamodels and AGG creates one type graph that contains the abstract
+create meta-models and AGG creates one type graph that contains the abstract
 syntax for both the source and target model. The abstract syntax can be
 visualized either by using the tree based model editor that EMF provides or by
 using a tird party tool for a graphical representation of the models. The
@@ -243,7 +243,7 @@ Its clear to see that all three tools are unidirectional, since they can be
 executed in one direction only. And that is to compute a target model from a
 source model. The three tools requires two model transformations to be able to
 transform in multiple directions. Where the source and target model and
-metamodels switch places. But this is not how multidirectional transformations
+meta-models switch places. But this is not how multidirectional transformations
 work. A multidirectional transformation can execute in both direction when
 performing a model transformation.
 
@@ -265,7 +265,7 @@ Graphical editor &\cellcolor{green!25}Yes &
 \cellcolor{green!25}Yes &\cellcolor{red!25}No  \\
 Integrated with Java & \cellcolor{green!25}Yes &
 \cellcolor{green!25}Yes & \cellcolor{green!25}Yes \\
-Separate metamodels & \cellcolor{red!25}No &
+Separate meta-models & \cellcolor{red!25}No &
 \cellcolor{green!25}Yes & \cellcolor{green!25}Yes \\
 Integrated with EMF & \cellcolor{red!25}No &
 \cellcolor{green!25}Yes & \cellcolor{green!25}Yes \\
@@ -290,7 +290,7 @@ produces the same number of target models. Take an ATL module as an example. It
 accepts a fixed number of models as input, and returns a fixed number of target
 models. This means that an ATL module can not generate an unknown number of
 target models. If there is one input model, then there will be one output model
-that conforms to a target metamodel.
+that conforms to a target meta-model.
 
 Both AGG and Henshin provides a graphical editor, where the users can create and
 modify transformation rules. This makes them both very intuitive for the users.
@@ -304,7 +304,7 @@ module that has a list of rules. This is because the ATL transformation engine
 relies on a file extension with the name ``atl''.
 
 One thing that is worth mentioning is that AGG does not support the Eclipse
-Modelling Framework. In EMF the root of all modelling objects is called
+Modeling Framework. In EMF the root of all modeling objects is called
 EObject. And this EObject has no references to the Java Object. Therefore AGG
 can not be integrated with EMF, since AGG can take Java Objects as input,
 but not EObjects. Both Henshin and ATL supports EMF. This means that the user
@@ -330,7 +330,7 @@ When ATL transformation language executes the application rules for the model to
 model transformation, a new model instance is created for the target model. This
 means that the source model is independent of the target model. Where Henshin
 and AGG performs in-place model to model transformations. This means that they
-both operate on an instance model of the source metamodel, and translates
+both operate on an instance model of the source meta-model, and translates
 inside this instance model. All three approaches can however give the same
 result. Inn AGG and Henshin the users just need to make sure to delete unwanted
 elements from the translated host graph. On the other side, for ATL this is not

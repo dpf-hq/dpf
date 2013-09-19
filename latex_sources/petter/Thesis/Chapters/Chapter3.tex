@@ -46,7 +46,7 @@ produce a target model expressed in the same language. While an exogenous model
 transformation start with a source model expressed in one modelling language and
 translate this into a target model expressed in another modelling language. It
 is essential that these models remain consistent, and therefore both the source
-and target model have to conform to their corresponding metamodel.
+and target model have to conform to their corresponding meta-model.
 
 \begin{figure}[H]
   \centering
@@ -65,12 +65,12 @@ The main idea behind changing two models are to read the content of a source
 model and write the contents to a target model. The transformation engine
 executes a transformation language that specifies a set of guidelines that
 express how the target model is constructed. These guidelines is created from
-metadata that are defined in the source and target metamodel to create an
+metadata that are defined in the source and target meta-model to create an
 executable environment for the transformation engine. Where the transformation
-language use both the source and target metamodel as a reference point for the
+language use both the source and target meta-model as a reference point for the
 source and target model. The transformation language specifies how a
 translation between two models should be applied through the use of these
-metamodels. Both metamodels provides some abstract syntax that a transformation
+meta-models. Both meta-models provides some abstract syntax that a transformation
 language can utilize to specify a model transformation environment. One aspect
 behind the abstract syntax that should be taken into consideration is that the
 concrete syntax of the abstract syntax can be either textual or graphical.
@@ -85,7 +85,7 @@ takes a source model and produce implementation code as a target model. The
 other approach is refereed to as Model to Model (M2M) transformation and takes a
 source model as an input model and produce a target model. The distinction
 between these two categories is that a M2M transformation produce an instance
-model that conforms to some metamodel while an M2T produces strings as its
+model that conforms to some meta-model while an M2T produces strings as its
 target model. 
 
 \subsection{Model Transformations in MDE}
@@ -128,7 +128,7 @@ However it is important to address that at top level, we can divide model
 transformations into to categories, namely model to text and model to model
 transformations. The major difference between these categories are that model to
 model transformations generate a target model as an instance of the targets
-metamodel. While the target of a model to text transformation are string
+meta-model. While the target of a model to text transformation are string
 sequences. Model to text transformation are also often referred to as model to
 code transformation since a collection of strings can be source code that
 corresponds to some programming language. 
@@ -172,10 +172,10 @@ transformation rule. For example in ATL Transformation Language (ATL) \cite{ATL}
 a transformation rule is implemented as a function, that consists of various
 steps on how this transformation rule should be applied. 
 
-Every transformation rule has a metamodel attached. A metamodel is referred
+Every transformation rule has a meta-model attached. A meta-model is referred
 to as a domain in Czarnecki and Helsen's survey\cite{Czarnecki2006}. This
-is to make the term metamodel a more general term since some transformation
-languages take other approaches to how these metamodels are created. The
+is to make the term meta-model a more general term since some transformation
+languages take other approaches to how these meta-models are created. The
 Attributed Graph Grammar System\cite{AGG} (AGG) for example, uses a common type
 graph for both source and target model that contains all possible elements that
 are available to create transformation rules. Therefore its better to use the
@@ -188,7 +188,7 @@ its disposal.
 These domains for a transformation rule are expressed in a language that
 describes the possible structures for a model for that domain. When we operate
 on models expressed in the context of MDA, then the language of the domain has
-the form of a metamodel expressed in MOF\cite{MOF}.
+the form of a meta-model expressed in MOF\cite{MOF}.
 
 
 \subsection{Rule Application Control}
@@ -220,7 +220,7 @@ not intended.
 How can a model transformation environment distinguish if a model
 transformation is an endogenous or exogenous model transformation? This is
 achieved by specifying how a source model and target model are related to one
-another. These source and target models can relate to a metamodel for example.
+another. These source and target models can relate to a meta-model for example.
 Both the source and target model could be described by the same modeling
 language. This specifies that a translation between source and target model are
 an endogenous model transformation. And as we described in earlier in this
@@ -232,7 +232,7 @@ environment is responsible to read and write these models, and to make sure that
 these models remain consistent. One could say that the target model are
 implicit depending on a source model, since a model transformation requires a
 source model to translate accordingly. The model transformation language creates
-transformation rules based on the corresponding metamodels that describes both
+transformation rules based on the corresponding meta-models that describes both
 the source and target model. And therefore administrate how these models relate
 to one another through these transformation rules. If the source and target
 models are written or modelled by using two different modeling languages, then
@@ -304,6 +304,7 @@ graph.
 %----------------------------------------------------------------------------------------
 
 \section{Graph based Approach to Model Transformations} 
+\label{sec:graph_based}
 
 One common approach to model transformations is by graph transformations,
 also referred to as graph rewriting. Graph rewriting can be implemented with
