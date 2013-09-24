@@ -3,16 +3,15 @@ package no.hib.dpf.editor.extension_points.painting;
 import java.util.List;
 
 import no.hib.dpf.editor.extension_points.INodePainting;
+import no.hib.dpf.editor.extension_points.border.BasicNodeFigure;
 import no.hib.dpf.editor.figures.EditableLabel;
 import no.hib.dpf.editor.figures.NodeFigure;
-import no.hib.dpf.editor.preferences.DPFEditorPreferences;
 
 import org.eclipse.draw2d.AbstractBorder;
 import org.eclipse.draw2d.ChopboxAnchor;
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.geometry.Insets;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
@@ -20,24 +19,14 @@ import org.eclipse.draw2d.geometry.Rectangle;
 
 public class CirclePainting implements INodePainting {
 
-	public class CircleFigure extends NodeFigure{
+	public class CircleFigure extends BasicNodeFigure{
 		public CircleFigure(EditableLabel name) {
 			this(name, null);
-			setOpaque(true);
-			setBackgroundColor(DPFEditorPreferences.getDefault().getNodeColor());
-			listenToNodeColorProperty();
 		}
 		@SuppressWarnings("rawtypes")
 		public CircleFigure(EditableLabel name, List colums) {
-			ToolbarLayout layout = new ToolbarLayout();
-			layout.setMinorAlignment(ToolbarLayout.ALIGN_CENTER);
-			layout.setStretchMinorAxis(false);
-			layout.setSpacing(2);
-			setLayoutManager(layout);
+			super(name, colums);
 			setBorder(new CircleBorder());
-			setOpaque(true);
-			add(name);
-			nameLabel = name;
 		}
 	}
 	public class CircleBorder extends AbstractBorder {

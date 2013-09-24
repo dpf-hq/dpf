@@ -310,7 +310,7 @@ public class DArrowEditPart extends GraphicalConnectionEditPart implements NodeE
 	@Override
 	protected void refreshVisuals() {
 		DArrow darrow = getDArrow();
-		if(getEditor() != null)
+		if(getEditor() != null && connectionFigure instanceof ArrowConnection)
 			((ArrowConnection)connectionFigure).setErrorImageFlag(getEditor().isMakerExisting(darrow.getArrow()));
 		refreshBendpoints();
 	}

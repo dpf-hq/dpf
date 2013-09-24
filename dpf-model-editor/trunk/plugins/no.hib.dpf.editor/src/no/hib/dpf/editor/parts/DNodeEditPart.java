@@ -215,7 +215,7 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 		if(nodePaint == null)
 			try {
 				String name = null;
-				if(!(getDNode() instanceof DNode))
+				if(getDNode() instanceof DNode)
 					name = getDNode().getDType().getConfigureString();
 				if(name == null || name.isEmpty())
 					return null;
