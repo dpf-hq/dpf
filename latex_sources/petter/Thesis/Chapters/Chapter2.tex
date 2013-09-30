@@ -90,16 +90,66 @@ quality in software development. This is achieved by not only to use models as
 documentation, but instead to use models as the major artifact in a software
 development cycle. The idea is to use models at different levels of abstraction
 and apply model transformations to automate the implementation on these
-models.
-This will raise the level of abstraction in program and problem specification.
-We can divide these models into two main model classes, namely development
-models and runtime models\cite{France2007}. Development models is used as an
+models. This will raise the level of abstraction in program and problem
+specification. We can divide these models into two main model classes, namely
+development models and runtime models. Development models is used as an
 abstraction above code level. These models could represent software
 requirements, work flow, architecture and software implementation. These
 development models are most typically used in software development process that
 we described above as a supplement in developing an application. Runtime models
+represents executable systems of a software application. Example of such
+executable systems could be database operations or computations of data. There
+has been an increase in MDE researchers that explore how runtime models can be
+used to support dynamic adaptation of systems for a software
+application\cite{France2007}. The idea for MDE is to be able to specify these
+development models as runtime models and evolve software applications with the
+use of runtime models and development models as major artifacts of a development
+process. 
+
+A typical Model Driven Software Engineering (MDSE) approach is to obtain the
+running software application through model transformations that produce a more
+and more detailed version of the application until an executable version is
+created. We reach this level of automation by applying model transformations to
+models at earlier levels of abstraction and producing models that contains a
+more and more detailed description of the software. This highlights one main
+advantage of a model driven approach, and that is to bridge the communication
+gap between requirements/analysis and implementation\cite{Brown2008}. For a
+traditional development process today there is a gap in communication between
+software developers and a customer. Because a customer is usually not an expert
+in designing and implementing a software application. A customer can provide a
+set of requirements for a software application and take part in analysing these
+requirements to make sure that the development team shares the customers thought
+of the program. The requirements and analysis can be specified down to every
+detail, however a software application might experience different design choices
+that leads to a different implementation of the application compared what a
+business needs. If the visions of MDE is adopted to a software development
+process then this could help narrow gap in communication between developers and
+stakeholders. Because now we can apply model transformation that changes input
+models to target models that represents the design of a software application.
+From these design models we can then generate implementation code through the use
+of model transformations. We will describe model transformations and their
+purpose in model driven engineering in more depths in chapter~\ref{Chapter3}.
+To use models at each level of abstraction is less complex than implementation
+code. This represents another benefit of adopting MDSE into the development
+process. Because models captures and organize the understanding of a system that
+results in a more clear discussions among team members and new team members. 
+One approach that introduces modeling at different level of abstraction for
+including MDSE in a software development process is the Model Driven
+Architecture.
 
 \subsection{Model Driven Architecture}
+
+Model Driven Architecture (MDA) is an industry architecture developed by the
+Object Management Group (OMG) and address an application development cycle. MDA
+is a proposal for applying the practices of MDE to a system development. This
+architecture is a good example to use when we are discussing concepts of MDE,
+because of its similarity to a traditional software development process. Since
+it has support for standard phases in a software development process such as
+analysis, design and implementation. MDA are adopted as a reference framework to
+the concept of MDA by many organizations. One reason for this is the importance
+of OMG in for the software industry. MDA is build around many concepts that OMG
+has released, such as the OMG specifications the Unified Modeling Language (UML)
+and the Meta Object Facility(MOF). 
 
 \begin{figure}[H]
 	\centering
@@ -109,7 +159,63 @@ we described above as a supplement in developing an application. Runtime models
 	\label{fig:MDA}
 \end{figure}
 
+Figure~\ref{fig:MDA} gives a representation of the development process that the
+Model Driven Architecture provides and a traditional development process. Both
+of the approaches have similar starting phases, where a customer presents a
+list of requirements for a software application. Now is where a MDE approach to
+software development is different. Because for MDA the idea is to use models
+instead of text and diagrams for the analysis and design phase. For a
+traditional development process these phases usually consist of creating
+diagrams that describes parts of the application. In MDA these diagrams or
+models are the main artifact for the corresponding phases, instead of just a
+reference for developers to use when implementing code. The architecture then
+generates implementation code based on these models. A traditional software
+development process would have iterations for the implementation and testing to
+make sure that the application meets the demands of the customer. This process
+is continued for every iteration, where developers continually use the text and
+diagrams that was created earlier in the process. The idea for an MDA
+development process is to provide automation between models created at each
+development phase. Instead of going back to the code and to corrections and
+modifications on the application a model driven software development process
+goes back to analysing the problem and modify the models accordingly. With the
+power of automatically changing models from one phase to another and generate
+implementation code from the models at the last level of abstraction.
 
+Figure~\ref{fig:MDA_PLATFORM} provides a representation of the models at the
+different layer of abstractions that is part of the Model Driven Architecture. 
+
+\textbf{Computation-Independent Model (CIM)} is the most abstract level of
+modeling and is often referred to as a business model or domain model. The
+model does not contain any computational implications to how the software
+application should behave, but express exactly what the final application
+should do. This model remains independent to how a system will be or currently
+is implemented and represents the requirements and purpose of the system. A
+Computation-Independent Model is often described by using a natural language to
+define the requirements for a software application. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{./Figures/MDA_Platforms.png}
+	\caption[The three levels of modeling abstraction for MDA]
+	{The three levels of modeling abstraction that MDA provides.}
+	\label{fig:MDA_PLATFORM}
+\end{figure}
+
+\textbf{Platform-Independent Model (PIM)} is the level of abstraction that
+describes the behavior and structure of a software application. This model is
+platform independent, and that means that a implementation platform is not
+specified. This means that the technological platform used to implement the
+software application is not defined. A Platform-Independent Model will only
+address tasks that a software application can perform. These tasks are part of
+the context of the business model at the top level of abstraction.
+
+\textbf{Platform-Specific Model (PSM)} is the level of abstraction that contains
+all required information for the behavior and structure of a software
+application that is linked to a specific technological platform. These specific
+platform technologies can be a specific programming language like a general
+purpose programming language, a specific operation system or a specific database
+technology. The Platform-Specific Model contains all the information that is
+required for an actual implementation of the application. 
 
 %-----------------------------------
 %	SUBSECTION 1
@@ -131,7 +237,7 @@ concrete syntax of a meta-model.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.6]{./Figures/SimpleMeta-model.png}
+	\includegraphics[scale=0.6]{./Figures/SimpleMetamodel.png}
 	\caption[Example of a model and meta-model]
 	{A simple example of a model and its meta-model.}
 	\label{fig:SimpleMeta-model}
@@ -182,9 +288,6 @@ some meta-modeling language. These meta-models at the M\textsubscript{2} layer
 describes elements that can be used in the M\textsubscript{1} layer, namely
 models. These could be models specified by the modeling language, UML. Finally
 at the M\textsubscript{0} we have an instance model of a real world object. 
-
-
- 
 
 %-----------------------------------
 %	SUBSECTION 2

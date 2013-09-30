@@ -2,19 +2,15 @@
 
 \chapter{Model Transformation} % Main chapter title
 
-\label{Chapte3} % Change X to a consecutive number; for referencing this
+\label{Chapter3} % Change X to a consecutive number; for referencing this
 % chapter elsewhere, use \ref{ChapterX}
 
 \lhead{Chapter 3. \emph{Model Transformation}} % Change X to a consecutive 
 % number; this is for the header on each page - perhaps a shortened title
 
-In this chapter we will describe what model transformations is and also discuss
-the different types of model transformation.
 %----------------------------------------------------------------------------------------
 %	SECTION 1
 %----------------------------------------------------------------------------------------
-
-\section{What is model transformation?}
 
 Transformation is a fundamental aspect in computer science and software
 engineering. Whenever a computer starts up, transformation of computer systems
@@ -36,15 +32,15 @@ then transformation approaches
 %-----------------------------------
 %	SUBSECTION 1
 %-----------------------------------
-\subsection{Basic concepts of model transformation}
+\section{Basic concepts of model transformation}
 
 The very basic concept of model transformations is to translate one model to
 another model. This model translation can either be achieved through an
 endogenous or an exogenous model transformation. For an endogenous model
-transformation we take a source model expressed in a modelling language and
+transformation we take a source model expressed in a modeling language and
 produce a target model expressed in the same language. While an exogenous model
-transformation start with a source model expressed in one modelling language and
-translate this into a target model expressed in another modelling language. It
+transformation start with a source model expressed in one modeling language and
+translate this into a target model expressed in another modeling language. It
 is essential that these models remain consistent, and therefore both the source
 and target model have to conform to their corresponding meta-model.
 
@@ -53,8 +49,7 @@ and target model have to conform to their corresponding meta-model.
     \includegraphics[scale=0.5]{./Figures/BasicTransformation.png}
     \rule{35em}{0.5pt}
   \caption[Basic Model Transformation]
-  				{The basic concepts behind a model
-  transformation.}
+  {The basic concepts behind a model transformation.}
   \label{fig:BasicTransformation}
 \end{figure}
 
@@ -88,7 +83,7 @@ between these two categories is that a M2M transformation produce an instance
 model that conforms to some meta-model while an M2T produces strings as its
 target model. 
 
-\subsection{Model Transformations in MDE}
+\section{Model Transformations in MDE}
 
 Model transformations are in the center of Model Driven Engineering.
 The vision for MDE is to increase automation of models between level of
@@ -98,6 +93,11 @@ transforming a model to another model. A model driven approach to software
 development thrives to keep a level of abstraction on the models for as long as
 possible through translating these models.  
 
+Figure~\ref{fig:MDE_MDA_MT} was published in Kim Letkeman article,
+``Comparing and merging UML models in IBM Rational Software
+Architect''\cite{letkeman2005comparing} in October 2010. The figure describes
+the importance of model transformations in the Model Driven Architecture.
+
 \begin{figure}[H]
   \centering
     \includegraphics[scale=0.8]{./Figures/MDA_MDE.png}
@@ -106,6 +106,17 @@ possible through translating these models.
   				{Model Transformations in Model Driven Architecture.}
   \label{fig:MDE_MDA_MT}
 \end{figure}
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[scale=0.8]{./Figures/vertical_horizontal.png}
+    \rule{35em}{0.5pt}
+  \caption[Vertical and Horizontal model transformations]
+  {Vertical and horizontal model transformations.}
+  \label{fig:MDE_MDA_MT}
+\end{figure}
+
+
 
 %-----------------------------------
 %	SUBSECTION 2
@@ -117,25 +128,28 @@ In March 2006 Krzysztof Czarnecki and Simon Helsen published a domain analysis
 to existing model transformation approaches\cite{Czarnecki2006}. A domain
 analysis represents information on software system that share a common set of
 features for a given domain\cite{FODA,Prieto-Diaz1990}, in this case the domain
-is model transformations. This section is based on the ideas and result from
-Czarnecki and Helsen's report. In their paper they presents a feature diagram
-that provides a terminology and representation of the design choices for model
-transformation approaches. This feature diagram does not only present model to
-model approaches, but also consider the design choices for model to text
-approaches. For the purpose of this thesis we will only address the model to
-model approaches in Czarnecki and Helsen's survey on model transformations.
-However it is important to address that at top level, we can divide model
-transformations into to categories, namely model to text and model to model
-transformations. The major difference between these categories are that model to
-model transformations generate a target model as an instance of the targets
-meta-model. While the target of a model to text transformation are string
-sequences. Model to text transformation are also often referred to as model to
-code transformation since a collection of strings can be source code that
-corresponds to some programming language. 
+is model transformations. This section is based on the ideas and results from
+Czarnecki and Helsen's report. In their paper they presents the result by using
+feature diagrams, that provides a terminology and representation of the design
+choices for existing model transformation approaches. These feature diagram does
+not only represent model to model transformation approaches, but also consider
+the design choices for model to text transformation approaches. For the purpose
+of this thesis we will only address the model to model approaches in Czarnecki
+and Helsen's survey on model transformations. However it is important to
+address that at top level, we can divide model transformations into to
+categories, namely model to text and model to model transformations. The major
+difference between these categories are that model to model transformations
+generate a target model as an instance of the targets meta-model. While the
+target of a model to text transformation are string sequences. Model to text
+transformation are also often referred to as model to code transformation since
+a collection of strings can be source code that corresponds to some programming
+language. In this section we also consider the taxonomy of model
+transformation\cite{Mens2006} that was published by Tom Mens and Pieter Van Gorp
+in 2006. 
 
 \begin{figure}[H]
   \centering
-    \includegraphics[scale=0.6]{./Figures/Model_Transformation_Survey.png}
+    \includegraphics[scale=0.7]{./Figures/Model_Transformation_Survey.png}
     \rule{35em}{0.5pt}
   \caption[Domain Analysis of Model Transformations]
   				{A domain analysis of model transformations\cite{Czarnecki2006}.}
@@ -144,7 +158,12 @@ corresponds to some programming language.
 
 Figure~\ref{fig:Model_Transformation_Survey} shows the feature diagram at top
 level of a model transformation, where each subnode represents a major aspect
-of model transformations. 
+of model transformations. These major aspects of a model transformation can
+give a better understanding on the different parts that a model transformation
+provides. A model transformation requires that aspects from
+figure~\ref{fig:Model_Transformation_Survey} is implemented in some manner.
+Because the categories represents parts of a model transformation that in its
+own way
 
 \subsection{Specification}
 
@@ -152,7 +171,7 @@ of model transformations.
 
 \begin{figure}[H]
   \centering
-    \includegraphics[scale=0.6]{./Figures/TransformationRules.png}
+    \includegraphics[scale=0.7]{./Figures/TransformationRules.png}
     \rule{35em}{0.5pt}
   \caption[Feature diagram for transformation rules]
   {Features for transformation rules.}
@@ -160,41 +179,170 @@ of model transformations.
 \end{figure}
 
 For a model transformation to be able to translate a model to another model it
-needs a set of guidelines on how this could be done. Therefore a model
+needs a set of guidelines on how to achieve this. Therefore a model
 transformation has a set of transformation rules that specifies how a target
-model should be produced. An obvious example of such rules are the rewrite
-rules. A rewrite rule provides a left hand side (LHS) and a right hand side
-(RHS) and both sides represents some user created patterns that are considered
-when a transformation engine executes their corresponding transformation rules.
-A transformation rule can 
-But a function that implements some transformation steps can also be seen as a
-transformation rule. For example in ATL Transformation Language (ATL) \cite{ATL}
-a transformation rule is implemented as a function, that consists of various
-steps on how this transformation rule should be applied. 
+model is produced. A transformation rule usually defines two special patterns.
+One pattern represents a searching pattern while the other pattern represents
+the part that is produced.  An obvious example of such rules are the rewrite
+rules, that provides a left hand side (LHS) and a right hand side(RHS) where
+both sides represents some user created patterns that are considered when a
+transformation engine applies a corresponding transformation rule. But a
+function that implements some transformation steps can also be seen as a
+transformation rule. Regardless if the concrete syntax is either textual or
+graphical, the users have to specify a pattern that is used to locate matches
+and a pattern that is used to replace these matches with a result.
 
-Every transformation rule has a meta-model attached. A meta-model is referred
-to as a domain in Czarnecki and Helsen's survey\cite{Czarnecki2006}. This
-is to make the term meta-model a more general term since some transformation
-languages take other approaches to how these meta-models are created. The
-Attributed Graph Grammar System\cite{AGG} (AGG) for example, uses a common type
-graph for both source and target model that contains all possible elements that
-are available to create transformation rules. Therefore its better to use the
-term domain when we are discussing transformation rules in general. These
-domains are usually represented as a source and a target domain for a
-transformation rule. However a transformation rule is not necessary bound to
-only a source and a target domain, but can also have several other domains to
-its disposal. 
+\textbf{Domain}
 
-These domains for a transformation rule are expressed in a language that
-describes the possible structures for a model for that domain. When we operate
-on models expressed in the context of MDA, then the language of the domain has
-the form of a meta-model expressed in MOF\cite{MOF}.
+A transformation rule is specified by certain domains. These domains are
+responsible of accessing either the source or target model for each
+corresponding rule. A domain represents both the part that is used to find
+matching patterns in a source model and the part that produces a target model.
+For example for a classic rewriting rule we would have one domain for the LHS
+and one domain for the RHS of the rule. 
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[scale=0.7]{./Figures/Domain_2.png}
+    \rule{35em}{0.5pt}
+  \caption[Feature diagram a domain]
+  {Features for a domain.}
+  \label{fig:Domain}
+\end{figure}
+
+Figure~\ref{fig:Domain} gives a representation of what a domain contains. A
+domain is provided with a \textbf{domain language}. The domain language
+represents how we can structure the domains. In the context of model
+transformation tools that translates models that utilize the Model Driven
+Architecture this domain language would have form of a meta-model expressed in
+the Meta Object Facility. The domain language express what language we use to
+define the abstract syntax for both the source and target model. \textbf{Static
+mode} determines if a domain represents a searching part, a create target part, 
+or as both. The classic rewrite rules has a source domain that represents the
+LHS and a target domain that represents the RHS. Transformation rules that can
+be applied in both directions assumes all domains to be both a source and a
+target domain. \textbf{Dynamic mode restriction} concerns model transformation
+tools that provides rules in multiple directions, that means that the source
+and target model can act as both a source or target model depending on what
+direction a transformation occurs. For these rules a domain can be restricted to
+act as a source domain, and not as a target domain. A \textbf{body} determines
+the actual pattern for a domain. This pattern has a certain structure, where the
+pattern for example can represents graphs or strings. This pattern has a
+provided abstract or concrete syntax. The abstract syntax describes what
+modeling elements a certain pattern can contain while the concrete syntax
+determines if the modeling elements are textual or graphical. The body part of a
+domain can also contain logic that express computations and constraints on
+modeling elements. \textbf{Typing} determines the typing of the contents of a
+body. Patterns can either be untyped, syntactically typed or semantically typed.
+For syntactically typing modeling elements that are part of a pattern is
+associated with a meta-model element.  
+
+\textbf{Syntactic Separation}
+
+Some approaches to model transformation includes syntactic separation of
+accessing models. These model transformation approaches clearly separates on
+what models a transformation rules operates. For example in rewrite rules the
+LHS operates on the source model while the RHS operates on the target model.
+Some model transformation approaches might not have any distinctive separation,
+like for example an model transformation implemented as a Java program. 
+
+\textbf{Multi-directionality}
+
+Multi-directionality determines if model transformation approach provides
+transformation rules to be applied in different directions. This is convenient
+when synchronizing models over model transformations for example. Model
+transformation approaches that supports applying rules in both directions are
+usually defined over a domain that is both a source and a target.
+
+
+\textbf{Application Conditions}
+
+\textbf{Intermediate Structures}
+
+Some model transformation approaches requires intermediate structures when
+executing a set of transformation rules. These structures are usually only
+used as a supplement when applying a set of transformation rules. One
+example of an intermediate structure is a traceable link. These traceable links
+usually has a corresponding meta-model that is required to be included in a
+model transformation environment. Some approaches to model transformation rely
+on this intermediate structure to be able to translate a model. An example to
+this is that this traceable link is created after a rule is applied to prevent
+this rule for locating the exact same match next time it is applied. 
+
+\textbf{Parameterization}
+
+Parameterization allow for passing values to a transformation rule. For example
+we can pass data types, for example modeling elements to a transformation rule.
+We can then apply changes to a transformation rule with these provided
+parameters and at the same time use the same data types in other
+transformation rules.
+
+\textbf{Reflection}
+
+\textbf{Aspect}
+
 
 
 \subsection{Rule Application Control}
 
-This section can be divided into two sub categories, namely locating matches and
-how to these transformation rules are be applied. 
+This section can be divided into two sub categories, namely locating matches for
+a transformation rules and how these rules are be applied. Locating a matching
+pattern in a source model is rarely controlled by the users. The different
+model transformation languages utilizes optimized searching algorithms to
+locate these matches, where a rule has to be applied to a specific location in
+a source model. Usually there are more then one exact match for each rule, and
+therefore a transformation engine has to consider that there are several
+matches for a specific search pattern in a source model. There are multiple
+different search algorithms for locating these matches, but these search
+algorithms often have a common strategy to determining the application
+locations. The locate matches strategies could be applied deterministically or
+non-deterministically for example. It is important to differentiate between a
+strategy and a search algorithm. A strategy implies how an algorithm for
+locating matches is executed. An algorithm that is applied by a deterministic
+strategy, given a particular source model, will always produce the same output.
+For example for directed graphs a deterministic strategy could exploit some
+graph traversal algorithms, such as Breadth-first search\cite{Dasgupta2006}
+(BFS) or Depth-first\cite{Dasgupta2006} search (DFS). An algorithm that are
+executed with a non-deterministic strategy on the other hand can experience
+different behaviors on different runs. An example of a non-deterministic
+strategy is \textit{one-point} application\cite{Czarnecki2006} and
+\textit{concurrent} application. A \textit{one-point} application applies a
+rule to a non-deterministically location in a source model. This means that a
+rule will search for matches at random locations within a given source scope.
+While a \textit{concurrent} application applies a rule to all matching
+locations at the same time. 
+
+Before a matching pattern can be located in a source model a model
+transformation environment has to have a mechanism that schedules these
+transformation rules. Some model transformation tools provides the user with the
+possibility to explicitly decide when transformation rules are applied. The
+scheduling of transformation rules can be divided into implicit or explicit rule
+scheduling. For an implicit rule scheduling mechanism the user are not given any
+control over how transformation rules are applied, that is controlled by the
+tool it self. Explicitly controlling the rule schedule can be achieved either
+internal or external. Internal rule scheduling allows a transformation rule to
+invoke other transformation rules, for example lazy rules in ATL. External
+rule scheduling provides a mechanism that can include transformation rules and
+execute these by some scheduling logic, for example sequentially executing a
+collection of transformation rules. We can also select specific rules and
+execute these accordingly. This is achieved by providing a scheduling mechanism
+with a explicit condition that specifies how the transformation rules is
+applied. This condition could for example specify that we should apply rules
+according in a certain priority. A scheduling mechanism is then provided
+with rules that is applied in priority over other rules. Now we have seen that a
+scheduling mechanism can be defined explicitly or implicitly by the users and
+can have conditions that determines if the rules should be applied in a certain
+order. Model transformation tools also have scheduling mechanisms that provides
+the possibility to iterate through a set of rules. What we mean by iterating
+through a set of rules is that a model transformation tools applies a
+transformation rule until there are no more matches. These rule iteration
+scheduling mechanisms include recursion, looping and a fixed number of
+iterations.
+
+The available model transformation tools provides different solutions to both
+locating matches and defining rule scheduling mechanisms. Usually the users are
+given more freedom to defining the rule scheduling mechanism compared to
+locating matches.
 
 \subsection{Rule Organization}
 
@@ -259,7 +407,17 @@ Henshin to do out-place changes to a model.
 
 \subsection{Directionality}
 
-This section describes that a model transformation environment can 
+This section describes that a model transformation environment can translate a
+model in multiple direction. We can distinguish the direction model
+transformations to either be unidirectional or multidirectional. An
+unidirectional model transformation has one source model that translates to a
+target model or updates a target model. What we then can do is change the source
+model and source meta-model with the target model and target meta-model. But
+this model transformation is not multidirectional, since we have to apply two
+model transformation to achieve this. A multidirectional model transformation
+can translate in different direction, regardless of source and target
+meta-model. This is especially convenient for model synchronising, where we can
+translate in multiple directions. 
 
 \subsection{Tracing}
 

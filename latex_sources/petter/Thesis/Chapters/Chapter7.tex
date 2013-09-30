@@ -275,11 +275,47 @@ in-place &out-place \\
 \hline
 
 \end{tabular}
-[Comparing model transformation tools]
-\caption{Comparing model transformation tools.}
+\caption [Comparing model transformation tools]
+{Comparing model transformation tools.}
 \end{table}
 
 \newpage
+
+
+\begin{table}[ht]
+\renewcommand*\arraystretch{1.2}
+\centering
+\begin{tabular}{| c | c | c | c | c |}
+\hline
+& AGG & Henshin   & ATL   & DPF Transform \\
+\hline
+Endogenous transformation & $\surd$ & $\surd$ & $\surd$ & \\
+
+Exogenous transformation & $\surd$ & $\surd$ & $\surd$ & $\surd$\\
+
+Input Elements & 1\ldots n & 1\ldots n & 1\ldots n & 1\ldots n\\
+
+Output Elements & 1\ldots n & 1\ldots n & 1\ldots n & 1\ldots n\\
+
+Graphical editor & $\surd$ & $\surd$ & X & $\surd$ \\
+
+Meta-modeling layers & 2 & 2 & 2 & $\infty$ \\
+
+Separate meta-models & X &  $\surd$ &  $\surd$ &  $\surd$ \\
+
+Integrated with EMF & X & $\surd$ & $\surd$ & $\surd$ \\ 
+
+Model transformation file size & 200 kb & 80 kb & 4 kb & 265 kb\\
+
+In-place/out-place transformations & in-place &
+in-place & out-place  & out-place \\
+
+\hline
+\end{tabular}
+\caption{Comparing model transformation tools.}
+\end{table} 
+
+
 
 From the table above, we can see that all the three tools have support
 for both endogenous and exogenous model transformations. 
