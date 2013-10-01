@@ -14,7 +14,7 @@
     </children>
     <styles xmi:type="notation:ShapeStyle" xmi:id="_-gpbgZ6EEeGXVtyxCwuoiw" fontColor="4210752" fontName="Ubuntu" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
     <element xmi:type="ecore:EClass" href="transform.ecore#//Transform"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_-gpbgp6EEeGXVtyxCwuoiw" x="18" y="408"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_-gpbgp6EEeGXVtyxCwuoiw" x="160" y="235"/>
   </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_-goNYZ6EEeGXVtyxCwuoiw"/>
   <element xmi:type="ecore:EPackage" href="transform.ecore#/"/>

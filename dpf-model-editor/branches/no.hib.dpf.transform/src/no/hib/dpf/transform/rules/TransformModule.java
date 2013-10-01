@@ -117,10 +117,20 @@ public class TransformModule {
 		commonArrows  = new HashMap<String,DElement>();
 		mappedElements = new HashMap<String, String>();
 		
-		correspondance = DPFUtils.loadDSpecification(URI.createFileURI(TransformUtils.activeWorkingDirectory()+"/metamodel2petriNetMetaModel.dpf"));
+		URI source = URI.createFileURI(transform.getSourceLocation());
+		URI target = URI.createFileURI(transform.getTargetLocation());
+		
+		String dpfFilename = TransformUtils.activeWorkingDirectory()+"/"+TransformConstants.GENERATE_FOLDER+"/"+TransformUtils.createCorrespondanceType(source.lastSegment().replace(".dpf", ""), 
+				target.lastSegment());
+		
+		//correspondance = DPFUtils.loadDSpecification(URI.createFileURI(TransformUtils.activeWorkingDirectory()+"/"+TransformConstants.GENERATE_FOLDER+"/metamodel2petriNetMetaModel.dpf"));
+		correspondance = DPFUtils.loadDSpecification(URI.createFileURI(dpfFilename));
+		//DPFUtils.load
+		System.out.println("corresp" + correspondance.getDGraph().getDNodes());
 		
 		for(int i = 0;i<correspondance.getDGraph().getDNodes().size();i++){
 			correspond.put(correspondance.getDGraph().getDNodes().get(i).getNode().getName(), correspondance.getDGraph().getDNodes().get(i));
+			System.out.println("Type " + correspondance.getDGraph().getDNodes().get(i).getNode().getName());
 		}
 	}
 	public Module createModule(){

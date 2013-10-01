@@ -193,12 +193,12 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 //			dspec.setDSignature(DPFConstants.DEFAULT_DSIGNATURE);
 //			dspec.setDType(DPFConstants.REFLEXIVE_DSPECIFICATION);
 //			
-//			String uri = "C:/Users/Petter/runtime-EclipseApplication/model/CorrespondanceModel.dpf";
+			String uri = "C:/Users/Petter/runtime-EclipseApplication/model/CorrespondanceModel.dpf";
 //			
 //			CorrespondanceGraph graph = new CorrespondanceGraph();
+//			dspec = graph.getCommonGraph(sourceDSpecification, targetDSpecification);
+//			
 			dspec = transform.getCommonGraph();
-			
-			
 //			dspec = DPFUtils.loadDSpecification(DPFUtils.getResourceSet(), URI.createFileURI(uri), resourceToDiagnosticMap);
 //			EcoreUtil.resolveAll(dspec);
 			
@@ -222,6 +222,9 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 		
 
 		paletteFactory.updatePalette(getPaletteRoot(), newGraph);
+
+//		paletteFactory.updatePalette(getPaletteRoot(), dspec.getDGraph());
+		//paletteFactory.updatePaletteForExogenous(getPaletteRoot(), sourceDSpecification.getDGraph(), targetDSpecification.getDGraph());
 		
 		shapesEditPartFactory = new DPFEditPartFactory(){
 			protected EditPart getPartForElement(Object modelElement) {
@@ -349,28 +352,28 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 	
 	protected void initializeGraphicalViewer() {
 		super.initializeGraphicalViewer();	
-		getGraphicalViewer().setContents(dspec.getDGraph());
-		System.out.println("Hei");
+//		getGraphicalViewer().setContents(dspec.getDGraph());
+//		System.out.println("Hei");
 	}
-	@Override
-	protected void setInput(IEditorInput input) {
-		super.setInput(input);
-		IFile file = ((IFileEditorInput) input).getFile();
-		dspec = DPFUtils.loadDSpecification(DPFUtils.getResourceSet(), DPFUtils.getFileURI(file), resourceToDiagnosticMap);
-		EcoreUtil.resolveAll(dspec);
-		EcoreUtil.resolveAll(dspec.getSpecification());
-		
-		if(dspec.getDSignature() != null){
-			EcoreUtil.resolveAll(dspec.getDSignature());
-			EcoreUtil.resolveAll(dspec.getDSignature().getSignature());
-		}
-		System.out.println("GHJØR DETTE");
-		Assert.isTrue(dspec != null);
-		setPartName(file.getName());
-		
-		paletteFactory.updatePalette(getPaletteRoot(), dspec.getDType().getDGraph());
-		shapesEditPartFactory = new DPFEditPartFactory();
-	}
+//	@Override
+//	protected void setInput(IEditorInput input) {
+//		super.setInput(input);
+//		IFile file = ((IFileEditorInput) input).getFile();
+//		dspec = DPFUtils.loadDSpecification(DPFUtils.getResourceSet(), DPFUtils.getFileURI(file), resourceToDiagnosticMap);
+//		EcoreUtil.resolveAll(dspec);
+//		EcoreUtil.resolveAll(dspec.getSpecification());
+//		
+//		if(dspec.getDSignature() != null){
+//			EcoreUtil.resolveAll(dspec.getDSignature());
+//			EcoreUtil.resolveAll(dspec.getDSignature().getSignature());
+//		}
+//		System.out.println("GHJØR DETTE");
+//		Assert.isTrue(dspec != null);
+//		setPartName(file.getName());
+//		
+//		paletteFactory.updatePalette(getPaletteRoot(), dspec.getDType().getDGraph());
+//		shapesEditPartFactory = new DPFEditPartFactory();
+//	}
 	
 	public void doSave(final URI uri, IProgressMonitor monitor) {
 

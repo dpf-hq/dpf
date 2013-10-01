@@ -16,6 +16,7 @@ import no.hib.dpf.transform.util.BrowseInstanceModel;
 import no.hib.dpf.transform.util.TransformConstants;
 import no.hib.dpf.transform.util.TransformUtils;
 
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
@@ -34,9 +35,11 @@ import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.window.Window;
+import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.actions.ActionFactory;
+import org.eclipse.ui.part.FileEditorInput;
 
 @SuppressWarnings("restriction")
 public class TransformActionBarContributor extends ActionBarContributor {
@@ -48,8 +51,7 @@ public class TransformActionBarContributor extends ActionBarContributor {
 	//private RetargetAction generateAction;
 
 	protected IAction generateCorrespondanceGraph = new Action(TransformConstants.GENERATE_CORRESPONDANCE, ImageSettings.IMG_GENERATE_ECORE.getImageDescriptor()) {
-		
-		
+
 		@Override
 		public boolean isEnabled() {
 			return true;
@@ -65,15 +67,15 @@ public class TransformActionBarContributor extends ActionBarContributor {
 			URI source = URI.createFileURI(transform.getSourceLocation());
 			URI target = URI.createFileURI(transform.getTargetLocation());
 			
-			String dpfFilename = TransformUtils.activeWorkingDirectory()+"\\"+TransformUtils.createCorrespondanceType(source.lastSegment().replace(".dpf", ""), 
+			String dpfFilename = TransformUtils.activeWorkingDirectory()+"\\"+TransformConstants.GENERATE_FOLDER+"\\"+TransformUtils.createCorrespondanceType(source.lastSegment().replace(".dpf", ""), 
 					target.lastSegment());
-			String xmiFilename = TransformUtils.activeWorkingDirectory()+"\\"+TransformUtils.createCorrespondanceType(source.lastSegment().replace(".dpf", ""), 
+			String xmiFilename = TransformUtils.activeWorkingDirectory()+"\\"+TransformConstants.GENERATE_FOLDER+"\\"+TransformUtils.createCorrespondanceType(source.lastSegment().replace(".dpf", ""), 
 					target.lastSegment().replace(".dpf", "xmi"));
 			System.out.println("1" + dpfFilename);
 			URI newDiagramUri = URI.createFileURI(dpfFilename);
 			URI newCoreUri = URI.createFileURI(xmiFilename);
 
-			CorrespondanceGraph cGraph = new CorrespondanceGraph();
+			CorrespondanceGraph cGraph = new CorrespondanceGraph(transform);
 			dspec = cGraph.createCorrespondanceGraph();
 			
 			DSpecification newDSpecification = DiagramFactory.eINSTANCE.createDefaultDSpecification();
@@ -87,6 +89,9 @@ public class TransformActionBarContributor extends ActionBarContributor {
 				dpfFile.delete();
 			}
 			DPFUtils.saveDSpecification(DPFUtils.getResourceSet(), newDSpecification, newDiagramUri, new LinkedHashMap<Resource, Diagnostic>());
+			
+			transform.setCorrespondanceGraph(newDSpecification);
+			TransformEditor.saveTransform(DPFUtils.getResourceSet(), URI.createFileURI(TransformUtils.activeWindowFileLocation()), transform, resourceToDiagnosticMap);
 		}
 	};
 	protected IAction generateToHenshin = new Action(TransformConstants.GENERATE_HENSHIN, ImageSettings.IMG_GENERATE_HENSHIN.getImageDescriptor()) {

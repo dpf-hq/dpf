@@ -189,6 +189,24 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getTransform_CorrespondanceGraph() {
+		return (EReference)transformEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getTransform_CorrespondanceLocation() {
+		return (EAttribute)transformEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getProduction() {
 		return productionEClass;
 	}
@@ -302,6 +320,8 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 		createEAttribute(transformEClass, TRANSFORM__SOURCE_LOCATION);
 		createEAttribute(transformEClass, TRANSFORM__TARGET_LOCATION);
 		createEReference(transformEClass, TRANSFORM__COMMON_GRAPH);
+		createEReference(transformEClass, TRANSFORM__CORRESPONDANCE_GRAPH);
+		createEAttribute(transformEClass, TRANSFORM__CORRESPONDANCE_LOCATION);
 
 		productionEClass = createEClass(PRODUCTION);
 		createEReference(productionEClass, PRODUCTION__SUM);
@@ -356,6 +376,8 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 		initEAttribute(getTransform_SourceLocation(), ecorePackage.getEString(), "sourceLocation", null, 0, 1, Transform.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTransform_TargetLocation(), ecorePackage.getEString(), "targetLocation", null, 0, 1, Transform.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTransform_CommonGraph(), theDiagramPackage.getDSpecification(), null, "commonGraph", null, 0, 1, Transform.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTransform_CorrespondanceGraph(), theDiagramPackage.getDSpecification(), null, "correspondanceGraph", null, 0, 1, Transform.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTransform_CorrespondanceLocation(), ecorePackage.getEString(), "correspondanceLocation", null, 0, 1, Transform.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(productionEClass, Production.class, "Production", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getProduction_Sum(), theDiagramPackage.getDSpecification(), null, "sum", null, 0, 1, Production.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -40,6 +40,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link no.hib.dpf.transform.impl.TransformImpl#getSourceLocation <em>Source Location</em>}</li>
  *   <li>{@link no.hib.dpf.transform.impl.TransformImpl#getTargetLocation <em>Target Location</em>}</li>
  *   <li>{@link no.hib.dpf.transform.impl.TransformImpl#getCommonGraph <em>Common Graph</em>}</li>
+ *   <li>{@link no.hib.dpf.transform.impl.TransformImpl#getCorrespondanceGraph <em>Correspondance Graph</em>}</li>
+ *   <li>{@link no.hib.dpf.transform.impl.TransformImpl#getCorrespondanceLocation <em>Correspondance Location</em>}</li>
  * </ul>
  * </p>
  *
@@ -155,6 +157,36 @@ public class TransformImpl extends EObjectImpl implements Transform {
 	 * @ordered
 	 */
 	protected DSpecification commonGraph;
+
+	/**
+	 * The cached value of the '{@link #getCorrespondanceGraph() <em>Correspondance Graph</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCorrespondanceGraph()
+	 * @generated
+	 * @ordered
+	 */
+	protected DSpecification correspondanceGraph;
+
+	/**
+	 * The default value of the '{@link #getCorrespondanceLocation() <em>Correspondance Location</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCorrespondanceLocation()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String CORRESPONDANCE_LOCATION_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getCorrespondanceLocation() <em>Correspondance Location</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCorrespondanceLocation()
+	 * @generated
+	 * @ordered
+	 */
+	protected String correspondanceLocation = CORRESPONDANCE_LOCATION_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -417,6 +449,65 @@ public class TransformImpl extends EObjectImpl implements Transform {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public DSpecification getCorrespondanceGraph() {
+		if (correspondanceGraph != null && correspondanceGraph.eIsProxy()) {
+			InternalEObject oldCorrespondanceGraph = (InternalEObject)correspondanceGraph;
+			correspondanceGraph = (DSpecification)eResolveProxy(oldCorrespondanceGraph);
+			if (correspondanceGraph != oldCorrespondanceGraph) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TransformPackage.TRANSFORM__CORRESPONDANCE_GRAPH, oldCorrespondanceGraph, correspondanceGraph));
+			}
+		}
+		return correspondanceGraph;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DSpecification basicGetCorrespondanceGraph() {
+		return correspondanceGraph;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCorrespondanceGraph(DSpecification newCorrespondanceGraph) {
+		DSpecification oldCorrespondanceGraph = correspondanceGraph;
+		correspondanceGraph = newCorrespondanceGraph;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TransformPackage.TRANSFORM__CORRESPONDANCE_GRAPH, oldCorrespondanceGraph, correspondanceGraph));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getCorrespondanceLocation() {
+		return correspondanceLocation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCorrespondanceLocation(String newCorrespondanceLocation) {
+		String oldCorrespondanceLocation = correspondanceLocation;
+		correspondanceLocation = newCorrespondanceLocation;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TransformPackage.TRANSFORM__CORRESPONDANCE_LOCATION, oldCorrespondanceLocation, correspondanceLocation));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -456,6 +547,11 @@ public class TransformImpl extends EObjectImpl implements Transform {
 			case TransformPackage.TRANSFORM__COMMON_GRAPH:
 				if (resolve) return getCommonGraph();
 				return basicGetCommonGraph();
+			case TransformPackage.TRANSFORM__CORRESPONDANCE_GRAPH:
+				if (resolve) return getCorrespondanceGraph();
+				return basicGetCorrespondanceGraph();
+			case TransformPackage.TRANSFORM__CORRESPONDANCE_LOCATION:
+				return getCorrespondanceLocation();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -494,6 +590,12 @@ public class TransformImpl extends EObjectImpl implements Transform {
 			case TransformPackage.TRANSFORM__COMMON_GRAPH:
 				setCommonGraph((DSpecification)newValue);
 				return;
+			case TransformPackage.TRANSFORM__CORRESPONDANCE_GRAPH:
+				setCorrespondanceGraph((DSpecification)newValue);
+				return;
+			case TransformPackage.TRANSFORM__CORRESPONDANCE_LOCATION:
+				setCorrespondanceLocation((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -530,6 +632,12 @@ public class TransformImpl extends EObjectImpl implements Transform {
 			case TransformPackage.TRANSFORM__COMMON_GRAPH:
 				setCommonGraph((DSpecification)null);
 				return;
+			case TransformPackage.TRANSFORM__CORRESPONDANCE_GRAPH:
+				setCorrespondanceGraph((DSpecification)null);
+				return;
+			case TransformPackage.TRANSFORM__CORRESPONDANCE_LOCATION:
+				setCorrespondanceLocation(CORRESPONDANCE_LOCATION_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -558,6 +666,10 @@ public class TransformImpl extends EObjectImpl implements Transform {
 				return TARGET_LOCATION_EDEFAULT == null ? targetLocation != null : !TARGET_LOCATION_EDEFAULT.equals(targetLocation);
 			case TransformPackage.TRANSFORM__COMMON_GRAPH:
 				return commonGraph != null;
+			case TransformPackage.TRANSFORM__CORRESPONDANCE_GRAPH:
+				return correspondanceGraph != null;
+			case TransformPackage.TRANSFORM__CORRESPONDANCE_LOCATION:
+				return CORRESPONDANCE_LOCATION_EDEFAULT == null ? correspondanceLocation != null : !CORRESPONDANCE_LOCATION_EDEFAULT.equals(correspondanceLocation);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -578,6 +690,8 @@ public class TransformImpl extends EObjectImpl implements Transform {
 		result.append(sourceLocation);
 		result.append(", targetLocation: ");
 		result.append(targetLocation);
+		result.append(", correspondanceLocation: ");
+		result.append(correspondanceLocation);
 		result.append(')');
 		return result.toString();
 	}

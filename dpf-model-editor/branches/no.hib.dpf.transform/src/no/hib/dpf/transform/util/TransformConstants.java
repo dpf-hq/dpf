@@ -17,4 +17,5 @@ public class TransformConstants {
 	public static final String ADD_VARIABLE = "Create Paramater";
 	public static final String CORRESPONDACE_GRAPH = "InitialiseCorrespondanceGraph";
 	public static final String GENERATE_CORRESPONDANCE = "Generate Correspondance Graph";
+	public static final String GENERATE_FOLDER = "generated_models";
 }

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_SxMv8CdcEeO4_YU5RN1gLA" type="Ecore" measurementUnit="Pixel">
+  <children xmi:type="notation:Shape" xmi:id="_S3N4YCdcEeO4_YU5RN1gLA" type="2001" fontName="Segoe UI">
+    <children xmi:type="notation:DecorationNode" xmi:id="_S3PtkCdcEeO4_YU5RN1gLA" type="5001"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_S3QUoCdcEeO4_YU5RN1gLA" type="7001">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_S3QUoSdcEeO4_YU5RN1gLA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_S3QUoidcEeO4_YU5RN1gLA"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_S3QUoydcEeO4_YU5RN1gLA" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_S3QUpCdcEeO4_YU5RN1gLA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_S3QUpSdcEeO4_YU5RN1gLA"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_S3Q7sCdcEeO4_YU5RN1gLA" type="7003">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_S3Q7sSdcEeO4_YU5RN1gLA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_S3Q7sidcEeO4_YU5RN1gLA"/>
+    </children>
+    <element xmi:type="ecore:EClass" href="transform.ecore#//Transform"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_S3OfcCdcEeO4_YU5RN1gLA" x="35" y="130" height="91"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_S3Q7sydcEeO4_YU5RN1gLA" type="2001" fontName="Segoe UI">
+    <children xmi:type="notation:DecorationNode" xmi:id="_S3Q7tSdcEeO4_YU5RN1gLA" type="5001"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_S3Q7tidcEeO4_YU5RN1gLA" type="7001">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_S3Q7tydcEeO4_YU5RN1gLA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_S3Q7uCdcEeO4_YU5RN1gLA"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_S3RiwCdcEeO4_YU5RN1gLA" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_S3RiwSdcEeO4_YU5RN1gLA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_S3RiwidcEeO4_YU5RN1gLA"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_S3RiwydcEeO4_YU5RN1gLA" type="7003">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_S3RixCdcEeO4_YU5RN1gLA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_S3RixSdcEeO4_YU5RN1gLA"/>
+    </children>
+    <element xmi:type="ecore:EClass" href="transform.ecore#//Production"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_S3Q7tCdcEeO4_YU5RN1gLA" x="425" y="110"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_SxMv8SdcEeO4_YU5RN1gLA"/>
+  <element xmi:type="ecore:EPackage" href="transform.ecore#/"/>
+  <edges xmi:type="notation:Connector" xmi:id="_S6o_0CdcEeO4_YU5RN1gLA" type="4003" source="_S3N4YCdcEeO4_YU5RN1gLA" target="_S3Q7sydcEeO4_YU5RN1gLA">
+    <children xmi:type="notation:DecorationNode" xmi:id="_S6pm4CdcEeO4_YU5RN1gLA" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_S6pm4SdcEeO4_YU5RN1gLA" x="38" y="-17"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_S6qN8CdcEeO4_YU5RN1gLA" type="6004">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_S6qN8SdcEeO4_YU5RN1gLA" x="-17" y="-14"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_S6o_0SdcEeO4_YU5RN1gLA" fontName="Segoe UI"/>
+    <element xmi:type="ecore:EReference" href="transform.ecore#//Transform/rules"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_S6o_0idcEeO4_YU5RN1gLA" points="[0, 0, 0, 60]$[0, -60, 0, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_S7bqACdcEeO4_YU5RN1gLA" id="(0.4968152866242038,0.0)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_S7bqASdcEeO4_YU5RN1gLA" id="(0.5,1.0)"/>
+  </edges>
+</notation:Diagram>

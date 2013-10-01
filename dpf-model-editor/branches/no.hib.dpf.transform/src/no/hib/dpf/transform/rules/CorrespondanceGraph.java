@@ -39,9 +39,13 @@ public class CorrespondanceGraph {
 	
 	private Transform transform = null;
 	
-	public CorrespondanceGraph(){
-		String transformFile = TransformUtils.activeWindowFileLocation();
-		transform = TransformEditor.loadTransform(DPFUtils.getResourceSet(), URI.createFileURI(transformFile), resourceToDiagnosticMap);
+	public CorrespondanceGraph(Transform transform){
+		this.transform= transform;
+		
+		sourceDSpecification = transform.getSourceMetaModel();
+		targetDSpecification = transform.getTargetMetaModel();
+		
+		
 		
 		createNodes = new HashMap<String, DNode>();
 
@@ -49,8 +53,7 @@ public class CorrespondanceGraph {
 		defaultArrow = defaultDSpecification.getDGraph().getDArrows().get(0);
 		defaultNode = defaultDSpecification.getDGraph().getDNodes().get(0);
 		
-		sourceDSpecification = transform.getSourceMetaModel();
-		targetDSpecification = transform.getTargetMetaModel();
+		
 	}
 	public DSpecification getCommonGraph(DSpecification source, DSpecification target){
 //		DSpecification defaultDSpec = DiagramFactory.eINSTANCE.createConstantDSpecification();
@@ -68,23 +71,29 @@ public class CorrespondanceGraph {
 //		defaultNode = defaultDSpec.getDGraph().getDNodes().get(0);
 		
 		sourceModel = TransformUtils.getDSpecificationFileName(transform.getSourceLocation());
-		targetModel = TransformUtils.getDSpecificationFileName(transform.getTargetLocation());
+		if(targetDSpecification.getDType() != DPFConstants.REFLEXIVE_DSPECIFICATION){
+			targetModel = TransformUtils.getDSpecificationFileName(transform.getTargetLocation());
+		}
+		else{
+			targetModel = "default";
+		}
+		
 		
 		DNode bridgeElement = correspondanceDSpecification.getDGraph().
-				createDNode("Link", defaultNode);
+				createDNode("Trace", defaultNode);
 		
 		for(int i = 0;i<sourceDSpecification.getDGraph().getDNodes().size();i++){
 			DNode dNode = sourceDSpecification.getDGraph().getDNodes().get(i);
 			DNode newNode = correspondanceDSpecification.getDGraph().createDNode(dNode.getName(), defaultNode);
 			createNodes.put("source"+newNode.getName(), newNode);
-			correspondanceDSpecification.getDGraph().createDArrow("linkSource_"+dNode.getName(), bridgeElement, newNode, defaultArrow);
+			correspondanceDSpecification.getDGraph().createDArrow("traceSource_"+dNode.getName(), bridgeElement, newNode, defaultArrow);
 			
 		}
 		for(int i = 0;i<targetDSpecification.getDGraph().getDNodes().size();i++){
 			DNode dNode = targetDSpecification.getDGraph().getDNodes().get(i);
 			DNode newNode = correspondanceDSpecification.getDGraph().createDNode(dNode.getName(), defaultNode);
 			createNodes.put("target"+newNode.getName(), newNode);
-			correspondanceDSpecification.getDGraph().createDArrow("linkTarget_"+dNode.getName(), bridgeElement, newNode, defaultArrow);
+			correspondanceDSpecification.getDGraph().createDArrow("traceTarget_"+dNode.getName(), bridgeElement, newNode, defaultArrow);
 		}
 		for(int i = 0;i<sourceDSpecification.getDGraph().getDArrows().size();i++){
 			DArrow dArrow = sourceDSpecification.getDGraph().getDArrows().get(i);
@@ -102,10 +111,16 @@ public class CorrespondanceGraph {
 		return correspondanceDSpecification;
 	}
 	public DSpecification createCorrespondanceGraph(){
+		
 		DSpecification correspondanceDSpecification = DiagramFactory.eINSTANCE.createDefaultDSpecification();
 		correspondanceDSpecification.setDType(defaultDSpecification);
 		DGraph correspondanceDGraph = DiagramFactory.eINSTANCE.createDefaultDGraph();
 		correspondanceDSpecification.setDGraph(correspondanceDGraph);
+		
+		if(targetDSpecification.getDGraph().getDNodes().isEmpty()){
+			DSpecification temp = targetDSpecification.getDType();
+			targetDSpecification = temp;
+		}
 		
 		DNode bridgeElement = correspondanceDSpecification.getDGraph().
 				createDNode("Link", defaultNode);

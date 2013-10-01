@@ -29,6 +29,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link no.hib.dpf.transform.Transform#getSourceLocation <em>Source Location</em>}</li>
  *   <li>{@link no.hib.dpf.transform.Transform#getTargetLocation <em>Target Location</em>}</li>
  *   <li>{@link no.hib.dpf.transform.Transform#getCommonGraph <em>Common Graph</em>}</li>
+ *   <li>{@link no.hib.dpf.transform.Transform#getCorrespondanceGraph <em>Correspondance Graph</em>}</li>
+ *   <li>{@link no.hib.dpf.transform.Transform#getCorrespondanceLocation <em>Correspondance Location</em>}</li>
  * </ul>
  * </p>
  *
@@ -235,5 +237,57 @@ public interface Transform extends EObject {
 	 * @generated
 	 */
 	void setCommonGraph(DSpecification value);
+
+	/**
+	 * Returns the value of the '<em><b>Correspondance Graph</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Correspondance Graph</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Correspondance Graph</em>' reference.
+	 * @see #setCorrespondanceGraph(DSpecification)
+	 * @see no.hib.dpf.transform.TransformPackage#getTransform_CorrespondanceGraph()
+	 * @model
+	 * @generated
+	 */
+	DSpecification getCorrespondanceGraph();
+
+	/**
+	 * Sets the value of the '{@link no.hib.dpf.transform.Transform#getCorrespondanceGraph <em>Correspondance Graph</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Correspondance Graph</em>' reference.
+	 * @see #getCorrespondanceGraph()
+	 * @generated
+	 */
+	void setCorrespondanceGraph(DSpecification value);
+
+	/**
+	 * Returns the value of the '<em><b>Correspondance Location</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Correspondance Location</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Correspondance Location</em>' attribute.
+	 * @see #setCorrespondanceLocation(String)
+	 * @see no.hib.dpf.transform.TransformPackage#getTransform_CorrespondanceLocation()
+	 * @model
+	 * @generated
+	 */
+	String getCorrespondanceLocation();
+
+	/**
+	 * Sets the value of the '{@link no.hib.dpf.transform.Transform#getCorrespondanceLocation <em>Correspondance Location</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Correspondance Location</em>' attribute.
+	 * @see #getCorrespondanceLocation()
+	 * @generated
+	 */
+	void setCorrespondanceLocation(String value);
 
 } // Transform

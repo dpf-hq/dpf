@@ -18,6 +18,7 @@ import java.util.Map;
 
 import no.hib.dpf.diagram.DSignature;
 import no.hib.dpf.diagram.DSpecification;
+import no.hib.dpf.diagram.DiagramFactory;
 import no.hib.dpf.diagram.util.DPFConstants;
 import no.hib.dpf.editor.DPFUtils;
 
@@ -124,6 +125,13 @@ public class TransformWizardPage extends WizardPage {
 			data.horizontalSpan = 2;
 			targetMetamodelButton.setLayoutData(data);
 		}
+		final Button target_defaultMetamodel = new Button(composite, SWT.CHECK);{
+			target_defaultMetamodel.setText("Use " + DEFAULTMETAMODEL);
+			target_defaultMetamodel.setVisible(false);
+			GridData data = new GridData();
+			data.horizontalSpan = 3;
+			target_defaultMetamodel.setLayoutData(data);
+		}
 		targetMetaModelFileText = new Text(composite, SWT.BORDER);
 		{
 			GridData data = new GridData();
@@ -179,6 +187,23 @@ public class TransformWizardPage extends WizardPage {
 					targetMetaModelFileChooser.setEnabled(false);
 				}else{
 					targetMetamodelButton.setText(EXOGENOUS_TRANSFORMATION);
+					target_defaultMetamodel.setVisible(true);
+					target_defaultMetamodel.setEnabled(true);
+					
+				}
+				setPageComplete(validatePage());
+			}
+		});
+		
+		target_defaultMetamodel.addSelectionListener(new SelectionAdapter() {
+			public void widgetSelected(SelectionEvent event) {
+				boolean useDefault = target_defaultMetamodel.getSelection();
+				if(useDefault){
+					targetMetaModelFileText.setEnabled(false);
+					targetMetaModelFileChooser.setEnabled(false);
+					targetMetaModel = DPFConstants.REFLEXIVE_DSPECIFICATION;
+				}
+				else{
 					targetMetaModelFileText.setEnabled(true);
 					targetMetaModelFileChooser.setEnabled(true);
 					targetMetaModel = DPFUtils.loadDModel(URI.createFileURI(targetMetaModelFileText.getText()));
@@ -242,9 +267,12 @@ public class TransformWizardPage extends WizardPage {
 		sourceMetaModel = DPFConstants.REFLEXIVE_DSPECIFICATION;
 		
 		targetMetamodelButton.setSelection(true);
+		target_defaultMetamodel.setSelection(true);
 		targetMetaModelFileText.setEnabled(false);
 		targetMetaModelFileChooser.setEnabled(false);
-		targetMetaModel = sourceMetaModel;
+		targetMetaModel = DPFConstants.REFLEXIVE_DSPECIFICATION;
+		
+		
 		
 		defaultSigButton.setSelection(true);
 		sigFileText.setEnabled(false);

@@ -142,13 +142,31 @@ public interface TransformPackage extends EPackage {
 	int TRANSFORM__COMMON_GRAPH = 7;
 
 	/**
+	 * The feature id for the '<em><b>Correspondance Graph</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSFORM__CORRESPONDANCE_GRAPH = 8;
+
+	/**
+	 * The feature id for the '<em><b>Correspondance Location</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSFORM__CORRESPONDANCE_LOCATION = 9;
+
+	/**
 	 * The number of structural features of the '<em>Transform</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFORM_FEATURE_COUNT = 8;
+	int TRANSFORM_FEATURE_COUNT = 10;
 
 	/**
 	 * The meta object id for the '{@link no.hib.dpf.transform.impl.ProductionImpl <em>Production</em>}' class.
@@ -339,6 +357,28 @@ public interface TransformPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getTransform_CommonGraph();
+
+	/**
+	 * Returns the meta object for the reference '{@link no.hib.dpf.transform.Transform#getCorrespondanceGraph <em>Correspondance Graph</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Correspondance Graph</em>'.
+	 * @see no.hib.dpf.transform.Transform#getCorrespondanceGraph()
+	 * @see #getTransform()
+	 * @generated
+	 */
+	EReference getTransform_CorrespondanceGraph();
+
+	/**
+	 * Returns the meta object for the attribute '{@link no.hib.dpf.transform.Transform#getCorrespondanceLocation <em>Correspondance Location</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Correspondance Location</em>'.
+	 * @see no.hib.dpf.transform.Transform#getCorrespondanceLocation()
+	 * @see #getTransform()
+	 * @generated
+	 */
+	EAttribute getTransform_CorrespondanceLocation();
 
 	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.transform.Production <em>Production</em>}'.
@@ -533,6 +573,22 @@ public interface TransformPackage extends EPackage {
 		 * @generated
 		 */
 		EReference TRANSFORM__COMMON_GRAPH = eINSTANCE.getTransform_CommonGraph();
+
+		/**
+		 * The meta object literal for the '<em><b>Correspondance Graph</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TRANSFORM__CORRESPONDANCE_GRAPH = eINSTANCE.getTransform_CorrespondanceGraph();
+
+		/**
+		 * The meta object literal for the '<em><b>Correspondance Location</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TRANSFORM__CORRESPONDANCE_LOCATION = eINSTANCE.getTransform_CorrespondanceLocation();
 
 		/**
 		 * The meta object literal for the '{@link no.hib.dpf.transform.impl.ProductionImpl <em>Production</em>}' class.

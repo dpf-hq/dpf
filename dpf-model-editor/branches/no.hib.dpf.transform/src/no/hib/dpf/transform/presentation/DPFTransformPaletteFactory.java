@@ -78,8 +78,8 @@ public class DPFTransformPaletteFactory  {
 		return toolbar;
 	}
 
-	public void updatePalette(PaletteRoot root, DGraph dGraph) {
-		for(DNode dnode : dGraph.getDNodes()){
+	public void updatePalette(PaletteRoot root, DGraph sourceGraph) {
+		for(DNode dnode : sourceGraph.getDNodes()){
 			IConfigurationElement configure = FigureConfigureManager.getInstance().getConfigurationElement(dnode.getConfigureString());
 			ImageDescriptor smallIcon = configure == null ? null : FigureConfigureManager.getSmallIcon(configure);
 			ImageDescriptor largeIcon = configure == null ? null : FigureConfigureManager.getLargeIcon(configure);
@@ -90,7 +90,7 @@ public class DPFTransformPaletteFactory  {
 					smallIcon != null ? smallIcon : SMALLICON, 
 							largeIcon != null ? largeIcon : LARGEICON));
 		}
-		for(DArrow darrow : dGraph.getDArrows()){
+		for(DArrow darrow : sourceGraph.getDArrows()){
 			IConfigurationElement configure = FigureConfigureManager.getInstance().getConfigurationElement(darrow.getConfigureString());
 			ImageDescriptor smallIcon = configure == null ? null : FigureConfigureManager.getSmallIcon(configure);
 			ImageDescriptor largeIcon = configure == null ? null : FigureConfigureManager.getLargeIcon(configure);
@@ -103,5 +103,54 @@ public class DPFTransformPaletteFactory  {
 							largeIcon != null ? largeIcon : LARGEARROW));
 		}
 	}
+	public void updatePaletteForExogenous(PaletteRoot root, DGraph sourceGraph, DGraph targetGraph) {
+		for(DNode dnode : sourceGraph.getDNodes()){
+			IConfigurationElement configure = FigureConfigureManager.getInstance().getConfigurationElement(dnode.getConfigureString());
+			ImageDescriptor smallIcon = configure == null ? null : FigureConfigureManager.getSmallIcon(configure);
+			ImageDescriptor largeIcon = configure == null ? null : FigureConfigureManager.getLargeIcon(configure);
+			Node node = dnode.getNode();
+			Assert.isTrue(node != null);
+			Assert.isTrue(dnode != null);
+			nodeGroup.add(new CreationToolEntry(node.getName(), "Create a new " + node.getName(), new DNodeFactory(dnode), 
+					smallIcon != null ? smallIcon : SMALLICON, 
+							largeIcon != null ? largeIcon : LARGEICON));
+		}
+		for(DNode dnode : targetGraph.getDNodes()){
+			IConfigurationElement configure = FigureConfigureManager.getInstance().getConfigurationElement(dnode.getConfigureString());
+			ImageDescriptor smallIcon = configure == null ? null : FigureConfigureManager.getSmallIcon(configure);
+			ImageDescriptor largeIcon = configure == null ? null : FigureConfigureManager.getLargeIcon(configure);
+			Node node = dnode.getNode();
+			Assert.isTrue(node != null);
+			Assert.isTrue(dnode != null);
+			nodeGroup.add(new CreationToolEntry(node.getName(), "Create a new " + node.getName(), new DNodeFactory(dnode), 
+					smallIcon != null ? smallIcon : SMALLICON, 
+							largeIcon != null ? largeIcon : LARGEICON));
+		}
+		for(DArrow darrow : sourceGraph.getDArrows()){
+			IConfigurationElement configure = FigureConfigureManager.getInstance().getConfigurationElement(darrow.getConfigureString());
+			ImageDescriptor smallIcon = configure == null ? null : FigureConfigureManager.getSmallIcon(configure);
+			ImageDescriptor largeIcon = configure == null ? null : FigureConfigureManager.getLargeIcon(configure);
+			Arrow arrow = darrow.getArrow();
+			Assert.isTrue(arrow != null);
+			Assert.isTrue(darrow != null);
+//			add Arrow:Node-->Node to tooltip in case several arrows with same name showing up in the metamodel.
+			arrowGroup.add(new DPFConnectionCreationToolEntry(arrow.getName(), "Create a new " + arrow.getName() + ":" + arrow.getSource().getName() + "-->" + arrow.getTarget().getName(), new DArrowFactory(darrow), 
+					smallIcon != null ? smallIcon : SMALLARROW, 
+							largeIcon != null ? largeIcon : LARGEARROW));
+		}
+		for(DArrow darrow : targetGraph.getDArrows()){
+			IConfigurationElement configure = FigureConfigureManager.getInstance().getConfigurationElement(darrow.getConfigureString());
+			ImageDescriptor smallIcon = configure == null ? null : FigureConfigureManager.getSmallIcon(configure);
+			ImageDescriptor largeIcon = configure == null ? null : FigureConfigureManager.getLargeIcon(configure);
+			Arrow arrow = darrow.getArrow();
+			Assert.isTrue(arrow != null);
+			Assert.isTrue(darrow != null);
+//			add Arrow:Node-->Node to tooltip in case several arrows with same name showing up in the metamodel.
+			arrowGroup.add(new DPFConnectionCreationToolEntry(arrow.getName(), "Create a new " + arrow.getName() + ":" + arrow.getSource().getName() + "-->" + arrow.getTarget().getName(), new DArrowFactory(darrow), 
+					smallIcon != null ? smallIcon : SMALLARROW, 
+							largeIcon != null ? largeIcon : LARGEARROW));
+		}
+	}
+	
 }
 
