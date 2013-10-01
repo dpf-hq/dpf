@@ -270,7 +270,11 @@ public class TransformWizardPage extends WizardPage {
 		target_defaultMetamodel.setSelection(true);
 		targetMetaModelFileText.setEnabled(false);
 		targetMetaModelFileChooser.setEnabled(false);
-		targetMetaModel = DPFConstants.REFLEXIVE_DSPECIFICATION;
+		
+		DSpecification defaultSpec = DiagramFactory.eINSTANCE.createDefaultDSpecification();
+		defaultSpec.setDSignature(DiagramFactory.eINSTANCE.createDefaultDSignature());
+		defaultSpec.setDType(DiagramFactory.eINSTANCE.createDefaultDSpecification());
+		targetMetaModel = defaultSpec;
 		
 		
 		
