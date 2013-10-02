@@ -235,7 +235,7 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 			testCorrespond.setDSignature(DiagramFactory.eINSTANCE.createDefaultDSignature());
 			testCorrespond.setDType(graph.getCommonGraph(sourceTypeSpec, targetTypeSpec));
 			
-			String correspondURI = directory.getPath().toString()+"\\"+getFileName().replace(".xform", "")+".dpf";
+			String correspondURI = directory.getPath().toString()+"/"+getFileName().replace(".xform", "")+".dpf";
 		
 			System.out.println("corre" + correspondURI);
 			
@@ -253,9 +253,9 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 			URI source = URI.createFileURI(transform.getSourceLocation());
 			URI target = URI.createFileURI(transform.getTargetLocation());
 			
-			String dpfFilename = directory.getPath().toString()+"\\"+TransformUtils.createCorrespondanceType(source.lastSegment().replace(".dpf", ""), 
+			String dpfFilename = directory.getPath().toString()+"/"+TransformUtils.createCorrespondanceType(source.lastSegment().replace(".dpf", ""), 
 					target.lastSegment());
-			String xmiFilename = directory.getPath().toString()+"\\"+TransformUtils.createCorrespondanceType(source.lastSegment().replace(".dpf", ""), 
+			String xmiFilename = directory.getPath().toString()+"/"+TransformUtils.createCorrespondanceType(source.lastSegment().replace(".dpf", ""), 
 					target.lastSegment().replace(".dpf", "xmi"));
 			System.out.println("1" + dpfFilename);
 			URI newDiagramUri = URI.createFileURI(dpfFilename);
