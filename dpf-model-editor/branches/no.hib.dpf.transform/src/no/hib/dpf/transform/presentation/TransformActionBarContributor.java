@@ -119,7 +119,7 @@ public class TransformActionBarContributor extends ActionBarContributor {
 			BrowseInstanceModel br = new BrowseInstanceModel(TransformUtils.getActiveWorkBenchWindow().getShell(), transform);
 			if(br.open() == Window.OK){
 //				String xmiPath = br.getModelInstanceFilePath().replace(".dpf", ".xmi");
-				ApplyTransformation.exeucteTransformation(br.getModelInstanceFilePath(), true);
+				ApplyTransformation.exeucteTransformation(br.getModelInstanceFilePath(), true, br.getTargetModelName());
 			}
 			
 //			FileDialog file = new FileDialog(TransformActivePage.getActiveWorkBenchWindow().getShell());

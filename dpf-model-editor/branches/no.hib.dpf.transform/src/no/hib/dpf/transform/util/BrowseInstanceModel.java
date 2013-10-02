@@ -36,6 +36,7 @@ import org.eclipse.swt.widgets.Shell;
 public class BrowseInstanceModel extends Dialog {
 
 	private Text modelInstance;
+	private Text targetInstance;
 	private Button instanceModelFileChooser;
 	private Label errorSourceMessage;
 	
@@ -54,6 +55,7 @@ public class BrowseInstanceModel extends Dialog {
 	private String targetSpec = ""; 
 	
 	private String modelInstanceFilePath;
+	private String targetModelName;
 	
 	
 	public BrowseInstanceModel(Shell parent, Transform transform) {
@@ -83,8 +85,8 @@ public class BrowseInstanceModel extends Dialog {
 	    layout.marginTop = 10;
 	    composite.setLayout(layout);
 
-	    Label lblUser = new Label(composite, SWT.NONE);
-	    lblUser.setText("Instance Model:");
+	    Label source_model = new Label(composite, SWT.NONE);
+	    source_model.setText("Source Model:");
 
 	    modelInstance = new Text(composite, SWT.BORDER);
 	    modelInstance.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false,
@@ -101,7 +103,6 @@ public class BrowseInstanceModel extends Dialog {
 					
 					String uri = modelInstance.getText();
 					DSpecification newTargetDSpec = DPFUtils.loadDSpecification(URI.createFileURI(uri));
-					System.out.println("Test");
 					
 				}
 			});
@@ -144,6 +145,13 @@ public class BrowseInstanceModel extends Dialog {
 		one.pack();
 		two.pack();
 		
+		Label target_model = new Label(composite, SWT.NONE);
+	    target_model.setText("Target Model Name:");
+		
+	    targetInstance = new Text(composite, SWT.BORDER);
+	    targetInstance.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false,
+	        1, 1));
+	    
 		return composite; 
 		
 	}
@@ -161,12 +169,18 @@ public class BrowseInstanceModel extends Dialog {
 	@Override
 	protected void okPressed(){
 		modelInstanceFilePath = modelInstance.getText().toString();
+		targetModelName = targetInstance.getText().toString();
 		super.okPressed();
 	}
 	
 	public String getModelInstanceFilePath(){
 		return modelInstanceFilePath;
 	}
+	public String getTargetModelName(){
+		return targetModelName;
+	}
+	
+	
 	
 	protected void handleModelBrowseButtonPressed(Text targetField, String name) {
 		String selection = null;

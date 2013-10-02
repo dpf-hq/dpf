@@ -62,7 +62,7 @@ public class ApplyTransformation {
 	public static final String HENSHINNEW = "C:/Users/Petter/workspace/no.hib.dpf.transform/model/generateHenshinRules.henshin";
 	public static final String HENSHINUNITS = "C:/Users/Petter/workspace/no.hib.dpf.transform/model/generateLoopHenshin.henshin";
 	
-	public static void exeucteTransformation(String path, boolean save){
+	public static void exeucteTransformation(String path, boolean save, String fileName){
 		String transformFile = TransformUtils.activeWindowFileLocation(); 
 		
 		HenshinResourceSet resourceSet = new HenshinResourceSet(TransformUtils.activeWorkingDirectory());
@@ -85,14 +85,14 @@ public class ApplyTransformation {
 		RuleApplication ruleApplication = new RuleApplicationImpl(engine);
 		ruleApplication.setEGraph(graph);
 		
-		DSpecification dType = DPFUtils.loadDSpecification(URI.createFileURI("C:/Users/Petter/runtime-EclipseApplication/model/petriNetMetaModel.dpf"));
+		DSpecification dType = DPFUtils.loadDSpecification(URI.createFileURI(transform.getTargetLocation()));
 		
 		DSpecification dSpecification = DiagramFactory.eINSTANCE.createDefaultDSpecification();
 		dSpecification.setDSignature(DiagramFactory.eINSTANCE.createDefaultDSignature());
 		dSpecification.setDType(dType);
 		
 		
-		Specification targetSpec = DPFUtils.loadSpecification(URI.createFileURI("C:/Users/Petter/runtime-EclipseApplication/model/petriNetMetaModel.xmi"));
+		Specification targetSpec = DPFUtils.loadSpecification(URI.createFileURI(transform.getTargetLocation().replace(".dpf", ".xmi")));
 		
 		Specification newSpec = CoreFactory.eINSTANCE.createDefaultSpecification();
 		newSpec.setGraph(CoreFactory.eINSTANCE.createDefaultGraph());
@@ -161,7 +161,11 @@ public class ApplyTransformation {
 		
 		System.out.println("Complete" + unitApp.getEGraph().getRoots().size());
 		
-		String uriNew = TransformUtils.activeWorkingDirectory() + "/spec.xmi";
+		URI targetLocation = URI.createFileURI(transform.getTargetLocation());
+		
+		String uriNew = transform.getTargetLocation().replace(targetLocation.lastSegment(), fileName+".xmi");
+		
+//		String uriNew = TransformUtils.activeWorkingDirectory() + "/spec.xmi";
 		String dSpecuriNew = TransformUtils.activeWorkingDirectory() + "/spec.dpf";
 		
 
