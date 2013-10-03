@@ -89,14 +89,19 @@ Model transformations are in the center of Model Driven Engineering.
 The vision for MDE is to increase automation of models between level of
 abstractions. This vision is achieved through the use of model transformations.
 Either if it is to use a model to text approach to generate source code, or by
-transforming a model to another model. A model driven approach to software
-development thrives to keep a level of abstraction on the models for as long as
-possible through translating these models.  
-
-Figure~\ref{fig:MDE_MDA_MT} was published in Kim Letkeman article,
-``Comparing and merging UML models in IBM Rational Software
-Architect''\cite{letkeman2005comparing} in October 2010. The figure describes
-the importance of model transformations in the Model Driven Architecture.
+transforming a model to another model where both models concrete syntax are
+specified by the abstract syntax from a meta-model. A model driven approach to
+software development thrives to keep a level of abstraction on the models for
+as long as possible through translating these models. And therefore model
+transformations are essential to be able to deploy model driven engineering in a
+software development process. Without model transformations, then models would
+only represent an abstraction of a system and nothing else. The principles
+behind OMG's Model Driven Architecture utilize the concepts behind model
+transformation to a full extend. Figure~\ref{fig:MDE_MDA_MT} gives a
+representation of how MDA wishes to facilitate the use of models and model
+transformations for an application development. The figure was published in Kim
+Letkeman article, ``Comparing and merging UML models in IBM Rational Software
+Architect''\cite{letkeman2005comparing} in October 2010. 
 
 \begin{figure}[H]
   \centering
@@ -107,13 +112,29 @@ the importance of model transformations in the Model Driven Architecture.
   \label{fig:MDE_MDA_MT}
 \end{figure}
 
+We can see the different level of abstractions that the architecture provides
+and how to translate between abstractions. Remember what we discussed in
+section~\ref{MDA} that the architecture represensents a software design approach
+for developing software applications. Where it expands the requirements of
+a software application into models and at the last level of abstraction the
+architecture provides implementation code for the application. The code that is
+generated most likely requires some additional work by developers, but a major
+part of the implementation code is generated through the use of models.
+Figure~\ref{fig:MDE_MDA_MT} explains that a set of transformations are required
+for a model fuse to model, or said differently, for a model to be integrated
+into another model. These transformation rules, that specifies how a model from
+a high level of abstraction is translated to a model on a lower level of
+abstraction, provides a development process that produce implementation code
+from through automatically generating models on different levels of abstraction. 
+
+
 \begin{figure}[H]
   \centering
     \includegraphics[scale=0.8]{./Figures/vertical_horizontal.png}
     \rule{35em}{0.5pt}
   \caption[Vertical and Horizontal model transformations]
   {Vertical and horizontal model transformations.}
-  \label{fig:MDE_MDA_MT}
+  \label{fig:vertical_horizontal}
 \end{figure}
 
 

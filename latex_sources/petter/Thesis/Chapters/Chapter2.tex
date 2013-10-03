@@ -1,17 +1,18 @@
 % Chapter Template
 
-\chapter{Model Driven Engineering} % Main chapter title
+\chapter{Background} % Main chapter title
 
 \label{Chapter2} % Change X to a consecutive number; for referencing this
 % chapter elsewhere, use \ref{ChapterX}
 
-\lhead{Chapter 2. \emph{Model Driven Engineering}} % Change X to a consecutive number; this is for the header on each page - perhaps a shortened title
+\lhead{Chapter 2. \emph{Background}} % Change X to a consecutive number; this is
+% for the header on each page - perhaps a shortened title
 
 %----------------------------------------------------------------------------------------
 %	SECTION 1
 %----------------------------------------------------------------------------------------
 
-\section{Introduction}
+\section{Model Driven Engineering}
 
 When a new software is created it has always been a goal to produce high
 quality code at the lowest cost. To plan a software development phase from its
@@ -138,6 +139,7 @@ including MDSE in a software development process is the Model Driven
 Architecture.
 
 \subsection{Model Driven Architecture}
+\label{MDA}
 
 Model Driven Architecture (MDA) is an industry architecture developed by the
 Object Management Group (OMG) and address an application development cycle. MDA
@@ -217,23 +219,51 @@ purpose programming language, a specific operation system or a specific database
 technology. The Platform-Specific Model contains all the information that is
 required for an actual implementation of the application. 
 
+In MDA, the core activity is the starting phase, which is the way analysis is
+conducted. Requirements are firstly defined and modeled as a CIM or a PIM. The
+CIM and PIM provides the solution for the requirements at a very high level of
+abstraction. At the computation independent level of abstraction we provide the
+requirements of a solution without thinking about the actual implementation of
+an application. A CIM could not only specify how an application should behave to
+different situations, but could also specify how the end users utilizes the
+application. For example the model could define the requirements for a web
+application that provides a collection of goods that the end users can purchase.
+These requirements could specify how an employee performs tasks when a new order
+arrives. For a solution to an application not all of these requirements are
+necessary for the implementation. The meaning of MDA is that models created at
+CIM level provides the highest level of abstraction and therefore should be
+readable for everyone. In figure~\ref{fig:MDA_PLATFORM} model MDA suggest
+that new models are created accordingly from a set of mappings. Models that is
+provided at the platform independent abstraction is not concerned with
+technologies that should be used for the actual implementation. PSM is more
+concerned with describing what tasks an application should perform. But tasks
+that an employee should perform, like for example making a shipment ready for
+transportation is not defined in a PIM. A platform specific model specifies what
+implementation platform and a set of precise descriptions of the technical
+details of the corresponding implementation platform. Mapping a model to another
+model is essential for applying MDA to a development process. A mapping defines
+correspondences between elements of two different models and can be defined
+between all different models. At the highest level of abstraction, a mapping
+consist of bridging different modeling languages. These modeling languages
+correspond to some meta-model that we will discuss in the next section.
+
 %-----------------------------------
 %	SUBSECTION 1
 %-----------------------------------
 \section{Meta-modeling}
 
-Meta-modeling plays a vital role in model driven engineering (MDE) to describe a
-modeling language. A meta-model defines the abstract syntax and provides a
-description of a modeling language. Another popular definition for
-meta-modeling is that it is a ``model of models". This definition is both
-unhelpful and incorrect according to Steve Cook and Stuart Kent in their
-paper\cite{Cook2008} published in 2008. They think that a better definition for
-a meta-model is that ``it is a model of the concepts expressed by a modeling
-language.'' A meta-model is basically a model that is specified by a
-meta-modeling language. The exact definition of a meta-model is highly debated
-amongst MDE researchers\cite{Rutle_thesis}. When creating instance of these
-meta-models we can specify a Domain Specific Modelling Language (DSML) from the
-concrete syntax of a meta-model.
+Models are a major artifact in the concept of model driven engineering (MDE). It
+is essential to look at every model as instances of some more abstract model.
+And therefore we can define a meta-model as yet another abstraction that
+highlights properties of an instance model. Meta-modeling represents a vital
+part of MDE and constitutes the definition of a modeling language. A meta-model
+defines the abstract syntax and provides a description of a modeling language.
+Another popular definition for describing a meta-modeling is that it is a
+``model of models". This definition is both unhelpful and incorrect according
+to Steve Cook and Stuart Kent in their paper\cite{Cook2008} published in 2008.
+They think that a better definition for a meta-model is that ``it is a model of
+the concepts expressed by a modeling language.'' The exact definition of a
+meta-model is highly debated amongst MDE researchers\cite{Rutle_thesis}. 
 
 \begin{figure}[H]
 	\centering
@@ -259,7 +289,10 @@ Organization for Standardization (ISO) as an industry standard for modeling
 software systems. UML was initially developed by Grady Booch, Ivar Jacobsen and
 James Rumbaugh at Rational Software in the 1990s. It was later adopted by the
 Object Management Group in 1997 and has since this day been continually
-developed by the organisation. 
+developed by the organisation. UML is called a general purpose language because
+it is often referred to as a suite of languages, since it provides developers
+and designers with the possibility to specify applications through several different
+modeling languages, or diagram types that UML often is associated with. 
 
 \subsection{Meta-Object Facility}
 
