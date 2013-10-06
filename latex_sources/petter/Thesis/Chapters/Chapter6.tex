@@ -2,9 +2,9 @@
 
 \chapter{Problem Solution} % Main chapter title
 
-\label{Chapter6} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
+\label{Chapter5} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
-\lhead{Chapter 6. \emph{Problem Solution}} % Change X to a consecutive
+\lhead{Chapter 5. \emph{Problem Solution}} % Change X to a consecutive
 % number; this is for the header on each page - perhaps a shortened title
 
 %----------------------------------------------------------------------------------------
@@ -34,7 +34,7 @@ source code with the DPF Editor. DPF does not provide support for applying an
 exogenous model transformation to a specification described in one domain
 specific modeling language to a model expressed in another domain specific
 modeling language. To achieve this we want to integrate Henshin transformation
-language\cite{Arendt2010} to the framework.
+language\cite{Arendt2010} to the framework. 
 
 \begin{figure}[H]
 	\centering
@@ -44,6 +44,7 @@ language\cite{Arendt2010} to the framework.
 	$\spec{S}$\textsubscript{n}.}
 	\label{fig:Simple_Solution}
 \end{figure}
+
 
 Figure~\ref{fig:Simple_Solution} explains how we want to integrate the Henshin
 model transformation language with the Diagram Predicate Framework. Henshin
@@ -55,6 +56,14 @@ a set of transformation rules written in the Henshin Transformation Language.
 These transformation rules refers to the abstract syntax for the
 specification $\spec{S}$\textsubscript{n+1} and specification
 $\spec{S}$\textsubscript{m+1} that the source and target model are typed over.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.65]{./Figures/flowchart_v2.png}
+	\caption[Work flow for the solution]
+	{Progressively work flow for the problem solution.}
+	\label{fig:work_flow_solution}
+\end{figure}
 
 The problem with integrating Henshin with DPF is that Henshin is implemented by
 EMF, and therefore utilize OMG's MOF. The Henshin model transformation
@@ -88,28 +97,42 @@ LHS and the RHS graph of a transformation rule.
 	\label{fig:core_metamodel}
 \end{figure}
 
+
+
+In 2007 Ralf Gitzel, Ingo Ott and Martin Schader published a paper where they
+amongst other subjects discuss the difference between Linguistic and
+Ontological meta-modeling. They provide a definition between the two cases, 
+\textit{``Linguistic metamodeling uses a metamodel to describe a language syntax
+without a concrete real-world mapping. Ontological metamodeling uses metamodels
+to describe domain-specific hierarchies"}\cite{gitzel2007ontological}. As it is,
+the MOF 2.4.1 standard does not allow more than a four layered meta-modeling.
+DPF has one Ecore specified meta-model that describes a language syntax and a
+potentially unlimited meta-models that describes a domain-specific hierarchy. 
 Figure~\ref{fig:core_metamodel} gives a representation on how specifications
 are related and regardless of level of abstraction every specification
-$\spec{S}$\textsubscript{1\ldots n} conforms to one common meta-model. For
-Henshin we can import this meta-model, \textit{Meatmodel.ecore} that is
-provided by DPF. We can use this meta-model in Henshin to define the
-content of the transformation rules since every specification
-$\spec{S}$\textsubscript{n} conforms to this meta-model. However, other than
-consisting of an underlying graph and a set of constraints, a DPF specification
-$\spec{S}$\textsubscript{n} is also typed by another
+$\spec{S}$\textsubscript{1\ldots n} conforms to one common meta-model. This
+model is the linguistic meta-model that DPF provides to describe every single
+specification created by the DPF editor. For Henshin we can import this
+meta-model, \textit{Meatmodel.ecore} and use it to define the content of the
+transformation rules since every specification $\spec{S}$\textsubscript{n}
+conforms to this meta-model.
+However, other than consisting of an underlying graph and a set of constraints,
+a DPF specification $\spec{S}$\textsubscript{n} is also an instance of another
 specification$\spec{S}$\textsubscript{n+1}, and this is where it gets
-challenging. Because in DPF a specification model $\spec{S}$\textsubscript{n} is
-created as an instance from a specification model $\spec{S}$\textsubscript{n+1}.
-This is where we have to find a work around for our solution, because we cannot
-import an instance model of an Ecore based meta-model into the Henshin model
-transformation environment. We can do changes to an instance model by using
-Henshin, but the transformation language can only import and utilize models
-that conforms to the Ecore meta-model. To solve this for DPF models we expand
-transformation rules in Henshin with application conditions. We will look more
-closely to how this is done later in this chapter, but what we basically do is
-that we restrict the LHS graph to locate matching modeling elements in an
-instance model based on the abstract syntax that another instance model
-provides. 
+challenging. Because in DPF a specification model $\spec{S}$\textsubscript{n}
+is created as an instance from a specification model
+$\spec{S}$\textsubscript{n+1}. We can describe these specification models as
+ontological meta-models, since these models describes a domain specific modeling
+language through an arbitrary hierarchy of models. This is where we have to find
+a work around for our solution, because we cannot import an instance model of
+an Ecore based meta-model into the Henshin model transformation environment. We
+can do changes to an instance model by using Henshin, but the transformation
+language can only import and utilize models that conforms to the Ecore
+meta-model. To solve this for DPF models we expand transformation rules in
+Henshin with application conditions. We will look more closely to how this is
+done later in this chapter, but what we basically do is that we restrict the
+LHS graph to locate matching modeling elements in an instance model based on
+the abstract syntax that another instance model provides.
 
 %----------------------------------------------------------------------------------------
 %	SECTION 2
@@ -126,14 +149,17 @@ We can specify a pattern graph and a replacement graph for each transformation
 rule based on the factory class that Henshin provides. In the following we
 will address what elements a transformation rule in Henshin consist of based on
 the Henshin meta-model for a transformation rule represented in
-figure~\ref{fig:Henshin_metamodel}.
- 
+figure~\ref{fig:Henshin_metamodel}. The figure is obteined from a paper that
+Thorsten Arendt, Enrico Biermann, Stefan Jurack, Christian Krause, and Gabriele
+Taentzer published in 2010 on the Henshin transformation language where they
+provide the meta-model for defining a single transformation
+rule\cite{Arendt2010}.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.8]{./Figures/Henshin_metamodel.png}
-	\caption[Henshin transformation meta-model]
-	{Henshin transformation meta-model\cite{Arendt2010}.}
+	\caption[Henshin meta-model for a transformation rule]
+	{Henshin meta-model for a transformation rule.}
 	\label{fig:Henshin_metamodel}
 \end{figure}
 
@@ -151,25 +177,34 @@ edges refer to references between objects. An edge has a source and a target
 node, while a node can have a collection of incoming and outgoing edges. The
 nodes can also have a set of attributes attached. Nodes, edges and attributes
 all have two common properties, and the first one is that they all have a type.
-This type is a reference to either an EClass, EReference or EAttribute, that is
-all classes of the Ecore meta-model. For example a node that is typed by a
-specific EClass will only be matched to objects of this type in an instance
-graph. These nodes and edges are represented under a graph and form a pattern.
-Together with the LHS and the RHS these patterns is either used to find
-matching patterns in a source model or to create the corresponding pattern for
-a target model. The second property that these three have in common is that
-they have an action type. Action types are predefined stereotypes for Henshin
-and specifies how these three Henshin modeling elements of a graph in Henshin
-behaves when applying a transformation rule. An action type could specify if a
-graph element is part of an application condition, the replacement graph, the
-pattern graph or an intersection graph. A \textbf{Mapping} is how
-Henshin specifies if nodes are part of this intersection graph, and that is
-nodes that are part of both the LHS and the RHS graph. This means that these
-objects should be part of the matching pattern, but should not be deleted. A
-mapping has two properties, namely an origin and an image. The origin property
-refers to a given node, while the image property specify that another node has
-a mapping to this node. So far we have a rule that can have two graphs and a
-set of mappings. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.65]{./Figures/Node_edge_attribute.png}
+	\caption[Henshin relationship with Ecore]
+	{Henshin elements relationship to the EClass, EReference and EAttribute.}
+	\label{fig:henshin_ecore}
+\end{figure}
+
+Figure~\ref{fig:henshin_ecore} represents a small fraction of the Ecore
+meta-model and how Henshin modeling elements are typed by either an EClass,
+EReference or EAttribute. For example a Node that is typed by a specific EClass
+will only be matched to objects of this type in an instance graph. These nodes
+and edges are represented under a graph and form a pattern. Together with the
+LHS and the RHS these patterns is either used to find matching patterns in a
+source model or to create the corresponding pattern for a target model. The
+second property that these three have in common is that they have an action
+type. Action types are predefined stereotypes for Henshin and specifies how
+these three Henshin modeling elements of a graph in Henshin behaves when
+applying a transformation rule. An action type could specify if a graph element
+is part of an application condition, the replacement graph, the pattern graph
+or an intersection graph. A \textbf{Mapping} is how Henshin specifies if nodes
+are part of this intersection graph, and that is nodes that are part of both
+the LHS and the RHS graph. This means that these objects should be part of the
+matching pattern, but should not be deleted. A mapping has two properties,
+namely an origin and an image. The origin property refers to a given node from
+the LHS grph, while the image property specify a mapping to a node in the RHS
+graph. So far we have a rule that can have two graphs and a set of mappings. 
 
 A rule can also specify application conditions that determines where a specific
 rule could be applied. These application conditions are defined in the
@@ -188,22 +223,22 @@ LHS and RHS graph. A nested condition provides a graph and a set of mappings to
 elements that are part of the LHS or common graph. This graph is child of
 a nested condition and contains nodes, edges and attributes that form a
 structural pattern that specifies an application condition. We can observe that
-a transformation rules can have several number of application conditions. A
+transformation rules can have several number of application conditions. A
 binary formula can be of type \textbf{Or} or \textbf{And} and provides the
 possibility to nest other binary formulas. If the structure of a binary formula
 is the latter, then all the application conditions from both the right and left
 formula has to be be valid for a transformation rule to be applied to a
 instance graph.
 
-\section{Transform Model Editor}
+\section{Transformation Editor}
 
 With the Eclipse Modeling Framework we created an Eclipse plugin where users can
 create and modify transformation rules. Figure~\ref{fig:transform_metamodel}
-provides the structural data model that we use to generate code for the
-implementation of the model and the plugin. The two classes Transform and
+provides the structural data model that we use to generate code for the model
+implementation and the plugin implementation. The two classes Transform and
 Production are the two domain classes that together defines this domain specific
 modeling language that lets users create transformation rules. The Transform
-class represent the Transform Model Editor and has a source meta-model and a
+class represent the Transformation Editor and has a source meta-model and a
 target meta-model, that corresponds to a source specification and a target
 specification. If these two models are the same model, then the model
 transformation is an endogenous model transformation and if the models are
@@ -219,19 +254,19 @@ Henshin to generate transformation rules.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.8]{./Figures/transform_metamodel.png}
-	\caption[Model for the DPF transformation editor]
+	\includegraphics[scale=0.8]{./Figures/transform_metamodel_ecore.png}
+	\caption[Model for the Transformation Editor]
 	{The domain model to create a DPF model transformation editor.}
 	\label{fig:transform_metamodel}
 \end{figure}
 
-The user has to invoke the file creation wizard for the Transform Model Editor.
+The user has to invoke the file creation wizard for the Transformation Editor.
 Other than choosing a project folder and a name for this new editor file, the
 user has to specify what model is the source meta-model and what model is the
 target meta-model. If the user do not specify a target meta-model then the file
 creation wizard will interpret this as an endogenous model transformation.
 
-The Transform Model Editor plugin has two editors that users can interact with.
+The Transformation Editor plugin has two editors that users can interact with.
 The first is the master editor for the plugin and contains a list of the
 transformation rules, where users can create, read, update and delete rules. The
 second editor is administrated by the master editor, and each time a new
@@ -318,7 +353,7 @@ and arrows from a source model to nodes and arrows from a target model. This DPF
 model specify the correspondence graph between source and target meta-models. We
 can now refer to this DPF model when creating Henshin transformation rules to
 extract the corresponding objects. We can also do this explicitly when creating
-the transformation rules in the Transform Model Editor by modeling a new trace
+the transformation rules in the Transformation Editor by modeling a new trace
 object that is represents a trace between a source modeling element and a
 target modeling element. We use this trace object or the correspondence graph to
 determine how we translate a DPF model. We create a trace object that has a
@@ -339,8 +374,8 @@ transformation rule. We need to import two models if we want to translate a
 specification with Henshin. The first model is the corresponding meta-model for
 all specifications and the second model is the meta-model for including
 traceable links in Henshin. We will describe the purpose of these traceable
-links in more detail in chapter 6.5.1. The transformation language requires
-models that define the abstract syntax for an instance model to be able to
+links in more detail in section~\ref{Trace}. The transformation language
+requires models that define the abstract syntax for an instance model to be able to
 specify modeling elements for both the LHS and the RHS of a transformation
 rule. We can use meta-elements provided by these two models when defining new
 nodes, edges and attributes in Henshin. These types are EClass for nodes,
@@ -363,7 +398,7 @@ about in section~\ref{sec:graph_based}. In this section we introduced double
 and single pushouts of graphs. Henshin has an arbitrary mixing of these graph
 transformation styles.
 
-For each rule we created in the Transform Model Editor we have defined a
+For each rule we created in the Transformation Editor we have defined a
 pattern, that either corresponds to a left hand side, a right hand side or a
 common graph. This pattern consist of nodes and arrows that together form a
 graph. For each node and arrow, we create a Henshin node that is either typed
@@ -418,7 +453,7 @@ these specification models are typed by another specification, and this is
 where we can retrieve the types for every node and arrow. In the specification
 meta-model both the Node and Arrow class has a reference type to another Node
 and Arrow. Figure~\ref{fig:pac_henshin} represent the LHS for the
-Transform Model Editor that we want to generate Henshin rules from. The idea is
+Transformation Editor that we want to generate Henshin rules from. The idea is
 to create an application condition for every node and arrow with their
 corresponding type node and type arrow. The type nodes and arrows have an
 attribute called name and is a string. We can use this attribute to specify a
@@ -491,6 +526,7 @@ negative application conditions for our model transformation environment with
 traceable links. 
 
 \subsection{Traceable links}
+\label{Trace}
 
 As we discussed in chapter 3.2.7 a traceable link works as the footprint when
 executing a set of transformation rules. Henshin provides a traceable link

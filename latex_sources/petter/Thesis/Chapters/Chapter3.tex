@@ -12,19 +12,19 @@
 %	SECTION 1
 %----------------------------------------------------------------------------------------
 
-Transformation is a fundamental aspect in computer science and software
+Transformation are a fundamental aspect in computer science and software
 engineering. Whenever a computer starts up, transformation of computer systems
 and computer programs happens frequently. Take a compiler for instance, it plays
 a vital part of a computers internal infrastructure. A compiler is a computer
 program that translates source code written in a high-level programming
-language into lower level language, such as an assembly language or machine
+language into a lower level language, such as an assembly language or machine
 code. This means that a computer program written in a general-purpose
 programming language, such as Java or C++ would be useless without a compiler,
 since the computer's central processing unit (CPU) depends on machine code to be
 able to execute a set of instructions. But also computation of primitive data
 values and performing operations on data structures such as lists and arrays can
 also be viewed as data transformations. When a programming language provides a way
-to type these data values or data structures, a compiler or interpreter can
+to type these data values or data structures, then a compiler or interpreter can
 apply operations to the data accordingly to the type. But when we mention
 data representing software artifacts such as a data schema, programs or models,
 then transformation approaches 
@@ -34,15 +34,16 @@ then transformation approaches
 %-----------------------------------
 \section{Basic concepts of model transformation}
 
-The very basic concept of model transformations is to translate one model to
-another model. This model translation can either be achieved through an
-endogenous or an exogenous model transformation. For an endogenous model
-transformation we take a source model expressed in a modeling language and
-produce a target model expressed in the same language. While an exogenous model
-transformation start with a source model expressed in one modeling language and
-translate this into a target model expressed in another modeling language. It
-is essential that these models remain consistent, and therefore both the source
-and target model have to conform to their corresponding meta-model.
+The very basic concept of a model transformation on the highest level of
+abstraction is to translate one model to another model. This model translation
+can either be achieved through an endogenous or an exogenous model
+transformation. For an endogenous model transformation we take a source model
+expressed in a modeling language and produce a target model expressed in the
+same language. While an exogenous model transformation start with a source
+model expressed in one modeling language and translate this into a target model
+expressed in another modeling language. It is essential that these models
+remain consistent, and therefore both the source and target model have to
+conform to their corresponding meta-model.
 
 \begin{figure}[H]
   \centering
@@ -56,32 +57,31 @@ and target model have to conform to their corresponding meta-model.
 Figure~\ref{fig:BasicTransformation} is a representation of the basic concepts
 for a model transformation. The two concepts, transformation language and
 transformation engine are provided by some model transformation environment.
-The main idea behind changing two models are to read the content of a source
-model and write the contents to a target model. The transformation engine
-executes a transformation language that specifies a set of guidelines that
-express how the target model is constructed. These guidelines is created from
-metadata that are defined in the source and target meta-model to create an
-executable environment for the transformation engine. Where the transformation
-language use both the source and target meta-model as a reference point for the
-source and target model. The transformation language specifies how a
-translation between two models should be applied through the use of these
-meta-models. Both meta-models provides some abstract syntax that a transformation
-language can utilize to specify a model transformation environment. One aspect
-behind the abstract syntax that should be taken into consideration is that the
-concrete syntax of the abstract syntax can be either textual or graphical.
-Traditionally when we use the concept model, we think of a miniatures, with
-nodes and vertexes that are connected with arrows and edges. These miniatures
-represent a graphical representation of a model. However a model can also have a
-textual representation. Therefore we often say that a model transformation
-can produce two different kind of target models. At the highest level of
-abstraction these the two different results can be code generation, often
-referred to Model to Text (M2T) transformation. A Model to Text transformation
-takes a source model and produce implementation code as a target model. The
-other approach is refereed to as Model to Model (M2M) transformation and takes a
-source model as an input model and produce a target model. The distinction
-between these two categories is that a M2M transformation produce an instance
-model that conforms to some meta-model while an M2T produces strings as its
-target model. 
+The main idea behind changing two models are to read a source model and write a
+target model. The transformation engine executes a transformation language that
+specifies a set of guidelines that express how the target model is constructed.
+These guidelines is created from meta-data that are defined in the source and
+target meta-model to create an executable environment for the transformation
+engine. Where the transformation language use both the source and target
+meta-model as a reference point when specifying these guidelines for the source
+and target model. The transformation language specifies how a translation
+between two models should be applied through the use of these meta-models. Both
+meta-models provides some abstract syntax that a transformation language can
+utilize to specify a model transformation environment. One aspect behind the
+abstract syntax that should be taken into consideration is that the concrete
+syntax of the abstract syntax can be either textual or graphical. Traditionally
+when we use the concept model, we think of a miniatures, with nodes and
+vertexes that are connected with arrows and edges. These miniatures represent a
+graphical representation of a model. However a model can also have a textual
+representation. Therefore we often say that a model transformation can produce
+two different kind of target models. At the highest level of abstraction these
+two different target models can either be produced by a Model to Text (M2T)
+transformation or a Model to Model (M2M) transformation. A Model to Text
+transformation takes a source model and produce implementation code as a target
+model. The other approach, Model to Model transformation takes a source model as
+an input model and produce a target model. The distinction between these two
+categories is that a M2M transformation produce an instance model that conforms
+to some meta-model while an M2T produces strings as its target model.
 
 \subsection{Level of Abstractions}
 
@@ -696,20 +696,21 @@ $\longrightarrow$ R} use the algebraic construction, pushout to apply an
 application rule for a rewriting step. Hence the name double pushout and the use
 of two rewriting conditions.
 
-\subsection{Productions}
+\subsection{Transformation Rules}
 For a transformation language to be able to execute graph
 transformations a set of application rules needs to be defined. Through these
-rules, a transformation interpreter can act accordingly. These rules are often
-referred to as Productions. For graph transformations, there can be an arbitrary
-number of rules. Its truly up to the users how they want to translate a
-language and how many rules that is needed to acquire this. Each rule consists
-of a left hand side (LHS) and a right hand side (RHS), also often referred to as
-pattern graph and replacement graph. The pattern graph represents a subgraph of
-the model that is going to be translated, namely the host graph. For these
-productions to execute, there has to be some control mechanism, namely the
-transformation unit.
+rules, a transformation interpreter can act accordingly. These rules can have
+many names, and are often referred to as productions or applications. For graph
+transformations, there can be an arbitrary number of rules. Its truly up to the
+users how they want to translate a language and how many rules that is needed
+to acquire this. Each rule consists of a left hand side (LHS) and a right hand
+side (RHS), also often referred to as pattern graph and replacement graph. The
+pattern graph represents a subgraph of the model that is going to be translated,
+namely the host graph. For these productions to execute, there is an application
+control mechanism that administrates the execution ordering of transformation
+rules. 
 
-\subsection{Transformation Units}
+\subsection{Application Control}
 In graph transformation, there has to be a control mechanism that
 administrates these productions. These control mechanisms are also called
 transformation units. These units controls the order that the transformation
@@ -732,7 +733,7 @@ represents the right hand side of the rule.
 	\label{fig:GraphTransformationGeneral}
 \end{figure}
 
-For a production rule r, \mbox{G$\xrightarrow{r,m}$G'} indicates a direct
+A production rule r, \mbox{G$\xrightarrow{r,m}$G'} indicates a direct
 derivation to a derived graph G'. In
 figure~\ref{fig:GraphTransformationGeneral}, the graph G' is created by
 applying a single pushout for a transformatin rule r. If there is a match m of
@@ -783,10 +784,6 @@ Figure~\ref{fig:GraphTransformationGeneral} is a representation of the practices
 of the SPO approach. Where nodes that are present in the pattern graph L but not
 the replacement graph R are deleted. And the incoming and outgoing edges of the
 deleted nodes that are not present in the replacement graph R is deleted.
-
-Now that we have explained some aspects of Graph transformations, we can
-describe the three different tools, where both AGG and Henshin is build around
-the concepts of graph transformations explained in this section. 
 
 \begin{figure}[H]
 	\centering

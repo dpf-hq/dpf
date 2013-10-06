@@ -257,13 +257,14 @@ is essential to look at every model as instances of some more abstract model.
 And therefore we can define a meta-model as yet another abstraction that
 highlights properties of an instance model. Meta-modeling represents a vital
 part of MDE and constitutes the definition of a modeling language. A meta-model
-defines the abstract syntax and provides a description of a modeling language.
-Another popular definition for describing a meta-modeling is that it is a
-``model of models". This definition is both unhelpful and incorrect according
-to Steve Cook and Stuart Kent in their paper\cite{Cook2008} published in 2008.
-They think that a better definition for a meta-model is that ``it is a model of
-the concepts expressed by a modeling language.'' The exact definition of a
-meta-model is highly debated amongst MDE researchers\cite{Rutle_thesis}. 
+defines the abstract syntax and provides a description of a domain specific
+modeling language. Another popular definition for describing a meta-modeling is
+that it is a ``model of models". This definition is both unhelpful and
+incorrect according to Steve Cook and Stuart Kent in their paper\cite{Cook2008}
+published in 2008. They think that a better definition for a meta-model is that
+``it is a model of the concepts expressed by a modeling language.'' The exact
+definition of a meta-model is highly debated amongst MDE
+researchers\cite{Rutle_thesis}.
 
 \begin{figure}[H]
 	\centering
@@ -273,8 +274,8 @@ meta-model is highly debated amongst MDE researchers\cite{Rutle_thesis}.
 	\label{fig:SimpleMeta-model}
 \end{figure}
 
-Figure~\ref{fig:SimpleMeta-model} shows a simple example of a instance model and
-its corresponding meta-model. This model has two classes, Student and Course, and
+Figure~\ref{fig:SimpleMeta-model} shows a simple example of an instance model
+and its corresponding meta-model. This model has two classes, Student and Course, and
 a bidirectional association, take course and has students, that relate
 these two classes. The model is specified by a meta-model that consists of two
 metaclasses Class and Association and an association between them. Both Student
@@ -300,7 +301,7 @@ The Object Management Group was in need of a architecture to define the
 UML. Therefore the Meta-Object Facility has its origin from, that specifies UML.
 MOF and is a semi-formal approach to writing meta-models. The Meta-Object
 Facility\cite{MOF} (MOF) is an Object Management Group standard for model
-driven engineering. According to OMG, this standard provi des a four leveled
+driven engineering. According to OMG, this standard provides a four leveled
 architecture.
 
 \begin{figure}[H]
@@ -322,6 +323,9 @@ describes elements that can be used in the M\textsubscript{1} layer, namely
 models. These could be models specified by the modeling language, UML. Finally
 at the M\textsubscript{0} we have an instance model of a real world object. 
 
+
+, that is a language for defining abstract syntax of
+modeling languages.
 %-----------------------------------
 %	SUBSECTION 2
 %-----------------------------------
@@ -419,8 +423,6 @@ eliminate professional programmers do nothing of the sort.
 	\label{fig:langauge_workbench}
 \end{figure}
 
-\subsection{Eclipse Platform}
-
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.6]{./Figures/EMF_Diagram_Picture.png}
@@ -445,7 +447,7 @@ eliminate professional programmers do nothing of the sort.
 	\label{fig:EMF_Ecore}
 \end{figure}
 
-\subsubsection{EMF}
+\subsection{EMF}
 
 Skriv om at EMF egentlig er en 4 layer, men brukeren har bare muligheten til å
 interract with 2 av layerene. 
@@ -461,6 +463,17 @@ visibility of the model. EMF also provides change notification functionality to
 the model in case of model changes. EMF will generate interfaces and factory to
 create your objects; therefore it helps you to keep your application clean from
 the individual implementaiton classes.
+
+
+\subsection{Visual Modeling and Transformation System}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{./Figures/VMTS}
+	\caption[Creating domain specific modeling language in VMTS]
+	{Specifying a domain specific modeling language in VMTS.}
+	\label{fig:VMTS}
+\end{figure}
 
 \section{DPF}
 
