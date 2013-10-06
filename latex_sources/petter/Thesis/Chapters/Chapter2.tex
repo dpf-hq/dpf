@@ -244,8 +244,8 @@ details of the corresponding implementation platform. Mapping a model to another
 model is essential for applying MDA to a development process. A mapping defines
 correspondences between elements of two different models and can be defined
 between all different models. At the highest level of abstraction, a mapping
-consist of bridging different modeling languages. These modeling languages
-correspond to some meta-model that we will discuss in the next section.
+consist of bridging different modeling languages that correspond to some
+meta-model. 
 
 %-----------------------------------
 %	SUBSECTION 1
@@ -395,7 +395,29 @@ constraints from figure~\ref{fig:Constraints} then the model is less
 informative. There is no understanding on how the objects are related to
 one another. 
 
-\section{Workbenches}
+\section{Language Workbenches}
+
+
+
+Meta-modeling and constraints are essential when we want to specify a new
+language workbench. 
+
+One of the themes that winds constantly across both forms of language oriented
+programming is the involvement of lay programmers: domain experts who are not
+professional programmers but program in DSLs as part of the development effort.
+The goal of lay programming has been a constant goal of the software world -
+indeed many believed the early high level languages (COBOL and FORTRAN)
+heralded the end of programmers as users would use them. This reminds us of
+what I call the COBOL inference - that most technologies that are supposed to
+eliminate professional programmers do nothing of the sort.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{./Figures/langauge_workbehcn.png}
+	\caption[Intended use of language workbenches]
+	{Intended use of language workbenches.}
+	\label{fig:langauge_workbench}
+\end{figure}
 
 \subsection{Eclipse Platform}
 
@@ -424,6 +446,9 @@ one another.
 \end{figure}
 
 \subsubsection{EMF}
+
+Skriv om at EMF egentlig er en 4 layer, men brukeren har bare muligheten til å
+interract with 2 av layerene. 
 
 In EMF we can create data models based on the Essential MOF (EMOF) and specify
 domain specific languages. The Henshin meta-model is created as an EMF

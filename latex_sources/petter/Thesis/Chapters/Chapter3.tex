@@ -83,6 +83,115 @@ between these two categories is that a M2M transformation produce an instance
 model that conforms to some meta-model while an M2T produces strings as its
 target model. 
 
+\subsection{Level of Abstractions}
+
+In the beginning of 2006 Tom Mens and Pieter Van Gorp published a paper that
+explains different aspects of model transformations. One aspect of model
+transformation they mention is the direction through abstraction layers for
+endogenous and exogenous model transformations. In their paper they state that
+the \textit{``dimensions horizontal versus vertical and endogenous versus
+exogenous are truly orthogonal''}\cite{Mens2006}. Horizontal and vertical model
+transformation are two categorizes that describes transformations over different
+layers of abstraction. In MDE a level of abstraction are represented through
+models that are specified by models from higher level of abstractions. For
+example a class diagram model that is specified by the UML model. Modeling elements
+that are defined for the class diagram model is represented on one level of
+abstraction while modeling elements that are defined by the UML model is
+represented one abstraction level higher. Table~\ref{tab:directions_mt} from
+the paper that Tom Mens and Pieter Van Gorp published describes some examples of
+different model transformations over layers of abstraction.
+
+\begin{table}[ht]
+\renewcommand*\arraystretch{1.2}
+\centering
+\begin{tabular}{| c | c | c |}
+\hline
+
+& Horizontal Transformation & Vertical Transformation \\ [0.5ex] 
+\hline
+Endogenous Transformation & Refactoring & Formal refinement \\ [0.5ex] 
+Exogenous Transformation & Language migration & Code generation \\ [0.5ex]
+ 
+\hline
+\end{tabular}
+\caption{Example model transformations.}
+\label{tab:directions_mt}
+\end{table} 
+
+We discussed previous in this sections that changing a model to another model 
+can either be applied by an exogenous or an endogenous model transformation.
+But when we consider these two types of model transformation we can also express
+that a model transformation is vertically or horizontally translated amongst
+abstraction layers. For a vertical model transformation a target model is
+translated according to models that are specified on a higher abstraction level,
+while a horizontal model transformation translates a model to a different
+abstraction layered hierarchy. The table above express that that we can have
+for example endogenous model transformations that provides refactoring or
+formal refinement of models. These two example transformations are applied
+differently concerning abstraction layers. Refactoring is an example of a
+horizontal model transformation that applies changes to a model expressed in
+some modeling language, and since this is an endogenous model transformation we
+can safely assume that the abstraction level is the same before and after the
+transformation is applied. A specific model refactoring example is the Pull Up
+Attribute\cite{Henshin_2010} that moves a common attribute from a subclass of a
+given class to this class. Language migration is another example of a horizontal
+model transformation, and is an exogenous model transformation that produces a
+model expressed in a different modeling language compared to the source model.
+A classic example of a language migration is to translate a class diagram to a
+relation database model. This example has become more or less a benchmark for
+model transformation tools and provides a transformation for a DSL that is
+specified through a abstraction layer hierarchy to a DSL that is specified
+through another abstraction layer hierarchy. The reason for mentioning that an
+abstraction layer is part of a hierarchy is because there exist solutions for
+creating a domain specific modeling languages over an arbitrary layers of
+abstractions, such as Diagram Predicate Framework\cite{Lamo2013} (DPF),
+metaDepth\cite{de2010deep} or Visual Modeling and Transformation
+System\cite{levendovszky2005systematic} (VMTS). Compared to these the
+Eclipse Modeling Framework (EMF), that provides a two layered approach to
+specifying a DSL, will always apply an exogenous model transformation to the
+same abstraction layer hierarchy. EMF creates a DSML based on the Meta Object
+Facility and therefore provides the user the possibility to define a DSML
+as a meta-model and create an instance model of this DSML meta-model. While the
+three other tools mention provides an n-layer meta-modeling environment to
+specify a DSL. This means that a source DSL might only be described in one
+meta-model while a target DSL might have been specified through several layers
+of meta-modeling. Regardless of how many abstraction layers a DSL is defined
+over for a source and a target model, the model transformation is provided
+horizontally. Code generation is an example of a model transformation that
+vertically translates through layers of abstraction and is usually the final
+model that is produced in a model driven development cycle. Code generation is a
+Model to Text transformation that translates a source model that is described by
+a DSL and produce a target model that usually is described by a general purpose
+programming language, such as Java or C++. Figure~\ref{fig:vertical_horizontal}
+represents both a vertical model transformation and a horizontal model
+transformation. We can see that the vertical model transformation example
+represents a small portion of the MDA approach to software development, where
+implementation code is generated from a collection of platform specific models.
+The horizontal model transformation example provides a different example to
+model transformations, that is mering models into another model and is
+convenient for synchronizing models.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[scale=0.8]{./Figures/vertical_horizontal.png}
+    \rule{35em}{0.5pt}
+  \caption[Vertical and Horizontal model transformations]
+  {Vertical and horizontal model transformations.}
+  \label{fig:vertical_horizontal}
+\end{figure}
+
+The other provided example is a vertical model transformation that presents the
+an example of an endogenous model transformation, that is refinement of a model.
+If we do not consider the transformation that produces code, since this is an
+exogenous model transformation. The three model types that MDA provides
+can be viewed as a endogenous model transformation that provides a model that
+is gradually refined into executable implementation code, by going through
+refinement steps that add more details to the model. For example when mapping a
+platform-independent model to a platform-specific model. Like we discussed in
+section~\ref{MDA} a PIM describes the behavior and structure of an application
+while a PSM describes all the information a specific technological platform
+requires to implement the behavior and structure of this application. 
+
 \section{Model Transformations in MDE}
 
 Model transformations are in the center of Model Driven Engineering.
@@ -90,18 +199,17 @@ The vision for MDE is to increase automation of models between level of
 abstractions. This vision is achieved through the use of model transformations.
 Either if it is to use a model to text approach to generate source code, or by
 transforming a model to another model where both models concrete syntax are
-specified by the abstract syntax from a meta-model. A model driven approach to
-software development thrives to keep a level of abstraction on the models for
+specified by an abstract syntax that a meta-model provides. A model driven
+approach to software development thrives to keep a level of abstraction on the models for
 as long as possible through translating these models. And therefore model
 transformations are essential to be able to deploy model driven engineering in a
-software development process. Without model transformations, then models would
-only represent an abstraction of a system and nothing else. The principles
-behind OMG's Model Driven Architecture utilize the concepts behind model
-transformation to a full extend. Figure~\ref{fig:MDE_MDA_MT} gives a
-representation of how MDA wishes to facilitate the use of models and model
-transformations for an application development. The figure was published in Kim
-Letkeman article, ``Comparing and merging UML models in IBM Rational Software
-Architect''\cite{letkeman2005comparing} in October 2010. 
+software development process. The principles behind OMG's Model Driven
+Architecture utilize the concepts behind model transformation to a full extend. 
+Figure~\ref{fig:MDE_MDA_MT} gives a representation of how MDA wishes to
+facilitate the use of models and model transformations in a software
+development. The figure was published in Kim Letkeman article, ``Comparing and
+merging UML models in IBM Rational Software
+Architect''\cite{letkeman2005comparing} in October 2010.
 
 \begin{figure}[H]
   \centering
@@ -114,28 +222,24 @@ Architect''\cite{letkeman2005comparing} in October 2010.
 
 We can see the different level of abstractions that the architecture provides
 and how to translate between abstractions. Remember what we discussed in
-section~\ref{MDA} that the architecture represensents a software design approach
+section~\ref{MDA} that the architecture represents a software design approach
 for developing software applications. Where it expands the requirements of
 a software application into models and at the last level of abstraction the
 architecture provides implementation code for the application. The code that is
 generated most likely requires some additional work by developers, but a major
 part of the implementation code is generated through the use of models.
 Figure~\ref{fig:MDE_MDA_MT} explains that a set of transformations are required
-for a model fuse to model, or said differently, for a model to be integrated
-into another model. These transformation rules, that specifies how a model from
+for a model to fuse to another model, or said differently, for a model to be
+integrated into another model. These transformation rules, that specifies how a model from
 a high level of abstraction is translated to a model on a lower level of
 abstraction, provides a development process that produce implementation code
-from through automatically generating models on different levels of abstraction. 
-
-
-\begin{figure}[H]
-  \centering
-    \includegraphics[scale=0.8]{./Figures/vertical_horizontal.png}
-    \rule{35em}{0.5pt}
-  \caption[Vertical and Horizontal model transformations]
-  {Vertical and horizontal model transformations.}
-  \label{fig:vertical_horizontal}
-\end{figure}
+through automatically generating models on different levels of abstraction.
+Models and model transformations are equally important for MDE to be applied in
+a software development process. Without model transformations models would only
+represent an abstraction of a system. This means by utilizing model
+transformations in a software development cycle, models can evolve into
+executable implementation code by translating through different level of
+abstractions. 
 
 
 
