@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import no.hib.dpf.editor.DPFPlugin;
 import no.hib.dpf.transform.provider.TransformEditPlugin;
 
 import org.eclipse.jface.resource.ImageDescriptor;

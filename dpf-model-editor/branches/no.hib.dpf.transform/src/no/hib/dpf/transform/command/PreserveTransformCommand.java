@@ -1,7 +1,6 @@
 package no.hib.dpf.transform.command;
 
 import no.hib.dpf.diagram.DArrow;
-import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.transform.Production;
 

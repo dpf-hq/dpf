@@ -1,31 +1,25 @@
 package no.hib.dpf.transform.parts;
 
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.gef.editparts.AbstractEditPart;
-import org.eclipse.jface.util.IPropertyChangeListener;
-
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.diagram.DNode;
-import no.hib.dpf.diagram.DiagramPackage;
 import no.hib.dpf.editor.DPFEditor;
-import no.hib.dpf.transform.Production;
-import no.hib.dpf.transform.preferences.TransformEditorPreferences;
-import no.hib.dpf.utils.DPFCoreUtil;
 import no.hib.dpf.editor.figures.EditableLabel;
 import no.hib.dpf.editor.figures.NodeFigure;
 import no.hib.dpf.editor.parts.DNodeEditPart;
-import no.hib.dpf.editor.parts.GraphicalEditPartWithListener;
 import no.hib.dpf.editor.parts.listeners.UIAdapter;
+import no.hib.dpf.transform.Production;
+import no.hib.dpf.transform.preferences.TransformEditorPreferences;
+import no.hib.dpf.utils.DPFCoreUtil;
+
+import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 
 public class TransformDNodeEditPart extends DNodeEditPart{
 	private DNode editObject = null;

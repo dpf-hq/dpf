@@ -1,13 +1,13 @@
 package no.hib.dpf.transform.util;
 
-import java.util.LinkedHashMap;
-
 import no.hib.dpf.core.Specification;
 import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.editor.DPFUtils;
 import no.hib.dpf.transform.Transform;
-import no.hib.dpf.transform.presentation.TransformEditor;
 
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.jface.dialogs.Dialog;
+import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -21,17 +21,11 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.jface.dialogs.Dialog; 
-import org.eclipse.jface.dialogs.IDialogConstants;
-import org.eclipse.swt.widgets.Shell;
 
 public class BrowseInstanceModel extends Dialog {
 

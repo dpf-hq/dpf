@@ -8,7 +8,6 @@ package no.hib.dpf.transform.impl;
 
 import java.util.Collection;
 
-import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DSignature;
 import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.transform.Production;

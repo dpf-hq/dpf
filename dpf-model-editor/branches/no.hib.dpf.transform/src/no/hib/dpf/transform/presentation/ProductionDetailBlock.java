@@ -1,24 +1,12 @@
 package no.hib.dpf.transform.presentation;
 
 
-import java.util.LinkedHashMap;
-import java.util.jar.Attributes.Name;
-
 import no.hib.dpf.diagram.DGraph;
-import no.hib.dpf.diagram.DSpecification;
-import no.hib.dpf.diagram.DiagramFactory;
-import no.hib.dpf.diagram.util.DPFConstants;
-import no.hib.dpf.editor.DPFUtils;
 import no.hib.dpf.transform.Production;
-import no.hib.dpf.transform.util.TransformConstants;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gef.ui.actions.ActionRegistry;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;

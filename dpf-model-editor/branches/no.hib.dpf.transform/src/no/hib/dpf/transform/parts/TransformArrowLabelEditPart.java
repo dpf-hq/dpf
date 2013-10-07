@@ -1,13 +1,13 @@
 package no.hib.dpf.transform.parts;
 
-import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.Label;
-
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DOffset;
 import no.hib.dpf.editor.parts.ArrowLabelEditPart;
 import no.hib.dpf.transform.Production;
 import no.hib.dpf.transform.preferences.TransformEditorPreferences;
+
+import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.Label;
 
 public class TransformArrowLabelEditPart extends ArrowLabelEditPart {
 	private DArrow element = null;

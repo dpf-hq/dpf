@@ -2,44 +2,25 @@ package no.hib.dpf.transform.parts;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.draw2d.AbsoluteBendpoint;
-import org.eclipse.draw2d.Bendpoint;
-import org.eclipse.draw2d.Connection;
-import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.ManhattanConnectionRouter;
-import org.eclipse.draw2d.PolylineConnection;
-import org.eclipse.draw2d.RoutingAnimator;
-import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gef.EditPolicy;
-import org.eclipse.gef.NodeEditPart;
-import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DArrowLabelConstraint;
-import no.hib.dpf.diagram.DOffset;
 import no.hib.dpf.diagram.DiagramPackage;
-import no.hib.dpf.editor.DPFEditor;
-import no.hib.dpf.editor.DPFUtils;
-import no.hib.dpf.editor.extension_points.FigureConfigureManager;
-import no.hib.dpf.editor.extension_points.IArrowPainting;
 import no.hib.dpf.editor.figures.ArrowConnection;
-import no.hib.dpf.editor.figures.EditableLabel;
-import no.hib.dpf.editor.figures.NodeFigure;
 import no.hib.dpf.editor.parts.DArrowEditPart;
 import no.hib.dpf.editor.parts.listeners.UIAdapter;
 import no.hib.dpf.editor.policies.ArrowBendpointEditPolicy;
 import no.hib.dpf.transform.Production;
 import no.hib.dpf.transform.preferences.TransformEditorPreferences;
+
+import org.eclipse.draw2d.Connection;
+import org.eclipse.draw2d.ManhattanConnectionRouter;
+import org.eclipse.draw2d.PolylineConnection;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 
 public class TransformDArrowEditPart extends DArrowEditPart {
 	private DArrow editObject = null;

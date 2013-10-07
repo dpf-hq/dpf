@@ -1,7 +1,6 @@
 package no.hib.dpf.transform.presentation;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import no.hib.dpf.diagram.DiagramFactory;

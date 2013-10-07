@@ -1,6 +1,5 @@
 package no.hib.dpf.transform.execute;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -8,29 +7,20 @@ import java.util.Map;
 
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Graph;
-import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Specification;
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DGraph;
-import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.diagram.util.DPFConstants;
-import no.hib.dpf.editor.DPFEditor;
 import no.hib.dpf.editor.DPFUtils;
 import no.hib.dpf.editor.commands.DArrowDeleteCommand;
-import no.hib.dpf.transform.presentation.TransformEditor;
-import no.hib.dpf.transform.util.TransformUtils;
-
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.henshin.model.Rule;
-import org.eclipse.emf.henshin.model.resource.HenshinResourceSet;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.henshin.model.Rule;
+import org.eclipse.emf.henshin.model.resource.HenshinResourceSet;
 
 public class TranslateDPFModel {
 	

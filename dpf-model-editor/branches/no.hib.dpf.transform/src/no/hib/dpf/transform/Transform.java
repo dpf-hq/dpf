@@ -6,7 +6,6 @@
  */
 package no.hib.dpf.transform;
 
-import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DSignature;
 import no.hib.dpf.diagram.DSpecification;
 

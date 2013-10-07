@@ -3,29 +3,11 @@ package no.hib.dpf.transform.command;
 
 import java.util.List;
 
-import no.hib.dpf.core.Specification;
 import no.hib.dpf.diagram.DArrow;
-import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
-import no.hib.dpf.diagram.DSignature;
-import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.transform.Production;
-import no.hib.dpf.transform.Transform;
-import no.hib.dpf.transform.henshin.TranslateToHenshinRules;
-import no.hib.dpf.transform.provider.ProductionItemProvider;
-import no.hib.dpf.transform.util.TransformUtils;
-import no.hib.dpf.transform.util.TransformAdapterFactory;
 
-import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
-
-import org.eclipse.core.internal.registry.OffsetTable;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 
 public class AddTransformCommand extends Command {
 	

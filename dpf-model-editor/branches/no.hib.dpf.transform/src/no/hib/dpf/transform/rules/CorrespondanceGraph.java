@@ -4,21 +4,17 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
-
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.diagram.DiagramFactory;
 import no.hib.dpf.diagram.util.DPFConstants;
-import no.hib.dpf.editor.DPFUtils;
 import no.hib.dpf.transform.Transform;
-import no.hib.dpf.transform.presentation.TransformEditor;
 import no.hib.dpf.transform.util.TransformUtils;
-import no.hib.dpf.transform.util.TransformConstants;
+
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.ecore.resource.Resource;
 
 public class CorrespondanceGraph {
 

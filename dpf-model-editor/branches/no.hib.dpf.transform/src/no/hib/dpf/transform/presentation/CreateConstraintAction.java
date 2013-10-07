@@ -25,7 +25,6 @@ import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.diagram.DPredicate;
 import no.hib.dpf.diagram.DSpecification;
-import no.hib.dpf.editor.DPFEditor;
 import no.hib.dpf.editor.DPFPlugin;
 import no.hib.dpf.editor.DPFUtils;
 import no.hib.dpf.editor.actions.SelectionActionForEditParts;

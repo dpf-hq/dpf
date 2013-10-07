@@ -5,7 +5,6 @@ import no.hib.dpf.core.Node;
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
-import no.hib.dpf.editor.DPFEditorPaletteFactory;
 import no.hib.dpf.editor.displaymodel.factories.DArrowFactory;
 import no.hib.dpf.editor.displaymodel.factories.DNodeFactory;
 import no.hib.dpf.editor.displaymodel.factories.DPFConnectionCreationToolEntry;
@@ -24,7 +23,6 @@ import org.eclipse.gef.palette.PaletteToolbar;
 import org.eclipse.gef.palette.PanningSelectionToolEntry;
 import org.eclipse.gef.palette.ToolEntry;
 import org.eclipse.gef.tools.MarqueeSelectionTool;
-import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.resource.ImageDescriptor;
 
 public class DPFTransformPaletteFactory  {
