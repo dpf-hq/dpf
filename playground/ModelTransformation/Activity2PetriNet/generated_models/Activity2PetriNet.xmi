@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:core="http://no.hib.dpf.core">
+  <core:Specification signature="/2" type="/1">
+    <graph id="9d231a11-3b68-4dbb-8b71-0f38c45f490f" type="/1/@graph"/>
+  </core:Specification>
+  <core:Specification>
+    <graph id="33bb4a54-f9e4-44a6-a098-36071af07b1c">
+      <nodes id="9c332aa5-d4d9-4131-9e5f-209689cfb23b" name="Trace" outgoings="/1/@graph/@arrows.0 /1/@graph/@arrows.1 /1/@graph/@arrows.2 /1/@graph/@arrows.3 /1/@graph/@arrows.4"/>
+      <nodes id="182c6271-2c2b-41dc-9be8-4506f1ec7718" name="Activity" outgoings="/1/@graph/@arrows.5 /1/@graph/@arrows.6 /1/@graph/@arrows.7" incomings="/1/@graph/@arrows.0 /1/@graph/@arrows.5 /1/@graph/@arrows.6 /1/@graph/@arrows.9"/>
+      <nodes id="ea353208-7115-42be-b9d7-88486380fc29" name="Choice" outgoings="/1/@graph/@arrows.8" incomings="/1/@graph/@arrows.1 /1/@graph/@arrows.7"/>
+      <nodes id="a20428f9-3a92-4168-b5d6-fa7d1b1130f3" name="Condition" outgoings="/1/@graph/@arrows.9" incomings="/1/@graph/@arrows.2 /1/@graph/@arrows.8"/>
+      <nodes id="3f669cac-d78b-40a7-b9e2-e324cceed5c1" name="Place" outgoings="/1/@graph/@arrows.11" incomings="/1/@graph/@arrows.3 /1/@graph/@arrows.10"/>
+      <nodes id="7c3418d3-c947-401a-9233-d6ce2873590b" name="Transition" outgoings="/1/@graph/@arrows.10" incomings="/1/@graph/@arrows.4 /1/@graph/@arrows.11"/>
+      <arrows id="bc103d74-7e4b-435d-8a40-d79a95a9c963" name="traceSource_Activity" source="/1/@graph/@nodes.0" target="/1/@graph/@nodes.1"/>
+      <arrows id="df5a40db-838d-4765-b190-0926d67a80d6" name="traceSource_Choice" source="/1/@graph/@nodes.0" target="/1/@graph/@nodes.2"/>
+      <arrows id="a67c7381-b743-4f95-84a7-a6b7a67e1be8" name="traceSource_Condition" source="/1/@graph/@nodes.0" target="/1/@graph/@nodes.3"/>
+      <arrows id="bdd92592-1c8c-41c4-8cab-88415acaa165" name="traceTarget_Place" source="/1/@graph/@nodes.0" target="/1/@graph/@nodes.4"/>
+      <arrows id="cea23132-7456-439e-9e07-7f714bbfe49c" name="traceTarget_Transition" source="/1/@graph/@nodes.0" target="/1/@graph/@nodes.5"/>
+      <arrows id="385fda19-860d-4763-bae6-31e54ab5a95a" name="Sequence" source="/1/@graph/@nodes.1" target="/1/@graph/@nodes.1"/>
+      <arrows id="d4487ce5-05f1-4aee-b791-7593864eb2ea" name="Message" source="/1/@graph/@nodes.1" target="/1/@graph/@nodes.1"/>
+      <arrows id="685ad3f6-2156-4720-875d-04228e616d5e" name="ChoiceIn" source="/1/@graph/@nodes.1" target="/1/@graph/@nodes.2"/>
+      <arrows id="c8f052cb-c70a-43b4-a83e-97b5fb4c83c0" name="ChoiceCondition" source="/1/@graph/@nodes.2" target="/1/@graph/@nodes.3"/>
+      <arrows id="4b797e78-9d94-4f04-b4c6-be9c90552255" name="ChoiceOut" source="/1/@graph/@nodes.3" target="/1/@graph/@nodes.1"/>
+      <arrows id="f9d337f2-6b71-4cec-a994-c5fb024776fa" name="TransitionToPlace" source="/1/@graph/@nodes.5" target="/1/@graph/@nodes.4"/>
+      <arrows id="a34157f1-a89d-4095-bb65-d2f79c127b82" name="PlaceToTransition" source="/1/@graph/@nodes.4" target="/1/@graph/@nodes.5"/>
+    </graph>
+  </core:Specification>
+  <core:Signature/>
+</xmi:XMI>

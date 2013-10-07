@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:core="http://no.hib.dpf.core">
+  <core:Specification signature="/2" type="/1">
+    <graph id="c3940b76-d451-4f53-b47f-51b865e682e1" type="/1/@graph">
+      <nodes id="e6e15531-7660-4ece-b801-7b4c18965bcc" name="Activity0" typeNode="/1/@graph/@nodes.1" incomings="/0/@graph/@arrows.1"/>
+      <nodes id="23183b90-c8e7-4196-b102-37fce971bf01" name="Choice0" typeNode="/1/@graph/@nodes.2" incomings="/0/@graph/@arrows.2"/>
+      <nodes id="11577b99-7717-43ce-87a2-a8e1b4eaeea0" name="node2Transition" typeNode="/1/@graph/@nodes.0" outgoings="/0/@graph/@arrows.0 /0/@graph/@arrows.1 /0/@graph/@arrows.2 /0/@graph/@arrows.3"/>
+      <nodes id="04d2a922-456d-4ce0-a857-921db43fb4ce" name="Transition0" typeNode="/1/@graph/@nodes.10" incomings="/0/@graph/@arrows.0"/>
+      <nodes id="3ee8323b-3252-41fc-97ac-9892bbecbac3" name="Condition0" typeNode="/1/@graph/@nodes.3" incomings="/0/@graph/@arrows.3"/>
+      <nodes id="bdce1b8b-4009-48aa-b38e-313394c1beaa" name="Message0" typeNode="/1/@graph/@nodes.5" incomings="/0/@graph/@arrows.8"/>
+      <nodes id="95908395-97da-4ed2-b058-88e2dc6c9293" name="Sequence0" typeNode="/1/@graph/@nodes.4" incomings="/0/@graph/@arrows.9"/>
+      <nodes id="96cc296a-588f-4caf-874f-0cd2a3b07f4e" name="ChoiceIn0" typeNode="/1/@graph/@nodes.6" incomings="/0/@graph/@arrows.7"/>
+      <nodes id="dd12989b-e4d0-4b7d-9400-a92de5a18c6b" name="ChoiceCondition0" typeNode="/1/@graph/@nodes.7" incomings="/0/@graph/@arrows.6"/>
+      <nodes id="b3b80d2c-2b2e-4eac-aa50-cc94d0fbefa4" name="ChoiceOut0" typeNode="/1/@graph/@nodes.8" incomings="/0/@graph/@arrows.5"/>
+      <nodes id="872300a2-ad00-4c6c-9c2b-50dfee0a1ad6" name="arrow2Place" typeNode="/1/@graph/@nodes.0" outgoings="/0/@graph/@arrows.4 /0/@graph/@arrows.5 /0/@graph/@arrows.6 /0/@graph/@arrows.7 /0/@graph/@arrows.8 /0/@graph/@arrows.9"/>
+      <nodes id="73a84629-0ee2-4012-9a54-1635feda18cd" name="Place0" typeNode="/1/@graph/@nodes.9" incomings="/0/@graph/@arrows.4"/>
+      <arrows id="425681bc-0ccf-4da4-b960-2a4a767f5c7b" name="target" source="/0/@graph/@nodes.2" target="/0/@graph/@nodes.3" typeArrow="/1/@graph/@arrows.9"/>
+      <arrows id="3c994bb4-d455-47e3-af37-2a27e2be97f5" name="source" source="/0/@graph/@nodes.2" target="/0/@graph/@nodes.0" typeArrow="/1/@graph/@arrows.0"/>
+      <arrows id="68e9ca7c-3420-4a3f-806d-5c37bdb86f97" name="source" source="/0/@graph/@nodes.2" target="/0/@graph/@nodes.1" typeArrow="/1/@graph/@arrows.1"/>
+      <arrows id="5f187ede-24d9-4c5e-ba81-8050601b78e1" name="source" source="/0/@graph/@nodes.2" target="/0/@graph/@nodes.4" typeArrow="/1/@graph/@arrows.2"/>
+      <arrows id="7730afc4-1df9-4d81-9e45-78bc67285bc7" name="target" source="/0/@graph/@nodes.10" target="/0/@graph/@nodes.11" typeArrow="/1/@graph/@arrows.8"/>
+      <arrows id="8d5d88f0-3d19-4a73-90a1-04ba0b7bcc43" name="source" source="/0/@graph/@nodes.10" target="/0/@graph/@nodes.9" typeArrow="/1/@graph/@arrows.7"/>
+      <arrows id="2d502d7c-a159-41ce-8471-bff7811cc782" name="source" source="/0/@graph/@nodes.10" target="/0/@graph/@nodes.8" typeArrow="/1/@graph/@arrows.6"/>
+      <arrows id="5b6c9566-daae-4517-903f-a3a86044e460" name="source" source="/0/@graph/@nodes.10" target="/0/@graph/@nodes.7" typeArrow="/1/@graph/@arrows.5"/>
+      <arrows id="6ba17ad9-958c-4d06-854e-ba14f200ed5c" name="source" source="/0/@graph/@nodes.10" target="/0/@graph/@nodes.5" typeArrow="/1/@graph/@arrows.4"/>
+      <arrows id="99599bfb-7abe-47ff-8bb2-d9f0c1d57a7e" name="source" source="/0/@graph/@nodes.10" target="/0/@graph/@nodes.6" typeArrow="/1/@graph/@arrows.3"/>
+    </graph>
+  </core:Specification>
+  <core:Specification>
+    <graph id="bba7a4bd-23be-4fae-b8f0-17ed56d8cb7d">
+      <nodes id="cc2db764-0f76-41d5-8d7f-51c41c1b21f4" name="Link" outgoings="/1/@graph/@arrows.0 /1/@graph/@arrows.1 /1/@graph/@arrows.2 /1/@graph/@arrows.3 /1/@graph/@arrows.4 /1/@graph/@arrows.5 /1/@graph/@arrows.6 /1/@graph/@arrows.7 /1/@graph/@arrows.8 /1/@graph/@arrows.9 /1/@graph/@arrows.10 /1/@graph/@arrows.11"/>
+      <nodes id="7c016791-2daa-40a8-a19f-c87f14f1733e" name="Activity" incomings="/1/@graph/@arrows.0"/>
+      <nodes id="5c140866-9f88-49b9-aece-afd9ecaf46c3" name="Choice" incomings="/1/@graph/@arrows.1"/>
+      <nodes id="1f316ed1-bc61-4990-b248-c881d2f6b643" name="Condition" incomings="/1/@graph/@arrows.2"/>
+      <nodes id="ebc4a124-c4db-44a0-a05c-ff80fd99af71" name="Sequence" incomings="/1/@graph/@arrows.3"/>
+      <nodes id="fec6f5ac-be47-4fc5-b110-2702cecd8cd7" name="Message" incomings="/1/@graph/@arrows.4"/>
+      <nodes id="e93f530b-e387-4694-bcc3-b20729bb266a" name="ChoiceIn" incomings="/1/@graph/@arrows.5"/>
+      <nodes id="b5f8c87c-f18a-40d4-9e25-d2af83dd0504" name="ChoiceCondition" incomings="/1/@graph/@arrows.6"/>
+      <nodes id="783d0835-d5cc-4225-976c-bb14b7862afb" name="ChoiceOut" incomings="/1/@graph/@arrows.7"/>
+      <nodes id="0a6bd954-5146-4bef-b67f-8f5e87236d17" name="Place" incomings="/1/@graph/@arrows.8"/>
+      <nodes id="5740e953-ee46-4837-9e9b-aaca13e5e0c0" name="Transition" incomings="/1/@graph/@arrows.9"/>
+      <nodes id="24d5b47f-ebed-4a8a-8970-e217a5426b36" name="TransitionToPlace" incomings="/1/@graph/@arrows.10"/>
+      <nodes id="e72707fb-e288-467d-859b-92efe45e91f7" name="PlaceToTransition" incomings="/1/@graph/@arrows.11"/>
+      <arrows id="af5484a4-58b5-4c56-8a5e-6d3ad277ac35" name="sourceActivity" source="/1/@graph/@nodes.0" target="/1/@graph/@nodes.1"/>
+      <arrows id="b9c78274-c709-41aa-af8e-8d6a08603a4a" name="sourceChoice" source="/1/@graph/@nodes.0" target="/1/@graph/@nodes.2"/>
+      <arrows id="df8e622d-4ecf-4a43-b16e-a37d5400be2d" name="sourceCondition" source="/1/@graph/@nodes.0" target="/1/@graph/@nodes.3"/>
+      <arrows id="7eb695ab-b0ec-4a1c-a82d-7229d4f1c784" name="sourceSequence" source="/1/@graph/@nodes.0" target="/1/@graph/@nodes.4"/>
+      <arrows id="818aeba8-0d90-435c-9b20-7e6509091b6c" name="sourceMessage" source="/1/@graph/@nodes.0" target="/1/@graph/@nodes.5"/>
+      <arrows id="bdf56c6c-9399-4922-b3a6-4643e6193cc1" name="sourceChoiceIn" source="/1/@graph/@nodes.0" target="/1/@graph/@nodes.6"/>
+      <arrows id="7f341c6b-6a48-40be-9be1-a879e3d19386" name="sourceChoiceCondition" source="/1/@graph/@nodes.0" target="/1/@graph/@nodes.7"/>
+      <arrows id="2395c3a0-aace-40e6-a506-bf6d5b794bad" name="sourceChoiceOut" source="/1/@graph/@nodes.0" target="/1/@graph/@nodes.8"/>
+      <arrows id="8d65a7ea-724f-4942-a3c4-6597feb8d3a2" name="targetPlace" source="/1/@graph/@nodes.0" target="/1/@graph/@nodes.9"/>
+      <arrows id="c87aa2c5-fd82-4099-9a7e-42028f6a8163" name="targetTransition" source="/1/@graph/@nodes.0" target="/1/@graph/@nodes.10"/>
+      <arrows id="e54c053f-5525-4b72-8662-1213aa52b876" name="targetTransitionToPlace" source="/1/@graph/@nodes.0" target="/1/@graph/@nodes.11"/>
+      <arrows id="fd37a385-1bff-459a-8804-12f7410c7adf" name="targetPlaceToTransition" source="/1/@graph/@nodes.0" target="/1/@graph/@nodes.12"/>
+    </graph>
+  </core:Specification>
+  <core:Signature/>
+  <core:Specification signature="/5" type="/4">
+    <graph id="391b7bdd-203c-402e-87da-aa43ac321c58" type="/4/@graph"/>
+  </core:Specification>
+  <core:Specification>
+    <graph id="8dba5b80-aa91-44f4-a3a0-ce8c1b44d5bc">
+      <nodes id="a0e0b054-1959-4151-8d23-3b27449f486e" name="Link" outgoings="/4/@graph/@arrows.0 /4/@graph/@arrows.1 /4/@graph/@arrows.2 /4/@graph/@arrows.3 /4/@graph/@arrows.4 /4/@graph/@arrows.5 /4/@graph/@arrows.6 /4/@graph/@arrows.7 /4/@graph/@arrows.8 /4/@graph/@arrows.9 /4/@graph/@arrows.10 /4/@graph/@arrows.11"/>
+      <nodes id="064dd24c-20bf-41c3-8dac-b065a626fdac" name="Activity" incomings="/4/@graph/@arrows.0"/>
+      <nodes id="ae55c9c3-1f8c-48ec-b705-245b2a96a65d" name="Choice" incomings="/4/@graph/@arrows.1"/>
+      <nodes id="cc9a8ef4-34e2-411b-8f93-eea3b2468dbb" name="Condition" incomings="/4/@graph/@arrows.2"/>
+      <nodes id="0394f072-3953-4375-a616-245a4c9233d7" name="Sequence" incomings="/4/@graph/@arrows.3"/>
+      <nodes id="f8db951e-8e28-4058-8881-0fcbc8c3cc25" name="Message" incomings="/4/@graph/@arrows.4"/>
+      <nodes id="6cab092d-3905-448e-a919-88abf603c4c5" name="ChoiceIn" incomings="/4/@graph/@arrows.5"/>
+      <nodes id="812bbf6e-9d8e-4f83-82be-cdfef31b2f90" name="ChoiceCondition" incomings="/4/@graph/@arrows.6"/>
+      <nodes id="0aec2808-b42e-4c4f-89e8-7cf258650682" name="ChoiceOut" incomings="/4/@graph/@arrows.7"/>
+      <nodes id="eba0dadc-1168-4347-8592-a2818eaace84" name="Place" incomings="/4/@graph/@arrows.8"/>
+      <nodes id="c1d9a63b-2d6a-4223-9f3a-11638365716f" name="Transition" incomings="/4/@graph/@arrows.9"/>
+      <nodes id="bb6bd658-88b1-4edb-9024-8e47bad23041" name="TransitionToPlace" incomings="/4/@graph/@arrows.10"/>
+      <nodes id="f858ea3d-3f15-4ecc-9dea-ae4fc57227bb" name="PlaceToTransition" incomings="/4/@graph/@arrows.11"/>
+      <arrows id="37794afd-a689-447a-a27a-2fcae10b0cb7" name="sourceActivity" source="/4/@graph/@nodes.0" target="/4/@graph/@nodes.1"/>
+      <arrows id="62786f61-430f-4960-b4da-9c2abc0706f5" name="sourceChoice" source="/4/@graph/@nodes.0" target="/4/@graph/@nodes.2"/>
+      <arrows id="fcf56338-74ad-429a-af15-0b7eb93d92aa" name="sourceCondition" source="/4/@graph/@nodes.0" target="/4/@graph/@nodes.3"/>
+      <arrows id="343b6881-faa1-4256-b042-ac35a9f0147e" name="sourceSequence" source="/4/@graph/@nodes.0" target="/4/@graph/@nodes.4"/>
+      <arrows id="4bdca96a-fea7-4b0e-b921-68f2ef600f10" name="sourceMessage" source="/4/@graph/@nodes.0" target="/4/@graph/@nodes.5"/>
+      <arrows id="0cb87158-63a6-4a78-a4ae-426e83502039" name="sourceChoiceIn" source="/4/@graph/@nodes.0" target="/4/@graph/@nodes.6"/>
+      <arrows id="bfd12f4a-1100-48f0-8f6b-7373f609d5ae" name="sourceChoiceCondition" source="/4/@graph/@nodes.0" target="/4/@graph/@nodes.7"/>
+      <arrows id="71a0ae9e-7e7d-4a38-9c7e-0c4d5d5f5da2" name="sourceChoiceOut" source="/4/@graph/@nodes.0" target="/4/@graph/@nodes.8"/>
+      <arrows id="afde76b0-2279-48e2-aab7-b062812c7716" name="targetPlace" source="/4/@graph/@nodes.0" target="/4/@graph/@nodes.9"/>
+      <arrows id="b51a0432-852b-4a7c-9930-62d5e15f00d3" name="targetTransition" source="/4/@graph/@nodes.0" target="/4/@graph/@nodes.10"/>
+      <arrows id="a35f3b56-49f1-4479-9dd1-0a7aa5a6ed28" name="targetTransitionToPlace" source="/4/@graph/@nodes.0" target="/4/@graph/@nodes.11"/>
+      <arrows id="28f88104-b797-449e-817a-a1c6e2a43a17" name="targetPlaceToTransition" source="/4/@graph/@nodes.0" target="/4/@graph/@nodes.12"/>
+    </graph>
+  </core:Specification>
+  <core:Signature/>
+</xmi:XMI>

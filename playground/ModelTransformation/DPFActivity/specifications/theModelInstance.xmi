@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:core="http://no.hib.dpf.core">
+  <core:Specification type="/1">
+    <graph id="47ee4ed5-f8d8-49e9-8e3c-f4f013c3d9db" type="/1/@graph">
+      <nodes id="dda51198-fe94-4201-87bb-030d2789f11b" name="Customer Comes" outgoings="/0/@graph/@arrows.1">
+        <typeNode href="metamodel.xmi#/0/@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="0e3144e3-1aaf-4ded-b13e-5310bcdbcb05" name="Find Goods" outgoings="/0/@graph/@arrows.0" incomings="/0/@graph/@arrows.1 /0/@graph/@arrows.5">
+        <typeNode href="metamodel.xmi#/0/@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="a08e1bb9-2cd9-4f19-804f-0a7613f61808" name="Pay" outgoings="/0/@graph/@arrows.3 /0/@graph/@arrows.4" incomings="/0/@graph/@arrows.0">
+        <typeNode href="metamodel.xmi#/0/@graph/@nodes.1"/>
+      </nodes>
+      <nodes id="77412cce-198f-4dc2-b1a6-fb0792191fa1" name="Require payment" outgoings="/0/@graph/@arrows.6 /0/@graph/@arrows.7" incomings="/0/@graph/@arrows.2">
+        <typeNode href="metamodel.xmi#/0/@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="68dd39a8-f607-4516-8c98-e861cdc86405" name="Yes" outgoings="/0/@graph/@arrows.2" incomings="/0/@graph/@arrows.3">
+        <typeNode href="metamodel.xmi#/0/@graph/@nodes.2"/>
+      </nodes>
+      <nodes id="b9ef86b2-7d79-4b5e-b678-665a015d00ef" name="No?" outgoings="/0/@graph/@arrows.5" incomings="/0/@graph/@arrows.4">
+        <typeNode href="metamodel.xmi#/0/@graph/@nodes.2"/>
+      </nodes>
+      <nodes id="caef1841-8536-43c5-8bb5-4cad806c7d30" name="Recieve payment req" outgoings="/0/@graph/@arrows.18" incomings="/0/@graph/@arrows.6 /0/@graph/@arrows.16">
+        <typeNode href="metamodel.xmi#/0/@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="9fbdd841-2564-40f2-ba05-6fceb5b007f5" name="Send payment info" outgoings="/0/@graph/@arrows.8 /0/@graph/@arrows.10" incomings="/0/@graph/@arrows.18">
+        <typeNode href="metamodel.xmi#/0/@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="f14ae8df-c968-46fb-80ec-eca957be0a92" name="Recieve payment info" outgoings="/0/@graph/@arrows.9" incomings="/0/@graph/@arrows.7 /0/@graph/@arrows.8">
+        <typeNode href="metamodel.xmi#/0/@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="9bc94623-a419-4fb7-8f3b-afce6a4a8481" name="Send Money" outgoings="/0/@graph/@arrows.11" incomings="/0/@graph/@arrows.9">
+        <typeNode href="metamodel.xmi#/0/@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="199501ee-962a-49f6-ba6e-e6fadcd4f196" name="Receive Money" outgoings="/0/@graph/@arrows.12" incomings="/0/@graph/@arrows.10 /0/@graph/@arrows.11">
+        <typeNode href="metamodel.xmi#/0/@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="6b9af6d7-6e77-4044-9691-abff46f9c8a2" name="Cashier Finished" outgoings="/0/@graph/@arrows.13 /0/@graph/@arrows.14" incomings="/0/@graph/@arrows.12" constraints="/0/@constraints.0">
+        <typeNode href="metamodel.xmi#/0/@graph/@nodes.1"/>
+      </nodes>
+      <nodes id="da32d076-53ae-48b7-b27b-b87f76e6325e" name="No?" outgoings="/0/@graph/@arrows.15" incomings="/0/@graph/@arrows.13" constraints="/0/@constraints.0">
+        <typeNode href="metamodel.xmi#/0/@graph/@nodes.2"/>
+      </nodes>
+      <nodes id="d4010ca4-52b9-4bdc-bc6f-bbdfa12d6366" name="Yes?" outgoings="/0/@graph/@arrows.17" incomings="/0/@graph/@arrows.14" constraints="/0/@constraints.0">
+        <typeNode href="metamodel.xmi#/0/@graph/@nodes.2"/>
+      </nodes>
+      <nodes id="9cb5be56-e560-4956-992f-52e606d57bb3" name="Cashier is waiting" outgoings="/0/@graph/@arrows.16" incomings="/0/@graph/@arrows.15">
+        <typeNode href="metamodel.xmi#/0/@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="f4fa3017-317b-4001-912c-af2b49828370" name="Cashier goes home" incomings="/0/@graph/@arrows.17">
+        <typeNode href="metamodel.xmi#/0/@graph/@nodes.0"/>
+      </nodes>
+      <arrows id="74150c18-7e2a-487f-89ba-7659cc8fc580" name="Deside to pay" source="/0/@graph/@nodes.1" target="/0/@graph/@nodes.2">
+        <typeArrow href="metamodel.xmi#/0/@graph/@arrows.2"/>
+      </arrows>
+      <arrows id="f9b89eb9-d89e-4d20-85ea-f51d00f9c2bf" name="Look through goods" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.1">
+        <typeArrow href="metamodel.xmi#/0/@graph/@arrows.0"/>
+      </arrows>
+      <arrows id="f7920992-f4d0-4a9f-b052-4049ff25073a" name="Agree to Pay" source="/0/@graph/@nodes.4" target="/0/@graph/@nodes.3">
+        <typeArrow href="metamodel.xmi#/0/@graph/@arrows.4"/>
+      </arrows>
+      <arrows id="ee3cdbd4-b34b-418e-875f-6e815e2b7415" name="Yes?" source="/0/@graph/@nodes.2" target="/0/@graph/@nodes.4">
+        <typeArrow href="metamodel.xmi#/0/@graph/@arrows.3"/>
+      </arrows>
+      <arrows id="959f0371-14b7-4869-b878-447c16b5ebaa" name="No?" source="/0/@graph/@nodes.2" target="/0/@graph/@nodes.5">
+        <typeArrow href="metamodel.xmi#/0/@graph/@arrows.3"/>
+      </arrows>
+      <arrows id="bd12208c-54c0-4faf-9e19-be0aa9e9777f" name="Refuse to pay" source="/0/@graph/@nodes.5" target="/0/@graph/@nodes.1">
+        <typeArrow href="metamodel.xmi#/0/@graph/@arrows.4"/>
+      </arrows>
+      <arrows id="4f811846-cab9-4914-a36c-4c026dc81b83" name="Send pay. req." source="/0/@graph/@nodes.3" target="/0/@graph/@nodes.6">
+        <typeArrow href="metamodel.xmi#/0/@graph/@arrows.1"/>
+      </arrows>
+      <arrows id="e2f24231-e114-4e41-a00c-7c935197fe85" name=" " source="/0/@graph/@nodes.3" target="/0/@graph/@nodes.8">
+        <typeArrow href="metamodel.xmi#/0/@graph/@arrows.0"/>
+      </arrows>
+      <arrows id="c42967f8-91da-40a7-81d2-57f933921acd" name="Send payment info" source="/0/@graph/@nodes.7" target="/0/@graph/@nodes.8">
+        <typeArrow href="metamodel.xmi#/0/@graph/@arrows.1"/>
+      </arrows>
+      <arrows id="c0a86207-19b5-403b-ac7a-f8cad080a0fe" name=" " source="/0/@graph/@nodes.8" target="/0/@graph/@nodes.9">
+        <typeArrow href="metamodel.xmi#/0/@graph/@arrows.0"/>
+      </arrows>
+      <arrows id="823dc51e-d085-4582-891b-4fcc96a5fb0d" name=" " source="/0/@graph/@nodes.7" target="/0/@graph/@nodes.10">
+        <typeArrow href="metamodel.xmi#/0/@graph/@arrows.0"/>
+      </arrows>
+      <arrows id="4e9e9f71-b8a3-4a63-9000-9f876621faa5" name="Transfer Money" source="/0/@graph/@nodes.9" target="/0/@graph/@nodes.10">
+        <typeArrow href="metamodel.xmi#/0/@graph/@arrows.1"/>
+      </arrows>
+      <arrows id="5e66fee6-5414-43dc-bab8-34fba4afe686" name="Look at time" source="/0/@graph/@nodes.10" target="/0/@graph/@nodes.11">
+        <typeArrow href="metamodel.xmi#/0/@graph/@arrows.2"/>
+      </arrows>
+      <arrows id="4933ad4c-70c7-4636-9258-59101b40bc1d" name="Not Finished" source="/0/@graph/@nodes.11" target="/0/@graph/@nodes.12" constraints="/0/@constraints.0">
+        <typeArrow href="metamodel.xmi#/0/@graph/@arrows.3"/>
+      </arrows>
+      <arrows id="c5407b33-9a49-4123-ac08-c365c784b646" name="Finished" source="/0/@graph/@nodes.11" target="/0/@graph/@nodes.13" constraints="/0/@constraints.0">
+        <typeArrow href="metamodel.xmi#/0/@graph/@arrows.3"/>
+      </arrows>
+      <arrows id="12cd0c14-75bc-4470-ade3-6541e362214f" name="Cashier waits for next customer" source="/0/@graph/@nodes.12" target="/0/@graph/@nodes.14">
+        <typeArrow href="metamodel.xmi#/0/@graph/@arrows.4"/>
+      </arrows>
+      <arrows id="8ccecf3e-75c4-414a-8c6c-fc0bb62814b6" name=" " source="/0/@graph/@nodes.14" target="/0/@graph/@nodes.6">
+        <typeArrow href="metamodel.xmi#/0/@graph/@arrows.0"/>
+      </arrows>
+      <arrows id="674575fe-c02e-4bc8-8961-216e6dd74caa" name=" " source="/0/@graph/@nodes.13" target="/0/@graph/@nodes.15">
+        <typeArrow href="metamodel.xmi#/0/@graph/@arrows.4"/>
+      </arrows>
+      <arrows id="fcf064f5-9bd8-4799-9fda-178f6b76b30b" name="" source="/0/@graph/@nodes.6" target="/0/@graph/@nodes.7">
+        <typeArrow href="metamodel.xmi#/0/@graph/@arrows.0"/>
+      </arrows>
+    </graph>
+    <constraints id="361f67d9-7770-48d4-b0e2-c3b965b58c50" nodes="/0/@graph/@nodes.11 /0/@graph/@nodes.13 /0/@graph/@nodes.12" arrows="/0/@graph/@arrows.14 /0/@graph/@arrows.13">
+      <predicate href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.7"/>
+      <mappings>
+        <nodeMapping value="/0/@graph/@nodes.13">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.7/@shape/@nodes.0"/>
+        </nodeMapping>
+        <nodeMapping value="/0/@graph/@nodes.12">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.7/@shape/@nodes.1"/>
+        </nodeMapping>
+        <nodeMapping value="/0/@graph/@nodes.11">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.7/@shape/@nodes.2"/>
+        </nodeMapping>
+        <arrowMapping value="/0/@graph/@arrows.13">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.7/@shape/@arrows.1"/>
+        </arrowMapping>
+        <arrowMapping value="/0/@graph/@arrows.14">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.7/@shape/@arrows.0"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+  </core:Specification>
+  <core:Specification>
+    <graph id="ee682c15-7887-4eae-80a9-cff6a67d8505">
+      <type href="metamodel.xmi#/0/@graph"/>
+      <nodes id="cec475da-5573-43f7-9740-7ef521df54ae" name="Activity" outgoings="/1/@graph/@arrows.0 /1/@graph/@arrows.1 /1/@graph/@arrows.2" incomings="/1/@graph/@arrows.0 /1/@graph/@arrows.1 /1/@graph/@arrows.4" constraints="/1/@constraints.0 /1/@constraints.1 /1/@constraints.4 /1/@constraints.5 /1/@constraints.6 /1/@constraints.7 /1/@constraints.8 /1/@constraints.9">
+        <typeNode href="metametamodel.xmi#//@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="8391c278-029d-48ff-9d93-b8178750fcda" name="Choice" outgoings="/1/@graph/@arrows.3" incomings="/1/@graph/@arrows.2" constraints="/1/@constraints.2 /1/@constraints.3 /1/@constraints.6 /1/@constraints.7 /1/@constraints.8 /1/@constraints.9">
+        <typeNode href="metametamodel.xmi#//@graph/@nodes.1"/>
+      </nodes>
+      <nodes id="fa93a986-8b61-4afd-ab9a-1e2d155093f2" name="Condition" outgoings="/1/@graph/@arrows.4" incomings="/1/@graph/@arrows.3" constraints="/1/@constraints.2 /1/@constraints.3 /1/@constraints.4 /1/@constraints.5">
+        <typeNode href="metametamodel.xmi#//@graph/@nodes.1"/>
+      </nodes>
+      <arrows id="b43d71a3-9f7a-4c88-af9d-2265bd759c47" name="Sequence" source="/1/@graph/@nodes.0" target="/1/@graph/@nodes.0" constraints="/1/@constraints.1 /1/@constraints.9">
+        <typeArrow href="metametamodel.xmi#//@graph/@arrows.0"/>
+      </arrows>
+      <arrows id="9e7bfbf2-3b57-460f-9bf6-c823008c809b" name="Message" source="/1/@graph/@nodes.0" target="/1/@graph/@nodes.0" constraints="/1/@constraints.0">
+        <typeArrow href="metametamodel.xmi#//@graph/@arrows.0"/>
+      </arrows>
+      <arrows id="501af657-ace4-4973-91a5-e2f026ab6373" name="ChoiceIn" source="/1/@graph/@nodes.0" target="/1/@graph/@nodes.1" constraints="/1/@constraints.6 /1/@constraints.7 /1/@constraints.8 /1/@constraints.9">
+        <typeArrow href="metametamodel.xmi#//@graph/@arrows.2"/>
+      </arrows>
+      <arrows id="d9a99027-cc94-4fde-a55d-0397bf63ae48" name="ChoiceCondition" source="/1/@graph/@nodes.1" target="/1/@graph/@nodes.2" constraints="/1/@constraints.2 /1/@constraints.3">
+        <typeArrow href="metametamodel.xmi#//@graph/@arrows.1"/>
+      </arrows>
+      <arrows id="f4899e5f-affe-4870-802e-cef31f052f11" name="ChoiceOut" source="/1/@graph/@nodes.2" target="/1/@graph/@nodes.0" constraints="/1/@constraints.4 /1/@constraints.5">
+        <typeArrow href="metametamodel.xmi#//@graph/@arrows.3"/>
+      </arrows>
+    </graph>
+    <constraints id="2ba8255f-cb8b-4a74-bad0-e3e6490e7d3a" nodes="/1/@graph/@nodes.0" arrows="/1/@graph/@arrows.1">
+      <predicate href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.2"/>
+      <mappings>
+        <nodeMapping value="/1/@graph/@nodes.0">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.2/@shape/@nodes.0"/>
+        </nodeMapping>
+        <arrowMapping value="/1/@graph/@arrows.1">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.2/@shape/@arrows.0"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+    <constraints id="d65477c9-1f94-481a-b304-b5c6febaf65c" nodes="/1/@graph/@nodes.0" arrows="/1/@graph/@arrows.0">
+      <predicate href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.2"/>
+      <mappings>
+        <nodeMapping value="/1/@graph/@nodes.0">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.2/@shape/@nodes.0"/>
+        </nodeMapping>
+        <arrowMapping value="/1/@graph/@arrows.0">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.2/@shape/@arrows.0"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+    <constraints id="79dba101-9f8a-466a-828c-851e22f70c35" nodes="/1/@graph/@nodes.1 /1/@graph/@nodes.2" arrows="/1/@graph/@arrows.3">
+      <predicate href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.1"/>
+      <mappings>
+        <nodeMapping value="/1/@graph/@nodes.1">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.1/@shape/@nodes.0"/>
+        </nodeMapping>
+        <nodeMapping value="/1/@graph/@nodes.2">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.1/@shape/@nodes.1"/>
+        </nodeMapping>
+        <arrowMapping value="/1/@graph/@arrows.3">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.1/@shape/@arrows.0"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+    <constraints id="b22e94c2-463b-4004-b9b4-16b68c1d7b42" nodes="/1/@graph/@nodes.1 /1/@graph/@nodes.2" arrows="/1/@graph/@arrows.3" parameters="min:2;max:*">
+      <predicate href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.3"/>
+      <mappings>
+        <nodeMapping value="/1/@graph/@nodes.1">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.3/@shape/@nodes.0"/>
+        </nodeMapping>
+        <nodeMapping value="/1/@graph/@nodes.2">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.3/@shape/@nodes.1"/>
+        </nodeMapping>
+        <arrowMapping value="/1/@graph/@arrows.3">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.3/@shape/@arrows.0"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+    <constraints id="dab05661-efeb-4fcc-8627-163dd95456ce" nodes="/1/@graph/@nodes.2 /1/@graph/@nodes.0" arrows="/1/@graph/@arrows.4">
+      <predicate href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.0"/>
+      <mappings>
+        <nodeMapping value="/1/@graph/@nodes.0">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.0/@shape/@nodes.1"/>
+        </nodeMapping>
+        <nodeMapping value="/1/@graph/@nodes.2">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.0/@shape/@nodes.0"/>
+        </nodeMapping>
+        <arrowMapping value="/1/@graph/@arrows.4">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.0/@shape/@arrows.0"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+    <constraints id="ee4199dc-8d51-4806-983f-86b209bce1dd" nodes="/1/@graph/@nodes.2 /1/@graph/@nodes.0" arrows="/1/@graph/@arrows.4" parameters="min:1;max:1">
+      <predicate href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.3"/>
+      <mappings>
+        <nodeMapping value="/1/@graph/@nodes.2">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.3/@shape/@nodes.0"/>
+        </nodeMapping>
+        <nodeMapping value="/1/@graph/@nodes.0">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.3/@shape/@nodes.1"/>
+        </nodeMapping>
+        <arrowMapping value="/1/@graph/@arrows.4">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.3/@shape/@arrows.0"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+    <constraints id="13de81a4-fa28-4ef8-9338-7076618138f4" nodes="/1/@graph/@nodes.0 /1/@graph/@nodes.1" arrows="/1/@graph/@arrows.2" parameters="min:0;max:1">
+      <predicate href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.3"/>
+      <mappings>
+        <nodeMapping value="/1/@graph/@nodes.0">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.3/@shape/@nodes.0"/>
+        </nodeMapping>
+        <nodeMapping value="/1/@graph/@nodes.1">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.3/@shape/@nodes.1"/>
+        </nodeMapping>
+        <arrowMapping value="/1/@graph/@arrows.2">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.3/@shape/@arrows.0"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+    <constraints id="bbcdc1a2-199e-4862-a8c7-1a052742245c" nodes="/1/@graph/@nodes.0 /1/@graph/@nodes.1" arrows="/1/@graph/@arrows.2">
+      <predicate href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.0"/>
+      <mappings>
+        <nodeMapping value="/1/@graph/@nodes.1">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.0/@shape/@nodes.1"/>
+        </nodeMapping>
+        <nodeMapping value="/1/@graph/@nodes.0">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.0/@shape/@nodes.0"/>
+        </nodeMapping>
+        <arrowMapping value="/1/@graph/@arrows.2">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.0/@shape/@arrows.0"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+    <constraints id="120466cc-9038-4794-ae99-2dc510e7055a" nodes="/1/@graph/@nodes.0 /1/@graph/@nodes.1" arrows="/1/@graph/@arrows.2">
+      <predicate href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.1"/>
+      <mappings>
+        <nodeMapping value="/1/@graph/@nodes.0">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.1/@shape/@nodes.0"/>
+        </nodeMapping>
+        <nodeMapping value="/1/@graph/@nodes.1">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.1/@shape/@nodes.1"/>
+        </nodeMapping>
+        <arrowMapping value="/1/@graph/@arrows.2">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.1/@shape/@arrows.0"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+    <constraints id="c8484915-c090-47f9-93f2-bff66b312c66" nodes="/1/@graph/@nodes.0 /1/@graph/@nodes.1" arrows="/1/@graph/@arrows.0 /1/@graph/@arrows.2">
+      <predicate href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.8"/>
+      <mappings>
+        <nodeMapping value="/1/@graph/@nodes.0">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.8/@shape/@nodes.2"/>
+        </nodeMapping>
+        <nodeMapping value="/1/@graph/@nodes.0">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.8/@shape/@nodes.0"/>
+        </nodeMapping>
+        <nodeMapping value="/1/@graph/@nodes.1">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.8/@shape/@nodes.1"/>
+        </nodeMapping>
+        <arrowMapping value="/1/@graph/@arrows.2">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.8/@shape/@arrows.1"/>
+        </arrowMapping>
+        <arrowMapping value="/1/@graph/@arrows.0">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.8/@shape/@arrows.0"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+    <type href="metamodel.xmi#/0"/>
+  </core:Specification>
+</xmi:XMI>

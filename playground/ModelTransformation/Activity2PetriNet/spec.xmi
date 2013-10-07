@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="ASCII"?>
+<core:Specification xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:core="http://no.hib.dpf.core">
+  <graph id="02ca1342-047c-42f4-9812-18665b87600d">
+    <nodes id="ad429850-8879-4816-8d43-5af7a453c2a0" name="Cashier goes home" incomings="//@graph/@arrows.36">
+      <typeNode href="../model/petriNetMetaModel.xmi#//@graph/@nodes.1"/>
+    </nodes>
+    <nodes id="55d0702a-8cfc-457a-83e3-b7802bfe7162" name="Cashier is waiting" outgoings="//@graph/@arrows.3" incomings="//@graph/@arrows.34">
+      <typeNode href="../model/petriNetMetaModel.xmi#//@graph/@nodes.1"/>
+    </nodes>
+    <nodes id="a57b6499-6124-4c49-8ba6-07463876e6c5" name="Receive Money" outgoings="//@graph/@arrows.30" incomings="//@graph/@arrows.12 //@graph/@arrows.18">
+      <typeNode href="../model/petriNetMetaModel.xmi#//@graph/@nodes.1"/>
+    </nodes>
+    <nodes id="7a264aff-b358-4a6f-9f02-531c28fd1235" name="Send Money" outgoings="//@graph/@arrows.17" incomings="//@graph/@arrows.10">
+      <typeNode href="../model/petriNetMetaModel.xmi#//@graph/@nodes.1"/>
+    </nodes>
+    <nodes id="d035c118-7893-4dcf-8d66-d888bb2fa2d4" name="Recieve payment info" outgoings="//@graph/@arrows.9" incomings="//@graph/@arrows.8 //@graph/@arrows.16">
+      <typeNode href="../model/petriNetMetaModel.xmi#//@graph/@nodes.1"/>
+    </nodes>
+    <nodes id="b7ac9387-c525-428e-bd0a-81b65b0fc010" name="Send payment info" outgoings="//@graph/@arrows.11 //@graph/@arrows.15" incomings="//@graph/@arrows.6">
+      <typeNode href="../model/petriNetMetaModel.xmi#//@graph/@nodes.1"/>
+    </nodes>
+    <nodes id="a779822c-cfbe-46b2-bf54-35c603f6cd91" name="Recieve payment req" outgoings="//@graph/@arrows.5" incomings="//@graph/@arrows.4 //@graph/@arrows.14">
+      <typeNode href="../model/petriNetMetaModel.xmi#//@graph/@nodes.1"/>
+    </nodes>
+    <nodes id="c48c262d-8e33-43fc-b41b-3f332c18e02d" name="Require payment" outgoings="//@graph/@arrows.7 //@graph/@arrows.13" incomings="//@graph/@arrows.32">
+      <typeNode href="../model/petriNetMetaModel.xmi#//@graph/@nodes.1"/>
+    </nodes>
+    <nodes id="2b1557d9-4933-4a89-b02a-b7ed12bdaaf3" name="Find Goods" outgoings="//@graph/@arrows.28" incomings="//@graph/@arrows.2 //@graph/@arrows.38">
+      <typeNode href="../model/petriNetMetaModel.xmi#//@graph/@nodes.1"/>
+    </nodes>
+    <nodes id="19358b8d-306a-4c14-a37a-ead3ecfd4455" name="Customer Comes" outgoings="//@graph/@arrows.1">
+      <typeNode href="../model/petriNetMetaModel.xmi#//@graph/@nodes.1"/>
+    </nodes>
+    <nodes id="98ee2cbf-b327-4a4d-b1b1-243c79f10fb5" name="No?" outgoings="//@graph/@arrows.37" incomings="//@graph/@arrows.22">
+      <typeNode href="../model/petriNetMetaModel.xmi#//@graph/@nodes.1"/>
+    </nodes>
+    <nodes id="ab0c501c-391d-4888-9d5a-6d339399b2cc" name="Yes?" outgoings="//@graph/@arrows.35" incomings="//@graph/@arrows.26">
+      <typeNode href="../model/petriNetMetaModel.xmi#//@graph/@nodes.1"/>
+    </nodes>
+    <nodes id="743a4f2b-7968-455f-b3df-3fbc613c6e0f" name="No?" outgoings="//@graph/@arrows.33" incomings="//@graph/@arrows.24">
+      <typeNode href="../model/petriNetMetaModel.xmi#//@graph/@nodes.1"/>
+    </nodes>
+    <nodes id="69a50540-d98b-4078-ad20-27116e190970" name="Yes" outgoings="//@graph/@arrows.31" incomings="//@graph/@arrows.20">
+      <typeNode href="../model/petriNetMetaModel.xmi#//@graph/@nodes.1"/>
+    </nodes>
+    <nodes id="54219516-6c17-4694-ad78-eb0bccf9d221" name="Cashier Finished" outgoings="//@graph/@arrows.23 //@graph/@arrows.25" incomings="//@graph/@arrows.29">
+      <typeNode href="../model/petriNetMetaModel.xmi#//@graph/@nodes.1"/>
+    </nodes>
+    <nodes id="717df2fc-0a04-4464-afbc-f04aff283dc4" name="Pay" outgoings="//@graph/@arrows.19 //@graph/@arrows.21" incomings="//@graph/@arrows.27">
+      <typeNode href="../model/petriNetMetaModel.xmi#//@graph/@nodes.1"/>
+    </nodes>
+    <nodes id="bb8a4337-58ad-4c41-b529-c1461fff1783" name="Look through goods" outgoings="//@graph/@arrows.2" incomings="//@graph/@arrows.1">
+      <typeNode href="../model/petriNetMetaModel.xmi#//@graph/@nodes.0"/>
+    </nodes>
+    <nodes id="356fda40-9aa1-47ac-bf44-4b4ec515e315" name=" " outgoings="//@graph/@arrows.4" incomings="//@graph/@arrows.3">
+      <typeNode href="../model/petriNetMetaModel.xmi#//@graph/@nodes.0"/>
+    </nodes>
+    <nodes id="5abe4bd5-2e6c-4c26-ba96-c9dfe3c91600" name="" outgoings="//@graph/@arrows.6" incomings="//@graph/@arrows.5">
+      <typeNode href="../model/petriNetMetaModel.xmi#//@graph/@nodes.0"/>
+    </nodes>
+    <nodes id="562fa2e6-ee5c-4558-a74f-8b3209e5d539" name=" " outgoings="//@graph/@arrows.8" incomings="//@graph/@arrows.7">
+      <typeNode href="../model/petriNetMetaModel.xmi#//@graph/@nodes.0"/>
+    </nodes>
+    <nodes id="a3abdc4c-541f-401a-928f-4be7e967afc0" name=" " outgoings="//@graph/@arrows.10" incomings="//@graph/@arrows.9">
+      <typeNode href="../model/petriNetMetaModel.xmi#//@graph/@nodes.0"/>
+    </nodes>
+    <nodes id="7716524c-5105-4f89-bdb5-b2affb1aba21" name=" " outgoings="//@graph/@arrows.12" incomings="//@graph/@arrows.11">
+      <typeNode href="../model/petriNetMetaModel.xmi#//@graph/@nodes.0"/>
+    </nodes>
+    <nodes id="5018a17a-2c74-43bf-a070-8fca1ef5dc5b" name="Send pay. req." outgoings="//@graph/@arrows.14" incomings="//@graph/@arrows.13">
+      <typeNode href="../model/petriNetMetaModel.xmi#//@graph/@nodes.0"/>
+    </nodes>
+    <nodes id="33ec4a04-c474-46f8-b95c-2f881ef20379" name="Send payment info" outgoings="//@graph/@arrows.16" incomings="//@graph/@arrows.15">
+      <typeNode href="../model/petriNetMetaModel.xmi#//@graph/@nodes.0"/>
+    </nodes>
+    <nodes id="d61527a8-0b15-4d2a-860d-c7bfea06d322" name="Transfer Money" outgoings="//@graph/@arrows.18" incomings="//@graph/@arrows.17">
+      <typeNode href="../model/petriNetMetaModel.xmi#//@graph/@nodes.0"/>
+    </nodes>
+    <nodes id="74d1d6ee-2df4-447b-b834-8d738598bef9" name="Yes?" outgoings="//@graph/@arrows.20" incomings="//@graph/@arrows.19">
+      <typeNode href="../model/petriNetMetaModel.xmi#//@graph/@nodes.0"/>
+    </nodes>
+    <nodes id="4f4e0352-0b86-4f58-9088-f8574bb8bdb1" name="No?" outgoings="//@graph/@arrows.22" incomings="//@graph/@arrows.21">
+      <typeNode href="../model/petriNetMetaModel.xmi#//@graph/@nodes.0"/>
+    </nodes>
+    <nodes id="f4a77afc-442d-4757-bcf2-bbccce43a055" name="Not Finished" outgoings="//@graph/@arrows.24" incomings="//@graph/@arrows.23">
+      <typeNode href="../model/petriNetMetaModel.xmi#//@graph/@nodes.0"/>
+    </nodes>
+    <nodes id="35e060a3-a3f1-4b30-b7ba-d6f9e5c00f66" name="Finished" outgoings="//@graph/@arrows.26" incomings="//@graph/@arrows.25">
+      <typeNode href="../model/petriNetMetaModel.xmi#//@graph/@nodes.0"/>
+    </nodes>
+    <nodes id="7101fc19-8077-40ee-8e33-9ad6727ce95e" name="Deside to pay" outgoings="//@graph/@arrows.27" incomings="//@graph/@arrows.28">
+      <typeNode href="../model/petriNetMetaModel.xmi#//@graph/@nodes.0"/>
+    </nodes>
+    <nodes id="6800f4e4-7631-4141-9cb8-c77383faf141" name="Look at time" outgoings="//@graph/@arrows.29" incomings="//@graph/@arrows.30">
+      <typeNode href="../model/petriNetMetaModel.xmi#//@graph/@nodes.0"/>
+    </nodes>
+    <nodes id="05d702b3-ffba-4fd6-ba7d-ced5deab31bc" name="Agree to Pay" outgoings="//@graph/@arrows.32" incomings="//@graph/@arrows.31">
+      <typeNode href="../model/petriNetMetaModel.xmi#//@graph/@nodes.0"/>
+    </nodes>
+    <nodes id="6b65bde0-5271-42ad-bf25-6b15e632c855" name="Cashier waits for next customer" outgoings="//@graph/@arrows.34" incomings="//@graph/@arrows.33">
+      <typeNode href="../model/petriNetMetaModel.xmi#//@graph/@nodes.0"/>
+    </nodes>
+    <nodes id="762dadd0-5193-424b-a0a4-38cad22a4dc1" name=" " outgoings="//@graph/@arrows.36" incomings="//@graph/@arrows.35">
+      <typeNode href="../model/petriNetMetaModel.xmi#//@graph/@nodes.0"/>
+    </nodes>
+    <nodes id="3b4d39b7-204f-4359-9a20-a45164900c49" name="Refuse to pay" outgoings="//@graph/@arrows.38" incomings="//@graph/@arrows.37">
+      <typeNode href="../model/petriNetMetaModel.xmi#//@graph/@nodes.0"/>
+    </nodes>
+    <arrows href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.7/@shape/@arrows.0"/>
+    <arrows id="b8865c02-4bf0-4f70-97c3-659285a06537" name="" source="//@graph/@nodes.9" target="//@graph/@nodes.16">
+      <typeArrow href="../model/petriNetMetaModel.xmi#//@graph/@arrows.0"/>
+    </arrows>
+    <arrows id="bfaf663f-6473-46ab-8004-01932a290836" name="" source="//@graph/@nodes.16" target="//@graph/@nodes.8">
+      <typeArrow href="../model/petriNetMetaModel.xmi#//@graph/@arrows.1"/>
+    </arrows>
+    <arrows id="364ce167-48be-4a07-97ba-796920d5a1a7" name="" source="//@graph/@nodes.1" target="//@graph/@nodes.17">
+      <typeArrow href="../model/petriNetMetaModel.xmi#//@graph/@arrows.0"/>
+    </arrows>
+    <arrows id="54a75668-2926-40b9-8acc-bdaa690aa548" name="" source="//@graph/@nodes.17" target="//@graph/@nodes.6">
+      <typeArrow href="../model/petriNetMetaModel.xmi#//@graph/@arrows.1"/>
+    </arrows>
+    <arrows id="62b5be49-04b3-4e94-9417-ed7d38708243" name="" source="//@graph/@nodes.6" target="//@graph/@nodes.18">
+      <typeArrow href="../model/petriNetMetaModel.xmi#//@graph/@arrows.0"/>
+    </arrows>
+    <arrows id="6ce769c3-17c3-4a3b-9ffd-30f56fc5e75c" name="" source="//@graph/@nodes.18" target="//@graph/@nodes.5">
+      <typeArrow href="../model/petriNetMetaModel.xmi#//@graph/@arrows.1"/>
+    </arrows>
+    <arrows id="a2e1ba3a-7c64-4997-840c-5146bb5f8a50" name="" source="//@graph/@nodes.7" target="//@graph/@nodes.19">
+      <typeArrow href="../model/petriNetMetaModel.xmi#//@graph/@arrows.0"/>
+    </arrows>
+    <arrows id="75b31bcd-9b99-48d0-83e4-ef595059ff67" name="" source="//@graph/@nodes.19" target="//@graph/@nodes.4">
+      <typeArrow href="../model/petriNetMetaModel.xmi#//@graph/@arrows.1"/>
+    </arrows>
+    <arrows id="90933652-882b-467a-aee9-627ed86600f8" name="" source="//@graph/@nodes.4" target="//@graph/@nodes.20">
+      <typeArrow href="../model/petriNetMetaModel.xmi#//@graph/@arrows.0"/>
+    </arrows>
+    <arrows id="285aff3e-8978-48f3-975e-86dac1b57489" name="" source="//@graph/@nodes.20" target="//@graph/@nodes.3">
+      <typeArrow href="../model/petriNetMetaModel.xmi#//@graph/@arrows.1"/>
+    </arrows>
+    <arrows id="8b465c75-013e-4842-a405-85d64a657603" name="" source="//@graph/@nodes.5" target="//@graph/@nodes.21">
+      <typeArrow href="../model/petriNetMetaModel.xmi#//@graph/@arrows.0"/>
+    </arrows>
+    <arrows id="2f8b9de2-25a1-474f-9865-ddedd9975ebd" name="" source="//@graph/@nodes.21" target="//@graph/@nodes.2">
+      <typeArrow href="../model/petriNetMetaModel.xmi#//@graph/@arrows.1"/>
+    </arrows>
+    <arrows id="81285437-8698-4bfe-8dde-977ac9256ca8" name="" source="//@graph/@nodes.7" target="//@graph/@nodes.22">
+      <typeArrow href="../model/petriNetMetaModel.xmi#//@graph/@arrows.0"/>
+    </arrows>
+    <arrows id="858b8b1b-92b6-479d-88d6-e02926387d42" name="" source="//@graph/@nodes.22" target="//@graph/@nodes.6">
+      <typeArrow href="../model/petriNetMetaModel.xmi#//@graph/@arrows.1"/>
+    </arrows>
+    <arrows id="a4795879-a4b2-4d25-93fc-b4167dab92d9" name="" source="//@graph/@nodes.5" target="//@graph/@nodes.23">
+      <typeArrow href="../model/petriNetMetaModel.xmi#//@graph/@arrows.0"/>
+    </arrows>
+    <arrows id="226e3da7-1a2f-4c37-994f-06512f137332" name="" source="//@graph/@nodes.23" target="//@graph/@nodes.4">
+      <typeArrow href="../model/petriNetMetaModel.xmi#//@graph/@arrows.1"/>
+    </arrows>
+    <arrows id="155a2bcd-ac7c-4629-8c9d-d9eb4ac7d9de" name="" source="//@graph/@nodes.3" target="//@graph/@nodes.24">
+      <typeArrow href="../model/petriNetMetaModel.xmi#//@graph/@arrows.0"/>
+    </arrows>
+    <arrows id="cb43927c-17c1-4c61-9690-baeddc2292ab" name="" source="//@graph/@nodes.24" target="//@graph/@nodes.2">
+      <typeArrow href="../model/petriNetMetaModel.xmi#//@graph/@arrows.1"/>
+    </arrows>
+    <arrows id="35078a9b-95fd-4c32-bc60-6f7331158ff0" name="" source="//@graph/@nodes.15" target="//@graph/@nodes.25">
+      <typeArrow href="../model/petriNetMetaModel.xmi#//@graph/@arrows.0"/>
+    </arrows>
+    <arrows id="a7f249c1-b533-4d50-b012-598a4f22a526" name="" source="//@graph/@nodes.25" target="//@graph/@nodes.13">
+      <typeArrow href="../model/petriNetMetaModel.xmi#//@graph/@arrows.1"/>
+    </arrows>
+    <arrows id="af72736c-1606-4862-b43c-fb45997bcc2c" name="" source="//@graph/@nodes.15" target="//@graph/@nodes.26">
+      <typeArrow href="../model/petriNetMetaModel.xmi#//@graph/@arrows.0"/>
+    </arrows>
+    <arrows id="8e41e218-e20d-45d7-894f-ff90abfcffdf" name="" source="//@graph/@nodes.26" target="//@graph/@nodes.10">
+      <typeArrow href="../model/petriNetMetaModel.xmi#//@graph/@arrows.1"/>
+    </arrows>
+    <arrows id="71c436be-fbbf-4d58-8d60-f2df069c7030" name="" source="//@graph/@nodes.14" target="//@graph/@nodes.27">
+      <typeArrow href="../model/petriNetMetaModel.xmi#//@graph/@arrows.0"/>
+    </arrows>
+    <arrows id="08496088-74c6-4a0a-bd69-299cb39c29df" name="" source="//@graph/@nodes.27" target="//@graph/@nodes.12">
+      <typeArrow href="../model/petriNetMetaModel.xmi#//@graph/@arrows.1"/>
+    </arrows>
+    <arrows id="c093e7bd-eb05-4769-bd0b-3dc1a8958fa3" name="" source="//@graph/@nodes.14" target="//@graph/@nodes.28">
+      <typeArrow href="../model/petriNetMetaModel.xmi#//@graph/@arrows.0"/>
+    </arrows>
+    <arrows id="4d6139e3-682e-49e4-bcf6-930f643cf58e" name="" source="//@graph/@nodes.28" target="//@graph/@nodes.11">
+      <typeArrow href="../model/petriNetMetaModel.xmi#//@graph/@arrows.1"/>
+    </arrows>
+    <arrows id="d4e93a1b-a624-4d44-9a2d-ee81857b42de" name="" source="//@graph/@nodes.29" target="//@graph/@nodes.15">
+      <typeArrow href="../model/petriNetMetaModel.xmi#//@graph/@arrows.1"/>
+    </arrows>
+    <arrows id="6bdbc6f2-15b5-4cc5-b1c4-409cd3464d50" name="" source="//@graph/@nodes.8" target="//@graph/@nodes.29">
+      <typeArrow href="../model/petriNetMetaModel.xmi#//@graph/@arrows.0"/>
+    </arrows>
+    <arrows id="e0e88278-d4ec-4fa7-a4e3-4988f16469de" name="" source="//@graph/@nodes.30" target="//@graph/@nodes.14">
+      <typeArrow href="../model/petriNetMetaModel.xmi#//@graph/@arrows.1"/>
+    </arrows>
+    <arrows id="d86abadd-9546-480e-a330-739b9ef70cc5" name="" source="//@graph/@nodes.2" target="//@graph/@nodes.30">
+      <typeArrow href="../model/petriNetMetaModel.xmi#//@graph/@arrows.0"/>
+    </arrows>
+    <arrows id="84b184a6-c26d-4ee2-8118-6f28a6f97680" name="" source="//@graph/@nodes.13" target="//@graph/@nodes.31">
+      <typeArrow href="../model/petriNetMetaModel.xmi#//@graph/@arrows.0"/>
+    </arrows>
+    <arrows id="09fad71b-eb9d-4803-aa3b-3bd99903a96a" name="" source="//@graph/@nodes.31" target="//@graph/@nodes.7">
+      <typeArrow href="../model/petriNetMetaModel.xmi#//@graph/@arrows.1"/>
+    </arrows>
+    <arrows id="48ad341e-ff94-4081-a95a-e9375262415c" name="" source="//@graph/@nodes.12" target="//@graph/@nodes.32">
+      <typeArrow href="../model/petriNetMetaModel.xmi#//@graph/@arrows.0"/>
+    </arrows>
+    <arrows id="e8dd6bb8-d6d1-419c-9e54-1ae7e50ca97e" name="" source="//@graph/@nodes.32" target="//@graph/@nodes.1">
+      <typeArrow href="../model/petriNetMetaModel.xmi#//@graph/@arrows.1"/>
+    </arrows>
+    <arrows id="23b1ed55-5cea-49cb-8f9e-b6420c53add6" name="" source="//@graph/@nodes.11" target="//@graph/@nodes.33">
+      <typeArrow href="../model/petriNetMetaModel.xmi#//@graph/@arrows.0"/>
+    </arrows>
+    <arrows id="74207515-2e91-4b36-a685-4f98ec352528" name="" source="//@graph/@nodes.33" target="//@graph/@nodes.0">
+      <typeArrow href="../model/petriNetMetaModel.xmi#//@graph/@arrows.1"/>
+    </arrows>
+    <arrows id="e7691e89-bff5-4852-8148-d23e9208d4db" name="" source="//@graph/@nodes.10" target="//@graph/@nodes.34">
+      <typeArrow href="../model/petriNetMetaModel.xmi#//@graph/@arrows.0"/>
+    </arrows>
+    <arrows id="83b28c48-2153-47f8-b423-fb840dd82aa8" name="" source="//@graph/@nodes.34" target="//@graph/@nodes.8">
+      <typeArrow href="../model/petriNetMetaModel.xmi#//@graph/@arrows.1"/>
+    </arrows>
+  </graph>
+  <type href="../model/petriNetMetaModel.xmi#/"/>
+</core:Specification>
