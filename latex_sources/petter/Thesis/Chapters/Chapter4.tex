@@ -29,19 +29,20 @@ correspondence
 \subsection{The Attributed Graph Grammar System}
 
 AGG is a general development environment for algebraic graph
-transformation systems. AGG is provided with a graphical editor for creating
+transformation systems that provide a graphical editor for creating
 and modifying graphs. The editor provides a graphical user-interface with
 several visual editors for applying the principles of graph transformation. It
-also has an interpreter and a set of validation tools. AGG is ongoing research
-activity of the graph grammar group at TU Berlin and started in 1997.
+also has an interpreter and a set of validation tools. AGG is an ongoing
+research activity of the graph grammar group at TU Berlin and started in 1997.
 
 \subsubsection*{Graphical Editor}
 The graphical editor of AGG, represented in figure~\ref{fig:AGGScreen}, has
 several functions to help the user to define model transformations. In the top
 left corner of the graphical user-interface is a tree based editor for defining
 rules and grammar. This tree based editor also contains the type graphs and the
-host graphs. Where the host graph represents both the source and target model in
-a model transformation.
+host graphs. The host graph represents both the source and target model in
+a model transformation, and the type graph represents the abstract syntax for
+the modeling languages. 
 
 Each application rule has two visual editors, representing the left
 (LHS) and the right hand side (RHS), or the pattern and the replacement graph.
@@ -53,10 +54,9 @@ In the tree based visual editor it is also possible to define host
 graphs and type graphs. Type graphs is described more in depths in the next
 section, but roughly said, the type graph defines elements that can be used in
 the host graph. Type graphs defines the abstract models for the host graph and
-is similar to how Ecore defines meta-models  for EMF and the Meta Object
-Facility (MOF)\cite{MOF}. The users can now create instances from these type
-graphs. These instances represents the host graphs and corresponds to its
-concurrent type graph.
+is similar to how Ecore defines meta-models for EMF. The users can now create
+instances from these type graphs. These instances represents the host graphs
+and corresponds to its concurrent type graph.
 
 For the application rules, the user can extend the attributes with Java
 expressions. This means that the users can use Java primitives such as strings,
@@ -140,9 +140,10 @@ by AGG to create associations between nodes that are not initialised in the type
 graph. This is how AGG keep the source and target model consistent. In
 figure~\ref{fig:AGGTreeBasedEditor} we can see the tree based editor in AGG,
 that provides the type graph, the host graph and a list of application rules.
-When a new application rule is created, both the LHS and the RHS of this new
-rule is initialised. The users can then insert elements in both the LHS and the
-RHS depending on how the source model should be translated. 
+When a new application rule is created, both the LHS and the RHS are
+initialised. The users can then specify the searching pattern and the
+replacement pattern in both the LHS and the RHS graph depending on how
+the source model should be translated.
 
 \begin{figure}[H]
 	\centering
@@ -161,7 +162,7 @@ Figure~\ref{fig:LHSvsRHSAGG} has a NAC, activitySimple that makes sure that the
 LHS of the rule is translated only once for each pattern match found in the
 host graph. Through the use of these application conditions, the users can
 create restrictions to how each transformation rule should handle pattern match
-in the host graph. Each transformation rule can have multiple application
+in the host graph. A transformation rule can have multiple application
 conditions attached.
 
 \subsubsection*{Application Control for the Transformation Rules}
@@ -209,28 +210,27 @@ and the master thesis \cite{AngelineWarning} published by Angeline Warning.
 
 \subsubsection*{Graphical Editor}
 Henshin model transformation language is a plugin for the Eclipse
-Integrated Development Environment\cite{Eclipse}. The Henshin project provides
-the users with a graphical editor to create and modify model to model
-transformations. 
+Integrated Development Environment\cite{Eclipse} and provides a graphical
+editor to create and modify transformation rules. 
 
 The users start out with using the Eclipse wizard to create an empty Henshin
 document. The Henshin document is based on the commonly known Extensible Markup
 Language (XML)\cite{XML}. If applicable a Henshin diagram file can be created
 based on the Henshin file. This gives the users an intuitive approach to
-creating model transformation rules.
+creating transformation rules.
 
 The Henshin transformation file is represented in a tree based editor in
 Eclipse called Henshin Model Editor. In this tree based editor it is possible
-to include meta-models for both the source and the target model, represented in
-figure~\ref{fig:Henshin_TreeEditor}. This figure represents the Henshin
-Model Editor, where the different transformation rules for this case study is
-presented. From this figure we can see that there is a Module element called
-activity2Petrinets. This Module element will always be the root element for a
-Henshin model transformation. This Module element contains all the user created
-rules for performing a model transformation in Henshin. There is also two
-external Ecore models included in the editor, more specifically the two
-meta-models. These meta-models are created based on the EMF standard for creating
-models and are independent of one and another.
+to include meta-models for both the source and the target model.
+Figure~\ref{fig:Henshin_TreeEditor} represents the Henshin Model Editor that
+contain a list of transformation rules. The figure present a Module element
+that is the root element for an instance of a Henshin model transformation and
+contains all the user created transformation rules. For this specific example
+there are two external Ecore models included in the editor, more specifically
+two meta-models. These meta-models are created based on the EMF standard for
+creating models and are independent of one and another. It is worth mentioning
+that a Henshin model transformation can include 0 \ldots n models and therefore
+is not restricted to have exact one source and one target meta-model.  
 
 \begin{figure}[H]
 	\centering
@@ -251,14 +251,14 @@ to be defined. To define these meta-models, Henshin use Ecore, that is
 provided with the Eclipse Modeling Framework\cite{Steinberg2009}. Ecore models
 can either be created using a tree based editor, called Sample Ecore Model
 Editor or by using a graphical editor. While the graphical editor is optional,
-the tree based editor is mandatory for creating Ecore models, since this is the
-actual Ecore model. 
+the tree based editor is mandatory for creating Ecore models, since this
+represents the Ecore model. 
 
 First the user has to create an EPackage element in the newly created Ecore
 model. This EPackage is what Henshin searches for when the user want to import
 an Ecore model. This EPackage element can have several child elements, like for
-example EClass, EEnum and EData type. For our case study we only needed the
-EClass element to create the nodes for the meta-models. And for each EClass
+example EClass, EEnum and EData type. For this specific example we only needed
+the EClass element to create the nodes for the meta-models. And for each EClass
 element the users can create EReference elements that can be connected with
 other EClass elements. This means that an EReference element defines relations
 between the nodes for the meta-models. To give an EClass element properties, the
@@ -364,7 +364,7 @@ as often as possible.
 \subsubsection*{Application Control for the Transformation Rules}
 Transformation units in Henshin are used to administrate the different
 transformation rules. There are several different units in Henshin that all have
-different properties. It is important to mention that a rule is a unit,
+different properties. It is important to mention that a rule is also unit,
 since it inherits from a unit in the Henshin meta-model. This means that it is
 unnecessary to create a unit in Henshin if our model transformation only
 consist of one transformation rule. But if there are defined several
@@ -510,8 +510,8 @@ respective meta-models.
 \subsubsection*{Defining Meta-models}
 
 Defining meta-models for the ATL language is defined by the modeling language
-Ecore. Since defining the meta-models are defined the same way as Henshin, see
-chapter 4.2.
+Ecore. Since defining the meta-models are defined similar as Henshin, see
+chapter 4.2 for more details. 
 
 At first, the user start out with a blank ATL file. Since we are working in
 the ATL Integrated Development Environment for Eclipse, we want to start the
@@ -687,7 +687,10 @@ where generated in the second phase and to the corresponding source model
 element. Now that these three phases is finished the ATL transformation engine
 can execute the imperative code sections defined for the module. 
 
-
+\subsection{QVT Transformations}
+Query/View/Transformation 
+TODO
+http://redpanda.nl/index.php?p=tutorial1
 
 %----------------------------------------------------------------------------------------
 %	SECTION 2

@@ -22,13 +22,13 @@
 \section{Comparison with other editor tools}
 
 Now that we have worked with these tools, we have to evaluate them.
-The table underneath summaries the comparison of the different tools, and we
-will explain some of them in further detail. We should start talking about how
-easy or hard these tools were to learn. It took some time to fully understand
-how graph transformations work. That there are a right hand and a left hand
-side of each rule, and that these rules also can have both negative and
-positive application conditions. But after a while, when the aspects around
-graph transformation got clearer, the tools were easier to handle. 
+Table~\ref{tab:comparing} later in this section summaries the comparison of the
+different tools, and we will explain some of them in further detail. We should
+start talking about how easy or hard these tools were to learn. It took some
+time to fully understand how graph transformations work. That there are a right
+hand and a left hand side of each rule, and that these rules also can have both
+negative and positive application conditions. But after a while, when the
+aspects around graph transformation got clearer, the tools were easier to handle.
 
 \subsection{The Three Editors}
 AGG was the first tool i encountered, my learning curve became steep after i
@@ -287,9 +287,9 @@ in-place &out-place \\
 \centering
 \begin{tabular}{| c | c | c | c | c |}
 \hline
-& AGG & Henshin   & ATL   & DPF Transform \\
+& AGG & Henshin & ATL & DPF Transform \\
 \hline
-Endogenous transformation & $\surd$ & $\surd$ & $\surd$ & \textcolor{red}{No}\\
+Endogenous transformation & $\surd$ & $\surd$ & $\surd$ & \textcolor{red}{\textbf{---}}\\
 
 Exogenous transformation & $\surd$ & $\surd$ & $\surd$ & $\surd$\\
 
@@ -302,9 +302,9 @@ Graphical editor & $\surd$ & $\surd$ & \textcolor{red}{\textbf{---}} & $\surd$
 
 Meta-modeling layers & 2 & 2 & 2 & $\infty$ \\
 
-Separate meta-models & \textcolor{red}{No} &  $\surd$ &  $\surd$ &  $\surd$ \\
+Separate meta-models & \textcolor{red}{\textbf{---}} &  $\surd$ &  $\surd$ &  $\surd$ \\
 
-Integrated with EMF & \textcolor{red}{No} & $\surd$ & $\surd$ & $\surd$ \\ 
+Integrated with EMF & \textcolor{red}{\textbf{---}} & $\surd$ & $\surd$ & $\surd$ \\ 
 
 Model transformation file size & 200 kb & 80 kb & 4 kb & 265 kb\\
 
@@ -314,6 +314,7 @@ in-place & out-place  & out-place \\
 \hline
 \end{tabular}
 \caption{Comparing model transformation tools.}
+\label{tab:comparing}
 \end{table} 
 
 
