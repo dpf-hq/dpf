@@ -123,43 +123,6 @@ public class TransformDArrowEditPart extends DArrowEditPart {
 			installEditPolicy(EditPolicy.CONNECTION_BENDPOINTS_ROLE, new ArrowBendpointEditPolicy());
 		}
 	}
-	private IArrowPainting arrowPaint;
-	
-	@Override
-	protected IFigure createFigure() {
-		if(getArrowPaint() != null){
-			connectionFigure = (ArrowConnection) arrowPaint.createConnectionFigure();
-		}
-		else{
-			createConnectionFigure();
-		}
-		connectionFigure.addRoutingListener(RoutingAnimator.getDefault());
-		if(arrowPaint != null)
-			connectionFigure.setTargetDecoration(arrowPaint.createTargetDecoration());
-		else
-			setArrowHead(connectionFigure);
-		for(Object edit : getChildren()){
-			if(edit instanceof AbstractGraphicalEditPart){
-				connectionFigure.add(((AbstractGraphicalEditPart)edit).getFigure());
-			}
-		}
-		return connectionFigure;		
-	}
-	
-	private IArrowPainting getArrowPaint(){
-		if(arrowPaint == null)
-			try {
-				String name = editObject.getDType().getConfigureString();
-				if(name == null || name.isEmpty())
-					return null;
-				IConfigurationElement configure = FigureConfigureManager.getInstance().getConfigurationElement(name);
-				if(configure != null)
-					arrowPaint = (IArrowPainting) configure.createExecutableExtension(FigureConfigureManager.PAINT_ATT);
-			} catch (CoreException e) {
-				DPFUtils.logError(e);
-			}
-		return arrowPaint;
-	}
 
 	@Override
 	public DArrow getDArrow(){
