@@ -4,12 +4,16 @@ import java.io.File;
 
 import no.hib.dpf.editor.DPFUtils;
 
+import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.URIUtil;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IFileEditorInput;
@@ -17,6 +21,7 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 import org.eclipse.ui.part.FileEditorInput;
 
 public class TransformUtils {
@@ -84,4 +89,36 @@ public class TransformUtils {
 		trimmedString = name.replaceAll("[\\d-]", "");
 		return trimmedString;
 	}
+	public static void updateFileName(WizardNewFileCreationPage newFileCreationPage, IStructuredSelection selection, String defaultModelBaseFilename, String defaultModelFilenameExtension){
+		if (selection != null && !selection.isEmpty()) {
+			// Get the resource...
+			//
+			Object selectedElement = selection.iterator().next();
+			if (selectedElement instanceof IResource) {
+				// Get the resource parent, if its a file.
+				//
+				IResource selectedResource = (IResource)selectedElement;
+				if (selectedResource.getType() == IResource.FILE) {
+					selectedResource = selectedResource.getParent();
+				}
+
+				// This gives us a directory...
+				//
+				if (selectedResource instanceof IFolder || selectedResource instanceof IProject) {
+					// Set this for the container.
+					//
+					newFileCreationPage.setContainerFullPath(selectedResource.getFullPath());
+
+					// Make up a unique new name here.
+					//
+					String modelFilename = defaultModelBaseFilename + "." + defaultModelFilenameExtension;
+					for (int i = 1; ((IContainer)selectedResource).findMember(modelFilename) != null; ++i) {
+						modelFilename = defaultModelBaseFilename + i + "." + defaultModelFilenameExtension;
+					}
+					newFileCreationPage.setFileName(modelFilename);
+				}
+			}
+		}
+	}
 }
+
