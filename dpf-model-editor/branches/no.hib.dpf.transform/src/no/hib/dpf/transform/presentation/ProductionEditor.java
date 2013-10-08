@@ -90,10 +90,9 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 	/** This is the root of the editor's model. */
 
 	protected Production production;
-
-	//	/** Palette component, holding the tools and shapes. */
 	protected Transform transform = null;
 	private Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
+	
 	protected PaletteRoot paletteRoot;
 
 	private DPFEditPartFactory shapesEditPartFactory;
@@ -135,70 +134,27 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 	
 	 protected void configureGraphicalViewer() {
 		super.configureGraphicalViewer();
+		DGraph editPartGraph = DiagramFactory.eINSTANCE.createDefaultDGraph();
 		String transformFile = TransformUtils.activeWindowFileLocation();
+		
 		transform = TransformEditor.loadTransform(DPFUtils.getResourceSet(), URI.createFileURI(transformFile), resourceToDiagnosticMap);
-		DSpecification defaultDSpecification = DiagramFactory.eINSTANCE.createDefaultDSpecification();
-		defaultDSpecification.setDType(DiagramFactory.eINSTANCE.createDefaultDSpecification());
-		
-		DGraph newGraph = DiagramFactory.eINSTANCE.createDefaultDGraph();
-		
-
 
 		DSpecification sourceDSpecification = transform.getSourceMetaModel();
 		DSpecification targetDSpecification = transform.getTargetMetaModel();
 		
 		if(sourceDSpecification!=targetDSpecification && !targetDSpecification.getDGraph().getDNodes().isEmpty()){
-			//commonGraph.setGraph(DiagramFactory.eINSTANCE.createDefaultDSpecification());
-
-			System.out.println("Like");
-			
-			newGraph = setDGraphForExogenousTransformation(sourceDSpecification, targetDSpecification, transformFile);
-//			EditPartGraph cGraph = new EditPartGraph();
-//			dspec = cGraph.getCommonGraph();
-//			dspec.setDSignature(DPFConstants.DEFAULT_DSIGNATURE);
-//			dspec.setDType(DPFConstants.REFLEXIVE_DSPECIFICATION);
-//			
-			String uri = "C:/Users/Petter/runtime-EclipseApplication/model/CorrespondanceModel.dpf";
-//			
-//			CorrespondanceGraph graph = new CorrespondanceGraph();
-//			dspec = graph.getCommonGraph(sourceDSpecification, targetDSpecification);
-//			
 			dspec = transform.getCommonGraph();
-//			dspec = DPFUtils.loadDSpecification(DPFUtils.getResourceSet(), URI.createFileURI(uri), resourceToDiagnosticMap);
-//			EcoreUtil.resolveAll(dspec);
-			
-			for(int i = 0;i<dspec.getDGraph().getDNodes().size();i++){
-				System.out.println(i+ " Name: " + dspec.getDGraph().getDNodes().get(i).getName() + " " + dspec.getDGraph().getDNodes().get(i).getTypeName());
-			}
-			
-			newGraph = dspec.getDType().getDGraph();
+			editPartGraph = dspec.getDType().getDGraph();
 		}
 		else{
-			System.out.println("Ulike");
-			newGraph = sourceDSpecification.getDGraph();
-		}
-		for(int i = 0;i<newGraph.getDNodes().size();i++){
-			System.out.println(newGraph.getDNodes().get(i).getName());
+			editPartGraph = sourceDSpecification.getDGraph();
 		}
 		
 		GraphicalViewer viewer = getGraphicalViewer();
-		//paletteFactory.updatePalette(getPaletteRoot(), dSpecification.getDType().getDGraph());
-		//paletteFactory.updatePalette(getPaletteRoot(), dSpecification.getDGraph());
-		
-
-		paletteFactory.updatePalette(getPaletteRoot(), newGraph);
-
-//		paletteFactory.updatePalette(getPaletteRoot(), dspec.getDGraph());
-		//paletteFactory.updatePaletteForExogenous(getPaletteRoot(), sourceDSpecification.getDGraph(), targetDSpecification.getDGraph());
+		paletteFactory.updatePalette(getPaletteRoot(), editPartGraph);
 		
 		shapesEditPartFactory = new DPFEditPartFactory(){
 			protected EditPart getPartForElement(Object modelElement) {
-//				System.out.println("Her " + modelElement.toString());
-//				EObject object = (EObject) modelElement;
-//				Production prod = (Production) object.eContainer().eContainer();
-//				if(prod.getName().contains(TransformConstants.CORRESPONDACE_GRAPH)){
-//					System.out.println("her");
-//				}
 //				System.out.println(object.eContainer().eContainer());
 //				if (modelElement instanceof DGraph) {
 //					return new DGraphEditPart(){
@@ -265,51 +221,6 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 		}
 		return paletteRoot;
 	}
-		
-	private DGraph setDGraphForExogenousTransformation(DSpecification sourceDSpecification, 
-			DSpecification targetDSpecification, String transformFile){
-		
-		DGraph tempGraph = null;
-		
-		DGraph defaultDGraph = DiagramFactory.eINSTANCE.createDefaultDGraph();
-		DNode defaultNode = DPFConstants.REFLEXIVE_TYPE_DNODE;
-		DArrow defaultDArrow = DPFConstants.REFLEXIVE_TYPE_DARROW;
-		
-		EcoreUtil.resolveAll(targetDSpecification);
-		EcoreUtil.resolveAll(targetDSpecification.getSpecification());
-		
-		Assert.isTrue(targetDSpecification != null);
-		setPartName(transformFile);
-		tempGraph = targetDSpecification.getDGraph();
-		defaultDGraph = targetDSpecification.getDGraph();
-
-		
-//		tempGraph.getDNodes().addAll(targetDSpecification.getDGraph().getDNodes());
-//		tempGraph.getDArrows().addAll(targetDSpecification.getDGraph().getDArrows());
-		
-		for(int i = 0;i<sourceDSpecification.getDGraph().getDNodes().size();i++){
-			tempGraph.createDNode(sourceDSpecification.getDGraph().getDNodes().get(i).getName(), defaultNode);
-		}
-		
-		for(int i = 0;i<sourceDSpecification.getDGraph().getDArrows().size();i++){
-			DArrow dArrow = sourceDSpecification.getDGraph().getDArrows().get(i);
-			DNode dSource = null;
-			DNode dTarget = null;
-			for(int j = 0;j<tempGraph.getDNodes().size();j++){
-				if(tempGraph.getDNodes().get(j).getName().contains(dArrow.getDSource().getName())){
-					dSource = tempGraph.getDNodes().get(j);
-				}
-			}
-			for(int j = 0;j<tempGraph.getDNodes().size();j++){
-				if(tempGraph.getDNodes().get(j).getName().contains(dArrow.getDTarget().getName())){
-					dTarget = tempGraph.getDNodes().get(j);
-				}
-			}
-			tempGraph.createDArrow(dArrow.getName(), dSource, dTarget, defaultDArrow);
-		}
-		//return tempGraph;
-		return defaultDGraph;
-	}
 
 	public GraphicalViewer getGraphicalViewer() {
 		return super.getGraphicalViewer();
@@ -317,28 +228,7 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 	
 	protected void initializeGraphicalViewer() {
 		super.initializeGraphicalViewer();	
-//		getGraphicalViewer().setContents(dspec.getDGraph());
-//		System.out.println("Hei");
 	}
-//	@Override
-//	protected void setInput(IEditorInput input) {
-//		super.setInput(input);
-//		IFile file = ((IFileEditorInput) input).getFile();
-//		dspec = DPFUtils.loadDSpecification(DPFUtils.getResourceSet(), DPFUtils.getFileURI(file), resourceToDiagnosticMap);
-//		EcoreUtil.resolveAll(dspec);
-//		EcoreUtil.resolveAll(dspec.getSpecification());
-//		
-//		if(dspec.getDSignature() != null){
-//			EcoreUtil.resolveAll(dspec.getDSignature());
-//			EcoreUtil.resolveAll(dspec.getDSignature().getSignature());
-//		}
-//		System.out.println("GHJØR DETTE");
-//		Assert.isTrue(dspec != null);
-//		setPartName(file.getName());
-//		
-//		paletteFactory.updatePalette(getPaletteRoot(), dspec.getDType().getDGraph());
-//		shapesEditPartFactory = new DPFEditPartFactory();
-//	}
 	
 	public void doSave(final URI uri, IProgressMonitor monitor) {
 

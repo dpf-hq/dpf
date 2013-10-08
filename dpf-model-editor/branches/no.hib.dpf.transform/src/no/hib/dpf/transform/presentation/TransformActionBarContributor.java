@@ -40,56 +40,8 @@ import org.eclipse.ui.actions.ActionFactory;
 @SuppressWarnings("restriction")
 public class TransformActionBarContributor extends ActionBarContributor {
 
-	// Action action = new Action("Generate" ,
-	// ImageSettings.IMG_GENERATE.getImageDescriptor()) {
-	// };
 	protected IEditorPart activeEditorPart;
-	//private RetargetAction generateAction;
 
-	protected IAction generateCorrespondanceGraph = new Action(TransformConstants.GENERATE_CORRESPONDANCE, ImageSettings.IMG_GENERATE_ECORE.getImageDescriptor()) {
-
-		@Override
-		public boolean isEnabled() {
-			return true;
-		}
-
-		@Override
-		public void run() {
-			DSpecification dspec = null;
-			
-			Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
-			Transform transform = TransformEditor.loadTransform(DPFUtils.getResourceSet(), URI.createFileURI(TransformUtils.activeWindowFileLocation()), resourceToDiagnosticMap);
-			
-			URI source = URI.createFileURI(transform.getSourceLocation());
-			URI target = URI.createFileURI(transform.getTargetLocation());
-			
-			String dpfFilename = TransformUtils.activeWorkingDirectory()+"\\"+TransformConstants.GENERATE_FOLDER+"\\"+TransformUtils.createCorrespondanceType(source.lastSegment().replace(".dpf", ""), 
-					target.lastSegment());
-			String xmiFilename = TransformUtils.activeWorkingDirectory()+"\\"+TransformConstants.GENERATE_FOLDER+"\\"+TransformUtils.createCorrespondanceType(source.lastSegment().replace(".dpf", ""), 
-					target.lastSegment().replace(".dpf", "xmi"));
-			System.out.println("1" + dpfFilename);
-			URI newDiagramUri = URI.createFileURI(dpfFilename);
-			URI newCoreUri = URI.createFileURI(xmiFilename);
-
-			CorrespondanceGraph cGraph = new CorrespondanceGraph(transform);
-			dspec = cGraph.createCorrespondanceGraph();
-			
-			DSpecification newDSpecification = DiagramFactory.eINSTANCE.createDefaultDSpecification();
-			newDSpecification.setDType(dspec);
-			newDSpecification.setDSignature(DiagramFactory.eINSTANCE.createDefaultDSignature());
-
-			File dpfFile = new File(newDiagramUri.toFileString());
-			File xmiFile = new File(newCoreUri.toFileString());
-			if(dpfFile.exists()){
-				xmiFile.delete();
-				dpfFile.delete();
-			}
-			DPFUtils.saveDSpecification(DPFUtils.getResourceSet(), newDSpecification, newDiagramUri, new LinkedHashMap<Resource, Diagnostic>());
-			
-			transform.setCorrespondanceGraph(newDSpecification);
-			TransformEditor.saveTransform(DPFUtils.getResourceSet(), URI.createFileURI(TransformUtils.activeWindowFileLocation()), transform, resourceToDiagnosticMap);
-		}
-	};
 	protected IAction generateToHenshin = new Action(TransformConstants.GENERATE_HENSHIN, ImageSettings.IMG_GENERATE_HENSHIN.getImageDescriptor()) {
 		@Override
 		public boolean isEnabled() {
@@ -109,24 +61,12 @@ public class TransformActionBarContributor extends ActionBarContributor {
 
 		@Override
 		public void run() {
-			//ApplyTransformation.exeucteTransformation("C:/Users/Petter/workspace/DPFTest/specifications/theModelInstance.xmi", true);
 			Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
 			Transform transform = TransformEditor.loadTransform(DPFUtils.getResourceSet(), URI.createFileURI(TransformUtils.activeWindowFileLocation()), resourceToDiagnosticMap);
 			BrowseInstanceModel br = new BrowseInstanceModel(TransformUtils.getActiveWorkBenchWindow().getShell(), transform);
 			if(br.open() == Window.OK){
-//				String xmiPath = br.getModelInstanceFilePath().replace(".dpf", ".xmi");
 				ApplyTransformation.exeucteTransformation(br.getModelInstanceFilePath(), true, br.getTargetModelName());
 			}
-			
-//			FileDialog file = new FileDialog(TransformActivePage.getActiveWorkBenchWindow().getShell());
-//			file.open();
-//			WizardDialog wizardDialog = new WizardDialog(TransformActivePage.getActiveWorkBenchWindow().getShell(),
-//				      new BrowseInstance());
-//				    if (wizardDialog.open() == Window.OK) {
-//				      System.out.println("Ok pressed");
-//				    } else {
-//				      System.out.println("Cancel pressed");
-//				    }
 		}
 	};
 
@@ -160,8 +100,7 @@ public class TransformActionBarContributor extends ActionBarContributor {
 		toolBarManager.add(getAction(ActionFactory.DELETE.getId()));
 
 		toolBarManager.add(new Separator());
-
-		toolBarManager.add(generateCorrespondanceGraph);
+		
 		toolBarManager.add(generateToHenshin);
 		toolBarManager.add(executeTransformation);
 		
@@ -178,18 +117,17 @@ public class TransformActionBarContributor extends ActionBarContributor {
 	}
 
 	@Override
-	protected void declareGlobalActionKeys() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public void contributeToMenu(IMenuManager menubar) {
 		super.contributeToMenu(menubar);
 		MenuManager viewMenu = new MenuManager("Transform Editor");
-		viewMenu.add(generateCorrespondanceGraph);
 		viewMenu.add(generateToHenshin);
 		viewMenu.add(executeTransformation);
 		menubar.insertAfter(IWorkbenchActionConstants.M_EDIT, viewMenu);
+	}
+
+	@Override
+	protected void declareGlobalActionKeys() {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -24,9 +24,7 @@ import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 
 public class TransformDArrowEditPart extends DArrowEditPart {
 	private DArrow editObject = null;
-	private Production production = null;
-	protected PolylineConnection connectionFigure = null;
-	
+	private Production production = null;	
 	PropertyChangeListener listener = new PropertyChangeListener() {
 
 		@Override
@@ -71,8 +69,7 @@ public class TransformDArrowEditPart extends DArrowEditPart {
 	protected void handleDiagramModelChanged(Notification msg){
 		super.handleDiagramModelChanged(msg);
 		if(msg.getNotifier() != null && msg.getNotifier() == getDiagramModel()){ 
-
-			refreshVisuals();
+			
 			switch(msg.getFeatureID(DArrow.class)){
 			case DiagramPackage.DARROW__DCONSTRAINTS:
 				if(msg.getOldValue() instanceof DArrowLabelConstraint || msg.getNewValue() instanceof DArrowLabelConstraint)
@@ -116,41 +113,5 @@ public class TransformDArrowEditPart extends DArrowEditPart {
 		if(darrow != null)
 			return darrow.getArrow();
 		return null;
-	}
-	
-	@Override
-	protected void refreshVisuals() {
-		DArrow darrow = editObject;
-		if(getEditor() != null)
-			((ArrowConnection)connectionFigure).setErrorImageFlag(getEditor().isMakerExisting(darrow.getArrow()));
-		refreshBendpoints();
-		if(production.getLeftArrows().contains(editObject)){
-			connectionFigure.setForegroundColor(TransformEditorPreferences.getDefault().getDeleteForegroundColor());
-		}
-		if(production.getCommonArrows().contains(editObject)){
-			connectionFigure.setForegroundColor(TransformEditorPreferences.getDefault().getPreserveForegroundColor());
-		}
-		if(production.getRightArrows().contains(editObject)){
-			connectionFigure.setForegroundColor(TransformEditorPreferences.getDefault().getInsertForegroundColor());
-		}
-		
-	}
-	public PolylineConnection getConnectionFigure(){
-		return connectionFigure;
-	}
-	
-	
-	@Override
-	protected void createConnectionFigure() {
-		connectionFigure = new ArrowConnection();
-		if(production.getLeftArrows().contains(editObject)){
-			connectionFigure.setForegroundColor(TransformEditorPreferences.getDefault().getDeleteForegroundColor());
-		}
-		if(production.getCommonArrows().contains(editObject)){
-			connectionFigure.setForegroundColor(TransformEditorPreferences.getDefault().getPreserveForegroundColor());
-		}
-		if(production.getRightArrows().contains(editObject)){
-			connectionFigure.setForegroundColor(TransformEditorPreferences.getDefault().getInsertForegroundColor());
-		}
 	}
 }

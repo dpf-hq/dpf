@@ -16,6 +16,7 @@
 
 package no.hib.dpf.transform.presentation;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -32,8 +33,14 @@ import no.hib.dpf.transform.util.TransformConstants;
 import no.hib.dpf.transform.util.TransformUtils;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -45,6 +52,7 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 import org.eclipse.ui.ide.IDE;
@@ -126,6 +134,7 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 		
 		private IStructuredSelection selection;
 
+		private IProgressMonitor progressMonitor = new NullProgressMonitor();
 		/**
 		 * Create a new wizard page instance.
 		 * 
@@ -162,12 +171,17 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 			ResourceSetImpl resourceSet = DPFUtils.getResourceSet();
 			Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
 
-			File directory = new File(getContainerFullPath().toFile().getPath() + File.separatorChar + TransformConstants.GENERATE_FOLDER);
-
-			if(!directory.exists()){
-				directory.mkdirs();
+			IFolder generateModelsFolder = TransformUtils.getCurrentProject(workbench, selection).getFolder(TransformConstants.GENERATE_FOLDER);
+			
+			try {
+				if(!generateModelsFolder.exists()){
+					generateModelsFolder.create(true, true, progressMonitor);
+				}
+		
+			} catch (CoreException e2) {
+				DPFUtils.logError("Error happens when creating new folder",e2);
 			}
-
+			
 			String sourceTypeModelFileName = configPage.getSourceMetaModelURI();
 			
 			if(sourceTypeModelFileName!=null){
@@ -179,11 +193,8 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 			
 			if(sourceTypeModelFileName != null){
 				sourceTypeSpec = DPFUtils.loadDSpecification(resourceSet, URI.createFileURI(sourceTypeModelFileName), resourceToDiagnosticMap);
-				//typeSpec = DPFUtils.loadDModel(resourceSet, URI.createFileURI(typeModelFileName), resourceToDiagnosticMap);
-				//typeSpec = DPFUtils.loadDSpecification(URI.createFileURI(typeModelFileName));
 				EcoreUtil.resolveAll(sourceTypeSpec);
 			}
-			//transform.setMetaModel(typeSpec != null ? typeSpec : DPFConstants.REFLEXIVE_DSPECIFICATION);
 			transform.setSourceMetaModel(sourceTypeSpec != null ? sourceTypeSpec : DPFConstants.REFLEXIVE_DSPECIFICATION);
 			System.out.println("DSPec " + transform.getSourceMetaModel().getDType().getDGraph().getDNodes());
 			
@@ -198,7 +209,6 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 				}
 				
 			}
-			
 			DSpecification targetTypeSpec = DiagramFactory.eINSTANCE.createDefaultDSpecification();
 			targetTypeSpec.setDType(configPage.getTargetMetaModel());
 			
@@ -206,66 +216,41 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 				targetTypeSpec = DPFUtils.loadDSpecification(resourceSet, URI.createFileURI(targetTypeModelFileName), resourceToDiagnosticMap);
 				EcoreUtil.resolveAll(targetTypeSpec);
 			}
-//			transform.setTargetMetaModel(targetTypeSpec != null ? targetTypeSpec : DPFConstants.REFLEXIVE_DSPECIFICATION);
 			transform.setTargetMetaModel(targetTypeSpec != null ? targetTypeSpec : DPFConstants.REFLEXIVE_DSPECIFICATION);
-			
-			System.out.println(targetTypeSpec.getDType().getDGraph().getDNodes().get(0).getName());
-			
-			String uri = "C:/Users/Petter/runtime-EclipseApplication/model/CorrespondanceModel.dpf";
-			
-//			DSpecification correspondanceSpec = DiagramFactory.eINSTANCE.createDefaultDSpecification();
-			
-//			if(uri != null){
-//				correspondanceSpec = DPFUtils.loadDSpecification(resourceSet, URI.createFileURI(uri), resourceToDiagnosticMap);
-//			}
 			
 			CorrespondanceGraph graph = new CorrespondanceGraph(transform);
 			DSpecification testCorrespond = DiagramFactory.eINSTANCE.createDefaultDSpecification();
 			testCorrespond.setDSignature(DiagramFactory.eINSTANCE.createDefaultDSignature());
 			testCorrespond.setDType(graph.getCommonGraph(sourceTypeSpec, targetTypeSpec));
 			
-			String correspondURI = directory.getPath().toString() + File.separatorChar + getFileName().replace(".xform", "")+".dpf";
-		
-			System.out.println("corre" + correspondURI);
+			String dspecTypes_name = getFileName().replace(".xform", "")+".dpf";
+			IFile dspecTypes  = generateModelsFolder.getFile(dspecTypes_name);
 			
-			File correspondanceFile = new File(correspondURI);
-			File correspondanceXmiFile = new File(correspondURI.replace(".dpf", ".xmi"));
-			
-			if(correspondanceFile.exists()){
-				correspondanceXmiFile.delete();
-				correspondanceFile.delete();
+			if(!dspecTypes.exists()){
+				DPFUtils.saveDSpecification(DPFUtils.getResourceSet(), testCorrespond, DPFUtils.getFileURI(dspecTypes), resourceToDiagnosticMap);
 			}
 			
-			DPFUtils.saveDSpecification(DPFUtils.getResourceSet(), testCorrespond, URI.createFileURI(correspondURI), resourceToDiagnosticMap);
 			transform.setCommonGraph(testCorrespond);
 			
 			URI source = URI.createFileURI(transform.getSourceLocation());
 			URI target = URI.createFileURI(transform.getTargetLocation());
-			
-			String dpfFilename = directory.getPath().toString() + File.separatorChar + TransformUtils.createCorrespondanceType(source.lastSegment().replace(".dpf", ""), 
-					target.lastSegment());
-			String xmiFilename = directory.getPath().toString() + File.separatorChar + TransformUtils.createCorrespondanceType(source.lastSegment().replace(".dpf", ""), 
-					target.lastSegment().replace(".dpf", "xmi"));
-			System.out.println("1" + dpfFilename);
-			URI newDiagramUri = URI.createFileURI(dpfFilename);
-			URI newCoreUri = URI.createFileURI(xmiFilename);
 
+			String correspondence_name = TransformUtils.createCorrespondanceType(source.lastSegment().replace(".dpf", ""), 
+					target.lastSegment());
+			IFile correspondenceGraph  = generateModelsFolder.getFile(correspondence_name);
+			
 			CorrespondanceGraph cGraph = new CorrespondanceGraph(transform);
 			DSpecification dspec = cGraph.createCorrespondanceGraph();
 			
-			DSpecification newDSpecification = DiagramFactory.eINSTANCE.createDefaultDSpecification();
-			newDSpecification.setDType(dspec);
-			newDSpecification.setDSignature(DiagramFactory.eINSTANCE.createDefaultDSignature());
+			DSpecification correspondenceDSpecification = DiagramFactory.eINSTANCE.createDefaultDSpecification();
+			correspondenceDSpecification.setDType(dspec);
+			correspondenceDSpecification.setDSignature(DiagramFactory.eINSTANCE.createDefaultDSignature());
 
-			File dpfFile = new File(dpfFilename);
-			File xmiFile = new File(xmiFilename);
-			if(dpfFile.exists()){
-				xmiFile.delete();
-				dpfFile.delete();
+			if(!correspondenceGraph.exists()){
+				DPFUtils.saveDSpecification(DPFUtils.getResourceSet(), correspondenceDSpecification, DPFUtils.getFileURI(correspondenceGraph), new LinkedHashMap<Resource, Diagnostic>());
 			}
-			DPFUtils.saveDSpecification(DPFUtils.getResourceSet(), newDSpecification, newDiagramUri, new LinkedHashMap<Resource, Diagnostic>());
-			transform.setCorrespondanceGraph(newDSpecification);
-			transform.setCorrespondanceLocation(newDiagramUri.toString());
+			transform.setCorrespondanceGraph(correspondenceDSpecification);
+			transform.setCorrespondanceLocation(correspondenceGraph.getFullPath().toString());
 			
 			
 			try {

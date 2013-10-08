@@ -630,7 +630,7 @@ public class TransformModule {
 		findEReferencesDArrowsLHS_RHS(rule, production.getRightArrows(), nodes, false);
 		
 		rule.setInjectiveMatching(false);
-		rule.setCheckDangling(false);
+		rule.setCheckDangling(true);
 		return rule;
 	}
 	

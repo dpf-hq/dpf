@@ -5,6 +5,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -83,6 +84,23 @@ public class TransformUtils {
 		trimmedString = name.replaceAll("[\\d-]", "");
 		return trimmedString;
 	}
+	public static IProject getCurrentProject(IWorkbench workbench, IStructuredSelection selection){
+		
+		IWorkbenchWindow window = workbench.getActiveWorkbenchWindow();
+		IProject project = null;
+	    if (window != null)
+	    {
+	    	Object firstElement = selection.getFirstElement();
+	    	if (firstElement instanceof IAdaptable){
+	    		project = (IProject)((IAdaptable)firstElement).getAdapter(IProject.class);
+	            IPath path = project.getFullPath();
+	            System.out.println("HER DA " + path);
+	        }
+	    }
+	    return project;
+	}
+	
+	
 	public static void updateFileName(WizardNewFileCreationPage newFileCreationPage, IStructuredSelection selection, String defaultModelBaseFilename, String defaultModelFilenameExtension){
 		if (selection != null && !selection.isEmpty()) {
 			// Get the resource...
