@@ -13,7 +13,7 @@
 %----------------------------------------------------------------------------------------
 
 \section{Model Driven Engineering}
-
+	
 When a new software is created it has always been a goal to produce high
 quality code at the lowest cost. To plan a software development phase from its
 initial start to delivering a finished product can seem like an impossible
@@ -250,7 +250,19 @@ meta-model.
 %-----------------------------------
 %	SUBSECTION 1
 %-----------------------------------
-\section{Meta-modeling}
+
+
+\section{Modeling Languages}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{./Figures/modeling_language.png}
+	\caption[Main ingredients of a modeling lanugage.]
+	{The three main ingredients of a modeling language.}
+	\label{fig:modeling_language}
+\end{figure}
+
+\subsection{Meta-modeling}
 
 Models are a major artifact in the concept of model driven engineering (MDE). It
 is essential to look at every model as instances of some more abstract model.
@@ -295,7 +307,7 @@ it is often referred to as a suite of languages, since it provides developers
 and designers with the possibility to specify applications through several different
 modeling languages, or diagram types that UML often is associated with. 
 
-\subsection{Meta-Object Facility}
+\subsubsection{Meta-Object Facility}
 
 The Object Management Group was in need of a architecture to define the
 UML. Therefore the Meta-Object Facility has its origin from, that specifies UML.
@@ -336,7 +348,7 @@ modeling languages.
 %	SECTION 2
 %----------------------------------------------------------------------------------------
  
-\section{Constraints}
+\subsection{Constraints}
 
 A constraint is a Boolean condition for some modeling element. These modeling
 elements can have constraints defined on objects, classes, attributes,
@@ -401,19 +413,30 @@ one another.
 
 \section{Language Workbenches}
 
-
-
-Meta-modeling and constraints are essential when we want to specify a new
-language workbench. 
-
-One of the themes that winds constantly across both forms of language oriented
-programming is the involvement of lay programmers: domain experts who are not
-professional programmers but program in DSLs as part of the development effort.
-The goal of lay programming has been a constant goal of the software world -
-indeed many believed the early high level languages (COBOL and FORTRAN)
-heralded the end of programmers as users would use them. This reminds us of
-what I call the COBOL inference - that most technologies that are supposed to
-eliminate professional programmers do nothing of the sort.
+Language workbenches are tools that lets user specify
+their own Domain Specific Language (DSL) and include editing tools for the newly
+created language. A workbench should consist of Integrated Development
+Environment (IDE) that lets users create their own DSMLs. The concepts behind a
+language workbench is that the tool does not just provide the users with an IDE
+to create DSLs, but also generates a new IDE where this newly created DSL can
+be edited. In addition to an IDE that provides creation and editing of a newly
+created language a workbench should define support for code generation, model
+transformation, model versioning, etc\cite{Lamo2013}.
+Figure~\ref{fig:langauge_workbench} is provided in the paper, \textit{``DPF
+Workbench: a multi-level language workbench for MDE"}, that was published by
+Yngve Lamo, Xiaoliang Wang, Florian Mantz, Øyvind Bech, Anders Sandven and
+Adrian Rutle in 2013. The figure presents the intended use of language
+workbenches and consist of two phases. The first handles the definition of a new
+DSML and the creation of tool support such as code generation, editors, model
+transformations, etc. A language workbench is created by a domain expert in
+collaboration with an experienced developer. The latter describes the actual
+usage of this newly created workbench, where developers can utilize the DSML
+environment to create models, generate implementation code, etc. Language
+workbenches are a very young field in computer science, and there are many
+existing solutions that is open for the public to use. These concepts have the
+potential to change the face of programming as we know
+it\cite{fowler2010domain}, but the concepts of workbenches are still fresh to 
+computer science. 
 
 \begin{figure}[H]
 	\centering
@@ -449,20 +472,11 @@ eliminate professional programmers do nothing of the sort.
 
 \subsection{EMF}
 
-Skriv om at EMF egentlig er en 4 layer, men brukeren har bare muligheten til å
-interract with 2 av layerene. 
-
-In EMF we can create data models based on the Essential MOF (EMOF) and specify
-domain specific languages. The Henshin meta-model is created as an EMF
-meta-model and uses the Ecore meta-model for typing purposes.
-
-EMF will generate interfaces and factory
-
-With EMF you make your domain model explicit which helps to provide clear
-visibility of the model. EMF also provides change notification functionality to
-the model in case of model changes. EMF will generate interfaces and factory to
-create your objects; therefore it helps you to keep your application clean from
-the individual implementaiton classes.
+Eclipse Modeling Framework is originally based on Meta Object Facility (MOF)
+provided by the Object Management Group (OMG). In 2003 EMF designers contributed
+to designing the MOF 2.0 version of the standard and was named Essential EMOF
+(EMOF). EMF use EMOF and have designed a meta-model called Ecore and is the
+meta-model that EMF use to specify new DSLs and create a tooling environment. 
 
 
 \subsection{Visual Modeling and Transformation System}
@@ -475,7 +489,7 @@ the individual implementaiton classes.
 	\label{fig:VMTS}
 \end{figure}
 
-\section{DPF}
+\section{Diagram Predicate Framework}
 
 Diagram Predicate Framework\cite{Rutle_thesis,Rossini_thesis,Lamo2013} (DPF) is
 an ongoing research project that was first initiated by Bergen University
