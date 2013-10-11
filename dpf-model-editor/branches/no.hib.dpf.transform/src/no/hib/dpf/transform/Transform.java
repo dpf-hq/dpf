@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link no.hib.dpf.transform.Transform#isGenerate <em>Generate</em>}</li>
  *   <li>{@link no.hib.dpf.transform.Transform#getSourceLocation <em>Source Location</em>}</li>
  *   <li>{@link no.hib.dpf.transform.Transform#getTargetLocation <em>Target Location</em>}</li>
- *   <li>{@link no.hib.dpf.transform.Transform#getCommonGraph <em>Common Graph</em>}</li>
+ *   <li>{@link no.hib.dpf.transform.Transform#getElementTypeGraph <em>Element Type Graph</em>}</li>
  *   <li>{@link no.hib.dpf.transform.Transform#getCorrespondanceGraph <em>Correspondance Graph</em>}</li>
  *   <li>{@link no.hib.dpf.transform.Transform#getCorrespondanceLocation <em>Correspondance Location</em>}</li>
  * </ul>
@@ -212,30 +212,30 @@ public interface Transform extends EObject {
 	void setTargetLocation(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Common Graph</b></em>' reference.
+	 * Returns the value of the '<em><b>Element Type Graph</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Common Graph</em>' reference isn't clear,
+	 * If the meaning of the '<em>Element Type Graph</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Common Graph</em>' reference.
-	 * @see #setCommonGraph(DSpecification)
-	 * @see no.hib.dpf.transform.TransformPackage#getTransform_CommonGraph()
+	 * @return the value of the '<em>Element Type Graph</em>' reference.
+	 * @see #setElementTypeGraph(DSpecification)
+	 * @see no.hib.dpf.transform.TransformPackage#getTransform_ElementTypeGraph()
 	 * @model
 	 * @generated
 	 */
-	DSpecification getCommonGraph();
+	DSpecification getElementTypeGraph();
 
 	/**
-	 * Sets the value of the '{@link no.hib.dpf.transform.Transform#getCommonGraph <em>Common Graph</em>}' reference.
+	 * Sets the value of the '{@link no.hib.dpf.transform.Transform#getElementTypeGraph <em>Element Type Graph</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Common Graph</em>' reference.
-	 * @see #getCommonGraph()
+	 * @param value the new value of the '<em>Element Type Graph</em>' reference.
+	 * @see #getElementTypeGraph()
 	 * @generated
 	 */
-	void setCommonGraph(DSpecification value);
+	void setElementTypeGraph(DSpecification value);
 
 	/**
 	 * Returns the value of the '<em><b>Correspondance Graph</b></em>' reference.

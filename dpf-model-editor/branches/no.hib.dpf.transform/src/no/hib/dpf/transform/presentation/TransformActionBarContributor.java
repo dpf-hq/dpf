@@ -11,7 +11,7 @@ import no.hib.dpf.transform.Transform;
 import no.hib.dpf.transform.henshin.ApplyTransformation;
 import no.hib.dpf.transform.henshin.TranslateToHenshinRules;
 import no.hib.dpf.transform.icons.ImageSettings;
-import no.hib.dpf.transform.rules.CorrespondanceGraph;
+import no.hib.dpf.transform.rules.GenerateModels;
 import no.hib.dpf.transform.util.BrowseInstanceModel;
 import no.hib.dpf.transform.util.TransformConstants;
 import no.hib.dpf.transform.util.TransformUtils;

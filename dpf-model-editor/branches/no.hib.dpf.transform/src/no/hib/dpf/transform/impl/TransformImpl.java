@@ -38,7 +38,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link no.hib.dpf.transform.impl.TransformImpl#isGenerate <em>Generate</em>}</li>
  *   <li>{@link no.hib.dpf.transform.impl.TransformImpl#getSourceLocation <em>Source Location</em>}</li>
  *   <li>{@link no.hib.dpf.transform.impl.TransformImpl#getTargetLocation <em>Target Location</em>}</li>
- *   <li>{@link no.hib.dpf.transform.impl.TransformImpl#getCommonGraph <em>Common Graph</em>}</li>
+ *   <li>{@link no.hib.dpf.transform.impl.TransformImpl#getElementTypeGraph <em>Element Type Graph</em>}</li>
  *   <li>{@link no.hib.dpf.transform.impl.TransformImpl#getCorrespondanceGraph <em>Correspondance Graph</em>}</li>
  *   <li>{@link no.hib.dpf.transform.impl.TransformImpl#getCorrespondanceLocation <em>Correspondance Location</em>}</li>
  * </ul>
@@ -148,14 +148,14 @@ public class TransformImpl extends EObjectImpl implements Transform {
 	protected String targetLocation = TARGET_LOCATION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getCommonGraph() <em>Common Graph</em>}' reference.
+	 * The cached value of the '{@link #getElementTypeGraph() <em>Element Type Graph</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCommonGraph()
+	 * @see #getElementTypeGraph()
 	 * @generated
 	 * @ordered
 	 */
-	protected DSpecification commonGraph;
+	protected DSpecification elementTypeGraph;
 
 	/**
 	 * The cached value of the '{@link #getCorrespondanceGraph() <em>Correspondance Graph</em>}' reference.
@@ -410,16 +410,16 @@ public class TransformImpl extends EObjectImpl implements Transform {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DSpecification getCommonGraph() {
-		if (commonGraph != null && commonGraph.eIsProxy()) {
-			InternalEObject oldCommonGraph = (InternalEObject)commonGraph;
-			commonGraph = (DSpecification)eResolveProxy(oldCommonGraph);
-			if (commonGraph != oldCommonGraph) {
+	public DSpecification getElementTypeGraph() {
+		if (elementTypeGraph != null && elementTypeGraph.eIsProxy()) {
+			InternalEObject oldElementTypeGraph = (InternalEObject)elementTypeGraph;
+			elementTypeGraph = (DSpecification)eResolveProxy(oldElementTypeGraph);
+			if (elementTypeGraph != oldElementTypeGraph) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TransformPackage.TRANSFORM__COMMON_GRAPH, oldCommonGraph, commonGraph));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TransformPackage.TRANSFORM__ELEMENT_TYPE_GRAPH, oldElementTypeGraph, elementTypeGraph));
 			}
 		}
-		return commonGraph;
+		return elementTypeGraph;
 	}
 
 	/**
@@ -427,8 +427,8 @@ public class TransformImpl extends EObjectImpl implements Transform {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DSpecification basicGetCommonGraph() {
-		return commonGraph;
+	public DSpecification basicGetElementTypeGraph() {
+		return elementTypeGraph;
 	}
 
 	/**
@@ -436,11 +436,11 @@ public class TransformImpl extends EObjectImpl implements Transform {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCommonGraph(DSpecification newCommonGraph) {
-		DSpecification oldCommonGraph = commonGraph;
-		commonGraph = newCommonGraph;
+	public void setElementTypeGraph(DSpecification newElementTypeGraph) {
+		DSpecification oldElementTypeGraph = elementTypeGraph;
+		elementTypeGraph = newElementTypeGraph;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TransformPackage.TRANSFORM__COMMON_GRAPH, oldCommonGraph, commonGraph));
+			eNotify(new ENotificationImpl(this, Notification.SET, TransformPackage.TRANSFORM__ELEMENT_TYPE_GRAPH, oldElementTypeGraph, elementTypeGraph));
 	}
 
 	/**
@@ -543,9 +543,9 @@ public class TransformImpl extends EObjectImpl implements Transform {
 				return getSourceLocation();
 			case TransformPackage.TRANSFORM__TARGET_LOCATION:
 				return getTargetLocation();
-			case TransformPackage.TRANSFORM__COMMON_GRAPH:
-				if (resolve) return getCommonGraph();
-				return basicGetCommonGraph();
+			case TransformPackage.TRANSFORM__ELEMENT_TYPE_GRAPH:
+				if (resolve) return getElementTypeGraph();
+				return basicGetElementTypeGraph();
 			case TransformPackage.TRANSFORM__CORRESPONDANCE_GRAPH:
 				if (resolve) return getCorrespondanceGraph();
 				return basicGetCorrespondanceGraph();
@@ -586,8 +586,8 @@ public class TransformImpl extends EObjectImpl implements Transform {
 			case TransformPackage.TRANSFORM__TARGET_LOCATION:
 				setTargetLocation((String)newValue);
 				return;
-			case TransformPackage.TRANSFORM__COMMON_GRAPH:
-				setCommonGraph((DSpecification)newValue);
+			case TransformPackage.TRANSFORM__ELEMENT_TYPE_GRAPH:
+				setElementTypeGraph((DSpecification)newValue);
 				return;
 			case TransformPackage.TRANSFORM__CORRESPONDANCE_GRAPH:
 				setCorrespondanceGraph((DSpecification)newValue);
@@ -628,8 +628,8 @@ public class TransformImpl extends EObjectImpl implements Transform {
 			case TransformPackage.TRANSFORM__TARGET_LOCATION:
 				setTargetLocation(TARGET_LOCATION_EDEFAULT);
 				return;
-			case TransformPackage.TRANSFORM__COMMON_GRAPH:
-				setCommonGraph((DSpecification)null);
+			case TransformPackage.TRANSFORM__ELEMENT_TYPE_GRAPH:
+				setElementTypeGraph((DSpecification)null);
 				return;
 			case TransformPackage.TRANSFORM__CORRESPONDANCE_GRAPH:
 				setCorrespondanceGraph((DSpecification)null);
@@ -663,8 +663,8 @@ public class TransformImpl extends EObjectImpl implements Transform {
 				return SOURCE_LOCATION_EDEFAULT == null ? sourceLocation != null : !SOURCE_LOCATION_EDEFAULT.equals(sourceLocation);
 			case TransformPackage.TRANSFORM__TARGET_LOCATION:
 				return TARGET_LOCATION_EDEFAULT == null ? targetLocation != null : !TARGET_LOCATION_EDEFAULT.equals(targetLocation);
-			case TransformPackage.TRANSFORM__COMMON_GRAPH:
-				return commonGraph != null;
+			case TransformPackage.TRANSFORM__ELEMENT_TYPE_GRAPH:
+				return elementTypeGraph != null;
 			case TransformPackage.TRANSFORM__CORRESPONDANCE_GRAPH:
 				return correspondanceGraph != null;
 			case TransformPackage.TRANSFORM__CORRESPONDANCE_LOCATION:

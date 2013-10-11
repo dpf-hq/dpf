@@ -28,7 +28,7 @@ import no.hib.dpf.editor.DPFEditor;
 import no.hib.dpf.editor.DPFUtils;
 import no.hib.dpf.transform.Transform;
 import no.hib.dpf.transform.TransformFactory;
-import no.hib.dpf.transform.rules.CorrespondanceGraph;
+import no.hib.dpf.transform.rules.GenerateModels;
 import no.hib.dpf.transform.util.TransformConstants;
 import no.hib.dpf.transform.util.TransformUtils;
 
@@ -62,7 +62,7 @@ import org.eclipse.ui.internal.ide.IDEWorkbenchMessages;
  * Create a new .xform-file.
  */
 @SuppressWarnings("restriction")
-public class DPFCreationWizard extends Wizard implements INewWizard {
+public class TransformCreationWizard extends Wizard implements INewWizard {
 
 	private CreationPage createPage = null;
 	private TransformWizardPage configPage = null;
@@ -142,7 +142,7 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 		 *            the current workbench
 		 * @param selection
 		 *            the current object selection
-		 * @see DPFCreationWizard#init(IWorkbench, IStructuredSelection)
+		 * @see TransformCreationWizard#init(IWorkbench, IStructuredSelection)
 		 */
 		CreationPage(IWorkbench workbench, IStructuredSelection selection) {
 			super("dpfCreationPage1", selection);
@@ -155,7 +155,7 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 		/**
 		 * This method will be invoked, when the "Finish" button is pressed.
 		 * 
-		 * @see DPFCreationWizard#performFinish()
+		 * @see TransformCreationWizard#performFinish()
 		 */
 		boolean finish() {
 			// create a new diagram file, result != null if successful
@@ -165,8 +165,6 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 			URI newDiagarmURI = DPFUtils.getFileURI(newDiagramFile);
 			//Initialize model file and diagram file
 			Transform transform = TransformFactory.eINSTANCE.createTransform();
-			
-			System.out.println("LINKEN " + " " + newDiagramFile.getFullPath().toString() + " " + getContainerFullPath().toFile().getPath());
 			
 			ResourceSetImpl resourceSet = DPFUtils.getResourceSet();
 			Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
@@ -185,7 +183,13 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 			String sourceTypeModelFileName = configPage.getSourceMetaModelURI();
 			
 			if(sourceTypeModelFileName!=null){
-				transform.setSourceLocation(sourceTypeModelFileName);
+				if(!sourceTypeModelFileName.isEmpty()){
+					transform.setSourceLocation(sourceTypeModelFileName);
+				}
+				else{
+					transform.setSourceLocation(TransformConstants.DefaultDSpecification.toString());
+				}
+				
 			}
 			
 			DSpecification sourceTypeSpec = DiagramFactory.eINSTANCE.createDefaultDSpecification();
@@ -196,7 +200,6 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 				EcoreUtil.resolveAll(sourceTypeSpec);
 			}
 			transform.setSourceMetaModel(sourceTypeSpec != null ? sourceTypeSpec : DPFConstants.REFLEXIVE_DSPECIFICATION);
-			System.out.println("DSPec " + transform.getSourceMetaModel().getDType().getDGraph().getDNodes());
 			
 			String targetTypeModelFileName = configPage.getTargetMetaModelURI();
 			
@@ -205,7 +208,7 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 					transform.setTargetLocation(targetTypeModelFileName);
 				}
 				else{
-					transform.setTargetLocation("default.dpf");
+					transform.setTargetLocation(TransformConstants.DefaultDSpecification.toString());
 				}
 				
 			}
@@ -218,39 +221,36 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 			}
 			transform.setTargetMetaModel(targetTypeSpec != null ? targetTypeSpec : DPFConstants.REFLEXIVE_DSPECIFICATION);
 			
-			CorrespondanceGraph graph = new CorrespondanceGraph(transform);
-			DSpecification testCorrespond = DiagramFactory.eINSTANCE.createDefaultDSpecification();
-			testCorrespond.setDSignature(DiagramFactory.eINSTANCE.createDefaultDSignature());
-			testCorrespond.setDType(graph.getCommonGraph(sourceTypeSpec, targetTypeSpec));
+			GenerateModels generate_models = new GenerateModels(transform);
+			
+			DSpecification elementTypeGraph = DiagramFactory.eINSTANCE.createDefaultDSpecification();
+			elementTypeGraph.setDSignature(DiagramFactory.eINSTANCE.createDefaultDSignature());
+			elementTypeGraph.setDType(generate_models.generateTypeingGraph(sourceTypeSpec, targetTypeSpec));
 			
 			String dspecTypes_name = getFileName().replace(".xform", "")+".dpf";
 			IFile dspecTypes  = generateModelsFolder.getFile(dspecTypes_name);
 			
 			if(!dspecTypes.exists()){
-				DPFUtils.saveDSpecification(DPFUtils.getResourceSet(), testCorrespond, DPFUtils.getFileURI(dspecTypes), resourceToDiagnosticMap);
+				DPFUtils.saveDSpecification(DPFUtils.getResourceSet(), elementTypeGraph, DPFUtils.getFileURI(dspecTypes), resourceToDiagnosticMap);
 			}
-			
-			transform.setCommonGraph(testCorrespond);
+			transform.setElementTypeGraph(elementTypeGraph);
 			
 			URI source = URI.createFileURI(transform.getSourceLocation());
 			URI target = URI.createFileURI(transform.getTargetLocation());
 
 			String correspondence_name = TransformUtils.createCorrespondanceType(source.lastSegment().replace(".dpf", ""), 
 					target.lastSegment());
-			IFile correspondenceGraph  = generateModelsFolder.getFile(correspondence_name);
+			IFile correspondenceGraph_file  = generateModelsFolder.getFile(correspondence_name);
 			
-			CorrespondanceGraph cGraph = new CorrespondanceGraph(transform);
-			DSpecification dspec = cGraph.createCorrespondanceGraph();
-			
-			DSpecification correspondenceDSpecification = DiagramFactory.eINSTANCE.createDefaultDSpecification();
-			correspondenceDSpecification.setDType(dspec);
-			correspondenceDSpecification.setDSignature(DiagramFactory.eINSTANCE.createDefaultDSignature());
+			DSpecification correspondenceGraph = DiagramFactory.eINSTANCE.createDefaultDSpecification();
+			correspondenceGraph.setDType(generate_models.generateCorrespondanceGraph());
+			correspondenceGraph.setDSignature(DiagramFactory.eINSTANCE.createDefaultDSignature());
 
-			if(!correspondenceGraph.exists()){
-				DPFUtils.saveDSpecification(DPFUtils.getResourceSet(), correspondenceDSpecification, DPFUtils.getFileURI(correspondenceGraph), new LinkedHashMap<Resource, Diagnostic>());
+			if(!correspondenceGraph_file.exists()){
+				DPFUtils.saveDSpecification(DPFUtils.getResourceSet(), correspondenceGraph, DPFUtils.getFileURI(correspondenceGraph_file), new LinkedHashMap<Resource, Diagnostic>());
 			}
-			transform.setCorrespondanceGraph(correspondenceDSpecification);
-			transform.setCorrespondanceLocation(correspondenceGraph.getFullPath().toString());
+			transform.setCorrespondanceGraph(correspondenceGraph);
+			transform.setCorrespondanceLocation(correspondenceGraph_file.getFullPath().toString());
 			
 			
 			try {

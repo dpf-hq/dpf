@@ -133,13 +133,13 @@ public interface TransformPackage extends EPackage {
 	int TRANSFORM__TARGET_LOCATION = 6;
 
 	/**
-	 * The feature id for the '<em><b>Common Graph</b></em>' reference.
+	 * The feature id for the '<em><b>Element Type Graph</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFORM__COMMON_GRAPH = 7;
+	int TRANSFORM__ELEMENT_TYPE_GRAPH = 7;
 
 	/**
 	 * The feature id for the '<em><b>Correspondance Graph</b></em>' reference.
@@ -348,15 +348,15 @@ public interface TransformPackage extends EPackage {
 	EAttribute getTransform_TargetLocation();
 
 	/**
-	 * Returns the meta object for the reference '{@link no.hib.dpf.transform.Transform#getCommonGraph <em>Common Graph</em>}'.
+	 * Returns the meta object for the reference '{@link no.hib.dpf.transform.Transform#getElementTypeGraph <em>Element Type Graph</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Common Graph</em>'.
-	 * @see no.hib.dpf.transform.Transform#getCommonGraph()
+	 * @return the meta object for the reference '<em>Element Type Graph</em>'.
+	 * @see no.hib.dpf.transform.Transform#getElementTypeGraph()
 	 * @see #getTransform()
 	 * @generated
 	 */
-	EReference getTransform_CommonGraph();
+	EReference getTransform_ElementTypeGraph();
 
 	/**
 	 * Returns the meta object for the reference '{@link no.hib.dpf.transform.Transform#getCorrespondanceGraph <em>Correspondance Graph</em>}'.
@@ -567,12 +567,12 @@ public interface TransformPackage extends EPackage {
 		EAttribute TRANSFORM__TARGET_LOCATION = eINSTANCE.getTransform_TargetLocation();
 
 		/**
-		 * The meta object literal for the '<em><b>Common Graph</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Element Type Graph</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TRANSFORM__COMMON_GRAPH = eINSTANCE.getTransform_CommonGraph();
+		EReference TRANSFORM__ELEMENT_TYPE_GRAPH = eINSTANCE.getTransform_ElementTypeGraph();
 
 		/**
 		 * The meta object literal for the '<em><b>Correspondance Graph</b></em>' reference feature.

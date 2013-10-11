@@ -16,6 +16,7 @@ import no.hib.dpf.transform.Production;
 import no.hib.dpf.transform.preferences.TransformEditorPreferences;
 
 import org.eclipse.draw2d.Connection;
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.ManhattanConnectionRouter;
 import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.emf.common.notify.Notification;
@@ -23,6 +24,24 @@ import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 
 public class TransformDArrowEditPart extends DArrowEditPart {
+	public enum CHANGE{
+		DEF, ADD, DEL, KEP;
+	} 
+	private CHANGE current = CHANGE.DEF;
+	public void setChange(CHANGE change){
+		current = change;		
+		IFigure figure = getFigure();
+		figure.setForegroundColor(TransformEditorPreferences.getDefault().getInsertForegroundColor());
+		figure.revalidate();
+		figure.repaint();
+	}
+	public void refreshVisual(){
+		super.refreshVisuals();
+		IFigure figure = getFigure();
+		figure.setForegroundColor(TransformEditorPreferences.getDefault().getInsertForegroundColor());
+		figure.revalidate();
+		figure.repaint();
+	}
 	private DArrow editObject = null;
 	private Production production = null;	
 	PropertyChangeListener listener = new PropertyChangeListener() {
@@ -36,7 +55,6 @@ public class TransformDArrowEditPart extends DArrowEditPart {
 		}
 
 	};
-    
     /**
      * Listener for the node notifications
      */
@@ -70,6 +88,21 @@ public class TransformDArrowEditPart extends DArrowEditPart {
 		super.handleDiagramModelChanged(msg);
 		if(msg.getNotifier() != null && msg.getNotifier() == getDiagramModel()){ 
 			
+//			ArrowConnection arrowConnection = (ArrowConnection) figure;
+//			
+//			arrowConnection.setBackgroundColor(TransformEditorPreferences.getDefault().getDeleteForegroundColor());
+//			arrowConnection.setForegroundColor(TransformEditorPreferences.getDefault().getDeleteForegroundColor());
+//			arrowConnection.repaint();
+//			
+//			System.out.println("HER " + figure.getForegroundColor());
+//			figure.setBackgroundColor(TransformEditorPreferences.getDefault().getDeleteForegroundColor());
+//			figure.setForegroundColor(TransformEditorPreferences.getDefault().getDeleteForegroundColor());
+//			System.out.println("HER " + figure.getBackgroundColor());
+//			System.out.println("HER " + figure.getForegroundColor());
+//			figure.repaint();
+//			System.out.println("Parent " + figure.getParent());
+			
+			
 			switch(msg.getFeatureID(DArrow.class)){
 			case DiagramPackage.DARROW__DCONSTRAINTS:
 				if(msg.getOldValue() instanceof DArrowLabelConstraint || msg.getNewValue() instanceof DArrowLabelConstraint)
@@ -101,6 +134,7 @@ public class TransformDArrowEditPart extends DArrowEditPart {
 			installEditPolicy(EditPolicy.CONNECTION_BENDPOINTS_ROLE, new ArrowBendpointEditPolicy());
 		}
 	}
+	
 
 	@Override
 	public DArrow getDArrow(){

@@ -25,12 +25,8 @@ public class TranslateToHenshinRules {
 	
 	public static void generateHenshinModule(boolean save){
 		
-		//TranslateToEcore.translateToEcore(TransformActivePage.activeTransformModel(), true);
-
 		HenshinResourceSet resourceSet = new HenshinResourceSet(TransformUtils.activeWorkingDirectory());
 		Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
-		//Transform the metamodels
-		//Engine engine = new EngineImpl();
 
 		Transform transform = TransformEditor.loadTransform(DPFUtils.getResourceSet(), URI.createFileURI(TransformUtils.activeWindowFileLocation()), resourceToDiagnosticMap);
 		TransformModule translateHenshinRules = new TransformModule(transform, resourceSet);
@@ -43,62 +39,8 @@ public class TranslateToHenshinRules {
 			if(file.exists()){
 				file.delete();
 			}
-			//resourceSet.createResource(null, TransformActivePage.trimActiveTransformModel()+"toHenshin.henshin");
 			resourceSet.saveEObject(result, henshinModelName);
 		}
 		System.out.println("Module" + result.getRules());
 	}
-	/*
-	 * 		//TranslateToEcore.translateToEcore(path, save, engine, resourceSet);
-		
-		/*EPackage metamodel = (EPackage) loadMetaModelObject(resourceSet);
-		System.out.println("/testing.ecore");
-		//Create the resource set
-		
-
-		
-		//Register file extension for resoure set
- 		resourceSet.registerXMIResourceFactories("xform");
- 		TransformPackage.eINSTANCE.getName();
- 		
- 		//Load the model and the Henshin module into resource set
- 		Resource model = resourceSet.getResource(TransformActivePage.activeTransformModel());	
-		Module module = resourceSet.getModule(HENSHINNEW, true);
-		
-		module.getImports().add(metamodel);
-		
-		//Load the model in a EGraph and define a Engine for the transformation
-		EGraph graph = new EGraphImpl(model);
-		
-		//Unit unit = module.getUnit("createHenshinRules");
-		Unit unit = module.getUnit("generateHenshinRules");
-		
-		UnitApplication unitApp = new UnitApplicationImpl(engine, graph, unit, null);
-		
-		//unitApp.setParameterValue("fileName", TransformActivePage.trimActiveTransformModel());
-		
-		try{
-			InterpreterUtil.executeOrDie(unitApp);
-			ChangeImpl.PRINT_WARNINGS = false;
-		} catch (AssertionError e){
-			System.out.println("Errer " + e);
-		}
-//		*/
-//		Module result = (Module) unitApp.getResultParameterValue("module");
-	/*
-	 * private static EObject loadMetaModelObject(HenshinResourceSet resourceSet){
-		URI instanceUri = URI.createFileURI(new File("C:/Users/Petter/runtime-EclipseApplication/transformtest/testing.ecore").getAbsolutePath());
-		Resource resourceInstance = resourceSet.getResource(instanceUri, true);
-		
-		if (resourceInstance.isLoaded()) {
-			resourceInstance.unload();
-			try {
-				resourceInstance.load(null);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}// try catch
-		}// if
-
-		return resourceInstance.getContents().get(0);
-	}*/
 }

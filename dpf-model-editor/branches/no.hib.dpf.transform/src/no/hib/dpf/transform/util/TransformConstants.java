@@ -1,5 +1,7 @@
 package no.hib.dpf.transform.util;
 
+import org.eclipse.emf.common.util.URI;
+
 public class TransformConstants {
 
 	public static final String D_SPECIFICATION = "DSpecification";
@@ -18,4 +20,8 @@ public class TransformConstants {
 	public static final String CORRESPONDACE_GRAPH = "InitialiseCorrespondanceGraph";
 	public static final String GENERATE_CORRESPONDANCE = "Generate Correspondance Graph";
 	public static final String GENERATE_FOLDER = "generated_models";
+	public static final String DEFAULT_SPEC = "default.dpf";
+	
+	
+	public static final URI DefaultDSpecification = URI.createPlatformResourceURI("DefaultDSpecification.dpf", false);
 }

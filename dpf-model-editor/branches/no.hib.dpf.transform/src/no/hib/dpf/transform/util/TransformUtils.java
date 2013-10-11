@@ -42,7 +42,6 @@ public class TransformUtils {
 	}
 	
 	public static String activeWorkingDirectory(){
-		//String path = ((FileEditorInput)input).getName();
 		IWorkbench wb = PlatformUI.getWorkbench();
 		IWorkbenchWindow win = wb.getActiveWorkbenchWindow();
 		IWorkbenchPage page = win.getActivePage();
@@ -79,11 +78,7 @@ public class TransformUtils {
 		IFile file = ((IFileEditorInput)input).getFile();
 		return file.getLocation().toOSString();
 	}
-	public static String trimNumber(String name){
-		String trimmedString = null;
-		trimmedString = name.replaceAll("[\\d-]", "");
-		return trimmedString;
-	}
+
 	public static IProject getCurrentProject(IWorkbench workbench, IStructuredSelection selection){
 		
 		IWorkbenchWindow window = workbench.getActiveWorkbenchWindow();
@@ -93,13 +88,10 @@ public class TransformUtils {
 	    	Object firstElement = selection.getFirstElement();
 	    	if (firstElement instanceof IAdaptable){
 	    		project = (IProject)((IAdaptable)firstElement).getAdapter(IProject.class);
-	            IPath path = project.getFullPath();
-	            System.out.println("HER DA " + path);
 	        }
 	    }
 	    return project;
 	}
-	
 	
 	public static void updateFileName(WizardNewFileCreationPage newFileCreationPage, IStructuredSelection selection, String defaultModelBaseFilename, String defaultModelFilenameExtension){
 		if (selection != null && !selection.isEmpty()) {

@@ -7,6 +7,8 @@ import no.hib.dpf.transform.Production;
 import no.hib.dpf.transform.command.AddTransformCommand;
 import no.hib.dpf.transform.command.DeleteTransformCommand;
 import no.hib.dpf.transform.command.PreserveTransformCommand;
+import no.hib.dpf.transform.parts.TransformDArrowEditPart;
+import no.hib.dpf.transform.parts.TransformDArrowEditPart.CHANGE;
 
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
@@ -17,9 +19,11 @@ public class ActionEditPolicy extends AbstractEditPolicy {
 
 	private Object object;
 	
-	public Command getCommand(Request request) {
-		if (AddTool.REQ_MAKE_ADD.equals(request.getType()))
-			return MakeAddCommand(getHost());
+	public Command getCommand(Request request) { 
+		if (AddTool.REQ_MAKE_ADD.equals(request.getType())){
+			EditPart part = getHost();
+			return MakeAddCommand(part);
+		}
 		if (DeleteTool.REQ_MAKE_DELETE.equals(request.getType()))
 			return MakeDeleteCommand(getHost());
 		if(PreserveTool.REQ_MAKE_COMMON.equals(request.getType()))
@@ -71,14 +75,13 @@ public class ActionEditPolicy extends AbstractEditPolicy {
 		if(editObject instanceof DArrow){
 			DArrow dArrow = (DArrow) editObject;
 			production = (Production) dArrow.eContainer().eContainer().eContainer();
-			System.out.println("Ger " + (dArrow).eContainer().eContainer().eContainer());
 		}
 		if(editObject instanceof DNode){
 			DNode dNode = ((DNode) editObject);
 			production = (Production) (dNode).eContainer().eContainer().eContainer();
 		}
 		if(editPart != null && production != null){
-			return new AddTransformCommand(editObject, production);
+			return new AddTransformCommand(editPart, editObject, production);
 		}
 		return EmptyExecutableCommand.INSTANCE;
 	}

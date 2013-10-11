@@ -30,14 +30,11 @@
    </extension>
 
    <extension point="org.eclipse.ui.newWizards">
-      <category
-            id="org.eclipse.emf.ecore.Wizard.category.ID"
-            name="%_UI_Wizard_category"/>
       <wizard
             id="no.hib.dpf.transform.presentation.TransformModelWizardID"
             name="%_UI_TransformModelWizard_label"
-            class="no.hib.dpf.transform.presentation.DPFCreationWizard"
-            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            class="no.hib.dpf.transform.presentation.TransformCreationWizard"
+            category="no.hib.dpf.editor"
             icon="icons/full/obj16/TransformModelFile.gif">
          <description>%_UI_TransformModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>

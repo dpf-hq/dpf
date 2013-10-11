@@ -65,8 +65,9 @@ public class TransformWizardPage extends WizardPage {
 	
 	private Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
 
-	private static final String DEFAULTMETAMODEL = "Default Metamodel";
-	private static final String DEFAULTSIGNATURE = "Default Signature";
+	private static final String DEFAULT_SOURCE_METAMODEL = "Souce Default Metamodel";
+	private static final String DEFAULT_TARGET_METAMODEL = "Target Default Metamodel";
+	private static final String DEFAULTSIGNATURE = "Source Default Signature";
 	private static final String ENDOGENOUS_TRANSFORMATION = "Endogenous Transformation";
 	private static final String EXOGENOUS_TRANSFORMATION = "Exogenous Transformation";
 
@@ -89,9 +90,18 @@ public class TransformWizardPage extends WizardPage {
 			composite.setLayoutData(data);
 		}
 
-		final Button sourcetMetamodelButton = new Button(composite, SWT.CHECK);{
-			sourcetMetamodelButton.setText("Use " + DEFAULTMETAMODEL);
+		final Button targetMetamodelButton = new Button(composite, SWT.CHECK);{
+			targetMetamodelButton.setText(ENDOGENOUS_TRANSFORMATION);
+			targetMetamodelButton.setSelection(false);
 			GridData data = new GridData();
+			data.horizontalSpan = 2;
+			targetMetamodelButton.setLayoutData(data);
+		}
+
+		final Button sourcetMetamodelButton = new Button(composite, SWT.CHECK);{
+			sourcetMetamodelButton.setText(DEFAULT_SOURCE_METAMODEL);
+			GridData data = new GridData();
+			sourcetMetamodelButton.setSelection(true);
 			data.horizontalSpan = 2;
 			sourcetMetamodelButton.setLayoutData(data);
 		}
@@ -119,15 +129,9 @@ public class TransformWizardPage extends WizardPage {
 			});
 			sourceMetaModelFileChooser.setEnabled(true);
 		}
-		final Button targetMetamodelButton = new Button(composite, SWT.CHECK);{
-			targetMetamodelButton.setText(ENDOGENOUS_TRANSFORMATION);
-			GridData data = new GridData();
-			data.horizontalSpan = 2;
-			targetMetamodelButton.setLayoutData(data);
-		}
 		final Button target_defaultMetamodel = new Button(composite, SWT.CHECK);{
-			target_defaultMetamodel.setText("Use " + DEFAULTMETAMODEL);
-			target_defaultMetamodel.setVisible(false);
+			target_defaultMetamodel.setText(DEFAULT_TARGET_METAMODEL);
+			target_defaultMetamodel.setSelection(true);
 			GridData data = new GridData();
 			data.horizontalSpan = 3;
 			target_defaultMetamodel.setLayoutData(data);
@@ -168,7 +172,6 @@ public class TransformWizardPage extends WizardPage {
 					sourceMetaModelFileChooser.setEnabled(true);
 					sourceMetaModel = DPFUtils.loadDModel(URI.createFileURI(sourceMetaModelFileText.getText()));
 					if(targetMetamodelButton.getEnabled()){
-						System.out.println("Check");
 						targetMetaModel = sourceMetaModel;
 						targetURIMetamodel = sourceMetaModelFileText.getText();
 					}
@@ -182,11 +185,11 @@ public class TransformWizardPage extends WizardPage {
 			public void widgetSelected(SelectionEvent event) {
 				boolean isEndogenous_transformation = targetMetamodelButton.getSelection();
 				if(isEndogenous_transformation){
-					targetMetamodelButton.setText(ENDOGENOUS_TRANSFORMATION);
+//					targetMetamodelButton.setText(ENDOGENOUS_TRANSFORMATION);
 					targetMetaModelFileText.setEnabled(false);
 					targetMetaModelFileChooser.setEnabled(false);
 				}else{
-					targetMetamodelButton.setText(EXOGENOUS_TRANSFORMATION);
+//					targetMetamodelButton.setText(EXOGENOUS_TRANSFORMATION);
 					target_defaultMetamodel.setVisible(true);
 					target_defaultMetamodel.setEnabled(true);
 					
@@ -207,7 +210,6 @@ public class TransformWizardPage extends WizardPage {
 					targetMetaModelFileText.setEnabled(true);
 					targetMetaModelFileChooser.setEnabled(true);
 					targetMetaModel = DPFUtils.loadDModel(URI.createFileURI(targetMetaModelFileText.getText()));
-					System.out.println("herigjen");
 					//metaModel = DPFUtils.loadDSpecification(TransformEditor.getResourceSet(), URI.createFileURI(metaModelFileText.getText()), resourceToDiagnosticMap);
 					targetURIMetamodel = targetMetaModelFileText.getText();
 				}
@@ -261,13 +263,15 @@ public class TransformWizardPage extends WizardPage {
 		/*
 		 * Initialize the fields to make sure the default metamodel and default signature are used by default
 		 */
-		sourcetMetamodelButton.setSelection(true);
+		target_defaultMetamodel.setSelection(false);
+		
+		sourcetMetamodelButton.setSelection(false);
 		sourceMetaModelFileText.setEnabled(false);
 		sourceMetaModelFileChooser.setEnabled(false);
 		sourceMetaModel = DPFConstants.REFLEXIVE_DSPECIFICATION;
 		
-		targetMetamodelButton.setSelection(true);
-		target_defaultMetamodel.setSelection(true);
+		targetMetamodelButton.setSelection(false);
+
 		targetMetaModelFileText.setEnabled(false);
 		targetMetaModelFileChooser.setEnabled(false);
 		

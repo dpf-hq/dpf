@@ -142,8 +142,8 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 		DSpecification sourceDSpecification = transform.getSourceMetaModel();
 		DSpecification targetDSpecification = transform.getTargetMetaModel();
 		
-		if(sourceDSpecification!=targetDSpecification && !targetDSpecification.getDGraph().getDNodes().isEmpty()){
-			dspec = transform.getCommonGraph();
+		if(sourceDSpecification!=targetDSpecification){
+			dspec = transform.getElementTypeGraph();
 			editPartGraph = dspec.getDType().getDGraph();
 		}
 		else{
@@ -155,7 +155,6 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 		
 		shapesEditPartFactory = new DPFEditPartFactory(){
 			protected EditPart getPartForElement(Object modelElement) {
-//				System.out.println(object.eContainer().eContainer());
 //				if (modelElement instanceof DGraph) {
 //					return new DGraphEditPart(){
 //						protected void createEditPolicies() {

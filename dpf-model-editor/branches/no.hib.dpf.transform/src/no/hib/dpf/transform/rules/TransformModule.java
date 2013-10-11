@@ -101,11 +101,11 @@ public class TransformModule {
 		//correspondance = DPFUtils.loadDSpecification(URI.createFileURI(TransformUtils.activeWorkingDirectory()+"/"+TransformConstants.GENERATE_FOLDER+"/metamodel2petriNetMetaModel.dpf"));
 		correspondance = DPFUtils.loadDSpecification(URI.createFileURI(dpfFilename));
 		//DPFUtils.load
-		System.out.println("corresp" + correspondance.getDGraph().getDNodes());
+//		System.out.println("corresp" + correspondance.getDGraph().getDNodes());
 		
 		for(int i = 0;i<correspondance.getDGraph().getDNodes().size();i++){
 			correspond.put(correspondance.getDGraph().getDNodes().get(i).getNode().getName(), correspondance.getDGraph().getDNodes().get(i));
-			System.out.println("Type " + correspondance.getDGraph().getDNodes().get(i).getNode().getName());
+//			System.out.println("Type " + correspondance.getDGraph().getDNodes().get(i).getNode().getName());
 		}
 	}
 	public Module createModule(){
@@ -249,7 +249,7 @@ public class TransformModule {
 			EAttribute arrowTypeAttribute = specificationPackage.getArrow_Name();
 
 			String name = production.getCommonArrows().get(i).getName();
-			System.out.println("Pelle " + name + " " + name.length());
+//			System.out.println("Pelle " + name + " " + name.length());
 			if(name.contains(MAPARROW)){
 				hasMappedItem = true;
 				int index = name.indexOf(MAPARROW);
@@ -258,7 +258,7 @@ public class TransformModule {
 				mappedElements.put(mappedItem, production.getCommonArrows().get(i).getArrow().getId());
 				
 				name = name.substring(0, index);
-				System.out.println("HER " + name + " " + mappedItem);
+//				System.out.println("HER " + name + " " + mappedItem);
 			}
 			
 			Node preserveArrowNode = henshinFac.createNode(lhs, arrow, null);
@@ -403,7 +403,7 @@ public class TransformModule {
 					String target_id = "";
 					DNode sourceNode = corrNode;
 					String sourceType = dArrow.getTypeName();
-					System.out.println("Type to change " +  sourceType);
+//					System.out.println("Type to change " +  sourceType);
 					String linkNode = corrNode.getDIncomings().get(0).getDSource().getTypeName();
 					DNode link = corrNode.getDIncomings().get(0).getDSource();
 					String targetType = "";
@@ -414,14 +414,14 @@ public class TransformModule {
 					}
 					for(int j = 0;j<production.getSum().getDGraph().getDArrows().size();j++){
 						if(production.getSum().getDGraph().getDArrows().get(j).getTypeName().equals(targetType) && !sourceType.equals(targetType)){
-							System.out.println("Match found " + production.getSum().getDGraph().getDArrows().get(j).getTypeName());
+//							System.out.println("Match found " + production.getSum().getDGraph().getDArrows().get(j).getTypeName());
 							target_id = production.getSum().getDGraph().getDArrows().get(j).getArrow().getId();
 							match = true;
 						}
 					}
 					for(int j = 0;j<production.getSum().getDGraph().getDNodes().size();j++){
 						if(production.getSum().getDGraph().getDNodes().get(j).getTypeName().equals(targetType)){
-							System.out.println("Match found " + production.getSum().getDGraph().getDNodes().get(j).getTypeName());
+//							System.out.println("Match found " + production.getSum().getDGraph().getDNodes().get(j).getTypeName());
 							target_id = production.getSum().getDGraph().getDNodes().get(j).getNode().getId();
 							match = true;
 						}
@@ -447,7 +447,7 @@ public class TransformModule {
 							
 						}
 						
-						System.out.println("Navnet på Noden " + traces.get(target_id).getName());
+//						System.out.println("Navnet på Noden " + traces.get(target_id).getName());
 						
 						if(traces.get(target_id).getAction().toString().equals("create")){
 							trace_node = henshinFac.createNode(rhs, tracePackage.getTrace(), null);
@@ -457,11 +457,7 @@ public class TransformModule {
 							
 							henshinFac.createEdge(trace_node, target_trace_node, tracePackage.getTrace_Target());
 							henshinFac.createEdge(trace_node, rhs.getNode(source_trace_node.getName()), tracePackage.getTrace_Source());
-							
-							
-							
-							
-							
+
 							boolean exisitNAC = false;
 							Graph graph = henshinFac.createGraph();
 							NestedCondition nac = null;
@@ -644,7 +640,7 @@ public class TransformModule {
 					for(int j = 0;j<traceNode.getDOutgoings().size();j++){
 						if(traceNode.getDOutgoings().get(j).getName().contains("Source")){
 							Node node = traces.get(traceNode.getDOutgoings().get(j).getDTarget().getNode().getId());
-							System.out.println("Node " + node.getName());
+//							System.out.println("Node " + node.getName());
 							Attribute attribute = henshinFac.createAttribute(node, specificationPackage.getNode_Name(), parameter);
 							attribute.setAction(new Action(Type.PRESERVE));
 						}
@@ -665,7 +661,7 @@ public class TransformModule {
 			DNode dNode = (DNode) dElement;
 			for(int i = 0;i<dNode.getDIncomings().size();i++){
 				if(dNode.getDIncomings().get(i).getTypeName().startsWith("traceTarget")){
-					System.out.println("HAR TRACE");
+//					System.out.println("HAR TRACE");
 					return true;
 					
 				}

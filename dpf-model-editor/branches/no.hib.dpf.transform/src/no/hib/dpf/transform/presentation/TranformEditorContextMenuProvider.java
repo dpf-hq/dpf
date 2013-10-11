@@ -80,14 +80,12 @@ public class TranformEditorContextMenuProvider extends ContextMenuProvider {
 			DefineNameVariableDialog dialog = new DefineNameVariableDialog(TransformUtils.getActiveWorkBenchWindow().getShell(), editViewer.getFocusEditPart());
 			dialog.create();
 			if(dialog.open() == Window.OK){
-				System.out.println(dialog.getVariable());
 			}
 //				    if (VariableDialog.open() == Window.OK) {
 //				      System.out.println("Ok pressed");
 //				    } else {
 //				      System.out.println("Cancel pressed");
 //				    }
-			System.out.println(editViewer.getFocusEditPart());
 		}
 	};
 	

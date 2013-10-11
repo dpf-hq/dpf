@@ -13,7 +13,7 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceLocation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="targetLocation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="commonGraph" eType="ecore:EClass ../../no.hib.dpf.diagram/model/DiagramMetamodel.ecore#//DSpecification"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elementTypeGraph" eType="ecore:EClass ../../no.hib.dpf.diagram/model/DiagramMetamodel.ecore#//DSpecification"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="correspondanceGraph" eType="ecore:EClass ../../no.hib.dpf.diagram/model/DiagramMetamodel.ecore#//DSpecification"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="correspondanceLocation"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

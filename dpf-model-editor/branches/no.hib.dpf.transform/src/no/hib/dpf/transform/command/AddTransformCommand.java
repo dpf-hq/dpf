@@ -6,7 +6,10 @@ import java.util.List;
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.transform.Production;
+import no.hib.dpf.transform.parts.TransformDArrowEditPart;
+import no.hib.dpf.transform.parts.TransformDArrowEditPart.CHANGE;
 
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 
 public class AddTransformCommand extends Command {
@@ -15,10 +18,12 @@ public class AddTransformCommand extends Command {
 	private Object insertObject;
 	private List<Production> rules;
 	private Production production;
+	private EditPart editPart;
 	
-	public AddTransformCommand(Object editNode, Production prod){
+	public AddTransformCommand(EditPart part, Object editNode, Production prod){
 		this.insertObject = editNode;
 		this.production = prod;
+		editPart = part;
 		//production = (Production) parent.eContainer().eContainer();
 		setLabel("Insertion element");
 //		Specification spec = production.getSum().getSpecification();
@@ -58,6 +63,8 @@ public class AddTransformCommand extends Command {
 			production.getRightArrows().add((DArrow) insertObject);
 			
 		}
+		if(editPart instanceof TransformDArrowEditPart)
+			((TransformDArrowEditPart)editPart).setChange(CHANGE.ADD);
 	}
 
 	/* (non-Javadoc)
@@ -70,5 +77,7 @@ public class AddTransformCommand extends Command {
 		if(insertObject instanceof DArrow){
 			production.getRightArrows().remove((DArrow) insertObject);
 		}
+		if(editPart instanceof TransformDArrowEditPart)
+			((TransformDArrowEditPart)editPart).setChange(CHANGE.DEF);
 	}
 }

@@ -225,7 +225,6 @@ public class TransformMasterBlock extends MasterDetailsBlock {
 				boolean foundSelected = false;
 				for(int i = 0;i<transform.getRules().size();i++){
 					if(transform.getRules().get(i).equals(tempProd) && !foundSelected && i!=(transform.getRules().size()-1)){
-						System.out.println("i" + i);
 						transform.getRules().move(i, transform.getRules().get(i+1));
 						transform.getRules().remove(i+1);
 						transform.getRules().add(i+1, tempProd);
@@ -268,7 +267,6 @@ public class TransformMasterBlock extends MasterDetailsBlock {
 				boolean foundSelected = false;
 				for(int i = 0;i<transform.getRules().size();i++){
 					if(transform.getRules().get(i).equals(tempProd) && !foundSelected){
-						System.out.println("i" + i);
 						transform.getRules().move(i, transform.getRules().get(i-1));
 						transform.getRules().remove(i-1);
 						transform.getRules().add(i-1, tempProd);
