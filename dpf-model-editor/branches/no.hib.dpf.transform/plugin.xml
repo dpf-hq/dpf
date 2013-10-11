@@ -33,7 +33,7 @@
       <wizard
             id="no.hib.dpf.transform.presentation.TransformModelWizardID"
             name="%_UI_TransformModelWizard_label"
-            class="no.hib.dpf.transform.presentation.TransformCreationWizard"
+            class="no.hib.dpf.transform.presentation.TransformWizardCreation"
             category="no.hib.dpf.editor"
             icon="icons/full/obj16/TransformModelFile.gif">
          <description>%_UI_TransformModelWizard_description</description>

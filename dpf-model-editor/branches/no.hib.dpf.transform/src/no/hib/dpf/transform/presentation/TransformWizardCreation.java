@@ -62,7 +62,7 @@ import org.eclipse.ui.internal.ide.IDEWorkbenchMessages;
  * Create a new .xform-file.
  */
 @SuppressWarnings("restriction")
-public class TransformCreationWizard extends Wizard implements INewWizard {
+public class TransformWizardCreation extends Wizard implements INewWizard {
 
 	private CreationPage createPage = null;
 	private TransformWizardPage configPage = null;
@@ -142,7 +142,7 @@ public class TransformCreationWizard extends Wizard implements INewWizard {
 		 *            the current workbench
 		 * @param selection
 		 *            the current object selection
-		 * @see TransformCreationWizard#init(IWorkbench, IStructuredSelection)
+		 * @see TransformWizardCreation#init(IWorkbench, IStructuredSelection)
 		 */
 		CreationPage(IWorkbench workbench, IStructuredSelection selection) {
 			super("dpfCreationPage1", selection);
@@ -155,7 +155,7 @@ public class TransformCreationWizard extends Wizard implements INewWizard {
 		/**
 		 * This method will be invoked, when the "Finish" button is pressed.
 		 * 
-		 * @see TransformCreationWizard#performFinish()
+		 * @see TransformWizardCreation#performFinish()
 		 */
 		boolean finish() {
 			// create a new diagram file, result != null if successful
