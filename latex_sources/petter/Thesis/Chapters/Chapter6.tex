@@ -57,6 +57,7 @@ These transformation rules refers to the abstract syntax for the
 specification $\spec{S}$\textsubscript{n+1} and specification
 $\spec{S}$\textsubscript{m+1} that the source and target model are typed over.
 
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.65]{./Figures/flowchart_v2.png}
@@ -64,6 +65,30 @@ $\spec{S}$\textsubscript{m+1} that the source and target model are typed over.
 	{Progressively work flow for the problem solution.}
 	\label{fig:work_flow_solution}
 \end{figure}
+
+Figure~\ref{fig:work_flow_solution} provides a diagram that describes how the
+editor goes from creating transformation rules to executing them. We can see
+that this diagram is extended from the previous
+figure~\ref{fig:Simple_Solution}. At the first step we still have to provide a
+source specification $\spec{S}$\textsubscript{n+1} and a target specification
+$\spec{S}$\textsubscript{m+1} that is specified by the DPF Editor. The figure
+then explains that step 5 use the Henshin transformation engine that reads a
+specification $\spec{S}$\textsubscript{n} and writes a specification
+$\spec{S}$\textsubscript{m}. But before we can apply the actual transformation
+we have to consider how the Transformation Editor provides a set of
+transformation rules. Step 2 consist of creating a new transformation model that
+is represented in the Transformation Editor. At the same time references to a
+source modeling formalism $\spec{S}$\textsubscript{n+1} and a target modeling
+formalism $\spec{S}$\textsubscript{m+1} is specified in one common type
+specification. An empty correspondence graph is also generated. Step 3 focus
+on creating the transformation rules through defining a set of productions that
+refers to domain specific modeling elements. At the same time the correspondence
+between source and target modeling elements has to be initialized. In step 4 we
+generate a set of Henshin Transformation Rules from these productions and
+capture the correspondence between objects by specifying traceable links. In the
+final step we can apply these transformation rules to a Henshin transformation
+engine. However, processing Henshin transformation rules from modeling
+formalisms proved to be a challange. 
 
 The problem with integrating Henshin with DPF is that Henshin is implemented by
 EMF, and therefore utilize OMG's MOF. The Henshin model transformation

@@ -9,13 +9,76 @@
 
 \section{Motivation}
 
+Model Driven Engineering (MDE) has been around for quite some time now and is by
+no references new to computer science. The use of miniatures or a visual
+representation of a system to provide a explanation of some problem has always
+been around. To be able to draw an abstraction of a complex system or problem
+on a piece of paper to supplement a explanation often tends to make the explanation
+easier to understand. The explanation does not necessary have to be difficult
+to understand, but a miniature or a model will make the explanation easier to
+understand. This was how i experienced the use of models during my bachelor
+period. That they were meant to represent abstractions of systems and programs. 
+
+When i started to work on my master program we started to visit more concepts
+around MDE and how we can use models and model transformations to automate a
+software application process. The first tools that supported this vision of MDE
+were the Computer-Aided Software Engineering (CASE) and was developed in the
+1980s. Tools like CASE thrived to achieve this vision of MDE to be a fully
+usable approach to software development. This meant to use models as the major
+artifact in a software application. Where in the initially phases of a
+software development models would provide an abstraction of the problem and
+evolve with more details through the development process. These models would
+evolve to more specific technology based abstractions with the help of model
+transformations and in the end fully executable software implementation of the
+application would be generated.
+
+As the years went by MDE has become a strong foundation to create domain
+specific modeling languages. With the possibility to define meta-models with
+constraints proved to be a viable solution to create the structure of a
+modeling language or a specific modeling language. Based on this the Object
+Management Group (OMG) created the Unified Modeling Language\cite{UML_SPEC}
+(UML) that became a standard for creating modeling languages. Many modeling
+tools adapts UML in the process of creating a domain specific modeling
+environment.
+
+Lately a diagrammatic approach to utilize the visions of MDE has become more
+popular amongst MDE researchers. Where the focus is more on graphs and graph
+theory. The Diagram Predicate Framework (DPF) is such a framework that take
+advantage of category theory and graph transformations to provide a formal
+approach to meta-modeling, model transformation and model management. In this
+thesis we want to see if we can extend the DPF Workbench with an editor that
+support model to model transformations between different modeling languages.
+
 \section{The structure of the Thesis}
 
+This thesis is structured with the following sections.
+
 \begin{description}
-  \item[Chapter 1.]
-  \item[Chapter 2.]
-  \item[Chapter 3.]
-  \item[Chapter 4.]
-  \item[Chapter 5.]
-  \item[Chapter 6.]
+  \item[Chapter 2.] This chapter is meant to explain background material to this
+  thesis. Where we discuss the visions of model driven engineering. We also
+  consider a specific design approach to these visions. Then we discuss modeling
+  languages and their role in language workbenches. At the end of the chapter we
+  go into detail on the DPF environment. 
+  
+  \item[Chapter 3.] This chapter introduces model transformation in general. We
+  discuss the basic concepts of model transformations and how they are used in
+  MDE. Later in the chapter we try to classify model to model transformations
+  and explain design choices behind the graph based approach to achieve this.
+  
+  
+  \item[Chapter 4.] In chapter 4 we describe the problem at hand and how we want
+  to approach this. We also look at some specific model transformation tools and
+  compare design choices. 
+  
+  
+  \item[Chapter 5.] This chapter describes how we created a model
+  to model transformation environment for the framework. We describe the model
+  transformation environment we integrated with DPF and how this works with the
+  transformation editor. 
+  
+  
+  \item[Chapter 6.] Here we want evaluate our solution and also discuss
+  functionality that should be included in future versions of the tool. Then we
+  want to compare our solution with existing transformation tools and provide a
+  conclusion at the end. 
 \end{description}

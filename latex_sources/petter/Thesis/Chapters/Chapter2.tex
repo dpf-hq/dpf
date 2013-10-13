@@ -8,10 +8,6 @@
 \lhead{Chapter 2. \emph{Background}} % Change X to a consecutive number; this is
 % for the header on each page - perhaps a shortened title
 
-%----------------------------------------------------------------------------------------
-%	SECTION 1
-%----------------------------------------------------------------------------------------
-
 \section{Model Driven Engineering}
 	
 When a new software is created it has always been a goal to produce high
@@ -247,11 +243,6 @@ between all different models. These three models with mapping between them makes
 for excellent design choices to create an environment that specifies modeling
 languages. 
 
-%-----------------------------------
-%	SUBSECTION 1
-%-----------------------------------
-
-
 \section{Modeling Languages}
 
 A Modeling language is defined through three core concepts. Regardless if its
@@ -348,7 +339,7 @@ architecture to define the UML. Therefore the Meta-Object Facility has its
 origin from UML. Through this process of finding a common platform for UML, OMG
 designed a four layered architecture that provides a semi-formal approach to
 creating meta-models. MOF became a language for defining abstract syntax for
-modeling languages.  
+modeling languages. 
 
 \begin{figure}[H]
 	\centering
@@ -361,25 +352,20 @@ modeling languages.
 Figure~\ref{fig:MOFLayers} gives a impression of the four layers that are
 available in the Meta-Object Facility. At the top level, M\textsubscript{3}
 there is a meta-meta-model called MOF. This meta-meta-model is meant to both
-describe it self and conform to itself. This MOF meta-meta-model is then used to
-describe meta-models at the M\textsubscript{2} level. The UML meta-model is an
-example of such a meta-model. The idea is that these meta-models are specified by
-some meta-modeling language. These meta-models at the M\textsubscript{2} layer
-describes elements that can be used in the M\textsubscript{1} layer, namely
-models. These could be models specified by the modeling language, UML. Finally
-at the M\textsubscript{0} we have an instance model of a real world object. 
-
-
-
-%-----------------------------------
-%	SUBSECTION 2
-%-----------------------------------
-
-
-
-%----------------------------------------------------------------------------------------
-%	SECTION 2
-%----------------------------------------------------------------------------------------
+describe it self and conform to itself. MOF is then used to describe meta-models
+at the M\textsubscript{2} level. The UML meta-model is an example of such a
+meta-model. The idea is that these meta-models are specified by some
+meta-modeling language. Models at the M\textsubscript{2} layer represents the
+abstract syntax for models created in the M\textsubscript{1} layer. This
+layer represents models that are created by some modeling language, like
+for example UML. Finally at the M\textsubscript{0} we have an instance model of
+a real world object. If we refer to our simple example concerning a model and
+its corresponding meta-model in figure~\ref{fig:SimpleMeta-model}. From this
+example we can create a real world object of that model, ``Petter Barvik'' takes
+a course in Model Transformations. MOF provides meta-modeling architecture where
+every modeling element on every layer corresponds to some modeling element of
+one layer higher. One could say that MOF is a Domain Specific Language (DSL) to
+create meta-models. 
  
 \subsection{Constraints}
 
@@ -479,6 +465,15 @@ computer science.
 	\label{fig:langauge_workbench}
 \end{figure}
 
+\subsection{EMF}
+
+Eclipse Modeling Framework is originally based on Meta Object Facility (MOF)
+provided by the Object Management Group (OMG). In 2003 EMF designers contributed
+to designing the MOF 2.0 version of the standard that was named Essential
+EMOF (EMOF). EMF provides the meta-model Ecore that is aligned to EMOF and is a
+modeling language to build modeling languages. Ecore is essentially a simplified
+version of class modeling in UML.
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.6]{./Figures/EMF_Diagram_Picture.png}
@@ -487,40 +482,24 @@ computer science.
 	\label{fig:EMF_Diagram}
 \end{figure}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.8]{./Figures/EMF_Ecore_Picture.png}
-	\caption[Tree based representation of an Ecore model]
-	{Tree based representation of an Ecore model.}
-	\label{fig:EMF_Ecore}
-\end{figure}
+Figure~\ref{fig:EMF_Diagram} represents an Ecore model that is created from a
+graphical editor. This Ecore model conforms to the Ecore meta-model and is the
+core language for EMF. The framework provides a two layered approach to
+meta-modeling where the user can create a DSL based on the Ecore meta-model.
+Based on the DSL the framework provides code generation facilities. Amongst
+generating java implementation for the model the framework also provides code
+generation for an editor that is based on the DSL. This editor can be used to
+create instances of the defined DSL. 
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.7]{./Figures/EMF_GenModel.png}
-	\caption[Representation of an EMF Generator model]
-	{Representation of a generated EMF Generator model.}
-	\label{fig:EMF_Ecore}
-\end{figure}
+% \subsection{Visual Modeling and Transformation System}
 
-\subsection{EMF}
-
-Eclipse Modeling Framework is originally based on Meta Object Facility (MOF)
-provided by the Object Management Group (OMG). In 2003 EMF designers contributed
-to designing the MOF 2.0 version of the standard and was named Essential EMOF
-(EMOF). EMF use EMOF and have designed a meta-model called Ecore and is the
-meta-model that EMF use to specify new DSLs and create a tooling environment. 
-
-
-\subsection{Visual Modeling and Transformation System}
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.5]{./Figures/VMTS}
-	\caption[Creating domain specific modeling language in VMTS]
-	{Specifying a domain specific modeling language in VMTS.}
-	\label{fig:VMTS}
-\end{figure}
+% \begin{figure}[H]
+% 	\centering
+% 	\includegraphics[scale=0.5]{./Figures/VMTS}
+% 	\caption[Creating domain specific modeling language in VMTS]
+% % 	{Specifying a domain specific modeling language in VMTS.}
+% 	\label{fig:VMTS}
+% \end{figure}
 
 \section{Diagram Predicate Framework}
 
@@ -561,7 +540,7 @@ consist of a collection of predicates.
 A \emph{specification $\spec{S}$} has an underlying graph S that contains
 modeling elements that defines the model structure of the specification. These
 modeling elements are always represented as a node and an arrow. However these
-nodes and arrows could be specified through several underlying layers of
+nodes and arrows could be specified through several layers of
 meta-models or specifications. The \emph{specification $\spec{S}$} also consist
 of a set of constraints, these constraints will restrict the model structure of
 a new instance model of this specification. Figure~\ref{fig:DPF_Spec} presents a
@@ -589,17 +568,48 @@ $\alpha$, a proposed visualisation and a semantic interpretation
 An instance specification $\spec{S}$\textsubscript{n} that is initialised from
 a specification $\spec{S}$\textsubscript{n+1} defines a graph homomorphism
 between two underlying graphs. There is a graph homomorphism,
-T$\longrightarrow$S, between the underlying graph T of
-$\spec{S}$\textsubscript{n} and the underlying graph S of
-$\spec{S}$\textsubscript{n+1}\cite{Lamo2013}. This graph homomorphism
-T$\longrightarrow$S must satisfy the set of atomic constraints,
-C\textsuperscript{$\spec{S}$} from the specification
-$\spec{S}$\textsubscript{n+1}. The nodes and arrows that are defined in the
-underlying graph S from a specification $\spec{S}$\textsubscript{n+1} describes
-the modeling elements that a specification $\spec{S}$\textsubscript{n} can use
-to create a graph structure.
+S\textsubscript{n}$\longrightarrow$S\textsubscript{n+1}, between the underlying
+graph S\textsubscript{n} of a specification $\spec{S}$\textsubscript{n} and the
+underlying graph S\textsubscript{n+1} of
+a specification $\spec{S}$\textsubscript{n+1}\cite{Lamo2013}. The graph
+homomorphism S\textsubscript{n}$\longrightarrow$S\textsubscript{n+1} must
+satisfy a set of atomic constraints, C\textsuperscript{$\spec{S}$} from a
+specification $\spec{S}$\textsubscript{n+1}.
+Figure~\ref{fig:modeling_formlalism} from Adrian Rutle's dissertation,
+ \textit{Diagram Predicate Framework A Formal Approach to
+MDE}\cite{Rutle_thesis} that was published in 2010 represents an example of a
+specification that is defined by a modeling formalism. 
 
-\cite{Brambilla:MDSE}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{./Figures/modeling_formlalism}
+	\caption[Modeling formalism in DPF]
+	{Meta-modeling represented as modeling formalism's in DPF.}
+	\label{fig:modeling_formlalism}
+\end{figure}
+
+Because in DPF a modeling language is represented as a modeling formalism. A
+modeling formalism in DPF is defined by a set of atomic constraints and a
+specification that has an underlying graph and a set of atomic constraints. For
+example figure~\ref{fig:modeling_formlalism} represents three levels of
+abstractions for defining a DSML. The specification $\spec{S}$\textsubscript{1}
+that is defined at the first layer corresponds to the modeling formalism one
+layer higher. The modeling formalism consist of a specification
+$\spec{S}$\textsubscript{2} that has an underlying graph S\textsubscript{2} and
+a set of predicates Z\textsubscript{3}. Together with specification
+$\spec{S}$\textsubscript{2} a set of predicates Z\textsubscript{2} can be
+defined together with the underlying graph S\textsubscript{2} to define a
+modeling formalism\cite{Rutle_thesis}. This defined modeling language, or
+modeling formalism provides the abstract syntax that can be used to create a
+specification or modeling formalism one abstraction layer lower. What is special
+with DPF is that a modeling formalism represents both the abstract syntax for
+a specification one abstraction layer lower and the concrete syntax for a
+specification one abstraction layer higher. The set of atomic constraints
+Z\textsubscript{2} provides the semantics while the
+specification $\spec{S}$\textsubscript{2} provides the abstract syntax for
+defining a new specification $\spec{S}$\textsubscript{1}.
+Figure~\ref{fig:MOF_vs_DPF} explains the difference between OMG's MOF on the
+left side and DPF's multi layer meta-modeling hierarchy on the right side
 
 \begin{figure}[H]
 	\centering
@@ -609,35 +619,78 @@ to create a graph structure.
 	\label{fig:MOF_vs_DPF}
 \end{figure}
 
+These two sides highlights the differences between DPF and modeling environments
+that expand MOF to create modeling languages. While MOF based modeling
+environments provides two abstraction layers, DPF on the other hand provides a
+possible unlimited abstraction layers that the that the users can interact with.
+The reason that MOF based modeling environments provides two layers to interact
+with is because the layers M\textsubscript{2} and M\textsubscript{3} are usually
+part of the environments internal infrastructure. For example in EMF users can
+create models that conforms to the Ecore meta-model. The only meta-model that
+users of DPF are unable to interact with located at the highest abstraction
+layer. A specification $\spec{S}$\textsubscript{n+1} is specified by a modeling
+language that corresponds to a specification $\spec{S}$\textsubscript{n+2}. But
+the same specification $\spec{S}$\textsubscript{n+1} also represents the
+abstract syntax for a specification $\spec{S}$\textsubscript{n}. These DPF
+models automatically generates a new graphical editor environment provided by
+the DPF Editor.
 
-
- 
 \section{DPF Editor}
 
- 
-\begin{table}[ht]
-\renewcommand*\arraystretch{1.5}
-\centering
-\begin{tabular}{| c | c | c | c | c | c |}
-\hline
-Tool & Layers & Dia.   & Const.   & Platform & GUI\\
-	 & 		  & Const. & Language &          & \\
-\hline
-EMF/GMF & 2 & & OCL, EVL, & Java VM & $\surd$ \\
-		&  	& & Java      &         & \\
-\hline
-VMTS    & $\infty$ & & OCL & Windows & $\surd$ \\
-\hline
-AToM\textsuperscript{3} & 2 & & OCL, Python & Python, Tk/tcl & $\surd$ \\
-\hline
-GME  & 2 & & OCL & Windows & $\surd$ \\
-\hline
-metaDepth & $\infty$ & & EVL & Java VM & \\
-\hline
-DPF & $\infty$ & $\surd$ & Predefined & Java VM & $\surd$ \\
-	& 		   &         & validator  &         & \\
-\hline
+The DPF Editor is an extension of the Diagram Predicate Framework that provides
+an intuitive approach to creating modeling languages and have been created
+using several different technologies. In 2011 $\O$yvind Bech published his
+master thesis\cite{Bech_thesis} where he designed the current implementation of
+the DPF Editor that is based on the Eclipse Modeling Framework technology. This
+version of the DPF Editor has seen several iterations and provides support for
+creating domain specific modeling languages. Figure~\ref{fig:DPF_Editor} is a
+simplified version provided in the article, \textit{``DPF Workbench: a
+multi-level language workbench for MDE"}\cite{Lamo2013} .
 
-\end{tabular}
-\caption{Comparing model transformation tools.}
-\end{table} 
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{./Figures/DPF_Editor}
+	\caption[DPF Editor in multi-layer meta-modeling hierarchy]
+	{Generated DPF Editors in a multi-layer meta-modeling hierarchy.}
+	\label{fig:DPF_Editor}
+\end{figure}
+
+A new DPF Editor is generated for each new model that is created. This means
+that every DPF model has a corresponding editor that provides graphical editing
+properties to change the models. For each generated editor we can create a new
+DSL one abstraction layer lower that generates a new editor that
+correspond to this DSL. 
+
+
+
+ 
+
+
+
+ %
+%\begin{table}[ht]
+%\renewcommand*\arraystretch{1.5}
+%\centering
+%\begin{tabular}{| c | c | c | c | c | c |}
+%\hline
+%Tool & Layers & Dia.   & Const.   & Platform & GUI\\
+%	 & 		  & Const. & Language &          & \\
+%\hline
+%EMF/GMF & 2 & & OCL, EVL, & Java VM & $\surd$ \\
+		%&  	& & Java      &         & \\
+%\hline
+%VMTS    & $\infty$ & & OCL & Windows & $\surd$ \\
+%\hline
+%AToM\textsuperscript{3} & 2 & & OCL, Python & Python, Tk/tcl & $\surd$ \\
+%\hline
+%GME  & 2 & & OCL & Windows & $\surd$ \\
+%\hline
+%metaDepth & $\infty$ & & EVL & Java VM & \\
+%\hline
+%DPF & $\infty$ & $\surd$ & Predefined & Java VM & $\surd$ \\
+%	& 		   &         & validator  &         & \\
+%\hline
+%
+%\end{tabular}
+%\caption{Comparing model transformation tools.}
+%\end{table} 
