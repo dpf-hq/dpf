@@ -21,6 +21,10 @@ We can use some of the strengths that Henshin provides
 
 \section{Future Work}
 
+\subsection{Graphical syntax representation of Transformed models}
+
+\subsection{Making the Model Transformation constraint aware}
+
 %----------------------------------------------------------------------------------------
 % SECTION 2
 %----------------------------------------------------------------------------------------
@@ -112,15 +116,82 @@ where modeling elements correspond to modeling elements of the type graph.
 \subsection{Rule Application Control}
 
 The Transformation Editor does not provide the user with any control regarding
-how to locate matches and how transformation rules are applied. Whereas ATL
-provides the user with 
+how to locate matches and how transformation rules are applied. We generate a
+Henshin module that contains a set of transformation rules. We can manipulate
+the execution order of these transformation rules, but the algorithm that
+Henshin uses to locate matching patterns in a source model is part of the
+internal infrastructure of Henshin and cannot be manipulated. We can however
+force the transformation rules to be executed in a given order. This version of
+the Editor has no support defining a schedule mechanism that specifies how the
+rules are applied and will for now only run the transformation rules
+sequentially. We can decide the priority of the rules by changing the order
+that they appear in the Transformation Editor, but this list will apply rules in
+sequential order. Most of the transformation tools open to the public provides
+solutions to manipulate the scheduling mechanism, for example ATL provides the
+users the possibility to define rules as lazy rules and control how they are
+applied. While AGG and the Henshin environment lets the users specify the
+scheduling mechanism over a few predefined choices. 
+
+Another thing that is special about our integration of Henshin is that locating
+matches are handled differently. An application condition is initially meant to
+restrict a transformation rule when locating matches. If application conditions
+are not specified for a transformation rule in some 2 layered meta-modeling
+transformation tool we will still locate a matching pattern that correspond to
+modeling elements that are described in the abstract syntax. The application
+condition has a vital role in our integration of Henshin, because the
+application conditions are checked against the DPF model that are one
+abstraction level higher. Without this application condition we would simply get
+a target DPF model that has a list of nodes and arrows that conform to the
+highest level of abstraction in DPF. The highest level of abstraction in DPF
+is always a node and an arrow, that conforms to itself. So while a 2 layered
+meta-modeling transformation tool would find matches in a source model that
+correspond to the meta-model, the Transformation Editor would find matches to
+the linguistic meta-model and not the ontological meta-model at some level of
+abstraction. One could state that an application condition for a 2 layered
+meta-modeling transformation tool is independent of the transformation rules
+while our version the transformation rules are dependent on the application
+conditions to be able to produce a correct target model. 
 
 \subsection{Source - Target Relationship}
 
+The Transformation Editor explicitly performs an out-place model
+transformation. This means that we create a target model that is independent of
+the source model. For all matching modeling elements we locate in the source
+model we create in a target model. We then make sure to specify all the nodes
+and arrows with its corresponding type from a specification that is located one
+abstraction layer higher. AGG does this differently, since the source and target
+model are the same model. Matches are located in the source model, while the
+target model is updated in the same model. For an exogenous model transformation
+it is required that ATL produce the target model in a separate file. Henshin on
+the other hand provides in-place model transformations on the source model. But
+when we invoke the Henshin interpreter engine programmatically we can check for
+changes before and after exeuting a set of transformation rules. Henshin
+transformation engine requires a set of transformation rules, and a graph that
+contains the source model. This graph contains a list of all the modeling
+elements that are part of the source model. This is why we can explicitly make a
+model transformation out-place, by checking this list before and after the
+transformation and adding translated elements to a target model. The interpreter
+will locate matches in the source model through this graph and produce target
+elements to this graph. 
+
 \subsection{Directionality}
+
+To provide a graph based model transformation with the possibility to translate
+in both directions is not a simple task. Because then the tool will have to
+provide arbitrary switching between source and target models, and therefore the
+pattern and replacement graphs will have to be changed when they are switched.
+This means that the LHS and the RHS part of a transformation rules have to be
+switched out. This is not provided in the Transformation Editor. One could do
+this in two steps, to first locate matches in a source model and produce a
+target model and then do another model transformation where the source and
+target part is switched. Both Henshin and AGG does not provide this since the
+corresponding RHS and LHS graphs are created according to the abstract syntax of
+the source and target model. 
 
 \subsection{Tracing}
 
+Henshin utilize the generic Trace model to execute an exogenous model
+transformation. 
 
 \section{Conclusion}
 

@@ -243,9 +243,9 @@ implementation platform and a set of precise descriptions of the technical
 details of the corresponding implementation platform. Mapping a model to another
 model is essential for applying MDA to a development process. A mapping defines
 correspondences between elements of two different models and can be defined
-between all different models. At the highest level of abstraction, a mapping
-consist of bridging different modeling languages that correspond to some
-meta-model. 
+between all different models. These three models with mapping between them makes
+for excellent design choices to create an environment that specifies modeling
+languages. 
 
 %-----------------------------------
 %	SUBSECTION 1
@@ -253,6 +253,11 @@ meta-model.
 
 
 \section{Modeling Languages}
+
+A Modeling language is defined through three core concepts. Regardless if its
+either a Domain Specific Modeling Language (DSML) or a General Purpose Modeling
+Language (GPML). Figure~\ref{fig:modeling_language} represents the three main
+ingredients for a modeling language.
 
 \begin{figure}[H]
 	\centering
@@ -262,6 +267,46 @@ meta-model.
 	\label{fig:modeling_language}
 \end{figure}
 
+A modeling language has an abstract and a concrete syntax. The abstract syntax
+describes the structure of the modeling language and how modeling elements can
+be combined together. The concrete syntax on the other hand describes a specific
+representation of the abstract syntax, and can be either be a graphical or
+textual representation. The semantics of a modeling language describes the
+meaning of these modeling elements and the different ways to combine them for
+the abstract syntax and indirectly the concrete syntax. We mentioned DSML and
+GPML, where these two modeling languages represents one of the main
+classification of modeling languages. A modeling language can either be
+classified as a domain specific or a general purpose language. DSMLs are
+modeling languages that are designed for a specific domain or a concept. While
+GPMLs are modeling languages that is applicable for several different domains.
+A general purpose language lacks features that are special for a particular
+domain. This is one of the strengths for DSLs that is created especially for a
+certain domain, and therefore provide more details to a specific domain compared
+to a general purpose language. The Unified Modeling Language\cite{UML,UML_SPEC}
+(UML) is an example of a standardized general-purpose modeling language that
+was accepted in 2000 by the International Organization for Standardization
+(ISO) as an industry standard for modeling software systems. UML was initially
+developed by Grady Booch, Ivar Jacobsen and James Rumbaugh at Rational Software
+in the 1990s. It was later adopted by the Object Management Group in 1997 and
+has since this day been continually developed by the organisation. UML is
+often called a general purpose language because it is often referred to as a
+suite of languages, since it provides developers and designers with the possibility to
+specify applications through several different modeling languages, or diagram
+types that UML often is associated with. However, in the book, ``Model-Driven
+Software Engineering in Practice'' published by Marco
+Brambilla, Jordi Cabot and Manuel Wimmer in 2012, they state the following.
+\textit{If we think to the general modeling problem, we can see UML as
+a DSL tailored to the specification of (mainly object-oriented) software
+systems\cite{Brambilla:MDSE}.} This means that to decide whether UML is a DSL or
+a GPL is not a binary choice. But we mostly see UML as a general purpose
+modeling language, since it offers a wide variety of modeling languages that
+designers and developers can use to specify system abstractions. Whether a
+modeling language is classified as a general purpose or a domain specific
+modeling language it requires that it is described by an abstract syntax. Both
+the abstract syntax and the concrete syntax of a modeling language is
+represented as models. Therefore the specification of the abstract syntax is
+often referred to as a meta-model. 
+
 \subsection{Meta-modeling}
 
 Models are a major artifact in the concept of model driven engineering (MDE). It
@@ -269,14 +314,13 @@ is essential to look at every model as instances of some more abstract model.
 And therefore we can define a meta-model as yet another abstraction that
 highlights properties of an instance model. Meta-modeling represents a vital
 part of MDE and constitutes the definition of a modeling language. A meta-model
-defines the abstract syntax and provides a description of a domain specific
-modeling language. Another popular definition for describing a meta-modeling is
-that it is a ``model of models". This definition is both unhelpful and
-incorrect according to Steve Cook and Stuart Kent in their paper\cite{Cook2008}
-published in 2008. They think that a better definition for a meta-model is that
-``it is a model of the concepts expressed by a modeling language.'' The exact
-definition of a meta-model is highly debated amongst MDE
-researchers\cite{Rutle_thesis}.
+defines the abstract syntax and provides a description of a modeling language.
+Another popular definition for describing a meta-modeling is that it is a
+``model of models". This definition is both unhelpful and incorrect according
+to Steve Cook and Stuart Kent in their paper\cite{Cook2008} published in 2008.
+They think that a better definition for a meta-model is that ``it is a model of
+the concepts expressed by a modeling language.'' The exact definition of a
+meta-model is highly debated amongst MDE researchers\cite{Rutle_thesis}.
 
 \begin{figure}[H]
 	\centering
@@ -290,31 +334,21 @@ Figure~\ref{fig:SimpleMeta-model} shows a simple example of an instance model
 and its corresponding meta-model. This model has two classes, Student and Course, and
 a bidirectional association, take course and has students, that relate
 these two classes. The model is specified by a meta-model that consists of two
-metaclasses Class and Association and an association between them. Both Student
-and Course are an instance of the metaclass Class, while the association
-between Student and Course are instance of the metaclass Association. The
+meta-classes Class and Association and an association between them. Both Student
+and Course are an instance of the meta-class Class, while the association
+between Student and Course are instance of the meta-class Association. The
 modeling language that describes this model corresponds to the Unified Modelling
 Language.
 
-The Unified Modeling Language\cite{UML,UML_SPEC} (UML) is a standardized
-general-purpose modeling language that was accepted in 2000 by the International
-Organization for Standardization (ISO) as an industry standard for modeling
-software systems. UML was initially developed by Grady Booch, Ivar Jacobsen and
-James Rumbaugh at Rational Software in the 1990s. It was later adopted by the
-Object Management Group in 1997 and has since this day been continually
-developed by the organisation. UML is called a general purpose language because
-it is often referred to as a suite of languages, since it provides developers
-and designers with the possibility to specify applications through several different
-modeling languages, or diagram types that UML often is associated with. 
+\subsubsection*{Meta-Object Facility}
 
-\subsubsection{Meta-Object Facility}
-
-The Object Management Group was in need of a architecture to define the
-UML. Therefore the Meta-Object Facility has its origin from, that specifies UML.
-MOF and is a semi-formal approach to writing meta-models. The Meta-Object
-Facility\cite{MOF} (MOF) is an Object Management Group standard for model
-driven engineering. According to OMG, this standard provides a four leveled
-architecture.
+The Meta-Object Facility\cite{MOF} (MOF) is an Object Management Group standard
+for model driven engineering. The Object Management Group was in need of a
+architecture to define the UML. Therefore the Meta-Object Facility has its
+origin from UML. Through this process of finding a common platform for UML, OMG
+designed a four layered architecture that provides a semi-formal approach to
+creating meta-models. MOF became a language for defining abstract syntax for
+modeling languages.  
 
 \begin{figure}[H]
 	\centering
@@ -336,8 +370,7 @@ models. These could be models specified by the modeling language, UML. Finally
 at the M\textsubscript{0} we have an instance model of a real world object. 
 
 
-, that is a language for defining abstract syntax of
-modeling languages.
+
 %-----------------------------------
 %	SUBSECTION 2
 %-----------------------------------
