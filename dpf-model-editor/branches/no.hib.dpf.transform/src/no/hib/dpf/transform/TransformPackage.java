@@ -70,7 +70,7 @@ public interface TransformPackage extends EPackage {
 	int TRANSFORM = 0;
 
 	/**
-	 * The feature id for the '<em><b>Source Meta Model</b></em>' containment reference.
+	 * The feature id for the '<em><b>Source Meta Model</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -79,7 +79,7 @@ public interface TransformPackage extends EPackage {
 	int TRANSFORM__SOURCE_META_MODEL = 0;
 
 	/**
-	 * The feature id for the '<em><b>Target Meta Model</b></em>' containment reference.
+	 * The feature id for the '<em><b>Target Meta Model</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -271,10 +271,10 @@ public interface TransformPackage extends EPackage {
 	EClass getTransform();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link no.hib.dpf.transform.Transform#getSourceMetaModel <em>Source Meta Model</em>}'.
+	 * Returns the meta object for the reference '{@link no.hib.dpf.transform.Transform#getSourceMetaModel <em>Source Meta Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Source Meta Model</em>'.
+	 * @return the meta object for the reference '<em>Source Meta Model</em>'.
 	 * @see no.hib.dpf.transform.Transform#getSourceMetaModel()
 	 * @see #getTransform()
 	 * @generated
@@ -282,10 +282,10 @@ public interface TransformPackage extends EPackage {
 	EReference getTransform_SourceMetaModel();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link no.hib.dpf.transform.Transform#getTargetMetaModel <em>Target Meta Model</em>}'.
+	 * Returns the meta object for the reference '{@link no.hib.dpf.transform.Transform#getTargetMetaModel <em>Target Meta Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Target Meta Model</em>'.
+	 * @return the meta object for the reference '<em>Target Meta Model</em>'.
 	 * @see no.hib.dpf.transform.Transform#getTargetMetaModel()
 	 * @see #getTransform()
 	 * @generated
@@ -511,7 +511,7 @@ public interface TransformPackage extends EPackage {
 		EClass TRANSFORM = eINSTANCE.getTransform();
 
 		/**
-		 * The meta object literal for the '<em><b>Source Meta Model</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Source Meta Model</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -519,7 +519,7 @@ public interface TransformPackage extends EPackage {
 		EReference TRANSFORM__SOURCE_META_MODEL = eINSTANCE.getTransform_SourceMetaModel();
 
 		/**
-		 * The meta object literal for the '<em><b>Target Meta Model</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Target Meta Model</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

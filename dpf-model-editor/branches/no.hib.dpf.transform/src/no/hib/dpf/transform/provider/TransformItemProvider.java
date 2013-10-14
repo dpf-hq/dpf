@@ -67,6 +67,11 @@ public class TransformItemProvider
 
 			addDSignaturePropertyDescriptor(object);
 			addGeneratePropertyDescriptor(object);
+			addSourceLocationPropertyDescriptor(object);
+			addTargetLocationPropertyDescriptor(object);
+			addElementTypeGraphPropertyDescriptor(object);
+			addCorrespondanceGraphPropertyDescriptor(object);
+			addCorrespondanceLocationPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -111,6 +116,116 @@ public class TransformItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Source Location feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSourceLocationPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Transform_sourceLocation_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Transform_sourceLocation_feature", "_UI_Transform_type"),
+				 TransformPackage.Literals.TRANSFORM__SOURCE_LOCATION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Target Location feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTargetLocationPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Transform_targetLocation_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Transform_targetLocation_feature", "_UI_Transform_type"),
+				 TransformPackage.Literals.TRANSFORM__TARGET_LOCATION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Element Type Graph feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addElementTypeGraphPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Transform_elementTypeGraph_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Transform_elementTypeGraph_feature", "_UI_Transform_type"),
+				 TransformPackage.Literals.TRANSFORM__ELEMENT_TYPE_GRAPH,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Correspondance Graph feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCorrespondanceGraphPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Transform_correspondanceGraph_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Transform_correspondanceGraph_feature", "_UI_Transform_type"),
+				 TransformPackage.Literals.TRANSFORM__CORRESPONDANCE_GRAPH,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Correspondance Location feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCorrespondanceLocationPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Transform_correspondanceLocation_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Transform_correspondanceLocation_feature", "_UI_Transform_type"),
+				 TransformPackage.Literals.TRANSFORM__CORRESPONDANCE_LOCATION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -183,6 +298,9 @@ public class TransformItemProvider
 
 		switch (notification.getFeatureID(Transform.class)) {
 			case TransformPackage.TRANSFORM__GENERATE:
+			case TransformPackage.TRANSFORM__SOURCE_LOCATION:
+			case TransformPackage.TRANSFORM__TARGET_LOCATION:
+			case TransformPackage.TRANSFORM__CORRESPONDANCE_LOCATION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case TransformPackage.TRANSFORM__SOURCE_META_MODEL:

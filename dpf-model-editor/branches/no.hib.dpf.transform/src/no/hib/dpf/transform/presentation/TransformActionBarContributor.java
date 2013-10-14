@@ -1,17 +1,13 @@
 package no.hib.dpf.transform.presentation;
 
-import java.io.File;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import no.hib.dpf.diagram.DSpecification;
-import no.hib.dpf.diagram.DiagramFactory;
 import no.hib.dpf.editor.DPFUtils;
 import no.hib.dpf.transform.Transform;
 import no.hib.dpf.transform.henshin.ApplyTransformation;
 import no.hib.dpf.transform.henshin.TranslateToHenshinRules;
 import no.hib.dpf.transform.icons.ImageSettings;
-import no.hib.dpf.transform.rules.GenerateModels;
 import no.hib.dpf.transform.util.BrowseInstanceModel;
 import no.hib.dpf.transform.util.TransformConstants;
 import no.hib.dpf.transform.util.TransformUtils;
@@ -37,7 +33,9 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.actions.ActionFactory;
 
-@SuppressWarnings("restriction")
+/**
+ * @generate NOT
+ */
 public class TransformActionBarContributor extends ActionBarContributor {
 
 	protected IEditorPart activeEditorPart;

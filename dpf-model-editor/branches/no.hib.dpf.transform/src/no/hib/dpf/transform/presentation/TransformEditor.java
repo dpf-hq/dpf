@@ -3,6 +3,7 @@
  * </copyright>
  *
  * $Id$
+ * @generate NOT
  */
 package no.hib.dpf.transform.presentation;
 
