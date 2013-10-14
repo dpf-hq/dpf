@@ -159,18 +159,23 @@ public class TransformWizardCreation extends Wizard implements INewWizard {
 		 */
 		boolean finish() {
 			// create a new diagram file, result != null if successful
-			
-			
 			IFile newDiagramFile = createNewFile();
+			IFolder generateModelsFolder = null;
+			
 			URI newDiagarmURI = DPFUtils.getFileURI(newDiagramFile);
 			//Initialize model file and diagram file
 			Transform transform = TransformFactory.eINSTANCE.createTransform();
 			
 			ResourceSetImpl resourceSet = DPFUtils.getResourceSet();
 			Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
-
-			IFolder generateModelsFolder = TransformUtils.getCurrentProject(workbench, selection).getFolder(TransformConstants.GENERATE_FOLDER);
 			
+			if(newDiagramFile.getParent().getType() == IResource.FOLDER){
+				generateModelsFolder = ((IFolder)newDiagramFile.getParent()).getFolder(TransformConstants.GENERATE_FOLDER);
+			}
+			else if(newDiagramFile.getParent().getType() == IResource.PROJECT){
+				generateModelsFolder = TransformUtils.getCurrentProject(workbench, selection).getFolder(TransformConstants.GENERATE_FOLDER);
+			}
+		
 			try {
 				if(!generateModelsFolder.exists()){
 					generateModelsFolder.create(true, true, progressMonitor);
@@ -181,15 +186,11 @@ public class TransformWizardCreation extends Wizard implements INewWizard {
 			}
 			
 			String sourceTypeModelFileName = configPage.getSourceMetaModelURI();
-			
-			if(sourceTypeModelFileName!=null){
-				if(!sourceTypeModelFileName.isEmpty()){
-					transform.setSourceLocation(sourceTypeModelFileName);
-				}
-				else{
-					transform.setSourceLocation(TransformConstants.DefaultDSpecification.toString());
-				}
-				
+			if(!sourceTypeModelFileName.isEmpty()){
+				transform.setSourceLocation(sourceTypeModelFileName);
+			}
+			else{
+				transform.setSourceLocation(TransformConstants.DefaultDSpecification.toString());
 			}
 			
 			DSpecification sourceTypeSpec = DiagramFactory.eINSTANCE.createDefaultDSpecification();
@@ -203,19 +204,20 @@ public class TransformWizardCreation extends Wizard implements INewWizard {
 			
 			String targetTypeModelFileName = configPage.getTargetMetaModelURI();
 			
-			if(targetTypeModelFileName!=null){
-				if(!targetTypeModelFileName.isEmpty()){
-					transform.setTargetLocation(targetTypeModelFileName);
-				}
-				else{
-					transform.setTargetLocation(TransformConstants.DefaultDSpecification.toString());
-				}
-				
+			transform.setTargetLocation("");
+			
+			if(!targetTypeModelFileName.isEmpty()){
+				transform.setTargetLocation(targetTypeModelFileName);
 			}
+			else{
+				transform.setTargetLocation(TransformConstants.DefaultDSpecification.toString());
+				targetTypeModelFileName = null;
+			}
+			
 			DSpecification targetTypeSpec = DiagramFactory.eINSTANCE.createDefaultDSpecification();
 			targetTypeSpec.setDType(configPage.getTargetMetaModel());
 			
-			if(targetTypeModelFileName != null){
+			if(targetTypeModelFileName!=null){
 				targetTypeSpec = DPFUtils.loadDSpecification(resourceSet, URI.createFileURI(targetTypeModelFileName), resourceToDiagnosticMap);
 				EcoreUtil.resolveAll(targetTypeSpec);
 			}
@@ -225,7 +227,7 @@ public class TransformWizardCreation extends Wizard implements INewWizard {
 			
 			DSpecification elementTypeGraph = DiagramFactory.eINSTANCE.createDefaultDSpecification();
 			elementTypeGraph.setDSignature(DiagramFactory.eINSTANCE.createDefaultDSignature());
-			elementTypeGraph.setDType(generate_models.generateTypeingGraph(sourceTypeSpec, targetTypeSpec));
+			elementTypeGraph.setDType(generate_models.generateElementTypeGraph(sourceTypeSpec, targetTypeSpec));
 			
 			String dspecTypes_name = getFileName().replace(".xform", "")+".dpf";
 			IFile dspecTypes  = generateModelsFolder.getFile(dspecTypes_name);

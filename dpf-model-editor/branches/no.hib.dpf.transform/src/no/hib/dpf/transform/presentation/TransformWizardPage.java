@@ -48,8 +48,8 @@ public class TransformWizardPage extends WizardPage {
 	protected Text sourceMetaModelFileText;
 	protected Text targetMetaModelFileText;
 	
-	private String sourceURIMetamodel;
-	private String targetURIMetamodel;
+	private String sourceURIMetamodel = "";
+	private String targetURIMetamodel = "";
 
 	private Button sourceMetaModelFileChooser;
 	private Button targetMetaModelFileChooser;
@@ -185,12 +185,13 @@ public class TransformWizardPage extends WizardPage {
 			public void widgetSelected(SelectionEvent event) {
 				boolean isEndogenous_transformation = targetMetamodelButton.getSelection();
 				if(isEndogenous_transformation){
-//					targetMetamodelButton.setText(ENDOGENOUS_TRANSFORMATION);
 					targetMetaModelFileText.setEnabled(false);
 					targetMetaModelFileChooser.setEnabled(false);
+					target_defaultMetamodel.setEnabled(false);
+					
 				}else{
-//					targetMetamodelButton.setText(EXOGENOUS_TRANSFORMATION);
-					target_defaultMetamodel.setVisible(true);
+					targetMetaModelFileText.setEnabled(true);
+					targetMetaModelFileChooser.setEnabled(true);
 					target_defaultMetamodel.setEnabled(true);
 					
 				}
@@ -266,14 +267,14 @@ public class TransformWizardPage extends WizardPage {
 		target_defaultMetamodel.setSelection(false);
 		
 		sourcetMetamodelButton.setSelection(false);
-		sourceMetaModelFileText.setEnabled(false);
-		sourceMetaModelFileChooser.setEnabled(false);
+		sourceMetaModelFileText.setEnabled(true);
+		sourceMetaModelFileChooser.setEnabled(true);
 		sourceMetaModel = DPFConstants.REFLEXIVE_DSPECIFICATION;
 		
 		targetMetamodelButton.setSelection(false);
 
-		targetMetaModelFileText.setEnabled(false);
-		targetMetaModelFileChooser.setEnabled(false);
+		targetMetaModelFileText.setEnabled(true);
+		targetMetaModelFileChooser.setEnabled(true);
 		
 		DSpecification defaultSpec = DiagramFactory.eINSTANCE.createDefaultDSpecification();
 		defaultSpec.setDSignature(DiagramFactory.eINSTANCE.createDefaultDSignature());
