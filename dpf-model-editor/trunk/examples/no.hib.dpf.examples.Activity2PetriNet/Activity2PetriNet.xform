@@ -1,0 +1,774 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://no.hib.dpf.core" xmlns:diagram="http://no.hib.dpf.diagram" xmlns:transform="http://no.hib.dpf.transform">
+  <transform:Transform sourceLocation="C:\Users\Petter\runtime-EclipseApplication\Activity2PetriNet\Activity\metamodel.dpf" targetLocation="C:\Users\Petter\runtime-EclipseApplication\Activity2PetriNet\PetriNet\petriNetMetaModel.dpf" correspondanceLocation="/Activity2PetriNet/generated_models/metamodel2petriNetMetaModel.dpf">
+    <sourceMetaModel zoom="1.4" gridVisible="false">
+      <dType href="Activity/metamodel.dpf#/"/>
+      <dGraph>
+        <dType href="Activity/metamodel.dpf#//@dGraph"/>
+        <dNodes dOutgoings="/0/@sourceMetaModel/@dGraph/@dArrows.0 /0/@sourceMetaModel/@dGraph/@dArrows.1 /0/@sourceMetaModel/@dGraph/@dArrows.2" dIncomings="/0/@sourceMetaModel/@dGraph/@dArrows.0 /0/@sourceMetaModel/@dGraph/@dArrows.1 /0/@sourceMetaModel/@dGraph/@dArrows.4" dConstraints="/0/@sourceMetaModel/@dConstraints.0 /0/@sourceMetaModel/@dConstraints.1 /0/@sourceMetaModel/@dConstraints.4 /0/@sourceMetaModel/@dConstraints.5 /0/@sourceMetaModel/@dConstraints.6 /0/@sourceMetaModel/@dConstraints.7 /0/@sourceMetaModel/@dConstraints.8 /0/@sourceMetaModel/@dConstraints.9" location="492 84" size="145 49">
+          <dType href="Activity/metamodel.dpf#//@dGraph/@dNodes.0"/>
+          <node href="Activity/metamodel.xmi#/0/@graph/@nodes.0"/>
+        </dNodes>
+        <dNodes dOutgoings="/0/@sourceMetaModel/@dGraph/@dArrows.3" dIncomings="/0/@sourceMetaModel/@dGraph/@dArrows.2" dConstraints="/0/@sourceMetaModel/@dConstraints.2 /0/@sourceMetaModel/@dConstraints.3 /0/@sourceMetaModel/@dConstraints.6 /0/@sourceMetaModel/@dConstraints.7 /0/@sourceMetaModel/@dConstraints.8 /0/@sourceMetaModel/@dConstraints.9" location="288 312" size="112 49">
+          <dType href="Activity/metamodel.dpf#//@dGraph/@dNodes.1"/>
+          <node href="Activity/metamodel.xmi#/0/@graph/@nodes.1"/>
+        </dNodes>
+        <dNodes dOutgoings="/0/@sourceMetaModel/@dGraph/@dArrows.4" dIncomings="/0/@sourceMetaModel/@dGraph/@dArrows.3" dConstraints="/0/@sourceMetaModel/@dConstraints.2 /0/@sourceMetaModel/@dConstraints.3 /0/@sourceMetaModel/@dConstraints.4 /0/@sourceMetaModel/@dConstraints.5" location="804 312" size="133 49">
+          <dType href="Activity/metamodel.dpf#//@dGraph/@dNodes.1"/>
+          <node href="Activity/metamodel.xmi#/0/@graph/@nodes.2"/>
+        </dNodes>
+        <dArrows constraintsFrom="/0/@sourceMetaModel/@dConstraints.9" dSource="/0/@sourceMetaModel/@dGraph/@dNodes.0" dTarget="/0/@sourceMetaModel/@dGraph/@dNodes.0" dConstraints="/0/@sourceMetaModel/@dConstraints.1 /0/@sourceMetaModel/@dConstraints.9">
+          <dType href="Activity/metamodel.dpf#//@dGraph/@dArrows.0"/>
+          <arrow href="Activity/metamodel.xmi#/0/@graph/@arrows.0"/>
+          <nameOffset offset="115 -107" len="25" index="4"/>
+          <bendpoints offset="-24 0" len="49"/>
+          <bendpoints offset="-24 145" len="49"/>
+          <bendpoints offset="17 241" len="49"/>
+          <bendpoints offset="74 0" len="49"/>
+        </dArrows>
+        <dArrows dSource="/0/@sourceMetaModel/@dGraph/@dNodes.0" dTarget="/0/@sourceMetaModel/@dGraph/@dNodes.0" dConstraints="/0/@sourceMetaModel/@dConstraints.0">
+          <dType href="Activity/metamodel.dpf#//@dGraph/@dArrows.0"/>
+          <arrow href="Activity/metamodel.xmi#/0/@graph/@arrows.1"/>
+          <nameOffset offset="92 11" len="89"/>
+          <bendpoints offset="-50 -113" len="49"/>
+          <bendpoints offset="-49 -228" len="49"/>
+          <bendpoints offset="29 -228" len="49"/>
+        </dArrows>
+        <dArrows constraintsTo="/0/@sourceMetaModel/@dConstraints.9" dSource="/0/@sourceMetaModel/@dGraph/@dNodes.0" dTarget="/0/@sourceMetaModel/@dGraph/@dNodes.1" dConstraints="/0/@sourceMetaModel/@dConstraints.6 /0/@sourceMetaModel/@dConstraints.7 /0/@sourceMetaModel/@dConstraints.8 /0/@sourceMetaModel/@dConstraints.9">
+          <dType href="Activity/metamodel.dpf#//@dGraph/@dArrows.2"/>
+          <arrow href="Activity/metamodel.xmi#/0/@graph/@arrows.2"/>
+          <nameOffset offset="197 16" len="316"/>
+        </dArrows>
+        <dArrows dSource="/0/@sourceMetaModel/@dGraph/@dNodes.1" dTarget="/0/@sourceMetaModel/@dGraph/@dNodes.2" dConstraints="/0/@sourceMetaModel/@dConstraints.2 /0/@sourceMetaModel/@dConstraints.3">
+          <dType href="Activity/metamodel.dpf#//@dGraph/@dArrows.1"/>
+          <arrow href="Activity/metamodel.xmi#/0/@graph/@arrows.3"/>
+          <nameOffset offset="178 6" len="516"/>
+        </dArrows>
+        <dArrows dSource="/0/@sourceMetaModel/@dGraph/@dNodes.2" dTarget="/0/@sourceMetaModel/@dGraph/@dNodes.0" dConstraints="/0/@sourceMetaModel/@dConstraints.4 /0/@sourceMetaModel/@dConstraints.5">
+          <dType href="Activity/metamodel.dpf#//@dGraph/@dArrows.3"/>
+          <arrow href="Activity/metamodel.xmi#/0/@graph/@arrows.4"/>
+          <nameOffset offset="181 -30" len="363"/>
+        </dArrows>
+        <graph href="Activity/metamodel.xmi#/0/@graph"/>
+      </dGraph>
+      <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/0/@sourceMetaModel/@dGraph/@dNodes.0" dArrows="/0/@sourceMetaModel/@dGraph/@dArrows.1" source="/0/@sourceMetaModel/@dGraph/@dArrows.1">
+        <constraint href="Activity/metamodel.xmi#/0/@constraints.0"/>
+        <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.2"/>
+        <offset offset="58 136" len="78" index="2"/>
+      </dConstraints>
+      <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/0/@sourceMetaModel/@dGraph/@dNodes.0" dArrows="/0/@sourceMetaModel/@dGraph/@dArrows.0" source="/0/@sourceMetaModel/@dGraph/@dArrows.0">
+        <constraint href="Activity/metamodel.xmi#/0/@constraints.1"/>
+        <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.2"/>
+        <offset offset="10 -142" len="23"/>
+      </dConstraints>
+      <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/0/@sourceMetaModel/@dGraph/@dNodes.1 /0/@sourceMetaModel/@dGraph/@dNodes.2" dArrows="/0/@sourceMetaModel/@dGraph/@dArrows.3" source="/0/@sourceMetaModel/@dGraph/@dArrows.3">
+        <constraint href="Activity/metamodel.xmi#/0/@constraints.2"/>
+        <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.1"/>
+        <offset offset="414 -19" len="516"/>
+      </dConstraints>
+      <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/0/@sourceMetaModel/@dGraph/@dNodes.1 /0/@sourceMetaModel/@dGraph/@dNodes.2" dArrows="/0/@sourceMetaModel/@dGraph/@dArrows.3" source="/0/@sourceMetaModel/@dGraph/@dArrows.3">
+        <constraint href="Activity/metamodel.xmi#/0/@constraints.3"/>
+        <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.3"/>
+        <offset offset="352 -19" len="516"/>
+      </dConstraints>
+      <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/0/@sourceMetaModel/@dGraph/@dNodes.2 /0/@sourceMetaModel/@dGraph/@dNodes.0" dArrows="/0/@sourceMetaModel/@dGraph/@dArrows.4" source="/0/@sourceMetaModel/@dGraph/@dArrows.4">
+        <constraint href="Activity/metamodel.xmi#/0/@constraints.4"/>
+        <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.0"/>
+        <offset offset="263 0" len="381"/>
+      </dConstraints>
+      <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/0/@sourceMetaModel/@dGraph/@dNodes.2 /0/@sourceMetaModel/@dGraph/@dNodes.0" dArrows="/0/@sourceMetaModel/@dGraph/@dArrows.4" source="/0/@sourceMetaModel/@dGraph/@dArrows.4">
+        <constraint href="Activity/metamodel.xmi#/0/@constraints.5"/>
+        <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.3"/>
+        <offset offset="312 -9" len="381"/>
+      </dConstraints>
+      <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/0/@sourceMetaModel/@dGraph/@dNodes.0 /0/@sourceMetaModel/@dGraph/@dNodes.1" dArrows="/0/@sourceMetaModel/@dGraph/@dArrows.2" source="/0/@sourceMetaModel/@dGraph/@dArrows.2">
+        <constraint href="Activity/metamodel.xmi#/0/@constraints.6"/>
+        <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.3"/>
+        <offset offset="259 25" len="316"/>
+      </dConstraints>
+      <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/0/@sourceMetaModel/@dGraph/@dNodes.0 /0/@sourceMetaModel/@dGraph/@dNodes.1" dArrows="/0/@sourceMetaModel/@dGraph/@dArrows.2" source="/0/@sourceMetaModel/@dGraph/@dArrows.2">
+        <constraint href="Activity/metamodel.xmi#/0/@constraints.7"/>
+        <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.0"/>
+        <offset offset="277 42" len="316"/>
+      </dConstraints>
+      <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/0/@sourceMetaModel/@dGraph/@dNodes.0 /0/@sourceMetaModel/@dGraph/@dNodes.1" dArrows="/0/@sourceMetaModel/@dGraph/@dArrows.2" source="/0/@sourceMetaModel/@dGraph/@dArrows.2">
+        <constraint href="Activity/metamodel.xmi#/0/@constraints.8"/>
+        <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.1"/>
+        <offset offset="298 62" len="316"/>
+      </dConstraints>
+      <dConstraints xsi:type="diagram:DGenericArrowConstraint" dNodes="/0/@sourceMetaModel/@dGraph/@dNodes.0 /0/@sourceMetaModel/@dGraph/@dNodes.1" dArrows="/0/@sourceMetaModel/@dGraph/@dArrows.0 /0/@sourceMetaModel/@dGraph/@dArrows.2" source="/0/@sourceMetaModel/@dGraph/@dArrows.0" target="/0/@sourceMetaModel/@dGraph/@dArrows.2">
+        <constraint href="Activity/metamodel.xmi#/0/@constraints.9"/>
+        <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.8"/>
+      </dConstraints>
+      <specification href="Activity/metamodel.xmi#/0"/>
+    </sourceMetaModel>
+    <targetMetaModel gridVisible="false">
+      <dGraph>
+        <dNodes dOutgoings="/0/@targetMetaModel/@dGraph/@dArrows.1" dIncomings="/0/@targetMetaModel/@dGraph/@dArrows.0" dConstraints="/0/@targetMetaModel/@dConstraints.0 /0/@targetMetaModel/@dConstraints.1" location="65 124" size="100 30">
+          <node href="PetriNet/petriNetMetaModel.xmi#//@graph/@nodes.0"/>
+        </dNodes>
+        <dNodes dOutgoings="/0/@targetMetaModel/@dGraph/@dArrows.0" dIncomings="/0/@targetMetaModel/@dGraph/@dArrows.1" dConstraints="/0/@targetMetaModel/@dConstraints.0 /0/@targetMetaModel/@dConstraints.1" location="444 124" size="100 30">
+          <node href="PetriNet/petriNetMetaModel.xmi#//@graph/@nodes.1"/>
+        </dNodes>
+        <dArrows dSource="/0/@targetMetaModel/@dGraph/@dNodes.1" dTarget="/0/@targetMetaModel/@dGraph/@dNodes.0" dConstraints="/0/@targetMetaModel/@dConstraints.1">
+          <arrow href="PetriNet/petriNetMetaModel.xmi#//@graph/@arrows.0"/>
+          <nameOffset offset="235 -13" len="400" index="1"/>
+          <bendpoints offset="-4 -70" len="379"/>
+          <bendpoints offset="396 -78" len="379"/>
+        </dArrows>
+        <dArrows dSource="/0/@targetMetaModel/@dGraph/@dNodes.0" dTarget="/0/@targetMetaModel/@dGraph/@dNodes.1" dConstraints="/0/@targetMetaModel/@dConstraints.0">
+          <arrow href="PetriNet/petriNetMetaModel.xmi#//@graph/@arrows.1"/>
+          <nameOffset offset="197 -21" len="348" index="1"/>
+          <bendpoints offset="-31 -71" len="379"/>
+          <bendpoints offset="317 -78" len="379"/>
+          <bendpoints offset="405 -79" len="379"/>
+        </dArrows>
+        <graph href="PetriNet/petriNetMetaModel.xmi#//@graph"/>
+      </dGraph>
+      <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/0/@targetMetaModel/@dGraph/@dNodes.0 /0/@targetMetaModel/@dGraph/@dNodes.1" dArrows="/0/@targetMetaModel/@dGraph/@dArrows.1" source="/0/@targetMetaModel/@dGraph/@dArrows.1">
+        <constraint href="PetriNet/petriNetMetaModel.xmi#//@constraints.0"/>
+        <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.3"/>
+        <offset offset="73 27" len="55"/>
+      </dConstraints>
+      <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/0/@targetMetaModel/@dGraph/@dNodes.1 /0/@targetMetaModel/@dGraph/@dNodes.0" dArrows="/0/@targetMetaModel/@dGraph/@dArrows.0" source="/0/@targetMetaModel/@dGraph/@dArrows.0">
+        <constraint href="PetriNet/petriNetMetaModel.xmi#//@constraints.1"/>
+        <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.3"/>
+        <offset offset="348 -8" len="400" index="1"/>
+      </dConstraints>
+      <specification href="PetriNet/petriNetMetaModel.xmi#/"/>
+    </targetMetaModel>
+    <rules rightNodes="/0/@rules.0/@sum/@dGraph/@dNodes.1 /0/@rules.0/@sum/@dGraph/@dNodes.2" commonNodes="/0/@rules.0/@sum/@dGraph/@dNodes.0" name="translateActivity">
+      <sum specification="/1" gridVisible="false">
+        <dGraph graph="/1/@graph">
+          <dNodes node="/1/@graph/@nodes.0" dIncomings="/0/@rules.0/@sum/@dGraph/@dArrows.0" location="249 135" size="100 30">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dNodes.1"/>
+          </dNodes>
+          <dNodes node="/1/@graph/@nodes.1" dOutgoings="/0/@rules.0/@sum/@dGraph/@dArrows.0 /0/@rules.0/@sum/@dGraph/@dArrows.1" location="465 130" size="100 30">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dNodes.0"/>
+          </dNodes>
+          <dNodes node="/1/@graph/@nodes.2" dIncomings="/0/@rules.0/@sum/@dGraph/@dArrows.1" location="688 132" size="100 30">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dNodes.5"/>
+          </dNodes>
+          <dArrows arrow="/1/@graph/@arrows.0" dSource="/0/@rules.0/@sum/@dGraph/@dNodes.1" dTarget="/0/@rules.0/@sum/@dGraph/@dNodes.0">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dArrows.0"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/1/@graph/@arrows.1" dSource="/0/@rules.0/@sum/@dGraph/@dNodes.1" dTarget="/0/@rules.0/@sum/@dGraph/@dNodes.2">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dArrows.4"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="/0/@rules.1/@sum/@dGraph/@dNodes.2 /0/@rules.1/@sum/@dGraph/@dNodes.0" commonNodes="/0/@rules.1/@sum/@dGraph/@dNodes.1" name="translateCondition">
+      <sum specification="/2" gridVisible="false">
+        <dGraph graph="/2/@graph">
+          <dNodes node="/2/@graph/@nodes.0" dOutgoings="/0/@rules.1/@sum/@dGraph/@dArrows.0 /0/@rules.1/@sum/@dGraph/@dArrows.1" location="494 143" size="100 30">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dNodes.0"/>
+          </dNodes>
+          <dNodes node="/2/@graph/@nodes.1" dIncomings="/0/@rules.1/@sum/@dGraph/@dArrows.0" location="276 156" size="100 30">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dNodes.3"/>
+          </dNodes>
+          <dNodes node="/2/@graph/@nodes.2" dIncomings="/0/@rules.1/@sum/@dGraph/@dArrows.1" location="760 141" size="100 30">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dNodes.5"/>
+          </dNodes>
+          <dArrows arrow="/2/@graph/@arrows.0" dSource="/0/@rules.1/@sum/@dGraph/@dNodes.0" dTarget="/0/@rules.1/@sum/@dGraph/@dNodes.1">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dArrows.2"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/2/@graph/@arrows.1" dSource="/0/@rules.1/@sum/@dGraph/@dNodes.0" dTarget="/0/@rules.1/@sum/@dGraph/@dNodes.2">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dArrows.4"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="/0/@rules.2/@sum/@dGraph/@dNodes.2 /0/@rules.2/@sum/@dGraph/@dNodes.0" commonNodes="/0/@rules.2/@sum/@dGraph/@dNodes.1" name="translateChoice">
+      <sum specification="/3" gridVisible="false">
+        <dGraph graph="/3/@graph">
+          <dNodes node="/3/@graph/@nodes.0" dOutgoings="/0/@rules.2/@sum/@dGraph/@dArrows.0 /0/@rules.2/@sum/@dGraph/@dArrows.1" location="596 162" size="100 30">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dNodes.0"/>
+          </dNodes>
+          <dNodes node="/3/@graph/@nodes.1" dIncomings="/0/@rules.2/@sum/@dGraph/@dArrows.0" location="409 161" size="100 30">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dNodes.2"/>
+          </dNodes>
+          <dNodes node="/3/@graph/@nodes.2" dIncomings="/0/@rules.2/@sum/@dGraph/@dArrows.1" location="810 159" size="100 30">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dNodes.5"/>
+          </dNodes>
+          <dArrows arrow="/3/@graph/@arrows.0" dSource="/0/@rules.2/@sum/@dGraph/@dNodes.0" dTarget="/0/@rules.2/@sum/@dGraph/@dNodes.1">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dArrows.1"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/3/@graph/@arrows.1" dSource="/0/@rules.2/@sum/@dGraph/@dNodes.0" dTarget="/0/@rules.2/@sum/@dGraph/@dNodes.2">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dArrows.4"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="/0/@rules.3/@sum/@dGraph/@dNodes.6" rightArrows="/0/@rules.3/@sum/@dGraph/@dArrows.2 /0/@rules.3/@sum/@dGraph/@dArrows.1" commonNodes="/0/@rules.3/@sum/@dGraph/@dNodes.3 /0/@rules.3/@sum/@dGraph/@dNodes.2 /0/@rules.3/@sum/@dGraph/@dNodes.5 /0/@rules.3/@sum/@dGraph/@dNodes.4 /0/@rules.3/@sum/@dGraph/@dNodes.1 /0/@rules.3/@sum/@dGraph/@dNodes.0" commonArrows="/0/@rules.3/@sum/@dGraph/@dArrows.0" name="translateSequence">
+      <sum specification="/4" gridVisible="false">
+        <dGraph graph="/4/@graph">
+          <dNodes node="/4/@graph/@nodes.0" dOutgoings="/0/@rules.3/@sum/@dGraph/@dArrows.0" dIncomings="/0/@rules.3/@sum/@dGraph/@dArrows.3" location="137 119" size="100 30">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dNodes.1"/>
+          </dNodes>
+          <dNodes node="/4/@graph/@nodes.1" dIncomings="/0/@rules.3/@sum/@dGraph/@dArrows.0 /0/@rules.3/@sum/@dGraph/@dArrows.4" location="138 277" size="100 30">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dNodes.1"/>
+          </dNodes>
+          <dNodes node="/4/@graph/@nodes.2" dOutgoings="/0/@rules.3/@sum/@dGraph/@dArrows.3 /0/@rules.3/@sum/@dGraph/@dArrows.6" location="352 120" size="100 30">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dNodes.0"/>
+          </dNodes>
+          <dNodes node="/4/@graph/@nodes.3" dOutgoings="/0/@rules.3/@sum/@dGraph/@dArrows.4 /0/@rules.3/@sum/@dGraph/@dArrows.5" location="362 287" size="100 30">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dNodes.0"/>
+          </dNodes>
+          <dNodes node="/4/@graph/@nodes.4" dIncomings="/0/@rules.3/@sum/@dGraph/@dArrows.2 /0/@rules.3/@sum/@dGraph/@dArrows.5" location="602 285" size="100 30">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dNodes.5"/>
+          </dNodes>
+          <dNodes node="/4/@graph/@nodes.5" dOutgoings="/0/@rules.3/@sum/@dGraph/@dArrows.1" dIncomings="/0/@rules.3/@sum/@dGraph/@dArrows.6" location="598 125" size="100 30">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dNodes.5"/>
+          </dNodes>
+          <dNodes node="/4/@graph/@nodes.6" dOutgoings="/0/@rules.3/@sum/@dGraph/@dArrows.2" dIncomings="/0/@rules.3/@sum/@dGraph/@dArrows.1" location="817 212" size="100 30">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dNodes.4"/>
+          </dNodes>
+          <dArrows arrow="/4/@graph/@arrows.0" dSource="/0/@rules.3/@sum/@dGraph/@dNodes.0" dTarget="/0/@rules.3/@sum/@dGraph/@dNodes.1">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dArrows.5"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/4/@graph/@arrows.1" dSource="/0/@rules.3/@sum/@dGraph/@dNodes.5" dTarget="/0/@rules.3/@sum/@dGraph/@dNodes.6">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dArrows.10"/>
+            <nameOffset offset="136 -32" len="235"/>
+          </dArrows>
+          <dArrows arrow="/4/@graph/@arrows.2" dSource="/0/@rules.3/@sum/@dGraph/@dNodes.6" dTarget="/0/@rules.3/@sum/@dGraph/@dNodes.4">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dArrows.11"/>
+            <nameOffset offset="96 -25" len="227"/>
+          </dArrows>
+          <dArrows arrow="/4/@graph/@arrows.3" dSource="/0/@rules.3/@sum/@dGraph/@dNodes.2" dTarget="/0/@rules.3/@sum/@dGraph/@dNodes.0">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dArrows.0"/>
+            <nameOffset offset="214 42" len="215"/>
+          </dArrows>
+          <dArrows arrow="/4/@graph/@arrows.4" dSource="/0/@rules.3/@sum/@dGraph/@dNodes.3" dTarget="/0/@rules.3/@sum/@dGraph/@dNodes.1">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dArrows.0"/>
+            <nameOffset offset="220 -41" len="224"/>
+          </dArrows>
+          <dArrows arrow="/4/@graph/@arrows.5" dSource="/0/@rules.3/@sum/@dGraph/@dNodes.3" dTarget="/0/@rules.3/@sum/@dGraph/@dNodes.4">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dArrows.4"/>
+            <nameOffset offset="102 19" len="240"/>
+          </dArrows>
+          <dArrows arrow="/4/@graph/@arrows.6" dSource="/0/@rules.3/@sum/@dGraph/@dNodes.2" dTarget="/0/@rules.3/@sum/@dGraph/@dNodes.5">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dArrows.4"/>
+            <nameOffset offset="110 -43" len="246"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="/0/@rules.4/@sum/@dGraph/@dNodes.6" rightArrows="/0/@rules.4/@sum/@dGraph/@dArrows.6 /0/@rules.4/@sum/@dGraph/@dArrows.5" commonNodes="/0/@rules.4/@sum/@dGraph/@dNodes.4 /0/@rules.4/@sum/@dGraph/@dNodes.5 /0/@rules.4/@sum/@dGraph/@dNodes.0 /0/@rules.4/@sum/@dGraph/@dNodes.1 /0/@rules.4/@sum/@dGraph/@dNodes.3 /0/@rules.4/@sum/@dGraph/@dNodes.2" commonArrows="/0/@rules.4/@sum/@dGraph/@dArrows.0" name="translateMessage">
+      <sum specification="/5" gridVisible="false">
+        <dGraph graph="/5/@graph">
+          <dNodes node="/5/@graph/@nodes.0" dOutgoings="/0/@rules.4/@sum/@dGraph/@dArrows.1 /0/@rules.4/@sum/@dGraph/@dArrows.3" location="465 113" size="100 30">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dNodes.0"/>
+          </dNodes>
+          <dNodes node="/5/@graph/@nodes.1" dOutgoings="/0/@rules.4/@sum/@dGraph/@dArrows.2 /0/@rules.4/@sum/@dGraph/@dArrows.4" location="452 279" size="100 30">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dNodes.0"/>
+          </dNodes>
+          <dNodes node="/5/@graph/@nodes.2" dOutgoings="/0/@rules.4/@sum/@dGraph/@dArrows.0" dIncomings="/0/@rules.4/@sum/@dGraph/@dArrows.1" location="212 114" size="100 30">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dNodes.1"/>
+          </dNodes>
+          <dNodes node="/5/@graph/@nodes.3" dIncomings="/0/@rules.4/@sum/@dGraph/@dArrows.0 /0/@rules.4/@sum/@dGraph/@dArrows.2" location="221 281" size="100 30">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dNodes.1"/>
+          </dNodes>
+          <dNodes node="/5/@graph/@nodes.4" dIncomings="/0/@rules.4/@sum/@dGraph/@dArrows.4 /0/@rules.4/@sum/@dGraph/@dArrows.6" location="694 282" size="100 30">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dNodes.5"/>
+          </dNodes>
+          <dNodes node="/5/@graph/@nodes.5" dOutgoings="/0/@rules.4/@sum/@dGraph/@dArrows.5" dIncomings="/0/@rules.4/@sum/@dGraph/@dArrows.3" location="708 110" size="100 30">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dNodes.5"/>
+          </dNodes>
+          <dNodes node="/5/@graph/@nodes.6" dOutgoings="/0/@rules.4/@sum/@dGraph/@dArrows.6" dIncomings="/0/@rules.4/@sum/@dGraph/@dArrows.5" location="938 201" size="100 30">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dNodes.4"/>
+          </dNodes>
+          <dArrows arrow="/5/@graph/@arrows.0" dSource="/0/@rules.4/@sum/@dGraph/@dNodes.2" dTarget="/0/@rules.4/@sum/@dGraph/@dNodes.3">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dArrows.6"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/5/@graph/@arrows.1" dSource="/0/@rules.4/@sum/@dGraph/@dNodes.0" dTarget="/0/@rules.4/@sum/@dGraph/@dNodes.2">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dArrows.0"/>
+            <nameOffset offset="218 45" len="253"/>
+          </dArrows>
+          <dArrows arrow="/5/@graph/@arrows.2" dSource="/0/@rules.4/@sum/@dGraph/@dNodes.1" dTarget="/0/@rules.4/@sum/@dGraph/@dNodes.3">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dArrows.0"/>
+            <nameOffset offset="199 -45" len="231"/>
+          </dArrows>
+          <dArrows arrow="/5/@graph/@arrows.3" dSource="/0/@rules.4/@sum/@dGraph/@dNodes.0" dTarget="/0/@rules.4/@sum/@dGraph/@dNodes.5">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dArrows.4"/>
+            <nameOffset offset="94 -40" len="243"/>
+          </dArrows>
+          <dArrows arrow="/5/@graph/@arrows.4" dSource="/0/@rules.4/@sum/@dGraph/@dNodes.1" dTarget="/0/@rules.4/@sum/@dGraph/@dNodes.4">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dArrows.4"/>
+            <nameOffset offset="89 26" len="242"/>
+          </dArrows>
+          <dArrows arrow="/5/@graph/@arrows.5" dSource="/0/@rules.4/@sum/@dGraph/@dNodes.5" dTarget="/0/@rules.4/@sum/@dGraph/@dNodes.6">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dArrows.10"/>
+            <nameOffset offset="167 -40" len="371"/>
+          </dArrows>
+          <dArrows arrow="/5/@graph/@arrows.6" dSource="/0/@rules.4/@sum/@dGraph/@dNodes.6" dTarget="/0/@rules.4/@sum/@dGraph/@dNodes.4">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dArrows.11"/>
+            <nameOffset offset="186 -32" len="377"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="/0/@rules.5/@sum/@dGraph/@dNodes.6" rightArrows="/0/@rules.5/@sum/@dGraph/@dArrows.6 /0/@rules.5/@sum/@dGraph/@dArrows.5" commonNodes="/0/@rules.5/@sum/@dGraph/@dNodes.4 /0/@rules.5/@sum/@dGraph/@dNodes.5 /0/@rules.5/@sum/@dGraph/@dNodes.3 /0/@rules.5/@sum/@dGraph/@dNodes.2 /0/@rules.5/@sum/@dGraph/@dNodes.0 /0/@rules.5/@sum/@dGraph/@dNodes.1" commonArrows="/0/@rules.5/@sum/@dGraph/@dArrows.0" name="translateChoiceCondtition">
+      <sum specification="/6" gridVisible="false">
+        <dGraph graph="/6/@graph">
+          <dNodes node="/6/@graph/@nodes.0" dIncomings="/0/@rules.5/@sum/@dGraph/@dArrows.0 /0/@rules.5/@sum/@dGraph/@dArrows.1" location="135 263" size="100 30">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dNodes.3"/>
+          </dNodes>
+          <dNodes node="/6/@graph/@nodes.1" dOutgoings="/0/@rules.5/@sum/@dGraph/@dArrows.0" dIncomings="/0/@rules.5/@sum/@dGraph/@dArrows.2" location="135 97" size="100 30">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dNodes.2"/>
+          </dNodes>
+          <dNodes node="/6/@graph/@nodes.2" dOutgoings="/0/@rules.5/@sum/@dGraph/@dArrows.1 /0/@rules.5/@sum/@dGraph/@dArrows.3" location="382 267" size="100 30">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dNodes.0"/>
+          </dNodes>
+          <dNodes node="/6/@graph/@nodes.3" dOutgoings="/0/@rules.5/@sum/@dGraph/@dArrows.2 /0/@rules.5/@sum/@dGraph/@dArrows.4" location="387 102" size="100 30">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dNodes.0"/>
+          </dNodes>
+          <dNodes node="/6/@graph/@nodes.4" dIncomings="/0/@rules.5/@sum/@dGraph/@dArrows.3 /0/@rules.5/@sum/@dGraph/@dArrows.6" location="653 270" size="100 30">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dNodes.5"/>
+          </dNodes>
+          <dNodes node="/6/@graph/@nodes.5" dOutgoings="/0/@rules.5/@sum/@dGraph/@dArrows.5" dIncomings="/0/@rules.5/@sum/@dGraph/@dArrows.4" location="639 105" size="100 30">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dNodes.5"/>
+          </dNodes>
+          <dNodes node="/6/@graph/@nodes.6" dOutgoings="/0/@rules.5/@sum/@dGraph/@dArrows.6" dIncomings="/0/@rules.5/@sum/@dGraph/@dArrows.5" location="850 202" size="100 30">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dNodes.4"/>
+          </dNodes>
+          <dArrows arrow="/6/@graph/@arrows.0" dSource="/0/@rules.5/@sum/@dGraph/@dNodes.1" dTarget="/0/@rules.5/@sum/@dGraph/@dNodes.0">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dArrows.8"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/6/@graph/@arrows.1" dSource="/0/@rules.5/@sum/@dGraph/@dNodes.2" dTarget="/0/@rules.5/@sum/@dGraph/@dNodes.0">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dArrows.2"/>
+            <nameOffset offset="242 -29" len="247"/>
+          </dArrows>
+          <dArrows arrow="/6/@graph/@arrows.2" dSource="/0/@rules.5/@sum/@dGraph/@dNodes.3" dTarget="/0/@rules.5/@sum/@dGraph/@dNodes.1">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dArrows.1"/>
+            <nameOffset offset="256 51" len="252"/>
+          </dArrows>
+          <dArrows arrow="/6/@graph/@arrows.3" dSource="/0/@rules.5/@sum/@dGraph/@dNodes.2" dTarget="/0/@rules.5/@sum/@dGraph/@dNodes.4">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dArrows.4"/>
+            <nameOffset offset="90 18" len="271"/>
+          </dArrows>
+          <dArrows arrow="/6/@graph/@arrows.4" dSource="/0/@rules.5/@sum/@dGraph/@dNodes.3" dTarget="/0/@rules.5/@sum/@dGraph/@dNodes.5">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dArrows.4"/>
+            <nameOffset offset="62 -51" len="252"/>
+          </dArrows>
+          <dArrows arrow="/6/@graph/@arrows.5" dSource="/0/@rules.5/@sum/@dGraph/@dNodes.5" dTarget="/0/@rules.5/@sum/@dGraph/@dNodes.6">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dArrows.10"/>
+            <nameOffset offset="118 -31" len="232"/>
+          </dArrows>
+          <dArrows arrow="/6/@graph/@arrows.6" dSource="/0/@rules.5/@sum/@dGraph/@dNodes.6" dTarget="/0/@rules.5/@sum/@dGraph/@dNodes.4">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dArrows.11"/>
+            <nameOffset offset="93 -18" len="208"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="/0/@rules.6/@sum/@dGraph/@dNodes.6" rightArrows="/0/@rules.6/@sum/@dGraph/@dArrows.2 /0/@rules.6/@sum/@dGraph/@dArrows.1" commonNodes="/0/@rules.6/@sum/@dGraph/@dNodes.4 /0/@rules.6/@sum/@dGraph/@dNodes.5 /0/@rules.6/@sum/@dGraph/@dNodes.3 /0/@rules.6/@sum/@dGraph/@dNodes.2 /0/@rules.6/@sum/@dGraph/@dNodes.1 /0/@rules.6/@sum/@dGraph/@dNodes.0" commonArrows="/0/@rules.6/@sum/@dGraph/@dArrows.0" name="translateChoiceIn">
+      <sum specification="/7" gridVisible="false">
+        <dGraph graph="/7/@graph">
+          <dNodes node="/7/@graph/@nodes.0" dOutgoings="/0/@rules.6/@sum/@dGraph/@dArrows.0" dIncomings="/0/@rules.6/@sum/@dGraph/@dArrows.3" location="174 161" size="100 30">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dNodes.1"/>
+          </dNodes>
+          <dNodes node="/7/@graph/@nodes.1" dIncomings="/0/@rules.6/@sum/@dGraph/@dArrows.0 /0/@rules.6/@sum/@dGraph/@dArrows.4" location="173 312" size="100 30">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dNodes.2"/>
+          </dNodes>
+          <dNodes node="/7/@graph/@nodes.2" dOutgoings="/0/@rules.6/@sum/@dGraph/@dArrows.4 /0/@rules.6/@sum/@dGraph/@dArrows.5" location="420 320" size="100 30">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dNodes.0"/>
+          </dNodes>
+          <dNodes node="/7/@graph/@nodes.3" dOutgoings="/0/@rules.6/@sum/@dGraph/@dArrows.3 /0/@rules.6/@sum/@dGraph/@dArrows.6" location="404 163" size="100 30">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dNodes.0"/>
+          </dNodes>
+          <dNodes node="/7/@graph/@nodes.4" dIncomings="/0/@rules.6/@sum/@dGraph/@dArrows.2 /0/@rules.6/@sum/@dGraph/@dArrows.5" location="744 329" size="100 30">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dNodes.5"/>
+          </dNodes>
+          <dNodes node="/7/@graph/@nodes.5" dOutgoings="/0/@rules.6/@sum/@dGraph/@dArrows.1" dIncomings="/0/@rules.6/@sum/@dGraph/@dArrows.6" location="749 167" size="100 30">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dNodes.5"/>
+          </dNodes>
+          <dNodes node="/7/@graph/@nodes.6" dOutgoings="/0/@rules.6/@sum/@dGraph/@dArrows.2" dIncomings="/0/@rules.6/@sum/@dGraph/@dArrows.1" location="964 260" size="100 30">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dNodes.4"/>
+          </dNodes>
+          <dArrows arrow="/7/@graph/@arrows.0" dSource="/0/@rules.6/@sum/@dGraph/@dNodes.0" dTarget="/0/@rules.6/@sum/@dGraph/@dNodes.1">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dArrows.7"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/7/@graph/@arrows.1" dSource="/0/@rules.6/@sum/@dGraph/@dNodes.5" dTarget="/0/@rules.6/@sum/@dGraph/@dNodes.6">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dArrows.10"/>
+            <nameOffset offset="127 -34" len="234"/>
+          </dArrows>
+          <dArrows arrow="/7/@graph/@arrows.2" dSource="/0/@rules.6/@sum/@dGraph/@dNodes.6" dTarget="/0/@rules.6/@sum/@dGraph/@dNodes.4">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dArrows.11"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/7/@graph/@arrows.3" dSource="/0/@rules.6/@sum/@dGraph/@dNodes.3" dTarget="/0/@rules.6/@sum/@dGraph/@dNodes.0">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dArrows.0"/>
+            <nameOffset offset="169 44" len="230"/>
+          </dArrows>
+          <dArrows arrow="/7/@graph/@arrows.4" dSource="/0/@rules.6/@sum/@dGraph/@dNodes.2" dTarget="/0/@rules.6/@sum/@dGraph/@dNodes.1">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dArrows.1"/>
+            <nameOffset offset="194 -51" len="248"/>
+          </dArrows>
+          <dArrows arrow="/7/@graph/@arrows.5" dSource="/0/@rules.6/@sum/@dGraph/@dNodes.2" dTarget="/0/@rules.6/@sum/@dGraph/@dNodes.4">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dArrows.4"/>
+            <nameOffset offset="114 36" len="324"/>
+          </dArrows>
+          <dArrows arrow="/7/@graph/@arrows.6" dSource="/0/@rules.6/@sum/@dGraph/@dNodes.3" dTarget="/0/@rules.6/@sum/@dGraph/@dNodes.5">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dArrows.4"/>
+            <nameOffset offset="155 -44" len="345"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="/0/@rules.7/@sum/@dGraph/@dNodes.6" rightArrows="/0/@rules.7/@sum/@dGraph/@dArrows.1 /0/@rules.7/@sum/@dGraph/@dArrows.2" commonNodes="/0/@rules.7/@sum/@dGraph/@dNodes.4 /0/@rules.7/@sum/@dGraph/@dNodes.5 /0/@rules.7/@sum/@dGraph/@dNodes.2 /0/@rules.7/@sum/@dGraph/@dNodes.3 /0/@rules.7/@sum/@dGraph/@dNodes.1 /0/@rules.7/@sum/@dGraph/@dNodes.0" commonArrows="/0/@rules.7/@sum/@dGraph/@dArrows.0" name="translateChoiceOut">
+      <sum specification="/8" gridVisible="false">
+        <dGraph graph="/8/@graph">
+          <dNodes node="/8/@graph/@nodes.0" dOutgoings="/0/@rules.7/@sum/@dGraph/@dArrows.0" dIncomings="/0/@rules.7/@sum/@dGraph/@dArrows.5" location="156 178" size="100 30">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dNodes.3"/>
+          </dNodes>
+          <dNodes node="/8/@graph/@nodes.1" dIncomings="/0/@rules.7/@sum/@dGraph/@dArrows.0 /0/@rules.7/@sum/@dGraph/@dArrows.6" location="159 332" size="100 30">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dNodes.1"/>
+          </dNodes>
+          <dNodes node="/8/@graph/@nodes.2" dOutgoings="/0/@rules.7/@sum/@dGraph/@dArrows.4 /0/@rules.7/@sum/@dGraph/@dArrows.5" location="409 176" size="100 30">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dNodes.0"/>
+          </dNodes>
+          <dNodes node="/8/@graph/@nodes.3" dOutgoings="/0/@rules.7/@sum/@dGraph/@dArrows.3 /0/@rules.7/@sum/@dGraph/@dArrows.6" location="415 342" size="100 30">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dNodes.0"/>
+          </dNodes>
+          <dNodes node="/8/@graph/@nodes.4" dIncomings="/0/@rules.7/@sum/@dGraph/@dArrows.1 /0/@rules.7/@sum/@dGraph/@dArrows.3" location="646 346" size="100 30">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dNodes.5"/>
+          </dNodes>
+          <dNodes node="/8/@graph/@nodes.5" dOutgoings="/0/@rules.7/@sum/@dGraph/@dArrows.2" dIncomings="/0/@rules.7/@sum/@dGraph/@dArrows.4" location="660 182" size="100 30">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dNodes.5"/>
+          </dNodes>
+          <dNodes node="/8/@graph/@nodes.6" dOutgoings="/0/@rules.7/@sum/@dGraph/@dArrows.1" dIncomings="/0/@rules.7/@sum/@dGraph/@dArrows.2" location="878 274" size="100 30">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dNodes.4"/>
+          </dNodes>
+          <dArrows arrow="/8/@graph/@arrows.0" dSource="/0/@rules.7/@sum/@dGraph/@dNodes.0" dTarget="/0/@rules.7/@sum/@dGraph/@dNodes.1">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dArrows.9"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/8/@graph/@arrows.1" dSource="/0/@rules.7/@sum/@dGraph/@dNodes.6" dTarget="/0/@rules.7/@sum/@dGraph/@dNodes.4">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dArrows.11"/>
+            <nameOffset offset="208 -33" len="328"/>
+          </dArrows>
+          <dArrows arrow="/8/@graph/@arrows.2" dSource="/0/@rules.7/@sum/@dGraph/@dNodes.5" dTarget="/0/@rules.7/@sum/@dGraph/@dNodes.6">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dArrows.10"/>
+            <nameOffset offset="123 -33" len="236"/>
+          </dArrows>
+          <dArrows arrow="/8/@graph/@arrows.3" dSource="/0/@rules.7/@sum/@dGraph/@dNodes.3" dTarget="/0/@rules.7/@sum/@dGraph/@dNodes.4">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dArrows.4"/>
+            <nameOffset offset="13 33" len="231"/>
+          </dArrows>
+          <dArrows arrow="/8/@graph/@arrows.4" dSource="/0/@rules.7/@sum/@dGraph/@dNodes.2" dTarget="/0/@rules.7/@sum/@dGraph/@dNodes.5">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dArrows.4"/>
+            <nameOffset offset="140 -52" len="251"/>
+          </dArrows>
+          <dArrows arrow="/8/@graph/@arrows.5" dSource="/0/@rules.7/@sum/@dGraph/@dNodes.2" dTarget="/0/@rules.7/@sum/@dGraph/@dNodes.0">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dArrows.2"/>
+            <nameOffset offset="206 50" len="253"/>
+          </dArrows>
+          <dArrows arrow="/8/@graph/@arrows.6" dSource="/0/@rules.7/@sum/@dGraph/@dNodes.3" dTarget="/0/@rules.7/@sum/@dGraph/@dNodes.1">
+            <dType href="generated_models/Activity2PetriNet.dpf#/1/@dGraph/@dArrows.0"/>
+            <nameOffset offset="264 -43" len="256"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <elementTypeGraph href="generated_models/Activity2PetriNet.dpf#/0"/>
+    <correspondanceGraph href="generated_models/metamodel2petriNetMetaModel.dpf#/0"/>
+  </transform:Transform>
+  <core:Specification>
+    <graph id="163ae2bc-3f75-4e53-81fb-cb906357b0fe">
+      <nodes id="9054a772-bc06-4aff-9507-2247e6e38fb9" name="Activity0" incomings="/1/@graph/@arrows.0">
+        <typeNode href="generated_models/Activity2PetriNet.xmi#/1/@graph/@nodes.1"/>
+      </nodes>
+      <nodes id="a4e091c8-ada3-4d91-aaa8-aa0658df323e" name="Trace0" outgoings="/1/@graph/@arrows.0 /1/@graph/@arrows.1">
+        <typeNode href="generated_models/Activity2PetriNet.xmi#/1/@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="c8d363de-ae28-40c1-a9fc-efbc6c411812" name="Transition0" incomings="/1/@graph/@arrows.1">
+        <typeNode href="generated_models/Activity2PetriNet.xmi#/1/@graph/@nodes.5"/>
+      </nodes>
+      <arrows id="fd03827b-11a5-4419-a0ff-3a9ad4434787" name="traceSource_Activity0" source="/1/@graph/@nodes.1" target="/1/@graph/@nodes.0">
+        <typeArrow href="generated_models/Activity2PetriNet.xmi#/1/@graph/@arrows.0"/>
+      </arrows>
+      <arrows id="5d6f839c-ce21-4d80-9dc2-27081d698966" name="traceTarget_Transition0" source="/1/@graph/@nodes.1" target="/1/@graph/@nodes.2">
+        <typeArrow href="generated_models/Activity2PetriNet.xmi#/1/@graph/@arrows.4"/>
+      </arrows>
+    </graph>
+  </core:Specification>
+  <core:Specification>
+    <graph id="a8ddaa0e-b53e-41a0-a56c-ef8d249be765">
+      <nodes id="0896135d-9001-42e5-a83d-f03bc8a2e281" name="Trace0" outgoings="/2/@graph/@arrows.0 /2/@graph/@arrows.1">
+        <typeNode href="generated_models/Activity2PetriNet.xmi#/1/@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="4b37fb64-0624-4d28-8f3a-9aba5bac3b9b" name="Condition0" incomings="/2/@graph/@arrows.0">
+        <typeNode href="generated_models/Activity2PetriNet.xmi#/1/@graph/@nodes.3"/>
+      </nodes>
+      <nodes id="839b1c80-8ef9-4a14-a5d1-9d29f07fffd7" name="Transition0" incomings="/2/@graph/@arrows.1">
+        <typeNode href="generated_models/Activity2PetriNet.xmi#/1/@graph/@nodes.5"/>
+      </nodes>
+      <arrows id="1145e12e-14db-4e94-8858-7aa41a19970a" name="traceSource_Condition0" source="/2/@graph/@nodes.0" target="/2/@graph/@nodes.1">
+        <typeArrow href="generated_models/Activity2PetriNet.xmi#/1/@graph/@arrows.2"/>
+      </arrows>
+      <arrows id="fbc76997-dfc1-4a12-a1dc-af5eb95de2a1" name="traceTarget_Transition0" source="/2/@graph/@nodes.0" target="/2/@graph/@nodes.2">
+        <typeArrow href="generated_models/Activity2PetriNet.xmi#/1/@graph/@arrows.4"/>
+      </arrows>
+    </graph>
+  </core:Specification>
+  <core:Specification>
+    <graph id="6dc8bb4d-0cd0-4054-b990-8b77478b035a">
+      <nodes id="d262046c-d8dd-4d40-bf7a-c8c0f9394012" name="Trace0" outgoings="/3/@graph/@arrows.0 /3/@graph/@arrows.1">
+        <typeNode href="generated_models/Activity2PetriNet.xmi#/1/@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="7eef3f26-650c-485e-8da4-d79df89526b4" name="Choice0" incomings="/3/@graph/@arrows.0">
+        <typeNode href="generated_models/Activity2PetriNet.xmi#/1/@graph/@nodes.2"/>
+      </nodes>
+      <nodes id="749d8c26-cdd2-4044-9f38-cb435662bb91" name="Transition0" incomings="/3/@graph/@arrows.1">
+        <typeNode href="generated_models/Activity2PetriNet.xmi#/1/@graph/@nodes.5"/>
+      </nodes>
+      <arrows id="08844702-16a6-4995-8810-9951ef1e689d" name="traceSource_Choice0" source="/3/@graph/@nodes.0" target="/3/@graph/@nodes.1">
+        <typeArrow href="generated_models/Activity2PetriNet.xmi#/1/@graph/@arrows.1"/>
+      </arrows>
+      <arrows id="615e4a68-bd00-4d4f-a2db-a32e54a2f148" name="traceTarget_Transition0" source="/3/@graph/@nodes.0" target="/3/@graph/@nodes.2">
+        <typeArrow href="generated_models/Activity2PetriNet.xmi#/1/@graph/@arrows.4"/>
+      </arrows>
+    </graph>
+  </core:Specification>
+  <core:Specification>
+    <graph id="61e51641-74ac-4c1c-8fdd-361d1597b114">
+      <nodes id="57fd867c-d1d9-4e81-8b18-6dd8a867c898" name="Activity0" outgoings="/4/@graph/@arrows.0" incomings="/4/@graph/@arrows.3">
+        <typeNode href="generated_models/Activity2PetriNet.xmi#/1/@graph/@nodes.1"/>
+      </nodes>
+      <nodes id="d4d2301f-9a5d-43cf-b9fc-6c28083cee23" name="Activity1" incomings="/4/@graph/@arrows.0 /4/@graph/@arrows.4">
+        <typeNode href="generated_models/Activity2PetriNet.xmi#/1/@graph/@nodes.1"/>
+      </nodes>
+      <nodes id="368a4e27-5d3a-4e0c-a6bc-cde7dcfa5951" name="Trace0" outgoings="/4/@graph/@arrows.3 /4/@graph/@arrows.6">
+        <typeNode href="generated_models/Activity2PetriNet.xmi#/1/@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="aa480cd0-9672-4551-80bf-533ff62cd238" name="Trace1" outgoings="/4/@graph/@arrows.4 /4/@graph/@arrows.5">
+        <typeNode href="generated_models/Activity2PetriNet.xmi#/1/@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="a8f57966-acb0-41f3-83da-5e601006e66d" name="Transition0" incomings="/4/@graph/@arrows.2 /4/@graph/@arrows.5">
+        <typeNode href="generated_models/Activity2PetriNet.xmi#/1/@graph/@nodes.5"/>
+      </nodes>
+      <nodes id="e17b9fa4-e61e-4194-a07b-13d4bc343857" name="Transition1" outgoings="/4/@graph/@arrows.1" incomings="/4/@graph/@arrows.6">
+        <typeNode href="generated_models/Activity2PetriNet.xmi#/1/@graph/@nodes.5"/>
+      </nodes>
+      <nodes id="f66c3013-1390-4ef2-9533-914c918a0243" name="Place0" outgoings="/4/@graph/@arrows.2" incomings="/4/@graph/@arrows.1">
+        <typeNode href="generated_models/Activity2PetriNet.xmi#/1/@graph/@nodes.4"/>
+      </nodes>
+      <arrows id="aeee84a9-30bb-4ed2-8ebd-aee2b1d0225f" name="Sequence0" source="/4/@graph/@nodes.0" target="/4/@graph/@nodes.1">
+        <typeArrow href="generated_models/Activity2PetriNet.xmi#/1/@graph/@arrows.5"/>
+      </arrows>
+      <arrows id="aa6bc808-19be-4290-95e1-5452d76f3182" name="TransitionToPlace0" source="/4/@graph/@nodes.5" target="/4/@graph/@nodes.6">
+        <typeArrow href="generated_models/Activity2PetriNet.xmi#/1/@graph/@arrows.10"/>
+      </arrows>
+      <arrows id="d7e7588a-c0c4-4ae9-aca1-3ecf13ebdc94" name="PlaceToTransition0" source="/4/@graph/@nodes.6" target="/4/@graph/@nodes.4">
+        <typeArrow href="generated_models/Activity2PetriNet.xmi#/1/@graph/@arrows.11"/>
+      </arrows>
+      <arrows id="496cb0e9-1f33-4464-9948-4dd474e20e62" name="traceSource_Activity0" source="/4/@graph/@nodes.2" target="/4/@graph/@nodes.0">
+        <typeArrow href="generated_models/Activity2PetriNet.xmi#/1/@graph/@arrows.0"/>
+      </arrows>
+      <arrows id="70cd5d0f-5880-4157-a039-e92037093af9" name="traceSource_Activity1" source="/4/@graph/@nodes.3" target="/4/@graph/@nodes.1">
+        <typeArrow href="generated_models/Activity2PetriNet.xmi#/1/@graph/@arrows.0"/>
+      </arrows>
+      <arrows id="cce46973-d8c5-4981-8c42-9e7314a3f6e0" name="traceTarget_Transition0" source="/4/@graph/@nodes.3" target="/4/@graph/@nodes.4">
+        <typeArrow href="generated_models/Activity2PetriNet.xmi#/1/@graph/@arrows.4"/>
+      </arrows>
+      <arrows id="b0db6d9e-fb42-4d40-b120-0771e0692be2" name="traceTarget_Transition1" source="/4/@graph/@nodes.2" target="/4/@graph/@nodes.5">
+        <typeArrow href="generated_models/Activity2PetriNet.xmi#/1/@graph/@arrows.4"/>
+      </arrows>
+    </graph>
+  </core:Specification>
+  <core:Specification>
+    <graph id="8807f502-ac3c-483e-ac98-6b09c31bb4ad">
+      <nodes id="6bd4835c-37d7-4692-b940-bfb8966372f7" name="Trace0" outgoings="/5/@graph/@arrows.1 /5/@graph/@arrows.3">
+        <typeNode href="generated_models/Activity2PetriNet.xmi#/1/@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="cfb25296-2184-4d05-beb8-058d1fd95db5" name="Trace1" outgoings="/5/@graph/@arrows.2 /5/@graph/@arrows.4">
+        <typeNode href="generated_models/Activity2PetriNet.xmi#/1/@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="b583a614-e732-4277-a3e4-7e7c44c91378" name="Activity0" outgoings="/5/@graph/@arrows.0" incomings="/5/@graph/@arrows.1">
+        <typeNode href="generated_models/Activity2PetriNet.xmi#/1/@graph/@nodes.1"/>
+      </nodes>
+      <nodes id="bd269069-5b8b-4b5d-b40b-80cb03836d2b" name="Activity1" incomings="/5/@graph/@arrows.0 /5/@graph/@arrows.2">
+        <typeNode href="generated_models/Activity2PetriNet.xmi#/1/@graph/@nodes.1"/>
+      </nodes>
+      <nodes id="a46a3267-90ac-4250-bc2b-310e82b01eb8" name="Transition0" incomings="/5/@graph/@arrows.4 /5/@graph/@arrows.6">
+        <typeNode href="generated_models/Activity2PetriNet.xmi#/1/@graph/@nodes.5"/>
+      </nodes>
+      <nodes id="979582ee-810b-4f7c-a850-dc913f477ae8" name="Transition1" outgoings="/5/@graph/@arrows.5" incomings="/5/@graph/@arrows.3">
+        <typeNode href="generated_models/Activity2PetriNet.xmi#/1/@graph/@nodes.5"/>
+      </nodes>
+      <nodes id="0f93e1ff-0c3b-4174-93cd-80d544d6d10b" name="Place0" outgoings="/5/@graph/@arrows.6" incomings="/5/@graph/@arrows.5">
+        <typeNode href="generated_models/Activity2PetriNet.xmi#/1/@graph/@nodes.4"/>
+      </nodes>
+      <arrows id="c8d4cac4-5c04-431f-9b39-168ccb9b949c" name="Message0" source="/5/@graph/@nodes.2" target="/5/@graph/@nodes.3">
+        <typeArrow href="generated_models/Activity2PetriNet.xmi#/1/@graph/@arrows.6"/>
+      </arrows>
+      <arrows id="68ba3bc9-867d-4fa8-b458-1254c12d51dd" name="traceSource_Activity0" source="/5/@graph/@nodes.0" target="/5/@graph/@nodes.2">
+        <typeArrow href="generated_models/Activity2PetriNet.xmi#/1/@graph/@arrows.0"/>
+      </arrows>
+      <arrows id="196b32d2-c875-4fa2-86a5-5941991499b7" name="traceSource_Activity1" source="/5/@graph/@nodes.1" target="/5/@graph/@nodes.3">
+        <typeArrow href="generated_models/Activity2PetriNet.xmi#/1/@graph/@arrows.0"/>
+      </arrows>
+      <arrows id="6bed6684-e358-4dba-b80d-7caa9efb5a1b" name="traceTarget_Transition0" source="/5/@graph/@nodes.0" target="/5/@graph/@nodes.5">
+        <typeArrow href="generated_models/Activity2PetriNet.xmi#/1/@graph/@arrows.4"/>
+      </arrows>
+      <arrows id="1f6fad58-bf84-4c61-9bc7-bb0cfb6f83e8" name="traceTarget_Transition1" source="/5/@graph/@nodes.1" target="/5/@graph/@nodes.4">
+        <typeArrow href="generated_models/Activity2PetriNet.xmi#/1/@graph/@arrows.4"/>
+      </arrows>
+      <arrows id="1e1a8188-3421-4278-8a1a-3972ee25a9d2" name="TransitionToPlace0" source="/5/@graph/@nodes.5" target="/5/@graph/@nodes.6">
+        <typeArrow href="generated_models/Activity2PetriNet.xmi#/1/@graph/@arrows.10"/>
+      </arrows>
+      <arrows id="6028e42e-4aba-4898-a438-42f8384dd013" name="PlaceToTransition0" source="/5/@graph/@nodes.6" target="/5/@graph/@nodes.4">
+        <typeArrow href="generated_models/Activity2PetriNet.xmi#/1/@graph/@arrows.11"/>
+      </arrows>
+    </graph>
+  </core:Specification>
+  <core:Specification>
+    <graph id="01c1f8e1-6111-4c1c-b23f-8f492676105e">
+      <nodes id="b5f842dc-f4b3-4c4c-a928-3a9c505f74c6" name="Condition0" incomings="/6/@graph/@arrows.0 /6/@graph/@arrows.1">
+        <typeNode href="generated_models/Activity2PetriNet.xmi#/1/@graph/@nodes.3"/>
+      </nodes>
+      <nodes id="d37829d2-da41-45e9-aa12-07699803227b" name="Choice0" outgoings="/6/@graph/@arrows.0" incomings="/6/@graph/@arrows.2">
+        <typeNode href="generated_models/Activity2PetriNet.xmi#/1/@graph/@nodes.2"/>
+      </nodes>
+      <nodes id="e5de0a2b-0f8d-47d4-b28b-eae903baea76" name="Trace0" outgoings="/6/@graph/@arrows.1 /6/@graph/@arrows.3">
+        <typeNode href="generated_models/Activity2PetriNet.xmi#/1/@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="f44d0703-35fe-47ca-aca8-0f99111f91f9" name="Trace1" outgoings="/6/@graph/@arrows.2 /6/@graph/@arrows.4">
+        <typeNode href="generated_models/Activity2PetriNet.xmi#/1/@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="109d3ef5-78f3-4df6-9f61-f6a6b399ce20" name="Transition0" incomings="/6/@graph/@arrows.3 /6/@graph/@arrows.6">
+        <typeNode href="generated_models/Activity2PetriNet.xmi#/1/@graph/@nodes.5"/>
+      </nodes>
+      <nodes id="b58522fd-2de4-424f-b1a2-7963c894e851" name="Transition1" outgoings="/6/@graph/@arrows.5" incomings="/6/@graph/@arrows.4">
+        <typeNode href="generated_models/Activity2PetriNet.xmi#/1/@graph/@nodes.5"/>
+      </nodes>
+      <nodes id="740b55b1-652b-4876-b990-cd4626b6389a" name="Place0" outgoings="/6/@graph/@arrows.6" incomings="/6/@graph/@arrows.5">
+        <typeNode href="generated_models/Activity2PetriNet.xmi#/1/@graph/@nodes.4"/>
+      </nodes>
+      <arrows id="58b53585-175a-456b-b230-21cede017ef5" name="ChoiceCondition0" source="/6/@graph/@nodes.1" target="/6/@graph/@nodes.0">
+        <typeArrow href="generated_models/Activity2PetriNet.xmi#/1/@graph/@arrows.8"/>
+      </arrows>
+      <arrows id="aa888055-eb85-4e89-a223-be332939b979" name="traceSource_Condition0" source="/6/@graph/@nodes.2" target="/6/@graph/@nodes.0">
+        <typeArrow href="generated_models/Activity2PetriNet.xmi#/1/@graph/@arrows.2"/>
+      </arrows>
+      <arrows id="f04ae668-1076-48be-b8ec-b9adb3688522" name="traceSource_Choice0" source="/6/@graph/@nodes.3" target="/6/@graph/@nodes.1">
+        <typeArrow href="generated_models/Activity2PetriNet.xmi#/1/@graph/@arrows.1"/>
+      </arrows>
+      <arrows id="60d2dd53-be44-409a-a0e3-28b76bd47566" name="traceTarget_Transition0" source="/6/@graph/@nodes.2" target="/6/@graph/@nodes.4">
+        <typeArrow href="generated_models/Activity2PetriNet.xmi#/1/@graph/@arrows.4"/>
+      </arrows>
+      <arrows id="ef7bcaba-9e03-4d38-9cf5-c4025fd6f797" name="traceTarget_Transition1" source="/6/@graph/@nodes.3" target="/6/@graph/@nodes.5">
+        <typeArrow href="generated_models/Activity2PetriNet.xmi#/1/@graph/@arrows.4"/>
+      </arrows>
+      <arrows id="cfba8b0c-128b-4300-983c-e26eda7ae432" name="TransitionToPlace0" source="/6/@graph/@nodes.5" target="/6/@graph/@nodes.6">
+        <typeArrow href="generated_models/Activity2PetriNet.xmi#/1/@graph/@arrows.10"/>
+      </arrows>
+      <arrows id="25b425e2-3ce3-451a-817b-7fc4b0e72180" name="PlaceToTransition0" source="/6/@graph/@nodes.6" target="/6/@graph/@nodes.4">
+        <typeArrow href="generated_models/Activity2PetriNet.xmi#/1/@graph/@arrows.11"/>
+      </arrows>
+    </graph>
+  </core:Specification>
+  <core:Specification>
+    <graph id="dd7a060c-fb68-4285-9d74-78aa37b06e2b">
+      <nodes id="f4e76d59-820c-430c-8b1c-b8f67bb41f6c" name="Activity0" outgoings="/7/@graph/@arrows.0" incomings="/7/@graph/@arrows.3">
+        <typeNode href="generated_models/Activity2PetriNet.xmi#/1/@graph/@nodes.1"/>
+      </nodes>
+      <nodes id="94e0c3b8-4cff-4cb2-9649-db678f0cea4a" name="Choice0" incomings="/7/@graph/@arrows.0 /7/@graph/@arrows.4">
+        <typeNode href="generated_models/Activity2PetriNet.xmi#/1/@graph/@nodes.2"/>
+      </nodes>
+      <nodes id="919af520-5678-4ead-a558-458aedb4d986" name="Trace0" outgoings="/7/@graph/@arrows.4 /7/@graph/@arrows.5">
+        <typeNode href="generated_models/Activity2PetriNet.xmi#/1/@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="d02de4e0-f27d-4ff8-a6bc-410ccc388245" name="Trace1" outgoings="/7/@graph/@arrows.3 /7/@graph/@arrows.6">
+        <typeNode href="generated_models/Activity2PetriNet.xmi#/1/@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="14497a57-9ddd-4358-94fa-704c15dd26a8" name="Transition0" incomings="/7/@graph/@arrows.2 /7/@graph/@arrows.5">
+        <typeNode href="generated_models/Activity2PetriNet.xmi#/1/@graph/@nodes.5"/>
+      </nodes>
+      <nodes id="f2b18fa1-df7d-4af0-a482-8a7315efc73d" name="Transition1" outgoings="/7/@graph/@arrows.1" incomings="/7/@graph/@arrows.6">
+        <typeNode href="generated_models/Activity2PetriNet.xmi#/1/@graph/@nodes.5"/>
+      </nodes>
+      <nodes id="c98ddcfa-505d-49ec-a8a5-5ce3a711818f" name="Place0" outgoings="/7/@graph/@arrows.2" incomings="/7/@graph/@arrows.1">
+        <typeNode href="generated_models/Activity2PetriNet.xmi#/1/@graph/@nodes.4"/>
+      </nodes>
+      <arrows id="46a66cd6-73a0-4e07-89c7-d066f5af5665" name="ChoiceIn0" source="/7/@graph/@nodes.0" target="/7/@graph/@nodes.1">
+        <typeArrow href="generated_models/Activity2PetriNet.xmi#/1/@graph/@arrows.7"/>
+      </arrows>
+      <arrows id="43f2471e-dc7e-4470-b113-4220ad5340a5" name="TransitionToPlace0" source="/7/@graph/@nodes.5" target="/7/@graph/@nodes.6">
+        <typeArrow href="generated_models/Activity2PetriNet.xmi#/1/@graph/@arrows.10"/>
+      </arrows>
+      <arrows id="5a8291ad-2978-4191-a03e-aa663c02c48a" name="PlaceToTransition0" source="/7/@graph/@nodes.6" target="/7/@graph/@nodes.4">
+        <typeArrow href="generated_models/Activity2PetriNet.xmi#/1/@graph/@arrows.11"/>
+      </arrows>
+      <arrows id="db653b85-0639-45e6-b28e-c00c79ac73d1" name="traceSource_Activity0" source="/7/@graph/@nodes.3" target="/7/@graph/@nodes.0">
+        <typeArrow href="generated_models/Activity2PetriNet.xmi#/1/@graph/@arrows.0"/>
+      </arrows>
+      <arrows id="163f4151-645e-4f99-a768-39af47fbcdca" name="traceSource_Choice0" source="/7/@graph/@nodes.2" target="/7/@graph/@nodes.1">
+        <typeArrow href="generated_models/Activity2PetriNet.xmi#/1/@graph/@arrows.1"/>
+      </arrows>
+      <arrows id="3ddba58e-e12b-428c-8343-0629016e0c89" name="traceTarget_Transition0" source="/7/@graph/@nodes.2" target="/7/@graph/@nodes.4">
+        <typeArrow href="generated_models/Activity2PetriNet.xmi#/1/@graph/@arrows.4"/>
+      </arrows>
+      <arrows id="f6c6653e-ae72-4483-8944-6b70041be215" name="traceTarget_Transition1" source="/7/@graph/@nodes.3" target="/7/@graph/@nodes.5">
+        <typeArrow href="generated_models/Activity2PetriNet.xmi#/1/@graph/@arrows.4"/>
+      </arrows>
+    </graph>
+  </core:Specification>
+  <core:Specification>
+    <graph id="b5366846-4ed9-41db-958e-a1a903e2b54c">
+      <nodes id="f98213a4-9154-411d-bc46-8bb500297e19" name="Condition0" outgoings="/8/@graph/@arrows.0" incomings="/8/@graph/@arrows.5">
+        <typeNode href="generated_models/Activity2PetriNet.xmi#/1/@graph/@nodes.3"/>
+      </nodes>
+      <nodes id="d633304d-4504-49f9-bd40-999f75bd619a" name="Activity0" incomings="/8/@graph/@arrows.0 /8/@graph/@arrows.6">
+        <typeNode href="generated_models/Activity2PetriNet.xmi#/1/@graph/@nodes.1"/>
+      </nodes>
+      <nodes id="37eabb27-c697-4607-ba46-ec88ba3d8313" name="Trace0" outgoings="/8/@graph/@arrows.4 /8/@graph/@arrows.5">
+        <typeNode href="generated_models/Activity2PetriNet.xmi#/1/@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="55adc6c4-5489-4891-9247-230bf31f994d" name="Trace1" outgoings="/8/@graph/@arrows.3 /8/@graph/@arrows.6">
+        <typeNode href="generated_models/Activity2PetriNet.xmi#/1/@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="c6478416-0566-4589-93b2-277943e1085b" name="Transition0" incomings="/8/@graph/@arrows.1 /8/@graph/@arrows.3">
+        <typeNode href="generated_models/Activity2PetriNet.xmi#/1/@graph/@nodes.5"/>
+      </nodes>
+      <nodes id="460f94ec-99e7-422a-a3e4-ae0821c4402b" name="Transition1" outgoings="/8/@graph/@arrows.2" incomings="/8/@graph/@arrows.4">
+        <typeNode href="generated_models/Activity2PetriNet.xmi#/1/@graph/@nodes.5"/>
+      </nodes>
+      <nodes id="661c7582-80a5-46b2-912c-58ea4fd26c92" name="Place0" outgoings="/8/@graph/@arrows.1" incomings="/8/@graph/@arrows.2">
+        <typeNode href="generated_models/Activity2PetriNet.xmi#/1/@graph/@nodes.4"/>
+      </nodes>
+      <arrows id="d853aa44-fed1-4be8-b068-1e2725966793" name="ChoiceOut0" source="/8/@graph/@nodes.0" target="/8/@graph/@nodes.1">
+        <typeArrow href="generated_models/Activity2PetriNet.xmi#/1/@graph/@arrows.9"/>
+      </arrows>
+      <arrows id="df8fbc4d-70af-4890-a255-ee9a6f1cefc1" name="PlaceToTransition0" source="/8/@graph/@nodes.6" target="/8/@graph/@nodes.4">
+        <typeArrow href="generated_models/Activity2PetriNet.xmi#/1/@graph/@arrows.11"/>
+      </arrows>
+      <arrows id="351b238f-1d4e-4428-855f-92b3cccb5e21" name="TransitionToPlace0" source="/8/@graph/@nodes.5" target="/8/@graph/@nodes.6">
+        <typeArrow href="generated_models/Activity2PetriNet.xmi#/1/@graph/@arrows.10"/>
+      </arrows>
+      <arrows id="2857ad0d-0336-4487-ab1e-b74e64ff862d" name="traceTarget_Transition0" source="/8/@graph/@nodes.3" target="/8/@graph/@nodes.4">
+        <typeArrow href="generated_models/Activity2PetriNet.xmi#/1/@graph/@arrows.4"/>
+      </arrows>
+      <arrows id="35287ba7-36a1-4cd5-8d7c-b8963d9f6a88" name="traceTarget_Transition1" source="/8/@graph/@nodes.2" target="/8/@graph/@nodes.5">
+        <typeArrow href="generated_models/Activity2PetriNet.xmi#/1/@graph/@arrows.4"/>
+      </arrows>
+      <arrows id="b5590666-fc20-4319-9087-af567b42f4ab" name="traceSource_Condition0" source="/8/@graph/@nodes.2" target="/8/@graph/@nodes.0">
+        <typeArrow href="generated_models/Activity2PetriNet.xmi#/1/@graph/@arrows.2"/>
+      </arrows>
+      <arrows id="8512c814-5b12-4996-bc2b-25840b2750b6" name="traceSource_Activity0" source="/8/@graph/@nodes.3" target="/8/@graph/@nodes.1">
+        <typeArrow href="generated_models/Activity2PetriNet.xmi#/1/@graph/@arrows.0"/>
+      </arrows>
+    </graph>
+  </core:Specification>
+</xmi:XMI>

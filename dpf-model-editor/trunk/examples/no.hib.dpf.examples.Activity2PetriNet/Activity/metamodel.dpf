@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:diagram="http://no.hib.dpf.diagram">
+  <diagram:DSpecification dType="/1" zoom="1.4" gridVisible="false">
+    <dGraph dType="/1/@dGraph">
+      <dNodes dType="/1/@dGraph/@dNodes.0" dOutgoings="/0/@dGraph/@dArrows.0 /0/@dGraph/@dArrows.1 /0/@dGraph/@dArrows.2" dIncomings="/0/@dGraph/@dArrows.0 /0/@dGraph/@dArrows.1 /0/@dGraph/@dArrows.4" dConstraints="/0/@dConstraints.0 /0/@dConstraints.1 /0/@dConstraints.4 /0/@dConstraints.5 /0/@dConstraints.6 /0/@dConstraints.7 /0/@dConstraints.8 /0/@dConstraints.9" location="492 84" size="145 49">
+        <node href="metamodel.xmi#/0/@graph/@nodes.0"/>
+      </dNodes>
+      <dNodes dType="/1/@dGraph/@dNodes.1" dOutgoings="/0/@dGraph/@dArrows.3" dIncomings="/0/@dGraph/@dArrows.2" dConstraints="/0/@dConstraints.2 /0/@dConstraints.3 /0/@dConstraints.6 /0/@dConstraints.7 /0/@dConstraints.8 /0/@dConstraints.9" location="288 312" size="112 49">
+        <node href="metamodel.xmi#/0/@graph/@nodes.1"/>
+      </dNodes>
+      <dNodes dType="/1/@dGraph/@dNodes.1" dOutgoings="/0/@dGraph/@dArrows.4" dIncomings="/0/@dGraph/@dArrows.3" dConstraints="/0/@dConstraints.2 /0/@dConstraints.3 /0/@dConstraints.4 /0/@dConstraints.5" location="804 312" size="133 49">
+        <node href="metamodel.xmi#/0/@graph/@nodes.2"/>
+      </dNodes>
+      <dArrows constraintsFrom="/0/@dConstraints.9" dType="/1/@dGraph/@dArrows.0" dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.0" dConstraints="/0/@dConstraints.1 /0/@dConstraints.9">
+        <arrow href="metamodel.xmi#/0/@graph/@arrows.0"/>
+        <nameOffset offset="115 -107" len="25" index="4"/>
+        <bendpoints offset="-24 0" len="49"/>
+        <bendpoints offset="-24 145" len="49"/>
+        <bendpoints offset="17 241" len="49"/>
+        <bendpoints offset="74 0" len="49"/>
+      </dArrows>
+      <dArrows dType="/1/@dGraph/@dArrows.0" dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.0" dConstraints="/0/@dConstraints.0">
+        <arrow href="metamodel.xmi#/0/@graph/@arrows.1"/>
+        <nameOffset offset="92 11" len="89"/>
+        <bendpoints offset="-50 -113" len="49"/>
+        <bendpoints offset="-49 -228" len="49"/>
+        <bendpoints offset="29 -228" len="49"/>
+      </dArrows>
+      <dArrows constraintsTo="/0/@dConstraints.9" dType="/1/@dGraph/@dArrows.2" dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.1" dConstraints="/0/@dConstraints.6 /0/@dConstraints.7 /0/@dConstraints.8 /0/@dConstraints.9">
+        <arrow href="metamodel.xmi#/0/@graph/@arrows.2"/>
+        <nameOffset offset="197 16" len="316"/>
+      </dArrows>
+      <dArrows dType="/1/@dGraph/@dArrows.1" dSource="/0/@dGraph/@dNodes.1" dTarget="/0/@dGraph/@dNodes.2" dConstraints="/0/@dConstraints.2 /0/@dConstraints.3">
+        <arrow href="metamodel.xmi#/0/@graph/@arrows.3"/>
+        <nameOffset offset="178 6" len="516"/>
+      </dArrows>
+      <dArrows dType="/1/@dGraph/@dArrows.3" dSource="/0/@dGraph/@dNodes.2" dTarget="/0/@dGraph/@dNodes.0" dConstraints="/0/@dConstraints.4 /0/@dConstraints.5">
+        <arrow href="metamodel.xmi#/0/@graph/@arrows.4"/>
+        <nameOffset offset="181 -30" len="363"/>
+      </dArrows>
+      <graph href="metamodel.xmi#/0/@graph"/>
+    </dGraph>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/0/@dGraph/@dNodes.0" dArrows="/0/@dGraph/@dArrows.1" source="/0/@dGraph/@dArrows.1">
+      <constraint href="metamodel.xmi#/0/@constraints.0"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.2"/>
+      <offset offset="58 136" len="78" index="2"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/0/@dGraph/@dNodes.0" dArrows="/0/@dGraph/@dArrows.0" source="/0/@dGraph/@dArrows.0">
+      <constraint href="metamodel.xmi#/0/@constraints.1"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.2"/>
+      <offset offset="10 -142" len="23"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/0/@dGraph/@dNodes.1 /0/@dGraph/@dNodes.2" dArrows="/0/@dGraph/@dArrows.3" source="/0/@dGraph/@dArrows.3">
+      <constraint href="metamodel.xmi#/0/@constraints.2"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.1"/>
+      <offset offset="414 -19" len="516"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/0/@dGraph/@dNodes.1 /0/@dGraph/@dNodes.2" dArrows="/0/@dGraph/@dArrows.3" source="/0/@dGraph/@dArrows.3">
+      <constraint href="metamodel.xmi#/0/@constraints.3"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.3"/>
+      <offset offset="352 -19" len="516"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/0/@dGraph/@dNodes.2 /0/@dGraph/@dNodes.0" dArrows="/0/@dGraph/@dArrows.4" source="/0/@dGraph/@dArrows.4">
+      <constraint href="metamodel.xmi#/0/@constraints.4"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.0"/>
+      <offset offset="263 0" len="381"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/0/@dGraph/@dNodes.2 /0/@dGraph/@dNodes.0" dArrows="/0/@dGraph/@dArrows.4" source="/0/@dGraph/@dArrows.4">
+      <constraint href="metamodel.xmi#/0/@constraints.5"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.3"/>
+      <offset offset="312 -9" len="381"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/0/@dGraph/@dNodes.0 /0/@dGraph/@dNodes.1" dArrows="/0/@dGraph/@dArrows.2" source="/0/@dGraph/@dArrows.2">
+      <constraint href="metamodel.xmi#/0/@constraints.6"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.3"/>
+      <offset offset="259 25" len="316"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/0/@dGraph/@dNodes.0 /0/@dGraph/@dNodes.1" dArrows="/0/@dGraph/@dArrows.2" source="/0/@dGraph/@dArrows.2">
+      <constraint href="metamodel.xmi#/0/@constraints.7"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.0"/>
+      <offset offset="277 42" len="316"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/0/@dGraph/@dNodes.0 /0/@dGraph/@dNodes.1" dArrows="/0/@dGraph/@dArrows.2" source="/0/@dGraph/@dArrows.2">
+      <constraint href="metamodel.xmi#/0/@constraints.8"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.1"/>
+      <offset offset="298 62" len="316"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DGenericArrowConstraint" dNodes="/0/@dGraph/@dNodes.0 /0/@dGraph/@dNodes.1" dArrows="/0/@dGraph/@dArrows.0 /0/@dGraph/@dArrows.2" source="/0/@dGraph/@dArrows.0" target="/0/@dGraph/@dArrows.2">
+      <constraint href="metamodel.xmi#/0/@constraints.9"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.8"/>
+    </dConstraints>
+    <specification href="metamodel.xmi#/0"/>
+  </diagram:DSpecification>
+  <diagram:DSpecification gridVisible="false">
+    <dGraph>
+      <dNodes dOutgoings="/1/@dGraph/@dArrows.0 /1/@dGraph/@dArrows.2" dIncomings="/1/@dGraph/@dArrows.0 /1/@dGraph/@dArrows.3" dConstraints="/1/@dConstraints.0 /1/@dConstraints.1 /1/@dConstraints.2" location="204 156" size="100 42">
+        <node href="metametamodel.xmi#//@graph/@nodes.0"/>
+      </dNodes>
+      <dNodes dOutgoings="/1/@dGraph/@dArrows.1 /1/@dGraph/@dArrows.3" dIncomings="/1/@dGraph/@dArrows.1 /1/@dGraph/@dArrows.2" dConstraints="/1/@dConstraints.0 /1/@dConstraints.1 /1/@dConstraints.2" location="648 156" size="100 42">
+        <node href="metametamodel.xmi#//@graph/@nodes.1"/>
+      </dNodes>
+      <dArrows dSource="/1/@dGraph/@dNodes.0" dTarget="/1/@dGraph/@dNodes.0">
+        <arrow href="metametamodel.xmi#//@graph/@arrows.0"/>
+        <nameOffset offset="39 45" len="84" index="2"/>
+        <bendpoints offset="-15 0" len="30"/>
+        <bendpoints offset="-15 100" len="30"/>
+        <bendpoints offset="45 100" len="30"/>
+        <bendpoints offset="45 0" len="30"/>
+      </dArrows>
+      <dArrows constraintsFrom="/1/@dConstraints.1 /1/@dConstraints.2" dSource="/1/@dGraph/@dNodes.1" dTarget="/1/@dGraph/@dNodes.1" dConstraints="/1/@dConstraints.1 /1/@dConstraints.2">
+        <arrow href="metametamodel.xmi#//@graph/@arrows.1"/>
+        <nameOffset offset="62 44" len="143" index="2"/>
+        <bendpoints offset="-34 2" len="30"/>
+        <bendpoints offset="-36 -143" len="30"/>
+        <bendpoints offset="66 -144" len="30"/>
+        <bendpoints offset="70 1" len="30"/>
+      </dArrows>
+      <dArrows constraintsTo="/1/@dConstraints.1" dSource="/1/@dGraph/@dNodes.0" dTarget="/1/@dGraph/@dNodes.1" dConstraints="/1/@dConstraints.1">
+        <arrow href="metametamodel.xmi#//@graph/@arrows.2"/>
+        <nameOffset offset="246 14" len="444"/>
+      </dArrows>
+      <dArrows constraintsTo="/1/@dConstraints.2" dSource="/1/@dGraph/@dNodes.1" dTarget="/1/@dGraph/@dNodes.0" dConstraints="/1/@dConstraints.0 /1/@dConstraints.2">
+        <arrow href="metametamodel.xmi#//@graph/@arrows.3"/>
+        <nameOffset offset="282 29" len="444"/>
+      </dArrows>
+      <graph href="metamodel.xmi#/1/@graph"/>
+    </dGraph>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/1/@dGraph/@dNodes.1 /1/@dGraph/@dNodes.0" dArrows="/1/@dGraph/@dArrows.3" source="/1/@dGraph/@dArrows.3">
+      <constraint href="metametamodel.xmi#//@constraints.0"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.3"/>
+      <offset offset="378 27" len="444"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DGenericArrowConstraint" dNodes="/1/@dGraph/@dNodes.0 /1/@dGraph/@dNodes.1" dArrows="/1/@dGraph/@dArrows.2 /1/@dGraph/@dArrows.1" source="/1/@dGraph/@dArrows.1" target="/1/@dGraph/@dArrows.2">
+      <constraint href="metametamodel.xmi#//@constraints.1"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.5"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DGenericArrowConstraint" dNodes="/1/@dGraph/@dNodes.1 /1/@dGraph/@dNodes.0" dArrows="/1/@dGraph/@dArrows.3 /1/@dGraph/@dArrows.1" source="/1/@dGraph/@dArrows.1" target="/1/@dGraph/@dArrows.3">
+      <constraint href="metametamodel.xmi#//@constraints.2"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.7"/>
+    </dConstraints>
+    <specification href="metamodel.xmi#/1"/>
+  </diagram:DSpecification>
+</xmi:XMI>

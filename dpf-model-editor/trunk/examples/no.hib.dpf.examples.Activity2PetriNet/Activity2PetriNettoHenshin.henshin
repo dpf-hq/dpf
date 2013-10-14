@@ -1,0 +1,1944 @@
+<?xml version="1.0" encoding="ASCII"?>
+<henshin:Module xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:henshin="http://www.eclipse.org/emf/2011/Henshin" xmi:id="_ejcCsDS0EeOjkaf-ripOcw">
+  <imports href="http://no.hib.dpf.core#/"/>
+  <imports href="http://www.eclipse.org/emf/2011/Henshin/Trace#/"/>
+  <units xsi:type="henshin:Rule" xmi:id="_ejcpwDS0EeOjkaf-ripOcw" name="translateActivity" injectiveMatching="false">
+    <parameters xmi:id="_ejcpwTS0EeOjkaf-ripOcw" name="name0">
+      <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </parameters>
+    <lhs xmi:id="_ejcpwjS0EeOjkaf-ripOcw" name="Lhs">
+      <nodes xmi:id="_ejcpwzS0EeOjkaf-ripOcw" name="Activity0" outgoing="_ejcpxjS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+        <attributes xmi:id="_ejcpxDS0EeOjkaf-ripOcw" value="name0">
+          <type href="http://no.hib.dpf.core#//Node/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejcpxTS0EeOjkaf-ripOcw" name="Activity0DNodeType" incoming="_ejcpxjS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <edges xmi:id="_ejcpxjS0EeOjkaf-ripOcw" source="_ejcpwzS0EeOjkaf-ripOcw" target="_ejcpxTS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <formula xsi:type="henshin:And" xmi:id="_ejcpxzS0EeOjkaf-ripOcw">
+        <left xsi:type="henshin:NestedCondition" xmi:id="_ejcpyDS0EeOjkaf-ripOcw">
+          <conclusion xmi:id="_ejcpyTS0EeOjkaf-ripOcw">
+            <nodes xmi:id="_ejcpyjS0EeOjkaf-ripOcw" name="Activity0DNodeType" incoming="_ejcpzTS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node"/>
+              <attributes xmi:id="_ejcpyzS0EeOjkaf-ripOcw" value="&quot;Activity&quot;">
+                <type href="http://no.hib.dpf.core#//Node/name"/>
+              </attributes>
+            </nodes>
+            <nodes xmi:id="_ejcpzDS0EeOjkaf-ripOcw" name="Activity0" outgoing="_ejcpzTS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node"/>
+            </nodes>
+            <edges xmi:id="_ejcpzTS0EeOjkaf-ripOcw" source="_ejcpzDS0EeOjkaf-ripOcw" target="_ejcpyjS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+            </edges>
+          </conclusion>
+          <mappings xmi:id="_ejcpzjS0EeOjkaf-ripOcw" origin="_ejcpxTS0EeOjkaf-ripOcw" image="_ejcpyjS0EeOjkaf-ripOcw"/>
+          <mappings xmi:id="_ejcpzzS0EeOjkaf-ripOcw" origin="_ejcpwzS0EeOjkaf-ripOcw" image="_ejcpzDS0EeOjkaf-ripOcw"/>
+        </left>
+        <right xsi:type="henshin:Not" xmi:id="_ejcp0DS0EeOjkaf-ripOcw">
+          <child xsi:type="henshin:NestedCondition" xmi:id="_ejcp0TS0EeOjkaf-ripOcw">
+            <conclusion xmi:id="_ejcp0jS0EeOjkaf-ripOcw">
+              <nodes xmi:id="_ejcp0zS0EeOjkaf-ripOcw" name="Trace0" outgoing="_ejcp1TS0EeOjkaf-ripOcw">
+                <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+              </nodes>
+              <nodes xmi:id="_ejcp1DS0EeOjkaf-ripOcw" name="Activity0" incoming="_ejcp1TS0EeOjkaf-ripOcw">
+                <type href="http://no.hib.dpf.core#//Node"/>
+              </nodes>
+              <edges xmi:id="_ejcp1TS0EeOjkaf-ripOcw" source="_ejcp0zS0EeOjkaf-ripOcw" target="_ejcp1DS0EeOjkaf-ripOcw">
+                <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+              </edges>
+            </conclusion>
+            <mappings xmi:id="_ejcp1jS0EeOjkaf-ripOcw" origin="_ejcpwzS0EeOjkaf-ripOcw" image="_ejcp1DS0EeOjkaf-ripOcw"/>
+          </child>
+        </right>
+      </formula>
+    </lhs>
+    <rhs xmi:id="_ejcp1zS0EeOjkaf-ripOcw" name="Rhs">
+      <nodes xmi:id="_ejcp2DS0EeOjkaf-ripOcw" name="Activity0" incoming="_ejcp4jS0EeOjkaf-ripOcw" outgoing="_ejcp4DS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+        <attributes xmi:id="_ejcp2TS0EeOjkaf-ripOcw" value="name0">
+          <type href="http://no.hib.dpf.core#//Node/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejcp2jS0EeOjkaf-ripOcw" name="Activity0DNodeType" incoming="_ejcp4DS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejcp2zS0EeOjkaf-ripOcw" name="Transition0" incoming="_ejcp4zS0EeOjkaf-ripOcw" outgoing="_ejcp4TS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+        <attributes xmi:id="_ejcp3DS0EeOjkaf-ripOcw" value="name0">
+          <type href="http://no.hib.dpf.core#//Node/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejcp3TS0EeOjkaf-ripOcw" name="Transition0DNodeType" incoming="_ejcp4TS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+        <attributes xmi:id="_ejcp3jS0EeOjkaf-ripOcw" value="&quot;Transition&quot;">
+          <type href="http://no.hib.dpf.core#//Node/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejcp3zS0EeOjkaf-ripOcw" name="Trace0" outgoing="_ejcp4jS0EeOjkaf-ripOcw _ejcp4zS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <edges xmi:id="_ejcp4DS0EeOjkaf-ripOcw" source="_ejcp2DS0EeOjkaf-ripOcw" target="_ejcp2jS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejcp4TS0EeOjkaf-ripOcw" source="_ejcp2zS0EeOjkaf-ripOcw" target="_ejcp3TS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejcp4jS0EeOjkaf-ripOcw" source="_ejcp3zS0EeOjkaf-ripOcw" target="_ejcp2DS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xmi:id="_ejcp4zS0EeOjkaf-ripOcw" source="_ejcp3zS0EeOjkaf-ripOcw" target="_ejcp2zS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+    </rhs>
+    <mappings xmi:id="_ejcp5DS0EeOjkaf-ripOcw" origin="_ejcpwzS0EeOjkaf-ripOcw" image="_ejcp2DS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejcp5TS0EeOjkaf-ripOcw" origin="_ejcpxTS0EeOjkaf-ripOcw" image="_ejcp2jS0EeOjkaf-ripOcw"/>
+  </units>
+  <units xsi:type="henshin:LoopUnit" xmi:id="_ejcp5jS0EeOjkaf-ripOcw" name="translateActivity_Loop" subUnit="_ejcpwDS0EeOjkaf-ripOcw"/>
+  <units xsi:type="henshin:Rule" xmi:id="_ejcp5zS0EeOjkaf-ripOcw" name="translateCondition" injectiveMatching="false">
+    <parameters xmi:id="_ejcp6DS0EeOjkaf-ripOcw" name="name0">
+      <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </parameters>
+    <lhs xmi:id="_ejcp6TS0EeOjkaf-ripOcw" name="Lhs">
+      <nodes xmi:id="_ejcp6jS0EeOjkaf-ripOcw" name="Condition0" outgoing="_ejcp7TS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+        <attributes xmi:id="_ejcp6zS0EeOjkaf-ripOcw" value="name0">
+          <type href="http://no.hib.dpf.core#//Node/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejcp7DS0EeOjkaf-ripOcw" name="Condition0DNodeType" incoming="_ejcp7TS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <edges xmi:id="_ejcp7TS0EeOjkaf-ripOcw" source="_ejcp6jS0EeOjkaf-ripOcw" target="_ejcp7DS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <formula xsi:type="henshin:And" xmi:id="_ejcp7jS0EeOjkaf-ripOcw">
+        <left xsi:type="henshin:NestedCondition" xmi:id="_ejcp7zS0EeOjkaf-ripOcw">
+          <conclusion xmi:id="_ejcp8DS0EeOjkaf-ripOcw">
+            <nodes xmi:id="_ejcp8TS0EeOjkaf-ripOcw" name="Condition0DNodeType" incoming="_ejcp9DS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node"/>
+              <attributes xmi:id="_ejcp8jS0EeOjkaf-ripOcw" value="&quot;Condition&quot;">
+                <type href="http://no.hib.dpf.core#//Node/name"/>
+              </attributes>
+            </nodes>
+            <nodes xmi:id="_ejcp8zS0EeOjkaf-ripOcw" name="Condition0" outgoing="_ejcp9DS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node"/>
+            </nodes>
+            <edges xmi:id="_ejcp9DS0EeOjkaf-ripOcw" source="_ejcp8zS0EeOjkaf-ripOcw" target="_ejcp8TS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+            </edges>
+          </conclusion>
+          <mappings xmi:id="_ejcp9TS0EeOjkaf-ripOcw" origin="_ejcp7DS0EeOjkaf-ripOcw" image="_ejcp8TS0EeOjkaf-ripOcw"/>
+          <mappings xmi:id="_ejcp9jS0EeOjkaf-ripOcw" origin="_ejcp6jS0EeOjkaf-ripOcw" image="_ejcp8zS0EeOjkaf-ripOcw"/>
+        </left>
+        <right xsi:type="henshin:Not" xmi:id="_ejcp9zS0EeOjkaf-ripOcw">
+          <child xsi:type="henshin:NestedCondition" xmi:id="_ejcp-DS0EeOjkaf-ripOcw">
+            <conclusion xmi:id="_ejcp-TS0EeOjkaf-ripOcw">
+              <nodes xmi:id="_ejcp-jS0EeOjkaf-ripOcw" name="Trace0" outgoing="_ejcp_DS0EeOjkaf-ripOcw">
+                <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+              </nodes>
+              <nodes xmi:id="_ejcp-zS0EeOjkaf-ripOcw" name="Condition0" incoming="_ejcp_DS0EeOjkaf-ripOcw">
+                <type href="http://no.hib.dpf.core#//Node"/>
+              </nodes>
+              <edges xmi:id="_ejcp_DS0EeOjkaf-ripOcw" source="_ejcp-jS0EeOjkaf-ripOcw" target="_ejcp-zS0EeOjkaf-ripOcw">
+                <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+              </edges>
+            </conclusion>
+            <mappings xmi:id="_ejcp_TS0EeOjkaf-ripOcw" origin="_ejcp6jS0EeOjkaf-ripOcw" image="_ejcp-zS0EeOjkaf-ripOcw"/>
+          </child>
+        </right>
+      </formula>
+    </lhs>
+    <rhs xmi:id="_ejcp_jS0EeOjkaf-ripOcw" name="Rhs">
+      <nodes xmi:id="_ejcp_zS0EeOjkaf-ripOcw" name="Condition0" incoming="_ejcqCTS0EeOjkaf-ripOcw" outgoing="_ejcqBzS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+        <attributes xmi:id="_ejcqADS0EeOjkaf-ripOcw" value="name0">
+          <type href="http://no.hib.dpf.core#//Node/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejcqATS0EeOjkaf-ripOcw" name="Condition0DNodeType" incoming="_ejcqBzS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejcqAjS0EeOjkaf-ripOcw" name="Transition0" incoming="_ejcqCjS0EeOjkaf-ripOcw" outgoing="_ejcqCDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+        <attributes xmi:id="_ejcqAzS0EeOjkaf-ripOcw" value="name0">
+          <type href="http://no.hib.dpf.core#//Node/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejcqBDS0EeOjkaf-ripOcw" name="Transition0DNodeType" incoming="_ejcqCDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+        <attributes xmi:id="_ejcqBTS0EeOjkaf-ripOcw" value="&quot;Transition&quot;">
+          <type href="http://no.hib.dpf.core#//Node/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejcqBjS0EeOjkaf-ripOcw" name="Trace0" outgoing="_ejcqCTS0EeOjkaf-ripOcw _ejcqCjS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <edges xmi:id="_ejcqBzS0EeOjkaf-ripOcw" source="_ejcp_zS0EeOjkaf-ripOcw" target="_ejcqATS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejcqCDS0EeOjkaf-ripOcw" source="_ejcqAjS0EeOjkaf-ripOcw" target="_ejcqBDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejcqCTS0EeOjkaf-ripOcw" source="_ejcqBjS0EeOjkaf-ripOcw" target="_ejcp_zS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xmi:id="_ejcqCjS0EeOjkaf-ripOcw" source="_ejcqBjS0EeOjkaf-ripOcw" target="_ejcqAjS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+    </rhs>
+    <mappings xmi:id="_ejcqCzS0EeOjkaf-ripOcw" origin="_ejcp6jS0EeOjkaf-ripOcw" image="_ejcp_zS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejcqDDS0EeOjkaf-ripOcw" origin="_ejcp7DS0EeOjkaf-ripOcw" image="_ejcqATS0EeOjkaf-ripOcw"/>
+  </units>
+  <units xsi:type="henshin:LoopUnit" xmi:id="_ejcqDTS0EeOjkaf-ripOcw" name="translateCondition_Loop" subUnit="_ejcp5zS0EeOjkaf-ripOcw"/>
+  <units xsi:type="henshin:Rule" xmi:id="_ejcqDjS0EeOjkaf-ripOcw" name="translateChoice" injectiveMatching="false">
+    <parameters xmi:id="_ejcqDzS0EeOjkaf-ripOcw" name="name0">
+      <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </parameters>
+    <lhs xmi:id="_ejcqEDS0EeOjkaf-ripOcw" name="Lhs">
+      <nodes xmi:id="_ejcqETS0EeOjkaf-ripOcw" name="Choice0" outgoing="_ejcqFDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+        <attributes xmi:id="_ejcqEjS0EeOjkaf-ripOcw" value="name0">
+          <type href="http://no.hib.dpf.core#//Node/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejcqEzS0EeOjkaf-ripOcw" name="Choice0DNodeType" incoming="_ejcqFDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <edges xmi:id="_ejcqFDS0EeOjkaf-ripOcw" source="_ejcqETS0EeOjkaf-ripOcw" target="_ejcqEzS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <formula xsi:type="henshin:And" xmi:id="_ejcqFTS0EeOjkaf-ripOcw">
+        <left xsi:type="henshin:NestedCondition" xmi:id="_ejcqFjS0EeOjkaf-ripOcw">
+          <conclusion xmi:id="_ejcqFzS0EeOjkaf-ripOcw">
+            <nodes xmi:id="_ejcqGDS0EeOjkaf-ripOcw" name="Choice0DNodeType" incoming="_ejcqGzS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node"/>
+              <attributes xmi:id="_ejcqGTS0EeOjkaf-ripOcw" value="&quot;Choice&quot;">
+                <type href="http://no.hib.dpf.core#//Node/name"/>
+              </attributes>
+            </nodes>
+            <nodes xmi:id="_ejcqGjS0EeOjkaf-ripOcw" name="Choice0" outgoing="_ejcqGzS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node"/>
+            </nodes>
+            <edges xmi:id="_ejcqGzS0EeOjkaf-ripOcw" source="_ejcqGjS0EeOjkaf-ripOcw" target="_ejcqGDS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+            </edges>
+          </conclusion>
+          <mappings xmi:id="_ejcqHDS0EeOjkaf-ripOcw" origin="_ejcqEzS0EeOjkaf-ripOcw" image="_ejcqGDS0EeOjkaf-ripOcw"/>
+          <mappings xmi:id="_ejcqHTS0EeOjkaf-ripOcw" origin="_ejcqETS0EeOjkaf-ripOcw" image="_ejcqGjS0EeOjkaf-ripOcw"/>
+        </left>
+        <right xsi:type="henshin:Not" xmi:id="_ejcqHjS0EeOjkaf-ripOcw">
+          <child xsi:type="henshin:NestedCondition" xmi:id="_ejcqHzS0EeOjkaf-ripOcw">
+            <conclusion xmi:id="_ejcqIDS0EeOjkaf-ripOcw">
+              <nodes xmi:id="_ejcqITS0EeOjkaf-ripOcw" name="Trace0" outgoing="_ejcqIzS0EeOjkaf-ripOcw">
+                <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+              </nodes>
+              <nodes xmi:id="_ejcqIjS0EeOjkaf-ripOcw" name="Choice0" incoming="_ejcqIzS0EeOjkaf-ripOcw">
+                <type href="http://no.hib.dpf.core#//Node"/>
+              </nodes>
+              <edges xmi:id="_ejcqIzS0EeOjkaf-ripOcw" source="_ejcqITS0EeOjkaf-ripOcw" target="_ejcqIjS0EeOjkaf-ripOcw">
+                <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+              </edges>
+            </conclusion>
+            <mappings xmi:id="_ejcqJDS0EeOjkaf-ripOcw" origin="_ejcqETS0EeOjkaf-ripOcw" image="_ejcqIjS0EeOjkaf-ripOcw"/>
+          </child>
+        </right>
+      </formula>
+    </lhs>
+    <rhs xmi:id="_ejcqJTS0EeOjkaf-ripOcw" name="Rhs">
+      <nodes xmi:id="_ejcqJjS0EeOjkaf-ripOcw" name="Choice0" incoming="_ejcqMDS0EeOjkaf-ripOcw" outgoing="_ejcqLjS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+        <attributes xmi:id="_ejcqJzS0EeOjkaf-ripOcw" value="name0">
+          <type href="http://no.hib.dpf.core#//Node/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejcqKDS0EeOjkaf-ripOcw" name="Choice0DNodeType" incoming="_ejcqLjS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejcqKTS0EeOjkaf-ripOcw" name="Transition0" incoming="_ejcqMTS0EeOjkaf-ripOcw" outgoing="_ejcqLzS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+        <attributes xmi:id="_ejcqKjS0EeOjkaf-ripOcw" value="name0">
+          <type href="http://no.hib.dpf.core#//Node/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejcqKzS0EeOjkaf-ripOcw" name="Transition0DNodeType" incoming="_ejcqLzS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+        <attributes xmi:id="_ejcqLDS0EeOjkaf-ripOcw" value="&quot;Transition&quot;">
+          <type href="http://no.hib.dpf.core#//Node/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejcqLTS0EeOjkaf-ripOcw" name="Trace0" outgoing="_ejcqMDS0EeOjkaf-ripOcw _ejcqMTS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <edges xmi:id="_ejcqLjS0EeOjkaf-ripOcw" source="_ejcqJjS0EeOjkaf-ripOcw" target="_ejcqKDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejcqLzS0EeOjkaf-ripOcw" source="_ejcqKTS0EeOjkaf-ripOcw" target="_ejcqKzS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejcqMDS0EeOjkaf-ripOcw" source="_ejcqLTS0EeOjkaf-ripOcw" target="_ejcqJjS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xmi:id="_ejcqMTS0EeOjkaf-ripOcw" source="_ejcqLTS0EeOjkaf-ripOcw" target="_ejcqKTS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+    </rhs>
+    <mappings xmi:id="_ejcqMjS0EeOjkaf-ripOcw" origin="_ejcqETS0EeOjkaf-ripOcw" image="_ejcqJjS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejcqMzS0EeOjkaf-ripOcw" origin="_ejcqEzS0EeOjkaf-ripOcw" image="_ejcqKDS0EeOjkaf-ripOcw"/>
+  </units>
+  <units xsi:type="henshin:LoopUnit" xmi:id="_ejcqNDS0EeOjkaf-ripOcw" name="translateChoice_Loop" subUnit="_ejcqDjS0EeOjkaf-ripOcw"/>
+  <units xsi:type="henshin:Rule" xmi:id="_ejcqNTS0EeOjkaf-ripOcw" name="translateSequence" injectiveMatching="false">
+    <parameters xmi:id="_ejcqNjS0EeOjkaf-ripOcw" name="name0">
+      <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </parameters>
+    <parameters xmi:id="_ejcqNzS0EeOjkaf-ripOcw" name="name1">
+      <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </parameters>
+    <parameters xmi:id="_ejcqODS0EeOjkaf-ripOcw" name="name2">
+      <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </parameters>
+    <lhs xmi:id="_ejcqOTS0EeOjkaf-ripOcw" name="Lhs">
+      <nodes xmi:id="_ejcqOjS0EeOjkaf-ripOcw" name="Transition1" incoming="_ejcqTTS0EeOjkaf-ripOcw" outgoing="_ejcqRzS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejcqOzS0EeOjkaf-ripOcw" name="Transition1DNodeType" incoming="_ejcqRzS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejcqPDS0EeOjkaf-ripOcw" name="Transition0" incoming="_ejcqTzS0EeOjkaf-ripOcw" outgoing="_ejcqSDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejcqPTS0EeOjkaf-ripOcw" name="Transition0DNodeType" incoming="_ejcqSDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejcqPjS0EeOjkaf-ripOcw" name="Activity1" incoming="_ejcqTjS0EeOjkaf-ripOcw _ejcqUTS0EeOjkaf-ripOcw" outgoing="_ejcqSTS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejcqPzS0EeOjkaf-ripOcw" name="Activity1DNodeType" incoming="_ejcqSTS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejcqQDS0EeOjkaf-ripOcw" name="Activity0" incoming="_ejcqTDS0EeOjkaf-ripOcw _ejcqUDS0EeOjkaf-ripOcw" outgoing="_ejcqSjS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejcqQTS0EeOjkaf-ripOcw" name="Activity0DNodeType" incoming="_ejcqSjS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejcqQjS0EeOjkaf-ripOcw" name="Sequence0" outgoing="_ejcqSzS0EeOjkaf-ripOcw _ejcqUDS0EeOjkaf-ripOcw _ejcqUTS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow"/>
+        <attributes xmi:id="_ejcqQzS0EeOjkaf-ripOcw" value="name0">
+          <type href="http://no.hib.dpf.core#//Node/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejcqRDS0EeOjkaf-ripOcw" name="Sequence0ArrowType" incoming="_ejcqSzS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow"/>
+      </nodes>
+      <nodes xmi:id="_ejcqRTS0EeOjkaf-ripOcw" name="Trace0" outgoing="_ejcqTDS0EeOjkaf-ripOcw _ejcqTTS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <nodes xmi:id="_ejcqRjS0EeOjkaf-ripOcw" name="Trace1" outgoing="_ejcqTjS0EeOjkaf-ripOcw _ejcqTzS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <edges xmi:id="_ejcqRzS0EeOjkaf-ripOcw" source="_ejcqOjS0EeOjkaf-ripOcw" target="_ejcqOzS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejcqSDS0EeOjkaf-ripOcw" source="_ejcqPDS0EeOjkaf-ripOcw" target="_ejcqPTS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejcqSTS0EeOjkaf-ripOcw" source="_ejcqPjS0EeOjkaf-ripOcw" target="_ejcqPzS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejcqSjS0EeOjkaf-ripOcw" source="_ejcqQDS0EeOjkaf-ripOcw" target="_ejcqQTS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejcqSzS0EeOjkaf-ripOcw" source="_ejcqQjS0EeOjkaf-ripOcw" target="_ejcqRDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/typeArrow"/>
+      </edges>
+      <edges xmi:id="_ejcqTDS0EeOjkaf-ripOcw" source="_ejcqRTS0EeOjkaf-ripOcw" target="_ejcqQDS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xmi:id="_ejcqTTS0EeOjkaf-ripOcw" source="_ejcqRTS0EeOjkaf-ripOcw" target="_ejcqOjS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xmi:id="_ejcqTjS0EeOjkaf-ripOcw" source="_ejcqRjS0EeOjkaf-ripOcw" target="_ejcqPjS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xmi:id="_ejcqTzS0EeOjkaf-ripOcw" source="_ejcqRjS0EeOjkaf-ripOcw" target="_ejcqPDS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xmi:id="_ejcqUDS0EeOjkaf-ripOcw" source="_ejcqQjS0EeOjkaf-ripOcw" target="_ejcqQDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/source"/>
+      </edges>
+      <edges xmi:id="_ejcqUTS0EeOjkaf-ripOcw" source="_ejcqQjS0EeOjkaf-ripOcw" target="_ejcqPjS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/target"/>
+      </edges>
+      <formula xsi:type="henshin:And" xmi:id="_ejcqUjS0EeOjkaf-ripOcw">
+        <left xsi:type="henshin:NestedCondition" xmi:id="_ejcqUzS0EeOjkaf-ripOcw">
+          <conclusion xmi:id="_ejcqVDS0EeOjkaf-ripOcw">
+            <nodes xmi:id="_ejcqVTS0EeOjkaf-ripOcw" name="Transition1DNodeType" incoming="_ejcqZDS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node"/>
+              <attributes xmi:id="_ejcqVjS0EeOjkaf-ripOcw" value="&quot;Transition&quot;">
+                <type href="http://no.hib.dpf.core#//Node/name"/>
+              </attributes>
+            </nodes>
+            <nodes xmi:id="_ejcqVzS0EeOjkaf-ripOcw" name="Transition1" outgoing="_ejcqZDS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node"/>
+            </nodes>
+            <nodes xmi:id="_ejcqWDS0EeOjkaf-ripOcw" name="Transition0DNodeType" incoming="_ejcqZTS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node"/>
+              <attributes xmi:id="_ejcqWTS0EeOjkaf-ripOcw" value="&quot;Transition&quot;">
+                <type href="http://no.hib.dpf.core#//Node/name"/>
+              </attributes>
+            </nodes>
+            <nodes xmi:id="_ejcqWjS0EeOjkaf-ripOcw" name="Transition0" outgoing="_ejcqZTS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node"/>
+            </nodes>
+            <nodes xmi:id="_ejcqWzS0EeOjkaf-ripOcw" name="Activity1DNodeType" incoming="_ejcqZjS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node"/>
+              <attributes xmi:id="_ejcqXDS0EeOjkaf-ripOcw" value="&quot;Activity&quot;">
+                <type href="http://no.hib.dpf.core#//Node/name"/>
+              </attributes>
+            </nodes>
+            <nodes xmi:id="_ejcqXTS0EeOjkaf-ripOcw" name="Activity1" outgoing="_ejcqZjS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node"/>
+            </nodes>
+            <nodes xmi:id="_ejcqXjS0EeOjkaf-ripOcw" name="Activity0DNodeType" incoming="_ejcqZzS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node"/>
+              <attributes xmi:id="_ejcqXzS0EeOjkaf-ripOcw" value="&quot;Activity&quot;">
+                <type href="http://no.hib.dpf.core#//Node/name"/>
+              </attributes>
+            </nodes>
+            <nodes xmi:id="_ejcqYDS0EeOjkaf-ripOcw" name="Activity0" outgoing="_ejcqZzS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node"/>
+            </nodes>
+            <nodes xmi:id="_ejcqYTS0EeOjkaf-ripOcw" name="Sequence0ArrowType" incoming="_ejcqaDS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Arrow"/>
+              <attributes xmi:id="_ejcqYjS0EeOjkaf-ripOcw" value="&quot;Sequence&quot;">
+                <type href="http://no.hib.dpf.core#//Arrow/name"/>
+              </attributes>
+            </nodes>
+            <nodes xmi:id="_ejcqYzS0EeOjkaf-ripOcw" name="Sequence0" outgoing="_ejcqaDS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Arrow"/>
+            </nodes>
+            <edges xmi:id="_ejcqZDS0EeOjkaf-ripOcw" source="_ejcqVzS0EeOjkaf-ripOcw" target="_ejcqVTS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+            </edges>
+            <edges xmi:id="_ejcqZTS0EeOjkaf-ripOcw" source="_ejcqWjS0EeOjkaf-ripOcw" target="_ejcqWDS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+            </edges>
+            <edges xmi:id="_ejcqZjS0EeOjkaf-ripOcw" source="_ejcqXTS0EeOjkaf-ripOcw" target="_ejcqWzS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+            </edges>
+            <edges xmi:id="_ejcqZzS0EeOjkaf-ripOcw" source="_ejcqYDS0EeOjkaf-ripOcw" target="_ejcqXjS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+            </edges>
+            <edges xmi:id="_ejcqaDS0EeOjkaf-ripOcw" source="_ejcqYzS0EeOjkaf-ripOcw" target="_ejcqYTS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Arrow/typeArrow"/>
+            </edges>
+          </conclusion>
+          <mappings xmi:id="_ejcqaTS0EeOjkaf-ripOcw" origin="_ejcqOzS0EeOjkaf-ripOcw" image="_ejcqVTS0EeOjkaf-ripOcw"/>
+          <mappings xmi:id="_ejcqajS0EeOjkaf-ripOcw" origin="_ejcqOjS0EeOjkaf-ripOcw" image="_ejcqVzS0EeOjkaf-ripOcw"/>
+          <mappings xmi:id="_ejcqazS0EeOjkaf-ripOcw" origin="_ejcqPTS0EeOjkaf-ripOcw" image="_ejcqWDS0EeOjkaf-ripOcw"/>
+          <mappings xmi:id="_ejcqbDS0EeOjkaf-ripOcw" origin="_ejcqPDS0EeOjkaf-ripOcw" image="_ejcqWjS0EeOjkaf-ripOcw"/>
+          <mappings xmi:id="_ejcqbTS0EeOjkaf-ripOcw" origin="_ejcqPzS0EeOjkaf-ripOcw" image="_ejcqWzS0EeOjkaf-ripOcw"/>
+          <mappings xmi:id="_ejcqbjS0EeOjkaf-ripOcw" origin="_ejcqPjS0EeOjkaf-ripOcw" image="_ejcqXTS0EeOjkaf-ripOcw"/>
+          <mappings xmi:id="_ejcqbzS0EeOjkaf-ripOcw" origin="_ejcqQTS0EeOjkaf-ripOcw" image="_ejcqXjS0EeOjkaf-ripOcw"/>
+          <mappings xmi:id="_ejcqcDS0EeOjkaf-ripOcw" origin="_ejcqQDS0EeOjkaf-ripOcw" image="_ejcqYDS0EeOjkaf-ripOcw"/>
+          <mappings xmi:id="_ejcqcTS0EeOjkaf-ripOcw" origin="_ejcqRDS0EeOjkaf-ripOcw" image="_ejcqYTS0EeOjkaf-ripOcw"/>
+          <mappings xmi:id="_ejcqcjS0EeOjkaf-ripOcw" origin="_ejcqQjS0EeOjkaf-ripOcw" image="_ejcqYzS0EeOjkaf-ripOcw"/>
+        </left>
+        <right xsi:type="henshin:Not" xmi:id="_ejcqczS0EeOjkaf-ripOcw">
+          <child xsi:type="henshin:NestedCondition" xmi:id="_ejcqdDS0EeOjkaf-ripOcw">
+            <conclusion xmi:id="_ejcqdTS0EeOjkaf-ripOcw">
+              <nodes xmi:id="_ejcqdjS0EeOjkaf-ripOcw" name="Place0" outgoing="_ejcqeDS0EeOjkaf-ripOcw">
+                <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+              </nodes>
+              <nodes xmi:id="_ejcqdzS0EeOjkaf-ripOcw" name="Sequence0" incoming="_ejcqeDS0EeOjkaf-ripOcw">
+                <type href="http://no.hib.dpf.core#//Arrow"/>
+              </nodes>
+              <edges xmi:id="_ejcqeDS0EeOjkaf-ripOcw" source="_ejcqdjS0EeOjkaf-ripOcw" target="_ejcqdzS0EeOjkaf-ripOcw">
+                <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+              </edges>
+            </conclusion>
+            <mappings xmi:id="_ejcqeTS0EeOjkaf-ripOcw" origin="_ejcqQjS0EeOjkaf-ripOcw" image="_ejcqdzS0EeOjkaf-ripOcw"/>
+          </child>
+        </right>
+      </formula>
+    </lhs>
+    <rhs xmi:id="_ejcqejS0EeOjkaf-ripOcw" name="Rhs">
+      <nodes xmi:id="_ejcqezS0EeOjkaf-ripOcw" name="Transition1" incoming="_ejdQ3TS0EeOjkaf-ripOcw _ejdQ5DS0EeOjkaf-ripOcw" outgoing="_ejdQ0jS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejcqfDS0EeOjkaf-ripOcw" name="Transition1DNodeType" incoming="_ejdQ0jS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejcqfTS0EeOjkaf-ripOcw" name="Transition0" incoming="_ejdQ3zS0EeOjkaf-ripOcw _ejdQ4zS0EeOjkaf-ripOcw" outgoing="_ejdQ0zS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejcqfjS0EeOjkaf-ripOcw" name="Transition0DNodeType" incoming="_ejdQ0zS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejcqfzS0EeOjkaf-ripOcw" name="Activity1" incoming="_ejdQ3jS0EeOjkaf-ripOcw _ejdQ4TS0EeOjkaf-ripOcw" outgoing="_ejdQ1DS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejcqgDS0EeOjkaf-ripOcw" name="Activity1DNodeType" incoming="_ejdQ1DS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejcqgTS0EeOjkaf-ripOcw" name="Activity0" incoming="_ejdQ3DS0EeOjkaf-ripOcw _ejdQ4DS0EeOjkaf-ripOcw" outgoing="_ejdQ1TS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejcqgjS0EeOjkaf-ripOcw" name="Activity0DNodeType" incoming="_ejdQ1TS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejcqgzS0EeOjkaf-ripOcw" name="Sequence0" incoming="_ejdQ2zS0EeOjkaf-ripOcw" outgoing="_ejdQ1jS0EeOjkaf-ripOcw _ejdQ4DS0EeOjkaf-ripOcw _ejdQ4TS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow"/>
+        <attributes xmi:id="_ejcqhDS0EeOjkaf-ripOcw" value="name0">
+          <type href="http://no.hib.dpf.core#//Node/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejcqhTS0EeOjkaf-ripOcw" name="Sequence0ArrowType" incoming="_ejdQ1jS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow"/>
+      </nodes>
+      <nodes xmi:id="_ejcqhjS0EeOjkaf-ripOcw" name="Place0" incoming="_ejdQ2jS0EeOjkaf-ripOcw _ejdQ4jS0EeOjkaf-ripOcw _ejdQ5TS0EeOjkaf-ripOcw" outgoing="_ejdQ1zS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+        <attributes xmi:id="_ejcqhzS0EeOjkaf-ripOcw" value="name0">
+          <type href="http://no.hib.dpf.core#//Node/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejcqiDS0EeOjkaf-ripOcw" name="Place0DNodeType" incoming="_ejdQ1zS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+        <attributes xmi:id="_ejcqiTS0EeOjkaf-ripOcw" value="&quot;Place&quot;">
+          <type href="http://no.hib.dpf.core#//Node/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejcqijS0EeOjkaf-ripOcw" name="PlaceToTransition0" outgoing="_ejdQ2DS0EeOjkaf-ripOcw _ejdQ4jS0EeOjkaf-ripOcw _ejdQ4zS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow"/>
+        <attributes xmi:id="_ejcqizS0EeOjkaf-ripOcw" value="&quot;&quot;">
+          <type href="http://no.hib.dpf.core#//Arrow/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejcqjDS0EeOjkaf-ripOcw" name="PlaceToTransition0ArrowType" incoming="_ejdQ2DS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow"/>
+        <attributes xmi:id="_ejcqjTS0EeOjkaf-ripOcw" value="&quot;PlaceToTransition&quot;">
+          <type href="http://no.hib.dpf.core#//Arrow/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejcqjjS0EeOjkaf-ripOcw" name="TransitionToPlace0" outgoing="_ejdQ2TS0EeOjkaf-ripOcw _ejdQ5DS0EeOjkaf-ripOcw _ejdQ5TS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow"/>
+        <attributes xmi:id="_ejcqjzS0EeOjkaf-ripOcw" value="&quot;&quot;">
+          <type href="http://no.hib.dpf.core#//Arrow/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejcqkDS0EeOjkaf-ripOcw" name="TransitionToPlace0ArrowType" incoming="_ejdQ2TS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow"/>
+        <attributes xmi:id="_ejcqkTS0EeOjkaf-ripOcw" value="&quot;TransitionToPlace&quot;">
+          <type href="http://no.hib.dpf.core#//Arrow/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejcqkjS0EeOjkaf-ripOcw" name="Place0" outgoing="_ejdQ2jS0EeOjkaf-ripOcw _ejdQ2zS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <nodes xmi:id="_ejdQ0DS0EeOjkaf-ripOcw" name="Trace0" outgoing="_ejdQ3DS0EeOjkaf-ripOcw _ejdQ3TS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <nodes xmi:id="_ejdQ0TS0EeOjkaf-ripOcw" name="Trace1" outgoing="_ejdQ3jS0EeOjkaf-ripOcw _ejdQ3zS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <edges xmi:id="_ejdQ0jS0EeOjkaf-ripOcw" source="_ejcqezS0EeOjkaf-ripOcw" target="_ejcqfDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejdQ0zS0EeOjkaf-ripOcw" source="_ejcqfTS0EeOjkaf-ripOcw" target="_ejcqfjS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejdQ1DS0EeOjkaf-ripOcw" source="_ejcqfzS0EeOjkaf-ripOcw" target="_ejcqgDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejdQ1TS0EeOjkaf-ripOcw" source="_ejcqgTS0EeOjkaf-ripOcw" target="_ejcqgjS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejdQ1jS0EeOjkaf-ripOcw" source="_ejcqgzS0EeOjkaf-ripOcw" target="_ejcqhTS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/typeArrow"/>
+      </edges>
+      <edges xmi:id="_ejdQ1zS0EeOjkaf-ripOcw" source="_ejcqhjS0EeOjkaf-ripOcw" target="_ejcqiDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejdQ2DS0EeOjkaf-ripOcw" source="_ejcqijS0EeOjkaf-ripOcw" target="_ejcqjDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/typeArrow"/>
+      </edges>
+      <edges xmi:id="_ejdQ2TS0EeOjkaf-ripOcw" source="_ejcqjjS0EeOjkaf-ripOcw" target="_ejcqkDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/typeArrow"/>
+      </edges>
+      <edges xmi:id="_ejdQ2jS0EeOjkaf-ripOcw" source="_ejcqkjS0EeOjkaf-ripOcw" target="_ejcqhjS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xmi:id="_ejdQ2zS0EeOjkaf-ripOcw" source="_ejcqkjS0EeOjkaf-ripOcw" target="_ejcqgzS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xmi:id="_ejdQ3DS0EeOjkaf-ripOcw" source="_ejdQ0DS0EeOjkaf-ripOcw" target="_ejcqgTS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xmi:id="_ejdQ3TS0EeOjkaf-ripOcw" source="_ejdQ0DS0EeOjkaf-ripOcw" target="_ejcqezS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xmi:id="_ejdQ3jS0EeOjkaf-ripOcw" source="_ejdQ0TS0EeOjkaf-ripOcw" target="_ejcqfzS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xmi:id="_ejdQ3zS0EeOjkaf-ripOcw" source="_ejdQ0TS0EeOjkaf-ripOcw" target="_ejcqfTS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xmi:id="_ejdQ4DS0EeOjkaf-ripOcw" source="_ejcqgzS0EeOjkaf-ripOcw" target="_ejcqgTS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/source"/>
+      </edges>
+      <edges xmi:id="_ejdQ4TS0EeOjkaf-ripOcw" source="_ejcqgzS0EeOjkaf-ripOcw" target="_ejcqfzS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/target"/>
+      </edges>
+      <edges xmi:id="_ejdQ4jS0EeOjkaf-ripOcw" source="_ejcqijS0EeOjkaf-ripOcw" target="_ejcqhjS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/source"/>
+      </edges>
+      <edges xmi:id="_ejdQ4zS0EeOjkaf-ripOcw" source="_ejcqijS0EeOjkaf-ripOcw" target="_ejcqfTS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/target"/>
+      </edges>
+      <edges xmi:id="_ejdQ5DS0EeOjkaf-ripOcw" source="_ejcqjjS0EeOjkaf-ripOcw" target="_ejcqezS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/source"/>
+      </edges>
+      <edges xmi:id="_ejdQ5TS0EeOjkaf-ripOcw" source="_ejcqjjS0EeOjkaf-ripOcw" target="_ejcqhjS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/target"/>
+      </edges>
+    </rhs>
+    <mappings xmi:id="_ejdQ5jS0EeOjkaf-ripOcw" origin="_ejcqOjS0EeOjkaf-ripOcw" image="_ejcqezS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejdQ5zS0EeOjkaf-ripOcw" origin="_ejcqOzS0EeOjkaf-ripOcw" image="_ejcqfDS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejdQ6DS0EeOjkaf-ripOcw" origin="_ejcqPDS0EeOjkaf-ripOcw" image="_ejcqfTS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejdQ6TS0EeOjkaf-ripOcw" origin="_ejcqPTS0EeOjkaf-ripOcw" image="_ejcqfjS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejdQ6jS0EeOjkaf-ripOcw" origin="_ejcqPjS0EeOjkaf-ripOcw" image="_ejcqfzS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejdQ6zS0EeOjkaf-ripOcw" origin="_ejcqPzS0EeOjkaf-ripOcw" image="_ejcqgDS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejdQ7DS0EeOjkaf-ripOcw" origin="_ejcqQDS0EeOjkaf-ripOcw" image="_ejcqgTS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejdQ7TS0EeOjkaf-ripOcw" origin="_ejcqQTS0EeOjkaf-ripOcw" image="_ejcqgjS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejdQ7jS0EeOjkaf-ripOcw" origin="_ejcqQjS0EeOjkaf-ripOcw" image="_ejcqgzS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejdQ7zS0EeOjkaf-ripOcw" origin="_ejcqRDS0EeOjkaf-ripOcw" image="_ejcqhTS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejdQ8DS0EeOjkaf-ripOcw" origin="_ejcqRTS0EeOjkaf-ripOcw" image="_ejdQ0DS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejdQ8TS0EeOjkaf-ripOcw" origin="_ejcqRjS0EeOjkaf-ripOcw" image="_ejdQ0TS0EeOjkaf-ripOcw"/>
+  </units>
+  <units xsi:type="henshin:LoopUnit" xmi:id="_ejdQ8jS0EeOjkaf-ripOcw" name="translateSequence_Loop" subUnit="_ejcqNTS0EeOjkaf-ripOcw"/>
+  <units xsi:type="henshin:Rule" xmi:id="_ejdQ8zS0EeOjkaf-ripOcw" name="translateMessage" injectiveMatching="false">
+    <parameters xmi:id="_ejdQ9DS0EeOjkaf-ripOcw" name="name0">
+      <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </parameters>
+    <parameters xmi:id="_ejdQ9TS0EeOjkaf-ripOcw" name="name1">
+      <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </parameters>
+    <parameters xmi:id="_ejdQ9jS0EeOjkaf-ripOcw" name="name2">
+      <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </parameters>
+    <lhs xmi:id="_ejdQ9zS0EeOjkaf-ripOcw" name="Lhs">
+      <nodes xmi:id="_ejdQ-DS0EeOjkaf-ripOcw" name="Transition0" incoming="_ejdRCzS0EeOjkaf-ripOcw" outgoing="_ejdRBTS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejdQ-TS0EeOjkaf-ripOcw" name="Transition0DNodeType" incoming="_ejdRBTS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejdQ-jS0EeOjkaf-ripOcw" name="Transition1" incoming="_ejdRDTS0EeOjkaf-ripOcw" outgoing="_ejdRBjS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejdQ-zS0EeOjkaf-ripOcw" name="Transition1DNodeType" incoming="_ejdRBjS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejdQ_DS0EeOjkaf-ripOcw" name="Activity1" incoming="_ejdRCjS0EeOjkaf-ripOcw _ejdRDzS0EeOjkaf-ripOcw" outgoing="_ejdRBzS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejdQ_TS0EeOjkaf-ripOcw" name="Activity1DNodeType" incoming="_ejdRBzS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejdQ_jS0EeOjkaf-ripOcw" name="Activity0" incoming="_ejdRDDS0EeOjkaf-ripOcw _ejdRDjS0EeOjkaf-ripOcw" outgoing="_ejdRCDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejdQ_zS0EeOjkaf-ripOcw" name="Activity0DNodeType" incoming="_ejdRCDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejdRADS0EeOjkaf-ripOcw" name="Message0" outgoing="_ejdRCTS0EeOjkaf-ripOcw _ejdRDjS0EeOjkaf-ripOcw _ejdRDzS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow"/>
+        <attributes xmi:id="_ejdRATS0EeOjkaf-ripOcw" value="name0">
+          <type href="http://no.hib.dpf.core#//Node/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejdRAjS0EeOjkaf-ripOcw" name="Message0ArrowType" incoming="_ejdRCTS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow"/>
+      </nodes>
+      <nodes xmi:id="_ejdRAzS0EeOjkaf-ripOcw" name="Trace1" outgoing="_ejdRCjS0EeOjkaf-ripOcw _ejdRCzS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <nodes xmi:id="_ejdRBDS0EeOjkaf-ripOcw" name="Trace0" outgoing="_ejdRDDS0EeOjkaf-ripOcw _ejdRDTS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <edges xmi:id="_ejdRBTS0EeOjkaf-ripOcw" source="_ejdQ-DS0EeOjkaf-ripOcw" target="_ejdQ-TS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejdRBjS0EeOjkaf-ripOcw" source="_ejdQ-jS0EeOjkaf-ripOcw" target="_ejdQ-zS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejdRBzS0EeOjkaf-ripOcw" source="_ejdQ_DS0EeOjkaf-ripOcw" target="_ejdQ_TS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejdRCDS0EeOjkaf-ripOcw" source="_ejdQ_jS0EeOjkaf-ripOcw" target="_ejdQ_zS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejdRCTS0EeOjkaf-ripOcw" source="_ejdRADS0EeOjkaf-ripOcw" target="_ejdRAjS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/typeArrow"/>
+      </edges>
+      <edges xmi:id="_ejdRCjS0EeOjkaf-ripOcw" source="_ejdRAzS0EeOjkaf-ripOcw" target="_ejdQ_DS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xmi:id="_ejdRCzS0EeOjkaf-ripOcw" source="_ejdRAzS0EeOjkaf-ripOcw" target="_ejdQ-DS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xmi:id="_ejdRDDS0EeOjkaf-ripOcw" source="_ejdRBDS0EeOjkaf-ripOcw" target="_ejdQ_jS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xmi:id="_ejdRDTS0EeOjkaf-ripOcw" source="_ejdRBDS0EeOjkaf-ripOcw" target="_ejdQ-jS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xmi:id="_ejdRDjS0EeOjkaf-ripOcw" source="_ejdRADS0EeOjkaf-ripOcw" target="_ejdQ_jS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/source"/>
+      </edges>
+      <edges xmi:id="_ejdRDzS0EeOjkaf-ripOcw" source="_ejdRADS0EeOjkaf-ripOcw" target="_ejdQ_DS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/target"/>
+      </edges>
+      <formula xsi:type="henshin:And" xmi:id="_ejdREDS0EeOjkaf-ripOcw">
+        <left xsi:type="henshin:NestedCondition" xmi:id="_ejdRETS0EeOjkaf-ripOcw">
+          <conclusion xmi:id="_ejdREjS0EeOjkaf-ripOcw">
+            <nodes xmi:id="_ejdREzS0EeOjkaf-ripOcw" name="Transition0DNodeType" incoming="_ejdRIjS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node"/>
+              <attributes xmi:id="_ejdRFDS0EeOjkaf-ripOcw" value="&quot;Transition&quot;">
+                <type href="http://no.hib.dpf.core#//Node/name"/>
+              </attributes>
+            </nodes>
+            <nodes xmi:id="_ejdRFTS0EeOjkaf-ripOcw" name="Transition0" outgoing="_ejdRIjS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node"/>
+            </nodes>
+            <nodes xmi:id="_ejdRFjS0EeOjkaf-ripOcw" name="Transition1DNodeType" incoming="_ejdRIzS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node"/>
+              <attributes xmi:id="_ejdRFzS0EeOjkaf-ripOcw" value="&quot;Transition&quot;">
+                <type href="http://no.hib.dpf.core#//Node/name"/>
+              </attributes>
+            </nodes>
+            <nodes xmi:id="_ejdRGDS0EeOjkaf-ripOcw" name="Transition1" outgoing="_ejdRIzS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node"/>
+            </nodes>
+            <nodes xmi:id="_ejdRGTS0EeOjkaf-ripOcw" name="Activity1DNodeType" incoming="_ejdRJDS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node"/>
+              <attributes xmi:id="_ejdRGjS0EeOjkaf-ripOcw" value="&quot;Activity&quot;">
+                <type href="http://no.hib.dpf.core#//Node/name"/>
+              </attributes>
+            </nodes>
+            <nodes xmi:id="_ejdRGzS0EeOjkaf-ripOcw" name="Activity1" outgoing="_ejdRJDS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node"/>
+            </nodes>
+            <nodes xmi:id="_ejdRHDS0EeOjkaf-ripOcw" name="Activity0DNodeType" incoming="_ejdRJTS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node"/>
+              <attributes xmi:id="_ejdRHTS0EeOjkaf-ripOcw" value="&quot;Activity&quot;">
+                <type href="http://no.hib.dpf.core#//Node/name"/>
+              </attributes>
+            </nodes>
+            <nodes xmi:id="_ejdRHjS0EeOjkaf-ripOcw" name="Activity0" outgoing="_ejdRJTS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node"/>
+            </nodes>
+            <nodes xmi:id="_ejdRHzS0EeOjkaf-ripOcw" name="Message0ArrowType" incoming="_ejdRJjS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Arrow"/>
+              <attributes xmi:id="_ejdRIDS0EeOjkaf-ripOcw" value="&quot;Message&quot;">
+                <type href="http://no.hib.dpf.core#//Arrow/name"/>
+              </attributes>
+            </nodes>
+            <nodes xmi:id="_ejdRITS0EeOjkaf-ripOcw" name="Message0" outgoing="_ejdRJjS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Arrow"/>
+            </nodes>
+            <edges xmi:id="_ejdRIjS0EeOjkaf-ripOcw" source="_ejdRFTS0EeOjkaf-ripOcw" target="_ejdREzS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+            </edges>
+            <edges xmi:id="_ejdRIzS0EeOjkaf-ripOcw" source="_ejdRGDS0EeOjkaf-ripOcw" target="_ejdRFjS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+            </edges>
+            <edges xmi:id="_ejdRJDS0EeOjkaf-ripOcw" source="_ejdRGzS0EeOjkaf-ripOcw" target="_ejdRGTS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+            </edges>
+            <edges xmi:id="_ejdRJTS0EeOjkaf-ripOcw" source="_ejdRHjS0EeOjkaf-ripOcw" target="_ejdRHDS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+            </edges>
+            <edges xmi:id="_ejdRJjS0EeOjkaf-ripOcw" source="_ejdRITS0EeOjkaf-ripOcw" target="_ejdRHzS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Arrow/typeArrow"/>
+            </edges>
+          </conclusion>
+          <mappings xmi:id="_ejdRJzS0EeOjkaf-ripOcw" origin="_ejdQ-TS0EeOjkaf-ripOcw" image="_ejdREzS0EeOjkaf-ripOcw"/>
+          <mappings xmi:id="_ejdRKDS0EeOjkaf-ripOcw" origin="_ejdQ-DS0EeOjkaf-ripOcw" image="_ejdRFTS0EeOjkaf-ripOcw"/>
+          <mappings xmi:id="_ejdRKTS0EeOjkaf-ripOcw" origin="_ejdQ-zS0EeOjkaf-ripOcw" image="_ejdRFjS0EeOjkaf-ripOcw"/>
+          <mappings xmi:id="_ejdRKjS0EeOjkaf-ripOcw" origin="_ejdQ-jS0EeOjkaf-ripOcw" image="_ejdRGDS0EeOjkaf-ripOcw"/>
+          <mappings xmi:id="_ejdRKzS0EeOjkaf-ripOcw" origin="_ejdQ_TS0EeOjkaf-ripOcw" image="_ejdRGTS0EeOjkaf-ripOcw"/>
+          <mappings xmi:id="_ejdRLDS0EeOjkaf-ripOcw" origin="_ejdQ_DS0EeOjkaf-ripOcw" image="_ejdRGzS0EeOjkaf-ripOcw"/>
+          <mappings xmi:id="_ejdRLTS0EeOjkaf-ripOcw" origin="_ejdQ_zS0EeOjkaf-ripOcw" image="_ejdRHDS0EeOjkaf-ripOcw"/>
+          <mappings xmi:id="_ejdRLjS0EeOjkaf-ripOcw" origin="_ejdQ_jS0EeOjkaf-ripOcw" image="_ejdRHjS0EeOjkaf-ripOcw"/>
+          <mappings xmi:id="_ejdRLzS0EeOjkaf-ripOcw" origin="_ejdRAjS0EeOjkaf-ripOcw" image="_ejdRHzS0EeOjkaf-ripOcw"/>
+          <mappings xmi:id="_ejdRMDS0EeOjkaf-ripOcw" origin="_ejdRADS0EeOjkaf-ripOcw" image="_ejdRITS0EeOjkaf-ripOcw"/>
+        </left>
+        <right xsi:type="henshin:Not" xmi:id="_ejdRMTS0EeOjkaf-ripOcw">
+          <child xsi:type="henshin:NestedCondition" xmi:id="_ejdRMjS0EeOjkaf-ripOcw">
+            <conclusion xmi:id="_ejdRMzS0EeOjkaf-ripOcw">
+              <nodes xmi:id="_ejdRNDS0EeOjkaf-ripOcw" name="Place0" outgoing="_ejdRNjS0EeOjkaf-ripOcw">
+                <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+              </nodes>
+              <nodes xmi:id="_ejdRNTS0EeOjkaf-ripOcw" name="Message0" incoming="_ejdRNjS0EeOjkaf-ripOcw">
+                <type href="http://no.hib.dpf.core#//Arrow"/>
+              </nodes>
+              <edges xmi:id="_ejdRNjS0EeOjkaf-ripOcw" source="_ejdRNDS0EeOjkaf-ripOcw" target="_ejdRNTS0EeOjkaf-ripOcw">
+                <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+              </edges>
+            </conclusion>
+            <mappings xmi:id="_ejdRNzS0EeOjkaf-ripOcw" origin="_ejdRADS0EeOjkaf-ripOcw" image="_ejdRNTS0EeOjkaf-ripOcw"/>
+          </child>
+        </right>
+      </formula>
+    </lhs>
+    <rhs xmi:id="_ejdRODS0EeOjkaf-ripOcw" name="Rhs">
+      <nodes xmi:id="_ejdROTS0EeOjkaf-ripOcw" name="Transition0" incoming="_ejdRXjS0EeOjkaf-ripOcw _ejdRZDS0EeOjkaf-ripOcw" outgoing="_ejdRUzS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejdROjS0EeOjkaf-ripOcw" name="Transition0DNodeType" incoming="_ejdRUzS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejdROzS0EeOjkaf-ripOcw" name="Transition1" incoming="_ejdRYDS0EeOjkaf-ripOcw _ejdRZTS0EeOjkaf-ripOcw" outgoing="_ejdRVDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejdRPDS0EeOjkaf-ripOcw" name="Transition1DNodeType" incoming="_ejdRVDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejdRPTS0EeOjkaf-ripOcw" name="Activity1" incoming="_ejdRXTS0EeOjkaf-ripOcw _ejdRYjS0EeOjkaf-ripOcw" outgoing="_ejdRVTS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejdRPjS0EeOjkaf-ripOcw" name="Activity1DNodeType" incoming="_ejdRVTS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejdRPzS0EeOjkaf-ripOcw" name="Activity0" incoming="_ejdRXzS0EeOjkaf-ripOcw _ejdRYTS0EeOjkaf-ripOcw" outgoing="_ejdRVjS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejdRQDS0EeOjkaf-ripOcw" name="Activity0DNodeType" incoming="_ejdRVjS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejdRQTS0EeOjkaf-ripOcw" name="Message0" incoming="_ejdRXDS0EeOjkaf-ripOcw" outgoing="_ejdRVzS0EeOjkaf-ripOcw _ejdRYTS0EeOjkaf-ripOcw _ejdRYjS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow"/>
+        <attributes xmi:id="_ejdRQjS0EeOjkaf-ripOcw" value="name0">
+          <type href="http://no.hib.dpf.core#//Node/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejdRQzS0EeOjkaf-ripOcw" name="Message0ArrowType" incoming="_ejdRVzS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow"/>
+      </nodes>
+      <nodes xmi:id="_ejdRRDS0EeOjkaf-ripOcw" name="Place0" incoming="_ejdRWzS0EeOjkaf-ripOcw _ejdRYzS0EeOjkaf-ripOcw _ejdRZjS0EeOjkaf-ripOcw" outgoing="_ejdRWDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+        <attributes xmi:id="_ejdRRTS0EeOjkaf-ripOcw" value="name0">
+          <type href="http://no.hib.dpf.core#//Node/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejdRRjS0EeOjkaf-ripOcw" name="Place0DNodeType" incoming="_ejdRWDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+        <attributes xmi:id="_ejdRRzS0EeOjkaf-ripOcw" value="&quot;Place&quot;">
+          <type href="http://no.hib.dpf.core#//Node/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejdRSDS0EeOjkaf-ripOcw" name="PlaceToTransition0" outgoing="_ejdRWTS0EeOjkaf-ripOcw _ejdRYzS0EeOjkaf-ripOcw _ejdRZDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow"/>
+        <attributes xmi:id="_ejdRSTS0EeOjkaf-ripOcw" value="&quot;&quot;">
+          <type href="http://no.hib.dpf.core#//Arrow/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejdRSjS0EeOjkaf-ripOcw" name="PlaceToTransition0ArrowType" incoming="_ejdRWTS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow"/>
+        <attributes xmi:id="_ejdRSzS0EeOjkaf-ripOcw" value="&quot;PlaceToTransition&quot;">
+          <type href="http://no.hib.dpf.core#//Arrow/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejdRTDS0EeOjkaf-ripOcw" name="TransitionToPlace0" outgoing="_ejdRWjS0EeOjkaf-ripOcw _ejdRZTS0EeOjkaf-ripOcw _ejdRZjS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow"/>
+        <attributes xmi:id="_ejdRTTS0EeOjkaf-ripOcw" value="&quot;&quot;">
+          <type href="http://no.hib.dpf.core#//Arrow/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejdRTjS0EeOjkaf-ripOcw" name="TransitionToPlace0ArrowType" incoming="_ejdRWjS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow"/>
+        <attributes xmi:id="_ejdRTzS0EeOjkaf-ripOcw" value="&quot;TransitionToPlace&quot;">
+          <type href="http://no.hib.dpf.core#//Arrow/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejdRUDS0EeOjkaf-ripOcw" name="Place0" outgoing="_ejdRWzS0EeOjkaf-ripOcw _ejdRXDS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <nodes xmi:id="_ejdRUTS0EeOjkaf-ripOcw" name="Trace1" outgoing="_ejdRXTS0EeOjkaf-ripOcw _ejdRXjS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <nodes xmi:id="_ejdRUjS0EeOjkaf-ripOcw" name="Trace0" outgoing="_ejdRXzS0EeOjkaf-ripOcw _ejdRYDS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <edges xmi:id="_ejdRUzS0EeOjkaf-ripOcw" source="_ejdROTS0EeOjkaf-ripOcw" target="_ejdROjS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejdRVDS0EeOjkaf-ripOcw" source="_ejdROzS0EeOjkaf-ripOcw" target="_ejdRPDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejdRVTS0EeOjkaf-ripOcw" source="_ejdRPTS0EeOjkaf-ripOcw" target="_ejdRPjS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejdRVjS0EeOjkaf-ripOcw" source="_ejdRPzS0EeOjkaf-ripOcw" target="_ejdRQDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejdRVzS0EeOjkaf-ripOcw" source="_ejdRQTS0EeOjkaf-ripOcw" target="_ejdRQzS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/typeArrow"/>
+      </edges>
+      <edges xmi:id="_ejdRWDS0EeOjkaf-ripOcw" source="_ejdRRDS0EeOjkaf-ripOcw" target="_ejdRRjS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejdRWTS0EeOjkaf-ripOcw" source="_ejdRSDS0EeOjkaf-ripOcw" target="_ejdRSjS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/typeArrow"/>
+      </edges>
+      <edges xmi:id="_ejdRWjS0EeOjkaf-ripOcw" source="_ejdRTDS0EeOjkaf-ripOcw" target="_ejdRTjS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/typeArrow"/>
+      </edges>
+      <edges xmi:id="_ejdRWzS0EeOjkaf-ripOcw" source="_ejdRUDS0EeOjkaf-ripOcw" target="_ejdRRDS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xmi:id="_ejdRXDS0EeOjkaf-ripOcw" source="_ejdRUDS0EeOjkaf-ripOcw" target="_ejdRQTS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xmi:id="_ejdRXTS0EeOjkaf-ripOcw" source="_ejdRUTS0EeOjkaf-ripOcw" target="_ejdRPTS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xmi:id="_ejdRXjS0EeOjkaf-ripOcw" source="_ejdRUTS0EeOjkaf-ripOcw" target="_ejdROTS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xmi:id="_ejdRXzS0EeOjkaf-ripOcw" source="_ejdRUjS0EeOjkaf-ripOcw" target="_ejdRPzS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xmi:id="_ejdRYDS0EeOjkaf-ripOcw" source="_ejdRUjS0EeOjkaf-ripOcw" target="_ejdROzS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xmi:id="_ejdRYTS0EeOjkaf-ripOcw" source="_ejdRQTS0EeOjkaf-ripOcw" target="_ejdRPzS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/source"/>
+      </edges>
+      <edges xmi:id="_ejdRYjS0EeOjkaf-ripOcw" source="_ejdRQTS0EeOjkaf-ripOcw" target="_ejdRPTS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/target"/>
+      </edges>
+      <edges xmi:id="_ejdRYzS0EeOjkaf-ripOcw" source="_ejdRSDS0EeOjkaf-ripOcw" target="_ejdRRDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/source"/>
+      </edges>
+      <edges xmi:id="_ejdRZDS0EeOjkaf-ripOcw" source="_ejdRSDS0EeOjkaf-ripOcw" target="_ejdROTS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/target"/>
+      </edges>
+      <edges xmi:id="_ejdRZTS0EeOjkaf-ripOcw" source="_ejdRTDS0EeOjkaf-ripOcw" target="_ejdROzS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/source"/>
+      </edges>
+      <edges xmi:id="_ejdRZjS0EeOjkaf-ripOcw" source="_ejdRTDS0EeOjkaf-ripOcw" target="_ejdRRDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/target"/>
+      </edges>
+    </rhs>
+    <mappings xmi:id="_ejdRZzS0EeOjkaf-ripOcw" origin="_ejdQ-DS0EeOjkaf-ripOcw" image="_ejdROTS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejdRaDS0EeOjkaf-ripOcw" origin="_ejdQ-TS0EeOjkaf-ripOcw" image="_ejdROjS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejdRaTS0EeOjkaf-ripOcw" origin="_ejdQ-jS0EeOjkaf-ripOcw" image="_ejdROzS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejdRajS0EeOjkaf-ripOcw" origin="_ejdQ-zS0EeOjkaf-ripOcw" image="_ejdRPDS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejdRazS0EeOjkaf-ripOcw" origin="_ejdQ_DS0EeOjkaf-ripOcw" image="_ejdRPTS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejdRbDS0EeOjkaf-ripOcw" origin="_ejdQ_TS0EeOjkaf-ripOcw" image="_ejdRPjS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejdRbTS0EeOjkaf-ripOcw" origin="_ejdQ_jS0EeOjkaf-ripOcw" image="_ejdRPzS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejdRbjS0EeOjkaf-ripOcw" origin="_ejdQ_zS0EeOjkaf-ripOcw" image="_ejdRQDS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejdRbzS0EeOjkaf-ripOcw" origin="_ejdRADS0EeOjkaf-ripOcw" image="_ejdRQTS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejdRcDS0EeOjkaf-ripOcw" origin="_ejdRAjS0EeOjkaf-ripOcw" image="_ejdRQzS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejdRcTS0EeOjkaf-ripOcw" origin="_ejdRAzS0EeOjkaf-ripOcw" image="_ejdRUTS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejdRcjS0EeOjkaf-ripOcw" origin="_ejdRBDS0EeOjkaf-ripOcw" image="_ejdRUjS0EeOjkaf-ripOcw"/>
+  </units>
+  <units xsi:type="henshin:LoopUnit" xmi:id="_ejdRczS0EeOjkaf-ripOcw" name="translateMessage_Loop" subUnit="_ejdQ8zS0EeOjkaf-ripOcw"/>
+  <units xsi:type="henshin:Rule" xmi:id="_ejdRdDS0EeOjkaf-ripOcw" name="translateChoiceCondtition" injectiveMatching="false">
+    <parameters xmi:id="_ejdRdTS0EeOjkaf-ripOcw" name="name0">
+      <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </parameters>
+    <parameters xmi:id="_ejdRdjS0EeOjkaf-ripOcw" name="name1">
+      <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </parameters>
+    <parameters xmi:id="_ejdRdzS0EeOjkaf-ripOcw" name="name2">
+      <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </parameters>
+    <lhs xmi:id="_ejdReDS0EeOjkaf-ripOcw" name="Lhs">
+      <nodes xmi:id="_ejdReTS0EeOjkaf-ripOcw" name="Transition0" incoming="_ejdRjjS0EeOjkaf-ripOcw" outgoing="_ejdRhjS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejdRejS0EeOjkaf-ripOcw" name="Transition0DNodeType" incoming="_ejdRhjS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejdRezS0EeOjkaf-ripOcw" name="Transition1" incoming="_ejdRjDS0EeOjkaf-ripOcw" outgoing="_ejdRhzS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejdRfDS0EeOjkaf-ripOcw" name="Transition1DNodeType" incoming="_ejdRhzS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejdRfTS0EeOjkaf-ripOcw" name="Condition0" incoming="_ejdRjTS0EeOjkaf-ripOcw _ejdRkDS0EeOjkaf-ripOcw" outgoing="_ejdRiDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejdRfjS0EeOjkaf-ripOcw" name="Condition0DNodeType" incoming="_ejdRiDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejdRfzS0EeOjkaf-ripOcw" name="Choice0" incoming="_ejdRizS0EeOjkaf-ripOcw _ejdRjzS0EeOjkaf-ripOcw" outgoing="_ejdRiTS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejdRgDS0EeOjkaf-ripOcw" name="Choice0DNodeType" incoming="_ejdRiTS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejdRgTS0EeOjkaf-ripOcw" name="ChoiceCondition0" outgoing="_ejdRijS0EeOjkaf-ripOcw _ejdRjzS0EeOjkaf-ripOcw _ejdRkDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow"/>
+        <attributes xmi:id="_ejdRgjS0EeOjkaf-ripOcw" value="name0">
+          <type href="http://no.hib.dpf.core#//Node/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejdRgzS0EeOjkaf-ripOcw" name="ChoiceCondition0ArrowType" incoming="_ejdRijS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow"/>
+      </nodes>
+      <nodes xmi:id="_ejdRhDS0EeOjkaf-ripOcw" name="Trace1" outgoing="_ejdRizS0EeOjkaf-ripOcw _ejdRjDS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <nodes xmi:id="_ejdRhTS0EeOjkaf-ripOcw" name="Trace0" outgoing="_ejdRjTS0EeOjkaf-ripOcw _ejdRjjS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <edges xmi:id="_ejdRhjS0EeOjkaf-ripOcw" source="_ejdReTS0EeOjkaf-ripOcw" target="_ejdRejS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejdRhzS0EeOjkaf-ripOcw" source="_ejdRezS0EeOjkaf-ripOcw" target="_ejdRfDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejdRiDS0EeOjkaf-ripOcw" source="_ejdRfTS0EeOjkaf-ripOcw" target="_ejdRfjS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejdRiTS0EeOjkaf-ripOcw" source="_ejdRfzS0EeOjkaf-ripOcw" target="_ejdRgDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejdRijS0EeOjkaf-ripOcw" source="_ejdRgTS0EeOjkaf-ripOcw" target="_ejdRgzS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/typeArrow"/>
+      </edges>
+      <edges xmi:id="_ejdRizS0EeOjkaf-ripOcw" source="_ejdRhDS0EeOjkaf-ripOcw" target="_ejdRfzS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xmi:id="_ejdRjDS0EeOjkaf-ripOcw" source="_ejdRhDS0EeOjkaf-ripOcw" target="_ejdRezS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xmi:id="_ejdRjTS0EeOjkaf-ripOcw" source="_ejdRhTS0EeOjkaf-ripOcw" target="_ejdRfTS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xmi:id="_ejdRjjS0EeOjkaf-ripOcw" source="_ejdRhTS0EeOjkaf-ripOcw" target="_ejdReTS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xmi:id="_ejdRjzS0EeOjkaf-ripOcw" source="_ejdRgTS0EeOjkaf-ripOcw" target="_ejdRfzS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/source"/>
+      </edges>
+      <edges xmi:id="_ejdRkDS0EeOjkaf-ripOcw" source="_ejdRgTS0EeOjkaf-ripOcw" target="_ejdRfTS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/target"/>
+      </edges>
+      <formula xsi:type="henshin:And" xmi:id="_ejdRkTS0EeOjkaf-ripOcw">
+        <left xsi:type="henshin:NestedCondition" xmi:id="_ejdRkjS0EeOjkaf-ripOcw">
+          <conclusion xmi:id="_ejdRkzS0EeOjkaf-ripOcw">
+            <nodes xmi:id="_ejdRlDS0EeOjkaf-ripOcw" name="Transition0DNodeType" incoming="_ejdRozS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node"/>
+              <attributes xmi:id="_ejdRlTS0EeOjkaf-ripOcw" value="&quot;Transition&quot;">
+                <type href="http://no.hib.dpf.core#//Node/name"/>
+              </attributes>
+            </nodes>
+            <nodes xmi:id="_ejdRljS0EeOjkaf-ripOcw" name="Transition0" outgoing="_ejdRozS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node"/>
+            </nodes>
+            <nodes xmi:id="_ejdRlzS0EeOjkaf-ripOcw" name="Transition1DNodeType" incoming="_ejdRpDS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node"/>
+              <attributes xmi:id="_ejdRmDS0EeOjkaf-ripOcw" value="&quot;Transition&quot;">
+                <type href="http://no.hib.dpf.core#//Node/name"/>
+              </attributes>
+            </nodes>
+            <nodes xmi:id="_ejdRmTS0EeOjkaf-ripOcw" name="Transition1" outgoing="_ejdRpDS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node"/>
+            </nodes>
+            <nodes xmi:id="_ejdRmjS0EeOjkaf-ripOcw" name="Condition0DNodeType" incoming="_ejdRpTS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node"/>
+              <attributes xmi:id="_ejdRmzS0EeOjkaf-ripOcw" value="&quot;Condition&quot;">
+                <type href="http://no.hib.dpf.core#//Node/name"/>
+              </attributes>
+            </nodes>
+            <nodes xmi:id="_ejdRnDS0EeOjkaf-ripOcw" name="Condition0" outgoing="_ejdRpTS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node"/>
+            </nodes>
+            <nodes xmi:id="_ejdRnTS0EeOjkaf-ripOcw" name="Choice0DNodeType" incoming="_ejdRpjS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node"/>
+              <attributes xmi:id="_ejdRnjS0EeOjkaf-ripOcw" value="&quot;Choice&quot;">
+                <type href="http://no.hib.dpf.core#//Node/name"/>
+              </attributes>
+            </nodes>
+            <nodes xmi:id="_ejdRnzS0EeOjkaf-ripOcw" name="Choice0" outgoing="_ejdRpjS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node"/>
+            </nodes>
+            <nodes xmi:id="_ejdRoDS0EeOjkaf-ripOcw" name="ChoiceCondition0ArrowType" incoming="_ejdRpzS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Arrow"/>
+              <attributes xmi:id="_ejdRoTS0EeOjkaf-ripOcw" value="&quot;ChoiceCondition&quot;">
+                <type href="http://no.hib.dpf.core#//Arrow/name"/>
+              </attributes>
+            </nodes>
+            <nodes xmi:id="_ejdRojS0EeOjkaf-ripOcw" name="ChoiceCondition0" outgoing="_ejdRpzS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Arrow"/>
+            </nodes>
+            <edges xmi:id="_ejdRozS0EeOjkaf-ripOcw" source="_ejdRljS0EeOjkaf-ripOcw" target="_ejdRlDS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+            </edges>
+            <edges xmi:id="_ejdRpDS0EeOjkaf-ripOcw" source="_ejdRmTS0EeOjkaf-ripOcw" target="_ejdRlzS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+            </edges>
+            <edges xmi:id="_ejdRpTS0EeOjkaf-ripOcw" source="_ejdRnDS0EeOjkaf-ripOcw" target="_ejdRmjS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+            </edges>
+            <edges xmi:id="_ejdRpjS0EeOjkaf-ripOcw" source="_ejdRnzS0EeOjkaf-ripOcw" target="_ejdRnTS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+            </edges>
+            <edges xmi:id="_ejdRpzS0EeOjkaf-ripOcw" source="_ejdRojS0EeOjkaf-ripOcw" target="_ejdRoDS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Arrow/typeArrow"/>
+            </edges>
+          </conclusion>
+          <mappings xmi:id="_ejdRqDS0EeOjkaf-ripOcw" origin="_ejdRejS0EeOjkaf-ripOcw" image="_ejdRlDS0EeOjkaf-ripOcw"/>
+          <mappings xmi:id="_ejdRqTS0EeOjkaf-ripOcw" origin="_ejdReTS0EeOjkaf-ripOcw" image="_ejdRljS0EeOjkaf-ripOcw"/>
+          <mappings xmi:id="_ejdRqjS0EeOjkaf-ripOcw" origin="_ejdRfDS0EeOjkaf-ripOcw" image="_ejdRlzS0EeOjkaf-ripOcw"/>
+          <mappings xmi:id="_ejdRqzS0EeOjkaf-ripOcw" origin="_ejdRezS0EeOjkaf-ripOcw" image="_ejdRmTS0EeOjkaf-ripOcw"/>
+          <mappings xmi:id="_ejdRrDS0EeOjkaf-ripOcw" origin="_ejdRfjS0EeOjkaf-ripOcw" image="_ejdRmjS0EeOjkaf-ripOcw"/>
+          <mappings xmi:id="_ejdRrTS0EeOjkaf-ripOcw" origin="_ejdRfTS0EeOjkaf-ripOcw" image="_ejdRnDS0EeOjkaf-ripOcw"/>
+          <mappings xmi:id="_ejdRrjS0EeOjkaf-ripOcw" origin="_ejdRgDS0EeOjkaf-ripOcw" image="_ejdRnTS0EeOjkaf-ripOcw"/>
+          <mappings xmi:id="_ejdRrzS0EeOjkaf-ripOcw" origin="_ejdRfzS0EeOjkaf-ripOcw" image="_ejdRnzS0EeOjkaf-ripOcw"/>
+          <mappings xmi:id="_ejdRsDS0EeOjkaf-ripOcw" origin="_ejdRgzS0EeOjkaf-ripOcw" image="_ejdRoDS0EeOjkaf-ripOcw"/>
+          <mappings xmi:id="_ejdRsTS0EeOjkaf-ripOcw" origin="_ejdRgTS0EeOjkaf-ripOcw" image="_ejdRojS0EeOjkaf-ripOcw"/>
+        </left>
+        <right xsi:type="henshin:Not" xmi:id="_ejdRsjS0EeOjkaf-ripOcw">
+          <child xsi:type="henshin:NestedCondition" xmi:id="_ejdRszS0EeOjkaf-ripOcw">
+            <conclusion xmi:id="_ejdRtDS0EeOjkaf-ripOcw">
+              <nodes xmi:id="_ejdRtTS0EeOjkaf-ripOcw" name="Place0" outgoing="_ejdRtzS0EeOjkaf-ripOcw">
+                <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+              </nodes>
+              <nodes xmi:id="_ejdRtjS0EeOjkaf-ripOcw" name="ChoiceCondition0" incoming="_ejdRtzS0EeOjkaf-ripOcw">
+                <type href="http://no.hib.dpf.core#//Arrow"/>
+              </nodes>
+              <edges xmi:id="_ejdRtzS0EeOjkaf-ripOcw" source="_ejdRtTS0EeOjkaf-ripOcw" target="_ejdRtjS0EeOjkaf-ripOcw">
+                <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+              </edges>
+            </conclusion>
+            <mappings xmi:id="_ejdRuDS0EeOjkaf-ripOcw" origin="_ejdRgTS0EeOjkaf-ripOcw" image="_ejdRtjS0EeOjkaf-ripOcw"/>
+          </child>
+        </right>
+      </formula>
+    </lhs>
+    <rhs xmi:id="_ejdRuTS0EeOjkaf-ripOcw" name="Rhs">
+      <nodes xmi:id="_ejdRujS0EeOjkaf-ripOcw" name="Transition0" incoming="_ejdR4TS0EeOjkaf-ripOcw _ejdR5TS0EeOjkaf-ripOcw" outgoing="_ejdR1DS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejdRuzS0EeOjkaf-ripOcw" name="Transition0DNodeType" incoming="_ejdR1DS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejdRvDS0EeOjkaf-ripOcw" name="Transition1" incoming="_ejdR3zS0EeOjkaf-ripOcw _ejdR5jS0EeOjkaf-ripOcw" outgoing="_ejdR1TS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejdRvTS0EeOjkaf-ripOcw" name="Transition1DNodeType" incoming="_ejdR1TS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejdRvjS0EeOjkaf-ripOcw" name="Condition0" incoming="_ejdR4DS0EeOjkaf-ripOcw _ejdR4zS0EeOjkaf-ripOcw" outgoing="_ejdR1jS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejdRvzS0EeOjkaf-ripOcw" name="Condition0DNodeType" incoming="_ejdR1jS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejdRwDS0EeOjkaf-ripOcw" name="Choice0" incoming="_ejdR3jS0EeOjkaf-ripOcw _ejdR4jS0EeOjkaf-ripOcw" outgoing="_ejdR1zS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejdRwTS0EeOjkaf-ripOcw" name="Choice0DNodeType" incoming="_ejdR1zS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejdRwjS0EeOjkaf-ripOcw" name="ChoiceCondition0" incoming="_ejdR3TS0EeOjkaf-ripOcw" outgoing="_ejdR2DS0EeOjkaf-ripOcw _ejdR4jS0EeOjkaf-ripOcw _ejdR4zS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow"/>
+        <attributes xmi:id="_ejdRwzS0EeOjkaf-ripOcw" value="name0">
+          <type href="http://no.hib.dpf.core#//Node/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejdRxDS0EeOjkaf-ripOcw" name="ChoiceCondition0ArrowType" incoming="_ejdR2DS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow"/>
+      </nodes>
+      <nodes xmi:id="_ejdRxTS0EeOjkaf-ripOcw" name="Place0" incoming="_ejdR3DS0EeOjkaf-ripOcw _ejdR5DS0EeOjkaf-ripOcw _ejdR5zS0EeOjkaf-ripOcw" outgoing="_ejdR2TS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+        <attributes xmi:id="_ejdRxjS0EeOjkaf-ripOcw" value="name0">
+          <type href="http://no.hib.dpf.core#//Node/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejdRxzS0EeOjkaf-ripOcw" name="Place0DNodeType" incoming="_ejdR2TS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+        <attributes xmi:id="_ejdRyDS0EeOjkaf-ripOcw" value="&quot;Place&quot;">
+          <type href="http://no.hib.dpf.core#//Node/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejdRyTS0EeOjkaf-ripOcw" name="PlaceToTransition0" outgoing="_ejdR2jS0EeOjkaf-ripOcw _ejdR5DS0EeOjkaf-ripOcw _ejdR5TS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow"/>
+        <attributes xmi:id="_ejdRyjS0EeOjkaf-ripOcw" value="&quot;&quot;">
+          <type href="http://no.hib.dpf.core#//Arrow/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejdRyzS0EeOjkaf-ripOcw" name="PlaceToTransition0ArrowType" incoming="_ejdR2jS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow"/>
+        <attributes xmi:id="_ejdRzDS0EeOjkaf-ripOcw" value="&quot;PlaceToTransition&quot;">
+          <type href="http://no.hib.dpf.core#//Arrow/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejdRzTS0EeOjkaf-ripOcw" name="TransitionToPlace0" outgoing="_ejdR2zS0EeOjkaf-ripOcw _ejdR5jS0EeOjkaf-ripOcw _ejdR5zS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow"/>
+        <attributes xmi:id="_ejdRzjS0EeOjkaf-ripOcw" value="&quot;&quot;">
+          <type href="http://no.hib.dpf.core#//Arrow/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejdRzzS0EeOjkaf-ripOcw" name="TransitionToPlace0ArrowType" incoming="_ejdR2zS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow"/>
+        <attributes xmi:id="_ejdR0DS0EeOjkaf-ripOcw" value="&quot;TransitionToPlace&quot;">
+          <type href="http://no.hib.dpf.core#//Arrow/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejdR0TS0EeOjkaf-ripOcw" name="Place0" outgoing="_ejdR3DS0EeOjkaf-ripOcw _ejdR3TS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <nodes xmi:id="_ejdR0jS0EeOjkaf-ripOcw" name="Trace1" outgoing="_ejdR3jS0EeOjkaf-ripOcw _ejdR3zS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <nodes xmi:id="_ejdR0zS0EeOjkaf-ripOcw" name="Trace0" outgoing="_ejdR4DS0EeOjkaf-ripOcw _ejdR4TS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <edges xmi:id="_ejdR1DS0EeOjkaf-ripOcw" source="_ejdRujS0EeOjkaf-ripOcw" target="_ejdRuzS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejdR1TS0EeOjkaf-ripOcw" source="_ejdRvDS0EeOjkaf-ripOcw" target="_ejdRvTS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejdR1jS0EeOjkaf-ripOcw" source="_ejdRvjS0EeOjkaf-ripOcw" target="_ejdRvzS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejdR1zS0EeOjkaf-ripOcw" source="_ejdRwDS0EeOjkaf-ripOcw" target="_ejdRwTS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejdR2DS0EeOjkaf-ripOcw" source="_ejdRwjS0EeOjkaf-ripOcw" target="_ejdRxDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/typeArrow"/>
+      </edges>
+      <edges xmi:id="_ejdR2TS0EeOjkaf-ripOcw" source="_ejdRxTS0EeOjkaf-ripOcw" target="_ejdRxzS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejdR2jS0EeOjkaf-ripOcw" source="_ejdRyTS0EeOjkaf-ripOcw" target="_ejdRyzS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/typeArrow"/>
+      </edges>
+      <edges xmi:id="_ejdR2zS0EeOjkaf-ripOcw" source="_ejdRzTS0EeOjkaf-ripOcw" target="_ejdRzzS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/typeArrow"/>
+      </edges>
+      <edges xmi:id="_ejdR3DS0EeOjkaf-ripOcw" source="_ejdR0TS0EeOjkaf-ripOcw" target="_ejdRxTS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xmi:id="_ejdR3TS0EeOjkaf-ripOcw" source="_ejdR0TS0EeOjkaf-ripOcw" target="_ejdRwjS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xmi:id="_ejdR3jS0EeOjkaf-ripOcw" source="_ejdR0jS0EeOjkaf-ripOcw" target="_ejdRwDS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xmi:id="_ejdR3zS0EeOjkaf-ripOcw" source="_ejdR0jS0EeOjkaf-ripOcw" target="_ejdRvDS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xmi:id="_ejdR4DS0EeOjkaf-ripOcw" source="_ejdR0zS0EeOjkaf-ripOcw" target="_ejdRvjS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xmi:id="_ejdR4TS0EeOjkaf-ripOcw" source="_ejdR0zS0EeOjkaf-ripOcw" target="_ejdRujS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xmi:id="_ejdR4jS0EeOjkaf-ripOcw" source="_ejdRwjS0EeOjkaf-ripOcw" target="_ejdRwDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/source"/>
+      </edges>
+      <edges xmi:id="_ejdR4zS0EeOjkaf-ripOcw" source="_ejdRwjS0EeOjkaf-ripOcw" target="_ejdRvjS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/target"/>
+      </edges>
+      <edges xmi:id="_ejdR5DS0EeOjkaf-ripOcw" source="_ejdRyTS0EeOjkaf-ripOcw" target="_ejdRxTS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/source"/>
+      </edges>
+      <edges xmi:id="_ejdR5TS0EeOjkaf-ripOcw" source="_ejdRyTS0EeOjkaf-ripOcw" target="_ejdRujS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/target"/>
+      </edges>
+      <edges xmi:id="_ejdR5jS0EeOjkaf-ripOcw" source="_ejdRzTS0EeOjkaf-ripOcw" target="_ejdRvDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/source"/>
+      </edges>
+      <edges xmi:id="_ejdR5zS0EeOjkaf-ripOcw" source="_ejdRzTS0EeOjkaf-ripOcw" target="_ejdRxTS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/target"/>
+      </edges>
+    </rhs>
+    <mappings xmi:id="_ejdR6DS0EeOjkaf-ripOcw" origin="_ejdReTS0EeOjkaf-ripOcw" image="_ejdRujS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejdR6TS0EeOjkaf-ripOcw" origin="_ejdRejS0EeOjkaf-ripOcw" image="_ejdRuzS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejdR6jS0EeOjkaf-ripOcw" origin="_ejdRezS0EeOjkaf-ripOcw" image="_ejdRvDS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejdR6zS0EeOjkaf-ripOcw" origin="_ejdRfDS0EeOjkaf-ripOcw" image="_ejdRvTS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejdR7DS0EeOjkaf-ripOcw" origin="_ejdRfTS0EeOjkaf-ripOcw" image="_ejdRvjS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejdR7TS0EeOjkaf-ripOcw" origin="_ejdRfjS0EeOjkaf-ripOcw" image="_ejdRvzS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejdR7jS0EeOjkaf-ripOcw" origin="_ejdRfzS0EeOjkaf-ripOcw" image="_ejdRwDS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejdR7zS0EeOjkaf-ripOcw" origin="_ejdRgDS0EeOjkaf-ripOcw" image="_ejdRwTS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejdR8DS0EeOjkaf-ripOcw" origin="_ejdRgTS0EeOjkaf-ripOcw" image="_ejdRwjS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejdR8TS0EeOjkaf-ripOcw" origin="_ejdRgzS0EeOjkaf-ripOcw" image="_ejdRxDS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejd34DS0EeOjkaf-ripOcw" origin="_ejdRhDS0EeOjkaf-ripOcw" image="_ejdR0jS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejd34TS0EeOjkaf-ripOcw" origin="_ejdRhTS0EeOjkaf-ripOcw" image="_ejdR0zS0EeOjkaf-ripOcw"/>
+  </units>
+  <units xsi:type="henshin:LoopUnit" xmi:id="_ejd34jS0EeOjkaf-ripOcw" name="translateChoiceCondtition_Loop" subUnit="_ejdRdDS0EeOjkaf-ripOcw"/>
+  <units xsi:type="henshin:Rule" xmi:id="_ejd34zS0EeOjkaf-ripOcw" name="translateChoiceIn" injectiveMatching="false">
+    <parameters xmi:id="_ejd35DS0EeOjkaf-ripOcw" name="name0">
+      <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </parameters>
+    <parameters xmi:id="_ejd35TS0EeOjkaf-ripOcw" name="name1">
+      <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </parameters>
+    <parameters xmi:id="_ejd35jS0EeOjkaf-ripOcw" name="name2">
+      <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </parameters>
+    <lhs xmi:id="_ejd35zS0EeOjkaf-ripOcw" name="Lhs">
+      <nodes xmi:id="_ejd36DS0EeOjkaf-ripOcw" name="Transition0" incoming="_ejd3-zS0EeOjkaf-ripOcw" outgoing="_ejd39TS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejd36TS0EeOjkaf-ripOcw" name="Transition0DNodeType" incoming="_ejd39TS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejd36jS0EeOjkaf-ripOcw" name="Transition1" incoming="_ejd3_TS0EeOjkaf-ripOcw" outgoing="_ejd39jS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejd36zS0EeOjkaf-ripOcw" name="Transition1DNodeType" incoming="_ejd39jS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejd37DS0EeOjkaf-ripOcw" name="Choice0" incoming="_ejd3-jS0EeOjkaf-ripOcw _ejd3_zS0EeOjkaf-ripOcw" outgoing="_ejd39zS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejd37TS0EeOjkaf-ripOcw" name="Choice0DNodeType" incoming="_ejd39zS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejd37jS0EeOjkaf-ripOcw" name="Activity0" incoming="_ejd3_DS0EeOjkaf-ripOcw _ejd3_jS0EeOjkaf-ripOcw" outgoing="_ejd3-DS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejd37zS0EeOjkaf-ripOcw" name="Activity0DNodeType" incoming="_ejd3-DS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejd38DS0EeOjkaf-ripOcw" name="ChoiceIn0" outgoing="_ejd3-TS0EeOjkaf-ripOcw _ejd3_jS0EeOjkaf-ripOcw _ejd3_zS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow"/>
+        <attributes xmi:id="_ejd38TS0EeOjkaf-ripOcw" value="name0">
+          <type href="http://no.hib.dpf.core#//Node/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejd38jS0EeOjkaf-ripOcw" name="ChoiceIn0ArrowType" incoming="_ejd3-TS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow"/>
+      </nodes>
+      <nodes xmi:id="_ejd38zS0EeOjkaf-ripOcw" name="Trace0" outgoing="_ejd3-jS0EeOjkaf-ripOcw _ejd3-zS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <nodes xmi:id="_ejd39DS0EeOjkaf-ripOcw" name="Trace1" outgoing="_ejd3_DS0EeOjkaf-ripOcw _ejd3_TS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <edges xmi:id="_ejd39TS0EeOjkaf-ripOcw" source="_ejd36DS0EeOjkaf-ripOcw" target="_ejd36TS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejd39jS0EeOjkaf-ripOcw" source="_ejd36jS0EeOjkaf-ripOcw" target="_ejd36zS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejd39zS0EeOjkaf-ripOcw" source="_ejd37DS0EeOjkaf-ripOcw" target="_ejd37TS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejd3-DS0EeOjkaf-ripOcw" source="_ejd37jS0EeOjkaf-ripOcw" target="_ejd37zS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejd3-TS0EeOjkaf-ripOcw" source="_ejd38DS0EeOjkaf-ripOcw" target="_ejd38jS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/typeArrow"/>
+      </edges>
+      <edges xmi:id="_ejd3-jS0EeOjkaf-ripOcw" source="_ejd38zS0EeOjkaf-ripOcw" target="_ejd37DS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xmi:id="_ejd3-zS0EeOjkaf-ripOcw" source="_ejd38zS0EeOjkaf-ripOcw" target="_ejd36DS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xmi:id="_ejd3_DS0EeOjkaf-ripOcw" source="_ejd39DS0EeOjkaf-ripOcw" target="_ejd37jS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xmi:id="_ejd3_TS0EeOjkaf-ripOcw" source="_ejd39DS0EeOjkaf-ripOcw" target="_ejd36jS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xmi:id="_ejd3_jS0EeOjkaf-ripOcw" source="_ejd38DS0EeOjkaf-ripOcw" target="_ejd37jS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/source"/>
+      </edges>
+      <edges xmi:id="_ejd3_zS0EeOjkaf-ripOcw" source="_ejd38DS0EeOjkaf-ripOcw" target="_ejd37DS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/target"/>
+      </edges>
+      <formula xsi:type="henshin:And" xmi:id="_ejd4ADS0EeOjkaf-ripOcw">
+        <left xsi:type="henshin:NestedCondition" xmi:id="_ejd4ATS0EeOjkaf-ripOcw">
+          <conclusion xmi:id="_ejd4AjS0EeOjkaf-ripOcw">
+            <nodes xmi:id="_ejd4AzS0EeOjkaf-ripOcw" name="Transition0DNodeType" incoming="_ejd4EjS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node"/>
+              <attributes xmi:id="_ejd4BDS0EeOjkaf-ripOcw" value="&quot;Transition&quot;">
+                <type href="http://no.hib.dpf.core#//Node/name"/>
+              </attributes>
+            </nodes>
+            <nodes xmi:id="_ejd4BTS0EeOjkaf-ripOcw" name="Transition0" outgoing="_ejd4EjS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node"/>
+            </nodes>
+            <nodes xmi:id="_ejd4BjS0EeOjkaf-ripOcw" name="Transition1DNodeType" incoming="_ejd4EzS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node"/>
+              <attributes xmi:id="_ejd4BzS0EeOjkaf-ripOcw" value="&quot;Transition&quot;">
+                <type href="http://no.hib.dpf.core#//Node/name"/>
+              </attributes>
+            </nodes>
+            <nodes xmi:id="_ejd4CDS0EeOjkaf-ripOcw" name="Transition1" outgoing="_ejd4EzS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node"/>
+            </nodes>
+            <nodes xmi:id="_ejd4CTS0EeOjkaf-ripOcw" name="Choice0DNodeType" incoming="_ejd4FDS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node"/>
+              <attributes xmi:id="_ejd4CjS0EeOjkaf-ripOcw" value="&quot;Choice&quot;">
+                <type href="http://no.hib.dpf.core#//Node/name"/>
+              </attributes>
+            </nodes>
+            <nodes xmi:id="_ejd4CzS0EeOjkaf-ripOcw" name="Choice0" outgoing="_ejd4FDS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node"/>
+            </nodes>
+            <nodes xmi:id="_ejd4DDS0EeOjkaf-ripOcw" name="Activity0DNodeType" incoming="_ejd4FTS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node"/>
+              <attributes xmi:id="_ejd4DTS0EeOjkaf-ripOcw" value="&quot;Activity&quot;">
+                <type href="http://no.hib.dpf.core#//Node/name"/>
+              </attributes>
+            </nodes>
+            <nodes xmi:id="_ejd4DjS0EeOjkaf-ripOcw" name="Activity0" outgoing="_ejd4FTS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node"/>
+            </nodes>
+            <nodes xmi:id="_ejd4DzS0EeOjkaf-ripOcw" name="ChoiceIn0ArrowType" incoming="_ejd4FjS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Arrow"/>
+              <attributes xmi:id="_ejd4EDS0EeOjkaf-ripOcw" value="&quot;ChoiceIn&quot;">
+                <type href="http://no.hib.dpf.core#//Arrow/name"/>
+              </attributes>
+            </nodes>
+            <nodes xmi:id="_ejd4ETS0EeOjkaf-ripOcw" name="ChoiceIn0" outgoing="_ejd4FjS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Arrow"/>
+            </nodes>
+            <edges xmi:id="_ejd4EjS0EeOjkaf-ripOcw" source="_ejd4BTS0EeOjkaf-ripOcw" target="_ejd4AzS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+            </edges>
+            <edges xmi:id="_ejd4EzS0EeOjkaf-ripOcw" source="_ejd4CDS0EeOjkaf-ripOcw" target="_ejd4BjS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+            </edges>
+            <edges xmi:id="_ejd4FDS0EeOjkaf-ripOcw" source="_ejd4CzS0EeOjkaf-ripOcw" target="_ejd4CTS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+            </edges>
+            <edges xmi:id="_ejd4FTS0EeOjkaf-ripOcw" source="_ejd4DjS0EeOjkaf-ripOcw" target="_ejd4DDS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+            </edges>
+            <edges xmi:id="_ejd4FjS0EeOjkaf-ripOcw" source="_ejd4ETS0EeOjkaf-ripOcw" target="_ejd4DzS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Arrow/typeArrow"/>
+            </edges>
+          </conclusion>
+          <mappings xmi:id="_ejd4FzS0EeOjkaf-ripOcw" origin="_ejd36TS0EeOjkaf-ripOcw" image="_ejd4AzS0EeOjkaf-ripOcw"/>
+          <mappings xmi:id="_ejd4GDS0EeOjkaf-ripOcw" origin="_ejd36DS0EeOjkaf-ripOcw" image="_ejd4BTS0EeOjkaf-ripOcw"/>
+          <mappings xmi:id="_ejd4GTS0EeOjkaf-ripOcw" origin="_ejd36zS0EeOjkaf-ripOcw" image="_ejd4BjS0EeOjkaf-ripOcw"/>
+          <mappings xmi:id="_ejd4GjS0EeOjkaf-ripOcw" origin="_ejd36jS0EeOjkaf-ripOcw" image="_ejd4CDS0EeOjkaf-ripOcw"/>
+          <mappings xmi:id="_ejd4GzS0EeOjkaf-ripOcw" origin="_ejd37TS0EeOjkaf-ripOcw" image="_ejd4CTS0EeOjkaf-ripOcw"/>
+          <mappings xmi:id="_ejd4HDS0EeOjkaf-ripOcw" origin="_ejd37DS0EeOjkaf-ripOcw" image="_ejd4CzS0EeOjkaf-ripOcw"/>
+          <mappings xmi:id="_ejd4HTS0EeOjkaf-ripOcw" origin="_ejd37zS0EeOjkaf-ripOcw" image="_ejd4DDS0EeOjkaf-ripOcw"/>
+          <mappings xmi:id="_ejd4HjS0EeOjkaf-ripOcw" origin="_ejd37jS0EeOjkaf-ripOcw" image="_ejd4DjS0EeOjkaf-ripOcw"/>
+          <mappings xmi:id="_ejd4HzS0EeOjkaf-ripOcw" origin="_ejd38jS0EeOjkaf-ripOcw" image="_ejd4DzS0EeOjkaf-ripOcw"/>
+          <mappings xmi:id="_ejd4IDS0EeOjkaf-ripOcw" origin="_ejd38DS0EeOjkaf-ripOcw" image="_ejd4ETS0EeOjkaf-ripOcw"/>
+        </left>
+        <right xsi:type="henshin:Not" xmi:id="_ejd4ITS0EeOjkaf-ripOcw">
+          <child xsi:type="henshin:NestedCondition" xmi:id="_ejd4IjS0EeOjkaf-ripOcw">
+            <conclusion xmi:id="_ejd4IzS0EeOjkaf-ripOcw">
+              <nodes xmi:id="_ejd4JDS0EeOjkaf-ripOcw" name="Place0" outgoing="_ejd4JjS0EeOjkaf-ripOcw">
+                <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+              </nodes>
+              <nodes xmi:id="_ejd4JTS0EeOjkaf-ripOcw" name="ChoiceIn0" incoming="_ejd4JjS0EeOjkaf-ripOcw">
+                <type href="http://no.hib.dpf.core#//Arrow"/>
+              </nodes>
+              <edges xmi:id="_ejd4JjS0EeOjkaf-ripOcw" source="_ejd4JDS0EeOjkaf-ripOcw" target="_ejd4JTS0EeOjkaf-ripOcw">
+                <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+              </edges>
+            </conclusion>
+            <mappings xmi:id="_ejd4JzS0EeOjkaf-ripOcw" origin="_ejd38DS0EeOjkaf-ripOcw" image="_ejd4JTS0EeOjkaf-ripOcw"/>
+          </child>
+        </right>
+      </formula>
+    </lhs>
+    <rhs xmi:id="_ejd4KDS0EeOjkaf-ripOcw" name="Rhs">
+      <nodes xmi:id="_ejd4KTS0EeOjkaf-ripOcw" name="Transition0" incoming="_ejd4TjS0EeOjkaf-ripOcw _ejd4VDS0EeOjkaf-ripOcw" outgoing="_ejd4QzS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejd4KjS0EeOjkaf-ripOcw" name="Transition0DNodeType" incoming="_ejd4QzS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejd4KzS0EeOjkaf-ripOcw" name="Transition1" incoming="_ejd4UDS0EeOjkaf-ripOcw _ejd4VTS0EeOjkaf-ripOcw" outgoing="_ejd4RDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejd4LDS0EeOjkaf-ripOcw" name="Transition1DNodeType" incoming="_ejd4RDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejd4LTS0EeOjkaf-ripOcw" name="Choice0" incoming="_ejd4TTS0EeOjkaf-ripOcw _ejd4UjS0EeOjkaf-ripOcw" outgoing="_ejd4RTS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejd4LjS0EeOjkaf-ripOcw" name="Choice0DNodeType" incoming="_ejd4RTS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejd4LzS0EeOjkaf-ripOcw" name="Activity0" incoming="_ejd4TzS0EeOjkaf-ripOcw _ejd4UTS0EeOjkaf-ripOcw" outgoing="_ejd4RjS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejd4MDS0EeOjkaf-ripOcw" name="Activity0DNodeType" incoming="_ejd4RjS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejd4MTS0EeOjkaf-ripOcw" name="ChoiceIn0" incoming="_ejd4TDS0EeOjkaf-ripOcw" outgoing="_ejd4RzS0EeOjkaf-ripOcw _ejd4UTS0EeOjkaf-ripOcw _ejd4UjS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow"/>
+        <attributes xmi:id="_ejd4MjS0EeOjkaf-ripOcw" value="name0">
+          <type href="http://no.hib.dpf.core#//Node/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejd4MzS0EeOjkaf-ripOcw" name="ChoiceIn0ArrowType" incoming="_ejd4RzS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow"/>
+      </nodes>
+      <nodes xmi:id="_ejd4NDS0EeOjkaf-ripOcw" name="Place0" incoming="_ejd4SzS0EeOjkaf-ripOcw _ejd4UzS0EeOjkaf-ripOcw _ejd4VjS0EeOjkaf-ripOcw" outgoing="_ejd4SDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+        <attributes xmi:id="_ejd4NTS0EeOjkaf-ripOcw" value="name0">
+          <type href="http://no.hib.dpf.core#//Node/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejd4NjS0EeOjkaf-ripOcw" name="Place0DNodeType" incoming="_ejd4SDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+        <attributes xmi:id="_ejd4NzS0EeOjkaf-ripOcw" value="&quot;Place&quot;">
+          <type href="http://no.hib.dpf.core#//Node/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejd4ODS0EeOjkaf-ripOcw" name="PlaceToTransition0" outgoing="_ejd4STS0EeOjkaf-ripOcw _ejd4UzS0EeOjkaf-ripOcw _ejd4VDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow"/>
+        <attributes xmi:id="_ejd4OTS0EeOjkaf-ripOcw" value="&quot;&quot;">
+          <type href="http://no.hib.dpf.core#//Arrow/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejd4OjS0EeOjkaf-ripOcw" name="PlaceToTransition0ArrowType" incoming="_ejd4STS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow"/>
+        <attributes xmi:id="_ejd4OzS0EeOjkaf-ripOcw" value="&quot;PlaceToTransition&quot;">
+          <type href="http://no.hib.dpf.core#//Arrow/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejd4PDS0EeOjkaf-ripOcw" name="TransitionToPlace0" outgoing="_ejd4SjS0EeOjkaf-ripOcw _ejd4VTS0EeOjkaf-ripOcw _ejd4VjS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow"/>
+        <attributes xmi:id="_ejd4PTS0EeOjkaf-ripOcw" value="&quot;&quot;">
+          <type href="http://no.hib.dpf.core#//Arrow/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejd4PjS0EeOjkaf-ripOcw" name="TransitionToPlace0ArrowType" incoming="_ejd4SjS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow"/>
+        <attributes xmi:id="_ejd4PzS0EeOjkaf-ripOcw" value="&quot;TransitionToPlace&quot;">
+          <type href="http://no.hib.dpf.core#//Arrow/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejd4QDS0EeOjkaf-ripOcw" name="Place0" outgoing="_ejd4SzS0EeOjkaf-ripOcw _ejd4TDS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <nodes xmi:id="_ejd4QTS0EeOjkaf-ripOcw" name="Trace0" outgoing="_ejd4TTS0EeOjkaf-ripOcw _ejd4TjS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <nodes xmi:id="_ejd4QjS0EeOjkaf-ripOcw" name="Trace1" outgoing="_ejd4TzS0EeOjkaf-ripOcw _ejd4UDS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <edges xmi:id="_ejd4QzS0EeOjkaf-ripOcw" source="_ejd4KTS0EeOjkaf-ripOcw" target="_ejd4KjS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejd4RDS0EeOjkaf-ripOcw" source="_ejd4KzS0EeOjkaf-ripOcw" target="_ejd4LDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejd4RTS0EeOjkaf-ripOcw" source="_ejd4LTS0EeOjkaf-ripOcw" target="_ejd4LjS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejd4RjS0EeOjkaf-ripOcw" source="_ejd4LzS0EeOjkaf-ripOcw" target="_ejd4MDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejd4RzS0EeOjkaf-ripOcw" source="_ejd4MTS0EeOjkaf-ripOcw" target="_ejd4MzS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/typeArrow"/>
+      </edges>
+      <edges xmi:id="_ejd4SDS0EeOjkaf-ripOcw" source="_ejd4NDS0EeOjkaf-ripOcw" target="_ejd4NjS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejd4STS0EeOjkaf-ripOcw" source="_ejd4ODS0EeOjkaf-ripOcw" target="_ejd4OjS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/typeArrow"/>
+      </edges>
+      <edges xmi:id="_ejd4SjS0EeOjkaf-ripOcw" source="_ejd4PDS0EeOjkaf-ripOcw" target="_ejd4PjS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/typeArrow"/>
+      </edges>
+      <edges xmi:id="_ejd4SzS0EeOjkaf-ripOcw" source="_ejd4QDS0EeOjkaf-ripOcw" target="_ejd4NDS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xmi:id="_ejd4TDS0EeOjkaf-ripOcw" source="_ejd4QDS0EeOjkaf-ripOcw" target="_ejd4MTS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xmi:id="_ejd4TTS0EeOjkaf-ripOcw" source="_ejd4QTS0EeOjkaf-ripOcw" target="_ejd4LTS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xmi:id="_ejd4TjS0EeOjkaf-ripOcw" source="_ejd4QTS0EeOjkaf-ripOcw" target="_ejd4KTS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xmi:id="_ejd4TzS0EeOjkaf-ripOcw" source="_ejd4QjS0EeOjkaf-ripOcw" target="_ejd4LzS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xmi:id="_ejd4UDS0EeOjkaf-ripOcw" source="_ejd4QjS0EeOjkaf-ripOcw" target="_ejd4KzS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xmi:id="_ejd4UTS0EeOjkaf-ripOcw" source="_ejd4MTS0EeOjkaf-ripOcw" target="_ejd4LzS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/source"/>
+      </edges>
+      <edges xmi:id="_ejd4UjS0EeOjkaf-ripOcw" source="_ejd4MTS0EeOjkaf-ripOcw" target="_ejd4LTS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/target"/>
+      </edges>
+      <edges xmi:id="_ejd4UzS0EeOjkaf-ripOcw" source="_ejd4ODS0EeOjkaf-ripOcw" target="_ejd4NDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/source"/>
+      </edges>
+      <edges xmi:id="_ejd4VDS0EeOjkaf-ripOcw" source="_ejd4ODS0EeOjkaf-ripOcw" target="_ejd4KTS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/target"/>
+      </edges>
+      <edges xmi:id="_ejd4VTS0EeOjkaf-ripOcw" source="_ejd4PDS0EeOjkaf-ripOcw" target="_ejd4KzS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/source"/>
+      </edges>
+      <edges xmi:id="_ejd4VjS0EeOjkaf-ripOcw" source="_ejd4PDS0EeOjkaf-ripOcw" target="_ejd4NDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/target"/>
+      </edges>
+    </rhs>
+    <mappings xmi:id="_ejd4VzS0EeOjkaf-ripOcw" origin="_ejd36DS0EeOjkaf-ripOcw" image="_ejd4KTS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejd4WDS0EeOjkaf-ripOcw" origin="_ejd36TS0EeOjkaf-ripOcw" image="_ejd4KjS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejd4WTS0EeOjkaf-ripOcw" origin="_ejd36jS0EeOjkaf-ripOcw" image="_ejd4KzS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejd4WjS0EeOjkaf-ripOcw" origin="_ejd36zS0EeOjkaf-ripOcw" image="_ejd4LDS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejd4WzS0EeOjkaf-ripOcw" origin="_ejd37DS0EeOjkaf-ripOcw" image="_ejd4LTS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejd4XDS0EeOjkaf-ripOcw" origin="_ejd37TS0EeOjkaf-ripOcw" image="_ejd4LjS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejd4XTS0EeOjkaf-ripOcw" origin="_ejd37jS0EeOjkaf-ripOcw" image="_ejd4LzS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejd4XjS0EeOjkaf-ripOcw" origin="_ejd37zS0EeOjkaf-ripOcw" image="_ejd4MDS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejd4XzS0EeOjkaf-ripOcw" origin="_ejd38DS0EeOjkaf-ripOcw" image="_ejd4MTS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejd4YDS0EeOjkaf-ripOcw" origin="_ejd38jS0EeOjkaf-ripOcw" image="_ejd4MzS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejd4YTS0EeOjkaf-ripOcw" origin="_ejd38zS0EeOjkaf-ripOcw" image="_ejd4QTS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejd4YjS0EeOjkaf-ripOcw" origin="_ejd39DS0EeOjkaf-ripOcw" image="_ejd4QjS0EeOjkaf-ripOcw"/>
+  </units>
+  <units xsi:type="henshin:LoopUnit" xmi:id="_ejd4YzS0EeOjkaf-ripOcw" name="translateChoiceIn_Loop" subUnit="_ejd34zS0EeOjkaf-ripOcw"/>
+  <units xsi:type="henshin:Rule" xmi:id="_ejd4ZDS0EeOjkaf-ripOcw" name="translateChoiceOut" injectiveMatching="false">
+    <parameters xmi:id="_ejd4ZTS0EeOjkaf-ripOcw" name="name0">
+      <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </parameters>
+    <parameters xmi:id="_ejd4ZjS0EeOjkaf-ripOcw" name="name1">
+      <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </parameters>
+    <parameters xmi:id="_ejd4ZzS0EeOjkaf-ripOcw" name="name2">
+      <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </parameters>
+    <lhs xmi:id="_ejd4aDS0EeOjkaf-ripOcw" name="Lhs">
+      <nodes xmi:id="_ejd4aTS0EeOjkaf-ripOcw" name="Transition0" incoming="_ejd4fDS0EeOjkaf-ripOcw" outgoing="_ejd4djS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejd4ajS0EeOjkaf-ripOcw" name="Transition0DNodeType" incoming="_ejd4djS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejd4azS0EeOjkaf-ripOcw" name="Transition1" incoming="_ejd4fjS0EeOjkaf-ripOcw" outgoing="_ejd4dzS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejd4bDS0EeOjkaf-ripOcw" name="Transition1DNodeType" incoming="_ejd4dzS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejd4bTS0EeOjkaf-ripOcw" name="Activity0" incoming="_ejd4ezS0EeOjkaf-ripOcw _ejd4gDS0EeOjkaf-ripOcw" outgoing="_ejd4eDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejd4bjS0EeOjkaf-ripOcw" name="Activity0DNodeType" incoming="_ejd4eDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejd4bzS0EeOjkaf-ripOcw" name="Condition0" incoming="_ejd4fTS0EeOjkaf-ripOcw _ejd4fzS0EeOjkaf-ripOcw" outgoing="_ejd4eTS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejd4cDS0EeOjkaf-ripOcw" name="Condition0DNodeType" incoming="_ejd4eTS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejd4cTS0EeOjkaf-ripOcw" name="ChoiceOut0" outgoing="_ejd4ejS0EeOjkaf-ripOcw _ejd4fzS0EeOjkaf-ripOcw _ejd4gDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow"/>
+        <attributes xmi:id="_ejd4cjS0EeOjkaf-ripOcw" value="name0">
+          <type href="http://no.hib.dpf.core#//Node/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejd4czS0EeOjkaf-ripOcw" name="ChoiceOut0ArrowType" incoming="_ejd4ejS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow"/>
+      </nodes>
+      <nodes xmi:id="_ejd4dDS0EeOjkaf-ripOcw" name="Trace1" outgoing="_ejd4ezS0EeOjkaf-ripOcw _ejd4fDS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <nodes xmi:id="_ejd4dTS0EeOjkaf-ripOcw" name="Trace0" outgoing="_ejd4fTS0EeOjkaf-ripOcw _ejd4fjS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <edges xmi:id="_ejd4djS0EeOjkaf-ripOcw" source="_ejd4aTS0EeOjkaf-ripOcw" target="_ejd4ajS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejd4dzS0EeOjkaf-ripOcw" source="_ejd4azS0EeOjkaf-ripOcw" target="_ejd4bDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejd4eDS0EeOjkaf-ripOcw" source="_ejd4bTS0EeOjkaf-ripOcw" target="_ejd4bjS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejd4eTS0EeOjkaf-ripOcw" source="_ejd4bzS0EeOjkaf-ripOcw" target="_ejd4cDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejd4ejS0EeOjkaf-ripOcw" source="_ejd4cTS0EeOjkaf-ripOcw" target="_ejd4czS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/typeArrow"/>
+      </edges>
+      <edges xmi:id="_ejd4ezS0EeOjkaf-ripOcw" source="_ejd4dDS0EeOjkaf-ripOcw" target="_ejd4bTS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xmi:id="_ejd4fDS0EeOjkaf-ripOcw" source="_ejd4dDS0EeOjkaf-ripOcw" target="_ejd4aTS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xmi:id="_ejd4fTS0EeOjkaf-ripOcw" source="_ejd4dTS0EeOjkaf-ripOcw" target="_ejd4bzS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xmi:id="_ejd4fjS0EeOjkaf-ripOcw" source="_ejd4dTS0EeOjkaf-ripOcw" target="_ejd4azS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xmi:id="_ejd4fzS0EeOjkaf-ripOcw" source="_ejd4cTS0EeOjkaf-ripOcw" target="_ejd4bzS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/source"/>
+      </edges>
+      <edges xmi:id="_ejd4gDS0EeOjkaf-ripOcw" source="_ejd4cTS0EeOjkaf-ripOcw" target="_ejd4bTS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/target"/>
+      </edges>
+      <formula xsi:type="henshin:And" xmi:id="_ejd4gTS0EeOjkaf-ripOcw">
+        <left xsi:type="henshin:NestedCondition" xmi:id="_ejd4gjS0EeOjkaf-ripOcw">
+          <conclusion xmi:id="_ejd4gzS0EeOjkaf-ripOcw">
+            <nodes xmi:id="_ejd4hDS0EeOjkaf-ripOcw" name="Transition0DNodeType" incoming="_ejd4kzS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node"/>
+              <attributes xmi:id="_ejd4hTS0EeOjkaf-ripOcw" value="&quot;Transition&quot;">
+                <type href="http://no.hib.dpf.core#//Node/name"/>
+              </attributes>
+            </nodes>
+            <nodes xmi:id="_ejd4hjS0EeOjkaf-ripOcw" name="Transition0" outgoing="_ejd4kzS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node"/>
+            </nodes>
+            <nodes xmi:id="_ejd4hzS0EeOjkaf-ripOcw" name="Transition1DNodeType" incoming="_ejd4lDS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node"/>
+              <attributes xmi:id="_ejd4iDS0EeOjkaf-ripOcw" value="&quot;Transition&quot;">
+                <type href="http://no.hib.dpf.core#//Node/name"/>
+              </attributes>
+            </nodes>
+            <nodes xmi:id="_ejd4iTS0EeOjkaf-ripOcw" name="Transition1" outgoing="_ejd4lDS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node"/>
+            </nodes>
+            <nodes xmi:id="_ejd4ijS0EeOjkaf-ripOcw" name="Activity0DNodeType" incoming="_ejd4lTS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node"/>
+              <attributes xmi:id="_ejd4izS0EeOjkaf-ripOcw" value="&quot;Activity&quot;">
+                <type href="http://no.hib.dpf.core#//Node/name"/>
+              </attributes>
+            </nodes>
+            <nodes xmi:id="_ejd4jDS0EeOjkaf-ripOcw" name="Activity0" outgoing="_ejd4lTS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node"/>
+            </nodes>
+            <nodes xmi:id="_ejd4jTS0EeOjkaf-ripOcw" name="Condition0DNodeType" incoming="_ejd4ljS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node"/>
+              <attributes xmi:id="_ejd4jjS0EeOjkaf-ripOcw" value="&quot;Condition&quot;">
+                <type href="http://no.hib.dpf.core#//Node/name"/>
+              </attributes>
+            </nodes>
+            <nodes xmi:id="_ejd4jzS0EeOjkaf-ripOcw" name="Condition0" outgoing="_ejd4ljS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node"/>
+            </nodes>
+            <nodes xmi:id="_ejd4kDS0EeOjkaf-ripOcw" name="ChoiceOut0ArrowType" incoming="_ejd4lzS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Arrow"/>
+              <attributes xmi:id="_ejd4kTS0EeOjkaf-ripOcw" value="&quot;ChoiceOut&quot;">
+                <type href="http://no.hib.dpf.core#//Arrow/name"/>
+              </attributes>
+            </nodes>
+            <nodes xmi:id="_ejd4kjS0EeOjkaf-ripOcw" name="ChoiceOut0" outgoing="_ejd4lzS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Arrow"/>
+            </nodes>
+            <edges xmi:id="_ejd4kzS0EeOjkaf-ripOcw" source="_ejd4hjS0EeOjkaf-ripOcw" target="_ejd4hDS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+            </edges>
+            <edges xmi:id="_ejd4lDS0EeOjkaf-ripOcw" source="_ejd4iTS0EeOjkaf-ripOcw" target="_ejd4hzS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+            </edges>
+            <edges xmi:id="_ejd4lTS0EeOjkaf-ripOcw" source="_ejd4jDS0EeOjkaf-ripOcw" target="_ejd4ijS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+            </edges>
+            <edges xmi:id="_ejd4ljS0EeOjkaf-ripOcw" source="_ejd4jzS0EeOjkaf-ripOcw" target="_ejd4jTS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+            </edges>
+            <edges xmi:id="_ejd4lzS0EeOjkaf-ripOcw" source="_ejd4kjS0EeOjkaf-ripOcw" target="_ejd4kDS0EeOjkaf-ripOcw">
+              <type href="http://no.hib.dpf.core#//Arrow/typeArrow"/>
+            </edges>
+          </conclusion>
+          <mappings xmi:id="_ejd4mDS0EeOjkaf-ripOcw" origin="_ejd4ajS0EeOjkaf-ripOcw" image="_ejd4hDS0EeOjkaf-ripOcw"/>
+          <mappings xmi:id="_ejd4mTS0EeOjkaf-ripOcw" origin="_ejd4aTS0EeOjkaf-ripOcw" image="_ejd4hjS0EeOjkaf-ripOcw"/>
+          <mappings xmi:id="_ejd4mjS0EeOjkaf-ripOcw" origin="_ejd4bDS0EeOjkaf-ripOcw" image="_ejd4hzS0EeOjkaf-ripOcw"/>
+          <mappings xmi:id="_ejd4mzS0EeOjkaf-ripOcw" origin="_ejd4azS0EeOjkaf-ripOcw" image="_ejd4iTS0EeOjkaf-ripOcw"/>
+          <mappings xmi:id="_ejd4nDS0EeOjkaf-ripOcw" origin="_ejd4bjS0EeOjkaf-ripOcw" image="_ejd4ijS0EeOjkaf-ripOcw"/>
+          <mappings xmi:id="_ejd4nTS0EeOjkaf-ripOcw" origin="_ejd4bTS0EeOjkaf-ripOcw" image="_ejd4jDS0EeOjkaf-ripOcw"/>
+          <mappings xmi:id="_ejd4njS0EeOjkaf-ripOcw" origin="_ejd4cDS0EeOjkaf-ripOcw" image="_ejd4jTS0EeOjkaf-ripOcw"/>
+          <mappings xmi:id="_ejd4nzS0EeOjkaf-ripOcw" origin="_ejd4bzS0EeOjkaf-ripOcw" image="_ejd4jzS0EeOjkaf-ripOcw"/>
+          <mappings xmi:id="_ejd4oDS0EeOjkaf-ripOcw" origin="_ejd4czS0EeOjkaf-ripOcw" image="_ejd4kDS0EeOjkaf-ripOcw"/>
+          <mappings xmi:id="_ejd4oTS0EeOjkaf-ripOcw" origin="_ejd4cTS0EeOjkaf-ripOcw" image="_ejd4kjS0EeOjkaf-ripOcw"/>
+        </left>
+        <right xsi:type="henshin:Not" xmi:id="_ejd4ojS0EeOjkaf-ripOcw">
+          <child xsi:type="henshin:NestedCondition" xmi:id="_ejd4ozS0EeOjkaf-ripOcw">
+            <conclusion xmi:id="_ejd4pDS0EeOjkaf-ripOcw">
+              <nodes xmi:id="_ejd4pTS0EeOjkaf-ripOcw" name="Place0" outgoing="_ejd4pzS0EeOjkaf-ripOcw">
+                <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+              </nodes>
+              <nodes xmi:id="_ejd4pjS0EeOjkaf-ripOcw" name="ChoiceOut0" incoming="_ejd4pzS0EeOjkaf-ripOcw">
+                <type href="http://no.hib.dpf.core#//Arrow"/>
+              </nodes>
+              <edges xmi:id="_ejd4pzS0EeOjkaf-ripOcw" source="_ejd4pTS0EeOjkaf-ripOcw" target="_ejd4pjS0EeOjkaf-ripOcw">
+                <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+              </edges>
+            </conclusion>
+            <mappings xmi:id="_ejd4qDS0EeOjkaf-ripOcw" origin="_ejd4cTS0EeOjkaf-ripOcw" image="_ejd4pjS0EeOjkaf-ripOcw"/>
+          </child>
+        </right>
+      </formula>
+    </lhs>
+    <rhs xmi:id="_ejd4qTS0EeOjkaf-ripOcw" name="Rhs">
+      <nodes xmi:id="_ejd4qjS0EeOjkaf-ripOcw" name="Transition0" incoming="_ejd4zzS0EeOjkaf-ripOcw _ejd41TS0EeOjkaf-ripOcw" outgoing="_ejd4xDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejd4qzS0EeOjkaf-ripOcw" name="Transition0DNodeType" incoming="_ejd4xDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejd4rDS0EeOjkaf-ripOcw" name="Transition1" incoming="_ejd40TS0EeOjkaf-ripOcw _ejd41jS0EeOjkaf-ripOcw" outgoing="_ejd4xTS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejd4rTS0EeOjkaf-ripOcw" name="Transition1DNodeType" incoming="_ejd4xTS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejd4rjS0EeOjkaf-ripOcw" name="Activity0" incoming="_ejd4zjS0EeOjkaf-ripOcw _ejd40zS0EeOjkaf-ripOcw" outgoing="_ejd4xjS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejd4rzS0EeOjkaf-ripOcw" name="Activity0DNodeType" incoming="_ejd4xjS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejd4sDS0EeOjkaf-ripOcw" name="Condition0" incoming="_ejd40DS0EeOjkaf-ripOcw _ejd40jS0EeOjkaf-ripOcw" outgoing="_ejd4xzS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejd4sTS0EeOjkaf-ripOcw" name="Condition0DNodeType" incoming="_ejd4xzS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+      </nodes>
+      <nodes xmi:id="_ejd4sjS0EeOjkaf-ripOcw" name="ChoiceOut0" incoming="_ejd4zTS0EeOjkaf-ripOcw" outgoing="_ejd4yDS0EeOjkaf-ripOcw _ejd40jS0EeOjkaf-ripOcw _ejd40zS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow"/>
+        <attributes xmi:id="_ejd4szS0EeOjkaf-ripOcw" value="name0">
+          <type href="http://no.hib.dpf.core#//Node/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejd4tDS0EeOjkaf-ripOcw" name="ChoiceOut0ArrowType" incoming="_ejd4yDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow"/>
+      </nodes>
+      <nodes xmi:id="_ejd4tTS0EeOjkaf-ripOcw" name="Place0" incoming="_ejd4zDS0EeOjkaf-ripOcw _ejd41DS0EeOjkaf-ripOcw _ejd41zS0EeOjkaf-ripOcw" outgoing="_ejd4yTS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+        <attributes xmi:id="_ejd4tjS0EeOjkaf-ripOcw" value="name0">
+          <type href="http://no.hib.dpf.core#//Node/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejd4tzS0EeOjkaf-ripOcw" name="Place0DNodeType" incoming="_ejd4yTS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node"/>
+        <attributes xmi:id="_ejd4uDS0EeOjkaf-ripOcw" value="&quot;Place&quot;">
+          <type href="http://no.hib.dpf.core#//Node/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejd4uTS0EeOjkaf-ripOcw" name="PlaceToTransition0" outgoing="_ejd4yjS0EeOjkaf-ripOcw _ejd41DS0EeOjkaf-ripOcw _ejd41TS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow"/>
+        <attributes xmi:id="_ejd4ujS0EeOjkaf-ripOcw" value="&quot;&quot;">
+          <type href="http://no.hib.dpf.core#//Arrow/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejd4uzS0EeOjkaf-ripOcw" name="PlaceToTransition0ArrowType" incoming="_ejd4yjS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow"/>
+        <attributes xmi:id="_ejd4vDS0EeOjkaf-ripOcw" value="&quot;PlaceToTransition&quot;">
+          <type href="http://no.hib.dpf.core#//Arrow/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejd4vTS0EeOjkaf-ripOcw" name="TransitionToPlace0" outgoing="_ejd4yzS0EeOjkaf-ripOcw _ejd41jS0EeOjkaf-ripOcw _ejd41zS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow"/>
+        <attributes xmi:id="_ejd4vjS0EeOjkaf-ripOcw" value="&quot;&quot;">
+          <type href="http://no.hib.dpf.core#//Arrow/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejd4vzS0EeOjkaf-ripOcw" name="TransitionToPlace0ArrowType" incoming="_ejd4yzS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow"/>
+        <attributes xmi:id="_ejd4wDS0EeOjkaf-ripOcw" value="&quot;TransitionToPlace&quot;">
+          <type href="http://no.hib.dpf.core#//Arrow/name"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_ejd4wTS0EeOjkaf-ripOcw" name="Place0" outgoing="_ejd4zDS0EeOjkaf-ripOcw _ejd4zTS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <nodes xmi:id="_ejd4wjS0EeOjkaf-ripOcw" name="Trace1" outgoing="_ejd4zjS0EeOjkaf-ripOcw _ejd4zzS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <nodes xmi:id="_ejd4wzS0EeOjkaf-ripOcw" name="Trace0" outgoing="_ejd40DS0EeOjkaf-ripOcw _ejd40TS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <edges xmi:id="_ejd4xDS0EeOjkaf-ripOcw" source="_ejd4qjS0EeOjkaf-ripOcw" target="_ejd4qzS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejd4xTS0EeOjkaf-ripOcw" source="_ejd4rDS0EeOjkaf-ripOcw" target="_ejd4rTS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejd4xjS0EeOjkaf-ripOcw" source="_ejd4rjS0EeOjkaf-ripOcw" target="_ejd4rzS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejd4xzS0EeOjkaf-ripOcw" source="_ejd4sDS0EeOjkaf-ripOcw" target="_ejd4sTS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejd4yDS0EeOjkaf-ripOcw" source="_ejd4sjS0EeOjkaf-ripOcw" target="_ejd4tDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/typeArrow"/>
+      </edges>
+      <edges xmi:id="_ejd4yTS0EeOjkaf-ripOcw" source="_ejd4tTS0EeOjkaf-ripOcw" target="_ejd4tzS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Node/typeNode"/>
+      </edges>
+      <edges xmi:id="_ejd4yjS0EeOjkaf-ripOcw" source="_ejd4uTS0EeOjkaf-ripOcw" target="_ejd4uzS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/typeArrow"/>
+      </edges>
+      <edges xmi:id="_ejd4yzS0EeOjkaf-ripOcw" source="_ejd4vTS0EeOjkaf-ripOcw" target="_ejd4vzS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/typeArrow"/>
+      </edges>
+      <edges xmi:id="_ejd4zDS0EeOjkaf-ripOcw" source="_ejd4wTS0EeOjkaf-ripOcw" target="_ejd4tTS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xmi:id="_ejd4zTS0EeOjkaf-ripOcw" source="_ejd4wTS0EeOjkaf-ripOcw" target="_ejd4sjS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xmi:id="_ejd4zjS0EeOjkaf-ripOcw" source="_ejd4wjS0EeOjkaf-ripOcw" target="_ejd4rjS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xmi:id="_ejd4zzS0EeOjkaf-ripOcw" source="_ejd4wjS0EeOjkaf-ripOcw" target="_ejd4qjS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xmi:id="_ejd40DS0EeOjkaf-ripOcw" source="_ejd4wzS0EeOjkaf-ripOcw" target="_ejd4sDS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xmi:id="_ejd40TS0EeOjkaf-ripOcw" source="_ejd4wzS0EeOjkaf-ripOcw" target="_ejd4rDS0EeOjkaf-ripOcw">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xmi:id="_ejd40jS0EeOjkaf-ripOcw" source="_ejd4sjS0EeOjkaf-ripOcw" target="_ejd4sDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/source"/>
+      </edges>
+      <edges xmi:id="_ejd40zS0EeOjkaf-ripOcw" source="_ejd4sjS0EeOjkaf-ripOcw" target="_ejd4rjS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/target"/>
+      </edges>
+      <edges xmi:id="_ejd41DS0EeOjkaf-ripOcw" source="_ejd4uTS0EeOjkaf-ripOcw" target="_ejd4tTS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/source"/>
+      </edges>
+      <edges xmi:id="_ejd41TS0EeOjkaf-ripOcw" source="_ejd4uTS0EeOjkaf-ripOcw" target="_ejd4qjS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/target"/>
+      </edges>
+      <edges xmi:id="_ejd41jS0EeOjkaf-ripOcw" source="_ejd4vTS0EeOjkaf-ripOcw" target="_ejd4rDS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/source"/>
+      </edges>
+      <edges xmi:id="_ejd41zS0EeOjkaf-ripOcw" source="_ejd4vTS0EeOjkaf-ripOcw" target="_ejd4tTS0EeOjkaf-ripOcw">
+        <type href="http://no.hib.dpf.core#//Arrow/target"/>
+      </edges>
+    </rhs>
+    <mappings xmi:id="_ejd42DS0EeOjkaf-ripOcw" origin="_ejd4aTS0EeOjkaf-ripOcw" image="_ejd4qjS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejd42TS0EeOjkaf-ripOcw" origin="_ejd4ajS0EeOjkaf-ripOcw" image="_ejd4qzS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejd42jS0EeOjkaf-ripOcw" origin="_ejd4azS0EeOjkaf-ripOcw" image="_ejd4rDS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejd42zS0EeOjkaf-ripOcw" origin="_ejd4bDS0EeOjkaf-ripOcw" image="_ejd4rTS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejd43DS0EeOjkaf-ripOcw" origin="_ejd4bTS0EeOjkaf-ripOcw" image="_ejd4rjS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejd43TS0EeOjkaf-ripOcw" origin="_ejd4bjS0EeOjkaf-ripOcw" image="_ejd4rzS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejd43jS0EeOjkaf-ripOcw" origin="_ejd4bzS0EeOjkaf-ripOcw" image="_ejd4sDS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejd43zS0EeOjkaf-ripOcw" origin="_ejd4cDS0EeOjkaf-ripOcw" image="_ejd4sTS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejd44DS0EeOjkaf-ripOcw" origin="_ejd4cTS0EeOjkaf-ripOcw" image="_ejd4sjS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejd44TS0EeOjkaf-ripOcw" origin="_ejd4czS0EeOjkaf-ripOcw" image="_ejd4tDS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejd44jS0EeOjkaf-ripOcw" origin="_ejd4dDS0EeOjkaf-ripOcw" image="_ejd4wjS0EeOjkaf-ripOcw"/>
+    <mappings xmi:id="_ejd44zS0EeOjkaf-ripOcw" origin="_ejd4dTS0EeOjkaf-ripOcw" image="_ejd4wzS0EeOjkaf-ripOcw"/>
+  </units>
+  <units xsi:type="henshin:LoopUnit" xmi:id="_ejd45DS0EeOjkaf-ripOcw" name="translateChoiceOut_Loop" subUnit="_ejd4ZDS0EeOjkaf-ripOcw"/>
+  <units xsi:type="henshin:SequentialUnit" xmi:id="_ejd45TS0EeOjkaf-ripOcw" name="main" subUnits="_ejcp5jS0EeOjkaf-ripOcw _ejcqDTS0EeOjkaf-ripOcw _ejcqNDS0EeOjkaf-ripOcw _ejdQ8jS0EeOjkaf-ripOcw _ejdRczS0EeOjkaf-ripOcw _ejd34jS0EeOjkaf-ripOcw _ejd4YzS0EeOjkaf-ripOcw _ejd45DS0EeOjkaf-ripOcw"/>
+</henshin:Module>

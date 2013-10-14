@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:diagram="http://no.hib.dpf.diagram">
+  <diagram:DSpecification dType="/1" gridVisible="false" dSignature="/2">
+    <dGraph dType="/1/@dGraph">
+      <dNodes dType="/1/@dGraph/@dNodes.1" dIncomings="/0/@dGraph/@dArrows.1" location="204 84" size="100 30">
+        <node href="metamodel2petriNetMetaModel.xmi#/0/@graph/@nodes.0"/>
+      </dNodes>
+      <dNodes dType="/1/@dGraph/@dNodes.2" dIncomings="/0/@dGraph/@dArrows.2" location="204 144" size="100 30">
+        <node href="metamodel2petriNetMetaModel.xmi#/0/@graph/@nodes.1"/>
+      </dNodes>
+      <dNodes dType="/1/@dGraph/@dNodes.0" dOutgoings="/0/@dGraph/@dArrows.0 /0/@dGraph/@dArrows.1 /0/@dGraph/@dArrows.2 /0/@dGraph/@dArrows.3" location="504 144" size="100 30">
+        <node href="metamodel2petriNetMetaModel.xmi#/0/@graph/@nodes.2"/>
+      </dNodes>
+      <dNodes dType="/1/@dGraph/@dNodes.10" dIncomings="/0/@dGraph/@dArrows.0" location="804 144" size="100 30">
+        <node href="metamodel2petriNetMetaModel.xmi#/0/@graph/@nodes.3"/>
+      </dNodes>
+      <dNodes dType="/1/@dGraph/@dNodes.3" dIncomings="/0/@dGraph/@dArrows.3" location="204 204" size="100 30">
+        <node href="metamodel2petriNetMetaModel.xmi#/0/@graph/@nodes.4"/>
+      </dNodes>
+      <dNodes dType="/1/@dGraph/@dNodes.5" dIncomings="/0/@dGraph/@dArrows.8" location="204 324" size="100 30">
+        <node href="metamodel2petriNetMetaModel.xmi#/0/@graph/@nodes.5"/>
+      </dNodes>
+      <dNodes dType="/1/@dGraph/@dNodes.4" dIncomings="/0/@dGraph/@dArrows.9" location="204 372" size="100 30">
+        <node href="metamodel2petriNetMetaModel.xmi#/0/@graph/@nodes.6"/>
+      </dNodes>
+      <dNodes dType="/1/@dGraph/@dNodes.6" dIncomings="/0/@dGraph/@dArrows.7" location="204 420" size="100 30">
+        <node href="metamodel2petriNetMetaModel.xmi#/0/@graph/@nodes.7"/>
+      </dNodes>
+      <dNodes dType="/1/@dGraph/@dNodes.7" dIncomings="/0/@dGraph/@dArrows.6" location="204 468" size="100 30">
+        <node href="metamodel2petriNetMetaModel.xmi#/0/@graph/@nodes.8"/>
+      </dNodes>
+      <dNodes dType="/1/@dGraph/@dNodes.8" dIncomings="/0/@dGraph/@dArrows.5" location="204 516" size="100 30">
+        <node href="metamodel2petriNetMetaModel.xmi#/0/@graph/@nodes.9"/>
+      </dNodes>
+      <dNodes dType="/1/@dGraph/@dNodes.0" dOutgoings="/0/@dGraph/@dArrows.4 /0/@dGraph/@dArrows.5 /0/@dGraph/@dArrows.6 /0/@dGraph/@dArrows.7 /0/@dGraph/@dArrows.8 /0/@dGraph/@dArrows.9" location="504 420" size="100 30">
+        <node href="metamodel2petriNetMetaModel.xmi#/0/@graph/@nodes.10"/>
+      </dNodes>
+      <dNodes dType="/1/@dGraph/@dNodes.9" dIncomings="/0/@dGraph/@dArrows.4" location="804 420" size="100 30">
+        <node href="metamodel2petriNetMetaModel.xmi#/0/@graph/@nodes.11"/>
+      </dNodes>
+      <dArrows dType="/1/@dGraph/@dArrows.9" dSource="/0/@dGraph/@dNodes.2" dTarget="/0/@dGraph/@dNodes.3">
+        <arrow href="metamodel2petriNetMetaModel.xmi#/0/@graph/@arrows.0"/>
+        <nameOffset offset="116 -24" len="300"/>
+      </dArrows>
+      <dArrows dType="/1/@dGraph/@dArrows.0" dSource="/0/@dGraph/@dNodes.2" dTarget="/0/@dGraph/@dNodes.0">
+        <arrow href="metamodel2petriNetMetaModel.xmi#/0/@graph/@arrows.1"/>
+        <nameOffset offset="228 18" len="305"/>
+      </dArrows>
+      <dArrows dType="/1/@dGraph/@dArrows.1" dSource="/0/@dGraph/@dNodes.2" dTarget="/0/@dGraph/@dNodes.1">
+        <arrow href="metamodel2petriNetMetaModel.xmi#/0/@graph/@arrows.2"/>
+        <nameOffset offset="232 17" len="300"/>
+      </dArrows>
+      <dArrows dType="/1/@dGraph/@dArrows.2" dSource="/0/@dGraph/@dNodes.2" dTarget="/0/@dGraph/@dNodes.4">
+        <arrow href="metamodel2petriNetMetaModel.xmi#/0/@graph/@arrows.3"/>
+        <nameOffset offset="222 -4" len="305"/>
+      </dArrows>
+      <dArrows dType="/1/@dGraph/@dArrows.8" dSource="/0/@dGraph/@dNodes.10" dTarget="/0/@dGraph/@dNodes.11">
+        <arrow href="metamodel2petriNetMetaModel.xmi#/0/@graph/@arrows.4"/>
+        <nameOffset offset="114 -19" len="300"/>
+      </dArrows>
+      <dArrows dType="/1/@dGraph/@dArrows.7" dSource="/0/@dGraph/@dNodes.10" dTarget="/0/@dGraph/@dNodes.9">
+        <arrow href="metamodel2petriNetMetaModel.xmi#/0/@graph/@arrows.5"/>
+        <nameOffset offset="248 26" len="314"/>
+      </dArrows>
+      <dArrows dType="/1/@dGraph/@dArrows.6" dSource="/0/@dGraph/@dNodes.10" dTarget="/0/@dGraph/@dNodes.8">
+        <arrow href="metamodel2petriNetMetaModel.xmi#/0/@graph/@arrows.6"/>
+        <nameOffset offset="243 25" len="303"/>
+      </dArrows>
+      <dArrows dType="/1/@dGraph/@dArrows.5" dSource="/0/@dGraph/@dNodes.10" dTarget="/0/@dGraph/@dNodes.7">
+        <arrow href="metamodel2petriNetMetaModel.xmi#/0/@graph/@arrows.7"/>
+        <nameOffset offset="238 18" len="300"/>
+      </dArrows>
+      <dArrows dType="/1/@dGraph/@dArrows.4" dSource="/0/@dGraph/@dNodes.10" dTarget="/0/@dGraph/@dNodes.5">
+        <arrow href="metamodel2petriNetMetaModel.xmi#/0/@graph/@arrows.8"/>
+        <nameOffset offset="243 17" len="314"/>
+      </dArrows>
+      <dArrows dType="/1/@dGraph/@dArrows.3" dSource="/0/@dGraph/@dNodes.10" dTarget="/0/@dGraph/@dNodes.6">
+        <arrow href="metamodel2petriNetMetaModel.xmi#/0/@graph/@arrows.9"/>
+        <nameOffset offset="237 17" len="303"/>
+      </dArrows>
+      <graph href="metamodel2petriNetMetaModel.xmi#/0/@graph"/>
+    </dGraph>
+    <specification href="metamodel2petriNetMetaModel.xmi#/0"/>
+  </diagram:DSpecification>
+  <diagram:DSpecification gridVisible="false">
+    <dGraph>
+      <dNodes dOutgoings="/1/@dGraph/@dArrows.0 /1/@dGraph/@dArrows.1 /1/@dGraph/@dArrows.2 /1/@dGraph/@dArrows.3 /1/@dGraph/@dArrows.4 /1/@dGraph/@dArrows.5 /1/@dGraph/@dArrows.6 /1/@dGraph/@dArrows.7 /1/@dGraph/@dArrows.8 /1/@dGraph/@dArrows.9 /1/@dGraph/@dArrows.10 /1/@dGraph/@dArrows.11">
+        <node href="metamodel2petriNetMetaModel.xmi#/1/@graph/@nodes.0"/>
+      </dNodes>
+      <dNodes dIncomings="/1/@dGraph/@dArrows.0">
+        <node href="metamodel2petriNetMetaModel.xmi#/1/@graph/@nodes.1"/>
+      </dNodes>
+      <dNodes dIncomings="/1/@dGraph/@dArrows.1">
+        <node href="metamodel2petriNetMetaModel.xmi#/1/@graph/@nodes.2"/>
+      </dNodes>
+      <dNodes dIncomings="/1/@dGraph/@dArrows.2">
+        <node href="metamodel2petriNetMetaModel.xmi#/1/@graph/@nodes.3"/>
+      </dNodes>
+      <dNodes dIncomings="/1/@dGraph/@dArrows.3">
+        <node href="metamodel2petriNetMetaModel.xmi#/1/@graph/@nodes.4"/>
+      </dNodes>
+      <dNodes dIncomings="/1/@dGraph/@dArrows.4">
+        <node href="metamodel2petriNetMetaModel.xmi#/1/@graph/@nodes.5"/>
+      </dNodes>
+      <dNodes dIncomings="/1/@dGraph/@dArrows.5">
+        <node href="metamodel2petriNetMetaModel.xmi#/1/@graph/@nodes.6"/>
+      </dNodes>
+      <dNodes dIncomings="/1/@dGraph/@dArrows.6">
+        <node href="metamodel2petriNetMetaModel.xmi#/1/@graph/@nodes.7"/>
+      </dNodes>
+      <dNodes dIncomings="/1/@dGraph/@dArrows.7">
+        <node href="metamodel2petriNetMetaModel.xmi#/1/@graph/@nodes.8"/>
+      </dNodes>
+      <dNodes dIncomings="/1/@dGraph/@dArrows.8">
+        <node href="metamodel2petriNetMetaModel.xmi#/1/@graph/@nodes.9"/>
+      </dNodes>
+      <dNodes dIncomings="/1/@dGraph/@dArrows.9">
+        <node href="metamodel2petriNetMetaModel.xmi#/1/@graph/@nodes.10"/>
+      </dNodes>
+      <dNodes dIncomings="/1/@dGraph/@dArrows.10">
+        <node href="metamodel2petriNetMetaModel.xmi#/1/@graph/@nodes.11"/>
+      </dNodes>
+      <dNodes dIncomings="/1/@dGraph/@dArrows.11">
+        <node href="metamodel2petriNetMetaModel.xmi#/1/@graph/@nodes.12"/>
+      </dNodes>
+      <dArrows dSource="/1/@dGraph/@dNodes.0" dTarget="/1/@dGraph/@dNodes.1">
+        <arrow href="metamodel2petriNetMetaModel.xmi#/1/@graph/@arrows.0"/>
+      </dArrows>
+      <dArrows dSource="/1/@dGraph/@dNodes.0" dTarget="/1/@dGraph/@dNodes.2">
+        <arrow href="metamodel2petriNetMetaModel.xmi#/1/@graph/@arrows.1"/>
+      </dArrows>
+      <dArrows dSource="/1/@dGraph/@dNodes.0" dTarget="/1/@dGraph/@dNodes.3">
+        <arrow href="metamodel2petriNetMetaModel.xmi#/1/@graph/@arrows.2"/>
+      </dArrows>
+      <dArrows dSource="/1/@dGraph/@dNodes.0" dTarget="/1/@dGraph/@dNodes.4">
+        <arrow href="metamodel2petriNetMetaModel.xmi#/1/@graph/@arrows.3"/>
+      </dArrows>
+      <dArrows dSource="/1/@dGraph/@dNodes.0" dTarget="/1/@dGraph/@dNodes.5">
+        <arrow href="metamodel2petriNetMetaModel.xmi#/1/@graph/@arrows.4"/>
+      </dArrows>
+      <dArrows dSource="/1/@dGraph/@dNodes.0" dTarget="/1/@dGraph/@dNodes.6">
+        <arrow href="metamodel2petriNetMetaModel.xmi#/1/@graph/@arrows.5"/>
+      </dArrows>
+      <dArrows dSource="/1/@dGraph/@dNodes.0" dTarget="/1/@dGraph/@dNodes.7">
+        <arrow href="metamodel2petriNetMetaModel.xmi#/1/@graph/@arrows.6"/>
+      </dArrows>
+      <dArrows dSource="/1/@dGraph/@dNodes.0" dTarget="/1/@dGraph/@dNodes.8">
+        <arrow href="metamodel2petriNetMetaModel.xmi#/1/@graph/@arrows.7"/>
+      </dArrows>
+      <dArrows dSource="/1/@dGraph/@dNodes.0" dTarget="/1/@dGraph/@dNodes.9">
+        <arrow href="metamodel2petriNetMetaModel.xmi#/1/@graph/@arrows.8"/>
+      </dArrows>
+      <dArrows dSource="/1/@dGraph/@dNodes.0" dTarget="/1/@dGraph/@dNodes.10">
+        <arrow href="metamodel2petriNetMetaModel.xmi#/1/@graph/@arrows.9"/>
+      </dArrows>
+      <dArrows dSource="/1/@dGraph/@dNodes.0" dTarget="/1/@dGraph/@dNodes.11">
+        <arrow href="metamodel2petriNetMetaModel.xmi#/1/@graph/@arrows.10"/>
+      </dArrows>
+      <dArrows dSource="/1/@dGraph/@dNodes.0" dTarget="/1/@dGraph/@dNodes.12">
+        <arrow href="metamodel2petriNetMetaModel.xmi#/1/@graph/@arrows.11"/>
+      </dArrows>
+      <graph href="metamodel2petriNetMetaModel.xmi#/1/@graph"/>
+    </dGraph>
+    <specification href="metamodel2petriNetMetaModel.xmi#/1"/>
+  </diagram:DSpecification>
+  <diagram:DSignature>
+    <signature href="metamodel2petriNetMetaModel.xmi#/2"/>
+  </diagram:DSignature>
+  <diagram:DSpecification dType="/4" gridVisible="false" dSignature="/5">
+    <dGraph dType="/4/@dGraph">
+      <graph href="/model/generated_models/metamodel2petriNetMetaModel.xmi#/3/@graph"/>
+    </dGraph>
+    <specification href="/model/generated_models/metamodel2petriNetMetaModel.xmi#/3"/>
+  </diagram:DSpecification>
+  <diagram:DSpecification gridVisible="false">
+    <dGraph>
+      <dNodes dOutgoings="/4/@dGraph/@dArrows.0 /4/@dGraph/@dArrows.1 /4/@dGraph/@dArrows.2 /4/@dGraph/@dArrows.3 /4/@dGraph/@dArrows.4 /4/@dGraph/@dArrows.5 /4/@dGraph/@dArrows.6 /4/@dGraph/@dArrows.7 /4/@dGraph/@dArrows.8 /4/@dGraph/@dArrows.9 /4/@dGraph/@dArrows.10 /4/@dGraph/@dArrows.11">
+        <node href="/model/generated_models/metamodel2petriNetMetaModel.xmi#/4/@graph/@nodes.0"/>
+      </dNodes>
+      <dNodes dIncomings="/4/@dGraph/@dArrows.0">
+        <node href="/model/generated_models/metamodel2petriNetMetaModel.xmi#/4/@graph/@nodes.1"/>
+      </dNodes>
+      <dNodes dIncomings="/4/@dGraph/@dArrows.1">
+        <node href="/model/generated_models/metamodel2petriNetMetaModel.xmi#/4/@graph/@nodes.2"/>
+      </dNodes>
+      <dNodes dIncomings="/4/@dGraph/@dArrows.2">
+        <node href="/model/generated_models/metamodel2petriNetMetaModel.xmi#/4/@graph/@nodes.3"/>
+      </dNodes>
+      <dNodes dIncomings="/4/@dGraph/@dArrows.3">
+        <node href="/model/generated_models/metamodel2petriNetMetaModel.xmi#/4/@graph/@nodes.4"/>
+      </dNodes>
+      <dNodes dIncomings="/4/@dGraph/@dArrows.4">
+        <node href="/model/generated_models/metamodel2petriNetMetaModel.xmi#/4/@graph/@nodes.5"/>
+      </dNodes>
+      <dNodes dIncomings="/4/@dGraph/@dArrows.5">
+        <node href="/model/generated_models/metamodel2petriNetMetaModel.xmi#/4/@graph/@nodes.6"/>
+      </dNodes>
+      <dNodes dIncomings="/4/@dGraph/@dArrows.6">
+        <node href="/model/generated_models/metamodel2petriNetMetaModel.xmi#/4/@graph/@nodes.7"/>
+      </dNodes>
+      <dNodes dIncomings="/4/@dGraph/@dArrows.7">
+        <node href="/model/generated_models/metamodel2petriNetMetaModel.xmi#/4/@graph/@nodes.8"/>
+      </dNodes>
+      <dNodes dIncomings="/4/@dGraph/@dArrows.8">
+        <node href="/model/generated_models/metamodel2petriNetMetaModel.xmi#/4/@graph/@nodes.9"/>
+      </dNodes>
+      <dNodes dIncomings="/4/@dGraph/@dArrows.9">
+        <node href="/model/generated_models/metamodel2petriNetMetaModel.xmi#/4/@graph/@nodes.10"/>
+      </dNodes>
+      <dNodes dIncomings="/4/@dGraph/@dArrows.10">
+        <node href="/model/generated_models/metamodel2petriNetMetaModel.xmi#/4/@graph/@nodes.11"/>
+      </dNodes>
+      <dNodes dIncomings="/4/@dGraph/@dArrows.11">
+        <node href="/model/generated_models/metamodel2petriNetMetaModel.xmi#/4/@graph/@nodes.12"/>
+      </dNodes>
+      <dArrows dSource="/4/@dGraph/@dNodes.0" dTarget="/4/@dGraph/@dNodes.1">
+        <arrow href="/model/generated_models/metamodel2petriNetMetaModel.xmi#/4/@graph/@arrows.0"/>
+      </dArrows>
+      <dArrows dSource="/4/@dGraph/@dNodes.0" dTarget="/4/@dGraph/@dNodes.2">
+        <arrow href="/model/generated_models/metamodel2petriNetMetaModel.xmi#/4/@graph/@arrows.1"/>
+      </dArrows>
+      <dArrows dSource="/4/@dGraph/@dNodes.0" dTarget="/4/@dGraph/@dNodes.3">
+        <arrow href="/model/generated_models/metamodel2petriNetMetaModel.xmi#/4/@graph/@arrows.2"/>
+      </dArrows>
+      <dArrows dSource="/4/@dGraph/@dNodes.0" dTarget="/4/@dGraph/@dNodes.4">
+        <arrow href="/model/generated_models/metamodel2petriNetMetaModel.xmi#/4/@graph/@arrows.3"/>
+      </dArrows>
+      <dArrows dSource="/4/@dGraph/@dNodes.0" dTarget="/4/@dGraph/@dNodes.5">
+        <arrow href="/model/generated_models/metamodel2petriNetMetaModel.xmi#/4/@graph/@arrows.4"/>
+      </dArrows>
+      <dArrows dSource="/4/@dGraph/@dNodes.0" dTarget="/4/@dGraph/@dNodes.6">
+        <arrow href="/model/generated_models/metamodel2petriNetMetaModel.xmi#/4/@graph/@arrows.5"/>
+      </dArrows>
+      <dArrows dSource="/4/@dGraph/@dNodes.0" dTarget="/4/@dGraph/@dNodes.7">
+        <arrow href="/model/generated_models/metamodel2petriNetMetaModel.xmi#/4/@graph/@arrows.6"/>
+      </dArrows>
+      <dArrows dSource="/4/@dGraph/@dNodes.0" dTarget="/4/@dGraph/@dNodes.8">
+        <arrow href="/model/generated_models/metamodel2petriNetMetaModel.xmi#/4/@graph/@arrows.7"/>
+      </dArrows>
+      <dArrows dSource="/4/@dGraph/@dNodes.0" dTarget="/4/@dGraph/@dNodes.9">
+        <arrow href="/model/generated_models/metamodel2petriNetMetaModel.xmi#/4/@graph/@arrows.8"/>
+      </dArrows>
+      <dArrows dSource="/4/@dGraph/@dNodes.0" dTarget="/4/@dGraph/@dNodes.10">
+        <arrow href="/model/generated_models/metamodel2petriNetMetaModel.xmi#/4/@graph/@arrows.9"/>
+      </dArrows>
+      <dArrows dSource="/4/@dGraph/@dNodes.0" dTarget="/4/@dGraph/@dNodes.11">
+        <arrow href="/model/generated_models/metamodel2petriNetMetaModel.xmi#/4/@graph/@arrows.10"/>
+      </dArrows>
+      <dArrows dSource="/4/@dGraph/@dNodes.0" dTarget="/4/@dGraph/@dNodes.12">
+        <arrow href="/model/generated_models/metamodel2petriNetMetaModel.xmi#/4/@graph/@arrows.11"/>
+      </dArrows>
+      <graph href="/model/generated_models/metamodel2petriNetMetaModel.xmi#/4/@graph"/>
+    </dGraph>
+    <specification href="/model/generated_models/metamodel2petriNetMetaModel.xmi#/4"/>
+  </diagram:DSpecification>
+  <diagram:DSignature>
+    <signature href="/model/generated_models/metamodel2petriNetMetaModel.xmi#/5"/>
+  </diagram:DSignature>
+</xmi:XMI>
