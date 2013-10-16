@@ -16,8 +16,6 @@
 
 package no.hib.dpf.transform.presentation;
 
-import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -34,25 +32,21 @@ import no.hib.dpf.transform.util.TransformUtils;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
-import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 import org.eclipse.ui.ide.IDE;
@@ -66,7 +60,7 @@ public class TransformWizardCreation extends Wizard implements INewWizard {
 
 	private CreationPage createPage = null;
 	private TransformWizardPage configPage = null;
-	
+
 
 	/*
 	 * (non-Javadoc)
@@ -96,9 +90,9 @@ public class TransformWizardCreation extends Wizard implements INewWizard {
 		configPage.setDescription("The page allows you to choose your own source metamodel, target metamodel and customed signature. " +
 				"The default metamodel and signature will be used if you check default metamodel and default signature. " + 
 				"This model transformation will be a endogenous model transformation if you check target metamodel");
-		
+
 		String filename = null;
-		
+
 		if(selection.getFirstElement() instanceof IResource) {
 			filename = ((IResource)selection.getFirstElement()).getLocation().toOSString();
 			if(filename.endsWith(".xmi"))
@@ -131,8 +125,7 @@ public class TransformWizardCreation extends Wizard implements INewWizard {
 
 
 		private final IWorkbench workbench;
-		
-		private IStructuredSelection selection;
+
 
 		private IProgressMonitor progressMonitor = new NullProgressMonitor();
 		/**
@@ -147,7 +140,6 @@ public class TransformWizardCreation extends Wizard implements INewWizard {
 		CreationPage(IWorkbench workbench, IStructuredSelection selection) {
 			super("dpfCreationPage1", selection);
 			this.workbench = workbench;
-			this.selection = selection;
 			setTitle("Create a new xform file");
 			setDescription("Create a new xform file");
 		}
@@ -161,110 +153,66 @@ public class TransformWizardCreation extends Wizard implements INewWizard {
 			// create a new diagram file, result != null if successful
 			IFile newDiagramFile = createNewFile();
 			IFolder generateModelsFolder = null;
-			
+
 			URI newDiagarmURI = DPFUtils.getFileURI(newDiagramFile);
 			//Initialize model file and diagram file
 			Transform transform = TransformFactory.eINSTANCE.createTransform();
-			
+
 			ResourceSetImpl resourceSet = DPFUtils.getResourceSet();
 			Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
-			
-			if(newDiagramFile.getParent().getType() == IResource.FOLDER){
-				generateModelsFolder = ((IFolder)newDiagramFile.getParent()).getFolder(TransformConstants.GENERATE_FOLDER);
-			}
-			else if(newDiagramFile.getParent().getType() == IResource.PROJECT){
-				generateModelsFolder = TransformUtils.getCurrentProject(workbench, selection).getFolder(TransformConstants.GENERATE_FOLDER);
-			}
-		
-			try {
-				if(!generateModelsFolder.exists()){
+
+			generateModelsFolder = newDiagramFile.getParent().getFolder(new Path(TransformConstants.GENERATE_FOLDER));
+
+			if(!generateModelsFolder.exists()){
+				try {
 					generateModelsFolder.create(true, true, progressMonitor);
+				} catch (CoreException e2) {
+					DPFUtils.logError("Error happens when creating new folder",e2);
 				}
-		
-			} catch (CoreException e2) {
-				DPFUtils.logError("Error happens when creating new folder",e2);
 			}
-			
-			String sourceTypeModelFileName = configPage.getSourceMetaModelURI();
-			if(!sourceTypeModelFileName.isEmpty()){
-				transform.setSourceLocation(sourceTypeModelFileName);
-			}
-			else{
-				transform.setSourceLocation(TransformConstants.DefaultDSpecification.toString());
-			}
-			
-			DSpecification sourceTypeSpec = DiagramFactory.eINSTANCE.createDefaultDSpecification();
-			sourceTypeSpec.setDType(configPage.getSourceMetaModel());
-			
-			if(sourceTypeModelFileName != null){
-				sourceTypeSpec = DPFUtils.loadDSpecification(resourceSet, URI.createFileURI(sourceTypeModelFileName), resourceToDiagnosticMap);
-				EcoreUtil.resolveAll(sourceTypeSpec);
-			}
-			transform.setSourceMetaModel(sourceTypeSpec != null ? sourceTypeSpec : DPFConstants.REFLEXIVE_DSPECIFICATION);
-			
-			String targetTypeModelFileName = configPage.getTargetMetaModelURI();
-			
-			transform.setTargetLocation("");
-			
-			if(!targetTypeModelFileName.isEmpty()){
-				transform.setTargetLocation(targetTypeModelFileName);
-			}
-			else{
-				transform.setTargetLocation(TransformConstants.DefaultDSpecification.toString());
-				targetTypeModelFileName = null;
-			}
-			
-			DSpecification targetTypeSpec = DiagramFactory.eINSTANCE.createDefaultDSpecification();
-			targetTypeSpec.setDType(configPage.getTargetMetaModel());
-			
-			if(targetTypeModelFileName!=null){
-				targetTypeSpec = DPFUtils.loadDSpecification(resourceSet, URI.createFileURI(targetTypeModelFileName), resourceToDiagnosticMap);
-				EcoreUtil.resolveAll(targetTypeSpec);
-			}
-			transform.setTargetMetaModel(targetTypeSpec != null ? targetTypeSpec : DPFConstants.REFLEXIVE_DSPECIFICATION);
-			
+
+			transform.setSourceLocation(configPage.getSourceMetaModelURI());
+			transform.setSourceMetaModel(configPage.getSourceMetaModel());
+			transform.setTargetLocation(configPage.getTargetMetaModelURI());
+			transform.setTargetMetaModel(configPage.getTargetMetaModel());
+
 			GenerateModels generate_models = new GenerateModels(transform);
-			
-			DSpecification elementTypeGraph = DiagramFactory.eINSTANCE.createDefaultDSpecification();
-			elementTypeGraph.setDSignature(DiagramFactory.eINSTANCE.createDefaultDSignature());
-			elementTypeGraph.setDType(generate_models.generateElementTypeGraph(sourceTypeSpec, targetTypeSpec));
-			
-			String dspecTypes_name = getFileName().replace(".xform", "")+".dpf";
+
+			DSpecification elementTypeGraph = generate_models.generateElementTypeGraph();
+
+			String dspecTypes_name = getFileName().replace(".xform", "") + ".dpf";
 			IFile dspecTypes  = generateModelsFolder.getFile(dspecTypes_name);
-			
+
 			if(!dspecTypes.exists()){
-				DPFUtils.saveDSpecification(DPFUtils.getResourceSet(), elementTypeGraph, DPFUtils.getFileURI(dspecTypes), resourceToDiagnosticMap);
+				DPFUtils.saveDSpecification(resourceSet, elementTypeGraph, DPFUtils.getFileURI(dspecTypes), resourceToDiagnosticMap);
 			}
 			transform.setElementTypeGraph(elementTypeGraph);
-			
-			URI source = URI.createFileURI(transform.getSourceLocation());
-			URI target = URI.createFileURI(transform.getTargetLocation());
 
-			String correspondence_name = TransformUtils.createCorrespondanceType(source.lastSegment().replace(".dpf", ""), 
-					target.lastSegment());
-			IFile correspondenceGraph_file  = generateModelsFolder.getFile(correspondence_name);
-			
-			DSpecification correspondenceGraph = DiagramFactory.eINSTANCE.createDefaultDSpecification();
-			correspondenceGraph.setDType(generate_models.generateCorrespondanceGraph());
+			URI source = transform.getSourceLocation() == null ? DPFConstants.DefaultDSpecification : URI.createFileURI(transform.getSourceLocation());
+			URI target = transform.getTargetLocation() == null ? DPFConstants.DefaultDSpecification : URI.createFileURI(transform.getTargetLocation());
+
+			String correspondence_name = TransformUtils.createCorrespondanceType(source.lastSegment().replace(".dpf", ""), target.lastSegment());
+			IFile correspondenceGraph_file = generateModelsFolder.getFile(correspondence_name);
+
+			DSpecification correspondenceGraph = generate_models.generateCorrespondanceGraph();
 			correspondenceGraph.setDSignature(DiagramFactory.eINSTANCE.createDefaultDSignature());
 
 			if(!correspondenceGraph_file.exists()){
-				DPFUtils.saveDSpecification(DPFUtils.getResourceSet(), correspondenceGraph, DPFUtils.getFileURI(correspondenceGraph_file), new LinkedHashMap<Resource, Diagnostic>());
+				DPFUtils.saveDSpecification(resourceSet, correspondenceGraph, DPFUtils.getFileURI(correspondenceGraph_file), new LinkedHashMap<Resource, Diagnostic>());
 			}
 			transform.setCorrespondanceGraph(correspondenceGraph);
 			transform.setCorrespondanceLocation(correspondenceGraph_file.getFullPath().toString());
-			
-			
+
 			try {
 				TransformEditor.saveTransform(resourceSet, newDiagarmURI, transform, resourceToDiagnosticMap);
-				newDiagramFile.getParent().refreshLocal(IResource.DEPTH_ONE, null);
+				newDiagramFile.getParent().refreshLocal(IResource.DEPTH_INFINITE, null);
 			} catch (CoreException e1) {
 				DPFUtils.logError("Error happens when store new create DPF Specification", e1);
 			} 
-			
+
 			// open newly created file in the editor
 			IWorkbenchPage page = workbench.getActiveWorkbenchWindow().getActivePage();
-			
+
 			if (newDiagramFile != null && page != null) {
 				try {
 					IEditorPart editorPart = IDE.openEditor(page, newDiagramFile, true);
@@ -275,10 +223,10 @@ public class TransformWizardCreation extends Wizard implements INewWizard {
 					return false;
 				}
 			}
-			
+
 			return true;
 		}
-		
+
 		/**
 		 * Return true, if the file name entered in this page is valid.
 		 */
@@ -289,10 +237,10 @@ public class TransformWizardCreation extends Wizard implements INewWizard {
 			//setErrorMessage("The 'file' name must end with " + DPFUtils.DEFAULT_DIAGRAM_MODEL_EXTENSION);
 			setErrorMessage("The 'file' name must end with xform");
 			return false;
-//			if (getFileName() != null && getFileName().endsWith(DPFUtils.DEFAULT_DIAGRAM_MODEL_EXTENSION)) 
-//				return true;
-//			setErrorMessage("The 'file' name must end with " + DPFUtils.DEFAULT_DIAGRAM_MODEL_EXTENSION);
-//			return false;
+			//			if (getFileName() != null && getFileName().endsWith(DPFUtils.DEFAULT_DIAGRAM_MODEL_EXTENSION)) 
+			//				return true;
+			//			setErrorMessage("The 'file' name must end with " + DPFUtils.DEFAULT_DIAGRAM_MODEL_EXTENSION);
+			//			return false;
 		}
 
 		/*

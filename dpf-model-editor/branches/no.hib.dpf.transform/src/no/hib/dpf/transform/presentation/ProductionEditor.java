@@ -24,14 +24,11 @@ import java.util.Map;
 
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DConstraint;
-import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.diagram.DOffset;
 import no.hib.dpf.diagram.DPredicate;
 import no.hib.dpf.diagram.DSignature;
 import no.hib.dpf.diagram.DSpecification;
-import no.hib.dpf.diagram.DiagramFactory;
-import no.hib.dpf.diagram.util.DPFConstants;
 import no.hib.dpf.editor.DPFEditor;
 import no.hib.dpf.editor.DPFUtils;
 import no.hib.dpf.editor.parts.DConstraintEditPart;
@@ -46,7 +43,6 @@ import no.hib.dpf.transform.util.TransformUtils;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -54,7 +50,6 @@ import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gef.ContextMenuProvider;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalViewer;
@@ -67,7 +62,6 @@ import org.eclipse.gef.ui.parts.GraphicalEditorWithFlyoutPalette;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
-import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IFileEditorInput;
@@ -92,77 +86,42 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 	protected Production production;
 	protected Transform transform = null;
 	private Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
-	
+
 	protected PaletteRoot paletteRoot;
 
 	private DPFEditPartFactory shapesEditPartFactory;
 	protected DPFTransformPaletteFactory paletteFactory;
 
 	protected DSpecification dspec = null;
-	
+
 	protected PropertySheetPage propertySheetPage;
 
 
 	public void setProduction(Production prod){
 		production = prod;
 	}
-	
+
 	public ProductionEditor(){
 		paletteFactory = new DPFTransformPaletteFactory();
 	}
-	/**
-	 * Configure the graphical viewer before it receives contents.
-	 * <p>
-	 * This is the place to choose an appropriate RootEditPart and
-	 * EditPartFactory for your editor. The RootEditPart determines the behavior
-	 * of the editor's "work-area". For example, GEF includes zoomable and
-	 * scrollable root edit parts. The EditPartFactory maps model elements to
-	 * edit parts (controllers).
-	 * </p>
-	 * 
-	 * @see org.eclipse.gef.ui.parts.GraphicalEditor#configureGraphicalViewer()
-	 */
-	 public void createPartControl(Composite parent) {
-		 super.createPartControl(parent);
-		
-		 
-	 }
-	 
-	 public DPFTransformPaletteFactory getpaletteFactory(){
-		 return paletteFactory;
-	 }
-	
-	 protected void configureGraphicalViewer() {
+
+	public DPFTransformPaletteFactory getpaletteFactory(){
+		return paletteFactory;
+	}
+
+	protected void configureGraphicalViewer() {
 		super.configureGraphicalViewer();
-		DGraph editPartGraph = DiagramFactory.eINSTANCE.createDefaultDGraph();
 		String transformFile = TransformUtils.activeWindowFileLocation();
-		
+
 		transform = TransformEditor.loadTransform(DPFUtils.getResourceSet(), URI.createFileURI(transformFile), resourceToDiagnosticMap);
 
-		DSpecification sourceDSpecification = transform.getSourceMetaModel();
-		DSpecification targetDSpecification = transform.getTargetMetaModel();
-		
-		if(sourceDSpecification!=targetDSpecification){
-			dspec = transform.getElementTypeGraph();
-			editPartGraph = dspec.getDType().getDGraph();
-		}
-		else{
-			editPartGraph = sourceDSpecification.getDGraph();
-		}
-		
+		dspec = transform.getElementTypeGraph();
+
 		GraphicalViewer viewer = getGraphicalViewer();
-		paletteFactory.updatePalette(getPaletteRoot(), editPartGraph);
-		
+		paletteFactory.updatePalette(getPaletteRoot(), dspec.getDGraph());
+
 		shapesEditPartFactory = new DPFEditPartFactory(){
 			protected EditPart getPartForElement(Object modelElement) {
-//				if (modelElement instanceof DGraph) {
-//					return new DGraphEditPart(){
-//						protected void createEditPolicies() {
-//							super.createEditPolicies();
-//							installEditPolicy("action", new ActionEditPolicy());
-//						}
-//					};
-//				}
 				if (modelElement instanceof DNode) {
 					return new TransformDNodeEditPart(modelElement){
 						protected void createEditPolicies() {
@@ -224,11 +183,7 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 	public GraphicalViewer getGraphicalViewer() {
 		return super.getGraphicalViewer();
 	}
-	
-	protected void initializeGraphicalViewer() {
-		super.initializeGraphicalViewer();	
-	}
-	
+
 	public void doSave(final URI uri, IProgressMonitor monitor) {
 
 		WorkspaceModifyOperation operation = new WorkspaceModifyOperation() {
@@ -254,7 +209,7 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 			exception.printStackTrace();
 		}
 	}
-	
+
 	public void doSave(IProgressMonitor monitor) {
 		Shell shell = getSite().getWorkbenchWindow().getShell();
 		SaveAsDialog dialog = new SaveAsDialog(shell);
@@ -272,9 +227,9 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 				doSave(DPFUtils.getFileURI(file), new NullProgressMonitor());
 			}
 		}
-		
+
 	}
-	
+
 	@Override
 	protected void createActions() {
 		super.createActions(); // to get the default actions
@@ -295,19 +250,19 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 		registerAction(new AlignmentAction((IWorkbenchPart)this, PositionConstants.CENTER));
 		registerAction(new AlignmentAction((IWorkbenchPart)this, PositionConstants.MIDDLE));
 	}
-	
+
 	private void addActionForPredicate(final DPredicate dPredicate) {
 		CreateConstraintAction action = new CreateConstraintAction(this, dspec, dPredicate); 
 		registerAction(action);
 		constraintActions.add(action);
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	private void registerAction(IAction action) {
 		getActionRegistry().registerAction(action);
 		getSelectionActions().add(action.getId());
 	}
-	
+
 	List<IAction> constraintActions = new ArrayList<IAction>();
 
 	protected IPartListener partListener = new IPartListener() {
@@ -341,6 +296,6 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 
 		public void partOpened(IWorkbenchPart p) { }
 	};
-	
-	
+
+
 };
