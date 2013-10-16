@@ -197,6 +197,7 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 		darrow.setArrow(DPFConstants.REFLEXIVE_TYPE_ARROW);
 		darrow.setDSource(DPFConstants.REFLEXIVE_TYPE_DNODE);
 		darrow.setDTarget(DPFConstants.REFLEXIVE_TYPE_DNODE);
+		darrow.setDType(darrow);
 		return darrow;
 	}
 
@@ -219,6 +220,7 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	public DNode createConstantDNode() {
 		DNode dnode = new DNodeImpl();
 		dnode.setNode(DPFConstants.REFLEXIVE_TYPE_NODE);
+		dnode.setDType(dnode);
 		return dnode;
 	}
 
@@ -417,6 +419,7 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	public DSpecification createDefaultDSpecification() {
 		DSpecificationImpl dSpecification = new DSpecificationImpl();
 		dSpecification.setSpecification(CoreFactory.eINSTANCE.createDefaultSpecification());
+		dSpecification.setDSignature(DPFConstants.DEFAULT_DSIGNATURE);
 		dSpecification.setDType(DPFConstants.REFLEXIVE_DSPECIFICATION);
 		dSpecification.setDGraph(DiagramFactory.eINSTANCE.createDefaultDGraph());
 		dSpecification.setZoom(1.0);

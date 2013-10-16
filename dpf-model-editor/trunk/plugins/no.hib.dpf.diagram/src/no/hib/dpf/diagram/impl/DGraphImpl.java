@@ -14,6 +14,7 @@ import no.hib.dpf.core.Node;
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
+import no.hib.dpf.diagram.DiagramFactory;
 import no.hib.dpf.diagram.DiagramPackage;
 import no.hib.dpf.diagram.util.DPFConstants;
 
@@ -138,6 +139,7 @@ public class DGraphImpl extends EObjectImpl implements DGraph {
 		result.setDSource(dSource);
 		result.setDTarget(dTarget);
 		result.setDType(dType);
+		result.setNameOffset(DiagramFactory.eINSTANCE.createDefaultDOffset());
 		addDArrow(result);
 		return result;
 	}

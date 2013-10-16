@@ -46,16 +46,17 @@ import org.eclipse.jface.resource.ImageDescriptor;
  */
 public class DPFEditorPaletteFactory {
 	
-	private static final String ARROWS = "Arrows";
-	public final static ImageDescriptor LARGEARROW = ImageSettings.LARGE_CONNECTION.getImageDescriptor();
-	public static final ImageDescriptor LARGEICON = ImageSettings.LARGE_RECTANGLE.getImageDescriptor();
-	private static final String NODES = "Nodes";
-	public final static ImageDescriptor SMALLARROW = ImageSettings.SMALL_CONNECTION.getImageDescriptor();
+	public static final String ARROWS = "Arrows";
+	public static final String NODES = "Nodes";
 	
+	public static final ImageDescriptor LARGEARROW = ImageSettings.LARGE_CONNECTION.getImageDescriptor();
+	public static final ImageDescriptor LARGEICON = ImageSettings.LARGE_RECTANGLE.getImageDescriptor();
+	public static final ImageDescriptor SMALLARROW = ImageSettings.SMALL_CONNECTION.getImageDescriptor();
 	public static final ImageDescriptor SMALLICON = ImageSettings.SMALL_RECTANGLE.getImageDescriptor();
-	private PaletteGroup arrowGroup = new PaletteGroup(ARROWS);
-	private PaletteGroup nodeGroup = new PaletteGroup(NODES);
-	private PaletteRoot palette;
+	
+	protected PaletteGroup arrowGroup = new PaletteGroup(ARROWS);
+	protected PaletteGroup nodeGroup = new PaletteGroup(NODES);
+	protected PaletteRoot palette;
 	/**
 	 * Creates the PaletteRoot and adds all palette elements. Use this factory
 	 * method to create a new palette for your graphical editor.
