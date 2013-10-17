@@ -6,6 +6,7 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 
 import no.hib.dpf.diagram.DArrow;
+import no.hib.dpf.diagram.DElement;
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.diagram.DSpecification;
@@ -18,56 +19,41 @@ public class GenerateModels {
 
 	private DSpecification sourceDSpecification = null;
 	private DSpecification targetDSpecification = null;
-	
-	private HashMap<String, DNode> createNodes = null;
-	
-	
-	public static final String SOURCE_PREFIX = "source";
-	public static final String TARGET_PREFIX = "target";
-	public static final String SOURCE_TRACE = "tracesource_";
-	public static final String TARGET_TRACE = "tracetarget_";
-	public static final String TRACE_SOURCE_ARROW = "traceSource_Node";
-	public static final String TRACE_TARGET_ARROW = "traceTarget_Node";
-	
-	public static final int startx = 10, starty = 10, sizew = 100, sizeh = 50, leftspan = 50, rightspan = 50;
+
+	private HashMap<DElement, DNode> createNodes = null;
+
+	public static final String NODE = "Node";
+	public static final String ARROW = "Arrow";
+	public static final String TRACE = "Trace";
+	public static final String LINK = "Link";
+	public static final String SOURCE = "source";
+	public static final String TARGET = "target";
+
+	public static final int startx = 10, starty = 10, sizew = 100, sizeh = 50, leftspan = 50, rightspan = 50, downspan = 20;
 	public GenerateModels(Transform transform){
 		sourceDSpecification = transform.getSourceMetaModel();
 		targetDSpecification = transform.getTargetMetaModel();
-		createNodes = new HashMap<String, DNode>();
+		createNodes = new HashMap<DElement, DNode>();
 	}
 	public DSpecification generateElementTypeGraph(){
-		DSpecification elementTypeGraph = DiagramFactory.eINSTANCE.createDefaultDSpecification();
+		DSpecification jointmeta = DiagramFactory.eINSTANCE.createDefaultDSpecification();
 
 		boolean sourceIsDefault = sourceDSpecification == REFLEXIVE_DSPECIFICATION;
 		boolean targetIsDefault = targetDSpecification == REFLEXIVE_DSPECIFICATION;  
-		
-		DGraph graph = elementTypeGraph.getDGraph();
-		DNode bridgeElement = graph.createDNode("Trace", REFLEXIVE_TYPE_DNODE);
-		bridgeElement.setSize(new Dimension(sizew, sizeh));
+
+		DGraph graph = jointmeta.getDGraph();
+		DNode trace = graph.createDNode(TRACE, REFLEXIVE_TYPE_DNODE);
+		trace.setSize(new Dimension(sizew, sizeh));
 		int x = startx;
 		int y = starty;
-		if(sourceIsDefault && targetIsDefault){
-			DNode node = graph.createDNode("Node", REFLEXIVE_TYPE_DNODE);
-			node.setLocation(new Point(x, y));
-			node.setSize(new Dimension(sizew, sizeh));
-			x = x + sizew + leftspan;
-			bridgeElement.setLocation(new Point(x, y));
-			graph.createDArrow(TRACE_SOURCE_ARROW, bridgeElement, node, REFLEXIVE_TYPE_DARROW);
-			graph.createDArrow(TRACE_TARGET_ARROW, bridgeElement, node, REFLEXIVE_TYPE_DARROW);
-			return elementTypeGraph;
-		}
-		DNode theNode = null;
 		if(sourceIsDefault){
-			DNode node = graph.createDNode("Node", REFLEXIVE_TYPE_DNODE);
-			theNode = node;
+			DNode node = graph.createDNode(NODE, REFLEXIVE_TYPE_DNODE);
 			node.setLocation(new Point(x, y));
 			node.setSize(new Dimension(sizew, sizeh));
+			createNodes.put(REFLEXIVE_TYPE_DNODE, node);
+			graph.createDArrow(SOURCE + NODE, trace, node, REFLEXIVE_TYPE_DARROW);
 			x = x + sizew + leftspan;
-			bridgeElement.setLocation(new Point(x, y));
-			graph.createDArrow(TRACE_SOURCE_ARROW, bridgeElement, node, REFLEXIVE_TYPE_DARROW);
-			x = x + sizew + rightspan;
-		}
-		else{
+		}else{
 			Point current = null;
 			Dimension size = null;
 			for(DNode dNode : sourceDSpecification.getDGraph().getDNodes()){
@@ -78,96 +64,147 @@ public class GenerateModels {
 				newNode.setSize(new Dimension(size));
 				if(x < current.x + size.width) x = current.x + size.width;
 				if(y < current.y + size.height) y = current.y + size.height;
-				createNodes.put(SOURCE_PREFIX + newNode.getName(), newNode);
-				graph.createDArrow(SOURCE_TRACE + dNode.getName(), bridgeElement, newNode, REFLEXIVE_TYPE_DARROW);
+				createNodes.put(dNode, newNode);
+				graph.createDArrow(SOURCE + dNode.getName(), trace, newNode, REFLEXIVE_TYPE_DARROW);
 			}
 			for(DArrow dArrow : sourceDSpecification.getDGraph().getDArrows()){
-				DNode sourceNode = dArrow.getDSource();
-				DNode targetNode = dArrow.getDTarget();
-				graph.createDArrow(dArrow.getName(), createNodes.get(SOURCE_PREFIX + sourceNode.getName()), createNodes.get(SOURCE_PREFIX + targetNode.getName()), REFLEXIVE_TYPE_DARROW);
+				graph.createDArrow(dArrow.getName(), createNodes.get(dArrow.getDSource()), createNodes.get(dArrow.getDTarget()), REFLEXIVE_TYPE_DARROW);
 			}
 		}
-		x = x + leftspan;
-		y = y / 2;
-		bridgeElement.setLocation(new Point(x, y));
-		x = x + sizew + rightspan;
 		if(targetIsDefault){
-			DNode node = graph.createDNode("Node", REFLEXIVE_TYPE_DNODE);
-			node.setLocation(new Point(x, y));
-			node.setSize(new Dimension(sizew, sizeh));
-			graph.createDArrow(TRACE_TARGET_ARROW, bridgeElement, node, REFLEXIVE_TYPE_DARROW);
-		}
-		else if(sourceDSpecification != targetDSpecification){
-			int mid = y;
+			if(!sourceIsDefault){
+				y = y / 2;
+				DNode node = graph.createDNode(NODE, REFLEXIVE_TYPE_DNODE);
+				node.setLocation(new Point(x + sizew + rightspan, y));
+				node.setSize(new Dimension(sizew, sizeh));
+				graph.createDArrow(TARGET + NODE, trace, node, REFLEXIVE_TYPE_DARROW);
+			}else{
+				graph.createDArrow(TARGET + NODE, trace, createNodes.get(REFLEXIVE_TYPE_DNODE), REFLEXIVE_TYPE_DARROW);
+			}
+			trace.setLocation(new Point(x, y));
+		}else if(sourceDSpecification != targetDSpecification){
+			int t = x;
+			x = x + sizew + rightspan;
 			for(DNode dNode : targetDSpecification.getDGraph().getDNodes()){
 				DNode newNode = graph.createDNode(dNode.getName(), REFLEXIVE_TYPE_DNODE);
 				newNode.setLocation(new Point(x + dNode.getLocation().x, dNode.getLocation().y));
 				newNode.setSize(new Dimension(dNode.getSize()));
-				if(mid < dNode.getLocation().y) mid = dNode.getLocation().y;
-				createNodes.put(TARGET_PREFIX + newNode.getName(), newNode);
-				graph.createDArrow(TARGET_TRACE + dNode.getName(), bridgeElement, newNode, REFLEXIVE_TYPE_DARROW);
+				if(y < dNode.getLocation().y) y = dNode.getLocation().y;
+				createNodes.put(dNode, newNode);
+				graph.createDArrow(TARGET + dNode.getName(), trace, newNode, REFLEXIVE_TYPE_DARROW);
 			}
 			for(DArrow dArrow : targetDSpecification.getDGraph().getDArrows()){
-				DNode sourceNode = dArrow.getDSource();
-				DNode targetNode = dArrow.getDTarget();
-				graph.createDArrow(dArrow.getName(), createNodes.get(TARGET_PREFIX + sourceNode.getName()), createNodes.get(TARGET_PREFIX + targetNode.getName()), REFLEXIVE_TYPE_DARROW);
+				graph.createDArrow(dArrow.getName(), createNodes.get(dArrow.getDSource()), createNodes.get(dArrow.getDTarget()), REFLEXIVE_TYPE_DARROW);
 			}
-			mid = mid / 2;
-			if(sourceIsDefault)
-				theNode.setLocation(new Point(theNode.getLocation().x, mid));
-			bridgeElement.setLocation(new Point(bridgeElement.getLocation().x, mid));
+			if(sourceIsDefault){
+				DNode theNode = createNodes.get(REFLEXIVE_TYPE_DNODE);
+				theNode.setLocation(new Point(theNode.getLocation().x, y/2));
+			}
+			trace.setLocation(new Point(t, y/2));
 		}else{
 			for(DNode dNode : targetDSpecification.getDGraph().getDNodes()){
-				graph.createDArrow(TARGET_TRACE + dNode.getName(), bridgeElement, createNodes.get(SOURCE_PREFIX + dNode.getName()), REFLEXIVE_TYPE_DARROW);
+				graph.createDArrow(TARGET + dNode.getName(), trace, createNodes.get(dNode), REFLEXIVE_TYPE_DARROW);
 			}
+			trace.setLocation(new Point(x, y/2));
 		}
-		return elementTypeGraph;
+		return jointmeta;
 	}
 	public DSpecification generateCorrespondanceGraph(){
-		
-		DSpecification correspondanceDSpecification = DiagramFactory.eINSTANCE.createDefaultDSpecification();
-		
-		boolean sourceIsDefault = sourceDSpecification != REFLEXIVE_DSPECIFICATION;
-		boolean targetIsDefault = targetDSpecification != REFLEXIVE_DSPECIFICATION;
-		
-		DGraph dGraph = correspondanceDSpecification.getDGraph();
-		DNode bridgeElement = dGraph.createDNode("Link", REFLEXIVE_TYPE_DNODE);
-		
-		if(sourceIsDefault && targetIsDefault){
-			DNode dNode = dGraph.createDNode("Node", REFLEXIVE_TYPE_DNODE);
-			DNode dArrow = dGraph.createDNode("Arrow", REFLEXIVE_TYPE_DNODE);
-			
-			dGraph.createDArrow("sourceNode", bridgeElement, dNode, REFLEXIVE_TYPE_DARROW);
-			dGraph.createDArrow("sourceArrow", bridgeElement, dArrow, REFLEXIVE_TYPE_DARROW);
-			
-			dGraph.createDArrow("targetNode", bridgeElement, dNode, REFLEXIVE_TYPE_DARROW);
-			dGraph.createDArrow("targetArrow", bridgeElement, dArrow, REFLEXIVE_TYPE_DARROW);
-		}
-		else{
+		DSpecification correspond = DiagramFactory.eINSTANCE.createDefaultDSpecification();
+
+		boolean sourceIsDefault = sourceDSpecification == REFLEXIVE_DSPECIFICATION;
+		boolean targetIsDefault = targetDSpecification == REFLEXIVE_DSPECIFICATION;  
+
+		DGraph graph = correspond.getDGraph();
+		DNode trace = graph.createDNode(LINK, REFLEXIVE_TYPE_DNODE);
+		trace.setSize(new Dimension(sizew, sizeh));
+		int x = startx;
+		int y = starty;
+		if(sourceIsDefault){
+			DNode node = graph.createDNode(NODE, REFLEXIVE_TYPE_DNODE);
+			node.setLocation(new Point(x, y));
+			node.setSize(new Dimension(sizew, sizeh));
+			createNodes.put(REFLEXIVE_TYPE_DNODE, node);
+			graph.createDArrow(SOURCE + NODE, trace, node, REFLEXIVE_TYPE_DARROW);
+			y = y + sizeh + downspan;
+			DNode arrow = graph.createDNode(ARROW, REFLEXIVE_TYPE_DNODE);
+			arrow.setLocation(new Point(x, y));
+			arrow.setSize(new Dimension(sizew, sizeh));
+			createNodes.put(REFLEXIVE_TYPE_DARROW, arrow);
+			graph.createDArrow(SOURCE + ARROW, trace, arrow, REFLEXIVE_TYPE_DARROW);
+			x = x + sizew + leftspan;
+			y = starty;
+		}else{
+			Point current = null;
+			Dimension size = null;
 			for(DNode dNode : sourceDSpecification.getDGraph().getDNodes()){
-				DNode newNode = dGraph.createDNode(dNode.getName(), REFLEXIVE_TYPE_DNODE);
-				createNodes.put(SOURCE_PREFIX + newNode.getName(), newNode);
-				dGraph.createDArrow(SOURCE_PREFIX + dNode.getName(), bridgeElement, newNode, REFLEXIVE_TYPE_DARROW);
+				DNode newNode = graph.createDNode(dNode.getName(), REFLEXIVE_TYPE_DNODE);
+				current = dNode.getLocation();
+				newNode.setLocation(new Point(current));
+				size = dNode.getSize();
+				newNode.setSize(new Dimension(size));
+				if(x < current.x + size.width) x = current.x + size.width;
+				if(y < current.y + size.height) y = current.y + size.height;
+				createNodes.put(dNode, newNode);
+				graph.createDArrow(SOURCE + dNode.getName(), trace, newNode, REFLEXIVE_TYPE_DARROW);
 			}
-			
 			for(DArrow dArrow : sourceDSpecification.getDGraph().getDArrows()){
-				DNode newNode = dGraph.createDNode(dArrow.getName(), REFLEXIVE_TYPE_DNODE);
-				createNodes.put(SOURCE_PREFIX + newNode.getName(), newNode);
-				dGraph.createDArrow(SOURCE_PREFIX + dArrow.getName(), bridgeElement, newNode, REFLEXIVE_TYPE_DARROW);
-			}
-			
-			for(DNode dNode : targetDSpecification.getDGraph().getDNodes()){
-				DNode newNode = dGraph.createDNode(dNode.getName(), REFLEXIVE_TYPE_DNODE);
-				createNodes.put(TARGET_PREFIX + newNode.getName(), newNode);
-				dGraph.createDArrow(TARGET_PREFIX + dNode.getName(), bridgeElement, newNode, REFLEXIVE_TYPE_DARROW);
-			}
-			
-			for(DArrow dArrow : targetDSpecification.getDGraph().getDArrows()){
-				DNode newNode = dGraph.createDNode(dArrow.getName(), REFLEXIVE_TYPE_DNODE);
-				createNodes.put(TARGET_PREFIX+newNode.getName(), newNode);
-				dGraph.createDArrow(TARGET_PREFIX+dArrow.getName(), bridgeElement, newNode, REFLEXIVE_TYPE_DARROW);
+				Point s = createNodes.get(dArrow.getDSource()).getLocation(), t = createNodes.get(dArrow.getDTarget()).getLocation();
+				DNode arrow = graph.createDNode(dArrow.getName(), REFLEXIVE_TYPE_DNODE);
+				arrow.setLocation(new Point((s.x + t.x) / 2, (s.y + t.y) / 2));
+				arrow.setSize(new Dimension(sizew, sizeh));
+				createNodes.put(dArrow, arrow);
+				graph.createDArrow(SOURCE + dArrow.getName(), trace, arrow, REFLEXIVE_TYPE_DARROW);
 			}
 		}
-		return correspondanceDSpecification;
+		if(targetIsDefault){
+			if(!sourceIsDefault){
+				y = y / 2;
+				DNode node = graph.createDNode(NODE, REFLEXIVE_TYPE_DNODE);
+				node.setLocation(new Point(x, y));
+				node.setSize(new Dimension(sizew, sizeh));
+				createNodes.put(REFLEXIVE_TYPE_DNODE, node);
+				graph.createDArrow(TARGET + NODE, trace, node, REFLEXIVE_TYPE_DARROW);
+				y = y + sizeh + downspan;
+				DNode arrow = graph.createDNode(ARROW, REFLEXIVE_TYPE_DNODE);
+				arrow.setLocation(new Point(x, y));
+				arrow.setSize(new Dimension(sizew, sizeh));
+				createNodes.put(REFLEXIVE_TYPE_DARROW, arrow);
+				graph.createDArrow(TARGET + NODE, trace, arrow, REFLEXIVE_TYPE_DARROW);
+			}else{
+				graph.createDArrow(TARGET + NODE, trace, createNodes.get(REFLEXIVE_TYPE_DNODE), REFLEXIVE_TYPE_DARROW);
+				graph.createDArrow(TARGET + ARROW, trace, createNodes.get(REFLEXIVE_TYPE_DARROW), REFLEXIVE_TYPE_DARROW);
+			}
+			trace.setLocation(new Point(x, y));
+		}else if(sourceDSpecification != targetDSpecification){
+			int t = x;
+			x = x + sizew + rightspan;
+			for(DNode dNode : targetDSpecification.getDGraph().getDNodes()){
+				DNode newNode = graph.createDNode(dNode.getName(), REFLEXIVE_TYPE_DNODE);
+				newNode.setLocation(new Point(x + dNode.getLocation().x, dNode.getLocation().y));
+				newNode.setSize(new Dimension(dNode.getSize()));
+				if(y < dNode.getLocation().y) y = dNode.getLocation().y;
+				createNodes.put(dNode, newNode);
+				graph.createDArrow(TARGET + dNode.getName(), trace, newNode, REFLEXIVE_TYPE_DARROW);
+			}
+			for(DArrow dArrow : targetDSpecification.getDGraph().getDArrows()){
+				Point s = createNodes.get(dArrow.getDSource()).getLocation(), ts = createNodes.get(dArrow.getDTarget()).getLocation();
+				DNode arrow = graph.createDNode(dArrow.getName(), REFLEXIVE_TYPE_DNODE);
+				arrow.setLocation(new Point((s.x + ts.x) / 2, (s.y + ts.y) / 2));
+				arrow.setSize(new Dimension(sizew, sizeh));
+				createNodes.put(dArrow, arrow);
+				graph.createDArrow(TARGET + dArrow.getName(), trace, arrow, REFLEXIVE_TYPE_DARROW);
+			}
+			trace.setLocation(new Point(t, y/2));
+		}else{
+			for(DNode dNode : targetDSpecification.getDGraph().getDNodes()){
+				graph.createDArrow(TARGET + dNode.getName(), trace, createNodes.get(dNode), REFLEXIVE_TYPE_DARROW);
+			}
+			for(DArrow dArrow : targetDSpecification.getDGraph().getDArrows()){
+				graph.createDArrow(TARGET + dArrow.getName(), trace, createNodes.get(dArrow), REFLEXIVE_TYPE_DARROW);
+			}
+			trace.setLocation(new Point(x, y/2));
+		}
+		return correspond;
 	}
 }
