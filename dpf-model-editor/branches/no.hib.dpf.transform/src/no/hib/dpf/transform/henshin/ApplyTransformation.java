@@ -41,7 +41,7 @@ public class ApplyTransformation {
 		HenshinResourceSet resourceSet = new HenshinResourceSet(TransformUtils.activeWorkingDirectory());
 		Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
 		Transform transform = TransformEditor.loadTransform(DPFUtils.getResourceSet(), URI.createFileURI(transformFile), resourceToDiagnosticMap);
-
+		
 		String newPath = path.replace(".dpf", ".xmi");
 		
 		int buffer = 0;

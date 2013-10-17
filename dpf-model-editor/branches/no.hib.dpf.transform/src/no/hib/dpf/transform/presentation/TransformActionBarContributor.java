@@ -5,6 +5,7 @@ import java.util.Map;
 
 import no.hib.dpf.editor.DPFUtils;
 import no.hib.dpf.transform.Transform;
+import no.hib.dpf.transform.execute.TranslateDPFModel;
 import no.hib.dpf.transform.henshin.ApplyTransformation;
 import no.hib.dpf.transform.henshin.TranslateToHenshinRules;
 import no.hib.dpf.transform.icons.ImageSettings;
@@ -51,6 +52,20 @@ public class TransformActionBarContributor extends ActionBarContributor {
 			TranslateToHenshinRules.generateHenshinModule(true);
 		}
 	};
+	
+	protected IAction generateDPF = new Action(TransformConstants.GENERATE_ECORE, ImageSettings.IMG_GENERATE_ECORE.getImageDescriptor()) {
+		@Override
+		public boolean isEnabled() {
+			return true;
+		}
+
+		@Override
+		public void run() {
+			TranslateDPFModel dpfModel = new TranslateDPFModel();
+			dpfModel.executeChanges();
+		}
+	};
+	
 	protected IAction executeTransformation = new Action(TransformConstants.EXECUTE_TRANSFORMATION, ImageSettings.IMG_EXECUTE_TRANFORMATION.getImageDescriptor()) {
 		@Override
 		public boolean isEnabled() {
@@ -101,6 +116,7 @@ public class TransformActionBarContributor extends ActionBarContributor {
 		
 		toolBarManager.add(generateToHenshin);
 		toolBarManager.add(executeTransformation);
+		toolBarManager.add(generateDPF);
 		
 
 		toolBarManager.add(new Separator());
