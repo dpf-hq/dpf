@@ -11,6 +11,7 @@
 %	SECTION 1
 %---------------------------------------------------------------------------------------- 
 \section{Integrate Henshin with DPF}
+\label{integrate_henshin}
 
 DPF is a a framework where it is possible to create arbitrary levels of
 meta-models. That gives the users the freedom to define a well formed domain
@@ -90,74 +91,7 @@ final step we can apply these transformation rules to a Henshin transformation
 engine. However, processing Henshin transformation rules from modeling
 formalisms proved to be a challange. 
 
-The problem with integrating Henshin with DPF is that Henshin is implemented by
-EMF, and therefore utilize OMG's MOF. The Henshin model transformation
-language create the transformation rules based on models that are created
-accordingly to the four layer meta-modeling provided by MOF. The
-specification implementation for a DPF model is created as an EMF meta-model 
-and utilize the EMF Genmodel to provide code generation. DPF provides
-initialisation of a potential endless hierarchy of meta-models, and therefore
-does not match the steps MOF provides to create abstract syntax for a domain
-specific language. It is however important to separate the implementation of a
-specification and the creation of a new specification. Because DPF utilize EMF
-to some extent. Each model created in DPF represents the lowest layer of
-meta-modeling in MOF, regardless of the level of abstraction the model
-represents. However what makes DPF unique compared to EMF is that a DPF model us
-an instance model of both an Ecore meta-model and another DPF model. This means
-that a DPF models concrete syntax is typed by the abstract syntax of another DPF
-model. While all modeling elements from these models conforms to one common
-meta-model. In DPF we can create an arbitrary level of meta-models and therefore
-each domain specific modeling language defined in the framework can have
-different layers of specification models. The Henshin environment has strict
-guidelines on how models are imported and used. These models are required to be
-created accordingly to and typed by the Ecore model provided by EMF. Henshin
-can then utilize these models to create a graph pattern that structure both the
-LHS and the RHS graph of a transformation rule.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.7]{./Figures/metamodelSpecification.png}
-	\caption[Specification relationship with core meta-model]
-	{Relationship between layers of specification.}
-	\label{fig:core_metamodel}
-\end{figure}
-
-
-
-In 2007 Ralf Gitzel, Ingo Ott and Martin Schader published a paper where they
-amongst other subjects discuss the difference between Linguistic and
-Ontological meta-modeling. They provide a definition between the two, 
-\textit{``Linguistic metamodeling uses a metamodel to describe a language syntax
-without a concrete real-world mapping. Ontological metamodeling uses metamodels
-to describe domain-specific hierarchies"}\cite{gitzel2007ontological}. As it is,
-the MOF 2.4.1 standard does not allow more than a four layered meta-modeling.
-DPF has one Ecore specified meta-model that describes a language syntax and a
-potentially unlimited meta-models that describes a domain-specific hierarchy. 
-Figure~\ref{fig:core_metamodel} gives a representation on how specifications
-are related and regardless of level of abstraction every specification
-$\spec{S}$\textsubscript{1\ldots n} conforms to one common meta-model. This
-model is the linguistic meta-model that DPF provides to describe every single
-specification created by the DPF editor. For Henshin we can import this
-meta-model, \textit{Meatmodel.ecore} and use it to define the content of the
-transformation rules since every specification $\spec{S}$\textsubscript{n}
-conforms to this meta-model.
-However, other than consisting of an underlying graph and a set of constraints,
-a DPF specification $\spec{S}$\textsubscript{n} is also an instance of another
-specification$\spec{S}$\textsubscript{n+1}, and this is where it gets
-challenging. Because in DPF a specification model $\spec{S}$\textsubscript{n}
-is created as an instance from a specification model
-$\spec{S}$\textsubscript{n+1}. We can describe these specification models as
-ontological meta-models, since these models describes a domain specific modeling
-language through an arbitrary hierarchy of models. This is where we have to find
-a work around for our solution, because we cannot import an instance model of
-an Ecore based meta-model into the Henshin model transformation environment. We
-can do changes to an instance model by using Henshin, but the transformation
-language can only import and utilize models that conforms to the Ecore
-meta-model. To solve this for DPF models we expand transformation rules in
-Henshin with application conditions. We will look more closely to how this is
-done later in this chapter, but what we basically do is that we restrict the
-LHS graph to locate matching modeling elements in an instance model based on
-the abstract syntax that another instance model provides.
 
 %----------------------------------------------------------------------------------------
 %	SECTION 2
@@ -298,8 +232,9 @@ second editor is administrated by the master editor, and each time a new
 transformation rule is chosen, a simple version of the DPF editor is opened
 with its corresponding transformation rule. This editor is created from the 
 Graphical Editing Framework (GEF) and is a graphical editor that includes a
-palette. This palette is the same palette that is used in the DPF Editor and
-contains modeling elements from the source meta-model and the target meta-model.
+palette. This palette is the same palette that is used in the DPF Model Editor
+and contains modeling elements from the source meta-model and the target
+meta-model.
 
 \begin{figure}[H]
 	\centering
@@ -340,7 +275,7 @@ transformation language we have to provide a module that contains a set of trans
 rules. And to achieve this we have to translate our transformation rules we
 create in the editor into Henshin executable rules. 
 
-\item \textbf{Apply Model Transformation.} Now the user has created a
+\item \textbf{Apply Model Transformation.} After the user has created a
 correspondence graph that bind objects from source and target model and
 translated transformation rules from the editor to Henshin executable
 transformation rules. We can now apply the transformation rules through
@@ -399,12 +334,12 @@ transformation rule. We need to import two models if we want to translate a
 specification with Henshin. The first model is the corresponding meta-model for
 all specifications and the second model is the meta-model for including
 traceable links in Henshin. We will describe the purpose of these traceable
-links in more detail in section~\ref{Trace}. The transformation language
-requires models that define the abstract syntax for an instance model to be able to
-specify modeling elements for both the LHS and the RHS of a transformation
-rule. We can use meta-elements provided by these two models when defining new
-nodes, edges and attributes in Henshin. These types are EClass for nodes,
-EReference for edges and EAttribute for attributes. 
+links in more detail in subsection~\ref{Trace}. The transformation language
+requires models that define the abstract syntax for an instance model to be
+able to specify modeling elements for both the LHS and the RHS of a
+transformation rule. We can use meta-elements provided by these two models when
+defining new nodes, edges and attributes in Henshin. These types are EClass for
+nodes, EReference for edges and EAttribute for attributes. 
 
 For Henshin we create one rule for each production provided by the editor, where
 the name of the rule is acquired from the production. Henshin

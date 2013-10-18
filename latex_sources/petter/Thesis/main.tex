@@ -33,6 +33,8 @@
 \hypersetup{urlcolor=blue, colorlinks=true} % Colors hyperlinks in blue - change to black if annoying
 \title{\ttitle} % Defines the thesis title - don't touch this
 
+
+
 \usepackage{color, colortbl}
 \definecolor{Gray}{gray}{0.9}
 \definecolor{LightCyan}{rgb}{0.88,1,1}
@@ -56,6 +58,9 @@
 }
 
 \usepackage[table]{xcolor}% http://ctan.org/pkg/xcolor
+
+\usepackage{tikz}
+\usetikzlibrary{arrows,chains,matrix,positioning,scopes}
 
 \begin{document}
 
@@ -90,8 +95,11 @@
 \textsc{\Large Master Thesis}\\[0.5cm] % Thesis type
 
 \HRule \\[0.4cm] % Horizontal line
-{\huge \bfseries \ttitle}\\[0.4cm] % Thesis title
-\HRule \\[1.5cm] % Horizontal line
+\setstretch{2.0} % Line spacing of 1.3
+{\huge \bfseries \ttitle}\\[0.0cm] % Thesis title
+\HRule \\[1.2cm] % Horizontal line
+ 
+\setstretch{1.3} % Line spacing of 1.3
  
 \begin{minipage}{0.4\textwidth}
 \begin{flushleft} \large
@@ -104,7 +112,7 @@
 \emph{Supervisor:} \\ {\supname} % Supervisor name - remove the \href bracket to
 % remove the link
 \end{flushright}
-\end{minipage}\\[3cm]
+\end{minipage}\\[1.5cm]
 
 \includegraphics[width=0.25\textwidth]{Figures/uib_logo.png}\\
 {\normalsize Department of Informatics}\\

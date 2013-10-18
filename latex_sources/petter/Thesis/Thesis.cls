@@ -178,11 +178,12 @@
 %	section above for the citation command e.g. \examiner{} below is
 %	defined as \examname above so you cite it as \examname
 %----------------------------------------------------------------------------------------
-\university{Bergen University Collage}
+\university{Bergen University College}
 
 \department{Department of Computing, Mathematics and Physics}
 
-\thesistitle{Applying Model to Model Transformations for the DPF Tool} % Your
+\thesistitle{Model to Model Transformation Tool
+ for the DPF Workbench} % Your
 % thesis title - this is used in the title and abstract -------------------------------------------------  
 \supervisor{Yngve Lamo} % You supervisor's name - this is used in the
 % title page -------------------------------------------------   
@@ -199,12 +200,12 @@
 \keywords{} % Keywords for your thesis - this is not currently used anywhere in the template, cite it with \keywordnames if you want it
 %-------------------------------------------------   
 \university{\texorpdfstring{\href{http://www.university.com} % Your university's URL
-                {Bergen University Collage}} % Your university's name - this is
+                {Bergen University College}} % Your university's name - this is
                 % currently used in the title page
                 {University Name}}
 %-------------------------------------------------   
 \UNIVERSITY{\texorpdfstring{\href{University Web Site URL Here (include http://)} % Your university's URL
-                {BERGEN UNIVERSITY COLLAGE}} % Your university's name in
+                {BERGEN UNIVERSITY COLLEGE}} % Your university's name in
                 % capitals - this is currently used in the abstract page
                 {UNIVERSITY NAME (IN BLOCK CAPITALS)}}
 %-------------------------------------------------                
@@ -214,7 +215,7 @@
                 {Department of Computing, Mathematics and Physics}}
 %-------------------------------------------------                
 \DEPARTMENT{\texorpdfstring{\href{Department or School Web Site URL Here (include http://)} % Your department's URL
-                {BERGEN UNIVERSITY COLLAGE}} % Your department's name in
+                {BERGEN UNIVERSITY COLLEGE}} % Your department's name in
                 % capitals - this is not currently used anywhere in the template, cite it with \DEPTNAME if you want it
                 {DEPARTMENT OR SCHOOL NAME (IN BLOCK CAPITALS)}}
 %-------------------------------------------------                

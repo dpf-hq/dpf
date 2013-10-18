@@ -11,8 +11,8 @@
 \section{Model Driven Engineering}
 	
 When a new software is created it has always been a goal to produce high
-quality code at the lowest cost. To plan a software development phase from its
-initial start to delivering a finished product can seem like an impossible
+quality code at the lowest possible cost. To plan a software development project
+from its initial start to delivering a finished product can seem like an impossible
 thing to do. Because a software development cycle rarely goes as initially
 planned. Changes do occur, both in delivering high quality code and keeping the
 costs down. Traditionally when model driven engineering (MDE) is used, people
@@ -86,7 +86,7 @@ models. And by using these models,  MDE aims at improving productivity and
 quality in software development. This is achieved by not only to use models as
 documentation, but instead to use models as the major artifact in a software
 development cycle. The idea is to use models at different levels of abstraction
-and apply model transformations to automate the implementation on these
+and apply model transformations to automate the implementation of these
 models. This will raise the level of abstraction in program and problem
 specification. We can divide these models into two main model classes, namely
 development models and runtime models. Development models is used as an
@@ -107,12 +107,12 @@ A typical Model Driven Software Engineering (MDSE) approach is to obtain the
 running software application through model transformations that produce a more
 and more detailed version of the application until an executable version is
 created. We reach this level of automation by applying model transformations to
-models at earlier levels of abstraction and producing models that contains a
+models at higher levels of abstraction and producing models that contains a
 more and more detailed description of the software. This highlights one main
 advantage of a model driven approach, and that is to bridge the communication
 gap between requirements/analysis and implementation\cite{Brown2008}. For a
 traditional development process today there is a gap in communication between
-software developers and a customer. Because a customer is usually not an expert
+software developers and customers. Because a customer is usually not an expert
 in designing and implementing a software application. A customer can provide a
 set of requirements for a software application and take part in analysing these
 requirements to make sure that the development team shares the customers thought
@@ -120,8 +120,8 @@ of the program. The requirements and analysis can be specified down to every
 detail, however a software application might experience different design choices
 that leads to a different implementation of the application compared what a
 business needs. If the visions of MDE is adopted to a software development
-process then this could help narrow gap in communication between developers and
-stakeholders. Because now we can apply model transformation that changes input
+process then this could help to narrow the gap in communication between
+developers and stakeholders. Because now we can apply model transformation that changes input
 models to target models that represents the design of a software application.
 From these design models we can then generate implementation code through the use
 of model transformations. We will describe model transformations and their
@@ -143,11 +143,11 @@ is a proposal for applying the practices of MDE to a system development. This
 architecture is a good example to use when we are discussing concepts of MDE,
 because of its similarity to a traditional software development process. Since
 it has support for standard phases in a software development process such as
-analysis, design and implementation. MDA are adopted as a reference framework to
-the concept of MDA by many organizations. One reason for this is the importance
-of OMG in for the software industry. MDA is build around many concepts that OMG
-has released, such as the OMG specifications the Unified Modeling Language (UML)
-and the Meta Object Facility(MOF). 
+analysis, design and implementation. Many organizations have adopted MDA as a
+reference framework to include the concepts of MDE. One reason for this is the
+importance of OMG in for the software industry. MDA is build around many
+concepts that OMG has released, such as the OMG specifications the Unified
+Modeling Language (UML) and the Meta Object Facility(MOF).
 
 \begin{figure}[H]
 	\centering
@@ -160,17 +160,18 @@ and the Meta Object Facility(MOF).
 Figure~\ref{fig:MDA} gives a representation of the development process that the
 Model Driven Architecture provides and a traditional development process. Both
 of the approaches have similar starting phases, where a customer presents a
-list of requirements for a software application. Now is where a MDE approach to
-software development is different. Because for MDA the idea is to use models
-instead of text and diagrams for the analysis and design phase. For a
-traditional development process these phases usually consist of creating
-diagrams that describes parts of the application. In MDA these diagrams or
-models are the main artifact for the corresponding phases, instead of just a
-reference for developers to use when implementing code. The architecture then
-generates implementation code based on these models. A traditional software
-development process would have iterations for the implementation and testing to
-make sure that the application meets the demands of the customer. This process
-is continued for every iteration, where developers continually use the text and
+list of requirements for a software application. The process to create
+implementation code from the requirements is where a MDE approach to software
+development is different. Because for MDA the idea is to use models instead of
+text and diagrams for the analysis and design phase. For a traditional
+development process these phases usually consist of creating diagrams that
+describes parts of the application. In MDA these diagrams or models are the
+main artifact for the corresponding phases, instead of just a reference for
+developers to use when implementing code. The architecture then generates
+implementation code based on these models. A traditional software development
+process would have iterations for the implementation and testing to make sure
+that the application meets the demands of the customer. This process is
+continued for every iteration, where developers continually use the text and
 diagrams that was created earlier in the process. The idea for an MDA
 development process is to provide automation between models created at each
 development phase. Instead of going back to the code and to corrections and
@@ -279,7 +280,7 @@ was accepted in 2000 by the International Organization for Standardization
 (ISO) as an industry standard for modeling software systems. UML was initially
 developed by Grady Booch, Ivar Jacobsen and James Rumbaugh at Rational Software
 in the 1990s. It was later adopted by the Object Management Group in 1997 and
-has since this day been continually developed by the organisation. UML is
+has since this day been continuously developed by the organisation. UML is
 often called a general purpose language because it is often referred to as a
 suite of languages, since it provides developers and designers with the possibility to
 specify applications through several different modeling languages, or diagram
@@ -369,19 +370,23 @@ create meta-models.
  
 \subsection{Constraints}
 
-A constraint is a Boolean condition for some modeling element. These modeling
-elements can have constraints defined on objects, classes, attributes,
-links, associations, etc. A constraint is a restriction on how these
-elements should behave. Constraints on elements such as those above can be
-expressed with a natural language or by a formal language, such as the
-Object Constraint Language\cite{OCL} (OCL). The Object Constraint Language (OCL)
-is a declarative programming language for describing constraints that applies to
-UML models. Before UML became an adopted standard of the Object Management Group
-(OMG), OCL was an extension language to UML. Now OCL can be used with any
-Meta-Object Facility (MOF) meta-model, including UML. A software developer
-can in combination with UML and OCL specify models. OCL is used as a supplement
-to UML, and therefore would refer a to non-existing model element without UML
-diagrams\cite{Warmer:2003:OCL:861416}.
+Constraints impose conditions that modeling elements must satisfy and helps
+to define the semantics of a domain specific language. A constraints can be
+compared to a Boolean condition. Boolean conditions are either true or false,
+while constraints are either satisfied or not satisfied. Including constraints
+to modeling elements in the abstract syntax specifies how modeling elements
+are presented in an instance model. Modeling elements that are included in the
+abstract syntax can have constraints defined on objects, classes, attributes, links,
+associations, etc. A constraint is a restriction on how these elements should
+behave. Constraints on elements such as those above can be expressed with a
+natural language or by a formal language, such as the Object Constraint
+Language\cite{OCL} (OCL). The Object Constraint Language (OCL) is a declarative
+programming language for describing constraints that applies to UML models.
+Before UML became an adopted standard of the Object Management Group (OMG), OCL
+was an extension language to UML. Now OCL can be used with any Meta-Object
+Facility (MOF) meta-model, including UML. A software developer can in
+combination with UML and OCL define the semantics for a modeling
+language\cite{Warmer:2003:OCL:861416}.
 
 The difference between object and classes needs to be specified. A class
 is often a meta element for an object. This means that a class could be part of
@@ -409,7 +414,7 @@ an association restricts the number of objects that are related to a given
 object. From the association constraint on this model we can see that a student
 requires to take at least one course and up to a maximum of six courses. The
 models restricts a student to not participate in any courses. The second
-structural constraint requires a course to have at least five students for
+structural constraint requires a course to have at least one student for
 this course to be part of a semester, and the course can have an arbitrary
 maximum number of students participating this course. The association dates,
 between two students for this model has an attached constraint, that is
@@ -521,7 +526,7 @@ directed graph that provides additional properties, such as colimit, limit and
 constraints. DPF utilize this concept through an diagrammatic approach to
 meta-modeling and to facilitate the concepts of MDE. The framework provides the
 possibility to define an unlimited layers of meta-modeling. In DPF models are
-represented as specifications. 
+represented as specifications.
 
 \begin{itemize}
   
@@ -529,8 +534,8 @@ represented as specifications.
 C\textsuperscript{$\spec{S}$}:$\Sigma$) consist of an underlying graph S and a
 set of atomic constraints C\textsuperscript{$\spec{S}$}. 
 
-\item Atomic constraints are specified by predicates, that is a Boolean value
-function, from a predefined signature $\Sigma$.
+\item Atomic constraints are specified by predicates from a predefined signature
+$\Sigma$.
 
 \item A signature $\Sigma$ = ($\Pi$ \hspace{1 mm}, \hspace{1 mm}$\alpha$)
 consist of a collection of predicates. 
@@ -582,7 +587,7 @@ specification that is defined by a modeling formalism.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.7]{./Figures/modeling_formlalism}
+	\includegraphics[scale=0.7]{./Figures/modeling_formlalism_adrian.png}
 	\caption[Modeling formalism in DPF]
 	{Meta-modeling represented as modeling formalism's in DPF.}
 	\label{fig:modeling_formlalism}
@@ -622,28 +627,28 @@ left side and DPF's multi layer meta-modeling hierarchy on the right side
 These two sides highlights the differences between DPF and modeling environments
 that expand MOF to create modeling languages. While MOF based modeling
 environments provides two abstraction layers, DPF on the other hand provides a
-possible unlimited abstraction layers that the that the users can interact with.
-The reason that MOF based modeling environments provides two layers to interact
-with is because the layers M\textsubscript{2} and M\textsubscript{3} are usually
-part of the environments internal infrastructure. For example in EMF users can
-create models that conforms to the Ecore meta-model. The only meta-model that
-users of DPF are unable to interact with located at the highest abstraction
-layer. A specification $\spec{S}$\textsubscript{n+1} is specified by a modeling
-language that corresponds to a specification $\spec{S}$\textsubscript{n+2}. But
-the same specification $\spec{S}$\textsubscript{n+1} also represents the
-abstract syntax for a specification $\spec{S}$\textsubscript{n}. These DPF
-models automatically generates a new graphical editor environment provided by
-the DPF Editor.
+possible unlimited abstraction layers users can interact with. The reason that
+MOF based modeling environments provides two layers to interact with is because
+the layers M\textsubscript{2} and M\textsubscript{3} are usually part of the
+environments internal infrastructure. For example in EMF users can create
+models that conforms to the Ecore meta-model. The only meta-model that users of
+DPF are unable to interact with located at the highest abstraction layer. A
+specification $\spec{S}$\textsubscript{n+1} is specified by a modeling language
+that corresponds to a specification $\spec{S}$\textsubscript{n+2}. But the same
+specification $\spec{S}$\textsubscript{n+1} also represents the abstract syntax
+for a specification $\spec{S}$\textsubscript{n}. These DPF models automatically
+generates a new graphical editor environment provided by the DPF Editor.
 
-\section{DPF Editor}
+\section{DPF Workbench}
 
-The DPF Editor is an extension of the Diagram Predicate Framework that provides
-an intuitive approach to creating modeling languages and have been created
+\subsection{DPF Model Editor}
+The DPF Model Editor is an extension of the Diagram Predicate Framework that
+provides an intuitive approach to creating modeling languages and have been created
 using several different technologies. In 2011 $\O$yvind Bech published his
-master thesis\cite{Bech_thesis} where he designed the current implementation of
-the DPF Editor that is based on the Eclipse Modeling Framework technology. This
-version of the DPF Editor has seen several iterations and provides support for
-creating domain specific modeling languages. Figure~\ref{fig:DPF_Editor} is a
+master thesis\cite{Bech_thesis} where he designed the implementation of
+the DPF Model Editor that is based on the Eclipse Modeling Framework technology.
+This first version of the DPF Model Editor has seen several iterations and provides
+support for creating domain specific modeling languages. Figure~\ref{fig:DPF_Editor} is a
 simplified version provided in the article, \textit{``DPF Workbench: a
 multi-level language workbench for MDE"}\cite{Lamo2013} .
 
@@ -667,30 +672,30 @@ correspond to this DSL.
 
 
 
- %
-%\begin{table}[ht]
-%\renewcommand*\arraystretch{1.5}
-%\centering
-%\begin{tabular}{| c | c | c | c | c | c |}
-%\hline
-%Tool & Layers & Dia.   & Const.   & Platform & GUI\\
-%	 & 		  & Const. & Language &          & \\
-%\hline
-%EMF/GMF & 2 & & OCL, EVL, & Java VM & $\surd$ \\
+ 
+\begin{table}[ht]
+\renewcommand*\arraystretch{1.5}
+\centering
+\begin{tabular}{| c | c | c | c | c | c |}
+\hline
+Tool & Layers & Dia.   & Const.   & Platform & GUI\\
+	 & 		  & Const. & Language &          & \\
+\hline
+EMF/GMF & 2 & & OCL, EVL, & Java VM & $\surd$ \\
 		%&  	& & Java      &         & \\
-%\hline
-%VMTS    & $\infty$ & & OCL & Windows & $\surd$ \\
-%\hline
-%AToM\textsuperscript{3} & 2 & & OCL, Python & Python, Tk/tcl & $\surd$ \\
-%\hline
-%GME  & 2 & & OCL & Windows & $\surd$ \\
-%\hline
-%metaDepth & $\infty$ & & EVL & Java VM & \\
-%\hline
-%DPF & $\infty$ & $\surd$ & Predefined & Java VM & $\surd$ \\
-%	& 		   &         & validator  &         & \\
-%\hline
-%
-%\end{tabular}
-%\caption{Comparing model transformation tools.}
-%\end{table} 
+\hline
+VMTS    & $\infty$ & & OCL & Windows & $\surd$ \\
+\hline
+AToM\textsuperscript{3} & 2 & & OCL, Python & Python, Tk/tcl & $\surd$ \\
+\hline
+GME  & 2 & & OCL & Windows & $\surd$ \\
+\hline
+metaDepth & $\infty$ & & EVL & Java VM & \\
+\hline
+DPF & $\infty$ & $\surd$ & Predefined & Java VM & $\surd$ \\
+	& 		   &         & validator  &         & \\
+\hline
+
+\end{tabular}
+\caption{Comparing model transformation tools.}
+\end{table} 

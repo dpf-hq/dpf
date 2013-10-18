@@ -12,7 +12,7 @@
 %	SECTION 1
 %----------------------------------------------------------------------------------------
 
-Transformation are a fundamental aspect in computer science and software
+Transformations are a fundamental aspect in computer science and software
 engineering. Whenever a computer starts up, transformation of computer systems
 and computer programs happens frequently. Take a compiler for instance, it plays
 a vital part of a computers internal infrastructure. A compiler is a computer
@@ -78,9 +78,9 @@ and produce sequences of strings as a target model. The other approach, Model to
 Model transformation takes a source model as an input model and produce a
 target model. The main distinction between the two categories is that a M2M
 transformation produce an instance model that conforms to some meta-model while
-an M2T produces strings as its target model. We can expand the knowledge we have
-so far with model transformations that these endogenous and exogenous can
-produce a target model over different layers of abstractions.
+an M2T produces implementation code as its target model. We can expand the
+knowledge we have so far with model transformations that these endogenous and
+exogenous can produce a target model over different layers of abstractions.
 
 %The major difference between these categories are
 %that model to model transformations generate a target model as an instance of
@@ -93,24 +93,23 @@ produce a target model over different layers of abstractions.
 
 \subsection{Layer of Abstractions}
 
-In the beginning of 2006 Tom Mens and Pieter Van Gorp published a paper that
-explains different aspects of model transformations. One aspect of model
-transformation they address is the direction through abstraction layers for
-endogenous and exogenous model transformations. In their paper they state that
-the \textit{``dimensions horizontal versus vertical and endogenous versus
-exogenous are truly orthogonal''}\cite{Mens2006}. Horizontal and vertical model
-transformation are two categorizes that describes transformations over different
-layers of abstraction. In MDE a layer of abstraction represents 
-models that are specified by models from a higher layer of abstraction. For
-example a class diagram that is specified by the UML model. Modeling elements
-that are defined for the class diagram is represented on one level of
-abstraction while modeling elements that are defined by the UML model is
-represented one abstraction level higher. This looks familiar concerning
+In the beginning of 2006 Tom Mens and Pieter Van Gorp published a
+paper\cite{Mens2006} that explains different aspects of model transformations.
+One aspect of model transformation they address is the direction through
+abstraction layers for endogenous and exogenous model transformations. In their
+paper they state that the \textit{``dimensions horizontal versus vertical and
+endogenous versus exogenous are truly orthogonal''}\cite{Mens2006}. Horizontal
+and vertical model transformation are two categorizes that describes
+transformations over different layers of abstraction. In MDE a layer of
+abstraction represents models that are specified by models from a higher layer
+of abstraction. For example a class diagram that is specified by the UML model.
+Modeling elements that are defined for the class diagram is represented on one
+level of abstraction while modeling elements that are defined by the UML model
+is represented one abstraction level higher. This looks familiar concerning
 meta-modeling. An instance model of a meta-model is located on an abstraction
 layer lower than the abstract syntax. Consider table~\ref{tab:directions_mt}
-that was published in Tom Mens and Pieter Van Gorp's paper. The table 
-describes some examples of different model transformations over layers of
-abstractios.
+that was published in paper\cite{Mens2006}. The table describes some examples
+of different model transformations over layers of abstractions.
 
 \begin{table}[ht]
 \renewcommand*\arraystretch{1.2}
@@ -148,7 +147,7 @@ Attribute\cite{Henshin_2010} that moves a common attribute from a subclass of a
 given class to this class. Language migration is another example of a horizontal
 model transformation, and is an exogenous model transformation that produces a
 model expressed in a different modeling language compared to the source model.
-A classic example of a language migration is to translate a class diagram to a
+A classical example of a language migration is to translate a class diagram to a
 relation database model. This example has become more or less a benchmark for
 model transformation tools and provides a transformation for a modeling language
 that is specified through a abstraction layer hierarchy to a modeling language
@@ -208,11 +207,11 @@ abstractions. This vision is achieved through the use of model transformations.
 Either if it is to use a model to text approach to generate source code, or by
 transforming a model to another model where both models concrete syntax are
 specified by an abstract syntax that a meta-model provides. A model driven
-approach to software development thrives to keep a level of abstraction on the models for
-as long as possible through translating these models. And therefore model
-transformations are essential to be able to deploy model driven engineering in a
-software development process. The principles behind OMG's Model Driven
-Architecture utilize the concepts behind model transformation to a full extend. 
+approach to software development thrives to keep a high level of abstraction
+for as long as possible through translating these models. And therefore model
+transformations are essential to be able to deploy model driven engineering in
+a software development process. The principles behind OMG's Model Driven
+Architecture utilize the concepts behind model transformation to a full extend.
 Figure~\ref{fig:MDE_MDA_MT} gives a representation of how MDA wishes to
 facilitate the use of models and model transformations in a software
 development. The figure was published in Kim Letkeman article, ``Comparing and
@@ -249,7 +248,8 @@ transformations in a software development cycle, models can evolve into
 executable implementation code by translating through different level of
 abstractions. 
 
-
+\section{Existing tools to model transformations}
+\label{tooling}
 
 %-----------------------------------
 %	SUBSECTION 2
@@ -618,11 +618,20 @@ objects\cite{Awodey2006}.''
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.7]{./Figures/categoryTheory.png}
+   \begin{tikzpicture}[descr/.style={fill=white,inner sep=2.5pt}]
+		\matrix (m) [matrix of math nodes, row sep=4em, column sep=4em]
+			{ A & B \\ & C \\ };
+		\path[->,font=\scriptsize] (m-1-1) edge node[auto] {\footnotesize f}
+		(m-1-2) edge node[below,sloped] {\footnotesize{f $\circ$ g}} (m-2-2);
+		\path[->,font=\scriptsize] (m-1-2) edge node[auto] {\footnotesize g} (m-2-2);
+	\end{tikzpicture}
 	\caption[Category Theory]
 	{Collection of objects A,B and C.}
 	\label{fig:categoryTheory}
 \end{figure}
+
+
+
 
 Category Theory can be used as a supplement to explain the theoretical aspects
 behind a problem or solution. A category consists of a collections of
@@ -663,7 +672,14 @@ is a graph homomorphism between these two graphs.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.7]{./Figures/GraphHomomorphism.png}
+   \begin{tikzpicture}[descr/.style={fill=white,inner sep=2.5pt}]
+		\matrix (m) [matrix of math nodes, row sep=4em, column sep=4em]
+			{ L & R \\ G & H \\ };
+		\path[->,font=\scriptsize] (m-1-1) edge node[auto] {\normalsize
+		m\textsubscript{\footnotesize L}}	(m-2-1); 
+		\path[->,font=\scriptsize] (m-1-2) edge node[auto] {\normalsize
+		m\textsubscript{\footnotesize R}}	(m-2-2);
+	\end{tikzpicture}
 	\caption[Basic concepts of graph homomorphism]
 	{Two sets of graph homomorphism of graph L in G and R in H}
 	\label{fig:graphHomomorphism}
@@ -740,7 +756,18 @@ represents the right hand side of the rule.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.7]{./Figures/Single_Pushout.png}
+   \begin{tikzpicture}[descr/.style={fill=white,inner sep=2.5pt}]
+		\matrix (m) [matrix of math nodes, row sep=5em, column sep=5em]
+			{ L & R \\ G & H \\ };
+		\path[->,font=\scriptsize] (m-1-1) 
+			edge node[auto] {\normalsize m\textsubscript{\footnotesize L}}	(m-2-1); 
+		\path[->,font=\scriptsize] (m-1-1) 
+			edge node[auto] {\normalsize r}	(m-1-2); 
+		\path[->,font=\scriptsize] (m-1-2) 
+			edge node[auto] {\normalsize m\textsubscript{\footnotesize R}}	(m-2-2);
+		\path[->,font=\scriptsize] (m-2-1) 
+			edge node[auto] {}	(m-2-2); 
+	\end{tikzpicture}
 	\caption[Idea of graph transformation]
 	{The basic idea for graph transformation by applying a rule r.}
 	\label{fig:GraphTransformationGeneral}
@@ -763,7 +790,24 @@ approaches, and that is that the DPO approach has an application condition.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.7]{./Figures/Double_Pushout.png}
+   \begin{tikzpicture}[descr/.style={fill=white,inner sep=2.5pt}]
+		\matrix (m) [matrix of math nodes, row sep=5em, column sep=5em]
+			{ L & C & R \\ G & C' & H \\ };
+		\path[->,font=\scriptsize] (m-1-1) 
+			edge node[auto] {\normalsize m\textsubscript{\footnotesize L}}	(m-2-1); 
+		\path[->,font=\scriptsize] (m-1-2) 
+			edge node[auto, above] {\normalsize l}	(m-1-1); 
+		\path[->,font=\scriptsize] (m-1-2) 
+			edge node[auto] {\normalsize m\textsubscript{\footnotesize C}}	(m-2-2);
+		\path[->,font=\scriptsize] (m-2-2) 
+			edge node[auto] {}	(m-2-1); 
+		\path[->,font=\scriptsize] (m-1-3) 
+			edge node[auto] {\normalsize m\textsubscript{\footnotesize R}}	(m-2-3);
+		\path[->,font=\scriptsize] (m-1-2) 
+			edge node[auto] {\normalsize r}	(m-1-3); 
+		\path[->,font=\scriptsize] (m-2-2) 
+			edge node[auto] {}	(m-2-3); 	
+	\end{tikzpicture}
 	\caption[The Double Pushout approach]
 	{Principles behind the double pushout approach.}
 	\label{fig:DPO}
@@ -798,9 +842,32 @@ of the SPO approach. Where nodes that are present in the pattern graph L but not
 the replacement graph R are deleted. And the incoming and outgoing edges of the
 deleted nodes that are not present in the replacement graph R is deleted.
 
+\cite{habel1996graph}
+
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.7]{./Figures/Double_Pushout_NAC.png}
+   \begin{tikzpicture}[descr/.style={fill=white,inner sep=2.5pt}]
+		\matrix (m) [matrix of math nodes, row sep=5em, column sep=5em]
+			{N & L & C & R \\ & G & C' & H \\ };
+		\path[->,font=\scriptsize] (m-1-2) 
+			edge node[auto, above] {\normalsize n}	(m-1-1); 
+		\path[->, dashed, bend right, font=\scriptsize] (m-1-1) 
+			edge node[descr] {\normalsize n\textsubscript{\footnotesize G}} (m-2-2); 
+		\path[->,font=\scriptsize] (m-1-2) 
+			edge node[auto] {\normalsize m\textsubscript{\footnotesize L}}	(m-2-2); 
+		\path[->,font=\scriptsize] (m-1-3) 
+			edge node[auto, above] {\normalsize l}	(m-1-2); 
+		\path[->,font=\scriptsize] (m-1-3) 
+			edge node[auto] {\normalsize m\textsubscript{\footnotesize C}}	(m-2-3);
+		\path[->,font=\scriptsize] (m-2-3) 
+			edge node[auto] {}	(m-2-2); 
+		\path[->,font=\scriptsize] (m-1-4) 
+			edge node[auto] {\normalsize m\textsubscript{\footnotesize R}}	(m-2-4);
+		\path[->,font=\scriptsize] (m-1-3) 
+			edge node[auto] {\normalsize r}	(m-1-4); 
+		\path[->,font=\scriptsize] (m-2-3) 
+			edge node[auto] {}	(m-2-4); 	
+	\end{tikzpicture}
 	\caption[The Double Pushout approach with NAC]
 	{Double pushout approach with negative application condition.}
 	\label{fig:DPO_NAC}

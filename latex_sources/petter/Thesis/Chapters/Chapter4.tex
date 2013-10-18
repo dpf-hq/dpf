@@ -14,157 +14,219 @@
 \section{Problem Specification}
 \label{problem}
 
-The Diagram Predicate Framework already includes support for model
-transformations. However, the framework does not have support for transforming
-a model between different modeling languages. One of DPF's strengths is that it
-is possible to formally define a Domain Specific Modeling Language by using
-multiple levels of meta-models. What we want to do is to include support to
-change a model from one meta-modeling hierarchy to another meta-modeling
-hierarchy regardless of the source models abstraction layer. The solution to
-this is not written in stone, and there are several approaches to how we can
-solve this specific problem. DPF models are basically graphs, more specific,
-they are directed graphs. This means that a DPF model consist of a set of
-nodes, arrows and two functions that preserves the source and target node. We
-want to use a graph bases approach to model transformations since the DPF models
-already are presented as graphs. We want to verify that we can successfully
-accomplish the following statement for DPF.
+The DPF Workbench already includes support for model transformations. However,
+the framework does not have support for transforming a model between different
+modeling langauges. One of DPF's strengths is that it is possible to formally
+define a Domain Specific Modeling Language by defining multiple levels of
+meta-models. What we want to do is to include tool support for the DPF Workbench
+that change a model from one meta-modeling hierarchy to another meta-modeling
+hierarchy regardless of the source models abstraction layer. This leads to the
+main question for this thesis.
 
 \begin{itemize}
   
-  \item Can we integrate model to model transformations in DPF that translates a
-  model specified over a modeling hierarchy to a model specified over another
-  modeling hierarchy?
+  \item Can we include tool support for model to model transformations for the
+  DPF Workbench that translates a model specified over a modeling hierarchy to a
+  model specified over another modeling hierarchy?
 
 \end{itemize}
 
-This leads to a followup question,
+The solution to this is not written in stone, and there are several approaches
+to how we can solve this specific problem. The tool requires some implementation
+but there are several existing approaches available that provides model
+transformations as we mentioned in section~\ref{tooling}. DPF specifications are
+basically graphs, more specific, they are directed graphs. This means that a
+DPF specification consist of a set of nodes, arrows and two functions that
+preserves the source and target node. This makes a graph based approach to model
+transformations convenient, but we should also consider other approaches to
+model transformations. 
 
 \begin{itemize}
   
-  \item Can we integrate an existing model transformation environment that
-  provide this for the Diagram Predicate Framework?
+  \item Can we integrate an existing model transformation environment with the
+  Diagram Predicate Framework Workbench?
 
 \end{itemize}
 
-One part of model transformations, namely text to model transformations has
-already been sucsessfully integrated for DPF through Anders
-Sandven\cite{Sandven_thesis}'s master thesis. He integrated a model
-transformation environment, Xpand\cite{Xpand} that provides a template based
-approach to Model2Text transformation. We want to verify that we can introduce
-a model transformation environment that supports translation between different
-DSML's. We want to integrate an transformation environment that utilize
-category theory and graph transformation to a full extend.
-Henshin\cite{Henshin_2010,Henshin} is a relatively new installment in the world
-of model transformations. The environment was initially created three years ago,
-in 2010 and is marked as an Eclipse Incubation project. The purpose of the
-incubation phase is to establish a fully functioning open-source project. We
-will discuss Henshin in more depths in the related work section and problem
-solution section~\ref{Chapter5}, and the theoretical aspects that makes Henshin
-a viable environment to use with DPF when we evaluate the solution in
-section~\ref{evaluate_solution}. In theory an integration of Henshin with the
-DPF should be possible, since Henshin applies model transformations based on
-EMF's Essential MOF and DPF models are basically represented as Ecore models.
-Henshin supports out of the box model transformation that changes instance
-models that are represented ath the first layer in the MOF. These instance
-models provides the concrete syntax of a modeling language and are described by
-a corresponding meta-model that represents the abstract syntax. This meta-model
-is provided accordingly to the second layer of the MOF. This means that Henshin
-provides model transformation according to EMF's two layered modeling
-environment. This is a problem for the DPF, because this framework can specify a
-modeling language through an arbitrary layers of models. And we know that a
-transformation rule in Henshin requires references to meta-modeling elements
-from a source meta-model and a target meta-model to translate an source model to
-a target model. This generates a new question. 
+We want to introduce the DPF Workbench with tool support that includes model
+transformations. This has already been successfully introduced to the workbench
+environment in Anders Sandven\cite{Sandven_thesis}'s master thesis. In his
+thesis he describe how he integrated a M2T transformation environment to the DPF
+Workbench. He integrated a model transformation environment, Xpand\cite{Xpand}
+that provides a template based approach to Model2Text transformation. For this
+thesis however, we want to verify that we can successfully introduce a model
+transformation environment that supports translation between different DSML's.
+But first we have to find a applicable environment that can be integrated with
+the DPF Workbench. In section~\ref{tools} we will explore three different
+model transformation tools that supports both exogenous and endogenous model
+transformations. One aspect of model transformations that is required to
+translate specifications in DPF is a set of transformation rules that describes
+how a target model is produced. This leads to a problem for the DPF, because a
+transformation rule requires modeling elements from some abstract syntax to
+specify a structural pattern that is used to locate matches in a source model. 
 
 \begin{itemize}  
 
-  \item Is it possible to use modeling elements provided by models on some
-  abstraction layer to specify a set of transformation rules?
+  \item How can we include the abstract syntax of a modeling language that is
+  specified to a corresponding linguistic meta-model and an corresponding 
+  ontological meta-model for a single transformation rule.
 
 \end{itemize}
 
-This could be a potential problem when integrating the model transformation
-environment with DPF. Although every modeling elements that DPF provides are
-created as nodes and arrows from an Ecore meta-model. This means that every
-model created in DPF are an instance model of this meta-model, regardless of
-abstraction layers. 
+In 2007 Ralf Gitzel, Ingo Ott and Martin Schader published a paper where they
+amongst other subjects discuss the difference between Linguistic and
+Ontological meta-modeling. They provide a definition between the two, 
+\textit{``Linguistic metamodeling uses a metamodel to describe a language syntax
+without a concrete real-world mapping. Ontological metamodeling uses metamodels
+to describe domain-specific hierarchies"}\cite{gitzel2007ontological}. As it is,
+the MOF 2.4.1 standard does not allow for more than a four layered
+meta-modeling. DPF has an Ecore specified meta-model that describes the
+language syntax and potentially unlimited layers of meta-models that describes the
+domain-specific hierarchy. Figure~\ref{fig:core_metamodel} gives a
+representation on how specifications are related and regardless of abstraction
+layer every specification $\spec{S}$\textsubscript{1\ldots n} conforms to one
+common meta-model.
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{./Figures/metamodelSpecification_1.png}
+	\caption[Specification relationship with core meta-model]
+	{Relationship between layers of specification.}
+	\label{fig:core_metamodel}
+\end{figure}
 
+This model is the linguistic meta-model that DPF provides to describe the
+abstract syntax for every single specification created by the DPF Model Editor.
+However, other than consisting of an underlying graph and a set of constraints,
+a DPF specification $\spec{S}$\textsubscript{n} is also an instance of another
+specification$\spec{S}$\textsubscript{n+1}, and this is where it gets
+challenging. Because in the DPF Workbench a specification model
+$\spec{S}$\textsubscript{n} is created as an instance from a specification model
+$\spec{S}$\textsubscript{n+1}. We can describe these specification models as
+ontological meta-models, since these models describes a domain specific modeling
+language through an arbitrary hierarchy of models. This is where we have to find
+a work around for our solution, because model transformation environments that
+utilize Ecore based models does not allow Ecore instance models to represent
+abstract syntax. This could serve a potential problem when integrating the model
+transformation environment with DPF. Modeling elements that DPF provides are
+created as nodes and arrows from an Ecore based meta-model, but are at the same
+time created according to modeling elements one abstraction layer higher.
 
-We will discuss how we address and approach these problems in the two next
-sections. But first we will look at some related work to model transformations.
-We have considered the tools, The Attributed Graph Grammar System\cite{AGG}
-(AGG) and Henshin\cite{Henshin_2010} that provides a graph based approach to
-model transformation. We have also worked with ATLAS Transformation
-Language\cite{ATL_USERMAN} (ATL), that provides a mixture of model
-transformation techniques and is therefore often referred to as a hybrid model
-transformation.
+We will discuss how we address and approach these problems in the next
+chapter. But first we will look at some related work to model transformations.
+We have considered the tools, The Attributed Graph Grammar
+System\cite{Taentzer2004} (AGG) and Henshin\cite{Henshin_2010} that provides a
+graph based approach to model transformation. We have also worked with ATLAS
+Transformation Language\cite{ATL_USERMAN} (ATL), that provides a mixture of
+model transformation techniques and is therefore often referred to as a hybrid
+approach to model transformation. Through working with these three tools we can
+find a model transformation environment that is best suited to be integrated
+with the DPF Workbench.
 
-\section{Related Work}
+\section{Three different model transformation environments}
+\label{tools}
 
-In this section we discuss the model transformation tools that are available to
-the public. These tools can be different in many cases, but they all provide
-some form of model transformation. These model transformation tools use
-different approaches to how model transformations are applied. We have looked at
-tools that implement classical rewriting steps that utilizes the theory behind
-graph transformations and tools that does this differently. We used a graph
-approach to model transformation for our solution, but we should also visit
-other approaches to model transformations. We have tried to tackle a specific
-exogenous model transformation example, that translates an instance model of an
-activity diagram to an instance model of a Petri Nets\cite{jensen2007coloured}
-model. For each tool, if it is either a graphical editor or a textual editor, we
-discuss how to edit transformation rules. We then consider how the different
+These model transformation tools use different approaches to how model
+transformations are applied. We have looked at tools that implement classical
+rewriting steps that utilizes the theory behind graph transformations and tools
+that does this differently. For this survey we have tackled a specific
+exogenous model transformation example, that translates an instance model of
+UML's activity diagram to an instance model of a Petri
+Nets\cite{jensen2007coloured} model. The next two figures provides the abstract
+syntax of the two corresponding languages. These figures are represented as
+Ecore models, that is EMF's interpretation of OMG's MOF. It is convenient to
+represent these meta-model as Ecore models since both Henshin and ATL specify
+transformation rules according to such models. First we will quickly describe
+the corresponding abstract syntax for the two models before we consider the
+first model transformation tool.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{./Figures/ActivityMetamodel.png}
+	\caption[Abstract syntax of the source model]
+	{Abstract syntax of the source model for this test case.}
+	\label{fig:activity_metamodel}
+\end{figure}
+
+The abstract syntax for the source model has an arbitrary number of
+activities and next elements. Figure~\ref{fig:activity_metamodel} describes that an activity
+element can have a name and a kind. The next element can have an inscription
+and provides the property to either begin or end activities. The collection of
+activities and next elements are provided by a specific activity diagram that.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{./Figures/PetriNetsMetamodel.png}
+	\caption[Abstract syntax of the target model]
+	{Abstract syntax of the target model for this test case.}
+	\label{fig:petrinet_metamodel}
+\end{figure}
+
+The abstract syntax for the target model consist of places and transitions. A
+Petri net instance must have a place connected to a transition or the other way
+around, but a Petri net model can never have two of the same types connected.
+For this test case we defined two nodes that specify if a connection is between
+a place and a transition or a transition and a place. Note that these two
+meta-models are a simplified version of the abstract syntax. For this test case
+we are more concerned with how the different model transformation environments
+refers to the abstract syntax for the transformation rules. For each tool, if it
+is either a graphical editor or a textual editor, we discuss how to edit
+transformation rules, which is relevant for how we want to design a
+transformation tool for the DPF Workbench. We then consider how the different
 tools defines the abstract syntax for both the source and target model. Next we
 specify how transformation rules are created and if the tool provides any
-application control for these rules. We finish up by mentioning how the
-tool applies this model transformation. 
+application control for these rules. We finish up by mentioning how the tool
+applies this model transformation. In section~\ref{tool_choice} we consider the
+model transformation environment that can be integrated and provides a viable
+model transformation technology that works with the DPF Workbench.
 
 \subsection{The Attributed Graph Grammar System}
 
 AGG is a general development environment for algebraic graph
 transformation systems that provide a graphical editor for creating
 and modifying graphs. The editor provides a graphical user-interface with
-several visual editors for applying the principles of graph transformation. It
-also has an interpreter and a set of validation tools. AGG is an ongoing
-research activity of the graph grammar group at TU Berlin and started in 1997.
+several visual editors for applying the principles of graph transformations. AGG
+also provide an interpreter and a set of validation tools. The system is an
+ongoing research activity of the graph grammar group at TU Berlin and started
+in 1997.
 
 \subsubsection*{Graphical Editor}
 The graphical editor of AGG, represented in figure~\ref{fig:AGGScreen}, has
 several functions to help the user to define model transformations. In the top
-left corner of the graphical user-interface is a tree based editor for defining
-rules and grammar. This tree based editor also contains the type graphs and the
-host graphs. The host graph represents both the source and target model in
-a model transformation, and the type graph represents the abstract syntax for
-the modeling languages. 
+left corner of the graphical user-interface is a tree based editor that provides
+a set of transformation rules, type graphs, and host graphs. The host graph
+represents both the source and target model in a model transformation, and the
+type graph represents the abstract syntax for the modeling languages. The
+source-target relationship of the host graph is one and the same, but we will
+discuss this in future sections, but for the purpose of this thesis we will
+refer to the host graph as the source graph.
 
-Each application rule has two visual editors, representing the left
+Each transformation rule has two visual editors, representing the left
 (LHS) and the right hand side (RHS), or the pattern and the replacement graph.
-In the tree based editor containing rules and grammars it is possible to attach
-rules application conditions. This is convenient if the user wants to have
-constrains for the pattern or the replacement graph.
+In the tree based editor it is also possible to attach application conditions to
+transformation rules. This is convenient if the user wants to specify
+constraints that restricts the pattern or replacement graph to be applied
+accordingly to the specific application condition.
 
-In the tree based visual editor it is also possible to define host
-graphs and type graphs. Type graphs is described more in depths in the next
-section, but roughly said, the type graph defines elements that can be used in
-the host graph. Type graphs defines the abstract models for the host graph and
-is similar to how Ecore defines meta-models for EMF. The users can now create
-instances from these type graphs. These instances represents the host graphs
-and corresponds to its concurrent type graph.
+Type graphs are described more in depths in the next section, but roughly said,
+the type graph defines modeling elements that can be used to create the source
+graph and is similar to how Ecore defines meta-models for EMF. The users can
+now create model instances that represents the concrete syntax of a specific
+modeling language. This representation of the abstract syntax are represented
+in a source and corresponds to its concurrent type graph.
 
-For the application rules, the user can extend the attributes with Java
-expressions. This means that the users can use Java primitives such as strings,
-integers or float numbers to form the pattern graph or the left hand side of
-the rule. The users are unable to bind attributes that are not initialised
-in a corresponding type graph.
+The transformation rules can be extended with Java expressions. This means that
+the users can use Java primitives such as strings, integers or float numbers to
+form the pattern graph or the left hand side of the rule. However, the users
+can only bind attributes that are in a corresponding type graph.
 
-In figure~\ref{fig:AGGScreen} there are some node elements and association
-elements to the right side of the figure. These are meta elements that are
-initialized in the type graph. These meta elements are used to create the host
-graph, the different transformation rules and application conditions. The host
-graph is not consistent with the type graph, since these meta elements are
-initialized in the type graph. Its worth mentioning that both the
-node elements and association elements in the figure has been scaled up for the
-purpose of this paper.
+Figure~\ref{fig:AGGScreen} also represents some node elements and association
+elements. These are meta elements that are initialized in the type graph and
+are used to model the source graph, the different transformation rules and
+application conditions. The source graph is Beside The host graph is not
+consistent with the type graph, since these meta elements are initialized in
+the type graph. Note that both the node elements and association elements in
+the figure has been scaled up for the purpose of this paper.
 
 \begin{figure}[H]
   \centering
@@ -388,7 +450,7 @@ Henshin.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.5]{figures/Henshin_Screen.png}
+	\includegraphics[scale=0.5]{figures/henshin_scren_2}
 	\rule{35em}{0.5pt}
 	\caption[The Henshin graphical editor]
 	{A model transformation in the Henshin graphical editor}
@@ -785,333 +847,69 @@ Query/View/Transformation
 TODO
 http://redpanda.nl/index.php?p=tutorial1
 
- 
-\section{Comparison of the Model Transformation Tools}
-\label{comparison}
+\section{Henshin}
+\label{tool_choice}
 
-Now that we have worked with these tools, we have to evaluate them.
-Table~\ref{tab:comparing} later in this section summaries the comparison of the
-different tools, and we will explain some of them in further detail. We should
-start talking about how easy or hard these tools were to learn. It took some
-time to fully understand how graph transformations work. That there are a right
-hand and a left hand side of each rule, and that these rules also can have both
-negative and positive application conditions. But after a while, when the
-aspects around graph transformation got clearer, the tools were easier to handle.
+Henshin\cite{Henshin_2010,Henshin} is a relatively new installment in the world
+of model transformations. The environment was initially created three years
+ago, in 2010 and is marked as an Eclipse Incubation project. The purpose of the
+incubation phase is to establish a fully functioning open-source project. We
+will discuss Henshin in more depths in the related work section and problem
+solution section~\ref{Chapter5}, and the theoretical aspects that makes Henshin
+a viable environment to use with DPF when we evaluate the solution in
+section~\ref{evaluate_solution}. In theory an integration of Henshin with the
+DPF should be possible, since Henshin applies model transformations based on
+EMF's Essential MOF and DPF models are basically represented as Ecore models.
+Henshin supports out of the box model transformation that changes instance
+models that are represented ath the first layer in the MOF. These instance
+models provides the concrete syntax of a modeling language and are described by
+a corresponding meta-model that represents the abstract syntax. This meta-model
+is provided accordingly to the second layer of the MOF. This means that Henshin
+provides model transformation according to EMF's two layered modeling
+environment. This is a problem for the DPF, because this framework can specify a
+modeling language through an arbitrary layers of models. And we know that a
+transformation rule in Henshin requires references to meta-modeling elements
+from a source meta-model and a target meta-model to translate an source model to
+a target model. This generates a new question.  
 
-\subsection{The Editors}
-AGG was the first tool i encountered, my learning curve became steep after i
-learned how graph transformations works. AGG has a clear procedure on how to create and
-manage new application rules. AGG is also very intuitive to work with, as long
-as the users understands the principles behind graph transformation.
-After spending time on AGG and its graphical editor to create transformation rules, the next
-stop was Henshin. It was difficult to understand how the principles in graph
-transformation works in Henshin. The experience with graph transformation from
-AGG was not helpful in the initial hours spent on Henshin. The graphical editor
-that AGG and Henshin provides are different in such a way that the creation of
-rules are different. Both Henshin and AGG has a tree based editor, but the
-editor works differently amongst the two tools, see
-figure~\ref{fig:AGGTreeBasedEditor} and~\ref{fig:Henshin_TreeEditor} for the
-two editors. The tree based editor for AGG is meant to work as a tool for
-browsing through the user created rules, application conditions and graphs. And
-for each rule in AGG, the graphical editor opens a left hand side and a right
-hand side editing part. This is convenient since editing is now separated in a
-left hand and a right hand side window in the graphical editor. The graphical editor can also
-add a third editing window, if the user has application conditions attached to a
-rule. 
+For Henshin we can import this meta-model, \textit{Meatmodel.ecore} and use it
+to define the content of the transformation rules since every specification
+$\spec{S}$\textsubscript{n} conforms to this meta-model.
 
-For Henshin this is different, because for this tool the graphical editor
-is only an extension to make rule management more intuitive for the users. This
-graphical editor is stored in a separate file and is synchronized with the main
-henshin file. Changes made to one of these two files is synchronized
-accordingly to the other file. The main henshin file contains a tree based
-editor that is called Henshin Model Editor. And the Henshin users can create and
-apply textual transformation rules in this editor without even initialising the
-graphical editor. The graphical editor for Henshin does not implicitly provide
-any LHS or RHS for the user to edit their rules in. The users have to know how the tool
-performs when using the different action types that Henshin provides. This is
-different from AGG, where each rule is provided with an own part for editing
-both the LHS and the RHS. The Henshin Model Editor updates the RHS and the LHS
-explicitly depending of which action type is provided from the graphical
-editor when creating nodes and edges. But other than creating and managing
-rules both AGG and Henshin are very similar. They both provide a graphical editor where
-the users can insert elements that conform to a meta-model. For AGG these
-meta-models are represented as a type graph in the tree based editor. While in
-Henshin these meta-models are imported to the Module element in the Henshin Model
-Editor and synchronized with the graphical editor file.
+The problem with integrating Henshin with DPF is that Henshin is implemented by
+EMF, and therefore utilize OMG's MOF. The Henshin model transformation
+language create the transformation rules based on models that are created
+accordingly to the four layer meta-modeling provided by MOF. The
+specification implementation for a DPF model is created as an EMF meta-model 
+and utilize the EMF Genmodel to provide code generation. DPF provides
+initialisation of a potential endless hierarchy of meta-models, and therefore
+does not match the steps MOF provides to create abstract syntax for a domain
+specific language. It is however important to separate the implementation of a
+specification and the creation of a new specification. Because DPF utilize EMF
+to some extent. Each model created in DPF represents the lowest layer of
+meta-modeling in MOF, regardless of the level of abstraction the model
+represents. However what makes DPF unique compared to EMF is that a DPF model us
+an instance model of both an Ecore meta-model and another DPF model. This means
+that a DPF models concrete syntax is typed by the abstract syntax of another DPF
+model. While all modeling elements from these models conforms to one common
+meta-model. In DPF we can create an arbitrary level of meta-models and therefore
+each domain specific modeling language defined in the framework can have
+different layers of specification models. The Henshin environment has strict
+guidelines on how models are imported and used. These models are required to be
+created accordingly to and typed by the Ecore model provided by EMF. Henshin
+can then utilize these models to create a graph pattern that structure both the
+LHS and the RHS graph of a transformation rule.
 
-The third transformation tool we encountered is ATLAS Transformation Language.
-And while this tool is definitely not as intuitive as the two graph
-transformation tools, once you understand how to create transformation rules
-and how to work with the included meta-models, it is a good framework for
-working with model transformations. However, if a user do not fully understand
-the Object Constraint Language (OCL), ATL is rather a hard tool to work with.
-Because OCL has a very leveled learning curve, since it is a declarative
-programming language. Where we are more or less used to work with imperative
-programming languages during our studies here in Bergen. ATL provides an editor
-where the users can use OCL to create and modify transformation rules. ATL has
-a very strict way of writing transformation rules, since the tool uses a
-textual based approach to create transformation rules. The user has to use the
-predefined stereotypes defined by ATL.
+ because we cannot import an instance model of
+an Ecore based meta-model into the Henshin model transformation environment. We
+can do changes to an instance model by using Henshin, but the transformation
+language can only import and utilize models that conforms to the Ecore
+meta-model. To solve this for DPF models we expand transformation rules in
+Henshin with application conditions. We will look more closely to how this is
+done later in this chapter, but what we basically do is that we restrict the
+LHS graph to locate matching modeling elements in an instance model based on
+the abstract syntax that another instance model provides.
 
-\subsection{The Meta-models}
-Meta-models are initialised and handled differently amongst some of the tools.
-The initialisation of the meta-models for Henshin and ATL is similar. Both of
-these tools use Ecore to create meta-models, since they are both integrated with
-EMF. For Henshin and ATL the user has to create one Ecore model for both the
-source and the target meta-model. Both of these meta-models can be imported both
-into Henshin and ATL. One thing that is convenient with Henshin that ATL does
-not provide, is that Henshin provides a list of meta-models that is available
-for the user. These are meta-models that can be used either as source or target
-meta-model. If we want to translate a instance model to an Ecore model, we can
-in Henshin import this ecore meta-model from a list and use it as the target meta-model.
-
-Unlike Henshin and ATL, AGG does not allow for separately initialisation of
-meta-models. For AGG we have to create both the target and source meta-model in a
-disjoint meta-model, or one common type graph in AGG.
-
-The user has to fill out a configuration form for an ATL model transformation.
-This form the user has to explicitly assign the meta-models to source model and
-target models. The run configuration is done prior to the execution of the model
-to model transformation. In Henshin the user has to implicit include the
-meta-models in the Henshin module element. Henshin will not allow the user to
-create nodes or create edges between nodes that are not defined in the
-meta-models. 
-
-AGG on the other hand uses a disjoint meta-model. This means that in AGG there
-is something called a type graph, and in this type graph both the target and
-the source meta-model are defined. AGG handles consistency similar to
-Henshin. AGG will restrict the user to only create nodes or arrows between
-nodes that are specified in the type graph. Figure \ref{fig:AggTypeGraph}
-in chapter 3 shows that there are created references between two meta-models. And
-through the use of these references, AGG can create and modify application
-rules to translate these two models represented in the type graph. 
- 
-\subsection{Transformation Rules}
-We have seen that the creation of transformation rules varies over the three
-different tools. ATL provides a textual based approach and therefore requires
-multiple lines of code. The abstract syntax for the three different tools are
-not that different, since both Henshin and ATL utilizes the Ecore model to
-create meta-models and AGG creates one type graph that contains the abstract
-syntax for both the source and target model. The abstract syntax can be
-visualized either by using the tree based model editor that EMF provides or by
-using a tird party tool for a graphical representation of the models. The
-concrete syntax are obviously different between the three tools. AGG and Henshin
-provides a concrete graphical syntax, while ATL on the other side provides a
-concrete textual syntax for creating and modifying transformation rules. For
-both AGG and Henshin the rules can be created and modified by using a graphical
-editor. AGG separates the RHS and the LHS in two separate editing parts while
-Henshin use predefined word sequences to distinguish the two different sides.
-If the rules are quite large, with multiple nodes and arrows the rules
-presented in Henshin becomes easier to read and maintain. But both AGG and
-Henshin has a clear way of representing the rules and possible attached
-application conditions. All three tools have a left hand side
-and a right hand side, but are represented differently amongst the rules.
-Henshin and AGG use graph patterns to represent the LHS and the RHS while ATL
-utilizes logical expressions. In section 3 we discussed that ATL can have both
-declarative and imperative transformation rules. In Henshin and AGG the LHS and
-the RHS are represented as graphs. Where the LHS represents the pattern graph
-that is matched for an instance model and the RHS represents the part that should be
-replaced for the instance model. For ATL the LHS represents the source model
-while the RHS represents the target model. 
-
-Both AGG and Henshin can specify both negative and positive application
-conditions. These are attached to pattern graph or the LHS of a rule. These
-application conditions provides a true or false clause that can be used to
-restrict the pattern graph. For ATL these conditions are handled by OCL
-expressions, where one example is the if-then clause.
-
-\subsection{Relationship between Source and Target}
-For an exogenous transformation in ATL it is mandatory to create a new target
-that holds all the target model elements. Exogenous model transformation in ATL
-is therefore called an out-place transformations. In AGG on the other hand both
-source and target model is always the same model. This means that AGG performs an
-in-place update on its original source model. Henshin is a bit more special,
-because implicitly it performs in-place update on the source model. But in
-Henshin you can initialize variables that explicitly captures the transformed
-target elements and save these to a separate file in your storage unit. Note
-however, that this can only be done when utilizing the Henshin interpreter
-programmatically. 
-
-\subsection{Rule Scheduling}
-
-ATL does the scheduling implicit, where the user has no control over the
-scheduling algorithm defined by the tool. The user can however influence the scheduling
-algorithm defined by the ATL transformation engine by designing the logic in the
-transformation rules to apply in a certain order. The transformation
-engine will first execute the declarative rules before applying the imperative
-section of a transformation rule. AGG and Henshin does however, give the
-users the possibility to influence how the transformation rules are applied. 
-In Henshin and AGG this is handled explicitly before applying the transformation
-rules, where the user can change the execution order of the rule.
-For example the rules can be applied non-deterministically or by forcing the
-transformation rules to be applied in a sequential order. To force the
-transformation in a sequential order could result in performance issues compared
-to applying the rules non-deterministically. AGG provides the users with the
-possibility to organize the transformation process into several phases or
-layers. These layers are numbered from 0 \ldots n, and the lower the number the
-higher the priority for the rule, when it is translated. This gives the users
-the possibility to execute rules layer by layer. In Henshin these rule scheduling
-mechanisms are referred to as transformation units. For this tool it is possible
-to specify units that supports rule iteration, both by looping through rules
-until there are no more changes detected or by iterating through rules for a
-fixed number of iterations. In Henshin it is also possible to specify an
-amalgamation unit, that is an unit that provides a forall-operation for the
-matching pattern graph. This unit has a kernel rule and multiple underlying
-rules that are matched as often as possible. This amalgamation unit can be
-compared to a for loop in Java. It is clear that Henshin provides the users with
-quite an variety of controlling the execution of rules.
-
-\subsection{Rule Organization}
-
-ATL organizes the transformation rules inside modules, and its therefore easy to
-reuse these modules if applicable. This is convenient for
-users of ATL since this means that all created rules can be used to form new
-transformation rules. Henshin provides the user with the possibility to nest or 
-reuse rules in different scheduling mechanism or transformation units
-as we discussed in the last paragraph. But Henshin and AGG does however not
-provide the user with the possibility to reuse rules in the creation of new
-rules as ATL does. 
-
-\subsection{Tracing}
-
-Tracing in the three tools provides a unique link
-between a source and a target. The source represents the matched part while the
-target represents the generated or replacement part. All three tools provides
-dedicated support for traceability. But these traceable links are handled
-differently amongst the tools. For ATL the trace model works as a storage
-location and automatically creates trace links between source and target
-elements. These traceable links are internally used by the ATL
-transformation engine when executing a model transformation. But we explained in
-section 3 that these trace links can be explicitly captured by creating
-transformation rules that generates a collection of trace links in a
-separate trace file. Henshin does this differently, because tracing is
-controlled by the users. Henshin has a dedicated Trace Model that can be
-imported to the Henshin module as an Ecore model. The trace model in Henshin
-are automatically created when executing rules, but the user have to manually
-assign the traceable links inside the transformation rules. The traces in
-Henshin are translated when a rule is executed, and therefore the user has to
-be aware of this when using these traces in other rules, since this
-could lead to the creation of multiple traceable links between the same
-elements. Tracing in AGG plays a vital role to executing model transformations.
-Traceable elements are created similar to any other elements when initializing
-the type graph. With traceable links between the source and the
-target elements, AGG can be certain that elements are transformed. The traceable
-link in AGG ensures that a match in the pattern graph is only matched once. If we do
-not create a traceable link between source and target elements in AGG, the
-rules will be applied an endless amount of times. Tracing amongst the three
-different tools are different in such a way that it is required for exogenous
-model transformations for AGG and ATL. In ATL the traceable links are created
-automatically and cannot be controlled by the users, while in AGG the traceable
-links are created as bridges between source and target elements. For Henshin
-the Trace model is optional. 
-
-\subsection{Directionality}
-
-Its clear to see that all three tools are unidirectional, since they can be
-executed in one direction only. And that is to compute a target model from a
-source model. The three tools requires two model transformations to be able to
-transform in multiple directions. Where the source and target model and
-meta-models switch places. But this is not how multidirectional transformations
-work. A multidirectional transformation can execute in both direction when
-performing a model transformation.
-
-\begin{table}[ht]
-\centering
-\begin{tabular}{| c | c | c | c |}
-\hline
- & AGG & Henshin & ATL \\
-\hline
-Endogenous transformation & \cellcolor{green!25}Yes &
-\cellcolor{green!25}Yes & \cellcolor{green!25}Yes \\
-
-Exogenous transformation & \cellcolor{green!25}Yes &
-\cellcolor{green!25}Yes & \cellcolor{green!25}Yes \\
-
-Input Elements & 1\ldots n & 1\ldots n & 1\ldots n\\
-Output Elements & 1\ldots n & 1\ldots n & 1\ldots n\\
-Graphical editor &\cellcolor{green!25}Yes &
-\cellcolor{green!25}Yes &\cellcolor{red!25}No  \\
-Integrated with Java & \cellcolor{green!25}Yes &
-\cellcolor{green!25}Yes & \cellcolor{green!25}Yes \\
-Separate meta-models & \cellcolor{red!25}No &
-\cellcolor{green!25}Yes & \cellcolor{green!25}Yes \\
-Integrated with EMF & \cellcolor{red!25}No &
-\cellcolor{green!25}Yes & \cellcolor{green!25}Yes \\
-Model transformation file size &200 kb &80 kb &4 kb \\
-In-place/out-place model transformation &in-place &
-in-place &out-place \\
-\hline
-
-\end{tabular}
-\caption [Comparing model transformation tools]
-{Comparing model transformation tools.}
-\end{table}
-
-\newpage
-
-
-
-
-From the table above, we can see that all the three tools have support
-for both endogenous and exogenous model transformations. 
-
-All the three tools has support for an arbitrary number of both input and
-output elements. This means that if the tool takes a number of input models, then it
-produces the same number of target models. Take an ATL module as an example. It
-accepts a fixed number of models as input, and returns a fixed number of target
-models. This means that an ATL module can not generate an unknown number of
-target models. If there is one input model, then there will be one output model
-that conforms to a target meta-model.
-
-Both AGG and Henshin provides a graphical editor, where the users can create and
-modify transformation rules. This makes them both very intuitive for the users.
-This is not the case for ATL, which uses a textual based approach. For ATL the
-users have to implement transformation rules in programming code.
-
-All three tools can be integrated with Java. For Henshin and ATL the files
-containing the transformation rules have to be created before they can be used
-in a java application. In ATL this has to be a ``atl'' file containing a ATL
-module that has a list of rules. This is because the ATL transformation engine
-relies on a file extension with the name ``atl''.
-
-One thing that is worth mentioning is that AGG does not support the Eclipse
-Modeling Framework. In EMF the root of all modeling objects is called
-EObject. And this EObject has no references to the Java Object. Therefore AGG
-can not be integrated with EMF, since AGG can take Java Objects as input,
-but not EObjects. Both Henshin and ATL supports EMF. This means that the user
-can use the EMF API together with Henshin and ATL in a Java Application.
-
-We can also se that the size of the transformation rules is different
-between the three tools. A classic example of an exogenous transformation is
-translating from a class diagram to a relational database, that has more or less become a
-benchmark for model to model transformations. For this example we can see that
-AGG uses 200 kb of the storage space. This number is so unbelievable small
-that it will never be noticed in any modern computers. But there is one
-interesting thing however, and that is that the transformation rules defined in
-ATL is 50 times smaller than AGG. What this basically means is that creating model
-transformations through the use of textual concrete syntax is less space
-consuming than through the use of graphical syntax. This is only logical since
-the graphical syntax based transformation languages requires more storage
-space simply because they use graphical elements to represent the transformation
-rules.
-
-\subsection{Translating the instance model}
-
-When ATL transformation language executes the application rules for the model to
-model transformation, a new model instance is created for the target model. This
-means that the source model is independent of the target model. Where Henshin
-and AGG performs in-place model to model transformations. This means that they
-both operate on an instance model of the source meta-model, and translates
-inside this instance model. All three approaches can however give the same
-result. Inn AGG and Henshin the users just need to make sure to delete unwanted
-elements from the translated host graph. On the other side, for ATL this is not
-needed, since both the source and target model are kept as separated files. This
-is also possible to achieve with Henshin. If the user programmatically invoke
-the Henshin Interpreter the target model can be forced to be saved in a newly
-created file. Henshin will still do an in-place model transformation, but it is
-possible to save the translated object in a separate file. It is then possible
-to perform an in-place transformation in Henshin while saving the target
-instance model in a separate file. 
 
 %----------------------------------------------------------------------------------------
 %	SECTION 2
