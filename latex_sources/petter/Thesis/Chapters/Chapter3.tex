@@ -251,6 +251,14 @@ abstractions.
 \section{Existing tools to model transformations}
 \label{tooling}
 
+
+ATL is developed on top of the Eclipse platform and is one of three
+transformation engines provided by the Model to Model Transformation (MMT)
+project\cite{MMT}. The MMT project hosts Model to Model Transformation
+languages. These transformations are executed by transformation engines that are
+written into the Eclipse Modeling infrastructure. MMT is a sub project of the
+top level Eclipse Modeling Project\cite{EMP}. 
+
 %-----------------------------------
 %	SUBSECTION 2
 %-----------------------------------
@@ -422,6 +430,7 @@ transformation rules.
 
 
 \subsection{Rule Application Control}
+\label{sec:app_control}
 
 This section can be divided into two sub categories, namely locating matches for
 a transformation rules and how these rules are be applied. Locating a matching
@@ -842,6 +851,8 @@ of the SPO approach. Where nodes that are present in the pattern graph L but not
 the replacement graph R are deleted. And the incoming and outgoing edges of the
 deleted nodes that are not present in the replacement graph R is deleted.
 
+
+
 \cite{habel1996graph}
 
 \begin{figure}[H]
@@ -880,6 +891,10 @@ deleted nodes that are not present in the replacement graph R is deleted.
 	{Double pushout approach with positive application condition.}
 	\label{fig:DPO_NAC}
 \end{figure}
+
+
+Moreover, AGG features rules with negative application conditions to express
+requirements for non-existence of substructures.
 
 %\section{Hybrid based approach to Model Transformations}
 

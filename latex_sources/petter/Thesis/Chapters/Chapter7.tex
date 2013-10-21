@@ -347,7 +347,7 @@ textual based approach to create transformation rules. The user has to use the
 predefined stereotypes defined by ATL.
 
 \subsection{The Meta-models}
-Meta-models are initialised and handled differently amongst some of the tools.
+Meta-models are initialised and handled differently amongst the tools.
 The initialisation of the meta-models for Henshin and ATL is similar. Both of
 these tools use Ecore to create meta-models, since they are both integrated with
 EMF. For Henshin and ATL the user has to create one Ecore model for both the
@@ -436,23 +436,22 @@ section of a transformation rule. AGG and Henshin does however, give the
 users the possibility to influence how the transformation rules are applied. 
 In Henshin and AGG this is handled explicitly before applying the transformation
 rules, where the user can change the execution order of the rule.
-For example the rules can be applied non-deterministically or by forcing the
-transformation rules to be applied in a sequential order. To force the
-transformation in a sequential order could result in performance issues compared
-to applying the rules non-deterministically. AGG provides the users with the
-possibility to organize the transformation process into several phases or
-layers. These layers are numbered from 0 \ldots n, and the lower the number the
-higher the priority for the rule, when it is translated. This gives the users
-the possibility to execute rules layer by layer. In Henshin these rule scheduling
-mechanisms are referred to as transformation units. For this tool it is possible
-to specify units that supports rule iteration, both by looping through rules
-until there are no more changes detected or by iterating through rules for a
-fixed number of iterations. In Henshin it is also possible to specify an
-amalgamation unit, that is an unit that provides a forall-operation for the
-matching pattern graph. This unit has a kernel rule and multiple underlying
-rules that are matched as often as possible. This amalgamation unit can be
-compared to a for loop in Java. It is clear that Henshin provides the users with
-quite an variety of controlling the execution of rules.
+For example the rules can be applied non-deterministic or in sequential order.To
+force the transformation in a sequential order could result in performance
+issues compared to applying the rules non-deterministically. AGG provides the
+users with the possibility to organize the transformation process into several
+phases or layers. These layers are numbered from 0 \ldots n, and the lower the
+number the higher the priority for the rule, when it is translated. This gives
+the users the possibility to execute rules layer by layer. In Henshin these
+rule scheduling mechanisms are referred to as transformation units. For this
+tool it is possible to specify units that supports rule iteration, both by
+looping through rules until there are no more changes detected or by iterating
+through rules for a fixed number of iterations. In Henshin it is also possible
+to specify an amalgamation unit, that is an unit that provides a
+forall-operation for the matching pattern graph. This unit has a kernel rule
+and multiple underlying rules that are matched as often as possible. It is
+clear that Henshin provides the users with quite an variety of controlling the
+execution of rules.
 
 \subsection{Rule Organization}
 
@@ -567,12 +566,7 @@ in a java application. In ATL this has to be a ``atl'' file containing a ATL
 module that has a list of rules. This is because the ATL transformation engine
 relies on a file extension with the name ``atl''.
 
-One thing that is worth mentioning is that AGG does not support the Eclipse
-Modeling Framework. In EMF the root of all modeling objects is called
-EObject. And this EObject has no references to the Java Object. Therefore AGG
-can not be integrated with EMF, since AGG can take Java Objects as input,
-but not EObjects. Both Henshin and ATL supports EMF. This means that the user
-can use the EMF API together with Henshin and ATL in a Java Application.
+
 
 We can also se that the size of the transformation rules is different
 between the three tools. A classic example of an exogenous transformation is
