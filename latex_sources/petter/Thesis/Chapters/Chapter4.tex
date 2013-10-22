@@ -91,7 +91,7 @@ common meta-model.
 	\centering
 	\includegraphics[scale=0.7]{./Figures/metamodelSpecification_1.png}
 	\caption[Specification relationship with core meta-model]
-	{Relationship between layers of specification.}
+	{Relationship between layers of DPF specifications.}
 	\label{fig:core_metamodel}
 \end{figure}
 
@@ -914,77 +914,154 @@ Eclipse Incubation project. The purpose of the incubation phase is to establish
 a fully functioning open-source project. In theory an integration of Henshin
 with the DPF should be possible, since Henshin applies model transformations
 based on Ecore models and DPF models are basically represented as Ecore
-models. This presents a problem with integrating AGG with DPF. Because AGG does
-not support the Eclipse Modeling Framework. In EMF the root of all modeling
-objects is an EObject. And this EObject has no references to the Java Object.
+models. This presents a problem with integrating AGG with DPF. In EMF the root
+of all modeling objects is an EObject that has no references to a Java Object. 
 AGG could also be integrated with DPF, but the problem is that this would
 require an extensive amount of manual coding. We could use AGG as a general
 purpose graph transformation engine in a java applications. We would have to
-create the source model as a AGG graph and a type graph based on the source and
+create the source model as an AGG graph and a type graph based on the source and
 target modeling formalism that DPF provides. AGG provides an API that
-conveniently does this, but Henshin also provides an API 
+conveniently let us create type graphs, source graphs, transformation rules and
+application conditions.
+ 
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.52]{figures/AGG_solution.png}
+	\caption[Proposed solution for integration of AGG]
+	{Proposed solution for integration of AGG with the DPF Workbench.}
+	\label{fig:AGG_Solution}
+\end{figure}
 
-Therefore AGG can not be integrated with EMF, since AGG can take Java Objects
-as input, but not EObjects. Both Henshin and ATL supports EMF. This means that
-the user can use the EMF API together with Henshin and ATL in a Java
-Application.
+Figure~\ref{fig:AGG_Solution} represents a proposed solution how to integrate
+AGG together with a DPF transformation tool. The figure represents a source
+modeling formalism on the left side, a target modeling formalism on the right
+side and a model to model transformation done with AGG in the middle. The
+figure informs us that we have to generate four models to be able to do this in
+AGG. First we create the abstract syntax for an AGG source graphs by generating
+a joined type graph from a source modeling formalism and target modeling
+formalism. Then we have to generate the source input specification into a source
+graph that at the same time conforms to the joined type graph. Note that we do
+not mention the transformation rules since we have to generate these regardless
+of what model transformation environment we integrate with the DPF workbench.
+After the AGG transformation engine have executed the transformation rules we
+have to generate a target specification based on the produced target graph. This
+leads to some potential problems. The program that generates a source graph and
+a target specification has to be solid and not contain any flaws. Another
+problem is to keep the models consistent throughout the model transformation.
+How can we be certain that the target graph is consistent with the target
+specification? It is easy to loose consistency when changing a model manually
+from a target graph to a target specification. We could use AGG to do this, but
+that leads to many potentially factors that could go wrong. With Henshin and
+ATL we are not required to do anything extra with these models. Since both
+environments has support for including Ecore models as meta-models and requires
+an instance model of an Ecore model as a source model to apply a model
+transformation. Therefore AGG can be integrated with EMF with some additional
+work, but Henshin and ATL is a more viable choice for DPF, since we can use
+this Metamodel.ecore as a meta-model and the source specification as input
+model directly in the other two environments. 
 
-AGG is a rule based visual language supporting an algebraic approach to graph
-transformation. It aims at the specification and prototypical implementation of
-applications with complex graph-structured data. AGG may be used (implicitly in
-"code") as a general purpose graph transformation engine in high-level JAVA
-applications employing graph transformation methods. Due to its rule based
-character AGG may also be near in the
+Now we need to decide if we want to try and integrate the hybrid model
+transformation environment, ATL or the graph based model transformation
+environment, Henshin. In section~\ref{sec:DPF} we discussed that a DPF model is
+an extension of the Generalised Sketches formalism which is basically a directed
+graph. Then a specification consist of a set of nodes, edges and two functions
+that preserve a source and a target node for all edges. A model transformation
+in Henshin is based on the concepts of graph transformations and category
+theory. We can then be certain that Henshin can interpret a source specification
+as a directed graph. Henshin transformation is also based on the two graph
+transformation styles single (SPO) and double pushout (DPO) that we discussed in
+section~\ref{sec:graph_based}. And we recall that the DPO approach provides a
+dangling condition that ensures that a model transformation does not result in
+any edges that are missing a source or a target node. We want to create a tool
+for the DPF workbench that provides the following. 
 
-For Henshin we can import this meta-model, \textit{Meatmodel.ecore} and use it
-to define the content of the transformation rules since every specification
-$\spec{S}$\textsubscript{n} conforms to this meta-model.
+\begin{itemize}
 
-The problem with integrating Henshin with DPF is that Henshin is implemented by
-EMF, and therefore utilize OMG's MOF. The Henshin model transformation
-language create the transformation rules based on models that are created
-accordingly to the four layer meta-modeling provided by MOF. The
-specification implementation for a DPF model is created as an EMF meta-model 
-and utilize the EMF Genmodel to provide code generation. DPF provides
-initialisation of a potential endless hierarchy of meta-models, and therefore
-does not match the steps MOF provides to create abstract syntax for a domain
-specific language. It is however important to separate the implementation of a
-specification and the creation of a new specification. Because DPF utilize EMF
-to some extent. Each model created in DPF represents the lowest layer of
-meta-modeling in MOF, regardless of the level of abstraction the model
-represents. However what makes DPF unique compared to EMF is that a DPF model us
-an instance model of both an Ecore meta-model and another DPF model. This means
-that a DPF models concrete syntax is typed by the abstract syntax of another DPF
-model. While all modeling elements from these models conforms to one common
-meta-model. In DPF we can create an arbitrary level of meta-models and therefore
-each domain specific modeling language defined in the framework can have
-different layers of specification models. The Henshin environment has strict
-guidelines on how models are imported and used. These models are required to be
-created accordingly to and typed by the Ecore model provided by EMF. Henshin
-can then utilize these models to create a graph pattern that structure both the
-LHS and the RHS graph of a transformation rule.
+\item \textit{Concrete Graphical Syntax}. We want to be able to create
+transformation rules based on graphical syntax that the DPF Editor provides.
 
- because we cannot import an instance model of
-an Ecore based meta-model into the Henshin model transformation environment. We
-can do changes to an instance model by using Henshin, but the transformation
-language can only import and utilize models that conforms to the Ecore
-meta-model. To solve this for DPF models we expand transformation rules in
-Henshin with application conditions. We will look more closely to how this is
-done later in this chapter, but what we basically do is that we restrict the
-LHS graph to locate matching modeling elements in an instance model based on
-the abstract syntax that another instance model provides.
+\item \textit{Generic}. We want our tool to work for an arbitrary source and
+target meta-model regardless of abstraction layer. 
 
-Henshin supports out of the box model transformation that translate
-instance models represented at the first layer of abstraction in the MOF. These
-instance models provides the concrete syntax of a modeling language and are
-described by a corresponding meta-model that represents the abstract syntax.
-This meta-model is provided accordingly to the second layer of the MOF. This
-means that Henshin provides model transformation according to EMF's two layered
-modeling environment. This is a problem for the DPF, because this framework can
-specify a modeling language through an arbitrary layers of models. And we know
-that a transformation rule in Henshin requires references to meta-modeling
-elements from a source meta-model and a target meta-model to translate an
-source model to a target model. This generates a new question.
+\end{itemize}
+
+The tool is required to create a set of transformation rules based on some
+model transformation language and we want these transformation rules to be
+generic. This means that we create a set of transformation rules based on an
+arbitrary source and target meta-model. The only aspect of these meta-models
+that is consistent is that they contain a list of nodes and arrows. This means
+that regardless of abstraction layer a specification is specified by a set of
+nodes and arrows. The reason for why we decided to try and integrate Henshin
+within the DPF workbench is provided in the three items underneath. 
+
+\begin{enumerate}
+
+\item We want to create a tool that use a simplified version of the DPF Editor
+to create transformation rules that provides a concrete graphical syntax. DPF
+models are already based on category theory and provides a graphical syntax. 
+
+\item Through the use of the Henshin meta-model we can generate a set of
+transformation rules that are based on the abstract syntax of the source and
+target specification. We can define a set of transformation rules in Henshin
+as a java application with the help of the API that Henshin provides. 
+
+\item We can utilize the concepts around graph transformation that provides a
+left hand side, a right hand side and an intersection graph. Through these three
+graphs we can in Henshin use the single or double pushout approach when applying
+a set of transformation rules. 
+
+\end{enumerate}
+
+The problem with integrating Henshin with DPF is that Henshin is based on the
+EMF technology, and therefore utilize OMG's MOF. Henshin supports out of the
+box model transformation that translate instance models that conforms to an
+Ecore based meta-model. These instance models provides the concrete syntax of a
+modeling language and are described by a corresponding meta-model that
+represents the abstract syntax. This meta-model is provided accordingly to the
+second layer of the Meta-Object Facility. This means that Henshin provides model
+transformation according to EMF's two layered modeling environment. DPF on the
+other hand provides initialisation of a potential endless hierarchy of
+meta-modeling, and therefore does not match the steps MOF provides to create
+the abstract syntax for a Domain Specific Language. We know that a
+transformation rule in Henshin requires references to meta-modeling elements
+from a source meta-model and a target meta-model. What makes a DPF
+specification special is that it is an instance model of both an Ecore based
+meta-model and another specification. This means that a specifications concrete
+syntax is typed by the abstract syntax of a specification that is one
+abstraction layer higher. In DPF we can create an arbitrary level of
+meta-models and therefore two different Domain Specific Modeling Language can
+be defined over a different abstraction layer hierarchy. The Henshin
+environment has strict guidelines on how models are imported and used. These
+models are required to be created accordingly to the Ecore model provided by
+EMF. Henshin can then utilize these models to create a graph pattern that
+structure both the LHS and the RHS graph of a transformation rule. Now the LHS
+graph contains a graph structure that is is used by the transformation engine
+to locate matches in an instance model that conforms to the specified Ecore
+model.
+
+For our tool we can structure a set of transformation rules in Henshin based on 
+this common meta-model, \textit{Metamodel.ecore} that all specifications
+$\spec{S}$\textsubscript{1\ldots n} conforms to. We have to threat all
+specifications similar if we want the tool to provide a generic model to model
+transformation. The challenge with integrating Henshin in a language workbench
+that provides meta-modeling at arbitrary layers of abstraction is not in the
+source specification we want to translate, but in the instance specification
+that the source specification corresponds to. This proves to be a problem for
+Henshin, because we cannot import an instance model of an Ecore based meta-model
+into the Henshin model transformation environment. We can do changes to an
+instance model by using Henshin, but the transformation language can only
+import and utilize models that conforms to the Ecore meta-model. To solve this
+for DPF specifications we expand transformation rules in Henshin with
+application conditions. This means that we restrict the LHS graph to locate
+matching modeling elements in an instance source specification based on the
+abstract syntax that another specification provides. The next chapter provides
+an explanation on how we integrated Henshin for a transformation tool that
+provides model to model transformations for the DPF workbench.
+
+
+
+
+
 %----------------------------------------------------------------------------------------
 %	SECTION 2
 %----------------------------------------------------------------------------------------
