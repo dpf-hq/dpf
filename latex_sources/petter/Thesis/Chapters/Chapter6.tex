@@ -63,33 +63,62 @@ $\spec{S}$\textsubscript{m+1} that the source and target model are typed over.
 	\centering
 	\includegraphics[scale=0.65]{./Figures/flowchart_v2.png}
 	\caption[Work flow for the solution]
-	{Progressively work flow for the problem solution.}
+	{Progressively workflow for the problem solution.}
 	\label{fig:work_flow_solution}
 \end{figure}
 
-Figure~\ref{fig:work_flow_solution} provides a diagram that describes how the
-editor goes from creating transformation rules to executing them. We can see
-that this diagram is extended from the previous
-figure~\ref{fig:Simple_Solution}. At the first step we still have to provide a
-source specification $\spec{S}$\textsubscript{n+1} and a target specification
-$\spec{S}$\textsubscript{m+1} that is specified by the DPF Editor. The figure
-then explains that step 5 use the Henshin transformation engine that reads a
-specification $\spec{S}$\textsubscript{n} and writes a specification
+Figure~\ref{fig:work_flow_solution} provides a diagram that describes in five
+steps how the editor progress from creation and execution of transformation
+rules. We can see that this diagram is extended from the previous
+figure~\ref{fig:Simple_Solution}. The figure then explains that step 5 use the
+Henshin transformation engine that reads a specification
+$\spec{S}$\textsubscript{n} and writes a specification
 $\spec{S}$\textsubscript{m}. But before we can apply the actual transformation
-we have to consider how the Transformation Editor provides a set of
-transformation rules. Step 2 consist of creating a new transformation model that
-is represented in the Transformation Editor. At the same time references to a
-source modeling formalism $\spec{S}$\textsubscript{n+1} and a target modeling
-formalism $\spec{S}$\textsubscript{m+1} is specified in one common type
-specification. An empty correspondence graph is also generated. Step 3 focus
-on creating the transformation rules through defining a set of productions that
-refers to domain specific modeling elements. At the same time the correspondence
-between source and target modeling elements has to be initialized. In step 4 we
-generate a set of Henshin Transformation Rules from these productions and
-capture the correspondence between objects by specifying traceable links. In the
-final step we can apply these transformation rules to a Henshin transformation
-engine. However, processing Henshin transformation rules from modeling
-formalisms proved to be a challenge. 
+we have to consider how the DPF Transformation Editor provides a set of
+Henshin transformation rules.
+
+\begin{enumerate}
+
+\item At the first step we still have to provide a source modeling formalism
+that contains a specification $\spec{S}$\textsubscript{n+1} and a target
+modeling formalism that contains a specification $\spec{S}$\textsubscript{m+1}.
+These specifications has an underlying graph that contains nodes and arrow that
+represents the abstract syntax for the source and target specification. 
+
+\item Step 2 consist of creating a new transformation model in the DPF
+Transformation Editor. This new transformation model has references to a source
+modeling formalism $\spec{S}$\textsubscript{n+1} and a target modeling formalism
+$\spec{S}$\textsubscript{m+1}. With both the target and source modeling
+formalism we create a $\spec{S}$\textsubscript{n+1} $\cup$
+$\spec{S}$\textsubscript{m+1} specification that we use for typing
+purposes for the transformation rules. An empty correspondence graph is also
+generated.
+
+\item Step 3 focus on creating the transformation rules through defining a set
+of productions, where one production represents one transformation rule. A
+single production specifies a LHS, RHS and an intersection graph that refer to
+this common type specification,  $\spec{S}$\textsubscript{n+1} $\cup$
+$\spec{S}$\textsubscript{m+1}. At the same time corresponding objects are
+initialized by the user to specify the relation between source modeling elements
+and target modeling elements. 
+
+\item In step 4 we generate a set of Henshin Transformation Rules from these
+productions and capture the correspondence between objects by specifying
+traceable links.
+
+\item In the final step we can apply these transformation rules to a Henshin
+transformation engine and produce a target specification
+$\spec{S}$\textsubscript{m}.
+
+\end{enumerate}
+
+One major challenge was processing Henshin transformation rules from modeling
+elements that is represented in the source and target modeling formalisms.
+These five steps describes the workflow of the DPF Transformation Editor. In
+the next sections we will explore the most essential functionality of these
+five steps and explain how we can integrate Henshin with the DPF workbench. But
+first we will describe how a transformation rule is modelled in the Henshin
+model transformation language.
 
 
 
@@ -157,37 +186,38 @@ type. Action types are predefined stereotypes for Henshin and specifies how
 these three Henshin modeling elements of a graph in Henshin behaves when
 applying a transformation rule. An action type could specify if a graph element
 is part of an application condition, the replacement graph, the pattern graph
-or an intersection graph. A \textbf{Mapping} is how Henshin specifies if nodes
-are part of this intersection graph, and that is nodes that are part of both
-the LHS and the RHS graph. This means that these objects should be part of the
-matching pattern, but should not be deleted. A mapping has two properties,
-namely an origin and an image. The origin property refers to a given node from
-the LHS grph, while the image property specify a mapping to a node in the RHS
-graph. So far we have a rule that can have two graphs and a set of mappings. 
+or an intersection graph. A \textbf{Mapping} specifies how Henshin defines the
+intersection graph. This is Henshin modeling elements that should be included
+in both the LHS and the RHS graph. This means that these ojects should be part
+of the matching pattern, but should not be deleted. A mapping has two
+properties, namely an origin and an image. The origin property refers to a
+given node from the LHS grph, while the image property specify a mapping to a
+node in the RHS graph. So far we have a rule that can have two graphs and a set
+of mappings.
 
-A rule can also specify application conditions that determines where a specific
-rule could be applied. These application conditions are defined in the
-\textbf{Formula} class and is a child of a graph. This formula can either be an
-u-nary logical operation, a binary logical operation or a nested condition. The
-first logical operation operates on a single operand while the second operates on two
-operands, where these operands are represented as a conditional statement that
-is either true or false. A rule can be applied to a instance graph if and only
-if all application conditions are valid. We can basically have a unlimited
-nested formulas in Henshin, since a binary formula can have a right and left
-\textbf{Formula}, that can again be of type binary formula. Henshin however is
-only concerned with if this formula is valid or invalid when a transformation
-rule is applied. A nested condition is required if we want to have nodes that
-are part of the LHS graphs or the common graph, that is the intersection of the
-LHS and RHS graph. A nested condition provides a graph and a set of mappings to
-elements that are part of the LHS or common graph. This graph is child of
-a nested condition and contains nodes, edges and attributes that form a
-structural pattern that specifies an application condition. We can observe that
-transformation rules can have several number of application conditions. A
-binary formula can be of type \textbf{Or} or \textbf{And} and provides the
-possibility to nest other binary formulas. If the structure of a binary formula
-is the latter, then all the application conditions from both the right and left
-formula has to be be valid for a transformation rule to be applied to a
-instance graph.
+A rule can also specify a \textbf{Formula} that determines restrictions for
+match searching for this rule. A Formula modeling elements is a child of a graph
+and defines application conditions in Henshin. This formula class can either be
+an u-nary logical operation, a binary logical operation or a nested condition.
+The first logical operation operates on a single operand while the second
+operates on two operands, where these operands are represented as a conditional
+statement that is either true or false. A rule can be applied to a instance
+graph if and only if all application conditions are valid. We can basically
+have a unlimited nested formulas in Henshin, since a binary formula can have a
+right and left \textbf{Formula}, that can again be of type binary formula.
+Henshin however is only concerned with if this formula is valid or invalid when
+a transformation rule is applied. A nested condition is required if we want to
+have nodes that are part of the LHS graphs or the common graph, that is the
+intersection of the LHS and RHS graph. A nested condition provides a graph and
+a set of mappings to elements that are part of the LHS or common graph. This
+graph is child of a nested condition and contains nodes, edges and attributes
+that form a structural pattern that specifies an application condition. We can
+observe that transformation rules can have several number of application
+conditions. A binary formula can be of type \textbf{Or} or \textbf{And} and
+provides the possibility to nest other binary formulas. If the structure of a
+binary formula is the latter, then all the application conditions from both the
+right and left formula has to be be valid for a transformation rule to be
+applied to a instance graph.
 
 \section{DPF Transformation Editor}
 
@@ -197,7 +227,7 @@ provides the structural data model that we use to generate code for the model
 implementation and the plugin implementation. The two classes Transform and
 Production are the two domain classes that together defines this domain specific
 modeling language that lets users create transformation rules. The Transform
-class represent the Transformation Editor and has a source meta-model and a
+class represent the DPF Transformation Editor and has a source meta-model and a
 target meta-model, that corresponds to a source specification and a target
 specification. If these two models are the same model, then the model
 transformation is an endogenous model transformation and if the models are
@@ -214,18 +244,18 @@ Henshin to generate transformation rules.
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.8]{./Figures/transform_metamodel_ecore.png}
-	\caption[Model for the Transformation Editor]
+	\caption[Model for the DPF Transformation Editor]
 	{The domain model to create a DPF model transformation editor.}
 	\label{fig:transform_metamodel}
 \end{figure}
 
-The user has to invoke the file creation wizard for the Transformation Editor.
+The user has to invoke the file creation wizard for the DPF Transformation Editor.
 Other than choosing a project folder and a name for this new editor file, the
 user has to specify what model is the source meta-model and what model is the
 target meta-model. If the user do not specify a target meta-model then the file
 creation wizard will interpret this as an endogenous model transformation.
 
-The Transformation Editor plugin has two editors that users can interact with.
+The DPF Transformation Editor plugin has two editors that users can interact with.
 The first is the master editor for the plugin and contains a list of the
 transformation rules, where users can create, read, update and delete rules. The
 second editor is administrated by the master editor, and each time a new
@@ -313,7 +343,7 @@ and arrows from a source model to nodes and arrows from a target model. This DPF
 model specify the correspondence graph between source and target meta-models. We
 can now refer to this DPF model when creating Henshin transformation rules to
 extract the corresponding objects. We can also do this explicitly when creating
-the transformation rules in the Transformation Editor by modeling a new trace
+the transformation rules in the DPF Transformation Editor by modeling a new trace
 object that is represents a trace between a source modeling element and a
 target modeling element. We use this trace object or the correspondence graph to
 determine how we translate a DPF model. We create a trace object that has a
@@ -358,7 +388,7 @@ about in section~\ref{sec:graph_based}. In this section we introduced double
 and single pushouts of graphs. Henshin has an arbitrary mixing of these graph
 transformation styles.
 
-For each rule we created in the Transformation Editor we have defined a
+For each rule we created in the DPF Transformation Editor we have defined a
 pattern, that either corresponds to a left hand side, a right hand side or a
 common graph. This pattern consist of nodes and arrows that together form a
 graph. For each node and arrow, we create a Henshin node that is either typed
@@ -413,7 +443,7 @@ these specification models are typed by another specification, and this is
 where we can retrieve the types for every node and arrow. In the specification
 meta-model both the Node and Arrow class has a reference type to another Node
 and Arrow. Figure~\ref{fig:pac_henshin} represent the LHS for the
-Transformation Editor that we want to generate Henshin rules from. The idea is
+DPF Transformation Editor that we want to generate Henshin rules from. The idea is
 to create an application condition for every node and arrow with their
 corresponding type node and type arrow. The type nodes and arrows have an
 attribute called name and is a string. We can use this attribute to specify a
@@ -438,11 +468,13 @@ Henshin node. This is because when Henshin is locating matches in an instance
 graph we want the transformation language to locate matches for nodes or
 arrows that are typed by a specific node or arrow. 
 Figure~\ref{fig:pac_henshin_condition} explains how we solve this in Henshin.
-We have a pattern graph on the right and an application condition graph on the
-left. For this rule, we created a pattern graph from a simple graph that the LHS
-prov figure~\ref{fig:pac_henshin} the LHS is represented as a simple
-directed graph, with an Arrow1 that has a source Node1 and a target Node2. For
-this example we focus on the Node1 element.
+We have a pattern graph or LHS on the right and an application condition graph
+on the left. This specific transformation rule in Henshin specifies a simple LHS graph
+that has an Arrow1 element with a source Node1 and target Node2 elements. Note
+that here the Arrow1 element is represented as a node and not as an arrow like
+figure~\ref{fig:pac_henshin}. The reason for this is because an arrow is
+represented as an EClass in the common meta-model. For this example we focus on
+the Node1 element.
 
 \begin{figure}[H] 
 	\centering
@@ -586,6 +618,6 @@ nodes and arrows are assigned with the corresponding type. Since we translated
 matches that have one matching node and one matching type node into target
 modeling elements that also have a node and a type node.
 
-
+\section{The Transformed Model}
 
 
