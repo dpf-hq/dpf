@@ -248,16 +248,69 @@ transformations in a software development cycle, models can evolve into
 executable implementation code by translating through different level of
 abstractions. 
 
-\section{Existing tools to model transformations}
+\section{Existing Environments}
 \label{tooling}
 
+There are a wide variety of existing model transformation environments and
+tools available. Some have experienced extensive testing through several
+iterations and some are relatively fresh to the MDE community. This section
+shortly describes some of these model transformation environments and how these
+environments approach translation of models. Because there are several different
+approaches to model transformations and for the purpose of this thesis we will
+only address approaches that indicates model to model transformations. 
 
-ATL is developed on top of the Eclipse platform and is one of three
-transformation engines provided by the Model to Model Transformation (MMT)
-project\cite{MMT}. The MMT project hosts Model to Model Transformation
-languages. These transformations are executed by transformation engines that are
-written into the Eclipse Modeling infrastructure. MMT is a sub project of the
-top level Eclipse Modeling Project\cite{EMP}. 
+OMG provides a standard that includes three such model to model transformation
+approaches. In 2002 OMG issued a request for proposal regarding
+Query/View/Transformation (QVT)\cite{QVT} where they seeked a standard that was
+compatible with other OMG specifications such as MOF, UML, OCL, etc. This later
+lead to the release of \textit{Meta Object Facility (MOF) 2.0
+Query/View/Transformation Specification} in April 2008. The standard specifies
+the three model transformation languages or approaches to model transformation, 
+\begin{itemize}
+  \item QVT Operational is an imperative language that support implementation of
+  unidirectional transformations.
+  \item QVT Relations is a declarative language that supports implementation for
+  both unidirectional and bidirectional model transformations.
+  \item QVT Core is also a declarative language that is meant to act as the
+  target of transformations from QVT Relations.
+\end{itemize}
+\textit{A unidirectional model transformation has only one mode of execution:
+that is, it always takes the same type of input and produces the same type of
+output. For a bidirectional model transformation, the same type of model can
+sometimes be input and other times be output}\cite{WikiMT}. A model
+transformation in any of these three languages can itself be regarded as a
+model that conforms to a corresponding meta-model that is specified in the QVT
+standard. Note that an model transformation implementation based on any of
+these three languages requires source and target models that conforms to a MOF
+2.0 meta-model. Since the release of the standard there has been several
+implementations of these three languages. The Eclipse Foundation have
+contributed with implementations of the QVT standard in the MMT project. The
+Model to Model Transformation (MMT) project hosts Model to Model Transformation
+languages. These transformations are executed by transformation engines that
+are written into the Eclipse Modeling infrastructure. MMT is a sub project of
+the top level Eclipse Modeling Project\cite{EMP}. ATLAS Transformation Language
+(ATL)\cite{Jouault2008} is developed on top of the Eclipse platform and is one
+of three model transformation environments provided by the Model to Model
+Transformation (MMT) project\cite{MMT}. ATL is often referred to as a QVT Like
+implementation of the QVT standard. ATL is an hybrid approach to model
+transformations that implements techniques based on the three QVT languages.
+Another model transformation environment provided by the MMT is
+QVTo\cite{dvorak2008model} and is based on the QVT Operational model
+transformation language.
+
+Model transformation environments like Visual Automated Model
+Transformations\cite{viatra2002} (VIATRA), Henshin\cite{Henshin_2010}, Graph
+Rewriting and Transformation Language\cite{great2007} (GReAT), The Attributed
+Graph Grammar System\cite{Taentzer2004} (AGG) and A Tool for Multi-formalism and
+Meta-Modelling\cite{de2002atom3} (AToM\textsuperscript{3}) are approaches that
+is based on category theory's theoretical work on graph transformations. And
+model transformations that is based on the concepts of graph transformations
+have a LHS and a RHS graph pattern. The LHS provides a graph structure that is
+used to locate matching graph structures in a source model while the graph
+structure included in the RHS is meant to replace a matching graph structure. We
+will explore the concepts of graph transformations in more depths in
+section~\ref{sec:graph_based}. But first we will describe some design features
+of model transformation environments. 
 
 %-----------------------------------
 %	SUBSECTION 2
@@ -851,9 +904,39 @@ of the SPO approach. Where nodes that are present in the pattern graph L but not
 the replacement graph R are deleted. And the incoming and outgoing edges of the
 deleted nodes that are not present in the replacement graph R is deleted.
 
+An application condition in graph transformation indicates an additional graph
+morphism that provides a transformation rules with extra properties. These
+applications can represent either a negative application condition or positive
+application condition. Both instances of application conditions are very similar
+since they indicates some additional information for a transformation rule. A
+negative application condition express requirements that a specific graph
+structure is forbidden to be part of the located matching pattern. On the
+contrary a positive application condition express that a specific graph
+structure is required for a located matching pattern to be a valid match for a
+transformation rule. Figure~\ref{fig:NAC} represents a negative application
+condition\cite{habel1996graph} (NAC).
 
+\begin{figure}[H]
+	\centering
+   \begin{tikzpicture}[descr/.style={fill=white,inner sep=2.5pt}]
+		\matrix (m) [matrix of math nodes, row sep=5em, column sep=5em]
+			{N & L \\ & G  \\ };
+		\path[->,font=\scriptsize] (m-1-2) 
+			edge node[auto, above] {\normalsize n}	(m-1-1); 
+		\path[->, dashed, bend right, font=\scriptsize] (m-1-1) 
+			edge node[descr] {\normalsize n\textsubscript{\footnotesize G}} (m-2-2); 
+		\path[->,font=\scriptsize] (m-1-2) 
+			edge node[auto] {\normalsize m\textsubscript{\footnotesize L}}	(m-2-2); 
 
-\cite{habel1996graph}
+	\end{tikzpicture}
+	\caption[A Negative application condition]
+	{A Negative application condition.}
+	\label{fig:NAC}
+\end{figure}
+
+The figure contains three graphs and three graphs morphisms. Graph L
+represents the LHS graph, graph G represents the graph that should be
+translated while graph N represents a negative application condition. 
 
 \begin{figure}[H]
 	\centering
@@ -884,17 +967,7 @@ deleted nodes that are not present in the replacement graph R is deleted.
 	\label{fig:DPO_NAC}
 \end{figure}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.7]{./Figures/Double_Pushout_PAC.png}
-	\caption[The Double Pushout approach with PAC]
-	{Double pushout approach with positive application condition.}
-	\label{fig:DPO_NAC}
-\end{figure}
 
-
-Moreover, AGG features rules with negative application conditions to express
-requirements for non-existence of substructures.
 
 %\section{Hybrid based approach to Model Transformations}
 
