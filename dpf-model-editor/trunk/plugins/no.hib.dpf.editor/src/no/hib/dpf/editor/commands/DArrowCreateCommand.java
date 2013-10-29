@@ -51,7 +51,7 @@ public class DArrowCreateCommand extends Command {
 	 * DArrow Type
 	 */
 	
-	private DArrow newDArrow;
+	protected DArrow newDArrow;
 
 	public DArrowCreateCommand(DNode source, DArrow newObject) {
 		if (source == null) throw new IllegalArgumentException();

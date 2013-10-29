@@ -23,6 +23,7 @@ public class TranslateToHenshinRules {
 	public static final String HENSHINNEW = "C:/Users/Petter/workspace/no.hib.dpf.transform/model/generateHenshinRules.henshin";
 	public static final String HENSHINUNITS = "C:/Users/Petter/workspace/no.hib.dpf.transform/model/generateLoopHenshin.henshin";
 	
+	@SuppressWarnings("deprecation")
 	public static void generateHenshinModule(boolean save){
 		
 		HenshinResourceSet resourceSet = new HenshinResourceSet(TransformUtils.activeWorkingDirectory());

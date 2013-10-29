@@ -26,7 +26,7 @@ import no.hib.dpf.diagram.DNode;
 public class DNodeCreateCommand extends AbstractCreateCommand {
 
 	/** Diagram to add to. */
-	private final DGraph parent;
+	protected final DGraph parent;
 	/** The bounds of the new VNode. */
 
 

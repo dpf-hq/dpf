@@ -454,4 +454,121 @@ public class ProductionImpl extends EObjectImpl implements Production {
 		return result.toString();
 	}
 
+	@Override
+	public void setAdded(DNode dNode) {
+		if(getLeftNodes().contains(dNode)){
+			getLeftNodes().remove(dNode);
+			if(isKept(dNode))
+				getCommonNodes().remove(dNode);
+		}
+		if(!getRightNodes().contains(dNode))
+			getRightNodes().add(dNode);
+	}
+
+	@Override
+	public boolean isAdded(DNode node) {
+		return !isKept(node) && getRightNodes().contains(node);
+	}
+
+	@Override
+	public void setDeled(DNode dNode) {
+		if(getRightNodes().contains(dNode)){
+			getRightNodes().remove(dNode);
+			if(isKept(dNode))
+				getCommonNodes().remove(dNode);
+		}
+		if(!getLeftNodes().contains(dNode))
+			getLeftNodes().add(dNode);
+	}
+
+	@Override
+	public boolean isDeled(DNode node) {
+		return !isKept(node) && getLeftNodes().contains(node);
+	}
+
+	@Override
+	public void setKept(DNode dNode, boolean is) {
+		boolean isKept = isKept(dNode);
+		if(is){
+			if(!isKept) {
+				if(!getRightNodes().contains(dNode))
+					getRightNodes().add(dNode);
+				if(!getLeftNodes().contains(dNode))
+					getLeftNodes().add(dNode);
+				getCommonNodes().add(dNode);
+			}
+		}else{
+			if(getRightNodes().contains(dNode))
+				getRightNodes().remove(dNode);
+			if(getLeftNodes().contains(dNode))
+				getLeftNodes().remove(dNode);
+			if(getCommonNodes().contains(dNode))
+				getCommonNodes().remove(dNode);
+		}
+	}
+
+	@Override
+	public boolean isKept(DNode node) {
+		return getCommonNodes().contains(node);
+	}
+
+	@Override
+	public void setAdded(DArrow dArrow) {
+		if(getLeftArrows().contains(dArrow)){
+			getLeftArrows().remove(dArrow);
+			if(isKept(dArrow))
+				getCommonArrows().remove(dArrow);
+		}
+		if(!getRightArrows().contains(dArrow))
+			getRightArrows().add(dArrow);
+	}
+
+	@Override
+	public boolean isAdded(DArrow dArrow) {
+		return !isKept(dArrow) && getRightArrows().contains(dArrow);
+	}
+
+	@Override
+	public void setDeled(DArrow dArrow) {
+		if(getRightArrows().contains(dArrow)){
+			getRightArrows().remove(dArrow);
+			if(isKept(dArrow))
+				getCommonArrows().remove(dArrow);
+		}
+		if(!getLeftArrows().contains(dArrow))
+			getLeftArrows().add(dArrow);
+	}
+
+	@Override
+	public boolean isDeled(DArrow dArrow) {
+		return !isKept(dArrow) && getLeftArrows().contains(dArrow);
+	}
+
+	@Override
+	public void setKept(DArrow dArrow, boolean is) {
+		boolean isKept = isKept(dArrow);
+		if(is){
+			if(!isKept) {
+				if(!getRightArrows().contains(dArrow))
+					getRightArrows().add(dArrow);
+				if(!getLeftArrows().contains(dArrow))
+					getLeftArrows().add(dArrow);
+				getCommonArrows().add(dArrow);
+			}
+		}
+		else {
+			if(getRightArrows().contains(dArrow))
+				getRightArrows().remove(dArrow);
+			if(getLeftArrows().contains(dArrow))
+				getLeftArrows().remove(dArrow);
+			if(getCommonArrows().contains(dArrow))
+				getCommonArrows().remove(dArrow);
+		}
+	}
+
+	@Override
+	public boolean isKept(DArrow arrow) {
+		return getCommonArrows().contains(arrow);
+	}
+
 } //ProductionImpl

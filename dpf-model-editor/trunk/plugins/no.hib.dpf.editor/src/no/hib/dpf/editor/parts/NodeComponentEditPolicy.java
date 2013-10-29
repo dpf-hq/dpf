@@ -29,7 +29,7 @@ import org.eclipse.gef.requests.GroupRequest;
  * @see NodeTreeEditPart#createEditPolicies()
  * @author Elias Volanakis
  */
-class NodeComponentEditPolicy extends ComponentEditPolicy {
+public class NodeComponentEditPolicy extends ComponentEditPolicy {
 
 	/* (non-Javadoc)
 	 * @see org.eclipse.gef.editpolicies.ComponentEditPolicy#createDeleteCommand(org.eclipse.gef.requests.GroupRequest)

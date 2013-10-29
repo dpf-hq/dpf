@@ -1,33 +1,32 @@
 package no.hib.dpf.transform.command;
 
 
-import java.util.List;
-
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.transform.Production;
-import no.hib.dpf.transform.parts.TransformDArrowEditPart;
-import no.hib.dpf.transform.parts.TransformDArrowEditPart.CHANGE;
 
-import org.eclipse.gef.EditPart;
-import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.CompoundCommand;
 
-public class AddTransformCommand extends Command {
-	
-//	private final DGraph parent;
+public class AddTransformCommand extends CompoundCommand {
+
+	//	private final DGraph parent;
 	private Object insertObject;
-	private List<Production> rules;
 	private Production production;
-	private EditPart editPart;
-	
-	public AddTransformCommand(EditPart part, Object editNode, Production prod){
+	private boolean isDel;
+
+	public AddTransformCommand(Object editNode, Production prod){
 		this.insertObject = editNode;
 		this.production = prod;
-		editPart = part;
-		//production = (Production) parent.eContainer().eContainer();
+		if(insertObject instanceof DNode){
+			DNode dNode = (DNode) insertObject;
+			for(DArrow dArrow : dNode.getDIncomings())
+				add(new AddTransformCommand(dArrow, prod));
+			for(DArrow dArrow : dNode.getDOutgoings())
+				add(new AddTransformCommand(dArrow, prod));
+			isDel = production.isDeled(dNode);
+		}else
+			isDel = production.isDeled((DArrow) insertObject);
 		setLabel("Insertion element");
-//		Specification spec = production.getSum().getSpecification();
-//		System.out.println("Get Metafile " + spec.getMetaFile());
 	}
 
 	/**
@@ -35,49 +34,34 @@ public class AddTransformCommand extends Command {
 	 * @see org.eclipse.gef.commands.Command#canExecute()
 	 */
 	public boolean canExecute() {
-		return insertObject instanceof DNode || insertObject instanceof DArrow && production != null;
+		return (insertObject instanceof DNode || insertObject instanceof DArrow) && production != null;
 	}
 
 	/* (non-Javadoc)
 	 * @see org.eclipse.gef.commands.Command#execute()
 	 */
 	public void execute() {
-		System.out.println("Rule: " + production.getName());
-		if(insertObject instanceof DNode && ((DNode) insertObject).getTypeName()!= "Trace"){
-			if(production.getLeftNodes().contains(insertObject)){
-				production.getLeftNodes().remove(insertObject);
-			}
-			if(production.getCommonNodes().contains(insertObject)){
-				production.getCommonNodes().remove(insertObject);
-			}
-			System.out.println(((DNode) insertObject).getName() + " " + ((DNode) insertObject).getTypeName());
-			production.getRightNodes().add((DNode) insertObject);
-		}
-		if(insertObject instanceof DArrow && !((DArrow) insertObject).getTypeName().startsWith("trace")){
-			if(production.getLeftArrows().contains(insertObject)){
-				production.getLeftArrows().remove(insertObject);
-			}
-			if(production.getCommonArrows().contains(insertObject)){
-				production.getCommonArrows().remove(insertObject);
-			}
-			production.getRightArrows().add((DArrow) insertObject);
-			
-		}
-		if(editPart instanceof TransformDArrowEditPart)
-			((TransformDArrowEditPart)editPart).setChange(CHANGE.ADD);
+		if(insertObject instanceof DNode)
+			production.setAdded((DNode) insertObject);
+		else
+			production.setAdded((DArrow) insertObject);
+		super.execute();
 	}
 
 	/* (non-Javadoc)
 	 * @see org.eclipse.gef.commands.Command#undo()
 	 */
 	public void undo() {
-		if(insertObject instanceof DNode){
-			production.getRightNodes().remove((DNode) insertObject);
-		}
-		if(insertObject instanceof DArrow){
-			production.getRightArrows().remove((DArrow) insertObject);
-		}
-		if(editPart instanceof TransformDArrowEditPart)
-			((TransformDArrowEditPart)editPart).setChange(CHANGE.DEF);
+		super.undo();
+		if(insertObject instanceof DNode)
+			if(isDel) 
+				production.setDeled((DNode) insertObject);
+			else
+				production.setKept((DNode) insertObject, true);
+		else
+			if(isDel) 
+				production.setDeled((DArrow) insertObject);
+			else
+				production.setKept((DArrow) insertObject, true);
 	}
 }

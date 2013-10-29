@@ -23,12 +23,12 @@ import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.editor.displaymodel.factories.DArrowFactory;
 import no.hib.dpf.editor.displaymodel.factories.DNodeFactory;
-import no.hib.dpf.editor.displaymodel.factories.DPFConnectionCreationToolEntry;
 import no.hib.dpf.editor.extension_points.FigureConfigureManager;
 import no.hib.dpf.editor.icons.ImageSettings;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.gef.palette.ConnectionCreationToolEntry;
 import org.eclipse.gef.palette.CreationToolEntry;
 import org.eclipse.gef.palette.MarqueeToolEntry;
 import org.eclipse.gef.palette.PaletteContainer;
@@ -113,7 +113,7 @@ public class DPFEditorPaletteFactory {
 			Assert.isTrue(arrow != null);
 			Assert.isTrue(darrow != null);
 //			add Arrow:Node-->Node to tooltip in case several arrows with same name showing up in the metamodel.
-			arrowGroup.add(new DPFConnectionCreationToolEntry(arrow.getName(), "Create a new " + arrow.getName() + ":" + arrow.getSource().getName() + "-->" + arrow.getTarget().getName(), new DArrowFactory(darrow), 
+			arrowGroup.add(new ConnectionCreationToolEntry(arrow.getName(), "Create a new " + arrow.getName() + ":" + arrow.getSource().getName() + "-->" + arrow.getTarget().getName(), new DArrowFactory(darrow), 
 					smallIcon != null ? smallIcon : SMALLARROW, 
 							largeIcon != null ? largeIcon : LARGEARROW));
 		}

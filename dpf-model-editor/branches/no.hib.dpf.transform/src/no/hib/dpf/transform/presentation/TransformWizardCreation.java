@@ -183,9 +183,7 @@ public class TransformWizardCreation extends Wizard implements INewWizard {
 			String dspecTypes_name = getFileName().replace(".xform", "") + ".dpf";
 			IFile dspecTypes  = generateModelsFolder.getFile(dspecTypes_name);
 
-			if(!dspecTypes.exists()){
-				DPFUtils.saveDSpecification(resourceSet, elementTypeGraph, DPFUtils.getFileURI(dspecTypes), resourceToDiagnosticMap);
-			}
+			DPFUtils.saveDSpecification(resourceSet, elementTypeGraph, DPFUtils.getFileURI(dspecTypes), resourceToDiagnosticMap);
 			transform.setElementTypeGraph(elementTypeGraph);
 
 			URI source = transform.getSourceLocation() == null ? DPFConstants.DefaultDSpecification : URI.createFileURI(transform.getSourceLocation());
@@ -197,9 +195,7 @@ public class TransformWizardCreation extends Wizard implements INewWizard {
 			DSpecification correspondenceGraph = generate_models.generateCorrespondanceGraph();
 			correspondenceGraph.setDSignature(DiagramFactory.eINSTANCE.createDefaultDSignature());
 
-			if(!correspondenceGraph_file.exists()){
-				DPFUtils.saveDSpecification(resourceSet, correspondenceGraph, DPFUtils.getFileURI(correspondenceGraph_file), new LinkedHashMap<Resource, Diagnostic>());
-			}
+			DPFUtils.saveDSpecification(resourceSet, correspondenceGraph, DPFUtils.getFileURI(correspondenceGraph_file), new LinkedHashMap<Resource, Diagnostic>());
 			transform.setCorrespondanceGraph(correspondenceGraph);
 			transform.setCorrespondanceLocation(correspondenceGraph_file.getFullPath().toString());
 

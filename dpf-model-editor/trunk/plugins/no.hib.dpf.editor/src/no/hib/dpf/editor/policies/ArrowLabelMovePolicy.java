@@ -51,6 +51,7 @@ import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
+import org.eclipse.swt.graphics.Color;
 
 public class ArrowLabelMovePolicy extends NonResizableEditPolicy {
 
@@ -67,15 +68,12 @@ public class ArrowLabelMovePolicy extends NonResizableEditPolicy {
 		return command;
 	}
 	protected void removeSelectionHandles() {
-		ArrowLabelEditPart editpart = (ArrowLabelEditPart)getHost();
-		ConnectionEditPart connection = (ConnectionEditPart) editpart.getParent();
-		connection.getFigure().setForegroundColor(DPFEditorPreferences.getDefault().getArrowForegroundColor());	
+		getHost().getParent().refresh();
 		super.removeSelectionHandles();
 	}
 	protected void showSelection() {
 		super.showSelection();
-		ArrowLabelEditPart editpart = (ArrowLabelEditPart)getHost();
-		ConnectionEditPart connection = (ConnectionEditPart) editpart.getParent();
-		connection.getFigure().setForegroundColor(DPFEditorPreferences.getDefault().getArrowLabelSelectedArrowColor());		
+		((ConnectionEditPart)getHost().getParent()).getFigure().setForegroundColor(color);		
 	}
+	private static final Color color = DPFEditorPreferences.getDefault().getArrowLabelSelectedArrowColor();
 }

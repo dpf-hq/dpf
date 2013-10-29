@@ -30,7 +30,7 @@ import org.eclipse.gef.commands.CompoundCommand;
 public class DArrowDeleteCommand extends CompoundCommand {
 
 	/** Connection instance to disconnect. */
-	private final DArrow connection;
+	protected final DArrow connection;
 	private DNode source, target;
 
 	/**

@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 import no.hib.dpf.core.Specification;
+import no.hib.dpf.diagram.util.DPFCheck;
 import no.hib.dpf.editor.DPFUtils;
 import no.hib.dpf.transform.Production;
 import no.hib.dpf.transform.Transform;
@@ -174,6 +175,8 @@ public class TransformEditor extends FormEditor implements CommandStackListener,
 		transformFile = file.getLocation().toOSString();
 		setPartName(file.getName());
 		transform = loadTransform(resourceSet, URI.createFileURI(transformFile), resourceToDiagnosticMap);
+		for(Production production : transform.getRules())
+			DPFCheck.checkDSpecification(production.getSum());
 	}
 
 	protected CommandStack getCommandStack() {

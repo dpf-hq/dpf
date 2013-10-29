@@ -336,7 +336,7 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 		label.setVisible(true);
 		label.revalidate();
 	}
-	protected void refreshVisuals() {
+	public void refreshVisuals() {
 		NodeFigure figure = (NodeFigure)getFigure();
 		DPFEditor editor = getEditor();
 		if(editor != null){

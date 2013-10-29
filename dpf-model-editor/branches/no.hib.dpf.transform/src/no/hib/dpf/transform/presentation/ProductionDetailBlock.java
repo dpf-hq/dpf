@@ -2,11 +2,15 @@ package no.hib.dpf.transform.presentation;
 
 
 import no.hib.dpf.diagram.DGraph;
+import no.hib.dpf.editor.parts.listeners.UIAdapter;
 import no.hib.dpf.transform.Production;
+import no.hib.dpf.transform.TransformPackage;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.ui.actions.ActionRegistry;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -41,6 +45,8 @@ public class ProductionDetailBlock extends ProductionEditor implements IDetailsP
 		super();
 		this.master = master;
 		setEditDomain(master.getMultiEditor().getEditDomain());
+		transform = master.getMultiEditor().getTransform();
+		dspec = transform.getElementTypeGraph();
 	}
 
 	private FormPage getEditor(){
@@ -102,13 +108,41 @@ public class ProductionDetailBlock extends ProductionEditor implements IDetailsP
 		return value == null ? "" : value;
 	}
 
+	protected UIAdapter adapter = new UIAdapter()
+	{
+		@Override
+		protected void safeNotifyChanged(Notification msg)
+		{
+			Object old = msg.getOldValue();
+			if(old == null) old = msg.getNewValue();
+			if(old == null) return;
+			EditPart editpart = (EditPart) getGraphicalViewer().getEditPartRegistry().get(old);
+			if(editpart == null) return;
+			if(msg.getNotifier() != null && msg.getNotifier() == production){ 
+				switch(msg.getFeatureID(Production.class)){
+				case TransformPackage.PRODUCTION__LEFT_NODES:
+				case TransformPackage.PRODUCTION__COMMON_NODES:
+				case TransformPackage.PRODUCTION__RIGHT_NODES:
+				case TransformPackage.PRODUCTION__LEFT_ARROWS:
+				case TransformPackage.PRODUCTION__COMMON_ARROWS:
+				case TransformPackage.PRODUCTION__RIGHT_ARROWS:
+					editpart.refresh();
+					break;
+				}
+			}
+		}
+
+	};
 	@Override
 	public void selectionChanged(IFormPart part, ISelection selection) {
 		IStructuredSelection ssel = (IStructuredSelection)selection;
 		Object selected = null;
 		if(ssel.size() == 1) selected = ssel.getFirstElement();
 		if(selected instanceof Production){
+			if(production != null)
+				production.eAdapters().remove(adapter);
 			production = (Production) selected;
+			production.eAdapters().add(adapter);
 			setProduction(production);
 			currentProduction = production.getName();
 			dGraph = production.getSum().getDGraph();

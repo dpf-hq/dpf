@@ -299,7 +299,7 @@ public class DArrowEditPart extends GraphicalConnectionEditPart implements NodeE
 		}
 	}
 
-	private void refreshBendpointEditPolicy(){
+	protected void refreshBendpointEditPolicy(){
 		if (getConnectionFigure().getConnectionRouter() instanceof ManhattanConnectionRouter) {
 			installEditPolicy(EditPolicy.CONNECTION_BENDPOINTS_ROLE, null);
 		} else {

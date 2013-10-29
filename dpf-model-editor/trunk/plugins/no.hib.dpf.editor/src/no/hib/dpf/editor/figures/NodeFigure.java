@@ -108,35 +108,19 @@ public class NodeFigure extends Figure implements RoutableFigure {
 		return 0;
 	}
 	public boolean valid = false;
-	public void showFeedBack(int state) {
-		switch (state) {
-		case 0:
-			setBackgroundColor(DPFEditorPreferences.getDefault().getNodeBackgroundColor());
-			break;
-		case 1:
-			setBackgroundColor(DPFEditorPreferences.getDefault().getArrowSourceColor());
-			break;
-		case 2:
-			setBackgroundColor(DPFEditorPreferences.getDefault().getArrowTargetColor());
-			break;
-		default:
-			break;
-		}
-	}
 
 	@Override
 	protected void paintChildren(Graphics graphics) {
-		  if(valid){
-			 graphics.drawImage(IMAGE, getBounds().x(),getBounds().y());
-		}
-		  super.paintChildren(graphics);
+		if(valid)
+			graphics.drawImage(IMAGE, getBounds().x(),getBounds().y());
+		super.paintChildren(graphics);
 	}
 
 	public void setErrorImageFlag(boolean bool) {
 		if(valid != bool){
-            valid = bool;
-            revalidate();
-            repaint();
+			valid = bool;
+			revalidate();
+			repaint();
 		}
 	}
 

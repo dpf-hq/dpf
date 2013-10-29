@@ -146,6 +146,12 @@
                label="Export"
                menubarPath="additions">
          </action>
+         <action
+               class="no.hib.dpf.editor.actions.TranslateAlloyAction"
+               id="no.hib.dpf.editor.AlloyAction"
+               label="Translate To Alloy"
+               menubarPath="addition">
+         </action>
       </viewerContribution>
    </extension>
    <extension

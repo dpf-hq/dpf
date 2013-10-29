@@ -281,6 +281,7 @@ public class TransformMasterBlock extends MasterDetailsBlock {
 		final TransformEditor editor = getMultiEditor();
 		DefaultEditDomain domain = editor.getEditDomain();
 		final Production created = getNewProduction();
+		created.getSum().setDType(transform.getElementTypeGraph());
 		domain.getCommandStack().execute(new Command("Add Production") {
 			public boolean canExecute() {
 				return transform != null && editor != null && created != null;

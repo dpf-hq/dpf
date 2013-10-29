@@ -28,6 +28,7 @@ import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.diagram.DiagramPackage;
 import no.hib.dpf.editor.DPFEditor;
 import no.hib.dpf.editor.figures.DPFShortestPathConnectionRouter;
+import no.hib.dpf.editor.policies.DArrowCreateFeedBackPolicy;
 import no.hib.dpf.editor.policies.DGraphXYLayoutEditPolicy;
 
 import org.eclipse.draw2d.ConnectionLayer;
@@ -82,6 +83,7 @@ public class DGraphEditPart extends GraphicalEditPartWithListener {
 		// elements
 		// and creation of new model elements
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new DGraphXYLayoutEditPolicy());
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DArrowCreateFeedBackPolicy());
 		// Shows a snap line when nodes align:
 		installEditPolicy("Snap Feedback", new SnapFeedbackPolicy()); //$NON-NLS-1$
 	}
@@ -182,13 +184,13 @@ public class DGraphEditPart extends GraphicalEditPartWithListener {
 			if(!valid){
 				for(Node iter : nodes)
 					editor.addMarker(iter, constraint);
-						for(Arrow iter : arrows)
-							editor.addMarker(iter, constraint);
+				for(Arrow iter : arrows)
+					editor.addMarker(iter, constraint);
 			}else{
 				for(Node iter : nodes)
 					editor.deleteMaker(iter, constraint);
-						for(Arrow iter : arrows)
-							editor.deleteMaker(iter, constraint);
+				for(Arrow iter : arrows)
+					editor.deleteMaker(iter, constraint);
 			}
 		}
 	}

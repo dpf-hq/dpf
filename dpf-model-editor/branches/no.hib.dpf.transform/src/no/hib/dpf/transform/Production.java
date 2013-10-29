@@ -185,4 +185,18 @@ public interface Production extends EObject {
 	 */
 	void setName(String value);
 
+	void setAdded(DNode node);
+	boolean isAdded(DNode node);
+	void setDeled(DNode node);
+	boolean isDeled(DNode node);
+	void setKept(DNode node, boolean is);
+	boolean isKept(DNode node);
+	
+	void setAdded(DArrow arrow);
+	boolean isAdded(DArrow arrow);
+	void setDeled(DArrow arrow);
+	boolean isDeled(DArrow arrow);
+	void setKept(DArrow arrow, boolean is);
+	boolean isKept(DArrow arrow);
+
 } // Production

@@ -24,6 +24,7 @@ import java.util.Map;
 
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DConstraint;
+import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.diagram.DOffset;
 import no.hib.dpf.diagram.DPredicate;
@@ -37,8 +38,8 @@ import no.hib.dpf.transform.Production;
 import no.hib.dpf.transform.Transform;
 import no.hib.dpf.transform.parts.TransformArrowLabelEditPart;
 import no.hib.dpf.transform.parts.TransformDArrowEditPart;
+import no.hib.dpf.transform.parts.TransformDGraphEditPart;
 import no.hib.dpf.transform.parts.TransformDNodeEditPart;
-import no.hib.dpf.transform.util.TransformUtils;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
@@ -111,37 +112,22 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 
 	protected void configureGraphicalViewer() {
 		super.configureGraphicalViewer();
-		String transformFile = TransformUtils.activeWindowFileLocation();
-
-		transform = TransformEditor.loadTransform(DPFUtils.getResourceSet(), URI.createFileURI(transformFile), resourceToDiagnosticMap);
-
-		dspec = transform.getElementTypeGraph();
 
 		GraphicalViewer viewer = getGraphicalViewer();
 		paletteFactory.updatePalette(getPaletteRoot(), dspec.getDGraph());
 
 		shapesEditPartFactory = new DPFEditPartFactory(){
 			protected EditPart getPartForElement(Object modelElement) {
-				if (modelElement instanceof DNode) {
-					return new TransformDNodeEditPart(modelElement){
-						protected void createEditPolicies() {
-							super.createEditPolicies();
-							installEditPolicy("action", new ActionEditPolicy());
-						}
-					};
-				}
-				if (modelElement instanceof DArrow) {
-					return new TransformDArrowEditPart(modelElement){
-						protected void createEditPolicies() {
-							super.createEditPolicies();
-							installEditPolicy("action", new ActionEditPolicy());
-						}
-					};
-				}
+				if (modelElement instanceof DGraph) 
+					return new TransformDGraphEditPart();
+				if (modelElement instanceof DNode) 
+					return new TransformDNodeEditPart();
+				if (modelElement instanceof DArrow) 
+					return new TransformDArrowEditPart();
 				if (modelElement instanceof DOffset) {
 					DOffset offset = (DOffset) modelElement;
 					if(offset.eContainer() instanceof DArrow)
-						return new TransformArrowLabelEditPart(offset);
+						return new TransformArrowLabelEditPart();
 				}
 				if(modelElement instanceof DConstraint){
 					return new DConstraintEditPart(){

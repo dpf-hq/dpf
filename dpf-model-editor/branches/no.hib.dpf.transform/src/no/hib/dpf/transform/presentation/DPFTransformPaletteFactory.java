@@ -8,9 +8,9 @@ import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.editor.DPFEditorPaletteFactory;
 import no.hib.dpf.editor.displaymodel.factories.DArrowFactory;
 import no.hib.dpf.editor.displaymodel.factories.DNodeFactory;
-import no.hib.dpf.editor.displaymodel.factories.DPFConnectionCreationToolEntry;
 
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.gef.palette.ConnectionCreationToolEntry;
 import org.eclipse.gef.palette.CreationToolEntry;
 import org.eclipse.gef.palette.PaletteGroup;
 import org.eclipse.gef.palette.PaletteRoot;
@@ -46,39 +46,8 @@ public class DPFTransformPaletteFactory extends DPFEditorPaletteFactory {
 			Assert.isTrue(arrow != null);
 			Assert.isTrue(darrow != null);
 			//			add Arrow:Node-->Node to tooltip in case several arrows with same name showing up in the metamodel.
-			arrowGroup.add(new DPFConnectionCreationToolEntry(arrow.getName(), "Create a new " + arrow.getName() + ":" + arrow.getSource().getName() + "-->" + arrow.getTarget().getName(), new DArrowFactory(darrow), 
-					SMALLARROW, LARGEARROW));
-		}
-	}
-	public void updatePaletteForExogenous(PaletteRoot root, DGraph sourceGraph, DGraph targetGraph) {
-		for(DNode dnode : sourceGraph.getDNodes()){
-			Node node = dnode.getNode();
-			Assert.isTrue(node != null);
-			Assert.isTrue(dnode != null);
-			nodeGroup.add(new CreationToolEntry(node.getName(), "Create a new " + node.getName(), new DNodeFactory(dnode), 
-					SMALLICON, LARGEICON));
-		}
-		for(DNode dnode : targetGraph.getDNodes()){
-			Node node = dnode.getNode();
-			Assert.isTrue(node != null);
-			Assert.isTrue(dnode != null);
-			nodeGroup.add(new CreationToolEntry(node.getName(), "Create a new " + node.getName(), new DNodeFactory(dnode), 
-					SMALLICON, LARGEICON));
-		}
-		for(DArrow darrow : sourceGraph.getDArrows()){
-			Arrow arrow = darrow.getArrow();
-			Assert.isTrue(arrow != null);
-			Assert.isTrue(darrow != null);
-			//			add Arrow:Node-->Node to tooltip in case several arrows with same name showing up in the metamodel.
-			arrowGroup.add(new DPFConnectionCreationToolEntry(arrow.getName(), "Create a new " + arrow.getName() + ":" + arrow.getSource().getName() + "-->" + arrow.getTarget().getName(), new DArrowFactory(darrow), 
-					SMALLARROW, LARGEARROW));
-		}
-		for(DArrow darrow : targetGraph.getDArrows()){
-			Arrow arrow = darrow.getArrow();
-			Assert.isTrue(arrow != null);
-			Assert.isTrue(darrow != null);
-			//			add Arrow:Node-->Node to tooltip in case several arrows with same name showing up in the metamodel.
-			arrowGroup.add(new DPFConnectionCreationToolEntry(arrow.getName(), "Create a new " + arrow.getName() + ":" + arrow.getSource().getName() + "-->" + arrow.getTarget().getName(), new DArrowFactory(darrow), 
+			arrowGroup.add(new ConnectionCreationToolEntry(arrow.getName(), 
+					"Create a new " + arrow.getName() + ":" + arrow.getSource().getName() + "-->" + arrow.getTarget().getName(), new DArrowFactory(darrow), 
 					SMALLARROW, LARGEARROW));
 		}
 	}

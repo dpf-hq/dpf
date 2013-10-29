@@ -1,51 +1,35 @@
 package no.hib.dpf.transform.parts;
 
+import org.eclipse.gef.EditPart;
+import org.eclipse.swt.graphics.Color;
+
 import no.hib.dpf.diagram.DArrow;
-import no.hib.dpf.diagram.DOffset;
 import no.hib.dpf.editor.parts.ArrowLabelEditPart;
 import no.hib.dpf.transform.Production;
 import no.hib.dpf.transform.preferences.TransformEditorPreferences;
 
-import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.Label;
 
 public class TransformArrowLabelEditPart extends ArrowLabelEditPart {
-	private DArrow element = null;
 	private Production production = null;
-	private Label label = null;
 	
-	public TransformArrowLabelEditPart(DOffset modelElement) {
-		element = (DArrow) modelElement.eContainer();
-		production = (Production) element.eContainer().eContainer().eContainer();
-	}
-
-	@Override
-	public IFigure createFigure() {
-		label = new Label();
-		
-		if(production.getLeftArrows().contains(element)){
-			label.setForegroundColor(TransformEditorPreferences.getDefault().getDeleteForegroundColor());
-		}
-		if(production.getCommonArrows().contains(element)){
-			label.setForegroundColor(TransformEditorPreferences.getDefault().getPreserveForegroundColor());
-		}
-		if(production.getRightArrows().contains(element)){
-			label.setForegroundColor(TransformEditorPreferences.getDefault().getInsertForegroundColor());
-		}
-		label.setOpaque(true);
-		return label;
+	public void setParent(EditPart parent){
+		super.setParent(parent);
+		DArrow dArrow = getDArrow();
+		if(parent != null && dArrow != null)
+			production = (Production) dArrow.eContainer().eContainer().eContainer();
 	}
 	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
-		if(production.getLeftArrows().contains(element)){
-			label.setForegroundColor(TransformEditorPreferences.getDefault().getDeleteForegroundColor());
-		}
-		if(production.getCommonArrows().contains(element)){
-			label.setForegroundColor(TransformEditorPreferences.getDefault().getPreserveForegroundColor());
-		}
-		if(production.getRightArrows().contains(element)){
-			label.setForegroundColor(TransformEditorPreferences.getDefault().getInsertForegroundColor());
-		}
+		DArrow model = getDArrow();
+		if(production.isDeled(model))
+			figure.setForegroundColor(delt);
+		else if(production.isKept(model))
+			figure.setForegroundColor(kept);
+		else if(production.isAdded(model))
+			figure.setForegroundColor(insert);
 	}
+	private static final Color kept = TransformEditorPreferences.getDefault().getPreserveForegroundColor();
+	private static final Color delt = TransformEditorPreferences.getDefault().getDeleteForegroundColor();
+	private static final Color insert = TransformEditorPreferences.getDefault().getInsertForegroundColor();
 }

@@ -51,6 +51,7 @@ import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
+import org.eclipse.swt.graphics.Color;
 
 public class ArrowTextMovePolicy extends NonResizableEditPolicy {
 
@@ -66,16 +67,13 @@ public class ArrowTextMovePolicy extends NonResizableEditPolicy {
 		command = new ArrowTextMoveCommand(model, Draw2dUtil.getDOffset(source, target, ((Connection)connection.getFigure()).getPoints(), p));
 		return command;
 	}
-	protected void showSelection() {
-		super.showSelection();
-		ArrowLabelEditPart editpart = (ArrowLabelEditPart)getHost();
-		ConnectionEditPart connection = (ConnectionEditPart) editpart.getParent();
-		connection.getFigure().setForegroundColor(DPFEditorPreferences.getDefault().getArrowLabelSelectedArrowColor());		
-	}
 	protected void removeSelectionHandles() {
-		ArrowLabelEditPart editpart = (ArrowLabelEditPart)getHost();
-		ConnectionEditPart connection = (ConnectionEditPart) editpart.getParent();
-		connection.getFigure().setForegroundColor(DPFEditorPreferences.getDefault().getArrowForegroundColor());	
+		getHost().getParent().refresh();
 		super.removeSelectionHandles();
 	}
+	protected void showSelection() {
+		super.showSelection();
+		((ConnectionEditPart)getHost().getParent()).getFigure().setForegroundColor(color);		
+	}
+	private static final Color color = DPFEditorPreferences.getDefault().getArrowLabelSelectedArrowColor();
 }

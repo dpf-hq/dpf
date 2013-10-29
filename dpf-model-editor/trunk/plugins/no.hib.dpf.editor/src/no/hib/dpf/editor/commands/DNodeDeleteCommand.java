@@ -31,8 +31,8 @@ import org.eclipse.gef.commands.CompoundCommand;
  */
 public class DNodeDeleteCommand extends CompoundCommand {
 	/** Node to remove. */
-	private final DNode child;
-	private final DGraph parent;
+	protected final DNode child;
+	protected final DGraph parent;
 
 
 	/**

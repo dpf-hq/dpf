@@ -1,14 +1,12 @@
 package no.hib.dpf.transform.presentation;
 
 import no.hib.dpf.diagram.DArrow;
+import no.hib.dpf.diagram.DElement;
 import no.hib.dpf.diagram.DNode;
-import no.hib.dpf.editor.commands.EmptyExecutableCommand;
 import no.hib.dpf.transform.Production;
 import no.hib.dpf.transform.command.AddTransformCommand;
 import no.hib.dpf.transform.command.DeleteTransformCommand;
 import no.hib.dpf.transform.command.PreserveTransformCommand;
-import no.hib.dpf.transform.parts.TransformDArrowEditPart;
-import no.hib.dpf.transform.parts.TransformDArrowEditPart.CHANGE;
 
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
@@ -17,75 +15,31 @@ import org.eclipse.gef.editpolicies.AbstractEditPolicy;
 
 public class ActionEditPolicy extends AbstractEditPolicy {
 
-	private Object object;
-	
 	public Command getCommand(Request request) { 
-		if (AddTool.REQ_MAKE_ADD.equals(request.getType())){
-			EditPart part = getHost();
-			return MakeAddCommand(part);
+		EditPart part = getHost();
+		Object editObject = part.getModel();
+		Production production = getProduction((DElement) editObject);
+		if(production != null){
+			if (AddTool.REQ_MAKE_ADD.equals(request.getType()) && 
+					((editObject instanceof DNode && !production.isAdded((DNode) editObject)) || 
+							(editObject instanceof DArrow && !production.isAdded((DArrow)editObject))))
+				return new AddTransformCommand(editObject, production);
+			if (DeleteTool.REQ_MAKE_DELETE.equals(request.getType()) && 
+					((editObject instanceof DNode && !production.isDeled((DNode) editObject)) || 
+							(editObject instanceof DArrow && !production.isDeled((DArrow)editObject))))
+				return new DeleteTransformCommand(editObject, production);
+			if (PreserveTool.REQ_MAKE_COMMON.equals(request.getType()) && 
+					((editObject instanceof DNode && !production.isKept((DNode) editObject)) || 
+							(editObject instanceof DArrow && !production.isKept((DArrow)editObject))))
+				return  new PreserveTransformCommand(editObject, production);;
 		}
-		if (DeleteTool.REQ_MAKE_DELETE.equals(request.getType()))
-			return MakeDeleteCommand(getHost());
-		if(PreserveTool.REQ_MAKE_COMMON.equals(request.getType()))
-			return MakeCommonCommand(getHost());
 		return null;
 	}
 
-	private Command MakeCommonCommand(EditPart editPart) {
-		Object editObject = editPart.getModel();
-		Production production = null;
-		
-		if(editObject instanceof DArrow){
-			DArrow dArrow = (DArrow) editObject;
-			production = (Production) dArrow.eContainer().eContainer().eContainer();
-		}
-		if(editObject instanceof DNode){
-			DNode dNode = ((DNode) editObject);
-			production = (Production) (dNode).eContainer().eContainer().eContainer();
-		}
-		if(editPart != null && production != null){
-			return new PreserveTransformCommand(editObject, production);
-			//
-		}
-		return EmptyExecutableCommand.INSTANCE;
+	private Production getProduction(DElement element){
+		return (Production) element.eContainer().eContainer().eContainer();
 	}
 
-	private Command MakeDeleteCommand(EditPart editPart) {
-		Object editObject = editPart.getModel();
-		Production production = null;
-		
-		if(editObject instanceof DArrow){
-			DArrow dArrow = (DArrow) editObject;
-			production = (Production) dArrow.eContainer().eContainer().eContainer();
-		}
-		if(editObject instanceof DNode){
-			DNode dNode = ((DNode) editObject);
-			production = (Production) (dNode).eContainer().eContainer().eContainer();
-		}
-		if(editPart != null && production != null){
-			return new DeleteTransformCommand(editObject, production);
-		}
-		return EmptyExecutableCommand.INSTANCE;
-	}
-
-	private Command MakeAddCommand(EditPart editPart) {
-		Object editObject = editPart.getModel();
-		Production production = null;
-		
-		if(editObject instanceof DArrow){
-			DArrow dArrow = (DArrow) editObject;
-			production = (Production) dArrow.eContainer().eContainer().eContainer();
-		}
-		if(editObject instanceof DNode){
-			DNode dNode = ((DNode) editObject);
-			production = (Production) (dNode).eContainer().eContainer().eContainer();
-		}
-		if(editPart != null && production != null){
-			return new AddTransformCommand(editPart, editObject, production);
-		}
-		return EmptyExecutableCommand.INSTANCE;
-	}
-	
 	public EditPart getTargetEditPart(Request request) {
 		if (AddTool.REQ_MAKE_ADD.equals(request.getType()) || 
 			DeleteTool.REQ_MAKE_DELETE.equals(request.getType()) || 
