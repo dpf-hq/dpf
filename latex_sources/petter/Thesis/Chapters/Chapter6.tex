@@ -205,7 +205,7 @@ statement that is either true or false. A rule can be applied to a instance
 graph if and only if all application conditions are valid. We can basically
 have a unlimited nested formulas in Henshin, since a binary formula can have a
 right and left \textbf{Formula}, that can again be of type binary formula.
-Henshin however is only concerned with if this formula is valid or invalid when
+Henshin however is only concerned whether this formula is valid or invalid when
 a transformation rule is applied. A nested condition is required if we want to
 have nodes that are part of the LHS graphs or the common graph, that is the
 intersection of the LHS and RHS graph. A nested condition provides a graph and
@@ -344,7 +344,7 @@ model specify the correspondence graph between source and target meta-models. We
 can now refer to this DPF model when creating Henshin transformation rules to
 extract the corresponding objects. We can also do this explicitly when creating
 the transformation rules in the DPF Transformation Editor by modeling a new trace
-object that is represents a trace between a source modeling element and a
+object that represents a trace between a source modeling element and a
 target modeling element. We use this trace object or the correspondence graph to
 determine how we translate a DPF model. We create a trace object that has a
 source reference to every matching node and arrow that the transformation engine
@@ -354,6 +354,7 @@ generate Henshin transformation rules.
 
 
 \section{Generate Henshin Rules}
+\label{hensin_rules}
 
 We utilize the meta-model represented in figure~\ref{fig:Henshin_metamodel} to
 create transformation rules in Henshin.  We use the factory that is provided by
@@ -383,8 +384,8 @@ as a physical graph like the LHS and the RHS are, but is represented as an
 underlying graph that is formed from these two graphs. The intersection graph is
 represented by having elements in both the LHS and the RHS graph with mappings
 that distinguish that these elements are one and the same. Now we have the LHS
-graph, the RHS graph and the intersection of these two graphs, which we talked
-about in section~\ref{sec:graph_based}. In this section we introduced double
+graph, the RHS graph and the intersection of these two graphs, which was
+mentioned in section~\ref{sec:graph_based}. In this section we introduced double
 and single pushouts of graphs. Henshin has an arbitrary mixing of these graph
 transformation styles.
 
@@ -415,7 +416,7 @@ both incoming and outgoing arrows. So this means that a Node and an Arrow have a
 similar relation in DPF models, where source and outgoings references represents
 the same relation but are typed differently. It is however easier to coupe with
 the arrows when creating transformation rules, since an arrow has an
-one-to-one relationship, that means an arrow has one source node and one
+one-to-one relationship, meaning that an arrow has one source node and one
 target node. How the typing for an edge in Henshin is specified depends on the
 Henshin source and target node. These nodes are typed by a corresponding EClass
 type from the specification meta-model, that is a Node and an Arrow. An edge in
@@ -513,14 +514,14 @@ of the searching graph. We define a new application condition for each nodes and
 arrows that are part of the LHS graph, since these modeling elements can form a
 directed graph and each modeling element is typed by a modeling element from the
 source meta-model. All of these application conditions has to be true for a
-located match to be a valid match. Now we will look how we also implement
+located match to be a valid match. Now we will expore how we also implement
 negative application conditions for our model transformation environment with
 traceable links. 
 
 \subsection{Traceable links}
 \label{Trace}
 
-As we discussed in chapter 3.2.7 a traceable link works as the footprint when
+As we discussed in chapter 3.2.7 a traceable link works as a footprint when
 executing a set of transformation rules. Henshin provides a traceable link
 implementation through the Henshin Trace model. This is a simple meta-model for
 defining traceable links and can be imported for any Henshin module. The Henshin
@@ -531,7 +532,7 @@ meta-model. We create a traceable link for every Henshin node we have included
 for the LHS graph. The nodes in the LHS graph are the source modeling elements
 for a Trace modeling element while nodes in the RHS graph are the target
 modeling elements. Now we have an unique link between a matched node from the
-LHS graph and a created node for the RHS graph for every time a transformation
+LHS graph and a produced node for the RHS graph for every time a transformation
 rule is applied. These traceable links are represented in the replacement graph
 the first time that a connection between two nodes are initialised. This means
 that the traceable links are actually translated when a transformation rule is
@@ -548,76 +549,102 @@ not contain this graph pattern. This is very convenient when applying a set of
 transformation rules, because we have already stated that a traceable link is
 created when a transformation rule locates a match in an instance graph. This
 means that we create unique traceable links between all nodes in the pattern
-graph that is matched in an instance graph and the nodes that we create. One
-thing that is worth noticing is that the source and target nodes of a traceable
-link has to be typed by the EClass modeling element that Ecore provides. We
-can now execute the set of transformation as long as we want and be safe that we
-will not execute matching pattern in an instance graph more than once. The
-reason that we can make this statement is because when we find a match for the
-first time then there exist no traceable link between modeling elements. But
-once the transformation engine execute this rule, then a traceable link is
-created between the matching nodes on the left side and the corresponding
-modeling elements on the right side. And now the transformation engine are
-unable to locate this match for a second time because we have restricted the
+graph that is matched in an instance graph and the nodes that we create. It has
+to be noticed that the source and target nodes of a traceable link has to be
+typed by the EClass modeling element that Ecore provides. We can now execute
+the set of transformation as long as we want and be safe that we will not
+execute matching pattern in an instance graph more than once. The reason that
+we can make this statement is because when we find a match for the first time
+then there exist no traceable link between modeling elements. But once the
+transformation engine execute this rule, then a traceable link is created
+between the matching nodes on the left side and the corresponding modeling
+elements on the right side. And now the transformation engine are unable to
+locate this match for a second time because we have restricted the
 transformation rule to not include matches that has a traceable link to the
 source node that are part of the LHS graph. Now we will describe more in detail
-how we apply these transformation rules. 
+how we apply these transformation rules.
 
 \section{Apply Model Transformation}
 
-When we have generated all the transformation rules from the Transform Model
-Editor to Henshin transformation rules. The Henshin module we generated in the
-previous section now contains a set of transformation rules that are specified
-in the Henshin Transformation Language, that we described in 
-figure~\ref{fig:Simple_Solution} in the first section. Now we have to use the
-Henshin Transformation Engine to execute the generated module. We can do this by
-explicitly invoking the Henshin interpreter. The interpreter requires a
-module, a graph that contains the source model and a Henshin unit before it can be
-applied. For our solution we have created a transformation unit that
-executes a set of transformation rules in the same order that the Transform
-Model Editor provides, and is called a Sequential unit. A transformation unit
-in Henshin is an implementation of a rule application control system that we
-described in a more general term in section 3.2.3. A transformation unit in
-Henshin is an executable part that the transformation engine can interpret and
-apply rules accordingly. It is important to specify that a transformation rule
-itself in Henshin is a transformation unit, and can therefore be executed by
-Henshin's transformation engine. But an Henshin transformation rule does not
-provide any control mechanism for it self or other rules when executed.
+\subsection{Rule Application Control}
+
+Now that the DPF Transformation Editor has generated a set of Henshin
+transformation rules the transformation engine is ready to apply these rules to
+a source model. The Henshin module we generated in the previous section now contains a set of
+transformation rules that are specified in the Henshin Transformation Language,
+that we described in figure~\ref{fig:Simple_Solution} in the first section. The
+Henshin Transformation Engine can now execute this generated module by
+explicitly invoking the Henshin interpreter. The interpreter requires a module,
+a graph that contains the source model and a Henshin unit before it can be
+applied. For our solution we have created a transformation unit that executes a
+set of transformation rules in the same order that the DPF Transformation Editor
+provides, and is called a Sequential unit. A transformation unit in Henshin is
+an implementation of a rule application control system that we described in a
+more general term in section 3.2.3. A transformation unit in Henshin is an
+executable part that the transformation engine can interpret and apply rules
+accordingly. It is important to specify that a transformation rule itself in
+Henshin is a transformation unit, and can therefore be executed by Henshin's
+transformation engine. But a Henshin transformation rule does not provide any
+control mechanism for it self or other rules when executed.
 A transformation rule will therefore only locate one single match if we
 invoke the Henshin interpreter on a single rule. This is one reason for why we want to
 specify a transformation unit that has some unique properties that a single
-transformation rule does not provide. In Henshin transformation units have te
+transformation rule does not provide. Some Henshin transformation units have the
 possibility to have other transformation units as subunits.
-This means that we have the possibility to create nested transformation units,
-and that is what we have done for this solution. The Sequential unit that the
-module provides works as the master unit for applying the transformation rules.
-For each transformation rule we created in the previous section we define a
-Henshin Loop unit. This unit can only contain one single subgraph, and that is
-the corresponding transformation rule. The Loop unit is executed for as long as
-there are any matching modeling elements in an instance graph and will locate 
-matches an unlimited number of times unless we provide any mechanism to stop
-the unit. This is where the negative application conditions that we described
-in the previous section plays a vital role. Because the negative application
-condition specifies that a transformation rule will only be applied unless
-there exist no traceable links. The first time the transformation engine
-locates a match for a transformation rule it will create a traceable links that
-connects the matching modeling elements and the created modeling elements. Now
-the next time this specific match is located the application condition will not
-be valid since now there are traceable links that has references to modeling
-elements in the source model. We can now apply these repeatable units for all
-transformation rules as long as the input graph does not contain a traceable
-link for a matched modeling element. 
+The Sequential unit that the module provides works as the master unit for
+applying the transformation rules. For each transformation rule we created in
+the previous section we define a Henshin Loop unit. This unit can only contain
+one single subgraph, and that is the corresponding transformation rule. The
+Loop unit is executed for as long as there are any matching modeling elements
+in an instance graph and will locate matches an unlimited number of times
+unless we provide any mechanism to stop the unit. This is where the negative
+application conditions that we described in the previous section plays a vital
+role. Because the negative application condition specifies that a
+transformation rule will only be applied unless there exist no traceable links.
+The first time the transformation engine locates a match for a transformation
+rule it will create a traceable links that connects the matching modeling
+elements and the created modeling elements. Now the next time this specific
+match is located the application condition will not be valid since now there
+exist a traceable link that has a reference to a modeling element in the source
+model. We can now apply these repeatable units for all transformation rules as
+long as the input graph does not contain a traceable link for a matched
+modeling element.
+
+\subsection{The Transformed Model}
 
 For all matches found in a source model we do some changes depending on how the
-RHS graph is specified. These changes can be found as new DPF modeling elements
-after a model transformation for the input graph. We can then extract these
-changes and create a new specification that forms the target model. We have to
-make sure that the new specification is typed by a corresponding specification,
-that is the target meta-model. We can then make sure that the translated
-nodes and arrows are assigned with the corresponding type. Since we translated
-matches that have one matching node and one matching type node into target
-modeling elements that also have a node and a type node.
+RHS graph is specified. These changes are specified as new DPF modeling elements
+after applying a set of transformation rules. The next step is to make sure that
+the produced modeling elements are type correct. This means that the target
+model is required to conform to a target modeling formalism.
+Figure~\ref{fig:transformed_model} represents the result of a model to model
+transformation.
 
-\section{The Transformed Model}
+\begin{figure}[H] 
+	\centering
+	\includegraphics[scale=0.7]{./Figures/Transformed_model.png}
+	\caption[The transformed specification]
+	{The transformed result of a model to model transformation.}
+	\label{fig:transformed_model}
+\end{figure}
 
-
+The transformation EGraph represents the source model as we mentioned in the
+previous section. The Henshin interpreter will execute transformation rules on
+this transformation graph until there are no more valid matching pattern located
+in the source model. The produced target modeling elements that are included in
+the transformation graph after rule execution conforms to a joined modeling
+formalism. However, we want these modeling elements to conform to a target
+modeling formalism and not the joined modeling formalism.
+Section~\ref{hensin_rules} describes how we can create a set of transformation
+rules in Henshin from the transformation rules in the DPF Transformation Editor.
+These transformation rules has a search graph structure with positive
+application conditions that determine the abstract syntax that a source
+modeling formalism one abstraction layer higher provides. Each Henshin node in a
+RHS graph of a rule that is specified has a reference to a target type node or
+arrow. For each application of a transformation rule we locate a match and
+create nodes and arrows with a corresponding type node and type arrow
+accordingly to the RHS. After the execution of all the transformation rules we
+can now extract these produced target modeling elements to a new target
+specification that conforms to a target modeling formalism. For each translated
+modeling element we can check if it has a corresponding type node or type arrow
+in the target modeling formalism. 

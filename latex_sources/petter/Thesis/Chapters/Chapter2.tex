@@ -440,27 +440,22 @@ one another.
 Language workbenches are tools that lets user specify
 their own Domain Specific Language (DSL) and include editing tools for the newly
 created language. A workbench should consist of Integrated Development
-Environment (IDE) that lets users create their own DSMLs. The concepts behind a
-language workbench is that the tool does not just provide the users with an IDE
-to create DSLs, but also generates a new IDE where this newly created DSL can
-be edited. In addition to an IDE that provides creation and editing of a newly
-created language a workbench should define support for code generation, model
-transformation, model versioning, etc\cite{Lamo2013}.
+Environment (IDE) that lets users create their own DSMLs.
 Figure~\ref{fig:langauge_workbench} is provided in the paper, \textit{``DPF
 Workbench: a multi-level language workbench for MDE"}, that was published by
 Yngve Lamo, Xiaoliang Wang, Florian Mantz, Øyvind Bech, Anders Sandven and
 Adrian Rutle in 2013. The figure presents the intended use of language
-workbenches and consist of two phases. The first handles the definition of a new
-DSML and the creation of tool support such as code generation, editors, model
-transformations, etc. A language workbench is created by a domain expert in
-collaboration with an experienced developer. The latter describes the actual
+workbenches and consist of two phases. The first handles the definition of a
+new DSML and the creation of tool support such as code generation, editors,
+model transformations, etc. A language workbench is created by a domain expert
+in collaboration with an experienced developer. The latter describes the actual
 usage of this newly created workbench, where developers can utilize the DSML
 environment to create models, generate implementation code, etc. Language
 workbenches are a very young field in computer science, and there are many
 existing solutions that is open for the public to use. These concepts have the
 potential to change the face of programming as we know
-it\cite{fowler2010domain}, but the concepts of workbenches are still fresh to 
-computer science. 
+it\cite{fowler2010domain}, but the concepts of workbenches are still fresh to
+computer science.
 
 \begin{figure}[H]
 	\centering
@@ -469,6 +464,28 @@ computer science.
 	{Intended use of language workbenches.}
 	\label{fig:langauge_workbench}
 \end{figure}
+
+The concepts behind a language workbench is that the tool does not just provide
+the users with an IDE to create DSLs, but also generates a new IDE where this
+newly created DSL can be edited. In addition to an IDE that provides creation
+and editing of a newly created language a workbench should define support for
+code generation, model transformation, model versioning, etc\cite{Lamo2013}.
+Figure~\ref{fig:workbench} shows the different components of a language
+workbench.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{./Figures/workbench.png}
+	\caption[Components of language workbenches]
+	{Components of language workbenches.}
+	\label{fig:workbench}
+\end{figure}
+
+\begin{itemize}
+  \item The abstract representation for the language.
+  \item One or more editing environments for the language.
+  \item Defining the semantics behavior of the language. 
+\end{itemize}
 
 \subsection{EMF}
 
@@ -642,61 +659,72 @@ generates a new graphical editor environment provided by the DPF Editor.
 
 \section{DPF Workbench}
 
-\subsection{DPF Model Editor}
+The DPF Workbench provides a modeling environment for DPF and consist of three
+main components. These are the ``DPF Model Editor'', the ``DPF Signature Editor''
+and the ``DPF Code Generator''. The first two editors provides the modeling
+functionality for the DPF Workbench. ``DPF Model Editor'' is used to create and
+modify DPF specifications. The ``DPF Signature Editor'' is used as a supplement
+to the ``DPF Model Editor''. It provides an editor to construct user defined
+predicate signatures. These signatures can then be used to define the semantics
+of a DPF specification in the ``DPF Model Editor'' if the predefined predicates
+that DPF provides does not suffice. Figure~\ref{fig:DPF_Editor} that is
+provided in the article, \textit{``DPF Workbench: a multi-level language
+workbench for MDE"}\cite{Lamo2013}, explains how the ``DPF Signature Editor'',
+the ``DPF Model Editor'' and a DPF Model is related to each other in the DPF
+Workbench over different abstraction layers. The ``DPF Code Generator'' provides
+the users with a code generation environment for DPF specifications.  
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{./Figures/DPF_Workbench}
+	\caption[DPF Editor in multi-layer meta-modeling hierarchy]
+	{Generated DPF Editors in a multi-layer meta-modeling hierarchy.}
+	\label{fig:DPF_Editor}
+\end{figure}
+
+\subsection*{DPF Model Editor}
 The DPF Model Editor is an extension of the Diagram Predicate Framework that
 provides an intuitive approach to creating modeling languages and have been created
 using several different technologies. In 2011 $\O$yvind Bech published his
 master thesis\cite{Bech_thesis} where he designed the implementation of
 the DPF Model Editor that is based on the Eclipse Modeling Framework technology.
 This first version of the DPF Model Editor has seen several iterations and provides
-support for creating domain specific modeling languages. Figure~\ref{fig:DPF_Editor} is a
-simplified version provided in the article, \textit{``DPF Workbench: a
-multi-level language workbench for MDE"}\cite{Lamo2013} .
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.7]{./Figures/DPF_Editor}
-	\caption[DPF Editor in multi-layer meta-modeling hierarchy]
-	{Generated DPF Editors in a multi-layer meta-modeling hierarchy.}
-	\label{fig:DPF_Editor}
-\end{figure}
-
-A new DPF Editor is generated for each new model that is created. This means
-that every DPF model has a corresponding editor that provides graphical editing
+support for creating domain specific modeling languages.
+Figure~\ref{fig:DPF_Editor} explains that a new instance of the DPF Model
+Editor is generated for each new model that is created. This means that every
+DPF specification has a corresponding editor that provides graphical editing
 properties to change the models. For each generated editor we can create a new
-DSL one abstraction layer lower that generates a new editor that
-correspond to this DSL. 
+DSL one abstraction layer lower that generates a new editor that correspond to
+this DSL.
 
+% \subsection*{DPF Signature Editor}
+% 
+% \subsection*{DPF Code Generator}
 
-
- 
-
-
-
- 
-\begin{table}[ht]
-\renewcommand*\arraystretch{1.5}
-\centering
-\begin{tabular}{| c | c | c | c | c | c |}
-\hline
-Tool & Layers & Dia.   & Const.   & Platform & GUI\\
-	 & 		  & Const. & Language &          & \\
-\hline
-EMF/GMF & 2 & & OCL, EVL, & Java VM & $\surd$ \\
-		%&  	& & Java      &         & \\
-\hline
-VMTS    & $\infty$ & & OCL & Windows & $\surd$ \\
-\hline
-AToM\textsuperscript{3} & 2 & & OCL, Python & Python, Tk/tcl & $\surd$ \\
-\hline
-GME  & 2 & & OCL & Windows & $\surd$ \\
-\hline
-metaDepth & $\infty$ & & EVL & Java VM & \\
-\hline
-DPF & $\infty$ & $\surd$ & Predefined & Java VM & $\surd$ \\
-	& 		   &         & validator  &         & \\
-\hline
-
-\end{tabular}
-\caption{Comparing model transformation tools.}
-\end{table} 
+%  
+% \begin{table}[ht]
+% \renewcommand*\arraystretch{1.5}
+% \centering
+% \begin{tabular}{| c | c | c | c | c | c |}
+% \hline
+% Tool & Layers & Dia.   & Const.   & Platform & GUI\\
+% 	 & 		  & Const. & Language &          & \\
+% \hline
+% EMF/GMF & 2 & & OCL, EVL, & Java VM & $\surd$ \\
+% 		%&  	& & Java      &         & \\
+% \hline
+% VMTS    & $\infty$ & & OCL & Windows & $\surd$ \\
+% \hline
+% AToM\textsuperscript{3} & 2 & & OCL, Python & Python, Tk/tcl & $\surd$ \\
+% \hline
+% GME  & 2 & & OCL & Windows & $\surd$ \\
+% \hline
+% metaDepth & $\infty$ & & EVL & Java VM & \\
+% \hline
+% DPF & $\infty$ & $\surd$ & Predefined & Java VM & $\surd$ \\
+% 	& 		   &         & validator  &         & \\
+% \hline
+% 
+% \end{tabular}
+% \caption{Comparing model transformation tools.}
+% \end{table} 

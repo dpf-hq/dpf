@@ -261,7 +261,7 @@ only address approaches that indicates model to model transformations.
 
 OMG provides a standard that includes three such model to model transformation
 approaches. In 2002 OMG issued a request for proposal regarding
-Query/View/Transformation (QVT)\cite{QVT} where they seeked a standard that was
+Query/View/Transformation (QVT)\cite{QVT} where they sought a standard that was
 compatible with other OMG specifications such as MOF, UML, OCL, etc. This later
 lead to the release of \textit{Meta Object Facility (MOF) 2.0
 Query/View/Transformation Specification} in April 2008. The standard specifies
@@ -392,6 +392,7 @@ graphical, the users have to specify a pattern that is used to locate matches
 and a pattern that is used to replace these matches with a result.
 
 \textbf{Domain}
+\label{domain}
 
 A transformation rule is specified by certain domains. These domains are
 responsible of accessing either the source or target model for each
@@ -456,6 +457,17 @@ usually defined over a domain that is both a source and a target.
 
 \textbf{Application Conditions}
 
+Transformation rules for some approaches supports application conditions. An
+application condition provides an extra property that specifies a filter for
+search patterns. Application conditions are handled differently amongst the
+model transformation approaches. Model transformation approaches that implements
+the QVT standard often use control flow statements like the \textit{when-clause}
+or the \textit{if-then-statement} that must be true in order for a
+transformation rule to be applied. Model transformations approaches that is
+based on category theory and graph transformations on the other hand specifies
+application conditions as graph structures that either requires or forbids this
+specific graph structure in a located matching graph structure. 
+
 \textbf{Intermediate Structures}
 
 Some model transformation approaches requires intermediate structures when
@@ -476,10 +488,17 @@ We can then apply changes to a transformation rule with these provided
 parameters and at the same time use the same data types in other
 transformation rules.
 
-\textbf{Reflection}
+\textbf{Reflection \& Aspect}
 
-\textbf{Aspect}
-
+Some model transformation environments allows for a reflective look up of target
+modeling elements for source modeling elements at runtime when target modeling
+elements are already transformed. For example a lazy rule in ATL allows for
+explicitly iterate over already transformed modeling elements and apply some
+reflective operation on the target modeling elements. Transformation rules that
+utilize an aspect-oriented extension are rules that can affect other rules when
+applied. Both of these categories can be used to express concern cross-cut other
+transformation rules. This means transformation rules that can directly affect
+other transformation rules. 
 
 
 \subsection{Rule Application Control}
@@ -936,7 +955,13 @@ condition\cite{habel1996graph} (NAC).
 
 The figure contains three graphs and three graphs morphisms. Graph L
 represents the LHS graph, graph G represents the graph that should be
-translated while graph N represents a negative application condition. 
+translated while graph N represents a negative application condition. A negative
+application condition specifies that a certain graph structure should not be
+included in the located match. A positive application condition on the other
+hand requires that a certain graph structure is part of a located matching graph
+pattern. Note that a negative and positive application condition is basically
+very similarly represented but implemented differently. For example the double
+pushout technique for graph transformations in figure~\ref{fig:DPO_NAC}. 
 
 \begin{figure}[H]
 	\centering
@@ -967,7 +992,13 @@ translated while graph N represents a negative application condition.
 	\label{fig:DPO_NAC}
 \end{figure}
 
-
+Before the double pushout can be used, there has to be located a matching graph
+pattern in G. The graph L will locate a matching pattern m\textsubscript{L} in
+G, then check if there exist an application condition N, whether or not this application
+condition requires or forbids a special graph structure there will be a graph
+morphism n\textsubscript{G} that states if a match is valid. This application
+condition filters the searching of graph patterns in G each time a
+transformation rule is applied. 
 
 %\section{Hybrid based approach to Model Transformations}
 

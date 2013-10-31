@@ -16,7 +16,7 @@
 
 The DPF Workbench already includes support for model transformations. However,
 the framework does not have support for transforming a model between different
-modeling langauges. One of DPF's strengths is that it is possible to formally
+modeling languages. One of DPF's strengths is that it is possible to formally
 define a Domain Specific Modeling Language by defining multiple levels of
 meta-models. What we want to do is to include tool support for the DPF Workbench
 that change a model from one meta-modeling hierarchy to another meta-modeling
@@ -104,9 +104,9 @@ challenging. Because in the DPF Workbench a specification model
 $\spec{S}$\textsubscript{n} is created as an instance from a specification model
 $\spec{S}$\textsubscript{n+1}. We can describe these specification models as
 ontological meta-models, since these models describes a domain specific modeling
-language through an arbitrary hierarchy of models. This is where we have to find
-a work around for our solution, because model transformation environments that
-utilize Ecore based models does not allow Ecore instance models to represent
+language through an arbitrary hierarchy of models. We have to find
+a way around this for our solution, because model transformation environments
+that utilize Ecore based models does not allow Ecore instance models to represent
 abstract syntax. This could serve a potential problem when integrating the model
 transformation environment with DPF. Modeling elements that DPF provides are
 created as nodes and arrows from an Ecore based meta-model, but are at the same
@@ -187,8 +187,8 @@ transformation systems that provide a graphical editor for creating
 and modifying graphs. The editor provides a graphical user-interface with
 several visual editors for applying the principles of graph transformations. AGG
 also provide an interpreter and a set of validation tools. The system is an
-ongoing research activity of the graph grammar group at TU Berlin and started
-in 1997.
+ongoing research activity of the graph grammar group at the Technical University
+Berlin and started in 1997.
 
 \subsubsection*{Graphical Editor}
 The graphical editor of AGG, represented in figure~\ref{fig:AGGScreen}, has
@@ -768,7 +768,7 @@ describe transformation rules in more details in the next section.
 
 The last element in a ATL module is a set of helper functions. This collection
 of helpers can be compared to Java methods. These helper methods can be used to
-make the transformation rules easier to read for example.
+make the transformation rules easier to read.
 
 \subsubsection*{Transformation Rules}
 
@@ -916,7 +916,7 @@ with the DPF should be possible, since Henshin applies model transformations
 based on Ecore models and DPF models are basically represented as Ecore
 models. This presents a problem with integrating AGG with DPF. In EMF the root
 of all modeling objects is an EObject that has no references to a Java Object. 
-AGG could also be integrated with DPF, but the problem is that this would
+AGG could be integrated with DPF, but the problem is that this would
 require an extensive amount of manual coding. We could use AGG as a general
 purpose graph transformation engine in a java applications. We would have to
 create the source model as an AGG graph and a type graph based on the source and

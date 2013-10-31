@@ -80,7 +80,7 @@ layer of abstraction.
 	\centering
 	\includegraphics[scale=0.7]{./Figures/simple_modeling_formalism.png}
 	\caption[Simplified joined specification]
-	{A simplified joined specification that transformation rules refers to.}
+	{A simplified joined modeling formalism that transformation rules refers to.}
 	\label{fig:simple_modeling_formalism}
 \end{figure}
 
@@ -90,13 +90,11 @@ from some abstraction layers. The joined specification is created independent of
 the two abstraction layers and is referred to when creating transformation rules
 in the DPF Transformation Editor. 
 
-The result of this thesis is in many cases a
-synthesis.?????????????????????????????
-
-
 %----------------------------------------------------------------------------------------
 % SECTION 2
 %----------------------------------------------------------------------------------------
+
+\section{Test case with the DPF Transformation Editor}
 
 \section{Comparison with other editor tools}
 
@@ -105,13 +103,95 @@ transformation environments that we worked with including the DPF Transformation
 Editor. In our solution we expanded the Henshin model transformation environment
 to be able to apply model transformations to a multi-layered meta-modeling
 environment like we discussed in section~\ref{evaluate_solution}. It is natural
-that the Transformation Editor will have similarities to the Henshin environment
+that the DPF Transformation Editor will have similarities to the Henshin environment
 since our solutions builds heavily on this environment. But we can still
 compare our solution with both Henshin and other transformation tools.
- 
+Table~\ref{tab:comparing} provides an overview of the DPF Transformation Editor
+and the three other model transformation environments that we compared in
+section~\ref{tools}. We will consider only some of these elements since some of
+them will be explained in later subsections. 
+
+\begin{table}[ht]
+\renewcommand*\arraystretch{1.2}
+\centering
+\begin{tabular}{| c | c | c | c | c |}
+\hline
+& AGG & Henshin & ATL & DPF Transform \\
+\hline
+Endogenous transformation & $\surd$ & $\surd$ & $\surd$ & \textcolor{red}{\textbf{---}}\\
+
+Exogenous transformation & $\surd$ & $\surd$ & $\surd$ & $\surd$\\
+
+Input Elements & 1\ldots n & 1\ldots n & 1\ldots n & 1\ldots n\\
+
+Output Elements & 1\ldots n & 1\ldots n & 1\ldots n & 1\ldots n\\
+
+Graphical syntax & $\surd$ & $\surd$ & \textcolor{red}{\textbf{---}} & $\surd$
+\\
+
+Meta-modeling layers & 2 & 2 & 2 & $\infty$ \\
+
+Separate meta-models & \textcolor{red}{\textbf{---}} &  $\surd$ &  $\surd$ &  $\surd$ \\
+
+Integrated with EMF & \textcolor{red}{\textbf{---}} & $\surd$ & $\surd$ & $\surd$ \\ 
+
+Supports Java & $\surd$ & $\surd$ & $\surd$ & $\surd$ \\ 
+
+Model transformation file size & 200 kb & 80 kb & 4 kb & 265 kb\\
+
+In-place/out-place transformations & in-place &
+in-place & out-place  & out-place \\
+
+\hline
+\end{tabular}
+\caption{Comparing model transformation tools.}
+\label{tab:comparing}
+\end{table} 
+
+All four tools supports for an arbitrary number of both input and
+output elements. This means that if the tool takes a number of input models, then it
+produces the same number of target models. Take an ATL module as an example. It
+accepts a fixed number of models as input, and returns a fixed number of target
+models. This means that an ATL module can not generate an unknown number of
+target models. If there is one input model, then there will be one output model
+that conforms to a target meta-model.
+
+Both AGG, DPF Transformation Editor and Henshin provides a graphical syntax to
+specify the transformation rules that is potentially intuitive. This is not the
+case for ATL, which uses a textual based approach. For ATL the users have to
+implement transformation rules in programming code.
+
+The tools can be integrated with Java. For ATL the files containing the
+transformation rules have to be created before they can be used in a java
+application. In ATL this has to be a ``atl'' file containing a ATL module that
+has a list of rules. This is because the ATL transformation engine relies on a
+file extension with the name ``atl''. Both Henshin and AGG provides an API that
+can be used to create transformation rules, application conditions, type graph,
+source graph, etc. The DPF Transformation Editor is quite different since it
+utilize the convenience methods that the Henshin API provides. It is possible to
+specify transformation rules in the DPF Transformation Editor by implementation
+code, but the method to generate Henshin rules requires a single production that
+has a left, a right and a common subgraph. We explained what a production was in
+section~\ref{Chapter5}.
+
+We can also se that the size of the transformation rules differ amongst the
+tools. The examples that are compared are different exogenous model
+transformations. This means that a model transformation for all tools
+includes a source and target meta-model and a file containing the transformation
+rules. By reading the table we can see that an exogenous model transformation in
+the DPF Transformation Editor uses 265 kb of the storage space. This number is
+so unbelievable small that it will never be noticed in any modern computers.
+But there is one interesting thing however, that the transformation rules
+defined in ATL is over 60 times smaller than the DPF Transformation Editor.
+What this basically means is that creating model transformations through the
+use of textual concrete syntax is less space consuming than through the use of
+graphical syntax. This is only logical since the graphical syntax based
+transformation languages requires more storage space simply because they use
+graphical elements to represent the transformation rules.
+
 \subsection{Editing Transformation Rules}
 
-In the Transformation Editor we present the transformation rules in a list of
+In the DPF Transformation Editor we present the transformation rules in a list of
 transformation rules. Each transformation rule is extended with a simplified
 version of the DPF Model Editor and a toolbar that contains modeling elements
 from a source and a target meta-model. With these modeling elements we can
@@ -153,48 +233,12 @@ transformation rules and how to work with the included meta-models, it is a
 good framework for working with model transformations. However, if a user do
 not fully understand the Object Constraint Language (OCL), ATL is rather a hard
 tool to work with. Because OCL has a very leveled learning curve, since it is a
-declarative programming language. Where we are more or less used to work with
+declarative programming language. We are more confident in working with
 imperative programming languages during our studies here in Bergen. ATL
 provides an editor where the users can use OCL to create and modify
 transformation rules. ATL has a very strict way of writing transformation
 rules, since the tool uses a textual based approach to create transformation
 rules. The user has to use the predefined stereotypes defined by ATL.
-
-
-\begin{table}[ht]
-\renewcommand*\arraystretch{1.2}
-\centering
-\begin{tabular}{| c | c | c | c | c |}
-\hline
-& AGG & Henshin & ATL & DPF Transform \\
-\hline
-Endogenous transformation & $\surd$ & $\surd$ & $\surd$ & \textcolor{red}{\textbf{---}}\\
-
-Exogenous transformation & $\surd$ & $\surd$ & $\surd$ & $\surd$\\
-
-Input Elements & 1\ldots n & 1\ldots n & 1\ldots n & 1\ldots n\\
-
-Output Elements & 1\ldots n & 1\ldots n & 1\ldots n & 1\ldots n\\
-
-Graphical syntax & $\surd$ & $\surd$ & \textcolor{red}{\textbf{---}} & $\surd$
-\\
-
-Meta-modeling layers & 2 & 2 & 2 & $\infty$ \\
-
-Separate meta-models & \textcolor{red}{\textbf{---}} &  $\surd$ &  $\surd$ &  $\surd$ \\
-
-Integrated with EMF & \textcolor{red}{\textbf{---}} & $\surd$ & $\surd$ & $\surd$ \\ 
-
-Model transformation file size & 200 kb & 80 kb & 4 kb & 265 kb\\
-
-In-place/out-place transformations & in-place &
-in-place & out-place  & out-place \\
-
-\hline
-\end{tabular}
-\caption{Comparing model transformation tools.}
-\label{tab:comparing}
-\end{table} 
 
 \subsection{Meta-modeling}
 
@@ -305,8 +349,8 @@ and multiple underlying rules that are matched as often as possible. It is
 clear that Henshin provides the users with quite an variety of controlling the
 execution of rules.
 
-The Transformation Editor does not provide the user with any control regarding
-how to locate matches and how transformation rules are applied. We generate a
+The DPF Transformation Editor does not provide the user with any control
+regarding how to locate matches and how transformation rules are applied. We generate a
 Henshin module that contains a set of transformation rules. We can manipulate
 the execution order of these transformation rules, but the algorithm that
 Henshin uses to locate matching patterns in a source model is part of the
@@ -315,7 +359,7 @@ force the transformation rules to be executed in a given order. This version of
 the Editor has no support defining a schedule mechanism that specifies how the
 rules are applied and will for now only run the transformation rules
 sequentially. We can decide the priority of the rules by changing the order
-that they appear in the Transformation Editor, but this list will apply rules in
+that they appear in the DPF Transformation Editor, but this list will apply rules in
 sequential order. Most of the transformation tools open to the public provides
 solutions to manipulate the scheduling mechanism, for example ATL provides the
 users the possibility to define rules as lazy rules and control how they are
@@ -335,7 +379,7 @@ a target DPF model that has a list of nodes and arrows that conform to the
 highest level of abstraction in DPF. The highest level of abstraction in DPF
 is always a node and an arrow, that conforms to itself. So while a 2 layered
 meta-modeling transformation tool would find matches in a source model that
-correspond to the meta-model, the Transformation Editor would find matches to
+correspond to the meta-model, the DPF Transformation Editor would find matches to
 the linguistic meta-model and not the ontological meta-model at some level of
 abstraction. One could state that an application condition for a 2 layered
 meta-modeling transformation tool is independent of the transformation rules
@@ -349,13 +393,13 @@ reuse these modules if applicable. This is convenient for
 users of ATL since this means that all created rules can be used to form new
 transformation rules. Henshin provides the user with the possibility to nest or 
 reuse rules in different scheduling mechanism or transformation units
-as we discussed in the last paragraph. But Henshin and AGG does however not
-provide the user with the possibility to reuse rules in the creation of new
-rules as ATL does. 
+as we discussed in the last paragraph. But Henshin and therefore the DPF
+Transformation Editor does however not provide the user with the possibility to
+reuse rules in the creation of new rules like in ATL. 
 
 \subsection{Source - Target Relationship}
 
-The Transformation Editor explicitly performs an out-place model
+The DPF Transformation Editor explicitly performs an out-place model
 transformation. This means that we create a target model that is independent of
 the source model. For all matching modeling elements we locate in the source
 model we create in a target model. We then make sure to specify all the nodes
@@ -393,18 +437,16 @@ in both directions is not a simple task. Because then the tool will have to
 provide arbitrary switching between source and target models, and therefore the
 pattern and replacement graphs will have to be changed when they are switched.
 This means that the LHS and the RHS part of a transformation rules have to be
-switched out. This is not provided in the Transformation Editor. One could do
+switched out. This is not provided in the DPF Transformation Editor. One could do
 this in two steps, to first locate matches in a source model and produce a
 target model and then do another model transformation where the source and
 target part is switched. Both Henshin and AGG does not provide this since the
 corresponding RHS and LHS graphs are created according to the abstract syntax of
 the source and target model. 
 
-
-
-Its clear to see that all three tools are unidirectional, since they can be
-executed in one direction only. And that is to compute a target model from a
-source model. The three tools requires two model transformations to be able to
+Its obvious that all four tools are unidirectional, since they can be
+executed in one direction only. That is to compute a target model from a
+source model. The tools requires two model transformations to be able to
 transform in multiple directions. Where the source and target model and
 meta-models switch places. But this is not how multidirectional transformations
 work. A multidirectional transformation can execute in both direction when
@@ -412,114 +454,38 @@ performing a model transformation.
 
 \subsection{Tracing}
 
-Henshin utilize the generic Trace model to execute an exogenous model
-transformation. 
-
-Tracing in the three tools provides a unique link
-between a source and a target. The source represents the matched part while the
-target represents the generated or replacement part. All three tools provides
-dedicated support for traceability. But these traceable links are handled
-differently amongst the tools. For ATL the trace model works as a storage
-location and automatically creates trace links between source and target
-elements. These traceable links are internally used by the ATL
-transformation engine when executing a model transformation. But we explained in
-section 3 that these trace links can be explicitly captured by creating
-transformation rules that generates a collection of trace links in a
-separate trace file. Henshin does this differently, because tracing is
-controlled by the users. Henshin has a dedicated Trace Model that can be
-imported to the Henshin module as an Ecore model. The trace model in Henshin
-are automatically created when executing rules, but the user have to manually
-assign the traceable links inside the transformation rules. The traces in
-Henshin are translated when a rule is executed, and therefore the user has to
-be aware of this when using these traces in other rules, since this
-could lead to the creation of multiple traceable links between the same
-elements. Tracing in AGG plays a vital role to executing model transformations.
-Traceable elements are created similar to any other elements when initializing
-the type graph. With traceable links between the source and the
-target elements, AGG can be certain that elements are transformed. The traceable
-link in AGG ensures that a match in the pattern graph is only matched once. If we do
-not create a traceable link between source and target elements in AGG, the
-rules will be applied an endless amount of times. Tracing amongst the three
-different tools are different in such a way that it is required for exogenous
-model transformations for AGG and ATL. In ATL the traceable links are created
-automatically and cannot be controlled by the users, while in AGG the traceable
-links are created as bridges between source and target elements. For Henshin
-the Trace model is optional. 
-
-\begin{table}[ht]
-\centering
-\begin{tabular}{| c | c | c | c |}
-\hline
- & AGG & Henshin & ATL \\
-\hline
-Endogenous transformation & \cellcolor{green!25}Yes &
-\cellcolor{green!25}Yes & \cellcolor{green!25}Yes \\
-
-Exogenous transformation & \cellcolor{green!25}Yes &
-\cellcolor{green!25}Yes & \cellcolor{green!25}Yes \\
-
-Input Elements & 1\ldots n & 1\ldots n & 1\ldots n\\
-Output Elements & 1\ldots n & 1\ldots n & 1\ldots n\\
-Graphical editor &\cellcolor{green!25}Yes &
-\cellcolor{green!25}Yes &\cellcolor{red!25}No  \\
-Integrated with Java & \cellcolor{green!25}Yes &
-\cellcolor{green!25}Yes & \cellcolor{green!25}Yes \\
-Separate meta-models & \cellcolor{red!25}No &
-\cellcolor{green!25}Yes & \cellcolor{green!25}Yes \\
-Integrated with EMF & \cellcolor{red!25}No &
-\cellcolor{green!25}Yes & \cellcolor{green!25}Yes \\
-Model transformation file size &200 kb &80 kb &4 kb \\
-In-place/out-place model transformation &in-place &
-in-place &out-place \\
-\hline
-
-\end{tabular}
-\caption [Comparing model transformation tools]
-{Comparing model transformation tools.}
-\end{table}
-
-\newpage
-
-
-
-
-From the table above, we can see that all the three tools have support
-for both endogenous and exogenous model transformations. 
-
-All the three tools has support for an arbitrary number of both input and
-output elements. This means that if the tool takes a number of input models, then it
-produces the same number of target models. Take an ATL module as an example. It
-accepts a fixed number of models as input, and returns a fixed number of target
-models. This means that an ATL module can not generate an unknown number of
-target models. If there is one input model, then there will be one output model
-that conforms to a target meta-model.
-
-Both AGG and Henshin provides a graphical editor, where the users can create and
-modify transformation rules. This makes them both very intuitive for the users.
-This is not the case for ATL, which uses a textual based approach. For ATL the
-users have to implement transformation rules in programming code.
-
-All three tools can be integrated with Java. For Henshin and ATL the files
-containing the transformation rules have to be created before they can be used
-in a java application. In ATL this has to be a ``atl'' file containing a ATL
-module that has a list of rules. This is because the ATL transformation engine
-relies on a file extension with the name ``atl''.
-
-
-
-We can also se that the size of the transformation rules is different
-between the three tools. A classic example of an exogenous transformation is
-translating from a class diagram to a relational database, that has more or less become a
-benchmark for model to model transformations. For this example we can see that
-AGG uses 200 kb of the storage space. This number is so unbelievable small
-that it will never be noticed in any modern computers. But there is one
-interesting thing however, and that is that the transformation rules defined in
-ATL is 50 times smaller than AGG. What this basically means is that creating model
-transformations through the use of textual concrete syntax is less space
-consuming than through the use of graphical syntax. This is only logical since
-the graphical syntax based transformation languages requires more storage
-space simply because they use graphical elements to represent the transformation
-rules.
+Tracing in the four tools provides an unique link between a source and a target.
+The source represents the matched part while the target represents the
+generated or replacement part. All three tools provides dedicated support for
+traceability. But these traceable links are handled differently amongst the
+tools. For ATL the trace model works as a storage location and automatically
+creates trace links between source and target elements. These traceable links
+are internally used by the ATL transformation engine when executing a model
+transformation. But we explained in section 3 that these trace links can be
+explicitly captured by creating transformation rules that generates a
+collection of trace links in a separate trace file. Henshin does this
+differently, because tracing is controlled by the users. Henshin has a
+dedicated Trace Model that can be imported to the Henshin module as an Ecore
+model. The trace model in Henshin are automatically created when executing
+rules, but the user have to manually assign the traceable links inside the
+transformation rules. The traces in Henshin are translated when a rule is
+executed, and therefore the user has to be aware of this when using these
+traces in other rules, since this could lead to the creation of multiple
+traceable links between the same elements. The DPF Transformation Editor defines
+a traceable link with source and target modeling elements differently amongst
+nodes and arrows. For DPF models nodes and arrows are defined by the EClass
+modeling element that Ecore provides. Tracing in AGG plays a vital role to
+executing model transformations. Traceable elements are created similar to any
+other elements when initializing the type graph. With traceable links between
+the source and the target elements, AGG can be certain that elements are
+transformed. The traceable link in AGG ensures that a match in the pattern
+graph is only matched once. If we do not create a traceable link between source
+and target elements in AGG, the rules will be applied an endless amount of
+times. Tracing amongst the three different tools are different in such a way
+that it is required for exogenous model transformations for AGG and ATL. In ATL
+the traceable links are created automatically and cannot be controlled by the
+users, while in AGG the traceable links are created as bridges between source
+and target elements. For Henshin the Trace model is optional.
 
 \subsection{Translating the instance model}
 
@@ -528,56 +494,19 @@ model transformation, a new model instance is created for the target model. This
 means that the source model is independent of the target model. Where Henshin
 and AGG performs in-place model to model transformations. This means that they
 both operate on an instance model of the source meta-model, and translates
-inside this instance model. All three approaches can however give the same
-result. Inn AGG and Henshin the users just need to make sure to delete unwanted
-elements from the translated host graph. On the other side, for ATL this is not
-needed, since both the source and target model are kept as separated files. This
-is also possible to achieve with Henshin. If the user programmatically invoke
-the Henshin Interpreter the target model can be forced to be saved in a newly
+inside this instance model. On the other side, for ATL this is not needed, since
+both the source and target model are kept as separated files. This is also
+possible to achieve with Henshin. If the user programmatically invoke the
+Henshin Interpreter the target model can be forced to be saved in a newly
 created file. Henshin will still do an in-place model transformation, but it is
 possible to save the translated object in a separate file. It is then possible
 to perform an in-place transformation in Henshin while saving the target
-instance model in a separate file. 
+instance model in a separate file. The DPF Transformation Editor utilize the
+strengths of Henshin to perform an in-place model transformation of a source
+model and explicitly creates a target model based on the results of this source
+model. All four approaches can however give the same result. Inn AGG and Henshin
+the users just need to make sure to delete unwanted elements from the
+translated host graph. This is different in the DPF Transformation Editor
+since we produce a target graph structure for each matching graph structure and
+specifies the target graph structures in a separate target model. 
 
-\section{Conclusion}
-
-Now that we have extended the DPF workbench environment with an early version
-that supports model to model transformations.
-
-We have experienced that after working with the three tools that in the initial
-learning phase both AGG and Henshin seems to be more intuitive to use because of the
-graphical editor they provide. Because of the extensive language OCL, ATL
-requires more hours to understand compared to AGG and Henshin. Its important to
-take into consideration that I have read through papers that explain the
-principles behind graph transformations. This makes it easier to understand how
-AGG and Henshin introduces the users to model transformation, even though both
-tools have different solutions to how graph transformation is implemented. But
-learning a new programming language requires time. And therefore a graphical
-solution might feel more intuitive then a textual solution. However I also know
-that if you master a programming language, then writing code is more productive
-compared to using a graphical editor. Therefore if the user master both the ATL
-transformation language and the OCL programming language then it might be a
-productive way of creating transformation rules. All these three tools have gone
-through several iterations and releases and also have received feedback from the
-user community. This only reassure me that all these three tools are viable
-choices for model transformations. Most of the hours have been spent on
-Henshin's working with the graphical editor and programmatically
-invoking the Henshin interpreter. The graphical editor provides a clear
-process of defining new transformation rules once I understood how the graph
-transformation principles worked for Henshin. The Henshin Interpreter has
-an extensive API that can be used to programmatically translate the
-models. The interpreter still requires a set of Henshin rules to be able to
-initiate a model transformation, but this means that the user can create its own
-graphical editor and integrate this editor with Henshin to manipulate models.
-Together with the Henshin Model Editor, the graphical editor and the Henshin
-Interpreter Henshin provides a very viable transformation language for model
-
-
-
-\section{Future Work}
-
-\subsection{Endogenous Model Transformations}
-
-\subsection{Graphical syntax representation of Transformed models}
-
-\subsection{Making the Model Transformation constraint aware}
