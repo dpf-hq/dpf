@@ -14,15 +14,14 @@
 \section{Problem Specification}
 \label{problem}
 
-The DPF Workbench already includes support for model transformations. However,
-the framework does not have support for transforming a model between different
-modeling languages. One of DPF's strengths is that it is possible to formally
-define a Domain Specific Modeling Language by defining multiple levels of
-meta-models. What we want to do is to include tool support for the DPF Workbench
-that change a model from one meta-modeling hierarchy to another meta-modeling
-hierarchy regardless of the source models abstraction layer. This leads to the
-main question for this thesis.
-
+The DPF Workbench already includes support for model transformations inn form
+of code generation. However, the environment does not include support for
+transforming a model between different modeling languages. One of DPF's
+strengths is that it is possible to formally define a Domain Specific Modeling
+Language by defining multiple levels of meta-models. The main goal of this
+thesis is to extend the DPF Workbench with exogenous model to model
+transformations. This leads to the main question for this thesis.
+ 
 \begin{itemize}
   
   \item Can we include tool support for model to model transformations for the
@@ -32,31 +31,31 @@ main question for this thesis.
 \end{itemize}
 
 The solution to this is not written in stone, and there are several approaches
-to how we can solve this specific problem. The tool requires some implementation
-but there are several existing approaches available that provides model
+to how we can solve this specific problem. The tool requires some manual
+implementation but there are several existing approaches available that provides model
 transformations as we mentioned in section~\ref{tooling}. DPF specifications are
 basically graphs, more specific, they are directed graphs. This means that a
-DPF specification consist of a set of nodes, arrows and two functions that
-preserves the source and target node. This makes a graph based approach to model
-transformations convenient, but we should also consider other approaches to
-model transformations. 
+DPF specification consist of a set of nodes, arrows and two functions
+that specifies source and target node of the edges. This makes a graph based
+approach to model transformations convenient, but we should also consider other
+approaches to model transformations.
 
 \begin{itemize}
   
-  \item Can we integrate an existing model transformation environment with the
-  Diagram Predicate Framework Workbench?
+  \item Can we integrate an existing model transformation environment with an
+  editing tool for the Diagram Predicate Framework Workbench?
 
 \end{itemize}
 
 We want to introduce the DPF Workbench with tool support that includes model
-transformations. This has already been successfully introduced to the workbench
+transformations. This has already been partially introduced to the workbench
 environment in Anders Sandven\cite{Sandven_thesis}'s master thesis. In his
 thesis he describe how he integrated a M2T transformation environment to the DPF
 Workbench. He integrated a model transformation environment, Xpand\cite{Xpand}
 that provides a template based approach to Model2Text transformation. For this
 thesis however, we want to verify that we can successfully introduce a model
 transformation environment that supports translation between different DSML's.
-But first we have to find a applicable environment that can be integrated with
+But first we have to find an applicable environment that can be integrated with
 the DPF Workbench. In section~\ref{tools} we will explore three different
 model transformation tools that supports both exogenous and endogenous model
 transformations. One aspect of model transformations that is required to
@@ -68,7 +67,7 @@ specify a structural pattern that is used to locate matches in a source model.
 \begin{itemize}  
 
   \item How can we include the abstract syntax of a modeling language that is
-  specified to a corresponding linguistic meta-model and an corresponding 
+  specified by a corresponding linguistic meta-model and a corresponding 
   ontological meta-model for a single transformation rule.
 
 \end{itemize}
@@ -81,11 +80,11 @@ without a concrete real-world mapping. Ontological metamodeling uses metamodels
 to describe domain-specific hierarchies"}\cite{gitzel2007ontological}. As it is,
 the MOF 2.4.1 standard does not allow for more than a four layered
 meta-modeling. DPF has an Ecore specified meta-model that describes the
-language syntax and potentially unlimited layers of meta-models that describes the
-domain-specific hierarchy. Figure~\ref{fig:core_metamodel} gives a
-representation on how specifications are related and regardless of abstraction
-layer every specification $\spec{S}$\textsubscript{1\ldots n} conforms to one
-common meta-model.
+language syntax and a meta-modeling hierarchy that together with the language
+syntax defines the abstract syntax for specifications located in lower
+abstraction layers. Figure~\ref{fig:core_metamodel} provides a representation on how
+specifications are related both to a linguistic and an ontological meta-model
+regardless of abstraction layer.
 
 \begin{figure}[H]
 	\centering
@@ -95,31 +94,30 @@ common meta-model.
 	\label{fig:core_metamodel}
 \end{figure}
 
-This model is the linguistic meta-model that DPF provides to describe the
-abstract syntax for every single specification created by the DPF Model Editor.
+The ``Metamodel.ecore'' represents the linguistic meta-model that DPF provides
+to describe the language syntax for every single specification created by the DPF
+Model Editor.
 However, other than consisting of an underlying graph and a set of constraints,
 a DPF specification $\spec{S}$\textsubscript{n} is also an instance of another
 specification$\spec{S}$\textsubscript{n+1}, and this is where it gets
-challenging. Because in the DPF Workbench a specification model
-$\spec{S}$\textsubscript{n} is created as an instance from a specification model
-$\spec{S}$\textsubscript{n+1}. We can describe these specification models as
+challenging. We can describe these specification models as
 ontological meta-models, since these models describes a domain specific modeling
 language through an arbitrary hierarchy of models. We have to find
 a way around this for our solution, because model transformation environments
 that utilize Ecore based models does not allow Ecore instance models to represent
-abstract syntax. This could serve a potential problem when integrating the model
+abstract syntax. This could serve a potential problem when integrating a model
 transformation environment with DPF. Modeling elements that DPF provides are
 created as nodes and arrows from an Ecore based meta-model, but are at the same
 time created according to modeling elements one abstraction layer higher.
 
 We will discuss how we address and approach these problems in the next
-chapter. But first we will look at some related work to model transformations.
+chapter. But first we will look at some related work on model transformations.
 We have considered the tools, The Attributed Graph Grammar
 System\cite{Taentzer2004} (AGG) and Henshin\cite{Henshin_2010} that provides a
 graph based approach to model transformation. We have also worked with ATLAS
 Transformation Language\cite{ATL_USERMAN} (ATL), that provides a mixture of
 model transformation techniques and is therefore often referred to as a hybrid
-approach to model transformation. Through working with these three tools we can
+approach to model transformation. By analysing these three tools we want to
 find a model transformation environment that is best suited to be integrated
 with the DPF Workbench.
 
@@ -128,62 +126,64 @@ with the DPF Workbench.
 
 These model transformation tools use different approaches to how model
 transformations are applied. We have looked at tools that implement classical
-rewriting steps that utilizes the theory behind graph transformations and tools
-that does this differently. For this survey we have tackled a specific
-exogenous model transformation example, that translates an instance model of
-UML's activity diagram to an instance model of a Petri
+rewriting steps that utilizes the theory behind graph transformations and a tool
+that employs a hybrid approach to model transformations. For this survey we have
+tackled a specific exogenous model transformation example that translates an
+instance model of UML's activity diagram to an instance model of a Petri
 Nets\cite{jensen2007coloured} model. The next two figures provides the abstract
 syntax of the two corresponding languages. These figures are represented as
 Ecore models, that is EMF's interpretation of OMG's MOF. It is convenient to
-represent these meta-model as Ecore models since both Henshin and ATL specify
-transformation rules according to such models. First we will quickly describe
-the corresponding abstract syntax for the two models before we consider the
-first model transformation tool.
+represent these meta-models as Ecore models since both Henshin and ATL specify
+transformation rules according to such models. 
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.7]{./Figures/ActivityMetamodel.png}
 	\caption[Abstract syntax of the source model]
-	{Abstract syntax of the source model for this test case.}
+	{Abstract syntax that describes the source model.}
 	\label{fig:activity_metamodel}
 \end{figure}
 
-The abstract syntax for the source model has an arbitrary number of
-activities and next elements. Figure~\ref{fig:activity_metamodel} describes that an activity
-element can have a name and a kind. The next element can have an inscription
-and provides the property to either begin or end activities. The collection of
-activities and next elements are provided by a specific activity diagram that.
+Figure~\ref{fig:activity_metamodel} represents a simplified version of a
+modeling language that is provided by the general purpose modeling language UML.
+The abstract syntax for the source model has an arbitrary number of activities
+and next modeling elements. An activity element can have a name and a kind while
+a next element can have an inscription and can either begin or end activities. The
+collection of activities and next elements are provided by a specific activity
+diagram.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.7]{./Figures/PetriNetsMetamodel.png}
 	\caption[Abstract syntax of the target model]
-	{Abstract syntax of the target model for this test case.}
+	{Abstract syntax that describes the target model.}
 	\label{fig:petrinet_metamodel}
 \end{figure}
 
 The abstract syntax for the target model consist of places and transitions. A
 Petri net instance must have a place connected to a transition or the other way
-around, but a Petri net model can never have two of the same types connected.
-For this test case we defined two nodes that specify if a connection is between
-a place and a transition or a transition and a place. Note that these two
-meta-models are a simplified version of the abstract syntax. For this test case
-we are more concerned with how the different model transformation environments
-refers to the abstract syntax for the transformation rules. For each tool, if it
-is either a graphical editor or a textual editor, we discuss how to edit
-transformation rules, which is relevant for how we want to design a
-transformation tool for the DPF Workbench. We then consider how the different
-tools defines the abstract syntax for both the source and target model. Next we
-specify how transformation rules are created and if the tool provides any
-application control for these rules. We finish up by mentioning how the tool
-applies this model transformation. In section~\ref{tool_choice} we consider the
-model transformation environment that can be integrated and provides a viable
-model transformation technology that works with the DPF Workbench.
+around, but a Petri net model can never have two of the same modeling types
+connected. For this test case we defined two nodes that specify if a connection
+is between a place and a transition or a transition and a place. 
+
+Note that these two meta-models are a simplified version of the abstract syntax
+for the corresponding modeling languages. For this test case we are more
+concerned with how the different model transformation environments refers to and utilizes the
+abstract syntax for defining transformation rules. For each tool regardless if
+the editor provides a graphical or textual syntax we discuss how to edit transformation
+rules, which is relevant for how we want to design a transformation tool for
+the DPF Workbench. We then consider how the different tools defines the
+abstract syntax for both the source and target model. Next we specify how
+transformation rules are created and if the tool provides any application
+control for these rules. We finish up by mentioning how the different tools
+applies a set ot transformation rules. In section~\ref{tool_choice} we consider
+the model transformation environment that provides a viable model transformation
+technology that could be integrated within the DPF Workbench.
 
 \subsection{The Attributed Graph Grammar System}
 
 AGG is a general development environment for algebraic graph
-transformation systems that provide a graphical editor for creating
+transformation systems that provides a graphical editor for creating
 and modifying graphs. The editor provides a graphical user-interface with
 several visual editors for applying the principles of graph transformations. AGG
 also provide an interpreter and a set of validation tools. The system is an
@@ -194,39 +194,37 @@ Berlin and started in 1997.
 The graphical editor of AGG, represented in figure~\ref{fig:AGGScreen}, has
 several functions to help the user to define model transformations. In the top
 left corner of the graphical user-interface is a tree based editor that provides
-a set of transformation rules, type graphs, and host graphs. The host graph
+a set of transformation rules, type graphs, and source graphs. The source graph
 represents both the source and target model in a model transformation, and the
 type graph represents the abstract syntax for the modeling languages. The
-source-target relationship of the host graph is one and the same, but we will
-discuss this in future sections, but for the purpose of this thesis we will
-refer to the host graph as the source graph.
+source-target relationship of a source graph is one and the same, but we will
+discuss this in future sections. For the purpose of this thesis we will
+refer to the host graph as the source graph, since AGG call these graphs for
+host graphs.
 
 Each transformation rule has two visual editors, representing the left
-(LHS) and the right hand side (RHS), or the pattern and the replacement graph.
-In the tree based editor it is also possible to attach application conditions to
-transformation rules. This is convenient if the user wants to specify
-constraints that restricts the pattern or replacement graph to be applied
-accordingly to the specific application condition.
+(LHS) and the right hand side (RHS), also referred to as the pattern and the
+replacement graph. The tree based editor also provides the possibility to attach
+application conditions to transformation rules. This is convenient if the user
+wants to specify constraints that restricts the pattern or replacement graph to
+be applied accordingly to a specific application condition.
 
-Type graphs are described more in depths in the next section, but roughly said,
-the type graph defines modeling elements that can be used to create the source
-graph and is similar to how Ecore defines meta-models for EMF. The users can
-now create model instances that represents the concrete syntax of a specific
-modeling language. This representation of the abstract syntax are represented
-in a source and corresponds to its concurrent type graph.
+Type graphs are described more in depths in the next section, but basically
+the type graph defines the abstract syntax for the source and the target model.
+The users can now create model instances that represents the concrete syntax of
+a specific modeling language. This representation of the abstract syntax are
+represented in a source graph and conforms to a corresponding type graph.
 
-The transformation rules can be extended with Java expressions. This means that
-the users can use Java primitives such as strings, integers or float numbers to
+The transformation rules can also be extended with Java expressions. This means
+that the users can use Java primitives such as strings, integers or float numbers to
 form the pattern graph or the left hand side of the rule. However, the users
-can only bind attributes that are in a corresponding type graph.
+can only bind attributes that are defined in a corresponding type graph.
 
 Figure~\ref{fig:AGGScreen} also represents some node elements and association
-elements. These are meta elements that are initialized in the type graph and
-are used to model the source graph, the different transformation rules and
-application conditions. The node elements and association elements also
-describes the semantics of the type graph. Note that both the node elements and
-association elements in the figure has been scaled up for the purpose of this
-paper.
+elements. These are meta elements that are initialized in a type graph and
+are used to model the source graph, the different transformation rules and the
+application conditions. Note that both the node elements and association
+elements in the figure has been scaled up for the purpose of this paper.
 
 \begin{figure}[H]
   \centering
@@ -239,18 +237,19 @@ paper.
 
 \subsubsection*{Defining Meta-models}
 
-Before the source graphs can be created, we have to specify the modeling
+Before a source graph can be created, we have to specify the modeling
 language for the source model and the target model. In AGG both the source and the
-target meta-model are defined in one common type graph. The type graph
+target meta-model are defined in one common type graph, that
 represents the abstract syntax for both the source and target model. If we want
 to prepare an AGG graph for a model transformation, we create a type graph with
-references between source modeling elements and target modeling elements. AGG is
-unaware of the relationship between these modeling elements unless we explicitly
-initialize them. The relationship between source and target modeling elements in
-the abstract syntax has two major purposes for an exogenous model
-transformation. The relationship specifies how source modeling elements
-correspond to target modeling elements and determines upon execution of
-transformation rules that a matched pattern is only found once. 
+references between source modeling elements and target modeling elements.
+Because AGG is unaware of the relationship between these modeling elements
+unless we explicitly initialize them. The relationship between source and
+target modeling elements in the abstract syntax has two major purposes for an
+exogenous model transformation in AGG. The relationship specifies how source
+modeling elements correspond to target modeling elements and determines upon
+execution of the transformation rules that a matched pattern is only applied
+once.
 
 \begin{figure}[H]
 	\centering
@@ -264,32 +263,34 @@ transformation rules that a matched pattern is only found once.
 Figure~\ref{fig:AggTypeGraph} represents the type graph for our test case. The
 abstract syntax contains nodes and arrows that include a structural multiplicity
 constraint. The user defines nodes and arrows for each meta element for both
-the source and target model. This is achieved by using either the Edge Type
-Editor or Node Type Editor and are editors that correspond to either a node or
-an edge. The nodes and edges are given names and graphical properties such as
-colors or shapes. Nodes represents modeling elements from the two modeling
-languages while arrows represents the associations between these modeling
-elements. In the type graph we want to distinguish between associations and
-correspondences, and therefore we represent a correspondence between a source
-and target modeling element as a dashed arrow. The dashed arrow has the same
-properties as the association arrow between nodes, but the graphical
-representation is different. This makes the concrete syntax in the source graph
-easier to read when we are applying the transformation rules. In
-figure~\ref{fig:AggTypeGraph} we can see that a RefAct node is defined and is
-connected between the activity element and the transition element. The same
-initialisation is defined between the next element and the place element. This
-reference edge specifies that there is a correspondence between Activity and
-Transition element and between Next and Place. For this type graphs there is a
+the source and target model that other than defining the abstract syntax
+also defines the semantics of the two modeling languages. This is achieved by
+using either the Edge Type Editor or Node Type Editor, which are editors that
+defines either a node or an edge. The nodes and edges are given names and
+graphical properties such as colors and a visual representation. Nodes
+represents modeling elements from the two modeling languages while arrows
+represents the associations between these modeling elements. In the type graph
+we want to distinguish between associations and correspondences, and therefore
+we represent a correspondence between a source and target modeling element as a
+dashed arrow. The dashed arrow has the same properties as the association arrow
+between nodes, but the graphical representation is different. This makes the
+concrete syntax in the source graph easier to read when we are applying the
+transformation rules. In figure~\ref{fig:AggTypeGraph} we can see that a RefAct
+node is defined and is connected between the activity element and the
+transition element. The same initialisation is defined between the next element
+and the place element. This reference edge specifies that there is a
+correspondence between Activity and Transition and between Next and
+Place when the transformation rules are applied. For this type graph there is a
 structural multiplicity constraint for the nodes and edges. This means that
 there can be an arbitrary, or a zero to many number of instances of these nodes
-and edges in the source graph.
+and edges in the source graph and the translated target graph. 
 
 \subsubsection*{Defining Transformation Rules}
 \label{sec:AGG_rules}
 Now the type graph has been initialised and the instance graph of the
 source model has been created. But to be able to translate to a target model,
 we need to create a set of transformation rules. A transformation rule is
-defined with an unique name, an empty LHS graph and an empty RHS graph. 
+initialised with an unique name, an empty LHS graph and an empty RHS graph. 
 
 \begin{figure}[H]
 	\centering
@@ -300,21 +301,19 @@ defined with an unique name, an empty LHS graph and an empty RHS graph.
 	\label{fig:AGGTreeBasedEditor}
 \end{figure}
 
-Whenever changes are made in the two graphs, AGG checks if the LHS or the RHS
+Whenever changes are made in the two graphs, AGG validates if the LHS or the RHS
 conforms to the type graph. The user is unable to insert elements in the two
 graphs that are not initialised in the type graph and the users are not allowed
 by AGG to create associations between nodes that are not initialised in the type
-graph. This is how AGG keep the source and target models consistent. In
-figure~\ref{fig:AGGTreeBasedEditor} we can see the tree based editor in AGG,
+graph. This is how the environment keep the source and target models consistent.
+In figure~\ref{fig:AGGTreeBasedEditor} we can see the tree based editor in AGG,
 that provides the type graph, the source graph and a list of transformation
 rules. When a new rule is created, both the LHS and the RHS are initialised. The
-users can then specify a graph structure that forms the LSH graph that AGG use
-to locate matching patterns in a source graph. The RHS graph represents the
-graph structure that the transformation system produces for each located match.
+users can then specify a graph structure that forms the LHS graph that AGG use
+to locate matching patterns in a source graph and a RHS graph, that represents
+the graph structure that the transformation system produces for each located match.
 AGG provides two visual editors for these corresponding graphs. However, there
-is also a graph that represents the intersection between the LHS and the RHS. In
-AGG this graph is edited by creating similar modeling elements in both the LHS
-and RHS graph and map these modeling elements with each other. 
+is also a graph that represents the intersection between the LHS and the RHS.
 
 
 \begin{figure}[H]
@@ -327,7 +326,7 @@ and RHS graph and map these modeling elements with each other.
 \end{figure}
 
 Figure~\ref{fig:LHSvsRHSAGG} is a representation of the rule
-transformNextToSimple, with the LHS and the RHS graph. The LHS contains the
+transformNextToSimple with the LHS and the RHS graph. The LHS contains the
 graph structure that is used to locate matches while the RHS contains the
 graph structure that replaces the located matching pattern. For this rule the
 modeling elements that are represented in the LHS are also part of the graph
@@ -338,16 +337,17 @@ between the LHS and the RHS graph. In section~\ref{sec:graph_based} we
 introduced the concepts of single and double pushout of graphs for graph based
 model transformation tools. A double pushout of graphs includes this
 intersection graph for a transformation rule that makes it possible to preserve
-modeling elements that is part of both the LHS and the RHS. Modeling elements
-that is defined in the LHS graph and not the RHS graph are removed when the AGG
-transformation engine applies a transformation rule. For example the
-transformation rule in figure~\ref{fig:LHSvsRHSAGG} locates the graph structure
-that the LHS defines in a source graph and inserts a new graph structure that
-the RHS defines in the source graph. This transformation rule will not remove
-any modeling elements once applied since we have specified that the modeling
-elements that is part of the LHS graph are also part of the RHS graph. A rule
-can also specify application conditions that can either be a Positive
-Application Condition (PAC) or a Negative Application Condition (NAC).
+modeling elements that is part of both the LHS and the RHS and to make sure
+that the gluing condition is valid. Modeling elements that is defined in the LHS
+graph and not the RHS graph are removed when the AGG transformation engine
+applies a transformation rule. For example the transformation rule in
+figure~\ref{fig:LHSvsRHSAGG} locates the graph structure that the LHS defines
+in a source graph and inserts a new graph structure that the RHS defines in the
+source graph. This transformation rule will not remove any modeling elements
+once applied since we have specified that the modeling elements in the
+the LHS graph are also part of the RHS graph. A rule can also specify
+application conditions that can either be a Positive Application Condition
+(PAC) or a Negative Application Condition (NAC).
 Figure~\ref{fig:LHSvsRHSAGG} has a NAC, activitySimple that makes sure that the
 LHS of the rule is translated only once for each pattern match found in the
 source graph. This is because for each applied transformation rule we preserve
@@ -362,55 +362,54 @@ can have multiple application conditions attached.
 \subsubsection*{Application Control for the Transformation Rules}
 
 In subsection~\ref{sec:app_control} we specified that the application control of
-a model transformation handles the location of matches and rule application
-control. Locating matches in AGG are designed by some non-deterministic search
-algorithms that the users have no control over. AGG does however provide the
-users with the possibility to explicitly specify how the transformation rules
+a model transformation environment handles the match location and rule
+application control. Locating matches in AGG are designed by some non-deterministic search
+algorithms that the users have no specific control over. AGG does however
+provide the users with the possibility to explicitly specify how the transformation rules
 are applied. By default, the transformation rules are applied
 non-deterministically. This means that there are no pattern to how the
 transformation rules are applied and the transformation rules can be applied
 differently on different runs. This option is quite useful if the set of
 transformation rules are independent of each other. AGG also provides other
 ways of applying rules such as applying rules by layers or by sequences. When
-the transformation is set to be applied by rule layers, then AGG introduce
+the scheduling mechanism is set to be applied by rule layers, then AGG introduce
 the users with an integer that specify transformation rules on different layers.
-This layer number will range from 0 \ldots n, where the lowest number is the
-first layer and therefore the has first priority. If there are rules with
-the same layer number, then these rules will be internally applied
-non-deterministically. If the rules are applied by sequence then the rules will
+This integer will range from 0 \ldots n, where the lowest number represents the
+highest property.
+If there are rules with the same layer number, then these rules are internally
+applied non-deterministically. If the rules are applied by sequence then the rules will
 be applied from the first element in the tree based editor and applying the rest
 of the rules in sequence.
 
 \subsubsection*{Translating the Source Graph}
 
 In section~\ref{sec:AGG_rules} we described that when applying a transformation
-rule a matching pattern is located in the source graph and a graph structure
-from the RHS is inserted in the source graph. This is special source models in
-AGG, because the source graph in AGG represents both the source model and the
-target model in a model transformation. AGG's transformation system provides an
-in-place model transformation directly on the source graph. An exogenous model
-transformation that is specified in AGG usually include all located matches in
-the translated graph structure for each transformation rules. These modeling
-elements that represents the abstract syntax of the source model can then be
-removed through a set of transformation rules after the modeling elements
-that correspond to the abstract syntax of the target model is translated. This
-means that for an exogenous model transformation we should be careful when
-applying the transformation rules non-deterministically. The user can now
-either press Start Transformation or do the transformation one step at the
-time. For the first option AGG will apply one rule at the time until there are
-no more matching patterns located in the source graph. When AGG cannot find
-any more matches, the host graph is either correctly translated or there are
-errors in the rules. The user can also execute the transformation step by step.
-This will give the user the same result as the first option, but now the user
-can do one match at the time for each rule. AGG utilize both the single and
-double pushout approach when executing a transformation
-rule\cite{Taentzer2004}. Like we discussed in section~\ref{sec:graph_based} the
-single pushout approach removes the graph structure from the LHS and inserts the
-graph structure from the RHS in the source graph. If the rules specifies an
+rule a matching pattern is located in the source graph, and a graph structure
+from the RHS is inserted in the same graph. This is special for AGG since
+the source graph represents both the source model and the target model in a
+model transformation. AGG's transformation system provides an in-place model
+transformation directly on the source graph. An exogenous model transformation
+that is specified in AGG usually include located matches from the source graph
+in the translated graph for each transformation rule. These modeling elements that
+represents the abstract syntax of the source model can then be removed through
+a set of transformation rules after the modeling elements that correspond to
+the abstract syntax of the target model is translated. This means that for an
+exogenous model transformation we should be careful when applying the
+transformation rules non-deterministically to avoid losing data. The user can
+now either press Start Transformation or perform the transformation one step at
+the time. For the first option AGG will apply one rule at the time until there are no more matching
+patterns located in the source graph. When AGG cannot find any more matches,
+the input graph is either correctly translated or there are errors in the rules.
+The other option gives the user the same result as the first option, but now the
+user can do one match at the time for each rule. AGG utilize both the single
+and double pushout approach when executing transformation
+rules\cite{Taentzer2004}. Like we discussed in section~\ref{sec:graph_based} the
+single pushout approach removes the graph structure from the LHS and inserts
+the graph structure from the RHS in the source graph. If the rules specifies an
 intersection graph between the LHS and RHS graph then the double pushout
-technique is used. AGG's transformation engine interpret a transformation rule
-and applies the transformation rule accordingly. Another model transformation
-environment that similar to AGG utilizes the concepts of graph transformations
+technique is applied. AGG's transformation engine interpret a transformation
+rule and applies the transformation rule accordingly. Another model
+transformation environment that utilizes the concepts of graph transformations
 is Henshin.
 
 \subsection{The Henshin Project}
@@ -418,8 +417,8 @@ is Henshin.
 The Henshin project\cite{Henshin} provides a transformation
 language and a tool environment for defining model transformations for the
 Eclipse Modeling Framework. The Henshin project is part of the Eclipse Model
-Framework Technology (EMFT). EMFT acts as an EMF subproject for new
-technologies that extends and utilize EMF. The Henshin Editor was initially
+Framework Technology (EMFT), that acts as an EMF subproject for new
+technologies that extend and utilize EMF. The Henshin Editor was initially
 developed in a student project at Technical University of Berlin in 2010, and
 extended in the bachelor thesis \cite{JohannSchmidt} published by Johann Schmidt
 and the master thesis \cite{AngelineWarning} published by Angeline Warning.
@@ -427,8 +426,7 @@ The Henshin project provides a transformation language based on graph
 transformations that supports both endogenous and exogenous model
 transformations. With the help of a graphical editor, Henshin provides the user
 with an intuitive approach to defining transformation rules. The Henshin tool
-environment provides a transformation engine, several editors and a state space
-generator.
+environment also provides a transformation engine and a state space generator.
 
 \subsubsection*{Graphical Editor}
 Henshin model transformation environment is integrated as a plugin for the
@@ -462,59 +460,59 @@ restricted to have exact one source and one target meta-model.
 \end{figure}
 
 \subsubsection*{Defining Meta-models}
+\label{sec:henshin_metamodeling}
 
 The Henshin language requires a source and a target meta-model to be able to
 perform model transformations. The target meta-model can either be the same as
 the source meta-model or defined in another modeling language. Either way, before
 the users can start creating transformation rules, the meta-models has
-to be defined. To define these meta-models, Henshin utilizes Ecore, that is
+to be defined. To define these meta-models Henshin utilizes Ecore that is
 provided by the Eclipse Modeling Framework\cite{Steinberg2009}. Ecore models
-can either be created using a tree based editor, called Sample Ecore Model
+can either be created using a tree based editor called Sample Ecore Model
 Editor or by using a graphical editor. While the graphical editor is optional,
-the tree based editor is mandatory for creating Ecore models, since this
-represents the Ecore model.
+the tree based editor is mandatory for creating Ecore models.
 
 Initially the user has to create an EPackage element in the newly created Ecore
 model. Henshin interpret instances of this EPackage as EObjects and is what
 Henshin searches for when the user want to import an Ecore model. This EPackage
 element can have several child elements, like for example EClass, EEnum and
-EData type. For this specific example we only needed the EClass element to
-create the nodes for the meta-models. For each EClass element the users can
-specify an EReference that connects two EClass elements. This means that an
-EReference element defines relations between the nodes for the meta-models. To
-give an EClass element properties, the user can create an EAttribute element.
+EData type, but for this specific example we only needed the EClass
+modeling element. For each EClass modeling element the users can specify an
+EReference that connects two EClass modeling elements. This means that an
+EReference element defines relations between the nodes for the meta-models. To give an
+EClass element properties, the user can create an EAttribute element.
 This element can be typed, either by a predefined list of types or by defining
 user created EData types. For the purpose of this case study we only needed to
 name the different nodes and therefore we only needed the data type EString.
-Through the use of these Ecore elements, we can create the two meta-models from
-figure~\ref{fig:activity_metamodel} and figure~\ref{fig:petrinet_metamodel} that
-was previously presented in this chapter. 
+Through the use of these Ecore modeling elements we can create the two
+meta-models from figure~\ref{fig:activity_metamodel} and
+figure~\ref{fig:petrinet_metamodel} that was previously presented in this
+chapter.
 
 
 \subsubsection*{Defining Transformation Rules}
 
-Now we have defined the source and target meta-model, and imported
-both of the meta-models EPackages. We can now use elements from the two
-meta-models to create transformation rules in the Henshin transformation
-language. In Henshin, objects are referred to as nodes and links between objects
-as edges. From the meta-models these nodes represents the EClass elements and
-edges is a EReference between these EClass elements. A collection of these
-nodes and edges defines a graph structure. Each transformation rule in Henshin
-specifies two graphs that represent the LHS and the RHS. Note that the
-graphical editor provides an integrated view to creating transformation. And
-therefore Henshin handles assignment of modeling elements to the LHS and the
-RHS through the use of stereotypes. Figure~\ref{fig:HenshinScreen} represents a
-visualization of the graphical syntax and includes a transformation rule,
-``transformSimpleActivity''. On the right side there is a palette that contains
-Henshin modeling elements and different EPackages. The first two EPackages
-represents modeling elements for the source and target meta-model. The Henshin
-Trace Model provides support for including traceable links for exogenous model
-transformations in Henshin. The Henshin Trace model provides a traceable link
-that keeps track of the translated elements during a transformation. This model
-consist of a single class Trace, that has two references called source and
-target. These references are of type EObject and therefore can refer to any EMF
-object. The Trace model is generic and therefore supports creation of traceable
-links between any Ecore models.
+Now we have defined the source and target meta-model for a Henshin module. We
+can now use elements from the two meta-models to create transformation rules in
+the Henshin transformation language. In Henshin, objects are referred to as
+nodes and links between objects as edges. From the meta-models these nodes
+represents the EClass elements and edges is a EReference between these EClass
+elements. A collection of these nodes and edges defines a graph structure. Each
+transformation rule in Henshin specifies two graphs that represent the LHS and
+the RHS. Note that the graphical editor provides an integrated view to creating
+transformation rules, and therefore Henshin handles assignment of modeling
+elements to the LHS and the RHS through the use of stereotypes.
+Figure~\ref{fig:HenshinScreen} represents a visualization of the graphical
+syntax and includes a transformation rule, ``transformSimpleActivity''. On the
+right side there is a tool bar that contains Henshin modeling elements and
+different EPackages. The first two EPackages represents modeling elements for
+the source and target meta-model. The Henshin Trace Model provides support for
+including traceable links for exogenous model transformations in Henshin that
+keeps track of the translated modeling elements during a model transformation.
+This model consist of a single class Trace, that has two references called source
+and target. These references are of type EObject and therefore can refer to any
+EMF object. The Trace model is generic and therefore supports creation of
+traceable links between any Ecore models.
 
 \begin{figure}[H]
 	\centering
@@ -529,67 +527,73 @@ links between any Ecore models.
 The Node, Edge and Attribute modeling elements are used to define the different
 transformation rules in Henshin. A new transformation rule in Henshin always
 have to start with creation of a new Rule element. Inside this Rule element the
-users are free to create nodes, and connect these nodes with edges. The nodes
-and edges defines a graph structure that is used to either locate matches in a
-source model or translate target modeling elements. Henshin makes sure that
-these nodes and edges conforms to their corresponding meta-models. Note that the
-Node and Edge modeling elements are special for Henshin and are used to create
-the content of the transformation rules. The Node element has a type that
-correspond to an EClass while the Edge element has a type that correspond to an
-EReference. Note that the Ecore models that are represented in
-figure~\ref{fig:HenshinScreen} has a list of modeling elements that are typed by
-EClass. These modeling elements are a shortcut for Henshin to create nodes and
-creates a Henshin node with the corresponding type. The Attribute element can be
-used if attributes are defined for the classes that are imported. We will come
-back to the Unit element in the next section. Henshin distinguish if nodes,
-edges or attributes are part of the LHS and the RHS through the use of
-predefined stereotypes, or action types. Based on these action types Henshin
-automatically specifies if these modeling elements defines a graph structure
-that is used to locate matches in a source model or produce modeling elements
-for a target model. If the action type consist of the sequence ``create'',
-Henshin knows that this element should be part of the replacement graph, or the
-RHS. While on the other side, the sequence ``delete'' should be part of the
-pattern graph, or the LHS. The ``preserve'' sequence is a bit more special,
-because nodes or edges in Henshin that is specified by this action type should
-be part of both the LHS graph and the RHS graph. This is done by putting the
-preserve element in both graphs and then create a mapping between these two
-elements to inform the Henshin Interpreter that this represents the same
-element. Henshin also has support for application conditions. The action types
-``forbid'' and ``require'' are used for defining Negative Application
-Conditions (NACs) and Positive Application Conditions (PACs). These actions are
-supported for nodes, edges and attributes. The example rule in
-figure~\ref{fig:HenshinScreen} use four of these action types. The modeling
-elements in gray represents modeling elements that are part of both the RHS and
-the LHS graph, while the modeling elements in green are specified in the RHS
-graph. This specific transformation rule will locate a matching pattern in a
-source model that is described by an Activity modeling element. The positive
-application condition specifies that Henshin only should locate matches that is
-of kind ``simple''. The negative application condition specifies that a
-located match that is described by the Activity class should not have a
-traceable link. The NAC specifies that the transformation engine does not locate
-duplicate matching patterns. The first time a match is located a traceable link
-is established. Now this specific match is no more a valid match since the NAC
-forbids the transformation engine to locate matches that already has established
-a traceable link to this modeling element. Note that we have a Trace and a
-PetriNets that is both a preserve modeling element. This is because these two
-are already translated by another transformation rule.
+users are free to create nodes and define relationship between these nodes with
+edges. These modeling elements are required to be created accordingly to a
+corresponding meta-model.
+The nodes and edges defines a graph structure that is used to either locate
+matches in a source model or translate to target modeling elements. 
+Note that the Node and Edge are special modeling elements for Henshin and are
+used to create the content of the transformation rules. The Node element has a
+type that correspond to an EClass while the Edge element has a type that
+correspond to an EReference. The Ecore models that are represented in
+figure~\ref{fig:HenshinScreen} has a list of modeling elements that are typed
+by EClass. These modeling elements are a shortcut for Henshin that creates a
+Henshin node with a corresponding EClass type. The Attribute element can be used
+if attributes are defined for the classes that are imported. We will come back to
+the Unit element in the next section. Henshin distinguish if nodes, edges or
+attributes are part of the LHS and the RHS through the use of predefined
+stereotypes, or action types. Based on these action types Henshin automatically
+specifies if these modeling elements defines a graph structure that is used to
+locate matches in a source model or produce modeling elements for a target
+model. If the action type consist of the sequence ``create'', Henshin knows
+that this element should be part of the replacement graph, or the RHS. While on
+the other side, the sequence ``delete'' should be part of the pattern graph, or
+the LHS. The ``preserve'' sequence is a bit more special, because nodes or
+edges in Henshin that is specified by this action type should be part of both
+the LHS graph and the RHS graph. This is done by putting the preserve element
+in both graphs and then create a mapping between these two elements to inform
+the Henshin Interpreter that this represents the same element. Henshin also has
+support for application conditions through the action types ``forbid'' and
+``require'', that are used for defining Negative Application Conditions (NACs)
+and Positive Application Conditions (PACs). These actions are supported for
+nodes, edges and attributes. The example rule in figure~\ref{fig:HenshinScreen}
+use four of these action types. The modeling elements in gray represents
+modeling elements that are part of both the RHS and the LHS graph, while the
+modeling elements in green are specified in the RHS graph. This specific
+transformation rule will locate a matching pattern in a source model that is
+described by an Activity modeling element. The positive application condition
+specifies that Henshin only should locate matches that is of kind ``simple''.
+The negative application condition specifies that a located match that is
+described by the Activity class should not have a traceable link.
+The NAC specifies that the transformation engine does not locate duplicate
+matching patterns. The first time a match is located a traceable link is
+established. Now this specific match is no longer a valid match since the NAC
+forbids the transformation engine to locate matches that already has
+established a traceable link to this modeling element. Note that we have a
+Trace and a PetriNets that is both a preserve modeling element. This is because
+these two are already translated by an already applied transformation rule. The
+transformation engine provides in-place transformations for exogenous model
+transformations and an already applied transformation rule has translated the
+Trace and PetriNets modeling element and are now part of the source model. The
+transformation engine can now include these translated target modeling elements
+in search patterns for other transformation rules. 
 
 \subsubsection*{Application Control for the Transformation Rules}
 Transformation units are used to administrate the different transformation
 rules. Henshin provides several different units with different properties.
 Note that a transformation rule is also a transformation unit. This means that
-it is unnecessary to create a unit in Henshin if our model transformation only
-consist of one transformation rule. But if there are more than one 
+it is unnecessary to create an unit in Henshin if a model transformation only
+consist of a single transformation rule. However, if there are more than one 
 transformation rule there has to be a control mechanism that determines how
-these transformation rules should be applied. An Independent Unit is applies
-rules non-deterministically and is a good solution if the order of applying the
-transformation rules is not important. But if the transformation rules requires
-a very strict pattern and are dependent of other rules, then a sequential unit
-are a safe way to apply rules. The sequential unit forces the Henshin
-transformation engine to apply rules in a sequenital order.
-Figure~\ref{fig:SequentialUnitHenshin} is an example of a sequential unit
-that will start applying rules at the black circle and follow the arrow
-through each given rule until it is finished.  
+these transformation rules should be applied. An Independent Unit applies
+rules non-deterministically, which is a good solution if the order of applying
+the transformation rules is not important and the rules are independent of each
+other. But if the transformation rules requires a very strict pattern and are
+dependent of other rules, then a sequential unit are a safe way to apply rules.
+The sequential unit forces the Henshin transformation engine to apply rules in
+a sequenital order. Figure~\ref{fig:SequentialUnitHenshin} is an example of a
+sequential unit that will start applying rules at the black circle and follow
+the arrow through each given rule until it is finished.  
 
 \begin{figure}[H]
 	\centering
@@ -601,76 +605,74 @@ through each given rule until it is finished.
 \end{figure}
 
 If applicable a transformation unit can also consist of other units, for example
-if the user want to either iterate or loop through a transformation rules. The
+if the user want to either iterate or loop through a transformation rule. The
 previous section described an example of a rule in
-figure~\ref{fig:HenshinScreen}. The sequential unit above the
-``transformSimple'' represents a LoopUnit while the ``transformStart'' and
-``transformEnd'' represents a single rule. The loop unit applies a single
-transformation rule until there are no more matches found in a source model.
+figure~\ref{fig:HenshinScreen}. The sequential unit in
+figure~\ref{fig:SequentialUnitHenshin} includes a LoopUnit
+``transformSimple'' while the ``transformStart'' and ``transformEnd'' represents a
+single rule. The loop unit applies a single transformation rule until there are
+no more matches found in a source model.
 This is convenient for the rule, ``transformSimpleActivity'' since we specified
 that the rule should only locate matches where there exist no traceable link.
 Henshin also has two other units that can administrate transformation rules,
-namely ConditionalUnit and PriorityUnit. The ConditionalUnit follows a if-else
-pattern, and is used if the user want Henshin to choose between other units.
+namely ConditionalUnit and PriorityUnit. The ConditionalUnit follows an if-else
+pattern, and is used if the user want Henshin to choose between two units.
 
 \subsubsection*{Translating the instance model}
 
 Now that we have defined the source and target meta-model, created a set of
-transformation rules and initialized a control mechanism for these rules it is
+transformation rules and initialised a control mechanism for these rules it is
 time to apply the transformation rules. For Henshin there is two ways to do
 this. In Henshin the default engine for executing model transformation is the
-Henshin interpreter. This interpreter can be invoked either by using the a
+Henshin interpreter. This interpreter can be invoked either by using the an
 Eclipse wizard or programmatically using the Henshin API. 
 
 Using the Eclipse wizard is done by opening the Henshin file in the Henshin
-Model Editor and right clicking the root object and locate apply transformation.
-This will open a wizard where the user can choose a transformation unit. This
+Model Editor and right clicking the root object and apply transformation.
+This will open a wizard where the user can choose a transformation unit, which
 will either be a single transformation rule or some transformation unit that
-applies all other units and rules. The user also has to select the instance
-model and can explicitly set parameters for the rules if this is applicable. If
-the parameter is set to Ignore then the interpreter will automatically match the
-parameter. Now the user has two choices, the first choice is to preview the
-result of the model transformation. This will either show the user a new window
-with the modifications to the model or a message that the rule or unit could not
-be applied. If the user press Transform instead of Preview, the model will be
+applies other units or rules. The user also has to select the instance
+model and can explicitly set parameters for the rules if this is applicable.
+Now the user has two choices, the first choice is to preview the result of the
+model transformation. This will either show the user a new window with the
+modifications to the model or a message that the rule or unit could not be
+applied. If the user press Transform instead of Preview, the model will be
 transformed and saved.
 
 The interpreter can also be invoked programmatically, either as an
-Eclipse based application or as a simple Java application. Henshin provides a
-API that lets the users invoke the interpreter through the use of Java code.
-There is a class HenshinResourceSet that lets the user load and save models and
-transformations. When the instance model and Henshin module is loaded into the
-resource set, the transformation can be applied through the use of the Henshin
-Engine class. This is where Henshin finds and translates matches found in the
-instance graph. The user also has to specify the main transformation unit from
-the Henshin module. Both the engine and the unit can be loaded into the
-UnitApplication class. And this class has a method called execute that lets the
+Eclipse based application or as a simple Java application. Henshin provides an
+API that lets the users invoke the interpreter through the use of Java code and
+use the strengths of Henshin in their own program. There is a class
+HenshinResourceSet that lets the user load and save models and
+load a Henshin model transformation. When the instance model and Henshin module
+is loaded into the resource set, the transformation can be applied through the
+use of the Henshin Engine class. This is where Henshin finds and translates
+matches found in the instance graph. The user also has to specify the main
+transformation unit from the Henshin module. Both the engine and the unit can be
+loaded into the UnitApplication class. This class has a method that lets the
 user execute the model transformation. If the transformation was executed
 without errors, then the instance model can be saved with the translated
-changes. The Henshin API lets other users use the power of Henshin in their own
-program.
+changes.
 
 \subsection{ATL Transformation Language}
 
-ATL\cite{ATL} (ATL Transformation Language) is a model transformation
+ATL\cite{Jouault2008} (ATL Transformation Language) provides a model transformation
 language and is an implementation of the QVT\cite{QVT} standard. It
 provides ways to produce a set of target models from a set of source models.
 ATL is maintained by OBEO\cite{OBEO} and AtlanMod\cite{ATLANMod} and was first
 initiated by the AtlanMod team, previously called the ATLAS Group, located at
-the University of Nantes in France. The initial version of ATL was created In
-2004, where ATL became part of the Eclipse Generative Modeling Technologies
-(GMT) \cite{GMT}. The goal of GMT is to produce a set of research tools in the
+the University of Nantes in France. The initial version of ATL was created in
+2004, where ATL later became part of the Eclipse Generative Modeling
+Technologies (GMT) \cite{GMT}. The goal of GMT is to produce a set of research tools in the
 area of Model Driven Software Development. The ATL Integrated Development
 Environment (IDE) was later promoted for the Eclipse M2M project in January
 2007.
 
 There are developed several tools that has support for a declarative
-approach to model transformation. For the purpose of this paper, we will explain
-this approach with the focus around the Atlas Transformation Language (ATL).
-ATL is a hybrid model transformation approach, that is a transformation
-language that combines other model to model transformation approaches. For
-example, ATL provides transformation rules that can be either fully declarative
-or fully imperative or a mixture of both. 
+approach to model transformation. ATL is a hybrid model transformation
+approach, which is a transformation language that combines other model to model
+transformation approaches. For example, ATL provides transformation rules that
+can be either fully declarative or fully imperative or a mixture of both. 
 
 \begin{figure}[H]
 	\centering
@@ -682,9 +684,9 @@ or fully imperative or a mixture of both.
 \end{figure}
 
 Figure~\ref{fig:ATL} gives us an idea of how the ATL transformation from an activity
-diagram to Petri net are handled. We want to generate a instance of PetriNets,
-that conforms to its own meta-model. This is generated from a source
-model, Activity Instance, that conforms to its respective meta-model.
+diagram to Petri net are handled. We want to generate an instance model of
+PetriNets that conforms to its own meta-model. This is generated from a source
+model, Activity Instance that conforms to its respective meta-model.
 The created transformation Activity2PetriNets is expressed in the ATL
 transformation  language, that conforms to its own meta-model. These three
 meta-models conform to the meta-model Ecore. So this makes Ecore a metameta-model
@@ -692,47 +694,46 @@ to represent the meta-models of Activity, ATL and PetriNets.
 
 ATL has to be configured properly before the user can execute a model
 transformation. In this configuration both the location of the source and target
-meta-model has to be specified. The user also has to specify what instance model
-that should be translated. And lastly the user has to create a new file that can
-be specified as the target instance model for the ATL run configuration. The
-user can then initiate the transformation by running this as an ATL
-transformation.
+meta-model requires to be implicitly specified. The user also has to specify
+the instance model that should be translated, and create a new file that can be
+specified as the target instance model for the ATL run configuration. The user
+can then initiate the transformation by running this as an ATL transformation.
 
 
 \subsubsection*{Textual editor}
 
-ATL can be compared to a programming language, because it is
-basically a transformation language that provides a concrete textual syntax. ATL
-is a text based transformation language, and is build around the Object
+ATL can be compared to a programming language, because it
+basically is a transformation language that provides a concrete textual syntax.
+ATL is a text based transformation language, and is build around the Object
 Constraint Language (OCL) \cite{OCL} with some additional predefined functions.
-ATL transformations is stored in a file extension called ``.atl'' These ATL
-files can contain different kind of ATL units and are defined in its own
+ATL transformations is stored in a file extension called \textit{``.atl''.}
+These ATL files can contain different kind of ATL units and are defined in its own
 distinct ATL file. These different ATL units are ATL modules, ATL queries and
 ATL libraries. Libraries can be used to create independent ATL libraries that
-can be imported to different types of ATL units. The module unit specifies the
-different application rules for a  model transformation. And the Queries are
-used when the users want to compute primitive values from the source models.
+can be imported and used in different ATL units. The module unit
+specifies the different application rules for a  model transformation and
+queries are used when the users want to compute primitive values from the
+source models.
 
-Now that we have specified these three ATL units, we can describe shortly how
+Now that we have specified these three ATL units, we can shortly describe how
 we can use the ATL transformation language to create model to model
-transformations. For our case study, we only need the ATL modules. An ATL module
-corresponds to a model to model transformation. This unit enables developers to
-specify the way to produce a set of target models from a set of source models.
-The source and target models of an ATL module must be consistent with their
-respective meta-models. 
+transformations. For our case study, we only need the ATL modules. This unit
+enables developers to specify a set of rules that produces a set of target
+models from a set of source models. The source and target models of an ATL
+module must be consistent with their corresponding meta-models. 
 
 \subsubsection*{Defining Meta-models}
 
 Defining meta-models for the ATL language is defined by the modeling language
-Ecore. Since defining the meta-models are defined similar as Henshin, see
-chapter 4.2 for more details. 
+Ecore. Since the meta-models are defined similar to Henshin, see
+section~\ref{sec:henshin_metamodeling} for more details. 
 
 At first, the user start out with a blank ATL file. Since we are working in
 the ATL Integrated Development Environment for Eclipse, we want to start the
 document with defining the path to the source and the target meta-model. The
-reason for doing this is to achieve auto completion from elements defined in the
-Ecore meta-models. This is convenient for the users when creating transformation
-rules.  
+reason for doing this is to achieve auto completion for modeling elements
+defined in the Ecore meta-models, which is convenient for the users when
+creating transformation rules.  
 
 \begin{figure}[H]
 	\centering
@@ -742,10 +743,10 @@ rules.
 	\label{fig:ATL_Screen}
 \end{figure}
 
-Next the file is composed of four different elements. The first element is the
-header section, where the user can give the module a name and name the variables
-corresponding from the source and target models. The module name has to be
-identical to the name of the ATL file.
+Next the file is composed of a header section, where the user can give the
+module a name and specify the source and target meta-models. Note that the
+module name has to be identical to the name of the ATL file for the
+transformation engine to be able to extract the information.
 
 We also need to specify the source and the target meta-model. From
 figure~\ref{fig:ATL_Screen} we can see that the target meta-model is initialised 
@@ -760,57 +761,58 @@ page.
 
 The next element is a set of rules that defines how the target models are
 generated from the source models. These rules are used to implicitly match
-source elements and produce target elements. In figure~\ref{fig:ATL_Screen} we
-have examples of two rules, namely the rule for transforming the start activity
-and the rule for transforming the end activity. We can see that for each rule we
-specify what we want to translate from and what we want to translate to. We will
-describe transformation rules in more details in the next section.
+source modeling elements and produce target modeling elements. In
+figure~\ref{fig:ATL_Screen} we have examples of two rules, namely the rule for
+transforming the start activity and the rule for transforming the end activity.
+We can see that for each rule we specify what we want to translate from and
+what we want to translate to. We will describe transformation rules in more
+details in the next section.
 
 The last element in a ATL module is a set of helper functions. This collection
-of helpers can be compared to Java methods. These helper methods can be used to
-make the transformation rules easier to read.
+of helpers can be compared to Java methods and can be used to make the
+transformation rules easier to read.
 
 \subsubsection*{Transformation Rules}
 
 A rule in ATL describes how a target model should be generated from a source
-model. In ATL there are three kinds of rules, the type matched rules and the
-lazy rules are both fully declarative while the called rules are imperative.
-These rules has an input pattern and an output pattern. The input pattern can
-have a list of source model elements that is part of a rule in ATL by defining
-several input pattern elements. Each input pattern element has to have a
-mandatory type that corresponds to a metaclass defined in some meta-model. Each
-rule corresponding input pattern can also specify optional conditions that are
-expressed as OCL expressions. Both the type and an optional condition specifies
-which elements from the source model that is matched for each rule. The output
-pattern defines how the target model elements are created from the input model. 
+model. In ATL there are three different types of rules, the matched rules and
+the lazy rules are both fully declarative while the called rules are imperative.
+These rules have an input pattern and an output pattern that consist of
+variables that specifies the different source and target modeling elements. The
+input pattern can have a list of source modeling elements that is part of a
+rule by defining a new variable for each different modeling element. Each input
+pattern element requires a mandatory type that corresponds to a meta-class
+defined in a corresponding meta-model. The output pattern defines how the target
+model elements are created from the input model.
 
 \textbf{The matched rules} provides an declarative approach to
 creating transformation rules in ATL. The users can specify from which kinds of
-source elements the target elements can be generated from and how the generated
-target elements should be initialized. A matched rule finds a match according to
-the type of source model element and generate target model elements from these
-matches. A new matched rule is defined by the keyword ``rule'' and has two
-mandatory and two optional sections. The mandatory sections specifies the input
-pattern and the output pattern while in the first optional section the users can
-declare and initialize local variables. Note that these variables can only be
-used in the scope of each rule. The second optional section includes an
-imperative section The type that is introduced in the input pattern conforms to
-a meta-element in a meta-model of the source model. This rule will then generate
-target elements according to each match in the source model.
+source modeling elements the target modeling elements can be generated from and
+how the generated target modeling elements should be initialized. A matched rule
+locates a match according to the type of the source modeling elements and generate target modeling
+elements from these matches. A new matched rule is defined by the keyword
+``rule'' and has two mandatory and two optional sections. The mandatory
+sections specifies the input pattern and the output pattern while in the first
+optional section the users can declare and initialize local variables. Note
+that these variables can only be used within the scope of a rule. The second
+optional section includes an imperative section if the users want to specify the
+behaviour of a rule. The type that is introduced in the input pattern
+conforms to a meta-element in a meta-model of the source model. This rule will
+then generate target elements according to each match in the source model.
 
-Figure~\ref{fig:ATL_Example} shows a simple rule, Activity2StartPlace that wants
-to translate Activity source elements to some target elements. This rule
+Figure~\ref{fig:ATL_Example} shows a simple rule, Activity2StartPlace that
+translates Activity source elements to some target elements. This rule
 specifies the keyword \textit{from} for the input pattern and \textit{to} for
 the output pattern. For this example we want to find matches for one source
 element that is of type Activity that conforms to the meta-model Activities. We
 also provide additional properties for this input source element, where we only
 want to find matches that conforms to the type Activity and has the name
-``start''. The rule specifies that we want to generate three target
-pattern elements p, t and a\textunderscore t from this matching type. These
-generated target elements conforms to the meta-model Petrinets and specifies
-that these generated types should generate attributes from the source
-pattern element. The generated target model elements is initialized with
-attributes from the matched source pattern element. 
+``start''. The rule specifies that we want to generate three target pattern
+elements p, t and a\textunderscore t from this matching type. These generated
+target elements conforms to the meta-model Petrinets and specifies that these
+generated types should generate attributes from the source pattern element. The
+generated target model elements is initialized with attributes from the matched
+source pattern element.
 
 \begin{figure}[H]
 	\centering
@@ -825,17 +827,18 @@ certain matches for this input element. This condition is expressed as an OCL
 expression and gives the user the possibility to restrict the searches of the
 source elements. 
 
-The second type ATL rules are \textbf{Lazy rules}. These lazy rules will
+The second type for ATL rules are \textbf{Lazy rules}. These lazy rules will
 never be applied when a model transformation in the Atlas Transformation
-Language is executed. These lazy rules can only be applied to a model
-transformation when they are called from another of the two rules. These lazy
-rules are created similar to the matched rules.
+Language is executed unless they are applied at runtime by either a matched or
+a called rule. These lazy rules are created similar to the matched rules.
 
-The third and final type for an ATL rule is called \textbf{Called rules}. A
-called rule has to be called from an imperative section from either a match rule or
-from another called rule. A called rule is created similar to a matched rule,
-namely with a \textit{rule} keyword. One thing that is special with a called
-rule is that it does not have to match source elements from the source model.
+The third and final type for ATL rules are \textbf{Called rules}. A
+called rule has to be called from an imperative section from a rule.
+A called rule is created similar to a matched rule, namely with a \textit{rule}
+keyword. One thing that is special with a called rule is that it does not have
+to match source elements from the source model. A called rule can for example
+include an imperative section for a matched or lazy rule that defines the
+semantics of the rule.
 
 \subsubsection*{Execution of an ATL transformation}
 
@@ -843,9 +846,9 @@ Figure~\ref{fig:ATL_Execution} describes the architecture of the transformation
 language. From the figure we can see that we have an association between EMF and
 Ecore models. This are the meta-models that are expressed using EMF's Ecore
 model. These meta-models are then translated through a model handler that
-compiles these Ecore models to the ATL Virtual Machine. Where these meta-models
+compiles these Ecore models to the ATL Virtual Machine, where these meta-models
 can be used both in creating ATL programs and in ATL's internal interpreter. The
-ATL compiler translates the ATL file into a new ASM assembler file, that ATL can
+ATL compiler translates the ATL file into a new ASM assembler file that ATL can
 use to launch a model transformation. This assembler file contains the
 compiled code of the corresponding ATL file.
 
@@ -858,67 +861,73 @@ compiled code of the corresponding ATL file.
 \end{figure}
 
 The default semantics for executing a set of transformation rules specified in
-ATL can be described in three phases. See ATL User Manual\cite{ATL_USERMAN} for
-more information.
+ATL can be described in three phases. Consider ATL User Manual\cite{ATL_USERMAN}
+for more detailed information.
 
 The first phase is an initialization phase. This phase consist of amongst other
-things to initialize the trace model and the module of the ATL transformation.
+things to initialize the trace model and the module of an ATL transformation.
 The trace model in ATL has one important function, and that is to create a
 trace link that points to the matched source input elements and the
-corresponding generated target output elements. The trace model in ATL works as
-an implicit tracing mechanism that specifies relationships between the source
-element and its corresponding target elements by using a native type called
-ASMTransientLink\cite{Wagelaar}. For every time a transformation rule is
-matched to a source element, one ASMTransientLink is created. To this transient
-link the name of the transformation rule provided together with the source
-element and the target elements. These links are added to a collection that is
-stored internally for ATL. This means that the users of ATL cannot access these
-links after a model transformation has finished executing. However, as shown by
-Andr\'{e}s Yie and Dennis Wagelaar\cite{Wagelaar}, that gaining access to these
-ATL traces can be done explicitly by creating transformation rules that
-generates a tracing model based on the internal tracing information provided by ATL.
+corresponding generated target output elements. The traceable model in ATL works
+as an implicit tracing mechanism that specifies relationships between the source
+modeling elements and its corresponding target modeling elements by using a
+native type called ASMTransientLink\cite{Wagelaar}. For every time a transformation rule is
+matched to a source element, one ASMTransientLink is created that includes the
+name of the rule, a source modeling element and a target modeling element.
+These links are added to a collection that is stored internally for ATL. This
+means that the users of ATL cannot access these links after a model
+transformation has finished executing. However, as shown by Andr\'{e}s Yie and
+Dennis Wagelaar\cite{Wagelaar}, that gaining access to these ATL traces can be
+done explicitly by creating transformation rules that generates a tracing model
+based on the internal tracing information provided by ATL.
 
-The next phase consist of finding matches in the source pattern of the matched
-rules. This is done by the ATL transformation engine that searches for valid
-matches. A match is valid when all input pattern elements are found amongst
-the source model elements and any OCL expression for that matched rule is valid.
+The next phase consist of finding matches in the source pattern based on the
+matched rules. This is done by the ATL transformation engine that applies a
+searching algorithm to locate valid matches. A match is valid
+when all input pattern elements are found amongst the source modeling elements
+and any OCL expression for that matched rule is valid.
 The transformation engine also allocates the target model elements based on the
-declared output pattern into memory. At this point the target model elements are
-only allocated, they are initialized in the final phase. For each match found,
-there is created a trace link that has a source link to the matched source
-elements and a target link to the generated target elements. The generated
-target elements are not given any attributes or properties in this phase. This
-phase create target elements from matches found, and create a trace link between
-them.
+declared output pattern into memory. At this point the target modeling elements
+are only allocated, they are later initialized in the final phase. For each
+match found, there is created a traceable link that has a source link to the
+matched source modeling elements and a target link to the generated target
+modeling elements. The generated target elements are not given any attributes or
+properties in this phase. This phase creates target modeling elements from
+matches found and define traceable links that relates source and target
+modeling elements.
 
-The final phase of for executing an ATL module is to initialize the target model
-elements. At this stage each allocated target model element are given
+The final phase for executing an ATL module is to initialize the target modeling
+elements. At this stage each allocated target modeling element is given
 attributes and features that corresponds to the matched rule. The ATL
-transformation engine now use the trace links to determine the matched source
-elements and the generated target elements. This operation is called
-resolveTemp, that returns the reference from the target model elements that
-where generated in the second phase and to the corresponding source model
-element. Now that these three phases is finished the ATL transformation engine
-can execute the imperative code sections defined for the module. 
+transformation engine now use the traceable links to determine the matched
+source modeling elements and the generated target modeling elements. This
+operation is called resolveTemp, which returns the reference from the target
+modeling elements that where generated in the second phase to the corresponding
+source modeling element. Now that these three phases is finished the ATL
+transformation engine can execute the imperative code sections defined for the
+module and successfully finish a model transformation.
 
 \section{Model transformation environment for DPF}
 \label{tool_choice}
 
 After working with the three model transformation environments in the previous
-section we decided to try and integrate Henshin with DPF. In this section we
-will describe why Henshin is the better choice of the three considered
-environments to integrate with DPF. Henshin\cite{Henshin_2010,Henshin} is a
-relatively new installment in the world of model transformations. The
-environment was initially created three years ago, in 2010 and is marked as an
-Eclipse Incubation project. The purpose of the incubation phase is to establish
-a fully functioning open-source project. In theory an integration of Henshin
-with the DPF should be possible, since Henshin applies model transformations
-based on Ecore models and DPF models are basically represented as Ecore
-models. This presents a problem with integrating AGG with DPF. In EMF the root
-of all modeling objects is an EObject that has no references to a Java Object. 
+section we decided go for a solution to integrate Henshin with the DPF
+Workbench.
+In this section we will describe why Henshin is best suited to be integrated
+with DPF. In this section we will describe why Henshin is the better choice of
+the three considered environments to be integrated with DPF.
+Henshin\cite{Henshin_2010,Henshin} is a relatively new installment in the world
+of model transformations. Henshin was initially created three years
+ago, in 2010 and is marked as an Eclipse Incubation project. The purpose of the
+incubation phase is to establish a fully functional Eclipse plugin. In
+theory an integration of Henshin with DPF should be possible, since Henshin
+applies model transformations based on Ecore models and DPF specifications are
+basically represented as Ecore models. This presents a problem with integrating
+AGG with DPF since AGG does not employ Ecore modelsS. In EMF the root of all
+modeling objects is an EObject that has no references to a Java Object.
 AGG could be integrated with DPF, but the problem is that this would
 require an extensive amount of manual coding. We could use AGG as a general
-purpose graph transformation engine in a java applications. We would have to
+purpose graph transformation engine in a java application. We would have to
 create the source model as an AGG graph and a type graph based on the source and
 target modeling formalism that DPF provides. AGG provides an API that
 conveniently let us create type graphs, source graphs, transformation rules and
@@ -932,56 +941,57 @@ application conditions.
 	\label{fig:AGG_Solution}
 \end{figure}
 
-Figure~\ref{fig:AGG_Solution} represents a proposed solution how to integrate
-AGG together with a DPF transformation tool. The figure represents a source
-modeling formalism on the left side, a target modeling formalism on the right
-side and a model to model transformation done with AGG in the middle. The
-figure informs us that we have to generate four models to be able to do this in
-AGG. First we create the abstract syntax for an AGG source graphs by generating
-a joined type graph from a source modeling formalism and target modeling
-formalism. Then we have to generate the source input specification into a source
-graph that at the same time conforms to the joined type graph. Note that we do
-not mention the transformation rules since we have to generate these regardless
-of what model transformation environment we integrate with the DPF workbench.
-After the AGG transformation engine have executed the transformation rules we
-have to generate a target specification based on the produced target graph. This
-leads to some potential problems. The program that generates a source graph and
-a target specification has to be solid and not contain any flaws. Another
-problem is to keep the models consistent throughout the model transformation.
+Figure~\ref{fig:AGG_Solution} represents a proposed solution for how to
+integrate AGG together with the DPF workbench. The figure represents a
+source modeling formalism on the left side, a target modeling formalism on the
+right side and a model to model transformation done with AGG in the middle. The
+figure illustrates that we have to generate four models to be able employ AGG
+for a model to model transformation in DPF. First we create the abstract syntax
+for AGG source graphs by generating a joined type graph from a source modeling
+formalism and target modeling formalism. Then we have to generate the source
+specification into a source graph that at the same time conforms to the joined
+type graph. Note that we do not mention the transformation rules since we have
+to generate these regardless of what model transformation environment we
+integrate with the DPF Workbench.
+After the AGG transformation engine has executed the transformation rules we
+have to generate a target specification based on the translated target graph.
+This leads to some potential problems. The program that generates a source graph and
+a target specification has to be solid and not contain any flaws or bugs.
+Another problem is to keep the models consistent throughout the model transformation.
 How can we be certain that the target graph is consistent with the target
-specification? It is easy to loose consistency when changing a model manually
+specification? It is easy to lose consistency when changing a model manually
 from a target graph to a target specification. We could use AGG to do this, but
-that leads to many potentially factors that could go wrong. With Henshin and
+that leads to many potentially factors that could go wrong. For both Henshin and
 ATL we are not required to do anything extra with these models. Since both
 environments has support for including Ecore models as meta-models and requires
-an instance model of an Ecore model as a source model to apply a model
+an instance model of an Ecore model as a input model to apply a model
 transformation. Therefore AGG can be integrated with EMF with some additional
 work, but Henshin and ATL is a more viable choice for DPF, since we can use
-this Metamodel.ecore as a meta-model and the source specification as input
+the ``Metamodel.ecore'' as a meta-model and a source specification as input
 model directly in the other two environments. 
 
 Now we need to decide if we want to try and integrate the hybrid model
 transformation environment, ATL or the graph based model transformation
-environment, Henshin. In section~\ref{sec:DPF} we discussed that a DPF model is
-an extension of the Generalised Sketches formalism which is basically a directed
-graph. Then a specification consist of a set of nodes, edges and two functions
-that preserve a source and a target node for all edges. A model transformation
-in Henshin is based on the concepts of graph transformations and category
-theory. We can then be certain that Henshin can interpret a source specification
-as a directed graph. Henshin transformation is also based on the two graph
-transformation styles single (SPO) and double pushout (DPO) that we discussed in
-section~\ref{sec:graph_based}. And we recall that the DPO approach provides a
-dangling condition that ensures that a model transformation does not result in
-any edges that are missing a source or a target node. We want to create a tool
-for the DPF workbench that provides the following. 
+environment, Henshin. In section~\ref{sec:DPF} we discussed that a DPF
+specification is an extension of the Generalised Sketches formalism that is
+basically a directed graph. A model transformation in Henshin is based on the concepts of graph
+transformations and category theory. We can then be certain that Henshin can
+interpret a source specification as a directed graph. Henshin transformation
+language is also based on the two graph transformation styles single (SPO) and
+double pushout (DPO) that we discussed in section~\ref{sec:graph_based}. And we
+recall that the DPO approach provides a dangling condition that ensures that a
+model transformation does not result in any edges that are missing a source or
+a target node. We want to create a tool for the DPF Workbench that provides the
+following.
 
 \begin{itemize}
 
 \item \textit{Concrete Graphical Syntax}. We want to be able to create
-transformation rules based on graphical syntax that the DPF Editor provides.
+transformation rules based on the graphical syntax that the DPF Model Editor
+provides.
 
 \item \textit{Generic}. We want our tool to work for an arbitrary source and
-target meta-model regardless of abstraction layer. 
+target modeling formalism regardless of abstraction layer. 
 
 \end{itemize}
 
@@ -991,8 +1001,8 @@ generic. This means that we create a set of transformation rules based on an
 arbitrary source and target meta-model. The only aspect of these meta-models
 that is consistent is that they contain a list of nodes and arrows. This means
 that regardless of abstraction layer a specification is specified by a set of
-nodes and arrows. The reason for why we decided to try and integrate Henshin
-within the DPF workbench is provided in the three items underneath. 
+nodes and arrows. The reason for why we decided to integrate Henshin
+within the DPF workbench is provided in the three following points. 
 
 \begin{enumerate}
 
@@ -1026,37 +1036,38 @@ the abstract syntax for a Domain Specific Language. We know that a
 transformation rule in Henshin requires references to meta-modeling elements
 from a source meta-model and a target meta-model. What makes a DPF
 specification special is that it is an instance model of both an Ecore based
-meta-model and another specification. This means that a specifications concrete
-syntax is typed by the abstract syntax of a specification that is one
+meta-model and another DPF specification. This means that a specifications
+concrete syntax is defined by the abstract syntax of a specification that is one
 abstraction layer higher. In DPF we can create an arbitrary level of
 meta-models and therefore two different Domain Specific Modeling Language can
-be defined over a different abstraction layer hierarchy. The Henshin
+be defined in different abstraction layer hierarchies. The Henshin
 environment has strict guidelines on how models are imported and used. These
 models are required to be created accordingly to the Ecore model provided by
 EMF. Henshin can then utilize these models to create a graph pattern that
-structure both the LHS and the RHS graph of a transformation rule. Now the LHS
+structure both the LHS and the RHS graph of a transformation rule. The LHS
 graph contains a graph structure that is is used by the transformation engine
-to locate matches in an instance model that conforms to the specified Ecore
+to locate matches in an instance model that conforms to a specified Ecore
 model.
 
 For our tool we can structure a set of transformation rules in Henshin based on 
 this common meta-model, \textit{Metamodel.ecore} that all specifications
 $\spec{S}$\textsubscript{1\ldots n} conforms to. We have to threat all
 specifications similar if we want the tool to provide a generic model to model
-transformation. The challenge with integrating Henshin in a language workbench
-that provides meta-modeling at arbitrary layers of abstraction is not in the
-source specification we want to translate, but in the instance specification
-that the source specification corresponds to. This proves to be a problem for
-Henshin, because we cannot import an instance model of an Ecore based meta-model
-into the Henshin model transformation environment. We can do changes to an
-instance model by using Henshin, but the transformation language can only
-import and utilize models that conforms to the Ecore meta-model. To solve this
-for DPF specifications we expand transformation rules in Henshin with
-application conditions. This means that we restrict the LHS graph to locate
-matching modeling elements in an instance source specification based on the
-abstract syntax that another specification provides. The next chapter provides
-an explanation on how we integrated Henshin for a transformation tool that
-provides model to model transformations for the DPF workbench.
+transformation environment. The challenge with integrating Henshin in a language
+workbench that provides meta-modeling at arbitrary layers of abstraction is not in the
+source specification we want to translate, but in the specification
+that the source specification conforms to one abstraction layer higher. This
+proves to be a problem for Henshin, because we cannot import an instance model
+of an Ecore based meta-model into the Henshin model transformation environment.
+We can do changes to an instance model by using Henshin, but the transformation
+language can only import and utilize models that conforms to the Ecore
+meta-model. To solve this for DPF specifications we expand transformation rules
+in Henshin with application conditions. This means that we restrict the LHS
+graph to locate matching modeling elements in an instance source specification
+based on the abstract syntax that another specification provides. The next
+chapter provides an explanation of how we integrated Henshin for a
+transformation tool that provides model to model transformations for the DPF
+workbench.
 
 
 

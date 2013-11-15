@@ -27,7 +27,15 @@ also be viewed as data transformations. When a programming language provides a w
 to type these data values or data structures, then a compiler or interpreter can
 apply operations to the data accordingly to the type. But when we mention
 data representing software artifacts such as a data schema, programs or models,
-then transformation approaches 
+then the subject of transformation approaches are meta-data. Model
+transformation approaches are implemented as meta-programs that reads and
+manipulates meta-data such as those mentioned above. An important factor when
+creating meta-programs that facilitate the transformation of such meta-data is
+that the meta-programs operates accordingly to the rich semantics of the
+meta-data. The software artifacts above contains meta-data that conforms to
+some programming language, meta-models, etc. The structure and semantics of such
+meta-data requires to be handled accordingly when executing a model
+transformation.
 
 %-----------------------------------
 %	SUBSECTION 1
@@ -92,6 +100,7 @@ exogenous can produce a target model over different layers of abstractions.
 
 
 \subsection{Layer of Abstractions}
+\label{sec:abstraction_layer}
 
 In the beginning of 2006 Tom Mens and Pieter Van Gorp published a
 paper\cite{Mens2006} that explains different aspects of model transformations.
@@ -135,10 +144,10 @@ that model transformations are vertically or horizontally translated amongst
 abstraction layers. For a vertical model transformation a target model is
 translated according to models that are specified on a higher abstraction level,
 while a horizontal model transformation produces a target model that correspond
-to a different abstraction layered hierarchy. The table above express that that we can have
+to a different abstraction layer hierarchy. The table above express that that we can have
 for example endogenous model transformations that provides refactoring or
-formal refinement of models. These two example transformations are applied
-differently concerning abstraction layers. Refactoring is an example of a
+formal refinement of models. These two examples of model transformations are
+applied differently concerning abstraction layers. Refactoring is an example of a
 horizontal model transformation that applies changes to a model expressed in
 some modeling language, and since this is an endogenous model transformation we
 can safely assume that the abstraction level is the same before and after the
@@ -149,8 +158,8 @@ model transformation, and is an exogenous model transformation that produces a
 model expressed in a different modeling language compared to the source model.
 A classical example of a language migration is to translate a class diagram to a
 relation database model. This example has become more or less a benchmark for
-model transformation tools and provides a transformation for a modeling language
-that is specified through a abstraction layer hierarchy to a modeling language
+model transformation tools and describes a model transformation for a modeling
+language that is specified through a abstraction layer hierarchy to a modeling language
 that is specified through another abstraction layer hierarchy. The reason for
 mentioning that an abstraction layer is part of a hierarchy is because there
 exist solutions for creating a domain specific modeling languages over an
@@ -159,8 +168,8 @@ Framework\cite{Lamo2013} (DPF), metaDepth\cite{de2010deep} or Visual Modeling
 and Transformation System\cite{levendovszky2005systematic} (VMTS). Comparing
 these with the Eclipse Modeling Framework (EMF), that provides a two layered
 approach to specifying a DSML, we can say that exogenous model transformations
-are applied to a two layered abstraction hierarchy. EMF creates a DSML based on
-the Meta Object Facility and therefore provides the user the possibility to
+that utilizes EMOF are applied to a two layered abstraction hierarchy. EMF
+creates a DSML based on the Meta Object Facility and therefore provides the user the possibility to
 define a DSML as a meta-model and create an instance model of this DSML
 meta-model. While the three other tools mentioned above provides an n-layered
 meta-modeling environment to specifying DSMLs. This means that a source DSL
@@ -178,7 +187,7 @@ transformation and a horizontal model transformation. We can see that the
 vertical model transformation example represents a small portion of the MDA
 approach to software development, where implementation code is generated from a
 collection of platform specific models. The horizontal model transformation
-example provides a different example to model transformations, that is mering
+example provides a different example to model transformations, which is mering
 models into another model and is convenient for synchronizing models.
 
 \begin{figure}[H]
@@ -206,7 +215,7 @@ The vision for MDE is to increase automation of models between level of
 abstractions. This vision is achieved through the use of model transformations.
 Either if it is to use a model to text approach to generate source code, or by
 transforming a model to another model where both models concrete syntax are
-specified by an abstract syntax that a meta-model provides. A model driven
+specified by some abstract syntax from a meta-model. A model driven
 approach to software development thrives to keep a high level of abstraction
 for as long as possible through translating these models. And therefore model
 transformations are essential to be able to deploy model driven engineering in
@@ -227,23 +236,24 @@ Architect''\cite{letkeman2005comparing} in October 2010.
   \label{fig:MDE_MDA_MT}
 \end{figure}
 
-We can see the different level of abstractions that the architecture provides
-and how to translate between abstractions. Remember what we discussed in
-section~\ref{MDA} that the architecture represents a software design approach
-for developing software applications. Where it expands the requirements of
-a software application into models and at the last level of abstraction the
-architecture provides implementation code for the application. The code that is
-generated most likely requires some additional work by developers, but a major
-part of the implementation code is generated through the use of models.
+The figure presents different level of abstractions that the architecture
+provides and how a set of transformation rules change models between
+abstractions. Remember what we discussed in section~\ref{MDA} that the
+architecture represents a software design approach for developing software
+applications. Where it expands the requirements of a software application into
+models and at the last level of abstraction the architecture propose that
+implementation code is produced accordingly to a set of transformation rules.
+The code that is generated most likely requires some additional work by developers, but a major part of the
+implementation code is generated through the use of models.
 Figure~\ref{fig:MDE_MDA_MT} explains that a set of transformations are required
-for a model to fuse to another model, or said differently, for a model to be
-integrated into another model. These transformation rules, that specifies how a model from
+for a model to fuse into another model, or said differently, for a model to be
+integrated into another model. The transformation rules, that specifies how a model from
 a high level of abstraction is translated to a model on a lower level of
 abstraction, provides a development process that produce implementation code
 through automatically generating models on different levels of abstraction.
 Models and model transformations are equally important for MDE to be applied in
-a software development process. Without model transformations models would only
-represent an abstraction of a system. This means by utilizing model
+a software development process. Without model transformations models would
+simply represent an abstraction of a system. This means by utilizing model
 transformations in a software development cycle, models can evolve into
 executable implementation code by translating through different level of
 abstractions. 
@@ -254,8 +264,8 @@ abstractions.
 There are a wide variety of existing model transformation environments and
 tools available. Some have experienced extensive testing through several
 iterations and some are relatively fresh to the MDE community. This section
-shortly describes some of these model transformation environments and how these
-environments approach translation of models. Because there are several different
+describes some of these model transformation environments and how these
+environments approach model transformations. Because there are several different
 approaches to model transformations and for the purpose of this thesis we will
 only address approaches that indicates model to model transformations. 
 
@@ -272,7 +282,9 @@ the three model transformation languages or approaches to model transformation,
   \item QVT Relations is a declarative language that supports implementation for
   both unidirectional and bidirectional model transformations.
   \item QVT Core is also a declarative language that is meant to act as the
-  target of transformations from QVT Relations.
+  target of transformations from QVT Relations. This is however not the case
+  since QVT Core since there does not exist a full implementation of this
+  language.
 \end{itemize}
 \textit{A unidirectional model transformation has only one mode of execution:
 that is, it always takes the same type of input and produces the same type of
@@ -280,65 +292,67 @@ output. For a bidirectional model transformation, the same type of model can
 sometimes be input and other times be output}\cite{WikiMT}. A model
 transformation in any of these three languages can itself be regarded as a
 model that conforms to a corresponding meta-model that is specified in the QVT
-standard. Note that an model transformation implementation based on any of
-these three languages requires source and target models that conforms to a MOF
-2.0 meta-model. Since the release of the standard there has been several
-implementations of these three languages. The Eclipse Foundation have
-contributed with implementations of the QVT standard in the MMT project. The
-Model to Model Transformation (MMT) project hosts Model to Model Transformation
-languages. These transformations are executed by transformation engines that
-are written into the Eclipse Modeling infrastructure. MMT is a sub project of
-the top level Eclipse Modeling Project\cite{EMP}. ATLAS Transformation Language
+standard. Note that a model transformation implementation based on any of
+these three languages requires source and target models that is created
+according to a MOD 2.0 meta-model. Since the release of the standard there has
+been several implementations of these three languages. The Eclipse Foundation
+has contributed with implementations of the QVT standard in a subproject for
+the Eclipse Modeling Project\cite{EMP}, namely the Model to Model
+Transformation (MMT) project that hosts Model to Model Transformation
+languages. These model transformations are executed by transformation engines
+that are written into the Eclipse Modeling infrastructure. ATLAS Transformation Language
 (ATL)\cite{Jouault2008} is developed on top of the Eclipse platform and is one
-of three model transformation environments provided by the Model to Model
-Transformation (MMT) project\cite{MMT}. ATL is often referred to as a QVT Like
-implementation of the QVT standard. ATL is an hybrid approach to model
-transformations that implements techniques based on the three QVT languages.
-Another model transformation environment provided by the MMT is
-QVTo\cite{dvorak2008model} and is based on the QVT Operational model
-transformation language.
+of three model transformation environments provided by the MMT
+project\cite{MMT}. ATL is often referred to as a QVT Like implementation of the
+QVT standard. Since the language offers an approach to model transformations
+that is based on the three QVT languages. Because of this ATL is often referred
+to as a hybrid approach to model transformations. Another model transformation
+environment provided by the MMT is QVTo\cite{dvorak2008model} that is based on
+the QVT Operational model transformation language.
 
 Model transformation environments like Visual Automated Model
 Transformations\cite{viatra2002} (VIATRA), Henshin\cite{Henshin_2010}, Graph
 Rewriting and Transformation Language\cite{great2007} (GReAT), The Attributed
 Graph Grammar System\cite{Taentzer2004} (AGG) and A Tool for Multi-formalism and
 Meta-Modelling\cite{de2002atom3} (AToM\textsuperscript{3}) are approaches that
-is based on category theory's theoretical work on graph transformations. And
-model transformations that is based on the concepts of graph transformations
+is based on category theory's theoretical work on graph transformations.
+Model transformations that is based on the concepts of graph transformations
 have a LHS and a RHS graph pattern. The LHS provides a graph structure that is
-used to locate matching graph structures in a source model while the graph
-structure included in the RHS is meant to replace a matching graph structure. We
-will explore the concepts of graph transformations in more depths in
-section~\ref{sec:graph_based}. But first we will describe some design features
-of model transformation environments. 
+used to locate matching graph structures in a source model while the pattern
+included in the RHS is meant to replace a matching graph structure. We will
+explore the concepts of graph transformations in more depths in
+section~\ref{sec:graph_based}, but first we will explore different design
+features of model transformation environments.
 
 %-----------------------------------
 %	SUBSECTION 2
 %-----------------------------------
 
-\section{Classification of a model transformation}
+\section{Classification of Model Transformations}
 
 In March 2006 Krzysztof Czarnecki and Simon Helsen published a domain analysis
 that covered existing model transformation approaches\cite{Czarnecki2006}. A
 domain analysis represents information on software system that share a common set of
-features for a given domain\cite{FODA,Prieto-Diaz1990}, in this case the domain
-is model transformations. In their paper they presents the result by using feature
+features for a given domain\cite{FODA,Prieto-Diaz1990}, and in this case the
+domain is model transformations. In their paper they presents the result by using feature
 diagrams, that provides a terminology and representation of the design choices
 for existing model transformation approaches. These feature diagram does not
 only represent model to model transformation approaches, but also consider the
-design choices for model to text transformation approaches. For the purpose of
-this thesis we will only address the model to model approaches in Czarnecki and
-Helsen's survey on model transformations. However it is important to address
-that at top level, we can divide model transformations into to categories,
-namely model to text and model to model transformations like we discussed in
-earlier sections. We consider three feature diagrams that Czarnecki and
-Helsen produced in their report\cite{Czarnecki2006}. These diagrams are provided in
+design choices for model to text transformation approaches. There are several
+different approaches to model transformations, such as operational,
+relational, graph based, hybrid, etc. These approaches have some similar and
+common features, but are designed differently. For the purpose of this thesis we
+will only address the model to model approaches in Czarnecki and Helsen's
+survey on model transformations. However it is important to address that at top
+level, we can divide model transformations into to categories, namely model to
+text and model to model transformations like we discussed in earlier sections.
+In this section we consider the ideas and results from Czarnecki and Helsen's
+report and \textit{A Taxonomy of Model Transformation}\cite{Mens2006} that was
+published by Tom Mens and Pieter Van Gorp in 2006. The diagrams in figure,
 figure~\ref{fig:Model_Transformation_Survey},~\ref{fig:TransformationRules}
-and~\ref{fig:Domain}. This section is based on the ideas and results from
-Czarnecki and Helsen's report and \textit{A Taxonomy of Model
-Transformation}\cite{Mens2006} that was published by Tom Mens and Pieter Van
-Gorp in 2006.
-
+and~\ref{fig:Domain} are provided from the domain analysis
+paper\cite{Czarnecki2006}.
+ 
 \begin{figure}[H]
   \centering
     \includegraphics[scale=0.65]{./Figures/Model_Transformation_Survey_1.png}
@@ -349,22 +363,32 @@ Gorp in 2006.
 \end{figure}
 
 Figure~\ref{fig:Model_Transformation_Survey} shows the feature diagram at top
-level of a model transformation, where a subnode represents design choices for
-a model transformation. These design choices of a model transformation can give
-a better understanding on the different parts that a model transformation
-provides. A model transformation environment needs to tackle these design
-choices that figure~\ref{fig:Model_Transformation_Survey} refer to in
-some manner. However, not all of these design choices are mandatory. 
+level of a model transformation, where a subnode represents different design
+choices. These design choices can give
+a better understanding on different aspects of model transformations. A model
+transformation environment needs to tackle these design choices that
+figure~\ref{fig:Model_Transformation_Survey} refer to in some manner. However,
+not all of these design choices are mandatory.
 Above each subnode in these three feature diagrams there is a black filled
 circle and an empty circle. The empty circle explains that these design choices
 are optional, like for example Specification and Incrementality, while the
-others are mandatory features for a model transformation. The rest of this
-section we will try to find a better understanding of the concepts model
-transformations. 
+others are mandatory features for an implementation of model transformation
+approaches. The rest of this section will cover the design choices that
+figure~\ref{fig:Model_Transformation_Survey} describes. Figure~\ref{fig:Domain}
+represents two different curved lines between subnodes. The black filled curve
+line represents that the subnodes are part of an \textit{or}-group while the
+other curve describes that the subnodes are part of a \textit{xor}-group.
 
 \subsection{Specification}
 
-
+Some approaches to model transformations has a dedicated specification
+mechanism, such as \textit{pre} and \textit{post}-conditions in OCL. A
+specification mechanism provides special functionality during a model transformation. For example in OCL
+a \textit{pre}-condition is required to be true before an operation is executed
+while a \textit{post}-condition describes what will be true for the result once the
+operation is executed. An approach to model transformation could include a transformation
+specification that represents a function between source and target models that 
+could include some operation before and after applying a transformation rule.
 
 \subsection{Transformation Rules}
 
@@ -383,19 +407,22 @@ transformation has a set of transformation rules that specifies how a target
 model is produced. A transformation rule usually defines two special patterns.
 One pattern represents a searching pattern while the other pattern represents
 the part that is produced.  An obvious example of such rules are the rewrite
-rules, that provides a left hand side (LHS) and a right hand side(RHS) where
-both sides represents some user created patterns that are considered when a
-transformation engine applies a corresponding transformation rule. But a
-function that implements some transformation steps can also be seen as a
-transformation rule. Regardless if the concrete syntax is either textual or
-graphical, the users have to specify a pattern that is used to locate matches
-and a pattern that is used to replace these matches with a result.
+rules, that provides a left hand side (LHS) and a right hand side(RHS)
+graph where both sides represents patterns that are considered
+when a transformation rule is applied. A function that implements some
+transformation steps can also be seen as a transformation rule. Regardless if
+the concrete syntax of a model is either textual or graphical, the users have to
+specify a pattern that is used to locate matches and a pattern that is used to replace
+these matches with a result. Defining the transformation rules are essential for
+model transformation approaches. There will always be a pattern that determines
+the searching part and a pattern that determines the translated part for a model
+transformation. These patterns are defined over different domains. 
 
 \textbf{Domain}
 \label{domain}
 
 A transformation rule is specified by certain domains. These domains are
-responsible of accessing either the source or target model for each
+responsible for accessing either the source or target model for each
 corresponding rule. A domain represents both the part that is used to find
 matching patterns in a source model and the part that produces a target model.
 For example for a classic rewriting rule we would have one domain for the LHS
@@ -410,49 +437,64 @@ and one domain for the RHS of the rule.
   \label{fig:Domain}
 \end{figure}
 
-Figure~\ref{fig:Domain} gives a representation of what a domain contains. A
-domain is provided with a \textbf{domain language}. The domain language
-represents how we can structure the domains. In the context of model
-transformation tools that translates models that utilize the Model Driven
-Architecture this domain language would have form of a meta-model expressed in
-the Meta Object Facility. The domain language express what language we use to
+% \textbf{Body} has the three subcategories,
+%1\textbf{variables}, \textbf{patterns} and \textbf{logic}.
+
+Figure~\ref{fig:Domain} gives a representation of the contents of a domain.
+The \textbf{domain language} represents how we can structure the domains. In the
+context of model transformation tools that translates models that utilize the Model
+Driven Architecture this domain language would have the form of a meta-model
+expressed in the Meta Object Facility. The domain language express what language we use to
 define the abstract syntax for both the source and target model. \textbf{Static
-mode} determines if a domain represents a searching part, a create target part, 
-or as both. The classic rewrite rules has a source domain that represents the
-LHS and a target domain that represents the RHS. Transformation rules that can
-be applied in both directions assumes all domains to be both a source and a
-target domain. \textbf{Dynamic mode restriction} concerns model transformation
-tools that provides rules in multiple directions, that means that the source
-and target model can act as both a source or target model depending on what
-direction a transformation occurs. For these rules a domain can be restricted to
-act as a source domain, and not as a target domain. A \textbf{body} determines
-the actual pattern for a domain. This pattern has a certain structure, where the
-pattern for example can represents graphs or strings. This pattern has a
-provided abstract or concrete syntax. The abstract syntax describes what
-modeling elements a certain pattern can contain while the concrete syntax
-determines if the modeling elements are textual or graphical. The body part of a
-domain can also contain logic that express computations and constraints on
-modeling elements. \textbf{Typing} determines the typing of the contents of a
-body. Patterns can either be untyped, syntactically typed or semantically typed.
-For syntactically typing modeling elements that are part of a pattern is
-associated with a meta-model element.  
+mode} determines if a domain represents the searching part, the produced target
+part, or both. Classic rewrite rules has a source domain that represents the
+LHS and a target domain that represents the RHS. Bidirectional transformation
+rules on the other hand can be applied in both directions and therefore the 
+domains are regarded as both the source and the target domain.
+\textbf{Dynamic mode restriction} concerns model transformation tools that provides rules in
+multiple directions, that means that the source and target model can act as
+both a input or output model depending on what direction a transformation
+occurs. For these rules a domain can be restricted to act as a source domain,
+and not as a target domain. The \textbf{body} feature of the domain group has
+three subcategories and figure~\ref{fig:Domain} describes that
+\textbf{Variables} are a mandatory feature for all model transformation
+approaches. A variable enables sharing of data types between domains, for
+example between a source and target domain. The next curved black line describes
+that the two features \textbf{Patterns} and \textbf{Logic} can both be included
+in a model transformation approach. The pattern feature defines the
+structure and syntax of transformation rules. The syntax can be represented by
+either using the abstract or concrete syntax of a modeling language and can
+either have an textual or graphical representation. The transformation rules can
+have a structure that represents strings, terms or graphs. The abstract syntax
+describes what modeling elements a certain pattern can contain while the
+concrete syntax determines if the modeling elements are textual or graphical.
+The Logic feature of a domain specifies computations and constrains on modeling
+elements. Logic can be expressed by different language paradigms like
+object-oriented or functional and can be executable or non-executable.
+Executable logic can take a declarative or an imperative form or both such as
+the implementation of a hybrid model transformation approach that ATL provides. 
+\textbf{Typing} determines the typing of the contents of the body feature.
+Patterns can either be untyped, syntactically typed or semantically typed. For
+syntactically typing modeling elements that are part of a pattern is associated
+with a meta-model element.
 
 \textbf{Syntactic Separation}
 
-Some approaches to model transformation includes syntactic separation of
-accessing models. These model transformation approaches clearly separates on
-what models a transformation rules operates. For example in rewrite rules the
-LHS operates on the source model while the RHS operates on the target model.
-Some model transformation approaches might not have any distinctive separation,
-like for example an model transformation implemented as a Java program. 
+Other then having different domains some approaches to model transformation
+includes syntactic separation of accessing models. These model transformation
+approaches clearly separates on what models a transformation rules operates.
+For example rewrite rules the LHS operates on the source model while the RHS
+operates on the target model. Some model transformation approaches might not
+have any distinctive separation, like for example an model transformation
+implemented as a Java program.
 
 \textbf{Multi-directionality}
 
-Multi-directionality determines if model transformation approach provides
-transformation rules to be applied in different directions. This is convenient
-when synchronizing models over model transformations for example. Model
-transformation approaches that supports applying rules in both directions are
-usually defined over a domain that is both a source and a target.
+Multi-directionality determines if a transformation rule can be applied in
+different directions. This is convenient for synchronizing models by using model
+transformations. Model transformation approaches that supports
+applying rules in both directions are usually defined over a domain that is
+both a source and a target.
 
 
 \textbf{Application Conditions}
@@ -463,10 +505,10 @@ search patterns. Application conditions are handled differently amongst the
 model transformation approaches. Model transformation approaches that implements
 the QVT standard often use control flow statements like the \textit{when-clause}
 or the \textit{if-then-statement} that must be true in order for a
-transformation rule to be applied. Model transformations approaches that is
+transformation rule to be applied. Model transformation approaches that is
 based on category theory and graph transformations on the other hand specifies
-application conditions as graph structures that either requires or forbids this
-specific graph structure in a located matching graph structure. 
+application conditions as separate graph structures that either requires or
+forbids this specific graph structure in a located matching graph structure. 
 
 \textbf{Intermediate Structures}
 
@@ -476,30 +518,33 @@ used as a supplement when applying a set of transformation rules. One
 example of an intermediate structure is a traceable link. These traceable links
 usually has a corresponding meta-model that is required to be included in a
 model transformation environment. Some approaches to model transformation rely
-on this intermediate structure to be able to translate a model. An example to
-this is that this traceable link is created after a rule is applied to prevent
-this rule for locating the exact same match next time it is applied. 
+on this intermediate structure to be able to translate a model. For example in
+AGG a traceable link is created after a rule is applied to prevent this rule for
+locating the exact same match next time the rule is applied.
 
 \textbf{Parameterization}
 
-Parameterization allow for passing values to a transformation rule. For example
-we can pass data types, for example modeling elements to a transformation rule.
-We can then apply changes to a transformation rule with these provided
-parameters and at the same time use the same data types in other
+Parameterization allow for passing values to a transformation rule. These
+values may represents data types such as primitive data types or modeling elements
+types. For example we can pass data types, for example modeling elements to a
+transformation rule. Some approaches to model transformation offers the values
+of a parameterization to represents \textit{higher-order rules}. 
+\textit{Higher-order rules} may take other rules as parameters. A model
+transformation environment may perform changes to a transformation rule with
+these provided parameters and at the same time use these data types in other
 transformation rules.
 
 \textbf{Reflection \& Aspect}
 
 Some model transformation environments allows for a reflective look up of target
-modeling elements for source modeling elements at runtime when target modeling
-elements are already transformed. For example a lazy rule in ATL allows for
-explicitly iterate over already transformed modeling elements and apply some
-reflective operation on the target modeling elements. Transformation rules that
+modeling elements for matching source modeling elements at runtime when target
+modeling elements are already transformed. For example a lazy rule in ATL allows for
+the possibility to explicit iterate over already transformed modeling elements
+and apply some reflective operation on the target modeling elements. Transformation rules that
 utilize an aspect-oriented extension are rules that can affect other rules when
-applied. Both of these categories can be used to express concern cross-cut other
-transformation rules. This means transformation rules that can directly affect
-other transformation rules. 
-
+applied. Both of these categories can be used to express cross-cut concern
+on other transformation rules. This means transformation rules that can directly
+affect other transformation rules. 
 
 \subsection{Rule Application Control}
 \label{sec:app_control}
@@ -513,168 +558,173 @@ a source model. Usually there are more then one exact match for each rule, and
 therefore a transformation engine has to consider that there are several
 matches for a specific search pattern in a source model. There are multiple
 different search algorithms for locating these matches, but these search
-algorithms often have a common strategy to determining the application
-locations. The locate matches strategies could be applied deterministically or
-non-deterministically for example. It is important to differentiate between a
+algorithms often share a common strategy to determine matching pattern
+locations. Locate matches strategies could be applied deterministically or
+non-deterministically. It is important to differentiate between a
 strategy and a search algorithm. A strategy implies how an algorithm for
 locating matches is executed. An algorithm that is applied by a deterministic
-strategy, given a particular source model, will always produce the same output.
-For example for directed graphs a deterministic strategy could exploit some
-graph traversal algorithms, such as Breadth-first search\cite{Dasgupta2006}
-(BFS) or Depth-first\cite{Dasgupta2006} search (DFS). An algorithm that are
-executed with a non-deterministic strategy on the other hand can experience
-different behaviors on different runs. An example of a non-deterministic
-strategy is \textit{one-point} application\cite{Czarnecki2006} and
-\textit{concurrent} application. A \textit{one-point} application applies a
-rule to a non-deterministically location in a source model. This means that a
-rule will search for matches at random locations within a given source scope.
+strategy, given a particular source model, will always produce the same output,
+with an algorithm that always pass through the same sequences during different
+runs. For example for directed graphs a deterministic strategy could exploit
+some graph traversal algorithms, such as Breadth-first
+search\cite{Dasgupta2006} (BFS) or Depth-first\cite{Dasgupta2006} search (DFS).
+An algorithm that are executed with a non-deterministic strategy on the other
+hand can experience different behaviors on different runs. An example of a
+non-deterministic strategy is \textit{one-point}
+application\cite{Czarnecki2006} and \textit{concurrent} application. A
+\textit{one-point} application applies a rule to a non-deterministically
+location in a source model. This means that a rule will search for matches at
+random locations within a given source scope.
 While a \textit{concurrent} application applies a rule to all matching
 locations at the same time. 
 
 Before a matching pattern can be located in a source model a model
 transformation environment has to have a mechanism that schedules these
 transformation rules. Some model transformation tools provides the user with the
-possibility to explicitly decide when transformation rules are applied. The
-scheduling of transformation rules can be divided into implicit or explicit rule
-scheduling. For an implicit rule scheduling mechanism the user are not given any
-control over how transformation rules are applied, that is controlled by the
-tool it self. Explicitly controlling the rule schedule can be achieved either
-internal or external. Internal rule scheduling allows a transformation rule to
-invoke other transformation rules, for example lazy rules in ATL. External
-rule scheduling provides a mechanism that can include transformation rules and
-execute these by some scheduling logic, for example sequentially executing a
-collection of transformation rules. We can also select specific rules and
-execute these accordingly. This is achieved by providing a scheduling mechanism
-with a explicit condition that specifies how the transformation rules is
-applied. This condition could for example specify that we should apply rules
-according in a certain priority. A scheduling mechanism is then provided
-with rules that is applied in priority over other rules. Now we have seen that a
-scheduling mechanism can be defined explicitly or implicitly by the users and
-can have conditions that determines if the rules should be applied in a certain
-order. Model transformation tools also have scheduling mechanisms that provides
-the possibility to iterate through a set of rules. What we mean by iterating
-through a set of rules is that a model transformation tools applies a
-transformation rule until there are no more matches. These rule iteration
-scheduling mechanisms include recursion, looping and a fixed number of
-iterations.
+possibility to explicitly decide the transformation cycle for applying rules.
+The scheduling of transformation rules can be divided into implicit or explicit rule
+scheduling. An implicit rule scheduling mechanism prevents the users with any
+control over how transformation rules are applied, since this is already
+designed in the environments infrastructure. Explicitly controlling the rule
+schedule can either be achieved internal or external. Internal rule
+scheduling allows a transformation rule to invoke other transformation rules, for example
+lazy rules in ATL. External rule scheduling provides a mechanism that can
+specify the scheduling logic for transformation rules, for example executing a
+collection of transformation rules in sequential order. We can also select
+specific rules and execute these accordingly. This is achieved by providing a
+scheduling mechanism with an explicit condition that specifies how the
+transformation rules are applied. This condition could for example specify that
+we should apply rules according to a certain rule priority. A scheduling
+mechanism is then provided with rules that is applied in priority over other
+rules. Now we have seen that a scheduling mechanism can be defined explicitly
+or implicitly by the users and can have conditions that determines if the rules
+should be applied in a certain order. Model transformation tools also have
+scheduling mechanisms that provides the possibility to iterate through a set of
+rules. What we mean by iterating through a set of rules is that a model
+transformation tools applies a transformation rule until there are no more
+matches. Iteration scheduling mechanisms include recursion, looping and fixed
+number iteration through different transformation rules.
 
 The available model transformation tools provides different solutions to both
 locating matches and defining rule scheduling mechanisms. Usually the users are
 given more freedom to defining the rule scheduling mechanism compared to
-locating matches.
+determining match locations.
 
 \subsection{Rule Organization}
 
 This feature represents how the rules are organized and if they are easy to
 reuse. The rules are usually represented as a collection of rules, where these
 rules could either be represented in some source code or by some tree based
-editor. Some model transformation approaches offer a modular approach to rule
-organizing. This means that the rules are contained in a module and are
-therefore easy to reuse. This gives the users the possibility to import these
-modules and use them in other modules. This modular approach to creating
-transformation rules can implement lazy rules, and lazy rules are transformation
-rules that can be integrated in other rules. These rules are highly reusable and
-can be used in any other module. In graph based model transformations rules are
-in most cases organized into a set of rules, where each rule is not available
-for other rules to use. This is because a transformation rule expressed in an
-algebraic approach to model transformation has the pattern and the replacement
-graph. And by adding a new rule with a new pattern graph and replacement graph
-will probably result in a transformation rule that search for matches that was
-not intended. 
+editor. Some model transformation environments such as the QVT languages or ATL
+offers a modular approach to rule organizing. This means that the rules are
+contained in a module and are therefore easy to reuse. This gives the users the
+possibility to import these modules and use them in other modules. Modules may
+include transformation rules as lazy rules. Lazy rules are required to be
+included in other rules and are applied at runtime during a model
+transformation. Rules such as lazy rules are highly reusable and can be used in
+any other module or rule. In graph based model transformations rules are in
+most cases organized into a set of rules, where each rule is not available for
+other rules to use. The reason for this is because such rules are often
+represented graphically and therefore makes it hard to include in other rules. 
 
 \subsection{Source - Target Relationship}
 
-How can a model transformation environment distinguish if a model
-transformation is an endogenous or exogenous model transformation? This is
-achieved by specifying how a source model and target model are related to one
-another. These source and target models can relate to a meta-model for example.
-Both the source and target model could be described by the same modeling
-language. This specifies that a translation between source and target model are
-an endogenous model transformation. And as we described in earlier in this
-section is that an endogenous model transformation translates one model written
-in one modeling language and produces a model written in the same modeling
-language. One aspect of this source-target relationship is that the source and
-target model are independent of each other. The model transformation
-environment is responsible to read and write these models, and to make sure that
-these models remain consistent. One could say that the target model are
-implicit depending on a source model, since a model transformation requires a
-source model to translate accordingly. The model transformation language creates
-transformation rules based on the corresponding meta-models that describes both
-the source and target model. And therefore administrate how these models relate
-to one another through these transformation rules. If the source and target
-models are written or modelled by using two different modeling languages, then
-we have an exogenous model transformation, and the relationship between the
-models should be adapted accordingly.
+% How can a model transformation environment distinguish if a model
+% transformation is an endogenous or exogenous model transformation? This is
+% achieved by specifying how a source model and target model are related to one
+% another. These source and target models can relate to a meta-model for example.
+% Both the source and target model could be described by the same modeling
+% language. This specifies that a translation between source and target model are
+% an endogenous model transformation. And as we described in earlier in this
+% section is that an endogenous model transformation translates one model written
+% in one modeling language and produces a model written in the same modeling
+% language. One aspect of this source-target relationship is that the source and
+% target model are independent of each other. The model transformation
+% environment is responsible to read and write these models, and to make sure that
+% these models remain consistent. One could say that the target model are
+% implicit depending on a source model, since a model transformation requires a
+% source model to translate accordingly. The model transformation language creates
+% transformation rules based on the corresponding meta-models that describes both
+% the source and target model. And therefore administrate how these models relate
+% to one another through these transformation rules. If the source and target
+% models are written or modelled by using two different modeling languages, then
+% we have an exogenous model transformation, and the relationship between the
+% models should be adapted accordingly.
 
-The source and target model can also in some cases be one and the same model,
-Model transformations that are applied one and the same model are called
-in-place model transformations. In AGG the source and target model are always
-the same model, and therefore AGG only supports in-place update of a model.
-The older versions of Atlas Transformation Language (ATL) requires that a new
-target model, that is separated from a source model is created when applying a
-model transformation. Creating a new model as a target model for a model
-transformation specifies that this is an out-place change to a model. However
+The source and target model can in some cases be one and the same model.
+Model transformations that are applied to one and the same model are often
+referred to as in-place model transformations while approaches that produce a
+target model independently of the source model is often referred to as
+out-place model transformations. In AGG the source and target model are always
+on and the same model, and therefore AGG only supports in-place update of
+models. The older versions of Atlas Transformation Language (ATL) requires that
+a new target model, that is separated from a source model is created when
+applying a model transformation. Creating a new model as a target model for a
+model transformation specifies that this is an out-place change to a model. However
 since January 2013 ATL support in-place transformations through a refining
 mode. Other approaches offers support for both in-place or out-place updates
 and lets the users specify how the models should be updated. These out-place
 model transformations could either be changes made to an existing model or by
-creating a new model. QVT Relations and Henshin is an example of approaches to
-these model transformations. Henshin does implicitly deliver an in-place model
-transformation environment, that allows for in-place update of models. But
-explicitly, when using the Henshin API, one could programmatically set up
-Henshin to do out-place changes to a model.
+creating a new model. QVT Relations and Henshin offers the possibility to create
+a new model or update an existing one. Henshin does implicitly deliver an
+in-place model transformation environment, that allows for in-place update of
+models. However, Henshin provides out-place model transformations explicitly
+when using the Henshin API.
 
 \subsection{Directionality}
 
 This section describes that a model transformation environment can translate a
-model in multiple direction. We can distinguish the direction model
-transformations to either be unidirectional or multidirectional. An
-unidirectional model transformation has one source model that translates to a
-target model or updates a target model. What we then can do is change the source
+model in multiple direction. We can distinguish the direction of model
+transformations to either be unidirectional or multi-directional. An
+unidirectional model transformation has one source model that either translates
+to a target model or updates a target model. What we then can do is change the source
 model and source meta-model with the target model and target meta-model. But
 this model transformation is not multidirectional, since we have to apply two
 model transformation to achieve this. A multidirectional model transformation
 can translate in different direction, regardless of source and target
 meta-model. This is especially convenient for model synchronising, where we can
-translate in multiple directions. 
+translate in both directions. 
 
 \subsection{Tracing}
+\label{sec:tracing}
 
-Some model transformation environment has support for tracing of model
-elements. Tracing works like a fingerprint in a model transformation and
-has an unique link between elements. A traceable link between source and target
-elements is a link between mapped elements when a model transformation is
-executed and provides information between the relationship between source
-element and its corresponding target elements. The traceable link is stored in
-memory for the duration it takes to execute a set of transformation rules. A
-traceable link is specified when creating the transformation rules and requires
-source and target elements. When there is a match in a transformation rule, a
-new traceable link is created between a matched source element and all
-corresponding target elements. These traceable links is very convenient when
-analysing and debugging a model transformation. Because now there is tracing on
-source and target elements on each time a transformation rule finds a match in
-the source model.
+Some model transformation environment supports tracing of modeling
+elements during a model transformation. Tracing works like a fingerprint in a
+model transformation and has an unique link between elements. A traceable link
+provides a mapping between source and target modeling elements during a model
+transformation and provides information how a source modeling element relate
+to a corresponding target modeling element. The traceable link is stored in
+memory for the duration it takes to execute a set of transformation rules. Some
+approaches to model transformations requires that a traceable link is
+specified in the structure of transformation rules between source modeling
+elements and target modeling elements. Other approaches implicitly specify
+traceable links automatically during runtime of a model transformations. When
+there is a match in a transformation rule, a new traceable link is created
+between a matched source modeling element and all corresponding target modeling
+elements. These traceable links is very convenient when analysing and debugging
+a model transformation since there is tracing between source and target
+modeling elements for each matched transformation rule.
 
-How traceable links are used across transformation tools varies. In Henshin, ATL
-and QVT these traceable links are handled automatically. For Henshin the user
-can use Henshin Trace model to create traceable links. The trace model consists
-of a single class Trace with a source and target reference. The user can then
-create this trace element together with the transformation rules to relate
-source and target models. ATL has an implicit tracing mechanism that specifies
-relationships between the source element and its corresponding target elements
-by using a native type called ASMTransientLink\cite{Wagelaar}. For every time a
-transformation rule is matched to a source element, one ASMTransientLink is
-created. To this transient link the name of the transformation rule provided
-together with the source element and the target elements. These links are added
-to a collection that has all the transient links and stored internally for ATL.
-This means that the users of ATL cannot access these links after a model
-transformation has finished executing. However, as shown by Andr\'{e}s Yie and
-Dennis Wagelaar\cite{Wagelaar}, that gaining access to these ATL traces can be
-done explicitly by creating transformation rules that generates a tracing
-model based on the internal tracing information provided by ATL. In AGG
-traceable links are created as any other modeling element. Where the user can
-specify a node and two arrows between source and target meta-element in the type
-graph. 
+How traceable links are used across transformation tools varies. In ATL
+and QVT these traceable links are part of the internal infrastructure of the
+environment and are therefore handled automatically during runtime of a model
+transformation. For Henshin the user can use the Henshin Trace model to define
+traceable links between Henshin modeling elements in the graph structure of the
+specific rules. The trace model consists of a single class Trace with a source
+and target reference. The user can then create this trace element together with
+the transformation rules to relate source and target modeling elements. ATL has
+an implicit tracing mechanism that specifies relationships between the source
+modeling element and its corresponding target modeling element by using a
+native type called ASMTransientLink\cite{Wagelaar}. For every time a
+transformation rule locates a match, one ASMTransientLink is defined that
+specifies the name of the transformation rule together with the source modeling
+elements and the target elements. These links are added to a collection of
+transient links and stored internally for ATL. This means that the users of ATL
+cannot access these links after a model transformation has finished executing.
+However, as shown by Andr\'{e}s Yie and Dennis Wagelaar\cite{Wagelaar}, that
+gaining access to these ATL traces can be done explicitly by creating
+transformation rules that generates a tracing model based on the internal
+tracing information provided by ATL.
 
 %----------------------------------------------------------------------------------------
 %	SECTION 2
@@ -690,12 +740,10 @@ detail about graph transformation, we should quickly describe the concepts of
 Category Theory\cite{Herrlich1973,Barr1990}. Category theory can be used to
 formalize mathematical or software theory's at a high level of abstraction. In
 2006 Steve Awodey published a second edition of the book, Category Theory,
-where he stated,
-
-``Just as group theory is the abstraction of the idea of a system of
-permutations of a set or symmetries of a geometric object, category theory
-arises from the idea of a system of functions among some
-objects\cite{Awodey2006}.''
+where he stated, \textit{``Just as group theory is the abstraction of the idea
+of a system of permutations of a set or symmetries of a geometric object, category
+theory arises from the idea of a system of functions among some
+objects\cite{Awodey2006}.''} 
 
 \begin{figure}[H]
 	\centering
@@ -710,9 +758,6 @@ objects\cite{Awodey2006}.''
 	{Collection of objects A,B and C.}
 	\label{fig:categoryTheory}
 \end{figure}
-
-
-
 
 Category Theory can be used as a supplement to explain the theoretical aspects
 behind a problem or solution. A category consists of a collections of
@@ -731,25 +776,23 @@ there is a composite function between A and C. This basically means that if
 C is a function g of B and B is a function f of A, then C is the result of a
 function between C and A. 
 
-For the purpose of this thesis the collection of objects represents graphs the
-arrows represents morphisms. A graph contains a collection of nodes and edges.
-A graph is undirected when there is no distinction between two nodes associated
-with an edge or it is a directed graph if an edge has a direction between two
-nodes. This means that each node is represented as a source and a target node
-for an edge. A directed graph L can be defined by L = \{
+For the purpose of this thesis the collection of objects represents graphs and
+the arrows represents morphisms. A graph contains a collection of nodes and
+edges and is undirected when there is no distinction between two nodes
+associated with an edge or directed graph if an edge has a direction
+between two nodes. This means that each node is represented as a source and a
+target node for an edge. A directed graph L can be defined by L = \{
 N\textsubscript{L}, E\textsubscript{L}, source\textsubscript{L},
 target\textsubscript{L} \}. N\textsubscript{L} represents the collection of
 nodes and E\textsubscript{L} represents the collection of edges that are
 included for the directed graph. The third and forth elements,
 source\textsubscript{L} and target\textsubscript{L}, are functions that
 retrieves the source and target node for an edge. This collection of nodes and
-edges in a graph L can result in an excact match in another graph G. The
-morphism between these two graphs are called homomorphism.
+edges in a graph L can have a mapping to nodes and edges in another graph G.
+If graph structure L can be mapped with a nodes and edges in another graph G
+then there exist a graph homomorphism of graph L in graph G.
 
 \subsubsection*{Graph Homomorphism}
-
-When a graph that has a mapping of nodes and edges in another graph, then there
-is a graph homomorphism between these two graphs.
 
 \begin{figure}[H]
 	\centering
@@ -769,20 +812,20 @@ is a graph homomorphism between these two graphs.
 Figure~\ref{fig:graphHomomorphism} has two graph homomorphisms
 \mbox{L$\xrightarrow{m\textsubscript{L}}$G} and 
 \mbox{R$\xrightarrow{m\textsubscript{R}}$H}. Now if we consider the first
-example, if there is to be a valid graph homomorphism between graph L and G,
+example, if there exist a valid graph homomorphism between graph L and G,
 then the collection of nodes and edges in L has to be mapped to nodes and edges
-in G. If both graphs L and G are directed graphs we can safely assume that the
-definition of graph L in the last paragraph is also true for graph G =\{
-N\textsubscript{G}, E\textsubscript{G}, source\textsubscript{G},
-target\textsubscript{G} \}. For a graph homomorphism m\textsubscript{L} from the
-graph L to the graph G, \mbox{L$\xrightarrow{m\textsubscript{L}}$G}, there is a
-mapping m\textsubscript{L} : N\textsubscript{L} $\longrightarrow$
-N\textsubscript{G} from the set of nodes in graph L to the set of nodes in
-graph G and a mapping mapping m\textsubscript{L} : E\textsubscript{L}
-$\longrightarrow$E \textsubscript{G} from the set of edges in graph L to the
-set of edges in graph G that preserve both source and target nodes. This means
-that there is a mapping from a source node in G that is equal to a source node
-in L and a target node in G is equal to a target node in L. 
+in G. If both graphs L and G are directed graphs then we can safely assume that
+the definition of graph G =\{ N\textsubscript{G}, E\textsubscript{G},
+source\textsubscript{G}, target\textsubscript{G} \}. For a graph homomorphism
+m\textsubscript{L} from the graph L to the graph G,
+\mbox{L$\xrightarrow{m\textsubscript{L}}$G}, there is a mapping
+m\textsubscript{L} : N\textsubscript{L} $\longrightarrow$ N\textsubscript{G}
+from the set of nodes in graph L to the set of nodes in graph G and a mapping
+mapping m\textsubscript{L} : E\textsubscript{L} $\longrightarrow$E
+\textsubscript{G} from the set of edges in graph L to the set of edges in graph
+G that preserve both source and target nodes. This means that there is a
+mapping from a source node in G that is equal to a source node in L and a
+target node in G is equal to a target node in L.
 
 \subsection{The Algebraic Approach}
 This approach are based on the concepts of composing graphs, modelled
@@ -813,22 +856,37 @@ rules, a transformation interpreter can act accordingly. These rules can have
 many names, and are often referred to as productions or applications. For graph
 transformations, there can be an arbitrary number of rules. Its truly up to the
 users how they want to translate a language and how many rules that is needed
-to acquire this. Each rule consists of a left hand side (LHS) and a right hand
-side (RHS), also often referred to as pattern graph and replacement graph. The
-pattern graph represents a subgraph of the model that is going to be translated,
-namely the host graph. For these productions to execute, there is an application
-control mechanism that administrates the execution ordering of transformation
-rules. 
+to acquire this. A rule in a graph based approach to model transformation
+specifies two graphs. The left hand side (LHS) graph, also often referred to as
+a pattern graph specify a graph structure that is used to locate matching graph
+structures in a source model. The right hand side (RHS) graph, also referred to
+as the replacement graph specify a graph structure that should be produced for
+each matching graph structure located in a source model. There is also a
+special graph that is defined for a graph based approach to model
+transformations, and that is an intersection graph. The intersection graph
+specifies a graph structure that shares common graph elements that is part of
+both the RHS and the LHS graph. This intersection graph is essential for a
+graph based approach to include a double pushout or a pullback transformation
+technique when performing a model trasnformation. We will discuss the
+doublepushout approach in section~\ref{sec:execute_rules}. For these
+transformation rules to execute, there is an application control mechanism that
+determines the execution of transformation rules.
 
 \subsection{Application Control}
-In graph transformation, there has to be a control mechanism that
-administrates these productions. These control mechanisms are also called
-transformation units. These units controls the order that the transformation
-rules are executed. The most basic transformation unit is a rule itself which
-corresponds to a single application of that rule. But in most cases, a
-transformation unit will have to control several rule applications. 
+
+In section~\ref{sec:app_control} we discussed that a application control can be
+divided into locating matches and a control mechanism for scheduling
+transformation rules. Locating matches are in most cases part of an environments
+internal infrastructure and employ a non-deterministic searching algorithm that
+locate matches in a source model. Some graph based approach provides a rule
+scheduling mechanism that supports the possibility to specify the execution
+order of transformation rules. Scheduling mechanism controls the order that the
+transformation rules are executed. The most basic scheduling mechanism is a rule
+itself which corresponds to a single application of a transformation rule. But
+in most cases, a scheduling mechanism to control application of several rule.
 
 \subsection{Execution of rules}
+\label{sec:execute_rules}
 The basic idea for graph transformation for both the double-pushout
 approach and the single pushout approach is to apply an application rule
 \mbox{r: L $\longrightarrow$ R}. Where the rule represents a single rewriting
@@ -854,45 +912,54 @@ represents the right hand side of the rule.
 	\label{fig:GraphTransformationGeneral}
 \end{figure}
 
-A production rule r, \mbox{G$\xrightarrow{r,m}$G'} indicates a direct
-derivation to a derived graph G'. In
-figure~\ref{fig:GraphTransformationGeneral}, the graph G' is created by
-applying a single pushout for a transformatin rule r. If there is a match m of
-nodes and arrows for a subgraph L in a host graph G, Then this indicates a
-graph homomorphism, mapping elements from the subgraph to the host graph in
-such a way that the graphical structure in G is preserved. For each rule r,
-there are some algebraic approaches to how we can achieve G'. At this moment
-there are four approaches, the double-pushout approach (DPO) \cite{Loewe1997}, the
+A production rule r, \mbox{G$\xrightarrow{r,m}$H} indicates a direct
+derivation to a derived graph H. In
+figure~\ref{fig:GraphTransformationGeneral}, the graph H is created by
+applying a single pushout for a transformation rule r. If there is a match m of
+nodes and arrows for a subgraph L in a source graph G, then this indicates a
+graph homomorphism from the subgraph L to the source graph G such that the
+graphical structure in G is preserved. For each rule r, there are some
+algebraic approaches to how we can achieve H. At this moment there are four
+approaches, the double-pushout approach (DPO) \cite{Loewe1997}, the
 single-pushout approach (SPO) \cite{Ehrig1997}, the
 sesqui-pushout\cite{Corradini2006} and the pullback approach\cite{Bauderon}.
 Where the two most common approaches used in graph transformation tools are the
 DPO and the SPO approach. There is one major aspect that separate these two
 approaches, and that is that the DPO approach has an application condition.
 
-\begin{figure}[H]
-	\centering
-   \begin{tikzpicture}[descr/.style={fill=white,inner sep=2.5pt}]
-		\matrix (m) [matrix of math nodes, row sep=5em, column sep=5em]
+ \begin{figure}[H]
+ 	\centering
+    \begin{tikzpicture}[descr/.style={fill=white,inner sep=2.5pt}]
+ 		\matrix (m) [matrix of math nodes, row sep=5em, column sep=5em]
 			{ L & C & R \\ G & C' & H \\ };
-		\path[->,font=\scriptsize] (m-1-1) 
-			edge node[auto] {\normalsize m\textsubscript{\footnotesize L}}	(m-2-1); 
-		\path[->,font=\scriptsize] (m-1-2) 
-			edge node[auto, above] {\normalsize l}	(m-1-1); 
-		\path[->,font=\scriptsize] (m-1-2) 
-			edge node[auto] {\normalsize m\textsubscript{\footnotesize C}}	(m-2-2);
-		\path[->,font=\scriptsize] (m-2-2) 
-			edge node[auto] {}	(m-2-1); 
-		\path[->,font=\scriptsize] (m-1-3) 
-			edge node[auto] {\normalsize m\textsubscript{\footnotesize R}}	(m-2-3);
-		\path[->,font=\scriptsize] (m-1-2) 
-			edge node[auto] {\normalsize r}	(m-1-3); 
-		\path[->,font=\scriptsize] (m-2-2) 
-			edge node[auto] {}	(m-2-3); 	
-	\end{tikzpicture}
-	\caption[The Double Pushout approach]
-	{Principles behind the double pushout approach.}
-	\label{fig:DPO}
-\end{figure}
+ 		\path[->,font=\scriptsize] (m-1-1) 
+ 			edge node[auto] {\normalsize m\textsubscript{\footnotesize L}}	(m-2-1); 
+ 		\path[->,font=\scriptsize] (m-1-2) 
+ 			edge node[auto, above] {\normalsize l}	(m-1-1); 
+ 		\path[->,font=\scriptsize] (m-1-2) 
+ 			edge node[auto] {\normalsize m\textsubscript{\footnotesize C}}	(m-2-2);
+ 		\path[->,font=\scriptsize] (m-2-2) 
+ 			edge node[auto] {}	(m-2-1); 
+ 		\path[->,font=\scriptsize] (m-1-3) 
+ 			edge node[auto] {\normalsize m\textsubscript{\footnotesize R}}	(m-2-3);
+ 		\path[->,font=\scriptsize] (m-1-2) 
+ 			edge node[auto] {\normalsize r}	(m-1-3); 
+ 		\path[->,font=\scriptsize] (m-2-2) 
+ 			edge node[auto] {}	(m-2-3); 	
+ 	\end{tikzpicture}
+ 	\caption[The Double Pushout approach]
+ 	{Principles behind the double pushout approach.}
+ 	\label{fig:DPO}
+ \end{figure}
+
+% \begin{figure}[H]
+%   \centering
+%     \includegraphics[scale=0.9]{./Figures/doublePushout.png}
+%     \rule{35em}{0.5pt}
+%   \caption[Vertical and Horizontal model transformations]
+%   {Vertical and horizontal model transformations.}
+%   \label{fig:vertical_horizontal}
+% \end{figure}
 
 \noindent This application condition, named the gluing condition\cite{Loewe1997}
 consists of two parts. Namely the dangling condition and identification
@@ -901,13 +968,13 @@ the transformation rule p specifies the deletion of a node in G, then it must al
 specify the deletion of all incoming and outgoing edges of this node in G. By
 applying this condition, we can be sure that there are no dangling edges after
 deleting a node in G. The identification condition requires that every element
-of G that should be deleted by applying a transformation rule p is only present
-once in L for each transformation rule p. 
+of G that should be deleted by applying a transformation rule p is only
+presented once in L. 
 
 A single transformation rule p in the DPO approach is given by a pair of graph
 homomorphisms from a common graph C. This common graph C is formed by taking
 elements that are present in both L (LHS) and R (LHS) of a transformation rule
-p. The graph G' are created from the graph G, by deleting all elements that is
+p. The graph H is created from the graph G, by deleting all elements that is
 matched from the pattern graph L, but none in C. To avoid dangling edges,
 the gluing condition must be satisfied before deleting these elements. This is
 the first part (1) of the DPO approach, namely the deletion of elements. The
@@ -932,8 +999,8 @@ negative application condition express requirements that a specific graph
 structure is forbidden to be part of the located matching pattern. On the
 contrary a positive application condition express that a specific graph
 structure is required for a located matching pattern to be a valid match for a
-transformation rule. Figure~\ref{fig:NAC} represents a negative application
-condition\cite{habel1996graph} (NAC).
+transformation rule. Figure~\ref{fig:NAC} represents in this case a negative
+application condition\cite{habel1996graph} (NAC).
 
 \begin{figure}[H]
 	\centering
@@ -957,7 +1024,7 @@ The figure contains three graphs and three graphs morphisms. Graph L
 represents the LHS graph, graph G represents the graph that should be
 translated while graph N represents a negative application condition. A negative
 application condition specifies that a certain graph structure should not be
-included in the located match. A positive application condition on the other
+included in a located match. A positive application condition on the other
 hand requires that a certain graph structure is part of a located matching graph
 pattern. Note that a negative and positive application condition is basically
 very similarly represented but implemented differently. For example the double
@@ -997,12 +1064,8 @@ pattern in G. The graph L will locate a matching pattern m\textsubscript{L} in
 G, then check if there exist an application condition N, whether or not this application
 condition requires or forbids a special graph structure there will be a graph
 morphism n\textsubscript{G} that states if a match is valid. This application
-condition filters the searching of graph patterns in G each time a
-transformation rule is applied. 
-
-%\section{Hybrid based approach to Model Transformations}
-
-%A hybrid bases approach to model transformation 
+condition filters the searching of graph patterns in G when a transformation
+rule is applied.
 
 
 

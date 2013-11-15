@@ -17,11 +17,11 @@ thing to do. Because a software development cycle rarely goes as initially
 planned. Changes do occur, both in delivering high quality code and keeping the
 costs down. Traditionally when model driven engineering (MDE) is used, people
 think about models, for example activity diagrams and class diagrams from the
-popular modeling language, UML. Where models is used to raise the level
-of abstraction for the problem specification and describing how a software
-should be implemented. For these software development processes models are
-indirectly used in the creation of software. This means that models are
-primarily used as a reference when implementing an application.
+popular modeling language, UML. Where models are used to raise the level
+of abstraction for a problem specification and describes how the software
+application should be implemented. For these software development processes
+models are indirectly used in the creation of software. This means that models
+are primarily used as a reference when implementing an application.
 
 A model is an abstraction of a system, and has its origin from Latin,
 \textit{modulus} that means measure or standard. A model can either be used to
@@ -30,13 +30,13 @@ system or a concept. When we hear the term model, many will think that it
 is a miniature that consists of a set of nodes and arrows. But it is important
 to consider that a model can also be represented by text. 
 
-If we consider traditionally software development processes, then models are
-primarily used in application requirements and use-case diagrams specify what 
-the costumer wants. Then developers can specify models to detect important
-functionality of the application. The software developer may for example create
+Considering traditional software development processes, models are
+primarily used in application requirements and use-case diagrams to specify what 
+the costumer wants. Developers can then specify models to detect important
+functionality of the application. A software developer may for example create
 flow charts, sequence diagrams, activity diagrams, class diagrams, etc, to
-describe how the system should be implemented. A model for system architecture
-can also be initialized for developers to handle design choices. Rational
+describe how the system should behave and be implemented. A model for system
+architecture can also be initialized for developers to handle design choices. Rational
 Unified Process\cite{Rational1998} (RUP) is an example of a software
 development process that is build around extensive use of models in their
 initial planning phase. RUP was initially created by Rational Software
@@ -49,27 +49,26 @@ different phases, Inception, Elaboration, Construction and Transition, with
 different iterations for each phase that RUP provides. The Inception phase and
 the Elaboration phase is the two phases where some of the example models above
 are created, both under business modeling and requirements. For the Inception
-phase of RUP, the idea is to create the software application without writing
+phase the idea is to create the software application without writing
 any source code. This phase is  concerned with writing text and creating models
 that gives the developers a detailed specification on how the program should be
 implemented. In the Elaboration phase a prototype might be implemented to show
 the customer a possible implementation, but this phase also consist of creating
 and modifying an extensive amount text and models that specifies analysis and
-design choices. The Elaboration phase focus on designing the architecture for
-the software application. The goal for these two phases is to define a solid
-foundation of the application before starting with the implementation and
-testing. In the Construction phase the developers should know exactly how the
-application should be implemented by referring to documents and models created
-in earlier phases. RUP is only one example of how a software development
-process could be applied to a project. Agile development processes has become
-popular the last couple of years, where processes like Scrum\cite{Schwaber2001}
-and Extreme Programming\cite{Beck1999} (XP) has been integrated in software
-development teams all over the world. Both Scrum and XP thrives to focus more
-on the implementation and on delivering high quality code than creating
-documents and models. But models will always be a tool for developers, also in
-agile development processes, when some aspects of a system needs to be
-explained. Because to explain parts of an implementation with a model will help
-to make the explanation less complex and more abstract. 
+design choices. The goal for these two phases is to define a solid foundation of
+the application before starting to write code and tests.
+In the Construction phase the developers should know exactly how the application
+should be implemented by referring to documents and models created in earlier
+phases. RUP is only one example of how a software development process could be
+applied to a project. Agile development processes has become popular the last
+couple of years, where processes like Scrum\cite{Schwaber2001} and Extreme
+Programming\cite{Beck1999} (XP) has been integrated in software development
+teams all over the world. Both Scrum and XP thrives to focus more on the
+implementation and on delivering high quality code than on creating documents
+and models. However, models will always be a tool for developers, also in agile
+development processes, when some aspects of a system needs to be explained.
+Because to explain parts of an implementation with a model will help to make
+the explanation less complex and more abstract.
 
 \begin{figure}[H]
 	\centering
@@ -81,71 +80,71 @@ to make the explanation less complex and more abstract.
 
 Now we have acknowledged some development processes that are commonly used in
 the industry for creating software applications. Model Driven Engineering is a
-software development methodology which focuses on creating and exploiting
-models. And by using these models,  MDE aims at improving productivity and
-quality in software development. This is achieved by not only to use models as
-documentation, but instead to use models as the major artifact in a software
+software development methodology that focus on creating and exploiting
+models. And by using these models, MDE aims at improving productivity and
+quality in a software developments\cite{France2007}. This is achieved by not only to use
+models as documentation, but instead use models as the major artifact in a software
 development cycle. The idea is to use models at different levels of abstraction
 and apply model transformations to automate the implementation of these
 models. This will raise the level of abstraction in program and problem
 specification. We can divide these models into two main model classes, namely
-development models and runtime models. Development models is used as an
-abstraction above code level. These models could represent software
+development models and runtime models. Development models are used as an
+abstraction above code level. These models can represent software
 requirements, work flow, architecture and software implementation. These
-development models are most typically used in software development process that
-we described above as a supplement in developing an application. Runtime models
-represents executable systems of a software application. Example of such
-executable systems could be database operations or computations of data. There
-has been an increase in MDE researchers that explore how runtime models can be
-used to support dynamic adaptation of systems for a software
-application\cite{France2007}. The idea for MDE is to be able to specify these
-development models as runtime models and evolve software applications with the
-use of runtime models and development models as major artifacts of a development
-process. 
-
-A typical Model Driven Software Engineering (MDSE) approach is to obtain the
-running software application through model transformations that produce a more
-and more detailed version of the application until an executable version is
+development models are most commonly used in software development processes as a
+supplement in developing an application. Runtime models represents executable
+systems of a software application. Example of such executable systems are
+database operations or computations of data. There has been an increase in MDE
+researchers that explore how runtime models can be used to support dynamic
+adaptation of systems for a software application\cite{France2007}. The idea for
+MDE is to be able to specify these development models as runtime models and
+evolve software applications with the use of runtime models and development
+models as major artifacts of a development process. 
+ 
+A typical Model Driven Software Engineering (MDSE) scenario is to obtain an
+executable software application through model transformations that produce a
+more and more detailed version of the application until an executable version is
 created. We reach this level of automation by applying model transformations to
-models at higher levels of abstraction and producing models that contains a
-more and more detailed description of the software. This highlights one main
-advantage of a model driven approach, and that is to bridge the communication
-gap between requirements/analysis and implementation\cite{Brown2008}. For a
-traditional development process today there is a gap in communication between
-software developers and customers. Because a customer is usually not an expert
-in designing and implementing a software application. A customer can provide a
-set of requirements for a software application and take part in analysing these
-requirements to make sure that the development team shares the customers thought
-of the program. The requirements and analysis can be specified down to every
-detail, however a software application might experience different design choices
-that leads to a different implementation of the application compared what a
-business needs. If the visions of MDE is adopted to a software development
-process then this could help to narrow the gap in communication between
-developers and stakeholders. Because now we can apply model transformation that changes input
-models to target models that represents the design of a software application.
-From these design models we can then generate implementation code through the use
-of model transformations. We will describe model transformations and their
-purpose in model driven engineering in more depths in chapter~\ref{Chapter3}.
-To use models at each level of abstraction is less complex than implementation
-code. This represents another benefit of adopting MDSE into the development
-process. Because models captures and organize the understanding of a system that
-results in a more clear discussions among team members and new team members. 
-One approach that introduces modeling at different level of abstraction for
-including MDSE in a software development process is the Model Driven
-Architecture.
+models at higher levels of abstraction and producing models that contains a more
+detailed description of the software. This highlights one main advantage of a
+model driven approach, and that is to bridge the communication gap between
+requirements/analysis and implementation\cite{Brown2008}. For a traditional
+development process today there is a gap in communication between software
+developers and customers\cite{France2007}. Because a customer is usually not an
+expert in designing and implementing a software application. A customer can
+provide a set of requirements for a software application and take part in
+analysing these requirements to make sure that the development team shares the
+customers thought of the program. The requirements and analysis can be
+specified down to every detail, however a software application might experience
+different design choices that leads to a different implementation of the
+application compared to what the costumer initially specified. If the visions
+of MDE is adopted to a software development process then this could help to
+narrow the gap in communication between developers and stakeholders. Because
+now we can apply model transformation that changes input models to target
+models that represents both the design and the executable implementation of a
+software application. We will describe model transformations and their purpose
+in model driven engineering in more depths in chapter~\ref{Chapter3}. Models
+that are provided at different level of abstractions is less complex than
+several thousand lines of implementation code. This represents another benefit
+of adopting MDSE into the development process. Because models captures and
+organize the understanding of a system that results in a more clear discussions
+among team members and new team members. One approach that introduces modeling
+at different level of abstraction for including MDSE in a software development
+process is the Model Driven Architecture.
 
 \subsection{Model Driven Architecture}
 \label{MDA}
 
 Model Driven Architecture (MDA) is an industry architecture developed by the
-Object Management Group (OMG) and address an application development cycle. MDA
-is a proposal for applying the practices of MDE to a system development. This
+Object Management Group (OMG) that address the possibility to provide automation
+according to models in an application development cycle.
+MDA is a proposal for applying the practices of MDE to a system development. This
 architecture is a good example to use when we are discussing concepts of MDE,
 because of its similarity to a traditional software development process. Since
 it has support for standard phases in a software development process such as
 analysis, design and implementation. Many organizations have adopted MDA as a
 reference framework to include the concepts of MDE. One reason for this is the
-importance of OMG in for the software industry. MDA is build around many
+importance of OMG for the software industry. MDA is build around many
 concepts that OMG has released, such as the OMG specifications the Unified
 Modeling Language (UML) and the Meta Object Facility(MOF).
 
@@ -158,27 +157,29 @@ Modeling Language (UML) and the Meta Object Facility(MOF).
 \end{figure}
 
 Figure~\ref{fig:MDA} gives a representation of the development process that the
-Model Driven Architecture provides and a traditional development process. Both
-of the approaches have similar starting phases, where a customer presents a
+Model Driven Architecture provides and a traditional development process on the
+right side.
+Both of the approaches have similar starting phases, where a customer presents a
 list of requirements for a software application. The process to create
 implementation code from the requirements is where a MDE approach to software
 development is different. Because for MDA the idea is to use models instead of
 text and diagrams for the analysis and design phase. For a traditional
 development process these phases usually consist of creating diagrams that
-describes parts of the application. In MDA these diagrams or models are the
-main artifact for the corresponding phases, instead of just a reference for
-developers to use when implementing code. The architecture then generates
-implementation code based on these models. A traditional software development
-process would have iterations for the implementation and testing to make sure
-that the application meets the demands of the customer. This process is
-continued for every iteration, where developers continually use the text and
-diagrams that was created earlier in the process. The idea for an MDA
-development process is to provide automation between models created at each
-development phase. Instead of going back to the code and to corrections and
-modifications on the application a model driven software development process
-goes back to analysing the problem and modify the models accordingly. With the
-power of automatically changing models from one phase to another and generate
-implementation code from the models at the last level of abstraction.
+describes different system of the application. In MDA these diagrams or models
+are the main artifact for the corresponding phases, instead of just a reference for
+developers to use when implementing an application. The architecture then
+propose that implementation code is generated based on these models. A
+traditional software development process would have iterations for the
+implementation and testing to make sure that the application meets the demands
+of the customer. This process is continued for every iteration, where
+developers continually use the text and diagrams that was created earlier in
+the process. The idea for an MDA development process is to provide automation
+between models created at each development phase. Instead of going back to the
+code and do corrections and modifications on the application a model driven
+software development process goes back to analysing the problem and modify the
+models accordingly. With the power of automatically changing models from one
+phase to another and generate implementation code from the models at the last
+level of abstraction.
 
 Figure~\ref{fig:MDA_PLATFORM} provides a representation of the models at the
 different layer of abstractions that is part of the Model Driven Architecture. 
@@ -202,11 +203,10 @@ define the requirements for a software application.
 
 \textbf{Platform-Independent Model (PIM)} is the level of abstraction that
 describes the behavior and structure of a software application. This model is
-platform independent, and that means that a implementation platform is not
-specified. This means that the technological platform used to implement the
-software application is not defined. A Platform-Independent Model will only
-address tasks that a software application can perform. These tasks are part of
-the context of the business model at the top level of abstraction.
+platform independent, which means that the technological platform used to
+implement the software application is not defined. A Platform-Independent Model
+will only address tasks that a software application can perform. These tasks
+are part of the context of the business model at the top level of abstraction.
 
 \textbf{Platform-Specific Model (PSM)} is the level of abstraction that contains
 all required information for the behavior and structure of a software
@@ -216,22 +216,21 @@ purpose programming language, a specific operation system or a specific database
 technology. The Platform-Specific Model contains all the information that is
 required for an actual implementation of the application. 
 
-In MDA, the core activity is the starting phase, which is the way analysis is
-conducted. Requirements are firstly defined and modeled as a CIM or a PIM. The
-CIM and PIM provides the solution for the requirements at a very high level of
-abstraction. At the computation independent level of abstraction we provide the
-requirements of a solution without thinking about the actual implementation of
-an application. A CIM could not only specify how an application should behave to
-different situations, but could also specify how the end users utilizes the
-application. For example the model could define the requirements for a web
-application that provides a collection of goods that the end users can purchase.
+In MDA, the core activity is the starting phase, which is to analyse the
+problem at hand. Requirements are firstly defined and modeled as a CIM or a PIM.
+The CIM and PIM provides the solution for the requirements at a very high level
+of abstraction. The computation independent level of abstraction we provide
+the requirements of a solution without thinking about the actual implementation
+of an application. A CIM specifies the workflow of an application and how end
+users utilizes the application. For example the model could define the
+requirements for a web application that provides a collection of goods that the end users can purchase.
 These requirements could specify how an employee performs tasks when a new order
-arrives. For a solution to an application not all of these requirements are
-necessary for the implementation. The meaning of MDA is that models created at
+arrives. For the implementation of an application not all of these requirements
+are necessary. The purpose of MDA is that models created at
 CIM level provides the highest level of abstraction and therefore should be
-readable for everyone. In figure~\ref{fig:MDA_PLATFORM} model MDA suggest
-that new models are created accordingly from a set of mappings. Models that is
-provided at the platform independent abstraction is not concerned with
+readable by everyone. In figure~\ref{fig:MDA_PLATFORM} MDA suggest
+that new models are created accordingly based on a set of mappings. Models that
+is provided at the platform independent abstraction is not concerned with
 technologies that should be used for the actual implementation. PSM is more
 concerned with describing what tasks an application should perform. But tasks
 that an employee should perform, like for example making a shipment ready for
@@ -240,16 +239,14 @@ implementation platform and a set of precise descriptions of the technical
 details of the corresponding implementation platform. Mapping a model to another
 model is essential for applying MDA to a development process. A mapping defines
 correspondences between elements of two different models and can be defined
-between all different models. These three models with mapping between them makes
-for excellent design choices to create an environment that specifies modeling
-languages. 
+between all different models.
 
 \section{Modeling Languages}
 
 A Modeling language is defined through three core concepts. Regardless if its
 either a Domain Specific Modeling Language (DSML) or a General Purpose Modeling
 Language (GPML). Figure~\ref{fig:modeling_language} represents the three main
-ingredients for a modeling language.
+concepts for a modeling language.
 
 \begin{figure}[H]
 	\centering
@@ -262,7 +259,7 @@ ingredients for a modeling language.
 A modeling language has an abstract and a concrete syntax. The abstract syntax
 describes the structure of the modeling language and how modeling elements can
 be combined together. The concrete syntax on the other hand describes a specific
-representation of the abstract syntax, and can be either be a graphical or
+representation of the abstract syntax, and can either be a graphical or
 textual representation. The semantics of a modeling language describes the
 meaning of these modeling elements and the different ways to combine them for
 the abstract syntax and indirectly the concrete syntax. We mentioned DSML and
@@ -274,8 +271,8 @@ GPMLs are modeling languages that is applicable for several different domains.
 A general purpose language lacks features that are special for a particular
 domain. This is one of the strengths for DSLs that is created especially for a
 certain domain, and therefore provide more details to a specific domain compared
-to a general purpose language. The Unified Modeling Language\cite{UML,UML_SPEC}
-(UML) is an example of a standardized general-purpose modeling language that
+to a general purpose language. The Unified Modeling Language\cite{UML_SPEC}
+(UML) is an example of a general-purpose modeling language that
 was accepted in 2000 by the International Organization for Standardization
 (ISO) as an industry standard for modeling software systems. UML was initially
 developed by Grady Booch, Ivar Jacobsen and James Rumbaugh at Rational Software
@@ -304,7 +301,7 @@ often referred to as a meta-model.
 Models are a major artifact in the concept of model driven engineering (MDE). It
 is essential to look at every model as instances of some more abstract model.
 And therefore we can define a meta-model as yet another abstraction that
-highlights properties of an instance model. Meta-modeling represents a vital
+highlights the properties of an instance model. Meta-modeling represents a vital
 part of MDE and constitutes the definition of a modeling language. A meta-model
 defines the abstract syntax and provides a description of a modeling language.
 Another popular definition for describing a meta-modeling is that it is a
@@ -335,12 +332,11 @@ Language.
 \subsubsection*{Meta-Object Facility}
 
 The Meta-Object Facility\cite{MOF} (MOF) is an Object Management Group standard
-for model driven engineering. The Object Management Group was in need of a
-architecture to define the UML. Therefore the Meta-Object Facility has its
-origin from UML. Through this process of finding a common platform for UML, OMG
-designed a four layered architecture that provides a semi-formal approach to
-creating meta-models. MOF became a language for defining abstract syntax for
-modeling languages. 
+for defining meta-models in MDE. The Object Management Group was in need of a
+architecture to define the UML. Through this process of finding a common
+platform for UML, OMG designed a four layered architecture that provides a
+semi-formal approach to creating meta-models. MOF later became a language for
+defining abstract syntax for modeling languages. 
 
 \begin{figure}[H]
 	\centering
@@ -351,22 +347,22 @@ modeling languages.
 \end{figure}
 
 Figure~\ref{fig:MOFLayers} gives a impression of the four layers that are
-available in the Meta-Object Facility. At the top level, M\textsubscript{3}
+available in the Meta-Object Facility. At the top level, M\textsubscript{3},
 there is a meta-meta-model called MOF. This meta-meta-model is meant to both
 describe it self and conform to itself. MOF is then used to describe meta-models
 at the M\textsubscript{2} level. The UML meta-model is an example of such a
 meta-model. The idea is that these meta-models are specified by some
-meta-modeling language. Models at the M\textsubscript{2} layer represents the
-abstract syntax for models created in the M\textsubscript{1} layer. This
+meta-modeling language that corresponds to MOF. Models at the M\textsubscript{2}
+layer represents the abstract syntax for models created in the M\textsubscript{1} layer. This
 layer represents models that are created by some modeling language, like
 for example UML. Finally at the M\textsubscript{0} we have an instance model of
 a real world object. If we refer to our simple example concerning a model and
 its corresponding meta-model in figure~\ref{fig:SimpleMeta-model}. From this
 example we can create a real world object of that model, ``Petter Barvik'' takes
 a course in Model Transformations. MOF provides meta-modeling architecture where
-every modeling element on every layer corresponds to some modeling element of
-one layer higher. One could say that MOF is a Domain Specific Language (DSL) to
-create meta-models. 
+every modeling element on every layer corresponds to some modeling element
+one layer higher. One could say that MOF itself a Domain Specific Language (DSL)
+to create meta-models. 
  
 \subsection{Constraints}
 
@@ -377,7 +373,7 @@ while constraints are either satisfied or not satisfied. Including constraints
 to modeling elements in the abstract syntax specifies how modeling elements
 are presented in an instance model. Modeling elements that are included in the
 abstract syntax can have constraints defined on objects, classes, attributes, links,
-associations, etc. A constraint is a restriction on how these elements should
+associations, etc. A constraint is a restriction for how these elements should
 behave. Constraints on elements such as those above can be expressed with a
 natural language or by a formal language, such as the Object Constraint
 Language\cite{OCL} (OCL). The Object Constraint Language (OCL) is a declarative
@@ -391,8 +387,8 @@ language\cite{Warmer:2003:OCL:861416}.
 The difference between object and classes needs to be specified. A class
 is often a meta element for an object. This means that a class could be part of
 a model that describes an object element, and therefore an object element is
-typed by class element\cite{OO_UML}. Figure~\ref{fig:SimpleMeta-model} describes
-the two object elements Student and Course that are an instance of the
+typed by the class element\cite{OO_UML}. Figure~\ref{fig:SimpleMeta-model}
+describes the two object elements Student and Course that are an instance of the
 meta-element Class.
 
 \begin{figure}[H]
@@ -403,8 +399,8 @@ meta-element Class.
 	\label{fig:Constraints}
 \end{figure}
 
-These restrictions on model elements can either be a structural constraint or an
-attached constraint. These structural constraints are defined in the structure
+These restrictions on modeling elements can either be a structural constraint or
+an attached constraint. These structural constraints are defined in the structure
 of the models. In figure~\ref{fig:Constraints} we have extended the model we
 introduced in figure~\ref{fig:SimpleMeta-model} with some  modeling elements. We
 have created an association that specifies that a student can date other
@@ -416,13 +412,12 @@ requires to take at least one course and up to a maximum of six courses. The
 models restricts a student to not participate in any courses. The second
 structural constraint requires a course to have at least one student for
 this course to be part of a semester, and the course can have an arbitrary
-maximum number of students participating this course. The association dates,
-between two students for this model has an attached constraint, that is
+maximum number of students participating the course. The association dates,
+between two students for this model has an attached constraint that is
 specified in the declarative language OCL. The general form of an attached
 constraint has a context, in this case a Student, that specifies what object the
-constraint includes. The is a constraint name followed by a Boolean
-expression. The attached constraint has a name \textit{``Irreflexive''} followed
-by a Boolean OCL expression that explicitly refers to itself. This constraint
+constraint includes. The attached constraint has a name \textit{``Irreflexive''}
+followed by a Boolean OCL expression that explicitly refers to itself. This constraint
 specifies that a student is unable to date her or him self. Constraints has a
 vital part in model driven engineering to measure the quality and precision of a
 model. A model without constraints does not work in practice. In
@@ -443,7 +438,7 @@ created language. A workbench should consist of Integrated Development
 Environment (IDE) that lets users create their own DSMLs.
 Figure~\ref{fig:langauge_workbench} is provided in the paper, \textit{``DPF
 Workbench: a multi-level language workbench for MDE"}, that was published by
-Yngve Lamo, Xiaoliang Wang, Florian Mantz, Øyvind Bech, Anders Sandven and
+Yngve Lamo, Xiaoliang Wang, Florian Mantz, {\O}yvind Bech, Anders Sandven and
 Adrian Rutle in 2013. The figure presents the intended use of language
 workbenches and consist of two phases. The first handles the definition of a
 new DSML and the creation of tool support such as code generation, editors,
@@ -470,8 +465,9 @@ the users with an IDE to create DSLs, but also generates a new IDE where this
 newly created DSL can be edited. In addition to an IDE that provides creation
 and editing of a newly created language a workbench should define support for
 code generation, model transformation, model versioning, etc\cite{Lamo2013}.
-Figure~\ref{fig:workbench} shows the different components of a language
-workbench.
+Figure~\ref{fig:workbench} describes components for a language workbench. Martin
+Fowler describes three main parts to defining a new language workbench in his
+paper\cite{fowler2005language}:
 
 \begin{figure}[H]
 	\centering
@@ -491,10 +487,10 @@ workbench.
 
 Eclipse Modeling Framework is originally based on Meta Object Facility (MOF)
 provided by the Object Management Group (OMG). In 2003 EMF designers contributed
-to designing the MOF 2.0 version of the standard that was named Essential
-EMOF (EMOF). EMF provides the meta-model Ecore that is aligned to EMOF and is a
-modeling language to build modeling languages. Ecore is essentially a simplified
-version of class modeling in UML.
+to designing the MOF 2.0 version of the standard that was later named Essential
+MOF (EMOF). EMF provides the meta-model Ecore that is aligned to EMOF and is a
+general purpose modeling language to create modeling languages. Ecore is
+essentially a simplified version of class modeling in UML.
 
 \begin{figure}[H]
 	\centering
@@ -541,7 +537,7 @@ in the same way that a theory can be considered as a category with additional
 structures\cite{Duval2003}. Generalised Sketches by Zinovy Diskin utilize the
 concept of sketches. A sketch, first introduced by Ehresman in 1966, is a
 directed graph that provides additional properties, such as colimit, limit and
-constraints. DPF utilize this concept through an diagrammatic approach to
+constraints. DPF utilize these concepts through an diagrammatic approach to
 meta-modeling and to facilitate the concepts of MDE. The framework provides the
 possibility to define an unlimited layers of meta-modeling. In DPF models are
 represented as specifications.
@@ -562,7 +558,7 @@ consist of a collection of predicates.
 
 A \emph{specification $\spec{S}$} has an underlying graph S that contains
 modeling elements that defines the model structure of the specification. These
-modeling elements are always represented as a node and an arrow. However these
+modeling elements are always represented as a node or an arrow. However these
 nodes and arrows could be specified through several layers of
 meta-models or specifications. The \emph{specification $\spec{S}$} also consist
 of a set of constraints, these constraints will restrict the model structure of
@@ -611,28 +607,29 @@ specification that is defined by a modeling formalism.
 	\label{fig:modeling_formlalism}
 \end{figure}
 
-Because in DPF a modeling language is represented as a modeling formalism. A
-modeling formalism in DPF is defined by a set of atomic constraints and a
-specification that has an underlying graph and a set of atomic constraints. For
-example figure~\ref{fig:modeling_formlalism} represents three levels of
-abstractions for defining a DSML. The specification $\spec{S}$\textsubscript{1}
-that is defined at the first layer corresponds to the modeling formalism one
-layer higher. The modeling formalism consist of a specification
-$\spec{S}$\textsubscript{2} that has an underlying graph S\textsubscript{2} and
-a set of predicates Z\textsubscript{3}. Together with specification
-$\spec{S}$\textsubscript{2} a set of predicates Z\textsubscript{2} can be
-defined together with the underlying graph S\textsubscript{2} to define a
+Because in DPF a modeling language at a specific abstraction layer is
+represented as a modeling formalism.
+A modeling formalism in DPF is defined by a set of atomic constraints from a
+modeling formalism one abstraction layer higher and a specification that has an
+underlying graph and a set of atomic constraints. For example figure~\ref{fig:modeling_formlalism} represents three levels of
+abstractions for defining a DSML. The specification $\spec{S}$\textsubscript{n}
+that is defined at M\textsubscript{n} layer conforms to the modeling
+formalism one layer higher. The modeling formalism consist of a specification
+$\spec{S}$\textsubscript{n+1} that has an underlying graph S\textsubscript{n+1}
+and a set of predicates Z\textsubscript{n+2}. Together with specification
+$\spec{S}$\textsubscript{n+1} a set of predicates Z\textsubscript{n+1} can be
+defined to specify a new modeling formalism for lower layer of abstractions. 
 modeling formalism\cite{Rutle_thesis}. This defined modeling language, or
 modeling formalism provides the abstract syntax that can be used to create a
 specification or modeling formalism one abstraction layer lower. What is special
 with DPF is that a modeling formalism represents both the abstract syntax for
 a specification one abstraction layer lower and the concrete syntax for a
 specification one abstraction layer higher. The set of atomic constraints
-Z\textsubscript{2} provides the semantics while the
-specification $\spec{S}$\textsubscript{2} provides the abstract syntax for
-defining a new specification $\spec{S}$\textsubscript{1}.
-Figure~\ref{fig:MOF_vs_DPF} explains the difference between OMG's MOF on the
-left side and DPF's multi layer meta-modeling hierarchy on the right side
+Z\textsubscript{n+1} provides the semantics and the
+specification $\spec{S}$\textsubscript{n+1} provides the abstract syntax for
+defining modeling elements in a new specification $\spec{S}$\textsubscript{n}.
+Figure~\ref{fig:MOF_vs_DPF} explains the difference between OMG's MOF and DPF's
+multi-layered meta-modeling hierarchy.
 
 \begin{figure}[H]
 	\centering
@@ -644,18 +641,18 @@ left side and DPF's multi layer meta-modeling hierarchy on the right side
 
 These two sides highlights the differences between DPF and modeling environments
 that expand MOF to create modeling languages. While MOF based modeling
-environments provides two abstraction layers, DPF on the other hand provides a
-possible unlimited abstraction layers users can interact with. The reason that
-MOF based modeling environments provides two layers to interact with is because
-the layers M\textsubscript{2} and M\textsubscript{3} are usually part of the
+environments provides two abstraction layers, DPF on the other hand provides an
+unlimited abstraction layers users can interact with. The reason that MOF based
+modeling environments provides two layers to interact with is because the
+layers M\textsubscript{2} and M\textsubscript{3} are usually part of the
 environments internal infrastructure. For example in EMF users can create
 models that conforms to the Ecore meta-model. The only meta-model that users of
-DPF are unable to interact with located at the highest abstraction layer. A
+DPF are unable to interact with is located at the highest abstraction layer. A
 specification $\spec{S}$\textsubscript{n+1} is specified by a modeling language
 that corresponds to a specification $\spec{S}$\textsubscript{n+2}. But the same
 specification $\spec{S}$\textsubscript{n+1} also represents the abstract syntax
 for a specification $\spec{S}$\textsubscript{n}. These DPF models automatically
-generates a new graphical editor environment provided by the DPF Editor.
+generates a new graphical editor environment provided by the DPF Workbench.
 
 \section{DPF Workbench}
 
@@ -668,8 +665,7 @@ to the ``DPF Model Editor''. It provides an editor to construct user defined
 predicate signatures. These signatures can then be used to define the semantics
 of a DPF specification in the ``DPF Model Editor'' if the predefined predicates
 that DPF provides does not suffice. Figure~\ref{fig:DPF_Editor} that is
-provided in the article, \textit{``DPF Workbench: a multi-level language
-workbench for MDE"}\cite{Lamo2013}, explains how the ``DPF Signature Editor'',
+provided in the article\cite{Lamo2013}, explains how the ``DPF Signature Editor'',
 the ``DPF Model Editor'' and a DPF Model is related to each other in the DPF
 Workbench over different abstraction layers. The ``DPF Code Generator'' provides
 the users with a code generation environment for DPF specifications.  
