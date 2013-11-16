@@ -8,11 +8,14 @@ import no.hib.dpf.visual.VisualFactory;
 import no.hib.dpf.visual.VisualPackage;
 import no.hib.dpf.visual.Visuals;
 
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.swt.graphics.RGB;
 
 /**
  * <!-- begin-user-doc -->
@@ -71,6 +74,36 @@ public class VisualFactoryImpl extends EFactoryImpl implements VisualFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public Object createFromString(EDataType eDataType, String initialValue) {
+		switch (eDataType.getClassifierID()) {
+			case VisualPackage.ECOLOR:
+				return createEColorFromString(eDataType, initialValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String convertToString(EDataType eDataType, Object instanceValue) {
+		switch (eDataType.getClassifierID()) {
+			case VisualPackage.ECOLOR:
+				return convertEColorToString(eDataType, instanceValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public VArrow createVArrow() {
 		VArrowImpl vArrow = new VArrowImpl();
 		return vArrow;
@@ -94,6 +127,27 @@ public class VisualFactoryImpl extends EFactoryImpl implements VisualFactory {
 	public Visuals createVisuals() {
 		VisualsImpl visuals = new VisualsImpl();
 		return visuals;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public RGB createEColorFromString(EDataType eDataType, String initialValue) {
+		String[] result = initialValue.split(" ");
+		Assert.isTrue(result.length == 3);
+		return new RGB(Integer.valueOf(result[0]).intValue(),Integer.valueOf(result[1]).intValue(),Integer.valueOf(result[2]).intValue());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public String convertEColorToString(EDataType eDataType, Object instanceValue) {
+		RGB rgb = (RGB) instanceValue;
+		return rgb.red + " " + rgb.green + " " + rgb.blue;
 	}
 
 	/**

@@ -20,7 +20,6 @@ import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.IDObject;
 import no.hib.dpf.core.Node;
-import no.hib.dpf.editor.displaymodel.factories.DPFConnectionCreationToolEntry;
 import no.hib.dpf.visual.VArrow;
 import no.hib.dpf.visual.VElement;
 import no.hib.dpf.visual.VNode;
@@ -30,6 +29,7 @@ import no.hib.dpf.visual.presentation.NodeFactory;
 import no.hib.dpf.visual.util.ImageSettings;
 
 import org.eclipse.emf.common.util.EMap;
+import org.eclipse.gef.palette.ConnectionCreationToolEntry;
 import org.eclipse.gef.palette.CreationToolEntry;
 import org.eclipse.gef.palette.MarqueeToolEntry;
 import org.eclipse.gef.palette.PaletteContainer;
@@ -108,7 +108,7 @@ public class DPFPaletteFactory {
 				nodeGroup.add(new CreationToolEntry(arrow.getTarget().getName(), "Create a new " + arrow.getTarget().getName(), new ComposedNodeFactory(arrow.getTarget()), 
 						smallIcon != null ? smallIcon : SMALLICON, LARGEICON));
 			}else 
-				arrowGroup.add(new DPFConnectionCreationToolEntry(arrow.getName(), "Create a new " + arrow.getName() + ":" + arrow.getSource().getName() + "-->" + arrow.getTarget().getName(), new ArrowFactory(arrow), 
+				arrowGroup.add(new ConnectionCreationToolEntry(arrow.getName(), "Create a new " + arrow.getName() + ":" + arrow.getSource().getName() + "-->" + arrow.getTarget().getName(), new ArrowFactory(arrow), 
 						SMALLARROW, LARGEARROW));
 		}
 	}

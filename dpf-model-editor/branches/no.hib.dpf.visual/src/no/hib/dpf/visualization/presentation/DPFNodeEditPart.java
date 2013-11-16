@@ -57,9 +57,9 @@ public class DPFNodeEditPart extends DNodeEditPart {
 	protected IFigure createFigure() {
 		IFigure figure;
 		if(visual != null && visual.isComposite()) {
-			figure = new CompositeNodeFigure(new EditableLabel(getNodeLabelName()));
+			figure = new CompositeNodeFigure(new EditableLabel(getNodeLabelName()), visual.getColor(), visual.isRounded());
 		} else
-			figure = new NodeFigure(new EditableLabel(getNodeLabelName()));
+			figure = new NodeFigure(new EditableLabel(getNodeLabelName()), visual.getColor(), visual.isRounded());
 		return figure;
 	}
 	
@@ -95,7 +95,7 @@ public class DPFNodeEditPart extends DNodeEditPart {
 		label.setVisible(true);
 		label.revalidate();
 	}
-	protected void refreshVisuals() {
+	public void refreshVisuals() {
 		NodeFigure figure = (NodeFigure)getFigure();
 		DPFEditor editor = getEditor();
 		if(editor != null){

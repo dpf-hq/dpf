@@ -14,9 +14,12 @@
   <eClassifiers xsi:type="ecore:EClass" name="VNode" eSuperTypes="#//VElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="composite" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="color" eType="#//EColor"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rounded" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Visuals">
     <eStructuralFeatures xsi:type="ecore:EReference" name="items" upperBound="-1"
         eType="#//VElement" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="EColor" instanceClassName="org.eclipse.swt.graphics.RGB"/>
 </ecore:EPackage>

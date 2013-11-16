@@ -15,15 +15,16 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.RGB;
 
 public class NodeFigure extends Figure {
 	protected EditableLabel nameLabel;
 	public org.eclipse.swt.graphics.Image IMAGE;
 	
-	public NodeFigure(EditableLabel name) {
-		this(name, null);
+	public NodeFigure(EditableLabel name, RGB color, Boolean rounded) {
+		this(name, null, color, rounded);
 		setOpaque(true); // non-transparent figure
-		setBackgroundColor(new Color(null, 255, 255, 255));
+		setBackgroundColor(new Color(null,color));
 		setForegroundColor(new Color(null, 0, 0, 0));
 		try {
 			IMAGE = new Image(null, DPFPlugin.getDefault().getBundle().getResource("/icons/error.png").openStream());
@@ -61,13 +62,16 @@ public class NodeFigure extends Figure {
 	}
 
 	@SuppressWarnings("rawtypes")
-	public NodeFigure(EditableLabel name, List columns) {
+	public NodeFigure(EditableLabel name, List columns, RGB color, Boolean rounded) {
 		nameLabel = name;
 		GridLayout layout = new GridLayout(1, true);
 		layout.setConstraint(nameLabel, new GridData(SWT.CENTER, SWT.CENTER, true, true));
 		setLayoutManager(layout);
-		setBorder(new LineBorder(ColorConstants.black, 1));
-		setBackgroundColor(new Color(null, 255, 255, 255));
+		if(rounded)
+			setBorder(new RoundedLineBorder(ColorConstants.black, 1, 20));
+		else
+			setBorder(new LineBorder(ColorConstants.black, 1));
+		setBackgroundColor(new Color(null,color));
 		setForegroundColor(new Color(null, 0, 0, 0));
 		setOpaque(true);
 		name.setForegroundColor(new Color(null, 0, 0, 0));

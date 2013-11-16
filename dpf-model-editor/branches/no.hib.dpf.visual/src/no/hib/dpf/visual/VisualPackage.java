@@ -4,6 +4,7 @@ package no.hib.dpf.visual;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -176,13 +177,31 @@ public interface VisualPackage extends EPackage {
 	int VNODE__COMPOSITE = VELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Color</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VNODE__COLOR = VELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Rounded</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VNODE__ROUNDED = VELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>VNode</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VNODE_FEATURE_COUNT = VELEMENT_FEATURE_COUNT + 1;
+	int VNODE_FEATURE_COUNT = VELEMENT_FEATURE_COUNT + 3;
 
 
 	/**
@@ -212,6 +231,17 @@ public interface VisualPackage extends EPackage {
 	 * @ordered
 	 */
 	int VISUALS_FEATURE_COUNT = 1;
+
+
+	/**
+	 * The meta object id for the '<em>EColor</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.swt.graphics.RGB
+	 * @see no.hib.dpf.visual.impl.VisualPackageImpl#getEColor()
+	 * @generated
+	 */
+	int ECOLOR = 4;
 
 
 	/**
@@ -289,6 +319,28 @@ public interface VisualPackage extends EPackage {
 	EAttribute getVNode_Composite();
 
 	/**
+	 * Returns the meta object for the attribute '{@link no.hib.dpf.visual.VNode#getColor <em>Color</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Color</em>'.
+	 * @see no.hib.dpf.visual.VNode#getColor()
+	 * @see #getVNode()
+	 * @generated
+	 */
+	EAttribute getVNode_Color();
+
+	/**
+	 * Returns the meta object for the attribute '{@link no.hib.dpf.visual.VNode#isRounded <em>Rounded</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Rounded</em>'.
+	 * @see no.hib.dpf.visual.VNode#isRounded()
+	 * @see #getVNode()
+	 * @generated
+	 */
+	EAttribute getVNode_Rounded();
+
+	/**
 	 * Returns the meta object for class '{@link no.hib.dpf.visual.Visuals <em>Visuals</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -308,6 +360,17 @@ public interface VisualPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getVisuals_Items();
+
+	/**
+	 * Returns the meta object for data type '{@link org.eclipse.swt.graphics.RGB <em>EColor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>EColor</em>'.
+	 * @see org.eclipse.swt.graphics.RGB
+	 * @model instanceClass="org.eclipse.swt.graphics.RGB"
+	 * @generated
+	 */
+	EDataType getEColor();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -394,6 +457,22 @@ public interface VisualPackage extends EPackage {
 		EAttribute VNODE__COMPOSITE = eINSTANCE.getVNode_Composite();
 
 		/**
+		 * The meta object literal for the '<em><b>Color</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VNODE__COLOR = eINSTANCE.getVNode_Color();
+
+		/**
+		 * The meta object literal for the '<em><b>Rounded</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VNODE__ROUNDED = eINSTANCE.getVNode_Rounded();
+
+		/**
 		 * The meta object literal for the '{@link no.hib.dpf.visual.impl.VisualsImpl <em>Visuals</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -410,6 +489,16 @@ public interface VisualPackage extends EPackage {
 		 * @generated
 		 */
 		EReference VISUALS__ITEMS = eINSTANCE.getVisuals_Items();
+
+		/**
+		 * The meta object literal for the '<em>EColor</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.swt.graphics.RGB
+		 * @see no.hib.dpf.visual.impl.VisualPackageImpl#getEColor()
+		 * @generated
+		 */
+		EDataType ECOLOR = eINSTANCE.getEColor();
 
 	}
 

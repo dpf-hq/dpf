@@ -11,9 +11,11 @@ import no.hib.dpf.visual.Visuals;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.eclipse.swt.graphics.RGB;
 
 /**
  * <!-- begin-user-doc -->
@@ -49,6 +51,13 @@ public class VisualPackageImpl extends EPackageImpl implements VisualPackage {
 	 * @generated
 	 */
 	private EClass visualsEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType eColorEDataType = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -179,6 +188,24 @@ public class VisualPackageImpl extends EPackageImpl implements VisualPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getVNode_Color() {
+		return (EAttribute)vNodeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getVNode_Rounded() {
+		return (EAttribute)vNodeEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getVisuals() {
 		return visualsEClass;
 	}
@@ -190,6 +217,15 @@ public class VisualPackageImpl extends EPackageImpl implements VisualPackage {
 	 */
 	public EReference getVisuals_Items() {
 		return (EReference)visualsEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EDataType getEColor() {
+		return eColorEDataType;
 	}
 
 	/**
@@ -229,9 +265,14 @@ public class VisualPackageImpl extends EPackageImpl implements VisualPackage {
 
 		vNodeEClass = createEClass(VNODE);
 		createEAttribute(vNodeEClass, VNODE__COMPOSITE);
+		createEAttribute(vNodeEClass, VNODE__COLOR);
+		createEAttribute(vNodeEClass, VNODE__ROUNDED);
 
 		visualsEClass = createEClass(VISUALS);
 		createEReference(visualsEClass, VISUALS__ITEMS);
+
+		// Create data types
+		eColorEDataType = createEDataType(ECOLOR);
 	}
 
 	/**
@@ -275,9 +316,14 @@ public class VisualPackageImpl extends EPackageImpl implements VisualPackage {
 
 		initEClass(vNodeEClass, VNode.class, "VNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getVNode_Composite(), ecorePackage.getEBoolean(), "composite", "false", 0, 1, VNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getVNode_Color(), this.getEColor(), "color", null, 0, 1, VNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getVNode_Rounded(), ecorePackage.getEBoolean(), "rounded", null, 0, 1, VNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(visualsEClass, Visuals.class, "Visuals", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getVisuals_Items(), this.getVElement(), null, "items", null, 0, -1, Visuals.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		// Initialize data types
+		initEDataType(eColorEDataType, RGB.class, "EColor", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);
