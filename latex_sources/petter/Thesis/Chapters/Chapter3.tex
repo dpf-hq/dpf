@@ -70,14 +70,14 @@ target model. The transformation engine executes a set of guidelines
 provided by a transformation language that express how the target model is
 constructed. These guidelines is created from meta-data that are defined in the
 source and target meta-model to create an executable environment for the transformation
-engine. Where the transformation language refers to both the source and target
+engine. Where the transformation language refers to both a source and target
 meta-model when specifying these guidelines. The transformation language
 specifies how a translation between two models should be applied through the
 abstract syntax that the meta-models provides. Note that the concrete syntax
 for a domain specific modeling language could be represented either graphically
 or textually. Traditionally when we use the concept model, we consider a
-graphical syntax, with nodes and vertexes that are connected with arrows and
-edges. However a model can also have a textual representation and therefore we
+graphical syntax, with nodes and vertices that are connected with arrows and
+edges. However, a model can also have a textual representation and therefore we
 often say that a model transformation can produce two different kind of target
 models. At the highest level of abstraction these two different target models
 can either be produced by a Model to Text (M2T) transformation or a Model to
@@ -108,7 +108,7 @@ One aspect of model transformation they address is the direction through
 abstraction layers for endogenous and exogenous model transformations. In their
 paper they state that the \textit{``dimensions horizontal versus vertical and
 endogenous versus exogenous are truly orthogonal''}\cite{Mens2006}. Horizontal
-and vertical model transformation are two categorizes that describes
+and vertical model transformations are two categorizes that describes
 transformations over different layers of abstraction. In MDE a layer of
 abstraction represents models that are specified by models from a higher layer
 of abstraction. For example a class diagram that is specified by the UML model.
@@ -144,7 +144,7 @@ that model transformations are vertically or horizontally translated amongst
 abstraction layers. For a vertical model transformation a target model is
 translated according to models that are specified on a higher abstraction level,
 while a horizontal model transformation produces a target model that correspond
-to a different abstraction layer hierarchy. The table above express that that we can have
+to a different abstraction layer hierarchy. The table above express that we can have
 for example endogenous model transformations that provides refactoring or
 formal refinement of models. These two examples of model transformations are
 applied differently concerning abstraction layers. Refactoring is an example of a
@@ -155,7 +155,7 @@ transformation is applied. A specific model refactoring example is the Pull Up
 Attribute\cite{Henshin_2010} that moves a common attribute from a subclass of a
 given class to this class. Language migration is another example of a horizontal
 model transformation, and is an exogenous model transformation that produces a
-model expressed in a different modeling language compared to the source model.
+model expressed in a different modeling language then the source model.
 A classical example of a language migration is to translate a class diagram to a
 relation database model. This example has become more or less a benchmark for
 model transformation tools and describes a model transformation for a modeling
@@ -187,7 +187,7 @@ transformation and a horizontal model transformation. We can see that the
 vertical model transformation example represents a small portion of the MDA
 approach to software development, where implementation code is generated from a
 collection of platform specific models. The horizontal model transformation
-example provides a different example to model transformations, which is mering
+example provides a different example to model transformations, which is merging
 models into another model and is convenient for synchronizing models.
 
 \begin{figure}[H]
@@ -205,24 +205,24 @@ model. The three model types that MDA provides
 can be viewed as a endogenous model transformation that provides a model that
 is gradually refined into executable implementation code, by going through
 refinement steps that add more details to the model. For example when mapping a
-platform-independent model to a platform-specific model, like we discussed in
+platform-independent model to a platform-specific model, as discussed in
 section~\ref{MDA}. 
 
 \section{Model Transformations in MDE}
 
-Model transformations are in the center of Model Driven Engineering.
-The vision for MDE is to increase automation of models between level of
-abstractions. This vision is achieved through the use of model transformations.
-Either if it is to use a model to text approach to generate source code, or by
+Model transformation is an essential concept in Model Driven Engineering.
+The goal of MDE is to increase automation of models between level of
+abstractions. This goal is achieved through the use of model transformations,
+either by using a model to text approach to generate source code, or by
 transforming a model to another model where both models concrete syntax are
 specified by some abstract syntax from a meta-model. A model driven
 approach to software development thrives to keep a high level of abstraction
-for as long as possible through translating these models. And therefore model
-transformations are essential to be able to deploy model driven engineering in
+for as long as possible through translating these models. Therefore model
+transformations are essential for including model driven engineering in
 a software development process. The principles behind OMG's Model Driven
-Architecture utilize the concepts behind model transformation to a full extend.
-Figure~\ref{fig:MDE_MDA_MT} gives a representation of how MDA wishes to
-facilitate the use of models and model transformations in a software
+Architecture utilizes the concepts of model transformation to a full extent.
+Figure~\ref{fig:MDE_MDA_MT} gives a representation of how MDA 
+facilitates the use of models and model transformations in a software
 development. The figure was published in Kim Letkeman article, ``Comparing and
 merging UML models in IBM Rational Software
 Architect''\cite{letkeman2005comparing} in October 2010.
@@ -238,32 +238,28 @@ Architect''\cite{letkeman2005comparing} in October 2010.
 
 The figure presents different level of abstractions that the architecture
 provides and how a set of transformation rules change models between
-abstractions. Remember what we discussed in section~\ref{MDA} that the
-architecture represents a software design approach for developing software
-applications. Where it expands the requirements of a software application into
-models and at the last level of abstraction the architecture propose that
+abstractions. The architecture expands the requirements of a software application
+into models and at the last level of abstraction the architecture proposes that
 implementation code is produced accordingly to a set of transformation rules.
 The code that is generated most likely requires some additional work by developers, but a major part of the
-implementation code is generated through the use of models.
+implemented code is generated through the use of models.
 Figure~\ref{fig:MDE_MDA_MT} explains that a set of transformations are required
 for a model to fuse into another model, or said differently, for a model to be
 integrated into another model. The transformation rules, that specifies how a model from
 a high level of abstraction is translated to a model on a lower level of
-abstraction, provides a development process that produce implementation code
-through automatically generating models on different levels of abstraction.
-Models and model transformations are equally important for MDE to be applied in
-a software development process. Without model transformations models would
-simply represent an abstraction of a system. This means by utilizing model
-transformations in a software development cycle, models can evolve into
-executable implementation code by translating through different level of
-abstractions. 
+abstraction, provides a development process that produce source code
+through automatically generating models on different levels of abstractions.
+Without model transformations models would simply represent an abstraction of a
+system. This means by utilizing model transformations in a software development
+cycle, models can evolve into executable code by translating through different
+level of abstractions.
 
 \section{Existing Environments}
 \label{tooling}
 
 There are a wide variety of existing model transformation environments and
 tools available. Some have experienced extensive testing through several
-iterations and some are relatively fresh to the MDE community. This section
+iterations and some are relatively new to the MDE community. This section
 describes some of these model transformation environments and how these
 environments approach model transformations. Because there are several different
 approaches to model transformations and for the purpose of this thesis we will
