@@ -99,7 +99,7 @@ public class DPFEditorPaletteFactory {
 			ImageDescriptor smallIcon = configure == null ? null : FigureConfigureManager.getSmallIcon(configure);
 			ImageDescriptor largeIcon = configure == null ? null : FigureConfigureManager.getLargeIcon(configure);
 			Node node = dnode.getNode();
-			Assert.isTrue(node != null);
+			if(node == null) continue;
 			Assert.isTrue(dnode != null);
 			nodeGroup.add(new CreationToolEntry(node.getName(), "Create a new " + node.getName(), new DNodeFactory(dnode), 
 					smallIcon != null ? smallIcon : SMALLICON, 

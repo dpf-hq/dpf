@@ -46,6 +46,7 @@ public class DArrowCreateFeedBackPolicy extends GraphicalNodeEditPolicy {
 				if(dType != null){
 					DGraphEditPart editPart = (DGraphEditPart) getHost();
 					for(Object child : editPart.getChildren()){
+						if(!(child instanceof DNodeEditPart)) continue;
 						DNodeEditPart dNode = (DNodeEditPart) child;
 						if(dNode.getDType() == dType){
 							lists.add(dNode);
