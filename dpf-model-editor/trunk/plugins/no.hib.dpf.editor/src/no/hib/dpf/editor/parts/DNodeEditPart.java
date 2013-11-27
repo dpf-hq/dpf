@@ -338,6 +338,7 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 	}
 	public void refreshVisuals() {
 		NodeFigure figure = (NodeFigure)getFigure();
+		figure.setBackgroundColor(DPFEditorPreferences.getDefault().getNodeBackgroundColor());
 		DPFEditor editor = getEditor();
 		if(editor != null){
 			boolean flag = editor.isMakerExisting(getDNode().getNode());
