@@ -67,5 +67,24 @@
             class="no.hib.dpf.transform.preferences.PreferenceInitializer">
       </initializer>
    </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="no.hib.dpf.transform.presentation.TranslateToAlloyHandler"
+            id="no.hib.dpf.transform.toalloycommand"
+            name="Translate To Alloy">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+         <command
+               commandId="no.hib.dpf.transform.toalloycommand"
+               style="push">
+         </command>
+      </menuContribution>
+   </extension>
 
 </plugin>

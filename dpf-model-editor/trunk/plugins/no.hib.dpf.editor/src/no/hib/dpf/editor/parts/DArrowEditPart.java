@@ -36,6 +36,7 @@ import no.hib.dpf.editor.figures.ConstraintAnchor;
 import no.hib.dpf.editor.figures.OpenArrowDecoration;
 import no.hib.dpf.editor.figures.draw2d.Draw2dUtil;
 import no.hib.dpf.editor.policies.ArrowBendpointEditPolicy;
+import no.hib.dpf.editor.preferences.DPFEditorPreferences;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -313,6 +314,7 @@ public class DArrowEditPart extends GraphicalConnectionEditPart implements NodeE
 		if(getEditor() != null && connectionFigure instanceof ArrowConnection)
 			((ArrowConnection)connectionFigure).setErrorImageFlag(getEditor().isMakerExisting(darrow.getArrow()));
 		refreshBendpoints();
+		getFigure().setForegroundColor(DPFEditorPreferences.getDefault().getArrowForegroundColor());
 	}
 
 	@Override
