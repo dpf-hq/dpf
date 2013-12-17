@@ -22,21 +22,21 @@ import no.hib.dpf.diagram.DOffset;
 
 public class BendPointCreateCommand extends BendpointCommand {
 
-	protected List<DOffset> one = new ArrayList<DOffset>();
+	protected List<DOffset> invalid = new ArrayList<DOffset>();
 	public void execute() {
-		getArrow().getBendpoints().add(getIndex(), getLocation());
-		for(DOffset offset : one)
+		getArrow().getBendpoints().add(location.getIndex(), location);
+		for(DOffset offset : invalid)
 			offset.setIndex(offset.getIndex() + 1);
 	}
 
 	public void undo() {
-		for(DOffset offset : one)
+		for(DOffset offset : invalid)
 			offset.setIndex(offset.getIndex() - 1);
-		getArrow().getBendpoints().remove(getIndex());
+		getArrow().getBendpoints().remove(location.getIndex());
 	}
 
-	public void addOne(DOffset offset) {
-		one.add(offset);
+	public void addInvalid(DOffset offset) {
+		invalid.add(offset);
 	}
 
 }

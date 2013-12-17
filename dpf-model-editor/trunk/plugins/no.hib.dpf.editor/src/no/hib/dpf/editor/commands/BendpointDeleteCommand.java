@@ -21,14 +21,14 @@ import no.hib.dpf.diagram.DOffset;
 public class BendpointDeleteCommand extends BendPointCreateCommand {
 
 	public void execute() {
-		for(DOffset offset : one)
+		for(DOffset offset : invalid)
 			offset.setIndex(offset.getIndex() - 1);
-		getArrow().getBendpoints().remove(getIndex());
+		getArrow().getBendpoints().remove(location.getIndex());
 	}
 
 	public void undo() {
-		getArrow().getBendpoints().add(getIndex(), getLocation());
-		for(DOffset offset : one)
+		getArrow().getBendpoints().add(location.getIndex(), location);
+		for(DOffset offset : invalid)
 			offset.setIndex(offset.getIndex() + 1);
 	}
 

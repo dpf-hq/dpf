@@ -40,10 +40,12 @@ package no.hib.dpf.editor.parts;
 import no.hib.dpf.diagram.DOffset;
 import no.hib.dpf.editor.figures.draw2d.Draw2dUtil;
 
+import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.FigureUtilities;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Locator;
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Point;
 
 class ArrowLabelLocator implements Locator {
 
@@ -60,10 +62,12 @@ class ArrowLabelLocator implements Locator {
 	public void relocate(IFigure figure) {
 		Dimension minimum = FigureUtilities.getTextExtents(text, figure.getFont());
 		if(connection == null || connection.getSource() == null || connection.getTarget() == null) return;
-		figure.setSize(minimum);
-		figure.setLocation(Draw2dUtil.getAbsolutePoint(((DNodeEditPart) connection.getSource()).getFigure(), 
+		Point point = Draw2dUtil.getAbsolutePoint(((DNodeEditPart) connection.getSource()).getFigure(), 
 				((DNodeEditPart) connection.getTarget()).getFigure(), 
-				connection.getRealPointList(), 
-				offset));
+				((Connection)connection.getFigure()).getPoints(),
+				offset);
+		if(point == null) return;
+		figure.setSize(minimum);
+		figure.setLocation(point);
 	}
 }

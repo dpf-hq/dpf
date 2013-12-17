@@ -23,7 +23,7 @@ public class BendpointMoveCommand extends BendpointCommand {
 	private DOffset oldBendpoint;
 
 	public void execute() {
-		getArrow().getBendpoints().set(getIndex(), getLocation());
+		getArrow().getBendpoints().set(location.getIndex(), location);
 	}
 
 	public DOffset getOldBendpoint() {
@@ -34,13 +34,12 @@ public class BendpointMoveCommand extends BendpointCommand {
 		oldBendpoint = point;
 	}
 
-	public void setIndex(int i) {
-		super.setIndex(i);
-		setOldBendpoint(getArrow().getBendpoints().get(i));
+	public void setLocation(DOffset p) {
+		setOldBendpoint(location);
+		location = p;
 	}
-	
 	public void undo() {
-		getArrow().getBendpoints().set(getIndex(), getOldBendpoint());
+		getArrow().getBendpoints().set(location.getIndex(), getOldBendpoint());
 	}
 
 }

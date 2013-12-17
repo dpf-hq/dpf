@@ -34,9 +34,8 @@ public class Draw2dUtil {
 		Point start = source == target ? source.getBounds().getTop() : source.getBounds().getCenter();
 		Point end = source == target ? source.getBounds().getBottom() : target.getBounds().getCenter();
 		TransformS.setBasic(start, end);
-		
 		if(points.size() > 2){
-			int pre = 0;
+			int pre = Integer.MIN_VALUE;
 			int relative = TransformS.getRelative(p).x;
 			int index = 0;
 			for(; index < points.size() - 2; ++index){
@@ -57,24 +56,11 @@ public class Draw2dUtil {
 		}else
 			return Draw2dUtil.getDOffset(start, end, p, 0);
 	}
-	public static boolean needToAdd(IFigure source, IFigure target, Point label, Point newBendPoint, DOffset offset){
+	public static boolean isInvalid(IFigure source, IFigure target, Point label, Point newBendPoint, DOffset offset){
 		Point start = source == target ? source.getBounds().getTop() : source.getBounds().getCenter();
 		Point end = source == target ? source.getBounds().getBottom() : target.getBounds().getCenter();
 		TransformS.setBasic(start, end);
 		return TransformS.getRelative(label).x > TransformS.getRelative(newBendPoint).x ;
-	}
-	public static DOffset getDOffsetBack(IFigure source, IFigure target, PointList points, Point p, int index){
-		Point start, end;
-		if(index == 0 && points.size() <= 3){
-			start = source == target ? source.getBounds().getTop() : source.getBounds().getCenter();
-			end = source == target ? source.getBounds().getBottom() : target.getBounds().getCenter();
-		}else{
-			start = points.getPoint(index);
-			end = points.getPoint(index + 2);
-		}
-		TransformS.setBasic(start, end);
-		Point relative = TransformS.getRelative(p);
-		return new DOffsetImpl(relative, TransformS.getRelative(end).x, index);
 	}
 	public static Point getAbsolutePoint(IFigure source, IFigure target, PointList points, DOffset offset){
 		Point start, end;
@@ -83,6 +69,7 @@ public class Draw2dUtil {
 			start = source == target ? source.getBounds().getTop() : source.getBounds().getCenter();
 			end = source == target ? source.getBounds().getBottom() : target.getBounds().getCenter();
 		}else{
+			if(index > points.size() - 2) return null;
 			start = points.getPoint(index);
 			end = points.getPoint(index + 1);
 		}

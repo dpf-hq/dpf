@@ -23,13 +23,9 @@ import org.eclipse.gef.commands.Command;
 
 public class BendpointCommand extends Command {
 
-	protected int index;
 	protected DOffset location;
 	protected DArrow arrow;
 
-	protected int getIndex() {
-		return index;
-	}
 
 	protected DOffset getLocation() {
 		return location;
@@ -41,10 +37,6 @@ public class BendpointCommand extends Command {
 
 	public void redo() {
 		execute();
-	}
-
-	public void setIndex(int i) {
-		index = i;
 	}
 
 	public void setLocation(DOffset p) {
