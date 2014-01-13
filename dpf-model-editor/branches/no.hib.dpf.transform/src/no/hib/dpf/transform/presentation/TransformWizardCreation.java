@@ -172,9 +172,12 @@ public class TransformWizardCreation extends Wizard implements INewWizard {
 			}
 
 			transform.setSourceLocation(configPage.getSourceMetaModelURI());
-			transform.setSourceMetaModel(configPage.getSourceMetaModel());
 			transform.setTargetLocation(configPage.getTargetMetaModelURI());
-			transform.setTargetMetaModel(configPage.getTargetMetaModel());
+			transform.setSourceMetaModel(configPage.getSourceMetaModel());
+			if(!transform.getSourceLocation().equals(transform.getTargetLocation()))
+				transform.setTargetMetaModel(configPage.getTargetMetaModel());
+			else
+				transform.setTargetMetaModel(transform.getSourceMetaModel());
 
 			GenerateModels generate_models = new GenerateModels(transform);
 

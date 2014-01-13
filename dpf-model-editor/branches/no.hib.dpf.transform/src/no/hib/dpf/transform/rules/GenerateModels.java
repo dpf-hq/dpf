@@ -41,9 +41,13 @@ public class GenerateModels {
 		boolean sourceIsDefault = sourceDSpecification == REFLEXIVE_DSPECIFICATION;
 		boolean targetIsDefault = targetDSpecification == REFLEXIVE_DSPECIFICATION;  
 
+		boolean isExgen = sourceDSpecification != targetDSpecification;
 		DGraph graph = jointmeta.getDGraph();
-		DNode trace = graph.createDNode(TRACE, REFLEXIVE_TYPE_DNODE);
-		trace.setSize(new Dimension(sizew, sizeh));
+		DNode trace = null;
+		if(isExgen){
+			trace = graph.createDNode(TRACE, REFLEXIVE_TYPE_DNODE);
+			trace.setSize(new Dimension(sizew, sizeh));
+		}
 		int x = startx;
 		int y = starty;
 		if(sourceIsDefault){
@@ -51,7 +55,8 @@ public class GenerateModels {
 			node.setLocation(new Point(x, y));
 			node.setSize(new Dimension(sizew, sizeh));
 			createNodes.put(REFLEXIVE_TYPE_DNODE, node);
-			graph.createDArrow(SOURCE + NODE, trace, node, REFLEXIVE_TYPE_DARROW);
+			if(isExgen)
+				graph.createDArrow(SOURCE + NODE, trace, node, REFLEXIVE_TYPE_DARROW);
 			x = x + sizew + leftspan;
 		}else{
 			Point current = null;
@@ -65,7 +70,8 @@ public class GenerateModels {
 				if(x < current.x + size.width) x = current.x + size.width;
 				if(y < current.y + size.height) y = current.y + size.height;
 				createNodes.put(dNode, newNode);
-				graph.createDArrow(SOURCE + dNode.getName(), trace, newNode, REFLEXIVE_TYPE_DARROW);
+				if(isExgen)
+					graph.createDArrow(SOURCE + dNode.getName(), trace, newNode, REFLEXIVE_TYPE_DARROW);
 			}
 			for(DArrow dArrow : sourceDSpecification.getDGraph().getDArrows()){
 				graph.createDArrow(dArrow.getName(), createNodes.get(dArrow.getDSource()), createNodes.get(dArrow.getDTarget()), REFLEXIVE_TYPE_DARROW);
@@ -77,12 +83,15 @@ public class GenerateModels {
 				DNode node = graph.createDNode(NODE, REFLEXIVE_TYPE_DNODE);
 				node.setLocation(new Point(x + sizew + rightspan, y));
 				node.setSize(new Dimension(sizew, sizeh));
-				graph.createDArrow(TARGET + NODE, trace, node, REFLEXIVE_TYPE_DARROW);
+				if(isExgen)
+					graph.createDArrow(TARGET + NODE, trace, node, REFLEXIVE_TYPE_DARROW);
 			}else{
-				graph.createDArrow(TARGET + NODE, trace, createNodes.get(REFLEXIVE_TYPE_DNODE), REFLEXIVE_TYPE_DARROW);
+				if(isExgen)
+					graph.createDArrow(TARGET + NODE, trace, createNodes.get(REFLEXIVE_TYPE_DNODE), REFLEXIVE_TYPE_DARROW);
 			}
-			trace.setLocation(new Point(x, y));
-		}else if(sourceDSpecification != targetDSpecification){
+			if(isExgen)
+				trace.setLocation(new Point(x, y));
+		}else if(isExgen){
 			int t = x;
 			x = x + sizew + rightspan;
 			for(DNode dNode : targetDSpecification.getDGraph().getDNodes()){
@@ -101,12 +110,15 @@ public class GenerateModels {
 				theNode.setLocation(new Point(theNode.getLocation().x, y/2));
 			}
 			trace.setLocation(new Point(t, y/2));
-		}else{
-			for(DNode dNode : targetDSpecification.getDGraph().getDNodes()){
-				graph.createDArrow(TARGET + dNode.getName(), trace, createNodes.get(dNode), REFLEXIVE_TYPE_DARROW);
-			}
-			trace.setLocation(new Point(x, y/2));
 		}
+//		else{
+//			if(isExgen){
+//				for(DNode dNode : targetDSpecification.getDGraph().getDNodes()){
+//					graph.createDArrow(TARGET + dNode.getName(), trace, createNodes.get(dNode), REFLEXIVE_TYPE_DARROW);
+//				}
+//				trace.setLocation(new Point(x, y/2));
+//			}
+//		}
 		return jointmeta;
 	}
 	public DSpecification generateCorrespondanceGraph(){
