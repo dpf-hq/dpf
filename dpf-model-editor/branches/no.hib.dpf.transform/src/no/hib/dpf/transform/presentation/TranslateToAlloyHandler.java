@@ -4,9 +4,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import no.hib.dpf.core.Graph;
-import no.hib.dpf.diagram.DSpecification;
-import no.hib.dpf.transform.Production;
 import no.hib.dpf.transform.Transform;
 import no.hib.dpf.transform.util.TransformConstants;
 import no.hib.dpf.verify.TranslateToAlloy;
@@ -48,25 +45,12 @@ public class TranslateToAlloyHandler extends AbstractHandler {
 				try {
 					IFolder folder = file.getParent().getFolder(new Path(TransformConstants.GENERATE_FOLDER));
 					Transform transform = transformEditor.getTransform();
-					DSpecification specification = transform.getElementTypeGraph();
-					Graph graph = specification.getDGraph().getGraph();
-					String src = TranslateToAlloy.translateNodeTypes(graph, true) + TranslateToAlloy.translateEdgeTypes(graph, true);
-					String trg = TranslateToAlloy.translateNodeTypes(graph, false) + TranslateToAlloy.translateEdgeTypes(graph, false);
+					TranslateToAlloy translate = new TranslateToAlloy(transform);
+					translate.translate();
 					String name = file.getName().replaceAll("." + file.getFileExtension(), "");
-					int index = 0;
-					for(Production iter : transform.getRules()){
-						StringBuffer buffer = new StringBuffer();
-						buffer.append(src);
-						buffer.append(trg);
-						buffer.append(TranslateToAlloy.translateRule(iter, specification.getDGraph()));
-						String rule = iter.getName();
-						if(rule == null || rule.isEmpty())
-							rule = "rule" + index;
-						FileWriter writer = new FileWriter(new File(folder.getLocation().toOSString(), name + "_" + rule + ".als"));
-						writer.write(buffer.toString());
-						writer.close();
-						++index;
-					}
+					FileWriter writer = new FileWriter(new File(folder.getLocation().toOSString(), name  + ".als"));
+					writer.write(translate.getBuffer().toString());
+					writer.close();
 					file.getParent().refreshLocal(IResource.DEPTH_INFINITE, null);
 				} catch (CoreException | IOException e) {
 					e.printStackTrace();
