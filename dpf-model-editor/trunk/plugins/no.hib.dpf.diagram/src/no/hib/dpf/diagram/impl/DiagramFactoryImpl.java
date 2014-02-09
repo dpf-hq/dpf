@@ -377,6 +377,7 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 		dNode.setNode(CoreFactory.eINSTANCE.createNode());
 		dNode.setDType(DPFConstants.REFLEXIVE_TYPE_DNODE);
 		dNode.setSize(DNode.DEFAULT_DIMENSION);
+		dNode.setLocation(new Point());
 		return dNode;
 	}
 

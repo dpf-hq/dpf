@@ -134,12 +134,11 @@ public class DGraphImpl extends EObjectImpl implements DGraph {
 	 */
 	public DArrow createDArrow(Arrow arrow, DNode dSource, DNode dTarget, DArrow dType) {
 		Assert.isTrue(dSource != null && dTarget != null && dType !=null);
-		DArrow result = new DArrowImpl();
+		DArrow result = DiagramFactory.eINSTANCE.createDefaultDArrow();
 		result.setArrow(arrow);
 		result.setDSource(dSource);
 		result.setDTarget(dTarget);
 		result.setDType(dType);
-		result.setNameOffset(DiagramFactory.eINSTANCE.createDefaultDOffset());
 		addDArrow(result);
 		return result;
 	}
@@ -161,7 +160,7 @@ public class DGraphImpl extends EObjectImpl implements DGraph {
 	 * @generated NOT
 	 */
 	public DNode createDNode(Node node, DNode dType) {
-		DNode newNode = new DNodeImpl();
+		DNode newNode = DiagramFactory.eINSTANCE.createDefaultDNode();
 		newNode.setDType(dType);
 		newNode.setNode(node);
 		addDNode(newNode);

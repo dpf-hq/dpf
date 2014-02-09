@@ -1,20 +1,27 @@
 package no.hib.dpf.editor.signature;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.IDObject;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Predicate;
 import no.hib.dpf.core.ValidatorType;
+import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DGraph;
+import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.diagram.DPredicate;
 import no.hib.dpf.diagram.VisualizationType;
+import no.hib.dpf.diagram.util.DPFConstants;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -220,14 +227,56 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 		targetLabel.setVisible(true);
 	}
 
+	private void createOneNode(DGraph dGraph){
+		DNode node = dGraph.createDNode("X", DPFConstants.REFLEXIVE_TYPE_DNODE);
+		node.setLocation(new Point(50, 50));
+	}
+	private void createOneArrow(DGraph dGraph){
+		DNode source = dGraph.createDNode("X", DPFConstants.REFLEXIVE_TYPE_DNODE),
+				target = dGraph.createDNode("Y", DPFConstants.REFLEXIVE_TYPE_DNODE);
+		source.setLocation(new Point(50, 50));
+		target.setLocation(new Point(200, 50));
+		dGraph.createDArrow("XY", source, target, DPFConstants.REFLEXIVE_TYPE_DARROW);
+	}
+	private void createArrowToArrow(DGraph dGraph){
+		DNode source1 = dGraph.createDNode("X1", DPFConstants.REFLEXIVE_TYPE_DNODE),
+				target1 = dGraph.createDNode("Y1", DPFConstants.REFLEXIVE_TYPE_DNODE);
+		source1.setLocation(new Point(50, 50));
+		target1.setLocation(new Point(200, 50));
+		dGraph.createDArrow("XY1", source1, target1, DPFConstants.REFLEXIVE_TYPE_DARROW);
+		DNode source2 = dGraph.createDNode("X2", DPFConstants.REFLEXIVE_TYPE_DNODE),
+				target2 = dGraph.createDNode("Y2", DPFConstants.REFLEXIVE_TYPE_DNODE);
+		source2.setLocation(new Point(50, 100));
+		target2.setLocation(new Point(200, 100));
+		dGraph.createDArrow("XY2", source2, target2, DPFConstants.REFLEXIVE_TYPE_DARROW);
+	}
 	protected void addListners(){
 		visulationCombo.addSelectionChangedListener(new ISelectionChangedListener() {
 
+			@SuppressWarnings("incomplete-switch")
 			@Override
 			public void selectionChanged(SelectionChangedEvent event) {
 				VisualizationType type = VisualizationType.get(0);
-				if (!event.getSelection().isEmpty())
+				if (!event.getSelection().isEmpty()){
 					type = (VisualizationType)((IStructuredSelection)event.getSelection()).getFirstElement();
+					DGraph dGraph = dPredicate.getDGraph();
+					if(dGraph != null){
+						switch(type){
+						case ARROW_LABEL:
+							clearGraph(dGraph);
+							createOneArrow(dGraph);
+							break;
+						case ON_NODE:
+							clearGraph(dGraph);
+							createOneNode(dGraph);
+							break;
+						case ARROW_TO_ARROW:
+							clearGraph(dGraph);
+							createArrowToArrow(dGraph);
+							break;
+						}
+					}
+				}
 				if(type == dPredicate.getVisualization().getType())
 					return;
 				dPredicate.getVisualization().setType(type);
@@ -313,7 +362,19 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 			public void widgetDefaultSelected(SelectionEvent e) { }
 		});
 	}
-	
+
+	protected void clearGraph(DGraph dGraph2) {
+		List<DArrow> arrows = new ArrayList<DArrow>();
+		arrows.addAll(dGraph2.getDArrows());
+		for(DArrow a : arrows)
+			dGraph2.removeDArrow(a);
+		List<DNode> nodes = new ArrayList<DNode>();
+		nodes.addAll(dGraph2.getDNodes());
+		for(DNode n : nodes)
+			dGraph2.removeDNode(n);
+		master.getMultiEditor().setDirty(true);
+	}
+
 	@Override
 	public void createContents(Composite parent) {
 		parent.setLayout(new GridLayout());

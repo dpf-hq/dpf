@@ -112,7 +112,7 @@ public class SignatureEditor extends FormEditor implements CommandStackListener,
 	}
 	
 	public boolean isDirty() {
-		return isSignatureChanged || super.isDirty() || getCommandStack().isDirty();
+		return isSignatureChanged  || getCommandStack().isDirty();
 	}
 	
 	@Override
