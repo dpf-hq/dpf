@@ -105,11 +105,15 @@ public class CreateConstraintAction extends SelectionActionForEditParts {
 	
 	@Override
 	protected boolean calculateEnabled() {
-		if(getWorkbenchPart() == null || getActivePart() != editor || selectionArrows == null) return false;
-		for(Arrow arrow : selectionArrows)
-			for(Constraint constraint : arrow.getConstraints())
-				if(constraint.getPredicate() == dPredicate.getPredicate())
-					return false;
+		if(getWorkbenchPart() == null || getActivePart() != editor || selectionArrows == null || selectionNodes.isEmpty()) return false;
+		for(Node node : selectionNodes){
+			for(Constraint constraint : node.getConstraints())
+				if(constraint.getPredicate() == dPredicate.getPredicate()){
+					boolean repeat = constraint.getArrows().equals(selectionArrows) && constraint.getNodes().equals(selectionNodes);
+					if(repeat)
+						return false;
+				}
+		}
 		graphHomomorphism = dPredicate.getPredicate().createGraphHomomorphism(selectionNodes, selectionArrows);
 		return graphHomomorphism != null;
 	}	

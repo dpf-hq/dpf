@@ -11,6 +11,19 @@ import no.hib.dpf.core.impl.PredicateImpl;
 import no.hib.dpf.utils.Checker;
 
 public abstract class AbstractBasePredicate extends PredicateImpl{
+	public static final String INJECTIVE = "inj",
+							   SURJECTIVE = "surj",
+							   IRREFLEXIVE = "irref",
+							   ARROW_MULTIPLICITY = "multi1",
+							   NODE_MULTIPLICITY = "multi2",
+							   INVERSE = "inv",
+							   JOINT_SURJECITVE = "js",
+							   JOINT_INJECTIVE = "ji",
+							   XOR = "xor",
+							   SPLIT_NOT_AND = "nand1",
+							   MERGE_NOT_AND = "nand2",
+							   REFLEXIVE = "ref",
+							   XOR4 = "xor4";
 	public AbstractBasePredicate(String symbol, String parameter, String nodes, String edges){
 		super();
 		this.symbol = symbol;

@@ -11,7 +11,7 @@ import no.hib.dpf.core.Node;
 public class IrreflexivePredicate extends AbstractBasePredicate {
 	
 	public IrreflexivePredicate() {
-		super("irref", null, "X", "XY:X:X");
+		super(IRREFLEXIVE, null, "X", "XY:X:X");
 	}
 
 	public boolean check(Map<String, String> maps, Graph shape, Map<Node, List<Node>> nodeMap,

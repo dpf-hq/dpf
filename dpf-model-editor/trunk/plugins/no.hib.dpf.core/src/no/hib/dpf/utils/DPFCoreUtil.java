@@ -2,13 +2,13 @@ package no.hib.dpf.utils;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
-import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.DPFCorePlugin;
 import no.hib.dpf.core.Node;
@@ -77,7 +77,7 @@ public class DPFCoreUtil {
 	
 	protected static String getErrorMessage(Resource resource) {return "Problems encountered in file " + resource.getURI().toFileString();};
 
-	private static Resource getResource(URI modelFileURI){		
+	public static ResourceSetImpl getResourceSet(){
 		ResourceSetImpl resourceSet = new ResourceSetImpl();
 		resourceSet.setURIResourceMap(new LinkedHashMap<URI, Resource>());
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
@@ -86,40 +86,61 @@ public class DPFCoreUtil {
 		defaultSpecification.getContents().add(DPFConstants.REFLEXIVE_SPECIFICATION);
 		defaultSpecification.getContents().add(DPFConstants.DEFAULT_SIGNATURE);
 		resourceSet.getURIResourceMap().put(DPFConstants.DefaultSpecification, defaultSpecification);
-		
-		Resource model = resourceSet.createResource(modelFileURI);
-		resourceSet.getURIResourceMap().put(modelFileURI, model);
-		return model;
+		return resourceSet;
 	}
 	
-	public static Specification loadSpecification(URI modelFileURI){
-		Resource model = getResource(modelFileURI);
-		Assert.isNotNull(model);
-		Specification dsp = null;
-		try {
-			model.load(null);
-		} catch (IOException e) {
-			e.printStackTrace();
-			analyzeResourceProblems(model, e, new LinkedHashMap<Resource, Diagnostic>());
-		} finally {
-			if (model.getContents().size() == 0) {
-				dsp = CoreFactory.eINSTANCE.createSpecification();
-				model.getContents().add(dsp);
-			}else
-				dsp = (Specification) model.getContents().get(0);
-		}
-		return dsp;
+	public static Specification loadSpecification(ResourceSetImpl resourceSet, URI modelFileURI, Map<Resource, Diagnostic> resourceToDiagnosticMap){
+		Resource model = createResource(resourceSet, modelFileURI, resourceToDiagnosticMap);
+		Object result = getObjectFromResource(model);
+		if(result instanceof Specification)
+			return (Specification) result;
+		return null;
 	}
-	public static void saveSpecification(URI modelFileURI, Specification specification){
-		Resource model = getResource(modelFileURI);
+	public static Object getObjectFromResource(Resource resource){
+		if(resource == null) return null;
+		if(resource.getContents().isEmpty()) return null;
+		return resource.getContents().get(0);
+	}
+	public static Specification loadSpecification(URI modelFileURI){
+		return loadSpecification(getResourceSet(), modelFileURI, new LinkedHashMap<Resource, Diagnostic>());
+	}
+	
+	
+	/**To save a model. Since we offer no function to update a model when the metamodel is changed, 
+	 * we simply store all the metamodels in the same file.
+	 * @param resourceSet : the resourceSet
+	 * @param modelFileURI : file location
+	 * @param specification : the model
+	 * @param resourceToDiagnosticMap : used as analyzing exception shown up during saving
+	 */
+	public static void saveSpecification(ResourceSetImpl resourceSet,URI modelFileURI, Specification specification, Map<Resource, Diagnostic> resourceToDiagnosticMap){
+		Resource model = createResource(resourceSet, modelFileURI, resourceToDiagnosticMap);
 		Assert.isNotNull(model);
-		model.getContents().add(specification);		
+		EcoreUtil.resolveAll(specification.getType().eResource());
+		Specification iter = specification;	
+		for(Constraint constraint : iter.getConstraints()){
+			System.out.println(constraint.getPredicate().eContainer().eContents().size());
+			break;
+		}
+		while(iter != DPFConstants.REFLEXIVE_SPECIFICATION){
+			model.getContents().add(iter);
+			iter = iter.getType();
+		}
+		iter = specification;
+		while(iter != DPFConstants.REFLEXIVE_SPECIFICATION){
+			if(iter.getSignature() != DPFConstants.DEFAULT_SIGNATURE)
+				model.getContents().add(iter.getSignature());
+			iter = iter.getType();
+		}
 		try {
 			model.save(null);
 		} catch (IOException e) {
-			System.out.println(e);
+			logError(e);
 			analyzeResourceProblems(model, e, new LinkedHashMap<Resource, Diagnostic>());
 		} 
+	}
+	public static void saveSpecification(URI modelFileURI, Specification specification){
+		saveSpecification(getResourceSet(), modelFileURI, specification, new LinkedHashMap<Resource, Diagnostic>());
 	}
 	
 	/** 
@@ -133,24 +154,25 @@ public class DPFCoreUtil {
 	 * @return a {@link Specification} object that contains the given model
 	 */
 	public static Specification loadSpecification2(URI uri) throws IOException {
-		Resource model = getResource(uri);
+		Resource model = createResource(getResourceSet(), uri, new HashMap<Resource, Diagnostic>());
 		Assert.isNotNull(model);
 		Specification dsp = null;
 		try {
 			model.load(null);
 		} catch (IOException e) {
-			analyzeResourceProblems(model, e, new LinkedHashMap<Resource, Diagnostic>());
+			analyzeResourceProblems(model, e, new HashMap<Resource, Diagnostic>());
 			throw new IOException(e);
-		} finally {
-			if (model.getContents().size() == 0) {
-				dsp = CoreFactory.eINSTANCE.createSpecification();
-				model.getContents().add(dsp);
-			}else
-				dsp = (Specification) model.getContents().get(0);
-		}
+		} 
 		return dsp;
 	}
-	//Assume right now, the arity is a connected graph.
+	/**Find the elements which are constrained by the constraint and related to the node. 
+	 * Right now, we assume that the arity is a connected graph.
+	 * @param node
+	 * @param constraint {@link Constraint}: the constraint
+	 * @param graph
+	 * @param nodes : the constrained nodes
+	 * @param arrows : the constrained arrows
+	 */
 	public static void findRelatedElements(Node node, Constraint constraint, Graph graph,
 			EList<Node> nodes, EList<Arrow> arrows) {
 		List<Node> visit = new ArrayList<Node>();

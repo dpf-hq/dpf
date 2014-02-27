@@ -66,6 +66,7 @@ public class GenerateModels {
 				current = dNode.getLocation();
 				newNode.setLocation(new Point(current));
 				size = dNode.getSize();
+				if(size == null) size = DNode.DEFAULT_DIMENSION;
 				newNode.setSize(new Dimension(size));
 				if(x < current.x + size.width) x = current.x + size.width;
 				if(y < current.y + size.height) y = current.y + size.height;

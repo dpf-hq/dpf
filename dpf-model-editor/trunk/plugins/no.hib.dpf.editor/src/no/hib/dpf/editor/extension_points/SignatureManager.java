@@ -92,7 +92,7 @@ public class SignatureManager {
 			DPFUtils.logError(e);
 		}
 		result.getDPredicates().add(dPredicate);
-		result.getSignature().getPredicates().add(dPredicate.getPredicate());
+		result.getSignature().addPredicate(dPredicate.getPredicate());
 		getDPredicateToEditPartMap().put(predicate, iConfigurationElement);
 	}
 

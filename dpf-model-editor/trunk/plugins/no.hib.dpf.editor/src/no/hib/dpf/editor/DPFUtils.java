@@ -2,10 +2,7 @@ package no.hib.dpf.editor;
 
 import static no.hib.dpf.diagram.util.DPFConstants.DEFAULT_DSIGNATURE;
 import static no.hib.dpf.diagram.util.DPFConstants.REFLEXIVE_DSPECIFICATION;
-import static no.hib.dpf.utils.DPFConstants.DEFAULT_SIGNATURE;
 import static no.hib.dpf.utils.DPFConstants.DefaultDSpecification;
-import static no.hib.dpf.utils.DPFConstants.DefaultSpecification;
-import static no.hib.dpf.utils.DPFConstants.REFLEXIVE_SPECIFICATION;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -17,7 +14,6 @@ import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.diagram.DSignature;
 import no.hib.dpf.diagram.DSpecification;
-import no.hib.dpf.diagram.DiagramFactory;
 import no.hib.dpf.diagram.util.DPFConstants;
 import no.hib.dpf.utils.DPFCoreUtil;
 
@@ -34,6 +30,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
@@ -51,24 +48,32 @@ import org.eclipse.ui.views.navigator.ResourceComparator;
 
 public class DPFUtils extends DPFCoreUtil {
 	
+	/**save a diagram model. Firstly save the underlying model.
+	 * Since we offer no function to update a model when the metamodel is changed, 
+	 * we simply store all the metamodels in the same file. 
+	 * @param resourceSet : the resourceSet
+	 * @param modelFileURI : file location
+	 * @param specification : the model
+	 * @param resourceToDiagnosticMap : used as analyzing exception shown up during saving
+	 */
 	public static void saveDSpecification(ResourceSetImpl resourceSet, DSpecification newSpec,
 			URI createFileURI, Map<Resource, Diagnostic> resourceToDiagnosticMap) {
-		URI modelFileURI = getModelURI(createFileURI);
+		DPFCoreUtil.saveSpecification(resourceSet, getModelURI(createFileURI), newSpec.getSpecification(), resourceToDiagnosticMap);
 		Resource diagram = createResource(resourceSet, createFileURI, resourceToDiagnosticMap);
-		diagram.getContents().add(newSpec);
-		Resource model = createResource(resourceSet, modelFileURI, resourceToDiagnosticMap);
-		model.getContents().add(newSpec.getSpecification());
-		if(newSpec.getDType() != DPFConstants.REFLEXIVE_DSPECIFICATION){
-			diagram.getContents().add(newSpec.getDType());
-			model.getContents().add(newSpec.getDType().getSpecification());
+		EcoreUtil.resolveAll(newSpec.getDType().eResource());
+		DSpecification iter = newSpec;
+		while(iter != DPFConstants.REFLEXIVE_DSPECIFICATION){
+			diagram.getContents().add(iter);
+			iter = iter.getDType();
 		}
-		if(newSpec.getDSignature() != DPFConstants.DEFAULT_DSIGNATURE){
-			diagram.getContents().add(newSpec.getDSignature());
-			model.getContents().add(newSpec.getSpecification().getSignature());
+		iter = newSpec;
+		while(iter != DPFConstants.REFLEXIVE_DSPECIFICATION){
+			if(iter.getDSignature() != DPFConstants.DEFAULT_DSIGNATURE)
+				diagram.getContents().add(iter.getDSignature());
+			iter = iter.getDType();
 		}
 		try {
 			diagram.save(null);
-			model.save(null);
 		} catch (IOException e) {
 			analyzeResourceProblems(diagram, e, resourceToDiagnosticMap);
 			logError(e);
@@ -78,45 +83,21 @@ public class DPFUtils extends DPFCoreUtil {
 	/*
 	 * Load a DSpecification. If no model is loaded, a default DSpecification is created and return.
 	 */
-	@SuppressWarnings("finally")
 	public static DSpecification loadDSpecification(ResourceSetImpl resourceSet,
 			URI diagramURI, Map<Resource, Diagnostic> resourceToDiagnosticMap) {
-		URI modelFileURI = getModelURI(diagramURI);
+		loadSpecification(resourceSet, getModelURI(diagramURI), resourceToDiagnosticMap);
 		Resource diagram = createResource(resourceSet, diagramURI, resourceToDiagnosticMap);
-		Resource model = createResource(resourceSet, modelFileURI, resourceToDiagnosticMap);
-		try {
-			diagram.load(null);
-		} catch (Exception e) {
-			logError(e);
-			analyzeResourceProblems(diagram, e, resourceToDiagnosticMap);
-		} finally {
-			if (diagram.getContents().size() == 0) {
-				DSpecification result = DiagramFactory.eINSTANCE .createDefaultDSpecification();
-				diagram.getContents().add(result);
-				model.getContents().add(result.getSpecification());
-				return result;
-			}
-			DSpecification dsp = (DSpecification) diagram.getContents().get(0);
-			return dsp;
-		}
+		Object result = getObjectFromResource(diagram);
+		if(result instanceof DSpecification)
+			return (DSpecification) result;
+		return null;
 	}
 	/*
 	 * load a DSpecification
 	 */
 	public static DSpecification loadDModel(ResourceSetImpl resourceSet,
 			URI diagramURI, Map<Resource, Diagnostic> resourceToDiagnosticMap) {
-		URI modelFileURI = getModelURI(diagramURI);
-		Resource diagram = createResource(resourceSet, diagramURI, resourceToDiagnosticMap);
-		createResource(resourceSet, modelFileURI, resourceToDiagnosticMap);
-		try {
-			diagram.load(null);
-		} catch (Exception e) {
-			logError(e);
-			analyzeResourceProblems(diagram, e, resourceToDiagnosticMap);
-			return null;
-		} 
-		if (diagram.getContents().size() == 0) return null;
-		return (DSpecification) diagram.getContents().get(0);
+		return loadDSpecification(resourceSet, diagramURI, resourceToDiagnosticMap);
 	}
 	public static DSpecification loadDSpecification(URI createFileURI) {
 		return loadDSpecification(getResourceSet(), createFileURI, new HashMap<Resource, Diagnostic>());
@@ -127,14 +108,10 @@ public class DPFUtils extends DPFCoreUtil {
 	}
 	public static DSignature loadDSignature(ResourceSetImpl resourceSet, URI createFileURI, Map<Resource, Diagnostic> resourceToDiagnosticMap) {
 		Resource signature = createResource(resourceSet, createFileURI, resourceToDiagnosticMap);
-		try {
-			signature.load(null);
-		} catch (IOException e) {
-			logError(e);
-			analyzeResourceProblems(signature, e, resourceToDiagnosticMap);
-		}
-		int size = signature.getContents().size();
-		return size == 2 ? (DSignature) signature.getContents().get(0) : null;
+		Object result = getObjectFromResource(signature);
+		if(result instanceof DSignature)
+			return (DSignature) result;
+		return null;
 	}
 	
 	/*
@@ -166,22 +143,18 @@ public class DPFUtils extends DPFCoreUtil {
 	public static final String DEFAULT_DIAGRAM_MODEL_EXTENSION = ".dpf";
 	public static final String DEFAULT_MODEL_EXTENSION = ".xmi";
 	public static DSignature loadDSignature(URI createFileURI) {
-		return loadDSignature(new ResourceSetImpl(), createFileURI, new HashMap<Resource, Diagnostic>());
+		return loadDSignature(new ResourceSetImpl(), createFileURI, new LinkedHashMap<Resource, Diagnostic>());
 	}
 
 	public static ResourceSetImpl getResourceSet() {
-		ResourceSetImpl resourceSet = new ResourceSetImpl();
+		ResourceSetImpl resourceSet = DPFCoreUtil.getResourceSet();
 		resourceSet.setURIResourceMap(new LinkedHashMap<URI, Resource>());
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap() .put("xmi", new XMIResourceFactoryImpl());
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap() .put("dpf", new XMIResourceFactoryImpl());
+		
 		Resource resource = resourceSet.createResource(DefaultDSpecification);
 		resource.getContents().add(REFLEXIVE_DSPECIFICATION);
 		resource.getContents().add(DEFAULT_DSIGNATURE);
 		resourceSet.getURIResourceMap().put(DefaultDSpecification, resource);
-		Resource model = resourceSet.createResource(DefaultSpecification);
-		model.getContents().add(REFLEXIVE_SPECIFICATION);
-		model.getContents().add(DEFAULT_SIGNATURE);
-		resourceSet.getURIResourceMap().put(DefaultSpecification, model);
 		return resourceSet;
 	}
 

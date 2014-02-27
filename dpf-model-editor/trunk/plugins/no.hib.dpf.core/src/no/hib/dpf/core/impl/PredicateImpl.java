@@ -399,7 +399,7 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 		return checker;
 	}
 	
-	private Map<String, String> getParameterMap(String parString){
+	public static final Map<String, String> getParameterMap(String parString){
 		Map<String, String> result = new HashMap<String, String>();
 		if(parString == null || parString.isEmpty())
 			return null;

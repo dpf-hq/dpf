@@ -13,7 +13,7 @@ import no.hib.dpf.core.Node;
 public class JointlyInjectivePredicate extends AbstractBasePredicate {
 
 	public JointlyInjectivePredicate() {
-		super("ji", null, "X,Y,Z", "XY:X:Y, XZ:X:Y");
+		super(JOINT_INJECTIVE, null, "X,Y,Z", "XY:X:Y, XZ:X:Y");
 
 	}
 

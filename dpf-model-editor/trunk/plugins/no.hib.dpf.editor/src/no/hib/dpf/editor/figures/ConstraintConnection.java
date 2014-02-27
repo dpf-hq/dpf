@@ -15,11 +15,8 @@ import no.hib.dpf.editor.parts.DConstraintEditPart;
 
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.Graphics;
-import org.eclipse.draw2d.GridData;
-import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.PolylineConnection;
-import org.eclipse.swt.SWT;
 
 public class ConstraintConnection extends PolylineConnection implements RoutableFigure {
 	
@@ -30,18 +27,11 @@ public class ConstraintConnection extends PolylineConnection implements Routable
 		super();
 		editPart = constraintEditPart;
 		label = new Label();
-		GridLayout layout = new GridLayout(1, true);
-		layout.setConstraint(label, new GridData(SWT.CENTER, SWT.CENTER, true, true));
-		setLayoutManager(layout);
 		add(label);
 	}
 	@Override
 	public int getRoutingPriority() {
 		return 6;
-	}
-	public void outlineShape(Graphics graphics) {
-		recompute();
-		super.outlineShape(graphics);
 	}
 	public void recompute(){
 		if(editPart.getConstraint() == null) return;
@@ -59,4 +49,9 @@ public class ConstraintConnection extends PolylineConnection implements Routable
 		updateAnchorOwner(getTargetAnchor());
 		super.validate();
 	}
+	public void paintFigure(Graphics g)
+    {
+		recompute();
+        super.paintFigure(g);        
+    }
 }

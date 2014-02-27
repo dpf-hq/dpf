@@ -17,8 +17,10 @@ package no.hib.dpf.editor.wizards;
 
 import java.util.LinkedHashMap;
 
+import no.hib.dpf.diagram.DSignature;
 import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.diagram.DiagramFactory;
+import no.hib.dpf.diagram.util.DPFConstants;
 import no.hib.dpf.editor.DPFEditor;
 import no.hib.dpf.editor.DPFUtils;
 
@@ -137,8 +139,19 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 			URI newDiagarmURI = DPFUtils.getFileURI(newDiagramFile);
 			//Initialize model file and diagram file
 			DSpecification newSpec = DiagramFactory.eINSTANCE.createDefaultDSpecification();
-			newSpec.setDType(configPage.getMetaModel());
-			newSpec.setDSignature(configPage.getSignature());
+			DSpecification type = configPage.getMetaModel();
+			newSpec.setDType(type);
+			if(type != DPFConstants.REFLEXIVE_DSPECIFICATION){
+				newSpec.setMetaFile(type.eResource().getURI().deresolve(newDiagarmURI).toString());
+				newSpec.getSpecification().setMetaFile(type.getSpecification().eResource().getURI().deresolve(DPFUtils.getModelURI(newDiagarmURI)).toString());
+			}
+			DSignature sig = configPage.getSignature();
+			newSpec.setDSignature(sig);
+			if(sig != DPFConstants.DEFAULT_DSIGNATURE){
+				String relativePath = sig.eResource().getURI().deresolve(newDiagarmURI).toString();
+				newSpec.setSignatureFile(relativePath);
+				newSpec.getSpecification().setSignatureFile(relativePath);
+			}
 
 			// Gets null value when user does not check checkbox
 			try {

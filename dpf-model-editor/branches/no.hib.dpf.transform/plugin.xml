@@ -70,9 +70,14 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
-            defaultHandler="no.hib.dpf.transform.presentation.TranslateToAlloyHandler"
+            defaultHandler="no.hib.dpf.verify.TranslateToAlloyHandler"
             id="no.hib.dpf.transform.toalloycommand"
             name="Translate To Alloy">
+      </command>
+      <command
+            defaultHandler="no.hib.dpf.verify.RunAlloy"
+            id="no.hib.dpf.transform.runalloy"
+            name="Run Alloy">
       </command>
    </extension>
    <extension
@@ -83,6 +88,50 @@
          <command
                commandId="no.hib.dpf.transform.toalloycommand"
                style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="selection">
+                  <and>
+                     <count
+                           value="1">
+                     </count>
+                     <iterate>
+                        <instanceof
+                              value="org.eclipse.core.resources.IFile">
+                        </instanceof>
+                        <test
+                              property="org.eclipse.core.resources.extension"
+                              value="xform">
+                        </test>
+                     </iterate>
+                  </and>
+               </with>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="no.hib.dpf.transform.runalloy"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="selection">
+                  <and>
+                     <count
+                           value="1">
+                     </count>
+                     <iterate>
+                        <instanceof
+                              value="org.eclipse.core.resources.IFile">
+                        </instanceof>
+                        <test
+                              property="org.eclipse.core.resources.extension"
+                              value="als">
+                        </test>
+                     </iterate>
+                  </and>
+               </with>
+            </visibleWhen>
          </command>
       </menuContribution>
    </extension>

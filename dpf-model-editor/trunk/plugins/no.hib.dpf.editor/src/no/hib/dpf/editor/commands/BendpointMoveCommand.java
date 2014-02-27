@@ -39,7 +39,8 @@ public class BendpointMoveCommand extends BendpointCommand {
 		location = p;
 	}
 	public void undo() {
-		getArrow().getBendpoints().set(location.getIndex(), getOldBendpoint());
+		if(getOldBendpoint() != null)
+			getArrow().getBendpoints().set(location.getIndex(), getOldBendpoint());
 	}
 
 }

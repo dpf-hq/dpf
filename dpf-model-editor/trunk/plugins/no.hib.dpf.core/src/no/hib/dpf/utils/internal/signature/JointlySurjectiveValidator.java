@@ -13,7 +13,7 @@ import no.hib.dpf.core.Node;
 public class JointlySurjectiveValidator extends AbstractBasePredicate {
 
 	public JointlySurjectiveValidator() {
-		super("js", null, "X,Y,Z", " YZ:Y:Z,XZ:X:Z");
+		super(JOINT_SURJECITVE, null, "X,Y,Z", " YZ:Y:Z,XZ:X:Z");
 	}
 
 	@Override

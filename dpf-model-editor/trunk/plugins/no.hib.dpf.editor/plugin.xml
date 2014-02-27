@@ -12,6 +12,15 @@
               contributorClass="no.hib.dpf.editor.DPFEditorActionBarContributor"
               id="GEF DPF Editor">
       </editor>
+      <editor
+            class="no.hib.dpf.editor.DPFEditor2"
+            contributorClass="no.hib.dpf.editor.DPFEditorActionBarContributor"
+            default="false"
+            extensions="xmi"
+            icon="icons/shapes.gif"
+            id="GEF DPF Editor 2"
+            name="DPF Specification Editor 2">
+      </editor>
    </extension>
    <extension point="org.eclipse.ui.newWizards">
       <category name="Diagram Predicate Framework"

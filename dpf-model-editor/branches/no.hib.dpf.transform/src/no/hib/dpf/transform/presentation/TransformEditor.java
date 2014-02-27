@@ -23,6 +23,7 @@ import java.util.Map;
 
 import no.hib.dpf.core.Specification;
 import no.hib.dpf.diagram.util.DPFCheck;
+import no.hib.dpf.diagram.util.DPFConstants;
 import no.hib.dpf.editor.DPFUtils;
 import no.hib.dpf.transform.Production;
 import no.hib.dpf.transform.Transform;
@@ -285,9 +286,11 @@ public class TransformEditor extends FormEditor implements CommandStackListener,
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xform", new XMIResourceFactoryImpl());
 		Resource dGraph = resourceSet.createResource(DefaultDSpecification);
 		dGraph.getContents().add(REFLEXIVE_DSPECIFICATION);
+		dGraph.getContents().add(DPFConstants.DEFAULT_DSIGNATURE);
 		resourceSet.getURIResourceMap().put(DefaultDSpecification, dGraph);
 		Resource graph = resourceSet.createResource(DefaultSpecification);
 		graph.getContents().add(REFLEXIVE_SPECIFICATION);
+		graph.getContents().add(DPFConstants.DEFAULT_SIGNATURE);
 		resourceSet.getURIResourceMap().put(DefaultSpecification, graph);
 		return resourceSet;
 	}

@@ -41,6 +41,7 @@ import no.hib.dpf.diagram.DOffset;
 import no.hib.dpf.editor.commands.ArrowLabelMoveCommand;
 import no.hib.dpf.editor.figures.draw2d.Draw2dUtil;
 import no.hib.dpf.editor.parts.ArrowLabelEditPart;
+import no.hib.dpf.editor.parts.DArrowEditPart;
 import no.hib.dpf.editor.parts.DNodeEditPart;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;
 
@@ -48,6 +49,7 @@ import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.ConnectionEditPart;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
@@ -68,8 +70,16 @@ public class ArrowLabelMovePolicy extends NonResizableEditPolicy {
 		return command;
 	}
 	protected void removeSelectionHandles() {
-		getHost().getParent().refresh();
 		super.removeSelectionHandles();
+		EditPart parent = getHost().getParent();
+		if(parent instanceof DArrowEditPart){
+			DArrowEditPart arrow = (DArrowEditPart) parent;
+			arrow.refreshVisuals();
+			for(Object iter : arrow.getChildren())
+				if(iter instanceof ArrowLabelEditPart)
+					((ArrowLabelEditPart)iter).refresh();
+		}
+
 	}
 	protected void showSelection() {
 		super.showSelection();

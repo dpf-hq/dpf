@@ -11,7 +11,7 @@ import no.hib.dpf.core.Node;
 public class SurjectivePredicate extends AbstractSingleArrowPredicate {
 
 	public SurjectivePredicate() {
-		super("surj");
+		super(SURJECTIVE);
 	}
 
 

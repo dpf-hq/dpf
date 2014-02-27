@@ -11,7 +11,7 @@ import no.hib.dpf.core.Node;
 public class InversePredicate extends AbstractBasePredicate {
 	
 	public InversePredicate() {
-		super("inv", null, "X,Y", "XY:X:Y, YX:Y:X");
+		super(INVERSE, null, "X,Y", "XY:X:Y, YX:Y:X");
 	}
 	private boolean canReturn(Node aNode) {
 		for (Arrow outgoing : aNode.getOutgoings()) {

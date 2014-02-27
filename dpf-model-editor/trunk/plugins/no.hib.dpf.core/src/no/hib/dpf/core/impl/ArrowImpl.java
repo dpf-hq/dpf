@@ -560,16 +560,18 @@ public class ArrowImpl extends IDObjectImpl implements Arrow {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(')');
+		StringBuffer result = new StringBuffer("");
+		result.append(getName() + ":");
+		Node node = getSource();
+		result.append((node == null ? node : node.getName()) + "->");
+		node = getTarget();
+		result.append((node == null ? node : node.getName()));
 		return result.toString();
 	}
 

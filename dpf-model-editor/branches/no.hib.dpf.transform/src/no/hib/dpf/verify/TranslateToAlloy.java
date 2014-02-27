@@ -10,10 +10,16 @@ import java.util.Map.Entry;
 import org.eclipse.emf.common.util.EList;
 
 import no.hib.dpf.core.Arrow;
+import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.Node;
+import no.hib.dpf.core.Predicate;
+import no.hib.dpf.core.impl.PredicateImpl;
 import no.hib.dpf.diagram.DArrow;
+import no.hib.dpf.diagram.DConstraintNode;
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
+import no.hib.dpf.diagram.DSpecification;
+import no.hib.dpf.diagram.util.DPFConstants;
 import no.hib.dpf.transform.Production;
 import no.hib.dpf.transform.Transform;
 
@@ -33,6 +39,7 @@ public class TranslateToAlloy {
 	private StringBuffer buffer = new StringBuffer();
 	private DGraph dGraph = null;
 	private List<Production> rules = null;
+	private DSpecification dType = null;
 	
 	static private String COMMONARROW = "(trans.source.arrows-trans.darrows)";
 	static private String COMMONNODE = "(trans.source.nodes-trans.dnodes)";
@@ -124,9 +131,139 @@ public class TranslateToAlloy {
 		buffer.append("trans.source.arrows-trans.darrows=trans.target.arrows-trans.aarrows" + LINE);
 		buffer.append("}" + LINE);
 	}
+	/**
+	 * Each source model satisfies all the constraints on the metamodel. In this way, every source model is valid.
+	 * 1. Each arrow has a default constraint multi[0,1]. Translate the default constraint first.
+	 * 2. Then translate the other constraint associated with the metamodel.
+	 */
 	public void pre_source_valid(){
-		buffer.append("pre source_valid[trans]{" + LINE);
+		buffer.append("pred source_valid[trans:Trans]{" + LINE);
+		
+		for(Arrow arrow : dType.getSpecification().getGraph().getArrows()){
+			boolean isMult = false;
+			for(Constraint constraint : arrow.getConstraints()){
+				if(constraint.getPredicate() == DPFConstants.INJECTIVE){
+					isMult = true;
+					break;
+				}
+			}
+			if(!isMult)
+				buffer.append(translateArrowMultiplicity(arrow, "source"));
+		}
+		for(Constraint constraint : dType.getSpecification().getConstraints()){
+			Predicate predicate  = constraint.getPredicate();
+			if(predicate == DPFConstants.INJECTIVE)
+				buffer.append(translateInjective(constraint, "source"));
+			else if(predicate == DPFConstants.SURJECTIVE)
+				buffer.append(translateSurjective(constraint, "source"));
+			else if(predicate == DPFConstants.ARROW_MULTI)
+				buffer.append(translateArrowMultiplicity(constraint, "source"));
+			else if(predicate == DPFConstants.NODE_MULTI)
+				buffer.append(translateNodeMultiplicity(constraint, "source"));
+			else if(predicate == DPFConstants.XOR)
+				buffer.append(translateXOR(constraint, "source"));
+			else if(predicate == DPFConstants.XOR4)
+				buffer.append(translateXOR4(constraint, "source"));
+			else if(predicate == DPFConstants.MERGE_NAND)
+				buffer.append(translateMergeNAND(constraint, "source"));
+			else if(predicate == DPFConstants.SPLIT_NAND)
+				buffer.append(translateSplitNAND(constraint, "source"));
+			else if(predicate == DPFConstants.REFLEXIVE)
+				buffer.append(translateReflexive(constraint, "source"));
+		}
 		buffer.append("}" + LINE);
+	}
+	private String translateReflexive(Constraint constraint, String from) {
+		Arrow arrow = getArrow(constraint, "XY");
+		String result = "//" + "reflexive on " + arrow +  LINE;
+		return result + "all e:(" + AP + arrow.getName() + "&trans." + from + ".arrows)| e.src = e.trg" + LINE; 
+	}
+	private String translateSplitNAND(Constraint constraint, String source) {
+		Node z = getNode(constraint, "Z");
+		Arrow zx = getArrow(constraint, "ZX"), zy = getArrow(constraint, "ZY");
+		String result = "//" + "NAND constraint between " + zx + " and " + zy + LINE;
+		result += "all n:(" + NP + z.getName() + "&trans." + source + ".nodes) | let e1 = (some e : " + AP + zx.getName() + 
+				"&trans." + source + ".arrows | e.src = n), e2=(some e : " + AP + zy.getName() + "&trans." + source + ".arrows | e.src = n)|not(e1 and e2)" + LINE;
+		return result;
+	}
+	private String translateMergeNAND(Constraint constraint, String source) {
+		Node target = getNode(constraint, "Z");
+		Arrow xz = getArrow(constraint, "XZ"), yz = getArrow(constraint, "YZ");
+		String result = "//" + "NAND constraint between " + xz + " and " + yz + LINE;
+		result += "all n:(" + NP + target.getName() + "&trans." + source + ".nodes) | let e1 = (some e : " + AP + xz.getName() + 
+				"&trans." + source + ".arrows | e.trg = n), e2=(some e : " + AP + yz.getName() + "&trans." + source + ".arrows | e.trg = n)|not(e1 and e2)" + LINE;
+		return result;
+	}
+	private String translateXOR4(Constraint constraint, String from) {
+		Node source = getNode(constraint, "X");
+		Arrow xy1 = getArrow(constraint, "XY1"), xy2 = getArrow(constraint, "XY2"), xy3 = getArrow(constraint, "XY3"), xy4 = getArrow(constraint, "XY4");
+		String result = "//" + "XOR constraint between " + xy1 + ","+ xy2 + ","+ xy3 + " and " + xy4 + LINE;
+		result += "all n:(" + NP + source.getName() + "&trans." + from + ".nodes) | let e1=(some e : " + AP + xy1.getName() + 
+				"&trans." + from + ".arrows|e.src = n), e2=(some e : " + AP + xy2.getName() + 
+				"&trans." + from + ".arrows|e.src = n), e3=(some e : " + AP + xy3.getName() + 
+				"&trans." + from + ".arrows|e.src = n), e4=(some e : " + AP + xy4.getName() + 
+				"&trans." + from + ".arrows|e.src = n)|(e1 or e2 or e3 or e4) and not(((e1 and (e2 or e3 or e4)) or (e2 and (e1 or e3 or e4)) or (e3 and (e2 or e1 or e4)) or (e4 and (e2 or e3 or e1))))" + LINE;
+		return result;
+	}
+	private String translateXOR(Constraint constraint, String from) {
+		Node source = getNode(constraint, "Z");
+		Arrow zx = getArrow(constraint, "ZX"), zy = getArrow(constraint, "ZY");
+		String result = "//" + "XOR constraint between " + zx + " and " + zy + LINE;
+		result += "all n:(" + NP + source.getName() + "&trans." + from + ".nodes) | let e1 = (some e : " + AP + zx.getName() + 
+				"&trans." + from + ".arrows | e.src = n), e2=(some e : " + AP + zy.getName() + "&trans." + from + ".arrows | e.src = n)|(e1 or e2) and not(e1 and e2)" + LINE;
+		return result;
+	}
+	private String translateNodeMultiplicity(Constraint constraint, String from) {
+		Node source = getNode(constraint, "X");
+		String result = "//" + "mulitplicity on " + source.getName() + " " + constraint.getParameters() + LINE;
+		Map<String, String> parameters = PredicateImpl.getParameterMap(constraint.getParameters());
+		if(parameters == null) return result;
+		String min = parameters.get("min");
+		String max = parameters.get("max");
+		result += "let count = #" + NP + source.getName() + 
+				"&trans." + from + ".nodes | count>=" + min;
+		if(!(max.equals("*") || max.equals("-1")))
+			result += " and count <=" + max;
+		return result + LINE; 
+	}
+	private String translateArrowMultiplicity(Constraint constraint, String from) {
+		Node source = getNode(constraint, "X");
+		Arrow arrow = getArrow(constraint, "XY");
+		String result = "//" + "mulitplicity on " + arrow +  constraint.getParameters() +  LINE;
+		Map<String, String> parameters = PredicateImpl.getParameterMap(constraint.getParameters());
+		if(parameters == null) return result;
+		String min = parameters.get("min");
+		String max = parameters.get("max");
+		result += "all n:(" + NP + source.getName() + "&trans." + from + ".nodes)| let count = #{e:(" + AP + arrow.getName() + 
+				"&trans." + from + ".arrows)| e.src = n}| count>=" + min;
+		if(!(max.equals("*") || max.equals("-1")))
+			result += " and count <=" + max;
+		return result + LINE; 
+	}
+	private String translateSurjective(Constraint constraint, String from) {
+		Node source = getNode(constraint, "Y");
+		Arrow arrow = getArrow(constraint, "XY");
+		String result = "//" + "surjective on " + arrow +  LINE;
+		return result + "all n:(" + NP + source.getName() + "&trans." + from + ".nodes)| some e:(" + AP + arrow.getName() + 
+				"&trans." + from + ".arrows)| e.trg = n" + LINE;
+	}
+	private String translateArrowMultiplicity(Arrow arrow, String from) {
+		String result = "//" + "mulitplicity on " + arrow +  "[0,1]" + LINE;
+		return result + "all n:(" + NP + arrow.getSource().getName() + "&trans." + from + ".nodes)| lone e:(" + AP + arrow.getName()+ 
+				"&trans." + from + ".arrows)|e.src=n" + LINE;
+	}
+	private Node getNode(Constraint constraint, String name){
+		return constraint.getMappings().getNodeMapping().get(constraint.getPredicate().getShape().getNodeByName(name));
+	}
+	private Arrow getArrow(Constraint constraint, String name){
+		return constraint.getMappings().getArrowMapping().get(constraint.getPredicate().getShape().getArrowByName(name));
+	}
+	private String translateInjective(Constraint constraint, String from) {
+		Node source = getNode(constraint, "X");
+		Arrow arrow = getArrow(constraint, "XY");
+		String result = "//" + "check injective on " + arrow+  LINE;
+		return result + "all n:(" + NP + source.getName() + "&trans." + from + ".nodes)| no e1, e2:(" + AP + arrow.getName() + 
+				"&trans." + from + ".arrows)| (e1 != e2 and e1.src = n and e2.src = n and e1.trg = e2.trg)" + LINE; 
 	}
 	private void getRelated(List<DNode> nodes, List<Object> relatedSet, List<DArrow> arrows){
 		List<DNode> unvisited = new ArrayList<DNode>();
@@ -184,7 +321,7 @@ public class TranslateToAlloy {
 			for(DArrow arrow : suba)
 				if(commonArrows.contains(arrow))
 					subca.add(arrow);
-			translateRelatedMatch(suba, subn, subcn, subca, true);
+			translateRelatedMatch(suba, subn, subcn, subca, delete);
 		}
 		
 	}
@@ -217,7 +354,7 @@ public class TranslateToAlloy {
 			if(iterator.hasNext())
 				buffer.append(" or ");
 		}
-		buffer.append(")" + LINE + "}");
+		buffer.append(")" + LINE + "}" + LINE);
 	}
 	public  String translate(EList<DArrow> arrows, EList<DNode> nodes, EList<DNode> commonNodes, EList<DArrow> commonArrows,
 			String vvpre, String vtpre, String evpre, String etpre) {
@@ -465,8 +602,11 @@ public class TranslateToAlloy {
 					hide.remove(type);
 			}
 		}
-		for(DNode node : hide)
+		for(DNode node : hide){
+			if(node instanceof DConstraintNode) 
+				continue;
 			buffer.append("no " + nodeName(node.getNode()) + "&" + tpre + LINE);
+		}
 	}
 	public  void translateArrowUnchanged(EList<DArrow> arrows, EList<DArrow> commonArrows, String tpre,  EList<DArrow> all){
 		List<DArrow> hide = new ArrayList<DArrow>();
@@ -482,7 +622,7 @@ public class TranslateToAlloy {
 			buffer.append("no " + arrowName(arrow.getArrow()) + "&" + tpre + LINE);
 	}
 	public  void translateNodeMulti(EList<DNode> nodes, EList<DNode> commonNodes, String tpre){
-		Map<DNode, Integer> counters = new HashMap<>();
+		Map<DNode, Integer> counters = new HashMap<DNode, Integer>();
 		for(DNode node : nodes){
 			if(!commonNodes.contains(node)){
 				DNode type = node.getDType();
@@ -497,7 +637,7 @@ public class TranslateToAlloy {
 			buffer.append("#" + nodeName(entry.getKey().getNode()) + "&" + tpre + " = " + entry.getValue() + LINE);
 	}
 	public  void translateArrowMulti(EList<DArrow> arrows, EList<DArrow> commonArrows, String tpre){
-		Map<DArrow, Integer> counters = new HashMap<>();
+		Map<DArrow, Integer> counters = new HashMap<DArrow, Integer>();
 		for(DArrow arrow : arrows){
 			if(!commonArrows.contains(arrow)){
 				DArrow type = arrow.getDType();
@@ -523,8 +663,45 @@ public class TranslateToAlloy {
 		pre_trans_general();
 		pre_source_valid();
 		fact(rules);
+		run_command();
 	}
+	private void run_command() {
+		for(Arrow arrow : dType.getSpecification().getGraph().getArrows()){
+			boolean isMult = false;
+			for(Constraint constraint : arrow.getConstraints()){
+				if(constraint.getPredicate() == DPFConstants.INJECTIVE){
+					isMult = true;
+					break;
+				}
+			}
+			if(!isMult)
+				commands.add(translateArrowMultiplicity(arrow, "target"));
+		}
+		for(Constraint constraint : dType.getSpecification().getConstraints()){
+			Predicate predicate  = constraint.getPredicate();
+			if(predicate == DPFConstants.INJECTIVE)
+				commands.add(translateInjective(constraint, "target"));
+			else if(predicate == DPFConstants.SURJECTIVE)
+				commands.add(translateSurjective(constraint, "target"));
+			else if(predicate == DPFConstants.ARROW_MULTI)
+				commands.add(translateArrowMultiplicity(constraint, "target"));
+			else if(predicate == DPFConstants.NODE_MULTI)
+				commands.add(translateNodeMultiplicity(constraint, "target"));
+			else if(predicate == DPFConstants.XOR)
+				commands.add(translateXOR(constraint, "target"));
+			else if(predicate == DPFConstants.XOR4)
+				commands.add(translateXOR4(constraint, "target"));
+			else if(predicate == DPFConstants.MERGE_NAND)
+				commands.add(translateMergeNAND(constraint, "target"));
+			else if(predicate == DPFConstants.SPLIT_NAND)
+				commands.add(translateSplitNAND(constraint, "target"));
+			else if(predicate == DPFConstants.REFLEXIVE)
+				commands.add(translateReflexive(constraint, "target"));
+		}
+	}
+	
 	public TranslateToAlloy(Transform transform){
+		dType  = transform.getElementTypeGraph();
 		dGraph = transform.getElementTypeGraph().getDGraph();
 		rules = transform.getRules();
 	}
@@ -532,5 +709,6 @@ public class TranslateToAlloy {
 	public Object getBuffer() {
 		return buffer;
 	}
-
+	public List<String> commands = new ArrayList<String>();
+	String current = null;
 }

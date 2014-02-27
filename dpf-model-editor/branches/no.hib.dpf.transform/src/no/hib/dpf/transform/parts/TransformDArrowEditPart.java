@@ -22,7 +22,7 @@ public class TransformDArrowEditPart extends DArrowEditPart {
 	private static final Color kept = TransformEditorPreferences.getDefault().getPreserveForegroundColor();
 	private static final Color delt = TransformEditorPreferences.getDefault().getDeleteForegroundColor();
 	private static final Color insert = TransformEditorPreferences.getDefault().getInsertForegroundColor();
-	protected void refreshVisuals(){
+	public void refreshVisuals(){
 		super.refreshVisuals();
 		DArrow model = getDArrow();
 		if(production.isDeled(model))

@@ -447,7 +447,7 @@ public class TransformModule {
 							
 						}
 						
-//						System.out.println("Navnet på Noden " + traces.get(target_id).getName());
+//						System.out.println("Navnet pï¿½ Noden " + traces.get(target_id).getName());
 						
 						if(traces.get(target_id).getAction().toString().equals("create")){
 							trace_node = henshinFac.createNode(rhs, tracePackage.getTrace(), null);

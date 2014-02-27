@@ -29,7 +29,7 @@ import no.hib.dpf.utils.DPFCoreUtil;
 public class MultiplicityPredicate extends AbstractSingleArrowPredicate {
 
 	public MultiplicityPredicate() {
-		super("multi", "min:0;max:1");
+		super(ARROW_MULTIPLICITY, "min:0;max:1");
 	}
 
 	public boolean check(Map<String, String> maps, Graph graph, Map<Node, List<Node>> nodeMap,

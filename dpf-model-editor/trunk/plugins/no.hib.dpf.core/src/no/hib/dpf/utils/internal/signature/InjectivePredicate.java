@@ -13,7 +13,7 @@ import no.hib.dpf.core.Node;
 public class InjectivePredicate extends AbstractSingleArrowPredicate {
 
 	public InjectivePredicate() {
-		super("inj");
+		super(INJECTIVE);
 	}
 
 	public boolean check(Map<String, String> maps, Graph shape, Map<Node, List<Node>> nodeMap, Map<Arrow, List<Arrow>> arrowMap) { 

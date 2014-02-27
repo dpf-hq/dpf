@@ -9,6 +9,7 @@ import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Specification;
 import no.hib.dpf.diagram.DArrow;
+import no.hib.dpf.diagram.DConstraintNode;
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.diagram.DSpecification;
@@ -29,6 +30,8 @@ public class DPFCheck {
 	private static void checkDNode(DNode dNode) {
 		if(dNode != REFLEXIVE_TYPE_DNODE){
 			DNode type = dNode.getDType();
+			if(dNode instanceof DConstraintNode)
+				return;
 			Assert.isNotNull(dNode.getNode());
 			Assert.isNotNull(type);
 			Assert.isTrue(type.getNode() == dNode.getNode().getTypeNode());

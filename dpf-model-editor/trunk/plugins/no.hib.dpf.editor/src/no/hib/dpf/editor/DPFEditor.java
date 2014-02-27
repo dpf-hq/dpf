@@ -69,7 +69,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor.PropertyValueWrapper;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
@@ -133,13 +132,13 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 
 	/** This is the root of the editor's model. */
 
-	private DSpecification dSpecification;
+	protected DSpecification dSpecification;
 
 	// /** Palette component, holding the tools and shapes. */
 	private PaletteRoot paletteRoot;
 
-	private DPFEditPartFactory shapesEditPartFactory;
-	private DPFEditorPaletteFactory paletteFactory;
+	protected DPFEditPartFactory shapesEditPartFactory;
+	protected DPFEditorPaletteFactory paletteFactory;
 	private static final String Marker_ID = DPFPlugin.PLUGIN_ID	+ ".validationmarker";
 
 	protected PropertySheetPage propertySheetPage;
@@ -297,9 +296,16 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		return retval;
 	}
 
-	private ResourceSetImpl resourceSet = DPFUtils.getResourceSet();
-	private Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
+	protected ResourceSetImpl resourceSet = DPFUtils.getResourceSet();
+	protected Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
 
+	/**When model is saved to another location, model's metamodel location 
+	 * and model's signature location, both relative to the model's location,  should be updated.
+	 * 
+	 * @param iter : the model
+	 * @param oldBase : model old location
+	 * @param createFileURI : model new location
+	 */
 	private static void updateMetaModelReference(DSpecification iter, URI oldBase, URI createFileURI){
 		if(oldBase == null){
 			DSpecification typeSpec = iter.getDType();
@@ -332,17 +338,28 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 			iter.getSpecification().setSignatureFile(newSignatureFile);
 		}
 	}
-	private static void updateSignatureReference(DSpecification iter, URI newBase){
-		DSignature dSignature = iter.getDSignature();
-		if(dSignature != null){
-			URI oldBase = dSignature.eResource().getURI();
-			for(DPredicate predicate : dSignature.getDPredicates()){
-				String icon = predicate.getIcon();
-				if(icon != null && !icon.isEmpty())
-					predicate.setIcon(DPFUtils.updateRelativeURI(oldBase, newBase, URI.createFileURI(predicate.getIcon())).toFileString());
-			}
+	
+	
+	/**When model is saved to another location, if a signature is not the default one,
+	 * the icon location of each predicate, relative to the model, should be update
+	 * @param dSignature : signature to update
+	 * @param newBase : model's new location
+	 */
+	private static void updateSignatureReference(DSignature dSignature, URI newBase){
+		URI oldBase = dSignature.eResource().getURI();
+		for(DPredicate predicate : dSignature.getDPredicates()){
+			String icon = predicate.getIcon();
+			if(icon != null && !icon.isEmpty())
+				predicate.setIcon(DPFUtils.updateRelativeURI(oldBase, newBase, URI.createFileURI(predicate.getIcon())).toFileString());
 		}
 	}
+	
+	/**When model is saved to another location, update relative locations
+	 * @param resourceSet : the resourceSet containing the model
+	 * @param newSpec : the model
+	 * @param oldURI : model's old location
+	 * @param newURI : model's new location
+	 */
 	public static void updateResourceSet(ResourceSetImpl resourceSet, DSpecification newSpec, URI oldURI, URI newURI){
 		Assert.isNotNull(resourceSet);
 		URI modelFileURI = DPFUtils.getModelURI(newURI);
@@ -352,18 +369,13 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		resourceSet.getURIResourceMap().put(modelFileURI, model);
 		DSpecification iter = newSpec;
 		while(iter != REFLEXIVE_DSPECIFICATION){
-			EcoreUtil.resolveAll(iter.getDType());
-			iter = iter.getDType();
-		}
-		iter = newSpec;
-		while(iter != REFLEXIVE_DSPECIFICATION){
 			updateMetaModelReference(iter, oldURI, newURI);
-			model.getContents().add(iter.getSpecification());
 			diagram.getContents().add(iter);
+			model.getContents().add(iter.getSpecification());
 			if(iter.getDSignature() != null && iter.getDSignature() != DEFAULT_DSIGNATURE){
-				updateSignatureReference(newSpec, newURI);
-				model.getContents().add(iter.getDSignature().getSignature());
+				updateSignatureReference(iter.getDSignature(), newURI);
 				diagram.getContents().add(iter.getDSignature());
+				model.getContents().add(iter.getDSignature().getSignature());
 			}
 			iter = iter.getDType();
 		}
@@ -541,12 +553,6 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		super.setInput(input);
 		IFile file = ((IFileEditorInput) input).getFile();
 		dSpecification = DPFUtils.loadDSpecification(resourceSet, DPFUtils.getFileURI(file), resourceToDiagnosticMap);
-		EcoreUtil.resolveAll(dSpecification);
-		EcoreUtil.resolveAll(dSpecification.getSpecification());
-		if(dSpecification.getDSignature() != null){
-			EcoreUtil.resolveAll(dSpecification.getDSignature());
-			EcoreUtil.resolveAll(dSpecification.getDSignature().getSignature());
-		}
 		Assert.isTrue(dSpecification != null);
 		setPartName(file.getName());
 
@@ -567,7 +573,9 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 			if (p != editor)
 				return;
 			IActionBars actionBars = editor.getEditorSite().getActionBars();
+			if(actionBars == null) return;
 			IToolBarManager toolbar = actionBars.getToolBarManager();
+			if(toolbar == null) return;
 			for (IAction action : constraintActions)
 				toolbar.add(action);
 			toolbar.update(true);
@@ -583,7 +591,9 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 			if (p != editor)
 				return;
 			IActionBars actionBars = editor.getEditorSite().getActionBars();
+			if(actionBars == null) return;
 			IToolBarManager toolbar = actionBars.getToolBarManager();
+			if(toolbar == null) return;
 			for (IAction action : constraintActions)
 				toolbar.remove(action.getId());
 			toolbar.update(true);
@@ -594,8 +604,6 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 	};
 
 	public void dispose() {
-		if(!isDirty())
-			doSave(null);
 		getSite().getPage().removePartListener(partListener);
 		super.dispose();
 	}

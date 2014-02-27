@@ -30,15 +30,6 @@ import no.hib.dpf.core.Signature;
 import no.hib.dpf.core.Specification;
 import no.hib.dpf.core.ValidatorType;
 import no.hib.dpf.utils.DPFConstants;
-import no.hib.dpf.utils.internal.signature.InjectivePredicate;
-import no.hib.dpf.utils.internal.signature.InversePredicate;
-import no.hib.dpf.utils.internal.signature.IrreflexivePredicate;
-import no.hib.dpf.utils.internal.signature.JointlyInjectivePredicate;
-import no.hib.dpf.utils.internal.signature.JointlySurjectiveValidator;
-import no.hib.dpf.utils.internal.signature.MultiplicityPredicate;
-import no.hib.dpf.utils.internal.signature.NANDPredicate;
-import no.hib.dpf.utils.internal.signature.SurjectivePredicate;
-import no.hib.dpf.utils.internal.signature.XORPredicate;
 
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EClass;
@@ -440,6 +431,7 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 	public Specification createSpecification() {
 		SpecificationImpl specification = new SpecificationImpl();
 		specification.setType(DPFConstants.REFLEXIVE_SPECIFICATION);
+		specification.setSignature(DPFConstants.DEFAULT_SIGNATURE);
 		return specification;
 	}
 	
@@ -557,15 +549,19 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 	@Override
 	public Signature createConstantSignature() {
 		Signature result = new SignatureImpl();
-		result.getPredicates().add(new InjectivePredicate());
-		result.getPredicates().add(new SurjectivePredicate());
-		result.getPredicates().add(new IrreflexivePredicate());
-		result.getPredicates().add(new MultiplicityPredicate());
-		result.getPredicates().add(new InversePredicate());
-		result.getPredicates().add(new JointlySurjectiveValidator());
-		result.getPredicates().add(new JointlyInjectivePredicate());
-		result.getPredicates().add(new XORPredicate());
-		result.getPredicates().add(new NANDPredicate());
+		result.addPredicate(DPFConstants.INJECTIVE);
+		result.addPredicate(DPFConstants.SURJECTIVE);
+		result.addPredicate(DPFConstants.IRREFLEXIVE);
+		result.addPredicate(DPFConstants.ARROW_MULTI);
+		result.addPredicate(DPFConstants.INVERSE);
+		result.addPredicate(DPFConstants.JOINT_SURJ);
+		result.addPredicate(DPFConstants.JOINT_INJE);
+		result.addPredicate(DPFConstants.XOR);
+		result.addPredicate(DPFConstants.SPLIT_NAND);
+		result.addPredicate(DPFConstants.MERGE_NAND);
+		result.addPredicate(DPFConstants.NODE_MULTI);
+		result.addPredicate(DPFConstants.REFLEXIVE);
+		result.addPredicate(DPFConstants.XOR4);
 		return result;
 	}
 

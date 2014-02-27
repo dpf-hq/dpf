@@ -173,6 +173,18 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 		visualization.setSource(graph.getArrowByName("XY"));
 		return result;
 	}
+	
+	private DPredicate createNodeDPredicate(
+			Predicate predicate, String icon) {
+		if(predicate == null)
+			return null;
+		DPredicate result = createDPredicate(predicate, icon);
+		Visualization visualization = result.getVisualization();
+		visualization.setType(VisualizationType.ON_NODE);
+		Graph graph = result.getPredicate().getShape();
+		visualization.setSource(graph.getArrowByName("X"));
+		return result;
+	}
 
 	private DPredicate createArrowToArrowDPredicate(Predicate predicate,
 			String icon, String source,
@@ -185,6 +197,15 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 		Graph graph = result.getPredicate().getShape();
 		visualization.setSource(graph.getArrowByName(source));
 		visualization.setTarget(graph.getArrowByName(target));
+		return result;
+	}
+	
+	private DPredicate createComposedDPredicate(Predicate predicate, String icon) {
+		if(predicate == null)
+			return null;
+		DPredicate result = createDPredicate(predicate, icon);
+		Visualization visualization = result.getVisualization();
+		visualization.setType(VisualizationType.COMPOSED);
 		return result;
 	}
 
@@ -228,15 +249,19 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	public DSignature createConstantDSignature() {
 		DSignatureImpl result = new DSignatureImpl();
 		result.setSignature(DPFConstants.DEFAULT_SIGNATURE);
-		result.addDPredicate(createArrowLabelDPredicate(DPFConstants.DEFAULT_SIGNATURE.getPredicateBySymbol("inj"), "/icons/inj_36.png"));
-		result.addDPredicate(createArrowLabelDPredicate(DPFConstants.DEFAULT_SIGNATURE.getPredicateBySymbol("surj"), "/icons/surj_36.png"));
-		result.addDPredicate(createArrowLabelDPredicate(DPFConstants.DEFAULT_SIGNATURE.getPredicateBySymbol("irref"), "/icons/irr_36.png"));
-		result.addDPredicate(createArrowLabelDPredicate(DPFConstants.DEFAULT_SIGNATURE.getPredicateBySymbol("multi"), "/icons/mult_36.png"));
-		result.addDPredicate(createArrowToArrowDPredicate(DPFConstants.DEFAULT_SIGNATURE.getPredicateBySymbol("inv"), "/icons/inv_36.png", "XY", "YX"));
-		result.addDPredicate(createArrowToArrowDPredicate(DPFConstants.DEFAULT_SIGNATURE.getPredicateBySymbol("js"), "/icons/js_36.png", "XZ", "YZ"));
-		result.addDPredicate(createArrowToArrowDPredicate(DPFConstants.DEFAULT_SIGNATURE.getPredicateBySymbol("ji"), "/icons/ji_36.png", "XY", "XZ"));
-		result.addDPredicate(createArrowToArrowDPredicate(DPFConstants.DEFAULT_SIGNATURE.getPredicateBySymbol("xor"), "/icons/xor_36.png", "ZX", "ZY"));
-		result.addDPredicate(createArrowToArrowDPredicate(DPFConstants.DEFAULT_SIGNATURE.getPredicateBySymbol("nand"), "/icons/nand_36.png", "ZX", "ZY"));
+		result.addDPredicate(createArrowLabelDPredicate(DPFConstants.INJECTIVE, "/icons/inj_36.png"));
+		result.addDPredicate(createArrowLabelDPredicate(DPFConstants.SURJECTIVE, "/icons/surj_36.png"));
+		result.addDPredicate(createArrowLabelDPredicate(DPFConstants.IRREFLEXIVE, "/icons/irr_36.png"));		
+		result.addDPredicate(createArrowLabelDPredicate(DPFConstants.ARROW_MULTI, "/icons/mult_36.png"));
+		result.addDPredicate(createArrowToArrowDPredicate(DPFConstants.INVERSE, "/icons/inv_36.png", "XY", "YX"));
+		result.addDPredicate(createArrowToArrowDPredicate(DPFConstants.JOINT_SURJ, "/icons/js_36.png", "XZ", "YZ"));
+		result.addDPredicate(createArrowToArrowDPredicate(DPFConstants.JOINT_INJE, "/icons/ji_36.png", "XY", "XZ"));
+		result.addDPredicate(createArrowToArrowDPredicate(DPFConstants.XOR, "/icons/xor_36.png", "ZX", "ZY"));
+		result.addDPredicate(createArrowToArrowDPredicate(DPFConstants.SPLIT_NAND, "/icons/nand_36.png", "ZX", "ZY"));
+		result.addDPredicate(createArrowToArrowDPredicate(DPFConstants.MERGE_NAND, "/icons/nand_merge_36.png", "XZ", "YZ"));
+		result.addDPredicate(createNodeDPredicate(DPFConstants.NODE_MULTI, "/icons/mult_node_36.png"));
+		result.addDPredicate(createArrowLabelDPredicate(DPFConstants.REFLEXIVE, "/icons/ref_36.png"));
+		result.addDPredicate(createComposedDPredicate(DPFConstants.XOR4, "/icons/xor4_36.png"));
 		return result;
 	}
 

@@ -85,7 +85,8 @@ public class TransformActionBarContributor extends ActionBarContributor {
 
 	@Override
 	public void setActiveEditor(IEditorPart part) {
-		super.setActiveEditor(part);
+		if(getActionBars() != null)
+			super.setActiveEditor(part);
 		activeEditorPart = part;
 	}
 

@@ -13,19 +13,19 @@ import no.hib.dpf.core.Node;
 public class XORPredicate extends AbstractBasePredicate {
 
 	public XORPredicate() {
-		super("xor", null, "X,Y,Z", "ZX:Z:X, ZY:Z:Y");
+		super(XOR, null, "X,Y,Z", "ZX:Z:X, ZY:Z:Y");
 	}
 
 	public boolean check(Map<String, String> maps, Graph shape, Map<Node, List<Node>> nodeMap, Map<Arrow, List<Arrow>> arrowMap) { 
-		Map<Node, List<Arrow>> targetWithX = new HashMap<Node, List<Arrow>>();
+		Map<Node, List<Arrow>> sourceWithNode = new HashMap<Node, List<Arrow>>();
 		Map<Node, List<Arrow>> violated = new HashMap<Node, List<Arrow>>();
 		List<Node> visitedZ = new ArrayList<Node>();
 		List<Arrow> zx = arrowMap.get(shape.getArrowByName("ZX"));
 		if(zx != null){ for(Arrow arrow : zx){
 				Node source = arrow.getSource();
 				if(!visitedZ.contains(source)) visitedZ.add(source);
-				List<Arrow> value = targetWithX.containsKey(source) ? targetWithX.get(source) : new ArrayList<Arrow>();
-				value.add(arrow); targetWithX.put(source, value);
+				List<Arrow> value = sourceWithNode.containsKey(source) ? sourceWithNode.get(source) : new ArrayList<Arrow>();
+				value.add(arrow); sourceWithNode.put(source, value);
 			}
 		}
 		List<Arrow> zy = arrowMap.get(shape.getArrowByName("ZY"));
@@ -33,9 +33,9 @@ public class XORPredicate extends AbstractBasePredicate {
 			for(Arrow arrow : zy){
 				Node source = arrow.getSource();
 				if(!visitedZ.contains(source)) visitedZ.add(source);
-				if(targetWithX.containsKey(source)){
+				if(sourceWithNode.containsKey(source)){
 					List<Arrow> value = violated.containsKey(source) ? violated.get(source) : new ArrayList<Arrow>();
-					if(value.isEmpty()) value.addAll(targetWithX.get(source));
+					if(value.isEmpty()) value.addAll(sourceWithNode.get(source));
 					value.add(arrow); violated.put(source, value);
 				}
 			}
