@@ -24,13 +24,10 @@ import no.hib.dpf.editor.commands.BendPointCreateCommand;
 import no.hib.dpf.editor.commands.BendpointDeleteCommand;
 import no.hib.dpf.editor.commands.BendpointMoveCommand;
 import no.hib.dpf.editor.figures.draw2d.Draw2dUtil;
-import no.hib.dpf.editor.parts.DArrowEditPart;
 import no.hib.dpf.editor.parts.DNodeEditPart;
 
-import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.BendpointEditPolicy;
@@ -39,40 +36,24 @@ import org.eclipse.gef.requests.BendpointRequest;
 public class ArrowBendpointEditPolicy extends BendpointEditPolicy {
 
 	protected Command getCreateBendpointCommand(BendpointRequest request) {
-		DArrow arrow = (DArrow) request.getSource().getModel();
-		Point newBendPoint = request.getLocation();
-		int index = request.getIndex();//bendpoints index
 		BendPointCreateCommand com = new BendPointCreateCommand();
 		ConnectionEditPart connection = request.getSource();
+		DArrow arrow = (DArrow) connection.getModel();
+		int index = request.getIndex();//bendpoints index
 		IFigure source = ((DNodeEditPart) connection.getSource()).getFigure();
 		IFigure target = ((DNodeEditPart) connection.getTarget()).getFigure();
 		DOffset offset = arrow.getNameOffset();
-		PointList points = ((Connection)connection.getFigure()).getPoints();
-		if(offset.getIndex() == index){
-			Point label = Draw2dUtil.getAbsolutePoint(source, target, ((DArrowEditPart)connection).getRealPointList(), offset);
-			if(Draw2dUtil.isInvalid(source, target, label, newBendPoint, offset))
-				com.addInvalid(offset);
-		}
-		else if(offset.getIndex() >= index + 1){
-			com.addInvalid(offset);
-		}
-		for(DConstraint constraint : arrow.getDConstraints())
+		if(offset.getIndex() > index) com.addInvalid(offset);
+		for(DConstraint constraint : arrow.getDConstraints()){
 			if(constraint instanceof DArrowLabelConstraint){
 				offset = ((DArrowLabelConstraint)constraint).getOffset();
-				if(offset.getIndex() == index){
-					Point label = Draw2dUtil.getAbsolutePoint(source, target, points, offset);
-					if(Draw2dUtil.isInvalid(source, target, label, newBendPoint, offset))
-						com.addInvalid(offset);
-				}
-				else if(offset.getIndex() >= index + 1)
-					com.addInvalid(offset);
+				if(offset.getIndex() > index) com.addInvalid(offset);
 			}
+		}
+		Point newPoint = request.getLocation();
 		com.setArrow(arrow);
-		com.setLabel("Create BendPoint at " + newBendPoint);
-		boolean isEpic = source == target;
-		DOffset newOffset = Draw2dUtil.getDOffset(isEpic ? source.getBounds().getTop() : source.getBounds().getCenter(), 
-				isEpic ? source.getBounds().getBottom() : target.getBounds().getCenter(), 
-						newBendPoint);
+		com.setLabel("Create BendPoint at " + newPoint);
+		DOffset newOffset = Draw2dUtil.getDOffset(source, target, newPoint);
 		newOffset.setIndex(index);
 		com.setLocation(newOffset);
 		return com;
@@ -87,7 +68,9 @@ public class ArrowBendpointEditPolicy extends BendpointEditPolicy {
 		IFigure target = ((DNodeEditPart) connection.getTarget()).getFigure();
 		com.setArrow(arrow);
 		com.setLabel("Move BendPoint from " + com.getOldBendpoint() + " to " + p);
-		com.setLocation(Draw2dUtil.getDOffset(source, target, p));
+		DOffset moved = Draw2dUtil.getDOffset(source, target, p);
+		moved.setIndex(request.getIndex());
+		com.setLocation(moved);
 		return com;
 	}
 
@@ -95,19 +78,20 @@ public class ArrowBendpointEditPolicy extends BendpointEditPolicy {
 		int index = request.getIndex();
 		DArrow arrow = (DArrow) request.getSource().getModel();
 		BendpointDeleteCommand com = new BendpointDeleteCommand();
-		DOffset p = arrow.getBendpoints().get(request.getIndex());
 		com.setArrow(arrow);
+		DOffset p = arrow.getBendpoints().get(index);
+		p.setIndex(index);
 		com.setLabel("Delete BendPoint at " + p);
 		com.setLocation(p);
 		DOffset offset = arrow.getNameOffset();
-		if(offset.getIndex() > index)
-			com.addInvalid(offset);
-		for(DConstraint constraint : arrow.getDConstraints())
+		if(offset.getIndex() > index) com.addInvalid(offset);
+		for(DConstraint constraint : arrow.getDConstraints()){
 			if(constraint instanceof DArrowLabelConstraint){
 				offset = ((DArrowLabelConstraint)constraint).getOffset();
 				if(offset.getIndex() > index)
 					com.addInvalid(offset);
 			}
+		}
 		return com;
 	}
 

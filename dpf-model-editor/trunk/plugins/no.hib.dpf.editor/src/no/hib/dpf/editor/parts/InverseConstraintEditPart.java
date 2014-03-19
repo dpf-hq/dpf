@@ -23,7 +23,7 @@ public class InverseConstraintEditPart extends DConstraintEditPart {
 	
 	@Override
 	protected IFigure createFigure() {
-		return new ConstraintConnection(this);
+		return new ConstraintConnection();
 	}
 	
 }

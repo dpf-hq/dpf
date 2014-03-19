@@ -61,7 +61,6 @@ public class DConstraintCreateCommand extends AbstractCreateCommand {
 		case ON_NODE:
 			DComposedConstraint newComposedConstraint = DiagramFactory.eINSTANCE.createDComposedConstraint();
 			DConstraintNode dNode = DiagramFactory.eINSTANCE.createDConstraintNode();
-			//TODO get fakenode's position automatically in the future
 			dNode.setSize(null);
 			dNode.setLocation(null);
 			dNode.setDConstraint(newComposedConstraint);

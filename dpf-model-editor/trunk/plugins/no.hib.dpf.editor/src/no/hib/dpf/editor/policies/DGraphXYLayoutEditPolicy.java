@@ -39,12 +39,6 @@ public class DGraphXYLayoutEditPolicy extends XYLayoutEditPolicy {
 			if(move && (child instanceof DComposedNodePart || child instanceof DNodeEditPart))
 			{
 				Point newLocation = ((Rectangle)constraint).getLocation();
-				if(child instanceof DComposedNodePart){
-					DComposedNodePart compose = (DComposedNodePart) child;
-					compose.getCrossPoint(newLocation);
-					if(compose.getBound() != null)
-						newLocation = newLocation.translate(compose.getBound().getCenter().getNegated());
-				}
 				return new DNodeMoveCommand((DNode)child.getModel(), newLocation);
 			}
 			if(size && child instanceof DNodeEditPart)

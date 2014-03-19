@@ -233,59 +233,9 @@ public class TotalParticipationPainting implements IArrowPainting {
 			if (getTargetAnchor() != null)
 				getTargetAnchor().addAnchorListener(this);
 		}
-		public void addPoint(Point current) {
-			super.addPoint(current);
-			System.out.println(current);
-//			PointList points = getPoints();
-//			int size = getPoints().size();
-//			if(size > 2)
-			/*{
-				if(up == null){
-					up = new PolylineConnection();
-					this.add(up);
-					up.getPoints().removeAllPoints();
-					up.addPoint(current);
-				}
-				if(down == null){
-					down = new PolylineConnection();
-					this.add(down);
-					down.getPoints().removeAllPoints();
-					down.addPoint(current);
-				}
-			}else{*/
-//				{
-//				Point up_pre = up.getPoints().get;
-//				Point down_pre = down.getPoints().getLastPoint();
-//				Point pre = points.getLastPoint();
-//				double length = getBounds().width/2;
-//				if(length > 10)
-//					length = 10;//getLength(pre,current);
-//					double degree = Math.PI/2;
-//					Point current_up = getTurnScalePointAccordingToSecond(pre, current, -degree, length);
-//					Point current_down = getTurnScalePointAccordingToSecond(pre, current, degree, length);
-//					Point pre_up = getTurnScalePointAccordingToSecond(current, pre, degree, length);				
-//					Point pre_down = getTurnScalePointAccordingToSecond(current, pre, -degree, length);
-//					if(size == 1){
-//						up_pre = pre_up;
-//						down_pre = pre_down;
-//					}
-//					if(size > 2){
-//						Point up_pre_pre = up.getPoints().getPoint(size - 2);
-//						Point down_pre_pre = down.getPoints().getPoint(size - 2);
-//						up_pre = getCrossPoint(up_pre, up_pre_pre, pre_up, current_up);
-//						down_pre = getCrossPoint(down_pre, down_pre_pre, pre_down, current_down);
-//					}
-//					up.addPoint(current_up);
-//					down.addPoint(current_down);
-//				}
-//			}
-		}
 		protected void outlineShape(Graphics g) {
 		}
 
-//		public Point getTurnScalePointAccordingToSecond(Point a, Point b, double angle, double scale){
-//			return getTranslateBack(turn(getTranslate(a, b), angle, scale), b);
-//		}
 		Point getTranslate(Point a, Point b){
 			return new Point(a.x - b.x, a.y - b.y);
 		}
@@ -300,17 +250,6 @@ public class TotalParticipationPainting implements IArrowPainting {
 		double getLength(Point a){
 			return Math.sqrt(a.x * a.x + a.y * a.y);
 		}
-
-//		double getSlope(Point a, Point b){
-//			return (b.y - a.y)/(b.x - a.x);
-//		}
-//		Point getCrossPoint(Point a, Point b, Point c, Point d){
-//			double ka = getSlope(a, b);
-//			double kc = getSlope(c, d);
-//			double x = (c.y - a.y + (ka * a.x - kc * c.x))/(ka - kc);
-//			double y = a.y + ka * (x - a.x);
-//			return new Point((int)x, (int)y);
-//		}
 	}
 
 

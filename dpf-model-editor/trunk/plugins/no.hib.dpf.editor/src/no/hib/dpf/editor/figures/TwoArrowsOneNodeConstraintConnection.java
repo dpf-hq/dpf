@@ -25,11 +25,13 @@ import org.eclipse.gef.EditPart;
  * Draws a figure located between two points (on arrows).
  * The figure is also "anchored" to a rectangle.
  */
-public class TwoArrowsOneNodeConstraintConnection extends ConstraintConnection  {
+public class TwoArrowsOneNodeConstraintConnection extends LabelConstraintConnection  {
 
 	Bezier bezier = new Bezier(new Point(), new Point(), new Point(), new Point());
+	DConstraintEditPart editPart = null;
 	public TwoArrowsOneNodeConstraintConnection(DConstraintEditPart constraintEditPart) {
-		super(constraintEditPart);
+		super();
+		editPart = constraintEditPart;
 	}
 	public PointList getNearestPoint(PointList sourcePointList, PointList targetPointList){
 		PointList result = new PointList(2);
@@ -71,29 +73,41 @@ public class TwoArrowsOneNodeConstraintConnection extends ConstraintConnection  
 		}
 		return node;
 	}
-	public void recompute(){
-		EditPart source = editPart.getSource();
-		EditPart target = editPart.getTarget();
-		if(source instanceof DArrowEditPart && target instanceof DArrowEditPart){
-			DArrowEditPart sarrow = (DArrowEditPart) source, tarrow = (DArrowEditPart) target;
-			DNodeEditPart node = getNodeEditPart(sarrow, tarrow);
-			if(node != null){
-				PointList furthest = getNearestPoint(sarrow.getConnectionFigure().getPoints(), 
-						tarrow.getConnectionFigure().getPoints());
-				PrecisionPoint p1 = new PrecisionPoint(furthest.getFirstPoint());
-				PrecisionPoint p2 = new PrecisionPoint(furthest.getLastPoint());
-				PrecisionPoint ps = new PrecisionPoint(node.getFigure().getBounds().getCenter());
-				bezier.setStart(p1);
-				bezier.setEnd(p2);
-				Point p = p1.getTranslated(p2).translate(ps.getNegated());
-				
-				bezier.setStartControl(p);
-				bezier.setEndControl(p);
-				bezier.reCompute();
-				super.setPoints(bezier.getPoints());
+	/*
+	 * When setting points by the router, recalculate the bezier points.
+	 */
+	public void setPoints(PointList points){
+		Point first = getPoints().getFirstPoint(), end = getPoints().getLastPoint();
+		Point first_n = points.getFirstPoint(), end_n = points.getLastPoint();
+		if(first.x  == first_n.x && first.y == first_n.y && end.x == end_n.x && end.y == end_n.y){
+			if(getPoints().size() <= points.size()) super.setPoints(points);
+		}
+		else{
+			EditPart source = editPart.getSource();
+			EditPart target = editPart.getTarget();
+			if(source instanceof DArrowEditPart && target instanceof DArrowEditPart){
+				DArrowEditPart sarrow = (DArrowEditPart) source, tarrow = (DArrowEditPart) target;
+				DNodeEditPart node = getNodeEditPart(sarrow, tarrow);
+				if(node != null){
+					PointList furthest = getNearestPoint(sarrow.getConnectionFigure().getPoints(), 
+							tarrow.getConnectionFigure().getPoints());
+					PrecisionPoint p1 = new PrecisionPoint(furthest.getFirstPoint());
+					PrecisionPoint p2 = new PrecisionPoint(furthest.getLastPoint());
+					PrecisionPoint ps = new PrecisionPoint(node.getFigure().getBounds().getCenter());
+					bezier.setStart(p1);
+					bezier.setEnd(p2);
+					Point p = p1.getTranslated(p2).translate(ps.getNegated());
+
+					bezier.setStartControl(p);
+					bezier.setEndControl(p);
+					bezier.reCompute();
+					PointList final_points = bezier.getPoints().getCopy();
+					final_points.setPoint(first_n, 0);
+					final_points.setPoint(end_n, final_points.size() - 1);
+					super.setPoints(final_points);
+				}
 			}
 		}
-		super.recompute();
 	}
 	
 }

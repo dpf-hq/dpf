@@ -20,7 +20,7 @@ import no.hib.dpf.editor.parts.DConstraintEditPart;
 public class OppositeArrowsConstraintConnection extends ConstraintConnection {
 	
 	public OppositeArrowsConstraintConnection(DConstraintEditPart constraintEditPart, String labelText) {
-		super(constraintEditPart);
+		super();
 	}
 	
 }

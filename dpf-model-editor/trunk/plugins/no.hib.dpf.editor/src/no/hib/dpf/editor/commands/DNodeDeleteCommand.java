@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import no.hib.dpf.diagram.DArrow;
+import no.hib.dpf.diagram.DConstraint;
 import no.hib.dpf.diagram.DConstraintNode;
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
@@ -67,6 +68,12 @@ public class DNodeDeleteCommand extends CompoundCommand {
 				add(new DArrowDeleteCommand(arrow));
 				arrows.add(arrow);
 			}
+		for(DConstraint constraint : child.getConstraintsFrom()){
+			add(new DConstraintDeleteCommand(constraint));
+		}
+		for(DConstraint constraint : child.getConstraintsTo()){
+			add(new DConstraintDeleteCommand(constraint));
+		}
 		if(getCommands().size() == 0)
 			add(EmptyExecutableCommand.INSTANCE);
 	}

@@ -11,9 +11,11 @@
 *******************************************************************************/
 package no.hib.dpf.editor.parts;
 
+import no.hib.dpf.editor.figures.LabelConstraintConnection;
 import no.hib.dpf.editor.figures.TwoArrowsOneNodeConstraintConnection;
 
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.Label;
 
 public class TwoArrowsOneNodeConstraintEditPart extends DConstraintEditPart {
 	
@@ -26,4 +28,13 @@ public class TwoArrowsOneNodeConstraintEditPart extends DConstraintEditPart {
 		return new TwoArrowsOneNodeConstraintConnection(this);
 	}
 	
+	protected void refreshVisuals() {
+		if(getConstraint() == null) return;
+		String labelText = getConstraint().getPredicate().getSymbol();
+		Label label = ((LabelConstraintConnection)getFigure()).getLabel();
+		label.setText("[" + labelText + "]");
+	}
+	public boolean isSelectable(){
+		return getFigure() != null && getFigure().isShowing();
+	}
 }

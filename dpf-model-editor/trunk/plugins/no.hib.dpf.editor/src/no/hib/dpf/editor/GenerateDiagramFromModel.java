@@ -29,7 +29,7 @@ public class GenerateDiagramFromModel {
 
 	public GenerateDiagramFromModel(Specification specification, DSpecification dType){
 		Assert.isNotNull(dType);
-		result = DiagramFactory.eINSTANCE.createDSpecification();
+		result = DiagramFactory.eINSTANCE.createDefaultDSpecification();
 		result.setSpecification(specification);
 		result.setDType(dType);
 		DGraph dGraph = createDGraphFromGraph(specification.getGraph(), dType.getDGraph());

@@ -66,7 +66,8 @@ public class ArrowLabelMovePolicy extends NonResizableEditPolicy {
 		IFigure source = ((DNodeEditPart) connection.getSource()).getFigure();
 		IFigure target = ((DNodeEditPart) connection.getTarget()).getFigure();
 		Point p = label.getBounds().getTopLeft().getTranslated(request.getMoveDelta());
-		command = new ArrowLabelMoveCommand(model, Draw2dUtil.getDOffset(source, target, ((Connection)connection.getFigure()).getPoints(), p));
+		DOffset offset = Draw2dUtil.getDOffset(source, target, ((Connection)connection.getFigure()).getPoints(), p);
+		command = new ArrowLabelMoveCommand(model, offset);
 		return command;
 	}
 	protected void removeSelectionHandles() {

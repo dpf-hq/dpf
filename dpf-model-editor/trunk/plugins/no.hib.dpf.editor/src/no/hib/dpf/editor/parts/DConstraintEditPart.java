@@ -14,8 +14,10 @@ package no.hib.dpf.editor.parts;
 import no.hib.dpf.core.Constraint;
 import no.hib.dpf.diagram.DConstraint;
 import no.hib.dpf.editor.commands.DConstraintDeleteCommand;
+import no.hib.dpf.editor.figures.ConstraintConnection;
 
 import org.eclipse.draw2d.ConnectionAnchor;
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.ConnectionEditPolicy;
@@ -38,10 +40,17 @@ public abstract class DConstraintEditPart extends GraphicalConnectionEditPart {
 		});
 	}
 
+	public Constraint getConstraint() {
+		return ((DConstraint)getModel()).getConstraint();
+	}
+	
 	protected DConstraint getDConstraint(){
 		return (DConstraint) getModel();
 	}
 
+	public boolean isSelectable(){
+		return false;
+	}
 	/**
 	 * Returns the <code>ConnectionAnchor</code> for the <i>source</i> end of
 	 * the connection. If the source is an instance of {@link DArrowEditPart},
@@ -73,7 +82,7 @@ public abstract class DConstraintEditPart extends GraphicalConnectionEditPart {
 		return super.getTargetConnectionAnchor();
 	}
 
-	public Constraint getConstraint() {
-		return ((DConstraint)getModel()).getConstraint();
+	protected IFigure createFigure(){
+		return new ConstraintConnection();
 	}
 }

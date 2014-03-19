@@ -278,17 +278,17 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 			case DiagramPackage.DNODE__DINCOMINGS:
 			case DiagramPackage.DNODE__CONSTRAINTS_TO:
 				refreshTargetConnections();
+				for(Object connect : getTargetConnections()){
+					if(connect instanceof DConstraintEditPart && ((DConstraintEditPart)connect).getSource() instanceof DComposedNodePart){
+						DComposedNodePart editPart = (DComposedNodePart) ((DConstraintEditPart)connect).getSource();
+						editPart.refreshVisuals();
+					}
+				}
 				break;
 			case DiagramPackage.DNODE__LOCATION:
 			case DiagramPackage.DNODE__SIZE:
 				refresh();
-				for(Object connect : getTargetConnections()){
-					if(connect instanceof DConstraintEditPart && ((DConstraintEditPart)connect).getSource() instanceof DComposedNodePart){
-						DComposedNodePart editPart = (DComposedNodePart) ((DConstraintEditPart)connect).getSource();
-						editPart.resize(getDNode().getLocation());
-						
-					}
-				}
+				break;
 			}
 
 		}
@@ -334,7 +334,6 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 		EditableLabel label = tableFigure.getNameLabel();
 		label.setText(getNodeLabelName());
 		label.setVisible(true);
-		label.revalidate();
 	}
 	public void refreshVisuals() {
 		NodeFigure figure = (NodeFigure)getFigure();

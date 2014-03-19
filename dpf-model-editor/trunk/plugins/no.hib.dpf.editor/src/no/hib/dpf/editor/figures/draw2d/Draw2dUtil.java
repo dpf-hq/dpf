@@ -23,64 +23,58 @@ public class Draw2dUtil {
 		TransformS.setBasic(start, end);
 		return new DOffsetImpl(TransformS.getRelative(p), TransformS.getRelative(end).x);
 	}
-	
+	/*
+	 * Get Doffset for a bendpoint
+	 */
 	public static DOffset getDOffset(IFigure source, IFigure target, Point p){
 		Point start = source == target ? source.getBounds().getTop() : source.getBounds().getCenter();
 		Point end = source == target ? source.getBounds().getBottom() : target.getBounds().getCenter();
 		return Draw2dUtil.getDOffset(start, end, p);
 	}
-	
+	/*
+	 * Get DOffset for labels. Find the lines composed by two consecutive bendpoints where the point has shortest distance 
+	 */
 	public static DOffset getDOffset(IFigure source, IFigure target, PointList points, Point p){
 		Point start = source == target ? source.getBounds().getTop() : source.getBounds().getCenter();
 		Point end = source == target ? source.getBounds().getBottom() : target.getBounds().getCenter();
+		PointList copied = points.getCopy();
+		copied.setPoint(start, 0);
+		copied.setPoint(end, copied.size() - 1);
 		TransformS.setBasic(start, end);
-		if(points.size() > 2){
-			int pre = Integer.MIN_VALUE;
-			int relative = TransformS.getRelative(p).x;
-			int index = 0;
-			for(; index < points.size() - 2; ++index){
-				Point currentPoint = points.getPoint(index + 1);
-				int current = TransformS.getRelative(currentPoint).x;
-				if(current < pre) {
-					int temp = pre;
-					pre = current;
-					current = temp;
-				}
-				if(relative > pre && relative <= current)
-					break;
-				pre = current;
+		double pre = Integer.MAX_VALUE;
+		int min = 0;
+		for(int index = 0; index < points.size() - 2; ++index){
+			Point first = points.getPoint(index), secondPoint = points.getPoint(index + 1);
+			TransformS.setBasic(first, secondPoint);
+			double distance = Math.pow(Math.pow(p.getDistance(first), 2) - Math.pow(TransformS.getRelative(p).x, 2), 0.5);
+			if(distance < pre){
+				min = index;
+				pre = distance;
 			}
-			start = points.getPoint(index).getCopy();
-			end = points.getPoint(index + 1);
-			return Draw2dUtil.getDOffset(start, end, p, index);
-		}else
-			return Draw2dUtil.getDOffset(start, end, p, 0);
+		}
+		start = copied.getPoint(min);
+		end = copied.getPoint(min + 1);
+		DOffset result = Draw2dUtil.getDOffset(start, end, p);
+		result.setIndex(min);
+		return result;
 	}
-	public static boolean isInvalid(IFigure source, IFigure target, Point label, Point newBendPoint, DOffset offset){
-		Point start = source == target ? source.getBounds().getTop() : source.getBounds().getCenter();
-		Point end = source == target ? source.getBounds().getBottom() : target.getBounds().getCenter();
-		TransformS.setBasic(start, end);
-		return TransformS.getRelative(label).x > TransformS.getRelative(newBendPoint).x ;
-	}
+	/*
+	 * get Absoluate point of labels
+	 */
 	public static Point getAbsolutePoint(IFigure source, IFigure target, PointList points, DOffset offset){
 		Point start, end;
 		int index = offset.getIndex();
-		if(points.size() == 2){
+		if(index == 0)
 			start = source == target ? source.getBounds().getTop() : source.getBounds().getCenter();
-			end = source == target ? source.getBounds().getBottom() : target.getBounds().getCenter();
-		}else{
-			if(index > points.size() - 2) return null;
+		else
 			start = points.getPoint(index);
+		if(index == points.size() - 2)
+			end = source == target ? source.getBounds().getBottom() : target.getBounds().getCenter();
+		else
 			end = points.getPoint(index + 1);
-		}
 		return getAbsoluteBendPoint(start, end, offset);
 	}
 
-	private static DOffset getDOffset(Point start, Point end, Point p, int index) {
-		DOffset result = getDOffset(start, end, p);
-		result.setIndex(index);
-		return result;
-	}
 	//find the cross point of two lines. p1, p2 are two points of first line and p3, p4 are two points of second line
 	public static Point getCross(Point p1, Point p2, Point p3, Point p4){
 		int k = (p2.x - p1.x) * (p4.y - p3.y) - (p2.y - p1.y) * (p4.x - p3.x);

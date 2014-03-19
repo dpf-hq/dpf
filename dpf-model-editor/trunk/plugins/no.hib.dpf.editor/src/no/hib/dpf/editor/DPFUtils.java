@@ -12,6 +12,7 @@ import java.util.Map;
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.Node;
+import no.hib.dpf.core.Specification;
 import no.hib.dpf.diagram.DSignature;
 import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.diagram.util.DPFConstants;
@@ -22,8 +23,10 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.EList;
@@ -286,4 +289,42 @@ public class DPFUtils extends DPFCoreUtil {
 			}
 		}
 	}
+	
+	public static boolean isFileExist(URI uri){
+		if(uri.isFile()){
+			IFile file = ResourcesPlugin.getWorkspace().getRoot().getFileForLocation(new Path(uri.toFileString()));
+			return file != null && file.exists();
+		}
+		return false;
+	}
+	public static DSpecification createDSpecificationFromSpecification(ResourceSetImpl resourceSet, URI modelUri, Specification specification, DSpecification dType, Map<Resource, Diagnostic> resourceToDiagnosticMap) {
+		if(dType == null && specification.getType() == DPFConstants.REFLEXIVE_SPECIFICATION)
+			return createDSpecificationFromSpecification(resourceSet, modelUri, specification, DPFConstants.REFLEXIVE_DSPECIFICATION, resourceToDiagnosticMap);
+		URI diagramURI = URI.createURI(DPFUtils.getDiagramFromModel(modelUri.toString()));
+		DSpecification model = null;
+		if(isFileExist(diagramURI))
+			model = DPFUtils.loadDSpecification(resourceSet, diagramURI, resourceToDiagnosticMap);
+		if(model != null)
+			return model;
+		if(dType == null){
+			URI typeFileAbsoluteURI = URI.createURI(specification.getMetaFile()).resolve(modelUri);
+			Specification type = DPFUtils.loadSpecification(resourceSet, typeFileAbsoluteURI, resourceToDiagnosticMap);
+			dType = createDSpecificationFromSpecification(resourceSet, typeFileAbsoluteURI, type, null, resourceToDiagnosticMap);
+		}
+		DSpecification result = new GenerateDiagramFromModel(specification, dType).result;
+		result.setMetaFile(dType.eResource().getURI().deresolve(diagramURI).toFileString());
+		if(specification.eResource() != null)
+			specification.eResource().getContents().clear();
+		DPFUtils.saveDSpecification(resourceSet, result, diagramURI, resourceToDiagnosticMap);
+		return result;
+	}
+
+	public static String getFileNameWithExtension(String fileName) {
+		int index = fileName.lastIndexOf('.');
+		if(index == -1)
+			return fileName;
+		else
+			return fileName.substring(0, index);
+	}
+
 }

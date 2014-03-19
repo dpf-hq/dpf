@@ -51,7 +51,6 @@ import org.eclipse.draw2d.PolygonDecoration;
 import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.draw2d.RoutingAnimator;
 import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
@@ -94,24 +93,6 @@ public class DArrowEditPart extends GraphicalConnectionEditPart implements NodeE
 		});
 	}
 
-	public PointList getRealPointList(){
-		PointList result = new PointList();
-		IFigure source = ((DNodeEditPart) getSource()).getFigure();
-		IFigure target = ((DNodeEditPart) getTarget()).getFigure();
-		Point start = source == target ? source.getBounds().getTop() : source.getBounds().getCenter();
-		Point end = source == target ? source.getBounds().getBottom() : target.getBounds().getCenter();
-		result.addPoint(start);
-		DArrow dArrow = getDArrow();
-		for(DOffset offset : dArrow.getBendpoints())
-			result.addPoint(Draw2dUtil.getAbsoluteBendPoint(start, end, offset));
-		result.addPoint(end);
-		return result;
-	}
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.gef.editparts.AbstractGraphicalEditPart#createFigure()
-	 */
 	protected IFigure createFigure() {
 		if(getArrowPaint() != null)
 			connectionFigure = arrowPaint.createConnectionFigure();
@@ -225,56 +206,11 @@ public class DArrowEditPart extends GraphicalConnectionEditPart implements NodeE
 		return null;
 	}
 
-	//	/**
-	//	 * Finds an endpoint on a connection. TODO: make readable.
-	//	 */
-	//	public class EndpointLocator extends ConnectionLocator {
-	//
-	//		public EndpointLocator(org.eclipse.draw2d.Connection c) {
-	//			super(c);
-	//		}
-	//
-	//		protected Point getReferencePoint() {
-	//			org.eclipse.draw2d.Connection conn = getConnection();
-	//			return calculateConnectionPoint(conn.getPoints());
-	//		}
-	//
-	//		private int maxDistanceToConnectionPoint = 50; 
-	//		
-	//		private Point calculateConnectionPoint(PointList points) {
-	//			if (points.size() < 2) return points.getLastPoint();
-	//			
-	//			double distanceBetweenLastPoints = points.getLastPoint().getDistance(points.getPoint(points.size() - 2));
-	//			if (distanceBetweenLastPoints < 0.01) {
-	//				return points.getLastPoint();
-	//			}
-	//
-	//			double distanceToConnectionPoint = distanceBetweenLastPoints/2;
-	//			if (distanceToConnectionPoint > maxDistanceToConnectionPoint) {
-	//				distanceToConnectionPoint = maxDistanceToConnectionPoint;
-	//			}
-	//			
-	//			double factor = distanceToConnectionPoint/distanceBetweenLastPoints;
-	//
-	//			int deltaX = points.getPoint(points.size() - 2).x - points.getPoint(points.size() - 1).x;
-	//			int deltaY = points.getPoint(points.size() - 2).y - points.getPoint(points.size() - 1).y;
-	//			
-	//			deltaX = (int)(deltaX * factor);
-	//			deltaY = (int)(deltaY * factor);
-	//			
-	//			return new Point(points.getLastPoint().x + deltaX, points.getLastPoint().y + deltaY - 10);
-	//		}		
-	//		
-	//	}
-
-
 	/**
 	 * Updates the bendpoints, based on the model.
 	 */
 	protected void refreshBendpoints() {
-		if (getConnectionFigure().getConnectionRouter() instanceof ManhattanConnectionRouter) {
-			return;
-		}
+		if (getConnectionFigure().getConnectionRouter() instanceof ManhattanConnectionRouter)  return;
 		List<DOffset> points = getDArrow().getBendpoints();
 		List<Bendpoint> figureConstraint = new ArrayList<Bendpoint>();
 		if(getSource() != null && getTarget() != null){
@@ -336,7 +272,9 @@ public class DArrowEditPart extends GraphicalConnectionEditPart implements NodeE
 		return getDArrow().getConstraintsTo();
 	}
 
-
+	/*
+	 * The source and the target anchors are used to create constraints.
+	 */
 	@Override
 	public ConnectionAnchor getSourceConnectionAnchor( ConnectionEditPart connection) { return getConnectionAnchor(connection); }
 

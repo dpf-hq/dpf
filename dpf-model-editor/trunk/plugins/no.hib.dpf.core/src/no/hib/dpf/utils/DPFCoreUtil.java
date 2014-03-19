@@ -118,10 +118,6 @@ public class DPFCoreUtil {
 		Assert.isNotNull(model);
 		EcoreUtil.resolveAll(specification.getType().eResource());
 		Specification iter = specification;	
-		for(Constraint constraint : iter.getConstraints()){
-			System.out.println(constraint.getPredicate().eContainer().eContents().size());
-			break;
-		}
 		while(iter != DPFConstants.REFLEXIVE_SPECIFICATION){
 			model.getContents().add(iter);
 			iter = iter.getType();

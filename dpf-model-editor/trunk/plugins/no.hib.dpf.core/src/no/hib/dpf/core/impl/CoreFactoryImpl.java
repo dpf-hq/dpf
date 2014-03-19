@@ -257,6 +257,7 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 		Specification specification = new SpecificationImpl();
 		specification.setGraph(createDefaultGraph());
 		specification.setType(DPFConstants.REFLEXIVE_SPECIFICATION);
+		specification.setSignature(DPFConstants.DEFAULT_SIGNATURE);
 		return specification;
 	}
 	

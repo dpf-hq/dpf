@@ -11,47 +11,15 @@
 *******************************************************************************/
 package no.hib.dpf.editor.figures;
 
-import no.hib.dpf.editor.parts.DConstraintEditPart;
 
-import org.eclipse.draw2d.ConnectionAnchor;
-import org.eclipse.draw2d.Graphics;
-import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.PolylineConnection;
+import org.eclipse.swt.SWT;
 
-public class ConstraintConnection extends PolylineConnection implements RoutableFigure {
+public class ConstraintConnection extends PolylineConnection  {
 	
-	protected DConstraintEditPart editPart;
-	protected Label label;
-	
-	public ConstraintConnection(DConstraintEditPart constraintEditPart) {
+	public ConstraintConnection() {
 		super();
-		editPart = constraintEditPart;
-		label = new Label();
-		add(label);
+		setLineStyle(SWT.LINE_CUSTOM);
+		setLineDash(new float[]{2});
 	}
-	@Override
-	public int getRoutingPriority() {
-		return 6;
-	}
-	public void recompute(){
-		if(editPart.getConstraint() == null) return;
-		String labelText = editPart.getConstraint().getPredicate().getSymbol();
-		label.setText("[" + labelText + "]");
-		label.setLocation(getBounds().getCenter());
-	}
-	private void updateAnchorOwner(ConnectionAnchor anchor){
-		if(anchor != null && anchor.getOwner() != null)
-			anchor.getOwner().validate();
-	}
-	
-	public void validate() {
-		updateAnchorOwner(getSourceAnchor());
-		updateAnchorOwner(getTargetAnchor());
-		super.validate();
-	}
-	public void paintFigure(Graphics g)
-    {
-		recompute();
-        super.paintFigure(g);        
-    }
 }

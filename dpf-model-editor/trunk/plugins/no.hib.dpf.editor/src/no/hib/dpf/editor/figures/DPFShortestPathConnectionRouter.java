@@ -15,9 +15,7 @@
  *******************************************************************************/
 package no.hib.dpf.editor.figures;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -60,17 +58,8 @@ public final class DPFShortestPathConnectionRouter extends AbstractRouter {
 		}
 	}
 
-	private class RoutableComparator implements Comparator<RoutableFigure> {
-		@Override
-		public int compare(RoutableFigure o1, RoutableFigure o2) {
-			int o1p = o1.getRoutingPriority();
-			int o2p = o2.getRoutingPriority();
-			
-			return (o1p < o2p ? -1 : (o1p == o2p ? 0 : 1));
-		}	
-	}
 	private ShortestPathRouter algorithm = new ShortestPathRouter();
-	private Map connectionToPaths;
+	private Map<Connection, Path> connectionToPaths;
 	private Map constraintMap = new HashMap();
 	private IFigure container;
 	private FigureListener figureListener = new FigureListener() {
@@ -229,77 +218,50 @@ public final class DPFShortestPathConnectionRouter extends AbstractRouter {
 		((Connection) staleConnections.iterator().next()).revalidate();
 	}
 
-	@SuppressWarnings("unchecked")
-	private void processStaleConnection(Connection conn, boolean isConstraintFigure) {
-
-		Path path = (Path) connectionToPaths.get(conn);
-		if (path == null) {
-			path = new Path(conn);
-			connectionToPaths.put(conn, path);
-			algorithm.addPath(path);
-		}
-
-		List constraint = (List) getConstraint(conn);
-		if (constraint == null)
-			constraint = Collections.EMPTY_LIST;
-
-		Point start = conn.getSourceAnchor().getReferencePoint().getCopy();
-		Point end = conn.getTargetAnchor().getReferencePoint().getCopy();
-
-		// --------------------------------------------------------------
-		// CHANGE FROM ORIGINAL:
-		// --------------------------------------------------------------			
-		if (!isConstraintFigure) {
-			// --------------------------------------------------------------
-			container.translateToRelative(start);
-			container.translateToRelative(end);
-			
-		}
-		// --------------------------------------------------------------
-
-		path.setStartPoint(start);
-		path.setEndPoint(end);
-
-		
-		PointList bends = new PointList();
-		for (int i = 0; i < constraint.size(); i++) {
-			Bendpoint bp = (Bendpoint) constraint.get(i);
-			bends.addPoint(bp.getLocation());
-		}
-		path.setBendPoints(bends.size() == 0 ? null : bends);
-
-		isDirty |= path.isDirty;
-	}
 
 	// Revised for DPF:
 	// Connections are laid out before constraints
 	private void processStaleConnections() {
 		Iterator iter = staleConnections.iterator();
 		if (iter.hasNext() && connectionToPaths == null) {
-			connectionToPaths = new HashMap();
+			connectionToPaths = new HashMap<Connection, Path>();
 			hookAll();
 		}
-		
-		List<RoutableFigure> routableConnectionList = new ArrayList<RoutableFigure>();
-		List<Connection> connectionList = new ArrayList<Connection>();
-		
+
 		while (iter.hasNext()) {
 			Connection conn = (Connection) iter.next();
-			if (conn instanceof RoutableFigure) {
-				routableConnectionList.add((RoutableFigure )conn);
-			} else {
-				connectionList.add(conn);
+
+			Path path = (Path) connectionToPaths.get(conn);
+			if (path == null) {
+				path = new Path(conn);
+				connectionToPaths.put(conn, path);
+				algorithm.addPath(path);
 			}
-		}
-		// Sorts the connections so that constraints are routed lastly:
-		Collections.sort(routableConnectionList, new RoutableComparator());
-		
-		for (Connection conn : connectionList) {
-			processStaleConnection(conn, false);
-		}
-		for (RoutableFigure routable : routableConnectionList) {
-			Connection conn = (Connection)routable;
-			processStaleConnection(conn, false);
+
+			List constraint = (List) getConstraint(conn);
+			if (constraint == null)
+				constraint = Collections.EMPTY_LIST;
+
+			Point start = conn.getSourceAnchor().getReferencePoint().getCopy();
+			Point end = conn.getTargetAnchor().getReferencePoint().getCopy();
+
+			container.translateToRelative(start);
+			container.translateToRelative(end);
+
+			path.setStartPoint(start);
+			path.setEndPoint(end);
+
+			if (!constraint.isEmpty()) {
+				PointList bends = new PointList(constraint.size());
+				for (int i = 0; i < constraint.size(); i++) {
+					Bendpoint bp = (Bendpoint) constraint.get(i);
+					bends.addPoint(bp.getLocation());
+				}
+				path.setBendPoints(bends);
+			} else
+				path.setBendPoints(null);
+
+			isDirty |= path.isDirty;
 		}
 		staleConnections.clear();
 	}

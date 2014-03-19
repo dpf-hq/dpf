@@ -40,10 +40,7 @@ public class NodeFigure extends Figure implements RoutableFigure {
 		listenToNodeColorProperty();
 	}
 
-	public NodeFigure(){
-		//super();
-		}
-
+	public NodeFigure(){ }
 
 	/**
 	 * Returns the leftmost figure of two, calculated from the centre.

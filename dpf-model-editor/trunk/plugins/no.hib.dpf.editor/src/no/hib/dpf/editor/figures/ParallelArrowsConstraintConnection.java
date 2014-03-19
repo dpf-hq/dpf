@@ -20,7 +20,7 @@ import no.hib.dpf.editor.parts.DConstraintEditPart;
 public class ParallelArrowsConstraintConnection extends ConstraintConnection {
 	
 	public ParallelArrowsConstraintConnection(DConstraintEditPart constraintEditPart, String labelText) {
-		super(constraintEditPart);
+		super();
 	}
 	
 //	@Override
