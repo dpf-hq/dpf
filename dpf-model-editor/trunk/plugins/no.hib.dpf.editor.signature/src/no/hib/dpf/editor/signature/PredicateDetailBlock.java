@@ -193,22 +193,31 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 	};
 
 	private Text parameters;
+	/*
+	 * Used to indicate if a predicate is selected. 
+	 * After selecting a predicate, the initial is true. After update all related controls, the initial is false;
+	 */
+	
+	
+	private boolean initial = false;
 	@Override
 	public void selectionChanged(IFormPart part, ISelection selection) {
 		IStructuredSelection ssel = (IStructuredSelection)selection;
 		Object selected = null;
 		if(ssel.size() == 1) selected = ssel.getFirstElement();
-		if(dGraph != null){
-			if(dGraph.getGraph().eAdapters().contains(adapter))
-				dGraph.getGraph().eAdapters().remove(adapter);
-		}
-		if(selected instanceof DPredicate){
+		if(selected instanceof DPredicate && selected != dPredicate){
+			initial = true;
+			if(dGraph != null){
+				if(dGraph.getGraph().eAdapters().contains(adapter))
+					dGraph.getGraph().eAdapters().remove(adapter);
+			}
 			dPredicate = (DPredicate) selected;
 			dGraph = dPredicate.getDGraph();
 			Assert.isNotNull(dGraph);
 			if(!dGraph.getGraph().eAdapters().contains(adapter))
 				dGraph.getGraph().eAdapters().add(adapter);
 			refresh();
+			initial = false;
 		}
 	}
 
@@ -256,6 +265,7 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 			@SuppressWarnings("incomplete-switch")
 			@Override
 			public void selectionChanged(SelectionChangedEvent event) {
+				if(initial) return;
 				VisualizationType type = VisualizationType.get(0);
 				if (!event.getSelection().isEmpty()){
 					type = (VisualizationType)((IStructuredSelection)event.getSelection()).getFirstElement();
