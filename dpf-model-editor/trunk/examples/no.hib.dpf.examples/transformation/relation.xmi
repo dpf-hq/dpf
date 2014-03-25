@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ASCII"?>
+<core:Specification xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:core="http://no.hib.dpf.core">
+  <graph id="23e23b65-da29-4ca8-ac65-3de63584128c">
+    <nodes id="3788e610-1286-4097-8969-c6a0b10b745b" name="Table" outgoings="//@graph/@arrows.0 //@graph/@arrows.1 //@graph/@arrows.2" incomings="//@graph/@arrows.3"/>
+    <nodes id="952dec8f-5e9f-45ec-80f5-6421008c8836" name="Column" incomings="//@graph/@arrows.0 //@graph/@arrows.1"/>
+    <nodes id="e0f14b5e-883c-4d6d-a62c-0752a5110d32" name="FKey" outgoings="//@graph/@arrows.3" incomings="//@graph/@arrows.2"/>
+    <arrows id="a7655452-1211-4861-a013-2750c4ced419" name="pk" source="//@graph/@nodes.0" target="//@graph/@nodes.1"/>
+    <arrows id="9ec66160-1110-4569-b76b-e6ec18d26d84" name="cols" source="//@graph/@nodes.0" target="//@graph/@nodes.1"/>
+    <arrows id="68c49d7f-3c56-4122-967e-540f7c829c7f" name="fk" source="//@graph/@nodes.0" target="//@graph/@nodes.2"/>
+    <arrows id="39f5ada2-5a65-4a7b-ab9f-2a59543a30a0" name="ref" source="//@graph/@nodes.2" target="//@graph/@nodes.0"/>
+  </graph>
+</core:Specification>
