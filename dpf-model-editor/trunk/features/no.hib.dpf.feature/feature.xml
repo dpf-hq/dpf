@@ -55,14 +55,14 @@ CHISEL Group, University of Victoria, Victoria, BC, Canada.
          unpack="false"/>
 
    <plugin
-         id="no.hib.dpf.editor"
+         id="no.hib.dpf.diagram"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="no.hib.dpf.diagram"
+         id="no.hib.dpf.editor"
          download-size="0"
          install-size="0"
          version="0.0.0"

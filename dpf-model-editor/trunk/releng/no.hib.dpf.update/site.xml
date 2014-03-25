@@ -3,11 +3,14 @@
    <description name="DPF Editor Update Site" url="http://dpf.hib.no/update">
       Download site for DPF Editor. See dpf.hib.no for details.
    </description>
-   <feature url="features/no.hib.dpf.feature_0.2.0.201204172316.jar" id="no.hib.dpf.feature" version="0.2.0.201204172316">
-      <category name="dpf_workbench"/>
+   <feature url="features/no.hib.dpf.codegen.xpand.feature_0.2.0.201403251312.jar" id="no.hib.dpf.codegen.xpand.feature" version="0.2.0.201403251312">
+      <category name="no.dpf.hib.update.category"/>
    </feature>
-   <feature url="features/no.hib.dpf.codegen.xpand.feature_0.2.0.201204172316.jar" id="no.hib.dpf.codegen.xpand.feature" version="0.2.0.201204172316">
-      <category name="dpf_workbench"/>
+   <feature url="features/no.hib.dpf.feature_0.2.0.201403251312.jar" id="no.hib.dpf.feature" version="0.2.0.201403251312">
+      <category name="no.dpf.hib.update.category"/>
    </feature>
-   <category-def name="dpf_workbench" label="DPF Workbench"/>
+   <feature url="features/no.hib.dpf.feature.signature_0.2.0.201403251312.jar" id="no.hib.dpf.feature.signature" version="0.2.0.201403251312">
+      <category name="no.dpf.hib.update.category"/>
+   </feature>
+   <category-def name="no.dpf.hib.update.category" label="DPF workbench"/>
 </site>
