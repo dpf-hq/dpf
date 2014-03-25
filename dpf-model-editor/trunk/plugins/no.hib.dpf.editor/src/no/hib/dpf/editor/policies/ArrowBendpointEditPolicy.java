@@ -23,7 +23,7 @@ import no.hib.dpf.diagram.DOffset;
 import no.hib.dpf.editor.commands.BendPointCreateCommand;
 import no.hib.dpf.editor.commands.BendpointDeleteCommand;
 import no.hib.dpf.editor.commands.BendpointMoveCommand;
-import no.hib.dpf.editor.figures.draw2d.Draw2dUtil;
+import no.hib.dpf.editor.figures.Draw2dUtil;
 import no.hib.dpf.editor.parts.DNodeEditPart;
 
 import org.eclipse.draw2d.IFigure;
@@ -67,7 +67,8 @@ public class ArrowBendpointEditPolicy extends BendpointEditPolicy {
 		IFigure source = ((DNodeEditPart) connection.getSource()).getFigure();
 		IFigure target = ((DNodeEditPart) connection.getTarget()).getFigure();
 		com.setArrow(arrow);
-		com.setLabel("Move BendPoint from " + com.getOldBendpoint() + " to " + p);
+		com.setOldBendpoint(arrow.getBendpoints().get(request.getIndex()));
+		com.setLabel("Move BendPoint to " + p);
 		DOffset moved = Draw2dUtil.getDOffset(source, target, p);
 		moved.setIndex(request.getIndex());
 		com.setLocation(moved);

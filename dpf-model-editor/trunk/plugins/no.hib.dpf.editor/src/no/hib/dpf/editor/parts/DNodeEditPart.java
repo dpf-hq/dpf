@@ -33,8 +33,10 @@ import no.hib.dpf.editor.extension_points.INodePainting;
 import no.hib.dpf.editor.figures.EditableLabel;
 import no.hib.dpf.editor.figures.MultipleArrowsChopboxAnchor;
 import no.hib.dpf.editor.figures.NodeFigure;
+import no.hib.dpf.editor.figures.TextCellEditorLocator;
 import no.hib.dpf.editor.policies.DArrowCreatePolicy;
 import no.hib.dpf.editor.policies.NameDirectEditPolicy;
+import no.hib.dpf.editor.policies.NodeComponentEditPolicy;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;
 import no.hib.dpf.utils.DPFCoreUtil;
 
@@ -67,10 +69,6 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 	private Map<NodeEditPart, List<ConnectionAnchor>> anchors = new HashMap<NodeEditPart, List<ConnectionAnchor>>();
 
 	private INodePainting nodePaint;
-	public DNodeEditPart() {
-		super();
-
-	}
 
 	private boolean anchorListContainsConnection(List<ConnectionAnchor> previousAnchorList, ConnectionEditPart connection) {
 		return (getConnectionsAnchor(previousAnchorList, connection) != null);
@@ -82,7 +80,6 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 		return null;
 	}
 
-
 	public ConnectionAnchor createConnectionAnchor(ConnectionEditPart connection, boolean b, DNodeEditPart owner){
 		ConnectionAnchor anchor = owner.createAnchorUseConfigure();
 		if(anchor != null)
@@ -90,11 +87,6 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 		return getConnectionAnchor(connection, b);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.gef.editparts.AbstractEditPart#createEditPolicies()
-	 */
 	protected void createEditPolicies() {
 		// allow removal of the associated model element
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new NodeComponentEditPolicy());

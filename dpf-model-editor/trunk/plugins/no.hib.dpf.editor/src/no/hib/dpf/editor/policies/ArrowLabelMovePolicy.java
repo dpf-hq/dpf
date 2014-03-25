@@ -39,7 +39,7 @@ package no.hib.dpf.editor.policies;
 
 import no.hib.dpf.diagram.DOffset;
 import no.hib.dpf.editor.commands.ArrowLabelMoveCommand;
-import no.hib.dpf.editor.figures.draw2d.Draw2dUtil;
+import no.hib.dpf.editor.figures.Draw2dUtil;
 import no.hib.dpf.editor.parts.ArrowLabelEditPart;
 import no.hib.dpf.editor.parts.DArrowEditPart;
 import no.hib.dpf.editor.parts.DNodeEditPart;

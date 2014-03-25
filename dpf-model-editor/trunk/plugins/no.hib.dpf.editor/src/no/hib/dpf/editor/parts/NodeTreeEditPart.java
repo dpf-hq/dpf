@@ -21,6 +21,7 @@ import java.beans.PropertyChangeListener;
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.editor.displaymodel.ModelElement;
 import no.hib.dpf.editor.displaymodel.MovableAndSizable;
+import no.hib.dpf.editor.policies.NodeComponentEditPolicy;
 
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.editparts.AbstractTreeEditPart;
@@ -36,7 +37,7 @@ import org.eclipse.swt.graphics.Image;
  * 
  * @author Elias Volanakis
  */
-class NodeTreeEditPart extends AbstractTreeEditPart implements
+public class NodeTreeEditPart extends AbstractTreeEditPart implements
 		PropertyChangeListener {
 
 	/**

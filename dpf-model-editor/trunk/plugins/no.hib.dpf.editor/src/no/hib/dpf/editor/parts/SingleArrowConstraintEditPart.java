@@ -16,6 +16,7 @@ import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.diagram.DArrowLabelConstraint;
 import no.hib.dpf.diagram.DConstraint;
 import no.hib.dpf.diagram.DOffset;
+import no.hib.dpf.editor.figures.ArrowLabelLocator;
 import no.hib.dpf.editor.policies.ArrowLabelMovePolicy;
 import no.hib.dpf.editor.policies.DConstraintDeletePolicy;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;

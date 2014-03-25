@@ -33,8 +33,8 @@ import no.hib.dpf.editor.extension_points.FigureConfigureManager;
 import no.hib.dpf.editor.extension_points.IArrowPainting;
 import no.hib.dpf.editor.figures.ArrowConnection;
 import no.hib.dpf.editor.figures.ConstraintAnchor;
+import no.hib.dpf.editor.figures.Draw2dUtil;
 import no.hib.dpf.editor.figures.OpenArrowDecoration;
-import no.hib.dpf.editor.figures.draw2d.Draw2dUtil;
 import no.hib.dpf.editor.policies.ArrowBendpointEditPolicy;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;
 
@@ -155,7 +155,7 @@ public class DArrowEditPart extends GraphicalConnectionEditPart implements NodeE
 			switch(msg.getFeatureID(DArrow.class)){
 			case DiagramPackage.DARROW__DCONSTRAINTS:
 				if(msg.getOldValue() instanceof DArrowLabelConstraint || msg.getNewValue() instanceof DArrowLabelConstraint)
-					refresh();
+					refreshChildren();
 				return;
 			case DiagramPackage.DARROW__CONSTRAINTS_FROM:{
 				refreshSourceConnections();
@@ -166,7 +166,7 @@ public class DArrowEditPart extends GraphicalConnectionEditPart implements NodeE
 				return;
 			}
 			case DiagramPackage.DARROW__BENDPOINTS:
-				refresh();
+				refreshBendpoints();
 			}
 		}
 	}

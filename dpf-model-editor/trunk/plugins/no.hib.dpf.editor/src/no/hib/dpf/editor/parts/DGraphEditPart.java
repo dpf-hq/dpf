@@ -89,9 +89,6 @@ public class DGraphEditPart extends GraphicalEditPartWithListener {
 	}
 	
 
-	/**
-	 * @see org.eclipse.core.runtime.IAdaptable#getAdapter(java.lang.Class)
-	 */
 	@SuppressWarnings("rawtypes")
 	public Object getAdapter(Class adapter) {
 		if (adapter == SnapToHelper.class) {
@@ -119,11 +116,6 @@ public class DGraphEditPart extends GraphicalEditPartWithListener {
 		return super.getAdapter(adapter);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.gef.editparts.AbstractGraphicalEditPart#createFigure()
-	 */
 	protected IFigure createFigure() {
 		Figure f = new FreeformLayer();
 		f.setBorder(new MarginBorder(3));
@@ -136,11 +128,6 @@ public class DGraphEditPart extends GraphicalEditPartWithListener {
 		return f;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.gef.editparts.AbstractEditPart#getModelChildren()
-	 */
 	@Override
 	protected List<DNode> getModelChildren() {
 		EList<DNode> child = new BasicEList<DNode>();

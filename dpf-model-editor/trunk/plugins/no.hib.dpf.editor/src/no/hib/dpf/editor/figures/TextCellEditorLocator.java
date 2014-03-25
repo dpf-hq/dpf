@@ -1,4 +1,4 @@
-package no.hib.dpf.editor.parts;
+package no.hib.dpf.editor.figures;
 
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Rectangle;

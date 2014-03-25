@@ -15,6 +15,7 @@
  *******************************************************************************/
 package no.hib.dpf.editor.figures;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -221,51 +222,84 @@ public final class DPFShortestPathConnectionRouter extends AbstractRouter {
 
 	// Revised for DPF:
 	// Connections are laid out before constraints
+	private List<Connection> constraints = new ArrayList<Connection>();
 	private void processStaleConnections() {
 		Iterator iter = staleConnections.iterator();
 		if (iter.hasNext() && connectionToPaths == null) {
 			connectionToPaths = new HashMap<Connection, Path>();
 			hookAll();
 		}
-
 		while (iter.hasNext()) {
 			Connection conn = (Connection) iter.next();
-
-			Path path = (Path) connectionToPaths.get(conn);
-			if (path == null) {
-				path = new Path(conn);
-				connectionToPaths.put(conn, path);
-				algorithm.addPath(path);
-			}
-
-			List constraint = (List) getConstraint(conn);
-			if (constraint == null)
-				constraint = Collections.EMPTY_LIST;
-
-			Point start = conn.getSourceAnchor().getReferencePoint().getCopy();
-			Point end = conn.getTargetAnchor().getReferencePoint().getCopy();
-
-			container.translateToRelative(start);
-			container.translateToRelative(end);
-
-			path.setStartPoint(start);
-			path.setEndPoint(end);
-
-			if (!constraint.isEmpty()) {
-				PointList bends = new PointList(constraint.size());
-				for (int i = 0; i < constraint.size(); i++) {
-					Bendpoint bp = (Bendpoint) constraint.get(i);
-					bends.addPoint(bp.getLocation());
-				}
-				path.setBendPoints(bends);
-			} else
-				path.setBendPoints(null);
-
-			isDirty |= path.isDirty;
+			if(conn instanceof ArrowConnection)
+				processStaleConnections(conn);
+			else
+				constraints.add(conn);
 		}
-		staleConnections.clear();
 	}
 
+	private void processStaleConstraints() {
+		for(Connection conn : constraints){
+			processStaleConstraints(conn);
+		}
+	}
+	private void processStaleConstraints(Connection conn){
+		if(conn.getSourceAnchor() == null || conn.getTargetAnchor() == null) return;
+		Path path = (Path) connectionToPaths.get(conn);
+		if (path == null) {
+			path = new Path(conn);
+			connectionToPaths.put(conn, path);
+			algorithm.addPath(path);
+		}
+
+		List constraint = (List) getConstraint(conn);
+		if (constraint == null)
+			constraint = Collections.EMPTY_LIST;
+
+		Point start = conn.getSourceAnchor().getReferencePoint().getCopy();
+		Point end = conn.getTargetAnchor().getReferencePoint().getCopy();
+
+		container.translateToRelative(start);
+		container.translateToRelative(end);
+
+		path.setStartPoint(start);
+		path.setEndPoint(end);
+
+		isDirty |= path.isDirty;
+	}
+	private void processStaleConnections(Connection conn) {
+		Path path = (Path) connectionToPaths.get(conn);
+		if (path == null) {
+			path = new Path(conn);
+			connectionToPaths.put(conn, path);
+			algorithm.addPath(path);
+		}
+
+		List constraint = (List) getConstraint(conn);
+		if (constraint == null)
+			constraint = Collections.EMPTY_LIST;
+
+		Point start = conn.getSourceAnchor().getReferencePoint().getCopy();
+		Point end = conn.getTargetAnchor().getReferencePoint().getCopy();
+
+		container.translateToRelative(start);
+		container.translateToRelative(end);
+
+		path.setStartPoint(start);
+		path.setEndPoint(end);
+
+		if (!constraint.isEmpty()) {
+			PointList bends = new PointList(constraint.size());
+			for (int i = 0; i < constraint.size(); i++) {
+				Bendpoint bp = (Bendpoint) constraint.get(i);
+				bends.addPoint(bp.getLocation());
+			}
+			path.setBendPoints(bends);
+		} else
+			path.setBendPoints(null);
+
+		isDirty |= path.isDirty;
+	}
 	void queueSomeRouting() {
 		if (connectionToPaths == null || connectionToPaths.isEmpty())
 			return;
@@ -278,9 +312,6 @@ public final class DPFShortestPathConnectionRouter extends AbstractRouter {
 		}
 	}
 
-	/**
-	 * @see ConnectionRouter#remove(Connection)
-	 */
 	public void remove(Connection connection) {
 		staleConnections.remove(connection);
 		constraintMap.remove(connection);
@@ -312,49 +343,43 @@ public final class DPFShortestPathConnectionRouter extends AbstractRouter {
 		}
 	}
 
+	private void update(List updated){
+		Connection current;
+		for (int i = 0; i < updated.size(); i++) {
+				Path path = (Path) updated.get(i);
+			
+			current = (Connection) path.data;
+			current.revalidate();
+
+			PointList points = path.getPoints().getCopy();
+			Point ref1, ref2, start, end;
+			ref1 = new PrecisionPoint(points.getPoint(1));
+			ref2 = new PrecisionPoint(points.getPoint(points.size() - 2));
+			
+			current.translateToAbsolute(ref1);
+			current.translateToAbsolute(ref2);
+			start = current.getSourceAnchor().getLocation(ref1).getCopy();
+			end = current.getTargetAnchor().getLocation(ref2).getCopy();
+			current.translateToRelative(start);
+			current.translateToRelative(end);
+			points.setPoint(start, 0);
+			points.setPoint(end, points.size() - 1);
+			current.setPoints(points);
+		}
+	}
 	/**
-	 * @see ConnectionRouter#route(Connection)
+	 * router connection firstly and then router related constraint connection.
+	 * Because constraint connection is dependent on connection.
 	 */
 	public void route(Connection conn) {
 		if (isDirty) {
 			ignoreInvalidate = true;
 			processStaleConnections();
+			update(algorithm.solve());
+			processStaleConstraints();
+			update(algorithm.solve());
+			staleConnections.clear();
 			isDirty = false;
-			List updated = algorithm.solve();
-			Connection current;
-			for (int i = 0; i < updated.size(); i++) {
- 				Path path = (Path) updated.get(i);
-				
-				current = (Connection) path.data;
-				current.revalidate();
-
-				PointList points = path.getPoints().getCopy();
-				Point ref1, ref2, start, end;
-				ref1 = new PrecisionPoint(points.getPoint(1));
-				ref2 = new PrecisionPoint(points.getPoint(points.size() - 2));
-				
-				current.translateToAbsolute(ref1);
-				current.translateToAbsolute(ref2);
-				start = current.getSourceAnchor().getLocation(ref1).getCopy();
-				end = current.getTargetAnchor().getLocation(ref2).getCopy();
-				// --------------------------------------------------------------
-				// CHANGE FROM ORIGINAL:
-				// --------------------------------------------------------------			
-				if (!(current instanceof ConstraintConnection)) {
-					// Arrows are already translated. Translating constraint 
-					// anchors (on arrows) will make constraints dislocated
-					// --------------------------------------------------------------
-					current.translateToRelative(start);
-					current.translateToRelative(end);
-				}
-				// --------------------------------------------------------------
-				points.setPoint(start, 0);
-				points.setPoint(end, points.size() - 1);
-				
-				
-				current.setPoints(points);
-
-			}
 			ignoreInvalidate = false;
 		}
 	}

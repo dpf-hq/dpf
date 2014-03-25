@@ -9,6 +9,7 @@ import no.hib.dpf.diagram.DConstraint;
 import no.hib.dpf.diagram.DConstraintNode;
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.diagram.DiagramPackage;
+import no.hib.dpf.editor.policies.NodeComponentEditPolicy;
 
 import org.eclipse.draw2d.ChopboxAnchor;
 import org.eclipse.draw2d.ConnectionAnchor;

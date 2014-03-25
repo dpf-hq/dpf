@@ -42,6 +42,8 @@ import no.hib.dpf.core.Arrow;
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DOffset;
 import no.hib.dpf.diagram.DiagramPackage;
+import no.hib.dpf.editor.figures.ArrowLabelLocator;
+import no.hib.dpf.editor.figures.TextCellEditorLocator;
 import no.hib.dpf.editor.policies.ArrowLabelMovePolicy;
 import no.hib.dpf.editor.policies.NameDirectEditPolicy;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;

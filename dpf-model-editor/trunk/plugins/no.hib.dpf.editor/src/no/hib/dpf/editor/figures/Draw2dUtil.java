@@ -1,4 +1,4 @@
-package no.hib.dpf.editor.figures.draw2d;
+package no.hib.dpf.editor.figures;
 
 
 import no.hib.dpf.diagram.DOffset;
@@ -8,20 +8,43 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
+import org.eclipse.draw2d.geometry.Transform;
 
 public class Draw2dUtil {
 
+	/*
+	 * get a tranform which transforms the current coordinate to the new one in which
+	 * the line from start and end is the x-axis
+	 */
+	public static Transform getTransform(Point start, Point end){
+		Transform transform = new Transform();
+		PrecisionPoint line = new PrecisionPoint(end.getTranslated(start.getNegated()));
+		transform.setRotation(-Math.atan(line.preciseY()/line.preciseX()));
+		Point axis = transform.getTransformed(start);
+		transform.setTranslation(-axis.x, -axis.y);
+		return transform;
+	}
+	/*
+	 * get a transform which transforms back to the old coordinate
+	 */
+	public static Transform getTransform(Transform transform){
+		return getTransform(transform.getTransformed(new Point()), transform.getTransformed(new Point(1000, 0)));
+	}
+	
+	public static Point mid(Point start, Point end){
+		return new PrecisionPoint((start.x + end.x)/2, (start.y + end.y)/2);
+	}
 	public static Point getAbsoluteBendPoint(Point start, Point end, DOffset p) {
-		TransformS.setBasic(start, end);
-		int len = TransformS.getRelative(end).x;
+		Transform transform = getTransform(start, end);
+		int len = transform.getTransformed(end).x;
 		double ration = (double)len / (double)p.getLen();
 		PrecisionPoint result = new PrecisionPoint(ration * p.getOffset().x, ration * p.getOffset().y);
-		return TransformS.getAbsolute(result);
+		return getTransform(transform).getTransformed(result);
 	}
 	
 	public static DOffset getDOffset(Point start, Point end, Point p){
-		TransformS.setBasic(start, end);
-		return new DOffsetImpl(TransformS.getRelative(p), TransformS.getRelative(end).x);
+		Transform transform = getTransform(start, end);
+		return new DOffsetImpl(transform.getTransformed(p), transform.getTransformed(end).x);
 	}
 	/*
 	 * Get Doffset for a bendpoint
@@ -29,7 +52,7 @@ public class Draw2dUtil {
 	public static DOffset getDOffset(IFigure source, IFigure target, Point p){
 		Point start = source == target ? source.getBounds().getTop() : source.getBounds().getCenter();
 		Point end = source == target ? source.getBounds().getBottom() : target.getBounds().getCenter();
-		return Draw2dUtil.getDOffset(start, end, p);
+		return getDOffset(start, end, p);
 	}
 	/*
 	 * Get DOffset for labels. Find the lines composed by two consecutive bendpoints where the point has shortest distance 
@@ -40,13 +63,13 @@ public class Draw2dUtil {
 		PointList copied = points.getCopy();
 		copied.setPoint(start, 0);
 		copied.setPoint(end, copied.size() - 1);
-		TransformS.setBasic(start, end);
+		Transform transform = getTransform(start, end);
 		double pre = Integer.MAX_VALUE;
 		int min = 0;
 		for(int index = 0; index < points.size() - 2; ++index){
 			Point first = points.getPoint(index), secondPoint = points.getPoint(index + 1);
-			TransformS.setBasic(first, secondPoint);
-			double distance = Math.pow(Math.pow(p.getDistance(first), 2) - Math.pow(TransformS.getRelative(p).x, 2), 0.5);
+			transform = getTransform(first, secondPoint);
+			double distance = Math.pow(Math.pow(p.getDistance(first), 2) - Math.pow(transform.getTransformed(p).x, 2), 0.5);
 			if(distance < pre){
 				min = index;
 				pre = distance;
@@ -54,7 +77,7 @@ public class Draw2dUtil {
 		}
 		start = copied.getPoint(min);
 		end = copied.getPoint(min + 1);
-		DOffset result = Draw2dUtil.getDOffset(start, end, p);
+		DOffset result = getDOffset(start, end, p);
 		result.setIndex(min);
 		return result;
 	}

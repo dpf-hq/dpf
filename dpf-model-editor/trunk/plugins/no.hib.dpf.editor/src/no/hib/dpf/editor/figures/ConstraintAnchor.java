@@ -78,8 +78,6 @@ public class ConstraintAnchor implements ConnectionAnchor {
 	/**
 	 * Returns the location of this anchor. The reference point is ignored in
 	 * this implementation.
-	 * 
-	 * @see ConnectionAnchor#getLocation(Point)
 	 */
 	public Point getLocation(Point reference) {
 		if(connectionFigure != null){
@@ -88,12 +86,11 @@ public class ConstraintAnchor implements ConnectionAnchor {
 				return points.getMidpoint();
 			else{
 				Point small = null;
-				double len = 0;
+				double len = Integer.MAX_VALUE;
 				for (int i = 0; i < points.size() - 1; i++) {
-					
-					Point middle = points.getPoint(i).getTranslated(points.getPoint(i + 1)).getScaled(0.5);
+					Point middle = Draw2dUtil.mid(points.getPoint(i), points.getPoint(i+1));
 					double temp = middle.getDistance(reference);
-					if(len == 0 || temp < len){
+					if(temp < len){
 						len = temp;
 						small = middle;
 					}
@@ -114,8 +111,6 @@ public class ConstraintAnchor implements ConnectionAnchor {
 	/**
 	 * Returns the point which is used as the reference by this connection
 	 * anchor.
-	 * 
-	 * @see ConnectionAnchor#getReferencePoint()
 	 */
 	public Point getReferencePoint() {
 		return connectionFigure != null ? connectionFigure.getBounds().getCenter() : null;

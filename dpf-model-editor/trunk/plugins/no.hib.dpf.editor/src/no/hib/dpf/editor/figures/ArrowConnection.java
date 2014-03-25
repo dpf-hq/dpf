@@ -17,7 +17,6 @@ import no.hib.dpf.editor.preferences.PreferenceConstants;
 
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.PolylineConnection;
-import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.swt.SWT;
 
@@ -60,14 +59,6 @@ public class ArrowConnection extends PolylineConnection implements RoutableFigur
 		g.popState();
 	}
 
-
-	public Rectangle getOwnerBounds() {
-		if ((getSourceAnchor() != null) && (this.getSourceAnchor().getOwner() instanceof NodeFigure)) {
-			return ((NodeFigure)getSourceAnchor().getOwner()).getBounds().getCopy();
-		}
-		return null;
-	}
-
 	public boolean invalid = false;
 	public void setErrorImageFlag(boolean bool) {
 		if(invalid != bool){
@@ -80,5 +71,4 @@ public class ArrowConnection extends PolylineConnection implements RoutableFigur
 	public int getRoutingPriority() {
 		return 6;
 	}
-
 }
