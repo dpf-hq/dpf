@@ -113,10 +113,7 @@ public class ConstraintAnchor implements ConnectionAnchor {
 	 * anchor.
 	 */
 	public Point getReferencePoint() {
-		return connectionFigure != null ? connectionFigure.getBounds().getCenter() : null;
+		return connectionFigure != null ? connectionFigure.getPoints().getBounds().getCenter() : null;
 	}
 
-	protected Point getLinePoint() {
-		return connectionFigure.getPoints().getMidpoint();
-	}
 }
