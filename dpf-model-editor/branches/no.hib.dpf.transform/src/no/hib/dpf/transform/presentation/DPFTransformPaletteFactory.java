@@ -4,6 +4,7 @@ import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DConstraintNode;
+import no.hib.dpf.diagram.DFakeNode;
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.editor.DPFEditorPaletteFactory;
@@ -36,7 +37,7 @@ public class DPFTransformPaletteFactory extends DPFEditorPaletteFactory {
 
 	public void updatePalette(PaletteRoot root, DGraph sourceGraph) {
 		for(DNode dnode : sourceGraph.getDNodes()){
-			if(dnode instanceof DConstraintNode) continue;
+			if(dnode instanceof DConstraintNode || dnode instanceof DFakeNode) continue;
 			Node node = dnode.getNode();
 			Assert.isTrue(node != null);
 			Assert.isTrue(dnode != null);

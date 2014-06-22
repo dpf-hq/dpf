@@ -6,7 +6,9 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 
 import no.hib.dpf.diagram.DArrow;
+import no.hib.dpf.diagram.DConstraintNode;
 import no.hib.dpf.diagram.DElement;
+import no.hib.dpf.diagram.DFakeNode;
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.diagram.DSpecification;
@@ -62,6 +64,7 @@ public class GenerateModels {
 			Point current = null;
 			Dimension size = null;
 			for(DNode dNode : sourceDSpecification.getDGraph().getDNodes()){
+				if(dNode instanceof  DConstraintNode || dNode instanceof DFakeNode) continue;
 				DNode newNode = graph.createDNode(dNode.getName(), REFLEXIVE_TYPE_DNODE);
 				current = dNode.getLocation();
 				newNode.setLocation(new Point(current));
@@ -75,6 +78,7 @@ public class GenerateModels {
 					graph.createDArrow(SOURCE + dNode.getName(), trace, newNode, REFLEXIVE_TYPE_DARROW);
 			}
 			for(DArrow dArrow : sourceDSpecification.getDGraph().getDArrows()){
+				if(dArrow.getDSource() instanceof  DConstraintNode || dArrow.getDSource() instanceof DFakeNode) continue;
 				graph.createDArrow(dArrow.getName(), createNodes.get(dArrow.getDSource()), createNodes.get(dArrow.getDTarget()), REFLEXIVE_TYPE_DARROW);
 			}
 		}
@@ -151,6 +155,7 @@ public class GenerateModels {
 			Point current = null;
 			Dimension size = null;
 			for(DNode dNode : sourceDSpecification.getDGraph().getDNodes()){
+				if(dNode instanceof  DConstraintNode || dNode instanceof DFakeNode) continue;
 				DNode newNode = graph.createDNode(dNode.getName(), REFLEXIVE_TYPE_DNODE);
 				current = dNode.getLocation();
 				newNode.setLocation(new Point(current));
@@ -211,9 +216,11 @@ public class GenerateModels {
 			trace.setLocation(new Point(t, y/2));
 		}else{
 			for(DNode dNode : targetDSpecification.getDGraph().getDNodes()){
+				if(dNode instanceof DFakeNode || dNode instanceof DConstraintNode) continue;
 				graph.createDArrow(TARGET + dNode.getName(), trace, createNodes.get(dNode), REFLEXIVE_TYPE_DARROW);
 			}
 			for(DArrow dArrow : targetDSpecification.getDGraph().getDArrows()){
+				if(dArrow.getDSource() instanceof DFakeNode || dArrow.getDSource() instanceof DConstraintNode)continue;
 				graph.createDArrow(TARGET + dArrow.getName(), trace, createNodes.get(dArrow), REFLEXIVE_TYPE_DARROW);
 			}
 			trace.setLocation(new Point(x, y/2));

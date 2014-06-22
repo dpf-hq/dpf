@@ -155,6 +155,11 @@ public class DPFCoreUtil {
 		Specification dsp = null;
 		try {
 			model.load(null);
+			if(!model.getContents().isEmpty()){
+			Object first = model.getContents().get(0);
+			if(first instanceof Specification)
+				dsp = (Specification) first;
+			}
 		} catch (IOException e) {
 			analyzeResourceProblems(model, e, new HashMap<Resource, Diagnostic>());
 			throw new IOException(e);

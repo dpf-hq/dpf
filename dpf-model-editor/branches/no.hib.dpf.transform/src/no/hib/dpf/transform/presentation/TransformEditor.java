@@ -8,10 +8,6 @@
 package no.hib.dpf.transform.presentation;
 
 
-import static no.hib.dpf.diagram.util.DPFConstants.REFLEXIVE_DSPECIFICATION;
-import static no.hib.dpf.utils.DPFConstants.DefaultDSpecification;
-import static no.hib.dpf.utils.DPFConstants.DefaultSpecification;
-import static no.hib.dpf.utils.DPFConstants.REFLEXIVE_SPECIFICATION;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,8 +18,6 @@ import java.util.List;
 import java.util.Map;
 
 import no.hib.dpf.core.Specification;
-import no.hib.dpf.diagram.util.DPFCheck;
-import no.hib.dpf.diagram.util.DPFConstants;
 import no.hib.dpf.editor.DPFUtils;
 import no.hib.dpf.transform.Production;
 import no.hib.dpf.transform.Transform;
@@ -42,7 +36,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 import org.eclipse.gef.DefaultEditDomain;
 import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.SnapToGeometry;
@@ -176,8 +169,6 @@ public class TransformEditor extends FormEditor implements CommandStackListener,
 		transformFile = file.getLocation().toOSString();
 		setPartName(file.getName());
 		transform = loadTransform(resourceSet, URI.createFileURI(transformFile), resourceToDiagnosticMap);
-		for(Production production : transform.getRules())
-			DPFCheck.checkDSpecification(production.getSum());
 	}
 
 	protected CommandStack getCommandStack() {
@@ -278,20 +269,10 @@ public class TransformEditor extends FormEditor implements CommandStackListener,
 	}
 	
 	public static ResourceSetImpl getResourceSet(){
-		ResourceSetImpl resourceSet = new ResourceSetImpl();
+		ResourceSetImpl resourceSet = DPFUtils.getResourceSet();
 		resourceSet.setURIResourceMap(new LinkedHashMap<URI, Resource>());
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("sig", new XMIResourceFactoryImpl());
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMLResourceFactoryImpl());
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("dpf", new XMLResourceFactoryImpl());
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xform", new XMIResourceFactoryImpl());
-		Resource dGraph = resourceSet.createResource(DefaultDSpecification);
-		dGraph.getContents().add(REFLEXIVE_DSPECIFICATION);
-		dGraph.getContents().add(DPFConstants.DEFAULT_DSIGNATURE);
-		resourceSet.getURIResourceMap().put(DefaultDSpecification, dGraph);
-		Resource graph = resourceSet.createResource(DefaultSpecification);
-		graph.getContents().add(REFLEXIVE_SPECIFICATION);
-		graph.getContents().add(DPFConstants.DEFAULT_SIGNATURE);
-		resourceSet.getURIResourceMap().put(DefaultSpecification, graph);
 		return resourceSet;
 	}
 	
