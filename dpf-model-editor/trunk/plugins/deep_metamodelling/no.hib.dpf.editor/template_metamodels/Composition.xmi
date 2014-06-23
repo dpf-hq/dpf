@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ASCII"?>
+<core:Specification xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:core="http://no.hib.dpf.core" metalevel="-2">
+  <graph id="fc32f733-5dcb-47a2-af11-e126d2bc67c4" name="Composition">
+    <nodes id="8506930a-7558-44f6-b52c-f48d1a9581f7" outgoings="//@graph/@arrows.0 //@graph/@arrows.1" incomings="//@graph/@arrows.0 //@graph/@arrows.1" name="DeepNode" outgoingAttributes="//@graph/@nodeAttributes.0 //@graph/@nodeAttributes.1 //@graph/@nodeAttributes.2"/>
+    <arrows id="24d85f2a-3ef0-4db3-b03c-796d5bbec079" source="//@graph/@nodes.0" target="//@graph/@nodes.0" name="DeepArrow" outgoingAttributes="//@graph/@arrowAttributes.0 //@graph/@arrowAttributes.1 //@graph/@arrowAttributes.2"/>
+    <arrows id="795841a9-5669-4be3-87d1-5337507c6461" source="//@graph/@nodes.0" target="//@graph/@nodes.0" name="Inheritance"/>
+    <datanodes value="EString" incomingNodeAttributes="//@graph/@nodeAttributes.0 //@graph/@nodeAttributes.1" incomingArrowAtributes="//@graph/@arrowAttributes.0 //@graph/@arrowAttributes.2" isDataType="false"/>
+    <datanodes value="EDataType" incomingNodeAttributes="//@graph/@nodeAttributes.2" isDataType="false"/>
+    <datanodes mutability="1" value="EBoolean" incomingArrowAtributes="//@graph/@arrowAttributes.1" isDataType="false"/>
+    <arrowAttributes id="7619bdcf-7b8e-49e8-a597-08c9f2d60da8" source="//@graph/@arrows.0" name="ArrowProperty" target="//@graph/@datanodes.0"/>
+    <arrowAttributes id="b9f183d8-c457-45a2-a965-81aa96cf3a44" mutability="1" source="//@graph/@arrows.0" name="Containment" target="//@graph/@datanodes.2"/>
+    <arrowAttributes id="27f6b198-33e0-4994-9627-0f04ae90c544" source="//@graph/@arrows.0" name="ArrowVisualization" target="//@graph/@datanodes.0"/>
+    <nodeAttributes id="9e0efeea-684b-4b28-9e79-75ef08c52105" source="//@graph/@nodes.0" target="//@graph/@datanodes.0" name="NodeProperty"/>
+    <nodeAttributes id="d21ce57f-aa00-47e9-bec0-626dc5491ca0" source="//@graph/@nodes.0" target="//@graph/@datanodes.0" name="NodeVisualization"/>
+    <nodeAttributes id="ae8e51fe-257f-4a2d-ad86-08b9440dd5b4" source="//@graph/@nodes.0" target="//@graph/@datanodes.1" name="Value"/>
+  </graph>
+</core:Specification>
