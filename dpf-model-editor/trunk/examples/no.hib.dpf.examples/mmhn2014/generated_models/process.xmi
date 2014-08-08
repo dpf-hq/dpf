@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ASCII"?>
+<core:Specification xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:core="http://no.hib.dpf.core">
+  <graph id="68c73ae4-eb0c-4cc5-a003-0abfdc2bbfd5">
+    <nodes id="eeb57c4b-2e3b-44d8-ae92-2d1e6d343ab6" name="IE" outgoings="//@graph/@arrows.0 //@graph/@arrows.1 //@graph/@arrows.15"/>
+    <nodes id="ab55611c-a3da-40fa-8f69-68bad77e6df8" name="BT1" outgoings="//@graph/@arrows.2 //@graph/@arrows.17" incomings="//@graph/@arrows.0"/>
+    <nodes id="3e52578d-cf28-4b7c-9ec7-7715c69387eb" name="MRI" outgoings="//@graph/@arrows.3 //@graph/@arrows.16" incomings="//@graph/@arrows.1"/>
+    <nodes id="c125de6e-3ed0-4b7e-bcfb-1a8c280be777" name="E1" outgoings="//@graph/@arrows.4 //@graph/@arrows.5 //@graph/@arrows.14 //@graph/@arrows.18" incomings="//@graph/@arrows.2 //@graph/@arrows.3"/>
+    <nodes id="95bf57c8-020d-4aff-a435-19b17f1257ac" name="PA" outgoings="//@graph/@arrows.6 //@graph/@arrows.19" incomings="//@graph/@arrows.4"/>
+    <nodes id="a8c43bb9-b10f-429a-9962-02deb997d2cd" name="PB" outgoings="//@graph/@arrows.7 //@graph/@arrows.20" incomings="//@graph/@arrows.5"/>
+    <nodes id="0ebb1a14-62c3-4de8-9a3a-d8a6fbaccc30" name="E2" outgoings="//@graph/@arrows.8 //@graph/@arrows.9 //@graph/@arrows.12 //@graph/@arrows.13 //@graph/@arrows.21" incomings="//@graph/@arrows.6 //@graph/@arrows.7 //@graph/@arrows.11"/>
+    <nodes id="2dd81316-6c4d-412e-8422-c239cc84d9bd" name="BT2" outgoings="//@graph/@arrows.11 //@graph/@arrows.22" incomings="//@graph/@arrows.10"/>
+    <nodes id="cebbb4e8-12a2-4d54-a53c-0f53db2f75ab" name="END" outgoings="//@graph/@arrows.24" incomings="//@graph/@arrows.8"/>
+    <nodes id="a7f60ae1-9395-4b40-ad6f-76d89043c153" name="TD" outgoings="//@graph/@arrows.10 //@graph/@arrows.23" incomings="//@graph/@arrows.9"/>
+    <nodes id="e2d0e269-c16a-4120-943d-cc3652a0dc5c" name="Bool" incomings="//@graph/@arrows.12 //@graph/@arrows.14"/>
+    <nodes id="73a9d98c-4e33-41c6-9556-ce18cfdfd067" name="Int" incomings="//@graph/@arrows.13"/>
+    <nodes id="b85cc5df-7e2d-4491-a8ec-3cb653bf0f6a" name="State" incomings="//@graph/@arrows.15 //@graph/@arrows.16 //@graph/@arrows.17 //@graph/@arrows.18 //@graph/@arrows.19 //@graph/@arrows.20 //@graph/@arrows.21 //@graph/@arrows.22 //@graph/@arrows.23 //@graph/@arrows.24"/>
+    <arrows id="6cf949a3-76cc-46eb-8161-095973b95f73" name="f0" source="//@graph/@nodes.0" target="//@graph/@nodes.1"/>
+    <arrows id="118069c3-da7b-4b04-82a6-98380031cd74" name="f1" source="//@graph/@nodes.0" target="//@graph/@nodes.2"/>
+    <arrows id="1266990f-a6ec-4c9d-afe7-1509ebc78b6e" name="f2" source="//@graph/@nodes.1" target="//@graph/@nodes.3"/>
+    <arrows id="bc1383d7-f3b8-4986-b64f-ce24f2564a53" name="f3" source="//@graph/@nodes.2" target="//@graph/@nodes.3"/>
+    <arrows id="81f05cea-d312-4d5e-a56a-5af513c7c97f" name="f4" source="//@graph/@nodes.3" target="//@graph/@nodes.4"/>
+    <arrows id="69f80541-3d10-4923-8fed-50b83a12a41f" name="f5" source="//@graph/@nodes.3" target="//@graph/@nodes.5"/>
+    <arrows id="df770691-4a5c-4bde-91b0-32569b5a6824" name="f6" source="//@graph/@nodes.4" target="//@graph/@nodes.6"/>
+    <arrows id="85a10abd-01df-48f3-8893-051d4c261d1f" name="f7" source="//@graph/@nodes.5" target="//@graph/@nodes.6"/>
+    <arrows id="ba82ae0e-514c-4eb4-9dbb-ce184e2e4c1c" name="f8" source="//@graph/@nodes.6" target="//@graph/@nodes.8"/>
+    <arrows id="466f43c7-ac3c-438b-84c6-10366439debe" name="f9" source="//@graph/@nodes.6" target="//@graph/@nodes.9"/>
+    <arrows id="f37e3535-d817-4139-a191-c0a283aa993f" name="f10" source="//@graph/@nodes.9" target="//@graph/@nodes.7"/>
+    <arrows id="8314f1a2-14e5-4608-8fcc-08a1a25d6c42" name="f11" source="//@graph/@nodes.7" target="//@graph/@nodes.6"/>
+    <arrows id="df9722cd-b93b-4bde-90c4-34068e02ff3a" name="resE2" source="//@graph/@nodes.6" target="//@graph/@nodes.10"/>
+    <arrows id="0bd2d72f-c8d2-4dd1-90cb-d4a41998a6bd" name="count" source="//@graph/@nodes.6" target="//@graph/@nodes.11"/>
+    <arrows id="8bf858fe-a9d8-435d-9951-06f7ca822ecf" name="resE1" source="//@graph/@nodes.3" target="//@graph/@nodes.10"/>
+    <arrows id="04ab06da-eeaf-4cc6-9102-1b717bd3671b" name="att0" source="//@graph/@nodes.0" target="//@graph/@nodes.12"/>
+    <arrows id="d505f0b8-2eb3-49a2-8adb-a6c2aee4e911" name="att1" source="//@graph/@nodes.2" target="//@graph/@nodes.12"/>
+    <arrows id="47441dd7-c3e5-448c-90d3-5ba909a82c96" name="att2" source="//@graph/@nodes.1" target="//@graph/@nodes.12"/>
+    <arrows id="f1e55478-1d95-4da3-87a7-31abbc2f8e4e" name="att3" source="//@graph/@nodes.3" target="//@graph/@nodes.12"/>
+    <arrows id="8b71df92-c979-4812-9f20-15b7a34f6a93" name="att4" source="//@graph/@nodes.4" target="//@graph/@nodes.12"/>
+    <arrows id="4584ce40-305a-4202-8b05-f26f81dcd0cf" name="att5" source="//@graph/@nodes.5" target="//@graph/@nodes.12"/>
+    <arrows id="d8f92ca0-89f2-48f9-96c8-b382432a9ffa" name="att6" source="//@graph/@nodes.6" target="//@graph/@nodes.12"/>
+    <arrows id="3affd90d-ae23-41cf-8d41-fd72545dab08" name="att7" source="//@graph/@nodes.7" target="//@graph/@nodes.12"/>
+    <arrows id="5eabd049-04da-4520-a36c-1858a3d7908e" name="att8" source="//@graph/@nodes.9" target="//@graph/@nodes.12"/>
+    <arrows id="cbeccdbb-b9f4-4ec4-a64f-5579c8c0fdec" name="att9" source="//@graph/@nodes.8" target="//@graph/@nodes.12"/>
+  </graph>
+</core:Specification>

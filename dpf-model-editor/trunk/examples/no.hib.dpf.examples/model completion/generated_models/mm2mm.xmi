@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:core="http://no.hib.dpf.core">
+  <core:Specification signature="/1">
+    <graph id="dfc2b84f-e7c7-4aaf-a26b-523ae69e7554">
+      <nodes id="736e203f-bf5e-4257-9e5c-f8c5be4e5286" name="Link" outgoings="/0/@graph/@arrows.0 /0/@graph/@arrows.1 /0/@graph/@arrows.2 /0/@graph/@arrows.3"/>
+      <nodes id="2bfd69c0-184f-4c70-a0a3-089e308f4634" name="X" incomings="/0/@graph/@arrows.0 /0/@graph/@arrows.2"/>
+      <nodes id="222e29f2-544e-496c-9766-fd11286ab813" name="f" incomings="/0/@graph/@arrows.1 /0/@graph/@arrows.3"/>
+      <arrows id="7e930305-a59f-4547-8210-d93ca377fcba" name="sourceX" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.1"/>
+      <arrows id="94a16474-d5a3-4c32-ac75-ba094d2a4710" name="sourcef" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.2"/>
+      <arrows id="fec4b1ea-afb0-43ff-a2ed-08471b6d37a8" name="targetX" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.1"/>
+      <arrows id="b1f7ce7d-d9e4-4c4a-a80d-f4ad27199846" name="targetf" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.2"/>
+    </graph>
+  </core:Specification>
+  <core:Signature/>
+</xmi:XMI>

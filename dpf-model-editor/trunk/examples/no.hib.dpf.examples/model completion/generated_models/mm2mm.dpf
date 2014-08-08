@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:diagram="http://no.hib.dpf.diagram">
+  <diagram:DSpecification gridVisible="false" dSignature="/1">
+    <dGraph>
+      <dNodes dOutgoings="/0/@dGraph/@dArrows.0 /0/@dGraph/@dArrows.1 /0/@dGraph/@dArrows.2 /0/@dGraph/@dArrows.3" location="407 83" size="100 50">
+        <node href="mm2mm.xmi#/0/@graph/@nodes.0"/>
+      </dNodes>
+      <dNodes dIncomings="/0/@dGraph/@dArrows.0 /0/@dGraph/@dArrows.2" location="307 136" size="100 30">
+        <node href="mm2mm.xmi#/0/@graph/@nodes.1"/>
+      </dNodes>
+      <dNodes dIncomings="/0/@dGraph/@dArrows.1 /0/@dGraph/@dArrows.3" location="307 136" size="100 50">
+        <node href="mm2mm.xmi#/0/@graph/@nodes.2"/>
+      </dNodes>
+      <dArrows dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.1">
+        <arrow href="mm2mm.xmi#/0/@graph/@arrows.0"/>
+        <nameOffset offset="10 -3" len="16"/>
+      </dArrows>
+      <dArrows dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.2">
+        <arrow href="mm2mm.xmi#/0/@graph/@arrows.1"/>
+        <nameOffset offset="10 -3" len="16"/>
+      </dArrows>
+      <dArrows dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.1">
+        <arrow href="mm2mm.xmi#/0/@graph/@arrows.2"/>
+        <nameOffset offset="10 -3" len="16"/>
+      </dArrows>
+      <dArrows dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.2">
+        <arrow href="mm2mm.xmi#/0/@graph/@arrows.3"/>
+        <nameOffset offset="10 -3" len="16"/>
+      </dArrows>
+      <graph href="mm2mm.xmi#/0/@graph"/>
+    </dGraph>
+    <specification href="mm2mm.xmi#/0"/>
+  </diagram:DSpecification>
+  <diagram:DSignature>
+    <signature href="mm2mm.xmi#/1"/>
+  </diagram:DSignature>
+</xmi:XMI>

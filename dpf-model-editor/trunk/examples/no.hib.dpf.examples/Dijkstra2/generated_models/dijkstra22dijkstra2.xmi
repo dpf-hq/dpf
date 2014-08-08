@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:core="http://no.hib.dpf.core">
+  <core:Specification signature="/1">
+    <graph id="f315ef38-88ed-4314-8c7f-d0a9ef38ff69">
+      <nodes id="09a1e373-a001-40b3-9df8-8cf46084aa7f" name="Link" outgoings="/0/@graph/@arrows.0 /0/@graph/@arrows.1 /0/@graph/@arrows.2 /0/@graph/@arrows.3 /0/@graph/@arrows.4 /0/@graph/@arrows.5 /0/@graph/@arrows.6 /0/@graph/@arrows.7 /0/@graph/@arrows.8 /0/@graph/@arrows.9 /0/@graph/@arrows.10 /0/@graph/@arrows.11 /0/@graph/@arrows.12 /0/@graph/@arrows.13 /0/@graph/@arrows.14 /0/@graph/@arrows.15 /0/@graph/@arrows.16 /0/@graph/@arrows.17 /0/@graph/@arrows.18 /0/@graph/@arrows.19 /0/@graph/@arrows.20 /0/@graph/@arrows.21"/>
+      <nodes id="6a11aced-167f-4a02-849b-3439e4768443" name="P" incomings="/0/@graph/@arrows.0 /0/@graph/@arrows.11"/>
+      <nodes id="b380a3df-4a5e-4c28-b9f1-862b483c9f16" name="Flag" incomings="/0/@graph/@arrows.1 /0/@graph/@arrows.12"/>
+      <nodes id="9c4b46e4-fb72-46c8-9f1a-dcc230d804fd" name="R" incomings="/0/@graph/@arrows.2 /0/@graph/@arrows.13"/>
+      <nodes id="d4d7972c-892a-438e-855e-a502c546505d" name="Active" incomings="/0/@graph/@arrows.3 /0/@graph/@arrows.14"/>
+      <nodes id="f8e849bf-30d3-41fa-b84e-9b695c142145" name="State" incomings="/0/@graph/@arrows.4 /0/@graph/@arrows.15"/>
+      <nodes id="22c734b3-097c-4d13-b471-f321f318ff71" name="T" incomings="/0/@graph/@arrows.5 /0/@graph/@arrows.16"/>
+      <nodes id="fe575471-9699-4bf4-a5c7-936e064d6f31" name="isActive" incomings="/0/@graph/@arrows.6 /0/@graph/@arrows.17"/>
+      <nodes id="f43eb4a1-311b-42c4-b223-9440173294a3" name="at" incomings="/0/@graph/@arrows.7 /0/@graph/@arrows.18"/>
+      <nodes id="aa4f1912-ba7d-49ee-b74a-f05d8aa6c3fb" name="flag" incomings="/0/@graph/@arrows.8 /0/@graph/@arrows.19"/>
+      <nodes id="941013b3-86c7-4c73-915c-9e6fb0c47c42" name="TP" incomings="/0/@graph/@arrows.9 /0/@graph/@arrows.20"/>
+      <nodes id="d860d82e-6b1b-4f8d-b72f-507ebec756c1" name="TR" incomings="/0/@graph/@arrows.10 /0/@graph/@arrows.21"/>
+      <arrows id="4591aa79-2af3-4aed-a465-7973494cac65" name="sourceP" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.1"/>
+      <arrows id="bead35fe-9723-4537-be39-50e3630c1d73" name="sourceFlag" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.2"/>
+      <arrows id="40158e06-80a0-417e-819d-afd4939b1a00" name="sourceR" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.3"/>
+      <arrows id="9b0b7b81-f8aa-4994-bb2e-46e891eb3ed9" name="sourceActive" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.4"/>
+      <arrows id="40444524-ebb5-4a21-a13c-577593d2afa1" name="sourceState" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.5"/>
+      <arrows id="8c157e6b-8615-455b-b523-bbb5dba2bf24" name="sourceT" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.6"/>
+      <arrows id="ccf6042d-1580-496a-a05a-26120670c477" name="sourceisActive" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.7"/>
+      <arrows id="6d554225-c4f6-45a0-8791-9df6db6b780a" name="sourceat" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.8"/>
+      <arrows id="f460aa54-2c49-4820-a75b-515ec8f8959e" name="sourceflag" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.9"/>
+      <arrows id="4a8aef64-0cdc-4767-985b-780f0a3d3b18" name="sourceTP" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.10"/>
+      <arrows id="6ee56c15-7554-4692-b18a-c52be147dffd" name="sourceTR" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.11"/>
+      <arrows id="dbf7eb24-2efb-43ea-a9ec-ab5ade9869d6" name="targetP" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.1"/>
+      <arrows id="fd57939d-cadd-4328-992d-284f3802d723" name="targetFlag" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.2"/>
+      <arrows id="20d4a8e1-0f2d-47c2-90f5-6c87d22f0fd6" name="targetR" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.3"/>
+      <arrows id="8404c434-01e7-4c33-bec4-2287d1ae145d" name="targetActive" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.4"/>
+      <arrows id="bb9cdb51-2bf9-4232-b84b-c42e24e19cf6" name="targetState" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.5"/>
+      <arrows id="ac16d4b6-4b81-4844-a20a-5f8a5e4d62fc" name="targetT" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.6"/>
+      <arrows id="568430ab-ee62-4d42-b897-14657b9342f7" name="targetisActive" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.7"/>
+      <arrows id="c49aeca0-5e2f-4be9-bb3c-f881cea1ea60" name="targetat" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.8"/>
+      <arrows id="c81ac0e5-9468-4f67-9036-3573d23b1a74" name="targetflag" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.9"/>
+      <arrows id="c3ea3ad9-b117-4c8c-bffa-3fd5b2ee8cc4" name="targetTP" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.10"/>
+      <arrows id="2f40b0c8-f7a5-468f-ad49-a7800443be4f" name="targetTR" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.11"/>
+    </graph>
+  </core:Specification>
+  <core:Signature/>
+</xmi:XMI>
