@@ -93,7 +93,7 @@ public class RunAlloy extends AbstractHandler {
 		return null;
 	}
 
-	private static final String DEFAULT_SCOPE = "for 5 but exactly 1 Trans, exactly 2 Graph, exactly 1 Rule";
+	protected static final String DEFAULT_SCOPE = "for 10 but exactly 1 Trans, exactly 2 Graph, exactly 1 Rule";
 	protected Transform generateInstance(Transform transform, String alloyFile, List<String> commands){
 		Transform transformInstance = TransformFactory.eINSTANCE.createTransform();
 		transformInstance.setElementTypeGraph(transform.getElementTypeGraph());
@@ -138,8 +138,7 @@ public class RunAlloy extends AbstractHandler {
 			List<String> verified = new ArrayList<String>(), violated = new ArrayList<String>();
 			for (Command command : world.getAllCommands()) {
 				A4Solution ans = TranslateAlloyToKodkod.execute_commandFromBook(rep, world.getAllReachableSigs(), command, options);
-				Production rule = GenerateProductionFromAlloy.generateProductionFromAlloy(ans, transformInstance);
-				System.out.println(ans.getOriginalCommand() + " Rule == " + (rule == null ? null : rule.getName()));
+				Production rule = GenerateInstanceFromAlloy.generateProductionFromAlloy(ans, transformInstance);
 				if(rule != null){
 					transformInstance.getRules().add(rule);
 					if(!ans.getOriginalCommand().startsWith("Run")){
@@ -174,7 +173,7 @@ public class RunAlloy extends AbstractHandler {
 				commandWriter.write(command);
 			commandWriter.close();
 		} catch ( Err | IOException e1) {
-			e1.printStackTrace();
+			DPFUtils.logError(e1);
 		}
 		return transformInstance;
 	}

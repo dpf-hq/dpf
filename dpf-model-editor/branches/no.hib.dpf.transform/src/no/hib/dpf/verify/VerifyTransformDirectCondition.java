@@ -1,13 +1,10 @@
 package no.hib.dpf.verify;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import no.hib.dpf.core.Predicate;
-import no.hib.dpf.diagram.util.DPFConstants;
 import no.hib.dpf.editor.DPFUtils;
 import no.hib.dpf.transform.Transform;
 import no.hib.dpf.transform.presentation.TransformEditor;
@@ -31,7 +28,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
  * The hander executes verification when user select a transform file.
  *
  */
-public class TranslateToAlloyHandler extends RunAlloy {
+public class VerifyTransformDirectCondition extends RunAlloy {
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
@@ -54,12 +51,8 @@ public class TranslateToAlloyHandler extends RunAlloy {
 				String transformFileName = transformFile.getName();
 				String fileName = transformFileName.substring(0, transformFileName.lastIndexOf('.'));
 				File alloyFile = new File(folder.getLocation().toOSString(), fileName + ".als"); 
-				FileWriter writer = new FileWriter(alloyFile);
-				writer.write(translate.getBuffer().toString());
-				writer.close();
+				translate.writeToFile(new File(folder.getLocation().toOSString(), fileName + ".als"));
 				
-				for(Predicate predicate : DPFConstants.REFLEXIVE_SPECIFICATION.getSignature().getPredicates())
-					System.out.println(predicate);
 				/*
 				 * Verify the Alloy Specification and write the generated counterexamples into a transform file.
 				 */
@@ -72,5 +65,6 @@ public class TranslateToAlloyHandler extends RunAlloy {
 		}
 		return null;
 	}
+	
 
 }

@@ -29,7 +29,8 @@ Require-Bundle: org.eclipse.core.runtime,
  no.hib.dpf.diagram,
  org.eclipse.gef,
  org.eclipse.ui.forms,
- org.eclipse.core.expressions
+ org.eclipse.core.expressions,
+ org.eclipse.core.commands
 Bundle-ActivationPolicy: lazy
 Import-Package: org.eclipse.core.filesystem,
  org.eclipse.emf.henshin,

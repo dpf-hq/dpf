@@ -14,6 +14,7 @@ import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Specification;
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DNode;
+import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.editor.GenerateDiagramFromModel;
 import no.hib.dpf.transform.Production;
 import no.hib.dpf.transform.Transform;
@@ -27,17 +28,17 @@ import edu.mit.csail.sdg.alloy4viz.AlloyTuple;
 import edu.mit.csail.sdg.alloy4viz.AlloyType;
 import edu.mit.csail.sdg.alloy4viz.StaticInstanceReader;
 
-public class GenerateProductionFromAlloy {
+public class GenerateInstanceFromAlloy {
 
 	/**
 	 * Generate a production from a alloy solution
 	 */
 	public static Production generateProductionFromAlloy(A4Solution solution, Transform transform) throws Err{
-		Production result = TransformFactory.eINSTANCE.createProduction();
-		result.setName(solution.getOriginalCommand());
 		if(!solution.satisfiable()){
 			return null;
 		}
+		Production result = TransformFactory.eINSTANCE.createProduction();
+		result.setName(solution.getOriginalCommand());
 		solution.writeXML("instance.xml");
 
 		AlloyInstance inst = StaticInstanceReader.parseInstance(new File("instance.xml"));
@@ -132,5 +133,54 @@ public class GenerateProductionFromAlloy {
 		result.getLeftArrows().addAll(commonArrows);
 		result.getRightArrows().addAll(commonArrows);
 		return result;
+	}
+	/**
+	 * Generate a dspecification from a alloy solution
+	 */
+	public static DSpecification generateDSpecificationFromAlloy(A4Solution solution, DSpecification type) throws Err{
+		if(!solution.satisfiable()){
+			return null;
+		}
+		solution.writeXML("instance.xml");
+		AlloyInstance inst = StaticInstanceReader.parseInstance(new File("instance.xml"));
+	
+		Specification instance = CoreFactory.eINSTANCE.createDefaultSpecification();
+		instance.setType(type.getSpecification());
+		instance.getGraph().setType(type.getSpecification().getGraph());
+		Graph graph = instance.getGraph(), graphType = graph.getType();
+		Map<AlloyAtom, IDObject> maps = new HashMap<AlloyAtom, IDObject>();
+		for(AlloyType alloyType : inst.model.getTypes()){
+			String alloyTypeName = alloyType.getName();
+			String typeName = alloyTypeName.substring(1);
+			if(alloyTypeName.startsWith("N")){
+				Node dpfType = graphType.getNodeByName(typeName);
+				for(AlloyAtom alloyAtom : inst.type2atoms(alloyType)){
+					Node _new = graph.createNode(alloyAtom.toString().substring(1), dpfType);
+					maps.put(alloyAtom, _new);
+				}
+			}
+			if(alloyTypeName.startsWith("A")){
+				Arrow dpfType = graphType.getArrowByName(typeName);
+				for(AlloyAtom alloyAtom : inst.type2atoms(alloyType)){
+					Arrow arrow = CoreFactory.eINSTANCE.createArrow();
+					arrow.setName(alloyAtom.toString().substring(1));
+					arrow.setTypeArrow(dpfType);
+					graph.getArrows().add(arrow);
+					maps.put(alloyAtom, arrow);
+				}
+			}
+		}
+		for(AlloyRelation alloyType : inst.model.getRelations()){
+			String alloyTypeName = alloyType.getName();
+			if(alloyTypeName.equals("src")){
+				for(AlloyTuple alloyTuple : inst.relation2tuples(alloyType))
+					((Arrow)maps.get(alloyTuple.getStart())).setSource((Node) maps.get(alloyTuple.getEnd()));
+			}else if(alloyTypeName.equals("trg")){
+				for(AlloyTuple alloyTuple : inst.relation2tuples(alloyType))
+					((Arrow)maps.get(alloyTuple.getStart())).setTarget((Node) maps.get(alloyTuple.getEnd()));
+			}
+		}
+		GenerateDiagramFromModel generator = new GenerateDiagramFromModel(instance, type);
+		return generator.result;
 	}
 }
