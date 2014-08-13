@@ -149,11 +149,13 @@ public class NewDpfGeneratorWizard extends Wizard implements INewWizard,
 		refs.add("no.hib.dpf.codegen.xpand.metamodel;bundle-version=\"1.0.0\"");
 		refs.add("no.hib.dpf.core;bundle-version=\"0.1.1\"");
 		refs.add("no.hib.dpf.codegen.xpand.ui;bundle-version=\"1.0.0\"");
+		refs.add("org.eclipse.ocl;bundle-version=\"3.3.0\"");
 		
 		final IProject p = EclipseHelper.createExtXptProject(projectName,
 				srcfolders, Collections.<IProject> emptyList(), refs, null,
 				new SubProgressMonitor(monitor, 3), getShell());
 
+		
 		if (p == null)
 			return;
 		
