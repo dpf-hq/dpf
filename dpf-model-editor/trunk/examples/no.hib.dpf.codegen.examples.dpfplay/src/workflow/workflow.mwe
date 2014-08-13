@@ -3,7 +3,7 @@
 	<property name="dpf_model" value="platform:/resource/no.hib.dpf.codegen.examples.dpfplay/models/author.xmi"/>
 	<property name="dpf_metamodel" value="platform:/resource/no.hib.dpf.codegen.examples.dpfplay/models/metamodel.xmi"/>
 	
-	<property name="src-gen" value="/home/anders/Master/Resources/play-1.2.3/play-1.2.3/test_play/app"/>
+	<property name="src-gen" value="src-gen/"/>
 	
 	<!-- set up EMF, only needed when using URI's -->	
 	<bean class="org.eclipse.emf.mwe.utils.StandaloneSetup">
