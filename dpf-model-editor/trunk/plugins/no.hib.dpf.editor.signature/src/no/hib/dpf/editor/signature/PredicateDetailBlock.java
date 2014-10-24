@@ -8,6 +8,7 @@ import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.IDObject;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Predicate;
+import no.hib.dpf.core.SemanticValidator;
 import no.hib.dpf.core.ValidatorType;
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DGraph;
@@ -27,6 +28,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.gef.ui.actions.ActionRegistry;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -46,7 +48,6 @@ import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
@@ -431,23 +432,30 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 		Label visulationLabel = new Label(infoComposite, SWT.NONE);
 		visulationLabel.setText("Visualization:");
 		gridData = new GridData(GridData.BEGINNING, GridData.FILL, false, false);
-		gridData.verticalSpan = 3;
 		gridData.minimumWidth = 20;
 		visulationLabel.setLayoutData(gridData);
-		visulationCombo = new EnumeratorCombo(infoComposite, SWT.NONE);
+		
+		Composite visualComposite = new Composite(infoComposite, SWT.NONE);
+		visualComposite.setLayoutData(new GridData(GridData.BEGINNING, GridData.FILL, false, false));
+		gridLayout = new GridLayout(1, true);
+		gridLayout.marginHeight = 0;
+		gridLayout.marginWidth = 0;
+		visualComposite.setLayout(gridLayout);
+		
+		visulationCombo = new EnumeratorCombo(visualComposite, SWT.NONE);
 		visulationCombo.setInput(VisualizationType.values());
 		visulationCombo.getControl().setLayoutData(new GridData(GridData.FILL, GridData.FILL, true, false));
 
-		Composite source = new Composite(infoComposite, SWT.NONE);
-		gridData = new GridData(GridData.FILL, GridData.FILL, true, false);
-		gridData.horizontalSpan = 2;
-		source.setLayoutData(gridData);
-		RowLayout rowLayout = new RowLayout();
-		rowLayout.wrap = false;
-		source.setLayout(rowLayout);
+		Composite source = new Composite(visualComposite, SWT.NONE);
+		source.setLayoutData(new GridData(GridData.FILL, GridData.FILL, true, false));
+		gridLayout = new GridLayout(2, false);
+		gridLayout.marginHeight = 0;
+		gridLayout.marginWidth = 0;
+		source.setLayout(gridLayout);
 		sourceLabel = new Label(source, SWT.NONE);
 		sourceLabel.setText("Source:");
 		sourceCombo = new ComboViewer(source, SWT.NONE);
+		sourceCombo.getControl().setLayoutData(new GridData(GridData.FILL, GridData.FILL, true, false));
 		final IContentProvider contentProvider = new IStructuredContentProvider() {
 
 			@Override
@@ -472,19 +480,17 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 		};
 		sourceCombo.setContentProvider(contentProvider);
 		sourceCombo.setLabelProvider(labelProvider);
-		gridData = new GridData(GridData.FILL, GridData.CENTER, true, false);
-		gridData.horizontalSpan = 2;
-		gridData.minimumWidth = 50;
-		source.setLayoutData(gridData);
-		Composite target = new Composite(infoComposite, SWT.NONE);
-		target.setLayout(rowLayout);
-		gridData = new GridData(GridData.FILL, GridData.CENTER, true, false);
-		gridData.horizontalSpan = 2;
-		gridData.minimumWidth = 20;
-		target.setLayoutData(gridData);
+		
+		Composite target = new Composite(visualComposite, SWT.NONE);
+		target.setLayoutData(new GridData(GridData.FILL, GridData.FILL, true, false));
+		gridLayout = new GridLayout(2, false);
+		gridLayout.marginHeight = 0;
+		gridLayout.marginWidth = 0;
+		target.setLayout(gridLayout);
 		targetLabel = new Label(target, SWT.NONE);
 		targetLabel.setText("Target:");
 		targetCombo = new ComboViewer(target, SWT.NONE);
+		targetCombo.getControl().setLayoutData(new GridData(GridData.FILL, GridData.FILL, true, false));
 		targetCombo.setContentProvider(contentProvider);
 		targetCombo.setLabelProvider(labelProvider);
 
@@ -496,16 +502,24 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 		gridData = new GridData(GridData.FILL, GridData.FILL, true, true);
 		validSection.setLayoutData(gridData);
 		Composite validComposite = toolkit.createComposite(validSection);
-		validComposite.setLayout(new GridLayout());
+		validComposite.setLayout(gridLayout);
 
+		Label validatorLabel = new Label(validComposite, SWT.NONE);
+		validatorLabel.setText("Validator Type:");
+		gridData = new GridData();
+		gridData.horizontalSpan = 2;
+		validatorLabel.setData(gridData);
+		
 		validatorCombo = new EnumeratorCombo(validComposite, SWT.NONE);
-		gridData = new GridData(GridData.BEGINNING, GridData.FILL, false, false);
+		gridData = new GridData(GridData.BEGINNING, GridData.CENTER, false, false);
+		gridData.minimumWidth = 20;
 		validatorCombo.getControl().setLayoutData(gridData);
 		validatorCombo.setInput(ValidatorType.values());
+		
 		validator = new Text(validComposite, SWT.MULTI | SWT.BORDER);
 		gridData = new GridData(GridData.FILL, GridData.FILL, true, true);
+		gridData.horizontalSpan = 2;
 		validator.setLayoutData(gridData);
-
 
 		Section graphSection = toolkit.createSection(parent, Section.TWISTIE| Section.TITLE_BAR);
 		graphSection.setExpanded(true);
@@ -556,17 +570,24 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 	}
 
 	protected void changePredicateValidator(String data) {
-		if(data.equals(dPredicate.getPredicate().getValidator().getValidator()))
-			return;
+		String old = dPredicate.getPredicate().getValidator().getValidator();
+		if(data.equals(old)) return;
 		dPredicate.getPredicate().getValidator().setValidator(data);
 		master.getMultiEditor().setDirty(true);
 	}
 
 	protected void changePredicateValidator(ValidatorType validatorType) {
-		if(validatorType == dPredicate.getPredicate().getValidator().getType())
-			return;
-		dPredicate.getPredicate().getValidator().setType(validatorType);
+		SemanticValidator validator = dPredicate.getPredicate().getValidator();
+		ValidatorType newType = validator.getType();
+		if(validatorType == newType) return;
+		if(!MessageDialog.openConfirm(validatorCombo.getControl().getShell(), 
+				"Validator Change Confirmation", 
+				"Are you changing the validator from " + validatorType.toString() + " to " + newType.toString())) return;
+		validator.setType(validatorType);
+		if(validatorType == ValidatorType.JAVA) validator.setValidator(no.hib.dpf.utils.DPFConstants.DefaultChecker);
+		else validator.setValidator("");
 		master.getMultiEditor().setDirty(true);
+		refresh();
 	}
 
 	protected void changePredicateIcon(String fileName) {

@@ -40,7 +40,15 @@ public enum ValidatorType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	JAVA(1, "JAVA", "JAVA");
+	JAVA(1, "JAVA", "JAVA"), /**
+	 * The '<em><b>ALLOY</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #ALLOY_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	ALLOY(2, "ALLOY", "ALLOY");
 
 	/**
 	 * The '<em><b>OCL</b></em>' literal value.
@@ -73,6 +81,21 @@ public enum ValidatorType implements Enumerator {
 	public static final int JAVA_VALUE = 1;
 
 	/**
+	 * The '<em><b>ALLOY</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>ALLOY</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #ALLOY
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int ALLOY_VALUE = 2;
+
+	/**
 	 * An array of all the '<em><b>Validator Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -82,6 +105,7 @@ public enum ValidatorType implements Enumerator {
 		new ValidatorType[] {
 			OCL,
 			JAVA,
+			ALLOY,
 		};
 
 	/**
@@ -134,6 +158,7 @@ public enum ValidatorType implements Enumerator {
 		switch (value) {
 			case OCL_VALUE: return OCL;
 			case JAVA_VALUE: return JAVA;
+			case ALLOY_VALUE: return ALLOY;
 		}
 		return null;
 	}

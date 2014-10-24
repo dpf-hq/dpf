@@ -161,7 +161,7 @@ public interface Predicate extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model
+	 * @model nodesMany="true" arrowsMany="true"
 	 * @generated
 	 */
 	boolean validateSemantics(String parameters, GraphHomomorphism mapping, EList<Node> nodes, EList<Arrow> arrows);

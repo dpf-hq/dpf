@@ -1,7 +1,10 @@
-package no.hib.dpf.editor.actions;
+package no.hib.dpf.editor.commands;
 
 import no.hib.dpf.editor.DPFEditor;
 
+import org.eclipse.core.commands.AbstractHandler;
+import org.eclipse.core.commands.ExecutionEvent;
+import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.draw2d.IFigure;
@@ -11,27 +14,24 @@ import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.LayerConstants;
 import org.eclipse.gef.RootEditPart;
 import org.eclipse.gef.editparts.LayerManager;
-import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.swt.graphics.ImageLoader;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.ui.IEditorActionDelegate;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IFileEditorInput;
+import org.eclipse.ui.handlers.HandlerUtil;
 
-public class ExportImageAction implements IEditorActionDelegate {
-
-	DPFEditor editor = null;
+public class ExportImageHandler extends AbstractHandler {
 
 	@Override
-	public void run(IAction action) {
-		if(editor != null){
+	public Object execute(ExecutionEvent event) throws ExecutionException {
+		IEditorPart editor = HandlerUtil.getActiveEditor(event);
+		if(editor instanceof DPFEditor){
 			final GraphicalViewer graphicalViewer = (GraphicalViewer) editor.getAdapter(GraphicalViewer.class); // get it from your editor
-			if(graphicalViewer == null) return;
+			if(graphicalViewer == null) return null;
 
 			final String saveLocation = ((IFileEditorInput)editor.getEditorInput()).getFile().getLocation().toOSString() + ".jpeg"; // get it thru a FileDialog 
 			RootEditPart rootEditPart = graphicalViewer.getRootEditPart();
@@ -52,32 +52,14 @@ public class ExportImageAction implements IEditorActionDelegate {
 					}
 				}
 			}
-
 		}
+		return null;
 	}
-
+	
 	private void saveImage(Image image, String location, int type){
 		ImageLoader imgLoader = new ImageLoader(); 
 		imgLoader.data = new ImageData[] { image.getImageData() }; 
 		imgLoader.save(location, type);
-	}
-	
-	@Override
-	public void selectionChanged(IAction action, ISelection selection) {
-
-	}
-
-	@Override
-	public void setActiveEditor(IAction action, IEditorPart targetEditor) {
-		if(targetEditor == editor)
-			return;
-		if(targetEditor instanceof DPFEditor){
-			editor = (DPFEditor) targetEditor;
-			action.setEnabled(true);
-		}else{
-			editor = null;
-			action.setEnabled(false);
-		}
 	}
 
 }

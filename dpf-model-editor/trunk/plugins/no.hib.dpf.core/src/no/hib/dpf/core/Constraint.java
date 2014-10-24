@@ -189,7 +189,7 @@ public interface Constraint extends IDObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model
+	 * @model nodesMany="true" arrowsMany="true"
 	 * @generated
 	 */
 	boolean validate(EList<Node> nodes, EList<Arrow> arrows);

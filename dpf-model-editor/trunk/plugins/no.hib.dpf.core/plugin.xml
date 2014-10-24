@@ -14,7 +14,7 @@
       <package
             uri="http://no.hib.dpf.core"
             class="no.hib.dpf.core.CorePackage"
-            genModel="model/Dpf.genmodel"/>
+            genModel="model/"/>
    </extension>
 
 </plugin>

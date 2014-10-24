@@ -977,7 +977,7 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 		op = addEOperation(predicateEClass, this.getConstraint(), "createConstraint", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getNode(), "nodes", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getArrow(), "arrows", 0, -1, IS_UNIQUE, IS_ORDERED);
-        
+
 		op = addEOperation(predicateEClass, ecorePackage.getEBoolean(), "canCreateConstraint", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getNode(), "nodes", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getArrow(), "arrows", 0, -1, IS_UNIQUE, IS_ORDERED);
@@ -986,7 +986,8 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 		op = addEOperation(predicateEClass, ecorePackage.getEBoolean(), "validateSemantics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "parameters", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getGraphHomomorphism(), "mapping", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getGraph(), "graph", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getNode(), "nodes", 0, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getArrow(), "arrows", 0, -1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(semanticValidatorEClass, SemanticValidator.class, "SemanticValidator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSemanticValidator_Type(), this.getValidatorType(), "type", null, 0, 1, SemanticValidator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1020,7 +1021,8 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 		addEParameter(op, this.getNode(), "node", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = addEOperation(constraintEClass, ecorePackage.getEBoolean(), "validate", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getGraph(), "graph", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getNode(), "nodes", 0, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getArrow(), "arrows", 0, -1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(graphHomomorphismEClass, GraphHomomorphism.class, "GraphHomomorphism", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getGraphHomomorphism_NodeMapping(), this.getNodeToNodeMap(), null, "nodeMapping", null, 0, -1, GraphHomomorphism.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1041,6 +1043,7 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 		initEEnum(validatorTypeEEnum, ValidatorType.class, "ValidatorType");
 		addEEnumLiteral(validatorTypeEEnum, ValidatorType.OCL);
 		addEEnumLiteral(validatorTypeEEnum, ValidatorType.JAVA);
+		addEEnumLiteral(validatorTypeEEnum, ValidatorType.ALLOY);
 
 		// Initialize data types
 		initEDataType(eResourceSetEDataType, ResourceSet.class, "EResourceSet", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);

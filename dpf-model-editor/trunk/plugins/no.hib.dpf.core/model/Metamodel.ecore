@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="core"
-    nsURI="http://no.hib.dpf.core" nsPrefix="core">
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="core" nsURI="http://no.hib.dpf.core" nsPrefix="core">
   <eClassifiers xsi:type="ecore:EClass" name="Specification">
     <eOperations name="createGraph" eType="#//Graph">
       <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -165,7 +163,8 @@
     <eOperations name="validateSemantics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eParameters name="parameters" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eParameters name="mapping" eType="#//GraphHomomorphism"/>
-      <eParameters name="graph" eType="#//Graph"/>
+      <eParameters name="nodes" upperBound="-1" eType="#//Node"/>
+      <eParameters name="arrows" upperBound="-1" eType="#//Arrow"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="symbol" unique="false"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -201,7 +200,8 @@
       <eParameters name="node" eType="#//Node"/>
     </eOperations>
     <eOperations name="validate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-      <eParameters name="graph" eType="#//Graph"/>
+      <eParameters name="nodes" upperBound="-1" eType="#//Node"/>
+      <eParameters name="arrows" upperBound="-1" eType="#//Arrow"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" upperBound="-1"
         eType="#//Node" eOpposite="#//Node/constraints"/>
@@ -235,5 +235,6 @@
   <eClassifiers xsi:type="ecore:EEnum" name="ValidatorType">
     <eLiterals name="OCL"/>
     <eLiterals name="JAVA" value="1"/>
+    <eLiterals name="ALLOY" value="2" literal="ALLOY"/>
   </eClassifiers>
 </ecore:EPackage>

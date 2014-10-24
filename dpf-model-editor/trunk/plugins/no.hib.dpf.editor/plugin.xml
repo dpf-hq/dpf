@@ -10,7 +10,7 @@
               default="true"
               class="no.hib.dpf.editor.DPFEditor"
               contributorClass="no.hib.dpf.editor.DPFEditorActionBarContributor"
-              id="GEF DPF Editor">
+              id="no.hib.dpf.editor.model_editor">
       </editor>
       <editor
             class="no.hib.dpf.editor.DPFEditor2"
@@ -18,7 +18,7 @@
             default="false"
             extensions="xmi"
             icon="icons/shapes.gif"
-            id="GEF DPF Editor 2"
+            id="no.hib.dpf.editor.model_editor2"
             name="DPF Specification Editor 2">
       </editor>
    </extension>
@@ -145,19 +145,6 @@
       </ArrowConfigure>
    </extension>
    <extension
-         point="org.eclipse.ui.popupMenus">
-      <viewerContribution
-            id="no.hib.dpf.editor.viewerContribution1"
-            targetID="GEF DPF Editor">
-         <action
-               class="no.hib.dpf.editor.actions.ExportImageAction"
-               id="no.hib.dpf.editor.action1"
-               label="Export"
-               menubarPath="additions">
-         </action>
-      </viewerContribution>
-   </extension>
-   <extension
          id="nature.dpfprojectnature"
          name="DPF Editor Nature"
          point="org.eclipse.core.resources.natures">
@@ -193,5 +180,36 @@
             name="constraint">
       </attribute>
       </extension>
-      
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <!-- @generated Metamodel -->
+      <factory
+            uri="http://no.hib.dpf.core"
+            class="no.hib.dpf.core.provider.CoreItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="no.hib.dpf.editor.commands.ExportImageHandler"
+            id="no.hib.dpf.editor.exportimage"
+            name="Export Image">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:no.hib.dpf.editor.model_editor?after=additions">
+         <command
+               commandId="no.hib.dpf.editor.exportimage"
+               label="Export Image"
+               style="push">
+         </command>
+      </menuContribution>
+   </extension>
 </plugin>
