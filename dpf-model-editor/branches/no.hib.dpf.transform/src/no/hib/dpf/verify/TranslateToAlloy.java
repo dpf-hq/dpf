@@ -4,11 +4,14 @@ import java.io.FileWriter;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
@@ -32,7 +35,7 @@ public class TranslateToAlloy {
 
 	static public  final String LINE = System.lineSeparator();
 	static public  final String NP = "N";
-	static public  final String AP = "A";
+	static public  final String AP = "E";
 	static public  final String SIG = "sig ";
 
 	private String nodes = null;
@@ -42,12 +45,12 @@ public class TranslateToAlloy {
 	private List<Production> rules = null;
 	private DSpecification dType = null;
 
-	static private String COMMONARROW = "(trans.source.arrows-trans.darrows)";
-	static private String COMMONNODE = "(trans.source.nodes-trans.dnodes)";
-	static private String DELETEARROW = "trans.darrows";
-	static private String DELETENODE = "trans.dnodes";
-	static private String ADDARROW = "trans.aarrows";
-	static private String ADDNODE = "trans.anodes";
+	static private String COMEDGE = "(t.sm.es-t.des)";
+	static private String COMNODE = "(t.sm.ns-t.dns)";
+	static private String DELEDGE = "t.des";
+	static private String DELNODE = "t.dns";
+	static private String ADDEDGE = "t.aes";
+	static private String ADDNODE = "t.ans";
 
 	public  String nodeSig(Node node){ return NP + node.getName(); }
 	public  String edgeSig(Arrow node){ return AP + node.getName(); }
@@ -100,59 +103,42 @@ public class TranslateToAlloy {
 	}
 	//The graph signature
 	public  void graphSig(){
-		buffer.append(SIG + "Graph{nodes:set ");
+		buffer.append(SIG + "Graph{ns:set ");
 		buffer.append(nodeUniv());
-		buffer.append(", arrows:set ");
+		buffer.append(", es:set ");
 		buffer.append(edgeUniv());
 		buffer.append("}" + LINE + LINE);
 	}
 	//The transformation signature
 	public  void tranSig(){
-		buffer.append(SIG + "Trans{rule:one Rule, source,target:one Graph, dnodes, anodes:set ");
-		buffer.append(nodeUniv());
-		buffer.append(", darrows, aarrows:set ");
-		buffer.append(edgeUniv());
-//		buffer.append(", anodes:set ");
-//		buffer.append(nodeUniv());
-//		buffer.append(", aarrows:set ");
-//		buffer.append(edgeUniv());
-		buffer.append("}" + LINE + LINE);
-	}
-	//No dangle edges after a transformation
-	public void pre_no_dangle_arrow(){
-		buffer.append("//No dangle edges after a transformation" + LINE);
-		buffer.append("pred no_dangle_arrow[trans:Trans]{" + LINE);
-		for (Arrow arrow : dGraph.getGraph().getArrows()){
-			buffer.append("\tall arrow : " + edgeSig(arrow) + "|(arrow.src in trans.dnodes or arrow.trg in trans.dnodes) implies arrow in trans.darrows" + LINE);
-			buffer.append("\tall arrow : " + edgeSig(arrow) + "|(arrow.src in trans.anodes or arrow.trg in trans.anodes) implies arrow in trans.aarrows" + LINE);
-		}
-		buffer.append("}" + LINE + LINE);
+		buffer.append(SIG + "Trans{rule:one Rule, sm,tm:one Graph, dns, ans:set ");
+		buffer.append(nodeUniv() + ", des, aes:set " + edgeUniv() + "}" + LINE + LINE);
 	}
 
 	//In a graph, the source and target node of each contained edge should be also contained by the graph  
-	public void pre_to_be_Graph(){
+	public void isGraph(){
 		buffer.append("//In a graph, the source and target node of each contained edge should be also contained by the graph" + LINE);
-		buffer.append("pred to_be_graph[graph:Graph]{" + LINE);
+		buffer.append("pred isGraph[g:Graph]{" + LINE);
 		for (Arrow arrow : dGraph.getGraph().getArrows())
-			buffer.append("\tall arrow : " + edgeSig(arrow) + "&graph.arrows|(arrow.src in graph.nodes and arrow.trg in graph.nodes)" + LINE);
+			buffer.append("\tall e:" + edgeSig(arrow) + "&g.es|(e.src in g.ns and e.trg in g.ns)" + LINE);
 		buffer.append("}" + LINE + LINE);
 	}
 	//The general constraints of a transformation
 	public void pre_trans_general(){
 		buffer.append("//The general constraints of a transformation" + LINE);
-		buffer.append("pred trans_general[trans:Trans]{" + LINE);
-		buffer.append("\tsome trans.dnodes or some trans.darrows or some trans.anodes or some trans.aarrows" + LINE);
-		buffer.append("\ttrans.dnodes in trans.source.nodes" + LINE);
-		buffer.append("\ttrans.darrows in trans.source.arrows" + LINE);
-		buffer.append("\ttrans.anodes in trans.target.nodes" + LINE);
-		buffer.append("\ttrans.aarrows in trans.target.arrows" + LINE);
-		buffer.append("\tno (trans.dnodes & trans.anodes)" + LINE);
-		buffer.append("\tno (trans.darrows & trans.aarrows)" + LINE);
-		buffer.append("\ttrans.source.nodes-trans.dnodes=trans.target.nodes-trans.anodes" + LINE);
-		buffer.append("\ttrans.source.arrows-trans.darrows=trans.target.arrows-trans.aarrows" + LINE);
+		buffer.append("pred trans_general[t:Trans]{" + LINE);
+		buffer.append("\tsome t.dns or some t.des or some t.ans or some t.aes" + LINE);
+		buffer.append("\tt.dns in t.sm.ns" + LINE);
+		buffer.append("\tt.des in t.sm.es" + LINE);
+		buffer.append("\tt.ans in t.tm.ns" + LINE);
+		buffer.append("\tt.aes in t.tm.es" + LINE);
+		buffer.append("\tno (t.dns & t.ans)" + LINE);
+		buffer.append("\tno (t.des & t.aes)" + LINE);
+		buffer.append("\tt.sm.ns-t.dns=t.tm.ns-t.ans" + LINE);
+		buffer.append("\tt.sm.es-t.des=t.tm.es-t.aes" + LINE);
 		buffer.append("}" + LINE);
 	}
-	private String sourceNodes = "&trans.source.nodes", sourceArrows = "&trans.source.arrows";
+	private String GRAPH_NODES = "&g.ns", GRAPH_EDGES = "&g.es";
 
 	/**
 	 * Each source model satisfies all the constraints on the metamodel. In this way, every source model is valid.<br>
@@ -161,7 +147,7 @@ public class TranslateToAlloy {
 	 */
 	public void pre_source_valid(){
 		if(rules != null)
-			buffer.append("pred source_valid[trans:Trans]{" + LINE);
+			buffer.append("pred valid[g:Graph]{" + LINE);
 		else
 			buffer.append("fact graph_valid{" + LINE);
 
@@ -174,28 +160,28 @@ public class TranslateToAlloy {
 				}
 			}
 			if(!isMult)
-				buffer.append(translateArrowMultiplicity(arrow, sourceNodes, sourceArrows));
+				buffer.append(translateArrowMultiplicity(arrow, GRAPH_NODES, GRAPH_EDGES));
 		}
 		for(Constraint constraint : dType.getSpecification().getConstraints()){
 			Predicate predicate  = constraint.getPredicate();
 			if(predicate == DPFConstants.INJECTIVE)
-				buffer.append(translateInjective(constraint, sourceNodes, sourceArrows));
+				buffer.append(translateInjective(constraint, GRAPH_NODES, GRAPH_EDGES));
 			else if(predicate == DPFConstants.SURJECTIVE)
-				buffer.append(translateSurjective(constraint, sourceNodes, sourceArrows));
+				buffer.append(translateSurjective(constraint, GRAPH_NODES, GRAPH_EDGES));
 			else if(predicate == DPFConstants.ARROW_MULTI)
-				buffer.append(translateArrowMultiplicity(constraint, sourceNodes, sourceArrows));
+				buffer.append(translateArrowMultiplicity(constraint, GRAPH_NODES, GRAPH_EDGES));
 			else if(predicate == DPFConstants.NODE_MULTI)
-				buffer.append(translateNodeMultiplicity(constraint, sourceNodes, sourceArrows));
+				buffer.append(translateNodeMultiplicity(constraint, GRAPH_NODES, GRAPH_EDGES));
 			else if(predicate == DPFConstants.XOR)
-				buffer.append(translateXOR(constraint, sourceNodes, sourceArrows));
+				buffer.append(translateXOR(constraint, GRAPH_NODES, GRAPH_EDGES));
 			else if(predicate == DPFConstants.XOR4)
-				buffer.append(translateXOR4(constraint, sourceNodes, sourceArrows));
+				buffer.append(translateXOR4(constraint, GRAPH_NODES, GRAPH_EDGES));
 			else if(predicate == DPFConstants.MERGE_NAND)
-				buffer.append(translateMergeNAND(constraint, sourceNodes, sourceArrows));
+				buffer.append(translateMergeNAND(constraint, GRAPH_NODES, GRAPH_EDGES));
 			else if(predicate == DPFConstants.SPLIT_NAND)
-				buffer.append(translateSplitNAND(constraint, sourceNodes, sourceArrows));
+				buffer.append(translateSplitNAND(constraint, GRAPH_NODES, GRAPH_EDGES));
 			else if(predicate == DPFConstants.REFLEXIVE)
-				buffer.append(translateReflexive(constraint, sourceNodes, sourceArrows));
+				buffer.append(translateReflexive(constraint, GRAPH_NODES, GRAPH_EDGES));
 		}
 		buffer.append("}" + LINE);
 	}
@@ -296,7 +282,9 @@ public class TranslateToAlloy {
 	 */
 	private void getConnectedSubgraphs(List<DNode> nodes, List<DArrow> arrows, List<Object> subgraphs){
 		List<DNode> unvisited = new ArrayList<DNode>();
+		List<DArrow> unvisitedEdge = new ArrayList<DArrow>();
 		unvisited.addAll(nodes);
+		unvisitedEdge.addAll(arrows);
 		while(!unvisited.isEmpty()){
 			DNode visit = unvisited.get(0);
 			List<DNode> related = new ArrayList<DNode>();
@@ -313,22 +301,33 @@ public class TranslateToAlloy {
 				for(DArrow arrow : cur.getDIncomings()){
 					if(!arrows.contains(arrow))
 						continue;
-					if(!suba.contains(arrow))
+					if(!suba.contains(arrow)){
 						suba.add(arrow);
+						unvisitedEdge.remove(arrow);
+					}
 					DNode source = arrow.getDSource();
-					if(!related.contains(source) && !subn.contains(source))
+					if(!related.contains(source) && !subn.contains(source) && nodes.contains(source))
 						related.add(source);
 				}
 				for(DArrow arrow : cur.getDOutgoings()){
 					if(!arrows.contains(arrow))
 						continue;
-					if(!suba.contains(arrow))
+					if(!suba.contains(arrow)){
 						suba.add(arrow);
+						unvisitedEdge.remove(arrow);
+					}
 					DNode target = arrow.getDTarget();
-					if(!related.contains(target) && !subn.contains(target))
+					if(!related.contains(target) && !subn.contains(target) && nodes.contains(target))
 						related.add(target);
 				}					
 			}while(!related.isEmpty());
+			subgraphs.add(subn);
+			subgraphs.add(suba);
+		}
+		for(DArrow arrow : unvisitedEdge){
+			List<DNode> subn = new ArrayList<DNode>();
+			List<DArrow> suba = new ArrayList<DArrow>();
+			suba.add(arrow);
 			subgraphs.add(subn);
 			subgraphs.add(suba);
 		}
@@ -337,58 +336,58 @@ public class TranslateToAlloy {
 	/*
 	 * encoding the match of left or right side(indicated by delete) of a rule  
 	 */
-	@SuppressWarnings("unchecked")
-	public  void hasOneMatch(List<DNode> nodes, List<DArrow> arrows, List<DNode> commonNodes, List<DArrow> commonArrows, boolean delete){
-		List<Object> relatedSet = new ArrayList<Object>();
-		getConnectedSubgraphs(nodes, arrows, relatedSet);
-		for(int index = 0; index < relatedSet.size(); index += 2){
-			List<DNode> subn = (List<DNode>) relatedSet.get(index);
-			List<DArrow> suba = (List<DArrow>) relatedSet.get(index + 1);
-			List<DNode>  subcn = new ArrayList<DNode>();
-			List<DArrow>  subca = new ArrayList<DArrow>();
-			for(DNode node : subn)
-				if(commonNodes.contains(node))
-					subcn.add(node);
-			for(DArrow arrow : suba)
-				if(commonArrows.contains(arrow))
-					subca.add(arrow);
-			translateRelatedMatch(suba, subn, subcn, subca, delete);
-		}
-		buffer.append(LINE);
-	}
+//	@SuppressWarnings("unchecked")
+//	private  void hasOneMatch(List<DNode> nodes, List<DArrow> arrows, List<DNode> commonNodes, List<DArrow> commonArrows, boolean delete){
+//		List<Object> relatedSet = new ArrayList<Object>();
+//		getConnectedSubgraphs(nodes, arrows, relatedSet);
+//		for(int index = 0; index < relatedSet.size(); index += 2){
+//			List<DNode> subn = (List<DNode>) relatedSet.get(index);
+//			List<DArrow> suba = (List<DArrow>) relatedSet.get(index + 1);
+//			List<DNode>  subcn = new ArrayList<DNode>();
+//			List<DArrow>  subca = new ArrayList<DArrow>();
+//			for(DNode node : subn)
+//				if(commonNodes.contains(node))
+//					subcn.add(node);
+//			for(DArrow arrow : suba)
+//				if(commonArrows.contains(arrow))
+//					subca.add(arrow);
+//			translateRelatedMatch(suba, subn, subcn, subca, delete);
+//		}
+//		buffer.append(LINE);
+//	}
 
-	public void matchDelAndAdd(List<DNode> leftnodes, List<DArrow> leftarrows, List<DNode> commonNodes, List<DArrow> commonArrows, List<DNode> rightnodes, List<DArrow> rightarrows){
-		for(DNode iter : commonNodes){
-			List<DArrow> left = new ArrayList<DArrow>(), right = new ArrayList<DArrow>();
-			for(DArrow arrow : iter.getDIncomings()){
-				if(leftarrows.contains(arrow) && !commonArrows.contains(arrow))
-					left.add(arrow);
-				else if(rightarrows.contains(arrow) && !commonArrows.contains(arrow))
-					right.add(arrow);
-			}
-			for(DArrow arrow : iter.getDOutgoings()){
-				if(!left.contains(arrow) && leftarrows.contains(arrow) && !commonArrows.contains(arrow))
-					left.add(arrow);
-				else if(!right.contains(arrow) && rightarrows.contains(arrow) && !commonArrows.contains(arrow))
-					right.add(arrow);
-			}
-			if(!left.isEmpty() && !right.isEmpty()){
-				String the = iter.getName();
-				buffer.append("\tsome " + the  + ":" + nodeSig(iter.getNode().getTypeNode()) + "&" + COMMONNODE + "|");
-				DArrow first = left.get(0);
-				buffer.append("(some " + first.getName()  + ":" + edgeSig(first.getArrow().getTypeArrow()) + "&" + DELETEARROW + "|" + first.getName() + (first.getDSource() == iter ? ".src" : ".trg") + "=" + the + ")");
-				for (int i = 1; i < left.size(); i++) {
-					DArrow other = left.get(i);
-					buffer.append(" and (some " + other.getName()  + ":" + edgeSig(other.getArrow().getTypeArrow()) + "&" + DELETEARROW + "|" + other.getName() + (other.getDSource() == iter ? ".src" : ".trg") + "=" + the + ")");
-				}
-				for (int i = 0; i < right.size(); i++) {
-					DArrow other = right.get(i);
-					buffer.append(" and (some " + other.getName()  + ":" + edgeSig(other.getArrow().getTypeArrow()) + "&" + ADDARROW + "|" + other.getName() + (other.getDSource() == iter ? ".src" : ".trg") + "=" + the + ")");
-				}
-				buffer.append(LINE);
-			}
-		}
-	}
+//	private void matchDelAndAdd(List<DNode> leftnodes, List<DArrow> leftarrows, List<DNode> commonNodes, List<DArrow> commonArrows, List<DNode> rightnodes, List<DArrow> rightarrows){
+//		for(DNode iter : commonNodes){
+//			List<DArrow> left = new ArrayList<DArrow>(), right = new ArrayList<DArrow>();
+//			for(DArrow arrow : iter.getDIncomings()){
+//				if(leftarrows.contains(arrow) && !commonArrows.contains(arrow))
+//					left.add(arrow);
+//				else if(rightarrows.contains(arrow) && !commonArrows.contains(arrow))
+//					right.add(arrow);
+//			}
+//			for(DArrow arrow : iter.getDOutgoings()){
+//				if(!left.contains(arrow) && leftarrows.contains(arrow) && !commonArrows.contains(arrow))
+//					left.add(arrow);
+//				else if(!right.contains(arrow) && rightarrows.contains(arrow) && !commonArrows.contains(arrow))
+//					right.add(arrow);
+//			}
+//			if(!left.isEmpty() && !right.isEmpty()){
+//				String the = iter.getName();
+//				buffer.append("\tsome " + the  + ":" + nodeSig(iter.getNode().getTypeNode()) + "&" + COMNODE + "|");
+//				DArrow first = left.get(0);
+//				buffer.append("(some " + first.getName()  + ":" + edgeSig(first.getArrow().getTypeArrow()) + "&" + DELEDGE + "|" + first.getName() + (first.getDSource() == iter ? ".src" : ".trg") + "=" + the + ")");
+//				for (int i = 1; i < left.size(); i++) {
+//					DArrow other = left.get(i);
+//					buffer.append(" and (some " + other.getName()  + ":" + edgeSig(other.getArrow().getTypeArrow()) + "&" + DELEDGE + "|" + other.getName() + (other.getDSource() == iter ? ".src" : ".trg") + "=" + the + ")");
+//				}
+//				for (int i = 0; i < right.size(); i++) {
+//					DArrow other = right.get(i);
+//					buffer.append(" and (some " + other.getName()  + ":" + edgeSig(other.getArrow().getTypeArrow()) + "&" + ADDEDGE + "|" + other.getName() + (other.getDSource() == iter ? ".src" : ".trg") + "=" + the + ")");
+//				}
+//				buffer.append(LINE);
+//			}
+//		}
+//	}
 	/**
 	 * encoding the match of left or right side(indicated by delete) of a rule <br>
 	 * Different from the last method, this one is used in the condition that if an element is changed, it is matched by rule's left or right side
@@ -423,17 +422,31 @@ public class TranslateToAlloy {
 	 * @param rule : The rule
 	 * @param dGraph : The metamodel
 	 */
+	@SuppressWarnings("unchecked")
 	public void pre_rule(Production rule, DGraph dGraph){
 		buffer.append("//the predicate that the transformation is an application of the rule " + rule.getName() + LINE);
-		buffer.append("pred rule_" + rule.getName() + "[trans:Trans]{" + LINE);
-		buffer.append("\tsome trans.rule&" + rule.getName() + LINE + LINE);
+		buffer.append("pred rule_" + rule.getName() + "[t:Trans]{" + LINE);
+		buffer.append("\tsome t.rule&" + rule.getName() + LINE + LINE);
 		//Has one match of left(right) side of the rule
-		hasOneMatch(rule.getLeftNodes(), rule.getLeftArrows(), rule.getCommonNodes(), rule.getCommonArrows(), true);
-		hasOneMatch(rule.getRightNodes(), rule.getRightArrows(), rule.getCommonNodes(), rule.getCommonArrows(), false);
-		matchDelAndAdd(rule.getLeftNodes(), rule.getLeftArrows(), rule.getCommonNodes(), rule.getCommonArrows(), rule.getRightNodes(), rule.getRightArrows());
+		List<Object> relatedSet = new ArrayList<Object>();
+		getConnectedSubgraphs(rule.getSum().getDGraph().getDNodes(), rule.getSum().getDGraph().getDArrows(), relatedSet);
+//		EList<DNode> commonNodes = rule.getCommonNodes();
+//		EList<DArrow> commonArrows = rule.getCommonArrows();
+		for(int index = 0; index < relatedSet.size(); index += 2){
+			List<DNode> subn = (List<DNode>) relatedSet.get(index);
+			List<DArrow> suba = (List<DArrow>) relatedSet.get(index + 1);
+//			List<DNode>  subcn = new ArrayList<DNode>();
+//			List<DArrow>  subca = new ArrayList<DArrow>();
+			translateMatch(intersection(subn, rule.getLeftNodes()), intersection(suba, rule.getLeftArrows()),
+					  intersection(subn, rule.getCommonNodes()), intersection(suba, rule.getCommonArrows()),
+					  intersection(subn, rule.getRightNodes()), intersection(suba, rule.getRightArrows()));
+		}
+//		hasOneMatch(rule.getLeftNodes(), rule.getLeftArrows(), rule.getCommonNodes(), rule.getCommonArrows(), true);
+//		hasOneMatch(rule.getRightNodes(), rule.getRightArrows(), rule.getCommonNodes(), rule.getCommonArrows(), false);
+//		matchDelAndAdd(rule.getLeftNodes(), rule.getLeftArrows(), rule.getCommonNodes(), rule.getCommonArrows(), rule.getRightNodes(), rule.getRightArrows());
 		//		findUnique(rule.getLeftNodes(), rule.getLeftArrows(), rule.getCommonNodes(), rule.getCommonArrows(), rule.getRightNodes(), rule.getRightArrows());
 		//If an element is changed, it must be matched by the left or the right side of the rule
-		buffer.append(LINE);
+//		buffer.append(LINE);
 		nodesChanged(rule.getLeftNodes(), rule.getLeftArrows(), rule.getCommonNodes(), rule.getCommonArrows(), true);
 		nodesChanged(rule.getRightNodes(), rule.getRightArrows(), rule.getCommonNodes(), rule.getCommonArrows(), false);
 		edgesChanged(rule.getLeftNodes(), rule.getLeftArrows(), rule.getCommonNodes(), rule.getCommonArrows(), true);
@@ -445,7 +458,7 @@ public class TranslateToAlloy {
 		buffer.append("}" + LINE + LINE);
 	}
 
-	private <T> List<T> complement(List<T> A, List<T> B){
+	private <T> List<T> complement(Collection<T> A, Collection<T> B){
 		List<T> result = new ArrayList<T>();
 		for(T iter : A){
 			if(!B.contains(iter))
@@ -453,145 +466,153 @@ public class TranslateToAlloy {
 		}
 		return result;
 	}
-	private Map<DNode, List<DNode>> getTypeNodeMap(List<DNode> lists){
-		Map<DNode, List<DNode>> map = new HashMap<DNode, List<DNode>>();
-		for(DNode node : lists){
-			DNode type = node.getDType();
-			List<DNode> list = map.get(type);
-			if(list == null){
-				list = new ArrayList<DNode>();
-				list.add(node);
-				map.put(node, list);
-			}else
-				list.add(node);
+	private <T> List<T> intersection(List<T> A, List<T> B){
+		List<T> result = new ArrayList<T>();
+		for(T iter : A){
+			if(B.contains(iter))
+				result.add(iter);
 		}
-		return map;
+		return result;
 	}
-	private Map<DArrow, List<DArrow>> getTypeArrowMap(List<DArrow> lists){
-		Map<DArrow, List<DArrow>> map = new HashMap<DArrow, List<DArrow>>();
-		for(DArrow arrow : lists){
-			DArrow type = arrow.getDType();
-			List<DArrow> list = map.get(type);
-			if(list == null){
-				list = new ArrayList<DArrow>();
-				list.add(arrow);
-				map.put(arrow, list);
-			}else
-				list.add(arrow);
-		}
-		return map;
-	}
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private void putMap(Map<DNode, List[]> maps, DNode element){
-		List[] graph = new List[2];
-		graph[0] = new ArrayList<DNode>();
-		graph[0].add(element);
-		maps.put(element, graph);
-	}
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private void putMap(Map<DNode, List[]> maps, DNode node, DArrow element){
-		List[] graph = new List[2];
-		graph[0] = new ArrayList<DNode>();
-		graph[0].add(element.getDSource());
-		if(element.getDSource() != element.getDTarget())
-			graph[0].add(element.getDTarget());
-		graph[1] = new ArrayList<DArrow>();
-		graph[1].add(element);
-		maps.put(node, graph);
-	}
-	@SuppressWarnings("rawtypes")
-	private void findUnique(List<DNode> leftnodes, List<DArrow> leftarrows, List<DNode> commonNodes, List<DArrow> commonArrows, List<DNode> rightnodes, List<DArrow> rightarrows){
-		//		Map<DNode, List<?>[]> maps = new HashMap<DNode, List<?>[]>();
-		List<DNode> dNodes = complement(leftnodes, commonNodes), aNodes = complement(rightnodes, commonNodes);
-		List<DArrow> dEdges = complement(leftarrows, commonArrows), aEdges = complement(rightarrows, commonArrows);
-		List<DNode> glues = new ArrayList<DNode>();
-		List<List<DArrow>> deleted = new ArrayList<List<DArrow>>(), added = new ArrayList<List<DArrow>>();
-		for(DNode iter : commonNodes){
-			List<DArrow> related = new ArrayList<DArrow>();
-			for(DArrow left : dEdges)
-				if(left.getDSource() == iter || left.getDTarget() == iter)
-					related.add(left);
-			if(related.isEmpty()) continue;
-			List<DArrow> rightrelated = new ArrayList<DArrow>();
-			for(DArrow right : aEdges)
-				if(right.getDSource() == iter || right.getDTarget() == iter)
-					rightrelated.add(right);
-			if(rightrelated.isEmpty()) continue;
-			glues.add(iter);
-			deleted.add(related);
-			added.add(rightrelated);
-		}
-		if(glues.isEmpty()) return;
-		Map<DNode, List[]> decided = new HashMap<DNode, List[]>();
-		Map<DNode, List<DNode>> nodeMap = getTypeNodeMap(dNodes);
-		for(Entry<DNode, List<DNode>> entry : nodeMap.entrySet()){
-			if(entry.getValue().size() == 1 && decided.containsKey(entry.getValue().get(0))){
-				putMap(decided, entry.getValue().get(0));
-			}
-		}
-		Map<DArrow, List<DArrow>> arrowMaps = getTypeArrowMap(dEdges);
-		for(Entry<DArrow, List<DArrow>> entry : arrowMaps.entrySet()){
-			if(entry.getValue().size() == 1){
-				DArrow cur = entry.getValue().get(0);
-				if(cur.getDSource() == cur.getDTarget() && !decided.containsKey(cur.getDSource()))
-					putMap(decided, cur.getDSource(), cur);
-			}
-		}
-		for(Entry<DArrow, List<DArrow>> entry : arrowMaps.entrySet()){
-			if(entry.getValue().size() == 1){
-				DArrow cur = entry.getValue().get(0);
-				if(cur.getDSource() != cur.getDTarget()){
-					if(!decided.containsKey(cur.getDSource()))
-						putMap(decided, cur.getDSource(), cur);
-					if(!decided.containsKey(cur.getDTarget()))
-						putMap(decided, cur.getDTarget(), cur);
-				}
-			}
-		}
-		Map<DNode, List[]> decidedRight = new HashMap<DNode, List[]>();
-		Map<DNode, List<DNode>> nodeMapRight = getTypeNodeMap(aNodes);
-		for(Entry<DNode, List<DNode>> entry : nodeMapRight.entrySet()){
-			if(entry.getValue().size() == 1 && !decidedRight.containsKey(entry.getValue().get(0))){
-				putMap(decidedRight, entry.getValue().get(0));
-			}
-		}
-		Map<DArrow, List<DArrow>> arrowMapsRight = getTypeArrowMap(aEdges);
-		for(Entry<DArrow, List<DArrow>> entry : arrowMapsRight.entrySet()){
-			if(entry.getValue().size() == 1){
-				DArrow cur = entry.getValue().get(0);
-				if(cur.getDSource() == cur.getDTarget() && !decidedRight.containsKey(cur.getDSource()))
-					putMap(decidedRight, cur.getDSource(), cur);
-			}
-		}
-		for(Entry<DArrow, List<DArrow>> entry : arrowMapsRight.entrySet()){
-			if(entry.getValue().size() == 1){
-				DArrow cur = entry.getValue().get(0);
-				if(cur.getDSource() != cur.getDTarget()){
-					if(!decidedRight.containsKey(cur.getDSource()))
-						putMap(decidedRight, cur.getDSource(), cur);
-					if(!decidedRight.containsKey(cur.getDTarget()))
-						putMap(decidedRight, cur.getDTarget(), cur);
-				}
-			}
-		}
-		for (int i = 0; i < glues.size(); i++) {
-			DNode node = glues.get(i);
-			if(decided.containsKey(node) && decidedRight.containsKey(node)){
-				List[] leftGraph = decided.get(node);
-				List[] rightGraph = decidedRight.get(node);
-				DArrow left = (DArrow) leftGraph[1].get(0);
-				DArrow right = (DArrow) rightGraph[1].get(0);
-				buffer.append("some left:" + edgeSig(left.getArrow().getTypeArrow()) + "&" + DELETEARROW  + ",");
-				buffer.append("right:" + edgeSig(right.getArrow().getTypeArrow()) + "&" + ADDARROW  + "|left.");
-				buffer.append(left.getDSource() == node ? "src" : "trg");
-				buffer.append("=right.");
-				buffer.append((right.getDSource() == node ? "src" : "trg") + LINE);
-			}else{
-				buffer.append("//need mauelly setting the glue nodes right now" + LINE);
-			}
-		}
-		buffer.append(LINE);
-	}
+//	private Map<DNode, List<DNode>> getTypeNodeMap(List<DNode> lists){
+//		Map<DNode, List<DNode>> map = new HashMap<DNode, List<DNode>>();
+//		for(DNode node : lists){
+//			DNode type = node.getDType();
+//			List<DNode> list = map.get(type);
+//			if(list == null){
+//				list = new ArrayList<DNode>();
+//				list.add(node);
+//				map.put(node, list);
+//			}else
+//				list.add(node);
+//		}
+//		return map;
+//	}
+//	private Map<DArrow, List<DArrow>> getTypeArrowMap(List<DArrow> lists){
+//		Map<DArrow, List<DArrow>> map = new HashMap<DArrow, List<DArrow>>();
+//		for(DArrow arrow : lists){
+//			DArrow type = arrow.getDType();
+//			List<DArrow> list = map.get(type);
+//			if(list == null){
+//				list = new ArrayList<DArrow>();
+//				list.add(arrow);
+//				map.put(arrow, list);
+//			}else
+//				list.add(arrow);
+//		}
+//		return map;
+//	}
+//	@SuppressWarnings({ "rawtypes", "unchecked" })
+//	private void putMap(Map<DNode, List[]> maps, DNode element){
+//		List[] graph = new List[2];
+//		graph[0] = new ArrayList<DNode>();
+//		graph[0].add(element);
+//		maps.put(element, graph);
+//	}
+//	@SuppressWarnings({ "unchecked", "rawtypes" })
+//	private void putMap(Map<DNode, List[]> maps, DNode node, DArrow element){
+//		List[] graph = new List[2];
+//		graph[0] = new ArrayList<DNode>();
+//		graph[0].add(element.getDSource());
+//		if(element.getDSource() != element.getDTarget())
+//			graph[0].add(element.getDTarget());
+//		graph[1] = new ArrayList<DArrow>();
+//		graph[1].add(element);
+//		maps.put(node, graph);
+//	}
+//	@SuppressWarnings("rawtypes")
+//	private void findUnique(List<DNode> leftnodes, List<DArrow> leftarrows, List<DNode> commonNodes, List<DArrow> commonArrows, List<DNode> rightnodes, List<DArrow> rightarrows){
+//		//		Map<DNode, List<?>[]> maps = new HashMap<DNode, List<?>[]>();
+//		List<DNode> dNodes = complement(leftnodes, commonNodes), aNodes = complement(rightnodes, commonNodes);
+//		List<DArrow> dEdges = complement(leftarrows, commonArrows), aEdges = complement(rightarrows, commonArrows);
+//		List<DNode> glues = new ArrayList<DNode>();
+//		List<List<DArrow>> deleted = new ArrayList<List<DArrow>>(), added = new ArrayList<List<DArrow>>();
+//		for(DNode iter : commonNodes){
+//			List<DArrow> related = new ArrayList<DArrow>();
+//			for(DArrow left : dEdges)
+//				if(left.getDSource() == iter || left.getDTarget() == iter)
+//					related.add(left);
+//			if(related.isEmpty()) continue;
+//			List<DArrow> rightrelated = new ArrayList<DArrow>();
+//			for(DArrow right : aEdges)
+//				if(right.getDSource() == iter || right.getDTarget() == iter)
+//					rightrelated.add(right);
+//			if(rightrelated.isEmpty()) continue;
+//			glues.add(iter);
+//			deleted.add(related);
+//			added.add(rightrelated);
+//		}
+//		if(glues.isEmpty()) return;
+//		Map<DNode, List[]> decided = new HashMap<DNode, List[]>();
+//		Map<DNode, List<DNode>> nodeMap = getTypeNodeMap(dNodes);
+//		for(Entry<DNode, List<DNode>> entry : nodeMap.entrySet()){
+//			if(entry.getValue().size() == 1 && decided.containsKey(entry.getValue().get(0))){
+//				putMap(decided, entry.getValue().get(0));
+//			}
+//		}
+//		Map<DArrow, List<DArrow>> arrowMaps = getTypeArrowMap(dEdges);
+//		for(Entry<DArrow, List<DArrow>> entry : arrowMaps.entrySet()){
+//			if(entry.getValue().size() == 1){
+//				DArrow cur = entry.getValue().get(0);
+//				if(cur.getDSource() == cur.getDTarget() && !decided.containsKey(cur.getDSource()))
+//					putMap(decided, cur.getDSource(), cur);
+//			}
+//		}
+//		for(Entry<DArrow, List<DArrow>> entry : arrowMaps.entrySet()){
+//			if(entry.getValue().size() == 1){
+//				DArrow cur = entry.getValue().get(0);
+//				if(cur.getDSource() != cur.getDTarget()){
+//					if(!decided.containsKey(cur.getDSource()))
+//						putMap(decided, cur.getDSource(), cur);
+//					if(!decided.containsKey(cur.getDTarget()))
+//						putMap(decided, cur.getDTarget(), cur);
+//				}
+//			}
+//		}
+//		Map<DNode, List[]> decidedRight = new HashMap<DNode, List[]>();
+//		Map<DNode, List<DNode>> nodeMapRight = getTypeNodeMap(aNodes);
+//		for(Entry<DNode, List<DNode>> entry : nodeMapRight.entrySet()){
+//			if(entry.getValue().size() == 1 && !decidedRight.containsKey(entry.getValue().get(0))){
+//				putMap(decidedRight, entry.getValue().get(0));
+//			}
+//		}
+//		Map<DArrow, List<DArrow>> arrowMapsRight = getTypeArrowMap(aEdges);
+//		for(Entry<DArrow, List<DArrow>> entry : arrowMapsRight.entrySet()){
+//			if(entry.getValue().size() == 1){
+//				DArrow cur = entry.getValue().get(0);
+//				if(cur.getDSource() == cur.getDTarget() && !decidedRight.containsKey(cur.getDSource()))
+//					putMap(decidedRight, cur.getDSource(), cur);
+//			}
+//		}
+//		for(Entry<DArrow, List<DArrow>> entry : arrowMapsRight.entrySet()){
+//			if(entry.getValue().size() == 1){
+//				DArrow cur = entry.getValue().get(0);
+//				if(cur.getDSource() != cur.getDTarget()){
+//					if(!decidedRight.containsKey(cur.getDSource()))
+//						putMap(decidedRight, cur.getDSource(), cur);
+//					if(!decidedRight.containsKey(cur.getDTarget()))
+//						putMap(decidedRight, cur.getDTarget(), cur);
+//				}
+//			}
+//		}
+//		for (int i = 0; i < glues.size(); i++) {
+//			DNode node = glues.get(i);
+//			if(decided.containsKey(node) && decidedRight.containsKey(node)){
+//				List[] leftGraph = decided.get(node);
+//				List[] rightGraph = decidedRight.get(node);
+//				DArrow left = (DArrow) leftGraph[1].get(0);
+//				DArrow right = (DArrow) rightGraph[1].get(0);
+//				buffer.append("some left:" + edgeSig(left.getArrow().getTypeArrow()) + "&" + DELETEARROW  + ",");
+//				buffer.append("right:" + edgeSig(right.getArrow().getTypeArrow()) + "&" + ADDARROW  + "|left.");
+//				buffer.append(left.getDSource() == node ? "src" : "trg");
+//				buffer.append("=right.");
+//				buffer.append((right.getDSource() == node ? "src" : "trg") + LINE);
+//			}else{
+//				buffer.append("//need mauelly setting the glue nodes right now" + LINE);
+//			}
+//		}
+//		buffer.append(LINE);
+//	}
 
 
 	/**
@@ -607,15 +628,16 @@ public class TranslateToAlloy {
 	public void fact(List<Production> rules){
 		buffer.append("//general constraints for transformations" + LINE);
 		buffer.append("fact{" + LINE);
-		buffer.append("\t(Trans.source+Trans.target)=Graph" + LINE);
+		buffer.append("\t(Trans.sm+Trans.tm)=Graph" + LINE);
 		buffer.append("\tRule=Trans.rule" + LINE);
-		buffer.append("\tall graph:Graph|to_be_graph[graph]" + LINE);
-		buffer.append("\tGraph.nodes=" + nodeUniv() + LINE);
-		buffer.append("\tGraph.arrows=" + edgeUniv() + LINE);
-		buffer.append("\tall trans:Trans | no_dangle_arrow[trans] and trans_general[trans] and source_valid[trans] and (" + LINE + "\t");
+		buffer.append("\tall graph:Graph|isGraph[graph]" + LINE);
+		buffer.append("\tno disjoint g1, g2:Graph|g1.ns=g2.ns and g1.es=g2.es" + LINE);
+		buffer.append("\tGraph.ns=" + nodeUniv() + LINE);
+		buffer.append("\tGraph.es=" + edgeUniv() + LINE);
+		buffer.append("\tall t:Trans | trans_general[t] and valid[t.sm] and (" + LINE + "\t");
 		for (Iterator<Production> iterator = rules.iterator(); iterator.hasNext();) {
 			Production rule = (Production) iterator.next();
-			buffer.append("rule_" + rule.getName() + "[trans]");
+			buffer.append("rule_" + rule.getName() + "[t]");
 			if(iterator.hasNext())
 				buffer.append(" or ");
 		}
@@ -775,13 +797,311 @@ public class TranslateToAlloy {
 		return buffer.toString();
 	}
 
-	public  void translateRelatedMatch(DArrow cur, List<DArrow> visited, List<DNode> visitedNode, List<DArrow> arrows, List<DNode> nodes, List<DNode> commonNodes, List<DArrow> commonArrows, boolean delete) {
-		boolean kept = commonArrows.contains(cur), srcKept = commonNodes.contains(cur.getDSource()), trgKept = commonNodes.contains(cur.getDTarget());
+	@SuppressWarnings("unchecked")
+	private <T> Map<T, List<T>> getTypeHash(List<T> lists){
+		Map<T, List<T>> map = new HashMap<T, List<T>>();
+		for(T iter : lists){
+			T type = iter instanceof DNode ? (T) ((DNode)iter).getDType() : (T) ((DArrow)iter).getDType(); 
+			if(map.containsKey(type)){
+				map.get(type).add(iter);
+			}else{
+				List<T> cur = new ArrayList<T>();
+				cur.add(iter);
+				map.put(type, cur);
+			}
+		}
+		return map;
+	}
+	private <T> List<List<T>> elementsOfSameType(List<T> lists){
+		List<List<T>> result = new ArrayList<List<T>>();
+		for(List<T> iter : getTypeHash(lists).values()){
+			if(iter.size() > 1)
+				result.add(iter);
+		}
+		return result;
+	}
+	private void changeNodesAreDifferent(List<DNode> list){
+		for (int i = 0; i < list.size(); i++) {
+			for (int j = i + 1; j < list.size(); j++) {
+				buffer.append(" and " + list.get(i).getName() + "!=" + list.get(i).getName());
+			}
+		}
+	}
+	private void changeEdgesAreDifferent(List<DArrow> list){
+		for (int i = 0; i < list.size(); i++) {
+			for (int j = i + 1; j < list.size(); j++) {
+				buffer.append(" and " + list.get(i).getName() + "!=" + list.get(i).getName());
+			}
+		}
+	}
+	
+	private void getUniqueElements(List<DNode> nodes, List<DArrow> edges, List<DNode> uns, List<DArrow> ues){
+		Map<DNode, List<DNode>> nodeHash = getTypeHash(nodes);
+		Map<DArrow, List<DArrow>> edgeHash = getTypeHash(edges);
+		
+		for(List<DNode> iter : nodeHash.values()){
+			if(iter.size() == 1)
+				uns.add(iter.get(0));
+		}
+		for(List<DArrow> iter : edgeHash.values()){
+			if(iter.size() == 1)
+				ues.add(iter.get(0));
+		}
+	}
+	private void translateSubMatch(List<DNode> leftNodes, List<DArrow> leftEdges, 
+			  List<DNode> commonNodes, List<DArrow> commonEdges, 
+			  List<DNode> rightNodes, List<DArrow> rightEdges){
+		Set<DNode> nodes = new HashSet<DNode>();
+		nodes.addAll(leftNodes);
+		nodes.addAll(rightNodes);
+		Set<DArrow> edges = new HashSet<DArrow>();
+		edges.addAll(leftEdges);
+		edges.addAll(rightEdges);
+		List<DArrow> edgeList = new ArrayList<>(edges);
+		Map<DNode, DArrow> hash = new HashMap<DNode, DArrow>();
+		DArrow cur = edgeList.get(0);
+		boolean ke = commonEdges.contains(cur), de = !ke & leftEdges.contains(cur);		
+		buffer.append("\tsome " + alloyTypedVariable(cur, hash) + "&" + (ke ? COMEDGE : (de ? DELEDGE : ADDEDGE)));
+		for (int i = 1; i < edgeList.size(); i++) {
+			cur = edgeList.get(i);
+			ke = commonEdges.contains(cur);
+			de = !ke & leftEdges.contains(cur);
+			buffer.append(", " + alloyTypedVariable(cur, hash) + "&" + (ke ? COMEDGE : (de ? DELEDGE : ADDEDGE)));
+		}
+		buffer.append("|" + LINE + "\tlet ");
+		List<String> strings = new ArrayList<String>();
+		for (Entry<DNode, DArrow> iter: hash.entrySet()) {
+			DNode n = iter.getKey();
+			DArrow a = iter.getValue();
+			strings.add(n.getName() + "=" + a.getName() + "." + (a.getDSource() == n ? "src" : "trg"));
+		}
+		if(!strings.isEmpty())
+		buffer.append(strings.get(0));
+		for (int i = 1; i < strings.size(); i++) {
+			buffer.append(", " + strings.get(i));
+		}
+		buffer.append("|" + LINE + "\t");
+		strings = new ArrayList<String>();
+		for(DArrow arrow : edges){
+			DNode source = arrow.getDSource();
+			DArrow ah = hash.get(source);
+			if(arrow != ah){
+				strings.add(source.getName() + "=" + arrow.getName() + ".src");
+			}
+			DNode target = arrow.getDTarget();
+			ah = hash.get(target);
+			if(source == target || arrow != ah){
+				strings.add(target.getName() + "=" + arrow.getName() + ".trg");
+			}
+		}
+		
+		for (DNode node : hash.keySet()) {
+			boolean kn = commonNodes.contains(node), dn = !kn & leftNodes.contains(node);
+			strings.add(node.getName() + " in " + nodeSig(node.getDType().getNode()) + "&" + (kn ? COMNODE : (dn ? DELNODE : ADDNODE)));
+		}
+		if(!strings.isEmpty())
+			buffer.append(strings.get(0));
+			for (int i = 1; i < strings.size(); i++) {
+				buffer.append(" and " + strings.get(i));
+			}
+		for(List<DNode> iter : elementsOfSameType(complement(leftNodes, commonNodes)))
+			changeNodesAreDifferent(iter);
+		for(List<DNode> iter : elementsOfSameType(complement(rightNodes, commonNodes)))
+			changeNodesAreDifferent(iter);
+		for(List<DArrow> iter : elementsOfSameType(complement(leftEdges, commonEdges)))
+			changeEdgesAreDifferent(iter);
+		for(List<DArrow> iter : elementsOfSameType(complement(rightEdges, commonEdges)))
+			changeEdgesAreDifferent(iter);
+		buffer.append(LINE + LINE);
+	}
+	@SuppressWarnings("unchecked")
+	public void translateMatch(List<DNode> leftNodes, List<DArrow> leftEdges, 
+						  List<DNode> commonNodes, List<DArrow> commonEdges, 
+						  List<DNode> rightNodes, List<DArrow> rightEdges){
+		Set<DNode> nodes = new HashSet<DNode>();
+		nodes.addAll(leftNodes);
+		nodes.addAll(commonNodes);
+		nodes.addAll(rightNodes);
+		Set<DArrow> edges = new HashSet<DArrow>(); 
+		edges.addAll(leftEdges);
+		edges.addAll(commonEdges);
+		edges.addAll(rightEdges);
+		
+		//Get the unique elements of the type which has only one instance deleted or added during the direct model transformation
+		List<DNode> uniqueNodes = new ArrayList<DNode>();
+		List<DArrow> uniqueEdges = new ArrayList<DArrow>();
+		getUniqueElements(complement(leftNodes, commonNodes), complement(leftEdges, commonEdges), uniqueNodes, uniqueEdges);
+		getUniqueElements(complement(rightNodes, commonNodes), complement(rightEdges, commonEdges), uniqueNodes, uniqueEdges);
+		
+		//Get the joint node which are shared by different unique subgraphs
+		Map<DNode, List<Integer>> jointNodes = new HashMap<DNode, List<Integer>>();
+		ArrayList<Object> uniqueSubgraphs = new ArrayList<Object>();
+		getConnectedSubgraphs(uniqueNodes, uniqueEdges, uniqueSubgraphs);
+		for(int index = 0; index < uniqueSubgraphs.size(); index += 2){
+			List<DNode> subn = (List<DNode>) uniqueSubgraphs.get(index);
+			List<DArrow> suba = (List<DArrow>) uniqueSubgraphs.get(index + 1);
+			for(DArrow iter : suba){
+				DNode cur = iter.getDSource();
+				if(!subn.contains(cur)) {
+//					subn.add(cur); 
+					List<Integer> value = jointNodes.get(cur);
+					if(value == null){
+						value = new ArrayList<Integer>();
+						jointNodes.put(cur, value);
+					}
+					value.add(index);
+				}
+				cur = iter.getDTarget();
+				if(cur != iter.getDSource() && !subn.contains(cur)) {
+//					subn.add(cur); 
+					List<Integer> value = jointNodes.get(cur);
+					if(value == null){
+						value = new ArrayList<Integer>();
+						jointNodes.put(cur, value);
+					}
+					value.add(index);
+				}
+			}
+		}
+		
+		//Get the subgraphs after removing the unique elements
+		List<DNode> nnodes = complement(nodes, uniqueNodes);
+		List<DArrow> nedges = complement(edges, uniqueEdges);
+		ArrayList<Object> subgraphs = new ArrayList<Object>();
+		getConnectedSubgraphs(nnodes, nedges, subgraphs);
+		//Get the subgraph which each joint node is contained
+		Map<DNode, Integer> jointInSubgraph = new HashMap<DNode, Integer>();
+		for(int index = 0; index < subgraphs.size(); index += 2){
+			List<DNode> subn = (List<DNode>) subgraphs.get(index);
+			for(DNode iter : subn)
+				if(jointNodes.containsKey(iter))
+					jointInSubgraph.put(iter, index);
+		}
+		//Get the subgraphs which joint subgraphs are connected with
+		Map<Integer, List<Integer>> uniqueToSubGraphs = new HashMap<Integer, List<Integer>>();
+		for(int index = 0; index < uniqueSubgraphs.size(); index += 2){
+			List<Integer> value = new ArrayList<Integer>();
+			List<DNode> subn = (List<DNode>) uniqueSubgraphs.get(index);
+			List<DArrow> suba = (List<DArrow>) uniqueSubgraphs.get(index + 1);
+			for(DArrow iter : suba){
+				DNode cur = iter.getDSource();
+				Integer subg = jointInSubgraph.get(cur);
+				if(!subn.contains(cur) && !value.contains(subg)) 
+					value.add(subg);
+				cur = iter.getDTarget();
+				subg = jointInSubgraph.get(cur);
+				if(cur != iter.getDSource() && !subn.contains(cur) && !value.contains(subg)) 
+					value.add(subg);
+			}
+			uniqueToSubGraphs.put(index, value);
+		}
+		//Choose the edge for each joint node
+//		List<DArrow> chosens = new ArrayList<DArrow>();
+		Map<DArrow, Integer> subgs = new HashMap<DArrow, Integer>();
+		for(Entry<DNode, List<Integer>> iter : jointNodes.entrySet()){
+			DNode joint = iter.getKey();
+			int chosenIndex = 0, max = 0;
+			for(Integer i : iter.getValue()) {
+				int size = uniqueToSubGraphs.get(i).size();
+				if(size > max){
+					chosenIndex = i;
+					max = size;
+				}
+			}
+			List<DArrow> jsuba = (List<DArrow>) uniqueSubgraphs.get(chosenIndex + 1);
+			DArrow chosen = null;
+			for(DArrow edge : jsuba){
+				if(edge.getDSource() == joint || edge.getDTarget() == joint){
+					chosen = edge;
+					break;
+				}
+			}
+			
+			//Add the joint node to the subgraph and other joint subgraphs
+			int subIndex = jointInSubgraph.get(joint);
+			List<DArrow> suba = (List<DArrow>) subgraphs.get(subIndex + 1);
+			List<DNode> subn = (List<DNode>) subgraphs.get(subIndex);
+			if(!suba.contains(chosen)){
+				subgs.put(chosen, subIndex);
+				suba.add(chosen);
+				if(!subn.contains(chosen.getDSource())) subn.add(chosen.getDSource());
+				if(!subn.contains(chosen.getDTarget())) subn.add(chosen.getDTarget());
+			}
+			for(Integer i : iter.getValue()){
+				suba = (List<DArrow>) uniqueSubgraphs.get(i + 1);
+				subn = (List<DNode>) uniqueSubgraphs.get(i);
+				for(DArrow a : suba){
+					if(!subn.contains(a.getDSource())) subn.add(a.getDSource());
+					if(!subn.contains(a.getDTarget())) subn.add(a.getDTarget());
+				}
+				if(i == chosenIndex) continue;
+				if(!suba.contains(chosen)){suba.add(chosen);
+				if(!subn.contains(chosen.getDSource())) subn.add(chosen.getDSource());
+				if(!subn.contains(chosen.getDTarget())) subn.add(chosen.getDTarget());}
+			}			
+		}
+		
+		List<Object> finalSubgraphs = new ArrayList<Object>();
+		for(int index = 0; index < subgraphs.size(); index += 2){
+			List<DNode> subn = (List<DNode>) subgraphs.get(index);
+			List<DArrow> suba = (List<DArrow>) subgraphs.get(index + 1);
+			if(suba.isEmpty()|| (suba.size() == 1 && subgs.containsKey(suba.get(0)))) continue;
+			finalSubgraphs.add(subn);
+			finalSubgraphs.add(suba);
+		}
+		for(int index = 0; index < uniqueSubgraphs.size(); index += 2){
+			List<DNode> subn = (List<DNode>) uniqueSubgraphs.get(index);
+			List<DArrow> suba = (List<DArrow>) uniqueSubgraphs.get(index + 1);
+			if(suba.isEmpty() || (suba.size() == 1 && subgs.containsKey(suba.get(0)))) continue;
+			Set<Integer> hash = new HashSet<Integer>();
+			Iterator iterator = suba.iterator();
+			for (; iterator.hasNext();) {
+				DArrow a = (DArrow) iterator.next();
+				if(!subgs.containsKey(a)) break;
+				hash.add(subgs.get(a));
+			}
+			if(!iterator.hasNext() && hash.size() < 2) continue;
+			finalSubgraphs.add(subn);
+			finalSubgraphs.add(suba);
+		}
+		System.out.println("***************");
+		for(int index = 0; index < finalSubgraphs.size(); index += 2){
+			List<DNode> subn = (List<DNode>) finalSubgraphs.get(index);
+			List<DArrow> suba = (List<DArrow>) finalSubgraphs.get(index + 1);
+			System.out.println("//////////////////////");
+			for(DNode n : subn) System.out.print(n.getName() + "    ");
+			for(DArrow a : suba) System.out.print(a.getArrow() + "    ");
+			System.out.println("\n//////////////////////");
+//			translateSubMatch(intersection(subn, leftNodes), intersection(suba, leftEdges), 
+			translateRelatedMatch(intersection(subn, leftNodes), intersection(suba, leftEdges), 
+					intersection(subn, commonNodes), intersection(suba, commonEdges), 
+					intersection(subn, rightNodes), intersection(suba, rightEdges));
+		}	
+		System.out.println("***************");
+	}
+	
+	
+	private String alloyTypedVariable(DArrow instance){
+		return instance.getArrow().getName() + ":" + edgeSig(instance.getArrow().getTypeArrow());
+	}
+	private String alloyTypedVariable(DArrow instance, Map<DNode, DArrow> hash) {
+		DNode source = instance.getDSource(), target = instance.getDTarget();
+		if(!hash.containsKey(source)) hash.put(source, instance);
+		if(!hash.containsKey(target)) hash.put(target, instance);
+		return alloyTypedVariable(instance);
+	}
+	public  void translateRelatedMatch(DArrow cur, 
+			List<DArrow> visited, List<DNode> visitedNode, 
+			List<DNode> leftNodes, List<DArrow> leftEdges,  
+			 List<DNode> commonNodes, List<DArrow> commonEdges, 
+			 List<DNode> rightNodes, List<DArrow> rightEdges) {
+		boolean kept = commonEdges.contains(cur), srcKept = commonNodes.contains(cur.getDSource()), trgKept = commonNodes.contains(cur.getDTarget());
 		String the = cur.getArrow().getName(), source = cur.getArrow().getSource().getName(), target = cur.getArrow().getTarget().getName();
 		buffer.append("some ");//kept ? "some " : "one ");
 		buffer.append(the +":");
 		buffer.append(edgeSig(cur.getArrow().getTypeArrow()) + "&");
-		buffer.append(kept ? COMMONARROW : (delete ? DELETEARROW : ADDARROW));
+		boolean delete = !kept & leftEdges.contains(cur);
+		buffer.append(kept ? COMEDGE : (delete ? DELEDGE : ADDEDGE));
 		buffer.append("|");
 		boolean srcVisited = visitedNode.contains(cur.getDSource()), trgVisited =  visitedNode.contains(cur.getDTarget());
 		visitedNode.add(cur.getDSource());
@@ -803,96 +1123,193 @@ public class TranslateToAlloy {
 		buffer.append("|" + LINE + "\t(");
 		if(srcVisited)
 			buffer.append(the + ".src=" + source);
-		else
-			buffer.append(source + " in " + (srcKept ? COMMONNODE : (delete ? DELETENODE : ADDNODE)));
+		else{
+			delete = leftNodes.contains(source);
+			buffer.append(source + " in " + (srcKept ? COMNODE : (delete ? DELNODE : ADDNODE)));
+		}
 		if(!ref){
 			buffer.append(" and ");
 			if(trgVisited)
 				buffer.append(the + ".trg=" + target);
-			else
-				buffer.append(target + " in " + (trgKept ? COMMONNODE : (delete ? DELETENODE : ADDNODE)));
+			else{
+				delete = leftNodes.contains(source);
+				buffer.append(target + " in " + (trgKept ? COMNODE : (delete ? DELNODE : ADDNODE)));
+			}
 		}else if(!trgVisited)
 			buffer.append(" and " + target + "=" + the + ".trg");
 
 		if(!srcVisited){
 			for(DArrow arrow : cur.getDSource().getDIncomings()){
-				if(arrows.contains(arrow) && !visited.contains(arrow)){
+				if((leftEdges.contains(arrow) || rightEdges.contains(arrow)) && !visited.contains(arrow)){
 					buffer.append(" and (");
-					translateRelatedMatch(arrow, visited, visitedNode, arrows, nodes, commonNodes, commonArrows, delete);
+					translateRelatedMatch(arrow, visited, visitedNode, leftNodes, leftEdges, commonNodes, commonEdges, rightNodes, rightEdges);
 					buffer.append(")");
 				}
 			}
 			for(DArrow arrow : cur.getDSource().getDOutgoings()){
-				if(arrows.contains(arrow) && !visited.contains(arrow)){
+				if((leftEdges.contains(arrow) || rightEdges.contains(arrow)) && !visited.contains(arrow)){
 					buffer.append(" and (");
-					translateRelatedMatch(arrow, visited, visitedNode, arrows, nodes, commonNodes, commonArrows, delete);
+					translateRelatedMatch(arrow, visited, visitedNode, leftNodes, leftEdges, commonNodes, commonEdges, rightNodes, rightEdges);
 					buffer.append(")");
 				}
 			}
 		}
 		if(!trgVisited && !ref){
 			for(DArrow arrow : cur.getDTarget().getDIncomings()){
-				if(arrows.contains(arrow) && !visited.contains(arrow)){
+				if((leftEdges.contains(arrow) || rightEdges.contains(arrow)) && !visited.contains(arrow)){
 					buffer.append(" and (");
-					translateRelatedMatch(arrow, visited, visitedNode, arrows, nodes, commonNodes, commonArrows, delete);
+					translateRelatedMatch(arrow, visited, visitedNode, leftNodes, leftEdges, commonNodes, commonEdges, rightNodes, rightEdges);
 					buffer.append(")");
 				}
 			}
 			for(DArrow arrow : cur.getDTarget().getDOutgoings()){
-				if(arrows.contains(arrow) && !visited.contains(arrow)){
+				if((leftEdges.contains(arrow) || rightEdges.contains(arrow)) && !visited.contains(arrow)){
 					buffer.append(" and (");
-					translateRelatedMatch(arrow, visited, visitedNode, arrows, nodes, commonNodes, commonArrows, delete);
+					translateRelatedMatch(arrow, visited, visitedNode, leftNodes, leftEdges, commonNodes, commonEdges, rightNodes, rightEdges);
 					buffer.append(")");
 				}
 			}
 		}
 		buffer.append(")");
 	}
+//	public  void translateRelatedMatch(DArrow cur, List<DArrow> visited, List<DNode> visitedNode, List<DArrow> arrows, List<DNode> nodes, List<DNode> commonNodes, List<DArrow> commonArrows, boolean delete) {
+//		boolean kept = commonArrows.contains(cur), srcKept = commonNodes.contains(cur.getDSource()), trgKept = commonNodes.contains(cur.getDTarget());
+//		String the = cur.getArrow().getName(), source = cur.getArrow().getSource().getName(), target = cur.getArrow().getTarget().getName();
+//		buffer.append("some ");//kept ? "some " : "one ");
+//		buffer.append(the +":");
+//		buffer.append(edgeSig(cur.getArrow().getTypeArrow()) + "&");
+//		buffer.append(kept ? COMEDGE : (delete ? DELEDGE : ADDEDGE));
+//		buffer.append("|");
+//		boolean srcVisited = visitedNode.contains(cur.getDSource()), trgVisited =  visitedNode.contains(cur.getDTarget());
+//		visitedNode.add(cur.getDSource());
+//		visitedNode.add(cur.getDTarget());
+//		visited.add(cur);
+//		if(srcVisited && trgVisited){
+//			buffer.append(the + ".src=" + source + " and " + the  + ".trg =" + target);
+//			return;
+//		}
+//
+//		buffer.append("let ");
+//		boolean ref = cur.getDSource() == cur.getDTarget();
+//		if(!srcVisited)
+//			buffer.append(source + "=" + the + ".src");
+//		if(!srcVisited && !trgVisited && !ref)
+//			buffer.append(",");
+//		if(!trgVisited && !ref)
+//			buffer.append(target + "=" + the + ".trg");
+//		buffer.append("|" + LINE + "\t(");
+//		if(srcVisited)
+//			buffer.append(the + ".src=" + source);
+//		else
+//			buffer.append(source + " in " + (srcKept ? COMNODE : (delete ? DELNODE : ADDNODE)));
+//		if(!ref){
+//			buffer.append(" and ");
+//			if(trgVisited)
+//				buffer.append(the + ".trg=" + target);
+//			else
+//				buffer.append(target + " in " + (trgKept ? COMNODE : (delete ? DELNODE : ADDNODE)));
+//		}else if(!trgVisited)
+//			buffer.append(" and " + target + "=" + the + ".trg");
+//
+//		if(!srcVisited){
+//			for(DArrow arrow : cur.getDSource().getDIncomings()){
+//				if(arrows.contains(arrow) && !visited.contains(arrow)){
+//					buffer.append(" and (");
+//					translateRelatedMatch(arrow, visited, visitedNode, arrows, nodes, commonNodes, commonArrows, delete);
+//					buffer.append(")");
+//				}
+//			}
+//			for(DArrow arrow : cur.getDSource().getDOutgoings()){
+//				if(arrows.contains(arrow) && !visited.contains(arrow)){
+//					buffer.append(" and (");
+//					translateRelatedMatch(arrow, visited, visitedNode, arrows, nodes, commonNodes, commonArrows, delete);
+//					buffer.append(")");
+//				}
+//			}
+//		}
+//		if(!trgVisited && !ref){
+//			for(DArrow arrow : cur.getDTarget().getDIncomings()){
+//				if(arrows.contains(arrow) && !visited.contains(arrow)){
+//					buffer.append(" and (");
+//					translateRelatedMatch(arrow, visited, visitedNode, arrows, nodes, commonNodes, commonArrows, delete);
+//					buffer.append(")");
+//				}
+//			}
+//			for(DArrow arrow : cur.getDTarget().getDOutgoings()){
+//				if(arrows.contains(arrow) && !visited.contains(arrow)){
+//					buffer.append(" and (");
+//					translateRelatedMatch(arrow, visited, visitedNode, arrows, nodes, commonNodes, commonArrows, delete);
+//					buffer.append(")");
+//				}
+//			}
+//		}
+//		buffer.append(")");
+//	}
 
 	/*
 	 * Check if an arrow in a graph is key point: removing the arrow, can split the graph into two unrelated subgraphs.
 	 */
-	private boolean isKeyArrow(DArrow arrow, List<DArrow> arrows, List<DNode> nodes){
-		List<DNode> left = new ArrayList<DNode>();
-		left.addAll(nodes);
-		List<DArrow> leftArrows = new ArrayList<DArrow>();
-		leftArrows.addAll(arrows);
-		leftArrows.remove(arrow);
-		return !isRelated(leftArrows, left);
-	}
-	private boolean isRelated(List<DArrow> leftArrows, List<DNode> left) {
-		List<DNode> reached = new ArrayList<DNode>(), visited = new ArrayList<DNode>();
-		if(!left.isEmpty())
-			visited.add(left.get(0));
-		while(!visited.isEmpty()){
-			DNode cur = visited.get(0);
-			visited.remove(cur);
-			reached.add(cur);
-			for(DArrow iter : cur.getDOutgoings()){
-				DNode target = iter.getDTarget();
-				if(leftArrows.contains(iter) && !(visited.contains(target) ||reached.contains(target)))
-					visited.add(target);
-			}
-			for(DArrow iter : cur.getDIncomings()){
-				DNode source = iter.getDSource();
-				if(leftArrows.contains(iter) && !(visited.contains(source) ||reached.contains(source)))
-					visited.add(source);
-			}				
-		}
-		return reached.size() == left.size();
-	}
-	private int priority(DArrow arrow, List<DArrow> arrows, List<DNode> nodes){
-		if(arrow.getDSource() == arrow.getDTarget()) return 1;
-		if(isKeyArrow(arrow, arrows, nodes)) return 2;
-		else return 0;
-	}
-	private void getCommonSubgraph(List<DNode> subn, List<DArrow> suba, List<DNode> subcn, List<DArrow> subca, List<DNode> commonNodes, List<DArrow> commonArrows){
-		for(DNode node : subn)
-			if(commonNodes.contains(node) && !subcn.contains(node))
-				subcn.add(node);
-		for(DArrow arrow : suba)
-			if(commonArrows.contains(arrow) && !subca.contains(arrow))
-				subca.add(arrow);
+//	private boolean isKeyArrow(DArrow arrow, List<DArrow> arrows, List<DNode> nodes){
+//		List<DNode> left = new ArrayList<DNode>();
+//		left.addAll(nodes);
+//		List<DArrow> leftArrows = new ArrayList<DArrow>();
+//		leftArrows.addAll(arrows);
+//		leftArrows.remove(arrow);
+//		return !isRelated(leftArrows, left);
+//	}
+//	private boolean isRelated(List<DArrow> leftArrows, List<DNode> left) {
+//		List<DNode> reached = new ArrayList<DNode>(), visited = new ArrayList<DNode>();
+//		if(!left.isEmpty())
+//			visited.add(left.get(0));
+//		while(!visited.isEmpty()){
+//			DNode cur = visited.get(0);
+//			visited.remove(cur);
+//			reached.add(cur);
+//			for(DArrow iter : cur.getDOutgoings()){
+//				DNode target = iter.getDTarget();
+//				if(leftArrows.contains(iter) && !(visited.contains(target) ||reached.contains(target)))
+//					visited.add(target);
+//			}
+//			for(DArrow iter : cur.getDIncomings()){
+//				DNode source = iter.getDSource();
+//				if(leftArrows.contains(iter) && !(visited.contains(source) ||reached.contains(source)))
+//					visited.add(source);
+//			}				
+//		}
+//		return reached.size() == left.size();
+//	}
+//	private int priority(DArrow arrow, List<DArrow> arrows, List<DNode> nodes){
+//		if(arrow.getDSource() == arrow.getDTarget()) return 1;
+//		if(isKeyArrow(arrow, arrows, nodes)) return 2;
+//		else return 0;
+//	}
+//	private void getCommonSubgraph(List<DNode> subn, List<DArrow> suba, List<DNode> subcn, List<DArrow> subca, List<DNode> commonNodes, List<DArrow> commonArrows){
+//		for(DNode node : subn)
+//			if(commonNodes.contains(node) && !subcn.contains(node))
+//				subcn.add(node);
+//		for(DArrow arrow : suba)
+//			if(commonArrows.contains(arrow) && !subca.contains(arrow))
+//				subca.add(arrow);
+//	}
+	
+	public  void translateRelatedMatch(List<DNode> leftNodes, List<DArrow> leftEdges,  
+			 List<DNode> commonNodes, List<DArrow> commonEdges, 
+			 List<DNode> rightNodes, List<DArrow> rightEdges) {
+				
+		Set<DArrow> edges = new HashSet<DArrow>();
+		edges.addAll(leftEdges);
+		edges.addAll(rightEdges);
+		buffer.append("\t");
+//		System.out.print("leftNodes: ");for(DNode n : leftNodes) System.out.print(n.getName() + "    ");System.out.println();		
+//		System.out.print("rightNodes: ");for(DNode n : rightNodes) System.out.print(n.getName() + "    ");System.out.println();
+//		System.out.print("leftArrows: ");for(DArrow n : leftEdges) System.out.print(n.getName() + "    ");System.out.println();
+//		System.out.print("RightArrows: ");for(DArrow n : rightEdges) System.out.print(n.getName() + "    ");System.out.println();
+		translateRelatedMatch((DArrow)edges.iterator().next(), 
+				new ArrayList<DArrow>(), new ArrayList<DNode>(), 
+				leftNodes, leftEdges, 
+				commonNodes, commonEdges, 
+				rightNodes, rightEdges);
+		buffer.append(LINE + LINE);
 	}
 	/**
 	 * encoding a match from a connected graph to another graph
@@ -904,103 +1321,104 @@ public class TranslateToAlloy {
 	 * @param commonArrows
 	 * @param delete
 	 */
-	public  void translateRelatedMatch(List<DArrow> arrows, List<DNode> nodes, List<DNode> commonNodes, List<DArrow> commonArrows, boolean delete) {
-		Map<DArrow, List<DArrow>> typeHash = new HashMap<DArrow, List<DArrow>>();
-		for(DArrow iter : arrows){
-			if(commonArrows.contains(iter)) continue;
-			DArrow type = iter.getDType();
-			List<DArrow> sameType = typeHash.get(type);
-			if(sameType == null)
-				sameType = new ArrayList<DArrow>();
-			sameType.add(iter);
-			typeHash.put(type, sameType);			
-		}
-		Map<DArrow, List<DArrow>> hash = new HashMap<DArrow, List<DArrow>>();
-		for(DNode iter : commonNodes){
-			List<DArrow> reduct = new ArrayList<DArrow>();
-			for(DArrow arrow : iter.getDIncomings()){
-				List<DArrow> sameType = typeHash.get(arrow.getDType());
-				if(arrows.contains(arrow) && !commonArrows.contains(arrow) && sameType != null && sameType.size() == 1)
-					reduct.add(arrow);
-			}
-			for(DArrow arrow : iter.getDOutgoings()){
-				List<DArrow> sameType = typeHash.get(arrow.getDType());
-				if(arrows.contains(arrow) && !commonArrows.contains(arrow) && sameType != null && sameType.size() == 1 && !reduct.contains(arrow))
-					reduct.add(arrow);
-			}
-			if(reduct.size() < 2) continue;
-			if(reduct.size() == 2 && arrows.size() == 2) continue;
-			DArrow chosen = reduct.get(0);
-			int priority = priority(chosen, arrows, nodes);
-			for (int i = 1; i < reduct.size(); i++) {
-				DArrow next = reduct.get(i);
-				int p1 = priority(next, arrows, nodes);
-				if(p1>priority){
-					chosen = next;
-					priority = p1;
-				}
-			}
-			for (int i = 0; i < reduct.size(); i++) {
-				for (int j = i + 1; j < reduct.size(); j++) {
-					DArrow first = reduct.get(i), second = reduct.get(j);
-					if(first!= chosen && second != chosen) continue;
-					List<DArrow> suba = new ArrayList<DArrow>(), subca = new ArrayList<DArrow>();
-					suba.add(first);
-					suba.add(second);
-					List<DNode> subn = new ArrayList<DNode>(), subcn = new ArrayList<DNode>();
-					subn.add(first.getDSource());
-					if(!subn.contains(first.getDTarget()))
-						subn.add(first.getDTarget());
-					if(!subn.contains(second.getDSource()))
-						subn.add(second.getDSource());
-					if(!subn.contains(second.getDTarget()))
-						subn.add(second.getDTarget());
-					getCommonSubgraph(subn, suba, subcn, subca, commonNodes, commonArrows);
-					buffer.append("\t");
-					translateRelatedMatch(suba.get(0), new ArrayList<DArrow>(), new ArrayList<DNode>(), suba, subn, subcn, subca, delete);
-					//					buffer.append("some " + first.getName() + ":" + edgeSig(first.getArrow().getTypeArrow()) + "&" + (delete ? DELETEARROW : ADDARROW) + "|some "+ second.getName() + ":" + edgeSig(second.getArrow().getTypeArrow()) + "&" + (delete ? DELETEARROW : ADDARROW));
-					//					buffer.append("|" + first.getName() + (first.getDSource() == iter ? ".src" : ".trg"));
-					//					buffer.append("=" + second.getName() + (second.getDSource() == iter ? ".src" : ".trg"));
-					buffer.append(LINE);
-				}
-			}
-			//			reduct.remove(chosen);
-			hash.put(chosen, reduct);
-		}
-		List<DNode> newNodes = new ArrayList<DNode>(nodes);
-		List<DArrow> newArrows = new ArrayList<DArrow>(arrows);
-		for(List<DArrow> iter : hash.values())
-			newArrows.removeAll(iter);
-		List<Object> relatedSet = new ArrayList<Object>();
-		getConnectedSubgraphs(newNodes, newArrows, relatedSet);
-		for(int index = 0; index < relatedSet.size(); index += 2){
-			List<DNode> subn = (List<DNode>) relatedSet.get(index);
-			List<DArrow> suba = (List<DArrow>) relatedSet.get(index + 1);
-			List<DNode>  subcn = new ArrayList<DNode>();
-			List<DArrow>  subca = new ArrayList<DArrow>();
-			for(DArrow iter : hash.keySet()){
-				boolean source = subn.contains(iter.getDSource()) && commonNodes.contains(iter.getDSource()) && !suba.contains(iter);
-				boolean target = subn.contains(iter.getDTarget()) && commonNodes.contains(iter.getDTarget()) && !suba.contains(iter);
-				if(source){
-					suba.add(iter);
-					if(!subn.contains(iter.getDTarget())) subn.add(iter.getDTarget());
-				}
-				if(target){
-					suba.add(iter);
-					if(!subn.contains(iter.getDSource())) subn.add(iter.getDSource());
-				}
-			}
-			getCommonSubgraph(subn, suba, subcn, subca, commonNodes, commonArrows);
-			buffer.append("\t");
-			if(suba.size() > 0)
-				translateRelatedMatch(suba.get(0), new ArrayList<DArrow>(), new ArrayList<DNode>(), suba, subn, subcn, subca, delete);
-			else
-				buffer.append("some " + nodeSig(nodes.get(0).getNode().getTypeNode()) + "&" + 
-						(commonNodes.contains(nodes.get(0))? COMMONNODE : (delete ? DELETENODE : ADDNODE)));
-			buffer.append(LINE);
-		}
-		return;
-	}
+//	@SuppressWarnings("unchecked")
+//	public  void translateRelatedMatch(List<DArrow> arrows, List<DNode> nodes, List<DNode> commonNodes, List<DArrow> commonArrows, boolean delete) {
+//		Map<DArrow, List<DArrow>> typeHash = new HashMap<DArrow, List<DArrow>>();
+//		for(DArrow iter : arrows){
+//			if(commonArrows.contains(iter)) continue;
+//			DArrow type = iter.getDType();
+//			List<DArrow> sameType = typeHash.get(type);
+//			if(sameType == null)
+//				sameType = new ArrayList<DArrow>();
+//			sameType.add(iter);
+//			typeHash.put(type, sameType);			
+//		}
+//		Map<DArrow, List<DArrow>> hash = new HashMap<DArrow, List<DArrow>>();
+//		for(DNode iter : commonNodes){
+//			List<DArrow> reduct = new ArrayList<DArrow>();
+//			for(DArrow arrow : iter.getDIncomings()){
+//				List<DArrow> sameType = typeHash.get(arrow.getDType());
+//				if(arrows.contains(arrow) && !commonArrows.contains(arrow) && sameType != null && sameType.size() == 1)
+//					reduct.add(arrow);
+//			}
+//			for(DArrow arrow : iter.getDOutgoings()){
+//				List<DArrow> sameType = typeHash.get(arrow.getDType());
+//				if(arrows.contains(arrow) && !commonArrows.contains(arrow) && sameType != null && sameType.size() == 1 && !reduct.contains(arrow))
+//					reduct.add(arrow);
+//			}
+//			if(reduct.size() < 2) continue;
+//			if(reduct.size() == 2 && arrows.size() == 2) continue;
+//			DArrow chosen = reduct.get(0);
+//			int priority = priority(chosen, arrows, nodes);
+//			for (int i = 1; i < reduct.size(); i++) {
+//				DArrow next = reduct.get(i);
+//				int p1 = priority(next, arrows, nodes);
+//				if(p1>priority){
+//					chosen = next;
+//					priority = p1;
+//				}
+//			}
+//			for (int i = 0; i < reduct.size(); i++) {
+//				for (int j = i + 1; j < reduct.size(); j++) {
+//					DArrow first = reduct.get(i), second = reduct.get(j);
+//					if(first!= chosen && second != chosen) continue;
+//					List<DArrow> suba = new ArrayList<DArrow>(), subca = new ArrayList<DArrow>();
+//					suba.add(first);
+//					suba.add(second);
+//					List<DNode> subn = new ArrayList<DNode>(), subcn = new ArrayList<DNode>();
+//					subn.add(first.getDSource());
+//					if(!subn.contains(first.getDTarget()))
+//						subn.add(first.getDTarget());
+//					if(!subn.contains(second.getDSource()))
+//						subn.add(second.getDSource());
+//					if(!subn.contains(second.getDTarget()))
+//						subn.add(second.getDTarget());
+//					getCommonSubgraph(subn, suba, subcn, subca, commonNodes, commonArrows);
+//					buffer.append("\t");
+//					translateRelatedMatch(suba.get(0), new ArrayList<DArrow>(), new ArrayList<DNode>(), suba, subn, subcn, subca, delete);
+//					//					buffer.append("some " + first.getName() + ":" + edgeSig(first.getArrow().getTypeArrow()) + "&" + (delete ? DELETEARROW : ADDARROW) + "|some "+ second.getName() + ":" + edgeSig(second.getArrow().getTypeArrow()) + "&" + (delete ? DELETEARROW : ADDARROW));
+//					//					buffer.append("|" + first.getName() + (first.getDSource() == iter ? ".src" : ".trg"));
+//					//					buffer.append("=" + second.getName() + (second.getDSource() == iter ? ".src" : ".trg"));
+//					buffer.append(LINE);
+//				}
+//			}
+//			//			reduct.remove(chosen);
+//			hash.put(chosen, reduct);
+//		}
+//		List<DNode> newNodes = new ArrayList<DNode>(nodes);
+//		List<DArrow> newArrows = new ArrayList<DArrow>(arrows);
+//		for(List<DArrow> iter : hash.values())
+//			newArrows.removeAll(iter);
+//		List<Object> relatedSet = new ArrayList<Object>();
+//		getConnectedSubgraphs(newNodes, newArrows, relatedSet);
+//		for(int index = 0; index < relatedSet.size(); index += 2){
+//			List<DNode> subn = (List<DNode>) relatedSet.get(index);
+//			List<DArrow> suba = (List<DArrow>) relatedSet.get(index + 1);
+//			List<DNode>  subcn = new ArrayList<DNode>();
+//			List<DArrow>  subca = new ArrayList<DArrow>();
+//			for(DArrow iter : hash.keySet()){
+//				boolean source = subn.contains(iter.getDSource()) && commonNodes.contains(iter.getDSource()) && !suba.contains(iter);
+//				boolean target = subn.contains(iter.getDTarget()) && commonNodes.contains(iter.getDTarget()) && !suba.contains(iter);
+//				if(source){
+//					suba.add(iter);
+//					if(!subn.contains(iter.getDTarget())) subn.add(iter.getDTarget());
+//				}
+//				if(target){
+//					suba.add(iter);
+//					if(!subn.contains(iter.getDSource())) subn.add(iter.getDSource());
+//				}
+//			}
+//			getCommonSubgraph(subn, suba, subcn, subca, commonNodes, commonArrows);
+//			buffer.append("\t");
+//			if(suba.size() > 0)
+//				translateRelatedMatch(suba.get(0), new ArrayList<DArrow>(), new ArrayList<DNode>(), suba, subn, subcn, subca, delete);
+//			else
+//				buffer.append("some " + nodeSig(nodes.get(0).getNode().getTypeNode()) + "&" + 
+//						(commonNodes.contains(nodes.get(0))? COMNODE : (delete ? DELNODE : ADDNODE)));
+//			buffer.append(LINE);
+//		}
+//		return;
+//	}
 	//		if(arrows.size() > 0)
 	//			translateRelatedMatch(arrows.get(0), new ArrayList<DArrow>(), new ArrayList<DNode>(), arrows, nodes, commonNodes, commonArrows, delete);
 	//		else
@@ -1013,7 +1431,7 @@ public class TranslateToAlloy {
 		for (Iterator<DArrow> iterator = arrows.iterator(); iterator.hasNext();) {
 			DArrow dArrow = (DArrow) iterator.next();
 			buffer.append("e_" + dArrow.getName() + ":" + edgeSig(dArrow.getArrow().getTypeArrow()) + "&");
-			buffer.append(commonArrows.contains(dArrow) ? COMMONARROW : (delete? DELETEARROW : ADDARROW));
+			buffer.append(commonArrows.contains(dArrow) ? COMEDGE : (delete? DELEDGE : ADDEDGE));
 			if(iterator.hasNext())
 				buffer.append(", ");
 			DNode src = dArrow.getDSource(), trg = dArrow.getDTarget();
@@ -1025,7 +1443,7 @@ public class TranslateToAlloy {
 		if(arrows.size() == 0){
 			DNode dNode = nodes.get(0);
 			buffer.append(nodeSig(dNode.getNode().getTypeNode()) + "&");
-			buffer.append((commonNodes.contains(dNode) ? COMMONNODE : (delete? DELETENODE : ADDNODE)) + LINE);
+			buffer.append((commonNodes.contains(dNode) ? COMNODE : (delete? DELNODE : ADDNODE)) + LINE);
 			return;
 		}
 		buffer.append(" |" + LINE + "let ");
@@ -1072,7 +1490,7 @@ public class TranslateToAlloy {
 				changedNodes.add(node);
 		for(int i = 0; i < changedNodes.size(); i++){
 			DNode node = changedNodes.get(i);
-			iter += "n_" + node.getName()  + " in " + nodeSig(node.getNode().getTypeNode()) + "&" +  (delete ? DELETENODE : ADDNODE);
+			iter += "n_" + node.getName()  + " in " + nodeSig(node.getNode().getTypeNode()) + "&" +  (delete ? DELNODE : ADDNODE);
 			if(i < changedNodes.size() - 1)
 				iter += " and ";
 		}
@@ -1081,7 +1499,7 @@ public class TranslateToAlloy {
 		iter = "";
 		for(int i = 0; i < commonNodes.size(); i++){
 			DNode node = commonNodes.get(i);
-			iter += "n_" + node.getName()  + " in " + nodeSig(node.getNode().getTypeNode()) + "&" +  COMMONNODE;
+			iter += "n_" + node.getName()  + " in " + nodeSig(node.getNode().getTypeNode()) + "&" +  COMNODE;
 			if(i < commonNodes.size() - 1)
 				iter += " and ";
 		}
@@ -1093,6 +1511,7 @@ public class TranslateToAlloy {
 		}
 		buffer.append(")" + LINE);
 	}
+	
 	public  void translateRelatedMatch(List<DArrow> arrows, List<DNode> nodes, List<DNode> commonNodes, List<DArrow> commonArrows, boolean delete, Object replaced) {
 		boolean nochange = nodes.size() == commonNodes.size() && arrows.size() == commonArrows.size();
 		buffer.append(nochange ? "some " : "one ");
@@ -1104,7 +1523,7 @@ public class TranslateToAlloy {
 			if(dArrow != replaced){
 				++count;
 				buffer.append("e_" + dArrow.getName() + ":" + edgeSig(dArrow.getArrow().getTypeArrow()) + "&");
-				buffer.append(commonArrows.contains(dArrow) ? COMMONARROW : (delete? DELETEARROW : ADDARROW));
+				buffer.append(commonArrows.contains(dArrow) ? COMEDGE : (delete? DELEDGE : ADDEDGE));
 				if(count != size - 1)
 					buffer.append(", ");
 			}
@@ -1118,7 +1537,7 @@ public class TranslateToAlloy {
 			DNode dNode = nodes.get(0);
 			if(dNode != replaced){
 				buffer.append(nodeSig(dNode.getNode().getTypeNode()) + "&");
-				buffer.append((commonNodes.contains(dNode) ? COMMONNODE : (delete? DELETENODE : ADDNODE)) + LINE);
+				buffer.append((commonNodes.contains(dNode) ? COMNODE : (delete? DELNODE : ADDNODE)) + LINE);
 			}
 			return;
 		}
@@ -1173,7 +1592,7 @@ public class TranslateToAlloy {
 			buffer.append(LINE + "and ");
 		for(int i = 0; i < changedNodes.size(); i++){
 			DNode node = changedNodes.get(i);
-			buffer.append("n_" + node.getName()  + " in " + nodeSig(node.getNode().getTypeNode()) + "&" +  (delete ? DELETENODE : ADDNODE));
+			buffer.append("n_" + node.getName()  + " in " + nodeSig(node.getNode().getTypeNode()) + "&" +  (delete ? DELNODE : ADDNODE));
 			if(i < changedNodes.size() - 1)
 				buffer.append(" and ");
 		}
@@ -1182,7 +1601,7 @@ public class TranslateToAlloy {
 			buffer.append(LINE + "and ");
 		for(int i = 0; i < commonNodes.size(); i++){
 			DNode node = commonNodes.get(i);
-			buffer.append("n_" + node.getName()  + " in " + nodeSig(node.getNode().getTypeNode()) + "&" +  COMMONNODE);
+			buffer.append("n_" + node.getName()  + " in " + nodeSig(node.getNode().getTypeNode()) + "&" +  COMNODE);
 			if(i < commonNodes.size() - 1)
 				buffer.append(" and ");
 		}
@@ -1194,7 +1613,7 @@ public class TranslateToAlloy {
 	 * If no instance of a type is deleted(added).
 	 */
 	public  void noNodeChanged(List<DNode> nodes, List<DNode> commonNodes,  List<DNode> all, boolean delete){
-		String tpre = delete ? DELETENODE : ADDNODE;
+		String tpre = delete ? DELNODE : ADDNODE;
 		List<DNode> hide = new ArrayList<DNode>();
 		hide.addAll(all);
 		for(DNode node : nodes){
@@ -1219,7 +1638,7 @@ public class TranslateToAlloy {
 		buffer.append("\tno (" + temp + ")&" + tpre + LINE);
 	}
 	public  void noEdgeChanged(List<DArrow> arrows, List<DArrow> commonArrows,  List<DArrow> all, boolean delete){
-		String tpre = delete ? DELETEARROW : ADDARROW; 
+		String tpre = delete ? DELEDGE : ADDEDGE; 
 		List<DArrow> hide = new ArrayList<DArrow>();
 		hide.addAll(all);
 		for(DArrow arrow : arrows){
@@ -1246,7 +1665,7 @@ public class TranslateToAlloy {
 	 * If only one instance of a type is deleted(added), we use number restricted to encoding the constraint.
 	 */
 	public  void nodesChanged(List<DNode> nodes, List<DArrow> arrows, List<DNode> commonNodes, List<DArrow> commonArrows, boolean delete){
-		String tpre = delete ? DELETENODE : ADDNODE;
+		String tpre = delete ? DELNODE : ADDNODE;
 		Map<DNode, List<DNode>> counters = new HashMap<DNode, List<DNode>>();
 		for(DNode node : nodes){
 			if(!commonNodes.contains(node)){
@@ -1276,7 +1695,7 @@ public class TranslateToAlloy {
 		}
 	}
 	public  void edgesChanged(List<DNode> nodes, List<DArrow> arrows, List<DNode> commonNodes, List<DArrow> commonArrows, boolean delete){
-		String tpre = delete ? DELETEARROW : ADDARROW;
+		String tpre = delete ? DELEDGE : ADDEDGE;
 		Map<DArrow, List<DArrow>> counters = new HashMap<DArrow, List<DArrow>>();
 		for(DArrow arrow : arrows){
 			if(!commonArrows.contains(arrow)){
@@ -1314,10 +1733,9 @@ public class TranslateToAlloy {
 		edgeSigs();
 		if(rules != null){
 			graphSig();
-			pre_to_be_Graph();
+			isGraph();
 			ruleSigs();
 			tranSig();
-			pre_no_dangle_arrow();
 			fact(rules);
 			for(Production rule : rules)
 				pre_rule(rule, dGraph);
@@ -1328,7 +1746,7 @@ public class TranslateToAlloy {
 			run_command();
 		}
 	}
-	private String targetNodes = "&trans.target.nodes", targetArrows = "&trans.target.arrows";
+	private String targetNodes = "&t.tm.ns", targetArrows = "&t.tm.es";
 	private void run_command() {
 		for(Arrow arrow : dType.getSpecification().getGraph().getArrows()){
 			boolean isMult = false;
@@ -1379,8 +1797,8 @@ public class TranslateToAlloy {
 		dType  = diagramModel;
 		dGraph = dType.getDGraph();
 		rules = null;
-		sourceArrows = "";
-		sourceNodes = "";
+		GRAPH_EDGES = "";
+		GRAPH_NODES = "";
 		targetArrows = "";
 		targetNodes = "";
 	}

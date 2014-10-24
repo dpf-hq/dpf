@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 
 import no.hib.dpf.editor.DPFUtils;
-import no.hib.dpf.transform.Production;
 import no.hib.dpf.transform.Transform;
 import no.hib.dpf.transform.TransformFactory;
 import no.hib.dpf.transform.presentation.TransformEditor;
@@ -83,7 +82,7 @@ public class GenerateAlloy extends RunAlloy {
 				String scope = "for " + i + " but exactly 1 Trans, exactly 2 Graph, exactly 1 Rule";
 				for (int index = 0; index < commands.size(); index++) {
 					String command = commands.get(index);
-					writer.write("check{all trans: Trans|" + command + "}" + scope + System.lineSeparator());
+					writer.write("check{all t: Trans|" + command + "}" + scope + System.lineSeparator());
 				}
 //				for(Production rule : transform.getRules()){
 //					writer.write("run{}" + scope + ", exactly 1 " + rule.getName() + System.lineSeparator());
