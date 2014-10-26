@@ -8,7 +8,7 @@ Bundle-ClassPath: .,
 Bundle-Activator: no.hib.dpf.transform.provider.TransformEditPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: no.hib.dpf.transform,
  no.hib.dpf.transform.impl,
  no.hib.dpf.transform.parts,
