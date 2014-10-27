@@ -76,20 +76,20 @@ public class TranslateToSMT {
 			}
 		}
 		buffer.append(")) :named node-types-disjoint))");
-		buffer.append(LINE);
+		buffer.append(LINE + LINE);
 	}
 	//signatures for edges
 	public void edgeSigs(){
 		EList<Arrow> edges = dGraph.getGraph().getArrows();
 		buffer.append(";;functions for edges" + LINE);
-		buffer.append("(" + DECLARE_FUN + " SRC (Int) Int)" + LINE);
-		buffer.append("(" + DECLARE_FUN + " TRG (Int) Int)" + LINE);
+		
 		for(Arrow arrow : edges)
 			buffer.append("(" + DECLARE_FUN + edgeSig(arrow) + " (Int) Bool)" + LINE);
 		buffer.append("(define-fun EDGE ((x Int)) Bool (or");
 		for(Arrow arrow : edges)
 			buffer.append(" ("  + edgeSig(arrow) + " x)");
 		buffer.append("))" + LINE);
+		buffer.append("(assert (! (forall ((x Int)) (not (and (EDGE x) (NODE x)))) :named NOT-NODE-EDGE))" + LINE);
 		buffer.append("(" + ASSERT + "(! (forall ((x Int)) (and " + LINE);
 		for (int i = 0; i < edges.size(); i++) {
 			for (int j = i + 1; j < edges.size(); j++) {
@@ -100,20 +100,19 @@ public class TranslateToSMT {
 				buffer.append("))" + LINE);
 			}
 		}
-		buffer.append(")) :named edge-types-disjoint))" + LINE);
+		buffer.append(")) :named edge-types-disjoint))" + LINE + LINE);
 		
-		buffer.append("(" + ASSERT + " (! (forall ((e Int) (n Int)) (=> (or (= (SRC e) n) (= (TRG e) n)) (=> (EDGE e) (NODE n)))) :named src-and-trg-domain-node-value-edge))" + LINE);
+		buffer.append("(" + DECLARE_FUN + " SRC (Int) Int)" + LINE);
+		buffer.append("(" + DECLARE_FUN + " TRG (Int) Int)" + LINE);
+		buffer.append("(" + ASSERT + " (! (forall ((e Int) (n Int)) (=> (or (= (SRC e) n) (= (TRG e) n)) (ite (EDGE e) (NODE n) (= n NULL)))) :named src-and-trg-domain-node-value-edge))" + LINE);
 		buffer.append("(" + ASSERT + " (! (forall ((e Int) (n Int)) (=> (= (SRC e) n) (and " + LINE);
 		for(Arrow arrow : edges)
 			buffer.append("(=> ("  + edgeSig(arrow) + " e) (" + nodeSig(arrow.getSource()) + " n))" + LINE);
-		buffer.append("))) :named src-domain-value))" + LINE);
+		buffer.append("(=> (not (EDGE e)) (= n NULL))))) :named src-domain-value))" + LINE);
 		buffer.append("(" + ASSERT + " (! (forall ((e Int) (n Int)) (=> (= (TRG e) n) (and " + LINE);
 		for(Arrow arrow : edges)
 			buffer.append("(=> ("  + edgeSig(arrow) + " e) (" + nodeSig(arrow.getTarget()) + " n))" + LINE);
-		buffer.append("))) :named trg-domain-value))" + LINE);
-		
-		buffer.append("(assert (! (forall ((x Int)) (not (and (EDGE x) (NODE x)))) :named NOT-NODE-EDGE))");
-		buffer.append(LINE);
+		buffer.append("(=> (not (EDGE e)) (= n NULL))))) :named trg-domain-value))" + LINE + LINE);		
 	}
 
 	public void ruleSigs(){
@@ -121,38 +120,48 @@ public class TranslateToSMT {
 			buffer.append("(declare-const rule-" + iter.getName() + " Int)" + LINE);
 		}
 		
-		int index = 0;
+		int index = 1;
 		for(Production iter : rules){
 			buffer.append("(assert (= rule-" + iter.getName() + " " + index++ + "))" + LINE);
 		}
+		index = 1;
+		buffer.append("(define-fun RULE ((x Int)) Bool (or");
+		for(Production iter : rules)
+			buffer.append(" (= rule-" + iter.getName() + " x)");
+		buffer.append("))" + LINE);
+		buffer.append(LINE);
 	}
 	//The graph signature
 	public  void graphSig(){
-		buffer.append("(" + DECLARE_FUN + "Graph (Int) Bool)" + LINE);
+		buffer.append("(" + DECLARE_FUN + "GRAPH (Int) Bool)" + LINE);
+		buffer.append("(assert (! (forall ((x Int)) (and (not (and (EDGE x) (GRAPH x))) (not (and (GRAPH x) (NODE x))))) :named NOT-GRAPH-NODE-EDGE))" + LINE + LINE);
 		buffer.append("(" + DECLARE_FUN + "nodes (Int Int) Bool)" + LINE);
 		buffer.append("(" + DECLARE_FUN + "edges (Int Int) Bool)" + LINE);
-		buffer.append("(assert (! (forall ((g Int) (n Int)) (=> (nodes g n) (=> (Graph g) (NODE n)))) :named nodes-domain-grpah-value-node))" + LINE);
-		buffer.append("(assert (! (forall ((g Int) (e Int)) (=> (edges g e) (=> (Graph g) (EDGE e)))) :named edges-domain-grpah-value-edge))" + LINE);
-		buffer.append("(assert (! (forall ((g Int) (e Int)) (=> (edges g e) (and (nodes g (SRC e)) (nodes g (TRG e))))) :named to-be-graph))" + LINE);
-		buffer.append("(assert (! (forall ((x Int)) (and (not (and (EDGE x) (Graph x))) (not (and (Graph x) (NODE x))))) :named NOT-GRAPH-NODE-EDGE))" + LINE);
+		buffer.append("(assert (! (forall ((g Int) (n Int)) (=> (nodes g n) (and (GRAPH g) (NODE n)))) :named nodes-domain-grpah-value-node))" + LINE);
+		buffer.append("(assert (! (forall ((g Int) (e Int)) (=> (edges g e) (and (GRAPH g) (EDGE e)))) :named edges-domain-grpah-value-edge))" + LINE);
+		buffer.append("(assert (! (forall ((g Int) (e Int)) (=> (edges g e) (and (nodes g (SRC e)) (nodes g (TRG e))))) :named to-be-graph))" + LINE + LINE);
+		
 	}
 	//The transformation signature
 	public  void tranSig(){
-		buffer.append("(" + DECLARE_FUN + "Trans (Int) Bool)" + LINE);
+		buffer.append("(" + DECLARE_FUN + "TRANS (Int) Bool)" + LINE);
+		buffer.append("(assert (! (forall ((x Int)) (and (not (and (TRANS x) (GRAPH x))) (not (and (EDGE x) (TRANS x))) (not (and (TRANS x) (NODE x))))) :named NOT-TRANS-GRAPH-NODE-EDGE))" + LINE + LINE);
+		buffer.append("(assert (not (or (NODE NULL) (EDGE NULL) (GRAPH NULL) (TRANS NULL))))" + LINE + LINE);
+		buffer.append("(" + DECLARE_FUN + "rule (Int) Int)" + LINE);
+		buffer.append("(assert (! (forall ((t Int) (r Int)) (=> (= (rule t) r) (ite (TRANS t) (RULE r) (= r NULL)))) :named rule-domain-trans-value-graph))");
 		buffer.append("(" + DECLARE_FUN + "sm (Int) Int)" + LINE);
 		buffer.append("(" + DECLARE_FUN + "tm (Int) Int)" + LINE);
 		buffer.append("(" + DECLARE_FUN + "dns (Int Int) Bool)" + LINE);
 		buffer.append("(" + DECLARE_FUN + "ans (Int Int) Bool)" + LINE);
 		buffer.append("(" + DECLARE_FUN + "des (Int Int) Bool)" + LINE);
 		buffer.append("(" + DECLARE_FUN + "aes (Int Int) Bool)" + LINE);
-		buffer.append("(assert (! (forall ((x Int)) (and (not (and (Trans x) (Graph x))) (not (and (EDGE x) (Trans x))) (not (and (Trans x) (NODE x))))) :named NOT-TRANS-GRAPH-NODE-EDGE))" + LINE);
-		buffer.append("(assert (! (forall ((t Int) (g Int)) (=> (= (sm t) g) (=> (Trans t) (Graph g)))) :named sm-domain-trans-value-graph))" + LINE);
-		buffer.append("(assert (! (forall ((t Int) (g Int)) (=> (= (tm t) g) (=> (Trans t) (Graph g)))) :named tm-domain-trans-value-graph))" + LINE);
-		buffer.append("(assert (! (forall ((t Int) (n Int)) (=> (dns t n) (=> (Trans t) (NODE n)))) :named dns-domain-trans-value-node))" + LINE);
-		buffer.append("(assert (! (forall ((t Int) (n Int)) (=> (ans t n) (=> (Trans t) (NODE n)))) :named ans-domain-trans-value-node))" + LINE);
-		buffer.append("(assert (! (forall ((t Int) (e Int)) (=> (des t e) (=> (Trans t) (EDGE e)))) :named des-domain-trans-value-edge))" + LINE);
-		buffer.append("(assert (! (forall ((t Int) (e Int)) (=> (aes t e) (=> (Trans t) (EDGE e)))) :named aes-domain-trans-value-edge))" + LINE);
-		buffer.append("(assert (! (forall ((t Int)) (exists ((x Int)) (or (dns t x) (ans t x) (des t x) (aes t x)))) :named something-changed))" + LINE);
+		buffer.append("(assert (! (forall ((t Int) (g Int)) (=> (= (sm t) g) (ite (TRANS t) (GRAPH g) (= g NULL)))) :named sm-domain-trans-value-graph))" + LINE);
+		buffer.append("(assert (! (forall ((t Int) (g Int)) (=> (= (tm t) g) (ite (TRANS t) (GRAPH g) (= g NULL)))) :named tm-domain-trans-value-graph))" + LINE);
+		buffer.append("(assert (! (forall ((t Int) (n Int)) (=> (dns t n) (and (TRANS t) (NODE n)))) :named dns-domain-trans-value-node))" + LINE);
+		buffer.append("(assert (! (forall ((t Int) (n Int)) (=> (ans t n) (and (TRANS t) (NODE n)))) :named ans-domain-trans-value-node))" + LINE);
+		buffer.append("(assert (! (forall ((t Int) (e Int)) (=> (des t e) (and (TRANS t) (EDGE e)))) :named des-domain-trans-value-edge))" + LINE);
+		buffer.append("(assert (! (forall ((t Int) (e Int)) (=> (aes t e) (and (TRANS t) (EDGE e)))) :named aes-domain-trans-value-edge))" + LINE);
+		buffer.append("(assert (! (forall ((t Int)) (=> (TRANS t) (exists ((x Int)) (or (dns t x) (ans t x) (des t x) (aes t x))))) :named something-changed))" + LINE);
 		buffer.append("(assert (! (forall ((t Int) (n Int)) (=> (dns t n) (nodes (sm t) n))) :named deleted-nodes-belong-source))" + LINE);
 		buffer.append("(assert (! (forall ((t Int) (n Int)) (=> (ans t n) (nodes (tm t) n))) :named added-nodes-belong-source))" + LINE);
 		buffer.append("(assert (! (forall ((t Int) (e Int)) (=> (des t e) (nodes (sm t) e))) :named deleted-edges-belong-target))" + LINE);
@@ -171,10 +180,10 @@ public class TranslateToSMT {
 	 * 2. Then translate the other constraint associated with the metamodel.<br>
 	 */
 	public void pre_source_valid(){
-		if(rules != null)
-			buffer.append("pred valid[g:Graph]{" + LINE);
-		else
-			buffer.append("fact graph_valid{" + LINE);
+//		if(rules != null)
+//			buffer.append("pred valid[g:Graph]{" + LINE);
+//		else
+//			buffer.append("fact graph_valid{" + LINE);
 
 		for(Arrow arrow : dType.getSpecification().getGraph().getArrows()){
 			boolean isMult = false;
@@ -185,109 +194,184 @@ public class TranslateToSMT {
 				}
 			}
 			if(!isMult)
-				buffer.append(translateArrowMultiplicity(arrow, GRAPH_NODES, GRAPH_EDGES));
+				buffer.append(translateArrowMultiplicity(arrow));
 		}
 		for(Constraint constraint : dType.getSpecification().getConstraints()){
 			Predicate predicate  = constraint.getPredicate();
 			if(predicate == DPFConstants.INJECTIVE)
-				buffer.append(translateInjective(constraint, GRAPH_NODES, GRAPH_EDGES));
+				buffer.append(translateInjective(constraint));
 			else if(predicate == DPFConstants.SURJECTIVE)
-				buffer.append(translateSurjective(constraint, GRAPH_NODES, GRAPH_EDGES));
+				buffer.append(translateSurjective(constraint));
 			else if(predicate == DPFConstants.ARROW_MULTI)
-				buffer.append(translateArrowMultiplicity(constraint, GRAPH_NODES, GRAPH_EDGES));
+				buffer.append(translateArrowMultiplicity(constraint));
 			else if(predicate == DPFConstants.NODE_MULTI)
-				buffer.append(translateNodeMultiplicity(constraint, GRAPH_NODES, GRAPH_EDGES));
+				buffer.append(translateNodeMultiplicity(constraint));
 			else if(predicate == DPFConstants.XOR)
-				buffer.append(translateXOR(constraint, GRAPH_NODES, GRAPH_EDGES));
+				buffer.append(translateXOR(constraint));
 			else if(predicate == DPFConstants.XOR4)
-				buffer.append(translateXOR4(constraint, GRAPH_NODES, GRAPH_EDGES));
+				buffer.append(translateXOR4(constraint));
 			else if(predicate == DPFConstants.MERGE_NAND)
-				buffer.append(translateMergeNAND(constraint, GRAPH_NODES, GRAPH_EDGES));
+				buffer.append(translateMergeNAND(constraint));
 			else if(predicate == DPFConstants.SPLIT_NAND)
-				buffer.append(translateSplitNAND(constraint, GRAPH_NODES, GRAPH_EDGES));
+				buffer.append(translateSplitNAND(constraint));
 			else if(predicate == DPFConstants.REFLEXIVE)
-				buffer.append(translateReflexive(constraint, GRAPH_NODES, GRAPH_EDGES));
+				buffer.append(translateReflexive(constraint));
 		}
-		buffer.append("}" + LINE);
+		buffer.append(LINE);
 	}
-	private String translateReflexive(Constraint constraint, String nodes, String arrows) {
+	private String translateReflexive(Constraint constraint) {
 		Arrow arrow = getArrow(constraint, "XY");
-		String result = "//" + "reflexive on " + arrow +  LINE;
-		return result + "all e:(" + AP + arrow.getName() + arrows + ")| e.src = e.trg" + LINE; 
+		String result = ";;" + "reflexive on " + arrow +  LINE;
+		String name = "REFLEX-" + arrow.getName(); 
+		result += "(define-fun " + name + " ((g Int)) Bool (forall ((e Int)) (=> (and (edges g e) (" + edgeSig(arrow) + " e)) (= (SRC e) (TRG e)))))" + LINE; 
+		return result + "(assert (forall ((t Int)) (=> (TRANS t) (" + name + " (sm t)))))" +  LINE;
 	}
-	private String translateSplitNAND(Constraint constraint, String nodes, String arrows) {
+	private String translateSplitNAND(Constraint constraint) {
 		Node z = getNode(constraint, "Z");
 		Arrow zx = getArrow(constraint, "ZX"), zy = getArrow(constraint, "ZY");
-		String result = "//" + "NAND constraint between " + zx + " and " + zy + LINE;
-		result += "all n:(" + NP + z.getName() + nodes + ") | let e1 = (some e : " + AP + zx.getName() + 
-				arrows + " | e.src = n), e2=(some e : " + AP + zy.getName() + arrows + " | e.src = n)|not(e1 and e2)" + LINE;
-		return result;
+		String result = ";;" + "NAND constraint between " + zx + " and " + zy + LINE;
+		String name = "SPLIT-NAND-" + zx.getName() + "-" + zy.getName(); 
+		result += "(define-fun " + name + " ((g Int)) Bool (forall ((n Int)) (=> (and (nodes g n) (" + nodeSig(z) + " n)) "
+		+ "(not (exists ((e1 Int) (e2 Int)) (and (edges g e1) (edges g e2) (distinct e1 e2) (" + edgeSig(zx) + " e1) (" + edgeSig(zy) + " e2)"
+		+ " (= (SRC e1) n) (= (SRC e1) n)))))))" +  LINE;
+		return result + "(assert (forall ((t Int)) (=> (TRANS t) (" + name + " (sm t)))))" +  LINE;
 	}
-	private String translateMergeNAND(Constraint constraint, String nodes, String arrows) {
+	private String translateMergeNAND(Constraint constraint) {
 		Node target = getNode(constraint, "Z");
 		Arrow xz = getArrow(constraint, "XZ"), yz = getArrow(constraint, "YZ");
-		String result = "//" + "NAND constraint between " + xz + " and " + yz + LINE;
-		result += "all n:(" + NP + target.getName() + nodes + ") | let e1 = (some e : " + AP + xz.getName() + 
-				arrows + " | e.trg = n), e2=(some e : " + AP + yz.getName() + arrows + " | e.trg = n)|not(e1 and e2)" + LINE;
-		return result;
+		String result = ";;" + "NAND constraint between " + xz + " and " + yz + LINE;
+		String name = "MERGE-NAND-" + xz.getName() + "-" + yz.getName(); 
+		result += "(define-fun " + name + " ((g Int)) Bool (forall ((n Int)) (=> (and (nodes g n) (" + nodeSig(target) + " n)) "
+		+ "(not (exists ((e1 Int) (e2 Int)) (and (edges g e1) (edges g e2) (distinct e1 e2) (" + edgeSig(xz) + " e1) (" + edgeSig(yz) + " e2)"
+		+ " (= (TRG e1) n) (= (TRG e1) n)))))))" +  LINE;
+		return result + "(assert (forall ((t Int)) (=> (TRANS t) (" + name + " (sm t)))))" +  LINE;
 	}
-	private String translateXOR4(Constraint constraint, String nodes, String arrows) {
+	private String translateXOR4(Constraint constraint) {
 		Node source = getNode(constraint, "X");
 		Arrow xy1 = getArrow(constraint, "XY1"), xy2 = getArrow(constraint, "XY2"), xy3 = getArrow(constraint, "XY3"), xy4 = getArrow(constraint, "XY4");
-		String result = "//" + "XOR constraint between " + xy1 + ","+ xy2 + ","+ xy3 + " and " + xy4 + LINE;
-		result += "all n:(" + NP + source.getName() + nodes + ") | let e1=(some e : " + AP + xy1.getName() + 
-				arrows + "|e.src = n), e2=(some e : " + AP + xy2.getName() + 
-				arrows + "|e.src = n), e3=(some e : " + AP + xy3.getName() + 
-				arrows + "|e.src = n), e4=(some e : " + AP + xy4.getName() + 
-				arrows + "|e.src = n)|(e1 or e2 or e3 or e4) and not(((e1 and (e2 or e3 or e4)) or (e2 and (e1 or e3 or e4)) or (e3 and (e2 or e1 or e4)) or (e4 and (e2 or e3 or e1))))" + LINE;
-		return result;
+		String result = ";;" + "XOR constraint between " + xy1 + ","+ xy2 + ","+ xy3 + " and " + xy4 + LINE;
+		String name = "XOR4-" + xy1.getName() + "-" + xy2.getName() + "-" + xy3.getName() + "-" + xy4.getName(); 
+		result += "(define-fun " + name + " ((g Int)) Bool (forall ((n Int)) (=> (and (nodes g n) (" + nodeSig(source) + " n)) (let ("
+				+ LINE + "(e1 (exists ((e Int)) (and (edges g e) (" + edgeSig(xy1) + " e) (= (SRC e) n))))"  
+				+ LINE + " (e2 (exists ((e Int)) (and (edges g e) (" + edgeSig(xy2) + " e) (= (SRC e) n))))"  
+				+ LINE + " (e3 (exists ((e Int)) (and (edges g e) (" + edgeSig(xy3) + " e) (= (SRC e) n))))"  
+				+ LINE + " (e4 (exists ((e Int)) (and (edges g e) (" + edgeSig(xy4) + " e) (= (SRC e) n))))" 
+				+ ") (and (or e1 e2 e3 e4) (not (or (and e1 (or e2 e3 e4)) (and e2 (or e1 e3 e4)) "
+				+ "(and e3 (or e2 e1 e4)) (and e4 (or e2 e3 e1)))))))))" + LINE;
+		return result + "(assert (forall ((t Int)) (=> (TRANS t) (" + name + " (sm t)))))" +  LINE;
 	}
-	private String translateXOR(Constraint constraint, String nodes, String arrows) {
+	private String translateXOR(Constraint constraint) {
 		Node source = getNode(constraint, "Z");
 		Arrow zx = getArrow(constraint, "ZX"), zy = getArrow(constraint, "ZY");
-		String result = "//" + "XOR constraint between " + zx + " and " + zy + LINE;
-		result += "all n:(" + NP + source.getName() + nodes + ") | let e1 = (some e : " + AP + zx.getName() + 
-				arrows + " | e.src = n), e2=(some e : " + AP + zy.getName() + arrows + " | e.src = n)|(e1 or e2) and not(e1 and e2)" + LINE;
+		String result = ";;" + "XOR constraint between " + zx + " and " + zy + LINE;
+		String name = "XOR-" + zx.getName() + "-" + zy.getName(); 
+		result += "(define-fun " + name + " ((g Int)) Bool (forall ((n Int)) (=> (and (nodes g n) (" + nodeSig(source) + " n)) (let ("
+				+ LINE + " (e1 (exists ((e Int)) (and (edges g e) (" + edgeSig(zx) + " e) (= (SRC e) n))))"  
+				+ LINE + " (e2 (exists ((e Int)) (and (edges g e) (" + edgeSig(zy) + " e) (= (SRC e) n))))"  
+				+ ") (and (or e1 e2) (not (and e1 e2)))))))" + LINE;
+		return result + "(assert (forall ((t Int)) (=> (TRANS t) (" + name + " (sm t)))))" +  LINE;
+	}
+	private String translateNodeMultiplicity(Constraint constraint) {
+		Node source = getNode(constraint, "X");
+		String result = ";;" + "mulitplicity on " + source.getName() + " " + constraint.getParameters() + LINE;
+		Map<String, String> parameters = PredicateImpl.getParameterMap(constraint.getParameters());
+		if(parameters == null) return result;
+		int min = Integer.valueOf(parameters.get("min"));
+		String pmax = parameters.get("max");
+		int max = 0;
+		if(pmax.equals("*") || pmax.equals("-1")) max = -1;
+		else max = Integer.valueOf(pmax) + 1;
+		String name = "MULT-" + source.getName() + "-" + min + "-" + max; 
+		result += "(define-fun " + name + " ((g Int)) Bool (forall ((n Int)) (=> (and (nodes g n) (" + nodeSig(source) + " n)) ";
+		if(min > 0 && max > 0) result += " (and ";
+		result += NodeMultiplicity(min, nodeSig(source));
+		if(min > 0 && max > 0) result += " ";
+		if(max > 0) result += " (not ";
+		result += NodeMultiplicity(max, nodeSig(source));
+		if(max > 0) result += ")";
+		if(min > 0 && max > 0) result += ")";
+		result += ")))" + LINE;
+		return result + "(assert (forall ((t Int)) (=> (TRANS t) (" + name + " (sm t)))))" +  LINE;
+	}
+	private String translateArrowMultiplicity(Constraint constraint) {
+		Node source = getNode(constraint, "X");
+		Arrow arrow = getArrow(constraint, "XY");
+		String result = ";;" + "mulitplicity on " + arrow +  constraint.getParameters() +  LINE;
+		Map<String, String> parameters = PredicateImpl.getParameterMap(constraint.getParameters());
+		if(parameters == null) return result;
+		int min = Integer.valueOf(parameters.get("min"));
+		String pmax = parameters.get("max");
+		int max = 0;
+		if(pmax.equals("*") || pmax.equals("-1")) max = -1;
+		else max = Integer.valueOf(pmax) + 1;
+		String name = "MULT-" + arrow.getName() + "-" + min + "-" + max; 
+		result += "(define-fun " + name + " ((g Int)) Bool (forall ((n Int)) (=> (and (nodes g n) (" + nodeSig(source) + " n)) ";
+		if(min > 0 && max > 0) result += " (and ";
+		result += multiplicity(min, edgeSig(arrow));
+		if(min > 0 && max > 0) result += " ";
+		if(max > 0) result += " (not ";
+		result += multiplicity(max, edgeSig(arrow));
+		if(max > 0) result += ")";
+		if(min > 0 && max > 0) result += ")";
+		result += ")))" + LINE;
+		return result + "(assert (forall ((t Int)) (=> (TRANS t) (" + name + " (sm t)))))" +  LINE;
+	}
+	private String multiplicity(int min, String arrow){
+		String result = "";
+		if(min > 0){
+			result += "(exists ((e1 Int)";
+			for(int index = 2; index <= min; index++)
+				result += " (e" + index + " Int)";
+			result += ") (and";
+			for(int index = 1; index <= min; index++)
+				result += " (edges g e" + index + ")  (" + arrow + " e" +  index + ")";
+			if(min > 1){
+				result += " (distinct";
+				for(int index = 1; index <= min; index++)
+					result += " e" +  index;
+				result += ")";
+			}
+			for(int index = 1; index <= min; index++)
+				result += " (= (SRC e" +  index + ") n)";
+			result += "))";
+		}
 		return result;
 	}
-	private String translateNodeMultiplicity(Constraint constraint, String nodes, String arrows) {
-		Node source = getNode(constraint, "X");
-		String result = "//" + "mulitplicity on " + source.getName() + " " + constraint.getParameters() + LINE;
-		Map<String, String> parameters = PredicateImpl.getParameterMap(constraint.getParameters());
-		if(parameters == null) return result;
-		String min = parameters.get("min");
-		String max = parameters.get("max");
-		result += "let count = #" + NP + source.getName() + 
-				nodes + " | count>=" + min;
-		if(!(max.equals("*") || max.equals("-1")))
-			result += " and count <=" + max;
-		return result + LINE; 
+	private String NodeMultiplicity(int min, String node){
+		String result = "";
+		if(min > 0){
+			result += "(exists ((n1 Int)";
+			for(int index = 2; index <= min; index++)
+				result += " (n" + index + " Int)";
+			result += ") (and";
+			for(int index = 1; index <= min; index++)
+				result += " (nodes g n" + index + ") (" + node + " n" +  index + ")";
+			if(min > 1){
+				result += " (distinct";
+				for(int index = 1; index <= min; index++)
+					result += " n" +  index;
+				result += ")";
+			}
+			result += "))";
+		}
+		return result;
 	}
-	private String translateArrowMultiplicity(Constraint constraint, String nodes, String arrows) {
-		Node source = getNode(constraint, "X");
+	private String translateSurjective(Constraint constraint) {
+		Node target = getNode(constraint, "Y");
 		Arrow arrow = getArrow(constraint, "XY");
-		String result = "//" + "mulitplicity on " + arrow +  constraint.getParameters() +  LINE;
-		Map<String, String> parameters = PredicateImpl.getParameterMap(constraint.getParameters());
-		if(parameters == null) return result;
-		String min = parameters.get("min");
-		String max = parameters.get("max");
-		result += "all n:(" + NP + source.getName() + nodes + ")| let count = #{e:(" + AP + arrow.getName() + 
-				arrows + ")| e.src = n}| count>=" + min;
-		if(!(max.equals("*") || max.equals("-1")))
-			result += " and count <=" + max;
-		return result + LINE; 
+		String result = ";;" + "surjective on " + arrow +  LINE;
+		String name = "SUJ-" + arrow.getName(); 
+		result += "(define-fun " + name + " ((g Int)) Bool (forall ((n Int)) (=> (and (nodes g n) (" + nodeSig(target) + " n)) "
+				+ "(exists ((e Int)) (and (edges g e) (" + edgeSig(arrow) + " e) (= (TRG e) n))))))" + LINE; 
+		return result + "(assert (forall ((t Int)) (=> (TRANS t) (" + name + " (sm t)))))" +  LINE;
 	}
-	private String translateSurjective(Constraint constraint, String nodes, String arrows) {
-		Node source = getNode(constraint, "Y");
-		Arrow arrow = getArrow(constraint, "XY");
-		String result = "//" + "surjective on " + arrow +  LINE;
-		return result + "all n:(" + NP + source.getName() + nodes + ")| some e:(" + AP + arrow.getName() + 
-				arrows + ")| e.trg = n" + LINE;
-	}
-	private String translateArrowMultiplicity(Arrow arrow, String nodes, String arrows) {
-		String result = "//" + "mulitplicity on " + arrow +  "[0,1]" + LINE;
-		return result + "all n:(" + NP + arrow.getSource().getName() + nodes + ")| lone e:(" + AP + arrow.getName()+ 
-				arrows + ")|e.src=n" + LINE;
+	private String translateArrowMultiplicity(Arrow arrow) {
+		String result = ";;mulitplicity on " + arrow +  "[0,1]" + LINE;
+		String name = "MUL-" + arrow.getName(); 
+		result += "(define-fun " + name + " ((g Int)) Bool (forall ((n Int)) (=> (and (nodes g n) (" + nodeSig(arrow.getSource()) + " n)) "
+				+ "(not (exists ((e1 Int) (e2 Int)) (and (edges g e1) (edges g e2) (" + edgeSig(arrow) + " e1) (= (SRC e1) n)"
+				+ " (distinct e1 e2) (" + edgeSig(arrow) + " e2) (= (SRC e2) n)))))))" + LINE; 
+		return result + "(assert (forall ((t Int)) (=> (TRANS t) (" + name + " (sm t)))))" +  LINE;
 	}
 	private Node getNode(Constraint constraint, String name){
 		return constraint.getMappings().getNodeMapping().get(constraint.getPredicate().getShape().getNodeByName(name));
@@ -295,12 +379,15 @@ public class TranslateToSMT {
 	private Arrow getArrow(Constraint constraint, String name){
 		return constraint.getMappings().getArrowMapping().get(constraint.getPredicate().getShape().getArrowByName(name));
 	}
-	private String translateInjective(Constraint constraint, String nodes, String arrows) {
+	private String translateInjective(Constraint constraint) {
 		Node source = getNode(constraint, "X");
 		Arrow arrow = getArrow(constraint, "XY");
-		String result = "//" + "check injective on " + arrow+  LINE;
-		return result + "all n:(" + NP + source.getName() + nodes + ")| no e1, e2:(" + AP + arrow.getName() + 
-				arrows + ")| (e1 != e2 and e1.src = n and e2.src = n and e1.trg = e2.trg)" + LINE; 
+		String result = ";;" + "check injective on " + arrow +  LINE;
+		String name = "INJ-" + arrow.getName(); 
+		result += "(define-fun " + name + " ((g Int)) Bool (forall ((n Int)) (=> (and (nodes g n) (" + nodeSig(source) + " n)) "
+				+ "(not (exists ((e1 Int) (e2 Int)) (and (distinct e1 e2) (" + edgeSig(arrow) + " e1) (" + edgeSig(arrow) + " e2) (edges g e1) (edges g e2)"
+				+ " (= (SRC e1) n) (= (SRC e1) n)))))))" +  LINE; 
+		return result += "(assert (forall ((t Int)) (=> (TRANS t) (" + name + " (sm t)))))" +  LINE;
 	}
 	/*
 	 * Get the connected subgraphs from a graph
@@ -449,7 +536,7 @@ public class TranslateToSMT {
 	 */
 	@SuppressWarnings("unchecked")
 	public void pre_rule(Production rule, DGraph dGraph){
-		buffer.append("//the predicate that the transformation is an application of the rule " + rule.getName() + LINE);
+		buffer.append(";;the predicate that the transformation is an application of the rule " + rule.getName() + LINE);
 		buffer.append("pred rule_" + rule.getName() + "[t:Trans]{" + LINE);
 		buffer.append("\tsome t.rule&" + rule.getName() + LINE + LINE);
 		//Has one match of left(right) side of the rule
@@ -633,7 +720,7 @@ public class TranslateToSMT {
 //				buffer.append("=right.");
 //				buffer.append((right.getDSource() == node ? "src" : "trg") + LINE);
 //			}else{
-//				buffer.append("//need mauelly setting the glue nodes right now" + LINE);
+//				buffer.append(";;need mauelly setting the glue nodes right now" + LINE);
 //			}
 //		}
 //		buffer.append(LINE);
@@ -651,17 +738,20 @@ public class TranslateToSMT {
 	 *    d. the transformation applies one of the rules<br>
 	 */
 	public void fact(List<Production> rules){
-		buffer.append("(assert (! (forall ((g Int)) (= (Graph g) (exists ((t Int)) (or (= (sm t) g) (= (tm t) g))))) :named every-graph-in-transformation))" + LINE);
-//		buffer.append("\tRule=Trans.rule" + LINE);
-//		buffer.append("\tno disjoint g1, g2:Graph|g1.ns=g2.ns and g1.es=g2.es" + LINE);
-		buffer.append("\tall t:Trans | trans_general[t] and valid[t.sm] and (" + LINE + "\t");
-		for (Iterator<Production> iterator = rules.iterator(); iterator.hasNext();) {
-			Production rule = (Production) iterator.next();
-			buffer.append("rule_" + rule.getName() + "[t]");
-			if(iterator.hasNext())
-				buffer.append(" or ");
-		}
-		buffer.append(")" + LINE + "}" + LINE + LINE);
+		buffer.append("(assert (! (forall ((n Int)) (=> (NODE n) (exists ((g Int)) (and (GRAPH g) (nodes g n))))) :named every-node-in-graph))" + LINE);
+		buffer.append("(assert (! (forall ((e Int)) (=> (EDGE e) (exists ((g Int)) (and (GRAPH g) (edges g e))))) :named every-edge-in-graph))" + LINE);
+		buffer.append("(assert (! (forall ((g Int)) (=> (GRAPH g) (exists ((t Int)) (and (TRANS t) (or (= (sm t) g) (= (tm t) g)))))) :named every-graph-in-transformation))" + LINE);
+		buffer.append("(assert (! (not (exists ((g1 Int) (g2 Int)) (and (GRAPH g1) (GRAPH g2) (distinct g1 g2) (forall ((x Int)) (and (=> (NODE x) (= (nodes g1 x) (nodes g2 x))) "
+				+ "(=> (EDGE x) (= (edges g1 x) (edges g2 x)))))))) :named graphs-are-different))" + LINE);
+
+//		buffer.append("\tall t:Trans | trans_general[t] and valid[t.sm] and (" + LINE + "\t");
+//		for (Iterator<Production> iterator = rules.iterator(); iterator.hasNext();) {
+//			Production rule = (Production) iterator.next();
+//			buffer.append("rule_" + rule.getName() + "[t]");
+//			if(iterator.hasNext())
+//				buffer.append(" or ");
+//		}
+//		buffer.append(")" + LINE + "}" + LINE + LINE);
 	}
 	public  String translate(List<DArrow> arrows, List<DNode> nodes, List<DNode> commonNodes, List<DArrow> commonArrows,
 			String vvpre, String vtpre, String evpre, String etpre) {
@@ -1744,7 +1834,10 @@ public class TranslateToSMT {
 		buffer.append("(set-option :smt.pull-nested-quantifiers true)" + LINE);
 		buffer.append("(set-option :auto-config false)" + LINE);
 		buffer.append("(set-option :smt.mbqi true)" + LINE);
-		buffer.append("(set-option :produce-unsat-cores true)" + LINE);
+		buffer.append("(set-option :produce-unsat-cores true)" + LINE + LINE);
+		
+		buffer.append("(declare-const NULL Int)" + LINE);
+		buffer.append("(assert (= NULL 0))" + LINE + LINE);
 		nodeSigs();
 		edgeSigs();
 		if(rules != null){
@@ -1756,10 +1849,10 @@ public class TranslateToSMT {
 //				pre_rule(rule, dGraph);
 		}
 		pre_source_valid();
-		if(rules != null){
-			run_command();
-		}
-		buffer.append("(check-sat)");
+//		if(rules != null){
+//			run_command();
+//		}
+		buffer.append("(check-sat)\n(get-unsat-core)");
 	}
 	private String targetNodes = "&t.tm.ns", targetArrows = "&t.tm.es";
 	private void run_command() {
@@ -1772,28 +1865,28 @@ public class TranslateToSMT {
 				}
 			}
 			if(!isMult)
-				commands.add(translateArrowMultiplicity(arrow, targetNodes, targetArrows));
+				commands.add(translateArrowMultiplicity(arrow));
 		}
 		for(Constraint constraint : dType.getSpecification().getConstraints()){
 			Predicate predicate  = constraint.getPredicate();
 			if(predicate == DPFConstants.INJECTIVE)
-				commands.add(translateInjective(constraint, targetNodes, targetArrows));
+				commands.add(translateInjective(constraint));
 			else if(predicate == DPFConstants.SURJECTIVE)
-				commands.add(translateSurjective(constraint, targetNodes, targetArrows));
+				commands.add(translateSurjective(constraint));
 			else if(predicate == DPFConstants.ARROW_MULTI)
-				commands.add(translateArrowMultiplicity(constraint, targetNodes, targetArrows));
+				commands.add(translateArrowMultiplicity(constraint));
 			else if(predicate == DPFConstants.NODE_MULTI)
-				commands.add(translateNodeMultiplicity(constraint, targetNodes, targetArrows));
+				commands.add(translateNodeMultiplicity(constraint));
 			else if(predicate == DPFConstants.XOR)
-				commands.add(translateXOR(constraint, targetNodes, targetArrows));
+				commands.add(translateXOR(constraint));
 			else if(predicate == DPFConstants.XOR4)
-				commands.add(translateXOR4(constraint, targetNodes, targetArrows));
+				commands.add(translateXOR4(constraint));
 			else if(predicate == DPFConstants.MERGE_NAND)
-				commands.add(translateMergeNAND(constraint, targetNodes, targetArrows));
+				commands.add(translateMergeNAND(constraint));
 			else if(predicate == DPFConstants.SPLIT_NAND)
-				commands.add(translateSplitNAND(constraint, targetNodes, targetArrows));
+				commands.add(translateSplitNAND(constraint));
 			else if(predicate == DPFConstants.REFLEXIVE)
-				commands.add(translateReflexive(constraint, targetNodes, targetArrows));
+				commands.add(translateReflexive(constraint));
 		}
 	}
 
