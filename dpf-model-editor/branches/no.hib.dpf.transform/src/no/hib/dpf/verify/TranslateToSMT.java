@@ -172,8 +172,6 @@ public class TranslateToSMT {
 		buffer.append("(assert (! (forall ((t Int) (e Int)) (= (and (not (des t e)) (edges (sm t) e)) (and (not (aes t e)) (edges (tm t) e)))) :named not-changed-edges-kept))" + LINE);
 	}
 
-	private String GRAPH_NODES = "&g.ns", GRAPH_EDGES = "&g.es";
-
 	/**
 	 * Each source model satisfies all the constraints on the metamodel. In this way, every source model is valid.<br>
 	 * 1. Each arrow has a default constraint multi[0,1]. Translate the default constraint first.<br>
@@ -537,28 +535,18 @@ public class TranslateToSMT {
 	@SuppressWarnings("unchecked")
 	public void pre_rule(Production rule, DGraph dGraph){
 		buffer.append(";;the predicate that the transformation is an application of the rule " + rule.getName() + LINE);
-		buffer.append("pred rule_" + rule.getName() + "[t:Trans]{" + LINE);
-		buffer.append("\tsome t.rule&" + rule.getName() + LINE + LINE);
+		buffer.append("(define-fun rule_" + rule.getName() + " ((t Int)) Bool (and " + LINE);
+//		buffer.append("\tsome t.rule&" + rule.getName() + LINE + LINE);
 		//Has one match of left(right) side of the rule
 		List<Object> relatedSet = new ArrayList<Object>();
 		getConnectedSubgraphs(rule.getSum().getDGraph().getDNodes(), rule.getSum().getDGraph().getDArrows(), relatedSet);
-//		EList<DNode> commonNodes = rule.getCommonNodes();
-//		EList<DArrow> commonArrows = rule.getCommonArrows();
 		for(int index = 0; index < relatedSet.size(); index += 2){
 			List<DNode> subn = (List<DNode>) relatedSet.get(index);
 			List<DArrow> suba = (List<DArrow>) relatedSet.get(index + 1);
-//			List<DNode>  subcn = new ArrayList<DNode>();
-//			List<DArrow>  subca = new ArrayList<DArrow>();
 			translateMatch(intersection(subn, rule.getLeftNodes()), intersection(suba, rule.getLeftArrows()),
 					  intersection(subn, rule.getCommonNodes()), intersection(suba, rule.getCommonArrows()),
 					  intersection(subn, rule.getRightNodes()), intersection(suba, rule.getRightArrows()));
 		}
-//		hasOneMatch(rule.getLeftNodes(), rule.getLeftArrows(), rule.getCommonNodes(), rule.getCommonArrows(), true);
-//		hasOneMatch(rule.getRightNodes(), rule.getRightArrows(), rule.getCommonNodes(), rule.getCommonArrows(), false);
-//		matchDelAndAdd(rule.getLeftNodes(), rule.getLeftArrows(), rule.getCommonNodes(), rule.getCommonArrows(), rule.getRightNodes(), rule.getRightArrows());
-		//		findUnique(rule.getLeftNodes(), rule.getLeftArrows(), rule.getCommonNodes(), rule.getCommonArrows(), rule.getRightNodes(), rule.getRightArrows());
-		//If an element is changed, it must be matched by the left or the right side of the rule
-//		buffer.append(LINE);
 		nodesChanged(rule.getLeftNodes(), rule.getLeftArrows(), rule.getCommonNodes(), rule.getCommonArrows(), true);
 		nodesChanged(rule.getRightNodes(), rule.getRightArrows(), rule.getCommonNodes(), rule.getCommonArrows(), false);
 		edgesChanged(rule.getLeftNodes(), rule.getLeftArrows(), rule.getCommonNodes(), rule.getCommonArrows(), true);
@@ -567,7 +555,7 @@ public class TranslateToSMT {
 		noNodeChanged(rule.getRightNodes(), rule.getCommonNodes(), dGraph.getDNodes(), false);
 		noEdgeChanged(rule.getLeftArrows(), rule.getCommonArrows(), dGraph.getDArrows(), true);
 		noEdgeChanged(rule.getRightArrows(), rule.getCommonArrows(), dGraph.getDArrows(), false);
-		buffer.append("}" + LINE + LINE);
+		buffer.append("))" + LINE);
 	}
 
 	private <T> List<T> complement(Collection<T> A, Collection<T> B){
@@ -1201,58 +1189,57 @@ public class TranslateToSMT {
 			 List<DNode> rightNodes, List<DArrow> rightEdges) {
 		boolean kept = commonEdges.contains(cur), srcKept = commonNodes.contains(cur.getDSource()), trgKept = commonNodes.contains(cur.getDTarget());
 		String the = cur.getArrow().getName(), source = cur.getArrow().getSource().getName(), target = cur.getArrow().getTarget().getName();
-		buffer.append("some ");//kept ? "some " : "one ");
-		buffer.append(the +":");
-		buffer.append(edgeSig(cur.getArrow().getTypeArrow()) + "&");
+		buffer.append(LINE + "(exists ((");//kept ? "some " : "one ");
+		buffer.append(the +" Int)) (and (");
+		buffer.append(edgeSig(cur.getArrow().getTypeArrow()) + " " + the + ")");
 		boolean delete = !kept & leftEdges.contains(cur);
-		buffer.append(kept ? COMEDGE : (delete ? DELEDGE : ADDEDGE));
-		buffer.append("|");
+		buffer.append(kept ? COMEDGE(the) : (delete ? DELEDGE(the) : ADDEDGE(the)));
+//		buffer.append("|");
 		boolean srcVisited = visitedNode.contains(cur.getDSource()), trgVisited =  visitedNode.contains(cur.getDTarget());
 		visitedNode.add(cur.getDSource());
 		visitedNode.add(cur.getDTarget());
 		visited.add(cur);
 		if(srcVisited && trgVisited){
-			buffer.append(the + ".src=" + source + " and " + the  + ".trg =" + target);
+			buffer.append(" (= (SRC " + the + ") " + source + ") (= (TRG " + the  + ") " + target + ")))");
 			return;
 		}
-
-		buffer.append("let ");
+		buffer.append(" (let (");
 		boolean ref = cur.getDSource() == cur.getDTarget();
 		if(!srcVisited)
-			buffer.append(source + "=" + the + ".src");
+			buffer.append("(" + source + " (SRC " + the + "))");
 		if(!srcVisited && !trgVisited && !ref)
-			buffer.append(",");
+			buffer.append(" ");
 		if(!trgVisited && !ref)
-			buffer.append(target + "=" + the + ".trg");
-		buffer.append("|" + LINE + "\t(");
+			buffer.append("(" + target + " (TRG " + the + "))");
+		buffer.append(")" + LINE + "\t (and ");
 		if(srcVisited)
-			buffer.append(the + ".src=" + source);
+			buffer.append("(= (SRC " + the + ") " + source + ")");
 		else{
 			delete = leftNodes.contains(source);
-			buffer.append(source + " in " + (srcKept ? COMNODE : (delete ? DELNODE : ADDNODE)));
+			buffer.append(srcKept ? COMNODE(source) : (delete ? DELNODE(source) : ADDNODE(source)));
 		}
 		if(!ref){
-			buffer.append(" and ");
+			buffer.append(" ");
 			if(trgVisited)
-				buffer.append(the + ".trg=" + target);
+				buffer.append("(= (TRG " + the + ") " + target + ")");
 			else{
-				delete = leftNodes.contains(source);
-				buffer.append(target + " in " + (trgKept ? COMNODE : (delete ? DELNODE : ADDNODE)));
+				delete = leftNodes.contains(target);
+				buffer.append(trgKept ? COMNODE(target) : (delete ? DELNODE(target) : ADDNODE(target)));
 			}
 		}else if(!trgVisited)
-			buffer.append(" and " + target + "=" + the + ".trg");
+			buffer.append(" (" + target + " (TRG" + the + "))");
 
 		if(!srcVisited){
 			for(DArrow arrow : cur.getDSource().getDIncomings()){
 				if((leftEdges.contains(arrow) || rightEdges.contains(arrow)) && !visited.contains(arrow)){
-					buffer.append(" and (");
+					buffer.append(" (");
 					translateRelatedMatch(arrow, visited, visitedNode, leftNodes, leftEdges, commonNodes, commonEdges, rightNodes, rightEdges);
 					buffer.append(")");
 				}
 			}
 			for(DArrow arrow : cur.getDSource().getDOutgoings()){
 				if((leftEdges.contains(arrow) || rightEdges.contains(arrow)) && !visited.contains(arrow)){
-					buffer.append(" and (");
+					buffer.append(" (");
 					translateRelatedMatch(arrow, visited, visitedNode, leftNodes, leftEdges, commonNodes, commonEdges, rightNodes, rightEdges);
 					buffer.append(")");
 				}
@@ -1261,20 +1248,20 @@ public class TranslateToSMT {
 		if(!trgVisited && !ref){
 			for(DArrow arrow : cur.getDTarget().getDIncomings()){
 				if((leftEdges.contains(arrow) || rightEdges.contains(arrow)) && !visited.contains(arrow)){
-					buffer.append(" and (");
+					buffer.append(" (");
 					translateRelatedMatch(arrow, visited, visitedNode, leftNodes, leftEdges, commonNodes, commonEdges, rightNodes, rightEdges);
 					buffer.append(")");
 				}
 			}
 			for(DArrow arrow : cur.getDTarget().getDOutgoings()){
 				if((leftEdges.contains(arrow) || rightEdges.contains(arrow)) && !visited.contains(arrow)){
-					buffer.append(" and (");
+					buffer.append(" (");
 					translateRelatedMatch(arrow, visited, visitedNode, leftNodes, leftEdges, commonNodes, commonEdges, rightNodes, rightEdges);
 					buffer.append(")");
 				}
 			}
 		}
-		buffer.append(")");
+		buffer.append("))))");
 	}
 //	public  void translateRelatedMatch(DArrow cur, List<DArrow> visited, List<DNode> visitedNode, List<DArrow> arrows, List<DNode> nodes, List<DNode> commonNodes, List<DArrow> commonArrows, boolean delete) {
 //		boolean kept = commonArrows.contains(cur), srcKept = commonNodes.contains(cur.getDSource()), trgKept = commonNodes.contains(cur.getDTarget());
@@ -1396,6 +1383,24 @@ public class TranslateToSMT {
 //				subca.add(arrow);
 //	}
 	
+	private String ADDNODE(String source) {
+		return " (nodes (sm t) " + source + ") (ans t " + source + ")";
+	}
+	private String DELNODE(String source) {
+		return " (nodes (sm t) " + source + ") (dns t " + source + ")";
+	}
+	private String COMNODE(String source) {
+		return " (nodes (sm t) " + source + ") (not (dns t " + source + "))";
+	}
+	private String COMEDGE(String the) {
+		return " (edges (sm t) " + the + ") (not (des t " + the + "))";
+	}
+	private String ADDEDGE(String the) {
+		return " (edges (sm t) " + the + ") (aes t " + the + ")";
+	}
+	private String DELEDGE(String the) {
+		return " (edges (sm t) " + the + ") (des t " + the + ")";
+	}
 	public  void translateRelatedMatch(List<DNode> leftNodes, List<DArrow> leftEdges,  
 			 List<DNode> commonNodes, List<DArrow> commonEdges, 
 			 List<DNode> rightNodes, List<DArrow> rightEdges) {
@@ -1713,7 +1718,7 @@ public class TranslateToSMT {
 	 * If no instance of a type is deleted(added).
 	 */
 	public  void noNodeChanged(List<DNode> nodes, List<DNode> commonNodes,  List<DNode> all, boolean delete){
-		String tpre = delete ? DELNODE : ADDNODE;
+		String tpre = delete ? "dns" : "ans";
 		List<DNode> hide = new ArrayList<DNode>();
 		hide.addAll(all);
 		for(DNode node : nodes){
@@ -1724,21 +1729,18 @@ public class TranslateToSMT {
 			}
 		}
 		if(all.size() == hide.size()){
-			buffer.append("\tno " + tpre + LINE);
+			buffer.append("\t(not (exists ((n Int)) (and (NODE n) (" + tpre + " t e))))" + LINE);
 			return;
 		}
-		String temp = "";
 		for (int i = 0; i < hide.size(); i++) {
 			DNode node = hide.get(i);
 			if(node instanceof DConstraintNode) 
 				continue;
-			if(temp.isEmpty()) temp = nodeSig(node.getNode());
-			else temp+= "+" + nodeSig(node.getNode());
+			buffer.append("\t(not (exists ((n Int)) (and (" + nodeSig(node.getNode()) + " n) (" + tpre + " t n))))" + LINE);
 		}
-		buffer.append("\tno (" + temp + ")&" + tpre + LINE);
 	}
 	public  void noEdgeChanged(List<DArrow> arrows, List<DArrow> commonArrows,  List<DArrow> all, boolean delete){
-		String tpre = delete ? DELEDGE : ADDEDGE; 
+		String tpre = delete ? "des" : "aes"; 
 		List<DArrow> hide = new ArrayList<DArrow>();
 		hide.addAll(all);
 		for(DArrow arrow : arrows){
@@ -1749,23 +1751,20 @@ public class TranslateToSMT {
 			}
 		}
 		if(all.size() == hide.size()){
-			buffer.append("\tno " + tpre + LINE);
+			buffer.append("\t(not (exists ((e Int)) (and (EDGE e) (" + tpre + " t e))))" + LINE);
 			return;
 		}
-		String temp = "";
 		for (int i = 0; i < hide.size(); i++) {
-			DArrow arrow = hide.get(i);
-			if(temp.isEmpty()) temp = edgeSig(arrow.getArrow());
-			else temp+= "+" + edgeSig(arrow.getArrow());
+			buffer.append("\t(not (exists ((e Int)) (and (" + edgeSig(hide.get(i).getArrow()) + " e) (" + tpre + " t e))))" + LINE);
 		}
-		buffer.append("\tno (" + temp + ")&" + tpre + LINE);
+//		buffer.append("\tno (" + temp + ")&" + tpre + LINE);
 	}
 	/*
 	 * If more than one instance of a type is deleted(added), it must be matched by the left(right) part of the rule.
 	 * If only one instance of a type is deleted(added), we use number restricted to encoding the constraint.
 	 */
 	public  void nodesChanged(List<DNode> nodes, List<DArrow> arrows, List<DNode> commonNodes, List<DArrow> commonArrows, boolean delete){
-		String tpre = delete ? DELNODE : ADDNODE;
+		String tpre = delete ? "dns" : "ans";
 		Map<DNode, List<DNode>> counters = new HashMap<DNode, List<DNode>>();
 		for(DNode node : nodes){
 			if(!commonNodes.contains(node)){
@@ -1782,20 +1781,63 @@ public class TranslateToSMT {
 		}
 		for(Entry<DNode, List<DNode>> entry : counters.entrySet()){
 			List<DNode> count = entry.getValue();
-			if(count.size() == 1)
-				buffer.append("\t#" + nodeSig(entry.getKey().getNode()) + "&" + tpre + " = " + count.size() + LINE);
-			else{
-				buffer.append("\tall n : (" + nodeSig(entry.getKey().getNode()) + "&" + tpre + ")|");
-				for(int index = 0; index < count.size(); ++index){
-					if(index != 0)
-						buffer.append(" or ");
-					hasOneMatch(nodes, arrows, commonNodes, commonArrows, count.get(index), delete);
-				}
-			}
+			buffer.append("\t(and ");
+			buffer.append(NodeMultiplicity(count.size(), nodeSig(entry.getKey().getNode()), tpre));
+			buffer.append(" (not ");
+			buffer.append(NodeMultiplicity(count.size()+1, nodeSig(entry.getKey().getNode()), tpre));
+			buffer.append("))" + LINE);
+//			if(count.size() == 1)
+//				buffer.append("\t#" + nodeSig(entry.getKey().getNode()) + "&" + tpre + " = " + count.size() + LINE);
+//			else{
+//				buffer.append("\tall n : (" + nodeSig(entry.getKey().getNode()) + "&" + tpre + ")|");
+//				for(int index = 0; index < count.size(); ++index){
+//					if(index != 0)
+//						buffer.append(" or ");
+//					hasOneMatch(nodes, arrows, commonNodes, commonArrows, count.get(index), delete);
+//				}
+//			}
 		}
 	}
+	private String NodeMultiplicity(int min, String node, String del){
+		String result = "";
+		if(min > 0){
+			result += "(exists ((n1 Int)";
+			for(int index = 2; index <= min; index++)
+				result += " (n" + index + " Int)";
+			result += ") (and";
+			for(int index = 1; index <= min; index++)
+				result += " (" + del + " t n" + index + ") (" + node + " n" +  index + ")";
+			if(min > 1){
+				result += " (distinct";
+				for(int index = 1; index <= min; index++)
+					result += " n" +  index;
+				result += ")";
+			}
+			result += "))";
+		}
+		return result;
+	}
+	private String multiplicity(int min, String arrow, String del){
+		String result = "";
+		if(min > 0){
+			result += "(exists ((e1 Int)";
+			for(int index = 2; index <= min; index++)
+				result += " (e" + index + " Int)";
+			result += ") (and";
+			for(int index = 1; index <= min; index++)
+				result += " (" + del + " t e" + index + ") (" + arrow + " e" +  index + ")";
+			if(min > 1){
+				result += " (distinct";
+				for(int index = 1; index <= min; index++)
+					result += " e" +  index;
+				result += ")";
+			}
+			result += "))";
+		}
+		return result;
+	}
 	public  void edgesChanged(List<DNode> nodes, List<DArrow> arrows, List<DNode> commonNodes, List<DArrow> commonArrows, boolean delete){
-		String tpre = delete ? DELEDGE : ADDEDGE;
+		String tpre = delete ? "des" : "aes";
 		Map<DArrow, List<DArrow>> counters = new HashMap<DArrow, List<DArrow>>();
 		for(DArrow arrow : arrows){
 			if(!commonArrows.contains(arrow)){
@@ -1812,16 +1854,21 @@ public class TranslateToSMT {
 		}
 		for(Entry<DArrow, List<DArrow>> entry : counters.entrySet()){
 			List<DArrow> count = entry.getValue();
-			if(count.size() == 1)
-				buffer.append("\t#" + edgeSig(entry.getKey().getArrow()) + "&" + tpre + " = " + count.size() + LINE);
-			else{
-				buffer.append("\tall n : (" + edgeSig(entry.getKey().getArrow()) + "&" + tpre + ")|");
-				for(int index = 0; index < count.size(); ++index){
-					if(index != 0)
-						buffer.append(" or ");
-					hasOneMatch(nodes, arrows, commonNodes, commonArrows, count.get(index), delete);
-				}
-			}
+			buffer.append("\t(and ");
+			buffer.append(multiplicity(count.size(), edgeSig(entry.getKey().getArrow()), tpre));
+			buffer.append(" (not ");
+			buffer.append(multiplicity(count.size()+1, edgeSig(entry.getKey().getArrow()), tpre));
+			buffer.append("))" + LINE);
+//			if(count.size() == 1)
+//				buffer.append("\t#" + edgeSig(entry.getKey().getArrow()) + "&" + tpre + " = " + count.size() + LINE);
+//			else{
+//				buffer.append("\tall n : (" + edgeSig(entry.getKey().getArrow()) + "&" + tpre + ")|");
+//				for(int index = 0; index < count.size(); ++index){
+//					if(index != 0)
+//						buffer.append(" or ");
+//					hasOneMatch(nodes, arrows, commonNodes, commonArrows, count.get(index), delete);
+//				}
+//			}
 		}
 	}
 
@@ -1845,8 +1892,8 @@ public class TranslateToSMT {
 			ruleSigs();
 			tranSig();
 			fact(rules);
-//			for(Production rule : rules)
-//				pre_rule(rule, dGraph);
+			for(Production rule : rules)
+				pre_rule(rule, dGraph);
 		}
 		pre_source_valid();
 //		if(rules != null){
@@ -1905,8 +1952,6 @@ public class TranslateToSMT {
 		dType  = diagramModel;
 		dGraph = dType.getDGraph();
 		rules = null;
-		GRAPH_EDGES = "";
-		GRAPH_NODES = "";
 		targetArrows = "";
 		targetNodes = "";
 	}

@@ -1132,7 +1132,7 @@ public class TranslateToAlloy {
 			if(trgVisited)
 				buffer.append(the + ".trg=" + target);
 			else{
-				delete = leftNodes.contains(source);
+				delete = leftNodes.contains(target);
 				buffer.append(target + " in " + (trgKept ? COMNODE : (delete ? DELNODE : ADDNODE)));
 			}
 		}else if(!trgVisited)
