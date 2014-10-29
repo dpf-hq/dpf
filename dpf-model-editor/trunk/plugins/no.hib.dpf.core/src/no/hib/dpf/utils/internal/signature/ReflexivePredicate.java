@@ -17,6 +17,7 @@ public class ReflexivePredicate extends AbstractBasePredicate {
 
 		List<Arrow> arrows = arrowMap.get(shape.getArrowByName("XY")); 
 		boolean result = true;
+		if(arrows != null)
 		for(Arrow arrow : arrows){
 			if(arrow.getSource() != arrow.getTarget()){
 				result = false;

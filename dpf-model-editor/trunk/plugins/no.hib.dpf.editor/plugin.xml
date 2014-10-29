@@ -199,6 +199,11 @@
             id="no.hib.dpf.editor.exportimage"
             name="Export Image">
       </command>
+      <command
+            defaultHandler="no.hib.dpf.editor.commands.ValidateModelHandler"
+            id="no.hib.dpf.editor.validateModel"
+            name="Validate Model Consistence">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
@@ -208,6 +213,11 @@
          <command
                commandId="no.hib.dpf.editor.exportimage"
                label="Export Image"
+               style="push">
+         </command>
+         <command
+               commandId="no.hib.dpf.editor.validateModel"
+               label="Validate Model Consistence"
                style="push">
          </command>
       </menuContribution>

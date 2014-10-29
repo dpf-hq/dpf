@@ -168,6 +168,10 @@ public class TranslateToSMT {
 		buffer.append("(assert (! (forall ((t Int) (e Int)) (not (and (des t e) (aes t e)))) :named no-deleted-added-edges))" + LINE);
 		buffer.append("(assert (! (forall ((t Int) (n Int)) (= (and (not (dns t n)) (nodes (sm t) n)) (and (not (ans t n)) (nodes (tm t) n)))) :named not-changed-nodes-kept))" + LINE);
 		buffer.append("(assert (! (forall ((t Int) (e Int)) (= (and (not (des t e)) (edges (sm t) e)) (and (not (aes t e)) (edges (tm t) e)))) :named not-changed-edges-kept))" + LINE);
+		buffer.append("(assert (! (forall ((n Int)) (=> (NODE n) (exists ((g Int)) (and (GRAPH g) (nodes g n))))) :named every-node-in-graph))" + LINE);
+		buffer.append("(assert (! (forall ((e Int)) (=> (EDGE e) (exists ((g Int)) (and (GRAPH g) (edges g e))))) :named every-edge-in-graph))" + LINE);
+		buffer.append("(assert (! (forall ((g Int)) (=> (GRAPH g) (exists ((t Int)) (and (TRANS t) (or (= (sm t) g) (= (tm t) g)))))) :named every-graph-in-transformation))" + LINE);
+
 	}
 
 	/**
@@ -528,8 +532,8 @@ public class TranslateToSMT {
 		buffer.append("(assert (! (forall ((n Int)) (=> (NODE n) (exists ((g Int)) (and (GRAPH g) (nodes g n))))) :named every-node-in-graph))" + LINE);
 		buffer.append("(assert (! (forall ((e Int)) (=> (EDGE e) (exists ((g Int)) (and (GRAPH g) (edges g e))))) :named every-edge-in-graph))" + LINE);
 		buffer.append("(assert (! (forall ((g Int)) (=> (GRAPH g) (exists ((t Int)) (and (TRANS t) (or (= (sm t) g) (= (tm t) g)))))) :named every-graph-in-transformation))" + LINE);
-		buffer.append("(assert (! (not (exists ((g1 Int) (g2 Int)) (and (GRAPH g1) (GRAPH g2) (distinct g1 g2) (forall ((x Int)) (and (=> (NODE x) (= (nodes g1 x) (nodes g2 x))) "
-				+ "(=> (EDGE x) (= (edges g1 x) (edges g2 x)))))))) :named graphs-are-different))" + LINE);
+//		buffer.append("(assert (! (not (exists ((g1 Int) (g2 Int)) (and (GRAPH g1) (GRAPH g2) (distinct g1 g2) (forall ((x Int)) (and (=> (NODE x) (= (nodes g1 x) (nodes g2 x))) "
+//				+ "(=> (EDGE x) (= (edges g1 x) (edges g2 x)))))))) :named graphs-are-different))" + LINE);
 	}
 	public  String translate(List<DArrow> arrows, List<DNode> nodes, List<DNode> commonNodes, List<DArrow> commonArrows,
 			String vvpre, String vtpre, String evpre, String etpre) {
@@ -1246,6 +1250,10 @@ public class TranslateToSMT {
 			fact(rules);
 			for(Production rule : rules)
 				pre_rule(rule, dGraph);
+			buffer.append("(assert (forall ((t Int)) (=> (TRANS t) (or");
+			for(Production rule : rules)
+			buffer.append(" (rule_" + rule.getName() + " t)");
+			buffer.append("))))");
 		}
 		pre_source_valid();
 		//		if(rules != null){
