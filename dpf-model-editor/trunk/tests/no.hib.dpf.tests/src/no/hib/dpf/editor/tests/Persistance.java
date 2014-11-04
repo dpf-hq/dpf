@@ -49,7 +49,7 @@ import org.junit.Test;
 
 public class Persistance {
 
-	private DSpecification getExampleDSpecification(){
+/*	private DSpecification getExampleDSpecification(){
 		DSpecification dSpecification = DiagramFactory.eINSTANCE.createDefaultDSpecification();
 		Specification specification1 = dSpecification.getSpecification();
 		Graph graph = specification1.getGraph();
@@ -446,5 +446,5 @@ public class Persistance {
 		DPFCoreUtil.saveSpecification(URI.createFileURI("model/testInstance.xmi"), instance);
 	}
 
-
+*/
 }

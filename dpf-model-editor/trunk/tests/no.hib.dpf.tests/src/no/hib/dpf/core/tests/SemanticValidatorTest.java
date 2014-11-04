@@ -22,7 +22,7 @@ import no.hib.dpf.utils.internal.signature.IrreflexivePredicate;
 import no.hib.dpf.utils.internal.signature.JointlyInjectivePredicate;
 import no.hib.dpf.utils.internal.signature.JointlySurjectiveValidator;
 import no.hib.dpf.utils.internal.signature.MultiplicityPredicate;
-import no.hib.dpf.utils.internal.signature.NANDPredicate;
+import no.hib.dpf.utils.internal.signature.MergeNANDPredicate;
 import no.hib.dpf.utils.internal.signature.SurjectivePredicate;
 import no.hib.dpf.utils.internal.signature.XORPredicate;
 
@@ -141,14 +141,14 @@ public class SemanticValidatorTest extends TestCase {
 	private void testPredicate(Predicate predicate, EList<Node> nodes, EList<Arrow> arrows, Graph model, boolean result) {
 		Constraint constraint = predicate.createConstraint(nodes, arrows);
 		if (constraint != null)
-			assertEquals(predicate.validateSemantics(null, constraint.getMappings(), model), result);
+			assertEquals(predicate.validateSemantics(null, constraint.getMappings(), nodes, arrows), result);
 	}
 
 	private void testPredicate(String parameters, Predicate predicate,EList<Node> nodes, EList<Arrow> arrows, Graph model, boolean result) {
 		Constraint constraint = predicate.createConstraint(nodes, arrows);// predicate.getShape().getNodes(),
 		if (constraint != null) {
 			constraint.setParameters(parameters);
-			assertEquals( predicate.validateSemantics(parameters,constraint.getMappings(), model), result);
+			assertEquals( predicate.validateSemantics(parameters,constraint.getMappings(), nodes, arrows), result);
 		}
 	}
 
@@ -217,7 +217,7 @@ public class SemanticValidatorTest extends TestCase {
 	public void testNANDPredicate() {
 		Graph typeGraph = CoreFactory.eINSTANCE.createGraph("x_type,y_type,z_type","f_type:x_type:y_type,g_type:x_type:z_type");
 		Graph graph = CoreFactory.eINSTANCE.createGraph("x", "");
-		Predicate predicate = new NANDPredicate();
+		Predicate predicate = new MergeNANDPredicate();
 
 		graph.getNodeByName("x").setTypeNode(typeGraph.getNodeByName("x_type"));
 		testPredicate(predicate, typeGraph, graph, true);
