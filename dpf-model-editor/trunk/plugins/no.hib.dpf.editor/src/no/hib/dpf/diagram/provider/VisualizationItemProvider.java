@@ -14,6 +14,7 @@ import no.hib.dpf.diagram.DiagramPackage;
 import no.hib.dpf.diagram.Visualization;
 import no.hib.dpf.diagram.VisualizationType;
 
+import no.hib.dpf.editor.DPFPlugin;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -167,7 +168,7 @@ public class VisualizationItemProvider
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return DiagramMetamodelEditPlugin.INSTANCE;
+		return DPFPlugin.INSTANCE;
 	}
 
 	/**

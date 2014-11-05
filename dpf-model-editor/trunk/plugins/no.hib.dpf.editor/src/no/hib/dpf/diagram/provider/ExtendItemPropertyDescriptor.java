@@ -46,13 +46,15 @@ public class ExtendItemPropertyDescriptor extends ItemPropertyDescriptor {
 	   * The label provider will be used to determine the labels for the objects this returns.
 	   * This default implementation uses {@link #getReachableObjectsOfType getReachableObjectsOfType}.
 	   */
-	  protected Collection<?> getComboBoxObjects(Object object)
+	  @Override
+	protected Collection<?> getComboBoxObjects(Object object)
 	  {
 		  return super.getComboBoxObjects(isModelElement() ? getModelElement(object) : object);
 	  }
 
 	 
-	  protected Object createPropertyValueWrapper(Object object, Object propertyValue)
+	  @Override
+	protected Object createPropertyValueWrapper(Object object, Object propertyValue)
 	  {
 	    return new PropertyValueWrapper(adapterFactory, isModelElement() ? getModelElement(object) : object, propertyValue, null);
 	  }
@@ -62,7 +64,8 @@ public class ExtendItemPropertyDescriptor extends ItemPropertyDescriptor {
 	   * and it sets object, which is necessary if {@link #getComboBoxObjects getComboBoxObjects} is called.
 	   * It is implemented in a generic way using the structural feature or parent references.
 	   */
-	  public Object getPropertyValue(Object object)
+	  @Override
+	public Object getPropertyValue(Object object)
 	  {
 		  return super.getPropertyValue(isModelElement() ? getModelElement(object) : object);
 	  }
@@ -71,7 +74,8 @@ public class ExtendItemPropertyDescriptor extends ItemPropertyDescriptor {
 	   * This does the delegated job of determine whether the property value from the given object is set.
 	   * It is implemented in a generic way using the structural feature.
 	   */
-	  public boolean isPropertySet(Object object)
+	  @Override
+	public boolean isPropertySet(Object object)
 	  {
 		  return super.isPropertySet(isModelElement() ? getModelElement(object) : object);
 	  }
@@ -79,7 +83,8 @@ public class ExtendItemPropertyDescriptor extends ItemPropertyDescriptor {
 	  /**
 	   * This determines whether this descriptor's property for the object supports set (and reset).
 	   */
-	  public boolean canSetProperty(Object object)
+	  @Override
+	public boolean canSetProperty(Object object)
 	  {
 		  return super.canSetProperty(isModelElement() ? getModelElement(object) : object);
 	  }
@@ -89,12 +94,14 @@ public class ExtendItemPropertyDescriptor extends ItemPropertyDescriptor {
 	  /**
 	   * This does the delegated job of resetting property value back to it's default value.
 	   */
-	  public void resetPropertyValue(Object object)
+	  @Override
+	public void resetPropertyValue(Object object)
 	  {
 		  super.resetPropertyValue(isModelElement() ? getModelElement(object) : object);
 	  }
 
-	  public EditingDomain getEditingDomain(Object object)
+	  @Override
+	public EditingDomain getEditingDomain(Object object)
 	  {
 		  return super.getEditingDomain(isModelElement() ? getModelElement(object) : object);
 	  }
@@ -120,7 +127,8 @@ public class ExtendItemPropertyDescriptor extends ItemPropertyDescriptor {
 	   * This does the delegated job of setting the property to the given value.
 	   * It is implemented in a generic way using the structural feature.
 	   */
-	  public void setPropertyValue(Object object, Object value)
+	  @Override
+	public void setPropertyValue(Object object, Object value)
 	  {
 		  super.setPropertyValue(isModelElement() ? getModelElement(object) : object, value);
 	  }

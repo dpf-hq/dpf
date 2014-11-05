@@ -432,7 +432,7 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 				return checker.check(paraMap, getShape(), nodeMap, arrowMap);
 			return true;
 		}
-		else
+		else if(getValidator().getType() == ValidatorType.OCL)
 		{
     		initializeArrowMap(mapping);
 			boolean valid = true;
@@ -442,6 +442,11 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 					valid &=  getOclInstance().check(node, getInvariant());
 			return valid;
 		}
+		
+		/*
+		 * TODO add function to translate parameters in ALLOY
+		 */
+		return true;
 	}
 
 	private org.eclipse.ocl.ecore.Constraint getInvariant() {

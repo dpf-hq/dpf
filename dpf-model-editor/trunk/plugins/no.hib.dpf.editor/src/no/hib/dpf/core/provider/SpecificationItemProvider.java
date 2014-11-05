@@ -14,6 +14,7 @@ import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.core.Specification;
 
+import no.hib.dpf.editor.DPFPlugin;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -270,7 +271,7 @@ public class SpecificationItemProvider
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return MetamodelEditPlugin.INSTANCE;
+		return DPFPlugin.INSTANCE;
 	}
 
 }

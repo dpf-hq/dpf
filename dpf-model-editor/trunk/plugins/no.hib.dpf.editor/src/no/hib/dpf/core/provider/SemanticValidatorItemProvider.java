@@ -14,6 +14,7 @@ import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.core.SemanticValidator;
 import no.hib.dpf.core.ValidatorType;
 
+import no.hib.dpf.editor.DPFPlugin;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -179,7 +180,7 @@ public class SemanticValidatorItemProvider
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return MetamodelEditPlugin.INSTANCE;
+		return DPFPlugin.INSTANCE;
 	}
 
 }

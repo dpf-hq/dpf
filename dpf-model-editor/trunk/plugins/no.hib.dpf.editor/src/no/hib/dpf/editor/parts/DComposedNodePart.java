@@ -150,4 +150,12 @@ public class DComposedNodePart extends GraphicalEditPartWithListener  implements
 			}
 		}
 	}
+	protected void listen(){
+		super.listen();
+		addUIAdapter(getDConstraint().getConstraint(), modelListener);
+	}
+	protected void unlisten(){
+		removeUIAdapter(getDConstraint().getConstraint(), modelListener);
+		super.unlisten();
+	}
 }

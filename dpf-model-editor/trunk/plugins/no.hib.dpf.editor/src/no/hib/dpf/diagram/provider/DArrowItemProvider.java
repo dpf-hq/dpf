@@ -22,12 +22,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
@@ -38,13 +33,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class DArrowItemProvider
-	extends DElementItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends DElementItemProvider {
 	
 	ArrowItemProvider arrowItemProvider = null;
 	/**
@@ -148,6 +137,7 @@ public class DArrowItemProvider
 				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				DPFConstants.DARROW_CATEGORY,
 				null){
+			@Override
 			public Collection<?> getChoiceOfValues(Object object)
 			{
 				return Arrays.asList(FigureConfigureManager.INSTANCE.getArrowNames());

@@ -13,6 +13,7 @@ import java.util.List;
 import no.hib.dpf.diagram.DOffset;
 import no.hib.dpf.diagram.DiagramPackage;
 
+import no.hib.dpf.editor.DPFPlugin;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -200,7 +201,7 @@ public class DOffsetItemProvider
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return DiagramMetamodelEditPlugin.INSTANCE;
+		return DPFPlugin.INSTANCE;
 	}
 
 }

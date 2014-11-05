@@ -14,6 +14,7 @@ import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.core.Predicate;
 
+import no.hib.dpf.editor.DPFPlugin;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -224,7 +225,7 @@ public class PredicateItemProvider
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return MetamodelEditPlugin.INSTANCE;
+		return DPFPlugin.INSTANCE;
 	}
 
 }

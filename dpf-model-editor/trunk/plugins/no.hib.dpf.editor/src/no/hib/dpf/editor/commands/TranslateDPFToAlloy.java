@@ -4,13 +4,17 @@ import java.io.FileWriter;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
+import no.hib.dpf.core.GraphHomomorphism;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Predicate;
+import no.hib.dpf.core.ValidatorType;
 import no.hib.dpf.core.impl.PredicateImpl;
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DSpecification;
@@ -39,8 +43,24 @@ public class TranslateDPFToAlloy {
 	//signatures for nodes
 	public  void nodeSigs(){
 		buffer.append("//signatures for nodes" + LINE);
-		for(Node node : dGraph.getGraph().getNodes())
-			buffer.append(SIG + nodeSig(node) + "{}" + LINE);
+		for(Node node : dGraph.getGraph().getNodes()){
+			Constraint cenum = null;
+			for (Constraint iter : node.getConstraints()) 
+				if(iter.getPredicate().getSymbol().equals("enum"))
+					cenum = iter;
+			if(cenum != null){
+				String literals = cenum.getParameters();
+				String LITERALS = "literal:{";
+				buffer.append("abstract " + SIG + nodeSig(node) + "{}" + LINE);
+				literals = literals.substring(literals.indexOf(LITERALS) + LITERALS.length(), literals.length() - 1);
+				String[] liters = literals.split(",");
+				buffer.append("lone " + SIG + "N" + liters[0]);
+				for(int index = 1; index < liters.length; ++index)
+					buffer.append(", N" + liters[index].trim());
+				buffer.append(" extends " + nodeSig(node) + "{}" + LINE);
+			}else
+				buffer.append(SIG + nodeSig(node) + "{}" + LINE);	
+		}
 		buffer.append(LINE);
 	}
 	//signatures for edges
@@ -112,7 +132,9 @@ public class TranslateDPFToAlloy {
 		}
 		for(Constraint constraint : model.getSpecification().getConstraints()){
 			Predicate predicate  = constraint.getPredicate();
-			if(predicate == DPFConstants.INJECTIVE)
+			if(predicate.getSymbol().equals("enum"))
+				continue;
+			else if(predicate == DPFConstants.INJECTIVE)
 				buffer.append(translateInjective(constraint, GRAPH_NODES, GRAPH_EDGES));
 			else if(predicate == DPFConstants.SURJECTIVE)
 				buffer.append(translateSurjective(constraint, GRAPH_NODES, GRAPH_EDGES));
@@ -130,8 +152,50 @@ public class TranslateDPFToAlloy {
 				buffer.append(translateSplitNAND(constraint, GRAPH_NODES, GRAPH_EDGES));
 			else if(predicate == DPFConstants.REFLEXIVE)
 				buffer.append(translateReflexive(constraint, GRAPH_NODES, GRAPH_EDGES));
+			else if(predicate == DPFConstants.IRREFLEXIVE)
+				buffer.append(translateIrreflexive(constraint, GRAPH_NODES, GRAPH_EDGES));
+			else 
+				buffer.append(translateGeneral(constraint, GRAPH_NODES, GRAPH_EDGES));
 		}
 		buffer.append("}" + LINE);
+	}
+	private Object translateIrreflexive(Constraint constraint,
+			String gRAPH_NODES2, String arrows) {
+		Arrow arrow = getArrow(constraint, "XY");
+		String result = "//" + "reflexive on " + arrow +  LINE;
+		return result + "no e:(" + AP + arrow.getName() + arrows + ")| e.src = e.trg" + LINE; 
+	}
+	private String translateGeneral(Constraint constraint, String gRAPH_NODES2, String arrows2) {
+		Predicate predicate = constraint.getPredicate();
+		if(predicate.getValidator().getType() == ValidatorType.ALLOY)
+		{
+			GraphHomomorphism mapping = constraint.getMappings();
+			Map<String,String> nodeHash = new HashMap<String,String>(), arrowHash = new HashMap<String,String>();
+			for(Entry<Arrow, Arrow> entry : mapping.getArrowMapping().entrySet())
+				arrowHash.put(entry.getKey().getName(), entry.getValue().getName());
+			for(Entry<Node, Node> entry : mapping.getNodeMapping().entrySet())
+				nodeHash.put(entry.getKey().getName(), entry.getValue().getName());
+			String alloy = predicate.getValidator().getValidator();
+			String real = "";
+			int first = 0, second = 0;
+			while(first < alloy.length()){
+				first = alloy.indexOf("$", first);
+				if(first == -1) {real += alloy.substring(second); break;}
+				String add = alloy.substring(second, first);
+				second = alloy.indexOf("$", first + 1);
+				if(second == -1) return "";
+				real += add;
+				String variable = alloy.substring(first + 1, second);
+				if(nodeHash.containsKey(variable)){
+					real += NP + nodeHash.get(variable) + gRAPH_NODES2;
+				}else if(arrowHash.containsKey(variable)){
+					real += AP + arrowHash.get(variable) + arrows2;
+				}else return "";
+				first = second = second + 1;
+			}
+			return real + LINE;
+		}
+		return "";
 	}
 	private String translateReflexive(Constraint constraint, String nodes, String arrows) {
 		Arrow arrow = getArrow(constraint, "XY");
@@ -228,59 +292,59 @@ public class TranslateDPFToAlloy {
 	/*
 	 * Get the connected subgraphs from a graph
 	 */
-//	private void getConnectedSubgraphs(List<DNode> nodes, List<DArrow> arrows, List<Object> subgraphs){
-//		List<DNode> unvisited = new ArrayList<DNode>();
-//		List<DArrow> unvisitedEdge = new ArrayList<DArrow>();
-//		unvisited.addAll(nodes);
-//		unvisitedEdge.addAll(arrows);
-//		while(!unvisited.isEmpty()){
-//			DNode visit = unvisited.get(0);
-//			List<DNode> related = new ArrayList<DNode>();
-//			related.add(visit);
-//			unvisited.remove(visit);
-//			List<DNode> subn = new ArrayList<DNode>();
-//			List<DArrow> suba = new ArrayList<DArrow>();
-//			do{
-//				DNode cur = related.get(0);
-//				related.remove(cur);
-//				subn.add(cur);
-//				if(unvisited.contains(cur))
-//					unvisited.remove(cur);
-//				for(DArrow arrow : cur.getDIncomings()){
-//					if(!arrows.contains(arrow))
-//						continue;
-//					if(!suba.contains(arrow)){
-//						suba.add(arrow);
-//						unvisitedEdge.remove(arrow);
-//					}
-//					DNode source = arrow.getDSource();
-//					if(!related.contains(source) && !subn.contains(source) && nodes.contains(source))
-//						related.add(source);
-//				}
-//				for(DArrow arrow : cur.getDOutgoings()){
-//					if(!arrows.contains(arrow))
-//						continue;
-//					if(!suba.contains(arrow)){
-//						suba.add(arrow);
-//						unvisitedEdge.remove(arrow);
-//					}
-//					DNode target = arrow.getDTarget();
-//					if(!related.contains(target) && !subn.contains(target) && nodes.contains(target))
-//						related.add(target);
-//				}					
-//			}while(!related.isEmpty());
-//			subgraphs.add(subn);
-//			subgraphs.add(suba);
-//		}
-//		for(DArrow arrow : unvisitedEdge){
-//			List<DNode> subn = new ArrayList<DNode>();
-//			List<DArrow> suba = new ArrayList<DArrow>();
-//			suba.add(arrow);
-//			subgraphs.add(subn);
-//			subgraphs.add(suba);
-//		}
-//
-//	}
+	//	private void getConnectedSubgraphs(List<DNode> nodes, List<DArrow> arrows, List<Object> subgraphs){
+	//		List<DNode> unvisited = new ArrayList<DNode>();
+	//		List<DArrow> unvisitedEdge = new ArrayList<DArrow>();
+	//		unvisited.addAll(nodes);
+	//		unvisitedEdge.addAll(arrows);
+	//		while(!unvisited.isEmpty()){
+	//			DNode visit = unvisited.get(0);
+	//			List<DNode> related = new ArrayList<DNode>();
+	//			related.add(visit);
+	//			unvisited.remove(visit);
+	//			List<DNode> subn = new ArrayList<DNode>();
+	//			List<DArrow> suba = new ArrayList<DArrow>();
+	//			do{
+	//				DNode cur = related.get(0);
+	//				related.remove(cur);
+	//				subn.add(cur);
+	//				if(unvisited.contains(cur))
+	//					unvisited.remove(cur);
+	//				for(DArrow arrow : cur.getDIncomings()){
+	//					if(!arrows.contains(arrow))
+	//						continue;
+	//					if(!suba.contains(arrow)){
+	//						suba.add(arrow);
+	//						unvisitedEdge.remove(arrow);
+	//					}
+	//					DNode source = arrow.getDSource();
+	//					if(!related.contains(source) && !subn.contains(source) && nodes.contains(source))
+	//						related.add(source);
+	//				}
+	//				for(DArrow arrow : cur.getDOutgoings()){
+	//					if(!arrows.contains(arrow))
+	//						continue;
+	//					if(!suba.contains(arrow)){
+	//						suba.add(arrow);
+	//						unvisitedEdge.remove(arrow);
+	//					}
+	//					DNode target = arrow.getDTarget();
+	//					if(!related.contains(target) && !subn.contains(target) && nodes.contains(target))
+	//						related.add(target);
+	//				}					
+	//			}while(!related.isEmpty());
+	//			subgraphs.add(subn);
+	//			subgraphs.add(suba);
+	//		}
+	//		for(DArrow arrow : unvisitedEdge){
+	//			List<DNode> subn = new ArrayList<DNode>();
+	//			List<DArrow> suba = new ArrayList<DArrow>();
+	//			suba.add(arrow);
+	//			subgraphs.add(subn);
+	//			subgraphs.add(suba);
+	//		}
+	//
+	//	}
 
 	/**
 	 * General facts about the system<br>
@@ -358,7 +422,7 @@ public class TranslateDPFToAlloy {
 		this.model  = model;
 		dGraph = model.getDGraph();
 	}
-	
+
 	public List<String> commands = new ArrayList<String>();
 	String current = null;
 

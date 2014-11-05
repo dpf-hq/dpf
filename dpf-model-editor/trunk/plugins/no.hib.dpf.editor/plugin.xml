@@ -21,6 +21,14 @@
             id="no.hib.dpf.editor.model_editor2"
             name="DPF Specification Editor 2">
       </editor>
+      <editor
+            class="no.hib.dpf.uconstraint.presentation.ConstraintsEditor"
+            contributorClass="no.hib.dpf.uconstraint.presentation.ConstraintsActionBarContributor"
+            default="true"
+            extensions="uc"
+            id="no.hib.dpf.editor.uconstraint_editor"
+            name="DPF Universal Constraint  Editor">
+      </editor>
    </extension>
    <extension point="org.eclipse.ui.newWizards">
       <category name="Diagram Predicate Framework"
@@ -41,6 +49,15 @@
             id="no.hib.dpf.editor.DPFProjectWizard"
             name="Diagram Predicate Framework Project">
       </wizard>
+      <wizard
+            category="no.hib.dpf.editor"
+            class="no.hib.dpf.uconstraint.presentation.ConstraintsWizardCreation"
+            id="no.hib.dpf.editor.uconstraint.wizard"
+            name="DPF Universal Constraint">
+         <selection
+               class="org.eclipse.core.resources.IResource">
+         </selection>
+      </wizard>
    </extension>
    <extension
          point="org.eclipse.ui.preferencePages">
@@ -49,11 +66,19 @@
             id="no.hib.dpf.editor.preferences.DPFEditorPreferencePage"
             name="DPF Editor Preferences">
       </page>
+      <page
+            class="no.hib.dpf.transform.preferences.UConstraintsEditorPreferencePage"
+            id="no.hib.dpf.editor.uconstraint"
+            name="Universal Constraint Preference">
+      </page>
    </extension>
    <extension
          point="org.eclipse.core.runtime.preferences">
       <initializer
             class="no.hib.dpf.editor.preferences.PreferenceInitializer">
+      </initializer>
+      <initializer
+            class="no.hib.dpf.transform.preferences.PreferenceInitializer">
       </initializer>
    </extension>
    <extension
@@ -164,35 +189,6 @@
       </perspective>
    </extension>
    <extension
-         id="validationmarker"
-         name="DPF Validation Problem"
-         point="org.eclipse.core.resources.markers">
-      <super
-            type="org.eclipse.core.resources.marker">
-      </super>
-      <persistent
-            value="false">
-      </persistent>
-      <super
-            type="org.eclipse.core.resources.problemmarker">
-      </super>
-      <attribute
-            name="constraint">
-      </attribute>
-      </extension>
-   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
-      <!-- @generated Metamodel -->
-      <factory
-            uri="http://no.hib.dpf.core"
-            class="no.hib.dpf.core.provider.CoreItemProviderAdapterFactory"
-            supportedTypes=
-              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
-               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
-               org.eclipse.emf.edit.provider.ITreeItemContentProvider
-               org.eclipse.emf.edit.provider.IItemLabelProvider
-               org.eclipse.emf.edit.provider.IItemPropertySource"/>
-   </extension>
-   <extension
          point="org.eclipse.ui.commands">
       <command
             defaultHandler="no.hib.dpf.editor.commands.ExportImageHandler"
@@ -222,4 +218,43 @@
          </command>
       </menuContribution>
    </extension>
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <!-- @generated DiagramMetamodel -->
+      <factory
+            uri="http://no.hib.dpf.diagram"
+            class="no.hib.dpf.diagram.provider.DiagramItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <!-- @generated Metamodel -->
+      <factory
+            uri="http://no.hib.dpf.core"
+            class="no.hib.dpf.core.provider.CoreItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <!-- @generated UConstraint -->
+      <factory
+            uri="http://no.hib.dpf.uconstraint"
+            class="no.hib.dpf.uconstraint.provider.UConstraintItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
+
 </plugin>

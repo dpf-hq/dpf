@@ -14,6 +14,7 @@ import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DiagramFactory;
 import no.hib.dpf.diagram.DiagramPackage;
 
+import no.hib.dpf.editor.DPFPlugin;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -221,7 +222,7 @@ public class DGraphItemProvider
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return DiagramMetamodelEditPlugin.INSTANCE;
+		return DPFPlugin.INSTANCE;
 	}
 
 }

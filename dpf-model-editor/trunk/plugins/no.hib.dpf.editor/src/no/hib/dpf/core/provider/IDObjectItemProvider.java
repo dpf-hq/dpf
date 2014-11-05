@@ -13,6 +13,7 @@ import java.util.List;
 import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.core.IDObject;
 import no.hib.dpf.diagram.provider.ExtendItemPropertyDescriptor;
+import no.hib.dpf.editor.DPFPlugin;
 import no.hib.dpf.utils.DPFConstants;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -179,7 +180,7 @@ public class IDObjectItemProvider
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return MetamodelEditPlugin.INSTANCE;
+		return DPFPlugin.INSTANCE;
 	}
 
 }
