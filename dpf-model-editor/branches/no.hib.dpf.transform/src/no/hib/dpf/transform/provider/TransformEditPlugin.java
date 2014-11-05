@@ -6,8 +6,7 @@
  */
 package no.hib.dpf.transform.provider;
 
-import no.hib.dpf.core.provider.MetamodelEditPlugin;
-import no.hib.dpf.diagram.provider.DiagramMetamodelEditPlugin;
+import no.hib.dpf.editor.DPFPlugin;
 
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.ui.EclipseUIPlugin;
@@ -45,8 +44,7 @@ public final class TransformEditPlugin extends EMFPlugin {
 	public TransformEditPlugin() {
 		super
 			(new ResourceLocator [] {
-				DiagramMetamodelEditPlugin.INSTANCE,
-				MetamodelEditPlugin.INSTANCE,
+				DPFPlugin.INSTANCE,
 			});
 	}
 
