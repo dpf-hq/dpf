@@ -130,7 +130,7 @@ public class SemanticValidatorTest extends TestCase {
 		testJSurPredicate();
 		testInjectivePredicate();
 		testXORPredicate();
-		testInversePredicate();
+		//testInversePredicate();
 		testIrreflexivePredicate();
 		testSurjectivePredicate();
 		testMultiPredicate();
@@ -160,7 +160,7 @@ public class SemanticValidatorTest extends TestCase {
 		testPredicate(parameters, predicate, type.getNodes(), type.getArrows(),model, result);
 	}
 
-	public void testInversePredicate() {
+	/*public void testInversePredicate() {
 		Predicate predicate = new InversePredicate();
 		Graph typeGraph = CoreFactory.eINSTANCE.createGraph("x_type,y_type","f_type:x_type:y_type,g_type:y_type:x_type");
 
@@ -177,7 +177,7 @@ public class SemanticValidatorTest extends TestCase {
 		graph.getArrowByName("f").setTypeArrow(typeGraph.getArrowByName("f_type"));
 		graph.getArrowByName("g").setTypeArrow(typeGraph.getArrowByName("f_type"));
 		testPredicate(predicate, typeGraph, graph, false);
-	}
+	}*/
 
 	public void testXORPredicate() {
 		Graph typeGraph = CoreFactory.eINSTANCE.createGraph(
