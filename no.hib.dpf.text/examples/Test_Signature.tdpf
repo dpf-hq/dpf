@@ -1,0 +1,2 @@
+min{x:_-y:_->z:_}="context #x# inv: #y#->size() >= #0#", 
+irr{x:_-y:_->z:_}="context #x# inv: not #y#->includes(self)"

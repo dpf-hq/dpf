@@ -1,0 +1,45 @@
+% \iffalse
+%<!COPYRIGHT>
+% \fi
+%    \begin{macrocode}
+\ProvidesFile{adjpdftex.def}[%
+%<!DATE>
+%<!VERSION>
+%<*DRIVER>
+    2099/01/01 develop
+%</DRIVER>
+    adjustbox clip driver for pdftex]
+%    \end{macrocode}
+%
+%
+% \begin{macro}{\@cliptoboxdim}
+% Clips to official box dimension.
+%
+% Uses now \Macro\pdfliteral because \Macro\pdfxform does not support
+% transparencies and patterns with TikZ.
+%    \begin{macrocode}
+\def\@cliptoboxdim#1{%
+    \setbox#1=\hbox{%
+        \Gin@defaultbp\WIDTH{\wd#1}%
+        \Gin@defaultbp\DEPTH{\dp#1}%
+        \@tempdima\ht#1%
+        \advance\@tempdima\dp#1%
+        \Gin@defaultbp\TOTALHEIGHT{\@tempdima}%
+        \pdfsave
+            \pdfliteral direct {%
+                0 -\DEPTH\space \WIDTH\space \TOTALHEIGHT\space re W n
+            }%
+            \hbox to 0pt{\copy#1\hss}%
+        \pdfrestore
+        \hskip \wd#1
+    }%
+}
+\endinput
+%%
+%% End of file `adjpdftex.def'.
+%    \end{macrocode}
+% \end{macro}
+%
+% \iffalse
+% vim: ft=tex
+% \fi

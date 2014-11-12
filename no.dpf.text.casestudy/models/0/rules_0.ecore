@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="rules">
+  <eClassifiers xsi:type="ecore:EClass" name="1@ObjectFlowState">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="3@type" lowerBound="1"
+        eType="#//2@ModelElement.1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="2@ModelElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="1@ObjectFlowState">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="3@type" lowerBound="1"
+        eType="#//2@ModelElement.1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="2@ModelElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="A:1@ObjectFlowState">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="C:3@type" lowerBound="1"
+        eType="#//B%3A2@ModelElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="B:2@ModelElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="A:1@ObjectFlowState"/>
+  <eClassifiers xsi:type="ecore:EClass" name="B:2@ModelElement"/>
+</ecore:EPackage>

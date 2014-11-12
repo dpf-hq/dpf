@@ -1,0 +1,43 @@
+//Services and services
+
+//Type Graph as Metamodel
+TG:=TGraph<DPF>{
+    Transition:Node-inArr:Arrow->Place:Node,
+    Transition:Node-outArr:Arrow->Place:Node,
+    Transition:Node-name:*->String,
+    Place:Node-name:*->String,
+    Place:Node-token:Arrow->Token:Node,
+}
+
+G:=TGraph<TG>{
+	
+	ToBob:Transition-a:outArr->Bob:Place,
+	ToBob:Transition-b:inArr->Alice:Place,
+	ToAlice:Transition-c:outArr->Alice:Place,
+	ToAlice:Transition-d:inArr->Bob:Place,
+	Bob:Place-e:token->t:Token,
+	ToBob:Transition-f:name->["To Bob"],
+	ToAlice:Transition-g:name->["To Alice"],
+	Bob:Place-h:name->["Bob"],
+	Alice:Place-i:name->["Alice"],
+
+}
+
+
+//Rule Graphs:
+TL:=ExtSubTGraph<TG>{
+    Transition:Node-outArr:Arrow->Place:Node,
+}
+
+TK:=ExtSubTGraph<TL>{
+    Transition:Node,Place:Node,
+}
+
+TR:=ExtSubTGraph<TK>{
+    OutArr:Node-src:Arrow->Transition:Node,
+    OutArr:Node-trg:Arrow->Place:Node,
+    OutArr:Node-weight:*->Int,
+}
+
+//Perform Evolution:
+simpleEvolution(TL<-TK->TR,G)

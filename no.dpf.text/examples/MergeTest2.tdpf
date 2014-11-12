@@ -1,0 +1,39 @@
+//Type Graph as Metamodel
+TG:=TGraph<DPF>{
+    HypertextModel:Node-startPage:Arrow->StaticPage:Node,
+    DynamicPage:Node-href:Arrow->StaticPage:Node,
+    DynamicPage:Node-href:Arrow->IndexPage:Node,
+    StaticPage:Node-href:Arrow->IndexPage:Node,
+}
+
+M:=TGraph<TG>{
+    Addressbook:HypertextModel-a:startPage->AddressList:StaticPage,
+	AddressList:StaticPage-b:href->AdressDetails:IndexPage,
+}
+
+//Rule Graphs:
+TL:=ExtSubTGraph<TG>{
+    DynamicPage:Node,StaticPage:Node,
+}
+
+TI:=ExtSubTGraph<TG>{
+    DynamicPage:Node,
+}
+
+TR:=ExtSubTGraph<TG>{
+    DynamicPage:Node,
+}
+
+
+ll:=Morphism<TL,TI>{
+ 	DynamicPage:Node => DynamicPage:Node,
+ 	StaticPage:Node => DynamicPage:Node 	
+}
+
+rr:=Morphism<TR,TI>{
+ 	DynamicPage:Node => DynamicPage:Node
+}
+
+
+//Perform Evolution:
+evolution(ll-><-rr,M)

@@ -1,0 +1,22 @@
+Specification:(TG ,Test)<19> {
+ Graph {
+   LoginServer@8:Server@1-d@10:provides@4->AppClientConnector@9:Service@3,
+   LoginServer@8:Server@1-h@17:communicates@2->FileServer@1:Server@1,
+   FileServer@1:Server@1-c@7:has@9->OSLogin@6:SecurityPolice@5,
+   LoginServer@8:Server@1-e@12:provides@4->WebInterface@11:Service@3,
+   LoginServer@8:Server@1-g@16:has@9->RSA@15:SecurityPolice@5,
+   FileServer@1:Server@1-a@3:provides@4->SSH@18:Service@3,
+   LoginServer@8:Server@1-f@14:has@9->RemoteLogin@13:SecurityPolice@5
+ }
+ Constraints {
+
+ }
+}
+
+
+
+
+
+
+
+

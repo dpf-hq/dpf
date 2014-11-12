@@ -1,0 +1,231 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8x]{inputenc}
+\usepackage{graphicx}
+
+%With boxes
+%\usepackage{float}
+%\floatstyle{boxed} 
+%\restylefloat{figure}
+
+%max size of figures
+\usepackage[export]{adjustbox}
+
+%Only float in section
+\usepackage[section]{placeins}
+
+%landscape in pictures
+\usepackage{lscape}
+
+%For overview picture:
+\usepackage{tikz}
+
+%opening
+\title{Generated Metamodel-Evolution Output}
+\author{Florian}
+
+\begin{document}
+
+\maketitle
+
+\begin{landscape}
+
+\section{Double-Cube}
+
+\begin{figure} [htb]
+    \begin{center}
+    \include{mm_evolution_cospan}
+    \end{center}
+      \vspace*{-1cm}
+    \caption{Co-transformation}
+    \label{fig:co-transformation}
+\end{figure}
+
+\section{Double-Cube Top}
+\begin{figure}[ht]
+\begin{minipage}[b]{0.33\linewidth}
+\centering
+   \fbox{\includegraphics[max size={0.9\textwidth}{0.9\textheight}]{TL}}
+\caption{TL}
+\label{fig:figure1}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[b]{0.33\linewidth}
+\centering
+   \fbox{\includegraphics[max size={0.9\textwidth}{0.9\textheight}]{TI}}
+\caption{TI}
+\label{fig:figure2}
+\end{minipage}
+\begin{minipage}[b]{0.33\linewidth}
+\centering
+   \fbox{\includegraphics[max size={0.9\textwidth}{0.9\textheight}]{TR}}
+\caption{TR}
+\label{fig:figure1}
+\end{minipage}
+\begin{minipage}[b]{0.33\linewidth}
+\centering
+   \fbox{\includegraphics[max size={0.9\textwidth}{0.9\textheight}]{TG}}
+\caption{TG}
+\label{fig:figure1}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[b]{0.33\linewidth}
+\centering
+   \fbox{\includegraphics[max size={0.9\textwidth}{0.9\textheight}]{TU}}
+\caption{TU}
+\label{fig:figure2}
+\end{minipage}
+\begin{minipage}[b]{0.33\linewidth}
+\centering
+   \fbox{\includegraphics[max size={0.9\textwidth}{0.9\textheight}]{TH}}
+\caption{TH}
+\label{fig:figure1}
+\end{minipage}
+\end{figure}
+
+
+\section{Double-Cube Bottom}
+
+\begin{figure}[ht]
+\begin{minipage}[b]{0.33\linewidth}
+\centering
+   \fbox{\includegraphics[max size={0.9\textwidth}{0.9\textheight}]{L}}
+\caption{L}
+\label{fig:figure1}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[b]{0.33\linewidth}
+\centering
+   \fbox{\includegraphics[max size={0.9\textwidth}{0.9\textheight}]{I}}
+\caption{I}
+\label{fig:figure2}
+\end{minipage}
+\begin{minipage}[b]{0.33\linewidth}
+\centering
+   \fbox{\includegraphics[max size={0.9\textwidth}{0.9\textheight}]{R}}
+\caption{R}
+\label{fig:figure1}
+\end{minipage}
+\begin{minipage}[b]{0.33\linewidth}
+\centering
+   \fbox{\includegraphics[max size={0.9\textwidth}{0.9\textheight}]{G}}
+\caption{G}
+\label{fig:figure1}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[b]{0.33\linewidth}
+\centering
+   \fbox{\includegraphics[max size={0.9\textwidth}{0.9\textheight}]{U}}
+\caption{U}
+\label{fig:figure2}
+\end{minipage}
+\begin{minipage}[b]{0.33\linewidth}
+\centering
+   \fbox{\includegraphics[max size={0.9\textwidth}{0.9\textheight}]{H}}
+\caption{H}
+\label{fig:figure1}
+\end{minipage}
+\end{figure}
+
+\end{landscape}
+
+
+\section{Graph TL}
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[max size={\textwidth}{\textheight}]{TL}
+  \caption{TL}
+\end{figure}
+
+\section{Graph TI}
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[max size={\textwidth}{\textheight}]{TI}
+  \caption{TI}
+\end{figure}
+
+\section{Graph TR}
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[max size={\textwidth}{\textheight}]{TR}
+  \caption{TR}
+\end{figure}
+
+\section{Graph TG}
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[max size={\textwidth}{\textheight}]{TG}
+  \caption{TG}
+\end{figure}
+
+\section{Graph TU}
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[max size={\textwidth}{\textheight}]{TU}
+  \caption{TU}
+\end{figure}
+
+
+\section{Graph TH}
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[max size={\textwidth}{\textheight}]{TH}
+  \caption{TH}
+\end{figure}
+
+
+\section{Graph L}
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[max size={\textwidth}{\textheight}]{L}
+  \caption{L}
+\end{figure}
+
+\section{Graph I}
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[max size={\textwidth}{\textheight}]{I}
+  \caption{I}
+\end{figure}
+
+\section{Graph R}
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[max size={\textwidth}{\textheight}]{R}
+  \caption{R}
+\end{figure}
+
+\section{Graph G}
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[max size={\textwidth}{\textheight}]{G}
+  \caption{G}
+\end{figure}
+
+\section{Graph U}
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[max size={\textwidth}{\textheight}]{U}
+  \caption{U}
+\end{figure}
+
+
+\section{Graph H}
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[max size={\textwidth}{\textheight}]{H}
+  \caption{H}
+\end{figure}
+
+\end{document} 

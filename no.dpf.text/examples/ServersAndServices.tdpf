@@ -1,0 +1,41 @@
+//Services and services
+
+//Type Graph as Metamodel
+MM:=TGraph<DPF>{
+    Server:Node-communicates:Arrow->Server:Node,
+    Server:Node-provides:Arrow->Service:Node,
+    Server:Node-has:Arrow->SecurityPolice:Node,
+}
+
+M:=TGraph<MM>{
+	
+	//FileServer:
+	FileServer:Server-a:provides->SSH:Service,
+	FileServer:Server-b:provides->SFTP:Service,
+	FileServer:Server-c:has->OSLogin:SecurityPolice,
+	
+	//Login Server:
+	LoginServer:Server-d:provides->AppClientConnector:Service,
+	LoginServer:Server-e:provides->WebInterface:Service,
+	LoginServer:Server-f:has->RemoteLogin:SecurityPolice,
+	LoginServer:Server-g:has->RSA:SecurityPolice,
+	LoginServer:Server-h:communicates->FileServer:Server,
+	
+}
+
+MMS:=Spec<MM>{
+    min(1){Server:Node-provides:Arrow->Service:Node,}, 
+    irr(){Server:Node-communicates:Arrow->Server:Node,}
+}
+
+MIS:=ISpec<M,MMS>{
+    min{x:_-y:_->z:_,}=$context #x# inv: #y#->size() >= #0#$, 
+    irr{x:_-y:_->z:_,}=$context #x# inv: not #y#->includes(self)$
+}
+
+
+//ecore(MM)
+
+image(MM)
+
+image(M)

@@ -1,0 +1,3 @@
+-Remove Subclasses: ActivityGraph, PseudoState
+-Move OpaqueExpression to Transition
+-Delete guard, delete Guard

@@ -1,0 +1,41 @@
+- Grammatik ändern auf Notes Adrian
+- Grammatik mit ANTLR
+- Fehlermedlungen OCL
+- Beim Speichern automatisch normalisieren, so das alle Ids auch nummern haben 
+- Normalisieren verbessern
+
+- Zweiter Editor, der wie IGraphs arbeitet und automatisch ergänzt. Aber speichern in multigraphs.
+------------------------------------
+
+- IDs für den Merge Fall mit mehreren nummern (?)
+
+------------------------------------
+- Regeln mit AGG
+- Regeln auch mit IDs matchen, namen sollten in den Regeln keine Rolle mehr spielen
+
+-------------------------------------
+
+Metamodel Regeln matchen:
+1.) Cospan der Metamodelle bilden und dann Cospan melden
+2.) Falls das nicht gereicht hat, kann versucht werden die Linke Seite zu matchen und dann auf dem
+    Ergebnis Schritt 1.) (ähnlich wie Look-Ahead in den Grammatiken)
+
+-------------------------------------
+EMF importer
+Support:
+-EClass
+-Datatype
+-Enum
+-EAttribute
+-Reference
+-Inheritance
+
+XMIResourseIMpl
+
+override useResourceUID()=true;
+
+Dann bekommt man im FileFormat die ID
+
+-------------------------------------
+
+

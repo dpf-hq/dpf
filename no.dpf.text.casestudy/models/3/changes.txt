@@ -1,0 +1,4 @@
+-Push Down contents Reference
+-Enum to Subclasses
+-Introduce Subclasses ControlFlow and ObjectFlow
+-Merge With Superclass State + ActivityNode

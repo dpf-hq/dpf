@@ -1,0 +1,39 @@
+% \iffalse
+%<!COPYRIGHT>
+% \fi
+%    \begin{macrocode}
+\ProvidesFile{adjpgf.def}[%
+%<!DATE>
+%<!VERSION>
+%<*DRIVER>
+    2099/01/01 develop
+%</DRIVER>
+    adjustbox fall-back clip driver using PGF]
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+\RequirePackage{pgf}
+%    \end{macrocode}
+%
+% \begin{macro}{\@cliptoboxdim}
+% Clips to official box dimension.
+%    \begin{macrocode}
+\def\@cliptoboxdim#1{%
+    \setbox#1\hbox{\begin{pgfpicture}%
+        \pgfpathmoveto{\pgfqpoint\z@{-\dp#1}}%
+        \pgfpathlineto{\pgfqpoint\z@{\ht#1}}%
+        \pgfpathlineto{\pgfqpoint{\wd#1}{\ht#1}}%
+        \pgfpathlineto{\pgfqpoint{\wd#1}{-\dp#1}}%
+        \pgfpathclose
+        \pgfusepathqclip
+        \pgfset{inner sep=\z@,outer sep=\z@,minimum size=\z@}%
+        \pgfnode{rectangle}{base west}{\usebox#1}{}{}%
+        \pgfsetbaselinepointnow{\pgfpoint\z@\z@}%
+    \end{pgfpicture}}%
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \iffalse
+% vim: ft=tex
+% \fi

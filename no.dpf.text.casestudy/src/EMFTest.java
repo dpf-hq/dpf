@@ -1,0 +1,152 @@
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EEnumLiteral;
+import org.eclipse.emf.ecore.EGenericType;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.ETypedElement;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+
+public class EMFTest {
+
+	/**
+	 * Meta-model and instance model need to be in the same resource set, in
+	 * order to use the same (!!, not only equal) types.
+	 */
+	private static ResourceSet resourceSet = new ResourceSetImpl();
+
+	public static void main(String[] args) {
+		initializeResourceFactories();
+		
+		mm2dpftext();
+		
+//		m2dpftext();
+	}
+
+	private static void mm2dpftext() {
+		//EObject o = loadModel("models/original_minimal_metamodel.ecore");
+		EObject o = loadModel("models/evolved_metamodel.ecore");
+		final Iterator<EObject> i = o.eAllContents();
+		while (i.hasNext()) {
+			EObject e = (EObject) i.next();
+
+			if(e instanceof EClass){
+				final EClass c = (EClass)e;
+				//Inheritance Arrows:
+				for(EClass s:c.getEAllSuperTypes()){
+					System.out.println(c.getName() + ":Class-inherit->" +s.getName() + ":Class");					
+				};
+				System.out.println(c.getName() + ":Class");
+			}else if(e instanceof EAttribute){
+				final EAttribute a = (EAttribute) e;
+				System.out.println(
+						a.getEContainingClass().getName() + ":Class-"
+						+ a.getName() + ":*->" + a.getEAttributeType().getName() + ":DataType");					
+
+			//Arrows:	
+			}else if(e instanceof EReference){
+				final EReference r = (EReference) e;
+				System.out.println(r.getEContainingClass().getName() + 
+					   ":Class-" + r.getName() + ":Reference->" + r.getEReferenceType().getName() + ":Class");	
+			}else if(e instanceof EEnum){
+				System.out.println("*1* Enum" + e);
+			}else if(e instanceof EEnumLiteral){
+				System.out.println("*2* EnumLiteral" + e);				
+			}else if(e instanceof ETypedElement){
+				System.out.println("*3* TypedElement" + e);								
+			}else if(e instanceof EGenericType){
+//				System.out.println("*4* Type" + e);
+			}else{				
+				System.out.println("*5* Unkonwn:" + e.getClass());
+			}
+		}
+	}
+
+	private static void m2dpftext() {
+		System.out.println(resourceSet.getResources());
+		EObject o = loadModel("models/original_model.xmi");
+		System.out.println("Test:" + o);
+		final Iterator<EObject> i = o.eAllContents();
+		while (i.hasNext()) {
+			EObject e = (EObject) i.next();
+			// System.out.println(EcoreUtil.getID(e));
+			System.out.println(getXMIID(e));
+		}
+	}
+
+	public static String getXMIID(EObject eObject) {
+		if (eObject.eResource() instanceof XMIResource) {
+			return ((XMIResource) eObject.eResource()).getID(eObject);
+		}
+		return "";
+	}
+
+	/**
+	 * Calls EvolutionRuleGenerator.initializeResourceFactories() and
+	 * furthermore registeres resource factories for files with extensions
+	 * "ecore" and "xmi".
+	 */
+	private static void initializeResourceFactories() {
+		// EvolutionRuleGenerator.initializeResourceFactories();
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
+				"xmi", new XMIResourceFactoryImpl());
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
+				"ecore", new EcoreResourceFactoryImpl());
+	}// initializeResourceFactories
+
+	private static EObject loadModel(String fnameModel) {
+		return loadModel(fnameModel, true);
+	}
+
+	/**
+	 * Loads models, if the model is already loaded, it is unload and re-loaded
+	 * again.
+	 * 
+	 * @return
+	 */
+	private static EObject loadModel(String fnameModel, boolean unload) {
+
+		/*
+		 * Note the usage of ".getAbsolutePath()" below! This is necessary for
+		 * EMF to resolve relative paths in instance models. In our case, the
+		 * typing i.e. the meta-model petri.ecore is given relative to this
+		 * instance models location.
+		 */
+		URI instanceUri = URI.createFileURI(new File(fnameModel)
+				.getAbsolutePath());
+		Resource resourceInstance = resourceSet.getResource(instanceUri, true);
+
+		/*
+		 * The instance model is only aware of meta-model changes if it is
+		 * reloaded afterwards. Accordingly, if already loaded, the instance
+		 * model is unloaded and re-loaded again. Note, unloading only replaces
+		 * each object with its proxy. The resource remains in the resource set
+		 * and therefore can be easily reloaded.
+		 */
+		if (unload && resourceInstance.isLoaded()) {
+			resourceInstance.unload();
+			try {
+				resourceInstance.load(null);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}// try catch
+		}// if
+
+		return resourceInstance.getContents().get(0);
+	}// loadPetriInstanceModel
+
+}

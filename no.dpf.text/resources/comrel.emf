@@ -1,0 +1,300 @@
+@namespace(uri="http://comrel/0.1", prefix="comrel")
+@gmf(foo="bar")
+package comrel;
+
+@gmf.diagram(foo="bar", onefile="false")
+class CompositeRefactoring extends ModelRefactoring{
+    val RefactoringUnit[1] mainRefactoringUnit;
+    val PortMapping[*] portMappings;
+    val ModelRefactoring[*] modelRefactorings;
+    val Helper[*] helper;
+    attr MappingVisualization[1] mappingVisualization = 0;
+    attr String customInitialCondition;
+    attr String customFinalCondition;
+}
+
+abstract interface NamedElement {
+    attr String name;
+}
+
+abstract interface DescribedElement {
+   attr String description;
+}
+
+abstract class RefactoringUnit extends NamedElement {
+   op InputPort[*] getAllInputPorts();
+   attr int seqExecutionOrder;
+   op void setSeqExecutionOrder(int seqExecutionOrder, boolean superCall);
+   op void setName(String newName, boolean updateContainer);
+}
+
+class ModelRefactoring extends NamedElement, DescribedElement{
+	attr String[1] refId;
+	attr String[1] label;
+	attr String[1] namespaceUri;
+ 	val SingleInputPort[*] inputPorts;
+}
+
+@gmf.node(foo="bar",label.icon="false",label="label,type",label.pattern="{0}:{1}")
+class AtomicUnit extends RefactoringUnit {
+	@gmf.affixed(foo="bar")
+	val SingleInputPort[+] inputPorts;
+	attr String[1] unitId;
+	attr String[1] label;
+	attr String[1] namespaceUri;
+	readonly attr String type = "Atomic Unit";
+	ref ModelRefactoring[1] modelRefactoring;
+	attr boolean checkInitialConditionFlag = false;
+	attr boolean checkFinalConditionFlag = false;
+}
+
+abstract class CompositeUnit extends RefactoringUnit {
+}
+
+@gmf.node(foo="bar",label.icon="false",label="name,type,lblStrict",label.pattern="{0}:{1} -{2}-")
+class SequentialUnit extends CompositeUnit {
+	@gmf.compartment(foo="bar")
+	val HelperUnit[*] helperUnits;
+  	@gmf.compartment(foo="bar")
+   	val RefactoringUnit[+] refactoringUnits;
+   	@gmf.affixed(foo="bar")
+	val InputPort[+] inputPorts;
+	attr boolean strict = true;
+	readonly attr String type = "Sequential Unit";
+	attr String lblStrict = "strict";
+	op void updateSeqExecutionOrder();
+}
+
+@gmf.node(foo="bar",label.icon="false",label="name,type,spec",label.pattern="{0}:{1} -{2}-")
+class ConditionCheck extends NamedElement, DescribedElement { 
+	readonly attr String type = "Condition Check";
+	attr String spec;
+}
+
+@gmf.node(foo="bar",label.icon="false",label="name,type",label.pattern="{0}:{1}")
+class ConditionalUnit extends CompositeUnit {
+	@gmf.compartment(foo="bar")
+	val ConditionCheck[1] if;
+	@gmf.compartment(foo="bar")
+	val HelperUnit[*] helperUnits;
+	@gmf.compartment(foo="bar")
+	val RefactoringUnit[1] then;
+	@gmf.compartment(foo="bar")
+	val RefactoringUnit else;
+	@gmf.affixed(foo="bar")
+	val InputPort[+] inputPorts;
+	readonly attr String type = "Conditional Unit";
+}
+
+abstract class QueuedUnit extends CompositeUnit {
+	op void init();
+	attr boolean strict = true;
+}
+
+@gmf.node(foo="bar",label.icon="false",label="name,type,lblStrict",label.pattern="{0}:{1} -{2}-")
+class SingleQueuedUnit extends QueuedUnit {
+	@gmf.compartment(foo="bar")
+	val HelperUnit[*] helperUnits;
+	@gmf.compartment(foo="bar")
+   	val RefactoringUnit[1] refactoringUnit;
+   	@gmf.affixed(foo="bar")
+	val SingleInputPort[*] singleInputPorts;
+   	@gmf.affixed(foo="bar")
+   	val MultiInputPort[1] multiInputPort;
+	readonly attr String type = "Single Queued Unit";
+	attr String lblStrict = "strict";
+}
+
+abstract class TwicedQueuedUnit extends QueuedUnit {
+}
+
+@gmf.node(foo="bar",label.icon="false",label="name,type,lblStrict",label.pattern="{0}:{1} -{2}-")
+class CartesianQueuedUnit extends TwicedQueuedUnit {
+	@gmf.compartment(foo="bar")
+	val HelperUnit[*] helperUnits;
+	@gmf.compartment(foo="bar")
+   	val RefactoringUnit[1] refactoringUnit;
+   	@gmf.affixed(foo="bar")
+	val SingleInputPort[*] singleInputPorts;
+	@gmf.affixed(foo="bar")
+   	unique val MultiInputPort[2] multiInputPorts;
+	readonly attr String type = "Cartesian Queued Unit";
+	attr String lblStrict = "strict";
+}
+
+@gmf.node(foo="bar",label.icon="false",label="name,type,lblStrict",label.pattern="{0}:{1} -{2}-")
+class ParallelQueuedUnit extends TwicedQueuedUnit {
+	@gmf.compartment(foo="bar")
+	val HelperUnit[*] helperUnits;
+	@gmf.compartment(foo="bar")
+   	val RefactoringUnit[1] refactoringUnits;
+   	@gmf.affixed(foo="bar")
+	val SingleInputPort[*] singleInputPorts;
+	@gmf.affixed(foo="bar")
+   	unique val MultiInputPort[2] multiInputPorts;
+	readonly attr String type = "Parallel Queued Unit";
+	attr String lblStrict = "strict";
+}
+
+abstract class HelperUnit extends NamedElement, DescribedElement {
+	attr String[1] helperUnitId;
+	attr String[1] namespaceUri;
+	op InputPort[1] getInputPort();
+	op OutputPort[1] getOutputPort();
+}
+
+abstract class FeatureUnit extends HelperUnit {
+}
+
+@gmf.node(foo="bar",label.icon="false",label="name,type",label.pattern="{0}:{1}")
+class SingleFeatureUnit extends FeatureUnit {
+	@gmf.affixed(foo="bar")
+	val SingleInputPort[1] inputPort;
+	@gmf.affixed(foo="bar")
+	val MultiInputPort[*] secondaryInputPorts;
+   	@gmf.affixed(foo="bar")
+	val SingleOutputPort[1] outputPort;
+	ref SingleFeatureHelper[1] singleFeatureHelper;
+	readonly attr String type = "Single Feature Unit";
+}
+
+@gmf.node(foo="bar",label.icon="false",label="name,type",label.pattern="{0}:{1}")
+class MultiFeatureUnit extends FeatureUnit {
+	@gmf.affixed(foo="bar")
+	val SingleInputPort[1] inputPort;
+	@gmf.affixed(foo="bar")
+	val MultiInputPort[*] secondaryInputPorts;
+   	@gmf.affixed(foo="bar")
+	val MultiOutputPort[1] outputPort;
+	ref MultiFeatureHelper[1] multiFeatureHelper;
+	readonly attr String type = "Multi Feature Unit";
+}
+
+abstract class FilterUnit extends HelperUnit {
+}
+
+@gmf.node(foo="bar",label.icon="false",label="name,type",label.pattern="{0}:{1}")
+class SingleFilterUnit extends FilterUnit{
+	@gmf.affixed(foo="bar")
+	val MultiInputPort[1] inputPort;
+    @gmf.affixed(foo="bar")
+	val SingleOutputPort[1] outputPort;
+	ref SingleFilterHelper[1] singleFilterHelper;
+	readonly attr String type = "Single Filter Unit";
+}
+
+@gmf.node(foo="bar",label.icon="false",label="name,type",label.pattern="{0}:{1}")
+class MultiFilterUnit extends FilterUnit{
+	@gmf.affixed(foo="bar")
+	val MultiInputPort[1] inputPort;
+  	@gmf.affixed(foo="bar")
+	val MultiOutputPort[1] outputPort;
+	ref MultiFilterHelper[1] multiFilterHelper;
+	readonly attr String type = "Multi Filter Unit";
+}
+
+abstract class Helper extends NamedElement, DescribedElement{
+	attr String[1] helperId;
+	attr String[1] namespaceUri;
+}
+
+abstract class FeatureHelper extends Helper{  
+	val SingleInputPort[1] inputPort;
+	val MultiInputPort[*] secondaryInputPorts;
+}
+
+class SingleFeatureHelper extends FeatureHelper{ 
+	val SingleOutputPort[1] outputPort; 
+}
+
+class MultiFeatureHelper extends FeatureHelper{
+	val MultiOutputPort[1] outputPort;
+}
+
+abstract class FilterHelper extends Helper{
+	val MultiInputPort[1] inputPort;
+	
+}
+
+class SingleFilterHelper extends FilterHelper{
+   val SingleOutputPort[1] outputPort;
+}
+
+class MultiFilterHelper extends FilterHelper{
+   val MultiOutputPort[1] outputPort;
+}
+
+@gmf.node(foo="bar",label="name,type",label.icon="false",label.placement="external",label.pattern="{0}:{1}")
+abstract class Port extends NamedElement, DescribedElement {
+	attr Class[1] type;
+	op void setType(Class newType, boolean initiator);
+	op void updatePortName(String singularPortName);
+	op String getSingularPortName();
+}
+
+
+abstract class SinglePort extends Port{
+	attr Object value;
+}
+
+@gmf.node(border.color="255,0,0",border.width="10")
+abstract class MultiPort extends Port{
+	attr Object[*] value;
+}
+
+@gmf.node(figure="rectangle", size="20,20")
+abstract class InputPort extends Port{  
+	op Boolean isMappingTarget();
+	op Boolean isRootPort();
+}
+
+@gmf.node(figure="ellipse",size="20,20")
+abstract class OutputPort extends Port{
+}
+
+class SingleInputPort extends SinglePort, InputPort{
+}
+
+class MultiInputPort extends MultiPort, InputPort{
+}
+
+class SingleOutputPort extends SinglePort, OutputPort{
+}
+
+class MultiOutputPort extends MultiPort, OutputPort{
+}
+
+abstract class PortMapping {
+	op Port getSource();
+	op InputPort getTarget();
+	op void updatePortTypesAndNames(Class type, String singularPortName);
+	op void updateMappingNumber();
+	op void updateVisualization();
+}
+
+@gmf.link(source="source", target="target", style="dot", width="2",target.decoration="arrow")
+class SinglePortMapping extends PortMapping {
+   ref SinglePort source;
+   ref SingleInputPort target;
+}
+
+@gmf.link(source="source", target="target", style="dot", width="2", target.decoration="arrow")
+class MultiPortMapping extends PortMapping {
+   ref MultiPort source;
+   ref MultiInputPort target;
+   
+}
+
+@gmf.link(source="source", target="target", style="dot", width="2",target.decoration="arrow",tool.small.bundle="name")
+class MultiSinglePortMapping extends PortMapping {
+   ref MultiPort source;
+   ref SingleInputPort target;
+}
+
+enum MappingVisualization {
+   arrows = 0;
+   coloredPorts = 1;
+   indices = 2;
+   arrowsAndColoredPorts = 3;  
+   arrowsAndIndices = 4;
+}

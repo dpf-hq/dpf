@@ -1,0 +1,41 @@
+//Type Graph as Metamodel
+Specification:DPF<68> {
+ Graph {
+   Server@1:Node@0-communicates@2:Arrow@1->Server@1:Node@0,
+   Server@1:Node@0-has@9:Arrow@1->SecurityPolice@5:Node@0,
+   Server@1:Node@0-provides@4:Arrow@1->Service@3:Node@0
+ }
+ Constraints {
+   irr(){Server@1:Node@0-communicates@2:Arrow@1->Server@1:Node@0},
+   min("1"){Server@1:Node@0-provides@4:Arrow@1->Service@3:Node@0}
+ }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
