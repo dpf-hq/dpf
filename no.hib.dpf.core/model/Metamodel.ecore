@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="core" nsURI="http://no.hib.dpf.core" nsPrefix="core">
+  <eAnnotations source="http://www.eclipse.org/OCL/Import">
+    <details key="ecore" value="http://www.eclipse.org/emf/2002/Ecore#/"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="Specification">
+    <eOperations name="createGraph" eType="#//Graph">
+      <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eOperations name="createConstraint" eType="#//Constraint">
+      <eParameters name="predicate" lowerBound="1" eType="#//Predicate"/>
+      <eParameters name="parameters" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="mapping" lowerBound="1" eType="#//GraphHomomorphism"/>
+      <eParameters name="stuckedNodes" upperBound="-1" eType="#//Node"/>
+      <eParameters name="stuckedArrows" upperBound="-1" eType="#//Arrow"/>
+      <eParameters name="typeNodes" upperBound="-1" eType="#//Node"/>
+      <eParameters name="typeArrows" upperBound="-1" eType="#//Arrow"/>
+    </eOperations>
+    <eOperations name="validate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eOperations name="getTemplateSpecification" eType="#//Specification"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="graph" eType="#//Graph"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
+        eType="#//Constraint" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="metaFile" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="signatureFile" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="signature" eType="#//Signature"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Specification"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="metalevel" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="-1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Graph" eSuperTypes="#//IDObject #//DeepElement">
+    <eOperations name="createNode" eType="#//Node">
+      <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eOperations name="getGraphMember" eType="#//IDObject">
+      <eParameters name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eOperations name="createArrow" eType="#//Arrow">
+      <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="source" eType="#//Node"/>
+      <eParameters name="target" eType="#//Node"/>
+    </eOperations>
+    <eOperations name="applyPredicate" eType="#//Constraint">
+      <eParameters name="predicate" eType="#//Predicate"/>
+      <eParameters name="nodes" upperBound="-1" eType="#//Node"/>
+      <eParameters name="edges" upperBound="-1" eType="#//Arrow"/>
+    </eOperations>
+    <eOperations name="deleteNode">
+      <eParameters name="node" eType="#//Node"/>
+    </eOperations>
+    <eOperations name="deleteArrow">
+      <eParameters name="edge" eType="#//Arrow"/>
+    </eOperations>
+    <eOperations name="getNodeByName" eType="#//Node">
+      <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eOperations name="getArrowByName" eType="#//Arrow">
+      <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eOperations name="createNode" eType="#//Node">
+      <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="typeNode" eType="#//Node"/>
+    </eOperations>
+    <eOperations name="createArrow" eType="#//Arrow">
+      <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="source" eType="#//Node"/>
+      <eParameters name="target" eType="#//Node"/>
+      <eParameters name="typeEdge" eType="#//Arrow"/>
+    </eOperations>
+    <eOperations name="extractSubgraph" eType="#//Graph">
+      <eParameters name="nodes" upperBound="-1" eType="#//Node"/>
+      <eParameters name="arrows" upperBound="-1" eType="#//Arrow"/>
+    </eOperations>
+    <eOperations name="getNodesForConstraint" upperBound="-1" eType="#//Node">
+      <eParameters name="constraint" eType="#//Constraint"/>
+    </eOperations>
+    <eOperations name="getArrowsForConstraint" upperBound="-1" eType="#//Arrow">
+      <eParameters name="constraint" eType="#//Constraint"/>
+    </eOperations>
+    <eOperations name="getNodes" upperBound="-1" eType="#//Node">
+      <eParameters name="typeNodes" upperBound="-1" eType="#//Node"/>
+    </eOperations>
+    <eOperations name="getArrows" upperBound="-1" eType="#//Arrow">
+      <eParameters name="types" upperBound="-1" eType="#//Arrow"/>
+    </eOperations>
+    <eOperations name="getCopy" eType="#//Graph"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="#//Graph"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" upperBound="-1"
+        eType="#//Node" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="arrows" upperBound="-1"
+        eType="#//Arrow" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="datanodes" upperBound="-1"
+        eType="#//DataNode" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="arrowAttributes" upperBound="-1"
+        eType="#//ArrowAttribute" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nodeAttributes" upperBound="-1"
+        eType="#//NodeAttribute" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Node" eSuperTypes="#//IDObject #//MutableElement #//DeepElement">
+    <eOperations name="arrowCanMakeConnectionAsTarget" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="intendedTarget" eType="#//Node"/>
+    </eOperations>
+    <eOperations name="canReachTargetByOneArrow" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="target" eType="#//Node"/>
+    </eOperations>
+    <eOperations name="arrowCanMakeConnectionAsTarget" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject">
+      <eParameters name="intendedTarget" eType="#//Node"/>
+      <eParameters name="typeEdge" eType="#//Arrow"/>
+    </eOperations>
+    <eOperations name="canReachTargetByTypeArrow" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject">
+      <eParameters name="target" eType="#//Node"/>
+      <eParameters name="typeEdge" eType="#//Arrow"/>
+    </eOperations>
+    <eOperations name="getArrowto" eType="#//Arrow">
+      <eParameters name="target" eType="#//Node"/>
+    </eOperations>
+    <eOperations name="generateUniqueName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eOperations name="canCreateTypedArrow" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="intendedTarget" eType="#//Node"/>
+    </eOperations>
+    <eOperations name="getTypeArrow" eType="#//Arrow">
+      <eParameters name="intendedTarget" eType="#//Node"/>
+    </eOperations>
+    <eOperations name="getTypeName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eOperations name="getTemplateElementType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outgoings" upperBound="-1"
+        eType="#//Arrow" eOpposite="#//Arrow/source"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="incomings" upperBound="-1"
+        eType="#//Arrow" eOpposite="#//Arrow/target"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
+        eType="#//Constraint" eOpposite="#//Constraint/nodes"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typeNode" lowerBound="1"
+        eType="#//Node"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outgoingAttributes" upperBound="-1"
+        eType="#//NodeAttribute" eOpposite="#//NodeAttribute/source"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Arrow" eSuperTypes="#//IDObject #//MutableElement #//DeepElement">
+    <eOperations name="generateUniqueName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eOperations name="getTypeName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eOperations name="getTemplateElementType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
+        eType="#//Node" eOpposite="#//Node/outgoings"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+        eType="#//Node" eOpposite="#//Node/incomings"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
+        eType="#//Constraint" eOpposite="#//Constraint/arrows"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typeArrow" lowerBound="1"
+        eType="#//Arrow"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outgoingAttributes" upperBound="-1"
+        eType="#//ArrowAttribute" eOpposite="#//ArrowAttribute/source"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Signature">
+    <eOperations name="getPredicateBySymbol" eType="#//Predicate">
+      <eParameters name="symbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eOperations name="addPredicate">
+      <eParameters name="dPredicate" eType="#//Predicate"/>
+    </eOperations>
+    <eOperations name="removePredicate">
+      <eParameters name="dPredicate" eType="#//Predicate"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="predicates" upperBound="-1"
+        eType="#//Predicate" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Predicate">
+    <eOperations name="createConstraint" eType="#//Constraint">
+      <eParameters name="nodes" upperBound="-1" eType="#//Node"/>
+      <eParameters name="arrows" upperBound="-1" eType="#//Arrow"/>
+    </eOperations>
+    <eOperations name="canCreateConstraint" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="nodes" upperBound="-1" eType="#//Node"/>
+      <eParameters name="arrows" upperBound="-1" eType="#//Arrow"/>
+      <eParameters name="modelToBeConstrained" eType="#//Graph"/>
+    </eOperations>
+    <eOperations name="validateSemantics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="parameters" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="mapping" eType="#//GraphHomomorphism"/>
+      <eParameters name="graph" eType="#//Graph"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="symbol" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="shape" eType="#//Graph"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="parameters" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="validator" eType="#//SemanticValidator"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SemanticValidator">
+    <eOperations name="validateSemantics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject">
+      <eParameters name="constraintParameters" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="typeNodes" upperBound="-1" eType="#//Node"/>
+      <eParameters name="typeArrows" upperBound="-1" eType="#//Arrow"/>
+      <eParameters name="stuckedNodes" upperBound="-1" eType="#//Node"/>
+      <eParameters name="stuckedArrows" upperBound="-1" eType="#//Arrow"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//ValidatorType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="validator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Constraint" eSuperTypes="#//IDObject">
+    <eOperations name="reconnect">
+      <eParameters name="nodes" upperBound="-1" eType="#//Node"/>
+      <eParameters name="arrows" upperBound="-1" eType="#//Arrow"/>
+      <eParameters name="specification" eType="#//Specification"/>
+    </eOperations>
+    <eOperations name="disconnect"/>
+    <eOperations name="addArrow">
+      <eParameters name="arrow" eType="#//Arrow"/>
+    </eOperations>
+    <eOperations name="addNode">
+      <eParameters name="node" eType="#//Node"/>
+    </eOperations>
+    <eOperations name="validate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="graph" eType="#//Graph"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" upperBound="-1"
+        eType="#//Node" eOpposite="#//Node/constraints"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="arrows" upperBound="-1"
+        eType="#//Arrow" eOpposite="#//Arrow/constraints"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="predicate" eType="#//Predicate"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mappings" eType="#//GraphHomomorphism"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="parameters" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="arrowAttributes" upperBound="-1"
+        eType="#//ArrowAttribute" eOpposite="#//ArrowAttribute/constraints"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nodeAttributes" upperBound="-1"
+        eType="#//NodeAttribute" eOpposite="#//NodeAttribute/constraints"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GraphHomomorphism">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nodeMapping" upperBound="-1"
+        eType="#//NodeToNodeMap" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="arrowMapping" upperBound="-1"
+        eType="#//ArrowToArrowMap" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NodeToNodeMap" instanceClassName="java.util.Map$Entry">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="key" eType="#//Node"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Node"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ArrowToArrowMap" instanceClassName="java.util.Map$Entry">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="key" eType="#//Arrow"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Arrow"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IDObject" abstract="true">
+    <eOperations name="getTemplateElement" eType="#//IDObject"/>
+    <eOperations name="isTemplateElement" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eOperations name="getElement" eType="#//IDObject">
+      <eParameters name="metalevel" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eOperations>
+    <eOperations name="getMetaLevel" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="EResourceSet" instanceClassName="org.eclipse.emf.ecore.resource.ResourceSet"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="ValidatorType">
+    <eLiterals name="OCL"/>
+    <eLiterals name="JAVA" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataNode" eSuperTypes="#//MutableElement #//IDObject">
+    <eOperations name="getTypeValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="incomingNodeAttributes"
+        upperBound="-1" eType="#//NodeAttribute" eOpposite="#//NodeAttribute/target"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="incomingArrowAtributes"
+        upperBound="-1" eType="#//ArrowAttribute" eOpposite="#//ArrowAttribute/target"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typeDataNode" lowerBound="1"
+        eType="#//DataNode"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="datatype" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" defaultValueLiteral="EDataType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isDataType" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NodeAttribute" eSuperTypes="#//IDObject #//MutableElement">
+    <eOperations name="getTypeName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
+        eType="#//Node" eOpposite="#//Node/outgoingAttributes"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typeAttribute" lowerBound="1"
+        eType="#//NodeAttribute"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
+        eType="#//Constraint" eOpposite="#//Constraint/nodeAttributes"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+        eType="#//DataNode" eOpposite="#//DataNode/incomingNodeAttributes"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ArrowAttribute" eSuperTypes="#//IDObject #//MutableElement">
+    <eOperations name="getTypeName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
+        eType="#//Arrow" eOpposite="#//Arrow/outgoingAttributes"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typeAttribute" lowerBound="1"
+        eType="#//ArrowAttribute"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
+        eType="#//Constraint" eOpposite="#//Constraint/arrowAttributes"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+        eType="#//DataNode" eOpposite="#//DataNode/incomingArrowAtributes"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MutableElement" abstract="true" interface="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mutability" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="-1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DeepElement" abstract="true" interface="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="potency" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="-1"/>
+  </eClassifiers>
+</ecore:EPackage>

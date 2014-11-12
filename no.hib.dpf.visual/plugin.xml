@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <factory
+            uri="http://no.hib.dpf.visual"
+            class="no.hib.dpf.visual.provider.VisualItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+      <factory
+            class="no.hib.dpf.visualization.provider.VisualizationItemProviderAdapterFactory"
+            uri="no.hib.dpf.visualization"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://no.hib.dpf.visual"
+            class="no.hib.dpf.visual.VisualPackage"
+            genModel="model/visualGen.genmodel"/>
+      <package
+            class="no.hib.dpf.visualization.VisualizationPackage"
+            uri="no.hib.dpf.visualization">
+      </package>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <wizard
+            id="no.hib.dpf.visual.presentation.VisualModelWizardID"
+            name="%_UI_VisualModelWizard_label"
+            class="no.hib.dpf.visual.presentation.VisualModelWizard"
+            category="no.hib.dpf.editor"
+            icon="icons/full/obj16/VisualModelFile.gif">
+         <description>%_UI_VisualModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+      <wizard
+            category="no.hib.dpf.editor"
+            class="no.hib.dpf.visualization.presentation.TemplateVisualizationModelWizard"
+            icon="icons/full/obj16/VisualizationModelFile.gif"
+            id="no.hib.dpf.visual.presentation.VisualizationModelWizardID"
+            name="%_UI_TemplateVisualizationModelWizard_label">
+         <selection 
+               class="org.eclipse.core.resources.IResource">
+         </selection>
+         <description>
+            %_UI_TemplateVisualizationModelWizard_description
+         </description>
+      </wizard>
+   </extension>
+   
+    <extension point="org.eclipse.ui.newWizards">
+      <wizard
+            category="no.hib.dpf.editor"
+            class="no.hib.dpf.visualization.presentation.VisualizationModelWizard"
+            icon="icons/full/obj16/VisualizationModelFile.gif"
+            id="no.hib.dpf.visual.presentation.ClassModelWizardID"
+            name="%_UI_VisualizationModelWizard_label">
+         <selection
+               class="org.eclipse.core.resources.IResource">
+         </selection>
+         <description>
+            %_UI_VisualizationModelWizard_description
+         </description>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            id="no.hib.dpf.visual.presentation.VisualEditorID"
+            name="%_UI_VisualEditor_label"
+            icon="icons/full/obj16/VisualModelFile.gif"
+            extensions="visual"
+            class="no.hib.dpf.visual.presentation.VisualFormEditor">
+      </editor>
+      <editor
+            class="no.hib.dpf.visualization.presentation.VisualizationEditor"
+            contributorClass="no.hib.dpf.editor.DPFEditorActionBarContributor"
+            default="true"
+            extensions="visualization"
+            icon="icons/full/obj16/VisualizationModelFile.gif"
+            id="no.hib.dpf.visual.presentation.VisualizationEditorID"
+            name="%_UI_VisualizationEditor_label">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated ModelVisualizationGen -->
+      <package
+            uri="no.hib.dpf.visualization"
+            class="no.hib.dpf.visualization.VisualizationPackage"
+            genModel="model/ModelVisualizationGen.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <!-- @generated ModelVisualizationGen -->
+      <factory
+            uri="no.hib.dpf.visualization"
+            class="no.hib.dpf.visualization.provider.VisualizationItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated ModelVisualizationGen -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="no.hib.dpf.visualization.presentation.VisualizationModelWizardID"
+            name="%_UI_VisualizationModelWizard_label"
+            class="no.hib.dpf.visualization.presentation.VisualizationModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/VisualizationModelFile.gif">
+         <description>%_UI_VisualizationModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated ModelVisualizationGen -->
+      <editor
+            id="no.hib.dpf.visualization.presentation.VisualizationEditorID"
+            name="%_UI_VisualizationEditor_label"
+            icon="icons/full/obj16/VisualizationModelFile.gif"
+            extensions="visualization"
+            class="no.hib.dpf.visualization.presentation.VisualizationEditor"
+            contributorClass="no.hib.dpf.visualization.presentation.VisualizationActionBarContributor">
+      </editor>
+   </extension>
+</plugin>
