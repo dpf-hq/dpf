@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>no.hib.dpf</groupId>
+  <artifactId>plugins</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <repositories>
+    <repository>
+      <id>eclipse-luna</id>
+      <url>http://download.eclipse.org/releases/luna/</url>
+      <layout>p2</layout>
+    </repository>
+    <repository>
+      <id>eclipse-luna-epp</id>
+      <url>http://download.eclipse.org/technology/epp/packages/luna/</url>
+      <layout>p2</layout>
+    </repository>
+
+  </repositories>
+  <modules>
+    <module>no.hib.dpf.codegen.xpand.metamodel</module>
+    <module>no.hib.dpf.codegen.xpand.ui</module>
+    <module>no.hib.dpf.core</module>
+    <module>no.hib.dpf.diagram</module>
+    <module>no.hib.dpf.editor</module>
+    <module>no.hib.dpf.editor.signature</module>
+    <module>no.hib.dpf.tests</module>
+    <module>no.hib.dpf.codegen.xpand.metamodel.test</module>
+    <module>no.hib.dpf.feature</module>
+    <module>no.hib.dpf.updatesite</module>
+  </modules>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>tycho-maven-plugin</artifactId>
+        <version>0.21.0</version>
+        <extensions>true</extensions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
